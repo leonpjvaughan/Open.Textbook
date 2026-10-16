@@ -1,0 +1,195 @@
+# Junior Cycle Mathematics, Chapter 7, section 7.3.
+#
+# VAT is a percentage added to a price, so every check proves the multiplication
+# "price * 1.23" for a price with VAT and the division "price / 1.23" for the
+# price before VAT. A record that subtracted 23% from the price with VAT would
+# give a different number and fail. The euro sign, the per-cent sign and the
+# words stay in `statement`: the CAS parses numbers and symbols only.
+chapter: 7
+symbols: {}
+
+problems:
+- id: jc7-7.3-vat-1
+  section: '7.3'
+  tier: O
+  refs:
+  - N.2
+  statement: A phone case costs €6.00 before VAT. VAT is charged at $23\%$. Work out the VAT.
+  answer_label: Find the $23\%$ VAT on €6.00.
+  check:
+    kind: evaluate
+    expression: 6*23/100
+    answer: '1.38'
+  answer_text: >-
+    €1.38. VAT is $23\%$ of the price before VAT:
+    $6.00\times0.23=1.38$.
+- id: jc7-7.3-with-vat-1
+  section: '7.3'
+  tier: O
+  refs:
+  - N.2
+  statement: A phone case costs €6.00 before VAT. VAT is charged at $23\%$. Work out the price
+    with VAT.
+  answer_label: Add $23\%$ VAT to €6.00.
+  check:
+    kind: evaluate
+    expression: 6*(1+23/100)
+    answer: '7.38'
+  steps:
+  - expr: 6*(1+23/100)
+  - expr: 6*1.23
+  - expr: '7.38'
+  answer_text: >-
+    €7.38. Adding $23\%$ multiplies the price by $1.23$:
+    $6.00\times1.23=7.38$. The VAT is $6.00\times0.23=1.38$, and
+    $6.00+1.38=7.38$.
+- id: jc7-7.3-before-vat-1
+  section: '7.3'
+  tier: O
+  refs:
+  - N.2
+  statement: A shelf price is €24.60, including VAT at $23\%$. Work out the price before VAT.
+  answer_label: Take $23\%$ VAT off €24.60.
+  check:
+    kind: evaluate
+    expression: 24.6/1.23
+    answer: '20'
+  steps:
+  - expr: 24.6/1.23
+  - expr: '20'
+  answer_text: >-
+    €20.00. The shelf price is $123\%$ of the price before VAT, so divide by
+    $1.23$: $24.60\div1.23=20.00$. The VAT is $24.60-20.00=4.60$, which is
+    $23\%$ of €20.00.
+- id: jc7-7.3-vat-2
+  section: '7.3'
+  tier: O
+  refs:
+  - N.2
+  statement: A price is €50.00 before VAT. VAT is charged at $23\%$. Work out the VAT and the
+    price with VAT.
+  answer_label: Add $23\%$ VAT to €50.00.
+  check:
+    kind: all
+    checks:
+    - kind: evaluate
+      expression: 50*23/100
+      answer: '11.5'
+    - kind: evaluate
+      expression: 50*(1+23/100)
+      answer: '61.5'
+  answer_text: >-
+    The VAT is €11.50, and the price with VAT is €61.50. The VAT is
+    $50.00\times0.23=11.50$, and $50.00+11.50=61.50$. Multiplying by $1.23$
+    gives the same €61.50 in one step.
+- id: jc7-7.3-before-vat-2
+  section: '7.3'
+  tier: O
+  refs:
+  - N.2
+  statement: A receipt shows €73.80, including VAT at $23\%$. Work out the price before VAT and
+    the VAT.
+  answer_label: Take $23\%$ VAT off €73.80.
+  check:
+    kind: all
+    checks:
+    - kind: evaluate
+      expression: 73.8/1.23
+      answer: '60'
+    - kind: evaluate
+      expression: 73.8-60
+      answer: '13.8'
+  answer_text: >-
+    The price before VAT is €60.00, and the VAT is €13.80. Divide by $1.23$:
+    $73.80\div1.23=60.00$. The VAT is $73.80-60.00=13.80$, which is $23\%$ of
+    €60.00.
+- id: jc7-7.3-bill-1
+  section: '7.3'
+  tier: O
+  refs:
+  - N.2
+  statement: A phone bill is €30.00 before VAT. VAT is charged at $23\%$. Work out the bill with
+    VAT.
+  answer_label: Add $23\%$ VAT to a €30.00 phone bill.
+  check:
+    kind: evaluate
+    expression: 30*(1+23/100)
+    answer: '36.9'
+  answer_text: >-
+    €36.90. The bill with VAT is $30.00\times1.23=36.90$. The VAT is
+    $30.00\times0.23=6.90$.
+- id: jc7-7.3-vat-3
+  section: '7.3'
+  tier: O
+  refs:
+  - N.2
+  statement: A price is €200.00 before VAT. VAT is charged at $23\%$. Work out the VAT and the
+    price with VAT.
+  answer_label: Add $23\%$ VAT to €200.00.
+  check:
+    kind: all
+    checks:
+    - kind: evaluate
+      expression: 200*23/100
+      answer: '46'
+    - kind: evaluate
+      expression: 200*(1+23/100)
+      answer: '246'
+  answer_text: >-
+    The VAT is €46.00, and the price with VAT is €246.00. The VAT is
+    $200.00\times0.23=46.00$, and $200.00+46.00=246.00$.
+- id: jc7-7.3-before-vat-3
+  section: '7.3'
+  tier: O
+  refs:
+  - N.2
+  statement: A bill is €123.00, including VAT at $23\%$. Work out the price before VAT and the
+    VAT.
+  answer_label: Take $23\%$ VAT off €123.00.
+  check:
+    kind: all
+    checks:
+    - kind: evaluate
+      expression: 123/1.23
+      answer: '100'
+    - kind: evaluate
+      expression: 123-100
+      answer: '23'
+  answer_text: >-
+    The price before VAT is €100.00, and the VAT is €23.00. Divide by $1.23$:
+    $123.00\div1.23=100.00$. The VAT is $123.00-100.00=23.00$.
+- id: jc7-7.3-before-vat-4
+  section: '7.3'
+  tier: H
+  refs:
+  - N.2
+  statement: A shop's shelf price is €61.50, including VAT at $23\%$. Work out the price before
+    VAT.
+  answer_label: Take $23\%$ VAT off €61.50.
+  check:
+    kind: evaluate
+    expression: 61.5/1.23
+    answer: '50'
+  answer_text: >-
+    €50.00. The shelf price is $123\%$ of the price before VAT, so divide by
+    $1.23$: $61.50\div1.23=50.00$. Check it: $50.00\times1.23=61.50$.
+- id: jc7-7.3-before-vat-5
+  section: '7.3'
+  tier: O
+  refs:
+  - N.2
+  statement: A phone case has a shelf price of €7.38, including VAT at $23\%$. Work out the
+    price before VAT and the VAT.
+  answer_label: Take $23\%$ VAT off €7.38.
+  check:
+    kind: all
+    checks:
+    - kind: evaluate
+      expression: 7.38/1.23
+      answer: '6'
+    - kind: evaluate
+      expression: 7.38-6
+      answer: '1.38'
+  answer_text: >-
+    The price before VAT is €6.00, and the VAT is €1.38. Divide by $1.23$:
+    $7.38\div1.23=6.00$. The VAT is $7.38-6.00=1.38$.

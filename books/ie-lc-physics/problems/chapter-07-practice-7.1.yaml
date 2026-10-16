@@ -1,0 +1,251 @@
+# Leaving Certificate Physics, Chapter 7, section 7.1 (strand 1 outcome 1.6).
+#
+# The physics oracle checks two claims whenever a quantity is asked for:
+# `dimensions` proves the exact magnitude *and* the unit, and `sigfigs` proves the
+# rounding to the figures the data support. Both are written out, because a rounded
+# answer is never equal to the exact one. A value built on pi carries a `tolerance`,
+# so the check proves the arithmetic within the precision of the data rather than
+# against a number that was rounded by hand.
+#
+# Honest limit: this proves the arithmetic and the dimensions, not the physics. A
+# dimensionally consistent, arithmetically correct, physically absurd answer would
+# pass. The `structured` records prove only that a model answer contains the
+# declared steps and concepts, in order — not that the physics in them is right.
+chapter: 7
+problems:
+- id: p7-1-rotations
+  section: '7.1'
+  tier: O
+  refs:
+  - '1.6'
+  statement: A wheel turns 300 times in 60 s. Calculate its frequency and its period.
+  answer_label: Frequency and period
+  check:
+    kind: all
+    checks:
+    - kind: dimensions
+      expression: N / t
+      values:
+        N:
+          value: '300'
+        t:
+          value: '60'
+          unit: s
+      answer:
+        value: '5.0'
+        unit: Hz
+    - kind: sigfigs
+      value: 300 / 60
+      figures: 2
+      answer: '5.0'
+      convention: round-once
+    - kind: dimensions
+      expression: 1 / f
+      values:
+        f:
+          value: '5.0'
+          unit: Hz
+      answer:
+        value: '0.20'
+        unit: s
+    - kind: sigfigs
+      value: 1 / 5
+      figures: 2
+      answer: '0.20'
+      convention: round-once
+  answer_text: $f = \dfrac{300}{60} = 5.0\,\text{Hz}$, so $T = \dfrac{1}{f} = \dfrac{1}{5.0} =
+    0.20\,\text{s}$. A frequency of 5.0 Hz means five complete turns every second.
+- id: p7-1-omega-drum
+  section: '7.1'
+  tier: O
+  refs:
+  - '1.6'
+  statement: A washing machine drum turns at 1400 revolutions per minute. Calculate its angular velocity.
+  answer_label: Angular velocity
+  check:
+    kind: all
+    checks:
+    - kind: approx
+      value: 2 * pi * 1400 / 60
+      target: '146.6'
+      tolerance: '0.5'
+    - kind: sigfigs
+      value: 2 * pi * 1400 / 60
+      figures: 2
+      tolerance: '0.5'
+      answer: 1.5e2
+      convention: round-once
+  answer_text: The frequency is $f = \dfrac{1400}{60} = 23.3\,\text{rev/s}$. Then
+    $\omega = 2\pi f = 2\pi \times 23.3 = 1.5 \times 10^{2}\,\text{rad/s}$. The angular velocity
+    is the angle turned through each second.
+- id: p7-1-period-drum
+  section: '7.1'
+  tier: O
+  refs:
+  - '1.6'
+  statement: The drum turns at 1400 revolutions per minute. Calculate the period of one turn.
+  answer_label: Period
+  check:
+    kind: all
+    checks:
+    - kind: dimensions
+      expression: 1 / f
+      values:
+        f:
+          value: '23.33'
+          unit: Hz
+      tolerance: '0.0001'
+      answer:
+        value: '0.0429'
+        unit: s
+    - kind: sigfigs
+      value: 60 / 1400
+      figures: 2
+      answer: '0.043'
+      convention: round-once
+  answer_text: $T = \dfrac{1}{f} = \dfrac{60}{1400} = 0.043\,\text{s}$. The drum completes a turn in
+    under a twentieth of a second.
+- id: p7-1-rim-speed
+  section: '7.1'
+  tier: O
+  refs:
+  - '1.6'
+  statement: A bicycle wheel has a radius of 0.34 m. It turns at 2.0 revolutions per second. Calculate
+    the speed of a point on the rim.
+  answer_label: Speed of the rim
+  check:
+    kind: all
+    checks:
+    - kind: dimensions
+      expression: r * omega
+      values:
+        r:
+          value: '0.34'
+          unit: m
+        omega:
+          value: '12.57'
+          unit: s^-1
+      tolerance: '0.05'
+      answer:
+        value: '4.3'
+        unit: m/s
+    - kind: sigfigs
+      value: 0.34 * 2 * pi * 2.0
+      figures: 2
+      tolerance: '0.02'
+      answer: '4.3'
+      convention: round-once
+  answer_text: $\omega = 2\pi f = 2\pi \times 2.0 = 12.6\,\text{rad/s}$, so
+    $v = r\omega = 0.34 \times 12.6 = 4.3\,\text{m/s}$. A point on the rim travels at 4.3 m/s even
+    though the wheel does not move forwards.
+- id: p7-1-omega-from-speed
+  section: '7.1'
+  tier: O
+  refs:
+  - '1.6'
+  statement: A wheel of radius 0.30 m rolls so that a point on its rim moves at 3.0 m/s. Calculate its
+    angular velocity.
+  answer_label: Angular velocity
+  check:
+    kind: all
+    checks:
+    - kind: dimensions
+      expression: v / r
+      values:
+        v:
+          value: '3.0'
+          unit: m/s
+        r:
+          value: '0.30'
+          unit: m
+      answer:
+        value: '10'
+        unit: s^-1
+    - kind: sigfigs
+      value: 3.0 / 0.30
+      figures: 2
+      answer: 1.0e1
+      convention: round-once
+  answer_text: Rearranging $v = r\omega$ gives $\omega = \dfrac{v}{r} = \dfrac{3.0}{0.30} =
+    1.0 \times 10^{1}\,\text{rad/s}$. The smaller the radius, the larger the angular velocity for the
+    same rim speed.
+- id: p7-1-satellite-period
+  section: '7.1'
+  tier: O
+  refs:
+  - '1.6'
+  statement: A satellite completes one orbit in 90 minutes. Calculate its angular velocity.
+  answer_label: Angular velocity of the satellite
+  check:
+    kind: all
+    checks:
+    - kind: approx
+      value: 2 * pi / (90 * 60)
+      target: '0.00116'
+      tolerance: '0.00001'
+    - kind: sigfigs
+      value: 2 * pi / (90 * 60)
+      figures: 2
+      tolerance: '0.00001'
+      answer: 1.2e-3
+      convention: round-once
+  answer_text: The period is $T = 90 \times 60 = 5400\,\text{s}$. Then
+    $\omega = \dfrac{2\pi}{T} = \dfrac{2\pi}{5400} = 1.2 \times 10^{-3}\,\text{rad/s}$. One orbit takes
+    90 minutes, so the angle changes slowly.
+- id: p7-1-turn-time
+  section: '7.1'
+  tier: O
+  refs:
+  - '1.6'
+  statement: A wheel turns once every 0.50 s. Calculate its angular velocity.
+  answer_label: Angular velocity
+  check:
+    kind: all
+    checks:
+    - kind: approx
+      value: 2 * pi / 0.50
+      target: '12.6'
+      tolerance: '0.05'
+    - kind: sigfigs
+      value: 2 * pi / 0.50
+      figures: 2
+      tolerance: '0.05'
+      answer: '13'
+      convention: round-once
+  answer_text: $\omega = \dfrac{2\pi}{T} = \dfrac{2\pi}{0.50} = 13\,\text{rad/s}$. One complete turn
+    is $2\pi$ radians, which is about 6.3 radians.
+- id: p7-1-define
+  section: '7.1'
+  tier: O
+  refs:
+  - '1.6'
+  statement: State what is meant by the period, the frequency and the angular velocity of a body moving
+    in a circle, and give the unit of each.
+  answer_label: Period, frequency and angular velocity
+  check:
+    kind: structured
+    requires:
+    - period
+    - frequency
+    - angular
+    concepts:
+    - one-turn
+    - per-second
+    - radians-per-second
+    points:
+    - id: period
+      text: the period is the time for one complete turn, measured in seconds
+      concepts:
+      - one-turn
+    - id: frequency
+      text: the frequency is the number of complete turns in one second, measured in hertz
+      concepts:
+      - per-second
+    - id: angular
+      text: the angular velocity is the angle turned through in one second, measured in radians per
+        second
+      concepts:
+      - radians-per-second
+  answer_text: The period is the time for one complete turn, in seconds. The frequency is the number of
+    complete turns in one second, in hertz. The angular velocity is the angle turned through in one
+    second, in radians per second. The three are linked by $T = \dfrac{1}{f}$ and $\omega = 2\pi f$.

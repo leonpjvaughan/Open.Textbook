@@ -1,0 +1,167 @@
+# Practice set for 2.2 (strand 3, outcome 3.3). Profit, loss, mark-up and margin
+# are all arithmetic, so `evaluate` proves them. The mark-up-versus-margin item is
+# the section's central idea and is a `structured` check, because the oracle can
+# prove the numbers and cannot prove that the two bases are understood.
+chapter: 2
+problems:
+  - id: lc2-2-profit
+    section: '2.2'
+    tier: F
+    refs: ['3.3']
+    statement: 'A loaf costs €2.50 to make and sells for €4. Work out the profit on one loaf.'
+    answer_label: 'The profit on one loaf'
+    check: {kind: evaluate, expression: '4 - 2.50', answer: '1.50'}
+    answer_text: >-
+      Profit is the selling price minus the cost price:
+
+      $$4 - 2.50 = 1.50$$
+
+      The profit is €1.50 on each loaf.
+
+  - id: lc2-2-markup-margin
+    section: '2.2'
+    tier: F
+    refs: ['3.3']
+    statement: >-
+      A loaf costs €2.50 and sells for €4. Work out the profit as a percentage of
+      the cost price, and as a percentage of the selling price.
+    answer_label: 'The profit on cost, then the profit on the selling price'
+    check:
+      kind: all
+      checks:
+        - {kind: evaluate, expression: '(4 - 2.50) / 2.50 * 100', answer: '60'}
+        - {kind: evaluate, expression: '(4 - 2.50) / 4 * 100', answer: '37.5'}
+    answer_text: >-
+      The profit is €1.50. On the cost price of €2.50:
+
+      $$\frac{1.50}{2.50} \times 100 = 60\%$$
+
+      On the selling price of €4:
+
+      $$\frac{1.50}{4} \times 100 = 37.5\%$$
+
+      The same €1.50 is $60\%$ of the cost and $37.5\%$ of the selling price. The
+      two answers differ because the base is different.
+
+  - id: lc2-2-loss
+    section: '2.2'
+    tier: F
+    refs: ['3.3']
+    statement: >-
+      A trader buys stock for €80 and sells it for €68. Work out the loss, and the
+      loss as a percentage of the cost price.
+    answer_label: 'The loss, then the loss as a percentage'
+    check:
+      kind: all
+      checks:
+        - {kind: evaluate, expression: '80 - 68', answer: '12'}
+        - {kind: evaluate, expression: '(80 - 68) / 80 * 100', answer: '15'}
+    answer_text: >-
+      The selling price is below the cost price, so the trader makes a loss:
+
+      $$80 - 68 = 12$$
+
+      The loss is €12. As a percentage of the cost price:
+
+      $$\frac{12}{80} \times 100 = 15\%$$
+
+      A loss percentage is always worked out on the cost price.
+
+  - id: lc2-2-selling-price
+    section: '2.2'
+    tier: F
+    refs: ['3.3']
+    statement: 'A shop buys an item for €45 and marks it up by $40\%$. Work out the selling price.'
+    answer_label: 'The selling price'
+    check: {kind: evaluate, expression: '45 * 1.4', answer: '63'}
+    answer_text: >-
+      A mark-up of $40\%$ adds $40\%$ of the cost price, so multiply by $1.4$:
+
+      $$45 \times 1.4 = 63$$
+
+      The selling price is €63. The mark-up is €18, because
+      $45 \times 0.4 = 18$.
+
+  - id: lc2-2-cost-price
+    section: '2.2'
+    tier: F
+    refs: ['3.3']
+    statement: >-
+      An item sells for €63 after a mark-up of $40\%$ on the cost price. Work out
+      the cost price.
+    answer_label: 'The cost price'
+    check: {kind: evaluate, expression: '63 / 1.4', answer: '45'}
+    answer_text: >-
+      The selling price is $140\%$ of the cost price, so €63 is $1.4$ times the
+      cost price. Divide to undo the mark-up:
+
+      $$63 \div 1.4 = 45$$
+
+      The cost price is €45. Taking $40\%$ off €63 gives €37.80, which is the
+      wrong answer, because the $40\%$ was worked out on the cost price.
+
+  - id: lc2-2-discount
+    section: '2.2'
+    tier: F
+    refs: ['3.3']
+    statement: 'A coat priced at €250 is reduced by $15\%$. Work out the reduced price.'
+    answer_label: 'The reduced price'
+    check: {kind: evaluate, expression: '250 * 0.85', answer: '212.50'}
+    answer_text: >-
+      A reduction of $15\%$ leaves $85\%$ of the price, so multiply by $0.85$:
+
+      $$250 \times 0.85 = 212.50$$
+
+      The reduced price is €212.50. The discount is €37.50, because
+      $250 \times 0.15 = 37.50$.
+
+  - id: lc2-2-chapter-profit
+    section: '2.2'
+    tier: F
+    refs: ['3.3']
+    statement: >-
+      A new oven lets a bakery sell $2\,000$ extra loaves a year. Each loaf makes
+      a profit of €1.50. Work out the extra profit in a year.
+    answer_label: 'The extra profit in a year'
+    check: {kind: evaluate, expression: '2000 * 1.5', answer: '3000'}
+    answer_text: >-
+      Multiply the profit on one loaf by the number of extra loaves:
+
+      $$2\,000 \times 1.50 = 3\,000$$
+
+      The extra profit is €3,000 in a year. Section 2.3 works out how much of that
+      reaches the bakery after tax.
+
+  - id: lc2-2-markup-margin-explain
+    section: '2.2'
+    tier: F
+    refs: ['3.3']
+    statement: 'Explain the difference between mark-up and margin.'
+    answer_label: 'The difference between mark-up and margin'
+    check:
+      kind: structured
+      requires: [markup-base, margin-base]
+      concepts: [cost-price-base, selling-price-base]
+      points:
+        - id: markup-base
+          text: mark-up is the profit written as a percentage of the cost price
+          concepts: [cost-price-base]
+        - id: margin-base
+          text: margin is the same profit written as a percentage of the selling price
+          concepts: [selling-price-base]
+    answer_text: >-
+      Mark-up and margin use the same profit and a different base. Mark-up divides
+      the profit by the cost price. Margin divides the same profit by the selling
+      price.
+
+      For a loaf that costs €2.50 and sells for €4, the profit is €1.50. The
+      mark-up is
+
+      $$\frac{1.50}{2.50} \times 100 = 60\%$$
+
+      and the margin is
+
+      $$\frac{1.50}{4} \times 100 = 37.5\%$$
+
+      Because the selling price is larger than the cost price, the margin is
+      always the smaller of the two.

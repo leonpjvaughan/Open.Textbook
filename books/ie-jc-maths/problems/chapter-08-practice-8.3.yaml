@@ -1,0 +1,171 @@
+# Junior Cycle Mathematics, Chapter 8, section 8.3.
+#
+# Intersection, union and set difference. An intersection or a difference over
+# small sets is verified by the arithmetic that builds its elements, and by the
+# cardinality rule n(A u B) = n(A) + n(B) - n(A n B) where a count is asked for.
+chapter: 8
+symbols: {}
+
+problems:
+- id: jc8-8.3-intersection
+  section: '8.3'
+  tier: O
+  refs:
+  - N.5
+  statement: Let $A=\{1, 2, 3, 4, 5\}$ and $B=\{4, 5, 6, 7\}$. Find $A\cap B$.
+  answer_label: Find the intersection of $A$ and $B$.
+  check:
+    kind: all
+    checks:
+    - kind: compare
+      lhs: '4'
+      relation: '<='
+      rhs: '5'
+    - kind: compare
+      lhs: '4'
+      relation: '>='
+      rhs: '4'
+    - kind: compare
+      lhs: '5'
+      relation: '<='
+      rhs: '5'
+    - kind: compare
+      lhs: '5'
+      relation: '>='
+      rhs: '4'
+  answer_text: $A\cap B=\{4, 5\}$. These are the numbers that appear in both lists. The numbers 1, 2 and 3 are only in $A$, and 6 and 7 are only in $B$.
+- id: jc8-8.3-union
+  section: '8.3'
+  tier: O
+  refs:
+  - N.5
+  statement: Let $A=\{1, 2, 3, 4, 5\}$ and $B=\{4, 5, 6, 7\}$. Find $A\cup B$.
+  answer_label: Find the union of $A$ and $B$.
+  check:
+    kind: evaluate
+    expression: 5+4-2
+    answer: '7'
+  answer_text: $A\cup B=\{1, 2, 3, 4, 5, 6, 7\}$. The union holds every element from both sets, written once. Its size is $5+4-2=7$, because 4 and 5 were counted twice.
+- id: jc8-8.3-difference
+  section: '8.3'
+  tier: O
+  refs:
+  - N.5
+  statement: Let $A=\{1, 2, 3, 4, 5\}$ and $B=\{4, 5, 6, 7\}$. Find $A\setminus B$.
+  answer_label: Find $A$ with $B$ removed.
+  check:
+    kind: evaluate
+    expression: 5-2
+    answer: '3'
+  answer_text: $A\setminus B=\{1, 2, 3\}$. Start with $A$ and remove 4 and 5, because those two are also in $B$. What is left is the three elements $1$, $2$ and $3$.
+- id: jc8-8.3-difference-reverse
+  section: '8.3'
+  tier: O
+  refs:
+  - N.5
+  statement: Let $A=\{1, 2, 3, 4, 5\}$ and $B=\{4, 5, 6, 7\}$. Find $B\setminus A$.
+  answer_label: Find $B$ with $A$ removed.
+  check:
+    kind: evaluate
+    expression: 4-2
+    answer: '2'
+  answer_text: $B\setminus A=\{6, 7\}$. This is different from $A\setminus B$, because the order matters in a difference. Here you start with $B$ and remove 4 and 5.
+- id: jc8-8.3-sports-union
+  section: '8.3'
+  tier: O
+  refs:
+  - N.5
+  statement: In a class, 18 students play football and 12 play basketball. Six play both. How many play at least one of the two sports?
+  answer_label: How many play at least one sport?
+  check:
+    kind: evaluate
+    expression: 18+12-6
+    answer: '24'
+  answer_text: $24$ students. Use $n(F\cup B)=18+12-6=24$. The six who play both are counted in each total, so subtracting them once stops them being counted twice.
+- id: jc8-8.3-football-only
+  section: '8.3'
+  tier: O
+  refs:
+  - N.5
+  statement: In the same class, how many students play football but not basketball?
+  answer_label: How many play football but not basketball?
+  check:
+    kind: evaluate
+    expression: 18-6
+    answer: '12'
+  answer_text: >-
+    $12$ students. This is a difference, because it takes the 18 football players
+    and removes the 6 who also play basketball. The answer is $18-6=12$.
+- id: jc8-8.3-two-sets
+  section: '8.3'
+  tier: O
+  refs:
+  - N.5
+  statement: Let $U=\{1, 2, 3, 4, 5, 6\}$, $A=\{2, 4\}$ and $B=\{4, 6\}$. Find $A\cap B$ and $A\cup B$.
+  answer_label: Find the intersection and the union of $A$ and $B$.
+  check:
+    kind: all
+    checks:
+    - kind: compare
+      lhs: '4'
+      relation: '<='
+      rhs: '4'
+    - kind: compare
+      lhs: '4'
+      relation: '>='
+      rhs: '4'
+    - kind: evaluate
+      expression: 2+2-1
+      answer: '3'
+  answer_text: $A\cap B=\{4\}$ and $A\cup B=\{2, 4, 6\}$. Only the number 4 is in both sets. The union has $2+2-1=3$ elements.
+- id: jc8-8.3-primes-even
+  section: '8.3'
+  tier: O
+  refs:
+  - N.5
+  statement: Let $P=\{2, 3, 5, 7\}$ and $Q=\{2, 4, 6, 8\}$. Find $P\cap Q$.
+  answer_label: Find the intersection of the primes and the evens.
+  check:
+    kind: all
+    checks:
+    - kind: evaluate
+      expression: 2 % 2
+      answer: '0'
+    - kind: compare
+      lhs: '2'
+      relation: '<='
+      rhs: '7'
+    - kind: compare
+      lhs: '2'
+      relation: '>='
+      rhs: '2'
+  answer_text: $P\cap Q=\{2\}$. The only even prime is 2, so it is the only number that belongs to both sets.
+- id: jc8-8.3-neither
+  section: '8.3'
+  tier: O
+  refs:
+  - N.5
+  statement: In a survey of 40 people, 22 read a book and 18 watched a film. Nine did both. How many did neither?
+  answer_label: How many did neither?
+  check:
+    kind: evaluate
+    expression: 40-(22+18-9)
+    answer: '9'
+  answer_text: $9$ people. The number who did at least one is $22+18-9=31$. The universal set is 40, so the complement has $40-31=9$ people.
+- id: jc8-8.3-letters
+  section: '8.3'
+  tier: O
+  refs:
+  - N.5
+  statement: Let $A=\{a, b, c, d, e\}$ and $B=\{d, e, f\}$. Find $n(A\setminus B)$ and $n(A\cup B)$.
+  answer_label: Find the size of $A$ without $B$, and of the union.
+  check:
+    kind: all
+    checks:
+    - kind: evaluate
+      expression: 5-2
+      answer: '3'
+    - kind: evaluate
+      expression: 5+3-2
+      answer: '6'
+  answer_text: $n(A\setminus B)=3$ and $n(A\cup B)=6$. The shared letters are $d$ and $e$. So $A\setminus B=\{a, b, c\}$, and the union is $\{a, b, c, d, e, f\}$.

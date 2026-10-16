@@ -1,0 +1,247 @@
+# Junior Cycle Mathematics, Chapter 7, section 7.4.
+#
+# The tax model is stated in the section and used here: income tax is 20% on the
+# first 800 of weekly pay and 40% above it, the weekly tax credit is 60, and PRSI
+# is 4% of gross pay. Every check proves one arithmetic step of the payslip, so a
+# record cannot report net pay that its own gross and deductions contradict. A
+# credit that is larger than the tax is checked with `compare`, because the tax
+# cannot go below zero. The euro sign, the per-cent sign and the words stay in
+# `statement`.
+chapter: 7
+symbols: {}
+
+problems:
+- id: jc7-7.4-tax-before-credit-1
+  section: '7.4'
+  tier: O
+  refs:
+  - N.2
+  statement: A worker's gross pay is €600.00 a week. Income tax is $20\%$ on the first €800.00.
+    Work out the income tax before the tax credit.
+  answer_label: Find the income tax on €600.00 before the credit.
+  check:
+    kind: evaluate
+    expression: 600*20/100
+    answer: '120'
+  answer_text: >-
+    €120.00. All of the €600.00 is in the first band, which is taxed at $20\%$.
+    So $600.00\times0.20=120.00$.
+- id: jc7-7.4-tax-after-credit-1
+  section: '7.4'
+  tier: O
+  refs:
+  - N.2
+  statement: A worker's gross pay is €600.00 a week. The income tax before the credit is €120.00,
+    and the weekly tax credit is €60.00. Work out the income tax.
+  answer_label: Find the income tax on €600.00 after the €60.00 credit.
+  check:
+    kind: evaluate
+    expression: 600*20/100-60
+    answer: '60'
+  steps:
+  - expr: 600*20/100-60
+  - expr: 120-60
+  - expr: '60'
+  answer_text: >-
+    €60.00. The tax before the credit is $600.00\times0.20=120.00$. The credit
+    is taken off the tax: $120.00-60.00=60.00$.
+- id: jc7-7.4-prsi-1
+  section: '7.4'
+  tier: O
+  refs:
+  - N.2
+  statement: A worker's gross pay is €600.00 a week. PRSI is charged at $4\%$ of gross pay. Work
+    out the PRSI.
+  answer_label: Find the $4\%$ PRSI on €600.00.
+  check:
+    kind: evaluate
+    expression: 600*4/100
+    answer: '24'
+  answer_text: >-
+    €24.00. PRSI is $4\%$ of gross pay, so $600.00\times0.04=24.00$.
+- id: jc7-7.4-net-pay-1
+  section: '7.4'
+  tier: O
+  refs:
+  - N.2
+  statement: A worker's gross pay is €600.00 a week. The income tax is €60.00, and the PRSI is
+    €24.00. Work out the net pay.
+  answer_label: Find the net pay when gross is €600.00 and the deductions are €60.00 and €24.00.
+  check:
+    kind: all
+    checks:
+    - kind: evaluate
+      expression: 600*20/100-60
+      answer: '60'
+    - kind: evaluate
+      expression: 600*4/100
+      answer: '24'
+    - kind: evaluate
+      expression: 600-60-24
+      answer: '516'
+  answer_text: >-
+    €516.00. The deductions are €60.00 of income tax and €24.00 of PRSI, which
+    is $60.00+24.00=84.00$ euro in total. The net pay is
+    $600.00-84.00=516.00$.
+- id: jc7-7.4-tax-before-credit-2
+  section: '7.4'
+  tier: O
+  refs:
+  - N.2
+  statement: A worker's gross pay is €1,000.00 a week. Income tax is $20\%$ on the first €800.00
+    and $40\%$ on the rest. Work out the income tax before the tax credit.
+  answer_label: Find the income tax on €1,000.00 before the credit.
+  check:
+    kind: all
+    checks:
+    - kind: evaluate
+      expression: 800*20/100
+      answer: '160'
+    - kind: evaluate
+      expression: 200*40/100
+      answer: '80'
+    - kind: evaluate
+      expression: 160+80
+      answer: '240'
+  answer_text: >-
+    €240.00. The first €800.00 is taxed at $20\%$, which is
+    $800.00\times0.20=160.00$. The remaining $1,000.00-800.00=200.00$ euro is
+    taxed at $40\%$, which is $200.00\times0.40=80.00$. Together they give
+    $160.00+80.00=240.00$.
+- id: jc7-7.4-net-pay-2
+  section: '7.4'
+  tier: O
+  refs:
+  - N.2
+  statement: A worker's gross pay is €1,000.00 a week. The income tax before the credit is
+    €240.00, the tax credit is €60.00, and the PRSI is $4\%$ of gross pay. Work out the net pay.
+  answer_label: Find the net pay on €1,000.00 a week.
+  check:
+    kind: all
+    checks:
+    - kind: evaluate
+      expression: 800*20/100+200*40/100
+      answer: '240'
+    - kind: evaluate
+      expression: 240-60
+      answer: '180'
+    - kind: evaluate
+      expression: 1000*4/100
+      answer: '40'
+    - kind: evaluate
+      expression: 1000-180-40
+      answer: '780'
+  answer_text: >-
+    €780.00. The tax before the credit is $800.00\times0.20+200.00\times0.40=240.00$.
+    After the €60.00 credit the income tax is $240.00-60.00=180.00$. The PRSI is
+    $1,000.00\times0.04=40.00$. The net pay is
+    $1,000.00-180.00-40.00=780.00$.
+- id: jc7-7.4-zero-tax-1
+  section: '7.4'
+  tier: O
+  refs:
+  - N.2
+  statement: A worker's gross pay is €250.00 a week. The income tax before the credit is
+    $250.00\times0.20=50.00$, and the tax credit is €60.00. Work out the income tax and the net
+    pay. PRSI is $4\%$ of gross pay.
+  answer_label: Find the income tax and net pay on €250.00 a week.
+  check:
+    kind: all
+    checks:
+    - kind: compare
+      lhs: 250*20/100
+      relation: <=
+      rhs: '60'
+    - kind: evaluate
+      expression: 250*4/100
+      answer: '10'
+    - kind: evaluate
+      expression: 250-10
+      answer: '240'
+  answer_text: >-
+    The income tax is €0.00, and the net pay is €240.00. The tax before the credit
+    is $250.00\times0.20=50.00$, which is smaller than the €60.00 credit. A credit
+    cannot make the tax negative, so the tax stops at zero. The PRSI is
+    $250.00\times0.04=10.00$, and the net pay is $250.00-10.00=240.00$.
+- id: jc7-7.4-net-pay-3
+  section: '7.4'
+  tier: O
+  refs:
+  - N.2
+  statement: A worker's gross pay is €900.00 a week. Income tax is $20\%$ on the first €800.00
+    and $40\%$ on the rest, the tax credit is €60.00, and the PRSI is $4\%$ of gross pay. Work
+    out the net pay.
+  answer_label: Find the net pay on €900.00 a week.
+  check:
+    kind: all
+    checks:
+    - kind: evaluate
+      expression: 800*20/100
+      answer: '160'
+    - kind: evaluate
+      expression: 100*40/100
+      answer: '40'
+    - kind: evaluate
+      expression: 160+40-60
+      answer: '140'
+    - kind: evaluate
+      expression: 900*4/100
+      answer: '36'
+    - kind: evaluate
+      expression: 900-140-36
+      answer: '724'
+  answer_text: >-
+    €724.00. The tax before the credit is
+    $800.00\times0.20+100.00\times0.40=160.00+40.00=200.00$. After the €60.00
+    credit the income tax is $200.00-60.00=140.00$. The PRSI is
+    $900.00\times0.04=36.00$. The net pay is $900.00-140.00-36.00=724.00$.
+- id: jc7-7.4-deductions-1
+  section: '7.4'
+  tier: H
+  refs:
+  - N.2
+  statement: A worker's gross pay is €600.00 a week, and the net pay is €516.00. Work out the
+    total deductions, and check it against the income tax of €60.00 and the PRSI of €24.00.
+  answer_label: Find the total deductions from €600.00 gross and €516.00 net.
+  check:
+    kind: all
+    checks:
+    - kind: evaluate
+      expression: 60+24
+      answer: '84'
+    - kind: evaluate
+      expression: 600-516
+      answer: '84'
+  answer_text: >-
+    The total deductions are €84.00. The income tax and the PRSI add to
+    $60.00+24.00=84.00$ euro. The gross pay minus the net pay gives
+    $600.00-516.00=84.00$ euro. The two agree, so every euro of the payslip is
+    accounted for.
+- id: jc7-7.4-net-pay-4
+  section: '7.4'
+  tier: O
+  refs:
+  - N.2
+  statement: A worker's gross pay is €750.00 a week. Income tax is $20\%$ on the first €800.00,
+    the tax credit is €60.00, and the PRSI is $4\%$ of gross pay. Work out the net pay.
+  answer_label: Find the net pay on €750.00 a week.
+  check:
+    kind: all
+    checks:
+    - kind: evaluate
+      expression: 750*20/100
+      answer: '150'
+    - kind: evaluate
+      expression: 150-60
+      answer: '90'
+    - kind: evaluate
+      expression: 750*4/100
+      answer: '30'
+    - kind: evaluate
+      expression: 750-90-30
+      answer: '630'
+  answer_text: >-
+    €630.00. All of the €750.00 is in the first band, so the tax before the
+    credit is $750.00\times0.20=150.00$. After the €60.00 credit the income tax is
+    $150.00-60.00=90.00$. The PRSI is $750.00\times0.04=30.00$. The net pay is
+    $750.00-90.00-30.00=630.00$.

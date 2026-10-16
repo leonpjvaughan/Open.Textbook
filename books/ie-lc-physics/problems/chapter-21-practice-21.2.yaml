@@ -1,0 +1,222 @@
+# Leaving Certificate Physics, Chapter 21, section 21.2 (strand 4 outcome 4.5).
+#
+# The mass defect and the binding energy. `dimensions` proves the magnitude and the
+# unit together; `sigfigs` proves the single rounding the data support. Where a mass
+# in atomic mass units is multiplied by an energy per unit mass (MeV/u), the u
+# factors cancel and the arithmetic is exact. Where a mass in atomic mass units is
+# turned into kilograms with the rounded 1.66e-27, the bank declares a tolerance,
+# because the oracle's own u is the measured 1.66053906660e-27.
+#
+# Honest limit: this proves the arithmetic and the dimensions, not the physics. A
+# dimensionally consistent, arithmetically correct, physically absurd answer would
+# pass. The `structured` records prove only that a model answer contains the
+# declared steps and concepts, in order — not that the physics in them is right.
+chapter: 21
+problems:
+  - id: p21-2-helium-defect
+    section: '21.2'
+    tier: O
+    refs: ['4.5']
+    statement: >-
+      A helium-4 nucleus contains 2 protons and 2 neutrons. A proton has a mass of
+      1.0073 u, a neutron 1.0087 u, and the helium-4 nucleus 4.0015 u. Calculate
+      the mass defect of the nucleus.
+    answer_label: Mass defect of helium-4
+    check:
+      kind: all
+      checks:
+        - kind: dimensions
+          expression: 2 * p + 2 * n - nucleus
+          values:
+            p: {value: '1.0073', unit: u}
+            n: {value: '1.0087', unit: u}
+            nucleus: {value: '4.0015', unit: u}
+          answer: {value: '0.0305', unit: u}
+        - kind: sigfigs
+          value: '2 * 1.0073 + 2 * 1.0087 - 4.0015'
+          figures: 3
+          answer: '0.0305'
+          convention: round-once
+    answer_text: >-
+      The separate nucleons have a mass of
+      $2 \times 1.0073 + 2 \times 1.0087 = 4.0320$ u. The mass defect is
+      $4.0320 - 4.0015 = 0.0305$ u. The separate nucleons weigh more than the
+      nucleus they form, so the answer is positive.
+  - id: p21-2-helium-binding
+    section: '21.2'
+    tier: O
+    refs: ['4.5']
+    statement: >-
+      The mass defect of a helium-4 nucleus is 0.0305 u. Calculate its binding
+      energy in joules. Take 1 u = 1.66 × 10^-27 kg and c = 3.0 × 10^8 m/s.
+    answer_label: Binding energy of helium-4
+    check:
+      kind: all
+      checks:
+        - kind: dimensions
+          expression: dm * c**2
+          values:
+            dm: {value: '0.0305', unit: u}
+            c: {value: '3.0e8', unit: 'm/s'}
+          answer: {value: '4.56e-12', unit: J}
+          tolerance: '1e-13'
+        - kind: sigfigs
+          value: '0.0305 * 1.66e-27 * (3.0e8)**2'
+          figures: 2
+          answer: '4.6e-12'
+          convention: round-once
+    answer_text: >-
+      Change the mass defect to kilograms:
+      $\Delta m = 0.0305 \times 1.66 \times 10^{-27} = 5.06 \times 10^{-29}$ kg.
+      Then $E_b = \Delta m\,c^2 = 5.06 \times 10^{-29} \times 9.0 \times 10^{16} = 4.6 \times 10^{-12}$ J.
+  - id: p21-2-helium-per-nucleon
+    section: '21.2'
+    tier: O
+    refs: ['4.5']
+    statement: >-
+      The binding energy of a helium-4 nucleus is 4.56 × 10^-12 J. Calculate its
+      binding energy per nucleon in MeV. Take 1 MeV = 1.6 × 10^-13 J.
+    answer_label: Binding energy per nucleon of helium-4
+    check:
+      kind: all
+      checks:
+        - kind: dimensions
+          expression: E / (4 * MeV)
+          values:
+            E: {value: '4.56e-12', unit: J}
+            MeV: {value: '1.6e-13', unit: J}
+          answer: {value: '7.125'}
+        - kind: sigfigs
+          value: '4.56e-12 / (4 * 1.6e-13)'
+          figures: 2
+          answer: '7.1'
+          convention: round-once
+    answer_text: >-
+      First change the binding energy to MeV:
+      $\dfrac{4.56 \times 10^{-12}}{1.6 \times 10^{-13}} = 28.5$ MeV. Then divide
+      by the four nucleons: $\dfrac{28.5}{4} = 7.1$ MeV per nucleon.
+  - id: p21-2-carbon-per-nucleon
+    section: '21.2'
+    tier: O
+    refs: ['4.5']
+    statement: >-
+      A carbon-12 nucleus has a mass defect of 0.0993 u. Calculate its binding
+      energy per nucleon in MeV. Take 1 u = 9.3 × 10^2 MeV.
+    answer_label: Binding energy per nucleon of carbon-12
+    check:
+      kind: all
+      checks:
+        - kind: dimensions
+          expression: dm * k / 12
+          values:
+            dm: {value: '0.0993', unit: u}
+            k: {value: '930', unit: 'MeV/u'}
+          answer: {value: '7.70', unit: MeV}
+          tolerance: '0.01'
+        - kind: sigfigs
+          value: '0.0993 * 930 / 12'
+          figures: 2
+          answer: '7.7'
+          convention: round-once
+    answer_text: >-
+      Convert the mass defect to energy:
+      $E_b = 0.0993 \times 9.3 \times 10^2 = 92.3$ MeV. Then divide by the twelve
+      nucleons: $\dfrac{92.3}{12} = 7.7$ MeV per nucleon.
+  - id: p21-2-uranium-per-nucleon
+    section: '21.2'
+    tier: O
+    refs: ['4.5']
+    statement: >-
+      A uranium-235 nucleus has a mass defect of 1.915 u. Calculate its binding
+      energy per nucleon in MeV. Take 1 u = 9.3 × 10^2 MeV.
+    answer_label: Binding energy per nucleon of uranium-235
+    check:
+      kind: all
+      checks:
+        - kind: dimensions
+          expression: dm * k / 235
+          values:
+            dm: {value: '1.915', unit: u}
+            k: {value: '930', unit: 'MeV/u'}
+          answer: {value: '7.58', unit: MeV}
+          tolerance: '0.01'
+        - kind: sigfigs
+          value: '1.915 * 930 / 235'
+          figures: 2
+          answer: '7.6'
+          convention: round-once
+    answer_text: >-
+      Convert the mass defect to energy:
+      $E_b = 1.915 \times 9.3 \times 10^2 = 1781$ MeV. Then divide by the 235
+      nucleons: $\dfrac{1781}{235} = 7.6$ MeV per nucleon. This is lower than the
+      value for iron-56, so splitting uranium moves its nucleons towards the peak
+      of the curve.
+  - id: p21-2-definitions
+    section: '21.2'
+    tier: O
+    refs: ['4.5']
+    statement: >-
+      Define the mass defect and the binding energy of a nucleus, and explain how
+      the two are related.
+    answer_label: Mass defect and binding energy
+    check:
+      kind: structured
+      requires: [defect, binding, relation]
+      concepts: [missing-mass, energy-to-separate, mass-energy-equivalence]
+      points:
+        - id: defect
+          text: >-
+            The mass defect is the difference between the mass of the separate
+            nucleons and the mass of the nucleus.
+          concepts: [missing-mass]
+        - id: binding
+          text: >-
+            The binding energy is the energy needed to pull the nucleus apart into
+            its separate nucleons, and the energy released when the nucleons join.
+          concepts: [energy-to-separate]
+        - id: relation
+          text: >-
+            The binding energy is the energy equivalent of the mass defect, found
+            from E = mc^2, so the two describe the same thing.
+          concepts: [mass-energy-equivalence]
+    answer_text: >-
+      The mass defect is the difference between the mass of the separate nucleons
+      and the mass of the nucleus. The binding energy is the energy needed to pull
+      the nucleus apart into its separate nucleons, and the energy released when
+      the nucleons join. The binding energy is the energy equivalent of the mass
+      defect, found from $E_b = \Delta m\,c^2$, so the two describe the same thing.
+  - id: p21-2-curve
+    section: '21.2'
+    tier: O
+    refs: ['4.5']
+    statement: >-
+      Describe the curve of binding energy per nucleon against mass number, and
+      explain what its peak shows about fission and fusion.
+    answer_label: The curve of binding energy per nucleon
+    check:
+      kind: structured
+      requires: [shape, peak, consequence]
+      concepts: [iron-peak, fusion-lighter, fission-heavier]
+      points:
+        - id: shape
+          text: >-
+            The curve rises steeply for the lightest nuclei, reaches a maximum, and
+            falls slowly for the heaviest nuclei.
+          concepts: [iron-peak]
+        - id: peak
+          text: >-
+            The maximum is about 8.8 MeV per nucleon near iron-56, which is the
+            most tightly bound nucleus.
+          concepts: [iron-peak]
+        - id: consequence
+          text: >-
+            Joining two light nuclei moves them towards the peak and releases
+            energy, and splitting a heavy nucleus moves its products towards the
+            peak and also releases energy.
+          concepts: [fusion-lighter, fission-heavier]
+    answer_text: >-
+      The curve rises steeply for the lightest nuclei, reaches a maximum of about
+      8.8 MeV per nucleon near iron-56, and falls slowly for the heaviest nuclei.
+      Iron-56 is the most tightly bound nucleus. Joining two light nuclei moves
+      them towards the peak and releases energy, and splitting a heavy nucleus
+      moves its products towards the peak and also releases energy.

@@ -10,9 +10,14 @@ refs:
 kind: problems
 ---
 
-<!-- scaffold:stub -->
-
 # 2.6 Checking whether a result is reasonable — Practise
 
-> **Stub.** Independent, homework-style practice. Answers and concise solutions in a collapsed block. Mark Higher-only questions explicitly.
-> Tier: **F** · refs: 3.3
+Work independently. The questions and answers are shown together at the end.
+
+For each question, decide first which check it needs: an estimate of the size, a
+reverse calculation, or a judgement about whether the answer is possible. Write
+the check down.
+
+:::problems chapter-02-practice-2.6
+
+:::answers chapter-02-practice-2.6

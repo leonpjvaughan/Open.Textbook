@@ -1,0 +1,145 @@
+# Junior Cycle Mathematics, Chapter 8, section 8.4.
+#
+# Venn diagrams. Every check is the subtraction or addition that fills or reads a
+# region, written as arithmetic the CAS proves: pair totals lose the middle, single
+# regions lose the pair regions, and the outside is the universal set less the
+# union. The reader is shown the region values in `answer_text`.
+chapter: 8
+symbols: {}
+
+problems:
+- id: jc8-8.4-walk-only
+  section: '8.4'
+  tier: O
+  refs:
+  - N.5
+  statement: In a class of 24 students, 15 walk to school, 11 cycle, and 6 both walk and cycle. How many walk only?
+  answer_label: How many students walk only?
+  check:
+    kind: evaluate
+    expression: 15-6
+    answer: '9'
+  answer_text: $9$ students. The 6 who both walk and cycle are inside the 15 who walk, so remove them. The walk-only region is $15-6=9$.
+- id: jc8-8.4-cycle-only
+  section: '8.4'
+  tier: O
+  refs:
+  - N.5
+  statement: In the same class, how many students cycle only?
+  answer_label: How many students cycle only?
+  check:
+    kind: evaluate
+    expression: 11-6
+    answer: '5'
+  answer_text: $5$ students. Remove the 6 who also walk from the 11 who cycle. The cycle-only region is $11-6=5$.
+- id: jc8-8.4-at-least-one
+  section: '8.4'
+  tier: O
+  refs:
+  - N.5
+  statement: In the same class, how many students walk or cycle, or both?
+  answer_label: How many walk or cycle, or both?
+  check:
+    kind: evaluate
+    expression: 15+11-6
+    answer: '20'
+  answer_text: $20$ students. The union rule gives $15+11-6=20$. The 6 who do both are counted in each total, so subtracting them once puts that right.
+- id: jc8-8.4-neither
+  section: '8.4'
+  tier: O
+  refs:
+  - N.5
+  statement: In the same class, how many students neither walk nor cycle?
+  answer_label: How many neither walk nor cycle?
+  check:
+    kind: evaluate
+    expression: 24-(15+11-6)
+    answer: '4'
+  answer_text: $4$ students. The class has 24 students and $15+11-6=20$ are in the union. The complement has $24-20=4$ students.
+- id: jc8-8.4-pair-ab
+  section: '8.4'
+  tier: O
+  refs:
+  - N.5
+  statement: In a three-set diagram, $n(A\cap B\cap C)=4$ and $n(A\cap B)=10$. How many are in $A\cap B$ only?
+  answer_label: How many are in $A\cap B$ only?
+  check:
+    kind: evaluate
+    expression: 10-4
+    answer: '6'
+  answer_text: $6$ students. The pair total 10 includes the 4 in all three sets, so the $A\cap B$ only region is $10-4=6$.
+- id: jc8-8.4-pair-ac
+  section: '8.4'
+  tier: O
+  refs:
+  - N.5
+  statement: For the same diagram, $n(A\cap C)=9$. How many are in $A\cap C$ only?
+  answer_label: How many are in $A\cap C$ only?
+  check:
+    kind: evaluate
+    expression: 9-4
+    answer: '5'
+  answer_text: >-
+    $5$ students. Subtract the 4 in the middle, because $9-4=5$. This is the part
+    of $A\cap C$ that is not in $B$.
+- id: jc8-8.4-pair-bc
+  section: '8.4'
+  tier: O
+  refs:
+  - N.5
+  statement: For the same diagram, $n(B\cap C)=8$. How many are in $B\cap C$ only?
+  answer_label: How many are in $B\cap C$ only?
+  check:
+    kind: evaluate
+    expression: 8-4
+    answer: '4'
+  answer_text: >-
+    $4$ students. Subtract the 4 in the middle, because $8-4=4$. This is the part
+    of $B\cap C$ that is not in $A$.
+- id: jc8-8.4-single-a
+  section: '8.4'
+  tier: O
+  refs:
+  - N.5
+  statement: For the same diagram, $n(A)=20$, and the pair regions inside $A$ are 6, 5 and the middle 4. How many are in $A$ only?
+  answer_label: How many are in $A$ only?
+  check:
+    kind: evaluate
+    expression: 20-(6+5+4)
+    answer: '5'
+  answer_text: $5$ students. The $A$ circle holds $6+5+4=15$ students who are also in another set, so $A$ only is $20-15=5$.
+- id: jc8-8.4-union-three
+  section: '8.4'
+  tier: O
+  refs:
+  - N.5
+  statement: For the same diagram, $n(B)=18$ and $n(C)=16$. Find the number in at least one of the three sets.
+  answer_label: Find the number in at least one of the three sets.
+  check:
+    kind: all
+    checks:
+    - kind: evaluate
+      expression: 18-(6+4+4)
+      answer: '4'
+    - kind: evaluate
+      expression: 16-(5+4+4)
+      answer: '3'
+    - kind: evaluate
+      expression: 4+6+5+4+5+4+3
+      answer: '31'
+  answer_text: >-
+    $31$ students. The regions are the middle 4, $A\cap B$ only 6, $A\cap C$ only 5,
+    $B\cap C$ only 4, $A$ only 5, $B$ only 4 and $C$ only 3. Their total is
+    $4+6+5+4+5+4+3=31$.
+- id: jc8-8.4-survey
+  section: '8.4'
+  tier: O
+  refs:
+  - N.5
+  statement: In a survey of 50 people, 30 like tea, 25 like coffee and 12 like both. How many like neither?
+  answer_label: How many like neither drink?
+  check:
+    kind: evaluate
+    expression: 50-(30+25-12)
+    answer: '7'
+  answer_text: $7$ people. The union is $30+25-12=43$, and the complement is $50-43=7$. In the diagram, these 7 sit outside both circles.

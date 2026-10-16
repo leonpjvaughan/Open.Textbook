@@ -1,0 +1,156 @@
+# Practice set for 2.1 (strand 3, outcome 3.3). Every answer is a number the
+# arithmetic produces, so `evaluate` proves it. The reverse-percentage item is the
+# one that catches the commonest error in the section, and the reasoning behind it
+# is a `structured` check: the oracle proves the arithmetic, not the explanation.
+chapter: 2
+problems:
+  - id: lc2-1-percent-of
+    section: '2.1'
+    tier: F
+    refs: ['3.3']
+    statement: 'Work out $15\%$ of €80.'
+    answer_label: '$15\%$ of €80'
+    check: {kind: evaluate, expression: '0.15 * 80', answer: '12'}
+    answer_text: >-
+      $15\%$ means $15$ parts in every $100$, so $15\% = 0.15$.
+
+      $$0.15 \times 80 = 12$$
+
+  - id: lc2-1-increase
+    section: '2.1'
+    tier: F
+    refs: ['3.3']
+    statement: 'Increase €250 by $12\%$.'
+    answer_label: '€250 increased by $12\%$'
+    check: {kind: evaluate, expression: '250 * 1.12', answer: '280'}
+    answer_text: >-
+      An increase of $12\%$ is the same as multiplying by $1.12$, because the
+      original $100\%$ and the extra $12\%$ are both kept.
+
+      $$250 \times 1.12 = 280$$
+
+      The new amount is €280.
+
+  - id: lc2-1-decrease
+    section: '2.1'
+    tier: F
+    refs: ['3.3']
+    statement: 'Decrease €180 by $35\%$.'
+    answer_label: '€180 decreased by $35\%$'
+    check: {kind: evaluate, expression: '180 * 0.65', answer: '117'}
+    answer_text: >-
+      A decrease of $35\%$ leaves $100\% - 35\% = 65\%$, so multiply by $0.65$.
+
+      $$180 \times 0.65 = 117$$
+
+      The new amount is €117.
+
+  - id: lc2-1-percentage-change
+    section: '2.1'
+    tier: F
+    refs: ['3.3']
+    statement: >-
+      A price rises from €40 to €46. Work out the percentage increase.
+    answer_label: 'The percentage increase'
+    check: {kind: evaluate, expression: '(46 - 40) / 40 * 100', answer: '15'}
+    answer_text: >-
+      The change is $46 - 40 = 6$. Divide by the **original** value, not the new
+      one:
+
+      $$\frac{6}{40} \times 100 = 15\%$$
+
+      The price rose by $15\%$.
+
+  - id: lc2-1-reverse
+    section: '2.1'
+    tier: F
+    refs: ['3.3']
+    statement: >-
+      A jacket is reduced by $20\%$ and now costs €64. Work out the price before
+      the reduction.
+    answer_label: 'The price before the reduction'
+    check: {kind: evaluate, expression: '64 / 0.8', answer: '80'}
+    answer_text: >-
+      After a $20\%$ reduction the price is $80\%$ of the original, so €64 is
+      $0.8$ times the original price.
+
+      $$64 \div 0.8 = 80$$
+
+      The jacket cost €80 before the reduction. Adding $20\%$ to €64 gives
+      €76.80, which is the wrong answer, because the $20\%$ was taken off the
+      original €80 and not off €64.
+
+  - id: lc2-1-vat
+    section: '2.1'
+    tier: F
+    refs: ['3.3']
+    statement: >-
+      An oven costs €9,000 before VAT. VAT is $23\%$. Work out the price
+      including VAT, and the amount of VAT charged.
+    answer_label: 'The price including VAT, then the VAT'
+    check:
+      kind: all
+      checks:
+        - {kind: evaluate, expression: '9000 * 1.23', answer: '11070'}
+        - {kind: evaluate, expression: '9000 * 0.23', answer: '2070'}
+    answer_text: >-
+      VAT adds $23\%$ to the price before VAT, so multiply by $1.23$:
+
+      $$9000 \times 1.23 = 11\,070$$
+
+      The price including VAT is €11,070. The VAT itself is
+
+      $$9000 \times 0.23 = 2\,070$$
+
+      so €2,070 of the €11,070 is VAT. The two answers must add up:
+      $9\,000 + 2\,070 = 11\,070$.
+
+  - id: lc2-1-two-changes
+    section: '2.1'
+    tier: F
+    refs: ['3.3']
+    statement: >-
+      A price rises by $20\%$ and then falls by $20\%$. Work out the overall
+      percentage change.
+    answer_label: 'The overall percentage change'
+    check: {kind: evaluate, expression: '(1.2 * 0.8 - 1) * 100', answer: '-4'}
+    answer_text: >-
+      Multiply the two multipliers rather than adding the percentages:
+
+      $$1.2 \times 0.8 = 0.96$$
+
+      The final price is $96\%$ of the starting price, so the overall change is
+      $-4\%$: a fall of $4\%$. The two changes do not cancel, because the $20\%$
+      fall is taken off the larger, risen price.
+
+  - id: lc2-1-reverse-explain
+    section: '2.1'
+    tier: F
+    refs: ['3.3']
+    statement: >-
+      Explain how to find the original price when you know the price after a
+      percentage increase.
+    answer_label: 'The method for finding the original price'
+    check:
+      kind: structured
+      requires: [write-multiplier, divide]
+      concepts: [multiplier, original-base]
+      points:
+        - id: write-multiplier
+          text: write the percentage increase as a multiplier, so an increase of 23% is 1.23
+          concepts: [multiplier]
+        - id: divide
+          text: divide the price you are given by that multiplier, because the given price is the original multiplied by it
+          concepts: [original-base]
+    answer_text: >-
+      Write the increase as a multiplier first. An increase of $23\%$ means
+      multiplying by $1.23$. The price you are given is the original price
+      already multiplied by $1.23$, so divide to undo it.
+
+      For example, if the price including VAT is €11,070, the price before VAT
+      is
+
+      $$11\,070 \div 1.23 = 9\,000$$
+
+      Dividing is the whole method. Adding or subtracting the percentage does
+      not work, because the percentage was taken from the original price.

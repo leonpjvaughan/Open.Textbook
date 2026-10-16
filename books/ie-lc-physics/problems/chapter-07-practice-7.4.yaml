@@ -1,0 +1,302 @@
+# Leaving Certificate Physics, Chapter 7, section 7.4 (strand 1 outcome 1.6).
+# Higher level only.
+#
+# The physics oracle checks two claims whenever a quantity is asked for:
+# `dimensions` proves the exact magnitude *and* the unit, and `sigfigs` proves the
+# rounding to the figures the data support. Both are written out, because a rounded
+# answer is never equal to the exact one. A value built on a trigonometric function
+# carries a `tolerance`, so the check proves the arithmetic within the precision of
+# the data rather than against a number that was rounded by hand.
+#
+# Honest limit: this proves the arithmetic and the dimensions, not the physics. A
+# dimensionally consistent, arithmetically correct, physically absurd answer would
+# pass. The `structured` records prove only that a model answer contains the
+# declared steps and concepts, in order — not that the physics in them is right.
+chapter: 7
+problems:
+- id: p7-4-bucket-min
+  section: '7.4'
+  tier: H
+  refs:
+  - '1.6'
+  statement: A bucket of water is swung in a vertical circle of radius 0.80 m. Calculate the minimum
+    speed at the top so that the water does not fall out.
+  answer_label: Minimum speed at the top
+  check:
+    kind: all
+    checks:
+    - kind: dimensions
+      expression: sqrt(g * r)
+      values:
+        g:
+          value: '9.8'
+          unit: N/kg
+        r:
+          value: '0.80'
+          unit: m
+      answer:
+        value: '2.8'
+        unit: m/s
+    - kind: sigfigs
+      value: sqrt(9.8 * 0.80)
+      figures: 2
+      answer: '2.8'
+      convention: round-once
+  answer_text: At the top of the circle the weight and the push of the bucket both point towards the
+    centre. The water just stays in when the weight alone supplies the centripetal force, so
+    $mg = \dfrac{mv^2}{r}$ and $v = \sqrt{gr} = \sqrt{9.8 \times 0.80} = 2.8\,\text{m/s}$. Above this
+    speed the bucket pushes on the water as well.
+- id: p7-4-top-tension
+  section: '7.4'
+  tier: H
+  refs:
+  - '1.6'
+  statement: A 0.30 kg ball on a string of length 0.50 m moves at 5.0 m/s at the top of a vertical
+    circle. Calculate the tension in the string at the top.
+  answer_label: Tension at the top
+  check:
+    kind: all
+    checks:
+    - kind: dimensions
+      expression: m * (v**2 / r - g)
+      values:
+        m:
+          value: '0.30'
+          unit: kg
+        v:
+          value: '5.0'
+          unit: m/s
+        r:
+          value: '0.50'
+          unit: m
+        g:
+          value: '9.8'
+          unit: N/kg
+      answer:
+        value: '12.06'
+        unit: N
+    - kind: sigfigs
+      value: 0.30 * (5.0**2 / 0.50 - 9.8)
+      figures: 2
+      tolerance: '0.02'
+      answer: '12'
+      convention: round-once
+  answer_text: At the top of the circle the tension and the weight both point towards the centre, so
+    $T + mg = \dfrac{mv^2}{r}$. Rearranging gives $T = m\left(\dfrac{v^2}{r} - g\right) =
+    0.30 \times \left(\dfrac{25}{0.50} - 9.8\right) = 0.30 \times 40.2 = 12\,\text{N}$. The weight helps
+    to supply the centripetal force, so the string carries less.
+- id: p7-4-bottom-tension
+  section: '7.4'
+  tier: H
+  refs:
+  - '1.6'
+  statement: The same 0.30 kg ball moves at 5.0 m/s at the bottom of the same circle of radius 0.50 m.
+    Calculate the tension in the string at the bottom.
+  answer_label: Tension at the bottom
+  check:
+    kind: all
+    checks:
+    - kind: dimensions
+      expression: m * (v**2 / r + g)
+      values:
+        m:
+          value: '0.30'
+          unit: kg
+        v:
+          value: '5.0'
+          unit: m/s
+        r:
+          value: '0.50'
+          unit: m
+        g:
+          value: '9.8'
+          unit: N/kg
+      answer:
+        value: '17.94'
+        unit: N
+    - kind: sigfigs
+      value: 0.30 * (5.0**2 / 0.50 + 9.8)
+      figures: 2
+      tolerance: '0.02'
+      answer: '18'
+      convention: round-once
+  answer_text: At the bottom the tension points towards the centre, which is upwards, and the weight
+    points away from the centre. So $T - mg = \dfrac{mv^2}{r}$ and
+    $T = m\left(\dfrac{v^2}{r} + g\right) = 0.30 \times (50 + 9.8) = 18\,\text{N}$. The tension is
+    larger at the bottom than at the top, because it must also support the weight.
+- id: p7-4-banked
+  section: '7.4'
+  tier: H
+  refs:
+  - '1.6'
+  statement: A bend of radius 50 m is banked so that no friction is needed at 20 m/s. Calculate the
+    banking angle.
+  answer_label: Banking angle
+  check:
+    kind: all
+    checks:
+    - kind: approx
+      value: atan(20**2 / (50 * 9.8)) * 180 / pi
+      target: '39.23'
+      tolerance: '0.2'
+    - kind: sigfigs
+      value: atan(20**2 / (50 * 9.8)) * 180 / pi
+      figures: 2
+      tolerance: '0.2'
+      answer: '39'
+      convention: round-once
+  answer_text: With no friction, the normal force provides the horizontal centripetal force and balances
+    the weight. Dividing the two equations gives $\tan\theta = \dfrac{v^2}{rg} =
+    \dfrac{20^2}{50 \times 9.8} = 0.816$, so $\theta = 39^\circ$. A banked bend lets a car turn without
+    relying on friction.
+- id: p7-4-max-friction
+  section: '7.4'
+  tier: H
+  refs:
+  - '1.6'
+  statement: A car of mass 1000 kg goes round a flat bend of radius 40 m. The maximum friction force is
+    8000 N. Calculate the maximum speed of the car.
+  answer_label: Maximum speed
+  check:
+    kind: all
+    checks:
+    - kind: dimensions
+      expression: sqrt(F * r / m)
+      values:
+        F:
+          value: '8000'
+          unit: N
+        r:
+          value: '40'
+          unit: m
+        m:
+          value: '1000'
+          unit: kg
+      tolerance: '0.05'
+      answer:
+        value: '17.9'
+        unit: m/s
+    - kind: sigfigs
+      value: sqrt(8000 * 40 / 1000)
+      figures: 2
+      tolerance: '0.05'
+      answer: '18'
+      convention: round-once
+  answer_text: Friction supplies the centripetal force, so $F = \dfrac{mv^2}{r}$ and
+    $v = \sqrt{\dfrac{Fr}{m}} = \sqrt{\dfrac{8000 \times 40}{1000}} = \sqrt{320} =
+    18\,\text{m/s}$. At a higher speed the friction cannot turn the car enough, and it slides outwards.
+- id: p7-4-satellite
+  section: '7.4'
+  tier: H
+  refs:
+  - '1.6'
+  statement: A satellite orbits the Earth at 4.22e7 m from the centre. Gravity provides the centripetal
+    force. Calculate its speed. Take M = 5.97e24 kg.
+  answer_label: Orbital speed
+  check:
+    kind: all
+    checks:
+    - kind: dimensions
+      expression: sqrt(G * M / r)
+      values:
+        G:
+          value: '6.67e-11'
+          unit: N m^2 kg^-2
+        M:
+          value: '5.97e24'
+          unit: kg
+        r:
+          value: '4.22e7'
+          unit: m
+      tolerance: '5'
+      answer:
+        value: '3072'
+        unit: m/s
+    - kind: sigfigs
+      value: sqrt(6.67e-11 * 5.97e24 / 4.22e7)
+      figures: 2
+      tolerance: '5'
+      answer: 3.1e3
+      convention: round-once
+  answer_text: Set the gravitational force equal to the centripetal force,
+    $\dfrac{GMm}{r^2} = \dfrac{mv^2}{r}$. The mass of the satellite cancels, so
+    $v = \sqrt{\dfrac{GM}{r}} = \sqrt{\dfrac{6.67 \times 10^{-11} \times 5.97 \times 10^{24}}{4.22
+    \times 10^{7}}} = 3.1 \times 10^{3}\,\text{m/s}$. The same method gave the orbital speed in
+    Section 6.4.
+- id: p7-4-top-bottom
+  section: '7.4'
+  tier: H
+  refs:
+  - '1.6'
+  statement: Explain why the tension in a string is greater at the bottom of a vertical circle than at
+    the top when the speed is the same.
+  answer_label: Tension at the top and the bottom
+  check:
+    kind: structured
+    requires:
+    - bottom
+    - top
+    - comparison
+    concepts:
+    - support-weight
+    - weight-helps
+    - larger
+    points:
+    - id: bottom
+      text: at the bottom the tension points towards the centre and must also support the weight, so it
+        equals the centripetal force plus the weight
+      concepts:
+      - support-weight
+    - id: top
+      text: at the top the weight points towards the centre and helps, so the tension equals the
+        centripetal force minus the weight
+      concepts:
+      - weight-helps
+    - id: comparison
+      text: the centripetal force is the same at both points, so the tension at the bottom is larger by
+        twice the weight
+      concepts:
+      - larger
+  answer_text: At the bottom of the circle the tension points upwards, towards the centre, and the
+    weight points downwards. The tension must supply the centripetal force and support the weight, so
+    $T = \dfrac{mv^2}{r} + mg$. At the top the weight points downwards, towards the centre, and helps
+    the tension, so $T = \dfrac{mv^2}{r} - mg$. The centripetal force is the same at both points when
+    the speed is the same, so the tension at the bottom is larger by twice the weight.
+- id: p7-4-choose
+  section: '7.4'
+  tier: H
+  refs:
+  - '1.6'
+  statement: For each case write the equation that links the forces to the centripetal force, a ball on
+    a string at the top of a vertical circle, the same ball at the bottom, and a car on a flat bend.
+  answer_label: Choosing the equation
+  check:
+    kind: structured
+    requires:
+    - top
+    - bottom
+    - flat
+    concepts:
+    - top-equation
+    - bottom-equation
+    - friction-equation
+    points:
+    - id: top
+      text: at the top the tension and the weight both point towards the centre, so the tension plus the
+        weight equals the centripetal force
+      concepts:
+      - top-equation
+    - id: bottom
+      text: at the bottom the tension points towards the centre and the weight points away from it, so
+        the tension minus the weight equals the centripetal force
+      concepts:
+      - bottom-equation
+    - id: flat
+      text: on a flat bend friction is the only horizontal force, so friction equals the centripetal
+        force
+      concepts:
+      - friction-equation
+  answer_text: At the top, $T + mg = \dfrac{mv^2}{r}$. At the bottom, $T - mg = \dfrac{mv^2}{r}$. On a
+    flat bend, $F_{\text{friction}} = \dfrac{mv^2}{r}$. In every case you first decide which forces act
+    towards the centre, then add them with the correct signs and set the resultant equal to
+    $\dfrac{mv^2}{r}$.

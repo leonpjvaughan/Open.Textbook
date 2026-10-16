@@ -5,14 +5,17 @@ chapter_title: Money and financial mathematics
 section: '7.3'
 section_title: VAT and bills
 tier: O
-refs:
-- N.2
+refs: [N.2]
 kind: problems
 ---
 
-<!-- scaffold:stub -->
-
 # 7.3 VAT and bills — Practise
 
-> **Stub.** Independent, homework-style practice. Answers and concise solutions in a collapsed block. Mark Higher-only questions explicitly.
-> Tier: **O** · refs: N.2
+Work independently. The questions and answers are shown together at the end.
+
+Decide first whether the price you are given includes VAT. If it does, divide by
+$1.23$. If it does not, multiply by $1.23$.
+
+:::problems chapter-07-practice-7.3
+
+:::answers chapter-07-practice-7.3

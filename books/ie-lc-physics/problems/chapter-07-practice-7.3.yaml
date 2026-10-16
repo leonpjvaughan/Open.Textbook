@@ -1,0 +1,291 @@
+# Leaving Certificate Physics, Chapter 7, section 7.3 (strand 1 outcome 1.6).
+#
+# The physics oracle checks two claims whenever a quantity is asked for:
+# `dimensions` proves the exact magnitude *and* the unit, and `sigfigs` proves the
+# rounding to the figures the data support. Both are written out, because a rounded
+# answer is never equal to the exact one. A value built on pi carries a `tolerance`,
+# so the check proves the arithmetic within the precision of the data rather than
+# against a number that was rounded by hand.
+#
+# Honest limit: this proves the arithmetic and the dimensions, not the physics. A
+# dimensionally consistent, arithmetically correct, physically absurd answer would
+# pass. The `structured` records prove only that a model answer contains the
+# declared steps and concepts, in order — not that the physics in them is right.
+chapter: 7
+problems:
+- id: p7-3-stone-tension
+  section: '7.3'
+  tier: O
+  refs:
+  - '1.6'
+  statement: A 0.50 kg stone is whirled in a horizontal circle of radius 0.80 m at 3.0 m/s. Calculate
+    the force needed to keep it in the circle.
+  answer_label: Centripetal force
+  check:
+    kind: all
+    checks:
+    - kind: dimensions
+      expression: m * v**2 / r
+      values:
+        m:
+          value: '0.50'
+          unit: kg
+        v:
+          value: '3.0'
+          unit: m/s
+        r:
+          value: '0.80'
+          unit: m
+      answer:
+        value: '5.625'
+        unit: N
+    - kind: sigfigs
+      value: 0.50 * 3.0**2 / 0.80
+      figures: 2
+      tolerance: '0.02'
+      answer: '5.6'
+      convention: round-once
+  answer_text: $F = \dfrac{mv^2}{r} = \dfrac{0.50 \times 3.0^2}{0.80} = \dfrac{4.5}{0.80} =
+    5.6\,\text{N}$. The force is supplied by the tension in the string, and it points towards the centre
+    of the circle.
+- id: p7-3-car-friction
+  section: '7.3'
+  tier: O
+  refs:
+  - '1.6'
+  statement: A car of mass 1200 kg goes round a bend of radius 50 m at 20 m/s. Calculate the centripetal
+    force needed.
+  answer_label: Centripetal force
+  check:
+    kind: all
+    checks:
+    - kind: dimensions
+      expression: m * v**2 / r
+      values:
+        m:
+          value: '1200'
+          unit: kg
+        v:
+          value: '20'
+          unit: m/s
+        r:
+          value: '50'
+          unit: m
+      answer:
+        value: '9600'
+        unit: N
+    - kind: sigfigs
+      value: 1200 * 20**2 / 50
+      figures: 2
+      answer: 9.6e3
+      convention: round-once
+  answer_text: $F = \dfrac{mv^2}{r} = \dfrac{1200 \times 20^2}{50} = \dfrac{480000}{50} =
+    9.6 \times 10^{3}\,\text{N}$. The force is supplied by friction between the tyres and the road. On a
+    wet road the friction is smaller, so the car must slow down.
+- id: p7-3-drum-force
+  section: '7.3'
+  tier: O
+  refs:
+  - '1.6'
+  statement: A wet towel of mass 0.20 kg lies against the wall of a drum of radius 0.24 m turning at
+    1400 revolutions per minute. Calculate the force the wall exerts on the towel.
+  answer_label: Force from the drum wall
+  check:
+    kind: all
+    checks:
+    - kind: approx
+      value: 0.20 * (2 * pi * 1400 / 60)**2 * 0.24
+      target: '1.03e3'
+      tolerance: '10'
+    - kind: sigfigs
+      value: 0.20 * (2 * pi * 1400 / 60)**2 * 0.24
+      figures: 2
+      tolerance: '10'
+      answer: 1.0e3
+      convention: round-once
+  answer_text: $\omega = 146.6\,\text{rad/s}$, so
+    $F = m\omega^2 r = 0.20 \times 146.6^2 \times 0.24 = 1.0 \times 10^{3}\,\text{N}$. The drum wall
+    pushes the towel towards the centre. The towel pushes back on the wall with the same size of force,
+    which is why the drum vibrates if the load is uneven.
+- id: p7-3-towel-weight
+  section: '7.3'
+  tier: O
+  refs:
+  - '1.6'
+  statement: Calculate the weight of the 0.20 kg towel, and compare it with the force from the previous
+    question.
+  answer_label: Weight of the towel
+  check:
+    kind: all
+    checks:
+    - kind: dimensions
+      expression: m * g
+      values:
+        m:
+          value: '0.20'
+          unit: kg
+        g:
+          value: '9.8'
+          unit: N/kg
+      answer:
+        value: '1.96'
+        unit: N
+    - kind: sigfigs
+      value: 0.20 * 9.8
+      figures: 2
+      tolerance: '0.005'
+      answer: '2.0'
+      convention: round-once
+  answer_text: $W = mg = 0.20 \times 9.8 = 2.0\,\text{N}$. The centripetal force is
+    $1.0 \times 10^{3}\,\text{N}$, about 500 times larger. Gravity is far too weak to hold the towel
+    against the drum, so the wall must do the work.
+- id: p7-3-omega-force
+  section: '7.3'
+  tier: O
+  refs:
+  - '1.6'
+  statement: A 0.40 kg mass on a string of length 0.60 m is swung with an angular velocity of 5.0 rad/s.
+    Calculate the centripetal force.
+  answer_label: Centripetal force
+  check:
+    kind: all
+    checks:
+    - kind: dimensions
+      expression: m * omega**2 * r
+      values:
+        m:
+          value: '0.40'
+          unit: kg
+        omega:
+          value: '5.0'
+          unit: s^-1
+        r:
+          value: '0.60'
+          unit: m
+      answer:
+        value: '6.0'
+        unit: N
+    - kind: sigfigs
+      value: 0.40 * 5.0**2 * 0.60
+      figures: 2
+      answer: '6.0'
+      convention: round-once
+  answer_text: $F = m\omega^2 r = 0.40 \times 5.0^2 \times 0.60 = 0.40 \times 25 \times 0.60 =
+    6.0\,\text{N}$. The force comes from the tension in the string, and it points towards the centre.
+- id: p7-3-max-speed
+  section: '7.3'
+  tier: O
+  refs:
+  - '1.6'
+  statement: A 0.20 kg ball on a string of length 1.0 m can withstand a maximum force of 8.0 N before the
+    string breaks. Calculate the maximum speed of the ball.
+  answer_label: Maximum speed
+  check:
+    kind: all
+    checks:
+    - kind: dimensions
+      expression: sqrt(F * r / m)
+      values:
+        F:
+          value: '8.0'
+          unit: N
+        r:
+          value: '1.0'
+          unit: m
+        m:
+          value: '0.20'
+          unit: kg
+      tolerance: '0.05'
+      answer:
+        value: '6.3'
+        unit: m/s
+    - kind: sigfigs
+      value: sqrt(8.0 * 1.0 / 0.20)
+      figures: 2
+      tolerance: '0.02'
+      answer: '6.3'
+      convention: round-once
+  answer_text: Rearranging $F = \dfrac{mv^2}{r}$ gives $v = \sqrt{\dfrac{Fr}{m}} =
+    \sqrt{\dfrac{8.0 \times 1.0}{0.20}} = \sqrt{40} = 6.3\,\text{m/s}$. Above this speed the string
+    cannot supply the force the ball needs, so it breaks and the ball flies off along the tangent.
+- id: p7-3-sources
+  section: '7.3'
+  tier: O
+  refs:
+  - '1.6'
+  statement: Name the force that provides the centripetal force in each of these cases, a satellite in
+    orbit, a car on a bend, a ball on a string, and clothes in a spin dryer.
+  answer_label: The source of the centripetal force
+  check:
+    kind: structured
+    requires:
+    - satellite
+    - car
+    - ball
+    - clothes
+    concepts:
+    - gravity
+    - friction
+    - tension
+    - contact
+    points:
+    - id: satellite
+      text: for a satellite in orbit the centripetal force is gravity, the pull of the planet towards its
+        centre
+      concepts:
+      - gravity
+    - id: car
+      text: for a car on a bend the centripetal force is friction between the tyres and the road
+      concepts:
+      - friction
+    - id: ball
+      text: for a ball on a string the centripetal force is the tension in the string
+      concepts:
+      - tension
+    - id: clothes
+      text: for clothes in a spin dryer the centripetal force is the push of the drum wall on the clothes
+      concepts:
+      - contact
+  answer_text: The centripetal force is not a new kind of force. It is whatever resultant force already
+    acts towards the centre. For a satellite it is gravity. For a car on a bend it is friction between
+    the tyres and the road. For a ball on a string it is the tension in the string. For clothes in a
+    spin dryer it is the push of the drum wall, which is a normal contact force.
+- id: p7-3-no-outward
+  section: '7.3'
+  tier: O
+  refs:
+  - '1.6'
+  statement: A student says that a force pushes a rider outwards on a roundabout. Explain why there is
+    no outward force on the rider.
+  answer_label: Why there is no outward force
+  check:
+    kind: structured
+    requires:
+    - inward
+    - tangent
+    - sensation
+    concepts:
+    - resultant
+    - inertia
+    - no-outward
+    points:
+    - id: inward
+      text: the only resultant force on the rider points towards the centre of the circle, and it is
+        supplied by the seat or the floor
+      concepts:
+      - resultant
+    - id: tangent
+      text: if that inward force stopped, the rider would carry on in a straight line along the tangent,
+        because of inertia
+      concepts:
+      - inertia
+    - id: sensation
+      text: the rider feels the seat pushing inwards, and the sensation of being thrown outwards is the
+        rider's own inertia resisting that push
+      concepts:
+      - no-outward
+  answer_text: The resultant force on the rider points towards the centre, and it comes from the seat or
+    the floor. That is the centripetal force, and there is no force pointing outwards. If the inward
+    force stopped, the rider would move in a straight line along the tangent, because a body keeps its
+    velocity unless a resultant force acts. The feeling of being thrown outwards is the rider's inertia
+    resisting the inward push, not a real outward force.

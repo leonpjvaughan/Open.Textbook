@@ -1,0 +1,275 @@
+# Leaving Certificate Physics, Chapter 7, section 7.2 (strand 1 outcome 1.6).
+#
+# The physics oracle checks two claims whenever a quantity is asked for:
+# `dimensions` proves the exact magnitude *and* the unit, and `sigfigs` proves the
+# rounding to the figures the data support. Both are written out, because a rounded
+# answer is never equal to the exact one. A value built on pi carries a `tolerance`,
+# so the check proves the arithmetic within the precision of the data rather than
+# against a number that was rounded by hand.
+#
+# Honest limit: this proves the arithmetic and the dimensions, not the physics. A
+# dimensionally consistent, arithmetically correct, physically absurd answer would
+# pass. The `structured` records prove only that a model answer contains the
+# declared steps and concepts, in order — not that the physics in them is right.
+chapter: 7
+problems:
+- id: p7-2-car-bend
+  section: '7.2'
+  tier: O
+  refs:
+  - '1.6'
+  statement: A car goes round a bend of radius 50 m at a speed of 20 m/s. Calculate its centripetal
+    acceleration.
+  answer_label: Centripetal acceleration
+  check:
+    kind: all
+    checks:
+    - kind: dimensions
+      expression: v**2 / r
+      values:
+        v:
+          value: '20'
+          unit: m/s
+        r:
+          value: '50'
+          unit: m
+      answer:
+        value: '8.0'
+        unit: m/s^2
+    - kind: sigfigs
+      value: 20**2 / 50
+      figures: 2
+      answer: '8.0'
+      convention: round-once
+  answer_text: $a = \dfrac{v^2}{r} = \dfrac{20^2}{50} = \dfrac{400}{50} = 8.0\,\text{m/s}^{2}$. The
+    acceleration points towards the centre of the bend, so it points sideways, not forwards.
+- id: p7-2-drum-accel
+  section: '7.2'
+  tier: O
+  refs:
+  - '1.6'
+  statement: A washing machine drum of radius 0.24 m turns at 1400 revolutions per minute. Calculate
+    the centripetal acceleration of a point on the drum wall.
+  answer_label: Centripetal acceleration
+  check:
+    kind: all
+    checks:
+    - kind: approx
+      value: (2 * pi * 1400 / 60)**2 * 0.24
+      target: '5.16e3'
+      tolerance: '20'
+    - kind: sigfigs
+      value: (2 * pi * 1400 / 60)**2 * 0.24
+      figures: 2
+      tolerance: '5'
+      answer: 5.2e3
+      convention: round-once
+  answer_text: $\omega = 2\pi f = 2\pi \times 23.3 = 146.6\,\text{rad/s}$, so
+    $a = \omega^2 r = 146.6^2 \times 0.24 = 5.2 \times 10^{3}\,\text{m/s}^{2}$. The acceleration is
+    directed towards the centre of the drum.
+- id: p7-2-stone-string
+  section: '7.2'
+  tier: O
+  refs:
+  - '1.6'
+  statement: A stone on a string of length 0.80 m moves at 3.0 m/s in a horizontal circle. Calculate
+    its centripetal acceleration.
+  answer_label: Centripetal acceleration
+  check:
+    kind: all
+    checks:
+    - kind: dimensions
+      expression: v**2 / r
+      values:
+        v:
+          value: '3.0'
+          unit: m/s
+        r:
+          value: '0.80'
+          unit: m
+      answer:
+        value: '11.25'
+        unit: m/s^2
+    - kind: sigfigs
+      value: 3.0**2 / 0.80
+      figures: 2
+      answer: '11'
+      convention: round-once
+  answer_text: $a = \dfrac{v^2}{r} = \dfrac{3.0^2}{0.80} = \dfrac{9.0}{0.80} = 11\,\text{m/s}^{2}$.
+    The string is 0.80 m long, so the circle has a radius of 0.80 m.
+- id: p7-2-wheel-omega
+  section: '7.2'
+  tier: O
+  refs:
+  - '1.6'
+  statement: A wheel of radius 0.50 m turns with an angular velocity of 4.0 rad/s. Calculate the
+    centripetal acceleration of a point on the rim.
+  answer_label: Centripetal acceleration
+  check:
+    kind: all
+    checks:
+    - kind: dimensions
+      expression: omega**2 * r
+      values:
+        omega:
+          value: '4.0'
+          unit: s^-1
+        r:
+          value: '0.50'
+          unit: m
+      answer:
+        value: '8.0'
+        unit: m/s^2
+    - kind: sigfigs
+      value: 4.0**2 * 0.50
+      figures: 2
+      answer: '8.0'
+      convention: round-once
+  answer_text: $a = \omega^2 r = 4.0^2 \times 0.50 = 16 \times 0.50 = 8.0\,\text{m/s}^{2}$. The same
+    formula works when the angular velocity is given instead of the speed.
+- id: p7-2-times-g
+  section: '7.2'
+  tier: O
+  refs:
+  - '1.6'
+  statement: A point on the drum wall has a centripetal acceleration of 5.2e3 m/s^2. Calculate how many
+    times larger this is than g = 9.8 m/s^2.
+  answer_label: How many times g
+  check:
+    kind: all
+    checks:
+    - kind: dimensions
+      expression: a / g
+      values:
+        a:
+          value: '5.2e3'
+          unit: m/s^2
+        g:
+          value: '9.8'
+          unit: m/s^2
+      tolerance: '0.1'
+      answer:
+        value: '530.6'
+    - kind: sigfigs
+      value: 5.2e3 / 9.8
+      figures: 2
+      answer: 5.3e2
+      convention: round-once
+  answer_text: $\dfrac{a}{g} = \dfrac{5.2 \times 10^{3}}{9.8} = 5.3 \times 10^{2}$. The centripetal
+    acceleration is about 530 times the acceleration of free fall, which is why the drum has to be
+    strong and well balanced.
+- id: p7-2-direction
+  section: '7.2'
+  tier: O
+  refs:
+  - '1.6'
+  statement: Explain why an object moving in a circle at a constant speed is accelerating, and state the
+    direction of that acceleration.
+  answer_label: Why a constant speed can still be an acceleration
+  check:
+    kind: structured
+    requires:
+    - speed-constant
+    - direction-changes
+    - acceleration
+    concepts:
+    - velocity-vector
+    - towards-centre
+    - changing-velocity
+    points:
+    - id: speed-constant
+      text: the speed is constant, so the size of the velocity does not change
+      concepts:
+      - velocity-vector
+    - id: direction-changes
+      text: the direction of the velocity changes all the time as the object goes round the circle
+      concepts:
+      - changing-velocity
+    - id: acceleration
+      text: a change in velocity is an acceleration, and it points towards the centre of the circle
+      concepts:
+      - towards-centre
+  answer_text: Velocity is a vector, so it has a size and a direction. The size stays the same, because
+    the speed is constant. The direction changes all the time, because the object keeps turning. A
+    change in velocity is an acceleration, so the object is accelerating even though its speed does not
+    change. The acceleration points towards the centre of the circle, and it is called the centripetal
+    acceleration.
+- id: p7-2-doubling
+  section: '7.2'
+  tier: O
+  refs:
+  - '1.6'
+  statement: An object moves in a circle of radius 20 m at a speed of 10 m/s. Calculate its centripetal
+    acceleration, and then state the value when the speed is doubled.
+  answer_label: Acceleration, then acceleration at twice the speed
+  check:
+    kind: all
+    checks:
+    - kind: dimensions
+      expression: v**2 / r
+      values:
+        v:
+          value: '10'
+          unit: m/s
+        r:
+          value: '20'
+          unit: m
+      answer:
+        value: '5.0'
+        unit: m/s^2
+    - kind: sigfigs
+      value: 10**2 / 20
+      figures: 2
+      answer: '5.0'
+      convention: round-once
+    - kind: dimensions
+      expression: (2 * v)**2 / r
+      values:
+        v:
+          value: '10'
+          unit: m/s
+        r:
+          value: '20'
+          unit: m
+      answer:
+        value: '20'
+        unit: m/s^2
+    - kind: sigfigs
+      value: (2 * 10)**2 / 20
+      figures: 2
+      answer: 2.0e1
+      convention: round-once
+  answer_text: $a = \dfrac{v^2}{r} = \dfrac{10^2}{20} = 5.0\,\text{m/s}^{2}$. Doubling the speed puts
+    $2v$ in place of $v$, and the square doubles the effect, so $a = \dfrac{(2v)^2}{r} = 4 \times
+    5.0 = 2.0 \times 10^{1}\,\text{m/s}^{2}$. Four times the speed means four times the acceleration.
+- id: p7-2-radius
+  section: '7.2'
+  tier: O
+  refs:
+  - '1.6'
+  statement: A car travels at 15 m/s round a bend. Its centripetal acceleration is 4.5 m/s^2. Calculate
+    the radius of the bend.
+  answer_label: Radius of the bend
+  check:
+    kind: all
+    checks:
+    - kind: dimensions
+      expression: v**2 / a
+      values:
+        v:
+          value: '15'
+          unit: m/s
+        a:
+          value: '4.5'
+          unit: m/s^2
+      answer:
+        value: '50'
+        unit: m
+    - kind: sigfigs
+      value: 15**2 / 4.5
+      figures: 2
+      answer: 5.0e1
+      convention: round-once
+  answer_text: Rearranging $a = \dfrac{v^2}{r}$ gives $r = \dfrac{v^2}{a} = \dfrac{15^2}{4.5} =
+    \dfrac{225}{4.5} = 5.0 \times 10^{1}\,\text{m}$. A tighter bend would need a larger centripetal
+    acceleration at the same speed.

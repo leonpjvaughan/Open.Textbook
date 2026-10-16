@@ -1,0 +1,234 @@
+# Leaving Certificate Physics, Chapter 21, section 21.1 (strand 4 outcome 4.5).
+#
+# Mass-energy equivalence. Every record takes c = 3.0e8 m/s, 1 u = 1.66e-27 kg and
+# 1 MeV = 1.6e-13 J. `dimensions` proves the magnitude and the unit together;
+# `sigfigs` proves the single rounding the data support. Where a mass in atomic
+# mass units is multiplied by an energy per unit mass, the u factors cancel and the
+# arithmetic is exact, so the answer needs no tolerance. Where a mass is converted
+# to kilograms with the rounded 1.66e-27, the bank declares a tolerance, because the
+# oracle's own u is the measured 1.66053906660e-27 and the two differ in the fourth
+# figure.
+#
+# Honest limit: this proves the arithmetic and the dimensions, not the physics. A
+# dimensionally consistent, arithmetically correct, physically absurd answer would
+# pass. The `structured` records prove only that a model answer contains the
+# declared steps and concepts, in order — not that the physics in them is right.
+chapter: 21
+problems:
+  - id: p21-1-gram
+    section: '21.1'
+    tier: O
+    refs: ['4.5']
+    statement: >-
+      Calculate the energy equivalent of 1.0 g of matter. Take
+      c = 3.0 × 10^8 m/s.
+    answer_label: Energy equivalent of 1.0 g
+    check:
+      kind: all
+      checks:
+        - kind: dimensions
+          expression: m * c**2
+          values:
+            m: {value: '1.0e-3', unit: kg}
+            c: {value: '3.0e8', unit: 'm/s'}
+          answer: {value: '9.0e13', unit: J}
+        - kind: sigfigs
+          value: '1.0e-3 * (3.0e8)**2'
+          figures: 2
+          answer: '9.0e13'
+          convention: round-once
+    answer_text: >-
+      Change the mass to kilograms: $1.0\,\text{g} = 1.0 \times 10^{-3}$ kg. Then
+      $E = mc^2 = 1.0 \times 10^{-3} \times 9.0 \times 10^{16} = 9.0 \times 10^{13}$ J.
+  - id: p21-1-u-joules
+    section: '21.1'
+    tier: O
+    refs: ['4.5']
+    statement: >-
+      The atomic mass unit is 1 u = 1.66 × 10^-27 kg. Calculate the energy
+      equivalent of 1 u in joules. Take c = 3.0 × 10^8 m/s.
+    answer_label: Energy equivalent of 1 u
+    check:
+      kind: all
+      checks:
+        - kind: dimensions
+          expression: m * c**2
+          values:
+            m: {value: '1.66e-27', unit: kg}
+            c: {value: '3.0e8', unit: 'm/s'}
+          answer: {value: '1.494e-10', unit: J}
+        - kind: sigfigs
+          value: '1.66e-27 * (3.0e8)**2'
+          figures: 2
+          answer: '1.5e-10'
+          convention: round-once
+    answer_text: >-
+      $E = mc^2 = 1.66 \times 10^{-27} \times 9.0 \times 10^{16} = 1.5 \times 10^{-10}$ J.
+      The mass is tiny, but $c^2$ is very large, so the energy is measurable.
+  - id: p21-1-u-mev
+    section: '21.1'
+    tier: O
+    refs: ['4.5']
+    statement: >-
+      The energy equivalent of 1 u is 1.494 × 10^-10 J. Express this in MeV. Take
+      1 MeV = 1.6 × 10^-13 J.
+    answer_label: Energy equivalent of 1 u in MeV
+    check:
+      kind: all
+      checks:
+        - kind: dimensions
+          expression: E / MeV
+          values:
+            E: {value: '1.494e-10', unit: J}
+            MeV: {value: '1.6e-13', unit: J}
+          answer: {value: '933.75'}
+        - kind: sigfigs
+          value: '1.494e-10 / 1.6e-13'
+          figures: 2
+          answer: '9.3e2'
+          convention: round-once
+    answer_text: >-
+      Divide the energy in joules by the number of joules in one MeV:
+      $\dfrac{1.494 \times 10^{-10}}{1.6 \times 10^{-13}} = 9.3 \times 10^2$ MeV.
+      So one atomic mass unit is equivalent to about $9.3 \times 10^2$ MeV.
+  - id: p21-1-mass-defect
+    section: '21.1'
+    tier: O
+    refs: ['4.5']
+    statement: >-
+      In one nuclear reaction the mass defect is 0.21 u. Calculate the energy
+      released in joules. Take 1 u = 1.66 × 10^-27 kg and c = 3.0 × 10^8 m/s.
+    answer_label: Energy released
+    check:
+      kind: all
+      checks:
+        - kind: dimensions
+          expression: dm * c**2
+          values:
+            dm: {value: '0.21', unit: u}
+            c: {value: '3.0e8', unit: 'm/s'}
+          answer: {value: '3.14e-11', unit: J}
+          tolerance: '1e-12'
+        - kind: sigfigs
+          value: '0.21 * 1.66e-27 * (3.0e8)**2'
+          figures: 2
+          answer: '3.1e-11'
+          convention: round-once
+    answer_text: >-
+      Change the mass defect to kilograms:
+      $m = 0.21 \times 1.66 \times 10^{-27} = 3.5 \times 10^{-28}$ kg. Then
+      $E = mc^2 = 3.5 \times 10^{-28} \times 9.0 \times 10^{16} = 3.1 \times 10^{-11}$ J.
+      This is close to the 200 MeV released by one fission of uranium-235.
+  - id: p21-1-electron-rest
+    section: '21.1'
+    tier: O
+    refs: ['4.5']
+    statement: >-
+      Calculate the rest energy of an electron in joules. Take
+      m = 9.1 × 10^-31 kg and c = 3.0 × 10^8 m/s.
+    answer_label: Rest energy of an electron
+    check:
+      kind: all
+      checks:
+        - kind: dimensions
+          expression: m * c**2
+          values:
+            m: {value: '9.1e-31', unit: kg}
+            c: {value: '3.0e8', unit: 'm/s'}
+          answer: {value: '8.19e-14', unit: J}
+        - kind: sigfigs
+          value: '9.1e-31 * (3.0e8)**2'
+          figures: 2
+          answer: '8.2e-14'
+          convention: round-once
+    answer_text: >-
+      $E = mc^2 = 9.1 \times 10^{-31} \times 9.0 \times 10^{16} = 8.2 \times 10^{-14}$ J.
+      In electronvolts this is 0.51 MeV, the rest energy of an electron. When an
+      electron and a positron annihilate, the two rest energies become two photons.
+  - id: p21-1-cockcroft
+    section: '21.1'
+    tier: O
+    refs: ['4.5']
+    statement: >-
+      Describe the Cockcroft and Walton experiment, and explain its significance
+      as the first nuclear transformation produced by artificially accelerated
+      particles.
+    answer_label: The Cockcroft and Walton experiment
+    check:
+      kind: structured
+      requires: [accelerate, react, observe, significance]
+      concepts: [accelerated-particles, mass-to-energy, first-transformation]
+      points:
+        - id: accelerate
+          text: >-
+            Protons were accelerated through a high potential difference and fired
+            at a lithium target.
+          concepts: [accelerated-particles]
+        - id: react
+          text: >-
+            A proton was absorbed by a lithium-7 nucleus, and the nucleus split
+            into two alpha particles.
+          concepts: [accelerated-particles]
+        - id: observe
+          text: >-
+            The alpha particles carried away about 17 MeV of kinetic energy, far
+            more than the 0.7 MeV given to each proton, so the extra energy came
+            from mass.
+          concepts: [mass-to-energy]
+        - id: significance
+          text: >-
+            It was the first nuclear transformation caused by artificially
+            accelerated particles, and it showed that E = mc^2 applies inside a
+            nucleus.
+          concepts: [first-transformation, mass-to-energy]
+    answer_text: >-
+      Cockcroft and Walton accelerated protons through a high potential difference
+      and fired them at a lithium target. A proton was absorbed by a lithium-7
+      nucleus, and the nucleus split into two alpha particles. The alpha particles
+      carried away about 17 MeV of kinetic energy, far more than the 0.7 MeV given
+      to each proton, so the extra energy came from mass. The experiment was the
+      first nuclear transformation caused by artificially accelerated particles,
+      and it showed that $E = mc^2$ applies inside a nucleus.
+  - id: p21-1-antiparticles
+    section: '21.1'
+    tier: O
+    refs: ['4.5']
+    statement: >-
+      Describe matter in terms of fundamental particles and their antiparticles,
+      and describe what happens when a particle meets its antiparticle.
+    answer_label: Particles, antiparticles and annihilation
+    check:
+      kind: structured
+      requires: [fermions, bosons, antiparticles, annihilation]
+      concepts: [quarks, leptons, exchange-particles, mass-to-energy]
+      points:
+        - id: fermions
+          text: >-
+            Matter is made of fermions: quarks, which combine to form protons and
+            neutrons, and leptons, which include the electron.
+          concepts: [quarks, leptons]
+        - id: bosons
+          text: >-
+            Forces are carried by bosons, which are exchanged between particles:
+            the photon carries the electromagnetic force and the gluon carries the
+            strong nuclear force.
+          concepts: [exchange-particles]
+        - id: antiparticles
+          text: >-
+            Every particle has an antiparticle with the same mass and the opposite
+            charge, so the antiparticle of the electron is the positron.
+          concepts: [quarks, leptons]
+        - id: annihilation
+          text: >-
+            When a particle meets its antiparticle the two annihilate, and their
+            mass becomes energy as gamma-ray photons.
+          concepts: [mass-to-energy]
+    answer_text: >-
+      Matter is made of fermions: quarks, which combine to form protons and
+      neutrons, and leptons, which include the electron. Forces are carried by
+      bosons, which are exchanged between particles: the photon carries the
+      electromagnetic force and the gluon carries the strong nuclear force. Every
+      particle has an antiparticle with the same mass and the opposite charge, so
+      the antiparticle of the electron is the positron. When a particle meets its
+      antiparticle the two annihilate, and their mass becomes energy as gamma-ray
+      photons.

@@ -10,9 +10,14 @@ refs:
 kind: problems
 ---
 
-<!-- scaffold:stub -->
-
 # 21.3 Fission and fusion — Practise
 
-> **Stub.** Independent, homework-style practice. Answers and concise solutions in a collapsed block. Mark Higher-only questions explicitly.
-> Tier: **O** · refs: 4.6
+Work independently. The questions and answers are shown together at the end.
+
+Take $1\ \text{MeV} = 1.6 \times 10^{-13}$ J and $1\ \text{u} = 9.3 \times 10^2$ MeV
+unless a question says otherwise. Give every numerical answer with its unit and to
+the number of significant figures the data support.
+
+:::problems chapter-21-practice-21.3
+
+:::answers chapter-21-practice-21.3

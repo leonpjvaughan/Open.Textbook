@@ -1,0 +1,191 @@
+# Junior Cycle Mathematics, Chapter 7, section 7.2.
+#
+# Mark-up and margin are the same profit written against two different bases, so
+# every check proves the division: profit over cost for the mark-up, profit over
+# selling price for the margin. A margin that is not exact is written as a
+# fraction, "50/3", which proves the value and lets the answer text say
+# "33 and one third per cent". The euro sign and the words stay in `statement`.
+chapter: 7
+symbols: {}
+
+problems:
+- id: jc7-7.2-markup-1
+  section: '7.2'
+  tier: O
+  refs:
+  - N.2
+  statement: A phone case costs a shop €4.00 and sells for €6.00. Work out the mark-up.
+  answer_label: Find the mark-up on a €4.00 case sold for €6.00.
+  check:
+    kind: evaluate
+    expression: (6-4)/4*100
+    answer: '50'
+  answer_text: >-
+    $50\%$. The mark-up is the profit as a percentage of the cost price. The
+    profit is €2.00, and $\frac{2.00}{4.00}\times100=50$.
+- id: jc7-7.2-margin-1
+  section: '7.2'
+  tier: O
+  refs:
+  - N.2
+  statement: A phone case costs a shop €4.00 and sells for €6.00. Work out the margin.
+  answer_label: Find the margin on a €4.00 case sold for €6.00.
+  check:
+    kind: evaluate
+    expression: (6-4)/6*100
+    answer: 100/3
+  answer_text: >-
+    $33\frac{1}{3}\%$. The margin is the profit as a percentage of the selling
+    price. The profit is €2.00, and $\frac{2.00}{6.00}\times100=\frac{100}{3}$,
+    which is $33\frac{1}{3}\%$. The margin is smaller than the mark-up, because
+    the selling price is the larger base.
+- id: jc7-7.2-selling-price-1
+  section: '7.2'
+  tier: O
+  refs:
+  - N.2
+  statement: A shop buys a bag for €40.00 and adds a mark-up of $25\%$. Work out the selling
+    price.
+  answer_label: Find the selling price for a $25\%$ mark-up on €40.00.
+  check:
+    kind: evaluate
+    expression: 40*(1+25/100)
+    answer: '50'
+  steps:
+  - expr: 40*(1+25/100)
+  - expr: 40*1.25
+  - expr: '50'
+  answer_text: >-
+    €50.00. A mark-up of $25\%$ multiplies the cost price by $1.25$:
+    $40.00\times1.25=50.00$. The profit is $40.00\times0.25=10.00$, and
+    $40.00+10.00=50.00$.
+- id: jc7-7.2-markup-2
+  section: '7.2'
+  tier: O
+  refs:
+  - N.2
+  statement: A shop buys a lamp for €50.00 and sells it for €60.00. Work out the mark-up.
+  answer_label: Find the mark-up on a €50.00 lamp sold for €60.00.
+  check:
+    kind: evaluate
+    expression: (60-50)/50*100
+    answer: '20'
+  answer_text: >-
+    $20\%$. The profit is $60.00-50.00=10.00$, and
+    $\frac{10.00}{50.00}\times100=20$.
+- id: jc7-7.2-margin-2
+  section: '7.2'
+  tier: O
+  refs:
+  - N.2
+  statement: A shop buys a lamp for €50.00 and sells it for €60.00. Work out the margin.
+  answer_label: Find the margin on a €50.00 lamp sold for €60.00.
+  check:
+    kind: evaluate
+    expression: (60-50)/60*100
+    answer: 50/3
+  answer_text: >-
+    $16\frac{2}{3}\%$. The profit is €10.00, and
+    $\frac{10.00}{60.00}\times100=\frac{50}{3}$, which is $16\frac{2}{3}\%$.
+    Notice that the same €10.00 profit gives a $20\%$ mark-up and a
+    $16\frac{2}{3}\%$ margin.
+- id: jc7-7.2-markup-margin-1
+  section: '7.2'
+  tier: O
+  refs:
+  - N.2
+  statement: A shop buys a radio for €80.00 and sells it for €100.00. Work out the mark-up and
+    the margin.
+  answer_label: A €80.00 radio sells for €100.00. Find the mark-up and the margin.
+  check:
+    kind: all
+    checks:
+    - kind: evaluate
+      expression: (100-80)/80*100
+      answer: '25'
+    - kind: evaluate
+      expression: (100-80)/100*100
+      answer: '20'
+  answer_text: >-
+    The mark-up is $25\%$, and the margin is $20\%$. The profit is €20.00. The
+    mark-up is $\frac{20.00}{80.00}\times100=25$, and the margin is
+    $\frac{20.00}{100.00}\times100=20$.
+- id: jc7-7.2-selling-price-2
+  section: '7.2'
+  tier: O
+  refs:
+  - N.2
+  statement: A shop buys a kettle for €35.00 and adds a mark-up of $40\%$. Work out the selling
+    price.
+  answer_label: Find the selling price for a $40\%$ mark-up on €35.00.
+  check:
+    kind: evaluate
+    expression: 35*(1+40/100)
+    answer: '49'
+  answer_text: >-
+    €49.00. A mark-up of $40\%$ multiplies the cost price by $1.40$:
+    $35.00\times1.40=49.00$. The profit is $35.00\times0.40=14.00$.
+- id: jc7-7.2-cost-from-margin-1
+  section: '7.2'
+  tier: O
+  refs:
+  - N.2
+  statement: A shop sells a speaker for €80.00 with a margin of $25\%$. Work out the profit and
+    the cost price.
+  answer_label: A €80.00 speaker has a $25\%$ margin. Find the profit and the cost price.
+  check:
+    kind: all
+    checks:
+    - kind: evaluate
+      expression: 80*25/100
+      answer: '20'
+    - kind: evaluate
+      expression: 80-20
+      answer: '60'
+  answer_text: >-
+    The profit is €20.00, and the cost price is €60.00. The margin is a
+    percentage of the selling price, so the profit is $80.00\times0.25=20.00$.
+    The cost price is $80.00-20.00=60.00$.
+- id: jc7-7.2-markup-margin-2
+  section: '7.2'
+  tier: H
+  refs:
+  - N.2
+  statement: A shop buys a desk lamp for €25.00 and adds a mark-up of $60\%$. Work out the
+    selling price and the margin.
+  answer_label: A $60\%$ mark-up on €25.00. Find the selling price and the margin.
+  check:
+    kind: all
+    checks:
+    - kind: evaluate
+      expression: 25*(1+60/100)
+      answer: '40'
+    - kind: evaluate
+      expression: (40-25)/40*100
+      answer: '37.5'
+  answer_text: >-
+    The selling price is €40.00, and the margin is $37.5\%$. The selling price is
+    $25.00\times1.60=40.00$. The profit is €15.00, and the margin is
+    $\frac{15.00}{40.00}\times100=37.5$.
+- id: jc7-7.2-markup-margin-3
+  section: '7.2'
+  tier: O
+  refs:
+  - N.2
+  statement: A shop buys a mug for €20.00 and sells it for €25.00. Work out the mark-up and the
+    margin.
+  answer_label: A €20.00 mug sells for €25.00. Find the mark-up and the margin.
+  check:
+    kind: all
+    checks:
+    - kind: evaluate
+      expression: (25-20)/20*100
+      answer: '25'
+    - kind: evaluate
+      expression: (25-20)/25*100
+      answer: '20'
+  answer_text: >-
+    The mark-up is $25\%$, and the margin is $20\%$. The profit is €5.00. The
+    mark-up is $\frac{5.00}{20.00}\times100=25$, and the margin is
+    $\frac{5.00}{25.00}\times100=20$. The mark-up is always the larger of the
+    two, because the cost price is smaller than the selling price.

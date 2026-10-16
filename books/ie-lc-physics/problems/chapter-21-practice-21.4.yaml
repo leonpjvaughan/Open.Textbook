@@ -1,0 +1,277 @@
+# Leaving Certificate Physics, Chapter 21, section 21.4 (strand 4 outcome 4.6).
+#
+# Nuclear power and its alternatives. The energy-density and coal-comparison records
+# use `dimensions` (magnitude and unit together) with a tolerance, because the
+# rounded constants make the quotient inexact, and `sigfigs` for the single
+# rounding. The capacity-factor record is pure arithmetic, so it is a SymPy
+# `evaluate`. The rest are `structured`, where the answer is an argument.
+#
+# Honest limit: this proves the arithmetic and the dimensions, not the physics. A
+# dimensionally consistent, arithmetically correct, physically absurd answer would
+# pass. The `structured` records prove only that a model answer contains the
+# declared steps and concepts, in order — not that the physics in them is right, and
+# not that the evaluation of the evidence is the best one.
+chapter: 21
+problems:
+  - id: p21-4-reactor-parts
+    section: '21.4'
+    tier: O
+    refs: ['4.6']
+    statement: >-
+      Name four parts of a nuclear reactor and state the job of each one.
+    answer_label: The parts of a reactor
+    check:
+      kind: structured
+      requires: [fuel, moderator, control, coolant]
+      concepts: [fission-fuel, slow-neutrons, absorb-neutrons, heat-to-electricity]
+      points:
+        - id: fuel
+          text: >-
+            The fuel rods hold the uranium-235, where the fission happens.
+          concepts: [fission-fuel]
+        - id: moderator
+          text: >-
+            The moderator slows the neutrons so that they are more likely to be
+            absorbed by uranium-235 and cause fission.
+          concepts: [slow-neutrons]
+        - id: control
+          text: >-
+            The control rods absorb neutrons, so lowering them slows the reaction
+            and raising them speeds it up.
+          concepts: [absorb-neutrons]
+        - id: coolant
+          text: >-
+            The coolant carries heat from the core to the boiler, where it makes
+            steam that turns a turbine and a generator.
+          concepts: [heat-to-electricity]
+    answer_text: >-
+      The fuel rods hold the uranium-235, where the fission happens. The moderator
+      slows the neutrons so that they are more likely to be absorbed by
+      uranium-235 and cause fission. The control rods absorb neutrons, so lowering
+      them slows the reaction and raising them speeds it up. The coolant carries
+      heat from the core to the boiler, where it makes steam that turns a turbine
+      and a generator.
+  - id: p21-4-energy-density
+    section: '21.4'
+    tier: O
+    refs: ['4.6']
+    statement: >-
+      Calculate the energy released by the fission of all the uranium-235 in 1.0 kg
+      of fuel. Each fission releases 3.2 × 10^-11 J, the molar mass is 235 g/mol,
+      and there are 6.0 × 10^23 nuclei per mole.
+    answer_label: Energy in one kilogram of fuel
+    check:
+      kind: all
+      checks:
+        - kind: dimensions
+          expression: (m / M) * NA * E
+          values:
+            m: {value: '1000', unit: g}
+            M: {value: '235', unit: 'g/mol'}
+            NA: {value: '6.0e23', unit: 'mol^-1'}
+            E: {value: '3.2e-11', unit: J}
+          answer: {value: '8.2e13', unit: J}
+          tolerance: '1e12'
+        - kind: sigfigs
+          value: '(1000 / 235) * 6.0e23 * 3.2e-11'
+          figures: 2
+          answer: '8.2e13'
+          convention: round-once
+    answer_text: >-
+      The number of nuclei is
+      $N = \dfrac{1000}{235} \times 6.0 \times 10^{23} = 2.55 \times 10^{24}$. The
+      total energy is
+      $E = 2.55 \times 10^{24} \times 3.2 \times 10^{-11} = 8.2 \times 10^{13}$ J.
+      The fuel is light, but it holds an enormous number of nuclei.
+  - id: p21-4-coal-comparison
+    section: '21.4'
+    tier: O
+    refs: ['4.6']
+    statement: >-
+      Burning 1.0 kg of coal releases about 3.0 × 10^7 J. The fission of 1.0 kg of
+      uranium-235 releases 8.2 × 10^13 J. Calculate the mass of coal that would
+      release the same energy.
+    answer_label: Mass of coal giving the same energy
+    check:
+      kind: all
+      checks:
+        - kind: dimensions
+          expression: E / e
+          values:
+            E: {value: '8.2e13', unit: J}
+            e: {value: '3.0e7', unit: 'J/kg'}
+          answer: {value: '2.7e6', unit: kg}
+          tolerance: '1e5'
+        - kind: sigfigs
+          value: '8.2e13 / 3.0e7'
+          figures: 2
+          answer: '2.7e6'
+          convention: round-once
+    answer_text: >-
+      $\dfrac{8.2 \times 10^{13}}{3.0 \times 10^7} = 2.7 \times 10^6$ kg. So 1.0 kg
+      of uranium-235 releases the same energy as about $2.7 \times 10^6$ kg of
+      coal, which is nearly three thousand tonnes.
+  - id: p21-4-waste
+    section: '21.4'
+    tier: O
+    refs: ['4.6']
+    statement: >-
+      Explain why spent nuclear fuel is a long-term problem, and describe how the
+      waste is managed.
+    answer_label: Spent fuel and waste
+    check:
+      kind: structured
+      requires: [half-life, heat, management]
+      concepts: [long-half-life, cooling-and-shielding, geological-disposal]
+      points:
+        - id: half-life
+          text: >-
+            Some fission products have half-lives of thousands of years, so their
+            activity falls very slowly and the waste stays radioactive for far
+            longer than a human lifetime.
+          concepts: [long-half-life]
+        - id: heat
+          text: >-
+            The waste produces heat for years after it leaves the reactor, so it
+            must be cooled in a pool of water and then shielded.
+          concepts: [cooling-and-shielding]
+        - id: management
+          text: >-
+            In the long term it is sealed in solid containers and buried deep
+            underground in a stable rock formation, where it must stay isolated
+            from people for thousands of years.
+          concepts: [geological-disposal]
+    answer_text: >-
+      Some fission products have half-lives of thousands of years, so their
+      activity falls very slowly and the waste stays radioactive for far longer
+      than a human lifetime. It produces heat for years after it leaves the
+      reactor, so it must be cooled in a pool of water and then shielded. In the
+      long term it is sealed in solid containers and buried deep underground in a
+      stable rock formation, where it must stay isolated from people for thousands
+      of years.
+  - id: p21-4-ireland
+    section: '21.4'
+    tier: O
+    refs: ['4.6']
+    statement: >-
+      Ireland has no nuclear power station. Give one argument for building one and
+      one against, and describe the alternative sources that could be used
+      instead.
+    answer_label: The Irish case
+    check:
+      kind: structured
+      requires: [for, against, alternatives]
+      concepts: [steady-low-carbon, waste-and-risk, variable-renewables]
+      points:
+        - id: for
+          text: >-
+            Nuclear power gives a large, steady output with almost no carbon
+            dioxide while it runs, and it needs very little land and fuel.
+          concepts: [steady-low-carbon]
+        - id: against
+          text: >-
+            It leaves long-lived radioactive waste, it carries an accident risk,
+            and it costs a great deal to build.
+          concepts: [waste-and-risk]
+        - id: alternatives
+          text: >-
+            Wind and solar are renewable and produce no waste, but their output
+            varies with the weather, so they need storage or another source to
+            fill the gaps.
+          concepts: [variable-renewables]
+    answer_text: >-
+      For: nuclear power gives a large, steady output with almost no carbon dioxide
+      while it runs, and it needs very little land and fuel. Against: it leaves
+      long-lived radioactive waste, it carries an accident risk, and it costs a
+      great deal to build. The alternatives are wind and solar, which are renewable
+      and produce no waste but vary with the weather, so they need storage or
+      another source to fill the gaps.
+  - id: p21-4-evidence
+    section: '21.4'
+    tier: O
+    refs: ['4.6']
+    statement: >-
+      Describe how you would judge a secondary source that gives figures about
+      nuclear power.
+    answer_label: Judging the evidence
+    check:
+      kind: structured
+      requires: [source, assumptions, corroboration]
+      concepts: [provenance, assumptions-stated, independent-agreement]
+      points:
+        - id: source
+          text: >-
+            Check who wrote it and what they gain from the conclusion, and check
+            how old it is.
+          concepts: [provenance]
+        - id: assumptions
+          text: >-
+            Check that the units and the assumptions are stated, because a cost
+            per unit of electricity depends on the lifetime, the interest rate and
+            whether waste disposal is included.
+          concepts: [assumptions-stated]
+        - id: corroboration
+          text: >-
+            Check whether an independent source gives the same figure, because a
+            number that several separate organisations reach is more reliable than
+            one that only one does.
+          concepts: [independent-agreement]
+    answer_text: >-
+      Check who wrote the source and what they gain from the conclusion, and check
+      how old it is. Check that the units and the assumptions are stated, because a
+      cost per unit of electricity depends on the lifetime of the plant, the
+      interest rate and whether waste disposal is included. Finally, check whether
+      an independent source gives the same figure, because a number that several
+      separate organisations reach is more reliable than one that only one does.
+  - id: p21-4-fusion-power
+    section: '21.4'
+    tier: O
+    refs: ['4.6']
+    statement: >-
+      Explain why no fusion power station exists yet, even though fusion releases
+      energy in the Sun.
+    answer_label: Why there is no fusion power station
+    check:
+      kind: structured
+      requires: [temperature, confinement, balance]
+      concepts: [plasma, magnetic-confinement, energy-balance]
+      points:
+        - id: temperature
+          text: >-
+            Fusion needs temperatures of millions of kelvin, because the two nuclei
+            repel each other and must move fast enough to get close enough to fuse.
+          concepts: [plasma]
+        - id: confinement
+          text: >-
+            The hot gas must be held away from the walls of the machine, usually by
+            strong magnetic fields in a tokamak.
+          concepts: [magnetic-confinement]
+        - id: balance
+          text: >-
+            No fusion device has yet delivered more energy to the grid than it took
+            from it, so no fusion power station exists.
+          concepts: [energy-balance]
+    answer_text: >-
+      Fusion needs temperatures of millions of kelvin, because the two nuclei repel
+      each other and must move fast enough to get close enough to fuse. The hot gas
+      must be held away from the walls of the machine, usually by strong magnetic
+      fields in a tokamak. No fusion device has yet delivered more energy to the
+      grid than it took from it, so no fusion power station exists.
+  - id: p21-4-capacity-factor
+    section: '21.4'
+    tier: O
+    refs: ['4.6']
+    statement: >-
+      A wind farm has a maximum output of 100 MW. Over a year it delivers an
+      average output of 30 MW. Calculate its capacity factor as a percentage.
+    answer_label: Capacity factor
+    check:
+      kind: evaluate
+      expression: '30 / 100 * 100'
+      answer: '30'
+    answer_text: >-
+      The capacity factor is
+      $\dfrac{30}{100} \times 100 = 30$ per cent. The farm delivers, on average,
+      less than a third of its maximum output, because the wind does not blow at
+      full strength all the time. A source like this needs storage or another
+      source to fill the gaps.

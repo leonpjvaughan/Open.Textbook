@@ -10,9 +10,13 @@ refs:
 kind: problems
 ---
 
-<!-- scaffold:stub -->
-
 # 2.5 Present value — Practise
 
-> **Stub.** Independent, homework-style practice. Answers and concise solutions in a collapsed block. Mark Higher-only questions explicitly.
-> Tier: **H** · refs: 3.3
+Work independently. The questions and answers are shown together at the end.
+
+Bring every amount to the same point in time before you compare anything. Divide
+by $(1 + i)^t$, and write the answer to the nearest cent.
+
+:::problems chapter-02-practice-2.5
+
+:::answers chapter-02-practice-2.5

@@ -1,0 +1,225 @@
+# Practice set for 2.3 (strand 3, outcome 3.3, Ordinary and Higher). The rates are
+# printed in each statement, because they change from year to year and the reader
+# must never be asked to recall them. Each answer is arithmetic, so `evaluate`
+# proves it; the reason the higher rate applies only to the top slice is a
+# `structured` check.
+#
+# The rates used throughout this bank:
+#   income tax   20% on the first 44 000, 40% on the balance
+#   tax credit   3 000, taken off the tax due
+#   USC          2% on the first 12 000, 4% on the balance
+chapter: 2
+problems:
+  - id: lc2-3-tax-standard
+    section: '2.3'
+    tier: O
+    refs: ['3.3']
+    statement: >-
+      A worker earns €30,000. Income tax is $20\%$ on the first €44,000 and
+      $40\%$ on the rest, and the worker has a tax credit of €3,000. Work out the
+      income tax before the credit and the income tax after the credit.
+    answer_label: 'The tax before the credit, then the tax after it'
+    check:
+      kind: all
+      checks:
+        - {kind: evaluate, expression: '30000 * 0.20', answer: '6000'}
+        - {kind: evaluate, expression: '30000 * 0.20 - 3000', answer: '3000'}
+    answer_text: >-
+      The whole €30,000 is below the €44,000 cut-off, so all of it is taxed at
+      $20\%$:
+
+      $$30\,000 \times 0.20 = 6\,000$$
+
+      The tax before the credit is €6,000. The tax credit is then taken off:
+
+      $$6\,000 - 3\,000 = 3\,000$$
+
+      The worker pays €3,000 in income tax.
+
+  - id: lc2-3-tax-two-rates
+    section: '2.3'
+    tier: O
+    refs: ['3.3']
+    statement: >-
+      A worker earns €52,000. Income tax is $20\%$ on the first €44,000 and
+      $40\%$ on the rest, and the worker has a tax credit of €3,000. Work out the
+      income tax before the credit and the income tax after the credit.
+    answer_label: 'The tax before the credit, then the tax after it'
+    check:
+      kind: all
+      checks:
+        - {kind: evaluate, expression: '44000 * 0.20 + (52000 - 44000) * 0.40', answer: '12000'}
+        - {kind: evaluate, expression: '44000 * 0.20 + (52000 - 44000) * 0.40 - 3000', answer: '9000'}
+    answer_text: >-
+      Split the income at the €44,000 cut-off. The first €44,000 is taxed at
+      $20\%$ and the remaining €8,000 at $40\%$:
+
+      $$44\,000 \times 0.20 = 8\,800$$
+
+      $$8\,000 \times 0.40 = 3\,200$$
+
+      $$8\,800 + 3\,200 = 12\,000$$
+
+      The tax before the credit is €12,000. After the €3,000 credit the worker
+      pays €9,000.
+
+  - id: lc2-3-usc-low
+    section: '2.3'
+    tier: O
+    refs: ['3.3']
+    statement: >-
+      USC is $2\%$ on the first €12,000 of income and $4\%$ on the rest. Work out
+      the USC on an income of €18,000.
+    answer_label: 'The USC'
+    check: {kind: evaluate, expression: '12000 * 0.02 + (18000 - 12000) * 0.04', answer: '480'}
+    answer_text: >-
+      Split the income at the €12,000 band. The first €12,000 is charged at
+      $2\%$ and the remaining €6,000 at $4\%$:
+
+      $$12\,000 \times 0.02 = 240$$
+
+      $$6\,000 \times 0.04 = 240$$
+
+      $$240 + 240 = 480$$
+
+      The USC is €480. The two bands give the same amount here, and that is a
+      coincidence of this income.
+
+  - id: lc2-3-usc-high
+    section: '2.3'
+    tier: O
+    refs: ['3.3']
+    statement: >-
+      USC is $2\%$ on the first €12,000 of income and $4\%$ on the rest. Work out
+      the USC on an income of €30,000.
+    answer_label: 'The USC'
+    check: {kind: evaluate, expression: '12000 * 0.02 + (30000 - 12000) * 0.04', answer: '960'}
+    answer_text: >-
+      The first €12,000 is charged at $2\%$ and the remaining €18,000 at $4\%$:
+
+      $$12\,000 \times 0.02 = 240$$
+
+      $$18\,000 \times 0.04 = 720$$
+
+      $$240 + 720 = 960$$
+
+      The USC is €960. Charging $4\%$ on the whole €30,000 would give €1,200,
+      which is too much.
+
+  - id: lc2-3-net-pay
+    section: '2.3'
+    tier: O
+    refs: ['3.3']
+    statement: >-
+      A worker earns €52,000. Income tax is $20\%$ on the first €44,000 and
+      $40\%$ on the rest, with a tax credit of €3,000. USC is $2\%$ on the first
+      €12,000 and $4\%$ on the rest. Work out the net pay.
+    answer_label: 'The net pay'
+    check:
+      kind: all
+      checks:
+        - {kind: evaluate, expression: '44000 * 0.20 + (52000 - 44000) * 0.40 - 3000', answer: '9000'}
+        - {kind: evaluate, expression: '12000 * 0.02 + (52000 - 12000) * 0.04', answer: '1840'}
+        - {kind: evaluate, expression: '52000 - 9000 - 1840', answer: '41160'}
+    answer_text: >-
+      Work out each deduction, then subtract them from the gross pay.
+
+      Income tax: $44\,000 \times 0.20 = 8\,800$ and
+      $8\,000 \times 0.40 = 3\,200$, giving €12,000 before the credit, and
+      $12\,000 - 3\,000 = 9\,000$ after it.
+
+      USC: $12\,000 \times 0.02 = 240$ and $40\,000 \times 0.04 = 1\,600$,
+      giving €1,840.
+
+      $$52\,000 - 9\,000 - 1\,840 = 41\,160$$
+
+      The net pay is €41,160.
+
+  - id: lc2-3-other-deduction
+    section: '2.3'
+    tier: O
+    refs: ['3.3']
+    statement: >-
+      A worker earns €36,000 and also pays €1,200 a year into a pension. Income
+      tax is $20\%$ on the first €44,000 with a tax credit of €3,000. USC is $2\%$
+      on the first €12,000 and $4\%$ on the rest. Work out the net pay.
+    answer_label: 'The net pay'
+    check:
+      kind: all
+      checks:
+        - {kind: evaluate, expression: '36000 * 0.20 - 3000', answer: '4200'}
+        - {kind: evaluate, expression: '12000 * 0.02 + (36000 - 12000) * 0.04', answer: '1200'}
+        - {kind: evaluate, expression: '36000 - 4200 - 1200 - 1200', answer: '29400'}
+    answer_text: >-
+      All of the €36,000 is below the cut-off, so the income tax is
+      $36\,000 \times 0.20 = 7\,200$ before the credit, and
+      $7\,200 - 3\,000 = 4\,200$ after it.
+
+      The USC is $12\,000 \times 0.02 = 240$ plus
+      $24\,000 \times 0.04 = 960$, giving €1,200.
+
+      The pension is a third deduction of €1,200.
+
+      $$36\,000 - 4\,200 - 1\,200 - 1\,200 = 29\,400$$
+
+      The net pay is €29,400. A deduction that is not a tax is subtracted in the
+      same way.
+
+  - id: lc2-3-chapter-tax
+    section: '2.3'
+    tier: O
+    refs: ['3.3']
+    statement: >-
+      A bakery makes €3,000 of extra profit in a year. The owner's income is below
+      the €44,000 cut-off, so the extra profit is taxed at $20\%$, and USC is
+      $2\%$. Work out the income tax, the USC and the profit that is left.
+    answer_label: 'The income tax, the USC, then what is left'
+    check:
+      kind: all
+      checks:
+        - {kind: evaluate, expression: '3000 * 0.20', answer: '600'}
+        - {kind: evaluate, expression: '3000 * 0.02', answer: '60'}
+        - {kind: evaluate, expression: '3000 - 600 - 60', answer: '2340'}
+    answer_text: >-
+      The extra profit is below both cut-offs, so each rate applies to the whole
+      amount.
+
+      Income tax: $3\,000 \times 0.20 = 600$.
+
+      USC: $3\,000 \times 0.02 = 60$.
+
+      $$3\,000 - 600 - 60 = 2\,340$$
+
+      The bakery keeps €2,340 of the €3,000. Section 2.6 uses this figure to work
+      out how long the oven takes to pay for itself.
+
+  - id: lc2-3-two-rates-explain
+    section: '2.3'
+    tier: O
+    refs: ['3.3']
+    statement: >-
+      Explain why a worker who earns €52,000 does not pay $40\%$ of €52,000 in
+      income tax.
+    answer_label: 'Why the higher rate applies to part of the income only'
+    check:
+      kind: structured
+      requires: [split-income, top-slice]
+      concepts: [standard-rate-cut-off, higher-rate-slice]
+      points:
+        - id: split-income
+          text: the income is split at the cut-off, and the first 44 000 is taxed at the standard rate of 20%
+          concepts: [standard-rate-cut-off]
+        - id: top-slice
+          text: only the income above the cut-off, which is 8 000 here, is taxed at the higher rate of 40%
+          concepts: [higher-rate-slice]
+    answer_text: >-
+      The higher rate is charged on the top slice of the income only. The €52,000
+      is split at the €44,000 cut-off.
+
+      The first €44,000 is taxed at the standard rate of $20\%$, giving €8,800.
+      Only the remaining €8,000 is taxed at the higher rate of $40\%$, giving
+      €3,200.
+
+      The tax before the credit is €12,000, not $0.40 \times 52\,000 = 20\,800$.
+      The word to watch is **the rest**: the higher rate applies to the rest, and
+      the rest is €8,000.

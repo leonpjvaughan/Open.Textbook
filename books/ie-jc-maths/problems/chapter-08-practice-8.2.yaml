@@ -1,0 +1,196 @@
+# Junior Cycle Mathematics, Chapter 8, section 8.2.
+#
+# Subsets, complements, the universal set and the null set. A complement is
+# verified by the subtraction that counts it and by showing each surviving
+# element is not in the set it came from. A subset is verified by showing every
+# element of the smaller set lies inside the larger one. A count of subsets is
+# verified by the power 2**n.
+chapter: 8
+symbols: {}
+
+problems:
+- id: jc8-8.2-complement
+  section: '8.2'
+  tier: O
+  refs:
+  - N.5
+  statement: Let $U=\{1, 2, 3, 4, 5, 6, 7, 8\}$ and $A=\{2, 4, 6, 8\}$. Find $A'$.
+  answer_label: Find the complement of $A$ in $U$.
+  check:
+    kind: all
+    checks:
+    - kind: evaluate
+      expression: 8-4
+      answer: '4'
+    - kind: evaluate
+      expression: 1 % 2
+      answer: '1'
+    - kind: evaluate
+      expression: 3 % 2
+      answer: '1'
+    - kind: evaluate
+      expression: 5 % 2
+      answer: '1'
+    - kind: evaluate
+      expression: 7 % 2
+      answer: '1'
+  answer_text: $A'=\{1, 3, 5, 7\}$. These are the elements of $U$ that are not in $A$, and there are $8-4=4$ of them.
+- id: jc8-8.2-subset-yes
+  section: '8.2'
+  tier: O
+  refs:
+  - N.5
+  statement: Is $\{1, 2\}$ a subset of $\{1, 2, 3\}$? Give a reason.
+  answer_label: Is $\{1, 2\}$ a subset of $\{1, 2, 3\}$?
+  check:
+    kind: all
+    checks:
+    - kind: compare
+      lhs: '1'
+      relation: '>='
+      rhs: '1'
+    - kind: compare
+      lhs: '1'
+      relation: '<='
+      rhs: '3'
+    - kind: compare
+      lhs: '2'
+      relation: '>='
+      rhs: '1'
+    - kind: compare
+      lhs: '2'
+      relation: '<='
+      rhs: '3'
+  answer_text: Yes, $\{1, 2\}\subseteq\{1, 2, 3\}$. Both 1 and 2 lie in the larger set, so every element of the smaller set passes the test.
+- id: jc8-8.2-subset-no
+  section: '8.2'
+  tier: O
+  refs:
+  - N.5
+  statement: Is $\{1, 4\}$ a subset of $\{1, 2, 3\}$? Give a reason.
+  answer_label: Is $\{1, 4\}$ a subset of $\{1, 2, 3\}$?
+  check:
+    kind: compare
+    lhs: '4'
+    relation: '>'
+    rhs: '3'
+  answer_text: No, $\{1, 4\}\nsubseteq\{1, 2, 3\}$. The number 4 is not in the larger set, so one element fails the test and the set is not a subset.
+- id: jc8-8.2-subsets-count
+  section: '8.2'
+  tier: O
+  refs:
+  - N.5
+  statement: How many subsets does $\{p, q\}$ have? List them.
+  answer_label: How many subsets does $\{p, q\}$ have?
+  check:
+    kind: evaluate
+    expression: 2**2
+    answer: '4'
+  answer_text: Four subsets. They are $\varnothing$, $\{p\}$, $\{q\}$ and $\{p, q\}$. A set with $n$ elements has $2^n$ subsets, and $2^2=4$.
+- id: jc8-8.2-subsets-five
+  section: '8.2'
+  tier: O
+  refs:
+  - N.5
+  statement: How many subsets does a set with 5 elements have?
+  answer_label: How many subsets does a set with 5 elements have?
+  check:
+    kind: evaluate
+    expression: 2**5
+    answer: '32'
+  answer_text: $32$ subsets. Each of the five elements is either included or left out, which gives $2\times2\times2\times2\times2=2^5=32$ choices.
+- id: jc8-8.2-complement-count
+  section: '8.2'
+  tier: O
+  refs:
+  - N.5
+  statement: Let $U=\{a, b, c, d, e\}$ and $B=\{a, c, e\}$. Find $n(B')$.
+  answer_label: Find the cardinality of $B'$.
+  check:
+    kind: evaluate
+    expression: 5-3
+    answer: '2'
+  answer_text: $n(B')=2$. The complement is $\{b, d\}$, and $n(B')=n(U)-n(B)=5-3=2$.
+- id: jc8-8.2-null
+  section: '8.2'
+  tier: O
+  refs:
+  - N.5
+  statement: Write the set of prime numbers between 8 and 10, and state its cardinality.
+  answer_label: Write the primes between 8 and 10 and count them.
+  check:
+    kind: all
+    checks:
+    - kind: evaluate
+      expression: 8 % 2
+      answer: '0'
+    - kind: evaluate
+      expression: 3*3
+      answer: '9'
+    - kind: evaluate
+      expression: 10 % 2
+      answer: '0'
+  answer_text: The set is $\varnothing$, and $n(\varnothing)=0$. The number 8 is even, 9 is $3\times3$, and 10 is even, so none of them is prime.
+- id: jc8-8.2-even-complement
+  section: '8.2'
+  tier: O
+  refs:
+  - N.5
+  statement: Let $U=\{1, 2, 3, 4, 5, 6, 7, 8, 9, 10\}$ and let $E$ be the even numbers in $U$. Find $E'$.
+  answer_label: Find the complement of the even numbers in $U$.
+  check:
+    kind: all
+    checks:
+    - kind: evaluate
+      expression: 1 % 2
+      answer: '1'
+    - kind: evaluate
+      expression: 3 % 2
+      answer: '1'
+    - kind: evaluate
+      expression: 5 % 2
+      answer: '1'
+    - kind: evaluate
+      expression: 7 % 2
+      answer: '1'
+    - kind: evaluate
+      expression: 9 % 2
+      answer: '1'
+  answer_text: >-
+    $E'=\{1, 3, 5, 7, 9\}$. These are the odd numbers in $U$, because every one
+    leaves remainder 1 when divided by 2.
+- id: jc8-8.2-proper
+  section: '8.2'
+  tier: O
+  refs:
+  - N.5
+  statement: Is $\{2, 4\}$ a proper subset of $\{2, 4, 6\}$?
+  answer_label: Is $\{2, 4\}$ a proper subset of $\{2, 4, 6\}$?
+  check:
+    kind: all
+    checks:
+    - kind: compare
+      lhs: '2'
+      relation: '>='
+      rhs: '2'
+    - kind: compare
+      lhs: '4'
+      relation: '<='
+      rhs: '6'
+    - kind: compare
+      lhs: '6'
+      relation: '>'
+      rhs: '4'
+  answer_text: Yes. Both 2 and 4 are in $\{2, 4, 6\}$, so $\{2, 4\}$ is a subset. The larger set also contains 6, so the subset is smaller and therefore proper.
+- id: jc8-8.2-class-complement
+  section: '8.2'
+  tier: O
+  refs:
+  - N.5
+  statement: In a class of 28 students, 16 play football. How many students do not play football?
+  answer_label: How many of the 28 students do not play football?
+  check:
+    kind: evaluate
+    expression: 28-16
+    answer: '12'
+  answer_text: $12$ students. The universal set is the 28 students, and the football players are 16 of them. The complement holds the rest, and $28-16=12$.

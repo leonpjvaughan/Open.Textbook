@@ -10,9 +10,13 @@ refs:
 kind: problems
 ---
 
-<!-- scaffold:stub -->
-
 # 2.4 Simple and compound interest — Practise
 
-> **Stub.** Independent, homework-style practice. Answers and concise solutions in a collapsed block. Mark Higher-only questions explicitly.
-> Tier: **F** · refs: 3.3
+Work independently. The questions and answers are shown together at the end.
+
+Decide first whether the question wants simple or compound interest, and write
+down the multiplier. A rate of $4\%$ is the decimal $0.04$.
+
+:::problems chapter-02-practice-2.4
+
+:::answers chapter-02-practice-2.4

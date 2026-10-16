@@ -1,0 +1,244 @@
+# Junior Cycle Mathematics, Chapter 8, section 8.6 (Higher level).
+#
+# Commutative and associative set operations. A union or an intersection is
+# verified by the cardinality arithmetic that counts it, so the two orderings are
+# proved to agree rather than asserted. A membership claim is verified by showing
+# the element lies inside each set and that a rival element fails one test.
+# Difference is checked by the subtractions that remove the shared elements,
+# which is what makes the two orderings differ.
+chapter: 8
+symbols: {}
+
+problems:
+- id: jc8-8.6-comm-union
+  section: '8.6'
+  tier: H
+  refs:
+  - N.5
+  statement: Let $A=\{2,4,6\}$ and $B=\{1,2,3,4\}$. Find $A\cup B$ and $B\cup A$. What do you notice?
+  answer_label: Find $A\cup B$ and $B\cup A$.
+  check:
+    kind: all
+    checks:
+    - kind: evaluate
+      expression: 3+4-2
+      answer: '5'
+  answer_text: >-
+    $A\cup B = B\cup A = \{1,2,3,4,6\}$. The two unions are the same set. The
+    count is $3+4-2=5$, because 2 and 4 are counted in each total and removed
+    once. Union is commutative, so the order of the sets does not matter.
+- id: jc8-8.6-comm-intersect
+  section: '8.6'
+  tier: H
+  refs:
+  - N.5
+  statement: Let $A=\{2,4,6\}$ and $B=\{1,2,3,4\}$. Find $A\cap B$ and $B\cap A$.
+  answer_label: Find $A\cap B$ and $B\cap A$.
+  check:
+    kind: all
+    checks:
+    - kind: evaluate
+      expression: 3+4-5
+      answer: '2'
+  answer_text: >-
+    $A\cap B = B\cap A = \{2,4\}$. The two intersections are the same set. The
+    count is $3+4-5=2$, because the union holds 5 elements. Intersection is
+    commutative.
+- id: jc8-8.6-assoc-union
+  section: '8.6'
+  tier: H
+  refs:
+  - N.5
+  statement: Let $A=\{1,2\}$, $B=\{2,3\}$ and $C=\{3,4\}$. Find $(A\cup B)\cup C$ and $A\cup(B\cup C)$.
+  answer_label: Find $(A\cup B)\cup C$ and $A\cup(B\cup C)$.
+  check:
+    kind: all
+    checks:
+    - kind: evaluate
+      expression: 2+2-1
+      answer: '3'
+    - kind: evaluate
+      expression: 3+2-1
+      answer: '4'
+    - kind: evaluate
+      expression: 2+2-1
+      answer: '3'
+    - kind: evaluate
+      expression: 2+3-1
+      answer: '4'
+  answer_text: >-
+    Both expressions give $\{1,2,3,4\}$. The bracket decides which two sets you
+    combine first, and the answer is the same set either way. Union is
+    associative.
+- id: jc8-8.6-assoc-intersect
+  section: '8.6'
+  tier: H
+  refs:
+  - N.5
+  statement: Let $A=\{1,2,3,4\}$, $B=\{2,4,6\}$ and $C=\{4,5,6\}$. Find $(A\cap B)\cap C$ and $A\cap(B\cap C)$.
+  answer_label: Find $(A\cap B)\cap C$ and $A\cap(B\cap C)$.
+  check:
+    kind: all
+    checks:
+    - kind: compare
+      lhs: '4'
+      relation: '>='
+      rhs: '1'
+    - kind: compare
+      lhs: '4'
+      relation: '<='
+      rhs: '4'
+    - kind: evaluate
+      expression: 4%2
+      answer: '0'
+    - kind: compare
+      lhs: '4'
+      relation: '>='
+      rhs: '4'
+    - kind: compare
+      lhs: '4'
+      relation: '<='
+      rhs: '6'
+    - kind: compare
+      lhs: '2'
+      relation: '<'
+      rhs: '4'
+    - kind: compare
+      lhs: '6'
+      relation: '>'
+      rhs: '4'
+  answer_text: >-
+    Both expressions give $\{4\}$. The number 4 is the only element in all three
+    sets: it is in $A$, it is even so it is in $B$, and it lies between 4 and 6
+    so it is in $C$. The numbers 2 and 6 each fail one test. Intersection is
+    associative.
+- id: jc8-8.6-reorder
+  section: '8.6'
+  tier: H
+  refs:
+  - N.5
+  statement: Let $A=\{1,3\}$, $B=\{2,3\}$ and $C=\{2,4\}$. Explain why $(B\cup A)\cup C$ is the same set as $A\cup(B\cup C)$.
+  answer_label: Explain why $(B\cup A)\cup C$ is the same set as $A\cup(B\cup C)$.
+  check:
+    kind: all
+    checks:
+    - kind: evaluate
+      expression: 2+2-1
+      answer: '3'
+    - kind: evaluate
+      expression: 3+2-1
+      answer: '4'
+    - kind: evaluate
+      expression: 2+2-1
+      answer: '3'
+    - kind: evaluate
+      expression: 2+3-1
+      answer: '4'
+  answer_text: >-
+    The commutative property gives $(B\cup A)\cup C = (A\cup B)\cup C$. The
+    associative property gives $(A\cup B)\cup C = A\cup(B\cup C)$. Both
+    expressions hold $\{1,2,3,4\}$, so the set is unchanged.
+- id: jc8-8.6-diff-not-comm
+  section: '8.6'
+  tier: H
+  refs:
+  - N.5
+  statement: Let $A=\{1,2,3,4\}$ and $B=\{3,4,5,6\}$. Find $A\setminus B$ and $B\setminus A$. What do you notice?
+  answer_label: Find $A\setminus B$ and $B\setminus A$.
+  check:
+    kind: all
+    checks:
+    - kind: evaluate
+      expression: 4-2
+      answer: '2'
+    - kind: evaluate
+      expression: 4-2
+      answer: '2'
+  answer_text: >-
+    $A\setminus B=\{1,2\}$ and $B\setminus A=\{5,6\}$. The two sets are different,
+    so difference is not commutative. The counts happen to match here, but the
+    elements do not.
+- id: jc8-8.6-diff-not-assoc
+  section: '8.6'
+  tier: H
+  refs:
+  - N.5
+  statement: Let $A=\{1,2,3\}$, $B=\{2\}$ and $C=\{3\}$. Find $(A\setminus B)\setminus C$ and $A\setminus(B\setminus C)$.
+  answer_label: Find $(A\setminus B)\setminus C$ and $A\setminus(B\setminus C)$.
+  check:
+    kind: all
+    checks:
+    - kind: evaluate
+      expression: 3-1
+      answer: '2'
+    - kind: evaluate
+      expression: 2-1
+      answer: '1'
+    - kind: evaluate
+      expression: 1-1
+      answer: '0'
+    - kind: evaluate
+      expression: 3-0
+      answer: '3'
+  answer_text: >-
+    $(A\setminus B)\setminus C=\{1\}$ and $A\setminus(B\setminus C)=\{1,3\}$. The
+    bracket changed the answer, so difference is not associative.
+- id: jc8-8.6-union-count
+  section: '8.6'
+  tier: H
+  refs:
+  - N.5
+  statement: In a class of 30 students, 18 study French and 14 study German. Six study both. Find $n(F\cup G)$ and $n(G\cup F)$.
+  answer_label: Find $n(F\cup G)$ and $n(G\cup F)$.
+  check:
+    kind: all
+    checks:
+    - kind: evaluate
+      expression: 18+14-6
+      answer: '26'
+    - kind: evaluate
+      expression: 14+18-6
+      answer: '26'
+  answer_text: >-
+    Both are 26. Use $n(A\cup B)=n(A)+n(B)-n(A\cap B)$, so $18+14-6=26$. Adding
+    in the other order gives the same total, because union is commutative.
+- id: jc8-8.6-triple-union
+  section: '8.6'
+  tier: H
+  refs:
+  - N.5
+  statement: In a survey, $n(A)=10$, $n(B)=8$, $n(C)=6$, $n(A\cap B)=3$, $n(A\cap C)=2$, $n(B\cap C)=2$ and $n(A\cap B\cap C)=1$. Find $n(A\cup B\cup C)$.
+  answer_label: Find $n(A\cup B\cup C)$.
+  check:
+    kind: all
+    checks:
+    - kind: evaluate
+      expression: 10+8+6-3-2-2+1
+      answer: '18'
+    - kind: evaluate
+      expression: 8+10+6-3-2-2+1
+      answer: '18'
+  answer_text: >-
+    $18$. Add the three totals, remove each pair total once, and add the middle
+    back once: $10+8+6-3-2-2+1=18$. The union can be grouped and added in any
+    order.
+- id: jc8-8.6-method-choice
+  section: '8.6'
+  tier: H
+  refs:
+  - N.5
+  statement: A student writes $A\cup B\cup C$ with no brackets. Which property allows this? Use it to find $n(A\cup B\cup C)$ when $n(A)=9$, $n(B)=7$, $n(C)=5$, $n(A\cap B)=4$, $n(A\cap C)=3$, $n(B\cap C)=2$ and $n(A\cap B\cap C)=1$.
+  answer_label: Name the property and find $n(A\cup B\cup C)$.
+  check:
+    kind: all
+    checks:
+    - kind: evaluate
+      expression: 9+7+5-4-3-2+1
+      answer: '13'
+    - kind: evaluate
+      expression: 7+9+5-4-3-2+1
+      answer: '13'
+  answer_text: >-
+    The associative property allows the brackets to be dropped, because both
+    groupings give the same set. The count is $9+7+5-4-3-2+1=13$. Reordering the
+    sets does not change it, by the commutative property.

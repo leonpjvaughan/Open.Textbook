@@ -1,0 +1,260 @@
+# Leaving Certificate Physics, Chapter 21, section 21.3 (strand 4 outcome 4.6).
+#
+# Fission, fusion and particle-antiparticle interactions. The fission-neutron record
+# is pure arithmetic, so it is a SymPy `evaluate`; the energies use `dimensions`
+# (magnitude and unit together) and `sigfigs` (the single rounding). The four
+# `structured` records are where the answer is an explanation.
+#
+# Honest limit: this proves the arithmetic and the dimensions, not the physics. A
+# dimensionally consistent, arithmetically correct, physically absurd answer would
+# pass. The `structured` records prove only that a model answer contains the
+# declared steps and concepts, in order — not that the physics in them is right.
+chapter: 21
+problems:
+  - id: p21-3-fission-neutrons
+    section: '21.3'
+    tier: O
+    refs: ['4.6']
+    statement: >-
+      A uranium-235 nucleus absorbs a neutron and splits into barium-141 and
+      krypton-92. Calculate the number of neutrons released.
+    answer_label: Number of neutrons released
+    check:
+      kind: evaluate
+      expression: '235 + 1 - 141 - 92'
+      answer: '3'
+    answer_text: >-
+      The mass numbers must balance, so the neutrons released are
+      $235 + 1 - 141 - 92 = 3$. Three neutrons are released, and they are what can
+      carry the chain reaction on.
+  - id: p21-3-fission-joules
+    section: '21.3'
+    tier: O
+    refs: ['4.6']
+    statement: >-
+      One fission of a uranium-235 nucleus releases 200 MeV. Calculate the energy
+      released in joules. Take 1 MeV = 1.6 × 10^-13 J.
+    answer_label: Energy released by one fission
+    check:
+      kind: all
+      checks:
+        - kind: dimensions
+          expression: E * conv
+          values:
+            E: {value: '200'}
+            conv: {value: '1.6e-13', unit: J}
+          answer: {value: '3.2e-11', unit: J}
+        - kind: sigfigs
+          value: '200 * 1.6e-13'
+          figures: 2
+          answer: '3.2e-11'
+          convention: round-once
+    answer_text: >-
+      $E = 200 \times 1.6 \times 10^{-13} = 3.2 \times 10^{-11}$ J. Each fission
+      releases $3.2 \times 10^{-11}$ J.
+  - id: p21-3-total-energy
+    section: '21.3'
+    tier: O
+    refs: ['4.6']
+    statement: >-
+      A sample contains 2.0 × 10^20 uranium-235 nuclei, and each fission releases
+      3.2 × 10^-11 J. Calculate the total energy released.
+    answer_label: Total energy released
+    check:
+      kind: all
+      checks:
+        - kind: dimensions
+          expression: N * E
+          values:
+            N: {value: '2.0e20'}
+            E: {value: '3.2e-11', unit: J}
+          answer: {value: '6.4e9', unit: J}
+        - kind: sigfigs
+          value: '2.0e20 * 3.2e-11'
+          figures: 2
+          answer: '6.4e9'
+          convention: round-once
+    answer_text: >-
+      $E = 2.0 \times 10^{20} \times 3.2 \times 10^{-11} = 6.4 \times 10^{9}$ J.
+      Each fission releases a tiny energy, but the sample holds an enormous number
+      of nuclei, so the total is large.
+  - id: p21-3-fusion-joules
+    section: '21.3'
+    tier: O
+    refs: ['4.6']
+    statement: >-
+      In the Sun, four hydrogen nuclei fuse to form one helium nucleus and release
+      26.7 MeV. Calculate the energy released in joules. Take
+      1 MeV = 1.6 × 10^-13 J.
+    answer_label: Energy released by one fusion
+    check:
+      kind: all
+      checks:
+        - kind: dimensions
+          expression: E * conv
+          values:
+            E: {value: '26.7'}
+            conv: {value: '1.6e-13', unit: J}
+          answer: {value: '4.272e-12', unit: J}
+        - kind: sigfigs
+          value: '26.7 * 1.6e-13'
+          figures: 2
+          answer: '4.3e-12'
+          convention: round-once
+    answer_text: >-
+      $E = 26.7 \times 1.6 \times 10^{-13} = 4.3 \times 10^{-12}$ J. The fusion of
+      four hydrogen nuclei releases $4.3 \times 10^{-12}$ J.
+  - id: p21-3-chain-reaction
+    section: '21.3'
+    tier: O
+    refs: ['4.6']
+    statement: >-
+      Describe a chain reaction, and explain the difference between a controlled
+      and an uncontrolled one.
+    answer_label: The chain reaction
+    check:
+      kind: structured
+      requires: [neutron, split, chain, control]
+      concepts: [neutron-induced, more-neutrons, controlled-vs-uncontrolled]
+      points:
+        - id: neutron
+          text: >-
+            A slow neutron is absorbed by a uranium-235 nucleus, which becomes
+            unstable uranium-236.
+          concepts: [neutron-induced]
+        - id: split
+          text: >-
+            The nucleus splits into two lighter nuclei and releases two or three
+            more neutrons and about 200 MeV of energy.
+          concepts: [more-neutrons]
+        - id: chain
+          text: >-
+            Each released neutron can be absorbed by another uranium-235 nucleus
+            and cause another fission, so the process can feed itself.
+          concepts: [more-neutrons]
+        - id: control
+          text: >-
+            The reaction is controlled when exactly one neutron from each fission
+            causes one more fission, and uncontrolled when more than one does, so
+            the number of fissions grows with every generation.
+          concepts: [controlled-vs-uncontrolled]
+    answer_text: >-
+      A chain reaction is a self-sustaining series of fissions. A slow neutron is
+      absorbed by a uranium-235 nucleus, which becomes unstable uranium-236 and
+      splits into two lighter nuclei, releasing two or three more neutrons and
+      about 200 MeV. Each released neutron can cause another fission, so the
+      process can feed itself. The reaction is controlled when exactly one neutron
+      from each fission causes one more fission, so the number of fissions stays
+      constant. It is uncontrolled when more than one neutron from each fission
+      causes another fission, so the number of fissions grows with every
+      generation.
+  - id: p21-3-fusion-conditions
+    section: '21.3'
+    tier: O
+    refs: ['4.6']
+    statement: >-
+      Explain why nuclear fusion needs a very high temperature and a very high
+      pressure, and state how the hot gas is held on Earth.
+    answer_label: The conditions for fusion
+    check:
+      kind: structured
+      requires: [repulsion, temperature, pressure, confinement]
+      concepts: [electrostatic-barrier, high-temperature, magnetic-confinement]
+      points:
+        - id: repulsion
+          text: >-
+            Both nuclei carry positive charge, so they repel each other by the
+            electrostatic force.
+          concepts: [electrostatic-barrier]
+        - id: temperature
+          text: >-
+            A very high temperature gives the nuclei enough kinetic energy to get
+            close enough for the strong nuclear force to bind them.
+          concepts: [high-temperature]
+        - id: pressure
+          text: >-
+            A very high pressure keeps many nuclei close together, so collisions
+            are frequent enough for fusion to happen.
+          concepts: [high-temperature]
+        - id: confinement
+          text: >-
+            In a star gravity provides the pressure, and on Earth strong magnetic
+            fields in a tokamak hold the hot gas away from the walls.
+          concepts: [magnetic-confinement]
+    answer_text: >-
+      Both nuclei carry positive charge, so they repel each other by the
+      electrostatic force. A very high temperature gives them enough kinetic
+      energy to get close enough for the strong nuclear force to bind them, and a
+      very high pressure keeps many nuclei close together so that collisions are
+      frequent. In a star gravity provides the pressure, and on Earth strong
+      magnetic fields in a tokamak hold the hot gas away from the walls.
+  - id: p21-3-annihilation
+    section: '21.3'
+    tier: O
+    refs: ['4.6']
+    statement: >-
+      Describe what happens when a positron meets an electron, and explain why two
+      photons are produced rather than one.
+    answer_label: Positron-electron annihilation
+    check:
+      kind: structured
+      requires: [pair, photons, momentum]
+      concepts: [antiparticle, mass-to-energy, conservation]
+      points:
+        - id: pair
+          text: >-
+            A positron is the antiparticle of the electron: it has the same mass
+            and the opposite charge.
+          concepts: [antiparticle]
+        - id: photons
+          text: >-
+            When the two meet they annihilate, and their whole mass becomes energy
+            in the form of two gamma-ray photons, each carrying 0.51 MeV.
+          concepts: [mass-to-energy]
+        - id: momentum
+          text: >-
+            Two photons are produced, travelling in opposite directions, because
+            the total momentum must stay zero, and one photon cannot carry zero
+            momentum.
+          concepts: [conservation]
+    answer_text: >-
+      A positron is the antiparticle of the electron: it has the same mass and the
+      opposite charge. When the two meet they annihilate, and their whole mass
+      becomes energy in the form of two gamma-ray photons, each carrying 0.51 MeV.
+      Two photons are produced, travelling in opposite directions, because the
+      total momentum must stay zero, and one photon cannot carry zero momentum.
+  - id: p21-3-fission-vs-fusion
+    section: '21.3'
+    tier: O
+    refs: ['4.6']
+    statement: >-
+      Compare nuclear fission and nuclear fusion, and explain why both release
+      energy.
+    answer_label: Fission compared with fusion
+    check:
+      kind: structured
+      requires: [fission, fusion, reason]
+      concepts: [heavy-splits, light-joins, binding-energy-increase]
+      points:
+        - id: fission
+          text: >-
+            Fission splits one heavy nucleus into two lighter nuclei, and it is
+            started by the absorption of a neutron.
+          concepts: [heavy-splits]
+        - id: fusion
+          text: >-
+            Fusion joins two light nuclei into one heavier nucleus, and it needs a
+            very high temperature and pressure.
+          concepts: [light-joins]
+        - id: reason
+          text: >-
+            Both release energy because the products are more tightly bound than
+            the starting nuclei, so the products have less mass and the difference
+            appears as energy.
+          concepts: [binding-energy-increase]
+    answer_text: >-
+      Fission splits one heavy nucleus into two lighter nuclei, and it is started
+      by the absorption of a neutron. Fusion joins two light nuclei into one
+      heavier nucleus, and it needs a very high temperature and pressure. Both
+      release energy because the products are more tightly bound than the starting
+      nuclei, so the products have less mass and the difference appears as energy.

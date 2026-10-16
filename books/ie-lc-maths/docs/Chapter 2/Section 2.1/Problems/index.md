@@ -10,9 +10,14 @@ refs:
 kind: problems
 ---
 
-<!-- scaffold:stub -->
-
 # 2.1 Percentages and percentage change — Practise
 
-> **Stub.** Independent, homework-style practice. Answers and concise solutions in a collapsed block. Mark Higher-only questions explicitly.
-> Tier: **F** · refs: 3.3
+Work independently. The questions and answers are shown together at the end.
+
+Write the multiplier down before you calculate. For a change, divide by the
+original amount, and check a reverse percentage by working forwards from your
+answer.
+
+:::problems chapter-02-practice-2.1
+
+:::answers chapter-02-practice-2.1

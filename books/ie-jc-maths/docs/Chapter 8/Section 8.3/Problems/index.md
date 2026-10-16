@@ -5,14 +5,17 @@ chapter_title: Sets
 section: '8.3'
 section_title: Intersection, union and set difference
 tier: O
-refs:
-- N.5
+refs: [N.5]
 kind: problems
 ---
 
-<!-- scaffold:stub -->
-
 # 8.3 Intersection, union and set difference — Practise
 
-> **Stub.** Independent, homework-style practice. Answers and concise solutions in a collapsed block. Mark Higher-only questions explicitly.
-> Tier: **O** · refs: N.5
+Work independently. The questions and answers are shown together at the end.
+
+Decide first whether a question asks for the shared elements, for everything, or
+for one set with the other removed. Write the operation before you calculate.
+
+:::problems chapter-08-practice-8.3
+
+:::answers chapter-08-practice-8.3

@@ -1,0 +1,271 @@
+# Leaving Certificate Physics, Chapter 6, section 6.3 (strand 1 outcome 1.5).
+# Higher level only.
+#
+# The physics oracle checks two claims whenever a quantity is asked for:
+# `dimensions` proves the exact magnitude *and* the unit, and `sigfigs` proves the
+# rounding to the figures the data support. Both are written out, because a rounded
+# answer is never equal to the exact one. A value built on a square root carries a
+# `tolerance`, so the check proves the arithmetic within the precision of the data.
+#
+# Honest limit: this proves the arithmetic and the dimensions, not the physics. A
+# dimensionally consistent, arithmetically correct, physically absurd answer would
+# pass. The `structured` records prove only that a model answer contains the
+# declared steps and concepts, in order — not that the physics in them is right.
+chapter: 6
+problems:
+- id: p6-3-mgh
+  section: '6.3'
+  tier: H
+  refs:
+  - '1.5'
+  statement: A 2.0 kg mass is raised 5.0 m near the Earth's surface. Calculate the gain in gravitational
+    potential energy.
+  answer_label: Gain in potential energy
+  check:
+    kind: all
+    checks:
+    - kind: dimensions
+      expression: m * g * h
+      values:
+        m:
+          value: '2.0'
+          unit: kg
+        g:
+          value: '9.8'
+          unit: N/kg
+        h:
+          value: '5.0'
+          unit: m
+      answer:
+        value: '98'
+        unit: J
+    - kind: sigfigs
+      value: 2.0 * 9.8 * 5.0
+      figures: 2
+      answer: '98'
+      convention: round-once
+  answer_text: $E_p = mgh = 2.0 \times 9.8 \times 5.0 = 98\,\text{J}$. Over 5 m the field strength
+    hardly changes, so the near-surface formula is safe.
+- id: p6-3-lift-satellite
+  section: '6.3'
+  tier: H
+  refs:
+  - '1.5'
+  statement: Calculate the energy needed to lift a 1200 kg satellite from the Earth's surface to an
+    orbit 4.22e7 m from the centre. Take M = 5.97e24 kg and R = 6.37e6 m.
+  answer_label: Energy to lift the satellite
+  check:
+    kind: all
+    checks:
+    - kind: dimensions
+      expression: G * M * m * (1/R - 1/r)
+      values:
+        G:
+          value: '6.67e-11'
+          unit: N m^2 kg^-2
+        M:
+          value: '5.97e24'
+          unit: kg
+        m:
+          value: '1200'
+          unit: kg
+        R:
+          value: '6.37e6'
+          unit: m
+        r:
+          value: '4.22e7'
+          unit: m
+      tolerance: '1e9'
+      answer:
+        value: 6.37e10
+        unit: J
+    - kind: sigfigs
+      value: 6.67e-11 * 5.97e24 * 1200 * (1/6.37e6 - 1/4.22e7)
+      figures: 2
+      answer: 6.4e10
+      convention: round-once
+  answer_text: $\Delta E_p = GMm\left(\dfrac{1}{R} - \dfrac{1}{r}\right) = 6.67 \times 10^{-11} \times
+    5.97 \times 10^{24} \times 1200 \times \left(\dfrac{1}{6.37 \times 10^{6}} - \dfrac{1}{4.22 \times
+    10^{7}}\right) = 6.4 \times 10^{10}\,\text{J}$. The potential energy is negative at both points,
+    and the difference is positive because energy goes in to lift the satellite.
+- id: p6-3-potential-surface
+  section: '6.3'
+  tier: H
+  refs:
+  - '1.5'
+  statement: Calculate the gravitational potential at the Earth's surface. Take M = 5.97e24 kg and
+    R = 6.37e6 m.
+  answer_label: Gravitational potential
+  check:
+    kind: all
+    checks:
+    - kind: dimensions
+      expression: -G * M / R
+      values:
+        G:
+          value: '6.67e-11'
+          unit: N m^2 kg^-2
+        M:
+          value: '5.97e24'
+          unit: kg
+        R:
+          value: '6.37e6'
+          unit: m
+      tolerance: '1e5'
+      answer:
+        value: -6.25e7
+        unit: J/kg
+    - kind: sigfigs
+      value: -6.67e-11 * 5.97e24 / 6.37e6
+      figures: 3
+      answer: -6.25e7
+      convention: round-once
+  answer_text: $V = -\dfrac{GM}{R} = -\dfrac{6.67 \times 10^{-11} \times 5.97 \times 10^{24}}{6.37
+    \times 10^{6}} = -6.25 \times 10^{7}\,\text{J/kg}$. The potential is negative because the zero is
+    at infinity.
+- id: p6-3-escape-earth
+  section: '6.3'
+  tier: H
+  refs:
+  - '1.5'
+  statement: Calculate the escape velocity from the Earth's surface. Take M = 5.97e24 kg and
+    R = 6.37e6 m.
+  answer_label: Escape velocity
+  check:
+    kind: all
+    checks:
+    - kind: dimensions
+      expression: sqrt(2 * G * M / R)
+      values:
+        G:
+          value: '6.67e-11'
+          unit: N m^2 kg^-2
+        M:
+          value: '5.97e24'
+          unit: kg
+        R:
+          value: '6.37e6'
+          unit: m
+      tolerance: '5'
+      answer:
+        value: 1.118e4
+        unit: m/s
+    - kind: sigfigs
+      value: sqrt(2 * 6.67e-11 * 5.97e24 / 6.37e6)
+      figures: 2
+      tolerance: '5'
+      answer: 1.1e4
+      convention: round-once
+  answer_text: $v_{\text{esc}} = \sqrt{\dfrac{2GM}{R}} = \sqrt{\dfrac{2 \times 6.67 \times 10^{-11}
+    \times 5.97 \times 10^{24}}{6.37 \times 10^{6}}} = 1.1 \times 10^{4}\,\text{m/s}$. That is about
+    11 km/s, and it does not depend on the mass of the escaping body.
+- id: p6-3-escape-moon
+  section: '6.3'
+  tier: H
+  refs:
+  - '1.5'
+  statement: Calculate the escape velocity from the Moon. Take M = 7.35e22 kg and R = 1.74e6 m.
+  answer_label: Escape velocity from the Moon
+  check:
+    kind: all
+    checks:
+    - kind: dimensions
+      expression: sqrt(2 * G * M / R)
+      values:
+        G:
+          value: '6.67e-11'
+          unit: N m^2 kg^-2
+        M:
+          value: '7.35e22'
+          unit: kg
+        R:
+          value: '1.74e6'
+          unit: m
+      tolerance: '5'
+      answer:
+        value: '2.37e3'
+        unit: m/s
+    - kind: sigfigs
+      value: sqrt(2 * 6.67e-11 * 7.35e22 / 1.74e6)
+      figures: 2
+      tolerance: '5'
+      answer: 2.4e3
+      convention: round-once
+  answer_text: $v_{\text{esc}} = \sqrt{\dfrac{2GM}{R}} = \sqrt{\dfrac{2 \times 6.67 \times 10^{-11}
+    \times 7.35 \times 10^{22}}{1.74 \times 10^{6}}} = 2.4 \times 10^{3}\,\text{m/s}$, which is about
+    2.4 km/s. It is far smaller than the Earth's escape velocity, because the Moon is much less massive.
+- id: p6-3-why-negative
+  section: '6.3'
+  tier: H
+  refs:
+  - '1.5'
+  statement: Explain why gravitational potential energy is negative when it is defined as zero at
+    infinity.
+  answer_label: Why the potential energy is negative
+  check:
+    kind: structured
+    requires:
+    - zero
+    - fall
+    - conclusion
+    concepts:
+    - infinity
+    - bound
+    - energy-in
+    points:
+    - id: zero
+      text: the potential energy is defined as zero at infinity, where the pull has faded to nothing
+      concepts:
+      - infinity
+    - id: fall
+      text: a mass released near a planet falls towards it, so its energy must be lower than at infinity
+      concepts:
+      - bound
+    - id: conclusion
+      text: so the energy at a real point is negative, and a positive amount of energy must be supplied
+        to remove the mass to infinity
+      concepts:
+      - energy-in
+  answer_text: The potential energy is zero at infinity, where the gravitational pull has faded to
+    nothing. A mass released near a planet falls towards it, so its energy must be lower than the
+    value at infinity. A value below zero is negative. That negative value means the mass is bound,
+    and an outside agent must supply energy to bring it back up to zero and let it escape.
+- id: p6-3-mgh-limit
+  section: '6.3'
+  tier: H
+  refs:
+  - '1.5'
+  statement: Explain why Ep = mgh can be used near the Earth's surface but not to find the energy needed
+    to lift a satellite into a geostationary orbit.
+  answer_label: When mgh stops working
+  check:
+    kind: structured
+    requires:
+    - constant
+    - change
+    - field-form
+    concepts:
+    - constant-g
+    - inverse-square
+    - difference
+    points:
+    - id: constant
+      text: mgh treats the field strength g as constant, which is a good approximation over a few metres
+      concepts:
+      - constant-g
+    - id: change
+      text: over thousands of kilometres g falls, from 9.8 N/kg at the surface to about 0.22 N/kg at the
+        orbit, so the weight changes as the satellite rises
+      concepts:
+      - inverse-square
+    - id: field-form
+      text: the field form uses the difference between the potential energies at the two distances, which
+        handles the changing field
+      concepts:
+      - difference
+  answer_text: The near-surface formula $E_p = mgh$ treats the field strength as constant. That is a
+    good approximation over a few metres, where $g$ changes by a tiny fraction. Over thousands of
+    kilometres $g$ falls from 9.8 N/kg to about 0.22 N/kg, so the weight of the satellite changes on
+    the way up and there is no single force to multiply by the height. The field form, $E_p =
+    -\dfrac{GMm}{r}$, gives the potential energy at each distance, and the difference between them is
+    the energy needed.

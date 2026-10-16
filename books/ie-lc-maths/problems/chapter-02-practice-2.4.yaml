@@ -1,0 +1,166 @@
+# Practice set for 2.4 (strand 3, outcome 3.3). Simple interest is linear and
+# compound interest is a power, so both are arithmetic that `evaluate` proves
+# exactly. The rate is written as the exact fraction 104/100 rather than the
+# decimal 1.04: a decimal power is evaluated as a float during parsing, and the
+# float does not round-trip for every answer. Compound interest for more than
+# three years is outside the Foundation syllabus, so no item exceeds three years.
+# The reason compound beats simple is a `structured` check.
+chapter: 2
+problems:
+  - id: lc2-4-simple-interest
+    section: '2.4'
+    tier: F
+    refs: ['3.3']
+    statement: >-
+      €2,000 is invested at $4\%$ simple interest for 3 years. Work out the
+      interest and the total value.
+    answer_label: 'The interest, then the total value'
+    check:
+      kind: all
+      checks:
+        - {kind: evaluate, expression: '2000 * (4/100) * 3', answer: '240'}
+        - {kind: evaluate, expression: '2000 * (1 + (4/100) * 3)', answer: '2240'}
+    answer_text: >-
+      Simple interest is paid on the original amount only, so each year adds
+      $4\%$ of €2,000:
+
+      $$2\,000 \times 0.04 \times 3 = 240$$
+
+      The interest is €240, and the total value is
+
+      $$2\,000 + 240 = 2\,240$$
+
+      The total is €2,240. Every year adds the same €80.
+
+  - id: lc2-4-compound-interest
+    section: '2.4'
+    tier: F
+    refs: ['3.3']
+    statement: >-
+      €2,000 is invested at $4\%$ compound interest for 3 years. Work out the
+      total value.
+    answer_label: 'The total value'
+    check: {kind: evaluate, expression: '2000 * (104/100)**3', answer: '281216/125'}
+    answer_text: >-
+      Compound interest pays interest on the interest as well, so multiply by
+      $1.04$ once for each year:
+
+      $$2\,000 \times 1.04^3 = 2\,249.728$$
+
+      The total value is €2,249.73 to the nearest cent. The interest is
+      €249.73, which is €9.73 more than simple interest over the same three
+      years.
+
+  - id: lc2-4-compound-two-years
+    section: '2.4'
+    tier: F
+    refs: ['3.3']
+    statement: '€5,000 is invested at $6\%$ compound interest for 2 years. Work out the total value.'
+    answer_label: 'The total value'
+    check: {kind: evaluate, expression: '5000 * (106/100)**2', answer: '5618'}
+    answer_text: >-
+      Multiply by $1.06$ once for each of the two years:
+
+      $$5\,000 \times 1.06^2 = 5\,618$$
+
+      The total value is €5,618. Year one adds €300. Year two adds $6\%$ of
+      €5,300, which is €318, because the first year's interest earns interest
+      too.
+
+  - id: lc2-4-difference
+    section: '2.4'
+    tier: F
+    refs: ['3.3']
+    statement: >-
+      Work out how much more €2,000 earns at $4\%$ compound interest than at
+      $4\%$ simple interest over 3 years.
+    answer_label: 'How much more compound interest earns'
+    check: {kind: evaluate, expression: '2000 * (104/100)**3 - 2000 * (1 + (4/100) * 3)', answer: '1216/125'}
+    answer_text: >-
+      The compound total is $2\,000 \times 1.04^3 = 2\,249.728$ and the simple
+      total is $2\,000 \times 1.12 = 2\,240$. The difference is
+
+      $$2\,249.728 - 2\,240 = 9.728$$
+
+      Compound interest earns €9.73 more, to the nearest cent. The extra comes
+      from the interest that the interest earns in years two and three.
+
+  - id: lc2-4-reverse
+    section: '2.4'
+    tier: F
+    refs: ['3.3']
+    statement: >-
+      An investment is worth €5,618 after 2 years at $6\%$ compound interest.
+      Work out the amount invested at the start.
+    answer_label: 'The amount invested'
+    check: {kind: evaluate, expression: '5618 / (106/100)**2', answer: '5000'}
+    answer_text: >-
+      The final value is the starting value multiplied by $1.06$ twice, so divide
+      by $1.06^2$ to undo it:
+
+      $$5\,618 \div 1.06^2 = 5\,000$$
+
+      The amount invested was €5,000. Dividing by $1.06$ twice is the same as
+      dividing by $1.06^2$.
+
+  - id: lc2-4-chapter-savings
+    section: '2.4'
+    tier: F
+    refs: ['3.3']
+    statement: >-
+      A bakery has €11,070 in savings that earn $3\%$ compound interest a year.
+      Work out the value of the savings after 2 years.
+    answer_label: 'The value after 2 years'
+    check: {kind: evaluate, expression: '11070 * (103/100)**2', answer: '11744163/1000'}
+    answer_text: >-
+      Multiply by $1.03$ once for each year:
+
+      $$11\,070 \times 1.03^2 = 11\,744.163$$
+
+      The savings are worth €11,744.16 to the nearest cent. Section 2.5 compares
+      this with the alternative of paying for the oven later.
+
+  - id: lc2-4-growth
+    section: '2.4'
+    tier: F
+    refs: ['3.3']
+    statement: 'A house worth €240,000 rises in value by $5\%$ each year. Work out its value after 2 years.'
+    answer_label: 'The value after 2 years'
+    check: {kind: evaluate, expression: '240000 * (105/100)**2', answer: '264600'}
+    answer_text: >-
+      A rise of $5\%$ each year is compound growth, so multiply by $1.05$ twice:
+
+      $$240\,000 \times 1.05^2 = 264\,600$$
+
+      The house is worth €264,600. The rise is €24,600, which is more than two
+      separate €12,000 rises, because the second year's $5\%$ is taken from the
+      higher value.
+
+  - id: lc2-4-compound-explain
+    section: '2.4'
+    tier: F
+    refs: ['3.3']
+    statement: 'Explain why compound interest gives more than simple interest over the same time.'
+    answer_label: 'Why compound interest gives more'
+    check:
+      kind: structured
+      requires: [simple-base, compound-base]
+      concepts: [original-only, interest-on-interest]
+      points:
+        - id: simple-base
+          text: simple interest is worked out on the original amount every year, so the same interest is added each time
+          concepts: [original-only]
+        - id: compound-base
+          text: compound interest is worked out on the amount at the start of each year, which already includes earlier interest, so later interest is larger
+          concepts: [interest-on-interest]
+    answer_text: >-
+      Simple interest always uses the original amount as its base. If €2,000 earns
+      $4\%$ simple interest, every year adds €80, because $4\%$ of €2,000 never
+      changes.
+
+      Compound interest uses the amount at the start of each year as its base, and
+      that amount already contains the earlier interest. Year one adds €80. Year
+      two adds $4\%$ of €2,080, which is €83.20.
+
+      The gap grows with time, because each year's interest is a little larger
+      than the year before.

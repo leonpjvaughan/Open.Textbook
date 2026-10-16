@@ -1,0 +1,184 @@
+# Junior Cycle Mathematics, Chapter 7, section 7.6.
+#
+# Value for money is the price of one unit, so every check proves the division
+# "total price / quantity" for each offer and then a `compare` between the two
+# unit prices. That is what stops the larger total being called the better value
+# when the quantities differ. Units stay in `statement`: the CAS parses numbers
+# only, and the answer text names the unit that each division produces.
+chapter: 7
+symbols: {}
+
+problems:
+- id: jc7-7.6-unit-price-1
+  section: '7.6'
+  tier: O
+  refs:
+  - N.2
+  statement: A phone plan costs €20.00 for 10 GB of data. Work out the price of one GB.
+  answer_label: Find the price of one GB on a €20.00 plan with 10 GB.
+  check:
+    kind: evaluate
+    expression: 20/10
+    answer: '2'
+  answer_text: >-
+    €2.00 for each GB. Divide the price by the quantity:
+    $20.00\div10=2.00$.
+- id: jc7-7.6-unit-price-2
+  section: '7.6'
+  tier: O
+  refs:
+  - N.2
+  statement: A second phone plan costs €24.00 for 15 GB of data. Work out the price of one GB.
+  answer_label: Find the price of one GB on a €24.00 plan with 15 GB.
+  check:
+    kind: evaluate
+    expression: 24/15
+    answer: '1.6'
+  answer_text: >-
+    €1.60 for each GB. Divide the price by the quantity:
+    $24.00\div15=1.60$.
+- id: jc7-7.6-better-value-1
+  section: '7.6'
+  tier: O
+  refs:
+  - N.2
+  statement: Plan A costs €20.00 for 10 GB, and Plan B costs €24.00 for 15 GB. Which plan is
+    better value for each GB?
+  answer_label: Compare €20.00 for 10 GB with €24.00 for 15 GB.
+  check:
+    kind: compare
+    lhs: 24/15
+    relation: <
+    rhs: 20/10
+  answer_text: >-
+    Plan B is better value. Plan A costs $20.00\div10=2.00$ euro for each GB, and
+    Plan B costs $24.00\div15=1.60$ euro for each GB. Plan B has the larger total
+    price, but it also has more data, and each GB costs less.
+- id: jc7-7.6-unit-price-3
+  section: '7.6'
+  tier: O
+  refs:
+  - N.2
+  statement: A shop sells 500 g of coffee for €4.50. Work out the price of one kilogram.
+  answer_label: Find the price of a kilogram when 500 g costs €4.50.
+  check:
+    kind: evaluate
+    expression: 4.5/0.5
+    answer: '9'
+  answer_text: >-
+    €9.00 for each kilogram. There are two 500 g amounts in a kilogram, so
+    $4.50\div0.5=9.00$. You can also double the price: two bags cost
+    $2\times4.50=9.00$ euro and weigh one kilogram.
+- id: jc7-7.6-unit-price-4
+  section: '7.6'
+  tier: O
+  refs:
+  - N.2
+  statement: A shop sells 750 g of coffee for €6.00. Work out the price of one kilogram.
+  answer_label: Find the price of a kilogram when 750 g costs €6.00.
+  check:
+    kind: evaluate
+    expression: 6/0.75
+    answer: '8'
+  answer_text: >-
+    €8.00 for each kilogram. Divide by the mass in kilograms:
+    $6.00\div0.75=8.00$.
+- id: jc7-7.6-better-value-2
+  section: '7.6'
+  tier: O
+  refs:
+  - N.2
+  statement: Coffee costs €4.50 for 500 g in one bag, and €6.00 for 750 g in another. Which bag
+    is better value for each kilogram?
+  answer_label: Compare 500 g for €4.50 with 750 g for €6.00.
+  check:
+    kind: compare
+    lhs: 6/0.75
+    relation: <
+    rhs: 4.5/0.5
+  answer_text: >-
+    The 750 g bag is better value. The 500 g bag costs $4.50\div0.5=9.00$ euro for
+    each kilogram, and the 750 g bag costs $6.00\div0.75=8.00$ euro for each
+    kilogram. The larger bag is cheaper for each kilogram.
+- id: jc7-7.6-unit-price-5
+  section: '7.6'
+  tier: O
+  refs:
+  - N.2
+  statement: A shop sells three phone cases for €21.00. Work out the price of one case.
+  answer_label: Find the price of one case in a bundle of three for €21.00.
+  check:
+    kind: evaluate
+    expression: 21/3
+    answer: '7'
+  answer_text: >-
+    €7.00 for each case. Divide the bundle price by the number of cases:
+    $21.00\div3=7.00$.
+- id: jc7-7.6-better-value-3
+  section: '7.6'
+  tier: O
+  refs:
+  - N.2
+  statement: A shop sells three phone cases for €21.00, and one case on its own for €7.38. Which
+    is better value for each case?
+  answer_label: Compare three cases for €21.00 with one case for €7.38.
+  check:
+    kind: compare
+    lhs: 21/3
+    relation: <
+    rhs: 7.38
+  answer_text: >-
+    The bundle of three is better value. It costs $21.00\div3=7.00$ euro for each
+    case, and a single case costs €7.38. The bundle saves
+    $7.38-7.00=0.38$ euro on each case.
+- id: jc7-7.6-better-value-4
+  section: '7.6'
+  tier: H
+  refs:
+  - N.2
+  statement: A 2-litre bottle of juice costs €3.60, and a 1.5-litre bottle costs €2.85. Work out
+    the price of one litre for each, and say which is better value.
+  answer_label: Compare a 2-litre bottle at €3.60 with a 1.5-litre bottle at €2.85.
+  check:
+    kind: all
+    checks:
+    - kind: evaluate
+      expression: 3.6/2
+      answer: '1.8'
+    - kind: evaluate
+      expression: 2.85/1.5
+      answer: '1.9'
+    - kind: compare
+      lhs: 3.6/2
+      relation: <
+      rhs: 2.85/1.5
+  answer_text: >-
+    The 2-litre bottle is better value. It costs $3.60\div2=1.80$ euro for each
+    litre, and the 1.5-litre bottle costs $2.85\div1.5=1.90$ euro for each litre.
+    The 2-litre bottle is cheaper for each litre, even though it has the larger
+    total price.
+- id: jc7-7.6-better-value-5
+  section: '7.6'
+  tier: O
+  refs:
+  - N.2
+  statement: A pack of 12 pens costs €4.80, and a pack of 20 pens costs €7.60. Work out the price
+    of one pen for each pack, and say which pack is better value.
+  answer_label: Compare a 12-pack at €4.80 with a 20-pack at €7.60.
+  check:
+    kind: all
+    checks:
+    - kind: evaluate
+      expression: 4.8/12
+      answer: '0.4'
+    - kind: evaluate
+      expression: 7.6/20
+      answer: '0.38'
+    - kind: compare
+      lhs: 7.6/20
+      relation: <
+      rhs: 4.8/12
+  answer_text: >-
+    The 20-pack is better value. It costs $7.60\div20=0.38$ euro for each pen,
+    which is 38 cent. The 12-pack costs $4.80\div12=0.40$ euro for each pen, which
+    is 40 cent. The 20-pack saves 2 cent on each pen.

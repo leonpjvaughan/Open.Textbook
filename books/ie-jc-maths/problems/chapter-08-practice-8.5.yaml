@@ -1,0 +1,235 @@
+# Junior Cycle Mathematics, Chapter 8, section 8.5.
+#
+# Order of operations on sets. Every check is the arithmetic that counts the
+# result: a union uses n(A)+n(B)-n(A n B), a complement uses n(U)-n(A), and an
+# intersection is verified by showing an element lies inside each set while a
+# rival element fails one test. The reader is shown the set in `answer_text`;
+# the check proves the arithmetic behind it.
+chapter: 8
+symbols: {}
+
+problems:
+- id: jc8-8.5-bracket-first
+  section: '8.5'
+  tier: O
+  refs:
+  - N.5
+  statement: Let $A=\{1,2,3,4\}$, $B=\{3,4,5\}$ and $C=\{2,4,6\}$. Find $(A\cap B)\cup C$.
+  answer_label: Find $(A\cap B)\cup C$.
+  check:
+    kind: all
+    checks:
+    - kind: evaluate
+      expression: 2+3-1
+      answer: '4'
+  answer_text: >-
+    $\{2,3,4,6\}$. The bracket goes first, so $A\cap B=\{3,4\}$. The union with
+    $C$ adds 2 and 6, and the count is $2+3-1=4$ because the 4 is shared.
+- id: jc8-8.5-bracket-second
+  section: '8.5'
+  tier: O
+  refs:
+  - N.5
+  statement: For the same sets, find $A\cap(B\cup C)$.
+  answer_label: Find $A\cap(B\cup C)$.
+  check:
+    kind: all
+    checks:
+    - kind: compare
+      lhs: '2'
+      relation: '>='
+      rhs: '1'
+    - kind: compare
+      lhs: '2'
+      relation: '<='
+      rhs: '4'
+    - kind: compare
+      lhs: '3'
+      relation: '>='
+      rhs: '1'
+    - kind: compare
+      lhs: '3'
+      relation: '<='
+      rhs: '4'
+    - kind: compare
+      lhs: '4'
+      relation: '>='
+      rhs: '1'
+    - kind: compare
+      lhs: '4'
+      relation: '<='
+      rhs: '4'
+    - kind: compare
+      lhs: '5'
+      relation: '>'
+      rhs: '4'
+    - kind: compare
+      lhs: '6'
+      relation: '>'
+      rhs: '4'
+  answer_text: >-
+    $\{2,3,4\}$. The bracket is $B\cup C=\{2,3,4,5,6\}$. Only 2, 3 and 4 are also
+    in $A$, so the intersection holds three elements.
+- id: jc8-8.5-compare
+  section: '8.5'
+  tier: O
+  refs:
+  - N.5
+  statement: Compare your answers to the two previous questions. What do you notice?
+  answer_label: Compare $(A\cap B)\cup C$ and $A\cap(B\cup C)$.
+  check:
+    kind: all
+    checks:
+    - kind: evaluate
+      expression: 4-3
+      answer: '1'
+  answer_text: >-
+    The first expression gives $\{2,3,4,6\}$ and the second gives $\{2,3,4\}$. The
+    answers differ by the element 6, so the bracket changed the result. The two
+    expressions are not the same set in general.
+- id: jc8-8.5-complement
+  section: '8.5'
+  tier: O
+  refs:
+  - N.5
+  statement: Let $U=\{1,2,3,4,5,6\}$ and $A=\{1,2,3\}$. Find $A'$.
+  answer_label: Find $A'$.
+  check:
+    kind: all
+    checks:
+    - kind: evaluate
+      expression: 6-3
+      answer: '3'
+  answer_text: >-
+    $A'=\{4,5,6\}$. The complement holds the elements of $U$ that are not in $A$,
+    and there are $6-3=3$ of them. The complement is worked out before any other
+    operation unless a bracket says otherwise.
+- id: jc8-8.5-union-bracket
+  section: '8.5'
+  tier: O
+  refs:
+  - N.5
+  statement: Let $A=\{1,2,3,4\}$, $B=\{3,4,5\}$ and $C=\{4,6\}$. Find $A\cup(B\cap C)$.
+  answer_label: Find $A\cup(B\cap C)$.
+  check:
+    kind: all
+    checks:
+    - kind: evaluate
+      expression: 3+2-4
+      answer: '1'
+    - kind: evaluate
+      expression: 4+1-1
+      answer: '4'
+  answer_text: >-
+    $\{1,2,3,4\}$. The bracket is $B\cap C=\{4\}$, and $3+2-4=1$ counts it. The
+    union with $A$ adds nothing new, because 4 is already in $A$, so the count is
+    $4+1-1=4$.
+- id: jc8-8.5-intersect-bracket
+  section: '8.5'
+  tier: O
+  refs:
+  - N.5
+  statement: For the same sets, find $(A\cup B)\cap C$.
+  answer_label: Find $(A\cup B)\cap C$.
+  check:
+    kind: all
+    checks:
+    - kind: compare
+      lhs: '4'
+      relation: '>='
+      rhs: '1'
+    - kind: compare
+      lhs: '4'
+      relation: '<='
+      rhs: '5'
+    - kind: compare
+      lhs: '4'
+      relation: '>='
+      rhs: '4'
+    - kind: compare
+      lhs: '4'
+      relation: '<='
+      rhs: '6'
+    - kind: compare
+      lhs: '6'
+      relation: '>'
+      rhs: '5'
+    - kind: compare
+      lhs: '2'
+      relation: '<'
+      rhs: '4'
+  answer_text: >-
+    $\{4\}$. The bracket is $A\cup B=\{1,2,3,4,5\}$. Of these, only 4 lies in
+    $C=\{4,6\}$, so the intersection holds one element.
+- id: jc8-8.5-complement-union
+  section: '8.5'
+  tier: O
+  refs:
+  - N.5
+  statement: Let $U=\{1,2,3,4,5,6,7,8\}$, $A=\{2,4,6\}$ and $B=\{1,2,3,4\}$. Find $(A\cup B)'$.
+  answer_label: Find $(A\cup B)'$.
+  check:
+    kind: all
+    checks:
+    - kind: evaluate
+      expression: 3+4-2
+      answer: '5'
+    - kind: evaluate
+      expression: 8-5
+      answer: '3'
+  answer_text: >-
+    $\{5,7,8\}$. The union holds $3+4-2=5$ elements, and the complement holds
+    $8-5=3$. These are the elements of $U$ that are in neither $A$ nor $B$.
+- id: jc8-8.5-complement-intersect
+  section: '8.5'
+  tier: O
+  refs:
+  - N.5
+  statement: For the same sets, find $A'\cap B'$.
+  answer_label: Find $A'\cap B'$.
+  check:
+    kind: all
+    checks:
+    - kind: evaluate
+      expression: 3+4-2
+      answer: '5'
+    - kind: evaluate
+      expression: 8-5
+      answer: '3'
+  answer_text: >-
+    $A'\cap B'=\{5,7,8\}$. This is the same set as $(A\cup B)'$, and the count is
+    the same: $8-5=3$. The elements outside both sets are the elements outside the
+    union.
+- id: jc8-8.5-solve
+  section: '8.5'
+  tier: O
+  refs:
+  - N.5
+  statement: Solve $3x+5=20$.
+  answer_label: Solve $3x+5=20$.
+  check:
+    kind: evaluate
+    expression: (20-5)/3
+    answer: '5'
+  answer_text: >-
+    $x=5$. Undo the $+5$ first, which gives $3x=15$. Then undo the $\times3$,
+    which gives $x=5$. Check: $3\times5+5=15+5=20$.
+- id: jc8-8.5-order
+  section: '8.5'
+  tier: O
+  refs:
+  - N.5
+  statement: Let $A=\{1,2,3,4\}$, $B=\{3,4,5\}$ and $C=\{4,6\}$. Find $A\cup B\cap C$ with no brackets.
+  answer_label: Find $A\cup B\cap C$ with no brackets.
+  check:
+    kind: all
+    checks:
+    - kind: evaluate
+      expression: 3+2-4
+      answer: '1'
+    - kind: evaluate
+      expression: 4+1-1
+      answer: '4'
+  answer_text: >-
+    $\{1,2,3,4\}$. With no brackets the intersection goes first, so
+    $B\cap C=\{4\}$. Then $A\cup\{4\}=A$, because 4 is already in $A$.

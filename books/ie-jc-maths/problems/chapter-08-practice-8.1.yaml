@@ -1,0 +1,201 @@
+# Junior Cycle Mathematics, Chapter 8, section 8.1.
+#
+# Sets are not a symbolic problem, so every check is arithmetic the CAS proves.
+# A list is verified by showing how each element is built (a multiple, a square,
+# an odd number), and a count is verified by the formula that produces it. The
+# reader is shown the set in `answer_text`; the check proves the arithmetic behind
+# it. Units and words stay in `statement`.
+chapter: 8
+symbols: {}
+
+problems:
+- id: jc8-8.1-even
+  section: '8.1'
+  tier: O
+  refs:
+  - N.5
+  statement: Write the set of even numbers from 2 to 10 in roster form.
+  answer_label: Write the even numbers from 2 to 10 in roster form.
+  check:
+    kind: all
+    checks:
+    - kind: evaluate
+      expression: 2*1
+      answer: '2'
+    - kind: evaluate
+      expression: 2*2
+      answer: '4'
+    - kind: evaluate
+      expression: 2*3
+      answer: '6'
+    - kind: evaluate
+      expression: 2*4
+      answer: '8'
+    - kind: evaluate
+      expression: 2*5
+      answer: '10'
+  answer_text: $\{2, 4, 6, 8, 10\}$. Each number is a multiple of 2, and the list stops at 10.
+- id: jc8-8.1-odd
+  section: '8.1'
+  tier: O
+  refs:
+  - N.5
+  statement: Write the set of odd numbers from 1 to 9 in roster form.
+  answer_label: Write the odd numbers from 1 to 9 in roster form.
+  check:
+    kind: all
+    checks:
+    - kind: evaluate
+      expression: 2*0+1
+      answer: '1'
+    - kind: evaluate
+      expression: 2*1+1
+      answer: '3'
+    - kind: evaluate
+      expression: 2*2+1
+      answer: '5'
+    - kind: evaluate
+      expression: 2*3+1
+      answer: '7'
+    - kind: evaluate
+      expression: 2*4+1
+      answer: '9'
+  answer_text: $\{1, 3, 5, 7, 9\}$. Each number is one more than a multiple of 2, which is what makes it odd.
+- id: jc8-8.1-multiples
+  section: '8.1'
+  tier: O
+  refs:
+  - N.5
+  statement: Write the set of multiples of 5 that are less than 30.
+  answer_label: Write the multiples of 5 that are less than 30.
+  check:
+    kind: all
+    checks:
+    - kind: evaluate
+      expression: 5*1
+      answer: '5'
+    - kind: evaluate
+      expression: 5*2
+      answer: '10'
+    - kind: evaluate
+      expression: 5*3
+      answer: '15'
+    - kind: evaluate
+      expression: 5*4
+      answer: '20'
+    - kind: evaluate
+      expression: 5*5
+      answer: '25'
+    - kind: compare
+      lhs: 5*6
+      relation: '>='
+      rhs: '30'
+  answer_text: $\{5, 10, 15, 20, 25\}$. The next multiple is $5\times6=30$, which is not less than 30, so the list stops at 25.
+- id: jc8-8.1-cardinality
+  section: '8.1'
+  tier: O
+  refs:
+  - N.5
+  statement: Find $n(\{3, 6, 9, 12, 15\})$.
+  answer_label: Find the cardinality of $\{3, 6, 9, 12, 15\}$.
+  check:
+    kind: evaluate
+    expression: (15-3)/3+1
+    answer: '5'
+  answer_text: $n(\{3, 6, 9, 12, 15\}) = 5$. The numbers are the multiples of 3 from 3 to 15, and there are five of them.
+- id: jc8-8.1-in-1
+  section: '8.1'
+  tier: O
+  refs:
+  - N.5
+  statement: Is 7 an element of $\{3, 5, 7, 9\}$?
+  answer_label: Is 7 an element of $\{3, 5, 7, 9\}$?
+  check:
+    kind: all
+    checks:
+    - kind: compare
+      lhs: '7'
+      relation: '>'
+      rhs: '3'
+    - kind: compare
+      lhs: '7'
+      relation: '<'
+      rhs: '9'
+    - kind: evaluate
+      expression: 7 % 2
+      answer: '1'
+  answer_text: Yes, $7 \in \{3, 5, 7, 9\}$. The number 7 is odd, because $7 \div 2$ leaves remainder 1, and it lies between 3 and 9, so it is in the list.
+- id: jc8-8.1-notin-1
+  section: '8.1'
+  tier: O
+  refs:
+  - N.5
+  statement: Is 8 an element of $\{1, 3, 5, 7, 9\}$?
+  answer_label: Is 8 an element of $\{1, 3, 5, 7, 9\}$?
+  check:
+    kind: evaluate
+    expression: 8 % 2
+    answer: '0'
+  answer_text: No, $8 \notin \{1, 3, 5, 7, 9\}$. The number 8 is even, because $8 \div 2$ leaves remainder 0, and every element of the set is odd.
+- id: jc8-8.1-count-odd
+  section: '8.1'
+  tier: O
+  refs:
+  - N.5
+  statement: Find $n(\{1, 3, 5, 7, 9, 11, 13\})$.
+  answer_label: Find the cardinality of $\{1, 3, 5, 7, 9, 11, 13\}$.
+  check:
+    kind: evaluate
+    expression: (13-1)/2+1
+    answer: '7'
+  answer_text: $n(\{1, 3, 5, 7, 9, 11, 13\}) = 7$. The numbers are the odd numbers from 1 to 13, and there are seven of them.
+- id: jc8-8.1-squares
+  section: '8.1'
+  tier: O
+  refs:
+  - N.5
+  statement: Write the set of square numbers from 1 to 25 in roster form.
+  answer_label: Write the square numbers from 1 to 25 in roster form.
+  check:
+    kind: all
+    checks:
+    - kind: evaluate
+      expression: 1**2
+      answer: '1'
+    - kind: evaluate
+      expression: 2**2
+      answer: '4'
+    - kind: evaluate
+      expression: 3**2
+      answer: '9'
+    - kind: evaluate
+      expression: 4**2
+      answer: '16'
+    - kind: evaluate
+      expression: 5**2
+      answer: '25'
+  answer_text: $\{1, 4, 9, 16, 25\}$. These are $1^2$ to $5^2$; the next square is $6^2=36$, which is past 25.
+- id: jc8-8.1-notin-2
+  section: '8.1'
+  tier: O
+  refs:
+  - N.5
+  statement: The set $P=\{2, 3, 5, 7, 11\}$ holds the prime numbers less than 12. Is 9 an element of $P$?
+  answer_label: Is 9 an element of the set of primes less than 12?
+  check:
+    kind: evaluate
+    expression: 3*3
+    answer: '9'
+  answer_text: No, $9 \notin P$. The number 9 is not prime, because $9=3\times3$, so it does not belong to a set of prime numbers.
+- id: jc8-8.1-even-count
+  section: '8.1'
+  tier: O
+  refs:
+  - N.5
+  statement: The set $T=\{1, 2, 3, 4, 5, 6, 7, 8, 9, 10\}$. How many elements of $T$ are even?
+  answer_label: How many elements of $T$ are even?
+  check:
+    kind: evaluate
+    expression: 10/2
+    answer: '5'
+  answer_text: Five of them. The even elements are $\{2, 4, 6, 8, 10\}$, which is half of the ten elements, and $10\div2=5$.

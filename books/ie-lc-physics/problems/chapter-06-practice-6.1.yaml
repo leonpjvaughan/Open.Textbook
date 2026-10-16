@@ -1,0 +1,228 @@
+# Leaving Certificate Physics, Chapter 6, section 6.1 (strand 1 outcome 1.5).
+#
+# The physics oracle checks two claims whenever a quantity is asked for:
+# `dimensions` proves the exact magnitude *and* the unit, and `sigfigs` proves the
+# rounding to the figures the data support. Both are written out, because a rounded
+# answer is never equal to the exact one. An integer that is two significant
+# figures is written as `2.0e1`, since `20` is one figure.
+#
+# Honest limit: this proves the arithmetic and the dimensions, not the physics. A
+# dimensionally consistent, arithmetically correct, physically absurd answer would
+# pass. The `structured` record proves only that a model answer contains the
+# declared steps and concepts, in order — not that the physics in them is right.
+chapter: 6
+problems:
+- id: p6-1-weight-flour
+  section: '6.1'
+  tier: O
+  refs:
+  - '1.5'
+  statement: A bag of flour has a mass of 1.5 kg. Calculate its weight on the Earth, taking g = 9.8
+    N/kg.
+  answer_label: Weight
+  check:
+    kind: all
+    checks:
+    - kind: dimensions
+      expression: m * g
+      values:
+        m:
+          value: '1.5'
+          unit: kg
+        g:
+          value: '9.8'
+          unit: N/kg
+      answer:
+        value: '14.7'
+        unit: N
+    - kind: sigfigs
+      value: '1.5 * 9.8'
+      figures: 2
+      answer: '15'
+      convention: round-once
+  answer_text: $W = mg = 1.5 \times 9.8 = 14.7\,\text{N}$, which is $15\,\text{N}$ to two significant
+    figures.
+- id: p6-1-weight-student
+  section: '6.1'
+  tier: O
+  refs:
+  - '1.5'
+  statement: A student has a mass of 55 kg. Calculate her weight on the Earth, taking g = 9.8 N/kg.
+  answer_label: Weight
+  check:
+    kind: all
+    checks:
+    - kind: dimensions
+      expression: m * g
+      values:
+        m:
+          value: '55'
+          unit: kg
+        g:
+          value: '9.8'
+          unit: N/kg
+      answer:
+        value: '539'
+        unit: N
+    - kind: sigfigs
+      value: '55 * 9.8'
+      figures: 2
+      answer: 5.4e2
+      convention: round-once
+  answer_text: $W = mg = 55 \times 9.8 = 539\,\text{N}$, which is $5.4 \times 10^{2}\,\text{N}$ to
+    two significant figures.
+- id: p6-1-weight-moon
+  section: '6.1'
+  tier: O
+  refs:
+  - '1.5'
+  statement: The same student of mass 55 kg stands on the Moon, where g = 1.6 N/kg. Calculate her weight
+    there.
+  answer_label: Weight on the Moon
+  check:
+    kind: all
+    checks:
+    - kind: dimensions
+      expression: m * g
+      values:
+        m:
+          value: '55'
+          unit: kg
+        g:
+          value: '1.6'
+          unit: N/kg
+      answer:
+        value: '88'
+        unit: N
+    - kind: sigfigs
+      value: '55 * 1.6'
+      figures: 2
+      answer: '88'
+      convention: round-once
+  answer_text: $W = mg = 55 \times 1.6 = 88\,\text{N}$. Her mass is still 55 kg, because mass does
+    not depend on place. Only the weight changed, because the Moon pulls on each kilogram less strongly.
+- id: p6-1-field-strength
+  section: '6.1'
+  tier: O
+  refs:
+  - '1.5'
+  statement: A 4.0 kg box has a weight of 6.4 N on a moon of Saturn. Calculate the gravitational field
+    strength at its surface.
+  answer_label: Gravitational field strength
+  check:
+    kind: all
+    checks:
+    - kind: dimensions
+      expression: F / m
+      values:
+        F:
+          value: '6.4'
+          unit: N
+        m:
+          value: '4.0'
+          unit: kg
+      answer:
+        value: '1.6'
+        unit: N/kg
+    - kind: sigfigs
+      value: '6.4 / 4.0'
+      figures: 2
+      answer: '1.6'
+      convention: round-once
+  answer_text: $g = \dfrac{F}{m} = \dfrac{6.4}{4.0} = 1.6\,\text{N/kg}$, the same field strength
+    as the Moon's surface.
+- id: p6-1-mass-and-weight
+  section: '6.1'
+  tier: O
+  refs:
+  - '1.5'
+  statement: A student says "My mass is 55 kg, so my weight is 55 N." Explain what is wrong with the
+    statement.
+  answer_label: Mass and weight
+  check:
+    kind: structured
+    requires:
+    - mass
+    - weight
+    - conclusion
+    concepts:
+    - kilogram
+    - newton
+    - multiply-by-g
+    points:
+    - id: mass
+      text: the number 55 is a mass, measured in kilograms, and it measures the amount of matter
+      concepts:
+      - kilogram
+    - id: weight
+      text: weight is a force, measured in newtons, and it depends on the gravitational field strength
+      concepts:
+      - newton
+    - id: conclusion
+      text: on the Earth the weight is 55 times 9.8, which is 539 N, not 55 N
+      concepts:
+      - multiply-by-g
+  answer_text: The number 55 is a mass in kilograms, not a weight. Mass measures the amount of matter.
+    Weight is the gravitational force on the mass, so it is measured in newtons and it depends on the
+    field strength. On the Earth the weight is $55 \times 9.8 = 539\,\text{N}$. The two numbers would
+    agree only where $g = 1\,\text{N/kg}$.
+- id: p6-1-grams
+  section: '6.1'
+  tier: O
+  refs:
+  - '1.5'
+  statement: A bar of chocolate has a mass of 250 g. Calculate its weight on the Earth.
+  answer_label: Weight
+  check:
+    kind: all
+    checks:
+    - kind: dimensions
+      expression: m * g
+      values:
+        m:
+          value: '0.25'
+          unit: kg
+        g:
+          value: '9.8'
+          unit: N/kg
+      answer:
+        value: '2.45'
+        unit: N
+    - kind: sigfigs
+      value: '0.25 * 9.8'
+      figures: 2
+      answer: '2.5'
+      convention: round-once
+  answer_text: The mass is 250 g, which is 0.25 kg. Then $W = mg = 0.25 \times 9.8 = 2.45\,\text{N}$,
+    which is $2.5\,\text{N}$ to two significant figures. Using 250 in place of 0.25 would give 2450 N,
+    a thousand times too large.
+- id: p6-1-moon-ratio
+  section: '6.1'
+  tier: H
+  refs:
+  - '1.5'
+  statement: The gravitational field strength is 9.8 N/kg at the Earth's surface and 1.6 N/kg at the
+    Moon's surface. Calculate how many times smaller the weight of an object is on the Moon.
+  answer_label: Ratio of the weights
+  check:
+    kind: all
+    checks:
+    - kind: dimensions
+      expression: gE / gM
+      values:
+        gE:
+          value: '9.8'
+          unit: N/kg
+        gM:
+          value: '1.6'
+          unit: N/kg
+      answer:
+        value: '6.125'
+    - kind: sigfigs
+      value: '9.8 / 1.6'
+      figures: 2
+      answer: '6.1'
+      convention: round-once
+  answer_text: The ratio of the weights equals the ratio of the field strengths, because the mass is
+    the same in both places. $\dfrac{9.8}{1.6} = 6.125$, which is 6.1 times smaller to two
+    significant figures.

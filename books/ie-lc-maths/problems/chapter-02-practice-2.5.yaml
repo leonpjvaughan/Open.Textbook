@@ -1,0 +1,174 @@
+# Practice set for 2.5 (strand 3, outcome 3.3, Higher). Present value is the
+# Higher-only outcome in this chapter: `use present value when solving problems
+# involving loan repayments and investments`. The formula is a division, so
+# `evaluate` proves every value exactly, and a decimal answer is written in
+# `answer_text` and not in the check. The reason a future sum is worth less today
+# is a `structured` check.
+chapter: 2
+problems:
+  - id: lc2-5-present-value-one-year
+    section: '2.5'
+    tier: H
+    refs: ['3.3']
+    statement: >-
+      €5,200 is due in one year. Money earns $4\%$ a year. Work out its present
+      value.
+    answer_label: 'The present value'
+    check: {kind: evaluate, expression: '5200 / (104/100)', answer: '5000'}
+    answer_text: >-
+      The present value is the amount that would grow to €5,200 in one year at
+      $4\%$. Divide by the multiplier:
+
+      $$5\,200 \div 1.04 = 5\,000$$
+
+      The present value is €5,000. Invested today at $4\%$, it becomes €5,200 in
+      a year, so the two amounts are equivalent.
+
+  - id: lc2-5-present-value-two-years
+    section: '2.5'
+    tier: H
+    refs: ['3.3']
+    statement: >-
+      €5,618 is due in 2 years. Money earns $6\%$ a year. Work out its present
+      value.
+    answer_label: 'The present value'
+    check: {kind: evaluate, expression: '5618 / (106/100)**2', answer: '5000'}
+    answer_text: >-
+      Divide by $1.06$ once for each year:
+
+      $$5\,618 \div 1.06^2 = 5\,000$$
+
+      The present value is €5,000. The divisor is $1.06^2$, not $1.06 \times 2$,
+      because the money grows by compound interest.
+
+  - id: lc2-5-chapter-offer
+    section: '2.5'
+    tier: H
+    refs: ['3.3']
+    statement: >-
+      A garage offers to wait 2 years for €12,000 instead of taking €11,070 now.
+      Money earns $3\%$ a year. Work out the present value of the €12,000.
+    answer_label: 'The present value of the €12,000'
+    check: {kind: evaluate, expression: '12000 / (103/100)**2', answer: '120000000/10609'}
+    answer_text: >-
+      Divide the future amount by $1.03$ twice:
+
+      $$12\,000 \div 1.03^2 = 11\,311.15$$
+
+      The present value is €11,311.15 to the nearest cent. Paying €11,070 now is
+      therefore cheaper than €12,000 in two years, and Section 2.6 checks that
+      answer.
+
+  - id: lc2-5-compare
+    section: '2.5'
+    tier: H
+    refs: ['3.3']
+    statement: >-
+      Compare paying €11,070 now with paying €12,000 in 2 years, when money earns
+      $3\%$ a year. Work out how much cheaper the better option is, in today's
+      money.
+    answer_label: 'How much cheaper the better option is'
+    check: {kind: evaluate, expression: '12000 / (103/100)**2 - 11070', answer: '2558370/10609'}
+    answer_text: >-
+      Bring both amounts to today. The €11,070 is already a present amount, and
+      the €12,000 has present value
+
+      $$12\,000 \div 1.03^2 = 11\,311.15$$
+
+      The difference is
+
+      $$11\,311.15 - 11\,070 = 241.15$$
+
+      Paying now is cheaper by €241.15. Comparing €12,000 with €11,070 directly
+      would give the wrong answer, because the two amounts are not measured at the
+      same time.
+
+  - id: lc2-5-loan-rate
+    section: '2.5'
+    tier: H
+    refs: ['3.3']
+    statement: >-
+      A loan of €10,000 is repaid as a single payment of €11,236 after 2 years.
+      Work out the annual interest rate.
+    answer_label: 'The annual interest rate'
+    check: {kind: evaluate, expression: '(11236 / 10000)**(1/2) - 1', answer: '0.06'}
+    answer_text: >-
+      The €10,000 grows to €11,236 in 2 years, so
+
+      $$10\,000 \times (1 + i)^2 = 11\,236$$
+
+      Divide by $10\,000$ to get $(1 + i)^2 = 1.1236$, then take the square root:
+
+      $$1 + i = \sqrt{1.1236} = 1.06$$
+
+      So $i = 0.06$, and the rate is $6\%$ a year. Taking the square root undoes
+      two years of growth; halving the total change would give $6.18\%$ and is
+      wrong.
+
+  - id: lc2-5-investment
+    section: '2.5'
+    tier: H
+    refs: ['3.3']
+    statement: >-
+      An investment will be worth €20,000 in 3 years. Money earns $5\%$ a year.
+      Work out what it is worth today.
+    answer_label: 'The value today'
+    check: {kind: evaluate, expression: '20000 / (105/100)**3', answer: '160000000/9261'}
+    answer_text: >-
+      Divide by $1.05$ once for each of the three years:
+
+      $$20\,000 \div 1.05^3 = 17\,276.75$$
+
+      The investment is worth €17,276.75 today, to the nearest cent. The
+      difference of €2,723.25 is the reward for waiting three years.
+
+  - id: lc2-5-which-offer
+    section: '2.5'
+    tier: H
+    refs: ['3.3']
+    statement: >-
+      You may take €9,000 now or €9,800 in one year. Money earns $5\%$ a year.
+      Work out the present value of the €9,800 and say which offer is better.
+    answer_label: 'The present value of the €9,800, then the better offer'
+    check: {kind: evaluate, expression: '9800 / (105/100)', answer: '28000/3'}
+    answer_text: >-
+      The present value of the €9,800 is
+
+      $$9\,800 \div 1.05 = 9\,333.33$$
+
+      so €9,800 in a year is worth €9,333.33 today, to the nearest cent. That is
+      more than €9,000, so the later payment is the better offer.
+
+      The present values are the amounts to compare, not the €9,800 and the
+      €9,000.
+
+  - id: lc2-5-present-value-explain
+    section: '2.5'
+    tier: H
+    refs: ['3.3']
+    statement: 'Explain why a sum of money received in the future is worth less today.'
+    answer_label: 'Why a future sum is worth less today'
+    check:
+      kind: structured
+      requires: [growth, divide]
+      concepts: [interest-earned, discounting]
+      points:
+        - id: growth
+          text: money held today can earn interest, so an amount today grows into a larger amount later
+          concepts: [interest-earned]
+        - id: divide
+          text: the present value is found by dividing the future amount by the growth factor once for each year, which brings it back to today
+          concepts: [discounting]
+    answer_text: >-
+      Money you hold today can earn interest. At $5\%$ a year, €1,000 today
+      becomes €1,050 in a year, so €1,000 today and €1,050 in a year are
+      equivalent. A promise of €1,050 in a year is therefore worth only €1,000
+      today.
+
+      To find a present value, divide the future amount by the growth factor once
+      for each year:
+
+      $$P = \frac{F}{(1 + i)^t}$$
+
+      This is the reverse of compound interest. Compound interest grows a present
+      value into a future one, and dividing brings a future value back to today.

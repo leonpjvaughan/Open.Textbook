@@ -1,0 +1,173 @@
+# Junior Cycle Mathematics, Chapter 7, section 7.7.
+#
+# The exchange rate is stated in the section: one euro buys 1.09 US dollars, and
+# one euro buys 0.85 pounds. Every check proves the multiplication "euro * rate"
+# when leaving euro and the division "foreign / rate" when returning, so a record
+# cannot convert in the wrong direction and pass. Where the euro value is not exact
+# in cent, the check is an `approx` with a half-cent tolerance. The currency names
+# and the words stay in `statement`: a raw dollar sign is a maths delimiter, so the
+# reader sees "US dollars" in words and the CAS sees numbers only.
+chapter: 7
+symbols: {}
+
+problems:
+- id: jc7-7.7-euro-to-dollar-1
+  section: '7.7'
+  tier: O
+  refs:
+  - N.3
+  statement: Change €200.00 to US dollars. The exchange rate is €1 = 1.09 US dollars.
+  answer_label: Change €200.00 to US dollars at €1 = 1.09 US dollars.
+  check:
+    kind: evaluate
+    expression: 200*1.09
+    answer: '218'
+  steps:
+  - expr: 200*1.09
+  - expr: '218'
+  answer_text: >-
+    218.00 US dollars. To leave euro, multiply by the rate:
+    $200.00\times1.09=218.00$.
+- id: jc7-7.7-euro-to-dollar-2
+  section: '7.7'
+  tier: O
+  refs:
+  - N.3
+  statement: Change €50.00 to US dollars at €1 = 1.09 US dollars.
+  answer_label: Change €50.00 to US dollars at €1 = 1.09 US dollars.
+  check:
+    kind: evaluate
+    expression: 50*1.09
+    answer: '54.5'
+  answer_text: >-
+    54.50 US dollars. Multiply by the rate: $50.00\times1.09=54.50$.
+- id: jc7-7.7-dollar-to-euro-1
+  section: '7.7'
+  tier: O
+  refs:
+  - N.3
+  statement: Change 100.00 US dollars to euro at €1 = 1.09 US dollars. Give the answer correct
+    to the nearest cent.
+  answer_label: Change 100.00 US dollars to euro at €1 = 1.09 US dollars.
+  check:
+    kind: approx
+    value: 100/1.09
+    target: '91.74'
+    tolerance: '0.005'
+  answer_text: >-
+    €91.74. To come back to euro, divide by the rate:
+    $100.00\div1.09=91.7431\ldots$ euro, which rounds to €91.74.
+- id: jc7-7.7-dollar-to-euro-2
+  section: '7.7'
+  tier: O
+  refs:
+  - N.3
+  statement: Change 218.00 US dollars to euro at €1 = 1.09 US dollars.
+  answer_label: Change 218.00 US dollars to euro at €1 = 1.09 US dollars.
+  check:
+    kind: evaluate
+    expression: 218/1.09
+    answer: '200'
+  answer_text: >-
+    €200.00. Divide by the rate: $218.00\div1.09=200.00$. This is the amount you
+    started with in the first question, which checks the two directions against
+    each other.
+- id: jc7-7.7-euro-to-pound-1
+  section: '7.7'
+  tier: O
+  refs:
+  - N.3
+  statement: Change €80.00 to pounds. The exchange rate is €1 = 0.85 pounds.
+  answer_label: Change €80.00 to pounds at €1 = 0.85 pounds.
+  check:
+    kind: evaluate
+    expression: 80*0.85
+    answer: '68'
+  answer_text: >-
+    £68.00. Multiply by the rate: $80.00\times0.85=68.00$.
+- id: jc7-7.7-pound-to-euro-1
+  section: '7.7'
+  tier: O
+  refs:
+  - N.3
+  statement: Change £68.00 to euro at €1 = 0.85 pounds.
+  answer_label: Change £68.00 to euro at €1 = 0.85 pounds.
+  check:
+    kind: evaluate
+    expression: 68/0.85
+    answer: '80'
+  answer_text: >-
+    €80.00. Divide by the rate: $68.00\div0.85=80.00$. Multiplying by 0.85 and
+    then dividing by 0.85 returns the amount you started with.
+- id: jc7-7.7-dollar-to-euro-3
+  section: '7.7'
+  tier: O
+  refs:
+  - N.3
+  statement: A phone case costs 8.00 US dollars on an American website. Change it to euro at
+    €1 = 1.09 US dollars. Give the answer correct to the nearest cent.
+  answer_label: Change 8.00 US dollars to euro at €1 = 1.09 US dollars.
+  check:
+    kind: approx
+    value: 8/1.09
+    target: '7.34'
+    tolerance: '0.005'
+  answer_text: >-
+    €7.34. Divide by the rate: $8.00\div1.09=7.3394\ldots$ euro, which rounds to
+    €7.34.
+- id: jc7-7.7-euro-to-dollar-3
+  section: '7.7'
+  tier: O
+  refs:
+  - N.3
+  statement: Change €150.00 to US dollars at €1 = 1.09 US dollars.
+  answer_label: Change €150.00 to US dollars at €1 = 1.09 US dollars.
+  check:
+    kind: evaluate
+    expression: 150*1.09
+    answer: '163.5'
+  answer_text: >-
+    163.50 US dollars. Multiply by the rate: $150.00\times1.09=163.50$.
+- id: jc7-7.7-commission-1
+  section: '7.7'
+  tier: H
+  refs:
+  - N.3
+  statement: You change €200.00 to US dollars at €1 = 1.09 US dollars. The bank charges a $2\%$
+    commission on the euro amount. Work out the commission, the amount exchanged, and the US
+    dollars you receive.
+  answer_label: Change €200.00 at €1 = 1.09 US dollars with a $2\%$ commission.
+  check:
+    kind: all
+    checks:
+    - kind: evaluate
+      expression: 200*2/100
+      answer: '4'
+    - kind: evaluate
+      expression: 200-4
+      answer: '196'
+    - kind: evaluate
+      expression: 196*1.09
+      answer: '213.64'
+  answer_text: >-
+    The commission is €4.00, the amount exchanged is €196.00, and you receive
+    213.64 US dollars. The commission is $200.00\times0.02=4.00$ euro. Take it
+    off before the exchange: $200.00-4.00=196.00$ euro. Then
+    $196.00\times1.09=213.64$ US dollars. Without the commission you would have
+    received 218.00 US dollars, so the commission costs 4.36 US dollars.
+- id: jc7-7.7-dollar-to-euro-4
+  section: '7.7'
+  tier: O
+  refs:
+  - N.3
+  statement: Change 500.00 US dollars to euro at €1 = 1.09 US dollars. Give the answer correct
+    to the nearest cent.
+  answer_label: Change 500.00 US dollars to euro at €1 = 1.09 US dollars.
+  check:
+    kind: approx
+    value: 500/1.09
+    target: '458.72'
+    tolerance: '0.005'
+  answer_text: >-
+    €458.72. Divide by the rate: $500.00\div1.09=458.7155\ldots$ euro, which
+    rounds to €458.72.

@@ -10,9 +10,15 @@ refs:
 kind: problems
 ---
 
-<!-- scaffold:stub -->
-
 # 21.1 Mass-energy equivalence — Practise
 
-> **Stub.** Independent, homework-style practice. Answers and concise solutions in a collapsed block. Mark Higher-only questions explicitly.
-> Tier: **O** · refs: 4.5
+Work independently. The questions and answers are shown together at the end.
+
+Take $c = 3.0 \times 10^8$ m/s, $1\ \text{u} = 1.66 \times 10^{-27}$ kg and
+$1\ \text{MeV} = 1.6 \times 10^{-13}$ J unless a question says otherwise. Give
+every numerical answer with its unit and to the number of significant figures the
+data support.
+
+:::problems chapter-21-practice-21.1
+
+:::answers chapter-21-practice-21.1

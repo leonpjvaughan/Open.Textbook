@@ -1,0 +1,195 @@
+# Junior Cycle Mathematics, Chapter 7, section 7.1.
+#
+# Every check is an arithmetic identity the CAS proves, so the answer the reader
+# is shown is the answer the verifier proved. A percentage profit is written as
+# the division "profit / cost * 100", which proves the percentage rather than
+# asserting it. The euro sign, the per-cent sign and the words stay in
+# `statement`: the CAS parses numbers and symbols only.
+chapter: 7
+symbols: {}
+
+problems:
+- id: jc7-7.1-profit-1
+  section: '7.1'
+  tier: O
+  refs:
+  - N.2
+  statement: A shop buys a phone case for €4.00 and sells it for €6.00. Work out the profit.
+  answer_label: Find the profit on a €4.00 case sold for €6.00.
+  check:
+    kind: evaluate
+    expression: 6-4
+    answer: '2'
+  answer_text: >-
+    €2.00. Profit is the selling price minus the cost price:
+    $6.00-4.00=2.00$.
+- id: jc7-7.1-loss-1
+  section: '7.1'
+  tier: O
+  refs:
+  - N.2
+  statement: A shop buys a speaker for €20.00 and sells it for €15.00. Work out the loss.
+  answer_label: Find the loss on a €20.00 speaker sold for €15.00.
+  check:
+    kind: evaluate
+    expression: 20-15
+    answer: '5'
+  answer_text: >-
+    €5.00. The selling price is lower than the cost price, so the shop makes a
+    loss. The loss is the cost price minus the selling price:
+    $20.00-15.00=5.00$.
+- id: jc7-7.1-percent-profit-1
+  section: '7.1'
+  tier: O
+  refs:
+  - N.2
+  statement: A phone case costs a shop €4.00 and sells for €6.00. Work out the percentage profit.
+  answer_label: Find the percentage profit on a €4.00 case sold for €6.00.
+  check:
+    kind: evaluate
+    expression: (6-4)/4*100
+    answer: '50'
+  steps:
+  - expr: (6-4)/4*100
+  - expr: 2/4*100
+  - expr: '50'
+  answer_text: >-
+    $50\%$. The profit is $6.00-4.00=2.00$. Divide the profit by the cost price
+    and multiply by 100: $\frac{2.00}{4.00}\times100=50$. The cost price is the
+    base.
+- id: jc7-7.1-percent-loss-1
+  section: '7.1'
+  tier: O
+  refs:
+  - N.2
+  statement: A speaker costs a shop €20.00 and sells for €15.00. Work out the percentage loss.
+  answer_label: Find the percentage loss on a €20.00 speaker sold for €15.00.
+  check:
+    kind: evaluate
+    expression: (20-15)/20*100
+    answer: '25'
+  answer_text: >-
+    $25\%$. The loss is $20.00-15.00=5.00$. Divide the loss by the cost price and
+    multiply by 100: $\frac{5.00}{20.00}\times100=25$. A loss uses the cost price
+    as its base, just as a profit does.
+- id: jc7-7.1-percent-profit-2
+  section: '7.1'
+  tier: O
+  refs:
+  - N.2
+  statement: A shop buys a charger for €8.00 and sells it for €10.00. Work out the profit and
+    the percentage profit.
+  answer_label: A €8.00 charger sells for €10.00. Find the profit and the percentage profit.
+  check:
+    kind: all
+    checks:
+    - kind: evaluate
+      expression: 10-8
+      answer: '2'
+    - kind: evaluate
+      expression: 2/8*100
+      answer: '25'
+  answer_text: >-
+    The profit is €2.00, and the percentage profit is $25\%$. The profit is
+    $10.00-8.00=2.00$, and $\frac{2.00}{8.00}\times100=25$.
+- id: jc7-7.1-percent-loss-2
+  section: '7.1'
+  tier: O
+  refs:
+  - N.2
+  statement: A shop buys a bag for €50.00 and sells it for €40.00 in a sale. Work out the loss
+    and the percentage loss.
+  answer_label: A €50.00 bag sells for €40.00. Find the loss and the percentage loss.
+  check:
+    kind: all
+    checks:
+    - kind: evaluate
+      expression: 50-40
+      answer: '10'
+    - kind: evaluate
+      expression: 10/50*100
+      answer: '20'
+  answer_text: >-
+    The loss is €10.00, and the percentage loss is $20\%$. The loss is
+    $50.00-40.00=10.00$, and $\frac{10.00}{50.00}\times100=20$.
+- id: jc7-7.1-percent-profit-3
+  section: '7.1'
+  tier: O
+  refs:
+  - N.2
+  statement: A shop buys a game for €25.00 and sells it for €30.00. Work out the profit and the
+    percentage profit.
+  answer_label: A €25.00 game sells for €30.00. Find the profit and the percentage profit.
+  check:
+    kind: all
+    checks:
+    - kind: evaluate
+      expression: 30-25
+      answer: '5'
+    - kind: evaluate
+      expression: 5/25*100
+      answer: '20'
+  answer_text: >-
+    The profit is €5.00, and the percentage profit is $20\%$. The profit is
+    $30.00-25.00=5.00$, and $\frac{5.00}{25.00}\times100=20$.
+- id: jc7-7.1-total-profit-1
+  section: '7.1'
+  tier: O
+  refs:
+  - N.2
+  statement: A shop buys 20 phone cases at €4.00 each and sells them all at €6.00 each. Work out
+    the total profit.
+  answer_label: Find the total profit on 20 cases.
+  check:
+    kind: all
+    checks:
+    - kind: evaluate
+      expression: 6-4
+      answer: '2'
+    - kind: evaluate
+      expression: 2*20
+      answer: '40'
+  answer_text: >-
+    €40.00. Each case makes $6.00-4.00=2.00$ euro of profit. Twenty cases make
+    $2.00\times20=40.00$ euro. The percentage profit stays at $50\%$, because
+    each case has the same cost and the same selling price.
+- id: jc7-7.1-percent-profit-4
+  section: '7.1'
+  tier: O
+  refs:
+  - N.2
+  statement: A shop buys a tablet for €120.00 and sells it for €150.00. Work out the profit and
+    the percentage profit.
+  answer_label: A €120.00 tablet sells for €150.00. Find the profit and the percentage profit.
+  check:
+    kind: all
+    checks:
+    - kind: evaluate
+      expression: 150-120
+      answer: '30'
+    - kind: evaluate
+      expression: 30/120*100
+      answer: '25'
+  answer_text: >-
+    The profit is €30.00, and the percentage profit is $25\%$. The profit is
+    $150.00-120.00=30.00$, and $\frac{30.00}{120.00}\times100=25$.
+- id: jc7-7.1-selling-price-1
+  section: '7.1'
+  tier: H
+  refs:
+  - N.2
+  statement: A shop buys a bag for €80.00 and wants a profit of $15\%$. Work out the selling
+    price.
+  answer_label: Find the selling price for a $15\%$ profit on €80.00.
+  check:
+    kind: evaluate
+    expression: 80*(1+15/100)
+    answer: '92'
+  steps:
+  - expr: 80*(1+15/100)
+  - expr: 80*1.15
+  - expr: '92'
+  answer_text: >-
+    €92.00. A profit of $15\%$ multiplies the cost price by $1.15$:
+    $80.00\times1.15=92.00$. The profit itself is $80.00\times0.15=12.00$, and
+    $80.00+12.00=92.00$.

@@ -1,0 +1,203 @@
+# Practice set for 2.6 (strand 3, outcome 3.3). This is the Ordinary-level outcome
+# `check a result by considering whether it is of the right order of magnitude and
+# by working the problem backwards`, so the checks are estimates, a backward
+# division and a rounded percentage error. Rounding is proved by `rounded` and not
+# by `evaluate`, because a rounded answer is never equal to the exact one. The
+# reasoning behind a check is a `structured` record.
+chapter: 2
+problems:
+  - id: lc2-6-estimate
+    section: '2.6'
+    tier: F
+    refs: ['3.3']
+    statement: >-
+      Estimate $4\,986 \times 21$ by rounding each number to one significant
+      figure.
+    answer_label: 'The estimate'
+    check: {kind: evaluate, expression: '5000 * 20', answer: '100000'}
+    answer_text: >-
+      Round $4\,986$ to $5\,000$ and $21$ to $20$. Then
+
+      $$5\,000 \times 20 = 100\,000$$
+
+      The estimate is $100\,000$. The exact answer is $104\,706$, which is close
+      to the estimate, so the exact answer is reasonable.
+
+  - id: lc2-6-work-backwards
+    section: '2.6'
+    tier: F
+    refs: ['3.3']
+    statement: >-
+      A price is increased by $23\%$ and becomes €11,070. Work backwards to find
+      the original price.
+    answer_label: 'The original price'
+    check: {kind: evaluate, expression: '11070 / 1.23', answer: '9000'}
+    answer_text: >-
+      The increase multiplied the original price by $1.23$, so undo it by
+      dividing:
+
+      $$11\,070 \div 1.23 = 9\,000$$
+
+      The original price was €9,000. Working backwards is the same as finding the
+      original value, and it is the quickest check that an increase has been
+      applied the right way round.
+
+  - id: lc2-6-percentage-error
+    section: '2.6'
+    tier: O
+    refs: ['3.3']
+    statement: >-
+      An estimate is $100\,000$ and the exact value is $104\,706$. Work out the
+      percentage error, to one decimal place.
+    answer_label: 'The percentage error'
+    check: {kind: rounded, value: '4706 / 104706 * 100', rounded: '4.5', to: '0.1'}
+    answer_text: >-
+      The error is the size of the difference:
+
+      $$104\,706 - 100\,000 = 4\,706$$
+
+      As a percentage of the exact value:
+
+      $$\frac{4\,706}{104\,706} \times 100 = 4.49\dots\%$$
+
+      which is $4.5\%$ to one decimal place. A percentage error of a few per cent
+      shows that an estimate is good enough to check the size of an answer.
+
+  - id: lc2-6-payback
+    section: '2.6'
+    tier: F
+    refs: ['3.3']
+    statement: >-
+      A new oven costs €11,070 and adds €2,340 of profit a year. Work out how many
+      years it takes to pay for itself, to one decimal place.
+    answer_label: 'The payback time'
+    check: {kind: rounded, value: '11070 / 2340', rounded: '4.7', to: '0.1'}
+    answer_text: >-
+      Divide the cost by the profit added each year:
+
+      $$11\,070 \div 2\,340 = 4.73\dots$$
+
+      The oven pays for itself in $4.7$ years, to one decimal place.
+
+      Check by working forwards: $4.7 \times 2\,340 = 10\,998$, which is just
+      below €11,070. The answer is the right size.
+
+  - id: lc2-6-net-pay-check
+    section: '2.6'
+    tier: O
+    refs: ['3.3']
+    statement: >-
+      A payslip shows gross pay of €52,000 and net pay of €41,160. Explain why
+      the net pay is lower, and give one check that shows the net pay is
+      reasonable.
+    answer_label: 'Why the net pay is lower, and a check'
+    check:
+      kind: structured
+      requires: [deductions, estimate]
+      concepts: [gross-to-net, percentage-deducted]
+      points:
+        - id: deductions
+          text: net pay is gross pay with income tax, USC and any other deductions subtracted, so it is always the smaller figure
+          concepts: [gross-to-net]
+        - id: estimate
+          text: the deductions are about 21% of the gross pay, so an estimate of 52 000 times 0.78, about 40 560, should be close to the net pay
+          concepts: [percentage-deducted]
+    answer_text: >-
+      Net pay is what reaches the bank account after every deduction is taken out.
+      Income tax, USC and any other deduction all come off the gross pay, so net
+      pay is always smaller.
+
+      Check the size of the deductions. Here they are
+      $52\,000 - 41\,160 = 10\,840$, which is about $21\%$ of the gross pay. An
+      estimate of the net pay is
+
+      $$52\,000 \times 0.78 = 40\,560$$
+
+      The real net pay of €41,160 is close to that estimate, so the figure is
+      reasonable. If the net pay had come out larger than the gross pay, the
+      answer would be impossible.
+
+  - id: lc2-6-wrong-reverse
+    section: '2.6'
+    tier: F
+    refs: ['3.3']
+    statement: >-
+      A jacket is reduced by $20\%$ and now costs €64. A student says the original
+      price was €76.80, found by adding $20\%$ to €64. Work out the correct
+      original price and explain the error.
+    answer_label: 'The correct original price, and the error'
+    check:
+      kind: all
+      checks:
+        - {kind: evaluate, expression: '64 / 0.8', answer: '80'}
+        - kind: structured
+          requires: [correct-base, check-back]
+          concepts: [percentage-of-original, forward-check]
+          points:
+            - id: correct-base
+              text: the 20% reduction was taken off the original price, so €64 is 80% of the original and the original is 64 divided by 0.8
+              concepts: [percentage-of-original]
+            - id: check-back
+              text: check by taking 20% off 80, which gives 64, so the answer is right
+              concepts: [forward-check]
+    answer_text: >-
+      The $20\%$ was taken off the original price, not off €64. After the
+      reduction, €64 is $80\%$ of the original:
+
+      $$64 \div 0.8 = 80$$
+
+      The original price was €80.
+
+      Check by working forwards: $20\%$ of €80 is €16, and
+      $80 - 16 = 64$. The answer is correct.
+
+      The student's €76.80 fails that check. Taking $20\%$ off €76.80 gives
+      €61.44, not €64, so €76.80 cannot be the original price.
+
+  - id: lc2-6-order-of-magnitude
+    section: '2.6'
+    tier: F
+    refs: ['3.3']
+    statement: >-
+      Explain how to check a result by considering its order of magnitude.
+    answer_label: 'How to check the order of magnitude'
+    check:
+      kind: structured
+      requires: [round, compare]
+      concepts: [one-significant-figure, size-check]
+      points:
+        - id: round
+          text: round each number to one significant figure and work out the estimate in your head
+          concepts: [one-significant-figure]
+        - id: compare
+          text: compare the exact answer with the estimate, and if the two are far apart in size, look for an error
+          concepts: [size-check]
+    answer_text: >-
+      Round every number to one significant figure and work out the estimate
+      without a calculator. The estimate shows the size the answer should be.
+
+      For example, $4\,986 \times 21$ rounds to $5\,000 \times 20 = 100\,000$. An
+      exact answer of $104\,706$ is close to that, so it is the right size. An
+      exact answer of $10\,470\,600$ is ten times too big, so something has gone
+      wrong with the calculation.
+
+      The check does not prove the answer. It catches the errors that change the
+      size of a result, which are the ones that do the most damage.
+
+  - id: lc2-6-estimate-net
+    section: '2.6'
+    tier: F
+    refs: ['3.3']
+    statement: >-
+      A worker earns €52,000 and about $22\%$ of it goes in deductions. Estimate
+      the net pay.
+    answer_label: 'The estimate of the net pay'
+    check: {kind: evaluate, expression: '52000 * 0.78', answer: '40560'}
+    answer_text: >-
+      If $22\%$ is deducted, about $78\%$ is left, so multiply by $0.78$:
+
+      $$52\,000 \times 0.78 = 40\,560$$
+
+      The estimate is €40,560. The exact net pay is €41,160, so the estimate is
+      within about $1.5\%$ of it. An estimate of the right size is all this check
+      needs.

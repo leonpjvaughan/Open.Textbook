@@ -10,9 +10,14 @@ refs:
 kind: problems
 ---
 
-<!-- scaffold:stub -->
-
 # 2.2 Profit, loss and mark-up — Practise
 
-> **Stub.** Independent, homework-style practice. Answers and concise solutions in a collapsed block. Mark Higher-only questions explicitly.
-> Tier: **F** · refs: 3.3
+Work independently. The questions and answers are shown together at the end.
+
+Write down the cost price, the selling price and the profit before you use a
+percentage. Say whether each percentage is taken from the cost price or from the
+selling price.
+
+:::problems chapter-02-practice-2.2
+
+:::answers chapter-02-practice-2.2

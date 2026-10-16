@@ -1,0 +1,295 @@
+# Leaving Certificate Physics, Chapter 6, section 6.2 (strand 1 outcome 1.5).
+#
+# The physics oracle checks two claims whenever a quantity is asked for:
+# `dimensions` proves the exact magnitude *and* the unit, and `sigfigs` proves the
+# rounding to the figures the data support. Both are written out, because a rounded
+# answer is never equal to the exact one. A value that comes from a rounded constant
+# carries a `tolerance`, so the check proves the arithmetic within the precision of
+# the data rather than against a number that was rounded by hand.
+#
+# Honest limit: this proves the arithmetic and the dimensions, not the physics. A
+# dimensionally consistent, arithmetically correct, physically absurd answer would
+# pass. The `structured` records prove only that a model answer contains the
+# declared steps and concepts, in order — not that the physics in them is right.
+chapter: 6
+problems:
+- id: p6-2-earth-moon
+  section: '6.2'
+  tier: O
+  refs:
+  - '1.5'
+  statement: The Earth has a mass of 5.97e24 kg and the Moon has a mass of 7.35e22 kg. Their centres
+    are 3.84e8 m apart. Calculate the gravitational force between them.
+  answer_label: Force between the Earth and the Moon
+  check:
+    kind: all
+    checks:
+    - kind: dimensions
+      expression: G * M1 * M2 / d**2
+      values:
+        G:
+          value: '6.67e-11'
+          unit: N m^2 kg^-2
+        M1:
+          value: '5.97e24'
+          unit: kg
+        M2:
+          value: '7.35e22'
+          unit: kg
+        d:
+          value: '3.84e8'
+          unit: m
+      tolerance: '1e18'
+      answer:
+        value: 1.98e20
+        unit: N
+    - kind: sigfigs
+      value: 6.67e-11 * 5.97e24 * 7.35e22 / 3.84e8**2
+      figures: 3
+      answer: 1.98e20
+      convention: round-once
+  answer_text: $F = \dfrac{Gm_1m_2}{d^2} = \dfrac{6.67 \times 10^{-11} \times 5.97 \times 10^{24}
+    \times 7.35 \times 10^{22}}{(3.84 \times 10^{8})^2} = 1.98 \times 10^{20}\,\text{N}$. This is the
+    force that keeps the Moon in its orbit, and the Moon pulls the Earth with the same size of force.
+- id: p6-2-earth-satellite
+  section: '6.2'
+  tier: O
+  refs:
+  - '1.5'
+  statement: A satellite of mass 1200 kg orbits 4.22e7 m from the centre of the Earth. The Earth's mass
+    is 5.97e24 kg. Calculate the gravitational force between the Earth and the satellite.
+  answer_label: Force on the satellite
+  check:
+    kind: all
+    checks:
+    - kind: dimensions
+      expression: G * M * m / d**2
+      values:
+        G:
+          value: '6.67e-11'
+          unit: N m^2 kg^-2
+        M:
+          value: '5.97e24'
+          unit: kg
+        m:
+          value: '1200'
+          unit: kg
+        d:
+          value: '4.22e7'
+          unit: m
+      tolerance: '0.1'
+      answer:
+        value: '268.3'
+        unit: N
+    - kind: sigfigs
+      value: 6.67e-11 * 5.97e24 * 1200 / 4.22e7**2
+      figures: 2
+      answer: 2.7e2
+      convention: round-once
+  answer_text: $F = \dfrac{Gm_1m_2}{d^2} = \dfrac{6.67 \times 10^{-11} \times 5.97 \times 10^{24}
+    \times 1200}{(4.22 \times 10^{7})^2} = 2.7 \times 10^{2}\,\text{N}$. The force at the orbit is far
+    smaller than the weight on the launch pad, because the satellite is much further from the centre.
+- id: p6-2-inverse-square
+  section: '6.2'
+  tier: O
+  refs:
+  - '1.5'
+  statement: Two masses attract each other with a force of 36 N. Calculate the force between them when
+    the distance between their centres is tripled.
+  answer_label: Force at three times the distance
+  check:
+    kind: all
+    checks:
+    - kind: dimensions
+      expression: F / 9
+      values:
+        F:
+          value: '36'
+          unit: N
+      answer:
+        value: '4'
+        unit: N
+    - kind: sigfigs
+      value: '36 / 9'
+      figures: 2
+      answer: '4.0'
+      convention: round-once
+  answer_text: The force follows an inverse-square law, so tripling the distance divides the force by
+    $3^2 = 9$. $F = \dfrac{36}{9} = 4.0\,\text{N}$.
+- id: p6-2-field-surface
+  section: '6.2'
+  tier: O
+  refs:
+  - '1.5'
+  statement: The Earth has a mass of 5.97e24 kg and a radius of 6.37e6 m. Calculate the gravitational
+    field strength at its surface.
+  answer_label: Field strength at the surface
+  check:
+    kind: all
+    checks:
+    - kind: dimensions
+      expression: G * M / R**2
+      values:
+        G:
+          value: '6.67e-11'
+          unit: N m^2 kg^-2
+        M:
+          value: '5.97e24'
+          unit: kg
+        R:
+          value: '6.37e6'
+          unit: m
+      tolerance: '0.01'
+      answer:
+        value: '9.81'
+        unit: N/kg
+    - kind: sigfigs
+      value: 6.67e-11 * 5.97e24 / 6.37e6**2
+      figures: 2
+      answer: '9.8'
+      convention: round-once
+  answer_text: $g = \dfrac{GM}{R^2} = \dfrac{6.67 \times 10^{-11} \times 5.97 \times 10^{24}}{(6.37
+    \times 10^{6})^2} = 9.8\,\text{N/kg}$. This is the surface value of $g$ you have used since Chapter
+    2, now derived from the mass of the Earth.
+- id: p6-2-field-orbit
+  section: '6.2'
+  tier: O
+  refs:
+  - '1.5'
+  statement: Calculate the gravitational field strength 4.22e7 m from the centre of the Earth. Take
+    M = 5.97e24 kg.
+  answer_label: Field strength at the orbit
+  check:
+    kind: all
+    checks:
+    - kind: dimensions
+      expression: G * M / d**2
+      values:
+        G:
+          value: '6.67e-11'
+          unit: N m^2 kg^-2
+        M:
+          value: '5.97e24'
+          unit: kg
+        d:
+          value: '4.22e7'
+          unit: m
+      tolerance: '0.001'
+      answer:
+        value: '0.224'
+        unit: N/kg
+    - kind: sigfigs
+      value: 6.67e-11 * 5.97e24 / 4.22e7**2
+      figures: 2
+      answer: '0.22'
+      convention: round-once
+  answer_text: $g = \dfrac{GM}{d^2} = \dfrac{6.67 \times 10^{-11} \times 5.97 \times 10^{24}}{(4.22
+    \times 10^{7})^2} = 0.22\,\text{N/kg}$. The field strength at the orbit is much smaller than the
+    surface value, but it is not zero.
+- id: p6-2-height-km
+  section: '6.2'
+  tier: O
+  refs:
+  - '1.5'
+  statement: The satellite orbits 4.22e7 m from the centre of the Earth, and the Earth's radius is
+    6.37e6 m. Calculate the height of the orbit above the surface, in kilometres.
+  answer_label: Height above the surface
+  check:
+    kind: all
+    checks:
+    - kind: dimensions
+      expression: d - R
+      values:
+        d:
+          value: '4.22e7'
+          unit: m
+        R:
+          value: '6.37e6'
+          unit: m
+      answer:
+        value: '3.583e7'
+        unit: m
+    - kind: convert
+      value: '3.583e7'
+      from: m
+      to: km
+      answer: '3.583e4'
+  answer_text: The height is the distance from the centre minus the radius, $d - R = 4.22 \times 10^{7}
+    - 6.37 \times 10^{6} = 3.583 \times 10^{7}\,\text{m}$, which is $3.58 \times 10^{4}\,\text{km}$.
+    A geostationary orbit is about 36 000 km above the surface.
+- id: p6-2-inverse-square-explain
+  section: '6.2'
+  tier: O
+  refs:
+  - '1.5'
+  statement: Explain what is meant by an inverse-square law, and state what happens to the gravitational
+    force between two masses when the distance between their centres is doubled.
+  answer_label: Inverse-square law
+  check:
+    kind: structured
+    requires:
+    - definition
+    - doubled
+    - conclusion
+    concepts:
+    - one-over-d-squared
+    - quarter
+    - never-zero
+    points:
+    - id: definition
+      text: the force is proportional to one divided by the square of the distance between the centres
+      concepts:
+      - one-over-d-squared
+    - id: doubled
+      text: doubling the distance divides the force by two squared, which is four
+      concepts:
+      - quarter
+    - id: conclusion
+      text: so the force falls to one quarter of its value, and it becomes very small but never reaches
+        zero
+      concepts:
+      - never-zero
+  answer_text: An inverse-square law means the force is proportional to $1/d^2$, where $d$ is the
+    distance between the centres. Doubling $d$ divides the force by $2^2 = 4$, so the force falls to
+    one quarter of its value. The force becomes very small at a large distance, but it never reaches
+    zero.
+- id: p6-2-distance-from-centre
+  section: '6.2'
+  tier: H
+  refs:
+  - '1.5'
+  statement: Explain why the distance in Newton's law of universal gravitation is measured from the
+    centre of a planet, and why a satellite 400 km above the surface is only a little further from the
+    centre than the surface is.
+  answer_label: Distance from the centre
+  check:
+    kind: structured
+    requires:
+    - centre
+    - add-radius
+    - comparison
+    concepts:
+    - point-mass
+    - radius
+    - inverse-square
+    points:
+    - id: centre
+      text: outside the planet, the planet acts as a point mass at its centre, so the distance is measured
+        from that centre
+      concepts:
+      - point-mass
+    - id: add-radius
+      text: the distance from the centre is the radius of the planet plus the height of the satellite
+      concepts:
+      - radius
+    - id: comparison
+      text: a height of 400 km is small compared with the radius of 6370 km, so the satellite is only
+        about 6% further from the centre than the surface
+      concepts:
+      - inverse-square
+  answer_text: Outside a sphere, the sphere attracts as if all its mass were at the centre, so the
+    distance in the law is measured from the centre. For a satellite at height $h$, the distance is
+    $d = R + h$, where $R$ is the planet's radius. A height of 400 km is small compared with the
+    Earth's radius of 6370 km, so the satellite is only about 6% further from the centre than the
+    surface. Because the force depends on $1/d^2$, the field strength falls a little, from 9.8 N/kg
+    to about 8.7 N/kg.

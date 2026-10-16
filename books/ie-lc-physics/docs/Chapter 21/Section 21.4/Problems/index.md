@@ -10,9 +10,15 @@ refs:
 kind: problems
 ---
 
-<!-- scaffold:stub -->
-
 # 21.4 Nuclear power and its alternatives — Practise
 
-> **Stub.** Independent, homework-style practice. Answers and concise solutions in a collapsed block. Mark Higher-only questions explicitly.
-> Tier: **O** · refs: 4.6
+Work independently. The questions and answers are shown together at the end.
+
+Take the molar mass of uranium-235 as 235 g/mol and Avogadro's number as
+$6.0 \times 10^{23}$ per mole. Each fission releases $3.2 \times 10^{-11}$ J. Give
+every numerical answer with its unit and to the number of significant figures the
+data support.
+
+:::problems chapter-21-practice-21.4
+
+:::answers chapter-21-practice-21.4

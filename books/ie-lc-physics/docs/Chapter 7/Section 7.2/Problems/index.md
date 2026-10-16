@@ -5,14 +5,17 @@ chapter_title: Circular motion
 section: '7.2'
 section_title: Centripetal acceleration
 tier: O
-refs:
-- '1.6'
+refs: ['1.6']
 kind: problems
 ---
 
-<!-- scaffold:stub -->
-
 # 7.2 Centripetal acceleration — Practise
 
-> **Stub.** Independent, homework-style practice. Answers and concise solutions in a collapsed block. Mark Higher-only questions explicitly.
-> Tier: **O** · refs: 1.6
+Work independently. The questions and answers are shown together at the end.
+
+Choose between $a = \dfrac{v^2}{r}$ and $a = \omega^2 r$ from the data you are given.
+State the direction of the acceleration in every answer, and give the unit m/s².
+
+:::problems chapter-07-practice-7.2
+
+:::answers chapter-07-practice-7.2
