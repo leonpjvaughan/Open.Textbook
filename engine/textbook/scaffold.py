@@ -588,7 +588,15 @@ def home_stub(book: Book, chapters: list[dict]) -> str:
     lines.append(f"{book.description}\n")
     lines.append(f"- {len(chapters)} chapters, {total_sections} sections\n")
     if book.tier_axis:
-        lines.append(f"- Tiers: {', '.join(book.tier_axis.values())}\n")
+        # The **levels of the course**, named by the code every reader studies — the
+        # same expression the colophon uses. This line used to join every axis value,
+        # so a book read `Tiers: Ordinary and Higher, Higher only`: the second half is a
+        # note about which content is Higher-only, not a level anyone enrols in, and
+        # Leaving Certificate Mathematics would have read `Foundation, Ordinary and
+        # Higher, Ordinary and Higher, Higher only`. The reader wants the levels.
+        levels = str(book.tier_axis.get(book.lower_code, "")).strip()
+        if levels:
+            lines.append(f"- Tiers: {levels}\n")
     lines.append(f"- Awarding bodies: {', '.join(book.boards) or '—'}\n")
     lines.append("## Chapters\n")
     for c in chapters:

@@ -24,7 +24,7 @@ earlier chapters.
 
 - 22 chapters, 129 sections
 
-- Tiers: Ordinary and Higher, Higher only
+- Tiers: Ordinary and Higher
 
 - Awarding bodies: SEC
 

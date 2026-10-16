@@ -3079,6 +3079,51 @@ it, and it belongs in the run.
 
 ---
 
+## 55. The home page listed "Higher only" as a tier — **done**
+
+**What was wrong.** `scaffold.home_stub` built the levels line by joining **every** value
+of the book's `tier_axis`:
+
+```python
+lines.append(f"- Tiers: {', '.join(book.tier_axis.values())}\n")
+```
+
+The axis has one entry per **code**, and the top code's entry describes Higher-only
+content rather than a level a reader enrols in. So the reader saw
+
+```
+Junior Cycle Mathematics      Tiers: Ordinary and Higher, Higher only
+Leaving Certificate Physics   Tiers: Ordinary and Higher, Higher only
+```
+
+which reads as two tiers, the second of which nobody can enrol in. Leaving Certificate
+Mathematics would have read `Foundation, Ordinary and Higher, Ordinary and Higher, Higher
+only` — the middle level named twice — and it happened to look right only because the
+home page had been hand-edited to `Foundation, Ordinary and Higher`, a third form again.
+Three different forms for one line, and the Junior Cycle page did not match the Leaving
+Certificate one.
+
+**The fix.** The line names the **levels of the course**, taken from the code every
+reader studies:
+
+```python
+levels = str(book.tier_axis.get(book.lower_code, "")).strip()
+```
+
+so it reads `Ordinary and Higher` in Ireland and `Foundation and Higher` in England —
+the same expression the colophon already uses. The four Irish home pages are corrected,
+and `tests/test_home_page.py` pins both the line and the generator so a new book cannot
+repeat it.
+
+**Done means**
+
+- Every home page's `Tiers:` line equals `tier_axis[lower_code]`.
+- No home page lists "Higher only" among its tiers.
+- `uv run python -m pytest tests/test_home_page.py -q` passes, and fails when the old
+  line is restored.
+
+---
+
 ## The Irish books — where they stand (2026-10-13)
 
 Four books were added under the `Junior Cycle` and `Leaving Certificate`
