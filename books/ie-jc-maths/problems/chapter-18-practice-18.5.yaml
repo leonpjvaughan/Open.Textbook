@@ -1,0 +1,181 @@
+# Junior Cycle Mathematics, Chapter 18, section 18.5.
+#
+# Finding an angle from two sides. `expression` applies the inverse ratio and
+# converts radians to degrees, and `answer` is the angle the reader is shown. The
+# special angles 30°, 45° and 60° come out exactly and use `evaluate`; the other
+# angles are irrational, so they use `approx` with a half-unit-of-the-last-place
+# tolerance and the reader's answer lives in `answer_text`. One record subtracts
+# from 90° for the second acute angle, and the last asks for the inverse ratio and
+# a reason, so it uses `structured`.
+chapter: 18
+oracles: [sympy, units]
+symbols: {}
+
+problems:
+- id: jc18-18.5-angle-1
+  section: '18.5'
+  tier: O
+  refs:
+  - GT.4
+  statement: 'A right-angled triangle has an opposite side of 3 cm and a hypotenuse of 5 cm. Find the angle $\theta$, correct to one decimal place.'
+  answer_label: 'Find the angle, to one decimal place.'
+  check:
+    kind: approx
+    value: asin(3/5)*180/pi
+    target: '36.9'
+    tolerance: '0.05'
+  answer_text: 'The angle is $36.9$°, to one decimal place. $\sin\theta=\frac{3}{5}=0.6$, so $\theta=\sin^{-1}(0.6)=36.869\ldots$°.'
+
+- id: jc18-18.5-angle-2
+  section: '18.5'
+  tier: O
+  refs:
+  - GT.4
+  statement: 'A right-angled triangle has an opposite side of 5 m and an adjacent side of 12 m. Find the angle $\theta$, correct to one decimal place.'
+  answer_label: 'Find the angle, to one decimal place.'
+  check:
+    kind: approx
+    value: atan(5/12)*180/pi
+    target: '22.6'
+    tolerance: '0.05'
+  answer_text: 'The angle is $22.6$°, to one decimal place. $\tan\theta=\frac{5}{12}=0.4166\ldots$, so $\theta=\tan^{-1}(0.4166\ldots)=22.619\ldots$°.'
+
+- id: jc18-18.5-angle-3
+  section: '18.5'
+  tier: O
+  refs:
+  - GT.4
+  statement: 'A right-angled triangle has an adjacent side of 8 cm and a hypotenuse of 10 cm. Find the angle $\theta$ between them, correct to one decimal place.'
+  answer_label: 'Find the angle, to one decimal place.'
+  check:
+    kind: approx
+    value: acos(8/10)*180/pi
+    target: '36.9'
+    tolerance: '0.05'
+  answer_text: 'The angle is $36.9$°, to one decimal place. $\cos\theta=\frac{8}{10}=0.8$, so $\theta=\cos^{-1}(0.8)=36.869\ldots$°.'
+
+- id: jc18-18.5-angle-4
+  section: '18.5'
+  tier: O
+  refs:
+  - GT.4
+  statement: 'A right-angled triangle has an opposite side of 7 m and an adjacent side of 7 m. Find the angle $\theta$.'
+  answer_label: 'Find the angle.'
+  check:
+    kind: evaluate
+    expression: atan(7/7)*180/pi
+    answer: '45'
+  answer_text: 'The angle is $45$°. $\tan\theta=\frac{7}{7}=1$, and $\tan^{-1}(1)=45^\circ$. An isosceles right-angled triangle has two 45° angles.'
+
+- id: jc18-18.5-angle-5
+  section: '18.5'
+  tier: O
+  refs:
+  - GT.4
+  statement: 'A right-angled triangle has an opposite side of 4 cm and a hypotenuse of 8 cm. Find the angle $\theta$.'
+  answer_label: 'Find the angle.'
+  check:
+    kind: evaluate
+    expression: asin(4/8)*180/pi
+    answer: '30'
+  answer_text: 'The angle is $30$°. $\sin\theta=\frac{4}{8}=0.5$, and $\sin^{-1}(0.5)=30^\circ$.'
+
+- id: jc18-18.5-angle-6
+  section: '18.5'
+  tier: O
+  refs:
+  - GT.4
+  statement: 'A right-angled triangle has an adjacent side of 5 m and a hypotenuse of 10 m. Find the angle $\theta$.'
+  answer_label: 'Find the angle.'
+  check:
+    kind: evaluate
+    expression: acos(5/10)*180/pi
+    answer: '60'
+  answer_text: 'The angle is $60$°. $\cos\theta=\frac{5}{10}=0.5$, and $\cos^{-1}(0.5)=60^\circ$.'
+
+- id: jc18-18.5-chapter
+  section: '18.5'
+  tier: O
+  refs:
+  - GT.4
+  statement: 'The chapter problem. The height of the school building is 9 m, and you stand 12 m from the foot. Find the angle of elevation, correct to one decimal place.'
+  answer_label: 'Find the angle of elevation, to one decimal place.'
+  check:
+    kind: approx
+    value: atan(9/12)*180/pi
+    target: '36.9'
+    tolerance: '0.05'
+  answer_text: 'The angle of elevation is $36.9$°, to one decimal place. $\tan\theta=\frac{9}{12}=0.75$, so $\theta=\tan^{-1}(0.75)=36.869\ldots$°. The clinometer in the chapter problem read 37°, which agrees.'
+
+- id: jc18-18.5-second-angle
+  section: '18.5'
+  tier: O
+  refs:
+  - GT.4
+  statement: 'One acute angle of a right-angled triangle is 36.9°. Find the other acute angle.'
+  answer_label: 'Find the other acute angle.'
+  check:
+    kind: evaluate
+    expression: 90 - 36.9
+    answer: '53.1'
+  answer_text: 'The other acute angle is $53.1$°. The two acute angles add to $90$°, because the right angle takes the other $90$° of the triangle: $90-36.9=53.1$.'
+
+- id: jc18-18.5-angle-7
+  section: '18.5'
+  tier: O
+  refs:
+  - GT.4
+  statement: 'A right-angled triangle has an opposite side of 9 cm and a hypotenuse of 15 cm. Find the angle $\theta$, correct to one decimal place.'
+  answer_label: 'Find the angle, to one decimal place.'
+  check:
+    kind: approx
+    value: asin(9/15)*180/pi
+    target: '36.9'
+    tolerance: '0.05'
+  answer_text: 'The angle is $36.9$°, to one decimal place. $\sin\theta=\frac{9}{15}=0.6$, so $\theta=\sin^{-1}(0.6)=36.869\ldots$°.'
+
+- id: jc18-18.5-angle-8
+  section: '18.5'
+  tier: O
+  refs:
+  - GT.4
+  statement: 'A right-angled triangle has an adjacent side of 9 m and a hypotenuse of 15 m. Find the angle $\theta$, correct to one decimal place.'
+  answer_label: 'Find the angle, to one decimal place.'
+  check:
+    kind: approx
+    value: acos(9/15)*180/pi
+    target: '53.1'
+    tolerance: '0.05'
+  answer_text: 'The angle is $53.1$°, to one decimal place. $\cos\theta=\frac{9}{15}=0.6$, so $\theta=\cos^{-1}(0.6)=53.130\ldots$°.'
+
+- id: jc18-18.5-angle-9
+  section: '18.5'
+  tier: O
+  refs:
+  - GT.4
+  statement: 'A right-angled triangle has an opposite side of 10 cm and an adjacent side of 10 cm. Find the angle $\theta$.'
+  answer_label: 'Find the angle.'
+  check:
+    kind: evaluate
+    expression: atan(10/10)*180/pi
+    answer: '45'
+  answer_text: 'The angle is $45$°. $\tan\theta=\frac{10}{10}=1$, and $\tan^{-1}(1)=45^\circ$. Equal opposite and adjacent sides always give a 45° angle.'
+
+- id: jc18-18.5-reason
+  section: '18.5'
+  tier: O
+  refs:
+  - GT.4
+  statement: 'A right-angled triangle has an opposite side of 6 cm and a hypotenuse of 10 cm. Explain why you use the inverse sine, and not the sine, to find the angle.'
+  answer_label: 'Explain the choice of the inverse ratio.'
+  check:
+    kind: structured
+    requires: [state-ratio, give-reason]
+    concepts: [inverse-ratio]
+    points:
+    - id: state-ratio
+      text: 'Use $\sin^{-1}$, because the two known sides give the sine of the angle.'
+      concepts: [inverse-ratio]
+    - id: give-reason
+      text: 'The sine is $\frac{6}{10}=0.6$, and the inverse sine turns that ratio back into the angle.'
+  answer_text: 'Use the inverse sine, because $\sin\theta=\frac{6}{10}=0.6$ and $\sin^{-1}(0.6)$ gives back the angle. The sine turns an angle into a ratio, and the inverse sine turns the ratio back into the angle.'

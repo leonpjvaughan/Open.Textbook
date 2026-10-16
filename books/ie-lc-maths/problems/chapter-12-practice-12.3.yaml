@@ -1,0 +1,141 @@
+# Practice set for 12.3 (strand 2, outcome 2.3). Every answer here is an exact multiple
+# of pi, so `evaluate` proves it symbolically and no tolerance is needed. The arc and
+# sector records declare the booklet items they play, because both formulas are printed
+# in the Formulae and Tables booklet.
+chapter: 12
+problems:
+  - id: lc12-3-90
+    section: '12.3'
+    tier: O
+    refs: ['2.3']
+    statement: 'Change $90^\circ$ into radians, giving the answer as a multiple of $\pi$.'
+    answer_label: 'The angle in radians'
+    check: {kind: evaluate, expression: '90 * pi / 180', answer: 'pi / 2'}
+    answer_text: >-
+      $$90 \times \frac{\pi}{180} = \frac{\pi}{2}$$
+
+      A quarter turn is $\dfrac{\pi}{2}$ radians.
+
+  - id: lc12-3-60
+    section: '12.3'
+    tier: O
+    refs: ['2.3']
+    statement: 'Change $60^\circ$ into radians, giving the answer as a multiple of $\pi$.'
+    answer_label: 'The angle in radians'
+    check: {kind: evaluate, expression: '60 * pi / 180', answer: 'pi / 3'}
+    answer_text: >-
+      $$60 \times \frac{\pi}{180} = \frac{\pi}{3}$$
+
+      Divide the $60$ and the $180$ by their highest common factor, which is $60$.
+
+  - id: lc12-3-rad-to-deg
+    section: '12.3'
+    tier: O
+    refs: ['2.3']
+    statement: 'Change $\dfrac{\pi}{4}$ radians into degrees.'
+    answer_label: 'The angle in degrees'
+    check: {kind: evaluate, expression: '(pi / 4) * 180 / pi', answer: '45'}
+    answer_text: >-
+      $$\frac{\pi}{4} \times \frac{180}{\pi} = \frac{180}{4} = 45^\circ$$
+
+      The $\pi$ cancels, which is what makes the conversion exact.
+
+  - id: lc12-3-radar
+    section: '12.3'
+    tier: O
+    refs: ['2.3']
+    statement: >-
+      A radar at a Coast Guard station sweeps from north round to a yacht, a turn of
+      $48^\circ$. Change $48^\circ$ into radians, giving the answer as a multiple of
+      $\pi$.
+    answer_label: 'The sweep in radians'
+    check: {kind: evaluate, expression: '48 * pi / 180', answer: '4 * pi / 15'}
+    answer_text: >-
+      $$48 \times \frac{\pi}{180} = \frac{48\pi}{180} = \frac{4\pi}{15}$$
+
+      Divide the $48$ and the $180$ by $12$. As a decimal this is about $0.84$ radians.
+
+  - id: lc12-3-arc
+    section: '12.3'
+    tier: O
+    refs: ['2.3']
+    plays: arc-length-radians
+    statement: >-
+      A sector of a circle has radius $6$ cm and angle $\dfrac{\pi}{3}$ radians. Find the
+      length of the arc, giving the answer as a multiple of $\pi$.
+    answer_label: 'The arc length'
+    check: {kind: evaluate, expression: '6 * (pi / 3)', answer: '2 * pi'}
+    answer_text: >-
+      The booklet gives $l = r\theta$ when the angle is in radians.
+
+      $$l = 6 \times \frac{\pi}{3} = 2\pi \approx 6.28 \text{ cm}$$
+
+  - id: lc12-3-sector
+    section: '12.3'
+    tier: O
+    refs: ['2.3']
+    plays: sector-area-radians
+    statement: >-
+      A sector of a circle has radius $6$ cm and angle $\dfrac{\pi}{3}$ radians. Find the
+      area of the sector, giving the answer as a multiple of $\pi$.
+    answer_label: 'The sector area'
+    check: {kind: evaluate, expression: '(1/2) * 6**2 * (pi / 3)', answer: '6 * pi'}
+    answer_text: >-
+      The booklet gives $A = \tfrac{1}{2}r^2\theta$ when the angle is in radians.
+
+      $$A = \tfrac{1}{2} \times 36 \times \frac{\pi}{3} = 6\pi \approx 18.85 \text{ cm}^2$$
+
+      The sector is one sixth of the circle, and one sixth of $36\pi$ is $6\pi$. That is
+      a check on the formula.
+
+  - id: lc12-3-tide-phase
+    section: '12.3'
+    tier: O
+    refs: ['2.3']
+    statement: >-
+      The depth of water over a sandbank is modelled by $d = 1.4 + 1.2\sin(30^\circ t)$,
+      where $t$ is in hours. Change the angle $30^\circ$ into radians, giving the answer
+      as a multiple of $\pi$.
+    answer_label: 'The phase angle in radians'
+    check: {kind: evaluate, expression: '30 * pi / 180', answer: 'pi / 6'}
+    answer_text: >-
+      $$30 \times \frac{\pi}{180} = \frac{\pi}{6}$$
+
+      The tide phase advances by $\dfrac{\pi}{6}$ radians each hour. After $12$ hours it
+      has advanced by $2\pi$ radians, which is one full turn, so the tide repeats every
+      $12$ hours.
+
+  - id: lc12-3-why-radians
+    section: '12.3'
+    tier: O
+    refs: ['2.3']
+    statement: >-
+      Explain what a radian is, and state the exact relationship between radians and
+      degrees.
+    answer_label: 'The definition and the relationship'
+    check:
+      kind: structured
+      requires: [define-radian, state-relationship]
+      concepts: [radian-measure]
+      points:
+        - id: define-radian
+          text: >-
+            One radian is the angle at the centre of a circle that cuts off an arc equal
+            in length to the radius.
+          concepts: [radian-measure]
+        - id: state-relationship
+          text: >-
+            A full turn is 2 pi radians and also 360 degrees, so pi radians equals 180
+            degrees.
+          concepts: [radian-measure]
+    answer_text: >-
+      One radian is the angle at the centre of a circle that cuts off an arc equal in
+      length to the radius.
+
+      The circumference is $2\pi r$, which is $2\pi$ radii, so a full turn is $2\pi$
+      radians. A full turn is also $360^\circ$, so half a turn gives
+
+      $$\pi \text{ radians} = 180^\circ$$
+
+      Radians are the natural measure, because the arc and sector formulas need no
+      factor of $360$.

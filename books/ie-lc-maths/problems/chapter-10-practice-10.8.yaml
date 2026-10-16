@@ -1,0 +1,164 @@
+# Practice set for 10.8 (strand 1, outcome 1.3, Higher). Each probability is computed by
+# `sympy.stats` from the binomial model itself, so the oracle proves the binomial formula
+# and the arithmetic together. The final record is `structured`: it proves the conditions
+# are named in order, and nothing about whether the choice of model suits a context.
+chapter: 10
+problems:
+  - id: lc10-8-identify
+    section: '10.8'
+    tier: H
+    refs: ['1.3']
+    statement: >-
+      A biased coin lands on a head with probability $0.3$. It is tossed $10$ times. Write
+      down the distribution of the number of heads.
+    answer_label: 'The distribution'
+    check:
+      kind: structured
+      requires: [trials, probability]
+      concepts: [n-is-10, p-is-three-tenths]
+      points:
+        - id: trials
+          text: there are 10 independent tosses, so n equals 10
+          concepts: [n-is-10]
+        - id: probability
+          text: the probability of a head is 0.3 every time, so p equals 0.3 and the distribution is B(10, 0.3)
+          concepts: [p-is-three-tenths]
+    answer_text: >-
+      There are $n = 10$ independent tosses, and the probability of a head is
+      $p = 0.3$ on every toss. So the number of heads has the binomial distribution
+      $X \sim B(10, 0.3)$.
+
+  - id: lc10-8-five-three-tenths
+    section: '10.8'
+    tier: H
+    refs: ['1.3']
+    statement: 'The random variable $X \sim B(5, 0.3)$. Find $P(X = 2)$.'
+    answer_label: 'The probability'
+    check:
+      kind: distribution
+      distribution: binomial
+      parameters: {n: 5, p: '3/10'}
+      query: {kind: exactly, value: 2}
+      answer: '3087/10000'
+    answer_text: >-
+      $P(X = 2) = \dbinom{5}{2}(0.3)^2(0.7)^3 = 10 \times 0.09 \times 0.343 = 0.3087$.
+      The two powers add to $5$, which is $n$.
+
+  - id: lc10-8-six-quarter
+    section: '10.8'
+    tier: H
+    refs: ['1.3']
+    statement: 'The random variable $X \sim B(6, \tfrac14)$. Find $P(X = 2)$.'
+    answer_label: 'The probability'
+    check:
+      kind: distribution
+      distribution: binomial
+      parameters: {n: 6, p: '1/4'}
+      query: {kind: exactly, value: 2}
+      answer: '1215/4096'
+    answer_text: >-
+      $P(X = 2) = \dbinom{6}{2}\left(\tfrac14\right)^2\left(\tfrac34\right)^4
+      = 15 \times \tfrac{1}{16} \times \tfrac{81}{256} = \tfrac{1215}{4096}$.
+
+  - id: lc10-8-eight-half
+    section: '10.8'
+    tier: H
+    refs: ['1.3']
+    statement: 'The random variable $X \sim B(8, \tfrac12)$. Find $P(X = 5)$.'
+    answer_label: 'The probability'
+    check:
+      kind: distribution
+      distribution: binomial
+      parameters: {n: 8, p: '1/2'}
+      query: {kind: exactly, value: 5}
+      answer: '7/32'
+    answer_text: >-
+      $P(X = 5) = \dbinom{8}{5}\left(\tfrac12\right)^8 = 56 \times \tfrac{1}{256}
+      = \tfrac{56}{256} = \tfrac{7}{32}$.
+
+  - id: lc10-8-lucky-dip
+    section: '10.8'
+    tier: H
+    refs: ['1.3']
+    statement: >-
+      A bag holds $5$ red and $3$ blue counters. A counter is drawn, replaced, and the
+      draw is repeated $6$ times. Find the probability of exactly $4$ red counters.
+    answer_label: 'The probability'
+    check:
+      kind: distribution
+      distribution: binomial
+      parameters: {n: 6, p: '5/8'}
+      query: {kind: exactly, value: 4}
+      answer: '84375/262144'
+    answer_text: >-
+      Each draw is independent because the counter is replaced, and
+      $p = \dfrac{5}{8}$ every time. So $X \sim B\left(6, \tfrac58\right)$ and
+      $P(X = 4) = \dbinom{6}{4}\left(\tfrac58\right)^4\left(\tfrac38\right)^2
+      = \tfrac{84375}{262144} \approx 0.3219$.
+
+  - id: lc10-8-at-least-one
+    section: '10.8'
+    tier: H
+    refs: ['1.3']
+    statement: 'The random variable $X \sim B(8, \tfrac14)$. Find $P(X \ge 1)$.'
+    answer_label: 'The probability'
+    check:
+      kind: distribution
+      distribution: binomial
+      parameters: {n: 8, p: '1/4'}
+      query: {kind: at_least, value: 1}
+      answer: '58975/65536'
+    answer_text: >-
+      Use the complement: $P(X \ge 1) = 1 - P(X = 0)
+      = 1 - \left(\tfrac34\right)^8 = 1 - \tfrac{6561}{65536}
+      = \tfrac{58975}{65536} \approx 0.8999$. The complement is quicker than adding the
+      eight separate probabilities.
+
+  - id: lc10-8-none
+    section: '10.8'
+    tier: H
+    refs: ['1.3']
+    statement: 'The random variable $X \sim B(10, 0.2)$. Find $P(X = 0)$.'
+    answer_label: 'The probability'
+    check:
+      kind: distribution
+      distribution: binomial
+      parameters: {n: 10, p: '1/5'}
+      query: {kind: exactly, value: 0}
+      answer: '1048576/9765625'
+    answer_text: >-
+      $P(X = 0) = \dbinom{10}{0}(0.2)^0(0.8)^{10} = (0.8)^{10}
+      = \tfrac{1048576}{9765625} \approx 0.1074$. Every trial is a failure.
+
+  - id: lc10-8-conditions
+    section: '10.8'
+    tier: H
+    refs: ['1.3']
+    statement: 'State the conditions for a random variable to have a binomial distribution.'
+    answer_label: 'The conditions'
+    check:
+      kind: structured
+      requires: [fixed-trials, two-outcomes, constant-probability, independence]
+      concepts: [fixed-n, success-failure, same-p, independent-trials]
+      points:
+        - id: fixed-trials
+          text: there is a fixed number n of trials
+          concepts: [fixed-n]
+        - id: two-outcomes
+          text: each trial has two outcomes, a success or a failure
+          concepts: [success-failure]
+        - id: constant-probability
+          text: the probability of success p is the same on every trial
+          concepts: [same-p]
+        - id: independence
+          text: the trials are independent, so the outcome of one does not change the probability on the next
+          concepts: [independent-trials]
+    answer_text: >-
+      1. There is a fixed number of trials, $n$.
+      2. Each trial has two outcomes: a success or a failure.
+      3. The probability of success, $p$, is the same on every trial.
+      4. The trials are independent, so one outcome does not change the chance on the
+      next trial.
+
+      When all four hold, the number of successes has the binomial distribution
+      $B(n, p)$.

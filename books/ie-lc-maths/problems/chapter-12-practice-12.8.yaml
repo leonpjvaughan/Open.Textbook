@@ -1,0 +1,173 @@
+# Practice set for 12.8 (strand 2, outcome 2.3). Every formula used here is printed in the
+# Formulae and Tables booklet, so each record declares the item it plays. The syllabus
+# asks a Higher level candidate to derive formulae 1 to 9, so the final record is a
+# `structured` check of the derivation of the Pythagorean identity from the unit circle.
+# All answers are exact, so `evaluate` proves them symbolically.
+chapter: 12
+problems:
+  - id: lc12-8-cos-acute
+    section: '12.8'
+    tier: H
+    refs: ['2.3']
+    plays: pythagoras-identity
+    statement: >-
+      Given that $\sin A = 0.6$ and $A$ is acute, find $\cos A$.
+    answer_label: '$\cos A$'
+    check: {kind: evaluate, expression: 'sqrt(1 - 0.6**2)', answer: '0.8'}
+    answer_text: >-
+      From the identity in the booklet,
+
+      $$\cos^2A = 1 - \sin^2A = 1 - 0.36 = 0.64 \qquad \cos A = \pm 0.8$$
+
+      $A$ is acute, so the cosine is positive and $\cos A = 0.8$.
+
+      The identity gives the size of the answer. The quadrant gives the sign, and without
+      it there would be two answers.
+
+  - id: lc12-8-tan-acute
+    section: '12.8'
+    tier: H
+    refs: ['2.3']
+    plays: tan-definition
+    statement: >-
+      Given that $\sin A = 0.6$ and $A$ is acute, find $\tan A$.
+    answer_label: '$\tan A$'
+    check: {kind: evaluate, expression: '0.6 / sqrt(1 - 0.6**2)', answer: '0.75'}
+    answer_text: >-
+      The booklet gives $\tan A = \dfrac{\sin A}{\cos A}$. From the last answer,
+      $\cos A = 0.8$, so
+
+      $$\tan A = \frac{0.6}{0.8} = 0.75$$
+
+  - id: lc12-8-cos42
+    section: '12.8'
+    tier: H
+    refs: ['2.3']
+    plays: pythagoras-identity
+    statement: >-
+      A survey gives $\sin 42^\circ = 0.6691$. Use an identity to find $\cos 42^\circ$,
+      correct to four decimal places.
+    answer_label: '$\cos 42^\circ$'
+    check:
+      kind: approx
+      value: 'sqrt(1 - 0.6691**2)'
+      target: '0.7432'
+      tolerance: '0.001'
+    answer_text: >-
+      $$\cos^2 42^\circ = 1 - 0.6691^2 = 1 - 0.4477 = 0.5523$$
+
+      $$\cos 42^\circ = \sqrt{0.5523} = 0.7432$$
+
+      The angle is acute, so the positive root is the one to take.
+
+  - id: lc12-8-tan42
+    section: '12.8'
+    tier: H
+    refs: ['2.3']
+    plays: tan-definition
+    statement: >-
+      Using $\sin 42^\circ = 0.6691$ and $\cos 42^\circ = 0.7432$, find $\tan 42^\circ$,
+      correct to four decimal places.
+    answer_label: '$\tan 42^\circ$'
+    check:
+      kind: approx
+      value: '0.6691 / 0.7432'
+      target: '0.9003'
+      tolerance: '0.001'
+    answer_text: >-
+      $$\tan 42^\circ = \frac{\sin 42^\circ}{\cos 42^\circ} = \frac{0.6691}{0.7432} = 0.9003$$
+
+      A calculator agrees, which is the check.
+
+  - id: lc12-8-sin-double
+    section: '12.8'
+    tier: H
+    refs: ['2.3']
+    plays: sin-double
+    statement: >-
+      Given that $\sin A = \dfrac{3}{5}$ and $A$ is acute, find $\sin 2A$ as a fraction.
+    answer_label: '$\sin 2A$'
+    check: {kind: evaluate, expression: '2 * (3/5) * (4/5)', answer: '24 / 25'}
+    answer_text: >-
+      From the identity, $\cos A = \dfrac{4}{5}$, because $A$ is acute. The booklet gives
+
+      $$\sin 2A = 2\sin A\cos A = 2 \times \frac{3}{5} \times \frac{4}{5} = \frac{24}{25}$$
+
+      Check that the answer lies between $-1$ and $1$: $\dfrac{24}{25} = 0.96$, which it
+      does.
+
+  - id: lc12-8-cos-double
+    section: '12.8'
+    tier: H
+    refs: ['2.3']
+    plays: cos-double
+    statement: >-
+      Given that $\sin A = \dfrac{3}{5}$ and $A$ is acute, find $\cos 2A$ as a fraction.
+    answer_label: '$\cos 2A$'
+    check: {kind: evaluate, expression: '(4/5)**2 - (3/5)**2', answer: '7 / 25'}
+    answer_text: >-
+      $$\cos 2A = \cos^2A - \sin^2A = \frac{16}{25} - \frac{9}{25} = \frac{7}{25}$$
+
+      The other form gives the same answer:
+      $1 - 2\sin^2A = 1 - \dfrac{18}{25} = \dfrac{7}{25}$. Both agree, which is a check
+      on the algebra.
+
+  - id: lc12-8-cos-sum
+    section: '12.8'
+    tier: H
+    refs: ['2.3']
+    plays: cos-sum
+    statement: >-
+      $A$ and $B$ are acute, with $\sin A = \dfrac{3}{5}$ and $\cos B = \dfrac{5}{13}$.
+      Find $\cos(A + B)$ as a fraction.
+    answer_label: '$\cos(A + B)$'
+    check:
+      kind: evaluate
+      expression: '(4/5) * (5/13) - (3/5) * (12/13)'
+      answer: '-16 / 65'
+    answer_text: >-
+      First find the two values the formula needs. From the identity,
+      $\cos A = \dfrac{4}{5}$ and $\sin B = \dfrac{12}{13}$.
+
+      The booklet gives $\cos(A+B) = \cos A\cos B - \sin A\sin B$:
+
+      $$\cos(A + B) = \frac{4}{5} \times \frac{5}{13} - \frac{3}{5} \times \frac{12}{13} = \frac{20}{65} - \frac{36}{65} = -\frac{16}{65}$$
+
+      The answer is negative, so $A + B$ is obtuse. The subtraction in the formula is what
+      produces it.
+
+  - id: lc12-8-derive-identity
+    section: '12.8'
+    tier: H
+    refs: ['2.3']
+    statement: >-
+      Explain how $\cos^2A + \sin^2A = 1$ follows from the unit circle.
+    answer_label: 'The derivation'
+    check:
+      kind: structured
+      requires: [point-coordinates, apply-pythagoras]
+      concepts: [unit-circle-identity]
+      points:
+        - id: point-coordinates
+          text: >-
+            On the unit circle the point at angle A has coordinates (cos A, sin A), so
+            cos A is the horizontal distance from the origin and sin A is the vertical
+            distance.
+          concepts: [unit-circle-identity]
+        - id: apply-pythagoras
+          text: >-
+            The point is one unit from the origin, because the circle has radius 1.
+            Pythagoras' theorem on those two distances gives cos squared A plus sin
+            squared A equals 1 squared, which is 1.
+          concepts: [unit-circle-identity]
+    answer_text: >-
+      On the unit circle, the point at angle $A$ is $(\cos A, \sin A)$. So $\cos A$ is the
+      horizontal distance from the origin and $\sin A$ is the vertical distance.
+
+      The point lies on a circle of radius $1$, so its distance from the origin is $1$.
+      Pythagoras' theorem on the horizontal and vertical distances gives
+
+      $$\cos^2A + \sin^2A = 1^2 = 1$$
+
+      The identity is Pythagoras' theorem on the unit circle. That is why it holds for
+      every angle, not only for acute ones.

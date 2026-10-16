@@ -1,0 +1,193 @@
+# Junior Cycle Mathematics, Chapter 17, section 17.7.
+#
+# The rate of change of a straight-line graph is its slope, so every numeric
+# record is an exact `evaluate` on change in y divided by change in x. The
+# starting value is the y-intercept, found by setting x = 0. One record asks what
+# a flat part of a graph means; an interpretation cannot be proved by a CAS, so
+# it uses `structured`.
+chapter: 17
+oracles: [sympy, units]
+symbols: {}
+
+problems:
+- id: jc17-17.7-rate-1
+  section: '17.7'
+  tier: O
+  refs:
+  - GT.5
+  statement: 'A graph shows distance in metres against time in minutes. A walker covers 240 m in 4 minutes at a steady pace. Find the rate of change.'
+  answer_label: 'Find the rate of change.'
+  check:
+    kind: evaluate
+    expression: 240/4
+    answer: '60'
+  answer_text: 'The rate of change is $60$ m per minute. Divide the change in distance by the change in time: $240\div4=60$. On a distance-time graph the rate of change is the speed.'
+
+- id: jc17-17.7-rate-rest
+  section: '17.7'
+  tier: O
+  refs:
+  - GT.5
+  statement: 'A walker stays at a distance of 240 m from minute 4 to minute 6. Find the rate of change during those 2 minutes.'
+  answer_label: 'Find the rate of change during the rest.'
+  check:
+    kind: evaluate
+    expression: (240-240)/(6-4)
+    answer: '0'
+  answer_text: 'The rate of change is $0$ m per minute. The distance does not change: $240-240=0$. The graph is flat for those 2 minutes, and a flat part of a distance-time graph means the walker is resting.'
+
+- id: jc17-17.7-rate-2
+  section: '17.7'
+  tier: O
+  refs:
+  - GT.5
+  statement: 'From minute 6 to minute 10 the walker moves from 240 m to 400 m from the start. Find the rate of change.'
+  answer_label: 'Find the rate of change.'
+  check:
+    kind: evaluate
+    expression: (400-240)/(10-6)
+    answer: '40'
+  answer_text: 'The rate of change is $40$ m per minute. The distance rises by $400-240=160$ m over $10-6=4$ minutes. Then $160\div4=40$. This part of the graph is less steep than the first part, so the walker is slower.'
+
+- id: jc17-17.7-rate-cost
+  section: '17.7'
+  tier: O
+  refs:
+  - GT.5
+  statement: 'A graph of the cost of apples is a straight line through $(0,0)$ and $(3,6)$, where the cost is in euro and the mass is in kilograms. Find the rate of change.'
+  answer_label: 'Find the rate of change.'
+  check:
+    kind: evaluate
+    expression: (6-0)/(3-0)
+    answer: '2'
+  answer_text: 'The rate of change is $2$ euro per kilogram. The line rises from 0 to 6 euro as the mass goes from 0 to 3 kg, so $6\div3=2$. The rate is the price of one kilogram.'
+
+- id: jc17-17.7-rate-bill
+  section: '17.7'
+  tier: O
+  refs:
+  - GT.5
+  statement: 'A phone bill graph passes through $(0,10)$ and $(5,25)$, with the cost in euro and the time in hours. Find the rate of change and the starting value.'
+  answer_label: 'Find the rate of change and the starting value.'
+  check:
+    kind: all
+    checks:
+    - kind: evaluate
+      expression: (25-10)/(5-0)
+      answer: '3'
+    - kind: evaluate
+      expression: 10-3*0
+      answer: '10'
+  answer_text: 'The rate of change is $3$ euro per hour, and the starting value is $10$ euro. The cost rises by $25-10=15$ euro over 5 hours, so $15\div5=3$. The starting value is the $y$-intercept: at $x=0$, the cost is 10 euro.'
+
+- id: jc17-17.7-rate-slope
+  section: '17.7'
+  tier: O
+  refs:
+  - GT.5
+  statement: 'A straight-line graph passes through $(1,5)$ and $(4,11)$. Find its slope, and say what it means if the graph is distance in metres against time in seconds.'
+  answer_label: 'Find the slope and say what it means.'
+  check:
+    kind: evaluate
+    expression: (11-5)/(4-1)
+    answer: '2'
+  answer_text: 'The slope is 2. Divide the change in the vertical amount by the change in the horizontal amount: $(11-5)\div(4-1)=6\div3=2$. On a distance-time graph the slope is the speed, so the object moves at 2 m per second.'
+
+- id: jc17-17.7-rate-tank
+  section: '17.7'
+  tier: O
+  refs:
+  - GT.5
+  statement: 'A graph shows the depth of water in a tank. The depth rises from 0 cm at 0 minutes to 45 cm at 9 minutes. Find the rate of change.'
+  answer_label: 'Find the rate of change.'
+  check:
+    kind: evaluate
+    expression: 45/9
+    answer: '5'
+  answer_text: 'The rate of change is $5$ cm per minute. The depth rises by 45 cm in 9 minutes, so $45\div9=5$. The water rises at a steady 5 cm each minute while the graph is a straight line.'
+
+- id: jc17-17.7-flat
+  section: '17.7'
+  tier: O
+  refs:
+  - GT.5
+  statement: 'A distance-time graph is flat between $t=9$ and $t=12$ minutes. Explain what the flat part tells you about the journey.'
+  answer_label: 'Explain what the flat part means.'
+  check:
+    kind: structured
+    requires: [say-no-change, give-reason]
+    concepts: [zero-rate]
+    points:
+    - id: say-no-change
+      text: 'The distance from the start does not change between 9 and 12 minutes, so the person is not moving.'
+      concepts: [zero-rate]
+    - id: give-reason
+      text: 'The rate of change is the slope, and a flat line has slope 0, so the speed is 0.'
+  answer_text: 'The flat part means the person is resting. The distance stays the same, so the rate of change is 0. The slope of a flat line is 0, and on a distance-time graph the slope is the speed, so the speed is 0 for those 3 minutes.'
+
+- id: jc17-17.7-faster
+  section: '17.7'
+  tier: O
+  refs:
+  - GT.5
+  statement: 'Two straight lines are drawn on one distance-time graph. Line A goes through $(0,0)$ and $(2,10)$. Line B goes through $(0,0)$ and $(4,10)$. Which line shows the faster speed? Explain.'
+  answer_label: 'Say which line is faster and explain.'
+  check:
+    kind: all
+    checks:
+    - kind: evaluate
+      expression: 10/2
+      answer: '5'
+    - kind: evaluate
+      expression: 10/4
+      answer: 5/2
+  answer_text: 'Line A shows the faster speed. Its rate is $10\div2=5$, and the rate of line B is $10\div4=2.5$. Both cover 10 m, but line A does it in 2 s rather than 4 s, so line A is steeper and faster.'
+
+- id: jc17-17.7-rate-fall
+  section: '17.7'
+  tier: O
+  refs:
+  - GT.5
+  statement: 'A straight-line graph passes through $(0,20)$ and $(5,5)$. Find its rate of change, and say whether the amount is rising or falling.'
+  answer_label: 'Find the rate of change and say whether it rises or falls.'
+  check:
+    kind: evaluate
+    expression: (5-20)/(5-0)
+    answer: '-3'
+  answer_text: 'The rate of change is $-3$ per unit. The change is $5-20=-15$ over 5 units, so $-15\div5=-3$. The rate is negative, so the amount falls by 3 for each step to the right, and the graph goes down.'
+
+- id: jc17-17.7-park-keeper
+  section: '17.7'
+  tier: O
+  refs:
+  - GT.5
+  statement: 'A park keeper walks 10 m in the first 2 minutes, then walks 24 m in the next 4 minutes. Find the rate of change in each part.'
+  answer_label: 'Find the rate of change in each part.'
+  check:
+    kind: all
+    checks:
+    - kind: evaluate
+      expression: 10/2
+      answer: '5'
+    - kind: evaluate
+      expression: 24/4
+      answer: '6'
+  answer_text: 'The rates are $5$ m per minute and then $6$ m per minute. Divide each distance by its time: $10\div2=5$ and $24\div4=6$. The second part of the graph is steeper, so the keeper walks faster in the second part.'
+
+- id: jc17-17.7-taxi
+  section: '17.7'
+  tier: O
+  refs:
+  - GT.5
+  statement: 'A graph of a taxi fare is a straight line through $(0,4)$ and $(6,22)$, with the fare in euro and the distance in kilometres. Find the rate of change and the starting fare.'
+  answer_label: 'Find the rate of change and the starting fare.'
+  check:
+    kind: all
+    checks:
+    - kind: evaluate
+      expression: (22-4)/(6-0)
+      answer: '3'
+    - kind: evaluate
+      expression: 4-3*0
+      answer: '4'
+  answer_text: 'The rate of change is $3$ euro per kilometre, and the starting fare is $4$ euro. The fare rises by $22-4=18$ euro over 6 km, so $18\div6=3$. The starting fare is the $y$-intercept, the fare at 0 km, which is 4 euro.'

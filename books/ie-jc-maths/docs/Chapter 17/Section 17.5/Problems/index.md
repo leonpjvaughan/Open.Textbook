@@ -10,9 +10,13 @@ refs:
 kind: problems
 ---
 
-<!-- scaffold:stub -->
-
 # 17.5 The equation of a line — Practise
 
-> **Stub.** Independent, homework-style practice. Answers and concise solutions in a collapsed block. Mark Higher-only questions explicitly.
-> Tier: **O** · refs: GT.5
+Work independently. The questions and answers are shown together at the end.
+
+Find the slope first, then use $c=y-mx$ to find the intercept. Check your equation
+by substituting the point you were given.
+
+:::problems chapter-17-practice-17.5
+
+:::answers chapter-17-practice-17.5

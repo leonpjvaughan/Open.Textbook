@@ -1,0 +1,188 @@
+# Junior Cycle Mathematics, Chapter 17, section 17.1.
+#
+# A point is named by an ordered pair, so a "write the coordinates" answer is
+# checked as the two numbers the movement produces: `expression` performs the
+# move and `answer` is the coordinate the reader is shown. A quadrant is decided
+# by the signs of the coordinates, so those records check the two signs with
+# `compare`. One record asks for an axis and a reason; a choice cannot be proved
+# by a CAS, so it uses `structured`, which proves only that the model answer
+# names the axis and gives a reason, and nothing more.
+chapter: 17
+oracles: [sympy, units]
+symbols: {}
+
+problems:
+- id: jc17-17.1-coord-1
+  section: '17.1'
+  tier: O
+  refs:
+  - GT.5
+  statement: 'A point is 7 units to the right of the origin and 3 units up. Write its coordinates.'
+  answer_label: 'Write the coordinates.'
+  check:
+    kind: all
+    checks:
+    - kind: evaluate
+      expression: 0+7
+      answer: '7'
+    - kind: evaluate
+      expression: 0+3
+      answer: '3'
+  answer_text: 'The point is $(7,3)$. Start at the origin, move 7 across to the right, then 3 up. The first number of the pair is the distance across, and the second is the distance up.'
+
+- id: jc17-17.1-coord-2
+  section: '17.1'
+  tier: O
+  refs:
+  - GT.5
+  statement: 'A point is at $(2,6)$. A second point is 5 units to the left of it. Write the coordinates of the second point.'
+  answer_label: 'Write the coordinates of the second point.'
+  check:
+    kind: all
+    checks:
+    - kind: evaluate
+      expression: 2-5
+      answer: '-3'
+    - kind: evaluate
+      expression: 6
+      answer: '6'
+  answer_text: 'The second point is $(-3,6)$. Moving left makes the $x$-coordinate smaller, so work out $2-5=-3$. The height does not change, so the $y$-coordinate stays 6.'
+
+- id: jc17-17.1-coord-3
+  section: '17.1'
+  tier: O
+  refs:
+  - GT.5
+  statement: 'A point is at $(-1,4)$. It moves 6 units down. Write its new coordinates.'
+  answer_label: 'Write the new coordinates.'
+  check:
+    kind: all
+    checks:
+    - kind: evaluate
+      expression: -1
+      answer: '-1'
+    - kind: evaluate
+      expression: 4-6
+      answer: '-2'
+  answer_text: 'The new point is $(-1,-2)$. Moving down makes the $y$-coordinate smaller, so work out $4-6=-2$. The $x$-coordinate does not change.'
+
+- id: jc17-17.1-quadrant-1
+  section: '17.1'
+  tier: O
+  refs:
+  - GT.5
+  statement: 'In which quadrant does the point $(-4,5)$ lie?'
+  answer_label: 'Name the quadrant.'
+  check:
+    kind: all
+    checks:
+    - kind: compare
+      lhs: '-4'
+      relation: '<'
+      rhs: '0'
+    - kind: compare
+      lhs: '5'
+      relation: '>'
+      rhs: '0'
+  answer_text: 'The second quadrant. Its $x$-coordinate is negative, so the point is to the left of the $y$-axis. Its $y$-coordinate is positive, so it is above the $x$-axis. Left and up is the second quadrant.'
+
+- id: jc17-17.1-quadrant-2
+  section: '17.1'
+  tier: O
+  refs:
+  - GT.5
+  statement: 'In which quadrant does the point $(3,-8)$ lie?'
+  answer_label: 'Name the quadrant.'
+  check:
+    kind: all
+    checks:
+    - kind: compare
+      lhs: '3'
+      relation: '>'
+      rhs: '0'
+    - kind: compare
+      lhs: '-8'
+      relation: '<'
+      rhs: '0'
+  answer_text: 'The fourth quadrant. Its $x$-coordinate is positive, so the point is to the right of the $y$-axis. Its $y$-coordinate is negative, so it is below the $x$-axis. Right and down is the fourth quadrant.'
+
+- id: jc17-17.1-axis-1
+  section: '17.1'
+  tier: O
+  refs:
+  - GT.5
+  statement: 'On which axis does the point $(0,9)$ lie? Give a reason.'
+  answer_label: 'Name the axis and give a reason.'
+  check:
+    kind: structured
+    requires: [name-axis, give-reason]
+    concepts: [y-axis]
+    points:
+    - id: name-axis
+      text: 'The point $(0,9)$ lies on the $y$-axis, because its $x$-coordinate is 0.'
+      concepts: [y-axis]
+    - id: give-reason
+      text: 'A point lies on the $y$-axis when $x=0$. A point lies on the $x$-axis when $y=0$.'
+  answer_text: 'It lies on the $y$-axis. A point is on the $y$-axis when its $x$-coordinate is 0, and here $x=0$. The $y$-coordinate is 9, so the point is 9 units up the $y$-axis.'
+
+- id: jc17-17.1-rect-1
+  section: '17.1'
+  tier: O
+  refs:
+  - GT.5
+  statement: 'The points $A(1,1)$, $B(5,1)$ and $C(5,4)$ are three corners of a rectangle $ABCD$. Write the coordinates of the fourth corner $D$.'
+  answer_label: 'Write the coordinates of D.'
+  check:
+    kind: all
+    checks:
+    - kind: evaluate
+      expression: 5-4
+      answer: '1'
+    - kind: evaluate
+      expression: 1+3
+      answer: '4'
+  answer_text: 'The fourth corner is $D(1,4)$. The rectangle is 4 units wide, so from $C(5,4)$ move 4 units left: $5-4=1$. It is 3 units tall, so from $A(1,1)$ move 3 units up: $1+3=4$. The two steps agree, so $D$ is $(1,4)$.'
+
+- id: jc17-17.1-scale-1
+  section: '17.1'
+  tier: O
+  refs:
+  - GT.5
+  statement: 'On a grid, one square represents 2 metres. A point is plotted 5 squares to the right of the origin. How many metres to the right is it?'
+  answer_label: 'Write the distance in metres.'
+  check:
+    kind: evaluate
+    expression: 5*2
+    answer: '10'
+  answer_text: 'It is $10$ m to the right. Each square stands for 2 m, and there are 5 squares, so work out $5\times2=10$. Read the scale before you read the coordinates, or every answer will be wrong by the same factor.'
+
+- id: jc17-17.1-scale-2
+  section: '17.1'
+  tier: O
+  refs:
+  - GT.5
+  statement: 'On a grid, one square represents 0.5 m. A point is plotted 6 squares above the origin. How many metres above the origin is it?'
+  answer_label: 'Write the distance in metres.'
+  check:
+    kind: evaluate
+    expression: 6*0.5
+    answer: '3'
+  answer_text: 'It is $3$ m above the origin. Each square stands for 0.5 m, so work out $6\times0.5=3$. A scale smaller than 1 m makes the distance in metres smaller than the number of squares.'
+
+- id: jc17-17.1-park-1
+  section: '17.1'
+  tier: O
+  refs:
+  - GT.5
+  statement: 'The park gate is at $G(1,2)$. A signpost stands 5 m to the right of the gate and 3 m above it. Write the coordinates of the signpost.'
+  answer_label: 'Write the coordinates of the signpost.'
+  check:
+    kind: all
+    checks:
+    - kind: evaluate
+      expression: 1+5
+      answer: '6'
+    - kind: evaluate
+      expression: 2+3
+      answer: '5'
+  answer_text: 'The signpost is at $(6,5)$. Move 5 to the right of the gate: $1+5=6$. Move 3 up: $2+3=5$. Each unit on the grid is 1 m, so the grid coordinates are the distances in metres.'

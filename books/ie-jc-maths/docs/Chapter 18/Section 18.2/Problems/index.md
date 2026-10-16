@@ -10,9 +10,13 @@ refs:
 kind: problems
 ---
 
-<!-- scaffold:stub -->
-
 # 18.2 Finding a missing side — Practise
 
-> **Stub.** Independent, homework-style practice. Answers and concise solutions in a collapsed block. Mark Higher-only questions explicitly.
-> Tier: **O** · refs: GT.4
+Work independently. The questions and answers are shown together at the end.
+
+Decide first whether the hypotenuse is missing. If it is, add the squares. If a leg
+is missing, subtract. Give the unit with every answer, and round only at the end.
+
+:::problems chapter-18-practice-18.2
+
+:::answers chapter-18-practice-18.2

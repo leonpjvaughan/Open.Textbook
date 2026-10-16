@@ -1,0 +1,171 @@
+# Junior Cycle Mathematics, Chapter 18, section 18.6.
+#
+# Angles of elevation and depression. Each record is a real situation turned into
+# a right-angled triangle. `expression` performs the tangent, sine or division
+# the triangle gives, and `answer` is the length the reader is shown. The answers
+# are irrational, so they use `approx` with a half-unit-of-the-last-place
+# tolerance and the reader's value lives in `answer_text`. The last record asks
+# for the name of an angle and a reason, so it uses `structured`.
+chapter: 18
+oracles: [sympy, units]
+symbols: {}
+
+problems:
+- id: jc18-18.6-tree
+  section: '18.6'
+  tier: O
+  refs:
+  - GT.4
+  statement: 'A person stands 20 m from a tree. The angle of elevation to the top is 30°. Find the height of the tree, correct to one decimal place.'
+  answer_label: 'Find the height of the tree.'
+  check:
+    kind: approx
+    value: 20*tan(30*pi/180)
+    target: '11.5'
+    tolerance: '0.05'
+  answer_text: 'The tree is about $11.5$ m tall. The height is opposite the 30° angle and 20 m is adjacent to it: $h=20\tan 30^\circ=11.547\ldots$'
+
+- id: jc18-18.6-cliff-1
+  section: '18.6'
+  tier: O
+  refs:
+  - GT.4
+  statement: 'From the top of a cliff 40 m above the sea, the angle of depression to a boat is 25°. Find the horizontal distance to the boat, correct to one decimal place.'
+  answer_label: 'Find the horizontal distance to the boat.'
+  check:
+    kind: approx
+    value: 40/tan(25*pi/180)
+    target: '85.8'
+    tolerance: '0.05'
+  answer_text: 'The boat is about $85.8$ m from the cliff. The height is opposite the 25° angle and the distance is adjacent to it: $d=\frac{40}{\tan 25^\circ}=85.78\ldots$ The unknown is on the bottom of the fraction, so divide.'
+
+- id: jc18-18.6-tower-1
+  section: '18.6'
+  tier: O
+  refs:
+  - GT.4
+  statement: 'A person stands 15 m from a tower. The angle of elevation to the top is 40°. Find the height of the tower, correct to one decimal place.'
+  answer_label: 'Find the height of the tower.'
+  check:
+    kind: approx
+    value: 15*tan(40*pi/180)
+    target: '12.6'
+    tolerance: '0.05'
+  answer_text: 'The tower is about $12.6$ m tall. $h=15\tan 40^\circ=12.586\ldots$'
+
+- id: jc18-18.6-tower-2
+  section: '18.6'
+  tier: O
+  refs:
+  - GT.4
+  statement: 'From the top of a tower 12 m high, the angle of depression to a point on the ground is 35°. Find the horizontal distance, correct to one decimal place.'
+  answer_label: 'Find the horizontal distance.'
+  check:
+    kind: approx
+    value: 12/tan(35*pi/180)
+    target: '17.1'
+    tolerance: '0.05'
+  answer_text: 'The point is about $17.1$ m from the tower. $d=\frac{12}{\tan 35^\circ}=17.137\ldots$'
+
+- id: jc18-18.6-building-1
+  section: '18.6'
+  tier: O
+  refs:
+  - GT.4
+  statement: 'A surveyor stands 50 m from a building. The angle of elevation to the top is 22°. Find the height of the building, correct to one decimal place.'
+  answer_label: 'Find the height of the building.'
+  check:
+    kind: approx
+    value: 50*tan(22*pi/180)
+    target: '20.2'
+    tolerance: '0.05'
+  answer_text: 'The building is about $20.2$ m tall. $h=50\tan 22^\circ=20.201\ldots$'
+
+- id: jc18-18.6-kite
+  section: '18.6'
+  tier: O
+  refs:
+  - GT.4
+  statement: 'A kite is flying on a string 30 m long. The string makes an angle of 60° with the ground. Find the height of the kite, correct to one decimal place.'
+  answer_label: 'Find the height of the kite.'
+  check:
+    kind: approx
+    value: 30*sin(60*pi/180)
+    target: '26.0'
+    tolerance: '0.05'
+  answer_text: 'The kite is about $26.0$ m above the ground. The string is the hypotenuse, so use sine: $h=30\sin 60^\circ=25.980\ldots$'
+
+- id: jc18-18.6-flagpole
+  section: '18.6'
+  tier: O
+  refs:
+  - GT.4
+  statement: 'A flagpole stands on level ground. From a point 8 m away, the angle of elevation to the top is 55°. Find the height of the flagpole, correct to one decimal place.'
+  answer_label: 'Find the height of the flagpole.'
+  check:
+    kind: approx
+    value: 8*tan(55*pi/180)
+    target: '11.4'
+    tolerance: '0.05'
+  answer_text: 'The flagpole is about $11.4$ m tall. $h=8\tan 55^\circ=11.425\ldots$'
+
+- id: jc18-18.6-cliff-2
+  section: '18.6'
+  tier: O
+  refs:
+  - GT.4
+  statement: 'From the top of a cliff 100 m above the sea, the angle of depression to a boat is 10°. Find the horizontal distance to the boat, correct to one decimal place.'
+  answer_label: 'Find the horizontal distance to the boat.'
+  check:
+    kind: approx
+    value: 100/tan(10*pi/180)
+    target: '567.1'
+    tolerance: '0.05'
+  answer_text: 'The boat is about $567.1$ m from the cliff. $d=\frac{100}{\tan 10^\circ}=567.128\ldots$ A small angle of depression gives a large distance.'
+
+- id: jc18-18.6-tree-2
+  section: '18.6'
+  tier: O
+  refs:
+  - GT.4
+  statement: 'A person stands 25 m from a tree. The angle of elevation to the top is 35°. Find the height of the tree, correct to one decimal place.'
+  answer_label: 'Find the height of the tree.'
+  check:
+    kind: approx
+    value: 25*tan(35*pi/180)
+    target: '17.5'
+    tolerance: '0.05'
+  answer_text: 'The tree is about $17.5$ m tall. $h=25\tan 35^\circ=17.505\ldots$'
+
+- id: jc18-18.6-kite-2
+  section: '18.6'
+  tier: O
+  refs:
+  - GT.4
+  statement: 'A kite string is 40 m long and makes an angle of 25° with the ground. Find the height of the kite, correct to one decimal place.'
+  answer_label: 'Find the height of the kite.'
+  check:
+    kind: approx
+    value: 40*sin(25*pi/180)
+    target: '16.9'
+    tolerance: '0.05'
+  answer_text: 'The kite is about $16.9$ m above the ground. The string is the hypotenuse: $h=40\sin 25^\circ=16.904\ldots$'
+
+- id: jc18-18.6-chapter
+  section: '18.6'
+  tier: O
+  refs:
+  - GT.4
+  statement: 'The chapter problem. You stand on the ground and look up to the top of the school building. Name the angle between the horizontal ground and your line of sight, and explain your choice.'
+  answer_label: 'Name the angle and explain.'
+  check:
+    kind: structured
+    requires: [name-angle, give-reason]
+    concepts: [angle-of-elevation]
+    points:
+    - id: name-angle
+      text: 'It is an angle of elevation.'
+      concepts: [angle-of-elevation]
+    - id: give-reason
+      text: 'The angle is measured up from the horizontal to an object above the observer, which is what an angle of elevation means.'
+  answer_text: 'It is an angle of elevation, because the top of the building is above your eye level and the angle is measured up from the horizontal. An angle down to something below you is an angle of depression.'

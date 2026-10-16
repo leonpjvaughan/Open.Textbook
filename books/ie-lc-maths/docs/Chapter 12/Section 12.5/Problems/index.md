@@ -1,18 +1,22 @@
 ---
-title: 12.5 Graphs of the trigonometric functions — Practise
+title: "12.5 Graphs of the trigonometric functions — Practise"
 chapter: 12
 chapter_title: Trigonometry
 section: '12.5'
-section_title: Graphs of the trigonometric functions
+section_title: "Graphs of the trigonometric functions"
 tier: O
 refs:
 - '2.3'
 kind: problems
 ---
 
-<!-- scaffold:stub -->
-
 # 12.5 Graphs of the trigonometric functions — Practise
 
-> **Stub.** Independent, homework-style practice. Answers and concise solutions in a collapsed block. Mark Higher-only questions explicitly.
-> Tier: **O** · refs: 2.3
+Work independently. The questions and answers are shown together at the end.
+
+Find the middle line first. The amplitude is the distance from it to the top of the wave,
+and the period is $360^\circ$ divided by the number in front of $\theta$.
+
+:::problems chapter-12-practice-12.5
+
+:::answers chapter-12-practice-12.5

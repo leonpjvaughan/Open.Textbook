@@ -10,9 +10,13 @@ refs:
 kind: problems
 ---
 
-<!-- scaffold:stub -->
-
 # 17.6 The general form ax + by + c = 0 — Practise
 
-> **Stub.** Independent, homework-style practice. Answers and concise solutions in a collapsed block. Mark Higher-only questions explicitly.
-> Tier: **O** · refs: GT.5
+Work independently. The questions and answers are shown together at the end.
+
+Keep every term on one side for the general form. To find a slope or an intercept,
+rearrange for $y$ or substitute $x=0$ or $y=0$.
+
+:::problems chapter-17-practice-17.6
+
+:::answers chapter-17-practice-17.6

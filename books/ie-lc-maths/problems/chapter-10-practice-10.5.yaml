@@ -1,0 +1,118 @@
+# Practice set for 10.5 (strand 1, outcome 1.2). The answers are exact fractions and
+# decimals, so `evaluate` proves them. Decimals are rationalised before comparison, so
+# 0.8 and 4/5 are the same object to the oracle and either form may be written.
+chapter: 10
+problems:
+  - id: lc10-5-impossible-certain
+    section: '10.5'
+    tier: F
+    refs: ['1.2']
+    statement: 'Write down the probability of an impossible event and the probability of a certain event.'
+    answer_label: 'Impossible, then certain'
+    check:
+      kind: all
+      checks:
+        - {kind: evaluate, expression: '0', answer: '0'}
+        - {kind: evaluate, expression: '1', answer: '1'}
+    answer_text: >-
+      An impossible event has probability $0$ and a certain event has probability $1$.
+      Every probability lies between these two values, so $0 \le P(A) \le 1$.
+
+  - id: lc10-5-red
+    section: '10.5'
+    tier: F
+    refs: ['1.2']
+    statement: >-
+      A bag holds $4$ red counters and $6$ blue counters. One counter is drawn. Find the
+      probability that it is red.
+    answer_label: 'The probability'
+    check: {kind: evaluate, expression: '4 / 10', answer: '2/5'}
+    answer_text: >-
+      There are $4$ red counters out of $4 + 6 = 10$ counters, so
+      $P(\text{red}) = \dfrac{4}{10} = \dfrac{2}{5}$.
+
+  - id: lc10-5-missing
+    section: '10.5'
+    tier: F
+    refs: ['1.2']
+    statement: >-
+      A random variable has probabilities $0.2$, $0.3$, $0.4$ and $k$. Find $k$.
+    answer_label: 'The value of k'
+    check: {kind: evaluate, expression: '1 - (0.2 + 0.3 + 0.4)', answer: '0.1'}
+    answer_text: >-
+      The probabilities cover every outcome, so they add to $1$. Then
+      $k = 1 - (0.2 + 0.3 + 0.4) = 1 - 0.9 = 0.1$.
+
+  - id: lc10-5-mutually-exclusive
+    section: '10.5'
+    tier: F
+    refs: ['1.2']
+    statement: >-
+      $A$ and $B$ are mutually exclusive events with $P(A) = 0.3$ and $P(B) = 0.5$. Find
+      $P(A \cup B)$.
+    answer_label: 'The probability'
+    check: {kind: evaluate, expression: '0.3 + 0.5', answer: '0.8'}
+    answer_text: >-
+      Mutually exclusive events cannot both happen, so $P(A \cap B) = 0$. Then
+      $P(A \cup B) = P(A) + P(B) = 0.3 + 0.5 = 0.8$.
+
+  - id: lc10-5-complement
+    section: '10.5'
+    tier: F
+    refs: ['1.2']
+    statement: '$P(A) = 0.4$. Find $P(A'')$, the probability that $A$ does not happen.'
+    answer_label: 'The probability'
+    check: {kind: evaluate, expression: '1 - 0.4', answer: '0.6'}
+    answer_text: >-
+      $A$ and $A'$ together cover every outcome, so $P(A) + P(A') = 1$. Then
+      $P(A') = 1 - 0.4 = 0.6$.
+
+  - id: lc10-5-addition-rule
+    section: '10.5'
+    tier: F
+    refs: ['1.2']
+    statement: >-
+      $P(A) = 0.5$, $P(B) = 0.4$ and $P(A \cap B) = 0.2$. Find $P(A \cup B)$.
+    answer_label: 'The probability'
+    check: {kind: evaluate, expression: '0.5 + 0.4 - 0.2', answer: '0.7'}
+    answer_text: >-
+      Use the addition rule
+      $P(A \cup B) = P(A) + P(B) - P(A \cap B)$. Then
+      $P(A \cup B) = 0.5 + 0.4 - 0.2 = 0.7$. The subtraction removes the outcomes counted
+      in both events.
+
+  - id: lc10-5-spinner
+    section: '10.5'
+    tier: F
+    refs: ['1.2']
+    statement: >-
+      A spinner has $4$ equal sections, numbered $1$, $2$, $3$ and $4$. Find the
+      probability that the spinner lands on $3$.
+    answer_label: 'The probability'
+    check: {kind: evaluate, expression: '1 / 4', answer: '1/4'}
+    answer_text: >-
+      All $4$ sections are equal, so the outcomes are equally likely. Then
+      $P(3) = \dfrac{1}{4}$, and the four probabilities $\dfrac14$ add to $1$.
+
+  - id: lc10-5-axioms
+    section: '10.5'
+    tier: F
+    refs: ['1.2']
+    statement: 'State the two axioms that every probability must satisfy.'
+    answer_label: 'The axioms'
+    check:
+      kind: structured
+      requires: [range, total]
+      concepts: [between-zero-one, sum-to-one]
+      points:
+        - id: range
+          text: the probability of any event lies between 0 and 1, so 0 is less than or equal to P(A) which is less than or equal to 1
+          concepts: [between-zero-one]
+        - id: total
+          text: the probabilities of all the outcomes in the sample space add up to 1
+          concepts: [sum-to-one]
+    answer_text: >-
+      1. The probability of any event lies between $0$ and $1$:
+      $0 \le P(A) \le 1$. A value of $0$ means impossible and a value of $1$ means
+      certain.
+      2. The probabilities of all the outcomes in the sample space add up to $1$.

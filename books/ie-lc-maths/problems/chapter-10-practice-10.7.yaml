@@ -1,0 +1,118 @@
+# Practice set for 10.7 (strand 1, outcome 1.3). The answers are exact fractions and
+# decimals, so `evaluate` proves them. Independence is a test — does P(A and B) equal
+# P(A) times P(B)? — so the check proves the product, and the answer text states the
+# comparison that decides the question.
+chapter: 10
+problems:
+  - id: lc10-7-two-heads
+    section: '10.7'
+    tier: F
+    refs: ['1.3']
+    statement: 'A fair coin is tossed twice. Find the probability of two heads.'
+    answer_label: 'The probability'
+    check: {kind: evaluate, expression: '(1 / 2) * (1 / 2)', answer: '1/4'}
+    answer_text: >-
+      The tosses are independent, so multiply: $P(\text{HH}) = \dfrac{1}{2} \times
+      \dfrac{1}{2} = \dfrac{1}{4}$.
+
+  - id: lc10-7-two-sixes
+    section: '10.7'
+    tier: F
+    refs: ['1.3']
+    statement: 'A fair six-sided die is rolled twice. Find the probability of two sixes.'
+    answer_label: 'The probability'
+    check: {kind: evaluate, expression: '(1 / 6) * (1 / 6)', answer: '1/36'}
+    answer_text: >-
+      The rolls are independent, so $P(6 \text{ and } 6) = \dfrac{1}{6} \times
+      \dfrac{1}{6} = \dfrac{1}{36}$.
+
+  - id: lc10-7-product
+    section: '10.7'
+    tier: F
+    refs: ['1.3']
+    statement: >-
+      $A$ and $B$ are independent events with $P(A) = 0.5$ and $P(B) = 0.4$. Find
+      $P(A \cap B)$.
+    answer_label: 'The probability'
+    check: {kind: evaluate, expression: '0.5 * 0.4', answer: '0.2'}
+    answer_text: >-
+      For independent events, $P(A \cap B) = P(A) \times P(B) = 0.5 \times 0.4 = 0.2$.
+
+  - id: lc10-7-union
+    section: '10.7'
+    tier: F
+    refs: ['1.3']
+    statement: >-
+      $A$ and $B$ are independent events with $P(A) = 0.3$ and $P(B) = 0.6$. Find
+      $P(A \cup B)$.
+    answer_label: 'The probability'
+    check: {kind: evaluate, expression: '0.3 + 0.6 - 0.3 * 0.6', answer: '0.72'}
+    answer_text: >-
+      First find $P(A \cap B) = 0.3 \times 0.6 = 0.18$. Then use the addition rule:
+      $P(A \cup B) = 0.3 + 0.6 - 0.18 = 0.72$.
+
+  - id: lc10-7-replacement
+    section: '10.7'
+    tier: F
+    refs: ['1.3']
+    statement: >-
+      A bag holds $5$ red and $3$ blue counters. A counter is drawn, then replaced. Find
+      the probability that both draws are red.
+    answer_label: 'The probability'
+    check: {kind: evaluate, expression: '(5 / 8) ** 2', answer: '25/64'}
+    answer_text: >-
+      Replacing the first counter restores the bag, so the draws are independent and the
+      probability of red is $\dfrac{5}{8}$ each time. Then
+      $P(\text{both red}) = \dfrac{5}{8} \times \dfrac{5}{8} = \dfrac{25}{64}$.
+
+  - id: lc10-7-test
+    section: '10.7'
+    tier: F
+    refs: ['1.3']
+    statement: >-
+      $P(A) = 0.5$, $P(B) = 0.4$ and $P(A \cap B) = 0.25$. Work out $P(A) \times P(B)$,
+      and state whether $A$ and $B$ are independent.
+    answer_label: 'The product'
+    check: {kind: evaluate, expression: '0.5 * 0.4', answer: '0.2'}
+    answer_text: >-
+      $P(A) \times P(B) = 0.5 \times 0.4 = 0.2$. This is not equal to
+      $P(A \cap B) = 0.25$, so the events are **not** independent. When events are
+      independent the two values must agree.
+
+  - id: lc10-7-three
+    section: '10.7'
+    tier: F
+    refs: ['1.3']
+    statement: >-
+      Three independent events each have probability $0.5$. Find the probability that all
+      three happen.
+    answer_label: 'The probability'
+    check: {kind: evaluate, expression: '0.5 ** 3', answer: '1/8'}
+    answer_text: >-
+      Multiply the three probabilities:
+      $0.5 \times 0.5 \times 0.5 = \dfrac{1}{8}$.
+
+  - id: lc10-7-test-statement
+    section: '10.7'
+    tier: F
+    refs: ['1.3']
+    statement: 'State the test for two events being independent.'
+    answer_label: 'The test'
+    check:
+      kind: structured
+      requires: [product, compare]
+      concepts: [multiply, equality]
+      points:
+        - id: product
+          text: work out P(A) times P(B), the product of the two separate probabilities
+          concepts: [multiply]
+        - id: compare
+          text: the events are independent when that product equals P(A and B); if the two differ they are not independent
+          concepts: [equality]
+    answer_text: >-
+      Two events are independent when
+      $$P(A \cap B) = P(A) \times P(B)$$
+
+      Work out the product of the two separate probabilities and compare it with
+      $P(A \cap B)$. If the two values are equal the events are independent, and if they
+      differ the events are not independent.

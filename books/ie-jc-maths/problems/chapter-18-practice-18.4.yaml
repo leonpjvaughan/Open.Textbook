@@ -1,0 +1,183 @@
+# Junior Cycle Mathematics, Chapter 18, section 18.4.
+#
+# Finding a missing side from one angle and one side. Each record names the two
+# sides, so `expression` performs the multiplication or division the ratio gives,
+# and `answer` is the value the reader is shown. Values for the special angles
+# 30°, 45° and 60° are exact and use `evaluate`; values for 37°, 40°, 50° and the
+# rest are irrational, so they use `approx` with a half-unit-of-the-last-place
+# tolerance and the reader's answer lives in `answer_text`. The last record asks
+# for the ratio and a reason, so it uses `structured`.
+chapter: 18
+oracles: [sympy, units]
+symbols: {}
+
+problems:
+- id: jc18-18.4-opp-1
+  section: '18.4'
+  tier: O
+  refs:
+  - GT.4
+  statement: 'A right-angled triangle has an angle of 35°. The adjacent side is 8 cm. Find the opposite side, correct to one decimal place.'
+  answer_label: 'Find the opposite side, to one decimal place.'
+  check:
+    kind: approx
+    value: 8*tan(35*pi/180)
+    target: '5.6'
+    tolerance: '0.05'
+  answer_text: 'The opposite side is $5.6$ cm, to one decimal place. The two sides are the opposite and the adjacent, so use tangent: $\tan 35^\circ=\frac{x}{8}$, giving $x=8\tan 35^\circ=5.601\ldots$'
+
+- id: jc18-18.4-hyp-1
+  section: '18.4'
+  tier: O
+  refs:
+  - GT.4
+  statement: 'A right-angled triangle has an angle of 40°. The opposite side is 6 m. Find the hypotenuse, correct to one decimal place.'
+  answer_label: 'Find the hypotenuse, to one decimal place.'
+  check:
+    kind: approx
+    value: 6/sin(40*pi/180)
+    target: '9.3'
+    tolerance: '0.05'
+  answer_text: 'The hypotenuse is $9.3$ m, to one decimal place. Use sine: $\sin 40^\circ=\frac{6}{h}$, so $h=\frac{6}{\sin 40^\circ}=9.334\ldots$ The unknown is on the bottom of the fraction, so divide.'
+
+- id: jc18-18.4-adj-1
+  section: '18.4'
+  tier: O
+  refs:
+  - GT.4
+  statement: 'A right-angled triangle has an angle of 50°. The hypotenuse is 12 cm. Find the adjacent side, correct to one decimal place.'
+  answer_label: 'Find the adjacent side, to one decimal place.'
+  check:
+    kind: approx
+    value: 12*cos(50*pi/180)
+    target: '7.7'
+    tolerance: '0.05'
+  answer_text: 'The adjacent side is $7.7$ cm, to one decimal place. Use cosine: $\cos 50^\circ=\frac{a}{12}$, so $a=12\cos 50^\circ=7.713\ldots$'
+
+- id: jc18-18.4-opp-2
+  section: '18.4'
+  tier: O
+  refs:
+  - GT.4
+  statement: 'A right-angled triangle has an angle of 30° and a hypotenuse of 10 m. Find the opposite side.'
+  answer_label: 'Find the opposite side.'
+  check:
+    kind: evaluate
+    expression: 10*sin(30*pi/180)
+    answer: '5'
+  answer_text: 'The opposite side is $5$ m. Use sine, and the exact value $\sin 30^\circ=0.5$: $10\times0.5=5$. This is a whole-number answer.'
+
+- id: jc18-18.4-opp-3
+  section: '18.4'
+  tier: O
+  refs:
+  - GT.4
+  statement: 'A right-angled triangle has an angle of 45° and an adjacent side of 9 cm. Find the opposite side.'
+  answer_label: 'Find the opposite side.'
+  check:
+    kind: evaluate
+    expression: 9*tan(45*pi/180)
+    answer: '9'
+  answer_text: 'The opposite side is $9$ cm. Use tangent, and the exact value $\tan 45^\circ=1$: $9\times1=9$. In a 45° right-angled triangle the opposite and adjacent sides are equal.'
+
+- id: jc18-18.4-ramp
+  section: '18.4'
+  tier: O
+  refs:
+  - GT.4
+  statement: 'A ramp rises at an angle of 20°. Its sloping surface is 4 m long. Find the height it rises, correct to one decimal place.'
+  answer_label: 'Find the height the ramp rises.'
+  check:
+    kind: approx
+    value: 4*sin(20*pi/180)
+    target: '1.4'
+    tolerance: '0.05'
+  answer_text: 'The ramp rises about $1.4$ m. The sloping surface is the hypotenuse, and the height is opposite the 20° angle: $h=4\sin 20^\circ=1.368\ldots$'
+
+- id: jc18-18.4-kite
+  section: '18.4'
+  tier: O
+  refs:
+  - GT.4
+  statement: 'A kite string makes an angle of 55° with the ground. The string is 20 m long. Find the height of the kite above the ground, correct to one decimal place.'
+  answer_label: 'Find the height of the kite.'
+  check:
+    kind: approx
+    value: 20*sin(55*pi/180)
+    target: '16.4'
+    tolerance: '0.05'
+  answer_text: 'The kite is about $16.4$ m above the ground. The string is the hypotenuse, and the height is opposite the angle: $h=20\sin 55^\circ=16.383\ldots$'
+
+- id: jc18-18.4-hyp-2
+  section: '18.4'
+  tier: O
+  refs:
+  - GT.4
+  statement: 'A right-angled triangle has an angle of 60° and an adjacent side of 5 m. Find the hypotenuse.'
+  answer_label: 'Find the hypotenuse.'
+  check:
+    kind: evaluate
+    expression: 5/cos(60*pi/180)
+    answer: '10'
+  answer_text: 'The hypotenuse is $10$ m. Use cosine with the exact value $\cos 60^\circ=0.5$: $\cos 60^\circ=\frac{5}{h}$, so $h=\frac{5}{0.5}=10$.'
+
+- id: jc18-18.4-hyp-3
+  section: '18.4'
+  tier: O
+  refs:
+  - GT.4
+  statement: 'A right-angled triangle has an angle of 25° and an opposite side of 7 cm. Find the hypotenuse, correct to one decimal place.'
+  answer_label: 'Find the hypotenuse, to one decimal place.'
+  check:
+    kind: approx
+    value: 7/sin(25*pi/180)
+    target: '16.6'
+    tolerance: '0.05'
+  answer_text: 'The hypotenuse is $16.6$ cm, to one decimal place. Use sine: $h=\frac{7}{\sin 25^\circ}=16.563\ldots$'
+
+- id: jc18-18.4-opp-4
+  section: '18.4'
+  tier: O
+  refs:
+  - GT.4
+  statement: 'A right-angled triangle has an angle of 18° and an adjacent side of 25 m. Find the opposite side, correct to one decimal place.'
+  answer_label: 'Find the opposite side, to one decimal place.'
+  check:
+    kind: approx
+    value: 25*tan(18*pi/180)
+    target: '8.1'
+    tolerance: '0.05'
+  answer_text: 'The opposite side is $8.1$ m, to one decimal place. Use tangent: $x=25\tan 18^\circ=8.122\ldots$'
+
+- id: jc18-18.4-chapter
+  section: '18.4'
+  tier: O
+  refs:
+  - GT.4
+  statement: 'The chapter problem. You stand 12 m from the school building. The angle of elevation to the top is 37°. Find the height of the building, correct to one decimal place.'
+  answer_label: 'Find the height of the building, to one decimal place.'
+  check:
+    kind: approx
+    value: 12*tan(37*pi/180)
+    target: '9.0'
+    tolerance: '0.05'
+  answer_text: 'The building is about $9.0$ m tall. The height is opposite the 37° angle and 12 m is adjacent to it: $h=12\tan 37^\circ=9.042\ldots$ This agrees with the $9$ m found from Pythagoras in Section 18.2.'
+
+- id: jc18-18.4-reason
+  section: '18.4'
+  tier: O
+  refs:
+  - GT.4
+  statement: 'A right-angled triangle has an angle of 40° and a hypotenuse of 10 cm. Explain which ratio you use to find the side opposite the angle, and why.'
+  answer_label: 'Choose the ratio and give a reason.'
+  check:
+    kind: structured
+    requires: [choose-ratio, give-reason]
+    concepts: [sine-ratio]
+    points:
+    - id: choose-ratio
+      text: 'Use the sine ratio, because it links the opposite side and the hypotenuse.'
+      concepts: [sine-ratio]
+    - id: give-reason
+      text: 'The side wanted is opposite the angle, and the side known is the hypotenuse, so sine is the matching ratio.'
+  answer_text: 'Use sine, because $\sin 40^\circ=\frac{\text{opposite}}{\text{hypotenuse}}=\frac{x}{10}$. The side wanted is opposite the angle and the known side is the hypotenuse.'

@@ -10,9 +10,13 @@ refs:
 kind: problems
 ---
 
-<!-- scaffold:stub -->
-
 # 17.7 Graphs in context and rate of change — Practise
 
-> **Stub.** Independent, homework-style practice. Answers and concise solutions in a collapsed block. Mark Higher-only questions explicitly.
-> Tier: **O** · refs: GT.5
+Work independently. The questions and answers are shown together at the end.
+
+A rate is the slope of the segment: change in the vertical amount divided by
+change in the horizontal amount. Write the units with every rate.
+
+:::problems chapter-17-practice-17.7
+
+:::answers chapter-17-practice-17.7

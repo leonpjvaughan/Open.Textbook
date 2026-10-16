@@ -1,0 +1,123 @@
+# Practice set for 10.6 (strand 1, outcome 1.2). The answers are exact fractions and
+# decimals, so `evaluate` proves them. A conditional probability is an arithmetic claim,
+# and the check writes the arithmetic out; the choice of which event is conditioned on is
+# stated in the answer text and read by a human.
+chapter: 10
+problems:
+  - id: lc10-6-formula
+    section: '10.6'
+    tier: O
+    refs: ['1.2']
+    statement: >-
+      $P(A \cap B) = 0.2$ and $P(B) = 0.5$. Find $P(A \mid B)$.
+    answer_label: 'The probability'
+    check: {kind: evaluate, expression: '0.2 / 0.5', answer: '0.4'}
+    answer_text: >-
+      $P(A \mid B) = \dfrac{P(A \cap B)}{P(B)} = \dfrac{0.2}{0.5} = 0.4$.
+
+  - id: lc10-6-bag
+    section: '10.6'
+    tier: O
+    refs: ['1.2']
+    statement: >-
+      A bag holds $5$ red and $3$ blue counters. Two counters are drawn without
+      replacement. Given that the first counter is red, find the probability that the
+      second is also red.
+    answer_label: 'The probability'
+    check: {kind: evaluate, expression: '4 / 7', answer: '4/7'}
+    answer_text: >-
+      After a red counter is drawn, $4$ red and $3$ blue remain, so $7$ counters are
+      left. Then $P(\text{second red} \mid \text{first red}) = \dfrac{4}{7}$.
+
+  - id: lc10-6-cards
+    section: '10.6'
+    tier: O
+    refs: ['1.2']
+    statement: >-
+      Two cards are drawn from a standard $52$-card pack without replacement. Given that
+      the first card is a heart, find the probability that the second card is also a
+      heart.
+    answer_label: 'The probability'
+    check: {kind: evaluate, expression: '12 / 51', answer: '4/17'}
+    answer_text: >-
+      There are $13$ hearts. After one heart is drawn, $12$ hearts remain out of $51$
+      cards. So the probability is $\dfrac{12}{51} = \dfrac{4}{17}$.
+
+  - id: lc10-6-multiplication
+    section: '10.6'
+    tier: O
+    refs: ['1.2']
+    statement: >-
+      $P(B) = 0.5$ and $P(A \mid B) = 0.4$. Find $P(A \cap B)$.
+    answer_label: 'The probability'
+    check: {kind: evaluate, expression: '0.5 * 0.4', answer: '0.2'}
+    answer_text: >-
+      Rearrange the conditional formula:
+      $P(A \cap B) = P(A \mid B) \times P(B) = 0.4 \times 0.5 = 0.2$.
+
+  - id: lc10-6-tree
+    section: '10.6'
+    tier: O
+    refs: ['1.2']
+    statement: >-
+      The probability that it rains on a given day is $0.3$. If it rains, the probability
+      that a student is late is $0.4$. Find the probability that it rains and the student
+      is late.
+    answer_label: 'The probability'
+    check: {kind: evaluate, expression: '0.3 * 0.4', answer: '0.12'}
+    answer_text: >-
+      Multiply along the branch of the tree diagram:
+      $P(\text{rain and late}) = 0.3 \times 0.4 = 0.12$.
+
+  - id: lc10-6-two-red
+    section: '10.6'
+    tier: O
+    refs: ['1.2']
+    statement: >-
+      A bag holds $3$ red and $2$ green counters. Two counters are drawn without
+      replacement. Find the probability that both are red.
+    answer_label: 'The probability'
+    check: {kind: evaluate, expression: '(3 / 5) * (2 / 4)', answer: '3/10'}
+    answer_text: >-
+      $P(\text{first red}) = \dfrac{3}{5}$. Given that, $2$ red and $2$ green remain, so
+      $P(\text{second red} \mid \text{first red}) = \dfrac{2}{4}$. Then
+      $P(\text{both red}) = \dfrac{3}{5} \times \dfrac{2}{4} = \dfrac{3}{10}$.
+
+  - id: lc10-6-glasses
+    section: '10.6'
+    tier: O
+    refs: ['1.2']
+    statement: >-
+      A class has $12$ boys and $8$ girls. Of the boys, $5$ wear glasses, and of the
+      girls, $3$ wear glasses. A student is chosen at random. Given that the student is
+      a boy, find the probability that the student wears glasses.
+    answer_label: 'The probability'
+    check: {kind: evaluate, expression: '5 / 12', answer: '5/12'}
+    answer_text: >-
+      The condition tells us the student is one of the $12$ boys. Of those, $5$ wear
+      glasses, so $P(\text{glasses} \mid \text{boy}) = \dfrac{5}{12}$. The $8$ girls are
+      not part of the denominator once the condition is known.
+
+  - id: lc10-6-conditional-formula
+    section: '10.6'
+    tier: O
+    refs: ['1.2']
+    statement: 'Write down the formula for $P(A \mid B)$, and explain what it means.'
+    answer_label: 'The formula and its meaning'
+    check:
+      kind: structured
+      requires: [formula, restricted-space]
+      concepts: [ratio, condition-restricts]
+      points:
+        - id: formula
+          text: P(A given B) equals P(A and B) divided by P(B), provided P(B) is not zero
+          concepts: [ratio]
+        - id: restricted-space
+          text: the condition restricts attention to the outcomes where B happens, and asks what fraction of those also have A
+          concepts: [condition-restricts]
+    answer_text: >-
+      $$P(A \mid B) = \frac{P(A \cap B)}{P(B)}$$
+
+      The condition restricts attention to the outcomes where $B$ happens. The formula
+      asks what fraction of those outcomes also have $A$, which is why $P(B)$ is the
+      denominator.

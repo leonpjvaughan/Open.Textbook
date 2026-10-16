@@ -1,0 +1,198 @@
+# Practice set for 12.6 (strand 2, outcome 2.3). Both rules are printed in the Formulae
+# and Tables booklet, so every record that uses one declares it with `plays`. The
+# triangle is the chapter problem's, so the reader meets the same numbers the Review
+# resolves. Irrational lengths and angles use `approx`; the two-answer case is an `all`
+# of two, because both angles must be reported.
+chapter: 12
+problems:
+  - id: lc12-6-sine-side
+    section: '12.6'
+    tier: O
+    refs: ['2.3']
+    plays: sine-rule
+    statement: >-
+      In a triangle, $A = 40^\circ$, $B = 60^\circ$ and $a = 10$ cm. Find $b$, correct to
+      two decimal places.
+    answer_label: 'The side b'
+    check:
+      kind: approx
+      value: '10 * sin(60 * pi / 180) / sin(40 * pi / 180)'
+      target: '13.47'
+      tolerance: '0.01'
+    answer_text: >-
+      The booklet gives the sine rule, so write the fraction for the pair you know and
+      the pair you want:
+
+      $$\frac{b}{\sin 60^\circ} = \frac{10}{\sin 40^\circ} \quad\Rightarrow\quad b = \frac{10 \times 0.8660}{0.6428} = 13.47 \text{ cm}$$
+
+  - id: lc12-6-sine-angle
+    section: '12.6'
+    tier: O
+    refs: ['2.3']
+    plays: sine-rule
+    statement: >-
+      In a triangle, $a = 8$ cm, $b = 11$ cm and $A = 35^\circ$. Find the two possible
+      values of $B$, each correct to one decimal place.
+    answer_label: 'The two values of B'
+    check:
+      kind: all
+      checks:
+        - {kind: approx, value: 'asin(11 * sin(35 * pi / 180) / 8) * 180 / pi', target: '52.1', tolerance: '0.05'}
+        - {kind: approx, value: '180 - asin(11 * sin(35 * pi / 180) / 8) * 180 / pi', target: '127.9', tolerance: '0.05'}
+    answer_text: >-
+      $$\sin B = \frac{11\sin 35^\circ}{8} = 0.7887$$
+
+      $$B = \sin^{-1}(0.7887) = 52.1^\circ \quad\text{or}\quad 180^\circ - 52.1^\circ = 127.9^\circ$$
+
+      Both fit inside a triangle: with $A = 35^\circ$ and $B = 127.9^\circ$ the third
+      angle is $17.1^\circ$, which is still positive. This is the two-answer case, and it
+      only happens when the sine rule finds an **angle**.
+
+  - id: lc12-6-cosine-side
+    section: '12.6'
+    tier: O
+    refs: ['2.3']
+    plays: cosine-rule
+    statement: >-
+      In a triangle, $b = 8$ cm, $c = 11$ cm and $A = 35^\circ$. Find $a$, correct to two
+      decimal places.
+    answer_label: 'The side a'
+    check:
+      kind: approx
+      value: 'sqrt(8**2 + 11**2 - 2 * 8 * 11 * cos(35 * pi / 180))'
+      target: '6.39'
+      tolerance: '0.01'
+    answer_text: >-
+      Two sides and the angle between them, so use the cosine rule from the booklet:
+
+      $$a^2 = 64 + 121 - 2(8)(11)\cos 35^\circ = 185 - 176 \times 0.8192 = 40.83$$
+
+      $$a = \sqrt{40.83} = 6.39 \text{ cm}$$
+
+  - id: lc12-6-cosine-angle
+    section: '12.6'
+    tier: O
+    refs: ['2.3']
+    plays: cosine-rule
+    statement: >-
+      A triangle has sides of $5$ cm, $7$ cm and $9$ cm. Find the largest angle, correct
+      to one decimal place.
+    answer_label: 'The largest angle'
+    check:
+      kind: approx
+      value: 'acos(-1 / 10) * 180 / pi'
+      target: '95.7'
+      tolerance: '0.05'
+    answer_text: >-
+      The largest angle is opposite the largest side, so find $C$ opposite $c = 9$:
+
+      $$81 = 25 + 49 - 2(5)(7)\cos C$$
+
+      $$81 = 74 - 70\cos C \qquad 70\cos C = -7 \qquad \cos C = -0.1$$
+
+      $$C = \cos^{-1}(-0.1) = 95.7^\circ$$
+
+      The cosine is negative, so the angle is obtuse. Only one angle between $0^\circ$
+      and $180^\circ$ has a given cosine, so the cosine rule avoids the two-answer case.
+
+  - id: lc12-6-yacht-cy
+    section: '12.6'
+    tier: O
+    refs: ['2.3']
+    plays: sine-rule
+    statement: >-
+      A Coast Guard station $C$ and a lighthouse $L$ are $8$ km apart. A yacht $Y$ is
+      seen from $C$ at a bearing of $048^\circ$ and from $L$ at a bearing of $330^\circ$,
+      so $\angle LCY = 42^\circ$ and $\angle CLY = 60^\circ$. Find $CY$, the distance
+      from the station to the yacht, correct to three significant figures.
+    answer_label: 'The distance CY'
+    check:
+      kind: approx
+      value: '8 * sin(60 * pi / 180) / sin(78 * pi / 180)'
+      target: '7.08'
+      tolerance: '0.01'
+    answer_text: >-
+      The third angle is $180^\circ - 42^\circ - 60^\circ = 78^\circ$, at the yacht. Use
+      the sine rule:
+
+      $$\frac{CY}{\sin 60^\circ} = \frac{8}{\sin 78^\circ}$$
+
+      $$CY = \frac{8 \times 0.8660}{0.9781} = 7.08 \text{ km}$$
+
+  - id: lc12-6-yacht-ly
+    section: '12.6'
+    tier: O
+    refs: ['2.3']
+    plays: sine-rule
+    statement: >-
+      With the same triangle $CLY$, where $CL = 8$ km, $\angle LCY = 42^\circ$ and
+      $\angle CLY = 60^\circ$, find $LY$, correct to three significant figures.
+    answer_label: 'The distance LY'
+    check:
+      kind: approx
+      value: '8 * sin(42 * pi / 180) / sin(78 * pi / 180)'
+      target: '5.47'
+      tolerance: '0.01'
+    answer_text: >-
+      $$\frac{LY}{\sin 42^\circ} = \frac{8}{\sin 78^\circ}$$
+
+      $$LY = \frac{8 \times 0.6691}{0.9781} = 5.47 \text{ km}$$
+
+      The yacht is nearer the lighthouse, at $5.47$ km, than the station, at $7.08$ km.
+      That answers the prediction made at the start of the chapter.
+
+  - id: lc12-6-cosine-check
+    section: '12.6'
+    tier: O
+    refs: ['2.3']
+    plays: cosine-rule
+    statement: >-
+      Check the answer $CY = 7.083$ km with the cosine rule, using $CL = 8$ km,
+      $LY = 5.472$ km and $\angle CLY = 60^\circ$. Give the result correct to two decimal
+      places.
+    answer_label: 'The distance CY from the cosine rule'
+    check:
+      kind: approx
+      value: 'sqrt(8**2 + 5.472**2 - 2 * 8 * 5.472 * cos(60 * pi / 180))'
+      target: '7.08'
+      tolerance: '0.01'
+    answer_text: >-
+      $$CY^2 = 64 + 29.94 - 2(8)(5.472)\cos 60^\circ$$
+
+      $$CY^2 = 93.94 - 87.55 \times 0.5 \times 2 = 93.94 - 43.78 = 50.16$$
+
+      $$CY = \sqrt{50.16} = 7.08 \text{ km}$$
+
+      The sine rule and the cosine rule agree. That is the check: two different formulas
+      must give the same distance.
+
+  - id: lc12-6-choose-rule
+    section: '12.6'
+    tier: O
+    refs: ['2.3']
+    statement: >-
+      Explain when to use the sine rule and when to use the cosine rule to solve a
+      triangle.
+    answer_label: 'The two cases'
+    check:
+      kind: structured
+      requires: [sine-case, cosine-case]
+      concepts: [rule-selection]
+      points:
+        - id: sine-case
+          text: >-
+            Use the sine rule when you know a side and its opposite angle, together with
+            one more side or angle.
+          concepts: [rule-selection]
+        - id: cosine-case
+          text: >-
+            Use the cosine rule when you know two sides and the angle between them, or
+            all three sides.
+          concepts: [rule-selection]
+    answer_text: >-
+      Use the sine rule when you know a **side and its opposite angle**, plus one more
+      side or angle. Each fraction needs a complete pair.
+
+      Use the cosine rule when you know **two sides and the angle between them**, or
+      **all three sides**. It is also the safer choice for finding an angle, because it
+      gives one answer rather than two.

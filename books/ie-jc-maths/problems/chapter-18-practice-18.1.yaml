@@ -1,0 +1,153 @@
+# Junior Cycle Mathematics, Chapter 18, section 18.1.
+#
+# Pythagoras' theorem is stated and used, not proved, in this section. Every check
+# is the arithmetic the theorem asks for: the two legs are squared and added in
+# `expression`, and `answer` is the value the reader is shown. A right-angle test
+# compares that sum with the square of the longest side. The last record asks the
+# reader to name the hypotenuse and give a reason; a choice cannot be proved by a
+# CAS, so it uses `structured`, which proves only presence, order and coverage.
+chapter: 18
+oracles: [sympy, units]
+symbols: {}
+
+problems:
+- id: jc18-18.1-square-1
+  section: '18.1'
+  tier: O
+  refs:
+  - GT.4
+  statement: 'A right-angled triangle has legs of 3 cm and 4 cm. Work out the area of the square on the hypotenuse.'
+  answer_label: 'Work out the area of the square on the hypotenuse.'
+  check:
+    kind: evaluate
+    expression: 3**2 + 4**2
+    answer: '25'
+  answer_text: 'The square on the hypotenuse has an area of $25$ cm². The two legs are squared and added: $3^2+4^2=9+16=25$. The hypotenuse itself is $\sqrt{25}=5$ cm.'
+
+- id: jc18-18.1-hyp-1
+  section: '18.1'
+  tier: O
+  refs:
+  - GT.4
+  statement: 'A right-angled triangle has legs of 6 m and 8 m. Find the hypotenuse.'
+  answer_label: 'Find the hypotenuse.'
+  check:
+    kind: evaluate
+    expression: sqrt(6**2 + 8**2)
+    answer: '10'
+  answer_text: 'The hypotenuse is $10$ m. Add the squares of the legs, then take the square root: $6^2+8^2=36+64=100$, and $\sqrt{100}=10$. The hypotenuse is the longest side.'
+
+- id: jc18-18.1-hyp-2
+  section: '18.1'
+  tier: O
+  refs:
+  - GT.4
+  statement: 'A right-angled triangle has legs of 9 cm and 12 cm. Find the hypotenuse.'
+  answer_label: 'Find the hypotenuse.'
+  check:
+    kind: evaluate
+    expression: sqrt(9**2 + 12**2)
+    answer: '15'
+  answer_text: 'The hypotenuse is $15$ cm. $9^2+12^2=81+144=225$, and $\sqrt{225}=15$. This is a 3–4–5 triangle enlarged three times.'
+
+- id: jc18-18.1-right-1
+  section: '18.1'
+  tier: O
+  refs:
+  - GT.4
+  statement: 'A triangle has sides of 6 m, 8 m and 10 m. Is it right-angled? Work out $6^2+8^2$.'
+  answer_label: 'Work out $6^2+8^2$ and decide.'
+  check:
+    kind: evaluate
+    expression: 6**2 + 8**2
+    answer: '100'
+  answer_text: 'Yes. $6^2+8^2=36+64=100$, and $10^2=100$. The two values match, so the triangle is right-angled.'
+
+- id: jc18-18.1-right-2
+  section: '18.1'
+  tier: O
+  refs:
+  - GT.4
+  statement: 'A triangle has sides of 5 cm, 12 cm and 13 cm. Is it right-angled? Work out $5^2+12^2$.'
+  answer_label: 'Work out $5^2+12^2$ and decide.'
+  check:
+    kind: evaluate
+    expression: 5**2 + 12**2
+    answer: '169'
+  answer_text: 'Yes. $5^2+12^2=25+144=169$, and $13^2=169$. The two values match, so the triangle is right-angled.'
+
+- id: jc18-18.1-right-3
+  section: '18.1'
+  tier: O
+  refs:
+  - GT.4
+  statement: 'A triangle has sides of 4 m, 5 m and 6 m. Is it right-angled? Compare $4^2+5^2$ with $6^2$.'
+  answer_label: 'Compare $4^2+5^2$ with $6^2$.'
+  check:
+    kind: all
+    checks:
+    - kind: evaluate
+      expression: 4**2 + 5**2
+      answer: '41'
+    - kind: evaluate
+      expression: 6**2
+      answer: '36'
+  answer_text: 'No. $4^2+5^2=16+25=41$, but $6^2=36$. The two values are different, so the triangle is not right-angled.'
+
+- id: jc18-18.1-hyp-3
+  section: '18.1'
+  tier: O
+  refs:
+  - GT.4
+  statement: 'A right-angled triangle has legs of 8 m and 15 m. Work out the square of the hypotenuse.'
+  answer_label: 'Work out the square of the hypotenuse.'
+  check:
+    kind: evaluate
+    expression: 8**2 + 15**2
+    answer: '289'
+  answer_text: 'The square of the hypotenuse is $289$ m². $8^2+15^2=64+225=289$, so the hypotenuse is $\sqrt{289}=17$ m.'
+
+- id: jc18-18.1-right-4
+  section: '18.1'
+  tier: O
+  refs:
+  - GT.4
+  statement: 'A triangle has sides of 9 cm, 40 cm and 41 cm. Is it right-angled? Work out $9^2+40^2$.'
+  answer_label: 'Work out $9^2+40^2$ and decide.'
+  check:
+    kind: evaluate
+    expression: 9**2 + 40**2
+    answer: '1681'
+  answer_text: 'Yes. $9^2+40^2=81+1600=1681$, and $41^2=1681$. The two values match, so the triangle is right-angled.'
+
+- id: jc18-18.1-hyp-4
+  section: '18.1'
+  tier: O
+  refs:
+  - GT.4
+  statement: 'A triangle has sides of 10 m, 24 m and 26 m. Is it right-angled? Work out $10^2+24^2$.'
+  answer_label: 'Work out $10^2+24^2$ and decide.'
+  check:
+    kind: evaluate
+    expression: 10**2 + 24**2
+    answer: '676'
+  answer_text: 'Yes. $10^2+24^2=100+576=676$, and $26^2=676$. This is a 5–12–13 triangle enlarged twice.'
+
+- id: jc18-18.1-hyp-reason
+  section: '18.1'
+  tier: O
+  refs:
+  - GT.4
+  statement: 'In a right-angled triangle, which side is the hypotenuse, and why?'
+  answer_label: 'Name the hypotenuse and give a reason.'
+  check:
+    kind: structured
+    requires: [name-hypotenuse, give-reason]
+    concepts: [hypotenuse]
+    points:
+    - id: name-hypotenuse
+      text: 'The hypotenuse is the side opposite the right angle.'
+      concepts: [hypotenuse]
+    - id: give-reason
+      text: 'It is the longest side, because the right angle opens wider than either acute angle.'
+  answer_text: 'The hypotenuse is the side opposite the right angle. It is also the longest side, because the right angle opens wider than either acute angle.'

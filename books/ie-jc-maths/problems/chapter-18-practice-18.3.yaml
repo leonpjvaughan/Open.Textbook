@@ -1,0 +1,177 @@
+# Junior Cycle Mathematics, Chapter 18, section 18.3.
+#
+# The three ratios and a calculator value for an angle. A ratio written from a
+# triangle is the division of two given sides, so `expression` performs that
+# division and `answer` is the fraction the reader is shown. An exact ratio for a
+# special angle (30°, 45°, 60°) is an `evaluate` check, because the value is
+# exact. A three-decimal value for 37° is irrational, so it uses `approx` with a
+# half-unit tolerance. The last record asks the reader to choose a ratio; a choice
+# cannot be proved, so it uses `structured`.
+chapter: 18
+oracles: [sympy, units]
+symbols: {}
+
+problems:
+- id: jc18-18.3-sin-1
+  section: '18.3'
+  tier: O
+  refs:
+  - GT.4
+  statement: 'A right-angled triangle has an opposite side of 6 cm and a hypotenuse of 10 cm. Write down $\sin\theta$.'
+  answer_label: 'Write down $\sin\theta$.'
+  check:
+    kind: evaluate
+    expression: 6/10
+    answer: '3/5'
+  answer_text: '$\sin\theta=\frac{6}{10}=\frac{3}{5}$. Sine is the opposite side over the hypotenuse, and the fraction simplifies by dividing the top and the bottom by 2.'
+
+- id: jc18-18.3-cos-1
+  section: '18.3'
+  tier: O
+  refs:
+  - GT.4
+  statement: 'A right-angled triangle has an adjacent side of 8 cm and a hypotenuse of 10 cm. Write down $\cos\theta$.'
+  answer_label: 'Write down $\cos\theta$.'
+  check:
+    kind: evaluate
+    expression: 8/10
+    answer: '4/5'
+  answer_text: '$\cos\theta=\frac{8}{10}=\frac{4}{5}$. Cosine is the adjacent side over the hypotenuse. The hypotenuse is never the adjacent side.'
+
+- id: jc18-18.3-tan-1
+  section: '18.3'
+  tier: O
+  refs:
+  - GT.4
+  statement: 'A right-angled triangle has an opposite side of 6 cm and an adjacent side of 8 cm. Write down $\tan\theta$.'
+  answer_label: 'Write down $\tan\theta$.'
+  check:
+    kind: evaluate
+    expression: 6/8
+    answer: '3/4'
+  answer_text: '$\tan\theta=\frac{6}{8}=\frac{3}{4}$. Tangent is the opposite side over the adjacent side, and the fraction simplifies by dividing by 2.'
+
+- id: jc18-18.3-sin-2
+  section: '18.3'
+  tier: O
+  refs:
+  - GT.4
+  statement: 'A right-angled triangle has an opposite side of 5 cm and a hypotenuse of 13 cm. Write down $\sin\theta$.'
+  answer_label: 'Write down $\sin\theta$.'
+  check:
+    kind: evaluate
+    expression: 5/13
+    answer: '5/13'
+  answer_text: '$\sin\theta=\frac{5}{13}$. The fraction does not simplify, because 5 and 13 have no common factor other than 1.'
+
+- id: jc18-18.3-cos-2
+  section: '18.3'
+  tier: O
+  refs:
+  - GT.4
+  statement: 'A right-angled triangle has an adjacent side of 12 cm and a hypotenuse of 13 cm. Write down $\cos\theta$.'
+  answer_label: 'Write down $\cos\theta$.'
+  check:
+    kind: evaluate
+    expression: 12/13
+    answer: '12/13'
+  answer_text: '$\cos\theta=\frac{12}{13}$. The side next to the angle is 12 cm, and the longest side is 13 cm.'
+
+- id: jc18-18.3-tan-2
+  section: '18.3'
+  tier: O
+  refs:
+  - GT.4
+  statement: 'A right-angled triangle has an opposite side of 9 cm and an adjacent side of 12 cm. Write down $\tan\theta$.'
+  answer_label: 'Write down $\tan\theta$.'
+  check:
+    kind: evaluate
+    expression: 9/12
+    answer: '3/4'
+  answer_text: '$\tan\theta=\frac{9}{12}=\frac{3}{4}$. Divide the top and the bottom by 3.'
+
+- id: jc18-18.3-sin-30
+  section: '18.3'
+  tier: O
+  refs:
+  - GT.4
+  statement: 'Use a calculator to find $\sin 30^\circ$.'
+  answer_label: 'Find $\sin 30^\circ$.'
+  check:
+    kind: evaluate
+    expression: sin(30*pi/180)
+    answer: '1/2'
+  answer_text: '$\sin 30^\circ=0.5$, which is $\frac{1}{2}$. This is an exact value, not a rounded one.'
+
+- id: jc18-18.3-cos-60
+  section: '18.3'
+  tier: O
+  refs:
+  - GT.4
+  statement: 'Use a calculator to find $\cos 60^\circ$.'
+  answer_label: 'Find $\cos 60^\circ$.'
+  check:
+    kind: evaluate
+    expression: cos(60*pi/180)
+    answer: '1/2'
+  answer_text: '$\cos 60^\circ=0.5$. Notice that $\sin 30^\circ$ and $\cos 60^\circ$ are equal, because 30° and 60° are the two acute angles of the same triangle.'
+
+- id: jc18-18.3-tan-45
+  section: '18.3'
+  tier: O
+  refs:
+  - GT.4
+  statement: 'Use a calculator to find $\tan 45^\circ$.'
+  answer_label: 'Find $\tan 45^\circ$.'
+  check:
+    kind: evaluate
+    expression: tan(45*pi/180)
+    answer: '1'
+  answer_text: '$\tan 45^\circ=1$. A 45° angle sits in an isosceles right-angled triangle, where the opposite and adjacent sides are equal, so their ratio is 1.'
+
+- id: jc18-18.3-sin-37
+  section: '18.3'
+  tier: O
+  refs:
+  - GT.4
+  statement: 'Use a calculator to find $\sin 37^\circ$, correct to three decimal places.'
+  answer_label: 'Find $\sin 37^\circ$, to three decimal places.'
+  check:
+    kind: approx
+    value: sin(37*pi/180)
+    target: '0.602'
+    tolerance: '0.0005'
+  answer_text: '$\sin 37^\circ=0.602$, to three decimal places. The calculator shows $0.6018\ldots$, and the fourth decimal digit is 8, so the third digit rounds up.'
+
+- id: jc18-18.3-tan-37
+  section: '18.3'
+  tier: O
+  refs:
+  - GT.4
+  statement: 'Use a calculator to find $\tan 37^\circ$, correct to three decimal places.'
+  answer_label: 'Find $\tan 37^\circ$, to three decimal places.'
+  check:
+    kind: approx
+    value: tan(37*pi/180)
+    target: '0.754'
+    tolerance: '0.0005'
+  answer_text: '$\tan 37^\circ=0.754$, to three decimal places. The calculator shows $0.7536\ldots$, and the fourth decimal digit is 6, so the third digit rounds up.'
+
+- id: jc18-18.3-chapter-ratio
+  section: '18.3'
+  tier: O
+  refs:
+  - GT.4
+  statement: 'The chapter problem. The height of the building is opposite the 37° angle, and the 12 m along the ground is adjacent to it. Which ratio uses those two sides? Give a reason.'
+  answer_label: 'Choose the ratio and give a reason.'
+  check:
+    kind: structured
+    requires: [choose-ratio, give-reason]
+    concepts: [tangent]
+    points:
+    - id: choose-ratio
+      text: 'Use the tangent, because tangent is the opposite side over the adjacent side.'
+      concepts: [tangent]
+    - id: give-reason
+      text: 'The height is opposite the angle and 12 m is adjacent to it, so tangent links the two known sides.'
+  answer_text: 'Use the tangent, because $\tan 37^\circ=\frac{\text{opposite}}{\text{adjacent}}=\frac{\text{height}}{12}$. The height is opposite the angle, and 12 m is adjacent to it.'

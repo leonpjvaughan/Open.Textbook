@@ -1,0 +1,199 @@
+# Junior Cycle Mathematics, Chapter 17, section 17.2.
+#
+# A distance is the square root of the sum of the two squared steps, so it is an
+# exact `evaluate` on that expression; an answer that stays as a surd is written
+# `sqrt(29)` so the exact value is proved rather than a rounded decimal. A
+# midpoint is the average of the two coordinates, so it is an `all` of two
+# `evaluate` checks. One record asks the reader to find an error in a midpoint;
+# a fault-finding answer cannot be proved by a CAS, so it uses `structured`.
+chapter: 17
+oracles: [sympy, units]
+symbols: {}
+
+problems:
+- id: jc17-17.2-dist-1
+  section: '17.2'
+  tier: O
+  refs:
+  - GT.5
+  statement: 'Find the distance between $(1,2)$ and $(4,6)$.'
+  answer_label: 'Find the distance.'
+  check:
+    kind: evaluate
+    expression: sqrt((4-1)**2+(6-2)**2)
+    answer: '5'
+  answer_text: 'The distance is $5$. The step across is $4-1=3$ and the step up is $6-2=4$. The squared steps are 9 and 16, which add to 25, and $\sqrt{25}=5$.'
+
+- id: jc17-17.2-dist-2
+  section: '17.2'
+  tier: O
+  refs:
+  - GT.5
+  statement: 'Find the distance between the origin and $(6,8)$.'
+  answer_label: 'Find the distance.'
+  check:
+    kind: evaluate
+    expression: sqrt((6-0)**2+(8-0)**2)
+    answer: '10'
+  answer_text: 'The distance is $10$. From the origin, the steps are 6 across and 8 up. Then $6^2+8^2=36+64=100$, and $\sqrt{100}=10$.'
+
+- id: jc17-17.2-dist-3
+  section: '17.2'
+  tier: O
+  refs:
+  - GT.5
+  statement: 'Find the distance between $(2,3)$ and $(5,7)$.'
+  answer_label: 'Find the distance.'
+  check:
+    kind: evaluate
+    expression: sqrt((5-2)**2+(7-3)**2)
+    answer: '5'
+  answer_text: 'The distance is $5$. The steps are 3 across and 4 up, so the squares are 9 and 16. They add to 25, and $\sqrt{25}=5$.'
+
+- id: jc17-17.2-dist-surd
+  section: '17.2'
+  tier: O
+  refs:
+  - GT.5
+  statement: 'Find the distance between $(1,2)$ and $(3,7)$, leaving your answer as a surd.'
+  answer_label: 'Find the distance as a surd.'
+  check:
+    kind: evaluate
+    expression: sqrt((3-1)**2+(7-2)**2)
+    answer: sqrt(29)
+  answer_text: 'The distance is $\sqrt{29}$. The steps are 2 across and 5 up, so the squares are 4 and 25. They add to 29, and 29 is not a square number, so the exact answer is $\sqrt{29}$, which is about 5.39.'
+
+- id: jc17-17.2-dist-4
+  section: '17.2'
+  tier: O
+  refs:
+  - GT.5
+  statement: 'Find the distance between $(-2,1)$ and $(3,13)$.'
+  answer_label: 'Find the distance.'
+  check:
+    kind: evaluate
+    expression: sqrt((3-(-2))**2+(13-1)**2)
+    answer: '13'
+  answer_text: 'The distance is $13$. The step across is $3-(-2)=5$ and the step up is $13-1=12$. Then $5^2+12^2=25+144=169$, and $\sqrt{169}=13$.'
+
+- id: jc17-17.2-mid-1
+  section: '17.2'
+  tier: O
+  refs:
+  - GT.5
+  statement: 'Find the midpoint of the segment joining $(2,4)$ and $(8,10)$.'
+  answer_label: 'Find the midpoint.'
+  check:
+    kind: all
+    checks:
+    - kind: evaluate
+      expression: (2+8)/2
+      answer: '5'
+    - kind: evaluate
+      expression: (4+10)/2
+      answer: '7'
+  answer_text: 'The midpoint is $(5,7)$. Average the two $x$-coordinates: $(2+8)\div2=5$. Average the two $y$-coordinates: $(4+10)\div2=7$. The midpoint is the point halfway between, so it sits on the segment.'
+
+- id: jc17-17.2-mid-2
+  section: '17.2'
+  tier: O
+  refs:
+  - GT.5
+  statement: 'Find the midpoint of the segment joining $(-3,5)$ and $(7,-1)$.'
+  answer_label: 'Find the midpoint.'
+  check:
+    kind: all
+    checks:
+    - kind: evaluate
+      expression: (-3+7)/2
+      answer: '2'
+    - kind: evaluate
+      expression: (5+(-1))/2
+      answer: '2'
+  answer_text: 'The midpoint is $(2,2)$. Average the $x$-coordinates: $(-3+7)\div2=2$. Average the $y$-coordinates: $(5-1)\div2=2$. One coordinate is negative, but the average is still found by adding and halving.'
+
+- id: jc17-17.2-mid-3
+  section: '17.2'
+  tier: O
+  refs:
+  - GT.5
+  statement: 'Find the midpoint of the segment joining $(1,1)$ and $(4,5)$.'
+  answer_label: 'Find the midpoint.'
+  check:
+    kind: all
+    checks:
+    - kind: evaluate
+      expression: (1+4)/2
+      answer: 5/2
+    - kind: evaluate
+      expression: (1+5)/2
+      answer: '3'
+  answer_text: 'The midpoint is $(2.5,3)$. The average of 1 and 4 is $5\div2=2.5$, and the average of 1 and 5 is $3$. A midpoint can sit between grid lines, and a decimal answer is allowed.'
+
+- id: jc17-17.2-mid-end
+  section: '17.2'
+  tier: O
+  refs:
+  - GT.5
+  statement: 'The midpoint of a segment is $(4,3)$. One end of the segment is $(1,1)$. Find the other end.'
+  answer_label: 'Find the other end of the segment.'
+  check:
+    kind: all
+    checks:
+    - kind: evaluate
+      expression: 2*4-1
+      answer: '7'
+    - kind: evaluate
+      expression: 2*3-1
+      answer: '5'
+  answer_text: 'The other end is $(7,5)$. The midpoint is the average of the two ends. So the two ends add to twice the midpoint: $2\times4=8$ across, and $8-1=7$. In the same way $2\times3=6$ up, and $6-1=5$.'
+
+- id: jc17-17.2-park-dist
+  section: '17.2'
+  tier: O
+  refs:
+  - GT.5
+  statement: 'The park gate is at $G(1,2)$ and the kiosk is at $K(9,8)$. Find the length of the straight main path from the gate to the kiosk.'
+  answer_label: 'Find the length of the main path.'
+  check:
+    kind: evaluate
+    expression: sqrt((9-1)**2+(8-2)**2)
+    answer: '10'
+  answer_text: 'The main path is $10$ m long. The steps are 8 across and 6 up, so the squares are 64 and 36. They add to 100, and $\sqrt{100}=10$.'
+
+- id: jc17-17.2-park-mid
+  section: '17.2'
+  tier: O
+  refs:
+  - GT.5
+  statement: 'A bench sits at the midpoint of the main path from $G(1,2)$ to $K(9,8)$. Find the coordinates of the bench.'
+  answer_label: 'Find the coordinates of the bench.'
+  check:
+    kind: all
+    checks:
+    - kind: evaluate
+      expression: (1+9)/2
+      answer: '5'
+    - kind: evaluate
+      expression: (2+8)/2
+      answer: '5'
+  answer_text: 'The bench is at $(5,5)$. Average the coordinates: $(1+9)\div2=5$ and $(2+8)\div2=5$. The bench is the same distance from the gate as from the kiosk, because it is halfway along the path.'
+
+- id: jc17-17.2-mid-error
+  section: '17.2'
+  tier: O
+  refs:
+  - GT.5
+  statement: 'A student finds the midpoint of the segment joining $(2,3)$ and $(6,9)$ and writes $(4,3)$. Explain the error and give the correct midpoint.'
+  answer_label: 'Explain the error and give the correct midpoint.'
+  check:
+    kind: structured
+    requires: [state-error, give-midpoint]
+    concepts: [midpoint-average]
+    points:
+    - id: state-error
+      text: 'The student found the difference of the $y$-coordinates, $9-3=6$, instead of their average.'
+      concepts: [midpoint-average]
+    - id: give-midpoint
+      text: 'The midpoint is the average of the coordinates, so it is $(4,6)$: $(2+6)\div2=4$ and $(3+9)\div2=6$.'
+  answer_text: 'The student averaged the $x$-coordinates but subtracted the $y$-coordinates. The midpoint is $(4,6)$. To find a midpoint, add the two coordinates and halve: $(2+6)\div2=4$ and $(3+9)\div2=6$. The midpoint is always halfway between the two ends.'

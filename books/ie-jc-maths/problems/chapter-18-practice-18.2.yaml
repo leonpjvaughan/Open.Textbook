@@ -1,0 +1,176 @@
+# Junior Cycle Mathematics, Chapter 18, section 18.2.
+#
+# Pythagoras' theorem in both directions. `expression` performs the calculation —
+# adding the squares for a hypotenuse, subtracting for a leg — and `answer` is the
+# value the reader is shown, so a wrong formula fails. Two records have an
+# irrational answer, so they use `approx` with a half-unit-of-the-last-place
+# tolerance, and the answer the reader sees is in `answer_text`. The last record
+# asks why a leg cannot exceed the hypotenuse; a reason cannot be proved by a CAS,
+# so it uses `structured`.
+chapter: 18
+oracles: [sympy, units]
+symbols: {}
+
+problems:
+- id: jc18-18.2-hyp-1
+  section: '18.2'
+  tier: O
+  refs:
+  - GT.4
+  statement: 'A right-angled triangle has legs of 6 cm and 8 cm. Find the hypotenuse.'
+  answer_label: 'Find the hypotenuse.'
+  check:
+    kind: evaluate
+    expression: sqrt(6**2 + 8**2)
+    answer: '10'
+  answer_text: 'The hypotenuse is $10$ cm. Add the squares of the legs, then take the square root: $36+64=100$, and $\sqrt{100}=10$.'
+
+- id: jc18-18.2-hyp-2
+  section: '18.2'
+  tier: O
+  refs:
+  - GT.4
+  statement: 'A right-angled triangle has legs of 9 m and 12 m. Find the hypotenuse.'
+  answer_label: 'Find the hypotenuse.'
+  check:
+    kind: evaluate
+    expression: sqrt(9**2 + 12**2)
+    answer: '15'
+  answer_text: 'The hypotenuse is $15$ m. $9^2+12^2=81+144=225$, and $\sqrt{225}=15$.'
+
+- id: jc18-18.2-hyp-3
+  section: '18.2'
+  tier: O
+  refs:
+  - GT.4
+  statement: 'A right-angled triangle has legs of 5 cm and 12 cm. Find the hypotenuse.'
+  answer_label: 'Find the hypotenuse.'
+  check:
+    kind: evaluate
+    expression: sqrt(5**2 + 12**2)
+    answer: '13'
+  answer_text: 'The hypotenuse is $13$ cm. $5^2+12^2=25+144=169$, and $\sqrt{169}=13$.'
+
+- id: jc18-18.2-leg-1
+  section: '18.2'
+  tier: O
+  refs:
+  - GT.4
+  statement: 'A right-angled triangle has a hypotenuse of 13 cm and one leg of 5 cm. Find the other leg.'
+  answer_label: 'Find the other leg.'
+  check:
+    kind: evaluate
+    expression: sqrt(13**2 - 5**2)
+    answer: '12'
+  answer_text: 'The other leg is $12$ cm. The hypotenuse is known, so subtract: $13^2-5^2=169-25=144$, and $\sqrt{144}=12$.'
+
+- id: jc18-18.2-leg-2
+  section: '18.2'
+  tier: O
+  refs:
+  - GT.4
+  statement: 'A right-angled triangle has a hypotenuse of 17 m and one leg of 8 m. Find the other leg.'
+  answer_label: 'Find the other leg.'
+  check:
+    kind: evaluate
+    expression: sqrt(17**2 - 8**2)
+    answer: '15'
+  answer_text: 'The other leg is $15$ m. $17^2-8^2=289-64=225$, and $\sqrt{225}=15$.'
+
+- id: jc18-18.2-hyp-4
+  section: '18.2'
+  tier: O
+  refs:
+  - GT.4
+  statement: 'A right-angled triangle has legs of 5 m and 7 m. Find the hypotenuse, correct to one decimal place.'
+  answer_label: 'Find the hypotenuse, to one decimal place.'
+  check:
+    kind: approx
+    value: sqrt(5**2 + 7**2)
+    target: '8.6'
+    tolerance: '0.05'
+  answer_text: 'The hypotenuse is $8.6$ m, to one decimal place. $5^2+7^2=25+49=74$, and $\sqrt{74}=8.602\ldots$ The value is not a whole number, so round once at the end.'
+
+- id: jc18-18.2-leg-3
+  section: '18.2'
+  tier: O
+  refs:
+  - GT.4
+  statement: 'A right-angled triangle has a hypotenuse of 10 cm and one leg of 6 cm. Find the other leg.'
+  answer_label: 'Find the other leg.'
+  check:
+    kind: evaluate
+    expression: sqrt(10**2 - 6**2)
+    answer: '8'
+  answer_text: 'The other leg is $8$ cm. $10^2-6^2=100-36=64$, and $\sqrt{64}=8$. Adding instead would give $\sqrt{136}$, which is longer than the hypotenuse, so it cannot be a leg.'
+
+- id: jc18-18.2-hyp-5
+  section: '18.2'
+  tier: O
+  refs:
+  - GT.4
+  statement: 'A right-angled triangle has legs of 7 cm and 24 cm. Find the hypotenuse.'
+  answer_label: 'Find the hypotenuse.'
+  check:
+    kind: evaluate
+    expression: sqrt(7**2 + 24**2)
+    answer: '25'
+  answer_text: 'The hypotenuse is $25$ cm. $7^2+24^2=49+576=625$, and $\sqrt{625}=25$.'
+
+- id: jc18-18.2-chapter
+  section: '18.2'
+  tier: O
+  refs:
+  - GT.4
+  statement: 'The chapter problem. You stand 12 m from the school building, and the top is 15 m away in a straight line. Find the height of the building.'
+  answer_label: 'Find the height of the building.'
+  check:
+    kind: evaluate
+    expression: sqrt(15**2 - 12**2)
+    answer: '9'
+  answer_text: 'The building is $9$ m tall. The 15 m line is the hypotenuse, so subtract: $15^2-12^2=225-144=81$, and $\sqrt{81}=9$.'
+
+- id: jc18-18.2-ladder
+  section: '18.2'
+  tier: O
+  refs:
+  - GT.4
+  statement: 'A ladder is 5 m long. Its foot is 3 m from a wall. How far up the wall does the ladder reach?'
+  answer_label: 'Find the height up the wall.'
+  check:
+    kind: evaluate
+    expression: sqrt(5**2 - 3**2)
+    answer: '4'
+  answer_text: 'The ladder reaches $4$ m up the wall. The ladder is the hypotenuse: $5^2-3^2=25-9=16$, and $\sqrt{16}=4$.'
+
+- id: jc18-18.2-rect-diagonal
+  section: '18.2'
+  tier: O
+  refs:
+  - GT.4
+  statement: 'A rectangle is 12 cm long and 5 cm wide. Find the length of a diagonal.'
+  answer_label: 'Find the length of a diagonal.'
+  check:
+    kind: evaluate
+    expression: sqrt(12**2 + 5**2)
+    answer: '13'
+  answer_text: 'The diagonal is $13$ cm. The diagonal makes a right-angled triangle with the length and the width, so $12^2+5^2=144+25=169$, and $\sqrt{169}=13$.'
+
+- id: jc18-18.2-leg-reason
+  section: '18.2'
+  tier: O
+  refs:
+  - GT.4
+  statement: 'Explain why the hypotenuse is always the longest side of a right-angled triangle.'
+  answer_label: 'Explain why the hypotenuse is the longest side.'
+  check:
+    kind: structured
+    requires: [state-longest, give-reason]
+    concepts: [hypotenuse]
+    points:
+    - id: state-longest
+      text: 'The hypotenuse is opposite the right angle, which is the largest angle.'
+      concepts: [hypotenuse]
+    - id: give-reason
+      text: 'In a triangle, the longest side is opposite the largest angle, so the hypotenuse is the longest side.'
+  answer_text: 'The hypotenuse is opposite the right angle. The right angle is the largest angle in the triangle, and the longest side always lies opposite the largest angle. So the hypotenuse is the longest side.'

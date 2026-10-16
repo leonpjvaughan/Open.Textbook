@@ -1,0 +1,168 @@
+# Junior Cycle Mathematics, Chapter 17, section 17.4.
+#
+# Parallel lines have equal slopes, so those records use `compare` on the two
+# slopes. Perpendicular lines have a product of slopes equal to -1, so those use
+# `evaluate` on the product; a product that is not -1 is shown as a plain number
+# and the answer text says why the lines are neither. One record asks the reader
+# to find the fault in a rule; a fault-finding answer cannot be proved by a CAS,
+# so it uses `structured`.
+chapter: 17
+oracles: [sympy, units]
+symbols: {}
+
+problems:
+- id: jc17-17.4-para-1
+  section: '17.4'
+  tier: O
+  refs:
+  - GT.5
+  statement: 'Line A has slope 2 and line B has slope 2. Are the lines parallel, perpendicular or neither?'
+  answer_label: 'Say whether the lines are parallel, perpendicular or neither.'
+  check:
+    kind: compare
+    lhs: '2'
+    relation: '='
+    rhs: '2'
+  answer_text: 'The lines are parallel. They have the same slope, 2, so they rise at the same rate and never meet. Equal slopes mean parallel lines.'
+
+- id: jc17-17.4-para-2
+  section: '17.4'
+  tier: O
+  refs:
+  - GT.5
+  statement: 'Line A has slope 3 and line B has slope $\tfrac{1}{3}$. Are the lines parallel, perpendicular or neither?'
+  answer_label: 'Say whether the lines are parallel, perpendicular or neither.'
+  check:
+    kind: all
+    checks:
+    - kind: compare
+      lhs: '3'
+      relation: '!='
+      rhs: 1/3
+    - kind: evaluate
+      expression: 3*(1/3)
+      answer: '1'
+  answer_text: 'The lines are neither parallel nor perpendicular. The slopes are not equal, so the lines are not parallel. Their product is $3\times\tfrac{1}{3}=1$, not $-1$, so they are not perpendicular either. A perpendicular pair needs the product to be $-1$.'
+
+- id: jc17-17.4-perp-1
+  section: '17.4'
+  tier: O
+  refs:
+  - GT.5
+  statement: 'Line A has slope 4 and line B has slope $-\tfrac{1}{4}$. Are the lines parallel, perpendicular or neither?'
+  answer_label: 'Say whether the lines are parallel, perpendicular or neither.'
+  check:
+    kind: evaluate
+    expression: 4*(-1/4)
+    answer: '-1'
+  answer_text: 'The lines are perpendicular. Their slopes multiply to $4\times\left(-\tfrac{1}{4}\right)=-1$, which is the test for perpendicular lines. The second slope is the negative reciprocal of the first.'
+
+- id: jc17-17.4-perp-2
+  section: '17.4'
+  tier: O
+  refs:
+  - GT.5
+  statement: 'A line has slope 5. Find the slope of a line perpendicular to it.'
+  answer_label: 'Find the slope of a perpendicular line.'
+  check:
+    kind: evaluate
+    expression: -1/5
+    answer: -1/5
+  answer_text: 'The perpendicular slope is $-\tfrac{1}{5}$. Flip the slope and change its sign: the reciprocal of 5 is $\tfrac{1}{5}$, and its negative is $-\tfrac{1}{5}$. Check the product: $5\times\left(-\tfrac{1}{5}\right)=-1$.'
+
+- id: jc17-17.4-perp-3
+  section: '17.4'
+  tier: O
+  refs:
+  - GT.5
+  statement: 'A line has slope $-\tfrac{2}{3}$. Find the slope of a line perpendicular to it.'
+  answer_label: 'Find the slope of a perpendicular line.'
+  check:
+    kind: evaluate
+    expression: -1/(-2/3)
+    answer: 3/2
+  answer_text: 'The perpendicular slope is $\tfrac{3}{2}$. Flip $-\tfrac{2}{3}$ to get $-\tfrac{3}{2}$, then change the sign to get $\tfrac{3}{2}$. Check: $-\tfrac{2}{3}\times\tfrac{3}{2}=-1$.'
+
+- id: jc17-17.4-perp-show
+  section: '17.4'
+  tier: O
+  refs:
+  - GT.5
+  statement: 'Two lines have slopes $\tfrac{1}{2}$ and $-2$. Show that the lines are perpendicular.'
+  answer_label: 'Show that the lines are perpendicular.'
+  check:
+    kind: evaluate
+    expression: (1/2)*(-2)
+    answer: '-1'
+  answer_text: 'Multiply the slopes: $\tfrac{1}{2}\times(-2)=-1$. A product of $-1$ is the test for perpendicular lines, so the two lines meet at a right angle. The slope $-2$ is the negative reciprocal of $\tfrac{1}{2}$.'
+
+- id: jc17-17.4-para-points
+  section: '17.4'
+  tier: O
+  refs:
+  - GT.5
+  statement: 'The line through $(1,1)$ and $(3,5)$ has slope 2. The line through $(0,0)$ and $(2,4)$ also has slope 2. Are the two lines parallel?'
+  answer_label: 'Say whether the lines are parallel.'
+  check:
+    kind: all
+    checks:
+    - kind: evaluate
+      expression: (5-1)/(3-1)
+      answer: '2'
+    - kind: evaluate
+      expression: (4-0)/(2-0)
+      answer: '2'
+  answer_text: 'The lines are parallel. The first slope is $(5-1)\div(3-1)=2$ and the second is $(4-0)\div(2-0)=2$. Equal slopes mean the lines are parallel, even when the two lines are drawn in different places on the grid.'
+
+- id: jc17-17.4-perp-points
+  section: '17.4'
+  tier: O
+  refs:
+  - GT.5
+  statement: 'Find the slope of the line through $(0,0)$ and $(2,1)$, and the slope of the line through $(0,0)$ and $(1,-2)$. Are the two lines perpendicular?'
+  answer_label: 'Find both slopes and say whether the lines are perpendicular.'
+  check:
+    kind: all
+    checks:
+    - kind: evaluate
+      expression: (1-0)/(2-0)
+      answer: 1/2
+    - kind: evaluate
+      expression: (-2-0)/(1-0)
+      answer: '-2'
+    - kind: evaluate
+      expression: (1/2)*(-2)
+      answer: '-1'
+  answer_text: 'The slopes are $\tfrac{1}{2}$ and $-2$, and the lines are perpendicular. The product of the slopes is $\tfrac{1}{2}\times(-2)=-1$. Both lines pass through the origin, so they cross there at a right angle.'
+
+- id: jc17-17.4-park-perp
+  section: '17.4'
+  tier: O
+  refs:
+  - GT.5
+  statement: 'The park main path has slope $\tfrac{3}{4}$ and the second path has slope $-\tfrac{4}{3}$. Find the product of the two slopes. Are the paths perpendicular?'
+  answer_label: 'Find the product and say whether the paths are perpendicular.'
+  check:
+    kind: evaluate
+    expression: (3/4)*(-4/3)
+    answer: '-1'
+  answer_text: 'The product is $\tfrac{3}{4}\times\left(-\tfrac{4}{3}\right)=-1$, so the two paths are perpendicular. They meet at the kiosk at a right angle. The slope $-\tfrac{4}{3}$ is the negative reciprocal of $\tfrac{3}{4}$.'
+
+- id: jc17-17.4-error
+  section: '17.4'
+  tier: O
+  refs:
+  - GT.5
+  statement: 'A student says two lines are perpendicular when their slopes add to 0, so slopes 2 and $-2$ are perpendicular. Explain why the student is wrong and give a correct pair of perpendicular slopes.'
+  answer_label: 'Explain the error and give a correct pair.'
+  check:
+    kind: structured
+    requires: [identify-error, give-correct-pair]
+    concepts: [negative-reciprocal]
+    points:
+    - id: identify-error
+      text: 'The test is the product of the slopes, not their sum. Slopes 2 and $-2$ have product $-4$, not $-1$.'
+      concepts: [negative-reciprocal]
+    - id: give-correct-pair
+      text: 'A correct pair is 2 and $-\tfrac{1}{2}$, because $2\times\left(-\tfrac{1}{2}\right)=-1$.'
+  answer_text: 'The student used the sum of the slopes, but the test is their product. Slopes 2 and $-2$ give $2\times(-2)=-4$, so those lines are not perpendicular. A correct pair is 2 and $-\tfrac{1}{2}$: the second slope is the negative reciprocal of the first, and their product is $-1$.'

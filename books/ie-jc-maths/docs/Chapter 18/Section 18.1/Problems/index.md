@@ -10,9 +10,13 @@ refs:
 kind: problems
 ---
 
-<!-- scaffold:stub -->
-
 # 18.1 Pythagoras' theorem — Practise
 
-> **Stub.** Independent, homework-style practice. Answers and concise solutions in a collapsed block. Mark Higher-only questions explicitly.
-> Tier: **O** · refs: GT.4
+Work independently. The questions and answers are shown together at the end.
+
+Find the longest side first. It must be the hypotenuse, and it must sit alone on one
+side of the equation.
+
+:::problems chapter-18-practice-18.1
+
+:::answers chapter-18-practice-18.1

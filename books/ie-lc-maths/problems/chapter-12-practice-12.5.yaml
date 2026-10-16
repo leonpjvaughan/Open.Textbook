@@ -1,0 +1,148 @@
+# Practice set for 12.5 (strand 2, outcome 2.3). The period and the range are exact
+# arithmetic, so `evaluate` proves them; the depth at an interior time is irrational and
+# uses `approx`. The model here is the chapter problem's tide, so the reader meets it
+# four times in one set. The booklet gives no graphing formula, so no record declares a
+# `plays`.
+chapter: 12
+problems:
+  - id: lc12-5-period
+    section: '12.5'
+    tier: O
+    refs: ['2.3']
+    statement: 'Find the period of $y = \sin 2\theta$, in degrees.'
+    answer_label: 'The period'
+    check: {kind: evaluate, expression: '360 / 2', answer: '180'}
+    answer_text: >-
+      For $y = \sin c\theta$ the period is $\dfrac{360^\circ}{c}$, so here it is
+      $\dfrac{360^\circ}{2} = 180^\circ$.
+
+      Two full waves fit into one turn, which is why the period halves.
+
+  - id: lc12-5-amplitude
+    section: '12.5'
+    tier: O
+    refs: ['2.3']
+    statement: 'Write down the amplitude of $y = 5\sin\theta$.'
+    answer_label: 'The amplitude'
+    check: {kind: evaluate, expression: 'Abs(5)', answer: '5'}
+    answer_text: >-
+      The amplitude is the number multiplying the sine, so it is $5$. The curve rises
+      $5$ above the middle line and falls $5$ below it.
+
+  - id: lc12-5-range
+    section: '12.5'
+    tier: O
+    refs: ['2.3']
+    statement: 'Find the smallest and largest values of $y = 3 + 2\sin\theta$.'
+    answer_label: 'The smallest, then the largest'
+    check:
+      kind: all
+      checks:
+        - {kind: evaluate, expression: '3 - 2', answer: '1'}
+        - {kind: evaluate, expression: '3 + 2', answer: '5'}
+    answer_text: >-
+      The amplitude is $2$ and the vertical shift is $3$, so the middle line is $y = 3$.
+      The curve reaches $3 + 2 = 5$ and $3 - 2 = 1$.
+
+      The range is $1 \le y \le 5$.
+
+  - id: lc12-5-tide-max
+    section: '12.5'
+    tier: O
+    refs: ['2.3']
+    statement: >-
+      The depth of water over a sandbank is $d = 1.4 + 1.2\sin(30^\circ t)$ metres,
+      where $t$ is in hours. Find the greatest depth.
+    answer_label: 'The greatest depth'
+    check: {kind: evaluate, expression: '1.4 + 1.2', answer: '2.6'}
+    answer_text: >-
+      The amplitude is $1.2$ and the vertical shift is $1.4$, so the middle line is
+      $d = 1.4$ and the greatest depth is
+
+      $$d = 1.4 + 1.2 = 2.6 \text{ m}$$
+
+      The greatest depth is not the amplitude. The amplitude is the distance from the
+      middle line to the top.
+
+  - id: lc12-5-tide-min
+    section: '12.5'
+    tier: O
+    refs: ['2.3']
+    statement: >-
+      The depth of water over a sandbank is $d = 1.4 + 1.2\sin(30^\circ t)$ metres.
+      Find the smallest depth.
+    answer_label: 'The smallest depth'
+    check: {kind: evaluate, expression: '1.4 - 1.2', answer: '0.2'}
+    answer_text: >-
+      Subtract the amplitude from the middle line:
+
+      $$d = 1.4 - 1.2 = 0.2 \text{ m}$$
+
+      The sandbank is almost dry at low water.
+
+  - id: lc12-5-tide-period
+    section: '12.5'
+    tier: O
+    refs: ['2.3']
+    statement: >-
+      For the tide model $d = 1.4 + 1.2\sin(30^\circ t)$, find the period in hours, and
+      say what it means.
+    answer_label: 'The period'
+    check: {kind: evaluate, expression: '360 / 30', answer: '12'}
+    answer_text: >-
+      $$\text{period} = \frac{360^\circ}{30^\circ} = 12 \text{ hours}$$
+
+      The tide repeats every $12$ hours, so there are two high waters and two low waters
+      in a day. That is what a semidiurnal tide does on this coast.
+
+  - id: lc12-5-tide-at-two
+    section: '12.5'
+    tier: O
+    refs: ['2.3']
+    statement: >-
+      For the tide model $d = 1.4 + 1.2\sin(30^\circ t)$, find the depth at $t = 2$
+      hours, correct to two decimal places.
+    answer_label: 'The depth at t = 2'
+    check:
+      kind: approx
+      value: '1.4 + 1.2 * sin(30 * 2 * pi / 180)'
+      target: '2.44'
+      tolerance: '0.01'
+    answer_text: >-
+      Substitute $t = 2$:
+
+      $$d = 1.4 + 1.2\sin 60^\circ = 1.4 + 1.2 \times 0.8660 = 2.44 \text{ m}$$
+
+      The depth is rising towards high water at $t = 3$, so $2.44$ m is below the
+      maximum of $2.6$ m. The answer fits the graph.
+
+  - id: lc12-5-describe
+    section: '12.5'
+    tier: O
+    refs: ['2.3']
+    statement: >-
+      Describe the graph of $y = 2 + 3\cos\theta$ for $0^\circ \le \theta \le 360^\circ$:
+      give its amplitude, period, range and starting value.
+    answer_label: 'Amplitude, period, range and starting value'
+    check:
+      kind: structured
+      requires: [amplitude-period, range-start]
+      concepts: [cosine-graph]
+      points:
+        - id: amplitude-period
+          text: >-
+            The amplitude is 3 and the period is 360 degrees, so one full wave fits in
+            the interval.
+          concepts: [cosine-graph]
+        - id: range-start
+          text: >-
+            The vertical shift is 2, so the range is from -1 to 5, and the cosine starts
+            at its maximum, so the curve starts at 5.
+          concepts: [cosine-graph]
+    answer_text: >-
+      The amplitude is $3$ and the period is $360^\circ$. The vertical shift is $2$, so
+      the middle line is $y = 2$ and the range is $2 - 3 = -1$ up to $2 + 3 = 5$.
+
+      The cosine starts at its maximum, so the curve starts at $y = 5$ when
+      $\theta = 0^\circ$, falls to $-1$ at $180^\circ$, and returns to $5$ at
+      $360^\circ$.

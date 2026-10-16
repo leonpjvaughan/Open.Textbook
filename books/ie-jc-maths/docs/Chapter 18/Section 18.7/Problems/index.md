@@ -10,9 +10,14 @@ refs:
 kind: problems
 ---
 
-<!-- scaffold:stub -->
-
 # 18.7 Choosing Pythagoras or trigonometry — Practise
 
-> **Stub.** Independent, homework-style practice. Answers and concise solutions in a collapsed block. Mark Higher-only questions explicitly.
-> Tier: **O** · refs: GT.4
+Work independently. The questions and answers are shown together at the end.
+
+Before you calculate, decide which method the question needs and write that decision
+down. Two sides and no angle means Pythagoras. A side and an angle means a ratio.
+Two sides and an angle wanted means an inverse ratio.
+
+:::problems chapter-18-practice-18.7
+
+:::answers chapter-18-practice-18.7

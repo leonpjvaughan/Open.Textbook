@@ -1,0 +1,153 @@
+# Practice set for 12.2 (strand 2, outcome 2.3). The exact answers are proved by
+# `evaluate`, which simplifies the surd symbolically; the one irrational length uses
+# `approx`. The right-angle test is a `compare`, so the equality of the two squares is
+# what the check proves. Pythagoras' theorem is not an item in the SEC booklet, so no
+# record declares a `plays`.
+chapter: 12
+problems:
+  - id: lc12-2-hypotenuse
+    section: '12.2'
+    tier: F
+    refs: ['2.3']
+    statement: 'A right triangle has legs of $9$ cm and $12$ cm. Find the hypotenuse.'
+    answer_label: 'The hypotenuse'
+    check: {kind: evaluate, expression: 'sqrt(9**2 + 12**2)', answer: '15'}
+    answer_text: >-
+      $$c^2 = 9^2 + 12^2 = 81 + 144 = 225 \qquad c = \sqrt{225} = 15 \text{ cm}$$
+
+      Add the two squares, because the hypotenuse is the side you are finding.
+
+  - id: lc12-2-leg
+    section: '12.2'
+    tier: F
+    refs: ['2.3']
+    statement: 'A right triangle has hypotenuse $13$ cm and one leg $5$ cm. Find the other leg.'
+    answer_label: 'The other leg'
+    check: {kind: evaluate, expression: 'sqrt(13**2 - 5**2)', answer: '12'}
+    answer_text: >-
+      $$b^2 = 13^2 - 5^2 = 169 - 25 = 144 \qquad b = 12 \text{ cm}$$
+
+      Subtract, because the hypotenuse is one of the two sides you know.
+
+  - id: lc12-2-surd
+    section: '12.2'
+    tier: F
+    refs: ['2.3']
+    statement: >-
+      A right triangle has legs of $5$ cm and $7$ cm. Find the hypotenuse, leaving your
+      answer as a surd.
+    answer_label: 'The hypotenuse'
+    check: {kind: evaluate, expression: 'sqrt(5**2 + 7**2)', answer: 'sqrt(74)'}
+    answer_text: >-
+      $$c^2 = 25 + 49 = 74 \qquad c = \sqrt{74} \text{ cm}$$
+
+      $74$ is not a perfect square, so the surd is the exact answer. A decimal such as
+      $8.60$ is only an approximation.
+
+  - id: lc12-2-diagonal
+    section: '12.2'
+    tier: F
+    refs: ['2.3']
+    statement: 'A rectangle is $8$ m long and $6$ m wide. Find the length of a diagonal.'
+    answer_label: 'The diagonal'
+    check: {kind: evaluate, expression: 'sqrt(8**2 + 6**2)', answer: '10'}
+    answer_text: >-
+      A diagonal is the hypotenuse of a right triangle with legs $8$ m and $6$ m.
+
+      $$d^2 = 64 + 36 = 100 \qquad d = 10 \text{ m}$$
+
+  - id: lc12-2-buoy
+    section: '12.2'
+    tier: F
+    refs: ['2.3']
+    statement: >-
+      A Coast Guard station is $60$ m above sea level. A marker buoy lies at sea level,
+      $378.8$ m horizontally from the foot of the cliff. Find the direct distance from
+      the station to the buoy, correct to one decimal place.
+    answer_label: 'The direct distance'
+    check:
+      kind: approx
+      value: 'sqrt(60**2 + 378.8**2)'
+      target: '383.5'
+      tolerance: '0.1'
+    answer_text: >-
+      The direct distance is the hypotenuse of a right triangle with legs $60$ m and
+      $378.8$ m.
+
+      $$d^2 = 3600 + 143489.44 = 147089.44 \qquad d = 383.5 \text{ m}$$
+
+      The direct distance is only slightly longer than the horizontal distance, because
+      the cliff is small compared with it. That is the check.
+
+  - id: lc12-2-right-test
+    section: '12.2'
+    tier: F
+    refs: ['2.3']
+    statement: >-
+      A triangle has sides of $7$ cm, $24$ cm and $25$ cm. Show that it is right-angled.
+    answer_label: 'The test'
+    check:
+      kind: compare
+      relation: '='
+      lhs: '7**2 + 24**2'
+      rhs: '25**2'
+    answer_text: >-
+      The longest side is $25$ cm, so it would be the hypotenuse. Test the squares of
+      the two shorter sides against it:
+
+      $$7^2 + 24^2 = 49 + 576 = 625 = 25^2$$
+
+      The two sides agree, so the triangle is right-angled. The right angle lies between
+      the sides of length $7$ cm and $24$ cm.
+
+  - id: lc12-2-converse
+    section: '12.2'
+    tier: F
+    refs: ['2.3']
+    statement: >-
+      Explain how to test whether a triangle with three known sides contains a right
+      angle.
+    answer_label: 'The test'
+    check:
+      kind: structured
+      requires: [longest-side, compare-squares]
+      concepts: [converse]
+      points:
+        - id: longest-side
+          text: >-
+            Find the longest side. If the triangle is right-angled, that side is the
+            hypotenuse.
+          concepts: [converse]
+        - id: compare-squares
+          text: >-
+            Square the two shorter sides and add them. If the total equals the square of
+            the longest side, the triangle is right-angled; if it does not, there is no
+            right angle.
+          concepts: [converse]
+    answer_text: >-
+      Find the longest side and treat it as the hypotenuse candidate. Square the two
+      shorter sides and add.
+
+      If the total equals the square of the longest side, the triangle is right-angled.
+      If the total is smaller, the triangle is acute. If the total is larger, it is
+      obtuse. The reverse of the theorem is called the **converse**.
+
+  - id: lc12-2-box
+    section: '12.2'
+    tier: H
+    refs: ['2.3']
+    statement: >-
+      A box is $4$ m long, $3$ m wide and $12$ m high. Find the length of the longest
+      diagonal through the box.
+    answer_label: 'The longest diagonal'
+    check: {kind: evaluate, expression: 'sqrt(4**2 + 3**2 + 12**2)', answer: '13'}
+    answer_text: >-
+      First find the diagonal of the base:
+
+      $$d^2 = 4^2 + 3^2 = 25 \qquad d = 5 \text{ m}$$
+
+      Then use that diagonal with the height:
+
+      $$D^2 = 5^2 + 12^2 = 25 + 144 = 169 \qquad D = 13 \text{ m}$$
+
+      Using the theorem twice is the method for any space diagonal.

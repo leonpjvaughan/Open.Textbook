@@ -1,0 +1,172 @@
+# Junior Cycle Mathematics, Chapter 17, section 17.3.
+#
+# A slope is a rise divided by a run, so every numeric record is an exact
+# `evaluate` on that division; the answer stays an exact fraction (`3/4`) rather
+# than a rounded decimal. One record asks the reader to explain a vertical line,
+# whose slope is undefined and cannot be a number, so it uses `structured`.
+chapter: 17
+oracles: [sympy, units]
+symbols: {}
+
+problems:
+- id: jc17-17.3-slope-1
+  section: '17.3'
+  tier: O
+  refs:
+  - GT.5
+  statement: 'Find the slope of the line through $(1,2)$ and $(5,10)$.'
+  answer_label: 'Find the slope.'
+  check:
+    kind: evaluate
+    expression: (10-2)/(5-1)
+    answer: '2'
+  answer_text: 'The slope is $2$. The rise is $10-2=8$ and the run is $5-1=4$. Divide the rise by the run: $8\div4=2$. The line goes up 2 for every 1 across.'
+
+- id: jc17-17.3-slope-2
+  section: '17.3'
+  tier: O
+  refs:
+  - GT.5
+  statement: 'Find the slope of the line through the origin and $(4,6)$.'
+  answer_label: 'Find the slope.'
+  check:
+    kind: evaluate
+    expression: (6-0)/(4-0)
+    answer: 3/2
+  answer_text: 'The slope is $\tfrac{3}{2}$. The rise is 6 and the run is 4, so the slope is $6\div4=\tfrac{3}{2}$. Leave the answer as a fraction so it is exact.'
+
+- id: jc17-17.3-slope-3
+  section: '17.3'
+  tier: O
+  refs:
+  - GT.5
+  statement: 'Find the slope of the line through $(2,7)$ and $(6,3)$.'
+  answer_label: 'Find the slope.'
+  check:
+    kind: evaluate
+    expression: (3-7)/(6-2)
+    answer: '-1'
+  answer_text: 'The slope is $-1$. The rise is $3-7=-4$, which is negative because the line goes down. The run is $6-2=4$. Then $-4\div4=-1$. A negative slope means the line falls as you move right.'
+
+- id: jc17-17.3-slope-zero
+  section: '17.3'
+  tier: O
+  refs:
+  - GT.5
+  statement: 'Find the slope of the line through $(1,5)$ and $(4,5)$.'
+  answer_label: 'Find the slope.'
+  check:
+    kind: evaluate
+    expression: (5-5)/(4-1)
+    answer: '0'
+  answer_text: 'The slope is $0$. The two points have the same $y$-coordinate, so the rise is $5-5=0$. The line is horizontal, and a horizontal line has slope 0.'
+
+- id: jc17-17.3-slope-neg
+  section: '17.3'
+  tier: O
+  refs:
+  - GT.5
+  statement: 'Find the slope of the line through $(-2,3)$ and $(2,11)$.'
+  answer_label: 'Find the slope.'
+  check:
+    kind: evaluate
+    expression: (11-3)/(2-(-2))
+    answer: '2'
+  answer_text: 'The slope is $2$. The rise is $11-3=8$. The run is $2-(-2)=4$, because subtracting a negative adds. Then $8\div4=2$. Take care with the sign when a coordinate is negative.'
+
+- id: jc17-17.3-slope-frac
+  section: '17.3'
+  tier: O
+  refs:
+  - GT.5
+  statement: 'Find the slope of the line through $(1,1)$ and $(5,4)$.'
+  answer_label: 'Find the slope.'
+  check:
+    kind: evaluate
+    expression: (4-1)/(5-1)
+    answer: 3/4
+  answer_text: 'The slope is $\tfrac{3}{4}$. The rise is 3 and the run is 4, so the slope is $3\div4=\tfrac{3}{4}$. The answer is less than 1, so the line rises more slowly than 1 up for each 1 across.'
+
+- id: jc17-17.3-rise-run
+  section: '17.3'
+  tier: O
+  refs:
+  - GT.5
+  statement: 'A straight path rises 6 m over a horizontal run of 8 m. Find its slope.'
+  answer_label: 'Find the slope of the path.'
+  check:
+    kind: evaluate
+    expression: 6/8
+    answer: 3/4
+  answer_text: 'The slope is $\tfrac{3}{4}$. Divide the rise by the run: $6\div8=\tfrac{3}{4}$. The slope has no unit here, because it is one length divided by another.'
+
+- id: jc17-17.3-ramp
+  section: '17.3'
+  tier: O
+  refs:
+  - GT.5
+  statement: 'A ramp rises 0.5 m over a horizontal run of 2 m. Find its slope.'
+  answer_label: 'Find the slope of the ramp.'
+  check:
+    kind: evaluate
+    expression: 0.5/2
+    answer: 1/4
+  answer_text: 'The slope is $\tfrac{1}{4}$. Divide the rise by the run: $0.5\div2=0.25=\tfrac{1}{4}$. A gentle ramp has a slope well below 1.'
+
+- id: jc17-17.3-vertical
+  section: '17.3'
+  tier: O
+  refs:
+  - GT.5
+  statement: 'Find the slope of the line through $(3,1)$ and $(3,9)$. Explain your answer.'
+  answer_label: 'Find the slope and explain.'
+  check:
+    kind: structured
+    requires: [notice-same-x, say-undefined]
+    concepts: [vertical-line]
+    points:
+    - id: notice-same-x
+      text: 'The two points have the same $x$-coordinate, so the run is $3-3=0$.'
+      concepts: [vertical-line]
+    - id: say-undefined
+      text: 'The slope would need division by 0, so it is undefined. The line is vertical.'
+  answer_text: 'The slope is undefined. Both points have $x=3$, so the run is $3-3=0$. Slope is rise divided by run, and division by 0 has no answer. The line is vertical, and a vertical line has no slope.'
+
+- id: jc17-17.3-park-main
+  section: '17.3'
+  tier: O
+  refs:
+  - GT.5
+  statement: 'Find the slope of the park main path from the gate $G(1,2)$ to the kiosk $K(9,8)$.'
+  answer_label: 'Find the slope of the main path.'
+  check:
+    kind: evaluate
+    expression: (8-2)/(9-1)
+    answer: 3/4
+  answer_text: 'The slope is $\tfrac{3}{4}$. The rise is $8-2=6$ and the run is $9-1=8$. Then $6\div8=\tfrac{3}{4}$. The path rises 3 m for every 4 m across.'
+
+- id: jc17-17.3-park-second
+  section: '17.3'
+  tier: O
+  refs:
+  - GT.5
+  statement: 'Find the slope of the second path from the kiosk $K(9,8)$ to the pond $P(3,16)$.'
+  answer_label: 'Find the slope of the second path.'
+  check:
+    kind: evaluate
+    expression: (16-8)/(3-9)
+    answer: -4/3
+  answer_text: 'The slope is $-\tfrac{4}{3}$. The rise is $16-8=8$ and the run is $3-9=-6$. Then $8\div(-6)=-\tfrac{4}{3}$. The run is negative because the path goes left, and the path still rises, so the slope is negative.'
+
+- id: jc17-17.3-flat-error
+  section: '17.3'
+  tier: O
+  refs:
+  - GT.5
+  statement: 'A student says the slope of the line through $(0,1)$ and $(2,1)$ is undefined, because the line is flat. Find the slope and explain why the student is wrong.'
+  answer_label: 'Find the slope and explain.'
+  check:
+    kind: evaluate
+    expression: (1-1)/(2-0)
+    answer: '0'
+  answer_text: 'The slope is $0$. The rise is $1-1=0$, so $0\div2=0$. A flat line is horizontal, and its slope is 0. A slope is undefined only for a vertical line, where the run is 0.'

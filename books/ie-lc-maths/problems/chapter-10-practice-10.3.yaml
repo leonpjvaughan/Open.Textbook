@@ -1,0 +1,111 @@
+# Practice set for 10.3 (strand 1, outcome 1.1). Every answer is a count of unordered
+# selections, so `evaluate` proves `binomial(n, k)`. Writing the binomial function rather
+# than a hand-computed number is what makes the check independent: the oracle computes the
+# coefficient and compares it with the answer, instead of comparing a number with itself.
+chapter: 10
+problems:
+  - id: lc10-3-c62
+    section: '10.3'
+    tier: O
+    refs: ['1.1']
+    statement: 'Find the value of $\dbinom{6}{2}$.'
+    answer_label: 'The value'
+    check: {kind: evaluate, expression: 'binomial(6,2)', answer: '15'}
+    answer_text: >-
+      $\dbinom{6}{2} = \dfrac{6 \times 5}{2 \times 1} = 15$. The order does not matter,
+      so the two orders of each pair are counted once.
+
+  - id: lc10-3-committee3
+    section: '10.3'
+    tier: O
+    refs: ['1.1']
+    statement: 'A committee of $3$ people is chosen from $10$. How many committees are possible?'
+    answer_label: 'The number of committees'
+    check: {kind: evaluate, expression: 'binomial(10,3)', answer: '120'}
+    answer_text: >-
+      The committee is a set of $3$ people, so the order of choosing does not matter.
+      The number of committees is $\dbinom{10}{3} = \dfrac{10 \times 9 \times 8}{3 \times 2 \times 1} = 120$.
+
+  - id: lc10-3-c85
+    section: '10.3'
+    tier: O
+    refs: ['1.1']
+    statement: 'Find the value of $\dbinom{8}{5}$.'
+    answer_label: 'The value'
+    check: {kind: evaluate, expression: 'binomial(8,5)', answer: '56'}
+    answer_text: >-
+      $\dbinom{8}{5} = \dbinom{8}{3} = \dfrac{8 \times 7 \times 6}{3 \times 2 \times 1} = 56$.
+      Choosing the $5$ to keep is the same as choosing the $3$ to leave out.
+
+  - id: lc10-3-team5
+    section: '10.3'
+    tier: O
+    refs: ['1.1']
+    statement: 'A team of $5$ players is chosen from $9$. How many teams are possible?'
+    answer_label: 'The number of teams'
+    check: {kind: evaluate, expression: 'binomial(9,5)', answer: '126'}
+    answer_text: >-
+      A team is a set of $5$ players, so the order does not matter. The number of teams
+      is $\dbinom{9}{5} = 126$.
+
+  - id: lc10-3-boys-girls
+    section: '10.3'
+    tier: O
+    refs: ['1.1']
+    statement: >-
+      A group is chosen from $5$ boys and $6$ girls. How many ways can $2$ boys and $2$
+      girls be chosen?
+    answer_label: 'The number of ways'
+    check: {kind: evaluate, expression: 'binomial(5,2) * binomial(6,2)', answer: '150'}
+    answer_text: >-
+      Choose the boys and the girls separately, then multiply:
+      $\dbinom{5}{2} \times \dbinom{6}{2} = 10 \times 15 = 150$.
+
+  - id: lc10-3-c74
+    section: '10.3'
+    tier: O
+    refs: ['1.1']
+    statement: 'Find the value of $\dbinom{7}{4}$.'
+    answer_label: 'The value'
+    check: {kind: evaluate, expression: 'binomial(7,4)', answer: '35'}
+    answer_text: >-
+      $\dbinom{7}{4} = \dbinom{7}{3} = \dfrac{7 \times 6 \times 5}{3 \times 2 \times 1} = 35$.
+
+  - id: lc10-3-lucky-dip
+    section: '10.3'
+    tier: O
+    refs: ['1.1']
+    statement: >-
+      A bag holds $8$ counters. Two counters are drawn together, so the order does not
+      matter. How many pairs are possible?
+    answer_label: 'The number of pairs'
+    check: {kind: evaluate, expression: 'binomial(8,2)', answer: '28'}
+    answer_text: >-
+      Drawing two counters together means the order does not matter, so this is a
+      combination: $\dbinom{8}{2} = \dfrac{8 \times 7}{2} = 28$ pairs.
+
+  - id: lc10-3-why-combination
+    section: '10.3'
+    tier: O
+    refs: ['1.1']
+    statement: >-
+      Explain why choosing $3$ players from $8$ is a combination and not a permutation.
+    answer_label: 'The explanation'
+    check:
+      kind: structured
+      requires: [order-not-counted, divide-by-orders]
+      concepts: [same-team, one-count]
+      points:
+        - id: order-not-counted
+          text: a team of 3 players is the same team whichever order the players are chosen in
+          concepts: [same-team]
+        - id: divide-by-orders
+          text: each set of 3 players is counted 3 factorial equals 6 times as a permutation, so the combination divides by 6
+          concepts: [one-count]
+    answer_text: >-
+      A team is a set of players. Choosing Ann, then Ben, then Cara gives the same team
+      as choosing Cara, then Ben, then Ann, so the order does not matter.
+
+      A permutation would count each team $3! = 6$ times, once for each order. The
+      combination divides by $6$, so each team is counted once:
+      $\dbinom{8}{3} = 56$.

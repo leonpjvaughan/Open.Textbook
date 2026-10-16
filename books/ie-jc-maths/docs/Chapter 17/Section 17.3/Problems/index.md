@@ -10,9 +10,13 @@ refs:
 kind: problems
 ---
 
-<!-- scaffold:stub -->
-
 # 17.3 Slope of a line — Practise
 
-> **Stub.** Independent, homework-style practice. Answers and concise solutions in a collapsed block. Mark Higher-only questions explicitly.
-> Tier: **O** · refs: GT.5
+Work independently. The questions and answers are shown together at the end.
+
+Divide the rise by the run, and keep the two points in the same order in the top
+and the bottom. Leave a slope as an exact fraction.
+
+:::problems chapter-17-practice-17.3
+
+:::answers chapter-17-practice-17.3

@@ -10,9 +10,13 @@ refs:
 kind: problems
 ---
 
-<!-- scaffold:stub -->
-
 # 17.2 Distance and midpoint — Practise
 
-> **Stub.** Independent, homework-style practice. Answers and concise solutions in a collapsed block. Mark Higher-only questions explicitly.
-> Tier: **O** · refs: GT.5
+Work independently. The questions and answers are shown together at the end.
+
+Decide first whether the question wants a distance or a midpoint. A distance
+squares the two steps and takes the root. A midpoint averages the coordinates.
+
+:::problems chapter-17-practice-17.2
+
+:::answers chapter-17-practice-17.2

@@ -10,9 +10,13 @@ refs:
 kind: problems
 ---
 
-<!-- scaffold:stub -->
-
 # 17.1 The coordinate plane and plotting points — Practise
 
-> **Stub.** Independent, homework-style practice. Answers and concise solutions in a collapsed block. Mark Higher-only questions explicitly.
-> Tier: **O** · refs: GT.5
+Work independently. The questions and answers are shown together at the end.
+
+Read the pair as "across, then up". Check the scale before you read any
+coordinates, and check the signs before you name a quadrant.
+
+:::problems chapter-17-practice-17.1
+
+:::answers chapter-17-practice-17.1

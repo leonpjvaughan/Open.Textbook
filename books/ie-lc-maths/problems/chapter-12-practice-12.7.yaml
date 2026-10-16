@@ -1,0 +1,185 @@
+# Practice set for 12.7 (strand 2, outcome 2.3). Every area formula used here is printed
+# in the Formulae and Tables booklet, so each record declares the item it plays. The
+# equilateral answer is an exact surd and uses `evaluate`; the rest are irrational and use
+# `approx`. The chapter problem's search area is one of the records.
+chapter: 12
+problems:
+  - id: lc12-7-area-sine
+    section: '12.7'
+    tier: O
+    refs: ['2.3']
+    plays: triangle-area-sine
+    statement: >-
+      A triangle has $a = 8$ cm, $b = 11$ cm and $C = 35^\circ$. Find its area, correct to
+      two decimal places.
+    answer_label: 'The area'
+    check:
+      kind: approx
+      value: '0.5 * 8 * 11 * sin(35 * pi / 180)'
+      target: '25.24'
+      tolerance: '0.01'
+    answer_text: >-
+      The booklet gives $A = \tfrac12 ab\sin C$, and $C$ is the angle between the two
+      sides:
+
+      $$A = \tfrac12 \times 8 \times 11 \times \sin 35^\circ = 44 \times 0.5736 = 25.24 \text{ cm}^2$$
+
+  - id: lc12-7-equilateral
+    section: '12.7'
+    tier: O
+    refs: ['2.3']
+    plays: triangle-area-sine
+    statement: >-
+      An equilateral triangle has side $6$ cm. Find its area, giving the answer as a surd
+      in its simplest form.
+    answer_label: 'The area'
+    check: {kind: evaluate, expression: '0.5 * 6 * 6 * sin(pi / 3)', answer: '9 * sqrt(3)'}
+    answer_text: >-
+      Every angle of an equilateral triangle is $60^\circ$, so use two sides and the angle
+      between them:
+
+      $$A = \tfrac12 \times 6 \times 6 \times \sin 60^\circ = 18 \times \frac{\sqrt{3}}{2} = 9\sqrt{3} \text{ cm}^2$$
+
+  - id: lc12-7-heron
+    section: '12.7'
+    tier: O
+    refs: ['2.3']
+    plays: triangle-heron
+    statement: >-
+      A triangle has sides of $5$ cm, $7$ cm and $9$ cm. Find its area, correct to two
+      decimal places.
+    answer_label: 'The area'
+    check:
+      kind: approx
+      value: 'sqrt(10.5 * 5.5 * 3.5 * 1.5)'
+      target: '17.41'
+      tolerance: '0.01'
+    answer_text: >-
+      No angle is given, so use Heron's formula from the booklet. The semi-perimeter is
+
+      $$s = \frac{5 + 7 + 9}{2} = 10.5$$
+
+      $$A = \sqrt{10.5 \times 5.5 \times 3.5 \times 1.5} = \sqrt{303.1875} = 17.41 \text{ cm}^2$$
+
+      Notice that $s - a = 10.5 - 5 = 5.5$, $s - b = 3.5$ and $s - c = 1.5$. Take the
+      sides from $s$ in any order.
+
+  - id: lc12-7-base-height
+    section: '12.7'
+    tier: O
+    refs: ['2.3']
+    plays: triangle-area
+    statement: 'A triangle has base $12$ cm and perpendicular height $5$ cm. Find its area.'
+    answer_label: 'The area'
+    check: {kind: evaluate, expression: '0.5 * 12 * 5', answer: '30'}
+    answer_text: >-
+      $$A = \tfrac12 \times \text{base} \times \text{height} = \tfrac12 \times 12 \times 5 = 30 \text{ cm}^2$$
+
+      This is the same formula as the sine form. When the angle is $90^\circ$ the sine is
+      $1$, and the height is one of the sides.
+
+  - id: lc12-7-parallelogram
+    section: '12.7'
+    tier: O
+    refs: ['2.3']
+    plays: parallelogram-area-sine
+    statement: >-
+      A parallelogram has adjacent sides of $6$ cm and $9$ cm, and the angle between them
+      is $50^\circ$. Find its area, correct to two decimal places.
+    answer_label: 'The area'
+    check:
+      kind: approx
+      value: '6 * 9 * sin(50 * pi / 180)'
+      target: '41.37'
+      tolerance: '0.01'
+    answer_text: >-
+      A parallelogram is two copies of a triangle, so its area is twice
+      $\tfrac12 ab\sin C$:
+
+      $$A = ab\sin C = 6 \times 9 \times \sin 50^\circ = 54 \times 0.7660 = 41.37 \text{ cm}^2$$
+
+  - id: lc12-7-search
+    section: '12.7'
+    tier: O
+    refs: ['2.3']
+    plays: triangle-area-sine
+    statement: >-
+      A Coast Guard station $C$ and a lighthouse $L$ are $8$ km apart. A yacht $Y$ is at a
+      distance $LY = 5.47$ km from the lighthouse, and $\angle CLY = 60^\circ$. Find the
+      area of the triangle $CLY$, correct to three significant figures.
+    answer_label: 'The area of the search triangle'
+    check:
+      kind: approx
+      value: '0.5 * 8 * 5.47 * sin(60 * pi / 180)'
+      target: '18.9'
+      tolerance: '0.05'
+    answer_text: >-
+      Use the two sides that meet at the lighthouse and the angle between them:
+
+      $$A = \tfrac12 \times 8 \times 5.47 \times \sin 60^\circ = 21.88 \times 0.8660 = 18.9 \text{ km}^2$$
+
+      Using the other pair gives the same area:
+
+      $$\tfrac12 \times 8 \times 7.08 \times \sin 42^\circ = 28.32 \times 0.6691 = 18.9 \text{ km}^2$$
+
+      Both agree, so the triangle is consistent and the search area is about $19$ km$^2$.
+
+  - id: lc12-7-which-formula
+    section: '12.7'
+    tier: O
+    refs: ['2.3']
+    statement: >-
+      Explain how to decide which area formula to use for a triangle.
+    answer_label: 'Choosing the formula'
+    check:
+      kind: structured
+      requires: [check-given, pick-formula]
+      concepts: [area-selection]
+      points:
+        - id: check-given
+          text: >-
+            Look at what the question gives: two sides and the angle between them, or
+            three sides, or a base and a perpendicular height.
+          concepts: [area-selection]
+        - id: pick-formula
+          text: >-
+            Two sides and the included angle use half a b sin C; three sides use Heron's
+            formula with the semi-perimeter; a base and its perpendicular height use half
+            base times height.
+          concepts: [area-selection]
+    answer_text: >-
+      Look at what you are given. Two sides and the **angle between them** use
+      $A = \tfrac12 ab\sin C$. Three sides use Heron's formula with the semi-perimeter
+      $s = \dfrac{a+b+c}{2}$. A base and its **perpendicular** height use
+      $A = \tfrac12 \times \text{base} \times \text{height}$.
+
+      The first formula needs the angle between the two sides, not any angle. That is the
+      one mistake worth guarding against.
+
+  - id: lc12-7-higher
+    section: '12.7'
+    tier: H
+    refs: ['2.3']
+    plays: triangle-heron
+    statement: >-
+      A triangle has sides of $4$ cm, $5$ cm and $6$ cm. Find its area, and then find the
+      perpendicular height to the side of length $5$ cm. Give both correct to two decimal
+      places.
+    answer_label: 'The area, then the height'
+    check:
+      kind: all
+      checks:
+        - {kind: approx, value: 'sqrt(7.5 * 3.5 * 2.5 * 1.5)', target: '9.92', tolerance: '0.01'}
+        - {kind: approx, value: '2 * sqrt(7.5 * 3.5 * 2.5 * 1.5) / 5', target: '3.97', tolerance: '0.01'}
+    answer_text: >-
+      The semi-perimeter is $s = \dfrac{4+5+6}{2} = 7.5$, so
+
+      $$A = \sqrt{7.5 \times 3.5 \times 2.5 \times 1.5} = \sqrt{98.4375} = 9.92 \text{ cm}^2$$
+
+      The same area is $\tfrac12 \times \text{base} \times \text{height}$ with the base
+      $5$ cm:
+
+      $$9.92 = \tfrac12 \times 5 \times h \quad\Rightarrow\quad h = \frac{2 \times 9.92}{5} = 3.97 \text{ cm}$$
+
+      Finding a height this way is useful, because a diagram may need the height and give
+      you only the three sides.

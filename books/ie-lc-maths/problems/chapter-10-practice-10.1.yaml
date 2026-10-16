@@ -1,0 +1,125 @@
+# Practice set for 10.1 (strand 1, outcome 1.1). Each answer is a count, so `evaluate`
+# proves the multiplication with the numbers already substituted. The fundamental
+# principle *is* that multiplication, so the arithmetic the oracle proves is the whole
+# answer. The last record is a `structured` check: it proves the explanation contains
+# the two ideas in order, and nothing about whether the words are elegant.
+chapter: 10
+problems:
+  - id: lc10-1-two-course
+    section: '10.1'
+    tier: F
+    refs: ['1.1']
+    statement: >-
+      A cafe offers $3$ starters and $4$ main courses. How many different two-course
+      meals can you choose?
+    answer_label: 'The number of meals'
+    check: {kind: evaluate, expression: '3 * 4', answer: '12'}
+    answer_text: >-
+      For each of the $3$ starters there are $4$ mains. The choices multiply, so the
+      number of meals is $3 \times 4 = 12$.
+
+  - id: lc10-1-lock
+    section: '10.1'
+    tier: F
+    refs: ['1.1']
+    statement: >-
+      A lock has $3$ dials. Each dial shows one digit from $0$ to $9$. How many different
+      codes are possible?
+    answer_label: 'The number of codes'
+    check: {kind: evaluate, expression: '10 ** 3', answer: '1000'}
+    answer_text: >-
+      Each dial has $10$ positions and the dials do not affect each other. The number of
+      codes is $10 \times 10 \times 10 = 1000$.
+
+  - id: lc10-1-coin-die
+    section: '10.1'
+    tier: F
+    refs: ['1.1']
+    statement: >-
+      A coin is tossed and a fair six-sided die is rolled. How many outcomes are
+      possible?
+    answer_label: 'The number of outcomes'
+    check: {kind: evaluate, expression: '2 * 6', answer: '12'}
+    answer_text: >-
+      The coin has $2$ outcomes and the die has $6$. Together they give
+      $2 \times 6 = 12$ outcomes, such as a head with a $3$, or a tail with a $6$.
+
+  - id: lc10-1-sandwich
+    section: '10.1'
+    tier: F
+    refs: ['1.1']
+    statement: >-
+      A sandwich shop offers $4$ kinds of bread and $5$ fillings. How many different
+      sandwiches can be made with one bread and one filling?
+    answer_label: 'The number of sandwiches'
+    check: {kind: evaluate, expression: '4 * 5', answer: '20'}
+    answer_text: >-
+      Each bread can be paired with any of the $5$ fillings, so the number of sandwiches
+      is $4 \times 5 = 20$.
+
+  - id: lc10-1-four-coins
+    section: '10.1'
+    tier: F
+    refs: ['1.1']
+    statement: >-
+      A coin is tossed $4$ times. How many different sequences of heads and tails are
+      possible?
+    answer_label: 'The number of sequences'
+    check: {kind: evaluate, expression: '2 ** 4', answer: '16'}
+    answer_text: >-
+      Each toss has $2$ outcomes, so the number of sequences is
+      $2 \times 2 \times 2 \times 2 = 2^4 = 16$. The sequence HHTT is one of them.
+
+  - id: lc10-1-registration
+    section: '10.1'
+    tier: F
+    refs: ['1.1']
+    statement: >-
+      A car registration has $2$ letters followed by $3$ digits. Each letter is one of
+      $26$ letters and each digit is one of $10$ digits. How many registrations are
+      possible?
+    answer_label: 'The number of registrations'
+    check: {kind: evaluate, expression: '26 * 26 * 10 * 10 * 10', answer: '676000'}
+    answer_text: >-
+      There are $26$ choices for each letter and $10$ choices for each digit. Letters
+      and digits may repeat, so the count is
+      $26 \times 26 \times 10 \times 10 \times 10 = 676000$.
+
+  - id: lc10-1-menu
+    section: '10.1'
+    tier: F
+    refs: ['1.1']
+    statement: >-
+      A restaurant offers $3$ starters, $4$ main courses and $2$ desserts. How many
+      different three-course meals can you choose?
+    answer_label: 'The number of meals'
+    check: {kind: evaluate, expression: '3 * 4 * 2', answer: '24'}
+    answer_text: >-
+      Multiply the choices at each course: $3 \times 4 \times 2 = 24$ meals. Each
+      starter can go with any main and any dessert.
+
+  - id: lc10-1-why-multiply
+    section: '10.1'
+    tier: F
+    refs: ['1.1']
+    statement: >-
+      A cafe has $3$ starters and $4$ mains. Explain why the number of two-course meals
+      is $3 \times 4 = 12$, and not $3 + 4 = 7$.
+    answer_label: 'The explanation'
+    check:
+      kind: structured
+      requires: [pair-each, count-groups]
+      concepts: [each-starter, multiply-not-add]
+      points:
+        - id: pair-each
+          text: fix one starter; it can be paired with any of the 4 mains, which gives 4 meals
+          concepts: [each-starter]
+        - id: count-groups
+          text: there are 3 starters, so the group of 4 meals happens 3 times, giving 3 times 4 equals 12
+          concepts: [multiply-not-add]
+    answer_text: >-
+      Fix one starter. It can be paired with any of the $4$ mains, which gives $4$
+      meals. There are $3$ starters, so this happens $3$ times.
+
+      The total is $3 \times 4 = 12$. Adding gives $3 + 4 = 7$, which counts the
+      starters and the mains separately instead of counting the meals.

@@ -10,9 +10,13 @@ refs:
 kind: problems
 ---
 
-<!-- scaffold:stub -->
-
 # 18.4 Finding a missing side using a ratio — Practise
 
-> **Stub.** Independent, homework-style practice. Answers and concise solutions in a collapsed block. Mark Higher-only questions explicitly.
-> Tier: **O** · refs: GT.4
+Work independently. The questions and answers are shown together at the end.
+
+For each question, name the two sides you have, then choose the ratio that uses
+them. Round each answer to one decimal place unless the question says otherwise.
+
+:::problems chapter-18-practice-18.4
+
+:::answers chapter-18-practice-18.4

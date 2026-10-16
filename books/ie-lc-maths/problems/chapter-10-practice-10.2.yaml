@@ -1,0 +1,118 @@
+# Practice set for 10.2 (strand 1, outcome 1.1). Every answer is a count of ordered
+# selections, so `evaluate` proves the product of the descending factors. The product is
+# written with the numbers substituted rather than with the P(n, r) notation, so the
+# check proves the arithmetic and not a restatement of the symbol.
+chapter: 10
+problems:
+  - id: lc10-2-shelf
+    section: '10.2'
+    tier: O
+    refs: ['1.1']
+    statement: 'How many ways can $4$ different books be arranged in a row on a shelf?'
+    answer_label: 'The number of arrangements'
+    check: {kind: evaluate, expression: 'factorial(4)', answer: '24'}
+    answer_text: >-
+      There are $4$ choices for the first position, then $3$, then $2$, then $1$. So the
+      number of arrangements is $4! = 4 \times 3 \times 2 \times 1 = 24$.
+
+  - id: lc10-2-runners
+    section: '10.2'
+    tier: O
+    refs: ['1.1']
+    statement: >-
+      In a race with $7$ runners, how many ways can first place and second place be
+      filled?
+    answer_label: 'The number of ways'
+    check: {kind: evaluate, expression: '7 * 6', answer: '42'}
+    answer_text: >-
+      Any of the $7$ runners can finish first. Once first is decided, any of the
+      remaining $6$ can finish second. So there are $7 \times 6 = 42$ ways. Order
+      matters, because first and second are different prizes.
+
+  - id: lc10-2-codes
+    section: '10.2'
+    tier: O
+    refs: ['1.1']
+    statement: >-
+      A code uses $3$ different letters chosen from $5$ letters, written in order. How
+      many codes are possible?
+    answer_label: 'The number of codes'
+    check: {kind: evaluate, expression: '5 * 4 * 3', answer: '60'}
+    answer_text: >-
+      There are $5$ choices for the first letter, then $4$ for the second and $3$ for
+      the third, because the letters must be different. The number of codes is
+      $5 \times 4 \times 3 = 60$.
+
+  - id: lc10-2-maths
+    section: '10.2'
+    tier: O
+    refs: ['1.1']
+    statement: 'How many different arrangements are there of the letters of MATHS?'
+    answer_label: 'The number of arrangements'
+    check: {kind: evaluate, expression: 'factorial(5)', answer: '120'}
+    answer_text: >-
+      All $5$ letters are different, so the number of arrangements is
+      $5! = 5 \times 4 \times 3 \times 2 \times 1 = 120$.
+
+  - id: lc10-2-p103
+    section: '10.2'
+    tier: O
+    refs: ['1.1']
+    statement: 'Find the value of ${}^{10}P_{3}$, the number of ordered selections of $3$ from $10$.'
+    answer_label: 'The value'
+    check: {kind: evaluate, expression: '10 * 9 * 8', answer: '720'}
+    answer_text: >-
+      ${}^{10}P_{3} = 10 \times 9 \times 8 = 720$. There are $10$ choices for the first
+      place, $9$ for the second and $8$ for the third.
+
+  - id: lc10-2-committee
+    section: '10.2'
+    tier: O
+    refs: ['1.1']
+    statement: >-
+      A club of $8$ people must choose a president and a secretary. No person may hold
+      both posts. How many ways can this be done?
+    answer_label: 'The number of ways'
+    check: {kind: evaluate, expression: '8 * 7', answer: '56'}
+    answer_text: >-
+      There are $8$ choices for president, then $7$ for secretary, so the number of ways
+      is $8 \times 7 = 56$. The two posts are different, so the order matters.
+
+  - id: lc10-2-pin
+    section: '10.2'
+    tier: O
+    refs: ['1.1']
+    statement: >-
+      A $4$-digit PIN uses four different digits chosen from $0$ to $9$. How many PINs
+      are possible?
+    answer_label: 'The number of PINs'
+    check: {kind: evaluate, expression: '10 * 9 * 8 * 7', answer: '5040'}
+    answer_text: >-
+      There are $10$ choices for the first digit, then $9$, $8$ and $7$ as the digits
+      are used up. So the number of PINs is $10 \times 9 \times 8 \times 7 = 5040$.
+
+  - id: lc10-2-order-matters
+    section: '10.2'
+    tier: O
+    refs: ['1.1']
+    statement: >-
+      Explain why arranging $4$ books on a shelf is a permutation, and why the order
+      matters.
+    answer_label: 'The explanation'
+    check:
+      kind: structured
+      requires: [different-arrangements, order-differs]
+      concepts: [same-books, order-counts]
+      points:
+        - id: different-arrangements
+          text: a permutation counts the different orders in which the same 4 books can be placed
+          concepts: [same-books]
+        - id: order-differs
+          text: swapping two books gives a different arrangement, so the order is part of what is being counted
+          concepts: [order-counts]
+    answer_text: >-
+      A permutation counts the different orders of the same objects. The four books are
+      the same set each time, but the order changes.
+
+      Swapping two books gives a different arrangement, so the order is part of what is
+      being counted. That is why the count is $4! = 24$ rather than $1$.
