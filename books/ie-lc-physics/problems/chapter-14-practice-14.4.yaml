@@ -1,0 +1,269 @@
+# Leaving Certificate Physics, Chapter 14, section 14.4 (strand 3 outcome 3.3).
+#
+# The physics oracle checks two claims whenever a quantity is asked for:
+# `dimensions` proves the exact magnitude *and* the unit, and `sigfigs` proves the
+# rounding to the figures the data support. Energy in kilowatt-hours has no SI
+# dimension, so that part is checked with `evaluate` on the arithmetic, and the
+# joule value is checked with `dimensions` as well.
+#
+# Honest limit: this proves the arithmetic and the dimensions, not the physics. A
+# dimensionally consistent, arithmetically correct, physically absurd answer would
+# pass. The `structured` record proves only that a model answer contains the
+# declared steps and concepts, in order — not that the physics in it is right.
+chapter: 14
+problems:
+- id: p14-4-power-vi
+  section: '14.4'
+  tier: O
+  refs:
+  - '3.3'
+  statement: A potential difference of 12 V drives a current of 0.50 A through a lamp. Calculate
+    the power of the lamp.
+  answer_label: Power
+  check:
+    kind: all
+    checks:
+    - kind: dimensions
+      expression: V * I
+      values:
+        V:
+          value: '12'
+          unit: V
+        I:
+          value: '0.50'
+          unit: A
+      answer:
+        value: '6.0'
+        unit: W
+    - kind: sigfigs
+      value: '12 * 0.50'
+      figures: 2
+      answer: '6.0'
+      convention: round-once
+  answer_text: '$P = VI = 12 \times 0.50 = 6.0\,\text{W}$. The lamp transfers 6.0 J of energy every
+    second.'
+- id: p14-4-power-i2r
+  section: '14.4'
+  tier: O
+  refs:
+  - '3.3'
+  statement: A current of 2.0 A flows through a 4.0 Ω resistor. Calculate the power transferred
+    to it.
+  answer_label: Power
+  check:
+    kind: all
+    checks:
+    - kind: dimensions
+      expression: I ** 2 * R
+      values:
+        I:
+          value: '2.0'
+          unit: A
+        R:
+          value: '4.0'
+          unit: Ω
+      answer:
+        value: '16'
+        unit: W
+    - kind: sigfigs
+      value: '2.0 ** 2 * 4.0'
+      figures: 2
+      answer: 1.6e1
+      convention: round-once
+  answer_text: '$P = I^2R = 2.0^2 \times 4.0 = 4.0 \times 4.0 = 16\,\text{W}$. This form is the
+    quick one when the current is known and the potential difference is not.'
+- id: p14-4-power-v2r
+  section: '14.4'
+  tier: O
+  refs:
+  - '3.3'
+  statement: A potential difference of 6.0 V is across a 12 Ω resistor. Calculate the power transferred
+    to it.
+  answer_label: Power
+  check:
+    kind: all
+    checks:
+    - kind: dimensions
+      expression: V * V / R
+      values:
+        V:
+          value: '6.0'
+          unit: V
+        R:
+          value: '12'
+          unit: Ω
+      answer:
+        value: '3.0'
+        unit: W
+    - kind: sigfigs
+      value: '6.0 ** 2 / 12'
+      figures: 2
+      answer: '3.0'
+      convention: round-once
+  answer_text: '$P = \dfrac{V^2}{R} = \dfrac{6.0^2}{12} = \dfrac{36}{12} = 3.0\,\text{W}$. This
+    form is the quick one when the potential difference is known and the current is not.'
+- id: p14-4-energy
+  section: '14.4'
+  tier: O
+  refs:
+  - '3.3'
+  statement: A 2.0 kW heater is switched on for 3.0 hours. Calculate the energy transferred, in
+    kilowatt-hours and in joules.
+  answer_label: Energy transferred
+  check:
+    kind: all
+    checks:
+    - kind: evaluate
+      expression: '2.0 * 3.0'
+      answer: '6.0'
+    - kind: dimensions
+      expression: P * t
+      values:
+        P:
+          value: '2.0e3'
+          unit: W
+        t:
+          value: '1.08e4'
+          unit: s
+      answer:
+        value: '2.16e7'
+        unit: J
+    - kind: sigfigs
+      value: '2.0e3 * 1.08e4'
+      figures: 2
+      answer: 2.2e7
+      convention: round-once
+  answer_text: 'In kilowatt-hours, $E = Pt = 2.0 \times 3.0 = 6.0\,\text{kWh}$. In joules the time
+    must be in seconds: $3.0\,\text{h} = 1.08 \times 10^{4}\,\text{s}$, so $E = 2.0 \times 10^{3}
+    \times 1.08 \times 10^{4} = 2.16 \times 10^{7}\,\text{J}$, which is $2.2 \times 10^{7}\,\text{J}$
+    to two significant figures.'
+- id: p14-4-cost
+  section: '14.4'
+  tier: O
+  refs:
+  - '3.3'
+  statement: A 1.5 kW appliance runs for 4.0 hours. Electricity costs €0.30 per kilowatt-hour. Calculate
+    the cost of running the appliance.
+  answer_label: Cost
+  check:
+    kind: evaluate
+    expression: '1.5 * 4.0 * 0.30'
+    answer: '1.8'
+  answer_text: 'The energy is $E = Pt = 1.5 \times 4.0 = 6.0\,\text{kWh}$. The cost is $6.0 \times
+    €0.30 = €1.80$. The kilowatt-hour is the unit the electricity bill uses, which is why this
+    calculation is done in kWh rather than in joules.'
+- id: p14-4-fuse
+  section: '14.4'
+  tier: O
+  refs:
+  - '3.3'
+  statement: An appliance of power 2.3 kW is connected to a 230 V supply. Calculate the current
+    it draws.
+  answer_label: Current
+  check:
+    kind: all
+    checks:
+    - kind: dimensions
+      expression: P / V
+      values:
+        P:
+          value: '2300'
+          unit: W
+        V:
+          value: '230'
+          unit: V
+      answer:
+        value: '10'
+        unit: A
+    - kind: sigfigs
+      value: '2300 / 230'
+      figures: 2
+      answer: 1.0e1
+      convention: round-once
+  answer_text: 'Rearranging $P = VI$ gives $I = \dfrac{P}{V} = \dfrac{2300}{230} = 10\,\text{A}$,
+    which is $1.0 \times 10^{1}\,\text{A}$ to two significant figures. A fuse or circuit breaker
+    for this appliance must be rated above 10 A, so a 13 A fuse is the right choice.'
+- id: p14-4-multi
+  section: '14.4'
+  tier: O
+  refs:
+  - '3.3'
+  statement: A 12 Ω resistor carries a current of 0.50 A for 4.0 minutes. Calculate the power transferred
+    to it and the energy transferred in that time.
+  answer_label: Power and energy
+  check:
+    kind: all
+    checks:
+    - kind: dimensions
+      expression: I ** 2 * R
+      values:
+        I:
+          value: '0.50'
+          unit: A
+        R:
+          value: '12'
+          unit: Ω
+      answer:
+        value: '3.0'
+        unit: W
+    - kind: dimensions
+      expression: I ** 2 * R * t
+      values:
+        I:
+          value: '0.50'
+          unit: A
+        R:
+          value: '12'
+          unit: Ω
+        t:
+          value: '240'
+          unit: s
+      answer:
+        value: '720'
+        unit: J
+    - kind: sigfigs
+      value: '0.50 ** 2 * 12 * 240'
+      figures: 2
+      answer: 7.2e2
+      convention: round-once
+  answer_text: 'The time is $4.0 \times 60 = 240\,\text{s}$. Then $P = I^2R = 0.50^2 \times 12 =
+    0.25 \times 12 = 3.0\,\text{W}$, and $E = Pt = 3.0 \times 240 = 720\,\text{J}$. The resistor
+    gets hot because the current transfers energy to it.'
+- id: p14-4-choose
+  section: '14.4'
+  tier: O
+  refs:
+  - '3.3'
+  statement: Explain how to choose between $P = VI$, $P = I^2R$ and $P = \dfrac{V^2}{R}$ for a
+    circuit problem.
+  answer_label: Choosing the power formula
+  check:
+    kind: structured
+    requires:
+    - same
+    - current
+    - voltage
+    concepts:
+    - rearranged
+    - known-quantities
+    points:
+    - id: same
+      text: the three forms are the same formula rearranged using V = IR, so any of them gives the
+        same power
+      concepts:
+      - rearranged
+    - id: current
+      text: use P = I^2 R when the current through the component is known, or when the current is
+        the same in two components in series
+      concepts:
+      - known-quantities
+    - id: voltage
+      text: use P = V^2 / R when the potential difference across the component is known, or when
+        the potential difference is the same across two components in parallel
+      concepts:
+      - known-quantities
+  answer_text: The three forms are the same formula rearranged using $V = IR$, so any of them gives
+    the same power. Use $P = VI$ when the potential difference and the current are both known. Use
+    $P = I^2R$ when the current is known, or when two components are in series and carry the same
+    current. Use $P = \dfrac{V^2}{R}$ when the potential difference is known, or when two components
+    are in parallel and have the same potential difference across them.

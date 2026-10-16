@@ -1,0 +1,296 @@
+# Leaving Certificate Physics, Chapter 14, section 14.5 (strand 3 outcome 3.3, Higher level).
+#
+# The physics oracle checks two claims whenever a quantity is asked for:
+# `dimensions` proves the exact magnitude *and* the unit, and `sigfigs` proves the
+# rounding to the figures the data support. The internal resistance read from a graph
+# is a measurement, so the `gradient` and `intercept` records prove it against a
+# declared interval rather than an exact value.
+#
+# Honest limit: this proves the arithmetic and the dimensions, not the physics. A
+# dimensionally consistent, arithmetically correct, physically absurd answer would
+# pass. The `structured` records prove only that a model answer contains the
+# declared steps and concepts, in order — not that the physics in them is right.
+chapter: 14
+problems:
+- id: p14-5-lost-volts
+  section: '14.5'
+  tier: H
+  refs:
+  - '3.3'
+  statement: A cell has an electromotive force of 1.5 V and an internal resistance of 0.30 Ω. It
+    delivers a current of 0.50 A. Calculate the lost volts and the terminal potential difference.
+  answer_label: Lost volts and terminal potential difference
+  check:
+    kind: all
+    checks:
+    - kind: dimensions
+      expression: I * r
+      values:
+        I:
+          value: '0.50'
+          unit: A
+        r:
+          value: '0.30'
+          unit: Ω
+      answer:
+        value: '0.15'
+        unit: V
+    - kind: dimensions
+      expression: E - I * r
+      values:
+        E:
+          value: '1.5'
+          unit: V
+        I:
+          value: '0.50'
+          unit: A
+        r:
+          value: '0.30'
+          unit: Ω
+      answer:
+        value: '1.35'
+        unit: V
+  answer_text: 'The lost volts are $Ir = 0.50 \times 0.30 = 0.15\,\text{V}$. These are transferred
+    inside the cell and do not reach the circuit. The terminal potential difference is $V = E - Ir
+    = 1.5 - 0.15 = 1.35\,\text{V}$.'
+- id: p14-5-current
+  section: '14.5'
+  tier: H
+  refs:
+  - '3.3'
+  statement: A battery has an electromotive force of 12 V and an internal resistance of 0.50 Ω. It
+    is connected to a 5.5 Ω resistor. Calculate the current in the circuit.
+  answer_label: Current
+  check:
+    kind: all
+    checks:
+    - kind: dimensions
+      expression: E / (R + r)
+      values:
+        E:
+          value: '12'
+          unit: V
+        R:
+          value: '5.5'
+          unit: Ω
+        r:
+          value: '0.50'
+          unit: Ω
+      answer:
+        value: '2.0'
+        unit: A
+    - kind: sigfigs
+      value: '12 / (5.5 + 0.50)'
+      figures: 2
+      answer: '2.0'
+      convention: round-once
+  answer_text: 'The total resistance in the circuit is the external resistor plus the internal resistance,
+    $R + r = 5.5 + 0.50 = 6.0\,\Omega$. Then $I = \dfrac{E}{R + r} = \dfrac{12}{6.0} = 2.0\,\text{A}$.'
+- id: p14-5-terminal-pd
+  section: '14.5'
+  tier: H
+  refs:
+  - '3.3'
+  statement: For the same battery and resistor, calculate the terminal potential difference across
+    the battery.
+  answer_label: Terminal potential difference
+  check:
+    kind: all
+    checks:
+    - kind: dimensions
+      expression: E - I * r
+      values:
+        E:
+          value: '12'
+          unit: V
+        I:
+          value: '2.0'
+          unit: A
+        r:
+          value: '0.50'
+          unit: Ω
+      answer:
+        value: '11'
+        unit: V
+    - kind: sigfigs
+      value: '12 - 2.0 * 0.50'
+      figures: 2
+      answer: 1.1e1
+      convention: round-once
+  answer_text: 'The lost volts are $Ir = 2.0 \times 0.50 = 1.0\,\text{V}$, so the terminal potential
+    difference is $V = E - Ir = 12 - 1.0 = 11\,\text{V}$. The same value comes from $V = IR = 2.0
+    \times 5.5 = 11\,\text{V}$, because the potential difference across the external resistor is the
+    terminal potential difference of the battery.'
+- id: p14-5-graph
+  section: '14.5'
+  tier: H
+  refs:
+  - '3.3'
+  statement: 'A student varies the current drawn from a cell and records the terminal potential
+    difference. The points are $(0\,\text{A}, 12.0\,\text{V})$, $(1.0\,\text{A}, 11.5\,\text{V})$,
+    $(2.0\,\text{A}, 11.0\,\text{V})$ and $(3.0\,\text{A}, 10.5\,\text{V})$. Find the intercept of
+    the line with the vertical axis and the gradient of the line, and state what each represents.'
+  answer_label: Intercept and gradient
+  check:
+    kind: all
+    checks:
+    - kind: intercept
+      series:
+      - ['0', '12.0']
+      - ['1.0', '11.5']
+      - ['2.0', '11.0']
+      - ['3.0', '10.5']
+      between: ['11.9', '12.1']
+    - kind: gradient
+      series:
+      - ['0', '12.0']
+      - ['1.0', '11.5']
+      - ['2.0', '11.0']
+      - ['3.0', '10.5']
+      between: ['-0.51', '-0.49']
+  answer_text: 'The graph of $V$ against $I$ is a straight line with equation $V = E - Ir$. The
+    intercept on the vertical axis is the electromotive force, $E = 12.0\,\text{V}$, because that
+    is the terminal potential difference when no current flows. The gradient is $-r$, so the internal
+    resistance is $r = 0.50\,\Omega$. The gradient is negative because the terminal potential difference
+    falls as the current rises.'
+- id: p14-5-power
+  section: '14.5'
+  tier: H
+  refs:
+  - '3.3'
+  statement: A battery of electromotive force 12 V and internal resistance 0.50 Ω delivers a current
+    of 2.0 A. Calculate the total power supplied by the battery, the power wasted inside it, and
+    the power delivered to the external circuit.
+  answer_label: The three powers
+  check:
+    kind: all
+    checks:
+    - kind: dimensions
+      expression: E * I
+      values:
+        E:
+          value: '12'
+          unit: V
+        I:
+          value: '2.0'
+          unit: A
+      answer:
+        value: '24'
+        unit: W
+    - kind: dimensions
+      expression: I ** 2 * r
+      values:
+        I:
+          value: '2.0'
+          unit: A
+        r:
+          value: '0.50'
+          unit: Ω
+      answer:
+        value: '2.0'
+        unit: W
+    - kind: dimensions
+      expression: E * I - I ** 2 * r
+      values:
+        E:
+          value: '12'
+          unit: V
+        I:
+          value: '2.0'
+          unit: A
+        r:
+          value: '0.50'
+          unit: Ω
+      answer:
+        value: '22'
+        unit: W
+  answer_text: 'The total power supplied is $EI = 12 \times 2.0 = 24\,\text{W}$. The power wasted
+    inside the battery is $I^2r = 2.0^2 \times 0.50 = 2.0\,\text{W}$. The power delivered to the
+    external circuit is the difference, $24 - 2.0 = 22\,\text{W}$, which is the $VI$ form with
+    $V = 11\,\text{V}$.'
+- id: p14-5-explain
+  section: '14.5'
+  tier: H
+  refs:
+  - '3.3'
+  statement: Explain what is meant by the electromotive force and the internal resistance of a battery,
+    and why the terminal potential difference is less than the electromotive force when a current
+    flows.
+  answer_label: Electromotive force and internal resistance
+  check:
+    kind: structured
+    requires:
+    - emf
+    - internal
+    - lost
+    concepts:
+    - energy-per-charge
+    - source-resistance
+    - terminal-falls
+    points:
+    - id: emf
+      text: the electromotive force is the energy transferred to each unit of charge by the source,
+        measured in volts, and it is not a force
+      concepts:
+      - energy-per-charge
+    - id: internal
+      text: the internal resistance is the resistance of the source itself, so some of the energy
+        is transferred inside the source
+      concepts:
+      - source-resistance
+    - id: lost
+      text: the lost volts are Ir, and the terminal potential difference is E - Ir, so it falls as
+        the current rises
+      concepts:
+      - terminal-falls
+  answer_text: The electromotive force is the energy transferred to each unit of charge by the source,
+    measured in volts, and it is not a force. The internal resistance is the resistance of the source
+    itself, so some of the energy is transferred inside the source rather than in the external circuit.
+    The lost volts are $Ir$, and the terminal potential difference is $V = E - Ir$, so it falls as
+    the current rises.
+- id: p14-5-measure
+  section: '14.5'
+  tier: H
+  refs:
+  - '3.3'
+  statement: Describe an experiment to measure the electromotive force and the internal resistance
+    of a cell.
+  answer_label: Measuring emf and internal resistance
+  check:
+    kind: structured
+    requires:
+    - emf
+    - readings
+    - graph
+    - result
+    concepts:
+    - open-circuit
+    - current-and-voltage
+    - negative-gradient
+    points:
+    - id: emf
+      text: connect a voltmeter across the cell with no other load, so no current flows; the voltmeter
+        then reads the electromotive force directly
+      concepts:
+      - open-circuit
+    - id: readings
+      text: connect a variable resistor, an ammeter in series and a voltmeter across the cell, and
+        take several pairs of readings of current and terminal potential difference
+      concepts:
+      - current-and-voltage
+    - id: graph
+      text: plot the terminal potential difference on the vertical axis against the current on the
+        horizontal axis; the points lie on a straight line
+      concepts:
+      - negative-gradient
+    - id: result
+      text: the intercept on the vertical axis is the electromotive force and the gradient is the
+        negative of the internal resistance
+      concepts:
+      - negative-gradient
+  answer_text: Connect a voltmeter across the cell with no other load. No current flows, so the voltmeter
+    reads the electromotive force directly. Then connect a variable resistor, with an ammeter in series
+    and a voltmeter across the cell, and take several pairs of readings of current and terminal potential
+    difference. Plot the terminal potential difference against the current; the points lie on a straight
+    line. The intercept on the vertical axis is the electromotive force, and the gradient is the negative
+    of the internal resistance.

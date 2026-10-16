@@ -1,0 +1,167 @@
+# Practice set for 4.10 (strand 4, outcome 4.3, Higher level). A quadratic or
+# modulus inequality has a solution set that is an interval or a union of two, so
+# `inequality` compares the reduced set with the declared one. A single interval
+# where the true answer is a union fails, which is the mistake the modulus section
+# is built around.
+chapter: 4
+symbols:
+  n: {real: true}
+  x: {real: true}
+problems:
+  - id: lc4-10-quadratic-less
+    section: '4.10'
+    tier: H
+    refs: ['4.3']
+    statement: 'Solve $x^2 - 4 < 0$.'
+    answer_label: 'The solution set'
+    check:
+      kind: inequality
+      inequality: 'x**2 - 4 < 0'
+      variable: x
+      answer: 'Interval.open(-2, 2)'
+    answer_text: >-
+      The boundary values are $-2$ and $2$. The parabola $y = x^2 - 4$ opens
+      upward and is below the axis between them:
+
+      $$-2 < x < 2$$
+
+  - id: lc4-10-quadratic-greater
+    section: '4.10'
+    tier: H
+    refs: ['4.3']
+    statement: 'Solve $x^2 - 5x + 6 > 0$.'
+    answer_label: 'The solution set'
+    check:
+      kind: inequality
+      inequality: 'x**2 - 5*x + 6 > 0'
+      variable: x
+      answer: 'Union(Interval.open(-oo, 2), Interval.open(3, oo))'
+    answer_text: >-
+      The roots are $2$ and $3$. The parabola opens upward, so it is above the
+      axis outside the roots:
+
+      $$x < 2 \quad\text{or}\quad x > 3$$
+
+      The answer is a union of two ranges, not the interval between them.
+
+  - id: lc4-10-modulus-less
+    section: '4.10'
+    tier: H
+    refs: ['4.3']
+    statement: 'Solve $|x| < 3$.'
+    answer_label: 'The solution set'
+    check:
+      kind: inequality
+      inequality: 'Abs(x) < 3'
+      variable: x
+      answer: 'Interval.open(-3, 3)'
+    answer_text: >-
+      The solutions are the numbers less than $3$ from $0$:
+
+      $$-3 < x < 3$$
+
+  - id: lc4-10-modulus-shifted
+    section: '4.10'
+    tier: H
+    refs: ['4.3']
+    statement: 'Solve $|x - 2| \leq 4$.'
+    answer_label: 'The solution set'
+    check:
+      kind: inequality
+      inequality: 'Abs(x - 2) <= 4'
+      variable: x
+      answer: 'Interval(-2, 6)'
+    answer_text: >-
+      The solutions are the numbers within $4$ of $2$:
+
+      $$-2 \leq x \leq 6$$
+
+      The endpoints are included, because the inequality is not strict.
+
+  - id: lc4-10-modulus-greater
+    section: '4.10'
+    tier: H
+    refs: ['4.3']
+    statement: 'Solve $|x - 1| > 3$.'
+    answer_label: 'The solution set'
+    check:
+      kind: inequality
+      inequality: 'Abs(x - 1) > 3'
+      variable: x
+      answer: 'Union(Interval.open(-oo, -2), Interval.open(4, oo))'
+    answer_text: >-
+      The solutions are the numbers more than $3$ from $1$. There are two ranges:
+
+      $$x < -2 \quad\text{or}\quad x > 4$$
+
+      The values between $-2$ and $4$ are too close to $1$ to satisfy the
+      inequality.
+
+  - id: lc4-10-profit-interval
+    section: '4.10'
+    tier: H
+    refs: ['4.3']
+    statement: 'Solve the profit inequality $-0.1n^2 + 10n - 240 > 0$.'
+    answer_label: 'The solution set'
+    check:
+      kind: inequality
+      inequality: '-0.1*n**2 + 10*n - 240 > 0'
+      variable: n
+      answer: 'Interval.open(40, 60)'
+    answer_text: >-
+      Multiply by $-10$, which reverses the sign:
+      $n^2 - 100n + 2400 < 0$. The roots are $40$ and $60$, and the parabola
+      opens upward, so the expression is negative between them:
+
+      $$40 < n < 60$$
+
+      The business makes a profit when it sells more than $40$ and fewer than
+      $60$ candles.
+
+  - id: lc4-10-modulus-inclusive
+    section: '4.10'
+    tier: H
+    refs: ['4.3']
+    statement: 'Solve $|x - 3| \geq 2$.'
+    answer_label: 'The solution set'
+    check:
+      kind: inequality
+      inequality: 'Abs(x - 3) >= 2'
+      variable: x
+      answer: 'Union(Interval(-oo, 1), Interval(5, oo))'
+    answer_text: >-
+      The solutions are the numbers at least $2$ from $3$:
+
+      $$x \leq 1 \quad\text{or}\quad x \geq 5$$
+
+      Both endpoints are included, because the inequality is not strict. Check
+      $x = 1$: $|1 - 3| = 2$, which equals $2$. Correct.
+
+  - id: lc4-10-two-ranges
+    section: '4.10'
+    tier: H
+    refs: ['4.3']
+    statement: >-
+      Explain why $|x - a| > b$ has two ranges as its solution while
+      $|x - a| < b$ has one.
+    answer_label: 'Why one inequality gives two ranges'
+    check:
+      kind: structured
+      requires: [band, outside-band]
+      concepts: [one-interval, two-ranges]
+      points:
+        - id: band
+          text: the numbers less than b from a form a single band from a minus b to a plus b, so the less-than answer is one interval
+          concepts: [one-interval]
+        - id: outside-band
+          text: the numbers more than b from a are everything outside that band, one range to the left and another to the right, so the greater-than answer is two ranges
+          concepts: [two-ranges]
+    answer_text: >-
+      The numbers less than $b$ from $a$ form a single band, from $a - b$ to
+      $a + b$. So $|x - a| < b$ has one interval as its solution.
+
+      The numbers more than $b$ from $a$ are everything outside that band. There
+      is one range to the left of $a - b$ and another to the right of $a + b$, so
+      $|x - a| > b$ has two ranges:
+
+      $$x < a - b \quad\text{or}\quad x > a + b$$

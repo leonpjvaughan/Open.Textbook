@@ -10,9 +10,13 @@ refs:
 kind: problems
 ---
 
-<!-- scaffold:stub -->
-
 # 12.2 The speed of light — Practise
 
-> **Stub.** Independent, homework-style practice. Answers and concise solutions in a collapsed block. Mark Higher-only questions explicitly.
-> Tier: **O** · refs: 2.4
+Work independently. The questions and answers are shown together at the end.
+
+Change every prefix into a power of ten before you calculate. Give each answer
+with its unit, and to the number of significant figures the data justify.
+
+:::problems chapter-12-practice-12.2
+
+:::answers chapter-12-practice-12.2

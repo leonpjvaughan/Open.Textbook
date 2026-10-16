@@ -1,0 +1,306 @@
+# Leaving Certificate Physics, Chapter 12, section 12.2 (strand 2 outcome 2.4).
+#
+# The speed of light is the same for every electromagnetic wave in a vacuum, so
+# each record that uses `c = f lambda` carries a `dimensions` check (magnitude and
+# unit) and a `sigfigs` check (the rounding the data support). The two `structured`
+# records prove only that a model answer contains the declared steps in order and
+# covers the declared concepts.
+#
+# Honest limit: this proves the arithmetic and the dimensions, not the physics. A
+# dimensionally consistent, arithmetically correct, physically absurd answer would
+# pass.
+chapter: 12
+problems:
+- id: p12-2-sunlight-time
+  section: '12.2'
+  tier: O
+  refs:
+  - '2.4'
+  statement: >-
+    The Sun is $1.5 \times 10^{11}$ m from the Earth. Calculate the time sunlight
+    takes to reach the Earth. Take the speed of light in a vacuum as
+    $3.0 \times 10^{8}$ m/s.
+  answer_label: Time to reach the Earth
+  check:
+    kind: all
+    checks:
+    - kind: dimensions
+      expression: d / c
+      values:
+        d:
+          value: '1.5e11'
+          unit: m
+        c:
+          value: '3.0e8'
+          unit: m/s
+      answer:
+        value: '500'
+        unit: s
+    - kind: sigfigs
+      value: 1.5e11 / 3.0e8
+      figures: 2
+      answer: '5.0e2'
+      convention: round-once
+  answer_text: >-
+    $t = \dfrac{d}{c} = \dfrac{1.5 \times 10^{11}}{3.0 \times 10^{8}} =
+    500\,\text{s}$. That is 8.3 minutes, so the sunlight that reaches the school
+    roof left the Sun about eight minutes earlier.
+- id: p12-2-speed-in-glass
+  section: '12.2'
+  tier: O
+  refs:
+  - '2.4'
+  statement: >-
+    Light travels through a vacuum at $3.0 \times 10^{8}$ m/s. Calculate its
+    speed in a glass of refractive index 1.50.
+  answer_label: Speed in the glass
+  check:
+    kind: all
+    checks:
+    - kind: dimensions
+      expression: c / n
+      values:
+        c:
+          value: '3.0e8'
+          unit: m/s
+        n:
+          value: '1.50'
+      answer:
+        value: '2.0e8'
+        unit: m/s
+    - kind: sigfigs
+      value: 3.0e8 / 1.50
+      figures: 2
+      answer: '2.0e8'
+      convention: round-once
+  answer_text: >-
+    The refractive index compares the two speeds:
+    $n = \dfrac{c}{v}$, so $v = \dfrac{c}{n} = \dfrac{3.0 \times 10^{8}}{1.50}
+    = 2.0 \times 10^{8}\,\text{m/s}$. The light is slower in the glass, which is
+    why the ray bends at the surface.
+- id: p12-2-radio-wavelength
+  section: '12.2'
+  tier: O
+  refs:
+  - '2.4'
+  statement: >-
+    A radio station broadcasts at a frequency of 100 MHz. Calculate the
+    wavelength of the radio waves. Take the speed of light as
+    $3.0 \times 10^{8}$ m/s.
+  answer_label: Wavelength
+  check:
+    kind: all
+    checks:
+    - kind: dimensions
+      expression: c / f
+      values:
+        c:
+          value: '3.0e8'
+          unit: m/s
+        f:
+          value: '1.0e8'
+          unit: Hz
+      answer:
+        value: '3.0'
+        unit: m
+    - kind: sigfigs
+      value: 3.0e8 / 1.0e8
+      figures: 2
+      answer: '3.0'
+      convention: round-once
+  answer_text: >-
+    $c = f\lambda$, so $\lambda = \dfrac{c}{f} = \dfrac{3.0 \times 10^{8}}
+    {1.0 \times 10^{8}} = 3.0\,\text{m}$. A wavelength of a few metres is typical
+    of radio and television signals.
+- id: p12-2-green-frequency
+  section: '12.2'
+  tier: O
+  refs:
+  - '2.4'
+  statement: >-
+    Green light has a wavelength of 550 nm. Calculate its frequency. Take the
+    speed of light as $3.0 \times 10^{8}$ m/s.
+  answer_label: Frequency
+  check:
+    kind: all
+    checks:
+    - kind: dimensions
+      expression: c / lam
+      values:
+        c:
+          value: '3.0e8'
+          unit: m/s
+        lam:
+          value: '5.5e-7'
+          unit: m
+      answer:
+        value: '5.5e14'
+        unit: Hz
+      tolerance: '1e13'
+    - kind: sigfigs
+      value: 3.0e8 / 5.5e-7
+      figures: 2
+      answer: '5.5e14'
+      convention: round-once
+  answer_text: >-
+    $f = \dfrac{c}{\lambda} = \dfrac{3.0 \times 10^{8}}{5.5 \times 10^{-7}}
+    = 5.5 \times 10^{14}\,\text{Hz}$. Every colour of visible light has a
+    frequency of a few hundred million million hertz.
+- id: p12-2-light-year
+  section: '12.2'
+  tier: O
+  refs:
+  - '2.4'
+  statement: >-
+    A light year is the distance light travels in one year. Take one year as
+    $3.15 \times 10^{7}$ s and the speed of light as $3.0 \times 10^{8}$ m/s.
+    Calculate the distance of one light year in metres.
+  answer_label: One light year
+  check:
+    kind: all
+    checks:
+    - kind: dimensions
+      expression: c * t
+      values:
+        c:
+          value: '3.0e8'
+          unit: m/s
+        t:
+          value: '3.15e7'
+          unit: s
+      answer:
+        value: '9.45e15'
+        unit: m
+    - kind: sigfigs
+      value: 3.0e8 * 3.15e7
+      figures: 2
+      answer: '9.5e15'
+      convention: round-once
+  answer_text: >-
+    $d = ct = 3.0 \times 10^{8} \times 3.15 \times 10^{7} = 9.45 \times 10^{15}$
+    m, which is $9.5 \times 10^{15}$ m to two significant figures. A light year
+    is a distance, not a time, and it is used because the distances between stars
+    are so large.
+- id: p12-2-proxima-time
+  section: '12.2'
+  tier: O
+  refs:
+  - '2.4'
+  statement: >-
+    Proxima Centauri, the nearest star after the Sun, is
+    $4.0 \times 10^{16}$ m from the Earth. Calculate the time its light takes to
+    reach us. Take the speed of light as $3.0 \times 10^{8}$ m/s.
+  answer_label: Time for the light to arrive
+  check:
+    kind: all
+    checks:
+    - kind: dimensions
+      expression: d / c
+      values:
+        d:
+          value: '4.0e16'
+          unit: m
+        c:
+          value: '3.0e8'
+          unit: m/s
+      answer:
+        value: '1.3e8'
+        unit: s
+      tolerance: '1e7'
+    - kind: sigfigs
+      value: 4.0e16 / 3.0e8
+      figures: 2
+      answer: '1.3e8'
+      convention: round-once
+  answer_text: >-
+    $t = \dfrac{d}{c} = \dfrac{4.0 \times 10^{16}}{3.0 \times 10^{8}} =
+    1.3 \times 10^{8}\,\text{s}$. That is about 4.2 years, so the light you see
+    tonight left Proxima Centauri more than four years ago.
+- id: p12-2-frequency-unchanged
+  section: '12.2'
+  tier: O
+  refs:
+  - '2.4'
+  statement: >-
+    A beam of light passes from air into glass. Explain what happens to its
+    frequency, its speed and its wavelength.
+  answer_label: Frequency, speed and wavelength
+  check:
+    kind: structured
+    requires:
+    - frequency
+    - speed
+    - wavelength
+    concepts:
+    - frequency
+    - wave-equation
+    - medium
+    points:
+    - id: frequency
+      text: >-
+        the frequency is set by the source and does not change when the light
+        enters the glass
+      concepts:
+      - frequency
+    - id: speed
+      text: >-
+        the speed does change, because light travels more slowly in glass than
+        in air
+      concepts:
+      - medium
+    - id: wavelength
+      text: >-
+        c = f lambda must still hold, so the wavelength shortens in the same
+        ratio as the speed
+      concepts:
+      - wave-equation
+  answer_text: >-
+    The frequency is set by the source and does not change when the light enters
+    the glass. The speed does change, because light travels more slowly in glass
+    than in air. Since $c = f\lambda$ must still hold, the wavelength shortens in
+    the same ratio as the speed.
+- id: p12-2-vacuum
+  section: '12.2'
+  tier: O
+  refs:
+  - '2.4'
+  statement: >-
+    Explain why an electromagnetic wave can travel through a vacuum, and state
+    what is special about its speed there.
+  answer_label: An electromagnetic wave in a vacuum
+  check:
+    kind: structured
+    requires:
+    - vacuum
+    - same-speed
+    - medium
+    concepts:
+    - electromagnetic-wave
+    - speed-of-light
+    - medium
+    points:
+    - id: vacuum
+      text: >-
+        an electromagnetic wave is made of oscillating electric and magnetic
+        fields, so it needs no medium and can cross a vacuum
+      concepts:
+      - electromagnetic-wave
+    - id: same-speed
+      text: >-
+        in a vacuum every electromagnetic wave travels at the same speed,
+        c = 3.0 times 10 to the 8 m/s, whatever its frequency
+      concepts:
+      - speed-of-light
+    - id: medium
+      text: >-
+        in a material such as glass the speed is lower, and the refractive index
+        compares the two speeds
+      concepts:
+      - medium
+  answer_text: >-
+    An electromagnetic wave is made of oscillating electric and magnetic fields,
+    so it needs no medium and can cross a vacuum. In a vacuum every
+    electromagnetic wave travels at the same speed,
+    $c = 3.0 \times 10^{8}$ m/s, whatever its frequency. In a material such as
+    glass the speed is lower, and the refractive index $n = \dfrac{c}{v}$
+    compares the two speeds.

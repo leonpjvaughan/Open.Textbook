@@ -10,9 +10,14 @@ refs:
 kind: problems
 ---
 
-<!-- scaffold:stub -->
-
 # 13.3 Electric fields and field lines — Practise
 
-> **Stub.** Independent, homework-style practice. Answers and concise solutions in a collapsed block. Mark Higher-only questions explicitly.
-> Tier: **O** · refs: 3.2
+Work independently. The questions and answers are shown together at the end.
+
+Give every answer with its **unit**, and to the number of significant figures the data
+justify. Take $e = 1.6 \times 10^{-19}$ C. For each force, state its direction as well
+as its size.
+
+:::problems chapter-13-practice-13.3
+
+:::answers chapter-13-practice-13.3

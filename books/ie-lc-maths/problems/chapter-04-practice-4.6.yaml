@@ -1,0 +1,122 @@
+# Practice set for 4.6 (strand 4, outcome 4.2, Foundation level). Each answer is
+# proved as a solution set: `solve` runs `solveset` on the equation and compares
+# it with the declared set, so a wrong root fails even when the arithmetic along
+# the way looks plausible. The break-even record is the chapter's own equation.
+chapter: 4
+symbols:
+  n: {real: true}
+  x: {real: true}
+problems:
+  - id: lc4-6-one-step-both
+    section: '4.6'
+    tier: F
+    refs: ['4.2']
+    statement: 'Solve $4x + 5 = 17$.'
+    answer_label: 'The value of x'
+    check: {kind: solve, equation: '4*x + 5 = 17', variable: x, answer: ['3']}
+    answer_text: >-
+      Subtract $5$ from both sides: $4x = 12$. Divide by $4$: $x = 3$.
+
+      Check: $4(3) + 5 = 17$. Correct.
+
+  - id: lc4-6-subtract
+    section: '4.6'
+    tier: F
+    refs: ['4.2']
+    statement: 'Solve $3x - 7 = 11$.'
+    answer_label: 'The value of x'
+    check: {kind: solve, equation: '3*x - 7 = 11', variable: x, answer: ['6']}
+    answer_text: >-
+      Add $7$ to both sides: $3x = 18$. Divide by $3$: $x = 6$.
+
+      Check: $3(6) - 7 = 11$. Correct.
+
+  - id: lc4-6-both-sides
+    section: '4.6'
+    tier: F
+    refs: ['4.2']
+    statement: 'Solve $5x + 2 = 2x + 14$.'
+    answer_label: 'The value of x'
+    check: {kind: solve, equation: '5*x + 2 = 2*x + 14', variable: x, answer: ['4']}
+    answer_text: >-
+      Subtract $2x$ from both sides: $3x + 2 = 14$. Subtract $2$: $3x = 12$.
+      Divide by $3$: $x = 4$.
+
+      Check both sides: $5(4) + 2 = 22$ and $2(4) + 14 = 22$.
+
+  - id: lc4-6-break-even
+    section: '4.6'
+    tier: F
+    refs: ['4.2']
+    statement: >-
+      Solve the break-even equation $240 + 4n = 10n$, and check that the cost and
+      the income are equal at your answer.
+    answer_label: 'The value of n'
+    check:
+      kind: all
+      checks:
+        - {kind: solve, equation: '240 + 4*n = 10*n', variable: n, answer: ['40']}
+        - {kind: evaluate, expression: '240 + 4 * 40', answer: '400'}
+        - {kind: evaluate, expression: '10 * 40', answer: '400'}
+    answer_text: >-
+      Subtract $4n$ from both sides: $240 = 6n$. Divide by $6$: $n = 40$.
+
+      At $40$ candles the cost is $240 + 160 = €400$ and the income is €400, so
+      the two sides are equal. This is the break-even point.
+
+  - id: lc4-6-bracket
+    section: '4.6'
+    tier: F
+    refs: ['4.2']
+    statement: 'Solve $3(x - 2) = 12$.'
+    answer_label: 'The value of x'
+    check: {kind: solve, equation: '3 * (x - 2) = 12', variable: x, answer: ['6']}
+    answer_text: >-
+      Divide both sides by $3$: $x - 2 = 4$, so $x = 6$.
+
+      Expanding first gives the same answer: $3x - 6 = 12$, so $3x = 18$ and
+      $x = 6$.
+
+  - id: lc4-6-collect
+    section: '4.6'
+    tier: F
+    refs: ['4.2']
+    statement: 'Solve $7x + 1 = 4x + 13$.'
+    answer_label: 'The value of x'
+    check: {kind: solve, equation: '7*x + 1 = 4*x + 13', variable: x, answer: ['4']}
+    answer_text: >-
+      Subtract $4x$: $3x + 1 = 13$. Subtract $1$: $3x = 12$. Divide by $3$:
+      $x = 4$.
+
+      Check: $7(4) + 1 = 29$ and $4(4) + 13 = 29$.
+
+  - id: lc4-6-fraction-solution
+    section: '4.6'
+    tier: F
+    refs: ['4.2']
+    statement: >-
+      A student claims that $x = 5$ solves $2x + 3 = 14$. Solve the equation and
+      say whether the claim is right.
+    answer_label: 'The value of x'
+    check: {kind: solve, equation: '2*x + 3 = 14', variable: x, answer: ['11/2']}
+    answer_text: >-
+      Subtract $3$: $2x = 11$. Divide by $2$: $x = 5.5$, which is $\frac{11}{2}$.
+
+      The claim is wrong. Substituting $x = 5$ gives $2(5) + 3 = 13$, not $14$,
+      so the solution must be larger than $5$.
+
+  - id: lc4-6-fare
+    section: '4.6'
+    tier: F
+    refs: ['4.2']
+    statement: >-
+      A taxi fare is $F = 5 + 2n$ euro for $n$ kilometres. Solve $5 + 2n = 29$ to
+      find the distance that costs €29.
+    answer_label: 'The distance in kilometres'
+    check: {kind: solve, equation: '5 + 2*n = 29', variable: n, answer: ['12']}
+    answer_text: >-
+      Subtract $5$: $2n = 24$. Divide by $2$: $n = 12$.
+
+      A journey of $12$ km costs $5 + 2(12) = €29$.
+
+      Check: $5 + 24 = 29$. Correct.

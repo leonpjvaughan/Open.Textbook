@@ -10,9 +10,14 @@ refs:
 kind: problems
 ---
 
-<!-- scaffold:stub -->
-
 # 12.4 Simultaneous equations by elimination — Practise
 
-> **Stub.** Independent, homework-style practice. Answers and concise solutions in a collapsed block. Mark Higher-only questions explicitly.
-> Tier: **O** · refs: AF.4
+Work independently. The questions and answers are shown together at the end.
+
+Compare the coefficients of each letter. Add when the terms are opposite, and subtract
+when they are the same. If neither pair matches, multiply one equation or both, and
+multiply every term.
+
+:::problems chapter-12-practice-12.4
+
+:::answers chapter-12-practice-12.4

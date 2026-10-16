@@ -1,5 +1,5 @@
 ---
-title: '12.7 Choosing a method: graphic, numeric or algebraic — Practise'
+title: "12.7 Choosing a method: graphic, numeric or algebraic — Practise"
 chapter: 12
 chapter_title: Equations and inequalities
 section: '12.7'
@@ -10,9 +10,14 @@ refs:
 kind: problems
 ---
 
-<!-- scaffold:stub -->
-
 # 12.7 Choosing a method: graphic, numeric or algebraic — Practise
 
-> **Stub.** Independent, homework-style practice. Answers and concise solutions in a collapsed block. Mark Higher-only questions explicitly.
-> Tier: **O** · refs: AF.4
+Work independently. The questions and answers are shown together at the end.
+
+For each question, choose a method and say why in a few words. The method might be
+algebra, a graph, a table, working backwards, or trial and improvement. Check your
+answer with a second method where you can.
+
+:::problems chapter-12-practice-12.7
+
+:::answers chapter-12-practice-12.7

@@ -1,0 +1,276 @@
+# Leaving Certificate Physics, Chapter 13, section 13.1 (strand 3 outcome 3.1).
+#
+# The physics oracle checks two claims whenever a quantity is asked for:
+# `dimensions` proves the exact magnitude *and* the unit, and `sigfigs` proves the
+# rounding to the figures the data support. Both are written out, because a rounded
+# answer is never equal to the exact one. An integer that is two significant
+# figures is written as `2.0e1`, since `20` is one figure.
+#
+# Honest limit: this proves the arithmetic and the dimensions, not the physics. A
+# dimensionally consistent, arithmetically correct, physically absurd answer would
+# pass. The `structured` records prove only that a model answer contains the
+# declared steps and concepts, in order — not that the physics in them is right.
+chapter: 13
+problems:
+- id: p13-1-electrons-charge
+  section: '13.1'
+  tier: O
+  refs:
+  - '3.1'
+  statement: A polythene rod is rubbed with wool and gains $2.0 \times 10^{13}$ electrons. Calculate
+    the charge on the rod. Take $e = 1.6 \times 10^{-19}$ C.
+  answer_label: Charge on the rod
+  check:
+    kind: all
+    checks:
+    - kind: dimensions
+      expression: -n * e
+      values:
+        n:
+          value: '2.0e13'
+        e:
+          value: '1.6e-19'
+          unit: C
+      answer:
+        value: '-3.2e-6'
+        unit: C
+    - kind: sigfigs
+      value: '-2.0e13 * 1.6e-19'
+      figures: 2
+      answer: '-3.2e-6'
+      convention: round-once
+  answer_text: $q = -ne = -2.0 \times 10^{13} \times 1.6 \times 10^{-19} = -3.2 \times 10^{-6}\,\text{C}$.
+    The rod is negative because it gained electrons.
+- id: p13-1-charge-electrons
+  section: '13.1'
+  tier: O
+  refs:
+  - '3.1'
+  statement: A small metal sphere carries a charge of $-4.8 \times 10^{-15}$ C. Calculate the number
+    of excess electrons on the sphere. Take $e = 1.6 \times 10^{-19}$ C.
+  answer_label: Number of excess electrons
+  check:
+    kind: all
+    checks:
+    - kind: dimensions
+      expression: abs(q) / e
+      values:
+        q:
+          value: '-4.8e-15'
+          unit: C
+        e:
+          value: '1.6e-19'
+          unit: C
+      answer:
+        value: '3.0e4'
+    - kind: sigfigs
+      value: '4.8e-15 / 1.6e-19'
+      figures: 2
+      answer: '3.0e4'
+      convention: round-once
+  answer_text: $n = \dfrac{|q|}{e} = \dfrac{4.8 \times 10^{-15}}{1.6 \times 10^{-19}} = 3.0 \times
+    10^{4}$ electrons. The charge is negative, so the sphere has an excess of electrons rather than a
+    shortage.
+- id: p13-1-conservation
+  section: '13.1'
+  tier: O
+  refs:
+  - '3.1'
+  statement: Two identical metal spheres carry charges of $+3.0\ \mu\text{C}$ and $-1.0\ \mu\text{C}$.
+    They are touched together and then separated. Calculate the charge on each sphere afterwards.
+  answer_label: Charge on each sphere
+  check:
+    kind: all
+    checks:
+    - kind: dimensions
+      expression: (q1 + q2) / 2
+      values:
+        q1:
+          value: '3.0e-6'
+          unit: C
+        q2:
+          value: '-1.0e-6'
+          unit: C
+      answer:
+        value: '1.0e-6'
+        unit: C
+    - kind: sigfigs
+      value: '(3.0e-6 + (-1.0e-6)) / 2'
+      figures: 2
+      answer: '1.0e-6'
+      convention: round-once
+  answer_text: Charge is conserved, so the total charge is the same before and after. The total is
+    $+3.0\ \mu\text{C} + (-1.0\ \mu\text{C}) = +2.0\ \mu\text{C}$. The two spheres are identical, so
+    they share it equally. Each ends with $+1.0\ \mu\text{C}$.
+- id: p13-1-glass-rod
+  section: '13.1'
+  tier: O
+  refs:
+  - '3.1'
+  statement: A glass rod is rubbed with a silk cloth and loses $3.0 \times 10^{12}$ electrons. Calculate
+    the charge on the rod. Take $e = 1.6 \times 10^{-19}$ C.
+  answer_label: Charge on the glass rod
+  check:
+    kind: all
+    checks:
+    - kind: dimensions
+      expression: n * e
+      values:
+        n:
+          value: '3.0e12'
+        e:
+          value: '1.6e-19'
+          unit: C
+      answer:
+        value: '4.8e-7'
+        unit: C
+    - kind: sigfigs
+      value: '3.0e12 * 1.6e-19'
+      figures: 2
+      answer: '4.8e-7'
+      convention: round-once
+  answer_text: $q = ne = 3.0 \times 10^{12} \times 1.6 \times 10^{-19} = 4.8 \times 10^{-7}\,\text{C}$.
+    The rod is positive because it lost electrons, so the charge is $+4.8 \times 10^{-7}$ C.
+- id: p13-1-friction
+  section: '13.1'
+  tier: O
+  refs:
+  - '3.1'
+  statement: A polythene rod becomes negatively charged when it is rubbed with wool. Explain what
+    happens to the electrons, and state why the wool becomes charged as well.
+  answer_label: Charging by friction
+  check:
+    kind: structured
+    requires:
+    - transfer
+    - sign
+    - conservation
+    concepts:
+    - electrons
+    - negative
+    - conserved
+    points:
+    - id: transfer
+      text: rubbing the two materials together transfers electrons from one material to the other
+      concepts:
+      - electrons
+    - id: sign
+      text: the polythene gains the electrons, so it becomes negatively charged; the wool loses them,
+        so it becomes positive
+      concepts:
+      - negative
+    - id: conservation
+      text: the total charge is conserved, so the two charges are equal in size and opposite in sign
+      concepts:
+      - conserved
+  answer_text: Rubbing the two materials together transfers electrons from one to the other. Polythene
+    holds the electrons more strongly, so it gains them and becomes negatively charged. The wool loses
+    the same electrons and becomes positively charged. Charge is conserved, so the two charges are equal
+    in size and opposite in sign.
+- id: p13-1-conductors
+  section: '13.1'
+  tier: O
+  refs:
+  - '3.1'
+  statement: Copper and rubber behave differently when they are charged. Classify each as a conductor
+    or an insulator, and explain your answer in terms of electrons.
+  answer_label: Conductors and insulators
+  check:
+    kind: structured
+    requires:
+    - copper
+    - rubber
+    - distribution
+    concepts:
+    - free-electrons
+    - bound-electrons
+    - surface
+    points:
+    - id: copper
+      text: copper is a conductor, because it has free electrons that can move through the metal
+      concepts:
+      - free-electrons
+    - id: rubber
+      text: rubber is an insulator, because its electrons are bound to their atoms and cannot move through
+        it
+      concepts:
+      - bound-electrons
+    - id: distribution
+      text: a charge placed on a conductor spreads over its surface, while a charge on an insulator stays
+        where it is placed
+      concepts:
+      - surface
+  answer_text: Copper is a conductor. It has free electrons that can move through the metal, so charge
+    travels through it and spreads over its surface. Rubber is an insulator. Its electrons are bound
+    to their atoms, so charge cannot move through it and stays where it is placed.
+- id: p13-1-neutral-attraction
+  section: '13.1'
+  tier: O
+  refs:
+  - '3.1'
+  statement: A charged plastic rod attracts a small piece of uncharged paper. Explain how this happens,
+    even though the paper carries no net charge.
+  answer_label: Attraction of a neutral object
+  check:
+    kind: structured
+    requires:
+    - separation
+    - nearest-side
+    - attraction
+    concepts:
+    - polarisation
+    - opposite
+    - non-contact
+    points:
+    - id: separation
+      text: the charged rod pushes or pulls the electrons in the paper, so the paper's charges separate
+        slightly
+      concepts:
+      - polarisation
+    - id: nearest-side
+      text: the side of the paper nearest the rod gains a charge opposite to the charge on the rod
+      concepts:
+      - opposite
+    - id: attraction
+      text: unlike charges attract, and the attraction to the near side is stronger than the repulsion
+        from the far side, so the paper moves towards the rod
+      concepts:
+      - non-contact
+  answer_text: The charged rod distorts the charge in the paper. Electrons in the paper are pushed or
+    pulled, so the side nearest the rod becomes opposite in charge to the rod. Unlike charges attract,
+    and because the near side is closer, its attraction wins over the repulsion from the far side. The
+    paper moves towards the rod even though it had no net charge to begin with.
+- id: p13-1-grounding
+  section: '13.1'
+  tier: O
+  refs:
+  - '3.1'
+  statement: A metal sphere carries an excess of electrons. Describe how the sphere can be discharged
+    by grounding, and explain what happens to the excess charge.
+  answer_label: Discharging by grounding
+  check:
+    kind: structured
+    requires:
+    - connection
+    - flow
+    - neutral
+    concepts:
+    - earth
+    - shared
+    - zero
+    points:
+    - id: connection
+      text: connect the sphere to the Earth with a wire, so the sphere and the Earth are joined
+      concepts:
+      - earth
+    - id: flow
+      text: the excess electrons flow from the sphere to the Earth, because the Earth can accept them
+      concepts:
+      - shared
+    - id: neutral
+      text: the sphere is left with no net charge, because it has shared its charge with the whole Earth
+      concepts:
+      - zero
+  answer_text: Connect the sphere to the Earth with a wire. The excess electrons flow from the sphere
+    into the Earth, which is large enough to accept them without changing noticeably. The sphere is left
+    neutral, because it has shared its charge with the whole Earth.

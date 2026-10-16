@@ -1,0 +1,121 @@
+# Practice set for 4.3 (strand 4, outcome 4.1, Foundation level). A formula found
+# from a pattern cannot be proved unique by a CAS, so each record proves the value
+# the claimed formula produces at a chosen input. The last record does prove a
+# fact: `solve` shows that the two claimed formulae agree at n = 40 and nowhere
+# else.
+chapter: 4
+symbols:
+  n: {real: true}
+problems:
+  - id: lc4-3-formula-first
+    section: '4.3'
+    tier: F
+    refs: ['4.1']
+    statement: >-
+      Find a formula for the $n$th term of $7, 11, 15, 19, \dots$ and use it to
+      find the fifteenth term.
+    answer_label: 'The formula, then the fifteenth term'
+    check: {kind: evaluate, expression: '4 * 15 + 3', answer: '63'}
+    answer_text: >-
+      The gap is $4$, so the formula starts with $4n$. Stepping back from $7$
+      gives $7 - 4 = 3$, so the formula is $4n + 3$.
+
+      The fifteenth term is $4(15) + 3 = 63$.
+
+  - id: lc4-3-formula-decreasing
+    section: '4.3'
+    tier: F
+    refs: ['4.1']
+    statement: 'Find a formula for $20, 17, 14, 11, \dots$ and the eighth term.'
+    answer_label: 'The formula, then the eighth term'
+    check: {kind: evaluate, expression: '-3 * 8 + 23', answer: '-1'}
+    answer_text: >-
+      The gap is $-3$, so the formula starts with $-3n$. Stepping back from $20$
+      gives $20 - (-3) = 23$, so the formula is $-3n + 23$.
+
+      The eighth term is $-3(8) + 23 = -1$. A decreasing pattern has a negative
+      coefficient.
+
+  - id: lc4-3-from-table
+    section: '4.3'
+    tier: F
+    refs: ['4.1']
+    statement: >-
+      A table gives $y = 6$ at $n = 0$, $y = 13$ at $n = 1$, $y = 20$ at $n = 2$
+      and $y = 27$ at $n = 3$. Find the formula and use it to find $y$ at
+      $n = 10$.
+    answer_label: 'The formula, then y at n = 10'
+    check: {kind: evaluate, expression: '7 * 10 + 6', answer: '76'}
+    answer_text: >-
+      The gap is $7$, and the value at $n = 0$ is $6$, so $y = 7n + 6$.
+
+      At $n = 10$, $y = 7(10) + 6 = 76$.
+
+  - id: lc4-3-from-words
+    section: '4.3'
+    tier: F
+    refs: ['4.1']
+    statement: >-
+      A pattern starts at $12$ and adds $7$ each time. Write the formula in
+      symbols and find the twentieth term.
+    answer_label: 'The formula, then the twentieth term'
+    check: {kind: evaluate, expression: '7 * 20 + 5', answer: '145'}
+    answer_text: >-
+      In words: value $= 5 + 7 \times$ the term number. Stepping back from $12$
+      gives $12 - 7 = 5$, so the formula is $T_n = 7n + 5$.
+
+      The twentieth term is $7(20) + 5 = 145$.
+
+  - id: lc4-3-predict-cost
+    section: '4.3'
+    tier: F
+    refs: ['4.1']
+    statement: 'Use $C = 240 + 4n$ to find the cost of $25$ candles.'
+    answer_label: 'The cost of 25 candles'
+    check: {kind: evaluate, expression: '240 + 4 * 25', answer: '340'}
+    answer_text: >-
+      $C = 240 + 4(25) = 240 + 100 = €340$.
+
+  - id: lc4-3-find-input
+    section: '4.3'
+    tier: F
+    refs: ['4.1']
+    statement: 'Use $C = 240 + 4n$ to find the number of candles that cost €300.'
+    answer_label: 'The number of candles'
+    check: {kind: solve, equation: '240 + 4*n = 300', variable: n, answer: ['15']}
+    answer_text: >-
+      Set the formula equal to $300$: $240 + 4n = 300$, so $4n = 60$ and
+      $n = 15$. Fifteen candles cost €300.
+
+      Check: $240 + 4(15) = 300$. Correct.
+
+  - id: lc4-3-income-formula
+    section: '4.3'
+    tier: F
+    refs: ['4.1']
+    statement: >-
+      The income from $0, 1, 2, 3, \dots$ candles is $0, 10, 20, 30, \dots$ euro.
+      Find the formula for the income and use it to find the income from $35$
+      candles.
+    answer_label: 'The income formula, then the income at n = 35'
+    check: {kind: evaluate, expression: '10 * 35', answer: '350'}
+    answer_text: >-
+      The gap is $10$ and the value at $n = 0$ is $0$, so $R = 10n$.
+
+      The income from $35$ candles is $10(35) = €350$.
+
+  - id: lc4-3-meeting-point
+    section: '4.3'
+    tier: F
+    refs: ['4.1']
+    statement: >-
+      The cost is $240 + 4n$ and the income is $10n$. Solve
+      $240 + 4n = 10n$ to find the number of candles where the two are equal.
+    answer_label: 'The number of candles'
+    check: {kind: solve, equation: '240 + 4*n = 10*n', variable: n, answer: ['40']}
+    answer_text: >-
+      $240 + 4n = 10n$, so $240 = 6n$ and $n = 40$. At $40$ candles the cost and
+      the income are both €400.
+
+      This is the break-even point. Section 4.6 sets the same equation out as a
+      formal method.

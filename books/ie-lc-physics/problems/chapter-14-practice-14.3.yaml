@@ -1,0 +1,301 @@
+# Leaving Certificate Physics, Chapter 14, section 14.3 (strand 3 outcome 3.3).
+#
+# The physics oracle checks two claims whenever a quantity is asked for:
+# `dimensions` proves the exact magnitude *and* the unit, and `sigfigs` proves the
+# rounding to the figures the data support. The parallel formula is written out in
+# full, `1 / (1/R1 + 1/R2)`, so the dimension check proves the result is a resistance
+# and not a conductance.
+#
+# Honest limit: this proves the arithmetic and the dimensions, not the physics. A
+# dimensionally consistent, arithmetically correct, physically absurd answer would
+# pass. The `structured` records prove only that a model answer contains the
+# declared steps and concepts, in order — not that the physics in them is right.
+chapter: 14
+problems:
+- id: p14-3-series
+  section: '14.3'
+  tier: O
+  refs:
+  - '3.3'
+  statement: A 6.0 Ω resistor and a 3.0 Ω resistor are connected in series. Calculate the combined
+    resistance.
+  answer_label: Combined resistance
+  check:
+    kind: all
+    checks:
+    - kind: dimensions
+      expression: R1 + R2
+      values:
+        R1:
+          value: '6.0'
+          unit: Ω
+        R2:
+          value: '3.0'
+          unit: Ω
+      answer:
+        value: '9.0'
+        unit: Ω
+    - kind: sigfigs
+      value: '6.0 + 3.0'
+      figures: 2
+      answer: '9.0'
+      convention: round-once
+  answer_text: '$R = R_1 + R_2 = 6.0 + 3.0 = 9.0\,\Omega$. In series there is one path, so the
+    current is the same through both resistors and the potential differences add.'
+- id: p14-3-parallel
+  section: '14.3'
+  tier: O
+  refs:
+  - '3.3'
+  statement: A 6.0 Ω resistor and a 3.0 Ω resistor are connected in parallel. Calculate the combined
+    resistance, and check that your answer is smaller than either resistor.
+  answer_label: Combined resistance
+  check:
+    kind: all
+    checks:
+    - kind: dimensions
+      expression: 1 / (1 / R1 + 1 / R2)
+      values:
+        R1:
+          value: '6.0'
+          unit: Ω
+        R2:
+          value: '3.0'
+          unit: Ω
+      answer:
+        value: '2.0'
+        unit: Ω
+    - kind: sigfigs
+      value: '1 / (1 / 6.0 + 1 / 3.0)'
+      figures: 2
+      answer: '2.0'
+      convention: round-once
+  answer_text: '$\dfrac{1}{R} = \dfrac{1}{R_1} + \dfrac{1}{R_2} = \dfrac{1}{6.0} + \dfrac{1}{3.0}
+    = \dfrac{1}{2.0}$, so $R = 2.0\,\Omega$. That is smaller than either resistor, which is always
+    true for resistors in parallel: adding a second path makes it easier for charge to flow.'
+- id: p14-3-three
+  section: '14.3'
+  tier: O
+  refs:
+  - '3.3'
+  statement: A 12 Ω resistor, a 6.0 Ω resistor and a 4.0 Ω resistor are connected in parallel.
+    Calculate the combined resistance.
+  answer_label: Combined resistance
+  check:
+    kind: all
+    checks:
+    - kind: dimensions
+      expression: 1 / (1 / R1 + 1 / R2 + 1 / R3)
+      values:
+        R1:
+          value: '12'
+          unit: Ω
+        R2:
+          value: '6.0'
+          unit: Ω
+        R3:
+          value: '4.0'
+          unit: Ω
+      answer:
+        value: '2.0'
+        unit: Ω
+    - kind: sigfigs
+      value: '1 / (1 / 12 + 1 / 6.0 + 1 / 4.0)'
+      figures: 2
+      answer: '2.0'
+      convention: round-once
+  answer_text: '$\dfrac{1}{R} = \dfrac{1}{12} + \dfrac{1}{6.0} + \dfrac{1}{4.0} = \dfrac{1}{12}
+    + \dfrac{2}{12} + \dfrac{3}{12} = \dfrac{6}{12} = \dfrac{1}{2.0}$, so $R = 2.0\,\Omega$. The
+    answer is smaller than the smallest resistor, 4.0 Ω, as it must be.'
+- id: p14-3-series-current
+  section: '14.3'
+  tier: O
+  refs:
+  - '3.3'
+  statement: A 12 V supply is connected to a 4.0 Ω resistor and an 8.0 Ω resistor in series. Calculate
+    the current and the potential difference across each resistor.
+  answer_label: Current and potential differences
+  check:
+    kind: all
+    checks:
+    - kind: dimensions
+      expression: V / (R1 + R2)
+      values:
+        V:
+          value: '12'
+          unit: V
+        R1:
+          value: '4.0'
+          unit: Ω
+        R2:
+          value: '8.0'
+          unit: Ω
+      answer:
+        value: '1.0'
+        unit: A
+    - kind: dimensions
+      expression: I * R1
+      values:
+        I:
+          value: '1.0'
+          unit: A
+        R1:
+          value: '4.0'
+          unit: Ω
+      answer:
+        value: '4.0'
+        unit: V
+    - kind: dimensions
+      expression: I * R2
+      values:
+        I:
+          value: '1.0'
+          unit: A
+        R2:
+          value: '8.0'
+          unit: Ω
+      answer:
+        value: '8.0'
+        unit: V
+    - kind: sigfigs
+      value: '12 / (4.0 + 8.0)'
+      figures: 2
+      answer: '1.0'
+      convention: round-once
+  answer_text: 'The combined resistance is $4.0 + 8.0 = 12\,\Omega$, so $I = \dfrac{V}{R} =
+    \dfrac{12}{12} = 1.0\,\text{A}$. The current is the same through both resistors. Then $V_1 =
+    IR_1 = 1.0 \times 4.0 = 4.0\,\text{V}$ and $V_2 = IR_2 = 1.0 \times 8.0 = 8.0\,\text{V}$. The
+    two potential differences add to 12 V, which is the supply voltage.'
+- id: p14-3-parallel-current
+  section: '14.3'
+  tier: O
+  refs:
+  - '3.3'
+  statement: A 12 V supply is connected to a 4.0 Ω resistor and a 12 Ω resistor in parallel. Calculate
+    the current in each branch and the total current from the supply.
+  answer_label: Branch currents and total current
+  check:
+    kind: all
+    checks:
+    - kind: dimensions
+      expression: V / R1
+      values:
+        V:
+          value: '12'
+          unit: V
+        R1:
+          value: '4.0'
+          unit: Ω
+      answer:
+        value: '3.0'
+        unit: A
+    - kind: dimensions
+      expression: V / R2
+      values:
+        V:
+          value: '12'
+          unit: V
+        R2:
+          value: '12'
+          unit: Ω
+      answer:
+        value: '1.0'
+        unit: A
+    - kind: dimensions
+      expression: V / R1 + V / R2
+      values:
+        V:
+          value: '12'
+          unit: V
+        R1:
+          value: '4.0'
+          unit: Ω
+        R2:
+          value: '12'
+          unit: Ω
+      answer:
+        value: '4.0'
+        unit: A
+  answer_text: 'The potential difference across each branch is 12 V. Then $I_1 = \dfrac{12}{4.0} =
+    3.0\,\text{A}$ and $I_2 = \dfrac{12}{12} = 1.0\,\text{A}$. The total current from the supply is
+    $3.0 + 1.0 = 4.0\,\text{A}$. Check it against the combined resistance: $R = 3.0\,\Omega$, and
+    $\dfrac{12}{3.0} = 4.0\,\text{A}$.'
+- id: p14-3-rules
+  section: '14.3'
+  tier: O
+  refs:
+  - '3.3'
+  statement: State the rules for current and potential difference in a series circuit and in a
+    parallel circuit.
+  answer_label: The circuit rules
+  check:
+    kind: structured
+    requires:
+    - series
+    - parallel
+    - conservation
+    concepts:
+    - same-current
+    - pd-adds
+    - pd-same
+    - current-adds
+    points:
+    - id: series
+      text: in series the current is the same at every point, the potential differences add to the
+        supply voltage, and the resistances add
+      concepts:
+      - same-current
+      - pd-adds
+    - id: parallel
+      text: in parallel the potential difference is the same across every branch, the branch currents
+        add to the current from the supply, and 1/R = 1/R1 + 1/R2
+      concepts:
+      - pd-same
+      - current-adds
+    - id: conservation
+      text: the rules follow from conservation of charge and conservation of energy in the circuit
+      concepts:
+      - same-current
+      - current-adds
+  answer_text: In series the current is the same at every point, the potential differences add to
+    the supply voltage, and the resistances add. In parallel the potential difference is the same
+    across every branch, the branch currents add to the current from the supply, and
+    $\dfrac{1}{R} = \dfrac{1}{R_1} + \dfrac{1}{R_2}$. The rules follow from conservation of charge
+    and conservation of energy.
+- id: p14-3-home
+  section: '14.3'
+  tier: O
+  refs:
+  - '3.3'
+  statement: Explain why the appliances in a home are connected in parallel rather than in series.
+  answer_label: Why homes use parallel circuits
+  check:
+    kind: structured
+    requires:
+    - full-voltage
+    - independent
+    - one-fails
+    concepts:
+    - same-pd
+    - switch
+    - separate-paths
+    points:
+    - id: full-voltage
+      text: each appliance is connected across the full supply voltage, so it works as it was designed
+        to
+      concepts:
+      - same-pd
+    - id: independent
+      text: each appliance has its own branch, so it can be switched on or off without affecting
+        the others
+      concepts:
+      - switch
+      - separate-paths
+    - id: one-fails
+      text: if one appliance fails, the others keep working, because the current has another path
+      concepts:
+      - separate-paths
+  answer_text: In parallel each appliance is connected across the full supply voltage, so it works
+    as designed. Each appliance has its own branch, so it can be switched on or off without affecting
+    the others. If one appliance fails, the others keep working, because the current still has another
+    path. In series, switching one off would break the single path and stop every appliance.

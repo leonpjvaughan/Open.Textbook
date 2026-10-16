@@ -1,0 +1,161 @@
+# Junior Cycle Mathematics, Chapter 12, section 12.4.
+#
+# A simultaneous pair solved by elimination is checked with `kind: system`, the
+# same independent solve as substitution: the method the reader used does not
+# change the answer, and the verifier proves the answer. A "is this pair a
+# solution" question is `kind: all` over `evaluate`.
+chapter: 12
+symbols:
+  x: {real: true}
+  y: {real: true}
+  a: {real: true}
+  s: {real: true}
+
+problems:
+- id: jc12-12.4-elim-1
+  section: '12.4'
+  tier: O
+  refs:
+  - AF.4
+  statement: Solve $x+y=10$ and $x-y=4$.
+  answer_label: Solve $x+y=10$ and $x-y=4$.
+  check:
+    kind: system
+    equations: ["x + y = 10", "x - y = 4"]
+    variables: [x, y]
+    answer: [[7, 3]]
+  answer_text: '$x=7$ and $y=3$. The $y$ terms have opposite signs, so add the two equations: $2x=14$, giving $x=7$. Then $7+y=10$, so $y=3$.'
+- id: jc12-12.4-elim-2
+  section: '12.4'
+  tier: O
+  refs:
+  - AF.4
+  statement: Solve $x+y=12$ and $x-y=2$.
+  answer_label: Solve $x+y=12$ and $x-y=2$.
+  check:
+    kind: system
+    equations: ["x + y = 12", "x - y = 2"]
+    variables: [x, y]
+    answer: [[7, 5]]
+  answer_text: '$x=7$ and $y=5$. Add the equations to remove $y$: $2x=14$, so $x=7$. Then $7+y=12$, so $y=5$. Check: $7-5=2$.'
+- id: jc12-12.4-elim-3
+  section: '12.4'
+  tier: O
+  refs:
+  - AF.4
+  statement: Solve $2x+y=11$ and $2x-y=5$.
+  answer_label: Solve $2x+y=11$ and $2x-y=5$.
+  check:
+    kind: system
+    equations: ["2*x + y = 11", "2*x - y = 5"]
+    variables: [x, y]
+    answer: [[4, 3]]
+  answer_text: '$x=4$ and $y=3$. Add the equations: $4x=16$, so $x=4$. Then $2\times4+y=11$, so $y=3$. Check: $2\times4-3=5$.'
+- id: jc12-12.4-elim-4
+  section: '12.4'
+  tier: O
+  refs:
+  - AF.4
+  statement: Solve $3x+2y=16$ and $3x-2y=8$.
+  answer_label: Solve $3x+2y=16$ and $3x-2y=8$.
+  check:
+    kind: system
+    equations: ["3*x + 2*y = 16", "3*x - 2*y = 8"]
+    variables: [x, y]
+    answer: [[4, 2]]
+  answer_text: '$x=4$ and $y=2$. Add the equations: $6x=24$, so $x=4$. Then $3\times4+2y=16$, so $2y=4$ and $y=2$. Check: $3\times4-2\times2=8$.'
+- id: jc12-12.4-elim-5
+  section: '12.4'
+  tier: O
+  refs:
+  - AF.4
+  statement: Solve $2x+3y=13$ and $4x-3y=17$.
+  answer_label: Solve $2x+3y=13$ and $4x-3y=17$.
+  check:
+    kind: system
+    equations: ["2*x + 3*y = 13", "4*x - 3*y = 17"]
+    variables: [x, y]
+    answer: [[5, 1]]
+  answer_text: '$x=5$ and $y=1$. The $y$ terms are $+3y$ and $-3y$, so add: $6x=30$, giving $x=5$. Then $2\times5+3y=13$, so $3y=3$ and $y=1$.'
+- id: jc12-12.4-elim-6
+  section: '12.4'
+  tier: O
+  refs:
+  - AF.4
+  statement: Solve $5x+y=21$ and $2x+y=9$.
+  answer_label: Solve $5x+y=21$ and $2x+y=9$.
+  check:
+    kind: system
+    equations: ["5*x + y = 21", "2*x + y = 9"]
+    variables: [x, y]
+    answer: [[4, 1]]
+  answer_text: '$x=4$ and $y=1$. The $y$ terms have the same sign, so subtract the second equation from the first: $3x=12$, giving $x=4$. Then $2\times4+y=9$, so $y=1$.'
+- id: jc12-12.4-elim-7
+  section: '12.4'
+  tier: O
+  refs:
+  - AF.4
+  statement: Solve $3x+2y=18$ and $x+2y=10$.
+  answer_label: Solve $3x+2y=18$ and $x+2y=10$.
+  check:
+    kind: system
+    equations: ["3*x + 2*y = 18", "x + 2*y = 10"]
+    variables: [x, y]
+    answer: [[4, 3]]
+  answer_text: '$x=4$ and $y=3$. Subtract the second equation from the first: $2x=8$, so $x=4$. Then $4+2y=10$, so $2y=6$ and $y=3$. Check: $3\times4+2\times3=18$.'
+- id: jc12-12.4-elim-8
+  section: '12.4'
+  tier: O
+  refs:
+  - AF.4
+  statement: Solve $4x+3y=18$ and $2x+3y=12$.
+  answer_label: Solve $4x+3y=18$ and $2x+3y=12$.
+  check:
+    kind: system
+    equations: ["4*x + 3*y = 18", "2*x + 3*y = 12"]
+    variables: [x, y]
+    answer: [[3, 2]]
+  answer_text: '$x=3$ and $y=2$. Subtract: $2x=6$, so $x=3$. Then $2\times3+3y=12$, so $3y=6$ and $y=2$. Check: $4\times3+3\times2=18$.'
+- id: jc12-12.4-elim-9
+  section: '12.4'
+  tier: O
+  refs:
+  - AF.4
+  statement: Solve $2x+3y=12$ and $5x-2y=11$.
+  answer_label: Solve $2x+3y=12$ and $5x-2y=11$.
+  check:
+    kind: system
+    equations: ["2*x + 3*y = 12", "5*x - 2*y = 11"]
+    variables: [x, y]
+    answer: [[3, 2]]
+  answer_text: '$x=3$ and $y=2$. Neither pair matches, so multiply the first equation by 2 and the second by 3: $4x+6y=24$ and $15x-6y=33$. Add them: $19x=57$, so $x=3$. Then $2\times3+3y=12$, so $y=2$. Multiply the whole of each equation, not only one term.'
+- id: jc12-12.4-elim-10
+  section: '12.4'
+  tier: O
+  refs:
+  - AF.4
+  statement: Is $(2,3)$ a solution of $x+y=5$ and $2x-y=1$?
+  answer_label: Is $(2,3)$ a solution of $x+y=5$ and $2x-y=1$?
+  check:
+    kind: all
+    checks:
+    - kind: evaluate
+      expression: 2 + 3
+      answer: '5'
+    - kind: evaluate
+      expression: 2*2 - 3
+      answer: '1'
+  answer_text: 'Yes. For $x+y=5$, the left side is $2+3=5$. For $2x-y=1$, the left side is $4-3=1$. Both equations hold, so $(2,3)$ is a solution.'
+- id: jc12-12.4-elim-11
+  section: '12.4'
+  tier: O
+  refs:
+  - AF.4
+  statement: 'The chapter problem by elimination: solve $a+s=200$ and $12a+8s=2040$.'
+  answer_label: Solve $a+s=200$ and $12a+8s=2040$.
+  check:
+    kind: system
+    equations: ["a + s = 200", "12*a + 8*s = 2040"]
+    variables: [a, s]
+    answer: [[110, 90]]
+  answer_text: '110 adult tickets and 90 student tickets. Multiply the first equation by 8: $8a+8s=1600$. Subtract this from $12a+8s=2040$: $4a=440$, so $a=110$. Then $110+s=200$, so $s=90$. Check: $12\times110+8\times90=2040$.'

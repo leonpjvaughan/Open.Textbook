@@ -1,0 +1,135 @@
+# Practice set for 4.8 (strand 4, outcome 4.2, Ordinary and Higher level). Each
+# quadratic is proved by `solve`: `solveset` returns the exact solution set,
+# including a surd pair, and compares it with the declared set, so a missing root
+# fails. The break-even record is the chapter's own quadratic, and the profit
+# record proves the value at the middle of the profitable region.
+chapter: 4
+symbols:
+  n: {real: true}
+  x: {real: true}
+problems:
+  - id: lc4-8-factorise
+    section: '4.8'
+    tier: O
+    refs: ['4.2']
+    statement: 'Solve $x^2 - 5x + 6 = 0$.'
+    answer_label: 'Both values of x'
+    check: {kind: solve, equation: 'x**2 - 5*x + 6 = 0', variable: x, answer: ['2', '3']}
+    answer_text: >-
+      The factors of $6$ that add to $-5$ are $-2$ and $-3$:
+      $(x - 2)(x - 3) = 0$. By the zero product rule, $x = 2$ or $x = 3$.
+
+  - id: lc4-8-negative-root
+    section: '4.8'
+    tier: O
+    refs: ['4.2']
+    statement: 'Solve $x^2 + x - 12 = 0$.'
+    answer_label: 'Both values of x'
+    check: {kind: solve, equation: 'x**2 + x - 12 = 0', variable: x, answer: ['3', '-4']}
+    answer_text: >-
+      Two numbers multiply to $-12$ and add to $1$: $4$ and $-3$. So
+      $(x + 4)(x - 3) = 0$, giving $x = -4$ or $x = 3$.
+
+      The two numbers have opposite signs because the constant is negative.
+
+  - id: lc4-8-formula
+    section: '4.8'
+    tier: O
+    refs: ['4.2']
+    statement: 'Solve $2x^2 - 7x + 3 = 0$ with the quadratic formula.'
+    answer_label: 'Both values of x'
+    check: {kind: solve, equation: '2*x**2 - 7*x + 3 = 0', variable: x, answer: ['3', '1/2']}
+    answer_text: >-
+      With $a = 2$, $b = -7$ and $c = 3$:
+
+      $$x = \frac{7 \pm \sqrt{49 - 24}}{4} = \frac{7 \pm 5}{4}$$
+
+      So $x = 3$ or $x = \frac{1}{2}$.
+
+  - id: lc4-8-surd
+    section: '4.8'
+    tier: O
+    refs: ['4.2']
+    statement: 'Solve $x^2 - 4x + 1 = 0$, leaving the answer in surd form.'
+    answer_label: 'Both values of x'
+    check:
+      kind: solve
+      equation: 'x**2 - 4*x + 1 = 0'
+      variable: x
+      answer: ['2 + sqrt(3)', '2 - sqrt(3)']
+    answer_text: >-
+      $$x = \frac{4 \pm \sqrt{16 - 4}}{2} = \frac{4 \pm 2\sqrt{3}}{2} = 2 \pm \sqrt{3}$$
+
+      The two values are $2 + \sqrt{3}$ and $2 - \sqrt{3}$. This quadratic does
+      not factorise with whole numbers, so the formula is the exact route.
+
+  - id: lc4-8-break-even-two
+    section: '4.8'
+    tier: O
+    refs: ['4.2']
+    statement: >-
+      The income with the discount is $R = 14n - 0.1n^2$ and the cost is
+      $C = 240 + 4n$. Solve $n^2 - 100n + 2400 = 0$ to find the two break-even
+      points.
+    answer_label: 'Both break-even points'
+    check:
+      kind: solve
+      equation: 'n**2 - 100*n + 2400 = 0'
+      variable: n
+      answer: ['40', '60']
+    answer_text: >-
+      Set the income equal to the cost: $14n - 0.1n^2 = 240 + 4n$. Gather on one
+      side and multiply by $-10$: $n^2 - 100n + 2400 = 0$.
+
+      Factorise: $(n - 40)(n - 60) = 0$, so $n = 40$ or $n = 60$.
+
+      The business breaks even at $40$ candles and again at $60$ candles. Between
+      the two it makes a profit, and beyond $60$ the discount has cut the price
+      too far.
+
+  - id: lc4-8-profit-middle
+    section: '4.8'
+    tier: O
+    refs: ['4.2']
+    statement: >-
+      With the discount, the profit is $14n - 0.1n^2 - (240 + 4n)$. Work out the
+      profit at $n = 50$.
+    answer_label: 'The profit at n = 50'
+    check: {kind: evaluate, expression: '14 * 50 - 0.1 * 50**2 - (240 + 4 * 50)', answer: '10'}
+    answer_text: >-
+      $$R = 14(50) - 0.1(2500) = 700 - 250 = €450$$
+
+      $$C = 240 + 4(50) = €440$$
+
+      The profit is $450 - 440 = €10$.
+
+      Since $50$ lies between the two break-even points, the profit is positive
+      there. That confirms the middle region is the profitable one.
+
+  - id: lc4-8-square
+    section: '4.8'
+    tier: O
+    refs: ['4.2']
+    statement: 'Solve $x^2 = 9$.'
+    answer_label: 'Both values of x'
+    check: {kind: solve, equation: 'x**2 = 9', variable: x, answer: ['3', '-3']}
+    answer_text: >-
+      Take the square root of both sides: $x = \pm 3$, so $x = 3$ or $x = -3$.
+
+      Both values square to $9$. A square root of a positive number has two
+      signs, and a quadratic keeps both.
+
+  - id: lc4-8-discriminant
+    section: '4.8'
+    tier: H
+    refs: ['4.2']
+    statement: >-
+      Work out the discriminant of $x^2 + 2x + 5 = 0$ and say how many real
+      solutions the equation has.
+    answer_label: 'The discriminant'
+    check: {kind: evaluate, expression: '2**2 - 4 * 1 * 5', answer: '-16'}
+    answer_text: >-
+      The discriminant is $b^2 - 4ac = 4 - 20 = -16$.
+
+      It is negative, so the equation has no real solutions. The parabola never
+      crosses the horizontal axis.

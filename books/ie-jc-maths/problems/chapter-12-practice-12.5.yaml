@@ -1,0 +1,164 @@
+# Junior Cycle Mathematics, Chapter 12, section 12.5.
+#
+# A linear inequality is checked with `kind: inequality`, which runs
+# reduce_inequalities and compares the solution set with the declared interval.
+# A closed interval where the chain is open fails, so the open/closed endpoint is
+# proved, not described. A "is this value a solution" question is `kind: compare`,
+# which evaluates the relation and only passes when it is true.
+chapter: 12
+symbols:
+  x: {real: true}
+  n: {real: true}
+
+problems:
+- id: jc12-12.5-ineq-1
+  section: '12.5'
+  tier: O
+  refs:
+  - AF.4
+  statement: Solve $x+5>9$.
+  answer_label: Solve $x+5>9$.
+  check:
+    kind: inequality
+    variable: x
+    inequality: "x + 5 > 9"
+    answer: "Interval.open(4, oo)"
+  answer_text: '$x>4$. Subtract 5 from both sides: $x>9-5$, so $x>4$. The endpoint 4 is not included, because the sign is $>$ rather than $\geq$.'
+- id: jc12-12.5-ineq-2
+  section: '12.5'
+  tier: O
+  refs:
+  - AF.4
+  statement: Solve $x-3\leq7$.
+  answer_label: Solve $x-3\leq7$.
+  check:
+    kind: inequality
+    variable: x
+    inequality: "x - 3 <= 7"
+    answer: "Interval(-oo, 10)"
+  answer_text: '$x\leq10$. Add 3 to both sides: $x\leq10$. The endpoint 10 is included, because the sign is $\leq$.'
+- id: jc12-12.5-ineq-3
+  section: '12.5'
+  tier: O
+  refs:
+  - AF.4
+  statement: Solve $3x\geq12$.
+  answer_label: Solve $3x\geq12$.
+  check:
+    kind: inequality
+    variable: x
+    inequality: "3*x >= 12"
+    answer: "Interval(4, oo)"
+  answer_text: '$x\geq4$. Divide both sides by 3, which is positive, so the sign stays the same: $x\geq4$. The endpoint 4 is included.'
+- id: jc12-12.5-ineq-4
+  section: '12.5'
+  tier: O
+  refs:
+  - AF.4
+  statement: Solve $2x+1<11$.
+  answer_label: Solve $2x+1<11$.
+  check:
+    kind: inequality
+    variable: x
+    inequality: "2*x + 1 < 11"
+    answer: "Interval.open(-oo, 5)"
+  answer_text: '$x<5$. Subtract 1: $2x<10$. Divide by 2: $x<5$. The endpoint 5 is not included, because the sign is $<$.'
+- id: jc12-12.5-ineq-5
+  section: '12.5'
+  tier: O
+  refs:
+  - AF.4
+  statement: Solve $5x-3\geq2x+6$.
+  answer_label: Solve $5x-3\geq2x+6$.
+  check:
+    kind: inequality
+    variable: x
+    inequality: "5*x - 3 >= 2*x + 6"
+    answer: "Interval(3, oo)"
+  answer_text: '$x\geq3$. Subtract $2x$ from both sides: $3x-3\geq6$. Add 3: $3x\geq9$. Divide by 3: $x\geq3$.'
+- id: jc12-12.5-ineq-6
+  section: '12.5'
+  tier: O
+  refs:
+  - AF.4
+  statement: Solve $-2x>6$.
+  answer_label: Solve $-2x>6$.
+  check:
+    kind: inequality
+    variable: x
+    inequality: "-2*x > 6"
+    answer: "Interval.open(-oo, -3)"
+  answer_text: '$x<-3$. Divide both sides by $-2$, which is negative, so the sign turns around: $x<6\div(-2)$, giving $x<-3$. Check: $x=-4$ gives $-2\times(-4)=8$, and $8>6$.'
+- id: jc12-12.5-ineq-7
+  section: '12.5'
+  tier: O
+  refs:
+  - AF.4
+  statement: Solve $10-3x\leq1$.
+  answer_label: Solve $10-3x\leq1$.
+  check:
+    kind: inequality
+    variable: x
+    inequality: "10 - 3*x <= 1"
+    answer: "Interval(3, oo)"
+  answer_text: '$x\geq3$. Subtract 10: $-3x\leq-9$. Divide by $-3$ and turn the sign around: $x\geq3$. The endpoint 3 is included.'
+- id: jc12-12.5-ineq-8
+  section: '12.5'
+  tier: O
+  refs:
+  - AF.4
+  statement: Solve $4(x-1)<12$.
+  answer_label: Solve $4(x-1)<12$.
+  check:
+    kind: inequality
+    variable: x
+    inequality: "4*(x - 1) < 12"
+    answer: "Interval.open(-oo, 4)"
+  answer_text: '$x<4$. Divide both sides by 4: $x-1<3$. Add 1: $x<4$. Dividing by the positive number 4 keeps the sign the same.'
+- id: jc12-12.5-ineq-9
+  section: '12.5'
+  tier: O
+  refs:
+  - AF.4
+  statement: Solve $\frac{x+2}{3}>4$.
+  answer_label: Solve $\frac{x+2}{3}>4$.
+  check:
+    kind: inequality
+    variable: x
+    inequality: "(x + 2)/3 > 4"
+    answer: "Interval.open(10, oo)"
+  answer_text: '$x>10$. Multiply both sides by 3: $x+2>12$. Subtract 2: $x>10$. Multiplying by the positive number 3 keeps the sign the same.'
+- id: jc12-12.5-ineq-10
+  section: '12.5'
+  tier: O
+  refs:
+  - AF.4
+  statement: Is $x=3$ a solution of $2x+1<8$?
+  answer_label: Is $x=3$ a solution of $2x+1<8$?
+  check:
+    kind: compare
+    relation: "<"
+    lhs: 2*3 + 1
+    rhs: '8'
+  answer_text: 'Yes. The left side is $2\times3+1=7$, and $7<8$. So $x=3$ is a solution.'
+- id: jc12-12.5-ineq-11
+  section: '12.5'
+  tier: O
+  refs:
+  - AF.4
+  statement: 'The chapter problem: the hall costs €150 and each ticket brings in €8 in the worst case. The hospice needs at least €1500. Solve $8n-150\geq1500$, and state the smallest whole number of tickets.'
+  answer_label: Solve $8n-150\geq1500$ and round up to a whole number of tickets.
+  check:
+    kind: all
+    checks:
+    - kind: inequality
+      variable: n
+      inequality: "8*n - 150 >= 1500"
+      answer: "Interval(825/4, oo)"
+    - kind: evaluate
+      expression: 8*206 - 150
+      answer: '1498'
+    - kind: evaluate
+      expression: 8*207 - 150
+      answer: '1506'
+  answer_text: '$n\geq206.25$, so at least 207 tickets. Add 150: $8n\geq1650$. Divide by 8: $n\geq206.25$. A ticket count is a whole number, so round up. Check: 206 tickets give $8\times206-150=1498$, which is short, and 207 tickets give $8\times207-150=1506$, which reaches the target.'

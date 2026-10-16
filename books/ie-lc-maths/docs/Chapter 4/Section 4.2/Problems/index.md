@@ -1,18 +1,22 @@
 ---
-title: 4.2 Representing relations in tables and graphs — Practise
+title: "4.2 Representing relations in tables and graphs — Practise"
 chapter: 4
 chapter_title: 'Algebra: expressions and equations'
 section: '4.2'
-section_title: Representing relations in tables and graphs
+section_title: "Representing relations in tables and graphs"
 tier: F
 refs:
 - '4.1'
 kind: problems
 ---
 
-<!-- scaffold:stub -->
-
 # 4.2 Representing relations in tables and graphs — Practise
 
-> **Stub.** Independent, homework-style practice. Answers and concise solutions in a collapsed block. Mark Higher-only questions explicitly.
-> Tier: **F** · refs: 4.1
+Work independently. The questions and answers are shown together at the end.
+
+Label the horizontal axis with the input and the vertical axis with the output
+before you plot anything.
+
+:::problems chapter-04-practice-4.2
+
+:::answers chapter-04-practice-4.2

@@ -1,0 +1,162 @@
+# Junior Cycle Mathematics, Chapter 12, section 12.3.
+#
+# A simultaneous pair is checked with `kind: system`, which solves with
+# nonlinsolve and compares the solutions as sets, so the order of the solutions
+# and of the variables does not matter. Both coordinates are proved, not only the
+# one the answer text talks about. A "is this pair a solution" question is checked
+# with `kind: all` over `evaluate`, which tests each equation at the pair.
+chapter: 12
+symbols:
+  x: {real: true}
+  y: {real: true}
+  a: {real: true}
+  s: {real: true}
+
+problems:
+- id: jc12-12.3-sub-1
+  section: '12.3'
+  tier: O
+  refs:
+  - AF.4
+  statement: Solve $y=x+3$ and $x+y=11$.
+  answer_label: Solve $y=x+3$ and $x+y=11$.
+  check:
+    kind: system
+    equations: ["y = x + 3", "x + y = 11"]
+    variables: [x, y]
+    answer: [[4, 7]]
+  answer_text: '$x=4$ and $y=7$. Substitute $x+3$ for $y$ in the second equation: $x+(x+3)=11$, so $2x+3=11$ and $2x=8$. Then $x=4$, and $y=x+3=7$. Check: $4+7=11$.'
+- id: jc12-12.3-sub-2
+  section: '12.3'
+  tier: O
+  refs:
+  - AF.4
+  statement: Solve $y=2x$ and $3x+y=20$.
+  answer_label: Solve $y=2x$ and $3x+y=20$.
+  check:
+    kind: system
+    equations: ["y = 2*x", "3*x + y = 20"]
+    variables: [x, y]
+    answer: [[4, 8]]
+  answer_text: '$x=4$ and $y=8$. Substitute $2x$ for $y$: $3x+2x=20$, so $5x=20$ and $x=4$. Then $y=2\times4=8$. Check: $3\times4+8=20$.'
+- id: jc12-12.3-sub-3
+  section: '12.3'
+  tier: O
+  refs:
+  - AF.4
+  statement: Solve $y=x-2$ and $2x+y=13$.
+  answer_label: Solve $y=x-2$ and $2x+y=13$.
+  check:
+    kind: system
+    equations: ["y = x - 2", "2*x + y = 13"]
+    variables: [x, y]
+    answer: [[5, 3]]
+  answer_text: '$x=5$ and $y=3$. Substitute $x-2$ for $y$: $2x+(x-2)=13$, so $3x-2=13$ and $3x=15$. Then $x=5$, and $y=5-2=3$. Check: $2\times5+3=13$.'
+- id: jc12-12.3-sub-4
+  section: '12.3'
+  tier: O
+  refs:
+  - AF.4
+  statement: Solve $x=y+4$ and $x+y=10$.
+  answer_label: Solve $x=y+4$ and $x+y=10$.
+  check:
+    kind: system
+    equations: ["x = y + 4", "x + y = 10"]
+    variables: [x, y]
+    answer: [[7, 3]]
+  answer_text: '$x=7$ and $y=3$. Substitute $y+4$ for $x$: $(y+4)+y=10$, so $2y+4=10$ and $2y=6$. Then $y=3$, and $x=3+4=7$. Check: $7+3=10$.'
+- id: jc12-12.3-sub-5
+  section: '12.3'
+  tier: O
+  refs:
+  - AF.4
+  statement: Solve $y=3x$ and $4x-y=5$.
+  answer_label: Solve $y=3x$ and $4x-y=5$.
+  check:
+    kind: system
+    equations: ["y = 3*x", "4*x - y = 5"]
+    variables: [x, y]
+    answer: [[5, 15]]
+  answer_text: '$x=5$ and $y=15$. Substitute $3x$ for $y$: $4x-3x=5$, so $x=5$. Then $y=3\times5=15$. Check: $4\times5-15=5$.'
+- id: jc12-12.3-sub-6
+  section: '12.3'
+  tier: O
+  refs:
+  - AF.4
+  statement: Solve $y=5-x$ and $2x-y=4$.
+  answer_label: Solve $y=5-x$ and $2x-y=4$.
+  check:
+    kind: system
+    equations: ["y = 5 - x", "2*x - y = 4"]
+    variables: [x, y]
+    answer: [[3, 2]]
+  answer_text: '$x=3$ and $y=2$. Substitute $5-x$ for $y$: $2x-(5-x)=4$, so $2x-5+x=4$ and $3x=9$. Then $x=3$, and $y=5-3=2$. The bracket keeps the minus sign with the whole of $5-x$.'
+- id: jc12-12.3-sub-7
+  section: '12.3'
+  tier: O
+  refs:
+  - AF.4
+  statement: Solve $y=2x+1$ and $y=x+5$.
+  answer_label: Solve $y=2x+1$ and $y=x+5$.
+  check:
+    kind: system
+    equations: ["y = 2*x + 1", "y = x + 5"]
+    variables: [x, y]
+    answer: [[4, 9]]
+  answer_text: '$x=4$ and $y=9$. Both expressions equal $y$, so set them equal: $2x+1=x+5$. Then $x=4$, and $y=4+5=9$. Check: $2\times4+1=9$.'
+- id: jc12-12.3-sub-8
+  section: '12.3'
+  tier: O
+  refs:
+  - AF.4
+  statement: Solve $y=x-5$ and $3x+y=11$.
+  answer_label: Solve $y=x-5$ and $3x+y=11$.
+  check:
+    kind: system
+    equations: ["y = x - 5", "3*x + y = 11"]
+    variables: [x, y]
+    answer: [[4, -1]]
+  answer_text: '$x=4$ and $y=-1$. Substitute $x-5$ for $y$: $3x+(x-5)=11$, so $4x-5=11$ and $4x=16$. Then $x=4$, and $y=4-5=-1$. Check: $3\times4+(-1)=11$.'
+- id: jc12-12.3-sub-9
+  section: '12.3'
+  tier: O
+  refs:
+  - AF.4
+  statement: Solve $y=x-2$ and $3x+2y=16$.
+  answer_label: Solve $y=x-2$ and $3x+2y=16$.
+  check:
+    kind: system
+    equations: ["y = x - 2", "3*x + 2*y = 16"]
+    variables: [x, y]
+    answer: [[4, 2]]
+  answer_text: '$x=4$ and $y=2$. Substitute $x-2$ for $y$: $3x+2(x-2)=16$, so $3x+2x-4=16$ and $5x=20$. Then $x=4$, and $y=4-2=2$. Check: $3\times4+2\times2=16$.'
+- id: jc12-12.3-sub-10
+  section: '12.3'
+  tier: O
+  refs:
+  - AF.4
+  statement: Is $(3,5)$ a solution of $y=x+2$ and $x+y=8$?
+  answer_label: Is $(3,5)$ a solution of $y=x+2$ and $x+y=8$?
+  check:
+    kind: all
+    checks:
+    - kind: evaluate
+      expression: 3 + 2
+      answer: '5'
+    - kind: evaluate
+      expression: 3 + 5
+      answer: '8'
+  answer_text: 'Yes. For $y=x+2$, the right side is $3+2=5$, which matches $y=5$. For $x+y=8$, the left side is $3+5=8$. Both equations hold, so $(3,5)$ is a solution.'
+- id: jc12-12.3-sub-11
+  section: '12.3'
+  tier: O
+  refs:
+  - AF.4
+  statement: 'The chapter problem: 200 tickets are sold in total and the money taken is €2040. Adult tickets cost €12 and student tickets cost €8. Solve $a+s=200$ and $12a+8s=2040$.'
+  answer_label: Solve $a+s=200$ and $12a+8s=2040$.
+  check:
+    kind: system
+    equations: ["a + s = 200", "12*a + 8*s = 2040"]
+    variables: [a, s]
+    answer: [[110, 90]]
+  answer_text: '110 adult tickets and 90 student tickets. From $a+s=200$, $s=200-a$. Substitute into the money equation: $12a+8(200-a)=2040$, so $4a+1600=2040$ and $4a=440$. Then $a=110$, and $s=200-110=90$. Check: $12\times110+8\times90=1320+720=2040$.'

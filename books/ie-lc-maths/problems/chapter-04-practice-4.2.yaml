@@ -1,0 +1,157 @@
+# Practice set for 4.2 (strand 4, outcome 4.1, Foundation level). Reading a table
+# or a graph is a measurement, so each record proves the value the rule produces
+# by `evaluate` on the substituted numbers. The two explanation questions are
+# `structured`, which proves the ideas are present in the model answer and
+# nothing about whether the reader's reasoning is right.
+chapter: 4
+problems:
+  - id: lc4-2-table-cost
+    section: '4.2'
+    tier: F
+    refs: ['4.1']
+    statement: 'A rule is $C = 240 + 4n$. Work out $C$ when $n = 15$.'
+    answer_label: 'The cost at n = 15'
+    check: {kind: evaluate, expression: '240 + 4 * 15', answer: '300'}
+    answer_text: >-
+      $C = 240 + 4(15) = 240 + 60 = 300$. The cost is €300 when $15$ candles are
+      made.
+
+  - id: lc4-2-table-income
+    section: '4.2'
+    tier: F
+    refs: ['4.1']
+    statement: 'A rule is $R = 10n$. Complete the table with the values at $n = 5$, $n = 10$ and $n = 15$.'
+    answer_label: 'The three values of R'
+    check:
+      kind: all
+      checks:
+        - {kind: evaluate, expression: '10 * 5', answer: '50'}
+        - {kind: evaluate, expression: '10 * 10', answer: '100'}
+        - {kind: evaluate, expression: '10 * 15', answer: '150'}
+    answer_text: >-
+      The values are $50$, $100$ and $150$. Each rise of $5$ in the input adds
+      $50$ to the output, because the coefficient is $10$.
+
+  - id: lc4-2-point-on-line
+    section: '4.2'
+    tier: F
+    refs: ['4.1']
+    statement: >-
+      Which of the points $(4, 9)$ and $(4, 10)$ lies on the line
+      $y = 3x - 2$?
+    answer_label: 'The point on the line'
+    check: {kind: evaluate, expression: '3 * 4 - 2', answer: '10'}
+    answer_text: >-
+      Substitute $x = 4$: $y = 3(4) - 2 = 10$. The point $(4, 10)$ lies on the
+      line, and $(4, 9)$ does not. A point lies on a line exactly when its
+      coordinates satisfy the equation.
+
+  - id: lc4-2-rate-and-fixed
+    section: '4.2'
+    tier: F
+    refs: ['4.1']
+    statement: >-
+      A table gives a cost of €320 at $n = 20$ and €360 at $n = 30$. Find the cost
+      per candle and the fixed cost.
+    answer_label: 'The cost per candle, then the fixed cost'
+    check:
+      kind: all
+      checks:
+        - {kind: evaluate, expression: '(360 - 320) / (30 - 20)', answer: '4'}
+        - {kind: evaluate, expression: '320 - 4 * 20', answer: '240'}
+    answer_text: >-
+      The cost rose by €40 while $n$ rose by $10$, so the cost per candle is
+      $(360 - 320)/(30 - 20) = €4$.
+
+      The fixed cost is what remains: $320 - 4(20) = €240$. The formula is
+      $C = 240 + 4n$.
+
+  - id: lc4-2-read-profit
+    section: '4.2'
+    tier: F
+    refs: ['4.1']
+    statement: >-
+      The cost is $240 + 4n$ and the income is $10n$. Work out the cost, the
+      income and the profit when $n = 50$.
+    answer_label: 'The cost, the income and the profit'
+    check:
+      kind: all
+      checks:
+        - {kind: evaluate, expression: '240 + 4 * 50', answer: '440'}
+        - {kind: evaluate, expression: '10 * 50', answer: '500'}
+        - {kind: evaluate, expression: '10 * 50 - (240 + 4 * 50)', answer: '60'}
+    answer_text: >-
+      The cost is $240 + 200 = €440$, the income is €500, and the profit is
+
+      $$500 - 440 = €60$$
+
+      The point $n = 50$ lies to the right of the break-even point, so the income
+      line is above the cost line there.
+
+  - id: lc4-2-which-variable
+    section: '4.2'
+    tier: F
+    refs: ['4.1']
+    statement: >-
+      In the candle problem, say which variable is independent and which is
+      dependent, and explain why.
+    answer_label: 'The independent and dependent variables'
+    check:
+      kind: structured
+      requires: [independent, dependent]
+      concepts: [input-chosen, output-follows]
+      points:
+        - id: independent
+          text: the number of candles is the independent variable, because it is the input the business chooses
+          concepts: [input-chosen]
+        - id: dependent
+          text: the cost and the income are the dependent variables, because each is worked out from the number of candles
+          concepts: [output-follows]
+    answer_text: >-
+      The number of candles is the independent variable. It is the input, and the
+      business chooses it.
+
+      The cost and the income are the dependent variables. Each one follows from
+      the number of candles, so it is the output. On a graph the input goes on
+      the horizontal axis.
+
+  - id: lc4-2-graph-reading
+    section: '4.2'
+    tier: F
+    refs: ['4.1']
+    statement: >-
+      A graph of $y = 5x - 3$ is drawn. Read the value of $y$ at $x = 6$ and check
+      it against the formula.
+    answer_label: 'The value of y at x = 6'
+    check: {kind: evaluate, expression: '5 * 6 - 3', answer: '27'}
+    answer_text: >-
+      The formula gives $5(6) - 3 = 27$, so the point $(6, 27)$ lies on the line.
+      Reading the graph at $x = 6$ should give the same value; the formula is the
+      exact check on the reading.
+
+  - id: lc4-2-interpret-start
+    section: '4.2'
+    tier: F
+    refs: ['4.1']
+    statement: >-
+      Explain why the cost line starts at $(0, 240)$ while the income line starts
+      at $(0, 0)$.
+    answer_label: 'Why the two lines start at different heights'
+    check:
+      kind: structured
+      requires: [fixed-cost, no-income]
+      concepts: [paid-once, zero-sales]
+      points:
+        - id: fixed-cost
+          text: at n = 0 the cost formula gives 240, because the fixed cost is paid before any candle is made
+          concepts: [paid-once]
+        - id: no-income
+          text: at n = 0 the income formula gives 0, because no candles means no money in
+          concepts: [zero-sales]
+    answer_text: >-
+      At $n = 0$ the cost is $240 + 4(0) = €240$, so the cost line starts at
+      $(0, 240)$. The fixed cost is paid whatever happens.
+
+      At $n = 0$ the income is $10(0) = €0$, so the income line starts at the
+      origin. No candles sold means no money in. The starting height of each line
+      is the constant in its formula.

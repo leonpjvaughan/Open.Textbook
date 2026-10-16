@@ -1,0 +1,159 @@
+# Practice set for 4.4 (strand 4, outcome 4.1, Foundation level). A gradient and an
+# intercept are values, so each is proved by the arithmetic that produces it from
+# two points rather than by restating it. The interpretation questions are
+# `structured`, which checks the ideas a model answer must contain.
+chapter: 4
+symbols:
+  x: {real: true}
+problems:
+  - id: lc4-4-gradient-intercept
+    section: '4.4'
+    tier: F
+    refs: ['4.1']
+    statement: 'State the gradient and the $y$-intercept of $y = 3x + 5$.'
+    answer_label: 'The gradient, then the intercept'
+    check:
+      kind: all
+      checks:
+        - {kind: evaluate, expression: '(11 - 5) / (2 - 0)', answer: '3'}
+        - {kind: evaluate, expression: '3 * 0 + 5', answer: '5'}
+    answer_text: >-
+      Comparing with $y = mx + c$, the gradient is $3$ and the $y$-intercept is
+      $5$.
+
+      Check: the line passes through $(0, 5)$ and $(2, 11)$, so its gradient is
+      $(11 - 5)/(2 - 0) = 3$.
+
+  - id: lc4-4-gradient-two-points
+    section: '4.4'
+    tier: F
+    refs: ['4.1']
+    statement: 'Find the gradient of the line through $(1, 4)$ and $(3, 10)$.'
+    answer_label: 'The gradient'
+    check: {kind: evaluate, expression: '(10 - 4) / (3 - 1)', answer: '3'}
+    answer_text: >-
+      $$m = \frac{10 - 4}{3 - 1} = \frac{6}{2} = 3$$
+
+      The change in $y$ is divided by the change in $x$, and the coordinates are
+      subtracted in the same order top and bottom.
+
+  - id: lc4-4-context
+    section: '4.4'
+    tier: F
+    refs: ['4.1']
+    statement: >-
+      A cost formula is $C = 240 + 4n$. State the gradient and the $y$-intercept,
+      and say what each means.
+    answer_label: 'The gradient and the intercept, with their meanings'
+    check:
+      kind: all
+      checks:
+        - {kind: evaluate, expression: '(280 - 240) / (10 - 0)', answer: '4'}
+        - {kind: evaluate, expression: '240 + 4 * 0', answer: '240'}
+    answer_text: >-
+      The gradient is $4$ and the $y$-intercept is $240$.
+
+      The gradient is the cost of making one more candle. The intercept is the
+      fixed cost, paid before any candle is made.
+
+  - id: lc4-4-direct-proportion
+    section: '4.4'
+    tier: F
+    refs: ['4.1']
+    statement: 'Is $R = 10n$ directly proportional? Explain your answer.'
+    answer_label: 'Whether it is directly proportional'
+    check:
+      kind: structured
+      requires: [through-origin, constant-ratio]
+      concepts: [no-constant, ratio-constant]
+      points:
+        - id: through-origin
+          text: the formula has the form y = kx with no constant added, so its graph is a straight line through the origin
+          concepts: [no-constant]
+        - id: constant-ratio
+          text: the ratio R/n is 10 for every value of n, and twice the candles give twice the income
+          concepts: [ratio-constant]
+    answer_text: >-
+      Yes. The formula has the form $y = kx$ with $k = 10$ and no constant, so
+      the graph is a straight line through the origin.
+
+      The ratio $R/n$ is $10$ for every value of $n$. Twice the candles give
+      twice the income.
+
+  - id: lc4-4-common-value
+    section: '4.4'
+    tier: F
+    refs: ['4.1']
+    statement: >-
+      Find the value of $x$ where $y = 3x - 2$ and $y = x + 4$ are equal, and the
+      common value of $y$.
+    answer_label: 'The value of x, then the common value of y'
+    check:
+      kind: all
+      checks:
+        - {kind: solve, equation: '3*x - 2 = x + 4', variable: x, answer: ['3']}
+        - {kind: evaluate, expression: '3 * 3 - 2', answer: '7'}
+    answer_text: >-
+      Set the expressions equal: $3x - 2 = x + 4$, so $2x = 6$ and $x = 3$.
+
+      Then $y = 3(3) - 2 = 7$. Check with the other formula: $y = 3 + 4 = 7$. The
+      two lines meet at $(3, 7)$.
+
+  - id: lc4-4-compare-lines
+    section: '4.4'
+    tier: F
+    refs: ['4.1']
+    statement: >-
+      Compare $y = 4x + 1$ and $y = 2x + 6$. Which grows faster, and which starts
+      higher?
+    answer_label: 'Which grows faster, and which starts higher'
+    check:
+      kind: all
+      checks:
+        - {kind: compare, relation: '>', lhs: '4', rhs: '2'}
+        - {kind: compare, relation: '>', lhs: '6', rhs: '1'}
+    answer_text: >-
+      $y = 4x + 1$ grows faster, because its gradient of $4$ is larger than $2$.
+      $y = 2x + 6$ starts higher, because its intercept of $6$ is larger than
+      $1$.
+
+      The faster line overtakes the other. Setting $4x + 1 = 2x + 6$ gives
+      $x = 2.5$.
+
+  - id: lc4-4-read-from-graph
+    section: '4.4'
+    tier: F
+    refs: ['4.1']
+    statement: >-
+      A line on a graph passes through $(0, 2)$ and $(4, 10)$. Find its gradient
+      and its $y$-intercept.
+    answer_label: 'The gradient, then the intercept'
+    check:
+      kind: all
+      checks:
+        - {kind: evaluate, expression: '(10 - 2) / (4 - 0)', answer: '2'}
+        - {kind: evaluate, expression: '2 * 0 + 2', answer: '2'}
+    answer_text: >-
+      The gradient is $(10 - 2)/(4 - 0) = 2$ and the $y$-intercept is $2$, read
+      at the point where the line crosses the vertical axis. The equation is
+      $y = 2x + 2$.
+
+  - id: lc4-4-ratio
+    section: '4.4'
+    tier: F
+    refs: ['4.1']
+    statement: >-
+      For the income $R = 10n$, work out the ratio $R/n$ at $n = 7$ and at
+      $n = 12$.
+    answer_label: 'The ratio at n = 7, then at n = 12'
+    check:
+      kind: all
+      checks:
+        - {kind: evaluate, expression: '10 * 7 / 7', answer: '10'}
+        - {kind: evaluate, expression: '10 * 12 / 12', answer: '10'}
+    answer_text: >-
+      Both ratios are $10$. A constant ratio is the signature of direct
+      proportion, and here the constant is the gradient.
+
+      The cost $C = 240 + 4n$ does not have a constant ratio, because the fixed
+      €240 changes the ratio at every value of $n$.

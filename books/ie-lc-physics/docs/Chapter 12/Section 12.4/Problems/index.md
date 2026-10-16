@@ -10,9 +10,13 @@ refs:
 kind: problems
 ---
 
-<!-- scaffold:stub -->
-
 # 12.4 Lenses and images — Practise
 
-> **Stub.** Independent, homework-style practice. Answers and concise solutions in a collapsed block. Mark Higher-only questions explicitly.
-> Tier: **O** · refs: 2.3
+Work independently. The questions and answers are shown together at the end.
+
+Keep all three distances in the same unit. For a converging lens, a positive
+image distance means a real image and a negative one means a virtual image.
+
+:::problems chapter-12-practice-12.4
+
+:::answers chapter-12-practice-12.4

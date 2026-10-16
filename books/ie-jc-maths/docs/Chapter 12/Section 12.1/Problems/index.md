@@ -10,9 +10,14 @@ refs:
 kind: problems
 ---
 
-<!-- scaffold:stub -->
-
 # 12.1 Solving linear equations — Practise
 
-> **Stub.** Independent, homework-style practice. Answers and concise solutions in a collapsed block. Mark Higher-only questions explicitly.
-> Tier: **O** · refs: AF.4
+Work independently. The questions and answers are shown together at the end.
+
+Undo the operations one at a time, in the reverse of the order they were applied. Do
+each operation to both sides, and check your answer by putting it back into the
+original equation.
+
+:::problems chapter-12-practice-12.1
+
+:::answers chapter-12-practice-12.1

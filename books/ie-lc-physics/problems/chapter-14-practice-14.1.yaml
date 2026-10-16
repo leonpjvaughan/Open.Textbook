@@ -1,0 +1,250 @@
+# Leaving Certificate Physics, Chapter 14, section 14.1 (strand 3 outcome 3.3).
+#
+# The physics oracle checks two claims whenever a quantity is asked for:
+# `dimensions` proves the exact magnitude *and* the unit, and `sigfigs` proves the
+# rounding to the figures the data support. Both are written out, because a rounded
+# answer is never equal to the exact one. An integer that is two significant figures
+# is written as `1.0e1`, since `10` is one figure.
+#
+# Honest limit: this proves the arithmetic and the dimensions, not the physics. A
+# dimensionally consistent, arithmetically correct, physically absurd answer would
+# pass. The `structured` records prove only that a model answer contains the
+# declared steps and concepts, in order — not that the physics in them is right.
+chapter: 14
+problems:
+- id: p14-1-charge
+  section: '14.1'
+  tier: O
+  refs:
+  - '3.3'
+  statement: A current of 0.40 A flows through a lamp for 25 s. Calculate the charge that passes
+    through the lamp.
+  answer_label: Charge
+  check:
+    kind: all
+    checks:
+    - kind: dimensions
+      expression: I * t
+      values:
+        I:
+          value: '0.40'
+          unit: A
+        t:
+          value: '25'
+          unit: s
+      answer:
+        value: '10'
+        unit: C
+    - kind: sigfigs
+      value: '0.40 * 25'
+      figures: 2
+      answer: 1.0e1
+      convention: round-once
+  answer_text: '$Q = It = 0.40 \times 25 = 10\,\text{C}$, which is $1.0 \times 10^{1}\,\text{C}$ to
+    two significant figures.'
+- id: p14-1-current
+  section: '14.1'
+  tier: O
+  refs:
+  - '3.3'
+  statement: A charge of 90 C passes a point in a wire in 1.5 minutes. Calculate the current in
+    the wire.
+  answer_label: Current
+  check:
+    kind: all
+    checks:
+    - kind: dimensions
+      expression: Q / t
+      values:
+        Q:
+          value: '90'
+          unit: C
+        t:
+          value: '90'
+          unit: s
+      answer:
+        value: '1.0'
+        unit: A
+    - kind: sigfigs
+      value: '90 / 90'
+      figures: 2
+      answer: '1.0'
+      convention: round-once
+  answer_text: 'The time is $1.5 \times 60 = 90\,\text{s}$, because the ampere is a coulomb per
+    second. Then $I = \dfrac{Q}{t} = \dfrac{90}{90} = 1.0\,\text{A}$.'
+- id: p14-1-energy
+  section: '14.1'
+  tier: O
+  refs:
+  - '3.3'
+  statement: A potential difference of 6.0 V is across a component. Calculate the energy transferred
+    to the component when a charge of 3.0 C passes through it.
+  answer_label: Energy transferred
+  check:
+    kind: all
+    checks:
+    - kind: dimensions
+      expression: V * Q
+      values:
+        V:
+          value: '6.0'
+          unit: V
+        Q:
+          value: '3.0'
+          unit: C
+      answer:
+        value: '18'
+        unit: J
+    - kind: sigfigs
+      value: '6.0 * 3.0'
+      figures: 2
+      answer: 1.8e1
+      convention: round-once
+  answer_text: '$W = VQ = 6.0 \times 3.0 = 18\,\text{J}$. One volt transfers one joule to each
+    coulomb, and here 3.0 C passes through a potential difference of 6.0 V.'
+- id: p14-1-resistance
+  section: '14.1'
+  tier: O
+  refs:
+  - '3.3'
+  statement: A potential difference of 4.5 V drives a current of 0.30 A through a resistor. Calculate
+    the resistance of the resistor.
+  answer_label: Resistance
+  check:
+    kind: all
+    checks:
+    - kind: dimensions
+      expression: V / I
+      values:
+        V:
+          value: '4.5'
+          unit: V
+        I:
+          value: '0.30'
+          unit: A
+      answer:
+        value: '15'
+        unit: Ω
+    - kind: sigfigs
+      value: '4.5 / 0.30'
+      figures: 2
+      answer: 1.5e1
+      convention: round-once
+  answer_text: '$R = \dfrac{V}{I} = \dfrac{4.5}{0.30} = 15\,\Omega$. The ohm is one volt per ampere,
+    so the unit follows from the calculation.'
+- id: p14-1-current-from-resistance
+  section: '14.1'
+  tier: O
+  refs:
+  - '3.3'
+  statement: A resistor of resistance 8.0 Ω has a potential difference of 2.4 V across it. Calculate
+    the current through it.
+  answer_label: Current
+  check:
+    kind: all
+    checks:
+    - kind: dimensions
+      expression: V / R
+      values:
+        V:
+          value: '2.4'
+          unit: V
+        R:
+          value: '8.0'
+          unit: Ω
+      answer:
+        value: '0.30'
+        unit: A
+    - kind: sigfigs
+      value: '2.4 / 8.0'
+      figures: 2
+      answer: '0.30'
+      convention: round-once
+  answer_text: '$I = \dfrac{V}{R} = \dfrac{2.4}{8.0} = 0.30\,\text{A}$. A larger resistance would
+    carry a smaller current for the same potential difference, and 8.0 Ω is a fairly large resistance.'
+- id: p14-1-meters
+  section: '14.1'
+  tier: O
+  refs:
+  - '3.3'
+  statement: Describe how an ammeter and a voltmeter are connected into a circuit, and explain
+    why each is connected that way.
+  answer_label: Connecting the meters
+  check:
+    kind: structured
+    requires:
+    - ammeter
+    - voltmeter
+    - why
+    concepts:
+    - series
+    - parallel
+    - same-current
+    - pd-across
+    points:
+    - id: ammeter
+      text: the ammeter is connected in series with the component, so the same current flows through
+        the ammeter and the component
+      concepts:
+      - series
+      - same-current
+    - id: voltmeter
+      text: the voltmeter is connected in parallel with the component, so it measures the potential
+        difference across that component
+      concepts:
+      - parallel
+      - pd-across
+    - id: why
+      text: an ideal ammeter has zero resistance and an ideal voltmeter has infinite resistance, so
+        neither meter changes the current it is measuring
+      concepts:
+      - series
+      - parallel
+  answer_text: The ammeter goes in series with the component, because a current is the same everywhere
+    in a single series loop. The voltmeter goes in parallel with the component, because a potential
+    difference is measured between the two ends of the component. An ideal ammeter has zero resistance
+    and an ideal voltmeter has infinite resistance, so neither meter changes the current it is measuring.
+- id: p14-1-two-step
+  section: '14.1'
+  tier: O
+  refs:
+  - '3.3'
+  statement: A current of 0.25 A flows through a heater for 2.0 minutes. The potential difference
+    across the heater is 6.0 V. Calculate the charge that passes through the heater and the energy
+    transferred to it.
+  answer_label: Charge and energy
+  check:
+    kind: all
+    checks:
+    - kind: dimensions
+      expression: I * t
+      values:
+        I:
+          value: '0.25'
+          unit: A
+        t:
+          value: '120'
+          unit: s
+      answer:
+        value: '30'
+        unit: C
+    - kind: dimensions
+      expression: V * Q
+      values:
+        V:
+          value: '6.0'
+          unit: V
+        Q:
+          value: '30'
+          unit: C
+      answer:
+        value: '180'
+        unit: J
+    - kind: sigfigs
+      value: '6.0 * 30'
+      figures: 2
+      answer: 1.8e2
+      convention: round-once
+  answer_text: 'The time is $2.0 \times 60 = 120\,\text{s}$. Then $Q = It = 0.25 \times 120 =
+    30\,\text{C}$, and $W = VQ = 6.0 \times 30 = 180\,\text{J}$. The energy is $1.8 \times
+    10^{2}\,\text{J}$ to two significant figures.'

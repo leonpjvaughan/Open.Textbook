@@ -1,0 +1,121 @@
+# Practice set for 4.5 (strand 4, outcome 4.1, Foundation level, with one Higher
+# extension). Every answer here is an algebraic identity, so `evaluate` proves it
+# by equivalence: the verifier simplifies `expression - answer` and checks it is
+# zero. That is a stronger check than substituting one value, because it holds for
+# every value of the letters, so the symbols are declared real.
+chapter: 4
+symbols:
+  a: {real: true}
+  n: {real: true}
+  x: {real: true}
+  y: {real: true}
+problems:
+  - id: lc4-5-evaluate
+    section: '4.5'
+    tier: F
+    refs: ['4.1']
+    statement: 'Evaluate $C = 240 + 4n$ at $n = 50$.'
+    answer_label: 'The value of C'
+    check: {kind: evaluate, expression: '240 + 4 * 50', answer: '440'}
+    answer_text: >-
+      $C = 240 + 4(50) = 240 + 200 = €440$. Multiply before adding.
+
+  - id: lc4-5-like-terms
+    section: '4.5'
+    tier: F
+    refs: ['4.1']
+    statement: 'Simplify $6a + 4a - 2a$.'
+    answer_label: 'The simplified expression'
+    check: {kind: evaluate, expression: '6 * a + 4 * a - 2 * a', answer: '8 * a'}
+    answer_text: >-
+      All three terms are like terms, so add the coefficients:
+      $6 + 4 - 2 = 8$. The answer is $8a$.
+
+      It is not $8a^2$. Adding like terms counts them; it does not multiply the
+      letters.
+
+  - id: lc4-5-collect
+    section: '4.5'
+    tier: F
+    refs: ['4.1']
+    statement: 'Simplify $5x + 3 - 2x + 4$.'
+    answer_label: 'The simplified expression'
+    check: {kind: evaluate, expression: '5 * x + 3 - 2 * x + 4', answer: '3 * x + 7'}
+    answer_text: >-
+      Gather the $x$ terms and the numbers separately:
+      $5x - 2x = 3x$ and $3 + 4 = 7$. The answer is $3x + 7$.
+
+  - id: lc4-5-expand
+    section: '4.5'
+    tier: F
+    refs: ['4.1']
+    statement: 'Expand $3(2x + 5)$.'
+    answer_label: 'The expanded expression'
+    check: {kind: evaluate, expression: '3 * (2 * x + 5)', answer: '6 * x + 15'}
+    answer_text: >-
+      Multiply both terms inside the bracket by $3$:
+      $3(2x) + 3(5) = 6x + 15$.
+
+  - id: lc4-5-expand-two
+    section: '4.5'
+    tier: F
+    refs: ['4.1']
+    statement: 'Expand and simplify $4(x + 2) - 2(x - 3)$.'
+    answer_label: 'The simplified expression'
+    check:
+      kind: evaluate
+      expression: '4 * (x + 2) - 2 * (x - 3)'
+      answer: '2 * x + 14'
+    answer_text: >-
+      Expand each bracket: $4(x + 2) = 4x + 8$ and $-2(x - 3) = -2x + 6$.
+
+      Collect like terms: $4x - 2x + 8 + 6 = 2x + 14$.
+
+  - id: lc4-5-substitute-negative
+    section: '4.5'
+    tier: F
+    refs: ['4.1']
+    statement: 'Evaluate $5x - 2y$ at $x = 3$ and $y = -4$.'
+    answer_label: 'The value of the expression'
+    check: {kind: evaluate, expression: '5 * 3 - 2 * (-4)', answer: '23'}
+    answer_text: >-
+      Substitute both values: $5(3) - 2(-4) = 15 + 8 = 23$.
+
+      Subtracting a negative adds, and writing the substituted value in brackets
+      is what keeps the sign straight.
+
+  - id: lc4-5-profit-expression
+    section: '4.5'
+    tier: F
+    refs: ['4.1']
+    statement: >-
+      The profit is $10n - (240 + 4n)$. Expand and simplify it, then evaluate it
+      at $n = 40$ and at $n = 50$.
+    answer_label: 'The simplified profit, then its values at n = 40 and n = 50'
+    check:
+      kind: all
+      checks:
+        - {kind: evaluate, expression: '10 * n - (240 + 4 * n)', answer: '6 * n - 240'}
+        - {kind: evaluate, expression: '6 * 40 - 240', answer: '0'}
+        - {kind: evaluate, expression: '6 * 50 - 240', answer: '60'}
+    answer_text: >-
+      Expand the bracket: $10n - 240 - 4n$. Collect like terms:
+      $10n - 4n = 6n$, so the profit is $6n - 240$.
+
+      At $n = 40$ the profit is $6(40) - 240 = 0$, which is the break-even point.
+      At $n = 50$ the profit is $6(50) - 240 = €60$.
+
+  - id: lc4-5-expand-quadratic
+    section: '4.5'
+    tier: H
+    refs: ['4.1']
+    statement: 'Expand and simplify $(x + 3)(x + 4)$.'
+    answer_label: 'The expanded expression'
+    check: {kind: evaluate, expression: '(x + 3) * (x + 4)', answer: 'x**2 + 7 * x + 12'}
+    answer_text: >-
+      Multiply every term in the first bracket by every term in the second:
+
+      $$x^2 + 4x + 3x + 12 = x^2 + 7x + 12$$
+
+      The two middle terms are like terms, so they collect into $7x$. This
+      expansion is the reverse of the factorising used in Section 4.8.

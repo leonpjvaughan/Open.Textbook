@@ -1,0 +1,250 @@
+# Leaving Certificate Physics, Chapter 14, section 14.2 (strand 3 outcome 3.3).
+#
+# The physics oracle checks two claims whenever a quantity is asked for:
+# `dimensions` proves the exact magnitude *and* the unit, and `sigfigs` proves the
+# rounding to the figures the data support. A resistance read from a graph is a
+# measurement, so the `gradient` record proves it against a declared interval rather
+# than an exact value.
+#
+# Honest limit: this proves the arithmetic and the dimensions, not the physics. A
+# dimensionally consistent, arithmetically correct, physically absurd answer would
+# pass. The `structured` records prove only that a model answer contains the
+# declared steps and concepts, in order — not that the physics in them is right.
+chapter: 14
+problems:
+- id: p14-2-current
+  section: '14.2'
+  tier: O
+  refs:
+  - '3.3'
+  statement: A resistor of resistance 15 Ω has a potential difference of 6.0 V across it. Calculate
+    the current through it.
+  answer_label: Current
+  check:
+    kind: all
+    checks:
+    - kind: dimensions
+      expression: V / R
+      values:
+        V:
+          value: '6.0'
+          unit: V
+        R:
+          value: '15'
+          unit: Ω
+      answer:
+        value: '0.40'
+        unit: A
+    - kind: sigfigs
+      value: '6.0 / 15'
+      figures: 2
+      answer: '0.40'
+      convention: round-once
+  answer_text: 'Ohm''s law gives $I = \dfrac{V}{R} = \dfrac{6.0}{15} = 0.40\,\text{A}$. The
+    resistor is ohmic, so doubling the potential difference would double the current.'
+- id: p14-2-pd
+  section: '14.2'
+  tier: O
+  refs:
+  - '3.3'
+  statement: A current of 0.50 A flows through a 24 Ω resistor. Calculate the potential difference
+    across it.
+  answer_label: Potential difference
+  check:
+    kind: all
+    checks:
+    - kind: dimensions
+      expression: I * R
+      values:
+        I:
+          value: '0.50'
+          unit: A
+        R:
+          value: '24'
+          unit: Ω
+      answer:
+        value: '12'
+        unit: V
+    - kind: sigfigs
+      value: '0.50 * 24'
+      figures: 2
+      answer: 1.2e1
+      convention: round-once
+  answer_text: '$V = IR = 0.50 \times 24 = 12\,\text{V}$. Written to two significant figures this
+    is $1.2 \times 10^{1}\,\text{V}$.'
+- id: p14-2-graph
+  section: '14.2'
+  tier: O
+  refs:
+  - '3.3'
+  statement: 'A student plots the potential difference across a resistor on the vertical axis
+    against the current through it on the horizontal axis. The points are $(0.20\,\text{A}, 3.0\,\text{V})$,
+    $(0.40\,\text{A}, 6.0\,\text{V})$ and $(0.60\,\text{A}, 9.0\,\text{V})$. Calculate the gradient
+    of the line and state what it represents.'
+  answer_label: Gradient of the line
+  check:
+    kind: gradient
+    series:
+    - ['0.20', '3.0']
+    - ['0.40', '6.0']
+    - ['0.60', '9.0']
+    between: ['14.9', '15.1']
+  answer_text: 'The gradient is $\dfrac{9.0 - 3.0}{0.60 - 0.20} = \dfrac{6.0}{0.40} =
+    15\,\Omega$. Because $V = IR$ is $V = R \times I$, the gradient of a graph of $V$ against
+    $I$ is the resistance. The line passes through the origin, which is what an ohmic conductor
+    gives.'
+- id: p14-2-heater
+  section: '14.2'
+  tier: O
+  refs:
+  - '3.3'
+  statement: A heater draws a current of 3.0 A when the potential difference across it is 12 V.
+    Calculate its resistance.
+  answer_label: Resistance of the heater
+  check:
+    kind: all
+    checks:
+    - kind: dimensions
+      expression: V / I
+      values:
+        V:
+          value: '12'
+          unit: V
+        I:
+          value: '3.0'
+          unit: A
+      answer:
+        value: '4.0'
+        unit: Ω
+    - kind: sigfigs
+      value: '12 / 3.0'
+      figures: 2
+      answer: '4.0'
+      convention: round-once
+  answer_text: '$R = \dfrac{V}{I} = \dfrac{12}{3.0} = 4.0\,\Omega$. This is the resistance the
+    heater has when it is hot and working, and Section 14.4 uses it to find the power.'
+- id: p14-2-lamp
+  section: '14.2'
+  tier: O
+  refs:
+  - '3.3'
+  statement: Explain why the graph of current against potential difference for a filament lamp
+    is not a straight line through the origin.
+  answer_label: The filament lamp
+  check:
+    kind: structured
+    requires:
+    - shape
+    - heating
+    - ohm
+    concepts:
+    - curves
+    - temperature
+    - resistance-rises
+    - constant-temperature
+    points:
+    - id: shape
+      text: as the potential difference increases, the current increases but more slowly, so the
+        graph curves over instead of staying straight
+      concepts:
+      - curves
+    - id: heating
+      text: a larger current makes the filament hotter, and the resistance of a metal rises as its
+        temperature rises
+      concepts:
+      - temperature
+      - resistance-rises
+    - id: ohm
+      text: Ohm's law holds only at constant temperature, so the lamp is non-ohmic and its resistance
+        changes as it heats up
+      concepts:
+      - constant-temperature
+  answer_text: As the potential difference increases, the current increases but more slowly, so the
+    graph curves over. A larger current makes the filament hotter, and the resistance of a metal
+    rises with temperature. Ohm's law holds only at constant temperature, so the lamp is a non-ohmic
+    conductor and its resistance changes as it heats.
+- id: p14-2-diode
+  section: '14.2'
+  tier: O
+  refs:
+  - '3.3'
+  statement: Describe the graph of current against potential difference for a diode in forward
+    bias and in reverse bias, and explain why the diode is called a non-ohmic conductor.
+  answer_label: The diode
+  check:
+    kind: structured
+    requires:
+    - forward
+    - reverse
+    - non-ohmic
+    concepts:
+    - threshold
+    - one-direction
+    - not-proportional
+    points:
+    - id: forward
+      text: in forward bias the diode conducts once the potential difference reaches about 0.6 V,
+        and beyond that the current rises steeply
+      concepts:
+      - threshold
+    - id: reverse
+      text: in reverse bias the diode carries almost no current, so it conducts in one direction only
+      concepts:
+      - one-direction
+    - id: non-ohmic
+      text: the current is not proportional to the potential difference, so the diode does not obey
+        Ohm's law and is non-ohmic
+      concepts:
+      - not-proportional
+  answer_text: In forward bias the diode conducts once the potential difference reaches about 0.6 V,
+    and after that the current rises steeply. In reverse bias it carries almost no current. The current
+    is not proportional to the potential difference in either direction, so the diode does not obey
+    Ohm's law and is a non-ohmic conductor.
+- id: p14-2-thermistor
+  section: '14.2'
+  tier: O
+  refs:
+  - '3.3'
+  statement: A thermistor has a resistance of 500 Ω at 20 °C and 200 Ω at 60 °C. The potential difference
+    across it is 3.0 V at both temperatures. Calculate the current through it at each temperature.
+  answer_label: Current at each temperature
+  check:
+    kind: all
+    checks:
+    - kind: dimensions
+      expression: V / R1
+      values:
+        V:
+          value: '3.0'
+          unit: V
+        R1:
+          value: '500'
+          unit: Ω
+      answer:
+        value: '0.0060'
+        unit: A
+    - kind: dimensions
+      expression: V / R2
+      values:
+        V:
+          value: '3.0'
+          unit: V
+        R2:
+          value: '200'
+          unit: Ω
+      answer:
+        value: '0.015'
+        unit: A
+    - kind: sigfigs
+      value: '3.0 / 500'
+      figures: 2
+      answer: '0.0060'
+      convention: round-once
+    - kind: sigfigs
+      value: '3.0 / 200'
+      figures: 2
+      answer: '0.015'
+      convention: round-once
+  answer_text: 'At 20 °C, $I = \dfrac{V}{R} = \dfrac{3.0}{500} = 0.0060\,\text{A}$, which is
+    6.0 mA. At 60 °C, $I = \dfrac{3.0}{200} = 0.015\,\text{A}$, which is 15 mA. The current is larger
+    when the thermistor is hot, because its resistance is smaller.'

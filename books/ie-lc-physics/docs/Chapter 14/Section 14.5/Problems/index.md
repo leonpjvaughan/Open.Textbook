@@ -10,9 +10,14 @@ refs:
 kind: problems
 ---
 
-<!-- scaffold:stub -->
-
 # 14.5 Internal resistance and emf — Practise
 
-> **Stub.** Independent, homework-style practice. Answers and concise solutions in a collapsed block. Mark Higher-only questions explicitly.
-> Tier: **H** · refs: 3.3
+Work independently. The questions and answers are shown together at the end.
+
+Give every answer with its **unit**, and to the number of significant figures the data
+justify. Remember that the emf and the terminal potential difference are the same number
+only when no current flows.
+
+:::problems chapter-14-practice-14.5
+
+:::answers chapter-14-practice-14.5

@@ -1,0 +1,160 @@
+# Junior Cycle Mathematics, Chapter 12, section 12.7.
+#
+# A method is chosen for the question, not for the chapter, so this bank mixes the
+# kinds. An algebraic solve is `kind: solve`; a pair is `kind: system`; an
+# inequality is `kind: inequality`; a trial-and-improvement value is
+# `kind: evaluate`, which proves the value really satisfies the equation; and a
+# decimal root found numerically is `kind: approx`, which proves it is within the
+# accuracy the answer claims.
+chapter: 12
+symbols:
+  x: {real: true}
+  y: {real: true}
+  n: {real: true}
+
+problems:
+- id: jc12-12.7-method-1
+  section: '12.7'
+  tier: O
+  refs:
+  - AF.4
+  statement: Use trial and improvement to solve $x^2+x=20$ for a whole number $x$.
+  answer_label: Solve $x^2+x=20$ for a whole number $x$.
+  check:
+    kind: evaluate
+    expression: 4**2 + 4
+    answer: '20'
+  answer_text: '$x=4$. Try $x=3$: $9+3=12$, too small. Try $x=4$: $16+4=20$, which matches. So $x=4$ is the whole-number solution. (There is also a negative solution, $x=-5$, but a whole-number answer is 4.)'
+- id: jc12-12.7-method-2
+  section: '12.7'
+  tier: O
+  refs:
+  - AF.4
+  statement: 'I think of a number, multiply it by 3, and add 4. The result is 19. Find the number by working backwards.'
+  answer_label: Find the number when $3x+4=19$.
+  check:
+    kind: solve
+    equation: 3*x + 4 = 19
+    variable: x
+    answer: '5'
+  answer_text: '$x=5$. Work backwards from 19: subtract 4 to get 15, then divide by 3 to get 5. As an equation this is $3x+4=19$, so $3x=15$ and $x=5$. Check: $3\times5+4=19$.'
+- id: jc12-12.7-method-3
+  section: '12.7'
+  tier: O
+  refs:
+  - AF.4
+  statement: The graphs of $y=2x+1$ and $y=x+4$ cross at one point. Use the graph to solve $2x+1=x+4$.
+  answer_label: Solve $2x+1=x+4$ from the graph.
+  check:
+    kind: solve
+    equation: 2*x + 1 = x + 4
+    variable: x
+    answer: '3'
+  answer_text: '$x=3$. The two lines cross where their $y$ values are equal. Subtract $x$ from both sides: $x+1=4$, so $x=3$. The crossing point is $(3,7)$, which checks both rules.'
+- id: jc12-12.7-method-4
+  section: '12.7'
+  tier: O
+  refs:
+  - AF.4
+  statement: A table of values for $y=x+5$ is built up. Use it to solve $x+5=11$.
+  answer_label: Use the table to solve $x+5=11$.
+  check:
+    kind: solve
+    equation: x + 5 = 11
+    variable: x
+    answer: '6'
+  answer_text: '$x=6$. In the table, the value of $x+5$ reaches 11 when $x=6$. Check: $6+5=11$. A table is a numeric method: you read the answer rather than rearrange it.'
+- id: jc12-12.7-method-5
+  section: '12.7'
+  tier: O
+  refs:
+  - AF.4
+  statement: Solve $5(x-2)=3x+4$ algebraically.
+  answer_label: Solve $5(x-2)=3x+4$.
+  check:
+    kind: solve
+    equation: 5*(x - 2) = 3*x + 4
+    variable: x
+    answer: '7'
+  answer_text: '$x=7$. Expand: $5x-10=3x+4$. Subtract $3x$: $2x-10=4$. Add 10: $2x=14$. Divide by 2: $x=7$. Check: $5(7-2)=25$ and $3\times7+4=25$.'
+- id: jc12-12.7-method-6
+  section: '12.7'
+  tier: O
+  refs:
+  - AF.4
+  statement: Solve $y=2x$ and $x+y=12$. Which method suits this pair, and why?
+  answer_label: Solve $y=2x$ and $x+y=12$.
+  check:
+    kind: system
+    equations: ["y = 2*x", "x + y = 12"]
+    variables: [x, y]
+    answer: [[4, 8]]
+  answer_text: '$x=4$ and $y=8$. Substitution suits this pair, because the first equation already gives $y$ on its own. Substitute $2x$ for $y$: $x+2x=12$, so $3x=12$ and $x=4$. Then $y=2\times4=8$.'
+- id: jc12-12.7-method-7
+  section: '12.7'
+  tier: O
+  refs:
+  - AF.4
+  statement: Solve $x+y=9$ and $x-y=3$. Which method suits this pair, and why?
+  answer_label: Solve $x+y=9$ and $x-y=3$.
+  check:
+    kind: system
+    equations: ["x + y = 9", "x - y = 3"]
+    variables: [x, y]
+    answer: [[6, 3]]
+  answer_text: '$x=6$ and $y=3$. Elimination suits this pair, because the $y$ terms are $+y$ and $-y$. Add the equations: $2x=12$, so $x=6$. Then $6+y=9$, so $y=3$.'
+- id: jc12-12.7-method-8
+  section: '12.7'
+  tier: O
+  refs:
+  - AF.4
+  statement: Solve $3x-2\leq10$.
+  answer_label: Solve $3x-2\leq10$.
+  check:
+    kind: inequality
+    variable: x
+    inequality: "3*x - 2 <= 10"
+    answer: "Interval(-oo, 4)"
+  answer_text: '$x\leq4$. Add 2 to both sides: $3x\leq12$. Divide by 3: $x\leq4$. Dividing by the positive number 3 keeps the sign the same, and the endpoint 4 is included.'
+- id: jc12-12.7-method-9
+  section: '12.7'
+  tier: O
+  refs:
+  - AF.4
+  statement: A trial-and-improvement table works out $x^2+x$ for $x=4$ and $x=5$. Find both values.
+  answer_label: Find $x^2+x$ for $x=4$ and for $x=5$.
+  check:
+    kind: all
+    checks:
+    - kind: evaluate
+      expression: 4**2 + 4
+      answer: '20'
+    - kind: evaluate
+      expression: 5**2 + 5
+      answer: '30'
+  answer_text: 'For $x=4$ the value is $16+4=20$. For $x=5$ the value is $25+5=30$. The target 20 sits at $x=4$, so no value between 4 and 5 is needed here. If the target were between 20 and 30, you would test values between 4 and 5.'
+- id: jc12-12.7-method-10
+  section: '12.7'
+  tier: O
+  refs:
+  - AF.4
+  statement: Use trial and improvement to solve $x^2=30$, giving $x$ to one decimal place.
+  answer_label: Solve $x^2=30$ to one decimal place.
+  check:
+    kind: approx
+    value: '5.5'
+    target: sqrt(30)
+    tolerance: '0.05'
+  answer_text: '$x\approx5.5$. Try $x=5$: $25$, too small. Try $x=6$: $36$, too big. Try $x=5.5$: $30.25$, a little too big. Try $x=5.4$: $29.16$, too small. The root lies between 5.4 and 5.5, so to one decimal place $x=5.5$.'
+- id: jc12-12.7-method-11
+  section: '12.7'
+  tier: O
+  refs:
+  - AF.4
+  statement: 'The chapter problem: after paying €150 for the hall, the hospice received €1890. Work backwards to find how much money was taken at the door.'
+  answer_label: Find the money taken at the door when the hospice received €1890 after €150 costs.
+  check:
+    kind: evaluate
+    expression: 1890 + 150
+    answer: '2040'
+  answer_text: '€2040 was taken at the door. The hospice keeps what is left after the hall is paid, so add the €150 back on: $1890+150=2040$. Check with the ticket counts: $12\times110+8\times90=1320+720=2040$.'

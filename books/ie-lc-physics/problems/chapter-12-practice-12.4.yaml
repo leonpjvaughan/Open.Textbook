@@ -1,0 +1,314 @@
+# Leaving Certificate Physics, Chapter 12, section 12.4 (strand 2 outcome 2.3).
+#
+# The lens formula is used in the real-is-positive convention, so f is positive
+# for a converging lens and v is positive for a real image. Every image distance
+# is proved by a `dimensions` check (the exact distance and its unit) and a
+# `sigfigs` check (the rounding the data support). The `structured` records prove
+# only that a model answer contains the declared steps in order and covers the
+# declared concepts.
+#
+# Honest limit: this proves the arithmetic and the dimensions, not the physics. A
+# dimensionally consistent, arithmetically correct, physically absurd answer would
+# pass.
+chapter: 12
+problems:
+- id: p12-4-image-distance
+  section: '12.4'
+  tier: O
+  refs:
+  - '2.3'
+  statement: >-
+    A converging lens has a focal length of 12.0 cm. An object is placed 18.0 cm
+    from the lens. Calculate the distance of the image from the lens.
+  answer_label: Image distance
+  check:
+    kind: all
+    checks:
+    - kind: dimensions
+      expression: 1 / (1 / f - 1 / u)
+      values:
+        f:
+          value: '12.0'
+          unit: cm
+        u:
+          value: '18.0'
+          unit: cm
+      answer:
+        value: '36.0'
+        unit: cm
+    - kind: sigfigs
+      value: 1 / (1 / 12.0 - 1 / 18.0)
+      figures: 3
+      answer: '36.0'
+      convention: round-once
+  answer_text: >-
+    The lens formula is $\dfrac{1}{f} = \dfrac{1}{u} + \dfrac{1}{v}$, so
+    $\dfrac{1}{v} = \dfrac{1}{f} - \dfrac{1}{u} = \dfrac{1}{12.0} -
+    \dfrac{1}{18.0} = \dfrac{1}{36.0}$. The image is 36.0 cm from the lens on the
+    far side. The image distance is positive, so the image is real.
+- id: p12-4-magnification
+  section: '12.4'
+  tier: O
+  refs:
+  - '2.3'
+  statement: >-
+    A converging lens forms a real image 36.0 cm from the lens. The object is
+    18.0 cm from the lens. Calculate the magnification.
+  answer_label: Magnification
+  check:
+    kind: all
+    checks:
+    - kind: dimensions
+      expression: v / u
+      values:
+        v:
+          value: '36.0'
+          unit: cm
+        u:
+          value: '18.0'
+          unit: cm
+      answer:
+        value: '2.0'
+    - kind: sigfigs
+      value: 36.0 / 18.0
+      figures: 2
+      answer: '2.0'
+      convention: round-once
+  answer_text: >-
+    $m = \dfrac{v}{u} = \dfrac{36.0}{18.0} = 2.0$. The image is twice as tall as
+    the object, and because it is a real image it is inverted.
+- id: p12-4-image-distance-2
+  section: '12.4'
+  tier: O
+  refs:
+  - '2.3'
+  statement: >-
+    A converging lens has a focal length of 15.0 cm. An object is placed 40.0 cm
+    from the lens. Calculate the distance of the image from the lens.
+  answer_label: Image distance
+  check:
+    kind: all
+    checks:
+    - kind: dimensions
+      expression: 1 / (1 / f - 1 / u)
+      values:
+        f:
+          value: '15.0'
+          unit: cm
+        u:
+          value: '40.0'
+          unit: cm
+      answer:
+        value: '24.0'
+        unit: cm
+    - kind: sigfigs
+      value: 1 / (1 / 15.0 - 1 / 40.0)
+      figures: 3
+      answer: '24.0'
+      convention: round-once
+  answer_text: >-
+    $\dfrac{1}{v} = \dfrac{1}{15.0} - \dfrac{1}{40.0} = \dfrac{8}{120} -
+    \dfrac{3}{120} = \dfrac{5}{120} = \dfrac{1}{24.0}$. The image is 24.0 cm from
+    the lens. The object is beyond twice the focal length, so this real image is
+    diminished.
+- id: p12-4-power
+  section: '12.4'
+  tier: O
+  refs:
+  - '2.3'
+  statement: >-
+    A converging lens has a focal length of 0.25 m. Calculate the power of the
+    lens.
+  answer_label: Power of the lens
+  check:
+    kind: all
+    checks:
+    - kind: dimensions
+      expression: 1 / f
+      values:
+        f:
+          value: '0.25'
+          unit: m
+      answer:
+        value: '4.0'
+        unit: m^-1
+    - kind: sigfigs
+      value: 1 / 0.25
+      figures: 2
+      answer: '4.0'
+      convention: round-once
+  answer_text: >-
+    $P = \dfrac{1}{f} = \dfrac{1}{0.25} = 4.0\,\text{m}^{-1}$, which is
+    4.0 dioptres. The focal length must be in metres, and a shorter focal length
+    gives a more powerful lens.
+- id: p12-4-two-lenses
+  section: '12.4'
+  tier: O
+  refs:
+  - '2.3'
+  statement: >-
+    A converging lens of power 5.0 m$^{-1}$ is placed in contact with a
+    diverging lens of power $-2.0$ m$^{-1}$. Calculate the power of the
+    combination and its focal length.
+  answer_label: Power and focal length
+  check:
+    kind: all
+    checks:
+    - kind: dimensions
+      expression: P1 + P2
+      values:
+        P1:
+          value: '5.0'
+          unit: m^-1
+        P2:
+          value: '-2.0'
+          unit: m^-1
+      answer:
+        value: '3.0'
+        unit: m^-1
+    - kind: dimensions
+      expression: 1 / (P1 + P2)
+      values:
+        P1:
+          value: '5.0'
+          unit: m^-1
+        P2:
+          value: '-2.0'
+          unit: m^-1
+      answer:
+        value: '0.33'
+        unit: m
+      tolerance: '0.01'
+    - kind: sigfigs
+      value: 1 / (5.0 - 2.0)
+      figures: 2
+      answer: '0.33'
+      convention: round-once
+  answer_text: >-
+    For two thin lenses in contact, $P = P_1 + P_2 = 5.0 + (-2.0) =
+    3.0\,\text{m}^{-1}$. Then $f = \dfrac{1}{P} = \dfrac{1}{3.0} = 0.33\,\text{m}$.
+    The combination is still converging, because the converging lens is the
+    stronger of the two.
+- id: p12-4-virtual-image
+  section: '12.4'
+  tier: O
+  refs:
+  - '2.3'
+  statement: >-
+    A converging lens has a focal length of 12.0 cm. An object is placed 8.0 cm
+    from the lens. Calculate the distance of the image from the lens, and state
+    whether the image is real or virtual.
+  answer_label: Image distance
+  check:
+    kind: all
+    checks:
+    - kind: dimensions
+      expression: 1 / (1 / f - 1 / u)
+      values:
+        f:
+          value: '12.0'
+          unit: cm
+        u:
+          value: '8.0'
+          unit: cm
+      answer:
+        value: '-24.0'
+        unit: cm
+    - kind: sigfigs
+      value: 1 / (1 / 12.0 - 1 / 8.0)
+      figures: 2
+      answer: '-24'
+      convention: round-once
+  answer_text: >-
+    $\dfrac{1}{v} = \dfrac{1}{12.0} - \dfrac{1}{8.0} = \dfrac{2}{24} -
+    \dfrac{3}{24} = -\dfrac{1}{24}$, so $v = -24$ cm. The image distance is
+    negative, so the image is virtual, on the same side of the lens as the
+    object, and it is upright and magnified. This is how a magnifying glass
+    works.
+- id: p12-4-real-virtual
+  section: '12.4'
+  tier: O
+  refs:
+  - '2.3'
+  statement: >-
+    Explain the difference between a real image and a virtual image formed by a
+    single converging lens.
+  answer_label: Real and virtual images
+  check:
+    kind: structured
+    requires:
+    - real
+    - virtual
+    - screen
+    concepts:
+    - real-image
+    - virtual-image
+    points:
+    - id: real
+      text: >-
+        a real image forms where the rays actually meet, and it can be caught on
+        a screen
+      concepts:
+      - real-image
+    - id: virtual
+      text: >-
+        a virtual image forms where the rays only appear to come from, so it
+        cannot be caught on a screen
+      concepts:
+      - virtual-image
+    - id: screen
+      text: >-
+        for a single converging lens a real image is inverted, and a virtual
+        image is upright
+      concepts:
+      - real-image
+      - virtual-image
+  answer_text: >-
+    A real image forms where the rays actually meet, and it can be caught on a
+    screen. A virtual image forms where the rays only appear to come from, so it
+    cannot be caught on a screen. For a single converging lens a real image is
+    inverted, and a virtual image is upright.
+- id: p12-4-converging-diverging
+  section: '12.4'
+  tier: O
+  refs:
+  - '2.3'
+  statement: >-
+    Describe the difference between a converging lens and a diverging lens, and
+    state what the focal length of a lens means.
+  answer_label: Converging and diverging lenses
+  check:
+    kind: structured
+    requires:
+    - converging
+    - diverging
+    - focus
+    concepts:
+    - converging-lens
+    - diverging-lens
+    - focal-length
+    points:
+    - id: converging
+      text: >-
+        a converging lens is thicker in the middle and brings a beam of parallel
+        rays to a focus
+      concepts:
+      - converging-lens
+    - id: diverging
+      text: >-
+        a diverging lens is thinner in the middle and spreads a beam of parallel
+        rays apart, as if they came from a focus
+      concepts:
+      - diverging-lens
+    - id: focus
+      text: >-
+        the focal length is the distance from the centre of the lens to the
+        principal focus, and a shorter focal length means a more powerful lens
+      concepts:
+      - focal-length
+  answer_text: >-
+    A converging lens is thicker in the middle and brings a beam of parallel rays
+    to a focus. A diverging lens is thinner in the middle and spreads a beam of
+    parallel rays apart, as if they came from a focus. The focal length is the
+    distance from the centre of the lens to the principal focus, and a shorter
+    focal length means a more powerful lens.

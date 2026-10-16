@@ -10,9 +10,14 @@ refs:
 kind: problems
 ---
 
-<!-- scaffold:stub -->
-
 # 14.4 Electrical power and energy — Practise
 
-> **Stub.** Independent, homework-style practice. Answers and concise solutions in a collapsed block. Mark Higher-only questions explicitly.
-> Tier: **O** · refs: 3.3
+Work independently. The questions and answers are shown together at the end.
+
+Give every answer with its **unit**, and to the number of significant figures the data
+justify. Choose the power equation that fits the quantities you know, and keep energies
+in kilowatt-hours for a cost question.
+
+:::problems chapter-14-practice-14.4
+
+:::answers chapter-14-practice-14.4

@@ -1,0 +1,281 @@
+# Leaving Certificate Physics, Chapter 13, section 13.4 (strand 3 outcome 3.2).
+#
+# The physics oracle checks two claims whenever a quantity is asked for:
+# `dimensions` proves the exact magnitude *and* the unit, and `sigfigs` proves the
+# rounding to the figures the data support. Both are written out, because a rounded
+# answer is never equal to the exact one.
+#
+# Honest limit: this proves the arithmetic and the dimensions, not the physics. A
+# dimensionally consistent, arithmetically correct, physically absurd answer would
+# pass. The `structured` records prove only that a model answer contains the
+# declared steps and concepts, in order — not that the physics in them is right.
+chapter: 13
+problems:
+- id: p13-4-field-from-voltage
+  section: '13.4'
+  tier: H
+  refs:
+  - '3.2'
+  statement: Two parallel metal plates are $2.0$ mm apart. The potential difference between them is
+    $1200$ V. Calculate the electric field strength between the plates.
+  answer_label: Electric field strength
+  check:
+    kind: all
+    checks:
+    - kind: dimensions
+      expression: V / d
+      values:
+        V:
+          value: '1200'
+          unit: V
+        d:
+          value: '2.0e-3'
+          unit: m
+      answer:
+        value: '6.0e5'
+        unit: V/m
+    - kind: sigfigs
+      value: '1200 / 2.0e-3'
+      figures: 2
+      answer: '6.0e5'
+      convention: round-once
+  answer_text: $E = \dfrac{V}{d} = \dfrac{1200}{2.0 \times 10^{-3}} = 6.0 \times 10^{5}\,\text{V/m}$.
+    The field is uniform between the plates.
+- id: p13-4-voltage-from-field
+  section: '13.4'
+  tier: H
+  refs:
+  - '3.2'
+  statement: The electric field strength between two parallel plates is $5.0 \times 10^{5}$ V/m. The
+    plates are $4.0$ mm apart. Calculate the potential difference between them.
+  answer_label: Potential difference
+  check:
+    kind: all
+    checks:
+    - kind: dimensions
+      expression: E * d
+      values:
+        E:
+          value: '5.0e5'
+          unit: V/m
+        d:
+          value: '4.0e-3'
+          unit: m
+      answer:
+        value: '2.0e3'
+        unit: V
+    - kind: sigfigs
+      value: '5.0e5 * 4.0e-3'
+      figures: 2
+      answer: '2.0e3'
+      convention: round-once
+  answer_text: Rearranging $E = \dfrac{V}{d}$ gives $V = Ed = 5.0 \times 10^{5} \times 4.0 \times
+    10^{-3} = 2.0 \times 10^{3}\,\text{V}$.
+- id: p13-4-radial-field
+  section: '13.4'
+  tier: H
+  refs:
+  - '3.2'
+  statement: A point charge of $+2.0\ \mu\text{C}$ is isolated in air. Calculate the electric field
+    strength at a distance of $0.30$ m from it. Take $k = 9.0 \times 10^{9}$ N m$^{2}$ C$^{-2}$.
+  answer_label: Electric field strength at 0.30 m
+  check:
+    kind: all
+    checks:
+    - kind: dimensions
+      expression: k * Q / d**2
+      values:
+        k:
+          value: '9.0e9'
+          unit: N m^2 C^-2
+        Q:
+          value: '2.0e-6'
+          unit: C
+        d:
+          value: '0.30'
+          unit: m
+      answer:
+        value: '2.0e5'
+        unit: N/C
+    - kind: sigfigs
+      value: '9.0e9 * 2.0e-6 / 0.30**2'
+      figures: 2
+      answer: '2.0e5'
+      convention: round-once
+  answer_text: $E = \dfrac{1}{4\pi\epsilon_0}\dfrac{Q}{d^2} = k\dfrac{Q}{d^2} = 9.0 \times 10^{9}
+    \times \dfrac{2.0 \times 10^{-6}}{(0.30)^2} = 2.0 \times 10^{5}\,\text{N/C}$. The field points
+    away from the positive charge.
+- id: p13-4-potential-work
+  section: '13.4'
+  tier: H
+  refs:
+  - '3.2'
+  statement: A charge of $2.0\ \mu\text{C}$ is moved between two points, and the work done is $4.0 \times
+    10^{-4}$ J. Calculate the potential difference between the two points.
+  answer_label: Potential difference
+  check:
+    kind: all
+    checks:
+    - kind: dimensions
+      expression: W / q
+      values:
+        W:
+          value: '4.0e-4'
+          unit: J
+        q:
+          value: '2.0e-6'
+          unit: C
+      answer:
+        value: '200'
+        unit: V
+    - kind: sigfigs
+      value: '4.0e-4 / 2.0e-6'
+      figures: 2
+      answer: '2.0e2'
+      convention: round-once
+  answer_text: $V = \dfrac{W}{q} = \dfrac{4.0 \times 10^{-4}}{2.0 \times 10^{-6}} = 200\,\text{V}$.
+    The potential difference is the work done per unit charge moved between the points.
+- id: p13-4-radial-potential
+  section: '13.4'
+  tier: H
+  refs:
+  - '3.2'
+  statement: A point charge of $+2.0\ \mu\text{C}$ is isolated in air. Calculate the electric potential
+    at a distance of $0.30$ m from it. Take $k = 9.0 \times 10^{9}$ N m$^{2}$ C$^{-2}$.
+  answer_label: Electric potential at 0.30 m
+  check:
+    kind: all
+    checks:
+    - kind: dimensions
+      expression: k * Q / d
+      values:
+        k:
+          value: '9.0e9'
+          unit: N m^2 C^-2
+        Q:
+          value: '2.0e-6'
+          unit: C
+        d:
+          value: '0.30'
+          unit: m
+      answer:
+        value: '6.0e4'
+        unit: V
+    - kind: sigfigs
+      value: '9.0e9 * 2.0e-6 / 0.30'
+      figures: 2
+      answer: '6.0e4'
+      convention: round-once
+  answer_text: $V = \dfrac{1}{4\pi\epsilon_0}\dfrac{Q}{d} = k\dfrac{Q}{d} = 9.0 \times 10^{9} \times
+    \dfrac{2.0 \times 10^{-6}}{0.30} = 6.0 \times 10^{4}\,\text{V}$. The potential is positive because
+    the charge is positive, and it is taken as zero at infinity.
+- id: p13-4-work-move
+  section: '13.4'
+  tier: H
+  refs:
+  - '3.2'
+  statement: A charge of $3.0\ \mu\text{C}$ is moved through a potential difference of $150$ V. Calculate
+    the work done on the charge.
+  answer_label: Work done
+  check:
+    kind: all
+    checks:
+    - kind: dimensions
+      expression: q * V
+      values:
+        q:
+          value: '3.0e-6'
+          unit: C
+        V:
+          value: '150'
+          unit: V
+      answer:
+        value: '4.5e-4'
+        unit: J
+    - kind: sigfigs
+      value: '3.0e-6 * 150'
+      figures: 2
+      answer: '4.5e-4'
+      convention: round-once
+  answer_text: $W = qV = 3.0 \times 10^{-6} \times 150 = 4.5 \times 10^{-4}\,\text{J}$. The work done
+    is the charge multiplied by the potential difference it moves through.
+- id: p13-4-definitions
+  section: '13.4'
+  tier: H
+  refs:
+  - '3.2'
+  statement: Define electric field strength at a point, and define electric potential at a point. State
+    the unit of each.
+  answer_label: The two definitions
+  check:
+    kind: structured
+    requires:
+    - field
+    - potential
+    - units
+    concepts:
+    - force-per-charge
+    - work-per-charge
+    - scalar-and-vector
+    points:
+    - id: field
+      text: the electric field strength at a point is the force per unit positive charge placed at that
+        point, E = F / q, a vector
+      concepts:
+      - force-per-charge
+      - scalar-and-vector
+    - id: potential
+      text: the electric potential at a point is the work done per unit positive charge in bringing a
+        charge from infinity to that point, V = W / q, a scalar
+      concepts:
+      - work-per-charge
+      - scalar-and-vector
+    - id: units
+      text: field strength is measured in newtons per coulomb, N/C, which is the same as volts per metre,
+        V/m; potential is measured in volts, V, which is joules per coulomb, J/C
+      concepts:
+      - force-per-charge
+      - work-per-charge
+  answer_text: The electric field strength at a point is the force per unit positive charge placed at
+    that point, $E = F/q$, measured in N/C or V/m. It is a vector. The electric potential at a point is
+    the work done per unit positive charge in bringing a charge from infinity to that point, $V = W/q$,
+    measured in volts, which are joules per coulomb. It is a scalar.
+- id: p13-4-potential-gradient
+  section: '13.4'
+  tier: H
+  refs:
+  - '3.2'
+  statement: Explain the link between electric field strength and potential, and say why $E = V/d$ can
+    only be used between two parallel plates.
+  answer_label: Field strength and potential gradient
+  check:
+    kind: structured
+    requires:
+    - gradient
+    - uniform
+    - direction
+    concepts:
+    - potential-falls
+    - constant-gradient
+    - high-to-low
+    points:
+    - id: gradient
+      text: the electric field strength is the negative of the potential gradient, so it measures how
+        quickly the potential changes with distance
+      concepts:
+      - potential-falls
+    - id: uniform
+      text: between parallel plates the potential falls steadily, so the gradient is constant and E = V / d
+        gives the field strength
+      concepts:
+      - constant-gradient
+    - id: direction
+      text: the field points in the direction in which the potential falls most quickly, from high potential
+        to low
+      concepts:
+      - high-to-low
+  answer_text: The electric field strength is the negative of the potential gradient, so it measures
+    how quickly the potential changes with distance. Between two parallel plates the field is uniform,
+    so the potential falls steadily and the gradient is constant. That is why $E = V/d$ gives the field
+    strength there. Around a point charge the field is not uniform, so the potential does not fall steadily
+    and $E = V/d$ cannot be used; the field points from high potential to low.

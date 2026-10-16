@@ -1,0 +1,314 @@
+# Leaving Certificate Physics, Chapter 12, section 12.3 (strand 2 outcome 2.4).
+#
+# Irradiance is power per unit area, so each quantity record is proved by a
+# `dimensions` check (magnitude and unit) and a `sigfigs` check (the rounding the
+# data support). The inverse-square record uses a ratio of distances, which keeps
+# the arithmetic exact and avoids introducing pi. The `structured` records prove
+# only that a model answer contains the declared steps in order and covers the
+# declared concepts.
+#
+# Honest limit: this proves the arithmetic and the dimensions, not the physics. A
+# dimensionally consistent, arithmetically correct, physically absurd answer would
+# pass.
+chapter: 12
+problems:
+- id: p12-3-panel-power
+  section: '12.3'
+  tier: O
+  refs:
+  - '2.4'
+  statement: >-
+    A solar panel has an area of 2.0 m$^2$. The irradiance of the sunlight
+    falling on it is 1000 W/m$^2$. Calculate the power the panel receives.
+  answer_label: Power received
+  check:
+    kind: all
+    checks:
+    - kind: dimensions
+      expression: I * A
+      values:
+        I:
+          value: '1000'
+          unit: W/m^2
+        A:
+          value: '2.0'
+          unit: m^2
+      answer:
+        value: '2000'
+        unit: W
+    - kind: sigfigs
+      value: 1000 * 2.0
+      figures: 2
+      answer: '2.0e3'
+      convention: round-once
+  answer_text: >-
+    Irradiance is power per unit area, so $P = IA = 1000 \times 2.0 =
+    2000\,\text{W}$, which is 2.0 kW. The unit check is worth making:
+    $\text{W/m}^2 \times \text{m}^2 = \text{W}$.
+- id: p12-3-panel-energy
+  section: '12.3'
+  tier: O
+  refs:
+  - '2.4'
+  statement: >-
+    The solar panel receives a power of 2000 W for 5.0 hours. Calculate the
+    energy it receives in that time.
+  answer_label: Energy received
+  check:
+    kind: all
+    checks:
+    - kind: dimensions
+      expression: P * t
+      values:
+        P:
+          value: '2000'
+          unit: W
+        t:
+          value: '18000'
+          unit: s
+      answer:
+        value: '3.6e7'
+        unit: J
+    - kind: sigfigs
+      value: 2000 * 18000
+      figures: 2
+      answer: '3.6e7'
+      convention: round-once
+  answer_text: >-
+    Five hours is $5.0 \times 3600 = 18000$ s. Then
+    $E = Pt = 2000 \times 18000 = 3.6 \times 10^{7}\,\text{J}$. Energy is power
+    multiplied by time, so the hours must be turned into seconds first.
+- id: p12-3-panel-day
+  section: '12.3'
+  tier: O
+  refs:
+  - '2.4'
+  statement: >-
+    The solar panel receives a power of 2000 W for a full day. Calculate the
+    energy it receives. Take one day as 86400 s.
+  answer_label: Energy in a day
+  check:
+    kind: all
+    checks:
+    - kind: dimensions
+      expression: P * t
+      values:
+        P:
+          value: '2000'
+          unit: W
+        t:
+          value: '86400'
+          unit: s
+      answer:
+        value: '1.728e8'
+        unit: J
+    - kind: sigfigs
+      value: 2000 * 86400
+      figures: 2
+      answer: '1.7e8'
+      convention: round-once
+  answer_text: >-
+    $E = Pt = 2000 \times 86400 = 1.728 \times 10^{8}\,\text{J}$, which is
+    $1.7 \times 10^{8}\,\text{J}$ to two significant figures. In practice the
+    panel receives nothing at night, so a real day gives much less than this.
+- id: p12-3-irradiance-definition
+  section: '12.3'
+  tier: O
+  refs:
+  - '2.4'
+  statement: >-
+    Define irradiance, give its unit, and state what the solar constant is.
+  answer_label: Irradiance and the solar constant
+  check:
+    kind: structured
+    requires:
+    - definition
+    - unit
+    - solar
+    concepts:
+    - irradiance
+    - power
+    - area
+    points:
+    - id: definition
+      text: >-
+        irradiance is the power of the radiation falling on unit area, so
+        I = P divided by A
+      concepts:
+      - irradiance
+      - power
+    - id: unit
+      text: the unit of irradiance is the watt per square metre, W/m squared
+      concepts:
+      - area
+    - id: solar
+      text: >-
+        the solar constant is the irradiance of the Sun at the Earth, about
+        1.4 kW/m squared at the top of the atmosphere
+      concepts:
+      - irradiance
+  answer_text: >-
+    Irradiance is the power of the radiation falling on unit area, so
+    $I = \dfrac{P}{A}$. Its unit is the watt per square metre, W/m$^2$. The
+    solar constant is the irradiance of the Sun at the Earth, about
+    1.4 kW/m$^2$ at the top of the atmosphere.
+- id: p12-3-inverse-square
+  section: '12.3'
+  tier: O
+  refs:
+  - '2.4'
+  statement: >-
+    The irradiance of the sunlight at the Earth is 1000 W/m$^2$. Calculate the
+    irradiance at a distance twice as far from the Sun.
+  answer_label: Irradiance at twice the distance
+  check:
+    kind: all
+    checks:
+    - kind: dimensions
+      expression: I1 * (d1 / d2) ** 2
+      values:
+        I1:
+          value: '1000'
+          unit: W/m^2
+        d1:
+          value: '1.0'
+          unit: m
+        d2:
+          value: '2.0'
+          unit: m
+      answer:
+        value: '250'
+        unit: W/m^2
+    - kind: sigfigs
+      value: 1000 * (1.0 / 2.0) ** 2
+      figures: 2
+      answer: '2.5e2'
+      convention: round-once
+  answer_text: >-
+    The same power spreads over a sphere whose area grows with the square of the
+    distance, so $I_2 = I_1 \left(\dfrac{d_1}{d_2}\right)^2 = 1000 \times
+    \left(\dfrac{1.0}{2.0}\right)^2 = 250\,\text{W/m}^2$. Doubling the distance
+    divides the irradiance by four.
+- id: p12-3-panel-area
+  section: '12.3'
+  tier: O
+  refs:
+  - '2.4'
+  statement: >-
+    A solar panel must receive a power of 3000 W. The irradiance of the sunlight
+    is 1000 W/m$^2$. Calculate the area the panel needs.
+  answer_label: Area needed
+  check:
+    kind: all
+    checks:
+    - kind: dimensions
+      expression: P / I
+      values:
+        P:
+          value: '3000'
+          unit: W
+        I:
+          value: '1000'
+          unit: W/m^2
+      answer:
+        value: '3.0'
+        unit: m^2
+    - kind: sigfigs
+      value: 3000 / 1000
+      figures: 2
+      answer: '3.0'
+      convention: round-once
+  answer_text: >-
+    Rearranging $I = \dfrac{P}{A}$ gives $A = \dfrac{P}{I} = \dfrac{3000}{1000}
+    = 3.0\,\text{m}^2$. A larger power at the same irradiance needs a larger
+    area.
+- id: p12-3-photon-energy
+  section: '12.3'
+  tier: O
+  refs:
+  - '2.4'
+  statement: >-
+    Explain why a gamma-ray photon carries more energy than a radio photon, and
+    why that makes gamma rays more dangerous to living cells.
+  answer_label: Energy per photon
+  check:
+    kind: structured
+    requires:
+    - frequency
+    - energy
+    - ionising
+    concepts:
+    - photon
+    - energy
+    - frequency
+    points:
+    - id: frequency
+      text: >-
+        the energy carried by one photon depends on the frequency, and a higher
+        frequency means more energy per photon
+      concepts:
+      - photon
+      - frequency
+    - id: energy
+      text: >-
+        a gamma ray has a much higher frequency than a radio wave, so each of
+        its photons carries far more energy
+      concepts:
+      - energy
+    - id: ionising
+      text: >-
+        a photon with enough energy can knock electrons out of atoms, so gamma
+        rays are ionising and can damage living cells
+      concepts:
+      - energy
+  answer_text: >-
+    The energy carried by one photon depends on the frequency, and a higher
+    frequency means more energy per photon. A gamma ray has a much higher
+    frequency than a radio wave, so each of its photons carries far more energy.
+    A photon with enough energy can knock electrons out of atoms, so gamma rays
+    are ionising and can damage living cells.
+- id: p12-3-ionising-radiation
+  section: '12.3'
+  tier: O
+  refs:
+  - '2.4'
+  statement: >-
+    State what ionising radiation is, name the families of the electromagnetic
+    spectrum that are ionising, and give one way a person is protected from each
+    of two of them.
+  answer_label: Ionising radiation and protection
+  check:
+    kind: structured
+    requires:
+    - definition
+    - which
+    - protection
+    concepts:
+    - ionising-radiation
+    - energy
+    - frequency
+    points:
+    - id: definition
+      text: >-
+        ionising radiation carries enough energy to remove an electron from an
+        atom, which leaves the atom with a charge
+      concepts:
+      - ionising-radiation
+    - id: which
+      text: >-
+        X-rays, gamma rays and ultraviolet are ionising, and radio waves,
+        microwaves, infrared and visible light are not
+      concepts:
+      - energy
+    - id: protection
+      text: >-
+        the ionising families are used with care, for example a lead screen for
+        X-rays and sunscreen or clothing for ultraviolet
+      concepts:
+      - frequency
+  answer_text: >-
+    Ionising radiation carries enough energy to remove an electron from an atom,
+    which leaves the atom with a charge. X-rays, gamma rays and ultraviolet are
+    ionising, and radio waves, microwaves, infrared and visible light are not.
+    The ionising families are used with care, for example a lead screen for
+    X-rays and sunscreen or clothing for ultraviolet.

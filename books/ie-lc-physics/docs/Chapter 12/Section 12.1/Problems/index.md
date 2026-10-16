@@ -10,9 +10,14 @@ refs:
 kind: problems
 ---
 
-<!-- scaffold:stub -->
-
 # 12.1 The electromagnetic spectrum — Practise
 
-> **Stub.** Independent, homework-style practice. Answers and concise solutions in a collapsed block. Mark Higher-only questions explicitly.
-> Tier: **O** · refs: 2.4
+Work independently. The questions and answers are shown together at the end.
+
+Give every wavelength in metres before you use it in a calculation. For a
+question that asks you to explain, write the reason, not only the name of the
+family.
+
+:::problems chapter-12-practice-12.1
+
+:::answers chapter-12-practice-12.1

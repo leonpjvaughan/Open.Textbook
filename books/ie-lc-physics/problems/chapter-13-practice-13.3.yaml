@@ -1,0 +1,248 @@
+# Leaving Certificate Physics, Chapter 13, section 13.3 (strand 3 outcome 3.2).
+#
+# The physics oracle checks two claims whenever a quantity is asked for:
+# `dimensions` proves the exact magnitude *and* the unit, and `sigfigs` proves the
+# rounding to the figures the data support. Both are written out, because a rounded
+# answer is never equal to the exact one.
+#
+# Honest limit: this proves the arithmetic and the dimensions, not the physics. A
+# dimensionally consistent, arithmetically correct, physically absurd answer would
+# pass. The `structured` records prove only that a model answer contains the
+# declared steps and concepts, in order — not that the physics in them is right.
+chapter: 13
+problems:
+- id: p13-3-field-strength
+  section: '13.3'
+  tier: O
+  refs:
+  - '3.2'
+  statement: A charge of $+3.0\ \mu\text{C}$ placed at a point in an electric field experiences a force
+    of $0.012$ N. Calculate the electric field strength at that point.
+  answer_label: Electric field strength
+  check:
+    kind: all
+    checks:
+    - kind: dimensions
+      expression: F / q
+      values:
+        F:
+          value: '0.012'
+          unit: N
+        q:
+          value: '3.0e-6'
+          unit: C
+      answer:
+        value: '4.0e3'
+        unit: N/C
+    - kind: sigfigs
+      value: '0.012 / 3.0e-6'
+      figures: 2
+      answer: '4.0e3'
+      convention: round-once
+  answer_text: $E = \dfrac{F}{q} = \dfrac{0.012}{3.0 \times 10^{-6}} = 4.0 \times 10^{3}\,\text{N/C}$.
+    The field strength is the force per unit positive charge at the point.
+- id: p13-3-force-in-field
+  section: '13.3'
+  tier: O
+  refs:
+  - '3.2'
+  statement: A charge of $-2.0\ \mu\text{C}$ is placed in a uniform electric field of strength $5.0
+    \times 10^{4}$ N/C. Calculate the size of the force on the charge, and state its direction.
+  answer_label: Force on the charge
+  check:
+    kind: all
+    checks:
+    - kind: dimensions
+      expression: q * E
+      values:
+        q:
+          value: '2.0e-6'
+          unit: C
+        E:
+          value: '5.0e4'
+          unit: N/C
+      answer:
+        value: '0.10'
+        unit: N
+    - kind: sigfigs
+      value: '2.0e-6 * 5.0e4'
+      figures: 2
+      answer: '0.10'
+      convention: round-once
+  answer_text: $F = qE = 2.0 \times 10^{-6} \times 5.0 \times 10^{4} = 0.10\,\text{N}$. The charge is
+    negative, so the force is opposite to the direction of the field.
+- id: p13-3-force-on-electron
+  section: '13.3'
+  tier: O
+  refs:
+  - '3.2'
+  statement: An electron is placed in a uniform electric field of strength $2.0 \times 10^{5}$ N/C. Calculate
+    the size of the force on the electron. Take $e = 1.6 \times 10^{-19}$ C.
+  answer_label: Force on the electron
+  check:
+    kind: all
+    checks:
+    - kind: dimensions
+      expression: e * E
+      values:
+        e:
+          value: '1.6e-19'
+          unit: C
+        E:
+          value: '2.0e5'
+          unit: N/C
+      answer:
+        value: '3.2e-14'
+        unit: N
+    - kind: sigfigs
+      value: '1.6e-19 * 2.0e5'
+      figures: 2
+      answer: '3.2e-14'
+      convention: round-once
+  answer_text: $F = eE = 1.6 \times 10^{-19} \times 2.0 \times 10^{5} = 3.2 \times 10^{-14}\,\text{N}$.
+    The force points opposite to the field, because the electron is negative.
+- id: p13-3-field-lines
+  section: '13.3'
+  tier: O
+  refs:
+  - '3.2'
+  statement: State what electric field lines show. Include what the direction of a field line means, what
+    the spacing of the lines shows, and why two field lines never cross.
+  answer_label: What field lines show
+  check:
+    kind: structured
+    requires:
+    - direction
+    - spacing
+    - crossing
+    concepts:
+    - positive-test-charge
+    - strength
+    - single-direction
+    points:
+    - id: direction
+      text: a field line points in the direction of the force on a small positive test charge placed at
+        that point
+      concepts:
+      - positive-test-charge
+    - id: spacing
+      text: field lines drawn closer together show a stronger field, and lines further apart show a weaker
+        field
+      concepts:
+      - strength
+    - id: crossing
+      text: field lines never cross, because a test charge at a point would then have two possible directions
+        of force
+      concepts:
+      - single-direction
+  answer_text: An electric field line shows the direction of the force on a small positive test charge
+    placed at that point. Where the lines are closer together the field is stronger, and where they are
+    further apart it is weaker. Two field lines never cross, because a charge at the crossing point would
+    then have two possible directions of force, and a field can only point one way at a point.
+- id: p13-3-radial-field
+  section: '13.3'
+  tier: O
+  refs:
+  - '3.2'
+  statement: Describe the electric field around a single positive point charge, and then around a single
+    negative point charge. In each case state the direction of the field lines.
+  answer_label: The field around a point charge
+  check:
+    kind: structured
+    requires:
+    - positive
+    - negative
+    - strength
+    concepts:
+    - radial-outward
+    - radial-inward
+    - closer-together
+    points:
+    - id: positive
+      text: the field around a positive charge is radial and points outwards, away from the charge
+      concepts:
+      - radial-outward
+    - id: negative
+      text: the field around a negative charge is radial and points inwards, towards the charge
+      concepts:
+      - radial-inward
+    - id: strength
+      text: in both cases the lines are closer together near the charge, showing that the field is stronger
+        there
+      concepts:
+      - closer-together
+  answer_text: Around a positive point charge the field is radial and points outwards, away from the charge.
+    Around a negative point charge the field is radial and points inwards, towards the charge. In both
+    cases the field lines are closer together near the charge, which shows that the field is stronger
+    there.
+- id: p13-3-uniform-field
+  section: '13.3'
+  tier: O
+  refs:
+  - '3.2'
+  statement: Describe the electric field between two oppositely charged parallel metal plates, and say
+    why it is called a uniform field.
+  answer_label: The field between parallel plates
+  check:
+    kind: structured
+    requires:
+    - direction
+    - spacing
+    - uniform
+    concepts:
+    - positive-to-negative
+    - equally-spaced
+    - same-everywhere
+    points:
+    - id: direction
+      text: the field lines run from the positive plate to the negative plate, at right angles to both
+      concepts:
+      - positive-to-negative
+    - id: spacing
+      text: the lines are straight, parallel and equally spaced in the middle of the gap
+      concepts:
+      - equally-spaced
+    - id: uniform
+      text: the field is called uniform because its strength and direction are the same at every point
+        between the plates
+      concepts:
+      - same-everywhere
+  answer_text: The field lines run from the positive plate to the negative plate, at right angles to
+    both plates. In the middle of the gap the lines are straight, parallel and equally spaced. The field
+    is called uniform because its strength and its direction are the same at every point between the
+    plates. Near the edges the lines curve outwards, so the field is not uniform there.
+- id: p13-3-like-charges
+  section: '13.3'
+  tier: O
+  refs:
+  - '3.2'
+  statement: Two positive point charges are placed near each other. Describe the shape of the field lines
+    around them, and state what happens at the point exactly halfway between them.
+  answer_label: The field around two like charges
+  check:
+    kind: structured
+    requires:
+    - outward
+    - bend
+    - neutral
+    concepts:
+    - repel
+    - never-cross
+    - zero-field
+    points:
+    - id: outward
+      text: the lines leave each charge outwards, because both charges are positive
+      concepts:
+      - repel
+    - id: bend
+      text: the lines from the two charges bend away from each other and do not cross
+      concepts:
+      - never-cross
+    - id: neutral
+      text: at the midpoint the two fields cancel, so the field strength there is zero
+      concepts:
+      - zero-field
+  answer_text: The field lines leave both charges outwards, because both charges are positive. The lines
+    from the two charges bend away from each other and never cross. At the point exactly halfway between
+    the charges, the two fields are equal and opposite, so they cancel and the field strength there is
+    zero.

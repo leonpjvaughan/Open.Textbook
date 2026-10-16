@@ -10,9 +10,13 @@ refs:
 kind: problems
 ---
 
-<!-- scaffold:stub -->
-
 # 12.3 Energy in electromagnetic radiation — Practise
 
-> **Stub.** Independent, homework-style practice. Answers and concise solutions in a collapsed block. Mark Higher-only questions explicitly.
-> Tier: **O** · refs: 2.4
+Work independently. The questions and answers are shown together at the end.
+
+Keep power in watts and time in seconds. Check the unit of every answer: an
+irradiance is in W/m$^2$, a power in W and an energy in J.
+
+:::problems chapter-12-practice-12.3
+
+:::answers chapter-12-practice-12.3

@@ -1,0 +1,144 @@
+# Practice set for 4.1 (strand 4, outcome 4.1, Foundation level). A formula cannot
+# be proved unique by a CAS, so each record proves the arithmetic its own formula
+# produces: the numbers are written into the expression, and the check proves the
+# value the answer claims. `structured` checks the vocabulary question, which is
+# an explanation rather than a computation.
+chapter: 4
+problems:
+  - id: lc4-1-next-terms
+    section: '4.1'
+    tier: F
+    refs: ['4.1']
+    statement: 'Find the next two terms of $6, 11, 16, \dots$'
+    answer_label: 'The next two terms'
+    check:
+      kind: all
+      checks:
+        - {kind: evaluate, expression: '6 + 3 * 5', answer: '21'}
+        - {kind: evaluate, expression: '6 + 4 * 5', answer: '26'}
+    answer_text: >-
+      The gap is $11 - 6 = 5$, and it is the same all the way along. The next two
+      terms are $21$ and $26$.
+
+  - id: lc4-1-nth-expression
+    section: '4.1'
+    tier: F
+    refs: ['4.1']
+    statement: >-
+      Write an expression for the $n$th term of $6, 11, 16, \dots$ and use it to
+      find the twelfth term.
+    answer_label: 'The expression, then the twelfth term'
+    check: {kind: evaluate, expression: '5 * 12 + 1', answer: '61'}
+    answer_text: >-
+      The gap is $5$, so the expression starts with $5n$. At $n = 1$, $5n = 5$,
+      but the first term is $6$, so add $1$. The expression is $5n + 1$.
+
+      The twelfth term is $5(12) + 1 = 61$.
+
+  - id: lc4-1-twelfth-term
+    section: '4.1'
+    tier: F
+    refs: ['4.1']
+    statement: 'Find the twelfth term of $4, 9, 14, \dots$'
+    answer_label: 'The twelfth term'
+    check: {kind: evaluate, expression: '5 * 12 - 1', answer: '59'}
+    answer_text: >-
+      The gap is $5$, and at $n = 1$, $5n = 5$ is one too many, so the expression
+      is $5n - 1$. The twelfth term is $5(12) - 1 = 59$.
+
+  - id: lc4-1-tiles
+    section: '4.1'
+    tier: F
+    refs: ['4.1']
+    statement: >-
+      A tile pattern has $2$ tiles in the first shape, $5$ in the second and $8$
+      in the third. Write an expression for the number of tiles in the $n$th
+      shape, then find the number in the twentieth shape.
+    answer_label: 'The expression, then the twentieth shape'
+    check: {kind: evaluate, expression: '3 * 20 - 1', answer: '59'}
+    answer_text: >-
+      The gap is $3$, so the expression starts with $3n$. At $n = 1$, $3n = 3$,
+      but the first shape has $2$ tiles, so subtract $1$. The expression is
+      $3n - 1$.
+
+      The twentieth shape has $3(20) - 1 = 59$ tiles.
+
+  - id: lc4-1-cost-expression
+    section: '4.1'
+    tier: F
+    refs: ['4.1']
+    statement: >-
+      A candle maker pays €240 for equipment and €4 for each candle. Write an
+      expression for the cost of $n$ candles, then find the cost of $30$ candles.
+    answer_label: 'The expression, then the cost of 30 candles'
+    check: {kind: evaluate, expression: '240 + 4 * 30', answer: '360'}
+    answer_text: >-
+      €240 is paid once, so it is the constant. €4 is paid for every candle, so
+      it is the coefficient. The cost of $n$ candles is $240 + 4n$.
+
+      For $30$ candles the cost is $240 + 120 = €360$.
+
+  - id: lc4-1-plumber
+    section: '4.1'
+    tier: F
+    refs: ['4.1']
+    statement: >-
+      A plumber charges a call-out fee of €50, plus €30 for each hour of work.
+      Write an expression for the cost of $n$ hours, then find the cost of $4$
+      hours.
+    answer_label: 'The expression, then the cost of 4 hours'
+    check: {kind: evaluate, expression: '50 + 30 * 4', answer: '170'}
+    answer_text: >-
+      The call-out fee is paid once, so it is the constant. The hourly charge is
+      the coefficient: $50 + 30n$.
+
+      For $4$ hours the cost is $50 + 120 = €170$.
+
+  - id: lc4-1-decreasing
+    section: '4.1'
+    tier: F
+    refs: ['4.1']
+    statement: >-
+      Find the eighth term of the sequence $20, 17, 14, \dots$
+    answer_label: 'The eighth term'
+    check: {kind: evaluate, expression: '20 - 3 * 7', answer: '-1'}
+    answer_text: >-
+      The gap is $-3$, because each term is $3$ less than the one before. At
+      $n = 1$, $-3n = -3$, but the first term is $20$, so add $23$:
+
+      $$-3n + 23$$
+
+      The eighth term is $-3(8) + 23 = -24 + 23 = -1$. A decreasing pattern has a
+      negative coefficient, and that is allowed.
+
+  - id: lc4-1-vocabulary
+    section: '4.1'
+    tier: F
+    refs: ['4.1']
+    statement: >-
+      Explain the meaning of the variable, the coefficient and the constant in an
+      expression such as $4n + 7$.
+    answer_label: 'The three parts of the expression'
+    check:
+      kind: structured
+      requires: [variable, coefficient, constant]
+      concepts: [letter-changes, number-multiplies, fixed-value]
+      points:
+        - id: variable
+          text: n is the variable, the letter standing for the term number, and its value changes
+          concepts: [letter-changes]
+        - id: coefficient
+          text: 4 is the coefficient, the number multiplying the variable, and it sets how fast the value grows
+          concepts: [number-multiplies]
+        - id: constant
+          text: 7 is the constant, the part that does not change with n and equals the value when n is 0
+          concepts: [fixed-value]
+    answer_text: >-
+      The variable is $n$, the letter standing for the term number. Its value
+      changes.
+
+      The coefficient is $4$, the number multiplying the variable. It sets how
+      much the value rises each time $n$ increases by $1$.
+
+      The constant is $7$. It does not depend on $n$, and it is the value of the
+      expression when $n = 0$.

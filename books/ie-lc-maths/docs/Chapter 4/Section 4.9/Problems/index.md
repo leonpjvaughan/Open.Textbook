@@ -1,18 +1,22 @@
 ---
-title: 4.9 Linear inequalities — Practise
+title: "4.9 Linear inequalities — Practise"
 chapter: 4
 chapter_title: 'Algebra: expressions and equations'
 section: '4.9'
-section_title: Linear inequalities
+section_title: "Linear inequalities"
 tier: F
 refs:
 - '4.3'
 kind: problems
 ---
 
-<!-- scaffold:stub -->
-
 # 4.9 Linear inequalities — Practise
 
-> **Stub.** Independent, homework-style practice. Answers and concise solutions in a collapsed block. Mark Higher-only questions explicitly.
-> Tier: **F** · refs: 4.3
+Work independently. The questions and answers are shown together at the end.
+
+Substitute one value from your solution into the original inequality before you
+move on. That check catches a forgotten sign reversal.
+
+:::problems chapter-04-practice-4.9
+
+:::answers chapter-04-practice-4.9

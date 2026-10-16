@@ -1,0 +1,156 @@
+# Practice set for 4.9 (strand 4, outcome 4.3, Foundation level). An inequality
+# answer is a set, so `inequality` runs `reduce_inequalities`, converts the result
+# to a SymPy set and compares it with the declared interval. A closed interval
+# where the chain is open fails, which is exactly the mistake a sign reversal
+# makes.
+chapter: 4
+symbols:
+  n: {real: true}
+  x: {real: true}
+problems:
+  - id: lc4-9-simple
+    section: '4.9'
+    tier: F
+    refs: ['4.3']
+    statement: 'Solve $2x + 3 < 11$.'
+    answer_label: 'The solution set'
+    check:
+      kind: inequality
+      inequality: '2*x + 3 < 11'
+      variable: x
+      answer: 'Interval.open(-oo, 4)'
+    answer_text: >-
+      Subtract $3$: $2x < 8$. Divide by $2$, which is positive, so the sign does
+      not change: $x < 4$.
+
+      On a number line this is an open circle at $4$ with an arrow to the left.
+
+  - id: lc4-9-inclusive
+    section: '4.9'
+    tier: F
+    refs: ['4.3']
+    statement: 'Solve $5x - 2 \geq 13$.'
+    answer_label: 'The solution set'
+    check:
+      kind: inequality
+      inequality: '5*x - 2 >= 13'
+      variable: x
+      answer: 'Interval(3, oo)'
+    answer_text: >-
+      Add $2$: $5x \geq 15$. Divide by $5$: $x \geq 3$.
+
+      The circle at $3$ is filled, because $3$ itself satisfies the inequality.
+
+  - id: lc4-9-reverse
+    section: '4.9'
+    tier: F
+    refs: ['4.3']
+    statement: 'Solve $-2x > 8$.'
+    answer_label: 'The solution set'
+    check:
+      kind: inequality
+      inequality: '-2*x > 8'
+      variable: x
+      answer: 'Interval.open(-oo, -4)'
+    answer_text: >-
+      Divide by $-2$, which is negative, so the sign reverses: $x < -4$.
+
+      Check with $x = -5$: $-2(-5) = 10$, and $10 > 8$. Correct.
+
+  - id: lc4-9-profit
+    section: '4.9'
+    tier: F
+    refs: ['4.3']
+    statement: 'Solve $240 + 4n < 10n$.'
+    answer_label: 'The solution set'
+    check:
+      kind: inequality
+      inequality: '240 + 4*n < 10*n'
+      variable: n
+      answer: 'Interval.open(40, oo)'
+    answer_text: >-
+      Subtract $4n$: $240 < 6n$. Divide by $6$: $n > 40$.
+
+      The business makes a profit when it sells more than $40$ candles. At
+      exactly $40$ candles the cost and the income are equal, so the inequality
+      is strict.
+
+  - id: lc4-9-bracket
+    section: '4.9'
+    tier: F
+    refs: ['4.3']
+    statement: 'Solve $3(x - 1) \leq 12$.'
+    answer_label: 'The solution set'
+    check:
+      kind: inequality
+      inequality: '3*(x - 1) <= 12'
+      variable: x
+      answer: 'Interval(-oo, 5)'
+    answer_text: >-
+      Divide both sides by $3$: $x - 1 \leq 4$. Add $1$: $x \leq 5$.
+
+      The circle at $5$ is filled, because $5$ is included.
+
+  - id: lc4-9-negative-coefficient
+    section: '4.9'
+    tier: F
+    refs: ['4.3']
+    statement: 'Solve $7 - x \geq 2$.'
+    answer_label: 'The solution set'
+    check:
+      kind: inequality
+      inequality: '7 - x >= 2'
+      variable: x
+      answer: 'Interval(-oo, 5)'
+    answer_text: >-
+      Subtract $7$: $-x \geq -5$. Divide by $-1$, which reverses the sign:
+      $x \leq 5$.
+
+      Check with $x = 5$: $7 - 5 = 2$, which equals $2$. Correct.
+
+  - id: lc4-9-break-even-or-better
+    section: '4.9'
+    tier: F
+    refs: ['4.3']
+    statement: >-
+      The business breaks even or does better when the income is at least the
+      cost. Solve $240 + 4n \leq 10n$.
+    answer_label: 'The solution set'
+    check:
+      kind: inequality
+      inequality: '240 + 4*n <= 10*n'
+      variable: n
+      answer: 'Interval(40, oo)'
+    answer_text: >-
+      Subtract $4n$: $240 \leq 6n$. Divide by $6$: $n \geq 40$.
+
+      Selling $40$ candles breaks even exactly, so $40$ is included. Selling more
+      than $40$ makes a profit.
+
+  - id: lc4-9-number-line
+    section: '4.9'
+    tier: F
+    refs: ['4.3']
+    statement: >-
+      Explain how to show the solution of an inequality on a number line, and say
+      when the circle is filled.
+    answer_label: 'How the solution is shown'
+    check:
+      kind: structured
+      requires: [open-or-filled, direction]
+      concepts: [endpoint-included, arrow-direction]
+      points:
+        - id: open-or-filled
+          text: the circle at the endpoint is filled when the endpoint is included, for the signs less than or equal to and greater than or equal to, and open when it is not
+          concepts: [endpoint-included]
+        - id: direction
+          text: the arrow points left for a less-than solution and right for a greater-than solution, so the whole range is shown
+          concepts: [arrow-direction]
+    answer_text: >-
+      Draw a circle at the endpoint and an arrow in the direction of the
+      solution. For $x \leq 5$ the arrow points left; for $x > 40$ it points
+      right.
+
+      Fill the circle when the endpoint itself satisfies the inequality. So
+      $x \geq 3$ has a filled circle at $3$, and $x < 4$ has an open circle at
+      $4$.

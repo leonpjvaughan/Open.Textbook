@@ -1,0 +1,296 @@
+# Leaving Certificate Physics, Chapter 12, section 12.1 (strand 2 outcome 2.4).
+#
+# The spectrum is a categorisation, so its claims are `structured` records: they
+# prove a model answer contains the declared steps in order and covers the
+# declared concepts, and nothing about whether the physics in them is right. A
+# quantity carries both a `dimensions` check (magnitude and unit) and a `sigfigs`
+# check (the rounding the data support).
+#
+# Honest limit: this proves the arithmetic and the dimensions, not the physics. A
+# dimensionally consistent, arithmetically correct, physically absurd answer would
+# pass.
+chapter: 12
+problems:
+- id: p12-1-spectrum-order
+  section: '12.1'
+  tier: O
+  refs:
+  - '2.4'
+  statement: >-
+    List the seven families of the electromagnetic spectrum in order of
+    wavelength, from longest to shortest, and state how the frequency runs along
+    the same list.
+  answer_label: The spectrum in order
+  check:
+    kind: structured
+    requires:
+    - ends
+    - order
+    - frequency
+    concepts:
+    - electromagnetic-spectrum
+    - wavelength
+    - frequency
+    points:
+    - id: ends
+      text: >-
+        the family with the longest wavelength is radio, and the family with the
+        shortest wavelength is gamma
+      concepts:
+      - wavelength
+    - id: order
+      text: >-
+        from longest wavelength to shortest: radio, microwave, infrared,
+        visible, ultraviolet, X-ray, gamma
+      concepts:
+      - electromagnetic-spectrum
+    - id: frequency
+      text: >-
+        frequency runs the other way, so radio has the lowest frequency and
+        gamma the highest, because c = f lambda holds for every family with the
+        same speed c
+      concepts:
+      - frequency
+  answer_text: >-
+    From the longest wavelength to the shortest: radio, microwave, infrared,
+    visible, ultraviolet, X-ray, gamma. The frequency runs the other way, from
+    the lowest for radio to the highest for gamma, because
+    $c = f\lambda$ holds for every family with the same speed $c$.
+- id: p12-1-nm-to-m
+  section: '12.1'
+  tier: O
+  refs:
+  - '2.4'
+  statement: >-
+    The wavelength of red light is 650 nm. Write this wavelength in metres.
+  answer_label: Wavelength in metres
+  check:
+    kind: convert
+    value: '650'
+    from: nm
+    to: m
+    answer: '6.5e-7'
+  answer_text: >-
+    One nanometre is $1 \times 10^{-9}$ m, so
+    $650\,\text{nm} = 650 \times 10^{-9}\,\text{m} = 6.5 \times 10^{-7}\,\text{m}$.
+- id: p12-1-red-frequency
+  section: '12.1'
+  tier: O
+  refs:
+  - '2.4'
+  statement: >-
+    Red light has a wavelength of 700 nm in a vacuum. Calculate its frequency.
+    Take the speed of light in a vacuum as $3.0 \times 10^{8}$ m/s.
+  answer_label: Frequency
+  check:
+    kind: all
+    checks:
+    - kind: dimensions
+      expression: c / lam
+      values:
+        c:
+          value: '3.0e8'
+          unit: m/s
+        lam:
+          value: '7.0e-7'
+          unit: m
+      answer:
+        value: '4.3e14'
+        unit: Hz
+      tolerance: '1e13'
+    - kind: sigfigs
+      value: 3.0e8 / 7.0e-7
+      figures: 2
+      answer: '4.3e14'
+      convention: round-once
+  answer_text: >-
+    $c = f\lambda$, so $f = \dfrac{c}{\lambda} = \dfrac{3.0 \times 10^{8}}
+    {7.0 \times 10^{-7}} = 4.3 \times 10^{14}\,\text{Hz}$. This is near the
+    bottom of the visible range, which is why red light has the lowest frequency
+    you can see.
+- id: p12-1-ionising
+  section: '12.1'
+  tier: O
+  refs:
+  - '2.4'
+  statement: >-
+    Explain what is meant by ionising radiation, and state which families of the
+    electromagnetic spectrum are ionising.
+  answer_label: Ionising radiation
+  check:
+    kind: structured
+    requires:
+    - definition
+    - which
+    - why
+    concepts:
+    - ionising-radiation
+    - energy
+    - frequency
+    points:
+    - id: definition
+      text: >-
+        ionising radiation carries enough energy to knock an electron out of an
+        atom, leaving the atom with a charge
+      concepts:
+      - ionising-radiation
+    - id: which
+      text: >-
+        X-rays and gamma rays are strongly ionising, and ultraviolet is ionising
+        but less strongly
+      concepts:
+      - ionising-radiation
+    - id: why
+      text: >-
+        these families have the shortest wavelengths and the highest
+        frequencies, so each photon carries more energy
+      concepts:
+      - energy
+      - frequency
+  answer_text: >-
+    Ionising radiation carries enough energy to knock an electron out of an atom,
+    which leaves the atom with a charge. X-rays and gamma rays are strongly
+    ionising, and ultraviolet is ionising but less strongly. These families have
+    the shortest wavelengths and the highest frequencies, so each photon carries
+    more energy.
+- id: p12-1-dispersion
+  section: '12.1'
+  tier: O
+  refs:
+  - '2.4'
+  statement: >-
+    Explain why a glass prism spreads a beam of white light into a spectrum.
+  answer_label: Dispersion by a prism
+  check:
+    kind: structured
+    requires:
+    - white
+    - speed
+    - order
+    concepts:
+    - dispersion
+    - refractive-index
+    - wavelength
+    points:
+    - id: white
+      text: white light is a mixture of all the visible wavelengths
+      concepts:
+      - wavelength
+    - id: speed
+      text: >-
+        in glass the speed of light depends on the wavelength, so violet travels
+        more slowly than red and the glass has a larger refractive index for
+        violet
+      concepts:
+      - refractive-index
+    - id: order
+      text: >-
+        a larger refractive index bends the ray more, so the prism bends violet
+        most and red least, and the colours spread out into a spectrum
+      concepts:
+      - dispersion
+  answer_text: >-
+    White light is a mixture of all the visible wavelengths. In glass the speed
+    of light depends on the wavelength, so violet travels more slowly than red
+    and the glass has a larger refractive index for violet. A larger refractive
+    index bends the ray more, so the prism bends violet most and red least, and
+    the colours spread out into a spectrum.
+- id: p12-1-source-use
+  section: '12.1'
+  tier: O
+  refs:
+  - '2.4'
+  statement: >-
+    Give one source and one everyday use for microwaves, and one source and one
+    everyday use for X-rays.
+  answer_label: Sources and uses
+  check:
+    kind: structured
+    requires:
+    - microwave
+    - xray
+    - use
+    concepts:
+    - source
+    - use
+    - electromagnetic-spectrum
+    points:
+    - id: microwave
+      text: >-
+        microwaves come from a magnetron or a mobile phone and are used for
+        cooking, phone networks and radar
+      concepts:
+      - source
+      - use
+    - id: xray
+      text: >-
+        X-rays come from an X-ray tube and are used for medical images and
+        security scanners
+      concepts:
+      - source
+      - use
+    - id: use
+      text: >-
+        each family has a source that produces it and uses that depend on how it
+        interacts with matter
+      concepts:
+      - electromagnetic-spectrum
+  answer_text: >-
+    Microwaves come from a magnetron or a mobile phone, and are used for cooking,
+    phone networks and radar. X-rays come from an X-ray tube, and are used for
+    medical images and security scanners. Each family has a source that produces
+    it and uses that depend on how it interacts with matter.
+- id: p12-1-radio-frequency
+  section: '12.1'
+  tier: O
+  refs:
+  - '2.4'
+  statement: >-
+    A radio wave has a wavelength of 1.5 m. Calculate its frequency. Take the
+    speed of light as $3.0 \times 10^{8}$ m/s.
+  answer_label: Frequency
+  check:
+    kind: all
+    checks:
+    - kind: dimensions
+      expression: c / lam
+      values:
+        c:
+          value: '3.0e8'
+          unit: m/s
+        lam:
+          value: '1.5'
+          unit: m
+      answer:
+        value: '2.0e8'
+        unit: Hz
+    - kind: sigfigs
+      value: 3.0e8 / 1.5
+      figures: 2
+      answer: '2.0e8'
+      convention: round-once
+  answer_text: >-
+    $c = f\lambda$, so $f = \dfrac{c}{\lambda} = \dfrac{3.0 \times 10^{8}}{1.5}
+    = 2.0 \times 10^{8}\,\text{Hz}$. That is 200 MHz, which sits in the radio
+    part of the spectrum.
+- id: p12-1-ir-uv-frequency
+  section: '12.1'
+  tier: O
+  refs:
+  - '2.4'
+  statement: >-
+    Infrared radiation has a wavelength of $1.0 \times 10^{-5}$ m. Ultraviolet
+    radiation has a wavelength of $2.0 \times 10^{-7}$ m. State which of the two
+    has the higher frequency, and explain your answer.
+  answer_label: Higher frequency
+  check:
+    kind: compare
+    relation: '>'
+    lhs: 3.0e8 / 2.0e-7
+    rhs: 3.0e8 / 1.0e-5
+  answer_text: >-
+    Ultraviolet has the higher frequency. The two travel at the same speed, and
+    $c = f\lambda$, so the shorter wavelength must have the higher frequency:
+    $\dfrac{3.0 \times 10^{8}}{2.0 \times 10^{-7}} = 1.5 \times 10^{15}$ Hz for
+    ultraviolet against $\dfrac{3.0 \times 10^{8}}{1.0 \times 10^{-5}} =
+    3.0 \times 10^{13}$ Hz for infrared.

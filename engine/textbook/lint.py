@@ -135,8 +135,14 @@ US_SPELLINGS = {
     r"\bColor(s|ed|ing)?\b": "Colour\\1",
     r"\bcenter(s|ed|ing)?\b": "centre\\1",
     r"\bCenter(s|ed|ing)?\b": "Centre\\1",
-    r"\bmeter(s)?\b": "metre\\1",
-    r"\bMeter(s)?\b": "Metre\\1",
+    # A measuring instrument is a **meter** in UK English — a taxi meter, a gas meter,
+    # a parking meter. Only the unit of length is a **metre**. The rule used to flag
+    # every "meter", so it reported "start the meter" — correct British English — as an
+    # American spelling, and `--fix` would have rewritten it to "metre". The unit always
+    # follows a number, so the rule now flags only that: "5 meters" is wrong, "the
+    # meter" is right. (Same reasoning as `kilogram` below.)
+    r"(?<=\d)\s*meter(s)?\b": " metres\\1",
+    r"(?<=\d)\s*Meter(s)?\b": " metres\\1",
     r"\borganiz(e|es|ed|ing)\b": "organis\\1",
     r"\brecogniz(e|es|ed|ing)\b": "recognis\\1",
     r"\bsummariz(e|es|ed|ing)\b": "summaris\\1",

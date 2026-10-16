@@ -10,9 +10,14 @@ refs:
 kind: problems
 ---
 
-<!-- scaffold:stub -->
-
 # 12.6 Graphing the solution set of an inequality — Practise
 
-> **Stub.** Independent, homework-style practice. Answers and concise solutions in a collapsed block. Mark Higher-only questions explicitly.
-> Tier: **O** · refs: AF.4
+Work independently. The questions and answers are shown together at the end.
+
+Solve the inequality first, and then draw it. Use a closed circle for $\leq$ and
+$\geq$, and an open circle for $<$ and $>$. Point the arrow towards the values in the
+solution set.
+
+:::problems chapter-12-practice-12.6
+
+:::answers chapter-12-practice-12.6

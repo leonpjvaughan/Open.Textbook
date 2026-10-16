@@ -1,0 +1,166 @@
+# Practice set for 4.7 (strand 4, outcome 4.2, Ordinary and Higher level). A
+# simultaneous system is proved by `system`: `nonlinsolve` finds the solution set
+# and compares it with the declared tuples, so the order of the tuples and of the
+# variables does not matter and a wrong pair fails. The break-even record is the
+# chapter's own system.
+chapter: 4
+symbols:
+  C: {real: true}
+  n: {real: true}
+  x: {real: true}
+  y: {real: true}
+problems:
+  - id: lc4-7-substitution
+    section: '4.7'
+    tier: O
+    refs: ['4.2']
+    statement: 'Solve $y = 2x + 1$ and $y = 5x - 8$.'
+    answer_label: 'The solution as a pair'
+    check:
+      kind: system
+      equations: ['y = 2*x + 1', 'y = 5*x - 8']
+      variables: [x, y]
+      answer: [[3, 7]]
+    answer_text: >-
+      Both expressions equal $y$, so $2x + 1 = 5x - 8$, giving $9 = 3x$ and
+      $x = 3$. Then $y = 2(3) + 1 = 7$.
+
+      Check in the other equation: $5(3) - 8 = 7$. The solution is $(3, 7)$.
+
+  - id: lc4-7-elimination
+    section: '4.7'
+    tier: O
+    refs: ['4.2']
+    statement: 'Solve $x + y = 10$ and $x - y = 4$.'
+    answer_label: 'The solution as a pair'
+    check:
+      kind: system
+      equations: ['x + y = 10', 'x - y = 4']
+      variables: [x, y]
+      answer: [[7, 3]]
+    answer_text: >-
+      Adding the equations removes $y$: $2x = 14$, so $x = 7$. Then
+      $7 + y = 10$, so $y = 3$.
+
+      Check in the second equation: $7 - 3 = 4$. The solution is $(7, 3)$.
+
+  - id: lc4-7-mixed
+    section: '4.7'
+    tier: O
+    refs: ['4.2']
+    statement: 'Solve $2x + 3y = 12$ and $x - y = 1$.'
+    answer_label: 'The solution as a pair'
+    check:
+      kind: system
+      equations: ['2*x + 3*y = 12', 'x - y = 1']
+      variables: [x, y]
+      answer: [[3, 2]]
+    answer_text: >-
+      From the second equation $x = y + 1$. Substitute: $2(y + 1) + 3y = 12$, so
+      $5y + 2 = 12$ and $y = 2$.
+
+      Then $x = 2 + 1 = 3$. Check: $2(3) + 3(2) = 12$. The solution is
+      $(3, 2)$.
+
+  - id: lc4-7-break-even
+    section: '4.7'
+    tier: O
+    refs: ['4.2']
+    statement: >-
+      The cost of $n$ candles is $C = 240 + 4n$ and the income is $C = 10n$ at
+      break-even. Solve the system.
+    answer_label: 'The number of candles and the common cost'
+    check:
+      kind: system
+      equations: ['C = 240 + 4*n', 'C = 10*n']
+      variables: [n, C]
+      answer: [[40, 400]]
+    answer_text: >-
+      At break-even the two expressions for $C$ are equal:
+      $240 + 4n = 10n$, so $240 = 6n$ and $n = 40$.
+
+      Then $C = 10(40) = 400$. The break-even point is $40$ candles, where the
+      cost and the income are both €400.
+
+  - id: lc4-7-substitution-two
+    section: '4.7'
+    tier: O
+    refs: ['4.2']
+    statement: 'Solve $y = 3x - 2$ and $y = x + 4$.'
+    answer_label: 'The solution as a pair'
+    check:
+      kind: system
+      equations: ['y = 3*x - 2', 'y = x + 4']
+      variables: [x, y]
+      answer: [[3, 7]]
+    answer_text: >-
+      Set the expressions equal: $3x - 2 = x + 4$, so $2x = 6$ and $x = 3$. Then
+      $y = 3(3) - 2 = 7$.
+
+      Check: $3 + 4 = 7$. The solution is $(3, 7)$.
+
+  - id: lc4-7-scale
+    section: '4.7'
+    tier: O
+    refs: ['4.2']
+    statement: 'Solve $3x + 2y = 16$ and $2x - y = 6$.'
+    answer_label: 'The solution as a pair'
+    check:
+      kind: system
+      equations: ['3*x + 2*y = 16', '2*x - y = 6']
+      variables: [x, y]
+      answer: [[4, 2]]
+    answer_text: >-
+      From the second equation $y = 2x - 6$. Substitute:
+      $3x + 2(2x - 6) = 16$, so $7x - 12 = 16$ and $x = 4$.
+
+      Then $y = 2(4) - 6 = 2$. Check: $3(4) + 2(2) = 16$. The solution is
+      $(4, 2)$.
+
+  - id: lc4-7-phone-plans
+    section: '4.7'
+    tier: O
+    refs: ['4.2']
+    statement: >-
+      Plan A costs $20 + 5n$ euro a month and Plan B costs $30 + 3n$ euro a
+      month, for $n$ gigabytes of data. Find the value of $n$ where the two plans
+      cost the same, and the common cost.
+    answer_label: 'The number of gigabytes, then the common cost'
+    check:
+      kind: system
+      equations: ['C = 20 + 5*n', 'C = 30 + 3*n']
+      variables: [n, C]
+      answer: [[5, 45]]
+    answer_text: >-
+      Set the costs equal: $20 + 5n = 30 + 3n$, so $2n = 10$ and $n = 5$.
+
+      The common cost is $20 + 5(5) = €45$. Check with Plan B:
+      $30 + 3(5) = €45$. Correct.
+
+  - id: lc4-7-why-two
+    section: '4.7'
+    tier: O
+    refs: ['4.2']
+    statement: >-
+      Explain why one equation in two unknowns is not enough to find both values.
+    answer_label: 'Why a second equation is needed'
+    check:
+      kind: structured
+      requires: [many-pairs, second-line]
+      concepts: [whole-line, one-intersection]
+      points:
+        - id: many-pairs
+          text: one equation such as x + y = 10 is true for many pairs, so it describes a whole line of points rather than one pair
+          concepts: [whole-line]
+        - id: second-line
+          text: a second equation describes a second line, and two different lines meet at one point at most, which is the simultaneous solution
+          concepts: [one-intersection]
+    answer_text: >-
+      The equation $x + y = 10$ is true for $x = 1$ with $y = 9$, for $x = 4$
+      with $y = 6$, and for every other pair on that line. One equation describes
+      a whole line of points, so it cannot single out one pair.
+
+      A second equation describes a second line. Two different lines meet at one
+      point at most, and that point is the simultaneous solution. If the lines
+      are parallel there is no solution, and if they are the same line every
+      point on it is a solution.

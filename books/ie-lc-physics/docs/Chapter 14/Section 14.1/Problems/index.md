@@ -10,9 +10,14 @@ refs:
 kind: problems
 ---
 
-<!-- scaffold:stub -->
-
 # 14.1 Current, potential difference and resistance — Practise
 
-> **Stub.** Independent, homework-style practice. Answers and concise solutions in a collapsed block. Mark Higher-only questions explicitly.
-> Tier: **O** · refs: 3.3
+Work independently. The questions and answers are shown together at the end.
+
+Give every answer with its **unit**, and to the number of significant figures the data
+justify. Before you use $I = \dfrac{Q}{t}$, $V = \dfrac{W}{Q}$ or $R = \dfrac{V}{I}$,
+write down which quantity you are given and which one you want.
+
+:::problems chapter-14-practice-14.1
+
+:::answers chapter-14-practice-14.1

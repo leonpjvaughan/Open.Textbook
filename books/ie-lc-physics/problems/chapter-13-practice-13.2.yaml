@@ -1,0 +1,272 @@
+# Leaving Certificate Physics, Chapter 13, section 13.2 (strand 3 outcome 3.1).
+#
+# The physics oracle checks two claims whenever a quantity is asked for:
+# `dimensions` proves the exact magnitude *and* the unit, and `sigfigs` proves the
+# rounding to the figures the data support. Both are written out, because a rounded
+# answer is never equal to the exact one. A value that comes from a rounded constant
+# carries a `tolerance`, so the check proves the arithmetic within the precision of
+# the data rather than against a number that was rounded by hand.
+#
+# Honest limit: this proves the arithmetic and the dimensions, not the physics. A
+# dimensionally consistent, arithmetically correct, physically absurd answer would
+# pass. The `structured` records prove only that a model answer contains the
+# declared steps and concepts, in order — not that the physics in them is right.
+chapter: 13
+problems:
+- id: p13-2-force-repulsion
+  section: '13.2'
+  tier: O
+  refs:
+  - '3.1'
+  statement: Two point charges of $+2.0\ \mu\text{C}$ and $+3.0\ \mu\text{C}$ are $0.10$ m apart in
+    air. Calculate the force between them, and state whether it is attractive or repulsive. Take the
+    Coulomb constant $k = 9.0 \times 10^{9}$ N m$^{2}$ C$^{-2}$.
+  answer_label: Force between the charges
+  check:
+    kind: all
+    checks:
+    - kind: dimensions
+      expression: k * q1 * q2 / d**2
+      values:
+        k:
+          value: '9.0e9'
+          unit: N m^2 C^-2
+        q1:
+          value: '2.0e-6'
+          unit: C
+        q2:
+          value: '3.0e-6'
+          unit: C
+        d:
+          value: '0.10'
+          unit: m
+      answer:
+        value: '5.4'
+        unit: N
+    - kind: sigfigs
+      value: '9.0e9 * 2.0e-6 * 3.0e-6 / 0.10**2'
+      figures: 2
+      answer: '5.4'
+      convention: round-once
+  answer_text: $F = \dfrac{1}{4\pi\epsilon_0}\dfrac{q_1q_2}{d^2} = k\dfrac{q_1q_2}{d^2} = 9.0 \times
+    10^{9} \times \dfrac{2.0 \times 10^{-6} \times 3.0 \times 10^{-6}}{(0.10)^2} = 5.4\,\text{N}$.
+    Both charges are positive, so the force is repulsive.
+- id: p13-2-force-attraction
+  section: '13.2'
+  tier: O
+  refs:
+  - '3.1'
+  statement: A charge of $+4.0\ \mu\text{C}$ and a charge of $-2.0\ \mu\text{C}$ are $0.20$ m apart in
+    air. Calculate the size of the force between them, and state its direction. Take $k = 9.0 \times
+    10^{9}$ N m$^{2}$ C$^{-2}$.
+  answer_label: Size of the force
+  check:
+    kind: all
+    checks:
+    - kind: dimensions
+      expression: k * q1 * q2 / d**2
+      values:
+        k:
+          value: '9.0e9'
+          unit: N m^2 C^-2
+        q1:
+          value: '4.0e-6'
+          unit: C
+        q2:
+          value: '2.0e-6'
+          unit: C
+        d:
+          value: '0.20'
+          unit: m
+      answer:
+        value: '1.8'
+        unit: N
+    - kind: sigfigs
+      value: '9.0e9 * 4.0e-6 * 2.0e-6 / 0.20**2'
+      figures: 2
+      answer: '1.8'
+      convention: round-once
+  answer_text: $F = k\dfrac{q_1q_2}{d^2} = 9.0 \times 10^{9} \times \dfrac{4.0 \times 10^{-6} \times
+    2.0 \times 10^{-6}}{(0.20)^2} = 1.8\,\text{N}$. The charges have opposite signs, so the force is
+    attractive. Each charge is pulled towards the other.
+- id: p13-2-inverse-square
+  section: '13.2'
+  tier: O
+  refs:
+  - '3.1'
+  statement: Two point charges attract each other with a force of $0.36$ N when they are $0.10$ m apart.
+    Calculate the force between them when the distance between them is increased to $0.30$ m.
+  answer_label: Force at three times the distance
+  check:
+    kind: all
+    checks:
+    - kind: dimensions
+      expression: F / 9
+      values:
+        F:
+          value: '0.36'
+          unit: N
+      answer:
+        value: '0.040'
+        unit: N
+    - kind: sigfigs
+      value: '0.36 / 9'
+      figures: 2
+      answer: '0.040'
+      convention: round-once
+  answer_text: The force follows an inverse-square law, so it is proportional to $1/d^2$. The distance
+    is tripled, so the force is divided by $3^2 = 9$. Then $F = \dfrac{0.36}{9} = 0.040\,\text{N}$.
+- id: p13-2-distance
+  section: '13.2'
+  tier: O
+  refs:
+  - '3.1'
+  statement: Two equal point charges of $+2.0\ \mu\text{C}$ each repel with a force of $0.90$ N. Calculate
+    the distance between them. Take $k = 9.0 \times 10^{9}$ N m$^{2}$ C$^{-2}$.
+  answer_label: Distance between the charges
+  check:
+    kind: all
+    checks:
+    - kind: dimensions
+      expression: sqrt(k * q1 * q2 / F)
+      values:
+        k:
+          value: '9.0e9'
+          unit: N m^2 C^-2
+        q1:
+          value: '2.0e-6'
+          unit: C
+        q2:
+          value: '2.0e-6'
+          unit: C
+        F:
+          value: '0.90'
+          unit: N
+      answer:
+        value: '0.20'
+        unit: m
+    - kind: sigfigs
+      value: 'sqrt(9.0e9 * 2.0e-6 * 2.0e-6 / 0.90)'
+      figures: 2
+      answer: '0.20'
+      convention: round-once
+  answer_text: Rearranging $F = k\dfrac{q_1q_2}{d^2}$ for the distance gives $d = \sqrt{\dfrac{kq_1q_2}{F}}$.
+    Substituting, $d = \sqrt{\dfrac{9.0 \times 10^{9} \times 2.0 \times 10^{-6} \times 2.0 \times
+    10^{-6}}{0.90}} = \sqrt{0.040} = 0.20\,\text{m}$.
+- id: p13-2-charge
+  section: '13.2'
+  tier: O
+  refs:
+  - '3.1'
+  statement: A charge of $+5.0\ \mu\text{C}$ is $0.10$ m from a second point charge. The force between
+    them is $1.8$ N. Calculate the size of the second charge. Take $k = 9.0 \times 10^{9}$ N m$^{2}$
+    C$^{-2}$.
+  answer_label: Size of the second charge
+  check:
+    kind: all
+    checks:
+    - kind: dimensions
+      expression: F * d**2 / (k * q1)
+      values:
+        F:
+          value: '1.8'
+          unit: N
+        d:
+          value: '0.10'
+          unit: m
+        k:
+          value: '9.0e9'
+          unit: N m^2 C^-2
+        q1:
+          value: '5.0e-6'
+          unit: C
+      answer:
+        value: '4.0e-7'
+        unit: C
+    - kind: sigfigs
+      value: '1.8 * 0.10**2 / (9.0e9 * 5.0e-6)'
+      figures: 2
+      answer: '4.0e-7'
+      convention: round-once
+  answer_text: Rearranging $F = k\dfrac{q_1q_2}{d^2}$ for the second charge gives $q_2 = \dfrac{Fd^2}{kq_1}$.
+    Substituting, $q_2 = \dfrac{1.8 \times (0.10)^2}{9.0 \times 10^{9} \times 5.0 \times 10^{-6}} =
+    4.0 \times 10^{-7}\,\text{C}$, which is $0.40\ \mu\text{C}$.
+- id: p13-2-compare-gravity
+  section: '13.2'
+  tier: O
+  refs:
+  - '3.1'
+  statement: The electrostatic force and the gravitational force both follow an inverse-square law. Explain
+    two ways in which they differ, and say why gravity is the force that shapes the Solar System.
+  answer_label: Comparing the two inverse-square forces
+  check:
+    kind: structured
+    requires:
+    - sign
+    - strength
+    - gravity
+    concepts:
+    - attract-or-repel
+    - much-stronger
+    - always-attractive
+    points:
+    - id: sign
+      text: the electrostatic force can attract or repel, because charge comes in two kinds, while gravity
+        only ever attracts
+      concepts:
+      - attract-or-repel
+    - id: strength
+      text: for particles such as electrons and protons the electrostatic force is enormously stronger
+        than the gravitational force between the same two particles
+      concepts:
+      - much-stronger
+    - id: gravity
+      text: large bodies are almost neutral, so their electric forces cancel, and the always-attractive
+        force of gravity is what holds planets and stars together
+      concepts:
+      - always-attractive
+  answer_text: Both forces follow an inverse-square law, but they differ in two important ways. The
+    electrostatic force can attract or repel, because there are two kinds of charge, while gravity only
+    ever attracts. For particles such as electrons and protons the electrostatic force is enormously
+    stronger than the gravitational force between the same particles. Large bodies are almost neutral,
+    so their electric forces cancel out, and the always-attractive force of gravity is what holds the
+    planets and stars together.
+- id: p13-2-statement
+  section: '13.2'
+  tier: O
+  refs:
+  - '3.1'
+  statement: State Coulomb's law for two point charges. Then state what happens to the force when one
+    charge is doubled and the distance between the charges is halved.
+  answer_label: Coulomb's law and the effect of the changes
+  check:
+    kind: structured
+    requires:
+    - statement
+    - inverse-square
+    - combined
+    concepts:
+    - proportional-to-product
+    - inverse-square
+    - factor-of-eight
+    points:
+    - id: statement
+      text: the force between two point charges is proportional to the product of the charges and inversely
+        proportional to the square of the distance between them, and it acts along the line joining them
+      concepts:
+      - proportional-to-product
+    - id: inverse-square
+      text: because the force depends on one over the distance squared, halving the distance multiplies
+        the force by four
+      concepts:
+      - inverse-square
+    - id: combined
+      text: doubling one charge doubles the force and halving the distance multiplies it by four, so together
+        the force becomes eight times larger
+      concepts:
+      - factor-of-eight
+  answer_text: Coulomb's law states that the force between two point charges is proportional to the
+    product of the charges and inversely proportional to the square of the distance between them, and
+    that it acts along the line joining them. Doubling one charge doubles the force. Halving the distance
+    multiplies the force by four, because $F \propto 1/d^2$. Together, the force becomes $2 \times 4 =
+    8$ times larger.

@@ -10,9 +10,14 @@ refs:
 kind: problems
 ---
 
-<!-- scaffold:stub -->
-
 # 12.2 Equations with brackets and fractions — Practise
 
-> **Stub.** Independent, homework-style practice. Answers and concise solutions in a collapsed block. Mark Higher-only questions explicitly.
-> Tier: **O** · refs: AF.4
+Work independently. The questions and answers are shown together at the end.
+
+Decide first whether to expand the bracket or to divide by the number in front. For a
+fraction, multiply both sides by the denominator to clear it. Check every answer in the
+original equation.
+
+:::problems chapter-12-practice-12.2
+
+:::answers chapter-12-practice-12.2

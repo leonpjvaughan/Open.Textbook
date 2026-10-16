@@ -10,9 +10,14 @@ refs:
 kind: problems
 ---
 
-<!-- scaffold:stub -->
-
 # 12.3 Simultaneous equations by substitution — Practise
 
-> **Stub.** Independent, homework-style practice. Answers and concise solutions in a collapsed block. Mark Higher-only questions explicitly.
-> Tier: **O** · refs: AF.4
+Work independently. The questions and answers are shown together at the end.
+
+Make one letter the subject of one equation, and substitute it into the other. Keep a
+bracket when the expression has more than one term. Find both values, and check them in
+both equations.
+
+:::problems chapter-12-practice-12.3
+
+:::answers chapter-12-practice-12.3
