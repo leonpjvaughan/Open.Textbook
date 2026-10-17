@@ -32,8 +32,6 @@ esac
 repo="${REPO:-$(gh repo view --json nameWithOwner -q .nameWithOwner)}"
 [[ -n "$repo" ]] || { echo "not a GitHub repository, or gh is not authenticated" >&2; exit 1; }
 
-# The socket's group, so the container can reach the daemon for the Docker action.
-export DOCKER_GID="$(stat -c '%g' /var/run/docker.sock)"
 export REPO_URL="https://github.com/${repo}"
 export RUNNER_LABELS="${RUNNER_LABELS:-self-hosted,linux,x64}"
 # One runner takes one job, so the matrix is serial on a single runner. Four is sized to

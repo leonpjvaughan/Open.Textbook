@@ -184,7 +184,20 @@ jobs:
     timeout-minutes: 5
     steps:
       - uses: actions/checkout@v7
-      - uses: rhysd/actionlint@03d0035246f3e81f36aed592ffb4bebf33a03106 # v1.7.7
+      # A binary, not the Docker action. Two reasons: the Docker action pulls an image,
+      # which is the one thing that needs the runner's Docker socket — and a socket is
+      # root on the host. Downloading a checksummed binary removes that dependency
+      # entirely, and it is faster.
+      - name: Install actionlint
+        env:
+          ACTIONLINT_SHA256: 023070a287cd8cccd71515fedc843f1985bf96c436b7effaecce67290e7e0757
+          ACTIONLINT_VERSION: 1.7.7
+        run: |
+          curl -fsSL -o /tmp/actionlint.tgz \
+            "https://github.com/rhysd/actionlint/releases/download/v${ACTIONLINT_VERSION}/actionlint_${ACTIONLINT_VERSION}_linux_amd64.tar.gz"
+          echo "${ACTIONLINT_SHA256}  /tmp/actionlint.tgz" | sha256sum -c -
+          tar xzf /tmp/actionlint.tgz -C /usr/local/bin actionlint
+          actionlint --version
 
   # The theme preview: every bundle in both schemes on three built routes, with a
   # full-page contrast audit. It is the only check that measures what the shell
