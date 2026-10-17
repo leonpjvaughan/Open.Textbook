@@ -223,6 +223,31 @@ def infer(problem: dict, items: dict[str, dict], limit: int = 3) -> list[str]:
     return found
 
 
+def expressions(problem: dict) -> list[str]:
+    """Every expression a record's check carries, composites included.
+
+    `check.checks` nests: `kind: all` holds sub-checks, each with its own
+    `expression` or `consistency`. Reading only the top level made a record that
+    uses three supplied formulae look as though it used none, so the gap below
+    was a lower bound rather than a measurement — found while declaring the
+    Applied Mathematics banks, where most mechanics records are composites.
+    """
+    found: list[str] = []
+
+    def walk(check) -> None:
+        if not isinstance(check, dict):
+            return
+        for key in ("expression", "consistency"):
+            value = check.get(key)
+            if isinstance(value, str):
+                found.append(value)
+        for sub in check.get("checks") or []:
+            walk(sub)
+
+    walk(problem.get("check") or {})
+    return found
+
+
 def undeclared(book: books.Book) -> list[str]:
     """Records that carry symbols, declare nothing, and are not pure arithmetic.
 
@@ -235,15 +260,14 @@ def undeclared(book: books.Book) -> list[str]:
         for record in data.get("problems", []) or []:
             if declared(record):
                 continue
-            check = record.get("check") or {}
-            expression = check.get("expression") or check.get("consistency")
-            if not isinstance(expression, str):
+            found = expressions(record)
+            if not found:
                 continue
             try:
                 from sympy import sympify
 
-                if sympify(expression).free_symbols:
-                    out.append(f"{path.name}:{record.get('id')}: {expression}")
+                if any(sympify(expression).free_symbols for expression in found):
+                    out.append(f"{path.name}:{record.get('id')}: {'; '.join(found)}")
             except Exception:
                 continue
     return out

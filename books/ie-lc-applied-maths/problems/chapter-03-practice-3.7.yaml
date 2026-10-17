@@ -37,6 +37,7 @@ problems:
       A stone is thrown with a vertical component of $15$ m/s upwards. Taking
       $g = 9.8$ m/s$^2$, calculate its height after $2$ s.
     answer_label: Height
+    plays: [linear-motion-displacement, acceleration-due-to-gravity]
     check:
       kind: dimensions
       expression: uy*t - 0.5*g*t**2
@@ -81,6 +82,7 @@ problems:
       reaches the wall after $0.866$ s. Taking $g = 9.8$ m/s$^2$, calculate its
       height when it reaches the wall, to $3$ significant figures.
     answer_label: Height at the wall
+    plays: [linear-motion-displacement, acceleration-due-to-gravity]
     check:
       kind: all
       checks:
@@ -132,6 +134,7 @@ problems:
       vertical component is $16.07$ m/s. Taking $g = 9.8$ m/s$^2$, calculate
       its height after $1.5$ s, to $3$ significant figures.
     answer_label: Height
+    plays: [linear-motion-displacement, acceleration-due-to-gravity]
     check:
       kind: dimensions
       expression: uy*t - 0.5*g*t**2

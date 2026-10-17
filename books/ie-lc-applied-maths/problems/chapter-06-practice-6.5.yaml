@@ -15,6 +15,7 @@ problems:
       A test car of mass $1200$ kg moves at $15$ m/s. Calculate its kinetic
       energy.
     answer_label: Kinetic energy
+    plays: kinetic-energy
     check:
       kind: dimensions
       expression: 0.5 * m * v**2
@@ -35,6 +36,7 @@ problems:
       total mass $2000$ kg at $9$ m/s. Calculate their kinetic energy after the
       collision.
     answer_label: Kinetic energy
+    plays: kinetic-energy
     check:
       kind: dimensions
       expression: 0.5 * m * v**2
@@ -55,6 +57,7 @@ problems:
       of mass $800$ kg. They lock together and move at $9$ m/s. Calculate the
       kinetic energy lost in the collision.
     answer_label: Energy lost
+    plays: kinetic-energy
     check:
       kind: dimensions
       expression: 0.5 * m1 * u1**2 - 0.5 * (m1 + m2) * v**2
@@ -78,6 +81,7 @@ problems:
       at $6$ m/s and the $800$ kg car moves at $13.5$ m/s. Calculate the total
       kinetic energy after the collision.
     answer_label: Kinetic energy
+    plays: kinetic-energy
     check:
       kind: dimensions
       expression: 0.5 * m1 * v1**2 + 0.5 * m2 * v2**2
@@ -102,6 +106,7 @@ problems:
       with a stationary ball of the same mass. Calculate the velocity of each
       ball after the collision.
     answer_label: Velocities of the two balls
+    plays: [conservation-of-momentum, momentum, kinetic-energy]
     check:
       kind: all
       checks:
@@ -134,6 +139,7 @@ problems:
       with a stationary ball of mass $1$ kg. Calculate the velocity of each ball
       after the collision.
     answer_label: Velocities of the two balls
+    plays: [conservation-of-momentum, momentum, kinetic-energy]
     check:
       kind: all
       checks:

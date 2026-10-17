@@ -13,6 +13,7 @@ problems:
       passes over a smooth pulley. Taking $g = 9.8$ m/s$^2$, calculate the
       acceleration of the system.
     answer_label: Acceleration
+    plays: [force-acceleration, weight, acceleration-due-to-gravity]
     check:
       kind: dimensions
       expression: (m2 - m1) * g / (m1 + m2)
@@ -34,6 +35,7 @@ problems:
       For the same system, with the $4$ kg mass accelerating upwards at
       $1.96$ m/s$^2$, calculate the tension in the string.
     answer_label: Tension
+    plays: [force-acceleration, weight, acceleration-due-to-gravity]
     check:
       kind: dimensions
       expression: m1 * (g + a)
@@ -57,6 +59,7 @@ problems:
       the $2$ kg mass away from the table. Calculate the acceleration of the
       system.
     answer_label: Acceleration
+    plays: force-acceleration
     check:
       kind: dimensions
       expression: F / (m1 + m2)
@@ -76,6 +79,7 @@ problems:
     statement: >-
       For the same system, calculate the tension in the string.
     answer_label: Tension
+    plays: force-acceleration
     check:
       kind: dimensions
       expression: m1 * a
@@ -97,6 +101,7 @@ problems:
       A car of mass $1200$ kg tows a trailer of mass $800$ kg on a level road.
       The driving force is $4000$ N. Calculate the acceleration.
     answer_label: Acceleration
+    plays: force-acceleration
     check:
       kind: dimensions
       expression: F / (mc + mt)
@@ -116,6 +121,7 @@ problems:
     statement: >-
       For the same car and trailer, calculate the tension in the tow bar.
     answer_label: Tension
+    plays: force-acceleration
     check:
       kind: dimensions
       expression: mt * a
@@ -136,6 +142,7 @@ problems:
       pulley. Taking $g = 9.8$ m/s$^2$, calculate the acceleration and the
       tension.
     answer_label: Acceleration, then tension
+    plays: [force-acceleration, weight, acceleration-due-to-gravity]
     check:
       kind: all
       checks:

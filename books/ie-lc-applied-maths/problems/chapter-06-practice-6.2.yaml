@@ -16,6 +16,7 @@ problems:
       car of mass $800$ kg. The two cars lock together and move off as one.
       Calculate their common velocity.
     answer_label: Common velocity
+    plays: [conservation-of-momentum, momentum]
     check:
       kind: dimensions
       expression: (m1 * u1) / (m1 + m2)
@@ -38,6 +39,7 @@ problems:
       kg moving at $2$ m/s in the same direction. They lock together. Calculate
       their common velocity.
     answer_label: Common velocity
+    plays: [conservation-of-momentum, momentum]
     check:
       kind: dimensions
       expression: (m1 * u1 + m2 * u2) / (m1 + m2)
@@ -61,6 +63,7 @@ problems:
       $2$ kg moving at $3$ m/s to the left. They lock together. Calculate their
       common velocity, taking the right as positive.
     answer_label: Common velocity
+    plays: [conservation-of-momentum, momentum]
     check:
       kind: dimensions
       expression: (m1 * u1 - m2 * u2) / (m1 + m2)
@@ -83,6 +86,7 @@ problems:
       A body of mass $5$ kg is at rest and splits into two parts. One part of
       mass $2$ kg moves at $6$ m/s. Calculate the speed of the other part.
     answer_label: Speed of the other part
+    plays: [conservation-of-momentum, momentum]
     check:
       kind: dimensions
       expression: (m1 * v1) / m2
@@ -105,6 +109,7 @@ problems:
       A rifle of mass $4$ kg fires a bullet of mass $0.02$ kg at $500$ m/s.
       Calculate the recoil speed of the rifle.
     answer_label: Recoil speed
+    plays: [conservation-of-momentum, momentum]
     check:
       kind: dimensions
       expression: (m * v) / M
@@ -127,6 +132,7 @@ problems:
       $2$ kg. After the collision the $4$ kg body continues at $3$ m/s.
       Calculate the velocity of the $2$ kg body.
     answer_label: Velocity
+    plays: [conservation-of-momentum, momentum]
     check:
       kind: dimensions
       expression: (m1 * u1 - m1 * v1) / m2
@@ -150,6 +156,7 @@ problems:
       A bullet of mass $0.02$ kg moving at $300$ m/s embeds itself in a block of
       mass $1.98$ kg at rest. Calculate the common speed after the impact.
     answer_label: Common speed
+    plays: [conservation-of-momentum, momentum]
     check:
       kind: dimensions
       expression: (m1 * u1) / (m1 + m2)

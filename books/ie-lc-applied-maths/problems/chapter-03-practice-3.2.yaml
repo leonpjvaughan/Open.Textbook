@@ -19,6 +19,7 @@ problems:
       A car has an initial velocity of $6$ m/s and accelerates uniformly at
       $4$ m/s$^2$ for $5$ s. Calculate its final velocity.
     answer_label: Final velocity
+    plays: linear-motion-velocity
     check:
       kind: dimensions
       expression: u + a*t
@@ -39,6 +40,7 @@ problems:
       A trolley starts from rest and accelerates uniformly at $3$ m/s$^2$ for
       $4$ s. Calculate the distance it travels.
     answer_label: Distance travelled
+    plays: linear-motion-displacement
     check:
       kind: dimensions
       expression: u*t + 0.5*a*t**2
@@ -59,6 +61,7 @@ problems:
       A cyclist speeds up from $8$ m/s to $20$ m/s with a constant acceleration
       of $2$ m/s$^2$. Calculate the distance travelled while speeding up.
     answer_label: Distance travelled
+    plays: linear-motion-velocity-squared
     check:
       kind: dimensions
       expression: (v**2 - u**2)/(2*a)
@@ -80,6 +83,7 @@ problems:
       forward as positive, calculate its acceleration and the distance it
       travels while braking.
     answer_label: Acceleration, then distance
+    plays: [linear-motion-velocity, linear-motion-average-velocity]
     check:
       kind: all
       checks:
@@ -111,6 +115,7 @@ problems:
       A runner accelerates uniformly from $4$ m/s to $16$ m/s in $6$ s.
       Calculate the distance covered.
     answer_label: Distance covered
+    plays: linear-motion-average-velocity
     check:
       kind: dimensions
       expression: 0.5*(u + v)*t
@@ -132,6 +137,7 @@ problems:
       A particle starts at $10$ m/s and accelerates uniformly at $2$ m/s$^2$.
       It travels $96$ m. Calculate the time taken.
     answer_label: Time taken
+    plays: linear-motion-displacement
     check:
       kind: solve
       equation: "10*t + t**2 = 96"
@@ -153,6 +159,7 @@ problems:
       until it stops. Calculate the time taken to stop and the distance it
       travels while braking.
     answer_label: Time to stop, then distance
+    plays: [linear-motion-velocity, linear-motion-average-velocity]
     check:
       kind: all
       checks:

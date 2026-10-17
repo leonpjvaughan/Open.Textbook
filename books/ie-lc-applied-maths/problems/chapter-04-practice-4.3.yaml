@@ -12,6 +12,7 @@ problems:
       A block of mass $8$ kg rests on a smooth horizontal floor. A horizontal
       force of $24$ N pulls it. Calculate its acceleration.
     answer_label: Acceleration
+    plays: force-acceleration
     check:
       kind: dimensions
       expression: F / m
@@ -32,6 +33,7 @@ problems:
       to the right and $8$ N to the left. Calculate the resultant force and the
       acceleration.
     answer_label: Resultant force, then acceleration
+    plays: force-acceleration
     check:
       kind: all
       checks:
@@ -60,6 +62,7 @@ problems:
       A box of mass $15$ kg rests on a horizontal floor. Taking
       $g = 9.8$ m/s$^2$, calculate the normal reaction from the floor.
     answer_label: Normal reaction
+    plays: [weight, acceleration-due-to-gravity]
     check:
       kind: dimensions
       expression: m * g
@@ -79,6 +82,7 @@ problems:
       A trolley of mass $4$ kg on a smooth horizontal floor accelerates at
       $3.5$ m/s$^2$. Calculate the horizontal force on it.
     answer_label: Force
+    plays: force-acceleration
     check:
       kind: dimensions
       expression: m * a
@@ -98,6 +102,7 @@ problems:
       force of $12$ N acts on it in the opposite direction to its motion.
       Calculate its acceleration, taking the direction of motion as positive.
     answer_label: Acceleration
+    plays: force-acceleration
     check:
       kind: dimensions
       expression: F / m
@@ -119,6 +124,7 @@ problems:
       acting forwards and a $6$ N force acting backwards. Calculate the
       resultant force and the acceleration.
     answer_label: Resultant force, then acceleration
+    plays: force-acceleration
     check:
       kind: all
       checks:
@@ -148,6 +154,7 @@ problems:
       direction of motion and a force of $16$ N acts against it. Calculate the
       resultant force and the acceleration.
     answer_label: Resultant force, then acceleration
+    plays: force-acceleration
     check:
       kind: all
       checks:

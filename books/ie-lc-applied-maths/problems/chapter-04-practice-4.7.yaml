@@ -31,6 +31,7 @@ problems:
       A resultant force of $(5\mathbf{i} + 3\mathbf{j})$ N acts on a particle
       of mass $2$ kg. Find the acceleration as a vector.
     answer_label: Acceleration vector
+    plays: force-acceleration
     check:
       kind: vector
       op: scale
@@ -104,6 +105,7 @@ problems:
       A force of $(6\mathbf{i} + 9\mathbf{j})$ N gives a particle an
       acceleration of $(2\mathbf{i} + 3\mathbf{j})$ m/s$^2$. Find the mass.
     answer_label: Mass
+    plays: force-acceleration
     check:
       kind: all
       checks:

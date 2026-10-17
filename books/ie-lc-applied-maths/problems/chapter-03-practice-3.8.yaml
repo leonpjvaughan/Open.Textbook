@@ -15,6 +15,7 @@ problems:
       vertical component is $10$ m/s. Taking $g = 9.8$ m/s$^2$, calculate the
       time of flight.
     answer_label: Time of flight
+    plays: [linear-motion-velocity, acceleration-due-to-gravity]
     check:
       kind: dimensions
       expression: 2*uy/g
@@ -37,6 +38,7 @@ problems:
       The same ball has a horizontal component of $17.32$ m/s and a time of
       flight of $2.041$ s. Calculate its range, to $4$ significant figures.
     answer_label: Range
+    plays: [linear-motion-velocity, acceleration-due-to-gravity]
     check:
       kind: all
       checks:
@@ -66,6 +68,7 @@ problems:
       The same ball has a vertical component of $10$ m/s. Taking
       $g = 9.8$ m/s$^2$, calculate the greatest height it reaches.
     answer_label: Greatest height
+    plays: [linear-motion-velocity-squared, acceleration-due-to-gravity]
     check:
       kind: dimensions
       expression: uy**2/(2*g)
@@ -88,6 +91,7 @@ problems:
       A ball is kicked at $25$ m/s at $45^\circ$ above the horizontal. Taking
       $g = 9.8$ m/s$^2$, calculate its range.
     answer_label: Range
+    plays: [linear-motion-velocity, acceleration-due-to-gravity]
     check:
       kind: dimensions
       expression: u**2/g
@@ -109,6 +113,7 @@ problems:
       A ball is kicked at $25$ m/s at $45^\circ$. Its vertical component is
       $17.68$ m/s. Taking $g = 9.8$ m/s$^2$, calculate the time of flight.
     answer_label: Time of flight
+    plays: [linear-motion-velocity, acceleration-due-to-gravity]
     check:
       kind: dimensions
       expression: 2*uy/g
@@ -130,6 +135,7 @@ problems:
       components are $28.19$ m/s horizontally and $10.26$ m/s vertically.
       Taking $g = 9.8$ m/s$^2$, calculate its range.
     answer_label: Range
+    plays: [linear-motion-velocity, acceleration-due-to-gravity]
     check:
       kind: dimensions
       expression: ux*2*uy/g
@@ -153,6 +159,7 @@ problems:
       A projectile has a time of flight of $3$ s. Taking $g = 9.8$ m/s$^2$,
       calculate the greatest height it reaches.
     answer_label: Greatest height
+    plays: [linear-motion-velocity, linear-motion-velocity-squared, acceleration-due-to-gravity]
     check:
       kind: dimensions
       expression: (g*T/2)**2/(2*g)

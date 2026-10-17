@@ -17,6 +17,7 @@ problems:
       A test car of mass $1200$ kg travels in a straight line at $15$ m/s.
       Calculate its momentum.
     answer_label: Momentum
+    plays: momentum
     check:
       kind: dimensions
       expression: m * v
@@ -36,6 +37,7 @@ problems:
     statement: >-
       A ball of mass $0.25$ kg is thrown at $8$ m/s. Calculate its momentum.
     answer_label: Momentum
+    plays: momentum
     check:
       kind: dimensions
       expression: m * v
@@ -55,6 +57,7 @@ problems:
       A force of $60$ N acts on a trolley for $0.5$ s. Calculate the impulse
       delivered to the trolley.
     answer_label: Impulse
+    plays: impulse
     check:
       kind: dimensions
       expression: F * t
@@ -75,6 +78,7 @@ problems:
       A ball of mass $3$ kg moves at $12$ m/s. A keeper catches it and brings it
       to rest. Calculate the magnitude of the impulse on the ball.
     answer_label: Impulse
+    plays: [impulse, momentum]
     check:
       kind: dimensions
       expression: m * v
@@ -95,6 +99,7 @@ problems:
       A ball receives an impulse of $36$ N s over $0.08$ s. Calculate the
       average force on the ball.
     answer_label: Average force
+    plays: impulse
     check:
       kind: dimensions
       expression: J / t
@@ -116,6 +121,7 @@ problems:
       Taking the direction away from the wall as positive, calculate the impulse
       on the ball.
     answer_label: Impulse
+    plays: [impulse, momentum]
     check:
       kind: dimensions
       expression: m * (v2 - v1)
@@ -138,6 +144,7 @@ problems:
       A car of mass $1500$ kg speeds up from $10$ m/s to $25$ m/s in $5$ s.
       Calculate the average resultant force on the car.
     answer_label: Average force
+    plays: [impulse, momentum]
     check:
       kind: dimensions
       expression: m * (v - u) / t

@@ -15,6 +15,7 @@ problems:
       A ball hits the floor at $5$ m/s and rebounds at $4$ m/s. Calculate the
       coefficient of restitution.
     answer_label: Coefficient of restitution
+    plays: newton-experimental-law
     check: {kind: evaluate, expression: '4 / 5', answer: '0.8'}
     answer_text: >-
       The coefficient of restitution is the speed of separation divided by the
@@ -29,6 +30,7 @@ problems:
       A ball hits the floor at $12$ m/s. The coefficient of restitution is
       $0.6$. Calculate its rebound speed.
     answer_label: Rebound speed
+    plays: newton-experimental-law
     check:
       kind: dimensions
       expression: e * v
@@ -50,6 +52,7 @@ problems:
       car of mass $800$ kg. The coefficient of restitution is $0.5$. Calculate
       the velocity of each car after the collision.
     answer_label: Velocities of the two cars
+    plays: [conservation-of-momentum, momentum, newton-experimental-law]
     check:
       kind: all
       checks:
@@ -85,6 +88,7 @@ problems:
       $4$ kg body moves at $3.5$ m/s forwards. Calculate the coefficient of
       restitution.
     answer_label: Coefficient of restitution
+    plays: newton-experimental-law
     check: {kind: evaluate, expression: '(3.5 - (-1)) / 6', answer: '0.75'}
     answer_text: >-
       The speed of approach is $6$ m/s and the speed of separation is
@@ -100,6 +104,7 @@ problems:
       A ball is dropped from a height of $2$ m and rebounds to a height of
       $1.28$ m. Calculate the coefficient of restitution.
     answer_label: Coefficient of restitution
+    plays: [linear-motion-velocity-squared, newton-experimental-law]
     check: {kind: evaluate, expression: 'sqrt(1.28 / 2)', answer: '0.8'}
     answer_text: >-
       The speeds before and after the bounce are set by the drop and rebound
@@ -116,6 +121,7 @@ problems:
       kg. The coefficient of restitution is $0.5$. Calculate the velocity of
       each ball after the collision.
     answer_label: Velocities of the two balls
+    plays: [conservation-of-momentum, momentum, newton-experimental-law]
     check:
       kind: all
       checks:
@@ -148,6 +154,7 @@ problems:
       A ball rebounds to a height of $0.45$ m. The coefficient of restitution is
       $0.6$. Calculate the height from which it was dropped.
     answer_label: Drop height
+    plays: [linear-motion-velocity-squared, newton-experimental-law]
     check: {kind: evaluate, expression: '0.45 / 0.6**2', answer: '1.25'}
     answer_text: >-
       The rebound height is $e^2$ times the drop height, so the drop height is

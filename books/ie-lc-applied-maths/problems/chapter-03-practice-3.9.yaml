@@ -15,6 +15,7 @@ problems:
       components are $10$ m/s horizontally and $17.32$ m/s vertically. Taking
       $g = 9.8$ m/s$^2$, calculate its range.
     answer_label: Range
+    plays: [linear-motion-velocity, acceleration-due-to-gravity]
     check:
       kind: dimensions
       expression: ux*2*uy/g
@@ -40,6 +41,7 @@ problems:
       greatest range it can have on level ground, and state the angle that
       gives it.
     answer_label: Greatest range and its angle
+    plays: [linear-motion-velocity, acceleration-due-to-gravity]
     check:
       kind: dimensions
       expression: u**2/g
@@ -76,6 +78,7 @@ problems:
       A ball is kicked at $15$ m/s and lands $20$ m away on level ground.
       Find the two possible launch angles, each to $2$ decimal places.
     answer_label: The two angles
+    plays: [linear-motion-velocity, acceleration-due-to-gravity]
     check:
       kind: all
       checks:
@@ -108,6 +111,7 @@ problems:
       and $7.5$ m/s vertically. Taking $g = 9.8$ m/s$^2$, calculate the time
       until it lands, and the horizontal distance it travels.
     answer_label: Time of flight, then horizontal distance
+    plays: [linear-motion-displacement, acceleration-due-to-gravity]
     check:
       kind: all
       checks:
@@ -144,6 +148,7 @@ problems:
       A ball is kicked at $20$ m/s at $45^\circ$ to the horizontal. Taking
       $g = 9.8$ m/s$^2$, calculate its range and its greatest height.
     answer_label: Range, then greatest height
+    plays: [linear-motion-velocity, linear-motion-velocity-squared, acceleration-due-to-gravity]
     check:
       kind: all
       checks:
@@ -176,6 +181,7 @@ problems:
       away on level ground. Taking $g = 9.8$ m/s$^2$, calculate the speed at
       which it was kicked.
     answer_label: Launch speed
+    plays: [linear-motion-velocity, acceleration-due-to-gravity]
     check:
       kind: dimensions
       expression: sqrt(R*g/(sqrt(3)/2))

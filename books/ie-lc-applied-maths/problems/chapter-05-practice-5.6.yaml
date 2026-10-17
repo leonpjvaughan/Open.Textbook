@@ -15,6 +15,7 @@ problems:
       $D = kv$, where $k = 0.25$ kg/s. Taking $g = 9.8$ m/s$^2$, calculate the
       terminal velocity.
     answer_label: Terminal velocity
+    plays: [weight, acceleration-due-to-gravity]
     check:
       kind: dimensions
       expression: m * g / k
@@ -38,6 +39,7 @@ problems:
       $D = kv^2$, where $k = 0.2$ kg/m. Taking $g = 9.8$ m/s$^2$, calculate the
       terminal velocity, to $4$ significant figures.
     answer_label: Terminal velocity
+    plays: [weight, acceleration-due-to-gravity]
     check:
       kind: dimensions
       expression: sqrt(m * g / k)
@@ -60,6 +62,7 @@ problems:
       A parachutist of mass $70$ kg reaches a terminal velocity of $5$ m/s. The
       drag force is $D = kv^2$. Taking $g = 9.8$ m/s$^2$, calculate $k$.
     answer_label: Value of k
+    plays: [weight, acceleration-due-to-gravity]
     check:
       kind: dimensions
       expression: m * g / v**2
@@ -83,6 +86,7 @@ problems:
       $D = kv^2$ with $k = 0.3$ kg/m. Taking $g = 9.8$ m/s$^2$, calculate the
       terminal speed, to $4$ significant figures.
     answer_label: Terminal speed
+    plays: [weight, coefficient-of-friction, acceleration-due-to-gravity]
     check:
       kind: dimensions
       expression: sqrt((m * g / 2 - mu * m * g * sqrt(3) / 2) / k)
@@ -111,6 +115,7 @@ problems:
       $k = 0.5$ kg/m. Taking $g = 9.8$ m/s$^2$, calculate the terminal speed, to
       $3$ significant figures.
     answer_label: Terminal speed
+    plays: [weight, acceleration-due-to-gravity]
     check:
       kind: dimensions
       expression: sqrt(m * g / 2 / k)
@@ -135,6 +140,7 @@ problems:
       $7$ m/s. The drag force is $D = kv^2$ with $k = 0.4$ kg/m. Taking
       $g = 9.8$ m/s$^2$, calculate the mass of the object.
     answer_label: Mass
+    plays: [weight, acceleration-due-to-gravity]
     check:
       kind: dimensions
       expression: k * v**2 / g
@@ -156,6 +162,7 @@ problems:
       $k = 0.15$ kg/m. Taking $g = 9.8$ m/s$^2$, calculate the terminal speed to
       $4$ significant figures, and the drag force at that speed.
     answer_label: Terminal speed, then drag
+    plays: [weight, acceleration-due-to-gravity]
     check:
       kind: all
       checks:

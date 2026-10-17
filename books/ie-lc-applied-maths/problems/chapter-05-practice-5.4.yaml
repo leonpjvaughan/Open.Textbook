@@ -15,6 +15,7 @@ problems:
       Calculate the greatest angle of the plane for which the block stays at
       rest, to $1$ decimal place.
     answer_label: Greatest angle
+    plays: [coefficient-of-friction, weight]
     check:
       kind: approx
       value: 'atan(1/2) * 180 / pi'
@@ -36,6 +37,7 @@ problems:
       Calculate the greatest angle of the plane for which the block stays at
       rest, to $1$ decimal place.
     answer_label: Greatest angle
+    plays: [coefficient-of-friction, weight]
     check:
       kind: approx
       value: 'atan(1/5) * 180 / pi'
@@ -56,6 +58,7 @@ problems:
       Calculate the greatest angle of the plane for which the block stays at
       rest, to $1$ decimal place.
     answer_label: Greatest angle
+    plays: [coefficient-of-friction, weight]
     check:
       kind: approx
       value: 'atan(1/10) * 180 / pi'
@@ -78,6 +81,7 @@ problems:
       that keeps the block at rest, to $4$ significant figures. Take
       $g = 9.8$ m/s$^2$.
     answer_label: Smallest force up the plane
+    plays: [weight, coefficient-of-friction, acceleration-due-to-gravity]
     check:
       kind: dimensions
       expression: m * g / 2 - mu * m * g * sqrt(3) / 2
@@ -104,6 +108,7 @@ problems:
       $\mu = 0.4$, calculate the force up the plane needed to just start the
       block moving up the plane, to $4$ significant figures.
     answer_label: Force to start it moving up
+    plays: [weight, coefficient-of-friction, acceleration-due-to-gravity]
     check:
       kind: dimensions
       expression: m * g / 2 + mu * m * g * sqrt(3) / 2
@@ -130,6 +135,7 @@ problems:
       horizontal. Calculate the smallest force that just starts the block
       moving, to $4$ significant figures. Take $g = 9.8$ m/s$^2$.
     answer_label: Smallest force
+    plays: [weight, coefficient-of-friction, acceleration-due-to-gravity]
     check:
       kind: dimensions
       expression: mu * m * g / (sqrt(3) / 2 + mu / 2)
@@ -160,6 +166,7 @@ problems:
       and the greatest tension for which the block stays at rest, each to
       $4$ significant figures. Take $g = 9.8$ m/s$^2$.
     answer_label: Least tension, then greatest tension
+    plays: [weight, coefficient-of-friction, acceleration-due-to-gravity]
     check:
       kind: all
       checks:

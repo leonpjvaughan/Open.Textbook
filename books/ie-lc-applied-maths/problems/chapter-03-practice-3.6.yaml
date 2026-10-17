@@ -17,6 +17,7 @@ problems:
       of $6$ m/s$^2$. Integrate the acceleration to find its velocity after
       $5$ s.
     answer_label: Velocity after 5 s
+    plays: linear-motion-velocity
     check:
       kind: all
       checks:
@@ -45,6 +46,7 @@ problems:
       A particle has velocity $v = 4 + 6t$ m/s and starts at the origin.
       Calculate its displacement after $5$ s.
     answer_label: Displacement
+    plays: linear-motion-displacement
     check:
       kind: apply
       expression: "4 + 6*t"
@@ -65,6 +67,7 @@ problems:
       acceleration of $-9.8$ m/s$^2$. Integrate once to find its velocity, and
       again to find its height, both as functions of $t$.
     answer_label: Velocity, then height
+    plays: acceleration-due-to-gravity
     check:
       kind: all
       checks:
@@ -92,6 +95,7 @@ problems:
       A particle starts at $3$ m/s and accelerates at $4$ m/s$^2$ over a
       distance of $14$ m. Calculate its final velocity.
     answer_label: Final velocity
+    plays: linear-motion-velocity-squared
     check:
       kind: dimensions
       expression: sqrt(u**2 + 2*a*s)
@@ -113,6 +117,7 @@ problems:
       A ball is thrown upwards at $12$ m/s. Its height is $y = 12t - 4.9t^2$
       metres. Find the positive time at which it returns to the ground.
     answer_label: Time
+    plays: [linear-motion-displacement, acceleration-due-to-gravity]
     check:
       kind: solve
       equation: "12*t - 4.9*t**2 = 0"
@@ -132,6 +137,7 @@ problems:
       Show that the two terms on the right of $s = ut + \frac{1}{2}at^2$ have
       the same dimensions as $s$.
     answer_label: A dimensional check
+    plays: linear-motion-displacement
     check:
       kind: dimensions
       consistency: "s = u*t + a*t**2/2"
@@ -184,6 +190,7 @@ problems:
       $-3$ m/s$^2$ until it stops. Calculate the distance it travels while
       braking.
     answer_label: Distance
+    plays: linear-motion-velocity-squared
     check:
       kind: dimensions
       expression: (v**2 - u**2)/(2*a)

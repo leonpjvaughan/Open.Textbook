@@ -34,6 +34,7 @@ problems:
       $30^\circ$ with the vertical. Calculate the speed of the bob, giving your
       answer to three significant figures.
     answer_label: Speed of the bob
+    plays: [centripetal-force, weight, acceleration-due-to-gravity]
     check:
       kind: sigfigs
       convention: round-once
@@ -56,6 +57,7 @@ problems:
       $30^\circ$ with the vertical. Calculate the period of the circular motion,
       giving your answer to three significant figures.
     answer_label: Period
+    plays: [centripetal-force, weight, acceleration-due-to-gravity]
     check:
       kind: sigfigs
       convention: round-once
@@ -78,6 +80,7 @@ problems:
       speed, the speed at which no friction is needed. Give your answer to three
       significant figures.
     answer_label: Design speed
+    plays: [centripetal-force, weight, acceleration-due-to-gravity]
     check:
       kind: sigfigs
       convention: round-once
@@ -101,6 +104,7 @@ problems:
       Calculate the angle of the bank, giving your answer in degrees to three
       significant figures.
     answer_label: Angle of the bank
+    plays: [centripetal-force, weight, acceleration-due-to-gravity]
     check:
       kind: sigfigs
       convention: round-once
@@ -123,6 +127,7 @@ problems:
       A car of mass $1000$ kg is on a track banked at $12^\circ$. Calculate the
       normal reaction on the car.
     answer_label: Normal reaction
+    plays: [weight, acceleration-due-to-gravity]
     check:
       kind: approx
       value: '1000 * 9.8 / cos(12 * pi / 180)'
@@ -144,6 +149,7 @@ problems:
       angle of $40^\circ$ with the vertical. Calculate the tension in the string,
       giving your answer to three significant figures.
     answer_label: Tension
+    plays: [weight, acceleration-due-to-gravity]
     check:
       kind: sigfigs
       convention: round-once

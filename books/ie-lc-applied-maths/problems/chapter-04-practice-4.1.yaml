@@ -13,6 +13,7 @@ problems:
     statement: >-
       A bag has a mass of $8$ kg. Taking $g = 9.8$ m/s$^2$, calculate its weight.
     answer_label: Weight
+    plays: [weight, acceleration-due-to-gravity]
     check:
       kind: dimensions
       expression: m * g
@@ -30,6 +31,7 @@ problems:
     statement: >-
       A box weighs $24.5$ N. Taking $g = 9.8$ m/s$^2$, calculate its mass.
     answer_label: Mass
+    plays: [weight, acceleration-due-to-gravity]
     check:
       kind: dimensions
       expression: W / g
@@ -49,6 +51,7 @@ problems:
       A resultant force of $30$ N acts on a mass of $6$ kg. Calculate the
       acceleration.
     answer_label: Acceleration
+    plays: force-acceleration
     check:
       kind: dimensions
       expression: F / m
@@ -68,6 +71,7 @@ problems:
       A trolley of mass $0.5$ kg accelerates at $4$ m/s$^2$. Calculate the
       resultant force on it.
     answer_label: Resultant force
+    plays: force-acceleration
     check:
       kind: dimensions
       expression: m * a
@@ -105,6 +109,7 @@ problems:
       A small ball has a mass of $0.2$ kg. Taking $g = 9.8$ m/s$^2$, calculate
       its weight to $2$ significant figures.
     answer_label: Weight
+    plays: [weight, acceleration-due-to-gravity]
     check:
       kind: all
       checks:

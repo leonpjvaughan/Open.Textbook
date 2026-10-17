@@ -218,3 +218,28 @@ def test_an_empty_declaration_is_not_a_declaration():
     assert coverage.declared_all({"id": "r", "plays": []}) == []
     assert coverage.declared_all({"id": "r", "plays": ""}) == []
     assert coverage.declared_all({"id": "r", "plays": ["", "  "]}) == []
+
+
+def test_a_composite_check_is_not_invisible():
+    """`check.checks` nests, and reading only the top level under-counted the gap.
+
+    Found while declaring the Applied Mathematics banks, where most mechanics
+    records are `kind: all`: the sub-check carried the formula, the record
+    carried no declaration, and `undeclared` could not see it. The number it
+    printed was a lower bound presented as a measurement.
+    """
+    from textbook.verify import coverage
+
+    composite = {
+        "check": {
+            "kind": "all",
+            "checks": [
+                {"kind": "evaluate", "expression": "m * a", "answer": "F"},
+                {"kind": "dimensions", "consistency": "F = m a", "units": {}},
+            ],
+        }
+    }
+    assert coverage.expressions(composite) == ["m * a", "F = m a"]
+
+    # A record with no expression anywhere is not part of the gap.
+    assert coverage.expressions({"check": {"kind": "structured", "steps": []}}) == []

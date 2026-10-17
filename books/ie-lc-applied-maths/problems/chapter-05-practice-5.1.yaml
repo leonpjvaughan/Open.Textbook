@@ -18,6 +18,7 @@ problems:
       A box of mass $12$ kg rests on a horizontal floor. Taking
       $g = 9.8$ m/s$^2$, calculate the normal reaction from the floor.
     answer_label: Normal reaction
+    plays: [weight, acceleration-due-to-gravity]
     check:
       kind: dimensions
       expression: m * g
@@ -38,6 +39,7 @@ problems:
       the horizontal. Taking $g = 9.8$ m/s$^2$, calculate the normal reaction,
       to $4$ significant figures.
     answer_label: Normal reaction
+    plays: [weight, acceleration-due-to-gravity]
     check:
       kind: dimensions
       expression: m * g * sqrt(3) / 2
@@ -63,6 +65,7 @@ problems:
       surface, and the block stays at rest. Taking $g = 9.8$ m/s$^2$, calculate
       the friction force on the block.
     answer_label: Friction force
+    plays: [weight, acceleration-due-to-gravity]
     check:
       kind: dimensions
       expression: m * g / 2 - P
@@ -114,6 +117,7 @@ problems:
       the horizontal. Taking $g = 9.8$ m/s$^2$, calculate the normal reaction,
       to $5$ significant figures.
     answer_label: Normal reaction
+    plays: [weight, acceleration-due-to-gravity]
     check:
       kind: dimensions
       expression: m * g * sqrt(2) / 2
@@ -137,6 +141,7 @@ problems:
       plane, pressing it into the surface. Taking $g = 9.8$ m/s$^2$, calculate
       the normal reaction, to $4$ significant figures.
     answer_label: Normal reaction
+    plays: [weight, acceleration-due-to-gravity]
     check:
       kind: dimensions
       expression: m * g * sqrt(3) / 2 + P
@@ -162,6 +167,7 @@ problems:
       it with a force of $100$ N at $30^\circ$ above the horizontal. Taking
       $g = 9.8$ m/s$^2$, calculate the normal reaction from the floor.
     answer_label: Normal reaction
+    plays: [weight, acceleration-due-to-gravity]
     check:
       kind: dimensions
       expression: m * g - P / 2

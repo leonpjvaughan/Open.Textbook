@@ -19,6 +19,7 @@ problems:
       at $4$ m/s at $60^\circ$ to the $x$-axis. Calculate the $x$- and
       $y$-components of the momentum of the $1$ kg ball.
     answer_label: Momentum components
+    plays: [conservation-of-momentum, momentum]
     check:
       kind: all
       checks:
@@ -40,6 +41,7 @@ problems:
       The $1$ kg ball in the previous question has momentum components
       $12$ kg m/s and $4\sqrt{3}$ kg m/s at right angles. Calculate its speed.
     answer_label: Speed
+    plays: momentum
     check:
       kind: evaluate
       expression: 'sqrt(12**2 + (4 * sqrt(3))**2)'
@@ -74,6 +76,7 @@ problems:
       car moves at $6$ m/s at $60^\circ$ to the $x$-axis. Calculate the $x$- and
       $y$-components of the momentum of the $800$ kg car.
     answer_label: Momentum components
+    plays: [conservation-of-momentum, momentum]
     check:
       kind: all
       checks:
@@ -95,6 +98,7 @@ problems:
       The $800$ kg car has momentum components $14400$ kg m/s and
       $3600\sqrt{3}$ kg m/s at right angles. Calculate its speed.
     answer_label: Speed
+    plays: momentum
     check:
       kind: evaluate
       expression: 'sqrt(18**2 + (9/2 * sqrt(3))**2)'

@@ -18,6 +18,7 @@ problems:
       A mass of $0.2$ kg is attached to a spring of stiffness $5$ N/m. Calculate
       the angular frequency and the period, leaving the period in terms of $\pi$.
     answer_label: Angular frequency, then period
+    plays: [shm-period, shm-acceleration, hookes-law, force-acceleration]
     check:
       kind: all
       checks:
@@ -44,6 +45,7 @@ problems:
       A mass of $2$ kg is attached to a spring of stiffness $32$ N/m. Calculate
       the period, leaving your answer in terms of $\pi$.
     answer_label: Period
+    plays: [shm-period, shm-acceleration, hookes-law, force-acceleration]
     check:
       kind: evaluate
       expression: '2 * pi / sqrt(32 / 2)'
@@ -62,6 +64,7 @@ problems:
       A body moves with simple harmonic motion of amplitude $0.05$ m and angular
       frequency $6$ rad/s. Calculate its maximum speed.
     answer_label: Maximum speed
+    plays: shm-velocity
     check:
       kind: dimensions
       expression: A * omega
@@ -82,6 +85,7 @@ problems:
       A body moves with simple harmonic motion of amplitude $0.05$ m and angular
       frequency $6$ rad/s. Calculate its maximum acceleration.
     answer_label: Maximum acceleration
+    plays: shm-acceleration
     check:
       kind: dimensions
       expression: A * omega**2
@@ -102,6 +106,7 @@ problems:
       oscillating with amplitude $0.02$ m. Calculate the angular frequency, the
       maximum speed and the maximum acceleration.
     answer_label: Angular frequency, maximum speed, maximum acceleration
+    plays: [shm-period, shm-acceleration, hookes-law, force-acceleration, shm-velocity]
     check:
       kind: all
       checks:
@@ -139,6 +144,7 @@ problems:
       A mass of $0.5$ kg oscillates on a spring with period $0.4$ s. Calculate
       the stiffness of the spring, leaving your answer in terms of $\pi$.
     answer_label: Stiffness
+    plays: [shm-period, shm-acceleration, hookes-law, force-acceleration]
     check:
       kind: evaluate
       expression: '0.5 * (2 * pi / 0.4)**2'
@@ -157,6 +163,7 @@ problems:
       A body moves so that its displacement is $x = A\cos\omega t$. Show by
       differentiating twice that its acceleration is $-\omega^2 x$.
     answer_label: The two derivatives
+    plays: [shm-displacement, shm-acceleration]
     check:
       kind: all
       checks:
@@ -184,6 +191,7 @@ problems:
       stiffness $120000$ N/m. Calculate the angular frequency and the period of
       its bounce, leaving the period in terms of $\pi$.
     answer_label: Angular frequency, then period
+    plays: [shm-period, shm-acceleration, hookes-law, force-acceleration]
     check:
       kind: all
       checks:

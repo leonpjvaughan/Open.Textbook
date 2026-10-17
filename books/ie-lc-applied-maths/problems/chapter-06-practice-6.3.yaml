@@ -16,6 +16,7 @@ problems:
       another car. The two cars move off together at $9$ m/s. Calculate the
       impulse on the $800$ kg car.
     answer_label: Impulse
+    plays: [impulse, momentum]
     check:
       kind: dimensions
       expression: m * (v - u)
@@ -38,6 +39,7 @@ problems:
       $9$ m/s as it strikes the other car. Calculate the impulse on it, taking
       its original direction as positive.
     answer_label: Impulse
+    plays: [impulse, momentum]
     check:
       kind: dimensions
       expression: m * (v - u)
@@ -60,6 +62,7 @@ problems:
       back along the same line at $40$ m/s. Calculate the magnitude of the
       impulse on the ball.
     answer_label: Impulse
+    plays: [impulse, momentum]
     check:
       kind: dimensions
       expression: m * (v2 - v1)
@@ -82,6 +85,7 @@ problems:
       The bat and ball in the previous question are in contact for $0.002$ s.
       Calculate the average force on the ball.
     answer_label: Average force
+    plays: impulse
     check:
       kind: dimensions
       expression: J / t
@@ -104,6 +108,7 @@ problems:
       moves at $3$ m/s to the left. Calculate the velocity of the $3$ kg body,
       taking the right as positive.
     answer_label: Velocity
+    plays: [conservation-of-momentum, momentum]
     check:
       kind: dimensions
       expression: (m1 * u1 - m2 * u2 + m1 * v1) / m2
@@ -129,6 +134,7 @@ problems:
       kg moving at $2$ m/s in the same direction. They lock together. Calculate
       their common velocity.
     answer_label: Common velocity
+    plays: [conservation-of-momentum, momentum]
     check:
       kind: dimensions
       expression: (m1 * u1 + m2 * u2) / (m1 + m2)
@@ -152,6 +158,7 @@ problems:
       of mass $1500$ kg. The cars lock together. Calculate their common velocity
       and the impulse on the stationary car.
     answer_label: Common velocity, then impulse
+    plays: [conservation-of-momentum, momentum]
     check:
       kind: all
       checks:

@@ -19,6 +19,7 @@ problems:
       $g = 9.8$ m/s$^2$, calculate the acceleration of the block, to
       $3$ significant figures.
     answer_label: Acceleration
+    plays: [force-acceleration, weight, coefficient-of-friction, acceleration-due-to-gravity]
     check:
       kind: dimensions
       expression: g * (1/2 - mu * sqrt(3) / 2)
@@ -44,6 +45,7 @@ problems:
       horizontal. The coefficient of friction is $0.3$. Taking
       $g = 9.8$ m/s$^2$, calculate the acceleration, to $3$ significant figures.
     answer_label: Acceleration
+    plays: [force-acceleration, weight, coefficient-of-friction, acceleration-due-to-gravity]
     check:
       kind: dimensions
       expression: g * (1/2 - mu * sqrt(3) / 2)
@@ -67,6 +69,7 @@ problems:
       horizontal. The coefficient of friction is $0.2$. Taking
       $g = 9.8$ m/s$^2$, calculate the acceleration, to $3$ significant figures.
     answer_label: Acceleration
+    plays: [force-acceleration, weight, coefficient-of-friction, acceleration-due-to-gravity]
     check:
       kind: dimensions
       expression: g * (sqrt(2) / 2 - mu * sqrt(2) / 2)
@@ -90,6 +93,7 @@ problems:
       Taking $g = 9.8$ m/s$^2$, calculate the acceleration, taking the direction
       of motion as positive.
     answer_label: Acceleration
+    plays: [force-acceleration, weight, coefficient-of-friction, acceleration-due-to-gravity]
     check:
       kind: dimensions
       expression: -mu * g
@@ -112,6 +116,7 @@ problems:
       The coefficient of friction is $0.5$. By comparing $\tan 20^\circ$ with
       $\mu$, decide whether the block slides.
     answer_label: Does it slide?
+    plays: [coefficient-of-friction, weight]
     check:
       kind: compare
       relation: '<'
@@ -133,6 +138,7 @@ problems:
       $g = 9.8$ m/s$^2$, calculate its deceleration as it rises, to
       $3$ significant figures.
     answer_label: Deceleration
+    plays: [force-acceleration, weight, coefficient-of-friction, acceleration-due-to-gravity]
     check:
       kind: dimensions
       expression: g * (1/2 + mu * sqrt(3) / 2)
@@ -158,6 +164,7 @@ problems:
       $g = 9.8$ m/s$^2$, calculate the normal reaction and the friction force,
       each to $4$ significant figures.
     answer_label: Normal reaction, then friction
+    plays: [weight, coefficient-of-friction, acceleration-due-to-gravity]
     check:
       kind: all
       checks:
@@ -190,6 +197,7 @@ problems:
       at a constant speed. Show that the coefficient of friction is
       $\tan 30^\circ$, and give its value.
     answer_label: Coefficient of friction
+    plays: [coefficient-of-friction, weight]
     check:
       kind: evaluate
       expression: 'tan(30*pi/180)'

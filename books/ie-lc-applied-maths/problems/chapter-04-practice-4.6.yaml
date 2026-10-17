@@ -15,6 +15,7 @@ problems:
       hanging mass of $3$ kg. Taking $g = 9.8$ m/s$^2$, calculate the
       acceleration of the system.
     answer_label: Acceleration
+    plays: [force-acceleration, weight, acceleration-due-to-gravity]
     check:
       kind: dimensions
       expression: m2 * g / (m1 + m2)
@@ -35,6 +36,7 @@ problems:
     statement: >-
       For the same system, calculate the tension in the string.
     answer_label: Tension
+    plays: force-acceleration
     check:
       kind: dimensions
       expression: m1 * a
@@ -56,6 +58,7 @@ problems:
       smooth pulley at the top, and carries a hanging mass of $15$ kg. Taking
       $g = 9.8$ m/s$^2$, calculate the acceleration of the system.
     answer_label: Acceleration
+    plays: [force-acceleration, weight, acceleration-due-to-gravity]
     check:
       kind: dimensions
       expression: (m2 * g - m1 * g / 2) / (m1 + m2)
@@ -78,6 +81,7 @@ problems:
     statement: >-
       For the same crate and hanging mass, calculate the tension in the string.
     answer_label: Tension
+    plays: [force-acceleration, weight, acceleration-due-to-gravity]
     check:
       kind: dimensions
       expression: m2 * (g - a)
@@ -102,6 +106,7 @@ problems:
       a smooth pulley, and carries a hanging mass that keeps the crate in
       equilibrium. Calculate the hanging mass.
     answer_label: Hanging mass
+    plays: weight
     check:
       kind: dimensions
       expression: m1 / 2
@@ -122,6 +127,7 @@ problems:
       passes over a smooth pulley and carries a hanging mass of $6$ kg. Taking
       $g = 9.8$ m/s$^2$, calculate the acceleration and the tension.
     answer_label: Acceleration, then tension
+    plays: [force-acceleration, weight, acceleration-due-to-gravity]
     check:
       kind: all
       checks:
@@ -154,6 +160,7 @@ problems:
       carries a hanging mass of $4$ kg. Taking $g = 9.8$ m/s$^2$, calculate the
       acceleration of the system.
     answer_label: Acceleration
+    plays: [force-acceleration, weight, acceleration-due-to-gravity]
     check:
       kind: dimensions
       expression: (m2 * g - m1 * g / 2) / (m1 + m2)

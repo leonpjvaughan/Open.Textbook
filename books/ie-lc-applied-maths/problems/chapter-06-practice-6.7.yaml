@@ -16,6 +16,7 @@ problems:
       A test car hits a barrier at $15$ m/s and rebounds at $6$ m/s. Calculate
       the coefficient of restitution.
     answer_label: Coefficient of restitution
+    plays: newton-experimental-law
     check: {kind: evaluate, expression: '6 / 15', answer: '0.4'}
     answer_text: >-
       The barrier does not move, so the speed of approach is $15$ m/s and the
@@ -31,6 +32,7 @@ problems:
       at $6$ m/s. Taking the direction towards the barrier as positive,
       calculate the impulse on the car.
     answer_label: Impulse
+    plays: [impulse, momentum]
     check:
       kind: dimensions
       expression: m * (v2 - v1)
@@ -55,6 +57,7 @@ problems:
       restitution is $0.7$. Calculate the speed with which it hits the floor on
       the second bounce.
     answer_label: Speed on the second bounce
+    plays: newton-experimental-law
     check:
       kind: dimensions
       expression: u * e**2
@@ -77,6 +80,7 @@ problems:
       is $0.5$. Calculate the height it reaches after the first bounce and after
       the second bounce.
     answer_label: Heights after two bounces
+    plays: [linear-motion-velocity-squared, newton-experimental-law]
     check:
       kind: all
       checks:
@@ -106,6 +110,7 @@ problems:
       A ball is dropped from a height of $2$ m. The coefficient of restitution
       is $0.5$. Calculate the total distance it travels before it comes to rest.
     answer_label: Total distance
+    plays: [linear-motion-velocity-squared, newton-experimental-law]
     check:
       kind: evaluate
       expression: '2 * (1 + 2 * (1/2)**2 / (1 - (1/2)**2))'
@@ -129,6 +134,7 @@ problems:
       restitution $0.5$. Calculate the speed of the second ball after the first
       collision, and the speed of the third ball after the second collision.
     answer_label: Speed after the first, then the second collision
+    plays: [conservation-of-momentum, momentum, newton-experimental-law]
     check:
       kind: all
       checks:
@@ -159,6 +165,7 @@ problems:
       A ball bounces to $0.36$ of the height from which it fell each time.
       Calculate the coefficient of restitution.
     answer_label: Coefficient of restitution
+    plays: [linear-motion-velocity-squared, newton-experimental-law]
     check: {kind: evaluate, expression: 'sqrt(0.36)', answer: '0.6'}
     answer_text: >-
       The rebound height is $e^2$ times the drop height, so $e^2 = 0.36$ and

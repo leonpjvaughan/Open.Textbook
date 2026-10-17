@@ -14,6 +14,7 @@ problems:
       the horizontal. Taking $g = 9.8$ m/s$^2$, calculate the component of the
       weight acting down the plane.
     answer_label: Component down the plane
+    plays: [weight, acceleration-due-to-gravity]
     check:
       kind: dimensions
       expression: m * g / 2
@@ -34,6 +35,7 @@ problems:
       A block slides down a smooth plane inclined at $30^\circ$ to the
       horizontal. Taking $g = 9.8$ m/s$^2$, calculate its acceleration.
     answer_label: Acceleration
+    plays: [force-acceleration, weight, acceleration-due-to-gravity]
     check:
       kind: dimensions
       expression: g / 2
@@ -54,6 +56,7 @@ problems:
       the horizontal. Taking $g = 9.8$ m/s$^2$, calculate the normal reaction,
       to $3$ significant figures.
     answer_label: Normal reaction
+    plays: [weight, acceleration-due-to-gravity]
     check:
       kind: dimensions
       expression: m * g * sqrt(3) / 2
@@ -77,6 +80,7 @@ problems:
       horizontal. Taking $g = 9.8$ m/s$^2$, calculate its acceleration, to $3$
       significant figures.
     answer_label: Acceleration
+    plays: [force-acceleration, weight, acceleration-due-to-gravity]
     check:
       kind: dimensions
       expression: g * sqrt(2) / 2
@@ -98,6 +102,7 @@ problems:
       $30^\circ$ to the horizontal by a force acting up the plane. Taking
       $g = 9.8$ m/s$^2$, calculate the size of the force.
     answer_label: Force up the plane
+    plays: [weight, acceleration-due-to-gravity]
     check:
       kind: dimensions
       expression: m * g / 2
@@ -119,6 +124,7 @@ problems:
       m/s$^2$. Taking $g = 9.8$ m/s$^2$, show that $\sin\theta = 0.5$, where
       $\theta$ is the angle of the plane, and state the value of $\theta$.
     answer_label: Value of sin theta, then theta
+    plays: [force-acceleration, weight, acceleration-due-to-gravity]
     check:
       kind: evaluate
       expression: '(49/10)/(49/5)'
@@ -137,6 +143,7 @@ problems:
       at $30^\circ$ to the horizontal. Taking $g = 9.8$ m/s$^2$, calculate the
       component of the weight down the plane and the acceleration of the crate.
     answer_label: Component down the plane, then acceleration
+    plays: [force-acceleration, weight, acceleration-due-to-gravity]
     check:
       kind: all
       checks:

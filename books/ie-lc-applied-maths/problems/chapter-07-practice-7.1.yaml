@@ -17,6 +17,7 @@ problems:
       A point moves round a circle with period $8$ s. Calculate its angular
       velocity, leaving your answer in terms of $\pi$.
     answer_label: Angular velocity
+    plays: angular-velocity
     check: {kind: evaluate, expression: '2 * pi / 8', answer: 'pi / 4'}
     answer_text: >-
       One complete revolution is $2\pi$ radians, so
@@ -31,6 +32,7 @@ problems:
       A wheel turns at a frequency of $3$ Hz. Calculate its angular velocity,
       leaving your answer in terms of $\pi$.
     answer_label: Angular velocity
+    plays: angular-velocity
     check: {kind: evaluate, expression: '2 * pi * 3', answer: '6 * pi'}
     answer_text: >-
       A frequency of $3$ Hz means three turns each second, and each turn is
@@ -45,6 +47,7 @@ problems:
       A disc turns at $900$ revolutions each minute. Calculate its angular
       velocity, leaving your answer in terms of $\pi$.
     answer_label: Angular velocity
+    plays: angular-velocity
     check: {kind: evaluate, expression: '2 * pi * 900 / 60', answer: '30 * pi'}
     answer_text: >-
       First convert the rate to revolutions each second:
@@ -59,6 +62,7 @@ problems:
       A point on the rim of a wheel of radius $0.5$ m has angular velocity
       $12$ rad/s. Calculate its linear speed.
     answer_label: Linear speed
+    plays: linear-and-angular-velocity
     check:
       kind: dimensions
       expression: omega * r
@@ -79,6 +83,7 @@ problems:
       A body moves in a circle with angular velocity $2.5$ rad/s. Calculate its
       period, leaving your answer in terms of $\pi$.
     answer_label: Period
+    plays: angular-velocity
     check: {kind: evaluate, expression: '2 * pi / 2.5', answer: '4 * pi / 5'}
     answer_text: >-
       Rearrange $\omega = \dfrac{2\pi}{T}$ to give
@@ -93,6 +98,7 @@ problems:
       A car goes round a roundabout of radius $25$ m at a steady $15$ m/s.
       Calculate its angular velocity and its period.
     answer_label: Angular velocity, then period
+    plays: [linear-and-angular-velocity, angular-velocity]
     check:
       kind: all
       checks:
@@ -119,6 +125,7 @@ problems:
       A wheel of radius $0.4$ m turns with period $0.5$ s. Calculate the speed of
       a point on its rim, leaving your answer in terms of $\pi$.
     answer_label: Speed of a point on the rim
+    plays: [linear-and-angular-velocity, angular-velocity]
     check: {kind: evaluate, expression: '2 * pi * 0.4 / 0.5', answer: '8 * pi / 5'}
     answer_text: >-
       A point on the rim travels the circumference $2\pi r$ in one period, so

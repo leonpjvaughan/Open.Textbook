@@ -116,6 +116,7 @@ problems:
       A car speeds up from $8$ m/s to $20$ m/s in $6$ s. Calculate its
       acceleration.
     answer_label: Acceleration
+    plays: linear-motion-velocity
     check:
       kind: dimensions
       expression: (v - u) / t
@@ -137,6 +138,7 @@ problems:
       A train slows down from $30$ m/s to $10$ m/s in $8$ s. Calculate its
       acceleration, taking the direction of travel as positive.
     answer_label: Acceleration
+    plays: linear-motion-velocity
     check:
       kind: dimensions
       expression: (v - u) / t

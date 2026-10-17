@@ -17,6 +17,7 @@ problems:
       A body moves in a circle of radius $2$ m at a steady $6$ m/s. Calculate
       its centripetal acceleration.
     answer_label: Centripetal acceleration
+    plays: centripetal-acceleration
     check:
       kind: dimensions
       expression: v**2 / r
@@ -36,6 +37,7 @@ problems:
       A body of mass $0.5$ kg moves in a circle of radius $1.5$ m at $3$ m/s.
       Calculate the force towards the centre.
     answer_label: Force towards the centre
+    plays: centripetal-force
     check:
       kind: dimensions
       expression: m * v**2 / r
@@ -57,6 +59,7 @@ problems:
       A body moves in a circle of radius $0.5$ m with angular velocity
       $4$ rad/s. Calculate its centripetal acceleration.
     answer_label: Centripetal acceleration
+    plays: centripetal-acceleration
     check:
       kind: dimensions
       expression: omega**2 * r
@@ -76,6 +79,7 @@ problems:
       A body of mass $2$ kg moves in a circle of radius $0.4$ m with angular
       velocity $5$ rad/s. Calculate the force towards the centre.
     answer_label: Force towards the centre
+    plays: centripetal-force
     check:
       kind: dimensions
       expression: m * omega**2 * r
@@ -96,6 +100,7 @@ problems:
       A car of mass $1500$ kg goes round a bend of radius $50$ m at $20$ m/s.
       Calculate its centripetal acceleration and the force towards the centre.
     answer_label: Acceleration, then force
+    plays: [centripetal-acceleration, centripetal-force]
     check:
       kind: all
       checks:
@@ -126,6 +131,7 @@ problems:
       radius $0.6$ m and makes $2$ revolutions each second. Calculate the
       tension in the string, leaving your answer in terms of $\pi$.
     answer_label: Tension
+    plays: centripetal-force
     check:
       kind: evaluate
       expression: '0.15 * (4 * pi)**2 * 0.6'
@@ -144,6 +150,7 @@ problems:
       the drum spins at $100$ rad/s. Calculate the acceleration of the point and
       the force on a $0.5$ kg item of clothing at the drum wall.
     answer_label: Acceleration, then force
+    plays: [centripetal-acceleration, centripetal-force]
     check:
       kind: all
       checks:

@@ -19,6 +19,7 @@ problems:
       is $0.6$. Calculate the greatest speed at which the car can take the bend,
       giving your answer to three significant figures.
     answer_label: Greatest speed
+    plays: [coefficient-of-friction, centripetal-force, weight, acceleration-due-to-gravity]
     check:
       kind: sigfigs
       convention: round-once
@@ -42,6 +43,7 @@ problems:
       A car of mass $1500$ kg goes round a flat bend of radius $60$ m at
       $15$ m/s. Calculate the friction force needed towards the centre.
     answer_label: Friction force
+    plays: centripetal-force
     check:
       kind: dimensions
       expression: m * v**2 / r
@@ -64,6 +66,7 @@ problems:
       $0.4$ at a speed of $18$ m/s. Calculate the greatest speed, and decide
       whether the car stays on the bend.
     answer_label: Greatest speed, and the decision
+    plays: [coefficient-of-friction, centripetal-force, weight, acceleration-due-to-gravity]
     check:
       kind: all
       checks:
@@ -103,6 +106,7 @@ problems:
       radius $50$ m. The speed is $12$ m/s. Calculate the normal reaction on the
       car at the top.
     answer_label: Normal reaction
+    plays: [centripetal-force, weight, acceleration-due-to-gravity]
     check:
       kind: dimensions
       expression: m * g - m * v**2 / r
@@ -128,6 +132,7 @@ problems:
       speed it can have at the top and keep the string taut, giving your answer
       to three significant figures.
     answer_label: Least speed at the top
+    plays: [centripetal-force, weight, acceleration-due-to-gravity]
     check:
       kind: sigfigs
       convention: round-once
@@ -152,6 +157,7 @@ problems:
       $1.0$ m. At the top of the circle its speed is $5$ m/s. Calculate the
       tension in the string.
     answer_label: Tension at the top
+    plays: [centripetal-force, weight, acceleration-due-to-gravity]
     check:
       kind: dimensions
       expression: m * v**2 / r - m * g
@@ -177,6 +183,7 @@ problems:
       which the car can take the roundabout, giving your answer to three
       significant figures.
     answer_label: Greatest speed on a wet day
+    plays: [coefficient-of-friction, centripetal-force, weight, acceleration-due-to-gravity]
     check:
       kind: sigfigs
       convention: round-once

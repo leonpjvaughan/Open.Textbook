@@ -14,6 +14,7 @@ problems:
       when it is pushed with a horizontal force of $49$ N. Taking
       $g = 9.8$ m/s$^2$, calculate the coefficient of friction.
     answer_label: Coefficient of friction
+    plays: [coefficient-of-friction, weight, acceleration-due-to-gravity]
     check:
       kind: evaluate
       expression: '49 / (20 * 9.8)'
@@ -33,6 +34,7 @@ problems:
       of friction is $0.4$. Taking $g = 9.8$ m/s$^2$, calculate the greatest
       friction force the floor can provide.
     answer_label: Greatest friction force
+    plays: [coefficient-of-friction, weight, acceleration-due-to-gravity]
     check:
       kind: dimensions
       expression: mu * m * g
@@ -55,6 +57,7 @@ problems:
       and is on the point of sliding. Show that the coefficient of friction is
       $\tan 30^\circ$, and give its value.
     answer_label: Coefficient of friction
+    plays: [coefficient-of-friction, weight]
     check:
       kind: evaluate
       expression: 'tan(30*pi/180)'
@@ -75,6 +78,7 @@ problems:
       A block rests on a rough plane inclined at $45^\circ$ to the horizontal
       and is on the point of sliding. Calculate the coefficient of friction.
     answer_label: Coefficient of friction
+    plays: coefficient-of-friction
     check:
       kind: evaluate
       expression: 'tan(45*pi/180)'
@@ -93,6 +97,7 @@ problems:
       with a horizontal force of $98$ N. The coefficient of friction is $0.5$.
       Taking $g = 9.8$ m/s$^2$, calculate the mass of the crate.
     answer_label: Mass
+    plays: [coefficient-of-friction, weight, acceleration-due-to-gravity]
     check:
       kind: dimensions
       expression: F / (mu * g)
@@ -116,6 +121,7 @@ problems:
       $g = 9.8$ m/s$^2$, calculate the friction force, to $4$ significant
       figures.
     answer_label: Friction force
+    plays: [coefficient-of-friction, weight, acceleration-due-to-gravity]
     check:
       kind: dimensions
       expression: mu * m * g * sqrt(3) / 2
@@ -141,6 +147,7 @@ problems:
       $g = 9.8$ m/s$^2$, calculate the normal reaction and the coefficient of
       friction.
     answer_label: Normal reaction, then coefficient
+    plays: [coefficient-of-friction, weight, acceleration-due-to-gravity]
     check:
       kind: all
       checks:

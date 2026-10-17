@@ -55,6 +55,7 @@ problems:
       A ball of mass $2$ kg falls through the air. The drag force on it is
       $5$ N. Taking $g = 9.8$ m/s$^2$, calculate the acceleration of the ball.
     answer_label: Acceleration
+    plays: [force-acceleration, weight, acceleration-due-to-gravity]
     check:
       kind: dimensions
       expression: (m * g - D) / m
@@ -78,6 +79,7 @@ problems:
       is $2$ N. Taking $g = 9.8$ m/s$^2$, calculate the acceleration, taking the
       upward direction as positive.
     answer_label: Acceleration
+    plays: [force-acceleration, weight, acceleration-due-to-gravity]
     check:
       kind: dimensions
       expression: -(m * g + D) / m
@@ -123,6 +125,7 @@ problems:
       A parachutist of mass $80$ kg descends at a constant speed. Taking
       $g = 9.8$ m/s$^2$, calculate the drag force on the parachutist.
     answer_label: Drag force
+    plays: [weight, acceleration-due-to-gravity]
     check:
       kind: dimensions
       expression: m * g
@@ -145,6 +148,7 @@ problems:
       it is $1.2$ N. Taking $g = 9.8$ m/s$^2$, calculate the resultant force on
       the stone while it rises, and state its direction.
     answer_label: Resultant force
+    plays: [weight, acceleration-due-to-gravity]
     check:
       kind: dimensions
       expression: m * g + D
