@@ -8,7 +8,9 @@ kind: review
 
 ## The chapter problem, solved
 
-Enlarge each coordinate of the mural tile by $2$ about the origin. The image corners are $(2,2)$, $(6,2)$ and $(2,4)$. The corner $(3,1)$ is farthest from the origin before and after enlargement: its squared distance changes from $3^2+1^2=10$ to $6^2+2^2=40$, so its distance doubles.
+Enlarge each coordinate of the mural tile by $2$ about the origin. The image corners are $(2,2)$, $(6,2)$ and $(2,4)$.
+
+The corner $(3,1)$ is farthest from the origin before and after enlargement: its squared distance changes from $3^2+1^2=10$ to $6^2+2^2=40$, so its distance doubles.
 
 For the smaller reversed copy, use scale factor $-\frac12$ on the original corners. The images are $(-0.5,-0.5)$, $(-1.5,-0.5)$ and $(-0.5,-1)$. The negative sign places each point across the origin; the magnitude halves each length.
 

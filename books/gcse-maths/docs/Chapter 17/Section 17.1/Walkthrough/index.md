@@ -17,7 +17,11 @@ kind: walkthrough
 
 ## Shape language and diagrams
 
-A **vertex** is a corner. An **edge** is a straight boundary where two faces meet. A **face** is a flat surface; a curved solid has a curved surface. **Parallel** lines never meet. **Perpendicular** lines meet at a right angle. A **polygon** is a closed shape made from straight sides. A **regular polygon** has equal sides and equal angles. A shape has **reflection symmetry** if folding along a line matches both halves; it has **rotational symmetry** if a turn smaller than a full turn maps it onto itself.
+A **vertex** is a corner. An **edge** is a straight boundary where two faces meet. A **face** is a flat surface; a curved solid has a curved surface. **Parallel** lines never meet.
+
+**Perpendicular** lines meet at a right angle. A **polygon** is a closed shape made from straight sides. A **regular polygon** has equal sides and equal angles.
+
+A shape has **reflection symmetry** if folding along a line matches both halves; it has **rotational symmetry** if a turn smaller than a full turn maps it onto itself.
 
 Use capital letters for vertices. In triangle $ABC$, the side $AB$ joins vertices $A$ and $B$, and angle $A$ is written $\angle BAC$ or $\angle CAB$.
 
@@ -29,7 +33,11 @@ Use capital letters for vertices. In triangle $ABC$, the side $AB$ joins vertice
 
 ## Properties of solids
 
-A cube has six square faces, twelve edges and eight vertices. A cuboid also has six rectangular faces, twelve edges and eight vertices. A triangular prism has two triangular faces and three rectangular faces. A cylinder has two flat circular surfaces and one curved surface, with no vertices. A cone has one flat circular surface, one curved surface and one vertex. A sphere has one curved surface and no edges or vertices. A pyramid has a polygon base and triangular faces meeting at an apex.
+A cube has six square faces, twelve edges and eight vertices. A cuboid also has six rectangular faces, twelve edges and eight vertices.
+
+A triangular prism has two triangular faces and three rectangular faces. A cylinder has two flat circular surfaces and one curved surface, with no vertices.
+
+A cone has one flat circular surface, one curved surface and one vertex. A sphere has one curved surface and no edges or vertices. A pyramid has a polygon base and triangular faces meeting at an apex.
 
 **Worked example.** A square-based pyramid has one square base and four triangular faces. It has five faces. The square base has four vertices and the apex adds one, so it has five vertices. Four base edges and four edges to the apex give eight edges.
 

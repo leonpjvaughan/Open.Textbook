@@ -17,9 +17,13 @@ kind: walkthrough
 
 ## Name the parts
 
-The **centre** is the fixed point equally distant from every point on the circumference, the boundary of the circle. A **radius** joins the centre to the circumference. A **diameter** is a straight line through the centre joining two points on the circumference. It is twice the radius.
+The **centre** is the fixed point equally distant from every point on the circumference, the boundary of the circle. A **radius** joins the centre to the circumference.
 
-A **chord** joins two points on the circumference. A diameter is the longest chord. An **arc** is part of the circumference. A **sector** is the region between two radii and an arc. A **segment** is the region between a chord and its arc. A **tangent** is a straight line that touches a circle at one point.
+A **diameter** is a straight line through the centre joining two points on the circumference. It is twice the radius.
+
+A **chord** joins two points on the circumference. A diameter is the longest chord. An **arc** is part of the circumference. A **sector** is the region between two radii and an arc.
+
+A **segment** is the region between a chord and its arc. A **tangent** is a straight line that touches a circle at one point.
 
 **Example 1.** A circle has radius $4.6$ cm. Work out its diameter.
 

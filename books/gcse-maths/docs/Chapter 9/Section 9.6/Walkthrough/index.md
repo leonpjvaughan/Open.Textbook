@@ -15,7 +15,9 @@ kind: walkthrough
 
 **Objectives:** solve quadratic inequalities by finding the roots, splitting the number line into intervals, and checking the sign in each interval.
 
-A quadratic inequality asks where a quadratic expression is positive or negative. First find where it equals zero. These roots split the number line into intervals. The expression has a constant sign within each interval, so test one value from each.
+A quadratic inequality asks where a quadratic expression is positive or negative. First find where it equals zero. These roots split the number line into intervals.
+
+The expression has a constant sign within each interval, so test one value from each.
 
 **Example 1.** Solve $(x-2)(x+3)>0$.
 

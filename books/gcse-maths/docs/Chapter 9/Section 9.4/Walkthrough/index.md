@@ -29,7 +29,9 @@ The lower boundary $-2$ is included; the upper boundary $4$ is excluded.
 
 The values run from $-2$ up to, but not including, $4$.
 
-For integer values, the set is $\{-2,-1,0,1,2,3\}$. Braces list the members of a set. Set-builder notation describes a rule: $\{x\in\mathbb{R}: -2\leq x<4\}$. Here $\mathbb{R}$ means all real numbers, and the colon means “such that”. Interval notation writes the same range as $[-2,4)$. A square bracket includes an endpoint; a round bracket excludes it.
+For integer values, the set is $\{-2,-1,0,1,2,3\}$. Braces list the members of a set. Set-builder notation describes a rule: $\{x\in\mathbb{R}: -2\leq x<4\}$.
+
+Here $\mathbb{R}$ means all real numbers, and the colon means “such that”. Interval notation writes the same range as $[-2,4)$. A square bracket includes an endpoint; a round bracket excludes it.
 
 > **Watch out.** A filled circle means the boundary is included. Use it for $\leq$ or $\geq$; an open circle marks $<$ or $>$.
 > **Re-check:** substitute a value on the boundary into the inequality to test whether it should be included.

@@ -8,7 +8,9 @@ kind: review
 
 ## The chapter problem, solved
 
-Plan a survey across the whole school, using a sample that includes different year groups and travel methods. Ask a neutral question such as “How did you travel to school today?” Record answers in a frequency table. A bar chart compares the travel categories. If you repeat the survey monthly, a time-series line graph can show changes. State that a sample estimate may differ from the full population.
+Plan a survey across the whole school, using a sample that includes different year groups and travel methods. Ask a neutral question such as “How did you travel to school today?”
+
+Record answers in a frequency table. A bar chart compares the travel categories. If you repeat the survey monthly, a time-series line graph can show changes. State that a sample estimate may differ from the full population.
 
 Compare your first prediction with a suitable survey result. The prediction was a starting idea, not a test score.
 

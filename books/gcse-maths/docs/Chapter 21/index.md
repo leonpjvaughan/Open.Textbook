@@ -8,10 +8,14 @@ strand: geometry
 
 ## The chapter problem: the circular window
 
-A circular window has a straight line across it, from one edge to another. This chord is $13$ cm long, and the radius is $7$ cm. Predict whether the chord could fit in the window. Give one reason for your prediction.
+A circular window has a straight line across it, from one edge to another. This chord is $13$ cm long, and the radius is $7$ cm.
+
+Predict whether the chord could fit in the window. Give one reason for your prediction.
 
 <!-- tier:h -->
-Two points on the circumference lie in the same segment of the circle. They see the chord at angles of $38^\circ$ and $x^\circ$. A radius from the centre meets the chord at right angles. Predict a possible value of $x$ and one fact that could help you. You do not need the answer yet.
+Two points on the circumference lie in the same segment of the circle. They see the chord at angles of $38^\circ$ and $x^\circ$.
+
+A radius from the centre meets the chord at right angles. Predict a possible value of $x$ and one fact that could help you. You do not need the answer yet.
 <!-- /tier:h -->
 
 ## By the end of this chapter you will be able to

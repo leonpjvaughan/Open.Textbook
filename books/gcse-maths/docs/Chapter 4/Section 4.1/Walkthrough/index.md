@@ -16,7 +16,9 @@ kind: walkthrough
 
 ## Equivalent fractions
 
-Multiply or divide the numerator and denominator by the same non-zero number. This keeps the fraction value unchanged. To compare fractions, use a common denominator or convert to decimals. A numerator counts the parts chosen; a denominator counts the equal parts in the whole.
+Multiply or divide the numerator and denominator by the same non-zero number. This keeps the fraction value unchanged. To compare fractions, use a common denominator or convert to decimals.
+
+A numerator counts the parts chosen; a denominator counts the equal parts in the whole.
 
 ## Worked examples
 

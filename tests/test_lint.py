@@ -120,3 +120,54 @@ def test_removing_display_maths_keeps_the_line_numbers(tmp_path, monkeypatch):
     )
     _findings, examples = lint_page(tmp_path, monkeypatch, text)
     assert any(":7:" in where for where in examples.get("voice:style-word", [])), examples
+
+
+# --- a finding fails the gate -------------------------------------------------
+#
+# The linter returned 0 whatever it found, so `scripts/check.sh` passed while 42
+# findings sat in five books. The repository's own definition of done says the
+# linter reports nothing for a book; these two tests make that the gate's
+# business rather than a line of output someone has to notice.
+
+
+def test_the_collection_is_lint_clean():
+    """Every authored page in every book passes, so a new finding fails CI."""
+    from textbook import book as books
+
+    findings: Counter = Counter()
+    examples: dict[str, list[str]] = {}
+    for book in books.discover_books():
+        lint.lint(book, fix=False, findings=findings, examples=examples)
+    assert not findings, "\n".join(
+        f"{category}: {count}  e.g. {examples[category][0]}"
+        for category, count in findings.most_common()
+    )
+
+
+def test_a_finding_makes_the_command_fail(tmp_path, monkeypatch):
+    """`main` exits non-zero when a book has a finding, and zero when it does not."""
+    (tmp_path / "curriculum.yaml").write_text("chapters: []\n", encoding="utf-8")
+    docs = tmp_path / "docs"
+    docs.mkdir()
+    page = docs / "page.md"
+
+    page.write_text("# Page\n\nThis is fine.\n", encoding="utf-8")
+    monkeypatch.setattr(lint.books, "discover_books", lambda: [_fixture_book(tmp_path)])
+    # `main` reads the command line, so it must be the test's, not pytest's.
+    monkeypatch.setattr("sys.argv", ["lint"])
+    assert lint.main() == 0
+
+    # "obviously" is a voice finding: a shaming word.
+    page.write_text("# Page\n\nThis is obviously fine.\n", encoding="utf-8")
+    assert lint.main() == 1
+
+
+def _fixture_book(root: Path) -> Book:
+    return Book(
+        id="fixture",
+        title="Fixture",
+        qualification="GCSE",
+        subject="Mathematics",
+        description="",
+        root=root,
+    )

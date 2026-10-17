@@ -17,7 +17,9 @@ kind: walkthrough
 
 ## Views of a solid
 
-A **plan** is the view from directly above. A **front elevation** is the view from directly in front. A **side elevation** is the view from one side. Each view is flat, so depth or height can disappear. Hidden edges are not normally shown unless the question asks for them.
+A **plan** is the view from directly above. A **front elevation** is the view from directly in front. A **side elevation** is the view from one side.
+
+Each view is flat, so depth or height can disappear. Hidden edges are not normally shown unless the question asks for them.
 
 **Worked example.** A cuboid measures $5$ cm wide, $3$ cm deep and $2$ cm high.
 

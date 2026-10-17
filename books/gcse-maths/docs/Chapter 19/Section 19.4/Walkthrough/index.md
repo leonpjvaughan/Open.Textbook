@@ -17,7 +17,11 @@ kind: walkthrough
 
 ## Prisms and cylinders
 
-A prism has a repeated end shape, called its cross-section, along its length. Its volume is $Ah$, where $A$ is cross-section area and $h$ is prism length. For a right prism, surface area is $2A+Ph$, where $P$ is cross-section perimeter. A cylinder is a right prism with circular ends. Its volume is $\pi r^2h$. The curved surface unwraps to a rectangle with sides $2\pi r$ and $h$, so its curved area is $2\pi rh$. Add two circular ends for total surface area.
+A prism has a repeated end shape, called its cross-section, along its length. Its volume is $Ah$, where $A$ is cross-section area and $h$ is prism length.
+
+For a right prism, surface area is $2A+Ph$, where $P$ is cross-section perimeter. A cylinder is a right prism with circular ends. Its volume is $\pi r^2h$.
+
+The curved surface unwraps to a rectangle with sides $2\pi r$ and $h$, so its curved area is $2\pi rh$. Add two circular ends for total surface area.
 
 **Example 1.** A triangular prism has cross-section area $15\text{ cm}^2$ and length 8 cm.
 

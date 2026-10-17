@@ -17,7 +17,9 @@ kind: walkthrough
 
 ## Read a real-life graph
 
-A graph connects two quantities. Read the axis labels and units before interpreting it. On a distance-time graph, time is usually horizontal and distance is vertical. The gradient is change in distance divided by change in time, so it gives speed. A horizontal section means the distance is unchanged.
+A graph connects two quantities. Read the axis labels and units before interpreting it. On a distance-time graph, time is usually horizontal and distance is vertical.
+
+The gradient is change in distance divided by change in time, so it gives speed. A horizontal section means the distance is unchanged.
 
 **Worked example.** A cyclist travels 18 km in 1.5 hours. Find the constant speed.
 

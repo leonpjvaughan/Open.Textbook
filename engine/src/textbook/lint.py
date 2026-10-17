@@ -357,7 +357,12 @@ def main() -> int:
         print(f"\n{category}: {count}")
         for example in examples[category]:
             print(f"    {example}")
-    return 0
+
+    # A finding is a failure. The repository's definition of done says the linter
+    # reports nothing for a book, and for a long time this returned 0 regardless —
+    # so 42 findings across five books sat in the tree while every gate run said
+    # "all checks passed". The count is the gate; printing it is not.
+    return 1 if findings else 0
 
 
 if __name__ == "__main__":

@@ -20,7 +20,9 @@ $$
 0.8\div(1/6)=4.8\text{ km/h}.
 $$
 
-A sample recorded as $0.0042$ kg to 2 significant figures lies from $0.00415$ kg up to, but not including, $0.00425$ kg. In standard form, the recorded value is $4.2\times10^{-3}$ kg. These steps show how conversion, compound measures, rounding and standard form connect.
+A sample recorded as $0.0042$ kg to 2 significant figures lies from $0.00415$ kg up to, but not including, $0.00425$ kg. In standard form, the recorded value is $4.2\times10^{-3}$ kg.
+
+These steps show how conversion, compound measures, rounding and standard form connect.
 
 ## Mixed practice — choose the method first
 

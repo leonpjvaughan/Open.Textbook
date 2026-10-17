@@ -8,7 +8,9 @@ kind: review
 
 ## The chapter problem, solved
 
-The pond has radius $4$ m. Its circumference is $2\pi r=8\pi$ m, about $25.1$ m. Its area is $\pi r^2=16\pi$ m², about $50.3$ m². The first estimate should be close to these values. A path border needs the circumference; a cover over the water needs the area.
+The pond has radius $4$ m. Its circumference is $2\pi r=8\pi$ m, about $25.1$ m. Its area is $\pi r^2=16\pi$ m², about $50.3$ m².
+
+The first estimate should be close to these values. A path border needs the circumference; a cover over the water needs the area.
 
 ## Mixed practice — choose the method first
 

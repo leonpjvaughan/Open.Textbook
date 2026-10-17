@@ -16,7 +16,9 @@ kind: walkthrough
 
 ## Learn the method
 
-An operator acts on an amount. For example, $\frac{3}{5}$ of £20 means multiply £20 by $\frac{3}{5}$. A percentage is a fraction out of $100$. To find a fraction or percentage of an amount, multiply. For a percentage increase, multiply by $1+p/100$. For a decrease, multiply by $1-p/100$.
+An operator acts on an amount. For example, $\frac{3}{5}$ of £20 means multiply £20 by $\frac{3}{5}$. A percentage is a fraction out of $100$.
+
+To find a fraction or percentage of an amount, multiply. For a percentage increase, multiply by $1+p/100$. For a decrease, multiply by $1-p/100$.
 
 ## Worked examples
 

@@ -9,7 +9,9 @@ anchor: The circular pond path
 
 ## The chapter problem: a circular pond path
 
-A circular pond has radius $4$ m. A path will run around its edge. First, estimate the distance around the pond and the area of water inside it. You can make a rough prediction now; you will calculate exact values later.
+A circular pond has radius $4$ m. A path will run around its edge. First, estimate the distance around the pond and the area of water inside it.
+
+You can make a rough prediction now; you will calculate exact values later.
 
 <details markdown="1"><summary>If you are not sure where to start</summary>
 

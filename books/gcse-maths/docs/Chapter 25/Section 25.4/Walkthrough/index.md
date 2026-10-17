@@ -15,7 +15,9 @@ kind: walkthrough
 
 **Objectives:** plot paired data, describe correlation, and use a line of best fit for estimates.
 
-A **scatter graph** plots pairs of measurements as points. **Correlation** describes how two variables change together. Positive correlation means both tend to increase; negative correlation means one tends to decrease as the other increases. No correlation means there is no clear pattern.
+A **scatter graph** plots pairs of measurements as points. **Correlation** describes how two variables change together.
+
+Positive correlation means both tend to increase; negative correlation means one tends to decrease as the other increases. No correlation means there is no clear pattern.
 
 **Example 1.** A class records hours of revision and test scores. Plot each pupil as $(\text{hours},\text{score})$. The points rise from left to right, so the data show positive correlation.
 

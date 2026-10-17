@@ -24,7 +24,11 @@ A **ratio** compares quantities by division. The **unitary method** finds the va
 
 ## Learn the method
 
-A ratio compares amounts by division. In $3:5$, there are 3 parts of the first amount for every 5 parts of the second. Multiply or divide every part by the same non-zero number to make an equivalent ratio. To share a total, add the parts, divide the total by their sum, then multiply by each part count.
+A ratio compares amounts by division. In $3:5$, there are 3 parts of the first amount for every 5 parts of the second.
+
+Multiply or divide every part by the same non-zero number to make an equivalent ratio.
+
+To share a total, add the parts, divide the total by their sum, then multiply by each part count.
 
 **Worked example. The ratio of red counters to blue counters is $3:5$. What fraction of the blue count is the red count?**
 

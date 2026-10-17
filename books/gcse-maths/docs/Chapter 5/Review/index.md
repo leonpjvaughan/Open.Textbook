@@ -8,7 +8,9 @@ kind: review
 
 ## The chapter problem, solved
 
-The garden path is 18 m long. At 1 cm for each metre, its drawing length is 18 cm, so it fits on a 30 cm page. If the page uses a different scale, convert metres to centimetres first, then apply the scale factor. The drawing and real path keep the same length ratio.
+The garden path is 18 m long. At 1 cm for each metre, its drawing length is 18 cm, so it fits on a 30 cm page.
+
+If the page uses a different scale, convert metres to centimetres first, then apply the scale factor. The drawing and real path keep the same length ratio.
 
 ## Mixed practice — choose the method first
 

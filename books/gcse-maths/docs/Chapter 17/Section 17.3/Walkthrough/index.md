@@ -30,7 +30,11 @@ The intersections are equally far from $A$ and $B$, so their joining line is the
 
 ## Perpendiculars and angle bisectors
 
-To construct a perpendicular to a line at a point on it, mark two points on the line at equal distance from the point. Draw equal-radius arcs from those two marks, then join their intersection to the point. For a point away from the line, use arcs centred at the point to mark two equal-distance points on the line, then construct the perpendicular bisector between them.
+To construct a perpendicular to a line at a point on it, mark two points on the line at equal distance from the point.
+
+Draw equal-radius arcs from those two marks, then join their intersection to the point.
+
+For a point away from the line, use arcs centred at the point to mark two equal-distance points on the line, then construct the perpendicular bisector between them.
 
 To bisect an angle, draw an arc from its vertex to meet both arms. From those two marks, draw equal arcs that cross inside the angle. Join the vertex to the crossing point.
 

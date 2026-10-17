@@ -21,11 +21,12 @@
 # See research/curriculum/ie-curriculum.md §3 and §7.2.
 
 meta:
-  booklet_note: >-
+  booklet_note: |-
     The formulae and tables in the **Formulae** booklet are the State Examinations
     Commission's own document. It is one booklet, issued to every candidate at
-    every level of Mathematics, Physics, Chemistry and Applied Mathematics, so
-    nothing in it belongs to a board and nothing in it is tier-restricted.
+    every level of Mathematics, Physics, Chemistry and Applied Mathematics.
+
+    Nothing in it belongs to a board, and nothing in it is tier-restricted.
   title: Leaving Certificate Mathematics
   jurisdiction: Ireland
   awarding_bodies: [SEC]

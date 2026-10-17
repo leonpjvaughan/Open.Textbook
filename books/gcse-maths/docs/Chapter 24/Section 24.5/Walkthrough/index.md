@@ -15,7 +15,9 @@ kind: walkthrough
 
 **Objectives:** read and construct a time-series table and line graph; describe changes over time.
 
-A **time series** is data collected at different times. Put time on the horizontal axis and the measured quantity on the vertical axis. Choose an even scale, label both axes with units, plot each point, then join points in time order.
+A **time series** is data collected at different times. Put time on the horizontal axis and the measured quantity on the vertical axis.
+
+Choose an even scale, label both axes with units, plot each point, then join points in time order.
 
 **Example.** Rainfall was 4 mm in January, 7 mm in February and 5 mm in March. Describe the change.
 

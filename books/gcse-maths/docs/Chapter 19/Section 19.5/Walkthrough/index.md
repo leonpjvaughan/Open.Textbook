@@ -17,7 +17,13 @@ kind: walkthrough
 
 ## Curved solids and pyramids
 
-For a sphere, $V=\frac43\pi r^3$ and $A=4\pi r^2$. For a cone, $h$ is its perpendicular height, from the tip to the base at a right angle. The slant height $l$ follows the cone's side from the tip to the base edge. Cone volume is $V=\frac13\pi r^2h$ and curved area is $\pi rl$. Its total surface area includes the circular base: $\pi rl+\pi r^2$. A pyramid has $V=\frac13Ah$, where $A$ is its base area. To find its surface area, add the base area and the areas of its triangular faces.
+For a sphere, $V=\frac43\pi r^3$ and $A=4\pi r^2$. For a cone, $h$ is its perpendicular height, from the tip to the base at a right angle.
+
+The slant height $l$ follows the cone's side from the tip to the base edge. Cone volume is $V=\frac13\pi r^2h$ and curved area is $\pi rl$.
+
+Its total surface area includes the circular base: $\pi rl+\pi r^2$. A pyramid has $V=\frac13Ah$, where $A$ is its base area.
+
+To find its surface area, add the base area and the areas of its triangular faces.
 
 **Example 1.** A sphere has radius 3 cm. Work out its volume and surface area.
 

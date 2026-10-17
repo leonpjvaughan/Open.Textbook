@@ -17,7 +17,9 @@ kind: walkthrough
 
 ## Tables and chart choice
 
-A **frequency** is the number of times a category occurs. A frequency table lists each category and its frequency. Use a bar chart for separate categories: leave gaps between bars. A pictogram uses symbols, each worth a stated number. A pie chart shows parts of a whole; its sectors add to $360^\circ$.
+A **frequency** is the number of times a category occurs. A frequency table lists each category and its frequency. Use a bar chart for separate categories: leave gaps between bars.
+
+A pictogram uses symbols, each worth a stated number. A pie chart shows parts of a whole; its sectors add to $360^\circ$.
 
 For a pie chart, calculate each sector angle with
 

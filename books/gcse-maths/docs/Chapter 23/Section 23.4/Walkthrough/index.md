@@ -16,7 +16,9 @@ kind: walkthrough
 
 **Objectives:** use a tree diagram for two events; multiply probabilities along a path; add probabilities for separate successful paths.
 
-A tree diagram shows each possible result in sequence. For independent events, the first result does not change the probabilities on the next set of branches. Multiply along a path to find the probability of that outcome. Add the probabilities of paths that meet the event.
+A tree diagram shows each possible result in sequence. For independent events, the first result does not change the probabilities on the next set of branches.
+
+Multiply along a path to find the probability of that outcome. Add the probabilities of paths that meet the event.
 
 **Example 1.** A fair coin is tossed twice. Find the probability of at least one head.
 

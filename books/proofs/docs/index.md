@@ -34,7 +34,7 @@ is visible rather than only readable.
 - **[The quadratic formula](quadratic-formula/index.md)** — Complete the square on ax² + bx + c and solve for x. The formula is what is left when the algebra is done.
 - **[The angle in a semicircle is 90°](angle-in-a-semicircle/index.md)** — Join the corner to the centre. Two isosceles triangles appear, and their angles must fill a straight line.
 - **[The angles in a polygon add to (n − 2) × 180°](angles-in-a-polygon/index.md)** — Cut the polygon into triangles from one corner. Count how many, and the triangle proof does the rest.
-- **[The sum of the first n squares](sum-of-the-first-n-squares/index.md)** — Why 1² + 2² + … + n² is n(n + 1)(2n + 1)/6, proved by induction so the formula arrives rather than appears.
+- **[The sum of the first n squares](sum-of-the-first-n-squares/index.md)** — Build the total for the next case from the one before. Induction proves the formula rather than assuming it.
 
 ## About the label
 

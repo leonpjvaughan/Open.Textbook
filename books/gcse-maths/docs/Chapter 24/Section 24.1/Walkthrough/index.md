@@ -17,7 +17,9 @@ kind: walkthrough
 
 ## Population, sample and data
 
-A **population** is the whole group a question concerns. A **sample** is the smaller group measured. Data collected first-hand are **primary data**; data collected earlier by someone else are **secondary data**. A sample can suggest patterns in a population, but its limits matter.
+A **population** is the whole group a question concerns. A **sample** is the smaller group measured. Data collected first-hand are **primary data**; data collected earlier by someone else are **secondary data**.
+
+A sample can suggest patterns in a population, but its limits matter.
 
 **Example.** A school has 900 pupils. A random sample of 90 pupils includes 27 who walk. Estimate the percentage who walk.
 
@@ -29,7 +31,9 @@ So the estimate is 30%. It may differ from the true population percentage becaus
 
 ## Choosing a sample and asking questions
 
-A **random sample** gives each member a chance of selection. A **systematic sample** selects at regular intervals from a list. A **biased sample** is likely to over-represent some views or groups. For example, asking only pupils at the bicycle shelter cannot represent every pupil's travel choice.
+A **random sample** gives each member a chance of selection. A **systematic sample** selects at regular intervals from a list. A **biased sample** is likely to over-represent some views or groups.
+
+For example, asking only pupils at the bicycle shelter cannot represent every pupil's travel choice.
 
 A questionnaire question should be clear and neutral. “Do you agree that walking is best?” encourages a particular answer. “How do you usually travel to school?” is more neutral. Give answer choices that cover the likely responses, including “other”.
 

@@ -16,7 +16,9 @@ kind: walkthrough
 
 ## Learn the method
 
-To convert a fraction to a decimal, divide the numerator by the denominator. To convert a terminating decimal, write it over $10$, $100$, or another power of $10$, then simplify. In simplest form, a fraction terminates exactly when its denominator has no prime factors other than $2$ and $5$.
+To convert a fraction to a decimal, divide the numerator by the denominator. To convert a terminating decimal, write it over $10$, $100$, or another power of $10$, then simplify.
+
+In simplest form, a fraction terminates exactly when its denominator has no prime factors other than $2$ and $5$.
 
 ## Worked examples
 

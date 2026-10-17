@@ -33,7 +33,9 @@ $$
 
 **Example 2.** Explain why the exterior angle of a triangle equals the sum of its opposite interior angles.
 
-Let the opposite interior angles be $a$ and $b$, and the adjacent interior angle be $c$. The triangle sum gives $a+b+c=180^\circ$. The exterior angle $e$ and $c$ lie on a straight line, so $e+c=180^\circ$. Both sums equal $180^\circ$, so subtracting $c$ gives $e=a+b$.
+Let the opposite interior angles be $a$ and $b$, and the adjacent interior angle be $c$. The triangle sum gives $a+b+c=180^\circ$.
+
+The exterior angle $e$ and $c$ lie on a straight line, so $e+c=180^\circ$. Both sums equal $180^\circ$, so subtracting $c$ gives $e=a+b$.
 
 > **Watch out.** Writing only an answer does not show a proof. State the angle fact beside each equation, then show how the equations give the result.
 

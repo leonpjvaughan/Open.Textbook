@@ -9,7 +9,9 @@ kind: review
 
 ## The chapter problem, solved
 
-The pattern can be solved by applying each angle fact in turn. At the straight path, adjacent angles total $180^\circ$. At a crossing, vertically opposite angles match. Parallel borders let you transfer corresponding or alternate angles, while co-interior angles total $180^\circ$. The triangular tile has interior sum $180^\circ$. State the fact beside every calculation, then check the total fits the shape.
+The pattern can be solved by applying each angle fact in turn. At the straight path, adjacent angles total $180^\circ$. At a crossing, vertically opposite angles match.
+
+Parallel borders let you transfer corresponding or alternate angles, while co-interior angles total $180^\circ$. The triangular tile has interior sum $180^\circ$. State the fact beside every calculation, then check the total fits the shape.
 
 ## Mixed practice: choose a method and explain why
 

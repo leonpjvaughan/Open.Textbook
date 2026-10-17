@@ -13,7 +13,9 @@ The chord could fit in the window. Its diameter is $2(7)=14$ cm, and a chord can
 <!-- tier:h -->
 The two points on the circumference lie in the same segment and see the same chord. Angles in the same segment are equal, so $x=38^\circ$.
 
-The radius meets the chord at right angles. A perpendicular from the centre bisects a chord, so each half is equal. If the chord length is $c$, each half is $c/2$. The radius and tangent theorem is not needed here because the line meets a chord, not a tangent.
+The radius meets the chord at right angles. A perpendicular from the centre bisects a chord, so each half is equal. If the chord length is $c$, each half is $c/2$.
+
+The radius and tangent theorem is not needed here because the line meets a chord, not a tangent.
 <!-- /tier:h -->
 
 ## Mixed practice — choose the method first

@@ -15,7 +15,9 @@ kind: learn
 
 **Objectives:** find inverse functions, evaluate composite functions, and state where a rule is defined.
 
-A function is a rule that gives one output for each allowed input. The notation $f(x)$ means the output of function $f$ for input $x$. An inverse function reverses the rule. A composite function applies one rule and then another: $g(f(x))$ means apply $f$ first.
+A function is a rule that gives one output for each allowed input. The notation $f(x)$ means the output of function $f$ for input $x$. An inverse function reverses the rule.
+
+A composite function applies one rule and then another: $g(f(x))$ means apply $f$ first.
 
 **Example 1.** Find the inverse of $f(x)=3x+5$.
 
