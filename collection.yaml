@@ -23,7 +23,7 @@ licence:
 #
 # This is the production origin: every profile's `site_url`, its canonical links
 # and its sitemap are derived from it (see `site_url()` in
-# engine/textbook/scaffold.py), so it must match where the site is actually
+# engine/src/textbook/scaffold.py), so it must match where the site is actually
 # served from. Deploying elsewhere means changing this first.
 base_url: https://open-textbook.org/
 
@@ -46,7 +46,7 @@ themes:
   - phosphor
   - glass
 # Animated backgrounds for the landing pages, and the default a book inherits.
-# Nothing ships one; the seam is in engine/textbook/backgrounds.py.
+# Nothing ships one; the seam is in engine/src/textbook/backgrounds.py.
 backgrounds:
   site: null
 

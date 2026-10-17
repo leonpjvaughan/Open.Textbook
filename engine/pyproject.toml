@@ -19,13 +19,13 @@ requires = ["hatchling"]
 build-backend = "hatchling.build"
 
 [tool.hatch.build.targets.wheel]
-packages = ["textbook"]
+packages = ["src/textbook"]
 
 [tool.hatch.build]
 # Non-Python assets the engine needs at runtime: the KaTeX renderer and the
 # portal page template. Present in source, so an editable install finds them.
 include = [
-    "textbook/js/*.mjs",
-    "textbook/css/*.css",
-    "textbook/templates/*.html",
+    "src/textbook/js/*.mjs",
+    "src/textbook/css/*.css",
+    "src/textbook/templates/*.html",
 ]

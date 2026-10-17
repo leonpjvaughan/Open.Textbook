@@ -80,7 +80,8 @@ def repo_root() -> Path:
     for candidate in (here, *here.parents):
         if (candidate / COLLECTION_FILE).is_file():
             return candidate
-    return Path(__file__).resolve().parents[2]
+    # ``engine/src/textbook/book.py`` -> ``engine/src`` -> ``engine`` -> root.
+    return Path(__file__).resolve().parents[3]
 
 
 @dataclass(frozen=True)

@@ -125,7 +125,7 @@ def on_files(files, config, **kwargs):
         return files
     # Strict: a page whose front matter does not parse has no tier, and would
     # otherwise be treated as common content and shipped to a reader who does not
-    # study it. See engine/textbook/frontmatter.py.
+    # study it. See engine/src/textbook/frontmatter.py.
     def keep(f) -> bool:
         tier = read_front_matter(Path(f.abs_src_path))[0].get("tier")
         return not tier or tier in included

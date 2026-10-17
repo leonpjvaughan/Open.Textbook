@@ -86,7 +86,7 @@ def test_no_home_page_still_lists_the_higher_only_note_as_a_tier():
 
 def test_the_generator_writes_the_levels_and_not_the_axis_codes():
     """A new book must not repeat it, so the generator is checked too."""
-    source = (books.repo_root() / "engine" / "textbook" / "scaffold.py").read_text(
+    source = (books.repo_root() / "engine" / "src" / "textbook" / "scaffold.py").read_text(
         encoding="utf-8"
     )
     # The old form joined every axis value.

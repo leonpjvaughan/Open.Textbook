@@ -410,7 +410,7 @@ def test_the_figure_thresholds_follow_what_the_token_draws():
     All are below ink's AAA 7:1, which is body text on plain paper.
 
     `fig-accent` was missing until the figure audit measured every module in a
-    browser (`scripts/audit-figures.cjs`). It was checked as `accent` against the
+    browser (`tools audit`). It was checked as `accent` against the
     *paper*, which it clears everywhere, and never against the figure panel —
     where twelve book-and-bundle pairs sat between 3.90:1 and 4.43:1. The accent
     is also the stroke of a curve, and 3:1 would be right for that; but one token
@@ -769,11 +769,11 @@ def test_the_pipeline_shell_defines_no_colour():
     """
     root = repo_root()
     shells = (
-        root / "engine" / "textbook" / "css" / "shell.css",
-        root / "engine" / "textbook" / "templates" / "page.html",
-        root / "engine" / "textbook" / "templates" / "portal.html",
-        root / "engine" / "textbook" / "pipeline.py",
-        root / "engine" / "textbook" / "portal.py",
+        root / "engine" / "src" / "textbook" / "css" / "shell.css",
+        root / "engine" / "src" / "textbook" / "templates" / "page.html",
+        root / "engine" / "src" / "textbook" / "templates" / "portal.html",
+        root / "engine" / "src" / "textbook" / "pipeline.py",
+        root / "engine" / "src" / "textbook" / "portal.py",
     )
     for path in shells:
         assert path.is_file(), f"{path} is missing; did the shell move?"

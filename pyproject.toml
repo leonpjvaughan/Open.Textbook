@@ -23,8 +23,10 @@ textbook = { workspace = true }
 
 [tool.pytest.ini_options]
 # The engine is an installed workspace package; this makes `import textbook`
-# work even when the venv has not been synced.
-pythonpath = ["engine"]
+# work even when the venv has not been synced. It points at `engine/src`, the
+# src layout, so the import resolves to the package directory and never to the
+# project root.
+pythonpath = ["engine/src"]
 testpaths = ["tests"]
 # `browser` tests drive a real browser over the built site. Measuring every figure
 # under one bundle takes about two minutes; all six take twelve, which is the whole

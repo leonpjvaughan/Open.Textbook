@@ -6,7 +6,7 @@ a wide table and a wide display equation widened the *page* instead of scrolling
 inside their column, and the masthead — three controls beside a book title — ran
 off the right edge at 360px.
 
-`scripts/check-mobile.cjs` measures the real thing in a browser, five widths
+`tools check-mobile` measures the real thing in a browser, five widths
 across three routes, and runs in the `preview` CI job. These are the fast,
 browser-free assertions that the rules it depends on are still there, so deleting
 one fails in the main gate too rather than only in the browser job.
@@ -16,8 +16,8 @@ from __future__ import annotations
 
 from textbook.book import repo_root
 
-SHELL_CSS = repo_root() / "engine" / "textbook" / "css" / "shell.css"
-PAGE = repo_root() / "engine" / "textbook" / "templates" / "page.html"
+SHELL_CSS = repo_root() / "engine" / "src" / "textbook" / "css" / "shell.css"
+PAGE = repo_root() / "engine" / "src" / "textbook" / "templates" / "page.html"
 
 
 def shell() -> str:

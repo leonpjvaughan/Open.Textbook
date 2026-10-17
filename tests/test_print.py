@@ -19,8 +19,8 @@ from textbook.book import repo_root
 
 ROOT = repo_root()
 EXTRA_CSS = ROOT / "assets" / "stylesheets" / "extra.css"
-PAGE = ROOT / "engine" / "textbook" / "templates" / "page.html"
-PORTAL = ROOT / "engine" / "textbook" / "templates" / "portal.html"
+PAGE = ROOT / "engine" / "src" / "textbook" / "templates" / "page.html"
+PORTAL = ROOT / "engine" / "src" / "textbook" / "templates" / "portal.html"
 
 CLASS = re.compile(r"\.([a-zA-Z][\w-]*)")
 

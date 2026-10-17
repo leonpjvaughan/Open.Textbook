@@ -59,7 +59,7 @@ booklet: booklet/gcse-maths.yaml
 sources: sources.yaml
 
 # Animated backgrounds: which one runs where. Nothing ships one — see
-# engine/textbook/backgrounds.py for the scopes and the measured reasons — so
+# engine/src/textbook/backgrounds.py for the scopes and the measured reasons — so
 # every value here is null and the page merely declares what applies.
 #
 # The narrowest scope wins, so a chapter can set one for its sections and a

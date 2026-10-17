@@ -1,7 +1,7 @@
 """The verification-oracle seam: one owner per check kind, and loud failures.
 
 ``SHAPE.md`` promises that "adding an oracle is a new module under
-``engine/textbook/verify/oracles/``, registered by check kind". This file pins
+``engine/src/textbook/verify/oracles/``, registered by check kind". This file pins
 that promise the way ``test_render_hooks.py`` pins the hook order: the
 check-kind → oracle table is one table, a kind registered to a module that does
 not exist fails loudly rather than silently verifying nothing, and

@@ -140,7 +140,7 @@ def test_the_book_template_carries_the_generated_script():
 
 
 def test_the_landing_template_carries_the_generated_script():
-    template = (repo_root() / "engine" / "textbook" / "templates" / "portal.html").read_text(
+    template = (repo_root() / "engine" / "src" / "textbook" / "templates" / "portal.html").read_text(
         encoding="utf-8"
     )
     assert "$prefs_script" in template
@@ -149,8 +149,8 @@ def test_the_landing_template_carries_the_generated_script():
 @pytest.mark.parametrize(
     "relative",
     [
-        "engine/textbook/templates/page.html",
-        "engine/textbook/templates/portal.html",
+        "engine/src/textbook/templates/page.html",
+        "engine/src/textbook/templates/portal.html",
     ],
 )
 def test_no_template_holds_a_second_copy_of_the_script(relative):

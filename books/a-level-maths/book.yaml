@@ -49,7 +49,7 @@ oracles: [sympy]
 #
 # A violet, chosen to sit clear of GCSE Mathematics' blue so the two cards are
 # tellable apart. Measured against every bundle in both schemes; see
-# `contrast_problems` in engine/textbook/themes.py.
+# `contrast_problems` in engine/src/textbook/themes.py.
 theme:
   light:
     accent: "#633399"

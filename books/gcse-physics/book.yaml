@@ -47,7 +47,7 @@ tier_axis:
 # Verification oracles the banks in this book may use. Physics needs both: the
 # SymPy oracle proves the arithmetic and algebra, and the units oracle proves
 # dimensions, significant figures, uncertainty propagation, vector resolution
-# and graph reading. See PROBLEMS.md and engine/textbook/verify/oracles/units.py.
+# and graph reading. See PROBLEMS.md and engine/src/textbook/verify/oracles/units.py.
 oracles: [sympy, units]
 
 # This book's own theme, one variation per colour scheme. Set only what makes
@@ -58,7 +58,7 @@ oracles: [sympy, units]
 #
 # A teal, chosen to sit clear of GCSE Mathematics' blue and A-level Mathematics'
 # violet so the cards are tellable apart. Measured against every bundle in both
-# schemes; see `contrast_problems` in engine/textbook/themes.py.
+# schemes; see `contrast_problems` in engine/src/textbook/themes.py.
 theme:
   light:
     accent: "#0e7069"
@@ -76,7 +76,7 @@ booklet: booklet/gcse-physics.yaml
 sources: sources.yaml
 
 # Animated backgrounds: which one runs where. Nothing ships one — see
-# engine/textbook/backgrounds.py for the scopes and the measured reasons — so
+# engine/src/textbook/backgrounds.py for the scopes and the measured reasons — so
 # every value here is null and the page merely declares what applies.
 #
 # backgrounds:
