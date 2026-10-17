@@ -10,6 +10,150 @@
  */
 
 import { button, field, slider } from "./controls.js";
+import type { ButtonOptions, SliderOptions } from "./controls.js";
+
+/**
+ * The options a function in this layer takes.
+ *
+ * Real TypeScript types, not JSDoc: a `@param` on a destructured binding with a
+ * default is silently ignored, because the default supplies the type and the
+ * annotation never applies. `label()` in `text.js` is the worked example.
+ */
+export type ReactOptions = {
+  /** `false` for a control whose change is a side effect rather than a redraw. */
+  initial?: boolean;
+};
+
+/** One step of a procedure: a line of narration. */
+export type Step = { text: string };
+
+/** The options `stepper()` takes. */
+export type StepperOptions = {
+  /** The narration, one entry per step. */
+  steps?: Step[];
+  /** The visible label for the step control. */
+  label?: string;
+  id?: string;
+  /** The step to start on. */
+  value?: number;
+};
+
+/** The slider `stepper()` returns: a range input that is also the step index. */
+export type StepperElement = HTMLInputElement & {
+  readonly index: number;
+  readonly text: string;
+  go: (step: number) => void;
+};
+
+/** The options `table()` takes. */
+export type TableOptions = {
+  /** The column headings. */
+  columns?: string[];
+  /** The body, one array of cells per row. */
+  rows?: Array<Array<string | number>>;
+  caption?: string;
+  /** The row to mark, as the slider follows it; -1 for none. */
+  highlight?: number;
+  id?: string;
+};
+
+/** The table `table()` returns, which can swap its body without rebuilding. */
+export type TableElement = HTMLTableElement & {
+  update: (rows?: Array<Array<string | number>>, highlight?: number) => void;
+};
+
+/** The options `animate()` takes. */
+export type AnimateOptions = {
+  /** Draws the frame at `t` in `[0, 1]`. Required: an animation must draw. */
+  onFrame: (t: number) => void;
+  /** Milliseconds for one pass. */
+  duration?: number;
+  /** The scrubber's visible label. */
+  label?: string;
+  /** The frame to show when motion is off. */
+  still?: number;
+  /** `true` to come round again instead of resting at the end. */
+  loop?: boolean;
+};
+
+/** The options `check()` takes. */
+export type CheckOptions = {
+  /** The value the bank already proved. */
+  answer?: string | number;
+  /** Absolute tolerance for a numeric answer; 0 means exact. */
+  tolerance?: number;
+  /** A unit to strip from the reader's answer. */
+  unit?: string;
+};
+
+/** What `check()` decides, and the answer it compared against. */
+export type Verdict = {
+  state: "empty" | "invalid" | "correct" | "wrong";
+  expected: string;
+};
+
+/** The options `answerBox()` takes. */
+export type AnswerBoxOptions = CheckOptions & {
+  label?: string;
+  /** The panel's live readout, where the verdict is announced. */
+  readout?: HTMLElement | null;
+  placeholder?: string;
+  id?: string;
+};
+
+/** One generated question, and the function that writes it. */
+export type ExerciseKind = {
+  id: string;
+  build: (rng: RandomSource) => {
+    text: string;
+    answer: string | number;
+    tolerance?: number;
+    unit?: string;
+  };
+};
+
+/** The options `exercise()` and `practice()` take. */
+export type ExerciseOptions = {
+  /** The generators to draw from. */
+  kinds?: ExerciseKind[];
+  /** The seed; the same seed gives the same question. */
+  seed?: number;
+  /** Restrict to one kind, for a page that has one. */
+  only?: string;
+};
+
+/** The options `practice()` takes. */
+export type PracticeOptions = ExerciseOptions & {
+  /** The panel's live readout, where the verdict is announced. */
+  readout?: HTMLElement | null;
+  /** The panel's caption, where the question goes. */
+  caption?: HTMLElement | null;
+  label?: string;
+  nextLabel?: string;
+};
+
+/** The state of one generated question. */
+export type ExerciseState = {
+  id: string;
+  text: string;
+  answer: string;
+  tolerance: number;
+  unit: string;
+  /** The index of the question, which is also its seed. */
+  at: number;
+  count: number;
+};
+
+/** What `exercise()` returns: the current question, and how to move on. */
+export type Exercise = {
+  readonly id: string;
+  readonly text: string;
+  readonly answer: string;
+  readonly tolerance: number;
+  readonly unit: string;
+  readonly at: number;
+  next: (nextSeed?: number) => ExerciseState;
+};
 
 /**
  * Run `draw` whenever any control changes, and once now.
@@ -18,9 +162,13 @@ import { button, field, slider } from "./controls.js";
  * drawing only after the first `input` event — the image point that appeared only
  * once the slider moved.
  */
-export function react(controls, draw, options = {}) {
+export function react(
+  controls: HTMLElement | HTMLElement[],
+  draw: () => void,
+  options: ReactOptions = {},
+): HTMLElement[] {
   const { initial = true } = options;
-  const list = [controls].flat().filter(Boolean);
+  const list = ([controls] as HTMLElement[]).flat().filter(Boolean);
   for (const control of list) control.addEventListener("input", draw);
   for (const control of list) control.addEventListener("change", draw);
   // `initial: false` for a control whose change is a *side effect* rather than a
@@ -32,10 +180,28 @@ export function react(controls, draw, options = {}) {
 }
 
 /** Tell `react()` a composite control has changed, through the one path it listens to. */
-export function notify(control) {
+export function notify(control: HTMLElement): void {
   control.dispatchEvent(new Event("input", { bubbles: true }));
   control.dispatchEvent(new Event("change", { bubbles: true }));
 }
+
+/**
+ * What `seed()` returns: a reproducible source of numbers.
+ *
+ * Declared as an interface so `exercise()` can name it without depending on the
+ * function's inferred type, which is the shape a caller only sees after the fact.
+ */
+export type RandomSource = {
+  next: () => number;
+  /** An integer in `[low, high]`, both ends included. */
+  int: (low: number, high: number) => number;
+  /** One element, uniformly. */
+  pick: <T>(items: T[]) => T;
+  /** A new array in a new order; the input is not modified. */
+  shuffle: <T>(items: T[]) => T[];
+  /** A normal deviate, by the sum of twelve uniforms. */
+  normal: (mean?: number, deviation?: number) => number;
+};
 
 /**
  * A deterministic random number generator.
@@ -61,9 +227,9 @@ export function notify(control) {
  * rng.shuffle([1, 2, 3]); // a new order
  * ```
  */
-export function seed(number = 1) {
+export function seed(number = 1): RandomSource {
   let state = (Number(number) >>> 0) || 1;
-  const next = () => {
+  const next = (): number => {
     // mulberry32: 32 bits of state, uniform enough for a textbook, and identical on
     // every engine because it uses only integer ops.
     state = (state + 0x6d2b79f5) | 0;
@@ -114,7 +280,7 @@ export function seed(number = 1) {
  * @param {string} [o.label]  the visible label for the step control
  * @returns {HTMLInputElement & {index: number, go: Function, text: string}}
  */
-export function stepper(parent, { steps = [], label = "Step", id = "step", value = 0 } = {}) {
+export function stepper(parent: HTMLElement, { steps = [], label = "Step", id = "step", value = 0 }: StepperOptions = {}): StepperElement {
   const last = Math.max(0, steps.length - 1);
   const input = slider(parent, {
     id,
@@ -124,10 +290,10 @@ export function stepper(parent, { steps = [], label = "Step", id = "step", value
     step: 1,
     value: Math.min(value, last),
     show: true,
-  });
+  }) as StepperElement;
   Object.defineProperty(input, "index", { get: () => Number(input.value) });
   Object.defineProperty(input, "text", { get: () => (steps[input.index] || {}).text || "" });
-  input.go = (n) => {
+  input.go = (n: number) => {
     const next = Math.max(0, Math.min(last, Math.round(Number(n))));
     if (next === input.index) return;
     input.value = String(next);
@@ -152,8 +318,11 @@ export function stepper(parent, { steps = [], label = "Step", id = "step", value
  * @returns {HTMLTableElement & {update: Function}} `update(rows, highlight)` swaps the
  *   body without rebuilding the table, so a highlight can follow a slider cheaply.
  */
-export function table(parent, { columns = [], rows = [], caption = "", highlight = -1, id = "" } = {}) {
-  const el = document.createElement("table");
+export function table(
+  parent: HTMLElement,
+  { columns = [], rows = [], caption = "", highlight = -1, id = "" }: TableOptions = {},
+): TableElement {
+  const el = document.createElement("table") as TableElement;
   el.className = "fig-table";
   if (id) el.id = id;
   el.style.cssText = "border-collapse:collapse;margin:.6rem 0 0;font-size:.95em";
@@ -178,12 +347,12 @@ export function table(parent, { columns = [], rows = [], caption = "", highlight
   el.append(body);
   el.update = (nextRows = rows, nextHighlight = highlight) => {
     body.replaceChildren();
-    nextRows.forEach((cells, index) => {
+    nextRows.forEach((cells: Array<string | number>, index: number) => {
       const tr = document.createElement("tr");
       // The highlight follows the slider, and it is not the only signal: the row's
       // own cells are marked up so the value is readable rather than merely shaded.
       if (index === nextHighlight) tr.className = "fig-row-active";
-      cells.forEach((cell) => {
+      cells.forEach((cell: string | number) => {
         const td = document.createElement("td");
         td.textContent = String(cell);
         td.style.cssText = "text-align:right;padding:.15rem .6rem";
@@ -219,7 +388,10 @@ export function table(parent, { columns = [], rows = [], caption = "", highlight
  * @param {boolean} [o.loop]  default false, so the figure comes to rest
  * @returns {{scrub: HTMLInputElement, play: HTMLButtonElement, stop: Function}}
  */
-export function animate(parent, { onFrame, duration = 5000, label = "Time", still = 1, loop = false } = {}) {
+export function animate(
+  parent: HTMLElement,
+  { onFrame, duration = 5000, label = "Time", still = 1, loop = false }: AnimateOptions = {} as AnimateOptions,
+): { scrub: HTMLInputElement; play: HTMLButtonElement; stop: () => void } {
   const reduced = typeof matchMedia === "function" && matchMedia("(prefers-reduced-motion: reduce)").matches;
   const scrub = slider(parent, {
     id: "t",
@@ -246,9 +418,9 @@ export function animate(parent, { onFrame, duration = 5000, label = "Time", stil
       start();
       return true;
     },
-  });
+  } as ButtonOptions);
 
-  function stop() {
+  function stop(): void {
     playing = false;
     if (frame !== null) cancelAnimationFrame(frame);
     frame = null;
@@ -256,7 +428,7 @@ export function animate(parent, { onFrame, duration = 5000, label = "Time", stil
     play.setAttribute("aria-pressed", "false");
   }
 
-  function start() {
+  function start(): void {
     // Reduced motion is honoured by not starting, but the button still works:
     // asking for motion explicitly is not the same as being given it.
     playing = true;
@@ -264,7 +436,7 @@ export function animate(parent, { onFrame, duration = 5000, label = "Time", stil
     play.setAttribute("aria-pressed", "true");
     const from = Number(scrub.value) >= 1 ? 0 : Number(scrub.value);
     const began = performance.now();
-    const tick = (now) => {
+    const tick = (now: number): void => {
       if (!playing) return;
       const t = Math.min(1, from + (now - began) / duration);
       scrub.value = String(t);
@@ -319,7 +491,7 @@ export function animate(parent, { onFrame, duration = 5000, label = "Time", stil
  *   accepted where the answer is `6.0` and the unit is on the label
  * @returns {{state: "empty"|"invalid"|"correct"|"wrong", expected: string}}
  */
-export function check(given, { answer, tolerance = 0, unit = "" } = {}) {
+export function check(given: string | number, { answer, tolerance = 0, unit = "" }: CheckOptions = {}): Verdict {
   const expected = String(answer ?? "");
   let text = String(given ?? "").trim();
   if (!text) return { state: "empty", expected };
@@ -328,7 +500,7 @@ export function check(given, { answer, tolerance = 0, unit = "" } = {}) {
   // down, and a reader who writes the unit is being careful, not wrong.
   if (unit) text = text.replace(new RegExp(`\\s*${unit.replace(/[.*+?^${}()|[\]\\]/g, "\\$&")}\\s*$`, "i"), "");
 
-  const number = (s) => {
+  const number = (s: string): number | null => {
     let cleaned = s.replace(/[,\s]/g, "").replace(/−/g, "-").replace(/\$/g, "");
     if (!cleaned) return null;
     // A fraction is a legitimate way to write a fraction, and `2/3` is how a reader
@@ -355,7 +527,7 @@ export function check(given, { answer, tolerance = 0, unit = "" } = {}) {
   // sides are words — "acute", "undirected" — they are compared as words.
   if (expectedNumber !== null && givenNumber === null) return { state: "invalid", expected };
 
-  const normalise = (s) =>
+  const normalise = (s: string): string =>
     s
       .replace(/[,\s]/g, "")
       .replace(/−/g, "-")
@@ -380,7 +552,18 @@ export function check(given, { answer, tolerance = 0, unit = "" } = {}) {
  * region and the verdict is spoken; the verdict is also written in words, never by
  * colour alone.
  */
-export function answerBox(parent, { answer, tolerance = 0, unit = "", label = "Your answer", readout, placeholder = "", id = "answer" } = {}) {
+export function answerBox(
+  parent: HTMLElement,
+  {
+    answer,
+    tolerance = 0,
+    unit = "",
+    label = "Your answer",
+    readout,
+    placeholder = "",
+    id = "answer",
+  }: AnswerBoxOptions = {},
+): { input: HTMLInputElement; verify: () => boolean } {
   const input = field(parent, {
     id,
     label,
@@ -389,7 +572,7 @@ export function answerBox(parent, { answer, tolerance = 0, unit = "", label = "Y
     placeholder,
     inputmode: "decimal",
   });
-  const verify = () => {
+  const verify = (): boolean => {
     const result = check(input.value, { answer, tolerance, unit });
     const said = {
       empty: "Type an answer first.",
@@ -407,6 +590,13 @@ export function answerBox(parent, { answer, tolerance = 0, unit = "", label = "Y
   return { input, verify };
 }
 
+/** What `remember()` returns: one key, read, written and cleared. */
+export type Remembered = {
+  get: () => unknown;
+  set: (value: unknown) => boolean;
+  clear: () => void;
+};
+
 /**
  * Remember something small in the reader's own browser.
  *
@@ -416,7 +606,7 @@ export function answerBox(parent, { answer, tolerance = 0, unit = "", label = "Y
  * failure. A reader in private mode, or with storage disabled, gets a figure that
  * works and forgets rather than a figure that breaks.
  */
-export function remember(key, fallback = null) {
+export function remember(key: string, fallback: unknown = null): Remembered {
   const read = () => {
     try {
       const raw = window.localStorage.getItem(key);
@@ -467,12 +657,12 @@ export function remember(key, fallback = null) {
  * @returns {{id: string, text: string, answer: string, tolerance: number, unit: string,
  *   next: Function, at: number}}
  */
-export function exercise({ kinds = [], seed: start = 1, only } = {}) {
+export function exercise({ kinds = [], seed: start = 1, only }: ExerciseOptions = {}): Exercise {
   const usable = only ? kinds.filter((kind) => kind.id === only) : kinds;
   if (!usable.length) throw new Error("exercise: no kinds to generate from");
   const state = { id: "", text: "", answer: "", tolerance: 0, unit: "", at: start, count: 0 };
 
-  const take = (index) => {
+  const take = (index: number) => {
     const rng = seed(index);
     const kind = usable[index % usable.length];
     const built = kind.build(rng);
@@ -494,7 +684,7 @@ export function exercise({ kinds = [], seed: start = 1, only } = {}) {
     get at() { return state.at; },
     /** Step to the next question. Passing a seed jumps to that one, which is how a
      *  reader shares "question 7" with someone else. */
-    next(nextSeed) {
+    next(nextSeed?: number) {
       state.at = nextSeed === undefined ? state.at + 1 : nextSeed;
       return take(state.at);
     },
@@ -515,7 +705,18 @@ export function exercise({ kinds = [], seed: start = 1, only } = {}) {
  *
  * @returns {{exercise: object, input: HTMLElement, verify: Function, next: Function}}
  */
-export function practice(parent, { kinds = [], seed = 1, only, readout, caption, label = "Your answer", nextLabel = "Another question" } = {}) {
+export function practice(
+  parent: HTMLElement,
+  {
+    kinds = [],
+    seed = 1,
+    only,
+    readout,
+    caption,
+    label = "Your answer",
+    nextLabel = "Another question",
+  }: PracticeOptions = {},
+): { exercise: Exercise; input: HTMLInputElement; verify: () => boolean } {
   const quiz = exercise({ kinds, seed, only });
   const holder = document.createElement("p");
   holder.className = "fig-question";
@@ -529,12 +730,12 @@ export function practice(parent, { kinds = [], seed = 1, only, readout, caption,
   // with two of them, which the browser check caught.
   const input = field(parent, { id: "answer", label, name: label, type: "text", inputmode: "decimal" });
 
-  const show = () => {
+  const show = (): void => {
     target.textContent = quiz.text;
     input.value = "";
   };
 
-  const verify = () => {
+  const verify = (): boolean => {
     const result = check(input.value, { answer: quiz.answer, tolerance: quiz.tolerance, unit: quiz.unit });
     const said = {
       empty: "Type an answer first.",

@@ -82,7 +82,8 @@ now, and the four marked open are the ones verified open on 2026-10-17.
 - [x] 54. `textbook.verify` stops at the first bank that will not parse, and a short run looks like a clean one
 - [x] 55. The home page listed "Higher only" as a tier
 - [x] 56. The figure panel's tint was spending the contrast margin
-- [ ] 57. The browser runtime has no types, and `tsc` reports 190 errors
+- [x] 57. The browser runtime had no types — 0 at `strict: false`
+- [ ] 68. `strict: true` reports 420, and 205 of them are implicit `any`
 - [x] 58. Thirteen loose scripts, five copies of the same browser plumbing
 - [x] 59. The figure gaps in four books
 - [x] 60. Three Irish books have no booklet, and two of them should
@@ -249,76 +250,62 @@ opt-in.
 
 ---
 
-## 57. The browser runtime has no types, and `tsc` reports 190 errors
+## 57. The browser runtime had no types — **done, at `strict: false`**
 
-**What is wrong.** Every line the reader's browser runs — the figure kit, the loader, the
-settings panel, the booklet widget, the service worker — is JavaScript with no type
-information. Measured 2026-10-16, with `checkJs` over `assets/` and no other change:
+**What was wrong.** Every line the reader's browser runs was untyped, and `tsc` reported
+353 errors when the ratchet was introduced. A `.ts` file that is annotated in comments is
+not typed: three separate attempts to annotate a destructured option object were
+**silently ignored**, and the count went *up* each time.
 
-| Config | Errors |
-|---|---|
-| `checkJs`, `strict` off | **163** |
-| `checkJs`, `strict` on | 460 |
-| `checkJs`, `strict` + `noUncheckedIndexedAccess` | 475 |
+**Done (2026-10-17).** **0 errors**, holding at a baseline of 0.
 
-By file, at the current setting: `kit/draw.js` 105, `kit/interact.js` 28,
-`settings.js` 13, `kit/controls.js` 9, and seven more in single figures. The errors are
-overwhelmingly `TS7006`/`TS7005` — a parameter or variable whose type was never stated —
-which is the annotation work itself rather than a defect list.
+- **The generated kit is not type-checked.** `tsc` strips annotations when it emits, so
+  the committed `assets/figures/kit/*.js` can only be inferred from destructuring
+  defaults — `label({ x, y, text, anchor = "middle" })` becomes a type with `anchor` and
+  not `x`. A book module reaches `./kit.js`, which pulls that copy into the program, so
+  **71 of the errors were artefacts of checking the same code with its types removed.**
+  `tools/build.mjs` writes `// @ts-nocheck` onto every emitted file. 190 → 119.
+- **The annotation rule, measured rather than guessed.** A JSDoc `@param` on a
+  destructured binding with a default is silently ignored, and so is a `@type` cast on
+  the initialiser. So a `.ts` file gets **real TypeScript annotations** (`label`'s
+  `LabelOptions` is the exemplar — `tsc` strips them from the emitted JavaScript), and a
+  `.js` file gets a **JSDoc cast at the point of narrowing**, which does work. 119 → 0.
 
-**What was done, 2026-10-16.** `tsconfig.json` (`allowJs`, `checkJs`, `noEmit`) and
-`scripts/check-types.mjs`, which **ratchets**: it passes at 163, fails when the count
-grows, and fails when it falls without the baseline being lowered. It is in
-`scripts/check.sh`, so it gates. Nothing is compiled and nothing is emitted — the build
-still copies these files, so this added a check and no moving parts. `typescript` is a
-devDependency.
+**What was not done, and is now item 68.** `strict: true` reports **420** at this state,
+205 of them `noImplicitAny` — which is the *same* destructuring-default shape, one level
+further: an unannotated `.js` callback parameter is an implicit `any` under `strict` and
+an accepted inference without it. Turning it on is a separate, larger job, and doing it
+by annotating comments is the thing that failed three times already.
 
-**What was fixed on 2026-10-17, and the one finding worth keeping.** Two
-annotations were worse than none: `axes()` declared `@returns {{draw: string, x:
-Function, y: Function, box: object}}`, which threw away the two things a caller needs,
-and `line()` and `dots()` had no `@param` at all, so TypeScript inferred their parameter
-type from the destructuring defaults. 378 errors to 344, a net decrease of 34 across a
-change that *added* a module.
+---
 
-**The count is 353 on 2026-10-17, not 344.** `diagram()` was added and its own
-annotation is this item's work, so the baseline went up by 9. A first attempt at the
-marks' JSDoc raised it to 365 instead: the insertion script put `@param` inside a
-one-line `/** … */`, which TS reads as description text, so the block has to be
-multi-line before a parameter can be added to it. Reverted rather than shipped.
+## 68. `strict: true` reports 420, and 205 of them are implicit `any`
 
-**A JSDoc `@param` does not apply to a destructured binding that has a default.**
-`axes()`'s `x` and `y` are declared as `@param {AxisOptions} [o.x]` and are still typed
-`{}` inside the function, because `x = {}` in the destructuring pattern supplies the
-type and the annotation is ignored. `line()`'s `o.x1` *does* apply, because `x1` has no
-default. So the reliable form for a destructured option with a default is to destructure
-it **without** one and apply the default in the body, or to take the whole object and
-destructure inside. Both were tried here and neither is a one-line change, which is why
-`axes` is still 23 of the 344.
+**What is wrong.** `tsconfig.json` runs with `strict: false`, which the ratchet's own
+comment says is a stepping stone: "turn `strict` on when it reaches zero". The count
+reached zero on 2026-10-17 and `strict` reports **420**:
 
-**The rest of the fix, in the order it pays.**
+| Code | Count | What it is |
+|---|---|---|
+| TS7006 | 205 | an unannotated parameter, which `strict` makes implicit `any` |
+| TS7005 | 55 | a variable with an implicit `any` type |
+| TS2339 | 30 | a property read on a shape the annotation did not describe |
+| TS18048 | 27 | a value that is possibly `undefined` |
+| TS18047 | 27 | a value that is possibly `null` |
+| TS7053 | 18 | an index expression that is implicitly `any` |
 
-1. **Annotate the kit's public surface** — the 50 exports in `kit.js`, in JSDoc. This is
-   the part the 212 figure modules call, so it is what makes a figure's own mistakes
-   visible. `kit/draw.js` alone is 105 of the 163.
-2. **Bring the count to zero**, lowering `BASELINE` in the same change each time.
-3. **Turn `strict` on** and expect the count to jump to 460. Ratchet again.
-4. **Add `books/*/docs/assets/figures/**/*.js` to `include`** — 212 content modules,
-   ~27,000 lines. This is the last step, and the one that catches a figure calling
-   `label()` with the wrong argument.
-
-**A decision to make, not a task.** The kit is 2,400 lines of primitives with a real
-contract, and it is the only part of the runtime that would gain from being TypeScript
-properly (`.ts` with an emit step). The 212 figure modules are **content**, they live
-inside book trees because a book is self-contained, and they should not move into a
-package to be typed — `checkJs` reaches them where they are. So the fork is whether to
-convert `assets/figures/kit/` to `.ts` and add an esbuild step, or to keep `.js` +
-JSDoc forever. JSDoc first is the cheaper order, and it does not foreclose the other.
+Most of the 205 are in `.js` files, where the only annotation is JSDoc — and a JSDoc
+`@param` attaches to a *named* parameter but not to a destructured one with a default.
+So the choice is one of: convert the runtime `.js` files to `.ts` with a small emit (the
+kit already has one), annotate every function with non-destructured parameters, or turn
+on `noImplicitAny` alone first and ratchet it.
 
 **Done means**
 
-- `node scripts/check-types.mjs` reports 0 at `strict: true`.
-- `npm run types:list` prints an empty file list.
-- The build emits no compiled artefact: `git status` is clean after `scripts/check.sh`.
+- [ ] A decision recorded: convert the `.js` runtime to `.ts`, or annotate in JSDoc.
+- [ ] `strict: true` reports 0, and the ratchet's baseline is 0 at `strict: true`.
+- [ ] `node tools/dist/cli.js types` and `kit-pure` both pass under it.
+- [ ] No `// @ts-nocheck` outside the emitted kit, which must keep it.
 
 ---
 

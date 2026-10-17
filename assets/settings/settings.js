@@ -14,7 +14,11 @@
   "use strict";
 
   const trigger = document.getElementById("tb-settings");
-  const dialog = document.getElementById("tb-settings-dialog");
+  // The panel is a native <dialog>, and `getElementById` cannot say so: the cast is
+  // what turns `HTMLElement` into the element with `showModal()` and `open`.
+  const dialog = /** @type {HTMLDialogElement | null} */ (
+    document.getElementById("tb-settings-dialog")
+  );
   if (!trigger || !dialog) return;
 
   // prefs.py exposes the store; fall back to the same two keys if the bridge
@@ -69,12 +73,12 @@
   }
 
   function sync() {
-    const scheme = dialog.querySelector(
-      'input[name="tb-scheme"][value="' + currentScheme() + '"]'
+    const scheme = /** @type {HTMLInputElement | null} */ (
+      dialog.querySelector('input[name="tb-scheme"][value="' + currentScheme() + '"]')
     );
     if (scheme) scheme.checked = true;
-    const theme = dialog.querySelector(
-      'input[name="tb-theme"][value="' + currentTheme() + '"]'
+    const theme = /** @type {HTMLInputElement | null} */ (
+      dialog.querySelector('input[name="tb-theme"][value="' + currentTheme() + '"]')
     );
     if (theme) theme.checked = true;
   }
@@ -87,10 +91,13 @@
     } else {
       dialog.setAttribute("open", "");
     }
-    const first =
+    // A radio or a button: `querySelector` says `Element`, and only an `HTMLElement`
+    // has `focus()`.
+    const first = /** @type {HTMLElement | null} */ (
       dialog.querySelector('input[name="tb-theme"]:checked') ||
-      dialog.querySelector('input[name="tb-scheme"]:checked') ||
-      dialog.querySelector("button");
+        dialog.querySelector('input[name="tb-scheme"]:checked') ||
+        dialog.querySelector("button")
+    );
     if (first) first.focus();
   }
 
@@ -99,7 +106,8 @@
   // the reader lands back where they opened it, in every browser.
   dialog.addEventListener("close", () => trigger.focus());
   dialog.addEventListener("change", (event) => {
-    const input = event.target;
+    // Every control this dialog holds is an `<input>`, and `change` is fired on it.
+    const input = /** @type {HTMLInputElement | null} */ (event.target);
     if (!input || input.type !== "radio") return;
     if (input.name === "tb-theme") setTheme(input.value);
     else if (input.name === "tb-scheme") setScheme(input.value);

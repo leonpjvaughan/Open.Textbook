@@ -23,6 +23,13 @@
  */
 "use strict";
 
+/* `self` in a worker is a `ServiceWorkerGlobalScope`, not a `Window`: it has
+ * `skipWaiting()` and `clients`, and none of the page's DOM. `lib.dom` knows only the
+ * page, so the type is stated at the one place it is needed — through `unknown`,
+ * because the two scopes do not overlap enough for a direct cast. Nothing changes at
+ * runtime: `scope` is `self`. */
+var scope = /** @type {ServiceWorkerScope} */ (/** @type {unknown} */ (self));
+
 var VERSION = "__TB_BUILD__";
 var PREFIX = "open-textbook-";
 var CACHE = PREFIX + VERSION;
@@ -51,7 +58,7 @@ function onInstall(event) {
       .then(function () {
         // Take over as soon as the new worker is ready rather than waiting for
         // every tab to close, so an update reaches the reader on the next visit.
-        return self.skipWaiting();
+        return scope.skipWaiting();
       })
   );
 }
@@ -76,7 +83,7 @@ function onActivate(event) {
       .then(function () {
         // Control pages that are already open, so the first reload after an
         // install is served by this worker rather than the network alone.
-        return self.clients.claim();
+        return scope.clients.claim();
       })
   );
 }

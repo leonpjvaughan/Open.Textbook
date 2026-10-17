@@ -385,7 +385,7 @@ async function probe(kitPath: string) {
           { name: "Height", description: "The upright edge", draw: () => kit.line({ x1: 10, y1: 100, x2: 10, y2: 20 }) },
         ],
       });
-      const buttons = [...host.querySelectorAll(".fig-parts button")];
+      const buttons = [...host.querySelectorAll<HTMLElement>(".fig-parts button")];
       const root = host.querySelector(".fig-diagram");
       const atRest = [root.classList.contains("is-exploring"), made.groups.some((g) => g.classList.contains("is-active"))];
       buttons[1].focus();
@@ -493,7 +493,7 @@ export async function run(argv: string[]): Promise<number> {
   if (!result.size || !Object.keys(result.size).length) {
     problems.push("the kit exports no SIZE scale, so every module picks its own number");
   }
-  for (const [name, units] of Object.entries(result.size || {})) {
+  for (const [name, units] of Object.entries<number>(result.size || {})) {
     const onPhone = units * PHONE_SCALE;
     if (onPhone < FLOOR_PX) {
       problems.push(

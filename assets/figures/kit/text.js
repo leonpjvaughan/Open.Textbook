@@ -47,6 +47,30 @@ export const SIZE = {
   /** A heading inside the drawing. */
   heading: 20,
 };
+/*
+ * The option types, stated twice.
+ *
+ * `tsc` reads a type from JSDoc in a **`.js`** file and ignores it in a `.ts` one, so
+ * the `@typedef` below does nothing for this file's own check. But it is what makes
+ * the **compiled copy** typed: `tsc` strips the annotations when it emits, so
+ * `kit/text.js` — which a figure module imports — can otherwise only infer `label`'s
+ * options from the destructuring defaults, giving a type with `anchor` in it and no
+ * `x`, and every module that calls it reports an error the source does not have.
+ * `draw.ts` states its own types the same way, and the two halves must agree.
+ */
+/**
+ * The options `label()` takes, for the compiled copy.
+ *
+ * @typedef {object} LabelOptions
+ * @property {number} x  viewBox x, the point the anchor refers to
+ * @property {number} y  viewBox y
+ * @property {string} text  the words; never `$...$`, the maths hook runs at build time
+ * @property {string} [anchor]  `start` | `middle` | `end`, default `middle`
+ * @property {number} [size]  one of `SIZE`; default `SIZE.label`
+ * @property {string} [class]  a `text-*` class; default `text-ink`
+ * @property {number} [weight]  optional font-weight
+ * @property {number} [rotate]  degrees anticlockwise about `(x, y)`, for an axis title
+ */
 /** Escape the three characters that make a string malformed inside an element. */
 export function escape(text) {
   return String(text).replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;");
@@ -73,6 +97,7 @@ export function escape(text) {
  * files are `.ts` and `tsc` compiles them, so the language's own annotation is the one
  * that cannot fail silently — and it is stripped from the emitted JavaScript.
  *
+ * @param {LabelOptions} [o]  the position, the words and the size
  * @returns an SVG `<text>` element, ready to concatenate
  */
 export function label({

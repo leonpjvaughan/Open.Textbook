@@ -79,6 +79,9 @@ interface AxesOptions {
   origin?: boolean;
 }
 
+/** A point in three dimensions: the units a `camera3d()` solid is given in. */
+type Vec3 = [number, number, number];
+
 interface RectOptions {
   x?: number;
   y?: number;
@@ -92,6 +95,16 @@ interface PathOptions {
   d?: string;
   class?: string;
   fill?: string;
+  width?: number;
+  dash?: string;
+}
+
+interface LineOptions {
+  x1?: number;
+  y1?: number;
+  x2?: number;
+  y2?: number;
+  class?: string;
   width?: number;
   dash?: string;
 }
@@ -622,7 +635,7 @@ export function area(points, { x, y, baseline = 0, class: cls = "fig-accent", op
     points.map(([px, py], i) => `${i ? "L" : "M"}${coord(x(px))} ${coord(y(py))}`).join(" ") +
     ` L${coord(x(points[points.length - 1][0]))} ${coord(baseline)}` +
     ` L${coord(x(points[0][0]))} ${coord(baseline)} Z`;
-  return path({ d, class: cls, fill: "currentColor", width: 0, opacity });
+  return path({ d, class: cls, fill: "currentColor", width: 0, opacity } as PathOptions);
 }
 
 /**
@@ -947,7 +960,7 @@ export function camera3d({ width = 560, height = 300, yaw = -32, pitch = 22, zoo
 
   // The rotate-then-project step. `depth` is what the painter's algorithm sorts on:
   // bigger is nearer to the camera.
-  const raw = ([x, y, z]) => {
+  const raw = ([x, y, z]: Vec3) => {
     const ax = x * cosY - z * sinY;
     const az = x * sinY + z * cosY;
     return { ax, screenY: y * cosX - az * sinX, depth: y * sinX + az * cosX };
@@ -963,7 +976,7 @@ export function camera3d({ width = 560, height = 300, yaw = -32, pitch = 22, zoo
   // own scale. `drawMesh` fits instead, because only it knows the whole geometry.
   const project = (point) => at(point, zoom, centre);
 
-  const sub = (a, b) => [a[0] - b[0], a[1] - b[1], a[2] - b[2]];
+  const sub = (a: Vec3, b: Vec3): Vec3 => [a[0] - b[0], a[1] - b[1], a[2] - b[2]];
   const cross = (a, b) => [a[1] * b[2] - a[2] * b[1], a[2] * b[0] - a[0] * b[2], a[0] * b[1] - a[1] * b[0]];
   const dot = (a, b) => a[0] * b[0] + a[1] * b[1] + a[2] * b[2];
 
@@ -971,7 +984,7 @@ export function camera3d({ width = 560, height = 300, yaw = -32, pitch = 22, zoo
     vertices = [],
     faces = [],
     edges = [],
-    origin = [0, 0, 0],
+    origin = [0, 0, 0] as Vec3,
     hidden = "dashed",
     backClass = "fig-grid",
     frontClass = "fig-accent",
@@ -1030,7 +1043,7 @@ export function camera3d({ width = 560, height = 300, yaw = -32, pitch = 22, zoo
         fill: "currentColor",
         opacity: front ? (face.opacity ?? fillFront) : (face.opacity ?? fillBack),
         width: 1.2,
-      });
+      } as PathOptions);
     }
 
     // Then the edges. An edge is hidden when **every** face that contains it is

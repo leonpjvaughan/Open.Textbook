@@ -24,7 +24,7 @@ import path from "node:path";
  * work list: annotating a parameter lowers this number, and it cannot rise again
  * without a reason in the commit message.
  */
-const BASELINE = 119;
+const BASELINE = 0;
 const TARGET = 0;
 const SELF = fileURLToPath(import.meta.url);
 

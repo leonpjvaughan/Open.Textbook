@@ -557,7 +557,7 @@ async function runMobile(browser, dir, pages, outFile) {
         console.error("\nfigure legibility failed: these draw a label too small to read:");
         for (const slug of tooSmall.slice(0, 20))
             console.error(`   ${measured[slug].toFixed(1)}px  ${slug}`);
-        process.exit(1);
+        return 1;
     }
     // The guard against a run that measured almost nothing. A fixed floor of ten was
     // wrong in both directions: it failed on a single book with nine figures, and it
@@ -569,6 +569,7 @@ async function runMobile(browser, dir, pages, outFile) {
     if (slugs.length === 0 || slugs.length < expected / 2) {
         console.error(`\nfigure legibility failed: measured ${slugs.length} of ${expected} figures. ` +
             "Either the build is missing pages or the server is not serving them.");
-        process.exit(1);
+        return 1;
     }
+    return 0;
 }

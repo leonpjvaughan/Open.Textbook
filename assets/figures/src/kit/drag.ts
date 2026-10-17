@@ -25,6 +25,32 @@
 import { notify } from "./interact.js";
 
 /**
+ * The options `draggable()` takes.
+ *
+ * A real TypeScript type rather than JSDoc: a `@param` on a destructured binding with
+ * a default is silently ignored, so `{ cursor = "grab" } = {}` would leave every other
+ * option typed `{}`. `label()` in `text.js` is the worked example.
+ */
+export type DragOptions = {
+  /**
+   * **Required** — the range input that holds the value and provides the keyboard
+   * path. The pointer writes to it.
+   */
+  control?: HTMLInputElement | null;
+  /** The drawing surface, for the coordinate transform. Required. */
+  svg?: SVGSVGElement | null;
+  /** Map a viewBox point to a value. The caller owns this because it owns the geometry. */
+  toValue?: (point: { x: number; y: number }) => number;
+  /** Called after the value changes, or just use `react()` instead. */
+  onMove?: (value: number) => void;
+  /** The pointer cursor; `grab` by default. */
+  cursor?: string;
+};
+
+/** What `draggable()` returns: a way to remove the listeners. */
+export type DragControl = { destroy: () => void };
+
+/**
  * A point in the drawing's own viewBox coordinates.
  *
  * The drawing scales with the panel, so a pointer's screen position is not a viewBox
@@ -33,7 +59,7 @@ import { notify } from "./interact.js";
  * rendered width and multiplying by the viewBox width, is wrong the moment the
  * drawing has a margin, a transform or an aspect-ratio letterbox.
  */
-function viewBoxPoint(svg, event) {
+function viewBoxPoint(svg: SVGSVGElement, event: PointerEvent): DOMPoint | SVGPoint | null {
   const ctm = svg.getScreenCTM && svg.getScreenCTM();
   if (!ctm) return null;
   const matrix = ctm.inverse();
@@ -60,7 +86,10 @@ function viewBoxPoint(svg, event) {
  * @param {string} [o.cursor]  the pointer cursor; default `grab`
  * @returns {{destroy: Function}} a way to remove the listeners
  */
-export function draggable(element, { control, svg, toValue, onMove, cursor = "grab" } = {}) {
+export function draggable(
+  element: SVGElement,
+  { control, svg, toValue, onMove, cursor = "grab" }: DragOptions = {},
+): DragControl {
   if (!control) {
     throw new Error(
       "draggable: a control is required. The handle must not be the only way to reach " +

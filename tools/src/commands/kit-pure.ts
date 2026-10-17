@@ -202,7 +202,7 @@ export async function run(argv: string[]): Promise<number> {
   wantMatch("label honours its anchor and size", kit.label({ x: 0, y: 0, text: "0", anchor: "end", size: 18 }), /font-size="18" text-anchor="end"/);
   want(
     "every SIZE is one of four named values",
-    Object.values(kit.SIZE).sort((a, b) => a - b),
+    (Object.values(kit.SIZE) as number[]).sort((a, b) => a - b),
     [16, 16, 18, 20],
   );
 

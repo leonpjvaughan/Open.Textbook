@@ -48,5 +48,5 @@
     "types": ["node"]
   },
   "exclude": ["node_modules", "assets/figures/kit.js", "assets/figures/kit/**"],
-  "include": ["assets/**/*.js", "assets/figures/src/**/*.ts", "tools/src/**/*.ts"]
+  "include": ["assets/**/*.js", "assets/**/*.d.ts", "assets/figures/src/**/*.ts", "tools/src/**/*.ts"]
 }

@@ -104,7 +104,7 @@ export function chooser(parent, options = {}) {
   select.setAttribute("aria-label", name || label || id);
   for (const choice of choices) {
     const option = document.createElement("option");
-    option.value = choice.value;
+    option.value = String(choice.value);
     option.textContent = choice.label;
     select.append(option);
   }
@@ -114,6 +114,21 @@ export function chooser(parent, options = {}) {
   return select;
 }
 /**
+ * The options `button()` takes, for the compiled copy.
+ *
+ * The second half of the pair `draw.ts` documents: `tsc` strips the annotations when
+ * it emits, so `kit/controls.js` cannot see `ButtonOptions` and a `.js` module calling
+ * `button(el, { onClick })` would be told that `onClick` does not exist. The two halves
+ * must agree, and the TypeScript type above is what this file is checked against.
+ *
+ * @typedef {object} ButtonOptions
+ * @property {string} [id]
+ * @property {string} [label]  the visible words
+ * @property {string} [name]  the accessible name, when it should say more
+ * @property {(event?: Event) => unknown} [onClick]  a boolean return moves `aria-pressed`
+ * @property {boolean} [pressed]  give it a boolean to get a **toggle button**
+ */
+/**
  * A button. The kit's one control that is an **action** rather than a value.
  *
  * Ten of the 209 modules build a `<button>` themselves and four of those set
@@ -121,11 +136,13 @@ export function chooser(parent, options = {}) {
  * does not fire `input` or `change`, so it is bound with `onClick` rather than
  * `react()`.
  *
- * @param {object} o
- * @param {string} [o.pressed]  give it a boolean to get a **toggle button** —
- *   `aria-pressed` follows `onClick`'s return value, or the `pressed` property set by
- *   the caller. Without it the button is an action.
- * @returns {HTMLButtonElement}
+ * **The `@type` rather than a `@param`: a `@param` cannot name a destructured
+ * parameter** — it reports `JSDoc '@param' tag has name 'o', but there is no parameter
+ * with that name` and falls back to inferring the options from their defaults, which is
+ * how `onClick` disappears. A `@type` states the whole signature by position, so it
+ * reaches the options object and the shipped copy is typed.
+ *
+ * @type {(parent: HTMLElement, options?: ButtonOptions) => HTMLButtonElement}
  */
 export function button(parent, { id = "", label = "", name = "", onClick, pressed } = {}) {
   const holder = document.createElement("span");

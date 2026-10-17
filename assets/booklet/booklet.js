@@ -17,7 +17,8 @@
 (() => {
   "use strict";
 
-  const script = document.currentScript;
+  // `currentScript` may be an SVG script, which has no `src`; this one is a `<script>`.
+  const script = /** @type {HTMLScriptElement | null} */ (document.currentScript);
   const dataUrl = script
     ? new URL("booklet.json", script.src).toString()
     : "booklet.json";

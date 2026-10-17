@@ -18,16 +18,128 @@
 import { UI_FONT } from "./frame.js";
 
 /** Where a control goes: the panel's control column if the parent was a panel. */
-function mount(parent, holder) {
+function mount(parent: HTMLElement, holder: HTMLElement): void {
   (parent.querySelector(".fig-controls") || parent).append(holder);
 }
+
+/**
+ * The options a slider takes.
+ *
+ * A real TypeScript type rather than JSDoc, because a `@param` on a destructured
+ * binding with a default is silently ignored: `{ min = 0 } = {}` takes its type from
+ * the default and the annotation never applies. These files are `.ts`, so the
+ * language's own annotation is the one that cannot fail silently, and `tsc` strips it
+ * from the emitted JavaScript.
+ */
+export type SliderOptions = {
+  /** The input's `class`, and the stem of its readout's. */
+  id?: string;
+  /** The visible label. */
+  label?: string;
+  /** `false` for a slider with no number beside it. */
+  show?: boolean;
+  /** A unit after the number, rather than in the label. */
+  unit?: string;
+  /** The accessible name, when it should say more than the visible label. */
+  name?: string;
+  min?: number;
+  max?: number;
+  step?: number;
+  /** The starting value; the minimum by default. */
+  value?: number;
+  /** How the readout is formatted; the raw value by default. */
+  format?: (value: number) => string;
+};
+
+/** The options a checkbox takes. */
+export type ToggleOptions = {
+  id?: string;
+  label?: string;
+  name?: string;
+  checked?: boolean;
+};
+
+/** One entry in a list of alternatives, for `chooser()` and `segmented()`. */
+export type Choice = { value: string | number; label: string };
+
+/** The options a drop-down takes. */
+export type ChooserOptions = {
+  id?: string;
+  label?: string;
+  name?: string;
+  choices?: Choice[];
+  /** The chosen value; the first option by default. */
+  value?: string | number;
+};
+
+/** The options a button takes. */
+export type ButtonOptions = {
+  id?: string;
+  label?: string;
+  name?: string;
+  /**
+   * What the click does. A boolean return value moves the button's `aria-pressed`,
+   * which is how a toggle button stays a value rather than becoming a new idiom.
+   */
+  onClick?: (event?: Event) => unknown;
+  /** Give it a boolean to get a **toggle button** rather than an action. */
+  pressed?: boolean;
+};
+
+/** The options a text field takes. */
+export type FieldOptions = {
+  id?: string;
+  label?: string;
+  name?: string;
+  type?: string;
+  value?: string;
+  placeholder?: string;
+  /** `decimal` brings up the number pad on a phone. */
+  inputmode?: string;
+};
+
+/** The options a multi-line field takes. */
+export type TextareaOptions = {
+  id?: string;
+  label?: string;
+  name?: string;
+  rows?: number;
+  value?: string;
+  placeholder?: string;
+};
+
+/** One part of a `builder()`'s palette. */
+export type BuilderPart = { id: string; label: string };
+
+/** The options a builder takes. */
+export type BuilderOptions = {
+  id?: string;
+  label?: string;
+  name?: string;
+  parts?: BuilderPart[];
+  /** The parts already added, in order. */
+  value?: string[];
+  /** The most the reader may add; 0 means no limit. */
+  max?: number;
+};
+
+/** One key on a `notate()` keypad. */
+export type NotateKey = { text: string; name?: string };
+
+/** The options a keypad takes. */
+export type NotateOptions = {
+  /** The field the keys insert into. Required: a keypad with no field types nowhere. */
+  input?: HTMLInputElement | HTMLTextAreaElement | null;
+  label?: string;
+  keys?: NotateKey[];
+};
 
 /**
  * A slider, with a visible label and an accessible name.
  *
  * @returns {HTMLInputElement} the input, ready to read `.value` from.
  */
-export function slider(parent, options = {}) {
+export function slider(parent: HTMLElement, options: SliderOptions = {}): HTMLInputElement {
   const {
     id = "",
     label = "",
@@ -69,7 +181,7 @@ export function slider(parent, options = {}) {
 
   const out = document.createElement("output");
   out.className = id ? `${id}-out` : "fig-out";
-  const paint = () => {
+  const paint = (): void => {
     // The raw value, not `fmt`: a slider's value is whatever its `step` produced, so
     // it is already clean, and rounding it to a fixed number of places would
     // truncate a `step="0.001"` control at 3.14159 to 3.1416.
@@ -85,7 +197,7 @@ export function slider(parent, options = {}) {
 }
 
 /** A checkbox, with a visible label and an accessible name. */
-export function toggle(parent, options = {}) {
+export function toggle(parent: HTMLElement, options: ToggleOptions = {}): HTMLInputElement {
   const { id = "", label = "", name = "", checked = false } = options;
   const holder = document.createElement("label");
   holder.className = "fig-control";
@@ -101,7 +213,7 @@ export function toggle(parent, options = {}) {
 }
 
 /** A drop-down, with a visible label and an accessible name. */
-export function chooser(parent, options = {}) {
+export function chooser(parent: HTMLElement, options: ChooserOptions = {}): HTMLSelectElement {
   const { id = "", label = "", name = "", choices = [], value } = options;
   const holder = document.createElement("label");
   holder.className = "fig-control";
@@ -112,7 +224,7 @@ export function chooser(parent, options = {}) {
   select.setAttribute("aria-label", name || label || id);
   for (const choice of choices) {
     const option = document.createElement("option");
-    option.value = choice.value;
+    option.value = String(choice.value);
     option.textContent = choice.label;
     select.append(option);
   }
@@ -123,6 +235,22 @@ export function chooser(parent, options = {}) {
 }
 
 /**
+ * The options `button()` takes, for the compiled copy.
+ *
+ * The second half of the pair `draw.ts` documents: `tsc` strips the annotations when
+ * it emits, so `kit/controls.js` cannot see `ButtonOptions` and a `.js` module calling
+ * `button(el, { onClick })` would be told that `onClick` does not exist. The two halves
+ * must agree, and the TypeScript type above is what this file is checked against.
+ *
+ * @typedef {object} ButtonOptions
+ * @property {string} [id]
+ * @property {string} [label]  the visible words
+ * @property {string} [name]  the accessible name, when it should say more
+ * @property {(event?: Event) => unknown} [onClick]  a boolean return moves `aria-pressed`
+ * @property {boolean} [pressed]  give it a boolean to get a **toggle button**
+ */
+
+/**
  * A button. The kit's one control that is an **action** rather than a value.
  *
  * Ten of the 209 modules build a `<button>` themselves and four of those set
@@ -130,13 +258,15 @@ export function chooser(parent, options = {}) {
  * does not fire `input` or `change`, so it is bound with `onClick` rather than
  * `react()`.
  *
- * @param {object} o
- * @param {string} [o.pressed]  give it a boolean to get a **toggle button** —
- *   `aria-pressed` follows `onClick`'s return value, or the `pressed` property set by
- *   the caller. Without it the button is an action.
- * @returns {HTMLButtonElement}
+ * **The `@type` rather than a `@param`: a `@param` cannot name a destructured
+ * parameter** — it reports `JSDoc '@param' tag has name 'o', but there is no parameter
+ * with that name` and falls back to inferring the options from their defaults, which is
+ * how `onClick` disappears. A `@type` states the whole signature by position, so it
+ * reaches the options object and the shipped copy is typed.
+ *
+ * @type {(parent: HTMLElement, options?: ButtonOptions) => HTMLButtonElement}
  */
-export function button(parent, { id = "", label = "", name = "", onClick, pressed } = {}) {
+export function button(parent: HTMLElement, { id = "", label = "", name = "", onClick, pressed }: ButtonOptions = {}): HTMLButtonElement {
   const holder = document.createElement("span");
   holder.className = "fig-control";
   holder.style.cssText = UI_FONT;
@@ -172,7 +302,10 @@ export function button(parent, { id = "", label = "", name = "", onClick, presse
  * controls. Without that the kit would have two binding idioms and a module would
  * have to know which it held.
  */
-export function segmented(parent, { id = "", label = "", name = "", choices = [], value } = {}) {
+export function segmented(
+  parent: HTMLElement,
+  { id = "", label = "", name = "", choices = [], value }: ChooserOptions = {},
+): HTMLFieldSetElement & { value: string } {
   const fieldset = document.createElement("fieldset");
   fieldset.className = "fig-control fig-segmented";
   fieldset.style.cssText = `${UI_FONT};border:0;margin:0;padding:0`;
@@ -182,7 +315,7 @@ export function segmented(parent, { id = "", label = "", name = "", choices = []
   legend.style.cssText = `${UI_FONT};padding:0`;
   fieldset.append(legend);
   const groupName = name || id || `fig-seg-${Math.random().toString(36).slice(2, 8)}`;
-  const inputs = [];
+  const inputs: HTMLInputElement[] = [];
   for (const choice of choices) {
     const item = document.createElement("label");
     item.className = "fig-segment";
@@ -200,13 +333,14 @@ export function segmented(parent, { id = "", label = "", name = "", choices = []
   // Read and write like a `<select>`, so `react()` and a module's own code have one
   // shape to learn.
   Object.defineProperty(fieldset, "value", {
-    get: () => (fieldset.querySelector("input:checked") || inputs[0] || { value: "" }).value,
+    get: () =>
+      (fieldset.querySelector("input:checked") as HTMLInputElement | null || inputs[0] || { value: "" }).value,
     set: (next) => {
       for (const input of inputs) input.checked = String(input.value) === String(next);
     },
   });
   mount(parent, fieldset);
-  return fieldset;
+  return fieldset as HTMLFieldSetElement & { value: string };
 }
 
 /**
@@ -217,7 +351,7 @@ export function segmented(parent, { id = "", label = "", name = "", choices = []
  * phone: `decimal` brings up the number pad, and without it a reader types a minus
  * sign on a full keyboard.
  */
-export function field(parent, { id = "", label = "", name = "", type = "text", value = "", placeholder = "", inputmode } = {}) {
+export function field(parent: HTMLElement, { id = "", label = "", name = "", type = "text", value = "", placeholder = "", inputmode }: FieldOptions = {}): HTMLInputElement {
   const holder = document.createElement("label");
   holder.className = "fig-control";
   holder.style.cssText = UI_FONT;
@@ -237,7 +371,10 @@ export function field(parent, { id = "", label = "", name = "", type = "text", v
 }
 
 /** A multi-line field, for the reader's own writing. */
-export function textarea(parent, { id = "", label = "", name = "", rows = 3, value = "", placeholder = "" } = {}) {
+export function textarea(
+  parent: HTMLElement,
+  { id = "", label = "", name = "", rows = 3, value = "", placeholder = "" }: TextareaOptions = {},
+): HTMLTextAreaElement {
   const holder = document.createElement("label");
   holder.className = "fig-control";
   holder.style.cssText = `${UI_FONT};grid-column:1 / -1;display:block`;
@@ -257,6 +394,13 @@ export function textarea(parent, { id = "", label = "", name = "", rows = 3, val
   mount(parent, holder);
   return input;
 }
+
+/** The element a builder returns: a `div` that reads and writes like a control. */
+export type BuilderElement = HTMLDivElement & {
+  /** The part ids, in the order they were added. */
+  value: string[];
+  reset: (next?: string[]) => void;
+};
 
 /**
  * A builder: a palette of parts the reader adds to an assembly.
@@ -282,8 +426,11 @@ export function textarea(parent, { id = "", label = "", name = "", rows = 3, val
  * @param {number} [o.max]  the most the reader may add; 0 means no limit
  * @returns {HTMLElement & {value: string[], reset: Function}}
  */
-export function builder(parent, { id = "build", label = "", name = "", parts = [], value = [], max = 0 } = {}) {
-  const holder = document.createElement("div");
+export function builder(
+  parent: HTMLElement,
+  { id = "build", label = "", name = "", parts = [], value = [], max = 0 }: BuilderOptions = {},
+): BuilderElement {
+  const holder = document.createElement("div") as BuilderElement;
   holder.className = "fig-control fig-builder";
   holder.style.cssText = `${UI_FONT};grid-column:1 / -1`;
   if (id) holder.classList.add(id);
@@ -298,7 +445,7 @@ export function builder(parent, { id = "build", label = "", name = "", parts = [
   const row = document.createElement("div");
   row.style.cssText = "display:flex;flex-wrap:wrap;gap:.35rem";
   const order = value.slice();
-  const buttons = new Map();
+  const buttons = new Map<string, HTMLButtonElement>();
 
   const announce = () => {
     // **Do not assign `holder.value` here.** It has a setter, and the setter resets and
@@ -368,7 +515,7 @@ export function builder(parent, { id = "build", label = "", name = "", parts = [
  * the checker still reads a string. It deliberately does not render the mathematics —
  * that is the maths hook's job, at build time.
  */
-export function notate(parent, { input, label = "", keys } = {}) {
+export function notate(parent: HTMLElement, { input, label = "", keys }: NotateOptions = {}): HTMLDivElement {
   if (!input) throw new Error("notate: an input is required, because the keypad inserts into one");
   const holder = document.createElement("div");
   holder.className = "fig-control fig-notate";

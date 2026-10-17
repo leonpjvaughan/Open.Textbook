@@ -28,6 +28,27 @@ import { parseArgs } from "../lib/report.js";
 const TABLE_START = "<!-- generated:tables -->";
 const TABLE_END = "<!-- /generated:tables -->";
 
+/** One paint the audit found on a figure, and the ratio it clears or fails. */
+type Paint = { rgb: number[]; kinds: string[]; count: number; example: string; ratio: number };
+
+/** A paint below its floor, as the measured page reports it. */
+type Problem = { tag: string; cls: string; kind: string; ratio: number; need: number; example: string };
+
+/** One measurement of one figure in one scheme, as `MEASURE` returns it. */
+type Measurement = {
+  slug?: string;
+  /** The solid colour the drawing sits on, which every ratio is against. */
+  panel?: { r: number; g: number; b: number };
+  panelFrom?: string;
+  paints?: Paint[];
+  problems?: Problem[];
+  /** Set when the figure could not be measured at all. */
+  error?: string;
+};
+
+/** One figure's measurements by scheme, and the page it was measured on. */
+type FigureReport = { page: string; schemes: Record<string, Measurement> };
+
 const COLOUR_CLASSES = [
   "fig-accent", "fig-warn", "fig-good", "fig-ink", "fig-grid", "fig-line",
   "text-accent", "text-warn", "text-good", "text-ink",
@@ -430,7 +451,7 @@ export async function run(argv: string[]): Promise<number> {
     return runMobile(browser, siteDir, pages, jsonOut);
   }
 
-  const report = {};
+  const report: Record<string, FigureReport> = {};
   for (const scheme of schemes) {
     const context = await openContext(browser, {
       scheme: scheme as "light" | "dark",
@@ -451,7 +472,7 @@ export async function run(argv: string[]): Promise<number> {
         await page.goto(`${ORIGIN}${route}`, { waitUntil: "load" });
         await page.waitForTimeout(500);
         const res = await page.evaluate(`${MEASURE}(${JSON.stringify(slug)})`);
-        entry.schemes[scheme] = res;
+        entry.schemes[scheme] = res as Measurement;
         if (shots && !res.error) {
           const el = await page.$(`maths-figure[data-figure="${slug}"]`);
           if (el) {
@@ -524,9 +545,9 @@ async function runMobile(browser, dir, pages, outFile) {
       // reads as a pass and is the opposite of one.
       const found = await page.evaluate(() => {
         const out = [];
-        for (const fig of document.querySelectorAll("maths-figure[data-figure]")) {
+        for (const fig of document.querySelectorAll<HTMLElement>("maths-figure[data-figure]")) {
           let smallest = Infinity;
-          for (const el of fig.querySelectorAll("text, tspan")) {
+          for (const el of fig.querySelectorAll<SVGElement>("text, tspan")) {
             const rect = el.getBoundingClientRect();
             if (rect.width === 0 && rect.height === 0) continue;
             const svg = el.ownerSVGElement;
@@ -560,7 +581,7 @@ async function runMobile(browser, dir, pages, outFile) {
   if (tooSmall.length) {
     console.error("\nfigure legibility failed: these draw a label too small to read:");
     for (const slug of tooSmall.slice(0, 20)) console.error(`   ${measured[slug].toFixed(1)}px  ${slug}`);
-    process.exit(1);
+    return 1;
   }
   // The guard against a run that measured almost nothing. A fixed floor of ten was
   // wrong in both directions: it failed on a single book with nine figures, and it
@@ -574,6 +595,7 @@ async function runMobile(browser, dir, pages, outFile) {
       `\nfigure legibility failed: measured ${slugs.length} of ${expected} figures. ` +
         "Either the build is missing pages or the server is not serving them.",
     );
-    process.exit(1);
+    return 1;
   }
+  return 0;
 }

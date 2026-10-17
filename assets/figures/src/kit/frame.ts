@@ -32,6 +32,95 @@ const HIDDEN = [
 ].join(";");
 
 /**
+ * The options `panel()` takes.
+ *
+ * A real TypeScript type rather than JSDoc, because a `@param` on a destructured
+ * binding with a default is silently ignored: `{ width = 560 } = {}` takes its type
+ * from the default. `label()` in `text.js` is the worked example.
+ */
+export type PanelOptions = {
+  /** The accessible name for the drawing. Omit it only when there is no drawing. */
+  label?: string;
+  /** A longer description, put into the document and pointed at by `aria-describedby`. */
+  description?: string;
+  /** A line of prose above the controls: something to predict, not a description. */
+  prompt?: string;
+  /** The viewBox width. */
+  width?: number;
+  /** The viewBox height. There is deliberately no pixel height: see the SVG note. */
+  height?: number;
+  /** `false` for a figure that draws nothing. */
+  drawing?: boolean;
+  /** `max-width` in pixels for the whole figure. */
+  max?: number;
+};
+
+/** The frame `panel()` returns. */
+export type Panel = {
+  root: HTMLElement;
+  /** The drawing surface, or `null` for a figure that draws nothing. */
+  svg: SVGSVGElement | null;
+  /** The polite live region the figure announces its values in. */
+  readout: HTMLElement;
+  /** The column a module appends its own controls to. */
+  controls: HTMLElement;
+  /** An empty `<p>` under the controls, for a line of the figure's own prose. */
+  caption: HTMLElement;
+  /** Record the arithmetic the figure states. */
+  claim: (entries?: Claim[]) => void;
+};
+
+/**
+ * One piece of arithmetic a figure states, as data rather than prose.
+ *
+ * `expression` is Python syntax, because the verifier is SymPy, and `shown` is the
+ * string the reader sees — the check also requires the readout to contain it.
+ */
+export type Claim = {
+  /** What the claim is about, for a failure message. */
+  label?: string;
+  /** The expression to evaluate, in Python syntax. */
+  expression: string;
+  /** The values it was given, by name. */
+  values?: Record<string, number>;
+  /** The figure's own answer. */
+  answer?: number | string;
+  /** The string the reader sees beside it. */
+  shown?: number | string;
+};
+
+/** One part of a `diagram()`. */
+export type DiagramPart = {
+  /** The part's name, read out on arrival. */
+  name: string;
+  /** What the part is, said after its name. */
+  description?: string;
+  /** The SVG for the part, composed from the marks. Called once. */
+  draw?: () => string;
+};
+
+/** The options `diagram()` takes: a panel's, plus the parts and the hint. */
+export type DiagramOptions = {
+  label?: string;
+  description?: string;
+  width?: number;
+  height?: number;
+  /** One entry per part, in reading order. */
+  parts?: DiagramPart[];
+  /** A line under the drawing; default is the hint that says the parts can be explored. */
+  caption?: string;
+};
+
+/** The diagram `diagram()` returns. */
+export type Diagram = {
+  svg: SVGSVGElement;
+  readout: HTMLElement;
+  controls: HTMLElement;
+  groups: SVGGElement[];
+  activate: (index: number) => void;
+};
+
+/**
  * The figure's frame: an optional drawing surface and a live readout.
  *
  * @param {HTMLElement} el        the `<maths-figure>` the loader hands us
@@ -56,7 +145,7 @@ const HIDDEN = [
  *   controls for a line of prose the figure needs to say; `claim` records the
  *   arithmetic the figure states (see below).
  */
-export function panel(el, options = {}) {
+export function panel(el: HTMLElement, options: PanelOptions = {}): Panel {
   const {
     label = "",
     description = "",
@@ -85,7 +174,7 @@ export function panel(el, options = {}) {
     root.append(line);
   }
 
-  let svg = null;
+  let svg: SVGSVGElement | null = null;
   if (drawing) {
     svg = document.createElementNS("http://www.w3.org/2000/svg", "svg");
     svg.setAttribute("viewBox", `0 0 ${width} ${height}`);
@@ -165,7 +254,7 @@ export function panel(el, options = {}) {
    *
    * @param {object[]} entries the claims for the current render, replacing the last
    */
-  const claim = (/** @type {object[]} */ entries = []) => {
+  const claim = (entries: Claim[] = []): void => {
     const clean = entries.map((entry) => ({
       label: String(entry.label ?? ""),
       expression: String(entry.expression ?? ""),
@@ -213,7 +302,7 @@ export function panel(el, options = {}) {
  * @returns {{svg: SVGSVGElement, readout: HTMLElement, controls: HTMLElement,
  *   groups: SVGGElement[], activate: (index: number) => void}}
  */
-export function diagram(el, options = {}) {
+export function diagram(el: HTMLElement, options: DiagramOptions = {}): Diagram {
   const {
     label = "",
     description = "",
@@ -234,7 +323,7 @@ export function diagram(el, options = {}) {
 
   // One <g> per part, appended in reading order. The index is the identity, so a part
   // named with a character an attribute selector would need to escape cannot break it.
-  const groups = parts.map((part) => {
+  const groups: SVGGElement[] = parts.map((part) => {
     const group = document.createElementNS("http://www.w3.org/2000/svg", "g");
     group.setAttribute("class", "fig-part");
     group.innerHTML = part.draw ? part.draw() : "";
@@ -251,7 +340,7 @@ export function diagram(el, options = {}) {
     "display:flex;flex-wrap:wrap;gap:.35rem";
 
   let active = -1;
-  const activate = (index) => {
+  const activate = (index: number): void => {
     active = index;
     root.classList.add("is-exploring");
     groups.forEach((group, i) => group.classList.toggle("is-active", i === index));
