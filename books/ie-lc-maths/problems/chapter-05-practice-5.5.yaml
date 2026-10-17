@@ -44,12 +44,14 @@ problems:
     refs: ['4.4']
     statement: 'Write down all three roots of $x^3 - 5x^2 + 11x - 15 = 0$.'
     answer_label: 'All three roots, each checked'
+    # `solve` and not three substitutions. Substituting proves each root is a root; it
+    # does not prove the list is complete, so a reader who gave one real root and no
+    # conjugate pair would pass a check that looked thorough. `solve` gives the set, and
+    # `evaluate` compares it as a multiset, so the count is checked as well.
     check:
-      kind: all
-      checks:
-        - {kind: evaluate, expression: '3**3 - 5*3**2 + 11*3 - 15', answer: '0'}
-        - {kind: evaluate, expression: '(1 + 2*I)**3 - 5*(1 + 2*I)**2 + 11*(1 + 2*I) - 15', answer: '0'}
-        - {kind: evaluate, expression: '(1 - 2*I)**3 - 5*(1 - 2*I)**2 + 11*(1 - 2*I) - 15', answer: '0'}
+      kind: evaluate
+      expression: 'solve(x**3 - 5*x**2 + 11*x - 15, x)'
+      answer: '[3, 1 + 2*I, 1 - 2*I]'
     answer_text: >-
       $x = 3$, $x = 1 + 2i$ and $x = 1 - 2i$. One real root and a conjugate pair, which
       is the shape a real cubic must have.

@@ -6,6 +6,7 @@
 chapter: 3
 problems:
   - id: lc3-1-rectangle-area
+    plays: parallelogram-area
     section: '3.1'
     tier: F
     refs: ['3.4']
@@ -42,6 +43,7 @@ problems:
       A perimeter is a length, so the unit is metres, not square metres.
 
   - id: lc3-1-triangle-area
+    plays: triangle-area
     section: '3.1'
     tier: F
     refs: ['3.4']
@@ -60,6 +62,7 @@ problems:
       A triangle is half of a parallelogram with the same base and height.
 
   - id: lc3-1-parallelogram-area
+    plays: parallelogram-area
     section: '3.1'
     tier: F
     refs: ['3.4']
@@ -81,6 +84,7 @@ problems:
       belongs to the perimeter, so it is not used here.
 
   - id: lc3-1-trapezium-area
+    plays: trapezium-area
     section: '3.1'
     tier: F
     refs: ['3.4']
@@ -102,6 +106,7 @@ problems:
       Add the two parallel sides, halve, then multiply by the height between them.
 
   - id: lc3-1-composite-area
+    plays: [parallelogram-area, triangle-area]
     section: '3.1'
     tier: F
     refs: ['3.4']

@@ -5,6 +5,7 @@
 chapter: 3
 problems:
   - id: lc3-3-cuboid
+    plays: prism-volume
     section: '3.3'
     tier: F
     refs: ['3.4']
@@ -24,6 +25,7 @@ problems:
       Three lengths are multiplied, so the unit is cubic metres.
 
   - id: lc3-3-triangular-prism
+    plays: [triangle-area, prism-volume]
     section: '3.3'
     tier: F
     refs: ['3.4']
@@ -49,6 +51,7 @@ problems:
       $$V = 20 \times 20 = 400 \text{ cm}^3$$
 
   - id: lc3-3-trapezium-prism
+    plays: [trapezium-area, prism-volume]
     section: '3.3'
     tier: F
     refs: ['3.4']

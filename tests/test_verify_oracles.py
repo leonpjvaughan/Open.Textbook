@@ -194,3 +194,115 @@ def test_a_bank_may_override_its_books_oracles(tmp_path):
     )
     with pytest.raises(oracles.UnknownOracle, match="ghost"):
         verify_bank(bad)
+
+
+# --- a bank that will not parse -----------------------------------------------------
+#
+# `textbook.verify` used to let the YAML parser's exception escape, which printed a
+# traceback from inside a library and **no verdict at all**. A run over fifty banks then
+# stopped at the fourth with a stack trace, and a caller counting `ok` lines read the
+# short run as a clean one. A broken bank is a defect in a file a person edits, so it is
+# reported like every other defect: the path, the reason, and a non-zero exit.
+
+
+def _write(tmp_path, name: str, text: str):
+    path = tmp_path / name
+    path.write_text(text, encoding="utf-8")
+    return path
+
+
+def test_a_bank_with_invalid_yaml_is_a_verdict_not_a_traceback(tmp_path):
+    path = _write(tmp_path, "broken.yaml", "problems:\n  - id: x\n    check: [\n")
+    report = verify_bank(path)
+    assert not report.ok
+    assert report.load_error is not None
+    assert "could not parse the file" in report.load_error
+    # The parser's own message carries the line, and the line is the useful part.
+    assert "line" in report.load_error
+    assert report.errors == [report.load_error]
+
+
+def test_a_missing_bank_is_a_verdict_not_a_traceback(tmp_path):
+    report = verify_bank(tmp_path / "absent.yaml")
+    assert not report.ok
+    assert report.load_error is not None
+    assert "could not read the file" in report.load_error
+
+
+def test_a_broken_bank_does_not_stop_the_run(tmp_path):
+    """The failure this guards against was a *short* run that looked clean.
+
+    `verify_bank` is what the CLI loops over, so the property that matters is that a
+    broken file returns rather than raises: one bad bank in a directory must not hide
+    the verdict on the others.
+    """
+    good = _write(
+        tmp_path,
+        "good.yaml",
+        "problems:\n"
+        "  - id: a\n"
+        "    section: '1.1'\n"
+        "    tier: F\n"
+        "    refs: [N1]\n"
+        "    statement: 'Work out $2 + 2$.'\n"
+        "    check: {kind: evaluate, expression: '2 + 2', answer: '4'}\n"
+        "    answer_text: '$4$'\n",
+    )
+    bad = _write(tmp_path, "bad.yaml", "problems:\n  - id: x\n    check: [\n")
+    reports = [verify_bank(path) for path in sorted(tmp_path.glob("*.yaml"))]
+    assert len(reports) == 2, "a broken bank ended the run"
+    assert [report.ok for report in reports] == [False, True]
+    assert good.is_file() and bad.is_file()
+
+
+# --- a solution set is a set ---------------------------------------------------------
+#
+# `solve()` returns a list, and every arithmetic path assumed a single expression:
+# `expr.replace` and `simplify(a - b)` both raise on a list. So a bank whose expression
+# was a `solve()` could not be checked at all — and the failure arrived as an
+# `AttributeError` from inside the oracle rather than as a verdict.
+#
+# The comparison is a **multiset**, because the order `solve()` happens to return is not
+# a claim the bank makes, while the *number* of roots is exactly the claim a bank about a
+# cubic is making.
+
+
+def _roots_bank(tmp_path, answer: str):
+    return _write(
+        tmp_path,
+        "roots.yaml",
+        "problems:\n"
+        "  - id: roots\n"
+        "    section: '5.5'\n"
+        "    tier: H\n"
+        "    refs: ['4.4']\n"
+        "    statement: 'Solve $x^2 - 2x + 5 = 0$.'\n"
+        "    check:\n"
+        "      kind: evaluate\n"
+        "      expression: 'solve(x**2 - 2*x + 5, x)'\n"
+        f"      answer: '{answer}'\n"
+        "    answer_text: 'the conjugate pair'\n",
+    )
+
+
+def test_a_solve_result_is_checked_as_a_set(tmp_path):
+    assert verify_bank(_roots_bank(tmp_path, "[1 - 2*I, 1 + 2*I]")).ok
+
+
+def test_the_order_of_a_solution_set_does_not_matter(tmp_path):
+    assert verify_bank(_roots_bank(tmp_path, "[1 + 2*I, 1 - 2*I]")).ok
+
+
+def test_a_missing_root_fails(tmp_path):
+    """The case the check exists for: a bank that solved a quadratic and listed one root."""
+    report = verify_bank(_roots_bank(tmp_path, "[1 + 2*I]"))
+    assert not report.ok
+
+
+def test_a_repeated_root_fails(tmp_path):
+    """A multiset and not a set, so a root written twice is not a second root."""
+    assert not verify_bank(_roots_bank(tmp_path, "[1 + 2*I, 1 + 2*I]")).ok
+
+
+def test_a_solution_set_against_a_single_expression_fails(tmp_path):
+    assert not verify_bank(_roots_bank(tmp_path, "1 + 2*I")).ok

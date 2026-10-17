@@ -47,9 +47,18 @@ class Report:
 class BankReport:
     bank: str
     reports: list[Report] = field(default_factory=list)
+    #: Set when the file itself could not be read.
+    #:
+    #: A bank that will not parse has no problems to report on, and letting the parser's
+    #: exception escape printed a traceback from inside a library and **no verdict at
+    #: all** — so a run over fifty banks stopped at the fourth with a stack trace, and a
+    #: caller counting `ok` lines read a short run as a clean one.
+    load_error: str | None = None
 
     @property
     def errors(self) -> list[str]:
+        if self.load_error is not None:
+            return [self.load_error]
         out = []
         for report in self.reports:
             out.extend(f"{report.problem_id}: {e}" for e in report.errors)
@@ -207,7 +216,17 @@ def _declared_oracles(data: dict, path: Path, override: Iterable[str] | None):
 
 def verify_bank(path: Path, oracles: Iterable[str] | None = None) -> BankReport:
     path = Path(path)
-    data: dict[str, Any] = yamlio.load_file(path)
+    try:
+        data: dict[str, Any] = yamlio.load_file(path)
+    except yaml.YAMLError as err:
+        # The parser's own message already carries the line and column, and it is the
+        # most useful thing anyone can be told. What it must not do is arrive as a
+        # traceback: this is a defect in a bank, and a bank is a file a person edits.
+        first = str(err).strip().splitlines()
+        detail = " ".join(line.strip() for line in first[:3] if line.strip())
+        return BankReport(bank=str(path), load_error=f"could not parse the file: {detail}")
+    except OSError as err:
+        return BankReport(bank=str(path), load_error=f"could not read the file: {err}")
     selection = select_oracles(_declared_oracles(data, path, oracles))
     bank = BankReport(bank=str(path))
     for problem in data.get("problems", []):

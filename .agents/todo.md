@@ -59,17 +59,17 @@ now, and the four marked open are the ones verified open on 2026-10-17.
 - [x] 41. `dimensions` could not check a magnitude needing a square root
 - [x] 42. The internal-words lint flagged the literal phrase "the bank"
 - [x] 43. A-level Mathematics Chapter 6 was missing, and the plan thought it was built
-- [ ] 44. An equations-coverage check needs a declaration the banks do not carry
-- [ ] 45. The remaining undeclared records, book by book
+- [x] 44. An equations-coverage check needs a declaration the banks do not carry
+- [x] 45. The remaining undeclared records, book by book
 - [x] 46. Every figure, measured — and the two defects it found
 - [x] 47. "Prove it to me" — a proof behind every unproved claim
 - [x] 48. Eleven converted GCSE Physics figures gained a slider value display the page never had
 - [x] 49. The figure-kit phone-floor guard measured the wrong box, and passed a size that is too small
-- [ ] 50. `evaluate` cannot check a `solve()` result, so a roots answer must be checked root by root
+- [x] 50. `evaluate` cannot check a `solve()` result, so a roots answer must be checked root by root
 - [x] 51. The published Irish books serve 2,741 pages that say "Stub"
 - [x] 52. A euro sign inside maths renders as nothing, and KaTeX only warns
 - [x] 53. An unquoted title with a colon is invalid YAML, and one shipped
-- [ ] 54. `textbook.verify` stops at the first bank that will not parse, and a short run looks like a clean one
+- [x] 54. `textbook.verify` stops at the first bank that will not parse, and a short run looks like a clean one
 - [x] 55. The home page listed "Higher only" as a tier
 - [x] 56. The figure panel's tint was spending the contrast margin
 - [ ] 57. The browser runtime has no types, and `tsc` reports 163 errors
@@ -2399,7 +2399,7 @@ Chapter 7 again.
 
 ---
 
-## 44. An equations-coverage check needs a declaration the banks do not carry
+## 44. An equations-coverage check needs a declaration the banks do not carry — **done**
 
 **Measured before building, and not built.** `physics-verifier-gaps.md` §3.6
 describes a coverage check: every equation a question needs must be one the
@@ -2437,7 +2437,7 @@ coverage, never correct use, which is the `units` oracle's business.
 
 ---
 
-## 45. The remaining undeclared records, book by book
+## 45. The remaining undeclared records, book by book — **done**
 
 **Measured after the declaration pass, 2026-10-12.** `python -m textbook.verify`
 prints how many records carry symbols and declare no booklet equation. A-level
@@ -2447,10 +2447,43 @@ board provides.
 
 | Book | Undeclared | State |
 |---|---|---|
-| A-level Physics | 20 | Reviewed: genuinely not booklet items, or derived combinations. |
-| A-level Mathematics | 307 | Not attempted. |
+| A-level Mathematics | 273 | Classified 2026-10-12. No record among them was a booklet item. |
 | GCSE Mathematics | 126 | **28 declared by rule**; the rest are algebra, not booklet formulae. |
 | GCSE Physics | **0** | Not a gap: its expressions carry no symbols at all, only substituted numbers, so there is nothing a declaration could name. That is itself the reason the check cannot prove completeness. |
+| A-level Physics | 20 | Reviewed: differences, a division by a count, derived results. One is a genuine question — see below. |
+| `ie-lc-applied-maths` | 157 | **No booklet exists for this book.** Nothing to declare against. |
+| `ie-lc-maths` | 93 | **8 declared by rule 2026-10-17**; the rest are algebra, calculus, complex numbers, and substituted numeric forms. |
+| `ie-jc-maths` | 87 | **No booklet exists for this book.** The SEC publishes none for Junior Cycle. |
+| `ie-lc-physics` | 8 | **No booklet exists for this book**, though the SEC booklet it is examined with does cover physics. See item 60. |
+
+**The three books with no booklet are the whole of the remaining gap that a
+declaration could close.** 252 records sit in `ie-jc-maths`,
+`ie-lc-applied-maths` and `ie-lc-physics`, and not one of them can carry a
+`plays:` while the book has no booklet to resolve against. For `ie-jc-maths`
+that is correct — the SEC publishes no Junior Cycle booklet. For the two
+Leaving Certificate books it is a gap, and item 60 is that gap.
+
+**`ie-lc-maths`, 8 declared by rule, 2026-10-17.** The same method as GCSE
+Mathematics: one rule at a time, each requiring the expression to be an
+*instance* of the item it names, and never "contains".
+
+| Item | Records | The form |
+|---|---|---|
+| `parallelogram-area` | 2 | `l * w`, `b * h` |
+| `triangle-area` | 2 | `(b * h) / 2` |
+| `trapezium-area` | 1 | `((a + b) / 2) * h` |
+| `prism-volume` | 1 | `l * w * h` |
+| `triangle-area` + `prism-volume` | 1 | `(b * h / 2) * L` — a triangular prism needs both |
+| `trapezium-area` + `prism-volume` | 1 | `((a + b) / 2) * h * L` |
+| `parallelogram-area` + `triangle-area` | 1 | `l * w + (b * h) / 2`, a composite area |
+
+The 93 that remain are **not** candidates: `x**2`, `x**3 * x**5`, `exp(3*x)`,
+`(3 + 2*I) / (1 - I)`, and numeric substitutions such as `sqrt(13**2 - 5**2)`
+and `24*4 - 3*4**2`. A substituted form has no symbol left to name, and
+`2 * l + 2 * w` (a rectangle's perimeter), `2 * (l * w + l * h + w * h)` (a
+cuboid's surface) and `2 * (a * b / 2) + a * L + b * L + c * L` (a triangular
+prism's surface) are genuine composite formulae that **the booklet does not
+provide**, which is a coverage question for the author and not a declaration.
 
 **GCSE Mathematics: 28 declarations, by rule rather than by shape.** Its booklet has
 only 24 items — geometry, measure and proportion — while its 126 symbolic records are
@@ -2978,7 +3011,7 @@ command in a comment. The kit's doc comment states the real relationship.
 - `assets/figures/kit.js` and `scripts/check-figure-kit.cjs` no longer contain the
   string `0.64` or `358 / 560` as a scale.
 
-## 50. `evaluate` cannot check a `solve()` result, so a roots answer must be checked root by root
+## 50. `evaluate` cannot check a `solve()` result, so a roots answer must be checked root by root — **done**
 
 **What is wrong.** The sympy oracle's `evaluate` check parses `expression` and
 `answer` and compares them with `equivalent`. When the expression is
@@ -3105,7 +3138,7 @@ which is why the handoff requires the build check.
 - `uv run python -m textbook.pipeline --book <id> --profile higher` prints no
   `front matter is not valid YAML` for any book.
 
-## 54. `textbook.verify` stops at the first bank that will not parse, and a short run looks like a clean one
+## 54. `textbook.verify` stops at the first bank that will not parse, and a short run looks like a clean one — **done**
 
 **What is wrong.** `textbook.verify` exits non-zero on an unparseable bank file, but it
 prints no error and no traceback:
@@ -3384,6 +3417,63 @@ served the same page for every route. It is proportional to what the build conta
 - `node tools/dist/cli.js audit site --mobile` reports 0 figures below 9px.
 - `uv run python -m pytest tests/ -q` passes.
 - Every figure's readout agrees with a hand calculation.
+
+---
+
+## 60. Three Irish books have no booklet, and two of them should
+
+**What is wrong.** `BOOKLETS.md`'s target set names only the English qualifications, and
+`ie-jc-maths`, `ie-lc-applied-maths` and `ie-lc-physics` have no `booklet/` directory.
+Measured 2026-10-17: **252 bank records carry symbols and declare no booklet equation**,
+and not one of them can carry a `plays:` while the book has no booklet to resolve against.
+
+| Book | Records | Should it have one? |
+|---|---|---|
+| `ie-jc-maths` | 87 | **No.** The SEC publishes no booklet for Junior Cycle Mathematics. The reason is "there is nothing to have", and that is worth writing down rather than leaving as a blank. |
+| `ie-lc-applied-maths` | 157 | **Yes.** Applied Mathematics is examined with the same SEC booklet. |
+| `ie-lc-physics` | 8 | **Yes.** Physics is examined with the same SEC booklet. |
+
+**The source is already in the repository.** `research/sources/ie-lc-maths/` holds
+`SEC_Formulae_and_Tables.pdf`, the extracted `SEC_Formulae_and_Tables.txt`, and an
+`EXTRACTION-NOTE.md` that records the one thing that matters: the booklet's **CropBox is
+612 x 238 pt but its content runs to x = 799 and y = 520**, so a default extraction loses
+most of every page. The command that works is
+
+```
+pdftotext -layout -x 0 -y 0 -W 900 -H 800 SEC_Formulae_and_Tables.pdf SEC_Formulae_and_Tables.txt
+```
+
+and the text already contains the sections the two books need:
+
+| Section | Page |
+|---|---|
+| Particle physics | 48 |
+| Mechanics | 50 |
+| Heat and temperature | 58 |
+| Light and sound | 59 |
+| Electricity | 61 |
+| Electrical circuit symbols | 72 |
+
+**Why this is not just a copy.** `ie-lc-maths` reproduces pages 8 to 44 — the mathematics
+sections — and stops. The physics sections are pages 48 to 72, so they were never
+transcribed. `ie-lc-physics` needs them, and its own `book.yaml` would then declare the
+same document under its own `booklet:` key, with the same provenance. A shared file across
+two books is the wrong shape: a book is self-contained, and `scaffold` copies per book.
+
+**What it buys.** `ie-lc-physics`'s 8 undeclared records become declarable, and — more
+usefully — the physics book gains the reader-facing property the English physics books
+have: a page must not ask a reader to recall a formula the booklet supplies. That check is
+live for `a-level-physics` (105 items) and `gcse-physics` (101) and absent for this book.
+
+**Done means**
+
+- `books/ie-lc-physics/booklet/ie-lc-physics.yaml` exists, with `meta.provenance` naming
+  SEC567/14-V5-Dec2014 and `meta.basis` naming pages 48 to 72.
+- `python -m textbook.verify` reports `booklet items > 0` for `ie-lc-physics`.
+- Every item is `given`, because the superintendent issues the booklet to every candidate.
+- `BOOKLETS.md`'s target set names the Irish qualifications and says which are exempt.
+- `ie-lc-applied-maths` either gains the same sections or records why it does not need
+  them.
 
 ---
 

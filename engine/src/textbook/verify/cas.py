@@ -42,11 +42,31 @@ def make_symbols(spec: dict | None) -> dict:
     return symbols
 
 
+def _as_sequence(value):
+    """The items of a solution set, or ``None`` when the value is one expression.
+
+    ``solve()`` returns a list, and a list is the one shape every arithmetic path here
+    assumed it would never see: ``expr.replace`` and ``simplify(a - b)`` both raise on
+    one. So a bank whose expression was a ``solve()`` could not be checked at all — and
+    the failure was an ``AttributeError`` from inside the oracle rather than a verdict,
+    which is the worst of the three outcomes.
+    """
+    if isinstance(value, (list, tuple, set, frozenset, sympy.FiniteSet)):
+        return list(value)
+    return None
+
+
 def _rationalize(expr):
     """Turn floats into exact rationals so comparisons are not lossy.
 
-    ``0.65`` becomes ``13/20``; ``simplify`` then works over the rationals.
+    ``0.65`` becomes ``13/20``; ``simplify`` then works over the rationals. A solution
+    set is rationalized item by item, keeping its shape.
     """
+    items = _as_sequence(expr)
+    if items is not None:
+        return type(expr)(*[_rationalize(item) for item in items]) if not isinstance(
+            expr, (list, tuple)
+        ) else [_rationalize(item) for item in items]
     return expr.replace(
         lambda node: node.is_Float if hasattr(node, "is_Float") else False,
         lambda node: sympy.Rational(str(node)),
@@ -76,7 +96,33 @@ def parse_equation(text, symbols: dict):
 
 
 def equivalent(a, b) -> bool:
-    """True when two expressions are equal for all values of their symbols."""
+    """True when two expressions are equal for all values of their symbols.
+
+    **A solution set is compared as a multiset.** `solve()` returns a list, and the two
+    lines below it assume a single expression — `simplify(a - b)` raises on a list. So
+    the comparison is by membership rather than by position, which is what a solution
+    set means: the order `solve()` happens to return is not a claim the bank makes.
+
+    A multiset and not a set, so that a repeated root has to be repeated. A missing
+    element fails, which is the case the check exists for: a bank that solved a
+    quadratic and listed one of its two roots.
+    """
+    left = _as_sequence(a)
+    right = _as_sequence(b)
+    if left is not None or right is not None:
+        if left is None or right is None:
+            return False
+        if len(left) != len(right):
+            return False
+        remaining = list(right)
+        for item in left:
+            for index, candidate in enumerate(remaining):
+                if equivalent(item, candidate):
+                    remaining.pop(index)
+                    break
+            else:
+                return False
+        return True
     if simplify(a - b) == 0:
         return True
     result = a.equals(b)

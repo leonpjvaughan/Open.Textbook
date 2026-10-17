@@ -35,7 +35,12 @@ def main() -> int:
     failed = 0
     for path in banks_from(args.paths or default_paths()):
         report = verify_bank(path)
-        print(f"{'ok  ' if report.ok else 'FAIL'} {path} ({len(report.reports)} problems)")
+        # A bank that will not parse has no problem count to print, and "(0 problems)"
+        # beside a FAIL reads as "the file is empty" rather than "the file is broken".
+        if report.load_error is not None:
+            print(f"FAIL {path} (the file could not be read)")
+        else:
+            print(f"{'ok  ' if report.ok else 'FAIL'} {path} ({len(report.reports)} problems)")
         for error in report.errors:
             print(f"      error: {error}")
         for warning in report.warnings:
