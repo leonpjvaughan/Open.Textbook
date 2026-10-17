@@ -29,6 +29,9 @@ backwards is what a substitution does.
 
 </details>
 
+:::figure warm-up-gate
+
+
 ## Practise with help
 
 **1.** Find $\displaystyle\int 2x(x^2 + 1)^3\,dx$.

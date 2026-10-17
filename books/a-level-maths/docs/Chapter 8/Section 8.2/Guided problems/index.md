@@ -30,6 +30,9 @@ you decide whether the integral is the area.
 If question 1 was hard, revisit the power rule in Section 8.1.
 </details>
 
+:::figure warm-up-gate
+
+
 ## Practise with help
 
 **1.** Evaluate $\displaystyle\int_0^3 x^2dx$.

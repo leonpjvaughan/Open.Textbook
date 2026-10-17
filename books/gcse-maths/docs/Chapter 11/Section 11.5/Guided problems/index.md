@@ -22,6 +22,9 @@ Try each question before opening its hint.
 Answers: 8; the horizontal axis is the $x$-axis.
 </details>
 
+:::figure warm-up-gate
+
+
 ## Practise with help
 
 **1.** A cyclist travels 18 km in 1.5 hours. Find the constant speed.

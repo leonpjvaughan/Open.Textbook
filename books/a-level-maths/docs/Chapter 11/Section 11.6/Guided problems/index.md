@@ -30,6 +30,9 @@ keep it, correct it or remove it, and give a reason.
 If question 2 was hard, revise multiplying decimals before you start.
 </details>
 
+:::figure warm-up-gate
+
+
 ## Practise with help
 
 **1.** The data are $4, 6, 7, 8, 9, 10, 11, 12, 30$. Find the interquartile

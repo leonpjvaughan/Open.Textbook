@@ -26,6 +26,9 @@ The powers appear again in this section, where $2^n$ counts the subsets of a set
 
 </details>
 
+:::figure warm-up-gate
+
+
 ## Practise with help
 
 **1.** Let $U = \{1, 2, 3, 4, 5, 6, 7, 8\}$ and $A = \{2, 4, 6, 8\}$. Find $A'$.

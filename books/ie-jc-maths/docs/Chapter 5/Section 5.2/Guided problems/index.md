@@ -28,6 +28,9 @@ Both are the steps you need before you can add fractions with different denomina
 
 </details>
 
+:::figure warm-up-gate
+
+
 ## Practise with help
 
 **1.** Work out $\frac{2}{7}+\frac{3}{7}$.

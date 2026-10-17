@@ -37,6 +37,9 @@ goes wrong, revisit magnetic flux in Section 9.3. If question 3 goes wrong,
 revisit work, energy and power in Section 3.3.
 </details>
 
+:::figure warm-up-gate
+
+
 ## Practise with help
 
 **1.** A coil of 100 turns has an area of $0.015\,\text{m}^{2}$. The flux

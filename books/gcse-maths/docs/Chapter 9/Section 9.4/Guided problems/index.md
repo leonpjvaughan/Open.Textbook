@@ -27,6 +27,9 @@ Answer these from memory. Do not look back at the section.
 If an answer differs, revisit Section 1.1 for ordering numbers and Section 1.3 for negative numbers.
 
 </details>
+
+:::figure warm-up-gate
+
 ## Practise with help
 
 **1.** Which is greater: $-2$ or $1$?

@@ -31,6 +31,9 @@ condition at the end.
 If question 1 was hard, revise solving exponential equations in Section 6.4.
 </details>
 
+:::figure warm-up-gate
+
+
 ## Practise with help
 
 **1.** Solve $\dfrac{dy}{dx} = 3xy$, giving the general solution.

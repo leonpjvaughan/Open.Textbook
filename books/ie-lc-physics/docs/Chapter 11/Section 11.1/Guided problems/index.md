@@ -32,6 +32,9 @@ explains why a vacuum is silent.
 
 </details>
 
+:::figure warm-up-gate
+
+
 ## Practise with help
 
 **1.** State the kind of wave that sound is, and describe how the particles of the medium

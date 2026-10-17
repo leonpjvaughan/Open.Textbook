@@ -27,6 +27,9 @@ answers in this section.
 
 </details>
 
+:::figure warm-up-gate
+
+
 ## Practise with help
 
 **1.** Two springs of spring constant 100 N/m and 100 N/m are joined in series. Find the

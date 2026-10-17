@@ -27,6 +27,9 @@ Collecting like terms is what makes the letter disappear.
 
 </details>
 
+:::figure warm-up-gate
+
+
 ## Practise with help
 
 **1.** Solve $x+y=9$ and $x-y=5$.

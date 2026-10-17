@@ -38,6 +38,9 @@ by the potential difference. If question 3 goes wrong, revisit the energy stored
 in a capacitor in Section 5.4.
 </details>
 
+:::figure warm-up-gate
+
+
 ## Practise with help
 
 **1.** A charge of $+3.0\,\mu\text{C}$ and a charge of $-2.0\,\mu\text{C}$ are

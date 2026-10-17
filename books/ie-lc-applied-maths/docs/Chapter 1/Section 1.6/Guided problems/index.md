@@ -27,6 +27,9 @@ kind: guided-problems
 
 </details>
 
+:::figure warm-up-gate
+
+
 ## Practise with help
 
 **1.** A model predicts a wait of 4 minutes, but the measured wait is 6 minutes.

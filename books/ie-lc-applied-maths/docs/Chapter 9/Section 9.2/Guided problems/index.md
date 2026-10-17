@@ -28,6 +28,9 @@ kind: guided-problems
 
 </details>
 
+:::figure warm-up-gate
+
+
 ## Practise with help
 
 **1.** A phone battery is at 100% when it is unplugged. Two hours later it is at

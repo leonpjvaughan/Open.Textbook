@@ -29,6 +29,9 @@ kind: guided-problems
 
 </details>
 
+:::figure warm-up-gate
+
+
 ## Practise with help
 
 **1.** A cell has an emf of 1.5 V and an internal resistance of 0.40 Ω. It delivers a

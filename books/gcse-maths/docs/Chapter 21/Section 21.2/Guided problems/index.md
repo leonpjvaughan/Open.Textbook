@@ -22,6 +22,9 @@ kind: guided-problems
 2. $180^\circ$.
 </details>
 
+:::figure warm-up-gate
+
+
 ## Practise with help
 
 **1.** The angle at the circumference is $27^\circ$. Find the centre angle on the same arc.

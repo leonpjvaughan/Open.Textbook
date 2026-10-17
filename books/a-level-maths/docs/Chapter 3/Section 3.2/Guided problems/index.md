@@ -31,6 +31,9 @@ $y = mx + c$.
 If question 2 was hard, revisit rearranging a formula before you continue.
 </details>
 
+:::figure warm-up-gate
+
+
 ## Practise with help
 
 **1.** Decide whether $y = 5x + 1$ and $y = 5x - 9$ are parallel. Give a reason.

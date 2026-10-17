@@ -31,6 +31,9 @@ do the job instead.
 If question 1 was hard, revisit rearranging a formula before you continue.
 </details>
 
+:::figure warm-up-gate
+
+
 ## Practise with help
 
 **1.** A curve has parametric equations $x = 3t$, $y = t^2 + 1$. Find the point

@@ -32,6 +32,9 @@ axes before you add anything.
 If question 1 was hard, revise solving linear equations before you continue.
 </details>
 
+:::figure warm-up-gate
+
+
 ## Practise with help
 
 **1.** Show that $A(0, 1)$, $B(2, 5)$ and $C(4, 9)$ are collinear.

@@ -31,6 +31,9 @@ If question 1 went wrong, look again at Section 3.2: multiply the mass by the
 acceleration. If question 2 went wrong, divide the distance by the time.
 </details>
 
+:::figure warm-up-gate
+
+
 ## Practise with help
 
 **1.** A car travels at 18 m/s. The driver has a reaction time of 0.50 s.

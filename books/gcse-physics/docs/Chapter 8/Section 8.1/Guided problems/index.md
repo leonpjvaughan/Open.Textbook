@@ -36,6 +36,9 @@ $10^6$ cubic centimetres. If question 2 went wrong, look again at Chapter 1:
 multiply the mass, the field strength and the height.
 </details>
 
+:::figure warm-up-gate
+
+
 ## Practise with help
 
 **1.** A block of metal has a mass of $0.60\,\text{kg}$ and a volume of

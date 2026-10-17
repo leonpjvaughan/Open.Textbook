@@ -31,6 +31,9 @@ If question 2 was hard, revise the power law in Section 6.3 before you
 continue.
 </details>
 
+:::figure warm-up-gate
+
+
 ## Practise with help
 
 **1.** Solve $3^x = 40$, giving $x$ exactly and to three significant figures.

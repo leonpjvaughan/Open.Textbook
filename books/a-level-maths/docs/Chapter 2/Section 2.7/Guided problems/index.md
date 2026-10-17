@@ -32,6 +32,9 @@ If question 1 was hard, revisit expanding two brackets: multiply every term in
 the first bracket by every term in the second.
 </details>
 
+:::figure warm-up-gate
+
+
 ## Practise with help
 
 **1.** Use the remainder theorem to find the remainder when

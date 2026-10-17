@@ -35,6 +35,9 @@ standardise.
 If question 3 was hard, revise the second derivative from Section 7.4.
 </details>
 
+:::figure warm-up-gate
+
+
 ## Practise with help
 
 **1.** The random variable $X \sim B(20, 0.5)$. Find the mean and the standard

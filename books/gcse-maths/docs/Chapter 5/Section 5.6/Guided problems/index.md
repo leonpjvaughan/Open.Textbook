@@ -32,6 +32,9 @@ If an answer differs, revisit Section 3.1 for squares and cubes.
 
 </details>
 
+:::figure warm-up-gate
+
+
 ## Practise with help
 
 **1.** Similar shapes have length scale factor 2.5. The smaller area is

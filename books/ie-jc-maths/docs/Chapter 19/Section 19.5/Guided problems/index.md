@@ -28,6 +28,9 @@ from Section 19.2 are the tool for testing one.
 
 </details>
 
+:::figure warm-up-gate
+
+
 ## Practise with help
 
 **1.** How many axes of symmetry does a square have?

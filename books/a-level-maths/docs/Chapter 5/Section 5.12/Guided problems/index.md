@@ -35,6 +35,9 @@ direction.
 If question 2 was hard, revise right-angled trigonometry before you continue.
 </details>
 
+:::figure warm-up-gate
+
+
 ## Practise with help
 
 **1.** Resolve a force of $20$ N at $40^\circ$ above the horizontal into its

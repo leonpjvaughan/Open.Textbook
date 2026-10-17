@@ -29,6 +29,9 @@ Answer these from memory. Do not look back at the section.
 If an answer differs, revisit Section 1.3 for adding with negative numbers and Section 8.1 for algebraic notation.
 
 </details>
+
+:::figure warm-up-gate
+
 ## Practise with help
 
 **1.** Simplify $4a+3a$.

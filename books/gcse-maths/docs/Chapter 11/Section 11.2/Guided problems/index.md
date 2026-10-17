@@ -22,6 +22,9 @@ Try each question before opening its hint.
 Answers: gradient 4 and vertical intercept 2; 4.
 </details>
 
+:::figure warm-up-gate
+
+
 ## Practise with help
 
 **1.** Find the gradient through $(1,2)$ and $(4,11)$.

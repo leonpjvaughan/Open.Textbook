@@ -29,6 +29,9 @@ them. The next questions use the same coordinate skills.
 
 </details>
 
+:::figure warm-up-gate
+
+
 ## Practise with help
 
 **1.** Reflect the point $(2,4)$ in the $x$-axis.

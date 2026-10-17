@@ -27,6 +27,9 @@ kind: guided-problems
 
 </details>
 
+:::figure warm-up-gate
+
+
 ## Practise with help
 
 **1.** A queue holds 40 students and the till serves 8 students each minute.

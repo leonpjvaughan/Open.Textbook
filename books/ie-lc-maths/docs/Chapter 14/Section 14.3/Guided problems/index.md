@@ -28,6 +28,9 @@ If the midpoint felt uncertain, revisit coordinates in Chapter 1 before you carr
 
 </details>
 
+:::figure warm-up-gate
+
+
 ## Practise with help
 
 **1.** Rotate $(4,1)$ by $90^\circ$ anticlockwise about the origin.

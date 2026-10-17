@@ -35,6 +35,9 @@ is 3600 s. If question 3 goes wrong, the activity is the decay constant
 multiplied by the number of nuclei.
 </details>
 
+:::figure warm-up-gate
+
+
 ## Practise with help
 
 **1.** A source has an activity of 640 Bq. Its half-life is 5.0 days. Find its

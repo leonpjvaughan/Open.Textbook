@@ -31,6 +31,9 @@ rate, and once to find the sign.
 If question 1 was hard, revise proportionality in Chapter 2.
 </details>
 
+:::figure warm-up-gate
+
+
 ## Practise with help
 
 **1.** A population $P$ of insects grows at a rate proportional to $P$. Write a

@@ -28,6 +28,9 @@ graph is a curve.
 
 </details>
 
+:::figure warm-up-gate
+
+
 ## Practise with help
 
 **1.** A distance-time graph shows a cyclist travelling 30 km in 2 hours. Find the

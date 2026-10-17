@@ -32,6 +32,9 @@ If question 2 was hard, revise resolving a weight on a slope in Section 16.5
 before you continue.
 </details>
 
+:::figure warm-up-gate
+
+
 ## Practise with help
 
 **1.** A block of mass $8$ kg rests on a rough horizontal floor. The coefficient

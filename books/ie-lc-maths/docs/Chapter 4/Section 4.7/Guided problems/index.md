@@ -26,6 +26,9 @@ kind: guided-problems
 
 </details>
 
+:::figure warm-up-gate
+
+
 ## Practise with help
 
 **1.** Solve $y = 2x + 1$ and $y = 5x - 8$.

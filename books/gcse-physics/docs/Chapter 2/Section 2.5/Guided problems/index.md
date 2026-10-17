@@ -30,6 +30,9 @@ only to check.
 If question 2 went wrong, remember to divide by 100, not multiply.
 </details>
 
+:::figure warm-up-gate
+
+
 ## Practise with help
 
 **1.** A force of 25 N acts at a perpendicular distance of 0.40 m from a pivot.

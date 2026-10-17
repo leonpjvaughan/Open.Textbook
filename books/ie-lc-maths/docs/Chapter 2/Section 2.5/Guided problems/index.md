@@ -27,6 +27,9 @@ Both answers come from Section 2.4, and both are used again here.
 
 </details>
 
+:::figure warm-up-gate
+
+
 ## Practise with help
 
 **1.** €4,200 is due in one year. Money earns $5\%$ a year. Work out the present

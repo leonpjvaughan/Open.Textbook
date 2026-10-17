@@ -33,6 +33,9 @@ before you read the table. Check that your probability lies between 0 and 1.
 If question 1 was hard, revise the binomial from Section 13.1.
 </details>
 
+:::figure warm-up-gate
+
+
 ## Practise with help
 
 **1.** The random variable $Z \sim N(0, 1)$. Find $P(Z < 1.2)$.

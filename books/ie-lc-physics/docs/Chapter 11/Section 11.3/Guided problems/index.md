@@ -30,6 +30,9 @@ amplitude carries more energy to the ear.
 
 </details>
 
+:::figure warm-up-gate
+
+
 ## Practise with help
 
 **1.** State which feature of a sound wave sets the pitch of a note, and which feature

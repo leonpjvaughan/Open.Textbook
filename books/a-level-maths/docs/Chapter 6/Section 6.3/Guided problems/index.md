@@ -32,6 +32,9 @@ If question 1 was hard, revise negative indices in Chapter 2 before you
 continue.
 </details>
 
+:::figure warm-up-gate
+
+
 ## Practise with help
 
 **1.** Write $3^4 = 81$ in logarithmic form, and so work out $\log_3 81$.

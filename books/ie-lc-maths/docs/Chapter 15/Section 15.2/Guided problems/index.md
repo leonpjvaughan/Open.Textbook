@@ -29,6 +29,9 @@ If either answer felt uncertain, look again at Section 15.1 before you carry on.
 
 </details>
 
+:::figure warm-up-gate
+
+
 ## Practise with help
 
 **1.** Two straight lines cross. One of the angles is $65^\circ$. Find the angle

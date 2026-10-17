@@ -28,6 +28,9 @@ If either answer felt uncertain, revisit Sections 14.1 and 14.3 before you carry
 
 </details>
 
+:::figure warm-up-gate
+
+
 ## Practise with help
 
 **1.** Translate $(1,2)$ by $\binom{3}{1}$, then translate the image by $\binom{-5}{4}$.

@@ -30,6 +30,9 @@ If the first part was hard, revise differentiating a linear expression in
 Section 7.3. If the second was hard, revise rearranging a formula in Section 2.5.
 </details>
 
+:::figure warm-up-gate
+
+
 ## Practise with help
 
 **1.** Rearrange $x^2 + x - 3 = 0$ into the form $x = \sqrt{3 - x}$.

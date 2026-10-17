@@ -30,6 +30,9 @@ integrate, and write the constant for each partial fraction in the numerator.
 If question 1 was hard, revise partial fractions in Section 2.8.
 </details>
 
+:::figure warm-up-gate
+
+
 ## Practise with help
 
 **1.** Find $\displaystyle\int \frac{1}{(x + 1)(x + 3)}dx$.

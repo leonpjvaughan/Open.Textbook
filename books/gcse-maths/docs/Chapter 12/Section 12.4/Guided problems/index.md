@@ -28,6 +28,9 @@ Answer these from memory. Do not look back at the section.
 If an answer differs, revisit Section 12.1 for factorising and Section 9.1 for solving a linear equation.
 
 </details>
+
+:::figure warm-up-gate
+
 ## Practise with help
 
 **1.** Solve $x^2+2x-8=0$.

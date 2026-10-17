@@ -31,6 +31,9 @@ echo is timed.
 
 </details>
 
+:::figure warm-up-gate
+
+
 ## Practise with help
 
 **1.** A ray of light makes an angle of 35° with the surface of a plane mirror.

@@ -27,6 +27,9 @@ movement before you write the answer.
 
 </details>
 
+:::figure warm-up-gate
+
+
 ## Practise with help
 
 **1.** Work out $-5 + 8$.

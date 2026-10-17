@@ -28,6 +28,9 @@ Question 2 is the first step of the work in this section.
 
 </details>
 
+:::figure warm-up-gate
+
+
 ## Practise with help
 
 **1.** Find the area of the net of a cuboid $5$ cm by $3$ cm by $2$ cm.

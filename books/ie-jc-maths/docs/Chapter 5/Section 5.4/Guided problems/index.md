@@ -28,6 +28,9 @@ A percentage is a fraction with denominator 100, so the second answer is $40\%$.
 
 </details>
 
+:::figure warm-up-gate
+
+
 ## Practise with help
 
 **1.** Write $\frac{7}{10}$ as a decimal.

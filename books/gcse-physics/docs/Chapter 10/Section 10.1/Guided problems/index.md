@@ -34,6 +34,9 @@ electromagnetic waves travel at $3.0 \times 10^{8}\,\text{m/s}$ in a vacuum. If
 question 2 went wrong, revisit the speed equation in Chapter 3.
 </details>
 
+:::figure warm-up-gate
+
+
 ## Practise with help
 
 **1.** State the main features of our solar system.

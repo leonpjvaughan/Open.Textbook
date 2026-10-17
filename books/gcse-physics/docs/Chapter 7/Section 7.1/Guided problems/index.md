@@ -36,6 +36,9 @@ If question 1 went wrong, look again at Section 2.1. If question 2 went wrong,
 rearrange $F = ma$ before you put the numbers in.
 </details>
 
+:::figure warm-up-gate
+
+
 ## Practise with help
 
 **1.** Two bar magnets are placed with their south poles facing each other.

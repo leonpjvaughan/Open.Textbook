@@ -29,6 +29,9 @@ kind: guided-problems
 
 </details>
 
+:::figure warm-up-gate
+
+
 ## Practise with help
 
 **1.** A box of mass $9$ kg rests on a horizontal floor. Find the normal

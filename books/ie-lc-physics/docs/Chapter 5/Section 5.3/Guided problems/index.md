@@ -28,6 +28,9 @@ is squared.
 
 </details>
 
+:::figure warm-up-gate
+
+
 ## Practise with help
 
 **1.** A spring of spring constant 100 N/m is stretched by 0.20 m. Calculate the energy

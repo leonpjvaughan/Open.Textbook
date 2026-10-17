@@ -27,6 +27,9 @@ the answer can change when they move.
 
 </details>
 
+:::figure warm-up-gate
+
+
 ## Practise with help
 
 **1.** Let $A = \{1, 2, 3, 4\}$, $B = \{3, 4, 5\}$ and $C = \{2, 4, 6\}$. Find

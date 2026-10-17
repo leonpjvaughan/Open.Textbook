@@ -34,6 +34,9 @@ say whether the data set is the population or a sample.
 If question 3 was hard, revise converting units before you start.
 </details>
 
+:::figure warm-up-gate
+
+
 ## Practise with help
 
 **1.** A large data set holds 5000 daily records. A simple random sample of 250

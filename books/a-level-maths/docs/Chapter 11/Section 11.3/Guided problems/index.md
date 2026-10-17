@@ -30,6 +30,9 @@ frequencies back to the total.
 If question 3 was hard, revise equivalent fractions before you start.
 </details>
 
+:::figure warm-up-gate
+
+
 ## Practise with help
 
 **1.** A class of width 20 contains 15 values. Find the frequency density.

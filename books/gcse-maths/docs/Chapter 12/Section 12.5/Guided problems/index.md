@@ -28,6 +28,9 @@ Answer these from memory. Do not look back at the section.
 If an answer differs, revisit Section 3.2 for square roots and Section 8.6 for rearranging formulae.
 
 </details>
+
+:::figure warm-up-gate
+
 ## Practise with help
 
 **1.** Solve $x^2-4x+1=0$.

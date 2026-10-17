@@ -28,6 +28,9 @@ Answer these from memory before you start.
 
 </details>
 
+:::figure warm-up-gate
+
+
 ## Practise with help
 
 **1.** Find where the line $y = 3$ meets the circle $x^2 + y^2 = 25$.

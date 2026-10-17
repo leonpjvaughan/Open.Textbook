@@ -31,6 +31,9 @@ If question 2 went wrong, remember that the factor of 100 applies to both
 lengths, so it is squared: $100 \times 100 = 10000$.
 </details>
 
+:::figure warm-up-gate
+
+
 ## Practise with help
 
 **1.** A force of 240 N acts on an area of 0.020 m². Calculate the pressure.

@@ -31,6 +31,9 @@ A slope is a division, so the sign and the fraction both matter.
 
 </details>
 
+:::figure warm-up-gate
+
+
 ## Practise with help
 
 **1.** Find the slope of the line through $(1,3)$ and $(5,11)$.

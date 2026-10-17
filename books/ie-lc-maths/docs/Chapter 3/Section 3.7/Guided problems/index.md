@@ -28,6 +28,9 @@ both sphere formulas.
 
 </details>
 
+:::figure warm-up-gate
+
+
 ## Practise with help
 
 **1.** Find the volume of a sphere of radius $3$ cm.

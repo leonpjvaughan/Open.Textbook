@@ -20,6 +20,9 @@ kind: guided-problems
 1. $9\pi\text{ cm}^2$. 2. $Ah$.
 </details>
 
+:::figure warm-up-gate
+
+
 ## Practise with help
 
 Attempt each question first. Open the hint, then the next step, when needed.

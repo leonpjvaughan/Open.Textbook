@@ -26,6 +26,9 @@ kind: guided-problems
 
 </details>
 
+:::figure warm-up-gate
+
+
 ## Practise with help
 
 **1.** A rule is $C = 240 + 4n$. Work out $C$ when $n = 15$.

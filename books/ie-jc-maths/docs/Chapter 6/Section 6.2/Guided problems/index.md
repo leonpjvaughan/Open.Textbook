@@ -28,6 +28,9 @@ part.
 
 </details>
 
+:::figure warm-up-gate
+
+
 ## Practise with help
 
 **1.** Divide 40 euro in the ratio $1:3$.

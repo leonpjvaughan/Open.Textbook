@@ -28,6 +28,9 @@ a median of half the ordered list.
 
 </details>
 
+:::figure warm-up-gate
+
+
 ## Practise with help
 
 **1.** Find the range of $4, 9, 2, 7$.

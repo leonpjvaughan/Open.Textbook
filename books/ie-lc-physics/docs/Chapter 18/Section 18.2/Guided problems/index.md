@@ -28,6 +28,9 @@ kind: guided-problems
 
 </details>
 
+:::figure warm-up-gate
+
+
 ## Practise with help
 
 **1.** A metal has a work function of $3.3 \times 10^{-19}$ J. Calculate its

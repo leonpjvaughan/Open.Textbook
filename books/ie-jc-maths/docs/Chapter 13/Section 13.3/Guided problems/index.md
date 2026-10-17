@@ -27,6 +27,9 @@ fraction is a bracket around the whole top and the whole bottom.
 
 </details>
 
+:::figure warm-up-gate
+
+
 ## Practise with help
 
 **1.** Find $P$ when $l=4.5$ m and $w=2.5$ m, using $P=2(l+w)$.

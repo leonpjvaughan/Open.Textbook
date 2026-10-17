@@ -24,6 +24,9 @@ Try each question first. Open a hint if needed, then check the full working.
 2. For example, 1 and 6.
 </details>
 
+:::figure warm-up-gate
+
+
 ## Practise with help
 
 **1.** Write 48 as a product of prime factors.

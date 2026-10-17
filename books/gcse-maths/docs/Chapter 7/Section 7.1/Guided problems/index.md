@@ -26,6 +26,9 @@ kind: guided-problems
 2. $34$.
 </details>
 
+:::figure warm-up-gate
+
+
 ## Practise with help
 
 **1.** Convert $4.2$ km to metres.

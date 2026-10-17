@@ -32,6 +32,9 @@ sine rule or the cosine rule fits the information you have.
 If question 3 was hard, revise rearranging a formula before you continue.
 </details>
 
+:::figure warm-up-gate
+
+
 ## Practise with help
 
 **1.** In triangle $ABC$, angle $A = 50^\circ$, angle $B = 70^\circ$ and side

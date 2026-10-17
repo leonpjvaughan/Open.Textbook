@@ -30,6 +30,9 @@ rates before you substitute any numbers.
 If question 1 was hard, revise the chain rule in Section 7.7.
 </details>
 
+:::figure warm-up-gate
+
+
 ## Practise with help
 
 **1.** A sphere grows so that its volume increases at $36\pi$ cm$^3$ per second.

@@ -29,6 +29,9 @@ kind: guided-problems
 
 </details>
 
+:::figure warm-up-gate
+
+
 ## Practise with help
 
 **1.** An 8.0 Ω resistor and a 4.0 Ω resistor are connected in series. Calculate the

@@ -25,6 +25,9 @@ Try each question before opening a hint. Reveal the full working to check your m
 
 </details>
 
+:::figure warm-up-gate
+
+
 ## Practise with help
 
 **1.** Find 15% of 200.

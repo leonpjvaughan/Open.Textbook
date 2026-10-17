@@ -29,6 +29,9 @@ Answer these from memory. Do not look back at the section.
 If an answer differs, revisit Section 17.1 for the properties of 3D shapes.
 
 </details>
+
+:::figure warm-up-gate
+
 ## Try these with help
 
 **1.** A cuboid is 6 cm wide, 4 cm deep and 3 cm high. Describe its plan.

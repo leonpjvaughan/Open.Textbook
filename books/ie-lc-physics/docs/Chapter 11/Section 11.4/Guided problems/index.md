@@ -30,6 +30,9 @@ happens to that spacing when the source moves.
 
 </details>
 
+:::figure warm-up-gate
+
+
 ## Practise with help
 
 **1.** A source of sound moves towards a listener. Describe what happens to the

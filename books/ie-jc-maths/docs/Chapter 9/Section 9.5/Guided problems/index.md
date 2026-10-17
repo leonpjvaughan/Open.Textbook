@@ -29,6 +29,9 @@ how you plot the points.
 
 </details>
 
+:::figure warm-up-gate
+
+
 ## Practise with help
 
 **1.** Make a table for the rule $2n+1$ at positions 1 to 4.

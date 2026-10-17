@@ -35,6 +35,9 @@ question 2 goes wrong, use Hooke's law from Section 4.2. If question 3 goes
 wrong, one kilogram is 1000 grams.
 </details>
 
+:::figure warm-up-gate
+
+
 ## Practise with help
 
 **1.** A string has a tension of 100 N and a mass per unit length of

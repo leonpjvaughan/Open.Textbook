@@ -27,6 +27,9 @@ Both answers are products of counting down. That is exactly the shape of a permu
 
 </details>
 
+:::figure warm-up-gate
+
+
 ## Practise with help
 
 **1.** How many ways can $4$ different books be arranged in a row?

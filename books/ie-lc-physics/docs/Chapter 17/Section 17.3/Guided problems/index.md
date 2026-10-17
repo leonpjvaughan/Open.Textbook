@@ -31,6 +31,9 @@ the centripetal force on the electron.
 
 </details>
 
+:::figure warm-up-gate
+
+
 ## Practise with help
 
 **1.** An electron moves at $1.5 \times 10^7$ m/s at right angles to a magnetic field

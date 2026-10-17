@@ -27,6 +27,9 @@ Solving $f'(x) = 0$ always ends in one of these two kinds of equation.
 
 </details>
 
+:::figure warm-up-gate
+
+
 ## Practise with help
 
 **1.** Find the stationary point of $y = x^2 - 4x + 1$.

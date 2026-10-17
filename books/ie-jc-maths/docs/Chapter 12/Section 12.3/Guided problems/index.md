@@ -27,6 +27,9 @@ solve the equation that is left.
 
 </details>
 
+:::figure warm-up-gate
+
+
 ## Practise with help
 
 **1.** Solve $y=x+2$ and $x+y=10$.

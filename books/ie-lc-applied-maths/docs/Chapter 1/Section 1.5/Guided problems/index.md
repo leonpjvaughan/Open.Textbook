@@ -26,6 +26,9 @@ kind: guided-problems
 
 </details>
 
+:::figure warm-up-gate
+
+
 ## Practise with help
 
 **1.** A canteen queue holds 40 students at 12:30. The till serves 10 students

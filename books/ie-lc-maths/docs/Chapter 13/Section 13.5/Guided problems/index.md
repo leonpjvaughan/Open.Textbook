@@ -29,6 +29,9 @@ Answer these from memory before you start.
 
 </details>
 
+:::figure warm-up-gate
+
+
 ## Practise with help
 
 **1.** The radius to a point on a circle has slope $2$. Find the slope of the

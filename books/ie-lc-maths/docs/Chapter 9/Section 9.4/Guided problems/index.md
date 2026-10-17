@@ -25,6 +25,9 @@ kind: guided-problems
 
 </details>
 
+:::figure warm-up-gate
+
+
 ## Practise with help
 
 **1.** Find the sum to infinity of $12 + 6 + 3 + \dots$

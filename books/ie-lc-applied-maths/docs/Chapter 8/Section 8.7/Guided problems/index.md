@@ -29,6 +29,9 @@ kind: guided-problems
 
 </details>
 
+:::figure warm-up-gate
+
+
 ## Practise with help
 
 **1.** Solve $\dfrac{dy}{dx} = 4xy$, giving the general solution.

@@ -27,6 +27,9 @@ what to work out first, and the sign rule decides the sign of the answer.
 
 </details>
 
+:::figure warm-up-gate
+
+
 ## Practise with help
 
 **1.** Find the area of a rectangle with $l=9$ cm and $w=4$ cm, using $A=lw$.

@@ -28,6 +28,9 @@ kind: guided-problems
 
 </details>
 
+:::figure warm-up-gate
+
+
 ## Practise with help
 
 **1.** A transformer has 200 turns on the primary and 800 turns on the secondary.

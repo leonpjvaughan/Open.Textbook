@@ -28,6 +28,9 @@ percentage of how many?
 
 </details>
 
+:::figure warm-up-gate
+
+
 ## Practise with help
 
 **1.** A headline says: "Most students want a longer lunch break." The survey

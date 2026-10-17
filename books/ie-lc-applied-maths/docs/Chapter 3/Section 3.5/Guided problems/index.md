@@ -27,6 +27,9 @@ kind: guided-problems
 
 </details>
 
+:::figure warm-up-gate
+
+
 ## Practise with help
 
 **1.** Find $\displaystyle\int (6t + 2)\,dt$.

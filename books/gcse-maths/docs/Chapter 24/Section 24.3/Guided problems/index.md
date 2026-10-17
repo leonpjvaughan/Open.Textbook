@@ -77,3 +77,6 @@ The middle pair is the 2nd and 3rd values, which are both 3.
 Median $=(3+3)\div2=3$; range $=8-2=6$.
 </details>
 
+:::figure warm-up-gate
+
+

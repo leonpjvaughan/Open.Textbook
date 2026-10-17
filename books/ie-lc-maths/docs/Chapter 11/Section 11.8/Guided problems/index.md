@@ -28,6 +28,9 @@ square root of the sample size, and a division.
 
 </details>
 
+:::figure warm-up-gate
+
+
 ## Practise with help
 
 **1.** A population has standard deviation $12$. Samples of size $36$ are taken. Find the

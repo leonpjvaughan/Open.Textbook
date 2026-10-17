@@ -29,6 +29,9 @@ kind: guided-problems
 
 </details>
 
+:::figure warm-up-gate
+
+
 ## Practise with help
 
 **1.** The bearing of $A$ from $B$ is $125^\circ$. Find the bearing of $B$ from $A$.

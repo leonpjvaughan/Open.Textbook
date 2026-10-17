@@ -31,6 +31,9 @@ acceleration.
 
 </details>
 
+:::figure warm-up-gate
+
+
 ## Practise with help
 
 **1.** A bag has a mass of 4.0 kg. Calculate its weight. Take $g = 9.8$ N/kg.

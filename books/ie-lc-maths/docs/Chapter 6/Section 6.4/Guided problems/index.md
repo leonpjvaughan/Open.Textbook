@@ -27,6 +27,9 @@ kind: guided-problems
 
 </details>
 
+:::figure warm-up-gate
+
+
 ## Practise with help
 
 **1.** Show that $f(x) = 3x - 1$ is injective by solving $3a - 1 = 3b - 1$ for $a$.

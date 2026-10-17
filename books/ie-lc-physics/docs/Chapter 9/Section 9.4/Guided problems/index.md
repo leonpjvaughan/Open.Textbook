@@ -31,6 +31,9 @@ still has a frequency and a wavelength.
 
 </details>
 
+:::figure warm-up-gate
+
+
 ## Practise with help
 
 **1.** Two pulses meet on a rope. One has a displacement of $+2.0\,\text{cm}$ and the

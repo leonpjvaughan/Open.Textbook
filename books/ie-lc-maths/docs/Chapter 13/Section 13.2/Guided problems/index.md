@@ -29,6 +29,9 @@ Answer these from memory before you start.
 
 </details>
 
+:::figure warm-up-gate
+
+
 ## Practise with help
 
 **1.** Write down the slope and the $y$-intercept of $y = 2x - 5$.

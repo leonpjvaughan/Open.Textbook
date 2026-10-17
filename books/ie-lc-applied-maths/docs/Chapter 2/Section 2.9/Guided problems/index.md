@@ -26,6 +26,9 @@ kind: guided-problems
 
 </details>
 
+:::figure warm-up-gate
+
+
 ## Practise with help
 
 **1.** A network has stages $A$; $B, C$; $D$. Edges: $AB = 3$, $AC = 1$, $BD = 2$,

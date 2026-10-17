@@ -35,6 +35,9 @@ with its unit.
 
 </details>
 
+:::figure warm-up-gate
+
+
 ## Practise with help
 
 **1.** A trolley travels 1.20 m in 0.40 s. Calculate its average speed, to the

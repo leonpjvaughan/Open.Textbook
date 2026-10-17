@@ -25,6 +25,9 @@ Try each question before opening a hint. Open the next part only when you need i
 
 </details>
 
+:::figure warm-up-gate
+
+
 ## Practise with help
 
 **1.** Angles $x^\circ$ and $124^\circ$ lie on a straight line. Find $x$.

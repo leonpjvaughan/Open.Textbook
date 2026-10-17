@@ -30,6 +30,9 @@ Answer these from memory, then check.
 
 </details>
 
+:::figure warm-up-gate
+
+
 ## Practise with help
 
 **1.** A wire of length 0.10 m carries a current of 2.0 A at right angles to a field of

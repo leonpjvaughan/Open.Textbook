@@ -26,6 +26,9 @@ kind: guided-problems
 
 </details>
 
+:::figure warm-up-gate
+
+
 ## Practise with help
 
 **1.** Rewrite this question so that it has one clear answer: "How long is the

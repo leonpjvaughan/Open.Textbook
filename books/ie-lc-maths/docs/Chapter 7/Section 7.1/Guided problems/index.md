@@ -26,6 +26,9 @@ kind: guided-problems
 
 </details>
 
+:::figure warm-up-gate
+
+
 ## Practise with help
 
 **1.** Work out the average gradient of $y = x^2$ between $x = 1$ and $x = 2$.

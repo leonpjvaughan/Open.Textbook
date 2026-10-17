@@ -28,6 +28,9 @@ percentage is often used to describe the part chosen.
 
 </details>
 
+:::figure warm-up-gate
+
+
 ## Practise with help
 
 **1.** A golf club has $24$ members and takes a census of them. How many members are

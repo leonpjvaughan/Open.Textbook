@@ -35,6 +35,9 @@ Section 5.1 for the unitary method.
 
 </details>
 
+:::figure warm-up-gate
+
+
 ## Practise with help
 
 **1.** The ratio of red to blue counters is $2:3$. If the ratio stays the same,

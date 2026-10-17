@@ -27,6 +27,9 @@ One number is the multiplier, and the other is the interest itself.
 
 </details>
 
+:::figure warm-up-gate
+
+
 ## Practise with help
 
 **1.** €2,000.00 is saved at $5\%$ simple interest for 3 years. Work out the

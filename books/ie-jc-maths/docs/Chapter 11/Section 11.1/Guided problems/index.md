@@ -27,6 +27,9 @@ in front. Both ideas return in every question on this page.
 
 </details>
 
+:::figure warm-up-gate
+
+
 ## Practise with help
 
 **1.** Simplify $6x + 3x$.

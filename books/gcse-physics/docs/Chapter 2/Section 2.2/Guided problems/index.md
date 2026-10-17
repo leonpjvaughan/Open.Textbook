@@ -32,6 +32,9 @@ only to check.
 If question 1 went wrong, return to Section 2.1 and the equation $W = mg$.
 </details>
 
+:::figure warm-up-gate
+
+
 ## Practise with help
 
 **1.** A spring has a spring constant of 150 N/m. It is stretched by 0.24 m.

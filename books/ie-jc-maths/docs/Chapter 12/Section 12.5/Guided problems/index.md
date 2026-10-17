@@ -27,6 +27,9 @@ the sign rule that decides whether the inequality sign turns around.
 
 </details>
 
+:::figure warm-up-gate
+
+
 ## Practise with help
 
 **1.** Solve $x+7>10$.

@@ -28,6 +28,9 @@ kind: guided-problems
 
 </details>
 
+:::figure warm-up-gate
+
+
 ## Practise with help
 
 **1.** A ball hits the floor at $8$ m/s and rebounds at $6$ m/s. Find the

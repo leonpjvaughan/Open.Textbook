@@ -35,6 +35,9 @@ If question 1 went wrong, look again at induced magnets in Section 7.1. If
 question 2 went wrong, look at current in Section 6.1.
 </details>
 
+:::figure warm-up-gate
+
+
 ## Practise with help
 
 **1.** Describe how to show that a current in a wire creates a magnetic field.

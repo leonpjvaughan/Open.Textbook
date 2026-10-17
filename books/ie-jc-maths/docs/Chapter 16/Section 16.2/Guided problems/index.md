@@ -28,6 +28,9 @@ is the kind of multiplication you use with $\pi\approx3.14$.
 
 </details>
 
+:::figure warm-up-gate
+
+
 ## Practise with help
 
 **1.** A circle has a radius of 4 cm. Find its circumference in terms of $\pi$.

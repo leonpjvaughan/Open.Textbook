@@ -29,6 +29,9 @@ Answer these from memory. Do not look back at the section.
 If an answer differs, revisit Section 11.1 for coordinates and Section 5.1 for scale factors.
 
 </details>
+
+:::figure warm-up-gate
+
 ## Practise with help
 
 **1.** Enlarge $(3,2)$ by scale factor $2$ about the origin.

@@ -32,6 +32,9 @@ If question 2 was hard, revise the binomial expansion in Chapter 4 before you
 continue.
 </details>
 
+:::figure warm-up-gate
+
+
 ## Practise with help
 
 **1.** Differentiate $f(x) = x^2 + 1$ from first principles.

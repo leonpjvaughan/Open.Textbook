@@ -30,6 +30,9 @@ formula tells you the frequency a moving source produces at a listener.
 
 </details>
 
+:::figure warm-up-gate
+
+
 ## Practise with help
 
 **1.** A car approaches a stationary listener at 20 m/s with its horn sounding at 500 Hz.

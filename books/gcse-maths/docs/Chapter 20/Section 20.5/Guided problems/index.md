@@ -28,6 +28,9 @@ If an answer differs, revisit Section 20.1 for Pythagoras' theorem and Section
 19.1 for the area of a triangle.
 </details>
 
+:::figure warm-up-gate
+
+
 ## Practise with help
 
 **1.** A cuboid has base 3 by 4. Find its base diagonal.

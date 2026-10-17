@@ -28,6 +28,9 @@ throughout this section.
 
 </details>
 
+:::figure warm-up-gate
+
+
 ## Practise with help
 
 **1.** A car travels so that its distance after $t$ seconds is $s(t) = 4t^2$ metres. Find its

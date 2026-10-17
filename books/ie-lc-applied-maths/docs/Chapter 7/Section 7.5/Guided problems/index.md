@@ -28,6 +28,9 @@ kind: guided-problems
 
 </details>
 
+:::figure warm-up-gate
+
+
 ## Practise with help
 
 **1.** A spring of stiffness $250$ N/m is extended by $0.2$ m. Find the tension.

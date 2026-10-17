@@ -25,6 +25,9 @@ kind: guided-problems
 
 </details>
 
+:::figure warm-up-gate
+
+
 ## Practise with help
 
 **1.** Which number systems contain $12$? Name the smallest one.

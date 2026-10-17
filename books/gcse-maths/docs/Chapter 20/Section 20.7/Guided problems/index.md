@@ -28,6 +28,9 @@ If an answer differs, revisit Section 3.2 for square roots and Section 8.6 for
 rearranging formulae.
 </details>
 
+:::figure warm-up-gate
+
+
 ## Practise with help
 
 **1.** Two sides 3 and 4 include 90°. Find the third side.

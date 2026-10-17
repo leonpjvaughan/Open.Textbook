@@ -24,6 +24,9 @@ Answer from memory before checking.
 2. $4$ tenths.
 </details>
 
+:::figure warm-up-gate
+
+
 ## Practise with help
 
 Try each question first. Reveal the hint, next step and full working in that order.

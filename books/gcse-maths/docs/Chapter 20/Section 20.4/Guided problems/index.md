@@ -28,6 +28,9 @@ If an answer differs, revisit Section 7.6 for simplifying surds and Section 4.2
 for adding fractions.
 </details>
 
+:::figure warm-up-gate
+
+
 ## Practise with help
 
 **1.** Give sin 30° exactly.

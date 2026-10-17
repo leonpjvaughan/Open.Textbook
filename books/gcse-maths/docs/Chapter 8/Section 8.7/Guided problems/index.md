@@ -29,6 +29,9 @@ Answer these from memory. Do not look back at the section.
 If an answer differs, revisit Section 8.3 for expanding brackets and Section 8.2 for collecting like terms.
 
 </details>
+
+:::figure warm-up-gate
+
 ## Practise with help
 
 **1.** Expand $(x+1)(x+2)(x+3)$.

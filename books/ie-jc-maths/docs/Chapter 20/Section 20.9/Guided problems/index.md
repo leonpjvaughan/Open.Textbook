@@ -31,6 +31,9 @@ proof, and the angle in a semicircle is half of 180°.
 
 </details>
 
+:::figure warm-up-gate
+
+
 ## Practise with help
 
 **1.** The angle at the circumference standing on an arc is 42°. Work out the

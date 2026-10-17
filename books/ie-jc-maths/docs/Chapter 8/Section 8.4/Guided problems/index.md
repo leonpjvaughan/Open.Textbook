@@ -27,6 +27,9 @@ remove the students already counted in the middle.
 
 </details>
 
+:::figure warm-up-gate
+
+
 ## Practise with help
 
 **1.** In a class of 20 students, 12 like mathematics, 9 like science, and 4 like

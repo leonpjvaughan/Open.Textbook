@@ -27,6 +27,9 @@ equation that is left.
 
 </details>
 
+:::figure warm-up-gate
+
+
 ## Practise with help
 
 **1.** Solve $2(x+5)=18$.

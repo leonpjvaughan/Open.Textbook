@@ -32,6 +32,9 @@ $10^{-3}$. If question 2 goes wrong, add the three values and divide by 3. If
 question 3 goes wrong, divide first and then multiply by 100.
 </details>
 
+:::figure warm-up-gate
+
+
 ## Practise with help
 
 **1.** A student measures the diameter of a wire four times and records

@@ -27,6 +27,9 @@ here, and you undo the operations one at a time.
 
 </details>
 
+:::figure warm-up-gate
+
+
 ## Practise with help
 
 **1.** Make $x$ the subject of $y=x+9$.

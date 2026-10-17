@@ -28,6 +28,9 @@ the speed of a wave is a distance divided by a time.
 
 </details>
 
+:::figure warm-up-gate
+
+
 ## Practise with help
 
 **1.** A wave on a rope has an amplitude of 0.20 m. State the vertical distance from a

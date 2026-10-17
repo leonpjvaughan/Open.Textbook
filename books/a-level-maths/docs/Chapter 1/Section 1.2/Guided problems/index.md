@@ -30,6 +30,9 @@ through, and write a sentence at the end.
    and $m$.
 </details>
 
+:::figure warm-up-gate
+
+
 ## Practise with help
 
 **1.** Prove that the sum of any two even numbers is even.

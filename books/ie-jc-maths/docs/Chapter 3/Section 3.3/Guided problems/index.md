@@ -27,6 +27,9 @@ shared prime gives one answer, and the **larger** power gives the other.
 
 </details>
 
+:::figure warm-up-gate
+
+
 ## Practise with help
 
 **1.** Find the highest common factor of 12 and 18.

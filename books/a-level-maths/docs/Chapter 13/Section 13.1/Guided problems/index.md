@@ -34,6 +34,9 @@ the binomial formula.
 If question 3 was hard, revise the binomial coefficient from Section 4.1.
 </details>
 
+:::figure warm-up-gate
+
+
 ## Practise with help
 
 **1.** A fair coin is tossed 8 times. The random variable $X$ is the number of

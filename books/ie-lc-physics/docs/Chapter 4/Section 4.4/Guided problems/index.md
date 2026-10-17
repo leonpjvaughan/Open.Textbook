@@ -27,6 +27,9 @@ kind: guided-problems
 
 </details>
 
+:::figure warm-up-gate
+
+
 ## Practise with help
 
 **1.** A motor does 900 J of work in 3.0 s. Calculate its power.

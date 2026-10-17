@@ -35,6 +35,9 @@ If question 1 went wrong, check that you divided the charge by the time. If
 question 2 went wrong, remember that resistances add in series.
 </details>
 
+:::figure warm-up-gate
+
+
 ## Practise with help
 
 **1.** State the frequency and the potential difference of the UK domestic

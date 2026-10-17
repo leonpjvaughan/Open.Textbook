@@ -29,6 +29,9 @@ learn that something else has happened.
 
 </details>
 
+:::figure warm-up-gate
+
+
 ## Practise with help
 
 **1.** $P(A \cap B) = 0.2$ and $P(B) = 0.5$. Find $P(A \mid B)$.

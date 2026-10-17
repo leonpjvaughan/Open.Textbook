@@ -28,6 +28,9 @@ kind: guided-problems
 
 </details>
 
+:::figure warm-up-gate
+
+
 ## Practise with help
 
 **1.** Calculate the energy of a photon of frequency $5.0 \times 10^{14}$ Hz. Take

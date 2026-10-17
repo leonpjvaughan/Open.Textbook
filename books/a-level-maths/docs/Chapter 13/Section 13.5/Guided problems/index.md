@@ -33,6 +33,9 @@ a measurement, and write one sentence giving the reason for your model.
 If question 3 was hard, revise the standard deviation from Section 11.5.
 </details>
 
+:::figure warm-up-gate
+
+
 ## Practise with help
 
 **1.** A fair coin is tossed 20 times. The random variable $X$ is the number of

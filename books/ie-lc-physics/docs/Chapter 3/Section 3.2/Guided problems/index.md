@@ -30,6 +30,9 @@ and a weight is one of the forces you have to add up.
 
 </details>
 
+:::figure warm-up-gate
+
+
 ## Practise with help
 
 **1.** A resultant force of 18 N acts on a mass of 3.0 kg. Calculate the acceleration.

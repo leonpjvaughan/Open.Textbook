@@ -28,6 +28,9 @@ needs; the second is the volume the chapter problem is looking for.
 
 </details>
 
+:::figure warm-up-gate
+
+
 ## Practise with help
 
 **1.** Evaluate $\displaystyle\int_0^2 x^2\,dx$.

@@ -28,6 +28,9 @@ expression: the outer power and the inner gradient.
 
 </details>
 
+:::figure warm-up-gate
+
+
 ## Practise with help
 
 **1.** Differentiate $y = (x + 1)^4$.

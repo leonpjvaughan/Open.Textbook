@@ -30,6 +30,9 @@ step to see the first move, and the full working only to check.
 If question 3 was hard, revisit the negative-index law before you continue.
 </details>
 
+:::figure warm-up-gate
+
+
 ## Practise with help
 
 **1.** Work out $64^{\frac{1}{3}}$ and $64^{\frac{2}{3}}$.

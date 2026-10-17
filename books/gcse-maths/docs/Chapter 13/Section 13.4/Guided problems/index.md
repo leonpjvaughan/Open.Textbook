@@ -25,6 +25,9 @@ Try the questions before opening the support. Reveal each level in order.
 $3$; $25$; $7$; $x=-5$ or $x=5$.
 </details>
 
+:::figure warm-up-gate
+
+
 ## Practise with help
 
 **1.** Find the centre and radius of $x^2+y^2=16$.

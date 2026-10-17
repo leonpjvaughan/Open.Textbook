@@ -27,6 +27,9 @@ kind: guided-problems
 
 </details>
 
+:::figure warm-up-gate
+
+
 ## Practise with help
 
 **1.** A right triangle has legs of $6$ cm and $8$ cm. Find the hypotenuse.

@@ -77,3 +77,6 @@ From month 1 to month 2 the value does not change.
 Sales stay the same for two months, then rise by 4.
 </details>
 
+:::figure warm-up-gate
+
+

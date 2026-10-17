@@ -29,6 +29,9 @@ Answer these from memory. Do not look back at the section.
 If an answer differs, revisit Section 4.2 for adding fractions and Section 8.4 for common factors.
 
 </details>
+
+:::figure warm-up-gate
+
 ## Practise with help
 
 **1.** Simplify $\frac{1}{x}+\frac{2}{x+2}$.

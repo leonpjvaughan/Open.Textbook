@@ -28,6 +28,9 @@ and the ratio shows how two quantities are compared.
 
 </details>
 
+:::figure warm-up-gate
+
+
 ## Practise with help
 
 **1.** Four pens cost 2 euro. Find the cost of nine pens.

@@ -29,6 +29,9 @@ If either answer felt uncertain, look again at Sections 15.3 and 15.7 before you
 
 </details>
 
+:::figure warm-up-gate
+
+
 ## Practise with help
 
 **1.** A segment is $24$ cm long. Divide it into four equal parts.

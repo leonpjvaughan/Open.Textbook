@@ -31,6 +31,9 @@ If the first part was hard, revise change of sign in Section 9.1. If the second
 was hard, revise recurrence relations in Section 9.2.
 </details>
 
+:::figure warm-up-gate
+
+
 ## Practise with help
 
 **1.** A drone's height is $h(t) = 40e^{-t/4} - 2t$ metres. Show that the drone

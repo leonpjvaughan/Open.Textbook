@@ -35,6 +35,9 @@ for multiplication facts.
 
 </details>
 
+:::figure warm-up-gate
+
+
 ## Practise with help
 
 **1.** 4 workers take 18 days. How long do 6 workers take, at the same rate?

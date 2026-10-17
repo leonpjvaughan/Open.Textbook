@@ -27,6 +27,9 @@ Those two steps are the whole mean: add the values, then divide by how many ther
 
 </details>
 
+:::figure warm-up-gate
+
+
 ## Practise with help
 
 **1.** Find the mean of $4$, $7$, $9$, $12$, $13$ and $15$.

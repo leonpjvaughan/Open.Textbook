@@ -27,6 +27,9 @@ kind: guided-problems
 
 </details>
 
+:::figure warm-up-gate
+
+
 ## Practise with help
 
 **1.** A body of mass $2$ kg moves at $5$ m/s and hits a stationary body of mass

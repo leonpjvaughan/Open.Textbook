@@ -29,6 +29,9 @@ answer felt unsure.
 
 </details>
 
+:::figure warm-up-gate
+
+
 ## Practise with help
 
 **1.** Simplify $2^4\times2^3$.

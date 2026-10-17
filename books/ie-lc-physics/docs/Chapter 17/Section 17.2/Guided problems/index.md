@@ -31,6 +31,9 @@ into joules, multiply by $1.6 \times 10^{-19}$.
 
 </details>
 
+:::figure warm-up-gate
+
+
 ## Practise with help
 
 **1.** An electron is accelerated from rest through 250 V. Calculate the kinetic energy

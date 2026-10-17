@@ -31,6 +31,9 @@ population that the method is most likely to miss.
 If question 2 was hard, revise equivalent fractions before you start.
 </details>
 
+:::figure warm-up-gate
+
+
 ## Practise with help
 
 **1.** A club has 240 members. A simple random sample of 30 is chosen. Find the

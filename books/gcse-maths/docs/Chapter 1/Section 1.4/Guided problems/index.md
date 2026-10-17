@@ -25,6 +25,9 @@ kind: guided-problems
 3. $-5$.
 </details>
 
+:::figure warm-up-gate
+
+
 ## Practise with help
 
 **1.** Work out $8 + 3 \times 5$.

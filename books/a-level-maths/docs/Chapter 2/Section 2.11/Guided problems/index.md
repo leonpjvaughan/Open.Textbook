@@ -32,6 +32,9 @@ If question 2 was hard, revisit completing the square: half the coefficient of
 $x$ gives the number in the bracket.
 </details>
 
+:::figure warm-up-gate
+
+
 ## Practise with help
 
 **1.** The curve $y = x^2$ is translated $5$ units to the right. Write the new

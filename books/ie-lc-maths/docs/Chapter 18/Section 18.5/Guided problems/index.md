@@ -25,6 +25,9 @@ kind: guided-problems
 
 </details>
 
+:::figure warm-up-gate
+
+
 ## Practise with help
 
 **1.** Find the length of $\begin{pmatrix} 1 \\ 2 \\ 2 \end{pmatrix}$.

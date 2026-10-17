@@ -24,6 +24,9 @@ Try each question first. Open a hint if needed, then check the full working.
 2. $5,10,15,20$.
 </details>
 
+:::figure warm-up-gate
+
+
 ## Practise with help
 
 **1.** Find all the factors of 24.

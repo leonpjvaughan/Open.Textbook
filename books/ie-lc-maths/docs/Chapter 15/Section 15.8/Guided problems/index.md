@@ -30,6 +30,9 @@ If either answer felt uncertain, look again at Sections 15.4 and 15.8 before you
 
 </details>
 
+:::figure warm-up-gate
+
+
 ## Practise with help
 
 **1.** Write the Given and the To prove for the proof that vertically opposite angles are

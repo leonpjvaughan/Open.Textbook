@@ -31,6 +31,9 @@ unit **charge**, and the field of a point charge is also inverse-square.
 
 </details>
 
+:::figure warm-up-gate
+
+
 ## Practise with help
 
 **1.** A charge of $+4.0\ \mu\text{C}$ placed at a point in an electric field

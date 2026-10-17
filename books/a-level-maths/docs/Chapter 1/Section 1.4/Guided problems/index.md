@@ -29,6 +29,9 @@ assumption holds, and the conclusion fails.
    even and does not end in $0$.
 </details>
 
+:::figure warm-up-gate
+
+
 ## Practise with help
 
 **1.** Disprove the claim "Every prime number is odd."

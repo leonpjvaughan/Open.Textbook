@@ -34,6 +34,9 @@ directions subtract. If question 2 went wrong, remember to square the speed
 before you multiply.
 </details>
 
+:::figure warm-up-gate
+
+
 ## Practise with help
 
 **1.** A train travels 450 m in 30 s. Calculate its average speed.

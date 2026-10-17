@@ -29,6 +29,9 @@ the second one finds a root from a bracket.
 
 </details>
 
+:::figure warm-up-gate
+
+
 ## Practise with help
 
 **1.** Make a table of values for $y=x^2$ for $x=-2$, $-1$, $0$, $1$ and $2$.

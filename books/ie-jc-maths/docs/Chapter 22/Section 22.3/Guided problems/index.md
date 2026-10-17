@@ -28,6 +28,9 @@ frequencies to find the total, and you multiply when you work out a mean later.
 
 </details>
 
+:::figure warm-up-gate
+
+
 ## Practise with help
 
 **1.** A tally shows 3 marks for 5, 5 marks for 6 and 2 marks for 7. How many

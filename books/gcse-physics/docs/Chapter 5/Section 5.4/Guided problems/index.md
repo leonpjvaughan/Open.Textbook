@@ -34,6 +34,9 @@ If question 1 went wrong, remember the order of the visible spectrum. If questio
 3 went wrong, take care with the powers of ten when you divide.
 </details>
 
+:::figure warm-up-gate
+
+
 ## Practise with help
 
 **1.** A red shirt is seen in green light. Explain the colour the shirt appears,

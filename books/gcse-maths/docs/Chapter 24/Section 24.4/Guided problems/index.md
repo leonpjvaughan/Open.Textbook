@@ -76,3 +76,6 @@ The total of value $\times$ frequency is $2+12=14$, and the total frequency is 6
 
 Mean $=14\div6=\frac{7}{3}$.
 </details>
+
+:::figure warm-up-gate
+

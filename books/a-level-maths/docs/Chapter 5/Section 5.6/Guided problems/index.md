@@ -32,6 +32,9 @@ and the domain are both visible.
 If question 1 was hard, revise reciprocals before you continue.
 </details>
 
+:::figure warm-up-gate
+
+
 ## Practise with help
 
 **1.** Write down the value of $\sec\dfrac{\pi}{3}$.

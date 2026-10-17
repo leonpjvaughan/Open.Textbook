@@ -29,6 +29,9 @@ second is the angular velocity that leads to the centripetal acceleration.
 
 </details>
 
+:::figure warm-up-gate
+
+
 ## Practise with help
 
 **1.** A car goes round a bend of radius 80 m at 16 m/s. Calculate its centripetal

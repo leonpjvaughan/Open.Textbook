@@ -27,6 +27,9 @@ in this section to turn an awkward multiplication into a round one.
 
 </details>
 
+:::figure warm-up-gate
+
+
 ## Practise with help
 
 **1.** Use the commutative property to write $9 + 14$ another way, and work it out.

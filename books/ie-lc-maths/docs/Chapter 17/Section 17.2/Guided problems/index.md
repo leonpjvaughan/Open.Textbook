@@ -31,6 +31,9 @@ The isosceles triangle gives the two equal base angles, and the exterior angle a
 
 </details>
 
+:::figure warm-up-gate
+
+
 ## Practise with help
 
 **1.** $O$ is the centre of a circle. $A$ and $B$ are points of the circle, and

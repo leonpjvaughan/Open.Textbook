@@ -31,6 +31,9 @@ adjacent angles are found by subtracting from 180.
 
 </details>
 
+:::figure warm-up-gate
+
+
 ## Practise with help
 
 **1.** In a parallelogram, one angle is 65°. Write down the opposite angle.

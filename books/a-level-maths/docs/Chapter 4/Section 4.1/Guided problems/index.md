@@ -32,6 +32,9 @@ If question 3 was hard, revisit the laws of indices in Section 2.1 before you
 continue. An odd power of a negative number is negative.
 </details>
 
+:::figure warm-up-gate
+
+
 ## Practise with help
 
 **1.** Work out $5!$ and $\binom{6}{2}$.

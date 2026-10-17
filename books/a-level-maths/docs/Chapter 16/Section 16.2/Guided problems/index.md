@@ -32,6 +32,9 @@ If question 3 was hard, revise the constant-acceleration formulae in
 Section 15.4 before you continue.
 </details>
 
+:::figure warm-up-gate
+
+
 ## Practise with help
 
 **1.** Forces of $30$ N and $12$ N act in opposite directions on a mass of

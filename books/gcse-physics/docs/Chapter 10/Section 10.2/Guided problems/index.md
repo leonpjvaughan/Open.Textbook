@@ -34,6 +34,9 @@ If question 1 went wrong, revisit the electromagnetic spectrum in Chapter 5. If
 question 2 went wrong, revisit the wave equation in Chapter 4.
 </details>
 
+:::figure warm-up-gate
+
+
 ## Practise with help
 
 **1.** Explain what is meant by the red-shift of light from a galaxy.

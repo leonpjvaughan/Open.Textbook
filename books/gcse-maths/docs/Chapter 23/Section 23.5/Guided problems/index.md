@@ -28,6 +28,9 @@ Try these from memory before opening the answers.
 
 </details>
 
+:::figure warm-up-gate
+
+
 ## Practise with help
 
 **1.** In a group of 25, 14 like tea, 11 like coffee and 6 like both. How many like neither?

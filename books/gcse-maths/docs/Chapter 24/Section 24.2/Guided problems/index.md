@@ -76,3 +76,6 @@ Multiply the number of symbols by the value of one symbol: $3\times4$.
 
 $3\times4=12$ votes.
 </details>
+
+:::figure warm-up-gate
+

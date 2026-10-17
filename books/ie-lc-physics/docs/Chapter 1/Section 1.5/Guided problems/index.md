@@ -29,6 +29,9 @@ and its gradient usually carries a physical quantity with a unit.
 
 </details>
 
+:::figure warm-up-gate
+
+
 ## Practise with help
 
 **1.** A distance-time graph is a straight line through the origin, passing through

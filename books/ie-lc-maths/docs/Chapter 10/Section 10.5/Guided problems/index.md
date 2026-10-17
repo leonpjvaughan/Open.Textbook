@@ -28,6 +28,9 @@ counts matter.
 
 </details>
 
+:::figure warm-up-gate
+
+
 ## Practise with help
 
 **1.** A fair die is rolled. Find the probability of an even score.

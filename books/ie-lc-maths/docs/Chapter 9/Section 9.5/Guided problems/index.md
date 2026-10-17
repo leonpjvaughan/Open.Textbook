@@ -25,6 +25,9 @@ kind: guided-problems
 
 </details>
 
+:::figure warm-up-gate
+
+
 ## Practise with help
 
 **1.** $T_1 = 4$ and $T_{n+1} = 2T_n + 1$. Find the first four terms.

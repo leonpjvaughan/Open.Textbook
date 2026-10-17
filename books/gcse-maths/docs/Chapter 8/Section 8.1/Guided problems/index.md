@@ -25,6 +25,9 @@ Answer from memory before checking.
 If an answer differs, review the earlier method before continuing.
 </details>
 
+:::figure warm-up-gate
+
+
 ## Practise with help
 
 **1.** Write $7x$ as repeated addition, then state its coefficient.

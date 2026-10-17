@@ -33,6 +33,9 @@ Answer these from memory, then check.
 
 </details>
 
+:::figure warm-up-gate
+
+
 ## Practise with help
 
 **1.** Two bar magnets are placed with their south poles facing each other. Describe

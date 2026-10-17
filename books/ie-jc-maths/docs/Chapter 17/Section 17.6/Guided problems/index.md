@@ -32,6 +32,9 @@ another.
 
 </details>
 
+:::figure warm-up-gate
+
+
 ## Practise with help
 
 **1.** Write the line $y=2x+3$ in the form $ax+by+c=0$.

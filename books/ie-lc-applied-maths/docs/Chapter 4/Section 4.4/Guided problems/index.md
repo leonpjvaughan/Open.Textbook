@@ -27,6 +27,9 @@ kind: guided-problems
 
 </details>
 
+:::figure warm-up-gate
+
+
 ## Practise with help
 
 **1.** A block of mass $6$ kg rests on a smooth plane inclined at $30^\circ$.

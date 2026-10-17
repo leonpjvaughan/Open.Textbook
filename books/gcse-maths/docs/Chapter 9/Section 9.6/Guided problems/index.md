@@ -27,6 +27,9 @@ Answer these from memory. Do not look back at the section.
 If an answer differs, revisit Section 9.5 for solving inequalities and Section 9.4 for reading a number line.
 
 </details>
+
+:::figure warm-up-gate
+
 ## Practise with help
 
 **1.** Solve $x+4=0$.

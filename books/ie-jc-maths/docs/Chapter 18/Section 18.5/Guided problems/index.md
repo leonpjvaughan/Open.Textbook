@@ -28,6 +28,9 @@ The inverse ratios start from a fraction like these and give back the angle.
 
 </details>
 
+:::figure warm-up-gate
+
+
 ## Practise with help
 
 **1.** A right-angled triangle has an opposite side of 3 cm and a hypotenuse of

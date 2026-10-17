@@ -29,6 +29,9 @@ found by subtracting the two base angles from 180.
 
 </details>
 
+:::figure warm-up-gate
+
+
 ## Practise with help
 
 **1.** An isosceles triangle has an apex angle of 50°. Work out each base angle.

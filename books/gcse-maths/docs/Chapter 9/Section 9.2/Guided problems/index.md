@@ -27,6 +27,9 @@ Answer these from memory. Do not look back at the section.
 If an answer differs, revisit Section 8.2 for collecting like terms and Section 9.1 for one-step equations.
 
 </details>
+
+:::figure warm-up-gate
+
 ## Practise with help
 
 **1.** Solve $2x+5=17$.

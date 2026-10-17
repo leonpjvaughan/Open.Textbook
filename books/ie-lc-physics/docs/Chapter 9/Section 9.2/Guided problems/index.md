@@ -30,6 +30,9 @@ of them.
 
 </details>
 
+:::figure warm-up-gate
+
+
 ## Practise with help
 
 **1.** A wave has a frequency of 25 Hz. Calculate its period.

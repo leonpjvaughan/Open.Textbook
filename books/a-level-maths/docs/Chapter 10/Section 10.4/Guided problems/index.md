@@ -32,6 +32,9 @@ If question 1 was hard, revise subtracting directed numbers before you
 continue.
 </details>
 
+:::figure warm-up-gate
+
+
 ## Practise with help
 
 **1.** Write down the position vector of $A(3, -2)$.

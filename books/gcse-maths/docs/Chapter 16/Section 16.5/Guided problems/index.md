@@ -25,6 +25,9 @@ Try each question before opening a hint. Open the next part only when you need i
 
 </details>
 
+:::figure warm-up-gate
+
+
 ## Practise with help
 
 **1.** Parallel lines give one angle of $64^\circ$. Find and justify the co-interior angle.

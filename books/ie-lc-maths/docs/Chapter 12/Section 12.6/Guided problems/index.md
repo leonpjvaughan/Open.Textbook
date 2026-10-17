@@ -25,6 +25,9 @@ kind: guided-problems
 
 </details>
 
+:::figure warm-up-gate
+
+
 ## Practise with help
 
 **1.** In a triangle, $A = 50^\circ$, $B = 70^\circ$ and $a = 9$ cm. Find $b$, correct to

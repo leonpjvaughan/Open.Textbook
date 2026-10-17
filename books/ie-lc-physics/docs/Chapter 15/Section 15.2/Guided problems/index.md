@@ -33,6 +33,9 @@ Answer these from memory, then check.
 
 </details>
 
+:::figure warm-up-gate
+
+
 ## Practise with help
 
 **1.** A straight wire carries a current vertically upwards. State the direction of the

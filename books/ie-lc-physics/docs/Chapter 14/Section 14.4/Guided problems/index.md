@@ -31,6 +31,9 @@ kind: guided-problems
 
 </details>
 
+:::figure warm-up-gate
+
+
 ## Practise with help
 
 **1.** A 230 V supply drives a current of 0.20 A through an appliance. Calculate its

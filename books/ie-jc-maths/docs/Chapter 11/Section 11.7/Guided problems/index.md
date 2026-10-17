@@ -27,6 +27,9 @@ Multiplying back is how you check the answer.
 
 </details>
 
+:::figure warm-up-gate
+
+
 ## Practise with help
 
 **1.** Divide $6x^2+9x$ by $3x$.

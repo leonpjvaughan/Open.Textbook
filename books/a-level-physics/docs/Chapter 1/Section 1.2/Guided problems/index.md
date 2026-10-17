@@ -33,6 +33,9 @@ If question 3 goes wrong, remember that dividing by 20 is not the same as
 dividing by 2.
 </details>
 
+:::figure warm-up-gate
+
+
 ## Practise with help
 
 **1.** A room is 8.0 m long, 5.0 m wide and 3.0 m high. The density of air is

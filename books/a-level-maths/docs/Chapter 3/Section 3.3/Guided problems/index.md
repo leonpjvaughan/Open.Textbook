@@ -31,6 +31,9 @@ If question 1 was hard, revisit completing the square in Section 2.3 before you
 continue.
 </details>
 
+:::figure warm-up-gate
+
+
 ## Practise with help
 
 **1.** Write the equation of the circle with centre $(2, -5)$ and radius $6$.

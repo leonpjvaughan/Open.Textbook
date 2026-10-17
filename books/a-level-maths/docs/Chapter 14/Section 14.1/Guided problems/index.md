@@ -34,6 +34,9 @@ If question 1 was hard, revise the binomial probability formula before you
 start.
 </details>
 
+:::figure warm-up-gate
+
+
 ## Practise with help
 
 **1.** A quality inspector claims that 5% of the bolts from a machine are faulty.

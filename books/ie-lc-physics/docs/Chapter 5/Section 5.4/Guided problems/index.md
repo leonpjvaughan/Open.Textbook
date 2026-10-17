@@ -28,6 +28,9 @@ become a weight in newtons before it can be plotted.
 
 </details>
 
+:::figure warm-up-gate
+
+
 ## Practise with help
 
 **1.** A student records the pointer at 0.150 m with no masses, and at 0.210 m with a

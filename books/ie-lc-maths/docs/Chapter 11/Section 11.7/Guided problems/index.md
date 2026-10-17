@@ -28,6 +28,9 @@ sample size, and a decimal turned into a percentage.
 
 </details>
 
+:::figure warm-up-gate
+
+
 ## Practise with help
 
 **1.** A poll asks $400$ people. Find the margin of error, as a decimal.

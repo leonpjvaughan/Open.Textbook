@@ -28,6 +28,9 @@ these two shapes, so you will need both formulas.
 
 </details>
 
+:::figure warm-up-gate
+
+
 ## Practise with help
 
 **1.** An L-shaped floor is 8 m wide and 5 m tall, with a rectangular notch 3 m wide

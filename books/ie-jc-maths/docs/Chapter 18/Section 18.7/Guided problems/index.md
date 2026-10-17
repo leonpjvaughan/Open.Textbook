@@ -28,6 +28,9 @@ an angle problem. Choosing between them is the whole of this section.
 
 </details>
 
+:::figure warm-up-gate
+
+
 ## Practise with help
 
 **1.** A right-angled triangle has legs of 9 cm and 12 cm. Find the hypotenuse.

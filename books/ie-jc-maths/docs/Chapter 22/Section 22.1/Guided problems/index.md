@@ -29,6 +29,9 @@ is the same idea as the class splitting into walkers and bus users.
 
 </details>
 
+:::figure warm-up-gate
+
+
 ## Practise with help
 
 **1.** A hospital wants to know how long patients wait for an appointment. It

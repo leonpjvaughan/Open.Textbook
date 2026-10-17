@@ -28,6 +28,9 @@ kind: guided-problems
 
 </details>
 
+:::figure warm-up-gate
+
+
 ## Practise with help
 
 **1.** A cyclist and bicycle have a total mass of 80 kg and travel at 5.0 m/s.

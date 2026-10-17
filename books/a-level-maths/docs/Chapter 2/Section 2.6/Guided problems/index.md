@@ -32,6 +32,9 @@ If question 3 was hard, revisit factorising: the roots of the equation are the
 same numbers that appear in the brackets.
 </details>
 
+:::figure warm-up-gate
+
+
 ## Practise with help
 
 **1.** Solve $5x + 2 > 17$.

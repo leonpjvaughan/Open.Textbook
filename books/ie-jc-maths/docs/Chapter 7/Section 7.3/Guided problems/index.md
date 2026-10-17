@@ -27,6 +27,9 @@ A rate of VAT becomes a decimal before it multiplies a price.
 
 </details>
 
+:::figure warm-up-gate
+
+
 ## Practise with help
 
 **1.** A price is €6.00 before VAT. Work out the VAT at $23\%$.

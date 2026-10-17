@@ -31,6 +31,9 @@ If question 2 was hard, revise integrating powers of $t$ before you continue.
 Every velocity on this page is an integral of an acceleration.
 </details>
 
+:::figure warm-up-gate
+
+
 ## Practise with help
 
 **1.** The displacement of a particle is $s = t^2 + 3t$ metres. Find its

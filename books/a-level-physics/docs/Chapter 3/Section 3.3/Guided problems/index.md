@@ -38,6 +38,9 @@ downwards, so $mg - N = ma$. If question 3 goes wrong, the angle is measured
 from the horizontal, so that component uses the cosine.
 </details>
 
+:::figure warm-up-gate
+
+
 ## Practise with help
 
 **1.** A force of 150 N moves a crate 8.0 m along the direction of the force.

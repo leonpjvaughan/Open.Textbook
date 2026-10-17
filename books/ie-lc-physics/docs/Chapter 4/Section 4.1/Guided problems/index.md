@@ -28,6 +28,9 @@ kind: guided-problems
 
 </details>
 
+:::figure warm-up-gate
+
+
 ## Practise with help
 
 **1.** A force of 25 N moves a crate 4.0 m in the direction of the force. Calculate the

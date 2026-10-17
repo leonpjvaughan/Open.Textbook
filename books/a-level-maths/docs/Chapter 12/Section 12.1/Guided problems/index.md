@@ -31,6 +31,9 @@ events can overlap.
 If question 2 was hard, revise simplifying fractions before you start.
 </details>
 
+:::figure warm-up-gate
+
+
 ## Practise with help
 
 **1.** A fair six-sided die is rolled once. Find the probability of an even

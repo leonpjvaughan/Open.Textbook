@@ -28,6 +28,9 @@ unit is the one that falls out of $g = F/m$.
 
 </details>
 
+:::figure warm-up-gate
+
+
 ## Practise with help
 
 **1.** Two spheres, each of mass 1000 kg, have their centres 2.0 m apart. Calculate the

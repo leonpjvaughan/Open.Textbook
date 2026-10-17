@@ -27,6 +27,9 @@ The second derivative is found by differentiating each of these answers once mor
 
 </details>
 
+:::figure warm-up-gate
+
+
 ## Practise with help
 
 **1.** Find $\dfrac{d^2y}{dx^2}$ for $y = x^3 + 2x^2$.

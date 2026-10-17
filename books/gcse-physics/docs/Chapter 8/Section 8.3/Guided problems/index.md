@@ -36,6 +36,9 @@ use specific heat capacity. If question 2 went wrong, remember that pressure is
 the force on each unit of area.
 </details>
 
+:::figure warm-up-gate
+
+
 ## Practise with help
 
 **1.** A fixed mass of gas at $100\,\text{kPa}$ fills $1.2\,\text{m}^3$. The gas

@@ -30,6 +30,9 @@ is and how the particles move.
 
 </details>
 
+:::figure warm-up-gate
+
+
 ## Practise with help
 
 **1.** A wave travels along a rope. The particles of the rope move up and down while the

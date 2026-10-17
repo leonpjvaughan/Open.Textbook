@@ -28,6 +28,9 @@ kind: guided-problems
 
 </details>
 
+:::figure warm-up-gate
+
+
 ## Practise with help
 
 **1.** A 20 Ω resistor has a potential difference of 4.0 V across it. Calculate the

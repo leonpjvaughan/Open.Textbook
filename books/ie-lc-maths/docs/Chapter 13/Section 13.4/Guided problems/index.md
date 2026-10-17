@@ -29,6 +29,9 @@ Answer these from memory before you start.
 
 </details>
 
+:::figure warm-up-gate
+
+
 ## Practise with help
 
 **1.** Write the equation of the circle with centre $(2, -3)$ and radius $4$.

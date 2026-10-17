@@ -31,6 +31,9 @@ on.
 
 </details>
 
+:::figure warm-up-gate
+
+
 ## Practise with help
 
 **1.** Reflect $(3,2)$ in the $y$-axis.

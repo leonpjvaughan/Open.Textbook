@@ -33,6 +33,9 @@ If question 1 was hard, revisit the factor pairs of $12$: you need a pair that
 adds to $7$.
 </details>
 
+:::figure warm-up-gate
+
+
 ## Practise with help
 
 **1.** Solve $x^2 - 7x + 10 = 0$.

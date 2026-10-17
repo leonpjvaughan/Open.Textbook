@@ -36,6 +36,9 @@ remember that kilo means $10^{3}$. If question 3 goes wrong, subtract the lost
 volts from the emf.
 </details>
 
+:::figure warm-up-gate
+
+
 ## Practise with help
 
 **1.** Two resistors of $3.0\,\Omega$ and $5.0\,\Omega$ are connected in series.

@@ -31,6 +31,9 @@ kind: guided-problems
 
 </details>
 
+:::figure warm-up-gate
+
+
 ## Practise with help
 
 **1.** A coil of area 0.050 m² lies at right angles to a field of flux density

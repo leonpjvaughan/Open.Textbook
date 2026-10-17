@@ -34,6 +34,9 @@ If question 2 went wrong, remember that a neutral atom has no overall charge, so
 the positive and negative charges must balance.
 </details>
 
+:::figure warm-up-gate
+
+
 ## Practise with help
 
 **1.** State the relative charge of a proton, a neutron and an electron, and say

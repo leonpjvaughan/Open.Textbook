@@ -31,6 +31,9 @@ If question 2 was hard, revisit factorising a quadratic with a negative middle
 term: look for two numbers that multiply to $20$ and add to $-9$.
 </details>
 
+:::figure warm-up-gate
+
+
 ## Practise with help
 
 **1.** Write $x^2 + 10x + 3$ in completed-square form.

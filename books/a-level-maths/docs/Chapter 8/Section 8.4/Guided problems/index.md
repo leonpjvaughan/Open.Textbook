@@ -31,6 +31,9 @@ write the sum, and simplify the fraction in $n$ before taking the limit.
 If question 2 was hard, revise sigma notation in Section 4.4.
 </details>
 
+:::figure warm-up-gate
+
+
 ## Practise with help
 
 **1.** Write $\delta x$ and $x_i$ for $\displaystyle\int_0^4 x^2dx$ using $n$

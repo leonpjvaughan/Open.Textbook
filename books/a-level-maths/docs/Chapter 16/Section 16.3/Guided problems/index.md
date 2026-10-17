@@ -32,6 +32,9 @@ If question 3 was hard, revise Newton's second law in Section 16.2 before you
 continue.
 </details>
 
+:::figure warm-up-gate
+
+
 ## Practise with help
 
 **1.** Find the weight of a suitcase of mass $25$ kg. Take $g = 9.8$ m s$^{-2}$.

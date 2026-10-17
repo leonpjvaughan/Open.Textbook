@@ -29,6 +29,9 @@ Answer these from memory. Do not look back at the section.
 If an answer differs, sketch the shape and count its faces, vertices and sides again.
 
 </details>
+
+:::figure warm-up-gate
+
 ## Try these with help
 
 **1.** A triangular prism has two triangular ends. Name its other faces.

@@ -32,6 +32,9 @@ If question 3 was hard, revisit factor pairs: you need two numbers that multiply
 to $-12$ and add to $-4$.
 </details>
 
+:::figure warm-up-gate
+
+
 ## Practise with help
 
 **1.** Solve $x + y = 7$ and $x - y = 3$ by elimination.

@@ -29,6 +29,9 @@ Answer these from memory. Do not look back at the section.
 If an answer differs, revisit Section 1.4 for the order of operations and Section 8.1 for substitution.
 
 </details>
+
+:::figure warm-up-gate
+
 ## Practise with help
 
 **1.** Find $2a+5$ when $a=3$.

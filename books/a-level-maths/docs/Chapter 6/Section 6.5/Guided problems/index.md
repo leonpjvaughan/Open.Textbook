@@ -31,6 +31,9 @@ If question 1 was hard, revise the laws of logarithms in Section 6.3 before you
 continue.
 </details>
 
+:::figure warm-up-gate
+
+
 ## Practise with help
 
 **1.** For the model $y = kb^x$, what quantity is plotted on each axis to give a

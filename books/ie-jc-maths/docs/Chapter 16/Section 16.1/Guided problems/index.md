@@ -28,6 +28,9 @@ two lengths. Check the unit before you start.
 
 </details>
 
+:::figure warm-up-gate
+
+
 ## Practise with help
 
 **1.** A rectangle is 8 cm long and 3 cm wide. Find its perimeter.

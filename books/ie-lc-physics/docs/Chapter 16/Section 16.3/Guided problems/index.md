@@ -30,6 +30,9 @@ kind: guided-problems
 
 </details>
 
+:::figure warm-up-gate
+
+
 ## Practise with help
 
 **1.** The north pole of a bar magnet is pushed towards a coil. State the polarity

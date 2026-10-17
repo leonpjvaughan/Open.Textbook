@@ -28,6 +28,9 @@ whether a difference between prediction and measurement means anything.
 
 </details>
 
+:::figure warm-up-gate
+
+
 ## Practise with help
 
 **1.** A ball is dropped from rest and falls for 0.30 s. Use $s = \frac{1}{2}gt^2$ to

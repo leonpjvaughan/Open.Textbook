@@ -29,6 +29,9 @@ second is the process that this section describes with $E = mL$.
 
 </details>
 
+:::figure warm-up-gate
+
+
 ## Practise with help
 
 **1.** Calculate the energy needed to melt 0.50 kg of ice at 0°C. The specific

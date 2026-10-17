@@ -33,6 +33,9 @@ after the 4. If question 3 goes wrong, use $c^2 = a^2 + b^2$, where $c$ is the
 hypotenuse.
 </details>
 
+:::figure warm-up-gate
+
+
 ## Practise with help
 
 **1.** Classify each quantity as a scalar or a vector: energy, acceleration,

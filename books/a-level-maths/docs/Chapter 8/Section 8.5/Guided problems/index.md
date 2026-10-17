@@ -30,6 +30,9 @@ before you change the integral. For parts, write $u$ and $\dfrac{dv}{dx}$.
 If question 1 was hard, revise the chain rule in Section 7.7.
 </details>
 
+:::figure warm-up-gate
+
+
 ## Practise with help
 
 **1.** Find $\displaystyle\int 2x(x^2 + 1)^4dx$.

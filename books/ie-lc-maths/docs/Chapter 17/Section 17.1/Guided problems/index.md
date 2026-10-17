@@ -31,6 +31,9 @@ triangle.
 
 </details>
 
+:::figure warm-up-gate
+
+
 ## Practise with help
 
 **1.** A chord of a circle is $16$ cm long. The radius is $10$ cm. Find the distance from

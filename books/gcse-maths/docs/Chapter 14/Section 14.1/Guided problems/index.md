@@ -29,6 +29,9 @@ Answer these from memory. Do not look back at the section.
 If an answer differs, revisit Section 9.1 for solving equations and Section 8.2 for collecting like terms.
 
 </details>
+
+:::figure warm-up-gate
+
 ## Practise with help
 
 **1.** Solve $x+y=9$ and $x-y=3$.

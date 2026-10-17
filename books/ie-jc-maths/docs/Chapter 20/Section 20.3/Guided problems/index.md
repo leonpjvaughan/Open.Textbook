@@ -31,6 +31,9 @@ equal angle or a subtraction from 180.
 
 </details>
 
+:::figure warm-up-gate
+
+
 ## Practise with help
 
 **1.** Two straight lines cross. One of the four angles is 118°. Work out the

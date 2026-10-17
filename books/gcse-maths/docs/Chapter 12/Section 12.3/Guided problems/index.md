@@ -29,6 +29,9 @@ Answer these from memory. Do not look back at the section.
 If an answer differs, revisit Section 8.5 for substitution and Section 3.1 for squares.
 
 </details>
+
+:::figure warm-up-gate
+
 ## Practise with help
 
 **1.** For $y=x^2-1$, find the roots.

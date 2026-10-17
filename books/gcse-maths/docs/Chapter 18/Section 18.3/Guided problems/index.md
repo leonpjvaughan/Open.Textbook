@@ -29,6 +29,9 @@ Answer these from memory. Do not look back at the section.
 If an answer differs, revisit Section 4.3 for multiplying fractions and Section 1.3 for negative numbers.
 
 </details>
+
+:::figure warm-up-gate
+
 ## Practise with help
 
 **1.** Enlarge $(8,-6)$ by factor $\frac12$ about the origin.

@@ -29,6 +29,9 @@ only to check.
 If question 1 went wrong, go back to Section 1.1 and the equation $P = \dfrac{E}{t}$.
 </details>
 
+:::figure warm-up-gate
+
+
 ## Practise with help
 
 **1.** A ball has 30 J of energy in its gravitational potential store at the top

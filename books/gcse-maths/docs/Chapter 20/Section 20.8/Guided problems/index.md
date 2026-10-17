@@ -28,6 +28,9 @@ If an answer differs, revisit Section 19.1 for the area of a triangle and
 Section 20.2 for the sine ratio.
 </details>
 
+:::figure warm-up-gate
+
+
 ## Practise with help
 
 **1.** Sides 4 and 6 include 30°. Find area.

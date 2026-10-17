@@ -29,6 +29,9 @@ wavelength, and light obeys it with $c$ in place of $v$.
 
 </details>
 
+:::figure warm-up-gate
+
+
 ## Practise with help
 
 **1.** Light travels $3.0 \times 10^{11}$ m from a satellite to a ground station.

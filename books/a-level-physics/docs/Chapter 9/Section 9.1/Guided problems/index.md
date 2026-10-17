@@ -36,6 +36,9 @@ If question 2 goes wrong, revisit circular motion in Section 3.5. If question 3
 goes wrong, revisit gravitational potential energy in Section 3.3.
 </details>
 
+:::figure warm-up-gate
+
+
 ## Practise with help
 
 **1.** Two spheres, each of mass 1000 kg, are 2.0 m apart. Find the

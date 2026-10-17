@@ -35,6 +35,9 @@ degrees by $\dfrac{\pi}{180}$. If question 3 goes wrong, use
 $E_k = \tfrac{1}{2}mv^2$.
 </details>
 
+:::figure warm-up-gate
+
+
 ## Practise with help
 
 **1.** Write $60^\circ$ and $200^\circ$ in radians.

@@ -36,6 +36,9 @@ wrong, the angle is measured from the horizontal, so that component uses the
 cosine.
 </details>
 
+:::figure warm-up-gate
+
+
 ## Practise with help
 
 **1.** A resultant force of 36 N acts on an object of mass 12 kg. Find the

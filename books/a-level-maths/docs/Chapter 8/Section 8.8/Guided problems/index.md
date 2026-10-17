@@ -33,6 +33,9 @@ equation.
 If question 1 was hard, revise separable equations in Section 8.7.
 </details>
 
+:::figure warm-up-gate
+
+
 ## Practise with help
 
 **1.** A population $P$ grows so that $\dfrac{dP}{dt} = 0.03P$, with $P = 2000$

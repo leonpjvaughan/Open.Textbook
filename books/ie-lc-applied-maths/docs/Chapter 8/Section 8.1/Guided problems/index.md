@@ -27,6 +27,9 @@ kind: guided-problems
 
 </details>
 
+:::figure warm-up-gate
+
+
 ## Practise with help
 
 **1.** A quantity is $Q = 5t^2 - 3t$. Find $\dfrac{dQ}{dt}$ and its value when

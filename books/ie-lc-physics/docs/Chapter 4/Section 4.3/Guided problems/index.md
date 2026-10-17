@@ -28,6 +28,9 @@ kind: guided-problems
 
 </details>
 
+:::figure warm-up-gate
+
+
 ## Practise with help
 
 **1.** A ball is dropped from rest from a height of 3.2 m. Ignoring air resistance,

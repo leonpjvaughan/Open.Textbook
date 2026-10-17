@@ -28,6 +28,9 @@ which is the main job of this section.
 
 </details>
 
+:::figure warm-up-gate
+
+
 ## Practise with help
 
 **1.** Write down the natural numbers between 5 and 11.

@@ -35,6 +35,9 @@ question 3 goes wrong, the gradient is the change in the vertical value divided
 by the change in the horizontal value.
 </details>
 
+:::figure warm-up-gate
+
+
 ## Practise with help
 
 **1.** A spring extends by $0.060\,\text{m}$ under a force of $12\,\text{N}$.

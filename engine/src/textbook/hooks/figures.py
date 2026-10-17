@@ -85,7 +85,13 @@ def on_page_markdown(markdown, page, config, files):
                 f"(known: {', '.join(sorted(known)) or 'none'})"
             )
         used.add(slug)
-        return f'<maths-figure data-figure="{slug}"></maths-figure>'
+        # **The `<div>` is load-bearing.** Python-Markdown treats an unknown tag as
+        # inline, so a bare `<maths-figure>` came back wrapped in a `<p>` — 524 of them
+        # across 508 pages — and `<p><div class="fig">` is invalid once `panel()` has
+        # put its own `<div>` inside. It also left every figure with no element sibling,
+        # which a module that needs to reach the block above it cannot work around.
+        # A `<div>` is a block tag Python-Markdown knows, so it passes through unwrapped.
+        return f'<div><maths-figure data-figure="{slug}"></maths-figure></div>'
 
     markdown = transform_outside_fences(markdown, lambda text: MARKER.sub(replace, text))
     if used:

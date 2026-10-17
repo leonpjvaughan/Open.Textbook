@@ -33,6 +33,9 @@ kind: guided-problems
 
 </details>
 
+:::figure warm-up-gate
+
+
 ## Practise with help
 
 **1.** A uranium-235 nucleus absorbs a neutron and splits into barium-141 and

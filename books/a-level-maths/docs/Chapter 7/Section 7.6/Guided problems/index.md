@@ -31,6 +31,9 @@ sign of the derivative in each interval between the roots.
 If question 3 was hard, revise quadratic inequalities in Chapter 2.
 </details>
 
+:::figure warm-up-gate
+
+
 ## Practise with help
 
 **1.** Find the interval on which $y = x^2 - 6x$ is increasing.

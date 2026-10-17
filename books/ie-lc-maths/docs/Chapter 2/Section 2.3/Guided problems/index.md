@@ -28,6 +28,9 @@ section is one of them.
 
 </details>
 
+:::figure warm-up-gate
+
+
 ## Practise with help
 
 Throughout this page, use these rates: income tax at $20\%$ on the first €44,000

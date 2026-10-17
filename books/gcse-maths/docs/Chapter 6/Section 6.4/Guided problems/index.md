@@ -25,6 +25,9 @@ Try each question before opening a hint. Reveal the full working to check your m
 
 </details>
 
+:::figure warm-up-gate
+
+
 ## Practise with help
 
 **1.** Find the simple interest on £300 at 5% for 4 years.

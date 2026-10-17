@@ -24,6 +24,9 @@ Try each question before opening its hint. Reveal the working when you want to c
 1. $2,4,5,7,9$. 2. $8$, the middle value.
 </details>
 
+:::figure warm-up-gate
+
+
 ## Practise with help
 
 **1.** Find the median, lower quartile and upper quartile of

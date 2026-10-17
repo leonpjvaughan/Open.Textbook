@@ -32,6 +32,9 @@ question 2 went wrong, remember that the period is the reciprocal of the
 frequency.
 </details>
 
+:::figure warm-up-gate
+
+
 ## Practise with help
 
 **1.** A pulse of ultrasound travels through tissue at 1500 m/s. The reflection

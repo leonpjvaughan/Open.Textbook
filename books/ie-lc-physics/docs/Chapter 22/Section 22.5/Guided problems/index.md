@@ -30,6 +30,9 @@ measurement is written with its unit and the figures the data support.
 
 </details>
 
+:::figure warm-up-gate
+
+
 ## Practise with help
 
 **1.** Name three sections of an investigation report, and say what each one

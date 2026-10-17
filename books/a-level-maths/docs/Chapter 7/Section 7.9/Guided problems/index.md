@@ -30,6 +30,9 @@ $x$, write $\dfrac{dy}{dx}$ every time a $y$-term appears.
 If question 1 was hard, revise the product rule in Section 7.7.
 </details>
 
+:::figure warm-up-gate
+
+
 ## Practise with help
 
 **1.** Find $\dfrac{dy}{dx}$ for the circle $x^2 + y^2 = 16$.

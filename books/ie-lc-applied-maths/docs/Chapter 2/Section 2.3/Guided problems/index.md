@@ -25,6 +25,9 @@ kind: guided-problems
 
 </details>
 
+:::figure warm-up-gate
+
+
 ## Practise with help
 
 **1.** A network has vertices $A, B, C$ and edges $AB$, $BC$. Write its adjacency matrix

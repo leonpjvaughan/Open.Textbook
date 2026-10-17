@@ -29,6 +29,9 @@ meaning, and here it gives a speed.
 
 </details>
 
+:::figure warm-up-gate
+
+
 ## Practise with help
 
 **1.** A distance-time graph is a straight line through the origin and the point

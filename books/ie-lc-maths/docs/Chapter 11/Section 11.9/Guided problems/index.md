@@ -28,6 +28,9 @@ multiply by $1.96$.
 
 </details>
 
+:::figure warm-up-gate
+
+
 ## Practise with help
 
 **1.** A sample of $80$ new phones has mean charging time $45.4$ minutes. The population

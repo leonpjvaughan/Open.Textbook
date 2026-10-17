@@ -28,6 +28,9 @@ comparison.
 
 </details>
 
+:::figure warm-up-gate
+
+
 ## Practise with help
 
 **1.** A phone plan costs €20.00 for 10 GB. Work out the price of one GB.

@@ -29,6 +29,9 @@ Answer these from memory. Do not look back at the section.
 If an answer differs, revisit Section 8.5 for substitution and Section 9.1 for solving equations.
 
 </details>
+
+:::figure warm-up-gate
+
 ## Practise with help
 
 **1.** Find the inverse of $f(x)=4x-7$.

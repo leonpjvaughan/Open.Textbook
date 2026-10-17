@@ -29,6 +29,9 @@ kind: guided-problems
 
 </details>
 
+:::figure warm-up-gate
+
+
 ## Practise with help
 
 **1.** A battery falls from 100% to 70% in 2.5 hours, not 2 hours. Find the new

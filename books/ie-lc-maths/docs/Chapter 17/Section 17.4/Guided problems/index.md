@@ -32,6 +32,9 @@ Both answers come from Pythagoras, and both are used in this section.
 
 </details>
 
+:::figure warm-up-gate
+
+
 ## Practise with help
 
 **1.** A circle has radius $5$ cm. A point $T$ is $13$ cm from the centre. Find the length

@@ -24,6 +24,9 @@ kind: guided-problems
 
 </details>
 
+:::figure warm-up-gate
+
+
 ## Practise with help
 
 **1.** Estimate $\sqrt{45}$ to the nearest whole number.

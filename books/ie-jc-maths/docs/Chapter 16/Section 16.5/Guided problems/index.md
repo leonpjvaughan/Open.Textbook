@@ -28,6 +28,9 @@ volume of a sphere.
 
 </details>
 
+:::figure warm-up-gate
+
+
 ## Practise with help
 
 **1.** A rectangular solid is 5 cm long, 3 cm wide and 4 cm tall. Find its volume.

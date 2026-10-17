@@ -31,6 +31,9 @@ kind: guided-problems
 
 </details>
 
+:::figure warm-up-gate
+
+
 ## Practise with help
 
 **1.** Calculate the energy equivalent of 1.0 kg of matter. Take

@@ -35,6 +35,9 @@ If question 1 went wrong, check that you multiplied the current by the time. If
 question 3 went wrong, look again at $P = VI$.
 </details>
 
+:::figure warm-up-gate
+
+
 ## Practise with help
 
 **1.** A plastic rod is rubbed with a dry cloth. Describe how the rod becomes

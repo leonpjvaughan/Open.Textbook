@@ -27,6 +27,9 @@ Both of these are exactly what the induction proof uses.
 
 </details>
 
+:::figure warm-up-gate
+
+
 ## Practise with help
 
 **1.** Write down the three parts of a proof by induction.

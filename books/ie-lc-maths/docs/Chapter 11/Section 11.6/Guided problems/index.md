@@ -28,6 +28,9 @@ empirical rule turns that band into a proportion, and the proportion turns into 
 
 </details>
 
+:::figure warm-up-gate
+
+
 ## Practise with help
 
 **1.** A normal distribution has mean $70$ and standard deviation $8$. Find the $z$-score

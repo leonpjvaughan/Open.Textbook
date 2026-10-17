@@ -35,6 +35,9 @@ If question 1 was hard, revise resolving forces in Section 16.5 before you
 continue.
 </details>
 
+:::figure warm-up-gate
+
+
 ## Practise with help
 
 **1.** A force of $40$ N acts due east and a force of $30$ N acts due north. Find

@@ -36,6 +36,9 @@ so the change is twice the momentum. If question 3 goes wrong, one metre is
 100 cm, so one cubic metre is $10^{6}\,\text{cm}^{3}$.
 </details>
 
+:::figure warm-up-gate
+
+
 ## Practise with help
 
 **1.** A gas occupies $4.0 \times 10^{-3}\,\text{m}^{3}$ at a pressure of

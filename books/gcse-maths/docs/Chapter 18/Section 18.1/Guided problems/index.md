@@ -25,6 +25,9 @@ Attempt these from memory before opening the answers. Then try each question bef
 2. $24$. Multiply $4$ by $6$.
 </details>
 
+:::figure warm-up-gate
+
+
 ## Practise with help
 
 **1.** Reflect $(4,-2)$ in the $y$-axis.

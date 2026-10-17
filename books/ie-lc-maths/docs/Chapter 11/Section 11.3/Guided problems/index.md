@@ -28,6 +28,9 @@ pie chart turns into an angle.
 
 </details>
 
+:::figure warm-up-gate
+
+
 ## Practise with help
 
 **1.** A survey of $200$ people records favourite sport. $25$ choose hurling. Find the

@@ -28,6 +28,9 @@ which you will check in this section.
 
 </details>
 
+:::figure warm-up-gate
+
+
 ## Practise with help
 
 **1.** Estimate $6\,912 \times 31$ by rounding each number to one significant

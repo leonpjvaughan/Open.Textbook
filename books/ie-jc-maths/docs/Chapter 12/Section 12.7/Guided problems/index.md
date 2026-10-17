@@ -27,6 +27,9 @@ trial-and-improvement column contains.
 
 </details>
 
+:::figure warm-up-gate
+
+
 ## Practise with help
 
 **1.** I think of a number, multiply it by 4, and subtract 3. The result is 17. Find the

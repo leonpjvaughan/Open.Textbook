@@ -28,6 +28,9 @@ for a chosen $x$.
 
 </details>
 
+:::figure warm-up-gate
+
+
 ## Practise with help
 
 **1.** The pairs $(1, 2)$, $(2, 3)$, $(3, 5)$, $(4, 4)$ and $(5, 6)$ are plotted. The

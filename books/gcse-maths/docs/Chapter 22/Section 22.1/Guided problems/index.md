@@ -23,6 +23,9 @@ kind: guided-problems
 2. $-1-4=-5$, so the change is 5 units left.
 </details>
 
+:::figure warm-up-gate
+
+
 ## Practise with help
 
 **1.** Point $P=(-2,3)$ is translated by $\begin{pmatrix}4\\-5\end{pmatrix}$. Find its image.

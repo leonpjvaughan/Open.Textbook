@@ -27,6 +27,9 @@ Answer these from memory. Do not look back at the section.
 If an answer differs, revisit Section 8.1 for writing expressions and Section 9.1 for solving equations.
 
 </details>
+
+:::figure warm-up-gate
+
 ## Practise with help
 
 **1.** Solve $3x+2=14$.

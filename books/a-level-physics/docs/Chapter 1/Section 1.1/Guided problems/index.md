@@ -32,6 +32,9 @@ Learn page. Kilo means $10^{3}$ and milli means $10^{-3}$. If question 3 goes
 wrong, work out the power before you multiply.
 </details>
 
+:::figure warm-up-gate
+
+
 ## Practise with help
 
 **1.** Write $25\,\text{cm}^2$ in $\text{m}^2$.

@@ -31,6 +31,9 @@ only when its electrons and protons no longer balance.
 
 </details>
 
+:::figure warm-up-gate
+
+
 ## Practise with help
 
 **1.** A plastic rod is rubbed and gains $5.0 \times 10^{14}$ electrons. Calculate

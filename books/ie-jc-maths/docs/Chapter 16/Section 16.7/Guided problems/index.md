@@ -29,6 +29,9 @@ surface both return in this section.
 
 </details>
 
+:::figure warm-up-gate
+
+
 ## Practise with help
 
 **1.** A solid is a cuboid 5 cm by 4 cm by 3 cm, with a cube of side 2 cm on top. Find

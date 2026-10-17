@@ -28,6 +28,9 @@ both.
 
 </details>
 
+:::figure warm-up-gate
+
+
 ## Practise with help
 
 **1.** A student investigates how the time for a ball to fall depends on the height

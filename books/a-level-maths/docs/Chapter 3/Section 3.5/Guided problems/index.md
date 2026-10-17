@@ -34,6 +34,9 @@ If question 1 was hard, revisit solving a quadratic by factorising before you
 continue.
 </details>
 
+:::figure warm-up-gate
+
+
 ## Practise with help
 
 **1.** A ball is modelled by $x = 10t$, $y = 15t - 5t^2$. Find the greatest

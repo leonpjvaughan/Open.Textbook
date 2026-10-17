@@ -31,6 +31,9 @@ If question 2 was hard, revisit expanding brackets: the conjugate method in this
 section is the same expansion with a surd in place of the letter.
 </details>
 
+:::figure warm-up-gate
+
+
 ## Practise with help
 
 **1.** Simplify $\sqrt{48}$.

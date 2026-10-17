@@ -28,6 +28,9 @@ the whole calculation.
 
 </details>
 
+:::figure warm-up-gate
+
+
 ## Practise with help
 
 **1.** A right-angled triangle has an opposite side of 6 cm, an adjacent side of

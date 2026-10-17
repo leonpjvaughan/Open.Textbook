@@ -30,6 +30,9 @@ perpendicular bisector gives the circumcentre.
 
 </details>
 
+:::figure warm-up-gate
+
+
 ## Practise with help
 
 **1.** Describe how to construct the circumcircle of a triangle, and say why it works.

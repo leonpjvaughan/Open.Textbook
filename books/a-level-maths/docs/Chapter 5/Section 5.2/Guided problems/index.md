@@ -30,6 +30,9 @@ arc and sector formulas need radians, so convert first when you need to.
 If question 3 was hard, revise simplifying fractions before you continue.
 </details>
 
+:::figure warm-up-gate
+
+
 ## Practise with help
 
 **1.** Change $135^\circ$ into radians, in terms of $\pi$.

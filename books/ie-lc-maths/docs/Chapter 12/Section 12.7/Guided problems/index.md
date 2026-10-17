@@ -27,6 +27,9 @@ kind: guided-problems
 
 </details>
 
+:::figure warm-up-gate
+
+
 ## Practise with help
 
 **1.** A triangle has base $14$ cm and perpendicular height $6$ cm. Find its area.

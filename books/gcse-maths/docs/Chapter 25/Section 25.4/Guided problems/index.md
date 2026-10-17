@@ -21,6 +21,9 @@ kind: guided-problems
 1. The first value, $3$. 2. Positive.
 </details>
 
+:::figure warm-up-gate
+
+
 ## Practise with help
 
 **1.** Study the pairs $(1,4),(2,6),(3,7),(4,10)$. Describe the correlation.

@@ -28,6 +28,9 @@ only to check.
 3. $0.7 = 0.70 > 0.68$.
 </details>
 
+:::figure warm-up-gate
+
+
 ## Practise with help
 
 **1.** Write the value of the digit $5$ in each number: (a) $2\,531$; (b) $7.05$;

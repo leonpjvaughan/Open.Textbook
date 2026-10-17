@@ -29,6 +29,9 @@ is.
 
 </details>
 
+:::figure warm-up-gate
+
+
 ## Practise with help
 
 **1.** A bar chart compares 30 with 35. The vertical axis starts at 0. Are the

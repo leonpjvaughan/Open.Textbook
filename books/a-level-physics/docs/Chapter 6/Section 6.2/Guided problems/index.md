@@ -34,6 +34,9 @@ that a full cycle is $360^\circ$. If question 3 goes wrong, one nanometre is
 $10^{-9}\,\text{m}$.
 </details>
 
+:::figure warm-up-gate
+
+
 ## Practise with help
 
 **1.** A diffraction grating has 500 lines per millimetre. Find the spacing $d$

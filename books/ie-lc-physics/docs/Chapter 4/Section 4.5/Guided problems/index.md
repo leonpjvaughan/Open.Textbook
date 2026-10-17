@@ -27,6 +27,9 @@ kind: guided-problems
 
 </details>
 
+:::figure warm-up-gate
+
+
 ## Practise with help
 
 **1.** A car of mass 900 kg travels at 15 m/s. The brakes apply a force of 4500 N.

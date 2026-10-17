@@ -30,6 +30,9 @@ isosceles theorem is a common bridge from sides to angles.
 
 </details>
 
+:::figure warm-up-gate
+
+
 ## Practise with help
 
 **1.** A question says: "In the triangle $ABC$, $|AB|=|AC|$. Prove that

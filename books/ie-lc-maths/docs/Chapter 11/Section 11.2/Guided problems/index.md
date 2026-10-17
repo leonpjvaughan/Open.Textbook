@@ -28,6 +28,9 @@ that fraction in the sample, which is the idea in the Higher part of this sectio
 
 </details>
 
+:::figure warm-up-gate
+
+
 ## Practise with help
 
 **1.** A list holds $400$ names. A researcher takes every $8$th name. How many names are

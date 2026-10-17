@@ -36,6 +36,9 @@ If question 1 went wrong, look again at the motor effect in Section 7.2. If
 question 2 went wrong, look at electrical power in Section 6.4.
 </details>
 
+:::figure warm-up-gate
+
+
 ## Practise with help
 
 **1.** Describe the generator effect.

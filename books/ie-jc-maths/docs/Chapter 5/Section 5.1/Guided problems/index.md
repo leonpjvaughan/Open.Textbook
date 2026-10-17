@@ -27,6 +27,9 @@ fraction, and a multiplication fact builds an equivalent one.
 
 </details>
 
+:::figure warm-up-gate
+
+
 ## Practise with help
 
 **1.** Write $\frac{8}{12}$ in its simplest form.

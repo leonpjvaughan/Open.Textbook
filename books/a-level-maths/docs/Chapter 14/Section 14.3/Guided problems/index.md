@@ -33,6 +33,9 @@ known before you standardise.
 If question 3 was hard, revise the standard error before you start.
 </details>
 
+:::figure warm-up-gate
+
+
 ## Practise with help
 
 **1.** A machine is set to a mean of 250 g. The standard deviation is known to

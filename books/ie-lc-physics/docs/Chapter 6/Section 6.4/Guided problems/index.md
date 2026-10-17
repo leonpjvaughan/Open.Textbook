@@ -28,6 +28,9 @@ field strength is not zero at an orbit.
 
 </details>
 
+:::figure warm-up-gate
+
+
 ## Practise with help
 
 **1.** A satellite orbits the Earth at a distance of $6.77 \times 10^{6}\,\text{m}$ from

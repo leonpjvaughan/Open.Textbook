@@ -29,6 +29,9 @@ an expression, and the step of a pattern is the coefficient of the letter.
 
 </details>
 
+:::figure warm-up-gate
+
+
 ## Practise with help
 
 **1.** A bag of apples costs €3. Write an expression for the cost of $b$ bags.

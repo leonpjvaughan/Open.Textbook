@@ -27,6 +27,9 @@ kind: guided-problems
 
 </details>
 
+:::figure warm-up-gate
+
+
 ## Practise with help
 
 **1.** A mass of $0.2$ kg is attached to a spring of stiffness $5$ N/m. Find the

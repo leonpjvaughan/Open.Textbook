@@ -26,6 +26,9 @@ A rate becomes a decimal, and the decimal multiplies the pay.
 
 </details>
 
+:::figure warm-up-gate
+
+
 ## Practise with help
 
 **1.** A worker is paid €15.00 an hour for 40 hours. Work out the gross pay.

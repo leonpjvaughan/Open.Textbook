@@ -30,6 +30,9 @@ deviation divides by $n$ or by $n - 1$.
 If question 1 was hard, revise squaring negative numbers before you start.
 </details>
 
+:::figure warm-up-gate
+
+
 ## Practise with help
 
 **1.** Find the mean, median and mode of $2, 3, 3, 5, 7, 10$.

@@ -29,6 +29,9 @@ reach thermal equilibrium.
 
 </details>
 
+:::figure warm-up-gate
+
+
 ## Practise with help
 
 **1.** Explain how energy is transferred along a metal rod by conduction.

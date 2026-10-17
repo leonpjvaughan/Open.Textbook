@@ -33,6 +33,9 @@ If question 2 was hard, revisit rearranging: undo each operation in reverse
 order.
 </details>
 
+:::figure warm-up-gate
+
+
 ## Practise with help
 
 **1.** Given $f(x) = x + 4$ and $g(x) = 2x$, find $f(g(x))$ and $g(f(x))$.

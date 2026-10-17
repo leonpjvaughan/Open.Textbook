@@ -29,6 +29,9 @@ Answer these from memory, then check.
 
 </details>
 
+:::figure warm-up-gate
+
+
 ## Practise with help
 
 **1.** A motor coil has 20 turns. The side of the coil in the field is 5.0 cm long, the

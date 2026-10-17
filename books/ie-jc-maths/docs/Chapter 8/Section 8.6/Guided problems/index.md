@@ -29,6 +29,9 @@ where swapping the two sets does not change the union or the intersection.
 
 </details>
 
+:::figure warm-up-gate
+
+
 ## Practise with help
 
 **1.** Let $A = \{2, 4, 6, 8\}$ and $B = \{1, 2, 3, 4\}$. Find $A \cup B$ and

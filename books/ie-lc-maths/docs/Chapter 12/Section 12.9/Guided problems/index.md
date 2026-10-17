@@ -28,6 +28,9 @@ kind: guided-problems
 
 </details>
 
+:::figure warm-up-gate
+
+
 ## Practise with help
 
 **1.** Solve $\sin\theta = 0.5$ for $0^\circ \le \theta \le 360^\circ$.

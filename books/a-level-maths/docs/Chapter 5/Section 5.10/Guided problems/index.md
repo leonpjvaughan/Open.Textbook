@@ -30,6 +30,9 @@ expect, then find them all. For a multiple angle, change the interval first.
 If question 2 was hard, revise factorising a quadratic before you continue.
 </details>
 
+:::figure warm-up-gate
+
+
 ## Practise with help
 
 **1.** Solve $\sin\theta = \dfrac{\sqrt{3}}{2}$ for $0 \le \theta < 2\pi$.

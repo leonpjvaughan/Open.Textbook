@@ -28,6 +28,9 @@ when every stage has the same number of choices.
 
 </details>
 
+:::figure warm-up-gate
+
+
 ## Practise with help
 
 **1.** A cafe offers $3$ starters and $5$ mains. How many two-course meals are possible?

@@ -30,6 +30,9 @@ If an answer differs, revisit Section 17.3 for the perpendicular bisector and
 for drawing circles with compasses.
 
 </details>
+
+:::figure warm-up-gate
+
 ## Try these with help
 
 **1.** Describe the locus of points 5 cm from point $A$.

@@ -26,6 +26,9 @@ kind: guided-problems
 
 </details>
 
+:::figure warm-up-gate
+
+
 ## Practise with help
 
 **1.** A block of mass $9$ kg rests on a smooth horizontal floor. A horizontal

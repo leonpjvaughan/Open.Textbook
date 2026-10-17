@@ -28,6 +28,9 @@ combination divides the permutation count by $6$.
 
 </details>
 
+:::figure warm-up-gate
+
+
 ## Practise with help
 
 **1.** Find the value of $\dbinom{6}{2}$.

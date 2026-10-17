@@ -29,6 +29,9 @@ Answer these from memory. Do not look back at the section.
 If an answer differs, revisit Section 16.1 for right angles and measuring angles.
 
 </details>
+
+:::figure warm-up-gate
+
 ## Try these with help
 
 **1.** Construct the perpendicular bisector of a 6 cm segment.

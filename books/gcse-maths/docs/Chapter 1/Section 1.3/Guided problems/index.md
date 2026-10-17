@@ -25,6 +25,9 @@ kind: guided-problems
 3. $-9$ (further left).
 </details>
 
+:::figure warm-up-gate
+
+
 ## Practise with help
 
 **1.** Work out: (a) $-5 + 9$; (b) $6 - 10$; (c) $-4 - 3$.

@@ -28,6 +28,9 @@ If either answer felt uncertain, revisit the number line in Chapter 1 before you
 
 </details>
 
+:::figure warm-up-gate
+
+
 ## Practise with help
 
 **1.** Translate the point $(3,-2)$ by the vector $\binom{4}{5}$.

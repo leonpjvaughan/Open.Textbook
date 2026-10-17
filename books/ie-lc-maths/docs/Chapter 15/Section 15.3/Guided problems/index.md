@@ -29,6 +29,9 @@ If either answer felt uncertain, look again at Sections 15.1 and 15.2 before you
 
 </details>
 
+:::figure warm-up-gate
+
+
 ## Practise with help
 
 **1.** In two triangles, $|AB| = |A'B'| = 7$ cm, $|AC| = |A'C'| = 9$ cm, and

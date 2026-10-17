@@ -31,6 +31,9 @@ If either answer felt uncertain, look again at Section 16.3 before you carry on.
 
 </details>
 
+:::figure warm-up-gate
+
+
 ## Practise with help
 
 **1.** In $\triangle ABC$, a line parallel to $BC$ cuts $[AB]$ at $D$ with

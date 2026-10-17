@@ -31,6 +31,9 @@ If question 1 went wrong, look again at Section 1.1 and the equation
 $E_k = \tfrac{1}{2}mv^2$.
 </details>
 
+:::figure warm-up-gate
+
+
 ## Practise with help
 
 **1.** A climber has a mass of 65 kg. Take $g = 9.8\,\text{N/kg}$. Calculate the

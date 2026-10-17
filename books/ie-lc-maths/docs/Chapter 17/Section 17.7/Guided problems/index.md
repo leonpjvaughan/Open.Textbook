@@ -30,6 +30,9 @@ triangle gives the first equality inside it.
 
 </details>
 
+:::figure warm-up-gate
+
+
 ## Practise with help
 
 **1.** Write the Given and the To prove for the proof that the angle at the centre is twice

@@ -28,6 +28,9 @@ you find the multiplier.
 
 </details>
 
+:::figure warm-up-gate
+
+
 ## Practise with help
 
 **1.** Which kind of pattern is $3, 6, 9, 12, \ldots$?

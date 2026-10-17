@@ -29,6 +29,9 @@ If the first part was hard, revise differentiating powers in Section 7.3. If the
 second was hard, revise function notation in Section 2.9.
 </details>
 
+:::figure warm-up-gate
+
+
 ## Practise with help
 
 **1.** For $f(x) = x^3 + x - 1$, write down $f'(x)$ and use Newton–Raphson with

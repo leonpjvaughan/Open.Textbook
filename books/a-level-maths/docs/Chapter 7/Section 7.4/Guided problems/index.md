@@ -31,6 +31,9 @@ If question 2 was hard, revise the standard derivatives in Section 7.3 before
 you continue.
 </details>
 
+:::figure warm-up-gate
+
+
 ## Practise with help
 
 **1.** Find $f''(x)$ for $f(x) = x^5 - 2x^3 + 7$.

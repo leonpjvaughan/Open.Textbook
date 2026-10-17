@@ -29,6 +29,9 @@ Try each item before opening its hints. Reveal the full working when you want to
 
 </details>
 
+:::figure warm-up-gate
+
+
 ## Practise with help
 
 **1.** Continue $2,6,10,14,\ldots$ by two terms.

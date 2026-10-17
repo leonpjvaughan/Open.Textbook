@@ -33,6 +33,9 @@ for simplifying ratios.
 
 </details>
 
+:::figure warm-up-gate
+
+
 ## Practise with help
 
 **1.** A map uses scale $1:25\,000$. Work out the real distance represented by

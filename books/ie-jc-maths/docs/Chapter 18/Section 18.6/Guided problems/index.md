@@ -29,6 +29,9 @@ distance.
 
 </details>
 
+:::figure warm-up-gate
+
+
 ## Practise with help
 
 **1.** A person stands 20 m from a tree. The angle of elevation to the top is 30°.

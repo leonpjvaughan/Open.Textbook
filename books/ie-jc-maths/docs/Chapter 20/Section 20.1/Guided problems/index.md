@@ -29,6 +29,9 @@ claim with an example. The second one is what a counterexample is made of.
 
 </details>
 
+:::figure warm-up-gate
+
+
 ## Practise with help
 
 **1.** A statement reads: "if a shape is a square, then it has four right angles."

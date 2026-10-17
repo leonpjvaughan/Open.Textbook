@@ -30,6 +30,9 @@ evidence he had, and Rutherford's experiment did not fit it.
 
 </details>
 
+:::figure warm-up-gate
+
+
 ## Practise with help
 
 **1.** An alpha particle carries a charge of $+2e$. State its charge in coulombs, and

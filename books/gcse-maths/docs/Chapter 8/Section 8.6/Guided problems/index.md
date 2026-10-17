@@ -29,6 +29,9 @@ Answer these from memory. Do not look back at the section.
 If an answer differs, revisit Section 9.1 for solving equations and Section 1.4 for inverse operations.
 
 </details>
+
+:::figure warm-up-gate
+
 ## Practise with help
 
 **1.** Make $x$ the subject of $y=x+7$.

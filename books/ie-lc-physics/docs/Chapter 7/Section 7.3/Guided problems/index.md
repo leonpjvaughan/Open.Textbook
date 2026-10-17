@@ -28,6 +28,9 @@ force, and the weight is the force that competes with it in the next section.
 
 </details>
 
+:::figure warm-up-gate
+
+
 ## Practise with help
 
 **1.** A 0.60 kg stone on a string of length 0.75 m moves at 4.0 m/s in a horizontal

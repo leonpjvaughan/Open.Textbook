@@ -32,6 +32,9 @@ number without its unit cannot be used.
 
 </details>
 
+:::figure warm-up-gate
+
+
 ## Practise with help
 
 **1.** A student finds two sources about the efficiency of a solar cell. Source A

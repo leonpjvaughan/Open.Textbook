@@ -28,6 +28,9 @@ you find the area of first.
 
 </details>
 
+:::figure warm-up-gate
+
+
 ## Practise with help
 
 **1.** Find the volume of a cuboid $5$ m long, $3$ m wide and $2$ m high.

@@ -30,6 +30,9 @@ the circumcentre, and the median is one of them only in a special triangle.
 
 </details>
 
+:::figure warm-up-gate
+
+
 ## Practise with help
 
 **1.** A triangle has a right angle at $A$, and the hypotenuse $BC$ is $26$ cm. Find the

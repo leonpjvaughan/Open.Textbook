@@ -26,6 +26,9 @@ The first is the multiplier for a change. The second is how you apply it in one 
 
 </details>
 
+:::figure warm-up-gate
+
+
 ## Practise with help
 
 **1.** Increase 60 by $10\%$.

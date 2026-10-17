@@ -24,6 +24,9 @@ kind: guided-problems
 2. $120$.
 </details>
 
+:::figure warm-up-gate
+
+
 ## Practise with help
 
 **1.** A mass rounds to $250$ g to the nearest $10$ g. State both bounds.

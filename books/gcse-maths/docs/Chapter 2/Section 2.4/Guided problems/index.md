@@ -24,6 +24,9 @@ Try each question first. Open a hint if needed, then check the full working.
 2. Four outcomes.
 </details>
 
+:::figure warm-up-gate
+
+
 ## Practise with help
 
 **1.** A menu has 4 sandwiches and 3 drinks. How many sandwich-and-drink combinations are possible?

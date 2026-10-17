@@ -35,6 +35,9 @@ one-tailed or two-tailed before you compare any numbers.
 If question 3 was hard, revise Section 14.1 before you start.
 </details>
 
+:::figure warm-up-gate
+
+
 ## Practise with help
 
 **1.** A study of 20 pairs gives $r = 0.48$. The test is one-tailed, with

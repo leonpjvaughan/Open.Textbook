@@ -31,6 +31,9 @@ If question 1 was hard, revise rearranging formulae before you continue. Every
 formula on this page has to be rearranged at some point.
 </details>
 
+:::figure warm-up-gate
+
+
 ## Practise with help
 
 **1.** A cyclist is moving at $4$ m/s and accelerates at $6$ m/s$^2$ for $5$ s.

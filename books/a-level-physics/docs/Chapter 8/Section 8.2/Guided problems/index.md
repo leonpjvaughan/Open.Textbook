@@ -36,6 +36,9 @@ question 3 goes wrong, the kinetic energy is the charge multiplied by the
 potential difference.
 </details>
 
+:::figure warm-up-gate
+
+
 ## Practise with help
 
 **1.** An electron moves at $2.0 \times 10^{6}\,\text{m}\,\text{s}^{-1}$. Find

@@ -31,6 +31,9 @@ as a function of one variable before you differentiate.
 If question 2 was hard, revise perpendicular gradients in Chapter 3.
 </details>
 
+:::figure warm-up-gate
+
+
 ## Practise with help
 
 **1.** Find and classify the stationary points of $y = x^3 - 12x$.

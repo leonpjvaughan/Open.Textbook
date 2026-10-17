@@ -35,6 +35,9 @@ reciprocals add. If question 2 goes wrong, use $P = VI$. If question 3 goes
 wrong, remember that micro means $10^{-6}$.
 </details>
 
+:::figure warm-up-gate
+
+
 ## Practise with help
 
 **1.** A capacitor stores a charge of $6.0 \times 10^{-4}\,\text{C}$ when the pd

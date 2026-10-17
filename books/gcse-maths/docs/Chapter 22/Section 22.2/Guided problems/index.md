@@ -22,6 +22,9 @@ kind: guided-problems
 2. $\begin{pmatrix}3-1\\-2-4\end{pmatrix}=\begin{pmatrix}2\\-6\end{pmatrix}$; subtract start from end.
 </details>
 
+:::figure warm-up-gate
+
+
 ## Practise with help
 
 **1.** Work out $\begin{pmatrix}4\\1\end{pmatrix}+\begin{pmatrix}-2\\5\end{pmatrix}$.

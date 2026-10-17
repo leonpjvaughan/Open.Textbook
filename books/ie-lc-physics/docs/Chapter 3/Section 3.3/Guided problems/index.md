@@ -29,6 +29,9 @@ Both return here: a change in momentum takes a force, and the force obeys $F = m
 
 </details>
 
+:::figure warm-up-gate
+
+
 ## Practise with help
 
 **1.** A car of mass 900 kg travels at 12 m/s. Calculate its momentum.

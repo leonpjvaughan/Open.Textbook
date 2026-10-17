@@ -28,6 +28,9 @@ If an answer differs, revisit Section 3.1 for squares and Section 3.2 for
 square roots.
 </details>
 
+:::figure warm-up-gate
+
+
 ## Practise with help
 
 **1.** Find the hypotenuse for shorter sides 3 and 4.

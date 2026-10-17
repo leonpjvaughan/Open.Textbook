@@ -28,6 +28,9 @@ Try these from memory before opening the answers.
 
 </details>
 
+:::figure warm-up-gate
+
+
 ## Practise with help
 
 **1.** Of 15 people who walk, 9 carry a bag. Find the probability a walker carries a bag.

@@ -35,6 +35,9 @@ If question 3 was hard, revisit recurrences in Section 4.3 before you continue.
 The recurrence adds a fixed amount each step, so the terms settle.
 </details>
 
+:::figure warm-up-gate
+
+
 ## Practise with help
 
 **1.** A quantity takes the values $200, 220, 242, \dots$. Decide whether an

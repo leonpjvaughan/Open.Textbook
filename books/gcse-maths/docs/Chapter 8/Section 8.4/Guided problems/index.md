@@ -29,6 +29,9 @@ Answer these from memory. Do not look back at the section.
 If an answer differs, revisit Section 8.3 for expanding brackets and Section 2.1 for factors.
 
 </details>
+
+:::figure warm-up-gate
+
 ## Practise with help
 
 **1.** Factorise $6x+12$.

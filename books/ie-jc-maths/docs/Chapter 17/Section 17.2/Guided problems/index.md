@@ -32,6 +32,9 @@ coordinates. Both skills return in every question here.
 
 </details>
 
+:::figure warm-up-gate
+
+
 ## Practise with help
 
 **1.** Find the distance between $(1,1)$ and $(4,5)$.

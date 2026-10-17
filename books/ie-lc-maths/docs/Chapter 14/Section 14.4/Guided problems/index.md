@@ -29,6 +29,9 @@ If the area of a triangle felt uncertain, revisit Chapter 3 before you carry on.
 
 </details>
 
+:::figure warm-up-gate
+
+
 ## Practise with help
 
 **1.** Enlarge the point $(2,3)$ by scale factor $2$ about the origin.

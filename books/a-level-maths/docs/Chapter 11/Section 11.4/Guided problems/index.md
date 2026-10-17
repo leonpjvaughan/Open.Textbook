@@ -31,6 +31,9 @@ you use the line.
 If question 1 was hard, revise gradients from Section 3.1.
 </details>
 
+:::figure warm-up-gate
+
+
 ## Practise with help
 
 **1.** A scatter diagram plots the mass of a parcel against the cost of posting

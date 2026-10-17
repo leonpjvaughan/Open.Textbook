@@ -27,6 +27,9 @@ Squaring returns in every $n^2$ term, and subtraction is how you find a differen
 
 </details>
 
+:::figure warm-up-gate
+
+
 ## Practise with help
 
 **1.** Write down the first differences of the pattern $4, 9, 16, 25, \ldots$.

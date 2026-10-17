@@ -28,6 +28,9 @@ by the same number.
 
 </details>
 
+:::figure warm-up-gate
+
+
 ## Practise with help
 
 **1.** Two similar rectangles have corresponding lengths in the ratio $3 : 1$. Find the

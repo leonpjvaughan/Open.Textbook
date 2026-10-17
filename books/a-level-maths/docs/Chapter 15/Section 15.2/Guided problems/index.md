@@ -31,6 +31,9 @@ If question 2 was hard, revise adding and subtracting negative numbers before
 you continue. Every sign in this section depends on that skill.
 </details>
 
+:::figure warm-up-gate
+
+
 ## Practise with help
 
 **1.** A walker walks $300$ m north, then turns and walks $100$ m south. Find

@@ -28,6 +28,9 @@ kind: guided-problems
 
 </details>
 
+:::figure warm-up-gate
+
+
 ## Practise with help
 
 **1.** Given that $\sin A = 0.8$ and $A$ is acute, find $\cos A$ and $\tan A$.

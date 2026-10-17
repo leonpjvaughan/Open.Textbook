@@ -26,6 +26,9 @@ kind: guided-problems
 
 </details>
 
+:::figure warm-up-gate
+
+
 ## Practise with help
 
 **1.** An object falls with $D = kv$, where $k = 0.6$ kg/s. Find the drag at

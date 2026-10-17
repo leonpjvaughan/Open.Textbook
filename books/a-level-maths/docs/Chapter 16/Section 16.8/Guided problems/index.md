@@ -31,6 +31,9 @@ force. Take $g = 9.8$ m s$^{-2}$.
 If question 3 was hard, remember that a uniform rod balances at its midpoint.
 </details>
 
+:::figure warm-up-gate
+
+
 ## Practise with help
 
 **1.** A force of $25$ N acts at right angles to a lever at a distance of

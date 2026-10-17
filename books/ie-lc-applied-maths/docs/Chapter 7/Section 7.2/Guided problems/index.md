@@ -26,6 +26,9 @@ kind: guided-problems
 
 </details>
 
+:::figure warm-up-gate
+
+
 ## Practise with help
 
 **1.** A body moves in a circle of radius $2$ m at a steady $6$ m/s. Find its

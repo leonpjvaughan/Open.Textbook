@@ -34,6 +34,9 @@ Section 9.1. If question 2 went wrong, look at the table of particles in Section
 9.1.
 </details>
 
+:::figure warm-up-gate
+
+
 ## Practise with help
 
 **1.** Define nuclear fission.

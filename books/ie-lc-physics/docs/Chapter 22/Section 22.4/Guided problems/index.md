@@ -32,6 +32,9 @@ Both return here. A gradient is the main way a graph answers a question.
 
 </details>
 
+:::figure warm-up-gate
+
+
 ## Practise with help
 
 **1.** A student records the time for ten swings of a pendulum as 14.2 s, 14.3 s,

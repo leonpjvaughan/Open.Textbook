@@ -28,6 +28,9 @@ of 10, and moving the decimal point is what changes the coefficient.
 
 </details>
 
+:::figure warm-up-gate
+
+
 ## Practise with help
 
 **1.** Write 47000 in standard form.

@@ -33,6 +33,9 @@ variables are what make the question testable.
 
 </details>
 
+:::figure warm-up-gate
+
+
 ## Practise with help
 
 **1.** A student is interested in how a bicycle slows down on a hill. Turn that

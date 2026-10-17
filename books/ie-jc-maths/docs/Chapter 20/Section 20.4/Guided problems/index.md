@@ -29,6 +29,9 @@ from 180, and it finds equal angles from a parallel line.
 
 </details>
 
+:::figure warm-up-gate
+
+
 ## Practise with help
 
 **1.** Triangles $ABC$ and $PQR$ are congruent, with $A$ matching $P$, $B$

@@ -36,6 +36,9 @@ question 2 went wrong, remember that a power tells you how many copies to
 multiply. If question 3 went wrong, divide 1 by 8.
 </details>
 
+:::figure warm-up-gate
+
+
 ## Practise with help
 
 **1.** Define activity, and state the unit in which it is measured.

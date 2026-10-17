@@ -29,6 +29,9 @@ proportion in question 1 is what you must not use here.
 
 </details>
 
+:::figure warm-up-gate
+
+
 ## Practise with help
 
 **1.** Five workers build a wall in 8 hours. How long would four workers take?

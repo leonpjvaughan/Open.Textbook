@@ -28,6 +28,9 @@ you use for a circumference, which is the width of a cylinder net.
 
 </details>
 
+:::figure warm-up-gate
+
+
 ## Practise with help
 
 **1.** A rectangular solid is 4 cm long, 3 cm wide and 2 cm tall. Find the area of its

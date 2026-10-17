@@ -26,6 +26,9 @@ kind: guided-problems
 
 </details>
 
+:::figure warm-up-gate
+
+
 ## Practise with help
 
 **1.** Add $\begin{pmatrix} 3 \\ 1 \end{pmatrix}$ and

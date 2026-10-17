@@ -25,6 +25,9 @@ kind: guided-problems
 
 </details>
 
+:::figure warm-up-gate
+
+
 ## Practise with help
 
 **1.** The graph of $y = x^2$ is shifted up by $4$. Write the new rule and work out $y$ when

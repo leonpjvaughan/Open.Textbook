@@ -28,6 +28,9 @@ kind: guided-problems
 
 </details>
 
+:::figure warm-up-gate
+
+
 ## Practise with help
 
 **1.** Find the weight of a box of mass $12$ kg. Take $g = 9.8$ m/s².

@@ -22,6 +22,9 @@ Try each question before opening its hint.
 Answers: 4; $x=4$.
 </details>
 
+:::figure warm-up-gate
+
+
 ## Practise with help
 
 **1.** Find the equation through the origin with gradient 5.

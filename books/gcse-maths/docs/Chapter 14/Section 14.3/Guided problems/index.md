@@ -29,6 +29,9 @@ Answer these from memory. Do not look back at the section.
 If an answer differs, revisit Section 11.1 for plotting coordinates and drawing straight-line graphs.
 
 </details>
+
+:::figure warm-up-gate
+
 ## Practise with help
 
 **1.** Complete a table for $y=x+1$ when $x=-1,0,1$.

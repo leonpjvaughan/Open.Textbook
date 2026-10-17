@@ -26,6 +26,9 @@ Try each question first. Open one level at a time when you need support.
 $ (x-3)(x+3)$; $8$; $(0,2)$; $x=-3$ or $x=3$.
 </details>
 
+:::figure warm-up-gate
+
+
 ## Practise with help
 
 **1.** Find the intercepts of $y=x^3-4x$.

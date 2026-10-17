@@ -29,6 +29,9 @@ counting on is the first pattern of all.
 
 </details>
 
+:::figure warm-up-gate
+
+
 ## Practise with help
 
 **1.** Continue the pattern $3, 7, 11, 15, \ldots$ by two terms.

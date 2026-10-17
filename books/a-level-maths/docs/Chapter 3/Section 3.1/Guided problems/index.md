@@ -31,6 +31,9 @@ gradient, a point, or both, before you write anything down.
 If question 1 was hard, revisit rearranging a formula before you continue.
 </details>
 
+:::figure warm-up-gate
+
+
 ## Practise with help
 
 **1.** Work out the gradient of the line through $(1, 2)$ and $(5, 14)$.

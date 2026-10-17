@@ -30,6 +30,9 @@ the sample or the population.
 If question 2 was hard, revise simplifying fractions before you start.
 </details>
 
+:::figure warm-up-gate
+
+
 ## Practise with help
 
 **1.** A council wants to know the mean recycling weight of households in a

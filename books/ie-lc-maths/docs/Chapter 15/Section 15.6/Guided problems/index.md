@@ -28,6 +28,9 @@ If either answer felt uncertain, look again at Section 15.5 before you carry on.
 
 </details>
 
+:::figure warm-up-gate
+
+
 ## Practise with help
 
 **1.** A right-angled triangle has one acute angle of $35^\circ$. Find the other acute

@@ -25,6 +25,9 @@ kind: guided-problems
 
 </details>
 
+:::figure warm-up-gate
+
+
 ## Practise with help
 
 **1.** Show that $x = 2$ is a root of $x^3 - 4x^2 + x + 6 = 0$, and find the other two

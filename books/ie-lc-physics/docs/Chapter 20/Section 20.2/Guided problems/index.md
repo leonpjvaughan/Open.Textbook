@@ -29,6 +29,9 @@ kind: guided-problems
 
 </details>
 
+:::figure warm-up-gate
+
+
 ## Practise with help
 
 **1.** A source has an activity of $8.0 \times 10^3$ Bq. Calculate its activity

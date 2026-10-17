@@ -36,6 +36,9 @@ resistance. If question 3 went wrong, remember that a voltmeter goes in parallel
 and an ammeter goes in series.
 </details>
 
+:::figure warm-up-gate
+
+
 ## Practise with help
 
 **1.** A 3.0 $\Omega$ resistor and a 5.0 $\Omega$ resistor are connected in

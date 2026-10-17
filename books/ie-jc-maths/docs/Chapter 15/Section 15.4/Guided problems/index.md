@@ -29,6 +29,9 @@ figures you keep.
 
 </details>
 
+:::figure warm-up-gate
+
+
 ## Practise with help
 
 **1.** Which unit fits the mass of a full school bag: grams, kilograms or tonnes? Give

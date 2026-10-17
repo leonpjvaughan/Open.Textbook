@@ -28,6 +28,9 @@ comes first, and the division is the speed calculation itself.
 
 </details>
 
+:::figure warm-up-gate
+
+
 ## Practise with help
 
 **1.** A car travels 180 km in 3 hours. Find its average speed.

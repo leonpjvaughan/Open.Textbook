@@ -28,6 +28,9 @@ again and again.
 
 </details>
 
+:::figure warm-up-gate
+
+
 ## Practise with help
 
 **1.** €1,500 is invested at $3\%$ simple interest for 2 years. Work out the

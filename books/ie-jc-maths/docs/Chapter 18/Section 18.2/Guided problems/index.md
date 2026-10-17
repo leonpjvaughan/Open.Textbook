@@ -28,6 +28,9 @@ then take the square root.
 
 </details>
 
+:::figure warm-up-gate
+
+
 ## Practise with help
 
 **1.** A right-angled triangle has legs of 8 cm and 15 cm. Find the hypotenuse.

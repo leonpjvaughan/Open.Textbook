@@ -31,6 +31,9 @@ kind: guided-problems
 
 </details>
 
+:::figure warm-up-gate
+
+
 ## Practise with help
 
 **1.** A population grows so that $\dfrac{dP}{dt} = 0.03P$, with $P = 400$ when

@@ -29,6 +29,9 @@ Answer these from memory before you look at the section.
 
 </details>
 
+:::figure warm-up-gate
+
+
 ## Practise with help
 
 **1.** Find the distance between $(2, 3)$ and $(5, 7)$.

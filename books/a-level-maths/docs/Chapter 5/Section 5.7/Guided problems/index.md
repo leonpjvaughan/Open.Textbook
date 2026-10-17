@@ -30,6 +30,9 @@ change only the side you started with.
 If question 2 was hard, revisit the definition of tangent before you continue.
 </details>
 
+:::figure warm-up-gate
+
+
 ## Practise with help
 
 **1.** Prove that $\dfrac{\sin^2\theta}{\sin\theta} \equiv \sin\theta$ for

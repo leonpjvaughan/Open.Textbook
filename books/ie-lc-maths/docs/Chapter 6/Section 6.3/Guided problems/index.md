@@ -26,6 +26,9 @@ kind: guided-problems
 
 </details>
 
+:::figure warm-up-gate
+
+
 ## Practise with help
 
 **1.** For $f(x) = x + 4$ and $g(x) = 3x$, work out $f(g(2))$.

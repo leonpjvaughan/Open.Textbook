@@ -28,6 +28,9 @@ a distance divided by a time.
 
 </details>
 
+:::figure warm-up-gate
+
+
 ## Practise with help
 
 **1.** A walker walks 400 m in 80 s. Calculate the average speed.

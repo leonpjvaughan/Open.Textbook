@@ -27,6 +27,9 @@ by the common factor is how the bracket is built.
 
 </details>
 
+:::figure warm-up-gate
+
+
 ## Practise with help
 
 **1.** Factorise $5x+10$.

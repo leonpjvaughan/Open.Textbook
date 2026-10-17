@@ -28,6 +28,9 @@ first.
 
 </details>
 
+:::figure warm-up-gate
+
+
 ## Practise with help
 
 **1.** A biased coin lands on a head with probability $0.3$. It is tossed $10$ times. Write

@@ -33,6 +33,9 @@ power before you multiply. If question 3 went wrong, remember that there are
 1000 g in 1 kg, so you divide by 1000.
 </details>
 
+:::figure warm-up-gate
+
+
 ## Practise with help
 
 **1.** A climber of mass 75 kg reaches a ledge 8.0 m above the ground. Take

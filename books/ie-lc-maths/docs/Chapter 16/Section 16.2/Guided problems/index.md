@@ -28,6 +28,9 @@ If either answer felt uncertain, look again at Section 16.1 before you carry on.
 
 </details>
 
+:::figure warm-up-gate
+
+
 ## Practise with help
 
 **1.** A quadrilateral $ABCD$ has $|\angle A| = |\angle C| = 100^\circ$ and

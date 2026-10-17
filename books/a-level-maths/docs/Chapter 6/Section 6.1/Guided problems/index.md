@@ -31,6 +31,9 @@ If question 2 was hard, revise fractional indices in Chapter 2 before you
 continue.
 </details>
 
+:::figure warm-up-gate
+
+
 ## Practise with help
 
 **1.** Sketch $y = 5^x$, and state the $y$-intercept, the asymptote and the

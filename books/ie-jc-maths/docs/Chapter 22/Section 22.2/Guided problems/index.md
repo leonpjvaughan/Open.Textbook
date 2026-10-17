@@ -30,6 +30,9 @@ favours blue.
 
 </details>
 
+:::figure warm-up-gate
+
+
 ## Practise with help
 
 **1.** What does it mean for a sample to be biased?

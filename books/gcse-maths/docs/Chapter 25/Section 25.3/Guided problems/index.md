@@ -21,6 +21,9 @@ kind: guided-problems
 1. Width $8$. 2. $3$.
 </details>
 
+:::figure warm-up-gate
+
+
 ## Practise with help
 
 **1.** A class has width 5 and frequency 15. Find its frequency density.

@@ -22,6 +22,9 @@ Try each question before opening its hint.
 Answers: 20; 6 square units.
 </details>
 
+:::figure warm-up-gate
+
+
 ## Practise with help
 
 **1.** Velocity rises from 2 m/s to 10 m/s in 4 seconds. Find the gradient.

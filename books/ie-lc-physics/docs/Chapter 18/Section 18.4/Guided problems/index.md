@@ -30,6 +30,9 @@ kind: guided-problems
 
 </details>
 
+:::figure warm-up-gate
+
+
 ## Practise with help
 
 **1.** An X-ray tube runs at 40 kV. Calculate the shortest wavelength of the X-rays

@@ -30,6 +30,9 @@ energies are written in electronvolts, and the photon equation gives joules.
 
 </details>
 
+:::figure warm-up-gate
+
+
 ## Practise with help
 
 **1.** Use $E_n = -\dfrac{13.6}{n^2}$ eV to calculate the energy of the $n = 3$ level

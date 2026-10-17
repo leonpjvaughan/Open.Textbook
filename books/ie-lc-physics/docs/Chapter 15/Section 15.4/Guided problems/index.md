@@ -31,6 +31,9 @@ Answer these from memory, then check.
 
 </details>
 
+:::figure warm-up-gate
+
+
 ## Practise with help
 
 **1.** An electron of charge $1.6 \times 10^{-19}$ C moves at $3.0 \times 10^{6}$ m/s at

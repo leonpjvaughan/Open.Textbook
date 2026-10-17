@@ -32,6 +32,9 @@ If question 2 went wrong, remember that a decrease in velocity gives a negative
 acceleration.
 </details>
 
+:::figure warm-up-gate
+
+
 ## Practise with help
 
 **1.** A ball of mass 0.15 kg moves at 20 m/s. Calculate its momentum.

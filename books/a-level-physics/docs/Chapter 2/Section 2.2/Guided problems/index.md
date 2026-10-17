@@ -34,6 +34,9 @@ angle. The side opposite the angle uses the sine. The side next to it uses the
 cosine.
 </details>
 
+:::figure warm-up-gate
+
+
 ## Practise with help
 
 **1.** Resolve a force of 60 N at 40° to the horizontal into horizontal and

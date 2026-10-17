@@ -29,6 +29,9 @@ step to see the first move, and the full working only to check.
 3. Yes, and yes. It is the only even prime.
 </details>
 
+:::figure warm-up-gate
+
+
 ## Practise with help
 
 **1.** Which of these are statements? For each statement, say whether it is true

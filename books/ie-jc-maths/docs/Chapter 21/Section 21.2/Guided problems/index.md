@@ -26,6 +26,9 @@ kind: guided-problems
 
 </details>
 
+:::figure warm-up-gate
+
+
 ## Practise with help
 
 **1.** A bag holds 10 counters: 7 red and 3 blue. One counter is taken at random.

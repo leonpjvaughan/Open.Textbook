@@ -35,6 +35,9 @@ question 3 goes wrong, change mega to $10^{6}$ and multiply by the charge of the
 electron.
 </details>
 
+:::figure warm-up-gate
+
+
 ## Practise with help
 
 **1.** A reaction converts a mass of $3.0 \times 10^{-29}\,\text{kg}$ into

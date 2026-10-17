@@ -30,6 +30,9 @@ If either answer felt uncertain, look again at Section 15.4 before you carry on.
 
 </details>
 
+:::figure warm-up-gate
+
+
 ## Practise with help
 
 **1.** An isosceles triangle has an apex angle of $100^\circ$. Find each base angle.

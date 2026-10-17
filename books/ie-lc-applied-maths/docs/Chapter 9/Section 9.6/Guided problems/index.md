@@ -29,6 +29,9 @@ kind: guided-problems
 
 </details>
 
+:::figure warm-up-gate
+
+
 ## Practise with help
 
 **1.** A battery model predicts the charge $c = 100 - 15t$ after $t$ hours.

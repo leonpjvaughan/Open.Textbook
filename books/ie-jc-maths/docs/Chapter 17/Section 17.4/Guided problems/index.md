@@ -32,6 +32,9 @@ every question here.
 
 </details>
 
+:::figure warm-up-gate
+
+
 ## Practise with help
 
 **1.** Line A has slope 5 and line B has slope 5. Are the lines parallel,

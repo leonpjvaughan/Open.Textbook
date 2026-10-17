@@ -27,6 +27,9 @@ If either answer felt uncertain, look again at Chapter 3 before you carry on.
 
 </details>
 
+:::figure warm-up-gate
+
+
 ## Practise with help
 
 **1.** A triangle has base $10$ cm and height $6$ cm. Find its area.

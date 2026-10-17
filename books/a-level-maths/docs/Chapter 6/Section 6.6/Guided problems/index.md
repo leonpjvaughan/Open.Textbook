@@ -32,6 +32,9 @@ If question 1 was hard, revise solving exponential equations in Section 6.4
 before you continue.
 </details>
 
+:::figure warm-up-gate
+
+
 ## Practise with help
 
 **1.** £$1500$ is invested with continuous compounding at $4\%$ per year, so

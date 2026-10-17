@@ -23,6 +23,9 @@ Try these closed-book before checking.
 1. $56$. 2. $200$ cm.
 </details>
 
+:::figure warm-up-gate
+
+
 ## Practise with help
 
 Attempt each question first. Open the hint, then the next step, when needed.

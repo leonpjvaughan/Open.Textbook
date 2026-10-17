@@ -28,6 +28,9 @@ If either answer felt uncertain, look again at angles in Chapter 12 before you c
 
 </details>
 
+:::figure warm-up-gate
+
+
 ## Practise with help
 
 **1.** State the Two Points Axiom.

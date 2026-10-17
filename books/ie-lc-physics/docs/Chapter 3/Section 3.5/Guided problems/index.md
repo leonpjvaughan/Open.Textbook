@@ -30,6 +30,9 @@ $F = ma$ on the whole system and on one object.
 
 </details>
 
+:::figure warm-up-gate
+
+
 ## Practise with help
 
 **1.** Masses of 6.0 kg and 2.0 kg hang from a light string over a frictionless

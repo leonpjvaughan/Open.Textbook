@@ -28,6 +28,9 @@ first equation of motion turns an acceleration and a time into a change in veloc
 
 </details>
 
+:::figure warm-up-gate
+
+
 ## Practise with help
 
 **1.** A motorbike starts from rest and accelerates at 4.0 m/s$^2$ for 5.0 s. Calculate

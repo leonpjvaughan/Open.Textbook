@@ -36,6 +36,9 @@ question 2 went wrong, remember that a transfer by heating fills a thermal
 store.
 </details>
 
+:::figure warm-up-gate
+
+
 ## Practise with help
 
 **1.** A charge of 90 C flows through a lamp in 30 s. Calculate the current.

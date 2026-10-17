@@ -23,6 +23,9 @@ kind: guided-problems
 2. Perpendicular.
 </details>
 
+:::figure warm-up-gate
+
+
 ## Practise with help
 
 **1.** A circle has radius $3.8$ cm. Work out its diameter.

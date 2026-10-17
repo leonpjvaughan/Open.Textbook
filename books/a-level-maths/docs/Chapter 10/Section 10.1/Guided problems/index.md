@@ -32,6 +32,9 @@ If question 2 was hard, revisit subtracting negative numbers before you
 continue.
 </details>
 
+:::figure warm-up-gate
+
+
 ## Practise with help
 
 **1.** Write the displacement from $A(2, 1)$ to $B(7, 5)$ as a column vector

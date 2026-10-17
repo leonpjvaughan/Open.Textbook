@@ -35,6 +35,9 @@ If question 1 was hard, revise resolving vectors from Section 5.12 before you
 continue. Every projectile on this page starts with that step.
 </details>
 
+:::figure warm-up-gate
+
+
 ## Practise with help
 
 **1.** A ball is projected at $24$ m/s at $30^\circ$ to the horizontal. Find

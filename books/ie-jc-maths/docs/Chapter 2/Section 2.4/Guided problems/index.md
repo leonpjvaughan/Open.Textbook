@@ -30,6 +30,9 @@ ideas at once.
 
 </details>
 
+:::figure warm-up-gate
+
+
 ## Practise with help
 
 **1.** Work out $25^{\frac12}$.

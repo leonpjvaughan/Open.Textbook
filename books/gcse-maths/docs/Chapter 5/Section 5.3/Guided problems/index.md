@@ -35,6 +35,9 @@ inverse operations.
 
 </details>
 
+:::figure warm-up-gate
+
+
 ## Practise with help
 
 **1.** $y$ is proportional to $x^2$. When $x=3$, $y=45$. Find $y$ when $x=5$.

@@ -31,6 +31,9 @@ If question 1 went wrong, look again at the wave equation in Section 4.1. If
 question 2 went wrong, remember that the prefix centi means one hundredth.
 </details>
 
+:::figure warm-up-gate
+
+
 ## Practise with help
 
 **1.** State the law of reflection for a wave at a surface.

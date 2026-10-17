@@ -25,6 +25,9 @@ kind: guided-problems
 2. $60$.
 </details>
 
+:::figure warm-up-gate
+
+
 ## Practise with help
 
 **1.** A car travels $180$ km in $3$ hours. Find its average speed.

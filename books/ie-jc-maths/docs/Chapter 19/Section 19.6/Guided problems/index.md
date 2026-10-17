@@ -29,6 +29,9 @@ reflection and rotation rules close at hand.
 
 </details>
 
+:::figure warm-up-gate
+
+
 ## Practise with help
 
 **1.** Reflect the point $(1,1)$ in the line $x=0$, then reflect the image in the

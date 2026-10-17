@@ -32,6 +32,9 @@ factor links the two triangles.
 
 </details>
 
+:::figure warm-up-gate
+
+
 ## Practise with help
 
 **1.** Two chords $AB$ and $CD$ cross at $P$ inside a circle. Given $|PA| = 6$ cm,

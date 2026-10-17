@@ -35,6 +35,9 @@ If question 2 went wrong, look again at rearranging the wave equation. If
 question 3 went wrong, remember that micro means $10^{-6}$.
 </details>
 
+:::figure warm-up-gate
+
+
 ## Practise with help
 
 **1.** Ultraviolet radiation has a frequency of $1.5 \times 10^{15}\,\text{Hz}$.

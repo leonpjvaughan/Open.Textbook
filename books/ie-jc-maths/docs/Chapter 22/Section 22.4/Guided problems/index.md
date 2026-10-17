@@ -28,6 +28,9 @@ stands for before you read any bar.
 
 </details>
 
+:::figure warm-up-gate
+
+
 ## Practise with help
 
 **1.** A bar chart shows the number of goals scored by a team in five matches. The

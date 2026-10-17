@@ -30,6 +30,9 @@ used. Finish with the two sides identical.
 If question 3 was hard, revisit the double-angle formulae before you continue.
 </details>
 
+:::figure warm-up-gate
+
+
 ## Practise with help
 
 **1.** Prove that $(\sin A + \cos A)^2 \equiv 1 + \sin 2A$.

@@ -27,6 +27,9 @@ The second answer is the event "an even score" on a die, which is a set of three
 
 </details>
 
+:::figure warm-up-gate
+
+
 ## Practise with help
 
 **1.** Two coins are tossed. How many outcomes are in the sample space?

@@ -26,6 +26,9 @@ kind: guided-problems
 
 </details>
 
+:::figure warm-up-gate
+
+
 ## Practise with help
 
 **1.** Is $\{(1, 3), (2, 5), (3, 7)\}$ a function? Give a reason.

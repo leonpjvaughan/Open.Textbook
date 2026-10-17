@@ -30,6 +30,9 @@ kind: guided-problems
 
 </details>
 
+:::figure warm-up-gate
+
+
 ## Practise with help
 
 **1.** Name four parts of a nuclear reactor and state the job of each one.

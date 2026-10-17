@@ -31,6 +31,9 @@ If question 1 was hard, add the numbers in pairs before you continue. The
 standard results in this section are built from sums like this one.
 </details>
 
+:::figure warm-up-gate
+
+
 ## Practise with help
 
 **1.** Evaluate $\sum_{r=1}^{4}(2r + 1)$.

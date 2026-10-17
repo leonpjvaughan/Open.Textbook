@@ -27,6 +27,9 @@ decides what to work out first, and the sign rule decides the sign of the answer
 
 </details>
 
+:::figure warm-up-gate
+
+
 ## Practise with help
 
 **1.** Find the value of $5+2k$ when $k=8$.

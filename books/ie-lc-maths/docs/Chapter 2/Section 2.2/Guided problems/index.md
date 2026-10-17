@@ -28,6 +28,9 @@ this section.
 
 </details>
 
+:::figure warm-up-gate
+
+
 ## Practise with help
 
 **1.** An item costs €6 and sells for €9. Work out the profit.

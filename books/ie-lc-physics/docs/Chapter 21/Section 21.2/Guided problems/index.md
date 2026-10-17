@@ -29,6 +29,9 @@ kind: guided-problems
 
 </details>
 
+:::figure warm-up-gate
+
+
 ## Practise with help
 
 **1.** A helium-4 nucleus contains 2 protons and 2 neutrons. A proton has a mass of

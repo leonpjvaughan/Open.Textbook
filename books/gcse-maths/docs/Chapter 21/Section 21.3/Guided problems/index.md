@@ -22,6 +22,9 @@ kind: guided-problems
 2. $180-90-36=54^\circ$.
 </details>
 
+:::figure warm-up-gate
+
+
 ## Practise with help
 
 **1.** A tangent meets a radius at the point of contact. State the angle between them.

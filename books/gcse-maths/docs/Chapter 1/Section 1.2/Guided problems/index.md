@@ -25,6 +25,9 @@ kind: guided-problems
 3. $0.5 = 0.50 > 0.45$.
 </details>
 
+:::figure warm-up-gate
+
+
 ## Practise with help
 
 **1.** Work out $146 + 27.5$.

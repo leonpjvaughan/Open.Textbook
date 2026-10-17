@@ -27,6 +27,9 @@ kind: guided-problems
 
 </details>
 
+:::figure warm-up-gate
+
+
 ## Practise with help
 
 **1.** A ball of mass $3$ kg moves at $4$ m/s along the $x$-axis and hits a

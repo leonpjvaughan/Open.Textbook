@@ -28,6 +28,9 @@ If an answer differs, revisit Section 16.3 for the angle sum in a triangle and
 Section 20.2 for the sine ratio.
 </details>
 
+:::figure warm-up-gate
+
+
 ## Practise with help
 
 **1.** In a triangle a=6, A=30°, B=90°. Find b.

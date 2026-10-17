@@ -27,6 +27,9 @@ kind: guided-problems
 
 </details>
 
+:::figure warm-up-gate
+
+
 ## Practise with help
 
 **1.** A ball is kicked at $20$ m/s at $30^\circ$ above the horizontal. Its

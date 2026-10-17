@@ -29,6 +29,9 @@ using it, once a wavelength is known.
 
 </details>
 
+:::figure warm-up-gate
+
+
 ## Practise with help
 
 **1.** A student claps once and hears the echo from a wall 0.60 s later. The speed of

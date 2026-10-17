@@ -30,6 +30,9 @@ If question 1 went wrong, remember that acceleration uses the **change** in
 velocity. If question 2 went wrong, look again at Section 2.2.
 </details>
 
+:::figure warm-up-gate
+
+
 ## Practise with help
 
 **1.** A car of mass 1500 kg accelerates at $3.0\,\text{m/s}^2$. Calculate the

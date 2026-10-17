@@ -28,6 +28,9 @@ If an answer differs, revisit Section 4.1 for simplifying fractions and Section
 20.1 for naming the sides of a right-angled triangle.
 </details>
 
+:::figure warm-up-gate
+
+
 ## Practise with help
 
 **1.** Find the opposite side for hypotenuse 12 and angle 30°.

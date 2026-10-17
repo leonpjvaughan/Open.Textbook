@@ -30,6 +30,9 @@ general claim means looking for a counterexample.
 
 </details>
 
+:::figure warm-up-gate
+
+
 ## Practise with help
 
 **1.** A proof of the triangle angle sum begins: "the angles add to 180° because

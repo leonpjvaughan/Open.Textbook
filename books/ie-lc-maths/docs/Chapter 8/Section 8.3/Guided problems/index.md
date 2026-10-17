@@ -28,6 +28,9 @@ divides instead of multiplying.
 
 </details>
 
+:::figure warm-up-gate
+
+
 ## Practise with help
 
 **1.** Find $\displaystyle\int e^{3x}\,dx$.

@@ -30,6 +30,9 @@ same unit, and the focal length is one of them.
 
 </details>
 
+:::figure warm-up-gate
+
+
 ## Practise with help
 
 **1.** A converging lens has a focal length of 10.0 cm. An object is placed

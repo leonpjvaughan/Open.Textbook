@@ -30,6 +30,9 @@ before you substitute into a rule.
 If question 2 was hard, revise the standard derivatives in Section 7.3.
 </details>
 
+:::figure warm-up-gate
+
+
 ## Practise with help
 
 **1.** Differentiate $y = x^3\cos x$ with the product rule.

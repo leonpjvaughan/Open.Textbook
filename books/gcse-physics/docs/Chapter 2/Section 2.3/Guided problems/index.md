@@ -30,6 +30,9 @@ only to check.
 If question 1 went wrong, return to Section 2.2 and the equation $F = ke$.
 </details>
 
+:::figure warm-up-gate
+
+
 ## Practise with help
 
 **1.** A force of 90 N pushes a crate 6.0 m along the line of the force.

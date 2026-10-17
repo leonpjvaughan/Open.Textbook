@@ -28,6 +28,9 @@ significant figure, then multiply or divide.
 
 </details>
 
+:::figure warm-up-gate
+
+
 ## Practise with help
 
 **1.** Estimate $4.9\times21.3$.

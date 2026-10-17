@@ -35,6 +35,9 @@ prefix as well as to the unit. If question 3 goes wrong, multiply both sides by
 $A$ and then divide by $R$.
 </details>
 
+:::figure warm-up-gate
+
+
 ## Practise with help
 
 **1.** A resistor has a potential difference of $9.0\,\text{V}$ across it and a

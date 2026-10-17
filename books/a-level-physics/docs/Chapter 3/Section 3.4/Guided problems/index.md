@@ -36,6 +36,9 @@ $E_k = \tfrac{1}{2}mv^2$. If question 3 goes wrong, use conservation of energy
 with $mg\Delta h = \tfrac{1}{2}mv^2$.
 </details>
 
+:::figure warm-up-gate
+
+
 ## Practise with help
 
 **1.** A car of mass 1500 kg travels at $20\,\text{m}\,\text{s}^{-1}$ due north.

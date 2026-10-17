@@ -31,6 +31,9 @@ wrote "along the field", that rule is for a positive charge.
 
 </details>
 
+:::figure warm-up-gate
+
+
 ## Practise with help
 
 **1.** A beam of cathode rays passes between two plates. The upper plate is positive.

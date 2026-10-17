@@ -29,6 +29,9 @@ Answer these from memory. Do not look back at the section.
 If an answer differs, revisit Section 3.1 for squares and cubes and Section 18.5 for similar lengths.
 
 </details>
+
+:::figure warm-up-gate
+
 ## Practise with help
 
 **1.** Similar shapes have length scale factor $4$. Find the area scale factor.

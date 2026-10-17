@@ -31,6 +31,9 @@ If any of these was hard, revise the laws of indices in Chapter 2 before you
 continue.
 </details>
 
+:::figure warm-up-gate
+
+
 ## Practise with help
 
 **1.** Differentiate $y = 6x^5$.

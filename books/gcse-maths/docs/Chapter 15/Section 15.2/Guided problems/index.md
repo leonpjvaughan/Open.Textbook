@@ -29,6 +29,9 @@ Answer these from memory. Do not look back at the section.
 If an answer differs, revisit Section 4.1 for simplifying fractions and Section 12.1 for factorising.
 
 </details>
+
+:::figure warm-up-gate
+
 ## Practise with help
 
 **1.** Simplify $\frac{x^2-4}{x^2+4x+4}$.

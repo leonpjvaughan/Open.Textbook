@@ -32,6 +32,9 @@ Work each question closed book first. Name the group that comes after the word
 If question 1 was hard, revise the multiplication rule in Section 12.1.
 </details>
 
+:::figure warm-up-gate
+
+
 ## Practise with help
 
 **1.** A survey of 180 students finds that 90 study History, 60 study Geography,

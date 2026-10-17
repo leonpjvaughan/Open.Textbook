@@ -32,6 +32,9 @@ If question 1 was hard, revisit the order of operations before you continue. The
 power comes before the multiplication.
 </details>
 
+:::figure warm-up-gate
+
+
 ## Practise with help
 
 **1.** A sequence is given by $u_n = 3n + 1$. Write down the first four terms.

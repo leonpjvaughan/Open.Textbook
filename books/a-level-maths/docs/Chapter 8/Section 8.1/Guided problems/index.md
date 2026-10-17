@@ -32,6 +32,9 @@ differentiating your answer.
 If question 3 was hard, revise the standard derivatives in Section 7.3.
 </details>
 
+:::figure warm-up-gate
+
+
 ## Practise with help
 
 **1.** Find $\displaystyle\int x^4dx$.

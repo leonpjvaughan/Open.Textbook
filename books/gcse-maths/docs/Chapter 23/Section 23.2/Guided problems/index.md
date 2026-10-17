@@ -31,6 +31,9 @@ Try these from memory before opening the answers.
 
 </details>
 
+:::figure warm-up-gate
+
+
 ## Practise with help
 
 **1.** A player scores 18 goals in 30 shots. Find the relative frequency of scoring.

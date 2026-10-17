@@ -31,6 +31,9 @@ the guitar string.
 
 </details>
 
+:::figure warm-up-gate
+
+
 ## Practise with help
 
 **1.** A string is fixed at both ends and is 0.80 m long. Calculate the wavelength of its

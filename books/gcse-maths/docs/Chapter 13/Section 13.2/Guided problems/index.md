@@ -25,6 +25,9 @@ Try each question first. Reveal support in order when you need it.
 $1/2$; $1/2$; $2$; $(x-2)(x+2)$.
 </details>
 
+:::figure warm-up-gate
+
+
 ## Practise with help
 
 **1.** Sketch $y=\sin x$ from $0^\circ$ to $360^\circ$ using its quarter-turn values.

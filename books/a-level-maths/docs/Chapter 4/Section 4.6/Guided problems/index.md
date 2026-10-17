@@ -32,6 +32,9 @@ If question 2 was hard, revisit recurrences in Section 4.3 before you continue.
 A geometric sequence is exactly a recurrence that multiplies by a fixed number.
 </details>
 
+:::figure warm-up-gate
+
+
 ## Practise with help
 
 **1.** A geometric sequence begins $5, 15, 45, \dots$. Work out the 6th term.

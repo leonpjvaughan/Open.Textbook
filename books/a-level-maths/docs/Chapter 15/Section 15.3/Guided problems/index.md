@@ -32,6 +32,9 @@ If question 1 was hard, revise the gradient of a straight line before you
 continue. Every velocity and acceleration on this page comes from a gradient.
 </details>
 
+:::figure warm-up-gate
+
+
 ## Practise with help
 
 **1.** A displacement–time graph is a straight line through $(0, 0)$ and

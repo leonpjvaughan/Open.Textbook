@@ -34,6 +34,9 @@ question 2 goes wrong, the prefix kilo- means 1000. If question 3 goes wrong, a
 change of one degree Celsius is a change of one kelvin.
 </details>
 
+:::figure warm-up-gate
+
+
 ## Practise with help
 
 **1.** A 0.80 kg copper block is heated from 20 °C to 45 °C. The specific heat

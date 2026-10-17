@@ -26,6 +26,9 @@ kind: guided-problems
 
 </details>
 
+:::figure warm-up-gate
+
+
 ## Practise with help
 
 **1.** Change $120^\circ$ into radians, giving the answer as a multiple of $\pi$.

@@ -22,6 +22,9 @@ Try each item before opening its hint. Check your method after completing the wo
 Answers: origin $(0,0)$; 11. For the other item: $y$-axis; 8; 2; 6; 6; 20; 6, as appropriate to the questions above.
 </details>
 
+:::figure warm-up-gate
+
+
 ## Practise with help
 
 **1.** Plot the point $(3,-2)$ on a coordinate grid. State its horizontal and vertical coordinates.

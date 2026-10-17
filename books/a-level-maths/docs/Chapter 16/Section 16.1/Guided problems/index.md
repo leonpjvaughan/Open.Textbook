@@ -32,6 +32,9 @@ If question 2 was hard, revise the size of a vector in Section 10.2 before you
 continue.
 </details>
 
+:::figure warm-up-gate
+
+
 ## Practise with help
 
 **1.** A crate is at rest on a horizontal floor. Name the forces that act on the

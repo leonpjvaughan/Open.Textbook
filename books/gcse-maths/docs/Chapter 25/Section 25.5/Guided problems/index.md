@@ -21,6 +21,9 @@ kind: guided-problems
 1. $9$. 2. $9$.
 </details>
 
+:::figure warm-up-gate
+
+
 ## Practise with help
 
 **1.** Group A has median 12 and IQR 4. Group B has median 15 and IQR 7. Compare typical values and middle-half spread.

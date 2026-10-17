@@ -36,6 +36,9 @@ If question 1 went wrong, look again at Section 7.3. If question 2 went wrong,
 check which coil has the larger potential difference.
 </details>
 
+:::figure warm-up-gate
+
+
 ## Practise with help
 
 **1.** Explain how a moving-coil microphone converts a sound wave into a varying

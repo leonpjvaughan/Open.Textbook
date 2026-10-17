@@ -30,6 +30,9 @@ coefficients. Then solve or state the range.
 If question 1 was hard, revise Pythagoras before you continue.
 </details>
 
+:::figure warm-up-gate
+
+
 ## Practise with help
 
 **1.** Write $3\cos\theta + 4\sin\theta$ in the form $R\cos(\theta - \alpha)$,

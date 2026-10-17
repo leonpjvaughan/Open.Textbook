@@ -28,6 +28,9 @@ an input uses the second one.
 
 </details>
 
+:::figure warm-up-gate
+
+
 ## Practise with help
 
 **1.** The function $f$ is given by $f(x)=x+6$. Find $f(2)$.

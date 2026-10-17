@@ -31,6 +31,9 @@ quantity it measures and which unit belongs with it.
 If question 1 was hard, revise simplifying fractions before you continue.
 </details>
 
+:::figure warm-up-gate
+
+
 ## Practise with help
 
 **1.** Write down the SI unit of length, the SI unit of mass and the SI unit of

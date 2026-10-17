@@ -30,6 +30,9 @@ the unit is the volt, which is a joule per coulomb.
 
 </details>
 
+:::figure warm-up-gate
+
+
 ## Practise with help
 
 **1.** Two parallel plates are $5.0$ mm apart with a potential difference of $200$ V

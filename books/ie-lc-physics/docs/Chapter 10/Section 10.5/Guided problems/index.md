@@ -32,6 +32,9 @@ wavelength to the speed. Both return in the grating equation.
 
 </details>
 
+:::figure warm-up-gate
+
+
 ## Practise with help
 
 **1.** A diffraction grating has 400 lines per millimetre. Calculate the distance

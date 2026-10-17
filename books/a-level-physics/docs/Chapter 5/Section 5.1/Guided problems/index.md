@@ -33,6 +33,9 @@ question 2 goes wrong, check which quantity is a rate and multiply it by the tim
 If question 3 goes wrong, count the places after the decimal point.
 </details>
 
+:::figure warm-up-gate
+
+
 ## Practise with help
 
 **1.** A current of $0.25\,\text{A}$ flows for $40\,\text{s}$. Find the charge

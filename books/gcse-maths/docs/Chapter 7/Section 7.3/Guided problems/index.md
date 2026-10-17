@@ -24,6 +24,9 @@ kind: guided-problems
 2. $0.0064$.
 </details>
 
+:::figure warm-up-gate
+
+
 ## Practise with help
 
 **1.** A length rounds to $7.3$ cm to the nearest $0.1$ cm. Find its interval.

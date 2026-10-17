@@ -30,6 +30,9 @@ on.
 
 </details>
 
+:::figure warm-up-gate
+
+
 ## Practise with help
 
 **1.** $\triangle ABC \sim \triangle PQR$. Given $|AB| = 6$ cm, $|BC| = 9$ cm and

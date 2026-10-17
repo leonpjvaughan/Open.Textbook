@@ -26,6 +26,9 @@ kind: guided-problems
 
 </details>
 
+:::figure warm-up-gate
+
+
 ## Practise with help
 
 **1.** A network has vertices $A, B, C$ joined to each other, and a separate vertex $D$

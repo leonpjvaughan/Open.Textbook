@@ -35,6 +35,9 @@ Section 1.3 for working with negative numbers.
 
 </details>
 
+:::figure warm-up-gate
+
+
 ## Practise with help
 
 **1.** Simplify the ratio $18:24$.

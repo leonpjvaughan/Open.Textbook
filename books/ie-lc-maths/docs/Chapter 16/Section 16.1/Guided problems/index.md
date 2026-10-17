@@ -29,6 +29,9 @@ If either answer felt uncertain, look again at Sections 15.2 and 15.4 before you
 
 </details>
 
+:::figure warm-up-gate
+
+
 ## Practise with help
 
 **1.** A quadrilateral has both pairs of opposite sides parallel. Name the shape.

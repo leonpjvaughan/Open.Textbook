@@ -34,6 +34,9 @@ assumption the model makes.
 If question 2 was hard, revise the general addition rule in Section 12.1.
 </details>
 
+:::figure warm-up-gate
+
+
 ## Practise with help
 
 **1.** A model treats a six-sided die as fair. State the probability of a 6

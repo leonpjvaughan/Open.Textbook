@@ -29,6 +29,9 @@ value across and the second value up.
 
 </details>
 
+:::figure warm-up-gate
+
+
 ## Practise with help
 
 **1.** A scatter graph shows that taller students tend to weigh more. Is the

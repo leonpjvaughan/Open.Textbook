@@ -28,6 +28,9 @@ the two ingredients.
 
 </details>
 
+:::figure warm-up-gate
+
+
 ## Practise with help
 
 **1.** Find the surface area of a cuboid $5$ cm by $3$ cm by $2$ cm.

@@ -25,6 +25,9 @@ Try each question before opening a hint. Open the next part only when you need i
 
 </details>
 
+:::figure warm-up-gate
+
+
 ## Practise with help
 
 **1.** Lines $l$ and $m$ are parallel. A corresponding angle is $72^\circ$. Find its partner.

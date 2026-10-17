@@ -36,6 +36,9 @@ wrong, halve the diameter before you square it, and change the millimetre to a
 metre first.
 </details>
 
+:::figure warm-up-gate
+
+
 ## Practise with help
 
 **1.** A wire of cross-sectional area $4.0 \times 10^{-6}\,\text{m}^2$ carries a

@@ -31,6 +31,9 @@ constant $k$ before you differentiate.
 If question 2 was hard, revise the gradient of a straight line in Chapter 3.
 </details>
 
+:::figure warm-up-gate
+
+
 ## Practise with help
 
 **1.** Differentiate $y = e^{5x}$.

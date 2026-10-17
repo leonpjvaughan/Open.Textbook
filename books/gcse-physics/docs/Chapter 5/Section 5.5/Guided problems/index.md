@@ -34,6 +34,9 @@ If question 1 went wrong, look again at the order of the spectrum. If question 2
 went wrong, take care with the powers of ten when you divide.
 </details>
 
+:::figure warm-up-gate
+
+
 ## Practise with help
 
 **1.** A metal block is heated until it glows. Explain how the radiation it emits

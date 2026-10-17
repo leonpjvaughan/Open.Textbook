@@ -29,6 +29,9 @@ Answer these from memory. Do not look back at the section.
 If an answer differs, revisit Section 8.3 for expanding brackets and Section 3.2 for square roots.
 
 </details>
+
+:::figure warm-up-gate
+
 ## Practise with help
 
 **1.** Complete the square for $x^2-8x+3$.

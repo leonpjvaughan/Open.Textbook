@@ -28,6 +28,9 @@ unit of heat. Power is the rate at which energy is transferred.
 
 </details>
 
+:::figure warm-up-gate
+
+
 ## Practise with help
 
 **1.** A room is at 30°C. Write this temperature in kelvin. Take 0°C = 273 K.

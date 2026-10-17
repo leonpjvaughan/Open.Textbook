@@ -25,6 +25,9 @@ kind: guided-problems
 
 </details>
 
+:::figure warm-up-gate
+
+
 ## Practise with help
 
 **1.** Write the displacement from $A(2, 1)$ to $B(6, 4)$ as a column vector.

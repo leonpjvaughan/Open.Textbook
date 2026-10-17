@@ -34,6 +34,9 @@ component uses the cosine. If question 3 goes wrong, the area of a trapezium is
 half the sum of the parallel sides, multiplied by the height.
 </details>
 
+:::figure warm-up-gate
+
+
 ## Practise with help
 
 **1.** A cyclist accelerates uniformly from rest to

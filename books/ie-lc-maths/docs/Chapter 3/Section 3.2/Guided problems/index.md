@@ -28,6 +28,9 @@ with $\pi r^2$ in place of length times width.
 
 </details>
 
+:::figure warm-up-gate
+
+
 ## Practise with help
 
 **1.** Find the circumference of a circle of radius $7$ cm.

@@ -28,6 +28,9 @@ Both answers are used in this section: the first tells you which numbers are
 
 </details>
 
+:::figure warm-up-gate
+
+
 ## Practise with help
 
 **1.** Which of these are prime numbers? $15, 17, 21, 27, 31$

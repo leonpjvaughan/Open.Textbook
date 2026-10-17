@@ -29,6 +29,9 @@ energy.
 
 </details>
 
+:::figure warm-up-gate
+
+
 ## Practise with help
 
 **1.** A 5.0 kg mass is raised 12 m near the Earth's surface. Calculate the gain in

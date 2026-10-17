@@ -25,6 +25,9 @@ Try each question before opening a hint. Move through the steps in order.
 $4$; $(0,3)$; $(1,6)$; $x^2+4x+4$.
 </details>
 
+:::figure warm-up-gate
+
+
 ## Practise with help
 
 **1.** Translate $y=x^2$ two units right.

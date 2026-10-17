@@ -20,6 +20,9 @@ kind: guided-problems
 1. $20\text{ cm}^2$. 2. $\pi r^2$.
 </details>
 
+:::figure warm-up-gate
+
+
 ## Practise with help
 
 Attempt each question first. Open the hint, then the next step, when needed.

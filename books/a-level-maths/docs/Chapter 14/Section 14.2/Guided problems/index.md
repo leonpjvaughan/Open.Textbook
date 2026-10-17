@@ -33,6 +33,9 @@ before you calculate.
 If question 1 mixed up the alternative, reread Section 14.1 before you start.
 </details>
 
+:::figure warm-up-gate
+
+
 ## Practise with help
 
 **1.** A delivery company claims that 20% of parcels arrive late. A shop records

@@ -22,6 +22,9 @@ kind: guided-problems
 2. $\begin{pmatrix}-5\\2\end{pmatrix}$; reversing a vector changes both signs.
 </details>
 
+:::figure warm-up-gate
+
+
 ## Practise with help
 
 **1.** In triangle $PQR$, $\overrightarrow{PQ}=\mathbf{a}$ and $\overrightarrow{QR}=\mathbf{b}$. Find $\overrightarrow{PR}$.

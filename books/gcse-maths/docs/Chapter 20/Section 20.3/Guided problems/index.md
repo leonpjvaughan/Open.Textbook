@@ -28,6 +28,9 @@ If an answer differs, revisit Section 20.2 for the sine ratio and for naming the
 sides of a right-angled triangle.
 </details>
 
+:::figure warm-up-gate
+
+
 ## Practise with help
 
 **1.** A 10 m ramp rises at 30°. Find its vertical rise.

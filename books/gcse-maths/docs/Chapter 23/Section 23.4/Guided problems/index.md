@@ -28,6 +28,9 @@ Try these from memory before opening the answers.
 
 </details>
 
+:::figure warm-up-gate
+
+
 ## Practise with help
 
 **1.** A fair coin is tossed twice. Find the probability of exactly two tails.

@@ -28,6 +28,9 @@ these two facts.
 
 </details>
 
+:::figure warm-up-gate
+
+
 ## Practise with help
 
 **1.** A velocity-time graph is a straight line from $(0, u)$ to $(t, v)$. Derive

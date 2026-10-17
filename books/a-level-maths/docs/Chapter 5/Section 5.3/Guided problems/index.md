@@ -30,6 +30,9 @@ shape of the wave tells you most of what a question needs.
 If question 2 was hard, revisit the unit circle before you continue.
 </details>
 
+:::figure warm-up-gate
+
+
 ## Practise with help
 
 **1.** State the amplitude, the period and the range of $y = 4\sin x$.

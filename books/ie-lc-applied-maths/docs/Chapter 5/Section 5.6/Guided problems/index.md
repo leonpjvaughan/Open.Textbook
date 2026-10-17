@@ -27,6 +27,9 @@ kind: guided-problems
 
 </details>
 
+:::figure warm-up-gate
+
+
 ## Practise with help
 
 **1.** An object of mass $0.4$ kg falls with $D = kv$, where $k = 0.2$ kg/s.

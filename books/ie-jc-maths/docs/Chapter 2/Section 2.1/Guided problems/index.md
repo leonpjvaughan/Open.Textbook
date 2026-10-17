@@ -29,6 +29,9 @@ of the multiplication does not change the value.
 
 </details>
 
+:::figure warm-up-gate
+
+
 ## Practise with help
 
 **1.** Write $6\times6\times6$ in index form.

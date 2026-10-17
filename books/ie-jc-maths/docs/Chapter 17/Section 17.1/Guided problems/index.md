@@ -32,6 +32,9 @@ question about the grid.
 
 </details>
 
+:::figure warm-up-gate
+
+
 ## Practise with help
 
 **1.** Write the coordinates of the point that is 4 units to the right of the

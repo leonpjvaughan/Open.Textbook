@@ -30,6 +30,9 @@ or a missing side found with one.
 
 </details>
 
+:::figure warm-up-gate
+
+
 ## Practise with help
 
 **1.** Two triangles are similar. A side of 5 cm in the small triangle matches a

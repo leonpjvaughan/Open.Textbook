@@ -36,6 +36,9 @@ the numbers. If question 2 went wrong, remember that nano means
 $10^{-9}$.
 </details>
 
+:::figure warm-up-gate
+
+
 ## Practise with help
 
 **1.** An FM radio station broadcasts at 100 MHz. Calculate the wavelength of

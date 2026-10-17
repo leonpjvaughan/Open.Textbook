@@ -22,6 +22,9 @@ kind: guided-problems
 2. $360^\circ$.
 </details>
 
+:::figure warm-up-gate
+
+
 ## Practise with help
 
 **1.** A triangle stands on a diameter. Prove its angle at the circumference is $90^\circ$.

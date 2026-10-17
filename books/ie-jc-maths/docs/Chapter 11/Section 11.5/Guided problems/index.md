@@ -27,6 +27,9 @@ The product gives the sign of $c$, and the sum gives the sign of $b$.
 
 </details>
 
+:::figure warm-up-gate
+
+
 ## Practise with help
 
 **1.** Factorise $x^2+5x+6$.

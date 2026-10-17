@@ -29,6 +29,9 @@ back at Section 2.2 before you continue.
 
 </details>
 
+:::figure warm-up-gate
+
+
 ## Practise with help
 
 **1.** Work out $8^0$.

@@ -29,6 +29,9 @@ Answer these from memory. Do not look back at the section.
 If an answer differs, revisit Section 5.1 for simplifying ratios and Section 1.2 for multiplication.
 
 </details>
+
+:::figure warm-up-gate
+
 ## Practise with help
 
 **1.** Similar shapes have matching lengths $6$ cm and $9$ cm. Find the scale factor.

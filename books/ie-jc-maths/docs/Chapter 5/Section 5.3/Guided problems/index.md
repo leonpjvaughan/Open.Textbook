@@ -29,6 +29,9 @@ a fraction for a calculation.
 
 </details>
 
+:::figure warm-up-gate
+
+
 ## Practise with help
 
 **1.** Work out $\frac{1}{3}\times\frac{6}{7}$.

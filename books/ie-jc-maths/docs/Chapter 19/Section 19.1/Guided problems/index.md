@@ -30,6 +30,9 @@ coordinates, so you need to read and write coordinates with care.
 
 </details>
 
+:::figure warm-up-gate
+
+
 ## Practise with help
 
 **1.** Translate the point $P(1,4)$ by the vector $\begin{pmatrix}3\\2\end{pmatrix}$.

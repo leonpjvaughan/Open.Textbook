@@ -27,6 +27,9 @@ The field strength $g$ plays the part of the acceleration in $F = ma$.
 
 </details>
 
+:::figure warm-up-gate
+
+
 ## Practise with help
 
 **1.** A bag of flour has a mass of 1.5 kg. Calculate its weight on the Earth, taking

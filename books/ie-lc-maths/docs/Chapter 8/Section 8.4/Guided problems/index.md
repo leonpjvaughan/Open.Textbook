@@ -28,6 +28,9 @@ curve that stays above the axis.
 
 </details>
 
+:::figure warm-up-gate
+
+
 ## Practise with help
 
 **1.** Find the area of the region bounded by $y = x^2$, the $x$-axis and the lines $x = 0$

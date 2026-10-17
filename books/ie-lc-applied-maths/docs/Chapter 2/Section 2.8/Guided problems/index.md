@@ -27,6 +27,9 @@ kind: guided-problems
 
 </details>
 
+:::figure warm-up-gate
+
+
 ## Practise with help
 
 **1.** A network has edges $PQ = 3$, $PR = 6$, $QR = 4$. Find the shortest distance from

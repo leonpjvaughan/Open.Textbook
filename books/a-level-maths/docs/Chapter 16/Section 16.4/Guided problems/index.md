@@ -32,6 +32,9 @@ If question 1 was hard, revise solving simultaneous equations in Section 2.5
 before you continue.
 </details>
 
+:::figure warm-up-gate
+
+
 ## Practise with help
 
 **1.** Masses of $2$ kg and $4$ kg hang over a smooth pulley on a light

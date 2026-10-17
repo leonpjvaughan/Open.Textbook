@@ -28,6 +28,9 @@ Integration reverses exactly these moves, so keep both answers.
 
 </details>
 
+:::figure warm-up-gate
+
+
 ## Practise with help
 
 **1.** Find $\displaystyle\int x^4\,dx$.

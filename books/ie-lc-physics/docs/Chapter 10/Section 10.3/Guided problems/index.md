@@ -33,6 +33,9 @@ is what makes a critical angle possible.
 
 </details>
 
+:::figure warm-up-gate
+
+
 ## Practise with help
 
 **1.** Calculate the critical angle for a glass-air boundary. The refractive index of

@@ -31,6 +31,9 @@ If question 2 was hard, revisit the standard results in Section 4.4 before you
 continue. The series formula in this section comes from the same idea.
 </details>
 
+:::figure warm-up-gate
+
+
 ## Practise with help
 
 **1.** The first three terms of an arithmetic sequence are $4, 7, 10$. Work out

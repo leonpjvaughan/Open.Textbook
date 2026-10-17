@@ -28,6 +28,9 @@ carries.
 
 </details>
 
+:::figure warm-up-gate
+
+
 ## Practise with help
 
 **1.** Work out $4 + 5 \times 2$.

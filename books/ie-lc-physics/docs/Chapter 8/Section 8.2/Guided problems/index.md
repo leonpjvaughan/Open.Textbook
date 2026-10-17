@@ -29,6 +29,9 @@ thermal equilibrium.
 
 </details>
 
+:::figure warm-up-gate
+
+
 ## Practise with help
 
 **1.** Calculate the energy needed to heat 1.5 kg of water from 20°C to 70°C.

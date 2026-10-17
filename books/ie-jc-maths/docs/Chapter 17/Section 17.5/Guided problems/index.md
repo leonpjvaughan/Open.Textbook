@@ -31,6 +31,9 @@ Finding the intercept uses the same steps as solving an equation.
 
 </details>
 
+:::figure warm-up-gate
+
+
 ## Practise with help
 
 **1.** A line has slope 2 and passes through $(0,4)$. Write its equation in the

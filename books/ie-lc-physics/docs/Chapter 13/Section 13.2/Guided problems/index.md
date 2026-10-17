@@ -30,6 +30,9 @@ other with equal forces, even when their charges are different.
 
 </details>
 
+:::figure warm-up-gate
+
+
 ## Practise with help
 
 **1.** Two point charges of $+2.0\ \mu\text{C}$ and $+5.0\ \mu\text{C}$ are $0.10$ m

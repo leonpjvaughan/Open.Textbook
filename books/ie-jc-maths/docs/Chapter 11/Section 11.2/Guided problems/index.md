@@ -27,6 +27,9 @@ $3(4+5)=3\times4+3\times5$. The same idea lets you multiply out an algebraic bra
 
 </details>
 
+:::figure warm-up-gate
+
+
 ## Practise with help
 
 **1.** Expand $4(x+3)$.

@@ -28,6 +28,9 @@ kind: guided-problems
 
 </details>
 
+:::figure warm-up-gate
+
+
 ## Practise with help
 
 **1.** An alternating current has a peak value of 8.0 A. Calculate its r.m.s.

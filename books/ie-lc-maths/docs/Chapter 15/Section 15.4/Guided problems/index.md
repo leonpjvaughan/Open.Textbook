@@ -30,6 +30,9 @@ If either answer felt uncertain, look again at Sections 15.2 and 15.3 before you
 
 </details>
 
+:::figure warm-up-gate
+
+
 ## Practise with help
 
 **1.** Two parallel lines are cut by a transversal. One angle is $72^\circ$. Find its

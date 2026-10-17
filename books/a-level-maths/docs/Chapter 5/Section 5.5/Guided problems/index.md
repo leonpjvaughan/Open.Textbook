@@ -30,6 +30,9 @@ Then choose the right approximation for the function in the question.
 If question 3 was hard, revise substituting into a formula before you continue.
 </details>
 
+:::figure warm-up-gate
+
+
 ## Practise with help
 
 **1.** Estimate $\sin 0.15$ using a small-angle approximation.

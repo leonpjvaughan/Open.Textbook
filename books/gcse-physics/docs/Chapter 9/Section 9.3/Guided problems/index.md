@@ -33,6 +33,9 @@ If question 1 went wrong, look again at the definition of half-life in Section
 9.2. If question 2 went wrong, look at the table of penetration in Section 9.2.
 </details>
 
+:::figure warm-up-gate
+
+
 ## Practise with help
 
 **1.** Name two natural sources and two man-made sources of background radiation.

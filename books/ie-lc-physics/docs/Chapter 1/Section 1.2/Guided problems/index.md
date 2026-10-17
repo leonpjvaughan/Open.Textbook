@@ -29,6 +29,9 @@ information. The uncertainty is the third thing a measurement needs.
 
 </details>
 
+:::figure warm-up-gate
+
+
 ## Practise with help
 
 **1.** A ruler is marked in millimetres. State the reading uncertainty of a single

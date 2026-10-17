@@ -28,6 +28,9 @@ power multiplied by a time.
 
 </details>
 
+:::figure warm-up-gate
+
+
 ## Practise with help
 
 **1.** A solar panel has an area of 3.0 m$^2$. The irradiance of the sunlight is

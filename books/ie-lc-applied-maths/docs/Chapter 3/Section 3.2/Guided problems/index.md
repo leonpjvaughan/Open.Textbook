@@ -26,6 +26,9 @@ kind: guided-problems
 
 </details>
 
+:::figure warm-up-gate
+
+
 ## Practise with help
 
 **1.** A car has an initial velocity of $5$ m/s and accelerates at $3$ m/s²

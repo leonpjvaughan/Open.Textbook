@@ -22,6 +22,9 @@ Try each question before opening its hint.
 Answers: 2; 3.
 </details>
 
+:::figure warm-up-gate
+
+
 ## Practise with help
 
 **1.** Give the gradient parallel to $y=3x+2$.

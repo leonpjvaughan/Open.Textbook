@@ -32,6 +32,9 @@ about the situation, with a unit.
 If question 3 was hard, revisit completing the square: half of $-6$ is $-3$.
 </details>
 
+:::figure warm-up-gate
+
+
 ## Practise with help
 
 **1.** A stone is dropped from a cliff. Its distance fallen in metres after $t$

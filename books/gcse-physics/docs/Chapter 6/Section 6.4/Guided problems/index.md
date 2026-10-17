@@ -36,6 +36,9 @@ If question 1 went wrong, remember that power is the rate of energy transfer.
 If question 3 went wrong, check that you used $V = IR$.
 </details>
 
+:::figure warm-up-gate
+
+
 ## Practise with help
 
 **1.** A lamp is connected to the 230 V mains supply and takes a current of

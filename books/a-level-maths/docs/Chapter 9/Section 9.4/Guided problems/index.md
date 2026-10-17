@@ -30,6 +30,9 @@ If the first part was hard, revise definite integration in Section 8.2. If the
 second was hard, revise substituting into a function in Section 2.9.
 </details>
 
+:::figure warm-up-gate
+
+
 ## Practise with help
 
 **1.** Use the trapezium rule with four strips to estimate

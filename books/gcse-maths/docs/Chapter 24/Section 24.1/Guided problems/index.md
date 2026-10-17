@@ -76,3 +76,6 @@ Multiply the fraction of the sample by 100.
 
 The fraction is $15/50=0.3$. Convert it to a percentage: $0.3\times100=30\%$.
 </details>
+
+:::figure warm-up-gate
+

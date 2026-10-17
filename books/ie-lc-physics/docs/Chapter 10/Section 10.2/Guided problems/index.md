@@ -31,6 +31,9 @@ speed and the wavelength change.
 
 </details>
 
+:::figure warm-up-gate
+
+
 ## Practise with help
 
 **1.** A ray of light in air meets a water surface at an angle of incidence of 30.0°.

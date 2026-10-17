@@ -28,6 +28,9 @@ this section. Keep them exact until the final line.
 
 </details>
 
+:::figure warm-up-gate
+
+
 ## Practise with help
 
 **1.** Find the area and the perimeter of a rectangle $8$ m long and $5$ m wide.

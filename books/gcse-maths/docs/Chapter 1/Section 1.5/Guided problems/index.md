@@ -25,6 +25,9 @@ kind: guided-problems
 3. $5$.
 </details>
 
+:::figure warm-up-gate
+
+
 ## Practise with help
 
 **1.** Round $6\,482$ to the nearest (a) $10$, (b) $100$, (c) $1000$.

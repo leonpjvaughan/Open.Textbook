@@ -32,6 +32,9 @@ If question 2 was hard, revisit fractional indices in Section 2.1 before you
 continue. A fractional power is a root.
 </details>
 
+:::figure warm-up-gate
+
+
 ## Practise with help
 
 **1.** Expand $(1 + x)^{-1}$ up to and including the term in $x^3$, and state

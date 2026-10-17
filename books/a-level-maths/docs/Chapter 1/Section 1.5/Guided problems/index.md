@@ -29,6 +29,9 @@ that …", and finish by naming the assumption that the contradiction destroys.
 3. $2 \times 3 \times 5 = 30$, so the value is $31$.
 </details>
 
+:::figure warm-up-gate
+
+
 ## Practise with help
 
 **1.** Prove that there is no smallest positive rational number.

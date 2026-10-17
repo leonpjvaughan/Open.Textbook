@@ -26,6 +26,9 @@ A percentage becomes a decimal before it multiplies an amount.
 
 </details>
 
+:::figure warm-up-gate
+
+
 ## Practise with help
 
 **1.** A shop buys a mug for €4.00 and sells it for €6.00. Work out the mark-up.

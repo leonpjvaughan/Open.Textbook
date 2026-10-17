@@ -21,6 +21,9 @@ kind: guided-problems
 1. $6$. 2. $14$.
 </details>
 
+:::figure warm-up-gate
+
+
 ## Practise with help
 
 Use this table: classes $0<t\leq5$, $5<t\leq10$, $10<t\leq15$ have frequencies $3,6,5$.

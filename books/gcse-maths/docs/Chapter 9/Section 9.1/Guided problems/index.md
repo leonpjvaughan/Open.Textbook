@@ -27,6 +27,9 @@ Answer these from memory. Do not look back at the section.
 If an answer differs, revisit Section 1.4 for the order of operations and Section 1.2 for multiplication and division facts.
 
 </details>
+
+:::figure warm-up-gate
+
 ## Practise with help
 
 **1.** Solve $x+6=14$.

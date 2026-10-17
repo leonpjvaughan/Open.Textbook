@@ -32,6 +32,9 @@ $g = 9.8$ m s$^{-2}$.
 If question 2 was hard, revise the sine and cosine ratios before you continue.
 </details>
 
+:::figure warm-up-gate
+
+
 ## Practise with help
 
 **1.** Resolve a force of $70$ N acting at $25^\circ$ above the horizontal.

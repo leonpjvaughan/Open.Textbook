@@ -31,6 +31,9 @@ A rate is a division of two changes, and a flat segment has a rate of 0.
 
 </details>
 
+:::figure warm-up-gate
+
+
 ## Practise with help
 
 **1.** A walker covers 180 m in 3 minutes at a steady pace. Find the rate of change.

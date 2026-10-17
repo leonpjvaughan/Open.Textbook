@@ -28,6 +28,9 @@ If either answer felt uncertain, revisit Sections 14.1 and 14.4 before you carry
 
 </details>
 
+:::figure warm-up-gate
+
+
 ## Practise with help
 
 **1.** A single transformation takes $(3,4)$ to $(-3,4)$. Name the transformation.

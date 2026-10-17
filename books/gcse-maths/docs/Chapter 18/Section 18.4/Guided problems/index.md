@@ -29,6 +29,9 @@ Answer these from memory. Do not look back at the section.
 If an answer differs, revisit Section 16.3 for triangle angle facts.
 
 </details>
+
+:::figure warm-up-gate
+
 ## Practise with help
 
 **1.** Two triangles have three matching side lengths. Name a criterion.

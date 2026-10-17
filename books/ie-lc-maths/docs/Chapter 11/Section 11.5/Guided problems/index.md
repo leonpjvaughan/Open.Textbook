@@ -28,6 +28,9 @@ That is what stops the deviations cancelling out.
 
 </details>
 
+:::figure warm-up-gate
+
+
 ## Practise with help
 
 **1.** Find the standard deviation of $2$, $4$, $6$, $8$ and $10$, dividing by $n$.

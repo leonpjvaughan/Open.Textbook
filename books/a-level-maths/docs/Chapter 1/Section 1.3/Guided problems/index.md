@@ -28,6 +28,9 @@ cases and convince yourself that nothing is missing.
 3. $36$.
 </details>
 
+:::figure warm-up-gate
+
+
 ## Practise with help
 
 **1.** Decide whether every whole number from $1$ to $5$ divides $30$. If it

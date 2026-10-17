@@ -30,6 +30,9 @@ used by squaring and square-rooting.
 
 </details>
 
+:::figure warm-up-gate
+
+
 ## Practise with help
 
 **1.** A right-angled triangle has legs of 3 cm and 4 cm. Find the hypotenuse.

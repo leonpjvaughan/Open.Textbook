@@ -31,6 +31,9 @@ the resultant gives the acceleration.
 
 </details>
 
+:::figure warm-up-gate
+
+
 ## Practise with help
 
 **1.** A box slides on a floor. The contact force is 250 N and the coefficient of

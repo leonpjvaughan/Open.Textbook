@@ -24,6 +24,9 @@ Try each question first. Open a hint if needed, then check the full working.
 2. $12$.
 </details>
 
+:::figure warm-up-gate
+
+
 ## Practise with help
 
 **1.** A top can be red or yellow, and a base can be square or round. List every outfit.

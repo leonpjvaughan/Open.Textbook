@@ -27,6 +27,9 @@ time, and revolutions per minute must be converted into seconds.
 
 </details>
 
+:::figure warm-up-gate
+
+
 ## Practise with help
 
 **1.** A wheel turns 450 times in 90 s. Calculate its frequency and its period.

@@ -31,6 +31,9 @@ wavelength than red light, so a blue photon carries more energy.
 
 </details>
 
+:::figure warm-up-gate
+
+
 ## Practise with help
 
 **1.** A discharge tube filled with hydrogen gives bright lines at 486 nm and 656 nm,

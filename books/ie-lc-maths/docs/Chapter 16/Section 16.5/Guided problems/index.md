@@ -29,6 +29,9 @@ If either answer felt uncertain, look again at Section 15.6 before you carry on.
 
 </details>
 
+:::figure warm-up-gate
+
+
 ## Practise with help
 
 **1.** A right-angled triangle has legs of $9$ cm and $12$ cm. Find the hypotenuse.

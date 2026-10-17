@@ -30,6 +30,9 @@ Try these from memory before opening the answers.
 
 </details>
 
+:::figure warm-up-gate
+
+
 ## Practise with help
 
 **1.** A fair four-sided spinner has outcomes 1, 2, 3 and 4. Find the probability of an even number.

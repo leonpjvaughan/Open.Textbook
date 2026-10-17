@@ -28,6 +28,9 @@ bigger number, so you multiply. A larger unit needs a smaller number, so you div
 
 </details>
 
+:::figure warm-up-gate
+
+
 ## Practise with help
 
 **1.** A ruler is marked in millimetres. An object starts at the 0 mark and ends at the

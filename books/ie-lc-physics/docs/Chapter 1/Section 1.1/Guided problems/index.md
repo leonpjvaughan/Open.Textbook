@@ -28,6 +28,9 @@ prefix is a power of ten.
 
 </details>
 
+:::figure warm-up-gate
+
+
 ## Practise with help
 
 **1.** Convert 4.2 km to metres.

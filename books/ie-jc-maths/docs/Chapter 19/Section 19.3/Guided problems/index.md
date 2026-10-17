@@ -28,6 +28,9 @@ and it turns the shape rather than flipping it.
 
 </details>
 
+:::figure warm-up-gate
+
+
 ## Practise with help
 
 **1.** Find the image of $(2,3)$ under a half-turn about the origin.

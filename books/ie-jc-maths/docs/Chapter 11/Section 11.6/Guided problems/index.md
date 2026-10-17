@@ -27,6 +27,9 @@ Question 2 reminds you that $x^2$ is a square.
 
 </details>
 
+:::figure warm-up-gate
+
+
 ## Practise with help
 
 **1.** Factorise $x^2-16$.

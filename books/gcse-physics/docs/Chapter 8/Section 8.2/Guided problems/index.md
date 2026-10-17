@@ -36,6 +36,9 @@ volume. If question 2 went wrong, remember that power is the rate of energy
 transfer, so divide the energy by the time.
 </details>
 
+:::figure warm-up-gate
+
+
 ## Practise with help
 
 **1.** A block of copper of mass $0.50\,\text{kg}$ is heated through

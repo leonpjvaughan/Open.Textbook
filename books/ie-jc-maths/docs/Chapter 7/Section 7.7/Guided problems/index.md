@@ -27,6 +27,9 @@ The first is leaving euro, and the second is writing money to the nearest cent.
 
 </details>
 
+:::figure warm-up-gate
+
+
 ## Practise with help
 
 **1.** Change €200.00 to US dollars at €1 = 1.09 US dollars.

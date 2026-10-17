@@ -28,6 +28,9 @@ writing a rule.
 
 </details>
 
+:::figure warm-up-gate
+
+
 ## Practise with help
 
 **1.** Find the common difference of the pattern $8, 13, 18, 23, \ldots$.

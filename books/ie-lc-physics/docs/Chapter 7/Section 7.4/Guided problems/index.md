@@ -27,6 +27,9 @@ the weight decides the sign of each term in the equation.
 
 </details>
 
+:::figure warm-up-gate
+
+
 ## Practise with help
 
 **1.** A bucket of water is swung in a vertical circle of radius 1.0 m. Calculate the

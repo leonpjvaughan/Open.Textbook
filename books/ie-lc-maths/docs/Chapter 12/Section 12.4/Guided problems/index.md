@@ -25,6 +25,9 @@ kind: guided-problems
 
 </details>
 
+:::figure warm-up-gate
+
+
 ## Practise with help
 
 **1.** State which quadrant the angle $200^\circ$ lies in, and the sign of its sine and

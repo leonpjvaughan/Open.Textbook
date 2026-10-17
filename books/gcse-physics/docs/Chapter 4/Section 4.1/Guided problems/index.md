@@ -31,6 +31,9 @@ distance divided by the total time. If question 2 went wrong, rearrange
 $v = \dfrac{s}{t}$ to make $t$ the subject first.
 </details>
 
+:::figure warm-up-gate
+
+
 ## Practise with help
 
 **1.** A water wave has a frequency of 2.0 Hz and a wavelength of 0.30 m.

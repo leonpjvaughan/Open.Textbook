@@ -30,6 +30,9 @@ is upper, then integrate upper minus lower.
 If question 2 was hard, revise solving quadratics by factorising in Section 2.4.
 </details>
 
+:::figure warm-up-gate
+
+
 ## Practise with help
 
 **1.** Find the area enclosed between the curve $y = x^2$ and the line $y = 4$.

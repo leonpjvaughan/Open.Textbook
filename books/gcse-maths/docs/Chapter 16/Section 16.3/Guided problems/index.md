@@ -25,6 +25,9 @@ Try each question before opening a hint. Open the next part only when you need i
 
 </details>
 
+:::figure warm-up-gate
+
+
 ## Practise with help
 
 **1.** A triangle has angles $48^\circ$, $73^\circ$ and $x^\circ$. Find $x$.

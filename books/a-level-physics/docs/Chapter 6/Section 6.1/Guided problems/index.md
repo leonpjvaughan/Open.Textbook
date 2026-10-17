@@ -34,6 +34,9 @@ milli- means $10^{-3}$. If question 3 goes wrong, divide the distance by the
 time.
 </details>
 
+:::figure warm-up-gate
+
+
 ## Practise with help
 
 **1.** A sound wave has a frequency of 425 Hz and travels at

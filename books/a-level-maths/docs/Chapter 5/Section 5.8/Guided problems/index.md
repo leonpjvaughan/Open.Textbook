@@ -33,6 +33,9 @@ ratio you already have.
 If question 2 was hard, revisit the exact values before you continue.
 </details>
 
+:::figure warm-up-gate
+
+
 ## Practise with help
 
 **1.** Use the addition formula to find the exact value of $\sin 75^\circ$.

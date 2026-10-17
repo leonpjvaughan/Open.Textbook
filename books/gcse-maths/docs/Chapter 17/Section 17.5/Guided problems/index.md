@@ -30,6 +30,9 @@ If an answer differs, revisit Section 1.2 for decimal multiplication and
 Section 16.1 for angle facts.
 
 </details>
+
+:::figure warm-up-gate
+
 ## Try these with help
 
 **1.** Write the bearing for east.

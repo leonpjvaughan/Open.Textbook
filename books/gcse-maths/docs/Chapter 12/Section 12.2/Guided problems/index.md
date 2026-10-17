@@ -28,6 +28,9 @@ Answer these from memory. Do not look back at the section.
 If an answer differs, revisit Section 8.3 for expanding brackets and Section 12.1 for factorising monic quadratics.
 
 </details>
+
+:::figure warm-up-gate
+
 ## Practise with help
 
 **1.** Factorise $2x^2+7x+3$.

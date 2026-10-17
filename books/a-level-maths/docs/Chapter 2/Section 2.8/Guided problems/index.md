@@ -33,6 +33,9 @@ If question 3 was hard, revisit the common denominator: it is the smallest
 number that both denominators divide.
 </details>
 
+:::figure warm-up-gate
+
+
 ## Practise with help
 
 **1.** Simplify $\dfrac{x^2 - 4}{x^2 + 5x + 6}$.

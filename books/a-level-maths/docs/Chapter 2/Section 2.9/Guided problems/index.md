@@ -31,6 +31,9 @@ If question 1 was hard, revisit the meaning of the modulus: it is a distance fro
 zero, so it is never negative.
 </details>
 
+:::figure warm-up-gate
+
+
 ## Practise with help
 
 **1.** Solve $|x + 5| = 3$.

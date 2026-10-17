@@ -28,6 +28,9 @@ in each one.
 
 </details>
 
+:::figure warm-up-gate
+
+
 ## Practise with help
 
 **1.** Solve $x+8=15$.

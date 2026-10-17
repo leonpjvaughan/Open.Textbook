@@ -28,6 +28,9 @@ divide both parts of a ratio by, and the division is how you do it.
 
 </details>
 
+:::figure warm-up-gate
+
+
 ## Practise with help
 
 **1.** Simplify the ratio $10:15$.

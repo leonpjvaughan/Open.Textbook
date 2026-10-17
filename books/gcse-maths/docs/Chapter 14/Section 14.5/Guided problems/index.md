@@ -24,6 +24,9 @@ Work each question first. Open a hint if you need one, then reveal the working t
 1. $x=4$. 2. $x^2+5x+6$.
 </details>
 
+:::figure warm-up-gate
+
+
 ## Practise with help
 
 **1.** Use $x_{n+1}=\frac12(x_n+6/x_n)$ from $x_0=2$ to find $x_2$.

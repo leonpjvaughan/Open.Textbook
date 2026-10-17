@@ -28,6 +28,9 @@ what to work out first, and the sign rule decides the sign of the output.
 
 </details>
 
+:::figure warm-up-gate
+
+
 ## Practise with help
 
 **1.** A machine adds 4 to the input. Find the output when the input is 6.

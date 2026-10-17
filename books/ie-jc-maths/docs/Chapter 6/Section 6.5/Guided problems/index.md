@@ -27,6 +27,9 @@ the multiplication by 100 turns a relative change into a percentage.
 
 </details>
 
+:::figure warm-up-gate
+
+
 ## Practise with help
 
 **1.** A price rises from 20 euro to 23 euro. Find the absolute increase and the

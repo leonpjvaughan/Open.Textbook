@@ -28,6 +28,9 @@ A half-turn is a rotation through 180°. This section also turns shapes through
 
 </details>
 
+:::figure warm-up-gate
+
+
 ## Practise with help
 
 **1.** Rotate the point $(2,1)$ through 90° anticlockwise about the origin.

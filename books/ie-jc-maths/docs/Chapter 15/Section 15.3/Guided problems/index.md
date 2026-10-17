@@ -28,6 +28,9 @@ in this section.
 
 </details>
 
+:::figure warm-up-gate
+
+
 ## Practise with help
 
 **1.** Convert 1.5 hours to minutes.

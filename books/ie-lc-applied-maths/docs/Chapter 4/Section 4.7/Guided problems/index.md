@@ -28,6 +28,9 @@ kind: guided-problems
 
 </details>
 
+:::figure warm-up-gate
+
+
 ## Practise with help
 
 **1.** Find the resultant of $(2\mathbf{i} + 5\mathbf{j})$ N and

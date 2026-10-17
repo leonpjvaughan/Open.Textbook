@@ -30,6 +30,9 @@ possible at all.
 
 </details>
 
+:::figure warm-up-gate
+
+
 ## Practise with help
 
 **1.** An angle measures 74°. A student constructs its bisector. Work out the size

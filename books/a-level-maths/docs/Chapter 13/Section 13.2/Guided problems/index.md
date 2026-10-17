@@ -32,6 +32,9 @@ calculate. Keep every term to four decimal places or more, and round once.
 If question 3 was hard, revise the complement from Section 12.1.
 </details>
 
+:::figure warm-up-gate
+
+
 ## Practise with help
 
 **1.** The random variable $X \sim B\left(8, \tfrac12\right)$. Find

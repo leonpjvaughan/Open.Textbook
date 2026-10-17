@@ -31,6 +31,9 @@ root.
 If question 2 was hard, revise adding directed numbers before you continue.
 </details>
 
+:::figure warm-up-gate
+
+
 ## Practise with help
 
 **1.** Add $\mathbf{a} = 2\mathbf{i} + 3\mathbf{j}$ and

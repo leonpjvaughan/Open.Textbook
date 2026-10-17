@@ -35,6 +35,9 @@ If question 1 went wrong, remember that a ratio has no unit. If question 2 went
 wrong, remember that there are 100 cm in 1 m.
 </details>
 
+:::figure warm-up-gate
+
+
 ## Practise with help
 
 **1.** A magnifying glass forms an image 20 mm tall of an object 5.0 mm tall.

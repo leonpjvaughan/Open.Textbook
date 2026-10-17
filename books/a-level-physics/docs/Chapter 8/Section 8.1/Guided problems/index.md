@@ -36,6 +36,9 @@ $1.60 \times 10^{-19}\,\text{J}$. If question 3 goes wrong, the energy gained is
 the charge multiplied by the potential difference.
 </details>
 
+:::figure warm-up-gate
+
+
 ## Practise with help
 
 **1.** A photon has a frequency of $5.0 \times 10^{14}\,\text{Hz}$. Find its

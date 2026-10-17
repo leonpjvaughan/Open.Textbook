@@ -28,6 +28,9 @@ Answer these from memory before you start.
 
 </details>
 
+:::figure warm-up-gate
+
+
 ## Practise with help
 
 **1.** Find the point that divides the segment from $(2, 4)$ to $(8, 10)$ in the

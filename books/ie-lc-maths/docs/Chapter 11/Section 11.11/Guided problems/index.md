@@ -30,6 +30,9 @@ kind: guided-problems
 
 </details>
 
+:::figure warm-up-gate
+
+
 ## Practise with help
 
 **1.** A bar chart shows sales of €96m, €98m and €100m, and its vertical axis starts at

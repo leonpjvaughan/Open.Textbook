@@ -25,6 +25,9 @@ kind: guided-problems
 
 </details>
 
+:::figure warm-up-gate
+
+
 ## Practise with help
 
 **1.** Write down the conjugate of each: $3 + 5i$, $-2 - i$, $7i$, $-4$.

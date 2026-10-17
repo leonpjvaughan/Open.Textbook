@@ -29,6 +29,9 @@ a list.
 
 </details>
 
+:::figure warm-up-gate
+
+
 ## Practise with help
 
 **1.** Find the average value of $f(x) = x^2$ over $0 \le x \le 3$.

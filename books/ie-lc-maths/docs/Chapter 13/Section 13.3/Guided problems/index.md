@@ -28,6 +28,9 @@ Answer these from memory before you start.
 
 </details>
 
+:::figure warm-up-gate
+
+
 ## Practise with help
 
 **1.** A line has slope $4$. Find the slope of a line perpendicular to it.

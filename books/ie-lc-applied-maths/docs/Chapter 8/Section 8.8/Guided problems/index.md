@@ -30,6 +30,9 @@ kind: guided-problems
 
 </details>
 
+:::figure warm-up-gate
+
+
 ## Practise with help
 
 **1.** A continuous model gives $P = 200e^{0.03t}$, and a discrete model gives

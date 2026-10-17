@@ -28,6 +28,9 @@ same value, and the equals sign is how you say so.
 
 </details>
 
+:::figure warm-up-gate
+
+
 ## Practise with help
 
 **1.** Find the value of $x$ that makes $x+6=15$ true.

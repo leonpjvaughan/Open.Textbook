@@ -35,6 +35,9 @@ root. If question 2 goes wrong, use $F = ma$. If question 3 goes wrong, use
 $E_k = \tfrac{1}{2}mv^2$.
 </details>
 
+:::figure warm-up-gate
+
+
 ## Practise with help
 
 **1.** A mass on a spring oscillates with amplitude 0.080 m and period 0.40 s.

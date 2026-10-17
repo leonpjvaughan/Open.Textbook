@@ -30,6 +30,9 @@ attach the sign. Write the three steps down so the method stays visible.
 If question 1 was hard, revise simplifying surds before you continue.
 </details>
 
+:::figure warm-up-gate
+
+
 ## Practise with help
 
 **1.** Write down the exact values of $\sin 60^\circ$ and $\cos 60^\circ$.

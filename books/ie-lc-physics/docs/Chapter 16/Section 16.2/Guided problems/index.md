@@ -28,6 +28,9 @@ kind: guided-problems
 
 </details>
 
+:::figure warm-up-gate
+
+
 ## Practise with help
 
 **1.** The flux through one turn of a coil of 60 turns changes by 0.020 Wb in

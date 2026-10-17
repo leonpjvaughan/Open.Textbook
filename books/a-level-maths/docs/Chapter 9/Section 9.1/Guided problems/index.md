@@ -31,6 +31,9 @@ If the first part was hard, revise substitution into a function in Section 2.9.
 If the second was hard, revise solving $x^2 = k$ in Section 2.4.
 </details>
 
+:::figure warm-up-gate
+
+
 ## Practise with help
 
 **1.** Show that $x^3 - 2x - 3 = 0$ has a root between $1$ and $2$.

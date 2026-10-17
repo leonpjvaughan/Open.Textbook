@@ -30,6 +30,9 @@ and the same segment gives the circle the four vertices share.
 
 </details>
 
+:::figure warm-up-gate
+
+
 ## Practise with help
 
 **1.** $ABCD$ is a cyclic quadrilateral with $|\angle BAD| = 108^\circ$. Find

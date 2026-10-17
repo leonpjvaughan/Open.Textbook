@@ -28,6 +28,9 @@ divide by how many there are.
 
 </details>
 
+:::figure warm-up-gate
+
+
 ## Practise with help
 
 **1.** Find the mean of $5, 6, 7, 8, 9$.

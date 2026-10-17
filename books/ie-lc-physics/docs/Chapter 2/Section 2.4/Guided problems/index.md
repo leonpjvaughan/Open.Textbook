@@ -29,6 +29,9 @@ with the same acceleration.
 
 </details>
 
+:::figure warm-up-gate
+
+
 ## Practise with help
 
 **1.** A stone is dropped from rest and falls for 3.0 s. Calculate its speed just before

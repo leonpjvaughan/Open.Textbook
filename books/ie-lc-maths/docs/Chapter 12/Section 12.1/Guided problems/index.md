@@ -25,6 +25,9 @@ kind: guided-problems
 
 </details>
 
+:::figure warm-up-gate
+
+
 ## Practise with help
 
 **1.** In a right triangle the angle $\theta = 30^\circ$ and the side opposite it is

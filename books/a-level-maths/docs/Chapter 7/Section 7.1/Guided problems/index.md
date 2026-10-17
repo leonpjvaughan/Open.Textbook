@@ -30,6 +30,9 @@ calculate, and write down what the gradient means in the context.
 If question 1 was hard, revise the gradient of a straight line in Chapter 3.
 </details>
 
+:::figure warm-up-gate
+
+
 ## Practise with help
 
 **1.** The curve $y = x^2 + 1$ passes through $P(1, 2)$. Use chords from $P$ to

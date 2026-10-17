@@ -28,6 +28,9 @@ comes from the calculator, and you multiply it by a side.
 
 </details>
 
+:::figure warm-up-gate
+
+
 ## Practise with help
 
 **1.** A right-angled triangle has an angle of 35°. The adjacent side is 8 cm. Find

@@ -31,6 +31,9 @@ percentage uncertainty is what decides whether a change in the readings is real.
 
 </details>
 
+:::figure warm-up-gate
+
+
 ## Practise with help
 
 **1.** A student investigates how the mass on a spring affects its extension. State

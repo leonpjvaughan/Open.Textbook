@@ -28,6 +28,9 @@ powers help you describe a set of square numbers.
 
 </details>
 
+:::figure warm-up-gate
+
+
 ## Practise with help
 
 **1.** Write the set of even numbers from 2 to 10 in roster form.
