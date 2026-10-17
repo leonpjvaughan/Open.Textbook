@@ -63,6 +63,7 @@ problems:
       The tank volume is $V(t) = 12t^2 - t^3$ and its rate is $V'(t) = 24t - 3t^2$.
       Find $V''(t)$.
     answer_label: 'The second derivative'
+    plays: derivative-power
     check:
       kind: apply
       expression: '24*t - 3*t**2'

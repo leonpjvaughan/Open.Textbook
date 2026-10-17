@@ -10,6 +10,7 @@ problems:
     refs: ['3.4']
     statement: 'Find the surface area of a cuboid $5$ cm by $3$ cm by $2$ cm.'
     answer_label: 'The surface area of the cuboid'
+    plays: parallelogram-area
     check:
       kind: dimensions
       expression: '2 * (l * w + l * h + w * h)'
@@ -31,6 +32,7 @@ problems:
       A triangular prism has a right-angled cross-section with legs $3$ cm and $4$ cm, and
       a hypotenuse of $5$ cm. Its length is $10$ cm. Find its surface area.
     answer_label: 'The surface area of the prism'
+    plays: triangle-area
     check:
       kind: dimensions
       expression: '2 * (a * b / 2) + a * L + b * L + c * L'

@@ -186,7 +186,7 @@ per-book layout is in `books/AGENTS.md`.
 | `books/gcse-physics/`, `books/gcse-physics/AGENTS.md`, `books/a-level-physics/`, `books/a-level-physics/AGENTS.md` | the two physics books and their rules |
 | `books/ie-jc-maths/`, `books/ie-jc-maths/AGENTS.md`, `books/ie-lc-maths/`, `books/ie-lc-maths/AGENTS.md`, `books/ie-lc-applied-maths/`, `books/ie-lc-applied-maths/AGENTS.md`, `books/ie-lc-physics/`, `books/ie-lc-physics/AGENTS.md` | the four Irish books and their rules |
 | `books/proofs/`, `books/proofs/AGENTS.md` | the reference book of proofs |
-| `research/`, `research/AGENTS.md`, `scripts/`, `scripts/AGENTS.md`, `tests/`, `tests/AGENTS.md`, `test/`, `deploy/`, `deploy/AGENTS.md`, `.github/`, `.github/AGENTS.md`, `.claude/`, `.serena/` | corpus, scripts, tests, deploy, CI |
+| `research/`, `research/AGENTS.md`, `scripts/`, `scripts/AGENTS.md`, `tests/`, `tests/AGENTS.md`, `tests/README.md`, `deploy/`, `deploy/AGENTS.md`, `.github/`, `.github/AGENTS.md`, `.claude/`, `.serena/` | corpus, scripts, tests, deploy, CI |
 | `.agents/`, `.agents/skills/`, `.agents/prompts/`, `.agents/planning/` | agent context: the portable skills; the chapter and review prompts the launch scripts feed to sub-agents; the dated planning record; `.agents/todo.md`; `.agents/chapter-brief.md` |
 
 ## Where the agent files live

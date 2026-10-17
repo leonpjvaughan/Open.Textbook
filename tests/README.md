@@ -135,12 +135,12 @@ reported as a pass.
 
 ```bash
 # The whole matrix, with a full-page text audit per route
-node test/theme-preview.cjs --audit --out /tmp/theme-preview -- \
+node tools/dist/cli.js preview --audit --out /tmp/theme-preview -- \
   "landing:/" \
   "learn:/gcse-maths/higher/chapter-1/section-1.1/learn/"
 
 # One bundle, dark only, no images
-node test/theme-preview.cjs --themes neon --schemes dark --no-shots -- \
+node tools/dist/cli.js preview --themes neon --schemes dark --no-shots -- \
   "learn:/gcse-maths/higher/chapter-1/section-1.1/learn/"
 ```
 

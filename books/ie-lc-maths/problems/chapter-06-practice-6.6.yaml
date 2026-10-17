@@ -76,6 +76,7 @@ problems:
     refs: ['5.1']
     statement: 'Simplify $\log a + \log b$ into a single logarithm.'
     answer_label: 'The single logarithm'
+    plays: log-product
     check:
       kind: apply
       expression: 'log(a) + log(b)'

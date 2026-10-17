@@ -16,6 +16,7 @@ problems:
       A stone falls so that its distance from the start after $t$ seconds is
       $s(t) = t^3 - 6t^2 + 9t$ metres. Find the velocity $s'(t)$.
     answer_label: 'The velocity'
+    plays: derivative-power
     check:
       kind: apply
       expression: 't**3 - 6*t**2 + 9*t'

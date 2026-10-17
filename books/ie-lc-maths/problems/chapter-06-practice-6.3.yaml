@@ -98,6 +98,7 @@ problems:
       The coffee temperature is $T(t) = 20 + 70(0.5)^{t/5}$. Rearrange the rule to
       make $t$ the subject, leaving the logarithm in place.
     answer_label: 'The inverse rule'
+    plays: log-definition
     check:
       kind: apply
       expression: '20 + 70*(1/2)**(t/5)'

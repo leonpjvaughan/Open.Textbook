@@ -65,7 +65,7 @@ louder and Archwave the softer, and there is no measurement that prefers either.
 the "Candidates" section is kept as the record of the shortlist and what was not
 taken.
 
-The preview run (`test/theme-preview.cjs`) then found four defects that the
+The preview run (`tools preview`) then found four defects that the
 palette tests could not, all of which are fixed:
 
 1. **An accent that only fails where no subject tint replaces it.** catppuccin

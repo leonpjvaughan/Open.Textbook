@@ -67,6 +67,7 @@ problems:
       For the same car, with speed $v(t) = 6t$ metres per second, find the distance
       travelled in the first four seconds.
     answer_label: 'The distance travelled'
+    plays: integral-power
     check:
       kind: apply
       expression: '6*t'

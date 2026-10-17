@@ -10,6 +10,7 @@ problems:
     refs: ['3.4']
     statement: 'Find the area of the net of a cuboid $5$ cm by $3$ cm by $2$ cm.'
     answer_label: 'The area of the net'
+    plays: parallelogram-area
     check:
       kind: dimensions
       expression: '2 * (l * w + l * h + w * h)'
@@ -31,6 +32,7 @@ problems:
     refs: ['3.4']
     statement: 'A cube has edges of $4$ cm. Find the area of its net.'
     answer_label: 'The area of the cube net'
+    plays: parallelogram-area
     check:
       kind: dimensions
       expression: '6 * s**2'
@@ -95,6 +97,7 @@ problems:
       $4$ cm, and a hypotenuse of $5$ cm. Its length is $10$ cm. Find the total area of
       its net.
     answer_label: 'The total area of the net'
+    plays: triangle-area
     check:
       kind: dimensions
       expression: '2 * (a * b / 2) + a * L + b * L + c * L'

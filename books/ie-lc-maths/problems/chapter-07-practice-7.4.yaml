@@ -12,6 +12,7 @@ problems:
     refs: ['5.2']
     statement: 'Differentiate $y = \dfrac{2x + 1}{x - 1}$.'
     answer_label: 'The derivative'
+    plays: quotient-rule
     check:
       kind: apply
       expression: '(2*x + 1)/(x - 1)'
@@ -29,6 +30,7 @@ problems:
     refs: ['5.2']
     statement: 'Differentiate $y = \dfrac{x^2 + 1}{x}$.'
     answer_label: 'The derivative'
+    plays: quotient-rule
     check:
       kind: apply
       expression: '(x**2 + 1)/x'
@@ -49,6 +51,7 @@ problems:
     refs: ['5.2']
     statement: 'Differentiate $y = \dfrac{3x + 2}{x + 1}$.'
     answer_label: 'The derivative'
+    plays: quotient-rule
     check:
       kind: apply
       expression: '(3*x + 2)/(x + 1)'
@@ -66,6 +69,7 @@ problems:
     refs: ['5.2']
     statement: 'Differentiate $y = \dfrac{x^2}{x + 1}$.'
     answer_label: 'The derivative'
+    plays: quotient-rule
     check:
       kind: apply
       expression: 'x**2/(x + 1)'
@@ -88,6 +92,7 @@ problems:
       Write the tank volume as $V(t) = \dfrac{12t^3 - t^4}{t}$ litres and use the
       quotient rule to find $V'(t)$.
     answer_label: 'The rate'
+    plays: quotient-rule
     check:
       kind: apply
       expression: '(12*t**3 - t**4)/t'

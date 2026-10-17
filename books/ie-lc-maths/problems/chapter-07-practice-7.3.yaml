@@ -12,6 +12,7 @@ problems:
     refs: ['5.2']
     statement: 'Differentiate $y = (x + 1)(x + 2)$.'
     answer_label: 'The derivative'
+    plays: product-rule
     check:
       kind: apply
       expression: '(x + 1)*(x + 2)'
@@ -30,6 +31,7 @@ problems:
     refs: ['5.2']
     statement: 'Differentiate $y = (2x + 3)(x^2 - 1)$.'
     answer_label: 'The derivative'
+    plays: product-rule
     check:
       kind: apply
       expression: '(2*x + 3)*(x**2 - 1)'
@@ -46,6 +48,7 @@ problems:
     refs: ['5.2']
     statement: 'Differentiate $y = x^2(3x - 5)$.'
     answer_label: 'The derivative'
+    plays: product-rule
     check:
       kind: apply
       expression: 'x**2*(3*x - 5)'
@@ -62,6 +65,7 @@ problems:
     refs: ['5.2']
     statement: 'Differentiate $y = (x^2 + 1)(x - 4)$.'
     answer_label: 'The derivative'
+    plays: product-rule
     check:
       kind: apply
       expression: '(x**2 + 1)*(x - 4)'
@@ -78,6 +82,7 @@ problems:
     refs: ['5.2']
     statement: 'Differentiate $y = (2x + 1)(3x - 2)$.'
     answer_label: 'The derivative'
+    plays: product-rule
     check:
       kind: apply
       expression: '(2*x + 1)*(3*x - 2)'
@@ -96,6 +101,7 @@ problems:
       The volume in the tank is $V(t) = t^2(12 - t)$ litres. Use the product rule to
       find $V'(t)$.
     answer_label: 'The rate'
+    plays: product-rule
     check:
       kind: apply
       expression: 't**2*(12 - t)'

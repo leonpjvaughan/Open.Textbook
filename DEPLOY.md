@@ -396,7 +396,7 @@ navigation entry plus the sum over `performance.getEntriesByType("resource")`, s
 they are bytes over the wire on the first load and include the service worker's
 registration script. The `sw.js` it registers is fetched by the browser outside
 the page's resource timings, so it is not counted. Like the theme preview, the
-script needs Chrome and the Playwright client (see `test/README.md`).
+script needs Chrome and the Playwright client (see `tests/README.md`).
 
 ## Checking a deploy
 

@@ -23,6 +23,7 @@ Read the root `AGENTS.md` first. Its **Build and verify**, **Toolchain** and
 | `check-mobile [siteDir]` | Fail when a phone-width page is wider than the screen, at five widths |
 | `budget [siteDir] [route]` | Bytes over the wire on a first load, against a server that reproduces the Worker's cache headers |
 | `screenshot <siteDir> <outDir>` | Capture routes, one image per scheme, and fail if the captures do not differ |
+| `preview --root <dir> -- name:route …` | **Every bundle in both schemes**: the reader's preference reached the page, the tokens and the painted text clear their contrast floors, and the route layout is asserted before a browser starts. `--audit` walks every text element on the page |
 | `types` | **The type ratchet.** Fails if the `tsc` error count grows — or falls without the baseline being lowered |
 
 `tools help` is generated from the same table, so it cannot go stale.

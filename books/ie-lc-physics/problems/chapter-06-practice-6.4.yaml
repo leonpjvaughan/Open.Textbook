@@ -84,6 +84,7 @@ problems:
   statement: One satellite has an orbital radius nine times that of another around the same planet.
     Calculate the ratio of their periods.
   answer_label: Ratio of the periods
+  plays: satellite-period
   check:
     kind: dimensions
     expression: sqrt(r**3)

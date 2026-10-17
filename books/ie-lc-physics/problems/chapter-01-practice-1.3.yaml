@@ -36,6 +36,7 @@ problems:
     refs: ['1.1']
     statement: 'Use the same model to calculate the time for a ball to fall 1.25 m. Take $g = 9.8\,\text{m/s}^2$.'
     answer_label: 'Time to fall 1.25 m'
+    plays: [linear-motion-displacement, acceleration-due-to-gravity]
     check:
       kind: dimensions
       expression: sqrt(2 * s / g)
@@ -51,6 +52,7 @@ problems:
     refs: ['1.1']
     statement: 'Use the same model to calculate the speed of a ball when it lands after falling 1.25 m. Take $g = 9.8\,\text{m/s}^2$.'
     answer_label: 'Landing speed'
+    plays: [linear-motion-velocity-squared, acceleration-due-to-gravity]
     check:
       kind: dimensions
       expression: sqrt(2 * g * s)

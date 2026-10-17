@@ -16,6 +16,7 @@ problems:
       Find the area of the region bounded by the curve $y = x^2$, the $x$-axis and the
       lines $x = 0$ and $x = 2$.
     answer_label: 'The area'
+    plays: integral-power
     check:
       kind: apply
       expression: 'x**2'
@@ -37,6 +38,7 @@ problems:
       Find the area of the region bounded by the curve $y = x^2 - 1$ and the $x$-axis
       between $x = 1$ and $x = 2$.
     answer_label: 'The area'
+    plays: integral-power
     check:
       kind: apply
       expression: 'x**2 - 1'
@@ -122,6 +124,7 @@ problems:
       Find the area of the region bounded by the curve $y = x^2$ and the $x$-axis
       between $x = -2$ and $x = 2$.
     answer_label: 'The area'
+    plays: integral-power
     check:
       kind: apply
       expression: 'x**2'

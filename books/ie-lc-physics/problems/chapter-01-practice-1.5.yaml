@@ -67,6 +67,7 @@ problems:
     refs: ['1.1', '1.4']
     statement: 'A student plots the distance a ball falls against $t^2$. The graph is a straight line through the origin with a gradient of 4.9 m/s$^2$. Use the gradient to find $g$, given that the gradient is $\frac{1}{2}g$.'
     answer_label: 'Value of g'
+    plays: linear-motion-displacement
     check:
       kind: dimensions
       expression: 2 * m

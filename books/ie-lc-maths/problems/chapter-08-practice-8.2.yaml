@@ -14,6 +14,7 @@ problems:
     refs: ['5.2']
     statement: 'Evaluate $\displaystyle\int_0^2 x^2\,dx$.'
     answer_label: 'The value of the integral'
+    plays: integral-power
     check:
       kind: apply
       expression: 'x**2'
@@ -39,6 +40,7 @@ problems:
     refs: ['5.2']
     statement: 'Evaluate $\displaystyle\int_1^3 (2x + 1)\,dx$.'
     answer_label: 'The value of the integral'
+    plays: integral-power
     check:
       kind: apply
       expression: '2*x + 1'
@@ -53,6 +55,7 @@ problems:
     refs: ['5.2']
     statement: 'Evaluate $\displaystyle\int_0^1 (3x^2 - 2x + 1)\,dx$.'
     answer_label: 'The value of the integral'
+    plays: integral-power
     check:
       kind: apply
       expression: '3*x**2 - 2*x + 1'
@@ -68,6 +71,7 @@ problems:
     statement: >-
       Evaluate $\displaystyle\int_0^3 (x^2 - 4)\,dx$ and explain the sign of the value.
     answer_label: 'The value of the integral'
+    plays: integral-power
     check:
       kind: apply
       expression: 'x**2 - 4'
@@ -86,6 +90,7 @@ problems:
     refs: ['5.2']
     statement: 'Evaluate $\displaystyle\int_{-1}^{1} x^3\,dx$ and explain the value.'
     answer_label: 'The value of the integral'
+    plays: integral-power
     check:
       kind: apply
       expression: 'x**3'
@@ -104,6 +109,7 @@ problems:
     refs: ['5.2']
     statement: 'Evaluate $\displaystyle\int_1^2 \frac{1}{x^2}\,dx$.'
     answer_label: 'The value of the integral'
+    plays: integral-power
     check:
       kind: apply
       expression: 'x**(-2)'
@@ -123,6 +129,7 @@ problems:
       Find the area of the region bounded by the curve $y = x^2$, the $x$-axis and the
       line $x = 3$.
     answer_label: 'The area'
+    plays: integral-power
     check:
       kind: apply
       expression: 'x**2'
@@ -144,6 +151,7 @@ problems:
       Water enters a tank at $r(t) = 12t - 3t^2$ litres per minute. Work out
       $\displaystyle\int_0^4 r(t)\,dt$ and say what the value means.
     answer_label: 'The value of the integral'
+    plays: integral-power
     check:
       kind: apply
       expression: '12*t - 3*t**2'

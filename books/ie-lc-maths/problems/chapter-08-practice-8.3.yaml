@@ -32,6 +32,7 @@ problems:
     refs: ['5.2']
     statement: 'Find $\displaystyle\int \sin 2x\,dx$.'
     answer_label: 'The integral'
+    plays: integral-sin
     check:
       kind: apply
       expression: 'sin(2*x)'
@@ -50,6 +51,7 @@ problems:
     refs: ['5.2']
     statement: 'Find $\displaystyle\int \cos 4x\,dx$.'
     answer_label: 'The integral'
+    plays: integral-cos
     check:
       kind: apply
       expression: 'cos(4*x)'
@@ -87,6 +89,7 @@ problems:
     refs: ['5.2']
     statement: 'Evaluate $\displaystyle\int_0^{\pi/2} \cos x\,dx$.'
     answer_label: 'The value of the integral'
+    plays: integral-cos
     check:
       kind: apply
       expression: 'cos(x)'
@@ -104,6 +107,7 @@ problems:
     refs: ['5.2']
     statement: 'Evaluate $\displaystyle\int_1^2 \frac{1}{x}\,dx$, giving an exact answer.'
     answer_label: 'The value of the integral'
+    plays: integral-reciprocal
     check:
       kind: apply
       expression: '1/x'

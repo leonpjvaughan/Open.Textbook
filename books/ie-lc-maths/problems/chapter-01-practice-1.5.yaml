@@ -75,6 +75,7 @@ problems:
     refs: ['3.2']
     statement: 'Simplify $x^3 \times x^5$.'
     answer_label: '$x^3 \times x^5$'
+    plays: index-product
     check: {kind: evaluate, expression: 'x**3 * x**5', answer: 'x**8'}
     answer_text: >-
       The bases are the same, so add the indices:
@@ -104,6 +105,7 @@ problems:
     refs: ['3.2']
     statement: 'Simplify $(2x^3)^2$.'
     answer_label: '$(2x^3)^2$'
+    plays: index-power-of-power
     check: {kind: evaluate, expression: '(2*x**3)**2', answer: '4*x**6'}
     answer_text: >-
       The power applies to every factor inside the bracket:
