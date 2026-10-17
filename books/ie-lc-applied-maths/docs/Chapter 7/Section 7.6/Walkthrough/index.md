@@ -123,6 +123,22 @@ how far the car is pushed down.
 > displacement $x$ changes all the time, while the amplitude $A$ is its greatest
 > value.
 
+## A guided investigation: the circle and the graph
+
+:::figure shm
+
+**Predict.** The mass is released from rest at the end of its motion. Before you press
+Play, predict where the speed is greatest: at the centre of the motion or at the ends.
+Write your prediction down.
+
+**Test.** Press Play and watch the point P travel round the circle while the graph is
+drawn. Pause the animation at different times and read the displacement, the velocity
+and the acceleration.
+
+**Explain.** Write two sentences that explain why the velocity is zero at the ends of
+the motion. Use the circle in your explanation, and say what the radius drawn to P does
+at those moments.
+
 ## Progress check
 
 Back to the chapter problem. The car of mass $1200$ kg rests on springs of total

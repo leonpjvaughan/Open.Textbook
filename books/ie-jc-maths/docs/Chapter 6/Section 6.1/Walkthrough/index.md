@@ -90,6 +90,21 @@ $$200:150 = 4:3$$
 The units have to match before you compare. Both amounts here are in grams. If one
 amount were in kilograms, you would change it to grams first.
 
+## Investigate simplifying
+
+**Predict.** Before you move the controls, predict whether $8:12$ and $2:3$ describe the
+same comparison.
+
+:::figure ratio-bars
+
+**Test.** The figure draws each amount as a bar of unit parts. Set the first amount to 8
+and the second to 12, then change the group size and watch the bars break into equal
+groups.
+
+**Explain.** Write two or three sentences. Say what happens when the group size divides
+both amounts, and what happens when it does not. Use the words "common factor" and
+"simplest form".
+
 ## Ratios with three or more parts
 
 A ratio can compare more than two amounts. Write all the parts in order, separated

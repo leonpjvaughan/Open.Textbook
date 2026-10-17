@@ -72,6 +72,22 @@ $$
 
 The distance tripled, so the force fell by a factor of nine.
 
+## Try it: the force between two masses
+
+**Predict.** The figure draws two masses and the force between them. Before you move a
+control, write down what you expect the force to be when the distance between the
+centres is doubled. Then decide what happens when the distance is tripled.
+
+**Test.** Set the two masses and the distance, and read the force. Double the distance
+and check the new force against your prediction. Switch the chooser to the electric
+force and compare the shape of the two curves.
+
+:::figure gravity-inverse-square
+
+**Explain.** Write two or three sentences. Say how the force changed when the distance
+doubled, and explain why it fell to one quarter rather than to one half. Then say which
+feature of the curve is the same for gravity and for the electric force.
+
 ## Distance is measured from the centre
 
 The law uses the distance between the **centres** of the masses. For a planet, that

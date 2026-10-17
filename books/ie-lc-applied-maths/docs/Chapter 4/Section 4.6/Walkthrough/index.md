@@ -155,6 +155,23 @@ said the hanging mass would win.
 > denominator. Both bodies move, so the total mass is $m_1 + m_2$. If you get an
 > acceleration larger than $g$, one of these two errors is the cause.
 
+## A guided investigation: the two pulls and the tension
+
+:::figure pulley
+
+**Predict.** A crate of $20$ kg rests on a ramp at $30^\circ$, and the hanging mass is
+$15$ kg. Before you move the sliders, predict which pull is larger, and so which way the
+system moves. Write your prediction down.
+
+**Test.** Set the two masses to $20$ kg and $15$ kg and the angle to $30^\circ$. Read
+the two pulls, the acceleration and the tension. Then change one slider at a time and
+watch what happens to the tension. Finally set the angle to $0^\circ$ and compare the
+result with the mass on a table.
+
+**Explain.** Write two sentences that explain why the acceleration is smaller when the
+ramp is steeper. Say what happens to the pull along the ramp, and what the tension has
+to do.
+
 ## Progress check
 
 Back to the chapter problem one last time. You have found $a = 1.4$ m/s² and

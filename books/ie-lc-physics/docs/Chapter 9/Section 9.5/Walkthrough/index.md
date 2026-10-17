@@ -125,6 +125,8 @@ you shake it twice as fast. How many loops will there be?
 **Test.** Double the rate at which you shake the rope and count the loops. Try three
 times the rate as well.
 
+:::figure standing-wave
+
 **Explain.** Write two or three sentences. Say how the number of loops changed when you
 changed the rate, and say where the rope stayed still. Those still points are nodes, and
 the pattern is a stationary wave.

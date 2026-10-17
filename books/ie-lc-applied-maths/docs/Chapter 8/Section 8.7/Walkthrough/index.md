@@ -75,6 +75,12 @@ $$y = Ae^{x^2/2}.$$
 This is the **general solution**. Different values of $A$ give different curves,
 and every one of them obeys the equation.
 
+:::figure slope-field
+
+The short segments show the gradient the equation gives at each point. Choose the
+starting point and the curve through it appears, so you can see that the constant is
+nothing more than which point you started from.
+
 **Example 2.** Solve $\dfrac{dy}{dx} = \dfrac{x}{y}$.
 
 Multiply both sides by $y$:

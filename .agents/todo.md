@@ -3283,6 +3283,58 @@ the check.
 
 ---
 
+## 59. The figure gaps in four books — **done**
+
+**What was wrong.** `ideas.md` §10 listed nineteen figures across four books and the shared
+library, and the count per chapter said why they mattered: `ie-jc-maths` had 3 figures for
+22 chapters and 129 sections, and its reader is 12–14; `ie-lc-maths` had 8 for 18;
+`ie-lc-applied-maths` had 6 for 9.
+
+**Done, 2026-10-17.** Twenty figures, 213 modules to 233.
+
+| Book | Before | After |
+|---|---|---|
+| `ie-jc-maths` | 3 | 13 |
+| `ie-lc-maths` | 8 | 10 |
+| `ie-lc-physics` | 19 | 22 |
+| `ie-lc-applied-maths` | 6 | 10 |
+| shared library | 1 | 2 |
+
+The two `ideas.md` ranks highest are built: **7.1 chord → tangent** and **8.2 Riemann
+strips**, "the two a reader who has seen them has understood what calculus is". The second
+shared module is built too — `slope-field`, mounted by `ie-lc-applied-maths` 8.7, which is
+the library's real test: a book that does not own the module mounts it, and the module drew
+no book-specific idea into the library.
+
+**Every figure was verified by arithmetic, not by looking at it.** Each control was set to
+values worked out by hand and the readout checked against them — the chord's gradient
+(3.5² − 2²)/1.5 = 5.5 against the tangent's 2x = 4; the Riemann total 0.2188 at 4 strips
+against 1/3; the pulley's a = (m₂g − m₁g sinθ)/(m₁ + m₂) = 15.87/13 = 1.22 m/s² and
+T = m₂(g − a) = 42.9 N; restitution's e = √(0.72/2) = 0.6 with heights in ratio e² = 0.36;
+and so on. A figure that reports a wrong number is worse than no figure, and a rendered
+picture cannot be checked by eye in a terminal.
+
+**A defect this found in the checks.** `slider_calls()` in `tests/test_figures.py` used
+`slider\([^;]*?\)`, which stops at the **first** `)` — so a slider whose arguments contain
+one, such as `max: Object.keys(EQUATIONS).length - 1`, was truncated before `show:` and
+reported as silent when it was not. A check a nested call can defeat is worse than no
+check, because it reads as a guarantee. It balances parentheses and skips string literals
+now.
+
+**And one in the mobile audit.** Its guard was a fixed floor of ten figures, which failed
+on a single book with nine and passed on the whole site when the server was broken and
+served the same page for every route. It is proportional to what the build contains now.
+
+**Done means**
+
+- `node tools/dist/cli.js audit site/<book>/<profile>` reports no contrast problem for any
+  book.
+- `node tools/dist/cli.js audit site --mobile` reports 0 figures below 9px.
+- `uv run python -m pytest tests/ -q` passes.
+- Every figure's readout agrees with a hand calculation.
+
+---
+
 ## The Irish books are finished (2026-10-16)
 
 **All 71 chapters of the four Irish books are authored end to end.** 429 sections, every

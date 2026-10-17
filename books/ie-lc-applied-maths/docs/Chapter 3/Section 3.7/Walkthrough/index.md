@@ -108,6 +108,22 @@ The ball is about 4.99 m high when it passes the wall.
 > A third is to forget that the two directions share the time. Write $t$ in the
 > middle of your working, find it from one direction, and use it in the other.
 
+## A guided investigation: the height at the wall
+
+:::figure projectile
+
+**Predict.** A ball is kicked at $20$ m/s. Before you move the sliders, predict what
+happens to the height at the wall when you increase the launch angle. Write your
+prediction down.
+
+**Test.** Keep the speed at $20$ m/s and move the angle from $20^\circ$ to $45^\circ$.
+Watch the height at the wall in the readout and on the drawing. Then set the angle to
+$30^\circ$ and read the height again.
+
+**Explain.** Write two sentences that explain why the height at the wall changes with
+the launch angle. Use the vertical component $u_y = u\sin\theta$ in your explanation,
+and say what the horizontal component does to the time taken.
+
 ## Progress check
 
 Back to the chapter problem. The ball is kicked at $20$ m/s at $30^\circ$. Its

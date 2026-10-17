@@ -447,8 +447,41 @@ def test_the_figure_colour_classes_are_all_defined():
 
 
 def slider_calls(text: str) -> list[str]:
-    """Every `slider(...)` call in a module, as written."""
-    return re.findall(r"\bslider\([^;]*?\)", text, re.S)
+    """Every `slider(...)` call in a module, as written.
+
+    Scanned by balancing parentheses rather than by a regular expression. The pattern
+    this replaces was `slider\([^;]*?\)`, which stops at the **first** `)` — so a call
+    whose arguments contain one, such as `max: Object.keys(EQUATIONS).length - 1`, was
+    truncated before `show:` and the call was reported as silent when it was not. A
+    check that a nested call can defeat is worse than no check, because it reads as a
+    guarantee.
+    """
+    calls: list[str] = []
+    for match in re.finditer(r"\bslider\(", text):
+        start = match.end() - 1
+        depth = 0
+        quote: str | None = None
+        i = start
+        while i < len(text):
+            char = text[i]
+            if quote:
+                # A string is skipped whole: a bracket inside one is not a bracket.
+                if char == "\\":
+                    i += 2
+                    continue
+                if char == quote:
+                    quote = None
+            elif char in "\"'`":
+                quote = char
+            elif char == "(":
+                depth += 1
+            elif char == ")":
+                depth -= 1
+                if depth == 0:
+                    calls.append(text[start : i + 1])
+                    break
+            i += 1
+    return calls
 
 
 @pytest.mark.parametrize(("book", "path"), FIGURES, ids=IDS)

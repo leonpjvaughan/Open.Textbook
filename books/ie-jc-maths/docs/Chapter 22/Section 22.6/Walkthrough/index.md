@@ -121,6 +121,20 @@ To compare two sets, use one measure of centre and one measure of spread.
 A smaller IQR means the middle half of the values are closer together, so the data
 is more consistent.
 
+## Investigate the interquartile range
+
+**Predict.** Before you drag anything, predict what happens to the interquartile range
+when you move the lower quartile to the left.
+
+:::figure boxplot-spread
+
+**Test.** Drag the two round handles, or use the sliders. Watch the width of the box
+and the interquartile range in the readout.
+
+**Explain.** Write two or three sentences. Say what the box shows about the middle
+half of the values, and what the whiskers show. Use the words "quartile",
+"interquartile range" and "middle half".
+
 ## Watch out
 
 > **Watch out.** Put the data in order before you find the quartiles, and do not

@@ -120,6 +120,22 @@ $$\frac{3}{4}-\frac{2}{4}=\frac{1}{4}$$
 
 The recipe uses $\frac{1}{4}$ of a litre more orange juice than apple juice.
 
+## Investigate the common denominator
+
+**Predict.** Two strips are cut into different numbers of parts. Before you move the
+controls, predict whether the total changes when you cut both strips into more equal
+parts.
+
+:::figure fraction-strip
+
+**Test.** The figure shows each fraction on its own strip, and a third strip cut into a
+number of parts that suits both. Start with 2 parts in 3 and 1 part in 4, then change
+the part counts and watch the third strip.
+
+**Explain.** Write two or three sentences. Say why the third strip is cut into 12 parts
+for thirds and quarters, and why the total does not change when you cut the strips into
+more parts. Use the words "common denominator" and "equivalent".
+
 > **Watch out.** Never add the denominators. From $\frac{1}{2}+\frac{1}{3}$, the
 > common error is to add the tops and the bottoms and write $\frac{2}{5}$. Check it
 > with decimals: $\frac{1}{2}+\frac{1}{3}=0.5+0.333\ldots=0.833\ldots$, but

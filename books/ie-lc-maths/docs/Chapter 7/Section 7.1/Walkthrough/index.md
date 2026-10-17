@@ -47,6 +47,15 @@ The average gradient over that short interval is $6.1$.
 If $h$ gets smaller, the two points move closer together and the chord turns towards the
 tangent at the single point $x$. The gradient of the tangent is what we want.
 
+Before you read on, predict what happens to the chord's gradient as $h$ shrinks. Then move
+$h$ yourself and check.
+
+:::figure chord-to-tangent
+
+The chord and the tangent both start on screen, so you can watch the gap between their
+gradients close. The tangent's gradient does not move: it is $2x$, and the chord is
+catching up to it.
+
 For $y = x^2$, simplify the average gradient before shrinking $h$:
 
 $$\frac{(x + h)^2 - x^2}{h} = \frac{x^2 + 2xh + h^2 - x^2}{h}

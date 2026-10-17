@@ -101,6 +101,20 @@ $$P(1,6)\to(1,\ 2\times3-6)=(1,0)$$
 
 The image is $(1,0)$.
 
+## Investigate the mirror line
+
+**Predict.** Before you move the controls, predict where the corner A at $(1,2)$ lands
+when you reflect the shape in the line $y=x$.
+
+:::figure transformations-grid
+
+**Test.** Choose each mirror line in turn. Watch where every corner of the triangle
+lands, and read the rule for that line.
+
+**Explain.** Write two or three sentences. Say how a reflection in the $y$-axis is
+different from a reflection in the line $y=x$. Use the words "sign", "swap" and
+"mirror line".
+
 ## Watch out
 
 > **Watch out.** A reflection in the $y$-axis is not the same as a reflection in

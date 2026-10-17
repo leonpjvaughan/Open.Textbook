@@ -81,6 +81,21 @@ violet light at about 400 nm.
 
 One nanometre is $1 \times 10^{-9}$ m, so 700 nm is $7.0 \times 10^{-7}$ m.
 
+## Try it: placing a wavelength
+
+**Predict.** The figure draws the whole electromagnetic spectrum as one line. Before you
+move the marker, write down where you expect to find the visible band. Decide which end
+of the line holds the higher frequency.
+
+**Test.** Move the marker along the line and read the wavelength and the frequency at
+each position. Stop when the readout names visible light, and note the two values.
+
+:::figure em-spectrum
+
+**Explain.** Write two or three sentences. Say which end of the line has the higher
+frequency, and explain why the frequency and the wavelength run in opposite directions.
+Then say how wide the visible band is compared with the whole spectrum.
+
 ## Dispersion: why a prism makes a spectrum
 
 Shine a beam of white light into a triangular glass prism. A band of colours

@@ -562,8 +562,18 @@ async function runMobile(browser, dir, pages, outFile) {
     for (const slug of tooSmall.slice(0, 20)) console.error(`   ${measured[slug].toFixed(1)}px  ${slug}`);
     process.exit(1);
   }
-  if (slugs.length < 10) {
-    console.error(`\nfigure legibility failed: only ${slugs.length} figures measured`);
+  // The guard against a run that measured almost nothing. A fixed floor of ten was
+  // wrong in both directions: it failed on a single book with nine figures, and it
+  // passed on the whole site when the server was broken and served the same page for
+  // every route. The map says how many figures the build contains, so the question is
+  // whether this run found them — and a figure that draws no text is legitimately
+  // skipped, which is why the bar is half rather than all.
+  const expected = Object.keys(pages).length;
+  if (slugs.length === 0 || slugs.length < expected / 2) {
+    console.error(
+      `\nfigure legibility failed: measured ${slugs.length} of ${expected} figures. ` +
+        "Either the build is missing pages or the server is not serving them.",
+    );
     process.exit(1);
   }
 }

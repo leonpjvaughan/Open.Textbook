@@ -45,6 +45,12 @@ $y = x^2$ from $x = 0$ to $x = 1$, estimate the area with $4$ strips and then wi
 answer should get closer to $\dfrac{1}{3}$. Finish by explaining in one sentence why more
 strips give a better estimate.
 
+:::figure riemann-strips
+
+Double the strip count and watch the total. Then change the height from the left edge to
+the right edge: one set of strips sits over the curve and the other sits under it, so the
+two totals bracket the answer from opposite sides.
+
 ## Evaluating a definite integral
 
 An antiderivative does all the work. If $F$ is an antiderivative of $f$, then

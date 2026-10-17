@@ -121,6 +121,20 @@ The cost of one bar is 0.60 euro in the first offer and 0.64 euro in the second.
 The two values are different, so the cost is **not** directly proportional to the
 number of bars. The shop charges a little more per bar in the larger pack.
 
+## Investigate direct and inverse
+
+**Predict.** Before you move the controls, predict which of the two graphs is a straight
+line.
+
+:::figure proportion-curves
+
+**Test.** The figure draws direct proportion and inverse proportion on one pair of axes.
+Set the value of one unit and the number of units, and watch both graphs.
+
+**Explain.** Write two or three sentences. Say what happens to the value in direct
+proportion when the number of units doubles, and what happens in inverse proportion.
+Use the words "straight line" and "curves down".
+
 > **Watch out.** Direct proportion is about multiplying, not adding. If 3 pens
 > cost 1.50 euro, 4 pens do not cost 1.50 euro plus 1 euro. Find the value of one
 > pen and multiply: 4 pens cost $4\times0.50=2$ euro.

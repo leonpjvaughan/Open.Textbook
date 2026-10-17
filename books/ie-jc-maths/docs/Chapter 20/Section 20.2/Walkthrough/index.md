@@ -121,6 +121,19 @@ The three sides are 5 cm, 6 cm and 7 cm, so the triangle is fixed. A triangle ca
 be constructed only when the two shorter sides together are longer than the
 longest. For 2 cm, 3 cm and 6 cm, $2+3=5$ is less than 6, so no triangle exists.
 
+## Investigate the perpendicular bisector
+
+**Predict.** Before you move the control, predict whether the points P and Q lie the
+same distance from A as they do from B.
+
+:::figure construction-stepper
+
+**Test.** Step through the construction with the slider and the two buttons. Watch the
+compass width stay the same, and watch where the last line meets $[AB]$.
+
+**Explain.** Write two or three sentences. Say why the two arcs must use the same
+compass width. Use the words "distance", "midpoint" and "right angle".
+
 > **Watch out.** In a construction, do not measure what the compass can copy. When
 > you bisect an angle or a segment, the two arcs must use the same compass width,
 > and you must not move the compass between them. Changing the width is the most

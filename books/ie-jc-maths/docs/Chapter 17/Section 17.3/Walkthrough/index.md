@@ -46,6 +46,19 @@ $$\text{slope} = \frac{8}{4} = 2$$
 
 The slope is 2. The line goes up 2 for every 1 across.
 
+## Investigate the slope
+
+**Predict.** Before you move the sliders, predict whether the slope changes if you swap
+which point is A and which is B.
+
+:::figure line-gradient
+
+**Test.** The figure draws two points, the line through them, and the rise and the run as
+the two legs of a triangle. Move the points and watch the slope and the equation change.
+
+**Explain.** Write two or three sentences. Say why the slope is the rise divided by the
+run and not the other way round. Use the words "rise", "run" and "steeper".
+
 ## The sign of the slope
 
 The sign of the slope tells you the direction of the line.

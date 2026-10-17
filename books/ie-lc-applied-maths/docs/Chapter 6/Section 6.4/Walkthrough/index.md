@@ -137,6 +137,21 @@ approached, which would create energy. That is impossible.
 > common error is to write $e = \dfrac{v_1}{v_2}$ or to mix up which body is
 > which. Number the bodies on your diagram before you substitute.
 
+## A guided investigation: the heights of the bounces
+
+:::figure restitution
+
+**Predict.** The ball is dropped from $2$ m. Before you move the slider, predict what
+happens to the first rebound height when you halve the coefficient of restitution.
+Write your prediction down.
+
+**Test.** Set $e$ to $0.6$ and note the rebound height. Now set $e$ to $0.3$ and note
+it again. Move the slider slowly and watch the whole sequence of heights in the
+readout.
+
+**Explain.** Write two sentences that explain why halving $e$ does more than halve the
+rebound height. Use the ratio $e^2$ in your explanation.
+
 ## Progress check
 
 Back to the chapter problem. In test B the coefficient of restitution is $0.5$.

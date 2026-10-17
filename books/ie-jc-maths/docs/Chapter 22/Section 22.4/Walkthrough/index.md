@@ -107,6 +107,20 @@ $$4+9=13$$
 
 So 13 students spent less than 40 minutes.
 
+## Investigate the three charts
+
+**Predict.** Before you move the control, predict whether the bars of a histogram
+touch each other.
+
+:::figure chart-choice
+
+**Test.** Choose each chart in turn. Watch how the same sleep data is drawn, and read
+the question each chart answers.
+
+**Explain.** Write two or three sentences. Say which chart shows every student's
+answer, and which chart groups the hours. Use the words "gap", "class interval" and
+"frequency".
+
 ## Watch out
 
 > **Watch out.** A histogram is not a bar chart with the gaps left out. The gap in

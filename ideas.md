@@ -21,30 +21,31 @@ measured says so.
 
 ```
 $ find books/*/docs/assets/figures -name '*.js' ! -name kit.js ! -name figures.js | wc -l
-212
+231
 
 $ # per book
-  gcse-maths              39 modules   25 chapters
   a-level-maths           58 modules   16 chapters
+  gcse-maths              39 modules   25 chapters
   gcse-physics            37 modules   10 chapters
   a-level-physics         30 modules    9 chapters
+  ie-lc-physics           22 modules   22 chapters
+  ie-jc-maths             13 modules   22 chapters
   proofs                  12 modules   23 proof pages (12 carry a figure)
-  ie-lc-physics           19 modules   22 chapters
-  ie-lc-maths              8 modules   18 chapters
-  ie-lc-applied-maths      6 modules    9 chapters
-  ie-jc-maths              3 modules   22 chapters
+  ie-lc-maths             10 modules   18 chapters
+  ie-lc-applied-maths     10 modules    9 chapters
 
-$ # and one shared module, which two books mount
+$ # and two shared modules, each mounted by more than one book
   assets/figures/venn-regions.js
+  assets/figures/slope-field.js
 ```
 
 The four English books together are **164 modules across 60 chapters**, about 2.7 each.
-The Irish books are **36 modules across 71 chapters**, and the whole of that number was
-built since this file was written.
+The Irish books are **55 modules across 71 chapters** — every one of them built since this
+file was written, which is what §11's table records.
 
-**`ie-jc-maths` is still the largest gap** — 3 figures for 22 chapters and 129 sections,
-and the one book whose reader is 12–14. `ie-lc-maths` is next at 8 for 18. §5 lists what
-each book wants; §10 is the order to build it in.
+**The largest gaps are closed.** `ie-jc-maths` went from 3 figures to 13, `ie-lc-maths`
+from 8 to 10, `ie-lc-physics` from 19 to 22, and `ie-lc-applied-maths` from 6 to 10. What
+is left is §5's remaining menu, and the two structural items in §10.
 
 ### The interaction vocabulary in practice
 
@@ -651,21 +652,20 @@ want the same picture because the idea is the same picture.
 **The kit is done.** Every primitive in §4 is built except `diagram()` (§4.12), and the
 shared library (§9) is built. What is left is content: the figures that use them.
 
+**Items 3, 4, 5 and 7 are built** — see §11. What is left:
+
 1. **`diagram()`** (§4.12) — a drawing whose parts are focusable and described. The last
    unwritten primitive, and the one an accessibility review of a dense figure wants.
 2. **Store the relevance prompt (§6.1)** and put **`practice()` on every Warm-up (§6.2)**.
    Retrieval is the most secure recommendation in the pedagogy and the relevance prompt is
    where the reader writes in their own words. Both are now a few lines, because the kit
-   has `remember()` and `practice()`.
-3. **Ten figures for `ie-jc-maths`** (§5): indices ✓, fractions, ratio and proportion,
-   expanding, the line, trig ratios, transformations, one construction, charts, spread.
-   Also the solids — the book now has `cuboid-volume` and `camera3d()` behind it.
-4. **Chord → tangent and Riemann strips for `ie-lc-maths`** (§5).
-5. **Sound, gravity and the EM spectrum for `ie-lc-physics`**, using `vectorField()` for
-   the fields; **projectiles, pulleys, restitution and SHM for `ie-lc-applied-maths`**.
-6. **Migrate the 136 modules to `label()`** (§4.13) — debt, and the trap is live.
-7. **A `slope-field` figure in the shared library**, which `ie-lc-applied-maths` 8.7 and
-   any future A-level book both want identically — the second test of the library.
+   has `remember()` and `practice()`. **This is the highest-value item left**: it changes
+   what a reader does on every page of every book, where a figure changes one section.
+3. **Migrate the 136 modules to `label()`** (§4.13) — debt, and the trap is live.
+4. **The rest of §5's menu**, which is a menu rather than a plan: the solids for
+   `ie-jc-maths` (16.4's net folding into its solid needs `solid3d()`, which exists),
+   standard deviation and the normal distribution for `ie-lc-maths`, heat and the electric
+   field for `ie-lc-physics`, and the logistic model for `ie-lc-applied-maths`.
 
 ---
 
@@ -703,6 +703,39 @@ build that places the directory, and two checkers.
 | the shared figure library | `assets/figures/` | a figure two books want identically is written once — see §9 for what it is *not* for |
 | `SHARED_DIRS` and the recursive copy | `engine/src/textbook/` | the kit is a library now, and a layer the build did not copy would break every figure silently |
 | `check-figure-kit-pure.mjs` | `scripts/` | the drawing and formatting layers now checked without a browser |
+
+
+**Twenty more figures, 2026-10-17.** The largest gaps in §5's table, built after the kit and
+the checks moved to TypeScript. Every one was verified by setting its controls to values
+worked out by hand and confirming the readout agreed.
+
+| Book | Section | Module | Note |
+|---|---|---|---|
+| `ie-lc-maths` | 7.1 | `chord-to-tangent` | the chord turns towards the tangent as h shrinks; the rise-and-run triangle and the tangent are both drawn, so the reader watches the gap close rather than being told it does |
+| `ie-lc-maths` | 8.2 | `riemann-strips` | left, right and midpoint rules; left and right bracket the area from opposite sides |
+| `ie-jc-maths` | 5.2 | `fraction-strip` | two strips and the common denominator that lines them up |
+| `ie-jc-maths` | 6.1 | `ratio-bars` | bars regrouped by a common factor; a leftover part marks a group size that does not divide |
+| `ie-jc-maths` | 6.3 | `proportion-curves` | direct and inverse on one pair of axes |
+| `ie-jc-maths` | 11.3 | `expand-area` | the rectangle for (x + 2)(x + 3), four regions, two collecting |
+| `ie-jc-maths` | 17.3 | `line-gradient` | two points, the rise and run, the equation appearing |
+| `ie-jc-maths` | 18.3 | `trig-ratio` | the angle moves and the ratios stay fixed against the hypotenuse |
+| `ie-jc-maths` | 19.2 | `transformations-grid` | each transformation as a chooser, with the coordinate rule named |
+| `ie-jc-maths` | 20.2 | `construction-stepper` | a construction as a procedure, with `stepper()` |
+| `ie-jc-maths` | 22.4 | `chart-choice` | which chart answers which question, over one data set |
+| `ie-jc-maths` | 22.6 | `boxplot-spread` | draggable quartiles with a backing slider; the IQR is the middle half |
+| `ie-lc-physics` | 6.2 | `gravity-inverse-square` | two masses, the inverse square, and a chooser comparing it with Coulomb's law |
+| `ie-lc-physics` | 9.5 | `standing-wave` | nodes and the harmonic number, with f = v / lambda |
+| `ie-lc-physics` | 12.1 | `em-spectrum` | a wavelength line with the visible band marked, and both values read off it |
+| `ie-lc-applied-maths` | 3.7 | `projectile` | angle and speed, the path, and a wall to clear or hit |
+| `ie-lc-applied-maths` | 4.6 | `pulley` | two masses and an incline, with the acceleration and the tension |
+| `ie-lc-applied-maths` | 6.4 | `restitution` | the rebound heights as a geometric sequence with ratio e squared |
+| `ie-lc-applied-maths` | 7.6 | `shm` | the graph and the circle it projects from |
+| **shared** | `ie-lc-applied-maths` 8.7 | `slope-field` | **the second shared module.** Five general equations, the field, and the solution through a chosen point — the constant of integration is which point you started from |
+
+The shared library's second test is the one that mattered: `slope-field` is mounted by a
+book that does not own it, and it drew no book-specific idea into the library. Its
+equations are the general ones, which is why a future A-level book can mount it as it
+stands.
 
 **Figures built from the kit, 2026-10-16:**
 

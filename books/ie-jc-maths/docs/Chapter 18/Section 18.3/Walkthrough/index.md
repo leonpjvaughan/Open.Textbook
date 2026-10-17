@@ -69,6 +69,19 @@ Press the tan key, then 37, then equals. Make sure the calculator is in degree m
 
 $$\tan 37^\circ = 0.7536\ldots \approx 0.754$$
 
+## Investigate the ratio
+
+**Predict.** Before you move the controls, predict whether the three ratios change
+when you make the triangle bigger.
+
+:::figure trig-ratio
+
+**Test.** The figure draws a right-angled triangle on a centimetre grid. Move the
+angle and the hypotenuse, and watch the two side lengths and the three ratios.
+
+**Explain.** Write two or three sentences. Say what happens to the ratios when the
+triangle grows, and why. Use the words "angle", "hypotenuse" and "scaled copy".
+
 ## Watch out
 
 > **Watch out.** The hypotenuse is never the adjacent side. The adjacent side is the

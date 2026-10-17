@@ -52,6 +52,20 @@ $$x^2 - 4x - 3x + 12 = x^2 - 7x + 12$$
 
 The product of two negative numbers is positive, so the last term is $+12$.
 
+## Investigate the rectangle
+
+**Predict.** Before you move the sliders, predict which two regions of the rectangle
+join together to make the middle term.
+
+:::figure expand-area
+
+**Test.** The figure draws the rectangle for $(x+2)(x+3)$. Change the two constants and
+watch the four regions and the middle term change.
+
+**Explain.** Write two or three sentences. Say why the rectangle has four regions for
+two brackets, and why two of them collect into one term. Use the words "product" and
+"like terms".
+
 ## A coefficient on the first term
 
 When the first term has a coefficient, the grid still works.
