@@ -15,6 +15,7 @@ import pytest
 import yaml
 
 from textbook import portal
+from textbook import themes as themes
 from textbook.book import SCHEME_TOKENS, discover_books, load_collection, repo_root
 from textbook.themes import (
     APCA_MIN_CONTRAST,
@@ -993,3 +994,86 @@ def test_the_engine_names_no_other_colour():
     assert set(named) == {"HOUSE_ACCENT", "HOUSE_ACCENT_DARK_SCHEME"}, (
         f"the engine names more accents than the fallback: {sorted(named)}"
     )
+
+
+# --- the contrast table is the whole contract ---------------------------------
+#
+# `contrast_problems` used to be five near-identical loops, and they had already
+# diverged: only the figure one resolved an alias, and its comment records what that
+# cost — "without this alias the lookup would find nothing, the loop would `continue`,
+# and the threshold would never be applied — a check that cannot fail." One table and
+# one loop make that unexpressible; these two tests make it visible if it comes back.
+
+
+def test_every_declared_threshold_is_applied():
+    """The table and the dicts cannot disagree.
+
+    Deleting one of the five loops left its dict in place and every test still passed:
+    a threshold that is declared and never measured reads exactly like one that is
+    measured and satisfied.
+    """
+    declared = (
+        set(MIN_CONTRAST)
+        | set(ON_ACCENT_MIN_CONTRAST)
+        | set(FIGURE_MIN_CONTRAST)
+        | set(SOFT_MIN_CONTRAST)
+        | set(INK_LIGHTER_MIN_CONTRAST)
+    )
+    applied = {
+        role
+        for _surface, thresholds, _alias, _wording, _tail in themes.CONTRAST_RULES
+        for role in thresholds
+    }
+    assert applied == declared, (
+        "declared and never measured: "
+        + ", ".join(sorted(declared - applied))
+        + "; measured and never declared: "
+        + ", ".join(sorted(applied - declared))
+    )
+
+
+@pytest.mark.parametrize("bundle", ordered_bundles(), ids=lambda b: b.id)
+def test_each_contrast_rule_can_actually_fail(monkeypatch, bundle):
+    """Every row reports a failure when its token matches its surface.
+
+    A rule whose lookup finds nothing `continue`s, so it can be present, look right, and
+    never be able to fail. This makes each row's token the surface it is measured
+    against — a ratio of 1:1 — and requires the problem to come back.
+    """
+    for surface, thresholds, alias, _wording, _tail in themes.CONTRAST_RULES:
+        for role in thresholds:
+            token = alias.get(role, role)
+            tokens = dict(bundle.palette("default"))
+            measured = {
+                "paper": tokens["paper"],
+                "accent": tokens["accent"],
+                "figure": figure_panel(tokens),
+                "card": card_surface(tokens, "default"),
+            }[surface]
+            tokens[token] = measured
+            monkeypatch.setattr(themes, "effective_tokens", lambda *a, **k: tokens)
+            problems = themes.contrast_problems(bundle, "default", None)
+            assert any(role in problem for problem in problems), (
+                f"{role} on the {surface} cannot fail: setting {token} to the surface "
+                "reported nothing, so the row's lookup found nothing and `continue`d"
+            )
+
+
+@pytest.mark.parametrize("bundle", ordered_bundles(), ids=lambda b: b.id)
+def test_every_threshold_resolves_to_a_token_the_bundle_has(bundle):
+    """A row whose lookup finds nothing `continue`s — a check that cannot fail.
+
+    `fig_accent` is not a bundle token: `extra.css` defines `--tb-fig-accent` as
+    `var(--tb-accent)`, which is why the figure row carries an alias, and its comment
+    records the cost of forgetting it. `test_each_contrast_rule_can_actually_fail`
+    cannot catch this, because it puts the token into the palette itself; this asserts
+    that the row resolves to a token the bundle really defines.
+    """
+    for surface, thresholds, alias, _wording, _tail in themes.CONTRAST_RULES:
+        for role in thresholds:
+            token = alias.get(role, role)
+            for scheme in SCHEMES:
+                assert token in bundle.palette(scheme), (
+                    f"{role} on the {surface} resolves to {token!r}, which "
+                    f"{bundle.id}/{scheme} does not define, so the row would skip it"
+                )

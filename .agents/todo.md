@@ -94,6 +94,7 @@ now, and the four marked open are the ones verified open on 2026-10-17.
 - [x] 65. The booklet has no modulus form, and does not define λ
 - [x] 66. 137 of 250 figure modules hand-write a `<text>` element
 - [ ] 67. Checks that parse prose or enumerate notation, and where else they appear
+- [ ] 69. The generalisation review: eight places the doctrine was not applied (1 and 2 done)
 
 ---
 
@@ -528,6 +529,47 @@ moduli come back and the one an elastic string uses is among them.
   range/time/max-height forms and the drag laws `D = kv`/`D = kv²` are derived
   in-chapter from supplied suvat items or stated in the question, and the
   elastic energy-loss formula likewise.
+
+---
+
+## 69. The generalisation review: eight places the doctrine was not applied
+
+**Why this is an item.** An architecture review applied one test to each candidate:
+*is this the same thing written twice, or two different things that look alike?* Only
+the first is worth generalising — `scaffold.PAGE_KINDS` exists because "there were four
+places that had to agree and no test between them", and `DECISIONS.md` rejects the
+other direction ("a framework for 177 bespoke diagrams would be a framework around
+nothing"). These are the first kind.
+
+| # | Where | The repeat | State |
+|---|---|---|---|
+| 1 | `config.from_parts` | six test files hand-wrote the hook config; two had already drifted — one wrote `tier_filter` (`"H"`) where production writes a profile **id**, and none carried the proof book | **done 2026-10-17** |
+| 2 | `themes.contrast_problems` | five near-identical loops; only one resolved its alias, and its comment records that forgetting it makes "a check that cannot fail" | **done 2026-10-17** |
+| 3 | `tools` flag schema | `cli.ts` documents flags in a `usage` string and each command parses its own; `audit` accepts `--maps` that `help` does not mention, and `readout`/`preview` re-implement `parseArgs` | open |
+| 4 | tests: no `conftest.py` | `_problem` ×3, `_write` ×2, `colour_literals` ×2, two hand-written JS brace-counters | open |
+| 5 | `kit.ts` / `kit-pure.ts` | two hand-written lists of one contract: 54 and 43 `want()` calls, 13 assertion strings verbatim in both, 28 in only one tier | open |
+| 6 | `units.py` | the dispatch is general; the ceremony is not — the same tolerance parse ×4 and seven hand-written compare-and-report pairs in three sentence shapes | open |
+| 7 | `pipeline.copy_assets` | `SHARED_FILES`/`SHARED_DIRS` are driven, then five bespoke blocks in a 153-line, 23-branch function | open |
+| 8 | `scaffold` stubs | five stub builders share one preamble (`front_matter` + marker + H1) | open |
+
+**Measured, so the size is not a guess:** 201 of 250 figure modules hand-write
+`<line>`/`<rect>`/`<path>`/`<polygon>`, 47 hand-roll a domain→pixel mapping, and 76
+format a number with its unit by hand because the kit has `fmt`/`sigfig`/`signed` and
+**no `quantity(value, unit)`**. The kit's own history says this is worth doing — "the
+same five drawings re-earned two hundred times" — and the gap is adoption plus that one
+missing helper.
+
+**What must NOT be generalised**, recorded so a later pass does not try: the 173
+`update()` bodies (the same signature, and the body *is* the mathematics), the
+near-duplicate figures across books (`DECISIONS.md` settled that they teach different
+readers), and `innerHTML` markup with per-module `toFixed` (`reuse-audit.md` §3.4).
+
+**Done means**
+
+- [x] 1 and 2, each with the test that keeps it: the keys cannot drift, and every
+  declared threshold resolves to a token and can fail.
+- [ ] 3–8 converted, each with a check that fails if the copy returns.
+- [ ] `quantity()` exists and the number-with-unit count falls from 76.
 
 ---
 

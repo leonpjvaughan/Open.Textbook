@@ -25,6 +25,7 @@ from types import SimpleNamespace
 import pytest
 
 from textbook import book as books
+from textbook import config as cfg
 from textbook import pipeline
 from textbook import proofs as proofbook
 from textbook.hooks import _fences, proofs
@@ -40,14 +41,19 @@ def registry() -> dict:
 
 
 def config(qualification: str, book_id: str = "gcse-maths") -> dict:
-    return {
-        "extra": {
-            "book": book_id,
-            "qualification": qualification,
-            "proofs_dir": "books/proofs",
-            "proofs_url": "/proofs",
-        }
-    }
+    """The hook config, from the one constructor.
+
+    The proof book's location is derived there rather than written here: this used to
+    hard-code `"books/proofs"` and `"/proofs"`, which is right today and is not how
+    `pipeline` finds them.
+    """
+    target = books.book_by_id(book_id)
+    return cfg.from_parts(
+        target.docs,
+        book=target,
+        profile=target.default_profile.id,
+        qualification=qualification,
+    )
 
 
 # --- the book itself ----------------------------------------------------------

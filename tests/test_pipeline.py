@@ -670,7 +670,7 @@ def test_tier_behaviour_follows_the_declared_filter_not_the_profile_id(monkeypat
     out = tier.on_page_markdown(
         "Before.\n\n<!-- tier:h -->Higher only.<!-- /tier:h -->\n\nAfter.\n",
         pipeline.make_page("Chapter 1/index.md", "chapter-1/"),
-        {"extra": {"book": BOOK, "tier_profile": "learner"}},
+        cfg.from_parts(".", book=renamed, profile="learner"),
         [],
     )
     assert "Higher only." not in out

@@ -121,6 +121,24 @@ SOFT_MIN_CONTRAST = {"ink_soft": 4.5}
 # else the lighter ink touches benefits too.
 INK_LIGHTER_MIN_CONTRAST = {"ink_lighter": 3.0}
 
+#: The surface each set of thresholds is measured against, and the thresholds
+#: themselves: one row per rule, `(surface, thresholds, alias, wording, tail)`.
+#:
+#: **Why a table, and not five loops.** The five loops this replaces were the same
+#: twelve lines five times, and they had already diverged: only the figure one resolved
+#: an alias, and its own comment records what that cost — "without this alias the lookup
+#: would find nothing, the loop would `continue`, and the threshold would never be
+#: applied — a check that cannot fail." With one loop, a rule cannot be added in a form
+#: that silently does nothing, and `test_every_declared_threshold_is_applied` proves the
+#: table and the dicts agree.
+CONTRAST_RULES = (
+    ("paper", MIN_CONTRAST, {}, "on paper", ""),
+    ("accent", ON_ACCENT_MIN_CONTRAST, {}, "on the accent", ""),
+    ("figure", FIGURE_MIN_CONTRAST, FIGURE_TOKEN_ALIAS, "on the figure panel", ""),
+    ("card", SOFT_MIN_CONTRAST, {}, "on the card", ""),
+    ("paper", INK_LIGHTER_MIN_CONTRAST, {}, "on paper", " for a non-text control"),
+)
+
 # --- APCA, the polarity-sensitive second opinion ------------------------------
 #
 # WCAG 2.x computes a ratio from relative luminance and `MIN_CONTRAST` applies
@@ -453,64 +471,33 @@ def card_surface(tokens: dict[str, str], scheme: str) -> str:
 
 
 def contrast_problems(bundle: Bundle, scheme: str, subject: dict[str, str] | None) -> list[str]:
+    """Every declared threshold, measured against the surface it names.
+
+    One loop over `CONTRAST_RULES`, so a rule that is declared is a rule that is
+    applied. The five hand-written loops this replaces had already diverged once.
+    """
     tokens = effective_tokens(bundle, scheme, subject)
+    surfaces = {
+        "paper": tokens["paper"],
+        "accent": tokens["accent"],
+        "figure": figure_panel(tokens),
+        "card": card_surface(tokens, scheme),
+    }
     problems = []
-    for role, minimum in MIN_CONTRAST.items():
-        colour = tokens.get(role)
-        if not colour:
-            continue
-        ratio = contrast(colour, tokens["paper"])
-        if ratio < minimum:
-            problems.append(
-                f"{bundle.id}/{scheme}: {role} {colour} on paper {tokens['paper']} "
-                f"is {ratio:.2f}:1, below {minimum}:1"
-            )
-    for role, minimum in ON_ACCENT_MIN_CONTRAST.items():
-        colour = tokens.get(role)
-        if not colour:
-            continue
-        ratio = contrast(colour, tokens["accent"])
-        if ratio < minimum:
-            problems.append(
-                f"{bundle.id}/{scheme}: {role} {colour} on the accent "
-                f"{tokens['accent']} is {ratio:.2f}:1, below {minimum}:1"
-            )
-    panel = figure_panel(tokens)
-    for role, minimum in FIGURE_MIN_CONTRAST.items():
-        # `fig_accent` is not a bundle token. extra.css defines `--tb-fig-accent`
-        # as `var(--tb-accent)`, so it resolves to the accent, and without this
-        # alias the lookup would find nothing, the loop would `continue`, and the
-        # threshold would never be applied — a check that cannot fail.
-        colour = tokens.get(FIGURE_TOKEN_ALIAS.get(role, role))
-        if not colour:
-            continue
-        ratio = contrast(colour, panel)
-        if ratio < minimum:
-            problems.append(
-                f"{bundle.id}/{scheme}: {role} {colour} on the figure panel {panel} "
-                f"is {ratio:.2f}:1, below {minimum}:1"
-            )
-    card = card_surface(tokens, scheme)
-    for role, minimum in SOFT_MIN_CONTRAST.items():
-        colour = tokens.get(role)
-        if not colour:
-            continue
-        ratio = contrast(colour, card)
-        if ratio < minimum:
-            problems.append(
-                f"{bundle.id}/{scheme}: {role} {colour} on the card {card} "
-                f"is {ratio:.2f}:1, below {minimum}:1"
-            )
-    for role, minimum in INK_LIGHTER_MIN_CONTRAST.items():
-        colour = tokens.get(role)
-        if not colour:
-            continue
-        ratio = contrast(colour, tokens["paper"])
-        if ratio < minimum:
-            problems.append(
-                f"{bundle.id}/{scheme}: {role} {colour} on paper {tokens['paper']} "
-                f"is {ratio:.2f}:1, below the {minimum}:1 a non-text control needs"
-            )
+    for surface, thresholds, alias, wording, tail in CONTRAST_RULES:
+        measured = surfaces[surface]
+        for role, minimum in thresholds.items():
+            # `fig_accent` is not a bundle token: extra.css defines `--tb-fig-accent` as
+            # `var(--tb-accent)`. The alias is per rule, which is why it lives in the row.
+            colour = tokens.get(alias.get(role, role))
+            if not colour:
+                continue
+            ratio = contrast(colour, measured)
+            if ratio < minimum:
+                problems.append(
+                    f"{bundle.id}/{scheme}: {role} {colour} {wording} {measured} "
+                    f"is {ratio:.2f}:1, below {minimum}:1{tail}"
+                )
     return problems
 
 

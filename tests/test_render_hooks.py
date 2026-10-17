@@ -61,11 +61,16 @@ def docs(tmp_path: Path) -> Path:
 
 
 def make_config(docs_dir: Path, profile: str = "higher") -> dict:
-    """A config the hooks accept, the same shape ``pipeline.make_config`` builds."""
-    return {
-        "docs_dir": str(docs_dir),
-        "extra": {"book": BOOK, "tier_profile": profile},
-    }
+    """The hook config, from the one constructor — not a second copy of it.
+
+    This used to hand-write ``{"docs_dir", "extra": {"book", "tier_profile"}}``, which
+    is two of the seven keys production supplies. It carried neither the proof book nor
+    the bundle registry, so a hook that started reading one of them would pass here and
+    fail in the build.
+    """
+    return pipeline.cfg.from_parts(
+        docs_dir, book=pipeline.books.book_by_id(BOOK), profile=profile
+    )
 
 
 def run_figure_hook(markdown: str, docs_dir: Path, md_path: str = "figure/index.md") -> str:

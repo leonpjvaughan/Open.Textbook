@@ -16,7 +16,9 @@ from __future__ import annotations
 
 from pathlib import Path
 
+from . import book as books_module
 from .book import Book, book_by_id, discover_books, repo_root
+from .themes import default_bundle, ordered_bundles
 
 
 def extra(config) -> dict:
@@ -49,9 +51,68 @@ def book_dir(config) -> Path:
 
 
 def profile(config) -> str:
-    """The profile id for this build, e.g. ``higher``."""
+    """The profile **id** for this build, e.g. ``higher``.
+
+    Not the tier filter. `book.default_profile.tier_filter` is `"H"`, which is a
+    different vocabulary for a different question, and the fallback here used to return
+    it — so this function answered `"higher"` when production wrote the key and `"H"`
+    when a test omitted it. One key, two vocabularies, no test between them.
+    """
     current = extra(config).get("tier_profile")
-    return current or book(config).default_profile.tier_filter
+    if current:
+        return current
+    return book(config).default_profile.id
+
+
+def proofs_dir(book_: Book) -> str:
+    """The reference work's directory, relative to the repository root.
+
+    Empty when there is no reference work, and the hook then falls back to
+    discovery — but a build knows, so it says.
+    """
+    reference = books_module.reference_book()
+    return book_.rel(reference.root) if reference else ""
+
+
+def proofs_base_url() -> str:
+    """Where the proof book publishes, root-absolute, so any book can link to it."""
+    reference = books_module.reference_book()
+    if reference is None:
+        return "/proofs"
+    return "/" + reference.deploy_path(reference.default_profile.id)
+
+
+def from_parts(docs_dir, *, book=None, profile=None, **extra_values) -> dict:
+    """Build the hook config in one place.
+
+    **Why a constructor and not a dict literal.** This is the `extra` block every hook
+    reads, and it has grown by one key five times — `qualification`, `proofs_dir`,
+    `proofs_url`, `themes`, `default_theme`. Six places in `tests/` used to hand-write
+    it, each a second copy of an engine contract, and two of them had already drifted:
+    one wrote `tier_filter` where production writes a profile id, and none of them
+    carried the proof book. A hook that starts reading a new key passes in production
+    and silently misbehaves in a test, which is the failure a test exists to prevent.
+
+    `book` is optional because a test's docs tree is often a temporary directory; the
+    bundle registry is always present because it is global rather than book-specific.
+    """
+    values: dict = {
+        "tier_profile": profile,
+        "themes": [bundle.id for bundle in ordered_bundles()],
+        "default_theme": default_bundle().id,
+    }
+    if book is not None:
+        values.update(
+            {
+                "book": book.id,
+                "book_dir": book.rel(book.root),
+                "qualification": book.qualification,
+                "proofs_dir": proofs_dir(book),
+                "proofs_url": proofs_base_url(),
+            }
+        )
+    values.update(extra_values)
+    return {"extra": values, "docs_dir": str(docs_dir)}
 
 
 def curriculum_path(config) -> Path:

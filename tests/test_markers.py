@@ -17,15 +17,13 @@ BOOKS = discover_books()
 
 
 def build_config(book) -> dict:
-    """The config a hook is driven with, for a real book."""
-    return {
-        "docs_dir": str(book.docs),
-        "extra": {
-            "book": book.id,
-            "book_dir": book.rel(book.root),
-            "tier_profile": book.default_profile.tier_filter,
-        },
-    }
+    """The config a hook is driven with, for a real book.
+
+    It used to write ``tier_profile: book.default_profile.tier_filter`` — `"H"`, a tier
+    filter — where production writes the profile **id**, `"higher"`. One key, two
+    vocabularies, and `config.profile()` answered whichever it was given.
+    """
+    return cfg.from_parts(book.docs, book=book, profile=book.default_profile.id)
 
 
 class FakePage:
@@ -153,4 +151,8 @@ def test_hook_paths_come_from_the_config_not_the_filesystem():
     assert cfg.docs_dir(config) == BOOKS[0].docs
     assert cfg.banks_dir(config) == BOOKS[0].banks
     assert cfg.curriculum_path(config) == BOOKS[0].curriculum
-    assert cfg.profile(config) == BOOKS[0].default_profile.tier_filter
+    # **An id, not a filter.** `tier_filter` is `"H"`; the profile is `"higher"`. This
+    # assertion used to pin the filter, because the config it was given was built with
+    # one — so the test agreed with the drift rather than catching it.
+    assert cfg.profile(config) == BOOKS[0].default_profile.id
+    assert cfg.profile(config) != BOOKS[0].default_profile.tier_filter

@@ -325,45 +325,22 @@ def nav_paths(nav, subset: str | None = None) -> list[str]:
 def make_config(book: books.Book, profile: str) -> dict:
     """A plain dict satisfies the hooks, which only ever call ``config.get()``.
 
-    The bundle registry is here so the before-paint script can offer exactly the
-    themes in ``themes/`` without the page template holding a second list.
+    The assembly lives in `config.from_parts`, because the `extra` block is an engine
+    contract that six test files used to copy by hand — and two of the copies had
+    already drifted. One constructor means a hook that reads a new key cannot pass in
+    production and silently misbehave in a test.
     """
-    return {
-        "extra": {
-            "book": book.id,
-            "book_dir": book.rel(book.root),
-            "tier_profile": profile,
-            # The `:::prove` hook needs three things the book itself does not
-            # hold: which course the reader is in, and where the shared proof book
-            # lives. Passing them here rather than letting the hook find them keeps
-            # every hook resolving its paths the same way, so it works for any
-            # book and a test can drive it with a hand-written config.
-            "qualification": book.qualification,
-            "proofs_dir": proofs_dir(book),
-            "proofs_url": proofs_base_url(),
-            "themes": [bundle.id for bundle in ordered_bundles()],
-            "default_theme": default_bundle().id,
-        },
-        "docs_dir": str(book.docs),
-    }
+    return cfg.from_parts(book.docs, book=book, profile=profile)
 
 
 def proofs_dir(book: books.Book) -> str:
-    """The reference work's directory, relative to the repository root.
-
-    Empty when there is no reference work, and the hook then falls back to
-    discovery — but a build knows, so it says.
-    """
-    reference = books.reference_book()
-    return book.rel(reference.root) if reference else ""
+    """The reference work's directory, relative to the repository root."""
+    return cfg.proofs_dir(book)
 
 
 def proofs_base_url() -> str:
-    """Where the proof book publishes, root-absolute, so any book can link to it."""
-    reference = books.reference_book()
-    if reference is None:
-        return "/proofs"
-    return "/" + reference.deploy_path(reference.default_profile.id)
+    """Where the proof book publishes, root-absolute."""
+    return cfg.proofs_base_url()
 
 
 def make_page(md_path: str, url: str) -> SimpleNamespace:

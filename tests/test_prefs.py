@@ -18,6 +18,7 @@ from string import Template
 
 import pytest
 
+from textbook import config as cfg
 from textbook import pipeline, portal
 from textbook.book import book_by_id, repo_root
 from textbook.hooks import prefs
@@ -29,13 +30,12 @@ PAGE = "Chapter 1/Section 1.1/Walkthrough/index.md"
 
 
 def base_config() -> dict:
-    """The shape ``snippet`` reads: the bundle registry, from ``themes/``."""
-    return {
-        "extra": {
-            "themes": [bundle.id for bundle in ordered_bundles()],
-            "default_theme": default_bundle().id,
-        }
-    }
+    """The shape ``snippet`` reads: the bundle registry, from ``themes/``.
+
+    From the one constructor, which always supplies it — the registry is global rather
+    than book-specific, so a config with no book still has it.
+    """
+    return cfg.from_parts(".")
 
 
 def shared_snippet() -> str:
