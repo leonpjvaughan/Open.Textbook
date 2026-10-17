@@ -1,18 +1,20 @@
-// Tier-1 guided investigation: a weighted network, and the degree of a vertex.
+// The parts of a weighted network, explored one vertex at a time.
 //
-// The page asks the reader to choose a vertex and read its degree, then to check the
-// handshake lemma against the whole network. So the figure has to do two things: show
-// which edges touch the chosen vertex, and show the weights, because the weights are
-// what make it a *weighted* network rather than a bare graph.
+// Section 2.1 names the parts of a network — vertex, edge, weight — and then defines
+// the degree of a vertex as the number of edges that meet it. A reader who skims the
+// list can repeat all three words without pointing at any of them, and the degree is a
+// property of one vertex that is easiest to see with that vertex picked out.
 //
-// Nothing here carries a colour. The chosen vertex and its edges are drawn in the
-// accent class and every other edge in the ink class, so the distinction is a class
-// difference and survives every bundle. The weights use a different class again, so a
-// weight is never mistaken for a vertex name.
+// So the six vertices are the six parts: each is a button under the drawing, the
+// drawing follows the focus, and the readout gives that vertex's degree and the edges
+// that meet it. The buttons are the focus stops, which is `diagram()`'s contract; the
+// old chooser did the same job with a drop-down, and the keyboard path through a list
+// of parts is one key per part rather than a menu.
 //
-// The scaffolding — the panel, its accessible name, the chooser, the readout and the
-// redraw — comes from `kit.js`. What is left is the drawing and the sentences.
-import { SIZE, label, panel, react, chooser } from "./kit.js";
+// Nothing here carries a colour. Every shape uses a `fig-*` class and every word a
+// `text-*` class, so the figure follows the reader's theme in both schemes. The whole
+// drawing is static — no control changes it — which is what lets it be a `diagram()`.
+import { SIZE, circle, diagram, label, line } from "./kit.js";
 
 // A weighted network on six vertices. The weights are road distances in kilometres.
 const VERTICES = {
@@ -38,64 +40,67 @@ const EDGES = [
 
 const degree = (v) => EDGES.filter(([a, b]) => a === v || b === v).length;
 
+// A weight sits at the midpoint of its edge, nudged off the line so it does not sit
+// on top of it. The nudge is perpendicular to the edge, which keeps it legible
+// whichever way the edge runs.
+function weightAt(a, b, w) {
+  const p = VERTICES[a];
+  const q = VERTICES[b];
+  const mx = (p.x + q.x) / 2;
+  const my = (p.y + q.y) / 2;
+  const dx = q.x - p.x;
+  const dy = q.y - p.y;
+  const len = Math.hypot(dx, dy) || 1;
+  const nx = (-dy / len) * 12;
+  const ny = (dx / len) * 12;
+  return label({ x: mx + nx, y: my + ny + 5, text: String(w), size: SIZE.value, class: "text-accent" });
+}
+
+// One part: the vertex, its name, and the edges that meet it. An edge is shared by two
+// vertices, so it is drawn in both parts and the two copies sit exactly on top of each
+// other. At rest every part is at full strength, so the shared edge looks like one
+// line; when a part is in focus the rest dim, and a shared edge reads as belonging to
+// the pair rather than to neither.
+function drawVertex(v) {
+  const p = VERTICES[v];
+  let out = "";
+  for (const [a, b, w] of EDGES) {
+    if (a !== v && b !== v) continue;
+    const q = VERTICES[a];
+    const r = VERTICES[b];
+    out += line({ x1: q.x, y1: q.y, x2: r.x, y2: r.y, class: "fig-ink", width: 1.5 });
+    out += weightAt(a, b, w);
+  }
+  out += circle({ cx: p.x, cy: p.y, r: 10, class: "fig-ink" });
+  out += label({ x: p.x, y: p.y + 6, text: v, size: SIZE.value, class: "text-ink", weight: "bold" });
+  return out;
+}
+
+function neighbours(v) {
+  return EDGES.filter(([a, b]) => a === v || b === v).map(([a, b]) => (a === v ? b : a));
+}
+
 export function mount(el) {
-  const { svg, readout } = panel(el, {
-    label:
-      "A weighted network of six vertices and nine edges, with the degree of the chosen vertex shown",
+  const total = Object.keys(VERTICES).reduce((sum, v) => sum + degree(v), 0);
+  const caption =
+    `Use Tab to move from vertex to vertex. The six degrees add to ${total}, ` +
+    `which is twice the ${EDGES.length} edges.`;
+
+  diagram(el, {
+    label: "A weighted network of six vertices and nine edges",
+    description:
+      "A weighted network of six vertices, named A to F, joined by nine edges. " +
+      "Each edge carries a weight, which is a road distance in kilometres. Move " +
+      "from vertex to vertex to read the degree of each one.",
+    caption,
     width: 560,
     height: 300,
+    parts: Object.keys(VERTICES).map((v) => ({
+      name: `Vertex ${v}`,
+      description:
+        `Degree ${degree(v)}: ${degree(v)} edge${degree(v) === 1 ? "" : "s"} meet it, ` +
+        `joining it to ${neighbours(v).join(" and ")}.`,
+      draw: () => drawVertex(v),
+    })),
   });
-
-  const pick = chooser(el, {
-    id: "vertex",
-    label: "Vertex",
-    name: "Choose a vertex to read its degree",
-    choices: Object.keys(VERTICES).map((v) => ({ value: v, label: v })),
-    value: "C",
-  });
-
-  // A weight sits at the midpoint of its edge, nudged off the line so it does not sit
-  // on top of it. The nudge is perpendicular to the edge, which keeps it legible
-  // whichever way the edge runs.
-  function weightAt(a, b, w) {
-    const p = VERTICES[a];
-    const q = VERTICES[b];
-    const mx = (p.x + q.x) / 2;
-    const my = (p.y + q.y) / 2;
-    const dx = q.x - p.x;
-    const dy = q.y - p.y;
-    const len = Math.hypot(dx, dy) || 1;
-    const nx = (-dy / len) * 12;
-    const ny = (dx / len) * 12;
-    return label({ x: mx + nx, y: my + ny + 5, text: String(w), size: SIZE.value, class: "text-accent" });
-  }
-
-  function update() {
-    const chosen = pick.value;
-
-    let edges = "";
-    for (const [a, b, w] of EDGES) {
-      const p = VERTICES[a];
-      const q = VERTICES[b];
-      const touches = a === chosen || b === chosen;
-      edges += `<line x1="${p.x}" y1="${p.y}" x2="${q.x}" y2="${q.y}" class="${touches ? "fig-accent" : "fig-ink"}" stroke-width="${touches ? 3.5 : 1.5}"></line>`;
-      edges += weightAt(a, b, w);
-    }
-
-    let vertices = "";
-    for (const [v, p] of Object.entries(VERTICES)) {
-      const on = v === chosen;
-      vertices += `<circle cx="${p.x}" cy="${p.y}" r="${on ? 13 : 10}" class="${on ? "fig-accent" : "fig-ink"}"></circle>`;
-      vertices += label({ x: p.x, y: p.y + 6, text: v, size: SIZE.value, class: "text-ink", weight: "bold" });
-    }
-
-    svg.innerHTML = `${edges}${vertices}`;
-
-    const total = Object.keys(VERTICES).reduce((sum, v) => sum + degree(v), 0);
-    readout.textContent =
-      `Vertex ${chosen} has degree ${degree(chosen)}: ${degree(chosen)} edges meet it. ` +
-      `The degrees of all six vertices add to ${total}, which is 2 × ${EDGES.length} = ${2 * EDGES.length}, the number of edges counted twice.`;
-  }
-
-  react([pick], update);
 }
