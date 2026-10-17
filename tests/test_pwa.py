@@ -198,9 +198,17 @@ def test_static_assets_are_cache_first():
 
 
 def test_the_worker_has_an_explicit_update_path():
+    """The update path exists, whatever the receiver is called.
+
+    These asserted `self.skipWaiting()` — a **source spelling**, not the behaviour. The
+    worker now names its scope `scope` (a `ServiceWorkerGlobalScope`, which is not a
+    `Window`, so the type has to be stated once), and `scope` *is* `self`; nothing
+    changed at runtime and the test failed. A test that breaks on a rename and passes on
+    a behaviour change is pinned to the wrong thing.
+    """
     source = SW.read_text(encoding="utf-8")
-    assert "self.skipWaiting()" in source
-    assert "self.clients.claim()" in source
+    assert ".skipWaiting()" in source
+    assert ".clients.claim()" in source
     # Old caches are deleted on activate, so a deploy cannot leave one behind.
     activate = function_body(source, "onActivate")
     assert "caches.delete(key)" in activate
