@@ -9,7 +9,7 @@
 // The scaffolding — the surface, its accessible name, the sliders, the live
 // readout and the redraw — comes from `kit.js`. What is left here is the drawing
 // and the sentences, which are the parts that differ from every other figure.
-import { panel, slider, react } from "./kit.js";
+import { SIZE, label, panel, react, slider } from "./kit.js";
 
 export function mount(el) {
   const LEFT = 64;
@@ -60,8 +60,7 @@ export function mount(el) {
       .map((value) => {
         const y = yFor(value);
         return (
-          `<line x1="${LEFT - 5}" y1="${y.toFixed(1)}" x2="${LEFT}" y2="${y.toFixed(1)}" class="fig-ink"></line>` +
-          `<text x="${LEFT - 9}" y="${(y + 4).toFixed(1)}" font-size="16" text-anchor="end" class="fig-ink">${value}</text>`
+          `<line x1="${LEFT - 5}" y1="${y.toFixed(1)}" x2="${LEFT}" y2="${y.toFixed(1)}" class="fig-ink"></line>${label({ x: LEFT - 9, y: (y + 4).toFixed(1), text: `${value}`, anchor: "end", size: SIZE.tick, class: "text-ink" })}`
         );
       })
       .join("");
@@ -70,35 +69,25 @@ export function mount(el) {
       .map((value) => {
         const x = xFor(value);
         return (
-          `<line x1="${x.toFixed(1)}" y1="${BASE}" x2="${x.toFixed(1)}" y2="${BASE + 5}" class="fig-ink"></line>` +
-          `<text x="${x.toFixed(1)}" y="${BASE + 18}" font-size="16" text-anchor="middle" class="fig-ink">${value}</text>`
+          `<line x1="${x.toFixed(1)}" y1="${BASE}" x2="${x.toFixed(1)}" y2="${BASE + 5}" class="fig-ink"></line>${label({ x: x.toFixed(1), y: BASE + 18, text: `${value}`, anchor: "middle", size: SIZE.tick, class: "text-ink" })}`
         );
       })
       .join("");
 
     const areaLabel =
       rectW > 60 && rectH > 24
-        ? `<text x="${(LEFT + rectW / 2).toFixed(1)}" y="${(rectY + rectH / 2 + 4).toFixed(1)}" ` +
-          `font-size="19" text-anchor="middle" class="text-ink">${work} J</text>`
+        ? `${label({ x: (LEFT + rectW / 2).toFixed(1), y: (rectY + rectH / 2 + 4).toFixed(1), text: `${work} J`, anchor: "middle", size: SIZE.heading, class: "text-ink" })}`
         : "";
 
     svg.innerHTML =
-      `<line x1="${LEFT}" y1="${BASE}" x2="${RIGHT}" y2="${BASE}" class="fig-ink" stroke-width="2"></line>` +
-      `<line x1="${LEFT}" y1="${BASE}" x2="${LEFT}" y2="${TOP}" class="fig-ink" stroke-width="2"></line>` +
+      `<line x1="${LEFT}" y1="${BASE}" x2="${RIGHT}" y2="${BASE}" class="fig-ink" stroke-width="2"></line><line x1="${LEFT}" y1="${BASE}" x2="${LEFT}" y2="${TOP}" class="fig-ink" stroke-width="2"></line>` +
       forceTicks +
       distanceTicks +
-      `<text x="${(LEFT + RIGHT) / 2}" y="${BASE + 36}" font-size="16" text-anchor="middle" class="fig-ink">distance (m)</text>` +
-      `<text x="16" y="${(TOP + BASE) / 2}" font-size="16" text-anchor="middle" class="fig-ink" transform="rotate(-90 16 ${(TOP + BASE) / 2})">force (N)</text>` +
-      `<rect x="${LEFT}" y="${rectY.toFixed(1)}" width="${rectW.toFixed(1)}" height="${rectH.toFixed(1)}" ` +
-      `class="fig-accent" fill-opacity="0.18" stroke-width="2"></rect>` +
+      `${label({ x: (LEFT + RIGHT) / 2, y: BASE + 36, text: `distance (m)`, anchor: "middle", size: SIZE.tick, class: "text-ink" })}${label({ x: 16, y: (TOP + BASE) / 2, text: 'force (N)', anchor: "middle", size: SIZE.tick, class: "text-ink", rotate: -90 })}<rect x="${LEFT}" y="${rectY.toFixed(1)}" width="${rectW.toFixed(1)}" height="${rectH.toFixed(1)}" class="fig-accent" fill-opacity="0.18" stroke-width="2"></rect>` +
       areaLabel;
 
     readout.innerHTML =
-      `Force <strong>${force} N</strong> and distance <strong>${distance} m</strong>. ` +
-      `Work done <strong>= ${force} × ${distance} = ${work} J</strong>. ` +
-      `The force transfers <strong>${work} J</strong> of energy to the box. ` +
-      `<em>Before you move a slider, predict what happens to the work done if you ` +
-      `double the force. Then predict what happens if you double the distance.</em>`;
+      `Force <strong>${force} N</strong> and distance <strong>${distance} m</strong>. Work done <strong>= ${force} × ${distance} = ${work} J</strong>. The force transfers <strong>${work} J</strong> of energy to the box. <em>Before you move a slider, predict what happens to the work done if you double the force. Then predict what happens if you double the distance.</em>`;
   }
 
   react([forceInput, distanceInput], update);

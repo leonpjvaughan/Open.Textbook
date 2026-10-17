@@ -8,7 +8,7 @@
 // The scaffolding — the surface, its accessible name, the sliders, the live
 // readout and the redraw — comes from `kit.js`. What is left here is the drawing
 // and the sentences, which are the parts that differ from every other figure.
-import { panel, slider, react } from "./kit.js";
+import { SIZE, label, panel, react, slider } from "./kit.js";
 
 export function mount(el) {
   const { svg, readout } = panel(el, {
@@ -59,7 +59,7 @@ export function mount(el) {
       <rect x="180" y="196" width="200" height="14" class="fig-ink" opacity="0.2"></rect>
       <rect x="180" y="50" width="14" height="160" class="fig-ink" opacity="0.2"></rect>
       <rect x="366" y="50" width="14" height="160" class="fig-ink" opacity="0.2"></rect>
-      <text x="280" y="38" font-size="16" text-anchor="middle" class="fig-ink">iron core</text>`;
+      ${label({ x: 280, y: 38, text: `iron core`, anchor: "middle", size: SIZE.tick, class: "text-ink" })}`;
 
     function coil(x, turns, cls) {
       const loops = Math.max(1, Math.round(turns / 100));
@@ -77,10 +77,10 @@ export function mount(el) {
     const secondary = coil(344, ns, "fig-warn");
 
     const labels = `
-      <text x="150" y="222" font-size="18" text-anchor="middle" class="fig-accent">primary ${np} turns</text>
-      <text x="410" y="222" font-size="18" text-anchor="middle" class="fig-warn">secondary ${ns} turns</text>
-      <text x="150" y="240" font-size="18" text-anchor="middle" class="fig-ink">${vp} V</text>
-      <text x="410" y="240" font-size="18" text-anchor="middle" class="fig-ink">${formatVolts(vs)} V</text>`;
+      ${label({ x: 150, y: 222, text: `primary ${np} turns`, anchor: "middle", size: SIZE.value, class: "text-accent" })}
+      ${label({ x: 410, y: 222, text: `secondary ${ns} turns`, anchor: "middle", size: SIZE.value, class: "text-warn" })}
+      ${label({ x: 150, y: 240, text: `${vp} V`, anchor: "middle", size: SIZE.value, class: "text-ink" })}
+      ${label({ x: 410, y: 240, text: `${formatVolts(vs)} V`, anchor: "middle", size: SIZE.value, class: "text-ink" })}`;
 
     svg.innerHTML = core + primary + secondary + labels;
 

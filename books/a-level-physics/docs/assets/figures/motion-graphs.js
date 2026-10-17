@@ -13,7 +13,7 @@
 // The scaffolding — the surface, its accessible name, the sliders, the live
 // readout and the redraw — comes from `kit.js`. What is left here is the drawing
 // and the sentences, which are the parts that differ from every other figure.
-import { panel, slider, react } from "./kit.js";
+import { SIZE, label, panel, react, slider } from "./kit.js";
 
 export function mount(el) {
   const { svg, readout } = panel(el, {
@@ -70,21 +70,21 @@ export function mount(el) {
       const y = yFor(v);
       grid +=
         `<line x1="${LEFT}" y1="${y.toFixed(1)}" x2="${RIGHT}" y2="${y.toFixed(1)}" class="fig-grid"></line>` +
-        `<text x="${LEFT - 8}" y="${(y + 4).toFixed(1)}" font-size="17" class="fig-ink" text-anchor="end">${v}</text>`;
+        `${label({ x: LEFT - 8, y: (y + 4).toFixed(1), text: `${v}`, anchor: "end", size: SIZE.value, class: "text-ink" })}`;
     }
     for (let t = 0; t <= T_MAX; t += 1) {
       const x = xFor(t);
       grid +=
         `<line x1="${x.toFixed(1)}" y1="${BOTTOM}" x2="${x.toFixed(1)}" y2="${BOTTOM + 5}" class="fig-ink"></line>` +
-        `<text x="${x.toFixed(1)}" y="${BOTTOM + 18}" font-size="17" class="fig-ink" text-anchor="middle">${t}</text>`;
+        `${label({ x: x.toFixed(1), y: BOTTOM + 18, text: `${t}`, anchor: "middle", size: SIZE.value, class: "text-ink" })}`;
     }
 
     const axisY = yFor(0);
     const axes =
       `<line x1="${LEFT}" y1="${axisY.toFixed(1)}" x2="${RIGHT}" y2="${axisY.toFixed(1)}" class="fig-ink"></line>` +
       `<line x1="${LEFT}" y1="${TOP}" x2="${LEFT}" y2="${BOTTOM}" class="fig-ink"></line>` +
-      `<text x="${RIGHT}" y="${(axisY + 18).toFixed(1)}" font-size="19" class="fig-ink" text-anchor="end">time (s)</text>` +
-      `<text x="${LEFT}" y="${TOP - 10}" font-size="19" class="fig-ink">velocity (m/s)</text>`;
+      `${label({ x: RIGHT, y: (axisY + 18).toFixed(1), text: `time (s)`, anchor: "end", size: SIZE.heading, class: "text-ink" })}` +
+      `${label({ x: LEFT, y: TOP - 10, text: `velocity (m/s)`, anchor: "start", size: SIZE.heading, class: "text-ink" })}`;
 
     const x0 = xFor(0);
     const y0 = yFor(u);

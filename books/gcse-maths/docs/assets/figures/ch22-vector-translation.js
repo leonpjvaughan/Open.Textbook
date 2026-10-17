@@ -3,7 +3,7 @@
 // The scaffolding — the surface, its accessible name, the two sliders, the live
 // readout, the redraw — comes from `kit.js`. What is left here is the drawing and
 // the sentence, which differ from every other figure.
-import { panel, slider, react } from "./kit.js";
+import { SIZE, label, panel, react, slider } from "./kit.js";
 
 export function mount(el) {
   const { svg, readout } = panel(el, {
@@ -48,10 +48,10 @@ export function mount(el) {
       <line x1="${px}" y1="${oy}" x2="${px}" y2="${py}" class="fig-good"></line>
       <line x1="${ox}" y1="${oy}" x2="${px}" y2="${py}" class="fig-accent"></line>
       <circle cx="${px}" cy="${py}" r="5" class="fig-accent"></circle>
-      <text x="${ox + 6}" y="${oy + 18}" class="text-ink">start</text>
-      <text x="${Math.min(px + 6, 280)}" y="${py - 8}" class="text-accent">end</text>
-      <text x="302" y="${oy - 7}" class="text-ink">x</text>
-      <text x="${ox + 7}" y="29" class="text-ink">y</text>`;
+      ${label({ x: ox + 6, y: oy + 18, text: "start", anchor: "start", class: "text-ink" })}
+      ${label({ x: Math.min(px + 6, 280), y: py - 8, text: "end", anchor: "start", class: "text-accent" })}
+      ${label({ x: 302, y: oy - 7, text: "x", anchor: "start", class: "text-ink" })}
+      ${label({ x: ox + 7, y: 29, text: "y", anchor: "start", class: "text-ink" })}`;
     const directionX = x < 0 ? "left" : x > 0 ? "right" : "no horizontal change";
     const directionY = y < 0 ? "down" : y > 0 ? "up" : "no vertical change";
     readout.textContent = `Vector (${x}, ${y}): ${directionX}; ${directionY}.`;

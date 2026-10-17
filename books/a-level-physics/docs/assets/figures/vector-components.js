@@ -14,7 +14,7 @@
 // The scaffolding — the surface, its accessible name, the sliders, the live
 // readout and the redraw — comes from `kit.js`. What is left here is the drawing
 // and the sentences, which are the parts that differ from every other figure.
-import { panel, slider, react } from "./kit.js";
+import { SIZE, label, panel, react, slider } from "./kit.js";
 
 export function mount(el) {
   const { svg, readout } = panel(el, {
@@ -87,8 +87,8 @@ export function mount(el) {
     const axes =
       `<line x1="${LEFT}" y1="${ORIGIN_Y}" x2="${RIGHT}" y2="${ORIGIN_Y}" class="fig-ink"></line>` +
       `<line x1="${ORIGIN_X}" y1="${ORIGIN_Y}" x2="${ORIGIN_X}" y2="${TOP}" class="fig-ink"></line>` +
-      `<text x="${RIGHT + 6}" y="${ORIGIN_Y + 4}" font-size="16" class="fig-ink">x</text>` +
-      `<text x="${ORIGIN_X - 4}" y="${TOP - 6}" font-size="16" class="fig-ink" text-anchor="end">y</text>`;
+      `${label({ x: RIGHT + 6, y: ORIGIN_Y + 4, text: `x`, anchor: "start", size: SIZE.tick, class: "text-ink" })}` +
+      `${label({ x: ORIGIN_X - 4, y: TOP - 6, text: `y`, anchor: "end", size: SIZE.tick, class: "text-ink" })}`;
 
     // Dashed guides from the tip of the vector to the two component tips.
     const guides =

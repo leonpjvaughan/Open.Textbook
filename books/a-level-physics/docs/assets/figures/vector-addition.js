@@ -16,7 +16,7 @@
 // The scaffolding — the surface, its accessible name, the sliders, the live
 // readout and the redraw — comes from `kit.js`. What is left here is the drawing
 // and the sentences, which are the parts that differ from every other figure.
-import { panel, slider, react } from "./kit.js";
+import { SIZE, label, panel, react, slider } from "./kit.js";
 
 export function mount(el) {
   const { svg, readout } = panel(el, {
@@ -103,8 +103,7 @@ export function mount(el) {
     const x = (x1 + x2) / 2 + (-dy / length) * 16 * side;
     const y = (y1 + y2) / 2 + (dx / length) * 16 * side + 5;
     return (
-      `<text x="${x.toFixed(1)}" y="${y.toFixed(1)}" font-size="18" ` +
-      `text-anchor="middle" class="${cls}">${text}</text>`
+      `${label({ x: x.toFixed(1), y: y.toFixed(1), text: `${text}`, anchor: "middle", size: SIZE.value, class: cls })}`
     );
   }
 
@@ -143,9 +142,7 @@ export function mount(el) {
       arc =
         `<path d="M ${startX.toFixed(1)} ${tipAY.toFixed(1)} ` +
         `A ${radius} ${radius} 0 0 0 ${endX.toFixed(1)} ${endY.toFixed(1)}" class="fig-line"></path>` +
-        `<text x="${(tipAX + (radius + 16) * Math.cos(radians / 2)).toFixed(1)}" ` +
-        `y="${(tipAY - (radius + 16) * Math.sin(radians / 2) + 5).toFixed(1)}" ` +
-        `font-size="18" text-anchor="middle" class="text-ink">&theta;</text>`;
+        `${label({ x: (tipAX + (radius + 16) * Math.cos(radians / 2)).toFixed(1), y: (tipAY - (radius + 16) * Math.sin(radians / 2) + 5).toFixed(1), text: `θ`, anchor: "middle", size: SIZE.value, class: "text-ink" })}`;
     }
 
     svg.innerHTML =

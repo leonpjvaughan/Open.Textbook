@@ -7,7 +7,7 @@
 // the live readout, the redraw — comes from `kit.js`. What is left here is the
 // drawing and the sentence, which are the parts that differ from every other
 // figure.
-import { panel, slider, chooser, react } from "./kit.js";
+import { SIZE, chooser, label, panel, react, slider } from "./kit.js";
 
 function binomialPmf(n, p) {
   const pmf = new Array(n + 1).fill(0);
@@ -161,21 +161,31 @@ export function mount(el) {
           ? `<rect x="${(x - 1).toFixed(1)}" y="${(y - 1).toFixed(1)}" ` +
             `width="${(barWidth + 2).toFixed(1)}" height="${(height + 2).toFixed(1)}" ` +
             `class="fig-line"></rect>` +
-            `<text x="${(x + barWidth / 2).toFixed(1)}" y="${(plotBottom + 12).toFixed(1)}" ` +
-            `text-anchor="middle" class="fig-accent" font-size="13">seen</text>`
+            label({
+              x: x + barWidth / 2,
+              y: plotBottom + 12,
+              text: "seen",
+              anchor: "middle",
+              size: SIZE.tick,
+              class: "text-accent",
+            })
           : "")
     });
 
     const axis =
       `<line x1="${plotLeft}" y1="${plotBottom}" x2="${plotRight}" y2="${plotBottom}" ` +
       `class="fig-ink"></line>` +
-      `<text x="${plotLeft}" y="${plotBottom + 26}" class="fig-ink" font-size="15">0</text>` +
-      `<text x="${plotRight}" y="${plotBottom + 26}" text-anchor="end" ` +
-      `class="fig-ink" font-size="15">${n}</text>`;
+      label({ x: plotLeft, y: plotBottom + 26, text: "0", anchor: "start", size: SIZE.tick, class: "text-ink" }) +
+      label({ x: plotRight, y: plotBottom + 26, text: n, anchor: "end", size: SIZE.tick, class: "text-ink" });
 
-    const caption =
-      `<text x="230" y="18" text-anchor="middle" class="fig-ink" font-size="16">` +
-      `Binomial distribution, n = ${n}, p = ${p.toFixed(2)}</text>`;
+    const caption = label({
+      x: 230,
+      y: 18,
+      text: `Binomial distribution, n = ${n}, p = ${p.toFixed(2)}`,
+      anchor: "middle",
+      size: SIZE.label,
+      class: "text-ink",
+    });
 
     svg.innerHTML = caption + axis + bars;
 

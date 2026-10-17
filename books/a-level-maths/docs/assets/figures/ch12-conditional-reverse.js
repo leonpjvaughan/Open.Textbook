@@ -8,7 +8,7 @@
 // comes from `kit.js`. This figure has two drawings, and the kit gives one
 // surface, so the tree is the named surface from `panel()` and the bar chart is
 // built here beside it, as the kit does not draw.
-import { panel, slider, react } from "./kit.js";
+import { SIZE, label, panel, react, slider } from "./kit.js";
 
 const DETECT = 0.95;
 const BAR_W = 300;
@@ -20,8 +20,14 @@ function bar(y, value, className) {
   return (
     `<rect x="${LEFT}" y="${y}" width="${width}" height="${BAR_H}" ` +
     `class="${className}" rx="3"></rect>` +
-    `<text x="${LEFT + BAR_W + 8}" y="${y + BAR_H - 7}" class="fig-ink" ` +
-    `font-size="15">${(value * 100).toFixed(1)}%</text>`
+    label({
+      x: LEFT + BAR_W + 8,
+      y: y + BAR_H - 7,
+      text: `${(value * 100).toFixed(1)}%`,
+      anchor: "start",
+      size: SIZE.tick,
+      class: "text-ink",
+    })
   );
 }
 
@@ -77,8 +83,8 @@ export function mount(el) {
     return `<line x1="${x1}" y1="${y1}" x2="${x2}" y2="${y2}" class="${className}"></line>`;
   }
 
-  function label(x, y, text) {
-    return `<text x="${x}" y="${y}" class="fig-ink" font-size="14">${text}</text>`;
+  function treeText(x, y, words) {
+    return label({ x, y, text: words, anchor: "start", size: SIZE.tick, class: "text-ink" });
   }
 
   function render() {
@@ -111,22 +117,22 @@ export function mount(el) {
       line(n1x, n1y, lx, 46, "fig-ink") +
       line(n1x, n2y, lx, 92, "fig-ink") +
       line(n1x, n2y, lx, 126, "fig-ink") +
-      label(rx + 4, ry - 4, "start") +
-      label(70, 38, `fire ${pFire.toFixed(3)}`) +
-      label(70, 112, `no fire ${pNoFire.toFixed(3)}`) +
-      label(200, 20, `alarm ${DETECT.toFixed(2)}`) +
-      label(200, 54, `no alarm ${(1 - DETECT).toFixed(2)}`) +
-      label(200, 84, `alarm ${pFalse.toFixed(3)}`) +
-      label(200, 122, `no alarm ${(1 - pFalse).toFixed(3)}`) +
-      label(lx + 6, 16, "fire, alarm") +
-      label(lx + 6, 50, "fire, no alarm") +
-      label(lx + 6, 96, "no fire, alarm") +
-      label(lx + 6, 130, "no fire, no alarm");
+      treeText(rx + 4, ry - 4, "start") +
+      treeText(70, 38, `fire ${pFire.toFixed(3)}`) +
+      treeText(70, 112, `no fire ${pNoFire.toFixed(3)}`) +
+      treeText(200, 20, `alarm ${DETECT.toFixed(2)}`) +
+      treeText(200, 54, `no alarm ${(1 - DETECT).toFixed(2)}`) +
+      treeText(200, 84, `alarm ${pFalse.toFixed(3)}`) +
+      treeText(200, 122, `no alarm ${(1 - pFalse).toFixed(3)}`) +
+      treeText(lx + 6, 16, "fire, alarm") +
+      treeText(lx + 6, 50, "fire, no alarm") +
+      treeText(lx + 6, 96, "no fire, alarm") +
+      treeText(lx + 6, 130, "no fire, no alarm");
 
     bars.innerHTML =
-      label(0, 17, "P(fire)") +
+      treeText(0, 17, "P(fire)") +
       bar(4, pFire, "fig-warn") +
-      label(0, 55, "P(fire | alarm)") +
+      treeText(0, 55, "P(fire | alarm)") +
       bar(42, posterior, "fig-accent");
 
     readout.textContent =

@@ -13,7 +13,7 @@
 // The scaffolding — the surface, its accessible name, the sliders, the live
 // readout and the redraw — comes from `kit.js`. What is left here is the drawing
 // and the sentences, which are the parts that differ from every other figure.
-import { panel, slider, react } from "./kit.js";
+import { SIZE, label, panel, react, slider } from "./kit.js";
 
 export function mount(el) {
   const { svg, readout } = panel(el, {
@@ -66,20 +66,20 @@ export function mount(el) {
     let axes =
       `<line x1="${LEFT}" y1="${BOTTOM}" x2="${RIGHT}" y2="${BOTTOM}" class="fig-ink"></line>` +
       `<line x1="${LEFT}" y1="${BOTTOM}" x2="${LEFT}" y2="${TOP}" class="fig-ink"></line>` +
-      `<text x="${LEFT}" y="${TOP - 12}" font-size="20" class="fig-ink">energy / eV</text>` +
-      `<text x="${RIGHT}" y="${BOTTOM + 18}" font-size="20" class="fig-ink" text-anchor="end">wavelength / nm</text>`;
+      `${label({ x: LEFT, y: TOP - 12, text: `energy / eV`, anchor: "start", size: SIZE.heading, class: "text-ink" })}` +
+      `${label({ x: RIGHT, y: BOTTOM + 18, text: `wavelength / nm`, anchor: "end", size: SIZE.heading, class: "text-ink" })}`;
 
     for (let tick = LAM_MIN; tick <= LAM_MAX; tick += 100) {
       const x = px(tick);
       axes +=
         `<line x1="${x.toFixed(1)}" y1="${BOTTOM}" x2="${x.toFixed(1)}" y2="${BOTTOM + 5}" class="fig-ink"></line>` +
-        `<text x="${x.toFixed(1)}" y="${BOTTOM + 16}" font-size="18" class="fig-ink" text-anchor="middle">${tick}</text>`;
+        `${label({ x: x.toFixed(1), y: BOTTOM + 16, text: `${tick}`, anchor: "middle", size: SIZE.value, class: "text-ink" })}`;
     }
     for (let tick = 0; tick <= 5; tick += 1) {
       const y = py(tick);
       axes +=
         `<line x1="${LEFT}" y1="${y.toFixed(1)}" x2="${RIGHT}" y2="${y.toFixed(1)}" class="fig-grid"></line>` +
-        `<text x="${LEFT - 8}" y="${(y + 4).toFixed(1)}" font-size="18" class="fig-ink" text-anchor="end">${tick}</text>`;
+        `${label({ x: LEFT - 8, y: (y + 4).toFixed(1), text: `${tick}`, anchor: "end", size: SIZE.value, class: "text-ink" })}`;
     }
 
     let photonCurve = "";
@@ -97,13 +97,13 @@ export function mount(el) {
       `<polyline points="${photonCurve.trim()}" class="fig-accent" fill="none" stroke-width="3"></polyline>` +
       `<polyline points="${kineticCurve.trim()}" class="fig-good" fill="none" stroke-width="3"></polyline>` +
       `<line x1="${LEFT}" y1="${py(phi).toFixed(1)}" x2="${RIGHT}" y2="${py(phi).toFixed(1)}" class="fig-warn" stroke-width="2" stroke-dasharray="6 4"></line>` +
-      `<text x="${LEFT + 6}" y="${(py(phi) - 6).toFixed(1)}" font-size="18" class="fig-ink">work function</text>`;
+      `${label({ x: LEFT + 6, y: (py(phi) - 6).toFixed(1), text: `work function`, anchor: "start", size: SIZE.value, class: "text-ink" })}`;
 
     let marker = "";
     if (threshold >= LAM_MIN && threshold <= LAM_MAX) {
       marker =
         `<line x1="${px(threshold).toFixed(1)}" y1="${TOP}" x2="${px(threshold).toFixed(1)}" y2="${BOTTOM}" class="fig-ink" stroke-dasharray="4 3"></line>` +
-        `<text x="${(px(threshold) + 4).toFixed(1)}" y="${TOP + 12}" font-size="18" class="fig-ink">threshold</text>`;
+        `${label({ x: (px(threshold) + 4).toFixed(1), y: TOP + 12, text: `threshold`, anchor: "start", size: SIZE.value, class: "text-ink" })}`;
     }
 
     svg.innerHTML = axes + marker + curves;

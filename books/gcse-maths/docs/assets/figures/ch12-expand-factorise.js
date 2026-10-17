@@ -8,7 +8,7 @@
 //
 // The scaffolding — the surface, its accessible name, the two sliders, the live
 // readout, the redraw — comes from `kit.js`.
-import { panel, slider, react } from "./kit.js";
+import { SIZE, label, panel, react, slider } from "./kit.js";
 
 export function mount(el) {
   const UNIT = 26;
@@ -60,8 +60,7 @@ export function mount(el) {
 
     // A word is painted with text-*; the shape behind it is painted with fig-*.
     const text = (x, y, value, cls, anchor = "middle") =>
-      `<text x="${x.toFixed(1)}" y="${y.toFixed(1)}" font-size="15" ` +
-      `text-anchor="${anchor}" class="text-${cls}">${value}</text>`;
+      label({ x, y, text: value, anchor, size: SIZE.tick, class: `text-${cls}` });
 
     const region = (rx, ry, rw, rh, value, cls) =>
       `<rect x="${rx.toFixed(1)}" y="${ry.toFixed(1)}" width="${rw.toFixed(1)}" ` +

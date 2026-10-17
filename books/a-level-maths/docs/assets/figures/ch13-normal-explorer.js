@@ -8,7 +8,7 @@
 // The scaffolding — the surface, its accessible name, the sliders, the live
 // readout, the redraw — comes from `kit.js`. What is left here is the drawing and
 // the sentence, which are the parts that differ from every other figure.
-import { panel, slider, react } from "./kit.js";
+import { SIZE, label, panel, react, slider } from "./kit.js";
 
 const X_MIN = 0;
 const X_MAX = 100;
@@ -113,7 +113,14 @@ export function mount(el) {
         const px = toX(marker.value).toFixed(1);
         return (
           `<line x1="${px}" y1="${base}" x2="${px}" y2="${base + 6}" class="fig-ink"></line>` +
-          `<text x="${px}" y="${base + 18}" text-anchor="middle" class="fig-ink" font-size="13">${marker.label}</text>`
+          label({
+            x: px,
+            y: base + 18,
+            text: marker.label,
+            anchor: "middle",
+            size: SIZE.tick,
+            class: "text-ink",
+          })
         );
       })
       .join("");

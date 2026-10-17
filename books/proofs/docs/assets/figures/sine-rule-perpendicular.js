@@ -15,7 +15,7 @@
 // The scaffolding — the surface, its accessible name, the sliders, the live
 // readout and the redraw — comes from `kit.js`. What is left here is the drawing
 // and the sentences, which are the parts that differ from every other figure.
-import { panel, slider, react } from "./kit.js";
+import { SIZE, label, panel, react, slider } from "./kit.js";
 
 export function mount(el) {
   const { svg, readout } = panel(el, {
@@ -62,9 +62,7 @@ export function mount(el) {
   const line = (p, q, cls, width = 2) =>
     `<line x1="${p.x.toFixed(1)}" y1="${p.y.toFixed(1)}" x2="${q.x.toFixed(1)}" y2="${q.y.toFixed(1)}" ` +
     `stroke-width="${width}" class="${cls}"></line>`;
-  const text = (x, y, label) =>
-    `<text x="${x.toFixed(0)}" y="${y.toFixed(0)}" text-anchor="middle" ` +
-    `font-size="13" class="fig-ink">${label}</text>`;
+  const text = (x, y, words) => label({ x, y, text: words, size: SIZE.tick });
 
   function draw() {
     const C = { x: Number(across.value), y: Number(up.value) };

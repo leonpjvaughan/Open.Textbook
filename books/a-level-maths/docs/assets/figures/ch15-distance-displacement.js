@@ -12,7 +12,7 @@
 // The scaffolding — the surface, its accessible name, the sliders, the live
 // readout, the redraw — comes from `kit.js`. What is left here is the drawing and
 // the sentence, which are the parts that differ from every other figure.
-import { panel, slider, react } from "./kit.js";
+import { SIZE, label, panel, react, slider } from "./kit.js";
 
 const LEFT = 50;
 const RIGHT = 430;
@@ -27,8 +27,7 @@ function tick(value) {
   return (
     `<line class="fig-grid" x1="${toPx(value).toFixed(1)}" y1="${AXIS_Y - 6}" ` +
     `x2="${toPx(value).toFixed(1)}" y2="${AXIS_Y + 6}" stroke-width="1"></line>` +
-    `<text class="fig-ink" x="${toPx(value).toFixed(1)}" y="${AXIS_Y + 22}" ` +
-    `text-anchor="middle" font-size="14">${value}</text>`
+    label({ x: toPx(value), y: AXIS_Y + 22, text: value, anchor: "middle", size: SIZE.tick, class: "text-ink" })
   );
 }
 

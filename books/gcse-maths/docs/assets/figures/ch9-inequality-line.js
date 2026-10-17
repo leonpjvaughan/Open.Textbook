@@ -3,7 +3,7 @@
 // The scaffolding — the surface, its accessible name, the controls, the live
 // readout, the redraw — comes from `kit.js`. What is left here is the drawing and
 // the sentence, which are the parts that differ from every other figure.
-import { panel, slider, toggle, react } from "./kit.js";
+import { SIZE, label, panel, react, slider, toggle } from "./kit.js";
 
 export function mount(el) {
   const { svg, readout } = panel(el, {
@@ -33,9 +33,9 @@ export function mount(el) {
     svg.innerHTML = `<line x1="45" y1="42" x2="475" y2="42" class="fig-ink"></line>
       <line x1="${x}" y1="42" x2="475" y2="42" class="fig-grid"></line>
       <line x1="${x}" y1="31" x2="${x}" y2="53" class="fig-accent"></line>
-      ${circle}<text x="${x}" y="72" text-anchor="middle" class="fig-ink">${b}</text>
-      <text x="55" y="25" class="text-accent">values greater than boundary</text>
-      <text x="55" y="80" class="fig-ink">open: excluded · filled: included</text>`;
+      ${circle}${label({ x, y: 72, text: b, anchor: "middle", class: "text-ink" })}
+      ${label({ x: 55, y: 25, text: "values greater than boundary", anchor: "start", class: "text-accent" })}
+      ${label({ x: 55, y: 80, text: "open: excluded · filled: included", anchor: "start", class: "text-ink" })}`;
     readout.className = `readout ${isInclusive ? "text-good" : "text-warn"}`;
     readout.textContent = `x ${isInclusive ? "≥" : ">"} ${b}`;
   });

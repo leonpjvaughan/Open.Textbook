@@ -18,7 +18,7 @@
 // The scaffolding — the surface, its accessible name, the sliders, the live
 // readout and the redraw — comes from `kit.js`. What is left here is the drawing
 // and the sentences, which are the parts that differ from every other figure.
-import { panel, slider, react } from "./kit.js";
+import { SIZE, label, panel, react, slider } from "./kit.js";
 
 export function mount(el) {
   const { svg, readout } = panel(el, {
@@ -111,9 +111,9 @@ export function mount(el) {
       `<line x1="${ROD_X}" y1="${TOP}" x2="${ROD_X}" y2="${BOTTOM}" class="fig-good" stroke-width="8"></line>` +
       `<line x1="${ROD_X + 8}" y1="${TOP - 30}" x2="${vTip.toFixed(0)}" y2="${TOP - 30}" class="fig-good" stroke-width="3"></line>` +
       `<polygon points="${vTip.toFixed(0)},${TOP - 35} ${vTip.toFixed(0)},${TOP - 25} ${(vTip + 12).toFixed(0)},${TOP - 30}" class="fig-good"></polygon>` +
-      `<text x="${(vTip + 18).toFixed(0)}" y="${TOP - 26}" font-size="18" class="fig-ink">v</text>` +
-      `<text x="${LEFT - 10}" y="${CY}" font-size="18" class="fig-ink" text-anchor="end">R</text>` +
-      `<text x="${(LEFT + ROD_X) / 2}" y="${TOP + 22}" font-size="18" class="fig-ink" text-anchor="middle">current</text>`;
+      `${label({ x: (vTip + 18).toFixed(0), y: TOP - 26, text: `v`, anchor: "start", size: SIZE.value, class: "text-ink" })}` +
+      `${label({ x: LEFT - 10, y: CY, text: `R`, anchor: "end", size: SIZE.value, class: "text-ink" })}` +
+      `${label({ x: (LEFT + ROD_X) / 2, y: TOP + 22, text: `current`, anchor: "middle", size: SIZE.value, class: "text-ink" })}`;
 
     svg.innerHTML = drawing;
 

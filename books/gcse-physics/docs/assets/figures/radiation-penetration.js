@@ -10,7 +10,7 @@
 // from `kit.js`. The source buttons are not one of the kit's controls, so they
 // are built here inside the kit's control column. What is left is the drawing
 // and the sentences, which are the parts that differ from every other figure.
-import { panel } from "./kit.js";
+import { SIZE, label, panel } from "./kit.js";
 
 export function mount(el) {
   const SOURCES = {
@@ -91,27 +91,27 @@ export function mount(el) {
       .map(
         (barrier) =>
           `<line x1="${barrier.x}" y1="42" x2="${barrier.x}" y2="112" class="fig-ink" stroke-width="3"></line>` +
-          `<text x="${barrier.x}" y="130" font-size="16" text-anchor="middle" class="fig-ink">${barrier.label}</text>`,
+          `${label({ x: barrier.x, y: 130, text: `${barrier.label}`, anchor: "middle", size: SIZE.tick, class: "text-ink" })}`,
       )
       .join("");
 
     const travel = `<line x1="40" y1="77" x2="${source.travelTo}" y2="77" class="fig-grid" stroke-dasharray="4 4"></line>`;
     const emitter =
       `<circle cx="40" cy="77" r="9" class="fig-accent"></circle>` +
-      `<text x="40" y="103" font-size="16" text-anchor="middle" class="fig-ink">source</text>`;
+      `${label({ x: 40, y: 103, text: `source`, anchor: "middle", size: SIZE.tick, class: "text-ink" })}`;
 
     const marker = source.passes
       ? `<circle cx="${source.travelTo}" cy="77" r="8" class="fig-good"></circle>` +
-        `<text x="${source.travelTo}" y="60" font-size="16" text-anchor="middle" class="fig-ink">passes</text>`
+        `${label({ x: source.travelTo, y: 60, text: `passes`, anchor: "middle", size: SIZE.tick, class: "text-ink" })}`
       : `<circle cx="${source.travelTo}" cy="77" r="8" class="fig-warn"></circle>` +
-        `<text x="${source.travelTo}" y="60" font-size="16" text-anchor="middle" class="fig-ink">stopped</text>`;
+        `${label({ x: source.travelTo, y: 60, text: `stopped`, anchor: "middle", size: SIZE.tick, class: "text-ink" })}`;
 
     const barWidth = 100 * source.fraction;
     const ionising =
-      `<text x="352" y="20" font-size="16" class="fig-ink">ionising power:</text>` +
+      `${label({ x: 352, y: 20, text: `ionising power:`, anchor: "start", size: SIZE.tick, class: "text-ink" })}` +
       `<rect x="352" y="27" width="${barWidth.toFixed(1)}" height="12" class="fig-warn"></rect>` +
       `<rect x="352" y="27" width="100" height="12" class="fig-grid" fill="none"></rect>` +
-      `<text x="458" y="37" font-size="16" class="fig-ink">${source.ionising}</text>`;
+      `${label({ x: 458, y: 37, text: `${source.ionising}`, anchor: "start", size: SIZE.tick, class: "text-ink" })}`;
 
     svg.innerHTML = walls + travel + emitter + marker + ionising;
   }

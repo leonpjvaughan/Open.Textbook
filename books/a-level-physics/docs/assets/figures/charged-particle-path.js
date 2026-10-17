@@ -11,7 +11,7 @@
 // The scaffolding — the surface, its accessible name, the sliders, the live
 // readout and the redraw — comes from `kit.js`. What is left here is the drawing
 // and the sentences, which are the parts that differ from every other figure.
-import { panel, slider, react } from "./kit.js";
+import { SIZE, label, panel, react, slider } from "./kit.js";
 
 export function mount(el) {
   const { svg, readout } = panel(el, {
@@ -88,8 +88,8 @@ export function mount(el) {
       `<path d="M ${entryX} ${entryY} A ${rPx.toFixed(1)} ${rPx.toFixed(1)} 0 0 1 ${endX.toFixed(1)} ${endY.toFixed(1)}" class="fig-accent" fill="none" stroke-width="3"></path>` +
       `<circle cx="${endX.toFixed(1)}" cy="${endY.toFixed(1)}" r="6" class="fig-good"></circle>` +
       `<circle cx="${entryX}" cy="${entryY}" r="6" class="fig-ink"></circle>` +
-      `<text x="${entryX + 12}" y="${entryY + 4}" font-size="18" class="fig-ink">proton in</text>` +
-      `<text x="${RIGHT - 10}" y="${TOP + 18}" font-size="18" class="fig-ink" text-anchor="end">field out of the page</text>`;
+      `${label({ x: entryX + 12, y: entryY + 4, text: `proton in`, anchor: "start", size: SIZE.value, class: "text-ink" })}` +
+      `${label({ x: RIGHT - 10, y: TOP + 18, text: `field out of the page`, anchor: "end", size: SIZE.value, class: "text-ink" })}`;
 
     svg.innerHTML = dots + circle + arc;
 

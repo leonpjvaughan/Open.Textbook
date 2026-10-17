@@ -8,7 +8,7 @@
 // The scaffolding — the surface, its accessible name, the slider, the live
 // readout and the redraw — comes from `kit.js`. What is left here is the drawing
 // and the sentence, which are the parts that differ from every other figure.
-import { panel, slider, react } from "./kit.js";
+import { SIZE, label, panel, react, slider } from "./kit.js";
 
 export function mount(el) {
   const { svg, readout } = panel(el, {
@@ -36,15 +36,15 @@ export function mount(el) {
     const magnet = `
       <rect x="300" y="55" width="60" height="45" rx="6" class="fig-ink" opacity="0.2"></rect>
       <rect x="300" y="120" width="60" height="45" rx="6" class="fig-ink" opacity="0.2"></rect>
-      <text x="330" y="45" font-size="16" text-anchor="middle" class="fig-ink">magnet</text>`;
+      ${label({ x: 330, y: 45, text: `magnet`, anchor: "middle", size: SIZE.tick, class: "text-ink" })}`;
 
     const cone = `
       <polygon points="70,25 70,195 ${base - 12},120" class="fig-ink" opacity="0.15"></polygon>
-      <text x="80" y="18" font-size="16" class="fig-ink">cone</text>`;
+      ${label({ x: 80, y: 18, text: `cone`, anchor: "start", size: SIZE.tick, class: "text-ink" })}`;
 
     const coil = `
       <rect x="${base - 12}" y="100" width="24" height="40" rx="6" class="fig-accent"></rect>
-      <text x="${base}" y="160" font-size="16" text-anchor="middle" class="fig-accent">coil</text>`;
+      ${label({ x: base, y: 160, text: `coil`, anchor: "middle", size: SIZE.tick, class: "text-accent" })}`;
 
     let arrow = "";
     if (current > 0) {

@@ -15,7 +15,7 @@
 // The scaffolding — the surface, its accessible name, the five sliders, the live
 // readout and the redraw — comes from `kit.js`. What is left here is the drawing
 // and the sentence.
-import { panel, slider, react } from "./kit.js";
+import { SIZE, label, panel, react, slider } from "./kit.js";
 
 const UNIT = 21; // pixels per grid unit
 const ORIGIN_X = 220;
@@ -86,10 +86,14 @@ function arrowLabel(x1, y1, x2, y2, text, cls, side) {
   const length = Math.hypot(dx, dy) || 1;
   const x = (px1 + px2) / 2 + (-dy / length) * 15 * side;
   const y = (py1 + py2) / 2 + (dx / length) * 15 * side + 5;
-  return (
-    `<text x="${x.toFixed(1)}" y="${y.toFixed(1)}" font-size="13" ` +
-    `text-anchor="middle" class="${cls}">${text}</text>`
-  );
+  return label({
+    x,
+    y,
+    text,
+    anchor: "middle",
+    size: SIZE.tick,
+    class: cls,
+  });
 }
 
 // A number with a true minus sign and no trailing zero.

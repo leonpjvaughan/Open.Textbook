@@ -16,7 +16,7 @@
 //
 // The scaffolding — the surface, its accessible name, the sliders, the live
 // readout and the redraw — comes from `kit.js`.
-import { SIZE, panel, react, slider } from "./kit.js";
+import { SIZE, label, panel, react, slider } from "./kit.js";
 
 const LEFT = 44;
 const RIGHT = 344;
@@ -25,11 +25,8 @@ const BOTTOM = 206;
 const ZERO = (TOP + BOTTOM) / 2;
 const HALF = (BOTTOM - TOP) / 2;
 
-function text(x, y, label, cls, anchor) {
-  return (
-    `<text x="${x.toFixed(1)}" y="${y.toFixed(1)}" text-anchor="${anchor}" ` +
-    `font-size="${SIZE.tick}" class="${cls}">${label}</text>`
-  );
+function text(x, y, words, cls, anchor) {
+  return label({ x, y, text: words, anchor, size: SIZE.tick, class: cls });
 }
 
 export function mount(el) {

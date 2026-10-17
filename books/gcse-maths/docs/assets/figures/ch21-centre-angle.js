@@ -3,7 +3,7 @@
 // The scaffolding — the surface, its accessible name, the slider, the live
 // readout, the redraw — comes from `kit.js`. What is left here is the drawing and
 // the sentence, which differ from every other figure.
-import { panel, slider, react } from "./kit.js";
+import { SIZE, label, panel, react, slider } from "./kit.js";
 
 export function mount(el) {
   const { svg, readout } = panel(el, {
@@ -40,8 +40,8 @@ export function mount(el) {
       <line x1="180" y1="118" x2="${x2.toFixed(1)}" y2="${y.toFixed(1)}" class="fig-grid" stroke="currentColor" />
       <line x1="180" y1="206" x2="${x1.toFixed(1)}" y2="${y.toFixed(1)}" class="fig-ink" stroke="currentColor" />
       <line x1="180" y1="206" x2="${x2.toFixed(1)}" y2="${y.toFixed(1)}" class="fig-ink" stroke="currentColor" />
-      <text x="185" y="112" class="text-warn">centre ${c}°</text>
-      <text x="184" y="190" class="text-good">circumference ${a}°</text>`;
+      ${label({ x: 185, y: 112, text: `centre ${c}°`, anchor: "start", class: "text-warn" })}
+      ${label({ x: 184, y: 190, text: `circumference ${a}°`, anchor: "start", class: "text-good" })}`;
     readout.textContent = `Centre angle ${c} degrees; circumference angle ${a} degrees.`;
   }
 

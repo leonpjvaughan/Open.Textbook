@@ -13,7 +13,7 @@
 // one of the kit's controls, so they are built here inside the kit's control
 // column. What is left is the drawing and the sentence, which are the parts that
 // differ from every other figure.
-import { panel, slider, react } from "./kit.js";
+import { SIZE, label, panel, react, slider } from "./kit.js";
 
 export function mount(el) {
   const { svg, readout, controls } = panel(el, {
@@ -81,7 +81,7 @@ export function mount(el) {
       `<rect x="${LEFT}" y="${TOP}" width="${width.toFixed(1)}" height="${HEIGHT}" class="fig-ink" fill="none" stroke-width="2"></rect>` +
       `<line x1="${(LEFT + width).toFixed(1)}" y1="${TOP - 18}" x2="${(LEFT + width).toFixed(1)}" y2="${TOP + HEIGHT + 18}" class="fig-warn" stroke-width="5"></line>` +
       `<line x1="${LEFT}" y1="${TOP + HEIGHT + 30}" x2="${LEFT + WIDTH_MAX}" y2="${TOP + HEIGHT + 30}" class="fig-ink" stroke-width="2"></line>` +
-      `<text x="${(LEFT + width / 2).toFixed(1)}" y="${TOP + HEIGHT + 48}" font-size="16" text-anchor="middle" class="fig-ink">piston</text>` +
+      `${label({ x: (LEFT + width / 2).toFixed(1), y: TOP + HEIGHT + 48, text: `piston`, anchor: "middle", size: SIZE.tick, class: "text-ink" })}` +
       dots;
 
     readout.innerHTML =

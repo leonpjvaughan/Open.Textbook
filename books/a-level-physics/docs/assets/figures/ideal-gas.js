@@ -13,7 +13,7 @@
 // The scaffolding — the surface, its accessible name, the sliders, the live
 // readout and the redraw — comes from `kit.js`. What is left here is the drawing
 // and the sentences, which are the parts that differ from every other figure.
-import { panel, slider, react } from "./kit.js";
+import { SIZE, label, panel, react, slider } from "./kit.js";
 
 export function mount(el) {
   const { svg, readout } = panel(el, {
@@ -85,8 +85,8 @@ export function mount(el) {
     const frame =
       `<rect x="${BOX_LEFT}" y="${BOX_TOP}" width="${width.toFixed(1)}" height="${BOX_BOTTOM - BOX_TOP}" fill="none" class="fig-ink" stroke-width="3"></rect>` +
       `<line x1="${boxRight}" y1="${BOX_TOP}" x2="${boxRight}" y2="${BOX_BOTTOM}" class="fig-ink" stroke-width="6"></line>` +
-      `<text x="${(BOX_LEFT + boxRight) / 2}" y="${BOX_BOTTOM + 26}" font-size="20" class="fig-ink" text-anchor="middle">volume</text>` +
-      `<text x="${(boxRight + 6).toFixed(1)}" y="${BOX_TOP - 8}" font-size="18" class="fig-ink">piston</text>`;
+      `${label({ x: (BOX_LEFT + boxRight) / 2, y: BOX_BOTTOM + 26, text: `volume`, anchor: "middle", size: SIZE.heading, class: "text-ink" })}` +
+      `${label({ x: (boxRight + 6).toFixed(1), y: BOX_TOP - 8, text: `piston`, anchor: "start", size: SIZE.value, class: "text-ink" })}`;
 
     svg.innerHTML = frame + dots;
 

@@ -12,7 +12,7 @@
 // The scaffolding — the surface, its accessible name, the sliders, the live
 // readout, the redraw — comes from `kit.js`. What is left here is the drawing and
 // the sentence, which are the parts that differ from every other figure.
-import { panel, slider, react } from "./kit.js";
+import { SIZE, label, panel, react, slider } from "./kit.js";
 
 const LEFT = 60;
 const RIGHT = 440;
@@ -30,11 +30,8 @@ function toPy(v) {
   return BOTTOM - ((v - V_MIN) / (V_MAX - V_MIN)) * (BOTTOM - TOP);
 }
 
-function label(text, x, y) {
-  return (
-    `<text class="fig-ink" x="${x.toFixed(1)}" y="${y.toFixed(1)}" ` +
-    `font-size="14">${text}</text>`
-  );
+function textAt(text, x, y) {
+  return label({ x, y, text, anchor: "start", size: SIZE.tick, class: "text-ink" });
 }
 
 export function mount(el) {
@@ -106,8 +103,8 @@ export function mount(el) {
       `<line class="fig-grid" x1="${toPx(T).toFixed(1)}" y1="${toPy(v).toFixed(1)}" ` +
       `x2="${toPx(T).toFixed(1)}" y2="${toPy(0).toFixed(1)}" stroke-width="1" ` +
       `stroke-dasharray="4 4"></line>` +
-      label("t", RIGHT + 4, toPy(0) + 4) +
-      label("v", toPx(0) - 16, TOP + 4);
+      textAt("t", RIGHT + 4, toPy(0) + 4) +
+      textAt("v", toPx(0) - 16, TOP + 4);
 
     svg.innerHTML = axes + shade + line + crossing + guides;
 

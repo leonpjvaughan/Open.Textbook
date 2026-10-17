@@ -9,7 +9,7 @@
 // The scaffolding — the surface, its accessible name, the sliders, the live
 // readout and the redraw — comes from `kit.js`. What is left here is the drawing
 // and the sentence, which are the parts that differ from every other figure.
-import { panel, slider, react } from "./kit.js";
+import { SIZE, label, panel, react, slider } from "./kit.js";
 
 export function mount(el) {
   const { svg, readout } = panel(el, {
@@ -51,11 +51,12 @@ export function mount(el) {
   const BEAM = 60;
   const SCALE = 130; // pixels per metre, so 1.5 m reaches 195 px
 
-  function forceArrow(x, label, cls) {
+  // `name`, not `label`: a parameter of that name shadows the imported mark.
+  function forceArrow(x, name, cls) {
     return (
       `<line x1="${x.toFixed(1)}" y1="${BEAM}" x2="${x.toFixed(1)}" y2="${BEAM + 70}" class="${cls}" stroke-width="3"></line>` +
       `<polygon points="${x.toFixed(1)},${BEAM + 80} ${(x - 6).toFixed(1)},${BEAM + 68} ${(x + 6).toFixed(1)},${BEAM + 68}" class="${cls}"></polygon>` +
-      `<text x="${x.toFixed(1)}" y="${BEAM + 96}" font-size="18" text-anchor="middle" class="fig-ink">${label}</text>`
+      `${label({ x: x.toFixed(1), y: BEAM + 96, text: `${name}`, anchor: "middle", size: SIZE.value, class: "text-ink" })}`
     );
   }
 
@@ -74,8 +75,8 @@ export function mount(el) {
       `<polygon points="${PIVOT},${BEAM + 6} ${PIVOT - 14},${BEAM + 30} ${PIVOT + 14},${BEAM + 30}" class="fig-grid"></polygon>` +
       `<line x1="${loadX.toFixed(1)}" y1="${BEAM - 24}" x2="${PIVOT}" y2="${BEAM - 24}" class="fig-grid" stroke-dasharray="3 3"></line>` +
       `<line x1="${PIVOT}" y1="${BEAM - 44}" x2="${effortX.toFixed(1)}" y2="${BEAM - 44}" class="fig-grid" stroke-dasharray="3 3"></line>` +
-      `<text x="${((loadX + PIVOT) / 2).toFixed(1)}" y="${BEAM - 28}" font-size="16" text-anchor="middle" class="fig-ink">${loadDistance.toFixed(2)} m</text>` +
-      `<text x="${((PIVOT + effortX) / 2).toFixed(1)}" y="${BEAM - 48}" font-size="16" text-anchor="middle" class="fig-ink">${effortDistance.toFixed(2)} m</text>` +
+      `${label({ x: ((loadX + PIVOT) / 2).toFixed(1), y: BEAM - 28, text: `${loadDistance.toFixed(2)} m`, anchor: "middle", size: SIZE.tick, class: "text-ink" })}` +
+      `${label({ x: ((PIVOT + effortX) / 2).toFixed(1), y: BEAM - 48, text: `${effortDistance.toFixed(2)} m`, anchor: "middle", size: SIZE.tick, class: "text-ink" })}` +
       forceArrow(loadX, `${load} N`, "fig-warn") +
       forceArrow(effortX, `${Math.round(effort)} N`, "fig-accent");
 

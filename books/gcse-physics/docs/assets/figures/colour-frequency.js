@@ -10,7 +10,7 @@
 // The scaffolding — the surface, its accessible name, the slider, the live
 // readout and the redraw — comes from `kit.js`. What is left here is the drawing
 // and the sentences, which are the parts that differ from every other figure.
-import { panel, slider, react } from "./kit.js";
+import { SIZE, label, panel, react, slider } from "./kit.js";
 
 export function mount(el) {
   const BANDS = [
@@ -73,8 +73,7 @@ export function mount(el) {
         `<rect x="${x.toFixed(1)}" y="${BAND_TOP}" width="${width.toFixed(1)}" height="${BAND_HEIGHT}" ` +
         `class="${highlight ? "fig-accent" : "fig-grid"}" ` +
         `${highlight ? 'fill-opacity="0.35" ' : ""}stroke-width="1"></rect>` +
-        `<text x="${(x + width / 2).toFixed(1)}" y="${BAND_TOP + BAND_HEIGHT + 16}" ` +
-        `font-size="17" text-anchor="middle" class="fig-ink">${band.name}</text>`
+        `${label({ x: (x + width / 2).toFixed(1), y: BAND_TOP + BAND_HEIGHT + 16, text: `${band.name}`, anchor: "middle", size: SIZE.value, class: "text-ink" })}`
       );
     }).join("");
 
@@ -82,8 +81,7 @@ export function mount(el) {
     const marker =
       `<line x1="${markerX.toFixed(1)}" y1="${BAND_TOP - 8}" x2="${markerX.toFixed(1)}" ` +
       `y2="${BAND_TOP + BAND_HEIGHT + 4}" class="fig-warn" stroke-width="2"></line>` +
-      `<text x="${markerX.toFixed(1)}" y="${BAND_TOP - 14}" font-size="17" ` +
-      `text-anchor="middle" class="text-warn">${wavelength} nm</text>`;
+      `${label({ x: markerX.toFixed(1), y: BAND_TOP - 14, text: `${wavelength} nm`, anchor: "middle", size: SIZE.value, class: "text-warn" })}`;
 
     const ticks = [400, 500, 600, 700]
       .map((nm) => {
@@ -91,8 +89,7 @@ export function mount(el) {
         return (
           `<line x1="${x.toFixed(1)}" y1="${BAND_TOP + BAND_HEIGHT}" x2="${x.toFixed(1)}" ` +
           `y2="${BAND_TOP + BAND_HEIGHT + 5}" class="fig-ink"></line>` +
-          `<text x="${x.toFixed(1)}" y="${BAND_TOP + BAND_HEIGHT + 34}" font-size="17" ` +
-          `text-anchor="middle" class="fig-ink">${nm}</text>`
+          `${label({ x: x.toFixed(1), y: BAND_TOP + BAND_HEIGHT + 34, text: `${nm}`, anchor: "middle", size: SIZE.value, class: "text-ink" })}`
         );
       })
       .join("");
@@ -101,7 +98,7 @@ export function mount(el) {
       cells +
       marker +
       ticks +
-      `<text x="${(LEFT + RIGHT) / 2}" y="152" font-size="17" text-anchor="middle" class="fig-ink">wavelength (nm)</text>`;
+      `${label({ x: (LEFT + RIGHT) / 2, y: 152, text: `wavelength (nm)`, anchor: "middle", size: SIZE.value, class: "text-ink" })}`;
 
     readout.innerHTML =
       `Wavelength <strong>${wavelength} nm</strong>. All visible light travels at ` +

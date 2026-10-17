@@ -7,7 +7,7 @@
 // The scaffolding — the surface, its accessible name, the slider, the live
 // readout and the redraw — comes from `kit.js`. The two-way table and the
 // verdict line are the figure's own text, so they stay here.
-import { panel, slider, react } from "./kit.js";
+import { SIZE, label, panel, react, slider } from "./kit.js";
 
 const N = 200;
 const HALF = 100;
@@ -20,8 +20,14 @@ function bar(y, value, className) {
   return (
     `<rect x="${LEFT}" y="${y}" width="${width}" height="${BAR_H}" ` +
     `class="${className}" rx="3"></rect>` +
-    `<text x="${LEFT + BAR_W + 8}" y="${y + BAR_H - 8}" class="fig-ink" ` +
-    `font-size="15">${Math.round(value * 100)}%</text>`
+    label({
+      x: LEFT + BAR_W + 8,
+      y: y + BAR_H - 8,
+      text: `${Math.round(value * 100)}%`,
+      anchor: "start",
+      size: SIZE.tick,
+      class: "text-ink",
+    })
   );
 }
 
@@ -78,9 +84,9 @@ export function mount(el) {
     const product = pA * pB;
 
     svg.innerHTML =
-      `<text x="0" y="17" class="fig-ink" font-size="15">P(A given B)</text>` +
+      label({ x: 0, y: 17, text: "P(A given B)", anchor: "start", size: SIZE.tick, class: "text-ink" }) +
       bar(4, pAGivenB, "fig-accent") +
-      `<text x="0" y="57" class="fig-ink" font-size="15">P(A)</text>` +
+      label({ x: 0, y: 57, text: "P(A)", anchor: "start", size: SIZE.tick, class: "text-ink" }) +
       bar(44, pA, "fig-good");
 
     readout.textContent =

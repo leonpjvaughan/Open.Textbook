@@ -14,7 +14,7 @@
 //
 // Nothing here carries a colour. Every shape uses a `fig-*` class and every word a
 // `text-*` class, so the figure follows the reader's theme in both schemes.
-import { diagram, slider, react } from "./kit.js";
+import { SIZE, diagram, label, react, slider } from "./kit.js";
 
 const P = { x: 280, y: 180 };
 const RAY = 120;
@@ -47,7 +47,7 @@ export function mount(el) {
     return (
       `<line x1="${NORMAL_TOP.x}" y1="${NORMAL_TOP.y}" x2="${P.x}" y2="${P.y}" ` +
       `class="fig-grid" stroke-dasharray="5 4" stroke-width="2"></line>` +
-      `<text x="${NORMAL_TOP.x + 6}" y="${NORMAL_TOP.y + 4}" font-size="16" class="fig-ink">normal</text>`
+      `${label({ x: NORMAL_TOP.x + 6, y: NORMAL_TOP.y + 4, text: `normal`, anchor: "start", size: SIZE.tick, class: "text-ink" })}`
     );
   }
 
@@ -58,7 +58,7 @@ export function mount(el) {
       `class="fig-accent" stroke-width="2.5"></line>` +
       `<polygon points="${P.x},${P.y} ${(P.x - 12 * dx + 6 * dy).toFixed(1)},${(P.y - 12 * dy - 6 * dx).toFixed(1)} ` +
       `${(P.x - 12 * dx - 6 * dy).toFixed(1)},${(P.y - 12 * dy + 6 * dx).toFixed(1)}" class="fig-accent"></polygon>` +
-      `<text x="${source.x.toFixed(1)}" y="${(source.y - 6).toFixed(1)}" font-size="16" class="fig-ink">incident ray</text>`
+      `${label({ x: source.x.toFixed(1), y: (source.y - 6).toFixed(1), text: `incident ray`, anchor: "start", size: SIZE.tick, class: "text-ink" })}`
     );
   }
 
@@ -67,8 +67,7 @@ export function mount(el) {
     return (
       `<line x1="${P.x}" y1="${P.y}" x2="${end.x.toFixed(1)}" y2="${end.y.toFixed(1)}" ` +
       `class="fig-warn" stroke-width="2.5"></line>` +
-      `<text x="${end.x.toFixed(1)}" y="${(end.y - 6).toFixed(1)}" font-size="16" ` +
-      `text-anchor="end" class="fig-ink">reflected ray</text>`
+      `${label({ x: end.x.toFixed(1), y: (end.y - 6).toFixed(1), text: `reflected ray`, anchor: "end", size: SIZE.tick, class: "text-ink" })}`
     );
   }
 
@@ -94,8 +93,7 @@ export function mount(el) {
     const labelY = P.y - (arcRadius + 8) * dy;
     return (
       `<polyline points="${points.join(" ")}" class="fig-ink" fill="none" stroke-width="1.5"></polyline>` +
-      `<text x="${labelX.toFixed(1)}" y="${labelY.toFixed(1)}" ` +
-      `font-size="16" text-anchor="middle" class="fig-ink">${state.angle}&deg;</text>`
+      `${label({ x: labelX.toFixed(1), y: labelY.toFixed(1), text: `${state.angle}°`, anchor: "middle", size: SIZE.tick, class: "text-ink" })}`
     );
   }
 

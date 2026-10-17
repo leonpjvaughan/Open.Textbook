@@ -15,7 +15,7 @@
 // The scaffolding — the surface, its accessible name, the sliders, the live
 // readout and the redraw — comes from `kit.js`. What is left here is the drawing
 // and the sentences, which are the parts that differ from every other figure.
-import { panel, slider, chooser, react } from "./kit.js";
+import { SIZE, chooser, label, panel, react, slider } from "./kit.js";
 
 export function mount(el) {
   const { svg, readout } = panel(el, {
@@ -116,8 +116,7 @@ export function mount(el) {
     if (Math.abs(end - start) * SCALE < 30) return "";
     const mid = ZERO_X + ((start + end) / 2) * SCALE;
     return (
-      `<text x="${mid.toFixed(1)}" y="${(centreY - BAR_H / 2 - 7).toFixed(1)}" ` +
-      `font-size="19" text-anchor="middle" class="text-ink">${letter}</text>`
+      `${label({ x: mid.toFixed(1), y: (centreY - BAR_H / 2 - 7).toFixed(1), text: `${letter}`, anchor: "middle", size: SIZE.heading, class: "text-ink" })}`
     );
   }
 
@@ -157,26 +156,21 @@ export function mount(el) {
 
     const legend =
       `<rect x="${GUTTER + 10}" y="8" width="12" height="12" class="fig-accent"></rect>` +
-      `<text x="${GUTTER + 28}" y="19" font-size="19" class="text-ink">A</text>` +
+      `${label({ x: GUTTER + 28, y: 19, text: `A`, anchor: "start", size: SIZE.heading, class: "text-ink" })}` +
       `<rect x="${GUTTER + 52}" y="8" width="12" height="12" class="fig-warn"></rect>` +
-      `<text x="${GUTTER + 70}" y="19" font-size="19" class="text-ink">B</text>` +
+      `${label({ x: GUTTER + 70, y: 19, text: `B`, anchor: "start", size: SIZE.heading, class: "text-ink" })}` +
       `<rect x="${GUTTER + 118}" y="8" width="12" height="12" class="fig-good"></rect>` +
-      `<text x="${GUTTER + 136}" y="19" font-size="19" class="text-ink">total</text>`;
+      `${label({ x: GUTTER + 136, y: 19, text: `total`, anchor: "start", size: SIZE.heading, class: "text-ink" })}`;
 
     const axis =
       `<line x1="${ZERO_X}" y1="32" x2="${ZERO_X}" y2="214" class="fig-grid"></line>` +
-      `<text x="${ZERO_X}" y="236" font-size="19" text-anchor="middle" ` +
-      `class="text-ink">momentum / ${UNIT}</text>`;
+      `${label({ x: ZERO_X, y: 236, text: `momentum / ${UNIT}`, anchor: "middle", size: SIZE.heading, class: "text-ink" })}`;
 
     const gutter =
-      `<text x="${GUTTER - 14}" y="${ROW.objectsBefore + 4}" font-size="19" ` +
-      `text-anchor="end" class="text-ink">before</text>` +
-      `<text x="${GUTTER - 14}" y="${ROW.totalBefore + 4}" font-size="19" ` +
-      `text-anchor="end" class="text-ink">total ${one(total)}</text>` +
-      `<text x="${GUTTER - 14}" y="${ROW.objectsAfter + 4}" font-size="19" ` +
-      `text-anchor="end" class="text-ink">after</text>` +
-      `<text x="${GUTTER - 14}" y="${ROW.totalAfter + 4}" font-size="19" ` +
-      `text-anchor="end" class="text-ink">total ${one(totalAfter)}</text>`;
+      `${label({ x: GUTTER - 14, y: ROW.objectsBefore + 4, text: `before`, anchor: "end", size: SIZE.heading, class: "text-ink" })}` +
+      `${label({ x: GUTTER - 14, y: ROW.totalBefore + 4, text: `total ${one(total)}`, anchor: "end", size: SIZE.heading, class: "text-ink" })}` +
+      `${label({ x: GUTTER - 14, y: ROW.objectsAfter + 4, text: `after`, anchor: "end", size: SIZE.heading, class: "text-ink" })}` +
+      `${label({ x: GUTTER - 14, y: ROW.totalAfter + 4, text: `total ${one(totalAfter)}`, anchor: "end", size: SIZE.heading, class: "text-ink" })}`;
 
     svg.innerHTML =
       legend +

@@ -15,7 +15,7 @@
 // The scaffolding — the surface, its accessible name, the slider, the live
 // readout and the redraw — comes from `kit.js`. What is left here is the drawing
 // and the sentences, which are the parts that differ from every other figure.
-import { panel, slider, react } from "./kit.js";
+import { SIZE, label, panel, react, slider } from "./kit.js";
 
 export function mount(el) {
   const PREFIXES = [
@@ -149,8 +149,8 @@ export function mount(el) {
       const state = index === selected ? "text-accent" : "text-ink";
       marks +=
         `<line x1="${x}" y1="${AXIS - 8}" x2="${x}" y2="${AXIS + 8}" class="fig-ink" stroke-width="1.5"></line>` +
-        `<text x="${x}" y="${AXIS + 22}" text-anchor="middle" font-size="23" class="${state}">${prefix.symbol}</text>` +
-        `<text x="${x}" y="${row}" text-anchor="middle" font-size="22" class="${state}">${prefix.object}</text>`;
+        `${label({ x: x, y: AXIS + 22, text: `${prefix.symbol}`, anchor: "middle", size: SIZE.heading, class: state })}` +
+        `${label({ x: x, y: row, text: `${prefix.object}`, anchor: "middle", size: SIZE.heading, class: state })}`;
     });
 
     // The factor between each pair of neighbours.
@@ -162,7 +162,7 @@ export function mount(el) {
       const power = PREFIXES[index + 1].exponent - PREFIXES[index].exponent;
       const text = power === 1 ? "×10" : power === 2 ? "×100" : "×1000";
       gaps +=
-        `<text x="${mid}" y="${AXIS + 40}" text-anchor="middle" font-size="19" class="text-ink">${text}</text>`;
+        `${label({ x: mid, y: AXIS + 40, text: `${text}`, anchor: "middle", size: SIZE.heading, class: "text-ink" })}`;
     }
 
     const markerX = xFor(chosen.exponent).toFixed(1);
@@ -178,7 +178,7 @@ export function mount(el) {
       marks +
       gaps +
       marker +
-      `<text x="${RIGHT}" y="${AXIS + 62}" text-anchor="end" font-size="21" class="text-ink">length in metres, on a logarithmic scale</text>`;
+      `${label({ x: RIGHT, y: AXIS + 62, text: `length in metres, on a logarithmic scale`, anchor: "end", size: SIZE.heading, class: "text-ink" })}`;
 
     const sentence =
       selected === 4

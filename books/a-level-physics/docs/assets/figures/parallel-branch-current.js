@@ -15,7 +15,7 @@
 // The scaffolding — the surface, its accessible name, the sliders, the live
 // readout and the redraw — comes from `kit.js`. What is left here is the drawing
 // and the sentences, which are the parts that differ from every other figure.
-import { panel, slider, react } from "./kit.js";
+import { SIZE, label, panel, react, slider } from "./kit.js";
 
 export function mount(el) {
   const SUPPLY = 12; // volts, held constant by an ideal supply
@@ -74,8 +74,8 @@ export function mount(el) {
       // The supply on the left, drawn as a cell with a long positive plate.
       `<line x1="88" y1="145" x2="132" y2="145" class="fig-ink" stroke-width="3"></line>` +
       `<line x1="98" y1="163" x2="122" y2="163" class="fig-ink" stroke-width="7"></line>` +
-      `<text x="80" y="150" font-size="17" text-anchor="end" class="text-ink">12 V</text>` +
-      `<text x="80" y="166" font-size="17" text-anchor="end" class="text-ink">ideal</text>` +
+      `${label({ x: 80, y: 150, text: `12 V`, anchor: "end", size: SIZE.value, class: "text-ink" })}` +
+      `${label({ x: 80, y: 166, text: `ideal`, anchor: "end", size: SIZE.value, class: "text-ink" })}` +
       // The left rail, the top rail and the bottom rail.
       `<line x1="110" y1="70" x2="110" y2="145" class="fig-ink" stroke-width="${wireWidth(total)}"></line>` +
       `<line x1="110" y1="163" x2="110" y2="250" class="fig-ink" stroke-width="${wireWidth(total)}"></line>` +
@@ -87,11 +87,11 @@ export function mount(el) {
       `<line x1="270" y1="70" x2="270" y2="130" class="fig-ink" stroke-width="${wireWidth(current1)}"></line>` +
       `<line x1="270" y1="190" x2="270" y2="250" class="fig-ink" stroke-width="${wireWidth(current1)}"></line>` +
       `<rect x="255" y="130" width="30" height="60" class="fig-accent"></rect>` +
-      `<text x="295" y="154" font-size="17" class="text-ink">R1 = ${ohms1} &Omega;</text>` +
+      `${label({ x: 295, y: 154, text: `R1 = ${ohms1} Ω`, anchor: "start", size: SIZE.value, class: "text-ink" })}` +
       `<line x1="430" y1="70" x2="430" y2="130" class="fig-ink" stroke-width="${wireWidth(current2)}"></line>` +
       `<line x1="430" y1="190" x2="430" y2="250" class="fig-ink" stroke-width="${wireWidth(current2)}"></line>` +
       `<rect x="415" y="130" width="30" height="60" class="fig-accent"></rect>` +
-      `<text x="455" y="154" font-size="17" class="text-ink">R2 = ${ohms2} &Omega;</text>` +
+      `${label({ x: 455, y: 154, text: `R2 = ${ohms2} Ω`, anchor: "start", size: SIZE.value, class: "text-ink" })}` +
       // The junction where the current splits and rejoins.
       `<circle cx="270" cy="70" r="3" class="fig-ink"></circle>` +
       `<circle cx="270" cy="250" r="3" class="fig-ink"></circle>` +
@@ -103,13 +103,13 @@ export function mount(el) {
       arrow(350, 250, "left") +
       arrow(190, 250, "left") +
       // The current in each part, written out.
-      `<text x="190" y="56" font-size="17" text-anchor="middle" class="text-ink">${total.toFixed(2)} A</text>` +
-      `<text x="350" y="56" font-size="17" text-anchor="middle" class="text-ink">${current2.toFixed(2)} A</text>` +
-      `<text x="256" y="100" font-size="17" text-anchor="end" class="text-ink">${current1.toFixed(2)} A</text>` +
-      `<text x="444" y="100" font-size="17" class="text-ink">${current2.toFixed(2)} A</text>` +
-      `<text x="350" y="270" font-size="17" text-anchor="middle" class="text-ink">${current2.toFixed(2)} A</text>` +
-      `<text x="190" y="270" font-size="17" text-anchor="middle" class="text-ink">${total.toFixed(2)} A</text>` +
-      `<text x="350" y="300" font-size="17" text-anchor="middle" class="text-ink">12 V across each branch</text>`;
+      `${label({ x: 190, y: 56, text: `${total.toFixed(2)} A`, anchor: "middle", size: SIZE.value, class: "text-ink" })}` +
+      `${label({ x: 350, y: 56, text: `${current2.toFixed(2)} A`, anchor: "middle", size: SIZE.value, class: "text-ink" })}` +
+      `${label({ x: 256, y: 100, text: `${current1.toFixed(2)} A`, anchor: "end", size: SIZE.value, class: "text-ink" })}` +
+      `${label({ x: 444, y: 100, text: `${current2.toFixed(2)} A`, anchor: "start", size: SIZE.value, class: "text-ink" })}` +
+      `${label({ x: 350, y: 270, text: `${current2.toFixed(2)} A`, anchor: "middle", size: SIZE.value, class: "text-ink" })}` +
+      `${label({ x: 190, y: 270, text: `${total.toFixed(2)} A`, anchor: "middle", size: SIZE.value, class: "text-ink" })}` +
+      `${label({ x: 350, y: 300, text: `12 V across each branch`, anchor: "middle", size: SIZE.value, class: "text-ink" })}`;
 
     readout.innerHTML =
       `The supply is ideal, so the potential difference across each branch stays at ` +

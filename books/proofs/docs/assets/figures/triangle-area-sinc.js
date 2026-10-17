@@ -15,7 +15,7 @@
 // The scaffolding — the surface, its accessible name, the slider, the live
 // readout and the redraw — comes from `kit.js`. What is left here is the drawing
 // and the sentences, which are the parts that differ from every other figure.
-import { panel, slider, react } from "./kit.js";
+import { SIZE, label, panel, react, slider } from "./kit.js";
 
 export function mount(el) {
   const { svg, readout } = panel(el, {
@@ -50,9 +50,8 @@ export function mount(el) {
     `x2="${q.x.toFixed(1)}" y2="${q.y.toFixed(1)}" stroke-width="${width}" ` +
     (dash ? `stroke-dasharray="${dash}" ` : "") + `class="${cls}"></line>`;
 
-  const text = (x, y, label, cls = "fig-ink") =>
-    `<text x="${x.toFixed(0)}" y="${y.toFixed(0)}" text-anchor="middle" ` +
-    `font-size="13" class="${cls}">${label}</text>`;
+  const text = (x, y, words, cls = "text-ink") =>
+    label({ x, y, text: words, size: SIZE.tick, class: cls });
 
   // An arc about (cx, cy) from `from` to `to`, travelling straight from one angle
   // to the other. SVG's positive angle direction is clockwise on screen, because

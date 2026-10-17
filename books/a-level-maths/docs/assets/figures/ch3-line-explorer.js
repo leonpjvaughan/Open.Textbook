@@ -4,7 +4,7 @@
 //
 // The scaffolding — the surface, its accessible name, the sliders, the live
 // readout and the redraw — comes from `kit.js`.
-import { panel, slider, react } from "./kit.js";
+import { SIZE, label, panel, react, slider } from "./kit.js";
 
 const X_MIN = -6;
 const X_MAX = 6;
@@ -135,8 +135,8 @@ export function mount(el) {
       `<circle cx="${xToPx(0)}" cy="${yToPx(c).toFixed(1)}" r="4" class="fig-accent"></circle>`;
 
     const yLabel =
-      `<text x="${xToPx(X_MAX) - 14}" y="${yToPx(0) - 6}" class="fig-ink">x</text>` +
-      `<text x="${xToPx(0) + 6}" y="${yToPx(Y_MAX) + 14}" class="fig-ink">y</text>`;
+      label({ x: xToPx(X_MAX) - 14, y: yToPx(0) - 6, text: "x", anchor: "start", class: "text-ink" }) +
+      label({ x: xToPx(0) + 6, y: yToPx(Y_MAX) + 14, text: "y", anchor: "start", class: "text-ink" });
 
     svg.innerHTML = grid() + axes + step + line + marker + yLabel;
 

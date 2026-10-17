@@ -7,7 +7,7 @@
 // The scaffolding — the surface, its accessible name, the two sliders, the live
 // readout and the redraw — comes from `kit.js`. The ratio line is the figure's own
 // second live region, so it stays here.
-import { panel, slider, react } from "./kit.js";
+import { SIZE, label, panel, react, slider } from "./kit.js";
 
 const DETECT = 0.95;
 const PEOPLE = 100000;
@@ -20,8 +20,14 @@ function bar(y, count, className) {
   return (
     `<rect x="${LEFT}" y="${y}" width="${width}" height="${BAR_H}" ` +
     `class="${className}" rx="3"></rect>` +
-    `<text x="${LEFT + BAR_W + 8}" y="${y + BAR_H - 8}" class="fig-ink" ` +
-    `font-size="16">${Math.round(count)}</text>`
+    label({
+      x: LEFT + BAR_W + 8,
+      y: y + BAR_H - 8,
+      text: `${Math.round(count)}`,
+      anchor: "start",
+      size: SIZE.label,
+      class: "text-ink",
+    })
   );
 }
 
@@ -68,9 +74,9 @@ export function mount(el) {
     const posterior = positives > 0 ? truePositives / positives : 0;
 
     svg.innerHTML =
-      `<text x="0" y="18" class="fig-ink" font-size="16">Have it, test positive</text>` +
+      label({ x: 0, y: 18, text: "Have it, test positive", anchor: "start", size: SIZE.label, class: "text-ink" }) +
       bar(4, truePositives, "fig-good") +
-      `<text x="0" y="60" class="fig-ink" font-size="16">Healthy, test positive</text>` +
+      label({ x: 0, y: 60, text: "Healthy, test positive", anchor: "start", size: SIZE.label, class: "text-ink" }) +
       bar(46, falsePositives, "fig-warn");
 
     readout.textContent =

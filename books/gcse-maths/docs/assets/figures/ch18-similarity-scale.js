@@ -10,7 +10,7 @@
 // here is the drawing and the sentence, which differ from every other figure.
 // Colours come from CSS classes, so the figure adapts to every bundle and both
 // schemes.
-import { panel, slider, react } from "./kit.js";
+import { SIZE, label, panel, react, slider } from "./kit.js";
 
 export function mount(el) {
   const S = 24;
@@ -42,8 +42,8 @@ export function mount(el) {
     return (
       grid.join("") +
       `<rect x="${SQ_X}" y="${top}" width="${side}" height="${side}" class="fig-line"></rect>` +
-      `<text x="${SQ_X}" y="44" class="text-ink" font-size="16">Area</text>` +
-      `<text x="${SQ_X}" y="${BASE + 26}" class="text-accent" font-size="15">area × ${k * k}</text>`
+      label({ x: SQ_X, y: 44, text: "Area", anchor: "start", size: SIZE.label, class: "text-ink" }) +
+      label({ x: SQ_X, y: BASE + 26, text: `area × ${k * k}`, anchor: "start", size: SIZE.tick, class: "text-accent" })
     );
   }
 
@@ -90,8 +90,8 @@ export function mount(el) {
     return (
       grid.join("") +
       ink +
-      `<text x="${CUBE_X}" y="44" class="text-ink" font-size="16">Volume</text>` +
-      `<text x="${CUBE_X}" y="${BASE + 26}" class="text-warn" font-size="15">volume × ${k * k * k}</text>`
+      label({ x: CUBE_X, y: 44, text: "Volume", anchor: "start", size: SIZE.label, class: "text-ink" }) +
+      label({ x: CUBE_X, y: BASE + 26, text: `volume × ${k * k * k}`, anchor: "start", size: SIZE.tick, class: "text-warn" })
     );
   }
 

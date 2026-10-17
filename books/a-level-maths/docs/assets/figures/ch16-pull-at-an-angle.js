@@ -14,7 +14,7 @@
 // The scaffolding — the surface, its accessible name, the sliders, the live
 // readout, the redraw — comes from `kit.js`. What is left here is the drawing and
 // the sentence, which are the parts that differ from every other figure.
-import { panel, slider, react } from "./kit.js";
+import { SIZE, label, panel, react, slider } from "./kit.js";
 
 const G = 9.8;
 const SCALE = 0.18; // pixels per newton
@@ -72,11 +72,8 @@ function guide(x2, y2) {
   );
 }
 
-function label(x, y, text, cls, anchor) {
-  return (
-    `<text x="${x.toFixed(1)}" y="${y.toFixed(1)}" font-size="14" ` +
-    `text-anchor="${anchor}" class="${cls}">${text}</text>`
-  );
+function forceLabel(x, y, words, cls, anchor) {
+  return label({ x, y, text: words, anchor, size: SIZE.tick, class: cls });
 }
 
 export function mount(el) {
@@ -163,7 +160,7 @@ export function mount(el) {
           `A ${arcRadius.toFixed(1)} ${arcRadius.toFixed(1)} 0 0 0 ` +
           `${(CX + arcRadius * cos).toFixed(1)} ` +
           `${(CY - arcRadius * sin).toFixed(1)}" class="fig-line"></path>` +
-          label(
+          forceLabel(
             CX + (arcRadius + 16) * Math.cos(radians / 2),
             CY - (arcRadius + 16) * Math.sin(radians / 2) + 4,
             "\u03b8",
@@ -185,14 +182,14 @@ export function mount(el) {
       arrow(-drag * SCALE, 0, "fig-good", 3);
 
     const names =
-      label(CX + 8, CY + weight * SCALE, `W = ${one(weight)} N`, "text-ink", "start") +
+      forceLabel(CX + 8, CY + weight * SCALE, `W = ${one(weight)} N`, "text-ink", "start") +
       (normal > 1
-        ? label(CX - 8, CY - normal * SCALE, `R = ${one(normal)} N`, "text-ink", "end")
+        ? forceLabel(CX - 8, CY - normal * SCALE, `R = ${one(normal)} N`, "text-ink", "end")
         : "") +
       (drag > 1
-        ? label(CX - drag * SCALE - 8, CY + 5, `F = ${one(drag)} N`, "text-ink", "end")
+        ? forceLabel(CX - drag * SCALE - 8, CY + 5, `F = ${one(drag)} N`, "text-ink", "end")
         : "") +
-      label(
+      forceLabel(
         CX + (ropeX + 10),
         CY + ropeY - 4,
         `T = ${one(tension)} N`,
@@ -200,7 +197,7 @@ export function mount(el) {
         "start",
       ) +
       (forward > 1
-        ? label(
+        ? forceLabel(
             CX + ropeX / 2,
             CY + 16,
             `T cos \u03b8 = ${one(forward)} N`,
@@ -209,7 +206,7 @@ export function mount(el) {
           )
         : "") +
       (lift > 1
-        ? label(
+        ? forceLabel(
             CX + 8,
             CY + ropeY / 2,
             `T sin \u03b8 = ${one(lift)} N`,
@@ -227,7 +224,7 @@ export function mount(el) {
           `<polygon points="${(40 + arrowLength + 10).toFixed(1)},352 ` +
           `${(40 + arrowLength).toFixed(1)},347 ${(40 + arrowLength).toFixed(1)},357" ` +
           `class="fig-accent"></polygon>` +
-          label(
+          forceLabel(
             40 + arrowLength / 2,
             344,
             `acceleration a = ${two(acceleration)} m/s${SQUARED}`,

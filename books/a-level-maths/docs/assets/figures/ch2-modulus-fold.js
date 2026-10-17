@@ -14,7 +14,7 @@
 //
 // The scaffolding — the surface, its accessible name, the sliders, the live
 // readout and the redraw — comes from `kit.js`.
-import { panel, slider, react } from "./kit.js";
+import { SIZE, label, panel, react, slider } from "./kit.js";
 
 const X_MIN = -9;
 const X_MAX = 9;
@@ -40,11 +40,8 @@ function inside(a) {
   return a > 0 ? `x - ${a}` : `x + ${-a}`;
 }
 
-function text(x, y, label, cls) {
-  return (
-    `<text x="${x.toFixed(1)}" y="${y.toFixed(1)}" text-anchor="middle" ` +
-    `font-size="12" class="${cls}">${label}</text>`
-  );
+function text(x, y, words, cls) {
+  return label({ x, y, text: words, anchor: "middle", size: SIZE.tick, class: cls });
 }
 
 // Grid lines every two units, so a coordinate can be read off the drawing.

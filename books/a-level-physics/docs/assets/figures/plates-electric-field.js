@@ -12,7 +12,7 @@
 // The scaffolding — the surface, its accessible name, the sliders, the live
 // readout and the redraw — comes from `kit.js`. What is left here is the drawing
 // and the sentences, which are the parts that differ from every other figure.
-import { panel, slider, react } from "./kit.js";
+import { SIZE, label, panel, react, slider } from "./kit.js";
 
 export function mount(el) {
   const { svg, readout } = panel(el, {
@@ -59,8 +59,8 @@ export function mount(el) {
     let drawing =
       `<line x1="${LEFT}" y1="${TOP}" x2="${LEFT}" y2="${BOTTOM}" class="fig-accent" stroke-width="6"></line>` +
       `<line x1="${RIGHT}" y1="${TOP}" x2="${RIGHT}" y2="${BOTTOM}" class="fig-accent" stroke-width="6"></line>` +
-      `<text x="${LEFT}" y="${TOP - 12}" font-size="20" class="fig-ink" text-anchor="middle">+ plate</text>` +
-      `<text x="${RIGHT}" y="${TOP - 12}" font-size="20" class="fig-ink" text-anchor="middle">- plate</text>`;
+      `${label({ x: LEFT, y: TOP - 12, text: `+ plate`, anchor: "middle", size: SIZE.heading, class: "text-ink" })}` +
+      `${label({ x: RIGHT, y: TOP - 12, text: `- plate`, anchor: "middle", size: SIZE.heading, class: "text-ink" })}`;
 
     const arrows = Math.max(
       2,
@@ -78,10 +78,10 @@ export function mount(el) {
     const ionY = (TOP + BOTTOM) / 2;
     drawing +=
       `<circle cx="${ionX}" cy="${ionY}" r="8" class="fig-good"></circle>` +
-      `<text x="${ionX}" y="${ionY + 4}" font-size="18" class="fig-ink" text-anchor="middle">+</text>` +
+      `${label({ x: ionX, y: ionY + 4, text: `+`, anchor: "middle", size: SIZE.value, class: "text-ink" })}` +
       `<line x1="${ionX + 12}" y1="${ionY}" x2="${ionX + 70}" y2="${ionY}" class="fig-good" stroke-width="2"></line>` +
       `<polygon points="${ionX + 70},${ionY - 5} ${ionX + 70},${ionY + 5} ${ionX + 80},${ionY}" class="fig-good"></polygon>` +
-      `<text x="${LEFT + 30}" y="${BOTTOM + 28}" font-size="20" class="fig-ink">gap ${Number(gap.value).toFixed(1)} mm</text>`;
+      `${label({ x: LEFT + 30, y: BOTTOM + 28, text: `gap ${Number(gap.value).toFixed(1)} mm`, anchor: "start", size: SIZE.heading, class: "text-ink" })}`;
 
     svg.innerHTML = drawing;
 

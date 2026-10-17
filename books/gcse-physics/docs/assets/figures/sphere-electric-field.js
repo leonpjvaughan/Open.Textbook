@@ -13,7 +13,7 @@
 // readout and the redraw — comes from `kit.js`. The sign button is not one of
 // the kit's controls, so it is built here inside the kit's control column. What
 // is left is the drawing and the sentences.
-import { panel, slider, react } from "./kit.js";
+import { SIZE, label, panel, react, slider } from "./kit.js";
 
 export function mount(el) {
   const { svg, readout, controls } = panel(el, {
@@ -82,11 +82,11 @@ export function mount(el) {
     svg.innerHTML =
       lines.join("") +
       `<circle cx="${CX}" cy="${CY}" r="16" class="${positive ? "fig-accent" : "fig-warn"}" style="fill:none" stroke-width="3"></circle>` +
-      `<text x="${CX}" y="${CY + 5}" font-size="19" text-anchor="middle" class="fig-ink">${positive ? "+" : "&minus;"}</text>` +
+      `${label({ x: CX, y: CY + 5, text: `${positive ? "+" : "−"}`, anchor: "middle", size: SIZE.heading, class: "text-ink" })}` +
       `<line x1="${testX}" y1="40" x2="${testX}" y2="180" class="fig-grid" stroke-width="1" stroke-dasharray="3 3"></line>` +
       `<circle cx="${testX}" cy="${CY}" r="6" class="fig-warn"></circle>` +
-      `<text x="${testX}" y="200" font-size="16" text-anchor="middle" class="fig-ink">test point</text>` +
-      `<text x="${CX}" y="205" font-size="16" text-anchor="middle" class="fig-ink">charged sphere</text>`;
+      `${label({ x: testX, y: 200, text: `test point`, anchor: "middle", size: SIZE.tick, class: "text-ink" })}` +
+      `${label({ x: CX, y: 205, text: `charged sphere`, anchor: "middle", size: SIZE.tick, class: "text-ink" })}`;
 
     readout.innerHTML =
       `The sphere carries a <strong>${positive ? "positive" : "negative"}</strong> charge, so the ` +

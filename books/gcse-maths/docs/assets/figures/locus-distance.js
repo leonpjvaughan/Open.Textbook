@@ -9,7 +9,7 @@
 // The scaffolding — the surface, its accessible name, the slider, the live
 // readout, the redraw — comes from `kit.js`. What is left here is the drawing and
 // the sentence, which are the parts that differ from every other figure.
-import { panel, slider, react } from "./kit.js";
+import { SIZE, label, panel, react, slider } from "./kit.js";
 
 export function mount(el) {
   const { svg, readout } = panel(el, {
@@ -54,10 +54,10 @@ export function mount(el) {
       `<line x1="${A.x}" y1="${A.y}" x2="${B.x}" y2="${B.y}" class="fig-ink" stroke-width="6" stroke-linecap="round"></line>` +
       `<circle cx="${A.x}" cy="${A.y}" r="4" class="fig-ink"></circle>` +
       `<circle cx="${B.x}" cy="${B.y}" r="4" class="fig-ink"></circle>` +
-      `<text x="${(A.x + B.x) / 2}" y="${A.y + 24}" font-size="15" text-anchor="middle" class="text-ink">the wall</text>` +
+      label({ x: (A.x + B.x) / 2, y: A.y + 24, text: "the wall", anchor: "middle", size: SIZE.tick, class: "text-ink" }) +
       `<line x1="${B.x}" y1="${B.y}" x2="${sample.x}" y2="${sample.y}" style="fill:none" class="fig-good" stroke-width="2" stroke-dasharray="4 3"></line>` +
       `<circle cx="${sample.x}" cy="${sample.y}" r="5" class="fig-good"></circle>` +
-      `<text x="${(B.x + sample.x) / 2}" y="${B.y - 10}" font-size="15" text-anchor="middle" class="text-good">${metres} m</text>`;
+      label({ x: (B.x + sample.x) / 2, y: B.y - 10, text: `${metres} m`, anchor: "middle", size: SIZE.tick, class: "text-good" });
 
     readout.textContent =
       `The wall is 8 m long. Every point on the dashed path is ${metres} m from ` +

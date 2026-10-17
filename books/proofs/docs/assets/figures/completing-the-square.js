@@ -17,7 +17,7 @@
 // The scaffolding — the surface, its accessible name, the slider, the live
 // readout and the redraw — comes from `kit.js`. What is left here is the drawing
 // and the sentences, which are the parts that differ from every other figure.
-import { panel, slider, react } from "./kit.js";
+import { SIZE, label, panel, react, slider } from "./kit.js";
 
 export function mount(el) {
   const { svg, readout } = panel(el, {
@@ -48,9 +48,8 @@ export function mount(el) {
     `<rect x="${x.toFixed(1)}" y="${y.toFixed(1)}" width="${w.toFixed(1)}" ` +
     `height="${h.toFixed(1)}" class="${cls}" fill-opacity="${opacity}"></rect>`;
 
-  const text = (x, y, label, cls, size, anchor) =>
-    `<text x="${x.toFixed(0)}" y="${y.toFixed(0)}" text-anchor="${anchor || "middle"}" ` +
-    `font-size="${size || 14}" class="${cls}">${label}</text>`;
+  const text = (x, y, words, cls, anchor = "middle") =>
+    label({ x, y, text: words, anchor, size: SIZE.tick, class: cls });
 
   function draw() {
     const b = Number(bInput.value);
@@ -69,15 +68,15 @@ export function mount(el) {
       `<rect x="${OX}" y="${OY}" width="${total.toFixed(1)}" ` +
       `height="${total.toFixed(1)}" class="fig-line"></rect>` +
       // The area of each piece, in the middle of the piece.
-      text(OX + SIDE / 2, OY + SIDE / 2 + 5, "x²", "text-ink", 16) +
-      text(OX + SIDE + strip / 2, OY + SIDE / 2 + 4, "x·b/2", "text-warn", 11) +
-      text(OX + SIDE / 2, OY + SIDE + strip / 2 + 4, "x·b/2", "text-warn", 11) +
-      text(OX + SIDE + strip / 2, OY + SIDE + strip / 2 + 4, "(b/2)²", "text-good", 11) +
+      text(OX + SIDE / 2, OY + SIDE / 2 + 5, "x²", "text-ink") +
+      text(OX + SIDE + strip / 2, OY + SIDE / 2 + 4, "x·b/2", "text-warn") +
+      text(OX + SIDE / 2, OY + SIDE + strip / 2 + 4, "x·b/2", "text-warn") +
+      text(OX + SIDE + strip / 2, OY + SIDE + strip / 2 + 4, "(b/2)²", "text-good") +
       // The two side lengths of the finished square: x, then b/2.
-      text(OX + SIDE / 2, OY + total + 18, "x", "text-ink", 13) +
-      text(OX + SIDE + strip / 2, OY + total + 18, "b/2", "text-ink", 13) +
-      text(OX + total + 4, OY + SIDE / 2 + 4, "x", "text-ink", 13, "start") +
-      text(OX + total + 4, OY + SIDE + strip / 2 + 4, "b/2", "text-ink", 13, "start");
+      text(OX + SIDE / 2, OY + total + 18, "x", "text-ink") +
+      text(OX + SIDE + strip / 2, OY + total + 18, "b/2", "text-ink") +
+      text(OX + total + 4, OY + SIDE / 2 + 4, "x", "text-ink", "start") +
+      text(OX + total + 4, OY + SIDE + strip / 2 + 4, "b/2", "text-ink", "start");
 
     const half = b / 2;
     const corner = half * half;

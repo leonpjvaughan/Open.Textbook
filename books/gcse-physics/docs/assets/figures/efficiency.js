@@ -9,7 +9,7 @@
 // The scaffolding — the surface, its accessible name, the sliders, the live
 // readout and the redraw — comes from `kit.js`. What is left here is the drawing
 // and the sentences, which are the parts that differ from every other figure.
-import { panel, slider, react } from "./kit.js";
+import { SIZE, label, panel, react, slider } from "./kit.js";
 
 export function mount(el) {
   const { svg, readout } = panel(el, {
@@ -59,12 +59,12 @@ export function mount(el) {
     const wastedWidth = width(wasted);
 
     svg.innerHTML =
-      `<text x="${BAR_X}" y="28" font-size="16" class="fig-ink">Input ${input} W</text>` +
+      `${label({ x: BAR_X, y: 28, text: `Input ${input} W`, anchor: "start", size: SIZE.tick, class: "text-ink" })}` +
       `<rect x="${BAR_X}" y="40" width="${width(input)}" height="34" class="fig-grid"></rect>` +
       `<rect x="${BAR_X}" y="40" width="${usefulWidth}" height="34" class="fig-accent"></rect>` +
       `<rect x="${(BAR_X + Number(usefulWidth)).toFixed(1)}" y="40" width="${wastedWidth}" height="34" class="fig-warn"></rect>` +
-      `<text x="${BAR_X}" y="96" font-size="16" class="fig-ink">Useful output ${useful} W</text>` +
-      `<text x="${BAR_X + 190}" y="96" font-size="16" class="fig-ink">Wasted ${wasted} W</text>`;
+      `${label({ x: BAR_X, y: 96, text: `Useful output ${useful} W`, anchor: "start", size: SIZE.tick, class: "text-ink" })}` +
+      `${label({ x: BAR_X + 190, y: 96, text: `Wasted ${wasted} W`, anchor: "start", size: SIZE.tick, class: "text-ink" })}`;
 
     readout.innerHTML =
       `Efficiency = useful output ÷ total input = ${useful} W ÷ ${input} W = ` +

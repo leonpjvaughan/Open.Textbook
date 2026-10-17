@@ -3,7 +3,7 @@
 // The scaffolding — the surface, its accessible name, the two sliders, the live
 // readout, the redraw — comes from `kit.js`, and a signed term from `signed()`,
 // so a negative intercept reads as a signed number, never a bracketed addend.
-import { panel, slider, signed, react } from "./kit.js";
+import { SIZE, label, panel, react, signed, slider } from "./kit.js";
 
 export function mount(el) {
   const { svg, readout } = panel(el, {
@@ -45,8 +45,8 @@ export function mount(el) {
       <line x1="180" y1="20" x2="180" y2="230" class="fig-ink"></line>
       <line x1="36" y1="${py(m * -5 + c)}" x2="324" y2="${py(m * 5 + c)}" class="fig-accent"></line>
       ${dots}<circle cx="${px(0)}" cy="${py(c)}" r="8" fill="none" class="fig-warn"></circle>
-      <text x="330" y="145" class="text-accent">x</text><text x="190" y="24" class="text-accent">y</text>
-      <text x="12" y="245" class="fig-ink">Points at x = -2, 0, 2</text>`;
+      ${label({ x: 330, y: 145, text: "x", anchor: "start", class: "text-accent" })}${label({ x: 190, y: 24, text: "y", anchor: "start", class: "text-accent" })}
+      ${label({ x: 12, y: 245, text: "Points at x = -2, 0, 2", anchor: "start", class: "text-ink" })}`;
     readout.textContent = `y = ${m}x ${signed(c)}; the highlighted intercept is ${c}.`;
   }
 

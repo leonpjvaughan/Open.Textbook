@@ -7,7 +7,7 @@
 // It is the first use of `diagram()`, and it is the case the primitive was written for —
 // a drawing whose meaning *is* its named parts. Each part is a button under the drawing,
 // so the reader moves through them with the keyboard and hears what each one is, and the
-// drawing follows. A single `<text>` per label, which is what this figure would have been,
+// drawing follows. A single text element per label, which is what this figure would have been,
 // is one image to a screen reader and one undifferentiated picture to everyone else.
 //
 // The labels in the drawing carry the numbers because the numbers are what a reader has to

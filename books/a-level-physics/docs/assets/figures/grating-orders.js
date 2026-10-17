@@ -13,7 +13,7 @@
 // The scaffolding — the surface, its accessible name, the sliders, the live
 // readout and the redraw — comes from `kit.js`. What is left here is the drawing
 // and the sentences, which are the parts that differ from every other figure.
-import { panel, slider, react } from "./kit.js";
+import { SIZE, label, panel, react, slider } from "./kit.js";
 
 export function mount(el) {
   const { svg, readout } = panel(el, {
@@ -75,9 +75,9 @@ export function mount(el) {
 
     const grating =
       `<line x1="${GX - 120}" y1="${GY}" x2="${GX + 120}" y2="${GY}" class="fig-ink" stroke-width="4"></line>` +
-      `<text x="${GX - 124}" y="${GY + 16}" font-size="19" class="fig-ink" text-anchor="end">grating</text>` +
+      `${label({ x: GX - 124, y: GY + 16, text: `grating`, anchor: "end", size: SIZE.heading, class: "text-ink" })}` +
       `<line x1="${GX}" y1="${GY}" x2="${GX}" y2="${GY - RADIUS}" class="fig-grid" stroke-dasharray="4 4"></line>` +
-      `<text x="${GX + 4}" y="${GY - RADIUS + 12}" font-size="17" class="fig-ink">n = 0</text>`;
+      `${label({ x: GX + 4, y: GY - RADIUS + 12, text: `n = 0`, anchor: "start", size: SIZE.value, class: "text-ink" })}`;
 
     const arc = `<path d="${arcPath.trim()}" fill="none" class="fig-ink"></path>`;
 
@@ -95,8 +95,7 @@ export function mount(el) {
       rays +=
         `<line x1="${GX}" y1="${GY}" x2="${x.toFixed(1)}" y2="${y.toFixed(1)}" class="${cls}" stroke-width="2"></line>` +
         `<circle cx="${x.toFixed(1)}" cy="${y.toFixed(1)}" r="5" class="${cls}"></circle>` +
-        `<text x="${(GX + (x - GX) * 1.03).toFixed(1)}" y="${(GY + (y - GY) * 1.03).toFixed(1)}" ` +
-        `font-size="19" class="fig-ink" text-anchor="middle">${n}</text>`;
+        `${label({ x: (GX + (x - GX) * 1.03).toFixed(1), y: (GY + (y - GY) * 1.03).toFixed(1), text: `${n}`, anchor: "middle", size: SIZE.heading, class: "text-ink" })}`;
     }
 
     svg.innerHTML = arc + grating + rays;

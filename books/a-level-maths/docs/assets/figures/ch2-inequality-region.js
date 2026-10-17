@@ -10,7 +10,7 @@
 //
 // The scaffolding — the surface, its accessible name, the sliders, the chooser,
 // the live readout and the redraw — comes from `kit.js`.
-import { panel, slider, chooser, react } from "./kit.js";
+import { SIZE, chooser, label, panel, react, slider } from "./kit.js";
 
 const WIDTH = 460;
 const HEIGHT = 330;
@@ -181,8 +181,7 @@ export function mount(el) {
       numberLine +=
         `<line x1="${px.toFixed(1)}" y1="${NL_Y - 4}" x2="${px.toFixed(1)}" y2="${NL_Y + 4}" ` +
         `class="fig-ink"></line>` +
-        `<text x="${px.toFixed(1)}" y="${NL_Y + 20}" text-anchor="middle" ` +
-        `font-size="13" class="text-ink">${x}</text>`;
+        label({ x: px, y: NL_Y + 20, text: x, anchor: "middle", size: SIZE.tick, class: "text-ink" });
     }
     for (const iv of intervals) {
       const a = iv.a === -Infinity ? X_MIN : Math.max(iv.a, X_MIN);

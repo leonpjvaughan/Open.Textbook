@@ -13,7 +13,7 @@
 // one of the kit's controls, so they are built here inside the kit's control
 // column. What is left is the drawing and the sentence, which are the parts that
 // differ from every other figure.
-import { panel, slider, react } from "./kit.js";
+import { SIZE, label, panel, react, slider } from "./kit.js";
 
 export function mount(el) {
   const { svg, readout, controls } = panel(el, {
@@ -80,14 +80,14 @@ export function mount(el) {
     svg.innerHTML =
       `<line x1="60" y1="140" x2="500" y2="140" class="fig-ink" stroke-width="2"></line>` +
       `<rect x="180" y="${barY.toFixed(1)}" width="90" height="${barHeight.toFixed(1)}" class="fig-accent"></rect>` +
-      `<text x="225" y="${(barY - 8).toFixed(1)}" font-size="16" text-anchor="middle" class="fig-ink">${formatEnergy(energy)}</text>` +
-      `<text x="225" y="158" font-size="16" text-anchor="middle" class="fig-ink">your setting</text>` +
+      `${label({ x: 225, y: (barY - 8).toFixed(1), text: `${formatEnergy(energy)}`, anchor: "middle", size: SIZE.tick, class: "text-ink" })}` +
+      `${label({ x: 225, y: 158, text: `your setting`, anchor: "middle", size: SIZE.tick, class: "text-ink" })}` +
       `<line x1="360" y1="140" x2="360" y2="20" class="fig-grid" stroke-width="2" stroke-dasharray="4 4"></line>` +
-      `<text x="366" y="36" font-size="16" class="fig-ink">lamp: 0.10 kW for 30 min</text>` +
-      `<text x="366" y="52" font-size="16" class="fig-ink">= 180 kJ</text>` +
+      `${label({ x: 366, y: 36, text: `lamp: 0.10 kW for 30 min`, anchor: "start", size: SIZE.tick, class: "text-ink" })}` +
+      `${label({ x: 366, y: 52, text: `= 180 kJ`, anchor: "start", size: SIZE.tick, class: "text-ink" })}` +
       `<line x1="360" y1="80" x2="530" y2="80" class="fig-grid" stroke-width="2" stroke-dasharray="4 4"></line>` +
-      `<text x="366" y="96" font-size="16" class="fig-ink">heater: 2.0 kW for 1.0 min</text>` +
-      `<text x="366" y="112" font-size="16" class="fig-ink">= 120 kJ</text>`;
+      `${label({ x: 366, y: 96, text: `heater: 2.0 kW for 1.0 min`, anchor: "start", size: SIZE.tick, class: "text-ink" })}` +
+      `${label({ x: 366, y: 112, text: `= 120 kJ`, anchor: "start", size: SIZE.tick, class: "text-ink" })}`;
 
     readout.innerHTML =
       `Power <strong>${kilowatts.toFixed(2)} kW = ${watts} W</strong>. ` +

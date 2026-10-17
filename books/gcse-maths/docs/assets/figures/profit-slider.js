@@ -8,7 +8,7 @@
 // The scaffolding — the surface, its accessible name, the four sliders, the live
 // readout, the redraw — comes from `kit.js`. What is left here is the drawing and
 // the sentence, which are the parts that differ from every other figure.
-import { SIZE, panel, react, slider } from "./kit.js";
+import { SIZE, label, panel, react, slider } from "./kit.js";
 
 export function mount(el) {
   const { svg, readout } = panel(el, {
@@ -23,11 +23,11 @@ export function mount(el) {
   const priceEach = slider(el, { show: false, id: "price", label: "Price each (£)", min: 0, max: 3, step: 0.05, value: 1.20, show: false });
   const sold = slider(el, { show: false, id: "sold", label: "Sold", min: 0, max: 200, step: 5, value: 95, show: false });
 
-  function bar(x, w, h, cls, label, value) {
+  function bar(x, w, h, cls, words, value) {
     const base = 100;
     return `<rect x="${x}" y="${base - h}" width="${w}" height="${h}" class="${cls}"></rect>
-      <text x="${x + w / 2}" y="${base + 12}" text-anchor="middle" font-size="${SIZE.tick}" class="fig-ink">${label}</text>
-      <text x="${x + w / 2}" y="${base - h - 4}" text-anchor="middle" font-size="${SIZE.tick}" class="fig-ink">${value}</text>`;
+      ${label({ x: x + w / 2, y: base + 12, text: words, anchor: "middle", size: SIZE.tick, class: "text-ink" })}
+      ${label({ x: x + w / 2, y: base - h - 4, text: value, anchor: "middle", size: SIZE.tick, class: "text-ink" })}`;
   }
 
   react([bought, costEach, priceEach, sold], () => {

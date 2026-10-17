@@ -13,7 +13,7 @@
 // The scaffolding — the surface, its accessible name, the slider, the live
 // readout and the redraw — comes from `kit.js`. What is left here is the drawing
 // and the sentences, which are the parts that differ from every other figure.
-import { panel, slider, react } from "./kit.js";
+import { SIZE, label, panel, react, slider } from "./kit.js";
 
 export function mount(el) {
   const { svg, readout } = panel(el, {
@@ -57,22 +57,22 @@ export function mount(el) {
     let axes = `
       <line x1="${LEFT}" y1="${TOP}" x2="${LEFT}" y2="${BOTTOM}" class="fig-ink"></line>
       <line x1="${LEFT}" y1="${BOTTOM}" x2="${RIGHT}" y2="${BOTTOM}" class="fig-ink"></line>
-      <text x="${LEFT}" y="${TOP - 8}" font-size="19" class="fig-ink">uncertainty in the period (%)</text>
-      <text x="${RIGHT}" y="${BOTTOM + 18}" font-size="19" class="fig-ink" text-anchor="end">oscillations timed</text>`;
+      ${label({ x: LEFT, y: TOP - 8, text: `uncertainty in the period (%)`, anchor: "start", size: SIZE.heading, class: "text-ink" })}
+      ${label({ x: RIGHT, y: BOTTOM + 18, text: `oscillations timed`, anchor: "end", size: SIZE.heading, class: "text-ink" })}`;
 
     for (let tick = 0; tick <= 4; tick += 1) {
       const y = BOTTOM - (tick / 4) * (BOTTOM - TOP);
       const value = (tick / 4) * yMax;
       axes +=
         `<line x1="${LEFT}" y1="${y.toFixed(1)}" x2="${RIGHT}" y2="${y.toFixed(1)}" class="fig-grid"></line>` +
-        `<text x="${LEFT - 8}" y="${(y + 4).toFixed(1)}" font-size="17" class="fig-ink" text-anchor="end">${value.toFixed(1)}</text>`;
+        `${label({ x: LEFT - 8, y: (y + 4).toFixed(1), text: `${value.toFixed(1)}`, anchor: "end", size: SIZE.value, class: "text-ink" })}`;
     }
     for (let tick = 0; tick <= 5; tick += 1) {
       const x = LEFT + (tick / 5) * (RIGHT - LEFT);
       const value = Math.round((tick / 5) * N_MAX);
       axes +=
         `<line x1="${x.toFixed(1)}" y1="${BOTTOM}" x2="${x.toFixed(1)}" y2="${BOTTOM + 5}" class="fig-ink"></line>` +
-        `<text x="${x.toFixed(1)}" y="${BOTTOM + 18}" font-size="17" class="fig-ink" text-anchor="middle">${value}</text>`;
+        `${label({ x: x.toFixed(1), y: BOTTOM + 18, text: `${value}`, anchor: "middle", size: SIZE.value, class: "text-ink" })}`;
     }
 
     const point = (value) => {

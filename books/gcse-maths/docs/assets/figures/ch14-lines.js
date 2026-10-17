@@ -2,7 +2,7 @@
 //
 // The scaffolding — the surface, its accessible name, the slider, the live
 // readout, the redraw — comes from `kit.js`.
-import { panel, slider, react } from "./kit.js";
+import { SIZE, label, panel, react, slider } from "./kit.js";
 
 export function mount(el) {
   const { svg, readout } = panel(el, {
@@ -40,9 +40,9 @@ export function mount(el) {
       <line x1="${px}" y1="${Math.min(py1, py2)}" x2="${px}" y2="${Math.max(py1, py2)}" class="fig-grid"></line>
       <circle cx="${px}" cy="${py1}" r="5" class="fig-accent"></circle>
       <circle cx="${px}" cy="${py2}" r="5" class="fig-good"></circle>
-      <text x="80" y="25" class="text-accent">y = 2x + 1</text>
-      <text x="330" y="25" class="text-good">y = -x + 7</text>
-      <text x="440" y="238" class="fig-ink">x</text>`;
+      ${label({ x: 80, y: 25, text: "y = 2x + 1", anchor: "start", class: "text-accent" })}
+      ${label({ x: 330, y: 25, text: "y = -x + 7", anchor: "start", class: "text-good" })}
+      ${label({ x: 440, y: 238, text: "x", anchor: "start", class: "text-ink" })}`;
     readout.className = `readout ${y1 === y2 ? "text-good" : "text-warn"}`;
     readout.textContent = `At x = ${x}: first line y = ${y1}; second line y = ${y2}${y1 === y2 ? ". The values match." : ". The values do not match yet."}`;
   }

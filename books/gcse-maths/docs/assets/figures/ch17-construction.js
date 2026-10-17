@@ -3,7 +3,7 @@
 // The scaffolding — the surface, its accessible name, the slider, the live
 // readout, the redraw — comes from `kit.js`. What is left here is the drawing and
 // the sentence, which differ from every other figure.
-import { panel, slider, react } from "./kit.js";
+import { SIZE, label, panel, react, slider } from "./kit.js";
 
 export function mount(el) {
   const { svg, readout } = panel(el, {
@@ -23,7 +23,7 @@ export function mount(el) {
       <line x1="160" y1="10" x2="160" y2="180" class="fig-good" stroke="currentColor" stroke-width="2" stroke-dasharray="6 4" />
       <circle cx="70" cy="95" r="4" class="fig-ink" fill="currentColor" />
       <circle cx="250" cy="95" r="4" class="fig-ink" fill="currentColor" />
-      <text x="58" y="118" class="text-ink">A</text><text x="254" y="118" class="text-ink">B</text>`;
+      ${label({ x: 58, y: 118, text: "A", anchor: "start", class: "text-ink" })}${label({ x: 254, y: 118, text: "B", anchor: "start", class: "text-ink" })}`;
 
   const input = slider(el, { show: false,
     id: "width",

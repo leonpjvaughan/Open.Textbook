@@ -4,7 +4,7 @@
 // The scaffolding — the surface, its accessible name, the slider, the live
 // readout, the redraw — comes from `kit.js`. What is left here is the drawing and
 // the sentence, which are the parts that differ from every other figure.
-import { panel, slider, react } from "./kit.js";
+import { SIZE, label, panel, react, slider } from "./kit.js";
 
 export function mount(el) {
   const { svg, readout } = panel(el, {
@@ -36,7 +36,7 @@ export function mount(el) {
       return [30 + i * (360 / n), 120 - (balance - start) * scale];
     });
     const line = (pts, cls) => `<polyline points="${pts.map(p => p.join(',')).join(' ')}" fill="none" stroke="currentColor" stroke-width="3" class="${cls}"/>`;
-    svg.innerHTML = `<path d="M30 120 H400 M30 120 V20" fill="none" stroke="currentColor" class="fig-grid"/>` + line(points(false), 'fig-accent') + line(points(true), 'fig-good') + `<text x="32" y="18" class="fig-ink">Blue: simple · Green: compound</text>`;
+    svg.innerHTML = `<path d="M30 120 H400 M30 120 V20" fill="none" stroke="currentColor" class="fig-grid"/>` + line(points(false), 'fig-accent') + line(points(true), 'fig-good') + label({ x: 32, y: 18, text: "Blue: simple · Green: compound", anchor: "start", class: "text-ink" });
     const simple = start * (1 + rate * n);
     const compound = start * (1 + rate) ** n;
     readout.textContent = `After ${n} years: simple £${simple.toFixed(2)}; compound £${compound.toFixed(2)}. Why does compound interest grow faster?`;

@@ -10,7 +10,7 @@
 // The scaffolding — the surface, its accessible name, the sliders, the live
 // readout and the redraw — comes from `kit.js`. What is left here is the drawing
 // and the sentence, which are the parts that differ from every other figure.
-import { panel, slider, react } from "./kit.js";
+import { SIZE, label, panel, react, slider } from "./kit.js";
 
 export function mount(el) {
   const { svg, readout } = panel(el, {
@@ -98,8 +98,8 @@ export function mount(el) {
 
     const magnet = `
       <rect x="${NX}" y="${PY - 22}" width="${SX - NX}" height="44" rx="6" class="fig-ink" opacity="0.15"></rect>
-      <text x="${NX - 12}" y="${PY + 5}" font-size="16" text-anchor="end" class="fig-accent">N</text>
-      <text x="${SX + 12}" y="${PY + 5}" font-size="16" text-anchor="start" class="fig-warn">S</text>`;
+      ${label({ x: NX - 12, y: PY + 5, text: `N`, anchor: "end", size: SIZE.tick, class: "text-accent" })}
+      ${label({ x: SX + 12, y: PY + 5, text: `S`, anchor: "start", size: SIZE.tick, class: "text-warn" })}`;
 
     const tipX = cx + r * 0.7 * ux;
     const tipY = cy + r * 0.7 * uy;

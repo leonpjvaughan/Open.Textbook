@@ -10,7 +10,7 @@
 // here is the drawing and the sentence, which differ from every other figure.
 // Colours come from CSS classes, so the figure adapts to every bundle and both
 // schemes.
-import { panel, slider, react } from "./kit.js";
+import { SIZE, label, panel, react, slider } from "./kit.js";
 
 export function mount(el) {
   const AX = 180;
@@ -73,7 +73,7 @@ export function mount(el) {
     return (
       `<line x1="${cx}" y1="${cy}" x2="${cx}" y2="${tipY}" class="fig-grid" stroke-width="2" stroke-dasharray="6 5"></line>` +
       `<polygon points="${cx},${tipY - 9} ${cx - 5},${tipY + 2} ${cx + 5},${tipY + 2}" class="fig-ink"></polygon>` +
-      `<text x="${cx + 9}" y="${tipY + 4}" class="text-ink" font-size="13">N</text>`
+      label({ x: cx + 9, y: tipY + 4, text: "N", anchor: "start", size: SIZE.tick, class: "text-ink" })
     );
   }
 
@@ -108,12 +108,12 @@ export function mount(el) {
       sweepHead(AX, AY, R_FWD, 0, bearing, "fig-accent") +
       (backArc ? `<path d="${backArc}" style="fill:none" class="fig-warn" stroke-width="2"></path>` : "") +
       sweepHead(bx, by, R_BACK, 0, back, "fig-warn") +
-      `<text x="${fwdLabel[0].toFixed(1)}" y="${fwdLabel[1].toFixed(1)}" class="text-accent" font-size="14" text-anchor="middle">${pad(bearing)}°</text>` +
-      `<text x="${backLabel[0].toFixed(1)}" y="${backLabel[1].toFixed(1)}" class="text-warn" font-size="13" text-anchor="middle">${pad(back)}°</text>` +
+      label({ x: fwdLabel[0], y: fwdLabel[1], text: `${pad(bearing)}°`, anchor: "middle", size: SIZE.tick, class: "text-accent" }) +
+      label({ x: backLabel[0], y: backLabel[1], text: `${pad(back)}°`, anchor: "middle", size: SIZE.tick, class: "text-warn" }) +
       `<circle cx="${AX}" cy="${AY}" r="5" class="fig-ink"></circle>` +
       `<circle cx="${bx.toFixed(1)}" cy="${by.toFixed(1)}" r="5" class="fig-ink"></circle>` +
-      `<text x="${(AX - 15).toFixed(1)}" y="${(AY + 17).toFixed(1)}" class="text-ink" font-size="14">A</text>` +
-      `<text x="${(bx + ux * 20).toFixed(1)}" y="${(by + uy * 20 + 5).toFixed(1)}" class="text-ink" font-size="14" text-anchor="middle">B</text>`;
+      label({ x: AX - 15, y: AY + 17, text: "A", anchor: "start", size: SIZE.tick, class: "text-ink" }) +
+      label({ x: bx + ux * 20, y: by + uy * 20 + 5, text: "B", anchor: "middle", size: SIZE.tick, class: "text-ink" });
 
     readout.textContent =
       `The bearing of B from A is ${pad(bearing)}°. It turns clockwise from the north line at A. ` +

@@ -14,7 +14,7 @@
 //
 // The scaffolding — the surface, its accessible name, the sliders, the live
 // readout and the redraw — comes from `kit.js`.
-import { panel, slider, react } from "./kit.js";
+import { SIZE, label, panel, react, slider } from "./kit.js";
 
 const X_MIN = -8;
 const X_MAX = 8;
@@ -43,11 +43,8 @@ function coefficient(m) {
   return m === 1 ? "" : `${m}`;
 }
 
-function text(x, y, label, cls) {
-  return (
-    `<text x="${x.toFixed(1)}" y="${y.toFixed(1)}" text-anchor="middle" ` +
-    `font-size="12" class="${cls}">${label}</text>`
-  );
+function text(x, y, words, cls) {
+  return label({ x, y, text: words, anchor: "middle", size: SIZE.tick, class: cls });
 }
 
 // The part of the line y = m x + c that lies inside the drawing, as two points

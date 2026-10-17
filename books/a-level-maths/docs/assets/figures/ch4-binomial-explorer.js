@@ -5,7 +5,7 @@
 //
 // The scaffolding — the surface, its accessible name, the sliders, the live
 // readout and the redraw — comes from `kit.js`.
-import { panel, slider, react } from "./kit.js";
+import { SIZE, label, panel, react, slider } from "./kit.js";
 
 function pascalRow(n) {
   const row = [1];
@@ -81,13 +81,11 @@ export function mount(el) {
       cells +=
         `<rect x="${x.toFixed(1)}" y="${top}" width="${boxWidth}" height="${height}" rx="6" ` +
         `class="${chosen ? "fig-accent" : "fig-grid"}"></rect>` +
-        `<text x="${(x + boxWidth / 2).toFixed(1)}" y="${top + height / 2 + 6}" ` +
-        `text-anchor="middle" class="fig-ink">${value}</text>`;
+        label({ x: x + boxWidth / 2, y: top + height / 2 + 6, text: value, anchor: "middle", class: "text-ink" });
     });
 
     const heading =
-      `<text x="210" y="22" text-anchor="middle" class="fig-ink">` +
-      `Row ${n} of Pascal's triangle</text>`;
+      label({ x: 210, y: 22, text: `Row ${n} of Pascal's triangle`, anchor: "middle", class: "text-ink" });
 
     svg.innerHTML = heading + cells;
 

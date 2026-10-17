@@ -9,7 +9,7 @@
 // The scaffolding — the surface, its accessible name, the sliders, the live
 // readout and the redraw — comes from `kit.js`. What is left here is the drawing
 // and the sentences, which are the parts that differ from every other figure.
-import { panel, slider, react } from "./kit.js";
+import { SIZE, label, panel, react, slider } from "./kit.js";
 
 export function mount(el) {
   const { svg, readout } = panel(el, {
@@ -47,11 +47,11 @@ export function mount(el) {
     const boat =
       `<polygon points="${CENTRE_X - 40},${BOAT_Y} ${CENTRE_X + 40},${BOAT_Y} ` +
       `${CENTRE_X + 26},${BOAT_Y + 18} ${CENTRE_X - 26},${BOAT_Y + 18}" class="fig-ink"></polygon>` +
-      `<text x="${CENTRE_X}" y="${BOAT_Y - 10}" font-size="16" text-anchor="middle" class="fig-ink">survey boat</text>`;
+      `${label({ x: CENTRE_X, y: BOAT_Y - 10, text: `survey boat`, anchor: "middle", size: SIZE.tick, class: "text-ink" })}`;
 
     const seabed =
       `<line x1="60" y1="${SEABED_Y}" x2="500" y2="${SEABED_Y}" class="fig-ink" stroke-width="3"></line>` +
-      `<text x="505" y="${SEABED_Y + 4}" font-size="16" text-anchor="end" class="fig-ink">boundary</text>`;
+      `${label({ x: 505, y: SEABED_Y + 4, text: `boundary`, anchor: "end", size: SIZE.tick, class: "text-ink" })}`;
 
     const down =
       `<line x1="${CENTRE_X - 12}" y1="${BOAT_Y + 20}" x2="${CENTRE_X - 12}" y2="${SEABED_Y - 8}" ` +
@@ -66,10 +66,10 @@ export function mount(el) {
       `${CENTRE_X + 18},${BOAT_Y + 28}" class="fig-warn"></polygon>`;
 
     const labels =
-      `<text x="${CENTRE_X - 22}" y="${(BOAT_Y + SEABED_Y) / 2}" font-size="16" text-anchor="end" class="fig-ink">going down</text>` +
-      `<text x="${CENTRE_X + 22}" y="${(BOAT_Y + SEABED_Y) / 2}" font-size="16" class="fig-ink">reflection</text>` +
+      `${label({ x: CENTRE_X - 22, y: (BOAT_Y + SEABED_Y) / 2, text: `going down`, anchor: "end", size: SIZE.tick, class: "text-ink" })}` +
+      `${label({ x: CENTRE_X + 22, y: (BOAT_Y + SEABED_Y) / 2, text: `reflection`, anchor: "start", size: SIZE.tick, class: "text-ink" })}` +
       `<line x1="150" y1="${BOAT_Y + 18}" x2="150" y2="${SEABED_Y}" class="fig-grid" stroke-dasharray="3 3"></line>` +
-      `<text x="158" y="${(BOAT_Y + SEABED_Y) / 2}" font-size="16" class="fig-ink">depth = ${depth} m</text>`;
+      `${label({ x: 158, y: (BOAT_Y + SEABED_Y) / 2, text: `depth = ${depth} m`, anchor: "start", size: SIZE.tick, class: "text-ink" })}`;
 
     svg.innerHTML = boat + seabed + down + up + labels;
 

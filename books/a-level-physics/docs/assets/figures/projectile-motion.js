@@ -13,7 +13,7 @@
 // The scaffolding — the surface, its accessible name, the sliders, the live
 // readout and the redraw — comes from `kit.js`. What is left here is the drawing
 // and the sentences, which are the parts that differ from every other figure.
-import { panel, slider, react } from "./kit.js";
+import { SIZE, label, panel, react, slider } from "./kit.js";
 
 export function mount(el) {
   const { svg, readout } = panel(el, {
@@ -74,20 +74,20 @@ export function mount(el) {
       const x = xFor((step / 4) * xMax);
       grid +=
         `<line x1="${x.toFixed(1)}" y1="${TOP}" x2="${x.toFixed(1)}" y2="${BOTTOM}" class="fig-grid"></line>` +
-        `<text x="${x.toFixed(1)}" y="${BOTTOM + 18}" font-size="17" class="fig-ink" text-anchor="middle">${((step / 4) * xMax).toFixed(0)}</text>`;
+        `${label({ x: x.toFixed(1), y: BOTTOM + 18, text: `${((step / 4) * xMax).toFixed(0)}`, anchor: "middle", size: SIZE.value, class: "text-ink" })}`;
     }
     for (let step = 0; step <= 4; step += 1) {
       const y = yFor((step / 4) * yMax);
       grid +=
         `<line x1="${LEFT}" y1="${y.toFixed(1)}" x2="${RIGHT}" y2="${y.toFixed(1)}" class="fig-grid"></line>` +
-        `<text x="${LEFT - 8}" y="${(y + 4).toFixed(1)}" font-size="17" class="fig-ink" text-anchor="end">${((step / 4) * yMax).toFixed(0)}</text>`;
+        `${label({ x: LEFT - 8, y: (y + 4).toFixed(1), text: `${((step / 4) * yMax).toFixed(0)}`, anchor: "end", size: SIZE.value, class: "text-ink" })}`;
     }
 
     const axes =
       `<line x1="${LEFT}" y1="${BOTTOM}" x2="${RIGHT}" y2="${BOTTOM}" class="fig-ink"></line>` +
       `<line x1="${LEFT}" y1="${TOP}" x2="${LEFT}" y2="${BOTTOM}" class="fig-ink"></line>` +
-      `<text x="${RIGHT}" y="${BOTTOM + 18}" font-size="19" class="fig-ink" text-anchor="end">range (m)</text>` +
-      `<text x="${LEFT - 60}" y="${TOP - 8}" font-size="19" class="fig-ink">height (m)</text>`;
+      `${label({ x: RIGHT, y: BOTTOM + 18, text: `range (m)`, anchor: "end", size: SIZE.heading, class: "text-ink" })}` +
+      `${label({ x: LEFT - 60, y: TOP - 8, text: `height (m)`, anchor: "start", size: SIZE.heading, class: "text-ink" })}`;
 
     let path = "";
     const steps = 60;

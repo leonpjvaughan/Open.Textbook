@@ -9,7 +9,7 @@
 // The scaffolding — the surface, its accessible name, the slider, the live
 // readout and the redraw — comes from `kit.js`. What is left here is the drawing
 // and the sentences, which are the parts that differ from every other figure.
-import { panel, slider, react } from "./kit.js";
+import { SIZE, label, panel, react, slider } from "./kit.js";
 
 export function mount(el) {
   const { svg, readout } = panel(el, {
@@ -54,20 +54,20 @@ export function mount(el) {
     let axes =
       `<line x1="${LEFT}" y1="${BOTTOM}" x2="${RIGHT}" y2="${BOTTOM}" class="fig-ink"></line>` +
       `<line x1="${LEFT}" y1="${BOTTOM}" x2="${LEFT}" y2="${TOP}" class="fig-ink"></line>` +
-      `<text x="${LEFT}" y="${TOP - 12}" font-size="20" class="fig-ink">field strength g / (N kg-1)</text>` +
-      `<text x="${RIGHT}" y="${BOTTOM + 18}" font-size="20" class="fig-ink" text-anchor="end">distance r / Mm</text>`;
+      `${label({ x: LEFT, y: TOP - 12, text: `field strength g / (N kg-1)`, anchor: "start", size: SIZE.heading, class: "text-ink" })}` +
+      `${label({ x: RIGHT, y: BOTTOM + 18, text: `distance r / Mm`, anchor: "end", size: SIZE.heading, class: "text-ink" })}`;
 
     for (let tick = 10; tick <= 35; tick += 5) {
       const x = px(tick * 1e6);
       axes +=
         `<line x1="${x.toFixed(1)}" y1="${BOTTOM}" x2="${x.toFixed(1)}" y2="${BOTTOM + 5}" class="fig-ink"></line>` +
-        `<text x="${x.toFixed(1)}" y="${BOTTOM + 16}" font-size="18" class="fig-ink" text-anchor="middle">${tick}</text>`;
+        `${label({ x: x.toFixed(1), y: BOTTOM + 16, text: `${tick}`, anchor: "middle", size: SIZE.value, class: "text-ink" })}`;
     }
     for (let tick = 0; tick <= G_MAX; tick += 2) {
       const y = py(tick);
       axes +=
         `<line x1="${LEFT}" y1="${y.toFixed(1)}" x2="${RIGHT}" y2="${y.toFixed(1)}" class="fig-grid"></line>` +
-        `<text x="${LEFT - 8}" y="${(y + 4).toFixed(1)}" font-size="18" class="fig-ink" text-anchor="end">${tick}</text>`;
+        `${label({ x: LEFT - 8, y: (y + 4).toFixed(1), text: `${tick}`, anchor: "end", size: SIZE.value, class: "text-ink" })}`;
     }
 
     let curve = "";
@@ -78,7 +78,7 @@ export function mount(el) {
 
     const surface =
       `<line x1="${LEFT}" y1="${py(G0).toFixed(1)}" x2="${RIGHT}" y2="${py(G0).toFixed(1)}" class="fig-warn" stroke-width="2" stroke-dasharray="6 4"></line>` +
-      `<text x="${LEFT + 6}" y="${(py(G0) - 6).toFixed(1)}" font-size="18" class="fig-ink">surface value 9.81</text>`;
+      `${label({ x: LEFT + 6, y: (py(G0) - 6).toFixed(1), text: `surface value 9.81`, anchor: "start", size: SIZE.value, class: "text-ink" })}`;
 
     const marker =
       `<line x1="${px(r).toFixed(1)}" y1="${TOP}" x2="${px(r).toFixed(1)}" y2="${BOTTOM}" class="fig-ink" stroke-dasharray="4 3"></line>` +

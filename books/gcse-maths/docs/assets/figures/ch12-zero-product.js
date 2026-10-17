@@ -9,7 +9,7 @@
 // The scaffolding — the surface, its accessible name, the two sliders, the live
 // readout, the redraw — comes from `kit.js`. The legend is a line of prose the
 // module adds between the controls and the readout.
-import { panel, slider, react } from "./kit.js";
+import { SIZE, label, panel, react, slider } from "./kit.js";
 
 export function mount(el) {
   const CX = 280;
@@ -82,8 +82,7 @@ export function mount(el) {
     const rootMark = (value, side) =>
       `<circle cx="${cx(value).toFixed(1)}" cy="${cy(0).toFixed(1)}" r="5" ` +
       `class="fig-accent"></circle>` +
-      `<text x="${cx(value).toFixed(1)}" y="${(cy(0) + side).toFixed(1)}" ` +
-      `font-size="16" text-anchor="middle" class="text-accent">x = ${value}</text>`;
+      label({ x: cx(value), y: cy(0) + side, text: `x = ${value}`, anchor: "middle", size: SIZE.label, class: "text-accent" });
 
     const roots =
       m === n
@@ -102,8 +101,8 @@ export function mount(el) {
       `<polyline points="${curve.join(" ")}" class="fig-accent" fill="none" stroke-width="2.5"></polyline>` +
       `</g>` +
       roots +
-      `<text x="526" y="${(cy(0) - 6).toFixed(1)}" font-size="16" class="text-ink">x</text>` +
-      `<text x="${(cx(0) + 8).toFixed(1)}" y="52" font-size="16" class="text-ink">y</text>`;
+      label({ x: 526, y: cy(0) - 6, text: "x", anchor: "start", size: SIZE.label, class: "text-ink" }) +
+      label({ x: cx(0) + 8, y: 52, text: "y", anchor: "start", size: SIZE.label, class: "text-ink" });
 
     legend.innerHTML =
       `<span class="text-good">${bracket(m)}</span> is the solid factor line and ` +

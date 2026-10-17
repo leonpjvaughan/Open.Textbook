@@ -13,7 +13,7 @@
 // The scaffolding — the surface, its accessible name, the sliders, the live
 // readout and the redraw — comes from `kit.js`. What is left here is the drawing
 // and the sentences, which are the parts that differ from every other figure.
-import { panel, slider, react } from "./kit.js";
+import { SIZE, label, panel, react, slider } from "./kit.js";
 
 export function mount(el) {
   const { svg, readout } = panel(el, {
@@ -91,16 +91,23 @@ export function mount(el) {
         shapes +=
           `<rect x="${x}" y="${y0}" width="${CELL}" height="${CELL}" rx="4" ` +
           `class="fig-ink" style="fill:none" stroke-width="1.5"></rect>`;
-        shapes +=
-          `<text x="${x + CELL / 2}" y="${y0 + CELL / 2 + 5}" text-anchor="middle" ` +
-          `font-size="19" class="${bits[j] ? "text-warn" : "text-accent"}">` +
-          `${bits[j] ? "b" : "a"}</text>`;
+        shapes += label({
+          x: x + CELL / 2,
+          y: y0 + CELL / 2 + 5,
+          text: bits[j] ? "b" : "a",
+          size: SIZE.value,
+          class: bits[j] ? "text-warn" : "text-accent",
+        });
       }
     }
 
-    const heading =
-      `<text x="${LEFT}" y="22" font-size="16" class="text-ink">` +
-      `Each row is one way to fill the ${n} brackets</text>`;
+    const heading = label({
+      x: LEFT,
+      y: 22,
+      text: `Each row is one way to fill the ${n} brackets`,
+      anchor: "start",
+      size: SIZE.label,
+    });
 
     svg.innerHTML = heading + shapes;
 

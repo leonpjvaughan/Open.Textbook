@@ -8,7 +8,7 @@
 // The scaffolding — the surface, its accessible name, the slider, the live
 // readout and the redraw — comes from `kit.js`. What is left here is the drawing
 // and the sentence.
-import { panel, slider, react } from "./kit.js";
+import { SIZE, label, panel, react, slider } from "./kit.js";
 
 const WIDTHS = [5, 10, 15, 20];
 const MIN_VALUE = 0;
@@ -86,9 +86,14 @@ export function mount(el) {
     const ticks = groups
       .map(
         (group, index) =>
-          `<text x="${(left + index * barW + barW / 2).toFixed(1)}" y="${base + 16}" ` +
-          `text-anchor="middle" class="fig-ink" font-size="13">` +
-          `${group.lo}–${group.hi}</text>`
+          label({
+            x: left + index * barW + barW / 2,
+            y: base + 16,
+            text: `${group.lo}–${group.hi}`,
+            anchor: "middle",
+            size: SIZE.tick,
+            class: "text-ink",
+          })
       )
       .join("");
 

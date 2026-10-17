@@ -711,3 +711,58 @@ def test_a_page_can_mount_a_shared_module(tmp_path):
         p for p in out.rglob("*.html") if f'data-figure="{slug}"' in p.read_text(encoding="utf-8")
     ]
     assert built, f"{page.relative_to(repo_root())} names the shared figure {slug} and the built site has no such element"
+
+
+# --- a kit import may not be shadowed -----------------------------------------
+#
+# Three modules converted in one pass named a parameter `label`:
+#
+#     const bar = (top, cls, label, value) => `${label({ text: `${label}` })}`
+#
+# which makes `label(...)` a call on a string, and the loader replaces the whole figure
+# with "Figure failed to load". The syntax is valid, the module parses, and `tools
+# kit` — which mounts the kit's own probe figures — never sees it. Only the audit of
+# the real site did, and it reported "mounted nothing" for three figures at once.
+
+KIT_IMPORT = re.compile(r'import\s*\{([^}]*)\}\s*from\s*"[^"]*kit\.js"')
+
+
+@pytest.mark.parametrize(("book", "path"), FIGURES, ids=IDS)
+def test_no_module_shadows_a_kit_import(book, path):
+    """A parameter or a local must not reuse an imported kit name."""
+    text = path.read_text(encoding="utf-8")
+    match = KIT_IMPORT.search(text)
+    if not match:
+        return
+    names = {part.strip().split(" as ")[-1].strip() for part in match.group(1).split(",")}
+    names.discard("")
+    body = text[match.end():]
+
+    # Scanned by the constructs that *bind* a name, not by a parenthesised
+    # expression: `fmt(t, 2)` is a call, and a pattern that cannot tell the two
+    # apart reported thirteen modules that are fine.
+    def bound_names(pattern: str, group: int = 1) -> set[str]:
+        found = set()
+        for m in re.finditer(pattern, body):
+            for part in m.group(group).split(","):
+                part = part.strip().split("=")[0].strip().lstrip("...").strip()
+                if part:
+                    found.add(part)
+        return found
+
+    shadowed = set()
+    for name in names:
+        shadowed |= ({name} if re.search(rf"\b(?:const|let|var)\s+{name}\b", body) else set())
+        shadowed |= ({name} if re.search(rf"\b{name}\s*=>", body) else set())
+    declared = bound_names(r"\b(?:const|let|var)\s+([A-Za-z_$][\w$]*)")
+    params = bound_names(r"\bfunction\s*[A-Za-z_$]*\s*\(([^)]*)\)")
+    params |= bound_names(r"\(([^)]*)\)\s*=>")
+    params |= bound_names(r"\bfunction\s*[A-Za-z_$]*\s*\(([^)]*)\)\s*\{")
+    shadowed |= (names & declared)
+    shadowed |= (names & params)
+
+    assert not shadowed, (
+        f"{book.id}/{path.name}: {', '.join(sorted(shadowed))} is imported from the kit "
+        "and redeclared, so the imported one is unreachable inside that scope and the "
+        "figure throws on mount. Rename the parameter or the local."
+    )

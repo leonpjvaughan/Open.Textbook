@@ -10,7 +10,7 @@
 // The scaffolding — the surface, its accessible name, the sliders, the live
 // readout and the redraw — comes from `kit.js`. What is left here is the drawing
 // and the sentence, which are the parts that differ from every other figure.
-import { panel, slider, react } from "./kit.js";
+import { SIZE, label, panel, react, slider } from "./kit.js";
 
 export function mount(el) {
   const { svg, readout } = panel(el, {
@@ -58,27 +58,15 @@ export function mount(el) {
     const yEnd = BOTTOM - velocity * yScale;
 
     const axes =
-      `<line x1="${LEFT}" y1="${BOTTOM}" x2="${LEFT + WIDTH}" y2="${BOTTOM}" class="fig-ink" stroke-width="2"></line>` +
-      `<line x1="${LEFT}" y1="${BOTTOM}" x2="${LEFT}" y2="${BOTTOM - HEIGHT}" class="fig-ink" stroke-width="2"></line>` +
-      `<text x="${LEFT + WIDTH / 2}" y="${BOTTOM + 22}" font-size="16" text-anchor="middle" class="fig-ink">time (s)</text>` +
-      `<text x="14" y="${BOTTOM - HEIGHT / 2}" font-size="16" text-anchor="middle" class="fig-ink" transform="rotate(-90 14 ${BOTTOM - HEIGHT / 2})">velocity (m/s)</text>`;
+      `<line x1="${LEFT}" y1="${BOTTOM}" x2="${LEFT + WIDTH}" y2="${BOTTOM}" class="fig-ink" stroke-width="2"></line><line x1="${LEFT}" y1="${BOTTOM}" x2="${LEFT}" y2="${BOTTOM - HEIGHT}" class="fig-ink" stroke-width="2"></line>${label({ x: LEFT + WIDTH / 2, y: BOTTOM + 22, text: `time (s)`, anchor: "middle", size: SIZE.tick, class: "text-ink" })}${label({ x: 14, y: BOTTOM - HEIGHT / 2, text: 'velocity (m/s)', anchor: "middle", size: SIZE.tick, class: "text-ink", rotate: -90 })}`;
 
     const line =
-      `<polygon points="${LEFT},${BOTTOM} ${xEnd.toFixed(1)},${BOTTOM} ${xEnd.toFixed(1)},${yEnd.toFixed(1)}" class="fig-good"></polygon>` +
-      `<line x1="${LEFT}" y1="${BOTTOM}" x2="${xEnd.toFixed(1)}" y2="${yEnd.toFixed(1)}" class="fig-accent" stroke-width="3"></line>` +
-      `<line x1="${xEnd.toFixed(1)}" y1="${BOTTOM}" x2="${xEnd.toFixed(1)}" y2="${yEnd.toFixed(1)}" class="fig-grid" stroke-dasharray="4 3"></line>` +
-      `<line x1="${LEFT}" y1="${yEnd.toFixed(1)}" x2="${xEnd.toFixed(1)}" y2="${yEnd.toFixed(1)}" class="fig-grid" stroke-dasharray="4 3"></line>` +
-      `<text x="${(LEFT + xEnd) / 2}" y="${BOTTOM - 8}" font-size="16" text-anchor="middle" class="fig-ink">area = ${distance.toFixed(1)} m</text>` +
-      `<text x="${xEnd.toFixed(1)}" y="${(BOTTOM + yEnd) / 2}" font-size="16" text-anchor="end" class="fig-ink">v = ${velocity.toFixed(1)} m/s</text>`;
+      `<polygon points="${LEFT},${BOTTOM} ${xEnd.toFixed(1)},${BOTTOM} ${xEnd.toFixed(1)},${yEnd.toFixed(1)}" class="fig-good"></polygon><line x1="${LEFT}" y1="${BOTTOM}" x2="${xEnd.toFixed(1)}" y2="${yEnd.toFixed(1)}" class="fig-accent" stroke-width="3"></line><line x1="${xEnd.toFixed(1)}" y1="${BOTTOM}" x2="${xEnd.toFixed(1)}" y2="${yEnd.toFixed(1)}" class="fig-grid" stroke-dasharray="4 3"></line><line x1="${LEFT}" y1="${yEnd.toFixed(1)}" x2="${xEnd.toFixed(1)}" y2="${yEnd.toFixed(1)}" class="fig-grid" stroke-dasharray="4 3"></line>${label({ x: (LEFT + xEnd) / 2, y: BOTTOM - 8, text: `area = ${distance.toFixed(1)} m`, anchor: "middle", size: SIZE.tick, class: "text-ink" })}${label({ x: xEnd.toFixed(1), y: (BOTTOM + yEnd) / 2, text: `v = ${velocity.toFixed(1)} m/s`, anchor: "end", size: SIZE.tick, class: "text-ink" })}`;
 
     svg.innerHTML = axes + line;
 
     readout.innerHTML =
-      `Acceleration ${accel.toFixed(1)} m/s&sup2; for ${time} s. The line ends at ` +
-      `<strong>${velocity.toFixed(1)} m/s</strong>, so the gradient is ` +
-      `<strong>${accel.toFixed(1)} m/s&sup2;</strong>. The area under the line is ` +
-      `<strong>${distance.toFixed(1)} m</strong>, which is the distance travelled. ` +
-      `<em>Double the time: which number doubles, and which becomes four times as large?</em>`;
+      `Acceleration ${accel.toFixed(1)} m/s&sup2; for ${time} s. The line ends at <strong>${velocity.toFixed(1)} m/s</strong>, so the gradient is <strong>${accel.toFixed(1)} m/s&sup2;</strong>. The area under the line is <strong>${distance.toFixed(1)} m</strong>, which is the distance travelled. <em>Double the time: which number doubles, and which becomes four times as large?</em>`;
   }
 
   react([accelInput, timeInput], update);

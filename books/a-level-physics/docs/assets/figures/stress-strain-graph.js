@@ -11,7 +11,7 @@
 // The scaffolding — the surface, its accessible name, the controls, the live
 // readout and the redraw — comes from `kit.js`. What is left here is the drawing
 // and the sentences, which are the parts that differ from every other figure.
-import { panel, slider, chooser, react } from "./kit.js";
+import { SIZE, chooser, label, panel, react, slider } from "./kit.js";
 
 export function mount(el) {
   const { svg, readout } = panel(el, {
@@ -94,8 +94,7 @@ export function mount(el) {
       .map((value) => {
         const y = yFor(value * 1e8);
         return (
-          `<line x1="${LEFT}" y1="${y.toFixed(1)}" x2="${RIGHT}" y2="${y.toFixed(1)}" class="fig-grid"></line>` +
-          `<text x="${LEFT - 9}" y="${(y + 4).toFixed(1)}" font-size="16" text-anchor="end" class="text-ink">${value * 100}</text>`
+          `<line x1="${LEFT}" y1="${y.toFixed(1)}" x2="${RIGHT}" y2="${y.toFixed(1)}" class="fig-grid"></line>${label({ x: LEFT - 9, y: (y + 4).toFixed(1), text: `${value * 100}`, anchor: "end", size: SIZE.tick, class: "text-ink" })}`
         );
       })
       .join("");
@@ -104,8 +103,7 @@ export function mount(el) {
       .map((value) => {
         const x = xFor(value * 1e-3);
         return (
-          `<line x1="${x.toFixed(1)}" y1="${BASE}" x2="${x.toFixed(1)}" y2="${BASE + 5}" class="fig-ink"></line>` +
-          `<text x="${x.toFixed(1)}" y="${BASE + 18}" font-size="16" text-anchor="middle" class="text-ink">${value}</text>`
+          `<line x1="${x.toFixed(1)}" y1="${BASE}" x2="${x.toFixed(1)}" y2="${BASE + 5}" class="fig-ink"></line>${label({ x: x.toFixed(1), y: BASE + 18, text: `${value}`, anchor: "middle", size: SIZE.tick, class: "text-ink" })}`
         );
       })
       .join("");
@@ -117,8 +115,7 @@ export function mount(el) {
     const risePx = BASE - pointY;
     const triangle =
       runPx > 14 && risePx > 14
-        ? `<polygon points="${LEFT},${BASE} ${pointX.toFixed(1)},${BASE} ` +
-          `${pointX.toFixed(1)},${pointY.toFixed(1)}" class="fig-good" fill-opacity="0.16"></polygon>`
+        ? `<polygon points="${LEFT},${BASE} ${pointX.toFixed(1)},${BASE} ${pointX.toFixed(1)},${pointY.toFixed(1)}" class="fig-good" fill-opacity="0.16"></polygon>`
         : "";
 
     const marker =
@@ -128,30 +125,15 @@ export function mount(el) {
 
     svg.innerHTML =
       stressTicks +
-      `<line x1="${LEFT}" y1="${BASE}" x2="${RIGHT}" y2="${BASE}" class="fig-ink" stroke-width="2"></line>` +
-      `<line x1="${LEFT}" y1="${BASE}" x2="${LEFT}" y2="${TOP}" class="fig-ink" stroke-width="2"></line>` +
+      `<line x1="${LEFT}" y1="${BASE}" x2="${RIGHT}" y2="${BASE}" class="fig-ink" stroke-width="2"></line><line x1="${LEFT}" y1="${BASE}" x2="${LEFT}" y2="${TOP}" class="fig-ink" stroke-width="2"></line>` +
       strainTicks +
-      `<text x="${(LEFT + RIGHT) / 2}" y="${BASE + 38}" font-size="16" text-anchor="middle" class="text-ink">strain / 10⁻³</text>` +
-      `<text x="18" y="${(TOP + BASE) / 2}" font-size="16" text-anchor="middle" class="text-ink" ` +
-      `transform="rotate(-90 18 ${(TOP + BASE) / 2})">stress / MPa</text>` +
+      `${label({ x: (LEFT + RIGHT) / 2, y: BASE + 38, text: `strain / 10⁻³`, anchor: "middle", size: SIZE.tick, class: "text-ink" })}${label({ x: 18, y: (TOP + BASE) / 2, text: 'stress / MPa', anchor: "middle", size: SIZE.tick, class: "text-ink", rotate: -90 })}` +
       triangle +
-      `<line x1="${LEFT}" y1="${BASE}" x2="${xFor(exitStrain).toFixed(1)}" ` +
-      `y2="${yFor(exitStress).toFixed(1)}" class="fig-accent" stroke-width="3"></line>` +
-      `<text x="${(xFor(exitStrain) - 6).toFixed(1)}" y="${(yFor(exitStress) + 16).toFixed(1)}" ` +
-      `font-size="16" text-anchor="end" class="text-accent">gradient = E</text>` +
+      `<line x1="${LEFT}" y1="${BASE}" x2="${xFor(exitStrain).toFixed(1)}" y2="${yFor(exitStress).toFixed(1)}" class="fig-accent" stroke-width="3"></line>${label({ x: (xFor(exitStrain) - 6).toFixed(1), y: (yFor(exitStress) + 16).toFixed(1), text: `gradient = E`, anchor: "end", size: SIZE.tick, class: "text-accent" })}` +
       marker;
 
     readout.innerHTML =
-      `${material.name} has Young modulus <strong>${(E / 1e9).toFixed(0)} GPa</strong>. ` +
-      `A force of <strong>${force} N</strong> on an area of ` +
-      `<strong>${areaMm2.toFixed(1)} mm²</strong> gives a stress of ` +
-      `<strong>${(stress / 1e6).toFixed(0)} MPa</strong> and a strain of ` +
-      `<strong>${strainText(strain)}</strong>. ` +
-      `The line is straight through the origin, so the gradient of the line is ` +
-      `the Young modulus. Changing the force or the area moves the point along ` +
-      `this line; choosing another material changes the line. ` +
-      `<em>Before you change a control, predict whether a thicker wire changes ` +
-      `the gradient.</em>`;
+      `${material.name} has Young modulus <strong>${(E / 1e9).toFixed(0)} GPa</strong>. A force of <strong>${force} N</strong> on an area of <strong>${areaMm2.toFixed(1)} mm²</strong> gives a stress of <strong>${(stress / 1e6).toFixed(0)} MPa</strong> and a strain of <strong>${strainText(strain)}</strong>. The line is straight through the origin, so the gradient of the line is the Young modulus. Changing the force or the area moves the point along this line; choosing another material changes the line. <em>Before you change a control, predict whether a thicker wire changes the gradient.</em>`;
   }
 
   react([select, forceSlider, areaSlider], update);

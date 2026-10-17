@@ -10,7 +10,7 @@
 // The scaffolding — the surface, its accessible name, the slider, the live
 // readout and the redraw — comes from `kit.js`. The kit has no button helper, so
 // the two action buttons stay here.
-import { panel, slider, react } from "./kit.js";
+import { SIZE, label, panel, react, slider } from "./kit.js";
 
 const POPULATION_SIZE = 240;
 const MIN_VALUE = 0;
@@ -93,8 +93,14 @@ export function mount(el) {
       marks +=
         `<line x1="${xToPx(value).toFixed(1)}" y1="20" ` +
         `x2="${xToPx(value).toFixed(1)}" y2="120" class="fig-grid"></line>` +
-        `<text x="${xToPx(value).toFixed(1)}" y="138" text-anchor="middle" ` +
-        `class="fig-ink" font-size="13">${value}</text>`;
+        label({
+          x: xToPx(value),
+          y: 138,
+          text: value,
+          anchor: "middle",
+          size: SIZE.tick,
+          class: "text-ink",
+        });
     }
     return (
       marks +

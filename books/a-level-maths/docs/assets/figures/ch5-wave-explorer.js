@@ -4,7 +4,7 @@
 //
 // The scaffolding — the surface, its accessible name, the sliders, the live
 // readout and the redraw — comes from `kit.js`.
-import { panel, slider, react } from "./kit.js";
+import { SIZE, label, panel, react, slider } from "./kit.js";
 
 const WIDTH = 400;
 const HEIGHT = 260;
@@ -112,8 +112,8 @@ export function mount(el) {
       `<polyline points="${wavePoints(A, B, C, D)}" class="fig-accent"></polyline>`;
 
     const labels =
-      `<text x="${RIGHT - 16}" y="${yToPx(0) - 6}" class="fig-ink">x</text>` +
-      `<text x="${LEFT + 6}" y="${TOP + 12}" class="fig-ink">y</text>`;
+      label({ x: RIGHT - 16, y: yToPx(0) - 6, text: "x", anchor: "start", class: "text-ink" }) +
+      label({ x: LEFT + 6, y: TOP + 12, text: "y", anchor: "start", class: "text-ink" });
 
     svg.innerHTML = grid() + axes + curve + labels;
 

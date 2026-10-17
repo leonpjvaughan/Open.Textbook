@@ -5,7 +5,7 @@
 //
 // The scaffolding — the surface, its accessible name, the sliders, the live
 // readout and the redraw — comes from `kit.js`.
-import { panel, slider, react } from "./kit.js";
+import { SIZE, label, panel, react, slider } from "./kit.js";
 
 const STEPS = 10;
 
@@ -81,8 +81,8 @@ export function mount(el) {
     }
 
     const key =
-      `<text x="${left}" y="${top - 8}" class="fig-ink">Left bar: add ${added} each step.</text>` +
-      `<text x="${left + 200}" y="${top - 8}" class="fig-ink">Right bar: multiply by ${factor} each step.</text>`;
+      label({ x: left, y: top - 8, text: `Left bar: add ${added} each step.`, anchor: "start", class: "text-ink" }) +
+      label({ x: left + 200, y: top - 8, text: `Right bar: multiply by ${factor} each step.`, anchor: "start", class: "text-ink" });
 
     svg.innerHTML = axis + bars + key;
 

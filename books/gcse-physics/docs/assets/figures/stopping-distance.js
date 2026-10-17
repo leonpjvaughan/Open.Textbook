@@ -10,7 +10,7 @@
 // The scaffolding — the surface, its accessible name, the sliders, the live
 // readout and the redraw — comes from `kit.js`. What is left here is the drawing
 // and the sentences, which are the parts that differ from every other figure.
-import { panel, slider, react } from "./kit.js";
+import { SIZE, label, panel, react, slider } from "./kit.js";
 
 export function mount(el) {
   const { svg, readout } = panel(el, {
@@ -56,13 +56,13 @@ export function mount(el) {
     const brakingWidth = Math.min(braking * scale, BAR_WIDTH - thinkingWidth);
 
     svg.innerHTML =
-      `<text x="14" y="${BAR_Y + 18}" font-size="18" class="fig-ink">road</text>` +
+      `${label({ x: 14, y: BAR_Y + 18, text: `road`, anchor: "start", size: SIZE.value, class: "text-ink" })}` +
       `<rect x="${BAR_LEFT}" y="${BAR_Y}" width="${thinkingWidth.toFixed(1)}" height="${BAR_HEIGHT}" class="fig-warn"></rect>` +
       `<rect x="${(BAR_LEFT + thinkingWidth).toFixed(1)}" y="${BAR_Y}" width="${brakingWidth.toFixed(1)}" height="${BAR_HEIGHT}" class="fig-accent"></rect>` +
       `<line x1="${BAR_LEFT}" y1="${BAR_Y + BAR_HEIGHT}" x2="${BAR_LEFT + BAR_WIDTH}" y2="${BAR_Y + BAR_HEIGHT}" class="fig-ink" stroke-width="2"></line>` +
-      `<text x="${BAR_LEFT}" y="${BAR_Y - 10}" font-size="16" class="fig-ink">thinking ${thinking.toFixed(1)} m</text>` +
-      `<text x="${(BAR_LEFT + thinkingWidth + 6).toFixed(1)}" y="${BAR_Y - 10}" font-size="16" class="fig-ink">braking ${braking.toFixed(1)} m</text>` +
-      `<text x="${BAR_LEFT}" y="${BAR_Y + BAR_HEIGHT + 20}" font-size="18" class="fig-ink">total stopping distance = ${total.toFixed(1)} m</text>`;
+      `${label({ x: BAR_LEFT, y: BAR_Y - 10, text: `thinking ${thinking.toFixed(1)} m`, anchor: "start", size: SIZE.tick, class: "text-ink" })}` +
+      `${label({ x: (BAR_LEFT + thinkingWidth + 6).toFixed(1), y: BAR_Y - 10, text: `braking ${braking.toFixed(1)} m`, anchor: "start", size: SIZE.tick, class: "text-ink" })}` +
+      `${label({ x: BAR_LEFT, y: BAR_Y + BAR_HEIGHT + 20, text: `total stopping distance = ${total.toFixed(1)} m`, anchor: "start", size: SIZE.value, class: "text-ink" })}`;
 
     readout.innerHTML =
       `Speed ${speed} m/s, reaction time ${REACTION.toFixed(2)} s, braking deceleration ` +

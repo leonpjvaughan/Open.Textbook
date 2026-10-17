@@ -2,7 +2,7 @@
 // its radius. The scaffolding — the surface, its accessible name, the slider, the
 // live readout, the redraw — comes from `kit.js`. What is left here is the drawing
 // and the sentence, which differ from every other figure.
-import { panel, slider, react } from "./kit.js";
+import { SIZE, label, panel, react, slider } from "./kit.js";
 
 export function mount(el) {
   const { svg, readout } = panel(el, {
@@ -29,10 +29,10 @@ export function mount(el) {
     svg.innerHTML = `<path d="M45 140 H400 M45 140 V20" fill="none" class="fig-grid"/>` +
       `<rect x="100" y="${140 - ch}" width="70" height="${ch}" class="fig-accent"/>` +
       `<rect x="230" y="${140 - ah}" width="70" height="${ah}" class="fig-good"/>` +
-      `<text x="111" y="${Math.max(18, 132 - ch)}" class="fig-ink">${circumferenceFactor}×</text>` +
-      `<text x="251" y="${Math.max(18, 132 - ah)}" class="fig-ink">${areaFactor}×</text>` +
-      `<text x="108" y="158" class="text-accent">C multiple</text>` +
-      `<text x="241" y="158" class="text-good">A multiple</text>`;
+      label({ x: 111, y: Math.max(18, 132 - ch), text: `${circumferenceFactor}×`, anchor: "start", class: "text-ink" }) +
+      label({ x: 251, y: Math.max(18, 132 - ah), text: `${areaFactor}×`, anchor: "start", class: "text-ink" }) +
+      label({ x: 108, y: 158, text: "C multiple", anchor: "start", class: "text-accent" }) +
+      label({ x: 241, y: 158, text: "A multiple", anchor: "start", class: "text-good" });
     readout.textContent = `Radius ${r}: circumference ${c.toFixed(2)} units; area ${a.toFixed(2)} square units. Compared with radius 1, these are ${circumferenceFactor} times the circumference and ${areaFactor} times the area. Explain why doubling the radius changes each ratio by a different factor.`;
   }
 

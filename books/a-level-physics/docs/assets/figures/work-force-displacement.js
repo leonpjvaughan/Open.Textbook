@@ -11,7 +11,7 @@
 // The scaffolding — the surface, its accessible name, the sliders, the live
 // readout and the redraw — comes from `kit.js`. What is left here is the drawing
 // and the sentences, which are the parts that differ from every other figure.
-import { panel, slider, react } from "./kit.js";
+import { SIZE, label, panel, react, slider } from "./kit.js";
 
 export function mount(el) {
   const { svg, readout } = panel(el, {
@@ -73,8 +73,7 @@ export function mount(el) {
       .map((value) => {
         const y = yFor(value);
         return (
-          `<line x1="${LEFT}" y1="${y.toFixed(1)}" x2="${RIGHT}" y2="${y.toFixed(1)}" class="fig-grid"></line>` +
-          `<text x="${LEFT - 9}" y="${(y + 4).toFixed(1)}" font-size="16" text-anchor="end" class="text-ink">${value}</text>`
+          `<line x1="${LEFT}" y1="${y.toFixed(1)}" x2="${RIGHT}" y2="${y.toFixed(1)}" class="fig-grid"></line>${label({ x: LEFT - 9, y: (y + 4).toFixed(1), text: `${value}`, anchor: "end", size: SIZE.tick, class: "text-ink" })}`
         );
       })
       .join("");
@@ -83,39 +82,25 @@ export function mount(el) {
       .map((value) => {
         const x = xFor(value);
         return (
-          `<line x1="${x.toFixed(1)}" y1="${BASE}" x2="${x.toFixed(1)}" y2="${BASE + 5}" class="fig-ink"></line>` +
-          `<text x="${x.toFixed(1)}" y="${BASE + 18}" font-size="16" text-anchor="middle" class="text-ink">${value}</text>`
+          `<line x1="${x.toFixed(1)}" y1="${BASE}" x2="${x.toFixed(1)}" y2="${BASE + 5}" class="fig-ink"></line>${label({ x: x.toFixed(1), y: BASE + 18, text: `${value}`, anchor: "middle", size: SIZE.tick, class: "text-ink" })}`
         );
       })
       .join("");
 
     const areaLabel =
       rectWidth > 62 && rectHeight > 22
-        ? `<text x="${(LEFT + rectWidth / 2).toFixed(1)}" ` +
-          `y="${(rectTop + rectHeight / 2 + 4).toFixed(1)}" ` +
-          `font-size="19" text-anchor="middle" class="text-accent">${Math.round(work)} J</text>`
+        ? `${label({ x: (LEFT + rectWidth / 2).toFixed(1), y: (rectTop + rectHeight / 2 + 4).toFixed(1), text: `${Math.round(work)} J`, anchor: "middle", size: SIZE.heading, class: "text-accent" })}`
         : "";
 
     svg.innerHTML =
       forceTicks +
-      `<line x1="${LEFT}" y1="${BASE}" x2="${RIGHT}" y2="${BASE}" class="fig-ink" stroke-width="2"></line>` +
-      `<line x1="${LEFT}" y1="${BASE}" x2="${LEFT}" y2="${TOP}" class="fig-ink" stroke-width="2"></line>` +
+      `<line x1="${LEFT}" y1="${BASE}" x2="${RIGHT}" y2="${BASE}" class="fig-ink" stroke-width="2"></line><line x1="${LEFT}" y1="${BASE}" x2="${LEFT}" y2="${TOP}" class="fig-ink" stroke-width="2"></line>` +
       distanceTicks +
-      `<text x="${(LEFT + RIGHT) / 2}" y="${BASE + 38}" font-size="16" text-anchor="middle" class="text-ink">displacement / m</text>` +
-      `<text x="18" y="${(TOP + BASE) / 2}" font-size="16" text-anchor="middle" class="text-ink" ` +
-      `transform="rotate(-90 18 ${(TOP + BASE) / 2})">force along displacement / N</text>` +
-      `<rect x="${LEFT}" y="${rectTop.toFixed(1)}" width="${rectWidth.toFixed(1)}" ` +
-      `height="${rectHeight.toFixed(1)}" class="fig-accent" fill-opacity="0.18" stroke-width="2"></rect>` +
+      `${label({ x: (LEFT + RIGHT) / 2, y: BASE + 38, text: `displacement / m`, anchor: "middle", size: SIZE.tick, class: "text-ink" })}${label({ x: 18, y: (TOP + BASE) / 2, text: 'force along displacement / N', anchor: "middle", size: SIZE.tick, class: "text-ink", rotate: -90 })}<rect x="${LEFT}" y="${rectTop.toFixed(1)}" width="${rectWidth.toFixed(1)}" height="${rectHeight.toFixed(1)}" class="fig-accent" fill-opacity="0.18" stroke-width="2"></rect>` +
       areaLabel;
 
     readout.innerHTML =
-      `Applied force <strong>${force} N</strong> at <strong>${angle}°</strong>. ` +
-      `Its component along the displacement is <strong>${component.toFixed(1)} N</strong>. ` +
-      `Distance <strong>${distance} m</strong>. ` +
-      `Work done = component × distance = <strong>${Math.round(work)} J</strong>. ` +
-      `The area of the rectangle is the work done. ` +
-      `<em>Before you move a slider, predict how the work done changes as the ` +
-      `angle rises from 0° to 90°.</em>`;
+      `Applied force <strong>${force} N</strong> at <strong>${angle}°</strong>. Its component along the displacement is <strong>${component.toFixed(1)} N</strong>. Distance <strong>${distance} m</strong>. Work done = component × distance = <strong>${Math.round(work)} J</strong>. The area of the rectangle is the work done. <em>Before you move a slider, predict how the work done changes as the angle rises from 0° to 90°.</em>`;
   }
 
   react([forceSlider, distanceSlider, angleSlider], update);

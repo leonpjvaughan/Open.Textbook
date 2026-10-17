@@ -10,7 +10,7 @@
 // The scaffolding — the surface, its accessible name, the slider, the live
 // readout, the redraw — comes from `kit.js`. What is left here is the drawing and
 // the sentence, which are the parts that differ from every other figure.
-import { panel, slider, react } from "./kit.js";
+import { SIZE, label, panel, react, slider } from "./kit.js";
 
 export function mount(el) {
   const { svg, readout } = panel(el, {
@@ -60,27 +60,26 @@ export function mount(el) {
         ? ""
         : `<line x1="${px(0)}" y1="${ORIGIN_Y}" x2="${px(-av)}" y2="${ORIGIN_Y}" ` +
           `style="fill:none" class="fig-warn" stroke-width="2" stroke-dasharray="5 4"></line>` +
-          `<text x="${(px(0) + px(-av)) / 2}" y="${ORIGIN_Y - 12}" font-size="17" ` +
-          `text-anchor="middle" class="text-warn">${moved} ${direction}</text>`;
+          label({ x: (px(0) + px(-av)) / 2, y: ORIGIN_Y - 12, text: `${moved} ${direction}`, anchor: "middle", size: SIZE.value, class: "text-warn" });
 
     const shiftVertex =
       av === 0
-        ? `<text x="${px(0) + 10}" y="${py(0) - 10}" font-size="17" class="text-ink">turning point</text>`
+        ? label({ x: px(0) + 10, y: py(0) - 10, text: "turning point", anchor: "start", size: SIZE.value, class: "text-ink" })
         : `<circle cx="${px(-av)}" cy="${py(0)}" r="6" class="fig-good"></circle>` +
-          `<text x="${px(-av) + 10}" y="${py(0) - 10}" font-size="17" class="text-good">(${-av}, 0)</text>`;
+          label({ x: px(-av) + 10, y: py(0) - 10, text: `(${-av}, 0)`, anchor: "start", size: SIZE.value, class: "text-good" });
 
     svg.innerHTML =
       `<line x1="40" y1="${ORIGIN_Y}" x2="580" y2="${ORIGIN_Y}" class="fig-ink" stroke-width="2"></line>` +
       `<line x1="${ORIGIN_X}" y1="40" x2="${ORIGIN_X}" y2="272" class="fig-ink" stroke-width="2"></line>` +
-      `<text x="586" y="${ORIGIN_Y - 8}" font-size="17" text-anchor="end" class="text-ink">x</text>` +
-      `<text x="${ORIGIN_X + 10}" y="52" font-size="17" class="text-ink">y</text>` +
+      label({ x: 586, y: ORIGIN_Y - 8, text: "x", anchor: "end", size: SIZE.value, class: "text-ink" }) +
+      label({ x: ORIGIN_X + 10, y: 52, text: "y", anchor: "start", size: SIZE.value, class: "text-ink" }) +
       curve((x) => x * x, "fig-grid", -3.4, 3.4) +
       curve((x) => (x + av) * (x + av), "fig-accent", -3.4, 3.4) +
       shiftLine +
       `<circle cx="${px(0)}" cy="${py(0)}" r="4" class="fig-ink"></circle>` +
       shiftVertex +
-      `<text x="${px(2.4)}" y="${py(6.4)}" font-size="17" class="text-ink">y = f(x)</text>` +
-      `<text x="${px(1.4 - av)}" y="${py(2.2)}" font-size="17" class="text-accent">y = f(x + a)</text>`;
+      label({ x: px(2.4), y: py(6.4), text: "y = f(x)", anchor: "start", size: SIZE.value, class: "text-ink" }) +
+      label({ x: px(1.4 - av), y: py(2.2), text: "y = f(x + a)", anchor: "start", size: SIZE.value, class: "text-accent" });
 
     readout.textContent =
       av === 0

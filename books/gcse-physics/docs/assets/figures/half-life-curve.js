@@ -9,7 +9,7 @@
 // The scaffolding — the surface, its accessible name, the sliders, the live
 // readout and the redraw — comes from `kit.js`. What is left here is the drawing
 // and the sentence, which are the parts that differ from every other figure.
-import { panel, slider, react } from "./kit.js";
+import { SIZE, label, panel, react, slider } from "./kit.js";
 
 export function mount(el) {
   const { svg, readout } = panel(el, {
@@ -61,9 +61,9 @@ export function mount(el) {
     const axes =
       `<line x1="${LEFT}" y1="${TOP}" x2="${LEFT}" y2="${BOTTOM}" class="fig-ink"></line>` +
       `<line x1="${LEFT}" y1="${BOTTOM}" x2="${RIGHT}" y2="${BOTTOM}" class="fig-ink"></line>` +
-      `<text x="${LEFT - 6}" y="${TOP + 4}" font-size="16" text-anchor="end" class="fig-ink">${start}</text>` +
-      `<text x="${LEFT - 6}" y="${BOTTOM + 4}" font-size="16" text-anchor="end" class="fig-ink">0</text>` +
-      `<text x="${RIGHT}" y="${BOTTOM + 18}" font-size="16" text-anchor="end" class="fig-ink">time (hours)</text>`;
+      `${label({ x: LEFT - 6, y: TOP + 4, text: `${start}`, anchor: "end", size: SIZE.tick, class: "text-ink" })}` +
+      `${label({ x: LEFT - 6, y: BOTTOM + 4, text: `0`, anchor: "end", size: SIZE.tick, class: "text-ink" })}` +
+      `${label({ x: RIGHT, y: BOTTOM + 18, text: `time (hours)`, anchor: "end", size: SIZE.tick, class: "text-ink" })}`;
 
     let guides = "";
     let ticks = "";
@@ -73,12 +73,12 @@ export function mount(el) {
       const rate = start / 2 ** n;
       ticks +=
         `<line x1="${x(time).toFixed(1)}" y1="${BOTTOM}" x2="${x(time).toFixed(1)}" y2="${BOTTOM + 5}" class="fig-ink"></line>` +
-        `<text x="${x(time).toFixed(1)}" y="${BOTTOM + 17}" font-size="16" text-anchor="middle" class="fig-ink">${time}</text>`;
+        `${label({ x: x(time).toFixed(1), y: BOTTOM + 17, text: `${time}`, anchor: "middle", size: SIZE.tick, class: "text-ink" })}`;
       if (n > 0) {
         guides +=
           `<line x1="${LEFT}" y1="${y(rate).toFixed(1)}" x2="${x(time).toFixed(1)}" y2="${y(rate).toFixed(1)}" class="fig-grid" stroke-dasharray="4 4"></line>` +
           `<line x1="${x(time).toFixed(1)}" y1="${y(rate).toFixed(1)}" x2="${x(time).toFixed(1)}" y2="${BOTTOM}" class="fig-grid" stroke-dasharray="4 4"></line>` +
-          `<text x="${LEFT + 4}" y="${(y(rate) - 4).toFixed(1)}" font-size="16" class="fig-ink">${rate}</text>`;
+          `${label({ x: LEFT + 4, y: (y(rate) - 4).toFixed(1), text: `${rate}`, anchor: "start", size: SIZE.tick, class: "text-ink" })}`;
         readings.push(`${n} half-life${n === 1 ? "" : "s"}: ${rate} per second`);
       }
       const cx = x(time).toFixed(1);

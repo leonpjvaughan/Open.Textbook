@@ -6,7 +6,7 @@
 //
 // The scaffolding — the surface, its accessible name, the sliders, the chooser,
 // the live readout and the redraw — comes from `kit.js`.
-import { panel, slider, chooser, react } from "./kit.js";
+import { SIZE, chooser, label, panel, react, slider } from "./kit.js";
 
 function binomialCoefficient(n, r) {
   let result = 1;
@@ -138,10 +138,14 @@ export function mount(el) {
           return "";
         }
         const x = left + (index + 0.5) * (plotW / (n + 1));
-        return (
-          `<text x="${x.toFixed(1)}" y="${base + 15}" text-anchor="middle" ` +
-          `class="fig-ink" font-size="13">${index}</text>`
-        );
+        return label({
+          x,
+          y: base + 15,
+          text: index,
+          anchor: "middle",
+          size: SIZE.tick,
+          class: "text-ink",
+        });
       })
       .join("");
 

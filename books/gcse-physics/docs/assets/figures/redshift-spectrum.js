@@ -11,7 +11,7 @@
 // The scaffolding — the surface, its accessible name, the slider, the live
 // readout and the redraw — comes from `kit.js`. What is left here is the drawing
 // and the sentences, which are the parts that differ from every other figure.
-import { panel, slider, react } from "./kit.js";
+import { SIZE, label, panel, react, slider } from "./kit.js";
 
 export function mount(el) {
   const { svg, readout } = panel(el, {
@@ -58,7 +58,7 @@ export function mount(el) {
     const galaxyLines = LINES.map((fraction) => fraction + shift);
 
     const caption = (y, text) =>
-      `<text x="${LEFT}" y="${y}" font-size="19" class="fig-ink">${text}</text>`;
+      `${label({ x: LEFT, y: y, text: `${text}`, anchor: "start", size: SIZE.heading, class: "text-ink" })}`;
 
     const reference = band(30, 34, LINES, "fig-ink");
     const galaxy = band(100, 34, galaxyLines, "fig-warn");
@@ -70,13 +70,13 @@ export function mount(el) {
       `<line x1="${from.toFixed(1)}" y1="170" x2="${to.toFixed(1)}" y2="170" ` +
       `class="fig-accent" stroke-width="2"></line>` +
       `<polygon points="${(to - 8).toFixed(1)},166 ${(to - 8).toFixed(1)},174 ${to.toFixed(1)},170" class="fig-accent"></polygon>` +
-      `<text x="${from.toFixed(1)}" y="188" font-size="17" class="fig-ink">the pattern moves this way</text>`;
+      `${label({ x: from.toFixed(1), y: 188, text: `the pattern moves this way`, anchor: "start", size: SIZE.value, class: "text-ink" })}`;
 
     const ends =
       caption(80, "laboratory: the same light at rest") +
       caption(150, "galaxy: the same lines, shifted") +
-      `<text x="${LEFT}" y="212" font-size="17" class="fig-ink">shorter wavelength (blue end)</text>` +
-      `<text x="${RIGHT}" y="212" font-size="17" text-anchor="end" class="fig-ink">longer wavelength (red end)</text>`;
+      `${label({ x: LEFT, y: 212, text: `shorter wavelength (blue end)`, anchor: "start", size: SIZE.value, class: "text-ink" })}` +
+      `${label({ x: RIGHT, y: 212, text: `longer wavelength (red end)`, anchor: "end", size: SIZE.value, class: "text-ink" })}`;
 
     svg.innerHTML = reference + galaxy + shiftArrow + ends;
 

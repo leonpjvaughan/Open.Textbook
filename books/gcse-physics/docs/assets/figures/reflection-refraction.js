@@ -12,7 +12,7 @@
 // The scaffolding — the surface, its accessible name, the slider, the live
 // readout and the redraw — comes from `kit.js`. What is left here is the drawing
 // and the sentences, which are the parts that differ from every other figure.
-import { panel, slider, react } from "./kit.js";
+import { SIZE, label, panel, react, slider } from "./kit.js";
 
 export function mount(el) {
   const GLASS = 1.5;
@@ -59,7 +59,7 @@ export function mount(el) {
       // The normal.
       `<line x1="${originX}" y1="20" x2="${originX}" y2="280" class="fig-grid" ` +
       `stroke-dasharray="5 5"></line>` +
-      `<text x="${originX + 6}" y="28" font-size="17" class="fig-ink">normal</text>` +
+      `${label({ x: originX + 6, y: 28, text: `normal`, anchor: "start", size: SIZE.value, class: "text-ink" })}` +
       // The three rays.
       `<line x1="${incidentStart.x}" y1="${incidentStart.y}" x2="${originX}" y2="${originY}" ` +
       `class="fig-accent" stroke-width="2"></line>` +
@@ -68,14 +68,11 @@ export function mount(el) {
       `<line x1="${originX}" y1="${originY}" x2="${refractedEnd.x}" y2="${refractedEnd.y}" ` +
       `class="fig-good" stroke-width="2"></line>` +
       // Labels.
-      `<text x="${incidentStart.x + 4}" y="${incidentStart.y - 4}" font-size="17" ` +
-      `class="fig-ink">incident</text>` +
-      `<text x="${reflectedEnd.x - 60}" y="${reflectedEnd.y - 4}" font-size="17" ` +
-      `class="fig-ink">reflected</text>` +
-      `<text x="${refractedEnd.x + 4}" y="${refractedEnd.y + 12}" font-size="17" ` +
-      `class="fig-ink">refracted</text>` +
-      `<text x="${originX + 4}" y="46" font-size="17" class="fig-ink">i = ${incidence}\u00b0</text>` +
-      `<text x="${originX + 4}" y="60" font-size="17" class="fig-ink">r = ${refraction.toFixed(0)}\u00b0</text>`;
+      `${label({ x: incidentStart.x + 4, y: incidentStart.y - 4, text: `incident`, anchor: "start", size: SIZE.value, class: "text-ink" })}` +
+      `${label({ x: reflectedEnd.x - 60, y: reflectedEnd.y - 4, text: `reflected`, anchor: "start", size: SIZE.value, class: "text-ink" })}` +
+      `${label({ x: refractedEnd.x + 4, y: refractedEnd.y + 12, text: `refracted`, anchor: "start", size: SIZE.value, class: "text-ink" })}` +
+      `${label({ x: originX + 4, y: 46, text: `i = ${incidence}\u00b0`, anchor: "start", size: SIZE.value, class: "text-ink" })}` +
+      `${label({ x: originX + 4, y: 60, text: `r = ${refraction.toFixed(0)}\u00b0`, anchor: "start", size: SIZE.value, class: "text-ink" })}`;
 
     readout.innerHTML =
       `Angle of incidence <strong>${incidence}\u00b0</strong>. ` +

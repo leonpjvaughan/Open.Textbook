@@ -8,7 +8,7 @@
 // the live readout, the redraw — comes from `kit.js`. What is left here is the
 // drawing and the sentence, which are the parts that differ from every other
 // figure.
-import { panel, slider, chooser, react } from "./kit.js";
+import { SIZE, chooser, label, panel, react, slider } from "./kit.js";
 
 const NULL_MEAN = 500;
 
@@ -175,18 +175,35 @@ export function mount(el) {
       `class="fig-ink"></line>` +
       `<line x1="${centre.toFixed(1)}" y1="${plotTop}" x2="${centre.toFixed(1)}" ` +
       `y2="${plotBottom}" class="fig-grid" stroke-dasharray="4 3"></line>` +
-      `<text x="${centre.toFixed(1)}" y="${(plotBottom + 26).toFixed(1)}" ` +
-      `text-anchor="middle" class="fig-ink" font-size="13">null mean 500</text>`;
+      label({
+        x: centre,
+        y: plotBottom + 26,
+        text: "null mean 500",
+        anchor: "middle",
+        size: SIZE.tick,
+        class: "text-ink",
+      });
 
     const marker =
       `<line x1="${toPx(xbar).toFixed(1)}" y1="${plotTop}" ` +
       `x2="${toPx(xbar).toFixed(1)}" y2="${plotBottom}" class="fig-line"></line>` +
-      `<text x="${toPx(xbar).toFixed(1)}" y="${(plotTop - 8).toFixed(1)}" ` +
-      `text-anchor="middle" class="fig-accent" font-size="13">seen</text>`;
+      label({
+        x: toPx(xbar),
+        y: plotTop - 8,
+        text: "seen",
+        anchor: "middle",
+        size: SIZE.tick,
+        class: "text-accent",
+      });
 
-    const caption =
-      `<text x="230" y="14" text-anchor="middle" class="fig-ink" font-size="15">` +
-      `Sampling distribution of the sample mean</text>`;
+    const caption = label({
+      x: 230,
+      y: 14,
+      text: "Sampling distribution of the sample mean",
+      anchor: "middle",
+      size: SIZE.tick,
+      class: "text-ink",
+    });
 
     svg.innerHTML =
       caption +

@@ -9,7 +9,7 @@
 // The scaffolding — the surface, its accessible name, the controls, the live
 // readout and the redraw — comes from `kit.js`. What is left here is the drawing
 // and the sentences, which are the parts that differ from every other figure.
-import { panel, slider, toggle, react } from "./kit.js";
+import { SIZE, label, panel, react, slider, toggle } from "./kit.js";
 
 export function mount(el) {
   const { svg, readout } = panel(el, {
@@ -46,7 +46,7 @@ export function mount(el) {
 
     const core = `
       <rect x="120" y="70" width="320" height="30" rx="5" class="fig-ink" opacity="0.18"></rect>
-      <text x="112" y="92" font-size="16" text-anchor="end" class="fig-ink">iron core</text>`;
+      ${label({ x: 112, y: 92, text: `iron core`, anchor: "end", size: SIZE.tick, class: "text-ink" })}`;
 
     const loops = Math.max(1, Math.round(turns / 100));
     const gap = 280 / loops;
@@ -61,7 +61,7 @@ export function mount(el) {
     const bar = `
       <rect x="80" y="145" width="400" height="18" rx="4" class="fig-grid" opacity="0.4"></rect>
       <rect x="80" y="145" width="${barWidth.toFixed(1)}" height="18" rx="4" class="fig-accent"></rect>
-      <text x="80" y="138" font-size="16" class="fig-ink">field strength</text>`;
+      ${label({ x: 80, y: 138, text: `field strength`, anchor: "start", size: SIZE.tick, class: "text-ink" })}`;
 
     svg.innerHTML = core + coil + bar;
 

@@ -13,7 +13,7 @@
 // one of the kit's controls, so they are built here inside the kit's control
 // column. What is left is the drawing and the sentences, which are the parts that
 // differ from every other figure.
-import { panel, slider, react } from "./kit.js";
+import { SIZE, label, panel, react, slider } from "./kit.js";
 
 export function mount(el) {
   const { svg, readout } = panel(el, {
@@ -72,12 +72,12 @@ export function mount(el) {
       `<line x1="70" y1="70" x2="70" y2="30" class="fig-ink" stroke-width="2"></line>` +
       `<rect x="70" y="46" width="${barWidth.toFixed(1)}" height="24" class="fig-accent"></rect>` +
       `<line x1="${waterX.toFixed(1)}" y1="24" x2="${waterX.toFixed(1)}" y2="86" class="fig-warn" stroke-width="2" stroke-dasharray="4 4"></line>` +
-      `<text x="${waterX.toFixed(1)}" y="18" font-size="16" text-anchor="middle" class="fig-ink">water 1000</text>` +
-      `<text x="70" y="108" font-size="18" class="fig-ink">density (kg/m3)</text>` +
-      `<text x="70" y="132" font-size="19" class="fig-ink">${Math.round(density)} kg/m3</text>` +
-      `<text x="70" y="156" font-size="19" class="fig-ink">${
+      `${label({ x: waterX.toFixed(1), y: 18, text: `water 1000`, anchor: "middle", size: SIZE.tick, class: "text-ink" })}` +
+      `${label({ x: 70, y: 108, text: `density (kg/m3)`, anchor: "start", size: SIZE.value, class: "text-ink" })}` +
+      `${label({ x: 70, y: 132, text: `${Math.round(density)} kg/m3`, anchor: "start", size: SIZE.heading, class: "text-ink" })}` +
+      `${label({ x: 70, y: 156, text: `${
         floats ? "floats in water" : "sinks in water"
-      }</text>`;
+      }`, anchor: "start", size: SIZE.heading, class: "text-ink" })}`;
 
     readout.innerHTML =
       `Mass <strong>${mass.toFixed(1)} kg</strong>. ` +

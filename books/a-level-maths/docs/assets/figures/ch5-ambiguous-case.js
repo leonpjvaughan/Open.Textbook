@@ -11,7 +11,7 @@
 //
 // The scaffolding — the surface, its accessible name, the sliders, the live
 // readout and the redraw — comes from `kit.js`.
-import { panel, slider, react } from "./kit.js";
+import { SIZE, label, panel, react, slider } from "./kit.js";
 
 const SIDE_B = 5; // the fixed side AC, opposite angle B
 const WIDTH = 460;
@@ -144,9 +144,14 @@ export function mount(el) {
         `class="${cls}" stroke-width="3"></line>` +
         `<circle cx="${bx.toFixed(1)}" cy="${by.toFixed(1)}" r="4.5" class="${cls}"></circle>`;
       const name = points.length === 2 ? (index === 0 ? "B" : "B\u2032") : "B";
-      labels +=
-        `<text x="${(bx + (index === 0 ? 10 : -22)).toFixed(0)}" y="${(by - 10).toFixed(0)}" ` +
-        `font-size="14" class="text-ink">${name}</text>`;
+      labels += label({
+        x: bx + (index === 0 ? 10 : -22),
+        y: by - 10,
+        text: name,
+        anchor: "start",
+        size: SIZE.tick,
+        class: "text-ink",
+      });
     });
 
     svg.innerHTML =
@@ -155,9 +160,9 @@ export function mount(el) {
       ray +
       knownSide +
       triangles +
-      `<text x="${(ax - 14).toFixed(0)}" y="${(ay + 18).toFixed(0)}" font-size="14" class="text-ink">A</text>` +
-      `<text x="${(cx + 6).toFixed(0)}" y="${(cy + 18).toFixed(0)}" font-size="14" class="text-ink">C</text>` +
-      `<text x="${(fx + 8).toFixed(0)}" y="${(fy + 16).toFixed(0)}" font-size="13" class="text-ink">h = ${height.toFixed(1)}</text>` +
+      label({ x: ax - 14, y: ay + 18, text: "A", anchor: "start", size: SIZE.tick, class: "text-ink" }) +
+      label({ x: cx + 6, y: cy + 18, text: "C", anchor: "start", size: SIZE.tick, class: "text-ink" }) +
+      label({ x: fx + 8, y: fy + 16, text: `h = ${height.toFixed(1)}`, anchor: "start", size: SIZE.tick, class: "text-ink" }) +
       labels;
 
     const footOnRay = base > 1e-6;

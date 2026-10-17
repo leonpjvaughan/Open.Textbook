@@ -13,7 +13,7 @@
 //
 // The scaffolding — the surface, its accessible name, the two sliders, the live
 // readout and the redraw — comes from `kit.js`.
-import { panel, slider, fmt, react } from "./kit.js";
+import { SIZE, fmt, label, panel, react, slider } from "./kit.js";
 
 export function mount(el) {
   const { svg, readout } = panel(el, {
@@ -57,9 +57,8 @@ export function mount(el) {
   const xToPx = (value) =>
     LEFT + ((value - X_MIN) / (X_MAX - X_MIN)) * (RIGHT - LEFT);
 
-  const text = (x, y, label, anchor = "middle", cls = "fig-ink") =>
-    `<text x="${x.toFixed(1)}" y="${y.toFixed(1)}" text-anchor="${anchor}" ` +
-    `font-size="16" class="${cls}">${label}</text>`;
+  const text = (x, y, words, anchor = "middle", cls = "text-ink") =>
+    label({ x, y, text: words, anchor, size: SIZE.tick, class: cls });
 
   function render() {
     const reading = Number(readingInput.value);

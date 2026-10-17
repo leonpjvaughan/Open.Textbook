@@ -12,7 +12,7 @@
 // of the kit's controls, so they are built here inside the kit's control column.
 // What is left is the drawing and the sentences, which are the parts that differ
 // from every other figure.
-import { panel, slider, react } from "./kit.js";
+import { SIZE, label, panel, react, slider } from "./kit.js";
 
 export function mount(el) {
   const GROUPS = [
@@ -91,8 +91,7 @@ export function mount(el) {
       return (
         `<rect x="${x}" y="30" width="${width - 2}" height="34" class="${cls}" ` +
         `stroke-width="1"></rect>` +
-        `<text x="${x + width / 2}" y="82" font-size="17" text-anchor="middle" ` +
-        `class="fig-ink">${group.name}</text>`
+        `${label({ x: x + width / 2, y: 82, text: `${group.name}`, anchor: "middle", size: SIZE.value, class: "text-ink" })}`
       );
     }).join("");
 

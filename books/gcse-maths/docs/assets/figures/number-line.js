@@ -6,7 +6,7 @@
 // The scaffolding — the surface, its accessible name, the two sliders, the live
 // readout, the redraw — comes from `kit.js`. What is left here is the drawing and
 // the sentence, which are the parts that differ from every other figure.
-import { panel, slider, react } from "./kit.js";
+import { SIZE, label, panel, react, slider } from "./kit.js";
 
 export function mount(el) {
   const { svg, readout } = panel(el, {
@@ -32,12 +32,12 @@ export function mount(el) {
     for (let v = min; v <= max; v += 2) {
       ticks.push(
         `<line x1="${X(v)}" y1="44" x2="${X(v)}" y2="52" class="fig-ink"></line>` +
-          `<text x="${X(v)}" y="68" font-size="16" text-anchor="middle" class="fig-ink">${v}</text>`,
+          label({ x: X(v), y: 68, text: v, anchor: "middle", size: SIZE.label, class: "text-ink" }),
       );
     }
-    const mark = (v, label, cls) =>
+    const mark = (v, words, cls) =>
       `<circle cx="${X(v)}" cy="34" r="6" class="${cls}"></circle>` +
-      `<text x="${X(v)}" y="20" font-size="18" text-anchor="middle" class="fig-ink">${label} = ${v}</text>`;
+      label({ x: X(v), y: 20, text: `${words} = ${v}`, anchor: "middle", size: SIZE.value, class: "text-ink" });
     svg.innerHTML =
       `<line x1="${pad}" y1="34" x2="${width - pad}" y2="34" class="fig-ink"></line>` +
       ticks.join("") +

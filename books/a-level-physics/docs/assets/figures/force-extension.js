@@ -14,7 +14,7 @@
 // The scaffolding — the surface, its accessible name, the sliders, the live
 // readout and the redraw — comes from `kit.js`. What is left here is the drawing
 // and the sentences, which are the parts that differ from every other figure.
-import { panel, slider, react } from "./kit.js";
+import { SIZE, label, panel, react, slider } from "./kit.js";
 
 export function mount(el) {
   const { svg, readout } = panel(el, {
@@ -63,22 +63,22 @@ export function mount(el) {
     let axes =
       `<line x1="${LEFT}" y1="${BOTTOM}" x2="${RIGHT}" y2="${BOTTOM}" class="fig-ink"></line>` +
       `<line x1="${LEFT}" y1="${BOTTOM}" x2="${LEFT}" y2="${TOP}" class="fig-ink"></line>` +
-      `<text x="${LEFT}" y="${TOP - 8}" font-size="19" class="fig-ink">force / N</text>` +
-      `<text x="${RIGHT}" y="${BOTTOM + 20}" font-size="19" class="fig-ink" text-anchor="end">extension / m</text>`;
+      `${label({ x: LEFT, y: TOP - 8, text: `force / N`, anchor: "start", size: SIZE.heading, class: "text-ink" })}` +
+      `${label({ x: RIGHT, y: BOTTOM + 20, text: `extension / m`, anchor: "end", size: SIZE.heading, class: "text-ink" })}`;
 
     for (let tick = 0; tick <= 4; tick += 1) {
       const y = BOTTOM - (tick / 4) * (BOTTOM - TOP);
       const value = (tick / 4) * Y_MAX;
       axes +=
         `<line x1="${LEFT}" y1="${y.toFixed(1)}" x2="${RIGHT}" y2="${y.toFixed(1)}" class="fig-grid"></line>` +
-        `<text x="${LEFT - 8}" y="${(y + 4).toFixed(1)}" font-size="17" class="fig-ink" text-anchor="end">${value}</text>`;
+        `${label({ x: LEFT - 8, y: (y + 4).toFixed(1), text: `${value}`, anchor: "end", size: SIZE.value, class: "text-ink" })}`;
     }
     for (let tick = 0; tick <= 4; tick += 1) {
       const xTick = LEFT + (tick / 4) * (RIGHT - LEFT);
       const value = (tick / 4) * X_MAX;
       axes +=
         `<line x1="${xTick.toFixed(1)}" y1="${BOTTOM}" x2="${xTick.toFixed(1)}" y2="${BOTTOM + 5}" class="fig-ink"></line>` +
-        `<text x="${xTick.toFixed(1)}" y="${BOTTOM + 18}" font-size="17" class="fig-ink" text-anchor="middle">${value.toFixed(2)}</text>`;
+        `${label({ x: xTick.toFixed(1), y: BOTTOM + 18, text: `${value.toFixed(2)}`, anchor: "middle", size: SIZE.value, class: "text-ink" })}`;
     }
 
     // The straight line runs from the origin to the top of the graph, or to the

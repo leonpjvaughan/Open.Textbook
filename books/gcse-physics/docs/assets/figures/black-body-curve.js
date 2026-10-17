@@ -12,7 +12,7 @@
 // The scaffolding — the surface, its accessible name, the slider, the live
 // readout and the redraw — comes from `kit.js`. What is left here is the drawing
 // and the sentences, which are the parts that differ from every other figure.
-import { panel, slider, react } from "./kit.js";
+import { SIZE, label, panel, react, slider } from "./kit.js";
 
 export function mount(el) {
   const H = 6.626e-34;
@@ -85,23 +85,19 @@ export function mount(el) {
       // Axes.
       `<line x1="${LEFT}" y1="${BASE}" x2="${RIGHT}" y2="${BASE}" class="fig-ink"></line>` +
       `<line x1="${LEFT}" y1="${BASE}" x2="${LEFT}" y2="${TOP}" class="fig-ink"></line>` +
-      `<text x="${LEFT - 10}" y="${TOP + 8}" font-size="18" text-anchor="end" ` +
-      `class="fig-ink">intensity</text>` +
-      `<text x="${RIGHT}" y="${BASE + 34}" font-size="18" text-anchor="end" ` +
-      `class="fig-ink">wavelength / micrometres</text>` +
+      `${label({ x: LEFT - 10, y: TOP + 8, text: `intensity`, anchor: "end", size: SIZE.value, class: "text-ink" })}` +
+      `${label({ x: RIGHT, y: BASE + 34, text: `wavelength / micrometres`, anchor: "end", size: SIZE.value, class: "text-ink" })}` +
       // The visible band.
       `<rect x="${visibleLeft}" y="${TOP}" width="${(visibleRight - visibleLeft).toFixed(1)}" ` +
       `height="${BASE - TOP}" class="fig-grid"></rect>` +
-      `<text x="${((visibleLeft + visibleRight) / 2).toFixed(1)}" y="${TOP + 14}" ` +
-      `font-size="18" text-anchor="middle" class="fig-ink">visible</text>` +
+      `${label({ x: ((visibleLeft + visibleRight) / 2).toFixed(1), y: TOP + 14, text: `visible`, anchor: "middle", size: SIZE.value, class: "text-ink" })}` +
       // X ticks.
       [0, 1, 2, 3, 4].map((mark) => {
         const x = xFor(mark === 0 ? MIN_WAVELENGTH : mark * 1e-6);
         return (
           `<line x1="${x.toFixed(1)}" y1="${BASE}" x2="${x.toFixed(1)}" y2="${BASE + 5}" ` +
           `class="fig-ink"></line>` +
-          `<text x="${x.toFixed(1)}" y="${BASE + 18}" font-size="18" text-anchor="middle" ` +
-          `class="fig-ink">${mark}</text>`
+          `${label({ x: x.toFixed(1), y: BASE + 18, text: `${mark}`, anchor: "middle", size: SIZE.value, class: "text-ink" })}`
         );
       }).join("") +
       // The curve and the peak marker.
@@ -109,8 +105,7 @@ export function mount(el) {
       `style="fill:none"></polyline>` +
       `<line x1="${peakX.toFixed(1)}" y1="${TOP}" x2="${peakX.toFixed(1)}" y2="${BASE}" ` +
       `class="fig-warn" stroke-dasharray="4 4"></line>` +
-      `<text x="${peakX.toFixed(1)}" y="${TOP - 6}" font-size="18" ` +
-      `text-anchor="middle" class="fig-ink">peak</text>`;
+      `${label({ x: peakX.toFixed(1), y: TOP - 6, text: `peak`, anchor: "middle", size: SIZE.value, class: "text-ink" })}`;
 
     const peakText =
       peakWavelength >= 1e-6

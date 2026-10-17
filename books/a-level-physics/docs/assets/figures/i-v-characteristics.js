@@ -14,7 +14,7 @@
 // The scaffolding — the surface, its accessible name, the slider, the live
 // readout and the redraw — comes from `kit.js`. What is left here is the drawing
 // and the sentences, which are the parts that differ from every other figure.
-import { panel, slider, chooser, react } from "./kit.js";
+import { SIZE, chooser, label, panel, react, slider } from "./kit.js";
 
 export function mount(el) {
   const { svg, readout } = panel(el, {
@@ -71,19 +71,19 @@ export function mount(el) {
     let axes =
       `<line x1="${LEFT}" y1="${(TOP + BOTTOM) / 2}" x2="${RIGHT}" y2="${(TOP + BOTTOM) / 2}" class="fig-ink"></line>` +
       `<line x1="${px(0).toFixed(1)}" y1="${TOP}" x2="${px(0).toFixed(1)}" y2="${BOTTOM}" class="fig-ink"></line>` +
-      `<text x="${RIGHT}" y="${(TOP + BOTTOM) / 2 - 8}" font-size="19" class="fig-ink" text-anchor="end">pd / V</text>` +
-      `<text x="${px(0) + 8}" y="${TOP - 4}" font-size="19" class="fig-ink">current / A</text>`;
+      `${label({ x: RIGHT, y: (TOP + BOTTOM) / 2 - 8, text: `pd / V`, anchor: "end", size: SIZE.heading, class: "text-ink" })}` +
+      `${label({ x: px(0) + 8, y: TOP - 4, text: `current / A`, anchor: "start", size: SIZE.heading, class: "text-ink" })}`;
 
     for (let tick = -4; tick <= 4; tick += 2) {
       axes +=
         `<line x1="${px(tick).toFixed(1)}" y1="${TOP}" x2="${px(tick).toFixed(1)}" y2="${BOTTOM}" class="fig-grid"></line>` +
-        `<text x="${px(tick).toFixed(1)}" y="${BOTTOM + 16}" font-size="17" class="fig-ink" text-anchor="middle">${tick}</text>`;
+        `${label({ x: px(tick).toFixed(1), y: BOTTOM + 16, text: `${tick}`, anchor: "middle", size: SIZE.value, class: "text-ink" })}`;
     }
     for (let tick = -1; tick <= 1; tick += 0.5) {
       if (tick === 0) continue;
       axes +=
         `<line x1="${LEFT}" y1="${py(tick).toFixed(1)}" x2="${RIGHT}" y2="${py(tick).toFixed(1)}" class="fig-grid"></line>` +
-        `<text x="${LEFT - 6}" y="${(py(tick) + 4).toFixed(1)}" font-size="17" class="fig-ink" text-anchor="end">${tick}</text>`;
+        `${label({ x: LEFT - 6, y: (py(tick) + 4).toFixed(1), text: `${tick}`, anchor: "end", size: SIZE.value, class: "text-ink" })}`;
     }
 
     // The characteristic, sampled across the range.

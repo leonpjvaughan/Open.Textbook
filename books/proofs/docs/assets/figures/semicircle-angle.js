@@ -12,7 +12,7 @@
 // The scaffolding — the surface, its accessible name, the slider, the live
 // readout and the redraw — comes from `kit.js`. What is left here is the drawing
 // and the sentences, which are the parts that differ from every other figure.
-import { panel, slider, react } from "./kit.js";
+import { SIZE, label, panel, react, slider } from "./kit.js";
 
 export function mount(el) {
   const { svg, readout } = panel(el, {
@@ -39,9 +39,8 @@ export function mount(el) {
 
   const degrees = (radians) => (radians * 180) / Math.PI;
 
-  const text = (x, y, label, cls = "fig-ink") =>
-    `<text x="${x.toFixed(0)}" y="${y.toFixed(0)}" text-anchor="middle" ` +
-    `font-size="13" class="${cls}">${label}</text>`;
+  const text = (x, y, words, cls = "text-ink") =>
+    label({ x, y, text: words, size: SIZE.tick, class: cls });
 
   function draw() {
     // The slider gives a position along the upper half of the circle, in degrees

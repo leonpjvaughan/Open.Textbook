@@ -4,7 +4,7 @@
 //
 // The scaffolding — the surface, its accessible name, the slider, the live
 // readout and the redraw — comes from `kit.js`.
-import { panel, slider, react } from "./kit.js";
+import { SIZE, label, panel, react, slider } from "./kit.js";
 
 const CENTRE = 160;
 const RADIUS = 112;
@@ -81,8 +81,8 @@ export function mount(el) {
     const radius =
       `<line x1="${CENTRE}" y1="${CENTRE}" x2="${px.toFixed(1)}" y2="${py.toFixed(1)}" class="fig-warn"></line>` +
       `<circle cx="${px.toFixed(1)}" cy="${py.toFixed(1)}" r="4" class="fig-accent"></circle>` +
-      `<text x="${CENTRE + 6}" y="${CENTRE - 8}" class="fig-ink">r = 1</text>` +
-      `<text x="${ax + 8}" y="${ay + 16}" class="fig-ink">0</text>`;
+      label({ x: CENTRE + 6, y: CENTRE - 8, text: "r = 1", anchor: "start", class: "text-ink" }) +
+      label({ x: ax + 8, y: ay + 16, text: "0", anchor: "start", class: "text-ink" });
 
     svg.innerHTML = axes + circle + arc + radius;
 

@@ -9,7 +9,7 @@
 // The scaffolding — the surface, its accessible name, the sliders, the live
 // readout and the redraw — comes from `kit.js`. What is left here is the drawing
 // and the sentences, which are the parts that differ from every other figure.
-import { SIZE, panel, react, slider } from "./kit.js";
+import { SIZE, label, panel, react, slider } from "./kit.js";
 
 export function mount(el) {
   const ELEMENTS = {
@@ -96,18 +96,18 @@ export function mount(el) {
       const y = CENTRE.y + orbitRadius * Math.sin(angle);
       electrons.push(
         `<circle cx="${x.toFixed(1)}" cy="${y.toFixed(1)}" r="7" class="fig-ink" fill="none" stroke-width="2"></circle>` +
-          `<text x="${x.toFixed(1)}" y="${(y + 3.5).toFixed(1)}" font-size="${SIZE.tick}" text-anchor="middle" class="fig-ink">-</text>`,
+          `${label({ x: x.toFixed(1), y: (y + 3.5).toFixed(1), text: `-`, anchor: "middle", size: SIZE.tick, class: "text-ink" })}`,
       );
     }
     const orbit = `<circle cx="${CENTRE.x}" cy="${CENTRE.y}" r="${orbitRadius}" class="fig-grid" fill="none" stroke-dasharray="3 3"></circle>`;
 
     const legend =
       `<circle cx="286" cy="24" r="6" class="fig-accent"></circle>` +
-      `<text x="298" y="28" font-size="${SIZE.tick}" class="fig-ink">proton</text>` +
+      `${label({ x: 298, y: 28, text: `proton`, anchor: "start", size: SIZE.tick, class: "text-ink" })}` +
       `<circle cx="286" cy="48" r="6" class="fig-grid" fill="none" stroke-width="2"></circle>` +
-      `<text x="298" y="52" font-size="${SIZE.tick}" class="fig-ink">neutron</text>` +
+      `${label({ x: 298, y: 52, text: `neutron`, anchor: "start", size: SIZE.tick, class: "text-ink" })}` +
       `<circle cx="286" cy="72" r="6" class="fig-ink" fill="none" stroke-width="2"></circle>` +
-      `<text x="298" y="76" font-size="${SIZE.tick}" class="fig-ink">electron</text>`;
+      `${label({ x: 298, y: 76, text: `electron`, anchor: "start", size: SIZE.tick, class: "text-ink" })}`;
 
     svg.innerHTML = legend + orbit + nucleus + nucleons + electrons.join("");
 

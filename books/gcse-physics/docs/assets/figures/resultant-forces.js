@@ -9,7 +9,7 @@
 // The scaffolding — the surface, its accessible name, the sliders, the live
 // readout and the redraw — comes from `kit.js`. What is left here is the drawing
 // and the sentences, which are the parts that differ from every other figure.
-import { panel, slider, react } from "./kit.js";
+import { SIZE, label, panel, react, slider } from "./kit.js";
 
 export function mount(el) {
   const { svg, readout } = panel(el, {
@@ -40,7 +40,8 @@ export function mount(el) {
   const MID = 62;
   const SCALE = 0.65; // pixels per newton, so 200 N reaches 130 px
 
-  function arrow(x, y, length, cls, label) {
+  // `name`, not `label`: a parameter of that name shadows the imported mark.
+  function arrow(x, y, length, cls, name) {
     const direction = length < 0 ? -1 : 1;
     const end = x + length;
     const head = 9 * direction;
@@ -48,7 +49,7 @@ export function mount(el) {
       `<line x1="${x}" y1="${y}" x2="${end - head}" y2="${y}" class="${cls}" ` +
       `stroke-width="3"></line>` +
       `<polygon points="${end},${y} ${end - head},${y - 6} ${end - head},${y + 6}" class="${cls}"></polygon>` +
-      (label ? `<text x="${(x + end) / 2}" y="${y - 12}" font-size="16" text-anchor="middle" class="fig-ink">${label}</text>` : "")
+      (name ? `${label({ x: (x + end) / 2, y: y - 12, text: `${name}`, anchor: "middle", size: SIZE.tick, class: "text-ink" })}` : "")
     );
   }
 
@@ -79,7 +80,7 @@ export function mount(el) {
       leftArrow +
       rightArrow +
       resultantArrow +
-      `<text x="${CENTRE}" y="158" font-size="16" text-anchor="middle" class="fig-ink">${resultantLabel}</text>`;
+      `${label({ x: CENTRE, y: 158, text: `${resultantLabel}`, anchor: "middle", size: SIZE.tick, class: "text-ink" })}`;
 
     if (magnitude === 0) {
       readout.innerHTML =

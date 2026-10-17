@@ -5,7 +5,7 @@
 //
 // The scaffolding — the surface, its accessible name, the slider, the live
 // readout and the redraw — comes from `kit.js`.
-import { panel, slider, react } from "./kit.js";
+import { SIZE, label, panel, react, slider } from "./kit.js";
 
 const TERMS = 10;
 
@@ -80,7 +80,7 @@ export function mount(el) {
       limitLine =
         `<line x1="${left}" y1="${y.toFixed(1)}" x2="${left + width}" y2="${y.toFixed(1)}" ` +
         `class="fig-good"></line>` +
-        `<text x="${left + 4}" y="${(y - 4).toFixed(1)}" class="fig-good">limit</text>`;
+        label({ x: left + 4, y: y - 4, text: "limit", anchor: "start", class: "text-good" });
     }
 
     svg.innerHTML = axis + bars + limitLine;

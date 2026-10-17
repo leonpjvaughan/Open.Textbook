@@ -9,7 +9,7 @@
 // The scaffolding — the surface, its accessible name, the sliders, the live
 // readout and the redraw — comes from `kit.js`. What is left here is the drawing
 // and the sentence, which are the parts that differ from every other figure.
-import { panel, slider, react } from "./kit.js";
+import { SIZE, label, panel, react, slider } from "./kit.js";
 
 export function mount(el) {
   const { svg, readout } = panel(el, {
@@ -61,13 +61,13 @@ export function mount(el) {
     const arrow =
       `<line x1="${x0 - length}" y1="${GROUND - height / 2}" x2="${x0 - 12}" y2="${GROUND - height / 2}" class="fig-accent" stroke-width="4"></line>` +
       `<polygon points="${x0},${GROUND - height / 2} ${x0 - 12},${GROUND - height / 2 - 6} ${x0 - 12},${GROUND - height / 2 + 6}" class="fig-accent"></polygon>` +
-      `<text x="${x0 - length - 4}" y="${GROUND - height / 2 - 8}" font-size="16" class="fig-ink">F = ${force} N</text>`;
+      `${label({ x: x0 - length - 4, y: GROUND - height / 2 - 8, text: `F = ${force} N`, anchor: "start", size: SIZE.tick, class: "text-ink" })}`;
 
     svg.innerHTML =
       trolley +
       arrow +
-      `<text x="${CENTRE}" y="${GROUND - height - 12}" font-size="16" text-anchor="middle" class="fig-ink">m = ${mass} kg</text>` +
-      `<text x="${CENTRE}" y="${GROUND + 42}" font-size="18" text-anchor="middle" class="fig-ink">a = F &divide; m = ${force} &divide; ${mass} = ${acceleration.toFixed(2)} m/s&sup2;</text>`;
+      `${label({ x: CENTRE, y: GROUND - height - 12, text: `m = ${mass} kg`, anchor: "middle", size: SIZE.tick, class: "text-ink" })}` +
+      `${label({ x: CENTRE, y: GROUND + 42, text: `a = F ÷ m = ${force} ÷ ${mass} = ${acceleration.toFixed(2)} m/s²`, anchor: "middle", size: SIZE.value, class: "text-ink" })}`;
 
     readout.innerHTML =
       `Resultant force ${force} N, mass ${mass} kg, so the acceleration is ` +

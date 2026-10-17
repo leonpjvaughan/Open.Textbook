@@ -13,7 +13,7 @@
 // The scaffolding — the surface, its accessible name, the slider, the live
 // readout and the redraw — comes from `kit.js`. What is left here is the drawing
 // and the sentences, which are the parts that differ from every other figure.
-import { panel, slider, react } from "./kit.js";
+import { SIZE, label, panel, react, slider } from "./kit.js";
 
 export function mount(el) {
   const { svg, readout } = panel(el, {
@@ -78,20 +78,20 @@ export function mount(el) {
     let axes =
       `<line x1="${LEFT}" y1="${BOTTOM}" x2="${RIGHT}" y2="${BOTTOM}" class="fig-ink"></line>` +
       `<line x1="${LEFT}" y1="${BOTTOM}" x2="${LEFT}" y2="${TOP}" class="fig-ink"></line>` +
-      `<text x="${LEFT}" y="${TOP - 12}" font-size="20" class="fig-ink">binding energy per nucleon / MeV</text>` +
-      `<text x="${RIGHT}" y="${BOTTOM + 18}" font-size="20" class="fig-ink" text-anchor="end">nucleon number</text>`;
+      `${label({ x: LEFT, y: TOP - 12, text: `binding energy per nucleon / MeV`, anchor: "start", size: SIZE.heading, class: "text-ink" })}` +
+      `${label({ x: RIGHT, y: BOTTOM + 18, text: `nucleon number`, anchor: "end", size: SIZE.heading, class: "text-ink" })}`;
 
     for (let tick = 0; tick <= 250; tick += 50) {
       const x = px(tick);
       axes +=
         `<line x1="${x.toFixed(1)}" y1="${BOTTOM}" x2="${x.toFixed(1)}" y2="${BOTTOM + 5}" class="fig-ink"></line>` +
-        `<text x="${x.toFixed(1)}" y="${BOTTOM + 16}" font-size="18" class="fig-ink" text-anchor="middle">${tick}</text>`;
+        `${label({ x: x.toFixed(1), y: BOTTOM + 16, text: `${tick}`, anchor: "middle", size: SIZE.value, class: "text-ink" })}`;
     }
     for (let tick = 0; tick <= 10; tick += 2) {
       const y = py(tick);
       axes +=
         `<line x1="${LEFT}" y1="${y.toFixed(1)}" x2="${RIGHT}" y2="${y.toFixed(1)}" class="fig-grid"></line>` +
-        `<text x="${LEFT - 8}" y="${(y + 4).toFixed(1)}" font-size="18" class="fig-ink" text-anchor="end">${tick}</text>`;
+        `${label({ x: LEFT - 8, y: (y + 4).toFixed(1), text: `${tick}`, anchor: "end", size: SIZE.value, class: "text-ink" })}`;
     }
 
     let curve = "";
@@ -107,7 +107,7 @@ export function mount(el) {
 
     const peak =
       `<line x1="${px(56).toFixed(1)}" y1="${TOP}" x2="${px(56).toFixed(1)}" y2="${BOTTOM}" class="fig-ink" stroke-dasharray="4 3"></line>` +
-      `<text x="${(px(56) + 4).toFixed(1)}" y="${TOP + 12}" font-size="18" class="fig-ink">iron-56</text>`;
+      `${label({ x: (px(56) + 4).toFixed(1), y: TOP + 12, text: `iron-56`, anchor: "start", size: SIZE.value, class: "text-ink" })}`;
 
     svg.innerHTML = axes + line + peak + marker;
 

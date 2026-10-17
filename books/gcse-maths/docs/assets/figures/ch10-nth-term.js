@@ -9,7 +9,7 @@
 //
 // The scaffolding — the surface, its accessible name, the two sliders, the live
 // readout, the redraw — comes from `kit.js`.
-import { panel, slider, fmt, react } from "./kit.js";
+import { SIZE, fmt, label, panel, react, slider } from "./kit.js";
 
 export function mount(el) {
   const AXIS_X = 44;
@@ -83,8 +83,7 @@ export function mount(el) {
       valueLines +=
         `<line x1="${AXIS_X}" y1="${y.toFixed(1)}" x2="${RIGHT}" y2="${y.toFixed(1)}" ` +
         `class="${lineClass}" stroke-width="${lineWidth}"></line>` +
-        `<text x="${(AXIS_X - 8).toFixed(1)}" y="${(y + 4).toFixed(1)}" font-size="16" ` +
-        `text-anchor="end" class="text-ink">${fmt(value)}</text>`;
+        label({ x: AXIS_X - 8, y: y + 4, text: fmt(value), anchor: "end", size: SIZE.label, class: "text-ink" });
     }
 
     const positionTicks = [];
@@ -92,8 +91,7 @@ export function mount(el) {
       const x = xFor(position);
       positionTicks.push(
         `<line x1="${x.toFixed(1)}" y1="${BASE}" x2="${x.toFixed(1)}" y2="${BASE + 5}" class="fig-ink"></line>` +
-          `<text x="${x.toFixed(1)}" y="${BASE + 19}" font-size="16" text-anchor="middle" ` +
-          `class="text-ink">${position}</text>`,
+          label({ x, y: BASE + 19, text: position, anchor: "middle", size: SIZE.label, class: "text-ink" }),
       );
     }
 
@@ -107,8 +105,7 @@ export function mount(el) {
         const y = yFor(term);
         return (
           `<circle cx="${x.toFixed(1)}" cy="${y.toFixed(1)}" r="5" class="fig-accent"></circle>` +
-          `<text x="${x.toFixed(1)}" y="${(y - 11).toFixed(1)}" font-size="18" ` +
-          `text-anchor="middle" class="text-accent">${fmt(term)}</text>`
+          label({ x, y: y - 11, text: fmt(term), anchor: "middle", size: SIZE.value, class: "text-accent" })
         );
       })
       .join("");
@@ -120,8 +117,8 @@ export function mount(el) {
       positionTicks.join("") +
       `<polyline points="${points}" class="fig-line"></polyline>` +
       dots +
-      `<text x="${AXIS_X + 4}" y="${TOP - 10}" font-size="16" text-anchor="start" class="text-ink">term</text>` +
-      `<text x="${RIGHT}" y="${BASE + 34}" font-size="16" text-anchor="end" class="text-ink">position</text>`;
+      label({ x: AXIS_X + 4, y: TOP - 10, text: "term", anchor: "start", size: SIZE.label, class: "text-ink" }) +
+      label({ x: RIGHT, y: BASE + 34, text: "position", anchor: "end", size: SIZE.label, class: "text-ink" });
 
     const rule =
       `term = ${fmt(step)} × position ` +

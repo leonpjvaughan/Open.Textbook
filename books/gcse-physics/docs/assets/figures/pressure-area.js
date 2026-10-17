@@ -9,7 +9,7 @@
 // The scaffolding — the surface, its accessible name, the sliders, the live
 // readout and the redraw — comes from `kit.js`. What is left here is the drawing
 // and the sentence, which are the parts that differ from every other figure.
-import { panel, slider, react } from "./kit.js";
+import { SIZE, label, panel, react, slider } from "./kit.js";
 
 export function mount(el) {
   const { svg, readout } = panel(el, {
@@ -66,8 +66,8 @@ export function mount(el) {
       `<rect x="${(CENTRE - halfWidth).toFixed(1)}" y="60" width="${width.toFixed(1)}" height="60" class="fig-grid"></rect>` +
       `<line x1="60" y1="${GROUND}" x2="500" y2="${GROUND}" class="fig-ink" stroke-width="3"></line>` +
       `<line x1="${(CENTRE - halfWidth).toFixed(1)}" y1="${GROUND}" x2="${(CENTRE + halfWidth).toFixed(1)}" y2="${GROUND}" class="fig-warn" stroke-width="7"></line>` +
-      `<text x="${CENTRE}" y="150" font-size="16" text-anchor="middle" class="fig-ink">contact area = ${area.toFixed(2)} m&sup2;</text>` +
-      `<text x="${CENTRE}" y="18" font-size="16" text-anchor="middle" class="fig-ink">force = ${force} N</text>`;
+      `${label({ x: CENTRE, y: 150, text: `contact area = ${area.toFixed(2)} m²`, anchor: "middle", size: SIZE.tick, class: "text-ink" })}` +
+      `${label({ x: CENTRE, y: 18, text: `force = ${force} N`, anchor: "middle", size: SIZE.tick, class: "text-ink" })}`;
 
     readout.innerHTML =
       `Pressure = force &divide; area = ${force} N &divide; ${area.toFixed(2)} m&sup2; = ` +

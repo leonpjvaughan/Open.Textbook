@@ -16,7 +16,7 @@
 // The scaffolding — the surface, its accessible name, the sliders, the live
 // readout and the redraw — comes from `kit.js`. What is left here is the drawing
 // and the sentences, which are the parts that differ from every other figure.
-import { panel, slider, react } from "./kit.js";
+import { SIZE, label, panel, react, slider } from "./kit.js";
 
 export function mount(el) {
   // A fixed shape with a mean of exactly zero, so the mean of the readings is
@@ -88,7 +88,7 @@ export function mount(el) {
         `<line x1="${x}" y1="${AXIS}" x2="${x}" y2="${isLabel ? AXIS + 6 : AXIS + 3}" class="fig-grid"></line>`;
       if (isLabel) {
         grid +=
-          `<text x="${x}" y="${AXIS + 20}" text-anchor="middle" font-size="18" class="text-ink">${value.toFixed(2)}</text>`;
+          `${label({ x: x, y: AXIS + 20, text: `${value.toFixed(2)}`, anchor: "middle", size: SIZE.value, class: "text-ink" })}`;
       }
     }
 
@@ -110,10 +110,10 @@ export function mount(el) {
       `<rect x="${bandX}" y="${TOP}" width="${bandWidth}" height="${AXIS - TOP}" class="fig-ink" opacity="0.12"></rect>` +
       dots +
       `<line x1="${meanX}" y1="${TOP - 10}" x2="${meanX}" y2="${AXIS}" class="fig-ink" stroke-width="2"></line>` +
-      `<text x="${(Number(meanX) + 8).toFixed(1)}" y="${TOP - 2}" font-size="20" class="text-ink">mean</text>` +
+      `${label({ x: (Number(meanX) + 8).toFixed(1), y: TOP - 2, text: `mean`, anchor: "start", size: SIZE.heading, class: "text-ink" })}` +
       `<line x1="${trueX}" y1="${TOP - 20}" x2="${trueX}" y2="${AXIS}" class="fig-warn" stroke-dasharray="4 3"></line>` +
-      `<text x="${(Number(trueX) - 8).toFixed(1)}" y="${TOP - 24}" text-anchor="end" font-size="20" class="text-warn">true length</text>` +
-      `<text x="${RIGHT}" y="${AXIS + 40}" text-anchor="end" font-size="18" class="text-ink">measured length / mm</text>`;
+      `${label({ x: (Number(trueX) - 8).toFixed(1), y: TOP - 24, text: `true length`, anchor: "end", size: SIZE.heading, class: "text-warn" })}` +
+      `${label({ x: RIGHT, y: AXIS + 40, text: `measured length / mm`, anchor: "end", size: SIZE.value, class: "text-ink" })}`;
 
     const uncertainty = oneSigFig(half);
     const inside = Math.abs(mean - TRUE) <= half + 1e-9;

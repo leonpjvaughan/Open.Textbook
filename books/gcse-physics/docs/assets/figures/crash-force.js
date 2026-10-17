@@ -10,7 +10,7 @@
 // The scaffolding — the surface, its accessible name, the slider, the live
 // readout and the redraw — comes from `kit.js`. What is left here is the drawing
 // and the sentences, which are the parts that differ from every other figure.
-import { panel, slider, react } from "./kit.js";
+import { SIZE, label, panel, react, slider } from "./kit.js";
 
 export function mount(el) {
   const { svg, readout } = panel(el, {
@@ -52,8 +52,8 @@ export function mount(el) {
       `<rect x="${BARRIER}" y="${GROUND - 74}" width="18" height="74" class="fig-ink"></rect>` +
       `<line x1="${carLeft + carWidth}" y1="${GROUND - 25}" x2="${carLeft + carWidth + length}" y2="${GROUND - 25}" class="fig-warn" stroke-width="4"></line>` +
       `<polygon points="${(carLeft + carWidth + length).toFixed(1)},${GROUND - 25} ${(carLeft + carWidth + length - 12).toFixed(1)},${GROUND - 31} ${(carLeft + carWidth + length - 12).toFixed(1)},${GROUND - 19}" class="fig-warn"></polygon>` +
-      `<text x="${carLeft}" y="${GROUND - 56}" font-size="16" class="fig-ink">mass ${MASS} kg at ${SPEED} m/s</text>` +
-      `<text x="${carLeft + carWidth + length + 6}" y="${GROUND - 20}" font-size="16" class="fig-ink">${Math.round(force)} N</text>`;
+      `${label({ x: carLeft, y: GROUND - 56, text: `mass ${MASS} kg at ${SPEED} m/s`, anchor: "start", size: SIZE.tick, class: "text-ink" })}` +
+      `${label({ x: carLeft + carWidth + length + 6, y: GROUND - 20, text: `${Math.round(force)} N`, anchor: "start", size: SIZE.tick, class: "text-ink" })}`;
 
     readout.innerHTML =
       `The change in momentum is fixed: ${MASS} kg &times; ${SPEED} m/s = ` +

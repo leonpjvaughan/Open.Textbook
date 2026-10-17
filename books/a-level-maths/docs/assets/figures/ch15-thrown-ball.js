@@ -17,7 +17,7 @@
 // The scaffolding — the surface, its accessible name, the sliders, the live
 // readout, the redraw — comes from `kit.js`. What is left here is the drawing and
 // the sentence, which are the parts that differ from every other figure.
-import { panel, slider, react } from "./kit.js";
+import { SIZE, label, panel, react, slider } from "./kit.js";
 
 const G = 9.8; // metres per second squared, downwards
 const SCALE = 12; // pixels per metre
@@ -102,15 +102,13 @@ export function mount(el) {
         `<line x1="${AXIS_X - 6}" y1="${y.toFixed(1)}" ` +
         `x2="${AXIS_X + 6}" y2="${y.toFixed(1)}" ` +
         `class="fig-ink" stroke-width="1"></line>` +
-        `<text x="${AXIS_X - 12}" y="${(y + 4).toFixed(1)}" font-size="13" ` +
-        `text-anchor="end" class="text-ink">${metres}</text>`;
+        label({ x: AXIS_X - 12, y: y + 4, text: metres, anchor: "end", size: SIZE.tick, class: "text-ink" });
     }
     return (
       lines +
       `<line x1="${AXIS_X}" y1="${toPy(24).toFixed(1)}" x2="${AXIS_X}" ` +
       `y2="${GROUND_Y}" class="fig-ink" stroke-width="1"></line>` +
-      `<text x="${AXIS_X + 14}" y="${toPy(24) + 4}" font-size="13" ` +
-      `class="text-ink">up is positive</text>`
+      label({ x: AXIS_X + 14, y: toPy(24) + 4, text: "up is positive", anchor: "start", size: SIZE.tick, class: "text-ink" })
     );
   }
 
@@ -149,23 +147,23 @@ export function mount(el) {
       `<line x1="${BALL_X - 70}" y1="${topY.toFixed(1)}" ` +
       `x2="${WIDTH - 20}" y2="${topY.toFixed(1)}" class="fig-ink" ` +
       `stroke-width="1" stroke-dasharray="6 4"></line>` +
-      `<text x="${WIDTH - 20}" y="${(topY - 8).toFixed(1)}" font-size="13" ` +
-      `text-anchor="end" class="text-ink">greatest height ` +
-      `${one(sMax)} m</text>`;
+      label({ x: WIDTH - 20, y: topY - 8, text: `greatest height ${one(sMax)} m`, anchor: "end", size: SIZE.tick, class: "text-ink" });
     const ball =
       `<circle cx="${BALL_X}" cy="${ballY.toFixed(1)}" r="8" ` +
       `class="fig-accent"></circle>` +
-      `<text x="${BALL_X + 16}" y="${(ballY + 5).toFixed(1)}" font-size="13" ` +
-      `class="text-ink">s = ${one(s)} m</text>`;
+      label({ x: BALL_X + 16, y: ballY + 5, text: `s = ${one(s)} m`, anchor: "start", size: SIZE.tick, class: "text-ink" });
 
     const moving = velocityArrow(ballY, v);
     const movingLabel = Math.abs(v) < 0.05
-      ? `<text x="${BALL_X + 16}" y="${(ballY - 22).toFixed(1)}" ` +
-        `font-size="13" class="text-ink">v = 0 here</text>`
-      : `<text x="${BALL_X + 16}" ` +
-        `y="${(v > 0 ? ballY - 24 : ballY + 34).toFixed(1)}" font-size="13" ` +
-        `class="${v > 0 ? "text-good" : "text-warn"}">` +
-        `v = ${one(v)} m/s ${v > 0 ? "upwards" : "downwards"}</text>`;
+      ? label({ x: BALL_X + 16, y: ballY - 22, text: "v = 0 here", anchor: "start", size: SIZE.tick, class: "text-ink" })
+      : label({
+          x: BALL_X + 16,
+          y: v > 0 ? ballY - 24 : ballY + 34,
+          text: `v = ${one(v)} m/s ${v > 0 ? "upwards" : "downwards"}`,
+          anchor: "start",
+          size: SIZE.tick,
+          class: v > 0 ? "text-good" : "text-warn",
+        });
 
     svg.innerHTML =
       ruler() +

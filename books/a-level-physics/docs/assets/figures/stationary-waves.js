@@ -13,7 +13,7 @@
 // The scaffolding — the surface, its accessible name, the sliders, the live
 // readout and the redraw — comes from `kit.js`. What is left here is the drawing
 // and the sentences, which are the parts that differ from every other figure.
-import { panel, slider, react } from "./kit.js";
+import { SIZE, label, panel, react, slider } from "./kit.js";
 
 export function mount(el) {
   const { svg, readout } = panel(el, {
@@ -101,8 +101,8 @@ export function mount(el) {
       `<line x1="${X0 - 30}" y1="${MID_Y}" x2="${X0 + 420}" y2="${MID_Y}" class="fig-grid" stroke-dasharray="4 4"></line>` +
       `<line x1="${x1}" y1="${MID_Y - 110}" x2="${x1}" y2="${MID_Y + 110}" class="fig-ink" stroke-width="3"></line>` +
       `<line x1="${x2}" y1="${MID_Y - 110}" x2="${x2}" y2="${MID_Y + 110}" class="fig-ink" stroke-width="3"></line>` +
-      `<text x="${x1 - 6}" y="${MID_Y - 116}" font-size="17" class="fig-ink" text-anchor="middle">fixed end</text>` +
-      `<text x="${x2 + 6}" y="${MID_Y - 116}" font-size="17" class="fig-ink" text-anchor="middle">fixed end</text>`;
+      `${label({ x: x1 - 6, y: MID_Y - 116, text: `fixed end`, anchor: "middle", size: SIZE.value, class: "text-ink" })}` +
+      `${label({ x: x2 + 6, y: MID_Y - 116, text: `fixed end`, anchor: "middle", size: SIZE.value, class: "text-ink" })}`;
 
     svg.innerHTML =
       frame +

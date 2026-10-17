@@ -9,7 +9,7 @@
 // The scaffolding — the surface, its accessible name, the sliders, the live
 // readout and the redraw — comes from `kit.js`. What is left here is the drawing
 // and the sentences, which are the parts that differ from every other figure.
-import { panel, slider, react } from "./kit.js";
+import { SIZE, label, panel, react, slider } from "./kit.js";
 
 export function mount(el) {
   const { svg, readout } = panel(el, {
@@ -55,15 +55,16 @@ export function mount(el) {
       `<line x1="70" y1="${y}" x2="70" y2="${GROUND}" class="fig-grid" ` +
       `stroke-dasharray="3 3"></line>` +
       `<line x1="40" y1="${GROUND}" x2="150" y2="${GROUND}" class="fig-ink"></line>` +
-      `<text x="84" y="${(y + GROUND) / 2}" font-size="16" class="fig-ink">` +
-      `h = ${height.toFixed(1)} m</text>`;
+      `${label({ x: 84, y: (y + GROUND) / 2, text: `h = ${height.toFixed(1)} m`, anchor: "start", size: SIZE.tick, class: "text-ink" })}`;
 
     // Two bars sharing one scale, so a taller drop visibly stores more energy.
     const barWidth = (energy / ENERGY_MAX) * 330;
-    const bar = (top, cls, label, value) =>
-      `<text x="170" y="${top - 5}" font-size="16" class="fig-ink">${label}</text>` +
+    // `name`, not `label`: a parameter of that name shadows the imported mark, and the
+    // figure then loads by throwing `label is not a function`.
+    const bar = (top, cls, name, value) =>
+      `${label({ x: 170, y: top - 5, text: `${name}`, anchor: "start", size: SIZE.tick, class: "text-ink" })}` +
       `<rect x="170" y="${top}" width="${barWidth.toFixed(1)}" height="20" class="${cls}"></rect>` +
-      `<text x="${(178 + barWidth).toFixed(1)}" y="${top + 15}" font-size="16" class="fig-ink">${value}</text>`;
+      `${label({ x: (178 + barWidth).toFixed(1), y: top + 15, text: `${value}`, anchor: "start", size: SIZE.tick, class: "text-ink" })}`;
 
     svg.innerHTML =
       ball +

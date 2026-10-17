@@ -11,7 +11,7 @@
 // The scaffolding — the surface, its accessible name, the slider, the live
 // readout and the redraw — comes from `kit.js`. What is left here is the drawing
 // and the sentence, which are the parts that differ from every other figure.
-import { panel, slider, react } from "./kit.js";
+import { SIZE, label, panel, react, slider } from "./kit.js";
 
 export function mount(el) {
   const { svg, readout } = panel(el, {
@@ -58,24 +58,20 @@ export function mount(el) {
       // The principal foci.
       `<circle cx="${LENS_X - px(FOCAL)}" cy="${AXIS_Y}" r="3" class="fig-grid"></circle>` +
       `<circle cx="${LENS_X + px(FOCAL)}" cy="${AXIS_Y}" r="3" class="fig-grid"></circle>` +
-      `<text x="${LENS_X - px(FOCAL) - 6}" y="${AXIS_Y + 18}" font-size="18" ` +
-      `class="fig-ink">F</text>` +
-      `<text x="${LENS_X + px(FOCAL) - 2}" y="${AXIS_Y + 18}" font-size="18" ` +
-      `class="fig-ink">F</text>` +
+      `${label({ x: LENS_X - px(FOCAL) - 6, y: AXIS_Y + 18, text: `F`, anchor: "start", size: SIZE.value, class: "text-ink" })}` +
+      `${label({ x: LENS_X + px(FOCAL) - 2, y: AXIS_Y + 18, text: `F`, anchor: "start", size: SIZE.value, class: "text-ink" })}` +
       // The object arrow: a vertical line with an arrowhead.
       `<line x1="${objectX}" y1="${AXIS_Y}" x2="${objectX}" y2="${objectTop}" ` +
       `class="fig-accent" stroke-width="2"></line>` +
       `<polygon points="${objectX - 4},${objectTop + 8} ${objectX + 4},${objectTop + 8} ` +
       `${objectX},${objectTop}" class="fig-accent"></polygon>` +
-      `<text x="${objectX - 18}" y="${objectTop - 8}" font-size="18" ` +
-      `class="fig-ink">object</text>` +
+      `${label({ x: objectX - 18, y: objectTop - 8, text: `object`, anchor: "start", size: SIZE.value, class: "text-ink" })}` +
       // The image arrow, inverted and on the other side.
       `<line x1="${imageX}" y1="${AXIS_Y}" x2="${imageX}" y2="${imageTop}" ` +
       `class="fig-warn" stroke-width="2"></line>` +
       `<polygon points="${imageX - 4},${imageTop - 8} ${imageX + 4},${imageTop - 8} ` +
       `${imageX},${imageTop}" class="fig-warn"></polygon>` +
-      `<text x="${imageX - 16}" y="${imageTop + 20}" font-size="18" ` +
-      `class="fig-ink">image</text>` +
+      `${label({ x: imageX - 16, y: imageTop + 20, text: `image`, anchor: "start", size: SIZE.value, class: "text-ink" })}` +
       // The ray parallel to the axis, then through the far focus.
       `<line x1="${objectX}" y1="${objectTop}" x2="${LENS_X}" y2="${objectTop}" ` +
       `class="fig-good" stroke-width="1.5"></line>` +

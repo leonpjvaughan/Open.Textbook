@@ -10,7 +10,7 @@
 // The scaffolding — the surface, its accessible name, the sliders, the live
 // readout and the redraw — comes from `kit.js`. What is left here is the drawing
 // and the sentences, which are the parts that differ from every other figure.
-import { panel, slider, react } from "./kit.js";
+import { SIZE, label, panel, react, slider } from "./kit.js";
 
 export function mount(el) {
   const { svg, readout } = panel(el, {
@@ -62,22 +62,11 @@ export function mount(el) {
     const secondCrest = firstCrest + wavelength;
     const marker =
       secondCrest <= WINDOW
-        ? `<line x1="${(LEFT + firstCrest * PIXELS_PER_METRE).toFixed(1)}" y1="40" ` +
-          `x2="${(LEFT + secondCrest * PIXELS_PER_METRE).toFixed(1)}" y2="40" ` +
-          `class="fig-warn" stroke-width="2"></line>` +
-          `<line x1="${(LEFT + firstCrest * PIXELS_PER_METRE).toFixed(1)}" y1="34" ` +
-          `x2="${(LEFT + firstCrest * PIXELS_PER_METRE).toFixed(1)}" y2="46" class="fig-warn" stroke-width="2"></line>` +
-          `<line x1="${(LEFT + secondCrest * PIXELS_PER_METRE).toFixed(1)}" y1="34" ` +
-          `x2="${(LEFT + secondCrest * PIXELS_PER_METRE).toFixed(1)}" y2="46" class="fig-warn" stroke-width="2"></line>` +
-          `<text x="${(LEFT + ((firstCrest + secondCrest) / 2) * PIXELS_PER_METRE).toFixed(1)}" ` +
-          `y="30" font-size="16" text-anchor="middle" class="fig-ink">one wavelength = ${wavelength.toFixed(2)} m</text>`
-        : `<text x="${(LEFT + WIDTH / 2).toFixed(1)}" y="30" font-size="16" text-anchor="middle" class="fig-ink">one wavelength is wider than the drawing</text>`;
+        ? `<line x1="${(LEFT + firstCrest * PIXELS_PER_METRE).toFixed(1)}" y1="40" x2="${(LEFT + secondCrest * PIXELS_PER_METRE).toFixed(1)}" y2="40" class="fig-warn" stroke-width="2"></line><line x1="${(LEFT + firstCrest * PIXELS_PER_METRE).toFixed(1)}" y1="34" x2="${(LEFT + firstCrest * PIXELS_PER_METRE).toFixed(1)}" y2="46" class="fig-warn" stroke-width="2"></line><line x1="${(LEFT + secondCrest * PIXELS_PER_METRE).toFixed(1)}" y1="34" x2="${(LEFT + secondCrest * PIXELS_PER_METRE).toFixed(1)}" y2="46" class="fig-warn" stroke-width="2"></line>${label({ x: (LEFT + ((firstCrest + secondCrest) / 2) * PIXELS_PER_METRE).toFixed(1), y: 30, text: `one wavelength = ${wavelength.toFixed(2)} m`, anchor: "middle", size: SIZE.tick, class: "text-ink" })}`
+        : `${label({ x: (LEFT + WIDTH / 2).toFixed(1), y: 30, text: `one wavelength is wider than the drawing`, anchor: "middle", size: SIZE.tick, class: "text-ink" })}`;
 
     const axes =
-      `<line x1="${LEFT}" y1="${AXIS}" x2="${LEFT + WIDTH}" y2="${AXIS}" class="fig-ink" stroke-width="2"></line>` +
-      `<line x1="${LEFT}" y1="50" x2="${LEFT}" y2="200" class="fig-ink" stroke-width="2"></line>` +
-      `<text x="${LEFT + WIDTH / 2}" y="215" font-size="16" text-anchor="middle" class="fig-ink">distance (m)</text>` +
-      `<text x="14" y="${AXIS}" font-size="16" class="fig-ink" transform="rotate(-90 14 ${AXIS})">displacement</text>`;
+      `<line x1="${LEFT}" y1="${AXIS}" x2="${LEFT + WIDTH}" y2="${AXIS}" class="fig-ink" stroke-width="2"></line><line x1="${LEFT}" y1="50" x2="${LEFT}" y2="200" class="fig-ink" stroke-width="2"></line>${label({ x: LEFT + WIDTH / 2, y: 215, text: `distance (m)`, anchor: "middle", size: SIZE.tick, class: "text-ink" })}${label({ x: 14, y: AXIS, text: 'displacement', anchor: "start", size: SIZE.tick, class: "text-ink", rotate: -90 })}`;
 
     svg.innerHTML =
       axes +
@@ -85,11 +74,7 @@ export function mount(el) {
       marker;
 
     readout.innerHTML =
-      `Frequency <strong>${frequency.toFixed(1)} Hz</strong>, wave speed ` +
-      `<strong>${speed.toFixed(1)} m/s</strong>. The wavelength is ` +
-      `<strong>${wavelength.toFixed(2)} m</strong> and the period is ` +
-      `<strong>${period.toFixed(2)} s</strong>. ` +
-      `<em>Now double the frequency to ${Math.min(frequency * 2, 4).toFixed(1)} Hz. What happens to the wavelength?</em>`;
+      `Frequency <strong>${frequency.toFixed(1)} Hz</strong>, wave speed <strong>${speed.toFixed(1)} m/s</strong>. The wavelength is <strong>${wavelength.toFixed(2)} m</strong> and the period is <strong>${period.toFixed(2)} s</strong>. <em>Now double the frequency to ${Math.min(frequency * 2, 4).toFixed(1)} Hz. What happens to the wavelength?</em>`;
   }
 
   react([frequencyInput, speedInput], update);

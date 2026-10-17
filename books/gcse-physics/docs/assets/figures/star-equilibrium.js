@@ -10,7 +10,7 @@
 // The scaffolding — the surface, its accessible name, the sliders, the live
 // readout and the redraw — comes from `kit.js`. What is left here is the drawing
 // and the sentences, which are the parts that differ from every other figure.
-import { panel, slider, react } from "./kit.js";
+import { SIZE, label, panel, react, slider } from "./kit.js";
 
 export function mount(el) {
   const { svg, readout } = panel(el, {
@@ -70,7 +70,7 @@ export function mount(el) {
     const star =
       `<circle cx="${cx}" cy="${cy}" r="${radius.toFixed(1)}" class="fig-accent" ` +
       `fill-opacity="0.25" stroke-width="2"></circle>` +
-      `<text x="${cx}" y="${cy + 4}" font-size="17" text-anchor="middle" class="fig-ink">star</text>`;
+      `${label({ x: cx, y: cy + 4, text: `star`, anchor: "middle", size: SIZE.value, class: "text-ink" })}`;
 
     // Gravity acts inwards, so its arrow points towards the star from the left.
     const gravityStart = cx - radius - gravityLength;
@@ -78,7 +78,7 @@ export function mount(el) {
       `<line x1="${gravityStart.toFixed(1)}" y1="${cy}" x2="${cx - radius - 10}" y2="${cy}" ` +
       `class="fig-warn" stroke-width="4"></line>` +
       rightArrowhead(cx - radius, cy, "fig-warn") +
-      `<text x="${gravityStart.toFixed(1)}" y="${cy + 22}" font-size="16" class="fig-ink">gravity pulls in</text>`;
+      `${label({ x: gravityStart.toFixed(1), y: cy + 22, text: `gravity pulls in`, anchor: "start", size: SIZE.tick, class: "text-ink" })}`;
 
     // Fusion acts outwards, so its arrow points away from the star to the right.
     const fusionEnd = cx + radius + fusionLength;
@@ -86,7 +86,7 @@ export function mount(el) {
       `<line x1="${cx + radius + 10}" y1="${cy}" x2="${fusionEnd.toFixed(1)}" y2="${cy}" ` +
       `class="fig-good" stroke-width="4"></line>` +
       rightArrowhead(fusionEnd, cy, "fig-good") +
-      `<text x="${(cx + radius + 10).toFixed(1)}" y="${cy + 22}" font-size="16" class="fig-ink">fusion pushes out</text>`;
+      `${label({ x: (cx + radius + 10).toFixed(1), y: cy + 22, text: `fusion pushes out`, anchor: "start", size: SIZE.tick, class: "text-ink" })}`;
 
     svg.innerHTML = star + gravityArrow + fusionArrow;
 

@@ -2,7 +2,7 @@
 //
 // The scaffolding — the surface, its accessible name, the slider, the live
 // readout, the redraw — comes from `kit.js`.
-import { panel, slider, react } from "./kit.js";
+import { SIZE, label, panel, react, slider } from "./kit.js";
 
 export function mount(el) {
   const { svg, readout } = panel(el, {
@@ -37,10 +37,10 @@ export function mount(el) {
       <polyline points="${points.join(' ')}" fill="none" stroke="currentColor" stroke-width="3" class="fig-accent" />
       <circle cx="${sx(rootL)}" cy="${sy(0)}" r="6" class="fig-good" /><circle cx="${sx(rootR)}" cy="${sy(0)}" r="6" class="fig-good" />
       <circle cx="${sx(turnX)}" cy="${sy(turnY)}" r="7" class="fig-warn" />
-      <text x="${sx(rootL)}" y="${sy(0)-12}" text-anchor="middle" class="text-good">left root</text>
-      <text x="${sx(rootR)}" y="${sy(0)-12}" text-anchor="middle" class="text-good">right root</text>
-      <text x="${sx(turnX)+8}" y="${sy(turnY)+18}" class="text-warn">turning point</text>
-      <text x="485" y="${sy(0)-5}" class="fig-ink">x</text><text x="${sx(0)+5}" y="22" class="fig-ink">y</text>`;
+      ${label({ x: sx(rootL), y: sy(0) - 12, text: "left root", anchor: "middle", class: "text-good" })}
+      ${label({ x: sx(rootR), y: sy(0) - 12, text: "right root", anchor: "middle", class: "text-good" })}
+      ${label({ x: sx(turnX) + 8, y: sy(turnY) + 18, text: "turning point", anchor: "start", class: "text-warn" })}
+      ${label({ x: 485, y: sy(0) - 5, text: "x", anchor: "start", class: "text-ink" })}${label({ x: sx(0) + 5, y: 22, text: "y", anchor: "start", class: "text-ink" })}`;
     readout.textContent = `p = ${p}; roots x = ${p-2} and x = ${p+2}; turning point (${p}, -4).`;
   }
 

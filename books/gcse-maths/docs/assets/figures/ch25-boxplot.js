@@ -3,7 +3,7 @@
 // The scaffolding — the surface, its accessible name, the slider, the live
 // readout, the redraw — comes from `kit.js`. What is left here is the drawing and
 // the sentence, which differ from every other figure.
-import { panel, slider, react } from "./kit.js";
+import { SIZE, label, panel, react, slider } from "./kit.js";
 
 export function mount(el) {
   const { svg, readout } = panel(el, {
@@ -33,12 +33,12 @@ export function mount(el) {
       <line x1="${x(42)}" y1="35" x2="${x(42)}" y2="75" class="fig-ink" />
       <rect x="${x(q1)}" y="35" width="${x(q3) - x(q1)}" height="40" fill="none" stroke="currentColor" stroke-width="3" class="fig-accent" />
       <line x1="270" y1="35" x2="270" y2="75" class="fig-warn" stroke-width="3" />
-      <text x="${x(12)}" y="120" class="text-ink" text-anchor="middle">12</text>
-      <text x="${x(q1)}" y="120" class="text-ink" text-anchor="middle">17.5</text>
-      <text x="${x(21.5)}" y="120" class="text-warn" text-anchor="middle">21.5</text>
-      <text x="${x(q3)}" y="120" class="text-ink" text-anchor="middle">${q3}</text>
-      <text x="${x(42)}" y="120" class="text-ink" text-anchor="middle">42</text>
-      <text x="${(x(q1) + x(q3)) / 2}" y="28" class="text-accent" text-anchor="middle">middle half</text>`;
+      ${label({ x: x(12), y: 120, text: "12", anchor: "middle", class: "text-ink" })}
+      ${label({ x: x(q1), y: 120, text: "17.5", anchor: "middle", class: "text-ink" })}
+      ${label({ x: x(21.5), y: 120, text: "21.5", anchor: "middle", class: "text-warn" })}
+      ${label({ x: x(q3), y: 120, text: q3, anchor: "middle", class: "text-ink" })}
+      ${label({ x: x(42), y: 120, text: "42", anchor: "middle", class: "text-ink" })}
+      ${label({ x: (x(q1) + x(q3)) / 2, y: 28, text: "middle half", anchor: "middle", class: "text-accent" })}`;
     readout.textContent = `The box runs from ${q1} to ${q3}; its width is ${q3 - q1} minutes.`;
   }
 

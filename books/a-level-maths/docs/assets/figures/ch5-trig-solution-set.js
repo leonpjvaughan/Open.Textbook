@@ -11,7 +11,7 @@
 //
 // The scaffolding — the surface, its accessible name, the chooser, the slider,
 // the live readout and the redraw — comes from `kit.js`.
-import { panel, slider, chooser, react } from "./kit.js";
+import { SIZE, chooser, label, panel, react, slider } from "./kit.js";
 
 const PI = Math.PI;
 const WIDTH = 460;
@@ -148,13 +148,12 @@ export function mount(el) {
       [(3 * PI) / 2, "3π/2"],
       [2 * PI, "2π"],
     ];
-    for (const [x, label] of marks) {
+    for (const [x, tick] of marks) {
       const px = xToPx(x);
       ticks +=
         `<line x1="${px.toFixed(1)}" y1="${yToPx(0).toFixed(1)}" x2="${px.toFixed(1)}" ` +
         `y2="${(yToPx(0) + 5).toFixed(1)}" class="fig-ink"></line>` +
-        `<text x="${px.toFixed(1)}" y="${(HEIGHT - 12).toFixed(1)}" text-anchor="middle" ` +
-        `font-size="13" class="text-ink">${label}</text>`;
+        label({ x: px, y: HEIGHT - 12, text: tick, anchor: "middle", size: SIZE.tick, class: "text-ink" });
     }
 
     let dots = "";

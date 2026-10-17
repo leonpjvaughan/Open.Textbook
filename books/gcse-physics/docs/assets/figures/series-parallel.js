@@ -12,7 +12,7 @@
 // readout and the redraw — comes from `kit.js`. The two mode buttons are not one
 // of the kit's controls, so they are built here inside the kit's control column.
 // What is left is the drawing and the sentences.
-import { panel, toggle, react } from "./kit.js";
+import { SIZE, label, panel, react, toggle } from "./kit.js";
 
 export function mount(el) {
   const { svg, readout, controls } = panel(el, {
@@ -84,12 +84,12 @@ export function mount(el) {
       "M 90 100 L 90 60",
     ];
     let figure = wires(paths);
-    figure += `<text x="80" y="115" font-size="16" text-anchor="end" class="fig-ink">6.0 V</text>`;
+    figure += `${label({ x: 80, y: 115, text: `6.0 V`, anchor: "end", size: SIZE.tick, class: "text-ink" })}`;
     figure += battery(90, 115);
     figure += lamp(200, 60, !removed);
     if (removed) {
       figure +=
-        `<text x="320" y="72" font-size="16" text-anchor="middle" class="fig-warn">removed</text>` +
+        `${label({ x: 320, y: 72, text: `removed`, anchor: "middle", size: SIZE.tick, class: "text-warn" })}` +
         `<line x1="300" y1="60" x2="340" y2="60" class="fig-warn" stroke-width="2" stroke-dasharray="4 4"></line>`;
     } else {
       figure += lamp(320, 60, true);
@@ -109,7 +109,7 @@ export function mount(el) {
       "M 90 100 L 90 60",
     ];
     let figure = wires(paths);
-    figure += `<text x="80" y="115" font-size="16" text-anchor="end" class="fig-ink">6.0 V</text>`;
+    figure += `${label({ x: 80, y: 115, text: `6.0 V`, anchor: "end", size: SIZE.tick, class: "text-ink" })}`;
     figure += battery(90, 115);
     figure += lamp(230, 100, leftLit);
     if (removed) {
@@ -118,7 +118,7 @@ export function mount(el) {
       // lamp that is merely unlit. The left-hand branch is untouched and stays
       // lit.
       figure +=
-        `<text x="404" y="105" font-size="16" class="fig-warn">removed</text>`;
+        `${label({ x: 404, y: 105, text: `removed`, anchor: "start", size: SIZE.tick, class: "text-warn" })}`;
     } else {
       figure += lamp(390, 100, true);
     }

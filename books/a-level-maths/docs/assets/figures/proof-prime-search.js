@@ -4,7 +4,7 @@
 //
 // The scaffolding — the surface, its accessible name, the slider, the live
 // readout and the redraw — comes from `kit.js`.
-import { panel, slider, react } from "./kit.js";
+import { SIZE, label, panel, react, slider } from "./kit.js";
 
 const N_MAX = 45;
 
@@ -63,8 +63,8 @@ export function mount(el) {
     svg.innerHTML =
       cells +
       `<line x1="${markerX}" y1="16" x2="${markerX}" y2="52" class="fig-ink"></line>` +
-      `<text x="2" y="72" class="fig-ink">n = 0</text>` +
-      `<text x="326" y="72" class="fig-ink">n = 45</text>`;
+      label({ x: 2, y: 72, text: "n = 0", anchor: "start", class: "text-ink" }) +
+      label({ x: 326, y: 72, text: "n = 45", anchor: "start", class: "text-ink" });
     svg.setAttribute(
       "aria-label",
       `Values of n from 0 to 45. The current value is n equals ${n}, for which the expression equals ${value}, which is ${prime ? "prime" : "not prime"}.`

@@ -9,7 +9,7 @@
 //
 // The scaffolding — the surface, its accessible name, the two sliders, the live
 // readout, the redraw, the number formatting — comes from `kit.js`.
-import { panel, slider, fmt, react } from "./kit.js";
+import { SIZE, fmt, label, panel, react, slider } from "./kit.js";
 
 export function mount(el) {
   const ORIGIN_X = 210;
@@ -90,14 +90,12 @@ export function mount(el) {
     for (let value = X_MIN + 1; value <= X_MAX - 1; value += 2) {
       if (value === 0) continue;
       labels +=
-        `<text x="${px(value).toFixed(1)}" y="${(py(0) + 15).toFixed(1)}" font-size="12" ` +
-        `text-anchor="middle" class="text-ink">${value}</text>`;
+        label({ x: px(value), y: py(0) + 15, text: value, anchor: "middle", size: SIZE.tick, class: "text-ink" });
     }
     for (let value = Y_MIN + 1; value <= Y_MAX - 1; value += 2) {
       if (value === 0) continue;
       labels +=
-        `<text x="${(px(0) - 8).toFixed(1)}" y="${(py(value) + 4).toFixed(1)}" font-size="12" ` +
-        `text-anchor="end" class="text-ink">${value}</text>`;
+        label({ x: px(0) - 8, y: py(value) + 4, text: value, anchor: "end", size: SIZE.tick, class: "text-ink" });
     }
 
     const segment = visibleLine(m, c);
@@ -115,15 +113,12 @@ export function mount(el) {
       `class="fig-good" fill-opacity="0.2" stroke-dasharray="4 3"></polygon>`;
 
     const runLabel =
-      `<text x="${px(0.5).toFixed(1)}" y="${(py(c) + (m >= 0 ? 16 : -8)).toFixed(1)}" ` +
-      `font-size="13" text-anchor="middle" class="text-ink">run 1</text>`;
+      label({ x: px(0.5), y: py(c) + (m >= 0 ? 16 : -8), text: "run 1", anchor: "middle", size: SIZE.tick, class: "text-ink" });
     const riseLabel =
-      `<text x="${(px(1) + 8).toFixed(1)}" y="${(py(c + m / 2) + 4).toFixed(1)}" ` +
-      `font-size="13" text-anchor="start" class="text-ink">rise ${fmt(m)}</text>`;
+      label({ x: px(1) + 8, y: py(c + m / 2) + 4, text: `rise ${fmt(m)}`, anchor: "start", size: SIZE.tick, class: "text-ink" });
 
     const interceptLabel =
-      `<text x="${(px(0) - 10).toFixed(1)}" y="${(py(c) - 10).toFixed(1)}" font-size="13" ` +
-      `text-anchor="end" class="text-warn">c = ${fmt(c)}</text>`;
+      label({ x: px(0) - 10, y: py(c) - 10, text: `c = ${fmt(c)}`, anchor: "end", size: SIZE.tick, class: "text-warn" });
 
     svg.innerHTML =
       grid +
@@ -138,10 +133,8 @@ export function mount(el) {
       riseLabel +
       `<circle cx="${px(0).toFixed(1)}" cy="${py(c).toFixed(1)}" r="6" class="fig-warn"></circle>` +
       interceptLabel +
-      `<text x="${(px(X_MAX) - 4).toFixed(1)}" y="${(py(0) + 16).toFixed(1)}" font-size="13" ` +
-      `text-anchor="end" class="text-accent">x</text>` +
-      `<text x="${(px(0) + 10).toFixed(1)}" y="${(py(Y_MAX) + 6).toFixed(1)}" font-size="13" ` +
-      `class="text-accent">y</text>`;
+      label({ x: px(X_MAX) - 4, y: py(0) + 16, text: "x", anchor: "end", size: SIZE.tick, class: "text-accent" }) +
+      label({ x: px(0) + 10, y: py(Y_MAX) + 6, text: "y", anchor: "start", size: SIZE.tick, class: "text-accent" });
 
     let equation = "";
     if (m === 0) {

@@ -2,7 +2,7 @@
 //
 // The scaffolding — the surface, its accessible name, the slider, the live
 // readout, the redraw — comes from `kit.js`.
-import { panel, slider, react } from "./kit.js";
+import { SIZE, label, panel, react, slider } from "./kit.js";
 
 export function mount(el) {
   const { svg, readout } = panel(el, {
@@ -42,9 +42,9 @@ export function mount(el) {
       <polyline points="${points.join(' ')}" fill="none" stroke="currentColor" stroke-width="3" class="fig-accent" />
       <circle cx="157" cy="${peak}" r="5" class="fig-good" />
       <circle cx="391" cy="${trough}" r="5" class="fig-warn" />
-      <text x="35" y="215" class="fig-ink">0°</text><text x="490" y="215" class="fig-ink">360°</text>
-      <text x="164" y="${peak - 9}" font-size="16" class="text-good">maximum</text>
-      <text x="395" y="${trough + 14}" font-size="16" class="text-warn">minimum</text>`;
+      ${label({ x: 35, y: 215, text: "0°", anchor: "start", class: "text-ink" })}${label({ x: 490, y: 215, text: "360°", anchor: "start", class: "text-ink" })}
+      ${label({ x: 164, y: peak - 9, text: "maximum", anchor: "start", size: SIZE.label, class: "text-good" })}
+      ${label({ x: 395, y: trough + 14, text: "minimum", anchor: "start", size: SIZE.label, class: "text-warn" })}`;
     readout.textContent = `Amplitude ${a}; maximum ${a}; minimum ${-a}; period 360 degrees.`;
   }
 

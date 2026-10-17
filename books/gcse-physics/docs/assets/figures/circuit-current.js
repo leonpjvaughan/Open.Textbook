@@ -15,7 +15,7 @@
 // The scaffolding — the surface, its accessible name, the sliders, the live
 // readout and the redraw — comes from `kit.js`. What is left here is the drawing
 // and the sentences, which are the parts that differ from every other figure.
-import { panel, slider, react } from "./kit.js";
+import { SIZE, label, panel, react, slider } from "./kit.js";
 
 export function mount(el) {
   const { svg, readout } = panel(el, {
@@ -76,21 +76,21 @@ export function mount(el) {
       `<line x1="60" y1="108" x2="80" y2="108" class="fig-ink" stroke-width="6"></line>` +
       // Resistor block on the top wire.
       `<rect x="230" y="28" width="100" height="24" class="fig-accent"></rect>` +
-      `<text x="280" y="24" font-size="16" text-anchor="middle" class="fig-ink">resistor</text>` +
+      `${label({ x: 280, y: 24, text: `resistor`, anchor: "middle", size: SIZE.tick, class: "text-ink" })}` +
       // Ammeter.
       `<circle cx="490" cy="100" r="18" class="fig-grid" stroke-width="2"></circle>` +
-      `<text x="490" y="105" font-size="18" text-anchor="middle" class="fig-ink">A</text>` +
+      `${label({ x: 490, y: 105, text: `A`, anchor: "middle", size: SIZE.value, class: "text-ink" })}` +
       // Conventional-current arrow on the top wire.
       `<polygon points="440,40 420,32 420,48" class="fig-accent"></polygon>` +
-      `<text x="352" y="26" font-size="16" text-anchor="middle" class="fig-ink">current</text>` +
-      `<text x="70" y="180" font-size="16" text-anchor="start" class="fig-ink">cell</text>` +
+      `${label({ x: 352, y: 26, text: `current`, anchor: "middle", size: SIZE.tick, class: "text-ink" })}` +
+      `${label({ x: 70, y: 180, text: `cell`, anchor: "start", size: SIZE.tick, class: "text-ink" })}` +
       // The current meter.
-      `<text x="${BAR_LEFT}" y="${BAR_Y - 8}" font-size="16" class="fig-ink">current</text>` +
-      `<text x="${BAR_RIGHT}" y="${BAR_Y - 8}" font-size="16" text-anchor="end" class="fig-ink">${amps.toFixed(2)} A</text>` +
+      `${label({ x: BAR_LEFT, y: BAR_Y - 8, text: `current`, anchor: "start", size: SIZE.tick, class: "text-ink" })}` +
+      `${label({ x: BAR_RIGHT, y: BAR_Y - 8, text: `${amps.toFixed(2)} A`, anchor: "end", size: SIZE.tick, class: "text-ink" })}` +
       `<rect x="${BAR_LEFT}" y="${BAR_Y}" width="${BAR_RIGHT - BAR_LEFT}" height="${BAR_H}" class="fig-grid"></rect>` +
       `<rect x="${BAR_LEFT}" y="${BAR_Y}" width="${barWidth}" height="${BAR_H}" class="fig-accent"></rect>` +
-      `<text x="${BAR_LEFT}" y="${BAR_Y + BAR_H + 16}" font-size="16" class="fig-ink">0</text>` +
-      `<text x="${BAR_RIGHT}" y="${BAR_Y + BAR_H + 16}" font-size="16" text-anchor="end" class="fig-ink">${PEAK} A</text>`;
+      `${label({ x: BAR_LEFT, y: BAR_Y + BAR_H + 16, text: `0`, anchor: "start", size: SIZE.tick, class: "text-ink" })}` +
+      `${label({ x: BAR_RIGHT, y: BAR_Y + BAR_H + 16, text: `${PEAK} A`, anchor: "end", size: SIZE.tick, class: "text-ink" })}`;
 
     readout.innerHTML =
       `Potential difference <strong>${volts} V</strong>. ` +

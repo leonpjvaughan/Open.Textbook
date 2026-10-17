@@ -14,7 +14,7 @@
 // The scaffolding — the surface, its accessible name, the sliders, the live
 // readout and the redraw — comes from `kit.js`. What is left here is the drawing
 // and the sentences, which are the parts that differ from every other figure.
-import { panel, slider, react } from "./kit.js";
+import { SIZE, label, panel, react, slider } from "./kit.js";
 
 export function mount(el) {
   const ELEMENTARY = 1.6e-19; // coulombs, the charge on one electron
@@ -74,16 +74,16 @@ export function mount(el) {
     for (let tick = 0; tick <= TIME_MAX; tick += 10) {
       drawing +=
         `<line x1="${px(tick).toFixed(1)}" y1="${TOP}" x2="${px(tick).toFixed(1)}" y2="${BOTTOM}" class="fig-grid"></line>` +
-        `<text x="${px(tick).toFixed(1)}" y="${BOTTOM + 18}" font-size="17" text-anchor="middle" class="text-ink">${tick}</text>`;
+        `${label({ x: px(tick).toFixed(1), y: BOTTOM + 18, text: `${tick}`, anchor: "middle", size: SIZE.value, class: "text-ink" })}`;
     }
     for (let tick = 0; tick <= CURRENT_MAX; tick += 1) {
       drawing +=
         `<line x1="${LEFT}" y1="${py(tick).toFixed(1)}" x2="${RIGHT}" y2="${py(tick).toFixed(1)}" class="fig-grid"></line>` +
-        `<text x="${LEFT - 8}" y="${(py(tick) + 4).toFixed(1)}" font-size="17" text-anchor="end" class="text-ink">${tick}</text>`;
+        `${label({ x: LEFT - 8, y: (py(tick) + 4).toFixed(1), text: `${tick}`, anchor: "end", size: SIZE.value, class: "text-ink" })}`;
     }
     drawing +=
-      `<text x="${RIGHT}" y="${BOTTOM + 36}" font-size="19" text-anchor="end" class="text-ink">time / s</text>` +
-      `<text x="${LEFT}" y="${TOP - 14}" font-size="19" class="text-ink">current / A</text>`;
+      `${label({ x: RIGHT, y: BOTTOM + 36, text: `time / s`, anchor: "end", size: SIZE.heading, class: "text-ink" })}` +
+      `${label({ x: LEFT, y: TOP - 14, text: `current / A`, anchor: "start", size: SIZE.heading, class: "text-ink" })}`;
 
     // The rectangle whose area is the charge: current times time.
     const top = py(amps);
@@ -96,8 +96,7 @@ export function mount(el) {
     // The area, written out beside the rectangle.
     const nearRight = px(seconds) > RIGHT - 110;
     drawing +=
-      `<text x="${(px(seconds) + (nearRight ? -8 : 8)).toFixed(1)}" y="${(top + 4).toFixed(1)}" ` +
-      `font-size="21" text-anchor="${nearRight ? "end" : "start"}" class="text-ink">${charge.toFixed(1)} C</text>`;
+      `${label({ x: (px(seconds) + (nearRight ? -8 : 8)).toFixed(1), y: (top + 4).toFixed(1), text: `${charge.toFixed(1)} C`, anchor: nearRight ? "end" : "start", size: SIZE.heading, class: "text-ink" })}`;
 
     svg.innerHTML = drawing;
 

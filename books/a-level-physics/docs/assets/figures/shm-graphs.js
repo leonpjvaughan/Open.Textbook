@@ -14,7 +14,7 @@
 // The scaffolding — the surface, its accessible name, the sliders, the live
 // readout and the redraw — comes from `kit.js`. What is left here is the drawing
 // and the sentences, which are the parts that differ from every other figure.
-import { panel, slider, react } from "./kit.js";
+import { SIZE, label, panel, react, slider } from "./kit.js";
 
 export function mount(el) {
   const { svg, readout } = panel(el, {
@@ -67,10 +67,10 @@ export function mount(el) {
     const leftAxes =
       `<line x1="${LX0}" y1="${leftMid.toFixed(1)}" x2="${LX1}" y2="${leftMid.toFixed(1)}" class="fig-ink"></line>` +
       `<line x1="${LX0}" y1="${TOP}" x2="${LX0}" y2="${BOTTOM}" class="fig-ink"></line>` +
-      `<text x="${LX0}" y="${TOP - 12}" font-size="19" class="fig-ink">displacement x</text>` +
-      `<text x="${LX1}" y="${BOTTOM + 18}" font-size="19" class="fig-ink" text-anchor="end">time t</text>` +
-      `<text x="${LX0 - 6}" y="${TOP + 4}" font-size="17" class="fig-ink" text-anchor="end">+A</text>` +
-      `<text x="${LX0 - 6}" y="${BOTTOM + 4}" font-size="17" class="fig-ink" text-anchor="end">-A</text>`;
+      `${label({ x: LX0, y: TOP - 12, text: `displacement x`, anchor: "start", size: SIZE.heading, class: "text-ink" })}` +
+      `${label({ x: LX1, y: BOTTOM + 18, text: `time t`, anchor: "end", size: SIZE.heading, class: "text-ink" })}` +
+      `${label({ x: LX0 - 6, y: TOP + 4, text: `+A`, anchor: "end", size: SIZE.value, class: "text-ink" })}` +
+      `${label({ x: LX0 - 6, y: BOTTOM + 4, text: `-A`, anchor: "end", size: SIZE.value, class: "text-ink" })}`;
 
     let leftCurve = "";
     for (let index = 0; index <= 120; index += 1) {
@@ -80,7 +80,7 @@ export function mount(el) {
     }
     const leftLine =
       `<polyline points="${leftCurve.trim()}" class="fig-accent" fill="none" stroke-width="3"></polyline>` +
-      `<text x="${LX0 + 4}" y="${BOTTOM - 4}" font-size="17" class="fig-ink">x = A cos(omega t)</text>`;
+      `${label({ x: LX0 + 4, y: BOTTOM - 4, text: `x = A cos(omega t)`, anchor: "start", size: SIZE.value, class: "text-ink" })}`;
 
     // Right panel: acceleration against displacement, a straight line a = -omega^2 x.
     const rightMid = (TOP + BOTTOM) / 2;
@@ -90,14 +90,14 @@ export function mount(el) {
     const rightAxes =
       `<line x1="${RX0}" y1="${rightMid.toFixed(1)}" x2="${RX1}" y2="${rightMid.toFixed(1)}" class="fig-ink"></line>` +
       `<line x1="${(RX0 + RX1) / 2}" y1="${TOP}" x2="${(RX0 + RX1) / 2}" y2="${BOTTOM}" class="fig-ink"></line>` +
-      `<text x="${RX0}" y="${TOP - 12}" font-size="19" class="fig-ink">acceleration a</text>` +
-      `<text x="${RX1}" y="${BOTTOM + 18}" font-size="19" class="fig-ink" text-anchor="end">displacement x</text>` +
-      `<text x="${RX0 - 4}" y="${TOP + 4}" font-size="17" class="fig-ink" text-anchor="end">+a max</text>` +
-      `<text x="${RX0 - 4}" y="${BOTTOM + 4}" font-size="17" class="fig-ink" text-anchor="end">-a max</text>`;
+      `${label({ x: RX0, y: TOP - 12, text: `acceleration a`, anchor: "start", size: SIZE.heading, class: "text-ink" })}` +
+      `${label({ x: RX1, y: BOTTOM + 18, text: `displacement x`, anchor: "end", size: SIZE.heading, class: "text-ink" })}` +
+      `${label({ x: RX0 - 4, y: TOP + 4, text: `+a max`, anchor: "end", size: SIZE.value, class: "text-ink" })}` +
+      `${label({ x: RX0 - 4, y: BOTTOM + 4, text: `-a max`, anchor: "end", size: SIZE.value, class: "text-ink" })}`;
 
     const rightLine =
       `<line x1="${rxFor(-A).toFixed(1)}" y1="${ryFor(aMax).toFixed(1)}" x2="${rxFor(A).toFixed(1)}" y2="${ryFor(-aMax).toFixed(1)}" class="fig-good" stroke-width="3"></line>` +
-      `<text x="${RX0 + 6}" y="${BOTTOM - 4}" font-size="17" class="fig-ink">a = -omega squared x</text>`;
+      `${label({ x: RX0 + 6, y: BOTTOM - 4, text: `a = -omega squared x`, anchor: "start", size: SIZE.value, class: "text-ink" })}`;
 
     svg.innerHTML = leftAxes + leftLine + rightAxes + rightLine;
 
