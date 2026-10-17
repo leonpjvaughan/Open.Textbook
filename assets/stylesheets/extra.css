@@ -132,6 +132,40 @@
   color: var(--md-default-fg-color--light);
 }
 
+/*
+ * An explored diagram: `diagram()` in the kit.
+ *
+ * A part is at **full strength until the reader engages**, so a figure that nobody
+ * explores looks exactly as it did before, and the audit that measures every figure's
+ * paint measures the ordinary state. Once a part is chosen the rest dim, which is what
+ * says "you are here" — and dimming by **opacity** rather than by a colour, so it works
+ * in both schemes and against the panel without a token that could drift.
+ *
+ * The dim is deliberately below the contrast floor for a moment. That is the point of a
+ * focus indicator: the active part is the legible one.
+ */
+.md-typeset maths-figure .fig-diagram.is-exploring .fig-part {
+  opacity: 0.45;
+}
+
+.md-typeset maths-figure .fig-diagram.is-exploring .fig-part.is-active {
+  opacity: 1;
+}
+
+.md-typeset maths-figure .fig-parts button {
+  font: inherit;
+  color: var(--md-default-fg-color);
+  background: var(--md-default-bg-color);
+  border: 1px solid var(--md-default-fg-color--lightest);
+  border-radius: 999px;
+  padding: 0.15rem 0.6rem;
+}
+
+.md-typeset maths-figure .fig-parts button:focus-visible {
+  outline: 2px solid var(--tb-fig-accent);
+  outline-offset: 2px;
+}
+
 /* Progressive-disclosure hints. */
 .md-typeset details {
   max-width: var(--tb-measure);

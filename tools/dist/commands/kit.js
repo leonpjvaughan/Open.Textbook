@@ -333,6 +333,46 @@ async function probe(kitPath) {
         // Endless practice, which is the only thing here that changes what a reader *does*
         // rather than what they see. The verdict has to follow the current question: a
         // stale answer is how this widget would teach something false.
+        // A diagram's parts are explored one at a time, and the buttons are the focus
+        // stops. The two things that can go wrong are silent: the drawing does not follow
+        // the focus, or the description never reaches the accessible name.
+        diagram: (() => {
+            const host = document.createElement("maths-figure");
+            host.style.cssText = "display:block;width:420px";
+            document.body.append(host);
+            const made = kit.diagram(host, {
+                label: "Two parts",
+                description: "A drawing with two parts, for the check",
+                width: 320,
+                height: 160,
+                parts: [
+                    { name: "Base", description: "The bottom edge", draw: () => kit.line({ x1: 10, y1: 100, x2: 300, y2: 100 }) },
+                    { name: "Height", description: "The upright edge", draw: () => kit.line({ x1: 10, y1: 100, x2: 10, y2: 20 }) },
+                ],
+            });
+            const buttons = [...host.querySelectorAll(".fig-parts button")];
+            const root = host.querySelector(".fig-diagram");
+            const atRest = [root.classList.contains("is-exploring"), made.groups.some((g) => g.classList.contains("is-active"))];
+            buttons[1].focus();
+            const afterFocus = [
+                root.classList.contains("is-exploring"),
+                made.groups.map((g) => g.classList.contains("is-active")),
+                (made.readout.textContent || "").startsWith("Height."),
+            ];
+            // The description has to be in the accessible name, not only in the readout: a
+            // screen reader hears the name on arrival and the readout after.
+            const named = (buttons[1].getAttribute("aria-label") || "").includes("upright edge");
+            const reachable = buttons.every((button) => button.tabIndex >= 0);
+            return [
+                buttons.length,
+                made.groups.length,
+                atRest,
+                afterFocus,
+                named,
+                reachable,
+                String(host.querySelector(".readout")?.getAttribute("aria-live")),
+            ];
+        })(),
         practice: (() => {
             const host = document.createElement("maths-figure");
             host.style.cssText = "display:block;width:420px";
@@ -602,6 +642,7 @@ export async function run(argv) {
     want("a builder adds in order, undoes, announces and redraws", JSON.stringify(result.builder), JSON.stringify(["p,n", "p", true, "true,true", "BUTTON"]));
     want("a keypad inserts at the caret and fires input", JSON.stringify(result.notate), JSON.stringify(["1/2", 2, 1, "BUTTON"]));
     want("practice verifies the current question and moves on", JSON.stringify(result.practice), JSON.stringify([true, true, "Correct.", true, true, true, true, 1]));
+    want("a diagram explores one part at a time, and the buttons are the focus stops", JSON.stringify(result.diagram), JSON.stringify([2, 2, [false, false], [true, [false, true], true], true, true, "polite"]));
     if (problems.length) {
         console.error("the figure kit does not keep its contract:");
         for (const problem of problems)

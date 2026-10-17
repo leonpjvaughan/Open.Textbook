@@ -135,3 +135,113 @@ export function panel(el, options = {}) {
   el.replaceChildren(root);
   return { root, svg, readout, controls, caption };
 }
+
+/**
+ * A drawing whose parts can be explored one at a time.
+ *
+ * A dense figure is one image to a screen reader: `panel()` gives it a name and a
+ * description, and everything inside is unreadable. That is right for a graph — the
+ * shape is the message — and wrong for a diagram with six named parts, which is what a
+ * reader wants to move through: *this* is the perpendicular, *this* is the base.
+ *
+ * So each part gets a **button**, and the buttons are the focus stops. That is the one
+ * design decision here and the reason it is not "make the shapes focusable": a `<g>`
+ * with `tabindex` and a button for the same part would be two focus stops that do the
+ * same thing, which is the trap `draggable()` avoids by refusing a pointer with no
+ * backing control. The drawing follows the buttons; it does not compete with them.
+ *
+ * **Nothing here decides what a part looks like.** `draw()` returns SVG the module has
+ * already composed from the marks, so `diagram()` is a frame and a list, not a layout.
+ *
+ * @param {HTMLElement} el the `<maths-figure>` the loader hands us
+ * @param {object} options
+ * @param {string} [options.label]        the drawing's accessible name
+ * @param {string} [options.description]  a longer description, as `panel()` takes
+ * @param {number} [options.width]
+ * @param {number} [options.height]
+ * @param {Array<{name: string, description?: string, draw?: () => string}>} options.parts
+ *   one entry per part, in reading order. `draw()` is called once, so a part whose
+ *   shape changes with a control belongs on a `panel()` instead.
+ * @param {string} [options.caption] a line under the drawing; default is the hint that
+ *   says the parts can be explored
+ * @returns {{svg: SVGSVGElement, readout: HTMLElement, controls: HTMLElement,
+ *   groups: SVGGElement[], activate: (index: number) => void}}
+ */
+export function diagram(el, options = {}) {
+  const {
+    label = "",
+    description = "",
+    width = 560,
+    height = 300,
+    parts = [],
+    caption = "Use Tab to move from part to part.",
+  } = options;
+
+  const { root, svg, readout, controls, caption: note } = panel(el, {
+    label,
+    description,
+    width,
+    height,
+  });
+  root.classList.add("fig-diagram");
+  note.textContent = caption;
+
+  // One <g> per part, appended in reading order. The index is the identity, so a part
+  // named with a character an attribute selector would need to escape cannot break it.
+  const groups = parts.map((part) => {
+    const group = document.createElementNS("http://www.w3.org/2000/svg", "g");
+    group.setAttribute("class", "fig-part");
+    group.innerHTML = part.draw ? part.draw() : "";
+    svg.append(group);
+    return group;
+  });
+
+  const list = document.createElement("ul");
+  list.className = "fig-parts";
+  list.setAttribute("role", "group");
+  if (label) list.setAttribute("aria-label", `Parts of ${label}`);
+  list.style.cssText =
+    `${UI_FONT};margin:.5rem 0 0;padding:0;list-style:none;` +
+    "display:flex;flex-wrap:wrap;gap:.35rem";
+
+  let active = -1;
+  const activate = (index) => {
+    active = index;
+    root.classList.add("is-exploring");
+    groups.forEach((group, i) => group.classList.toggle("is-active", i === index));
+    const part = parts[index];
+    if (!part) return;
+    readout.textContent = part.description ? `${part.name}. ${part.description}` : part.name;
+  };
+
+  parts.forEach((part, index) => {
+    const item = document.createElement("li");
+    item.style.cssText = "margin:0";
+    const control = document.createElement("button");
+    control.type = "button";
+    control.className = "fig-part-button";
+    control.textContent = part.name;
+    control.style.cssText = `${UI_FONT};cursor:pointer`;
+    // The description is the accessible name's second half, so a reader hears what the
+    // part *is* on arrival rather than having to ask again.
+    control.setAttribute(
+      "aria-label",
+      part.description ? `${part.name}. ${part.description}` : part.name,
+    );
+    control.addEventListener("focus", () => activate(index));
+    control.addEventListener("click", () => activate(index));
+    item.append(control);
+    list.append(item);
+
+    // A pointer user explores the drawing the same way a keyboard user explores the
+    // list; the two paths land on the same state, so they cannot disagree.
+    groups[index].addEventListener("pointerenter", () => activate(index));
+  });
+
+  controls.append(list);
+  // The last part the reader reached stays active. Clearing it on blur would take the
+  // drawing apart the moment they tabbed away, which is the opposite of a position.
+  void active;
+
+  return { svg, readout, controls, groups, activate };
+}

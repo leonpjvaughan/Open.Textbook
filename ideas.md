@@ -394,7 +394,7 @@ a section's answers take. Not a formula editor; a keyboard.
 
 **Cost.** Small, and it keeps the answer as text the checker can read.
 
-### 4.12 `diagram()` — a labelled figure whose parts are focusable
+### 4.12 `diagram()` — a labelled figure whose parts are focusable — **built 2026-10-17**
 
 **Evidence.** Zero uses. 136 modules hand-write `<text>` with no structure, so nothing is
 explorable part by part.
@@ -405,6 +405,14 @@ This is the accessibility answer to a dense figure, and the exploration answer f
 diagram with six labels.
 
 **Cost.** Small-to-moderate.
+
+**Built.** `diagram()` in `frame.js`, first used by `ie-jc-maths` 16.2's `circle-parts`.
+Each part is a **button** under the drawing and the drawing follows the focus, so the
+buttons are the focus stops — a focusable `<g>` as well would be two stops that do the
+same thing. The description goes into the accessible name *and* the readout, because a
+screen reader hears the name on arrival and the live region after. Checked in
+`tools kit`, and the CSS dims by **opacity** so a figure nobody explores looks exactly as
+it did and the contrast audit measures the ordinary state.
 
 ### 4.13 `numberLine()`, and migrating the 136 modules to `label()`
 
@@ -687,8 +695,8 @@ shared library (§9) is built. What is left is content: the figures that use the
 
 **Items 3, 4, 5 and 7 are built** — see §11. What is left:
 
-1. **`diagram()`** (§4.12) — a drawing whose parts are focusable and described. The last
-   unwritten primitive, and the one an accessibility review of a dense figure wants.
+1. ~~`diagram()` (§4.12).~~ **Built 2026-10-17.** The last unwritten primitive; first
+   used by `circle-parts`.
 2. ~~Store the relevance prompt (§6.1) and gate the Warm-up (§6.2).~~ **Built
    2026-10-17.** Retrieval was the most secure recommendation in the pedagogy and the
    relevance prompt was where the reader writes in their own words; both are live on

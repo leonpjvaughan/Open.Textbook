@@ -117,6 +117,15 @@ measurements and the reasoning are in `research/design/reuse-audit.md`.
   built on it must not say "checked by a computer".
 - **A generated question is plain text, not LaTeX.** The maths hook runs at build time,
   so `$…$` a module injects at runtime reaches the reader as dollar signs.
+- **Use `diagram()` when the drawing's meaning is its named parts.** `panel()` gives a
+  figure one name and one description, which is right for a graph — the shape is the
+  message — and wrong for a diagram with six labels, which is one undifferentiated
+  picture to a screen reader. `diagram()` puts a **button** per part under the drawing and
+  the drawing follows the focus, so the reader moves part by part with the keyboard and
+  hears what each one is. **The buttons are the focus stops**: making the `<g>` focusable
+  as well would be two stops that do the same thing, which is the trap `draggable()`
+  avoids by refusing a pointer with no backing control. A figure uses `diagram()` or
+  `panel()`, not both — two navigation models in one drawing is worse than one.
 
 `scripts/check-figure-kit.cjs` verifies all of this through a real page, including the
 phone-floor arithmetic, and `scripts/check-figure-kit-pure.mjs` verifies the drawing and

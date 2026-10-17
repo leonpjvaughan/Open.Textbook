@@ -72,7 +72,7 @@
  * what to add next is `ideas.md`; the audit that measures every figure in a browser is
  * `scripts/audit-figures.cjs`.
  */
-export { UI_FONT, panel } from "./kit/frame.js";
+export { UI_FONT, diagram, panel } from "./kit/frame.js";
 export { SIZE, coord, escape, fmt, hidden, label, sigfig, signed } from "./kit/text.js";
 export {
   area,

@@ -31,6 +31,11 @@ A circle has a centre and a smooth curved edge.
 - The **circumference** is the distance all the way around the edge. It is the
   perimeter of the circle.
 
+Point at each part in the figure before you read on. They are named in the same order
+they are listed above, and each one says what it is.
+
+:::figure circle-parts
+
 Every circle is the same shape. If you divide the circumference by the diameter, you
 always get the same number. That number is **$\pi$**, pronounced "pi".
 
