@@ -165,8 +165,8 @@ export function panel(el, options = {}) {
    *
    * @param {object[]} entries the claims for the current render, replacing the last
    */
-  const claim = (entries) => {
-    const clean = (entries || []).map((entry) => ({
+  const claim = (/** @type {object[]} */ entries = []) => {
+    const clean = entries.map((entry) => ({
       label: String(entry.label ?? ""),
       expression: String(entry.expression ?? ""),
       values: entry.values || {},

@@ -1,3 +1,4 @@
+// @ts-nocheck
 /* The controls: sliders, switches, choices, buttons and text fields.
  *
  * Every control here obeys the same contract, which is what lets `react()` bind any

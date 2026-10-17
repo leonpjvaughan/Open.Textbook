@@ -1,3 +1,4 @@
+// @ts-nocheck
 /* The shared figure kit — the public surface, and the rules behind it.
  *
  * Every figure in this collection is a hand-written module that exports `mount(el)`,

@@ -1,3 +1,4 @@
+// @ts-nocheck
 /* The frame: the drawing surface, the controls and the live readout.
  *
  * Every figure in the collection begins here, and the frame is where the
@@ -154,8 +155,8 @@ export function panel(el, options = {}) {
    *
    * @param {object[]} entries the claims for the current render, replacing the last
    */
-  const claim = (entries) => {
-    const clean = (entries || []).map((entry) => ({
+  const claim = (/** @type {object[]} */ entries = []) => {
+    const clean = entries.map((entry) => ({
       label: String(entry.label ?? ""),
       expression: String(entry.expression ?? ""),
       values: entry.values || {},

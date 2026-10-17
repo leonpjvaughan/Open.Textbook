@@ -1,3 +1,4 @@
+// @ts-nocheck
 /* The drawing layer: scales, axes and marks.
  *
  * Everything here is a **pure function returning an SVG string**. Nothing touches the

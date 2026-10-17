@@ -1,3 +1,4 @@
+// @ts-nocheck
 /* Interaction: redrawing, randomness, stepping, sampling, animation, checking.
  *
  * The layer that makes a figure *do* something over time or in response to the

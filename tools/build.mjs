@@ -25,9 +25,26 @@
  * browser's debugger, and a stack trace is worth more than the bytes.
  */
 import { execFileSync } from "node:child_process";
+import { readFileSync, writeFileSync } from "node:fs";
+import { readdirSync } from "node:fs";
+import { join } from "node:path";
 import { rm } from "node:fs/promises";
 
 const KIT_OUT = ["assets/figures/kit.js", "assets/figures/kit"];
+
+/** Every JavaScript file the kit build wrote, barrel and layers. */
+function emittedKitFiles() {
+  const files = ["assets/figures/kit.js"];
+  const walk = (dir) => {
+    for (const entry of readdirSync(dir, { withFileTypes: true })) {
+      const full = join(dir, entry.name);
+      if (entry.isDirectory()) walk(full);
+      else if (entry.name.endsWith(".js")) files.push(full);
+    }
+  };
+  walk("assets/figures/kit");
+  return files;
+}
 
 function run(command, args) {
   execFileSync(command, args, { stdio: "inherit", cwd: process.cwd() });
@@ -40,6 +57,22 @@ async function buildKit() {
   // which is why the compiler is `tsc` and not a bundler.
   run("node_modules/.bin/tsc", ["-p", "tsconfig.kit.json"]);
   run("node_modules/.bin/prettier", ["--write", "--log-level", "warn", ...KIT_OUT]);
+
+  // **`// @ts-nocheck` on every emitted file, because the artefact is the source minus
+  // its types.** `tsconfig.json` checks the JavaScript that ships, and a book module
+  // reaches `./kit.js`, which pulls the generated copy into the program. But `tsc`
+  // strips annotations when it emits, so the generated copy can only be inferred from
+  // destructuring defaults — `label({ x, y, text, anchor = "middle" })` becomes a type
+  // that has `anchor` and not `x`, and every property read reports an error the source
+  // does not have. That was 74 of the type ratchet's errors, all of them artefacts.
+  // The source is checked; the copy is not, and saying so in the copy is the honest
+  // way to express it.
+  for (const file of emittedKitFiles()) {
+    const text = readFileSync(file, "utf8");
+    if (!text.startsWith("// @ts-nocheck")) {
+      writeFileSync(file, `// @ts-nocheck\n${text}`);
+    }
+  }
   console.log(`built kit -> ${KIT_OUT.join(", ")}`);
 }
 

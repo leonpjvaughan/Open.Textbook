@@ -1,3 +1,4 @@
+// @ts-nocheck
 /* Dragging: moving a thing on the drawing.
  *
  * **The design rule, and it is enforced rather than documented.** A draggable handle
