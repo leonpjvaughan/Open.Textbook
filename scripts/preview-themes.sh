@@ -5,7 +5,7 @@
 # discovers itself, and the three routes a chapter can add a defect on (the
 # landing page, a Learn page and a practise page). The harness asserts the route
 # layout before it starts, so a renderer swap fails here rather than auditing a
-# 404 — see test/README.md and the header of test/theme-preview.cjs.
+# 404 — see `tools/src/commands/preview.ts` and `tools/AGENTS.md`.
 #
 # It needs Chrome. Locally, either install Google Chrome or point Playwright at
 # a browser with CHROME_PATH. In CI the runner's Chrome is used; see the
@@ -70,7 +70,7 @@ node tools/dist/cli.js kit site
 
 # The matrix, 6 bundles x 2 schemes x 3 routes = 36 pages. Adding a book means
 # adding its landing route and one of its chapter routes here.
-exec node test/theme-preview.cjs \
+exec node tools/dist/cli.js preview \
   --root site \
   --audit \
   "${shots[@]}" \

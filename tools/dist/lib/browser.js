@@ -96,7 +96,7 @@ export const MIME_TYPES = {
  * returns the same 404 page, a broken run looks like a successful one. Callers that
  * capture must compare their captures; `assertCapturesDiffer` below exists for that.
  */
-export async function serveStatic(context, siteDir) {
+export async function serveStatic(context, siteDir, options = {}) {
     const root = path.resolve(siteDir);
     await context.route("**/*", (route) => {
         const url = new URL(route.request().url());
@@ -105,6 +105,16 @@ export async function serveStatic(context, siteDir) {
             rel += "index.html";
         const file = path.join(root, rel);
         if (!file.startsWith(root) || !fs.existsSync(file) || fs.statSync(file).isDirectory()) {
+            // Two callers, two correct answers to a miss. The audits want a 404, because
+            // they are measuring a site they were pointed at. The theme preview wants an
+            // **abort** and a note, because it asserted every route before the browser
+            // started: a miss during the run means the tree changed underneath it, and a
+            // 404 body measured as a page reads as a pass. The difference is the caller's,
+            // so it is a parameter rather than a second copy of this function.
+            if (options.onMiss) {
+                options.onMiss(rel);
+                return route.abort();
+            }
             return route.fulfill({ status: 404, body: "not found" });
         }
         return route.fulfill({

@@ -25,6 +25,14 @@
   // `tools types` fails when the count grows and when it falls without the baseline
   // being lowered, so it can only come down. Turn `strict` on when it reaches zero.
   //
+  // **`types: ["node"]` is not a convenience.** `tools/` is Node programs, and with
+  // `types: []` TypeScript checked them as though Node did not exist: every one of
+  // the eight `import fs from "node:fs"` lines reported TS2591, "cannot find name
+  // 'node:fs', do you need @types/node", and `process` and `Buffer` were unknown
+  // globals. Installing `@types/node` and naming it here took the count from 227 to
+  // 190 in one change — 37 errors that were the checker's blindness rather than the
+  // code's defect.
+  //
   // The 212 figure modules under `books/*/docs/assets/figures/` are content and are
   // not in `include` yet. They call the kit, so checking them is the last step.
   "compilerOptions": {
@@ -37,7 +45,7 @@
     "noEmit": true,
     "strict": false,
     "skipLibCheck": true,
-    "types": []
+    "types": ["node"]
   },
   "exclude": ["node_modules", "assets/figures/kit.js", "assets/figures/kit/**"],
   "include": ["assets/**/*.js", "assets/figures/src/**/*.ts", "tools/src/**/*.ts"]

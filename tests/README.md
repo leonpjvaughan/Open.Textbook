@@ -1,4 +1,4 @@
-# `test/` — theme preview
+# The old `test/` harness — where its assertions live now
 
 Two design questions had to be answered before authoring the vertical slice:
 
@@ -12,7 +12,9 @@ directory. The fixture books, their MkDocs configurations and `run.sh` are gone:
 the pipeline uses the same hook chain (`MARKDOWN_HOOKS = (tier, toc, figures,
 problems)` in `engine/src/textbook/pipeline.py`), so the behaviour is now pinned
 against the hooks themselves, in pytest, where it runs as part of
-`scripts/check.sh`.
+`scripts/check.sh`. The one thing that stayed a script — the theme preview — is
+now `tools preview` (`tools/src/commands/preview.ts`), and the directory is gone
+so it cannot be mistaken for `tests/`.
 
 ```
 tests/test_render_hooks.py    # figure hook + tier strategies (the old 24 assertions)
