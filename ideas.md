@@ -86,14 +86,19 @@ optional page backgrounds, which honour `prefers-reduced-motion`.
 ### Where the figures are not yet using the kit
 
 ```
-$ 136 of 209  hand-write a <text> element and never call label()
-$  35 of 209  call label()
+$ 137 of 233  hand-write a <text> element and never call label()
+$  96 of 233  call label()
 ```
 
 `label()` exists because a `<text>` with no `fig-*`/`text-*` class is painted with
-`fill`'s initial black and disappears on a dark panel — a defect `scripts/audit-figures.cjs`
-found eighteen times. Those 136 modules are protected only because the audit measures
-rendered contrast on every build; the trap is live in them.
+`fill`'s initial black and disappears on a dark panel — a defect `tools audit` found
+eighteen times. Those 137 modules are protected only because the audit measures rendered
+contrast on every build; the trap is live in them.
+
+**The number went up, not down, and that is worth understanding rather than hiding.** 233
+modules now against 209 then, and 96 calling `label()` against 35 — so 61 modules were
+written or converted to use it, while the total grew by 24. Every figure added since has
+used `label()`, which is why the migration is the debt and not the trend.
 
 ### What a figure cannot currently be shared
 
@@ -117,9 +122,15 @@ $ # and none of the four pairs is a copy
   vector-addition.js — differs (171 vs 180 lines)
 ```
 
-A figure module cannot be used by two books. Four ideas are therefore implemented twice,
-and none of the four pairs is a copy — each pair is the same lesson written twice,
-differently. Every idea in §5 will be built at least twice unless this changes first.
+**This was the problem, and §9 is the fix.** `assets/figures/` is the shared library now:
+a module dropped beside the loader is mountable by its filename in every book, and a book
+that defines one of the same name fails the build rather than shadowing it. Two modules
+live there — `venn-regions` and `slope-field` — and `slope-field` is the one that proves
+the mechanism, because a book that does not own it mounts it.
+
+The four pairs above are **not** candidates for it. Each is the same lesson written twice
+differently, for two readers, and merging them would serve neither; §9 says so and says
+why. What belongs in the library is a generic tool.
 
 ### What the reader gets besides pages
 
@@ -131,10 +142,12 @@ differently. Every idea in §5 will be built at least twice unless this changes 
   of precache and fetch) and a web manifest. The collection is an installable PWA.
 - **Answers in a collapsed block** on every Practise page, so a reader attempts first.
 
-There is **no** progress, no retrieval scheduling, no self-check, no notes, no
-bookmarking. `localStorage` is used by exactly two files, for a theme and a board. The
-relevance prompt that `research/pedagogy.md` describes as "stored client-side" is prose on
-the chapter index and is **not stored**.
+**Two of the things this paragraph used to say were missing are built** (§6.1, §6.2):
+the relevance prompt is stored per chapter, and the Warm-up's answers are gated behind an
+attempt. `localStorage` is now used by four things — a theme, a board, the reader's
+relevance answers, and a chapter's saved state.
+
+There is still **no** progress, no retrieval scheduling, no notes and no bookmarking.
 
 ---
 
@@ -213,7 +226,7 @@ functions returning strings, and the arrangement stays the module's.
 | 4.10 | `animate()` | **built** — a scrubber, a play button, and reduced motion honoured |
 | 4.11 | `notate()` | **built** — a keypad, not a formula editor |
 | 4.12 | `diagram()` | not built — a drawing with focusable, described parts |
-| 4.13 | `numberLine()` and the `label()` migration | `numberLine()` **built**; 136 modules still to migrate |
+| 4.13 | `numberLine()` and the `label()` migration | `numberLine()` **built**; 137 modules still to migrate |
 
 Two more were added while building these, because they were the same idiom as things
 already there: **`venn()`**, whose region labels are placed by geometry rather than by
@@ -407,7 +420,7 @@ not a feature, a debt, verifiable by the existing tests.
 An idea names the section it belongs on and the pattern it can copy. The module cannot be
 shared (§1), but the *approach* can.
 
-### Junior Cycle Mathematics — 22 chapters, nothing built
+### Junior Cycle Mathematics — 13 figures for 22 chapters
 
 The largest gap, and the reader is the youngest. In the order I would build them:
 
@@ -447,17 +460,17 @@ figure per Learn page, I would build the ten or twelve where the visual *is* the
 indices, fractions, proportion, expansion, the line, trig ratios, transformations,
 constructions, charts, spread — and leave the rest to prose.
 
-### Leaving Certificate Mathematics — 8 figures for 18 chapters
+### Leaving Certificate Mathematics — 10 figures for 18 chapters
 
 Present: `argand-diagram`, `circle-centre-radius`, `circle-tangent`, `enlargement-grid`,
 `line-two-points`, `reflection-grid`, `unit-circle`, `vector-addition`. Missing, in order:
 
 | Section | Idea | Note |
 |---|---|---|
-| 7.1 derivative from first principles | a chord between two points that becomes a tangent as h → 0 | the definition *is* a limit of pictures |
+| 7.1 derivative from first principles | a chord between two points that becomes a tangent as h → 0 | **built** — `chord-to-tangent` |
 | 7.2–7.5 differentiating | a graph and its derivative, both drawn, as the reader moves a point | the derivative is a function, not a number |
 | 7.8 stationary points, concavity | the sign of f′ and f″ as a band under the curve | the sign table becomes a picture |
-| 8.2–8.4 the definite integral | Riemann strips whose count the reader sets — needs `plot()` with a fill | the integral is a sum of strips |
+| 8.2–8.4 the definite integral | Riemann strips whose count the reader sets | **built** — `riemann-strips`, with left, right and midpoint rules |
 | 8.4 area between curve and axis | the signed contribution either side of the axis | the sign is the common error |
 | 9.4 infinite series | partial sums converging on a line, with r as a slider (`a-level-maths` pattern) | convergence is a sequence of sums |
 | 10.2–10.3 permutations, combinations | n! and nCr with n and r as sliders, and the redundancy shown | why nCr divides by r! |
@@ -472,11 +485,12 @@ Present: `argand-diagram`, `circle-centre-radius`, `circle-tangent`, `enlargemen
 | 15.2 construction of √2 and √3 | a step-through | it is in the specification and it is a procedure |
 | 16.3–16.6 similarity | a scaler showing k, k², k³ together (`gcse-maths/ch18-similarity-scale`) | |
 | 18.2–18.6 vectors | the dot product and the angle; components (`ie-lc-maths/vector-addition` exists) | perpendicularity is a dot product of zero |
+| 8.7 separable equations | a slope field with the solution through a chosen point | **built, in the shared library** — `slope-field` |
 
 The two worth building first are **7.1 (chord → tangent)** and **8.2 (Riemann strips)**. A
 reader who has seen those two has understood what calculus is.
 
-### Leaving Certificate Physics — 19 figures for 22 chapters
+### Leaving Certificate Physics — 22 figures for 22 chapters
 
 Electricity, magnetism and modern physics are close to one figure per chapter. The gaps
 are mechanics, heat and waves:
@@ -489,7 +503,7 @@ are mechanics, heat and waves:
 | 12 light and EM radiation | the spectrum as a wavelength-to-frequency line (`gcse-physics/em-spectrum`) |
 | 13 charge and electric fields | field lines between two charges and between two plates — needs `field()` |
 
-### Leaving Certificate Applied Mathematics — 6 figures for 9 chapters
+### Leaving Certificate Applied Mathematics — 10 figures for 9 chapters
 
 Present: `circular-motion`, `dijkstra-stepper`, `graph-basics`, `hookes-law`, `model-fit`,
 `mst-stepper`. Missing, and these are what the book is about:
@@ -664,6 +678,9 @@ want the same picture because the idea is the same picture.
 ---
 
 ## 10. Priority
+
+**Everything below the line is built or listed as a menu; what is left is four items.**
+§11 is the record.
 
 **The kit is done.** Every primitive in §4 is built except `diagram()` (§4.12), and the
 shared library (§9) is built. What is left is content: the figures that use them.

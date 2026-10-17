@@ -240,6 +240,22 @@ grows, and fails when it falls without the baseline being lowered. It is in
 still copies these files, so this added a check and no moving parts. `typescript` is a
 devDependency.
 
+**What was fixed on 2026-10-17, and the one finding worth keeping.** Two
+annotations were worse than none: `axes()` declared `@returns {{draw: string, x:
+Function, y: Function, box: object}}`, which threw away the two things a caller needs,
+and `line()` and `dots()` had no `@param` at all, so TypeScript inferred their parameter
+type from the destructuring defaults. 378 errors to 344, a net decrease of 34 across a
+change that *added* a module.
+
+**A JSDoc `@param` does not apply to a destructured binding that has a default.**
+`axes()`'s `x` and `y` are declared as `@param {AxisOptions} [o.x]` and are still typed
+`{}` inside the function, because `x = {}` in the destructuring pattern supplies the
+type and the annotation is ignored. `line()`'s `o.x1` *does* apply, because `x1` has no
+default. So the reliable form for a destructured option with a default is to destructure
+it **without** one and apply the default in the body, or to take the whole object and
+destructure inside. Both were tried here and neither is a one-line change, which is why
+`axes` is still 23 of the 344.
+
 **The rest of the fix, in the order it pays.**
 
 1. **Annotate the kit's public surface** — the 50 exports in `kit.js`, in JSDoc. This is

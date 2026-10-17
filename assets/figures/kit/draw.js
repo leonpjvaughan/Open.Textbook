@@ -108,6 +108,38 @@ export function ticks({ from, to, count = 5 }) {
   return out.length ? out : [low];
 }
 /**
+ * One axis of a plotting area.
+ *
+ * A typedef rather than a `{object}`, and the difference is not cosmetic: with
+ * `{object}` the destructured `x` and `y` are typed `{}`, so `x.domain` and `x.ticks`
+ * are errors **inside this file** — 23 of them — and every module that reads a mapper
+ * off the result inherits the same problem. An annotation that says "object" where it
+ * could say what the object holds is worse than no annotation.
+ *
+ * @typedef {object} AxesOptions
+ * @property {number} [width]
+ * @property {number} [height]
+ * @property {Pad} [pad]
+ * @property {AxisOptions} [x]
+ * @property {AxisOptions} [y]
+ * @property {boolean} [grid]
+ * @property {boolean} [origin]
+ */
+/**
+ * @typedef {object} Pad
+ * @property {number} [left]
+ * @property {number} [right]
+ * @property {number} [top]
+ * @property {number} [bottom]
+ */
+/**
+ * @typedef {object} AxisOptions
+ * @property {number[]} [domain]        `[low, high]`
+ * @property {number} [ticks]           how many grid lines; default 5
+ * @property {string} [label]           the axis name, drawn at its end
+ * @property {(value: number) => string} [tickFormat]  how a tick is written
+ */
+/**
  * A plotting area: two axes, their ticks, their labels, and the mappers.
  *
  * This is the single most repeated drawing in the collection. It returns **the
@@ -119,14 +151,15 @@ export function ticks({ from, to, count = 5 }) {
  * svg.innerHTML = draw + curve(samples, { x, y });
  * ```
  *
- * @param {object} o
+ * @param {object} [o]
  * @param {number} [o.width]   the viewBox width, matching `panel()`
  * @param {number} [o.height]  the viewBox height, matching `panel()`
- * @param {object} [o.pad]     margins for the labels; `{ left, right, top, bottom }`
- * @param {object} o.x         `{ domain, ticks, label, tickFormat }`
- * @param {object} o.y         `{ domain, ticks, label, tickFormat }`
+ * @param {Pad} [o.pad]        margins for the labels
+ * @param {AxisOptions} [o.x]  the horizontal axis
+ * @param {AxisOptions} [o.y]  the vertical axis
  * @param {boolean} [o.grid]   faint grid lines at the ticks; default true
- * @param {boolean} [o.origin] draw a darker line at zero when zero is in range
+ * @param {boolean} [o.origin] a darker line at zero when zero is in range
+ *
  * The return type is **inferred, not declared**. It was declared as
  * `{draw: string, x: Function, y: Function, box: object}`, which threw away the two
  * things a caller needs: `x` and `y` are mappers with an `invert`, and `box` has the
