@@ -4,6 +4,43 @@ A dated, appendable log of decisions that need to be findable. It is a record,
 not an essay: newest entries at the top, each one short and specific. Anything
 that is work rather than a decision belongs in `.agents/todo.md`.
 
+## 2026-10-16 — The figure kit is a library, and `assets/figures/` is shared
+
+**Decision.** `assets/figures/kit.js` is a barrel over six layers — text, frame, draw,
+controls, interact, drag — and `assets/figures/` is the **shared figure library**: a
+module dropped in beside the loader is mountable by its filename in every book. A book
+may not define its own module with the same name; the build fails and says so. A shared
+*directory* is declared in `scaffold.SHARED_DIRS` and copied recursively.
+
+**Why.** The kit began as ten functions and deliberately did not draw, on the argument
+that "a framework for 177 bespoke diagrams would be a framework around nothing". That was
+right about *bespoke* drawing and wrong about *repeated* drawing, and the measurements
+settled it: **162 of 213 modules draw an axis by hand, 68 a `<rect>`, 54 a `<polygon>`, 44
+a `<path>`, and 136 write a `<text>` never calling `label()`** — the same five drawings
+re-earned two hundred times, and the re-earning is where the legibility defects came from.
+`research/design/reuse-audit.md` has the counts.
+
+The library answers a different problem: a figure that two books want *identically* was
+being written twice. It is deliberately **not** a de-duplicator for topic figures — the
+four that were duplicated before it existed (`circular-motion`, `radiation-penetration`,
+`transformer-turns`, `vector-addition`) turned out on inspection to be two books solving
+one topic differently for different readers, and merging them would have served neither
+page. What belongs in the library is a generic tool: the same set diagram, the same number
+line, the same slope field.
+
+**The cost, stated.** The kit is 2,400 lines and 33.5 kB gzipped, against 6 kB for the
+single file it replaced. It is hand-written rather than a dependency, for the reason the
+theme bundles are: `function-plot` is 61 kB, `d3` 90, `three` 128, `math.js` 171 — and a
+mark is a pure function returning a string, which is smaller than any of them.
+
+**Two primitives carry a rule that must not be lost.** `draggable()` **throws without a
+backing control**, because a pointer is not a keyboard. `exercise()`/`practice()` claim
+*internal consistency*, not verification: a banked answer is proved by a CAS at build time
+and a generated one cannot be, so a page built on them must not say "checked by a
+computer".
+
+---
+
 ## 2026-10-11 — No `scipy`: `sympy.stats` and an explicit tolerance
 
 **Decision.** The verifier's distribution, hypothesis-test and regression checks

@@ -72,9 +72,15 @@ Also:
 - Append any new terms to `books/<book>/docs/Glossary/<strand>.md`, alphabetically, one
   definition each. Define a term once in the book.
 - Add a figure under `books/<book>/docs/assets/figures/<slug>.js` when — and only when
-  — moving a parameter shows something the prose cannot. Use `assets/figures/kit.js`
-  (`panel`, `slider`, `toggle`, `chooser`, `fmt`, `signed`, `react`) and the `fig-*`
-  classes. Never a colour. See `.agents/skills/build-guided-figure/SKILL.md`.
+  — moving a parameter shows something the prose cannot. Draw it through the kit:
+  `panel`, `slider`, `chooser`, `segmented`, `toggle`, `button`, `field` for the frame
+  and controls; `axes`, `line`, `curve`, `graph`, `area`, `bars`, `dots`, `venn`,
+  `vectorField`, `camera3d`, `numberLine` for the drawing; `stepper`, `table`, `animate`,
+  `check`, `practice` for behaviour; `SIZE`, `label`, `fmt`, `sigfig` for every number and
+  word. Never a colour, never a hand-written `<text>`, never `Math.random`.
+  **A figure more than one book wants identically goes in `assets/figures/`**, the shared
+  library, and every book mounts it by its filename. See
+  `.agents/skills/build-guided-figure/SKILL.md` and `assets/AGENTS.md`.
 - Add every answer and worked solution to `books/<book>/problems/chapter-<n>-*.yaml`,
   with an independent `check`. Run `python -m textbook.verify books/<book>/problems/`
   — it must pass. **A check that cannot fail is not a check**: write the *computation*

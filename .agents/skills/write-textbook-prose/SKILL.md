@@ -51,7 +51,7 @@ these; keep it that way.
 | anchor problem, anchor checkpoint | the chapter problem, `Progress check` |
 | retrieval starter | `Warm-up: remember` |
 | Walkthrough / Guided problems / Problems | `Learn` / `Practise with help` / `Practise` |
-| Delivers DfE N1, N2 | covered by the page's `dfe` front matter; do not print codes |
+| Delivers DfE N1, N2 | covered by the page's `refs:` front matter; do not print codes |
 | tier F / tier H | `Foundation and Higher` / `Higher only` |
 | scaffold, hook, JSON, front matter | (never) |
 

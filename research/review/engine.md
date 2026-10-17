@@ -1,4 +1,4 @@
-# Engine review — `engine/textbook/`
+# Engine review — `engine/src/textbook/`
 
 A review of the bespoke renderer and its supporting modules, against the criteria
 in the brief: correctness and fragility, duplicated or divergent logic, silent
@@ -25,7 +25,7 @@ is an existing test failure, which is itself part of the point. A full
 
 1. **Every Foundation page publishes a canonical URL pointing at the Higher
    book, and every Foundation sitemap lists the Higher URLs.**
-   `pipeline.canonical_url` (`engine/textbook/pipeline.py:447-453`) and
+   `pipeline.canonical_url` (`engine/src/textbook/pipeline.py:447-453`) and
    `pipeline.sitemap` (`:458-468`) both hardcode `book.default_profile.id`
    instead of the profile being built. Measured on the committed output: 335 of
    336 pages in `site/gcse-maths/foundation/` and 130 of 131 in
@@ -64,7 +64,7 @@ is an existing test failure, which is itself part of the point. A full
 
 ### B1. Canonical and sitemap ignore the profile being built
 
-- **Where:** `engine/textbook/pipeline.py:414` (the `canonical=` argument),
+- **Where:** `engine/src/textbook/pipeline.py:414` (the `canonical=` argument),
   `:447-453` (`canonical_url`), `:458-468` (`sitemap`), called at `:758`.
 - **Wrong:** both write `book.deploy_path(book.default_profile.id)`. The profile
   that is actually building is available (`config["extra"]["tier_profile"]`,
@@ -87,7 +87,7 @@ is an existing test failure, which is itself part of the point. A full
 
 ### B2. The subset build's link check is a no-op
 
-- **Where:** `engine/textbook/pipeline.py:709` (`subset = f"Chapter {chapter}"`),
+- **Where:** `engine/src/textbook/pipeline.py:709` (`subset = f"Chapter {chapter}"`),
   `:645` (the scope comparison), `:766` (`scope=subset`).
 - **Wrong:** the scope is in source form (`Chapter 1`) and the candidates are in
   URL form (`chapter-1/…`), so the guard `not candidate.startswith(f"{scope}/")`
@@ -113,7 +113,7 @@ is an existing test failure, which is itself part of the point. A full
 
 ### W1. Profile behaviour keyed on the literal id `"foundation"`
 
-- **Where:** `engine/textbook/pipeline.py:689`; `engine/textbook/hooks/tier.py:51`
+- **Where:** `engine/src/textbook/pipeline.py:689`; `engine/src/textbook/hooks/tier.py:51`
   and `:63`.
 - **Wrong:** the engine's own declared mechanism is `Profile.tier_filter`
   (`book.py:81-89`), read by `config.profile` (`config.py:54`) and used by
@@ -135,7 +135,7 @@ is an existing test failure, which is itself part of the point. A full
 
 ### W2. The maths hook never checks the renderer returned one result per item
 
-- **Where:** `engine/textbook/hooks/maths.py:82-84`.
+- **Where:** `engine/src/textbook/hooks/maths.py:82-84`.
 - **Wrong:** `rendered = render(items)` is iterated with `enumerate` and each
   placeholder is replaced, with no comparison of lengths. Reproduced: forcing
   `render` to return one result for two items leaves the literal
@@ -156,7 +156,7 @@ is an existing test failure, which is itself part of the point. A full
 
 ### W3. `kind: all` with no sub-checks verifies nothing
 
-- **Where:** `engine/textbook/verify/oracles/sympy.py:15-18` (`for sub in check.get("checks", [])`).
+- **Where:** `engine/src/textbook/verify/oracles/sympy.py:15-18` (`for sub in check.get("checks", [])`).
 - **Wrong:** an empty or absent `checks` list produces no error and no warning.
   Reproduced: `verify_check({"kind": "all"}, …)` returns `errors == []`. The
   units oracle guards the identical case explicitly — `check_structured`
@@ -174,7 +174,7 @@ is an existing test failure, which is itself part of the point. A full
 
 ### W4. The verifier raises on a malformed record instead of returning a Report
 
-- **Where:** `engine/textbook/verify/verify.py:9-11` states the contract
+- **Where:** `engine/src/textbook/verify/verify.py:9-11` states the contract
   ("It returns a report rather than raising, so the caller decides"); broken by
   `oracles/sympy.py:21` (`check_evaluate`), `:225` (`check_rounded`), `:251`
   (`check_between`), `:400` (`check_compare`) and others that index the check
@@ -202,7 +202,7 @@ is an existing test failure, which is itself part of the point. A full
 
 ### W5. The linter reads multi-line display maths as prose
 
-- **Where:** `engine/textbook/lint.py:31` (`DISPLAY_MATH`), `:44-45` (the regex is
+- **Where:** `engine/src/textbook/lint.py:31` (`DISPLAY_MATH`), `:44-45` (the regex is
   applied to one line at a time).
 - **Wrong:** a `$$ … $$` block spanning lines is never matched, so the LaTeX
   between the delimiters is linted as prose. Reproduced on a real page:
@@ -223,7 +223,7 @@ is an existing test failure, which is itself part of the point. A full
 
 ### W6. Link fragments are never checked
 
-- **Where:** `engine/textbook/pipeline.py:628` (`target.split("#")[0]`).
+- **Where:** `engine/src/textbook/pipeline.py:628` (`target.split("#")[0]`).
 - **Wrong:** the fragment is discarded, so `<a href="./#the-answer">` is checked
   as `./` and passes whether or not `#the-answer` exists — including an anchor
   that was deleted, or a heading whose slug changed.
@@ -239,7 +239,7 @@ is an existing test failure, which is itself part of the point. A full
 
 ### W7. `--serve` watches the wrong set of files
 
-- **Where:** `engine/textbook/pipeline.py:798-807` (`watch_paths`).
+- **Where:** `engine/src/textbook/pipeline.py:798-807` (`watch_paths`).
 - **Wrong:** the watched set is `book.docs.rglob("*.md")`, the shared `assets/`,
   and the engine's `*.py/*.html/*.css`. Missing: `book.curriculum.yaml`,
   `book.booklet`, `book.yaml`, `books/<id>/docs/assets/figures/*.js`,
@@ -259,7 +259,7 @@ is an existing test failure, which is itself part of the point. A full
 
 ### W8. The navigation is re-rendered for every page: 4.9s of a 24.6s build
 
-- **Where:** `engine/textbook/pipeline.py:203-236` (`render_nav`), called once per
+- **Where:** `engine/src/textbook/pipeline.py:203-236` (`render_nav`), called once per
   page at `:416`.
 - **Wrong:** the leaf-URL cache (`leaf_urls`, `:210-216`) is local to one call, so
   the whole 25-chapter nav is slugged and rebuilt for each of the 458 pages. The
@@ -277,8 +277,8 @@ is an existing test failure, which is itself part of the point. A full
 
 ### W9. `colophon.md` is generated but absent from `plan --generated`
 
-- **Where:** generated by `engine/textbook/scaffold.py:81-92` and written
-  unconditionally at `:694`; `engine/textbook/plan.py:38-52` lists only
+- **Where:** generated by `engine/src/textbook/scaffold.py:81-92` and written
+  unconditionally at `:694`; `engine/src/textbook/plan.py:38-52` lists only
   `themes.css`, `CURRICULUM-MAP.md`, `book.css` and `booklet.json`.
 - **Wrong:** `engine/AGENTS.md` records the procedure — "**Adding a generated
   file** — teach `scaffold.py`, then extend `python -m textbook.plan --generated`
@@ -298,7 +298,7 @@ is an existing test failure, which is itself part of the point. A full
 
 ### W10. The units oracle's docstring is an invalid escape sequence
 
-- **Where:** `engine/textbook/verify/oracles/units.py:14` — `$\pi$-based value …`
+- **Where:** `engine/src/textbook/verify/oracles/units.py:14` — `$\pi$-based value …`
   in a non-raw docstring.
 - **Wrong:** Python emits `SyntaxWarning: invalid escape sequence '\p'` on import.
   It is the only one in the engine (verified by parsing every module under
@@ -453,7 +453,7 @@ Saying so rather than manufacturing a finding:
 
 ## Method note
 
-Every file under `engine/textbook/**` was read; every claim above was reproduced
+Every file under `engine/src/textbook/**` was read; every claim above was reproduced
 either from the committed `site/` output, from a direct call in a Python session,
 or from the test suite. The two blocking findings are live in the current
 deployment; the rest are latent and are labelled as such, except where a

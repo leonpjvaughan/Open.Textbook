@@ -8,20 +8,20 @@ only eyeballed. Written 2026-10-11 against the repository as it stands.
 
 `SHAPE.md` says "A book that uses a different verification oracle ... declares
 it in `book.yaml → oracles`. Adding an oracle is a new module under
-`engine/textbook/verify/oracles/`, registered by check kind."
+`engine/src/textbook/verify/oracles/`, registered by check kind."
 
 **That directory does not exist.** Measured:
 
 ```bash
-$ ls engine/textbook/verify/
+$ ls engine/src/textbook/verify/
 cas.py  __init__.py  __main__.py  render.py  verify.py     # no oracles/
-$ ls engine/textbook/verify/oracles/
-ls: cannot access 'engine/textbook/verify/oracles/': No such file or directory
+$ ls engine/src/textbook/verify/oracles/
+ls: cannot access 'engine/src/textbook/verify/oracles/': No such file or directory
 $ grep -rn 'oracles' engine/ tests/ scripts/
-engine/textbook/__init__.py:9:* :mod:`textbook.verify` — the problem-bank verifier and its oracles;
-engine/textbook/book.py:4:subject, the profiles it builds, the verification oracles its banks may use, its
-engine/textbook/book.py:167:    oracles: tuple[str, ...] = ("sympy",)
-engine/textbook/book.py:283:        oracles=tuple(data.get("oracles", ("sympy",))),
+engine/src/textbook/__init__.py:9:* :mod:`textbook.verify` — the problem-bank verifier and its oracles;
+engine/src/textbook/book.py:4:subject, the profiles it builds, the verification oracles its banks may use, its
+engine/src/textbook/book.py:167:    oracles: tuple[str, ...] = ("sympy",)
+engine/src/textbook/book.py:283:        oracles=tuple(data.get("oracles", ("sympy",))),
 ```
 
 So `oracles` is **declarative only**: `Book.oracles` is parsed and stored and
@@ -297,7 +297,7 @@ in a `check` field that the verifier then ignores.
 
 ## 5. A concrete build order
 
-1. **Make the seam real.** Create `engine/textbook/verify/oracles/` with a
+1. **Make the seam real.** Create `engine/src/textbook/verify/oracles/` with a
    registry. Move the SymPy chain into `oracles/sympy.py` (importing the
    unchanged `cas.py`). `verify.py` keeps `Report`/`BankReport` and delegates.
    A test pins the check-kind → oracle table, the way

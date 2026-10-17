@@ -1,9 +1,9 @@
 # A-level Mathematics — verifier gaps
 
-**Purpose.** What `engine/textbook/verify/` can and cannot check today, and
+**Purpose.** What `engine/src/textbook/verify/` can and cannot check today, and
 exactly what must be added before an A-level problem bank can be verified. Read
 alongside `PROBLEMS.md` (especially "Beyond GCSE: calculus and statistics" and
-"What can be verified, and how") and `engine/textbook/verify/{cas.py,verify.py,__main__.py}`.
+"What can be verified, and how") and `engine/src/textbook/verify/{cas.py,verify.py,__main__.py}`.
 **Retrieved:** 2026-10-11. **Scope of the audit:** the DfE items A1–S1 listed in
 `a-level-maths.md` §5. No engine file was edited.
 
@@ -230,7 +230,7 @@ is everything that *names* a vector operation, and any vector equation.
 
 | Item | Status | What is missing |
 |---|---|---|
-| P1 SI and derived units | Partial / units oracle | PROBLEMS.md keeps units out of CAS fields, so only the numeric parts are checkable. SHAPE.md anticipates a physics-style units/ significant-figures oracle but it is **not implemented** under `engine/textbook/verify/oracles/`. For A-level mathematics the numeric route is defensible; a units oracle is optional. |
+| P1 SI and derived units | Partial / units oracle | PROBLEMS.md keeps units out of CAS fields, so only the numeric parts are checkable. SHAPE.md anticipates a physics-style units/ significant-figures oracle but it is **not implemented** under `engine/src/textbook/verify/oracles/`. For A-level mathematics the numeric route is defensible; a units oracle is optional. |
 
 ### Q — Kinematics
 
@@ -367,7 +367,7 @@ verifier. Listing them explicitly stops a bank from pretending otherwise:
 ## 5. Definition of done before A-level problems can be verified
 
 A concrete checklist for whoever implements this (all of it is a change under
-`engine/textbook/verify/`, which was out of scope here):
+`engine/src/textbook/verify/`, which was out of scope here):
 
 - [ ] Add `system` and confirm it handles one linear + one quadratic (exact
       solution tuples, order-insensitive).

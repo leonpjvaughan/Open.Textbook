@@ -10,7 +10,7 @@ Two design questions had to be answered before authoring the vertical slice:
 Both are settled, and the evaluation that settled them has moved out of this
 directory. The fixture books, their MkDocs configurations and `run.sh` are gone:
 the pipeline uses the same hook chain (`MARKDOWN_HOOKS = (tier, toc, figures,
-problems)` in `engine/textbook/pipeline.py`), so the behaviour is now pinned
+problems)` in `engine/src/textbook/pipeline.py`), so the behaviour is now pinned
 against the hooks themselves, in pytest, where it runs as part of
 `scripts/check.sh`.
 
@@ -82,7 +82,7 @@ Three mechanisms were compared; all rendered the same portable
 **Decision — canonical substrate + repo-owned hook.** The wire format is the
 portable `<maths-figure>` custom element (raw HTML, works in MkDocs, Quarto, MyST
 and MDX). The author writes the line-anchored directive `:::figure slug`, which
-`engine/textbook/hooks/figures.py` expands while injecting the loader only into
+`engine/src/textbook/hooks/figures.py` expands while injecting the loader only into
 pages that need it. `mkdocs-macros-plugin` is dropped.
 
 Portability of the substrate itself is **expected from the renderers' documented
@@ -99,7 +99,7 @@ fails loudly on an unknown slug, and Tier-0 pages get no figure JS.
 | Works without JS | no (H shown) | yes |
 | Deep-linkable per-tier URL | no | yes |
 
-Both are produced from **one source** by `engine/textbook/hooks/tier.py`, selected
+Both are produced from **one source** by `engine/src/textbook/hooks/tier.py`, selected
 with `extra.tier_profile`:
 
 - `foundation` drops `tier: H` pages (`on_files`) and strips

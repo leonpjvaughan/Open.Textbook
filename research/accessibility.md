@@ -190,7 +190,7 @@ reader was run.
 
 ### What we actually ship
 
-Verified from `engine/textbook/js/katex-render.mjs` and the built HTML:
+Verified from `engine/src/textbook/js/katex-render.mjs` and the built HTML:
 
 - KaTeX runs at build time with `output: "mathml"` and `throwOnError: true`.
 - Each expression becomes

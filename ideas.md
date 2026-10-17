@@ -21,7 +21,7 @@ measured says so.
 
 ```
 $ find books/*/docs/assets/figures -name '*.js' ! -name kit.js ! -name figures.js | wc -l
-209
+212
 
 $ # per book
   gcse-maths              39 modules   25 chapters
@@ -29,19 +29,22 @@ $ # per book
   gcse-physics            37 modules   10 chapters
   a-level-physics         30 modules    9 chapters
   proofs                  12 modules   23 proof pages (12 carry a figure)
+  ie-lc-physics           19 modules   22 chapters
   ie-lc-maths              8 modules   18 chapters
   ie-lc-applied-maths      6 modules    9 chapters
-  ie-lc-physics           19 modules   22 chapters
-  ie-jc-maths              0 modules   22 chapters
+  ie-jc-maths              3 modules   22 chapters
+
+$ # and one shared module, which two books mount
+  assets/figures/venn-regions.js
 ```
 
 The four English books together are **164 modules across 60 chapters**, about 2.7 each.
-The Irish books are **33 modules across 71 chapters**, and 22 of those chapters have none
-at all.
+The Irish books are **36 modules across 71 chapters**, and the whole of that number was
+built since this file was written.
 
-**Junior Cycle Mathematics has no interactive figure at all** — 22 chapters and 129
-sections of prose, worked examples and practice. It is both the largest gap and the one
-where a visual pays most, because its reader is 12–14.
+**`ie-jc-maths` is still the largest gap** — 3 figures for 22 chapters and 129 sections,
+and the one book whose reader is 12–14. `ie-lc-maths` is next at 8 for 18. §5 lists what
+each book wants; §10 is the order to build it in.
 
 ### The interaction vocabulary in practice
 
@@ -94,7 +97,7 @@ rendered contrast on every build; the trap is live in them.
 ### What a figure cannot currently be shared
 
 ```
-$ grep -A7 '^SHARED_FILES' engine/textbook/scaffold.py
+$ grep -A7 '^SHARED_FILES' engine/src/textbook/scaffold.py
 SHARED_FILES = (
     "assets/stylesheets/themes.css", "assets/stylesheets/extra.css",
     "assets/stylesheets/settings.css", "assets/settings/settings.js",
@@ -680,7 +683,7 @@ This file is the queue, so an idea leaves it by being built.
 
 ### Built
 
-**The kit, 2026-10-16** — the first expansion. 25 exports over six layers, a barrel, a
+**The kit, 2026-10-16** — the first expansion. 50 exports over six layers, a barrel, a
 build that places the directory, and two checkers.
 
 | What | Where | Why it was worth it |
@@ -698,7 +701,7 @@ build that places the directory, and two checkers.
 | `builder`, `notate` | `kit/controls.js` | assembling from parts, and typing mathematics on a phone without a 5.6 MB library |
 | `exercise`, `practice` | `kit/interact.js` | endless practice, with the honest limit stated: internal consistency, not verification |
 | the shared figure library | `assets/figures/` | a figure two books want identically is written once — see §9 for what it is *not* for |
-| `SHARED_DIRS` and the recursive copy | `engine/textbook/` | the kit is a library now, and a layer the build did not copy would break every figure silently |
+| `SHARED_DIRS` and the recursive copy | `engine/src/textbook/` | the kit is a library now, and a layer the build did not copy would break every figure silently |
 | `check-figure-kit-pure.mjs` | `scripts/` | the drawing and formatting layers now checked without a browser |
 
 **Figures built from the kit, 2026-10-16:**

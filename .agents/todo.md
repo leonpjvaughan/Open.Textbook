@@ -4,6 +4,13 @@ Working notes for the collection. One item per change. Items are ordered, not
 dated: the first is next. This file is ours, not the reader's — the voice rules
 in `AGENTS.md` do not apply here, but the engineering rules do.
 
+**Two queues, and this is the one that holds defects.** An item here is something
+wrong: a broken check, a wrong count, a page that ships a lie. The *interactive-aid
+backlog* — which figures and interactions a book still wants — is `ideas.md`, which is
+a plan rather than a defect list, and is written for the author choosing what to build
+next. An item here may point there rather than restating it. Nothing in either file is
+closed by being removed; both are closed by being **done**.
+
 - [x] 1. Theme menu — reader settings in the header (book pages and the landing page, one runtime)
 - [x] 2. Custom domain — `open-textbook.org` resolves
 - [x] 3. `www` redirect — DNS imported, rule live, 301 with path and query preserved
@@ -44,9 +51,9 @@ changes the page or the subpath.
 
 | Surface | Theme menu? | Notes |
 |---|---|---|
-| Landing page (`engine/textbook/templates/portal.html`) | yes | a `<select id="theme-menu">` in the masthead, plus a dark-mode button. Writes the shared keys `textbooks:theme` / `textbooks:scheme`. |
-| Books, MkDocs (what is deployed) | **no** | `engine/textbook/hooks/prefs.py` applies both keys before first paint. Material's own palette toggle changes light/dark. There is no control for the bundle. |
-| Books, custom pipeline (`engine/textbook/templates/page.html`) | **no** | applies the theme before paint, no control either. |
+| Landing page (`engine/src/textbook/templates/portal.html`) | yes | a `<select id="theme-menu">` in the masthead, plus a dark-mode button. Writes the shared keys `textbooks:theme` / `textbooks:scheme`. |
+| Books, MkDocs (what is deployed) | **no** | `engine/src/textbook/hooks/prefs.py` applies both keys before first paint. Material's own palette toggle changes light/dark. There is no control for the bundle. |
+| Books, custom pipeline (`engine/src/textbook/templates/page.html`) | **no** | applies the theme before paint, no control either. |
 
 So a reader can only change the bundle on the landing page. Reading a book, the
 control is missing. That is the gap.
@@ -88,12 +95,12 @@ disclosure, dialog patterns), and WCAG 2.2 for dialog focus management.
 - One shared runtime, so the two build paths do not drift:
   `assets/settings/settings.js` plus a stylesheet in `assets/stylesheets/`,
   symlinked into each book by the scaffold. It reuses `window.textbookPrefs`
-  exposed by `engine/textbook/hooks/prefs.py` and writes the same keys.
+  exposed by `engine/src/textbook/hooks/prefs.py` and writes the same keys.
 - MkDocs has **no `custom_dir` today**. Add `theme.custom_dir:
   renderers/mkdocs/overrides` in `renderers/mkdocs/base.yml`, then a
   `partials/actions.html` (or `header.html`) override for the trigger and the
   panel. The custom pipeline needs the same markup in
-  `engine/textbook/templates/page.html`.
+  `engine/src/textbook/templates/page.html`.
 - Mark the menu chrome `data-pagefind-ignore` so it never enters the search
   index.
 
@@ -332,7 +339,7 @@ optional here.
 
 ### Response headers — **implemented**
 
-`engine/textbook/headers.py` emits `site/_headers`, called from
+`engine/src/textbook/headers.py` emits `site/_headers`, called from
 `python -m textbook.portal`. It declares **no** `Cache-Control` (Workers' default
 is what keeps a deploy immediate; a second rule would be joined with a comma and
 corrupt it) and **no** HSTS (Cloudflare's SSL/TLS toggle already sends it).
@@ -492,10 +499,10 @@ the rest recoverable, so they belong in the same gate.
 **This is the largest structural item in the file.** There are two ways to build a
 book, and only one of them is deployed.
 
-| | `renderers/mkdocs/` + MkDocs | `engine/textbook/pipeline.py` |
+| | `renderers/mkdocs/` + MkDocs | `engine/src/textbook/pipeline.py` |
 |---|---|---|
 | Status | **what `main` deploys** | builds 457 pages in 11.6s, deploys nothing |
-| Templates | Material's, plus `overrides/` (which does not exist yet) | `engine/textbook/templates/page.html` |
+| Templates | Material's, plus `overrides/` (which does not exist yet) | `engine/src/textbook/templates/page.html` |
 | Navigation | generated nav lists in `renderers/mkdocs/<book>.<profile>.yml` | built in code |
 | Link checking | MkDocs `--strict` | `check_links()` |
 | Search | Material's index | Pagefind |
@@ -513,7 +520,7 @@ this decision more urgent rather than less.
 **Decide:** the pipeline replaces MkDocs, or MkDocs stays and the pipeline goes.
 Not both, and not for long — the cost is paid on every change to the page shell.
 
-**Decision (2026-10-11) — `engine/textbook/pipeline.py` becomes the site. MkDocs
+**Decision (2026-10-11) — `engine/src/textbook/pipeline.py` becomes the site. MkDocs
 is retired.**
 
 Signed off by the author. The bespoke renderer is the one we control: no
@@ -930,9 +937,9 @@ the paper 4.34:1 (omarchy light) and 4.40:1 (gruvbox light) on it — below AA f
 text. No token expressed "text on the accent".
 
 **Fix.** Added an `accent_ink` token to `SCHEME_TOKENS` in
-`engine/textbook/book.py`, a value per bundle in both schemes, and used it for
+`engine/src/textbook/book.py`, a value per bundle in both schemes, and used it for
 text drawn on the accent: `extra.css` (`.bk-fab`, `.bk-bar`, the pressed chip)
-and `portal.css` (the card chip). `engine/textbook/themes.py` now checks
+and `portal.css` (the card chip). `engine/src/textbook/themes.py` now checks
 `accent_ink` on the accent at 4.5:1, and `tests/test_themes.py` checks the
 bundle's own accent as well, so the palette is safe with no subject tint.
 
@@ -1063,7 +1070,7 @@ check on the dark member is not written.
 ## 19. The pipeline's 404 page declares literal colours
 
 **Noticed while bringing the bespoke shell to parity (del-11).** `NOT_FOUND` in
-`engine/textbook/pipeline.py` inlines a `<style>` with six literal colours:
+`engine/src/textbook/pipeline.py` inlines a `<style>` with six literal colours:
 `#faf9f5`, `#1f1e1b`, `#23577d`, `#171614`, `#e9e7e1` and `#8cc0e8`. It
 therefore ignores the reader's bundle entirely — a reader on Catppuccin gets
 Editorial's paper on the 404, and one on Clean gets a blue link. This is the
@@ -1071,7 +1078,7 @@ same class of bug item 15 fixed for `extra.css` and `portal.css`.
 
 Evidence:
 
-    grep -nE '#[0-9a-fA-F]{3,8}' engine/textbook/pipeline.py
+    grep -nE '#[0-9a-fA-F]{3,8}' engine/src/textbook/pipeline.py
 
 It is deliberately self-contained: a 404 can be served for a request at any
 depth, so its comment argues linked stylesheets have no reliable base. That is
@@ -1087,7 +1094,7 @@ comments before scanning), as the new page-shell test does for `shell.css`.
 
 **Done means.**
 
-- [x] `grep -nE '#[0-9a-fA-F]{3,8}' engine/textbook/pipeline.py` finds no colour
+- [x] `grep -nE '#[0-9a-fA-F]{3,8}' engine/src/textbook/pipeline.py` finds no colour
       outside a comment. The 404 now reuses `portal.not_found()`.
 - [x] The 404 renders in the reader's bundle in both schemes — checked in the
       browser with two bundles. **Partially:** verified from the built page (it
@@ -1102,7 +1109,7 @@ comments before scanning), as the new page-shell test does for `shell.css`.
 
 ## 20. The pipeline ships no Formulae booklet and no `book-local.css` — **done**
 
-**Found while porting `test/run.sh` to pytest (del-13).** `engine/textbook/pipeline.py`
+**Found while porting `test/run.sh` to pytest (del-13).** `engine/src/textbook/pipeline.py`
 is the site — CI and the deploy build with it — but it never loads the two shell
 features the MkDocs path does. Both are reader-visible or documented extension
 points, so deleting MkDocs would remove the only renderer that has them.
@@ -1113,7 +1120,7 @@ points, so deleting MkDocs would remove the only renderer that has them.
   `assets/stylesheets/book-local.css` in `extra_css`, and
   `renderers/mkdocs/gcse-maths.higher.yml:677` lists `assets/booklet/booklet.js`
   in `extra_javascript` for a book that declares `booklet:` in `book.yaml`.
-- The pipeline has neither: `grep -in booklet engine/textbook/templates/page.html`
+- The pipeline has neither: `grep -in booklet engine/src/textbook/templates/page.html`
   and `grep -in booklet` inside `pipeline.copy_assets` return nothing, and
   `book-local.css` appears in neither `SHARED_CSS` nor the page template.
 - The built output follows:
@@ -1143,7 +1150,7 @@ this item is the repair, not a fresh regression.)
 **Fix.** In `pipeline.copy_assets`, when `book.booklet_name` is set, copy
 `assets/booklet/booklet.js` and the generated
 `book.docs/assets/booklet/booklet.json`. Add a `$booklet` slot to
-`engine/textbook/templates/page.html`, filled by `render_page`/`build` only when
+`engine/src/textbook/templates/page.html`, filled by `render_page`/`build` only when
 the book has a booklet, and a `book-local.css` copy beside `book.css` linked
 after it. Then rewrite
 `tests/test_collection.py::test_booklet_widget_is_loaded_only_where_there_is_a_booklet`
@@ -1305,7 +1312,7 @@ with `performance.getEntriesByType("resource")`. The shipped page is 13 requests
 search index, because Pagefind fetches it only on a search. Table and method
 replaced in `DEPLOY.md`'s performance-budget section.
 
-2. **`engine/textbook/hooks/prefs.py`'s `snippet()`/`on_post_page()` are now
+2. **`engine/src/textbook/hooks/prefs.py`'s `snippet()`/`on_post_page()` are now
 unreachable.** The MkDocs shell was their only caller; the pipeline's before-paint
 script lives in `templates/page.html` and sets the keys directly, so the two can
 drift. `test_prefs.py` still pins the snippet. **Fix:** either make the page
@@ -1392,7 +1399,7 @@ runnable; `scripts/preview-themes.sh` still passes on the six bundles.
 
 **Deferred indefinitely by the author, 2026-10-12.** The design work stands and is
 recorded in `DECISIONS.md` and `research/design/background-effects.md`; the seam is
-built (`engine/textbook/backgrounds.py`) so an effect is a registry entry rather
+built (`engine/src/textbook/backgrounds.py`) so an effect is a registry entry rather
 than a change to the shell. Nothing ships one, and nothing will until a topic needs
 one. Not a gap to close: the honest reading of the measurements is that motion
 competes with a reader's attention on a page whose job is to make them think, and
@@ -1674,7 +1681,7 @@ not retrieved (item 35). No physics bank yet, so the units oracle is unused.
 
 **Done, 2026-10-11: §5 steps 1–6 of `research/curriculum/physics-verifier-gaps.md`.**
 Steps 1–2 built the seam (below). Steps 3–6 are
-`engine/textbook/verify/oracles/units.py`: a second oracle, registered in
+`engine/src/textbook/verify/oracles/units.py`: a second oracle, registered in
 `ORACLE_MODULES` and `KIND_ORACLE`, owning nine physics check kinds.
 
 - **`dimensions`** — a quantity is an exact magnitude and a dimension vector over
@@ -1710,7 +1717,7 @@ name `oracles: [sympy, units]` (so `all` still works), and a bank with no
 The book and its bank are the separate items 28 and 29; this lands without them.
 
 **Done, 2026-10-11: `research/curriculum/physics-verifier-gaps.md` §5 steps 1–2.**
-`engine/textbook/verify/oracles/` now exists: `__init__.py` owns the
+`engine/src/textbook/verify/oracles/` now exists: `__init__.py` owns the
 check-kind → oracle table and the loader, `sympy.py` holds the moved chain and
 imports `cas.py` unchanged, and `verify.py` keeps the reports, the step
 relations and the delegation (it shrank 249 → 192 lines). `book.yaml → oracles`
@@ -2004,7 +2011,7 @@ scope in `meta.note` and `AGENTS.md` as a deliberate limit.
 
 ## 37. `kilogram` was reported as a US spelling, and the fix was a no-op — **done**
 
-**What is wrong.** `US_SPELLINGS` in `engine/textbook/lint.py` maps
+**What is wrong.** `US_SPELLINGS` in `engine/src/textbook/lint.py` maps
 `\bkilogram(s)?\b` to `kilogram\1`. The replacement is the match, so the rule
 changes nothing, but the reporting loop still tests the pattern. Every page that
 writes "kilogram" or "kilograms" is therefore reported as `style:us-spelling`.
@@ -2043,7 +2050,7 @@ no `style:us-spelling` at all.
 
 ## 38. A bank record whose check renders no answer — **done**
 
-**What is wrong.** `engine/textbook/verify/render.py → render_problem` builds the
+**What is wrong.** `engine/src/textbook/verify/render.py → render_problem` builds the
 reader-facing answer from `answer_text`, then from `_answer_from_check`, then
 falls back to `check["answer"]`. An `all` check has no top-level `answer` (its
 values live in the sub-checks), so a record that carries only `answer_text`-free
@@ -2153,7 +2160,7 @@ itself is proved by `approx`. Both are honest, but neither is obvious to the nex
 author, and the first is a trap: the record fails with a *negative* uncertainty,
 which reads like a wrong number rather than a missing `abs()`.
 
-**Fix.** In `engine/textbook/verify/oracles/units.py`, take the magnitude of the
+**Fix.** In `engine/src/textbook/verify/oracles/units.py`, take the magnitude of the
 percentage contribution (`total_percentage += abs(power) * percentage`, or use
 `abs(power) * percentage`) so a quotient verifies as written, and allow
 `sigfigs.value` to be a SymPy expression that evaluates to a `Rational` within a
@@ -2224,7 +2231,7 @@ fails a genuine injection — checked by mutation.
 ## 41. `dimensions` could not check a magnitude needing a square root — **done**
 
 **What is wrong.** The `units` oracle's arithmetic evaluator (`_eval_node` in
-`engine/textbook/verify/oracles/units.py`) handles constants, symbols, unary
+`engine/src/textbook/verify/oracles/units.py`) handles constants, symbols, unary
 minus and the binary `+ - * / **` only, and `Quantity.__pow__` rejects a
 non-integer power. So the natural check of a Pythagoras magnitude that carries a
 unit, `sqrt(vx**2 + vy**2)`, fails on syntax, and `(vx**2 + vy**2) ** 0.5` fails
@@ -2267,7 +2274,7 @@ declares m"*.
 
 ## 42. The internal-words lint flagged the literal phrase "the bank" — **done**
 
-**What is wrong.** `engine/textbook/lint.py` maps `\bthe (?:problem )?bank\b`
+**What is wrong.** `engine/src/textbook/lint.py` maps `\bthe (?:problem )?bank\b`
 to `(delete)` in `INTERNAL_PHRASES`, so any page that uses the ordinary English
 word "bank", meaning a financial institution or a river bank, is reported as an
 internal word and fails `tests/test_content_hygiene.py`.
@@ -2555,7 +2562,7 @@ Not worth a booklet rewrite for seven records; worth knowing about.
 
 ---
 
-## 46. Every figure, measured — and the two defects it found
+## 46. Every figure, measured — and the two defects it found — **done**
 
 **Done, 2026-10-12.** Added at the author's request: list every figure, capture it
 in both schemes, and check the colours are visible.
@@ -2608,7 +2615,7 @@ ink — so the tests ask what a class *does*, not that one is present.
 
 ---
 
-## 47. "Prove it to me" — a proof behind every unproved claim
+## 47. "Prove it to me" — a proof behind every unproved claim — **done**
 
 **Requested by the author, 2026-10-12.** Wherever a book states a mathematical fact
 as fact — the angles of a triangle sum to 180°, the quadratic formula, the sine
@@ -2952,7 +2959,7 @@ against the polynomial instead.
   so the number of roots is checked rather than assumed.
 - `uv run python -m textbook.verify books/ie-lc-maths/problems/` still passes.
 
-## 51. The published Irish books serve 2,741 pages that say "Stub"
+## 51. The published Irish books serve 2,741 pages that say "Stub" — **done**
 
 **What is wrong.** `scaffold.py` writes a `<!-- scaffold:stub -->` marker into every
 page it creates, and the build publishes every page it finds. Nothing excludes a stub
@@ -2988,6 +2995,13 @@ build has what it needs.
   profile still builds.
 - A reader arriving at an unwritten page gets something that tells them what it is and
   what to do, rather than a bare "Stub."
+
+**Done, by finishing the books rather than by hiding their pages.** The choice was
+between excluding stubs, marking them `noindex`, and holding the books back; the answer
+was none of the three, because all 71 chapters were then authored. `grep -rl
+'scaffold:stub' books/*/docs/` prints nothing and the built site has no stub page, so the
+question no longer arises. It would arise again for a *new* book before it is written,
+which is why the three options are left recorded.
 
 ---
 
@@ -3124,63 +3138,6 @@ repeat it.
 
 ---
 
-## The Irish books — where they stand (2026-10-13)
-
-Four books were added under the `Junior Cycle` and `Leaving Certificate`
-qualifications: `ie-jc-maths`, `ie-lc-maths`, `ie-lc-applied-maths`, `ie-lc-physics`.
-71 chapters, 429 sections. All four scaffold, build and navigate, and all 16 profiles
-in the collection build clean.
-
-**The curriculum plan is complete. The prose is not.** Every section exists as a
-`<!-- scaffold:stub -->` page, which is the scaffold's own marker and is what CI and
-`grep -rl scaffold:stub` will find. What is authored so far:
-
-| Book | Chapters | Authored |
-|---|---|---|
-| `ie-jc-maths` | 22 | Chapter 3 (factors, multiples, primes) — 3 sections |
-| `ie-lc-physics` | 22 | Chapter 5 (stretching and compressing) — 4 sections |
-| `ie-lc-applied-maths` | 9 | Chapter 2 (networks and graphs) — 11 sections, 3 figures |
-| `ie-lc-maths` | 18 | Chapter 5 (complex numbers) — 5 sections, 1 figure |
-| `ie-lc-maths` | 18 | Chapter 9 (sequences and series) — 6 sections |
-| `ie-lc-maths` | 18 | none |
-| `ie-lc-applied-maths` | 9 | none |
-
-To continue, use `.agents/chapter-brief.md` with `BOOK_ID` and `CHAPTER_ID`. It was
-rewritten for the Irish books on the same day: the tier codes are the book's (not
-`F`/`H` everywhere), a section's references are `refs:` not `dfe:`, and the four
-`ie-*` books have a section of their own in `AGENTS.md`.
-
-### Priorities, in the order that seems right
-
-1. **`ie-lc-applied-maths` Chapter 2, networks and graphs.** Strand 2 has no
-   counterpart anywhere in this collection — spanning trees, Dijkstra, Bellman,
-   dynamic programming, adjacency-matrix algebra. It is the material most likely to
-   be reused by another book later, and the least likely to be got right by
-   adapting an existing chapter.
-2. **`ie-lc-maths`** — the largest book and the one with a real examination
-   population. Three levels, so the tier filtering is worth exercising early.
-3. The two chapters already authored are the pattern to follow; each was written
-   against its own verified bank.
-
-### Known gaps, recorded rather than hidden
-
-- **No booklets for the Irish books.** `BOOKLETS.md` says every subject whose board
-  provides a sheet should have one. Ireland provides the SEC *Mathematical Tables*
-  for Leaving Certificate Mathematics and a formulae sheet for Physics. Neither has
-  been built. **This needs the board's own documents**, and `examinations.ie` could
-  not be read while the books were planned (Cloudflare challenge; see
-  `research/curriculum/ie-curriculum.md` §8), so nothing may be written from memory.
-  Find an accessible copy first.
-- **Nine A-level Mathematics booklet items cannot be parsed** by
-  `sympy.parsing.latex`, so a problem declaring one gets no coverage check. They are
-  listed with reasons in `tests/test_verify_coverage.py → UNPARSABLE_NOTATION`. That
-  test now fails when a tenth appears.
-- **The Applied Mathematics specification numbers only its strands**, so the
-  coverage check for that book reaches no finer than "all four strands are taught".
-  Recorded in its `curriculum.yaml`.
-
----
-
 ## 56. The figure panel's tint was spending the contrast margin — **done**
 
 **What was wrong.** `fig_good` against the figure panel in `editorial`/light measured
@@ -3208,7 +3165,7 @@ change.
 ```
 
 The border, not the tint, is what makes a figure read as a panel, so 4% keeps the
-delineation and returns the margin. `FIGURE_PANEL_INK` in `engine/textbook/themes.py`
+delineation and returns the margin. `FIGURE_PANEL_INK` in `engine/src/textbook/themes.py`
 moved with it, and `test_the_figure_surface_matches_the_stylesheet` is what caught the
 two drifting apart.
 
@@ -3217,6 +3174,114 @@ two drifting apart.
 - Every figure token clears its floor by at least 0.3 over every bundle and both schemes.
 - `uv run python -m pytest tests/test_themes.py -q` passes.
 - `node scripts/audit-figures.cjs site` reports no contrast problem.
+
+---
+
+## 57. The browser runtime has no types, and `tsc` reports 163 errors
+
+**What is wrong.** Every line the reader's browser runs — the figure kit, the loader, the
+settings panel, the booklet widget, the service worker — is JavaScript with no type
+information. Measured 2026-10-16, with `checkJs` over `assets/` and no other change:
+
+| Config | Errors |
+|---|---|
+| `checkJs`, `strict` off | **163** |
+| `checkJs`, `strict` on | 460 |
+| `checkJs`, `strict` + `noUncheckedIndexedAccess` | 475 |
+
+By file, at the current setting: `kit/draw.js` 105, `kit/interact.js` 28,
+`settings.js` 13, `kit/controls.js` 9, and seven more in single figures. The errors are
+overwhelmingly `TS7006`/`TS7005` — a parameter or variable whose type was never stated —
+which is the annotation work itself rather than a defect list.
+
+**What was done, 2026-10-16.** `tsconfig.json` (`allowJs`, `checkJs`, `noEmit`) and
+`scripts/check-types.mjs`, which **ratchets**: it passes at 163, fails when the count
+grows, and fails when it falls without the baseline being lowered. It is in
+`scripts/check.sh`, so it gates. Nothing is compiled and nothing is emitted — the build
+still copies these files, so this added a check and no moving parts. `typescript` is a
+devDependency.
+
+**The rest of the fix, in the order it pays.**
+
+1. **Annotate the kit's public surface** — the 50 exports in `kit.js`, in JSDoc. This is
+   the part the 212 figure modules call, so it is what makes a figure's own mistakes
+   visible. `kit/draw.js` alone is 105 of the 163.
+2. **Bring the count to zero**, lowering `BASELINE` in the same change each time.
+3. **Turn `strict` on** and expect the count to jump to 460. Ratchet again.
+4. **Add `books/*/docs/assets/figures/**/*.js` to `include`** — 212 content modules,
+   ~27,000 lines. This is the last step, and the one that catches a figure calling
+   `label()` with the wrong argument.
+
+**A decision to make, not a task.** The kit is 2,400 lines of primitives with a real
+contract, and it is the only part of the runtime that would gain from being TypeScript
+properly (`.ts` with an emit step). The 212 figure modules are **content**, they live
+inside book trees because a book is self-contained, and they should not move into a
+package to be typed — `checkJs` reaches them where they are. So the fork is whether to
+convert `assets/figures/kit/` to `.ts` and add an esbuild step, or to keep `.js` +
+JSDoc forever. JSDoc first is the cheaper order, and it does not foreclose the other.
+
+**Done means**
+
+- `node scripts/check-types.mjs` reports 0 at `strict: true`.
+- `npm run types:list` prints an empty file list.
+- The build emits no compiled artefact: `git status` is clean after `scripts/check.sh`.
+
+---
+
+## 58. Thirteen loose scripts, five copies of the same browser plumbing — **done**
+
+**What was wrong.** `scripts/` held thirteen files in three languages with no index. The
+name said `check-figure-kit` and the usage was inside, in a comment, in a format only the
+author knew. Worse, five of them carried their own copy of the same Playwright
+resolution, the same MIME table and the same route handler — about 150 duplicated lines —
+and **the copies had already drifted**:
+
+- `check-mobile` and `measure-budget` passed `executablePath`; `audit-figures` and
+  `check-figure-kit` set it on a `launch` object; `screenshot` ignored `CHROME_PATH`
+  entirely and hardcoded `channel: "chrome"`;
+- `check-mobile` and `measure-budget` bound a real port while the other three intercepted,
+  and nothing said which was right;
+- two scripts retried without `channel: "chrome"` when the channel was missing, three did
+  not — so a check that worked locally failed in a container for a reason unrelated to
+  the figure.
+
+**Done, 2026-10-16.** One TypeScript package, `tools/`, with one entry point:
+
+| | |
+|---|---|
+| `tools/src/lib/browser.ts` | Playwright resolution, launch with the channel retry, both servers, the reader-preference context, the capture guard |
+| `tools/src/lib/report.ts` | findings, the summary line that always states the count examined, exit codes, argument parsing |
+| `tools/src/commands/` | seven commands: `audit`, `kit`, `kit-pure`, `check-mobile`, `budget`, `screenshot`, `types` |
+
+`scripts/` is now **shell only** — `check.sh`, `preview-themes.sh`, `deploy.sh` and the
+four one-off operations — because bash is the right language for orchestrating processes
+and branching on their exit codes.
+
+**The two servers are a decision, not an accident.** `serveStatic` intercepts and
+everything uses it except `budget`, which binds a port: a navigation entry's
+`transferSize` is populated only for a request that crossed the network stack, so an
+intercepted response reports 0 and the budget would read as far too small and look like
+an excellent result.
+
+**Every port was verified against its original, not by eye.** `screenshot` produces
+byte-identical PNGs; `check-mobile` reports the same 15 pages; `budget` prints the same
+20 requests and 255 kB; `kit` and `kit-pure` keep their contracts; and `audit` produces
+**byte-identical JSON for both the desktop and the mobile run** (418 measurements, 168
+figures). That is the check that the migration changed nothing.
+
+**One defect this found in itself.** `tools types` first reported 0 errors, because the
+repo-root path was one level short and a `tsc` that never ran printed nothing — which the
+check counted as a clean run. An empty stdout with a non-zero exit is now a failure of
+the check.
+
+**Done means**
+
+- `node tools/dist/cli.js help` lists every command.
+- No file in `scripts/` is Node or Python.
+- `scripts/check.sh` passes, and it builds the TypeScript before the drift diff.
+- Each ported command reproduces its predecessor's output.
+
+---
 
 ## The Irish books are finished (2026-10-16)
 
@@ -3306,3 +3371,11 @@ Mathematics papers the command words are `Find` 6,261, `Show` 3,767, `State` 1,1
 signal about what an Irish practice set must contain — and it is not the shape of the
 English books, which are lighter on proof.
 
+**Two gaps recorded here are still open**, and were in the section this one replaces:
+
+- **Nine A-level Mathematics booklet items cannot be parsed** by `sympy.parsing.latex`,
+  so a problem declaring one gets no coverage check. They are listed with reasons in
+  `tests/test_verify_coverage.py`, and the test fails when a tenth appears.
+- **The Applied Mathematics specification numbers only its strands**, so its coverage
+  check reaches no finer than "all four strands are taught" — recorded in its
+  `curriculum.yaml`.

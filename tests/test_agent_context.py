@@ -93,8 +93,28 @@ def paths_in(cells: list[str]) -> list[str]:
     return [path for cell in cells for path in BACKTICK.findall(cell)]
 
 
+def book_ids() -> list[str]:
+    """Every book's id, from the directory that holds its ``book.yaml``."""
+    return sorted(
+        path.name for path in (ROOT / "books").iterdir() if (path / "book.yaml").is_file()
+    )
+
+
+def expand(path: str) -> list[str]:
+    """``books/<id>/AGENTS.md`` names every book's file, not a literal path.
+
+    The routing table sends a chapter task to the book's *own* file, and the table used
+    to hardcode the first book — so an agent writing an Irish chapter was routed to the
+    GCSE Mathematics file. ``<id>`` is expanded against the books that exist, which keeps
+    the check below meaningful: every expanded path has to be real.
+    """
+    if "<id>" not in path:
+        return [path]
+    return [path.replace("<id>", name) for name in book_ids()]
+
+
 def exists(path: str) -> bool:
-    return (ROOT / path.rstrip("/")).exists()
+    return all((ROOT / candidate.rstrip("/")).exists() for candidate in expand(path))
 
 
 def top_level_directories() -> list[str]:
@@ -187,6 +207,27 @@ def test_the_nested_agents_files_exist_for_the_engine_and_the_books():
     }
     found = set(nested_agents_files())
     assert expected <= found, f"missing area AGENTS.md files: {expected - found}"
+
+
+def test_every_book_has_its_own_agents_file():
+    """A book without one is invisible to the agent that opens it.
+
+    The routing table sends a chapter task to ``books/<id>/AGENTS.md``, and the nearest
+    file wins — so a book with no file of its own silently inherits only the root and
+    ``books/AGENTS.md``, and the things that make *that* book different (its boards, its
+    levels, its booklet, its traps) are nowhere. The four Irish books and ``proofs`` were
+    in exactly that state while they were being written.
+    """
+    books_dir = ROOT / "books"
+    expected = sorted(
+        path.name for path in books_dir.iterdir() if path.is_dir() and (path / "book.yaml").is_file()
+    )
+    assert expected, "no books to check"
+    missing = [name for name in expected if not (books_dir / name / "AGENTS.md").is_file()]
+    assert not missing, (
+        f"books with no AGENTS.md of their own: {missing}. The routing table sends a "
+        "chapter task to that file, so a book without one is written from the root alone."
+    )
 
 
 def test_every_book_names_its_parent_agents_file():

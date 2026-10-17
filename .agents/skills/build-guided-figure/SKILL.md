@@ -40,8 +40,16 @@ runs it:
 
 - The directive is line-anchored: `:::figure <slug>`. Only the directive
   triggers the per-page loader; raw `<maths-figure>` HTML does not.
+- The kit itself is TypeScript: `assets/figures/src/kit/*.ts`, compiled to
+  `assets/figures/kit/*.js` by `node tools/build.mjs kit`. A figure module stays plain
+  JavaScript — it is content, and it imports the compiled `./kit.js` like any other.
 - The module is `books/<id>/docs/assets/figures/<slug>.js` — the filename **is**
   the slug. It exports `mount(el)`. An unknown slug fails the build.
+- **A figure more than one book wants identically goes in the shared library**,
+  `assets/figures/<slug>.js`, and every book mounts it by that name. A book may not
+  shadow a shared slug; the build raises. It is for a *generic tool* — the same set
+  diagram, the same number line, the same slope field — not for merging two books'
+  takes on one topic, which usually serve different readers.
 - **Import the kit's layers, not its whole surface.** `panel` and `react` from
   `./kit.js`; `SIZE`, `label`, `fmt`, `sigfig` for text; `axes`, `line`, `curve`,
   `graph`, `area`, `bars`, `dots` for the drawing; `slider`, `chooser`, `segmented`,

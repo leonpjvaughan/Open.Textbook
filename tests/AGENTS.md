@@ -13,11 +13,20 @@ tier-profile evaluation, now folded into `tests/test_render_hooks.py`. Its
 
 ## What lives here
 
-- **Engine tests** — `test_pipeline.py`, `test_render_hooks.py`,
-  `test_markers.py`, `test_frontmatter.py`.
-- **Content and shape tests** — `test_content_hygiene.py`,
-  `test_problem_bank.py`, `test_collection.py`, `test_figures.py`.
-- **Platform tests** — `test_themes.py`, `test_pwa.py`, `test_mobile.py`,
+- **Engine** — `test_pipeline.py`, `test_render_hooks.py`, `test_markers.py`,
+  `test_frontmatter.py`, `test_plan.py`, `test_maths_escapes.py`, `test_lint.py`.
+- **Content and shape** — `test_content_hygiene.py`, `test_problem_bank.py`,
+  `test_collection.py`, `test_home_page.py`, `test_proofs.py`,
+  `test_proof_maths.py`.
+- **Figures** — `test_figures.py` (the module contract: an accessible name, no
+  colour literal, no runtime LaTeX, `show:` on every slider) and
+  `test_figure_browser.py` (the same in a real browser across all six bundles,
+  and the phone-width legibility audit). The second is marked `browser` and
+  deselected by default; see below.
+- **Verification oracles** — `test_verify_algebra.py`, `test_verify_oracles.py`,
+  `test_verify_coverage.py`, `test_verify_units.py`,
+  `test_verify_statistics.py`.
+- **Platform** — `test_themes.py`, `test_pwa.py`, `test_mobile.py`,
   `test_prefs.py`, `test_settings.py`, `test_no_javascript.py`, `test_print.py`,
   `test_backgrounds.py`, `test_colophon.py`, `test_deploy.py`, `test_release.py`.
 - **Preconditions** — `test_toolchain.py` fails loudly when Node or
@@ -45,6 +54,13 @@ tier-profile evaluation, now folded into `tests/test_render_hooks.py`. Its
 
 - **Running everything** — `uv run pytest tests/ -q`, or `scripts/check.sh` for
   the whole gate.
+- **Running the browser tests** — `uv run python -m pytest -m browser`. They are
+  deselected by default (`addopts` in `pyproject.toml`) because measuring every
+  figure under all six bundles takes about twelve minutes, which is the whole rest
+  of the gate. **CI runs the substance of them** in `scripts/preview-themes.sh`
+  — the kit's contract, the contrast audit and the phone audit — so a browser-only
+  defect still fails the gate; the marked tests are for running the sweep under
+  every bundle by hand.
 - **Adding a test** — put it in the file that owns the behaviour; keep the
   module docstring in the house register (what the test protects and why).
 - **Testing a book** — load the `verify-textbook-change` skill.

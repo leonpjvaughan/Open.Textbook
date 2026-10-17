@@ -100,7 +100,7 @@ A new figure cannot repeat any of this:
 4. **The contract is asserted in one place** — which classes exist, and which SVG
    property each must set. `test_the_figure_colour_classes_are_all_defined`.
 5. **The accent clears 4.5:1 against the figure panel**, in every bundle, every
-   book and both schemes. `FIGURE_MIN_CONTRAST` in `engine/textbook/themes.py`.
+   book and both schemes. `FIGURE_MIN_CONTRAST` in `engine/src/textbook/themes.py`.
 6. **The built result is measured in a browser**:
    `node scripts/audit-figures.cjs site --json out.json --shots out/`.
 

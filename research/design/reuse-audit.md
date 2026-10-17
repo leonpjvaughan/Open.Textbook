@@ -16,7 +16,7 @@ is an impression.
 |---|---|---|
 | `assets/figures/kit.js` | 287 lines | **177 of 177** figure modules import it |
 | `assets/figures/figures.js` | 23 lines | the loader, one copy |
-| `engine/textbook/css/shell.css` | 285 lines | the engine's own stylesheet |
+| `engine/src/textbook/css/shell.css` | 285 lines | the engine's own stylesheet |
 | `assets/stylesheets/` | 1,320 lines | `extra`, `themes`, `settings`, `portal` |
 | `themes/*.yaml` | 6 bundles | complete and consistent (below) |
 

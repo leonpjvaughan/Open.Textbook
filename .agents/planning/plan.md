@@ -7,7 +7,7 @@
 This plan supersedes the "no mathematical content" clause of `.agents/planning/handoff.md`. The
 stack decisions in `.agents/planning/handoff.md` (marimo-markdown canonical format, a static
 backend-free site, interactivity tiers) still hold; the renderer is now the
-bespoke `engine/textbook/pipeline.py` rather than MkDocs — see `SHAPE.md`,
+bespoke `engine/src/textbook/pipeline.py` rather than MkDocs — see `SHAPE.md`,
 "The bespoke renderer is the site". What changes is that we now have a concrete
 subject, a concrete structure, and we *are* writing content. The folder layout
 below is the one the human specified and replaces `math-book/content/` as the
@@ -45,7 +45,7 @@ placed.
 4. Cross-check against Maths Genie's grade-ordered list to confirm every examinable
    topic appears somewhere.
 5. Tag each section `F` (Foundation and Higher) or `H` (Higher only). This is a
-   first pass; `engine/textbook/scaffold.py` and the DfE map guarantee *coverage*, not
+   first pass; `engine/src/textbook/scaffold.py` and the DfE map guarantee *coverage*, not
    *tier accuracy*. Tier tags must be confirmed against the AQA columns while
    authoring (see the agent brief).
 
@@ -215,7 +215,7 @@ Default to the cheapest tier that earns its keep (`.agents/planning/handoff.md` 
 - **D8 — Figure mechanism.** The wire format is the portable
   `<maths-figure>` custom element (raw HTML, so it survives every renderer).
   Authors write the line-anchored directive `:::figure <slug>`;
-  `engine/textbook/hooks/figures.py` expands it and injects the loader only
+  `engine/src/textbook/hooks/figures.py` expands it and injects the loader only
   into pages that need it. A template-plugin mechanism was rejected: it loads JS
   on every page and aborts the build on any literal `{{ … }}` in prose or maths.
   Evidence: `test/README.md`.
@@ -235,8 +235,8 @@ Default to the cheapest tier that earns its keep (`.agents/planning/handoff.md` 
   ~17px body, 1.65 line-height; serif display + sans body. Implemented in
   `assets/stylesheets/extra.css` and the theme bundles in `themes/`.
 - **D12 — Maths rendering.** Build-time KaTeX 0.19.0 to MathML (no runtime JS,
-  CSS or fonts), via `engine/textbook/js/katex-render.mjs` and
-  `engine/textbook/hooks/maths.py`. `aligned` works; the hook unescapes the
+  CSS or fonts), via `engine/src/textbook/js/katex-render.mjs` and
+  `engine/src/textbook/hooks/maths.py`. `aligned` works; the hook unescapes the
   HTML entities Markdown introduces before rendering.
 - **D13 — OpenDesign** is activated project-scoped (`.mcp.json`,
   `.claude/settings.json`); its design directions are the house style reference.

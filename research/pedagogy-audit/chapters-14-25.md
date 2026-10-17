@@ -704,7 +704,7 @@ same scan and belong in the record.
    **Practise** pages." `16/index.md:41` — "The Learn pages teach each fact.
    Guided problems pages fade support…". The reader-facing name is "Practise
    with help"; `Guided problems` is not in `INTERNAL_PHRASES` in
-   `engine/textbook/lint.py:85-91`, so the linter does not flag it.
+   `engine/src/textbook/lint.py:85-91`, so the linter does not flag it.
 
 3. **Checkpoint heading drift.** Chapters 14–17 and 19–25 use `## Progress
    check`; Chapter 18 uses `### Progress check` (`18.1:75` … `18.6:34`); Chapter

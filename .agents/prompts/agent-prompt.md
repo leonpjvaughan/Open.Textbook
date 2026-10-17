@@ -19,7 +19,7 @@ SCOPE — edit ONLY these paths, nothing else:
 - books/gcse-maths/docs/assets/figures/chCHAPTER-*.js   (slug prefix chCHAPTER-)
 Do NOT touch books/gcse-maths/curriculum.yaml, AGENTS.md, .agents/chapter-brief.md, PROBLEMS.md, research/pedagogy.md,
 .agents/planning/plan.md, .agents/planning/handoff.md, renderers/**, scripts/**, test/**, books/gcse-maths/docs/Glossary/**, or any
-other chapter. Do NOT run `mkdocs build` or `engine/textbook/scaffold.py`; the
+other chapter. Do NOT run `mkdocs build` or `engine/src/textbook/scaffold.py`; the
 orchestrator runs those.
 
 DELIVERABLES — replace every <!-- scaffold:stub --> page in your chapter:

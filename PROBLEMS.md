@@ -4,7 +4,7 @@
 correct in CI, so a wrong worked step cannot ship. The rendered page and the
 verified data must not drift.
 
-**Status.** Working spike: `books/gcse-maths/problems/*.yaml`, `engine/textbook/verify/`, `tests/`. Verified
+**Status.** Working spike: `books/gcse-maths/problems/*.yaml`, `engine/src/textbook/verify/`, `tests/`. Verified
 by `python -m textbook.verify books/gcse-maths/problems/` and `pytest tests/`.
 
 ## The design in one line
@@ -15,7 +15,7 @@ it relates to the next so a machine can check it.
 
 ```
 books/gcse-maths/problems/<chapter>.yaml     # the bank: statement + CAS check + steps
-engine/textbook/verify/               # SymPy boundary, schema, verifier
+engine/src/textbook/verify/               # SymPy boundary, schema, verifier
 tests/test_problem_bank.py  # every bank verifies; planted errors must fail
 ```
 
@@ -29,7 +29,7 @@ problems:
   - id: ch1-order-of-operations        # stable, referenced from pages
     section: "1.4"
     tier: F
-    dfe: [N3]
+    refs: [N3]        # the curriculum outcome this problem delivers
     statement: "Work out $3 + 2 \\times 4$."   # what the reader sees
     check:                                     # independent check of the answer
       kind: evaluate
@@ -84,10 +84,10 @@ an unknown `:::figure` slug. The check-kind → oracle table is the seam below.
 There is no runtime lookup and no client-side problem engine. Injection is a
 **build-time** step:
 
-1. `engine/textbook/hooks/problems.py` runs on the page's markdown.
+1. `engine/src/textbook/hooks/problems.py` runs on the page's markdown.
 2. It finds the line-anchored directive `:::answers <bank>` and reads the YAML
    bank from disk with PyYAML.
-3. `engine/textbook/verify/render.py` turns the selected records into markdown.
+3. `engine/src/textbook/verify/render.py` turns the selected records into markdown.
 4. The maths hook then renders the `$...$` in that markdown to MathML.
 5. The result is static HTML. The browser never fetches the bank.
 
@@ -356,8 +356,8 @@ No page restates a problem or an answer by hand. The page carries two markers:
   Higher-only items);
 - `:::answers <bank>` prints the solutions (or `#<id>,<id>` to select records).
 
-`engine/textbook/hooks/problems.py` expands both, at build time, from the same
-records CI verified, using `engine/textbook/verify/render.py`. The block is emitted as
+`engine/src/textbook/hooks/problems.py` expands both, at build time, from the same
+records CI verified, using `engine/src/textbook/verify/render.py`. The block is emitted as
 markdown with `$...$` maths, so the maths hook renders it to MathML in the same
 pass. The reader therefore sees exactly what `python -m textbook.verify` proved, and
 the page and the proof cannot drift.
@@ -399,10 +399,10 @@ form: `£`, `p` and `%` belong in `statement`, not in the expression.
 
 | Check kind | Oracle | Module |
 |---|---|---|
-| `all`, `evaluate`, `solve`, `compare`, `rounded`, `between`, `apply`, `statistic`, `system`, `inequality`, `vector`, `ode`, `approx`, `distribution`, `hypothesis`, `correlation`, `regression` | `sympy` | `engine/textbook/verify/oracles/sympy.py` |
-| `dimensions`, `convert`, `sigfigs`, `uncertainty`, `resolve`, `gradient`, `intercept`, `area`, `structured` | `units` | `engine/textbook/verify/oracles/units.py` |
+| `all`, `evaluate`, `solve`, `compare`, `rounded`, `between`, `apply`, `statistic`, `system`, `inequality`, `vector`, `ode`, `approx`, `distribution`, `hypothesis`, `correlation`, `regression` | `sympy` | `engine/src/textbook/verify/oracles/sympy.py` |
+| `dimensions`, `convert`, `sigfigs`, `uncertainty`, `resolve`, `gradient`, `intercept`, `area`, `structured` | `units` | `engine/src/textbook/verify/oracles/units.py` |
 
-The table is `engine/textbook/verify/oracles/__init__.py → KIND_ORACLE`, and
+The table is `engine/src/textbook/verify/oracles/__init__.py → KIND_ORACLE`, and
 `tests/test_verify_oracles.py` pins it. A new kind is added to an oracle module
 and to that table together, and the loader fails loudly if they disagree. Adding
 a subject's oracle is a new module and its name in `ORACLE_MODULES`; the loader,
@@ -433,10 +433,10 @@ record that must fail.
 
 ## Modularity
 
-- **One CAS boundary.** All SymPy use is in `engine/textbook/verify/cas.py`. Swapping to
+- **One CAS boundary.** All SymPy use is in `engine/src/textbook/verify/cas.py`. Swapping to
   SymEngine (speed) or to a JS CAS for client-side marking touches one module.
 - **One dispatch point, one owner per kind.** `check.kind` is dispatched by the
-  registry in `engine/textbook/verify/oracles/`; `step_relation` is looked up in
+  registry in `engine/src/textbook/verify/oracles/`; `step_relation` is looked up in
   one function in `verify.py`. A new check kind is additive: a handler in its
   oracle module and a row in the registry's `KIND_ORACLE`, pinned by
   `tests/test_verify_oracles.py`.

@@ -9,8 +9,11 @@ and Toolchain still apply. This file adds what is common to every book, and it
 now owns the **Tiers**, **Generated files**, **Content**, **Problem bank** and
 **booklet data** traps that used to sit in the root's `## Watch out for`.
 
-The nearest file wins. For the first book, `books/gcse-maths/AGENTS.md` extends
-this one with its exam boards, its tier axis and its subject pitfalls.
+The nearest file wins, and **every book has one** — nine of them, each carrying that
+book's boards, its level axis, its assessment and the pitfalls particular to it. A book
+without a file of its own inherits only the root and this one, and the things that make it
+different are then nowhere: `tests/test_agent_context.py` fails when one is missing, and
+that is how the four Irish books and `proofs` were found to have been written without one.
 
 ## What lives in a book
 
@@ -128,7 +131,7 @@ The widget that renders it is shared; see `assets/AGENTS.md`.
   OCR 2026 sheets were checked directly, and Edexcel follows the same set.
 - The page's answer blocks come from the bank. Write `:::answers <bank>` (or
   `:::answers <bank>#<id>`) instead of hand-writing answers, so the reader sees
-  exactly what CI verified. `engine/textbook/verify/render.py` builds the block.
+  exactly what CI verified. `engine/src/textbook/verify/render.py` builds the block.
 
 ## Maths
 

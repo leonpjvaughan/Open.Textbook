@@ -19,14 +19,14 @@ reads them from `.claude/skills/`, projected with the
 
 | If you are… | Read | Load |
 |---|---|---|
-| Writing or revising a chapter | `books/gcse-maths/AGENTS.md`, `.agents/chapter-brief.md` | `.agents/skills/author-textbook-chapter/SKILL.md` |
-| Editing book content | `books/AGENTS.md`, `books/gcse-maths/AGENTS.md` | `.agents/skills/write-textbook-prose/SKILL.md` |
-| Writing a problem bank | `books/AGENTS.md`, `PROBLEMS.md`, `books/gcse-maths/AGENTS.md` | `.agents/skills/build-practice-set/SKILL.md` |
+| Writing or revising a chapter | `books/<id>/AGENTS.md`, `books/AGENTS.md`, `.agents/chapter-brief.md` | `.agents/skills/author-textbook-chapter/SKILL.md` |
+| Editing book content | `books/AGENTS.md`, `books/<id>/AGENTS.md` | `.agents/skills/write-textbook-prose/SKILL.md` |
+| Writing a problem bank | `books/AGENTS.md`, `PROBLEMS.md`, `books/<id>/AGENTS.md` | `.agents/skills/build-practice-set/SKILL.md` |
 | Building a figure | `assets/AGENTS.md`, `ideas.md`, `books/AGENTS.md` | `.agents/skills/build-guided-figure/SKILL.md` |
 | Editing a booklet | `books/AGENTS.md`, `BOOKLETS.md`, `assets/AGENTS.md` | — |
 | Changing the shell or the renderer | `engine/AGENTS.md`, `SHAPE.md` | — |
 | Theming and CSS | `assets/AGENTS.md`, `themes/`, this file | — |
-| Verification and the test suite | `tests/AGENTS.md`, `scripts/AGENTS.md`, `scripts/check.sh` | `.agents/skills/verify-textbook-change/SKILL.md` |
+| Verification and the test suite | `tests/AGENTS.md`, `scripts/AGENTS.md`, `tools/AGENTS.md`, `scripts/check.sh` | `.agents/skills/verify-textbook-change/SKILL.md` |
 | The deploy and DNS | `deploy/AGENTS.md`, `DEPLOY.md`, `.github/AGENTS.md` | — |
 | The research corpus | `research/AGENTS.md`, `research/pedagogy.md` | — |
 | Adding a book | `SHAPE.md`, `books/AGENTS.md`, `collection.yaml` | — |
@@ -144,10 +144,12 @@ invariant, reader preferences and adding or previewing a bundle are in
 `assets/AGENTS.md`.
 
 **Figures are drawn through `assets/figures/kit.js` and may not choose a number.**
-`SIZE`, `label()` and `scale()` are the three rules; they are checked in CI and they
-exist because fourteen font sizes and 107 hand-written text elements were in use across
-177 modules. The rules and the measurements are in `assets/AGENTS.md`, and
-`research/design/reuse-audit.md` has the evidence.
+`SIZE`, `label()`, `scale()` and the marks are the rules; they are checked in CI and they
+exist because fourteen font sizes were in use across 213 modules, and **136 of them still
+hand-write a `<text>`** instead of calling `label()`. `assets/figures/` is also the
+**shared figure library** — a module there is mountable by its filename in every book.
+The rules and the measurements are in `assets/AGENTS.md`, the evidence in
+`research/design/reuse-audit.md`, and the queue of what to add next in `ideas.md`.
 
 **The four Irish books are complete.** All 71 chapters are authored end to end — 429
 sections, every page, and every glossary and home page — so
@@ -178,10 +180,12 @@ per-book layout is in `books/AGENTS.md`.
 | `AGENTS.md` | cross-cutting rules, routing and map |
 | `SHAPE.md`, `.agents/planning/plan.md`, `.agents/chapter-brief.md`, `PROBLEMS.md`, `BOOKLETS.md`, `DEPLOY.md`, `DECISIONS.md`, `ideas.md`, `.agents/todo.md`, `collection.yaml`, `wrangler.jsonc` | shape, plan, brief, banks, booklets, deploy, decisions, the interactive-aid queue, queue, collection, Worker |
 | `engine/`, `engine/AGENTS.md`, `assets/`, `assets/AGENTS.md` | the engine and the design system, and their rules |
+| `tools/`, `tools/AGENTS.md` | **the checks and measurements**, one TypeScript package with one entry point |
 | `themes/`, `books/`, `books/AGENTS.md`, `books/gcse-maths/`, `books/gcse-maths/AGENTS.md` | bundles; the books and their rules |
 | `books/a-level-maths/`, `books/a-level-maths/AGENTS.md` | the A-level Mathematics book and its rules |
 | `books/gcse-physics/`, `books/gcse-physics/AGENTS.md`, `books/a-level-physics/`, `books/a-level-physics/AGENTS.md` | the two physics books and their rules |
-| `books/ie-jc-maths/`, `books/ie-lc-maths/`, `books/ie-lc-applied-maths/`, `books/ie-lc-physics/` | the four Irish books |
+| `books/ie-jc-maths/`, `books/ie-jc-maths/AGENTS.md`, `books/ie-lc-maths/`, `books/ie-lc-maths/AGENTS.md`, `books/ie-lc-applied-maths/`, `books/ie-lc-applied-maths/AGENTS.md`, `books/ie-lc-physics/`, `books/ie-lc-physics/AGENTS.md` | the four Irish books and their rules |
+| `books/proofs/`, `books/proofs/AGENTS.md` | the reference book of proofs |
 | `research/`, `research/AGENTS.md`, `scripts/`, `scripts/AGENTS.md`, `tests/`, `tests/AGENTS.md`, `test/`, `deploy/`, `deploy/AGENTS.md`, `.github/`, `.github/AGENTS.md`, `.claude/`, `.serena/` | corpus, scripts, tests, deploy, CI |
 | `.agents/`, `.agents/skills/`, `.agents/prompts/`, `.agents/planning/` | agent context: the portable skills; the chapter and review prompts the launch scripts feed to sub-agents; the dated planning record; `.agents/todo.md`; `.agents/chapter-brief.md` |
 
@@ -219,6 +223,13 @@ while read -r -a b; do python -m textbook.pipeline "${b[@]}"; done \
     < <(python -m textbook.plan --configs)   # both profiles, strict, no broken links
 grep -rl 'math-error' site --include='*.html'   # must print nothing
 pytest tests/ -q
+node tools/build.mjs                            # compile the kit and the tools
+node tools/dist/cli.js help                     # every check and measurement
+node tools/dist/cli.js kit-pure                 # the kit's drawing and formatting layers
+node tools/dist/cli.js types                    # the type ratchet (target 0)
+node tools/dist/cli.js kit site                 # the kit's DOM contract, on a build
+node tools/dist/cli.js audit site --mobile      # every figure at 390px; none below 9px
+scripts/preview-themes.sh   # 6 bundles x 2 schemes x 3 routes, and both figure audits
 scripts/check.sh            # everything CI enforces, in one call
 python -m textbook.plan --generated   # files a drift check should diff
 scripts/deploy.sh           # build, guard, deploy (see DEPLOY.md)

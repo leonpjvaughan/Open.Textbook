@@ -15,14 +15,14 @@ shared; the curriculum, the content and the verification data are per book.**
 
 | Layer | Lives in | Shared? |
 |---|---|---|
-| Engine (hooks, pipeline, scaffold, lint, booklet build, verifier, portal) | `engine/textbook/` | shared |
+| Engine (hooks, pipeline, scaffold, lint, booklet build, verifier, portal) | `engine/src/textbook/` | shared |
 | Design system and runtime widgets (CSS, figure loader, booklet widget) | `assets/` | shared |
 | Theme bundles: the core themes a reader chooses between | `themes/` | shared |
 | Evidence base and primary sources | `research/` | shared, with per-book folders |
 | Design exploration (not published) | `research/design/`, `themes/` | shared; bundles are published, the mocks are not |
-| Curriculum, chapter plan, tier refs | `books/<id>/books/gcse-maths/curriculum.yaml` | per book |
+| Curriculum, chapter plan, tier refs | `books/<id>/curriculum.yaml` | per book |
 | Content pages | `books/<id>/docs/` | per book |
-| Problem banks | `books/<id>/books/gcse-maths/problems/` | per book |
+| Problem banks | `books/<id>/problems/` | per book |
 | Formulae booklet data | `books/<id>/booklet/` | per book |
 | Provenance manifest for the curriculum claims | `books/<id>/sources.yaml` | per book |
 | Subject tint and per-book style overrides | `books/<id>/docs/assets/stylesheets/` | per book |
@@ -32,11 +32,16 @@ repo/
 ├── AGENTS.md                 # global authoring conventions, voice, watch-outs
 ├── SHAPE.md                  # this file
 ├── collection.yaml           # collection title and deployment base URL
-├── engine/textbook/          # the shared engine (installable package)
-├── assets/                   # shared design system and runtime widgets
+├── engine/                   # the build, as a uv workspace member
+│   ├── pyproject.toml        #   its own package metadata (hatchling)
+│   └── src/textbook/         #   the shared engine, in a src layout
+├── assets/                   # the shared design system and the runtime widgets
+│   └── figures/              #   the kit (compiled) and the shared figure library
+│       └── src/              #   the kit's TypeScript source
+├── tools/                    # the checks and measurements, as one TypeScript package
 ├── research/                 # pedagogy, notes, fetched sources
 ├── books/<id>/               # one self-contained book
-├── scripts/                  # thin developer entry points
+├── scripts/                  # shell entry points; they orchestrate, they do not compute
 ├── tests/                    # engine and content tests
 └── .github/workflows/        # CI, one matrix over book × profile
 ```
@@ -87,16 +92,28 @@ Two consequences worth knowing:
 
   The shape is the one Hugo calls a directory *mount* and Eleventy calls
   *passthrough copy*: say what is shared, let the tool place it.
-- **Shared hooks** live in `engine/textbook/hooks/` and are composed in one
-  place. `engine/textbook/hooks/__init__.py` states the order, and the pipeline
+- **A shared directory** is declared in `scaffold.SHARED_DIRS` and copied
+  recursively. The figure kit is one: `kit.js` is a barrel over `kit/*.js`, and a
+  list of files would have to be edited whenever a layer is added — a layer missed
+  that way breaks every figure in every book at runtime, where the build's link
+  check cannot see it.
+- **The shared figure library is `assets/figures/`.** A figure module there is
+  mountable by its filename in **every** book, because a figure is mounted by bare
+  slug and the build copies the library flat into each book's figures directory. A
+  book may not define its own module with the same name; the build fails and says
+  so. This is for a **generic tool** — the same set diagram, the same number line,
+  the same slope field — not for a topic two syllabi treat differently, which is
+  usually two figures rather than one.
+- **Shared hooks** live in `engine/src/textbook/hooks/` and are composed in one
+  place. `engine/src/textbook/hooks/__init__.py` states the order, and the pipeline
   reads the same order from `pipeline.MARKDOWN_HOOKS`; a test pins the two
   together.
 
 ## The landing page
 
-`engine/textbook/portal.py` generates `site/index.html` from every
+`engine/src/textbook/portal.py` generates `site/index.html` from every
 `books/*/book.yaml` plus `collection.yaml`. The template is
-`engine/textbook/templates/portal.html`, and the generated page is covered by
+`engine/src/textbook/templates/portal.html`, and the generated page is covered by
 the CI drift check like every other generated file.
 
 **Cards are grouped by qualification.** Each card carries the book's title,
@@ -220,11 +237,11 @@ by the landing page:
 | `textbooks:theme` | a bundle id | which reading experience |
 
 The pipeline applies both before the first paint: an inline script at the top of
-`engine/textbook/templates/page.html` reads the two keys and sets `data-theme` and
+`engine/src/textbook/templates/page.html` reads the two keys and sets `data-theme` and
 `data-md-color-scheme` on the document, so the right bundle and scheme paint on
 the first frame with no flash. The landing page carries the same script (see
-`engine/textbook/templates/portal.html`), and the reader's Settings control
-(`assets/settings/settings.js`) is the only writer. `engine/textbook/hooks/prefs.py`
+`engine/src/textbook/templates/portal.html`), and the reader's Settings control
+(`assets/settings/settings.js`) is the only writer. `engine/src/textbook/hooks/prefs.py`
 owns the key names.
 
 Neither key is namespaced by path: renaming the repository or moving a book must
@@ -288,7 +305,7 @@ skip leaves open.
 A book that uses a different verification oracle (units and significant figures
 for physics, rather than symbolic equivalence) declares it in
 `book.yaml → oracles`. Adding an oracle is a new module under
-`engine/textbook/verify/oracles/`, registered by check kind — the loader,
+`engine/src/textbook/verify/oracles/`, registered by check kind — the loader,
 relations, renderer and CLI are shared.
 
 ### Booklets are per qualification and subject
@@ -333,7 +350,7 @@ happens, and how to check one.
 Three consequences shape everything else:
 
 - **The host must allow custom response headers.** Workers does, through a
-  `_headers` file in the asset directory, and we ship one: `engine/textbook/
+  `_headers` file in the asset directory, and we ship one: `engine/src/textbook/
   headers.py` is emitted into `site/_headers` for the content security policy
   and the baseline headers. It deliberately sets **no** `Cache-Control`.
   Workers' default for static assets is `Cache-Control: public, max-age=0,
@@ -355,7 +372,7 @@ pipeline build per book profile beside them. A Worker whose static assets are th
 directory therefore serves the whole collection from one place, and the service
 worker's scope will be the whole site without needing a header at all.
 
-**The bespoke renderer is the site.** `engine/textbook/pipeline.py` renders a book
+**The bespoke renderer is the site.** `engine/src/textbook/pipeline.py` renders a book
 to static HTML — nav, Pagefind search, link checking, a sitemap and a 404 per
 profile — and it is the only renderer. It is the one we control: no third-party
 theming to be rewritten under us, no plugin system to lose, no licence notice, and

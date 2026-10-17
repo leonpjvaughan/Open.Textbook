@@ -512,7 +512,7 @@ Not defects; recorded so the decision is explicit.
    the children are the content it is blocking (B7); elsewhere the accessible name
    carries the numbers, or the live readout does.
 7. **`assets/figures/figures.js` is duplicated into six files**, but by the
-   pipeline rather than by hand (`engine/textbook/pipeline.py:548`), so it is one
+   pipeline rather than by hand (`engine/src/textbook/pipeline.py:548`), so it is one
    source. No action.
 
 ## What I checked and found clean

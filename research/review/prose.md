@@ -1,7 +1,7 @@
 # Review — reader-facing prose
 
 A review of the reader-facing prose in the collection: the five books, the
-proof book, and the prose in `engine/textbook/templates/*.html`. **Nothing was
+proof book, and the prose in `engine/src/textbook/templates/*.html`. **Nothing was
 changed.** This file is the only artifact created.
 
 Commands run (the mission forbade `scripts/check.sh`):
@@ -10,7 +10,7 @@ Commands run (the mission forbade `scripts/check.sh`):
 uv run python -m textbook.lint                                    # voice lint
 uv run python .agents/skills/verify-textbook-change/scripts/textbook-audit.py   # pedagogy audit
 uv run python .agents/skills/verify-textbook-change/scripts/textbook-audit.py --strict
-# plus targeted reading/grep over books/*/docs/**, books/proofs/docs/**, engine/textbook/templates
+# plus targeted reading/grep over books/*/docs/**, books/proofs/docs/**, engine/src/textbook/templates
 ```
 
 ## Counts by severity
@@ -88,7 +88,7 @@ computer" section. Fix the generator, not the generated file.
 
 ### B2. "Every answer in this book is checked by a computer algebra system" — an overclaim
 
-`books/gcse-maths/docs/index.md:35`; `engine/textbook/templates/portal.html:48-49`;
+`books/gcse-maths/docs/index.md:35`; `engine/src/textbook/templates/portal.html:48-49`;
 `collection.yaml:9`
 
 > "Every answer in this book is checked by a computer algebra system when the
@@ -215,7 +215,7 @@ Chapter 1's page says: "Work through these on your own… Questions marked **H**
 are for Higher tier. Both the questions and the answers below come from a set
 that is checked by computer every time the book is built." Chapter 4's page goes
 straight from the heading to `:::problems`. The engine does render the `**H**`
-marker (`engine/textbook/verify/render.py:127`), but on these pages nothing tells
+marker (`engine/src/textbook/verify/render.py:127`), but on these pages nothing tells
 the reader what it means. 44 of the 59 have the heading; 15 have neither heading
 nor sentence (B6).
 
@@ -362,7 +362,7 @@ sport."
 
 ### W11. The proof label reads two different ways
 
-`books/proofs/docs/index.md:41` versus `engine/textbook/proofs.py:39`
+`books/proofs/docs/index.md:41` versus `engine/src/textbook/proofs.py:39`
 
 The proof book says a proof out of course "carries a **Beyond the course**
 note"; the badge the reader actually sees is `BEYOND_LABEL = "Beyond your
@@ -503,7 +503,7 @@ Saying so, because the brief asks for it rather than for volume:
   reasoned answer. It is not the kind of claim a computer can check" sentence
   (e.g. `books/gcse-physics/docs/Chapter 1/Review/index.md:74`) is exactly the
   honesty the collection's own rules ask for, and it is used consistently.
-- **`engine/textbook/templates/page.html`.** The reader-facing strings ("Skip to
+- **`engine/src/textbook/templates/page.html`.** The reader-facing strings ("Skip to
   content", "Search this book", "All books", "Search is unavailable.") are
   plain, short and correct. The only template problem is the portal footer
   (B2).

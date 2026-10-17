@@ -17,7 +17,7 @@ This skill turns those rules into a procedure. Where they disagree, they win.
 Work inside one chapter only:
 
 - `books/<id>/curriculum.yaml` — read the chapter entry. It holds the sections
-  with their `tier` and `dfe` refs, plus the chapter's `anchor`, `application`,
+  with their `tier` and `refs:`, plus the chapter's `anchor`, `application`,
   `relevance_prompt` and `tools`. This is the source of truth for what to teach.
 - `books/<id>/docs/Chapter <n>/` — the opener, the sections, the Review.
 - The glossary strand page the chapter's new terms belong to.
@@ -80,7 +80,7 @@ reader meets one ritual:
 of reasoning per line of algebra → at least one `> **Watch out.**` misconception
 callout that states the error, shows the contrast, and re-explains with a check →
 at most one guided figure (`build-guided-figure`) → `## You should now be able
-to`. Record the `dfe` items this page delivers in its front matter, and cover
+to`. Record the `refs:` items this page delivers in its front matter, and cover
 each with a worked example.
 
 **Practise with help.** `## Warm-up: remember` first (see `build-practice-set`),
@@ -99,7 +99,7 @@ prompt.
 
 ## Step 3 — Keep the chapter coherent
 
-- **Coverage.** Every `dfe` item in the chapter's list appears in at least one
+- **Coverage.** Every `refs:` item in the chapter's list appears in at least one
   Learn page and one practice page. Grep the refs and show the result.
 - **Tier.** Check each `F`/`H` against the book's tier columns (GCSE Maths: the
   AQA 8300 columns). Do not invent a tag. A plain link from an `F` page to an
@@ -123,7 +123,7 @@ literal output — never an assertion of success.
 
 Stop and hand back with evidence if:
 
-- a `dfe` item cannot be taught honestly at the section granularity given;
+- a `refs:` item cannot be taught honestly at the section granularity given;
 - the figure hook or bank marker you were told to use does not exist or does not
   work;
 - a tier tag conflicts with the board's columns;
