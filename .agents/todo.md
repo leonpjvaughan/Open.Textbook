@@ -38,6 +38,44 @@ closed by being removed; both are closed by being **done**.
 - [x] 25. An iOS home-screen icon (`apple-touch-icon`) — shipped, with the drift guarded
 - [x] 26. Declare the ready state — published 2026-10-11, release 26.284.0
 
+Items 27 onward were added after this list was written and had no line here, so the
+file could not answer "what is left?" without reading every section. They are listed
+now, and the four marked open are the ones verified open on 2026-10-17.
+
+- [x] 27. A-level Mathematics — scaffolded; booklet and verifier outstanding
+- [x] 28. GCSE Physics — research done, book not started
+- [x] 29. A-level Physics — research done, book not started
+- [x] 30. A physics oracle — **done, and in use**
+- [x] 31. A book's `AGENTS.md` could shadow its parent's
+- [x] 32. A-level Mathematics formulae booklet
+- [x] 33. The colophon's attribution links were hard-coded to GCSE
+- [x] 34. The scaffold did not create `problems/` for a new book
+- [x] 35. Edexcel's current physics equations/inserts were not retrieved
+- [x] 36. The A-level physics booklet transcribes the core only
+- [x] 37. `kilogram` was reported as a US spelling, and the fix was a no-op
+- [x] 38. A bank record whose check renders no answer
+- [x] 39. `uncertainty: add-percentages` could not model a quotient
+- [x] 40. A new figure module failed the runtime-LaTeX check
+- [x] 41. `dimensions` could not check a magnitude needing a square root
+- [x] 42. The internal-words lint flagged the literal phrase "the bank"
+- [x] 43. A-level Mathematics Chapter 6 was missing, and the plan thought it was built
+- [ ] 44. An equations-coverage check needs a declaration the banks do not carry
+- [ ] 45. The remaining undeclared records, book by book
+- [x] 46. Every figure, measured — and the two defects it found
+- [x] 47. "Prove it to me" — a proof behind every unproved claim
+- [x] 48. Eleven converted GCSE Physics figures gained a slider value display the page never had
+- [x] 49. The figure-kit phone-floor guard measured the wrong box, and passed a size that is too small
+- [ ] 50. `evaluate` cannot check a `solve()` result, so a roots answer must be checked root by root
+- [x] 51. The published Irish books serve 2,741 pages that say "Stub"
+- [x] 52. A euro sign inside maths renders as nothing, and KaTeX only warns
+- [x] 53. An unquoted title with a colon is invalid YAML, and one shipped
+- [ ] 54. `textbook.verify` stops at the first bank that will not parse, and a short run looks like a clean one
+- [x] 55. The home page listed "Higher only" as a tier
+- [x] 56. The figure panel's tint was spending the contrast margin
+- [ ] 57. The browser runtime has no types, and `tsc` reports 163 errors
+- [x] 58. Thirteen loose scripts, five copies of the same browser plumbing
+- [x] 59. The figure gaps in four books
+
 ---
 
 ## 1. Theme menu — reader settings in the header
@@ -1556,7 +1594,7 @@ deployed, and verified against the live site rather than locally.
 
 ---
 
-## 27. A-level Mathematics — scaffolded; booklet and verifier outstanding
+## 27. A-level Mathematics — scaffolded; booklet and verifier outstanding — **done**
 
 `research/curriculum/` holds the picture: the DfE subject content
 (`DFE-00706-2014`), how AQA 7357, Edexcel 9MA0 and OCR H240 split the subject
@@ -1608,7 +1646,7 @@ enough that every bank CI can check passes.
 
 ---
 
-## 28. GCSE Physics — research done, book not started
+## 28. GCSE Physics — research done, book not started — **done**
 
 `research/curriculum/physics.md` covers AQA 8463, Edexcel 1PH0 and OCR
 J249/J259, the required practicals, the tier story and the maths-mark
@@ -1651,7 +1689,7 @@ yet, so the units oracle is unused until the content pass.
 
 ---
 
-## 29. A-level Physics — research done, book not started
+## 29. A-level Physics — research done, book not started — **done**
 
 AQA 7408, Edexcel 9PH0 and OCR H556, with the practical endorsement and the
 data-and-formulae provision. Worth knowing before the booklet is built: OCR's
@@ -1676,6 +1714,14 @@ board-specific option-topic formulae are item 36, and Edexcel's printed insert w
 not retrieved (item 35). No physics bank yet, so the units oracle is unused.
 
 ---
+
+**Closed 2026-10-17, verified rather than assumed.** All three books are written:
+`a-level-maths` 16 chapters and 324 sections, `gcse-physics` 10 and 111,
+`a-level-physics` 9 and 90, with **0 `scaffold:stub` markers** in any of them and
+119, 57 and 48 problem banks. What the headings described was true when they were
+written and stopped being true without anyone editing them — which is the failure
+mode a queue has: an item is closed by finishing the work, and nobody goes back to
+the line that announced it.
 
 ## 30. A physics oracle — **done, and in use**
 
@@ -2843,9 +2889,15 @@ be present, and a test fails on an omission so that "deliberately in no course" 
 - The inventory of asserted-without-proof facts exists, and each one is either
   written or recorded as deliberately not.
 
-## 48. Eleven converted GCSE Physics figures gained a slider value display the page never had
+## 48. Eleven converted GCSE Physics figures gained a slider value display the page never had — **done**
 
-**What is wrong.** The shared kit's `slider()` emits a value `<output>` unless it
+**Closed 2026-10-17, re-measured.** 34 modules in `gcse-physics` call `slider()`, and
+**0 of them are silent** — every call states `show: true` or `show: false`. The
+test added because of this (`test_every_slider_says_whether_it_shows_its_value`)
+is what keeps it closed, and it now parses the call by balancing parentheses
+rather than by a pattern a nested call can defeat.
+
+**What was wrong.** The shared kit's `slider()` emits a value `<output>` unless it
 is told `show: false`. Eleven of the twelve GCSE Physics modules converted in the
 round before that option existed call `slider(...)` with no `show: false`, so each
 now prints a number beside its slider that the original module did not display.
@@ -3177,7 +3229,7 @@ two drifting apart.
 
 ---
 
-## 57. The browser runtime has no types, and `tsc` reports 163 errors
+## 57. The browser runtime has no types, and `tsc` reports 351 errors
 
 **What is wrong.** Every line the reader's browser runs — the figure kit, the loader, the
 settings panel, the booklet widget, the service worker — is JavaScript with no type
