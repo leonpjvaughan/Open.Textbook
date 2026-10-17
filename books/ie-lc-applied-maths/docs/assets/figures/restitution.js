@@ -45,7 +45,7 @@ function flight(e) {
 }
 
 export function mount(el) {
-  const { svg, readout } = panel(el, {
+  const { svg, readout, claim } = panel(el, {
     label: "A ball bouncing on the floor, with each rebound lower than the one before",
     description:
       "A ball is released from a height of 2 metres and bounces on the floor. A slider " +
@@ -132,6 +132,13 @@ export function mount(el) {
     svg.innerHTML = drawing;
 
     const heights = [0, 1, 2, 3, 4].map((n) => DROP * Math.pow(e, 2 * n));
+    // The square root is why this is declared and not parsed: a text checker needed a
+    // `√` case, and then a case for anything else a figure might write. The verifier
+    // reads the Python expression, so `sqrt` was always there.
+    claim([
+      { label: "coefficient of restitution", expression: "sqrt(first / DROP)", values: { first, DROP }, answer: e, shown: fmt(e, 2) },
+      { label: "rebound speed", expression: "e * approach", values: { e, approach }, answer: rebound, shown: fmt(rebound, 2) },
+    ]);
     readout.textContent =
       `The ball is released from ${fmt(DROP, 1)} m and hits the floor at ` +
       `${fmt(approach, 2)} m/s. It leaves at ${fmt(rebound, 2)} m/s and rises to ` +

@@ -15,7 +15,7 @@ const WIDTH = 440;
 const BAR = 58;
 
 export function mount(el) {
-  const { svg, readout } = panel(el, {
+  const { svg, readout, claim } = panel(el, {
     label: "A bar for a total amount, cut into equal parts and shared in a ratio between two people",
     description:
       "The bar is the whole amount, cut into as many equal parts as the ratio has in total. The first " +
@@ -90,17 +90,33 @@ export function mount(el) {
     svg.innerHTML = drawing;
 
     const r2 = (value) => fmt(value, 2);
-    const exactShares = Number.isInteger(each * a) && Number.isInteger(each * b);
+    // The two shares are the arithmetic this figure states, so they are declared. In the
+    // exact case the printed equation is `a × each`; otherwise it is computed from the
+    // total, because a rounded `each` multiplied back up is the defect this replaced.
+    const shareClaims = exact
+      ? [
+          { label: "first share", expression: "a * each", values: { a, each }, answer: each * a, shown: String(each * a) },
+          { label: "second share", expression: "b * each", values: { b, each }, answer: each * b, shown: String(each * b) },
+        ]
+      : [
+          { label: "first share", expression: "amount * a / parts", values: { amount, a, parts }, answer: each * a, shown: r2(each * a) },
+          { label: "second share", expression: "amount * b / parts", values: { amount, b, parts }, answer: each * b, shown: r2(each * b) },
+        ];
+    claim(shareClaims);
     // Rounding two shares can leave the check a penny short, so the sentence says
     // which of the two it is rather than asserting a sum that may not hold.
-    const checkAddsUp = Math.abs(each * a + each * b - amount) < 1e-9 &&
+    const checkAddsUp =
       Math.abs(Number(r2(each * a)) + Number(r2(each * b)) - amount) < 0.005;
     readout.textContent =
       `${fmt(amount, 0)} is divided in the ratio ${a}:${b}. Add the parts: ${a} + ${b} = ${parts}. ` +
       `One part is ${fmt(amount, 0)} \u00f7 ${parts}${exact ? ` = ${fmt(each, 0)}` : `, which is ${r2(each)} to 2 decimal places`}. ` +
-      (exactShares
-        ? `The shares are ${a} \u00d7 ${fmt(each, 0)} = ${fmt(each * a, 0)} and ${b} \u00d7 ${fmt(each, 0)} = ${fmt(each * b, 0)}. `
-        : `The first share is ${a} parts and the second is ${b} parts, which are ${r2(each * a)} and ${r2(each * b)} to 2 decimal places. `) +
+      // Only an exact one-part value can be multiplied back up in print. When it is not,
+      // the share is computed from the total, so the equation printed is one that holds:
+      // `100 \u00d7 3 \u00f7 7 = 42.86`, not `3 \u00d7 14.29 = 42.86` with 14.29 rounded.
+      (exact
+        ? `The shares are ${a} \u00d7 ${each} = ${each * a} and ${b} \u00d7 ${each} = ${each * b}. `
+        : `The shares are ${fmt(amount, 0)} \u00d7 ${a} \u00f7 ${parts} = ${r2(each * a)} and ` +
+          `${fmt(amount, 0)} \u00d7 ${b} \u00f7 ${parts} = ${r2(each * b)}, both to 2 decimal places. `) +
       `Check: ${r2(each * a)} + ${r2(each * b)} = ${r2(each * a + each * b)}${checkAddsUp ? ", which is the total" : ", which is the total before rounding"}.`;
   }
 

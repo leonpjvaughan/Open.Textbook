@@ -1,5 +1,65 @@
 # Decisions
 
+## 2026-10-17 — An assertion is data; display is free
+
+**The problem.** Two figures printed a multiplication that does not give the number
+beside it: `interest-growth` printed `× 0.07` for a rate of 6.5%, and `ratio-share`
+printed `3 × 14.29 = 42.86` from an already-rounded 14.29. Structure, colour,
+contrast, legibility and the kit's DOM contract all passed, because none of them
+reads a number.
+
+**The first attempt was wrong, and the way it was wrong is the point.** It parsed
+the printed sentence back out of the text. To read *some* of it, that checker needed
+`<sup>` for an exponent, `√` for a square root, `%`, thousands separators, a
+trailing sentence period, and the words "and"/"is" — and after all that it could
+read **43%** of the statements it saw, of which four were arithmetic. Every new
+formatting choice was a new case, and every new figure was a new chance to be
+silently unreadable.
+
+**The decision.** An assertion lives in data and is decided by a computer algebra;
+display is free to be whatever a reader needs. This is not new: the problem banks
+have always done it — `expression`, `values`, `answer`, proved by `sympy` at build
+time — and the figures were the only place that broke the rule by writing an
+assertion into a formatted string.
+
+So a figure **declares** what it asserts:
+
+```js
+claim([
+  { label: "compound total", expression: "P * (1 + r) ** t",
+    values: { P, r, t }, answer: compoundTotal, shown: money(compoundTotal) },
+]);
+```
+
+and `python -m textbook.working` proves two things per claim:
+
+1. the expression, evaluated at the stated values, **is** the answer;
+2. the string shown **is** that answer at the precision it prints, and the readout
+   actually contains it.
+
+`expression` is Python syntax, because the verifier is SymPy — so `sqrt`, `**`,
+`pi` and everything else are there by construction, and no notation table exists.
+`cas._rationalize` turns `0.065` into `13/200`, so a comparison is exact and there is
+no floating-point tolerance to tune.
+
+**What this catches, measured.** Reintroducing the original defect — printing
+`fmt(r, 2)` while claiming `fmt(r, 3)` — fails with *"claims to show '0.065', but the
+readout does not contain it"*. Claiming an intermediate as well as a total is what
+makes a rounded print a failure rather than a styling choice.
+
+**What it does not.** It proves the figures that declare claims. A figure that prints
+arithmetic and declares none is reported by `tools readout` as *undeclared*, not
+passed — so the gap is a count rather than an assumption, which is the same rule the
+booklet-coverage check follows. The migration of the remaining figures is a queue
+item, and a new figure is checked the moment it declares.
+
+**Alternative considered and rejected.** Generating the sentence from the claim, so
+the printed text and the checked number are one object. That is the stronger form,
+but it puts number formatting, units and prose order inside the kit, and every
+readout in the collection would have to be rewritten to say what a reader should see.
+Declaring the claim keeps the prose free and still makes the arithmetic provable.
+
+
 A dated, appendable log of decisions that need to be findable. It is a record,
 not an essay: newest entries at the top, each one short and specific. Anything
 that is work rather than a decision belongs in `.agents/todo.md`.

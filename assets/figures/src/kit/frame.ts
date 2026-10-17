@@ -51,9 +51,10 @@ const HIDDEN = [
  * @param {boolean} [options.drawing] false for a figure that draws nothing.
  * @param {number} [options.max]    `max-width` in pixels for the whole figure.
  * @returns {{root: HTMLElement, svg: SVGSVGElement|null, readout: HTMLElement,
- *   controls: HTMLElement, caption: HTMLElement}} `controls` is the column a module
- *   appends its own controls to; `caption` is an empty `<p>` under the controls for
- *   a line of prose the figure needs to say.
+ *   controls: HTMLElement, caption: HTMLElement, claim: Function}} `controls` is the
+ *   column a module appends its own controls to; `caption` is an empty `<p>` under the
+ *   controls for a line of prose the figure needs to say; `claim` records the
+ *   arithmetic the figure states (see below).
  */
 export function panel(el, options = {}) {
   const {
@@ -133,7 +134,52 @@ export function panel(el, options = {}) {
 
   root.append(controls, readout, caption);
   el.replaceChildren(root);
-  return { root, svg, readout, controls, caption };
+
+  /**
+   * Record the arithmetic this figure states, as data rather than prose.
+   *
+   * **Why this exists, and why it is not a parser.** Two figures printed a
+   * multiplication that does not give the number beside it — `× 0.07` for a rate of
+   * 6.5%, and `3 × 14.29 = 42.86` from an already-rounded 14.29 — and every check
+   * passed, because none of them reads a number. The first attempt at a check parsed
+   * the printed sentence back out of the text, and that is unbounded work: it needed
+   * `<sup>`, `√`, `%`, thousands separators, a trailing sentence period and the words
+   * "and"/"is" before it could read **43%** of the statements it saw, and only four
+   * of them were arithmetic. Each new formatting choice is a new case.
+   *
+   * So the figure *declares* the claim instead: an expression, the values it was
+   * given, and the answer. The verifier evaluates the expression with the same
+   * computer algebra the problem banks already use, which is exact — `0.065` is
+   * `13/200`, not a float — and needs no notation table at all.
+   *
+   * Call it once per redraw with everything the figure now asserts:
+   *
+   *     claim([
+   *       { label: "compound total", expression: "P * (1 + r)**t",
+   *         values: { P, r, t }, answer: compoundTotal, shown: money(compoundTotal) },
+   *     ]);
+   *
+   * `expression` is Python syntax, because the verifier is SymPy. `shown` is the string
+   * the reader sees, and the check also requires the readout to contain it — so a claim
+   * cannot be about a number the figure never printed.
+   *
+   * @param {object[]} entries the claims for the current render, replacing the last
+   */
+  const claim = (entries) => {
+    const clean = (entries || []).map((entry) => ({
+      label: String(entry.label ?? ""),
+      expression: String(entry.expression ?? ""),
+      values: entry.values || {},
+      answer: entry.answer === undefined ? null : entry.answer,
+      shown: entry.shown === undefined ? null : String(entry.shown),
+    }));
+    // A data attribute rather than a global: it is on the figure, it survives a clone,
+    // and Playwright can read it without the page agreeing to expose anything.
+    if (clean.length) el.setAttribute("data-working", JSON.stringify(clean));
+    else el.removeAttribute("data-working");
+  };
+
+  return { root, svg, readout, controls, caption, claim };
 }
 
 /**

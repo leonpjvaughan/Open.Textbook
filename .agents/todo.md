@@ -86,12 +86,13 @@ now, and the four marked open are the ones verified open on 2026-10-17.
 - [x] 58. Thirteen loose scripts, five copies of the same browser plumbing
 - [x] 59. The figure gaps in four books
 - [x] 60. Three Irish books have no booklet, and two of them should
-- [ ] 61. A figure's readout can state false working, and no check looks
+- [ ] 61. A figure's readout can state false working — mechanism done, 117 figures to declare
 - [x] 62. The linter printed its findings and exited 0
 - [x] 63. `test/` sat one letter from `tests/`, and held the last loose script
 - [x] 64. The booklet gap was measured at the top level only
-- [ ] 65. The booklet has no modulus form, and does not define λ
-- [ ] 66. 137 of 250 figure modules hand-write a `<text>` element
+- [x] 65. The booklet has no modulus form, and does not define λ
+- [x] 66. 137 of 250 figure modules hand-write a `<text>` element
+- [ ] 67. Checks that parse prose or enumerate notation, and where else they appear
 
 ---
 
@@ -378,39 +379,74 @@ live for `a-level-physics` (105 items) and `gcse-physics` (101) and absent for t
 
 ---
 
-## 61. A figure's readout can state false working, and no check looks
+## 61. A figure's readout can state false working — **mechanism done, migration open**
 
-**What is wrong.** Two of the fourteen figures added on 2026-10-17 showed a
+**What is wrong.** Two of the fourteen figures added on 2026-10-17 printed a
 calculation that does not produce the number printed beside it, and **every check
-passed**: `tests/test_figures.py` (structure, colours, slider flags), the build's
-math-error scan, `tools audit` (contrast and legibility), `tools kit` (the DOM
-contract). None of them reads a number.
+passed**: `tests/test_figures.py`, the build's math-error scan, `tools audit` and
+`tools kit`. None of them reads a number.
 
 - `interest-growth` printed `€1,500.00 × 0.07 × 4 = €390.00`. The rate is 6.5%, so
-  the multiplier is 0.065; `fmt(r, 2)` rounded it to 0.07 and 1500 × 0.07 × 4 is
-  €420. The total beside it was computed from the exact rate and was right, which
-  is what makes it hard to notice.
-- `ratio-share` printed `3 × 14.29 = 42.86` where 100 ÷ 7 was already rounded to
-  14.29; 3 × 14.29 is 42.87. It triggers on most total/parts combinations.
+  the multiplier is 0.065; `fmt(r, 2)` rounded it to 0.07, and 1500 × 0.07 × 4 is
+  €420.
+- `ratio-share` printed `3 × 14.29 = 42.86` where 100 ÷ 7 was already rounded.
 
-Both were found by a sub-agent driving the figures in a browser and recomputing
-each readout by hand, which is not a check — it is one careful reader, once.
+**The first fix was wrong, and how it was wrong is the lesson.** It parsed the
+printed sentence back out of the text, and by the end it needed `<sup>`, `√`, `%`,
+thousands separators, a trailing sentence period and the words "and"/"is" to read
+**43%** of what it saw. Every new formatting choice was a new case; every new figure
+was a new chance to be silently unreadable.
 
-**The fix.** A figure whose readout states a calculation should carry the numbers
-it claims as data, so a check can recompute them: e.g. the module exports, or the
-readout exposes, the `{ expression, shown }` pairs, and `tools kit` evaluates each
-and compares. That is the same contract `check()` already applies to a reader's
-answer — an expression and an answer that must agree — applied to the figure's own
-working. It is not obviously the right shape for every figure, so the first step
-is to measure how many of the 250 modules print a calculation at all.
+**Done (the mechanism, 2026-10-17).** An assertion is data. `panel()` returns
+`claim`; a figure calls `claim([{ expression, values, answer, shown }])` once per
+redraw; `python -m textbook.working` proves each with the same exact CAS the banks
+use (`cas._rationalize` makes 0.065 `13/200`, so there is no tolerance to tune) and
+requires the readout to contain the claimed string. `tools readout site --verify` is
+in `scripts/preview-themes.sh`. Verified against the defect itself: reintroducing
+`fmt(r, 2)` while claiming `fmt(r, 3)` fails with *"claims to show '0.065', but the
+readout does not contain it"*. Three figures converted — `interest-growth`,
+`ratio-share`, `restitution` — with the `√` case proving no notation table is needed.
+The text heuristic survives only as `--text`, and is documented as a hint.
+
+**What is left.** `tools readout` reports **117 figures that print arithmetic and
+declare no claim**. That number is the migration, not a pass — the same rule the
+booklet-coverage check follows.
 
 **Done means**
 
-- The modules that print a calculation are counted, and the count is recorded.
-- For those that do, a check recomputes the printed result and fails on a
-  mismatch; `interest-growth` at 6.5% and `ratio-share` at 3:4 are fixtures that
-  would have failed before the fix.
-- `tools kit` (or a sibling) fails, not prints, on a readout whose working is false.
+- `node tools/dist/cli.js readout site` reports **0** figures that state arithmetic
+  and declare none.
+- Every remaining figure declares its printed numbers, not only its totals.
+- `--text` is deleted, because nothing depends on the heuristic.
+
+---
+
+## 67. The same shape elsewhere: checks that parse prose or enumerate notation
+
+**Why this is an item.** Item 61 was one instance of a pattern, and the pattern is
+what to fix: a check that re-parses a *rendered* form, or that lists the notations it
+knows, fails on the next thing that is new. Each of these is the same shape, with the
+cost measured where it has been paid.
+
+| Where | What it does | The general form |
+|---|---|---|
+| `tools/src/lib/readout-arithmetic.ts` | parsed printed arithmetic; needed a case per notation and read 43% | **replaced** by `claim` + SymPy (item 61) |
+| `tests/test_verify_coverage.py` → `UNPARSABLE_NOTATION` | a list of eight LaTeX notations the parser cannot read; a ninth kind fails the test | an item declares `symbolic: false` **with a reason**, so the exemption is data and a new notation needs no code |
+| `engine/.../lint.py` → `STYLE_WORDS`, `US_SPELLINGS` | regexes that grew per finding ("meter" needed "an instrument is a meter; only the unit is a metre") | a table of **allowed phrases** read as data, so a false positive is a row, not a regex rewrite |
+| `tests/test_figures.py` → `slider_calls`, `_calls` | balanced-parenthesis scanning of JavaScript; defeated twice by a nested call and a string | a real parser (acorn) over the module's AST — the JS equivalent of asking SymPy instead of parsing the sentence |
+| `assets/figures/src/kit/text.ts` → `fmt`'s `.map` detection | identifies `Array.prototype.map` by its third argument | a typed API (`fmt.map(values)`), so the ambiguity cannot be expressed |
+| `coverage.infer` | shape-matches an expression against booklet items | fine: it is documented as a suggestion and never decides a pass |
+
+**The rule to apply.** A check may branch on *data it was given*; it may not branch on
+the *shape of a rendered thing*. Where a check needs to know something the render
+threw away, the renderer must publish it — as `claim()` does, as `data-figure` does,
+as the banks' `expression`/`values` does.
+
+**Done means**
+
+- The three middle rows are converted, or each is recorded with a reason it must not be.
+- No check in `tools/` or `tests/` contains a list of notations, spellings or formats
+  that a new content change could extend.
 
 ---
 
@@ -470,54 +506,38 @@ a booklet.
 
 ---
 
-## 65. The booklet has no modulus form, and does not define λ
+## 65. The booklet has no modulus form, and does not define λ — **done**
 
-**What is wrong.** `am7-5-modulus-tension` works with `T = λx/L` for the tension in
-an elastic string. The SEC booklet carries `F = −ks`, and Young's modulus
-`E = σ/ε`, but never the modulus form and never a definition of λ. The record
-declares `hookes-law`, which is the nearest supplied item — so the check passes
-while a reader who has not met λ is still asked to know it. Found while declaring
-the Applied Mathematics banks (item 61's pass).
+**What was wrong.** `am7-5-modulus-tension` works with `T = λx/L` for the tension in
+an elastic string. The SEC booklet carries `F = −ks` and Young's modulus `E = σ/ε`,
+but never the modulus form, and the record declares `hookes-law`, which looked like
+the nearest available item rather than the right one. Found while declaring the
+Applied Mathematics banks.
 
-**The fix.** Decide which is true: λ is defined on the page that first uses it
-(then the page carries the definition and the declaration is enough), or the
-booklet gap is real (then the record needs `know`-style treatment, or the page
-must not use the form). Then make the page say it.
+**Resolved: the declaration was right and the premise was wrong.** λ is the
+**modulus of elasticity in newtons**, and `T = λx/L` *is* Hooke's law — the same law
+with `k = λ/L`. The page says so already, in Section 7.5's "The modulus of
+elasticity" heading: it names λ, gives it the unit, calls it a property of the string,
+and states `λ = kL` so that "the two forms are the same law written two ways". A
+reader is given λ in the question ("natural length 0.8 m and modulus 80 N") and the
+page relates it to the form they have met. So there is no content gap, and no
+`know`-style treatment is needed.
 
-**Done means**
-
-- `books/ie-lc-applied-maths/docs/Chapter 7/Section 7.5/` defines λ on first use, or
-  `am7-5-modulus-tension` no longer uses the form.
-- The same question is asked of the other three records the declaration pass
-  flagged as near-misses: the projectile range/time/max-height forms, the drag
-  laws `D = kv` and `D = kv²`, and the elastic energy-loss formula.
-
----
-
----
-
-## 66. 137 of 250 figure modules hand-write a `<text>` element
-
-**What is wrong.** The kit exists so a figure cannot choose a font size or a colour by
-accident: `label()` takes a `SIZE` and applies a `text-*` class, and `fig-*`/`text-*`
-are what make a drawing follow the reader's theme. Measured 2026-10-17: **137 of the
-250 modules write `<text>` by hand**, and while only **3** of those elements carry no
-`class` at all — so the black-on-dark trap the kit was built to close is very nearly
-closed — the hand-written ones also choose their own `font-size` and their own
-positioning, which is the drift `SIZE` was introduced to stop.
-
-**The fix.** Replace each hand-written `<text …>` with `label({ x, y, text, size, class })`.
-It is mechanical, and the tests already check the parts that matter (no literal colour,
-no unclassed text), so the risk is a visual regression rather than a silent defect.
+**The gap that was real was findability.** The booklet's `hookes-law` item carried
+`hooke, spring, extension`, so a reader who searched it for "modulus" — the word the
+page uses — found nothing, or found `youngs-modulus`, which is a different modulus.
+Both booklets now carry `elastic, modulus, lambda, string` on that item, so both
+moduli come back and the one an elastic string uses is among them.
 
 **Done means**
 
-- `grep -c '<text' books/*/docs/assets/figures/*.js assets/figures/*.js` reports 0 outside the kit.
-- Every figure still passes `tools audit site` in both schemes and `tools kit site`.
-- The 137 modules' smallest label at 390px is unchanged or larger (the mobile audit is
-  the measurement, and `scripts/preview-themes.sh` runs it).
-
----
+- [x] The page defines λ on first use and states `λ = kL` — it did.
+- [x] `am7-5-modulus-tension` declares `hookes-law`, and that is the correct item.
+- [x] The booklet's search keywords reach it from "modulus" and "lambda".
+- [x] The near-misses the same pass flagged were checked: the projectile
+  range/time/max-height forms and the drag laws `D = kv`/`D = kv²` are derived
+  in-chapter from supplied suvat items or stated in the question, and the
+  elastic energy-loss formula likewise.
 
 ---
 

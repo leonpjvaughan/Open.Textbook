@@ -14,7 +14,7 @@ const money = (value) =>
   "\u20ac" + value.toFixed(2).replace(/\B(?=(\d{3})+(?!\d))/g, ",");
 
 export function mount(el) {
-  const { svg, readout } = panel(el, {
+  const { svg, readout, claim } = panel(el, {
     label: "Two graphs of a savings total against time, one straight for simple interest and one curving up for compound interest",
     description:
       "The straight line is the total with simple interest, which grows by the same amount every year. " +
@@ -82,6 +82,19 @@ export function mount(el) {
     const simpleInterest = P * r * t;
     const compoundTotal = compound(t);
     const gapAtEnd = compoundTotal - simple(t);
+    // Declared, not parsed. The defect this replaced printed `× 0.07` for a rate of
+    // 6.5%; with the rate as a value, the verifier rationalises it to 13/200 and the
+    // multiplication is decided exactly.
+    claim([
+      { label: "simple interest", expression: "P * r * t", values: { P, r, t }, answer: simpleInterest, shown: money(simpleInterest) },
+      { label: "compound total", expression: "P * (1 + r) ** t", values: { P, r, t }, answer: compoundTotal, shown: money(compoundTotal) },
+      // The two numbers the sentence prints as its *working*. Claiming them is what
+      // makes a rounded intermediate a failure: the verifier requires the readout to
+      // contain the string claimed, so printing `0.07` for a claimed `0.065` fails even
+      // though the total beside it is right. That was the original defect.
+      { label: "rate", expression: "r", values: { r }, answer: r, shown: fmt(r, 3) },
+      { label: "compound multiplier", expression: "1 + r", values: { r }, answer: 1 + r, shown: fmt(1 + r, 3) },
+    ]);
     readout.textContent =
       `${money(P)} at ${fmt(Number(rate.value), 1)}% for ${t} year${t > 1 ? "s" : ""}. ` +
       // Three decimal places, because the rate moves in half percents: `r` is 0.065

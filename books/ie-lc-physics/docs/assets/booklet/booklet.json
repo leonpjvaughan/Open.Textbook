@@ -1056,7 +1056,11 @@
      "keywords": [
       "hooke",
       "spring",
-      "extension"
+      "extension",
+      "elastic",
+      "modulus",
+      "lambda",
+      "string"
      ],
      "mathml": "<math xmlns=\"http://www.w3.org/1998/Math/MathML\"><semantics><mrow><mi>F</mi><mo>=</mo><mo>−</mo><mi>k</mi><mi>s</mi></mrow><annotation encoding=\"application/x-tex\">F = -ks</annotation></semantics></math>"
     },

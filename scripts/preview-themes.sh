@@ -68,6 +68,13 @@ node tools/dist/cli.js audit site --mobile
 # height, so a defect here reaches every converted figure at once.
 node tools/dist/cli.js kit site
 
+# The arithmetic each figure states. Declared as data — an expression, the values it was
+# given, the answer and the string it printed — and decided by the same exact CAS the
+# problem banks use, so no formatting choice can break the check. `claim()` is new, so
+# the command reports how many figures print arithmetic and declare none; those are the
+# migration, not a pass.
+node tools/dist/cli.js readout site --verify
+
 # The matrix, 6 bundles x 2 schemes x 3 routes = 36 pages. Adding a book means
 # adding its landing route and one of its chapter routes here.
 exec node tools/dist/cli.js preview \

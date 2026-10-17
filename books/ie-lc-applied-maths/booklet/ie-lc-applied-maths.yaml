@@ -512,6 +512,14 @@ sections:
     - hooke
     - spring
     - extension
+    # The modulus form `T = λx/L` is the same law with `λ = kL`, and λ is a property
+    # of the string measured in newtons. A reader who searches the booklet for
+    # "modulus" must find this as well as Young's modulus, because there are two and
+    # this is the one an elastic string uses.
+    - elastic
+    - modulus
+    - lambda
+    - string
   - id: stress
     name: Stress
     latex: \sigma = \frac{F}{A}

@@ -115,6 +115,14 @@ measurements and the reasoning are in `research/design/reuse-audit.md`.
   so the claim is only that the answer is computed by the same function that wrote the
   question, and the two cannot disagree. The *generator* is what is checked, and a page
   built on it must not say "checked by a computer".
+- **A figure that states arithmetic declares it.** `panel()` returns `claim`, and a
+  figure that prints a calculation calls `claim([{ expression, values, answer, shown }])`
+  once per redraw. `python -m textbook.working` proves each one with the same exact CAS
+  the problem banks use — `0.065` is `13/200`, so the comparison is exact — and requires
+  the readout to contain the string claimed. **Claim the numbers you print, not only the
+  totals**: that is what makes a rounded intermediate a failure rather than a styling
+  choice. Do not parse the readout back out of the text; a checker that did needed a new
+  case for every notation and could read 43% of what it saw (`DECISIONS.md`).
 - **A generated question is plain text, not LaTeX.** The maths hook runs at build time,
   so `$…$` a module injects at runtime reaches the reader as dollar signs.
 - **Use `diagram()` when the drawing's meaning is its named parts.** `panel()` gives a

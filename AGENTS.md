@@ -229,6 +229,7 @@ node tools/dist/cli.js help                     # every check and measurement
 node tools/dist/cli.js kit-pure                 # the kit's drawing and formatting layers
 node tools/dist/cli.js types                    # the type ratchet (target 0)
 node tools/dist/cli.js kit site                 # the kit's DOM contract, on a build
+node tools/dist/cli.js readout site --verify  # the arithmetic every figure declares
 node tools/dist/cli.js audit site --mobile      # every figure at 390px; none below 9px
 scripts/preview-themes.sh   # 6 bundles x 2 schemes x 3 routes, and both figure audits
 scripts/check.sh            # everything CI enforces, in one call

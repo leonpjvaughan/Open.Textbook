@@ -21,6 +21,7 @@ import { run as runKit } from "./commands/kit.js";
 import { run as runKitPure } from "./commands/kit-pure.js";
 import { run as runMeasureBudget } from "./commands/measure-budget.js";
 import { run as runPreview } from "./commands/preview.js";
+import { run as runReadout } from "./commands/readout.js";
 import { run as runScreenshot } from "./commands/screenshot.js";
 import { run as runTypes } from "./commands/types.js";
 const COMMANDS = {
@@ -48,6 +49,11 @@ const COMMANDS = {
         summary: "every theme bundle in both schemes, with the reader's preference and contrast checked",
         usage: "[--root dir] [--layout id] [--out dir] [--themes a,b] [--schemes light,dark] [--viewport WxH] [--full] [--no-shots] [--audit] [--audit-limit n] -- name:route ...",
         run: runPreview,
+    },
+    readout: {
+        summary: "recompute the arithmetic every figure prints, at several settings",
+        usage: "[siteDir] [--only slug] [--settings n] [--defaults-only] [--json file] [--self-test]",
+        run: runReadout,
     },
     "kit-pure": {
         summary: "the kit's drawing and formatting layers, with no browser",
