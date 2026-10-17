@@ -11,6 +11,12 @@
 # a browser with CHROME_PATH. In CI the runner's Chrome is used; see the
 # `preview` job in .github/workflows/verify.yml.
 #
+# **It is the slowest thing in the repository, so it is built to finish in about two
+# minutes rather than eight.** Two things made it slow and neither was the work: the
+# build ran one profile at a time, and the six checks below ran one after another. They
+# are independent processes with their own browser, so they run together and the wall
+# clock is the longest of them, not the sum.
+#
 # Usage: scripts/preview-themes.sh [--shots] [extra node args...]
 #   --shots     also write the PNGs to --out (default: checks only)
 set -euo pipefail
@@ -36,48 +42,60 @@ done
 # order matters: build, then preview.
 uv run python -m textbook.scaffold
 uv run python -m textbook.booklet
+
+# Every profile, four at a time. A pipeline writes only under its own
+# `site/<book>/<profile>/`, so they do not collide; the portal writes the deployment
+# root and therefore goes last, alone. Twenty sequential builds were 82 seconds of a
+# run whose checks then took most of the rest.
+uv run python -m textbook.plan --configs |
+  xargs -d '\n' -P "${BUILD_JOBS:-4}" -n1 -I{} bash -c '
+    read -r -a build <<< "$1"
+    uv run python -m textbook.pipeline "${build[@]}" >/dev/null
+  ' _ {}
 uv run python -m textbook.portal
-while read -r -a build; do
-  uv run python -m textbook.pipeline "${build[@]}"
-done < <(uv run python -m textbook.plan --configs)
 
-# Phone widths, before the bundle sweep: a page that overflows sideways makes
-# every colour question moot, and this is the check that catches it. It costs a
-# few seconds and it is why the gate must not be built around a desktop browser.
-node tools/dist/cli.js check-mobile site
+# --- the six checks, concurrently -------------------------------------------------
+#
+# Each is an independent process with its own browser, and run one at a time they were
+# most of the run. Six at once on eight cores costs the longest, not the sum, and the
+# longest is now the figure audit at about ninety seconds.
+#
+# Output is captured per check and printed in a fixed order afterwards: interleaved
+# progress dots from six browsers are unreadable, and a failure has to be findable in
+# the log of the check that failed.
+tmp="$(mktemp -d)"
+trap 'rm -rf "$tmp"' EXIT
+check_names=()
+check_pids=()
 
-# Every figure, measured in the browser in both schemes, before the bundle sweep.
-# The sweep audits three routes; this audits all of them — every figure the books
-# contain, wherever it lives — and asks what each one actually paints. It is the
-# only check that sees the difference between a `text-*` class setting `color`
-# (which paints HTML) and `fill` (which paints SVG), which is how eighteen SVG
-# labels were found rendering black at 1.4:1 on the dark scheme.
-node tools/dist/cli.js audit site --json "${TMPDIR:-/tmp}/figure-audit.json"
+run_check() {
+  local name="$1"
+  shift
+  ( "$@" ) >"$tmp/$name.log" 2>&1 &
+  check_names+=("$name")
+  check_pids+=($!)
+}
 
-# Every figure again, at phone width. This is the one check that answers "can a
-# label be read on the device most readers use", and it is separate from the
-# contrast audit because it measures a different thing: a figure can clear 4.5:1
-# and still draw its smallest label at 8.6px, which is exactly how `SIZE.tick`
-# came to be 15 units when it needed 16. It ran only from the `browser`-marked
-# test, which is deselected in CI, so nothing measured a phone until it was added
-# here — a standard that is not checked is a standard that decays.
-node tools/dist/cli.js audit site --mobile
+# Phone widths: a page that overflows sideways makes every colour question moot.
+run_check mobile node tools/dist/cli.js check-mobile site
 
-# The shared kit's own contract, before the modules that build on it. It puts
-# `role="img"` on a drawing, keeps it off a readout and refuses an SVG a fixed
-# height, so a defect here reaches every converted figure at once.
-node tools/dist/cli.js kit site
+# Every figure, in both schemes, and what each one actually paints. The only check that
+# sees the difference between `text-*` setting `color` (HTML) and `fill` (SVG).
+run_check contrast node tools/dist/cli.js audit site --json "${TMPDIR:-/tmp}/figure-audit.json"
 
-# The arithmetic each figure states. Declared as data — an expression, the values it was
-# given, the answer and the string it printed — and decided by the same exact CAS the
-# problem banks use, so no formatting choice can break the check. `claim()` is new, so
-# the command reports how many figures print arithmetic and declare none; those are the
-# migration, not a pass.
-node tools/dist/cli.js readout site --verify
+# Every figure again at phone width: the one check that answers "can a label be read on
+# the device most readers use". A figure can clear 4.5:1 and still draw its label at
+# 8.6px, which is how `SIZE.tick` came to be 15 when it needed 16.
+run_check phone node tools/dist/cli.js audit site --mobile
 
-# The matrix, 6 bundles x 2 schemes x 3 routes = 36 pages. Adding a book means
-# adding its landing route and one of its chapter routes here.
-exec node tools/dist/cli.js preview \
+# The kit's own contract, before the modules that build on it.
+run_check kit node tools/dist/cli.js kit site
+
+# The arithmetic each figure declares, decided by the same exact CAS the banks use.
+run_check readout node tools/dist/cli.js readout site --verify
+
+# The matrix, 6 bundles x 2 schemes x 3 routes = 36 pages.
+run_check preview node tools/dist/cli.js preview \
   --root site \
   --audit \
   "${shots[@]}" \
@@ -86,3 +104,16 @@ exec node tools/dist/cli.js preview \
   "landing:/" \
   "learn:/gcse-maths/higher/chapter-1/section-1.1/learn/" \
   "practise:/gcse-maths/higher/chapter-1/section-1.1/practise/"
+
+failed=0
+for i in "${!check_names[@]}"; do
+  name="${check_names[$i]}"
+  if wait "${check_pids[$i]}"; then
+    printf '\n== %s ==\n' "$name"
+  else
+    printf '\n== %s — FAILED ==\n' "$name"
+    failed=1
+  fi
+  cat "$tmp/$name.log"
+done
+[ "$failed" = 0 ] || exit 1

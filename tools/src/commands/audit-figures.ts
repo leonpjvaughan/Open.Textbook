@@ -21,8 +21,10 @@
  * on a phone read it at all?" — and is the check that found a label drawn at 8.6px.
  */
 import fs from "node:fs";
+import os from "node:os";
 import path from "node:path";
 import { ORIGIN, launchBrowser, openContext, serveStatic } from "../lib/browser.js";
+import { mapPool } from "../lib/pool.js";
 import { parseArgs } from "../lib/report.js";
 
 const TABLE_START = "<!-- generated:tables -->";
@@ -395,9 +397,17 @@ export async function run(argv: string[]): Promise<number> {
       only: "string",
       table: "string",
       mobile: "boolean",
+      jobs: "string",
     },
     positional: ["siteDir"],
   });
+  // One worker by default, **not** the core count. Parallelising this is 3x faster and
+  // flaky: at two workers eleven slugs fail in both schemes with "Execution context was
+  // destroyed" or by finding themselves on the previous route, and every one of them
+  // passes alone — a race between a load and a measurement that reproduces often enough
+  // to fail the audit. The flag is here so the race can be worked on; the default is the
+  // setting that gives 490 of 490.
+  const jobs = Math.max(1, Math.min(Number(values.jobs ?? 1) || 1, 8));
   const siteDir = path.resolve(positional[0]!);
   const schemes = String(values.schemes ?? "light,dark").split(",");
   const theme = values.theme ? String(values.theme) : undefined;
@@ -448,7 +458,7 @@ export async function run(argv: string[]): Promise<number> {
   // viewBox width, so a 560-unit viewBox in a 358px panel draws a 14px label at
   // 8px. Measured, not inferred: 70 figures were once below 7px.
   if (mobile) {
-    return runMobile(browser, siteDir, pages, jsonOut);
+    return runMobile(browser, siteDir, pages, jsonOut, jobs);
   }
 
   const report: Record<string, FigureReport> = {};
@@ -459,19 +469,62 @@ export async function run(argv: string[]): Promise<number> {
       width: 1280,
       height: 900,
       deviceScaleFactor: 2,
+      // **The page registers a service worker, and its first claim reloads the tab.**
+      // With one page that reload lands before the measurement; with a pool it lands
+      // in the middle of `page.evaluate`, and the error is "Execution context was
+      // destroyed, most likely because of a navigation" on whichever pages lost the
+      // race. The audit wants the bytes on disk, not whatever the worker's cache
+      // answers with, so the worker is blocked.
+      blockServiceWorkers: true,
     });
     await serveStatic(context, siteDir);
-    const page = await context.newPage();
-
-    for (const slug of slugs) {
+    // **A pool of pages, not one.** This loop is almost entirely waiting: a page load,
+    // then a fixed pause for the figure to paint. One at a time leaves the machine idle
+    // — 284 seconds of wall clock for about 40 seconds of work. Each worker takes the
+    // next slug when it finishes, and the report is keyed by slug and scheme, so the
+    // order of completion does not matter.
+    const pagesPool = await Promise.all(Array.from({ length: jobs }, () => context.newPage()));
+    await mapPool(slugs, jobs, async (slug, index) => {
+      const page = pagesPool[index % jobs];
       const route = pages[slug][0];
       // Created once: rebuilding it per scheme would keep only the last one.
       if (!report[slug]) report[slug] = { page: route, schemes: {} };
       const entry = report[slug];
-      try {
+
+      /** One attempt: load, wait for the figure to mount, measure. */
+      const attempt = async () => {
         await page.goto(`${ORIGIN}${route}`, { waitUntil: "load" });
-        await page.waitForTimeout(500);
-        const res = await page.evaluate(`${MEASURE}(${JSON.stringify(slug)})`);
+        // Wait until the figure has **mounted something**, not merely until its element
+        // exists: the element is in the HTML and the module mounts it afterwards, so
+        // waiting for the element alone measures a figure that has not drawn yet.
+        await page
+          .waitForFunction(
+            (s) => {
+              const figure = document.querySelector(`maths-figure[data-figure="${s}"]`);
+              if (!figure) return false;
+              return !!figure.querySelector("svg, canvas, input, select, button, .fig");
+            },
+            slug,
+            { timeout: 8000 },
+          )
+          .catch(() => {});
+        await page.waitForTimeout(60);
+        return page.evaluate(`${MEASURE}(${JSON.stringify(slug)})`);
+      };
+
+      try {
+        let res;
+        try {
+          res = await attempt();
+        } catch {
+          // **A second attempt, and only for a transient failure.** With a pool, a page
+          // occasionally reports "Execution context was destroyed" or finds itself on
+          // the previous route — a race between a load and a measurement, not a defect
+          // in the figure. Measured: about 2% of 490 at two workers, zero at one. The
+          // second attempt is on the same page and the same route, so a figure that is
+          // genuinely broken fails twice.
+          res = await attempt();
+        }
         entry.schemes[scheme] = res as Measurement;
         if (shots && !res.error) {
           const el = await page.$(`maths-figure[data-figure="${slug}"]`);
@@ -483,7 +536,8 @@ export async function run(argv: string[]): Promise<number> {
         entry.schemes[scheme] = { error: String(err).slice(0, 120) };
       }
       process.stdout.write(".");
-    }
+    });
+    for (const page of pagesPool) await page.close();
     process.stdout.write(` ${scheme}\n`);
     await context.close();
   }
@@ -528,12 +582,23 @@ export async function run(argv: string[]): Promise<number> {
 }
 
 /** The smallest rendered label per figure at a phone viewport. */
-async function runMobile(browser, dir, pages, outFile) {
-  const routes = [...new Set(Object.values(pages).flat())];
+async function runMobile(browser, dir, pages, outFile, jobs) {
+  // **One route per figure, not every route it appears on.** `Object.values(pages).flat()`
+  // is every page a figure is mounted on, and a figure in both profiles is on two: the
+  // route list was three times longer than the work, and this check was walking it at
+  // 300 ms a page. A figure's rendered size is its own viewBox against the panel width,
+  // which is the same wherever it is mounted, so the first route is the same measurement
+  // as the second — 630 routes become 180.
+  const routes = [...new Set(Object.values(pages).map((where) => where[0]))];
   const context = await openContext(browser, { width: 390, height: 844, deviceScaleFactor: 1 });
   await serveStatic(context, dir);
   const page = await context.newPage();
   const measured = {};
+  // **Deliberately sequential, and deliberately a fixed pause.** A readiness wait was
+  // tried here and made it worse: a route whose figure never mounts costs the full
+  // timeout, and two hundred routes of that is minutes. The pause is the same 300 ms it
+  // has always been — what changed is that this check no longer runs *beside* five other
+  // browsers, where it took ten minutes because it was the only one still sleeping.
   for (const route of routes) {
     try {
       await page.goto(`${ORIGIN}${route}`, { waitUntil: "load" });

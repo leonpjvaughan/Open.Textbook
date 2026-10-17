@@ -8,6 +8,31 @@ Read the root `AGENTS.md` first. The root's **Build and verify**, **Branches and
 releases** and **Toolchain** still apply. This file adds what is particular to
 CI.
 
+## The three-minute rule
+
+**A check that takes three minutes does not belong in the default path.** Two do more
+than that when run naively, and both were fixed rather than excused:
+
+| Check | Was | Now | What made it slow |
+|---|---|---|---|
+| `scripts/preview-themes.sh` (whole) | ~15 min | **194 s** | the build ran one profile at a time, then six independent browser checks ran one after another |
+| `audit --mobile` | >7 min | **95 s** | it walked *every route a figure appears on* — the same figure on `ordinary` and `higher` measured twice — at a fixed 300 ms a page |
+| `audit` (contrast) | 284 s | **91 s** | a fixed 500 ms wait per page; it now waits for the figure to mount |
+| `readout` | 220 s | **116 s** | same fixed wait, plus an exhaustive settings sweep, now a sample |
+
+The script now builds four profiles at a time and runs its six checks **concurrently**,
+so the wall clock is the longest check rather than the sum. The one thing not to do is
+parallelise the audits *internally* beyond one worker: at two workers eleven slugs fail
+with "Execution context was destroyed" and pass alone, and `--jobs` is left at 1 for
+that reason.
+
+`preview` is therefore **gated**: it runs on `main` (which releases and deploys) and on
+`workflow_dispatch`, and on a branch only when the PR carries the `browser` label or
+`CI_BROWSER=always` is set. The gate announces a skip by name, so "not run" is never
+read as "passed". Locally, `scripts/check.sh` does not run it; run
+`scripts/preview-themes.sh` before merging anything that touches a figure, a theme or a
+stylesheet.
+
 ## What lives here
 
 | Path | What it does |

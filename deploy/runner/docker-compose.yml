@@ -1,0 +1,32 @@
+# The runner container. Start it with `./start.sh`, not `docker compose up`, because the
+# registration token has to be fetched from GitHub first.
+#
+# `restart: unless-stopped` matters: a runner that dies mid-job leaves the workflow
+# waiting until its timeout, so the container is expected to come back on its own.
+
+services:
+  runner:
+    build: .
+    image: open-textbook-runner
+    restart: unless-stopped
+    environment:
+      REPO_URL: ${REPO_URL}
+      RUNNER_TOKEN: ${RUNNER_TOKEN}
+      # `RUNNER_NAME` is deliberately **not** passed: with `--scale`, compose gives
+      # every replica the same environment, so a name here would register four runners
+      # under one name and three would be rejected. The entrypoint falls back to the
+      # container's own hostname, which is unique per replica.
+      RUNNER_LABELS: ${RUNNER_LABELS:-self-hosted,linux,x64}
+    volumes:
+      # The Docker socket, because one job is a Docker action (`rhysd/actionlint`) and it
+      # pulls an image to run in. **This is equivalent to root on the host** — a job that
+      # can talk to the daemon can mount the filesystem. It is here because the
+      # repository is private so only a collaborator can start a run; see README.md.
+      - /var/run/docker.sock:/var/run/docker.sock
+      # No work volume: the container is ephemeral per replica, and a **shared** named
+      # volume would be mounted by every replica at once when the runner is scaled.
+    # Rootless Docker's socket is owned by the host's `docker` group; the runner is not in
+    # it, so the group is added by id. `start.sh` fills this in.
+    group_add:
+      - "${DOCKER_GID:?run ./start.sh, which sets DOCKER_GID}"
+    stop_grace_period: 60s

@@ -26,7 +26,10 @@ jobs:
   # needs no workflow edit.
   plan:
     name: plan
-    runs-on: ubuntu-latest
+    # A repository variable, so pointing the gate at a self-hosted runner is a
+    # setting rather than a commit — and `gh variable delete RUNNER_LABEL` puts it
+    # back. See `deploy/runner/README.md`.
+    runs-on: ${{ vars.RUNNER_LABEL || 'ubuntu-latest' }}
     timeout-minutes: 10
     outputs:
       include: ${{ steps.matrix.outputs.include }}
@@ -48,7 +51,10 @@ jobs:
   generated:
     name: generated files are in sync
     needs: plan
-    runs-on: ubuntu-latest
+    # A repository variable, so pointing the gate at a self-hosted runner is a
+    # setting rather than a commit — and `gh variable delete RUNNER_LABEL` puts it
+    # back. See `deploy/runner/README.md`.
+    runs-on: ${{ vars.RUNNER_LABEL || 'ubuntu-latest' }}
     timeout-minutes: 15
     steps:
       - uses: actions/checkout@v7
@@ -84,7 +90,10 @@ jobs:
   build:
     name: build ${{ matrix.book }} (${{ matrix.profile }})
     needs: plan
-    runs-on: ubuntu-latest
+    # A repository variable, so pointing the gate at a self-hosted runner is a
+    # setting rather than a commit — and `gh variable delete RUNNER_LABEL` puts it
+    # back. See `deploy/runner/README.md`.
+    runs-on: ${{ vars.RUNNER_LABEL || 'ubuntu-latest' }}
     timeout-minutes: 20
     strategy:
       fail-fast: false
@@ -129,7 +138,10 @@ jobs:
   content:
     name: banks, tests and voice
     needs: plan
-    runs-on: ubuntu-latest
+    # A repository variable, so pointing the gate at a self-hosted runner is a
+    # setting rather than a commit — and `gh variable delete RUNNER_LABEL` puts it
+    # back. See `deploy/runner/README.md`.
+    runs-on: ${{ vars.RUNNER_LABEL || 'ubuntu-latest' }}
     timeout-minutes: 20
     steps:
       - uses: actions/checkout@v7
@@ -165,7 +177,10 @@ jobs:
 
   workflows:
     name: lint workflows
-    runs-on: ubuntu-latest
+    # A repository variable, so pointing the gate at a self-hosted runner is a
+    # setting rather than a commit — and `gh variable delete RUNNER_LABEL` puts it
+    # back. See `deploy/runner/README.md`.
+    runs-on: ${{ vars.RUNNER_LABEL || 'ubuntu-latest' }}
     timeout-minutes: 5
     steps:
       - uses: actions/checkout@v7
@@ -180,7 +195,27 @@ jobs:
   # client is installed and no browser is downloaded.
   preview:
     name: theme preview
-    runs-on: ubuntu-latest
+    # **The one job a run may skip, and the reason is its cost.** It is about fifteen
+    # minutes: it builds every profile and then drives Chrome over 490 figure renders,
+    # 201 phone viewports and 1465 readouts. Everything else in this file finishes in
+    # under three.
+    #
+    # So it runs where it changes an outcome: on `main`, which tags and deploys, and on
+    # a manual dispatch. On `dev` and on a pull request it runs **only when asked** —
+    # apply the `browser` label, or set the `CI_BROWSER` variable to `always`. The same
+    # script is one command locally (`scripts/preview-themes.sh`), and the release path
+    # still runs it before anything is deployed, so a browser defect cannot reach a
+    # reader. A skip is **announced by the gate**, so "not run" is never read as
+    # "passed".
+    if: >
+      github.ref == 'refs/heads/main' ||
+      github.event_name == 'workflow_dispatch' ||
+      contains(github.event.pull_request.labels.*.name, 'browser') ||
+      vars.CI_BROWSER == 'always'
+    # A repository variable, so pointing the gate at a self-hosted runner is a
+    # setting rather than a commit — and `gh variable delete RUNNER_LABEL` puts it
+    # back. See `deploy/runner/README.md`.
+    runs-on: ${{ vars.RUNNER_LABEL || 'ubuntu-latest' }}
     timeout-minutes: 20
     steps:
       - uses: actions/checkout@v7
@@ -226,21 +261,52 @@ jobs:
     name: all checks
     needs: [plan, generated, build, content, workflows, preview]
     if: always()
-    runs-on: ubuntu-latest
+    # A repository variable, so pointing the gate at a self-hosted runner is a
+    # setting rather than a commit — and `gh variable delete RUNNER_LABEL` puts it
+    # back. See `deploy/runner/README.md`.
+    runs-on: ${{ vars.RUNNER_LABEL || 'ubuntu-latest' }}
     timeout-minutes: 5
     steps:
       - name: Every required job must have succeeded
         env:
-          UPSTREAM_RESULTS: ${{ join(needs.*.result, ',') }}
+          PLAN: ${{ needs.plan.result }}
+          GENERATED: ${{ needs.generated.result }}
+          BUILD: ${{ needs.build.result }}
+          CONTENT: ${{ needs.content.result }}
+          WORKFLOWS: ${{ needs.workflows.result }}
+          PREVIEW: ${{ needs.preview.result }}
         run: |
           failed=0
-          IFS=',' read -r -a outcomes <<< "$UPSTREAM_RESULTS"
-          for outcome in "${outcomes[@]}"; do
-            if [ "$outcome" != "success" ]; then
-              echo "a required job finished as '$outcome'"
+          # Named rather than a joined list, because the preview is allowed to be
+          # absent and the others are not — and an index into `needs.*.result` is the
+          # kind of thing that silently reorders.
+          required() {
+            if [ "$2" != "success" ]; then
+              echo "required job $1 finished as '$2'"
               failed=1
             fi
-          done
+          }
+          required plan "$PLAN"
+          required generated "$GENERATED"
+          required build "$BUILD"
+          required content "$CONTENT"
+          required workflows "$WORKFLOWS"
+
+          # The browser suite may be skipped on a branch; `main` always runs it before
+          # a release. Said out loud so a skip is not mistaken for a pass.
+          case "$PREVIEW" in
+            success) ;;
+            skipped)
+              echo "NOTE: theme preview skipped on this run."
+              echo "      Run scripts/preview-themes.sh before merging, or apply the"
+              echo "      'browser' label. main runs it before anything is released."
+              ;;
+            *)
+              echo "required job preview finished as '$PREVIEW'"
+              failed=1
+              ;;
+          esac
+
           [ "$failed" = "0" ] || exit 1
           echo "all required jobs succeeded"
 
@@ -256,7 +322,10 @@ jobs:
       tag: ${{ steps.release.outputs.tag }}
     # Main only: a branch whose whole purpose is work in progress must not tag.
     if: github.ref == 'refs/heads/main' && (github.event_name == 'push' || github.event_name == 'workflow_dispatch')
-    runs-on: ubuntu-latest
+    # A repository variable, so pointing the gate at a self-hosted runner is a
+    # setting rather than a commit — and `gh variable delete RUNNER_LABEL` puts it
+    # back. See `deploy/runner/README.md`.
+    runs-on: ${{ vars.RUNNER_LABEL || 'ubuntu-latest' }}
     timeout-minutes: 10
     permissions:
       contents: write
@@ -292,7 +361,10 @@ jobs:
     # keeps a push to any other branch from changing what is live.
     needs: [release]
     if: github.ref == 'refs/heads/main' && (github.event_name == 'push' || github.event_name == 'workflow_dispatch')
-    runs-on: ubuntu-latest
+    # A repository variable, so pointing the gate at a self-hosted runner is a
+    # setting rather than a commit — and `gh variable delete RUNNER_LABEL` puts it
+    # back. See `deploy/runner/README.md`.
+    runs-on: ${{ vars.RUNNER_LABEL || 'ubuntu-latest' }}
     timeout-minutes: 20
     environment:
       name: production

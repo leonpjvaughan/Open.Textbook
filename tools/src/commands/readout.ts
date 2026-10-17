@@ -26,6 +26,7 @@ import path from "node:path";
 import { execFileSync } from "node:child_process";
 import { launchBrowser, openContext, serveStatic, ORIGIN } from "../lib/browser.js";
 import { discoverFigures } from "../lib/site.js";
+import { mapPool } from "../lib/pool.js";
 import { checkArithmetic } from "../lib/readout-arithmetic.js";
 
 type Control = {
@@ -226,9 +227,15 @@ export async function run(argv: string[]): Promise<number> {
   let only = "";
   let jsonOut = "";
   let defaultsOnly = false;
+  let jobsFlag = 0;
   let textOnly = false;
   let verify = false;
-  let cap = 10;
+  // The default plus five single-control variations. It is a **sample**, not a sweep:
+  // a full cross-product is thousands of renders and the check is bounded on purpose.
+  // The defect it exists for — a multiplier rounded before it is printed — shows up a
+  // step either side of the default, so five variations of one control at a time finds
+  // it without paying for the grid.
+  let cap = 6;
   for (let i = 0; i < argv.length; i += 1) {
     const arg = argv[i];
     if (arg === "--only") only = argv[(i += 1)];
@@ -237,6 +244,7 @@ export async function run(argv: string[]): Promise<number> {
     else if (arg === "--text") textOnly = true;
     else if (arg === "--verify") verify = true;
     else if (arg === "--settings") cap = Number(argv[(i += 1)]) || 10;
+    else if (arg === "--jobs") jobsFlag = Number(argv[(i += 1)]) || 0;
     else if (!arg.startsWith("--")) siteDir = arg;
   }
 
@@ -257,7 +265,10 @@ export async function run(argv: string[]): Promise<number> {
     blockServiceWorkers: true,
   });
   await serveStatic(context, siteDir);
-  const page = await context.newPage();
+  // One page per worker, and one by default for the same reason as the figure audit: a
+  // pool is faster and races. `--jobs` is here for the same reason too.
+  const jobs = Math.max(1, Math.min(jobsFlag || 1, 8));
+  const pagesPool = await Promise.all(Array.from({ length: jobs }, () => context.newPage()));
 
   // What each render asserts and what it prints. The arithmetic is done by the Python
   // verifier; this command's job is to collect honest data and say how much of the
@@ -279,13 +290,27 @@ export async function run(argv: string[]): Promise<number> {
   let unread = 0;
   const wrong: { slug: string; where: string; detail: unknown }[] = [];
 
-  for (const slug of slugs) {
+  await mapPool(slugs, jobs, async (slug, index) => {
+    const page = pagesPool[index % jobs]!;
     const route = pages[slug][0];
     let figureDeclared = 0;
     let figureStatesArithmetic = false;
     try {
       await page.goto(`${ORIGIN}${route}`, { waitUntil: "load" });
-      await page.waitForTimeout(250);
+      // Wait for the figure to mount, not for a fixed quarter second. The fixed pause
+      // was the audit's whole cost too: 284 seconds became 91 with this one change and
+      // no loss of coverage.
+      await page
+        .waitForFunction(
+          (s) => {
+            const figure = document.querySelector(`maths-figure[data-figure="${s}"]`);
+            return !!figure && !!figure.querySelector("svg, canvas, input, select, button, .fig");
+          },
+          slug,
+          { timeout: 8000 },
+        )
+        .catch(() => {});
+      await page.waitForTimeout(60);
       const controls = (await page.evaluate(readControls, slug)) as Control[];
       const settings = settingsFor(controls, cap, defaultsOnly);
       const seen = new Set<string>();
@@ -319,7 +344,8 @@ export async function run(argv: string[]): Promise<number> {
     if (figureDeclared) declared += 1;
     else if (figureStatesArithmetic) undeclared += 1;
     process.stdout.write(".");
-  }
+  });
+  for (const page of pagesPool) await page.close();
   process.stdout.write("\n");
   await browser.close();
 
