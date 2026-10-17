@@ -17,6 +17,11 @@
 # See research/curriculum/ie-curriculum.md §6 for the evidence behind both points.
 
 meta:
+  booklet_note: >-
+    The formulae and tables in the **Formulae** booklet are the State Examinations
+    Commission's own document. It is one booklet, issued to every candidate at
+    every level of Mathematics, Physics, Chemistry and Applied Mathematics, so
+    nothing in it belongs to a board and nothing in it is tier-restricted.
   title: Leaving Certificate Physics
   jurisdiction: Ireland
   awarding_bodies: [SEC]

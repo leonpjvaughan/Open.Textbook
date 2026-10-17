@@ -39,6 +39,8 @@ rather than reproduced.
 
 The specification content, and any wording taken from a specification, belongs to the National Council for Curriculum and Assessment, which publishes it. The State Examinations Commission sets and marks the examinations.
 
+The formulae and tables in the **Formulae** booklet are the State Examinations Commission's own document. It is one booklet, issued to every candidate at every level of Mathematics, Physics, Chemistry and Applied Mathematics, so nothing in it belongs to a board and nothing in it is tier-restricted.
+
 The claims in this book rest on these documents:
 
 - [Leaving Certificate Physics specification (introduced September 2025)](https://www.curriculumonline.ie/getmedia/aec702a9-4818-45f1-917e-497c3a9a2466/SC-PHYSICS-Spec-EN.pdf)

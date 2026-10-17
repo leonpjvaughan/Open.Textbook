@@ -589,12 +589,22 @@ def colophon_page(book: Book, licence: object = _USE_COLLECTION) -> str:
             "this book follows.",
         ]
     if book.booklet_name:
-        lines += [
-            "",
-            "The formulae and tables in the **Formulae** booklet are the awarding",
-            "bodies' own sheets. Ofqual decides which material the boards must",
-            "provide.",
-        ]
+        # `booklet_note` overrides the English default, for the same reason
+        # `specification_note` does: the arrangement differs. In England each board
+        # prints its own sheet and Ofqual decides what must be on it; in Ireland the
+        # State Examinations Commission prints one booklet for four subjects and issues
+        # it to every candidate. The default below told three Irish books that "Ofqual
+        # decides which material the boards must provide", which is not true of them.
+        booklet_note = str(meta.get("booklet_note") or "").strip()
+        lines += [""]
+        if booklet_note:
+            lines += booklet_note.splitlines()
+        else:
+            lines += [
+                "The formulae and tables in the **Formulae** booklet are the awarding",
+                "bodies' own sheets. Ofqual decides which material the boards must",
+                "provide.",
+            ]
     links = _attribution_links(book)
     if links:
         lines += [
