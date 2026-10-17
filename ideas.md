@@ -21,49 +21,55 @@ measured says so.
 
 ```
 $ find books/*/docs/assets/figures -name '*.js' ! -name kit.js ! -name figures.js | wc -l
-231
+246
 
 $ # per book
   a-level-maths           58 modules   16 chapters
   gcse-maths              39 modules   25 chapters
   gcse-physics            37 modules   10 chapters
   a-level-physics         30 modules    9 chapters
+  ie-jc-maths             26 modules   22 chapters
   ie-lc-physics           22 modules   22 chapters
-  ie-jc-maths             13 modules   22 chapters
-  proofs                  12 modules   23 proof pages (12 carry a figure)
+  proofs                  14 modules   23 proof pages (14 carry a figure)
   ie-lc-maths             10 modules   18 chapters
   ie-lc-applied-maths     10 modules    9 chapters
 
-$ # and two shared modules, each mounted by more than one book
-  assets/figures/venn-regions.js
-  assets/figures/slope-field.js
+$ # and four shared modules, each mountable by any book
+  assets/figures/venn-regions.js       the same set diagram, two books
+  assets/figures/slope-field.js        a differential equation's family of solutions
+  assets/figures/relevance-prompt.js   stores the chapter opener's answer (item 6.1)
+  assets/figures/warm-up-gate.js       gates the Warm-up until the reader has tried it (6.2)
 ```
 
 The four English books together are **164 modules across 60 chapters**, about 2.7 each.
-The Irish books are **55 modules across 71 chapters** — every one of them built since this
+The Irish books are **68 modules across 71 chapters** — nearly all of them built since this
 file was written, which is what §11's table records.
 
-**The largest gaps are closed.** `ie-jc-maths` went from 3 figures to 13, `ie-lc-maths`
-from 8 to 10, `ie-lc-physics` from 19 to 22, and `ie-lc-applied-maths` from 6 to 10. What
-is left is §5's remaining menu, and the two structural items in §10.
+**The largest gaps are closed.** `ie-jc-maths` went from 3 figures to 26, `ie-lc-maths`
+from 8 to 10, `ie-lc-physics` from 19 to 22, `ie-lc-applied-maths` from 6 to 10, and the
+proof book from 12 to 14. What is left is §5's remaining menu, and item 61 — no check
+reads the number a figure's readout prints.
 
 ### The interaction vocabulary in practice
 
 ```
-$ # counting the 209 modules
-  209  call panel()          the frame, the accessible name, the readout
-  208  call react()          redraw on input
-  202  call slider()         the dominant control by a wide margin
-   24  call chooser()        a select, for 3-6 named alternatives
-   12  call toggle()         a checkbox, for on/off
-   22  call scale()          map a domain onto a range
-   35  call label()          positioned text, with a colour class by default
-   31  call fmt()            a reader-facing number
-  173  call toFixed()        a coordinate — not a reader-facing value
-    0  use requestAnimationFrame
-    0  handle a key event
-   10  handle a pointer event (all 10 also create a native <button>)
-    0  create a <table>
+$ # counting the 250 modules
+  245  call panel()          the frame, the accessible name, the readout
+  244  call react()          redraw on input
+  235  call slider()         the dominant control by a wide margin
+   72  call label()          positioned text, with a colour class by default
+   29  call chooser()        a select, for 3-6 named alternatives
+   23  call scale()          map a domain onto a range
+   22  call axes()           the plot area, its ticks and its mappers together
+   14  call toggle()         a checkbox, for on/off
+    5  call diagram()        named parts, explored one at a time
+    2  call camera3d()       a fixed camera and a painter's algorithm
+    1  call stepper()        next/back through a fixed sequence
+    1  call draggable()      a handle that is also a slider
+    1  call practice()       an endless generated question
+    1  call remember()       store the reader's own words
+    0  call table()          a grid the reader fills in
+    0  call vectorField()    arrows on a grid, from a function
 ```
 
 One shape accounts for nine modules in ten:
@@ -571,6 +577,13 @@ the page are prose with their reasons attached — "56. If you used 7 x 7 = 49 a
 more 7, that also works" — so there is nothing to compare against, and a gate that
 pretended to mark would have taught the reader to distrust it. What the gate does is make
 the reader commit before they look, which is the whole of the retrieval.
+
+**What is left of this section.** 6.1 and 6.2 are built; 6.3–6.8 are not, and none of
+them is a figure. 6.5 is the closest to the work just done — the booklet now exists per
+book, so "is this formula supplied in the exam?" is a join rather than new content — and
+it is also the one with a false-positive risk, because matching a formula on a page to a
+booklet item is the same shape-matching problem `coverage.infer` gets wrong (§4.9). A
+marker that appears on a formula the booklet does not carry is worse than no marker.
 
 ### 6.3 Practise across the whole book, interleaved — needs `generate()` (§4.9)
 
