@@ -46,3 +46,6 @@ small numbers manageable.
 
 Where have you seen something grow by repeated multiplication, or where might a
 large number need estimating? Write one example from your life or someone else's.
+
+:::figure relevance-prompt
+

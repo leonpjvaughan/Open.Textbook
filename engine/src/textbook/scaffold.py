@@ -288,7 +288,12 @@ def chapter_stub(chapter: dict) -> str:
     if chapter.get("application"):
         lines.append(f"**Where it is used:** {chapter['application']}\n")
     if chapter.get("relevance_prompt"):
-        lines.append(f"**Your turn to connect it:** {chapter['relevance_prompt']}\n")
+        # The prompt is prose and the figure is storage, and the order matters: a reader
+        # with scripting off still meets the question and can still answer it in a
+        # notebook. What the figure adds is the keeping, not the asking.
+        lines.append("## Your turn to connect it\n")
+        lines.append(f"{chapter['relevance_prompt']}\n")
+        lines.append(":::figure relevance-prompt\n")
     lines.append("## Sections\n")
     for s in chapter["sections"]:
         tier = f"tier {s['tier']} · " if s.get("tier") else ""

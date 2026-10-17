@@ -61,6 +61,8 @@ Choose one use you have met, or one you would like to understand. Write down wha
 the radiation has to pass through to do its job. You will be able to say which
 emission suits that job by the end of the chapter.
 
+:::figure relevance-prompt
+
 ## Sections
 
 - **20.1 Radioactive decay and the three emissions** — spontaneous decay, background

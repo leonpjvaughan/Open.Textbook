@@ -74,6 +74,8 @@ does to make a current flow. Keep your answer. By the end of the chapter you can
 describe the change inside the generator, and you can say why the voltage on the
 cable is much larger than the voltage at the socket.
 
+:::figure relevance-prompt
+
 ## Sections
 
 - **16.1 Magnetic flux and flux density** — the field through a coil, and how

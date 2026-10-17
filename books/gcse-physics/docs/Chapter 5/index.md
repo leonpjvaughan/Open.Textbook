@@ -72,6 +72,8 @@ Where in your own week do you use light or another kind of electromagnetic
 radiation? Write two examples. One should be a time you used light to see, and
 one should be a device that sends or receives a signal through the air.
 
+:::figure relevance-prompt
+
 ## Roadmap
 
 1. [5.1 The electromagnetic spectrum](Section 5.1/Walkthrough/index.md)

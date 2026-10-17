@@ -74,6 +74,8 @@ together, or the object and the fluid it moves through. Say which way the
 resistance acts, and what would happen if it were removed. You will be able to
 put numbers on it by the end of the chapter.
 
+:::figure relevance-prompt
+
 ## Sections
 
 - **5.1 Friction and the normal reaction** — what friction is, and how the

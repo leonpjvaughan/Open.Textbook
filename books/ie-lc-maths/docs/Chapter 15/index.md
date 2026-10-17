@@ -62,6 +62,8 @@ Write it down, and write one sentence saying where you have used it. By the end 
 chapter you will be able to prove it, or to say exactly which accepted statement it
 rests on.
 
+:::figure relevance-prompt
+
 ## Roadmap
 
 - **15.1 Axioms and the rules of deduction** — the statements we accept, and the words

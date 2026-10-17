@@ -99,6 +99,8 @@ It could be a savings balance, a rumour spreading, a phone battery draining, or
 a cooling drink. Write down the quantity, the factor for each time step, and one
 question about it that a graph could answer.
 
+:::figure relevance-prompt
+
 ## Roadmap
 
 1. [6.1 The functions a^x and e^x](Section 6.1/Walkthrough/index.md)

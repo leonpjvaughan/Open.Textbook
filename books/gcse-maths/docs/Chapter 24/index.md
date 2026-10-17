@@ -32,6 +32,8 @@ the data is collected and shown decides whether the conclusion is fair.
 
 A survey, club register or team record can use these methods. Where might you or someone you know collect information? Write one example and say what question the data could answer.
 
+:::figure relevance-prompt
+
 ## Roadmap
 
 1. [24.1 Collecting data, sampling and questionnaires](Section 24.1/Walkthrough/index.md)

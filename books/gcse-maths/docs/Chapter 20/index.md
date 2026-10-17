@@ -27,6 +27,8 @@ Triangle methods can help estimate a direct distance, a roof slope, or a height 
 
 Where might you or someone you know need to find a distance or height without measuring it directly? Write one example and say what information you could measure.
 
+:::figure relevance-prompt
+
 ## Roadmap
 
 1. [20.1 Pythagoras' theorem](Section 20.1/Walkthrough/index.md)

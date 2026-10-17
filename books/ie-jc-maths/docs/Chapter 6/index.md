@@ -52,6 +52,8 @@ else? Think of splitting a bill, a recipe for more people, a phone data plan, or
 the price of a bus fare. Write down one example, and say what two things are being
 compared.
 
+:::figure relevance-prompt
+
 ## Sections
 
 - **6.1 Ratio notation and simplifying** — writing a comparison as a ratio, and

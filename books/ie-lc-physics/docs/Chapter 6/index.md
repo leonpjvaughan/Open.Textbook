@@ -59,6 +59,8 @@ Choose one. Write down what you would see if the satellite drifted out of positi
 and what the engineers must control to stop that happening. You will be able to answer
 that with the physics of this chapter by the end.
 
+:::figure relevance-prompt
+
 ## Sections
 
 - **6.1 Weight, mass and gravitational field strength** — the difference between mass

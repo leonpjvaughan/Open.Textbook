@@ -90,6 +90,8 @@ be sunlight on a solar cell, ultraviolet light on a fluorescent label, a smoke
 alarm, or a hospital X-ray. Write down two examples. For one of them, say what
 you think the light or the radiation does to the material.
 
+:::figure relevance-prompt
+
 ## Roadmap
 
 1. [8.1 Photons and the photoelectric effect](Section 8.1/Walkthrough/index.md)

@@ -70,6 +70,8 @@ height of a ball depends on the time since you threw it.
 Write down one pair like this, name the input and the output, and say which one you
 would put on the horizontal axis of a graph.
 
+:::figure relevance-prompt
+
 ## Sections
 
 - **14.1 The idea of a function** — a rule that gives one output for each input

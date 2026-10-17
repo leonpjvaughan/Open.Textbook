@@ -41,3 +41,6 @@ B first has more tiles.
 
 Where have you seen a pattern that grows in steps, such as tile designs, savings,
 or points in a game? Describe one pattern and say how a rule could help.
+
+:::figure relevance-prompt
+

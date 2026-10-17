@@ -71,6 +71,8 @@ water in a tank, the price of something you buy. Choose one and write down the
 question you would like answered. Keep it with the three notes above. By the end
 of the chapter you will be able to model it and report it.
 
+:::figure relevance-prompt
+
 ## Sections
 
 - **9.1 Reading the brief and choosing a problem** — from a broad context to a

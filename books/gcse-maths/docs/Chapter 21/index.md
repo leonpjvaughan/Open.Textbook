@@ -46,3 +46,6 @@ one.
 ## Your turn to connect it
 
 Circles appear in a wheel, a round window, a clock, and many other designs. Choose one example that matters to you or someone you know. Write one sentence explaining where a circle fact from this chapter could help.
+
+:::figure relevance-prompt
+

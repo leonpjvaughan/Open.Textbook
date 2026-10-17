@@ -58,6 +58,8 @@ electricity: a low price, a steady supply, low carbon dioxide, or no long-lived
 waste. Suppose you may pick only two of the four. Keep your answer, because
 Section 21.4 asks you to judge the evidence against it.
 
+:::figure relevance-prompt
+
 ## Sections
 
 - **21.1 Mass-energy equivalence** — $E = mc^2$, the atomic mass unit, and the

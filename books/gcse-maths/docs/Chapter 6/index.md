@@ -38,3 +38,6 @@ grows or falls over time.
 A percentage may appear in a sale, a bill, a savings account or a change in population. Which situation matters to you or someone you know? Write one example and say what you would want to calculate.
 
 Use each section to learn a method, practise with support, then try independent questions. The Review returns to your savings prediction and mixes methods from this chapter with earlier work.
+
+:::figure relevance-prompt
+

@@ -46,3 +46,6 @@ units. Surds keep an exact answer when a decimal would only be a rounded one.
 ## Your turn to connect it
 
 Where have you or someone you know used a map scale, compared travel speeds, measured a quantity, or handled very large or small numbers? Write one example. You can return to it after studying the chapter.
+
+:::figure relevance-prompt
+

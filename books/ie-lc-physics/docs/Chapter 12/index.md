@@ -82,6 +82,8 @@ A rainbow, a prism, a magnifying glass, spectacles, a camera, a phone camera, th
 colours on a soap bubble or a CD. Choose one. Write down what you saw and what
 you think the light was doing. Keep your answer. The Review returns to it.
 
+:::figure relevance-prompt
+
 ## Sections
 
 - **12.1 The electromagnetic spectrum** — the family of waves, their sources and

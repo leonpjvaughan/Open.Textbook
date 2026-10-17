@@ -74,6 +74,8 @@ Where in your own week do you use a negative number, or need to be sure a total 
 right? Think of a temperature, a bank balance, a game score or a shopping list. Write
 down one example, and say what the negative number or the total means in it.
 
+:::figure relevance-prompt
+
 ## Sections
 
 - **1.1 The number systems ℕ, ℤ and ℚ** — natural numbers, integers and rational

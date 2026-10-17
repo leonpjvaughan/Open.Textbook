@@ -85,6 +85,8 @@ the colours on a CD.
 Choose one. Write down what you saw and what you think caused it. Keep your answer.
 By the end of the chapter you can name the effect and explain it with the wave model.
 
+:::figure relevance-prompt
+
 ## Sections
 
 - **10.1 Reflection of waves** — the law of reflection, and smooth and rough surfaces

@@ -83,6 +83,8 @@ watched ice melt in a drink, felt a metal spoon warm up in soup, or noticed that
 a bicycle pump gets hot as you use it. Write down two examples. For one of them,
 say where you think the energy came from and where it went.
 
+:::figure relevance-prompt
+
 ## Roadmap
 
 1. [7.1 Internal energy and specific heat capacity](Section 7.1/Walkthrough/index.md)

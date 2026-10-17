@@ -74,6 +74,8 @@ pitch. Write down an expression for its area, and then write the same area as a 
 parts. If you can write the same area in two ways, you have expanded an expression and
 factorised it back again.
 
+:::figure relevance-prompt
+
 ## Sections
 
 - **11.1 Adding and subtracting algebraic expressions** — like terms, and brackets

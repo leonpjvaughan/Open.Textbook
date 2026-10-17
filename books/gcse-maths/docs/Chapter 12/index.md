@@ -34,3 +34,6 @@ A ball follows a path that can be modelled by a quadratic graph. Its height $h$ 
 ## Your turn to connect it
 
 Where might you or someone you know need to find when a changing quantity reaches a particular value? Write one example in your own words.
+
+:::figure relevance-prompt
+

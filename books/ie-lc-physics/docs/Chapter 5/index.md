@@ -44,6 +44,8 @@ ballpoint pen clip, a car suspension, the sole of a running shoe.
 Choose one. Write down what is being stretched, and what happens if it is stretched too
 far. You will be able to say something quantitative about it by the end of the chapter.
 
+:::figure relevance-prompt
+
 ## Sections
 
 - **5.1 Hooke's law** — force, extension and the spring constant

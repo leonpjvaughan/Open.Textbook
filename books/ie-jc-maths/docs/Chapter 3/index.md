@@ -38,6 +38,8 @@ Where in your own week do two repeating things have to line up? Think of a bus a
 train, two timers, or two people's work rotas. Write down one example and what
 "line up" means for it.
 
+:::figure relevance-prompt
+
 ## Sections
 
 - **3.1 Factors, multiples and divisibility** — factor pairs, the divisibility rules,

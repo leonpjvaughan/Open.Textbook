@@ -64,6 +64,8 @@ Choose one. Write down who was asked, how many were asked, and what the percenta
 Keep it. By the end of the chapter you will be able to say how much of that claim is
 supported, and how much is the sample talking.
 
+:::figure relevance-prompt
+
 ## Sections
 
 - **11.1 Populations and samples** — the whole group and the part we measure

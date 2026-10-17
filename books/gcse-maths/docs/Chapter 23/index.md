@@ -49,3 +49,6 @@ counts.
 ## Your turn to connect it
 
 Where might you or someone you know use a probability estimate or compare a prediction with results? Write one example and explain what decision it could help with.
+
+:::figure relevance-prompt
+

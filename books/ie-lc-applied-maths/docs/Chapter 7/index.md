@@ -80,6 +80,8 @@ Choose one. Write down what is moving in the circle, what supplies the force
 towards the centre, and what would happen if that force disappeared. You will be
 able to put numbers on it by the end of the chapter.
 
+:::figure relevance-prompt
+
 ## Sections
 
 - **7.1 Angular velocity and period** — how fast a circle is turned, and how

@@ -46,6 +46,8 @@ microscope, a particle accelerator.
 Choose one. Write down what makes the beam move, and what you would change to steer it
 somewhere else. You will be able to answer that with fields by the end of the chapter.
 
+:::figure relevance-prompt
+
 ## Sections
 
 - **17.1 Evidence for the electron** — the discharge tube, the Maltese cross, and

@@ -63,6 +63,8 @@ Choose one container you have used. Write down its shape, and write down one rea
 think that shape was chosen. You will be able to say something quantitative about that
 choice by the end of the chapter.
 
+:::figure relevance-prompt
+
 ## Roadmap
 
 - **3.1 Perimeter and area of plane figures** — rectangles, triangles, parallelograms,

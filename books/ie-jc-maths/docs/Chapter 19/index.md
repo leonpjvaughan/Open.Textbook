@@ -82,6 +82,8 @@ of wrapping paper, or a flag.
 Write down one shape that repeats in it. Then write one sentence saying how the
 shape repeats: does it slide, flip over, or turn?
 
+:::figure relevance-prompt
+
 ## Sections
 
 - **19.1 Translation** — sliding a shape along

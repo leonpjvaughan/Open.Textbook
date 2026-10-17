@@ -113,6 +113,8 @@ Where have you seen a graph used to persuade someone? It might be an advert, a
 news report, a school poster or a social media post. Write down what the graph
 claimed. Then write one sentence saying whether the graph told the whole story.
 
+:::figure relevance-prompt
+
 ## Sections
 
 - **22.1 Populations, samples and surveys** — the whole group, and the part we ask

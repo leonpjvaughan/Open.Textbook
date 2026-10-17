@@ -58,6 +58,8 @@ Where in your own week do you use a rule that connects two amounts? Think of a p
 bill, a bus fare, a recipe, or the number of minutes in some hours. Write down one
 rule, name the letters you would use, and say which letter you would like to find.
 
+:::figure relevance-prompt
+
 ## Sections
 
 - **13.1 Using formulae** — putting numbers in, and working out the value

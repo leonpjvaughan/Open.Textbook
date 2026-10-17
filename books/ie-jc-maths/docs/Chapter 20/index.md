@@ -105,6 +105,8 @@ fact that the angles on a straight line add to 180°, or the result that a
 rectangle has equal diagonals. Keep your sentence. At the end of the chapter you
 will come back to it and write the reason.
 
+:::figure relevance-prompt
+
 ## Sections
 
 - **20.1 Axioms, theorems, corollaries and converses** — the starting points, and

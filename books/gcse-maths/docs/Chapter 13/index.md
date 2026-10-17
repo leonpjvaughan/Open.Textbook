@@ -40,3 +40,6 @@ graph helps you predict what happens between the points you measured.
 ## Your turn to connect it
 
 Where do you meet something that repeats, grows, or follows a curved path? Write one example and say which graph might describe it.
+
+:::figure relevance-prompt
+

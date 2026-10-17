@@ -58,6 +58,8 @@ Sketch it roughly on squared paper and choose a unit. Write down where two
 important points are, as coordinates. You will be able to measure the distance
 between them and describe the road between them by the end of the chapter.
 
+:::figure relevance-prompt
+
 ## Sections
 
 - **13.1 Distance, midpoint and slope** — measuring a segment between two points

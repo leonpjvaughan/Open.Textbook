@@ -66,6 +66,8 @@ Choose one. Write down which part is the magnet and which part is the magnetic
 material. Keep your answer. By the end of the chapter you can explain what the field
 does to the material, and why a current in a coil can do the same job.
 
+:::figure relevance-prompt
+
 ## Sections
 
 - **15.1 Magnetic fields and magnetic materials** — poles, field lines, and what makes

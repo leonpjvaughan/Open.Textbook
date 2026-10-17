@@ -57,6 +57,8 @@ far out?
 Write down the number, what it was rounded to, and what the decision was. You
 will be able to say something precise about the error by the end of the chapter.
 
+:::figure relevance-prompt
+
 ## Roadmap
 
 - **1.1 The number systems ℕ, ℤ, ℚ and ℝ** — the families of numbers, and how they

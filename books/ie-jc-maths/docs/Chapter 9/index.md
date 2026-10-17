@@ -65,6 +65,8 @@ Where in your own week does something grow in steps? Think of saving money, a pl
 phone battery going down, or points in a game. Write down one example, and say what
 the steps are.
 
+:::figure relevance-prompt
+
 ## Sections
 
 - **9.1 Repeating patterns and tables** — describing a pattern and recording it in a

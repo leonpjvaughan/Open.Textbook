@@ -52,6 +52,8 @@ Choose one. Write down what the quantity is, what it starts at, and what it sett
 towards. You will be able to describe it as a function by the end of the chapter, and say
 how long it takes to reach a chosen value.
 
+:::figure relevance-prompt
+
 ## Sections
 
 - **6.1 Relations and functions** — the difference, and the vertical line test

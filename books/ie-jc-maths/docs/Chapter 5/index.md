@@ -52,6 +52,8 @@ Where in your own week do you see a part of a whole? Think of a recipe, a batter
 level, a sale in a shop, or a score in a match. Write down one example, and say
 whether it is written as a fraction, a decimal or a percentage.
 
+:::figure relevance-prompt
+
 ## Sections
 
 - **5.1 Equivalent fractions and ordering** — the same amount in different forms, and

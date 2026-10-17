@@ -73,6 +73,8 @@ rubber band, a bungee cord, a trampoline mat or the handle of a plastic bag.
 Write two examples. For one of them, say whether it returns to its original
 shape when the load is removed.
 
+:::figure relevance-prompt
+
 ## Roadmap
 
 1. [4.1 Stress, strain and the Young modulus](Section 4.1/Walkthrough/index.md)

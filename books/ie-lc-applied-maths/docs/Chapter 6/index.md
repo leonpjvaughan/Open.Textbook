@@ -80,6 +80,8 @@ what you would want to measure: the force, the speed after the impact, or the
 energy lost. Say whether the collision is elastic, inelastic, or somewhere in
 between. You will be able to put numbers on it by the end of the chapter.
 
+:::figure relevance-prompt
+
 ## Sections
 
 - **6.1 Momentum and impulse** — the quantity a moving object carries, and the

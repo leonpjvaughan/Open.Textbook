@@ -65,6 +65,8 @@ carbon dioxide it adds to the air.
 Where in your own week do you pay for energy, or try to use less of it? Write two
 examples. One should be about a machine, and one should be about heating.
 
+:::figure relevance-prompt
+
 ## Roadmap
 
 1. [1.1 Energy stores and transfers](Section 1.1/Walkthrough/index.md)

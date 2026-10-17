@@ -42,6 +42,8 @@ Where would being able to work out an unmeasurable distance be useful? Think of 
 builder, a sailor or a film-maker. Write down one example and what the person
 cannot measure directly.
 
+:::figure relevance-prompt
+
 ## Sections
 
 - **18.1 Pythagoras' theorem** — the rule that links the three sides of a

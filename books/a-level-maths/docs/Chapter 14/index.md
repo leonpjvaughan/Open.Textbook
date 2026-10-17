@@ -82,6 +82,8 @@ people prefer this brand". Write the claim down.
 Then write two things. First, what sample would you collect to check it? Second,
 what result would make you doubt the claim? Keep your answer for the Review.
 
+:::figure relevance-prompt
+
 ## Roadmap
 
 1. [14.1 The language of hypothesis testing](Section 14.1/Walkthrough/index.md)

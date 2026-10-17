@@ -63,6 +63,8 @@ Choose one. Write down how the pattern repeats — does it slide, turn, flip, or
 will be able to name the transformation and describe it precisely by the end of the
 chapter.
 
+:::figure relevance-prompt
+
 ## Roadmap
 
 - **14.1 Translations** — sliding a shape by a vector

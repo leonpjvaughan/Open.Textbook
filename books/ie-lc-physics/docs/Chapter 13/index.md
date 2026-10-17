@@ -61,6 +61,8 @@ Choose one. Write down what is charged, what it moves towards or away from, and 
 you think sets the size of the force. You will be able to answer that with the physics
 of this chapter by the end.
 
+:::figure relevance-prompt
+
 ## Sections
 
 - **13.1 Electric charge and charging** — the two kinds of charge, and how objects

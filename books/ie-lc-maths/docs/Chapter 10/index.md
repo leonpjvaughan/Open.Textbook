@@ -57,6 +57,8 @@ game at a fair, a team's chance of winning, or a guess on a quiz.
 Choose one. Write down what the possible outcomes are, and which one you think is most
 likely. You will be able to say something precise about it by the end of the chapter.
 
+:::figure relevance-prompt
+
 ## Sections
 
 - **10.1 Counting outcomes and the fundamental principle** — multiplying choices to count

@@ -75,6 +75,8 @@ Think of a measurement you rely on in a normal week. It could be a thermometer,
 a speedometer, the weight printed on a food packet, or a stopwatch in sport.
 Write two examples. For one of them, say what could make the reading wrong.
 
+:::figure relevance-prompt
+
 ## Roadmap
 
 1. [1.1 SI units and prefixes](Section 1.1/Walkthrough/index.md)

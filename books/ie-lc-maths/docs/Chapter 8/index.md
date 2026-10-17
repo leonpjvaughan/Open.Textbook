@@ -66,6 +66,8 @@ rain falling on a garden.
 Write down the rate and the total. Which one do you usually notice, and which one do you
 usually want to know? You will be able to move between them by the end of the chapter.
 
+:::figure relevance-prompt
+
 ## Sections
 
 - **8.1 Antiderivatives** — integration as the reverse of differentiation, and the constant

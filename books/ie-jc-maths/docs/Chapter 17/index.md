@@ -85,6 +85,8 @@ Write down two places on that map and a rough pair of numbers for each one. Then
 write one sentence saying how you would describe the straight route between them
 to someone who cannot see the map.
 
+:::figure relevance-prompt
+
 ## Sections
 
 - **17.1 The coordinate plane and plotting points** — two numbers name a place

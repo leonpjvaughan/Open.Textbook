@@ -31,6 +31,8 @@ A garden border needs a perimeter measurement. Covering a floor needs an area, a
 
 Where might you or someone you know need to measure a boundary, cover a surface, or find how much a container holds? Write one example and name the measurement that matters.
 
+:::figure relevance-prompt
+
 ## Roadmap
 
 1. [19.1 Perimeter and area of 2D shapes](Section 19.1/Walkthrough/index.md)

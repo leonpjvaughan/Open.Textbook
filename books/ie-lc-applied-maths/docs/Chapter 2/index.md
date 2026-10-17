@@ -55,6 +55,8 @@ Choose one. Write down the places involved and what connects them, and what "sho
 or "cheapest" would mean in that case: distance, time, money, or something else. You
 will be able to answer the question properly by the end of the chapter.
 
+:::figure relevance-prompt
+
 ## Sections
 
 - **2.1 Networks and their terminology** — vertices, edges, weights and degree

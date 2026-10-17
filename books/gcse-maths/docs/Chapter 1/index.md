@@ -51,6 +51,8 @@ Where in your own week do you meet negative numbers, or need a quick estimate
 before deciding something? Write two examples: one about money, and one that is
 not about money.
 
+:::figure relevance-prompt
+
 ## How to use this chapter
 
 Each section has three parts:

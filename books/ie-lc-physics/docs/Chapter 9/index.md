@@ -55,6 +55,8 @@ A wave on water, a rope flicked at one end, a whip, a stadium wave, a curtain mo
 a draught, or the sound from a speaker. Choose one. Write down what travels and what
 stays in place. Keep your answer. The Review returns to it.
 
+:::figure relevance-prompt
+
 ## Sections
 
 - **9.1 What a wave is** — a travelling disturbance, and the parts of a wave

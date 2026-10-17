@@ -73,6 +73,8 @@ Choose one. Write down where the energy came from and where it went. Keep your
 answer. By the end of the chapter you can name the mechanism that carried the
 energy, and say how to slow it down.
 
+:::figure relevance-prompt
+
 ## Sections
 
 - **8.1 Temperature, heat and thermal equilibrium** — what temperature measures,

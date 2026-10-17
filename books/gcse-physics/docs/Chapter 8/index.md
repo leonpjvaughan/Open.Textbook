@@ -77,6 +77,8 @@ warm up without changing state? Write two examples. One should be a change of
 state, such as melting or boiling. The other should be a change in temperature
 with no change of state.
 
+:::figure relevance-prompt
+
 ## Roadmap
 
 1. [8.1 Changes of state and the particle model](Section 8.1/Walkthrough/index.md)

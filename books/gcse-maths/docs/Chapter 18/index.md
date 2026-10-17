@@ -30,6 +30,8 @@ A designer may resize a pattern for a wall, a map, a model or a printed page. Th
 
 Where might you or someone you know resize a design, map or model? Write one example and say which measurement would need to change.
 
+:::figure relevance-prompt
+
 ## Roadmap
 
 1. [18.1 Reflection, rotation and translation](Section 18.1/Walkthrough/index.md)

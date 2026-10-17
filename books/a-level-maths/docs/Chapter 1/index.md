@@ -57,6 +57,8 @@ have an exception. It could be a rough rule you use about money, travel,
 games or sport. Write two examples: one from outside mathematics, and one from
 mathematics.
 
+:::figure relevance-prompt
+
 ## Roadmap
 
 1. [1.1 Statements, assumptions and the structure of a proof](Section 1.1/Walkthrough/index.md)

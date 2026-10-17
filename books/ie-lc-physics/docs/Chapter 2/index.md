@@ -47,6 +47,8 @@ Choose one. Write down where it speeds up, where it moves steadily and where it 
 down. Keep it. By the end of the chapter you can sketch the velocity-time graph of that
 journey and read a distance from it.
 
+:::figure relevance-prompt
+
 ## Sections
 
 - **2.1 Displacement, velocity and acceleration** — scalars, vectors and the rates of

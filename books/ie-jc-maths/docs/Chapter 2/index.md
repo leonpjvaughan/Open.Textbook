@@ -51,6 +51,8 @@ Where have you seen a small raised number, or something that grows by multiplyin
 by the same amount each time? Think of a phone's memory, a repeated enlargement,
 or a doubling. Write down one example, and say what the raised number means in it.
 
+:::figure relevance-prompt
+
 ## Sections
 
 - **2.1 Index form and powers** — the base, the index, and what a power means

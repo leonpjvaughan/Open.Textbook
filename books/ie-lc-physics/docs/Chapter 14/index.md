@@ -79,6 +79,8 @@ Choose one. Write down what you think happens inside the battery when the second
 appliance starts. Keep your answer. By the end of the chapter you can explain it with
 one equation, and work out how big the drop in potential difference is.
 
+:::figure relevance-prompt
+
 ## Sections
 
 - **14.1 Current, potential difference and resistance** — the three quantities, how

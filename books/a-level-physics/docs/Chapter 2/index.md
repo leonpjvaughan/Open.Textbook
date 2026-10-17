@@ -68,6 +68,8 @@ Think of a journey you make often. It could be a walk to school, a bus route or 
 cycle ride. Write down the total distance you travel, and the straight-line
 displacement from the start to the finish. Say why the two numbers are different.
 
+:::figure relevance-prompt
+
 ## Roadmap
 
 1. [2.1 Scalars and vectors](Section 2.1/Walkthrough/index.md)

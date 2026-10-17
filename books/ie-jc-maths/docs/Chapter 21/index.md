@@ -85,6 +85,8 @@ be a weather forecast, a game, a queue, or a safety rule.
 Write down one example. Then write the number or the word that described the
 chance, and what the person decided.
 
+:::figure relevance-prompt
+
 ## Sections
 
 - **21.1 Listing outcomes and the sample space** — every result an experiment can

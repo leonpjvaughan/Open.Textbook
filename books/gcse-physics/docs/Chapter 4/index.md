@@ -75,6 +75,8 @@ Earth's core. Every one of these methods rests on the ideas in this chapter.
 Where in your own week do you meet a wave? Write two examples. One should be a
 wave you can hear, and one should be a wave you cannot hear.
 
+:::figure relevance-prompt
+
 ## Roadmap
 
 1. [4.1 Waves in air, fluids and solids](Section 4.1/Walkthrough/index.md)

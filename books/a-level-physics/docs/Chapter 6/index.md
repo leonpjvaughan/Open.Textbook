@@ -88,6 +88,8 @@ you walked past loudspeakers, or seen colours in a soap film, an oil slick or th
 surface of a CD. Write down two examples. For one of them, say what you think
 caused the pattern.
 
+:::figure relevance-prompt
+
 ## Roadmap
 
 1. [6.1 Superposition and interference](Section 6.1/Walkthrough/index.md)

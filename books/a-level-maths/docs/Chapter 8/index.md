@@ -90,6 +90,8 @@ savings account, or the charge stored in a battery. Write down the quantity, the
 rate at which it builds up, and whether you expect the total to grow quickly or
 slowly over time. Keep your answer for the Review.
 
+:::figure relevance-prompt
+
 ## Roadmap
 
 1. [8.1 The Fundamental Theorem of Calculus and standard integrals](Section 8.1/Walkthrough/index.md)

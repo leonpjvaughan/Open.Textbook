@@ -89,6 +89,8 @@ could be a waiting time, an average price, a pass rate, or a health fact. Write
 down the claim, and write down what you would want to know about the sample
 before you believed it. Keep your answer for the Review.
 
+:::figure relevance-prompt
+
 ## Roadmap
 
 1. [11.1 Population, sample and informal inference](Section 11.1/Walkthrough/index.md)

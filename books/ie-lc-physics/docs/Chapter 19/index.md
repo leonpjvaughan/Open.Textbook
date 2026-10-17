@@ -47,6 +47,8 @@ Choose one. Write down the colours you have seen, and what you think the gas ins
 doing to make them. You will be able to explain those colours by the end of the
 chapter.
 
+:::figure relevance-prompt
+
 ## Sections
 
 - **19.1 From Thomson to Rutherford** — the plum-pudding model, the gold-foil

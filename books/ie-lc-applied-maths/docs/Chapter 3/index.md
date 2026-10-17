@@ -61,6 +61,8 @@ Choose one. Write down what you can measure about it, and what you would like to
 predict. You will be able to answer the question properly by the end of the
 chapter.
 
+:::figure relevance-prompt
+
 ## Sections
 
 - **3.1 Displacement, velocity and acceleration** — the quantities that

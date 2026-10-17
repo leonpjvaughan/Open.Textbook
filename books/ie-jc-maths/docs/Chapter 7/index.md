@@ -70,6 +70,8 @@ the next two years? Think of a first part-time job, a phone plan, a savings
 account or a saving goal. Write down one example, and say which number in it you
 would like to understand.
 
+:::figure relevance-prompt
+
 ## Sections
 
 - **7.1 Profit, loss and percentage profit** — what a shop gains or loses, and as

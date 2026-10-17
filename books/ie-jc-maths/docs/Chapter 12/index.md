@@ -76,6 +76,8 @@ two phone plans, or two shops for the same item. Write down one rule for each wa
 using a letter for the thing you would change. Then say which rule you would solve,
 and what the answer would tell you.
 
+:::figure relevance-prompt
+
 ## Sections
 
 - **12.1 Solving linear equations** — one unknown, and the operations undone one at a

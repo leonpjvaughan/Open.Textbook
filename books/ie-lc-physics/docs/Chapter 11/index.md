@@ -50,6 +50,8 @@ Choose one. Write down what happens to the note as it comes towards you and as i
 away. Keep your answer. The Review returns to it, and by then you can explain it with the
 physics of this chapter.
 
+:::figure relevance-prompt
+
 ## Sections
 
 - **11.1 Sound as a wave** — a longitudinal wave, and the medium it needs

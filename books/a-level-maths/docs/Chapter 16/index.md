@@ -75,6 +75,8 @@ Write down the forces you felt and which way each one pointed. Say which force
 you had to overcome to start the movement, and which one kept it going at a
 steady speed. Keep your answer for the Review.
 
+:::figure relevance-prompt
+
 ## Roadmap
 
 1. [16.1 Force and Newton's first law](Section 16.1/Walkthrough/index.md)

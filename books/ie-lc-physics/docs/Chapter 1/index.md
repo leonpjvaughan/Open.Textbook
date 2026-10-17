@@ -48,6 +48,8 @@ A weather forecast, a sprint time, a speed limit, the battery percentage on a ph
 the step count on a watch. Choose one. Write down the number, and then write down the
 range you think it really has. Keep it. The Review returns to it.
 
+:::figure relevance-prompt
+
 ## Sections
 
 - **1.1 Physical quantities and SI units** — a number, a unit and a prefix

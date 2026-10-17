@@ -78,6 +78,8 @@ Where in your own week do you notice speed, or the time something takes to stop?
 Write two examples. One should be about a journey you make, and one should be
 about a safety feature you rely on.
 
+:::figure relevance-prompt
+
 ## Roadmap
 
 1. [3.1 Speed, velocity and motion graphs](Section 3.1/Walkthrough/index.md)

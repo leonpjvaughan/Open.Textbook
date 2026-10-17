@@ -59,6 +59,8 @@ would mean to combine two of them.
 You will be able to say something precise about that by the end of the chapter, and to
 check it with the dot product.
 
+:::figure relevance-prompt
+
 ## Sections
 
 - **18.1 Vectors and their representation** — arrows, columns, length and direction

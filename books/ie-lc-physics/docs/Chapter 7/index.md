@@ -58,6 +58,8 @@ Choose one. Write down which way the push on you pointed, and which way you were
 Keep your answer. By the end of the chapter you can explain the push with one equation,
 and say why nothing pushed you outwards.
 
+:::figure relevance-prompt
+
 ## Sections
 
 - **7.1 Angular velocity and period** — the time for one turn, and how fast the angle

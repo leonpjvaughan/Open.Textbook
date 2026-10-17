@@ -35,6 +35,8 @@ repeat at common multiples, such as every 12 minutes and every 18 minutes.
 
 Where have you or someone you know had to split items into equal groups, or count choices across several decisions? Describe one example and say where factors or systematic counting might help.
 
+:::figure relevance-prompt
+
 ## Roadmap
 
 1. [2.1 Factors, multiples and prime numbers](Section 2.1/Walkthrough/index.md)

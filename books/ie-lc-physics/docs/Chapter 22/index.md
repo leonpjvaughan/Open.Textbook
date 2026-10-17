@@ -63,6 +63,8 @@ how far a phone signal reaches, how much a bicycle slows on a hill, how bright a
 lamp really is. Write down the thing you wondered about, in one sentence, and keep
 it. Section 22.1 turns it into a question, and the Review returns to it.
 
+:::figure relevance-prompt
+
 ## Sections
 
 - **22.1 Reading the brief and choosing a question** — from an interest to a

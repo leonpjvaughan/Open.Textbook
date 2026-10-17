@@ -72,6 +72,8 @@ in a hospital, in a news story, or in a smoke alarm at home. Write one example.
 Say whether the radiation is being used to help people, or controlled as a
 hazard.
 
+:::figure relevance-prompt
+
 ## Roadmap
 
 1. [9.1 Nuclear atom and isotopes](Section 9.1/Walkthrough/index.md)

@@ -67,6 +67,8 @@ ball thrown across a garden, water from a hose, a gymnast in a jump or a parcel
 dropped from a moving aircraft. Write down the two directions, and say which one
 is steady and which one changes. Keep your answer for the Review.
 
+:::figure relevance-prompt
+
 ## Roadmap
 
 1. [15.1 Fundamental and derived SI quantities and units](Section 15.1/Walkthrough/index.md)

@@ -51,3 +51,5 @@ Where might you or someone you know use a plan, a direction, or a measured
 boundary? Write one example. At the end, add how one idea from this chapter
 could help.
 
+:::figure relevance-prompt
+

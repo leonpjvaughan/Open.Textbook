@@ -47,6 +47,8 @@ Choose one. Write down where the energy comes from, what it is stored as, and wh
 becomes when it is released. You will be able to put numbers on it by the end of the
 chapter.
 
+:::figure relevance-prompt
+
 ## Sections
 
 - **4.1 Work and energy** — force, distance and the joule

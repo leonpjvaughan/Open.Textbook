@@ -92,6 +92,8 @@ turning wheel, a tide, a fan, or the length of daylight through the year. Write
 down the repeating quantity, the largest and smallest values you would expect,
 and one question about it that a graph could answer.
 
+:::figure relevance-prompt
+
 ## Roadmap
 
 1. [5.1 The sine and cosine rules and the area of a triangle](Section 5.1/Walkthrough/index.md)

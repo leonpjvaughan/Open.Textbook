@@ -40,3 +40,6 @@ the arithmetic simpler.
 ## Your turn to connect it
 
 A fraction or percentage can appear in a price, a recipe, a score or a journey. Where have you or someone you know used one recently? Write one example and say what the number described.
+
+:::figure relevance-prompt
+

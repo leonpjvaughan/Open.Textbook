@@ -96,6 +96,8 @@ charge left in a battery, a savings balance, the height of a plant, or the
 temperature of a drink. Write down what you would measure, how fast it changes,
 and whether the rate itself changes as the quantity grows.
 
+:::figure relevance-prompt
+
 ## Roadmap
 
 1. [7.1 The derivative as a gradient and a rate of change](Section 7.1/Walkthrough/index.md)

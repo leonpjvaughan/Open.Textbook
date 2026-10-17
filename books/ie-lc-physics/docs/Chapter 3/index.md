@@ -53,6 +53,8 @@ Choose one. Write down the moment you feel heavier and the moment you feel light
 Keep it. The Review returns to it, and you will be able to explain both moments by
 the end of the chapter.
 
+:::figure relevance-prompt
+
 ## Sections
 
 - **3.1 Forces and free-body diagrams** — pushes, pulls, and drawing them on one

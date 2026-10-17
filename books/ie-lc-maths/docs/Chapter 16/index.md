@@ -73,6 +73,8 @@ Choose one check you have seen or used. Write it down, and write one sentence sa
 makes the check work. By the end of the chapter you will be able to prove that your check
 is reliable.
 
+:::figure relevance-prompt
+
 ## Roadmap
 
 - **16.1 Quadrilaterals and parallelograms** — the shapes, and the first theorem of the

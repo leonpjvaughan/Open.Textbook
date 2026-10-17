@@ -95,6 +95,8 @@ flying with a crosswind, or a swimmer heading for the far bank. Write down the
 stages and the push as arrows, and say which direction the overall journey
 takes. Keep your answer for the Review.
 
+:::figure relevance-prompt
+
 ## Roadmap
 
 1. [10.1 Vectors in two and three dimensions](Section 10.1/Walkthrough/index.md)

@@ -86,6 +86,8 @@ Write down what you would measure to find its volume, and what you would measure
 find the area of one face. Then write one sentence saying why the volume needs three
 measurements and the area needs two.
 
+:::figure relevance-prompt
+
 ## Sections
 
 - **16.1 Perimeter and area of rectangles and triangles** — the distance around, and

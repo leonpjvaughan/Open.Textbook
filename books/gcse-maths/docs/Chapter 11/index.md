@@ -36,6 +36,8 @@ Graphs can describe travel, phone costs, water filling a container, or changing
 temperatures. Which situation have you seen, and what could a graph help you
 compare or predict? Write your own example.
 
+:::figure relevance-prompt
+
 ## Roadmap
 
 1. [11.1 Coordinates and plotting graphs](Section 11.1/Walkthrough/index.md)

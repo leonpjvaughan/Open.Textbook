@@ -95,6 +95,8 @@ website, or a screening test. Write down what a positive or alarmed result would
 mean to you. Then write down one reason the result might be wrong. Keep your
 answer for the Review.
 
+:::figure relevance-prompt
+
 ## Roadmap
 
 1. [12.1 Mutually exclusive and independent events](Section 12.1/Walkthrough/index.md)

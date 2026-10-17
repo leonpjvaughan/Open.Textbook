@@ -38,3 +38,6 @@ such as pay with hours worked, or travel time with speed.
 ## Your turn to connect it
 
 Ratios compare quantities in many settings. Write one place where you or someone you know compares quantities, such as a recipe, journey or model. What quantities are compared?
+
+:::figure relevance-prompt
+

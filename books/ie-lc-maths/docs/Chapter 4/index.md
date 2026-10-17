@@ -63,6 +63,8 @@ charge and a cost per gigabyte, or a recipe you scale up.
 Choose one. Write down what stays the same and what changes with the amount. You
 will be able to turn it into a formula by the end of the chapter.
 
+:::figure relevance-prompt
+
 ## Roadmap
 
 - **4.1 Generating expressions from patterns** — a letter for the term number,

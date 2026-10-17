@@ -79,6 +79,8 @@ plan, a subscription price, a rumour, a phone battery, or a ball that bounces.
 Write down the starting value, the rule for the next value, and one question you
 would like the mathematics to answer.
 
+:::figure relevance-prompt
+
 ## Roadmap
 
 1. [4.1 Binomial expansion for positive integer n; n! and nCr](Section 4.1/Walkthrough/index.md)

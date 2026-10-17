@@ -83,6 +83,8 @@ in a fixed number of tries, and one situation where you would measure something
 that varies around an average. Write both down. For each one, say whether the
 value is a count or a measurement. Keep your answer for the Review.
 
+:::figure relevance-prompt
+
 ## Roadmap
 
 1. [13.1 Discrete probability distributions and the binomial distribution](Section 13.1/Walkthrough/index.md)

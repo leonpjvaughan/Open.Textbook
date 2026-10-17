@@ -58,6 +58,8 @@ the quantity is, and write down one decision that the **rate** would help you ma
 
 You will be able to describe that rate precisely by the end of the chapter.
 
+:::figure relevance-prompt
+
 ## Sections
 
 - **7.1 The derivative from first principles** — the average gradient, the limit, and the

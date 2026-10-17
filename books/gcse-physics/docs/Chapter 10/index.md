@@ -80,6 +80,8 @@ Where have you seen or used something to do with space? It might be a satellite
 navigation app, a weather forecast, a photograph from a space telescope, or a
 news story about the universe. Write one example, and say what it depends on.
 
+:::figure relevance-prompt
+
 ## Roadmap
 
 1. [10.1 The solar system and orbits](Section 10.1/Walkthrough/index.md)

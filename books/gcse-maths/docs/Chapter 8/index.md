@@ -44,3 +44,6 @@ use.
 ## Your turn to connect it
 
 Where might you use a formula or a letter to describe an unknown amount? Give one example from your own life, then say what each letter could represent.
+
+:::figure relevance-prompt
+

@@ -73,6 +73,8 @@ You will be able to turn that description into an equation by the end of the
 chapter. If you cannot yet see the equation, that is the point of starting here:
 the modelling begins with the words.
 
+:::figure relevance-prompt
+
 ## Sections
 
 - **8.1 Rates of change and differential equations** — what a differential equation says

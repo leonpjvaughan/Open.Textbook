@@ -82,6 +82,8 @@ Think of a device that holds charge and then releases it. It could be a camera
 flash, a phone, a computer power supply or an electric car. Write two examples.
 For one of them, write a sentence about what the charge is used for.
 
+:::figure relevance-prompt
+
 ## Roadmap
 
 1. [5.1 Current, charge and emf](Section 5.1/Walkthrough/index.md)

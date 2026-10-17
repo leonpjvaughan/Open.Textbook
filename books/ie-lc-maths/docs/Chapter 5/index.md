@@ -48,6 +48,8 @@ force (size and direction), a colour (three, but the same idea).
 Choose one. Write down what the two numbers are and what combining two of the quantities
 would mean. You will be able to say something precise about it by the end of the chapter.
 
+:::figure relevance-prompt
+
 ## Sections
 
 - **5.1 The imaginary unit and complex numbers** — what $i$ is, and the form $a + bi$

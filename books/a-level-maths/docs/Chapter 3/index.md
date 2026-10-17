@@ -91,6 +91,8 @@ roundabout and the road beside it, a clock face and the hands, or a round table
 and a straight ruler laid across it. Write down the two shapes, where they meet,
 and one measurement about that meeting you would like to know.
 
+:::figure relevance-prompt
+
 ## Roadmap
 
 1. [3.1 Straight lines, gradients and straight-line models](Section 3.1/Walkthrough/index.md)

@@ -61,6 +61,8 @@ Where in your own week does one amount depend on another? Think of a phone bill,
 a taxi fare, a recipe, or the cost of some tickets. Write down one example, and
 say which amount you would like to find.
 
+:::figure relevance-prompt
+
 ## Sections
 
 - **10.1 Generating and interpreting expressions** — letters that stand for

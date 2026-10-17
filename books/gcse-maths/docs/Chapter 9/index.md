@@ -44,3 +44,6 @@ step from describing a situation to deciding about it.
 ## Your turn to connect it
 
 A fixed fee plus a cost for each unit appears in many situations. Where might you or someone you know compare two such costs? Write your own example and say what the unknown would represent.
+
+:::figure relevance-prompt
+

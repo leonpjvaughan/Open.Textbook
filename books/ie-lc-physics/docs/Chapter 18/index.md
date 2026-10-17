@@ -51,6 +51,8 @@ automatic door, a phone camera, a street lamp, a solar panel, a burglar alarm.
 Choose one. Write down what light it uses and what it does when the light changes.
 You will be able to say something quantitative about it by the end of the chapter.
 
+:::figure relevance-prompt
+
 ## Sections
 
 - **18.1 The photon and the quantum idea** — light as packets of energy, and $E = hf$

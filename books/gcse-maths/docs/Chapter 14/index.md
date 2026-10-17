@@ -40,3 +40,6 @@ a time.
 ## Your turn to connect it
 
 Where might someone need to find two unknown amounts from two pieces of information? Write one example from your life, a job, or a subject you study. Say what the two unknowns would represent.
+
+:::figure relevance-prompt
+

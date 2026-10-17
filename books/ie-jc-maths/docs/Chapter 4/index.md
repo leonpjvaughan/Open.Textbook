@@ -51,6 +51,8 @@ Where have you seen a very large or a very small number written down? Think of a
 distance in space, a population, the memory on a phone, or the size of something
 too small to see. Write down one example, and say where you saw it.
 
+:::figure relevance-prompt
+
 ## Sections
 
 - **4.1 Rounding and significant figures** — rounding to a place value, to a

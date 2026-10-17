@@ -40,6 +40,8 @@ Where have you seen a rule applied in stages, such as changing a price or
 converting a measurement? Write one example and explain how reversing the stages
 might help you check the result.
 
+:::figure relevance-prompt
+
 ## How to use this chapter
 
 Each section has **Learn**, **Practise with help**, and **Practise** pages. The

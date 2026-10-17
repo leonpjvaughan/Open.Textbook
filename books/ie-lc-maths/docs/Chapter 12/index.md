@@ -71,6 +71,8 @@ Choose one. Write down what you would measure — an angle, or a distance you ca
 and what you would work out from it. You will be able to do the calculation by the end
 of the chapter.
 
+:::figure relevance-prompt
+
 ## Roadmap
 
 - **12.1 The trigonometric ratios in a right triangle** — sine, cosine and tangent,

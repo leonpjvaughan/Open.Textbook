@@ -67,6 +67,8 @@ Choose one of these. Write down the forces you can name, and the direction of
 each one. You will be able to draw them as a free-body diagram, and to work out
 what happens, by the end of the chapter.
 
+:::figure relevance-prompt
+
 ## Sections
 
 - **4.1 Forces and Newton's laws** — force, mass and weight, and the three laws

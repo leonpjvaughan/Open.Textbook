@@ -64,6 +64,8 @@ happened to it.
 Was a percentage added, taken off, or charged over time? You will be able to work
 out the number behind it, and say whether it was fair, by the end of the chapter.
 
+:::figure relevance-prompt
+
 ## Sections
 
 - **2.1 Percentages and percentage change** — one multiplier for any increase or

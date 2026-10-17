@@ -98,6 +98,8 @@ It could be a bicycle dynamo, a wireless phone charger, a security tag at a shop
 door, a tram, or a wind turbine. Write down two examples. For one of them, say
 what you think the movement does to the charges in the wire.
 
+:::figure relevance-prompt
+
 ## Roadmap
 
 1. [9.1 Gravitational fields](Section 9.1/Walkthrough/index.md)

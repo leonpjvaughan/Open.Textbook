@@ -51,6 +51,8 @@ Choose one. Write down whether the change is **adding** or **multiplying**, and 
 starting value is. You will be able to say something quantitative about it by the end of
 the chapter.
 
+:::figure relevance-prompt
+
 ## Sections
 
 - **9.1 Arithmetic sequences** — adding the same amount each step

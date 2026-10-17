@@ -78,6 +78,8 @@ Where in your own week does a magnet hold, move or switch something? Write two
 examples. One should be a magnet you can see or feel, and one should be hidden
 inside a device.
 
+:::figure relevance-prompt
+
 ## Roadmap
 
 1. [7.1 Permanent and induced magnetism, magnetic forces and fields](Section 7.1/Walkthrough/index.md)

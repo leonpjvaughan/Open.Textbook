@@ -65,6 +65,8 @@ or used, and how fast each of those happens. Then write the question you would
 like to be able to answer about it. You will be able to model it by the end of
 the chapter, and you will return to it in the Review.
 
+:::figure relevance-prompt
+
 ## Sections
 
 - **1.1 The problem-solving cycle** — the five stages, and why a model is not

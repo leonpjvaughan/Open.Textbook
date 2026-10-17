@@ -76,6 +76,8 @@ song that is on two playlists, a friend who plays on two teams, or a subject tha
 appears twice on a timetable. Write down one example and say what the two groups
 are.
 
+:::figure relevance-prompt
+
 ## Sections
 
 - **8.1 Sets and set notation** — writing a set down and counting its elements

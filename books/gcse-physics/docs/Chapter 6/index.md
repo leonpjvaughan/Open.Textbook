@@ -83,6 +83,8 @@ a device that changes electrical energy into movement or heat. One should be a
 time when you had to be careful about electricity, or when you noticed a spark
 or a shock.
 
+:::figure relevance-prompt
+
 ## Roadmap
 
 1. [6.1 Current, potential difference and resistance](Section 6.1/Walkthrough/index.md)

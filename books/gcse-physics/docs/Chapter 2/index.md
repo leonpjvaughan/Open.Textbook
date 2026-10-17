@@ -73,6 +73,8 @@ Where in your own day do you push, pull or turn something? Write two examples.
 One should be a time you used a tool to make a job easier, and one should be a
 force you felt for yourself.
 
+:::figure relevance-prompt
+
 ## Roadmap
 
 1. [2.1 Forces and their interactions](Section 2.1/Walkthrough/index.md)

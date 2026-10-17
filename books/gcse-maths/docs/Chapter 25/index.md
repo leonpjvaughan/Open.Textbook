@@ -49,3 +49,6 @@ explain the other.
 Where might you or someone you know compare typical values or variation, such
 as journey times, waiting times, or sports results? Write one example and name
 the measure that could help.
+
+:::figure relevance-prompt
+

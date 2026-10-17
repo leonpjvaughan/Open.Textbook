@@ -51,3 +51,6 @@ gives the single journey that has the same effect as two or more.
 Maps, movement and design can involve directions and distances. Where might a
 description of movement help you or someone you know? Write one example in your
 own words. You can return to it after the chapter.
+
+:::figure relevance-prompt
+

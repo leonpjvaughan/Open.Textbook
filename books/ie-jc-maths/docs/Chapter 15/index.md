@@ -63,6 +63,8 @@ measures.
 Then write one sentence saying why a different unit would be a poor fit. For example,
 the mass of a bag is 5 kg, and 5000 g would be awkward to read.
 
+:::figure relevance-prompt
+
 ## Roadmap
 
 1. [15.1 Units of length, mass and capacity](Section 15.1/Walkthrough/index.md) names

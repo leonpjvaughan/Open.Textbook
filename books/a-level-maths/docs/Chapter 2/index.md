@@ -81,6 +81,8 @@ could be the cost of a journey against distance, the time a phone battery lasts
 against use, or the height of a thrown ball against time. Write down how the two
 quantities are linked, and say what one of them does at the start and at the end.
 
+:::figure relevance-prompt
+
 ## Roadmap
 
 1. [2.1 Laws of indices for rational exponents](Section 2.1/Walkthrough/index.md)

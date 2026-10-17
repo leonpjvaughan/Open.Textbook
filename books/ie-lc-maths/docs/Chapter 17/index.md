@@ -61,6 +61,8 @@ need, and write where on the object that measurement is taken from.
 Keep your sentence. By the end of the chapter you can say which theorem makes that
 measurement possible.
 
+:::figure relevance-prompt
+
 ## Roadmap
 
 - **17.1 Chords and the centre** — the perpendicular to a chord, and finding the centre

@@ -90,6 +90,8 @@ from a stop, a lift, a bicycle going downhill, or a plane taking off. Write down
 two moments: one where the speed is rising, and one where it is falling. For one
 of them, say what force causes the change.
 
+:::figure relevance-prompt
+
 ## Roadmap
 
 1. [3.1 Kinematics and motion graphs](Section 3.1/Walkthrough/index.md)

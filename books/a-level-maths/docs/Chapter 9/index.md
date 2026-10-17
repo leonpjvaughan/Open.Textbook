@@ -100,6 +100,8 @@ will take, or the number of people at a festival. Write down the quantity, why
 an exact method is hard, and whether you would need a very close answer or a
 rough one. Keep your answer for the Review.
 
+:::figure relevance-prompt
+
 ## Roadmap
 
 1. [9.1 Locating roots by change of sign](Section 9.1/Walkthrough/index.md)
