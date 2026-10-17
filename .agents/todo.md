@@ -82,7 +82,7 @@ now, and the four marked open are the ones verified open on 2026-10-17.
 - [x] 54. `textbook.verify` stops at the first bank that will not parse, and a short run looks like a clean one
 - [x] 55. The home page listed "Higher only" as a tier
 - [x] 56. The figure panel's tint was spending the contrast margin
-- [ ] 57. The browser runtime has no types, and `tsc` reports 344 errors
+- [ ] 57. The browser runtime has no types, and `tsc` reports 353 errors
 - [x] 60. Three Irish books have no booklet, and two of them should
 - [x] 58. Thirteen loose scripts, five copies of the same browser plumbing
 - [x] 59. The figure gaps in four books
@@ -242,7 +242,7 @@ opt-in.
 
 ---
 
-## 57. The browser runtime has no types, and `tsc` reports 344 errors
+## 57. The browser runtime has no types, and `tsc` reports 353 errors
 
 **What is wrong.** Every line the reader's browser runs — the figure kit, the loader, the
 settings panel, the booklet widget, the service worker — is JavaScript with no type
@@ -272,6 +272,12 @@ Function, y: Function, box: object}}`, which threw away the two things a caller 
 and `line()` and `dots()` had no `@param` at all, so TypeScript inferred their parameter
 type from the destructuring defaults. 378 errors to 344, a net decrease of 34 across a
 change that *added* a module.
+
+**The count is 353 on 2026-10-17, not 344.** `diagram()` was added and its own
+annotation is this item's work, so the baseline went up by 9. A first attempt at the
+marks' JSDoc raised it to 365 instead: the insertion script put `@param` inside a
+one-line `/** … */`, which TS reads as description text, so the block has to be
+multi-line before a parameter can be added to it. Reverted rather than shipped.
 
 **A JSDoc `@param` does not apply to a destructured binding that has a default.**
 `axes()`'s `x` and `y` are declared as `@param {AxisOptions} [o.x]` and are still typed
