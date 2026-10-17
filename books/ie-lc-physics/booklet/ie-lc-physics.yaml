@@ -1,0 +1,1331 @@
+# Leaving Certificate Physics — the SEC Formulae and Tables booklet, physics sections.
+#
+# One national booklet, not a board's own sheet: the State Examinations Commission
+# publishes it and the superintendent issues it to every candidate. The same document
+# serves Mathematics, Physics, Chemistry and Applied Mathematics, so there is no choice
+# of board and nothing is tier-restricted — every item is `given` to every candidate at
+# every level.
+#
+# **This is the physics half of a document whose mathematics half is
+# `books/ie-lc-maths/booklet/ie-lc-maths.yaml`.** The two books each carry their own copy
+# rather than sharing one file, because a book is self-contained: `scaffold` copies per
+# book, and a booklet that lived in one of them would make the other depend on it.
+#
+# Source and fidelity notes are in `meta` below. The extraction command is in
+# research/sources/ie-lc-maths/EXTRACTION-NOTE.md, which matters: the booklet's CropBox
+# clips most of every page.
+meta:
+  title: Leaving Certificate Physics — formulae and tables
+  year: state examinations
+  note: The State Examinations Commission publishes one booklet for the state examinations, and it is
+    the same for Foundation, Ordinary and Higher level. The superintendent issues it at the start of the
+    examination and collects it at the end; a candidate may not bring their own copy. Everything printed
+    here is therefore given to you, which is why every item is in the `given` group.
+  provenance:
+    sec: Foirmlí agus Táblaí / Formulae and Tables, approved for use in the state examinations. Coimisiún
+      na Scrúduithe Stáit / State Examinations Commission, SEC567/14-V5-Dec2014, ISBN 978 1 4064 2862
+      9.
+  basis: The booklet is published by the Stationery Office for the State Examinations Commission and is
+    issued to every candidate. The physics sections reproduced here are pages 47 to 63 of the booklet
+    — the constants table, particle physics, mechanics, collisions, motion in a circle, centres of gravity,
+    moments of inertia, rotating bodies, simple harmonic motion, energy and work, gravitation, forces
+    and materials, heat and temperature, light and sound, geometric optics, electricity and radioactivity.
+    The mathematics sections are pages 8 to 44 and are carried by the Mathematics book.
+  boards:
+    sec:
+      name: SEC
+      code: State Examinations Commission
+  groups:
+    given: Printed in the booklet issued to every candidate.
+sections:
+- id: constants
+  title: Physical constants
+  items:
+  - id: speed-of-light
+    name: Speed of light in a vacuum
+    latex: c = 3.0 \times 10^{8}\ \text{m s}^{-1}
+    provision:
+      sec: given
+    keywords:
+    - light
+    - speed
+    - c
+    - vacuum
+  - id: acceleration-due-to-gravity
+    name: Acceleration due to gravity
+    latex: g = 9.8\ \text{m s}^{-2}
+    provision:
+      sec: given
+    keywords:
+    - gravity
+    - g
+    - acceleration
+  - id: universal-gravitational-constant
+    name: Universal gravitational constant
+    latex: G = 6.7 \times 10^{-11}\ \text{N m}^{2}\ \text{kg}^{-2}
+    provision:
+      sec: given
+    keywords:
+    - gravitation
+    - G
+    - constant
+  - id: elementary-charge
+    name: Elementary charge
+    latex: e = 1.6 \times 10^{-19}\ \text{C}
+    provision:
+      sec: given
+    keywords:
+    - charge
+    - electron
+    - elementary
+  - id: electron-mass
+    name: Mass of the electron
+    latex: m_{e} = 9.1 \times 10^{-31}\ \text{kg}
+    provision:
+      sec: given
+    keywords:
+    - electron
+    - mass
+  - id: avogadro-constant
+    name: Avogadro constant
+    latex: N_{A} = 6.0 \times 10^{23}\ \text{mol}^{-1}
+    provision:
+      sec: given
+    keywords:
+    - avogadro
+    - mole
+    - constant
+  - id: planck-constant
+    name: Planck constant
+    latex: h = 6.6 \times 10^{-34}\ \text{J s}
+    provision:
+      sec: given
+    keywords:
+    - planck
+    - quantum
+    - h
+  - id: permittivity
+    name: Permittivity of free space
+    latex: \varepsilon_{0} = 8.9 \times 10^{-12}\ \text{F m}^{-1}
+    provision:
+      sec: given
+    keywords:
+    - permittivity
+    - epsilon
+    - coulomb
+  - id: permeability
+    name: Permeability of free space
+    latex: \mu_{0} = 4\pi \times 10^{-7}\ \text{H m}^{-1}
+    provision:
+      sec: given
+    keywords:
+    - permeability
+    - mu
+    - magnetic
+  - id: gas-constant
+    name: Universal gas constant
+    latex: R = 8.3\ \text{J K}^{-1}\ \text{mol}^{-1}
+    provision:
+      sec: given
+    keywords:
+    - gas
+    - constant
+    - R
+  - id: atomic-mass-unit
+    name: Unified atomic mass unit
+    latex: u = 1.66 \times 10^{-27}\ \text{kg}
+    provision:
+      sec: given
+    keywords:
+    - atomic
+    - mass
+    - unit
+- id: mechanics
+  title: Mechanics
+  items:
+  - id: force-acceleration
+    name: Force and acceleration
+    latex: F = ma
+    provision:
+      sec: given
+    keywords:
+    - newton
+    - force
+    - mass
+    - acceleration
+    - pulley
+    - newton's second law
+    - lift
+    - weight
+  - id: linear-motion-velocity
+    name: Linear motion with constant acceleration — velocity
+    latex: v = u + at
+    provision:
+      sec: given
+    keywords:
+    - suvat
+    - velocity
+    - acceleration
+    - time
+    - projectile
+    - projectile motion
+    - u v a t
+  - id: linear-motion-displacement
+    name: Linear motion with constant acceleration — displacement
+    latex: s = ut + \tfrac{1}{2}at^{2}
+    provision:
+      sec: given
+    keywords:
+    - suvat
+    - displacement
+    - acceleration
+    - time
+    - projectile
+    - projectile motion
+    - height
+    - range
+  - id: linear-motion-velocity-squared
+    name: Linear motion with constant acceleration — velocity and displacement
+    latex: v^{2} = u^{2} + 2as
+    provision:
+      sec: given
+    keywords:
+    - suvat
+    - velocity
+    - displacement
+    - acceleration
+    - projectile
+    - projectile motion
+  - id: linear-motion-average-velocity
+    name: Linear motion with constant acceleration — average velocity
+    latex: s = \frac{u + v}{2}\,t
+    provision:
+      sec: given
+    keywords:
+    - suvat
+    - average velocity
+    - displacement
+    - projectile
+    - average speed
+  - id: relative-displacement
+    name: Relative displacement
+    latex: \vec{s}_{BC} = \vec{s}_{B} - \vec{s}_{C}
+    provision:
+      sec: given
+    keywords:
+    - relative
+    - displacement
+  - id: relative-velocity
+    name: Relative velocity
+    latex: \vec{v}_{BC} = \vec{v}_{B} - \vec{v}_{C}
+    provision:
+      sec: given
+    keywords:
+    - relative
+    - velocity
+  - id: relative-acceleration
+    name: Relative acceleration
+    latex: \vec{a}_{BC} = \vec{a}_{B} - \vec{a}_{C}
+    provision:
+      sec: given
+    keywords:
+    - relative
+    - acceleration
+- id: collisions
+  title: Collisions and momentum
+  items:
+  - id: momentum
+    name: Momentum of a particle
+    latex: p = mv
+    provision:
+      sec: given
+    keywords:
+    - momentum
+    - mass
+    - velocity
+  - id: newton-experimental-law
+    name: Newton's experimental law
+    latex: v_{1} - v_{2} = -e\,(u_{1} - u_{2})
+    provision:
+      sec: given
+    keywords:
+    - restitution
+    - collision
+    - e
+    - newton
+  - id: conservation-of-momentum
+    name: Conservation of momentum
+    latex: m_{1}u_{1} + m_{2}u_{2} = m_{1}v_{1} + m_{2}v_{2}
+    provision:
+      sec: given
+    keywords:
+    - momentum
+    - conservation
+    - collision
+    - restitution
+    - explosion
+  - id: impulse
+    name: Impulse
+    latex: I = \int F\,dt = mv - mu
+    provision:
+      sec: given
+    keywords:
+    - impulse
+    - force
+    - momentum
+- id: circular-motion
+  title: Motion in a circle
+  items:
+  - id: angle-in-radians
+    name: Angle in radians
+    latex: \theta = \frac{s}{r}
+    provision:
+      sec: given
+    keywords:
+    - radian
+    - angle
+    - arc
+  - id: angular-velocity
+    name: Angular velocity
+    latex: \omega = \frac{\theta}{t}
+    provision:
+      sec: given
+    keywords:
+    - angular velocity
+    - omega
+    - radians
+  - id: linear-and-angular-velocity
+    name: Linear and angular velocity
+    latex: v = r\omega
+    provision:
+      sec: given
+    keywords:
+    - linear
+    - angular
+    - velocity
+    - omega
+  - id: centripetal-acceleration
+    name: Centripetal acceleration
+    latex: a = r\omega^{2} = \frac{v^{2}}{r}
+    provision:
+      sec: given
+    keywords:
+    - centripetal
+    - acceleration
+    - circular
+  - id: centripetal-force
+    name: Centripetal force
+    latex: F = mr\omega^{2} = \frac{mv^{2}}{r}
+    provision:
+      sec: given
+    keywords:
+    - centripetal
+    - force
+    - circular
+    - circular motion
+    - orbit
+    - conical pendulum
+- id: centres-of-gravity
+  title: Centres of gravity
+  items:
+  - id: hemisphere-solid-cog
+    name: Centre of gravity of a solid hemisphere, radius r
+    latex: \bar{x} = \frac{3r}{8}
+    provision:
+      sec: given
+    keywords:
+    - hemisphere
+    - centre of gravity
+    - solid
+  - id: hemisphere-shell-cog
+    name: Centre of gravity of a hemispherical shell, radius r
+    latex: \bar{x} = \frac{r}{2}
+    provision:
+      sec: given
+    keywords:
+    - hemisphere
+    - shell
+    - centre of gravity
+  - id: cone-cog
+    name: Centre of gravity of a solid right circular cone, height h
+    latex: \bar{x} = \frac{h}{4}
+    provision:
+      sec: given
+    keywords:
+    - cone
+    - centre of gravity
+    - solid
+  - id: triangular-lamina-cog
+    name: Centre of gravity of a triangular lamina
+    latex: \bar{x} = \frac{1}{3}\ (\text{from the base along the median})
+    provision:
+      sec: given
+    keywords:
+    - triangle
+    - lamina
+    - centre of gravity
+  - id: cog-coordinate-form
+    name: Centre of gravity in coordinate form
+    latex: \bar{x} = \frac{x_{1}+x_{2}+x_{3}}{3}
+    provision:
+      sec: given
+    keywords:
+    - centre of gravity
+    - coordinates
+    note: The booklet prints the pair. The y-coordinate is the same formula with y in place of x.
+  - id: arc-cog
+    name: Centre of gravity of an arc, radius r, arc-angle 2θ
+    latex: \bar{x} = \frac{r\sin\theta}{\theta}
+    provision:
+      sec: given
+    keywords:
+    - arc
+    - centre of gravity
+    - sector
+  - id: sector-cog
+    name: Centre of gravity of a sector of a disc, radius r, arc-angle 2θ
+    latex: \bar{x} = \frac{2r\sin\theta}{3\theta}
+    provision:
+      sec: given
+    keywords:
+    - sector
+    - disc
+    - centre of gravity
+- id: moments-of-inertia
+  title: Moments of inertia
+  items:
+  - id: rod-centre-inertia
+    name: Moment of inertia of a uniform rod, length 2l, about a central perpendicular axis
+    latex: I = \tfrac{1}{3}ml^{2}
+    provision:
+      sec: given
+    keywords:
+    - rod
+    - inertia
+    - moment
+  - id: rod-end-inertia
+    name: Moment of inertia of a uniform rod, length 2l, about a perpendicular axis at one end
+    latex: I = \tfrac{4}{3}ml^{2}
+    provision:
+      sec: given
+    keywords:
+    - rod
+    - inertia
+    - end
+  - id: disc-inertia
+    name: Moment of inertia of a uniform disc, radius r, about a central perpendicular axis
+    latex: I = \tfrac{1}{2}mr^{2}
+    provision:
+      sec: given
+    keywords:
+    - disc
+    - inertia
+    - moment
+  - id: disc-diameter-inertia
+    name: Moment of inertia of a uniform disc about a diameter
+    latex: I = \tfrac{1}{4}mr^{2}
+    provision:
+      sec: given
+    keywords:
+    - disc
+    - inertia
+    - diameter
+  - id: hoop-inertia
+    name: Moment of inertia of a uniform hoop, radius r, about a central perpendicular axis
+    latex: I = mr^{2}
+    provision:
+      sec: given
+    keywords:
+    - hoop
+    - ring
+    - inertia
+  - id: hoop-diameter-inertia
+    name: Moment of inertia of a uniform hoop about a diameter
+    latex: I = \tfrac{1}{2}mr^{2}
+    provision:
+      sec: given
+    keywords:
+    - hoop
+    - inertia
+    - diameter
+  - id: sphere-inertia
+    name: Moment of inertia of a uniform solid sphere, radius r, about a diameter
+    latex: I = \tfrac{2}{5}mr^{2}
+    provision:
+      sec: given
+    keywords:
+    - sphere
+    - inertia
+    - moment
+  - id: parallel-axis-theorem
+    name: Parallel axis theorem
+    latex: I_{b} = I_{c} + md^{2}
+    provision:
+      sec: given
+    keywords:
+    - parallel axis
+    - theorem
+    - inertia
+  - id: perpendicular-axis-theorem
+    name: Perpendicular axis theorem
+    latex: I_{z} = I_{x} + I_{y}
+    provision:
+      sec: given
+    keywords:
+    - perpendicular axis
+    - theorem
+    - inertia
+- id: rotating-bodies
+  title: Rotating bodies
+  items:
+  - id: angular-momentum
+    name: Angular momentum
+    latex: L = I\omega = rmv
+    provision:
+      sec: given
+    keywords:
+    - angular momentum
+    - L
+    - inertia
+  - id: moment-of-a-force
+    name: Moment of a force
+    latex: M = Fd
+    provision:
+      sec: given
+    keywords:
+    - moment
+    - force
+    - torque
+  - id: torque-of-a-couple
+    name: Torque of a couple
+    latex: T = Fd
+    provision:
+      sec: given
+    keywords:
+    - torque
+    - couple
+  - id: newton-second-law-rotation
+    name: Newton's second law for rotation
+    latex: T = \frac{dL}{dt}
+    provision:
+      sec: given
+    keywords:
+    - newton
+    - rotation
+    - torque
+  - id: rotational-kinetic-energy
+    name: Rotational kinetic energy
+    latex: E = \tfrac{1}{2}I\omega^{2}
+    provision:
+      sec: given
+    keywords:
+    - kinetic energy
+    - rotational
+    - inertia
+- id: simple-harmonic-motion
+  title: Simple harmonic motion
+  items:
+  - id: shm-acceleration
+    name: Acceleration in simple harmonic motion
+    latex: a = -\omega^{2}s
+    provision:
+      sec: given
+    keywords:
+    - shm
+    - acceleration
+    - omega
+  - id: shm-period
+    name: Period of simple harmonic motion
+    latex: T = \frac{1}{f} = \frac{2\pi}{\omega}
+    provision:
+      sec: given
+    keywords:
+    - shm
+    - period
+    - frequency
+    - oscillation
+    - angular frequency
+  - id: shm-displacement
+    name: Displacement in simple harmonic motion
+    latex: s = A\sin(\omega t + \alpha)
+    provision:
+      sec: given
+    keywords:
+    - shm
+    - displacement
+    - amplitude
+  - id: shm-velocity
+    name: Velocity in simple harmonic motion
+    latex: v = \omega\sqrt{A^{2} - s^{2}}
+    provision:
+      sec: given
+    keywords:
+    - shm
+    - velocity
+    - amplitude
+  - id: simple-pendulum-period
+    name: Period of a simple pendulum
+    latex: T = 2\pi\sqrt{\frac{l}{g}}
+    provision:
+      sec: given
+    keywords:
+    - pendulum
+    - period
+    - simple
+    - oscillation
+    - shm
+  - id: compound-pendulum-period
+    name: Period of a compound pendulum
+    latex: T = 2\pi\sqrt{\frac{I}{mgh}}
+    provision:
+      sec: given
+    keywords:
+    - pendulum
+    - compound
+    - period
+- id: energy-and-work
+  title: Energy and work
+  items:
+  - id: work
+    name: Work
+    latex: W = Fs = \int F\,ds
+    provision:
+      sec: given
+    keywords:
+    - work
+    - force
+    - distance
+  - id: power
+    name: Power
+    latex: P = \frac{W}{t} = Fv
+    provision:
+      sec: given
+    keywords:
+    - power
+    - work
+    - time
+  - id: percentage-efficiency
+    name: Percentage efficiency
+    latex: \frac{P_{o}}{P_{i}} \times 100
+    provision:
+      sec: given
+    keywords:
+    - efficiency
+    - power
+    - percentage
+  - id: potential-energy
+    name: Gravitational potential energy
+    latex: E_{p} = mgh
+    provision:
+      sec: given
+    keywords:
+    - potential energy
+    - gravitational
+    - height
+  - id: kinetic-energy
+    name: Kinetic energy
+    latex: E_{k} = \tfrac{1}{2}mv^{2}
+    provision:
+      sec: given
+    keywords:
+    - kinetic energy
+    - mass
+    - velocity
+  - id: conservation-of-energy
+    name: Principle of conservation of energy
+    latex: \Delta E_{p} + \Delta E_{k} = 0
+    provision:
+      sec: given
+    keywords:
+    - conservation
+    - energy
+    - mechanical
+  - id: mass-energy-equivalence
+    name: Mass-energy equivalence
+    latex: E = mc^{2}
+    provision:
+      sec: given
+    keywords:
+    - mass energy
+    - einstein
+    - c squared
+- id: gravitation
+  title: Gravitation
+  items:
+  - id: newtons-law-of-gravitation
+    name: Newton's law of gravitation
+    latex: F = \frac{Gm_{1}m_{2}}{d^{2}}
+    provision:
+      sec: given
+    keywords:
+    - gravitation
+    - newton
+    - inverse square
+  - id: weight
+    name: Weight
+    latex: W = mg = V\rho g
+    provision:
+      sec: given
+    keywords:
+    - weight
+    - mass
+    - density
+  - id: acceleration-due-to-gravity-field
+    name: Acceleration due to gravity
+    latex: g = \frac{GM}{d^{2}}
+    provision:
+      sec: given
+    keywords:
+    - gravity
+    - field
+    - planet
+  - id: gravitational-field-strength
+    name: Gravitational field strength
+    latex: g = \frac{F}{m}
+    provision:
+      sec: given
+    keywords:
+    - field strength
+    - gravity
+  - id: satellite-period
+    name: Period of a satellite
+    latex: T^{2} = \frac{4\pi^{2}R^{3}}{GM}
+    provision:
+      sec: given
+    keywords:
+    - satellite
+    - period
+    - orbit
+    - kepler
+- id: forces-and-materials
+  title: Forces and materials
+  items:
+  - id: hookes-law
+    name: Hooke's law
+    latex: F = -ks
+    provision:
+      sec: given
+    keywords:
+    - hooke
+    - spring
+    - extension
+  - id: stress
+    name: Stress
+    latex: \sigma = \frac{F}{A}
+    provision:
+      sec: given
+    keywords:
+    - stress
+    - force
+    - area
+  - id: strain
+    name: Strain
+    latex: \varepsilon = \frac{\Delta l}{l}
+    provision:
+      sec: given
+    keywords:
+    - strain
+    - extension
+    - length
+  - id: youngs-modulus
+    name: Young's modulus
+    latex: E = \frac{\sigma}{\varepsilon}
+    provision:
+      sec: given
+    keywords:
+    - young
+    - modulus
+    - stress
+    - strain
+  - id: density
+    name: Density
+    latex: \rho = \frac{m}{V}
+    provision:
+      sec: given
+    keywords:
+    - density
+    - mass
+    - volume
+  - id: coefficient-of-friction
+    name: Coefficient of friction
+    latex: \mu = \frac{F}{R}
+    provision:
+      sec: given
+    keywords:
+    - friction
+    - coefficient
+    - normal
+  - id: pressure
+    name: Pressure
+    latex: p = \frac{F}{A}
+    provision:
+      sec: given
+    keywords:
+    - pressure
+    - force
+    - area
+  - id: pressure-in-a-fluid
+    name: Pressure in a fluid
+    latex: p = \rho g h
+    provision:
+      sec: given
+    keywords:
+    - pressure
+    - fluid
+    - depth
+  - id: thrust-on-immersed-surface
+    name: Thrust on an immersed plane surface
+    latex: T = A\,p_{C}
+    provision:
+      sec: given
+    keywords:
+    - thrust
+    - immersed
+    - pressure
+  - id: boyles-law
+    name: Boyle's law
+    latex: p \propto \frac{1}{V}
+    provision:
+      sec: given
+    keywords:
+    - boyle
+    - gas
+    - pressure
+    - volume
+- id: heat-and-temperature
+  title: Heat and temperature
+  items:
+  - id: celsius-temperature
+    name: Celsius temperature
+    latex: \theta/^{\circ}\text{C} = T/\text{K} - 273.15
+    provision:
+      sec: given
+    keywords:
+    - celsius
+    - kelvin
+    - temperature
+  - id: heat-capacity
+    name: Energy needed to change temperature
+    latex: \Delta E = mc\Delta\theta = C\Delta\theta
+    provision:
+      sec: given
+    keywords:
+    - specific heat
+    - capacity
+    - temperature
+  - id: latent-heat
+    name: Energy needed to change state
+    latex: \Delta E = ml = L
+    provision:
+      sec: given
+    keywords:
+    - latent heat
+    - state
+    - melting
+    - boiling
+  - id: thermal-conductivity
+    name: Thermal conductivity
+    latex: \frac{\Delta E}{\Delta t} = kA\frac{\Delta\theta}{\Delta l}
+    provision:
+      sec: given
+    keywords:
+    - conductivity
+    - thermal
+    - heat flow
+  - id: thermal-resistivity
+    name: Thermal resistivity
+    latex: r = \frac{1}{k}
+    provision:
+      sec: given
+    keywords:
+    - resistivity
+    - thermal
+    - insulation
+  - id: r-value
+    name: R-value, thermal resistance
+    latex: R = \frac{l}{k} = lr
+    provision:
+      sec: given
+    keywords:
+    - r-value
+    - resistance
+    - thermal
+    - insulation
+  - id: u-value
+    name: U-value, thermal transmittance
+    latex: \frac{\Delta E}{\Delta t} = AU\Delta\theta
+    provision:
+      sec: given
+    keywords:
+    - u-value
+    - transmittance
+    - insulation
+  - id: u-value-composite
+    name: U-value of a composite barrier
+    latex: U = \frac{1}{\Sigma R} = \frac{1}{\frac{1}{U_{1}} + \frac{1}{U_{2}} + \dots}
+    provision:
+      sec: given
+    keywords:
+    - u-value
+    - composite
+    - barrier
+- id: light-and-sound
+  title: Light and sound
+  items:
+  - id: wave-velocity
+    name: Velocity of a wave
+    latex: c = f\lambda
+    provision:
+      sec: given
+    keywords:
+    - wave
+    - velocity
+    - frequency
+    - wavelength
+  - id: doppler-effect
+    name: Doppler effect
+    latex: f' = \frac{fc}{c \pm u}
+    provision:
+      sec: given
+    keywords:
+    - doppler
+    - frequency
+    - moving source
+  - id: stretched-string-frequency
+    name: Fundamental frequency of a stretched string
+    latex: f = \frac{1}{2l}\sqrt{\frac{T}{\mu}}
+    provision:
+      sec: given
+    keywords:
+    - string
+    - frequency
+    - tension
+    - fundamental
+  - id: refractive-index
+    name: Refractive index
+    latex: n = \frac{c_{1}}{c_{2}}
+    provision:
+      sec: given
+    keywords:
+    - refractive index
+    - light
+    - speed
+  - id: diffraction-grating
+    name: Diffraction grating
+    latex: n\lambda = d\sin\theta
+    provision:
+      sec: given
+    keywords:
+    - diffraction
+    - grating
+    - order
+  - id: photon-energy
+    name: Energy of a photon
+    latex: E = hf
+    provision:
+      sec: given
+    keywords:
+    - photon
+    - energy
+    - planck
+  - id: photoelectric-law
+    name: Einstein's photoelectric law
+    latex: hf = \Phi + \tfrac{1}{2}mv_{\max}^{2},\quad \Phi = hf_{0}
+    provision:
+      sec: given
+    keywords:
+    - photoelectric
+    - work function
+    - threshold
+- id: geometric-optics
+  title: Geometric optics
+  items:
+  - id: mirror-lens-formula
+    name: Mirror and lens formula
+    latex: \frac{1}{f} = \frac{1}{u} + \frac{1}{v}
+    provision:
+      sec: given
+    keywords:
+    - lens
+    - mirror
+    - focal length
+    - image
+  - id: magnification
+    name: Magnification
+    latex: m = \frac{v}{u}
+    provision:
+      sec: given
+    keywords:
+    - magnification
+    - image
+    - object
+  - id: power-of-a-lens
+    name: Power of a lens
+    latex: P = \frac{1}{f}
+    provision:
+      sec: given
+    keywords:
+    - power
+    - lens
+    - dioptre
+  - id: thin-lenses-in-contact
+    name: Two thin lenses in contact
+    latex: P = P_{1} + P_{2}
+    provision:
+      sec: given
+    keywords:
+    - lenses
+    - contact
+    - power
+  - id: snells-law
+    name: Refractive index from Snell's law and the critical angle
+    latex: n = \frac{\sin i}{\sin r} = \frac{1}{\sin C}
+    provision:
+      sec: given
+    keywords:
+    - snell
+    - refraction
+    - critical angle
+- id: electricity
+  title: Electricity
+  items:
+  - id: coulombs-law
+    name: Coulomb's law
+    latex: F = \frac{1}{4\pi\varepsilon}\frac{q_{1}q_{2}}{d^{2}}
+    provision:
+      sec: given
+    keywords:
+    - coulomb
+    - charge
+    - force
+    - inverse square
+  - id: electric-field-strength
+    name: Electric field strength
+    latex: E = \frac{F}{q}
+    provision:
+      sec: given
+    keywords:
+    - electric field
+    - strength
+    - charge
+  - id: potential-difference
+    name: Potential difference
+    latex: V = \frac{W}{q}
+    provision:
+      sec: given
+    keywords:
+    - potential difference
+    - voltage
+    - work
+  - id: resistance
+    name: Resistance
+    latex: R = \frac{V}{I}
+    provision:
+      sec: given
+    keywords:
+    - resistance
+    - ohm
+    - voltage
+    - current
+  - id: resistivity
+    name: Resistivity
+    latex: \rho = \frac{RA}{l}
+    provision:
+      sec: given
+    keywords:
+    - resistivity
+    - resistance
+    - length
+    - area
+  - id: resistors-in-series
+    name: Resistors in series
+    latex: R = R_{1} + R_{2}
+    provision:
+      sec: given
+    keywords:
+    - resistors
+    - series
+  - id: resistors-in-parallel
+    name: Resistors in parallel
+    latex: \frac{1}{R} = \frac{1}{R_{1}} + \frac{1}{R_{2}}
+    provision:
+      sec: given
+    keywords:
+    - resistors
+    - parallel
+  - id: wheatstone-bridge
+    name: Wheatstone bridge
+    latex: \frac{R_{1}}{R_{2}} = \frac{R_{3}}{R_{4}}
+    provision:
+      sec: given
+    keywords:
+    - wheatstone
+    - bridge
+    - balance
+  - id: joules-law
+    name: Joule's law
+    latex: P \propto I^{2}
+    provision:
+      sec: given
+    keywords:
+    - joule
+    - power
+    - current
+    - heating
+  - id: power-instantaneous
+    name: Instantaneous power
+    latex: P = VI
+    provision:
+      sec: given
+    keywords:
+    - power
+    - voltage
+    - current
+  - id: force-on-conductor
+    name: Force on a current-carrying conductor
+    latex: F = IlB,\quad l \perp B
+    provision:
+      sec: given
+    keywords:
+    - force
+    - conductor
+    - magnetic field
+    - current
+  - id: force-on-charged-particle
+    name: Force on a charged particle
+    latex: F = qvB,\quad v \perp B
+    provision:
+      sec: given
+    keywords:
+    - force
+    - charge
+    - magnetic field
+    - velocity
+  - id: induced-emf
+    name: Induced emf
+    latex: E = -\frac{d\Phi}{dt}
+    provision:
+      sec: given
+    keywords:
+    - induced emf
+    - faraday
+    - flux
+  - id: rms-voltage
+    name: Root mean square voltage and current
+    latex: V_{rms} = \frac{V_{0}}{\sqrt{2}},\quad I_{rms} = \frac{I_{0}}{\sqrt{2}}
+    provision:
+      sec: given
+    keywords:
+    - rms
+    - alternating
+    - voltage
+    - current
+  - id: capacitance
+    name: Capacitance
+    latex: C = \frac{q}{V}
+    provision:
+      sec: given
+    keywords:
+    - capacitance
+    - charge
+    - voltage
+    - farad
+  - id: parallel-plate-capacitor
+    name: Parallel-plate capacitor
+    latex: C = \frac{\varepsilon_{0}A}{d}
+    provision:
+      sec: given
+    keywords:
+    - capacitor
+    - parallel plate
+    - permittivity
+  - id: energy-stored-in-capacitor
+    name: Energy stored in a capacitor
+    latex: W = \tfrac{1}{2}CV^{2}
+    provision:
+      sec: given
+    keywords:
+    - capacitor
+    - energy stored
+  - id: magnetic-flux
+    name: Magnetic flux
+    latex: \Phi = BA
+    provision:
+      sec: given
+    keywords:
+    - flux
+    - magnetic
+    - area
+    - weber
+  - id: transformer
+    name: Transformer
+    latex: \frac{V_{i}}{V_{o}} = \frac{N_{p}}{N_{s}}
+    provision:
+      sec: given
+    keywords:
+    - transformer
+    - turns
+    - voltage
+    - primary
+- id: radioactivity
+  title: Radioactivity
+  items:
+  - id: activity
+    name: Activity
+    latex: A = -\frac{dN}{dt}
+    provision:
+      sec: given
+    keywords:
+    - activity
+    - decay
+    - becquerel
+  - id: radioactive-decay-law
+    name: Law of radioactive decay
+    latex: A = \lambda N
+    provision:
+      sec: given
+    keywords:
+    - decay
+    - constant
+    - activity
+  - id: half-life
+    name: Half-life
+    latex: T_{1/2} = \frac{\ln 2}{\lambda}
+    provision:
+      sec: given
+    keywords:
+    - half life
+    - decay constant
+tables:
+- id: particle-physics
+  title: Particle physics
+  note: Masses are relative to the mass of the electron. The booklet prints this as a table, so it is
+    a table here.
+  columns:
+  - Class
+  - Name
+  - Symbol
+  - Mass
+  - Half-life
+  rows:
+  - - Leptons
+    - electron
+    - e
+    - '1'
+    - stable
+  - - Leptons
+    - electron neutrino
+    - νe
+    - < 4 × 10⁻⁶
+    - stable
+  - - Leptons
+    - muon
+    - μ
+    - 2.07 × 10²
+    - 1.52 × 10⁻⁶ s
+  - - Leptons
+    - muon neutrino
+    - νμ
+    - < 4 × 10⁻⁶
+    - stable
+  - - Leptons
+    - tau
+    - τ
+    - 3.48 × 10³
+    - 2.01 × 10⁻¹³ s
+  - - Leptons
+    - tau neutrino
+    - ντ
+    - < 4 × 10⁻⁶
+    - stable
+  - - Mesons
+    - pi meson
+    - π⁺ π⁻
+    - '273'
+    - 1.80 × 10⁻⁸ s
+  - - Mesons
+    - pi meson
+    - π⁰
+    - '264'
+    - 5.82 × 10⁻¹⁷ s
+  - - Mesons
+    - K meson
+    - K⁺ K⁻
+    - '966'
+    - 8.58 × 10⁻⁹ s
+  - - Mesons
+    - K meson
+    - K⁰
+    - '974'
+    - —
+  - - Baryons
+    - proton
+    - p
+    - '1836'
+    - stable
+  - - Baryons
+    - neutron
+    - n
+    - '1839'
+    - 6.14 × 10² s
+  - - Baryons
+    - lambda
+    - Λ⁰
+    - '2183'
+    - 1.82 × 10⁻¹⁰ s
+  - - Baryons
+    - sigma
+    - Σ⁺
+    - '2328'
+    - 5.56 × 10⁻¹¹ s
+  - - Baryons
+    - sigma
+    - Σ⁻
+    - '2343'
+    - 1.02 × 10⁻¹⁰ s
+  - - Baryons
+    - sigma
+    - Σ⁰
+    - '2334'
+    - 5.13 × 10⁻²⁰ s
+  - - Baryons
+    - xi
+    - Ξ⁻
+    - '2586'
+    - 1.14 × 10⁻¹⁰ s
+  - - Baryons
+    - xi
+    - Ξ⁰
+    - '2573'
+    - 2.01 × 10⁻¹⁰ s
+  - - Baryons
+    - omega
+    - Ω⁻
+    - '3272'
+    - 5.69 × 10⁻¹¹ s
+- id: quarks
+  title: Quarks
+  note: Charge is in units of the elementary charge.
+  columns:
+  - Name
+  - Symbol
+  - Charge
+  rows:
+  - - up
+    - u
+    - 2/3
+  - - down
+    - d
+    - −1/3
+  - - charm
+    - c
+    - 2/3
+  - - strange
+    - s
+    - −1/3
+  - - top
+    - t
+    - 2/3
+  - - bottom
+    - b
+    - −1/3

@@ -1,0 +1,883 @@
+{
+ "meta": {
+  "title": "Leaving Certificate Physics — formulae and tables",
+  "year": "state examinations",
+  "note": "The State Examinations Commission publishes one booklet for the state examinations, and it is the same for Foundation, Ordinary and Higher level. The superintendent issues it at the start of the examination and collects it at the end; a candidate may not bring their own copy. Everything printed here is therefore given to you, which is why every item is in the `given` group.",
+  "provenance": {
+   "sec": "Foirmlí agus Táblaí / Formulae and Tables, approved for use in the state examinations. Coimisiún na Scrúduithe Stáit / State Examinations Commission, SEC567/14-V5-Dec2014, ISBN 978 1 4064 2862 9."
+  },
+  "basis": "The booklet is published by the Stationery Office for the State Examinations Commission and is issued to every candidate. The physics sections reproduced here are pages 47 to 63 of the booklet — the constants table, particle physics, mechanics, collisions, motion in a circle, centres of gravity, moments of inertia, rotating bodies, simple harmonic motion, energy and work, gravitation, forces and materials, heat and temperature, light and sound, geometric optics, electricity and radioactivity. The mathematics sections are pages 8 to 44 and are carried by the Mathematics book.",
+  "boards": {
+   "sec": {
+    "name": "SEC",
+    "code": "State Examinations Commission"
+   }
+  },
+  "groups": {
+   "given": "Printed in the booklet issued to every candidate."
+  }
+ },
+ "sections": [
+  {
+   "id": "constants",
+   "title": "Physical constants",
+   "items": [
+    {
+     "id": "speed-of-light",
+     "name": "Speed of light in a vacuum",
+     "latex": "c = 3.0 \\times 10^{8}\\ \\text{m s}^{-1}",
+     "provision": {
+      "sec": "given"
+     },
+     "keywords": [
+      "light",
+      "speed",
+      "c",
+      "vacuum"
+     ],
+     "mathml": "<math xmlns=\"http://www.w3.org/1998/Math/MathML\"><semantics><mrow><mi>c</mi><mo>=</mo><mn>3.0</mn><mo>×</mo><msup><mn>10</mn><mn>8</mn></msup><mtext> </mtext><msup><mtext>m s</mtext><mrow><mo>−</mo><mn>1</mn></mrow></msup></mrow><annotation encoding=\"application/x-tex\">c = 3.0 \\times 10^{8}\\ \\text{m s}^{-1}</annotation></semantics></math>"
+    },
+    {
+     "id": "acceleration-due-to-gravity",
+     "name": "Acceleration due to gravity",
+     "latex": "g = 9.8\\ \\text{m s}^{-2}",
+     "provision": {
+      "sec": "given"
+     },
+     "keywords": [
+      "gravity",
+      "g",
+      "acceleration"
+     ],
+     "mathml": "<math xmlns=\"http://www.w3.org/1998/Math/MathML\"><semantics><mrow><mi>g</mi><mo>=</mo><mn>9.8</mn><mtext> </mtext><msup><mtext>m s</mtext><mrow><mo>−</mo><mn>2</mn></mrow></msup></mrow><annotation encoding=\"application/x-tex\">g = 9.8\\ \\text{m s}^{-2}</annotation></semantics></math>"
+    },
+    {
+     "id": "universal-gravitational-constant",
+     "name": "Universal gravitational constant",
+     "latex": "G = 6.7 \\times 10^{-11}\\ \\text{N m}^{2}\\ \\text{kg}^{-2}",
+     "provision": {
+      "sec": "given"
+     },
+     "keywords": [
+      "gravitation",
+      "G",
+      "constant"
+     ],
+     "mathml": "<math xmlns=\"http://www.w3.org/1998/Math/MathML\"><semantics><mrow><mi>G</mi><mo>=</mo><mn>6.7</mn><mo>×</mo><msup><mn>10</mn><mrow><mo>−</mo><mn>11</mn></mrow></msup><mtext> </mtext><msup><mtext>N m</mtext><mn>2</mn></msup><mtext> </mtext><msup><mtext>kg</mtext><mrow><mo>−</mo><mn>2</mn></mrow></msup></mrow><annotation encoding=\"application/x-tex\">G = 6.7 \\times 10^{-11}\\ \\text{N m}^{2}\\ \\text{kg}^{-2}</annotation></semantics></math>"
+    },
+    {
+     "id": "elementary-charge",
+     "name": "Elementary charge",
+     "latex": "e = 1.6 \\times 10^{-19}\\ \\text{C}",
+     "provision": {
+      "sec": "given"
+     },
+     "keywords": [
+      "charge",
+      "electron",
+      "elementary"
+     ],
+     "mathml": "<math xmlns=\"http://www.w3.org/1998/Math/MathML\"><semantics><mrow><mi>e</mi><mo>=</mo><mn>1.6</mn><mo>×</mo><msup><mn>10</mn><mrow><mo>−</mo><mn>19</mn></mrow></msup><mtext> C</mtext></mrow><annotation encoding=\"application/x-tex\">e = 1.6 \\times 10^{-19}\\ \\text{C}</annotation></semantics></math>"
+    },
+    {
+     "id": "electron-mass",
+     "name": "Mass of the electron",
+     "latex": "m_{e} = 9.1 \\times 10^{-31}\\ \\text{kg}",
+     "provision": {
+      "sec": "given"
+     },
+     "keywords": [
+      "electron",
+      "mass"
+     ],
+     "mathml": "<math xmlns=\"http://www.w3.org/1998/Math/MathML\"><semantics><mrow><msub><mi>m</mi><mi>e</mi></msub><mo>=</mo><mn>9.1</mn><mo>×</mo><msup><mn>10</mn><mrow><mo>−</mo><mn>31</mn></mrow></msup><mtext> kg</mtext></mrow><annotation encoding=\"application/x-tex\">m_{e} = 9.1 \\times 10^{-31}\\ \\text{kg}</annotation></semantics></math>"
+    },
+    {
+     "id": "avogadro-constant",
+     "name": "Avogadro constant",
+     "latex": "N_{A} = 6.0 \\times 10^{23}\\ \\text{mol}^{-1}",
+     "provision": {
+      "sec": "given"
+     },
+     "keywords": [
+      "avogadro",
+      "mole",
+      "constant"
+     ],
+     "mathml": "<math xmlns=\"http://www.w3.org/1998/Math/MathML\"><semantics><mrow><msub><mi>N</mi><mi>A</mi></msub><mo>=</mo><mn>6.0</mn><mo>×</mo><msup><mn>10</mn><mn>23</mn></msup><mtext> </mtext><msup><mtext>mol</mtext><mrow><mo>−</mo><mn>1</mn></mrow></msup></mrow><annotation encoding=\"application/x-tex\">N_{A} = 6.0 \\times 10^{23}\\ \\text{mol}^{-1}</annotation></semantics></math>"
+    },
+    {
+     "id": "planck-constant",
+     "name": "Planck constant",
+     "latex": "h = 6.6 \\times 10^{-34}\\ \\text{J s}",
+     "provision": {
+      "sec": "given"
+     },
+     "keywords": [
+      "planck",
+      "quantum",
+      "h"
+     ],
+     "mathml": "<math xmlns=\"http://www.w3.org/1998/Math/MathML\"><semantics><mrow><mi>h</mi><mo>=</mo><mn>6.6</mn><mo>×</mo><msup><mn>10</mn><mrow><mo>−</mo><mn>34</mn></mrow></msup><mtext> J s</mtext></mrow><annotation encoding=\"application/x-tex\">h = 6.6 \\times 10^{-34}\\ \\text{J s}</annotation></semantics></math>"
+    },
+    {
+     "id": "permittivity",
+     "name": "Permittivity of free space",
+     "latex": "\\varepsilon_{0} = 8.9 \\times 10^{-12}\\ \\text{F m}^{-1}",
+     "provision": {
+      "sec": "given"
+     },
+     "keywords": [
+      "permittivity",
+      "epsilon",
+      "coulomb"
+     ],
+     "mathml": "<math xmlns=\"http://www.w3.org/1998/Math/MathML\"><semantics><mrow><msub><mi>ε</mi><mn>0</mn></msub><mo>=</mo><mn>8.9</mn><mo>×</mo><msup><mn>10</mn><mrow><mo>−</mo><mn>12</mn></mrow></msup><mtext> </mtext><msup><mtext>F m</mtext><mrow><mo>−</mo><mn>1</mn></mrow></msup></mrow><annotation encoding=\"application/x-tex\">\\varepsilon_{0} = 8.9 \\times 10^{-12}\\ \\text{F m}^{-1}</annotation></semantics></math>"
+    },
+    {
+     "id": "permeability",
+     "name": "Permeability of free space",
+     "latex": "\\mu_{0} = 4\\pi \\times 10^{-7}\\ \\text{H m}^{-1}",
+     "provision": {
+      "sec": "given"
+     },
+     "keywords": [
+      "permeability",
+      "mu",
+      "magnetic"
+     ],
+     "mathml": "<math xmlns=\"http://www.w3.org/1998/Math/MathML\"><semantics><mrow><msub><mi>μ</mi><mn>0</mn></msub><mo>=</mo><mn>4</mn><mi>π</mi><mo>×</mo><msup><mn>10</mn><mrow><mo>−</mo><mn>7</mn></mrow></msup><mtext> </mtext><msup><mtext>H m</mtext><mrow><mo>−</mo><mn>1</mn></mrow></msup></mrow><annotation encoding=\"application/x-tex\">\\mu_{0} = 4\\pi \\times 10^{-7}\\ \\text{H m}^{-1}</annotation></semantics></math>"
+    },
+    {
+     "id": "gas-constant",
+     "name": "Universal gas constant",
+     "latex": "R = 8.3\\ \\text{J K}^{-1}\\ \\text{mol}^{-1}",
+     "provision": {
+      "sec": "given"
+     },
+     "keywords": [
+      "gas",
+      "constant",
+      "R"
+     ],
+     "mathml": "<math xmlns=\"http://www.w3.org/1998/Math/MathML\"><semantics><mrow><mi>R</mi><mo>=</mo><mn>8.3</mn><mtext> </mtext><msup><mtext>J K</mtext><mrow><mo>−</mo><mn>1</mn></mrow></msup><mtext> </mtext><msup><mtext>mol</mtext><mrow><mo>−</mo><mn>1</mn></mrow></msup></mrow><annotation encoding=\"application/x-tex\">R = 8.3\\ \\text{J K}^{-1}\\ \\text{mol}^{-1}</annotation></semantics></math>"
+    },
+    {
+     "id": "atomic-mass-unit",
+     "name": "Unified atomic mass unit",
+     "latex": "u = 1.66 \\times 10^{-27}\\ \\text{kg}",
+     "provision": {
+      "sec": "given"
+     },
+     "keywords": [
+      "atomic",
+      "mass",
+      "unit"
+     ],
+     "mathml": "<math xmlns=\"http://www.w3.org/1998/Math/MathML\"><semantics><mrow><mi>u</mi><mo>=</mo><mn>1.66</mn><mo>×</mo><msup><mn>10</mn><mrow><mo>−</mo><mn>27</mn></mrow></msup><mtext> kg</mtext></mrow><annotation encoding=\"application/x-tex\">u = 1.66 \\times 10^{-27}\\ \\text{kg}</annotation></semantics></math>"
+    }
+   ]
+  },
+  {
+   "id": "mechanics",
+   "title": "Mechanics",
+   "items": [
+    {
+     "id": "force-acceleration",
+     "name": "Force and acceleration",
+     "latex": "F = ma",
+     "provision": {
+      "sec": "given"
+     },
+     "keywords": [
+      "newton",
+      "force",
+      "mass",
+      "acceleration",
+      "pulley",
+      "newton's second law",
+      "lift",
+      "weight"
+     ],
+     "mathml": "<math xmlns=\"http://www.w3.org/1998/Math/MathML\"><semantics><mrow><mi>F</mi><mo>=</mo><mi>m</mi><mi>a</mi></mrow><annotation encoding=\"application/x-tex\">F = ma</annotation></semantics></math>"
+    },
+    {
+     "id": "linear-motion-velocity",
+     "name": "Linear motion with constant acceleration — velocity",
+     "latex": "v = u + at",
+     "provision": {
+      "sec": "given"
+     },
+     "keywords": [
+      "suvat",
+      "velocity",
+      "acceleration",
+      "time",
+      "projectile",
+      "projectile motion",
+      "u v a t"
+     ],
+     "mathml": "<math xmlns=\"http://www.w3.org/1998/Math/MathML\"><semantics><mrow><mi>v</mi><mo>=</mo><mi>u</mi><mo>+</mo><mi>a</mi><mi>t</mi></mrow><annotation encoding=\"application/x-tex\">v = u + at</annotation></semantics></math>"
+    },
+    {
+     "id": "linear-motion-displacement",
+     "name": "Linear motion with constant acceleration — displacement",
+     "latex": "s = ut + \\tfrac{1}{2}at^{2}",
+     "provision": {
+      "sec": "given"
+     },
+     "keywords": [
+      "suvat",
+      "displacement",
+      "acceleration",
+      "time",
+      "projectile",
+      "projectile motion",
+      "height",
+      "range"
+     ],
+     "mathml": "<math xmlns=\"http://www.w3.org/1998/Math/MathML\"><semantics><mrow><mi>s</mi><mo>=</mo><mi>u</mi><mi>t</mi><mo>+</mo><mstyle scriptlevel=\"0\" displaystyle=\"false\"><mfrac><mn>1</mn><mn>2</mn></mfrac></mstyle><mi>a</mi><msup><mi>t</mi><mn>2</mn></msup></mrow><annotation encoding=\"application/x-tex\">s = ut + \\tfrac{1}{2}at^{2}</annotation></semantics></math>"
+    },
+    {
+     "id": "linear-motion-velocity-squared",
+     "name": "Linear motion with constant acceleration — velocity and displacement",
+     "latex": "v^{2} = u^{2} + 2as",
+     "provision": {
+      "sec": "given"
+     },
+     "keywords": [
+      "suvat",
+      "velocity",
+      "displacement",
+      "acceleration",
+      "projectile",
+      "projectile motion"
+     ],
+     "mathml": "<math xmlns=\"http://www.w3.org/1998/Math/MathML\"><semantics><mrow><msup><mi>v</mi><mn>2</mn></msup><mo>=</mo><msup><mi>u</mi><mn>2</mn></msup><mo>+</mo><mn>2</mn><mi>a</mi><mi>s</mi></mrow><annotation encoding=\"application/x-tex\">v^{2} = u^{2} + 2as</annotation></semantics></math>"
+    },
+    {
+     "id": "linear-motion-average-velocity",
+     "name": "Linear motion with constant acceleration — average velocity",
+     "latex": "s = \\frac{u + v}{2}\\,t",
+     "provision": {
+      "sec": "given"
+     },
+     "keywords": [
+      "suvat",
+      "average velocity",
+      "displacement",
+      "projectile",
+      "average speed"
+     ],
+     "mathml": "<math xmlns=\"http://www.w3.org/1998/Math/MathML\"><semantics><mrow><mi>s</mi><mo>=</mo><mfrac><mrow><mi>u</mi><mo>+</mo><mi>v</mi></mrow><mn>2</mn></mfrac><mtext> </mtext><mi>t</mi></mrow><annotation encoding=\"application/x-tex\">s = \\frac{u + v}{2}\\,t</annotation></semantics></math>"
+    },
+    {
+     "id": "relative-displacement",
+     "name": "Relative displacement",
+     "latex": "\\vec{s}_{BC} = \\vec{s}_{B} - \\vec{s}_{C}",
+     "provision": {
+      "sec": "given"
+     },
+     "keywords": [
+      "relative",
+      "displacement"
+     ],
+     "mathml": "<math xmlns=\"http://www.w3.org/1998/Math/MathML\"><semantics><mrow><msub><mover accent=\"true\"><mi>s</mi><mo>⃗</mo></mover><mrow><mi>B</mi><mi>C</mi></mrow></msub><mo>=</mo><msub><mover accent=\"true\"><mi>s</mi><mo>⃗</mo></mover><mi>B</mi></msub><mo>−</mo><msub><mover accent=\"true\"><mi>s</mi><mo>⃗</mo></mover><mi>C</mi></msub></mrow><annotation encoding=\"application/x-tex\">\\vec{s}_{BC} = \\vec{s}_{B} - \\vec{s}_{C}</annotation></semantics></math>"
+    },
+    {
+     "id": "relative-velocity",
+     "name": "Relative velocity",
+     "latex": "\\vec{v}_{BC} = \\vec{v}_{B} - \\vec{v}_{C}",
+     "provision": {
+      "sec": "given"
+     },
+     "keywords": [
+      "relative",
+      "velocity"
+     ],
+     "mathml": "<math xmlns=\"http://www.w3.org/1998/Math/MathML\"><semantics><mrow><msub><mover accent=\"true\"><mi>v</mi><mo>⃗</mo></mover><mrow><mi>B</mi><mi>C</mi></mrow></msub><mo>=</mo><msub><mover accent=\"true\"><mi>v</mi><mo>⃗</mo></mover><mi>B</mi></msub><mo>−</mo><msub><mover accent=\"true\"><mi>v</mi><mo>⃗</mo></mover><mi>C</mi></msub></mrow><annotation encoding=\"application/x-tex\">\\vec{v}_{BC} = \\vec{v}_{B} - \\vec{v}_{C}</annotation></semantics></math>"
+    },
+    {
+     "id": "relative-acceleration",
+     "name": "Relative acceleration",
+     "latex": "\\vec{a}_{BC} = \\vec{a}_{B} - \\vec{a}_{C}",
+     "provision": {
+      "sec": "given"
+     },
+     "keywords": [
+      "relative",
+      "acceleration"
+     ],
+     "mathml": "<math xmlns=\"http://www.w3.org/1998/Math/MathML\"><semantics><mrow><msub><mover accent=\"true\"><mi>a</mi><mo>⃗</mo></mover><mrow><mi>B</mi><mi>C</mi></mrow></msub><mo>=</mo><msub><mover accent=\"true\"><mi>a</mi><mo>⃗</mo></mover><mi>B</mi></msub><mo>−</mo><msub><mover accent=\"true\"><mi>a</mi><mo>⃗</mo></mover><mi>C</mi></msub></mrow><annotation encoding=\"application/x-tex\">\\vec{a}_{BC} = \\vec{a}_{B} - \\vec{a}_{C}</annotation></semantics></math>"
+    }
+   ]
+  },
+  {
+   "id": "collisions",
+   "title": "Collisions and momentum",
+   "items": [
+    {
+     "id": "momentum",
+     "name": "Momentum of a particle",
+     "latex": "p = mv",
+     "provision": {
+      "sec": "given"
+     },
+     "keywords": [
+      "momentum",
+      "mass",
+      "velocity"
+     ],
+     "mathml": "<math xmlns=\"http://www.w3.org/1998/Math/MathML\"><semantics><mrow><mi>p</mi><mo>=</mo><mi>m</mi><mi>v</mi></mrow><annotation encoding=\"application/x-tex\">p = mv</annotation></semantics></math>"
+    },
+    {
+     "id": "newton-experimental-law",
+     "name": "Newton's experimental law",
+     "latex": "v_{1} - v_{2} = -e\\,(u_{1} - u_{2})",
+     "provision": {
+      "sec": "given"
+     },
+     "keywords": [
+      "restitution",
+      "collision",
+      "e",
+      "newton"
+     ],
+     "mathml": "<math xmlns=\"http://www.w3.org/1998/Math/MathML\"><semantics><mrow><msub><mi>v</mi><mn>1</mn></msub><mo>−</mo><msub><mi>v</mi><mn>2</mn></msub><mo>=</mo><mo>−</mo><mi>e</mi><mtext> </mtext><mo stretchy=\"false\">(</mo><msub><mi>u</mi><mn>1</mn></msub><mo>−</mo><msub><mi>u</mi><mn>2</mn></msub><mo stretchy=\"false\">)</mo></mrow><annotation encoding=\"application/x-tex\">v_{1} - v_{2} = -e\\,(u_{1} - u_{2})</annotation></semantics></math>"
+    },
+    {
+     "id": "conservation-of-momentum",
+     "name": "Conservation of momentum",
+     "latex": "m_{1}u_{1} + m_{2}u_{2} = m_{1}v_{1} + m_{2}v_{2}",
+     "provision": {
+      "sec": "given"
+     },
+     "keywords": [
+      "momentum",
+      "conservation",
+      "collision",
+      "restitution",
+      "explosion"
+     ],
+     "mathml": "<math xmlns=\"http://www.w3.org/1998/Math/MathML\"><semantics><mrow><msub><mi>m</mi><mn>1</mn></msub><msub><mi>u</mi><mn>1</mn></msub><mo>+</mo><msub><mi>m</mi><mn>2</mn></msub><msub><mi>u</mi><mn>2</mn></msub><mo>=</mo><msub><mi>m</mi><mn>1</mn></msub><msub><mi>v</mi><mn>1</mn></msub><mo>+</mo><msub><mi>m</mi><mn>2</mn></msub><msub><mi>v</mi><mn>2</mn></msub></mrow><annotation encoding=\"application/x-tex\">m_{1}u_{1} + m_{2}u_{2} = m_{1}v_{1} + m_{2}v_{2}</annotation></semantics></math>"
+    },
+    {
+     "id": "impulse",
+     "name": "Impulse",
+     "latex": "I = \\int F\\,dt = mv - mu",
+     "provision": {
+      "sec": "given"
+     },
+     "keywords": [
+      "impulse",
+      "force",
+      "momentum"
+     ],
+     "mathml": "<math xmlns=\"http://www.w3.org/1998/Math/MathML\"><semantics><mrow><mi>I</mi><mo>=</mo><mo>∫</mo><mi>F</mi><mtext> </mtext><mi>d</mi><mi>t</mi><mo>=</mo><mi>m</mi><mi>v</mi><mo>−</mo><mi>m</mi><mi>u</mi></mrow><annotation encoding=\"application/x-tex\">I = \\int F\\,dt = mv - mu</annotation></semantics></math>"
+    }
+   ]
+  },
+  {
+   "id": "circular-motion",
+   "title": "Motion in a circle",
+   "items": [
+    {
+     "id": "angle-in-radians",
+     "name": "Angle in radians",
+     "latex": "\\theta = \\frac{s}{r}",
+     "provision": {
+      "sec": "given"
+     },
+     "keywords": [
+      "radian",
+      "angle",
+      "arc"
+     ],
+     "mathml": "<math xmlns=\"http://www.w3.org/1998/Math/MathML\"><semantics><mrow><mi>θ</mi><mo>=</mo><mfrac><mi>s</mi><mi>r</mi></mfrac></mrow><annotation encoding=\"application/x-tex\">\\theta = \\frac{s}{r}</annotation></semantics></math>"
+    },
+    {
+     "id": "angular-velocity",
+     "name": "Angular velocity",
+     "latex": "\\omega = \\frac{\\theta}{t}",
+     "provision": {
+      "sec": "given"
+     },
+     "keywords": [
+      "angular velocity",
+      "omega",
+      "radians"
+     ],
+     "mathml": "<math xmlns=\"http://www.w3.org/1998/Math/MathML\"><semantics><mrow><mi>ω</mi><mo>=</mo><mfrac><mi>θ</mi><mi>t</mi></mfrac></mrow><annotation encoding=\"application/x-tex\">\\omega = \\frac{\\theta}{t}</annotation></semantics></math>"
+    },
+    {
+     "id": "linear-and-angular-velocity",
+     "name": "Linear and angular velocity",
+     "latex": "v = r\\omega",
+     "provision": {
+      "sec": "given"
+     },
+     "keywords": [
+      "linear",
+      "angular",
+      "velocity",
+      "omega"
+     ],
+     "mathml": "<math xmlns=\"http://www.w3.org/1998/Math/MathML\"><semantics><mrow><mi>v</mi><mo>=</mo><mi>r</mi><mi>ω</mi></mrow><annotation encoding=\"application/x-tex\">v = r\\omega</annotation></semantics></math>"
+    },
+    {
+     "id": "centripetal-acceleration",
+     "name": "Centripetal acceleration",
+     "latex": "a = r\\omega^{2} = \\frac{v^{2}}{r}",
+     "provision": {
+      "sec": "given"
+     },
+     "keywords": [
+      "centripetal",
+      "acceleration",
+      "circular"
+     ],
+     "mathml": "<math xmlns=\"http://www.w3.org/1998/Math/MathML\"><semantics><mrow><mi>a</mi><mo>=</mo><mi>r</mi><msup><mi>ω</mi><mn>2</mn></msup><mo>=</mo><mfrac><msup><mi>v</mi><mn>2</mn></msup><mi>r</mi></mfrac></mrow><annotation encoding=\"application/x-tex\">a = r\\omega^{2} = \\frac{v^{2}}{r}</annotation></semantics></math>"
+    },
+    {
+     "id": "centripetal-force",
+     "name": "Centripetal force",
+     "latex": "F = mr\\omega^{2} = \\frac{mv^{2}}{r}",
+     "provision": {
+      "sec": "given"
+     },
+     "keywords": [
+      "centripetal",
+      "force",
+      "circular",
+      "circular motion",
+      "orbit",
+      "conical pendulum"
+     ],
+     "mathml": "<math xmlns=\"http://www.w3.org/1998/Math/MathML\"><semantics><mrow><mi>F</mi><mo>=</mo><mi>m</mi><mi>r</mi><msup><mi>ω</mi><mn>2</mn></msup><mo>=</mo><mfrac><mrow><mi>m</mi><msup><mi>v</mi><mn>2</mn></msup></mrow><mi>r</mi></mfrac></mrow><annotation encoding=\"application/x-tex\">F = mr\\omega^{2} = \\frac{mv^{2}}{r}</annotation></semantics></math>"
+    }
+   ]
+  },
+  {
+   "id": "simple-harmonic-motion",
+   "title": "Simple harmonic motion",
+   "items": [
+    {
+     "id": "shm-acceleration",
+     "name": "Acceleration in simple harmonic motion",
+     "latex": "a = -\\omega^{2}s",
+     "provision": {
+      "sec": "given"
+     },
+     "keywords": [
+      "shm",
+      "acceleration",
+      "omega"
+     ],
+     "mathml": "<math xmlns=\"http://www.w3.org/1998/Math/MathML\"><semantics><mrow><mi>a</mi><mo>=</mo><mo>−</mo><msup><mi>ω</mi><mn>2</mn></msup><mi>s</mi></mrow><annotation encoding=\"application/x-tex\">a = -\\omega^{2}s</annotation></semantics></math>"
+    },
+    {
+     "id": "shm-period",
+     "name": "Period of simple harmonic motion",
+     "latex": "T = \\frac{1}{f} = \\frac{2\\pi}{\\omega}",
+     "provision": {
+      "sec": "given"
+     },
+     "keywords": [
+      "shm",
+      "period",
+      "frequency",
+      "oscillation",
+      "angular frequency"
+     ],
+     "mathml": "<math xmlns=\"http://www.w3.org/1998/Math/MathML\"><semantics><mrow><mi>T</mi><mo>=</mo><mfrac><mn>1</mn><mi>f</mi></mfrac><mo>=</mo><mfrac><mrow><mn>2</mn><mi>π</mi></mrow><mi>ω</mi></mfrac></mrow><annotation encoding=\"application/x-tex\">T = \\frac{1}{f} = \\frac{2\\pi}{\\omega}</annotation></semantics></math>"
+    },
+    {
+     "id": "shm-displacement",
+     "name": "Displacement in simple harmonic motion",
+     "latex": "s = A\\sin(\\omega t + \\alpha)",
+     "provision": {
+      "sec": "given"
+     },
+     "keywords": [
+      "shm",
+      "displacement",
+      "amplitude"
+     ],
+     "mathml": "<math xmlns=\"http://www.w3.org/1998/Math/MathML\"><semantics><mrow><mi>s</mi><mo>=</mo><mi>A</mi><mi>sin</mi><mo>⁡</mo><mo stretchy=\"false\">(</mo><mi>ω</mi><mi>t</mi><mo>+</mo><mi>α</mi><mo stretchy=\"false\">)</mo></mrow><annotation encoding=\"application/x-tex\">s = A\\sin(\\omega t + \\alpha)</annotation></semantics></math>"
+    },
+    {
+     "id": "shm-velocity",
+     "name": "Velocity in simple harmonic motion",
+     "latex": "v = \\omega\\sqrt{A^{2} - s^{2}}",
+     "provision": {
+      "sec": "given"
+     },
+     "keywords": [
+      "shm",
+      "velocity",
+      "amplitude"
+     ],
+     "mathml": "<math xmlns=\"http://www.w3.org/1998/Math/MathML\"><semantics><mrow><mi>v</mi><mo>=</mo><mi>ω</mi><msqrt><mrow><msup><mi>A</mi><mn>2</mn></msup><mo>−</mo><msup><mi>s</mi><mn>2</mn></msup></mrow></msqrt></mrow><annotation encoding=\"application/x-tex\">v = \\omega\\sqrt{A^{2} - s^{2}}</annotation></semantics></math>"
+    },
+    {
+     "id": "simple-pendulum-period",
+     "name": "Period of a simple pendulum",
+     "latex": "T = 2\\pi\\sqrt{\\frac{l}{g}}",
+     "provision": {
+      "sec": "given"
+     },
+     "keywords": [
+      "pendulum",
+      "period",
+      "simple",
+      "oscillation",
+      "shm"
+     ],
+     "mathml": "<math xmlns=\"http://www.w3.org/1998/Math/MathML\"><semantics><mrow><mi>T</mi><mo>=</mo><mn>2</mn><mi>π</mi><msqrt><mfrac><mi>l</mi><mi>g</mi></mfrac></msqrt></mrow><annotation encoding=\"application/x-tex\">T = 2\\pi\\sqrt{\\frac{l}{g}}</annotation></semantics></math>"
+    },
+    {
+     "id": "compound-pendulum-period",
+     "name": "Period of a compound pendulum",
+     "latex": "T = 2\\pi\\sqrt{\\frac{I}{mgh}}",
+     "provision": {
+      "sec": "given"
+     },
+     "keywords": [
+      "pendulum",
+      "compound",
+      "period"
+     ],
+     "mathml": "<math xmlns=\"http://www.w3.org/1998/Math/MathML\"><semantics><mrow><mi>T</mi><mo>=</mo><mn>2</mn><mi>π</mi><msqrt><mfrac><mi>I</mi><mrow><mi>m</mi><mi>g</mi><mi>h</mi></mrow></mfrac></msqrt></mrow><annotation encoding=\"application/x-tex\">T = 2\\pi\\sqrt{\\frac{I}{mgh}}</annotation></semantics></math>"
+    }
+   ]
+  },
+  {
+   "id": "energy-and-work",
+   "title": "Energy and work",
+   "items": [
+    {
+     "id": "work",
+     "name": "Work",
+     "latex": "W = Fs = \\int F\\,ds",
+     "provision": {
+      "sec": "given"
+     },
+     "keywords": [
+      "work",
+      "force",
+      "distance"
+     ],
+     "mathml": "<math xmlns=\"http://www.w3.org/1998/Math/MathML\"><semantics><mrow><mi>W</mi><mo>=</mo><mi>F</mi><mi>s</mi><mo>=</mo><mo>∫</mo><mi>F</mi><mtext> </mtext><mi>d</mi><mi>s</mi></mrow><annotation encoding=\"application/x-tex\">W = Fs = \\int F\\,ds</annotation></semantics></math>"
+    },
+    {
+     "id": "power",
+     "name": "Power",
+     "latex": "P = \\frac{W}{t} = Fv",
+     "provision": {
+      "sec": "given"
+     },
+     "keywords": [
+      "power",
+      "work",
+      "time"
+     ],
+     "mathml": "<math xmlns=\"http://www.w3.org/1998/Math/MathML\"><semantics><mrow><mi>P</mi><mo>=</mo><mfrac><mi>W</mi><mi>t</mi></mfrac><mo>=</mo><mi>F</mi><mi>v</mi></mrow><annotation encoding=\"application/x-tex\">P = \\frac{W}{t} = Fv</annotation></semantics></math>"
+    },
+    {
+     "id": "percentage-efficiency",
+     "name": "Percentage efficiency",
+     "latex": "\\frac{P_{o}}{P_{i}} \\times 100",
+     "provision": {
+      "sec": "given"
+     },
+     "keywords": [
+      "efficiency",
+      "power",
+      "percentage"
+     ],
+     "mathml": "<math xmlns=\"http://www.w3.org/1998/Math/MathML\"><semantics><mrow><mfrac><msub><mi>P</mi><mi>o</mi></msub><msub><mi>P</mi><mi>i</mi></msub></mfrac><mo>×</mo><mn>100</mn></mrow><annotation encoding=\"application/x-tex\">\\frac{P_{o}}{P_{i}} \\times 100</annotation></semantics></math>"
+    },
+    {
+     "id": "potential-energy",
+     "name": "Gravitational potential energy",
+     "latex": "E_{p} = mgh",
+     "provision": {
+      "sec": "given"
+     },
+     "keywords": [
+      "potential energy",
+      "gravitational",
+      "height"
+     ],
+     "mathml": "<math xmlns=\"http://www.w3.org/1998/Math/MathML\"><semantics><mrow><msub><mi>E</mi><mi>p</mi></msub><mo>=</mo><mi>m</mi><mi>g</mi><mi>h</mi></mrow><annotation encoding=\"application/x-tex\">E_{p} = mgh</annotation></semantics></math>"
+    },
+    {
+     "id": "kinetic-energy",
+     "name": "Kinetic energy",
+     "latex": "E_{k} = \\tfrac{1}{2}mv^{2}",
+     "provision": {
+      "sec": "given"
+     },
+     "keywords": [
+      "kinetic energy",
+      "mass",
+      "velocity"
+     ],
+     "mathml": "<math xmlns=\"http://www.w3.org/1998/Math/MathML\"><semantics><mrow><msub><mi>E</mi><mi>k</mi></msub><mo>=</mo><mstyle scriptlevel=\"0\" displaystyle=\"false\"><mfrac><mn>1</mn><mn>2</mn></mfrac></mstyle><mi>m</mi><msup><mi>v</mi><mn>2</mn></msup></mrow><annotation encoding=\"application/x-tex\">E_{k} = \\tfrac{1}{2}mv^{2}</annotation></semantics></math>"
+    },
+    {
+     "id": "conservation-of-energy",
+     "name": "Principle of conservation of energy",
+     "latex": "\\Delta E_{p} + \\Delta E_{k} = 0",
+     "provision": {
+      "sec": "given"
+     },
+     "keywords": [
+      "conservation",
+      "energy",
+      "mechanical"
+     ],
+     "mathml": "<math xmlns=\"http://www.w3.org/1998/Math/MathML\"><semantics><mrow><mi mathvariant=\"normal\">Δ</mi><msub><mi>E</mi><mi>p</mi></msub><mo>+</mo><mi mathvariant=\"normal\">Δ</mi><msub><mi>E</mi><mi>k</mi></msub><mo>=</mo><mn>0</mn></mrow><annotation encoding=\"application/x-tex\">\\Delta E_{p} + \\Delta E_{k} = 0</annotation></semantics></math>"
+    },
+    {
+     "id": "mass-energy-equivalence",
+     "name": "Mass-energy equivalence",
+     "latex": "E = mc^{2}",
+     "provision": {
+      "sec": "given"
+     },
+     "keywords": [
+      "mass energy",
+      "einstein",
+      "c squared"
+     ],
+     "mathml": "<math xmlns=\"http://www.w3.org/1998/Math/MathML\"><semantics><mrow><mi>E</mi><mo>=</mo><mi>m</mi><msup><mi>c</mi><mn>2</mn></msup></mrow><annotation encoding=\"application/x-tex\">E = mc^{2}</annotation></semantics></math>"
+    }
+   ]
+  },
+  {
+   "id": "gravitation",
+   "title": "Gravitation",
+   "items": [
+    {
+     "id": "newtons-law-of-gravitation",
+     "name": "Newton's law of gravitation",
+     "latex": "F = \\frac{Gm_{1}m_{2}}{d^{2}}",
+     "provision": {
+      "sec": "given"
+     },
+     "keywords": [
+      "gravitation",
+      "newton",
+      "inverse square"
+     ],
+     "mathml": "<math xmlns=\"http://www.w3.org/1998/Math/MathML\"><semantics><mrow><mi>F</mi><mo>=</mo><mfrac><mrow><mi>G</mi><msub><mi>m</mi><mn>1</mn></msub><msub><mi>m</mi><mn>2</mn></msub></mrow><msup><mi>d</mi><mn>2</mn></msup></mfrac></mrow><annotation encoding=\"application/x-tex\">F = \\frac{Gm_{1}m_{2}}{d^{2}}</annotation></semantics></math>"
+    },
+    {
+     "id": "weight",
+     "name": "Weight",
+     "latex": "W = mg = V\\rho g",
+     "provision": {
+      "sec": "given"
+     },
+     "keywords": [
+      "weight",
+      "mass",
+      "density"
+     ],
+     "mathml": "<math xmlns=\"http://www.w3.org/1998/Math/MathML\"><semantics><mrow><mi>W</mi><mo>=</mo><mi>m</mi><mi>g</mi><mo>=</mo><mi>V</mi><mi>ρ</mi><mi>g</mi></mrow><annotation encoding=\"application/x-tex\">W = mg = V\\rho g</annotation></semantics></math>"
+    },
+    {
+     "id": "acceleration-due-to-gravity-field",
+     "name": "Acceleration due to gravity",
+     "latex": "g = \\frac{GM}{d^{2}}",
+     "provision": {
+      "sec": "given"
+     },
+     "keywords": [
+      "gravity",
+      "field",
+      "planet"
+     ],
+     "mathml": "<math xmlns=\"http://www.w3.org/1998/Math/MathML\"><semantics><mrow><mi>g</mi><mo>=</mo><mfrac><mrow><mi>G</mi><mi>M</mi></mrow><msup><mi>d</mi><mn>2</mn></msup></mfrac></mrow><annotation encoding=\"application/x-tex\">g = \\frac{GM}{d^{2}}</annotation></semantics></math>"
+    },
+    {
+     "id": "gravitational-field-strength",
+     "name": "Gravitational field strength",
+     "latex": "g = \\frac{F}{m}",
+     "provision": {
+      "sec": "given"
+     },
+     "keywords": [
+      "field strength",
+      "gravity"
+     ],
+     "mathml": "<math xmlns=\"http://www.w3.org/1998/Math/MathML\"><semantics><mrow><mi>g</mi><mo>=</mo><mfrac><mi>F</mi><mi>m</mi></mfrac></mrow><annotation encoding=\"application/x-tex\">g = \\frac{F}{m}</annotation></semantics></math>"
+    },
+    {
+     "id": "satellite-period",
+     "name": "Period of a satellite",
+     "latex": "T^{2} = \\frac{4\\pi^{2}R^{3}}{GM}",
+     "provision": {
+      "sec": "given"
+     },
+     "keywords": [
+      "satellite",
+      "period",
+      "orbit",
+      "kepler"
+     ],
+     "mathml": "<math xmlns=\"http://www.w3.org/1998/Math/MathML\"><semantics><mrow><msup><mi>T</mi><mn>2</mn></msup><mo>=</mo><mfrac><mrow><mn>4</mn><msup><mi>π</mi><mn>2</mn></msup><msup><mi>R</mi><mn>3</mn></msup></mrow><mrow><mi>G</mi><mi>M</mi></mrow></mfrac></mrow><annotation encoding=\"application/x-tex\">T^{2} = \\frac{4\\pi^{2}R^{3}}{GM}</annotation></semantics></math>"
+    }
+   ]
+  },
+  {
+   "id": "forces-and-materials",
+   "title": "Forces and materials",
+   "items": [
+    {
+     "id": "hookes-law",
+     "name": "Hooke's law",
+     "latex": "F = -ks",
+     "provision": {
+      "sec": "given"
+     },
+     "keywords": [
+      "hooke",
+      "spring",
+      "extension"
+     ],
+     "mathml": "<math xmlns=\"http://www.w3.org/1998/Math/MathML\"><semantics><mrow><mi>F</mi><mo>=</mo><mo>−</mo><mi>k</mi><mi>s</mi></mrow><annotation encoding=\"application/x-tex\">F = -ks</annotation></semantics></math>"
+    },
+    {
+     "id": "stress",
+     "name": "Stress",
+     "latex": "\\sigma = \\frac{F}{A}",
+     "provision": {
+      "sec": "given"
+     },
+     "keywords": [
+      "stress",
+      "force",
+      "area"
+     ],
+     "mathml": "<math xmlns=\"http://www.w3.org/1998/Math/MathML\"><semantics><mrow><mi>σ</mi><mo>=</mo><mfrac><mi>F</mi><mi>A</mi></mfrac></mrow><annotation encoding=\"application/x-tex\">\\sigma = \\frac{F}{A}</annotation></semantics></math>"
+    },
+    {
+     "id": "strain",
+     "name": "Strain",
+     "latex": "\\varepsilon = \\frac{\\Delta l}{l}",
+     "provision": {
+      "sec": "given"
+     },
+     "keywords": [
+      "strain",
+      "extension",
+      "length"
+     ],
+     "mathml": "<math xmlns=\"http://www.w3.org/1998/Math/MathML\"><semantics><mrow><mi>ε</mi><mo>=</mo><mfrac><mrow><mi mathvariant=\"normal\">Δ</mi><mi>l</mi></mrow><mi>l</mi></mfrac></mrow><annotation encoding=\"application/x-tex\">\\varepsilon = \\frac{\\Delta l}{l}</annotation></semantics></math>"
+    },
+    {
+     "id": "youngs-modulus",
+     "name": "Young's modulus",
+     "latex": "E = \\frac{\\sigma}{\\varepsilon}",
+     "provision": {
+      "sec": "given"
+     },
+     "keywords": [
+      "young",
+      "modulus",
+      "stress",
+      "strain"
+     ],
+     "mathml": "<math xmlns=\"http://www.w3.org/1998/Math/MathML\"><semantics><mrow><mi>E</mi><mo>=</mo><mfrac><mi>σ</mi><mi>ε</mi></mfrac></mrow><annotation encoding=\"application/x-tex\">E = \\frac{\\sigma}{\\varepsilon}</annotation></semantics></math>"
+    },
+    {
+     "id": "density",
+     "name": "Density",
+     "latex": "\\rho = \\frac{m}{V}",
+     "provision": {
+      "sec": "given"
+     },
+     "keywords": [
+      "density",
+      "mass",
+      "volume"
+     ],
+     "mathml": "<math xmlns=\"http://www.w3.org/1998/Math/MathML\"><semantics><mrow><mi>ρ</mi><mo>=</mo><mfrac><mi>m</mi><mi>V</mi></mfrac></mrow><annotation encoding=\"application/x-tex\">\\rho = \\frac{m}{V}</annotation></semantics></math>"
+    },
+    {
+     "id": "coefficient-of-friction",
+     "name": "Coefficient of friction",
+     "latex": "\\mu = \\frac{F}{R}",
+     "provision": {
+      "sec": "given"
+     },
+     "keywords": [
+      "friction",
+      "coefficient",
+      "normal"
+     ],
+     "mathml": "<math xmlns=\"http://www.w3.org/1998/Math/MathML\"><semantics><mrow><mi>μ</mi><mo>=</mo><mfrac><mi>F</mi><mi>R</mi></mfrac></mrow><annotation encoding=\"application/x-tex\">\\mu = \\frac{F}{R}</annotation></semantics></math>"
+    },
+    {
+     "id": "pressure",
+     "name": "Pressure",
+     "latex": "p = \\frac{F}{A}",
+     "provision": {
+      "sec": "given"
+     },
+     "keywords": [
+      "pressure",
+      "force",
+      "area"
+     ],
+     "mathml": "<math xmlns=\"http://www.w3.org/1998/Math/MathML\"><semantics><mrow><mi>p</mi><mo>=</mo><mfrac><mi>F</mi><mi>A</mi></mfrac></mrow><annotation encoding=\"application/x-tex\">p = \\frac{F}{A}</annotation></semantics></math>"
+    },
+    {
+     "id": "pressure-in-a-fluid",
+     "name": "Pressure in a fluid",
+     "latex": "p = \\rho g h",
+     "provision": {
+      "sec": "given"
+     },
+     "keywords": [
+      "pressure",
+      "fluid",
+      "depth"
+     ],
+     "mathml": "<math xmlns=\"http://www.w3.org/1998/Math/MathML\"><semantics><mrow><mi>p</mi><mo>=</mo><mi>ρ</mi><mi>g</mi><mi>h</mi></mrow><annotation encoding=\"application/x-tex\">p = \\rho g h</annotation></semantics></math>"
+    },
+    {
+     "id": "thrust-on-immersed-surface",
+     "name": "Thrust on an immersed plane surface",
+     "latex": "T = A\\,p_{C}",
+     "provision": {
+      "sec": "given"
+     },
+     "keywords": [
+      "thrust",
+      "immersed",
+      "pressure"
+     ],
+     "mathml": "<math xmlns=\"http://www.w3.org/1998/Math/MathML\"><semantics><mrow><mi>T</mi><mo>=</mo><mi>A</mi><mtext> </mtext><msub><mi>p</mi><mi>C</mi></msub></mrow><annotation encoding=\"application/x-tex\">T = A\\,p_{C}</annotation></semantics></math>"
+    },
+    {
+     "id": "boyles-law",
+     "name": "Boyle's law",
+     "latex": "p \\propto \\frac{1}{V}",
+     "provision": {
+      "sec": "given"
+     },
+     "keywords": [
+      "boyle",
+      "gas",
+      "pressure",
+      "volume"
+     ],
+     "mathml": "<math xmlns=\"http://www.w3.org/1998/Math/MathML\"><semantics><mrow><mi>p</mi><mo>∝</mo><mfrac><mn>1</mn><mi>V</mi></mfrac></mrow><annotation encoding=\"application/x-tex\">p \\propto \\frac{1}{V}</annotation></semantics></math>"
+    }
+   ]
+  }
+ ]
+}

@@ -18,6 +18,10 @@ description: >-
   A complete, interactive Leaving Certificate Applied Mathematics book for Ireland,
   covering Ordinary and Higher level, with the modelling process at its centre.
 
+# The SEC Formulae and Tables booklet, mechanics sections. The same national
+# document Physics carries the whole of; this book needs the mechanics half.
+booklet: booklet/ie-lc-applied-maths.yaml
+
 boards: [SEC]
 
 profiles:

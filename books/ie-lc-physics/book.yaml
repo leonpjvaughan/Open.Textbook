@@ -19,6 +19,12 @@ description: >-
   A complete, interactive Leaving Certificate Physics book for Ireland, covering
   Ordinary and Higher level, including the Physics In Practice Investigation.
 
+# The SEC Formulae and Tables booklet. Physics and Mathematics share one national
+# document, so this book carries its own copy of the physics sections rather than
+# reaching into the Mathematics book's file: a book is self-contained, and `scaffold`
+# copies per book.
+booklet: booklet/ie-lc-physics.yaml
+
 boards: [SEC]
 
 profiles:

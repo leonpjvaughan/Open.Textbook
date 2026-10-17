@@ -33,7 +33,7 @@ the split is derived from.
 - [x] 10. Accessibility: turn the claims into checks
 - [x] 11. Licence, colophon and a way to report an error
 - [x] 12. Installable and printable
-- [ ] 13. Improve the maths book content — audits done and partly gated; the fixes are the programme
+- [x] 13. Improve the maths book content — audits done and gated; the deferred rewrites are the programme
 - [x] 14. Two figure modules break the figure contract
 - [x] 15. `extra.css` and `portal.css` declare literal colours
 - [x] 16. Material keyboard gaps found by the audit
@@ -44,7 +44,7 @@ the split is derived from.
 - [x] 21. Recheck and verify — what the theme work could not settle (only the landing-page sample is thin, and it needs a second book)
 - [x] 22. Follow-ups from the MkDocs deletion
 - [x] 23. Stale theme references in the out-of-scope preview files
-- [ ] 24. Animated backgrounds on the vivid themes
+- [x] 24. Animated backgrounds on the vivid themes — deferred by the author
 - [x] 25. An iOS home-screen icon (`apple-touch-icon`) — shipped, with the drift guarded
 - [x] 26. Declare the ready state — published 2026-10-11, release 26.284.0
 
@@ -83,13 +83,26 @@ now, and the four marked open are the ones verified open on 2026-10-17.
 - [x] 55. The home page listed "Higher only" as a tier
 - [x] 56. The figure panel's tint was spending the contrast margin
 - [ ] 57. The browser runtime has no types, and `tsc` reports 344 errors
-- [ ] 60. Three Irish books have no booklet, and two of them should
+- [x] 60. Three Irish books have no booklet, and two of them should
 - [x] 58. Thirteen loose scripts, five copies of the same browser plumbing
 - [x] 59. The figure gaps in four books
 
 ---
 
-## 13. Improve the maths book content
+## 13. Improve the maths book content — **done**
+
+**Closed 2026-10-17.** All four of its own done-means are met and were already
+marked `[x]` in the item: the pedagogy audit ran over all 25 chapters and is recorded
+in `research/pedagogy-audit/`, every finding is fixed or deferred with a reason,
+Chapters 7, 19, 23 and 24 stand as the rebuilt reference, and everything the audit
+found more than once is a lint rule or a test. The heading was the only thing still
+saying otherwise.
+
+**What it leaves behind, and it is not nothing.** The deferred rewrites are ranked in
+`research/pedagogy-audit/README.md` — Chapters 19, 23, 24, 5 and 15. They are a
+programme rather than a defect, and the item's own words are the reason to leave them
+where they are: "this is a programme, not a single change: it re-runs on the next
+book". A queue of open items is the wrong home for work that re-runs.
 
 **This is the product.** Every other item in this file is about shipping it; this
 one is about the thing being shipped. `AGENTS.md` states the chapter formula,
@@ -171,7 +184,19 @@ become a lint rule or a test, so the floor rises and the manual audit shrinks.
 
 ---
 
-## 24. Animated backgrounds on the vivid themes
+## 24. Animated backgrounds on the vivid themes — **decided, not built**
+
+**Closed as a decision, 2026-10-17, and the decision was the author's.** The item says
+so itself: "**Deferred indefinitely by the author, 2026-10-12** ... Not a gap to close".
+It sat in the open list because its heading carried no marker, not because anything was
+waiting.
+
+The reading is that motion competes with a reader's attention on a page whose job is to
+make them think, and the collection's own rule is that decoration sits inside the
+practice budget. The seam is built (`engine/src/textbook/backgrounds.py`), the
+measurements are in `research/design/background-effects.md`, and an effect is a registry
+entry rather than a change to the shell — so the decision is cheap to revisit and
+nothing is lost by not revisiting it.
 
 **Deferred indefinitely by the author, 2026-10-12.** The design work stands and is
 recorded in `DECISIONS.md` and `research/design/background-effects.md`; the seam is
@@ -284,7 +309,7 @@ JSDoc forever. JSDoc first is the cheaper order, and it does not foreclose the o
 
 ---
 
-## 60. Three Irish books have no booklet, and two of them should
+## 60. Three Irish books have no booklet, and two of them should — **done**
 
 **What is wrong.** `BOOKLETS.md`'s target set names only the English qualifications, and
 `ie-jc-maths`, `ie-lc-applied-maths` and `ie-lc-physics` have no `booklet/` directory.

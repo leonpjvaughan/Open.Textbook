@@ -40,6 +40,23 @@ but the document has not been obtained and checked yet.
 | A-level | Further Mathematics | Its own formulae booklet | No | to retrieve |
 | A-level | Physics | Data and formulae booklet | No | to retrieve |
 | A-level | Chemistry | Periodic table, plus a data booklet | No | to retrieve |
+| Junior Cycle | Mathematics | **Nothing.** The SEC publishes no Junior Cycle booklet | — | **exempt**, and that is the reason it has none |
+| Leaving Certificate | Mathematics | Formulae and Tables booklet, pages 8–44 | No | **built** (`books/ie-lc-maths/booklet/`) |
+| Leaving Certificate | Physics | The same booklet, pages 47–63 | No | **built** (`books/ie-lc-physics/booklet/`) |
+| Leaving Certificate | Applied Mathematics | The same booklet, mechanics sections | No | **built** (`books/ie-lc-applied-maths/booklet/`) |
+| Leaving Certificate | Chemistry | The same booklet, plus the tables | No | to retrieve |
+
+**Ireland is one document, not four.** The State Examinations Commission publishes a
+single *Foirmlí agus Táblaí* for Mathematics, Physics, Chemistry and Applied
+Mathematics, and the superintendent issues the same copy to every candidate at every
+level. So there is no board choice and no tiering: every item in every Irish booklet is
+`given`. Each of the three books carries only the sections its pages are allowed to need,
+which is why they are separate files rather than one shared document — a book is
+self-contained, and `scaffold` copies per book.
+
+**`ie-jc-maths` is exempt, not outstanding.** The SEC publishes no booklet for Junior
+Cycle Mathematics, so the book has none and every one of its records is "undeclared" by
+construction. Recording that here is the difference between a gap and a fact.
 
 Design the schema so a booklet with no mathematics — a periodic table, a table of
 physical constants — can be expressed as `tables`, which the widget already
