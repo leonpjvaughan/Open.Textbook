@@ -23,7 +23,7 @@ import path from "node:path";
  * work list: annotating a parameter lowers this number, and it cannot rise again
  * without a reason in the commit message.
  */
-const BASELINE = 368;
+const BASELINE = 351;
 const TARGET = 0;
 const SELF = fileURLToPath(import.meta.url);
 /** The TypeScript source of this file, which is where the baseline is committed. */

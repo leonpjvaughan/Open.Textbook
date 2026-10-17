@@ -132,7 +132,12 @@ export function ticks({ from, to, count = 5 }) {
  * @param {object} o.y         `{ domain, ticks, label, tickFormat }`
  * @param {boolean} [o.grid]   faint grid lines at the ticks; default true
  * @param {boolean} [o.origin] draw a darker line at zero when zero is in range
- * @returns {{draw: string, x: Function, y: Function, box: object}}
+ * The return type is **inferred, not declared**. It was declared as
+ * `{draw: string, x: Function, y: Function, box: object}`, which threw away the two
+ * things a caller needs: `x` and `y` are mappers with an `invert`, and `box` has the
+ * four edges a module draws between. Declaring them `Function` and `object` made
+ * every caller's use of them a type error, which is how an annotation can be worse
+ * than none.
  */
 export function axes({
   width = 560,
@@ -198,6 +203,15 @@ export function axes({
  *
  * The default class is `fig-ink`, and the default width is 1.5 — the two values a
  * 162-module sample converged on by hand.
+ *
+ * @param {object} [o]
+ * @param {number} o.x1
+ * @param {number} o.y1
+ * @param {number} o.x2
+ * @param {number} o.y2
+ * @param {string} [o.class]  a `fig-*` class; `fig-ink` by default
+ * @param {number} [o.width]  stroke width in viewBox units
+ * @param {string} [o.dash]   an SVG `stroke-dasharray`, when the line is a guide
  */
 export function line({ x1, y1, x2, y2, class: cls = "fig-ink", width = 1.5, dash } = {}) {
   const stroke = `stroke-width="${width}"`;
@@ -318,7 +332,16 @@ export function area(points, { x, y, baseline = 0, class: cls = "fig-accent", op
   return path({ d, class: cls, fill: "currentColor", width: 0, opacity });
 }
 
-/** Dots at mapped points. */
+/**
+ * Dots at mapped points.
+ *
+ * @param {Array<[number, number]>} points  values in the axes' own units, not SVG units
+ * @param {object} [o]
+ * @param {Function} o.x  the x mapper the axes returned
+ * @param {Function} o.y  the y mapper the axes returned
+ * @param {number} [o.r]      radius in viewBox units
+ * @param {string} [o.class]  a `fig-*` class; `fig-ink` by default
+ */
 export function dots(points, { x, y, r = 4, class: cls = "fig-ink" } = {}) {
   let draw = "";
   for (const [px, py] of points) draw += circle({ cx: x(px), cy: y(py), r, class: cls });
