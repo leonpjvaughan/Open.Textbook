@@ -87,7 +87,7 @@ now, and the four marked open are the ones verified open on 2026-10-17.
 - [x] 58. Thirteen loose scripts, five copies of the same browser plumbing
 - [x] 59. The figure gaps in four books
 - [x] 60. Three Irish books have no booklet, and two of them should
-- [ ] 61. A figure's readout can state false working — mechanism done, 117 figures to declare
+- [ ] 61. A figure's readout can state false working — mechanism done, 35 figures to declare
 - [x] 62. The linter printed its findings and exited 0
 - [x] 63. `test/` sat one letter from `tests/`, and held the last loose script
 - [x] 64. The booklet gap was measured at the top level only
@@ -395,14 +395,17 @@ readout does not contain it"*. Three figures converted — `interest-growth`,
 `ratio-share`, `restitution` — with the `√` case proving no notation table is needed.
 The text heuristic survives only as `--text`, and is documented as a hint.
 
-**What is left.** `tools readout` reports **117 figures that print arithmetic and
-declare no claim**. That number is the migration, not a pass — the same rule the
-booklet-coverage check follows.
+**What is left.** `tools readout` reports **35 figures that print arithmetic and
+declare no claim** — measured 2026-10-17 over 245 figures and 1465 renders. (An earlier
+note said 117; that was a wider heuristic that counted any readout containing an `=`,
+including the ones that state a *result* rather than a calculation. The narrow count is
+the migration.) It is a count, not a pass, which is the same rule the booklet-coverage
+check follows.
 
 **Done means**
 
 - `node tools/dist/cli.js readout site` reports **0** figures that state arithmetic
-  and declare none.
+  and declare none (35 remain, measured 2026-10-17).
 - Every remaining figure declares its printed numbers, not only its totals.
 - `--text` is deleted, because nothing depends on the heuristic.
 

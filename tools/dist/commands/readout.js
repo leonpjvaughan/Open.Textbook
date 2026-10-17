@@ -340,9 +340,19 @@ export async function run(argv) {
     if (verify) {
         // The arithmetic is the verifier's, not this command's: SymPy rationalises 0.065 to
         // 13/200, so a claim is decided exactly and the notation a figure chose cannot
-        // change the answer.
-        const code = execFileSync("uv", ["run", "python", "-m", "textbook.working", jsonPath], { stdio: "inherit" });
-        return code === null ? 1 : 0;
+        // change the answer. `execFileSync` **returns null** when stdout is inherited and
+        // throws on a non-zero exit, so the status has to come from the catch — reading the
+        // return value made every run look like a failure.
+        try {
+            execFileSync("uv", ["run", "python", "-m", "textbook.working", jsonPath], {
+                stdio: "inherit",
+            });
+            return 0;
+        }
+        catch (error) {
+            const status = error.status;
+            return typeof status === "number" ? status : 1;
+        }
     }
     if (undeclared) {
         console.log(`  ${undeclared} figure(s) print arithmetic and declare no claim — ` +
