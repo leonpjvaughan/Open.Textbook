@@ -67,6 +67,20 @@ The shares are 20 kg and 25 kg, and $20+25=45$ kg.
 Notice that the share with the larger number of parts is the larger share. That is
 a quick way to see whether your answer is the right way round.
 
+## Investigate sharing a bar
+
+**Predict.** Before you move the controls, predict which share will be larger when 60
+euro is divided in the ratio $2:3$, and by how much.
+
+:::figure ratio-share
+
+**Test.** Set the total to 60 and the two parts to 2 and 3. Count the blocks in each
+share and read the value of one part along the bottom. Then try 45 kg in the ratio
+$4:5$, and then a ratio in which the two parts are equal.
+
+**Explain.** Write two or three sentences. Say why the total is divided by the number
+of parts, and why the two shares add back to the total.
+
 ## A ratio with three parts
 
 The method does not change when the ratio has three parts. Add all the parts.

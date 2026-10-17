@@ -34,6 +34,11 @@ height $h$, and call the length $AD$ the distance $x$.
 That splits the triangle into two right-angled triangles, and the proof is
 Pythagoras applied to each of them.
 
+The figure draws the split. Move the angle and the base and watch the two
+right-angled triangles: the two ways of working out $a^2$ agree at every setting.
+
+:::figure cosine-rule-perpendicular
+
 **In the left triangle, $ACD$:**
 
 - the hypotenuse is $AC = b$;
@@ -83,13 +88,14 @@ a right angle. Nothing new was needed for it; it falls out.
 
 ## The obtuse case, and why it works
 
-If $A$ is obtuse the perpendicular from $C$ lands *outside* the side $AB$, so the
-picture is different: the foot $D$ sits beyond $B$ rather than between $A$ and $B$.
+If $A$ is obtuse the perpendicular from $C$ lands *outside* the side $AB$: the foot
+$D$ sits beyond $A$, on the side away from $B$.
 
-The algebra still works, with two changes. The length $DB$ becomes $x - c$ rather
-than $c - x$, and the angle you measure inside the right-angled triangle at $A$ is
-$180^\circ - A$, whose cosine is $-\cos A$. Both changes flip a sign, and they flip
-it in the same place, so the final statement is unchanged.
+The algebra still works, with two changes. The length $DB$ becomes $c + x$ rather
+than $c - x$, because $B$ and $D$ are now on opposite sides of $A$. The angle you
+measure inside the right-angled triangle at $A$ is $180^\circ - A$, whose cosine is
+$-\cos A$, and the length $AD$ is $b\cos(180^\circ - A) = -b\cos A$. Both changes
+flip a sign, and they flip it in the same place, so the final statement is unchanged.
 
 That is worth checking rather than assuming. A proof that quietly only covered acute
 angles would not be a proof of the cosine rule, and the sign that looks like a

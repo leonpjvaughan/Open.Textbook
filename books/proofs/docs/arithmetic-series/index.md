@@ -12,6 +12,17 @@ $$S_n = \tfrac{1}{2}n(a + l) = \tfrac{1}{2}n\left[2a + (n-1)d\right]$$
 where $a$ is the first term, $l$ the last, $d$ the common difference and $n$ the
 number of terms.
 
+## Predict first
+
+The sum is $S = a + (a + d) + \dots + l$. Write the same sum down a second time,
+starting from the last term and going backwards.
+
+**Before you read on, predict:** when you add the two lines column by column, what
+does every column add to? Write your prediction down, then tick the box in the
+figure to test it.
+
+:::figure arithmetic-series-pairs
+
 ## The proof, and the six-year-old who found it
 
 There is a story — probably not true, and told anyway — that a teacher set a class

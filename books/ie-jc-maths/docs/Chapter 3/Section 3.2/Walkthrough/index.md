@@ -92,6 +92,19 @@ $$700 = 2^2\times5^2\times7$$
 > factor is prime. Check your answer by multiplying back out — if it does not give the
 > number you started with, something was missed.
 
+## Investigate a factor tree
+
+**Predict.** Before you move the control, predict which prime 96 will split by first,
+and how many times that prime will appear in the finished tree.
+
+:::figure factor-tree
+
+**Test.** Set the number to 96 and follow each branch down to the bottom. Then try 84,
+then 100, and then 97. Watch what the tree does when the number is prime.
+
+**Explain.** Write two or three sentences. Say why the tree stops at the round shapes,
+and how reading them off gives the answer in index form.
+
 ## Counting the factors from the factorisation
 
 Once you have the prime factorisation, you can count the factors without listing them.

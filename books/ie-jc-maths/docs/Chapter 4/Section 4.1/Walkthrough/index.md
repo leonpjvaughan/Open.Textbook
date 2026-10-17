@@ -66,6 +66,21 @@ $$3.996 \to 4.00$$
 You must write the two zeros. They show that the answer is given to 2 decimal
 places, not to the nearest whole number.
 
+## Investigate the boundary
+
+**Predict.** Before you move the control, predict whether 2.65 rounds to 2.6 or to 2.7
+when you round it to 1 decimal place.
+
+:::figure rounding-line
+
+**Test.** Set the number to 2.65 and leave the accuracy at 1 decimal place. The dashed
+line is the boundary between the two possible answers. Move the number slowly to each
+side of it, then change the accuracy to 2 decimal places and to the nearest whole
+number.
+
+**Explain.** Write two or three sentences. Say where the boundary is for rounding to 1
+decimal place, and why a number sitting exactly on it rounds up.
+
 ## Significant figures
 
 **Significant figures** count the digits that carry information about the size of

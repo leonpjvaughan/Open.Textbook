@@ -51,6 +51,20 @@ $$4(1)+3 = 7 \qquad 4(2)+3 = 11$$
 
 Both match, so the rule fits.
 
+## Investigate the picture behind the rule
+
+**Predict.** Before you move the controls, predict how many dots the fourth term of a
+pattern with general term $4n+3$ will have.
+
+:::figure pattern-dots
+
+**Test.** Leave the row at 4 dots and the extra dots at 3. Count the dots in each of the
+three terms the figure draws. Then set the extra dots to 0 and the row to 2, and check
+the general term the readout gives.
+
+**Explain.** Write two or three sentences. Say which part of the picture grows with $n$
+and which part stays the same, and how the two together give the general term.
+
 **Example 1.** Find the general term of $5, 9, 13, 17, \ldots$.
 
 The common difference is $4$, so start with $4n$.

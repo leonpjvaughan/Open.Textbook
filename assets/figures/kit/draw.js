@@ -29,6 +29,9 @@
  */
 import { SIZE, coord, fmt, label } from "./text.js";
 /**
+ * @typedef {((value: number) => number) & {invert: (position: number) => number}} Mapper
+ */
+/**
  * Map a value in its own units to an SVG coordinate, in one axis.
  *
  * Twenty modules built this by hand and the arithmetic is identical each time — which
@@ -134,7 +137,7 @@ export function ticks({ from, to, count = 5 }) {
  */
 /**
  * @typedef {object} AxisOptions
- * @property {number[]} [domain]        `[low, high]`
+ * @property {[number, number]} [domain]  `[low, high]`
  * @property {number} [ticks]           how many grid lines; default 5
  * @property {string} [label]           the axis name, drawn at its end
  * @property {(value: number) => string} [tickFormat]  how a tick is written
@@ -151,14 +154,7 @@ export function ticks({ from, to, count = 5 }) {
  * svg.innerHTML = draw + curve(samples, { x, y });
  * ```
  *
- * @param {object} [o]
- * @param {number} [o.width]   the viewBox width, matching `panel()`
- * @param {number} [o.height]  the viewBox height, matching `panel()`
- * @param {Pad} [o.pad]        margins for the labels
- * @param {AxisOptions} [o.x]  the horizontal axis
- * @param {AxisOptions} [o.y]  the vertical axis
- * @param {boolean} [o.grid]   faint grid lines at the ticks; default true
- * @param {boolean} [o.origin] a darker line at zero when zero is in range
+ * @param {AxesOptions} [o]
  *
  * The return type is **inferred, not declared**. It was declared as
  * `{draw: string, x: Function, y: Function, box: object}`, which threw away the two
@@ -286,30 +282,52 @@ export function axes({
 }
 // --- the marks ---------------------------------------------------------------
 /**
+ * @typedef {object} LineOptions
+ * @property {number} [x1]
+ * @property {number} [y1]
+ * @property {number} [x2]
+ * @property {number} [y2]
+ * @property {string} [class]  a `fig-*` class; `fig-ink` by default
+ * @property {number} [width]  stroke width in viewBox units
+ * @property {string} [dash]   an SVG `stroke-dasharray`, when the line is a guide
+ */
+/**
  * A straight line.
  *
  * The default class is `fig-ink`, and the default width is 1.5 — the two values a
  * 162-module sample converged on by hand.
  *
- * @param {object} [o]
- * @param {number} o.x1
- * @param {number} o.y1
- * @param {number} o.x2
- * @param {number} o.y2
- * @param {string} [o.class]  a `fig-*` class; `fig-ink` by default
- * @param {number} [o.width]  stroke width in viewBox units
- * @param {string} [o.dash]   an SVG `stroke-dasharray`, when the line is a guide
+ * @param {LineOptions} [o]
  */
 export function line({ x1, y1, x2, y2, class: cls = "fig-ink", width = 1.5, dash } = {}) {
   const stroke = `stroke-width="${width}"`;
   const dashed = dash ? ` stroke-dasharray="${dash}"` : "";
   return `<line x1="${coord(x1)}" y1="${coord(y1)}" x2="${coord(x2)}" y2="${coord(y2)}" class="${cls}" ${stroke}${dashed}></line>`;
 }
-/** A circle. The default radius is 5, a size that reads on a phone. */
+/**
+ * @typedef {object} CircleOptions
+ * @property {number} [cx]
+ * @property {number} [cy]
+ * @property {number} [r]
+ * @property {string} [class]
+ */
+/**
+ * A circle. The default radius is 5, a size that reads on a phone.
+ * @param {CircleOptions} [o]
+ */
 export function circle({ cx, cy, r = 5, class: cls = "fig-ink" } = {}) {
   return `<circle cx="${coord(cx)}" cy="${coord(cy)}" r="${coord(r)}" class="${cls}"></circle>`;
 }
-/** A rectangle. */
+/**
+ * @typedef {object} RectOptions
+ * @property {number} [x]
+ * @property {number} [y]
+ * @property {number} [width]
+ * @property {number} [height]
+ * @property {string} [class]
+ * @property {number} [opacity]
+ */
+/** A rectangle. @param {RectOptions} [o] */
 export function rect({ x, y, width, height, class: cls = "fig-ink", opacity } = {}) {
   const fade = opacity === undefined ? "" : ` opacity="${opacity}"`;
   return `<rect x="${coord(x)}" y="${coord(y)}" width="${coord(width)}" height="${coord(height)}" class="${cls}"${fade}></rect>`;
@@ -320,15 +338,36 @@ export function polygon({ points = [], class: cls = "fig-ink" } = {}) {
   return `<polygon points="${list}" class="${cls}"></polygon>`;
 }
 /**
+ * @typedef {object} PathOptions
+ * @property {string} [d]
+ * @property {string} [class]
+ * @property {string} [fill]
+ * @property {number} [width]
+ * @property {string} [dash]
+ */
+/**
  * A path from SVG path data.
  *
  * The escape hatch, and it is deliberately narrow: a caller writing `d` by hand is
  * writing vertices by hand, so every coordinate still goes through `coord()` first.
+ *
+ * @param {PathOptions} [o]
  */
 export function path({ d, class: cls = "fig-ink", fill = "none", width = 2, dash } = {}) {
   const dashed = dash ? ` stroke-dasharray="${dash}"` : "";
   return `<path d="${d}" fill="${fill}" stroke-width="${width}" class="${cls}"${dashed}></path>`;
 }
+/**
+ * @typedef {object} ArrowOptions
+ * @property {number} [x1]
+ * @property {number} [y1]
+ * @property {number} [x2]
+ * @property {number} [y2]
+ * @property {string} [class]
+ * @property {number} [width]
+ * @property {number} [head]  the head length in viewBox units; default 10
+ * @property {string} [dash]
+ */
 /**
  * An arrow: a shaft with a head at the tip.
  *
@@ -337,8 +376,7 @@ export function path({ d, class: cls = "fig-ink", fill = "none", width = 2, dash
  * figure. The shaft stops short of the tip so the head sits on the point rather than
  * behind it.
  *
- * @param {object} o
- * @param {number} [o.head]  the head length in viewBox units; default 10
+ * @param {ArrowOptions} [o]
  */
 export function arrow({ x1, y1, x2, y2, class: cls = "fig-ink", width = 2, head = 10, dash } = {}) {
   const dx = x2 - x1;
@@ -360,7 +398,15 @@ export function arrow({ x1, y1, x2, y2, class: cls = "fig-ink", width = 2, head 
   });
   return shaft + tip;
 }
-/** A polyline through mapped points, as one path. */
+/**
+ * @typedef {object} CurveOptions
+ * @property {Mapper} [x]
+ * @property {Mapper} [y]
+ * @property {string} [class]
+ * @property {number} [width]
+ * @property {string} [dash]
+ */
+/** A polyline through mapped points, as one path. @param {CurveOptions} [o] */
 export function curve(points, { x, y, class: cls = "fig-accent", width = 2.5, dash } = {}) {
   if (!points || points.length < 2) return "";
   const d = points
@@ -368,6 +414,17 @@ export function curve(points, { x, y, class: cls = "fig-accent", width = 2.5, da
     .join(" ");
   return path({ d, class: cls, width, dash });
 }
+/**
+ * @typedef {object} GraphOptions
+ * @property {Mapper} [x]
+ * @property {Mapper} [y]
+ * @property {number} [samples]
+ * @property {number} [from]
+ * @property {number} [to]
+ * @property {string} [class]
+ * @property {number} [width]
+ * @property {string} [dash]
+ */
 /**
  * A function sampled onto a path.
  *
@@ -378,6 +435,8 @@ export function curve(points, { x, y, class: cls = "fig-accent", width = 2.5, da
  *
  * A sample that is not finite — a division by zero, a log of a negative — breaks the
  * path instead of poisoning it with `NaN`, which would drop the whole line.
+ *
+ * @param {GraphOptions} [o]
  */
 export function graph(
   fn,
@@ -401,7 +460,15 @@ export function graph(
   }
   return d ? path({ d: d.trim(), class: cls, width, dash }) : "";
 }
-/** A filled region between a curve and a horizontal baseline. */
+/**
+ * @typedef {object} AreaOptions
+ * @property {Mapper} [x]
+ * @property {Mapper} [y]
+ * @property {number} [baseline]
+ * @property {string} [class]
+ * @property {number} [opacity]
+ */
+/** A filled region between a curve and a horizontal baseline. @param {AreaOptions} [o] */
 export function area(
   points,
   { x, y, baseline = 0, class: cls = "fig-accent", opacity = 0.25 } = {},
@@ -417,21 +484,31 @@ export function area(
   return path({ d, class: cls, fill: "currentColor", width: 0, opacity });
 }
 /**
+ * @typedef {object} DotsOptions
+ * @property {Mapper} [x]  the x mapper the axes returned
+ * @property {Mapper} [y]  the y mapper the axes returned
+ * @property {number} [r]      radius in viewBox units
+ * @property {string} [class]  a `fig-*` class; `fig-ink` by default
+ */
+/**
  * Dots at mapped points.
  *
  * @param {Array<[number, number]>} points  values in the axes' own units, not SVG units
- * @param {object} [o]
- * @param {Function} o.x  the x mapper the axes returned
- * @param {Function} o.y  the y mapper the axes returned
- * @param {number} [o.r]      radius in viewBox units
- * @param {string} [o.class]  a `fig-*` class; `fig-ink` by default
+ * @param {DotsOptions} [o]
  */
 export function dots(points, { x, y, r = 4, class: cls = "fig-ink" } = {}) {
   let draw = "";
   for (const [px, py] of points) draw += circle({ cx: x(px), cy: y(py), r, class: cls });
   return draw;
 }
-/** Bars from a list of mapped values. */
+/**
+ * @typedef {object} BarsOptions
+ * @property {Mapper} [x]
+ * @property {Mapper} [y]
+ * @property {number} [width]
+ * @property {string} [class]
+ */
+/** Bars from a list of mapped values. @param {BarsOptions} [o] */
 export function bars(items, { x, y, width, class: cls = "fig-accent" } = {}) {
   let draw = "";
   for (const item of items) {
@@ -450,12 +527,23 @@ export function bars(items, { x, y, width, class: cls = "fig-accent" } = {}) {
   return draw;
 }
 /**
+ * @typedef {object} NumberLineOptions
+ * @property {number} [width]
+ * @property {number} [min]
+ * @property {number} [max]
+ * @property {number} [step]
+ * @property {string} [label]
+ * @property {number} [height]
+ */
+/**
  * A number line: one axis, its ticks, and room for points and intervals.
  *
  * Its own helper because it is a graph with one axis and the arrowheads and the
  * interval bars are its own small job — and because inequalities, integers, rounding,
  * error intervals, absolute value and the modulus all want one, and the Irish books
  * have none.
+ *
+ * @param {NumberLineOptions} [o]
  */
 export function numberLine({
   width = 560,
@@ -519,6 +607,18 @@ export function numberLine({
   return { draw, x: mapX, y: box.y, box };
 }
 /**
+ * @typedef {object} VennOptions
+ * @property {Array<{id: string, cx: number, cy: number, r: number, class?: string}>} [circles]
+ * @property {Array<{id: string, in?: string[], out?: string[], text?: string}>} [regions]
+ *   `in` are the sets the region is inside, `out` the sets it is outside. A region with
+ *   no `in` is the exterior.
+ * @property {{x: number, y: number, width: number, height: number}} [box]  the universal set's rectangle; default derives one
+ * @property {number} [step]  the sampling step in viewBox units; default 2
+ * @property {boolean} [labels]  draw each region's `text` at its point; default true
+ * @property {boolean} [rings]  draw the circles and the rectangle; default true
+ * @property {number} [labelSize]  the size of a region's label; default `SIZE.tick`
+ */
+/**
  * A Venn diagram whose region labels are placed by geometry rather than by hand.
  *
  * The reason this is in the kit rather than in a module: **an atom in the wrong
@@ -544,16 +644,8 @@ export function numberLine({
  * svg.innerHTML = v.draw + dots(...)   // v.points.ab is where the label goes
  * ```
  *
- * @param {object} o
- * @param {Array<{id: string, cx: number, cy: number, r: number, class?: string}>} o.circles
- * @param {Array<{id: string, in?: string[], out?: string[], text?: string}>} o.regions
- *   `in` are the sets the region is inside, `out` the sets it is outside. A region with
- *   no `in` is the exterior.
- * @param {object} [o.box]  the universal set's rectangle; default derives one
- * @param {number} [o.step]  the sampling step in viewBox units; default 2
- * @param {boolean} [o.labels]  draw each region's `text` at its point; default true
- * @param {boolean} [o.rings]  draw the circles and the rectangle; default true
- * @returns {{draw: string, points: Record<string, {x: number, y: number}>, circles: object}}
+ * @param {VennOptions} [o]
+ * @returns {{draw: string, points: Record<string, {x: number, y: number}>, circles: VennBox}}
  */
 export function venn({
   circles = [],
@@ -662,6 +754,18 @@ export function venn({
   return { draw, points, circles: frame };
 }
 /**
+ * @typedef {object} VectorFieldOptions
+ * @property {(x: number, y: number) => [number, number]} [field]  the vector at a point
+ * @property {Mapper} [x]  the x mapper from `axes()`
+ * @property {Mapper} [y]  the y mapper from `axes()`
+ * @property {{x0: number, y0: number, x1: number, y1: number}} [box]  the plot box from `axes()`
+ * @property {number} [step]  grid spacing in SVG units; default 36
+ * @property {number} [length]  arrow length in SVG units; default 16
+ * @property {string} [class]  a `fig-*` class; default `fig-grid`
+ * @property {number} [head]  arrow head length in SVG units; default 5
+ * @property {(x: number, y: number) => number} [strength]  scales the arrow length
+ */
+/**
  * A vector field: arrows on a grid, drawn from a function.
  *
  * Six modules in `ie-lc-physics` alone hand-build this — the field of a bar magnet, of
@@ -676,15 +780,7 @@ export function venn({
  * relative strength*, and a proportional length on a coarse grid is unreadable; pass
  * `strength` to vary it if the page is about magnitude.
  *
- * @param {object} o
- * @param {(x: number, y: number) => [number, number]} o.field  the vector at a point
- * @param {Function} o.x  the x mapper from `axes()`
- * @param {Function} o.y  the y mapper from `axes()`
- * @param {object} o.box  the plot box from `axes()`
- * @param {number} [o.step]  grid spacing in SVG units; default 36
- * @param {number} [o.length]  arrow length in SVG units; default 16
- * @param {string} [o.class]  a `fig-*` class; default `fig-grid`
- * @param {(x: number, y: number) => number} [o.strength]  scales the arrow length
+ * @param {VectorFieldOptions} [o]
  */
 export function vectorField({
   field,
@@ -727,6 +823,15 @@ export function vectorField({
   return draw;
 }
 /**
+ * @typedef {object} Camera3dOptions
+ * @property {number} [width]  the viewBox width; default 560
+ * @property {number} [height]  the viewBox height; default 300
+ * @property {number} [yaw]  degrees anticlockwise about the vertical axis; default -32
+ * @property {number} [pitch]  degrees above the horizontal; default 22
+ * @property {number} [zoom]  a multiplier on the fitted size; default 1
+ * @property {number} [margin]  a margin for the labels; default 26
+ */
+/**
  * A camera for small 3D drawings: solids, 3D vectors, a plane.
  *
  * Not a 3D engine. It is a **fixed camera and a painter's algorithm**, which is all a
@@ -747,11 +852,8 @@ export function vectorField({
  * svg.innerHTML = cam.drawMesh(cube);
  * ```
  *
- * @param {object} o
- * @param {number} [o.yaw]  degrees anticlockwise about the vertical axis; default -32
- * @param {number} [o.pitch]  degrees above the horizontal; default 22
- * @param {number} [o.zoom]  a multiplier on the fitted size; default 1
- * @returns {{project: Function, depth: Function, drawMesh: Function, centre: object}}
+ * @param {Camera3dOptions} [o]
+ * @returns {{project: Function, raw: Function, toward: number[], drawMesh: Function, centre: {x: number, y: number}, width: number, height: number, zoom: number}}
  */
 export function camera3d({
   width = 560,

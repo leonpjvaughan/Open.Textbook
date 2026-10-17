@@ -35,6 +35,20 @@ $$\frac{6}{12}=\frac{1}{2}$$
 You can cancel before multiplying instead, which keeps the numbers small. In
 $\frac{2}{3}\times\frac{3}{4}$, the 3 on the top and the 3 on the bottom cancel.
 
+## Investigate an area model for multiplying
+
+**Predict.** Before you choose the fractions, predict how many small rectangles the
+darkest part will hold when you multiply $\frac{2}{3}$ by $\frac{3}{4}$.
+
+:::figure fraction-product
+
+**Test.** Choose $\frac{2}{3}$ and $\frac{3}{4}$ and count the rectangles in the
+darkest part. Then swap the two fractions and check that the answer is the same. Try
+$\frac{1}{2}$ of $\frac{3}{5}$ as well.
+
+**Explain.** Write two or three sentences. Say why the bottom of the answer is the
+product of the two bottoms, and how the picture shows it.
+
 **Example 1.** Work out $\frac{3}{5}\times\frac{10}{9}$.
 
 Multiply straight across.

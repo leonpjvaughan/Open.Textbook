@@ -56,6 +56,20 @@ above the line as below it.
 The line of best fit lets you estimate a value that was not measured. Read across
 from the horizontal axis to the line, then read down to the vertical axis.
 
+## Investigate the line of best fit
+
+**Predict.** Before you move the controls, predict roughly where a straight line should
+cross the points so that about half of them sit above it and half below.
+
+:::figure scatter-fit
+
+**Test.** The twenty points are the survey data from the chapter problem below. Move the
+steepness and the height of the line and watch the count of points above and below it.
+Find a position where the two counts are close.
+
+**Explain.** Write two or three sentences. Say what makes a line a good fit, and use your
+line to estimate the sleep of a student with 6 hours of screen time.
+
 ## The chapter problem
 
 The survey recorded screen time and sleep for 20 students. Here are the pairs.

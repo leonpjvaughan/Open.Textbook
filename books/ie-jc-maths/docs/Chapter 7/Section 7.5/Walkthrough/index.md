@@ -99,6 +99,20 @@ larger, because each year's interest earns interest too.
 > interest grows, so the total after several years must be larger than the simple
 > total.
 
+## Investigate the gap between the two totals
+
+**Predict.** Before you move the controls, predict whether the two totals are the same
+after 1 year, after 2 years or after 3 years.
+
+:::figure interest-growth
+
+**Test.** Set the amount to €2,000.00 and the rate to 5%, then move the number of years
+from 1 to 3. Watch the straight line and the curve separate, and read the shaded gap at
+the end of the last year.
+
+**Explain.** Write two or three sentences. Say what the shaded gap measures, and why it
+grows larger every year.
+
 ## Working to the nearest cent
 
 A compound total is often not a whole number of cent. Round it at the end, and

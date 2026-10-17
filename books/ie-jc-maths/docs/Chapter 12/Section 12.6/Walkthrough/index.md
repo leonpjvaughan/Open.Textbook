@@ -100,6 +100,20 @@ filled, because 207 is included.
 If $n$ were a real number instead, the boundary would be 206.25 and the graph would be a
 solid line from 206.25 to the right.
 
+## Investigate the four signs
+
+**Predict.** Before you move the controls, predict whether the circle at 2 will be open
+or closed for $x>2$, and which way the graph will run from it.
+
+:::figure inequality-line
+
+**Test.** Set the endpoint to 2 and the sign to greater than, with real numbers allowed.
+Then change the sign to greater than or equal to and watch the circle change. Then change
+the numbers allowed to whole numbers, and then to integers.
+
+**Explain.** Write two or three sentences. Say how you decide whether the circle is open
+or closed, and why the graph becomes separate dots when only whole numbers are allowed.
+
 > **Watch out.** An open circle and a closed circle mean different things, and the
 > arrow shows the direction. In $x\leq4$, the common error is to draw an open circle at
 > 4 and point the arrow right. The sign is $\leq$, so the circle is closed, and the

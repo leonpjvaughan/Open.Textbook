@@ -74,6 +74,20 @@ $$6 - (-9) = 6 + 9 = 15$$
 
 $$-2 - (-7) = -2 + 7 = 5$$
 
+## Investigate moving along the number line
+
+**Predict.** Before you move the controls, predict which way the hops will go when you
+subtract a negative number. Write your prediction down before you touch anything.
+
+:::figure integer-line
+
+**Test.** Start at $-3$ and set the second number to $-8$. Follow the hops one place at
+a time. Then change the operation to subtract and watch the hops again. Try starting at
+$4$ and subtracting $6$, so that the answer passes through zero.
+
+**Explain.** Write two or three sentences. Say why subtracting a negative number moves
+you to the right, and what the hops show that the digits alone do not.
+
 ## The difference between two numbers
 
 The **difference** between two numbers is the distance between them on the number

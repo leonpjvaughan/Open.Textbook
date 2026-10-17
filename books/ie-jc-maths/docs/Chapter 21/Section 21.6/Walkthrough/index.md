@@ -72,6 +72,20 @@ $$P(H\text{ then }T)=\frac12\times\frac12=\frac14$$
 
 $$P(\text{exactly one head})=P(HT)+P(TH)=\frac14+\frac14=\frac12$$
 
+## Investigate with and without replacement
+
+**Predict.** Before you change anything, predict whether the fractions on the second set
+of branches will change when the counter is not put back.
+
+:::figure probability-tree
+
+**Test.** Leave the bag at 2 red and 3 blue with the counter put back, and read the
+fractions on both sets of branches. Then untick the box and watch the second set change.
+Try a bag with 1 red and 1 blue as well.
+
+**Explain.** Write two or three sentences. Say why the two draws are independent when
+the counter goes back, and why they are not independent when it does not.
+
 ## Watch out
 
 > **Watch out.** Multiply only when the events are independent. Drawing two

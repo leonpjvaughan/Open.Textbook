@@ -40,6 +40,20 @@ The graph goes up steeply for the first hour, is flat for the second hour, and t
 goes up less steeply. The flat part is the stop. The second part is less steep than the
 first, because the car covers 40 km in an hour rather than 60 km.
 
+## Investigate a journey graph
+
+**Predict.** Before you move the controls, predict what the graph will do while the car
+is stopped, and whether the last stage will be steeper or less steep than the first.
+
+:::figure journey-graph
+
+**Test.** Set the first speed to 60 km/h, the stop to 1 hour and the last speed to
+40 km/h. Then set the stop to 0 and watch the flat part disappear. Finally make the last
+speed larger than the first and look at the two slopes.
+
+**Explain.** Write two or three sentences. Say what the flat part of the graph means,
+and why a steeper line means a faster stage.
+
 ## A rate from a straight line
 
 A straight-line graph changes at a steady rate. The rate is the change in the vertical

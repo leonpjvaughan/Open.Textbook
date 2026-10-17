@@ -54,6 +54,21 @@ The net has an area of 52 cm², so the solid has a surface area of 52 cm².
 A cube is a rectangular solid whose faces are all squares. Its net has six equal
 squares.
 
+## Investigate folding a net
+
+**Predict.** Before you move the fold control, predict which of the six rectangles will
+end up on top of the box, and how many faces will meet along each edge.
+
+:::figure net-folding
+
+**Test.** Press Play, or drag the fold control slowly from left to right. Then change the
+length, the width and the height, and fold the net again. Turn the drawing to look at the
+box from the side.
+
+**Explain.** Write two or three sentences. Say why the top rectangle has to turn twice
+as far as the side rectangles, and why the area of the net and the surface area of the
+box are the same number.
+
 ## The net of a prism
 
 A **prism** has the same cross-section all the way along. A triangular prism has a
