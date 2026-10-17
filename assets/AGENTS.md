@@ -12,7 +12,7 @@ and adding or previewing a bundle — that used to sit in the root.
 
 ## Figures: draw through the kit, and choose no number
 
-`assets/figures/kit.js` is the shared surface for every figure — **209 of 209 modules
+`assets/figures/kit.js` is the shared surface for every figure — **213 of 213 modules
 import it** — and `assets/figures/` is also the **shared figure library**, so a module
 that more than one book wants identically is written once and mounted by both. The kit is
 a barrel over six layers, and a module imports only what it needs:
@@ -26,12 +26,26 @@ a barrel over six layers, and a module imports only what it needs:
 | interact | `kit/interact.js` | what happens over time, or in response? |
 | drag | `kit/drag.js` | what can the reader move directly? |
 
+**The kit is TypeScript with a build, and the compiled JavaScript is committed.** The
+source is `assets/figures/src/` — a src layout, so the directory the build copies holds
+only what ships and no filter is needed. `node tools/build.mjs kit` compiles it to
+`assets/figures/`, exactly where the loader looks, and `scripts/check.sh` fails if the
+committed output stops matching the source.
+
+- **`tsc`, not a bundler**, for one reason: it keeps the comments. The kit's prose is the
+  design record — why a handle gets no `tabindex`, why a normal is oriented from the
+  centroid, why the panel tint moved from 8% to 4% — and esbuild strips it.
+- **One output file per source file.** The layer design survives into the shipped tree,
+  so a stack trace names `kit/draw.js` rather than a line in a bundle.
+- **`tsconfig.kit.json` sets `noCheck`.** Emit and check are separate jobs: `tools types`
+  checks and ratchets, and a build that refused to emit until every annotation existed
+  would be a build nobody runs.
+
 The kit began as ten functions and deliberately did not draw, on the argument that "a
 framework for 177 bespoke diagrams would be a framework around nothing". That was right
 about *bespoke* drawing and wrong about *repeated* drawing, and the measurements settled
-it: **162 modules draw a straight line in a `fig-*` class by hand, 68 a `<rect>`, 44 a
-`<polygon>`, 44 sample a curve segment by segment, and 24 hand-build a coordinate
-mapping.** Those are the same five drawings re-earned two hundred times, and the
+it: **162 of 213 modules draw a straight line in a `fig-*` class by hand, 68 a `<rect>`, 54
+a `<polygon>`, 44 a `<path>`, and only 22 call `scale()`.** Those are the same five drawings re-earned two hundred times, and the
 re-earning is where the legibility defects came from. So the marks are shared and the
 *arrangement* stays bespoke — which is the line the first kit was reaching for. The
 measurements and the reasoning are in `research/design/reuse-audit.md`.
@@ -237,7 +251,7 @@ link at 4.34:1 and gruvbox's at 4.40:1 — neither of which is visible by lookin
 
 1. Copy an existing file in `themes/`, change `id`, `title`, `description`, the
    two palettes and the typography. Both palettes must be complete: every token in
-   `SCHEME_TOKENS` (`engine/textbook/book.py`), in both `light:` and `dark:`.
+   `SCHEME_TOKENS` (`engine/src/textbook/book.py`), in both `light:` and `dark:`.
 2. Add the id to `themes:` in `collection.yaml`. That list is the menu order.
 3. `python -m textbook.scaffold` — regenerates `assets/stylesheets/themes.css`.
    No book is rebuilt to gain a theme.
@@ -249,7 +263,7 @@ link at 4.34:1 and gruvbox's at 4.40:1 — neither of which is visible by lookin
 Both preferences are the reader's and are shared by every book and the landing
 page, under origin-wide keys: `textbooks:scheme` (`default` / `slate`) and
 `textbooks:theme` (a bundle id). They are applied before the first paint by an
-inline script at the top of `engine/textbook/templates/page.html`, which reads
+inline script at the top of `engine/src/textbook/templates/page.html`, which reads
 the two keys and sets `data-theme` and `data-md-color-scheme`; the landing page
 carries the same script, and both pages expose the same store to the shared
 Settings runtime. Keep the script ahead of every stylesheet in that template, so
@@ -268,14 +282,19 @@ node scripts/screenshot.cjs site ~/out --schemes light,dark --theme neon -- \
 ## Layout
 
 - Shared CSS and runtime widgets live **once**, in `assets/`, and are listed in
-  `scaffold.SHARED_FILES`. The build copies each one to the same path in the
-  output, so a book never holds a copy and cannot drift from the shared file. Edit
-  the file in `assets/`; there is nothing in a book's tree to edit.
+  `scaffold.SHARED_FILES` — or, where a whole directory is shared, declared in
+  `scaffold.SHARED_DIRS` and copied recursively. The build copies each one to the
+  same path in the output, so a book never holds a copy and cannot drift from the
+  shared file. Edit the file in `assets/`; there is nothing in a book's tree to edit.
+  **A figure module is the exception to the path rule**: `assets/figures/*.js` is the
+  shared figure library, and the build copies it *flat* into each book's figures
+  directory, because a figure is mounted by bare slug beside the loader.
 - **Nothing in this repository is a symlink**, deliberately. A link is checked out
   as a small plain file holding its target wherever `core.symlinks` is false — a
   Windows clone without developer mode — which shipped a 36-byte `kit.js` to the
   site and broke every figure while the build stayed green. If you are tempted to
-  add one, add the file to `SHARED_FILES` instead and let the build place it.
+  add one, add the file to `SHARED_FILES` (or its directory to `SHARED_DIRS`)
+  instead and let the build place it.
 - Anything to do with colour, fonts or bundles: see **The theme model** above.
 
 ## The booklet widget

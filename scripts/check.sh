@@ -10,6 +10,11 @@ cd "$ROOT"
 step() { printf '\n== %s ==\n' "$1"; }
 
 step "generated files are in sync"
+# The TypeScript compiles first, because the kit's output is committed and the drift
+# check below diffs it against the source. `tsc` transpiles without checking: type
+# errors are the `types` step's job, and a build that refused to emit until every
+# annotation existed would be a build nobody runs.
+node tools/build.mjs
 uv run python -m textbook.scaffold
 uv run python -m textbook.booklet
 uv run python -m textbook.portal
@@ -45,6 +50,12 @@ uv run python -m textbook.verify
 
 step "voice and structure"
 uv run python -m textbook.lint
+
+step "types"
+# The browser runtime is checked, not compiled: `tsc` reads the JavaScript that
+# ships and reports on it. The count is not zero yet, so this ratchets — it fails
+# if the number grows, and fails if it falls without the baseline being lowered.
+node tools/dist/cli.js types
 
 step "tests"
 uv run python -m pytest tests/ -q

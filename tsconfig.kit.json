@@ -1,0 +1,35 @@
+{
+  // Emit config for the figure kit: `assets/figures/src/**` -> `assets/figures/**`.
+  //
+  // `tsc` rather than a bundler, for one reason: **it keeps the comments**. The kit's
+  // prose is the design record — why a handle gets no `tabindex`, why a normal is
+  // oriented from the centroid, why the panel tint moved from 8% to 4% — and esbuild
+  // strips it. The shipped file is the one a reader of this repository opens.
+  //
+  // One output file per input, not a bundle, so the layer design survives into the
+  // shipped tree and a stack trace names `kit/draw.js`.
+  "compilerOptions": {
+    "target": "ES2022",
+    "module": "ESNext",
+    "moduleResolution": "bundler",
+    "lib": ["ES2022", "DOM", "DOM.Iterable"],
+    "rootDir": "assets/figures/src",
+    "outDir": "assets/figures",
+    "removeComments": false,
+    "declaration": false,
+    "sourceMap": false,
+    "skipLibCheck": true,
+    "types": [],
+    "strict": false,
+    // **Transpile, do not check.** Type checking is `tsconfig.json` and
+    // `scripts/check-types.mjs`, which ratchets. If this config checked as well, the
+    // build would refuse to emit a figure kit that has 105 known-untyped lines in
+    // `draw.js` — and a build that cannot run until every type is annotated is a build
+    // nobody runs. Emit and check are separate jobs with separate failure modes.
+    "noCheck": true
+  },
+  // `exclude` is stated explicitly so tsc does not auto-exclude `outDir`. The output
+  // tree contains the source tree here, which is the one case that trips it.
+  "exclude": ["node_modules"],
+  "include": ["assets/figures/src/**/*.ts"]
+}

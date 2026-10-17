@@ -1,0 +1,44 @@
+{
+  // Type checking for everything the browser runs and everything the tools do.
+  //
+  // `allowJs` + `checkJs` + `noEmit` means TypeScript reads the source that actually
+  // ships and reports on it. Nothing is compiled here — `tsconfig.kit.json` and
+  // `tsconfig.tools.json` emit, and they set `noCheck`. Emit and check are separate
+  // jobs with separate failure modes: a build that refused to emit until every
+  // annotation existed would be a build nobody runs.
+  //
+  // **The kit is counted twice, and that is not a bug to fix.** The program holds
+  // `assets/figures/src/kit/*.ts` because that is what an author edits, *and*
+  // `assets/figures/kit/*.js` because `venn-regions.js` imports `./kit.js` and a
+  // module resolves the file that ships. Excluding the generated copy does not remove
+  // it — an import pulls it back in — so the count is roughly double for the kit and a
+  // fix lowers it by two. The alternative, checking only the generated copy, would
+  // check a stale artefact on the one change that matters.
+  //
+  // `strict` is **off**, and that is a ratchet rather than a preference. Measured
+  // 2026-10-16 over these sources:
+  //
+  //     checkJs, strict off                          163
+  //     checkJs, strict on                           460
+  //     checkJs, strict + noUncheckedIndexedAccess   475
+  //
+  // `tools types` fails when the count grows and when it falls without the baseline
+  // being lowered, so it can only come down. Turn `strict` on when it reaches zero.
+  //
+  // The 212 figure modules under `books/*/docs/assets/figures/` are content and are
+  // not in `include` yet. They call the kit, so checking them is the last step.
+  "compilerOptions": {
+    "target": "ES2022",
+    "module": "ESNext",
+    "moduleResolution": "bundler",
+    "lib": ["ES2022", "DOM", "DOM.Iterable"],
+    "allowJs": true,
+    "checkJs": true,
+    "noEmit": true,
+    "strict": false,
+    "skipLibCheck": true,
+    "types": []
+  },
+  "exclude": ["node_modules", "assets/figures/kit.js", "assets/figures/kit/**"],
+  "include": ["assets/**/*.js", "assets/figures/src/**/*.ts", "tools/src/**/*.ts"]
+}

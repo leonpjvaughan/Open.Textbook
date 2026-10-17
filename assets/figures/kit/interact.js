@@ -8,9 +8,7 @@
  * reader who needs the keyboard, or a screen reader, or reduced motion, is served by
  * the primitives rather than by a parallel implementation.
  */
-
 import { button, field, slider } from "./controls.js";
-
 /**
  * Run `draw` whenever any control changes, and once now.
  *
@@ -30,13 +28,11 @@ export function react(controls, draw, options = {}) {
   if (initial) draw();
   return list;
 }
-
 /** Tell `react()` a composite control has changed, through the one path it listens to. */
 export function notify(control) {
   control.dispatchEvent(new Event("input", { bubbles: true }));
   control.dispatchEvent(new Event("change", { bubbles: true }));
 }
-
 /**
  * A deterministic random number generator.
  *
@@ -62,7 +58,7 @@ export function notify(control) {
  * ```
  */
 export function seed(number = 1) {
-  let state = (Number(number) >>> 0) || 1;
+  let state = Number(number) >>> 0 || 1;
   const next = () => {
     // mulberry32: 32 bits of state, uniform enough for a textbook, and identical on
     // every engine because it uses only integer ops.
@@ -94,7 +90,6 @@ export function seed(number = 1) {
     },
   };
 }
-
 /**
  * A procedure the reader advances one step at a time.
  *
@@ -133,11 +128,14 @@ export function stepper(parent, { steps = [], label = "Step", id = "step", value
     input.value = String(next);
     notify(input);
   };
-  button(parent, { label: "◀ Back", name: "Previous step", onClick: () => input.go(input.index - 1) });
+  button(parent, {
+    label: "◀ Back",
+    name: "Previous step",
+    onClick: () => input.go(input.index - 1),
+  });
   button(parent, { label: "Next ▶", name: "Next step", onClick: () => input.go(input.index + 1) });
   return input;
 }
-
 /**
  * A small table of values, beside the drawing that shows the same numbers.
  *
@@ -152,7 +150,10 @@ export function stepper(parent, { steps = [], label = "Step", id = "step", value
  * @returns {HTMLTableElement & {update: Function}} `update(rows, highlight)` swaps the
  *   body without rebuilding the table, so a highlight can follow a slider cheaply.
  */
-export function table(parent, { columns = [], rows = [], caption = "", highlight = -1, id = "" } = {}) {
+export function table(
+  parent,
+  { columns = [], rows = [], caption = "", highlight = -1, id = "" } = {},
+) {
   const el = document.createElement("table");
   el.className = "fig-table";
   if (id) el.id = id;
@@ -196,7 +197,6 @@ export function table(parent, { columns = [], rows = [], caption = "", highlight
   (parent.querySelector(".fig-controls") || parent).append(el);
   return el;
 }
-
 /**
  * A process shown in time, with a scrubber and a stopping point.
  *
@@ -219,8 +219,12 @@ export function table(parent, { columns = [], rows = [], caption = "", highlight
  * @param {boolean} [o.loop]  default false, so the figure comes to rest
  * @returns {{scrub: HTMLInputElement, play: HTMLButtonElement, stop: Function}}
  */
-export function animate(parent, { onFrame, duration = 5000, label = "Time", still = 1, loop = false } = {}) {
-  const reduced = typeof matchMedia === "function" && matchMedia("(prefers-reduced-motion: reduce)").matches;
+export function animate(
+  parent,
+  { onFrame, duration = 5000, label = "Time", still = 1, loop = false } = {},
+) {
+  const reduced =
+    typeof matchMedia === "function" && matchMedia("(prefers-reduced-motion: reduce)").matches;
   const scrub = slider(parent, {
     id: "t",
     label,
@@ -247,7 +251,6 @@ export function animate(parent, { onFrame, duration = 5000, label = "Time", stil
       return true;
     },
   });
-
   function stop() {
     playing = false;
     if (frame !== null) cancelAnimationFrame(frame);
@@ -255,7 +258,6 @@ export function animate(parent, { onFrame, duration = 5000, label = "Time", stil
     play.textContent = "Play";
     play.setAttribute("aria-pressed", "false");
   }
-
   function start() {
     // Reduced motion is honoured by not starting, but the button still works:
     // asking for motion explicitly is not the same as being given it.
@@ -277,7 +279,6 @@ export function animate(parent, { onFrame, duration = 5000, label = "Time", stil
     };
     frame = requestAnimationFrame(tick);
   }
-
   // A hidden tab should not be computing frames nobody can see — the same finding
   // that made the page backgrounds opt-in.
   const onVisibility = () => {
@@ -291,7 +292,6 @@ export function animate(parent, { onFrame, duration = 5000, label = "Time", stil
   onFrame(Number(scrub.value));
   return { scrub, play, stop };
 }
-
 /**
  * Compare a reader's answer with the answer the bank already proved.
  *
@@ -323,11 +323,13 @@ export function check(given, { answer, tolerance = 0, unit = "" } = {}) {
   const expected = String(answer ?? "");
   let text = String(given ?? "").trim();
   if (!text) return { state: "empty", expected };
-
   // `6.0 N`, `6.0N` and `6.0 newtons` are all the answer `6.0` with its unit written
   // down, and a reader who writes the unit is being careful, not wrong.
-  if (unit) text = text.replace(new RegExp(`\\s*${unit.replace(/[.*+?^${}()|[\]\\]/g, "\\$&")}\\s*$`, "i"), "");
-
+  if (unit)
+    text = text.replace(
+      new RegExp(`\\s*${unit.replace(/[.*+?^${}()|[\]\\]/g, "\\$&")}\\s*$`, "i"),
+      "",
+    );
   const number = (s) => {
     let cleaned = s.replace(/[,\s]/g, "").replace(/−/g, "-").replace(/\$/g, "");
     if (!cleaned) return null;
@@ -345,16 +347,16 @@ export function check(given, { answer, tolerance = 0, unit = "" } = {}) {
   };
   const givenNumber = number(text);
   const expectedNumber = number(expected);
-
   if (tolerance > 0) {
     if (givenNumber === null || expectedNumber === null) return { state: "invalid", expected };
-    return { state: Math.abs(givenNumber - expectedNumber) <= tolerance ? "correct" : "wrong", expected };
+    return {
+      state: Math.abs(givenNumber - expectedNumber) <= tolerance ? "correct" : "wrong",
+      expected,
+    };
   }
-
   // A non-numeric answer is only "invalid" when the answer is a number. Where both
   // sides are words — "acute", "undirected" — they are compared as words.
   if (expectedNumber !== null && givenNumber === null) return { state: "invalid", expected };
-
   const normalise = (s) =>
     s
       .replace(/[,\s]/g, "")
@@ -365,13 +367,13 @@ export function check(given, { answer, tolerance = 0, unit = "" } = {}) {
   if (normalise(text) === normalise(expected)) return { state: "correct", expected };
   if (givenNumber !== null && expectedNumber !== null) {
     return {
-      state: Number(givenNumber.toFixed(6)) === Number(expectedNumber.toFixed(6)) ? "correct" : "wrong",
+      state:
+        Number(givenNumber.toFixed(6)) === Number(expectedNumber.toFixed(6)) ? "correct" : "wrong",
       expected,
     };
   }
   return { state: "wrong", expected };
 }
-
 /**
  * A field, a Check button, and the verdict in the figure's live readout.
  *
@@ -380,7 +382,18 @@ export function check(given, { answer, tolerance = 0, unit = "" } = {}) {
  * region and the verdict is spoken; the verdict is also written in words, never by
  * colour alone.
  */
-export function answerBox(parent, { answer, tolerance = 0, unit = "", label = "Your answer", readout, placeholder = "", id = "answer" } = {}) {
+export function answerBox(
+  parent,
+  {
+    answer,
+    tolerance = 0,
+    unit = "",
+    label = "Your answer",
+    readout,
+    placeholder = "",
+    id = "answer",
+  } = {},
+) {
   const input = field(parent, {
     id,
     label,
@@ -399,14 +412,15 @@ export function answerBox(parent, { answer, tolerance = 0, unit = "", label = "Y
     }[result.state];
     if (readout) {
       readout.textContent =
-        result.state === "wrong" ? `${said} The answer is ${result.expected}${unit ? ` ${unit}` : ""}.` : said;
+        result.state === "wrong"
+          ? `${said} The answer is ${result.expected}${unit ? ` ${unit}` : ""}.`
+          : said;
     }
     return result.state === "correct";
   };
   button(parent, { label: "Check", name: "Check my answer", onClick: verify });
   return { input, verify };
 }
-
 /**
  * Remember something small in the reader's own browser.
  *
@@ -444,7 +458,6 @@ export function remember(key, fallback = null) {
     },
   };
 }
-
 /**
  * A generated question, with the answer that belongs to it.
  *
@@ -471,7 +484,6 @@ export function exercise({ kinds = [], seed: start = 1, only } = {}) {
   const usable = only ? kinds.filter((kind) => kind.id === only) : kinds;
   if (!usable.length) throw new Error("exercise: no kinds to generate from");
   const state = { id: "", text: "", answer: "", tolerance: 0, unit: "", at: start, count: 0 };
-
   const take = (index) => {
     const rng = seed(index);
     const kind = usable[index % usable.length];
@@ -484,14 +496,25 @@ export function exercise({ kinds = [], seed: start = 1, only } = {}) {
     state.count = index;
     return state;
   };
-
   const api = {
-    get id() { return state.id; },
-    get text() { return state.text; },
-    get answer() { return state.answer; },
-    get tolerance() { return state.tolerance; },
-    get unit() { return state.unit; },
-    get at() { return state.at; },
+    get id() {
+      return state.id;
+    },
+    get text() {
+      return state.text;
+    },
+    get answer() {
+      return state.answer;
+    },
+    get tolerance() {
+      return state.tolerance;
+    },
+    get unit() {
+      return state.unit;
+    },
+    get at() {
+      return state.at;
+    },
     /** Step to the next question. Passing a seed jumps to that one, which is how a
      *  reader shares "question 7" with someone else. */
     next(nextSeed) {
@@ -502,7 +525,6 @@ export function exercise({ kinds = [], seed: start = 1, only } = {}) {
   take(state.at);
   return api;
 }
-
 /**
  * Endless practice: a generated question, a box, a Check and a Next.
  *
@@ -515,7 +537,18 @@ export function exercise({ kinds = [], seed: start = 1, only } = {}) {
  *
  * @returns {{exercise: object, input: HTMLElement, verify: Function, next: Function}}
  */
-export function practice(parent, { kinds = [], seed = 1, only, readout, caption, label = "Your answer", nextLabel = "Another question" } = {}) {
+export function practice(
+  parent,
+  {
+    kinds = [],
+    seed = 1,
+    only,
+    readout,
+    caption,
+    label = "Your answer",
+    nextLabel = "Another question",
+  } = {},
+) {
   const quiz = exercise({ kinds, seed, only });
   const holder = document.createElement("p");
   holder.className = "fig-question";
@@ -523,19 +556,26 @@ export function practice(parent, { kinds = [], seed = 1, only, readout, caption,
   if (caption) caption.replaceChildren();
   const target = caption || holder;
   if (!caption) (parent.querySelector(".fig-controls") || parent).append(holder);
-
   // The field and the Check are built here rather than through `answerBox()`, because
   // `answerBox` brings its own Check button — and composing the two produced a widget
   // with two of them, which the browser check caught.
-  const input = field(parent, { id: "answer", label, name: label, type: "text", inputmode: "decimal" });
-
+  const input = field(parent, {
+    id: "answer",
+    label,
+    name: label,
+    type: "text",
+    inputmode: "decimal",
+  });
   const show = () => {
     target.textContent = quiz.text;
     input.value = "";
   };
-
   const verify = () => {
-    const result = check(input.value, { answer: quiz.answer, tolerance: quiz.tolerance, unit: quiz.unit });
+    const result = check(input.value, {
+      answer: quiz.answer,
+      tolerance: quiz.tolerance,
+      unit: quiz.unit,
+    });
     const said = {
       empty: "Type an answer first.",
       invalid: "That does not look like a number. Check what you typed.",
@@ -544,7 +584,9 @@ export function practice(parent, { kinds = [], seed = 1, only, readout, caption,
     }[result.state];
     if (readout) {
       readout.textContent =
-        result.state === "wrong" ? `${said} The answer is ${result.expected}${quiz.unit ? ` ${quiz.unit}` : ""}.` : said;
+        result.state === "wrong"
+          ? `${said} The answer is ${result.expected}${quiz.unit ? ` ${quiz.unit}` : ""}.`
+          : said;
     }
     return result.state === "correct";
   };

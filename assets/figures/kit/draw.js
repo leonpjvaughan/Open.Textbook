@@ -27,9 +27,7 @@
  *   * **every coordinate is rounded** through `coord()`, so a mark cannot ship
  *     `183.99999999999997`.
  */
-
 import { SIZE, coord, fmt, label } from "./text.js";
-
 /**
  * Map a value in its own units to an SVG coordinate, in one axis.
  *
@@ -57,7 +55,6 @@ export function scale({ domain, range }) {
   map.invert = (position) => d0 + ((Number(position) - r0) / (r1 - r0)) * (d1 - d0);
   return map;
 }
-
 /**
  * The lowest and highest of a list, or of one field of a list of points.
  *
@@ -77,7 +74,6 @@ export function extent(values, pick) {
   if (low === Infinity) return [0, 1];
   return low === high ? [low, low + 1] : [low, high];
 }
-
 /**
  * Round numbers to a count, on the 1–2–5 progression a reader expects.
  *
@@ -111,7 +107,6 @@ export function ticks({ from, to, count = 5 }) {
   }
   return out.length ? out : [low];
 }
-
 /**
  * A plotting area: two axes, their ticks, their labels, and the mappers.
  *
@@ -158,41 +153,100 @@ export function axes({
   const yTicks = ticks({ from: yDomain[0], to: yDomain[1], count: y.ticks ?? 5 });
   const showX = x.tickFormat || ((v) => fmt(v, 2));
   const showY = y.tickFormat || ((v) => fmt(v, 2));
-
   let draw = "";
   // The grid first, so every mark sits on top of it.
   if (grid) {
     for (const t of xTicks) {
-      draw += line({ x1: mapX(t), y1: box.y0, x2: mapX(t), y2: box.y1, class: "fig-grid", width: 0.8 });
+      draw += line({
+        x1: mapX(t),
+        y1: box.y0,
+        x2: mapX(t),
+        y2: box.y1,
+        class: "fig-grid",
+        width: 0.8,
+      });
     }
     for (const t of yTicks) {
-      draw += line({ x1: box.x0, y1: mapY(t), x2: box.x1, y2: mapY(t), class: "fig-grid", width: 0.8 });
+      draw += line({
+        x1: box.x0,
+        y1: mapY(t),
+        x2: box.x1,
+        y2: mapY(t),
+        class: "fig-grid",
+        width: 0.8,
+      });
     }
   }
   draw += line({ x1: box.x0, y1: box.y0, x2: box.x1, y2: box.y0, class: "fig-ink", width: 1.5 });
   draw += line({ x1: box.x0, y1: box.y0, x2: box.x0, y2: box.y1, class: "fig-ink", width: 1.5 });
   if (origin && yDomain[0] < 0 && yDomain[1] > 0) {
-    draw += line({ x1: box.x0, y1: mapY(0), x2: box.x1, y2: mapY(0), class: "fig-ink", width: 1.2 });
+    draw += line({
+      x1: box.x0,
+      y1: mapY(0),
+      x2: box.x1,
+      y2: mapY(0),
+      class: "fig-ink",
+      width: 1.2,
+    });
   }
   for (const t of xTicks) {
-    draw += line({ x1: mapX(t), y1: box.y0, x2: mapX(t), y2: box.y0 + 6, class: "fig-ink", width: 1.4 });
-    draw += label({ x: mapX(t), y: box.y0 + 22, text: showX(t), size: SIZE.tick, class: "text-ink" });
+    draw += line({
+      x1: mapX(t),
+      y1: box.y0,
+      x2: mapX(t),
+      y2: box.y0 + 6,
+      class: "fig-ink",
+      width: 1.4,
+    });
+    draw += label({
+      x: mapX(t),
+      y: box.y0 + 22,
+      text: showX(t),
+      size: SIZE.tick,
+      class: "text-ink",
+    });
   }
   for (const t of yTicks) {
-    draw += line({ x1: box.x0 - 6, y1: mapY(t), x2: box.x0, y2: mapY(t), class: "fig-ink", width: 1.4 });
-    draw += label({ x: box.x0 - 10, y: mapY(t) + 5, text: showY(t), size: SIZE.tick, class: "text-ink", anchor: "end" });
+    draw += line({
+      x1: box.x0 - 6,
+      y1: mapY(t),
+      x2: box.x0,
+      y2: mapY(t),
+      class: "fig-ink",
+      width: 1.4,
+    });
+    draw += label({
+      x: box.x0 - 10,
+      y: mapY(t) + 5,
+      text: showY(t),
+      size: SIZE.tick,
+      class: "text-ink",
+      anchor: "end",
+    });
   }
   if (x.label) {
-    draw += label({ x: box.x1, y: box.y0 + 40, text: x.label, size: SIZE.value, class: "text-ink", anchor: "end" });
+    draw += label({
+      x: box.x1,
+      y: box.y0 + 40,
+      text: x.label,
+      size: SIZE.value,
+      class: "text-ink",
+      anchor: "end",
+    });
   }
   if (y.label) {
-    draw += label({ x: box.x0 - 46, y: box.y1 - 4, text: y.label, size: SIZE.value, class: "text-ink", anchor: "start" });
+    draw += label({
+      x: box.x0 - 46,
+      y: box.y1 - 4,
+      text: y.label,
+      size: SIZE.value,
+      class: "text-ink",
+      anchor: "start",
+    });
   }
   return { draw, x: mapX, y: mapY, box, xTicks, yTicks };
 }
-
 // --- the marks ---------------------------------------------------------------
-
 /**
  * A straight line.
  *
@@ -204,24 +258,20 @@ export function line({ x1, y1, x2, y2, class: cls = "fig-ink", width = 1.5, dash
   const dashed = dash ? ` stroke-dasharray="${dash}"` : "";
   return `<line x1="${coord(x1)}" y1="${coord(y1)}" x2="${coord(x2)}" y2="${coord(y2)}" class="${cls}" ${stroke}${dashed}></line>`;
 }
-
 /** A circle. The default radius is 5, a size that reads on a phone. */
 export function circle({ cx, cy, r = 5, class: cls = "fig-ink" } = {}) {
   return `<circle cx="${coord(cx)}" cy="${coord(cy)}" r="${coord(r)}" class="${cls}"></circle>`;
 }
-
 /** A rectangle. */
 export function rect({ x, y, width, height, class: cls = "fig-ink", opacity } = {}) {
   const fade = opacity === undefined ? "" : ` opacity="${opacity}"`;
   return `<rect x="${coord(x)}" y="${coord(y)}" width="${coord(width)}" height="${coord(height)}" class="${cls}"${fade}></rect>`;
 }
-
 /** A closed shape from a list of `[x, y]` points. */
 export function polygon({ points = [], class: cls = "fig-ink" } = {}) {
   const list = points.map(([px, py]) => `${coord(px)},${coord(py)}`).join(" ");
   return `<polygon points="${list}" class="${cls}"></polygon>`;
 }
-
 /**
  * A path from SVG path data.
  *
@@ -232,7 +282,6 @@ export function path({ d, class: cls = "fig-ink", fill = "none", width = 2, dash
   const dashed = dash ? ` stroke-dasharray="${dash}"` : "";
   return `<path d="${d}" fill="${fill}" stroke-width="${width}" class="${cls}"${dashed}></path>`;
 }
-
 /**
  * An arrow: a shaft with a head at the tip.
  *
@@ -264,7 +313,6 @@ export function arrow({ x1, y1, x2, y2, class: cls = "fig-ink", width = 2, head 
   });
   return shaft + tip;
 }
-
 /** A polyline through mapped points, as one path. */
 export function curve(points, { x, y, class: cls = "fig-accent", width = 2.5, dash } = {}) {
   if (!points || points.length < 2) return "";
@@ -273,7 +321,6 @@ export function curve(points, { x, y, class: cls = "fig-accent", width = 2.5, da
     .join(" ");
   return path({ d, class: cls, width, dash });
 }
-
 /**
  * A function sampled onto a path.
  *
@@ -285,7 +332,10 @@ export function curve(points, { x, y, class: cls = "fig-accent", width = 2.5, da
  * A sample that is not finite — a division by zero, a log of a negative — breaks the
  * path instead of poisoning it with `NaN`, which would drop the whole line.
  */
-export function graph(fn, { x, y, samples = 120, from, to, class: cls = "fig-accent", width = 2.5, dash } = {}) {
+export function graph(
+  fn,
+  { x, y, samples = 120, from, to, class: cls = "fig-accent", width = 2.5, dash } = {},
+) {
   const domain = x && x.domain ? x.domain : [0, 1];
   const start = from ?? domain[0];
   const end = to ?? domain[1];
@@ -304,9 +354,11 @@ export function graph(fn, { x, y, samples = 120, from, to, class: cls = "fig-acc
   }
   return d ? path({ d: d.trim(), class: cls, width, dash }) : "";
 }
-
 /** A filled region between a curve and a horizontal baseline. */
-export function area(points, { x, y, baseline = 0, class: cls = "fig-accent", opacity = 0.25 } = {}) {
+export function area(
+  points,
+  { x, y, baseline = 0, class: cls = "fig-accent", opacity = 0.25 } = {},
+) {
   if (!points || points.length < 2) return "";
   // `baseline` is an **SVG y coordinate**, not a value — the mapper does not know its
   // own domain, and guessing it would put the fill in the wrong place without saying
@@ -317,14 +369,12 @@ export function area(points, { x, y, baseline = 0, class: cls = "fig-accent", op
     ` L${coord(x(points[0][0]))} ${coord(baseline)} Z`;
   return path({ d, class: cls, fill: "currentColor", width: 0, opacity });
 }
-
 /** Dots at mapped points. */
 export function dots(points, { x, y, r = 4, class: cls = "fig-ink" } = {}) {
   let draw = "";
   for (const [px, py] of points) draw += circle({ cx: x(px), cy: y(py), r, class: cls });
   return draw;
 }
-
 /** Bars from a list of mapped values. */
 export function bars(items, { x, y, width, class: cls = "fig-accent" } = {}) {
   let draw = "";
@@ -343,7 +393,6 @@ export function bars(items, { x, y, width, class: cls = "fig-accent" } = {}) {
   }
   return draw;
 }
-
 /**
  * A number line: one axis, its ticks, and room for points and intervals.
  *
@@ -352,26 +401,67 @@ export function bars(items, { x, y, width, class: cls = "fig-accent" } = {}) {
  * error intervals, absolute value and the modulus all want one, and the Irish books
  * have none.
  */
-export function numberLine({ width = 560, min = -5, max = 5, step, label: axisLabel = "x", height = 84 } = {}) {
+export function numberLine({
+  width = 560,
+  min = -5,
+  max = 5,
+  step,
+  label: axisLabel = "x",
+  height = 84,
+} = {}) {
   const margin = 44;
   const box = { x0: margin, x1: width - margin, y: height * 0.62 };
   const mapX = scale({ domain: [min, max], range: [box.x0, box.x1] });
   let draw = "";
-  draw += line({ x1: box.x0 - 14, y1: box.y, x2: box.x1 + 20, y2: box.y, class: "fig-ink", width: 1.6 });
-  draw += arrow({ x1: box.x1 + 20, y1: box.y, x2: box.x1 + 30, y2: box.y, class: "fig-ink", width: 1.6, head: 9 });
+  draw += line({
+    x1: box.x0 - 14,
+    y1: box.y,
+    x2: box.x1 + 20,
+    y2: box.y,
+    class: "fig-ink",
+    width: 1.6,
+  });
+  draw += arrow({
+    x1: box.x1 + 20,
+    y1: box.y,
+    x2: box.x1 + 30,
+    y2: box.y,
+    class: "fig-ink",
+    width: 1.6,
+    head: 9,
+  });
   for (const t of ticks({ from: min, to: max, count: step || 5 })) {
-    draw += line({ x1: mapX(t), y1: box.y - 5, x2: mapX(t), y2: box.y + 5, class: "fig-ink", width: 1.4 });
-    draw += label({ x: mapX(t), y: box.y + 24, text: fmt(t, 2), size: SIZE.tick, class: "text-ink" });
+    draw += line({
+      x1: mapX(t),
+      y1: box.y - 5,
+      x2: mapX(t),
+      y2: box.y + 5,
+      class: "fig-ink",
+      width: 1.4,
+    });
+    draw += label({
+      x: mapX(t),
+      y: box.y + 24,
+      text: fmt(t, 2),
+      size: SIZE.tick,
+      class: "text-ink",
+    });
   }
   if (axisLabel) {
-    draw += label({ x: box.x1 + 34, y: box.y + 5, text: axisLabel, size: SIZE.value, class: "text-ink", anchor: "start" });
+    draw += label({
+      x: box.x1 + 34,
+      y: box.y + 5,
+      text: axisLabel,
+      size: SIZE.value,
+      class: "text-ink",
+      anchor: "start",
+    });
   }
   // The module draws its own points and intervals with the returned mapper and `y`,
   // which is the SVG coordinate of the line itself. An interval is a thick `line` and
   // an open end is a `circle` with `class="fig-paper"` for the outer ring.
   return { draw, x: mapX, y: box.y, box };
 }
-
 /**
  * A Venn diagram whose region labels are placed by geometry rather than by hand.
  *
@@ -423,27 +513,36 @@ export function venn({
   // extent of `cx - r` alone gave a box that stopped at the rightmost left edge, so
   // every region to the right of it was unreachable and silently absent from the
   // result — half a Venn diagram, with no error.
-  const [minX, maxX] = [Math.min(...circles.map((c) => c.cx - c.r)), Math.max(...circles.map((c) => c.cx + c.r))];
-  const [minY, maxY] = [Math.min(...circles.map((c) => c.cy - c.r)), Math.max(...circles.map((c) => c.cy + c.r))];
+  const [minX, maxX] = [
+    Math.min(...circles.map((c) => c.cx - c.r)),
+    Math.max(...circles.map((c) => c.cx + c.r)),
+  ];
+  const [minY, maxY] = [
+    Math.min(...circles.map((c) => c.cy - c.r)),
+    Math.max(...circles.map((c) => c.cy + c.r)),
+  ];
   const frame = box || {
     x: minX - 34,
     y: minY - 34,
     width: maxX - minX + 68,
     height: maxY - minY + 68,
   };
-
   const inside = (circle, x, y) => Math.hypot(x - circle.cx, y - circle.cy) <= circle.r;
   // The distance to the nearest boundary: a circle's own edge, or the frame's. The
   // point that maximises it is the one furthest into its region, which is where a
   // label belongs.
   const clearance = (x, y) => {
-    let nearest = Math.min(x - frame.x, frame.x + frame.width - x, y - frame.y, frame.y + frame.height - y);
+    let nearest = Math.min(
+      x - frame.x,
+      frame.x + frame.width - x,
+      y - frame.y,
+      frame.y + frame.height - y,
+    );
     for (const circle of circles) {
       nearest = Math.min(nearest, Math.abs(Math.hypot(x - circle.cx, y - circle.cy) - circle.r));
     }
     return nearest;
   };
-
   const points = {};
   for (const region of regions) {
     const want = new Set(region.in || []);
@@ -459,8 +558,14 @@ export function venn({
         let ok = true;
         for (const circle of circles) {
           const isIn = inside(circle, x, y);
-          if (want.has(circle.id) && !isIn) { ok = false; break; }
-          if (avoid.has(circle.id) && isIn) { ok = false; break; }
+          if (want.has(circle.id) && !isIn) {
+            ok = false;
+            break;
+          }
+          if (avoid.has(circle.id) && isIn) {
+            ok = false;
+            break;
+          }
         }
         if (!ok) continue;
         const clear = clearance(x, y);
@@ -472,10 +577,15 @@ export function venn({
     }
     if (best) points[region.id] = best;
   }
-
   let draw = "";
   if (rings) {
-    draw += rect({ x: frame.x, y: frame.y, width: frame.width, height: frame.height, class: "fig-grid" });
+    draw += rect({
+      x: frame.x,
+      y: frame.y,
+      width: frame.width,
+      height: frame.height,
+      class: "fig-grid",
+    });
     for (const circle of circles) {
       draw += `<circle cx="${coord(circle.cx)}" cy="${coord(circle.cy)}" r="${coord(circle.r)}" class="${circle.class || "fig-ink"}" fill="none" stroke-width="1.6"></circle>`;
     }
@@ -484,12 +594,17 @@ export function venn({
     for (const region of regions) {
       const point = points[region.id];
       if (!point || !region.text) continue;
-      draw += label({ x: point.x, y: point.y + 5, text: region.text, size: labelSize, class: region.class || "text-ink" });
+      draw += label({
+        x: point.x,
+        y: point.y + 5,
+        text: region.text,
+        size: labelSize,
+        class: region.class || "text-ink",
+      });
     }
   }
   return { draw, points, circles: frame };
 }
-
 /**
  * A vector field: arrows on a grid, drawn from a function.
  *
@@ -536,16 +651,25 @@ export function vectorField({
       const sy = y(y.invert(py) + dy) - py;
       const size = Math.hypot(sx, sy);
       if (!(size > 0)) continue;
-      const scale = strength ? Math.min(1.6, Math.max(0.35, strength(x.invert(px), y.invert(py)))) : 1;
+      const scale = strength
+        ? Math.min(1.6, Math.max(0.35, strength(x.invert(px), y.invert(py))))
+        : 1;
       const reach = length * scale;
       const ux = (sx / size) * reach;
       const uy = (sy / size) * reach;
-      draw += arrow({ x1: px - ux / 2, y1: py - uy / 2, x2: px + ux / 2, y2: py + uy / 2, class: cls, width: 1.4, head });
+      draw += arrow({
+        x1: px - ux / 2,
+        y1: py - uy / 2,
+        x2: px + ux / 2,
+        y2: py + uy / 2,
+        class: cls,
+        width: 1.4,
+        head,
+      });
     }
   }
   return draw;
 }
-
 /**
  * A camera for small 3D drawings: solids, 3D vectors, a plane.
  *
@@ -573,7 +697,14 @@ export function vectorField({
  * @param {number} [o.zoom]  a multiplier on the fitted size; default 1
  * @returns {{project: Function, depth: Function, drawMesh: Function, centre: object}}
  */
-export function camera3d({ width = 560, height = 300, yaw = -32, pitch = 22, zoom = 1, margin = 26 } = {}) {
+export function camera3d({
+  width = 560,
+  height = 300,
+  yaw = -32,
+  pitch = 22,
+  zoom = 1,
+  margin = 26,
+} = {}) {
   const ry = (yaw * Math.PI) / 180;
   const rx = (pitch * Math.PI) / 180;
   const cosY = Math.cos(ry);
@@ -581,13 +712,11 @@ export function camera3d({ width = 560, height = 300, yaw = -32, pitch = 22, zoo
   const cosX = Math.cos(rx);
   const sinX = Math.sin(rx);
   const centre = { x: width / 2, y: height / 2 };
-
   // The direction from the scene towards the camera, in world space: the gradient of
   // the depth we sort on. A face is visible when its outward normal has a positive
   // part along this, which is exact and — with the outward orientation below — does
   // not care which way round a module happened to list a face's vertices.
   const toward = [cosX * sinY, sinX, cosX * cosY];
-
   // The rotate-then-project step. `depth` is what the painter's algorithm sorts on:
   // bigger is nearer to the camera.
   const raw = ([x, y, z]) => {
@@ -595,21 +724,21 @@ export function camera3d({ width = 560, height = 300, yaw = -32, pitch = 22, zoo
     const az = x * sinY + z * cosY;
     return { ax, screenY: y * cosX - az * sinX, depth: y * sinX + az * cosX };
   };
-
   /** Project one point at a given scale, about a given screen centre. */
   const at = (point, scale, origin) => {
     const { ax, screenY } = raw(point);
     return { x: origin.x + ax * scale, y: origin.y - screenY * scale, depth: raw(point).depth };
   };
-
   // `project` is the unfitted mapping, for a caller that has already worked out its
   // own scale. `drawMesh` fits instead, because only it knows the whole geometry.
   const project = (point) => at(point, zoom, centre);
-
   const sub = (a, b) => [a[0] - b[0], a[1] - b[1], a[2] - b[2]];
-  const cross = (a, b) => [a[1] * b[2] - a[2] * b[1], a[2] * b[0] - a[0] * b[2], a[0] * b[1] - a[1] * b[0]];
+  const cross = (a, b) => [
+    a[1] * b[2] - a[2] * b[1],
+    a[2] * b[0] - a[0] * b[2],
+    a[0] * b[1] - a[1] * b[0],
+  ];
   const dot = (a, b) => a[0] * b[0] + a[1] * b[1] + a[2] * b[2];
-
   const drawMesh = ({
     vertices = [],
     faces = [],
@@ -625,7 +754,6 @@ export function camera3d({ width = 560, height = 300, yaw = -32, pitch = 22, zoo
     fillBack = 0.07,
   } = {}) => {
     if (!vertices.length) return "";
-
     // **Fit the geometry to the drawing.** The camera has no idea how big the solid is
     // — the first version projected a unit cube to one pixel — so the caller states the
     // vertices in its own units and this scales them to the box, minus a margin for the
@@ -638,7 +766,9 @@ export function camera3d({ width = 560, height = 300, yaw = -32, pitch = 22, zoo
     const spanY = Math.max(...ys) - Math.min(...ys);
     const usableX = Math.max(1, width - 2 * margin);
     const usableY = Math.max(1, height - 2 * margin);
-    const fit = Math.min(spanX > 0 ? usableX / spanX : Infinity, spanY > 0 ? usableY / spanY : Infinity) * zoom;
+    const fit =
+      Math.min(spanX > 0 ? usableX / spanX : Infinity, spanY > 0 ? usableY / spanY : Infinity) *
+      zoom;
     const midX = (Math.max(...xs) + Math.min(...xs)) / 2;
     const midY = (Math.max(...ys) + Math.min(...ys)) / 2;
     const placed = laid.map((p) => ({
@@ -646,19 +776,30 @@ export function camera3d({ width = 560, height = 300, yaw = -32, pitch = 22, zoo
       y: centre.y - (p.screenY - midY) * fit,
       depth: p.depth,
     }));
-
     // The solid's own centre, so a face's normal can be turned outward regardless of
     // the order its vertices were written in.
-    const centroid = centred.reduce((acc, v) => [acc[0] + v[0] / centred.length, acc[1] + v[1] / centred.length, acc[2] + v[2] / centred.length], [0, 0, 0]);
-
+    const centroid = centred.reduce(
+      (acc, v) => [
+        acc[0] + v[0] / centred.length,
+        acc[1] + v[1] / centred.length,
+        acc[2] + v[2] / centred.length,
+      ],
+      [0, 0, 0],
+    );
     const faceInfo = faces.map((face) => {
       const world = face.indices.map((i) => centred[i]);
       let normal = cross(sub(world[1], world[0]), sub(world[2], world[0]));
-      const faceCentre = world.reduce((acc, v) => [acc[0] + v[0] / world.length, acc[1] + v[1] / world.length, acc[2] + v[2] / world.length], [0, 0, 0]);
+      const faceCentre = world.reduce(
+        (acc, v) => [
+          acc[0] + v[0] / world.length,
+          acc[1] + v[1] / world.length,
+          acc[2] + v[2] / world.length,
+        ],
+        [0, 0, 0],
+      );
       if (dot(normal, sub(faceCentre, centroid)) < 0) normal = [-normal[0], -normal[1], -normal[2]];
       return { face, front: dot(normal, toward) > 0, points: face.indices.map((i) => placed[i]) };
     });
-
     let draw = "";
     // The far faces first, so a filled solid reads as a solid rather than a cut-out.
     for (const { face, front, points } of [...faceInfo].sort((a, b) => {
@@ -666,7 +807,8 @@ export function camera3d({ width = 560, height = 300, yaw = -32, pitch = 22, zoo
       return mean(a) - mean(b);
     })) {
       if (!fill) break;
-      const d = points.map((p, i) => `${i ? "L" : "M"}${coord(p.x)} ${coord(p.y)}`).join(" ") + " Z";
+      const d =
+        points.map((p, i) => `${i ? "L" : "M"}${coord(p.x)} ${coord(p.y)}`).join(" ") + " Z";
       draw += path({
         d,
         class: face.class || (front ? frontClass : backClass),
@@ -675,7 +817,6 @@ export function camera3d({ width = 560, height = 300, yaw = -32, pitch = 22, zoo
         width: 1.2,
       });
     }
-
     // Then the edges. An edge is hidden when **every** face that contains it is
     // back-facing — the rule for a convex solid, which is every solid a school textbook
     // draws.
@@ -706,6 +847,5 @@ export function camera3d({ width = 560, height = 300, yaw = -32, pitch = 22, zoo
     }
     return draw;
   };
-
   return { project, raw, toward, drawMesh, centre, width, height, zoom };
 }

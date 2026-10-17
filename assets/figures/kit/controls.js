@@ -14,14 +14,11 @@
  *
  * The panel and its grid come from `frame.js`; nothing here decides layout.
  */
-
 import { UI_FONT } from "./frame.js";
-
 /** Where a control goes: the panel's control column if the parent was a panel. */
 function mount(parent, holder) {
   (parent.querySelector(".fig-controls") || parent).append(holder);
 }
-
 /**
  * A slider, with a visible label and an accessible name.
  *
@@ -51,7 +48,6 @@ export function slider(parent, options = {}) {
   holder.className = "fig-control";
   holder.style.cssText = UI_FONT;
   holder.textContent = label ? `${label} ` : "";
-
   const input = document.createElement("input");
   input.type = "range";
   input.min = String(min);
@@ -60,13 +56,11 @@ export function slider(parent, options = {}) {
   input.value = String(value);
   if (id) input.className = id;
   input.setAttribute("aria-label", name || label || id);
-
   if (!show) {
     holder.append(input);
     mount(parent, holder);
     return input;
   }
-
   const out = document.createElement("output");
   out.className = id ? `${id}-out` : "fig-out";
   const paint = () => {
@@ -76,14 +70,12 @@ export function slider(parent, options = {}) {
     const number = format ? format(Number(input.value)) : input.value;
     out.textContent = unit ? `${number} ${unit}` : number;
   };
-
   holder.append(input, out);
   mount(parent, holder);
   input.addEventListener("input", paint);
   paint();
   return input;
 }
-
 /** A checkbox, with a visible label and an accessible name. */
 export function toggle(parent, options = {}) {
   const { id = "", label = "", name = "", checked = false } = options;
@@ -99,7 +91,6 @@ export function toggle(parent, options = {}) {
   mount(parent, holder);
   return input;
 }
-
 /** A drop-down, with a visible label and an accessible name. */
 export function chooser(parent, options = {}) {
   const { id = "", label = "", name = "", choices = [], value } = options;
@@ -121,7 +112,6 @@ export function chooser(parent, options = {}) {
   mount(parent, holder);
   return select;
 }
-
 /**
  * A button. The kit's one control that is an **action** rather than a value.
  *
@@ -158,7 +148,6 @@ export function button(parent, { id = "", label = "", name = "", onClick, presse
   mount(parent, holder);
   return el;
 }
-
 /**
  * A row of mutually exclusive choices — the "alternative" form.
  *
@@ -208,7 +197,6 @@ export function segmented(parent, { id = "", label = "", name = "", choices = []
   mount(parent, fieldset);
   return fieldset;
 }
-
 /**
  * A text or number field.
  *
@@ -217,7 +205,10 @@ export function segmented(parent, { id = "", label = "", name = "", choices = []
  * phone: `decimal` brings up the number pad, and without it a reader types a minus
  * sign on a full keyboard.
  */
-export function field(parent, { id = "", label = "", name = "", type = "text", value = "", placeholder = "", inputmode } = {}) {
+export function field(
+  parent,
+  { id = "", label = "", name = "", type = "text", value = "", placeholder = "", inputmode } = {},
+) {
   const holder = document.createElement("label");
   holder.className = "fig-control";
   holder.style.cssText = UI_FONT;
@@ -235,9 +226,11 @@ export function field(parent, { id = "", label = "", name = "", type = "text", v
   mount(parent, holder);
   return input;
 }
-
 /** A multi-line field, for the reader's own writing. */
-export function textarea(parent, { id = "", label = "", name = "", rows = 3, value = "", placeholder = "" } = {}) {
+export function textarea(
+  parent,
+  { id = "", label = "", name = "", rows = 3, value = "", placeholder = "" } = {},
+) {
   const holder = document.createElement("label");
   holder.className = "fig-control";
   holder.style.cssText = `${UI_FONT};grid-column:1 / -1;display:block`;
@@ -257,7 +250,6 @@ export function textarea(parent, { id = "", label = "", name = "", rows = 3, val
   mount(parent, holder);
   return input;
 }
-
 /**
  * A builder: a palette of parts the reader adds to an assembly.
  *
@@ -282,24 +274,24 @@ export function textarea(parent, { id = "", label = "", name = "", rows = 3, val
  * @param {number} [o.max]  the most the reader may add; 0 means no limit
  * @returns {HTMLElement & {value: string[], reset: Function}}
  */
-export function builder(parent, { id = "build", label = "", name = "", parts = [], value = [], max = 0 } = {}) {
+export function builder(
+  parent,
+  { id = "build", label = "", name = "", parts = [], value = [], max = 0 } = {},
+) {
   const holder = document.createElement("div");
   holder.className = "fig-control fig-builder";
   holder.style.cssText = `${UI_FONT};grid-column:1 / -1`;
   if (id) holder.classList.add(id);
-
   if (label) {
     const heading = document.createElement("p");
     heading.textContent = label;
     heading.style.cssText = `${UI_FONT};margin:0 0 .25rem`;
     holder.append(heading);
   }
-
   const row = document.createElement("div");
   row.style.cssText = "display:flex;flex-wrap:wrap;gap:.35rem";
   const order = value.slice();
   const buttons = new Map();
-
   const announce = () => {
     // **Do not assign `holder.value` here.** It has a setter, and the setter resets and
     // notifies — so assigning it inside the notify recursed until the stack ran out.
@@ -315,7 +307,6 @@ export function builder(parent, { id = "build", label = "", name = "", parts = [
     holder.dispatchEvent(new Event("input", { bubbles: true }));
     holder.dispatchEvent(new Event("change", { bubbles: true }));
   };
-
   for (const part of parts) {
     const button = document.createElement("button");
     button.type = "button";
@@ -331,7 +322,6 @@ export function builder(parent, { id = "build", label = "", name = "", parts = [
     buttons.set(part.id, button);
     row.append(button);
   }
-
   const undo = document.createElement("button");
   undo.type = "button";
   undo.textContent = "Undo";
@@ -343,18 +333,19 @@ export function builder(parent, { id = "build", label = "", name = "", parts = [
   });
   row.append(undo);
   holder.append(row);
-
   holder.reset = (next = []) => {
     order.length = 0;
     order.push(...next);
     announce();
   };
-  Object.defineProperty(holder, "value", { get: () => order.slice(), set: (next) => holder.reset(next) });
+  Object.defineProperty(holder, "value", {
+    get: () => order.slice(),
+    set: (next) => holder.reset(next),
+  });
   mount(parent, holder);
   announce();
   return holder;
 }
-
 /**
  * A small mathematics keypad, for typing an answer on a phone.
  *
@@ -374,7 +365,6 @@ export function notate(parent, { input, label = "", keys } = {}) {
   holder.className = "fig-control fig-notate";
   holder.style.cssText = `${UI_FONT};grid-column:1 / -1;display:flex;flex-wrap:wrap;gap:.25rem;margin-top:.25rem`;
   if (label) holder.setAttribute("aria-label", label);
-
   const KEYS = keys || [
     { text: "/", name: "fraction bar" },
     { text: "^", name: "power" },
@@ -385,7 +375,6 @@ export function notate(parent, { input, label = "", keys } = {}) {
     { text: "√", name: "root" },
     { text: "°", name: "degrees" },
   ];
-
   for (const key of KEYS) {
     const button = document.createElement("button");
     button.type = "button";

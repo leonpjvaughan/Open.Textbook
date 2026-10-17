@@ -1,13 +1,27 @@
 {
-  "name": "gcse-maths-site",
+  "name": "open-textbook",
   "private": true,
   "type": "module",
-  "description": "Build-time maths rendering for the GCSE Mathematics site",
+  "description": "The browser runtime and the build-time tooling for the Open.Textbook collection",
   "dependencies": {
     "katex": "0.19.0"
   },
   "devDependencies": {
     "pagefind": "1.5.2",
+    "prettier": "^3.9.10",
+    "typescript": "^7.0.2",
     "wrangler": "4.149.0"
+  },
+  "scripts": {
+    "build": "node tools/build.mjs",
+    "types": "node tools/dist/cli.js types",
+    "types:list": "node tools/dist/cli.js types --list",
+    "kit": "node scripts/check-figure-kit-pure.mjs",
+    "kit:browser": "node scripts/check-figure-kit.cjs site",
+    "audit": "node scripts/audit-figures.cjs site",
+    "audit:mobile": "node scripts/audit-figures.cjs site --mobile",
+    "check": "scripts/check.sh",
+    "mobile": "node tools/dist/cli.js check-mobile site",
+    "preview": "scripts/preview-themes.sh"
   }
 }

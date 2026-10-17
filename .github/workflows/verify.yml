@@ -71,6 +71,11 @@ jobs:
 
       - name: Regenerate and check for drift
         run: |
+          # The TypeScript compiles first. Its output is committed — the kit's
+          # JavaScript and `tools/dist/` — so this job has to rebuild it, or a
+          # source change that was never compiled passes `git diff --exit-code`
+          # because nothing regenerated the file it should have changed.
+          node tools/build.mjs
           uv run python -m textbook.scaffold
           uv run python -m textbook.booklet
           uv run python -m textbook.portal
@@ -197,7 +202,7 @@ jobs:
           npm ci
 
       # `playwright` is not a package.json dependency: it is only needed here and
-      # by scripts/screenshot.cjs. Skip the browser download and use the
+      # by the browser commands behind `tools`. Skip the browser download and use the
       # runner's Chrome through the harness's `channel: "chrome"` default.
       - name: Install the Playwright client
         env:

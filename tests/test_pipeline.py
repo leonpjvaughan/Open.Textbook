@@ -833,7 +833,7 @@ def test_every_table_is_in_a_scroll_container(subset):
 
     The reader's Android report traced back to this and to a wide display
     equation: both made the document wider than the screen, which pushed the
-    masthead's settings button past the right edge. `scripts/check-mobile.cjs`
+    masthead's settings button past the right edge. `tools check-mobile`
     measures the symptom in a browser; this asserts the cause is wrapped on every
     page of a real build.
     """

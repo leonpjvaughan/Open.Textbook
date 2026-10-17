@@ -352,7 +352,7 @@ def test_no_figure_module_injects_runtime_latex(book, path):
 #   at all, so a module using it got black in every scheme.
 # * a class a bundle never defines, which is silently not applied.
 #
-# `scripts/audit-figures.cjs` measures the built result in a browser, which is how
+# `tools audit` measures the built result in a browser, which is how
 # this was found. These tests are the cheap guard that stops it coming back, and
 # they run without a browser.
 
@@ -475,7 +475,7 @@ def test_every_slider_says_whether_it_shows_its_value(book, path):
 
 # --- the kit's pure layer -----------------------------------------------------
 #
-# `scripts/check-figure-kit.cjs` checks the kit through a real page, because most of
+# `tools kit` checks the kit through a real page, because most of
 # its contract is DOM behaviour — a role, a live region, a focus stop. But the drawing
 # and formatting layers are pure functions returning strings and numbers, and they are
 # what a module composes hundreds of times. Checking them only in the browser means
@@ -494,10 +494,10 @@ def test_the_figure_kit_keeps_its_pure_contract():
     """
     import subprocess
 
-    script = repo_root() / "scripts" / "check-figure-kit-pure.mjs"
-    assert script.is_file(), "the pure kit check is missing"
+    tools = repo_root() / "tools" / "dist" / "cli.js"
+    assert tools.is_file(), "the tools CLI is missing; run `npm run build`"
     result = subprocess.run(
-        ["node", str(script)],
+        ["node", str(tools), "kit-pure"],
         capture_output=True,
         text=True,
         check=False,

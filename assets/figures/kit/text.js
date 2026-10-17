@@ -11,7 +11,6 @@
  * eighteen times by measurement), and two modules put `2.6666666666666665 parts`
  * and `2x + (-5)` in front of a reader.
  */
-
 /**
  * Text sizes for a drawing, in viewBox units.
  *
@@ -47,12 +46,10 @@ export const SIZE = {
   /** A heading inside the drawing. */
   heading: 20,
 };
-
 /** Escape the three characters that make a string malformed inside an element. */
 export function escape(text) {
   return String(text).replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;");
 }
-
 /**
  * A positioned piece of text, as an SVG element string.
  *
@@ -73,7 +70,15 @@ export function escape(text) {
  * @param {number} [o.weight]  optional font-weight
  * @returns {string} an SVG `<text>` element, ready to concatenate
  */
-export function label({ x, y, text, anchor = "middle", size = SIZE.label, class: cls = "text-ink", weight } = {}) {
+export function label({
+  x,
+  y,
+  text,
+  anchor = "middle",
+  size = SIZE.label,
+  class: cls = "text-ink",
+  weight,
+} = {}) {
   const attrs = [
     `x="${coord(x)}"`,
     `y="${coord(y)}"`,
@@ -84,7 +89,6 @@ export function label({ x, y, text, anchor = "middle", size = SIZE.label, class:
   if (weight) attrs.push(`font-weight="${weight}"`);
   return `<text ${attrs.join(" ")}>${escape(text)}</text>`;
 }
-
 /**
  * A coordinate, rounded to one decimal place.
  *
@@ -96,7 +100,6 @@ export function coord(value) {
   const n = Number(value);
   return Number.isFinite(n) ? n.toFixed(1) : "0";
 }
-
 /**
  * A number formatted for a reader.
  *
@@ -117,7 +120,6 @@ export function fmt(value, places = 2, fromMap) {
   const rounded = Number(value.toFixed(Math.max(0, Math.min(20, digits))));
   return String(rounded);
 }
-
 /**
  * A signed number, spaced for use as a term: `+ 3`, `− 3`.
  *
@@ -132,7 +134,6 @@ export function signed(value, places = 2) {
   const n = Number(value.toFixed(places));
   return `${n < 0 ? "−" : "+"} ${Math.abs(n)}`;
 }
-
 /**
  * A number to a stated number of significant figures.
  *
@@ -168,7 +169,6 @@ export function sigfig(value, figures = 3, { scientific = "auto" } = {}) {
   const places = Math.max(0, digits - 1 - magnitude);
   return value.toFixed(Math.min(20, places));
 }
-
 /**
  * A visually-hidden line of text, for a description a drawing cannot carry.
  *

@@ -1,0 +1,8 @@
+# The kit's output is formatted by `tools/build.mjs`, which is why it is not listed
+# here: it is already in the repository's style, so a repository-wide `prettier
+# --check` should include it rather than skip the one tree that is guaranteed clean.
+tools/dist/
+node_modules/
+site/
+var/
+.venv/

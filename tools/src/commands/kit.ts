@@ -1,57 +1,23 @@
-// Check the shared figure kit's own contract.
-//
-// `assets/figures/kit.js` is where the accessibility contract now lives: it is
-// what puts `role="img"` on a drawing, keeps it off a readout, refuses to give an
-// SVG a fixed height, and formats a number for a reader. Every converted figure
-// inherits whatever it does, so a defect here reaches all of them at once — which
-// is why it is checked directly rather than only through the modules that use it.
-//
-// Every assertion below is a defect that reached production before the kit
-// existed: `role="img"` on a live readout (four modules), a pixel `height` that
-// shrank a phone's labels (70 modules), `fmt` obeyed when called as a `map`
-// callback, and a signed number with no space.
-//
-// Usage: node scripts/check-figure-kit.cjs <siteDir> [route]
-// Exit 0 when the kit keeps its contract, 1 when it does not.
+/*
+ * Check the figure kit's DOM contract through a real page.
+ *
+ * The pure layer is `tools kit-pure`, which runs under plain `node`. This is the half
+ * that needs a browser, because most of the contract is DOM behaviour: a `role`, a
+ * live region that can announce a value, one focus stop per control, a mark that
+ * carries a colour class rather than a colour.
+ *
+ * Usage: tools kit [siteDir] [route]
+ */
+import fs from "node:fs";
+import path from "node:path";
+import {
+  ORIGIN,
+  launchBrowser,
+  openContext,
+  serveStatic,
+} from "../lib/browser.js";
 
-const fs = require("node:fs");
-const path = require("node:path");
-
-function loadPlaywright() {
-  const candidates = [
-    process.env.PLAYWRIGHT_PATH,
-    "playwright",
-    "/home/leon/.local/share/mise/installs/npm-playwright/latest/node_modules/playwright",
-  ].filter(Boolean);
-  for (const candidate of candidates) {
-    try {
-      return require(candidate);
-    } catch {
-      /* try the next one */
-    }
-  }
-  throw new Error("playwright not found; set PLAYWRIGHT_PATH");
-}
-
-const TYPES = {
-  ".html": "text/html",
-  ".js": "text/javascript",
-  ".mjs": "text/javascript",
-  ".css": "text/css",
-  ".svg": "image/svg+xml",
-  ".png": "image/png",
-  ".json": "application/json",
-  ".woff2": "font/woff2",
-};
-
-// Run inside the page. It imports the *built* kit, so what is checked is what a
-// reader receives rather than what the source says.
-//
-// A function, not a string: `page.evaluate` treats a string as an expression and
-// cannot pass an argument to it, so a string version returns `undefined` and every
-// assertion then reads off `undefined` — which looks like a dozen failures of the
-// kit rather than one mistake in the check.
-async function probe(kitPath) {
+async function probe(kitPath: string) {
   const kit = await import(kitPath);
 
   const el = document.createElement("maths-figure");
@@ -429,39 +395,18 @@ async function probe(kitPath) {
   };
 }
 
-async function main() {
-  const siteDir = path.resolve(process.argv[2] || "site");
-  const route = process.argv[3] || "/gcse-maths/higher/";
+export async function run(argv: string[]): Promise<number> {
+  const siteDir = path.resolve(argv[0] ?? "site");
+  const route = argv[1] ?? "/gcse-maths/higher/";
   const kitPath = `${route.replace(/\/$/, "")}/assets/figures/kit.js`;
 
-  const { chromium } = loadPlaywright();
-  const launch = { channel: "chrome" };
-  if (process.env.CHROME_PATH) launch.executablePath = process.env.CHROME_PATH;
-  let browser;
-  try {
-    browser = await chromium.launch(launch);
-  } catch (err) {
-    delete launch.channel;
-    browser = await chromium.launch(launch);
-  }
-
+  const browser = await launchBrowser();
   let result;
   try {
-    const context = await browser.newContext();
-    await context.route("**/*", (r) => {
-      const url = new URL(r.request().url());
-      const file = path.join(siteDir, decodeURIComponent(url.pathname));
-      if (!file.startsWith(siteDir) || !fs.existsSync(file) || fs.statSync(file).isDirectory()) {
-        return r.fulfill({ status: 404, body: "not found" });
-      }
-      return r.fulfill({
-        status: 200,
-        contentType: TYPES[path.extname(file)] || "application/octet-stream",
-        body: fs.readFileSync(file),
-      });
-    });
+    const context = await openContext(browser, { deviceScaleFactor: 1 });
+    await serveStatic(context, siteDir);
     const page = await context.newPage();
-    await page.goto(`http://figures.local${route}`, { waitUntil: "load" });
+    await page.goto(`${ORIGIN}${route}`, { waitUntil: "load" });
     result = await page.evaluate(probe, kitPath);
     await context.close();
   } finally {
@@ -771,12 +716,8 @@ async function main() {
   if (problems.length) {
     console.error("the figure kit does not keep its contract:");
     for (const problem of problems) console.error(`   ${problem}`);
-    process.exit(1);
+    return 1;
   }
   console.log("figure kit: contract kept");
+  return 0;
 }
-
-main().catch((err) => {
-  console.error(err);
-  process.exit(1);
-});

@@ -1,7 +1,7 @@
 /* The shared figure kit — the public surface, and the rules behind it.
  *
  * Every figure in this collection is a hand-written module that exports `mount(el)`,
- * and that is deliberate: 209 bespoke diagrams do not want a framework. But until
+ * and that is deliberate: 213 bespoke diagrams do not want a framework. But until
  * this file existed, **not one module imported a single shared line** — 176 of them
  * wrote their own `innerHTML` template, their own `aria-live` readout, their own
  * slider wiring, and 154 hand-formatted their own numbers. 18,773 lines with no code
@@ -24,7 +24,7 @@
  * The kit began as ten functions in one file and was deliberately **not** a drawing
  * library: "a framework for 177 bespoke diagrams would be a framework around
  * nothing". That was right about bespoke drawing and wrong about repeated drawing, and
- * the measurements settled it — 162 of 209 modules draw an axis by hand, 68 a
+ * the measurements settled it — 162 of 213 modules draw an axis by hand, 68 a
  * `<rect>`, 44 a `<polygon>`, 44 sample a curve segment by segment, and 24 hand-build
  * a coordinate mapping. So the kit is now layered, and each layer is a question a
  * module can ask:
@@ -39,7 +39,7 @@
  * | drag | `kit/drag.js` | what can the reader move directly? |
  *
  * A module imports only what it needs, and this file is a convenience barrel so the
- * 209 existing modules — which all write `from "./kit.js"` — keep working unchanged.
+ * 213 existing modules — which all write `from "./kit.js"` — keep working unchanged.
  *
  * ## What it guarantees, by construction
  *
@@ -72,7 +72,6 @@
  * what to add next is `ideas.md`; the audit that measures every figure in a browser is
  * `scripts/audit-figures.cjs`.
  */
-
 export { UI_FONT, panel } from "./kit/frame.js";
 export { SIZE, coord, escape, fmt, hidden, label, sigfig, signed } from "./kit/text.js";
 export {
@@ -96,7 +95,17 @@ export {
   vectorField,
   venn,
 } from "./kit/draw.js";
-export { builder, button, chooser, field, notate, segmented, slider, textarea, toggle } from "./kit/controls.js";
+export {
+  builder,
+  button,
+  chooser,
+  field,
+  notate,
+  segmented,
+  slider,
+  textarea,
+  toggle,
+} from "./kit/controls.js";
 export {
   animate,
   answerBox,

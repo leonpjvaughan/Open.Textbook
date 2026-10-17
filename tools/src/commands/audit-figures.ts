@@ -1,64 +1,30 @@
-// Measure what every figure actually paints, in both schemes, and capture it.
-//
-// A figure's colours come from `fig-*` classes and `--tb-*` tokens, and
-// `tests/test_themes.py` proves those tokens clear their contrast thresholds. That
-// is necessary and not sufficient: it cannot see what a *module* does with them.
-// A module can draw an element with no fill at all — SVG's initial `fill` is
-// black, so it vanishes on a dark panel — or use two tokens that are close enough
-// together that two series look like one.
-//
-// So this does not read the source. It loads each figure in a browser, asks for
-// the computed paint of every element it contains, and measures each one against
-// the panel it sits on. The static scans agree with it and are not trusted
-// instead of it.
-//
-// Usage:
-//   node scripts/audit-figures.cjs <siteDir> [--schemes light,dark] [--theme id]
-//       [--maps <figure-pages.json>] [--shots <dir>] [--json <file>] [--only slug]
-//
-// The JSON is the report; the screenshots are the record for a human to look at.
+/*
+ * Measure what every figure actually paints, in both schemes, and capture it.
+ *
+ * A figure's colours come from `fig-*` classes and `--tb-*` tokens, and
+ * `tests/test_themes.py` proves those tokens clear their contrast thresholds. That is
+ * necessary and not sufficient: it cannot see what a *module* does with them. A module
+ * can draw an element with no fill at all — SVG's initial `fill` is black, so it
+ * vanishes on a dark panel — or use two tokens close enough together that two series
+ * look like one.
+ *
+ * So this does not read the source. It loads each figure in a browser, asks for the
+ * computed paint of every element it contains, and measures each one against the panel
+ * it sits on. The static scans agree with it and are not trusted instead of it.
+ *
+ * Usage:
+ *   tools audit <siteDir> [--schemes light,dark] [--theme id] [--maps <file>]
+ *       [--shots <dir>] [--json <file>] [--only slug] [--table <file>] [--mobile]
+ *
+ * The JSON is the report; the screenshots are the record for a human to look at.
+ * `--mobile` answers a different question — not "is this readable?" but "can a reader
+ * on a phone read it at all?" — and is the check that found a label drawn at 8.6px.
+ */
+import fs from "node:fs";
+import path from "node:path";
+import { ORIGIN, launchBrowser, openContext, serveStatic } from "../lib/browser.js";
+import { parseArgs } from "../lib/report.js";
 
-const fs = require("node:fs");
-const path = require("node:path");
-
-function loadPlaywright() {
-  const candidates = [
-    process.env.PLAYWRIGHT_PATH,
-    "playwright",
-    "/home/leon/.local/share/mise/installs/npm-playwright/latest/node_modules/playwright",
-  ].filter(Boolean);
-  for (const candidate of candidates) {
-    try {
-      return require(candidate);
-    } catch {
-      /* try the next one */
-    }
-  }
-  throw new Error("playwright not found; set PLAYWRIGHT_PATH");
-}
-
-const TYPES = {
-  ".html": "text/html",
-  ".js": "text/javascript",
-  ".mjs": "text/javascript",
-  ".css": "text/css",
-  ".svg": "image/svg+xml",
-  ".png": "image/png",
-  ".jpg": "image/jpeg",
-  ".webp": "image/webp",
-  ".woff2": "font/woff2",
-  ".woff": "font/woff",
-  ".json": "application/json",
-  ".ico": "image/x-icon",
-};
-
-// --- the table, for research/design/figure-audit.md ---------------------------
-//
-// The document's prose is hand-written and its tables are not, so the tables are
-// spliced between two markers rather than regenerating the file. A generator that
-// rewrote the whole document would either delete the argument or force it into a
-// script, and a document that *claims* to be generated and is not is worse than
-// one that admits it is written by hand.
 const TABLE_START = "<!-- generated:tables -->";
 const TABLE_END = "<!-- /generated:tables -->";
 
@@ -397,33 +363,29 @@ const MEASURE = `
 })
 `;
 
-async function main() {
-  const argv = process.argv.slice(2);
-  const siteDir = path.resolve(argv.shift());
-  let schemes = ["light", "dark"];
-  let theme = null;
-  // Derived from the built site by default. There is deliberately **no** fallback
-  // path: an earlier version defaulted to `/tmp/figure-pages.json`, which meant a
-  // file left over from a previous run was used silently and the audit measured a
-  // build that no longer existed — the figures added after it were simply absent
-  // from the report, which read as "they are not there" rather than "the map is
-  // stale". A stale input to a measurement is worse than no measurement.
-  let maps = null;
-  let shots = null;
-  let jsonOut = null;
-  let only = null;
-  let table = null;
-  let mobile = false;
-  for (let i = 0; i < argv.length; i += 1) {
-    if (argv[i] === "--schemes") schemes = argv[(i += 1)].split(",");
-    else if (argv[i] === "--theme") theme = argv[(i += 1)];
-    else if (argv[i] === "--maps") maps = argv[(i += 1)];
-    else if (argv[i] === "--shots") shots = path.resolve(argv[(i += 1)]);
-    else if (argv[i] === "--json") jsonOut = path.resolve(argv[(i += 1)]);
-    else if (argv[i] === "--only") only = argv[(i += 1)];
-    else if (argv[i] === "--table") table = path.resolve(argv[(i += 1)]);
-    else if (argv[i] === "--mobile") mobile = true;
-  }
+export async function run(argv: string[]): Promise<number> {
+  const { values, positional } = parseArgs(argv, {
+    flags: {
+      schemes: "string",
+      theme: "string",
+      maps: "string",
+      shots: "string",
+      json: "string",
+      only: "string",
+      table: "string",
+      mobile: "boolean",
+    },
+    positional: ["siteDir"],
+  });
+  const siteDir = path.resolve(positional[0]!);
+  const schemes = String(values.schemes ?? "light,dark").split(",");
+  const theme = values.theme ? String(values.theme) : undefined;
+  const maps = values.maps ? String(values.maps) : null;
+  const shots = values.shots ? path.resolve(String(values.shots)) : null;
+  const jsonOut = values.json ? path.resolve(String(values.json)) : null;
+  const only = values.only ? String(values.only) : null;
+  const table = values.table ? path.resolve(String(values.table)) : null;
+  const mobile = values.mobile === true;
   if (shots) fs.mkdirSync(shots, { recursive: true });
 
   // The figure -> page map is derived from the built site when it is not given.
@@ -457,16 +419,7 @@ async function main() {
   let slugs = Object.keys(pages).sort();
   if (only) slugs = slugs.filter((s) => s === only);
 
-  const { chromium } = loadPlaywright();
-  const launch = { channel: "chrome" };
-  if (process.env.CHROME_PATH) launch.executablePath = process.env.CHROME_PATH;
-  let browser;
-  try {
-    browser = await chromium.launch(launch);
-  } catch (err) {
-    delete launch.channel;
-    browser = await chromium.launch(launch);
-  }
+  const browser = await launchBrowser();
 
   // `--mobile` answers a different question from the contrast audit: not "is this
   // readable?" but "can a reader on a phone read it at all?". A module's
@@ -477,36 +430,16 @@ async function main() {
     return runMobile(browser, siteDir, pages, jsonOut);
   }
 
-  const SCHEME_VALUE = { light: "default", dark: "slate" };
   const report = {};
   for (const scheme of schemes) {
-    const context = await browser.newContext({
-      viewport: { width: 1280, height: 900 },
+    const context = await openContext(browser, {
+      scheme: scheme as "light" | "dark",
+      theme,
+      width: 1280,
+      height: 900,
       deviceScaleFactor: 2,
     });
-    await context.addInitScript(
-      ({ schemeKey, themeKey, bundle }) => {
-        try {
-          localStorage.setItem(schemeKey, bundle);
-          if (themeKey) localStorage.setItem("textbooks:theme", themeKey);
-        } catch (err) {}
-      },
-      { schemeKey: "textbooks:scheme", themeKey: theme, bundle: SCHEME_VALUE[scheme] }
-    );
-    await context.route("**/*", (route) => {
-      const url = new URL(route.request().url());
-      let rel = decodeURIComponent(url.pathname);
-      if (rel.endsWith("/")) rel += "index.html";
-      const file = path.join(siteDir, rel);
-      if (!file.startsWith(siteDir) || !fs.existsSync(file) || fs.statSync(file).isDirectory()) {
-        return route.fulfill({ status: 404, body: "not found" });
-      }
-      return route.fulfill({
-        status: 200,
-        contentType: TYPES[path.extname(file)] || "application/octet-stream",
-        body: fs.readFileSync(file),
-      });
-    });
+    await serveStatic(context, siteDir);
     const page = await context.newPage();
 
     for (const slug of slugs) {
@@ -515,7 +448,7 @@ async function main() {
       if (!report[slug]) report[slug] = { page: route, schemes: {} };
       const entry = report[slug];
       try {
-        await page.goto(`http://figures.local${route}`, { waitUntil: "load" });
+        await page.goto(`${ORIGIN}${route}`, { waitUntil: "load" });
         await page.waitForTimeout(500);
         const res = await page.evaluate(`${MEASURE}(${JSON.stringify(slug)})`);
         entry.schemes[scheme] = res;
@@ -576,26 +509,13 @@ async function main() {
 /** The smallest rendered label per figure at a phone viewport. */
 async function runMobile(browser, dir, pages, outFile) {
   const routes = [...new Set(Object.values(pages).flat())];
-  const context = await browser.newContext({ viewport: { width: 390, height: 844 } });
-  await context.route("**/*", (route) => {
-    const url = new URL(route.request().url());
-    let rel = decodeURIComponent(url.pathname);
-    if (rel.endsWith("/")) rel += "index.html";
-    const file = path.join(dir, rel);
-    if (!file.startsWith(dir) || !fs.existsSync(file) || fs.statSync(file).isDirectory()) {
-      return route.fulfill({ status: 404, body: "not found" });
-    }
-    return route.fulfill({
-      status: 200,
-      contentType: TYPES[path.extname(file)] || "application/octet-stream",
-      body: fs.readFileSync(file),
-    });
-  });
+  const context = await openContext(browser, { width: 390, height: 844, deviceScaleFactor: 1 });
+  await serveStatic(context, dir);
   const page = await context.newPage();
   const measured = {};
   for (const route of routes) {
     try {
-      await page.goto(`http://figures.local${route}`, { waitUntil: "load" });
+      await page.goto(`${ORIGIN}${route}`, { waitUntil: "load" });
       await page.waitForTimeout(300);
       // A **function**, not a string. `page.evaluate` with a multi-line IIFE string
       // silently returned `[]` here: the same code as a function found the figure
@@ -647,8 +567,3 @@ async function runMobile(browser, dir, pages, outFile) {
     process.exit(1);
   }
 }
-
-main().catch((err) => {
-  console.error(err);
-  process.exit(1);
-});

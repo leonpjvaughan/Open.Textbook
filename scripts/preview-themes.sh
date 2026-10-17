@@ -44,7 +44,7 @@ done < <(uv run python -m textbook.plan --configs)
 # Phone widths, before the bundle sweep: a page that overflows sideways makes
 # every colour question moot, and this is the check that catches it. It costs a
 # few seconds and it is why the gate must not be built around a desktop browser.
-node scripts/check-mobile.cjs site
+node tools/dist/cli.js check-mobile site
 
 # Every figure, measured in the browser in both schemes, before the bundle sweep.
 # The sweep audits three routes; this audits all of them — every figure the books
@@ -52,12 +52,21 @@ node scripts/check-mobile.cjs site
 # only check that sees the difference between a `text-*` class setting `color`
 # (which paints HTML) and `fill` (which paints SVG), which is how eighteen SVG
 # labels were found rendering black at 1.4:1 on the dark scheme.
-node scripts/audit-figures.cjs site --json "${TMPDIR:-/tmp}/figure-audit.json"
+node tools/dist/cli.js audit site --json "${TMPDIR:-/tmp}/figure-audit.json"
+
+# Every figure again, at phone width. This is the one check that answers "can a
+# label be read on the device most readers use", and it is separate from the
+# contrast audit because it measures a different thing: a figure can clear 4.5:1
+# and still draw its smallest label at 8.6px, which is exactly how `SIZE.tick`
+# came to be 15 units when it needed 16. It ran only from the `browser`-marked
+# test, which is deselected in CI, so nothing measured a phone until it was added
+# here — a standard that is not checked is a standard that decays.
+node tools/dist/cli.js audit site --mobile
 
 # The shared kit's own contract, before the modules that build on it. It puts
 # `role="img"` on a drawing, keeps it off a readout and refuses an SVG a fixed
 # height, so a defect here reaches every converted figure at once.
-node scripts/check-figure-kit.cjs site
+node tools/dist/cli.js kit site
 
 # The matrix, 6 bundles x 2 schemes x 3 routes = 36 pages. Adding a book means
 # adding its landing route and one of its chapter routes here.

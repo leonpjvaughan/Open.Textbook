@@ -21,9 +21,7 @@
  * boundary on a number line, a quartile on a box plot, a force vector. Ten modules
  * want it and no kit helper existed.
  */
-
 import { notify } from "./interact.js";
-
 /**
  * A point in the drawing's own viewBox coordinates.
  *
@@ -45,7 +43,6 @@ function viewBoxPoint(svg, event) {
   point.y = event.clientY;
   return point.matrixTransform(matrix);
 }
-
 /**
  * Make an SVG element draggable, reporting through a control that already exists.
  *
@@ -67,16 +64,17 @@ export function draggable(element, { control, svg, toValue, onMove, cursor = "gr
         "the value, so pass the range input that holds it — the pointer is an enhancement.",
     );
   }
-  if (!svg) throw new Error("draggable: the drawing surface is required, to map the pointer into the viewBox");
-  if (typeof toValue !== "function") throw new Error("draggable: toValue must map a viewBox point to a value");
-
+  if (!svg)
+    throw new Error(
+      "draggable: the drawing surface is required, to map the pointer into the viewBox",
+    );
+  if (typeof toValue !== "function")
+    throw new Error("draggable: toValue must map a viewBox point to a value");
   element.style.cursor = cursor;
   // Without this a touch drag scrolls the page instead of moving the handle, which
   // is the failure that only appears on the device nobody tested on.
   element.style.touchAction = "none";
-
   let dragging = false;
-
   const write = (point) => {
     const value = toValue(point);
     if (!Number.isFinite(value)) return;
@@ -84,7 +82,6 @@ export function draggable(element, { control, svg, toValue, onMove, cursor = "gr
     notify(control);
     if (onMove) onMove(value);
   };
-
   const onDown = (event) => {
     if (event.button !== undefined && event.button !== 0) return;
     const point = viewBoxPoint(svg, event);
@@ -105,7 +102,6 @@ export function draggable(element, { control, svg, toValue, onMove, cursor = "gr
     event.preventDefault();
     write(point);
   };
-
   const onMoveEvent = (event) => {
     if (!dragging) return;
     const point = viewBoxPoint(svg, event);
@@ -113,16 +109,13 @@ export function draggable(element, { control, svg, toValue, onMove, cursor = "gr
     event.preventDefault();
     write(point);
   };
-
   const onUp = () => {
     dragging = false;
   };
-
   element.addEventListener("pointerdown", onDown);
   element.addEventListener("pointermove", onMoveEvent);
   element.addEventListener("pointerup", onUp);
   element.addEventListener("pointercancel", onUp);
-
   return {
     destroy() {
       element.removeEventListener("pointerdown", onDown);

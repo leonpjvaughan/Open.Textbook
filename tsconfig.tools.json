@@ -1,0 +1,21 @@
+{
+  // Emit config for the tools CLI: `tools/src/**` -> `tools/dist/**`.
+  //
+  // `noCheck`, for the same reason as the kit: emitting and type-checking are separate
+  // jobs. Checking is `tsconfig.json` and `scripts/check-types.mjs`.
+  "compilerOptions": {
+    "target": "ES2022",
+    "module": "NodeNext",
+    "moduleResolution": "nodenext",
+    "lib": ["ES2023"],
+    "rootDir": "tools/src",
+    "outDir": "tools/dist",
+    "removeComments": false,
+    "declaration": false,
+    "sourceMap": false,
+    "skipLibCheck": true,
+    "noCheck": true
+  },
+  "exclude": ["node_modules"],
+  "include": ["tools/src/**/*.ts"]
+}

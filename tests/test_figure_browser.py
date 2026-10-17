@@ -1,6 +1,6 @@
 """Every figure, under every bundle, measured in a browser.
 
-`scripts/audit-figures.cjs` answers a question the source cannot: what does a
+`tools audit` answers a question the source cannot: what does a
 figure *actually paint*? The classes a module applies, and the property SVG uses
 for each of them, are not visible in the module — `.text-accent` setting `color`
 looked correct and left eighteen SVG labels painted black at 1.4:1 on the dark
@@ -41,7 +41,9 @@ from textbook import themes
 from textbook.book import repo_root
 
 SITE = repo_root() / "site"
-AUDIT = repo_root() / "scripts" / "audit-figures.cjs"
+# One entry point: the checks live behind `tools`, so a test invokes the same
+# command a person does rather than a module inside it.
+TOOLS = repo_root() / "tools" / "dist" / "cli.js"
 
 # Playwright is not a package.json dependency: it is needed only by the two
 # browser scripts, and `npm ci` would download three browsers for them. The
@@ -103,7 +105,7 @@ def _require_environment() -> None:
 def measure(bundle: str, out: Path) -> dict:
     _require_environment()
     result = subprocess.run(
-        ["node", str(AUDIT), str(SITE), "--theme", bundle, "--json", str(out)],
+        ["node", str(TOOLS), "audit", str(SITE), "--theme", bundle, "--json", str(out)],
         capture_output=True,
         text=True,
         check=False,
@@ -217,7 +219,7 @@ def test_the_bundle_sweep_is_not_the_same_measurement_six_times(sweeps):
 # their viewBox height, so at phone width the *drawing* scaled down while the box
 # did not. Nothing failed; the labels were simply too small to read.
 #
-# The check lives in `scripts/audit-figures.cjs --mobile`, which already drives a
+# The check lives in `tools audit --mobile`, which already drives a
 # browser over every page carrying a figure. It has to be a browser measurement: a
 # module's `font-size` says nothing on its own, because the SVG scales by
 # `rendered width / viewBox width`, so a 560-unit viewBox in a 358px panel draws a
@@ -235,7 +237,7 @@ def test_every_figure_label_is_readable_at_phone_width(tmp_path):
     """
     _require_environment()
     result = subprocess.run(
-        ["node", str(AUDIT), str(SITE), "--mobile", "--json", str(tmp_path / "mobile.json")],
+        ["node", str(TOOLS), "audit", str(SITE), "--mobile", "--json", str(tmp_path / "mobile.json")],
         capture_output=True,
         text=True,
         check=False,
@@ -259,7 +261,7 @@ def test_every_figure_label_is_readable_at_phone_width(tmp_path):
 # readout, and refuses to give an SVG a fixed height. A defect in it would reach
 # every converted figure at once, which is why it is worth a check of its own.
 #
-# `scripts/check-figure-kit.cjs` holds the assertions and the reasons; this only
+# `tools kit` holds the assertions and the reasons; this only
 # runs it, the way the other tests here run the audit.
 
 
@@ -273,10 +275,10 @@ def test_the_kit_keeps_the_contract_it_exists_to_keep():
     callback, and a signed number with no space.
     """
     _require_environment()
-    checker = repo_root() / "scripts" / "check-figure-kit.cjs"
+    checker = repo_root() / "tools" / "dist" / "commands" / "kit.js"
     assert checker.is_file(), "the kit check is missing"
     result = subprocess.run(
-        ["node", str(checker), str(SITE)],
+        ["node", str(TOOLS), "kit", str(SITE)],
         capture_output=True,
         text=True,
         check=False,
