@@ -8,7 +8,7 @@
 //
 // Nothing here carries a colour. Every shape uses a `fig-*` class and every word a
 // `text-*` class, so the figure follows the reader's theme in both schemes.
-import { fmt, label, line, panel, react, rect, slider } from "./kit.js";
+import { SIZE, fmt, label, line, panel, react, rect, slider } from "./kit.js";
 
 const X0 = 60;
 const WIDTH = 440;
@@ -65,7 +65,7 @@ export function mount(el) {
       let out = line({ x1: left, y1: top, x2: right, y2: top, class: cls, width: 2 });
       out += line({ x1: left, y1: top, x2: left, y2: y, class: cls, width: 1.4 });
       out += line({ x1: right, y1: top, x2: right, y2: y, class: cls, width: 1.4 });
-      out += label({ x: (left + right) / 2, y: top - 8, text, size: 17, class: cls.replace("fig-", "text-") });
+      out += label({ x: (left + right) / 2, y: top - 8, text, size: SIZE.value, class: cls.replace("fig-", "text-") });
       return out;
     };
     drawing += bracket(0, a, `first share: ${fmt(each * a, 2)}`, "fig-accent");
@@ -76,7 +76,7 @@ export function mount(el) {
         x: X0 + (i + 0.5) * cell,
         y: y + BAR + 24,
         text: fmt(each, 2),
-        size: 15,
+        size: SIZE.tick,
         class: "text-ink",
       });
     }
@@ -84,7 +84,7 @@ export function mount(el) {
       x: X0 + WIDTH / 2,
       y: y + BAR + 50,
       text: `the whole bar is ${fmt(amount, 0)}`,
-      size: 16,
+      size: SIZE.label,
       class: "text-ink",
     });
     svg.innerHTML = drawing;

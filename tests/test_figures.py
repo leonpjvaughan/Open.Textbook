@@ -484,6 +484,64 @@ def slider_calls(text: str) -> list[str]:
     return calls
 
 
+# --- a label may not be smaller than the floor ---------------------------------
+#
+# The mobile audit measures the smallest label a figure draws at 390px and fails below
+# 9px, and the kit's own note says 16 units is 9.2px at that scale. `ratio-share` was
+# written with `size: 15` for its per-part labels, which is 8.6px — the same defect
+# `SIZE.tick` was raised from 15 to 16 to fix, repeated by a new module because the
+# floor was a measurement rather than a rule. This is the rule, without a browser.
+
+
+def _calls(text: str, name: str) -> list[str]:
+    """Every `name(...)` call in a module, as written, by balancing parentheses."""
+    calls: list[str] = []
+    for match in re.finditer(rf"\b{name}\(", text):
+        start = match.end() - 1
+        depth = 0
+        quote: str | None = None
+        i = start
+        while i < len(text):
+            char = text[i]
+            if quote:
+                if char == "\\":
+                    i += 2
+                    continue
+                if char == quote:
+                    quote = None
+            elif char in "\"'`":
+                quote = char
+            elif char == "(":
+                depth += 1
+            elif char == ")":
+                depth -= 1
+                if depth == 0:
+                    calls.append(text[start : i + 1])
+                    break
+            i += 1
+    return calls
+
+
+@pytest.mark.parametrize(("book", "path"), FIGURES, ids=IDS)
+def test_no_label_is_written_below_the_phone_floor(book, path):
+    """A literal `size:` under 16 units is 8.6px at the phone scale, and unreadable.
+
+    `SIZE.tick` and `SIZE.label` are 16 for exactly this reason. A module that writes
+    its own number instead of naming a `SIZE` constant can go under the floor without
+    any check noticing until a browser measures it — which is how `ratio-share`
+    shipped one. Naming the constant is the fix, and this is what says so.
+    """
+    too_small = []
+    for call in _calls(path.read_text(encoding="utf-8"), "label"):
+        for match in re.finditer(r"size:\s*([0-9.]+)", call):
+            if float(match.group(1)) < 16:
+                too_small.append(match.group(1))
+    assert not too_small, (
+        f"{book.id}/{path.name}: label size {too_small[0]} is below the 16-unit floor "
+        "(8.6px at the 390px phone scale). Use SIZE.tick, SIZE.label or SIZE.value."
+    )
+
+
 @pytest.mark.parametrize(("book", "path"), FIGURES, ids=IDS)
 def test_every_slider_says_whether_it_shows_its_value(book, path):
     """`show:` must be explicit, because the default is a reader-visible decision.
