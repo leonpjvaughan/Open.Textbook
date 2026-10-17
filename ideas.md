@@ -520,19 +520,35 @@ are the eleven that have none, and a `stepper()` for a proof whose reasons build
 
 ## 6. Engagement aids beyond figures
 
-### 6.1 Store the relevance prompt (the pedagogy asks for it; it is not built)
+### 6.1 Store the relevance prompt — **built 2026-10-17**
 
 `research/pedagogy.md` P3 says the relevance prompt should "recur, revisit, and be stored
 client-side". It recurs and is not stored, so a reader who writes three paragraphs over a
 chapter cannot read them back. A `textarea`, a storage key per chapter, and a "you wrote
 this earlier — has it changed?" prompt on the Review.
 
-### 6.2 A self-check on the Warm-up — needs `check()` (§4.8)
+**Built.** `assets/figures/relevance-prompt.js`, mounted on all 131 chapter openers. It
+keys storage on the page's own path, so no per-chapter plumbing is needed, and on a return
+visit it says what the reader wrote and when. **The prompt stays prose and the figure is
+only the storage**, so a reader with scripting off still meets the question and can still
+answer it in a notebook. The scaffold writes the directive for a new chapter.
+
+### 6.2 A gate on the Warm-up's answers — **built 2026-10-17**
 
 Every *Practise with help* page opens with closed-book recall, and the answers are in a
 `<details>` a reader can open before thinking. A gate that reveals after an attempt — no
 score, no storage — makes the retrieval real. **Retrieval is the pedagogy's most secure
 recommendation**, so this and 6.1 are the highest-value non-figure ideas here.
+
+**Built, with the `check()` half deliberately not used.**
+`assets/figures/warm-up-gate.js`, mounted on all 737 warm-ups. The reader writes their
+answers, presses the button, and the answers open.
+
+`check()` would have marked them, and marking them would have been worse. The answers in
+the page are prose with their reasons attached — "56. If you used 7 x 7 = 49 and added one
+more 7, that also works" — so there is nothing to compare against, and a gate that
+pretended to mark would have taught the reader to distrust it. What the gate does is make
+the reader commit before they look, which is the whole of the retrieval.
 
 ### 6.3 Practise across the whole book, interleaved — needs `generate()` (§4.9)
 
@@ -656,11 +672,11 @@ shared library (§9) is built. What is left is content: the figures that use the
 
 1. **`diagram()`** (§4.12) — a drawing whose parts are focusable and described. The last
    unwritten primitive, and the one an accessibility review of a dense figure wants.
-2. **Store the relevance prompt (§6.1)** and put **`practice()` on every Warm-up (§6.2)**.
-   Retrieval is the most secure recommendation in the pedagogy and the relevance prompt is
-   where the reader writes in their own words. Both are now a few lines, because the kit
-   has `remember()` and `practice()`. **This is the highest-value item left**: it changes
-   what a reader does on every page of every book, where a figure changes one section.
+2. ~~Store the relevance prompt (§6.1) and gate the Warm-up (§6.2).~~ **Built
+   2026-10-17.** Retrieval was the most secure recommendation in the pedagogy and the
+   relevance prompt was where the reader writes in their own words; both are live on
+   every page of every book now. §6.1 and §6.2 record what was built and, in §6.2's case,
+   what was deliberately not.
 3. **Migrate the 136 modules to `label()`** (§4.13) — debt, and the trap is live.
 4. **The rest of §5's menu**, which is a menu rather than a plan: the solids for
    `ie-jc-maths` (16.4's net folding into its solid needs `solid3d()`, which exists),

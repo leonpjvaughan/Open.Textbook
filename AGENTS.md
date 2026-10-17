@@ -200,7 +200,8 @@ whose audience is unclear:
 | Path | What it is |
 |---|---|
 | `AGENTS.md` | the rules. At the root because every harness looks for it there |
-| `.agents/todo.md` | the work queue |
+| `.agents/todo.md` | the work queue — open items only |
+| `.agents/todo-closed.md` | every finished item, in full |
 | `.agents/chapter-brief.md` | the per-chapter authoring contract |
 | `.agents/prompts/` | the templates `scripts/launch_*.sh` feed to sub-agents |
 | `.agents/planning/` | the dated record of how the work was planned, kept for the reasoning |
