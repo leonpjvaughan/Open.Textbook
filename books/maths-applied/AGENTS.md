@@ -1,0 +1,180 @@
+# AGENTS.md — Maths Applied
+
+Read the root `AGENTS.md` first, then `books/AGENTS.md`. This file replaces the
+parts of them that assume a course, and says what this book does instead. Where
+the two disagree, **this file wins for `books/maths-applied/`** — except for
+Theming, which is not negotiable anywhere.
+
+## What this book is
+
+**Maths Applied** is a book about modelling, worked out on one mechanism. It is
+not a course. Nothing here is examined, no syllabus binds it, it has no tiers, no
+boards, no problem banks, no booklet and no answers to mark.
+
+The reader may be anyone: a student who has met trigonometry and wants to see it
+used, an engineer reading for pleasure, someone who fixes cars. **Do not assume an
+exam, a syllabus, a lecturer or a level.** The mathematics has to be the only
+difficulty, and it has to be introduced where it is needed rather than where a
+qualification would put it.
+
+The one sentence the whole book serves:
+
+> You do not need the full model. You need the model that answers your question,
+> and the honesty to know which one that is.
+
+## The rules that replace the chapter formula
+
+The root's P1–P6 chapter formula is a *teaching* contract: teach first, then fade,
+retrieve over gaps, interleave with earlier material. It assumes a reader working
+through a course. This book keeps what is transferable — nothing opens on an
+unguided task, every section has a destination, every interactive is guided — and
+drops the rest. What it puts in their place is below, and it is binding.
+
+### A model earns its place by failing
+
+**Never introduce a more complex model until the simpler one has visibly stopped
+answering the question being asked.** The order is the content: a rigid triangle
+first, and only when it cannot answer "what happens when the wishbone has two
+legs" does the second model appear. A section that opens with the complex model
+has thrown away the chapter's argument.
+
+The test for a new section: *what question does the previous model get wrong?*
+Name it in the first paragraph. If the answer is "it does not get anything wrong,
+the new one is more detailed", there is no section.
+
+### Complexity is not correctness
+
+The one-degree-of-freedom model is **correct** for the questions it answers. The
+elaborate model answers a *different* question. The book never apologises for a
+simple model, and never treats complexity as maturity.
+
+- Write "the simplest model that answers this", not "a simplified model".
+- Do **not** call a model naive, toy, crude, simplistic or a starting point for
+  something "proper". Those words tell a reader that the honest answer is the
+  complicated one, which is the opposite of the book's thesis.
+- Banned outright when describing a model: **naive, toy, just, simply, properly,
+  obviously, real, full**. ("Real" and "full" are the seductive ones: "the real
+  model" implies every other model is a lie. Write the model's name instead —
+  "the compliant model", "the two-leg model".)
+- The lint rules already ban `just`, `simply`, `obviously`, `clearly`, `easy`,
+  `trivial`. The rest is on you, and on review.
+
+### Where two models overlap, show that they agree — with a number
+
+Agreement is evidence, and evidence is a number a computer produced. Every section
+ends by naming the earlier model, giving the number where the two agree, and
+saying what the extra model actually bought.
+
+- The number comes from data, **never** from prose written by hand. An agreement
+  panel reads the exported `agreement` object (see **Data**), and the page must be
+  rebuildable without a human touching the figure.
+- Where the models **disagree**, that disagreement *is* the lesson. Name it, put it
+  on the page, and explain it. Do not tune the model until it agrees.
+
+### Two tracks, and the main thread stands alone
+
+- The **main thread** must be readable end to end without opening a single depth
+  page. Depth is offered, never required, and a reader who skips every one of them
+  has still read the book.
+- A depth page is a real page at a real URL, declared in `curriculum.yaml` under
+  the section's `deeper:` list. The scaffold does **not** write it: it exists
+  because somebody wrote it. `:::deeper <slug>` in the section's page is the only
+  link needed, and it is a plain link with no script.
+- Say on the depth page what the main thread already covered, so a reader who
+  arrives there from search is not lost.
+
+### Every interactive has a static frame
+
+This is a repository rule and here it is load-bearing: a general reader was not
+told to sit through an animation. A figure mounts in a state that already carries
+the idea — the linkage drawn, the instant centre visible, the rigid curve on the
+axes — and every value is reachable by the control without motion.
+
+## Voice
+
+The root's **Voice and language** applies in full: active voice, ~15–20 words a
+sentence, plain English, no negative contractions, no shaming words, no slang or
+idioms or cultural references, UK English, `you` for the reader and `we` for
+reasoning together. Three things are particular to this book.
+
+- **Name the model, always.** "The rigid model", "the two-leg model", "the
+  compliant model" — never "the model" alone once there are two of them. A reader
+  who loses track of which model is speaking has lost the chapter.
+- **Numbers carry their meaning.** "The camber changes by 1.2° over 40 mm of
+  travel" is worth more than "the camber changes a little", and less than "camber
+  gain is 0.03°/mm". Give the size, the range, and what it is compared with.
+- **Never imply more precision than the model has.** A model whose geometry is
+  illustrative does not get four decimal places. Round to what the figure draws,
+  and say when a number is illustrative.
+
+## Structure of this book
+
+- `book.yaml → section_pages: [learn]`. **A section is one page.** There is no
+  Practise page and no verified bank, so `:::problems` / `:::answers` never appear
+  here, and a section that needs practice is a section with a figure missing.
+- `curriculum.yaml` is the source of truth for chapters, sections and deeper pages.
+  `CURRICULUM-MAP.md` is generated; never edit it.
+- `Chapter 1` is the whole book for now: §1.1–§1.5 are authored, §1.6–§1.7 are
+  drafted as the destination. A drafted section says so on its page, in the reader's
+  words, and stops rather than pretending.
+
+## Figures
+
+`assets/AGENTS.md` is binding: no colour anywhere, `kit.js` only, `SIZE` instead of
+a font size, `label()` instead of a hand-written `<text>`, `scale()` instead of a
+hand-built mapping, `animate()` with a scrubber and a still, `diagram()` when the
+drawing's meaning is its named parts.
+
+Three rules particular to this book:
+
+- **The figure may not choose a number that the prose states.** If it prints 1.24°,
+  the number comes from the model, not from a constant chosen to look right.
+- **Geometry constants are the model's.** The linkage points are the same numbers
+  in every figure and in the code that solves it. A figure that draws a different
+  car from the one the prose describes is a bug, even if it looks better.
+- **A 3D figure is a diagram, not a solver.** `camera3d()` gives a projection and a
+  depth; drawing a linkage with it is fine. Do not grow a second 3D engine in a
+  module — and remember a projected line is drawn by `line()` after `project()`,
+  sorted by mean depth, with the scale computed **once** so the drawing does not
+  breathe as the mechanism moves.
+
+## Data
+
+The numbers a figure draws come from a sweep of the mechanism, emitted as a static
+ES module by the `suspension-kinematics` package, and copied into the site from
+`docs/assets/data/`.
+
+- **The payload shape is a contract**: `meta`, `sweep.input.values`,
+  `sweep.frames[]`, `iterations[]`, `agreement`. Read the shape from
+  `HANDOFF.md` in that repository before consuming a key.
+- **`agreement` is evidence, not decoration.** An agreement panel reads it. If a
+  value is missing because the package has not produced it yet, the page carries a
+  `TODO(phase-a):` marker and the panel says what it is waiting for — the panel does
+  **not** print a number a human typed.
+- A figure may solve a small closed-form problem in its own module (two circles
+  meeting is arithmetic, not a solver). It may **not** carry a second implementation
+  of the general solver, and it may not print iteration data it invented.
+
+## Snippets: pseudocode, not source
+
+Each section shows its mathematics as **Python-style pseudocode** — the residual,
+the Jacobian, the step, the rank test — with real names and real shapes and the
+implementation elided. Then a link to the corresponding file in
+`suspension-kinematics`.
+
+Do **not** paste the package's source. A snippet that drifts from the code is a
+lie; a snippet that must be kept identical to the code is a second copy of it.
+What is checked is that the symbols the pseudocode uses exist in the real module —
+not that the text matches.
+
+## Before you publish a section
+
+- The main thread is readable with every depth page closed.
+- The section names the model, and names the question the previous model failed.
+- An agreement panel shows a number, and that number came from data.
+- Every figure mounts, in both schemes, at 390px, with a static frame that carries
+  the idea on its own.
+- The prose has no banned word, and no sentence that implies a simple model is a
+  compromise.
+- `python -m textbook.lint maths-applied` reports nothing, and the drift check is
+  clean after `python -m textbook.scaffold`.

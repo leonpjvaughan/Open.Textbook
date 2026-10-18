@@ -78,3 +78,9 @@ qualifications:
   - id: Reference
     title: Reference
     note: Material that belongs to more than one course.
+  # Also not a qualification. A book about modelling belongs to no subject's
+  # syllabus: it is read by anyone interested, at whatever level they come to it.
+  # Filing it under a course would make a claim about its reader that is not true.
+  - id: Misc
+    title: Misc
+    note: Material that belongs to no qualification.
