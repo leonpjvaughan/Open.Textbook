@@ -21,7 +21,7 @@ export function mount(el) {
   const TIME_MAX = 60; // seconds
   const CURRENT_MAX = 5; // amperes
 
-  const { svg, readout } = panel(el, {
+  const { svg, readout, claim } = panel(el, {
     label:
       "A graph of current against time. The shaded rectangle has a height equal to the current and a width equal to the time, so its area is the charge transferred.",
     width: 600,
@@ -54,11 +54,22 @@ export function mount(el) {
   const px = (seconds) => LEFT + (seconds / TIME_MAX) * (RIGHT - LEFT);
   const py = (amps) => BOTTOM - (amps / CURRENT_MAX) * (BOTTOM - TOP);
 
-  // Standard form for the number of electrons, written as plain HTML.
-  const sci = (value) => {
+  // Standard form for the number of electrons. Two spellings of one number: `sci` is
+  // the HTML the reader sees, and `sciText` is the same number as plain text, which is
+  // what a claim has to name — the check compares against the readout's text, where a
+  // superscript has already become `^`.
+  const standard = (value) => {
     const exponent = Math.floor(Math.log10(value));
     const mantissa = value / Math.pow(10, exponent);
-    return `${mantissa.toFixed(2)} &times; 10<sup>${exponent}</sup>`;
+    return { mantissa: mantissa.toFixed(2), exponent };
+  };
+  const sci = (value) => {
+    const { mantissa, exponent } = standard(value);
+    return `${mantissa} &times; 10<sup>${exponent}</sup>`;
+  };
+  const sciText = (value) => {
+    const { mantissa, exponent } = standard(value);
+    return `${mantissa} \u00d7 10^${exponent}`;
   };
 
   function update() {
@@ -100,6 +111,26 @@ export function mount(el) {
 
     svg.innerHTML = drawing;
 
+    // The rectangle's area is the charge and the charge is the electron count, so both
+    // are declared. The count is printed in standard form, which the verifier reads as
+    // a label rather than a number — but the *answer* is still proved exactly, because
+    // `1.6e-19` is 1/6250000000000000000 and not a double.
+    claim([
+      {
+        label: "charge transferred",
+        expression: "I * t",
+        values: { I: amps, t: seconds },
+        answer: charge,
+        shown: charge.toFixed(1),
+      },
+      {
+        label: "number of electrons",
+        expression: "charge / ELEMENTARY",
+        values: { charge, ELEMENTARY },
+        answer: electrons,
+        shown: sciText(electrons),
+      },
+    ]);
     readout.innerHTML =
       `A current of <strong>${amps.toFixed(1)} A</strong> for ` +
       `<strong>${seconds.toFixed(0)} s</strong> transfers a charge of ` +

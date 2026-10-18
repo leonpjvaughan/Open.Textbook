@@ -12,9 +12,8 @@
  * computed paint of every element it contains, and measures each one against the panel
  * it sits on. The static scans agree with it and are not trusted instead of it.
  *
- * Usage:
- *   tools audit <siteDir> [--schemes light,dark] [--theme id] [--maps <file>]
- *       [--shots <dir>] [--json <file>] [--only slug] [--table <file>] [--mobile]
+ * Its flags are the `SURFACE` table below, which is also what `tools help` prints;
+ * the comment here used to repeat them, and said nothing about `--maps`.
  *
  * The JSON is the report; the screenshots are the record for a human to look at.
  * `--mobile` answers a different question — not "is this readable?" but "can a reader
@@ -24,8 +23,9 @@ import fs from "node:fs";
 import os from "node:os";
 import path from "node:path";
 import { ORIGIN, launchBrowser, openContext, serveStatic } from "../lib/browser.js";
+import { parseArgs, type Surface } from "../lib/flags.js";
 import { mapPool } from "../lib/pool.js";
-import { parseArgs } from "../lib/report.js";
+import { discoverFigures } from "../lib/site.js";
 
 const TABLE_START = "<!-- generated:tables -->";
 const TABLE_END = "<!-- /generated:tables -->";
@@ -57,6 +57,51 @@ const COLOUR_CLASSES = [
 ];
 
 const SHARED_FIGURE_FILES = ["figures.js", "kit.js"];
+
+/** What this command accepts. `tools help audit` is generated from this table. */
+export const SURFACE: Surface = {
+  positional: [{ name: "siteDir", help: "the built site to measure" }],
+  flags: {
+    schemes: {
+      kind: "string",
+      value: "<a,b>",
+      default: "light,dark",
+      help: "the schemes to measure, comma separated",
+    },
+    theme: {
+      kind: "string",
+      value: "<bundle>",
+      help: "the bundle to force instead of the reader's preference",
+    },
+    maps: {
+      kind: "string",
+      value: "<file>",
+      help: "read the figure-to-page map from here instead of deriving it from the site",
+    },
+    shots: {
+      kind: "string",
+      value: "<dir>",
+      help: "write a PNG of each figure here instead of measuring only",
+    },
+    json: { kind: "string", value: "<file>", help: "write the measurement report here" },
+    only: { kind: "string", value: "<slug>", help: "measure one figure" },
+    table: {
+      kind: "string",
+      value: "<file>",
+      help: "replace the generated tables in this file with what was measured",
+    },
+    mobile: {
+      kind: "boolean",
+      help: "ask the other question: what reaches a 390px screen, and at what size",
+    },
+    jobs: {
+      kind: "string",
+      value: "<n>",
+      default: "1",
+      help: "pages in flight at once; one is the setting that measures all of them",
+    },
+  },
+};
 
 function bookDirs(repoRoot) {
   const base = path.join(repoRoot, "books");
@@ -387,20 +432,7 @@ const MEASURE = `
 `;
 
 export async function run(argv: string[]): Promise<number> {
-  const { values, positional } = parseArgs(argv, {
-    flags: {
-      schemes: "string",
-      theme: "string",
-      maps: "string",
-      shots: "string",
-      json: "string",
-      only: "string",
-      table: "string",
-      mobile: "boolean",
-      jobs: "string",
-    },
-    positional: ["siteDir"],
-  });
+  const { values, positional } = parseArgs(argv, SURFACE);
   // One worker by default, **not** the core count. Parallelising this is 3x faster and
   // flaky: at two workers eleven slugs fail in both schemes with "Execution context was
   // destroyed" or by finding themselves on the previous route, and every one of them
@@ -420,32 +452,11 @@ export async function run(argv: string[]): Promise<number> {
   if (shots) fs.mkdirSync(shots, { recursive: true });
 
   // The figure -> page map is derived from the built site when it is not given.
-  // Deriving it here rather than asking a caller to write it means the audit
-  // cannot be pointed at a stale map and silently measure last week's build.
-  let pages;
-  if (maps) {
-    pages = JSON.parse(fs.readFileSync(maps, "utf8"));
-  } else {
-    pages = {};
-    const walk = (dir) => {
-      for (const entry of fs.readdirSync(dir, { withFileTypes: true })) {
-        const full = path.join(dir, entry.name);
-        if (entry.isDirectory()) walk(full);
-        else if (entry.name.endsWith(".html")) {
-          const html = fs.readFileSync(full, "utf8");
-          const rel = path.relative(siteDir, full);
-          const url = full.endsWith(`index.html`)
-            ? "/" + path.dirname(rel).split(path.sep).join("/") + "/"
-            : "/" + rel.split(path.sep).join("/");
-          for (const m of html.matchAll(/data-figure="([^"]+)"/g)) {
-            (pages[m[1]] = pages[m[1]] || new Set()).add(url);
-          }
-        }
-      }
-    };
-    walk(siteDir);
-    for (const slug of Object.keys(pages)) pages[slug] = [...pages[slug]].sort();
-  }
+  // Deriving it rather than asking a caller to write it means the audit cannot be
+  // pointed at a stale map and silently measure last week's build. The walk itself is
+  // `lib/site.ts`, which the readout check uses too: two copies of it drifted once
+  // already, and the shared one skips a page that has no figure in it at all.
+  const pages = maps ? JSON.parse(fs.readFileSync(maps, "utf8")) : discoverFigures(siteDir);
 
   let slugs = Object.keys(pages).sort();
   if (only) slugs = slugs.filter((s) => s === only);

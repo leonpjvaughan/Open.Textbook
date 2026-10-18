@@ -39,6 +39,7 @@
 import fs from "node:fs";
 import path from "node:path";
 import { launchBrowser, openContext, serveStatic, ORIGIN } from "../lib/browser.js";
+import { parseArgs } from "../lib/flags.js";
 // The route layouts this harness knows. They are not interchangeable: the
 // renderer decides the path, and a run that names the wrong one must stop before
 // it measures a 404. `witness` is a page that only that renderer writes, so its
@@ -342,49 +343,75 @@ function checkOne(theme, scheme, routeName, probe, thresholds, failures) {
     return lines;
 }
 // --- main --------------------------------------------------------------------
+/** What this command accepts. `tools help preview` is generated from this table. */
+export const SURFACE = {
+    positional: [
+        { name: "name:route ...", help: "one route per name, passed after `--`", required: false },
+    ],
+    flags: {
+        root: { kind: "string", value: "<dir>", default: "site", help: "the built site to preview" },
+        layout: {
+            kind: "string",
+            value: "<id>",
+            default: "pipeline",
+            help: `the route layout the site has; known: ${Object.keys(LAYOUTS).join(", ")}`,
+        },
+        out: {
+            kind: "string",
+            value: "<dir>",
+            default: "/tmp/theme-preview",
+            help: "write the images here",
+        },
+        themes: {
+            kind: "string",
+            value: "<a,b>",
+            help: "the bundles to preview; by default every one the stylesheet defines",
+        },
+        schemes: {
+            kind: "string",
+            value: "<a,b>",
+            default: "light,dark",
+            help: "the schemes to preview, comma separated",
+        },
+        viewport: {
+            kind: "string",
+            value: "<WxH>",
+            default: "1280x900",
+            help: "the window to measure in",
+        },
+        full: { kind: "boolean", help: "capture the whole page, not the window" },
+        "no-shots": {
+            kind: "boolean",
+            help: "check the preference and the contrast, and write no images",
+        },
+        audit: { kind: "boolean", help: "walk every text element on the page, not a sample" },
+        "audit-limit": {
+            kind: "string",
+            value: "<n>",
+            default: "12",
+            help: "print at most this many failing elements per page",
+        },
+    },
+};
 export async function run(argv) {
-    let root = "site";
-    let out = "/tmp/theme-preview";
-    let layout = "pipeline";
-    let themes = null;
-    let schemes = ["light", "dark"];
-    let viewport = { width: 1280, height: 900 };
-    let fullPage = false;
-    let shots = true;
-    let audit = false;
-    let auditLimit = 12;
-    const entries = [];
-    for (let i = 0; i < argv.length; i += 1) {
-        const arg = argv[i];
-        if (arg === "--root")
-            root = argv[(i += 1)];
-        else if (arg === "--layout")
-            layout = argv[(i += 1)];
-        else if (arg === "--out")
-            out = argv[(i += 1)];
-        else if (arg === "--themes")
-            themes = argv[(i += 1)].split(",");
-        else if (arg === "--schemes")
-            schemes = argv[(i += 1)].split(",");
-        else if (arg === "--viewport") {
-            const [w, h] = argv[(i += 1)].split("x").map(Number);
-            viewport = { width: w, height: h };
-        }
-        else if (arg === "--full")
-            fullPage = true;
-        else if (arg === "--audit")
-            audit = true;
-        else if (arg === "--audit-limit")
-            auditLimit = Number(argv[(i += 1)]);
-        else if (arg === "--no-shots")
-            shots = false;
-        else if (arg === "--")
-            continue;
-        else {
-            const [name, ...rest] = arg.split(":");
-            entries.push({ name, route: rest.join(":") });
-        }
-    }
+    const { values, positional } = parseArgs(argv, SURFACE);
+    const root = String(values.root);
+    const out = String(values.out);
+    const layout = String(values.layout);
+    let themes = values.themes ? String(values.themes).split(",") : null;
+    const schemes = String(values.schemes).split(",");
+    const [width, height] = String(values.viewport).split("x").map(Number);
+    const viewport = { width, height };
+    const fullPage = values.full === true;
+    const shots = values["no-shots"] !== true;
+    const audit = values.audit === true;
+    const auditLimit = Number(values["audit-limit"]);
+    // A route contains slashes and may contain a colon, so only the first colon
+    // separates the name from the route.
+    const entries = positional.map((entry) => {
+        const [name, ...rest] = entry.split(":");
+        return { name: name, route: rest.join(":") };
+    });
     if (!entries.length) {
         console.error("no routes given; use: -- name:/path");
         return 2;

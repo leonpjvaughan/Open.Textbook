@@ -6,16 +6,27 @@
  * live region that can announce a value, one focus stop per control, a mark that
  * carries a colour class rather than a colour.
  *
- * Usage: tools kit [siteDir] [route]
+ * Usage: tools kit [siteDir] [route] — the `SURFACE` table below, which is what
+ * `tools help kit` prints.
  */
 import fs from "node:fs";
 import path from "node:path";
+import { parseArgs, type Surface } from "../lib/flags.js";
 import {
   ORIGIN,
   launchBrowser,
   openContext,
   serveStatic,
 } from "../lib/browser.js";
+
+/** What this command accepts. `tools help kit` is generated from this table. */
+export const SURFACE: Surface = {
+  positional: [
+    { name: "siteDir", help: "the built site to check against", required: false },
+    { name: "route", help: "the page to mount the kit on", required: false },
+  ],
+  flags: {},
+};
 
 async function probe(kitPath: string) {
   const kit = await import(kitPath);
@@ -437,8 +448,9 @@ async function probe(kitPath: string) {
 }
 
 export async function run(argv: string[]): Promise<number> {
-  const siteDir = path.resolve(argv[0] ?? "site");
-  const route = argv[1] ?? "/gcse-maths/higher/";
+  const { positional } = parseArgs(argv, SURFACE);
+  const siteDir = path.resolve(positional[0] ?? "site");
+  const route = positional[1] ?? "/gcse-maths/higher/";
   const kitPath = `${route.replace(/\/$/, "")}/assets/figures/kit.js`;
 
   const browser = await launchBrowser();

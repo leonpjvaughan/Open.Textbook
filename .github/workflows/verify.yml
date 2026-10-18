@@ -88,19 +88,21 @@ jobs:
           git diff --exit-code
 
   build:
-    name: build ${{ matrix.book }} (${{ matrix.profile }})
+    name: build every profile
     needs: plan
     # A repository variable, so pointing the gate at a self-hosted runner is a
     # setting rather than a commit — and `gh variable delete RUNNER_LABEL` puts it
     # back. See `deploy/runner/README.md`.
     runs-on: ${{ vars.RUNNER_LABEL || 'ubuntu-latest' }}
     timeout-minutes: 20
-    strategy:
-      fail-fast: false
-      # `plan` emits the whole {"include": [...]} object, so it is passed to
-      # `matrix` directly. Wrapping it in an `include:` key instead makes the job
-      # fail to configure, and GitHub then reports a failed run with no job.
-      matrix: ${{ fromJSON(needs.plan.outputs.include) }}
+    # **One job, every profile, four at a time — not one job per profile.** The matrix
+    # this replaces was thirteen rows at about a hundred seconds each: 1300 of the
+    # gate's 2600 seconds, half the run, for a build that takes four seconds. Every row
+    # paid its own `checkout`, `uv sync` and `npm ci`, and on four self-hosted runners
+    # they then queued behind each other.
+    #
+    # Nothing is lost but the job list: `deploy` builds the site itself, so this job is
+    # a check, and a failing profile prints its own log and the job fails on it.
     steps:
       - uses: actions/checkout@v7
 
@@ -121,16 +123,18 @@ jobs:
           npm ci
 
       # The pipeline is the site now. It replaces `mkdocs build --strict`:
-      # check_links() requires every internal link to resolve to a built file,
-      # and the build exits non-zero when one does not. The pipeline also
-      # reports maths errors itself; the explicit guard below still runs so a
-      # regression in the report cannot let a broken expression reach a reader.
-      - name: Build ${{ matrix.title }} — ${{ matrix.name }}
-        run: uv run python -m textbook.pipeline --book ${{ matrix.book }} --profile ${{ matrix.profile }}
+      # check_links() requires every internal link to resolve to a built file, and the
+      # build exits non-zero when one does not. Each pipeline writes only under its own
+      # `site/<book>/<profile>/`, so they do not collide; the portal writes the
+      # deployment root and therefore goes last, alone.
+      - name: Build every profile
+        env:
+          BUILD_JOBS: 4
+        run: scripts/build-all.sh
 
       - name: No maths rendering errors
         run: |
-          if grep -rl 'math-error' ${{ matrix.site_dir }} --include='*.html'; then
+          if grep -rl 'math-error' site --include='*.html'; then
             echo "KaTeX failed to render at least one expression" >&2
             exit 1
           fi

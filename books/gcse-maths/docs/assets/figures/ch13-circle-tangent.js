@@ -17,7 +17,7 @@ export function mount(el) {
   const CY = 200;
   const SCALE = 15;
 
-  const { root, svg, readout } = panel(el, {
+  const { root, svg, readout, claim } = panel(el, {
     label:
       "A circle centred on the origin with a radius drawn to a point on it and the tangent line touching the circle at that point",
     width: 520,
@@ -123,7 +123,41 @@ export function mount(el) {
       ? `x² + y² = ${x * x} + ${y * y} = ${x * x + y * y}, so r² = ${r * r}. `
       : `The circle has r² = ${r * r}. `;
 
+    // The numbers the sentence states are declared, not parsed. `y` is a surd the
+    // figure prints rounded, so the square root is the expression and the printed
+    // value is what the verifier has to find in the readout.
+    const sign = above.checked ? 1 : -1;
+    const claims = [
+      {
+        label: "the y-coordinate of the point, from x² + y² = r²",
+        expression: `sqrt(r ** 2 - x ** 2) * sign`,
+        values: { r, x, sign },
+        answer: y,
+        shown: fmt(y),
+      },
+    ];
+    if (Number.isInteger(y)) {
+      // The readout only works this sum out when it is exact; a rounded sum would be a
+      // claim about arithmetic the reader cannot check.
+      claims.push({
+        label: "x² + y², which is r²",
+        expression: "x ** 2 + y ** 2",
+        values: { x, y },
+        answer: x * x + y * y,
+        shown: String(x * x + y * y),
+      });
+    } else {
+      claims.push({
+        label: "r², the square of the radius",
+        expression: "r ** 2",
+        values: { r },
+        answer: r * r,
+        shown: String(r * r),
+      });
+    }
+
     if (x === 0) {
+      claim(claims);
       readout.innerHTML =
         `Point <strong>P = (0, ${fmt(y)})</strong> is on the circle. ${onCircle}` +
         `The radius is vertical, so the tangent is horizontal. ` +
@@ -131,6 +165,25 @@ export function mount(el) {
     } else {
       const radiusGradient = y / x;
       const tangentGradient = -x / y;
+      // The radius gradient is the division the sentence prints, and the tangent's is
+      // the negative reciprocal — a right angle, which the reader can check.
+      claims.push(
+        {
+          label: "gradient of the radius",
+          expression: "y / x",
+          values: { x, y },
+          answer: radiusGradient,
+          shown: fmt(radiusGradient),
+        },
+        {
+          label: "gradient of the tangent, the negative reciprocal",
+          expression: "-x / y",
+          values: { x, y },
+          answer: tangentGradient,
+          shown: fmt(tangentGradient),
+        },
+      );
+      claim(claims);
       readout.innerHTML =
         `Point <strong>P = (${fmt(x)}, ${fmt(y)})</strong> is on the circle. ${onCircle}` +
         `Radius gradient <strong>${fmt(radiusGradient)}</strong>; ` +

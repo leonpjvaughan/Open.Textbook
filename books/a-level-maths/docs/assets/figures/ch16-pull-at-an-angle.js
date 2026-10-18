@@ -77,7 +77,7 @@ function forceLabel(x, y, words, cls, anchor) {
 }
 
 export function mount(el) {
-  const { svg, readout } = panel(el, {
+  const { svg, readout, claim } = panel(el, {
     label:
       "A crate on a floor pulled by a rope at an angle, with the two components of the tension, the weight, the normal reaction and the resistance drawn as arrows",
     width: WIDTH,
@@ -250,6 +250,46 @@ export function mount(el) {
           `R = <strong>${one(normal)} N</strong>.`
         : `Vertically: R + ${one(lift)} = ${one(weight)}, so ` +
           `R = <strong>${one(normal)} N</strong>.`;
+
+    // Every component the sentence prints is arithmetic: the weight, the two components
+    // of the tension, the reaction and, when the crate moves, the net force and the
+    // acceleration. The printed cosine and sine are claimed too, because a rounded
+    // intermediate that is then multiplied up is the defect this check exists for.
+    const claims = [
+      { label: "weight", expression: "mass * G", values: { mass, G }, answer: weight, shown: one(weight) },
+      { label: "the cosine the working prints", expression: "cos(radians)", values: { radians }, answer: cos, shown: cos.toFixed(4) },
+      { label: "forward component of the tension", expression: "tension * cos(radians)", values: { tension, radians }, answer: forward, shown: one(forward) },
+      { label: "the sine the working prints", expression: "sin(radians)", values: { radians }, answer: sin, shown: sin.toFixed(4) },
+      { label: "upward component of the tension", expression: "tension * sin(radians)", values: { tension, radians }, answer: lift, shown: one(lift) },
+    ];
+    if (onFloor) {
+      claims.push({
+        label: "the reaction, weight minus the lift",
+        expression: "mass * G - tension * sin(radians)",
+        values: { mass, G, tension, radians },
+        answer: normal,
+        shown: one(normal),
+      });
+    }
+    if (moves) {
+      claims.push(
+        {
+          label: "the net force along the floor",
+          expression: "tension * cos(radians) - drag",
+          values: { tension, radians, drag },
+          answer: net,
+          shown: one(net),
+        },
+        {
+          label: "the acceleration",
+          expression: "(tension * cos(radians) - drag) / mass",
+          values: { tension, radians, drag, mass },
+          answer: acceleration,
+          shown: two(acceleration),
+        },
+      );
+    }
+    claim(claims);
 
     if (!onFloor) {
       readout.innerHTML =

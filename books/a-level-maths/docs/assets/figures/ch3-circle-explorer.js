@@ -26,7 +26,7 @@ function fixed(value, places) {
 }
 
 export function mount(el) {
-  const { svg, readout } = panel(el, {
+  const { svg, readout, claim } = panel(el, {
     label: "A circle with its centre and radius, and the line x plus y equals 19",
     width: 360,
     height: 360,
@@ -131,6 +131,47 @@ export function mount(el) {
     }
 
     svg.innerHTML = grid() + axes + line + circle + chord;
+
+    // Every number the sentence prints is declared, because the distance is the whole
+    // lesson: the line cuts the circle when it is shorter than the radius. `sqrt(2)` is
+    // the length of (1, 1), so the distance is the line's own equation divided by it.
+    const claims = [
+      { label: "r², the right-hand side of the equation", expression: "r ** 2", values: { r }, answer: r * r, shown: String(r * r) },
+      {
+        label: "distance from the centre to the line x + y = 19",
+        expression: "abs(a + b - LINE_C) / sqrt(2)",
+        values: { a, b, LINE_C },
+        answer: distance,
+        shown: fixed(distance),
+      },
+    ];
+    if (distance < r - 1e-9) {
+      const half = Math.sqrt(r * r - distance * distance);
+      claims.push(
+        {
+          label: "the x-coordinate of the foot of the perpendicular, which is the chord's midpoint",
+          expression: "a - (a + b - LINE_C) / 2",
+          values: { a, b, LINE_C },
+          answer: footX,
+          shown: fixed(footX, 1),
+        },
+        {
+          label: "the y-coordinate of the foot of the perpendicular, which is the chord's midpoint",
+          expression: "b - (a + b - LINE_C) / 2",
+          values: { a, b, LINE_C },
+          answer: footY,
+          shown: fixed(footY, 1),
+        },
+        {
+          label: "half the chord, from Pythagoras on the radius and the distance",
+          expression: "sqrt(r ** 2 - distance ** 2)",
+          values: { r, distance },
+          answer: half,
+          shown: fixed(half),
+        },
+      );
+    }
+    claim(claims);
 
     readout.textContent =
       `Centre (${a}, ${b}), radius ${r}, so (x - ${a})^2 + (y - ${b})^2 = ${r * r}. ` +

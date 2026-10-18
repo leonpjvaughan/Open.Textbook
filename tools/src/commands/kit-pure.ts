@@ -10,12 +10,24 @@
  * So this runs under plain `node` and is called from `tests/test_figure_kit_pure.py`.
  * It imports the kit that ships, so it checks what a figure actually gets.
  *
- * Usage: tools kit-pure [kitPath]
+ * Usage: tools kit-pure [kitPath] — the `SURFACE` table below, which is what
+ * `tools help kit-pure` prints.
  */
 import { fileURLToPath } from "node:url";
+import { parseArgs, type Surface } from "../lib/flags.js";
+
+/** What this command accepts. `tools help kit-pure` is generated from this table. */
+export const SURFACE: Surface = {
+  positional: [
+    { name: "kitPath", help: "the kit to check; by default the one that ships", required: false },
+  ],
+  flags: {},
+};
 
 export async function run(argv: string[]): Promise<number> {
-  const kitPath = argv[0] ?? fileURLToPath(new URL("../../../assets/figures/kit.js", import.meta.url));
+  const { positional } = parseArgs(argv, SURFACE);
+  const kitPath =
+    positional[0] ?? fileURLToPath(new URL("../../../assets/figures/kit.js", import.meta.url));
     const kit: any = await import(kitPath);
 
   const problems: string[] = [];

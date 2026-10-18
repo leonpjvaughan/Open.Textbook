@@ -1,6 +1,9 @@
 /*
  * How a check reports, and what its exit code means.
  *
+ * What a check *accepts* is beside it in `lib/flags.ts`, one table per command, so the
+ * parser and `tools help` are generated from one declaration.
+ *
  * Every check here answers the same question — "is this acceptable?" — and the answer
  * has to be legible in a CI log and usable from a shell. Two rules, both learned from
  * the scripts this replaces:
@@ -60,42 +63,4 @@ export class Report {
     if (options.warningsAreErrors && this.warnings > 0) return 1;
     return 0;
   }
-}
-
-/** Parse `--flag value` pairs and positionals, rejecting an unknown flag. */
-export function parseArgs(
-  argv: string[],
-  spec: { flags: Record<string, "string" | "boolean">; positional: string[] },
-): { values: Record<string, string | boolean>; positional: string[] } {
-  const values: Record<string, string | boolean> = {};
-  const positional: string[] = [];
-  let i = 0;
-  while (i < argv.length) {
-    const arg = argv[i]!;
-    if (arg === "--") {
-      positional.push(...argv.slice(i + 1));
-      break;
-    }
-    if (arg.startsWith("--")) {
-      const name = arg.slice(2);
-      const kind = spec.flags[name];
-      if (!kind) throw new Error(`unknown option --${name}`);
-      if (kind === "boolean") {
-        values[name] = true;
-        i += 1;
-      } else {
-        const value = argv[i + 1];
-        if (value === undefined) throw new Error(`--${name} needs a value`);
-        values[name] = value;
-        i += 2;
-      }
-    } else {
-      positional.push(arg);
-      i += 1;
-    }
-  }
-  for (const [index, name] of spec.positional.entries()) {
-    if (positional[index] === undefined) throw new Error(`missing argument <${name}>`);
-  }
-  return { values, positional };
 }

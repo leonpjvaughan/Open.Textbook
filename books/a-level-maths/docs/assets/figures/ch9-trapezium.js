@@ -24,6 +24,7 @@ const MAPS = [
     a: 0,
     b: 2,
     exact: 8 / 3,
+    exactExpr: "8 / 3",
     exactText: "8/3 = 2.6667",
     xMin: 0,
     xMax: 2,
@@ -36,6 +37,7 @@ const MAPS = [
     a: 0,
     b: 4,
     exact: 16 / 3,
+    exactExpr: "16 / 3",
     exactText: "16/3 = 5.3333",
     xMin: 0,
     xMax: 4,
@@ -48,6 +50,7 @@ const MAPS = [
     a: 0,
     b: 1,
     exact: Math.log(2),
+    exactExpr: "log(2)",
     exactText: "ln 2 = 0.6931",
     xMin: 0,
     xMax: 1,
@@ -74,7 +77,7 @@ function trapezium(map, n) {
 }
 
 export function mount(el) {
-  const { root, svg, readout } = panel(el, {
+  const { root, svg, readout, claim } = panel(el, {
     label:
       "Curve with straight-topped trapezia drawn beneath it, and a readout of " +
       "the estimate and the true area",
@@ -147,6 +150,39 @@ export function mount(el) {
 
     svg.innerHTML = axes + curve + stripLayer;
 
+    // The estimate is the rule itself: half the strip width times the end ordinates plus
+    // twice every ordinate inside. The ordinates are passed as values, so the verifier
+    // recomputes the sum rather than trusting the figure's loop, and the true area is
+    // its own expression because "8/3" is a claim too.
+    const ordinates = {};
+    for (let i = 0; i <= n; i += 1) ordinates[`y${i}`] = Number(map.f(map.a + i * h));
+    const inner = [];
+    for (let i = 1; i < n; i += 1) inner.push(`y${i}`);
+    const expression =
+      `(h / 2) * (y0 + y${n}` + (inner.length ? ` + 2 * (${inner.join(" + ")})` : "") + ")";
+    claim([
+      {
+        label: "the trapezium rule with these strips",
+        expression,
+        values: { h, ...ordinates },
+        answer: estimate,
+        shown: short(estimate),
+      },
+      {
+        label: "the true area",
+        expression: map.exactExpr,
+        values: {},
+        answer: map.exact,
+        shown: short(map.exact, 4),
+      },
+      {
+        label: "the error, estimate minus true area",
+        expression: "estimate - exact",
+        values: { estimate, exact: map.exact },
+        answer: error,
+        shown: short(error),
+      },
+    ]);
     readout.textContent =
       `With ${n} strips the estimate is ${short(estimate)}. The true area is ` +
       `${map.exactText}, so the error is ${error >= 0 ? "+" : ""}${short(error)}.`;

@@ -13,7 +13,7 @@
 import { SIZE, label, panel, react, slider } from "./kit.js";
 
 export function mount(el) {
-  const { svg, readout } = panel(el, {
+  const { svg, readout, claim } = panel(el, {
     label:
       "A road bar split into a thinking distance and a braking distance, with the total stopping distance",
     width: 560,
@@ -64,6 +64,31 @@ export function mount(el) {
       `${label({ x: (BAR_LEFT + thinkingWidth + 6).toFixed(1), y: BAR_Y - 10, text: `braking ${braking.toFixed(1)} m`, anchor: "start", size: SIZE.tick, class: "text-ink" })}` +
       `${label({ x: BAR_LEFT, y: BAR_Y + BAR_HEIGHT + 20, text: `total stopping distance = ${total.toFixed(1)} m`, anchor: "start", size: SIZE.value, class: "text-ink" })}`;
 
+    // Three numbers are printed and all three are working: the distance covered while the
+    // driver reacts, the distance the brakes take, and the sum of the two.
+    claim([
+      {
+        label: "thinking distance, speed times the reaction time",
+        expression: "speed * reaction",
+        values: { speed, reaction: REACTION },
+        answer: thinking,
+        shown: thinking.toFixed(1),
+      },
+      {
+        label: "braking distance, v squared over 2a",
+        expression: "speed ** 2 / (2 * decel)",
+        values: { speed, decel },
+        answer: braking,
+        shown: braking.toFixed(1),
+      },
+      {
+        label: "stopping distance",
+        expression: "thinking + braking",
+        values: { thinking, braking },
+        answer: total,
+        shown: total.toFixed(1),
+      },
+    ]);
     readout.innerHTML =
       `Speed ${speed} m/s, reaction time ${REACTION.toFixed(2)} s, braking deceleration ` +
       `${decel} m/s&sup2;. The thinking distance is ${speed} &times; ${REACTION.toFixed(2)} = ` +

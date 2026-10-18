@@ -18,7 +18,7 @@ export function mount(el) {
   const MAX_TIME = 10;
   const MAX_SPEED = 20;
 
-  const { svg, readout } = panel(el, {
+  const { svg, readout, claim } = panel(el, {
     label:
       "A velocity-time graph for a straight rising line, with the triangle under the line shaded to show the distance travelled",
     width: 560,
@@ -87,6 +87,25 @@ export function mount(el) {
       label({ x: (LEFT + RIGHT) / 2, y: BASE + 36, text: "time in seconds", anchor: "middle", size: SIZE.label, class: "text-ink" }) +
       `${label({ x: 16, y: ((TOP + BASE) / 2).toFixed(1), text: 'velocity in m/s', anchor: "middle", size: SIZE.tick, class: "text-ink", rotate: -90 })}`;
 
+    // The two readings the sentence states: the gradient of the line and the area under
+    // it. Both are printed as `8 ÷ 4 = 2` and `½ × 4 × 8 = 16`, so the values are
+    // declared and the verifier checks the division and the triangle's area exactly.
+    claim([
+      {
+        label: "gradient, which is the acceleration",
+        expression: "speed / time",
+        values: { speed, time },
+        answer: acceleration,
+        shown: fmt(acceleration),
+      },
+      {
+        label: "area under the line, which is the distance",
+        expression: "0.5 * time * speed",
+        values: { time, speed },
+        answer: distance,
+        shown: fmt(distance),
+      },
+    ]);
     readout.innerHTML =
       `The velocity rises from <strong>0 m/s</strong> to <strong>${fmt(speed)} m/s</strong> in <strong>${fmt(time)} s</strong>. Gradient = ${fmt(speed)} ÷ ${fmt(time)} = <strong>${fmt(acceleration)} m/s²</strong>, so the acceleration is <strong>${fmt(acceleration)} m/s²</strong>. Area = ½ × ${fmt(time)} × ${fmt(speed)} = <strong>${fmt(distance)} m</strong>, so the distance travelled is <strong>${fmt(distance)} m</strong>.`;
   }

@@ -18,7 +18,7 @@
 import { SIZE, chooser, label, panel, react, slider } from "./kit.js";
 
 export function mount(el) {
-  const { svg, readout } = panel(el, {
+  const { svg, readout, claim } = panel(el, {
     label:
       "Bars that stack the momentum of two trolleys before and after a collision, with the two totals drawn underneath for comparison",
     width: 660,
@@ -187,6 +187,80 @@ export function mount(el) {
       segmentLabel(0, pAAfter, ROW.objectsAfter, "A") +
       segmentLabel(pAAfter, totalAfter, ROW.objectsAfter, "B");
 
+    // The final velocities are rounded for the outcome sentence, so this line
+    // gives the two momenta directly instead of multiplying a rounded velocity
+    // by a mass: 4 kg x 2.7 m s-1 is 10.8, while the momentum rounds to 10.9.
+    // The two printed momenta are rounded so that they add to the exact total,
+    // which is an integer here, so the line checks out at the printed precision.
+    const pAShown = toOnePlace(pAAfter);
+    const pBShown = toOnePlace(totalAfter) - pAShown;
+    // Every number in the sentence is declared. The one case that cannot be claimed as
+    // a product is the pair of final momenta: they are rounded so that they still add to
+    // the exact total, so the claim is the sum they make, not `mass times velocity` for
+    // each one separately.
+    const claims = [
+      { label: "momentum of trolley A before", expression: "mA * uA", values: { mA, uA }, answer: pA, shown: one(pA) },
+      { label: "momentum of trolley B before", expression: "mB * uB", values: { mB, uB }, answer: pB, shown: one(pB) },
+      { label: "total momentum before", expression: "pA + pB", values: { pA, pB }, answer: total, shown: one(total) },
+    ];
+    if (collides) {
+      const speedExpr = sticky
+        ? { vA: "total / (mA + mB)", vB: "total / (mA + mB)" }
+        : {
+            vA: "((mA - mB) * uA + 2 * mB * uB) / (mA + mB)",
+            vB: "((mB - mA) * uB + 2 * mA * uA) / (mA + mB)",
+          };
+      claims.push({
+        label: "velocity of A after the collision",
+        expression: speedExpr.vA,
+        values: { total, mA, mB, uA, uB },
+        answer: vA,
+        shown: one(vA),
+      });
+      if (!sticky) {
+        claims.push({
+          label: "velocity of B after the collision",
+          expression: speedExpr.vB,
+          values: { total, mA, mB, uA, uB },
+          answer: vB,
+          shown: one(vB),
+        });
+      }
+      claims.push(
+        {
+          label: "total momentum after",
+          expression: "mA * vA + mB * vB",
+          values: { mA, vA, mB, vB },
+          answer: totalAfter,
+          shown: one(totalAfter),
+        },
+        {
+          label: "the two printed momenta added up",
+          expression: "pA_after + pB_after",
+          values: { pA_after: pAShown, pB_after: pBShown },
+          answer: totalAfter,
+          shown: one(totalAfter),
+        },
+        {
+          label: "kinetic energy before",
+          expression: "0.5 * mA * uA ** 2 + 0.5 * mB * uB ** 2",
+          values: { mA, uA, mB, uB },
+          answer: energyBefore,
+          shown: one(energyBefore),
+        },
+        {
+          label: "kinetic energy after",
+          expression: "0.5 * mA * vA ** 2 + 0.5 * mB * vB ** 2",
+          values: { mA, vA, mB, vB },
+          answer: energyAfter,
+          shown: one(energyAfter),
+        },
+      );
+    }
+    // Declared before the branch, because a render that returns early would otherwise
+    // leave the previous render's claims in place — a stale claim is worse than none.
+    claim(claims);
+
     const beforeLine =
       `Before: (${mA} kg &times; ${signed(uA)} m s\u207b\u00b9) + ` +
       `(${mB} kg &times; ${signed(uB)} m s\u207b\u00b9) = ` +
@@ -200,13 +274,6 @@ export function mount(el) {
       return;
     }
 
-    // The final velocities are rounded for the outcome sentence, so this line
-    // gives the two momenta directly instead of multiplying a rounded velocity
-    // by a mass: 4 kg x 2.7 m s-1 is 10.8, while the momentum rounds to 10.9.
-    // The two printed momenta are rounded so that they add to the exact total,
-    // which is an integer here, so the line checks out at the printed precision.
-    const pAShown = toOnePlace(pAAfter);
-    const pBShown = toOnePlace(totalAfter) - pAShown;
     const afterLine =
       `After: trolley A has momentum <strong>${one(pAShown)} ${UNIT}</strong> and ` +
       `trolley B has <strong>${one(pBShown)} ${UNIT}</strong>, a total of ` +

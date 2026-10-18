@@ -14,6 +14,7 @@ import fs from "node:fs";
 import { readFileSync, writeFileSync } from "node:fs";
 import { fileURLToPath } from "node:url";
 import path from "node:path";
+import { parseArgs, type Surface } from "../lib/flags.js";
 
 /*
  * Errors over the runtime sources and the tools, at the settings in `tsconfig.json`.
@@ -27,6 +28,14 @@ import path from "node:path";
 const BASELINE = 0;
 const TARGET = 0;
 const SELF = fileURLToPath(import.meta.url);
+
+/** What this command accepts. `tools help types` is generated from this table. */
+export const SURFACE: Surface = {
+  flags: {
+    list: { kind: "boolean", help: "print the error count per file, largest first" },
+    update: { kind: "boolean", help: "record the current count as the new baseline" },
+  },
+};
 
 /** The TypeScript source of this file, which is where the baseline is committed. */
 function baselineSource(): string {
@@ -66,11 +75,12 @@ function runTsc(): string {
 }
 
 export async function run(argv: string[]): Promise<number> {
+  const { values } = parseArgs(argv, SURFACE);
   const errors = runTsc()
     .split("\n")
     .filter((line) => /error TS\d+/.test(line));
 
-  if (argv.includes("--list")) {
+  if (values.list === true) {
     const byFile = new Map<string, number>();
     for (const line of errors) {
       const file = line.slice(0, line.indexOf("("));
@@ -83,7 +93,7 @@ export async function run(argv: string[]): Promise<number> {
     return 0;
   }
 
-  if (argv.includes("--update")) {
+  if (values.update === true) {
     // The baseline lives in the **source**, not in the compiled copy that is running:
     // rewriting `SELF` would write into `tools/dist/`, which the next build overwrites,
     // and the update would silently do nothing. `SELF` is `tools/dist/commands/types.js`,

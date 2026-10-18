@@ -19,12 +19,16 @@
  *
  *     tools readout <siteDir> [--only slug] [--json file] [--defaults-only]
  *     tools readout --self-test
+ *
+ * Those two lines are the `SURFACE` table below, rendered; `tools help readout` is
+ * generated from the same table, and the parser reads nothing else.
  */
 import fs from "node:fs";
 import os from "node:os";
 import path from "node:path";
 import { execFileSync } from "node:child_process";
 import { launchBrowser, openContext, serveStatic, ORIGIN } from "../lib/browser.js";
+import { parseArgs, type Surface } from "../lib/flags.js";
 import { discoverFigures } from "../lib/site.js";
 import { mapPool } from "../lib/pool.js";
 import { checkArithmetic } from "../lib/readout-arithmetic.js";
@@ -44,6 +48,29 @@ type Control = {
 };
 
 type Override = { kind: Control["kind"]; index: number; value: number | string | boolean };
+
+/** What this command accepts. `tools help readout` is generated from this table. */
+export const SURFACE: Surface = {
+  positional: [{ name: "siteDir", help: "the built site to read", required: false }],
+  flags: {
+    only: { kind: "string", value: "<slug>", help: "read one figure" },
+    json: { kind: "string", value: "<file>", help: "write what each figure declares here" },
+    "defaults-only": { kind: "boolean", help: "read at the default settings only" },
+    text: {
+      kind: "boolean",
+      help: "run the sentence heuristic too, which is a hint and not a guarantee",
+    },
+    verify: { kind: "boolean", help: "hand the claims to `python -m textbook.working`" },
+    settings: {
+      kind: "string",
+      value: "<n>",
+      default: "6",
+      help: "how many settings to try, the default and its neighbours",
+    },
+    jobs: { kind: "string", value: "<n>", help: "pages in flight at once; one unless asked" },
+    "self-test": { kind: "boolean", help: "check the checker's own cases and stop" },
+  },
+};
 
 /** The controls inside one figure, in document order, with what they can be set to. */
 function readControls(slug: string): Control[] {
@@ -221,32 +248,23 @@ function selfTest(): number {
 }
 
 export async function run(argv: string[]): Promise<number> {
-  if (argv.includes("--self-test")) return selfTest();
+  const { values, positional } = parseArgs(argv, SURFACE);
+  if (values["self-test"] === true) return selfTest();
 
-  let siteDir = "site";
-  let only = "";
-  let jsonOut = "";
-  let defaultsOnly = false;
-  let jobsFlag = 0;
-  let textOnly = false;
-  let verify = false;
+  const siteDir = positional[0] ?? "site";
+  const only = values.only ? String(values.only) : "";
+  const jsonOut = values.json ? String(values.json) : "";
+  const defaultsOnly = values["defaults-only"] === true;
+  const textOnly = values.text === true;
+  const verify = values.verify === true;
+  const jobsFlag = Number(values.jobs) || 0;
   // The default plus five single-control variations. It is a **sample**, not a sweep:
   // a full cross-product is thousands of renders and the check is bounded on purpose.
   // The defect it exists for — a multiplier rounded before it is printed — shows up a
   // step either side of the default, so five variations of one control at a time finds
-  // it without paying for the grid.
-  let cap = 6;
-  for (let i = 0; i < argv.length; i += 1) {
-    const arg = argv[i];
-    if (arg === "--only") only = argv[(i += 1)];
-    else if (arg === "--json") jsonOut = argv[(i += 1)];
-    else if (arg === "--defaults-only") defaultsOnly = true;
-    else if (arg === "--text") textOnly = true;
-    else if (arg === "--verify") verify = true;
-    else if (arg === "--settings") cap = Number(argv[(i += 1)]) || 10;
-    else if (arg === "--jobs") jobsFlag = Number(argv[(i += 1)]) || 0;
-    else if (!arg.startsWith("--")) siteDir = arg;
-  }
+  // it without paying for the grid. A value that is not a positive number has always
+  // meant ten here, and the declared default is the sample size used when it is absent.
+  const cap = Number(values.settings) || 10;
 
   const pages = discoverFigures(siteDir);
   let slugs = Object.keys(pages).sort();

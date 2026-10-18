@@ -13,7 +13,7 @@
 import { SIZE, label, panel, react, slider } from "./kit.js";
 
 export function mount(el) {
-  const { svg, readout } = panel(el, {
+  const { svg, readout, claim } = panel(el, {
     label:
       "A car hitting a barrier, with a force arrow whose length shows the force on the car",
     width: 560,
@@ -55,6 +55,25 @@ export function mount(el) {
       `${label({ x: carLeft, y: GROUND - 56, text: `mass ${MASS} kg at ${SPEED} m/s`, anchor: "start", size: SIZE.tick, class: "text-ink" })}` +
       `${label({ x: carLeft + carWidth + length + 6, y: GROUND - 20, text: `${Math.round(force)} N`, anchor: "start", size: SIZE.tick, class: "text-ink" })}`;
 
+    // Two products are printed: the change in momentum, and the force that is that
+    // momentum divided by the collision time. Both are declared, so a force that does
+    // not follow from the time beside it is a finding and not a rounding choice.
+    claim([
+      {
+        label: "change in momentum, mass times the change in speed",
+        expression: "mass * speed",
+        values: { mass: MASS, speed: SPEED },
+        answer: MOMENTUM_CHANGE,
+        shown: String(Math.round(MOMENTUM_CHANGE)),
+      },
+      {
+        label: "force, the momentum change over the collision time",
+        expression: "momentum / time",
+        values: { momentum: MOMENTUM_CHANGE, time },
+        answer: force,
+        shown: String(Math.round(force)),
+      },
+    ]);
     readout.innerHTML =
       `The change in momentum is fixed: ${MASS} kg &times; ${SPEED} m/s = ` +
       `<strong>${Math.round(MOMENTUM_CHANGE)} kg m/s</strong>. ` +

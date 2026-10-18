@@ -16,7 +16,7 @@
 import { SIZE, label, panel, react, slider } from "./kit.js";
 
 export function mount(el) {
-  const { svg, readout } = panel(el, {
+  const { svg, readout, claim } = panel(el, {
     label:
       "De Broglie wavelength of an electron against accelerating voltage, with the working point marked",
     width: 620,
@@ -89,6 +89,40 @@ export function mount(el) {
 
     svg.innerHTML = axes + line + marker;
 
+    // Four numbers are printed, and each is the next one's input: the energy from the
+    // accelerating voltage, the momentum from the energy, and the wavelength from the
+    // momentum. A `shown` in standard form reads to the verifier as a label, but the
+    // answer beside it is still proved exactly — `6.63e-34` is a rational, not a float.
+    claim([
+      {
+        label: "kinetic energy gained, charge times voltage",
+        expression: "e * v",
+        values: { e, v },
+        answer: energy,
+        shown: `${(energy * 1e17).toFixed(2)} \u00d7 10^-17`,
+      },
+      {
+        label: "momentum, from the kinetic energy",
+        expression: "sqrt(2 * m * energy)",
+        values: { m, energy },
+        answer: momentum,
+        shown: `${(momentum * 1e24).toFixed(2)} \u00d7 10^-24`,
+      },
+      {
+        label: "de Broglie wavelength in picometres",
+        expression: "h / momentum * 1e12",
+        values: { h, momentum },
+        answer: lamPm,
+        shown: lamPm.toFixed(1),
+      },
+      {
+        label: "de Broglie wavelength in metres",
+        expression: "h / momentum",
+        values: { h, momentum },
+        answer: lam,
+        shown: `${(lam * 1e10).toFixed(3)} \u00d7 10^-10`,
+      },
+    ]);
     readout.innerHTML =
       `At ${v} V the electron gains <strong>${(energy * 1e17).toFixed(2)} &times; 10<sup>-17</sup> J</strong>. ` +
       `Its momentum is <strong>${(momentum * 1e24).toFixed(2)} &times; 10<sup>-24</sup> kg m/s</strong>. ` +

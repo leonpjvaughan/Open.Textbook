@@ -10,15 +10,23 @@
  */
 import path from "node:path";
 import { launchBrowser, openContext, serveHttp } from "../lib/browser.js";
-import { parseArgs } from "../lib/report.js";
+import { parseArgs, type Surface } from "../lib/flags.js";
 
 const DEFAULT_ROUTE = "/gcse-maths/higher/chapter-1/section-1.1/learn/";
 
+/** What this command accepts. `tools help budget` is generated from it. */
+export const SURFACE: Surface = {
+  positional: [
+    { name: "siteDir", help: "the built site to serve", required: false },
+    { name: "route", help: `the page to measure (default: ${DEFAULT_ROUTE})`, required: false },
+  ],
+  flags: {
+    compress: { kind: "boolean", help: "serve compressed, as the Worker does for compressible types" },
+  },
+};
+
 export async function run(argv: string[]): Promise<number> {
-  const { values, positional } = parseArgs(argv, {
-    flags: { compress: "boolean" },
-    positional: [],
-  });
+  const { values, positional } = parseArgs(argv, SURFACE);
   const siteDir = path.resolve(positional[0] ?? "site");
   const route = positional[1] ?? DEFAULT_ROUTE;
   const compress = values.compress === true;

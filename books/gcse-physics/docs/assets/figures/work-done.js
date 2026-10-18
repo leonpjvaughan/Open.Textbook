@@ -19,7 +19,7 @@ export function mount(el) {
   const MAX_FORCE = 200;
   const MAX_DISTANCE = 10;
 
-  const { svg, readout } = panel(el, {
+  const { svg, readout, claim } = panel(el, {
     label:
       "A rectangle on a force-distance graph. Its width is the distance and its height is the force, so its area is the work done",
     width: 560,
@@ -86,6 +86,17 @@ export function mount(el) {
       `${label({ x: (LEFT + RIGHT) / 2, y: BASE + 36, text: `distance (m)`, anchor: "middle", size: SIZE.tick, class: "text-ink" })}${label({ x: 16, y: (TOP + BASE) / 2, text: 'force (N)', anchor: "middle", size: SIZE.tick, class: "text-ink", rotate: -90 })}<rect x="${LEFT}" y="${rectY.toFixed(1)}" width="${rectW.toFixed(1)}" height="${rectH.toFixed(1)}" class="fig-accent" fill-opacity="0.18" stroke-width="2"></rect>` +
       areaLabel;
 
+    // The rectangle's area is the work done, and it is the only arithmetic the figure
+    // states: force times distance, printed as `60 × 4 = 240`.
+    claim([
+      {
+        label: "work done",
+        expression: "force * distance",
+        values: { force, distance },
+        answer: work,
+        shown: String(work),
+      },
+    ]);
     readout.innerHTML =
       `Force <strong>${force} N</strong> and distance <strong>${distance} m</strong>. Work done <strong>= ${force} × ${distance} = ${work} J</strong>. The force transfers <strong>${work} J</strong> of energy to the box. <em>Before you move a slider, predict what happens to the work done if you double the force. Then predict what happens if you double the distance.</em>`;
   }

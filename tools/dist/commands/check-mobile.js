@@ -16,7 +16,13 @@
 import fs from "node:fs";
 import path from "node:path";
 import { launchBrowser, openContext, serveStatic } from "../lib/browser.js";
-import { Report, parseArgs } from "../lib/report.js";
+import { parseArgs } from "../lib/flags.js";
+import { Report } from "../lib/report.js";
+/** What this command accepts. `tools help check-mobile` is generated from it. */
+export const SURFACE = {
+    positional: [{ name: "siteDir", help: "the built site to measure", required: false }],
+    flags: {},
+};
 // Android's common widths first: the report came from a phone. 480 is the top of the
 // range where the masthead has to wrap, so it guards the breakpoint itself.
 const WIDTHS = [320, 360, 390, 412, 480];
@@ -26,7 +32,7 @@ const ROUTES = [
     ["practise", "/gcse-maths/higher/chapter-1/section-1.1/practise/"],
 ];
 export async function run(argv) {
-    const { positional } = parseArgs(argv, { flags: {}, positional: [] });
+    const { positional } = parseArgs(argv, SURFACE);
     const root = path.resolve(positional[0] ?? "site");
     if (!fs.existsSync(root))
         throw new Error(`no build at ${root}; build the site first`);

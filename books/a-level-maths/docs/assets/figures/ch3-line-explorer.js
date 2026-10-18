@@ -44,7 +44,7 @@ function formatGeneral(m, c) {
 }
 
 export function mount(el) {
-  const { svg, readout } = panel(el, {
+  const { svg, readout, claim } = panel(el, {
     label: "A straight line on axes, with its gradient and intercept",
     width: 360,
     height: 300,
@@ -142,6 +142,25 @@ export function mount(el) {
 
     const direction =
       m > 0 ? "rising" : m < 0 ? "falling" : "horizontal";
+    // The two readings the sentence states as working: where the line meets the y axis
+    // (`at (0, 3)`) and the rise across one unit. Both are the line's own equation read
+    // at two values of x, so the verifier decides them from m and c.
+    claim([
+      {
+        label: "the intercept, where the line crosses the y axis at x = 0",
+        expression: "m * 0 + c",
+        values: { m, c },
+        answer: c,
+        shown: String(c),
+      },
+      {
+        label: "the rise across one unit, which is the gradient",
+        expression: "(m * 1 + c) - (m * 0 + c)",
+        values: { m, c },
+        answer: m,
+        shown: String(m),
+      },
+    ]);
     readout.textContent =
       `${formatLine(m, c)}. Gradient ${m}. Intercept ${c}, at (0, ${c}). ` +
       `The line is ${direction}. Across 1, up ${m}. ` +

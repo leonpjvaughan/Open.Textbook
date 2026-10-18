@@ -20,7 +20,7 @@ export function mount(el) {
   const DX = 9;
   const DY = -7;
 
-  const { svg, readout } = panel(el, {
+  const { svg, readout, claim } = panel(el, {
     label:
       "A square and a cube grow with the length scale factor; the square is divided into small squares and the cube into small cubes",
     width: 520,
@@ -106,6 +106,12 @@ export function mount(el) {
   function draw() {
     const k = Number(factorInput.value);
     svg.innerHTML = squarePanel(k) + cubePanel(k);
+    // Both multipliers are the sentence's own working — "k × k × k = k cubed" — so they
+    // are declared as powers rather than as the product the figure happened to write.
+    claim([
+      { label: "area scale factor", expression: "k ** 2", values: { k }, answer: k * k, shown: String(k * k) },
+      { label: "volume scale factor", expression: "k ** 3", values: { k }, answer: k * k * k, shown: String(k * k * k) },
+    ]);
     readout.textContent =
       `Length scale factor ${k}. Area scale factor ${k} × ${k} = ${k * k}, so the big square holds ${k * k} small squares. ` +
       `Volume scale factor ${k} × ${k} × ${k} = ${k * k * k}, so the big cube holds ${k * k * k} small cubes.`;

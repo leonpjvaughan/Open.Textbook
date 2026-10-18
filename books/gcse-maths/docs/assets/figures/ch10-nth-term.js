@@ -20,7 +20,7 @@ export function mount(el) {
   const FIRST = 1;
   const LAST = 6;
 
-  const { svg, readout } = panel(el, {
+  const { svg, readout, claim } = panel(el, {
     label:
       "The first six terms of a linear sequence plotted against their positions and joined by a straight line",
     width: 560,
@@ -134,6 +134,18 @@ export function mount(el) {
     }
 
     const lastTerm = terms[terms.length - 1];
+    // The one term the sentence works out, declared rather than parsed: the printed
+    // working is `step × 6 + constant = lastTerm`, so both the multiplier and the
+    // constant are values, and the verifier decides the line exactly.
+    claim([
+      {
+        label: "the term at position 6",
+        expression: "step * position + constant",
+        values: { step, position: LAST, constant: constantTerm },
+        answer: lastTerm,
+        shown: fmt(lastTerm),
+      },
+    ]);
     readout.innerHTML =
       `The rule is <strong>${rule}</strong>. ` +
       `Position ${LAST} has <strong>${fmt(step)} × ${LAST} ` +

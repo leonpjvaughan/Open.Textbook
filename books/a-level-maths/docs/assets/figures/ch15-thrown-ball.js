@@ -68,7 +68,7 @@ function velocityArrow(ballY, v) {
 }
 
 export function mount(el) {
-  const { svg, readout } = panel(el, {
+  const { svg, readout, claim } = panel(el, {
     label:
       "A ball on a vertical height scale, drawn at the height it has reached after a chosen time, with the direction it is moving and the greatest height marked",
     width: WIDTH,
@@ -200,6 +200,15 @@ export function mount(el) {
           : `<em>Move the time slider to the end of the flight and watch the ` +
             `sign of the velocity.</em>`;
 
+    // Four numbers are printed and all four are arithmetic: the velocity at this time,
+    // the height at this time, the greatest height and when it is reached. `a` is the
+    // downward acceleration, so `-9.8` is in the expression rather than in the sentence.
+    claim([
+      { label: "velocity at time t", expression: "u - 9.8 * t", values: { u, t }, answer: v, shown: one(v) },
+      { label: "height at time t", expression: "u * t - 4.9 * t ** 2", values: { u, t }, answer: s, shown: one(s) },
+      { label: "greatest height, where v = 0", expression: "u ** 2 / (2 * 9.8)", values: { u }, answer: sMax, shown: one(sMax) },
+      { label: "time at the greatest height", expression: "u / 9.8", values: { u }, answer: tTop, shown: tTop.toFixed(2) },
+    ]);
     readout.innerHTML =
       `The ball leaves the ground at u = ${u} m/s, and upwards is positive, so ` +
       `a = ${MINUS}9.8 m/s${SQUARED}. At t = ${t.toFixed(1)} s: ` +

@@ -16,7 +16,7 @@
 import { SIZE, label, panel, react, slider } from "./kit.js";
 
 export function mount(el) {
-  const { svg, readout } = panel(el, {
+  const { svg, readout, claim } = panel(el, {
     label:
       "A bar whose length shows the density of a chosen mass and volume, with a marked line for the density of water",
     width: 560,
@@ -79,6 +79,25 @@ export function mount(el) {
         floats ? "floats in water" : "sinks in water"
       }`, anchor: "start", size: SIZE.heading, class: "text-ink" })}`;
 
+    // The conversion and the density are both arithmetic the reader is asked to follow:
+    // cm cubed to m cubed, then mass over volume. `1e6` is a million, so it is in the
+    // expression and not hidden in a magic number in the sentence.
+    claim([
+      {
+        label: "the volume in metres cubed",
+        expression: "volume / 1000000",
+        values: { volume: volumeCm3 },
+        answer: volumeM3,
+        shown: volumeM3.toExponential(2),
+      },
+      {
+        label: "density, mass over volume",
+        expression: "mass / (volume / 1000000)",
+        values: { mass, volume: volumeCm3 },
+        answer: density,
+        shown: String(Math.round(density)),
+      },
+    ]);
     readout.innerHTML =
       `Mass <strong>${mass.toFixed(1)} kg</strong>. ` +
       `Volume <strong>${volumeCm3} cm3 = ${volumeM3.toExponential(2)} m3</strong>. ` +

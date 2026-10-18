@@ -15,6 +15,7 @@ releases** and **Toolchain** still apply.
 | Script | What it does |
 |---|---|
 | `scripts/check.sh` | **Everything CI enforces, in one call.** Run this before pushing |
+| `scripts/build-all.sh` | Every profile, `BUILD_JOBS` at a time (default 4), then the portal. **One job in CI, not one matrix row per profile**: 16 profiles in 43 seconds locally, against 13 rows at ~100 seconds each because every row paid its own install |
 | `scripts/preview-themes.sh` | Every bundle in both schemes over three routes, plus both figure audits |
 | `scripts/deploy.sh` | Build the collection and deploy it to Cloudflare |
 | `scripts/next-tag.sh` | Print the next release tag, `yy.<day>.<increment>` |

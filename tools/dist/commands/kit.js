@@ -1,5 +1,14 @@
 import path from "node:path";
+import { parseArgs } from "../lib/flags.js";
 import { ORIGIN, launchBrowser, openContext, serveStatic, } from "../lib/browser.js";
+/** What this command accepts. `tools help kit` is generated from this table. */
+export const SURFACE = {
+    positional: [
+        { name: "siteDir", help: "the built site to check against", required: false },
+        { name: "route", help: "the page to mount the kit on", required: false },
+    ],
+    flags: {},
+};
 async function probe(kitPath) {
     const kit = await import(kitPath);
     const el = document.createElement("maths-figure");
@@ -400,8 +409,9 @@ async function probe(kitPath) {
     };
 }
 export async function run(argv) {
-    const siteDir = path.resolve(argv[0] ?? "site");
-    const route = argv[1] ?? "/gcse-maths/higher/";
+    const { positional } = parseArgs(argv, SURFACE);
+    const siteDir = path.resolve(positional[0] ?? "site");
+    const route = positional[1] ?? "/gcse-maths/higher/";
     const kitPath = `${route.replace(/\/$/, "")}/assets/figures/kit.js`;
     const browser = await launchBrowser();
     let result;

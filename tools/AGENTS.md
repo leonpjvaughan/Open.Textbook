@@ -7,13 +7,17 @@ browser plumbing.
 
 ```
 node tools/dist/cli.js <command> [options]
-node tools/dist/cli.js help
+node tools/dist/cli.js help [<command>]
+node tools/dist/cli.js help --check
 ```
 
 Read the root `AGENTS.md` first. Its **Build and verify**, **Toolchain** and
 **Theming** sections still apply.
 
 ## The commands
+
+The first column is the shape worth remembering, not the whole surface: every flag a
+command accepts is in its `SURFACE` table and in `tools help <command>`.
 
 | Command | What it does |
 |---|---|
@@ -22,12 +26,18 @@ Read the root `AGENTS.md` first. Its **Build and verify**, **Toolchain** and
 | `kit-pure [kitPath]` | The kit's drawing and formatting layers, under plain `node`, so they are in the ordinary gate |
 | `check-mobile [siteDir]` | Fail when a phone-width page is wider than the screen, at five widths |
 | `budget [siteDir] [route]` | Bytes over the wire on a first load, against a server that reproduces the Worker's cache headers |
-| `screenshot <siteDir> <outDir>` | Capture routes, one image per scheme, and fail if the captures do not differ |
+| `screenshot <siteDir> <outDir> -- name:route …` | Capture routes, one image per scheme, and fail if the captures do not differ |
 | `preview --root <dir> -- name:route …` | **Every bundle in both schemes**: the reader's preference reached the page, the tokens and the painted text clear their contrast floors, and the route layout is asserted before a browser starts. `--audit` walks every text element on the page |
 | `readout <siteDir> [--verify] [--json file]` | **Recompute the arithmetic every figure declares**, at several settings, with SymPy. `--verify` hands the claims to `python -m textbook.working`. `--text` runs the old sentence heuristic, which is a hint and not a guarantee |
 | `types` | **The type ratchet.** Fails if the `tsc` error count grows — or falls without the baseline being lowered |
 
-`tools help` is generated from the same table, so it cannot go stale.
+`tools help` is generated from those tables, so it cannot go stale, and
+`tools help --check` proves each usage line against its parser: every flag the command
+accepts is named in the line, every name in the line is accepted, a misspelling is
+rejected, a value-less string flag is an error, `--` still ends the flags and a required
+positional is still required. `help` runs that check before it prints, so a disagreement
+is reported instead of a line that lies. `tools help <command>` prints one command's
+flags with what each one does.
 
 ## The layout
 
@@ -38,8 +48,9 @@ tools/
 │   ├── cli.ts         # the command table and the dispatcher
 │   ├── lib/
 │   │   ├── browser.ts # Playwright, launch, the two servers, the context, the guard
-│   │   └── report.ts  # findings, the summary line, the exit code, argument parsing
-│   └── commands/      # one file per command
+│   │   ├── flags.ts   # one argument surface per command: the parser and the help line
+│   │   └── report.ts  # findings, the summary line, the exit code
+│   └── commands/      # one file per command, each exporting its `SURFACE`
 └── dist/              # compiled, committed, drift-checked
 ```
 
@@ -47,6 +58,14 @@ tools/
 
 - **A command exports `run(argv): Promise<number>` and returns its exit code.** It does
   not call `process.exit`, so a test can drive it in-process and the CLI owns the exit.
+- **A command's arguments are one table, and `run` parses nothing else.** It exports
+  `SURFACE` — `{ positional, flags }`, each flag with its kind, its default and a
+  sentence — and hands it to `parseArgs`. `cli.ts` reads the same table for `tools help`.
+  There is no second place to add a flag and no prose usage string to drift from it:
+  `audit` accepted `--maps` for months that `help` never mentioned, and `readout` and
+  `preview` hand-wrote loops that **ignored** an unknown flag, so a typo in CI read as a
+  passing run. A flag that is only valid together with another one is not expressible
+  here — say so rather than special-casing it in the parser.
 - **A check that examines nothing must fail.** "No output" and "did not run" are
   indistinguishable otherwise, and the figure audits have twice reported success over an
   empty set. `Report.print` always states the count.
@@ -70,6 +89,10 @@ tools/
 
 - **Rebuild after editing a command** — `npm run build`, or `node tools/build.mjs tools`.
 - **See the type work list** — `node tools/dist/cli.js types --list`.
+- **See what a command accepts** — `node tools/dist/cli.js help <command>`; add a flag
+  to its `SURFACE` and it appears in both that and the usage line.
+- **Prove the help is true** — `node tools/dist/cli.js help --check`, one line per
+  command with its flag and positional counts.
 
 ## Read next
 

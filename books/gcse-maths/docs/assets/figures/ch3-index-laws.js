@@ -8,7 +8,7 @@
 import { panel, slider, react } from "./kit.js";
 
 export function mount(el) {
-  const { readout } = panel(el, {
+  const { readout, claim } = panel(el, {
     drawing: false,
     prompt: "Change the base, m and n, then compare the two powers.",
     max: 560,
@@ -29,6 +29,25 @@ export function mount(el) {
     const product = av ** mv * av ** nv;
     const sum = av ** (mv + nv);
     const quotient = av ** mv / av ** nv;
+    // Each side of both laws is what the reader is asked to compare, so both the two
+    // factors and the combined power are declared: `2^3 × 2^2 = 2^5 = 32` is only a
+    // lesson if the three numbers really are the same number.
+    claim([
+      { label: "the product of the two powers", expression: "a ** m * a ** n", values: { a: av, m: mv, n: nv }, answer: product, shown: String(product) },
+      { label: "the power with the indices added", expression: "a ** (m + n)", values: { a: av, m: mv, n: nv }, answer: sum, shown: String(sum) },
+      {
+        label: mv >= nv ? "the quotient of the two powers" : "the index the division leaves",
+        expression: mv >= nv ? "a ** m / a ** n" : "m - n",
+        values: mv >= nv ? { a: av, m: mv, n: nv } : { m: mv, n: nv },
+        answer: mv >= nv ? quotient : mv - nv,
+        shown:
+          mv >= nv
+            ? Number.isInteger(quotient)
+              ? String(quotient)
+              : quotient.toFixed(4)
+            : String(mv - nv),
+      },
+    ]);
     readout.innerHTML =
       `a = ${av}, m = ${mv}, n = ${nv}. ` +
       `Multiplying: ${power(av, mv)} × ${power(av, nv)} = ${power(av, mv + nv)} = ${product} ` +

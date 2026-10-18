@@ -14,13 +14,36 @@ import {
   openContext,
   serveStatic,
 } from "../lib/browser.js";
-import { parseArgs } from "../lib/report.js";
+import { parseArgs, type Surface } from "../lib/flags.js";
+
+/** What this command accepts. `tools help screenshot` is generated from it. */
+export const SURFACE: Surface = {
+  positional: [
+    { name: "siteDir", help: "the built site to capture" },
+    { name: "outDir", help: "write the PNGs here" },
+    {
+      name: "name:route ...",
+      help: "one capture per name, of a route, passed after `--`",
+      required: false,
+    },
+  ],
+  flags: {
+    schemes: {
+      kind: "string",
+      value: "<a,b>",
+      default: "light",
+      help: "the schemes to capture, comma separated",
+    },
+    theme: {
+      kind: "string",
+      value: "<bundle>",
+      help: "the bundle to force instead of the reader's preference",
+    },
+  },
+};
 
 export async function run(argv: string[]): Promise<number> {
-  const { values, positional } = parseArgs(argv, {
-    flags: { schemes: "string", theme: "string" },
-    positional: ["siteDir", "outDir"],
-  });
+  const { values, positional } = parseArgs(argv, SURFACE);
   const siteDir = path.resolve(positional[0]!);
   const outDir = path.resolve(positional[1]!);
   const schemes = String(values.schemes ?? "light").split(",");

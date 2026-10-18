@@ -21,6 +21,9 @@ const MAPS = [
     label: "f(x) = x cubed + x - 1",
     f: (x) => x * x * x + x - 1,
     df: (x) => 3 * x * x + 1,
+    // The step as Python, because the readout prints the estimates and the verifier has
+    // to be able to reach the next one from the last: `x - f(x) / f'(x)`.
+    step: "x - (x ** 3 + x - 1) / (3 * x ** 2 + 1)",
     root: 0.6823278,
     xMin: 0.3,
     xMax: 1.2,
@@ -35,6 +38,7 @@ const MAPS = [
     label: "f(x) = e to the x, minus 3x",
     f: (x) => Math.exp(x) - 3 * x,
     df: (x) => Math.exp(x) - 3,
+    step: "x - (exp(x) - 3 * x) / (exp(x) - 3)",
     root: 1.5121346,
     xMin: 0.4,
     xMax: 2.2,
@@ -49,6 +53,7 @@ const MAPS = [
     label: "f(x) = x cubed, minus 2x, plus 2",
     f: (x) => x * x * x - 2 * x + 2,
     df: (x) => 3 * x * x - 2,
+    step: "x - (x ** 3 - 2 * x + 2) / (3 * x ** 2 - 2)",
     root: null,
     xMin: -1.6,
     xMax: 1.8,
@@ -63,6 +68,7 @@ const MAPS = [
     label: "f(x) = x squared, minus 4",
     f: (x) => x * x - 4,
     df: (x) => 2 * x,
+    step: "x - (x ** 2 - 4) / (2 * x)",
     root: 2,
     xMin: -3,
     xMax: 3,
@@ -86,7 +92,7 @@ function short(value) {
 }
 
 export function mount(el) {
-  const { root, svg, readout } = panel(el, {
+  const { root, svg, readout, claim } = panel(el, {
     label:
       "Graph of a function with the tangent at the current estimate, the " +
       "crossing of the tangent with the axis, and the first few Newton-Raphson " +
@@ -199,6 +205,28 @@ export function mount(el) {
 
     svg.innerHTML = axes + curve + marks;
 
+    // The sequence *is* the arithmetic: each estimate is the previous one minus its own
+    // value over its slope. Declared step by step, so a printed 0.6823 that does not
+    // follow from 0.7020 is a finding rather than a rounding choice.
+    const claims = [
+      {
+        label: "the starting value, from the control's fraction of the range",
+        expression: "startMin + t * (startMax - startMin)",
+        values: { startMin: map.startMin, startMax: map.startMax, t: Number(startInput.value) },
+        answer: x0,
+        shown: short(x0),
+      },
+    ];
+    for (let i = 1; i < xs.length; i += 1) {
+      claims.push({
+        label: `estimate ${i}, from estimate ${i - 1}`,
+        expression: map.step,
+        values: { x: xs[i - 1] },
+        answer: xs[i],
+        shown: short(xs[i]),
+      });
+    }
+    claim(claims);
     readout.textContent =
       `Starting at x0 = ${short(x0)}, the estimates are ` +
       xs.map(short).join(", ") + ".";

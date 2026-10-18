@@ -10,6 +10,10 @@ const VIEW = 10; // both axes run from -VIEW to VIEW
 const SCALE = 18; // pixels per unit
 const SIZE = VIEW * 2 * SCALE;
 
+// Each curve carries the Python spelling of its own two coordinates, because the readout
+// prints the point and the verifier has to be able to work it out from the parameter
+// alone. It is Python syntax and not the module's JavaScript: `**` is a power, and
+// `cos`/`sin` are the computer algebra's.
 const CURVES = {
   parabola: {
     fx: (t) => 2 * t,
@@ -17,6 +21,7 @@ const CURVES = {
     tMin: -3,
     tMax: 3,
     cartesian: "y = x^2 / 4",
+    claims: { x: "2 * t", y: "t ** 2" },
   },
   line: {
     fx: (t) => 2 + t,
@@ -24,6 +29,7 @@ const CURVES = {
     tMin: -1,
     tMax: 3,
     cartesian: "y = 11 - 3x",
+    claims: { x: "2 + t", y: "5 - 3 * t" },
   },
   circle: {
     fx: (t) => 5 * Math.cos(t),
@@ -31,6 +37,7 @@ const CURVES = {
     tMin: 0,
     tMax: 2 * Math.PI,
     cartesian: "x^2 + y^2 = 25",
+    claims: { x: "5 * cos(t)", y: "5 * sin(t)" },
   },
 };
 
@@ -43,7 +50,7 @@ function yToPx(y) {
 }
 
 export function mount(el) {
-  const { svg, readout } = panel(el, {
+  const { svg, readout, claim } = panel(el, {
     label: "A parametric curve with a point at the current value of the parameter",
     width: SIZE,
     height: SIZE,
@@ -120,6 +127,12 @@ export function mount(el) {
 
     svg.innerHTML = grid() + axes + path(curve) + marker;
 
+    // The point is the curve's own arithmetic at the current parameter, so both
+    // coordinates are declared and the printed pair has to be the pair it works out.
+    claim([
+      { label: "x, from the parametric equation", expression: curve.claims.x, values: { t }, answer: x, shown: x.toFixed(2) },
+      { label: "y, from the parametric equation", expression: curve.claims.y, values: { t }, answer: y, shown: y.toFixed(2) },
+    ]);
     readout.textContent =
       `t = ${t.toFixed(2)}. The point is (${x.toFixed(2)}, ${y.toFixed(2)}). ` +
       `Eliminating the parameter gives ${curve.cartesian}.`;
