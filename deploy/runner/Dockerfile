@@ -50,6 +50,12 @@ RUN curl -fsSL -o /tmp/runner.tar.gz \
     && rm /tmp/runner.tar.gz \
     && /home/runner/bin/installdependencies.sh \
     && useradd --uid 1001 --home-dir /home/runner --shell /bin/bash --no-create-home runner \
+    # **The cache directories exist in the image, owned by the runner.** A named volume
+    # is initialised from the image's directory, ownership included — and a volume that
+    # is created empty and root-owned makes `uv` fail with "failed to create directory
+    # /home/runner/.cache/uv: Permission denied" on every job, which is how the first
+    # attempt at shared caches failed.
+    && mkdir -p /home/runner/.cache /home/runner/.npm \
     && chown -R runner:runner /home/runner
 
 COPY --chmod=0755 entrypoint.sh /entrypoint.sh

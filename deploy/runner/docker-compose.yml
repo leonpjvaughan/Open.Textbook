@@ -21,4 +21,19 @@ services:
     # a job that can reach the daemon can mount the host filesystem — root on this
     # machine. The workflow installs actionlint as a checksummed binary now, so nothing
     # in the gate needs a daemon, and the runner is an ordinary unprivileged container.
+    volumes:
+      # **Shared caches, and they are the whole reason a 20-job matrix finishes.** Every
+      # job on a fresh container ran `uv sync` and `npm ci` against an empty cache, so
+      # each paid the full download; that, not the browser suite, was the ~15 minutes.
+      # A named volume is shared by all four replicas, and both tools' default cache
+      # paths are under the runner's home, so nothing in the workflow changes:
+      # `actions/setup-node`'s `cache: npm` and `astral-sh/setup-uv`'s `enable-cache`
+      # both hit it. Both use file locks, so concurrent access is what they expect.
+      - runner-uv-cache:/home/runner/.cache
+      - runner-npm-cache:/home/runner/.npm
+
     stop_grace_period: 60s
+
+volumes:
+  runner-uv-cache:
+  runner-npm-cache:
