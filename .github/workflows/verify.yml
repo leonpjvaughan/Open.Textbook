@@ -193,11 +193,17 @@ jobs:
           ACTIONLINT_SHA256: 023070a287cd8cccd71515fedc843f1985bf96c436b7effaecce67290e7e0757
           ACTIONLINT_VERSION: 1.7.7
         run: |
+          # **Into the runner's own directory, and onto `GITHUB_PATH`.** The first
+          # attempt unpacked into `/usr/local/bin` and the self-hosted runner, which
+          # runs as an unprivileged user, was refused: the checksum passed and the
+          # install did not, which is exactly the failure a checksum does not catch.
+          mkdir -p "$HOME/.local/bin"
           curl -fsSL -o /tmp/actionlint.tgz \
             "https://github.com/rhysd/actionlint/releases/download/v${ACTIONLINT_VERSION}/actionlint_${ACTIONLINT_VERSION}_linux_amd64.tar.gz"
           echo "${ACTIONLINT_SHA256}  /tmp/actionlint.tgz" | sha256sum -c -
-          tar xzf /tmp/actionlint.tgz -C /usr/local/bin actionlint
-          actionlint --version
+          tar xzf /tmp/actionlint.tgz -C "$HOME/.local/bin" actionlint
+          echo "$HOME/.local/bin" >> "$GITHUB_PATH"
+          "$HOME/.local/bin/actionlint" --version
 
   # The theme preview: every bundle in both schemes on three built routes, with a
   # full-page contrast audit. It is the only check that measures what the shell
