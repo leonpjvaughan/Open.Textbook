@@ -58,7 +58,7 @@ step "types"
 node tools/dist/cli.js types
 
 step "tests"
-uv run python -m pytest tests/ -q
+uv run python -m pytest tests/ -q -n 4
 
 step "builds"
 # The pipeline is the site now. It replaces `mkdocs build --strict`: check_links()

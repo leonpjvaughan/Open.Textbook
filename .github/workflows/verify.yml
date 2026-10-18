@@ -173,7 +173,7 @@ jobs:
         run: uv run python -m textbook.lint
 
       - name: Test
-        run: uv run pytest tests/ -q
+        run: uv run pytest tests/ -q -n 4
 
   workflows:
     name: lint workflows
