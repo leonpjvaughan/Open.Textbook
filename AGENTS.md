@@ -137,7 +137,7 @@ and `text-*` paints words**, and in SVG that is the difference between `fill` an
 the one fixed-colour exception.
 
 Every figure is measured in a browser, in both schemes, by
-`scripts/audit-figures.cjs` — the panel behind it, the computed paint of every
+`node tools/dist/cli.js audit site` — the panel behind it, the computed paint of every
 element it draws, and the ratio between them. `research/design/figure-audit.md`
 is the result, table and all. `tests/test_figures.py` pins the contract so a new
 figure cannot repeat a defect the measurement found. The cascade, the contrast
