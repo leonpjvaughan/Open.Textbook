@@ -1,0 +1,9 @@
+# Only so the runner image's build context is small. The image needs two lockfiles; it
+# does not need the built site, the dependencies it is warming a cache for, or history.
+site/
+var/
+node_modules/
+.venv/
+.git/
+**/__pycache__/
+*.pyc

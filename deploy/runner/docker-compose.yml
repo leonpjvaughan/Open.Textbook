@@ -6,7 +6,10 @@
 
 services:
   runner:
-    build: .
+    # The repository root, so the image can warm its npm cache from the real lockfile.
+    build:
+      context: ../..
+      dockerfile: deploy/runner/Dockerfile
     image: open-textbook-runner
     restart: unless-stopped
     environment:
