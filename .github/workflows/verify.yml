@@ -129,7 +129,9 @@ jobs:
       # deployment root and therefore goes last, alone.
       - name: Build every profile
         env:
-          BUILD_JOBS: 4
+          # Two, for the reason above: the machine has eight cores shared by four
+          # agents, and four concurrent builds per job made the batch slower than two.
+          BUILD_JOBS: 2
         run: scripts/build-all.sh
 
       - name: No maths rendering errors
@@ -177,7 +179,15 @@ jobs:
         run: uv run python -m textbook.lint
 
       - name: Test
-        run: uv run pytest tests/ -q -n 4
+        env:
+          # **Two workers, not four, on a shared host.** A runner has the machine's eight
+          # cores to itself only when it is the only job running; with four agents the
+          # gate is oversubscribed about threefold, and every job parallelising
+          # internally makes it worse — measured, `theme preview` is 194 s alone and
+          # 432 s under that load. The runners carry the parallelism; a job carrying its
+          # own is the same cores counted twice.
+          PYTEST_WORKERS: 2
+        run: uv run pytest tests/ -q -n "$PYTEST_WORKERS"
 
   workflows:
     name: lint workflows

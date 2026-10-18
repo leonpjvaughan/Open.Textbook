@@ -17,7 +17,7 @@
 import { panel, slider, toggle, react } from "./kit.js";
 
 export function mount(el) {
-  const { svg, readout } = panel(el, {
+  const { svg, readout, claim } = panel(el, {
     label:
       "A regular polygon with lines drawn from one corner to every corner it is not already joined to, cutting it into triangles",
     width: 400,
@@ -89,6 +89,30 @@ export function mount(el) {
         `triangle's angles add to 180°, so the polygon's angles add to ` +
         `${triangles} × 180° = ${total}°.`
       : `A ${shape} has ${n} sides. Tick the box to cut it into triangles.`;
+
+    // The count of triangles and the angle sum behind it, declared. With the fan hidden
+    // the sentence asserts neither, so the set is cleared: a claim left from the last
+    // redraw would be checked against a readout that never printed it.
+    claim(
+      showDiagonals.checked
+        ? [
+            {
+              label: "the triangles in the fan",
+              expression: "n - 2",
+              values: { n },
+              answer: triangles,
+              shown: String(triangles),
+            },
+            {
+              label: "the angle sum",
+              expression: "(n - 2) * 180",
+              values: { n },
+              answer: total,
+              shown: String(total),
+            },
+          ]
+        : [],
+    );
   }
 
   react([sides, showDiagonals], draw);

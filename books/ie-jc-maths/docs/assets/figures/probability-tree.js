@@ -32,7 +32,7 @@ function fraction(top, bottom) {
 }
 
 export function mount(el) {
-  const { svg, readout } = panel(el, {
+  const { svg, readout, claim } = panel(el, {
     label: "A tree diagram for two draws from a bag, with the probability written on each branch",
     description:
       "The first set of branches gives the chance of red and of blue on the first draw. Each of those " +
@@ -99,6 +99,39 @@ export function mount(el) {
     const bothRed = putBack
       ? fraction(r * r, total * total)
       : fraction(r * (r - 1), total * (total - 1));
+    // The three probabilities the sentence states, declared. `shown` is the fraction the
+    // reader sees, so the reduction and the arithmetic are tied to the same number: a
+    // second branch that kept the old denominator would fail here even though its
+    // printed fraction looked plausible.
+    const secondValue = putBack ? r / total : (r - 1) / (total - 1);
+    const bothValue = putBack
+      ? (r / total) * (r / total)
+      : (r / total) * ((r - 1) / (total - 1));
+    claim([
+      {
+        label: "probability the first counter is red",
+        expression: "r / total",
+        values: { r, total },
+        answer: r / total,
+        shown: fraction(r, total),
+      },
+      {
+        label: "probability the second counter is red",
+        expression: putBack ? "r / total" : "(r - 1) / (total - 1)",
+        values: { r, total },
+        answer: secondValue,
+        shown: secondRed,
+      },
+      {
+        label: "probability both are red",
+        expression: putBack
+          ? "(r / total) * (r / total)"
+          : "(r / total) * ((r - 1) / (total - 1))",
+        values: { r, total },
+        answer: bothValue,
+        shown: bothRed,
+      },
+    ]);
 
     readout.textContent =
       `The bag holds ${r} red and ${b} blue, so the first red has probability ${fraction(r, total)}. ` +

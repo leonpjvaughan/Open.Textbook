@@ -16,7 +16,7 @@
 import { SIZE, label, panel, react, slider } from "./kit.js";
 
 export function mount(el) {
-  const { svg, readout } = panel(el, {
+  const { svg, readout, claim } = panel(el, {
     label:
       "Four copies of a right-angled triangle arranged inside a square frame, leaving a tilted square hole whose side is the hypotenuse",
     width: 420,
@@ -77,6 +77,35 @@ export function mount(el) {
       `${(c * c).toFixed(0)}. The triangle's legs are a = ${a} and b = ${b}, and ` +
       `a² + b² is ${a * a} + ${b * b} = ${a * a + b * b}. The frame holds four ` +
       `triangles plus the hole, and that is why the two numbers agree.`;
+
+    // The two areas the proof compares, and the legs and hypotenuse the sentence states,
+    // declared. The square root is why this is a claim and not a parse: the verifier
+    // reads the Python expression, so `sqrt` needs no notation table.
+    claim([
+      {
+        label: "length of the hole's side",
+        expression: "sqrt(a ** 2 + b ** 2)",
+        values: { a, b },
+        answer: c,
+        shown: c.toFixed(1),
+      },
+      {
+        label: "area of the hole",
+        expression: "sqrt(a ** 2 + b ** 2) ** 2",
+        values: { a, b },
+        answer: c * c,
+        shown: (c * c).toFixed(0),
+      },
+      { label: "a squared", expression: "a ** 2", values: { a }, answer: a * a, shown: String(a * a) },
+      { label: "b squared", expression: "b ** 2", values: { b }, answer: b * b, shown: String(b * b) },
+      {
+        label: "a squared plus b squared",
+        expression: "a ** 2 + b ** 2",
+        values: { a, b },
+        answer: a * a + b * b,
+        shown: String(a * a + b * b),
+      },
+    ]);
   }
 
   react(leg, draw);

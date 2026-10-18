@@ -30,7 +30,7 @@ const gcd = (a, b) => {
 };
 
 export function mount(el) {
-  const { svg, readout } = panel(el, {
+  const { svg, readout, claim } = panel(el, {
     label: "A unit square cut into columns and rows, with one fraction shaded across and another down, and the overlap marked",
     description:
       "The square is divided into as many columns as the first denominator and as many rows as the " +
@@ -103,6 +103,35 @@ export function mount(el) {
       `${fmt(c, 0)} of the ${fmt(d, 0)} rows. The overlap holds ${fmt(a, 0)} \u00d7 ${fmt(c, 0)} = ${fmt(top, 0)} ` +
       `rectangles out of ${fmt(b, 0)} \u00d7 ${fmt(d, 0)} = ${fmt(bottom, 0)}, so the product is ${top}/${bottom}. ` +
       simplifyLine;
+
+    // The two multiplications the model is made of, and the product itself, declared.
+    // The simplification is a claim too: cancelling the common divisor changes how the
+    // fraction is written and must not change what it is worth, which is exactly the
+    // assertion `1/2` makes and `2/3 of 3/4` does not.
+    claim([
+      { label: "overlap rectangles", expression: "a * c", values: { a, c }, answer: top, shown: fmt(top, 0) },
+      {
+        label: "small rectangles in the square",
+        expression: "b * d",
+        values: { b, d },
+        answer: bottom,
+        shown: fmt(bottom, 0),
+      },
+      {
+        label: "the product",
+        expression: "(a * c) / (b * d)",
+        values: { a, b, c, d },
+        answer: top / bottom,
+        shown: `${top}/${bottom}`,
+      },
+      {
+        label: "the product in its simplest form",
+        expression: "(a * c / divisor) / (b * d / divisor)",
+        values: { a, b, c, d, divisor },
+        answer: top / divisor / (bottom / divisor),
+        shown: simplified,
+      },
+    ]);
   }
 
   react([first, second], update);

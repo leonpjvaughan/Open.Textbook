@@ -29,7 +29,7 @@ const RING = (cx, cy, r) =>
 const num = (value) => String(value).replace("-", "\u2212");
 
 export function mount(el) {
-  const { svg, readout } = panel(el, {
+  const { svg, readout, claim } = panel(el, {
     label: "A number line from minus twelve to twelve, with a start point and a jump of one place at a time",
     description:
       "The starting number is marked on the number line and the movement is drawn as a row of " +
@@ -98,6 +98,26 @@ export function mount(el) {
       ? `${num(from)} + ${amount < 0 ? `(${num(amount)})` : amount}`
       : `${num(from)} \u2212 ${amount < 0 ? `(${num(amount)})` : amount}`;
     const answer = `${expression} = ${num(to)}`;
+
+    // The landing number and the count of hops are the arithmetic this figure states,
+    // declared. `start` rather than `from`, because `from` is a Python keyword and the
+    // verifier parses the expression as Python.
+    claim([
+      {
+        label: "where the hops land",
+        expression: adding ? "start + amount" : "start - amount",
+        values: { start: from, amount },
+        answer: to,
+        shown: num(to),
+      },
+      {
+        label: "how many hops",
+        expression: "abs(amount)",
+        values: { amount },
+        answer: steps,
+        shown: String(steps),
+      },
+    ]);
 
     if (amount === 0) {
       readout.textContent = `${answer}. The second number is 0, so there is no movement and you stay at ${num(from)}.`;

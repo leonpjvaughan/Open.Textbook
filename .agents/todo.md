@@ -87,7 +87,7 @@ now, and the four marked open are the ones verified open on 2026-10-17.
 - [x] 58. Thirteen loose scripts, five copies of the same browser plumbing
 - [x] 59. The figure gaps in four books
 - [x] 60. Three Irish books have no booklet, and two of them should
-- [ ] 61. A figure's readout can state false working — mechanism done, 35 figures to declare
+- [x] 61. A figure's readout can state false working — 588 claims, 0 untrue
 - [x] 62. The linter printed its findings and exited 0
 - [x] 63. `test/` sat one letter from `tests/`, and held the last loose script
 - [x] 64. The booklet gap was measured at the top level only
@@ -368,7 +368,7 @@ live for `a-level-physics` (105 items) and `gcse-physics` (101) and absent for t
 
 ---
 
-## 61. A figure's readout can state false working — **mechanism done, migration open**
+## 61. A figure's readout can state false working — **done**
 
 **What is wrong.** Two of the fourteen figures added on 2026-10-17 printed a
 calculation that does not produce the number printed beside it, and **every check
@@ -397,12 +397,10 @@ readout does not contain it"*. Three figures converted — `interest-growth`,
 `ratio-share`, `restitution` — with the `√` case proving no notation table is needed.
 The text heuristic survives only as `--text`, and is documented as a hint.
 
-**What is left.** `tools readout` reports **35 figures that print arithmetic and
-declare no claim** — measured 2026-10-17 over 245 figures and 1465 renders. (An earlier
-note said 117; that was a wider heuristic that counted any readout containing an `=`,
-including the ones that state a *result* rather than a calculation. The narrow count is
-the migration.) It is a count, not a pass, which is the same rule the booklet-coverage
-check follows.
+**Done (2026-10-18).** `tools readout` reports **0 figures that state arithmetic and
+declare none** — 33 figures declare **588 claims**, and `readout site --verify` proves
+all 588 with SymPy: **0 untrue**. The command now names any remaining figure rather than
+only counting them, because a count says the gap exists and a list says where.
 
 **Done means**
 

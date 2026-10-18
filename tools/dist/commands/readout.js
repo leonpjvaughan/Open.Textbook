@@ -282,7 +282,7 @@ export async function run(argv) {
     // collection is still undeclared.
     const records = [];
     let declared = 0;
-    let undeclared = 0;
+    const undeclaredSlugs = [];
     let readouts = 0;
     // Only the text heuristic uses these, which is why they are declared beside it and
     // not at the top: the declared-claim path needs no parser state at all.
@@ -344,7 +344,7 @@ export async function run(argv) {
         if (figureDeclared)
             declared += 1;
         else if (figureStatesArithmetic)
-            undeclared += 1;
+            undeclaredSlugs.push(slug);
         process.stdout.write(".");
     });
     for (const page of pagesPool)
@@ -356,7 +356,7 @@ export async function run(argv) {
         fs.writeFileSync(jsonPath, JSON.stringify(records, null, 1));
     const claimCount = records.reduce((total, record) => total + record.claims.length, 0);
     console.log(`  ${slugs.length} figures, ${readouts} readouts; ` +
-        `${declared} declare ${claimCount} claim(s), ${undeclared} state arithmetic and declare none`);
+        `${declared} declare ${claimCount} claim(s), ${undeclaredSlugs.length} state arithmetic and declare none`);
     if (textOnly) {
         console.log(`  text heuristic: ${statements} statements readable (${right} right, ${wrong.length} wrong), ` +
             `${unread} unreadable`);
@@ -387,9 +387,13 @@ export async function run(argv) {
             return typeof status === "number" ? status : 1;
         }
     }
-    if (undeclared) {
-        console.log(`  ${undeclared} figure(s) print arithmetic and declare no claim — ` +
-            "call `claim([...])` from the panel so the verifier can prove it");
+    if (undeclaredSlugs.length) {
+        // **Named, not just counted.** The count says the gap exists; the list says where,
+        // and a message that does not say where is a message someone has to re-derive.
+        console.log(`  ${undeclaredSlugs.length} figure(s) print arithmetic and declare no claim — ` +
+            "call `claim([...])` from the panel so the verifier can prove it:");
+        for (const slug of undeclaredSlugs.sort())
+            console.log(`    ${slug}`);
     }
     return 0;
 }

@@ -32,7 +32,7 @@ function expanded(a, b, r) {
 }
 
 export function mount(el) {
-  const { svg, readout } = panel(el, {
+  const { svg, readout, claim } = panel(el, {
     label:
       "A circle on a coordinate grid with its centre marked, the radius drawn to a point on the circle, and the equation of the circle",
     width: 560,
@@ -77,6 +77,39 @@ export function mount(el) {
       (r === 1
         ? "The radius is 1, so the circle is small and the right-hand side of the equation is 1."
         : "The right-hand side is the square of the radius, and the brackets carry the centre with the opposite sign.");
+
+    // The two numbers the equation prints as its working, declared rather than written
+    // into a string: the right-hand side is r squared, and the constant term is the
+    // expanded form's `a² + b² - r²`. `expanded()` writes that constant with its sign in
+    // front of it (`- 1`), so the number beside the sign is the magnitude, and which
+    // subtraction produced it depends on the sign. Declaring both is what makes the
+    // printed sign part of the claim instead of a decoration.
+    const constant = a * a + b * b - r * r;
+    const constantClaim =
+      constant === 0
+        ? []
+        : [
+            {
+              label: "constant term",
+              expression:
+                constant > 0
+                  ? "a ** 2 + b ** 2 - r ** 2"
+                  : "r ** 2 - a ** 2 - b ** 2",
+              values: { a, b, r },
+              answer: Math.abs(constant),
+              shown: fmt(Math.abs(constant)),
+            },
+          ];
+    claim([
+      {
+        label: "square of the radius",
+        expression: "r ** 2",
+        values: { r },
+        answer: r * r,
+        shown: fmt(r * r),
+      },
+      ...constantClaim,
+    ]);
   }
 
   react([aIn, bIn, rIn], update);

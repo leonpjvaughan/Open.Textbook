@@ -72,7 +72,7 @@ function relabel(input, text) {
 }
 
 export function mount(el) {
-  const { svg, readout } = panel(el, {
+  const { svg, readout, claim } = panel(el, {
     label: "Two bodies and the force between them, with the force plotted against the distance between their centres",
     description:
       "Two round bodies sit above a graph of the force between them against the distance between " +
@@ -190,6 +190,42 @@ export function mount(el) {
       `${law.name} between ${law.first} = ${fmt(a)} ${law.amountUnit} and ${law.second} = ${fmt(b)} ${law.amountUnit}, ` +
       `at a distance of ${fmt(d)} ${law.distanceUnit}, is ${sigfig(force, 3)} N. ` +
       `Double the distance to ${fmt(2 * d)} ${law.distanceUnit} and the force becomes ${sigfig(doubled, 3)} N, one quarter as large.`;
+
+    // The force and the doubled-distance force, in the law's own units, declared. The
+    // masses, charges and distance are passed as the numbers the expression actually
+    // multiplies, so `m1` is 6e24 kg rather than the slider's 6, and the constant is
+    // the one the label prints.
+    const metre = d * law.distanceFactor;
+    const firstAmount = a * law.amountFactor;
+    const secondAmount = b * law.amountFactor;
+    // `sigfig` writes a large force as `1.75e22`, and the verifier reads a printed
+    // number's tolerance from its decimal places — which an exponent does not carry, so
+    // a numeric `shown` of that form would demand the full 22 digits. The unit is part
+    // of what the reader sees, so the claim quotes it, and the expression against the
+    // answer is what is proved.
+    claim([
+      {
+        label: "the force",
+        expression: "constant * m1 * m2 / d ** 2",
+        values: { constant: law.constant, m1: firstAmount, m2: secondAmount, d: metre },
+        answer: force,
+        shown: `${sigfig(force, 3)} N`,
+      },
+      {
+        label: "the force at twice the distance",
+        expression: "constant * m1 * m2 / (2 * d) ** 2",
+        values: { constant: law.constant, m1: firstAmount, m2: secondAmount, d: metre },
+        answer: doubled,
+        shown: `${sigfig(doubled, 3)} N`,
+      },
+      {
+        label: "one quarter of the force",
+        expression: "constant * m1 * m2 / d ** 2 / 4",
+        values: { constant: law.constant, m1: firstAmount, m2: secondAmount, d: metre },
+        answer: doubled,
+        shown: `${sigfig(doubled, 3)} N`,
+      },
+    ]);
   }
 
   react([lawChoice, first, second, distance], update);

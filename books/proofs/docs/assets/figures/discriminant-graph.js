@@ -21,7 +21,7 @@
 import { panel, slider, react } from "./kit.js";
 
 export function mount(el) {
-  const { svg, readout } = panel(el, {
+  const { svg, readout, claim } = panel(el, {
     label:
       "A parabola on axes, with the points where it crosses the x-axis marked for the current values of b and c",
     width: 360,
@@ -133,6 +133,36 @@ export function mount(el) {
       `${delta > 0 ? "positive" : delta === 0 ? "zero" : "negative"}, so the ` +
       `parabola meets the x-axis ${delta > 0 ? "twice" : delta === 0 ? "once" : "nowhere"} ` +
       `and the equation has ${count}.`;
+
+    // Every number the sentence prints is declared, including the two it prints before
+    // the subtraction it is named after: `b² - 4c = 9 - (-12) = 21` is three claims, and
+    // a wrong middle one is a wrong sentence even when the discriminant is right.
+    claim([
+      { label: "b squared", expression: "b ** 2", values: { b }, answer: b * b, shown: String(b * b) },
+      { label: "4c", expression: "4 * c", values: { c }, answer: 4 * c, shown: String(4 * c) },
+      {
+        label: "discriminant",
+        expression: "b ** 2 - 4 * c",
+        values: { b, c },
+        answer: delta,
+        shown: String(delta),
+      },
+      {
+        label: "vertex height from the discriminant",
+        expression: "-delta / 4",
+        values: { delta },
+        answer: vy,
+        shown: round(vy),
+      },
+      { label: "vertex x", expression: "-b / 2", values: { b }, answer: vx, shown: round(vx) },
+      {
+        label: "vertex height",
+        expression: "c - b ** 2 / 4",
+        values: { b, c },
+        answer: vy,
+        shown: round(vy),
+      },
+    ]);
   }
 
   react([bInput, cInput], draw);

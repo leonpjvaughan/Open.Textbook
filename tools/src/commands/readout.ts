@@ -299,7 +299,7 @@ export async function run(argv: string[]): Promise<number> {
     claims: unknown[];
   }[] = [];
   let declared = 0;
-  let undeclared = 0;
+  const undeclaredSlugs: string[] = [];
   let readouts = 0;
   // Only the text heuristic uses these, which is why they are declared beside it and
   // not at the top: the declared-claim path needs no parser state at all.
@@ -360,7 +360,7 @@ export async function run(argv: string[]): Promise<number> {
       console.error(`\n  ${slug}: ${String(error).slice(0, 160)}`);
     }
     if (figureDeclared) declared += 1;
-    else if (figureStatesArithmetic) undeclared += 1;
+    else if (figureStatesArithmetic) undeclaredSlugs.push(slug);
     process.stdout.write(".");
   });
   for (const page of pagesPool) await page.close();
@@ -373,7 +373,7 @@ export async function run(argv: string[]): Promise<number> {
   const claimCount = records.reduce((total, record) => total + record.claims.length, 0);
   console.log(
     `  ${slugs.length} figures, ${readouts} readouts; ` +
-      `${declared} declare ${claimCount} claim(s), ${undeclared} state arithmetic and declare none`,
+      `${declared} declare ${claimCount} claim(s), ${undeclaredSlugs.length} state arithmetic and declare none`,
   );
   if (textOnly) {
     console.log(
@@ -407,11 +407,14 @@ export async function run(argv: string[]): Promise<number> {
       return typeof status === "number" ? status : 1;
     }
   }
-  if (undeclared) {
+  if (undeclaredSlugs.length) {
+    // **Named, not just counted.** The count says the gap exists; the list says where,
+    // and a message that does not say where is a message someone has to re-derive.
     console.log(
-      `  ${undeclared} figure(s) print arithmetic and declare no claim — ` +
-        "call `claim([...])` from the panel so the verifier can prove it",
+      `  ${undeclaredSlugs.length} figure(s) print arithmetic and declare no claim — ` +
+        "call `claim([...])` from the panel so the verifier can prove it:",
     );
+    for (const slug of undeclaredSlugs.sort()) console.log(`    ${slug}`);
   }
   return 0;
 }

@@ -36,7 +36,7 @@ function build(n) {
 }
 
 export function mount(el) {
-  const { svg, readout } = panel(el, {
+  const { svg, readout, claim } = panel(el, {
     label: "A factor tree for a whole number, with the primes drawn as circles and the composite numbers as squares",
     description:
       "Each composite number splits into the smallest prime that divides it and the number left over. " +
@@ -113,6 +113,10 @@ export function mount(el) {
     if (primes.length === 1) {
       readout.textContent =
         `${fmt(n, 0)} is prime, so it has no factor tree to draw. Its only factors are 1 and itself.`;
+      // Nothing is multiplied out in this case, so nothing is asserted. Declared empty
+      // rather than left over from the last redraw: a stale claim would be checked
+      // against a readout that never printed it.
+      claim([]);
       return;
     }
 
@@ -126,6 +130,28 @@ export function mount(el) {
       `${fmt(n, 0)} = ${primes.join(" \u00d7 ")} = ${indexForm} in index form. ` +
       `The tree stops at the ${primes.length} primes, and there is no composite number left on any branch. ` +
       `The number of factors is ${countSum} = ${factorCount}.`;
+
+    // The tree states a product and a count, and both are declared. The product is the
+    // chain of primes the branches end in — the factorisation itself, not a summary of
+    // it — so a branch that stopped one prime early fails here even though the drawing
+    // would still look like a tree. The count is `(exponent + 1)` multiplied out, which
+    // is the rule the page teaches, written as the multiplications it is made of.
+    claim([
+      {
+        label: "prime factorisation",
+        expression: primes.join(" * "),
+        values: {},
+        answer: n,
+        shown: fmt(n, 0),
+      },
+      {
+        label: "number of factors",
+        expression: [...counts.values()].map((c) => `(${c} + 1)`).join(" * "),
+        values: {},
+        answer: factorCount,
+        shown: fmt(factorCount, 0),
+      },
+    ]);
   }
 
   react(number, update);

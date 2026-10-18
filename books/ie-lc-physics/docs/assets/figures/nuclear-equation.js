@@ -46,7 +46,7 @@ const SYMBOLS = {
 };
 
 export function mount(el) {
-  const { svg, readout } = panel(el, {
+  const { svg, readout, claim } = panel(el, {
     label:
       "A parent nucleus, the emission and the daughter nucleus, with the mass numbers and atomic numbers that balance",
     width: 560,
@@ -124,6 +124,41 @@ export function mount(el) {
     svg.innerHTML = drawing;
 
     readout.textContent = `${parent.value} emits ${e.name}. The daughter has mass number ${p.a} - ${e.a} = ${daughterA} and atomic number ${p.z} - ${e.z} = ${daughterZ}, so it is ${symbol}-${daughterA}. The mass number total and the atomic number total are each the same on both sides.`;
+
+    // A nuclear equation is a statement about what is conserved, so the claims are the
+    // two totals: the daughter plus the emission must give back the parent, on the mass
+    // number and on the atomic number. The daughter's own two numbers are claimed too,
+    // because they are the subtraction the sentence prints before the check.
+    claim([
+      {
+        label: "daughter mass number",
+        expression: "parentA - emissionA",
+        values: { parentA: p.a, emissionA: e.a },
+        answer: daughterA,
+        shown: String(daughterA),
+      },
+      {
+        label: "daughter atomic number",
+        expression: "parentZ - emissionZ",
+        values: { parentZ: p.z, emissionZ: e.z },
+        answer: daughterZ,
+        shown: String(daughterZ),
+      },
+      {
+        label: "mass numbers balance",
+        expression: "daughterA + emissionA",
+        values: { daughterA, emissionA: e.a },
+        answer: p.a,
+        shown: String(p.a),
+      },
+      {
+        label: "atomic numbers balance",
+        expression: "daughterZ + emissionZ",
+        values: { daughterZ, emissionZ: e.z },
+        answer: p.z,
+        shown: String(p.z),
+      },
+    ]);
   }
 
   react([parent, emission], update);

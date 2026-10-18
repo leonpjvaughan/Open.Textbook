@@ -17,7 +17,7 @@ const STEP = 22;
 const DOT = 6;
 
 export function mount(el) {
-  const { svg, readout } = panel(el, {
+  const { svg, readout, claim } = panel(el, {
     label: "Three terms of a dot pattern, each drawn as a number of rows of dots plus a few extra dots",
     description:
       "Each term is a rectangle of dots, one row taller than the term before, with the same few extra " +
@@ -80,6 +80,20 @@ export function mount(el) {
       `term 3 is ${d} \u00d7 3${c > 0 ? ` + ${c}` : ""} = ${values[2]}. ` +
       `The rows grow with n and the extra dots do not, which is why ${c} is the constant. ` +
       `The 10th term is ${d} \u00d7 10${c > 0 ? ` + ${c}` : ""} = ${d * 10 + c}.`;
+
+    // Every term the sentence works out is declared — the three the drawing also labels,
+    // and the tenth, which is the one that shows the general term is a rule and not a
+    // list. `dn + c` is the claim; a printed term that disagrees with it is a defect the
+    // picture cannot show.
+    claim(
+      [1, 2, 3, 10].map((n) => ({
+        label: `term ${n}`,
+        expression: "d * n + c",
+        values: { d, n, c },
+        answer: d * n + c,
+        shown: String(d * n + c),
+      })),
+    );
   }
 
   react([difference, constant], update);

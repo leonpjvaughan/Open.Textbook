@@ -11,7 +11,7 @@
 import { SIZE, label, panel, react, slider } from "./kit.js";
 
 export function mount(el) {
-  const { svg, readout } = panel(el, {
+  const { svg, readout, claim } = panel(el, {
     label: "Bar chart comparing revenue and cost, and the resulting profit or loss",
     width: 320,
     height: 120,
@@ -53,5 +53,32 @@ export function mount(el) {
       `Profit = revenue − cost = £${revenue.toFixed(2)} − £${cost.toFixed(2)} = ` +
       `<strong class="${cls}">£${profit.toFixed(2)}</strong> ` +
       `(${isLoss ? "a loss" : "a profit"}). <em>Why does a negative number mean a loss?</em>`;
+
+    // The two bar totals and the subtraction between them, declared. The pennies are
+    // claimed as the strings printed beside the £ signs, so a total that is right only
+    // after rounding is still caught: the expression is decided exactly.
+    claim([
+      {
+        label: "cost",
+        expression: "bought * costEach",
+        values: { bought: boughtValue, costEach: costValue },
+        answer: cost,
+        shown: cost.toFixed(2),
+      },
+      {
+        label: "revenue",
+        expression: "sold * priceEach",
+        values: { sold: soldValue, priceEach: priceValue },
+        answer: revenue,
+        shown: revenue.toFixed(2),
+      },
+      {
+        label: "profit",
+        expression: "revenue - cost",
+        values: { revenue, cost },
+        answer: profit,
+        shown: profit.toFixed(2),
+      },
+    ]);
   });
 }

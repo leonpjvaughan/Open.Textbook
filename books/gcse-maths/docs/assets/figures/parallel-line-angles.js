@@ -14,7 +14,7 @@
 import { SIZE, label, panel, react, slider } from "./kit.js";
 
 export function mount(el) {
-  const { svg, readout } = panel(el, {
+  const { svg, readout, claim } = panel(el, {
     label: "Two parallel lines crossed by a transversal, with the four angles at the two crossings marked",
     width: 500,
     height: 250,
@@ -115,5 +115,25 @@ export function mount(el) {
       `The angle marked a is ${degrees}°. The corresponding angle b is ${degrees}° ` +
       `and the alternate angle c is ${degrees}°. The co-interior angle d is ` +
       `${180 - degrees}°, and ${degrees} + ${180 - degrees} = 180°.`;
+
+    // The two numbers the sentence works out, declared: the co-interior partner, and the
+    // sum that makes it a partner. The first is a subtraction and the second is the
+    // check the page asks the reader to run, so neither may be left as a printed result.
+    claim([
+      {
+        label: "the co-interior angle",
+        expression: "180 - a",
+        values: { a: degrees },
+        answer: 180 - degrees,
+        shown: String(180 - degrees),
+      },
+      {
+        label: "the angles on a straight line",
+        expression: "a + (180 - a)",
+        values: { a: degrees },
+        answer: 180,
+        shown: "180",
+      },
+    ]);
   });
 }

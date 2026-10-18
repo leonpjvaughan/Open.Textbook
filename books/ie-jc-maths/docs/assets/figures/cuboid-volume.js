@@ -13,7 +13,7 @@
 import { SIZE, camera3d, fmt, label, panel, react, slider } from "./kit.js";
 
 export function mount(el) {
-  const { svg, readout } = panel(el, {
+  const { svg, readout, claim } = panel(el, {
     label:
       "A cuboid whose length, width and height can be changed, drawn with its hidden edges dashed. The volume and the surface area are given below",
     description:
@@ -83,6 +83,23 @@ export function mount(el) {
       `Surface area = 2(${fmt(L * W)} + ${fmt(L * H)} + ${fmt(W * H)}) = ${fmt(surface)} cm².`;
 
     svg.innerHTML = drawing;
+
+    // The three products and the two totals, declared rather than left in the sentence.
+    // The layer count is the explanation the page makes, so it is claimed in its own
+    // right: a volume that is right beside a layer count that is not is still wrong.
+    claim([
+      { label: "volume", expression: "L * W * H", values: { L, W, H }, answer: volume, shown: fmt(volume) },
+      { label: "one layer", expression: "L * W", values: { L, W }, answer: layers, shown: fmt(layers) },
+      { label: "front and back", expression: "L * H", values: { L, H }, answer: L * H, shown: fmt(L * H) },
+      { label: "two ends", expression: "W * H", values: { W, H }, answer: W * H, shown: fmt(W * H) },
+      {
+        label: "surface area",
+        expression: "2 * (L * W + L * H + W * H)",
+        values: { L, W, H },
+        answer: surface,
+        shown: fmt(surface),
+      },
+    ]);
   }
 
   react([length, width, height], update);
