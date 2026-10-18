@@ -84,13 +84,14 @@ export async function run(argv: string[]): Promise<number> {
           vw,
           scrollWidth: doc.scrollWidth,
           widest: worst as { right: number; sel: string } | null,
-          trigger: t
-            ? {
-                left: Math.round(t.left),
-                right: Math.round(t.right),
-                shown: getComputedStyle(trigger).display !== "none",
-              }
-            : null,
+          trigger:
+            t && trigger
+              ? {
+                  left: Math.round(t.left),
+                  right: Math.round(t.right),
+                  shown: getComputedStyle(trigger).display !== "none",
+                }
+              : null,
         };
       });
       report.examined += 1;

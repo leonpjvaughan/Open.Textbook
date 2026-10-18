@@ -14,6 +14,21 @@
 // the constant of integration is nothing more than *which* point you started from. So the
 // reader moves the starting point and watches the curve slide, and the readout names the
 // particular solution that passes through it.
+
+/**
+ * One equation of the family, as the data below states it.
+ *
+ * The slope is the whole figure, and typing it here is what lets each equation state
+ * `slope: (x, y) =>` without repeating the parameters — and what makes `EQUATIONS`
+ * indexable by a name read off a slider.
+ *
+ * @typedef {object} Equation
+ * @property {string} label  the equation, as the page writes it
+ * @property {(x: number, y: number) => number} slope  dy/dx at a point
+ * @property {(x0: number, y0: number) => string} particular  the solution through a point
+ * @property {string} note  one sentence of prose about the family
+ */
+
 import { SIZE, axes, dots, fmt, label, line, panel, react, signed, slider } from "./kit.js";
 
 // The general equations, and the particular solution through one point.
@@ -22,6 +37,8 @@ import { SIZE, axes, dots, fmt, label, line, panel, react, signed, slider } from
 // the readout names the one curve the reader is looking at rather than repeating the
 // general form the page already gives. The constant is the whole point: a differential
 // equation has a family of solutions and the starting point chooses one.
+
+/** @type {Record<string, Equation>} */
 const EQUATIONS = {
   xy: {
     label: "dy/dx = xy",
@@ -57,6 +74,7 @@ const EQUATIONS = {
 
 const LIMIT = 3;
 
+/** @param {HTMLElement} el  what the figure is mounted into */
 export function mount(el) {
   const { svg, readout } = panel(el, {
     label: "A slope field, with short segments showing the gradient at each point",
@@ -68,6 +86,14 @@ export function mount(el) {
     width: 560,
     height: 360,
   });
+  // `panel()` always produces the surface unless a module asks for no drawing, and this
+  // one draws. The check is what keeps the null out of every line below it: it cannot
+  // fire, and if it ever does, the figure is broken in a way `svg.innerHTML` would only
+  // report as a crash.
+  if (!svg) throw new Error("slope-field: the panel has no drawing surface");
+  // `update` is a hoisted function, and a narrowed type does not reach inside one. The
+  // check above is what makes this surface non-null for every line below it.
+  const surface = svg;
 
   const atX = slider(el, {
     id: "x0",
@@ -120,8 +146,15 @@ export function mount(el) {
    * at this step size and the reader would be looking at the integrator's error rather
    * than at the equation. Stepping backwards as well as forwards, so the reader sees the
    * whole solution through the point and not only the part to its right.
+   *
+   * @param {(x: number, y: number) => number} slope
+   * @param {number} x0  the starting x
+   * @param {number} y0  the starting y
+   * @param {number} direction  `1` forwards, `-1` backwards
+   * @returns {Array<[number, number]>} the points, in the order they were stepped
    */
   function trace(slope, x0, y0, direction) {
+    /** @type {Array<[number, number]>} */
     const points = [];
     const step = 0.02 * direction;
     let px = x0;
@@ -199,7 +232,7 @@ export function mount(el) {
       anchor: "end",
     });
 
-    svg.innerHTML = drawing;
+    surface.innerHTML = drawing;
 
     readout.textContent =
       `Through (${fmt(x0, 1)}, ${fmt(y0, 1)}) the solution is ${equation.particular(x0, y0)}. ` +

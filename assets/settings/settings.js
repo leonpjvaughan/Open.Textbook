@@ -16,10 +16,16 @@
   const trigger = document.getElementById("tb-settings");
   // The panel is a native <dialog>, and `getElementById` cannot say so: the cast is
   // what turns `HTMLElement` into the element with `showModal()` and `open`.
-  const dialog = /** @type {HTMLDialogElement | null} */ (
+  const found = /** @type {HTMLDialogElement | null} */ (
     document.getElementById("tb-settings-dialog")
   );
-  if (!trigger || !dialog) return;
+  if (!trigger || !found) return;
+  // `dialog` is the panel itself, and it is not optional. The guard above is where its
+  // absence is handled — once, rather than as a null check in each function below — and
+  // this second name is what carries that decision into them: a hoisted `function`
+  // declaration does not see a narrowing from the enclosing scope, but it does see a
+  // `const` whose type the narrowing already settled.
+  const dialog = found;
 
   // prefs.py exposes the store; fall back to the same two keys if the bridge
   // ever fails to run, so the control is not silently coupled to it.
@@ -27,6 +33,12 @@
   const SCHEME_KEY = (prefs && prefs.schemeKey) || "textbooks:scheme";
   const THEME_KEY = (prefs && prefs.themeKey) || "textbooks:theme";
 
+  /**
+   * Write the reader's choice to the origin-wide store.
+   *
+   * @param {string} key
+   * @param {string} value
+   */
   function writeShared(key, value) {
     if (prefs && typeof prefs.write === "function") {
       prefs.write(key, value);
@@ -51,6 +63,7 @@
     return (prefs && prefs.defaultTheme) || "";
   }
 
+  /** @param {string} value  a bundle id */
   function setTheme(value) {
     if (!value) return;
     if (prefs && typeof prefs.setTheme === "function") {
@@ -61,6 +74,7 @@
     document.documentElement.setAttribute("data-theme", value);
   }
 
+  /** @param {string} scheme  `default` or `slate` */
   function setScheme(scheme) {
     if (scheme !== "default" && scheme !== "slate") return;
     writeShared(SCHEME_KEY, scheme);

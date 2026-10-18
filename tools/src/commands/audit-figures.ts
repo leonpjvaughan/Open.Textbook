@@ -23,6 +23,7 @@ import fs from "node:fs";
 import os from "node:os";
 import path from "node:path";
 import { ORIGIN, launchBrowser, openContext, serveStatic } from "../lib/browser.js";
+import type { Browser } from "../lib/browser.js";
 import { parseArgs, type Surface } from "../lib/flags.js";
 import { mapPool } from "../lib/pool.js";
 import { discoverFigures } from "../lib/site.js";
@@ -46,6 +47,15 @@ type Measurement = {
   problems?: Problem[];
   /** Set when the figure could not be measured at all. */
   error?: string;
+};
+
+/** One row of a book's per-figure table in `research/design/figure-audit.md`. */
+type TableRow = {
+  slug: string;
+  tokens: string[];
+  page: string;
+  light: string;
+  dark: string;
 };
 
 /** One figure's measurements by scheme, and the page it was measured on. */
@@ -103,7 +113,16 @@ export const SURFACE: Surface = {
   },
 };
 
-function bookDirs(repoRoot) {
+/** One book's directory and the two labels the coverage table needs. */
+type BookDir = {
+  id: string;
+  title: string;
+  qualification: string;
+  order: number;
+  figures: string;
+};
+
+function bookDirs(repoRoot: string): BookDir[] {
   const base = path.join(repoRoot, "books");
   if (!fs.existsSync(base)) return [];
 
@@ -111,7 +130,7 @@ function bookDirs(repoRoot) {
   // `qualifications:` block for `- id:` lines. A YAML library for two fields would
   // be a dependency the rest of the repository does not have, and sorting by
   // directory name instead would file A level before GCSE and Proofs in the middle.
-  const order = new Map();
+  const order = new Map<string, number>();
   const collection = path.join(repoRoot, "collection.yaml");
   if (fs.existsSync(collection)) {
     const text = fs.readFileSync(collection, "utf8");
@@ -137,7 +156,7 @@ function bookDirs(repoRoot) {
     .filter((id) => fs.existsSync(path.join(base, id, "book.yaml")))
     .map((id) => {
       const yaml = fs.readFileSync(path.join(base, id, "book.yaml"), "utf8");
-      const field = (name, fallback) => {
+      const field = (name: string, fallback: string): string => {
         const match = yaml.match(new RegExp(`^${name}:\\s*(.+)$`, "m"));
         return match ? match[1].replace(/["']/g, "").trim() : fallback;
       };
@@ -157,15 +176,15 @@ function bookDirs(repoRoot) {
 }
 
 /** Which classes a module applies, comments removed so a mention is not a use. */
-function classesUsed(file) {
+function classesUsed(file: string): string[] {
   const body = fs.readFileSync(file, "utf8").replace(/^\s*\/\/.*$/gm, "");
   return COLOUR_CLASSES.filter((name) => new RegExp(`\\b${name}\\b`).test(body));
 }
 
-function markdownTables(report, siteDir) {
+function markdownTables(report: Record<string, FigureReport>, siteDir: string): string {
   const repoRoot = path.dirname(path.resolve(siteDir));
   const books = bookDirs(repoRoot);
-  const owner = new Map();
+  const owner = new Map<string, { book: BookDir; file: string }>();
   for (const book of books) {
     if (!fs.existsSync(book.figures)) continue;
     for (const file of fs.readdirSync(book.figures)) {
@@ -174,14 +193,17 @@ function markdownTables(report, siteDir) {
     }
   }
 
-  const label = (url) => {
+  const label = (url: string): string => {
     const parts = url.split("/").filter(Boolean);
     return parts.filter((p) => p !== "higher" && p !== "foundation").join("/");
   };
-  const lowest = (result) => {
+  const lowest = (result: Measurement | undefined): string => {
     if (!result || result.error) return "—";
-    if (!result.paints.length) return "—";
-    return `${Math.min(...result.paints.map((p) => p.ratio)).toFixed(2)}:1`;
+    // Every field of a `Measurement` is optional, because it is deserialised from
+    // the page and a figure that mounted nothing has almost none of them.
+    const paints = result.paints ?? [];
+    if (!paints.length) return "—";
+    return `${Math.min(...paints.map((p) => p.ratio)).toFixed(2)}:1`;
   };
 
   const lines = [TABLE_START];
@@ -191,8 +213,8 @@ function markdownTables(report, siteDir) {
   // of 30 and is not. A gap is a number here rather than an impression.
   lines.push("", "## Coverage", "", "| Book | Walkthroughs with a figure | Without |", "|---|---|---|");
   for (const book of books) {
-    const walks = [];
-    const walk = (dir) => {
+    const walks: string[] = [];
+    const walk = (dir: string): void => {
       for (const entry of fs.readdirSync(dir, { withFileTypes: true })) {
         const full = path.join(dir, entry.name);
         if (entry.isDirectory()) walk(full);
@@ -211,11 +233,13 @@ function markdownTables(report, siteDir) {
     lines.push(`| ${book.title} | ${withFigure.length} of ${walks.length} | ${missing || "none"} |`);
   }
 
-  const byBook = new Map(books.map((b) => [b.id, []]));
+  const byBook = new Map<string, TableRow[]>(books.map((b) => [b.id, []]));
   for (const slug of Object.keys(report).sort()) {
     const where = owner.get(slug);
     if (!where) continue;
-    byBook.get(where.book.id).push({
+    const rows = byBook.get(where.book.id);
+    if (!rows) continue;
+    rows.push({
       slug,
       tokens: classesUsed(where.file),
       page: (report[slug].page || "").replace(/\/$/, "") + "/",
@@ -241,7 +265,7 @@ function markdownTables(report, siteDir) {
   return lines.join("\n");
 }
 
-function writeTable(file, tables) {
+function writeTable(file: string, tables: string): void {
   if (!fs.existsSync(file)) {
     fs.writeFileSync(file, `${tables}\n`);
     return;
@@ -510,7 +534,7 @@ export async function run(argv: string[]): Promise<number> {
         // waiting for the element alone measures a figure that has not drawn yet.
         await page
           .waitForFunction(
-            (s) => {
+            (s: string) => {
               const figure = document.querySelector(`maths-figure[data-figure="${s}"]`);
               if (!figure) return false;
               return !!figure.querySelector("svg, canvas, input, select, button, .fig");
@@ -566,10 +590,14 @@ export async function run(argv: string[]): Promise<number> {
     for (const [scheme, res] of Object.entries(entry.schemes)) {
       if (res.error) { errs += 1; continue; }
       taken += 1;
-      if (res.problems.length) {
+      // Every field is optional because it came out of the page; a measurement that
+      // reported a problem always has both, and `?? []` says so without an assertion.
+      const problems = res.problems ?? [];
+      if (problems.length) {
         bad += 1;
-        console.log(`\n${slug} [${scheme}]  panel rgb(${res.panel.r},${res.panel.g},${res.panel.b})`);
-        for (const p of res.problems.slice(0, 4)) {
+        const panel = res.panel ?? { r: 0, g: 0, b: 0 };
+        console.log(`\n${slug} [${scheme}]  panel rgb(${panel.r},${panel.g},${panel.b})`);
+        for (const p of problems.slice(0, 4)) {
           console.log(`   ${p.tag} .${p.cls} ${p.kind} ${p.ratio}:1 (needs ${p.need}) ${p.example}`);
         }
       }
@@ -588,12 +616,19 @@ export async function run(argv: string[]): Promise<number> {
       `\nfigure audit failed: ${bad} contrast failure(s), ${errs} unmeasured figure(s), ` +
         `${missing} measurement(s) not attempted`
     );
-    process.exit(1);
+    return 1;
   }
+  return 0;
 }
 
 /** The smallest rendered label per figure at a phone viewport. */
-async function runMobile(browser, dir, pages, outFile, jobs) {
+async function runMobile(
+  browser: Browser,
+  dir: string,
+  pages: Record<string, string[]>,
+  outFile: string | null,
+  jobs: number,
+): Promise<number> {
   // **One route per figure, not every route it appears on.** `Object.values(pages).flat()`
   // is every page a figure is mounted on, and a figure in both profiles is on two: the
   // route list was three times longer than the work, and this check was walking it at
@@ -604,7 +639,7 @@ async function runMobile(browser, dir, pages, outFile, jobs) {
   const context = await openContext(browser, { width: 390, height: 844, deviceScaleFactor: 1 });
   await serveStatic(context, dir);
   const page = await context.newPage();
-  const measured = {};
+  const measured: Record<string, number> = {};
   // **Deliberately sequential, and deliberately a fixed pause.** A readiness wait was
   // tried here and made it worse: a route whose figure never mounts costs the full
   // timeout, and two hundred routes of that is minutes. The pause is the same 300 ms it

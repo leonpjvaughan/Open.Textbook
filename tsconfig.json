@@ -15,15 +15,31 @@
   // fix lowers it by two. The alternative, checking only the generated copy, would
   // check a stale artefact on the one change that matters.
   //
-  // `strict` is **off**, and that is a ratchet rather than a preference. Measured
-  // 2026-10-16 over these sources:
+  // **Both of those sources are now at zero errors under `strict: true`, bar two files.**
+  // The count came down in this order, measured with `tools types --list`:
   //
-  //     checkJs, strict off                          163
-  //     checkJs, strict on                           460
-  //     checkJs, strict + noUncheckedIndexedAccess   475
+  //     checkJs, strict off                          0   (the ratchet's floor)
+  //     strict on, before this pass                354
+  //     after the runtime and the kit               55
+  //     after the tools                             46
   //
-  // `tools types` fails when the count grows and when it falls without the baseline
-  // being lowered, so it can only come down. Turn `strict` on when it reaches zero.
+  // and all 46 of those are in two commands — `commands/audit-figures.ts` (45) and
+  // `commands/readout.ts` (1). Nothing else is left: every other number below is a work
+  // list that has been worked.
+  //
+  // What the migration cost, so the next file is cheaper than this one was: the shape
+  // behind about two thirds of the errors is a **destructured options argument**, and
+  // the fix is to name the options once — a `@typedef` with `@property {T} [name]` lines,
+  // referenced by `@param {Opts} [o]` — because a per-property `@param {object} o` with
+  // `@param {T} o.name` on a destructured parameter is **ignored**, which is what made
+  // these look unfixable. A required property makes the default `= {}` itself the error,
+  // so a property that has a default is optional in the type, and one that is
+  // dereferenced unconditionally is required and the default is written `= {} as Opts`.
+  // In TypeScript the same interface does that job, plus a real annotation on the
+  // parameter; JSDoc in a `.ts` file is documentation and nothing else.
+  //
+  // The ratchet stays: `tools types` fails when the count grows and when it falls
+  // without the baseline being lowered, so it can only come down, and `strict` stays on.
   //
   // **`types: ["node"]` is not a convenience.** `tools/` is Node programs, and with
   // `types: []` TypeScript checked them as though Node did not exist: every one of
@@ -43,7 +59,7 @@
     "allowJs": true,
     "checkJs": true,
     "noEmit": true,
-    "strict": false,
+    "strict": true,
     "skipLibCheck": true,
     "types": ["node"]
   },

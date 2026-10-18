@@ -33,6 +33,11 @@ import { SIZE, coord, fmt, label } from "./text.js";
  * @typedef {((value: number) => number) & {invert: (position: number) => number}} Mapper
  */
 /**
+ * @typedef {object} ScaleOptions
+ * @property {[number, number]} domain  the values to map, `[low, high]`
+ * @property {[number, number]} range  the SVG coordinates, `[low, high]`
+ */
+/**
  * Map a value in its own units to an SVG coordinate, in one axis.
  *
  * Twenty modules built this by hand and the arithmetic is identical each time — which
@@ -46,9 +51,7 @@ import { SIZE, coord, fmt, label } from "./text.js";
  * `toValue: (point) => x.invert(point.x)` instead of every module re-deriving the
  * inverse.
  *
- * @param {object} o
- * @param {[number, number]} o.domain  the values to map, `[low, high]`
- * @param {[number, number]} o.range  the SVG coordinates, `[low, high]`
+ * @param {ScaleOptions} o  the values to map and the coordinates to map them to
  * @returns {((value: number) => number) & {invert: (position: number) => number}}
  */
 export function scale({ domain, range }) {
@@ -65,6 +68,10 @@ export function scale({ domain, range }) {
  * A hand-written `Math.min(...values)` over an empty list is `Infinity`, and over a
  * hundred thousand values it overflows the argument list. This handles both, and it is
  * how a domain is usually found: `scale({ domain: extent(values), range: [...] })`.
+ *
+ * The signatures above are the two shapes this is called in, and they are erased on
+ * emit — which is why the prose is here, on the implementation, where the compiled
+ * copy keeps it.
  */
 export function extent(values, pick) {
   let low = Infinity;
@@ -79,6 +86,12 @@ export function extent(values, pick) {
   return low === high ? [low, low + 1] : [low, high];
 }
 /**
+ * @typedef {object} TicksOptions
+ * @property {number} from  the low end of the domain
+ * @property {number} to    the high end
+ * @property {number} [count]  roughly how many ticks; default 5
+ */
+/**
  * Round numbers to a count, on the 1–2–5 progression a reader expects.
  *
  * A count read off an axis at a "nice" value — 0.5, 1, 1.5 — is read; the same count
@@ -86,10 +99,7 @@ export function extent(values, pick) {
  * than in a module because every axis wants it and a hand-picked tick list drifts from
  * the data as soon as a slider moves the domain.
  *
- * @param {object} o
- * @param {number} o.from  the low end of the domain
- * @param {number} o.to    the high end
- * @param {number} [o.count]  roughly how many ticks; default 5
+ * @param {TicksOptions} o  the domain, and roughly how many ticks
  * @returns {number[]} the tick values inside the domain, ascending
  */
 export function ticks({ from, to, count = 5 }) {
@@ -333,7 +343,12 @@ export function rect({ x, y, width, height, class: cls = "fig-ink", opacity } = 
   const fade = opacity === undefined ? "" : ` opacity="${opacity}"`;
   return `<rect x="${coord(x)}" y="${coord(y)}" width="${coord(width)}" height="${coord(height)}" class="${cls}"${fade}></rect>`;
 }
-/** A closed shape from a list of `[x, y]` points. */
+/**
+ * @typedef {object} PolygonOptions
+ * @property {Array<[number, number]>} [points]  the corners, in SVG units
+ * @property {string} [class]  a `fig-*` class; `fig-ink` by default
+ */
+/** A closed shape from a list of `[x, y]` points. @param {PolygonOptions} [o] */
 export function polygon({ points = [], class: cls = "fig-ink" } = {}) {
   const list = points.map(([px, py]) => `${coord(px)},${coord(py)}`).join(" ");
   return `<polygon points="${list}" class="${cls}"></polygon>`;
@@ -360,10 +375,10 @@ export function path({ d, class: cls = "fig-ink", fill = "none", width = 2, dash
 }
 /**
  * @typedef {object} ArrowOptions
- * @property {number} [x1]
- * @property {number} [y1]
- * @property {number} [x2]
- * @property {number} [y2]
+ * @property {number} x1
+ * @property {number} y1
+ * @property {number} x2
+ * @property {number} y2
  * @property {string} [class]
  * @property {number} [width]
  * @property {number} [head]  the head length in viewBox units; default 10
@@ -376,6 +391,11 @@ export function path({ d, class: cls = "fig-ink", fill = "none", width = 2, dash
  * skipped — a bare line is not an arrow, and "the force is the arrow" is the whole
  * figure. The shaft stops short of the tip so the head sits on the point rather than
  * behind it.
+ *
+ * The four coordinates are typed as required and the `= {}` default stays, written
+ * `{} as ArrowOptions`: a caller that omits one gets `NaN` geometry rather than a
+ * default, so the type refuses it and the default is only there for the shape the
+ * function has always had.
  *
  * @param {ArrowOptions} [o]
  */
@@ -407,7 +427,15 @@ export function arrow({ x1, y1, x2, y2, class: cls = "fig-ink", width = 2, head 
  * @property {number} [width]
  * @property {string} [dash]
  */
-/** A polyline through mapped points, as one path. @param {CurveOptions} [o] */
+/** A polyline through mapped points, as one path.
+ *
+ * The mappers are required, and `{} as CurveOptions` says why: without them there is
+ * no point to draw, and the guard below already refuses a curve of fewer than two
+ * points rather than drawing a wrong one.
+ *
+ * @param {Array<[number, number]>} points  values in the axes' own units
+ * @param {CurveOptions} [o]
+ */
 export function curve(points, { x, y, class: cls = "fig-accent", width = 2.5, dash } = {}) {
   if (!points || points.length < 2) return "";
   const d = points
@@ -437,6 +465,7 @@ export function curve(points, { x, y, class: cls = "fig-accent", width = 2.5, da
  * A sample that is not finite — a division by zero, a log of a negative — breaks the
  * path instead of poisoning it with `NaN`, which would drop the whole line.
  *
+ * @param {(value: number) => number} fn  the function to sample, in data units
  * @param {GraphOptions} [o]
  */
 export function graph(
@@ -469,7 +498,11 @@ export function graph(
  * @property {string} [class]
  * @property {number} [opacity]
  */
-/** A filled region between a curve and a horizontal baseline. @param {AreaOptions} [o] */
+/** A filled region between a curve and a horizontal baseline.
+ *
+ * @param {Array<[number, number]>} points  values in the axes' own units
+ * @param {AreaOptions} [o]
+ */
 export function area(
   points,
   { x, y, baseline = 0, class: cls = "fig-accent", opacity = 0.25 } = {},
@@ -509,7 +542,11 @@ export function dots(points, { x, y, r = 4, class: cls = "fig-ink" } = {}) {
  * @property {number} [width]
  * @property {string} [class]
  */
-/** Bars from a list of mapped values. @param {BarsOptions} [o] */
+/** Bars from a list of mapped values.
+ *
+ * @param {Bar[]} items  each bar's edges, height and baseline, in data units
+ * @param {BarsOptions} [o]
+ */
 export function bars(items, { x, y, width, class: cls = "fig-accent" } = {}) {
   let draw = "";
   for (const item of items) {

@@ -71,6 +71,28 @@ interface ServiceWorkerScope {
   clients: Clients;
 }
 
+/**
+ * The two service-worker events `assets/sw.js` handles, which `lib.dom` does not declare.
+ *
+ * The platform dispatches an `ExtendableEvent` for `install` and `activate`, and a
+ * `FetchEvent` for `fetch`. Neither type is in `lib.dom`, because that library describes
+ * the page rather than the worker — and `self.addEventListener` is typed for the page
+ * there, so the event arrives as a plain `Event` and the worker says what it really is.
+ * Only the members `sw.js` uses are named, for the same reason as `ServiceWorkerScope`.
+ */
+interface WorkerEvent extends Event {
+  /** Keep the worker alive until the promise settles. */
+  waitUntil: (work: Promise<unknown>) => void;
+}
+
+/** A `fetch` event: the request the page made, and the answer to give it. */
+interface WorkerFetchEvent extends WorkerEvent {
+  /** The request being made. */
+  request: Request;
+  /** Answer it, rather than letting the network do so. */
+  respondWith: (response: Promise<Response>) => void;
+}
+
 interface Window {
   /** Set by `prefs.py` before first paint; absent only if its script failed. */
   textbookPrefs?: TextbookPrefs;

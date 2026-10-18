@@ -100,8 +100,12 @@ export type SigfigOptions = {
  * @property {number} [rotate]  degrees anticlockwise about `(x, y)`, for an axis title
  */
 
-/** Escape the three characters that make a string malformed inside an element. */
-export function escape(text) {
+/** Escape the three characters that make a string malformed inside an element.
+ *
+ * @param {unknown} text  whatever is about to be interpolated into markup
+ * @returns {string}
+ */
+export function escape(text: unknown): string {
   return String(text).replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;");
 }
 
@@ -163,7 +167,7 @@ export function label({
  * `183.99999999999997` is valid SVG and doubles the size of the markup; one decimal
  * place is finer than any screen, and the rounding is invisible.
  */
-export function coord(value) {
+export function coord(value: unknown): string {
   const n = Number(value);
   return Number.isFinite(n) ? n.toFixed(1) : "0";
 }
@@ -198,7 +202,7 @@ export function fmt(value: number, places = 2, fromMap?: unknown): string {
  * produced `y = 2x +1` for a positive intercept where the page read `y = 2x + 1`
  * before, while correctly fixing `+ -3` to `− 3`; both were the same missing space.
  */
-export function signed(value, places = 2) {
+export function signed(value: number, places = 2): string {
   if (!Number.isFinite(value)) return "—";
   const n = Number(value.toFixed(places));
   return `${n < 0 ? "−" : "+"} ${Math.abs(n)}`;
@@ -250,8 +254,12 @@ export function sigfig(
  * `panel()` uses this for the long description of a figure. A reader who can see the
  * drawing does not need it read out on every visit, and a reader who cannot needs it
  * available rather than absent, so it is in the document and off the screen.
+ * @param {Element} parent  what to add the line to
+ * @param {string} text  the sentence a reader with a screen reader needs
+ * @param {{id?: string}} [o]  an id, when something points at it
+ * @returns {HTMLElement}
  */
-export function hidden(parent, text, { id = "" } = {}) {
+export function hidden(parent: Element, text: string, { id = "" }: { id?: string } = {}) {
   const span = document.createElement("span");
   span.className = "fig-hidden";
   if (id) span.id = id;

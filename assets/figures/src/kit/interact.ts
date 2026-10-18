@@ -404,7 +404,7 @@ export function animate(
     name: `${label}, 0 to 1`,
     format: (v) => v.toFixed(2),
   });
-  let frame = null;
+  let frame: number | null = null;
   let playing = false;
   const play = button(parent, {
     label: "Play",

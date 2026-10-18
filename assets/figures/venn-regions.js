@@ -15,6 +15,21 @@
 //
 // Nothing here carries a colour. The selected atoms use the accent class and are also
 // drawn larger, so the selection does not depend on colour alone.
+
+/**
+ * One expression in the chooser.
+ *
+ * `test` is a predicate on the set of letters a region is inside, so the figure cannot
+ * disagree with the notation it prints — and stating it once here is also what types
+ * every `test: (s) =>` below without repeating the parameter.
+ *
+ * @typedef {object} Expression
+ * @property {string} value  the option's value
+ * @property {string} label  what the option says
+ * @property {string} text  the expression, in the readout
+ * @property {(inside: Set<string>) => boolean} test  whether a region is in it
+ */
+
 import { SIZE, chooser, circle, fmt, label, panel, react, venn } from "./kit.js";
 
 const TWO = [
@@ -30,6 +45,7 @@ const THREE = [
 
 // Each expression is a predicate on the set of letters a region is inside, so the
 // figure cannot disagree with the notation it prints.
+/** @type {Record<number, Expression[]>} */
 const EXPRESSIONS = {
   2: [
     { value: "A", label: "A", text: "A", test: (s) => s.has("A") },
@@ -50,6 +66,10 @@ const EXPRESSIONS = {
 };
 
 // Every atom of the diagram: the regions the circles divide the frame into.
+/**
+ * @param {string[]} ids  the sets the diagram shows, `A`, `B`, `C`
+ * @returns {Array<{id: string, in: string[], out: string[], letters: Set<string>, text: string}>}
+ */
 function atomsFor(ids) {
   const atoms = [];
   for (let mask = 0; mask < 1 << ids.length; mask += 1) {
@@ -65,6 +85,7 @@ function atomsFor(ids) {
   return atoms;
 }
 
+/** @param {HTMLElement} el  what the figure is mounted into */
 export function mount(el) {
   const { svg, readout } = panel(el, {
     label:
@@ -76,6 +97,11 @@ export function mount(el) {
     width: 560,
     height: 300,
   });
+  // `panel()` always produces the surface unless a module asks for no drawing, and this
+  // one draws. `update` is a hoisted function, and a narrowed type does not reach inside
+  // one, so the surface is stated non-null here for every line below it.
+  if (!svg) throw new Error("venn-regions: the panel has no drawing surface");
+  const surface = svg;
 
   const many = chooser(el, {
     id: "sets",
@@ -133,7 +159,7 @@ export function mount(el) {
       });
     }
 
-    svg.innerHTML = drawing;
+    surface.innerHTML = drawing;
 
     const selected = atoms.filter((atom) => chosen.test(atom.letters));
     const named = selected.map((atom) => (atom.id === "outside" ? "outside all of them" : atom.text));

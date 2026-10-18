@@ -14,6 +14,30 @@ import { parseArgs, type Surface } from "../lib/flags.js";
 
 const DEFAULT_ROUTE = "/gcse-maths/higher/chapter-1/section-1.1/learn/";
 
+/**
+ * What the page reports about its own load, as `evaluate` below builds it.
+ *
+ * `page` has no static type — Playwright is resolved at runtime, so it arrives as
+ * `any` — and without a name for the shape every field read off it would be a read off
+ * `any`, including the `sort` and `reduce` callbacks that carry the measurement.
+ */
+interface Measured {
+  nav: {
+    transferSize: number;
+    decodedBodySize: number;
+    domContentLoaded: number;
+    load: number;
+  };
+  resources: Array<{
+    path: string;
+    initiatorType: string;
+    transferSize: number;
+    decodedBodySize: number;
+    duration: number;
+  }>;
+  stylesheets: Array<{ href: string | null; media: string; disabled: boolean }>;
+}
+
 /** What this command accepts. `tools help budget` is generated from it. */
 export const SURFACE: Surface = {
   positional: [
@@ -51,7 +75,7 @@ export async function run(argv: string[]): Promise<number> {
   await page.waitForLoadState("networkidle").catch(() => {});
   await page.waitForTimeout(1500);
 
-  const measured = await page.evaluate(() => {
+  const measured: Measured = await page.evaluate(() => {
     const nav = performance.getEntriesByType("navigation")[0] as PerformanceNavigationTiming;
     const resources = (performance.getEntriesByType("resource") as PerformanceResourceTiming[]).map(
       (entry) => ({

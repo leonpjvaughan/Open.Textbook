@@ -41,6 +41,7 @@ var CACHE = PREFIX + VERSION;
 var PRECACHE = ["/", "/manifest.webmanifest"];
 
 /* The destinations that count as static assets, and are therefore cache-first. */
+/** @type {Record<string, boolean>} */
 var STATIC_DESTINATIONS = {
   style: true,
   script: true,
@@ -48,6 +49,11 @@ var STATIC_DESTINATIONS = {
   image: true,
 };
 
+/* The event handlers. `self.addEventListener` is typed for the page, where neither
+ * `install` nor `fetch` is in the event map, so each event arrives as a plain `Event`
+ * and is named for what the platform dispatches. See `assets/globals.d.ts`. */
+
+/** @param {WorkerEvent} event  the platform's `ExtendableEvent`; see assets/globals.d.ts */
 function onInstall(event) {
   event.waitUntil(
     caches
@@ -63,8 +69,9 @@ function onInstall(event) {
   );
 }
 
-self.addEventListener("install", onInstall);
+self.addEventListener("install", /** @type {EventListener} */ (onInstall));
 
+/** @param {WorkerEvent} event  the platform's `ExtendableEvent`; see assets/globals.d.ts */
 function onActivate(event) {
   event.waitUntil(
     caches
@@ -88,8 +95,13 @@ function onActivate(event) {
   );
 }
 
-self.addEventListener("activate", onActivate);
+self.addEventListener("activate", /** @type {EventListener} */ (onActivate));
 
+/**
+ * @param {Request} request
+ * @param {Response} response
+ * @returns {Promise<void>}
+ */
 function remember(request, response) {
   // A failed cache write must never affect the response the reader gets.
   return caches.open(CACHE).then(function (cache) {
@@ -97,7 +109,18 @@ function remember(request, response) {
   });
 }
 
-/* The network decides; the cache is the fallback. Never the other way round. */
+/**
+ * The network decides; the cache is the fallback. Never the other way round.
+ *
+ * The fallback for a navigation is the front door, which `install` precached. If that
+ * has been evicted too, there is no response to give: `respondWith` rejects on
+ * anything that is not a `Response`, and an `undefined` here would turn a missing
+ * cache entry into a failed navigation rather than the browser's own error page. So
+ * the fallback falls back, rather than passing the hole on.
+ *
+ * @param {Request} request
+ * @returns {Promise<Response>}
+ */
 function networkFirst(request) {
   return fetch(request)
     .then(function (response) {
@@ -111,13 +134,22 @@ function networkFirst(request) {
         if (cached) return cached;
         // A page that was never visited falls back to the front door, which
         // install precached, rather than to the browser's error page.
-        if (request.mode === "navigate") return caches.match("/");
+        if (request.mode === "navigate") {
+          return caches.match("/").then(function (home) {
+            return home || Response.error();
+          });
+        }
         return Response.error();
       });
     });
 }
 
-/* Assets do not change under a stable name, so the cache decides. */
+/**
+ * Assets do not change under a stable name, so the cache decides.
+ *
+ * @param {Request} request
+ * @returns {Promise<Response>}
+ */
 function cacheFirst(request) {
   return caches.match(request).then(function (cached) {
     if (cached) return cached;
@@ -130,6 +162,7 @@ function cacheFirst(request) {
   });
 }
 
+/** @param {WorkerFetchEvent} event  the platform's `FetchEvent` */
 function onFetch(event) {
   var request = event.request;
   if (request.method !== "GET") return;
@@ -148,4 +181,4 @@ function onFetch(event) {
   event.respondWith(networkFirst(request));
 }
 
-self.addEventListener("fetch", onFetch);
+self.addEventListener("fetch", /** @type {EventListener} */ (onFetch));

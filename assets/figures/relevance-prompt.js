@@ -21,6 +21,7 @@ function keyFor() {
   return `textbook:relevance:${window.location.pathname}`;
 }
 
+/** @param {HTMLElement} el  what the figure is mounted into */
 export function mount(el) {
   // The panel's own readout is the status line, and that is not a detail: it carries
   // `aria-live="polite"`, so "Saved" reaches a screen reader. A `<p>` written here
@@ -44,7 +45,11 @@ export function mount(el) {
     placeholder: "Two or three sentences is plenty.",
   });
 
-  /** What the reader is told, which is about *their* answer and not about saving. */
+  /**
+   * What the reader is told, which is about *their* answer and not about saving.
+   *
+   * @param {boolean} saved  whether the store took the answer
+   */
   function describe(saved) {
     if (saved) return "Saved in this browser. Only you can see it.";
     return "This browser is not keeping your answer, so copy it somewhere if it matters.";

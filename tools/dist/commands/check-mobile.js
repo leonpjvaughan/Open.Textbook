@@ -81,7 +81,7 @@ export async function run(argv) {
                     vw,
                     scrollWidth: doc.scrollWidth,
                     widest: worst,
-                    trigger: t
+                    trigger: t && trigger
                         ? {
                             left: Math.round(t.left),
                             right: Math.round(t.right),

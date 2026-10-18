@@ -106,7 +106,7 @@ export function draggable(
 
   let dragging = false;
 
-  const write = (point) => {
+  const write = (point: { x: number; y: number }) => {
     const value = toValue(point);
     if (!Number.isFinite(value)) return;
     control.value = String(value);
@@ -114,7 +114,7 @@ export function draggable(
     if (onMove) onMove(value);
   };
 
-  const onDown = (event) => {
+  const onDown = (event: PointerEvent) => {
     if (event.button !== undefined && event.button !== 0) return;
     const point = viewBoxPoint(svg, event);
     if (!point) return;
@@ -135,7 +135,7 @@ export function draggable(
     write(point);
   };
 
-  const onMoveEvent = (event) => {
+  const onMoveEvent = (event: PointerEvent) => {
     if (!dragging) return;
     const point = viewBoxPoint(svg, event);
     if (!point) return;

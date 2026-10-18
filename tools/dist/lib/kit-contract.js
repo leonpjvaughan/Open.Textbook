@@ -1435,7 +1435,13 @@ const widgetRows = [
             });
             const buttons = [...host.querySelectorAll(".fig-parts button")];
             const root = host.querySelector(".fig-diagram");
-            const atRest = [root.classList.contains("is-exploring"), made.groups.some((group) => group.classList.contains("is-active"))];
+            // `kit` is the compiled module served to the page, so it arrives untyped here and
+            // `made.groups` is `any` with it. The kit's own `Diagram` type says a group is an
+            // `SVGGElement`, which is what the two reads below say too.
+            const atRest = [
+                root.classList.contains("is-exploring"),
+                made.groups.some((group) => group.classList.contains("is-active")),
+            ];
             buttons[1].focus();
             const afterFocus = [
                 root.classList.contains("is-exploring"),

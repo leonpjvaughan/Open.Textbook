@@ -25,7 +25,12 @@ import { UI_FONT, button, panel, textarea } from "./kit.js";
  * sibling walk breaks the moment the wrapper changes. `compareDocumentPosition` asks
  * the question that is actually meant: which `<details>` comes before me?
  */
+/**
+ * @param {HTMLElement} el  the figure's mount point, in document order
+ * @returns {HTMLDetailsElement | null} the answers, or `null` when the page has none
+ */
 function answersBefore(el) {
+  /** @type {HTMLDetailsElement | null} */
   let found = null;
   for (const details of document.querySelectorAll("details")) {
     if (details.compareDocumentPosition(el) & Node.DOCUMENT_POSITION_FOLLOWING) {
@@ -35,6 +40,7 @@ function answersBefore(el) {
   return found;
 }
 
+/** @param {HTMLElement} el  what the figure is mounted into */
 export function mount(el) {
   const answers = answersBefore(el);
   if (!answers) {

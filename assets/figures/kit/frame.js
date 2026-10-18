@@ -222,6 +222,11 @@ export function diagram(el, options = {}) {
     width,
     height,
   });
+  // `diagram()` is a drawing by construction — it never asks `panel()` for a frame
+  // without one — so the surface is always there. Saying it once here is what keeps
+  // the null out of `Diagram`, and every caller out of a check for a state it cannot
+  // be in. A frame that arrived without a surface has already gone wrong in `panel()`.
+  if (!svg) throw new Error("diagram: the frame has no drawing surface");
   root.classList.add("fig-diagram");
   note.textContent = caption;
   // One <g> per part, appended in reading order. The index is the identity, so a part

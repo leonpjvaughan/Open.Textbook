@@ -320,7 +320,7 @@ export async function run(argv: string[]): Promise<number> {
       // no loss of coverage.
       await page
         .waitForFunction(
-          (s) => {
+          (s: string) => {
             const figure = document.querySelector(`maths-figure[data-figure="${s}"]`);
             return !!figure && !!figure.querySelector("svg, canvas, input, select, button, .fig");
           },

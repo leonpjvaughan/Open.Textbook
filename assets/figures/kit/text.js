@@ -71,7 +71,11 @@ export const SIZE = {
  * @property {number} [weight]  optional font-weight
  * @property {number} [rotate]  degrees anticlockwise about `(x, y)`, for an axis title
  */
-/** Escape the three characters that make a string malformed inside an element. */
+/** Escape the three characters that make a string malformed inside an element.
+ *
+ * @param {unknown} text  whatever is about to be interpolated into markup
+ * @returns {string}
+ */
 export function escape(text) {
   return String(text).replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;");
 }
@@ -211,6 +215,10 @@ export function sigfig(value, figures = 3, { scientific = "auto" } = {}) {
  * `panel()` uses this for the long description of a figure. A reader who can see the
  * drawing does not need it read out on every visit, and a reader who cannot needs it
  * available rather than absent, so it is in the document and off the screen.
+ * @param {Element} parent  what to add the line to
+ * @param {string} text  the sentence a reader with a screen reader needs
+ * @param {{id?: string}} [o]  an id, when something points at it
+ * @returns {HTMLElement}
  */
 export function hidden(parent, text, { id = "" } = {}) {
   const span = document.createElement("span");

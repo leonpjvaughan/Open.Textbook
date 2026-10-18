@@ -151,9 +151,12 @@ function markdownTables(report, siteDir) {
     const lowest = (result) => {
         if (!result || result.error)
             return "—";
-        if (!result.paints.length)
+        // Every field of a `Measurement` is optional, because it is deserialised from
+        // the page and a figure that mounted nothing has almost none of them.
+        const paints = result.paints ?? [];
+        if (!paints.length)
             return "—";
-        return `${Math.min(...result.paints.map((p) => p.ratio)).toFixed(2)}:1`;
+        return `${Math.min(...paints.map((p) => p.ratio)).toFixed(2)}:1`;
     };
     const lines = [TABLE_START];
     // Coverage first, because it is the one number the per-figure tables cannot
@@ -189,7 +192,10 @@ function markdownTables(report, siteDir) {
         const where = owner.get(slug);
         if (!where)
             continue;
-        byBook.get(where.book.id).push({
+        const rows = byBook.get(where.book.id);
+        if (!rows)
+            continue;
+        rows.push({
             slug,
             tokens: classesUsed(where.file),
             page: (report[slug].page || "").replace(/\/$/, "") + "/",
@@ -533,10 +539,14 @@ export async function run(argv) {
                 continue;
             }
             taken += 1;
-            if (res.problems.length) {
+            // Every field is optional because it came out of the page; a measurement that
+            // reported a problem always has both, and `?? []` says so without an assertion.
+            const problems = res.problems ?? [];
+            if (problems.length) {
                 bad += 1;
-                console.log(`\n${slug} [${scheme}]  panel rgb(${res.panel.r},${res.panel.g},${res.panel.b})`);
-                for (const p of res.problems.slice(0, 4)) {
+                const panel = res.panel ?? { r: 0, g: 0, b: 0 };
+                console.log(`\n${slug} [${scheme}]  panel rgb(${panel.r},${panel.g},${panel.b})`);
+                for (const p of problems.slice(0, 4)) {
                     console.log(`   ${p.tag} .${p.cls} ${p.kind} ${p.ratio}:1 (needs ${p.need}) ${p.example}`);
                 }
             }
@@ -553,8 +563,9 @@ export async function run(argv) {
     if (bad || errs || missing || expected === 0) {
         console.error(`\nfigure audit failed: ${bad} contrast failure(s), ${errs} unmeasured figure(s), ` +
             `${missing} measurement(s) not attempted`);
-        process.exit(1);
+        return 1;
     }
+    return 0;
 }
 /** The smallest rendered label per figure at a phone viewport. */
 async function runMobile(browser, dir, pages, outFile, jobs) {
