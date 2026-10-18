@@ -95,6 +95,7 @@ now, and the four marked open are the ones verified open on 2026-10-17.
 - [x] 66. 137 of 250 figure modules hand-write a `<text>` element
 - [ ] 67. Checks that parse prose or enumerate notation, and where else they appear
 - [ ] 69. The generalisation review: eight places the doctrine was not applied (1 and 2 done)
+- [ ] 70. The gate is 26 minutes on four runners, and 13 of its 24 jobs are one build each
 
 ---
 
@@ -570,6 +571,40 @@ readers), and `innerHTML` markup with per-module `toFixed` (`reuse-audit.md` §3
   declared threshold resolves to a token and can fail.
 - [ ] 3–8 converted, each with a check that fails if the copy returns.
 - [ ] `quantity()` exists and the number-with-unit count falls from 76.
+
+---
+
+## 70. The gate is 26 minutes on four runners, and 13 of its 24 jobs are one build each
+
+**What is wrong.** Measured 2026-10-18 on the self-hosted runners, run `39115758316`:
+**2601 seconds of job time across 24 jobs**, so on four runners the wall clock is
+**26 minutes** — the queue, not any one check. The long poles:
+
+| Job | Time | Note |
+|---|---|---|
+| `banks, tests and voice` | 343 s | was 491 before `pytest -n 4`; still 5.7 min under contention |
+| `deploy to production` | 337 s | wrangler uploading the site; inherent |
+| `theme preview` | 328 s | 194 s on an idle machine |
+| 13 × `build <book> (<profile>)` | ~100 s each | **1300 s of the 2601** — 21 of 26 minutes |
+
+**The build matrix is the problem, and it was built for GitHub's runners.** It exists so
+running to running, so free parallelism; on four self-hosted runners each row is a full
+`checkout` + `uv sync` + `npm ci` + build, and 13 of them queue behind each other for a
+build that takes 4 seconds. `scripts/preview-themes.sh` already builds every profile
+four at a time in about 25 seconds.
+
+**The fix.** One `build` job that runs `textbook.pipeline` for every config concurrently
+— the same loop `preview-themes.sh` uses — printing one line per profile. It keeps the
+per-profile visibility in the log, loses it from the job list, and removes ~1200 s of
+setup. Then `theme preview` is the next longest at 194 s alone, which fits the
+three-minute rule.
+
+**Done means**
+
+- The gate's wall clock is under 10 minutes on four runners, measured on a run.
+- No job exceeds three minutes except the deploy.
+- A failing profile is still identifiable from the log without opening a matrix row.
+- `.github/AGENTS.md`'s timing table records the new numbers.
 
 ---
 
