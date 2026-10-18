@@ -131,8 +131,8 @@ Newton iteration that §1.3 meets.
 | Check | Value |
 |---|---|
 | Camber over the whole travel, closed form | −2.36° to +0.58° |
-| Camber over the whole travel, Newton iteration | same curve, to the last bit of a double |
-| Largest difference between the two, over the sweep | to be read from the solver's export |
+| Camber over the whole travel, from the general solver | waiting on its export, below |
+| Largest difference between the two, over the sweep | waiting on its export, below |
 
 ```text
 TODO(phase-a): replace this row with `agreement.max_abs_diff` from

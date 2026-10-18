@@ -178,3 +178,45 @@ not that the text matches.
   compromise.
 - `python -m textbook.lint maths-applied` reports nothing, and the drift check is
   clean after `python -m textbook.scaffold`.
+
+## What the book could hold next
+
+Chapter 1 is one mechanism and four models. A second chapter should be a **different
+mechanism**, chosen because a simple model of it fails in a way a reader can watch —
+that is the pattern the book is built on, and a chapter without a failure at its centre
+is a chapter of exercises.
+
+Each proposal below states the question, the model that answers it first, the thing
+that model cannot do, and the limit test that would connect the two. The limit test is
+the entry condition: no test, no chapter.
+
+1. **Steering: where the wheels point.** Two front wheels cannot both roll without
+   slipping unless the inner one turns further — Ackermann's geometry, which is a
+   four-bar problem and uses §1.2's machinery directly. The simple model predicts a
+   turning circle from the wheelbase and the steer angle, and it is wrong at any speed,
+   because a tyre turns because it slips. The bicycle model with slip angles fixes
+   that. **Limit test:** as speed goes to zero the slip angles vanish and the bicycle
+   model's radius becomes Ackermann's. Two routes, one number.
+2. **The differential: two degrees of freedom.** Count the mobility of a bevel-gear
+   differential and it comes out at two, not one — which is why a car can go round a
+   corner at all, and why one wheel on ice stops it. The simple model (both wheels turn
+   together) is a locked axle, and it fails at the first corner. **Limit test:** with
+   the differential's own constraint the two output speeds average to the input's, and
+   in a straight line they are equal — the locked model's answer, recovered as a case.
+3. **Mass and the quarter car** (§1.6, finished). One mass on a spring gives a natural
+   frequency, and it is the wrong frequency, because the wheel has mass too. **Limit
+   test:** as the unsprung mass goes to zero the two-mass model's first mode becomes
+   the one-mass frequency, monotonically.
+4. **Progressive springs and bump stops.** A linear spring is right in the middle of
+   the travel and wrong at the ends, where the bump stop takes over. **Limit test:** at
+   small travel the piecewise model is the linear one, exactly, and the difference grows
+   with travel — the same shape of argument as §1.5's stiffness ladder.
+5. **Measuring it: how you know a model is right.** Every comparison in Chapter 1 is
+   between two models. This chapter would compare a model with a car: error bars,
+   regression, residual degrees of freedom, and the difference between "these agree"
+   and "this is right". It is the chapter the book owes its reader, and the only one
+   that cannot be written from a figures-only model.
+6. **The bicycle that stays up.** The famous case of a simple explanation that is
+   incomplete: gyroscopic effects are not what keeps a bicycle upright. **Limit test:**
+   the model must reproduce the known result that a bicycle with no gyroscopic effect
+   can still be self-stable — which is a test of the *explanation*, not of a curve.

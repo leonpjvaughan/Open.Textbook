@@ -362,13 +362,22 @@ def pager_for(paths: list[str], book: books.Book) -> dict[str, tuple[dict | None
     ("Learn") and a pager that says only "Learn" says nothing about where it goes.
     """
     # **The sidebar's order is a reference order, and the pager's is a reading order.**
-    # They differ in one place: the sidebar lists the glossary first, so following
-    # "next" from the cover would land a reader in the glossary. Reference material
-    # reads *after* the course, so it moves to the end of the chain here and nowhere
-    # else.
-    ordered = [p for p in paths if not p.startswith("Glossary/")] + [
-        p for p in paths if p.startswith("Glossary/")
-    ]
+    # They differ in two places.
+    #
+    # The glossary is listed first and reads last, so following "next" from the cover
+    # does not land a reader in the reference material.
+    #
+    # A section's depth pages are listed with the section and are **not part of the
+    # thread**: they are offered by the page that raises the question, and the chapter
+    # has to be readable end to end without one. Treated as ordinary pages they sat
+    # between a section and the next one, so the pager's eyebrow said "Next section"
+    # and went to an optional detour. They are skipped here, and each one borrows the
+    # pager of the page that offers it, so a reader who takes the detour can step back
+    # onto the thread from it.
+    deeper = {page["path"] for page in book.deeper_pages}
+    ordered = [
+        p for p in paths if p not in deeper and not p.startswith("Glossary/")
+    ] + [p for p in paths if p.startswith("Glossary/") and p not in deeper]
     order: dict[str, tuple[dict | None, dict | None]] = {}
     titles: dict[str, str] = {}
     for md_path in paths:
@@ -402,6 +411,25 @@ def pager_for(paths: list[str], book: books.Book) -> dict[str, tuple[dict | None
                 "eyebrow": _pager_eyebrow(md_path, target, forward=True),
             }
         order[md_path] = (previous, following)
+
+    # A depth page reads *after* the page that offers it and *before* the next one on
+    # the thread: stepping back from it returns to the page that raised the question,
+    # and stepping forward rejoins the thread. Handing it the offering page's own pair
+    # sent a reader who took the detour back one page too far.
+    anchor = ""
+    for md_path in paths:
+        if md_path in deeper:
+            if anchor in order:
+                order[md_path] = (
+                    {
+                        "href": url_for(anchor),
+                        "title": titles[anchor],
+                        "eyebrow": _pager_eyebrow(md_path, anchor, forward=False),
+                    },
+                    order[anchor][1],
+                )
+        else:
+            anchor = md_path
     return order
 
 

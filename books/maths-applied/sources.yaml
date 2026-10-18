@@ -1,37 +1,99 @@
 # Provenance for Maths Applied.
 #
-# This book makes no claim that rests on an external document, and says so rather
-# than listing references it did not use. That is not a claim of originality: the
-# mathematics is standard, and the book says when it is relying on a definition
-# rather than proving something.
+# Two different claims live here, and they are not the same claim:
 #
-#   * **The geometry is illustrative.** The linkage numbers in the chapter are
-#     chosen to be plausible and well conditioned. They are not measured from a car
-#     and are not any manufacturer's design. The chapter says so where the numbers
-#     first appear, because a reader who takes them for a real car would be misled
-#     about how suspension design is done.
-#   * **The conventions are stated, not cited.** Camber positive when the top of
-#     the wheel leans out; toe positive when the front of the wheel turns in. Both
-#     are stated in the chapter and pinned by the code that computes them, so a
-#     reader does not have to own a handbook to follow the argument.
-#   * **Every number a figure shows is computed on the page**, by the same model the
-#     prose describes. Nothing is typed in.
+#   * **The vocabulary.** Camber, toe, instant centre and roll centre are the
+#     standard terms of vehicle dynamics. This book uses those terms and states its
+#     own sign conventions, so a reader comparing it with another text can see where
+#     the conventions differ. That is the one claim here that rests on a document,
+#     and it is tagged `attribution: true`.
+#   * **Everything else is further reading.** The books below are where a reader can
+#     go deeper, and none of them is the source of a number in this book. The roles
+#     say which is which, because "we read this" and "read this next" are different
+#     statements and only one of them is a citation.
 #
-# Two things are deliberately missing and should be added when they exist:
-#
-#   1. A free-licence photograph of a real double wishbone, for comparison with the
-#      diagrams. CC0 or CC BY-SA only, free of trade dress and sponsor livery, with
-#      `url`, `retrieved`, `role` and a credit line in the caption. The chapter
-#      draws the comparison until then — see `books/maths-applied/AGENTS.md`.
-#   2. A reference for the vehicle axis convention (SAE J670 or ISO 8855), if the
-#      chapter ever needs to speak to another document's coordinates rather than
-#      simply stating its own.
+# What the book does not do: it does not rest on a syllabus, and its geometry is
+# illustrative rather than measured. Both are stated to the reader — in
+# `curriculum.yaml` and in the chapter — rather than left to be inferred.
 
 retrieved: 2026-10-18
 
 note: >-
-  This book rests on no external document. The mathematics is standard, the
-  geometry is illustrative rather than measured, and every number in a figure is
-  computed by the model the page describes.
+  The mathematics is standard, the geometry is illustrative rather than measured, and
+  every number in a figure is computed by the model the page describes.
 
-references: []
+references:
+  # --- the vocabulary ---------------------------------------------------------
+  - id: sae-j670
+    attribution: true
+    title: "SAE J670: Vehicle Dynamics Terminology"
+    url: https://www.sae.org/standards/content/j670_202208/
+    role: >-
+      The vocabulary of vehicle dynamics, and the place to check what this book's
+      terms mean when another text uses them differently. The book states its own
+      sign conventions rather than claiming J670's wording.
+
+  - id: iso-8855
+    title: "ISO 8855:2011 — Road vehicles: Vehicle dynamics and road-holding ability, vocabulary"
+    ref: ISO 8855:2011
+    role: >-
+      The international counterpart to the above. Listed here so a reader who needs
+      the standard rather than a textbook can find the number to ask for.
+
+  # --- suspension geometry, in more depth than this book goes -----------------
+  - id: dixon
+    title: Suspension Geometry and Computation
+    ref: "John C. Dixon, Wiley, 2009"
+    role: >-
+      The standard treatment of suspension geometry: the same quantities as this
+      chapter, computed in three dimensions and for every corner of a car. Further
+      reading, not a source of any number here.
+
+  - id: milliken
+    title: Race Car Vehicle Dynamics
+    url: https://www.sae.org/publications/books/content/r-146
+    ref: "Milliken and Milliken, SAE, 1995"
+    role: >-
+      Why camber matters: the tyre model that turns the angle this chapter computes
+      into the grip that §1.7 points at. Further reading; the chapter deliberately
+      stops before the tyre.
+
+  - id: mccarthy
+    title: Geometric Design of Linkages
+    url: https://link.springer.com/book/10.1007/978-1-4419-7892-9
+    ref: "McCarthy and Soh, Springer, 2nd edition, 2011"
+    role: >-
+      Kinematic theory of linkages proper: mobility, branches, singular
+      configurations. §1.2 to §1.4 are the smallest useful part of that subject.
+
+  # --- the numerical ideas -----------------------------------------------------
+  - id: nocedal
+    title: Numerical Optimization
+    url: https://link.springer.com/book/10.1007/978-0-387-40065-5
+    ref: "Nocedal and Wright, Springer, 2nd edition, 2006"
+    role: >-
+      Gauss–Newton, Levenberg–Marquardt and why a step is solved the way §1.3 solves
+      it. Further reading.
+
+  - id: bjorck
+    title: Numerical Methods for Least Squares Problems
+    ref: "Åke Björck, SIAM, 1996"
+    role: >-
+      The numerical analysis behind §1.3 and §1.4: rank, the singular value
+      decomposition, and what a least-squares answer's error bar really is.
+
+  # --- modelling, which is what the book is about -------------------------------
+  - id: box
+    title: "Science and Statistics"
+    ref: "George E. P. Box, Journal of the American Statistical Association 71 (1976), 791–799"
+    role: >-
+      Where "all models are wrong, but some are useful" comes from, and the argument
+      that a model is judged by what it is for. The chapter's method is a worked
+      version of that sentence.
+
+  - id: hestenes
+    title: "Toward a modeling theory of physics instruction"
+    ref: "David Hestenes, American Journal of Physics 55 (1987), 440–454"
+    role: >-
+      Modelling as the thing being taught rather than a way of presenting content.
+      Further reading on why a book can be about models instead of about a subject.

@@ -14,42 +14,53 @@ import { SIZE, label, line, panel, react, rect, stepper } from "./kit.js";
 import { legsJacobian, leastSquares, lowerJoint, singularValues } from "../data/mechanism.js";
 
 const WIDTH = 560;
-const HEIGHT = 320;
+const HEIGHT = 330;
 const B = [0.38, 0.449];
 const RB = Math.hypot(0.68 - 0.38, 0.52 - 0.449);
 const L = Math.hypot(0.72 - 0.68, 0.15 - 0.52);
 const THETA = 5.32 * (Math.PI / 180); // the bump end of the travel range
 const START = [0.75, 0.6];
 
-// The left-hand drawing shows the two circles the point must lie on; the right-hand
-// one shows how wrong each of the three equations still is.
-const AXIS = { left: 40, right: 300, top: 40, bottom: 260 };
-const BAR = { left: 360, width: 150 };
-const RESIDUAL_FULL = 0.15; // metres across the full width of a bar
-
 const C = lowerJoint(THETA);
 const HISTORY = leastSquares(START, THETA, 5);
 
-// One scale for the circles, chosen from the geometry and not from the frame.
-const SCALE = 190;
+// The left panel: both circles, at one scale, in a box of their own.
+const BOX = { left: 34, right: 300, top: 44, bottom: 282 };
+const PAD = 0.03;
+const lowX = Math.min(B[0] - RB, C[0] - L) - PAD;
+const highX = Math.max(B[0] + RB, C[0] + L) + PAD;
+const lowZ = Math.min(B[1] - RB, C[1] - L) - PAD;
+const highZ = Math.max(B[1] + RB, C[1] + L) + PAD;
+const SCALE = Math.min(
+  (BOX.right - BOX.left) / (highX - lowX),
+  (BOX.bottom - BOX.top) / (highZ - lowZ)
+);
 const at = (p) => ({
-  x: (AXIS.left + AXIS.right) / 2 + (p[0] - 0.6) * SCALE,
-  y: (AXIS.top + AXIS.bottom) / 2 - (p[1] - 0.4) * SCALE,
+  x: (BOX.left + BOX.right) / 2 + (p[0] - (lowX + highX) / 2) * SCALE,
+  y: (BOX.top + BOX.bottom) / 2 - (p[1] - (lowZ + highZ) / 2) * SCALE,
 });
 
+// The right panel: one bar per equation, and the singular values underneath.
+const BAR = { left: 336, width: 168, right: 548 };
+const RESIDUAL_FULL = 0.15; // metres across the full width of a bar
+
 export function mount(el) {
-  const { svg, readout } = panel(el, {
+  const { svg, readout, caption } = panel(el, {
     label: "One iteration of a least-squares solver on three equations in two unknowns",
     description:
-      "Two dashed circles show where the upper ball joint has to be to satisfy the upper arm " +
-      "and the upright. A dot is the current guess, and each step moves it to where the three " +
-      "equations are most nearly satisfied. Bars on the right show how wrong each equation still " +
-      "is, and the singular values show how the three equations depend on the same two unknowns.",
+      "Two dashed circles show the two distances the upper ball joint must be from, and a dot " +
+      "shows the current guess. Each step moves the dot towards the place where the distances " +
+      "are right. Bars on the right show how wrong each equation still is, and the singular " +
+      "values show how the three equations depend on the same two unknowns.",
     prompt: "Step through and watch the total error fall. What does it fall to?",
     width: WIDTH,
     height: HEIGHT,
     max: 560,
   });
+
+  caption.textContent =
+    "Each dashed circle is one equation: the upper ball joint is a fixed distance from the " +
+    "arm's pivot, and a fixed distance from the lower ball joint.";
 
   const step = stepper(el, {
     label: "Iteration",
@@ -57,7 +68,9 @@ export function mount(el) {
       text:
         entry.k === 0
           ? "Guess where the upper ball joint is. Two of the three equations are wrong by about 9 cm, and the third by 4 cm."
-          : `The step is solved from the Jacobian and applied. The total error is now ${entry.norm === 0 ? "zero to the last bit" : `${(entry.norm * 1000).toFixed(4)} mm`}.`,
+          : `The step is solved from the Jacobian and applied. The total error is now ${
+              entry.norm === 0 ? "zero to the last bit" : `${(entry.norm * 1000).toFixed(4)} mm`
+            }.`,
     })),
   });
 
@@ -68,31 +81,24 @@ export function mount(el) {
     const answer = HISTORY[HISTORY.length - 1];
     let drawing = "";
 
-    // The two circles the point has to be on, and the answer they share.
-    const centreB = at(B);
-    const centreC = at(C);
-    drawing += `<circle cx="${centreB.x.toFixed(1)}" cy="${centreB.y.toFixed(1)}" r="${(RB * SCALE).toFixed(1)}" class="fig-grid" fill="none" stroke-width="1.4" stroke-dasharray="5 4"></circle>`;
-    drawing += `<circle cx="${centreC.x.toFixed(1)}" cy="${centreC.y.toFixed(1)}" r="${(L * SCALE).toFixed(1)}" class="fig-grid" fill="none" stroke-width="1.4" stroke-dasharray="5 4"></circle>`;
-    drawing += label({
-      x: centreB.x,
-      y: centreB.y - 14,
-      text: "upper arm pivot",
-      size: SIZE.tick,
-      class: "text-ink",
-    });
-    drawing += label({
-      x: centreC.x - 6,
-      y: centreC.y + 24,
-      text: "lower ball joint",
-      size: SIZE.tick,
-      class: "text-ink",
-    });
+    // The two circles, then the answer they share, then the current guess on top.
+    for (const [centre, radius] of [
+      [B, RB],
+      [C, L],
+    ]) {
+      const { x, y } = at(centre);
+      drawing += `<circle cx="${x.toFixed(1)}" cy="${y.toFixed(1)}" r="${(
+        radius * SCALE
+      ).toFixed(1)}" class="fig-grid" fill="none" stroke-width="1.4" stroke-dasharray="5 4"></circle>`;
+    }
     const target = at(answer.D);
-    drawing += `<circle cx="${target.x.toFixed(1)}" cy="${target.y.toFixed(1)}" r="4" class="fig-good"></circle>`;
+    drawing += `<circle cx="${target.x.toFixed(1)}" cy="${target.y.toFixed(
+      1
+    )}" r="4" class="fig-good"></circle>`;
     drawing += label({
       x: target.x + 10,
-      y: target.y - 8,
-      text: "where it settles",
+      y: target.y + 20,
+      text: "settled",
       anchor: "start",
       size: SIZE.tick,
       class: "text-good",
@@ -105,34 +111,44 @@ export function mount(el) {
       drawing += line({ x1: from.x, y1: from.y, x2: to.x, y2: to.y, class: "fig-warn", width: 2, dash: "5 4" });
     }
     const here = at(state.D);
-    drawing += `<circle cx="${here.x.toFixed(1)}" cy="${here.y.toFixed(1)}" r="6" class="fig-accent"></circle>`;
+    drawing += `<circle cx="${here.x.toFixed(1)}" cy="${here.y.toFixed(
+      1
+    )}" r="6" class="fig-accent"></circle>`;
     drawing += label({
-      x: here.x,
-      y: here.y + 22,
+      x: here.x - 10,
+      y: here.y - 12,
       text: `step ${state.k}`,
+      anchor: "end",
       size: SIZE.tick,
       class: "text-accent",
     });
 
-    // Three rows, three residuals, and how big each still is.
+    // One bar per equation: what it still says, and how far out it is.
     const rows = ["first leg", "second leg", "upright"];
     state.residual.forEach((value, i) => {
-      const y = 84 + i * 52;
+      const y = 78 + i * 58;
       const width = Math.min(Math.abs(value) / RESIDUAL_FULL, 1) * BAR.width;
-      drawing += label({ x: BAR.left - 10, y: y + 5, text: rows[i], anchor: "end", size: SIZE.tick, class: "text-ink" });
+      drawing += label({
+        x: BAR.left,
+        y: y - 10,
+        text: rows[i],
+        anchor: "start",
+        size: SIZE.tick,
+        class: "text-ink",
+      });
       drawing += rect({
         x: BAR.left,
-        y: y - 8,
+        y: y - 2,
         width: Math.max(width, 1),
-        height: 16,
+        height: 15,
         class: Math.abs(value) < 1e-9 ? "fig-good" : "fig-warn",
         opacity: 0.45,
       });
       drawing += label({
-        x: BAR.left + BAR.width + 8,
-        y: y + 5,
-        text: `${(value * 1000).toFixed(3)} mm`,
-        anchor: "start",
+        x: BAR.right,
+        y: y + 12,
+        text: `${(value * 1000).toFixed(1)} mm`,
+        anchor: "end",
         size: SIZE.tick,
         class: "text-ink",
       });
@@ -140,25 +156,17 @@ export function mount(el) {
 
     const sigma = singularValues(legsJacobian(state.D, C));
     drawing += label({
-      x: BAR.left - 10,
-      y: 244,
-      text: "singular values",
-      anchor: "end",
-      size: SIZE.tick,
-      class: "text-ink",
-    });
-    drawing += label({
       x: BAR.left,
-      y: 244,
-      text: `${sigma.map((value) => value.toFixed(3)).join("  ")}`,
+      y: 254,
+      text: "singular values",
       anchor: "start",
       size: SIZE.tick,
       class: "text-ink",
     });
     drawing += label({
       x: BAR.left,
-      y: 272,
-      text: "the third is zero: three rows, two unknowns",
+      y: 276,
+      text: sigma.map((value) => value.toFixed(3)).join("   "),
       anchor: "start",
       size: SIZE.tick,
       class: "text-ink",

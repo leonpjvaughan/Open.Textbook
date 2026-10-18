@@ -91,13 +91,27 @@ counts the legs once, rather than as two legs with an upright's length bolted on
 The count is a modelling decision, and the decomposition is how you check that
 the decision you made was the one you thought you made.
 
+## The front view is an idealisation, and worth a number
+
+One loose end, stated because the chapter's method is to state it. A projection of a
+triangle is not a triangle with the same edges: the upper arm in this chapter's front
+view is 0.30829 m long, and the two legs of the real wishbone project to 0.30717 m
+and 0.30948 m. The view's single arm sits between them, within about a millimetre.
+
+So the front view is an idealisation *of the three-dimensional linkage*, chosen to
+match it at the design position and to be simple enough to solve in closed form. The
+three-dimensional solver and this chapter's model therefore agree at the design pose
+and drift apart by a fraction of a millimetre elsewhere — a difference far below the
+question the chapter asks, and exactly the kind of difference a reader should want a
+number for rather than an assurance.
+
 ## The agreement panel
 
 | Check | Value |
 |---|---|
 | Singular values of the three-row Jacobian | 1.446, 0.953, 0.000 |
 | Left null vector | (0.707, −0.707, 0), so the two legs cancel |
-| Least squares with all three rows | same point as §1.2, to 10⁻¹² m |
+| Least squares with all three rows | same point as §1.2, to 10⁻¹⁶ m |
 | Direct 2×2 solve with the spare row deleted | the same point again |
 
 ```text

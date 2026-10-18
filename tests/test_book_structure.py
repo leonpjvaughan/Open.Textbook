@@ -222,6 +222,27 @@ def test_the_url_of_a_deeper_page_is_reader_facing(tmp_path):
     assert pipeline.url_for(path) == "chapter-1/section-1.1/deeper/more/"
 
 
+def test_the_pager_walks_the_main_thread_and_not_the_depth_pages():
+    """A section's optional page is not the section after it.
+
+    Both are children of the same section in the nav, so the pager put a depth page
+    between one section and the next: the eyebrow said "Next section" and offered an
+    optional detour. The reading order skips them, and a depth page borrows the pager
+    of the page that offers it, so a reader who takes the detour can step back on.
+    """
+    book = real_book()
+    learn = "Chapter 1/Section 1.2/Walkthrough/index.md"
+    deeper = "Chapter 1/Section 1.2/Deeper/two-solutions/index.md"
+    following = "Chapter 1/Section 1.3/Walkthrough/index.md"
+    pager = pipeline.pager_for([learn, deeper, following], book)
+
+    assert pager[learn][1]["href"] == "chapter-1/section-1.3/learn/", pager[learn]
+    assert pager[deeper][0]["href"] == "chapter-1/section-1.2/learn/", pager[deeper]
+    assert pager[deeper][1] == pager[learn][1], (
+        "stepping forward from a depth page rejoins the thread"
+    )
+
+
 # --- the directive ------------------------------------------------------------
 
 

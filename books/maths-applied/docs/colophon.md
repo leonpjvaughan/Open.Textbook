@@ -29,7 +29,11 @@ Vaughan, who wrote and assembled it.
 This book follows no syllabus, and it is not tied to a country's
 curriculum.
 
-This book rests on no external document. The mathematics is standard, the geometry is illustrative rather than measured, and every number in a figure is computed by the model the page describes.
+The mathematics is standard, the geometry is illustrative rather than measured, and every number in a figure is computed by the model the page describes.
+
+The claims in this book rest on these documents:
+
+- [SAE J670: Vehicle Dynamics Terminology](https://www.sae.org/standards/content/j670_202208/)
 
 These sources were last checked on 2026-10-18.
 
