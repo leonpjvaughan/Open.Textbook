@@ -12,7 +12,7 @@ reasoning, so nothing is compressed on the way across and nothing is deleted.
 **An item is here because it is still true.** Before closing one, run its own
 done-means; an item whose heading says done and whose checklist does not is the
 failure this file has had twice, so the list below, the headings and the boxes
-are checked against each other on every pass. Six items are open, and two of
+are checked against each other on every pass. Seven items are open, and two of
 them say which single line is not met.
 
 The *interactive-aid backlog* — which figures and interactions a book still wants —
@@ -30,6 +30,8 @@ author choosing what to build next.
       export — 6 `TODO(phase-a)` markers wait on `suspension-kinematics`
 - [ ] 73. The chapter has no photograph of a real corner — the diagram is drawn
       instead, and the build can now ship one
+- [ ] 74. `fill="none"` is ignored on every filled class — 45 elements and every
+      kit-drawn curve are filled shapes, and it looks deliberate
 
 **Not in the queue, and not forgotten.** Accepted limitations live where the check
 that records them lives, not here: the booklets whose items cannot be parsed
@@ -269,3 +271,57 @@ caption. If none is clean, say so in `sources.yaml` and leave the diagram.
 - [ ] Nothing in the frame is a team's livery, badge or championship branding.
 - [ ] The caption credits the photographer, and `sources.yaml` names the licence.
 - [ ] The image is in the built page (not a hotlink) and needs no network.
+
+## 74. `fill="none"` is ignored on every filled class, so curves are drawn as filled shapes
+
+**What is wrong.** A `fig-*` class sets `fill`, and a class rule beats a presentation
+attribute — specificity 0,1,0 against SVG's zero. So
+
+```html
+<path d="M… L…" fill="none" class="fig-accent">
+```
+
+is **filled** with the accent colour, not stroked. Measured 2026-10-18:
+
+```
+grep -rhoP '<(circle|rect|polygon|path)[^>]*(class="fig-(ink|accent|warn|good)"[^>]*fill="none"|fill="none"[^>]*class="fig-(ink|accent|warn|good)")[^>]*>' \
+  books/*/docs/assets/figures/*.js | wc -l
+45
+```
+
+and the kit's own `path()` emits the fill as an attribute with `"none"` as its
+default, so **every `curve()`, `graph()` and `area()` in the collection is filled
+too**. `ch15-projectile` in a-level-physics is the clearest case: its trajectory is
+drawn as a solid purple mound (computed fill `rgb(91,75,138)` on a `fill="none"`
+path), which is legible and looks deliberate, so it has survived every audit — a
+filled shape raises no contrast question because the *stroke* is still fine.
+
+It was found from the other end: `books/maths-applied`'s hero drew its wheel as a
+`<circle … fill="none" class="fig-ink">` and got a 0.64 m ink-filled disc that hid
+the whole mechanism. The same fault, in the newest code, in the same week.
+
+**Why no check caught it.** `audit` measures the paint of what is drawn, and a filled
+path is painted; `tests/test_figures.py` checks classes are *defined*, not that they
+compose with the attributes a module also writes. The one check that would catch it
+is a static one: a filled class written together with `fill="none"`.
+
+**The fix.** Two halves, and both are needed.
+
+1. **The kit** — `path()` (and any mark that takes a `fill`) should emit
+   `style="fill:none"` rather than `fill="none"`, because an inline style wins where
+   an attribute loses. That repairs every curve in the collection in one change.
+2. **A test** — fail on a filled class written with `fill="none"` in a module, since
+   the two cannot both be what the author meant. The hand-written cases (45 today)
+   then need `class="fig-line"` (an accent stroke with no fill), `fig-grid`, or an
+   inline style.
+
+**Done means**
+
+- [ ] `path({ fill: "none" })` renders as a stroke in a browser, checked by a row in
+      `tools kit` rather than by eye.
+- [ ] A test fails on a module that writes a filled class and `fill="none"` together.
+- [ ] `ch15-projectile` draws its trajectory as a line, and its page is re-captured.
+- [ ] Every figure is re-audited in both schemes after the change, and the count of
+      filled-and-unfilled spellings is zero.
+- [ ] `assets/AGENTS.md` says which class paints a *line* and which paints an *area*,
+      because "a `fig-*` class paints a shape" is the sentence that led here.
