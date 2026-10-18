@@ -22,17 +22,15 @@ from textbook.verify.oracles import units
 from textbook.verify.render import render_problem, render_quantity, render_quantity_html
 from textbook.verify.verify import verify_bank, verify_problem
 
+from support import problem_record
+
 #: A physics bank selects both oracles: SymPy for the arithmetic it is good at
 #: (`all`, `evaluate`, `between`) and units for the rest.
 PHYSICS = ("sympy", "units")
 
 
-def _problem(check):
-    return {"id": "case", "check": check}
-
-
 def _verify(check, oracles_=PHYSICS):
-    return verify_problem(_problem(check), oracles=oracles_)
+    return verify_problem(problem_record(check), oracles=oracles_)
 
 
 # --- unit algebra -------------------------------------------------------------
@@ -645,9 +643,9 @@ def test_a_physics_bank_selects_units_and_a_maths_bank_does_not():
         "consistency": "v = s / t",
         "units": {"v": "m s^-1", "s": "m", "t": "s"},
     }
-    assert verify_problem(_problem(check), oracles=PHYSICS).ok
+    assert verify_problem(problem_record(check), oracles=PHYSICS).ok
     with pytest.raises(oracles.UnknownCheck, match="units"):
-        verify_problem(_problem(check))
+        verify_problem(problem_record(check))
 
 
 def test_a_units_kind_in_a_maths_bank_fails_loudly(tmp_path):

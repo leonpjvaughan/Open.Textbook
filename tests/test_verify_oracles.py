@@ -205,14 +205,11 @@ def test_a_bank_may_override_its_books_oracles(tmp_path):
 # reported like every other defect: the path, the reason, and a non-zero exit.
 
 
-def _write(tmp_path, name: str, text: str):
-    path = tmp_path / name
-    path.write_text(text, encoding="utf-8")
-    return path
+# `write` is the suite's fixture for a file in `tmp_path`: see `conftest.py`.
 
 
-def test_a_bank_with_invalid_yaml_is_a_verdict_not_a_traceback(tmp_path):
-    path = _write(tmp_path, "broken.yaml", "problems:\n  - id: x\n    check: [\n")
+def test_a_bank_with_invalid_yaml_is_a_verdict_not_a_traceback(write):
+    path = write("broken.yaml", "problems:\n  - id: x\n    check: [\n")
     report = verify_bank(path)
     assert not report.ok
     assert report.load_error is not None
@@ -229,15 +226,14 @@ def test_a_missing_bank_is_a_verdict_not_a_traceback(tmp_path):
     assert "could not read the file" in report.load_error
 
 
-def test_a_broken_bank_does_not_stop_the_run(tmp_path):
+def test_a_broken_bank_does_not_stop_the_run(tmp_path, write):
     """The failure this guards against was a *short* run that looked clean.
 
     `verify_bank` is what the CLI loops over, so the property that matters is that a
     broken file returns rather than raises: one bad bank in a directory must not hide
     the verdict on the others.
     """
-    good = _write(
-        tmp_path,
+    good = write(
         "good.yaml",
         "problems:\n"
         "  - id: a\n"
@@ -248,7 +244,7 @@ def test_a_broken_bank_does_not_stop_the_run(tmp_path):
         "    check: {kind: evaluate, expression: '2 + 2', answer: '4'}\n"
         "    answer_text: '$4$'\n",
     )
-    bad = _write(tmp_path, "bad.yaml", "problems:\n  - id: x\n    check: [\n")
+    bad = write("bad.yaml", "problems:\n  - id: x\n    check: [\n")
     reports = [verify_bank(path) for path in sorted(tmp_path.glob("*.yaml"))]
     assert len(reports) == 2, "a broken bank ended the run"
     assert [report.ok for report in reports] == [False, True]
@@ -267,9 +263,8 @@ def test_a_broken_bank_does_not_stop_the_run(tmp_path):
 # cubic is making.
 
 
-def _roots_bank(tmp_path, answer: str):
-    return _write(
-        tmp_path,
+def _roots_bank(write, answer: str):
+    return write(
         "roots.yaml",
         "problems:\n"
         "  - id: roots\n"
@@ -285,24 +280,24 @@ def _roots_bank(tmp_path, answer: str):
     )
 
 
-def test_a_solve_result_is_checked_as_a_set(tmp_path):
-    assert verify_bank(_roots_bank(tmp_path, "[1 - 2*I, 1 + 2*I]")).ok
+def test_a_solve_result_is_checked_as_a_set(write):
+    assert verify_bank(_roots_bank(write, "[1 - 2*I, 1 + 2*I]")).ok
 
 
-def test_the_order_of_a_solution_set_does_not_matter(tmp_path):
-    assert verify_bank(_roots_bank(tmp_path, "[1 + 2*I, 1 - 2*I]")).ok
+def test_the_order_of_a_solution_set_does_not_matter(write):
+    assert verify_bank(_roots_bank(write, "[1 + 2*I, 1 - 2*I]")).ok
 
 
-def test_a_missing_root_fails(tmp_path):
+def test_a_missing_root_fails(write):
     """The case the check exists for: a bank that solved a quadratic and listed one root."""
-    report = verify_bank(_roots_bank(tmp_path, "[1 + 2*I]"))
+    report = verify_bank(_roots_bank(write, "[1 + 2*I]"))
     assert not report.ok
 
 
-def test_a_repeated_root_fails(tmp_path):
+def test_a_repeated_root_fails(write):
     """A multiset and not a set, so a root written twice is not a second root."""
-    assert not verify_bank(_roots_bank(tmp_path, "[1 + 2*I, 1 + 2*I]")).ok
+    assert not verify_bank(_roots_bank(write, "[1 + 2*I, 1 + 2*I]")).ok
 
 
-def test_a_solution_set_against_a_single_expression_fails(tmp_path):
-    assert not verify_bank(_roots_bank(tmp_path, "1 + 2*I")).ok
+def test_a_solution_set_against_a_single_expression_fails(write):
+    assert not verify_bank(_roots_bank(write, "1 + 2*I")).ok

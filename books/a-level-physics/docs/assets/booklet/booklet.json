@@ -186,6 +186,8 @@
      "id": "photoelectric",
      "name": "Photoelectric equation",
      "latex": "hf = \\phi + E_{k(\\text{max})}",
+     "symbolic": false,
+     "why": "A text label inside a subscript, such as v_{\\text{max}}: a name, not a symbol the parser can relate.",
      "provision": {
       "aqa": "given",
       "edexcel": "given",
@@ -650,6 +652,8 @@
      "id": "efficiency",
      "name": "Efficiency",
      "latex": "\\text{efficiency} = \\frac{\\text{useful output power}}{\\text{total input power}}",
+     "symbolic": false,
+     "why": "A word formula: both sides name quantities in words, so there is nothing symbolic for the parser to relate.",
      "provision": {
       "aqa": "given",
       "edexcel": "given",
@@ -767,6 +771,8 @@
      "id": "shm-max-speed",
      "name": "Maximum speed",
      "latex": "v_{\\text{max}} = \\omega A",
+     "symbolic": false,
+     "why": "A text label inside a subscript, such as v_{\\text{max}}: a name, not a symbol the parser can relate.",
      "provision": {
       "aqa": "given",
       "edexcel": "question",
@@ -783,6 +789,8 @@
      "id": "shm-max-acceleration",
      "name": "Maximum acceleration",
      "latex": "a_{\\text{max}} = \\omega^2 A",
+     "symbolic": false,
+     "why": "A text label inside a subscript, such as v_{\\text{max}}: a name, not a symbol the parser can relate.",
      "provision": {
       "aqa": "given",
       "edexcel": "question",
@@ -901,6 +909,8 @@
      "id": "young-modulus",
      "name": "Young modulus",
      "latex": "E = \\frac{\\text{stress}}{\\text{strain}}",
+     "symbolic": false,
+     "why": "A word formula: both sides name quantities in words, so there is nothing symbolic for the parser to relate.",
      "provision": {
       "aqa": "given",
       "edexcel": "given",
@@ -1386,6 +1396,8 @@
      "id": "rms-current",
      "name": "Root mean square values",
      "latex": "I_{\\text{rms}} = \\frac{I_0}{\\sqrt{2}},\\quad V_{\\text{rms}} = \\frac{V_0}{\\sqrt{2}}",
+     "symbolic": false,
+     "why": "Two relations on one line, with text labels in the subscripts.",
      "provision": {
       "aqa": "given",
       "edexcel": "given",

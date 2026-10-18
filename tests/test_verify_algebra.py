@@ -15,6 +15,8 @@ import pytest
 
 from textbook.verify.verify import verify_problem
 
+from support import problem_record
+
 REAL = {"x": {"real": True}}
 REAL_XY = {"x": {"real": True}, "y": {"real": True}}
 REAL_T = {"t": {"real": True}}
@@ -23,18 +25,11 @@ POSITIVE_XY = {"x": {"real": True, "positive": True}, "y": {"real": True, "posit
 SEQUENCE = {"k": {"integer": True, "positive": True}, "n": {"integer": True, "positive": True}}
 
 
-def _problem(check, symbols=None):
-    problem = {"id": "case", "check": check}
-    if symbols is not None:
-        problem["symbols"] = symbols
-    return problem
-
-
 # --- system: simultaneous equations ------------------------------------------
 
 
 def test_system_solves_one_linear_and_one_quadratic():
-    problem = _problem(
+    problem = problem_record(
         {
             "kind": "system",
             "equations": ["x + y = 5", "x*y = 6"],
@@ -47,7 +42,7 @@ def test_system_solves_one_linear_and_one_quadratic():
 
 
 def test_system_is_order_insensitive():
-    problem = _problem(
+    problem = problem_record(
         {
             "kind": "system",
             "equations": ["x + y = 5", "x*y = 6"],
@@ -60,7 +55,7 @@ def test_system_is_order_insensitive():
 
 
 def test_system_accepts_named_solution_dicts():
-    problem = _problem(
+    problem = problem_record(
         {
             "kind": "system",
             "equations": ["x + y = 5", "x - y = 1"],
@@ -74,7 +69,7 @@ def test_system_accepts_named_solution_dicts():
 
 def test_system_wrong_answer_fails():
     """A wrong solution tuple must fail, not slip through the set comparison."""
-    problem = _problem(
+    problem = problem_record(
         {
             "kind": "system",
             "equations": ["x + y = 5", "x*y = 6"],
@@ -92,7 +87,7 @@ def test_system_wrong_answer_fails():
 
 
 def test_solve_accepts_an_interval_domain():
-    problem = _problem(
+    problem = problem_record(
         {
             "kind": "solve",
             "equation": "sin(x) = 0",
@@ -106,7 +101,7 @@ def test_solve_accepts_an_interval_domain():
 
 
 def test_solve_compares_a_general_set():
-    problem = _problem(
+    problem = problem_record(
         {
             "kind": "solve",
             "equation": "sin(x) = 1/2",
@@ -122,7 +117,7 @@ def test_solve_compares_a_general_set():
 def test_solve_reports_a_condition_set_as_unknown_not_wrong():
     """`sin x = x/2` has no closed form; SymPy returns a ConditionSet. That is
     unknown, so it is a warning, never an error."""
-    problem = _problem(
+    problem = problem_record(
         {
             "kind": "solve",
             "equation": "sin(x) = x/2",
@@ -137,7 +132,7 @@ def test_solve_reports_a_condition_set_as_unknown_not_wrong():
 
 
 def test_solve_wrong_interval_solutions_fail():
-    problem = _problem(
+    problem = problem_record(
         {
             "kind": "solve",
             "equation": "sin(x) = 0",
@@ -154,7 +149,7 @@ def test_solve_wrong_interval_solutions_fail():
 
 
 def test_inequality_chain_solves_to_an_interval():
-    problem = _problem(
+    problem = problem_record(
         {
             "kind": "inequality",
             "inequality": "-3 < x <= 2",
@@ -167,7 +162,7 @@ def test_inequality_chain_solves_to_an_interval():
 
 
 def test_inequality_accepts_a_list_of_relations():
-    problem = _problem(
+    problem = problem_record(
         {
             "kind": "inequality",
             "inequalities": ["-3 < x", "x <= 2"],
@@ -181,7 +176,7 @@ def test_inequality_accepts_a_list_of_relations():
 
 def test_inequality_wrong_boundary_fails():
     """A closed interval includes -3 where the chain excludes it: a real error."""
-    problem = _problem(
+    problem = problem_record(
         {
             "kind": "inequality",
             "inequality": "-3 < x <= 2",
@@ -240,12 +235,12 @@ VECTOR_CASES = [
 
 @pytest.mark.parametrize("op,check", VECTOR_CASES, ids=[case[0] for case in VECTOR_CASES])
 def test_vector_named_operations(op, check):
-    assert verify_problem(_problem(check)).ok
+    assert verify_problem(problem_record(check)).ok
 
 
 def test_vector_components_still_compare_through_evaluate():
     """The gap note: `Matrix(...)` equality already worked through `evaluate`."""
-    problem = _problem(
+    problem = problem_record(
         {"kind": "evaluate", "expression": "Matrix([3, 4])", "answer": "Matrix([3, 4])"}
     )
     assert verify_problem(problem).ok
@@ -253,7 +248,7 @@ def test_vector_components_still_compare_through_evaluate():
 
 def test_vector_wrong_dot_fails():
     check = {"kind": "vector", "op": "dot", "args": ["Matrix([1,2,3])", "Matrix([4,5,6])"], "answer": "33"}
-    report = verify_problem(_problem(check))
+    report = verify_problem(problem_record(check))
     assert not report.ok
     assert "dot gives 32" in report.errors[0]
 
@@ -262,7 +257,7 @@ def test_vector_wrong_dot_fails():
 
 
 def test_ode_general_solution():
-    problem = _problem(
+    problem = problem_record(
         {
             "kind": "ode",
             "equation": "Derivative(y(x), x) = 3*y(x)",
@@ -276,7 +271,7 @@ def test_ode_general_solution():
 
 
 def test_ode_particular_solution_with_initial_condition():
-    problem = _problem(
+    problem = problem_record(
         {
             "kind": "ode",
             "equation": "Derivative(y(x), x) = 3*y(x)",
@@ -291,7 +286,7 @@ def test_ode_particular_solution_with_initial_condition():
 
 
 def test_ode_wrong_answer_fails():
-    problem = _problem(
+    problem = problem_record(
         {
             "kind": "ode",
             "equation": "Derivative(y(x), x) = 3*y(x)",
@@ -311,7 +306,7 @@ def test_ode_wrong_answer_fails():
 
 def test_approx_absolute_tolerance():
     check = {"kind": "approx", "value": "3.14159", "target": "pi", "tolerance": "0.0001"}
-    assert verify_problem(_problem(check)).ok
+    assert verify_problem(problem_record(check)).ok
 
 
 def test_approx_relative_tolerance():
@@ -322,12 +317,12 @@ def test_approx_relative_tolerance():
         "tolerance": "0.01",
         "relative": True,
     }
-    assert verify_problem(_problem(check)).ok
+    assert verify_problem(problem_record(check)).ok
 
 
 def test_approx_wrong_value_fails():
     check = {"kind": "approx", "value": "3.14", "target": "pi", "tolerance": "0.0001"}
-    report = verify_problem(_problem(check))
+    report = verify_problem(problem_record(check))
     assert not report.ok
     assert "tolerance" in report.errors[0]
 
@@ -340,7 +335,7 @@ def test_approx_makes_a_trapezium_estimate_checkable():
         "target": "pi/4",
         "tolerance": "0.001",
     }
-    assert verify_problem(_problem(check)).ok
+    assert verify_problem(problem_record(check)).ok
 
 
 # --- apply operations ---------------------------------------------------------
@@ -349,119 +344,119 @@ def test_approx_makes_a_trapezium_estimate_checkable():
 APPLY_PROBLEMS = [
     (
         "limit",
-        _problem(
+        problem_record(
             {"kind": "apply", "expression": "(sin(x))/x", "apply": {"op": "limit", "args": ["x", 0]}, "answer": "1"},
             REAL,
         ),
     ),
     (
         "sum",
-        _problem(
+        problem_record(
             {"kind": "apply", "expression": "k**2", "apply": {"op": "sum", "args": ["k", 1, "n"]}, "answer": "n**3/3 + n**2/2 + n/6"},
             SEQUENCE,
         ),
     ),
     (
         "series",
-        _problem(
+        problem_record(
             {"kind": "apply", "expression": "sin(x)", "apply": {"op": "series", "args": ["x", 0, 4]}, "answer": "x - x**3/6"},
             REAL,
         ),
     ),
     (
         "iterate",
-        _problem(
+        problem_record(
             {"kind": "apply", "expression": "(x + 2/x)/2", "apply": {"op": "iterate", "args": [1, 4], "variable": "x"}, "answer": "665857/470832"},
             REAL,
         ),
     ),
     (
         "idiff",
-        _problem(
+        problem_record(
             {"kind": "apply", "expression": "x**2 + y**2 - 25", "apply": {"op": "idiff", "args": ["y", "x"]}, "answer": "-x/y"},
             REAL_XY,
         ),
     ),
     (
         "parametric_diff",
-        _problem(
+        problem_record(
             {"kind": "apply", "expression": "Matrix([cos(t), sin(t)])", "apply": {"op": "parametric_diff", "args": ["t"]}, "answer": "-cos(t)/sin(t)"},
             REAL_T,
         ),
     ),
     (
         "invert",
-        _problem(
+        problem_record(
             {"kind": "apply", "expression": "3*x + 2", "apply": {"op": "invert", "args": ["y"]}, "answer": "y/3 - 2/3"},
             REAL_XY,
         ),
     ),
     (
         "compose",
-        _problem(
+        problem_record(
             {"kind": "apply", "expression": "x**2 + 1", "apply": {"op": "compose", "args": ["2*x - 3"]}, "answer": "(2*x - 3)**2 + 1"},
             REAL,
         ),
     ),
     (
         "eliminate",
-        _problem(
+        problem_record(
             {"kind": "apply", "expression": "Matrix([2*t, t**2])", "apply": {"op": "eliminate", "args": ["t", "x", "y"]}, "answer": "Eq(y, x**2/4)"},
             REAL_TXY,
         ),
     ),
     (
         "div",
-        _problem(
+        problem_record(
             {"kind": "apply", "expression": "x**3 - 1", "apply": {"op": "div", "args": ["x - 1", "x"]}, "answer": "x**2 + x + 1"},
             REAL,
         ),
     ),
     (
         "rem",
-        _problem(
+        problem_record(
             {"kind": "apply", "expression": "2*x**2 + 3*x + 1", "apply": {"op": "rem", "args": ["x + 2", "x"]}, "answer": "3"},
             REAL,
         ),
     ),
     (
         "expand_log",
-        _problem(
+        problem_record(
             {"kind": "apply", "expression": "log(x*y)", "apply": {"op": "expand_log"}, "answer": "log(x) + log(y)"},
             POSITIVE_XY,
         ),
     ),
     (
         "logcombine",
-        _problem(
+        problem_record(
             {"kind": "apply", "expression": "log(x) + log(y)", "apply": {"op": "logcombine"}, "answer": "log(x*y)"},
             POSITIVE_XY,
         ),
     ),
     (
         "expand_trig",
-        _problem(
+        problem_record(
             {"kind": "apply", "expression": "sin(2*x)", "apply": {"op": "expand_trig"}, "answer": "2*sin(x)*cos(x)"},
             REAL,
         ),
     ),
     (
         "fu",
-        _problem(
+        problem_record(
             {"kind": "apply", "expression": "sin(x)*cos(x)", "apply": {"op": "fu"}, "answer": "sin(2*x)/2"},
             REAL,
         ),
     ),
     (
         "harmonic",
-        _problem(
+        problem_record(
             {"kind": "apply", "expression": "3*cos(t) + 4*sin(t)", "apply": {"op": "harmonic", "args": [3, 4, "t"]}, "answer": "5*cos(t - atan(4/3))"},
             REAL_T,
         ),
     ),
     (
         "dsolve",
-        _problem(
+        problem_record(
             {
                 "kind": "apply",
                 "equation": "Derivative(y(x), x) = 3*y(x)",
@@ -473,7 +468,7 @@ APPLY_PROBLEMS = [
     ),
     (
         "rsolve",
-        _problem(
+        problem_record(
             {
                 "kind": "apply",
                 "equation": "a(n+1) = 2*a(n) + 1",
@@ -496,21 +491,21 @@ def test_apply_operation_verifies_a_record(operation, problem):
 WRONG_APPLY_PROBLEMS = [
     (
         "limit",
-        _problem(
+        problem_record(
             {"kind": "apply", "expression": "(sin(x))/x", "apply": {"op": "limit", "args": ["x", 0]}, "answer": "0"},
             REAL,
         ),
     ),
     (
         "div",
-        _problem(
+        problem_record(
             {"kind": "apply", "expression": "x**3 - 1", "apply": {"op": "div", "args": ["x - 1", "x"]}, "answer": "x**2 + x"},
             REAL,
         ),
     ),
     (
         "harmonic",
-        _problem(
+        problem_record(
             {"kind": "apply", "expression": "3*cos(t) + 4*sin(t)", "apply": {"op": "harmonic", "args": [3, 4, "t"]}, "answer": "5*cos(t + atan(4/3))"},
             REAL_T,
         ),
@@ -589,21 +584,21 @@ STATISTIC_CASES = [
     "statistic,check", STATISTIC_CASES, ids=[case[0] for case in STATISTIC_CASES]
 )
 def test_statistic_values(statistic, check):
-    assert verify_problem(_problem(dict(check, kind="statistic"))).ok
+    assert verify_problem(problem_record(dict(check, kind="statistic"))).ok
 
 
 def test_statistic_sample_and_population_are_distinguished():
     data = [2, 4, 4, 4, 5, 5, 7, 9]
-    sample = _problem({"kind": "statistic", "data": data, "stat": "variance", "convention": "sample", "answer": "32/7"})
-    population = _problem({"kind": "statistic", "data": data, "stat": "variance", "convention": "population", "answer": "4"})
-    wrong = _problem({"kind": "statistic", "data": data, "stat": "variance", "convention": "sample", "answer": "4"})
+    sample = problem_record({"kind": "statistic", "data": data, "stat": "variance", "convention": "sample", "answer": "32/7"})
+    population = problem_record({"kind": "statistic", "data": data, "stat": "variance", "convention": "population", "answer": "4"})
+    wrong = problem_record({"kind": "statistic", "data": data, "stat": "variance", "convention": "sample", "answer": "4"})
     assert verify_problem(sample).ok
     assert verify_problem(population).ok
     assert not verify_problem(wrong).ok
 
 
 def test_statistic_requires_a_named_convention():
-    problem = _problem(
+    problem = problem_record(
         {"kind": "statistic", "data": [1, 2, 3, 4], "stat": "iqr", "answer": "3"}
     )
     report = verify_problem(problem)
@@ -612,7 +607,7 @@ def test_statistic_requires_a_named_convention():
 
 
 def test_statistic_wrong_value_fails():
-    problem = _problem(
+    problem = problem_record(
         {"kind": "statistic", "data": [1, 2, 3, 4, 5], "stat": "iqr", "convention": "linear", "answer": "2"}
     )
     report = verify_problem(problem)

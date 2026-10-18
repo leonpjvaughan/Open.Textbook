@@ -9,8 +9,6 @@ accident, so the declaration is what the check trusts and inference only suggest
 
 from __future__ import annotations
 
-import re
-
 import pytest
 
 from textbook import book as books
@@ -76,65 +74,73 @@ def test_every_declaration_in_the_real_books_is_valid(book):
     assert coverage.check_book(book) == []
 
 
-#: Notations `sympy.parsing.latex` cannot read. Each entry is a regex matched against
-#: the item's LaTeX and the reason it fails.
-#:
-#: `coverage._sides` returns nothing for a matched item, so a problem that declares one
-#: gets **no coverage check** — the check cannot see the relation. That is a real gap in
-#: what this project verifies, so it is written down and counted rather than hidden
-#: inside a percentage threshold.
-#:
-#: This is a list of *notations*, not of item ids, and that is deliberate. The same
-#: gaps recur in every book that carries formulae — a `\sum` with no limits appears in
-#: three booklets already — so an id list would have to be rewritten for each new book
-#: while telling us nothing new. A notation list is checked against every booklet at
-#: once, and a tenth *kind* of unreadable notation is what makes the test fail.
-UNPARSABLE_NOTATION: tuple[tuple[str, str], ...] = (
-    (r"\\sum", "a \\sum, which the parser only reads with explicit limits"),
-    (r"\\begin\{", "an environment such as pmatrix or array: a layout, not a relation"),
-    (r"\{\\^", "prescript notation such as {}^n C_r"),
-    (r"\\left[|\\right]|\\langle|\\rangle", "paired delimiters the parser wants as \\langle / \\rangle"),
-    (r"\\mathbb", "a blackboard-bold number set: a symbol list, not an expression"),
-    (r"\\binom", "a binomial coefficient, whose factorial form the parser rejects"),
-    (r"\\operatorname", "a named operator"),
-    (r"\\qquad|\\quad|\\;", "spacing commands, which a relation cannot contain"),
-)
-
-
-def _unreadable_reason(latex: str) -> str | None:
-    """Why `sympy.parsing.latex` cannot read this LaTeX, or None if it is a fault."""
-    for pattern, reason in UNPARSABLE_NOTATION:
-        if re.search(pattern, latex):
-            return reason
-    return None
-
-
+# An item that `sympy.parsing.latex` cannot read says so on the item, and says why:
+#
+#     - id: mean-of-data
+#       latex: '\bar{x} = \frac{\sum x}{n} = \frac{\sum f x}{\sum f}'
+#       symbolic: false
+#       why: A \sum with no limits, which the parser only reads with explicit bounds.
+#
+# This used to be a tuple of eight `(regex, reason)` pairs here — `\sum` without
+# limits, `\begin{…}`, `{}^n C_r`, `\binom`, `\mathbb`, `\operatorname`, paired
+# delimiters and spacing commands — so a ninth kind of unreadable notation failed a
+# test whose only fix was another regex, in a file that is not about booklets. The
+# declaration is data in the booklet now and `coverage.booklet_faults` reads it, so
+# a new notation is a row in a booklet and this file names no notation at all.
 @pytest.mark.parametrize("book", WITH_BOOKLET, ids=BOOKLET_IDS)
-def test_the_booklet_parses_and_the_gap_is_countable(book):
-    """The tooling works on the real booklets, and the gap is a number not a guess."""
+def test_every_item_is_read_or_says_why_it_is_not(book):
+    """The tooling works on the real booklets, and the gap is countable not guessed.
+
+    `coverage._sides` returns nothing for an item `sympy.parsing.latex` cannot read,
+    so a problem that plays one gets **no coverage check** — the check cannot see the
+    relation. That is a real gap in what this project verifies, so it is written down:
+    each such item carries `symbolic: false` and a `why:` in the booklet, and
+    `booklet_faults` proves that every item is either read or declared. The count of
+    declarations is the size of the gap, printed by reading the data rather than
+    maintained beside it.
+    """
     items = coverage.booklet_items(book)
     assert items, f"{book.id} declares a booklet but no items were read"
 
-    # An item that will not parse is only a failure when it *should* parse. A word
-    # formula — `speed = distance / time`, with the words in `\text{}` — has no
-    # relation to check, so `_sides` returning nothing is right for it. So is any
-    # notation in UNPARSABLE_NOTATION, with its reason recorded.
-    faults = []
-    for item_id, item in items.items():
-        if coverage._sides(item):
-            continue
-        latex = str(item.get("latex") or "")
-        if "\\text{" in latex:
-            continue  # a word formula: nothing symbolic to check
-        if _unreadable_reason(latex) is None:
-            faults.append((item_id, latex))
-
+    faults = coverage.booklet_faults(items)
     assert not faults, (
-        "these booklet items carry a relation that `sympy.parsing.latex` should read "
-        "and does not, so a problem declaring one gets no coverage check:\n  "
-        + "\n  ".join(f"{i}: {l!r}" for i, l in faults)
-        + "\nFix the LaTeX, or add the notation to UNPARSABLE_NOTATION with a reason."
+        "these booklet items carry LaTeX that `sympy.parsing.latex` does not read and "
+        "do not declare it, so a problem declaring one gets no coverage check:\n  "
+        + "\n  ".join(faults)
+        + "\nFix the LaTeX, or add `symbolic: false` and a `why:` to the item."
     )
+
+    # The declaration is the whole mechanism, in both directions, so pin the two
+    # shapes here rather than trusting the booklets to exercise them.
+    unread = {"x": {"id": "x", "latex": "\\sum x"}}
+    assert coverage.booklet_faults(unread), "an undeclared unreadable item passed"
+
+    declared = {
+        "x": {
+            "id": "x",
+            "latex": "\\sum x",
+            "symbolic": False,
+            "why": "A sum with no limits: a layout, not a relation.",
+        }
+    }
+    assert coverage.booklet_faults(declared) == []
+    assert coverage.unreadable(declared) == [
+        ("x", "A sum with no limits: a layout, not a relation.")
+    ]
+
+    # A declaration without a reason, and one on an item that does parse, are both
+    # faults: the first is an opt-out and the second would hide a real relation.
+    reasonless = {"x": {"id": "x", "latex": "\\sum x", "symbolic": False}}
+    assert coverage.booklet_faults(reasonless)
+    stale = {
+        "x": {
+            "id": "x",
+            "latex": "F = ma",
+            "symbolic": False,
+            "why": "A relation this item does not actually have.",
+        }
+    }
+    assert "parses" in " ".join(coverage.booklet_faults(stale))
 
     # Undeclared symbolic records are reported, not failed.
     assert isinstance(coverage.undeclared(book), list)

@@ -22,6 +22,8 @@ import pytest
 from textbook import scaffold
 from textbook.book import discover_books, repo_root
 
+from support import call_expressions
+
 BOOKS = discover_books()
 
 #: The two files in a figures directory that are not figures: the loader and the
@@ -295,9 +297,16 @@ def code_only(text: str) -> str:
     return re.sub(r"(?m)^\s*//.*$", "", text)
 
 
-def colour_literals(text: str) -> list[str]:
+def figure_colour_literals(text: str) -> list[str]:
     """The colour literals in a figure module: a hex, an rgb/hsl function, or a
-    named colour where a colour value belongs."""
+    named colour where a colour value belongs.
+
+    Not the same scanner as ``test_themes.colour_literals``, which reads a
+    stylesheet or a Python file. This one reads JavaScript, so a named colour
+    counts only where a colour value belongs (``color: red``, ``fill="red"``) and
+    a class or variable called ``red`` is not one. The two are kept apart on
+    purpose: merging them would loosen one and tighten the other.
+    """
     found = [match.group(0) for match in FIGURE_HEX.finditer(text)]
     found += [match.group(0) for match in FIGURE_COLOUR_FUNCTION.finditer(text)]
     found += [
@@ -315,7 +324,7 @@ def colour_literals(text: str) -> list[str]:
 
 @pytest.mark.parametrize(("book", "path"), FIGURES, ids=IDS)
 def test_no_figure_module_hard_codes_a_colour(book, path):
-    literals = colour_literals(code_only(path.read_text(encoding="utf-8")))
+    literals = figure_colour_literals(code_only(path.read_text(encoding="utf-8")))
     assert not literals, (
         f"{book.id}/{path.name}: a figure must adapt to every bundle and both "
         f"schemes, so it cannot carry a colour literal: {literals!r}. Use a "
@@ -446,44 +455,6 @@ def test_the_figure_colour_classes_are_all_defined():
             )
 
 
-def slider_calls(text: str) -> list[str]:
-    """Every `slider(...)` call in a module, as written.
-
-    Scanned by balancing parentheses rather than by a regular expression. The pattern
-    this replaces was `slider\([^;]*?\)`, which stops at the **first** `)` — so a call
-    whose arguments contain one, such as `max: Object.keys(EQUATIONS).length - 1`, was
-    truncated before `show:` and the call was reported as silent when it was not. A
-    check that a nested call can defeat is worse than no check, because it reads as a
-    guarantee.
-    """
-    calls: list[str] = []
-    for match in re.finditer(r"\bslider\(", text):
-        start = match.end() - 1
-        depth = 0
-        quote: str | None = None
-        i = start
-        while i < len(text):
-            char = text[i]
-            if quote:
-                # A string is skipped whole: a bracket inside one is not a bracket.
-                if char == "\\":
-                    i += 2
-                    continue
-                if char == quote:
-                    quote = None
-            elif char in "\"'`":
-                quote = char
-            elif char == "(":
-                depth += 1
-            elif char == ")":
-                depth -= 1
-                if depth == 0:
-                    calls.append(text[start : i + 1])
-                    break
-            i += 1
-    return calls
-
-
 # --- a label may not be smaller than the floor ---------------------------------
 #
 # The mobile audit measures the smallest label a figure draws at 390px and fails below
@@ -491,35 +462,6 @@ def slider_calls(text: str) -> list[str]:
 # written with `size: 15` for its per-part labels, which is 8.6px — the same defect
 # `SIZE.tick` was raised from 15 to 16 to fix, repeated by a new module because the
 # floor was a measurement rather than a rule. This is the rule, without a browser.
-
-
-def _calls(text: str, name: str) -> list[str]:
-    """Every `name(...)` call in a module, as written, by balancing parentheses."""
-    calls: list[str] = []
-    for match in re.finditer(rf"\b{name}\(", text):
-        start = match.end() - 1
-        depth = 0
-        quote: str | None = None
-        i = start
-        while i < len(text):
-            char = text[i]
-            if quote:
-                if char == "\\":
-                    i += 2
-                    continue
-                if char == quote:
-                    quote = None
-            elif char in "\"'`":
-                quote = char
-            elif char == "(":
-                depth += 1
-            elif char == ")":
-                depth -= 1
-                if depth == 0:
-                    calls.append(text[start : i + 1])
-                    break
-            i += 1
-    return calls
 
 
 @pytest.mark.parametrize(("book", "path"), FIGURES, ids=IDS)
@@ -532,7 +474,7 @@ def test_no_label_is_written_below_the_phone_floor(book, path):
     shipped one. Naming the constant is the fix, and this is what says so.
     """
     too_small = []
-    for call in _calls(path.read_text(encoding="utf-8"), "label"):
+    for call in call_expressions(path.read_text(encoding="utf-8"), "label"):
         for match in re.finditer(r"size:\s*([0-9.]+)", call):
             if float(match.group(1)) < 16:
                 too_small.append(match.group(1))
@@ -555,7 +497,7 @@ def test_every_slider_says_whether_it_shows_its_value(book, path):
 
     A module with no sliders has nothing to say and is skipped.
     """
-    calls = slider_calls(path.read_text(encoding="utf-8"))
+    calls = call_expressions(path.read_text(encoding="utf-8"), "slider")
     silent = [call for call in calls if "show:" not in call]
     assert not silent, (
         f"{book.id}/{path.name}: {len(silent)} slider call(s) do not say whether the "

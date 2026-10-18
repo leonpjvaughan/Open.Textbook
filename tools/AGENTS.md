@@ -39,6 +39,18 @@ positional is still required. `help` runs that check before it prints, so a disa
 is reported instead of a line that lies. `tools help <command>` prints one command's
 flags with what each one does.
 
+**The kit's contract is one table, run twice.** `lib/kit-contract.ts` holds every
+assertion as a row — its name (which is its failure message), its `tier` (`pure`, `dom`
+or `both`), the kit export it covers, and how to see the answer — and both commands read
+that one table: `kit-pure` runs the `pure` and `both` rows under `node`, and `kit` serves
+the compiled module to the page (`/__kit-contract.js`) and runs the `dom` and `both` rows
+there, one fresh `<maths-figure>` per row. Every run prints how many rows its tier ran and
+how many exports those rows cover, and names any export with no row at all, so "checked
+only in one tier" and "not checked at all" are answers the output gives rather than
+questions nobody asked. A row whose `tier` no runner reads fails the run, and `--list`
+prints the rows one tier is responsible for.
+
+
 ## The layout
 
 ```

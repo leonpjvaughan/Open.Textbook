@@ -811,6 +811,32 @@ def _within(value, target, tolerance) -> bool:
     return cas.within_tolerance(value, target, tolerance)
 
 
+def _expectations(check, symbols, *answer_keys: str):
+    """The tolerance and the two values a propagation check compares against.
+
+    ``answer_keys`` names the keys that may carry the expected result, most
+    specific first: a mean answers under ``answer`` or ``mean``, a combining rule
+    under ``result`` or ``answer``. Reading them in one place means a key that is
+    missing produces the same message wherever it is missing.
+    """
+    tolerance = cas.parse_expression(str(check.get("tolerance", 0)), symbols)
+    answer = next((check[key] for key in answer_keys if key in check), None)
+    expected = cas.parse_expression(str(answer), symbols)
+    expected_uncertainty = cas.parse_expression(str(check["uncertainty"]), symbols)
+    return tolerance, expected, expected_uncertainty
+
+
+def _compare(report, label: str, got, expected, tolerance) -> None:
+    """Prove the one relation every uncertainty check asserts: ``got`` is
+    ``expected`` within ``tolerance``.
+
+    ``label`` names the quantity compared, so the message says which half of the
+    claim failed, in the same sentence shape every time.
+    """
+    if not _within(got, expected, tolerance):
+        report.errors.append(f"check: {label} is {got}, not {expected}")
+
+
 def _check_mean_uncertainty(check, symbols, report) -> None:
     convention = check.get("convention")
     if convention not in ("half-range", "full-range", "standard-deviation", "standard-error"):
@@ -834,43 +860,41 @@ def _check_mean_uncertainty(check, symbols, report) -> None:
             uncertainty = sympy.sqrt(variance)
             if convention == "standard-error":
                 uncertainty = uncertainty / sympy.sqrt(len(values))
-        tolerance = cas.parse_expression(str(check.get("tolerance", 0)), symbols)
-        expected_mean = cas.parse_expression(str(check.get("answer", check.get("mean"))), symbols)
-        expected_uncertainty = cas.parse_expression(str(check["uncertainty"]), symbols)
+        tolerance, expected_mean, expected_uncertainty = _expectations(
+            check, symbols, "answer", "mean"
+        )
     except (UnitError, KeyError, TypeError) as err:
         report.errors.append(f"check: {err}")
         return
-    if not _within(mean, expected_mean, tolerance):
-        report.errors.append(
-            f"check: the mean of the readings is {mean}, not {expected_mean}"
-        )
-    if not _within(uncertainty, expected_uncertainty, tolerance):
-        report.errors.append(
-            f"check: under convention {convention!r} the uncertainty is "
-            f"{uncertainty}, not {expected_uncertainty}"
-        )
+    _compare(report, "the mean of the readings", mean, expected_mean, tolerance)
+    _compare(
+        report,
+        f"under convention {convention!r} the uncertainty",
+        uncertainty,
+        expected_uncertainty,
+        tolerance,
+    )
 
 
 def _check_add_absolutes(check, symbols, report) -> None:
     try:
         terms = _term_values(check["terms"])
-        tolerance = cas.parse_expression(str(check.get("tolerance", 0)), symbols)
-        expected_result = cas.parse_expression(str(check.get("result", check.get("answer"))), symbols)
-        expected_uncertainty = cas.parse_expression(str(check["uncertainty"]), symbols)
+        tolerance, expected_result, expected_uncertainty = _expectations(
+            check, symbols, "result", "answer"
+        )
     except (UnitError, KeyError, TypeError) as err:
         report.errors.append(f"check: {err}")
         return
     result = sum(value for value, _ in terms)
     uncertainty = sum(uncertainty for _, uncertainty in terms)
-    if not _within(result, expected_result, tolerance):
-        report.errors.append(
-            f"check: adding the terms gives {result}, not {expected_result}"
-        )
-    if not _within(uncertainty, expected_uncertainty, tolerance):
-        report.errors.append(
-            f"check: adding the absolute uncertainties gives {uncertainty}, "
-            f"not {expected_uncertainty}"
-        )
+    _compare(report, "the sum of the terms", result, expected_result, tolerance)
+    _compare(
+        report,
+        "the sum of the absolute uncertainties",
+        uncertainty,
+        expected_uncertainty,
+        tolerance,
+    )
 
 
 def _check_add_percentages(check, symbols, report) -> None:
@@ -885,21 +909,20 @@ def _check_add_percentages(check, symbols, report) -> None:
             result *= value**power
             total_percentage += abs(power) * percentage
         uncertainty = result * total_percentage / 100
-        tolerance = cas.parse_expression(str(check.get("tolerance", 0)), symbols)
-        expected_result = cas.parse_expression(str(check.get("result", check.get("answer"))), symbols)
-        expected_uncertainty = cas.parse_expression(str(check["uncertainty"]), symbols)
+        tolerance, expected_result, expected_uncertainty = _expectations(
+            check, symbols, "result", "answer"
+        )
     except (UnitError, KeyError, TypeError) as err:
         report.errors.append(f"check: {err}")
         return
-    if not _within(result, expected_result, tolerance):
-        report.errors.append(
-            f"check: multiplying the terms gives {result}, not {expected_result}"
-        )
-    if not _within(uncertainty, expected_uncertainty, tolerance):
-        report.errors.append(
-            f"check: adding the percentage uncertainties gives an absolute "
-            f"uncertainty of {uncertainty}, not {expected_uncertainty}"
-        )
+    _compare(report, "the product of the terms", result, expected_result, tolerance)
+    _compare(
+        report,
+        "the absolute uncertainty from adding the percentage uncertainties",
+        uncertainty,
+        expected_uncertainty,
+        tolerance,
+    )
 
 
 def _term_values(terms) -> list[tuple[Any, Any]]:

@@ -35,6 +35,16 @@ pins it.
   `node_modules` is missing, rather than letting the maths degrade to
   `.math-error`.
 - **This context map** — `test_agent_context.py`.
+- **Shared plumbing** — `conftest.py` and `support.py`, neither of which asserts
+  anything. `conftest.py` holds the fixtures, because a fixture is per-test
+  state: `write`, which writes a file into `tmp_path` (making parent
+  directories) and returns the path it wrote, so a test that builds a site does
+  not re-state those lines. `support.py` holds the plain functions a test
+  imports — `problem_record`, which builds a bank record, and
+  `call_expressions`, which lists the `name(...)` calls in a JavaScript module
+  by balancing parentheses and skipping string literals. Import it as
+  `from support import ...`; `tests/` is not a package and pytest puts this
+  directory on the path.
 
 ## Rules local to the tests
 
@@ -63,6 +73,17 @@ pins it.
   — the kit's contract, the contrast audit and the phone audit — so a browser-only
   defect still fails the gate; the marked tests are for running the sweep under
   every bundle by hand.
+- **A helper is defined once.** A builder two files both need is a fixture in
+  `conftest.py` when it takes `tmp_path`, and a plain function in `support.py`
+  when it is pure; two copies drift, and a scanner fixed in one place and stale
+  in the other reads as a guarantee it does not give. Two near-misses are
+  deliberately apart, and merging them would be a mistake:
+  `test_figures.figure_colour_literals` reads JavaScript (a named colour counts
+  only where a colour value belongs) and `test_themes.colour_literals` reads a
+  stylesheet or a Python file (a CSS named colour, comments stripped) — different
+  patterns, different answers on the same text. `test_pwa.function_body` is not
+  a third copy of the brace scanner either: it extracts a named top-level
+  function with an assertion that it exists, and balances nothing.
 - **Adding a test** — put it in the file that owns the behaviour; keep the
   module docstring in the house register (what the test protects and why).
 - **Testing a book** — load the `verify-textbook-change` skill.

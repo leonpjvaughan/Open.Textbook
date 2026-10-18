@@ -44,6 +44,21 @@
    "title": "Perimeter, area, surface area and volume",
    "items": [
     {
+     "id": "fictitious-sign-of-x",
+     "name": "Sign of x",
+     "latex": "\\operatorname{sgn} x = \\frac{x}{|x|}",
+     "provision": {
+      "aqa": "given",
+      "edexcel": "given",
+      "ocr": "given"
+     },
+     "tier": [
+      "F",
+      "H"
+     ],
+     "mathml": "<math xmlns=\"http://www.w3.org/1998/Math/MathML\"><semantics><mrow><mi mathvariant=\"normal\">sgn</mi><mo>⁡</mo><mi>x</mi><mo>=</mo><mfrac><mi>x</mi><mrow><mi mathvariant=\"normal\">∣</mi><mi>x</mi><mi mathvariant=\"normal\">∣</mi></mrow></mfrac></mrow><annotation encoding=\"application/x-tex\">\\operatorname{sgn} x = \\frac{x}{|x|}</annotation></semantics></math>"
+    },
+    {
      "id": "trapezium-area",
      "name": "Area of a trapezium",
      "latex": "A = \\tfrac{1}{2}(a + b)h",
@@ -67,6 +82,8 @@
      "id": "prism-volume",
      "name": "Volume of a prism",
      "latex": "V = \\text{area of cross-section} \\times \\text{length}",
+     "symbolic": false,
+     "why": "A word formula: both sides name quantities in words, so there is nothing symbolic for the parser to relate.",
      "provision": {
       "aqa": "given",
       "edexcel": "given",
@@ -431,6 +448,8 @@
      "id": "speed",
      "name": "Speed",
      "latex": "\\text{speed} = \\frac{\\text{distance}}{\\text{time}}",
+     "symbolic": false,
+     "why": "A word formula: both sides name quantities in words, so there is nothing symbolic for the parser to relate.",
      "provision": {
       "aqa": "know",
       "edexcel": "know",
@@ -452,6 +471,8 @@
      "id": "density",
      "name": "Density",
      "latex": "\\text{density} = \\frac{\\text{mass}}{\\text{volume}}",
+     "symbolic": false,
+     "why": "A word formula: both sides name quantities in words, so there is nothing symbolic for the parser to relate.",
      "provision": {
       "aqa": "know",
       "edexcel": "know",
@@ -472,6 +493,8 @@
      "id": "pressure",
      "name": "Pressure",
      "latex": "\\text{pressure} = \\frac{\\text{force}}{\\text{area}}",
+     "symbolic": false,
+     "why": "A word formula: both sides name quantities in words, so there is nothing symbolic for the parser to relate.",
      "provision": {
       "aqa": "know",
       "edexcel": "know",

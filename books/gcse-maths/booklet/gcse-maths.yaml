@@ -38,6 +38,11 @@ sections:
   - id: perimeter-area-volume
     title: Perimeter, area, surface area and volume
     items:
+      - id: fictitious-sign-of-x
+        name: Sign of x
+        latex: '\operatorname{sgn} x = \frac{x}{|x|}'
+        provision: {aqa: given, edexcel: given, ocr: given}
+        tier: [F, H]
       - id: trapezium-area
         name: Area of a trapezium
         latex: 'A = \tfrac{1}{2}(a + b)h'
@@ -48,6 +53,8 @@ sections:
       - id: prism-volume
         name: Volume of a prism
         latex: 'V = \text{area of cross-section} \times \text{length}'
+        symbolic: false
+        why: 'A word formula: both sides name quantities in words, so there is nothing symbolic for the parser to relate.'
         provision: {aqa: given, edexcel: given, ocr: given}
         tier: [F, H]
         keywords: [prism, volume]
@@ -172,18 +179,24 @@ sections:
       - id: speed
         name: Speed
         latex: '\text{speed} = \frac{\text{distance}}{\text{time}}'
+        symbolic: false
+        why: 'A word formula: both sides name quantities in words, so there is nothing symbolic for the parser to relate.'
         provision: {aqa: know, edexcel: know, ocr: know}
         tier: [F, H]
         keywords: [speed, distance, time, compound measure]
       - id: density
         name: Density
         latex: '\text{density} = \frac{\text{mass}}{\text{volume}}'
+        symbolic: false
+        why: 'A word formula: both sides name quantities in words, so there is nothing symbolic for the parser to relate.'
         provision: {aqa: know, edexcel: know, ocr: know}
         tier: [F, H]
         keywords: [density, mass, volume]
       - id: pressure
         name: Pressure
         latex: '\text{pressure} = \frac{\text{force}}{\text{area}}'
+        symbolic: false
+        why: 'A word formula: both sides name quantities in words, so there is nothing symbolic for the parser to relate.'
         provision: {aqa: know, edexcel: know, ocr: know}
         tier: [F, H]
         keywords: [pressure, force, area]

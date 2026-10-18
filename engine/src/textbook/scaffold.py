@@ -222,6 +222,16 @@ def front_matter(**fields: object) -> str:
     return f"---\n{body}\n---\n"
 
 
+def stub_page(fm: str, heading: str, *body: str) -> str:
+    """A generated page: its front matter, the stub marker, an H1, then the body.
+
+    Every stub below is these four things and nothing else, so the shape is stated
+    once. The marker sits exactly where `create` looks for it, which is what makes a
+    stub regenerable and an authored page safe from being overwritten.
+    """
+    return "\n".join([fm, f"{STUB_MARKER}\n", f"# {heading}\n", *body])
+
+
 def section_stub(chapter: dict, section: dict, kind: str) -> str:
     # The reader-facing page name for each internal `kind`. The navigator
     # (build_nav_list) already uses these names, and an authored page carries
@@ -261,13 +271,12 @@ def section_stub(chapter: dict, section: dict, kind: str) -> str:
         ),
     }
     tier_note = f"Tier: **{section['tier']}** · " if section.get("tier") else ""
-    return (
-        f"{fm}\n"
-        f"{STUB_MARKER}\n\n"
-        f"# {section['id']} {section['title']} — {titles[kind]}\n\n"
+    return stub_page(
+        fm,
+        f"{section['id']} {section['title']} — {titles[kind]}",
         f"> **Stub.** {guidance[kind]}\n"
         f"> {tier_note}refs: "
-        f"{', '.join(section.get('refs', [])) or '—'}\n"
+        f"{', '.join(section.get('refs', [])) or '—'}\n",
     )
 
 
@@ -277,8 +286,7 @@ def chapter_stub(chapter: dict) -> str:
         chapter=chapter["id"],
         strand=chapter["strand"],
     )
-    lines = [fm, f"{STUB_MARKER}\n", f"# Chapter {chapter['id']}: {chapter['title']}\n"]
-    lines.append(f"{chapter['summary']}\n")
+    lines: list[str] = [f"{chapter['summary']}\n"]
     anchor = chapter.get("anchor")
     if anchor:
         # The reader knows this as "the chapter problem"; "anchor problem" is
@@ -302,7 +310,7 @@ def chapter_stub(chapter: dict) -> str:
             f"refs {', '.join(s.get('refs', [])) or '—'}"
         )
     lines.append("")
-    return "\n".join(lines)
+    return stub_page(fm, f"Chapter {chapter['id']}: {chapter['title']}", *lines)
 
 
 def review_stub(chapter: dict) -> str:
@@ -318,33 +326,34 @@ def review_stub(chapter: dict) -> str:
         if anchor
         else "Resolve the chapter problem.\n"
     )
-    return (
-        f"{fm}\n{STUB_MARKER}\n\n# Chapter {chapter['id']}: Review\n\n"
+    return stub_page(
+        fm,
+        f"Chapter {chapter['id']}: Review",
         f"> **Stub.** {anchor_line}"
         "> Then set interleaved mixed practice across this chapter and earlier "
-        "chapters, with method-selection prompts (\u201cwhich method, and why?\u201d).\n"
+        "chapters, with method-selection prompts (\u201cwhich method, and why?\u201d).\n",
     )
 
 
 def glossary_stub(strands: list[dict]) -> str:
     fm = front_matter(title="Glossary")
-    lines = [fm, f"{STUB_MARKER}\n", "# Glossary\n"]
-    lines.append(
+    lines = [
         "Definitions of the terms used in this book. Each strand page is maintained "
         "alongside the chapters that use it; a term is defined once, here.\n"
-    )
+    ]
     for strand in strands:
         filename = STRAND_FILES.get(strand["id"], f"{strand['id']}.md")
         lines.append(f"- [{strand['title']}]({filename})")
     lines.append("")
-    return "\n".join(lines)
+    return stub_page(fm, "Glossary", *lines)
 
 
 def strand_glossary_stub(strand: dict) -> str:
     fm = front_matter(title=f"Glossary — {strand['title']}", strand=strand["id"])
-    return (
-        f"{fm}\n{STUB_MARKER}\n\n# Glossary — {strand['title']}\n\n"
-        "> **Stub.** Terms introduced by this strand's chapters, alphabetically.\n"
+    return stub_page(
+        fm,
+        f"Glossary — {strand['title']}",
+        "> **Stub.** Terms introduced by this strand's chapters, alphabetically.\n",
     )
 
 
@@ -649,8 +658,7 @@ def colophon_page(book: Book, licence: object = _USE_COLLECTION) -> str:
 def home_stub(book: Book, chapters: list[dict]) -> str:
     fm = front_matter(title=book.title)
     total_sections = sum(len(c["sections"]) for c in chapters)
-    lines = [fm, f"{STUB_MARKER}\n", f"# {book.title}\n"]
-    lines.append(f"{book.description}\n")
+    lines = [f"{book.description}\n"]
     lines.append(f"- {len(chapters)} chapters, {total_sections} sections\n")
     if book.tier_axis:
         # The **levels of the course**, named by the code every reader studies — the
@@ -667,7 +675,7 @@ def home_stub(book: Book, chapters: list[dict]) -> str:
     for c in chapters:
         lines.append(f"1. [Chapter {c['id']}: {c['title']}](Chapter {c['id']}/index.md)")
     lines.append("")
-    return "\n".join(lines)
+    return stub_page(fm, book.title, *lines)
 
 
 # --- generated CSS ------------------------------------------------------------

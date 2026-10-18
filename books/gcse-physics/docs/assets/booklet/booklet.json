@@ -166,6 +166,8 @@
      "id": "aqa-efficiency-energy",
      "name": "Efficiency",
      "latex": "\\text{efficiency} = \\frac{\\text{useful output energy transfer}}{\\text{total input energy transfer}}",
+     "symbolic": false,
+     "why": "A word formula: both sides name quantities in words, so there is nothing symbolic for the parser to relate.",
      "provision": {
       "aqa": "given"
      },
@@ -184,6 +186,8 @@
      "id": "aqa-efficiency-power",
      "name": "Efficiency",
      "latex": "\\text{efficiency} = \\frac{\\text{useful power output}}{\\text{total power input}}",
+     "symbolic": false,
+     "why": "A word formula: both sides name quantities in words, so there is nothing symbolic for the parser to relate.",
      "provision": {
       "aqa": "given"
      },
@@ -294,6 +298,8 @@
      "id": "edexcel-efficiency",
      "name": "Efficiency",
      "latex": "\\text{efficiency} = \\frac{\\text{useful energy transferred by the device}}{\\text{total energy supplied to the device}}",
+     "symbolic": false,
+     "why": "A word formula: both sides name quantities in words, so there is nothing symbolic for the parser to relate.",
      "provision": {
       "edexcel": "given"
      },
@@ -441,6 +447,8 @@
      "id": "edexcel-moment",
      "name": "Moment of a force",
      "latex": "\\text{moment} = \\text{force} \\times \\text{distance normal to the direction of the force}",
+     "symbolic": false,
+     "why": "A word formula: both sides name quantities in words, so there is nothing symbolic for the parser to relate.",
      "provision": {
       "edexcel": "given"
      },
@@ -584,6 +592,8 @@
      "id": "ocr-efficiency",
      "name": "Efficiency",
      "latex": "\\text{efficiency} = \\frac{\\text{useful output energy transfer}}{\\text{input energy transfer}}",
+     "symbolic": false,
+     "why": "A word formula: both sides name quantities in words, so there is nothing symbolic for the parser to relate.",
      "provision": {
       "ocr": "given"
      },
@@ -807,6 +817,8 @@
      "id": "edexcel-distance",
      "name": "Distance travelled",
      "latex": "\\text{distance travelled} = \\text{average speed} \\times \\text{time}",
+     "symbolic": false,
+     "why": "A word formula: both sides name quantities in words, so there is nothing symbolic for the parser to relate.",
      "provision": {
       "edexcel": "given"
      },
@@ -1085,6 +1097,8 @@
      "id": "aqa-magnification",
      "name": "Magnification",
      "latex": "\\text{magnification} = \\frac{\\text{image height}}{\\text{object height}}",
+     "symbolic": false,
+     "why": "A word formula: both sides name quantities in words, so there is nothing symbolic for the parser to relate.",
      "provision": {
       "aqa": "given"
      },
@@ -1902,6 +1916,8 @@
      "id": "aqa-typical-speeds",
      "name": "Typical speeds",
      "latex": "\\text{walking} \\approx 1.5\\ \\text{m/s},\\quad \\text{running} \\approx 3\\ \\text{m/s},\\quad \\text{cycling} \\approx 6\\ \\text{m/s}",
+     "symbolic": false,
+     "why": "A short data list: several values on one line, not one relation.",
      "note": "AQA 8463 says these typical values must be recalled.",
      "provision": {
       "aqa": "know"
@@ -1923,6 +1939,8 @@
      "id": "aqa-speed-of-sound",
      "name": "Speed of sound in air",
      "latex": "\\text{speed of sound in air} \\approx 330\\ \\text{m/s}",
+     "symbolic": false,
+     "why": "A named value with its unit: a datum to look up, not a relation between symbols.",
      "note": "AQA 8463 states this typical value.",
      "provision": {
       "aqa": "know"

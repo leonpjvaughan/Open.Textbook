@@ -44,6 +44,8 @@ sections:
   - id: speed-of-light
     name: Speed of light in a vacuum
     latex: c = 3.0 \times 10^{8}\ \text{m s}^{-1}
+    symbolic: false
+    why: 'A constant printed with its unit: a value to look up, not a relation between symbols.'
     provision:
       sec: given
     keywords:
@@ -54,6 +56,8 @@ sections:
   - id: acceleration-due-to-gravity
     name: Acceleration due to gravity
     latex: g = 9.8\ \text{m s}^{-2}
+    symbolic: false
+    why: 'A constant printed with its unit: a value to look up, not a relation between symbols.'
     provision:
       sec: given
     keywords:
@@ -63,6 +67,8 @@ sections:
   - id: universal-gravitational-constant
     name: Universal gravitational constant
     latex: G = 6.7 \times 10^{-11}\ \text{N m}^{2}\ \text{kg}^{-2}
+    symbolic: false
+    why: 'A constant printed with its unit: a value to look up, not a relation between symbols.'
     provision:
       sec: given
     keywords:
@@ -72,6 +78,8 @@ sections:
   - id: elementary-charge
     name: Elementary charge
     latex: e = 1.6 \times 10^{-19}\ \text{C}
+    symbolic: false
+    why: 'A constant printed with its unit: a value to look up, not a relation between symbols.'
     provision:
       sec: given
     keywords:
@@ -81,6 +89,8 @@ sections:
   - id: electron-mass
     name: Mass of the electron
     latex: m_{e} = 9.1 \times 10^{-31}\ \text{kg}
+    symbolic: false
+    why: 'A constant printed with its unit: a value to look up, not a relation between symbols.'
     provision:
       sec: given
     keywords:
@@ -89,6 +99,8 @@ sections:
   - id: avogadro-constant
     name: Avogadro constant
     latex: N_{A} = 6.0 \times 10^{23}\ \text{mol}^{-1}
+    symbolic: false
+    why: 'A constant printed with its unit: a value to look up, not a relation between symbols.'
     provision:
       sec: given
     keywords:
@@ -98,6 +110,8 @@ sections:
   - id: planck-constant
     name: Planck constant
     latex: h = 6.6 \times 10^{-34}\ \text{J s}
+    symbolic: false
+    why: 'A constant printed with its unit: a value to look up, not a relation between symbols.'
     provision:
       sec: given
     keywords:
@@ -107,6 +121,8 @@ sections:
   - id: permittivity
     name: Permittivity of free space
     latex: \varepsilon_{0} = 8.9 \times 10^{-12}\ \text{F m}^{-1}
+    symbolic: false
+    why: 'A constant printed with its unit: a value to look up, not a relation between symbols.'
     provision:
       sec: given
     keywords:
@@ -116,6 +132,8 @@ sections:
   - id: permeability
     name: Permeability of free space
     latex: \mu_{0} = 4\pi \times 10^{-7}\ \text{H m}^{-1}
+    symbolic: false
+    why: 'A constant printed with its unit: a value to look up, not a relation between symbols.'
     provision:
       sec: given
     keywords:
@@ -125,6 +143,8 @@ sections:
   - id: gas-constant
     name: Universal gas constant
     latex: R = 8.3\ \text{J K}^{-1}\ \text{mol}^{-1}
+    symbolic: false
+    why: 'A constant printed with its unit: a value to look up, not a relation between symbols.'
     provision:
       sec: given
     keywords:
@@ -134,6 +154,8 @@ sections:
   - id: atomic-mass-unit
     name: Unified atomic mass unit
     latex: u = 1.66 \times 10^{-27}\ \text{kg}
+    symbolic: false
+    why: 'A constant printed with its unit: a value to look up, not a relation between symbols.'
     provision:
       sec: given
     keywords:

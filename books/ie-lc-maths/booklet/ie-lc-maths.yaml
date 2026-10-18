@@ -432,6 +432,8 @@ sections:
   - id: matrix-inverse-2x2
     name: Inverse of a 2 by 2 matrix
     latex: A^{-1} = \frac{1}{\det(A)}\begin{pmatrix} d & -b \\ -c & a \end{pmatrix}
+    symbolic: false
+    why: 'An environment such as array or pmatrix: a layout of rows, not a relation.'
     note: With $\det(A) = ad - bc \neq 0$, for $A = \begin{pmatrix} a & b \\ c & d \end{pmatrix}$.
     provision:
       sec: given
@@ -442,6 +444,8 @@ sections:
   - id: binomial-coefficient
     name: Binomial coefficient
     latex: \binom{n}{r} = {}^nC_r = C(n,r) = \frac{n!}{r!\,(n-r)!}
+    symbolic: false
+    why: 'A binomial coefficient, written \binom{n}{r} and {}^n C_r: the parser rejects the factorial form.'
     provision:
       sec: given
     keywords:
@@ -614,6 +618,8 @@ sections:
   - id: set-natural
     name: The natural numbers
     latex: \mathbb{N} = \{1, 2, 3, 4, 5, 6, \ldots\}
+    symbolic: false
+    why: 'A set of numbers written in blackboard bold: a symbol list, not an expression.'
     provision:
       sec: given
     keywords:
@@ -622,6 +628,8 @@ sections:
   - id: set-integers
     name: The integers
     latex: \mathbb{Z} = \{\ldots, -3, -2, -1, 0, 1, 2, 3, \ldots\}
+    symbolic: false
+    why: 'A set of numbers written in blackboard bold: a symbol list, not an expression.'
     provision:
       sec: given
     keywords:
@@ -760,6 +768,8 @@ sections:
   - id: mean-list
     name: Mean of a list of numbers
     latex: \mu = \frac{\sum x}{n}
+    symbolic: false
+    why: 'A \sum with no limits: the parser only reads a sum with explicit bounds, and the sheet prints it this way.'
     provision:
       sec: given
     keywords:
@@ -768,6 +778,8 @@ sections:
   - id: mean-frequency-table
     name: Mean from a frequency table
     latex: \mu = \frac{\sum fx}{\sum f}
+    symbolic: false
+    why: 'A \sum with no limits: the parser only reads a sum with explicit bounds, and the sheet prints it this way.'
     provision:
       sec: given
     keywords:
@@ -777,6 +789,8 @@ sections:
   - id: standard-deviation-list
     name: Standard deviation of a list of numbers
     latex: \sigma = \sqrt{\frac{\sum (x - \mu)^2}{n}}
+    symbolic: false
+    why: 'A \sum with no limits: the parser only reads a sum with explicit bounds, and the sheet prints it this way.'
     provision:
       sec: given
     keywords:
@@ -785,6 +799,8 @@ sections:
   - id: standard-deviation-frequency-table
     name: Standard deviation from a frequency table
     latex: \sigma = \sqrt{\frac{\sum f(x - \mu)^2}{\sum f}}
+    symbolic: false
+    why: 'A \sum with no limits: the parser only reads a sum with explicit bounds, and the sheet prints it this way.'
     provision:
       sec: given
     keywords:
@@ -873,6 +889,8 @@ sections:
   - id: sample-standard-deviation
     name: Estimate of population standard deviation from a sample
     latex: s = \sqrt{\frac{\sum (x - \bar{x})^2}{n-1}}
+    symbolic: false
+    why: 'A \sum with no limits: the parser only reads a sum with explicit bounds, and the sheet prints it this way.'
     provision:
       sec: given
     keywords:

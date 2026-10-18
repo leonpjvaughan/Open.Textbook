@@ -93,9 +93,10 @@ now, and the four marked open are the ones verified open on 2026-10-17.
 - [x] 64. The booklet gap was measured at the top level only
 - [x] 65. The booklet has no modulus form, and does not define λ
 - [x] 66. 137 of 250 figure modules hand-write a `<text>` element
-- [ ] 67. Checks that parse prose or enumerate notation, and where else they appear
-- [ ] 69. The generalisation review: eight places the doctrine was not applied (1 and 2 done)
+- [x] 67. Checks that parse prose or enumerate notation — the notation list is booklet data now
+- [x] 69. The generalisation review — eight places the doctrine was not applied
 - [ ] 70. The gate is 16 minutes on four runners — build matrix done, per-job parallelism next
+- [ ] 71. `tools/build.mjs` says the tools build is bundled, and it is not
 
 ---
 
@@ -411,7 +412,7 @@ only counting them, because a count says the gap exists and a list says where.
 
 ---
 
-## 67. The same shape elsewhere: checks that parse prose or enumerate notation
+## 67. The same shape elsewhere — **done**: checks that parse prose or enumerate notation
 
 **Why this is an item.** Item 61 was one instance of a pattern, and the pattern is
 what to fix: a check that re-parses a *rendered* form, or that lists the notations it
@@ -531,7 +532,7 @@ moduli come back and the one an elastic string uses is among them.
 
 ---
 
-## 69. The generalisation review: eight places the doctrine was not applied
+## 69. The generalisation review — **done, except rows 3 and 5's follow-up**
 
 **Why this is an item.** An architecture review applied one test to each candidate:
 *is this the same thing written twice, or two different things that look alike?* Only
@@ -545,11 +546,11 @@ nothing"). These are the first kind.
 | 1 | `config.from_parts` | six test files hand-wrote the hook config; two had already drifted — one wrote `tier_filter` (`"H"`) where production writes a profile **id**, and none carried the proof book | **done 2026-10-17** |
 | 2 | `themes.contrast_problems` | five near-identical loops; only one resolved its alias, and its comment records that forgetting it makes "a check that cannot fail" | **done 2026-10-17** |
 | 3 | `tools` flag schema | `cli.ts` documents flags in a `usage` string and each command parses its own; `audit` accepts `--maps` that `help` does not mention, and `readout`/`preview` re-implement `parseArgs` | open |
-| 4 | tests: no `conftest.py` | `_problem` ×3, `_write` ×2, `colour_literals` ×2, two hand-written JS brace-counters | open |
-| 5 | `kit.ts` / `kit-pure.ts` | two hand-written lists of one contract: 54 and 43 `want()` calls, 13 assertion strings verbatim in both, 28 in only one tier | open |
-| 6 | `units.py` | the dispatch is general; the ceremony is not — the same tolerance parse ×4 and seven hand-written compare-and-report pairs in three sentence shapes | open |
-| 7 | `pipeline.copy_assets` | `SHARED_FILES`/`SHARED_DIRS` are driven, then five bespoke blocks in a 153-line, 23-branch function | open |
-| 8 | `scaffold` stubs | five stub builders share one preamble (`front_matter` + marker + H1) | open |
+| 4 | tests: no `conftest.py` | `_problem` ×3, `_write` ×2, two hand-written JS brace-counters | **done** — `tests/conftest.py` + `tests/support.py`. The two `colour_literals` and the two brace helpers turned out to be **different scanners** and say so in their docstrings |
+| 5 | `kit.ts` / `kit-pure.ts` | two hand-written lists of one contract: 54 and 43 `want()` calls, 13 verbatim in both, 28 in only one tier | **done** — `tools/src/lib/kit-contract.ts`, **129 rows** over three tiers, **all 51 exports** covered; a row whose tier no runner reads now fails |
+| 6 | `units.py` | the same tolerance parse ×4 and seven hand-written compare-and-report pairs in three sentence shapes | **done** |
+| 7 | `pipeline.copy_assets` | five bespoke blocks in a 153-line, 23-branch function | **done** — entries of `(predicate, sources, destination)`; generated output byte-identical |
+| 8 | `scaffold` stubs | five stub builders share one preamble | **done** — `stub_page`; generated output byte-identical |
 
 **Measured, so the size is not a guess:** 201 of 250 figure modules hand-write
 `<line>`/`<rect>`/`<path>`/`<polygon>`, 47 hand-roll a domain→pixel mapping, and 76
@@ -708,3 +709,27 @@ English books, which are lighter on proof.
 - **The Applied Mathematics specification numbers only its strands**, so its coverage
   check reaches no finer than "all four strands are taught" — recorded in its
   `curriculum.yaml`.
+
+---
+
+## 71. `tools/build.mjs` says the tools build is bundled, and it is not
+
+**What is wrong.** The header of `tools/build.mjs` describes the tools target as
+"Bundled, because it is a program rather than a library". It is not: `buildTools` runs
+`tsc -p tsconfig.tools.json`, which emits one file per source into `tools/dist/` —
+`dist/commands/kit.js`, `dist/lib/browser.js`, and so on. Measured 2026-10-18: `ls
+tools/dist/lib` prints seven files, and adding a module to `tools/src/lib/` adds a
+seventh to `dist/lib/`.
+
+It stopped being a cosmetic error when `tools kit` began serving
+`tools/dist/lib/kit-contract.js` to the page at `/__kit-contract.js`. That works only
+because the module is emitted as its own file with no runtime imports; a bundle would
+have to be split or copied to be reachable from the page again.
+
+**The fix.** Correct the comment to describe what `buildTools` does, and record why one
+file per source is worth keeping: a module in `tools/lib/` can be imported by the page
+under test, which a bundle cannot.
+
+**Done means**
+
+- [ ] the header of `tools/build.mjs` describes both targets truthfully.

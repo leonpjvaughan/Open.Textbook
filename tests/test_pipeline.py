@@ -326,40 +326,36 @@ def test_the_inline_client_script_parses(subset):
 # --- link checking ------------------------------------------------------------
 
 
-def _write(root: Path, relative: str, content: str) -> None:
-    destination = root / relative
-    destination.parent.mkdir(parents=True, exist_ok=True)
-    destination.write_text(content, encoding="utf-8")
+# `write` is the suite's fixture for a file in `tmp_path`: see `conftest.py`.
 
 
-def test_check_links_reports_a_genuine_break(tmp_path):
-    _write(tmp_path, "a/index.html", '<a href="../missing/">gone</a>')
+def test_check_links_reports_a_genuine_break(tmp_path, write):
+    write("a/index.html", '<a href="../missing/">gone</a>')
     page = pipeline.RenderedPage(url="a/", title="A")
     assert pipeline.check_links(tmp_path, [page]) == ["a/ -> ../missing/"]
 
 
-def test_check_links_rejects_bare_root_relative_hrefs(tmp_path):
+def test_check_links_rejects_bare_root_relative_hrefs(tmp_path, write):
     """Regression: an href with no prefix must not 'resolve' against the root.
 
     The old check fell back to `out / path`, so a bare 'chapter-1/review/' always
     looked valid from the site root and every mis-prefixed nav link passed.
     """
-    _write(tmp_path, "deep/page/index.html", '<a href="chapter-1/review/">x</a>')
-    _write(tmp_path, "chapter-1/review/index.html", "ok")
+    write("deep/page/index.html", '<a href="chapter-1/review/">x</a>')
+    write("chapter-1/review/index.html", "ok")
     page = pipeline.RenderedPage(url="deep/page/", title="P")
     assert pipeline.check_links(tmp_path, [page]) == ["deep/page/ -> chapter-1/review/"]
 
 
-def test_check_links_accepts_a_leading_slash_from_the_root(tmp_path):
-    _write(tmp_path, "page/index.html", '<a href="/shared/">x</a>')
-    _write(tmp_path, "shared/index.html", "ok")
+def test_check_links_accepts_a_leading_slash_from_the_root(tmp_path, write):
+    write("page/index.html", '<a href="/shared/">x</a>')
+    write("shared/index.html", "ok")
     page = pipeline.RenderedPage(url="page/", title="P")
     assert pipeline.check_links(tmp_path, [page]) == []
 
 
-def test_check_links_ignores_the_search_script(tmp_path):
-    _write(
-        tmp_path,
+def test_check_links_ignores_the_search_script(tmp_path, write):
+    write(
         "page/index.html",
         '<script>el.innerHTML = \'<li><a href="\' + p.url + \'">x</a></li>\';</script>',
     )
@@ -367,8 +363,8 @@ def test_check_links_ignores_the_search_script(tmp_path):
     assert pipeline.check_links(tmp_path, [page]) == []
 
 
-def test_check_links_scope_ignores_pages_outside_a_subset(tmp_path):
-    _write(tmp_path, "index.html", '<a href="chapter-9/">unbuilt</a>')
+def test_check_links_scope_ignores_pages_outside_a_subset(tmp_path, write):
+    write("index.html", '<a href="chapter-9/">unbuilt</a>')
     page = pipeline.RenderedPage(url="", title="Cover")
     assert pipeline.check_links(tmp_path, [page]) == [" -> chapter-9/"]
     assert pipeline.check_links(tmp_path, [page], scope="chapter-1") == []
@@ -379,40 +375,40 @@ def test_check_links_reports_a_page_that_was_not_written(tmp_path):
     assert pipeline.check_links(tmp_path, [page]) == ["gone/: page was not written"]
 
 
-def test_check_links_reports_a_missing_fragment(tmp_path):
+def test_check_links_reports_a_missing_fragment(tmp_path, write):
     """Regression: the fragment was discarded, so the link always passed.
 
     ``page/#handle`` was checked as ``page/`` and resolved whenever the page
     existed, whatever the anchor. A reader following it landed at the top of the
     page with no sign of the section they were sent to.
     """
-    _write(tmp_path, "a/index.html", '<a href="../b/#gone">x</a>')
-    _write(tmp_path, "b/index.html", '<h2 id="here">B</h2>')
+    write("a/index.html", '<a href="../b/#gone">x</a>')
+    write("b/index.html", '<h2 id="here">B</h2>')
     page = pipeline.RenderedPage(url="a/", title="A")
     assert pipeline.check_links(tmp_path, [page]) == ["a/ -> ../b/#gone (no #gone)"]
 
 
-def test_check_links_accepts_a_present_fragment(tmp_path):
-    _write(tmp_path, "a/index.html", '<a href="../b/#here">x</a>')
-    _write(tmp_path, "b/index.html", '<h2 id="here">B</h2>')
+def test_check_links_accepts_a_present_fragment(tmp_path, write):
+    write("a/index.html", '<a href="../b/#here">x</a>')
+    write("b/index.html", '<h2 id="here">B</h2>')
     page = pipeline.RenderedPage(url="a/", title="A")
     assert pipeline.check_links(tmp_path, [page]) == []
 
 
-def test_check_links_does_not_treat_a_script_string_as_an_anchor(tmp_path):
+def test_check_links_does_not_treat_a_script_string_as_an_anchor(tmp_path, write):
     """An ``id="…"`` inside a script is not a target a reader can land on."""
-    _write(tmp_path, "a/index.html", '<a href="../b/#ghost">x</a>')
-    _write(tmp_path, "b/index.html", '<script>const marker = \'id="ghost"\';</script>')
+    write("a/index.html", '<a href="../b/#ghost">x</a>')
+    write("b/index.html", '<script>const marker = \'id="ghost"\';</script>')
     page = pipeline.RenderedPage(url="a/", title="A")
     assert pipeline.check_links(tmp_path, [page]) == ["a/ -> ../b/#ghost (no #ghost)"]
 
 
-def test_check_links_checks_the_fragment_of_a_root_relative_link(tmp_path):
-    _write(tmp_path, "page/index.html", '<a href="/shared/#top">x</a>')
-    _write(tmp_path, "shared/index.html", '<a id="top"></a>')
+def test_check_links_checks_the_fragment_of_a_root_relative_link(tmp_path, write):
+    write("page/index.html", '<a href="/shared/#top">x</a>')
+    write("shared/index.html", '<a id="top"></a>')
     page = pipeline.RenderedPage(url="page/", title="P")
     assert pipeline.check_links(tmp_path, [page]) == []
-    _write(tmp_path, "page/index.html", '<a href="/shared/#nope">x</a>')
+    write("page/index.html", '<a href="/shared/#nope">x</a>')
     assert pipeline.check_links(tmp_path, [page]) == ["page/ -> /shared/#nope (no #nope)"]
 
 

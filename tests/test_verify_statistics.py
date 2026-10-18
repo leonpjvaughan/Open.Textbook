@@ -17,10 +17,7 @@ import pytest
 
 from textbook.verify.verify import verify_problem
 
-
-def _problem(check):
-    return {"id": "case", "check": check}
-
+from support import problem_record
 
 # --- distribution -------------------------------------------------------------
 
@@ -106,7 +103,7 @@ DISTRIBUTION_CASES = [
     "case,check", DISTRIBUTION_CASES, ids=[case[0] for case in DISTRIBUTION_CASES]
 )
 def test_distribution_verifies_a_record(case, check):
-    assert verify_problem(_problem(check)).ok
+    assert verify_problem(problem_record(check)).ok
 
 
 def test_distribution_at_most_and_at_least_are_different():
@@ -120,8 +117,8 @@ def test_distribution_at_most_and_at_least_are_different():
         "answer": "193/512",
     }
     at_least = dict(at_most, query={"kind": "at_least", "value": 4})
-    assert verify_problem(_problem(at_most)).ok
-    assert not verify_problem(_problem(at_least)).ok
+    assert verify_problem(problem_record(at_most)).ok
+    assert not verify_problem(problem_record(at_least)).ok
 
 
 def test_distribution_wrong_tail_fails():
@@ -135,13 +132,13 @@ def test_distribution_wrong_tail_fails():
         "answer": "0.0668",
         "tolerance": "0.001",
     }
-    report = verify_problem(_problem(wrong_tail))
+    report = verify_problem(problem_record(wrong_tail))
     assert not report.ok
     assert "probability" in report.errors[0]
 
 
 def test_distribution_unknown_name_fails_loudly():
-    problem = _problem(
+    problem = problem_record(
         {
             "kind": "distribution",
             "distribution": "poisson",
@@ -159,7 +156,7 @@ def test_distribution_unknown_name_fails_loudly():
 
 
 def test_hypothesis_binomial_left_tail_rejects():
-    problem = _problem(
+    problem = problem_record(
         {
             "kind": "hypothesis",
             "distribution": "binomial",
@@ -185,12 +182,12 @@ def test_hypothesis_binomial_retains_at_a_smaller_alpha():
         "p_value": "5425/262144",
         "decision": "retain",
     }
-    assert verify_problem(_problem(dict(common, alpha="1/100"))).ok
-    assert not verify_problem(_problem(dict(common, alpha="1/20"))).ok
+    assert verify_problem(problem_record(dict(common, alpha="1/100"))).ok
+    assert not verify_problem(problem_record(dict(common, alpha="1/20"))).ok
 
 
 def test_hypothesis_binomial_critical_region():
-    problem = _problem(
+    problem = problem_record(
         {
             "kind": "hypothesis",
             "distribution": "binomial",
@@ -206,7 +203,7 @@ def test_hypothesis_binomial_critical_region():
 
 
 def test_hypothesis_normal_right_tail_retains():
-    problem = _problem(
+    problem = problem_record(
         {
             "kind": "hypothesis",
             "distribution": "normal",
@@ -223,7 +220,7 @@ def test_hypothesis_normal_right_tail_retains():
 
 
 def test_hypothesis_two_tailed_doubles_the_smaller_tail():
-    problem = _problem(
+    problem = problem_record(
         {
             "kind": "hypothesis",
             "distribution": "normal",
@@ -243,7 +240,7 @@ def test_hypothesis_p_value_that_flips_the_decision_fails():
     """A p-value on the wrong side of alpha flips the decision. The declared
     0.07 would retain at the 5% level, but the exact tail probability is
     5425/262144 < 0.05, so the test must reject, not retain."""
-    problem = _problem(
+    problem = problem_record(
         {
             "kind": "hypothesis",
             "distribution": "binomial",
@@ -261,7 +258,7 @@ def test_hypothesis_p_value_that_flips_the_decision_fails():
 
 
 def test_hypothesis_correct_p_value_but_wrong_decision_fails():
-    problem = _problem(
+    problem = problem_record(
         {
             "kind": "hypothesis",
             "distribution": "binomial",
@@ -279,7 +276,7 @@ def test_hypothesis_correct_p_value_but_wrong_decision_fails():
 
 
 def test_hypothesis_wrong_critical_region_fails():
-    problem = _problem(
+    problem = problem_record(
         {
             "kind": "hypothesis",
             "distribution": "binomial",
@@ -309,16 +306,16 @@ def test_hypothesis_equal_p_value_needs_an_explicit_comparison():
         "alpha": "1/1024",
         "decision": "reject",
     }
-    report = verify_problem(_problem(base))
+    report = verify_problem(problem_record(base))
     assert not report.ok
     assert "comparison" in report.errors[0]
 
     explicit = dict(base, comparison="le")
-    assert verify_problem(_problem(explicit)).ok
+    assert verify_problem(problem_record(explicit)).ok
 
 
 def test_hypothesis_needs_a_p_value_or_a_critical_region():
-    problem = _problem(
+    problem = problem_record(
         {
             "kind": "hypothesis",
             "distribution": "binomial",
@@ -344,14 +341,14 @@ CORRELATION_DATA = {
 
 
 def test_correlation_exact_surd():
-    problem = _problem(
+    problem = problem_record(
         dict(CORRELATION_DATA, kind="correlation", answer="sqrt(15)/5")
     )
     assert verify_problem(problem).ok
 
 
 def test_correlation_declared_tolerance():
-    problem = _problem(
+    problem = problem_record(
         dict(
             CORRELATION_DATA,
             kind="correlation",
@@ -363,7 +360,7 @@ def test_correlation_declared_tolerance():
 
 
 def test_correlation_perfect_positive_is_one():
-    problem = _problem(
+    problem = problem_record(
         {"kind": "correlation", "x": [1, 2, 3], "y": [2, 4, 6], "answer": "1"}
     )
     assert verify_problem(problem).ok
@@ -371,7 +368,7 @@ def test_correlation_perfect_positive_is_one():
 
 def test_correlation_sign_reversed_fails():
     """The same data with the sign flipped is not a rounding difference."""
-    problem = _problem(
+    problem = problem_record(
         dict(CORRELATION_DATA, kind="correlation", answer="-sqrt(15)/5")
     )
     report = verify_problem(problem)
@@ -380,7 +377,7 @@ def test_correlation_sign_reversed_fails():
 
 
 def test_correlation_constant_variable_is_undefined():
-    problem = _problem(
+    problem = problem_record(
         {"kind": "correlation", "x": [1, 1, 1], "y": [2, 3, 4], "answer": "0"}
     )
     report = verify_problem(problem)
@@ -392,7 +389,7 @@ def test_correlation_constant_variable_is_undefined():
 
 
 def test_regression_least_squares_exact():
-    problem = _problem(
+    problem = problem_record(
         dict(
             CORRELATION_DATA,
             kind="regression",
@@ -403,7 +400,7 @@ def test_regression_least_squares_exact():
 
 
 def test_regression_declared_tolerance():
-    problem = _problem(
+    problem = problem_record(
         dict(
             CORRELATION_DATA,
             kind="regression",
@@ -415,7 +412,7 @@ def test_regression_declared_tolerance():
 
 
 def test_regression_perfect_line():
-    problem = _problem(
+    problem = problem_record(
         {
             "kind": "regression",
             "x": [1, 2, 3],
@@ -427,7 +424,7 @@ def test_regression_perfect_line():
 
 
 def test_regression_sign_reversed_gradient_fails():
-    problem = _problem(
+    problem = problem_record(
         dict(
             CORRELATION_DATA,
             kind="regression",
@@ -440,7 +437,7 @@ def test_regression_sign_reversed_gradient_fails():
 
 
 def test_regression_answer_must_name_both_coefficients():
-    problem = _problem(
+    problem = problem_record(
         dict(CORRELATION_DATA, kind="regression", answer={"gradient": "3/5"})
     )
     report = verify_problem(problem)

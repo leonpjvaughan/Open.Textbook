@@ -36,6 +36,7 @@ import sys
 import time
 import unicodedata
 import urllib.parse
+from collections.abc import Callable
 from dataclasses import dataclass, field
 from pathlib import Path
 from string import Template
@@ -526,160 +527,204 @@ def sitemap(book: books.Book, profile: str, pages: list[RenderedPage]) -> str:
     )
 
 
+def _copy_file(source: Path, destination: Path) -> str:
+    """Copy one file into place, creating its directory, and name it for the log."""
+    destination.parent.mkdir(parents=True, exist_ok=True)
+    shutil.copy2(source, destination)
+    return destination.name
+
+
+@dataclass(frozen=True)
+class AssetRow:
+    """One kind of asset the build puts in the output, and where its files go.
+
+    ``sources`` pairs each source with its destination, and is either files or
+    directories: a directory is copied through ``select``, which returns the files
+    to take from it. A ``label`` makes the row report one *counted* entry instead
+    of one per file, which is what keeps a book's dozens of figure modules from
+    being dozens of lines of build log. ``writes`` is the row that produces text
+    rather than copying a file — the two the portal generates.
+
+    ``needed`` is the predicate: only the booklet and a book's own figures are
+    conditional. ``missing`` is what a missing source means — ``skip`` for an asset
+    a book may not have, ``all`` for a group that is useless in pieces (the
+    booklet's widget fetches its sibling from the same directory), and ``fail`` for
+    a file the engine owns, where absence is a defect and the build must say so
+    rather than ship pages with no stylesheet.
+    """
+
+    sources: tuple[tuple[Path, Path], ...] = ()
+    needed: Callable[[books.Book], bool] = lambda book: True
+    writes: tuple[tuple[Path, Callable[[], str]], ...] = ()
+    missing: str = "skip"
+    select: Callable[[Path], list[Path]] | None = None
+    label: str = ""
+    report_zero: bool = False
+
+    def copy(self) -> list[str]:
+        """Copy the row, and name what it copied."""
+        if self.writes:
+            for path, produce in self.writes:
+                path.parent.mkdir(parents=True, exist_ok=True)
+                path.write_text(produce(), encoding="utf-8")
+            return [path.name for path, _ in self.writes]
+        if self.missing == "all" and not all(
+            source.exists() for source, _ in self.sources
+        ):
+            return []
+        copied: list[str] = []
+        seen = False
+        for source, destination in self.sources:
+            if self.select is None:
+                if self.missing != "skip" or source.exists():
+                    copied.append(_copy_file(source, destination))
+                    seen = True
+                continue
+            if not source.is_dir():
+                continue
+            seen = True
+            if self.label:
+                # A counted row makes its directory even with nothing to put in it,
+                # so the output tree does not depend on whether a book happens to
+                # have any figures.
+                destination.mkdir(parents=True, exist_ok=True)
+            copied.extend(
+                _copy_file(path, destination / path.relative_to(source))
+                for path in self.select(source)
+            )
+        if not self.label:
+            return copied
+        # One entry per file is noise for a directory of modules, so a labelled row
+        # reports how many it copied — and nothing at all when there were none,
+        # unless the row asked for the zero.
+        if not seen or (not copied and not self.report_zero):
+            return []
+        return [f"{len(copied)} {self.label}"]
+
+
 def copy_assets(book: books.Book, out: Path) -> list[str]:
-    """Copy the shared design system, the shell, and this book's figure modules."""
-    copied: list[str] = []
+    """Copy the shared design system, the shell, and this book's own assets.
+
+    The rows below are data because **the order is behaviour**: a later copy wins,
+    so the cascade — the shared design system, then the engine's own shell, then
+    the book's generated and then its authored sheets — is the order of these rows.
+    Adding a kind of asset is a row, not another branch.
+    """
     root = Path(books.repo_root())
     assets = root / "assets"
     sheets = out / "assets" / "stylesheets"
+    figures = out / "assets" / "figures"
 
-    # Every shared file, from the one list that declares them — repository path and
-    # site path are the same string, so there is nothing to map. This replaces a
-    # hardcoded `SHARED_CSS` loop that had to be kept in step with the symlinks the
-    # scaffold created, which is the pair of lists the engine review flagged: an
-    # asset added to one and not the other was either a broken link or a file the
-    # pages requested and the build never wrote.
-    for relative in scaffold.SHARED_FILES:
-        source = root / relative
-        if not source.exists():
-            continue
-        target = out / relative
-        target.parent.mkdir(parents=True, exist_ok=True)
-        shutil.copy2(source, target)
-        copied.append(Path(relative).name)
+    rows = [
+        # Every shared file, from the one list that declares them — repository path
+        # and site path are the same string, so there is nothing to map. This
+        # replaces a hardcoded `SHARED_CSS` loop that had to be kept in step with the
+        # symlinks the scaffold created, which is the pair of lists the engine review
+        # flagged: an asset added to one and not the other was either a broken link
+        # or a file the pages requested and the build never wrote.
+        AssetRow(tuple((root / relative, out / relative) for relative in scaffold.SHARED_FILES)),
+        # A shared directory's whole contents. The kit is a library of layers rather
+        # than one file, and a barrel that imports a layer the build did not copy is a
+        # figure that fails to mount — with the build green, because an asset reached
+        # only at runtime is not a link on any page.
+        AssetRow(
+            tuple((root / relative, out / relative) for relative in scaffold.SHARED_DIRS),
+            select=lambda directory: [path for path in sorted(directory.rglob("*")) if path.is_file()],
+        ),
+        # The shell is the engine's own stylesheet, not a shared asset: it is part of
+        # the renderer rather than the design system a book composes, so a missing one
+        # fails the build instead of quietly shipping pages with no shell.
+        AssetRow(((SHELL_CSS, sheets / "shell.css"),), missing="fail"),
+        # The book's generated stylesheet, and then its author-local one, last in the
+        # cascade. `book-local.css` is authored, not generated, and may be empty; a
+        # book that has one must ship it or its own component rules silently disappear.
+        AssetRow(
+            (
+                (book.docs / "assets" / "stylesheets" / "book.css", sheets / "book.css"),
+                (book.docs / "assets" / "stylesheets" / "book-local.css", sheets / "book-local.css"),
+            )
+        ),
+        # The formulae booklet: the shared widget and the book's generated data,
+        # copied together so the widget's sibling fetch resolves. A book without a
+        # booklet ships neither the script nor a request for one.
+        AssetRow(
+            (
+                (assets / "booklet" / "booklet.js", out / "assets" / "booklet" / "booklet.js"),
+                (
+                    book.docs / "assets" / "booklet" / "booklet.json",
+                    out / "assets" / "booklet" / "booklet.json",
+                ),
+            ),
+            needed=lambda built: bool(built.booklet_name),
+            missing="all",
+        ),
+        # The Settings runtime's service-worker registration. The registration script
+        # is loaded by the deferred <script> every page carries; without it in the
+        # output a profile served on its own would 404 on that request. `settings.js`
+        # itself is a shared file and arrives with `SHARED_FILES` above; only the
+        # registration script is this build's own.
+        AssetRow(
+            (
+                (assets / "settings" / "service-worker.js", out / "assets" / "settings" / "service-worker.js"),
+            )
+        ),
+        # The PWA: the manifest and the worker. Written from the portal rather than
+        # copied raw, so the worker carries the same build label the pages do and the
+        # cache rotates on every deploy. They belong at the deployment root, but a
+        # profile built on its own needs them beside its pages for the root-absolute
+        # links in the shell to resolve.
+        AssetRow(
+            writes=(
+                (out / "manifest.webmanifest", portal.manifest),
+                (out / "sw.js", portal.service_worker),
+            )
+        ),
+        # The tab icon and the home-screen icon: three files, one motif (see
+        # assets/icons/). The tab icon is declared in the page shell, which reaches it
+        # by the same prefix-relative path the stylesheets use.
+        AssetRow(
+            tuple(
+                (assets / "icons" / name, out / "assets" / "icons" / name)
+                for name in ("app-icon.svg", "favicon.svg", "apple-touch-icon.png")
+            )
+        ),
+        # This book's own figure modules. A symlink in the book's figures directory is
+        # a shared file: on a platform that does not check symlinks out as links
+        # (`git clone` on Windows without developer mode) it is a text file naming its
+        # target, so copying it would put a 36-byte "module" in the site — a green
+        # build, a broken browser, and nothing in the output to say so. `figures.js`
+        # and `kit.js` arrive with `SHARED_FILES` above.
+        AssetRow(
+            ((book.docs / "assets" / "figures", figures),),
+            select=lambda directory: [
+                path
+                for path in sorted(directory.glob("*.js"))
+                if not path.is_symlink() and path.name not in scaffold.SHARED_FIGURE_FILES
+            ],
+            label="figure modules",
+            report_zero=True,
+        ),
+        # The shared figure library: every module in `assets/figures/` that more than
+        # one book mounts, copied **flat** beside the loader because a figure is
+        # mounted by bare slug. A book's own module of the same name is an error rather
+        # than an override — see `shared_figure_modules` — so there is nothing to
+        # decide here.
+        AssetRow(
+            ((root / scaffold.FIGURE_LIBRARY, figures),),
+            select=lambda directory: [
+                path
+                for path in sorted(directory.glob("*.js"))
+                if path.name not in scaffold.SHARED_FIGURE_FILES
+            ],
+            label="shared figure modules",
+        ),
+    ]
 
-    # A shared directory's whole contents, recursively. The kit is a library of
-    # layers rather than one file, and a barrel that imports a layer the build did not
-    # copy is a figure that fails to mount — with the build green, because an asset
-    # reached only at runtime is not a link on any page.
-    for relative in scaffold.SHARED_DIRS:
-        source = root / relative
-        if not source.is_dir():
-            continue
-        for path in sorted(source.rglob("*")):
-            if not path.is_file():
-                continue
-            target = out / path.relative_to(root)
-            target.parent.mkdir(parents=True, exist_ok=True)
-            shutil.copy2(path, target)
-            copied.append(path.name)
-
-    # The shell is the engine's own stylesheet, not a shared asset: it is part of
-    # the renderer rather than the design system a book composes.
-    sheets.mkdir(parents=True, exist_ok=True)
-    shutil.copy2(SHELL_CSS, sheets / "shell.css")
-    copied.append("shell.css")
-
-    generated = book.docs / "assets" / "stylesheets" / "book.css"
-    if generated.exists():
-        shutil.copy2(generated, sheets / "book.css")
-        copied.append("book.css")
-
-    # The book's author-local stylesheet, last in the cascade. It is authored,
-    # not generated, and may be empty; a book that has one must ship it or its
-    # own component rules silently disappear.
-    local = book.docs / "assets" / "stylesheets" / "book-local.css"
-    if local.exists():
-        shutil.copy2(local, sheets / "book-local.css")
-        copied.append("book-local.css")
-
-    # The formulae booklet: the shared widget and the book's generated data,
-    # copied together so the widget's sibling fetch resolves. A book without a
-    # booklet ships neither the script nor a request for one.
-    if book.booklet_name:
-        widget = assets / "booklet" / "booklet.js"
-        data = book.docs / "assets" / "booklet" / "booklet.json"
-        if widget.exists() and data.exists():
-            booklet_dir = out / "assets" / "booklet"
-            booklet_dir.mkdir(parents=True, exist_ok=True)
-            shutil.copy2(widget, booklet_dir / "booklet.js")
-            shutil.copy2(data, booklet_dir / "booklet.json")
-            copied.append("booklet.js")
-            copied.append("booklet.json")
-
-    # The Settings runtime and the service-worker registration. The registration
-    # script is loaded by the deferred <script> every page carries; without it in
-    # the output a profile served on its own would 404 on that request.
-    settings_dir = out / "assets" / "settings"
-    settings_dir.mkdir(parents=True, exist_ok=True)
-    # `settings.js` is a shared file and arrives with `SHARED_FILES` above; only the
-    # registration script is this build's own.
-    for name in ("service-worker.js",):
-        source = assets / "settings" / name
-        if source.exists():
-            shutil.copy2(source, settings_dir / name)
-            copied.append(name)
-
-    # The PWA: the manifest, the worker, and the home-screen icon. Written from
-    # the portal rather than copied raw, so the worker carries the same build
-    # label the pages do and the cache rotates on every deploy. They belong at
-    # the deployment root, but a profile built on its own needs them beside its
-    # pages for the root-absolute links in the shell to resolve.
-    (out / "manifest.webmanifest").write_text(portal.manifest(), encoding="utf-8")
-    copied.append("manifest.webmanifest")
-    (out / "sw.js").write_text(portal.service_worker(), encoding="utf-8")
-    copied.append("sw.js")
-
-    # The tab icon and the home-screen icon: two files, one motif (see
-    # assets/icons/). The tab icon is declared in the page shell, which reaches
-    # it by the same prefix-relative path the stylesheets use.
-    icons = assets / "icons"
-    for name in ("app-icon.svg", "favicon.svg", "apple-touch-icon.png"):
-        source = icons / name
-        if source.exists():
-            dest = out / "assets" / "icons" / name
-            dest.parent.mkdir(parents=True, exist_ok=True)
-            shutil.copy2(source, dest)
-            copied.append(name)
-
-    # The two shared figure files come from `assets/`, **not** through the book's
-    # symlinks — the same way every other shared asset in this function is read.
-    #
-    # Reading them through the symlink worked on Linux and broke on Windows, where
-    # `git clone` without developer mode checks a symlink out as a *text file*
-    # containing its target. The build then copied a 36-byte `kit.js` holding the
-    # string `../../../../../assets/figures/kit.js` into the site, reported success
-    # and counted it as a figure module — a green build, a broken browser, and
-    # nothing in the output to say so.
-    # `figures.js` and `kit.js` arrive with `SHARED_FILES` above. What is left is
-    # this book's own modules — and nothing in the book's directory that is a
-    # symlink, because on a platform that does not check symlinks out as links it is
-    # not a module either; it is a text file naming its target.
-    figures_dir = out / "assets" / "figures"
-
-    modules = book.docs / "assets" / "figures"
-    if modules.is_dir():
-        figures_dir.mkdir(parents=True, exist_ok=True)
-        skipped = 0
-        count = 0
-        for module in sorted(modules.glob("*.js")):
-            # A symlink here is a shared file, and it may be a plain text file on a
-            # platform that does not check symlinks out as links. Either way it is
-            # not a figure, and copying it would put its target path in the site.
-            if module.is_symlink() or module.name in scaffold.SHARED_FIGURE_FILES:
-                skipped += 1
-                continue
-            shutil.copy2(module, figures_dir / module.name)
-            count += 1
-        copied.append(f"{count} figure modules")
-
-    # The shared figure library: every module in `assets/figures/` that more than one
-    # book mounts, copied **flat** beside the loader because a figure is mounted by
-    # bare slug. A book's own module of the same name is an error rather than an
-    # override — see `shared_figure_modules` — so there is nothing to decide here.
-    library = root / scaffold.FIGURE_LIBRARY
-    shared = 0
-    if library.is_dir():
-        figures_dir.mkdir(parents=True, exist_ok=True)
-        for module in sorted(library.glob("*.js")):
-            if module.name in scaffold.SHARED_FIGURE_FILES:
-                continue
-            shutil.copy2(module, figures_dir / module.name)
-            shared += 1
-    if shared:
-        copied.append(f"{shared} shared figure modules")
+    copied: list[str] = []
+    for row in rows:
+        if row.needed(book):
+            copied.extend(row.copy())
     return copied
-
 
 def sibling_roots(exclude: str | None = None) -> tuple[str, ...]:
     """Where the collection's *other* books publish, root-relative.

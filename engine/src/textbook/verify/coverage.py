@@ -46,6 +46,16 @@ formula" mechanically — that measurement is the whole reason this file is shap
 the way it is. `undeclared()` reports the records that carry symbols and declare
 nothing, so the gap is visible and countable rather than assumed closed.
 
+A second gap, smaller and closed: an item the parser cannot read gets no check
+either, because `_sides` sees nothing in it. Which items those are used to be a
+list of eight LaTeX notations in a test, so a new booklet with a new notation
+failed a test that named notations rather than items. Now the item says it
+itself — `symbolic: false` and a `why:` — and `booklet_faults()` proves every item
+is either read or declared. The declaration is data in the booklet, so a naming
+convention in LaTeX is a row rather than a regex, and the list of things this
+module cannot read is derived from the booklets — `unreadable()` returns it —
+rather than maintained beside them.
+
 `infer()` is the same machinery used honestly: it *suggests* the booklet items a
 formula might play, so an author writing a declaration is helped rather than
 guessing. It never decides.
@@ -64,6 +74,29 @@ from .. import yamlio
 GIVEN = "given"
 QUESTION = "question"
 KNOW = "know"
+
+#: An item that `sympy.parsing.latex` cannot read says so on the item, with a reason:
+#:
+#:     - id: mean-of-data
+#:       latex: '\bar{x} = \frac{\sum x}{n} = \frac{\sum f x}{\sum f}'
+#:       symbolic: false
+#:       why: A \sum with no limits, which the parser only reads with explicit bounds.
+#:
+#: The declaration is the data; this module is its only reader. Its first version
+#: kept the knowledge in the *test* instead — eight `(regex, reason)` pairs naming
+#: `\sum`, `\begin{`, `{}^n C_r`, `\binom`, `\mathbb`, paired delimiters,
+#: `\operatorname` and spacing commands — so a ninth kind of unreadable notation
+#: failed a test whose only fix was another regex. That is the shape this repository
+#: is removing (`.agents/todo.md` item 67): a check may branch on data it was given,
+#: and may not branch on a list of notations it happens to know. The reasons those
+#: rows carried were good ones — *a layout, not a relation*, *a symbol list, not an
+#: expression* — so they moved here, onto the items that need them.
+SYMBOLIC = "symbolic"
+WHY = "why"
+
+#: A reason shorter than this is not a reason. It stops `why: "?"` standing in for
+#: an explanation, which would make the declaration a silent opt-out from the check.
+MIN_WHY = 20
 
 _TEXT = re.compile(r"\\text\{[^}]*\}")
 
@@ -86,6 +119,72 @@ def booklet_items(book: books.Book) -> dict[str, dict]:
             if isinstance(item, dict) and item.get("id"):
                 items[str(item["id"])] = item
     return items
+
+
+# --- what the parser cannot read, declared rather than guessed ----------------
+
+
+def declares_not_symbolic(item: dict) -> bool:
+    """Does this booklet item say that it is not a relation the parser can read?"""
+    return item.get(SYMBOLIC) is False
+
+
+def not_symbolic_reason(item: dict) -> str:
+    """The reason an item gives for not being a relation, or the empty string."""
+    return str(item.get(WHY) or "").strip()
+
+
+def unreadable(items: dict[str, dict]) -> list[tuple[str, str]]:
+    """The items that declare they are not relations, with the reason they give.
+
+    This is the gap in what the check can see, written down and countable rather
+    than hidden in a percentage: `_sides` returns nothing for these items, so a
+    problem that plays one gets no coverage check. That is a real limit of this
+    module, and it belongs to the item that makes it rather than to a table in a
+    test.
+    """
+    return [
+        (item_id, not_symbolic_reason(item))
+        for item_id, item in items.items()
+        if declares_not_symbolic(item)
+    ]
+
+
+def booklet_faults(items: dict[str, dict]) -> list[str]:
+    """Items whose LaTeX is neither readable nor declared unreadable, ready to assert.
+
+    Three faults, and the third is what keeps the first two honest:
+
+    * an item the parser cannot read that does not declare it — fix the LaTeX, or
+      declare `symbolic: false` and say why;
+    * a declaration with no reason, which is an opt-out rather than a record;
+    * a declaration on an item the parser *can* read — the declaration is stale,
+      and a stale one would hide the relation this check exists to see. So
+      declaring an item opaque can never be the cheap way past a fault.
+    """
+    faults: list[str] = []
+    for item_id, item in items.items():
+        latex = str(item.get("latex") or "")
+        if declares_not_symbolic(item):
+            reason = not_symbolic_reason(item)
+            if len(reason) < MIN_WHY:
+                faults.append(
+                    f"{item_id}: declares `{SYMBOLIC}: false` without a reason. "
+                    f"Add a `{WHY}:` saying what the notation is and why it cannot "
+                    f"be parsed."
+                )
+            elif _sides(item):
+                faults.append(
+                    f"{item_id}: declares `{SYMBOLIC}: false`, but its LaTeX parses. "
+                    f"Remove the declaration so the relation is checked."
+                )
+        elif not _sides(item):
+            faults.append(
+                f"{item_id}: {latex!r} is not read by `sympy.parsing.latex` and does "
+                f"not say so. Fix the LaTeX, or declare `{SYMBOLIC}: false` with a "
+                f"`{WHY}:` on the item."
+            )
+    return faults
 
 
 def declared_all(problem: dict) -> list[str]:
@@ -159,6 +258,11 @@ def _errors_for(
 
 
 # --- the author's aid, never the verdict --------------------------------------
+#
+# `_sides` is the parser boundary. It returns [] both for "this is not a relation"
+# and for "I cannot read this", and nothing here tries to tell those apart from the
+# LaTeX: an item that is not a relation says so in the booklet (`booklet_faults`),
+# and an item that says nothing is expected to parse.
 
 
 def _sides(item: dict):
@@ -277,7 +381,7 @@ def check_book(book: books.Book) -> list[str]:
     """Every invalid declaration in a book's banks, ready to be an assertion."""
     items = booklet_items(book)
     boards = supported_boards(book)
-    problems: list[str] = []
+    problems: list[str] = [f"booklet: {fault}" for fault in booklet_faults(items)]
     for path in sorted(book.banks.glob("*.yaml")):
         data = yamlio.load_file(path) or {}
         for record in data.get("problems", []) or []:
