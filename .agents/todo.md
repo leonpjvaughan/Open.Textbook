@@ -572,42 +572,43 @@ readers), and `innerHTML` markup with per-module `toFixed` (`reuse-audit.md` §3
 
 ---
 
-## 70. The gate is 26 minutes on four runners — **build matrix done; 16 minutes left**
+## 70. The gate is 17 minutes on four runners — two levers left, both measured
 
-**Measured 2026-10-18, run `39115758316`, before:** **2601 seconds of job time across 24
-jobs**, 26 minutes of wall clock. **After collapsing the build matrix** (run
-`39120728135`): **1599 seconds across 9 jobs**, **16 minutes**.
+**Three runs, measured on 2026-10-18:**
 
-| Job | Before | After | Note |
+| Run | Change | Job time | Wall clock |
 |---|---|---|---|
-| `banks, tests and voice` | 343 s | **461 s** | 85 s of pytest alone; `-n 4` |
-| `theme preview` | 328 s | **432 s** | 194 s alone |
-| `deploy to production` | 337 s | 344 s | wrangler; inherent |
-| `build` (13 rows → 1) | **1300 s** | **222 s** | `scripts/build-all.sh`, 43 s locally |
-| job time, total | 2601 s | **1599 s** | 24 jobs → 9 |
+| — | one matrix row per profile (13 rows) | 2601 s / 24 jobs | **26 min** |
+| `39120728135` | `scripts/build-all.sh`: one job, 4 profiles at a time | 1599 s / 9 jobs | **16 min** |
+| `39124299954` | two workers per job (`BUILD_JOBS=2`, `pytest -n 2`) | **1280 s / 8 jobs** | **17.5 min** |
 
-**The build matrix was the right thing to fix and it was not enough. Job time halved and
-the wall clock did not**, because the wall clock is now three jobs of about seven minutes
-each and they are contending for **eight cores**. Every one of them parallelises
-internally — `pytest -n 4`, four concurrent builds, Chromium — so on four runners the
-host is oversubscribed about threefold, and a job that takes 194 seconds alone takes 432
-under that load.
+**The build collapse was right and halved job time. The worker reduction did not help the
+wall clock**, and the numbers say why: it is now two ~7.4-minute jobs —
+`theme preview` 448 s and `banks, tests and voice` 441 s — that overlap, then `deploy`
+344 s that cannot start until the gate is green. Reducing per-job parallelism lowered the
+sum and left the critical path alone, because **`theme preview` is itself six concurrent
+browser checks** and already using the whole machine.
 
-**The fix, and it is the opposite of the last one.** Collapsing jobs reduced the *sum*;
-reducing per-job parallelism will reduce the *wall clock*. Concretely: `BUILD_JOBS: 2`,
-`pytest -n 2`, and let the four runners carry the parallelism instead of each job
-carrying its own. Measure before and after on a `main` run — the numbers above are the
-baseline.
+**So the two levers left reduce work, not scheduling:**
 
-**Also measured, and not the lever:** `deploy` is 344 s of `wrangler` upload and does not
-move.
+1. **Merge the three figure passes into one browser session.** `scripts/preview-themes.sh`
+   runs `audit` (contrast, 91 s), `audit --mobile` (95 s) and `readout` (106 s), and each
+   navigates every figure page: **292 s of page loads for one walk**. One command that
+   loads a page once and takes the paint measurement, the phone measurement and the
+   readout at both viewports is the single biggest remaining win, and it would put
+   `theme preview` under the three-minute rule on its own.
+2. **Split `deploy` into build and ship.** Its 344 s includes building the site; the
+   build could run *in parallel* with the checks and be uploaded after the gate, which
+   removes ~60–90 s from the critical path and nothing from what is verified.
+
+**Also measured, and not the lever:** `generated files are in sync` is 88 s, of which
+most is `npm ci`; `plan` is 31 s.
 
 **Done means**
 
 - The gate's wall clock is under 10 minutes on four runners, measured on a run.
-- No job exceeds three minutes except `deploy` and `theme preview`, which is gated to
-  `main` and dispatch.
-- `.github/AGENTS.md`'s timing table records the new numbers.
+- `theme preview` is under three minutes on its own, with the three passes merged.
+- `.github/AGENTS.md`'s timing table records the numbers from the run that proves it.
 
 ---
 
