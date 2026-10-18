@@ -95,7 +95,7 @@ now, and the four marked open are the ones verified open on 2026-10-17.
 - [x] 66. 137 of 250 figure modules hand-write a `<text>` element
 - [ ] 67. Checks that parse prose or enumerate notation, and where else they appear
 - [ ] 69. The generalisation review: eight places the doctrine was not applied (1 and 2 done)
-- [ ] 70. The gate is 26 minutes on four runners, and 13 of its 24 jobs are one build each
+- [ ] 70. The gate is 16 minutes on four runners — build matrix done, per-job parallelism next
 
 ---
 
@@ -574,36 +574,41 @@ readers), and `innerHTML` markup with per-module `toFixed` (`reuse-audit.md` §3
 
 ---
 
-## 70. The gate is 26 minutes on four runners, and 13 of its 24 jobs are one build each
+## 70. The gate is 26 minutes on four runners — **build matrix done; 16 minutes left**
 
-**What is wrong.** Measured 2026-10-18 on the self-hosted runners, run `39115758316`:
-**2601 seconds of job time across 24 jobs**, so on four runners the wall clock is
-**26 minutes** — the queue, not any one check. The long poles:
+**Measured 2026-10-18, run `39115758316`, before:** **2601 seconds of job time across 24
+jobs**, 26 minutes of wall clock. **After collapsing the build matrix** (run
+`39120728135`): **1599 seconds across 9 jobs**, **16 minutes**.
 
-| Job | Time | Note |
-|---|---|---|
-| `banks, tests and voice` | 343 s | was 491 before `pytest -n 4`; still 5.7 min under contention |
-| `deploy to production` | 337 s | wrangler uploading the site; inherent |
-| `theme preview` | 328 s | 194 s on an idle machine |
-| 13 × `build <book> (<profile>)` | ~100 s each | **1300 s of the 2601** — 21 of 26 minutes |
+| Job | Before | After | Note |
+|---|---|---|---|
+| `banks, tests and voice` | 343 s | **461 s** | 85 s of pytest alone; `-n 4` |
+| `theme preview` | 328 s | **432 s** | 194 s alone |
+| `deploy to production` | 337 s | 344 s | wrangler; inherent |
+| `build` (13 rows → 1) | **1300 s** | **222 s** | `scripts/build-all.sh`, 43 s locally |
+| job time, total | 2601 s | **1599 s** | 24 jobs → 9 |
 
-**The build matrix is the problem, and it was built for GitHub's runners.** It exists so
-running to running, so free parallelism; on four self-hosted runners each row is a full
-`checkout` + `uv sync` + `npm ci` + build, and 13 of them queue behind each other for a
-build that takes 4 seconds. `scripts/preview-themes.sh` already builds every profile
-four at a time in about 25 seconds.
+**The build matrix was the right thing to fix and it was not enough. Job time halved and
+the wall clock did not**, because the wall clock is now three jobs of about seven minutes
+each and they are contending for **eight cores**. Every one of them parallelises
+internally — `pytest -n 4`, four concurrent builds, Chromium — so on four runners the
+host is oversubscribed about threefold, and a job that takes 194 seconds alone takes 432
+under that load.
 
-**The fix.** One `build` job that runs `textbook.pipeline` for every config concurrently
-— the same loop `preview-themes.sh` uses — printing one line per profile. It keeps the
-per-profile visibility in the log, loses it from the job list, and removes ~1200 s of
-setup. Then `theme preview` is the next longest at 194 s alone, which fits the
-three-minute rule.
+**The fix, and it is the opposite of the last one.** Collapsing jobs reduced the *sum*;
+reducing per-job parallelism will reduce the *wall clock*. Concretely: `BUILD_JOBS: 2`,
+`pytest -n 2`, and let the four runners carry the parallelism instead of each job
+carrying its own. Measure before and after on a `main` run — the numbers above are the
+baseline.
+
+**Also measured, and not the lever:** `deploy` is 344 s of `wrangler` upload and does not
+move.
 
 **Done means**
 
 - The gate's wall clock is under 10 minutes on four runners, measured on a run.
-- No job exceeds three minutes except the deploy.
-- A failing profile is still identifiable from the log without opening a matrix row.
+- No job exceeds three minutes except `deploy` and `theme preview`, which is gated to
+  `main` and dispatch.
 - `.github/AGENTS.md`'s timing table records the new numbers.
 
 ---
