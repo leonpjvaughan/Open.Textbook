@@ -348,6 +348,45 @@ maths-figure label {
   content: " —";
 }
 
+/* The optional track. It is deliberately quieter than `prove`: a proof is a
+   promise kept, and depth is an offer. Same shape, softer rule, so a reader can
+   tell at a glance that the main thread continues without it. */
+.deeper {
+  margin: 1.3rem 0;
+  padding: 0.7rem 0.95rem;
+  border: 1px dashed var(--tb-rule);
+  border-radius: 6px;
+}
+.deeper__link {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  gap: 0.5rem;
+  text-decoration: none;
+}
+.deeper__ask {
+  font-weight: 600;
+  color: var(--tb-ink-soft);
+  white-space: nowrap;
+}
+.deeper__ask::after {
+  content: "\2192";
+  margin-left: 0.3rem;
+  display: inline-block;
+}
+.deeper__title {
+  color: var(--tb-ink);
+}
+.deeper__link:hover .deeper__title,
+.deeper__link:focus-visible .deeper__title {
+  text-decoration: underline;
+}
+.deeper__note {
+  margin: 0.4rem 0 0;
+  font-size: 0.9rem;
+  color: var(--tb-ink-soft);
+}
+
 /* ------------------------------------------------------------------ */
 /* Formulae & tables booklet                                           */
 /* ------------------------------------------------------------------ */

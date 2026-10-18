@@ -7,14 +7,13 @@
 
 This is a complete Leaving Certificate Mathematics book for Ireland.
 It covers Higher, Ordinary and Foundation level, and it follows the specifications of SEC.
+Every section has three pages.
+**Learn** teaches the ideas and the method.
+**Practise with help** gives questions with hints you can reveal.
+**Practise** gives independent questions, with the answers at the end.
 You can read the whole book in a browser, and there is nothing to
 install.
-
-Every section has three pages. **Learn** teaches the ideas and the method.
-**Practise with help** gives questions with hints you can reveal.
-**Practise** gives independent questions, with the answers at the end. Each
-chapter opens with a problem you can solve by the end, and closes with a
-**Review**.
+Each chapter opens with a problem you can solve by the end, and closes with a **Review**.
 
 ## Who made it
 

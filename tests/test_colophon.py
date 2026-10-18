@@ -166,6 +166,22 @@ def test_every_book_links_the_sources_it_rests_on(book):
     `sources.yaml` decides — and a new book is right by default rather than by
     someone else's edit.
     """
+    sources = scaffold._sources_data(book)
+    if not (sources.get("references") or []):
+        # A book may rest on no external document — a book about modelling does —
+        # but "no sources" must then be a stated position rather than an omission,
+        # and the statement has to reach the page a reader checks.
+        note = str(sources.get("note") or "").strip()
+        assert note, (
+            f"{book.id}: About this book links no sources and does not say why. "
+            "Either add the references the book rests on, or say in sources.yaml "
+            "that it rests on none."
+        )
+        page = " ".join(_about_page(book).split())
+        first = " ".join(note.split())[:70]
+        assert first in page, f"{book.id}: the sources note is not on the About page"
+        return
+
     links = scaffold._attribution_links(book)
     assert links, f"{book.id}: About this book links none of its sources"
 
@@ -211,10 +227,27 @@ def _about_page(book):
 
 
 NON_REFERENCE = [b for b in BOOKS if b.qualification != "Reference"]
-IDS = [b.id for b in NON_REFERENCE]
 
 
-@pytest.mark.parametrize("book", NON_REFERENCE, ids=IDS)
+def _follows_a_syllabus(book) -> bool:
+    """A course names a country because it follows that country's curriculum.
+
+    A book that declares `syllabus: false` follows none, so there is no country to
+    name and no curriculum body to credit — and the About page says that instead.
+    The escape is declared in the book's own `curriculum.yaml` and checked by
+    `test_a_book_without_a_syllabus_says_so`, so it is a shape the collection
+    knows about rather than a skip.
+    """
+    return book.curriculum_data.get("meta", {}).get("syllabus", True) is not False
+
+
+COURSES = [b for b in NON_REFERENCE if _follows_a_syllabus(b)]
+IDS = [b.id for b in COURSES]
+SYLLABUS_FREE = [b for b in NON_REFERENCE if not _follows_a_syllabus(b)]
+FREE_IDS = [b.id for b in SYLLABUS_FREE]
+
+
+@pytest.mark.parametrize("book", COURSES, ids=IDS)
 def test_every_course_declares_where_it_is_for(book):
     """No default: a book with no declared jurisdiction is refused, not guessed."""
     meta = book.curriculum_data.get("meta", {})
@@ -232,7 +265,7 @@ def test_every_course_declares_where_it_is_for(book):
     )
 
 
-@pytest.mark.parametrize("book", NON_REFERENCE, ids=IDS)
+@pytest.mark.parametrize("book", COURSES, ids=IDS)
 def test_the_about_page_names_only_this_books_jurisdiction(book):
     """The sentence is built from the declaration, not from a literal."""
     meta = book.curriculum_data["meta"]
@@ -249,7 +282,7 @@ def test_the_about_page_names_only_this_books_jurisdiction(book):
         )
 
 
-@pytest.mark.parametrize("book", NON_REFERENCE, ids=IDS)
+@pytest.mark.parametrize("book", COURSES, ids=IDS)
 def test_the_about_page_does_not_claim_another_countrys_licence(book):
     """Crown copyright and the OGL are England's. A book that has not been given
     terms it can cite says so by not making a claim."""
@@ -265,3 +298,16 @@ def test_the_about_page_does_not_claim_another_countrys_licence(book):
     assert meta["curriculum_body"] in page, (
         f"{book.id} must name whose curriculum it follows"
     )
+
+
+@pytest.mark.parametrize("book", SYLLABUS_FREE, ids=FREE_IDS)
+def test_a_book_without_a_syllabus_says_so(book):
+    """The other half of the exemption above: no syllabus, no country, **and it
+    says so on the page**, rather than leaving a reader to infer it from a list of
+    documents that is not a curriculum."""
+    page = _about_page(book)
+    assert "This book follows no syllabus" in page, page[:400]
+    for phrase in ("book for England", "book for Ireland", "Crown copyright"):
+        assert phrase not in page, (
+            f"{book.id} follows no syllabus, so its About page must not claim {phrase!r}"
+        )

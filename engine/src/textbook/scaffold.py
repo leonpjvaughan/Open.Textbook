@@ -14,7 +14,9 @@ from __future__ import annotations
 
 import argparse
 import os
+import re
 import sys
+import textwrap
 from pathlib import Path
 
 import yaml
@@ -127,7 +129,9 @@ def shared_figure_modules() -> dict[str, Path]:
         if path.name not in SHARED_FIGURE_FILES
     }
 
-#: The three page kinds of a section, in the order a reader meets them.
+#: The kinds of page a section has. A book may declare a shorter list in
+#: `book.yaml → section_pages` — see `Book.section_page_kinds`, which is what the
+#: scaffold, the nav and the lint rules all read.
 #:
 #: One tuple because there were four places that had to agree and no test between
 #: them: the URL shaper's slug map, the reader-facing titles a stub is written
@@ -144,6 +148,48 @@ PAGE_KINDS: tuple[tuple[str, str, str, str], ...] = (
     ("Guided problems", "guided-problems", "Practise with help", "practise-with-help"),
     ("Problems", "problems", "Practise", "practise"),
 )
+
+#: The directory a section's optional depth pages live under, and its URL segment.
+#:
+#: One declaration, because four things must agree and none of them can afford to
+#: guess: the nav lists the page, the URL shaper slugs the directory, the
+#: `:::deeper` directive resolves the target, and the scaffold must **not** write a
+#: stub there — a depth page is authored or it does not exist.
+DEEPER_DIRECTORY = "Deeper"
+DEEPER_SLUG = "deeper"
+DEEPER_SLUG_PATTERN = re.compile(r"^[a-z0-9]+(?:-[a-z0-9]+)*$")
+
+
+def page_kind_slugs() -> tuple[str, ...]:
+    """The names a book may declare in `book.yaml → section_pages`.
+
+    The **reader-facing** names — `learn`, `practise-with-help`, `practise` — not
+    the internal kind ids, because the declaration is written by an author looking
+    at a page rather than at the engine. Read from `PAGE_KINDS` rather than written
+    again, because a fourth page kind used to mean editing four files and finding
+    out at build time whether they agreed.
+    """
+    return tuple(slug for _directory, _kind, _title, slug in PAGE_KINDS)
+
+
+def page_kinds_for(declared: tuple[str, ...] | list[str]) -> tuple[str, ...]:
+    """A book's declared page slugs as the engine's kind ids, in reading order.
+
+    The order is `PAGE_KINDS` order whatever order the declaration uses: a book
+    chooses *which* pages a section has, not the order a reader meets them in. An
+    unknown name raises here rather than quietly generating nothing, because a
+    typo in `section_pages` would otherwise be three missing pages discovered at
+    the build.
+    """
+    known = page_kind_slugs()
+    wanted = set(declared)
+    unknown = sorted(wanted - set(known))
+    if unknown:
+        raise ValueError(
+            f"section_pages {unknown} are not page kinds; choose from {list(known)}"
+        )
+    return tuple(kind for _directory, kind, _title, slug in PAGE_KINDS if slug in wanted)
+
 
 STRAND_FILES = {
     "number": "number.md",
@@ -403,6 +449,37 @@ def _join_words(items) -> str:
     return ", ".join(words[:-1]) + " and " + words[-1]
 
 
+#: A small count as a reader would say it. "Every section has 3 pages" reads like a
+#: specification; "three pages" reads like prose, and this book's pages are prose.
+_NUMBER_WORDS = {
+    0: "no",
+    1: "one",
+    2: "two",
+    3: "three",
+    4: "four",
+    5: "five",
+    6: "six",
+}
+
+
+def _number_word(count: int) -> str:
+    return _NUMBER_WORDS.get(count, str(count))
+
+
+#: What one page of a section is for, in the reader's words. Read when the colophon
+#: describes the book's shape, so a book with a different shape is described in
+#: terms of the pages it has.
+PAGE_SENTENCE = {
+    "walkthrough": "**Learn** teaches the ideas and the method.",
+    "guided-problems": (
+        "**Practise with help** gives questions with hints you can reveal."
+    ),
+    "problems": (
+        "**Practise** gives independent questions, with the answers at the end."
+    ),
+}
+
+
 # The references a reader is entitled to see linked, marked in the book's own
 # `sources.yaml` with `attribution: true`.
 #
@@ -448,7 +525,7 @@ def colophon_page(book: Book, licence: object = _USE_COLLECTION) -> str:
     # book that declares neither is a mistake, not a default.
     meta = book.curriculum_data.get("meta", {})
     jurisdiction = str(meta.get("jurisdiction") or "").strip()
-    if not jurisdiction and book.qualification != REFERENCE:
+    if not jurisdiction and book.qualification != REFERENCE and not meta.get("what_it_is"):
         raise ValueError(
             f"{book.id}: curriculum.yaml has no meta.jurisdiction, so the About page "
             "cannot say which country this book is for"
@@ -482,10 +559,23 @@ def colophon_page(book: Book, licence: object = _USE_COLLECTION) -> str:
             "the page that stated the fact.",
         ]
     else:
-        what_it_is = [
-            f"This is a complete {book.qualification} {book.subject} book for "
-            f"{jurisdiction}."
-        ]
+        kinds = book.section_page_kinds
+        # A book may say what it is in its own words. The default below is a
+        # *course's* answer — "a complete GCSE Physics book" — and it is false for a
+        # book that follows no syllabus, so the sentence is data rather than a
+        # qualification-shaped guess.
+        stated = str(meta.get("what_it_is") or "").strip()
+        if stated:
+            # Wrapped here rather than in the YAML, because a folded scalar in a
+            # config file comes out as one long line, and a generated page whose
+            # paragraph is a single 90-word line is unreadable in a diff and fails
+            # the line-length rule that every authored page obeys.
+            what_it_is = textwrap.wrap(" ".join(stated.split()), 78)
+        else:
+            what_it_is = [
+                f"This is a complete {book.qualification} {book.subject} book for "
+                f"{jurisdiction}."
+            ]
         # `tiers` is the label of the code both levels study, and it already names
         # them all — "Foundation and Higher", "Foundation, Ordinary and Higher" — so
         # the word after it belongs to the jurisdiction. England calls them tiers;
@@ -499,18 +589,39 @@ def colophon_page(book: Book, licence: object = _USE_COLLECTION) -> str:
             what_it_is.append(f"It covers {levels}.")
         elif boards:
             what_it_is.append(f"It follows the specifications of {boards}.")
+        # What a section holds is the book's own declaration, so the page cannot
+        # describe three pages to a book that has one. This used to be a hardcoded
+        # sentence about Learn / Practise with help / Practise, which would have
+        # promised a reader of a one-page book two pages that are not there.
+        named = {kind: title for _directory, kind, title, _slug in PAGE_KINDS}
+        if kinds:
+            plural = "page" if len(kinds) == 1 else "pages"
+            what_it_is.append(f"Every section has {_number_word(len(kinds))} {plural}.")
+            # What each page is for, in the reader's words. Kept per kind so a book
+            # with a different shape gets sentences about the pages it has, rather
+            # than a promise of two pages that are not there.
+            what_it_is += [
+                PAGE_SENTENCE[kind] for kind in kinds if kind in PAGE_SENTENCE
+            ]
+        if book.deeper_pages:
+            what_it_is += [
+                "Some sections offer an optional page as well, for a reader who wants",
+                "more. You never need one to follow the chapter.",
+            ]
         what_it_is += [
             "You can read the whole book in a browser, and there is nothing to",
             "install.",
-            "",
-            "Every section has three pages. **Learn** teaches the ideas and the "
-            "method.",
-            "**Practise with help** gives questions with hints you can reveal.",
-            "**Practise** gives independent questions, with the answers at the end. "
-            "Each",
-            "chapter opens with a problem you can solve by the end, and closes with a",
-            "**Review**.",
         ]
+        if "problems" in kinds:
+            what_it_is.append(
+                "Each chapter opens with a problem you can solve by the end, and closes "
+                "with a **Review**."
+            )
+        else:
+            what_it_is.append(
+                "Each chapter opens with a question you can answer by the end, and "
+                "closes with a **Review**."
+            )
 
     lines = [
         "<!-- Generated from collection.yaml and sources.yaml.",
@@ -527,7 +638,7 @@ def colophon_page(book: Book, licence: object = _USE_COLLECTION) -> str:
         "This book is part of **Open.Textbook**, an independent project by Leon",
         "Vaughan, who wrote and assembled it.",
     ]
-    if book.qualification != REFERENCE:
+    if book.qualification != REFERENCE and "problems" in book.section_page_kinds:
         lines += [
             "",
             "## Answers are checked by a computer",
@@ -555,6 +666,14 @@ def colophon_page(book: Book, licence: object = _USE_COLLECTION) -> str:
             "Every claim about which course a proof belongs to rests on a published",
             "specification, and each one is named below.",
         ]
+    elif meta.get("syllabus") is False:
+        # A book that follows no syllabus says so, rather than letting the reader
+        # infer it from a list of documents that is not a curriculum. Whether there
+        # is a list at all is settled below, where the links are.
+        lines += [
+            "This book follows no syllabus, and it is not tied to a country's",
+            "curriculum.",
+        ]
     elif curriculum_licence:
         name = str(curriculum_licence.get("name", "")).strip()
         url = str(curriculum_licence.get("url", "")).strip()
@@ -581,6 +700,11 @@ def colophon_page(book: Book, licence: object = _USE_COLLECTION) -> str:
         lines += [
             "The curriculum this book follows is named in the list of sources below.",
         ]
+    # A book that makes no claim resting on an external document says so here,
+    # rather than leaving a reader to infer it from an empty list of sources.
+    source_note = str(sources.get("note") or "").strip()
+    if source_note:
+        lines += ["", *source_note.splitlines()]
     # Who owns the specification, and who examines it. Declared whole rather than
     # composed from `boards`, because the split differs: England's awarding bodies
     # publish their own specifications and examine them, while in Ireland the NCCA
@@ -659,7 +783,12 @@ def home_stub(book: Book, chapters: list[dict]) -> str:
     fm = front_matter(title=book.title)
     total_sections = sum(len(c["sections"]) for c in chapters)
     lines = [f"{book.description}\n"]
-    lines.append(f"- {len(chapters)} chapters, {total_sections} sections\n")
+    # Plural, because a one-chapter book reading "1 chapters" looks like a bug
+    # because it is one.
+    lines.append(
+        f"- {len(chapters)} chapter{'s' if len(chapters) != 1 else ''}, "
+        f"{total_sections} section{'s' if total_sections != 1 else ''}\n"
+    )
     if book.tier_axis:
         # The **levels of the course**, named by the code every reader studies — the
         # same expression the colophon uses. This line used to join every axis value,
@@ -776,15 +905,29 @@ def build_nav_list(
     chapters: list[dict],
     included_tiers: frozenset[str] | None = None,
     proofs: list[dict] | None = None,
+    page_kinds: tuple[str, ...] | None = None,
+    deepers: list[dict] | None = None,
 ) -> list[dict]:
     """The sidebar and page list.
 
     Two shapes, and a book is one or the other. A course has strands, a glossary
-    and chapters of three kinds of page. A **reference work** has none of those:
-    it declares no chapters, so it is listed from its own registry and every page
-    under `docs/` is authored. The glossary is emitted only when there are
-    strands, because a glossary of nothing is a page a reader has to walk past.
+    and chapters of pages. A **reference work** has none of those: it declares no
+    chapters, so it is listed from its own registry and every page under `docs/`
+    is authored. The glossary is emitted only when there are strands, because a
+    glossary of nothing is a page a reader has to walk past.
+
+    ``page_kinds`` is the book's own declaration (``Book.section_page_kinds``) and
+    ``deepers`` its optional depth pages (``Book.deeper_pages``); the pipeline
+    passes both, so the nav and the scaffold cannot disagree about what a section
+    has. The defaults — every kind, no depth pages — are for a caller holding
+    chapter data but no book, and are the shape every course book uses.
     """
+    kinds = tuple(page_kinds or (kind for _directory, kind, _title, _slug in PAGE_KINDS))
+    wanted = set(kinds)
+    by_section: dict[tuple[str, str], list[dict]] = {}
+    for page in deepers or []:
+        by_section.setdefault((str(page["chapter"]), str(page["section"])), []).append(page)
+
     nav: list[dict] = [{"Home": "index.md"}]
     if strands:
         glossary_children = [{"Overview": "Glossary/index.md"}]
@@ -800,14 +943,20 @@ def build_nav_list(
             if s.get("tier") and s["tier"] not in included_tiers:
                 continue
             base = f"Chapter {c['id']}/Section {s['id']}"
-            children.append(
-                {
-                    f"{s['id']} {s['title']}": [
-                        {title: f"{base}/{directory}/index.md"}
-                        for directory, _kind, title, _slug in PAGE_KINDS
-                    ]
-                }
+            section_children = [
+                {title: f"{base}/{directory}/index.md"}
+                for directory, kind, title, _slug in PAGE_KINDS
+                if kind in wanted
+            ]
+            # The optional track, listed after the main thread it belongs to. A
+            # depth page has a URL of its own rather than being an aside, so a
+            # reader with scripting off can reach it and a search engine can index
+            # it — and the chapter's own page can link to it with `:::deeper`.
+            section_children.extend(
+                {page["title"]: page["path"]}
+                for page in by_section.get((str(c["id"]), str(s["id"])), [])
             )
+            children.append({f"{s['id']} {s['title']}": section_children})
         children.append({"Review": f"Chapter {c['id']}/Review/index.md"})
         nav.append({f"Chapter {c['id']}: {c['title']}": children})
     # The colophon sits last, where a reader expects to find it.
@@ -878,7 +1027,16 @@ def scaffold(book: Book, dry_run: bool) -> None:
         for s in c["sections"]:
             base = chapter_dir / f"Section {s['id']}"
             for directory, kind, _title, _slug in PAGE_KINDS:
+                # A book declares which pages its sections have. Anything it does
+                # not declare is not generated — and, because the nav is built
+                # from `Book.section_page_kinds` too, is not linked either.
+                if kind not in book.section_page_kinds:
+                    continue
                 emit(base / directory / "index.md", section_stub(c, s, kind), dry_run)
+            # A `deeper:` page is authored, never scaffolded. Writing a stub there
+            # would put a placeholder at a URL the nav already points at, and the
+            # whole point of the depth track is that its pages exist because
+            # somebody wrote them.
         emit(chapter_dir / "Review" / "index.md", review_stub(c), dry_run)
 
 

@@ -371,18 +371,53 @@ STYLESHEET = repo_root() / "assets" / "stylesheets" / "extra.css"
 # `fill` and `stroke` — and `text-*` is words. A module may also use a class of
 # its own to find an element again (`fig-readout`, `fig-controls`); those style
 # nothing, so they are not colour classes and are not checked here.
+# Any `fig-*` or `text-*` class, not a closed list of the ones that exist. The
+# list used to be closed — `(?:accent|warn|good|ink|grid|line)` — so a class nobody
+# had defined was also a class this scanner could not see, and the test below
+# passed while the label fell back to black. A scan for *what a module uses* has to
+# be open at the top, or the check is only as good as the vocabulary it already
+# knows.
 FIGURE_CLASS = re.compile(
-    r"""class\s*=\s*["'][^"']*\b((?:fig|text)-(?:accent|warn|good|ink|grid|line))\b"""
+    r"""class\s*=\s*["'][^"']*\b((?:fig|text)-[a-z][\w-]*)"""
 )
 FIGURE_CLASSLIST = re.compile(
-    r"""classList\.(?:add|remove|toggle)\(\s*["']((?:fig|text)-(?:accent|warn|good|ink|grid|line))["']"""
+    r"""classList\.(?:add|remove|toggle)\(\s*["']((?:fig|text)-[a-z][\w-]*)["']"""
 )
+# The spelling a kit-based module uses: `label({ ..., class: "text-warn" })`. It is
+# a JavaScript object key rather than an HTML attribute, and the two scans above
+# cannot see it — so the whole of the converted half of the collection, which is
+# every module that draws a label through the kit, was outside `text_classes_in`.
+FIGURE_OPTION = re.compile(r"""\bclass:\s*["']((?:fig|text)-[a-z][\w-]*)["']""")
 
 
 def text_classes_in(text: str) -> set[str]:
-    """Every `text-*` colour class a module applies, from either spelling."""
-    found = set(FIGURE_CLASS.findall(text)) | set(FIGURE_CLASSLIST.findall(text))
+    """Every `text-*` colour class a module applies, in any of the three spellings.
+
+    An HTML `class` attribute, a `classList` call, or the kit's own `class:` option.
+    All three appear in the collection, and a scanner that knew two of them reported
+    "nothing undefined" for modules it could not read.
+    """
+    found = (
+        set(FIGURE_CLASS.findall(text))
+        | set(FIGURE_CLASSLIST.findall(text))
+        | set(FIGURE_OPTION.findall(text))
+    )
     return {name for name in found if name.startswith("text-")}
+
+
+def test_the_class_scanner_reads_all_three_spellings():
+    """Guard the guard: a scanner that misses a spelling reports success.
+
+    `text-nope` in a kit option was invisible until this existed — a class nobody
+    defined could not be reported by a test that only saw HTML attributes, and the
+    label fell back to the SVG default fill, which is black.
+    """
+    source = (
+        'label({ x: 1, y: 2, class: "text-nope", text: "hi" });\n'
+        'const markup = `<text class="text-also-nope">x</text>`;\n'
+        'el.classList.add("text-third-nope");\n'
+    )
+    assert text_classes_in(source) == {"text-nope", "text-also-nope", "text-third-nope"}
 
 
 def css_rules(css: str) -> dict[str, str]:

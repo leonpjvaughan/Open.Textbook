@@ -9,7 +9,7 @@ and Toolchain still apply. This file adds what is common to every book, and it
 now owns the **Tiers**, **Generated files**, **Content**, **Problem bank** and
 **booklet data** traps that used to sit in the root's `## Watch out for`.
 
-The nearest file wins, and **every book has one** — nine of them, each carrying that
+The nearest file wins, and **every book has one** — one per book, each carrying that
 book's boards, its level axis, its assessment and the pitfalls particular to it. A book
 without a file of its own inherits only the root and this one, and the things that make it
 different are then nowhere: `tests/test_agent_context.py` fails when one is missing, and

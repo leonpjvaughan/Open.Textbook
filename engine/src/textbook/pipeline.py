@@ -128,7 +128,9 @@ def pagefind() -> Path:
 # reader's. AGENTS.md is explicit that internal words must never reach the reader,
 # and a URL is read in the address bar, the sitemap and every search result, so
 # the published path uses the same vocabulary the navigation does.
-SLUG_OVERRIDES = {directory: slug for directory, _kind, _title, slug in scaffold.PAGE_KINDS}
+SLUG_OVERRIDES = {
+    directory: slug for directory, _kind, _title, slug in scaffold.PAGE_KINDS
+} | {scaffold.DEEPER_DIRECTORY: scaffold.DEEPER_SLUG}
 
 # Everything else slugs mechanically: 'Chapter 12' -> 'chapter-12',
 # 'Section 1.1' -> 'section-1.1'. Dots survive so section numbers stay legible.
@@ -281,12 +283,20 @@ def render_nav(
 
 
 def nav_for(book: books.Book, included_tiers: frozenset[str]) -> list:
-    """The nav, built from a book's own registry — a curriculum or a proof list."""
+    """The nav, built from a book's own registry — a curriculum or a proof list.
+
+    The book's own declarations travel with it: which page kinds its sections have
+    and which optional depth pages they offer. Passing them here rather than
+    defaulting inside the nav builder is what keeps one build from listing a page
+    that the same build will not write.
+    """
     return scaffold.build_nav_list(
         book.strands,
         book.chapters,
         included_tiers=included_tiers,
         proofs=book.proofs,
+        page_kinds=book.section_page_kinds,
+        deepers=book.deeper_pages,
     )
 
 
@@ -808,6 +818,27 @@ def copy_assets(book: books.Book, out: Path) -> list[str]:
                 (assets / "icons" / name, out / "assets" / "icons" / name)
                 for name in ("app-icon.svg", "favicon.svg", "apple-touch-icon.png")
             )
+        ),
+        # This book's own data files — the numbers a figure draws, emitted by the
+        # tool that computed them (see `books/maths-applied`). Copied as a
+        # directory because a payload is a payload, not a module: it must not sit
+        # in `figures/`, where every file is required to export `mount()`.
+        AssetRow(
+            ((book.docs / "assets" / "data", out / "assets" / "data"),),
+            select=lambda directory: [
+                path for path in sorted(directory.rglob("*")) if path.is_file()
+            ],
+            label="data files",
+        ),
+        # This book's own images — a photograph, a scan, a credit-bearing plate.
+        # Never a figure: a figure is drawn by a module so it follows the reader's
+        # bundle, and an image cannot.
+        AssetRow(
+            ((book.docs / "assets" / "images", out / "assets" / "images"),),
+            select=lambda directory: [
+                path for path in sorted(directory.rglob("*")) if path.is_file()
+            ],
+            label="images",
         ),
         # This book's own figure modules. A symlink in the book's figures directory is
         # a shared file: on a platform that does not check symlinks out as links

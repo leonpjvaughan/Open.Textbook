@@ -185,6 +185,11 @@ class Book:
     #: Empty by default, and nothing ships one — see textbook/backgrounds.py.
     backgrounds: dict = field(default_factory=dict)
     sources_name: str = "sources.yaml"
+    #: The kinds of page each section has. Empty means every kind the engine
+    #: knows (`scaffold.PAGE_KINDS`) — the three-page formula a course wants. A
+    #: book that is not a course declares a shorter list in `book.yaml`:
+    #: `section_pages: [learn]`.
+    section_pages: tuple[str, ...] = ()
 
     # --- paths ---------------------------------------------------------------
     @property
@@ -346,6 +351,73 @@ class Book:
         )
 
     @property
+    def section_page_kinds(self) -> tuple[str, ...]:
+        """The page kinds a section has, in the order a reader meets them.
+
+        **One declaration, three readers.** The scaffold writes a stub for each
+        kind, the nav lists each kind, and `textbook.lint` checks the structure
+        each kind implies. Reading a different list in any of the three is how a
+        book ends up with a `Practise` page its own `book.yaml` says it does not
+        have, and a lint rule demanding verified answers on it.
+
+        `book.yaml` declares them by their **reader-facing** name — `learn`,
+        `practise-with-help`, `practise` — and this returns the engine's kind ids in
+        reading order. An empty declaration means every kind, which is a course.
+        """
+        from . import scaffold  # local: scaffold imports this module
+
+        try:
+            kinds = scaffold.page_kinds_for(self.section_pages)
+        except ValueError as err:
+            raise ValueError(f"{self.id}: {err}") from None
+        return kinds or scaffold.page_kinds_for(scaffold.page_kind_slugs())
+
+    @property
+    def deeper_pages(self) -> list[dict]:
+        """Every optional depth page a section declares, in nav order.
+
+        A deeper page is **authored, never scaffolded**: it is the track a reader
+        takes when they want more than the main thread, so the scaffold has
+        nothing to say about its content and must not put a stub where it goes.
+        ``:::deeper <slug>`` links to one from the section it belongs to, and the
+        nav lists it as a child of that section, so it has a real URL and works
+        with scripting off.
+        """
+        from . import scaffold  # local: scaffold imports this module
+
+        pages: list[dict] = []
+        for chapter in self.chapters:
+            for section in chapter.get("sections", []):
+                seen: set[str] = set()
+                for entry in section.get("deeper", []) or []:
+                    slug = str(entry.get("slug", "")).strip()
+                    title = " ".join(str(entry.get("title", "")).split())
+                    where = f"{self.id} Section {section['id']}"
+                    if not scaffold.DEEPER_SLUG_PATTERN.match(slug):
+                        raise ValueError(
+                            f"{where}: deeper page slug {slug!r} is not lowercase "
+                            "letters, digits and single hyphens"
+                        )
+                    if slug in seen:
+                        raise ValueError(f"{where}: two deeper pages are named {slug!r}")
+                    if not title:
+                        raise ValueError(f"{where}: deeper page {slug!r} has no title")
+                    seen.add(slug)
+                    pages.append(
+                        {
+                            "chapter": str(chapter["id"]),
+                            "section": str(section["id"]),
+                            "slug": slug,
+                            "title": title,
+                            "path": (
+                                f"Chapter {chapter['id']}/Section {section['id']}/"
+                                f"{scaffold.DEEPER_DIRECTORY}/{slug}/index.md"
+                            ),
+                        }
+                    )
+        return pages
+
+    @property
     def chapter_count(self) -> int:
         return len(self.chapters)
 
@@ -387,6 +459,7 @@ def load_book(path: Path) -> Book:
         booklet_name=data.get("booklet", ""),
         backgrounds=dict(data.get("backgrounds", {}) or {}),
         sources_name=data.get("sources", "sources.yaml"),
+        section_pages=tuple(data.get("section_pages", ())),
     )
 
 
