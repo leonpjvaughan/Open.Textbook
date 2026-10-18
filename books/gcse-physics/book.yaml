@@ -41,7 +41,7 @@ profiles:
 # both tiers, H to Higher only. What differs is *which* content each label
 # covers, which is a curriculum matter and lives in curriculum.yaml.
 tier_axis:
-  F: Foundation and Higher
+  F: Higher and Foundation
   H: Higher only
 
 # Verification oracles the banks in this book may use. Physics needs both: the

@@ -37,8 +37,8 @@ profiles:
 # The tier axis, lowest level first. The order *is* the nesting, so it is read from
 # this list and never inferred from the labels.
 tier_axis:
-  F: Foundation, Ordinary and Higher
-  O: Ordinary and Higher
+  F: Higher, Ordinary and Foundation
+  O: Higher and Ordinary
   H: Higher only
 
 # Verification oracles the banks in this book may use. sympy proves the algebra —

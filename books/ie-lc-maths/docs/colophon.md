@@ -6,7 +6,7 @@
 ## What this book is
 
 This is a complete Leaving Certificate Mathematics book for Ireland.
-It covers Foundation, Ordinary and Higher level, and it follows the specifications of SEC.
+It covers Higher, Ordinary and Foundation level, and it follows the specifications of SEC.
 You can read the whole book in a browser, and there is nothing to
 install.
 

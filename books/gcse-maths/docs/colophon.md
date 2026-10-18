@@ -6,7 +6,7 @@
 ## What this book is
 
 This is a complete GCSE Mathematics book for England.
-It covers Foundation and Higher tier, and it follows the specifications of AQA, Pearson Edexcel and OCR.
+It covers Higher and Foundation tier, and it follows the specifications of AQA, Pearson Edexcel and OCR.
 You can read the whole book in a browser, and there is nothing to
 install.
 

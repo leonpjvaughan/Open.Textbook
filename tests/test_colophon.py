@@ -75,10 +75,14 @@ def test_about_page_carries_the_required_statements(needle):
 
 
 def test_about_page_names_the_tiers_correctly():
-    """`tier_axis` labels F as "Foundation and Higher" and H as "Higher only";
-    the page must name the first, not read both out together."""
+    """`tier_axis` labels F as "Higher and Foundation" and H as "Higher only";
+    the page must name the first, not read both out together.
+
+    The order is the axis's, which is higher-first — the order the levels are listed in
+    everywhere a reader sees them.
+    """
     page = read_page()
-    assert "It covers Foundation and Higher tier," in page
+    assert "It covers Higher and Foundation tier," in page
     assert "Higher only tier" not in page
 
 

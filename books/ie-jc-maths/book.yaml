@@ -19,20 +19,25 @@ boards: [SEC]
 # `O` for the reader who studies only the content common to both levels, `H` for the
 # reader who studies all of it. The filter is not the profile id, so the profile may
 # be named anything (see `Book.tier_filter_for`).
+# Higher first, and Higher is the landing profile, because that is what every book in
+# the collection does: `gcse-maths`, `gcse-physics`, both A-levels and all three
+# Leaving Certificate books default to their highest level. Junior Cycle was the one
+# that landed on Ordinary, so the portal sent a reader to a different level depending on
+# which book they picked.
 profiles:
-  - id: ordinary
-    name: Ordinary
-    tier_filter: O
-    default: true
   - id: higher
     name: Higher
     tier_filter: H
+    default: true
+  - id: ordinary
+    name: Ordinary
+    tier_filter: O
 
 # The tier axis, lowest level first. `O` is the content every reader studies; `H` is
 # studied only by Higher level. Unlike England, where the lower code is `F` for
 # "Foundation and Higher", the Irish lower code is `O` for "Ordinary and Higher".
 tier_axis:
-  O: Ordinary and Higher
+  O: Higher and Ordinary
   H: Higher only
 
 oracles: [sympy]

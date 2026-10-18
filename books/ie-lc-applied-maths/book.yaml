@@ -34,7 +34,7 @@ profiles:
     tier_filter: O
 
 tier_axis:
-  O: Ordinary and Higher
+  O: Higher and Ordinary
   H: Higher only
 
 # Verification oracles the banks in this book may use. Applied Mathematics needs

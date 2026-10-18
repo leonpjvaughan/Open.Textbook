@@ -37,7 +37,7 @@ profiles:
     tier_filter: O
 
 tier_axis:
-  O: Ordinary and Higher
+  O: Higher and Ordinary
   H: Higher only
 
 # The units oracle owns `dimensions`, `convert`, `sigfigs`, `uncertainty`,

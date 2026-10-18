@@ -6,7 +6,7 @@
 ## What this book is
 
 This is a complete Junior Cycle Mathematics book for Ireland.
-It covers Ordinary and Higher level, and it follows the specifications of SEC.
+It covers Higher and Ordinary level, and it follows the specifications of SEC.
 You can read the whole book in a browser, and there is nothing to
 install.
 

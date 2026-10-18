@@ -31,7 +31,7 @@ profiles:
 
 # The tier axis for this book, for documentation and for the scaffold's stubs.
 tier_axis:
-  F: Foundation and Higher
+  F: Higher and Foundation
   H: Higher only
 
 # Verification oracles the banks in this book may use.
