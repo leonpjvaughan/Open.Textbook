@@ -227,6 +227,11 @@ three examples into `books/maths-applied/docs/assets/data/` and swap each panel 
 read the exported object. Keep `mechanism.js`: it becomes the *second* route, which
 is what makes the panel a check rather than a printout.
 
+The fifth section's pseudocode is checked by nothing yet either, and the brief asks
+for a light guard: a test that the names a page's pseudocode uses exist in the module
+the page links to — not that the text matches, which would defeat the point of
+pseudocode. It cannot be written until there is a module to read.
+
 **Done means**
 
 - [ ] `suspension-kinematics` passes its four acceptance tests, and its `out.js`
