@@ -277,6 +277,27 @@ Then:
 3. Run `python -m textbook.portal` — the landing page picks the card up.
 4. CI discovers the new build automatically; there is no workflow to edit.
 
+### A book declares its own shape
+
+Two declarations are a book's own, and the engine reads them rather than assuming a
+course:
+
+- **`book.yaml → section_pages`** — which pages a section has, by their reader-facing
+  name (`learn`, `practise-with-help`, `practise`). The default is all three. The
+  scaffold, the navigation, the URL shaper and `textbook.lint` all read this one
+  property, so a book cannot be given a page its own `book.yaml` says it does not
+  have — and a book with no `Practise` page needs no problem bank and no exemption.
+- **`curriculum.yaml → sections[].deeper`** — an optional list of `{slug, title}`
+  depth pages, each at `Chapter N/Section M/Deeper/<slug>/`, listed as a child of its
+  section and reachable with `:::deeper <slug>`, which expands to one link and
+  nothing else. The scaffold writes no stub for one: a depth page exists because
+  somebody wrote it.
+
+A book's `docs/assets/data/` and `docs/assets/images/` are copied into the build.
+Data is not a figure — every file in `figures/` must export `mount()` — and an image
+cannot be one either, because a figure follows the reader's bundle and a photograph
+cannot.
+
 ### A reference work is not a course
 
 `books/proofs/` is a book because that is how the collection publishes, navigates

@@ -1,5 +1,58 @@
 # Decisions
 
+## 2026-10-18 — A book declares its own page structure, and its own depth
+
+**The problem.** Three things were global, and each was right for a course and wrong
+for a book that is not one: **three pages per section** (`Walkthrough`, `Guided
+problems`, `Problems`), **no page the curriculum does not list**, and **a book's
+assets are its figures and its stylesheets**. `books/maths-applied` is a book about
+modelling with one page per section, optional depth pages, and a payload of numbers
+computed elsewhere. The first two were hard constraints; the third blocked the data
+entirely.
+
+**The temptation, and why it was refused.** Add an exemption to `lint` for a book
+without a `Practise` page. That fixes the symptom and leaves the cause: the scaffold
+still writes the page, the navigation still lists it, and the exemption has to be
+repeated for the next book with a different shape. A rule with a per-book escape is
+two rules.
+
+**The decision.** A book declares its own structure in `book.yaml` and its own depth
+in `curriculum.yaml`, and **one declaration drives all four readers** — the scaffold
+that writes stubs, the navigation, the URL shaper and the lint rules:
+
+```yaml
+section_pages: [learn]        # book.yaml: reader-facing names; default: all three
+```
+
+```yaml
+sections:
+  - id: '1.2'
+    deeper:
+      - slug: two-solutions     # authored, never scaffolded
+        title: Why two circles meet twice
+```
+
+`:::deeper <slug>` expands to **one link and nothing else**, beside `:::prove`: a
+depth page is a page, the link is a link, and a reader with scripting off still
+reaches it. The scaffold deliberately writes no stub for it — a depth page exists
+because somebody wrote it.
+
+Assets followed the same reasoning: `docs/assets/data/` and `docs/assets/images/` are
+now copied as directories. A figure's payload cannot live in `figures/`, where every
+file must export `mount()`; a photograph cannot be a figure at all, because a figure
+is drawn to follow the reader's bundle.
+
+**What this buys.** A book's shape is data, so its About page describes the pages it
+has rather than promising two that are not there — and `maths-applied` needs no
+problem bank, no tier and no exemption.
+
+**The cost.** Four call sites moved from a constant to a property, and the lint rules
+now read the declaration instead of directory names. The default is unchanged for the
+nine course books, which is what `tests/test_book_structure.py` pins — along with the
+guard that the exemption is the *declaration* and not a blanket skip.
+
+---
+
 ## 2026-10-17 — An assertion is data; display is free
 
 **The problem.** Two figures printed a multiplication that does not give the number

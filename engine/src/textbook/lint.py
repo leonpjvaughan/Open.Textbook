@@ -22,7 +22,7 @@ from pathlib import Path
 
 from . import book as books
 from . import frontmatter
-from .scaffold import STUB_MARKER
+from .scaffold import PAGE_KINDS, STUB_MARKER
 
 
 # --- text preparation ---------------------------------------------------------
@@ -353,6 +353,21 @@ def fix_text(text: str) -> str:
 def lint(book: books.Book, fix: bool, findings: Counter, examples: dict) -> tuple[int, int]:
     docs = book.docs
 
+    # The structural rules below are keyed on the **book's own** page kinds, not on
+    # the three a course happens to have. A book that declares
+    # `section_pages: [learn]` has no `Practise` page, so demanding verified answer
+    # markers on one would be asking for a page the book does not have — and the
+    # exemption would then have to be repeated for every future book with a
+    # different shape. Reading the same declaration the scaffold reads means the
+    # rule and the page cannot disagree.
+    declared = set(book.section_page_kinds)
+    directory = {
+        kind: name for name, kind, _title, _slug in PAGE_KINDS if kind in declared
+    }
+    walkthrough = directory.get("walkthrough")
+    guided = directory.get("guided-problems")
+    practise = directory.get("problems")
+
     def note(category: str, where: str) -> None:
         findings[category] += 1
         examples.setdefault(category, [])
@@ -425,16 +440,16 @@ def lint(book: books.Book, fix: bool, findings: Counter, examples: dict) -> tupl
                 note("structure:chapter-missing-anchor", rel)
             if "By the end of this chapter" not in text:
                 note("structure:chapter-missing-outcomes", rel)
-        if "/Walkthrough/" in rel_posix:
+        if walkthrough and f"/{walkthrough}/" in rel_posix:
             for label, needle in (
                 ("structure:walkthrough-missing-checklist", "You should now be able to"),
                 ("structure:walkthrough-missing-watchout", "Watch out"),
             ):
                 if needle not in text:
                     note(label, rel)
-        if "/Guided problems/" in rel_posix and "Warm-up: remember" not in text:
+        if guided and f"/{guided}/" in rel_posix and "Warm-up: remember" not in text:
             note("structure:guided-missing-warmup", rel)
-        if "/Problems/" in rel_posix:
+        if practise and f"/{practise}/" in rel_posix:
             if ":::problems" not in text or ":::answers" not in text:
                 note("structure:problems-missing-markers", rel)
 
@@ -443,7 +458,7 @@ def lint(book: books.Book, fix: bool, findings: Counter, examples: dict) -> tupl
     starters: dict[str, list[str]] = {}
     for path in paths:
         rel_posix = path.as_posix()
-        if "/Guided problems/" not in rel_posix:
+        if not guided or f"/{guided}/" not in rel_posix:
             continue
         chapter = re.search(r"Chapter (\d+)/", rel_posix)
         if not chapter:
