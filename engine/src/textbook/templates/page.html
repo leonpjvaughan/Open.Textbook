@@ -10,6 +10,7 @@
 <title>$title — $site_title</title>
 <meta name="description" content="$description">
 <meta name="build" content="$build">
+$pager_head
 <link rel="canonical" href="$canonical">
 <link rel="manifest" href="/manifest.webmanifest">
 <link rel="icon" type="image/svg+xml" href="${prefix}assets/icons/favicon.svg">
@@ -71,6 +72,10 @@ document.body.setAttribute(
        a chapter title that merely appears in the navigation. -->
   <main id="main" class="content md-typeset" data-pagefind-body>
     $content
+    <!-- Previous/next, from the same reading order as the sidebar. Outside the
+         Pagefind index (`data-pagefind-ignore`) so a search excerpt never quotes
+         "Next section". -->
+    $pager
   </main>
 </div>
 

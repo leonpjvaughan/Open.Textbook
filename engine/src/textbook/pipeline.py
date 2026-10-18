@@ -309,6 +309,92 @@ def chapter_subset(book: books.Book, chapter: int, included_tiers=None) -> list:
     raise SystemExit(f"no chapter {chapter} in {book.title}")
 
 
+def _level(path: str, depth: int) -> str:
+    """The first `depth` components of a source path, for grouping neighbours."""
+    return "/".join(path.split("/")[:depth])
+
+
+def _pager_eyebrow(current: str, target: str, forward: bool) -> str:
+    """What the move is, in the reader's words: page, section, chapter, chapter review.
+
+    The eyebrow is the whole value of a pager over a bare arrow: "Next section" tells a
+    reader where the link goes before they read the title, and on a phone it is the only
+    part of the label that fits on one line.
+
+    The two special cases are the ones a reader would otherwise misread: a neighbour
+    that is a chapter's own index page is *contents*, not the next chapter, and a
+    chapter's Review is the end of the chapter rather than the start of the next.
+    """
+    if target == "index.md":
+        return "Contents"
+    if target.startswith("Glossary/"):
+        return "Glossary"
+    direction = "Next" if forward else "Previous"
+    parts = target.split("/")
+    same_chapter = _level(current, 1) == _level(target, 1)
+    if len(parts) == 2 and parts[-1] == "index.md":
+        return "Chapter contents" if same_chapter else f"{direction} chapter"
+    if len(parts) >= 3 and parts[-2] == "Review":
+        return "Chapter review" if same_chapter else f"{direction} chapter"
+    if not same_chapter:
+        return f"{direction} chapter"
+    if _level(current, 2) != _level(target, 2):
+        return f"{direction} section"
+    return f"{direction} page"
+
+
+def pager_for(paths: list[str], book: books.Book) -> dict[str, tuple[dict | None, dict | None]]:
+    """Every page's previous and next, from the **nav order** the sidebar uses.
+
+    The reading order is `nav_paths`, so the pager cannot disagree with the contents
+    list — the same rule `nav_for` follows for the sidebar itself. Titles come from
+    the page's own front matter, because the nav's leaf titles are the page *kind*
+    ("Learn") and a pager that says only "Learn" says nothing about where it goes.
+    """
+    # **The sidebar's order is a reference order, and the pager's is a reading order.**
+    # They differ in one place: the sidebar lists the glossary first, so following
+    # "next" from the cover would land a reader in the glossary. Reference material
+    # reads *after* the course, so it moves to the end of the chain here and nowhere
+    # else.
+    ordered = [p for p in paths if not p.startswith("Glossary/")] + [
+        p for p in paths if p.startswith("Glossary/")
+    ]
+    order: dict[str, tuple[dict | None, dict | None]] = {}
+    titles: dict[str, str] = {}
+    for md_path in paths:
+        source = book.docs / md_path
+        title = ""
+        if source.exists():
+            try:
+                meta, _ = read_page(source)
+                title = str((meta or {}).get("title") or "").strip()
+            except FrontMatterError:
+                title = ""
+        if not title:
+            title = "Contents" if md_path == "index.md" else md_path.rsplit(".", 1)[0]
+        titles[md_path] = title
+
+    for index, md_path in enumerate(ordered):
+        previous = None
+        following = None
+        if index > 0:
+            target = ordered[index - 1]
+            previous = {
+                "href": url_for(target),
+                "title": titles[target],
+                "eyebrow": _pager_eyebrow(md_path, target, forward=False),
+            }
+        if index + 1 < len(ordered):
+            target = ordered[index + 1]
+            following = {
+                "href": url_for(target),
+                "title": titles[target],
+                "eyebrow": _pager_eyebrow(md_path, target, forward=True),
+            }
+        order[md_path] = (previous, following)
+    return order
+
+
 def nav_paths(nav, subset: str | None = None) -> list[str]:
     """Every Markdown path in a nav, optionally restricted to one chapter."""
     out: list[str] = []
@@ -406,6 +492,37 @@ def wrap_tables(html_text: str) -> str:
     return TABLE.sub(lambda m: f'<div class="table-scroll">{m.group(0)}</div>', html_text)
 
 
+def render_pager(pager, prefix: str) -> tuple[str, str]:
+    """The previous/next block, and the `<link rel>`s that say the same thing.
+
+    **Both, from one model.** The block is what a reader uses; `<link rel="prev">` and
+    `<link rel="next">` are the machine-readable form of the same fact, which a
+    browser extension, a crawler and a print stylesheet read. Rendering them from the
+    same neighbour means they cannot disagree.
+
+    A page with no neighbour on one side keeps a spacer, so a lone "next" does not
+    drift into the "previous" position and read as one.
+    """
+    previous, following = pager
+    if not previous and not following:
+        return "", ""
+    parts = ['<nav class="pager" aria-label="Page navigation" data-pagefind-ignore>']
+    links = []
+    for neighbour, direction in ((previous, "prev"), (following, "next")):
+        if neighbour:
+            href = html.escape(prefix + neighbour["href"], quote=True)
+            parts.append(
+                f'<a class="pager__link pager__link--{direction}" href="{href}" rel="{direction}">'
+                f'<span class="pager__eyebrow">{html.escape(neighbour["eyebrow"])}</span>'
+                f'<span class="pager__title">{html.escape(neighbour["title"])}</span></a>'
+            )
+            links.append(f'<link rel="{direction}" href="{href}">')
+        else:
+            parts.append('<span class="pager__spacer" aria-hidden="true"></span>')
+    parts.append("</nav>")
+    return "\n".join(parts), "\n".join(links)
+
+
 def render_page(
     book: books.Book,
     profile: str,
@@ -417,6 +534,7 @@ def render_page(
     build: str = "",
     leaf_cache: dict[int, set[str]] | None = None,
     subtree_cache: dict[tuple[int, str], str] | None = None,
+    pager: tuple[dict | None, dict | None] = (None, None),
 ) -> tuple[str, RenderedPage, bool]:
     """Render one page of one profile. Returns (html, index entry, maths error).
 
@@ -448,12 +566,15 @@ def render_page(
     # real script element rather than a module. A book without a booklet gets no
     # element at all, so no page ever fetches data that is not there.
     booklet = booklet_widget(book, prefix)
+    pager_html, pager_head_html = render_pager(pager, prefix)
     rendered = template.substitute(
         title=html.escape(title),
         description=html.escape(str(meta.get("description") or book.description)),
         site_title=html.escape(book.title),
         canonical=canonical_url(book, profile, url),
         content=content,
+        pager=pager_html,
+        pager_head=pager_head_html,
         nav=render_nav(nav, url, leaf_cache, subtree_cache),
         prefix=prefix,
         build=html.escape(build, quote=True),
@@ -956,6 +1077,10 @@ def build(
     # per build rather than once per page. See `render_nav`.
     nav_cache: dict[int, set[str]] = {}
     nav_render_cache: dict[tuple[int, str], str] = {}
+    # The reading order the sidebar already declares, so the pager cannot disagree
+    # with the contents list. Built once: it reads each page's front matter for a
+    # title, and a page must not read its neighbours on every render.
+    pager_map = pager_for(paths, book)
     for md_path in paths:
         source = book.docs / md_path
         if not source.exists():
@@ -972,6 +1097,7 @@ def build(
             build=build_label,
             leaf_cache=nav_cache,
             subtree_cache=nav_render_cache,
+            pager=pager_map.get(md_path, (None, None)),
         )
         destination = out / entry.output
         destination.parent.mkdir(parents=True, exist_ok=True)

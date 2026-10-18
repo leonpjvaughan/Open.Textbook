@@ -26,6 +26,7 @@ keep claims to what the briefing supports. See `research/pedagogy.md`.
 | `research/curriculum/` (the `.draft.yaml` and `.sources.yaml`) | Drafts and their manifests. Never the source of truth — a book's `curriculum.yaml` is |
 | `research/design/reuse-audit.md` | **What is shared and what is repeated**, measured: the evidence behind the kit's rules |
 | `research/design/figure-audit.md` | **Every figure, measured in a browser** in both schemes, and the defects it found |
+| `research/design/navigation.md` | **Previous/next at the end of a page**: the pattern, the two places this book differs from it, what was rejected and why |
 | `research/design/background-effects.md` | The measurement behind opt-in backgrounds |
 | `research/sources/` | Fetched primary sources — git-ignored, not build input |
 | `research/notes/` | Working notes |
