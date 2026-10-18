@@ -67,12 +67,12 @@ then *measured* in a browser, driven to each control's extremes, by scratch
 harnesses under `/tmp/pi-delegate/del-108/` (`corpus.cjs`, `extremes.cjs`,
 `verify.cjs`, `measure.cjs`, `targeted.cjs`, `arcs.cjs`, `perf.cjs`,
 `booklet.cjs`). The harnesses load the built pages from `site/` by route
-interception, in the manner of `scripts/audit-figures.cjs`, and record for each
+interception, in the manner of `node tools/dist/cli.js audit site`, and record for each
 module: whether the SVG markup differs at all across the control extremes; whether
 any drawn element's box falls outside the SVG's box, at the default and at every
 extreme; and the smallest drawn text size in CSS pixels at a 390 px viewport.
 
-`node scripts/audit-figures.cjs site --only ch7-scale --json /tmp/…` reproduces
+`node tools/dist/cli.js audit site --only ch7-scale --json /tmp/…` reproduces
 the point that the audit is blind to the largest one of these classes (see B4).
 
 ## Blocking
@@ -612,7 +612,7 @@ for f in books/*/docs/assets/figures/*.js assets/{figures/figures,booklet/bookle
   do node --check "$f" || echo "FAIL $f"; done
 
 # the measurement of one figure's paint, at the audit's own resolution
-node scripts/audit-figures.cjs site --only ch7-scale --json /tmp/ch7.json
+node tools/dist/cli.js audit site --only ch7-scale --json /tmp/ch7.json
 
 # the scratch harnesses, in /tmp/pi-delegate/del-108/
 PLAYWRIGHT_PATH=… CHROME_PATH=… node corpus.cjs  site /tmp/corpus.json   # all 174 slugs

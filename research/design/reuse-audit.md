@@ -70,7 +70,7 @@ page or a figure knows a colour.
 
 ### The measurement that backs it
 
-`scripts/audit-figures.cjs` measures every figure in a browser, in both schemes, and
+`node tools/dist/cli.js audit site` measures every figure in a browser, in both schemes, and
 `research/design/figure-audit.md` is the result. It is why the invariant exists: it
 found 18 SVG labels painted black — `.text-*` sets `color` and **an SVG `<text>` is
 painted with `fill`**, so the words were invisible at 1.4:1 in dark mode — and it found
@@ -189,7 +189,7 @@ reading.
 
 | Check | Guards |
 |---|---|
-| `scripts/audit-figures.cjs` | the panel, the computed paint of every element, the ratio between them, both schemes; vacuity (a figure that mounts nothing) |
+| `node tools/dist/cli.js audit site` | the panel, the computed paint of every element, the ratio between them, both schemes; vacuity (a figure that mounts nothing) |
 | `scripts/check-figure-kit.cjs` | every module mounts through the kit |
 | `tests/test_figures.py` | no colour literal, `mount()` exported, accessible names |
 | `tests/test_figure_browser.py` | the same, in a real browser, across all six bundles |

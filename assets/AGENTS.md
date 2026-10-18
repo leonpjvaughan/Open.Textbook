@@ -140,7 +140,7 @@ phone-floor arithmetic, and `scripts/check-figure-kit-pure.mjs` verifies the dra
 formatting layers under plain `node`, so they are in the ordinary gate rather than only
 where Playwright is configured. Between them they check the invariant that matters most
 for a Venn diagram — that every region's label lands inside the region it names, for two
-sets and three — and for a solid, that a cube's hidden edges number exactly three. `scripts/audit-figures.cjs --mobile` measures what
+sets and three — and for a solid, that a cube's hidden edges number exactly three. `node tools/dist/cli.js audit site --mobile` measures what
 actually reaches a 390px screen; the current state is **0 figures below 9px**.
 
 ## Before you add a shared thing

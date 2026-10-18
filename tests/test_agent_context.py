@@ -251,3 +251,17 @@ def test_every_book_names_its_parent_agents_file():
         "book AGENTS.md files that do not name their parent books/AGENTS.md: "
         f"{missing}. The closest file wins, so add a line pointing to it."
     )
+
+
+def test_every_script_the_root_instructions_name_exists():
+    """A command in the rules is a command somebody will run.
+
+    `scripts/audit-figures.cjs` was named by the root `AGENTS.md` and by
+    `assets/AGENTS.md` long after it had moved into `tools/`, so the verification
+    block and the prose disagreed and neither was the one that ran. A path in the
+    instructions is a promise; this is the check that keeps it.
+    """
+    text = AGENTS.read_text(encoding="utf-8")
+    named = set(re.findall(r"scripts/[a-zA-Z0-9_.-]+\.(?:sh|cjs|mjs|py)", text))
+    missing = sorted(name for name in named if not (ROOT / name).is_file())
+    assert not missing, f"the root AGENTS.md names scripts that do not exist: {missing}"
