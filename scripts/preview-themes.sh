@@ -43,16 +43,10 @@ done
 uv run python -m textbook.scaffold
 uv run python -m textbook.booklet
 
-# Every profile, four at a time. A pipeline writes only under its own
-# `site/<book>/<profile>/`, so they do not collide; the portal writes the deployment
-# root and therefore goes last, alone. Twenty sequential builds were 82 seconds of a
-# run whose checks then took most of the rest.
-uv run python -m textbook.plan --configs |
-  xargs -d '\n' -P "${BUILD_JOBS:-4}" -n1 -I{} bash -c '
-    read -r -a build <<< "$1"
-    uv run python -m textbook.pipeline "${build[@]}" >/dev/null
-  ' _ {}
-uv run python -m textbook.portal
+# Every profile, four at a time, then the portal. **The same script the `build` job and
+# `deploy.sh` run**, so all three build the site the same way — this had its own copy of
+# the loop, which is how three places come to disagree.
+scripts/build-all.sh
 
 # --- the six checks, concurrently -------------------------------------------------
 #
@@ -81,7 +75,9 @@ run_check mobile node tools/dist/cli.js check-mobile site
 
 # Every figure, in both schemes, and what each one actually paints. The only check that
 # sees the difference between `text-*` setting `color` (HTML) and `fill` (SVG).
-run_check contrast node tools/dist/cli.js audit site --json "${TMPDIR:-/tmp}/figure-audit.json"
+run_check contrast node tools/dist/cli.js audit site \
+  --json "${TMPDIR:-/tmp}/figure-audit.json" \
+  --claims "$tmp/claims.json"
 
 # Every figure again at phone width: the one check that answers "can a label be read on
 # the device most readers use". A figure can clear 4.5:1 and still draw its label at
@@ -91,8 +87,6 @@ run_check phone node tools/dist/cli.js audit site --mobile
 # The kit's own contract, before the modules that build on it.
 run_check kit node tools/dist/cli.js kit site
 
-# The arithmetic each figure declares, decided by the same exact CAS the banks use.
-run_check readout node tools/dist/cli.js readout site --verify
 
 # The matrix, 6 bundles x 2 schemes x 3 routes = 36 pages.
 run_check preview node tools/dist/cli.js preview \
@@ -116,4 +110,23 @@ for i in "${!check_names[@]}"; do
   fi
   cat "$tmp/$name.log"
 done
+# **The arithmetic, from the pages the contrast check already walked.** `audit --claims`
+# sweeps each figure's controls in the pass it was making anyway; this proves what the
+# figures declared with the same exact CAS the banks use. It used to be a second command
+# that loaded every figure page again — 106 seconds of the same navigation.
+if [ -f "$tmp/claims.json" ]; then
+  printf '\n== claims ==\n'
+  if uv run python -m textbook.working "$tmp/claims.json"; then
+    :
+  else
+    failed=1
+  fi
+else
+  # A missing file is a failure: the audit ran with no figures, and "no claims" then
+  # reads exactly like "every claim proved".
+  printf '\n== claims — FAILED ==\n'
+  echo "the audit wrote no claims file; it measured no figure" >&2
+  failed=1
+fi
+
 [ "$failed" = 0 ] || exit 1

@@ -4,408 +4,168 @@ Working notes for the collection. One item per change. Items are ordered, not
 dated: the first is next. This file is ours, not the reader's — the voice rules
 in `AGENTS.md` do not apply here, but the engineering rules do.
 
-**Two queues, and this is the one that holds defects.** An item here is something
-wrong: a broken check, a wrong count, a page that ships a lie. The *interactive-aid
-backlog* — which figures and interactions a book still wants — is `ideas.md`, which is
-a plan rather than a defect list, and is written for the author choosing what to build
-next. An item here may point there rather than restating it.
+**This file holds open items only.** `.agents/todo-closed.md` holds every closed
+one **in full** — the diagnosis is the valuable part: what was wrong, how it was
+measured and what fixed it. A one-line summary keeps the number and deletes the
+reasoning, so nothing is compressed on the way across and nothing is deleted.
 
-**Finished items move to `.agents/todo-closed.md`, in full.** That file was 3,575 lines
-and 61 items, of which 57 were closed; reading it to find the four open ones was the
-work. Splitting it means this file is the queue and that one is the record. Nothing is
-compressed on the way across: the diagnosis — what was wrong, how it was measured, what
-fixed it — is the valuable part, and a one-line summary of it keeps the number and
-deletes the reasoning.
+**An item is here because it is still true.** Before closing one, run its own
+done-means; an item whose heading says done and whose checklist does not is the
+failure this file has had twice, so the list below, the headings and the boxes
+are checked against each other on every pass. Four items are open, and two of
+them say which single line is not met.
 
-The list below is the index. A closed item's line stays here and its section is in the
-archive; the two are kept in step by the `**done**` marker in the heading, which is what
-the split is derived from.
+The *interactive-aid backlog* — which figures and interactions a book still wants —
+is `ideas.md`. It is a plan rather than a defect list, and it is written for the
+author choosing what to build next.
 
-- [x] 1. Theme menu — reader settings in the header (book pages and the landing page, one runtime)
-- [x] 2. Custom domain — `open-textbook.org` resolves
-- [x] 3. `www` redirect — DNS imported, rule live, 301 with path and query preserved
-- [x] 4. Zone security and response headers — DNSSEC complete, CAA verified and enabled; only the CAA import and Bot Fight Mode left
-- [x] 5. Worker version URLs closed; rollback is a manual workflow, command recorded
-- [x] 6. Crawlability: our own `robots.txt` and a sitemap index
-- [x] 7. Account, credential and dependency hygiene — 2FA, registrar lock, token rotation, secret scanning, Dependabot, recovery
-- [x] 8. One site, two renderers — decided: the bespoke pipeline replaces MkDocs
-- [x] 9. Nothing says which commit is live
-- [x] 10. Accessibility: turn the claims into checks
-- [x] 11. Licence, colophon and a way to report an error
-- [x] 12. Installable and printable
-- [x] 13. Improve the maths book content — audits done and gated; the deferred rewrites are the programme
-- [x] 14. Two figure modules break the figure contract
-- [x] 15. `extra.css` and `portal.css` declare literal colours
-- [x] 16. Material keyboard gaps found by the audit
-- [x] 17. Text drawn on the accent is not AA
-- [x] 18. Theme bundles — six original light/dark groups; the third-party palettes replaced (see DECISIONS.md)
-- [x] 19. The pipeline's 404 page declares literal colours
-- [x] 20. The pipeline ships no Formulae booklet and no `book-local.css`
-- [x] 21. Recheck and verify — what the theme work could not settle (only the landing-page sample is thin, and it needs a second book)
-- [x] 22. Follow-ups from the MkDocs deletion
-- [x] 23. Stale theme references in the out-of-scope preview files
-- [x] 24. Animated backgrounds on the vivid themes — deferred by the author
-- [x] 25. An iOS home-screen icon (`apple-touch-icon`) — shipped, with the drift guarded
-- [x] 26. Declare the ready state — published 2026-10-11, release 26.284.0
+**Open, and the list is the index:**
 
-Items 27 onward were added after this list was written and had no line here, so the
-file could not answer "what is left?" without reading every section. They are listed
-now, and the four marked open are the ones verified open on 2026-10-17.
-
-- [x] 27. A-level Mathematics — scaffolded; booklet and verifier outstanding
-- [x] 28. GCSE Physics — research done, book not started
-- [x] 29. A-level Physics — research done, book not started
-- [x] 30. A physics oracle — **done, and in use**
-- [x] 31. A book's `AGENTS.md` could shadow its parent's
-- [x] 32. A-level Mathematics formulae booklet
-- [x] 33. The colophon's attribution links were hard-coded to GCSE
-- [x] 34. The scaffold did not create `problems/` for a new book
-- [x] 35. Edexcel's current physics equations/inserts were not retrieved
-- [x] 36. The A-level physics booklet transcribes the core only
-- [x] 37. `kilogram` was reported as a US spelling, and the fix was a no-op
-- [x] 38. A bank record whose check renders no answer
-- [x] 39. `uncertainty: add-percentages` could not model a quotient
-- [x] 40. A new figure module failed the runtime-LaTeX check
-- [x] 41. `dimensions` could not check a magnitude needing a square root
-- [x] 42. The internal-words lint flagged the literal phrase "the bank"
-- [x] 43. A-level Mathematics Chapter 6 was missing, and the plan thought it was built
-- [x] 44. An equations-coverage check needs a declaration the banks do not carry
-- [x] 45. The remaining undeclared records, book by book
-- [x] 46. Every figure, measured — and the two defects it found
-- [x] 47. "Prove it to me" — a proof behind every unproved claim
-- [x] 48. Eleven converted GCSE Physics figures gained a slider value display the page never had
-- [x] 49. The figure-kit phone-floor guard measured the wrong box, and passed a size that is too small
-- [x] 50. `evaluate` cannot check a `solve()` result, so a roots answer must be checked root by root
-- [x] 51. The published Irish books serve 2,741 pages that say "Stub"
-- [x] 52. A euro sign inside maths renders as nothing, and KaTeX only warns
-- [x] 53. An unquoted title with a colon is invalid YAML, and one shipped
-- [x] 54. `textbook.verify` stops at the first bank that will not parse, and a short run looks like a clean one
-- [x] 55. The home page listed "Higher only" as a tier
-- [x] 56. The figure panel's tint was spending the contrast margin
-- [x] 57. The browser runtime had no types — 0 at `strict: false`
-- [x] 68. `strict: true` reports 420 — now 0
-- [x] 58. Thirteen loose scripts, five copies of the same browser plumbing
-- [x] 59. The figure gaps in four books
-- [x] 60. Three Irish books have no booklet, and two of them should
-- [x] 61. A figure's readout can state false working — 588 claims, 0 untrue
-- [x] 62. The linter printed its findings and exited 0
-- [x] 63. `test/` sat one letter from `tests/`, and held the last loose script
-- [x] 64. The booklet gap was measured at the top level only
-- [x] 65. The booklet has no modulus form, and does not define λ
-- [x] 66. 137 of 250 figure modules hand-write a `<text>` element
-- [x] 67. Checks that parse prose or enumerate notation — the notation list is booklet data now
-- [x] 69. The generalisation review — eight places the doctrine was not applied
-- [ ] 70. The gate is 16 minutes on four runners — build matrix done, per-job parallelism next
+- [ ] 61. A figure's readout can state false working — 588 claims, 0 untrue; only
+      `--text` is left to settle
+- [ ] 69. The generalisation review — rows 1–8 done, `quantity()` not built
+- [ ] 70. The gate is 17.5 minutes on four runners — one lever left, measured
 - [ ] 71. `tools/build.mjs` says the tools build is bundled, and it is not
 
----
-
-## 13. Improve the maths book content — **done**
-
-**Closed 2026-10-17.** All four of its own done-means are met and were already
-marked `[x]` in the item: the pedagogy audit ran over all 25 chapters and is recorded
-in `research/pedagogy-audit/`, every finding is fixed or deferred with a reason,
-Chapters 7, 19, 23 and 24 stand as the rebuilt reference, and everything the audit
-found more than once is a lint rule or a test. The heading was the only thing still
-saying otherwise.
-
-**What it leaves behind, and it is not nothing.** The deferred rewrites are ranked in
-`research/pedagogy-audit/README.md` — Chapters 19, 23, 24, 5 and 15. They are a
-programme rather than a defect, and the item's own words are the reason to leave them
-where they are: "this is a programme, not a single change: it re-runs on the next
-book". A queue of open items is the wrong home for work that re-runs.
-
-**This is the product.** Every other item in this file is about shipping it; this
-one is about the thing being shipped. `AGENTS.md` states the chapter formula,
-`research/pedagogy.md` maps each principle to its evidence, and `.agents/skills/`
-now carries the method as five skills: `author-textbook-chapter`,
-`write-textbook-prose`, `build-practice-set`, `build-guided-figure` and
-`verify-textbook-change`.
-
-**State (checked 2026-10-11).** The book is structurally complete, so this is not
-about coverage:
-
-- 25 chapters, 133 sections, with 133 Walkthrough / Guided problems / Problems
-  pages and 25 Reviews. No `<!-- scaffold:stub -->` markers remain.
-- 138 `:::problems` / `:::answers` marker pairs, 139 verified banks.
-- **`textbook.lint` already enforces the structure.** Every chapter has
-  `## The chapter problem` and `By the end of this chapter`; every Walkthrough has
-  `You should now be able to` and `Watch out`; every Guided problems page has
-  `Warm-up: remember`; every Problems page has both markers.
-- All 133 Walkthroughs do carry a `> **Watch out.**` misconception callout.
-
-So the gap is exactly the part a linter cannot see — the **pedagogy audit** in
-`verify-textbook-change`, which is manual by design.
-
-**What is unchecked, and is the work.**
-
-- **Fade (P1).** Lint proves a hint block exists, not that support *withdraws*:
-  worked example → partial example → hint → independent. It also cannot see a
-  Walkthrough that opens with an unguided task a novice cannot start.
-- **The chapter problem (P2).** Lint proves one is *stated*. It cannot prove it is
-  *returned to* at 2–3 checkpoints and *resolved* on the Review page.
-- **Relevance (P3).** Whether the chapter asks the reader to construct their own
-  connection, or merely asserts the topic is useful.
-- **Interleaving (P5).** Whether later Problems pages mix earlier topics and ask
-  "which method applies, and why?".
-- **Guided figures (P6).** Only **27 `:::figure` uses across 25 chapters** — about
-  one per chapter — and nothing checks the Predict → Test → Explain shape.
-  **`ch5-map-scale` is wired to no `:::figure` directive at all.**
-- **Correctness.** The verifier proves the bank algebra, not the method and not
-  the teaching.
-
-**Method.** Work chapter by chapter, with the skills in order:
-
-1. `verify-textbook-change` — run its pedagogy audit over the chapter, unmodified,
-   and record the findings. The measurement comes before any edit.
-2. `author-textbook-chapter` — revise against the two arcs and the six principles.
-3. `write-textbook-prose` for the voice, `build-practice-set` for the practice and
-   its bank, `build-guided-figure` where a figure is missing or unguided.
-4. Re-run the audit, then `scripts/check.sh`.
-
-**Cheapest first pass:** the audit across all 25 chapters, recorded in one place,
-so the fixes are chosen by evidence rather than by mood. Then rebuild the worst
-chapter end to end as the reference for the rest.
-
-**Where it lands.** This is a programme, not a single change: it re-runs on the
-next book (physics, then A-level). Anything the audit finds more than once should
-become a lint rule or a test, so the floor rises and the manual audit shrinks.
-
-**Done means.**
-
-- [x] The pedagogy audit has been run over all 25 chapters, findings recorded in
-      one place — `research/pedagogy-audit/`, two reports plus a README that ranks
-      the work.
-- [x] Every finding is fixed, or deferred with a reason. Chapter 7's chapter
-      problem, the fade in Chapters 19, 23 and 24, Chapter 5's Guided pages, all
-      nine repeated warm-ups, eleven answer-printing checks and the five
-      mis-ordered figures are fixed. **Deferred, ranked in the audit README:** Chapters 19, 23, 24, 5 and 15 need rewrites; Chapter 7's
-      chapter problem is not solvable as set.
-- [x] The worst chapters have been rebuilt end to end and stand as the reference:
-      Chapters 7, 19, 23 and 24.
-- [x] Every `:::figure` follows Predict → Test → Explain, and `ch5-map-scale`
-      **wired up**: it is a scale-diagram investigation that matched no page, and
-      Section 5.5 — scale factors, diagrams and maps — had no figure. It now has a
-      Predict / Test / Explain section, and the book has no unused figure module. Five of twelve render above their own Predict
-      prompt.
-- [x] Anything the audit found more than once is now a lint rule or a test: the
-      `DfE coverage` and `Guided problems` leaks are gated by
-      `tests/test_content_hygiene.py`, and a chapter that repeats one warm-up
-      across its sections is reported as `structure:guided-warmup-repeated`.
+**Not in the queue, and not forgotten.** Accepted limitations live where the check
+that records them lives, not here: the booklets whose items cannot be parsed
+(`tests/test_verify_coverage.py`), the specifications that publish no finer
+granularity than a strand (`books/*/curriculum.yaml`), and the deferred chapter
+rewrites ranked in `research/pedagogy-audit/README.md`. An item in this file is a
+defect this repository can fix; those are decisions already taken.
 
 ---
 
-## 24. Animated backgrounds on the vivid themes — **decided, not built**
+## 61. A figure's readout can state false working — **done except `--text`**
 
-**Closed as a decision, 2026-10-17, and the decision was the author's.** The item says
-so itself: "**Deferred indefinitely by the author, 2026-10-12** ... Not a gap to close".
-It sat in the open list because its heading carried no marker, not because anything was
-waiting.
+**What is wrong.** Two of the fourteen figures added on 2026-10-17 printed a
+calculation that does not produce the number printed beside it, and **every check
+passed**: `tests/test_figures.py`, the build's math-error scan, `tools audit` and
+`tools kit`. None of them reads a number.
 
-The reading is that motion competes with a reader's attention on a page whose job is to
-make them think, and the collection's own rule is that decoration sits inside the
-practice budget. The seam is built (`engine/src/textbook/backgrounds.py`), the
-measurements are in `research/design/background-effects.md`, and an effect is a registry
-entry rather than a change to the shell — so the decision is cheap to revisit and
-nothing is lost by not revisiting it.
+- `interest-growth` printed `€1,500.00 × 0.07 × 4 = €390.00`. The rate is 6.5%, so
+  the multiplier is 0.065; `fmt(r, 2)` rounded it to 0.07, and 1500 × 0.07 × 4 is
+  €420.
+- `ratio-share` printed `3 × 14.29 = 42.86` where 100 ÷ 7 was already rounded.
 
-**Deferred indefinitely by the author, 2026-10-12.** The design work stands and is
-recorded in `DECISIONS.md` and `research/design/background-effects.md`; the seam is
-built (`engine/src/textbook/backgrounds.py`) so an effect is a registry entry rather
-than a change to the shell. Nothing ships one, and nothing will until a topic needs
-one. Not a gap to close: the honest reading of the measurements is that motion
-competes with a reader's attention on a page whose job is to make them think, and
-the collection's own rule is that decoration is inside the practice budget.
+**The first fix was wrong, and how it was wrong is the lesson.** It parsed the
+printed sentence back out of the text, and by the end it needed `<sup>`, `√`, `%`,
+thousands separators, a trailing sentence period and the words "and"/"is" to read
+**43%** of what it saw. Every new formatting choice was a new case; every new figure
+was a new chance to be silently unreadable.
 
-**Decided, not built.** `DECISIONS.md` (2026-10-11) and the measurements in
-`research/design/background-effects.md` settle the shape: opt-in, remembered per
-reader, on the three vivid themes, and **never a CSS animation** — the CSS
-gradient was the worst citizen measured, because it cannot stop (180 ms/s idle,
-435 ms/s throttled to 4× CPU), while a WebGL field and a fluid solver idle below
-the baseline. The prototypes and the harness are in
-`research/design/background-effects/`.
+**Done (the mechanism, 2026-10-17).** An assertion is data. `panel()` returns
+`claim`; a figure calls `claim([{ expression, values, answer, shown }])` once per
+redraw; `python -m textbook.working` proves each with the same exact CAS the banks
+use (`cas._rationalize` makes 0.065 `13/200`, so there is no tolerance to tune) and
+requires the readout to contain the claimed string. `tools readout site --verify` is
+in `scripts/preview-themes.sh`. Verified against the defect itself: reintroducing
+`fmt(r, 2)` while claiming `fmt(r, 3)` fails with *"claims to show '0.065', but the
+readout does not contain it"*. Three figures converted — `interest-growth`,
+`ratio-share`, `restitution` — with the `√` case proving no notation table is needed.
+The text heuristic survives only as `--text`, and is documented as a hint.
 
-**What remains.** Nothing of it is shipped:
+**Done (2026-10-18).** `tools readout` reports **0 figures that state arithmetic and
+declare none** — 33 figures declare **588 claims**, and `readout site --verify` proves
+all 588 with SymPy: **0 untrue**. The command now names any remaining figure rather than
+only counting them, because a count says the gap exists and a list says where.
 
-- The effect module, mounted like a figure — a Tier-1 pure-JS module, not a
-  plugin, and it must fail to nothing with scripting off (measured: it does).
-- A reader preference, alongside `textbook:theme` and `textbook:scheme`, with the
-  same origin-wide key discipline, and a control in the Settings overlay.
-- `prefers-reduced-motion`, `visibilitychange` and an `IntersectionObserver`, all
-  of which the prototypes already do.
-- A budget check: the fluid is +22 kB and the field +12 kB, and
-  `DOMContentLoaded` must not move.
-- The three vivid bundles are `neon`, `phosphor` and `glass`.
+**Done means**
 
-**Not a gate.** The site is publishable without it, and the honest prior is that
-motion distracts a reader reading mathematics — which is the whole argument for
-opt-in.
-
-**Done means.**
-
-- [ ] A reader on a vivid theme can turn a background on from Settings, and it
-      survives a reload on the origin-wide key.
-- [ ] It stops on `prefers-reduced-motion`, when offscreen, and when the tab is
-      hidden; the page is complete without it.
-- [ ] The measured addition stays inside ~25 kB and `DOMContentLoaded` does not
-      regress against `scripts/measure-budget.cjs`.
-- [ ] `scripts/preview-themes.sh` covers the themes that gain it.
+- `node tools/dist/cli.js readout site` reports **0** figures that state arithmetic
+  and declare none (35 remain, measured 2026-10-17).
+- Every remaining figure declares its printed numbers, not only its totals.
+- [ ] `--text` is deleted, because nothing depends on the heuristic. **Not met:** the
+      flag still ships, documented as a hint (`tools/AGENTS.md`); nothing depends on it,
+      and `readout site` reports 0 without it. Either delete the heuristic or replace
+      this line with the measurement that it is unused — the other two are proved.
 
 ---
+## 69. The generalisation review — **rows 1–8 done; `quantity()` is not built**
 
-## 57. The browser runtime had no types — **done, at `strict: false`**
+**Why this is an item.** An architecture review applied one test to each candidate:
+*is this the same thing written twice, or two different things that look alike?* Only
+the first is worth generalising — `scaffold.PAGE_KINDS` exists because "there were four
+places that had to agree and no test between them", and `DECISIONS.md` rejects the
+other direction ("a framework for 177 bespoke diagrams would be a framework around
+nothing"). These are the first kind.
 
-**What was wrong.** Every line the reader's browser runs was untyped, and `tsc` reported
-353 errors when the ratchet was introduced. A `.ts` file that is annotated in comments is
-not typed: three separate attempts to annotate a destructured option object were
-**silently ignored**, and the count went *up* each time.
+| # | Where | The repeat | State |
+|---|---|---|---|
+| 1 | `config.from_parts` | six test files hand-wrote the hook config; two had already drifted — one wrote `tier_filter` (`"H"`) where production writes a profile **id**, and none carried the proof book | **done 2026-10-17** |
+| 2 | `themes.contrast_problems` | five near-identical loops; only one resolved its alias, and its comment records that forgetting it makes "a check that cannot fail" | **done 2026-10-17** |
+| 3 | `tools` flag schema | `cli.ts` documents flags in a `usage` string and each command parses its own; `audit` accepts `--maps` that `help` does not mention, and `readout`/`preview` re-implement `parseArgs` | open |
+| 4 | tests: no `conftest.py` | `_problem` ×3, `_write` ×2, two hand-written JS brace-counters | **done** — `tests/conftest.py` + `tests/support.py`. The two `colour_literals` and the two brace helpers turned out to be **different scanners** and say so in their docstrings |
+| 5 | `kit.ts` / `kit-pure.ts` | two hand-written lists of one contract: 54 and 43 `want()` calls, 13 verbatim in both, 28 in only one tier | **done** — `tools/src/lib/kit-contract.ts`, **129 rows** over three tiers, **all 51 exports** covered; a row whose tier no runner reads now fails |
+| 6 | `units.py` | the same tolerance parse ×4 and seven hand-written compare-and-report pairs in three sentence shapes | **done** |
+| 7 | `pipeline.copy_assets` | five bespoke blocks in a 153-line, 23-branch function | **done** — entries of `(predicate, sources, destination)`; generated output byte-identical |
+| 8 | `scaffold` stubs | five stub builders share one preamble | **done** — `stub_page`; generated output byte-identical |
 
-**Done (2026-10-17).** **0 errors**, holding at a baseline of 0.
+**Measured, so the size is not a guess:** 201 of 250 figure modules hand-write
+`<line>`/`<rect>`/`<path>`/`<polygon>`, 47 hand-roll a domain→pixel mapping, and 76
+format a number with its unit by hand because the kit has `fmt`/`sigfig`/`signed` and
+**no `quantity(value, unit)`**. The kit's own history says this is worth doing — "the
+same five drawings re-earned two hundred times" — and the gap is adoption plus that one
+missing helper.
 
-- **The generated kit is not type-checked.** `tsc` strips annotations when it emits, so
-  the committed `assets/figures/kit/*.js` can only be inferred from destructuring
-  defaults — `label({ x, y, text, anchor = "middle" })` becomes a type with `anchor` and
-  not `x`. A book module reaches `./kit.js`, which pulls that copy into the program, so
-  **71 of the errors were artefacts of checking the same code with its types removed.**
-  `tools/build.mjs` writes `// @ts-nocheck` onto every emitted file. 190 → 119.
-- **The annotation rule, measured rather than guessed.** A JSDoc `@param` on a
-  destructured binding with a default is silently ignored, and so is a `@type` cast on
-  the initialiser. So a `.ts` file gets **real TypeScript annotations** (`label`'s
-  `LabelOptions` is the exemplar — `tsc` strips them from the emitted JavaScript), and a
-  `.js` file gets a **JSDoc cast at the point of narrowing**, which does work. 119 → 0.
+**What must NOT be generalised**, recorded so a later pass does not try: the 173
+`update()` bodies (the same signature, and the body *is* the mathematics), the
+near-duplicate figures across books (`DECISIONS.md` settled that they teach different
+readers), and `innerHTML` markup with per-module `toFixed` (`reuse-audit.md` §3.4).
 
-**What was not done, and is now item 68.** `strict: true` reports **420** at this state,
-205 of them `noImplicitAny` — which is the *same* destructuring-default shape, one level
-further: an unannotated `.js` callback parameter is an implicit `any` under `strict` and
-an accepted inference without it. Turning it on is a separate, larger job, and doing it
-by annotating comments is the thing that failed three times already.
+**Done means**
 
----
-
-## 68. `strict: true` reports 420 — **done, it reports 0**
-
-**What was wrong.** `tsconfig.json` ran with `strict: false`, and the note in this item
-said the remaining errors could not be fixed in JavaScript because "a JSDoc `@param`
-cannot attach to a destructured binding with a default". **That was wrong**, and the
-measurement is in `tsconfig`'s comment now: the `@param` *does* attach, matched by
-position; the error was that the default `= {}` must satisfy the type, so every property
-has to be **optional** (`@property {string} [name]`). A required property makes the
-default itself the error, which reads as `Property 'x' does not exist on type '{}'` and
-looks like an ignored annotation. `@param {Foo} [options]` on a destructured parameter
-*without* a default is TS2463, and a `@param` naming no parameter is TS8024 — the three
-error codes are in the commit and in `tsconfig`'s comment.
-
-**Done (2026-10-18).** `strict: true`, **0 errors**, baseline 0. The distribution was
-concentrated — `booklet.js` 116, `draw.ts` 95, `audit-figures.ts` 45, `slope-field.js` 26,
-`venn-regions.js` 24, `settings.js` 13 — so six files held three quarters of it.
-
-**One thing the delegate did that was reverted:** it renamed `event` to `fetchEvent` with a
-cast in `assets/sw.js`, a runtime no-op added only to satisfy the checker. Two PWA tests
-pinned the real call and failed, correctly. The handlers are annotated at the parameter and
-the `addEventListener` registrations carry the cast instead, so no code changed.
+- [x] 1 and 2, each with the test that keeps it: the keys cannot drift, and every
+  declared threshold resolves to a token and can fail.
+- [x] 3–8 converted, each with a check that fails if the copy returns. **Done
+      2026-10-18:** 3 is `tools/src/lib/flags.ts` and `tools help --check`; 5 is
+      `tools/src/lib/kit-contract.ts` (129 rows, all 51 exports); 4, 6, 7 and 8 were
+      done on 2026-10-17.
+- [ ] `quantity()` exists and the number-with-unit count falls from 76.
 
 ---
+## 70. The gate is 17.5 minutes on four runners — one lever left, measured
 
----
+**Three runs, measured on 2026-10-18:**
 
-## The Irish books are finished (2026-10-16)
+| Run | Change | Job time | Wall clock |
+|---|---|---|---|
+| — | one matrix row per profile (13 rows) | 2601 s / 24 jobs | **26 min** |
+| `39120728135` | `scripts/build-all.sh`: one job, 4 profiles at a time | 1599 s / 9 jobs | **16 min** |
+| `39124299954` | two workers per job (`BUILD_JOBS=2`, `pytest -n 2`) | **1280 s / 8 jobs** | **17.5 min** |
 
-**All 71 chapters of the four Irish books are authored end to end.** 429 sections, every
-page, and every glossary and home page. `grep -rl 'scaffold:stub' books/*/docs/` prints
-nothing and the built site has 0 stub pages. All 429 banks verify with the oracle, every
-profile builds with no `math-error`, the lint is clean for all four books, and 165
-figures measure with none below the 9px phone floor.
+**The build collapse was right and halved job time. The worker reduction did not help the
+wall clock**, and the numbers say why: it is now two ~7.4-minute jobs —
+`theme preview` 448 s and `banks, tests and voice` 441 s — that overlap, then `deploy`
+344 s that cannot start until the gate is green. Reducing per-job parallelism lowered the
+sum and left the critical path alone, because **`theme preview` is itself six concurrent
+browser checks** and already using the whole machine.
 
-The record of how it was done, and what it found, is below and in the numbered items.
+**So the lever left reduces work, not scheduling:**
 
-| Book | Chapters | Sections | Banks | State |
-|---|---|---|---|---|
-| `ie-jc-maths` | 22 | 129 | 129 | complete |
-| `ie-lc-maths` | 18 | 134 | 134 | complete |
-| `ie-lc-applied-maths` | 9 | 67 | 67 | complete |
-| `ie-lc-physics` | 22 | 99 | 99 | complete |
+**The lever left: merge the three figure passes into one browser session.**
+`scripts/preview-themes.sh` runs `audit` (contrast, 91 s), `audit --mobile` (95 s) and
+`readout` (106 s), and each navigates every figure page: **292 s of page loads for one
+walk**. One command that loads a page once and takes the paint measurement, the phone
+measurement and the readout at both viewports is the single biggest remaining win, and it
+would put `theme preview` under the three-minute rule on its own.
 
-Every chapter is the same shape: an index that sets a chapter problem, every section's
-three pages (Learn, Practise with help, Practise), a Review that resolves the chapter
-problem with mixed practice and a reflection, and a bank in which the oracle proves every
-answer. A stated result that is not proved carries a `:::prove` link to a page in
-`books/proofs/proofs.yaml` — `pythagoras`, `angles-in-a-triangle`, `angle-in-a-semicircle`
-and `angle-at-the-centre` are the four the geometry chapters use.
 
-Work the same way again with `delegate` and this handoff: name the book and chapter, tell
-the child to read the pattern chapters and `.agents/chapter-brief.md`, give it the file
-list and the expected page count, and require the five checks — `textbook.verify`,
-`textbook.pipeline` with no `math-error`, `textbook.lint`, no `scaffold:stub`, and
-`pytest tests/`. A chapter of six sections takes about fifteen minutes; the delegation
-reports a timeout at 900s but the files are usually written by then, so **check the
-filesystem before re-delegating**.
+**Done on 2026-10-18: `deploy` builds in parallel.** It walked the profiles one at a
+time, 82 seconds of the last job in the gate; `scripts/build-all.sh` does the same work in
+~25 and is the script the `build` job already runs, so a deploy and a check build the
+site the same way. A full artifact split (build in parallel with the checks, transfer
+the site) was **not** done: the site is ~350 MB and the transfer would likely cost
+what the build does — so `deploy`'s 344 s is still the last serial step.
 
-**What is already in hand, so nobody re-fetches it:**
+**Also measured, and not the lever:** `generated files are in sync` is 88 s, of which
+most is `npm ci`; `plan` is 31 s.
 
-| | Where |
-|---|---|
-| The four curricula, outcome by outcome | `books/ie-*/curriculum.yaml`, `research/curriculum/ie-curriculum.md` |
-| **511 official SEC papers and 475 marking schemes** — 986 files, every level | git-ignored in `research/sources/ie-*/papers/`; the fetch recipe is in its `README.md` |
-| The Formulae and Tables booklet, 96 formulae | `books/ie-lc-maths/booklet/` |
-| The verified assessment format for every level | `research/curriculum/ie-curriculum.md` §8a |
-| **The market's tables of contents** | `research/curriculum/ie-textbook-contents.md` |
-| Networks and graphs — no counterpart in the collection | `ie-lc-applied-maths` Strand 2 |
+**Done means**
 
-**The known gaps, stated so they are not discovered late:**
-
-- **Textbook table-of-contents research is now in hand.**
-  `research/curriculum/ie-textbook-contents.md` holds the real contents pages of the
-  market leaders — the Gill Ordinary and Higher Level Mathematics courses, two Junior
-  Cycle Mathematics courses (including the 2017 *Destination Maths*, whose section
-  lists show the chapter granularity), and *Investigating Physics*. Read off the
-  publishers' own samples, not recalled; the method to extend it is in the file. What
-  it changes is recorded there: **proof is content in Ireland** (two Higher Level
-  chapters, and 1,468 `Show that`/`Prove` in the corpus), and **Junior Cycle geometry
-  is four chapters, not one**.
-- **No topic-weighted paper analysis.** Command words and mark values have been
-  measured (below); which strand each question comes from has not.
-- **Ordinary and Foundation Physics and Applied Mathematics papers are thinner** than
-  Higher. See §8a.
-
-**Method, and it is binding:**
-
-1. **The standard is the one in this file**, not a new one. Figures go through
-   `kit.js` with `SIZE`, `label()` and `scale()` — see *Figures: draw through the kit*.
-2. **A component two books need belongs in `assets/`**, not in one of them. See
-   *Before you add a shared thing*.
-3. **Every answer is in a verified bank.** `:::problems` and `:::answers` render it, so
-   the reader sees what CI proved.
-4. **`.agents/chapter-brief.md`** with `BOOK_ID` and `CHAPTER_ID` is the per-chapter
-   contract, and it was rewritten for the Irish books on 2026-10-15.
-
-**Priority order, and the reason for it:**
-
-1. **`ie-lc-applied-maths` Chapter 2 — networks and graphs.** Strand 2 has no
-   counterpart anywhere in this collection: spanning trees, Dijkstra, Bellman,
-   adjacency-matrix algebra. It is the material most likely to be reused by another
-   book and the least likely to be right if adapted from an existing chapter.
-2. **`ie-lc-maths`** — the largest book, three levels, and the one with a real
-   examination population.
-3. The rest, against the two authored chapters as the pattern.
-
-**Measured from the corpus, for shaping practice.** Across 275 Leaving Certificate
-Mathematics papers the command words are `Find` 6,261, `Show` 3,767, `State` 1,167,
-`Show that` 928, `Draw` 861, `Express` 729, `Calculate` 652, `Write down` 589,
-`Hence` 567, `Solve` 557, `Prove` 540, `Estimate` 488, `Work out` 439, `Construct` 268.
-**`Show that` and `Prove` together appear 1,468 times**, which is the single strongest
-signal about what an Irish practice set must contain — and it is not the shape of the
-English books, which are lighter on proof.
-
-**Two gaps recorded here are still open**, and were in the section this one replaces:
-
-- **Nine A-level Mathematics booklet items cannot be parsed** by `sympy.parsing.latex`,
-  so a problem declaring one gets no coverage check. They are listed with reasons in
-  `tests/test_verify_coverage.py`, and the test fails when a tenth appears.
-- **The Applied Mathematics specification numbers only its strands**, so its coverage
-  check reaches no finer than "all four strands are taught" — recorded in its
-  `curriculum.yaml`.
-
----
+- The gate's wall clock is under 10 minutes on four runners, measured on a run.
+- `theme preview` is under three minutes on its own, with the three passes merged.
+- `.github/AGENTS.md`'s timing table records the numbers from the run that proves it.
 
 ## 71. `tools/build.mjs` says the tools build is bundled, and it is not
 

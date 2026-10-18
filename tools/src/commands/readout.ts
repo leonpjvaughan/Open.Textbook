@@ -33,7 +33,7 @@ import { discoverFigures } from "../lib/site.js";
 import { mapPool } from "../lib/pool.js";
 import { checkArithmetic } from "../lib/readout-arithmetic.js";
 
-type Control = {
+export type Control = {
   kind: "range" | "select" | "checkbox";
   /** Position among the figure's controls of that kind, in document order. */
   index: number;
@@ -47,7 +47,7 @@ type Control = {
   checked?: boolean;
 };
 
-type Override = { kind: Control["kind"]; index: number; value: number | string | boolean };
+export type Override = { kind: Control["kind"]; index: number; value: number | string | boolean };
 
 /** What this command accepts. `tools help readout` is generated from this table. */
 export const SURFACE: Surface = {
@@ -73,7 +73,7 @@ export const SURFACE: Surface = {
 };
 
 /** The controls inside one figure, in document order, with what they can be set to. */
-function readControls(slug: string): Control[] {
+export function readControls(slug: string): Control[] {
   const figure = document.querySelector(`maths-figure[data-figure="${slug}"]`);
   if (!figure) return [];
   const out: unknown[] = [];
@@ -105,7 +105,7 @@ function readControls(slug: string): Control[] {
 }
 
 /** Apply one setting: every control back to its default, then the overrides. */
-function applySetting(input: {
+export function applySetting(input: {
   slug: string;
   controls: Control[];
   overrides: Override[];
@@ -148,7 +148,7 @@ function applySetting(input: {
 }
 
 /** The claims a figure has declared for the current render. */
-function readWorking(slug: string): unknown[] {
+export function readWorking(slug: string): unknown[] {
   const figure = document.querySelector(`maths-figure[data-figure="${slug}"]`);
   if (!figure) return [];
   const raw = figure.getAttribute("data-working");
@@ -161,7 +161,7 @@ function readWorking(slug: string): unknown[] {
 }
 
 /** The text the figure shows a reader, with superscripts kept as powers. */
-function readoutText(slug: string): string {
+export function readoutText(slug: string): string {
   const figure = document.querySelector(`maths-figure[data-figure="${slug}"]`);
   if (!figure) return "";
   const live = figure.querySelector("[aria-live], .fig-out, .fig-readout");
@@ -177,7 +177,7 @@ function readoutText(slug: string): string {
 }
 
 /** The settings to try: the default, then each control one step away from it. */
-function settingsFor(controls: Control[], cap: number, defaultsOnly: boolean): Override[][] {
+export function settingsFor(controls: Control[], cap: number, defaultsOnly: boolean): Override[][] {
   if (defaultsOnly) return [[]];
   const settings: Override[][] = [[]];
   for (const control of controls) {

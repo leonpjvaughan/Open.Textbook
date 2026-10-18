@@ -24,6 +24,8 @@ import os from "node:os";
 import path from "node:path";
 import { ORIGIN, launchBrowser, openContext, serveStatic } from "../lib/browser.js";
 import type { Browser } from "../lib/browser.js";
+import { applySetting, readControls, readoutText, readWorking, settingsFor } from "./readout.js";
+import type { Control, Override } from "./readout.js";
 import { parseArgs, type Surface } from "../lib/flags.js";
 import { mapPool } from "../lib/pool.js";
 import { discoverFigures } from "../lib/site.js";
@@ -94,6 +96,11 @@ export const SURFACE: Surface = {
       help: "write a PNG of each figure here instead of measuring only",
     },
     json: { kind: "string", value: "<file>", help: "write the measurement report here" },
+    claims: {
+      kind: "string",
+      value: "<file>",
+      help: "also sweep each figure's controls and write the claims it declares here",
+    },
     only: { kind: "string", value: "<slug>", help: "measure one figure" },
     table: {
       kind: "string",
@@ -472,6 +479,10 @@ export async function run(argv: string[]): Promise<number> {
   const jsonOut = values.json ? path.resolve(String(values.json)) : null;
   const only = values.only ? String(values.only) : null;
   const table = values.table ? path.resolve(String(values.table)) : null;
+  // **The claim sweep runs here, on the page the audit already has open.** `readout`
+  // loads every figure page again to do exactly this; the two were 91 s and 106 s of
+  // mostly the same navigation. One page, one mount, two questions.
+  const claimsOut = values.claims ? path.resolve(String(values.claims)) : null;
   const mobile = values.mobile === true;
   if (shots) fs.mkdirSync(shots, { recursive: true });
 
@@ -497,6 +508,14 @@ export async function run(argv: string[]): Promise<number> {
   }
 
   const report: Record<string, FigureReport> = {};
+  /** What each figure declares, at each setting, for `python -m textbook.working`. */
+  const claimRecords: {
+    slug: string;
+    route: string;
+    settings: Override[];
+    readout: string;
+    claims: unknown[];
+  }[] = [];
   for (const scheme of schemes) {
     const context = await openContext(browser, {
       scheme: scheme as "light" | "dark",
@@ -561,6 +580,20 @@ export async function run(argv: string[]): Promise<number> {
           res = await attempt();
         }
         entry.schemes[scheme] = res as Measurement;
+        if (claimsOut && scheme === "light" && !res.error) {
+          // Six settings: the default plus five single-control variations. A sample,
+          // not a sweep — the defect this looks for shows up a step either side of the
+          // default, and a full cross-product is thousands of renders.
+          const controls = (await page.evaluate(readControls, slug)) as Control[];
+          for (const overrides of settingsFor(controls, 6, false)) {
+            await page.evaluate(applySetting, { slug, controls, overrides });
+            await page.waitForTimeout(40);
+            const text = (await page.evaluate(readoutText, slug)) as string;
+            const declared = (await page.evaluate(readWorking, slug)) as unknown[];
+            if (!text || !declared.length) continue;
+            claimRecords.push({ slug, route, settings: overrides, readout: text, claims: declared });
+          }
+        }
         if (shots && !res.error) {
           const el = await page.$(`maths-figure[data-figure="${slug}"]`);
           if (el) {
@@ -579,6 +612,10 @@ export async function run(argv: string[]): Promise<number> {
   await browser.close();
 
   if (jsonOut) fs.writeFileSync(jsonOut, JSON.stringify(report, null, 1));
+  if (claimsOut) {
+    fs.writeFileSync(claimsOut, JSON.stringify(claimRecords, null, 1));
+    console.log(`claims     ${claimRecords.length} render(s) -> ${path.relative(process.cwd(), claimsOut)}`);
+  }
   if (table) {
     writeTable(table, markdownTables(report, siteDir));
     console.log(`wrote ${path.relative(process.cwd(), table)}`);

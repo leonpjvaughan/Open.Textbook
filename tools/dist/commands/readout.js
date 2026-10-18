@@ -55,7 +55,7 @@ export const SURFACE = {
     },
 };
 /** The controls inside one figure, in document order, with what they can be set to. */
-function readControls(slug) {
+export function readControls(slug) {
     const figure = document.querySelector(`maths-figure[data-figure="${slug}"]`);
     if (!figure)
         return [];
@@ -89,7 +89,7 @@ function readControls(slug) {
     return out;
 }
 /** Apply one setting: every control back to its default, then the overrides. */
-function applySetting(input) {
+export function applySetting(input) {
     const { slug, controls, overrides } = input;
     const figure = document.querySelector(`maths-figure[data-figure="${slug}"]`);
     if (!figure)
@@ -135,7 +135,7 @@ function applySetting(input) {
     }
 }
 /** The claims a figure has declared for the current render. */
-function readWorking(slug) {
+export function readWorking(slug) {
     const figure = document.querySelector(`maths-figure[data-figure="${slug}"]`);
     if (!figure)
         return [];
@@ -150,7 +150,7 @@ function readWorking(slug) {
     }
 }
 /** The text the figure shows a reader, with superscripts kept as powers. */
-function readoutText(slug) {
+export function readoutText(slug) {
     const figure = document.querySelector(`maths-figure[data-figure="${slug}"]`);
     if (!figure)
         return "";
@@ -169,7 +169,7 @@ function readoutText(slug) {
     return (clone.textContent || "").trim();
 }
 /** The settings to try: the default, then each control one step away from it. */
-function settingsFor(controls, cap, defaultsOnly) {
+export function settingsFor(controls, cap, defaultsOnly) {
     if (defaultsOnly)
         return [[]];
     const settings = [[]];
