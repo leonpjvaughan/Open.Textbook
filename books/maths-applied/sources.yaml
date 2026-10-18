@@ -1,0 +1,37 @@
+# Provenance for Maths Applied.
+#
+# This book makes no claim that rests on an external document, and says so rather
+# than listing references it did not use. That is not a claim of originality: the
+# mathematics is standard, and the book says when it is relying on a definition
+# rather than proving something.
+#
+#   * **The geometry is illustrative.** The linkage numbers in the chapter are
+#     chosen to be plausible and well conditioned. They are not measured from a car
+#     and are not any manufacturer's design. The chapter says so where the numbers
+#     first appear, because a reader who takes them for a real car would be misled
+#     about how suspension design is done.
+#   * **The conventions are stated, not cited.** Camber positive when the top of
+#     the wheel leans out; toe positive when the front of the wheel turns in. Both
+#     are stated in the chapter and pinned by the code that computes them, so a
+#     reader does not have to own a handbook to follow the argument.
+#   * **Every number a figure shows is computed on the page**, by the same model the
+#     prose describes. Nothing is typed in.
+#
+# Two things are deliberately missing and should be added when they exist:
+#
+#   1. A free-licence photograph of a real double wishbone, for comparison with the
+#      diagrams. CC0 or CC BY-SA only, free of trade dress and sponsor livery, with
+#      `url`, `retrieved`, `role` and a credit line in the caption. The chapter
+#      draws the comparison until then — see `books/maths-applied/AGENTS.md`.
+#   2. A reference for the vehicle axis convention (SAE J670 or ISO 8855), if the
+#      chapter ever needs to speak to another document's coordinates rather than
+#      simply stating its own.
+
+retrieved: 2026-10-18
+
+note: >-
+  This book rests on no external document. The mathematics is standard, the
+  geometry is illustrative rather than measured, and every number in a figure is
+  computed by the model the page describes.
+
+references: []

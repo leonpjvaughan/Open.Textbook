@@ -1,0 +1,125 @@
+# Maths Applied — the chapter plan.
+#
+# `books/maths-applied/AGENTS.md` is the voice contract for this book, and it is
+# not the course contract in the root `AGENTS.md`: there is no reader to teach a
+# syllabus to, no tier, and no examination. What replaces the chapter formula is
+# stated there in full. The short version:
+#
+#   * A model earns its place by **failing**. A more complex model is introduced
+#     only once the simpler one has visibly stopped answering the question.
+#   * Where two models overlap, the book shows they agree, **with a number**.
+#   * The main thread is readable end to end without opening a single depth page.
+#
+# This chapter is one mechanism, four models, and the numbers where each pair
+# agrees. It is the whole book's argument in one place: §1–§4 are authored, §5–§6
+# are drafted as the destination the chapter is walking towards.
+#
+# `deeper:` pages are optional and **authored, never scaffolded** — the scaffold
+# deliberately writes no stub for them, and the navigation lists each one as a
+# child of its section. `:::deeper <slug>` in a section's page is the only link
+# the book needs, and it is a plain link, so it works with scripting off.
+#
+# There is no `coverage:` block and no `refs:` on any section. Those exist to prove
+# a book follows a specification; this one follows none, and inventing a coverage
+# table would be the claim the book's own `sources.yaml` refuses to make.
+
+meta:
+  title: Maths Applied
+  # No `jurisdiction`: the About page asks for one only when a book has not said
+  # what it is. This one says it below, so the country question does not arise.
+  # No syllabus, stated so the About page says so rather than leaving a reader to
+  # infer it from a list of documents.
+  syllabus: false
+  what_it_is: >-
+    This is a book about modelling, worked out on one mechanism: the front
+    suspension of a car. It asks one question — how far does the camber change as
+    the wheel moves — and answers it with four models of increasing complexity.
+    Each one is introduced only when the one before it has stopped answering the
+    question, and every model is checked against the last by a number the book
+    shows.
+  level_word: level
+  retrieved: 2026-10-18
+
+chapters:
+  - id: 1
+    title: Suspension kinematics
+    strand: applied
+    summary: >-
+      A front suspension is a linkage: two wishbones, an upright and a wheel. This
+      chapter asks how far the wheel's angle changes as the wheel moves, and how
+      little model can answer that. Each model is replaced by a more complex one
+      only where the simpler one stops working — and every replacement is checked
+      against the last by a number the book shows.
+    # The chapter problem. A reader meets it in §1.1 and can answer it by §1.5.
+    anchor:
+      title: The chapter problem
+      brief: >-
+        A wheel moves 40 mm up and down. How far does its camber change, and what
+        is the simplest model that gives an answer you would trust within a tenth
+        of a degree?
+    relevance_prompt: >-
+      Think of something you use every day that is engineered rather than grown.
+      What is the one number you would want to know about it, and what would you
+      have to measure to find it?
+    application: >-
+      Every car on the road has a suspension linkage of this kind, and its angles
+      are chosen before a manufacturer commits to a design.
+    sections:
+      - id: "1.1"
+        title: The question
+        summary: >-
+          What camber is, why it changes as a wheel moves, and what a model has to
+          do to answer the question. The chapter's destination, stated first.
+        deeper:
+          - slug: the-four-models
+            title: The four models, side by side
+      - id: "1.2"
+        title: One rigid triangle
+        summary: >-
+          The simplest model: the wishbone is one rigid body, the mechanism has one
+          degree of freedom, and the answer comes from two circles meeting. Solved
+          directly, and checked against a closed form.
+        deeper:
+          - slug: two-solutions
+            title: Why two circles meet twice
+      - id: "1.3"
+        title: Two legs, one contradiction
+        summary: >-
+          Give the wishbone a second leg and the model has more equations than
+          unknowns. Least squares copes, the residual does not reach zero, and the
+          reason is worth understanding rather than hiding.
+        deeper:
+          - slug: what-least-squares-does
+            title: What least squares is minimising
+      - id: "1.4"
+        title: The redundancy was ours
+        summary: >-
+          A singular value decomposition says exactly what the extra equation is
+          doing, and which constraint is the dependent one. Drop that row and the
+          problem becomes the one §1.2 solved.
+        deeper:
+          - slug: singular-values
+            title: What a singular value is telling you
+      - id: "1.5"
+        title: Bushes are not rigid
+        summary: >-
+          A real joint has a bush. Replace one rigid constraint with a spring and
+          the mechanism gains a degree of freedom, but the equilibrium is still
+          algebra, still swept the same way. As the spring stiffens, the camber
+          curve lands on the rigid one.
+        deeper:
+          - slug: equilibrium-without-time
+            title: Why equilibrium is not a simulation
+      - id: "1.6"
+        title: Mass and dampers
+        summary: >-
+          Give the mechanism mass and the problem stops being algebra: it becomes
+          differential-algebraic, and it needs time. What that buys, and what it
+          costs. This section is drafted rather than finished: it is the chapter's
+          destination, not its destination met.
+      - id: "1.7"
+        title: The full vehicle
+        summary: >-
+          A tyre with slip, a road that is not flat, air pushing down. Where this
+          chapter's models sit inside a vehicle model, and why a bigger model of the
+          whole car still rests on the small model of one corner. An outline.

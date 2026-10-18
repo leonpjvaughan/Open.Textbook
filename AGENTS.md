@@ -20,6 +20,7 @@ reads them from `.claude/skills/`, projected with the
 | If you are… | Read | Load |
 |---|---|---|
 | Writing or revising a chapter | `books/<id>/AGENTS.md`, `books/AGENTS.md`, `.agents/chapter-brief.md` | `.agents/skills/author-textbook-chapter/SKILL.md` |
+| Writing in `maths-applied` — a book about modelling, not a course | `books/maths-applied/AGENTS.md` | `.agents/skills/write-textbook-prose/SKILL.md` |
 | Editing book content | `books/AGENTS.md`, `books/<id>/AGENTS.md` | `.agents/skills/write-textbook-prose/SKILL.md` |
 | Writing a problem bank | `books/AGENTS.md`, `PROBLEMS.md`, `books/<id>/AGENTS.md` | `.agents/skills/build-practice-set/SKILL.md` |
 | Building a figure | `assets/AGENTS.md`, `ideas.md`, `books/AGENTS.md` | `.agents/skills/build-guided-figure/SKILL.md` |
@@ -186,6 +187,7 @@ per-book layout is in `books/AGENTS.md`.
 | `books/gcse-physics/`, `books/gcse-physics/AGENTS.md`, `books/a-level-physics/`, `books/a-level-physics/AGENTS.md` | the two physics books and their rules |
 | `books/ie-jc-maths/`, `books/ie-jc-maths/AGENTS.md`, `books/ie-lc-maths/`, `books/ie-lc-maths/AGENTS.md`, `books/ie-lc-applied-maths/`, `books/ie-lc-applied-maths/AGENTS.md`, `books/ie-lc-physics/`, `books/ie-lc-physics/AGENTS.md` | the four Irish books and their rules |
 | `books/proofs/`, `books/proofs/AGENTS.md` | the reference book of proofs |
+| `books/maths-applied/`, `books/maths-applied/AGENTS.md` | the book about modelling, and the rules that replace the chapter formula |
 | `research/`, `research/AGENTS.md`, `scripts/`, `scripts/AGENTS.md`, `tests/`, `tests/AGENTS.md`, `tests/README.md`, `deploy/`, `deploy/AGENTS.md`, `.github/`, `.github/AGENTS.md`, `.claude/`, `.serena/` | corpus, scripts, tests, deploy, CI |
 | `.agents/`, `.agents/skills/`, `.agents/prompts/`, `.agents/planning/` | agent context: the portable skills; the chapter and review prompts the launch scripts feed to sub-agents; the dated planning record; `.agents/todo.md`; `.agents/chapter-brief.md` |
 

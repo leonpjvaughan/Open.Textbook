@@ -1,0 +1,64 @@
+# Maths Applied — a book about modelling, not a course.
+#
+# The collection publishes, navigates and themes a body of pages; this book is one
+# of those bodies. What it is *not* is a course: nothing here is examined, no
+# board's wording binds it, and it has no tier, no banks and no booklet. It is read
+# by anyone who wants to know how a wheel's angle changes as the wheel moves, and
+# what the simplest model is that can say.
+#
+# Three declarations below are the difference between this book and a course, and
+# each is read by the engine rather than being a note to a human:
+#
+#   * `section_pages: [learn]` — a section is one page. There is nothing to
+#     practise with, so there is no Practise page and no verified bank behind one.
+#   * `tier_axis: {}` and `profiles: one, tier_filter: all` — nothing here is
+#     Foundation or Higher.
+#   * `oracles: []` — no problem bank, so nothing to verify.
+
+id: maths-applied
+title: Maths Applied
+# Not a qualification: `collection.yaml` lists `Misc` so the landing page has a
+# group to put this in, and so the sort order is deliberate rather than accidental.
+qualification: Misc
+subject: Applied Mathematics
+order: 1
+description: >-
+  How a car's suspension moves, and how little model you can get away with.
+  One mechanism, four models, and the number where each pair of them agrees.
+
+profiles:
+  - id: book
+    name: Read
+    tier_filter: all
+    default: true
+
+# Empty by design, and stated so nobody goes looking for one.
+tier_axis: {}
+
+# A section is one page. The engine's default is the three-page course formula;
+# this book declares what it actually has, and the scaffold, the navigation and
+# the lint rules all read this one declaration.
+section_pages: [learn]
+
+# No banks, so no oracle. A book that claims a computer checked its answers had
+# better have a bank; this one claims only what its figures compute in front of
+# the reader.
+oracles: []
+
+# The subject tint, a slate violet: distinct from Mathematics' blue and Physics'
+# teal at a glance, and dark enough to clear the contrast invariant on every
+# bundle. The contrast test decides this, not taste — see `tests/test_themes.py`.
+theme:
+  light:
+    accent: "#5b4b8a"
+    accent_light: "#7462a8"
+    accent_dark: "#463a6b"
+  dark:
+    accent: "#b9a7e0"
+    accent_light: "#cbbdf0"
+    accent_dark: "#9a86c8"
+
+# Paths, relative to this directory.
+curriculum: curriculum.yaml
+banks: problems
+sources: sources.yaml

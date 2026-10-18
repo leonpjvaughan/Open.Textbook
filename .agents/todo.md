@@ -12,7 +12,7 @@ reasoning, so nothing is compressed on the way across and nothing is deleted.
 **An item is here because it is still true.** Before closing one, run its own
 done-means; an item whose heading says done and whose checklist does not is the
 failure this file has had twice, so the list below, the headings and the boxes
-are checked against each other on every pass. Four items are open, and two of
+are checked against each other on every pass. Six items are open, and two of
 them say which single line is not met.
 
 The *interactive-aid backlog* — which figures and interactions a book still wants —
@@ -26,6 +26,10 @@ author choosing what to build next.
 - [ ] 69. The generalisation review — rows 1–8 done, `quantity()` not built
 - [ ] 70. The gate is 17.5 minutes on four runners — one lever left, measured
 - [ ] 71. `tools/build.mjs` says the tools build is bundled, and it is not
+- [ ] 72. Maths Applied's agreement panels read the page's model, not the solver's
+      export — 6 `TODO(phase-a)` markers wait on `suspension-kinematics`
+- [ ] 73. The chapter has no photograph of a real corner — the diagram is drawn
+      instead, and the build can now ship one
 
 **Not in the queue, and not forgotten.** Accepted limitations live where the check
 that records them lives, not here: the booklets whose items cannot be parsed
@@ -192,3 +196,71 @@ under test, which a bundle cannot.
 **Done means**
 
 - [ ] the header of `tools/build.mjs` describes both targets truthfully.
+
+## 72. Maths Applied's agreement panels read the page's model, not the solver's export
+
+**What is wrong.** `books/maths-applied` was written against a solver repository
+that has a specification and no code yet. Four section pages, the Review and the
+book's own `AGENTS.md` carry a `TODO(phase-a)` marker — measured 2026-10-18:
+
+```
+grep -rn "TODO(phase-a)" books/maths-applied/docs/ | wc -l   # 6, across 5 pages
+```
+
+Each marker stands where a number should come from
+`examples/*/out.js` in [`suspension-kinematics`](https://github.com/leonpjvaughan/suspension-kinematics):
+`agreement.max_abs_diff` for §1.2, `iterations[].{residual,singular_values}` for
+§1.3, the null-space basis and dependent row indices from `svd_diagnose` for §1.4,
+and the compliant sweep's stiffness ladder for §1.5. Until those exist, each panel
+prints what the page's own front-view model computes, which is honest and is
+labelled as such — but it is one route to the number, and the chapter's argument is
+that two routes are evidence.
+
+`docs/assets/data/` currently holds `mechanism.js`: the page's model, shared by the
+figures so the hero's camber curve and the agreement figure's cannot drift apart.
+The pipeline now copies `docs/assets/data/` (row added for this book), so the
+exported modules have a home the moment they exist.
+
+**The fix.** Execute `HANDOFF.md` in `suspension-kinematics` — the spec, the four
+load-bearing tests, and ten open questions the author must answer — then export the
+three examples into `books/maths-applied/docs/assets/data/` and swap each panel to
+read the exported object. Keep `mechanism.js`: it becomes the *second* route, which
+is what makes the panel a check rather than a printout.
+
+**Done means**
+
+- [ ] `suspension-kinematics` passes its four acceptance tests, and its `out.js`
+      files are committed and byte-reproducible.
+- [ ] `grep -rn "TODO(phase-a)" books/maths-applied/` prints nothing.
+- [ ] Every agreement panel reads `agreement`, `iterations` or the compliant sweep
+      from `docs/assets/data/`, and none types a number.
+- [ ] §1.5's ladder test asserts monotone convergence in the solver's own suite, and
+      the page's table is generated from it.
+- [ ] The two routes agree: the page's model and the exported sweep differ by less
+      than the panel's rounding, and the panel says so.
+
+## 73. The chapter has no photograph of a real corner
+
+**What is wrong.** The book was asked for a free-licence reference photograph of a
+double wishbone above the hero, CC0 or CC BY-SA, free of trade dress and sponsor
+livery. No clean one was found offline, so §1.1 draws a labelled anatomy diagram
+instead — which the brief allows, and which is arguably the better teaching object,
+since it names the parts. But the reader never sees the object the chapter is
+about, and the drawn diagram cannot show how small the linkage is against a car.
+
+The build now copies a book's `docs/assets/images/` (there was no such row before,
+so no photograph of any kind could have shipped), and `sources.yaml` records what a
+photograph would need: `url`, `retrieved`, `role`, and a credit line in the caption.
+
+**The fix.** Find one CC0 or CC BY-SA photograph of a double wishbone corner with no
+livery, put it in `books/maths-applied/docs/assets/images/`, add it to `sources.yaml`
+with `attribution: false` unless the licence requires a link, and credit it in the
+caption. If none is clean, say so in `sources.yaml` and leave the diagram.
+
+**Done means**
+
+- [ ] The licence is CC0 or CC BY-SA, and the file records where it came from and
+      when.
+- [ ] Nothing in the frame is a team's livery, badge or championship branding.
+- [ ] The caption credits the photographer, and `sources.yaml` names the licence.
+- [ ] The image is in the built page (not a hotlink) and needs no network.
