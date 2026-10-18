@@ -31,14 +31,14 @@ two-leg model is not wrong about the car. It is wrong about the *counting*.
 
 ## In the front view, two of those are one equation
 
-Look from in front of the car. The wishbone's two legs lie almost fore and aft,
-so they point almost straight at you, and they project onto nearly the same line.
-The two pivots $B_1$ and $B_2$ project onto the same point, and the two leg
-lengths project onto the same circle.
+Look from in front of the car. The wishbone's legs lie almost fore and aft, so this
+is the view along them: the two pivots $B_1$ and $B_2$ project onto **the same
+point**, and the two leg lengths project onto **the same circle**.
 
-So in this view the first two rows are **the same equation written twice**: the
-same centre, the same radius, the same derivative. The model has three rows and
-two genuinely different equations.
+That is a fact about the projection rather than about the wishbone — the pivots are
+0.24 m apart, and this view throws that direction away. So the first two rows are
+**the same equation written twice**: the same centre, the same radius, the same
+derivative. The model has three rows and two genuinely different equations.
 
 That is not a mistake to be embarrassed about. It is exactly what a projection
 does: it throws away the direction that told the legs apart. The three-dimensional
@@ -93,7 +93,7 @@ precision float can tell apart from nothing, and stays there. That floor is
 that flattens out *above* the round-off floor means the equations genuinely
 disagree, and that is a modelling problem rather than a numerical one.
 
-The point it settles on is the point §1.2 found, to eleven decimal places. Adding
+The point it settles on is the point §1.2 found, to the last digit a double holds. Adding
 an equation that says the same thing twice did not change the answer. It only gave
 the solver more work.
 
@@ -101,7 +101,7 @@ the solver more work.
 
 | Check | Value |
 |---|---|
-| Least squares, after five steps | agrees with §1.2's closed form to 10⁻¹² m |
+| Least squares, after five steps | agrees with §1.2's closed form to 10⁻¹⁶ m |
 | Total residual at the end | 1.7 × 10⁻¹³ mm, which is round-off |
 | Singular values of the Jacobian | 1.446, 0.953, 0.000 |
 | The smallest, and what it means | nothing on its own — see §1.4 |

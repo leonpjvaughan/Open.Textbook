@@ -14,11 +14,14 @@ import { SIZE, axes, curve, fmt, label, line, panel, react, slider } from "./kit
 import { curve as camberCurve, compliant, pose, thetaFor } from "../data/mechanism.js";
 
 const WIDTH = 560;
-const HEIGHT = 330;
+const HEIGHT = 340;
 const LOAD = 3000; // newtons at the contact patch: a cornering load, shared across the axle
 
+/** A number as the prose writes it: a true minus sign, not a hyphen. */
+const num = (value, places) => value.toFixed(places).replace("-", "\u2212");
+
 export function mount(el) {
-  const { svg, readout, claim } = panel(el, {
+  const { svg, readout, caption, claim } = panel(el, {
     label:
       "Two camber curves: a rigid linkage and a compliant one, with the bush's stiffness set by a control",
     description:
@@ -27,8 +30,7 @@ export function mount(el) {
       "stands in for the upper ball joint and a sideways load at the contact patch pushes the " +
       "wheel. As the bush is made stiffer, the dashed curve moves towards the solid one and lands " +
       "on it.",
-    prompt:
-      "Drag the stiffness up. Which curve moves, and what does it move towards?",
+    prompt: "Drag the stiffness up. Which curve moves, and what does it move towards?",
     width: WIDTH,
     height: HEIGHT,
     max: 560,
@@ -36,28 +38,46 @@ export function mount(el) {
 
   const stiffness = slider(el, {
     id: "stiffness",
-    label: "Bush stiffness, in powers of ten (6 means one million newtons per metre)",
-    min: 5,
-    max: 8,
+    label: "Bush stiffness",
+    min: 0.1,
+    max: 20,
     step: 0.1,
-    value: 6,
-    show: false,
+    value: 0.3,
+    show: true,
+    unit: "MN/m",
   });
 
   const rigid = camberCurve({ travel: 40, count: 41 });
 
   function draw() {
-    const k = 10 ** Number(stiffness.value);
+    const k = Number(stiffness.value) * 1e6;
     const soft = camberCurve({ travel: 40, count: 41, k, F: LOAD });
     const { draw: frame, x, y, box } = axes({
       width: WIDTH,
       height: HEIGHT,
-      x: { domain: [-40, 40], label: "wheel travel / mm", ticks: 8, tickFormat: (v) => fmt(v, 0) },
-      y: { domain: [-3.2, 1.0], label: "camber / degrees", ticks: 7 },
-      pad: { left: 60, bottom: 46, top: 26 },
+      x: {
+        domain: [-40, 40],
+        label: "wheel travel / mm",
+        ticks: 8,
+        tickFormat: (v) => fmt(v, 0).replace("-", "\u2212"),
+      },
+      // The softest setting reaches −4.4°, so the axis holds every setting the
+      // control can produce rather than clipping the curve at one end.
+      y: { domain: [-4.6, 1.0], ticks: 12, tickFormat: (v) => fmt(v, 1).replace("-", "\u2212") },
+      pad: { left: 66, bottom: 46, top: 30 },
     });
 
     let drawing = frame;
+    // The quantity is named above the plot, where it cannot collide with a tick.
+    drawing += label({
+      x: 4,
+      y: 20,
+      text: "camber / degrees",
+      anchor: "start",
+      size: SIZE.value,
+      class: "text-ink",
+    });
+
     drawing += curve(
       rigid.map((point) => [point.travel, point.camber]),
       { x, y, class: "fig-ink", width: 3 }
@@ -67,29 +87,23 @@ export function mount(el) {
       { x, y, class: "fig-accent", width: 2.6, dash: "7 5" }
     );
 
-    // The gap at rest, drawn where a reader can compare it with the scale.
+    // The gap at rest, drawn where a reader can compare it with the scale, and
+    // labelled on the inboard side so the words sit over empty plot.
     const atRest = compliant(thetaFor(0), k, LOAD);
     const rigidRest = pose(0).camber;
     const gap = atRest.camber - rigidRest;
-    const top = y(Math.max(atRest.camber, rigidRest));
-    const bottom = y(Math.min(atRest.camber, rigidRest));
     drawing += line({
       x1: x(0),
-      y1: top,
+      y1: y(Math.max(atRest.camber, rigidRest)),
       x2: x(0),
-      y2: bottom,
+      y2: y(Math.min(atRest.camber, rigidRest)),
       class: "fig-warn",
       width: 2,
       dash: "4 3",
     });
-    drawing += label({
-      x: x(0) + 8,
-      y: (top + bottom) / 2,
-      text: `${Math.abs(gap).toFixed(2)}° apart`,
-      anchor: "start",
-      size: SIZE.tick,
-      class: "text-warn",
-    });
+    // The gap is marked, not labelled: an annotation on a curve is a label over a
+    // line, and this one was illegible at every stiffness. The number is in the
+    // readout, where it is also claimed and checked.
 
     // A legend, because two curves on one pair of axes need naming.
     const legend = (dy, text, cls, dash) =>
@@ -103,11 +117,11 @@ export function mount(el) {
     const atBump = compliant(thetaFor(40), k, LOAD);
     const atBumpRigid = pose(thetaFor(40)).camber;
     readout.textContent =
-      `With a bush of ${fmt(k / 1e6, 2)} meganewtons per metre, the upright's upper point is pulled ` +
-      `${fmt(atRest.bush, 2)} mm away from the upper arm's. Camber at rest is ` +
-      `${fmt(atRest.camber, 2)} degrees, which is ${Math.abs(gap).toFixed(2)} degrees from the ` +
-      `rigid model's ${fmt(rigidRest, 2)}. ` +
-      `At 40 mm of bump the two differ by ${fmt(Math.abs(atBump.camber - atBumpRigid), 2)} degrees. ` +
+      `With a bush of ${num(Number(stiffness.value), 1)} meganewtons per metre, the upright's ` +
+      `upper point is pulled ${num(atRest.bush, 2)} mm away from the upper arm's. Camber at rest ` +
+      `is ${num(atRest.camber, 2)} degrees, which is ${num(Math.abs(gap), 2)} degrees from ` +
+      `the rigid model's ${num(rigidRest, 2)}. ` +
+      `At 40 mm of bump the two differ by ${num(Math.abs(atBump.camber - atBumpRigid), 2)} degrees. ` +
       `Stiffen the bush and both differences fall towards nothing.`;
 
     // The difference the readout states, declared so it cannot drift from the
@@ -123,6 +137,10 @@ export function mount(el) {
       },
     ]);
   }
+
+  caption.textContent =
+    "The dashed line marks the gap at rest. It closes as the bush stiffens, and it is " +
+    "the number the readout gives.";
 
   react(stiffness, draw);
 }

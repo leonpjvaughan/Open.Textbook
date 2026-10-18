@@ -95,3 +95,24 @@ If you can say where that test applies in this chapter, and where it does not, y
 have the thing the chapter was for. §1.6 and §1.7 show where the method goes next:
 a model with mass, and a model of the whole car, each of which is judged the same
 way — by what it agrees with, and by what it can no longer answer.
+
+## Where to read more
+
+Four books, and what each one is for. None of them is needed to read this chapter,
+and none of them is the source of a number in it.
+
+- **John C. Dixon, *Suspension Geometry and Computation* (Wiley, 2009)** — the same
+  quantities as this chapter, in three dimensions and for a whole car. If you want to
+  know what a suspension designer actually computes, this is the book.
+- **Milliken and Milliken, *Race Car Vehicle Dynamics* (SAE, 1995)** — why the angle
+  matters. Camber is worth computing because of what a tyre does with it, and this is
+  where that story starts.
+- **McCarthy and Soh, *Geometric Design of Linkages* (Springer, 2011)** — the general
+  theory behind §1.2 to §1.4: mobility, branches, and what happens at a singular
+  configuration.
+- **George E. P. Box, "Science and Statistics" (1976)** — the argument the chapter is
+  a worked example of: a model is judged by what it is for.
+
+The solver that goes with this book, with its own tests and the three-dimensional
+version of every figure here, is
+[`suspension-kinematics`](https://github.com/leonpjvaughan/suspension-kinematics).

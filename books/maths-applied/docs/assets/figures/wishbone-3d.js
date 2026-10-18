@@ -14,8 +14,8 @@ import { SIZE, camera3d, label, line, panel, react, slider } from "./kit.js";
 import { GEOMETRY } from "../data/mechanism.js";
 
 const WIDTH = 560;
-const HEIGHT = 320;
-const MARGIN = 40;
+const HEIGHT = 300;
+const MARGIN = 26;
 const WHEEL_STEPS = 40;
 
 const P = GEOMETRY;
@@ -57,20 +57,29 @@ function segments() {
 
 const PARTS = segments();
 
-// The fit is rotation-invariant: the mean point of the geometry and its radius.
-// A fit to the *projected* bounding box would zoom in and out as the camera turns,
-// which reads as the mechanism breathing rather than as the reader walking round it.
-const centre3d = PARTS.flatMap((s) => [s.from, s.to]).reduce(
+// **The fit is rotation-invariant, and it fits the box rather than a sphere.** A fit
+// to the projected bounding box would zoom in and out as the camera turns, which
+// reads as the mechanism breathing rather than as the reader walking round it. But a
+// sphere fit wastes most of a wide, short panel: the camera only turns about the
+// vertical axis, so the height never changes and the width does. So the horizontal
+// radius and the vertical extent are fitted separately, and both are the same at
+// every yaw.
+const POINTS = PARTS.flatMap((s) => [s.from, s.to]);
+// The centroid is taken over the joints, not over the eighty points of the wheel
+// circle: those would drag it outboard and leave the linkage off centre.
+const CENTROID = Object.values(P).filter(Array.isArray).reduce(
   (acc, p) => [acc[0] + p[0], acc[1] + p[1], acc[2] + p[2]],
   [0, 0, 0]
 );
-for (let i = 0; i < 3; i += 1) centre3d[i] /= PARTS.length * 2;
-const radius = Math.max(
-  ...PARTS.flatMap((s) => [s.from, s.to]).map((p) =>
-    Math.hypot(p[0] - centre3d[0], p[1] - centre3d[1], p[2] - centre3d[2])
-  )
+for (let i = 0; i < 3; i += 1) CENTROID[i] /= Object.values(P).filter(Array.isArray).length;
+const RADIUS_H = Math.max(
+  ...POINTS.map((p) => Math.hypot(p[0] - CENTROID[0], p[1] - CENTROID[1]))
 );
-const SCALE = (Math.min(WIDTH, HEIGHT) / 2 - MARGIN) / radius;
+const RADIUS_Z = Math.max(...POINTS.map((p) => Math.abs(p[2] - CENTROID[2])));
+const SCALE = Math.min(
+  (WIDTH / 2 - MARGIN) / RADIUS_H,
+  (HEIGHT / 2 - MARGIN) / RADIUS_Z
+);
 
 export function mount(el) {
   const { svg, readout } = panel(el, {
@@ -92,15 +101,23 @@ export function mount(el) {
     min: -80,
     max: 80,
     step: 2,
-    value: -32,
+    value: -50,
     show: true,
     unit: "°",
   });
 
   function draw() {
     const camera = camera3d({ width: WIDTH, height: HEIGHT, yaw: Number(yaw.value), pitch: 18 });
+    // **Subtract the centroid before projecting.** The camera projects absolute
+    // coordinates, so a mechanism sitting half a metre outboard projects half a metre
+    // to the right of the panel and the scale then throws it off the page — which is
+    // what the first version did, and it looked like a scale problem.
     const place = (p) => {
-      const { ax, screenY, depth } = camera.raw(p);
+      const { ax, screenY, depth } = camera.raw([
+        p[0] - CENTROID[0],
+        p[1] - CENTROID[1],
+        p[2] - CENTROID[2],
+      ]);
       return {
         x: WIDTH / 2 + ax * SCALE,
         y: HEIGHT / 2 - screenY * SCALE,
@@ -126,14 +143,42 @@ export function mount(el) {
       });
     }
 
-    // Three names, because they are the three things the chapter keeps talking about.
-    const tag = (point, text, cls) => {
-      const { x, y } = place(point);
-      return label({ x, y: y - 10, text, size: SIZE.tick, class: cls });
-    };
-    drawing += tag(P.lbj, "lower ball joint", "text-accent");
-    drawing += tag(P.ubj, "upper ball joint", "text-accent");
-    drawing += tag(P.wc, "hub", "text-ink");
+    // The joints themselves, so each leader line lands on something rather than in a
+    // knot of lines.
+    for (const joint of [P.lbj, P.ubj, P.wc]) {
+      const { x, y } = place(joint);
+      drawing += `<circle cx="${x.toFixed(1)}" cy="${y.toFixed(1)}" r="4.5" class="fig-ink"></circle>`;
+    }
+
+    // Two names, as callouts down the empty side of the panel with a leader line to
+    // each joint, **ordered by where the joints land on the screen**. Written in the
+    // order the chapter names them, the two leaders crossed each other, and a label
+    // whose line you have to trace is worse than no label.
+    const named = [
+      { point: P.ubj, text: "upper ball joint" },
+      { point: P.lbj, text: "lower ball joint" },
+    ]
+      .map((entry) => ({ ...entry, placed: place(entry.point) }))
+      .sort((one, two) => one.placed.y - two.placed.y);
+    named.forEach((entry, row) => {
+      const top = 64 + row * 40;
+      drawing += label({
+        x: 24,
+        y: top,
+        text: entry.text,
+        anchor: "start",
+        size: SIZE.tick,
+        class: "text-ink",
+      });
+      drawing += line({
+        x1: 24 + entry.text.length * 7.6,
+        y1: top - 5,
+        x2: entry.placed.x,
+        y2: entry.placed.y,
+        class: "fig-grid",
+        width: 1,
+      });
+    });
 
     svg.innerHTML = drawing;
     readout.textContent =
@@ -141,7 +186,8 @@ export function mount(el) {
       `${Number(yaw.value) < 0 ? "left" : "right"}. Each wishbone is a triangle of two legs, ` +
       `so each one holds the upright at a single point: that is why the front view could treat ` +
       `it as one rigid body and draw the wheel's swing as a circle. The two legs are apart in ` +
-      `this direction, and on top of each other when you look from the front of the car.`;
+      `this direction, and on top of each other when you look from the front of the car. The ` +
+      `wheel is drawn as its rim, in the plane of the hub.`;
   }
 
   react(yaw, draw);
