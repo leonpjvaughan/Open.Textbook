@@ -12,8 +12,8 @@ one book. The rules an idea must obey are in `AGENTS.md`; the figure contract is
 `research/pedagogy.md`; the measured state of what exists is in
 `research/design/reuse-audit.md` and `research/design/figure-audit.md`.
 
-**Retrieved:** 2026-10-16. Every count below is a command and its output. Anything not
-measured says so.
+**Retrieved:** 2026-10-16, with `maths-applied`'s five modules counted 2026-10-18.
+Every count below is a command and its output. Anything not measured says so.
 
 ---
 
@@ -21,7 +21,7 @@ measured says so.
 
 ```
 $ find books/*/docs/assets/figures -name '*.js' ! -name kit.js ! -name figures.js | wc -l
-246
+251
 
 $ # per book
   a-level-maths           58 modules   16 chapters
@@ -33,6 +33,7 @@ $ # per book
   proofs                  14 modules   23 proof pages (14 carry a figure)
   ie-lc-maths             10 modules   18 chapters
   ie-lc-applied-maths     10 modules    9 chapters
+  maths-applied            5 modules    1 chapter
 
 $ # and four shared modules, each mountable by any book
   assets/figures/venn-regions.js       the same set diagram, two books
@@ -51,6 +52,10 @@ proof book from 12 to 14. What is left is §5's remaining menu, and item 61 — 
 reads the number a figure's readout prints.
 
 ### The interaction vocabulary in practice
+
+The counts below were taken on 2026-10-16, before `maths-applied`'s five figures
+existed; each of them calls `panel()`, `react()`, `slider()` and `label()`, so every
+number here is five higher today and the table has not been re-measured.
 
 ```
 $ # counting the 250 modules
