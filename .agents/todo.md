@@ -124,9 +124,9 @@ readers), and `innerHTML` markup with per-module `toFixed` (`reuse-audit.md` §3
 - [ ] `quantity()` exists and the number-with-unit count falls from 76.
 
 ---
-## 70. The gate is 17.5 minutes on four runners — one lever left, measured
+## 70. The browser suite is 206 s; the gate's clock is the host's eight cores
 
-**Three runs, measured on 2026-10-18:**
+**Three runs, measured 2026-10-18:**
 
 | Run | Change | Job time | Wall clock |
 |---|---|---|---|
@@ -134,38 +134,42 @@ readers), and `innerHTML` markup with per-module `toFixed` (`reuse-audit.md` §3
 | `39120728135` | `scripts/build-all.sh`: one job, 4 profiles at a time | 1599 s / 9 jobs | **16 min** |
 | `39124299954` | two workers per job (`BUILD_JOBS=2`, `pytest -n 2`) | **1280 s / 8 jobs** | **17.5 min** |
 
-**The build collapse was right and halved job time. The worker reduction did not help the
-wall clock**, and the numbers say why: it is now two ~7.4-minute jobs —
-`theme preview` 448 s and `banks, tests and voice` 441 s — that overlap, then `deploy`
-344 s that cannot start until the gate is green. Reducing per-job parallelism lowered the
-sum and left the critical path alone, because **`theme preview` is itself six concurrent
-browser checks** and already using the whole machine.
+Collapsing the matrix halved job time. **Reducing per-job parallelism lowered the sum and
+left the critical path alone**, because the gate is two ~7-minute jobs that overlap —
+`theme preview` 448 s, `banks, tests and voice` 441 s — and then `deploy` 344 s that cannot
+start until the gate is green. `theme preview` is itself several concurrent browser checks
+and already uses the whole machine, so tuning its workers was the wrong knob.
 
-**So the lever left reduces work, not scheduling:**
+**Done since:**
 
-**The lever left: merge the three figure passes into one browser session.**
-`scripts/preview-themes.sh` runs `audit` (contrast, 91 s), `audit --mobile` (95 s) and
-`readout` (106 s), and each navigates every figure page: **292 s of page loads for one
-walk**. One command that loads a page once and takes the paint measurement, the phone
-measurement and the readout at both viewports is the single biggest remaining win, and it
-would put `theme preview` under the three-minute rule on its own.
+- **The claim sweep rides the contrast walk.** `audit --claims <file>` sweeps each
+  figure's controls in the pass it was already making, so the arithmetic is proved from
+  the page the contrast check loaded. `readout` stays as a focused command (`--only`,
+  `--self-test`); the gate runs five processes, not six, and the claims went **up** — 668
+  across 37 figures, against 588 across 33.
+  **The clock did not fall: 206 s against 194 s, and the reason is the useful part.** The
+  readout's 106 s was mostly the *sweep* — six settings × 40 ms × 245 figures is 59 s of
+  sleep before any control manipulation — not the page loads. Sharing the navigation
+  removed work that was never the cost. Kept for the coverage and the one fewer process,
+  not for a time it did not save.
+- **`deploy` builds in parallel.** It walked the profiles one at a time, 82 s of the last
+  job in the gate; `scripts/build-all.sh` does it in ~25 and is now the **one** build
+  script — the `build` job, `deploy.sh` and `preview-themes.sh` all call it, where three
+  copies of that loop used to live.
 
-
-**Done on 2026-10-18: `deploy` builds in parallel.** It walked the profiles one at a
-time, 82 seconds of the last job in the gate; `scripts/build-all.sh` does the same work in
-~25 and is the script the `build` job already runs, so a deploy and a check build the
-site the same way. A full artifact split (build in parallel with the checks, transfer
-the site) was **not** done: the site is ~350 MB and the transfer would likely cost
-what the build does — so `deploy`'s 344 s is still the last serial step.
-
-**Also measured, and not the lever:** `generated files are in sync` is 88 s, of which
-most is `npm ci`; `plan` is 31 s.
+**The honest position.** The browser suite is 206 s on an idle machine, inside the
+three-minute rule. The *gate* is 17 minutes because two ~7-minute jobs overlap on eight
+cores and the deploy waits for both. The next lever is not another merge but **fewer
+CPU-heavy things at once**: a runner dedicated to `theme preview`, or accepting that the
+wall clock is bounded by the host rather than by the workflow.
 
 **Done means**
 
-- The gate's wall clock is under 10 minutes on four runners, measured on a run.
-- `theme preview` is under three minutes on its own, with the three passes merged.
-- `.github/AGENTS.md`'s timing table records the numbers from the run that proves it.
+- [x] `theme preview` is one command that walks each figure page once for paint, phone
+  size and claims.
+- [x] One build script, called by the build job, the deploy and the preview.
+- [ ] The gate's wall clock is under 10 minutes on four runners, measured on a run.
+- [ ] `.github/AGENTS.md`'s timing table records the numbers from the run that proves it.
 
 ## 71. `tools/build.mjs` says the tools build is bundled, and it is not
 
