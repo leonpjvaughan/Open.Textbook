@@ -598,9 +598,12 @@ browser checks** and already using the whole machine.
    loads a page once and takes the paint measurement, the phone measurement and the
    readout at both viewports is the single biggest remaining win, and it would put
    `theme preview` under the three-minute rule on its own.
-2. **Split `deploy` into build and ship.** Its 344 s includes building the site; the
-   build could run *in parallel* with the checks and be uploaded after the gate, which
-   removes ~60–90 s from the critical path and nothing from what is verified.
+2. **`deploy` now builds in parallel — done.** It walked the profiles one at a time,
+   82 seconds of the last job in the gate; `scripts/build-all.sh` does the same work in
+   ~25 and is the script the `build` job already runs, so a deploy and a check build the
+   site the same way. A full artifact split (build in parallel with the checks, transfer
+   the site) was **not** done: the site is ~350 MB and the transfer would likely cost
+   what the build does.
 
 **Also measured, and not the lever:** `generated files are in sync` is 88 s, of which
 most is `npm ci`; `plan` is 31 s.

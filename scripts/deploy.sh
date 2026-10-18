@@ -40,13 +40,16 @@ step() { printf '\n== %s ==\n' "$1"; }
 step "build"
 uv run python -m textbook.scaffold
 uv run python -m textbook.booklet
-uv run python -m textbook.portal
 # The pipeline is the site now. It replaces `mkdocs build --strict`: check_links()
 # requires every internal link to resolve to a built file, and the build exits
-# non-zero when one does not. `--configs` emits the pipeline's arguments.
-while read -r -a build; do
-  uv run python -m textbook.pipeline "${build[@]}"
-done < <(uv run python -m textbook.plan --configs)
+# non-zero when one does not.
+#
+# **Every profile four at a time, and the portal last.** This walked the profiles one
+# at a time — 82 seconds of the deploy's critical path for work that finishes in 25,
+# and the deploy is the last job in the gate, so those seconds are the end of the run.
+# `build-all.sh` is the same script the `build` job runs, so a deploy and a check build
+# the site the same way.
+scripts/build-all.sh
 
 step "refuse to ship broken maths"
 if grep -rl 'math-error' site --include='*.html'; then
