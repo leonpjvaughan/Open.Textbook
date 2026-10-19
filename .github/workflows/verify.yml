@@ -75,6 +75,12 @@ jobs:
           uv sync --locked
           npm ci
 
+      - name: Verify the vendored otkd bundle
+        # Offline by design: the bundle's SHA256SUMS against the committed bytes, and
+        # the version pinned in `scripts/vendor-otkd.sh`. A build that downloaded the
+        # release would break the rule that a clone builds with no network.
+        run: scripts/vendor-otkd.sh --check
+
       - name: Regenerate and check for drift
         run: |
           # The TypeScript compiles first. Its output is committed — the kit's

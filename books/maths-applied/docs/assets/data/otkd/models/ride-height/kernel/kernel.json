@@ -1,33 +1,33 @@
 {
-  "model": "dw-1dof",
+  "model": "ride-height",
   "abi": "otkd-kernel-2",
   "solver": "square",
   "layout": {
     "sizes": {
-      "q": 21,
-      "g": 67,
+      "q": 28,
+      "g": 92,
       "t": 1,
-      "out": 21,
-      "jac": 441,
+      "out": 28,
+      "jac": 784,
       "met": 10,
-      "world": 30,
-      "pts": 30,
-      "axs": 6,
-      "num": 1
+      "world": 36,
+      "pts": 36,
+      "axs": 9,
+      "num": 2
     },
     "offsets": {
       "q": 0,
-      "g": 21,
-      "t": 88,
-      "out": 89,
-      "jac": 110,
-      "met": 551,
-      "world": 561,
-      "pts": 591,
-      "axs": 621,
-      "num": 627
+      "g": 28,
+      "t": 120,
+      "out": 121,
+      "jac": 149,
+      "met": 933,
+      "world": 943,
+      "pts": 979,
+      "axs": 1015,
+      "num": 1024
     },
-    "slots": 628
+    "slots": 1026
   },
   "metrics": [
     "camber",
@@ -41,6 +41,8 @@
     "lbj",
     "lcaf",
     "lcar",
+    "patch",
+    "road-origin",
     "tri",
     "tro",
     "ubj",
@@ -51,62 +53,71 @@
   ],
   "axes": [
     "lca-axis",
-    "uca-axis"
+    "uca-axis",
+    "up"
   ],
   "numbers": [
     {
       "kind": "length",
       "joint": "tie-rod"
+    },
+    {
+      "kind": "gap",
+      "joint": "contact"
     }
+  ],
+  "default_numbers": [
+    0.3706750598570127,
+    0.2
   ],
   "rows": [
     {
-      "name": "lca-ground.tx",
+      "name": "lca-chassis.tx",
       "unit": "m",
       "group": "hard"
     },
     {
-      "name": "lca-ground.ty",
+      "name": "lca-chassis.ty",
       "unit": "m",
       "group": "hard"
     },
     {
-      "name": "lca-ground.tz",
+      "name": "lca-chassis.tz",
       "unit": "m",
       "group": "hard"
     },
     {
-      "name": "lca-ground.rx",
+      "name": "lca-chassis.rx",
       "unit": "",
       "group": "hard"
     },
     {
-      "name": "lca-ground.ry",
+      "name": "lca-chassis.ry",
       "unit": "",
       "group": "hard"
     },
     {
-      "name": "uca-ground.tx",
+      "name": "uca-chassis.tx",
       "unit": "m",
       "group": "hard"
     },
     {
-      "name": "uca-ground.ty",
+      "name": "uca-chassis.ty",
       "unit": "m",
       "group": "hard"
     },
     {
-      "name": "uca-ground.tz",
+      "name": "uca-chassis.tz",
       "unit": "m",
       "group": "hard"
     },
     {
-      "name": "uca-ground.rx",
+      "name": "uca-chassis.rx",
       "unit": "",
       "group": "hard"
     },
     {
-      "name": "uca-ground.ry",
+      "name": "uca-chassis.ry",
       "unit": "",
       "group": "hard"
     },
@@ -146,8 +157,38 @@
       "group": "hard"
     },
     {
-      "name": "lca-ground.rz",
-      "unit": "rad",
+      "name": "road-chassis.tx",
+      "unit": "m",
+      "group": "hard"
+    },
+    {
+      "name": "road-chassis.ty",
+      "unit": "m",
+      "group": "hard"
+    },
+    {
+      "name": "road-chassis.rx",
+      "unit": "",
+      "group": "hard"
+    },
+    {
+      "name": "road-chassis.ry",
+      "unit": "",
+      "group": "hard"
+    },
+    {
+      "name": "road-chassis.rz",
+      "unit": "",
+      "group": "hard"
+    },
+    {
+      "name": "contact.gap",
+      "unit": "m",
+      "group": "hard"
+    },
+    {
+      "name": "road-chassis.tz",
+      "unit": "m",
       "group": "driver"
     },
     {
@@ -164,10 +205,15 @@
       "name": "up.unit",
       "unit": "",
       "group": "norm"
+    },
+    {
+      "name": "road.unit",
+      "unit": "",
+      "group": "norm"
     }
   ],
   "drive": [
-    "lca-drive"
+    "road-height"
   ],
   "wasm": "kernel.wasm",
   "note": ""

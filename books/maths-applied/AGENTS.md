@@ -150,23 +150,25 @@ ES module by the `suspension-kinematics` package, and copied into the site from
 - **`agreement` is evidence, not decoration.** An agreement panel reads it, or says
   in one sentence where its number comes from and what is not available. What it must
   never do is print a number a human typed. The package's four exports and one kernel
-  are now vendored under `docs/assets/data/package/`, so there is nothing left to
+  are now vendored under `docs/assets/data/otkd/`, so there is nothing left to
   fetch: a panel that needs a value the package does not export says which value and
   why, in the reader's words, rather than leaving a marker in the page.
 - A figure may solve a small closed-form problem in its own module (two circles
   meeting is arithmetic, not a solver). It may **not** carry a second implementation
   of the general solver, and it may not print iteration data it invented.
 
-**A generated solver is not a second implementation.** `docs/assets/data/package/`
-holds the `suspension-kinematics` package's own exports and one solver it compiled to
-WebAssembly — the same derivation as its Python engine, not a hand copy. A figure may
-import it (`../data/package/double-wishbone/kernel.js`) and solve in the page. Three
+**A generated solver is not a second implementation.** `docs/assets/data/otkd/` holds
+the `suspension-kinematics` package's own bundle: one `out.js` per model and a solver
+it compiled to WebAssembly — the same derivation as its Python engine, not a hand
+copy. A figure may import one
+(`../data/otkd/models/double-wishbone/kernel/kernel.js`) and solve in the page. Four
 rules:
 
-- **Vendored means unchanged.** Do not edit anything under `package/`; regenerate it
-  from the package and copy the output. `tests/test_maths_applied_data.py` checks the
-  wasm against `provenance.json`, the module's embedded base64 against the same hash,
-  and the geometry module against the YAML beside it.
+- **Vendored means unchanged.** Do not edit anything under `otkd/`. Bump `VERSION` and
+  `ZIP_SHA256` in `scripts/vendor-otkd.sh`, run it, and commit what it writes; CI runs
+  `scripts/vendor-otkd.sh --check`, which verifies every file against the bundle's own
+  `SHA256SUMS` with no network. `tests/test_maths_applied_data.py` also checks each
+  kernel's embedded base64 against its `.wasm`.
 - **One import, no fetch.** The binary travels inside `kernel.js` as base64, so a page
   needs no second request, no MIME type and no network. The `.wasm` file is there for
   provenance and inspection.

@@ -1,8 +1,8 @@
 // Two models of the same corner: this section's front view, and a generated kernel.
 //
-// `books/maths-applied/docs/assets/data/package/` holds the `suspension-kinematics`
-// package's own output: four committed `out.js` exports and one solver compiled to
-// WebAssembly. The kernel is generated from the same derivation as the package's
+// `books/maths-applied/docs/assets/data/otkd/` holds the `suspension-kinematics`
+// package's own bundle: one `out.js` per model and a solver compiled to WebAssembly
+// for each of the kinematic ones. The kernel is generated from the same derivation as the package's
 // Python engine — sympy residual and Jacobian, common-subexpression elimination, Rust,
 // `wasm32-unknown-unknown` — and it solves the **full three-dimensional mechanism**:
 // twenty-one equations in twenty-one unknowns, by Newton.
@@ -18,8 +18,8 @@
 // match §1.2's rule (top of the wheel inboard is negative). Nothing else is adjusted:
 // the same geometry goes in, and the answers come out as they are.
 import { SIZE, axes, curve, label, panel, quantity } from "./kit.js";
-import * as kernel from "../data/package/double-wishbone/kernel.js";
-import { agreement } from "../data/package/double-wishbone/out.js";
+import * as kernel from "../data/otkd/models/double-wishbone/kernel/kernel.js";
+import { agreement } from "../data/otkd/models/double-wishbone/out.js";
 import { GEOMETRY, pose, thetaFor } from "../data/mechanism.js";
 
 // The chapter's own range: 40 mm of wheel travel each way, sampled at the arm angles
@@ -60,6 +60,8 @@ function geometryForKernel() {
       tri: GEOMETRY.tri,
       tro: GEOMETRY.tro,
     },
+    // The package's axes are the same construction: a unit vector along each arm's
+    // pivot axis, from the two chassis pivots that define it.
     axes: {
       "lca-axis": unit(sub(GEOMETRY.lcar, GEOMETRY.lcaf)),
       "uca-axis": unit(sub(GEOMETRY.ucar, GEOMETRY.ucaf)),

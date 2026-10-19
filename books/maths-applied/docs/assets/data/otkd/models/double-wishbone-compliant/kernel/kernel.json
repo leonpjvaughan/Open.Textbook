@@ -1,0 +1,183 @@
+{
+  "model": "dw-compliant",
+  "abi": "otkd-kernel-2",
+  "solver": "equilibrium",
+  "layout": {
+    "sizes": {
+      "q": 21,
+      "g": 68,
+      "t": 1,
+      "out": 21,
+      "jac": 441,
+      "met": 10,
+      "world": 30,
+      "pts": 30,
+      "axs": 6,
+      "num": 2
+    },
+    "offsets": {
+      "q": 0,
+      "g": 21,
+      "t": 89,
+      "out": 90,
+      "jac": 111,
+      "met": 552,
+      "world": 562,
+      "pts": 592,
+      "axs": 622,
+      "num": 628
+    },
+    "slots": 630
+  },
+  "metrics": [
+    "camber",
+    "toe",
+    "track",
+    "contact",
+    "ic",
+    "rc"
+  ],
+  "points": [
+    "lbj",
+    "lcaf",
+    "lcar",
+    "tri",
+    "tro",
+    "ubj",
+    "ucaf",
+    "ucar",
+    "wc",
+    "wco"
+  ],
+  "axes": [
+    "lca-axis",
+    "uca-axis"
+  ],
+  "numbers": [
+    {
+      "kind": "length",
+      "joint": "tie-rod"
+    },
+    {
+      "kind": "compliance",
+      "joint": "tie-rod",
+      "component": "length"
+    }
+  ],
+  "default_numbers": [
+    0.3706750598570127,
+    1e-06
+  ],
+  "rows": [
+    {
+      "name": "lca-ground.tx",
+      "unit": "m",
+      "group": "hard"
+    },
+    {
+      "name": "lca-ground.ty",
+      "unit": "m",
+      "group": "hard"
+    },
+    {
+      "name": "lca-ground.tz",
+      "unit": "m",
+      "group": "hard"
+    },
+    {
+      "name": "lca-ground.rx",
+      "unit": "",
+      "group": "hard"
+    },
+    {
+      "name": "lca-ground.ry",
+      "unit": "",
+      "group": "hard"
+    },
+    {
+      "name": "uca-ground.tx",
+      "unit": "m",
+      "group": "hard"
+    },
+    {
+      "name": "uca-ground.ty",
+      "unit": "m",
+      "group": "hard"
+    },
+    {
+      "name": "uca-ground.tz",
+      "unit": "m",
+      "group": "hard"
+    },
+    {
+      "name": "uca-ground.rx",
+      "unit": "",
+      "group": "hard"
+    },
+    {
+      "name": "uca-ground.ry",
+      "unit": "",
+      "group": "hard"
+    },
+    {
+      "name": "lca-up.tx",
+      "unit": "m",
+      "group": "hard"
+    },
+    {
+      "name": "lca-up.ty",
+      "unit": "m",
+      "group": "hard"
+    },
+    {
+      "name": "lca-up.tz",
+      "unit": "m",
+      "group": "hard"
+    },
+    {
+      "name": "uca-up.tx",
+      "unit": "m",
+      "group": "hard"
+    },
+    {
+      "name": "uca-up.ty",
+      "unit": "m",
+      "group": "hard"
+    },
+    {
+      "name": "uca-up.tz",
+      "unit": "m",
+      "group": "hard"
+    },
+    {
+      "name": "tie-rod.length",
+      "unit": "m",
+      "group": "spring"
+    },
+    {
+      "name": "lca-ground.rz",
+      "unit": "rad",
+      "group": "driver"
+    },
+    {
+      "name": "lca.unit",
+      "unit": "",
+      "group": "norm"
+    },
+    {
+      "name": "uca.unit",
+      "unit": "",
+      "group": "norm"
+    },
+    {
+      "name": "up.unit",
+      "unit": "",
+      "group": "norm"
+    }
+  ],
+  "drive": [
+    "lca-drive"
+  ],
+  "wasm": "kernel.wasm",
+  "note": ""
+}

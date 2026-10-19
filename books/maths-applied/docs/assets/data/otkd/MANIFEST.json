@@ -1,0 +1,35 @@
+{
+  "bundle": "otkd-bundle-1",
+  "generator": "otkd 0.4.0",
+  "git": "f5d2c92",
+  "models": {
+    "double-wishbone": {
+      "id": "dw-1dof",
+      "kernel": "kernel.wasm",
+      "payload": "out.js"
+    },
+    "double-wishbone-compliant": {
+      "id": "dw-compliant",
+      "kernel": "kernel.wasm",
+      "payload": "out.js"
+    },
+    "double-wishbone-two-leg": {
+      "id": "dw-two-leg",
+      "kernel": "kernel.wasm",
+      "payload": "out.js"
+    },
+    "quarter-car": {
+      "id": "quarter-car",
+      "kernel": "none (dynamics)",
+      "payload": "none (dynamics)"
+    },
+    "ride-height": {
+      "id": "ride-height",
+      "kernel": "kernel.wasm",
+      "payload": "out.js"
+    }
+  },
+  "python": "3.12.3",
+  "rustc": "rustc 1.99.1 (58cf8f9c3 2026-10-13)",
+  "version": "0.4.0"
+}

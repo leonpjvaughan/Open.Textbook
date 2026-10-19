@@ -150,7 +150,7 @@ This section's model is a front view. The package the chapter's numbers come fro
 `suspension-kinematics`, solves the full mechanism instead: three bodies, twenty-one
 equations, Newton at every step. Its derivation also generates a **solver compiled to
 WebAssembly**, and that solver ships with this page — vendored under
-`docs/assets/data/package/`, with the package's own exported sweeps beside it and a
+`docs/assets/data/otkd/`, with the package's own exported sweeps beside it and a
 record of the hashes.
 
 Given the geometry above, it solves the same linkage in three dimensions. What comes
