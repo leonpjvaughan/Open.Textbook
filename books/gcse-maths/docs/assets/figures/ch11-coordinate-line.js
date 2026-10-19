@@ -44,7 +44,7 @@ export function mount(el) {
     svg.innerHTML = `<line x1="24" y1="125" x2="336" y2="125" class="fig-ink"></line>
       <line x1="180" y1="20" x2="180" y2="230" class="fig-ink"></line>
       <line x1="36" y1="${py(m * -5 + c)}" x2="324" y2="${py(m * 5 + c)}" class="fig-accent"></line>
-      ${dots}<circle cx="${px(0)}" cy="${py(c)}" r="8" fill="none" class="fig-warn"></circle>
+      ${dots}<circle cx="${px(0)}" cy="${py(c)}" r="8" style="fill:none" class="fig-warn"></circle>
       ${label({ x: 330, y: 145, text: "x", anchor: "start", class: "text-accent" })}${label({ x: 190, y: 24, text: "y", anchor: "start", class: "text-accent" })}
       ${label({ x: 12, y: 245, text: "Points at x = -2, 0, 2", anchor: "start", class: "text-ink" })}`;
     readout.textContent = `y = ${m}x ${signed(c)}; the highlighted intercept is ${c}.`;

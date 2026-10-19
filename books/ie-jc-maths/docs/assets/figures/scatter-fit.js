@@ -9,7 +9,17 @@
 //
 // Nothing here carries a colour. Every shape uses a `fig-*` class and every word a
 // `text-*` class, so the figure follows the reader's theme in both schemes.
-import { axes, dots, fmt, label, line, panel, react, slider } from "./kit.js";
+import {
+  axes,
+  dots,
+  fmt,
+  label,
+  line,
+  panel,
+  quantity,
+  react,
+  slider,
+} from "./kit.js";
 
 // The twenty pairs from the chapter problem: screen time in hours, sleep in hours.
 const DATA = [
@@ -80,7 +90,7 @@ export function mount(el) {
       (onLine ? `, with ${onLine} exactly on it` : "") +
       `. ${verdict} ` +
       `The points fall from left to right and lie close to a straight line, so the correlation is negative and strong. ` +
-      `The line lets you estimate a value that was not measured: at 6 hours of screen time it gives about ${fmt(value(6), 1)} hours of sleep.`;
+      `The line lets you estimate a value that was not measured: at 6 hours of screen time it gives about ${quantity(value(6), "hours", 1)} of sleep.`;
   }
 
   react([steepness, height], update);

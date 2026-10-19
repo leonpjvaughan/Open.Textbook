@@ -92,7 +92,7 @@ export function mount(el) {
     const labelX = P.x + sign * (arcRadius + 16) * dx;
     const labelY = P.y - (arcRadius + 8) * dy;
     return (
-      `<polyline points="${points.join(" ")}" class="fig-ink" fill="none" stroke-width="1.5"></polyline>` +
+      `<polyline points="${points.join(" ")}" class="fig-ink" style="fill:none" stroke-width="1.5"></polyline>` +
       `${label({ x: labelX.toFixed(1), y: labelY.toFixed(1), text: `${state.angle}°`, anchor: "middle", size: SIZE.tick, class: "text-ink" })}`
     );
   }

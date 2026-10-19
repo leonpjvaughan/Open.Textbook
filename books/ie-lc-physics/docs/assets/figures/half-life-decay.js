@@ -11,7 +11,17 @@
 // guides and the marker use different `fig-*` classes and line styles.
 //
 // The scaffolding comes from `kit.js`. What is left is the drawing and the words.
-import { SIZE, chooser, fmt, label, panel, react, scale, slider } from "./kit.js";
+import {
+  chooser,
+  fmt,
+  label,
+  panel,
+  quantity,
+  react,
+  scale,
+  slider,
+  SIZE,
+} from "./kit.js";
 
 const A0 = 800; // Bq
 
@@ -107,7 +117,7 @@ export function mount(el) {
 
     svg.innerHTML = drawing;
 
-    readout.textContent = `After ${fmt(t, 2)} half-lives the fraction remaining is ${fmt(fraction, 3)}. A source that started at ${A0} Bq now has an activity of about ${fmt(activity, 3)} Bq. For ${half.label === "years" ? "carbon-14" : half.label === "days" ? "radon-222" : "technetium-99m"} that is about ${fmt(elapsedTime, 3)} ${half.label}.`;
+    readout.textContent = `After ${fmt(t, 2)} half-lives the fraction remaining is ${fmt(fraction, 3)}. A source that started at ${A0} Bq now has an activity of about ${quantity(activity, "Bq", 3)}. For ${half.label === "years" ? "carbon-14" : half.label === "days" ? "radon-222" : "technetium-99m"} that is about ${fmt(elapsedTime, 3)} ${half.label}.`;
   }
 
   react([elapsed, isotope], update);

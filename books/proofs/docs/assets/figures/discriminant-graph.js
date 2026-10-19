@@ -113,7 +113,7 @@ export function mount(el) {
       `y2="${Y0.toFixed(1)}" class="fig-grid" stroke-width="1.5"></line>` +
       `<line x1="${X0.toFixed(1)}" y1="${TOP}" x2="${X0.toFixed(1)}" ` +
       `y2="${(TOP + HEIGHT).toFixed(1)}" class="fig-grid" stroke-width="1.5"></line>` +
-      `<path d="${path}" fill="none" stroke-width="2.5" class="fig-line"></path>` +
+      `<path d="${path}" style="fill:none" stroke-width="2.5" class="fig-line"></path>` +
       vertex +
       roots;
 

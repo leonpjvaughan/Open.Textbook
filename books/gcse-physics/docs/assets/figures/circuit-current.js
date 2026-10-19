@@ -15,7 +15,14 @@
 // The scaffolding — the surface, its accessible name, the sliders, the live
 // readout and the redraw — comes from `kit.js`. What is left here is the drawing
 // and the sentences, which are the parts that differ from every other figure.
-import { SIZE, label, panel, react, slider } from "./kit.js";
+import {
+  label,
+  panel,
+  quantity,
+  react,
+  slider,
+  SIZE,
+} from "./kit.js";
 
 export function mount(el) {
   const { svg, readout } = panel(el, {
@@ -86,7 +93,7 @@ export function mount(el) {
       `${label({ x: 70, y: 180, text: `cell`, anchor: "start", size: SIZE.tick, class: "text-ink" })}` +
       // The current meter.
       `${label({ x: BAR_LEFT, y: BAR_Y - 8, text: `current`, anchor: "start", size: SIZE.tick, class: "text-ink" })}` +
-      `${label({ x: BAR_RIGHT, y: BAR_Y - 8, text: `${amps.toFixed(2)} A`, anchor: "end", size: SIZE.tick, class: "text-ink" })}` +
+      `${label({ x: BAR_RIGHT, y: BAR_Y - 8, text: `${quantity(amps, "A", 2)}`, anchor: "end", size: SIZE.tick, class: "text-ink" })}` +
       `<rect x="${BAR_LEFT}" y="${BAR_Y}" width="${BAR_RIGHT - BAR_LEFT}" height="${BAR_H}" class="fig-grid"></rect>` +
       `<rect x="${BAR_LEFT}" y="${BAR_Y}" width="${barWidth}" height="${BAR_H}" class="fig-accent"></rect>` +
       `${label({ x: BAR_LEFT, y: BAR_Y + BAR_H + 16, text: `0`, anchor: "start", size: SIZE.tick, class: "text-ink" })}` +
@@ -95,7 +102,7 @@ export function mount(el) {
     readout.innerHTML =
       `Potential difference <strong>${volts} V</strong>. ` +
       `Resistance <strong>${ohms} &Omega;</strong>. ` +
-      `Current <strong>${amps.toFixed(2)} A</strong>. ` +
+      `Current <strong>${quantity(amps, "A", 2)}</strong>. ` +
       `<em>The current is the potential difference divided by the resistance. ` +
       `What happens to the current if the resistance doubles?</em>`;
   }

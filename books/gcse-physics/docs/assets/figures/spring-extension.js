@@ -10,7 +10,14 @@
 // The scaffolding — the surface, its accessible name, the sliders, the live
 // readout and the redraw — comes from `kit.js`. What is left here is the drawing
 // and the sentences, which are the parts that differ from every other figure.
-import { SIZE, label, panel, react, slider } from "./kit.js";
+import {
+  label,
+  panel,
+  quantity,
+  react,
+  slider,
+  SIZE,
+} from "./kit.js";
 
 export function mount(el) {
   const { svg, readout } = panel(el, {
@@ -86,7 +93,7 @@ export function mount(el) {
     // extension is drawn to scale.
     const length = 55 + e * 240;
     const spring =
-      `<line x1="380" y1="30" x2="500" y2="30" class="fig-ink" stroke-width="3"></line><path d="${zigzag(440, 30, length, 9)}" class="fig-accent" fill="none" stroke-width="2"></path><line x1="440" y1="${30 + length}" x2="440" y2="${30 + length + 22}" class="fig-grid" stroke-dasharray="3 3"></line><polygon points="440,${30 + length + 30} 432,${30 + length + 16} 448,${30 + length + 16}" class="fig-warn"></polygon>${label({ x: 470, y: 30 + length / 2, text: `spring`, anchor: "start", size: SIZE.value, class: "text-ink" })}`;
+      `<line x1="380" y1="30" x2="500" y2="30" class="fig-ink" stroke-width="3"></line><path d="${zigzag(440, 30, length, 9)}" class="fig-accent" style="fill:none" stroke-width="2"></path><line x1="440" y1="${30 + length}" x2="440" y2="${30 + length + 22}" class="fig-grid" stroke-dasharray="3 3"></line><polygon points="440,${30 + length + 30} 432,${30 + length + 16} 448,${30 + length + 16}" class="fig-warn"></polygon>${label({ x: 470, y: 30 + length / 2, text: `spring`, anchor: "start", size: SIZE.value, class: "text-ink" })}`;
 
     // The force-extension graph: a straight line up to the limit, then a curve.
     const points = [];
@@ -99,12 +106,12 @@ export function mount(el) {
       `<line x1="70" y1="200" x2="310" y2="200" class="fig-ink"></line><line x1="70" y1="200" x2="70" y2="30" class="fig-ink"></line><line x1="70" y1="${yPixel(LIMIT).toFixed(1)}" x2="310" y2="${yPixel(LIMIT).toFixed(1)}" class="fig-grid" stroke-dasharray="3 3"></line>${label({ x: 185, y: 222, text: `extension (m)`, anchor: "middle", size: SIZE.value, class: "text-ink" })}${label({ x: 14, y: 120, text: 'force (N)', anchor: "start", size: SIZE.value, class: "text-ink", rotate: -90 })}${label({ x: 300, y: (yPixel(LIMIT) - 5).toFixed(1), text: `limit`, anchor: "end", size: SIZE.tick, class: "text-ink" })}`;
     const graph =
       axis +
-      `<path d="${path(straight)}" class="fig-accent" fill="none" stroke-width="3"></path><path d="${path(curved)}" class="fig-warn" fill="none" stroke-width="3"></path><circle cx="${xPixel(e).toFixed(1)}" cy="${yPixel(force).toFixed(1)}" r="5" class="fig-good"></circle>`;
+      `<path d="${path(straight)}" class="fig-accent" style="fill:none" stroke-width="3"></path><path d="${path(curved)}" class="fig-warn" style="fill:none" stroke-width="3"></path><circle cx="${xPixel(e).toFixed(1)}" cy="${yPixel(force).toFixed(1)}" r="5" class="fig-good"></circle>`;
 
     svg.innerHTML = spring + graph;
 
     readout.innerHTML =
-      `Force <strong>${force} N</strong>, spring constant <strong>${k} N/m</strong>. Extension = <strong>${e.toFixed(3)} m</strong>. Energy stored = <strong>${stored.toFixed(2)} J</strong>. ` +
+      `Force <strong>${force} N</strong>, spring constant <strong>${k} N/m</strong>. Extension = <strong>${quantity(e, "m", 3)}</strong>. Energy stored = <strong>${quantity(stored, "J", 2)}</strong>. ` +
       (beyond
         ? `<em>The force is past the limit of proportionality, so the graph has curved.</em>`
         : `<em>Now double the force to ${Math.min(force * 2, 40)} N. What happens to the extension?</em>`);

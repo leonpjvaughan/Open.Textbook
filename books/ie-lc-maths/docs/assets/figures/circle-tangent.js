@@ -74,10 +74,10 @@ export function mount(el) {
 
     svg.innerHTML =
       grid +
-      `<circle cx="${X(0)}" cy="${Y(0)}" r="${(r * UNIT).toFixed(1)}" class="fig-accent" fill="none" stroke-width="2.4"></circle>` +
+      `<circle cx="${X(0)}" cy="${Y(0)}" r="${(r * UNIT).toFixed(1)}" class="fig-accent" style="fill:none" stroke-width="2.4"></circle>` +
       `<line x1="${X(0)}" y1="${Y(0)}" x2="${X(px)}" y2="${Y(py)}" class="fig-good" stroke-width="2.4"></line>` +
       `<line x1="${X(t1.x)}" y1="${Y(t1.y)}" x2="${X(t2.x)}" y2="${Y(t2.y)}" class="fig-warn" stroke-width="2.4" stroke-dasharray="9 5"></line>` +
-      `<polyline points="${square}" class="fig-ink" fill="none" stroke-width="1.5"></polyline>` +
+      `<polyline points="${square}" class="fig-ink" style="fill:none" stroke-width="1.5"></polyline>` +
       `<circle cx="${X(0)}" cy="${Y(0)}" r="5" class="fig-ink"></circle>` +
       `<circle cx="${X(px)}" cy="${Y(py)}" r="6" class="fig-warn"></circle>` +
       label({ x: X(px) + 12, y: Y(py) - 12, text: "P", size: SIZE.value, class: "text-warn", anchor: "start", weight: "bold" });

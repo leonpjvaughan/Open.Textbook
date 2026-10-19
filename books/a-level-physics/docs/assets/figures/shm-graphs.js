@@ -14,7 +14,14 @@
 // The scaffolding — the surface, its accessible name, the sliders, the live
 // readout and the redraw — comes from `kit.js`. What is left here is the drawing
 // and the sentences, which are the parts that differ from every other figure.
-import { SIZE, label, panel, react, slider } from "./kit.js";
+import {
+  label,
+  panel,
+  quantity,
+  react,
+  slider,
+  SIZE,
+} from "./kit.js";
 
 export function mount(el) {
   const { svg, readout } = panel(el, {
@@ -79,7 +86,7 @@ export function mount(el) {
       leftCurve += `${xFor(t).toFixed(1)},${yFor(x).toFixed(1)} `;
     }
     const leftLine =
-      `<polyline points="${leftCurve.trim()}" class="fig-accent" fill="none" stroke-width="3"></polyline>` +
+      `<polyline points="${leftCurve.trim()}" class="fig-accent" style="fill:none" stroke-width="3"></polyline>` +
       `${label({ x: LX0 + 4, y: BOTTOM - 4, text: `x = A cos(omega t)`, anchor: "start", size: SIZE.value, class: "text-ink" })}`;
 
     // Right panel: acceleration against displacement, a straight line a = -omega^2 x.
@@ -102,10 +109,10 @@ export function mount(el) {
     svg.innerHTML = leftAxes + leftLine + rightAxes + rightLine;
 
     readout.innerHTML =
-      `Amplitude ${A.toFixed(2)} m, period ${T.toFixed(1)} s. ` +
+      `Amplitude ${quantity(A, "m", 2)}, period ${quantity(T, "s", 1)}. ` +
       `The angular frequency is <strong>${omega.toFixed(2)} rad/s</strong>, ` +
-      `the maximum speed is <strong>${vMax.toFixed(2)} m/s</strong>, ` +
-      `and the maximum acceleration is <strong>${aMax.toFixed(2)} m/s&sup2;</strong>. ` +
+      `the maximum speed is <strong>${quantity(vMax, "m", 2)}/s</strong>, ` +
+      `and the maximum acceleration is <strong>${quantity(aMax, "m", 2)}/s&sup2;</strong>. ` +
       `The acceleration-displacement graph is a straight line with negative gradient, ` +
       `which is the test for simple harmonic motion. ` +
       `<em>Double the period: what happens to omega, and to the gradient of the line?</em>`;

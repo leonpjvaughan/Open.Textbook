@@ -24,7 +24,7 @@ export function mount(el) {
   function update() {
     const b = Number(secondLeg.value), scale = 18, x0 = 25, y0 = 185, a = 6;
     const x1 = x0 + a * scale, y1 = y0 - b * scale, c = Math.hypot(a, b);
-    svg.innerHTML = `<path d="M${x0} ${y0} L${x1} ${y0} L${x1} ${y1} Z" fill="none" stroke="currentColor" stroke-width="3" class="fig-accent"/><path d="M${x1 - 12} ${y0} L${x1 - 12} ${y0 - 12} L${x1} ${y0 - 12}" fill="none" stroke="currentColor" class="fig-grid"/>${label({ x: x0 + 40, y: y0 + 22, text: "6 units", anchor: "start", class: "text-ink" })}${label({ x: x1 + 5, y: y0 - b * scale / 2, text: `${b} units`, anchor: "start", class: "text-warn" })}${label({ x: x0 + 40, y: y0 - b * scale / 2 - 8, text: "hypotenuse", anchor: "start", class: "text-good" })}`;
+    svg.innerHTML = `<path d="M${x0} ${y0} L${x1} ${y0} L${x1} ${y1} Z" style="fill:none" stroke="currentColor" stroke-width="3" class="fig-accent"/><path d="M${x1 - 12} ${y0} L${x1 - 12} ${y0 - 12} L${x1} ${y0 - 12}" style="fill:none" stroke="currentColor" class="fig-grid"/>${label({ x: x0 + 40, y: y0 + 22, text: "6 units", anchor: "start", class: "text-ink" })}${label({ x: x1 + 5, y: y0 - b * scale / 2, text: `${b} units`, anchor: "start", class: "text-warn" })}${label({ x: x0 + 40, y: y0 - b * scale / 2 - 8, text: "hypotenuse", anchor: "start", class: "text-good" })}`;
     readout.textContent = `The hypotenuse is √(${a}² + ${b}²) = ${c.toFixed(2)} units.`;
   }
 

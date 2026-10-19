@@ -56,7 +56,7 @@ function arrow(x1, y1, x2, y2, cls, width) {
   return (
     `<line x1="${px1.toFixed(1)}" y1="${py1.toFixed(1)}" ` +
     `x2="${bx.toFixed(1)}" y2="${by.toFixed(1)}" class="${cls}" ` +
-    `fill="none" stroke-width="${width}"></line>` +
+    `style="fill:none" stroke-width="${width}"></line>` +
     `<polygon points="${px2.toFixed(1)},${py2.toFixed(1)} ` +
     `${leftX.toFixed(1)},${leftY.toFixed(1)} ` +
     `${rightX.toFixed(1)},${rightY.toFixed(1)}" class="${cls}"></polygon>`

@@ -14,7 +14,14 @@
 // The scaffolding — the surface, its accessible name, the sliders, the live
 // readout and the redraw — comes from `kit.js`. What is left here is the drawing
 // and the sentences, which are the parts that differ from every other figure.
-import { SIZE, label, panel, react, slider } from "./kit.js";
+import {
+  label,
+  panel,
+  quantity,
+  react,
+  slider,
+  SIZE,
+} from "./kit.js";
 
 export function mount(el) {
   const { svg, readout } = panel(el, {
@@ -114,12 +121,12 @@ export function mount(el) {
     svg.innerHTML =
       grid +
       labels +
-      `<polyline points="${curve}" class="fig-accent" fill="none" stroke-width="3"></polyline>` +
+      `<polyline points="${curve}" class="fig-accent" style="fill:none" stroke-width="3"></polyline>` +
       plateauLabels;
 
     const minutes = total / 60;
     readout.innerHTML =
-      `For ${m.toFixed(2)} kg and ${p} W: ice warms for <strong>${t1.toFixed(0)} s</strong>, melting takes <strong>${t2.toFixed(0)} s</strong>, the water warms for <strong>${t3.toFixed(0)} s</strong>, boiling takes <strong>${t4.toFixed(0)} s</strong>, and the steam warms for <strong>${t5.toFixed(0)} s</strong>. The total is ${total.toFixed(0)} s, about ${minutes.toFixed(1)} minutes. <em>Why does the graph stay flat while the water is boiling?</em>`;
+      `For ${quantity(m, "kg", 2)} and ${p} W: ice warms for <strong>${quantity(t1, "s", 0)}</strong>, melting takes <strong>${quantity(t2, "s", 0)}</strong>, the water warms for <strong>${quantity(t3, "s", 0)}</strong>, boiling takes <strong>${quantity(t4, "s", 0)}</strong>, and the steam warms for <strong>${quantity(t5, "s", 0)}</strong>. The total is ${quantity(total, "s", 0)}, about ${minutes.toFixed(1)} minutes. <em>Why does the graph stay flat while the water is boiling?</em>`;
   }
 
   react([mass, power], update);

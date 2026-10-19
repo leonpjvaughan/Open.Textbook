@@ -19,7 +19,14 @@
 // The scaffolding — the surface, its accessible name, the sliders, the live
 // readout and the redraw — comes from `kit.js`. What is left here is the drawing
 // and the sentences, which are the parts that differ from every other figure.
-import { SIZE, label, panel, react, slider } from "./kit.js";
+import {
+  label,
+  panel,
+  quantity,
+  react,
+  slider,
+  SIZE,
+} from "./kit.js";
 
 export function mount(el) {
   const { svg, readout } = panel(el, {
@@ -99,7 +106,7 @@ export function mount(el) {
       const v = V0 * Math.exp(-time / tauMs);
       points += `${px(time, tMax).toFixed(1)},${py(v).toFixed(1)} `;
     }
-    const curve = `<polyline points="${points.trim()}" fill="none" class="fig-accent" stroke-width="3"></polyline>`;
+    const curve = `<polyline points="${points.trim()}" style="fill:none" class="fig-accent" stroke-width="3"></polyline>`;
 
     // The working point at one time constant.
     const vTau = V0 * Math.exp(-1);
@@ -114,10 +121,10 @@ export function mount(el) {
     const halfLifeMs = tauMs * Math.log(2);
     readout.innerHTML =
       `The time axis runs from 0 to <strong>${tMax} ms</strong>. ` +
-      `The time constant is <strong>${tauMs.toFixed(0)} ms</strong>. ` +
+      `The time constant is <strong>${quantity(tauMs, "ms", 0)}</strong>. ` +
       `At one time constant the potential difference has fallen to ` +
-      `<strong>${vTau.toFixed(1)} V</strong>, which is about 37 percent of the ${V0} V start. ` +
-      `The half-life is about <strong>${halfLifeMs.toFixed(0)} ms</strong>. ` +
+      `<strong>${quantity(vTau, "V", 1)}</strong>, which is about 37 percent of the ${V0} V start. ` +
+      `The half-life is about <strong>${quantity(halfLifeMs, "ms", 0)}</strong>. ` +
       `<em>Double the resistance: what happens to the time constant?</em>`;
   }
 

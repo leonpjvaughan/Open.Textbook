@@ -208,7 +208,7 @@ export function mount(el) {
     svg.innerHTML =
       caption +
       fill +
-      `<path d="${curve}" fill="none" class="fig-ink" stroke-width="1.5"></path>` +
+      `<path d="${curve}" style="fill:none" class="fig-ink" stroke-width="1.5"></path>` +
       axis +
       marker;
 

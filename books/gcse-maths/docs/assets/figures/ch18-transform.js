@@ -14,7 +14,7 @@ export function mount(el) {
   });
 
   svg.innerHTML = `
-        <path d="M20 200H290 M60 210V20" class="fig-grid" fill="none" stroke="currentColor" stroke-width="1" />
+        <path d="M20 200H290 M60 210V20" class="fig-grid" style="fill:none" stroke="currentColor" stroke-width="1" />
         <circle class="fig-accent" cx="100" cy="160" r="5" fill="currentColor" />
         ${label({ x: 94, y: 156, text: "P", anchor: "end", class: "text-accent" })}`;
 

@@ -7,7 +7,16 @@
 //
 // Nothing here carries a colour. The line and the intercept use different classes,
 // and every point is named in the readout, so the figure works without colour.
-import { SIZE, fmt, label, panel, react, scale, slider } from "./kit.js";
+import {
+  fmt,
+  label,
+  panel,
+  quantity,
+  react,
+  scale,
+  slider,
+  SIZE,
+} from "./kit.js";
 
 const MASS = 60; // kg, the passenger
 const G = 9.8; // N/kg
@@ -61,7 +70,7 @@ export function mount(el) {
   // The weight is the intercept: the reading when the lift is not accelerating.
   const intercept =
     `<circle cx="${sx(0).toFixed(1)}" cy="${sy(MASS * G).toFixed(1)}" r="4.5" class="fig-good"></circle>` +
-    label({ x: sx(0) + 8, y: sy(MASS * G) - 8, text: `weight ${fmt(MASS * G)} N`, anchor: "start", size: SIZE.tick });
+    label({ x: sx(0) + 8, y: sy(MASS * G) - 8, text: `weight ${quantity(MASS * G, "N")}`, anchor: "start", size: SIZE.tick });
 
   function draw() {
     const a = Number(accelInput.value);
@@ -73,14 +82,14 @@ export function mount(el) {
     const difference = n - weight;
     if (a <= -G + 0.001) {
       readout.textContent =
-        `a = ${fmt(a, 1)} m/s². The lift is in free fall, so the scale reads 0 N. The passenger and the scale fall together.`;
+        `a = ${quantity(a, "m", 1)}/s². The lift is in free fall, so the scale reads 0 N. The passenger and the scale fall together.`;
     } else if (Math.abs(difference) < 0.001) {
-      readout.textContent = `a = 0 m/s². The scale reads ${fmt(n)} N, which is exactly her weight.`;
+      readout.textContent = `a = 0 m/s². The scale reads ${quantity(n, "N")}, which is exactly her weight.`;
     } else {
       const way = difference > 0 ? "more" : "less";
       readout.textContent =
-        `a = ${fmt(a, 1)} m/s². The scale reads ${fmt(n)} N, which is ${fmt(Math.abs(difference))} N ` +
-        `${way} than her weight of ${fmt(weight)} N. The contact force is not the weight.`;
+        `a = ${quantity(a, "m", 1)}/s². The scale reads ${quantity(n, "N")}, which is ${quantity(Math.abs(difference), "N")} ` +
+        `${way} than her weight of ${quantity(weight, "N")}. The contact force is not the weight.`;
     }
   }
 

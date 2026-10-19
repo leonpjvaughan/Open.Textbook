@@ -66,7 +66,7 @@ export function mount(el) {
         const c = corners[k + 1];
         fan +=
           `<polygon points="${a.x.toFixed(1)},${a.y.toFixed(1)} ${b.x.toFixed(1)},${b.y.toFixed(1)} ` +
-          `${c.x.toFixed(1)},${c.y.toFixed(1)}" fill="none" stroke-width="2" ` +
+          `${c.x.toFixed(1)},${c.y.toFixed(1)}" style="fill:none" stroke-width="2" ` +
           `class="${WEDGE[(k - 1) % WEDGE.length]}"></polygon>`;
       }
     }
@@ -76,7 +76,7 @@ export function mount(el) {
       .join("");
 
     svg.innerHTML =
-      `<polygon points="${outline}" fill="none" stroke-width="2.5" class="fig-ink"></polygon>` +
+      `<polygon points="${outline}" style="fill:none" stroke-width="2.5" class="fig-ink"></polygon>` +
       fan +
       dots;
 

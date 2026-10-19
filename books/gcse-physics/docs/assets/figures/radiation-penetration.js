@@ -110,7 +110,7 @@ export function mount(el) {
     const ionising =
       `${label({ x: 352, y: 20, text: `ionising power:`, anchor: "start", size: SIZE.tick, class: "text-ink" })}` +
       `<rect x="352" y="27" width="${barWidth.toFixed(1)}" height="12" class="fig-warn"></rect>` +
-      `<rect x="352" y="27" width="100" height="12" class="fig-grid" fill="none"></rect>` +
+      `<rect x="352" y="27" width="100" height="12" class="fig-grid" style="fill:none"></rect>` +
       `${label({ x: 458, y: 37, text: `${source.ionising}`, anchor: "start", size: SIZE.tick, class: "text-ink" })}`;
 
     svg.innerHTML = walls + travel + emitter + marker + ionising;

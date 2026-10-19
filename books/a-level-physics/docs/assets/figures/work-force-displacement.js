@@ -11,7 +11,14 @@
 // The scaffolding — the surface, its accessible name, the sliders, the live
 // readout and the redraw — comes from `kit.js`. What is left here is the drawing
 // and the sentences, which are the parts that differ from every other figure.
-import { SIZE, label, panel, react, slider } from "./kit.js";
+import {
+  label,
+  panel,
+  quantity,
+  react,
+  slider,
+  SIZE,
+} from "./kit.js";
 
 export function mount(el) {
   const { svg, readout } = panel(el, {
@@ -100,7 +107,7 @@ export function mount(el) {
       areaLabel;
 
     readout.innerHTML =
-      `Applied force <strong>${force} N</strong> at <strong>${angle}°</strong>. Its component along the displacement is <strong>${component.toFixed(1)} N</strong>. Distance <strong>${distance} m</strong>. Work done = component × distance = <strong>${Math.round(work)} J</strong>. The area of the rectangle is the work done. <em>Before you move a slider, predict how the work done changes as the angle rises from 0° to 90°.</em>`;
+      `Applied force <strong>${force} N</strong> at <strong>${angle}°</strong>. Its component along the displacement is <strong>${quantity(component, "N", 1)}</strong>. Distance <strong>${distance} m</strong>. Work done = component × distance = <strong>${Math.round(work)} J</strong>. The area of the rectangle is the work done. <em>Before you move a slider, predict how the work done changes as the angle rises from 0° to 90°.</em>`;
   }
 
   react([forceSlider, distanceSlider, angleSlider], update);

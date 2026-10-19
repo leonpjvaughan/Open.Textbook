@@ -29,6 +29,22 @@ The second half of that question is the real subject. The first half has one
 answer. The second half is a judgement, and the chapter's argument is that the
 judgement can be made with numbers rather than with taste.
 
+## The object
+
+Before the mathematics, the object. This is a front corner in cutaway, built for a
+display: an upper wishbone, a coil-over spring and damper, an upright carrying the
+hub, and the lower wishbone underneath it.
+
+<img class="corner-photo" src="../../../assets/images/front-corner.jpg" alt="A cutaway front corner: an upper wishbone, a coil-over damper, a yellow upright carrying the hub, a brake disc, and the lower wishbone below">
+
+The parts are painted, which is a display's choice rather than a car's: on a real
+corner they are bare metal and covered in dust. What the paint is good for is
+showing which piece is which, and the shapes above are the shapes the chapter's
+model uses.
+
+*Photograph: a.d.Tramontana, [CC BY-SA 1.0](https://creativecommons.org/licenses/by-sa/1.0/),
+via Wikimedia Commons; cropped. The image keeps its own licence.*
+
 ## The parts, and their names
 
 Before the mathematics, the words. A car's front corner is a mechanism of seven

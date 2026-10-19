@@ -9,7 +9,15 @@
 // bundle and does not rest on colour.
 //
 // The scaffolding comes from `kit.js`. What is left is the drawing and the sentences.
-import { SIZE, fmt, label, panel, react, slider } from "./kit.js";
+import {
+  fmt,
+  label,
+  panel,
+  quantity,
+  react,
+  slider,
+  SIZE,
+} from "./kit.js";
 
 // The spring from the chapter problem: 120000 N/m, and it behaves up to 0.12 m.
 const K = 120000; // N/m
@@ -91,8 +99,8 @@ export function mount(el) {
     svg.innerHTML = `${axes}${limit}${straight}${curve}${marker}`;
 
     readout.textContent = past
-      ? `F = ${fmt(force, 0)} N gives an extension of ${fmt(x, 3)} m. That is past the limit of proportionality, so the graph is no longer straight and F = kx does not give this extension.`
-      : `F = ${fmt(force, 0)} N gives an extension of ${fmt(x, 3)} m, so k = ${fmt(K, 0)} N/m. The graph is still straight, so F = kx holds.`;
+      ? `F = ${quantity(force, "N", 0)} gives an extension of ${quantity(x, "m", 3)}. That is past the limit of proportionality, so the graph is no longer straight and F = kx does not give this extension.`
+      : `F = ${quantity(force, "N", 0)} gives an extension of ${quantity(x, "m", 3)}, so k = ${quantity(K, "N", 0)}/m. The graph is still straight, so F = kx holds.`;
   }
 
   react([forceInput], update);

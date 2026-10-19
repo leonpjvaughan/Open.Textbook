@@ -7,7 +7,16 @@
 //
 // Nothing here carries a colour. The two branches use different classes and different
 // line styles, and the readout names each force, so the figure works without colour.
-import { SIZE, fmt, label, panel, react, scale, slider } from "./kit.js";
+import {
+  fmt,
+  label,
+  panel,
+  quantity,
+  react,
+  scale,
+  slider,
+  SIZE,
+} from "./kit.js";
 
 const LIMITING = 80; // N, the largest static friction before the block moves
 const KINETIC = 60; // N, the sliding friction once it does
@@ -70,12 +79,12 @@ export function mount(el) {
 
     if (push <= LIMITING) {
       readout.textContent =
-        `Push = ${fmt(push)} N. The block is at rest, so friction = ${fmt(friction)} N and the resultant force is 0 N. ` +
+        `Push = ${quantity(push, "N")}. The block is at rest, so friction = ${quantity(friction, "N")} and the resultant force is 0 N. ` +
         "Static friction matches the push, which is why the first part of the graph is a straight line.";
     } else {
       readout.textContent =
-        `Push = ${fmt(push)} N. The block is sliding, so friction = ${fmt(KINETIC)} N and the resultant force is ` +
-        `${fmt(push - KINETIC)} N forwards. Kinetic friction is smaller than the largest static friction.`;
+        `Push = ${quantity(push, "N")}. The block is sliding, so friction = ${quantity(KINETIC, "N")} and the resultant force is ` +
+        `${quantity(push - KINETIC, "N")} forwards. Kinetic friction is smaller than the largest static friction.`;
     }
   }
 

@@ -23,16 +23,20 @@ export const GEOMETRY = {
   // about a fore-aft axis actually looks like from in front of the car.
   lcaf: [0.3, 0.12, 0.15],
   lcar: [0.3, -0.12, 0.16],
-  ucaf: [0.38, 0.1, 0.454],
-  ucar: [0.38, -0.1, 0.444],
+  // **These four numbers are the package's**, from its
+  // `examples/double-wishbone/geometry.yaml` (vendored under
+  // `docs/assets/data/package/`), so the page's front view and the generated
+  // three-dimensional kernel are looking at the same corner.
+  ucaf: [0.38, 0.1, 0.48],
+  ucar: [0.38, -0.1, 0.47],
   // The upright, which is one rigid body carrying the two ball joints, the wheel
   // centre and the outer end of the steering arm.
   lbj: [0.72, 0.01, 0.15],
   ubj: [0.68, 0.0, 0.52],
   wc: [0.76, 0.0, 0.32],
   wco: [0.86, 0.0, 0.32],
-  tri: [0.33, 0.06, 0.3],
-  tro: [0.7, 0.04, 0.31],
+  tri: [0.33, 0.14, 0.3],
+  tro: [0.7, 0.12, 0.31],
   // The tyre's radius, so the contact patch is on the ground rather than guessed at.
   tyreRadius: 0.32,
 };
@@ -43,12 +47,22 @@ export const GEOMETRY = {
 // axes; `C0` and `D0` are the ball joints at the design position; the upright's
 // length `L` and the wheel centre's place in it are fixed numbers of the body.
 
-const A = [0.3, 0.155];
-const B = [0.38, 0.449];
-const C0 = [0.72, 0.15];
-const D0 = [0.68, 0.52];
-const W0 = [0.76, 0.32];
-const CAMBER0 = -1.0; // degrees at the design position: the top of the wheel leans in
+// **Derived, not typed twice.** These five were hardcoded, which made them a second
+// copy of `GEOMETRY` and the reason a geometry change could move the drawing without
+// moving the solver. `frontView` intersects a 3-D line with the plane y = 0, which is
+// the section the front view is.
+function frontView(a, b) {
+  if (Math.abs(b[1] - a[1]) < 1e-12) throw new Error("frontView: the axis is parallel to the view");
+  const t = -a[1] / (b[1] - a[1]);
+  return [a[0] + t * (b[0] - a[0]), a[2] + t * (b[2] - a[2])];
+}
+
+const A = frontView(GEOMETRY.lcaf, GEOMETRY.lcar);
+const B = frontView(GEOMETRY.ucaf, GEOMETRY.ucar);
+const C0 = [GEOMETRY.lbj[0], GEOMETRY.lbj[2]];
+const D0 = [GEOMETRY.ubj[0], GEOMETRY.ubj[2]];
+const W0 = [GEOMETRY.wc[0], GEOMETRY.wc[2]];
+export const CAMBER0 = -1.0; // degrees at the design position: the top of the wheel leans in
 
 const sub = (a, b) => [a[0] - b[0], a[1] - b[1]];
 const add = (a, b) => [a[0] + b[0], a[1] + b[1]];

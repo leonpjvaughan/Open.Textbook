@@ -9,7 +9,14 @@
 // The scaffolding — the surface, its accessible name, the sliders, the live
 // readout and the redraw — comes from `kit.js`. What is left here is the drawing
 // and the sentence, which are the parts that differ from every other figure.
-import { SIZE, label, panel, react, slider } from "./kit.js";
+import {
+  label,
+  panel,
+  quantity,
+  react,
+  slider,
+  SIZE,
+} from "./kit.js";
 
 export function mount(el) {
   const { svg, readout } = panel(el, {
@@ -75,17 +82,17 @@ export function mount(el) {
       `<polygon points="${PIVOT},${BEAM + 6} ${PIVOT - 14},${BEAM + 30} ${PIVOT + 14},${BEAM + 30}" class="fig-grid"></polygon>` +
       `<line x1="${loadX.toFixed(1)}" y1="${BEAM - 24}" x2="${PIVOT}" y2="${BEAM - 24}" class="fig-grid" stroke-dasharray="3 3"></line>` +
       `<line x1="${PIVOT}" y1="${BEAM - 44}" x2="${effortX.toFixed(1)}" y2="${BEAM - 44}" class="fig-grid" stroke-dasharray="3 3"></line>` +
-      `${label({ x: ((loadX + PIVOT) / 2).toFixed(1), y: BEAM - 28, text: `${loadDistance.toFixed(2)} m`, anchor: "middle", size: SIZE.tick, class: "text-ink" })}` +
-      `${label({ x: ((PIVOT + effortX) / 2).toFixed(1), y: BEAM - 48, text: `${effortDistance.toFixed(2)} m`, anchor: "middle", size: SIZE.tick, class: "text-ink" })}` +
+      `${label({ x: ((loadX + PIVOT) / 2).toFixed(1), y: BEAM - 28, text: `${quantity(loadDistance, "m", 2)}`, anchor: "middle", size: SIZE.tick, class: "text-ink" })}` +
+      `${label({ x: ((PIVOT + effortX) / 2).toFixed(1), y: BEAM - 48, text: `${quantity(effortDistance, "m", 2)}`, anchor: "middle", size: SIZE.tick, class: "text-ink" })}` +
       forceArrow(loadX, `${load} N`, "fig-warn") +
       forceArrow(effortX, `${Math.round(effort)} N`, "fig-accent");
 
     const multiplied = effort < load;
     readout.innerHTML =
-      `Load moment = ${load} N &times; ${loadDistance.toFixed(2)} m = ` +
-      `<strong>${loadMoment.toFixed(1)} N m</strong>. ` +
+      `Load moment = ${load} N &times; ${quantity(loadDistance, "m", 2)} = ` +
+      `<strong>${quantity(loadMoment, "N", 1)} m</strong>. ` +
       `To balance it, the effort moment must equal this, so effort = ` +
-      `${loadMoment.toFixed(1)} N m &divide; ${effortDistance.toFixed(2)} m = ` +
+      `${quantity(loadMoment, "N", 1)} m &divide; ${quantity(effortDistance, "m", 2)} = ` +
       `<strong>${Math.round(effort)} N</strong>. ` +
       (multiplied
         ? `The effort is smaller than the load, so this lever multiplies the force. `

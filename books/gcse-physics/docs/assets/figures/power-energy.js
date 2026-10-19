@@ -13,7 +13,14 @@
 // one of the kit's controls, so they are built here inside the kit's control
 // column. What is left is the drawing and the sentence, which are the parts that
 // differ from every other figure.
-import { SIZE, label, panel, react, slider } from "./kit.js";
+import {
+  label,
+  panel,
+  quantity,
+  react,
+  slider,
+  SIZE,
+} from "./kit.js";
 
 export function mount(el) {
   const { svg, readout, controls } = panel(el, {
@@ -90,7 +97,7 @@ export function mount(el) {
       `${label({ x: 366, y: 112, text: `= 120 kJ`, anchor: "start", size: SIZE.tick, class: "text-ink" })}`;
 
     readout.innerHTML =
-      `Power <strong>${kilowatts.toFixed(2)} kW = ${watts} W</strong>. ` +
+      `Power <strong>${quantity(kilowatts, "kW", 2)} = ${watts} W</strong>. ` +
       `Time <strong>${minutes} minutes = ${seconds} s</strong>. ` +
       `Energy <strong>${formatEnergy(energy)}</strong> ` +
       `(${Math.round(energy)} J). ` +

@@ -31,7 +31,7 @@ export function mount(el) {
     const innerH = outerH * x / (x + 4);
     const ix = (320 - innerW) / 2;
     const iy = 18 + (outerH - innerH) / 2;
-    svg.innerHTML = `<rect x="50" y="18" width="220" height="110" class="fig-accent" fill="none" stroke="currentColor" stroke-width="3"/><rect x="${ix}" y="${iy}" width="${innerW}" height="${innerH}" class="fig-warn" fill="none" stroke="currentColor" stroke-width="2"/>` + label({ x: 160, y: 145, text: "Outer: (x + 6)(x + 4) · Opening: x(x + 2)", anchor: "middle", class: "text-ink" });
+    svg.innerHTML = `<rect x="50" y="18" width="220" height="110" class="fig-accent" style="fill:none" stroke="currentColor" stroke-width="3"/><rect x="${ix}" y="${iy}" width="${innerW}" height="${innerH}" class="fig-warn" style="fill:none" stroke="currentColor" stroke-width="2"/>` + label({ x: 160, y: 145, text: "Outer: (x + 6)(x + 4) · Opening: x(x + 2)", anchor: "middle", class: "text-ink" });
     const outer = (x + 6) * (x + 4);
     const inner = x * (x + 2);
     readout.innerHTML = `At x = ${x}: outer area ${outer}, opening area ${inner}, frame area <strong class="text-good">${outer - inner}</strong> square units. Explain why the x² terms cancel.`;

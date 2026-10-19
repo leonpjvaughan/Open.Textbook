@@ -13,7 +13,14 @@
 // The scaffolding — the surface, its accessible name, the slider, the live
 // readout and the redraw — comes from `kit.js`. What is left here is the drawing
 // and the sentences, which are the parts that differ from every other figure.
-import { SIZE, label, panel, react, slider } from "./kit.js";
+import {
+  label,
+  panel,
+  quantity,
+  react,
+  slider,
+  SIZE,
+} from "./kit.js";
 
 export function mount(el) {
   const { svg, readout } = panel(el, {
@@ -96,7 +103,7 @@ export function mount(el) {
 
     readout.innerHTML =
       `Timing ${n} oscillation${n === 1 ? "" : "s"} takes <strong>${(n * PERIOD).toFixed(2)} s</strong>, ` +
-      `and dividing by ${n} gives the same period, <strong>${PERIOD.toFixed(3)} s</strong>. ` +
+      `and dividing by ${n} gives the same period, <strong>${quantity(PERIOD, "s", 3)}</strong>. ` +
       `The percentage uncertainty in the period is <strong>${percentT.toFixed(2)}%</strong>, ` +
       `and the value of g found from it carries <strong>${percentG.toFixed(2)}%</strong>, because the period is squared. ` +
       `<em>How many oscillations do you need before the uncertainty in g falls below 0.5%?</em>`;

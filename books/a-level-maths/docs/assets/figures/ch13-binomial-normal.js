@@ -95,7 +95,7 @@ export function mount(el) {
       const height = (normalPdf(value, mu, sigma) / peakPdf) * plotH * 0.92;
       points.push(`${toX(value).toFixed(1)},${(base - height).toFixed(1)}`);
     }
-    const curve = `<polyline points="${points.join(" ")}" fill="none" class="fig-ink"></polyline>`;
+    const curve = `<polyline points="${points.join(" ")}" style="fill:none" class="fig-ink"></polyline>`;
 
     const ticks = [];
     for (let r = 0; r <= n; r += Math.max(1, Math.round(n / 10))) {

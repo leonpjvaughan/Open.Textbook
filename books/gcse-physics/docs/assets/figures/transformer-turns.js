@@ -68,7 +68,7 @@ export function mount(el) {
       for (let i = 0; i < loops; i += 1) {
         const y = 80 + i * gap;
         out += `<rect x="${x}" y="${y.toFixed(1)}" width="58" height="9" rx="4" ` +
-          `class="${cls}" fill="none" stroke-width="3"></rect>`;
+          `class="${cls}" style="fill:none" stroke-width="3"></rect>`;
       }
       return out;
     }

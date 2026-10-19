@@ -86,9 +86,9 @@ export function mount(el) {
 
     svg.innerHTML = `
       <polygon points="${A.x},${A.y} ${B.x},${B.y} ${C.x},${C.y}"
-               fill="none" stroke-width="2" class="fig-ink"></polygon>
+               style="fill:none" stroke-width="2" class="fig-ink"></polygon>
       ${line(C, D, "fig-grid", 2)}
-      <path d="${corner}" fill="none" stroke-width="1.5" class="fig-grid"></path>
+      <path d="${corner}" style="fill:none" stroke-width="1.5" class="fig-grid"></path>
       ${line(A, C, "fig-warn", 3)}
       ${line(B, C, "fig-good", 3)}
       ${text((A.x + C.x) / 2 - 14, (A.y + C.y) / 2 - 6, `b = ${b.toFixed(1)}`)}

@@ -14,7 +14,19 @@
 //
 // Nothing here carries a colour. Every shape uses a `fig-*` class and every word a
 // `text-*` class, so the figure follows the reader's bundle in both schemes.
-import { SIZE, axes, curve, dots, fmt, label, line, panel, react, slider } from "./kit.js";
+import {
+  axes,
+  curve,
+  dots,
+  fmt,
+  label,
+  line,
+  panel,
+  quantity,
+  react,
+  slider,
+  SIZE,
+} from "./kit.js";
 
 const G = 9.8;
 const DROP = 2; // m, the height the ball is released from
@@ -122,7 +134,7 @@ export function mount(el) {
       drawing += label({
         x: x(top.t) + 10,
         y: y(top.h) - 8,
-        text: `${fmt(top.h, 2)} m`,
+        text: `${quantity(top.h, "m", 2)}`,
         size: SIZE.tick,
         class: "text-accent",
         anchor: "start",
@@ -140,9 +152,9 @@ export function mount(el) {
       { label: "rebound speed", expression: "e * approach", values: { e, approach }, answer: rebound, shown: fmt(rebound, 2) },
     ]);
     readout.textContent =
-      `The ball is released from ${fmt(DROP, 1)} m and hits the floor at ` +
-      `${fmt(approach, 2)} m/s. It leaves at ${fmt(rebound, 2)} m/s and rises to ` +
-      `${fmt(first, 2)} m, so e = √(${fmt(first, 2)} / ${fmt(DROP, 1)}) = ${fmt(e, 2)}. ` +
+      `The ball is released from ${quantity(DROP, "m", 1)} and hits the floor at ` +
+      `${quantity(approach, "m", 2)}/s. It leaves at ${quantity(rebound, "m", 2)}/s and rises to ` +
+      `${quantity(first, "m", 2)}, so e = √(${fmt(first, 2)} / ${fmt(DROP, 1)}) = ${fmt(e, 2)}. ` +
       `Each rebound is e² = ${fmt(e * e, 2)} of the one before: the heights are ` +
       `${heights.map((h) => fmt(h, 2)).join(" m, ")} m.`;
   }

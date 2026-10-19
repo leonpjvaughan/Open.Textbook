@@ -98,7 +98,7 @@ export function mount(el) {
       `<g clip-path="url(#zp-clip)">` +
       factorLine(m, "fig-good", "") +
       factorLine(n, "fig-warn", 'stroke-dasharray="7 5"') +
-      `<polyline points="${curve.join(" ")}" class="fig-accent" fill="none" stroke-width="2.5"></polyline>` +
+      `<polyline points="${curve.join(" ")}" class="fig-accent" style="fill:none" stroke-width="2.5"></polyline>` +
       `</g>` +
       roots +
       label({ x: 526, y: cy(0) - 6, text: "x", anchor: "start", size: SIZE.label, class: "text-ink" }) +

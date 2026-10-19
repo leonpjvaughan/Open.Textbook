@@ -72,7 +72,7 @@ export function mount(el) {
   });
 
   function box(x, y, w, h, lines) {
-    let out = `<rect x="${x}" y="${y}" width="${w}" height="${h}" rx="8" fill="none" class="fig-grid" stroke-width="2"></rect>`;
+    let out = `<rect x="${x}" y="${y}" width="${w}" height="${h}" rx="8" style="fill:none" class="fig-grid" stroke-width="2"></rect>`;
     lines.forEach((line, index) => {
       out += label({
         x: x + w / 2,

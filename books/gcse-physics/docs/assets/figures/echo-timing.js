@@ -9,7 +9,14 @@
 // The scaffolding — the surface, its accessible name, the sliders, the live
 // readout and the redraw — comes from `kit.js`. What is left here is the drawing
 // and the sentences, which are the parts that differ from every other figure.
-import { SIZE, label, panel, react, slider } from "./kit.js";
+import {
+  label,
+  panel,
+  quantity,
+  react,
+  slider,
+  SIZE,
+} from "./kit.js";
 
 export function mount(el) {
   const { svg, readout } = panel(el, {
@@ -76,7 +83,7 @@ export function mount(el) {
     readout.innerHTML =
       `Depth <strong>${depth} m</strong>, wave speed <strong>${speed} m/s</strong>. ` +
       `The pulse travels down and back, a total of <strong>${2 * depth} m</strong>, ` +
-      `so the echo time is <strong>${time.toFixed(3)} s</strong>. ` +
+      `so the echo time is <strong>${quantity(time, "s", 3)}</strong>. ` +
       `<em>Now double the depth. What happens to the echo time?</em>`;
   }
 

@@ -14,7 +14,15 @@
 // Nothing here carries a colour. The rays, the lens, the arrows and the focal marks use
 // the fig-* and text-* classes, and a virtual image is drawn with a dashed backward
 // extension as well as a different class, so the distinction survives a monochrome bundle.
-import { SIZE, diagram, label, react, scale, slider } from "./kit.js";
+import {
+  diagram,
+  label,
+  quantity,
+  react,
+  scale,
+  slider,
+  SIZE,
+} from "./kit.js";
 
 // The focal length of the lens, in centimetres, and the object height.
 const F = 12.0;
@@ -188,11 +196,11 @@ export function mount(el) {
     const { u, v, real, drawable } = geometry();
     const m = Number.isFinite(v) ? v / u : Infinity;
     if (!drawable) {
-      readout.textContent = `u = ${u.toFixed(1)} cm. The object is at the focal point, so the rays leave the lens parallel and there is no image on the screen.`;
+      readout.textContent = `u = ${quantity(u, "cm", 1)}. The object is at the focal point, so the rays leave the lens parallel and there is no image on the screen.`;
     } else if (real) {
-      readout.textContent = `u = ${u.toFixed(1)} cm, v = ${v.toFixed(1)} cm, magnification = ${Math.abs(m).toFixed(2)}. The image is real and inverted, and it forms on the far side of the lens.`;
+      readout.textContent = `u = ${quantity(u, "cm", 1)}, v = ${quantity(v, "cm", 1)}, magnification = ${Math.abs(m).toFixed(2)}. The image is real and inverted, and it forms on the far side of the lens.`;
     } else {
-      readout.textContent = `u = ${u.toFixed(1)} cm, v = ${v.toFixed(1)} cm, magnification = ${Math.abs(m).toFixed(2)}. The image is virtual and upright, on the same side of the lens as the object.`;
+      readout.textContent = `u = ${quantity(u, "cm", 1)}, v = ${quantity(v, "cm", 1)}, magnification = ${Math.abs(m).toFixed(2)}. The image is virtual and upright, on the same side of the lens as the object.`;
     }
   }
 

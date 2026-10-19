@@ -8,7 +8,17 @@
 //
 // Nothing here carries a colour. Every shape uses a `fig-*` class and every word a
 // `text-*` class, so the figure follows the reader's theme in both schemes.
-import { axes, curve, dots, fmt, label, panel, react, slider } from "./kit.js";
+import {
+  axes,
+  curve,
+  dots,
+  fmt,
+  label,
+  panel,
+  quantity,
+  react,
+  slider,
+} from "./kit.js";
 
 export function mount(el) {
   const { svg, readout } = panel(el, {
@@ -63,19 +73,19 @@ export function mount(el) {
         class: "text-warn",
       });
     }
-    drawing += label({ x: x(0.5), y: y(v1 / 2) - 10, text: `${fmt(v1, 0)} km in the first hour`, size: 16, class: "text-ink" });
+    drawing += label({ x: x(0.5), y: y(v1 / 2) - 10, text: `${quantity(v1, "km", 0)} in the first hour`, size: 16, class: "text-ink" });
     svg.innerHTML = drawing;
 
-    const stage1 = v1 === 0 ? "The first hour adds nothing, so the graph is flat from the start." : `The first hour covers ${fmt(v1, 0)} km, so that stage has a speed of ${fmt(v1, 0)} km/h.`;
+    const stage1 = v1 === 0 ? "The first hour adds nothing, so the graph is flat from the start." : `The first hour covers ${quantity(v1, "km", 0)}, so that stage has a speed of ${quantity(v1, "km", 0)}/h.`;
     const stopped =
       rest === 0
         ? "There is no stop, so the graph never goes flat."
-        : `For the next ${fmt(rest, 2)} hour${rest === 1 ? "" : "s"} the graph is flat. The distance does not change, so the car is stopped.`;
-    const stage2 = v2 === 0 ? "The last hour adds nothing either." : `The last hour covers another ${fmt(v2, 0)} km, so that stage has a speed of ${fmt(v2, 0)} km/h.`;
+        : `For the next ${quantity(rest, "hour", 2)}${rest === 1 ? "" : "s"} the graph is flat. The distance does not change, so the car is stopped.`;
+    const stage2 = v2 === 0 ? "The last hour adds nothing either." : `The last hour covers another ${quantity(v2, "km", 0)}, so that stage has a speed of ${quantity(v2, "km", 0)}/h.`;
 
     readout.textContent =
       `${stage1} ${stopped} ${stage2} ` +
-      `The journey covers ${fmt(total, 0)} km in ${fmt(end, 2)} hours. ` +
+      `The journey covers ${quantity(total, "km", 0)} in ${quantity(end, "hours", 2)}. ` +
       `The steepest part of the graph is the fastest stage, and the flat part is the stop.`;
   }
 

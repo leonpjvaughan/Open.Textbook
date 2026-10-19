@@ -9,7 +9,15 @@
 // The scaffolding — the surface, its accessible name, the controls, the live
 // readout and the redraw — comes from `kit.js`. What is left here is the drawing
 // and the sentences, which are the parts that differ from every other figure.
-import { SIZE, label, panel, react, slider, toggle } from "./kit.js";
+import {
+  label,
+  panel,
+  quantity,
+  react,
+  slider,
+  toggle,
+  SIZE,
+} from "./kit.js";
 
 export function mount(el) {
   const { svg, readout } = panel(el, {
@@ -54,7 +62,7 @@ export function mount(el) {
     for (let i = 0; i < loops; i += 1) {
       const x = 140 + i * gap;
       coil += `<rect x="${x.toFixed(1)}" y="62" width="10" height="46" rx="5" ` +
-        `class="fig-accent" fill="none" stroke-width="3"></rect>`;
+        `class="fig-accent" style="fill:none" stroke-width="3"></rect>`;
     }
 
     const barWidth = 400 * (strength / 5000);
@@ -67,7 +75,7 @@ export function mount(el) {
 
     const times = ratio.toFixed(1);
     readout.innerHTML = on
-      ? `Current <strong>${current.toFixed(1)} A</strong>, turns <strong>${turns}</strong>. ` +
+      ? `Current <strong>${quantity(current, "A", 1)}</strong>, turns <strong>${turns}</strong>. ` +
         `The field strength is <strong>${strength}</strong> in relative units. ` +
         `That is <strong>${times} times</strong> the field at 100 turns and 1.0 A. ` +
         `<em>Now double the current. What happens to the field?</em>`

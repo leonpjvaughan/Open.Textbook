@@ -10,7 +10,14 @@
 // The scaffolding — the surface, its accessible name, the sliders, the live
 // readout and the redraw — comes from `kit.js`. What is left here is the drawing
 // and the sentences, which are the parts that differ from every other figure.
-import { SIZE, label, panel, react, slider } from "./kit.js";
+import {
+  label,
+  panel,
+  quantity,
+  react,
+  slider,
+  SIZE,
+} from "./kit.js";
 
 export function mount(el) {
   const { svg, readout } = panel(el, {
@@ -62,7 +69,7 @@ export function mount(el) {
     const secondCrest = firstCrest + wavelength;
     const marker =
       secondCrest <= WINDOW
-        ? `<line x1="${(LEFT + firstCrest * PIXELS_PER_METRE).toFixed(1)}" y1="40" x2="${(LEFT + secondCrest * PIXELS_PER_METRE).toFixed(1)}" y2="40" class="fig-warn" stroke-width="2"></line><line x1="${(LEFT + firstCrest * PIXELS_PER_METRE).toFixed(1)}" y1="34" x2="${(LEFT + firstCrest * PIXELS_PER_METRE).toFixed(1)}" y2="46" class="fig-warn" stroke-width="2"></line><line x1="${(LEFT + secondCrest * PIXELS_PER_METRE).toFixed(1)}" y1="34" x2="${(LEFT + secondCrest * PIXELS_PER_METRE).toFixed(1)}" y2="46" class="fig-warn" stroke-width="2"></line>${label({ x: (LEFT + ((firstCrest + secondCrest) / 2) * PIXELS_PER_METRE).toFixed(1), y: 30, text: `one wavelength = ${wavelength.toFixed(2)} m`, anchor: "middle", size: SIZE.tick, class: "text-ink" })}`
+        ? `<line x1="${(LEFT + firstCrest * PIXELS_PER_METRE).toFixed(1)}" y1="40" x2="${(LEFT + secondCrest * PIXELS_PER_METRE).toFixed(1)}" y2="40" class="fig-warn" stroke-width="2"></line><line x1="${(LEFT + firstCrest * PIXELS_PER_METRE).toFixed(1)}" y1="34" x2="${(LEFT + firstCrest * PIXELS_PER_METRE).toFixed(1)}" y2="46" class="fig-warn" stroke-width="2"></line><line x1="${(LEFT + secondCrest * PIXELS_PER_METRE).toFixed(1)}" y1="34" x2="${(LEFT + secondCrest * PIXELS_PER_METRE).toFixed(1)}" y2="46" class="fig-warn" stroke-width="2"></line>${label({ x: (LEFT + ((firstCrest + secondCrest) / 2) * PIXELS_PER_METRE).toFixed(1), y: 30, text: `one wavelength = ${quantity(wavelength, "m", 2)}`, anchor: "middle", size: SIZE.tick, class: "text-ink" })}`
         : `${label({ x: (LEFT + WIDTH / 2).toFixed(1), y: 30, text: `one wavelength is wider than the drawing`, anchor: "middle", size: SIZE.tick, class: "text-ink" })}`;
 
     const axes =
@@ -70,11 +77,11 @@ export function mount(el) {
 
     svg.innerHTML =
       axes +
-      `<polyline points="${wavePoints.join(" ")}" class="fig-accent" fill="none" stroke-width="3"></polyline>` +
+      `<polyline points="${wavePoints.join(" ")}" class="fig-accent" style="fill:none" stroke-width="3"></polyline>` +
       marker;
 
     readout.innerHTML =
-      `Frequency <strong>${frequency.toFixed(1)} Hz</strong>, wave speed <strong>${speed.toFixed(1)} m/s</strong>. The wavelength is <strong>${wavelength.toFixed(2)} m</strong> and the period is <strong>${period.toFixed(2)} s</strong>. <em>Now double the frequency to ${Math.min(frequency * 2, 4).toFixed(1)} Hz. What happens to the wavelength?</em>`;
+      `Frequency <strong>${quantity(frequency, "Hz", 1)}</strong>, wave speed <strong>${quantity(speed, "m", 1)}/s</strong>. The wavelength is <strong>${quantity(wavelength, "m", 2)}</strong> and the period is <strong>${quantity(period, "s", 2)}</strong>. <em>Now double the frequency to ${quantity(Math.min(frequency * 2, 4), "Hz", 1)}. What happens to the wavelength?</em>`;
   }
 
   react([frequencyInput, speedInput], update);

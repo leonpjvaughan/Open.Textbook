@@ -90,7 +90,7 @@ export function mount(el) {
       axes +
       ticks +
       guides +
-      `<path d="${curve}" class="fig-accent" fill="none" stroke-width="3"></path>`;
+      `<path d="${curve}" class="fig-accent" style="fill:none" stroke-width="3"></path>`;
 
     readout.innerHTML =
       `With a half-life of <strong>${halfLife} hours</strong> and a starting count rate ` +

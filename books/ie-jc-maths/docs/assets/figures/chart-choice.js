@@ -10,7 +10,18 @@
 //
 // Nothing here carries a colour. Every shape uses a `fig-*` class and every word a
 // `text-*` class, so the figure follows the reader's theme in both schemes.
-import { SIZE, axes, chooser, fmt, label, line, panel, react, rect } from "./kit.js";
+import {
+  axes,
+  chooser,
+  fmt,
+  label,
+  line,
+  panel,
+  quantity,
+  react,
+  rect,
+  SIZE,
+} from "./kit.js";
 
 // The twenty sleep answers from the chapter problem, as a frequency table.
 const HOURS = [5, 6, 7, 8, 9, 10];
@@ -112,17 +123,17 @@ export function mount(el) {
     if (kind === "bar") {
       readout.textContent =
         `A bar chart gives each number of hours its own bar, with a gap between the bars because the values are separate. ` +
-        `The tallest bar is at ${fmt(8, 0)} hours, where ${fmt(5, 0)} students slept. ` +
+        `The tallest bar is at ${quantity(8, "hours", 0)}, where ${fmt(5, 0)} students slept. ` +
         `A bar chart answers how many students chose each value.`;
     } else if (kind === "line") {
       readout.textContent =
         `A line plot puts one cross above a value for every student, so all ${fmt(20, 0)} answers are visible. ` +
-        `The value ${fmt(8, 0)} hours has ${fmt(5, 0)} crosses, so ${fmt(5, 0)} students slept for eight hours. ` +
+        `The value ${quantity(8, "hours", 0)} has ${fmt(5, 0)} crosses, so ${fmt(5, 0)} students slept for eight hours. ` +
         `A line plot answers which values appeared, and how often.`;
     } else {
       readout.textContent =
         `A histogram groups the hours into class intervals, and the bars touch because the classes join up. ` +
-        `The class ${fmt(7, 0)} to ${fmt(9, 0)} hours holds ${fmt(9, 0)} students, which is the tallest bar. ` +
+        `The class ${fmt(7, 0)} to ${quantity(9, "hours", 0)} holds ${fmt(9, 0)} students, which is the tallest bar. ` +
         `A histogram answers how many students fall in each class.`;
     }
   }

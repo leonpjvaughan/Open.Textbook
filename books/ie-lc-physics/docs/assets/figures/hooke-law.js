@@ -12,7 +12,15 @@
 //
 // The scaffolding — the panel, its accessible name, the slider, the readout and the
 // redraw — comes from `kit.js`. What is left is the drawing and the sentences.
-import { SIZE, fmt, label, panel, react, slider } from "./kit.js";
+import {
+  fmt,
+  label,
+  panel,
+  quantity,
+  react,
+  slider,
+  SIZE,
+} from "./kit.js";
 
 // The spring behaves while the extension is at or below this, in metres.
 const LIMIT_EXTENSION = 0.24;
@@ -119,13 +127,13 @@ export function mount(el) {
 
     svg.innerHTML = `${axes}${limitMark}${straight}${curve}${marker}
       <line x1="404" y1="${top - 16}" x2="404" y2="${top}" class="fig-grid" stroke-width="2"></line>
-      <path d="${spring.trim()}" fill="none" class="fig-ink" stroke-width="2" stroke-linejoin="round"></path>
+      <path d="${spring.trim()}" style="fill:none" class="fig-ink" stroke-width="2" stroke-linejoin="round"></path>
       <line x1="386" y1="${bottom.toFixed(1)}" x2="424" y2="${bottom.toFixed(1)}" class="fig-ink" stroke-width="3"></line>
       ${label({ x: 432, y: top + 10, text: "spring", anchor: "start", size: SIZE.tick })}`;
 
     readout.textContent = past
-      ? `F = ${fmt(force, 1)} N, extension = ${fmt(extension, 3)} m. Past the limit of proportionality: the graph is no longer straight, so F = kx no longer gives this extension.`
-      : `F = ${fmt(force, 1)} N, extension = ${fmt(extension, 3)} m. Below the limit, so F = kx, with k = ${K} N/m.`;
+      ? `F = ${quantity(force, "N", 1)}, extension = ${quantity(extension, "m", 3)}. Past the limit of proportionality: the graph is no longer straight, so F = kx no longer gives this extension.`
+      : `F = ${quantity(force, "N", 1)}, extension = ${quantity(extension, "m", 3)}. Below the limit, so F = kx, with k = ${K} N/m.`;
   }
 
   react([forceInput], update);

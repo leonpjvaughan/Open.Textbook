@@ -70,7 +70,7 @@ export function mount(el) {
     const arc =
       deg === 0 || deg === 360
         ? ""
-        : `<path d="M ${CX + 46} ${CY} A 46 46 0 ${deg > 180 ? 1 : 0} 0 ${arcX} ${arcY}" class="fig-grid" stroke-width="1.6" fill="none"></path>`;
+        : `<path d="M ${CX + 46} ${CY} A 46 46 0 ${deg > 180 ? 1 : 0} 0 ${arcX} ${arcY}" class="fig-grid" stroke-width="1.6" style="fill:none"></path>`;
 
     // The radius, and the two projections that are the coordinates.
     const radius = `<line x1="${CX}" y1="${CY}" x2="${x}" y2="${y}" class="fig-accent" stroke-width="2.4"></line>`;

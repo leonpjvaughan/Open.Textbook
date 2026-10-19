@@ -64,7 +64,7 @@ export function mount(el) {
     const width = strengthWidth(current);
     let circles = "";
     for (const radius of RADII) {
-      circles += `<circle cx="${cx}" cy="${cy}" r="${radius}" fill="none" class="fig-accent" stroke-width="${width}"></circle>`;
+      circles += `<circle cx="${cx}" cy="${cy}" r="${radius}" style="fill:none" class="fig-accent" stroke-width="${width}"></circle>`;
       // The field is anticlockwise around a current coming out of the page, so
       // the arrow at the top of each circle points to the left.
       circles += `<path d="M ${cx + 5} ${cy - radius - 5} L ${cx - 5} ${cy - radius} L ${cx + 5} ${cy - radius + 5} z" class="fig-accent"></path>`;
@@ -86,7 +86,7 @@ export function mount(el) {
     const turns = 9;
     for (let i = 0; i < turns; i += 1) {
       const x = cx - half + 12 + (i * (2 * half - 24)) / (turns - 1);
-      coil += `<ellipse cx="${x.toFixed(1)}" cy="${cy}" rx="9" ry="26" fill="none" class="fig-ink" stroke-width="2"></ellipse>`;
+      coil += `<ellipse cx="${x.toFixed(1)}" cy="${cy}" rx="9" ry="26" style="fill:none" class="fig-ink" stroke-width="2"></ellipse>`;
     }
 
     // The field, drawn as loops around the coil and straight lines through it.
@@ -94,7 +94,7 @@ export function mount(el) {
     for (let i = 0; i < 4; i += 1) {
       const rx = half + 18 + i * 20;
       const ry = 36 + i * 16;
-      field += `<ellipse cx="${cx}" cy="${cy}" rx="${rx}" ry="${ry}" fill="none" class="fig-accent" stroke-width="${width}" stroke-dasharray="${i === 0 ? "none" : "7 5"}"></ellipse>`;
+      field += `<ellipse cx="${cx}" cy="${cy}" rx="${rx}" ry="${ry}" style="fill:none" class="fig-accent" stroke-width="${width}" stroke-dasharray="${i === 0 ? "none" : "7 5"}"></ellipse>`;
     }
     field += `<line x1="${cx - half}" y1="${cy}" x2="${cx + half}" y2="${cy}" class="fig-accent" stroke-width="${width}"></line>`;
 

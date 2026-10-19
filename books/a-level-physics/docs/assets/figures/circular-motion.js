@@ -13,7 +13,12 @@
 // The scaffolding — the surface, its accessible name, the sliders, the live
 // readout and the redraw — comes from `kit.js`. What is left here is the drawing
 // and the sentences, which are the parts that differ from every other figure.
-import { panel, slider, react } from "./kit.js";
+import {
+  panel,
+  quantity,
+  react,
+  slider,
+} from "./kit.js";
 
 // How far a ray from (x, y) in direction (ux, uy) travels before it meets the
 // 600 by 300 frame, keeping a margin clear for the arrowhead.
@@ -105,7 +110,7 @@ export function mount(el) {
     const arrowLength = Math.min(rawLength, reach(px, py, tx, ty));
     const forceLength = Math.min(rawLength, pixels);
 
-    const circle = `<circle cx="${CX}" cy="${CY}" r="${pixels.toFixed(1)}" class="fig-grid" fill="none" stroke-width="2"></circle>`;
+    const circle = `<circle cx="${CX}" cy="${CY}" r="${pixels.toFixed(1)}" class="fig-grid" style="fill:none" stroke-width="2"></circle>`;
     const radiusLine = `<line x1="${CX}" y1="${CY}" x2="${px.toFixed(1)}" y2="${py.toFixed(1)}" class="fig-ink" stroke-dasharray="4 4"></line>`;
     const object = `<circle cx="${px.toFixed(1)}" cy="${py.toFixed(1)}" r="7" class="fig-accent"></circle>`;
     const velocityArrow = arrow(
@@ -128,11 +133,11 @@ export function mount(el) {
     svg.innerHTML = circle + radiusLine + object + velocityArrow + forceArrow;
 
     readout.innerHTML =
-      `Speed ${v.toFixed(1)} m/s, radius ${r.toFixed(1)} m. ` +
+      `Speed ${quantity(v, "m", 1)}/s, radius ${quantity(r, "m", 1)}. ` +
       `The angular velocity is <strong>${omega.toFixed(2)} rad/s</strong>, ` +
-      `the centripetal acceleration is <strong>${acceleration.toFixed(2)} m/s&sup2;</strong>, ` +
+      `the centripetal acceleration is <strong>${quantity(acceleration, "m", 2)}/s&sup2;</strong>, ` +
       `and for a mass of 0.50 kg the centripetal force is ` +
-      `<strong>${force.toFixed(2)} N</strong>. The period is ${period.toFixed(2)} s. ` +
+      `<strong>${quantity(force, "N", 2)}</strong>. The period is ${quantity(period, "s", 2)}. ` +
       `<em>The velocity arrow points along the tangent and the force arrow points to the centre. Double the speed: what happens to the force?</em>`;
   }
 

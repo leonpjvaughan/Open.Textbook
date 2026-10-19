@@ -70,7 +70,7 @@ function curve(g, cls) {
     if (!inRange(y)) continue;
     points.push(`${toPx(x).toFixed(1)},${toPy(y).toFixed(1)}`);
   }
-  return `<polyline class="${cls}" fill="none" points="${points.join(" ")}"></polyline>`;
+  return `<polyline class="${cls}" style="fill:none" points="${points.join(" ")}"></polyline>`;
 }
 
 function iterates(g, start, count) {

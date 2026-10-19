@@ -69,6 +69,12 @@ null vector and its pattern of zeros: a null vector supported on two rows says
 those two rows are one; a null vector with entries in every row says the equations
 are in conflict, which is a different situation with a different remedy.
 
+What the decomposition inspects is the matrix, not the mechanism. Which rows are
+independent, and whether the system has a solution at all, are properties of that
+matrix.
+
+:::class linear-system
+
 **Deleting a row is only safe when it is the spare one.** Delete a row that carries
 information and the model changes silently: the answer is still a number, still
 looks plausible, and is the answer to a different question. The decomposition is
@@ -109,17 +115,18 @@ number for rather than an assurance.
 
 | Check | Value |
 |---|---|
-| Singular values of the three-row Jacobian | 1.446, 0.953, 0.000 |
+| Singular values of the three-row Jacobian | 1.415, 0.998, 0.000 |
 | Left null vector | (0.707, −0.707, 0), so the two legs cancel |
 | Least squares with all three rows | same point as §1.2, to 10⁻¹⁶ m |
 | Direct 2×2 solve with the spare row deleted | the same point again |
 
-```text
-TODO(phase-a): the solver's `svd_diagnose()` returns the singular values, the
-null-space basis over constraint rows and the dependent row indices; this table
-reads them from the exported module rather than recomputing them, and the
-agreement row reads `agreement.max_abs_diff` for the reduced system.
-```
+The decomposition is computed by the page's own model at load, and the figure shows
+it on every frame. What the section claims is structural — three rows, two unknowns,
+one dependent row — and the null vector's support is the evidence: a vector with
+entries in the two leg rows says those two rows are one. The vendored exports solve
+the three-dimensional model, whose unknowns are not these two, so they cannot check
+this table; the structure is checked by the arithmetic above and by the pose
+comparison at the bottom.
 
 ## Pseudocode, and the file it comes from
 

@@ -79,7 +79,7 @@ export function mount(el) {
     const path = (pts) => pts.map((p) => `${p.x.toFixed(1)},${p.y.toFixed(1)}`).join(" ");
 
     const second = joined
-      ? `<polygon points="${path(T2)}" fill="none" stroke-width="2" class="fig-warn"></polygon>`
+      ? `<polygon points="${path(T2)}" style="fill:none" stroke-width="2" class="fig-warn"></polygon>`
       : "";
 
     // The parallelogram the pair makes, drawn only once both are present: its
@@ -89,7 +89,7 @@ export function mount(el) {
     const A2 = turned(A);
     const D2 = turned(D);
     const outline = joined
-      ? `<polygon points="${path([A, D2, A2, D])}" fill="none" stroke-width="2" ` +
+      ? `<polygon points="${path([A, D2, A2, D])}" style="fill:none" stroke-width="2" ` +
         `stroke-dasharray="6 5" class="fig-good"></polygon>`
       : "";
 
@@ -103,7 +103,7 @@ export function mount(el) {
 
     svg.innerHTML = `
       <line x1="16" y1="${GROUND}" x2="404" y2="${GROUND}" stroke-width="2" class="fig-grid"></line>
-      <polygon points="${path(T1)}" fill="none" stroke-width="2.5" class="fig-accent"></polygon>
+      <polygon points="${path(T1)}" style="fill:none" stroke-width="2.5" class="fig-accent"></polygon>
       ${second}
       ${outline}
       ${text(LEFT + BASE / 2, GROUND + 22, `b = ${BASE}`)}

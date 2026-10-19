@@ -9,7 +9,16 @@
 // classes and different shapes, so the distinction survives a monochrome bundle.
 //
 // The scaffolding comes from `kit.js`. What is left is the drawing and the words.
-import { SIZE, fmt, label, panel, react, scale, slider } from "./kit.js";
+import {
+  fmt,
+  label,
+  panel,
+  quantity,
+  react,
+  scale,
+  slider,
+  SIZE,
+} from "./kit.js";
 
 // The cup of tea from the section: 90 °C at the pour, a room at 20 °C.
 const T_ROOM = 20; // °C
@@ -88,7 +97,7 @@ export function mount(el) {
 
     const error = squaredError(k);
     readout.textContent =
-      `With k = ${fmt(k, 3)} each minute, the model gives ${fmt(temperature(k, 10), 1)} degC at 10 minutes. ` +
+      `With k = ${fmt(k, 3)} each minute, the model gives ${quantity(temperature(k, 10), "degC", 1)} at 10 minutes. ` +
       `The total squared error is ${fmt(error, 2)}. Make that number as small as you can.`;
   }
 

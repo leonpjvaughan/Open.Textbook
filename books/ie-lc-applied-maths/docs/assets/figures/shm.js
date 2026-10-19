@@ -14,7 +14,6 @@
 // Nothing here carries a colour. Every shape uses a `fig-*` class and every word a
 // `text-*` class, so the figure follows the reader's bundle in both schemes.
 import {
-  SIZE,
   animate,
   axes,
   circle,
@@ -26,9 +25,11 @@ import {
   line,
   panel,
   path,
+  quantity,
   react,
   sigfig,
   slider,
+  SIZE,
 } from "./kit.js";
 
 const CX = 125; // the centre of the reference circle, in viewBox units
@@ -202,9 +203,9 @@ export function mount(el) {
     svg.innerHTML = drawing;
 
     readout.textContent =
-      `At t = ${fmt(t, 2)} s the displacement is ${fmt(A * Math.cos(w * t), 3)} m, the ` +
-      `velocity is ${fmt(-A * w * Math.sin(w * t), 3)} m/s and the acceleration is ` +
-      `${fmt(-A * w * w * Math.cos(w * t), 3)} m/s². The period is ${sigfig(period, 3)} s, ` +
+      `At t = ${quantity(t, "s", 2)} the displacement is ${quantity(A * Math.cos(w * t), "m", 3)}, the ` +
+      `velocity is ${quantity(-A * w * Math.sin(w * t), "m", 3)}/s and the acceleration is ` +
+      `${quantity(-A * w * w * Math.cos(w * t), "m", 3)}/s². The period is ${sigfig(period, 3)} s, ` +
       `the greatest speed is ${sigfig(A * w, 3)} m/s and the greatest acceleration is ` +
       `${sigfig(A * w * w, 3)} m/s².`;
   }

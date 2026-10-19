@@ -87,7 +87,7 @@ export function mount(el) {
       `x2="${toPx(0).toFixed(1)}" y2="${BOTTOM}" stroke-width="1"></line>`;
 
     const curve =
-      `<polyline class="fig-accent" fill="none" stroke-width="3" ` +
+      `<polyline class="fig-accent" style="fill:none" stroke-width="3" ` +
       `points="${points.join(" ")}"></polyline>`;
 
     const apex =

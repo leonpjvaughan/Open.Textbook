@@ -13,7 +13,17 @@
 //
 // The scaffolding — the panel, its accessible name, the controls, the readout and
 // the redraw — comes from `kit.js`. What is left is the drawing and the words.
-import { SIZE, fmt, label, panel, scale, slider, toggle, react } from "./kit.js";
+import {
+  fmt,
+  label,
+  panel,
+  quantity,
+  react,
+  scale,
+  slider,
+  toggle,
+  SIZE,
+} from "./kit.js";
 
 const WIDTH = 460;
 const HEIGHT = 250;
@@ -112,9 +122,9 @@ export function mount(el) {
         class: "text-accent",
       });
 
-    svg.innerHTML = `${marks}<path d="${path}" fill="none" class="fig-accent" stroke-width="2.5"></path>${entry}${velocity}`;
+    svg.innerHTML = `${marks}<path d="${path}" style="fill:none" class="fig-accent" stroke-width="2.5"></path>${entry}${velocity}`;
 
-    readout.textContent = `An electron at ${fmt(speed / 1e6, 1)} million m/s in a field of ${fmt(flux, 3)} T follows a circle of radius ${fmt(radius * 1000, 1)} mm. A bigger speed gives a bigger circle, and a bigger field gives a smaller one.`;
+    readout.textContent = `An electron at ${fmt(speed / 1e6, 1)} million m/s in a field of ${quantity(flux, "T", 3)} follows a circle of radius ${quantity(radius * 1000, "mm", 1)}. A bigger speed gives a bigger circle, and a bigger field gives a smaller one.`;
   }
 
   react([speedInput, fieldInput, reverse], update);

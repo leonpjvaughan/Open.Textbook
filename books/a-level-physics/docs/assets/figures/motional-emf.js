@@ -18,7 +18,14 @@
 // The scaffolding — the surface, its accessible name, the sliders, the live
 // readout and the redraw — comes from `kit.js`. What is left here is the drawing
 // and the sentences, which are the parts that differ from every other figure.
-import { SIZE, label, panel, react, slider } from "./kit.js";
+import {
+  label,
+  panel,
+  quantity,
+  react,
+  slider,
+  SIZE,
+} from "./kit.js";
 
 export function mount(el) {
   const { svg, readout } = panel(el, {
@@ -118,11 +125,11 @@ export function mount(el) {
     svg.innerHTML = drawing;
 
     readout.innerHTML =
-      `emf = <strong>${emf.toFixed(2)} V</strong>, so the current is ` +
-      `<strong>${current.toFixed(2)} A</strong>. The field pushes the rod back with ` +
-      `<strong>${force.toFixed(2)} N</strong>. ` +
-      `Mechanical power = ${mechanical.toFixed(2)} W. Electrical power = ` +
-      `${electrical.toFixed(2)} W. ` +
+      `emf = <strong>${quantity(emf, "V", 2)}</strong>, so the current is ` +
+      `<strong>${quantity(current, "A", 2)}</strong>. The field pushes the rod back with ` +
+      `<strong>${quantity(force, "N", 2)}</strong>. ` +
+      `Mechanical power = ${quantity(mechanical, "W", 2)}. Electrical power = ` +
+      `${quantity(electrical, "W", 2)}. ` +
       `<em>Compare the two powers. Why must you keep pulling the rod?</em>`;
   }
 

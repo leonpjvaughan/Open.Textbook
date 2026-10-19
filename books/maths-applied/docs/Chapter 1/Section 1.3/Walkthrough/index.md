@@ -102,17 +102,17 @@ the solver more work.
 | Check | Value |
 |---|---|
 | Least squares, after five steps | agrees with §1.2's closed form to 10⁻¹⁶ m |
-| Total residual at the end | 1.7 × 10⁻¹³ mm, which is round-off |
-| Singular values of the Jacobian | 1.446, 0.953, 0.000 |
+| Total residual at the end | 5.6 × 10⁻¹⁴ mm, which is round-off |
+| Singular values of the Jacobian | 1.415, 0.998, 0.000 |
 | The smallest, and what it means | nothing on its own — see §1.4 |
 
-```text
-TODO(phase-a): the exported two-leg sweep carries `iterations` — one representative
-frame, each step's residual and singular values — and §1.4's panel reads
-`agreement` and the null-space basis from the solver package. Until then these
-numbers are the ones this page's own model computes, and the figure recomputes them
-on every load.
-```
+These are the page's own model's numbers, recomputed by the figure on every load.
+The package's export for the same mechanism is vendored at
+`docs/assets/data/package/double-wishbone-two-leg/out.js`, and it does carry
+`iterations` — one residual vector and one set of singular values per Newton step —
+but that is a system with twenty-one unknowns, not the three rows above. Two sets of
+numbers, two different systems; the comparison they support is the pose, which is
+what §1.4 checks.
 
 ## Pseudocode, and the file it comes from
 

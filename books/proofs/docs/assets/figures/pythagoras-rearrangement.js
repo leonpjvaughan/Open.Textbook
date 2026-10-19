@@ -54,19 +54,19 @@ export function mount(el) {
 
     const tri = (p, q, r) =>
       `<polygon points="${p.x},${p.y} ${q.x},${q.y} ${r.x},${r.y}" ` +
-      `fill="none" stroke-width="2" class="fig-accent"></polygon>`;
+      `style="fill:none" stroke-width="2" class="fig-accent"></polygon>`;
 
     const c = Math.sqrt(a * a + b * b);
 
     svg.innerHTML = `
       <rect x="${o}" y="${o}" width="${S}" height="${S}"
-            fill="none" stroke-width="2.5" class="fig-ink"></rect>
+            style="fill:none" stroke-width="2.5" class="fig-ink"></rect>
       ${tri({ x: o, y: o }, P1, P4)}
       ${tri(P1, { x: o + S, y: o }, P2)}
       ${tri(P2, { x: o + S, y: o + S }, P3)}
       ${tri(P3, { x: o, y: o + S }, P4)}
       <polygon points="${P1.x},${P1.y} ${P2.x},${P2.y} ${P3.x},${P3.y} ${P4.x},${P4.y}"
-               fill="none" stroke-width="3" class="fig-warn"></polygon>
+               style="fill:none" stroke-width="3" class="fig-warn"></polygon>
       ${text(o + a / 2, o + S + 20, `a = ${a}`)}
       ${text(o - 18, o + (S - a) / 2, `b = ${b}`)}
       ${text((P1.x + P2.x) / 2 + 20, (P1.y + P2.y) / 2 - 8, `c`)}

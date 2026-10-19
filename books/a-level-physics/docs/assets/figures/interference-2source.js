@@ -13,7 +13,14 @@
 // The scaffolding — the surface, its accessible name, the sliders, the live
 // readout and the redraw — comes from `kit.js`. What is left here is the drawing
 // and the sentences, which are the parts that differ from every other figure.
-import { SIZE, label, panel, react, slider } from "./kit.js";
+import {
+  label,
+  panel,
+  quantity,
+  react,
+  slider,
+  SIZE,
+} from "./kit.js";
 
 export function mount(el) {
   const { svg, readout } = panel(el, {
@@ -114,8 +121,8 @@ export function mount(el) {
         `There is no second bright fringe, because it would need a sine greater than 1. `;
 
     readout.innerHTML =
-      `Wavelength ${lambdaNm} nm, source separation ${sMm.toFixed(2)} mm, ` +
-      `screen ${dM.toFixed(1)} m away. The bright fringes are <strong>${wMm.toFixed(2)} mm</strong> apart. ` +
+      `Wavelength ${lambdaNm} nm, source separation ${quantity(sMm, "mm", 2)}, ` +
+      `screen ${quantity(dM, "m", 1)} away. The bright fringes are <strong>${quantity(wMm, "mm", 2)}</strong> apart. ` +
       angleText +
       `<em>Move the sources closer together: what happens to the fringe spacing?</em>`;
   }

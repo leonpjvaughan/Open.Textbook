@@ -16,7 +16,14 @@
 // The scaffolding — the surface, its accessible name, the sliders, the live
 // readout and the redraw — comes from `kit.js`. What is left here is the drawing
 // and the sentences, which are the parts that differ from every other figure.
-import { SIZE, label, panel, react, slider } from "./kit.js";
+import {
+  label,
+  panel,
+  quantity,
+  react,
+  slider,
+  SIZE,
+} from "./kit.js";
 
 export function mount(el) {
   const { svg, readout } = panel(el, {
@@ -158,7 +165,7 @@ export function mount(el) {
     readout.innerHTML =
       `Force A is <strong>${a} N</strong> and force B is <strong>${b} N</strong>, ` +
       `with an angle of <strong>${degrees}&deg;</strong> between them. ` +
-      `The resultant R is <strong>${resultant.toFixed(1)} N</strong>. ` +
+      `The resultant R is <strong>${quantity(resultant, "N", 1)}</strong>. ` +
       `Adding the two magnitudes gives ${a + b} N. ` +
       `<em>Move the angle and watch the resultant. When is the resultant equal to ` +
       `the two magnitudes added?</em>`;

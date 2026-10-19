@@ -34,7 +34,7 @@ export function mount(el) {
     const rootL=p-2, rootR=p+2, turnX=p, turnY=-4;
     svg.innerHTML = `<line x1="40" y1="${sy(0)}" x2="480" y2="${sy(0)}" class="fig-ink" />
       <line x1="${sx(0)}" y1="25" x2="${sx(0)}" y2="320" class="fig-ink" />
-      <polyline points="${points.join(' ')}" fill="none" stroke="currentColor" stroke-width="3" class="fig-accent" />
+      <polyline points="${points.join(' ')}" style="fill:none" stroke="currentColor" stroke-width="3" class="fig-accent" />
       <circle cx="${sx(rootL)}" cy="${sy(0)}" r="6" class="fig-good" /><circle cx="${sx(rootR)}" cy="${sy(0)}" r="6" class="fig-good" />
       <circle cx="${sx(turnX)}" cy="${sy(turnY)}" r="7" class="fig-warn" />
       ${label({ x: sx(rootL), y: sy(0) - 12, text: "left root", anchor: "middle", class: "text-good" })}

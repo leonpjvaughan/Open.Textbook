@@ -12,7 +12,16 @@
 //
 // The scaffolding — the panel, its accessible name, the sliders, the readout and the
 // redraw — comes from `kit.js`. What is left is the drawing and the sentences.
-import { SIZE, fmt, label, panel, scale, slider, react } from "./kit.js";
+import {
+  fmt,
+  label,
+  panel,
+  quantity,
+  react,
+  scale,
+  slider,
+  SIZE,
+} from "./kit.js";
 
 // The emf of the battery, in volts. Fixed, because it is the intercept of the line.
 const EMF = 12;
@@ -76,7 +85,7 @@ export function mount(el) {
 
     svg.innerHTML = `${axes}${line}${marker}`;
 
-    readout.textContent = `Current = ${fmt(current, 1)} A, terminal potential difference = ${fmt(terminal, 2)} V, lost volts = ${fmt(lost, 2)} V. The line meets the vertical axis at the emf, ${EMF} V, and its gradient is the negative of the internal resistance.`;
+    readout.textContent = `Current = ${quantity(current, "A", 1)}, terminal potential difference = ${quantity(terminal, "V", 2)}, lost volts = ${quantity(lost, "V", 2)}. The line meets the vertical axis at the emf, ${EMF} V, and its gradient is the negative of the internal resistance.`;
   }
 
   react([currentInput, rInput], update);

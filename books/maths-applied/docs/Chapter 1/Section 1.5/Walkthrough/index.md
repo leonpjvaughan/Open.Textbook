@@ -53,6 +53,11 @@ to be integrated.** Stiffen the spring, and the two ends of the bush are forced
 together until they cannot separate — which is the rigid joint, and therefore
 §1.2's model.
 
+No searching and no solving for the best of anything: the bush settles where the
+two forces agree, and finding it is a root-finding loop with two unknowns.
+
+:::class root
+
 ## Stiffen it, and watch the curve move
 
 The load used here is 3 kN at the contact patch, which is what one front corner
@@ -67,10 +72,10 @@ same geometry, same travel.
 
 | Bush stiffness | Bush deflection | Camber at rest | Difference at rest | Change over the travel |
 |---|---|---|---|---|
-| 0.2 MN/m | 6.9 mm | −2.07° | −1.07° | 2.87° |
-| 1 MN/m | 1.38 mm | −1.21° | −0.21° | 2.93° |
-| 10 MN/m | 0.14 mm | −1.02° | −0.02° | 2.94° |
-| 100 MN/m | 0.014 mm | −1.00° | −0.002° | 2.94° |
+| 0.2 MN/m | 6.8 mm | −2.05° | −1.05° | 1.92° |
+| 1 MN/m | 1.37 mm | −1.21° | −0.21° | 1.94° |
+| 10 MN/m | 0.14 mm | −1.02° | −0.02° | 1.95° |
+| 100 MN/m | 0.014 mm | −1.00° | −0.002° | 1.95° |
 
 Each tenfold increase in stiffness cuts the difference by roughly a factor of ten,
 and the numbers keep going the same way: down. That monotonic approach is the
@@ -81,7 +86,7 @@ Look at the last column, though, because it is the surprise. The bush mostly
 **moves** the curve rather than tilting it: the load is constant, so the deflection
 is roughly constant, and the camber change over the travel barely notices. A soft
 bush of 0.2 MN/m shifts the whole curve by a degree and changes the total travel by
-seven hundredths of a degree.
+three hundredths of a degree.
 
 ## The chapter's problem, answered
 
@@ -89,8 +94,8 @@ The chapter asked how far the camber changes, and how little model can answer it
 within a tenth of a degree. Both halves now have numbers, and the second one turns
 out to depend on a distinction the question hides.
 
-Over the full travel the rigid model gives a camber change of **2.94°**, from
-−2.36° at 40 mm of droop to +0.58° at 40 mm of bump. Call that 3°, or 1.6° for a
+Over the full travel the rigid model gives a camber change of **1.95°**, from
+−1.87° at 40 mm of droop to +0.08° at 40 mm of bump. Call that 2°, or 0.98° for a
 40 mm bump from rest.
 
 Now the tolerance. A tenth of a degree can be asked of two different things:
@@ -119,21 +124,21 @@ one is right.
 
 | Check | Value |
 |---|---|
-| Camber change over the full travel, rigid model | 2.94° |
+| Camber change over the full travel, rigid model | 1.95° |
 | Camber at rest, bush model at 1 MN/m | −1.21°, which is 0.21° from rigid |
 | Camber at rest, bush model at 100 MN/m | −1.00°, which is 0.002° from rigid |
-| Camber change, bush model at 0.2 MN/m | 2.87°, which is 0.07° from rigid |
+| Camber change, bush model at 0.2 MN/m | 1.92°, which is 0.034° from rigid |
 | Bush stiffness for a tenth of a degree **at rest** | about 2.1 MN/m |
 | Bush stiffness for a tenth of a degree **in the change** | about 0.15 MN/m |
 | The trend as stiffness rises | monotone, in the solver's ladder test |
 
-```text
-TODO(phase-a): the ladder test and the two curves come from
-examples/double-wishbone-compliant/out.js. The panel will read the exported
-compliant sweep and the rigid one, and print the largest difference at each
-stiffness. The numbers above are this page's model, which the figure recomputes on
-every load from the same file the hero uses.
-```
+The ladder is this page's model, recomputed by the figure on every load. The
+package's compliant export is vendored at
+`docs/assets/data/package/double-wishbone-compliant/out.js`, but it carries one
+stiffness rather than a ladder, and the package **refuses** to compile a kernel for
+it: *"a compliant model needs the equilibrium root-find, which is not compiled yet"*.
+So the ladder's evidence is still the page's model. When the package reports a
+ladder, the table is generated from its sweep, and the two must agree.
 
 ## Pseudocode, and the file it comes from
 

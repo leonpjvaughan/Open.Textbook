@@ -15,7 +15,14 @@
 // The scaffolding — the surface, its accessible name, the sliders, the live
 // readout and the redraw — comes from `kit.js`. What is left here is the drawing
 // and the sentences, which are the parts that differ from every other figure.
-import { SIZE, label, panel, react, slider } from "./kit.js";
+import {
+  label,
+  panel,
+  quantity,
+  react,
+  slider,
+  SIZE,
+} from "./kit.js";
 
 export function mount(el) {
   const SUPPLY = 12; // volts, held constant by an ideal supply
@@ -103,19 +110,19 @@ export function mount(el) {
       arrow(350, 250, "left") +
       arrow(190, 250, "left") +
       // The current in each part, written out.
-      `${label({ x: 190, y: 56, text: `${total.toFixed(2)} A`, anchor: "middle", size: SIZE.value, class: "text-ink" })}` +
-      `${label({ x: 350, y: 56, text: `${current2.toFixed(2)} A`, anchor: "middle", size: SIZE.value, class: "text-ink" })}` +
-      `${label({ x: 256, y: 100, text: `${current1.toFixed(2)} A`, anchor: "end", size: SIZE.value, class: "text-ink" })}` +
-      `${label({ x: 444, y: 100, text: `${current2.toFixed(2)} A`, anchor: "start", size: SIZE.value, class: "text-ink" })}` +
-      `${label({ x: 350, y: 270, text: `${current2.toFixed(2)} A`, anchor: "middle", size: SIZE.value, class: "text-ink" })}` +
-      `${label({ x: 190, y: 270, text: `${total.toFixed(2)} A`, anchor: "middle", size: SIZE.value, class: "text-ink" })}` +
+      `${label({ x: 190, y: 56, text: `${quantity(total, "A", 2)}`, anchor: "middle", size: SIZE.value, class: "text-ink" })}` +
+      `${label({ x: 350, y: 56, text: `${quantity(current2, "A", 2)}`, anchor: "middle", size: SIZE.value, class: "text-ink" })}` +
+      `${label({ x: 256, y: 100, text: `${quantity(current1, "A", 2)}`, anchor: "end", size: SIZE.value, class: "text-ink" })}` +
+      `${label({ x: 444, y: 100, text: `${quantity(current2, "A", 2)}`, anchor: "start", size: SIZE.value, class: "text-ink" })}` +
+      `${label({ x: 350, y: 270, text: `${quantity(current2, "A", 2)}`, anchor: "middle", size: SIZE.value, class: "text-ink" })}` +
+      `${label({ x: 190, y: 270, text: `${quantity(total, "A", 2)}`, anchor: "middle", size: SIZE.value, class: "text-ink" })}` +
       `${label({ x: 350, y: 300, text: `12 V across each branch`, anchor: "middle", size: SIZE.value, class: "text-ink" })}`;
 
     readout.innerHTML =
       `The supply is ideal, so the potential difference across each branch stays at ` +
-      `<strong>12 V</strong>. Branch 1 carries <strong>${current1.toFixed(2)} A</strong> ` +
-      `and branch 2 carries <strong>${current2.toFixed(2)} A</strong>. The two currents ` +
-      `add to <strong>${total.toFixed(2)} A</strong> from the supply, so the equivalent ` +
+      `<strong>12 V</strong>. Branch 1 carries <strong>${quantity(current1, "A", 2)}</strong> ` +
+      `and branch 2 carries <strong>${quantity(current2, "A", 2)}</strong>. The two currents ` +
+      `add to <strong>${quantity(total, "A", 2)}</strong> from the supply, so the equivalent ` +
       `resistance is <strong>${equivalent.toFixed(2)} &Omega;</strong>. ` +
       `<em>Change one resistance. Does the current in the other branch change?</em>`;
   }

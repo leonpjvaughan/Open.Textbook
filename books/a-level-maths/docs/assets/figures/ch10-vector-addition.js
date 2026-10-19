@@ -39,7 +39,7 @@ function arrow(x1, y1, x2, y2, cls) {
   const rightY = by - size * Math.cos(angle) * spread * 2;
   return (
     `<line x1="${px1.toFixed(1)}" y1="${py1.toFixed(1)}" ` +
-    `x2="${px2.toFixed(1)}" y2="${py2.toFixed(1)}" class="${cls}" fill="none" stroke-width="2"></line>` +
+    `x2="${px2.toFixed(1)}" y2="${py2.toFixed(1)}" class="${cls}" style="fill:none" stroke-width="2"></line>` +
     `<polygon points="${px2.toFixed(1)},${py2.toFixed(1)} ` +
     `${leftX.toFixed(1)},${leftY.toFixed(1)} ${rightX.toFixed(1)},${rightY.toFixed(1)}" ` +
     `class="${cls}"></polygon>`

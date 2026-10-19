@@ -60,6 +60,11 @@ $$
 Each step needs the value of the function and the value of its derivative at the
 current estimate. The method is also called the **Newton–Raphson iteration**.
 
+Behind the formula is a kind of problem, and naming it says why the method can fail:
+a rule has to hold at a point, and it is found by iteration from a starting guess.
+
+:::class root
+
 ## 2. Using the formula
 
 **Example 1.** Use Newton–Raphson with $x_0 = 0.7$ to find a root of

@@ -11,7 +11,15 @@
 //
 // The scaffolding — the panel, its accessible name, the slider, the readout and the
 // redraw — comes from `kit.js`. What is left is the drawing and the sentences.
-import { SIZE, fmt, label, panel, react, slider } from "./kit.js";
+import {
+  fmt,
+  label,
+  panel,
+  quantity,
+  react,
+  slider,
+  SIZE,
+} from "./kit.js";
 
 // The car from the chapter problem, on the roundabout.
 const MASS = 1200; // kg
@@ -51,7 +59,7 @@ export function mount(el) {
 
     // The roundabout and its centre.
     let drawing =
-      `<circle cx="${cx}" cy="${cy}" r="${R}" class="fig-grid" stroke-width="2" fill="none"></circle>` +
+      `<circle cx="${cx}" cy="${cy}" r="${R}" class="fig-grid" stroke-width="2" style="fill:none"></circle>` +
       `<circle cx="${cx}" cy="${cy}" r="3.5" class="fig-ink"></circle>` +
       label({ x: cx, y: cy - 10, text: "centre", size: SIZE.value, class: "text-ink" });
 
@@ -96,8 +104,8 @@ export function mount(el) {
     svg.innerHTML = drawing;
 
     readout.textContent = slides
-      ? `At ${fmt(v, 1)} m/s the car needs ${fmt(needed, 0)} N towards the centre, but friction can supply only ${fmt(MAX_FRICTION, 0)} N. The car slides outwards. The greatest safe speed is ${fmt(Math.sqrt(MU * G * RADIUS), 1)} m/s.`
-      : `At ${fmt(v, 1)} m/s the car needs ${fmt(needed, 0)} N towards the centre (a = ${fmt(a, 2)} m/s²). Friction can supply up to ${fmt(MAX_FRICTION, 0)} N, so the car holds the bend.`;
+      ? `At ${quantity(v, "m", 1)}/s the car needs ${quantity(needed, "N", 0)} towards the centre, but friction can supply only ${quantity(MAX_FRICTION, "N", 0)}. The car slides outwards. The greatest safe speed is ${quantity(Math.sqrt(MU * G * RADIUS), "m", 1)}/s.`
+      : `At ${quantity(v, "m", 1)}/s the car needs ${quantity(needed, "N", 0)} towards the centre (a = ${quantity(a, "m", 2)}/s²). Friction can supply up to ${quantity(MAX_FRICTION, "N", 0)}, so the car holds the bend.`;
   }
 
   react([speedInput], update);

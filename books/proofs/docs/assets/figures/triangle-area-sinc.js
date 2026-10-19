@@ -91,12 +91,12 @@ export function mount(el) {
     svg.innerHTML = `
       ${line({ x: 24, y: BASE_Y }, { x: 396, y: BASE_Y }, "fig-grid", 2, "6 5")}
       <polygon points="${A.x},${A.y} ${B.x.toFixed(1)},${B.y.toFixed(1)} ${C.x},${C.y}"
-               fill="none" stroke-width="2" class="fig-ink"></polygon>
+               style="fill:none" stroke-width="2" class="fig-ink"></polygon>
       ${line(C, B, "fig-warn", 3)}
       ${line(C, A, "fig-accent", 3)}
       ${line(B, D, "fig-good", 2)}
-      <path d="${corner}" fill="none" stroke-width="1.5" class="fig-grid"></path>
-      <path d="${arc(C.x, C.y, 26, 0, -t)}" fill="none" stroke-width="2" class="fig-warn"></path>
+      <path d="${corner}" style="fill:none" stroke-width="1.5" class="fig-grid"></path>
+      <path d="${arc(C.x, C.y, 26, 0, -t)}" style="fill:none" stroke-width="2" class="fig-warn"></path>
       ${text(C.x + 46 * Math.cos(-t / 2), C.y + 46 * Math.sin(-t / 2), `C = ${Cdeg}°`, "text-warn")}
       ${text((C.x + B.x) / 2 + aX, (C.y + B.y) / 2, `a = ${A_LEN}`, "text-warn")}
       ${text((C.x + A.x) / 2, BASE_Y + 20, `b = ${B_LEN}`, "text-accent")}

@@ -1,0 +1,77 @@
+# Numerical Methods — the map.
+#
+# `books/numerical-methods/AGENTS.md` is the contract for this book. The short
+# version, because it is unlike every course in the collection:
+#
+#   * It has **no chapters**. It declares `chapters: []` and lists its pages under
+#     `pages:` below, which is what the navigation and the landing page read. The
+#     scaffold therefore generates no stub pages and no Review, and every page
+#     under `docs/` is authored.
+#   * The order of `pages:` **is** the reading order, and it is the order of the
+#     decision tree: the four things a reader might want, then steady problems,
+#     then moving ones.
+#   * A page is a **class of problem**, entered by symptom. It is not a lesson and
+#     it has no exercises.
+#
+# `techniques` and `symptoms` are the two indexes that make the book a lookup
+# rather than a set of essays: one goes method → class, the other goes wrong
+# answer → class → cause.
+
+meta:
+  title: Numerical Methods
+  # No `jurisdiction`: this book follows no country's documents. The About page
+  # asks for one only when a book has not said what it is, and this one says it.
+  # No `syllabus`, because there is none.
+  what_it_is: >-
+    This is a map of problems. You arrive with a system you have modelled, find the
+    kind of problem that model became, and leave with the techniques that solve it
+    and the ones that look like they should but do not. The classes are not
+    chapters to work through. They are boxes to look things up in, and one system
+    often belongs in more than one.
+  level_word: level
+  retrieved: 2026-10-18
+
+# Where a reader can go, in the order the decision tree reaches them. The first
+# four are the answers to "what do you want?"; the rest are "what has the model
+# become?" once the answer is "the state that obeys the rules".
+#
+# `signature` is the one line a `:::class <slug>` directive prints under the link,
+# and an entry without one is not linkable as a class — which is why the two
+# indexes have none. That is deliberate: the directive exists to say what kind of
+# problem a page is talking about, and "see also the methods index" is not a kind.
+pages:
+  - title: Optimisation
+    path: optimisation/index.md
+    signature: One score, one set of choices, and you want the best one.
+  - title: Averaging
+    path: averaging/index.md
+    signature: The answer is a distribution, or an average over what you cannot list.
+  - title: Eigenvalues
+    path: eigenvalue/index.md
+    signature: You are asking which values are allowed, not what one of them is.
+  - title: Linear system
+    path: linear-system/index.md
+    signature: Every rule is linear, and the unknowns are a finite list.
+  - title: Root finding
+    path: root/index.md
+    signature: A rule has to hold at a point, and the rule bends with the answer.
+  - title: Saddle point
+    path: saddle-point/index.md
+    signature: A rule holds everywhere, and a second unknown pays for it.
+  - title: Elliptic
+    path: elliptic/index.md
+    signature: The answer is a value at every point, and nothing travels.
+  - title: Parabolic
+    path: parabolic/index.md
+    signature: The answer moves forward and forgets where it started.
+  - title: Hyperbolic
+    path: hyperbolic/index.md
+    signature: The answer moves along paths and keeps its shape.
+  - title: The class is a choice
+    path: choosing-the-class/index.md
+  - title: The same corner, five ways
+    path: worked-case/index.md
+  - title: Methods, A to Z
+    path: techniques/index.md
+  - title: When it goes wrong
+    path: symptoms/index.md

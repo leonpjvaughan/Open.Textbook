@@ -16,7 +16,7 @@ export function mount(el) {
 
   svg.innerHTML = `
       <line x1="70" y1="95" x2="250" y2="95" class="fig-ink" stroke="currentColor" stroke-width="3" />
-      <g class="arcs" fill="none" stroke="currentColor" stroke-width="2">
+      <g class="arcs" style="fill:none" stroke="currentColor" stroke-width="2">
         <path class="fig-accent arc-a" />
         <path class="fig-warn arc-b" />
       </g>

@@ -12,7 +12,17 @@
 //
 // The scaffolding — the panel, its accessible name, the controls, the readout and the
 // redraw — comes from `kit.js`. What is left is the drawing and the sentences.
-import { SIZE, fmt, label, panel, chooser, scale, slider, react } from "./kit.js";
+import {
+  chooser,
+  fmt,
+  label,
+  panel,
+  quantity,
+  react,
+  scale,
+  slider,
+  SIZE,
+} from "./kit.js";
 
 // The resistor, in ohms. A straight line through the origin.
 const R_OHM = 10;
@@ -108,12 +118,12 @@ export function mount(el) {
     svg.innerHTML = `${axes}${curve}${marker}`;
 
     if (component === "diode" && volts <= DIODE_THRESHOLD) {
-      readout.textContent = `Potential difference = ${fmt(volts, 1)} V. Below the threshold, so the diode carries no current.`;
+      readout.textContent = `Potential difference = ${quantity(volts, "V", 1)}. Below the threshold, so the diode carries no current.`;
     } else if (current > Y_MAX) {
-      readout.textContent = `Potential difference = ${fmt(volts, 1)} V. The current is above the top of the graph, so the diode is conducting strongly.`;
+      readout.textContent = `Potential difference = ${quantity(volts, "V", 1)}. The current is above the top of the graph, so the diode is conducting strongly.`;
     } else {
       const resistance = volts / current;
-      readout.textContent = `Potential difference = ${fmt(volts, 1)} V, current = ${fmt(current, 3)} A, resistance = ${fmt(resistance, 1)} ohm. The graph for the ${component} ${shapeFor(component)}.`;
+      readout.textContent = `Potential difference = ${quantity(volts, "V", 1)}, current = ${quantity(current, "A", 3)}, resistance = ${quantity(resistance, "ohm", 1)}. The graph for the ${component} ${shapeFor(component)}.`;
     }
   }
 

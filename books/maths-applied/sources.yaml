@@ -33,6 +33,21 @@ references:
       terms mean when another text uses them differently. The book states its own
       sign conventions rather than claiming J670's wording.
 
+  - id: corner-photograph
+    attribution: true
+    title: A.d.Tramontana front suspension (cutaway display, Wikimedia Commons)
+    url: https://commons.wikimedia.org/wiki/File:A.d.Tramontana_Front_Suspension.jpg
+    ref: "a.d.Tramontana, CC BY-SA 1.0, via Wikimedia Commons; cropped to the mechanism"
+    role: >-
+      The photograph above the chapter: a real corner's parts, painted because it is a
+      display unit rather than a car. It shows the shapes the anatomy diagram names and
+      what the diagram cannot — how little space the linkage occupies. Cropped to remove
+      the display stand. Licences searched on 2026-10-18: every clean photograph of a
+      production or racing corner carried a team's livery (the Ferrari and Bridgestone
+      Formula One corners were rejected for sponsor branding), the public-domain road-car
+      corner was too dark and too dirty to read, and the technical drawings duplicate the
+      illustration the book already has.
+
   - id: iso-8855
     title: "ISO 8855:2011 — Road vehicles: Vehicle dynamics and road-holding ability, vocabulary"
     ref: ISO 8855:2011
@@ -41,6 +56,18 @@ references:
       the standard rather than a textbook can find the number to ask for.
 
   # --- suspension geometry, in more depth than this book goes -----------------
+  - id: suspension-kinematics
+    attribution: true
+    title: suspension-kinematics — the model, its exports and a generated solver
+    url: https://github.com/leonpjvaughan/suspension-kinematics
+    ref: "commit d1afcdc2874ddd1d237aee65ba632d896c30c81c, 2026-10-18; otkd 0.1.0, rustc 1.99.1"
+    role: >-
+      The package the chapter's numbers come from: topology, geometry and study as
+      data, the residual and Jacobian derived symbolically, and the same derivation
+      compiled to WebAssembly. Its four example exports and one kernel are vendored
+      under `docs/assets/data/package/`, with the sha256 of every source and of the
+      binary in `provenance.json`. A figure on §1.2 runs the kernel in the page.
+
   - id: dixon
     title: Suspension Geometry and Computation
     ref: "John C. Dixon, Wiley, 2009"

@@ -8,7 +8,16 @@
 // Nothing here carries a colour. The tension and the two downward forces use
 // different classes, and the readout names each force, so the distinction survives a
 // monochrome bundle.
-import { SIZE, chooser, fmt, label, panel, react, scale } from "./kit.js";
+import {
+  chooser,
+  fmt,
+  label,
+  panel,
+  quantity,
+  react,
+  scale,
+  SIZE,
+} from "./kit.js";
 
 const MASS = 800; // kg
 const G = 9.8; // N/kg
@@ -75,9 +84,9 @@ export function mount(el) {
 
     const marks =
       label({ x: 16, y: 24, text: "forces on the lift", anchor: "start", size: SIZE.heading }) +
-      label({ x: CENTRE.x, y: CENTRE.y - lenT - 10, text: `tension ${fmt(tension)} N`, size: SIZE.label }) +
-      label({ x: CENTRE.x - 24, y: CENTRE.y + lenW + 20, text: `weight ${fmt(weight)} N`, anchor: "end", size: SIZE.label }) +
-      label({ x: CENTRE.x + 24, y: CENTRE.y + lenF + 20, text: `friction ${fmt(friction)} N`, anchor: "start", size: SIZE.label });
+      label({ x: CENTRE.x, y: CENTRE.y - lenT - 10, text: `tension ${quantity(tension, "N")}`, size: SIZE.label }) +
+      label({ x: CENTRE.x - 24, y: CENTRE.y + lenW + 20, text: `weight ${quantity(weight, "N")}`, anchor: "end", size: SIZE.label }) +
+      label({ x: CENTRE.x + 24, y: CENTRE.y + lenF + 20, text: `friction ${quantity(friction, "N")}`, anchor: "start", size: SIZE.label });
 
     svg.innerHTML = `${tensionArrow}${weightArrow}${frictionArrow}${dot}${marks}`;
 
@@ -87,8 +96,8 @@ export function mount(el) {
     } else {
       const way = resultant > 0 ? "upwards" : "downwards";
       readout.textContent =
-        `Resultant force ${fmt(Math.abs(resultant))} N ${way}, so the acceleration is ` +
-        `${fmt(Math.abs(stage.a))} m/s² ${way}. The tension and the weight do not balance.`;
+        `Resultant force ${quantity(Math.abs(resultant), "N")} ${way}, so the acceleration is ` +
+        `${quantity(Math.abs(stage.a), "m")}/s² ${way}. The tension and the weight do not balance.`;
     }
   }
 

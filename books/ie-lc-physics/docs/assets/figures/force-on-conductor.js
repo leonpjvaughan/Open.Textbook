@@ -14,7 +14,17 @@
 //
 // The scaffolding — the panel, its accessible name, the controls, the readout and
 // the redraw — comes from `kit.js`. What is left is the drawing and the words.
-import { SIZE, fmt, label, panel, scale, slider, toggle, react } from "./kit.js";
+import {
+  fmt,
+  label,
+  panel,
+  quantity,
+  react,
+  scale,
+  slider,
+  toggle,
+  SIZE,
+} from "./kit.js";
 
 const WIDTH = 460;
 const HEIGHT = 250;
@@ -129,7 +139,7 @@ export function mount(el) {
 
     svg.innerHTML = `${marks}${wire}${currentArrow}${forceArrow}${fieldNote}`;
 
-    readout.textContent = `B = ${fmt(flux, 2)} T, I = ${fmt(current, 1)} A and l = ${fmt(length, 2)} m give F = BIl = ${fmt(force, 3)} N, acting ${up ? "upwards" : "downwards"}.`;
+    readout.textContent = `B = ${quantity(flux, "T", 2)}, I = ${quantity(current, "A", 1)} and l = ${quantity(length, "m", 2)} give F = BIl = ${quantity(force, "N", 3)}, acting ${up ? "upwards" : "downwards"}.`;
   }
 
   react([fieldInput, currentInput, lengthInput, reverse], update);

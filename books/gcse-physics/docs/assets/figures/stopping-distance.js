@@ -10,7 +10,17 @@
 // The scaffolding — the surface, its accessible name, the sliders, the live
 // readout and the redraw — comes from `kit.js`. What is left here is the drawing
 // and the sentences, which are the parts that differ from every other figure.
-import { SIZE, label, panel, react, slider } from "./kit.js";
+import {
+  label,
+  panel,
+  quantity,
+  react,
+  slider,
+  SIZE,
+} from "./kit.js";
+
+/** One decimal place including a trailing zero: `6.0 m` states the precision. */
+const metres = (value) => `${value.toFixed(1)} m`;
 
 export function mount(el) {
   const { svg, readout, claim } = panel(el, {
@@ -60,9 +70,9 @@ export function mount(el) {
       `<rect x="${BAR_LEFT}" y="${BAR_Y}" width="${thinkingWidth.toFixed(1)}" height="${BAR_HEIGHT}" class="fig-warn"></rect>` +
       `<rect x="${(BAR_LEFT + thinkingWidth).toFixed(1)}" y="${BAR_Y}" width="${brakingWidth.toFixed(1)}" height="${BAR_HEIGHT}" class="fig-accent"></rect>` +
       `<line x1="${BAR_LEFT}" y1="${BAR_Y + BAR_HEIGHT}" x2="${BAR_LEFT + BAR_WIDTH}" y2="${BAR_Y + BAR_HEIGHT}" class="fig-ink" stroke-width="2"></line>` +
-      `${label({ x: BAR_LEFT, y: BAR_Y - 10, text: `thinking ${thinking.toFixed(1)} m`, anchor: "start", size: SIZE.tick, class: "text-ink" })}` +
-      `${label({ x: (BAR_LEFT + thinkingWidth + 6).toFixed(1), y: BAR_Y - 10, text: `braking ${braking.toFixed(1)} m`, anchor: "start", size: SIZE.tick, class: "text-ink" })}` +
-      `${label({ x: BAR_LEFT, y: BAR_Y + BAR_HEIGHT + 20, text: `total stopping distance = ${total.toFixed(1)} m`, anchor: "start", size: SIZE.value, class: "text-ink" })}`;
+      `${label({ x: BAR_LEFT, y: BAR_Y - 10, text: `thinking ${metres(thinking)}`, anchor: "start", size: SIZE.tick, class: "text-ink" })}` +
+      `${label({ x: (BAR_LEFT + thinkingWidth + 6).toFixed(1), y: BAR_Y - 10, text: `braking ${metres(braking)}`, anchor: "start", size: SIZE.tick, class: "text-ink" })}` +
+      `${label({ x: BAR_LEFT, y: BAR_Y + BAR_HEIGHT + 20, text: `total stopping distance = ${metres(total)}`, anchor: "start", size: SIZE.value, class: "text-ink" })}`;
 
     // Three numbers are printed and all three are working: the distance covered while the
     // driver reacts, the distance the brakes take, and the sum of the two.
@@ -90,11 +100,11 @@ export function mount(el) {
       },
     ]);
     readout.innerHTML =
-      `Speed ${speed} m/s, reaction time ${REACTION.toFixed(2)} s, braking deceleration ` +
+      `Speed ${speed} m/s, reaction time ${quantity(REACTION, "s", 2)}, braking deceleration ` +
       `${decel} m/s&sup2;. The thinking distance is ${speed} &times; ${REACTION.toFixed(2)} = ` +
-      `<strong>${thinking.toFixed(1)} m</strong>. The braking distance is ` +
-      `${speed} &sup2; &divide; (2 &times; ${decel}) = <strong>${braking.toFixed(1)} m</strong>. ` +
-      `Total <strong>${total.toFixed(1)} m</strong>. ` +
+      `<strong>${metres(thinking)}</strong>. The braking distance is ` +
+      `${speed} &sup2; &divide; (2 &times; ${decel}) = <strong>${metres(braking)}</strong>. ` +
+      `Total <strong>${metres(total)}</strong>. ` +
       `<em>Now double the speed: which part doubles, and which becomes four times as large?</em>`;
   }
 

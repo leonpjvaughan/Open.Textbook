@@ -61,7 +61,7 @@ export function mount(el) {
 
     // The circle and the radius to its rightmost point.
     const shape =
-      `<circle cx="${X(a)}" cy="${Y(b)}" r="${(r * (X(1) - X(0))).toFixed(1)}" class="fig-accent" fill="none" stroke-width="2.4"></circle>` +
+      `<circle cx="${X(a)}" cy="${Y(b)}" r="${(r * (X(1) - X(0))).toFixed(1)}" class="fig-accent" style="fill:none" stroke-width="2.4"></circle>` +
       `<line x1="${X(a)}" y1="${Y(b)}" x2="${X(a + r)}" y2="${Y(b)}" class="fig-good" stroke-width="2.4"></line>` +
       `<circle cx="${X(a)}" cy="${Y(b)}" r="5" class="fig-ink"></circle>` +
       `<circle cx="${X(a + r)}" cy="${Y(b)}" r="6" class="fig-good"></circle>` +

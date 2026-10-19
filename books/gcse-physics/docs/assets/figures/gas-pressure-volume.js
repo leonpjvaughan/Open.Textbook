@@ -13,7 +13,14 @@
 // one of the kit's controls, so they are built here inside the kit's control
 // column. What is left is the drawing and the sentence, which are the parts that
 // differ from every other figure.
-import { SIZE, label, panel, react, slider } from "./kit.js";
+import {
+  label,
+  panel,
+  quantity,
+  react,
+  slider,
+  SIZE,
+} from "./kit.js";
 
 export function mount(el) {
   const { svg, readout, controls } = panel(el, {
@@ -78,7 +85,7 @@ export function mount(el) {
     });
 
     svg.innerHTML =
-      `<rect x="${LEFT}" y="${TOP}" width="${width.toFixed(1)}" height="${HEIGHT}" class="fig-ink" fill="none" stroke-width="2"></rect>` +
+      `<rect x="${LEFT}" y="${TOP}" width="${width.toFixed(1)}" height="${HEIGHT}" class="fig-ink" style="fill:none" stroke-width="2"></rect>` +
       `<line x1="${(LEFT + width).toFixed(1)}" y1="${TOP - 18}" x2="${(LEFT + width).toFixed(1)}" y2="${TOP + HEIGHT + 18}" class="fig-warn" stroke-width="5"></line>` +
       `<line x1="${LEFT}" y1="${TOP + HEIGHT + 30}" x2="${LEFT + WIDTH_MAX}" y2="${TOP + HEIGHT + 30}" class="fig-ink" stroke-width="2"></line>` +
       `${label({ x: (LEFT + width / 2).toFixed(1), y: TOP + HEIGHT + 48, text: `piston`, anchor: "middle", size: SIZE.tick, class: "text-ink" })}` +
@@ -86,7 +93,7 @@ export function mount(el) {
 
     readout.innerHTML =
       `Volume <strong>${volume.toFixed(2)} m3</strong>. ` +
-      `Pressure <strong>${pressure.toFixed(0)} kPa</strong>. ` +
+      `Pressure <strong>${quantity(pressure, "kPa", 0)}</strong>. ` +
       `p x V = <strong>${(pressure * volume).toFixed(1)} kPa m3</strong>. ` +
       `<em>Halve the volume and watch the pressure and the value of pV. ` +
       `Why does the pressure change, and why does pV stay the same?</em>`;

@@ -98,15 +98,15 @@ export function mount(el) {
       <line x1="${B.x}" y1="${BASE_Y}" x2="${C.x}" y2="${BASE_Y}"
             class="fig-ink" stroke-width="2"></line>
       <polygon points="${A.x},${A.y} ${B.x},${B.y} ${C.x},${C.y}"
-               fill="none" stroke-width="2" class="fig-ink"></polygon>
+               style="fill:none" stroke-width="2" class="fig-ink"></polygon>
 
-      <path d="${arc(A.x, A.y, R, Math.PI, toB)}" fill="none" stroke-width="3" class="fig-warn"></path>
-      <path d="${arc(A.x, A.y, R, toB, toC)}" fill="none" stroke-width="3" class="fig-accent"></path>
-      <path d="${arc(A.x, A.y, R, toC, 0)}" fill="none" stroke-width="3" class="fig-good"></path>
+      <path d="${arc(A.x, A.y, R, Math.PI, toB)}" style="fill:none" stroke-width="3" class="fig-warn"></path>
+      <path d="${arc(A.x, A.y, R, toB, toC)}" style="fill:none" stroke-width="3" class="fig-accent"></path>
+      <path d="${arc(A.x, A.y, R, toC, 0)}" style="fill:none" stroke-width="3" class="fig-good"></path>
       <path d="${arc(B.x, B.y, 34, 0, Math.atan2(A.y - B.y, A.x - B.x))}"
-            fill="none" stroke-width="3" class="fig-warn"></path>
+            style="fill:none" stroke-width="3" class="fig-warn"></path>
       <path d="${arc(C.x, C.y, 34, Math.atan2(A.y - C.y, A.x - C.x), -Math.PI)}"
-            fill="none" stroke-width="3" class="fig-good"></path>
+            style="fill:none" stroke-width="3" class="fig-good"></path>
 
       ${text(A.x + R * 1.9 * Math.cos(midLeft), A.y + R * 1.5 * Math.sin(midLeft), `${shownLeft.toFixed(1)}°`)}
       ${text(A.x + R * 1.5 * Math.cos(midApex), A.y + R * 1.7 * Math.sin(midApex) + 18, `${shownApex.toFixed(1)}°`)}

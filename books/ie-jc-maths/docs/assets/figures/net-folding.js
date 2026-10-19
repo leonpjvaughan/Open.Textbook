@@ -13,7 +13,16 @@
 //
 // Nothing here carries a colour. Every shape uses a `fig-*` class and every word a
 // `text-*` class, so the figure follows the reader's theme in both schemes.
-import { animate, camera3d, fmt, label, panel, react, slider } from "./kit.js";
+import {
+  animate,
+  camera3d,
+  fmt,
+  label,
+  panel,
+  quantity,
+  react,
+  slider,
+} from "./kit.js";
 
 export function mount(el) {
   const { svg, readout } = panel(el, {
@@ -82,14 +91,14 @@ export function mount(el) {
     const surface = 2 * (L * W + L * H + W * H);
     if (t < 0.02) {
       readout.textContent =
-        `The net lies flat. Its six rectangles are the six faces: two ${fmt(L)} cm by ${fmt(W)} cm, ` +
-        `two ${fmt(W)} cm by ${fmt(H)} cm, and two ${fmt(L)} cm by ${fmt(H)} cm. ` +
-        `Their area is ${fmt(surface)} cm\u00b2, and that is the surface area of the box.`;
+        `The net lies flat. Its six rectangles are the six faces: two ${quantity(L, "cm")} by ${quantity(W, "cm")}, ` +
+        `two ${quantity(W, "cm")} by ${quantity(H, "cm")}, and two ${quantity(L, "cm")} by ${quantity(H, "cm")}. ` +
+        `Their area is ${quantity(surface, "cm")}\u00b2, and that is the surface area of the box.`;
     } else if (t > 0.98) {
       readout.textContent =
-        `Folded up, the net is a box ${fmt(L)} cm long, ${fmt(W)} cm wide and ${fmt(H)} cm tall. ` +
+        `Folded up, the net is a box ${quantity(L, "cm")} long, ${quantity(W, "cm")} wide and ${quantity(H, "cm")} tall. ` +
         `The top rectangle has folded over to close the box. No paper was added or removed, so the area ` +
-        `is still ${fmt(surface)} cm\u00b2 \u2014 the net's area and the surface area are the same number.`;
+        `is still ${quantity(surface, "cm")}\u00b2 \u2014 the net's area and the surface area are the same number.`;
     } else {
       readout.textContent =
         `Folding: ${fmt(Math.round(t * 100), 0)}% of the way up. The side faces are turning about the ` +
