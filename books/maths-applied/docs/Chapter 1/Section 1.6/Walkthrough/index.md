@@ -10,9 +10,6 @@ kind: walkthrough
 
 # 1.6 Mass and dampers
 
-> **Draft.** This section is written to state what comes next and what it costs. It
-> has no worked numbers yet, and it says so rather than pretending. §1.5 answered
-> the chapter's question; this is the road out of the chapter.
 
 ## The question the first five sections could not ask
 
@@ -78,22 +75,64 @@ fastest thing in the model.
 
 :::class parabolic
 
+## What the model says
+
+The package's quarter car is this model, built: a chassis that can heave, a coil-over
+between the chassis and the lower arm, and a tyre held on the road. Released from the
+design position, with no driver and no bump, it swings under its own weight and the
+coil pulls it back.
+
+:::figure quarter-car
+
+That is the whole difference. §1.2's table answers "where is the wheel when it is
+settled"; this answers "what is it doing on the way there". And in this model it never
+arrives: there is a spring and no damper, so the motion repeats. The wheel travels from
+the design position to **212.8 mm** into bump and back, once every **0.625 s** — a
+frequency of **1.6 Hz** — with the same peak every time, which is a number no static
+model can produce.
+
+The numbers, from the package's own solver and quoted with its sign convention (camber
+positive with the top of the wheel outboard, the opposite of §1.2):
+
+| | |
+|---|---|
+| travel, repeated | 0 to 212.8 mm |
+| period, and frequency | 0.625 s, 1.6 Hz |
+| camber through the cycle | 0° to −9.53° |
+| energy drift over 601 steps | 6.3 × 10⁻⁸ of the starting value |
+| largest constraint violation | 1.3 × 10⁻¹⁵ |
+
+The package integrates with classical Runge–Kutta and then **projects the state back onto
+the constraints after every step**, rather than adding a Baumgarte term that pulls the state
+towards them. That is why the two diagnostics can both be small at once: the constraints are
+enforced rather than encouraged.
+
+The two diagnostics at the bottom are the ones that make the oscillation trustworthy.
+An integrator that leaked energy would show a motion that grew or died, and the
+constraint drift is the measure of whether the linkage is still a linkage: at 10⁻¹⁵ m
+it is round-off, not a stretched arm.
+
 ## The agreement this section owes
 
-The chapter's rule is that a model earns its place by failing, and that agreement
-is a number. So §1.6's promise is specific, and it is the same shape as §1.5's:
+The chapter's rule is that a model earns its place by failing, and that agreement is a
+number. §1.6's agreement is the one this model can state: **at any moment, the dynamic
+model's camber is the static model's camber at the same travel.**
 
-> With the masses and dampings taken to zero, the dynamic model must settle to the
-> quasi-static sweep of §1.2 — in the limit, not merely close to it.
+It is, to **0.006°**. At the instant the wheel is 72.35 mm into bump, the dynamic model
+gives −2.079° and the package's static model at that travel gives −2.073°. The same
+holds anywhere in the swing, because the geometry and the constraints are the same model
+— what the masses and the forces add is *time*, not a different linkage.
 
-If that test cannot be made to pass, the dynamic model is wrong about something, and
-the place to look is the constraint forces. It is the first test to write.
+There is a second comparison here, and it is the one worth keeping. **§1.2's front view
+gives 0.93° at that travel**, not 0.006° — because it is a projection, accurate near the
+design position and not far from it. Within the chapter's 80 mm the two agree to 0.033°;
+at 72 mm the front view is already a degree out. The small model is not wrong; it is
+*bounded*, and the bound is the number.
 
-This section is an outline. The quarter-car model it describes has not been built,
-so there is no number to compare and no test to run — and a section that printed one
-anyway would be the thing this book argues against. It stops here rather than
-pretending. When the model exists, the limit test above is the first thing to write,
-and its numbers come from the model's own sweep.
+A third test was written and taken out: "as the masses go to zero the model must become
+the algebraic one". A free quarter car cannot run it — with no weight there is nothing to
+swing against — and a driven model would be needed to state it properly. The comparison
+above is the same claim in the form this model can answer.
 
 ## You should now be able to
 

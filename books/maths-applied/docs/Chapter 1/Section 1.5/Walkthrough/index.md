@@ -132,6 +132,23 @@ one is right.
 | Bush stiffness for a tenth of a degree **in the change** | about 0.15 MN/m |
 | The trend as stiffness rises | monotone, in the solver's ladder test |
 
+### The same idea, on a different joint
+
+The package's compliant example softens a different joint: not the upper ball joint but the
+**tie rod**, the fore-aft link that sets where the wheel points. Its kernel takes that
+compliance at run time, and the quantity it moves is not camber.
+
+| tie-rod compliance | toe | camber |
+|---|---|---|
+| 10⁻⁶ m/N | 0.009° | −0.0003° |
+| 10⁻⁴ m/N | 0.58° | −0.015° |
+| 10⁻² m/N | 1.46° | −0.037° |
+
+A hundred times softer moves the toe by a degree and a half and the camber by four
+hundredths of a degree. That is the section's real lesson in a second form: **which joint you
+soften decides which angle moves.** A bush at the upper ball joint tilts the wheel; a bush in
+the tie rod turns it. The model has to name the joint, not just the stiffness.
+
 The ladder is this page's model, recomputed by the figure on every load. The
 package's compliant export is vendored at
 `docs/assets/data/otkd/models/double-wishbone-compliant/out.js`, but it carries one

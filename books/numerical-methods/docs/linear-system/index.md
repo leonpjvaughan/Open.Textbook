@@ -89,6 +89,9 @@ Every method named here is in [Methods, A to Z](../techniques/#linear-systems), 
 - Nodal analysis of a circuit: the voltage at every node.
 - Any steady discretisation, once the equations are assembled: see
   [Elliptic](../elliptic/index.md).
+- A suspension's Jacobian: the package this collection uses solves 21 equations whose
+  Jacobian has 441 entries, of which **161 are not zero** — sparse enough that the sparsity
+  is the method, not a detail of it: the generated solver touches only the non-zeros.
 - A least-squares fit: a tyre model, a calibration curve, a camera model.
 - Network flows, and the stationary vector of a link matrix.
 - Spline and surface fitting, where the unknowns are the control points.

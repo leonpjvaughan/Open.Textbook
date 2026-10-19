@@ -38,8 +38,16 @@ export const GEOMETRY = {
   tri: [0.33, 0.14, 0.3],
   tro: [0.7, 0.12, 0.31],
   // The tyre's radius, so the contact patch is on the ground rather than guessed at.
-  tyreRadius: 0.32,
+  // **This is the package's number**, not a plausible one: `tyre-radius: 0.200` in
+  // `examples/double-wishbone/geometry.yaml`. With the wheel centre at z = 0.32 that
+  // puts the ground at **0.12 m**, not at z = 0, and every height the chapter quotes
+  // above the ground is measured from there — which is what makes the page's roll
+  // centre agree with the exported one instead of sitting 39 mm above it.
+  tyreRadius: 0.2,
 };
+
+/** The height of the ground: the tyre's lowest point, given the radius above. */
+export const GROUND = GEOMETRY.wc[2] - GEOMETRY.tyreRadius;
 
 // --- the front view -----------------------------------------------------------
 //
