@@ -30,7 +30,7 @@ from textbook import pipeline
 from textbook import proofs as proofbook
 from textbook.hooks import _fences, proofs
 
-REFERENCE = books.reference_book()
+REFERENCE = books.proof_book()
 BOOKS = books.discover_books()
 
 
@@ -59,13 +59,20 @@ def config(qualification: str, book_id: str = "gcse-maths") -> dict:
 # --- the book itself ----------------------------------------------------------
 
 
-def test_the_collection_has_exactly_one_reference_work():
-    """Found by qualification, so renaming the directory is a rename."""
-    assert REFERENCE is not None, "the collection declares no reference work"
+def test_exactly_one_reference_work_holds_the_proof_registry():
+    """Found by declaration, so renaming the directory is a rename.
+
+    The collection may hold more than one reference work — the map of numerical
+    problems is the second — so "the reference book" is no longer a synonym for
+    "the proof book". The one that holds the registry is the one that declares
+    `proofs:`, and two of those would make the `:::prove` directive ambiguous.
+    """
+    assert REFERENCE is not None, "no reference work declares a proof registry"
     assert REFERENCE.id == "proofs"
+    assert [b.id for b in books.reference_books() if b.proofs] == ["proofs"]
 
 
-def test_the_reference_work_has_no_syllabus():
+def test_the_proof_book_has_no_syllabus():
     """It is not a course, and the three things that would make it one are absent.
 
     A tier axis would say some proofs are Higher-only; boards would say a proof
@@ -78,7 +85,7 @@ def test_the_reference_work_has_no_syllabus():
     assert not REFERENCE.booklet_name, "the proof book declares a formula booklet"
 
 
-def test_the_reference_work_is_well_formed_like_any_other_book():
+def test_the_proof_book_is_well_formed_like_any_other_book():
     """It goes through the same shape test as a course, which is the point."""
     assert REFERENCE.qualification == books.REFERENCE
     assert REFERENCE.profiles, "no profiles, so `plan` would build nothing"
@@ -87,7 +94,7 @@ def test_the_reference_work_is_well_formed_like_any_other_book():
     assert REFERENCE.banks.is_dir()
 
 
-def test_the_reference_work_has_a_placeholder_in_its_banks_directory():
+def test_the_proof_book_has_a_placeholder_in_its_banks_directory():
     """An empty directory is not tracked by git, and the shape test wants it."""
     keep = REFERENCE.banks / ".gitkeep"
     assert keep.is_file(), "an empty banks directory would not survive a clone"

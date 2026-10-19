@@ -56,7 +56,7 @@ def registry_path(config=None) -> Path:
     raw = cfg.extra(config).get("proofs_dir")
     if raw:
         return books.repo_root() / raw / REGISTRY
-    reference = books.reference_book()
+    reference = books.proof_book()
     return (reference.root if reference else books.repo_root() / "books" / "proofs") / REGISTRY
 
 
@@ -69,7 +69,7 @@ def base_url(config=None) -> str:
     raw = cfg.extra(config).get("proofs_url")
     if raw:
         return "/" + str(raw).strip("/")
-    reference = books.reference_book()
+    reference = books.proof_book()
     if reference is None:
         return "/proofs"
     return "/" + reference.deploy_path(reference.default_profile.id).strip("/")

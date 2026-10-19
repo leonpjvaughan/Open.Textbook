@@ -320,9 +320,19 @@ def test_the_hook_chain_is_defined_once_and_the_pipeline_uses_that_one():
     order = [module.__name__.rsplit(".", 1)[-1] for module in hooks.MARKDOWN_HOOKS]
     # `maths` is not in the list: it runs on rendered HTML rather than markdown, in
     # `render_page`, and it must stay last or the maths a hook emits is not rendered.
-    # `deeper` sits beside `proofs`: both expand a directive into one link to a page
-    # this build writes, and neither depends on the other.
-    assert order == ["tier", "toc", "figures", "proofs", "deeper", "problems"], order
+    # `classes` sits beside `proofs`: both expand a directive into one link to a page
+    # in a reference work, resolved from a registry, and neither depends on the other.
+    # `deeper` follows them because its target is a page this build writes.
+    assert order == [
+        "tier",
+        "toc",
+        "figures",
+        "proofs",
+        "classes",
+        "usedin",
+        "deeper",
+        "problems",
+    ], order
 
 
 def test_tier_runs_before_everything_that_expands():

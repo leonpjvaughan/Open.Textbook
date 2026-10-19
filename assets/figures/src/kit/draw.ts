@@ -602,7 +602,12 @@ export function polygon({ points = [], class: cls = "fig-ink" }: PolygonOptions 
  */
 export function path({ d, class: cls = "fig-ink", fill = "none", width = 2, dash }: PathOptions = {}) {
   const dashed = dash ? ` stroke-dasharray="${dash}"` : "";
-  return `<path d="${d}" fill="${fill}" stroke-width="${width}" class="${cls}"${dashed}></path>`;
+  // **`style`, not `fill="…"`.** A `fig-*` class sets `fill`, and a class rule beats
+  // a presentation attribute (specificity 0,1,0 against SVG's zero). So the emitted
+  // `fill="none"` was ignored and every curve in the collection was painted as a
+  // filled shape — a trajectory drawn as a solid mound, an outline as a silhouette.
+  // An inline style wins where an attribute loses, so the fill goes there.
+  return `<path d="${d}" style="fill:${fill}" stroke-width="${width}" class="${cls}"${dashed}></path>`;
 }
 
 /**

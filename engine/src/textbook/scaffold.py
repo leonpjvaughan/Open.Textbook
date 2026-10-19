@@ -501,6 +501,25 @@ def _attribution_links(book: Book) -> list[str]:
     return links
 
 
+def _wrapped(text: str, width: int = 78) -> list[str]:
+    """A config scalar as page lines, one paragraph at a time.
+
+    **Why paragraphs survive.** A folded YAML scalar (`>-`) joins every line with a
+    space, so a two-paragraph description written that way reaches the page as one
+    paragraph. A literal block (`|-`) keeps the newlines, and this splits on the blank
+    line between them and wraps each paragraph to the width an authored page obeys.
+    The first reference work's About page was written as two lists of strings here for
+    exactly that reason; the data now says what the page should say.
+    """
+    paragraphs = [p for p in text.strip().split("\n\n")]
+    out: list[str] = []
+    for index, paragraph in enumerate(paragraphs):
+        if index:
+            out.append("")
+        out.extend(textwrap.wrap(" ".join(paragraph.split()), width))
+    return out
+
+
 def colophon_page(book: Book, licence: object = _USE_COLLECTION) -> str:
     """The reader-facing page about the book: what it is and where it came from.
 
@@ -548,16 +567,20 @@ def colophon_page(book: Book, licence: object = _USE_COLLECTION) -> str:
     # landing card already tells the two apart (`portal.card`); this page is the
     # other half of the same distinction.
     if book.qualification == REFERENCE:
-        what_it_is = [
-            "This is a reference book of proofs. Every page shows why one fact is",
-            "true, in the shortest way a reader can follow rather than the shortest",
-            "way there is. Most of them have something you can move, so the reason",
-            "is visible rather than only readable.",
-            "",
-            "This is not a course. There are no chapters and no questions to",
-            "practise. You can read a proof on its own, or follow a link to it from",
-            "the page that stated the fact.",
-        ]
+        # A reference work is not a course, so the course description below would
+        # be false for it. What it *is* is the book's own statement: a proof book
+        # and a map of numerical problems are both reference works, and this page
+        # used to describe the second as a book of proofs because the words were
+        # written when the collection held one. The default stays for a reference
+        # work that says nothing.
+        stated = str(meta.get("what_it_is") or "").strip()
+        if not stated:
+            raise ValueError(
+                f"{book.id}: a reference work must say what it is, in "
+                "curriculum.yaml -> meta.what_it_is. The About page is generated, "
+                "and the engine no longer holds one book's description of itself."
+            )
+        what_it_is = _wrapped(stated)
     else:
         kinds = book.section_page_kinds
         # A book may say what it is in its own words. The default below is a
@@ -570,7 +593,7 @@ def colophon_page(book: Book, licence: object = _USE_COLLECTION) -> str:
             # config file comes out as one long line, and a generated page whose
             # paragraph is a single 90-word line is unreadable in a diff and fails
             # the line-length rule that every authored page obeys.
-            what_it_is = textwrap.wrap(" ".join(stated.split()), 78)
+            what_it_is = _wrapped(stated)
         else:
             what_it_is = [
                 f"This is a complete {book.qualification} {book.subject} book for "
@@ -658,13 +681,21 @@ def colophon_page(book: Book, licence: object = _USE_COLLECTION) -> str:
         "## Where the content comes from",
         "",
     ]
-    if book.qualification == REFERENCE:
-        # A reference work is not one country's. It is linked from every course in
-        # the collection, and now that two of those are Irish, the claim has to be
-        # about the sources rather than about one curriculum body.
+    if book.qualification == REFERENCE and book.proofs:
+        # The proof book's claim is about courses: which specification examines a
+        # proof. It is not a reference work's *only* claim, and a map of numerical
+        # methods has no course claim at all — so this sentence belongs to the book
+        # that declares a proof registry, not to every reference work. Written when
+        # the collection held one, and it published a proof book's provenance on a
+        # numerical page.
         lines += [
             "Every claim about which course a proof belongs to rests on a published",
             "specification, and each one is named below.",
+        ]
+    elif book.qualification == REFERENCE:
+        lines += [
+            "Every claim about a method rests on a textbook or a paper, and the",
+            "reference says whether it is the source of a claim or further reading.",
         ]
     elif meta.get("syllabus") is False:
         # A book that follows no syllabus says so, rather than letting the reader
@@ -704,7 +735,11 @@ def colophon_page(book: Book, licence: object = _USE_COLLECTION) -> str:
     # rather than leaving a reader to infer it from an empty list of sources.
     source_note = str(sources.get("note") or "").strip()
     if source_note:
-        lines += ["", *source_note.splitlines()]
+        # Wrapped here rather than in the YAML, for the same reason `what_it_is` is:
+        # a folded scalar comes out as one long line, and a generated page whose
+        # paragraph is a 90-word line is unreadable in a diff and fails the
+        # line-length rule every authored page obeys.
+        lines += ["", *textwrap.wrap(" ".join(source_note.split()), 78)]
     # Who owns the specification, and who examines it. Declared whole rather than
     # composed from `boards`, because the split differs: England's awarding bodies
     # publish their own specifications and examine them, while in Ireland the NCCA
@@ -907,6 +942,7 @@ def build_nav_list(
     proofs: list[dict] | None = None,
     page_kinds: tuple[str, ...] | None = None,
     deepers: list[dict] | None = None,
+    pages: list[dict] | None = None,
 ) -> list[dict]:
     """The sidebar and page list.
 
@@ -937,6 +973,11 @@ def build_nav_list(
         nav.append({"Glossary": glossary_children})
     for proof in proofs or []:
         nav.append({proof["title"]: f"{proof['id']}/index.md"})
+    # A reference work's own pages, in the order it lists them. Flat rather than
+    # grouped: it has no chapters to nest them under, and the registry order is
+    # the reading order the book chose. `Book.pages` is the one declaration.
+    for page in pages or []:
+        nav.append({str(page["title"]): str(page["path"])})
     for c in chapters:
         children = [{"Overview": f"Chapter {c['id']}/index.md"}]
         for s in c["sections"]:

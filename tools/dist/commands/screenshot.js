@@ -32,6 +32,12 @@ export const SURFACE = {
             value: "<bundle>",
             help: "the bundle to force instead of the reader's preference",
         },
+        width: {
+            kind: "string",
+            value: "<px>",
+            default: "1440",
+            help: "the viewport width; 390 is the phone case the figure audit measures",
+        },
     },
 };
 export async function run(argv) {
@@ -51,7 +57,11 @@ export async function run(argv) {
     fs.mkdirSync(outDir, { recursive: true });
     const browser = await launchBrowser();
     for (const scheme of schemes) {
-        const context = await openContext(browser, { scheme, theme });
+        const context = await openContext(browser, {
+            scheme,
+            theme,
+            width: Number(values.width),
+        });
         await serveStatic(context, siteDir);
         const page = await context.newPage();
         for (const { name, route } of entries) {

@@ -333,6 +333,31 @@ def test_no_figure_module_hard_codes_a_colour(book, path):
 
 
 @pytest.mark.parametrize(("book", "path"), FIGURES, ids=IDS)
+def test_no_figure_module_writes_fill_as_an_attribute(book, path):
+    """A `fig-*` class sets `fill`, and a class rule beats a presentation attribute.
+
+    So `fill="none" class="fig-accent"` is **filled** accent, not stroked — item 74.
+    Every kit-drawn curve in the collection was a solid shape because of it, and no
+    check could see that a shape which should be a line was an area: the stroke was
+    still correct, so the contrast audit had nothing to say.
+
+    `path()` writes its fill inline now. A module that needs a stroke and no fill uses
+    `fig-line`, whose class sets `fill: none`, or an inline style of its own — never
+    the attribute, which loses to the class.
+    """
+    offenders = [
+        line.strip()
+        for line in code_only(path.read_text(encoding="utf-8")).splitlines()
+        if 'fill="none"' in line
+    ]
+    assert not offenders, (
+        f"{book.id}/{path.name}: `fill=\"none\"` is ignored on a `fig-*` class, so "
+        f"the shape is filled. Use a class whose fill is none (`fig-line`, `fig-grid`) "
+        f"or an inline style. Lines: {offenders[:2]}"
+    )
+
+
+@pytest.mark.parametrize(("book", "path"), FIGURES, ids=IDS)
 def test_no_figure_module_injects_runtime_latex(book, path):
     """The maths hook runs at build time, so ``$...$`` injected at runtime is
     shown literally (``${`` is a template expression and is allowed)."""

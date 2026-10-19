@@ -70,15 +70,28 @@ def proofs_dir(book_: Book) -> str:
     Empty when there is no reference work, and the hook then falls back to
     discovery — but a build knows, so it says.
     """
-    reference = books_module.reference_book()
+    reference = books_module.proof_book()
     return book_.rel(reference.root) if reference else ""
 
 
 def proofs_base_url() -> str:
     """Where the proof book publishes, root-absolute, so any book can link to it."""
-    reference = books_module.reference_book()
+    reference = books_module.proof_book()
     if reference is None:
         return "/proofs"
+    return "/" + reference.deploy_path(reference.default_profile.id)
+
+
+def classmap_base_url() -> str:
+    """Where the map of problem classes publishes, root-absolute.
+
+    The same reasoning as the proof book's URL: a class is linked from a page in
+    another book, and the two are at different depths, so a relative href would
+    resolve against whichever page happened to carry it.
+    """
+    reference = books_module.map_book()
+    if reference is None:
+        return "/numerical-methods"
     return "/" + reference.deploy_path(reference.default_profile.id)
 
 
@@ -109,6 +122,7 @@ def from_parts(docs_dir, *, book=None, profile=None, **extra_values) -> dict:
                 "qualification": book.qualification,
                 "proofs_dir": proofs_dir(book),
                 "proofs_url": proofs_base_url(),
+                "classmap_url": classmap_base_url(),
             }
         )
     values.update(extra_values)
