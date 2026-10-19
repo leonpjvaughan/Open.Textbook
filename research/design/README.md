@@ -51,7 +51,7 @@ Higher-only chip, and a collapsed answer block.
 
 ```bash
 python research/design/make_mocks.py                 # writes var/mockups/
-node scripts/screenshot.cjs var/mockups ~/out --schemes light,dark -- \
+node tools/dist/cli.js screenshot var/mockups ~/out --schemes light,dark -- \
   "01-house:/a-house.html" "02-subject-tint:/b-tint.html" \
   "03-subject-temperature:/c-temperature.html" "04-subject-native:/d-native.html" \
   "05-editorial-print:/e-print.html" "06-tint-board:/tint-board.html" \

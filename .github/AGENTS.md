@@ -59,6 +59,13 @@ stylesheet.
   `command -v shellcheck`; the root's **Toolchain** has the rest.
 - **Pin actions to a commit SHA**, as the existing workflows do, and keep the
   top-of-file comment that explains the branch policy.
+- **CI installs no compiler for a vendored binary.** `books/maths-applied/docs/assets/
+  data/package/` holds a WebAssembly solver built from the `suspension-kinematics`
+  package; it is committed, and `tests/test_maths_applied_data.py` checks it by
+  sha256 against a provenance record rather than by rebuilding it. Regenerating it is
+  an authoring step on a machine with Rust and the `wasm32-unknown-unknown` target,
+  never a job here — a CI that builds a binary the page ships would let the two
+  disagree silently.
 - **`rollback.yml` is manual on purpose.** A rollback is not the moment to
   discover an automated path for the first time; it must never be cancelled
   in flight.

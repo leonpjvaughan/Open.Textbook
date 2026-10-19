@@ -300,28 +300,33 @@ cannot.
 
 ### A reference work is not a course
 
-`books/proofs/` is a book because that is how the collection publishes, navigates
-and themes a body of pages, and for no other reason. It declares:
+`books/proofs/` and `books/numerical-methods/` are books because that is how the
+collection publishes, navigates and themes a body of pages, and for no other
+reason. Each declares:
 
 - **no chapters and no strands**, so the scaffold generates no stub pages, no
   glossary and no curriculum map, and every page under `docs/` is authored;
-- **no tier axis and no boards**, because a proof belongs to no tier and to no
-  awarding body;
+- **no tier axis and no boards**, because a proof belongs to no tier and a class of
+  problem to no awarding body;
 - **no booklet and no banks**, because nothing here is given to a reader or
   practised by one.
 
-Its `curriculum:` points at a **registry** rather than a chapter plan — the list of
-proofs, each with the qualifications examined on it. That list is what two things
-read: the nav, which is otherwise built from chapters, and the `:::prove`
-directive, which compares it against the qualification of the book the reader is in
-and marks the link when the proof is not in their course. The reference work is
-found by the `Reference` qualification rather than by its directory name, so
-renaming the directory is a rename.
+Its `curriculum:` points at a **registry** rather than a chapter plan, and there are
+two kinds. `proofs.yaml` lists proofs with the qualifications examined on them, and
+is read by the `:::prove` directive as well as by the nav. `map.yaml` lists pages
+with a title and a path, and is read only for the nav — a reference work entered by
+symptom needs a sidebar, not a syllabus. The engine reads the second as
+`Book.pages`.
 
-A book linking into it emits a root-absolute href, `/proofs/<id>/`. That link is
-outside the linking book's own build, so `check_links` skips it by design — the
-other book's build checks its own links, and `tests/test_proofs.py` covers what the
-skip leaves open.
+The reference works are found by the `Reference` qualification rather than by
+directory name, so renaming one is a rename. **Several books may declare it.** The
+proof registry belongs to exactly one of them — `books.proof_book()` finds the book
+that declares `proofs:` — and `tests/test_proofs.py` fails on two.
+
+A book linking into the proof book emits a root-absolute href, `/proofs/<id>/`.
+That link is outside the linking book's own build, so `check_links` skips it by
+design — the other book's build checks its own links, and `tests/test_proofs.py`
+covers what the skip leaves open.
 
 A book that uses a different verification oracle (units and significant figures
 for physics, rather than symbolic equivalence) declares it in

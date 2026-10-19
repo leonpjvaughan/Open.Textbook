@@ -186,7 +186,7 @@ per-book layout is in `books/AGENTS.md`.
 | `books/a-level-maths/`, `books/a-level-maths/AGENTS.md` | the A-level Mathematics book and its rules |
 | `books/gcse-physics/`, `books/gcse-physics/AGENTS.md`, `books/a-level-physics/`, `books/a-level-physics/AGENTS.md` | the two physics books and their rules |
 | `books/ie-jc-maths/`, `books/ie-jc-maths/AGENTS.md`, `books/ie-lc-maths/`, `books/ie-lc-maths/AGENTS.md`, `books/ie-lc-applied-maths/`, `books/ie-lc-applied-maths/AGENTS.md`, `books/ie-lc-physics/`, `books/ie-lc-physics/AGENTS.md` | the four Irish books and their rules |
-| `books/proofs/`, `books/proofs/AGENTS.md` | the reference book of proofs |
+| `books/proofs/`, `books/proofs/AGENTS.md`, `books/numerical-methods/`, `books/numerical-methods/AGENTS.md` | the two reference works: the proof book, and the map of problem classes |
 | `books/maths-applied/`, `books/maths-applied/AGENTS.md` | the book about modelling, and the rules that replace the chapter formula |
 | `research/`, `research/AGENTS.md`, `scripts/`, `scripts/AGENTS.md`, `tests/`, `tests/AGENTS.md`, `tests/README.md`, `deploy/`, `deploy/AGENTS.md`, `.github/`, `.github/AGENTS.md`, `.claude/`, `.serena/` | corpus, scripts, tests, deploy, CI |
 | `.agents/`, `.agents/skills/`, `.agents/prompts/`, `.agents/planning/` | agent context: the portable skills; the chapter and review prompts the launch scripts feed to sub-agents; the dated planning record; `.agents/todo.md`; `.agents/chapter-brief.md` |
@@ -284,13 +284,19 @@ Pagefind); without Node, maths silently degrades to `.math-error` spans.
 locally), so a whole class of workflow error can pass locally. Install it with
 `mise use -g shellcheck@0.11.0` and check `command -v shellcheck` first.
 
-`screenshot.cjs` serves the built site by Playwright request interception, not a
+`tools screenshot` serves the built site by Playwright request interception, not a
 bound port (no free port, no clash with a running server); a listening socket does
 work here, so interception is a choice, not a workaround. A route maps to a file
 under the given directory, appending `index.html` only for a trailing slash, so
 an extension-less route 404s — and every capture then returns the same 404 page,
 making a broken run look successful. Check the captures differ first; set
 `PLAYWRIGHT_PATH` if `require("playwright")` does not resolve.
+
+**Do not conclude Playwright is missing from `require.resolve("playwright")`
+alone.** `tools/src/lib/browser.ts` tries `PLAYWRIGHT_PATH`, the local package and
+the mise install, so the audits can pass on a machine where the bare resolve fails.
+That answer was taken at face value once, written into the queue as "Playwright is
+not installed", and the four figure audits had been running all along.
 
 `tests/test_render_hooks.py` is the figure-hook and tier-profile evaluation,
 driven from `pipeline.MARKDOWN_HOOKS`. The area-specific traps live in the file
