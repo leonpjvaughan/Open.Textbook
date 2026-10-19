@@ -33,6 +33,35 @@ read as "passed". Locally, `scripts/check.sh` does not run it; run
 `scripts/preview-themes.sh` before merging anything that touches a figure, a theme or a
 stylesheet.
 
+## The gate's clock, measured
+
+The gate is four CPU-heavy jobs on four runners plus the jobs that feed them, and the
+wall clock is set by whichever job finishes last. Every row below is a real run, and
+the number is `startedAt` to `completedAt` of the run, not the sum of its jobs.
+
+| Run | Change | Jobs | Wall clock |
+|---|---|---|---|
+| — | one matrix row per profile (13 rows) | 24 | **26 min** |
+| `39120728135` | one job builds every profile, four at a time | 9 | **16 min** |
+| `39124299954` | two workers per job (`BUILD_JOBS=2`, `pytest -n 2`) | 8 | **17.5 min** |
+| `39262374064` | a push to `dev` — the browser job is skipped by design | 6 | **6 min 57 s** |
+| `39264117365` | a full `workflow_dispatch`: **every** job, browser included | 7 | **8 min 23 s** |
+
+Measured 2026-10-19. The full run's jobs: `plan` 27 s, `lint workflows` 11 s,
+`theme preview` **6 min 22 s**, `generated files` 1 min 46 s, `build every profile`
+3 min 56 s, `banks, tests and voice` **7 min 37 s**, `all checks` 5 s. The critical path
+is `banks, tests and voice`, and it overlaps the browser job entirely — which is why
+the wall clock is 8 minutes rather than their sum.
+
+Two consequences, and both are the point:
+
+- **The ten-minute bar is met with the browser job included.** The lever was not
+  another merge; it was that `theme preview` and `banks, tests and voice` now run at
+  the same time on separate runners, and neither is crippled by sharing cores.
+- **A push to `dev` is not the number to quote.** The preview job is skipped there by
+  design, so the run above reads 6 min 57 s and would flatter any claim about the
+  gate. Quote the dispatch, or `main`.
+
 ## What lives here
 
 | Path | What it does |
