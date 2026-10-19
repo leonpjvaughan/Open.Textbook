@@ -39,6 +39,12 @@ export const SURFACE: Surface = {
       value: "<bundle>",
       help: "the bundle to force instead of the reader's preference",
     },
+    width: {
+      kind: "string",
+      value: "<px>",
+      default: "1440",
+      help: "the viewport width; 390 is the phone case the figure audit measures",
+    },
   },
 };
 
@@ -61,7 +67,11 @@ export async function run(argv: string[]): Promise<number> {
   const browser = await launchBrowser();
 
   for (const scheme of schemes as ("light" | "dark")[]) {
-    const context = await openContext(browser, { scheme, theme });
+    const context = await openContext(browser, {
+      scheme,
+      theme,
+      width: Number(values.width),
+    });
     await serveStatic(context, siteDir);
     const page = await context.newPage();
     for (const { name, route } of entries) {

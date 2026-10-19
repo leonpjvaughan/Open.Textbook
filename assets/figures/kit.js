@@ -74,7 +74,7 @@
  * `scripts/audit-figures.cjs`.
  */
 export { UI_FONT, diagram, panel } from "./kit/frame.js";
-export { SIZE, coord, escape, fmt, hidden, label, sigfig, signed } from "./kit/text.js";
+export { SIZE, coord, escape, fmt, hidden, label, quantity, sigfig, signed } from "./kit/text.js";
 export {
   area,
   arrow,

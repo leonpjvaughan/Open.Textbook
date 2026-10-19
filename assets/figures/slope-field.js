@@ -219,7 +219,7 @@ export function mount(el) {
       curvePoints.forEach(([cx, cy], i) => {
         d += `${i === 0 ? "M" : "L"}${x(cx).toFixed(1)} ${y(cy).toFixed(1)} `;
       });
-      drawing += `<path d="${d}" class="fig-accent" fill="none" stroke-width="2.8"></path>`;
+      drawing += `<path d="${d}" class="fig-accent" style="fill:none" stroke-width="2.8"></path>`;
     }
 
     drawing += dots([[x0, y0]], { x, y, r: 6, class: "fig-good" });

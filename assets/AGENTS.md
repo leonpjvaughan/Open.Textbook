@@ -234,6 +234,11 @@ Nothing in a page, and nothing in a figure, may carry a colour.
 
 - Use the `fig-*` classes (`fig-accent`, `fig-warn`, `fig-good`, `fig-ink`,
   `fig-grid`) and the `text-*` classes.
+- **A `fig-*` class paints, and `fig-grid`/`fig-line` do not.** In SVG a shape is
+  painted with `fill` and `stroke`; a class that sets `fill` beats a `fill="none"`
+  *attribute*, so `class="fig-accent" fill="none"` is a filled shape. Use `fig-line`
+  for an accent stroke with no fill, `fig-grid` for a grey one, or an inline
+  `style="fill:none"`. The kit's `path()` does this for you.
 - A figure reads the tokens (`var(--tb-accent)`, `var(--tb-fig-warn)`, …), so it
   adapts to every bundle and both schemes without being revisited.
 - Never put `$...$` in text a figure injects at runtime: the maths hook runs at
@@ -292,7 +297,7 @@ cost a reader their preferences.
 ### Previewing a bundle
 
 ```bash
-node scripts/screenshot.cjs site ~/out --schemes light,dark --theme neon -- \
+node tools/dist/cli.js screenshot site ~/out --schemes light,dark --theme neon -- \
   "chapter:/gcse-maths/higher/Chapter 6/Section 6.4/Walkthrough/" "landing:/"
 ```
 

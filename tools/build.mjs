@@ -16,8 +16,16 @@
  *             `src/kit/draw.js`, which matters because `SHARED_DIRS` copies
  *             `assets/figures/kit/` and `pipeline.copy_assets` globs `assets/figures/*.js`.
  *
- *   the tools `tools/src/cli.ts` -> `tools/dist/cli.js`
- *             Bundled, because it is a program rather than a library.
+ *   the tools `tools/src/**` -> `tools/dist/**`
+ *             **One output file per source, not a bundle.** This line said "bundled,
+ *             because it is a program rather than a library", and it was never true:
+ *             `buildTools` runs `tsc -p tsconfig.tools.json`, which emits a file per
+ *             module. It stopped being cosmetic when `tools kit` began serving
+ *             `tools/dist/lib/kit-contract.js` to the page at `/__kit-contract.js` —
+ *             that works only because the module is its own file with no runtime
+ *             imports, and a bundle would have to be split or copied to be reachable
+ *             from the page again. So the shape is kept deliberately, and this is the
+ *             record of why.
  *
  * The output is committed and drift-checked, like `themes.css`: a clone then works
  * with no build step, and `scripts/check.sh` fails if the committed output stops

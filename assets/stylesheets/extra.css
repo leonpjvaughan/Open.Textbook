@@ -190,14 +190,23 @@
 .fig-accent {
   fill: var(--tb-fig-accent);
   stroke: var(--tb-fig-accent);
+  /* So `fill: currentColor` resolves to this class's colour: `area()` asks for
+     it, and without this line a filled area takes the body's ink instead. */
+  color: var(--tb-fig-accent);
 }
 .fig-warn {
   fill: var(--tb-fig-warn);
   stroke: var(--tb-fig-warn);
+  /* So `fill: currentColor` resolves to this class's colour: `area()` asks for
+     it, and without this line a filled area takes the body's ink instead. */
+  color: var(--tb-fig-warn);
 }
 .fig-good {
   fill: var(--tb-fig-good);
   stroke: var(--tb-fig-good);
+  /* So `fill: currentColor` resolves to this class's colour: `area()` asks for
+     it, and without this line a filled area takes the body's ink instead. */
+  color: var(--tb-fig-good);
 }
 .fig-ink {
   fill: currentColor;
@@ -383,6 +392,47 @@ maths-figure label {
 }
 .deeper__note {
   margin: 0.4rem 0 0;
+  font-size: 0.9rem;
+  color: var(--tb-ink-soft);
+}
+
+/* A named kind of problem. Quieter than `prove` and `deeper`, and its left border
+   is the rule colour rather than the accent: this is a pointer to a reference,
+   not a promise or an offer, and it should not compete with either. The kind's
+   name takes the accent, because that is the word the reader is looking for. */
+.classlink {
+  margin: 1.2rem 0;
+  padding: 0.55rem 0.85rem;
+  border-left: 3px solid var(--tb-rule);
+  background: color-mix(in srgb, var(--tb-accent) 4%, transparent);
+}
+.classlink__link {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  gap: 0.45rem;
+  text-decoration: none;
+}
+.classlink__ask {
+  font-weight: 600;
+  color: var(--tb-ink-soft);
+  white-space: nowrap;
+}
+.classlink__ask::after {
+  content: "\2192";
+  margin-left: 0.3rem;
+  display: inline-block;
+}
+.classlink__title {
+  font-weight: 600;
+  color: var(--tb-fig-accent);
+}
+.classlink__link:hover .classlink__title,
+.classlink__link:focus-visible .classlink__title {
+  text-decoration: underline;
+}
+.classlink__note {
+  margin: 0.3rem 0 0;
   font-size: 0.9rem;
   color: var(--tb-ink-soft);
 }

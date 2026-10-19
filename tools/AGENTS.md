@@ -28,7 +28,7 @@ command accepts is in its `SURFACE` table and in `tools help <command>`.
 | `budget [siteDir] [route]` | Bytes over the wire on a first load, against a server that reproduces the Worker's cache headers |
 | `screenshot <siteDir> <outDir> -- name:route …` | Capture routes, one image per scheme, and fail if the captures do not differ |
 | `preview --root <dir> -- name:route …` | **Every bundle in both schemes**: the reader's preference reached the page, the tokens and the painted text clear their contrast floors, and the route layout is asserted before a browser starts. `--audit` walks every text element on the page |
-| `readout <siteDir> [--verify] [--json file]` | **Recompute the arithmetic every figure declares**, at several settings, with SymPy. `--verify` hands the claims to `python -m textbook.working`. `--text` runs the old sentence heuristic, which is a hint and not a guarantee |
+| `readout <siteDir> [--verify] [--json file]` | **Recompute the arithmetic every figure declares**, at several settings, with SymPy. `--verify` hands the claims to `python -m textbook.working`. There is no sentence heuristic: an assertion is data, and a figure that states arithmetic and declares none is reported by name |
 | `types` | **The type ratchet.** Fails if the `tsc` error count grows — or falls without the baseline being lowered |
 
 `tools help` is generated from those tables, so it cannot go stale, and

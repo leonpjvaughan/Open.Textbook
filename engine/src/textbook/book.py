@@ -273,6 +273,28 @@ class Book:
         return self.curriculum_data.get("strands", [])
 
     @property
+    def pages(self) -> list[dict]:
+        """The pages a reference work lists, in nav order.
+
+        A course's navigation comes from its chapters. A reference work has none:
+        it is consulted rather than read end to end, and every page under `docs/`
+        is authored, so there is nothing for the scaffold to generate and no
+        section to hang a page on. It declares its pages here instead — one entry
+        per page, with a `title` and a `path` — and the navigation is built from
+        that. See `books/numerical-methods/map.yaml`.
+
+        This is a *different* registry from `proofs`. That one is read by the
+        `:::prove` directive so another book can link to a page; this one exists
+        only so a reference work has a sidebar.
+        """
+        entries = self.curriculum_data.get("pages") or []
+        return [
+            entry
+            for entry in entries
+            if isinstance(entry, dict) and entry.get("path") and entry.get("title")
+        ]
+
+    @property
     def proofs(self) -> list[dict]:
         """The proof registry a reference work declares, in nav order.
 
@@ -524,17 +546,47 @@ REFERENCE = "Reference"
 HIGHER_CODE = "H"
 
 
-def reference_book(root: Path | None = None) -> Book | None:
-    """The collection's reference work, if it has one.
+def reference_books(root: Path | None = None) -> list[Book]:
+    """Every reference work in the collection.
 
-    Found by the qualification it declares rather than by its id, so renaming the
-    directory is a rename and not a silent break: a second reference work would be
-    ambiguous, and `tests/test_proofs.py` fails on that rather than picking one.
+    Found by the qualification each declares rather than by id, so renaming a
+    directory is a rename and not a silent break. Several books share the group:
+    the proof book is not the only kind of reference work a collection can hold.
     """
-    found = [b for b in discover_books(root) if b.qualification == REFERENCE]
+    return [b for b in discover_books(root) if b.qualification == REFERENCE]
+
+
+def proof_book(root: Path | None = None) -> Book | None:
+    """The reference work that holds the shared proof registry.
+
+    The one that declares `proofs:`, not the first one found — with more than one
+    reference work, "the reference book" is ambiguous, and the proof directive
+    would start resolving against whichever happened to sort first. Exactly one
+    book may hold the registry; `tests/test_proofs.py` fails on two rather than
+    picking one.
+    """
+    found = [b for b in reference_books(root) if b.proofs]
     if len(found) > 1:
         raise ValueError(
-            f"{len(found)} books declare the {REFERENCE!r} qualification "
+            f"{len(found)} books declare a proof registry "
+            f"({', '.join(b.id for b in found)}); there must be at most one"
+        )
+    return found[0] if found else None
+
+
+def map_book(root: Path | None = None) -> Book | None:
+    """The reference work that lists its own pages: the map of problem classes.
+
+    Found by declaration like the proof book, and for the same reason: the
+    `:::class` directive resolves its links against this book's registry, so a
+    renamed directory must not silently empty every link. A reference work is the
+    only kind of book whose navigation comes from a page registry, so there can be
+    at most one — `tests/test_class_links.py` fails on two rather than picking one.
+    """
+    found = [b for b in reference_books(root) if b.pages]
+    if len(found) > 1:
+        raise ValueError(
+            f"{len(found)} books declare a page registry "
             f"({', '.join(b.id for b in found)}); there must be at most one"
         )
     return found[0] if found else None

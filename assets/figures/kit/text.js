@@ -154,6 +154,29 @@ export function coord(value) {
  * identifies the case exactly rather than guessing from the number, and `.map(fmt)`
  * now behaves the way a reader would expect.
  */
+/**
+ * A number with its unit: `2.88 s`, `14.1 m/s`, `50%`.
+ *
+ * **Why this exists.** 154 modules hand-rolled their own number formatting and the
+ * kit's `fmt()` fixed that; the unit was left to the caller, so the same figure wrote
+ * `${fmt(t, 2)} s` and `${fmt(v, 1)}m/s` in two places and `°` with a space in a
+ * third. A unit is part of the number's presentation, and a reader who sees `3 m` and
+ * `3m` in one drawing reads two conventions.
+ *
+ * The spacing rule is not taste: a space separates a number from a unit symbol in SI
+ * style, except for the degree sign, the minute and second, and the per-cent sign,
+ * which bind to the number. Those four are listed rather than guessed.
+ *
+ * @param value  the quantity
+ * @param unit   the unit as a reader sees it: `"m/s"`, `"°C"`, `"%"`
+ * @param places decimal places, as `fmt()`
+ */
+const TIGHT_UNITS = new Set(["%", "°", "°C", "′", "″"]);
+export function quantity(value, unit, places = 2) {
+  const number = fmt(value, places);
+  if (!unit) return number;
+  return TIGHT_UNITS.has(unit) ? `${number}${unit}` : `${number} ${unit}`;
+}
 export function fmt(value, places = 2, fromMap) {
   if (!Number.isFinite(value)) return "—";
   const digits = Array.isArray(fromMap) ? 2 : Number.isInteger(places) ? places : 2;

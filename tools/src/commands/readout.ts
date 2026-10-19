@@ -1,27 +1,27 @@
 /*
- * Check the arithmetic a figure prints.
+ * Read what each figure claims, and check it exactly.
  *
- * The readout is where a figure states its working — "€1,500.00 × 0.065 × 4 = €390.00" —
- * and nothing read it. Two of fourteen figures added on 2026-10-17 printed a
- * multiplication that does not give the number beside it, and every existing check
- * passed: structure, colour, contrast, legibility, and the kit's DOM contract all
- * measure the drawing, not the sentence under it.
+ * The readout is where a figure states its working — "€1,500.00 × 0.065 × 4 = €390.00"
+ * — and nothing read it. Two of fourteen figures added on 2026-10-17 printed a
+ * multiplication that does not give the number beside it, and every check passed:
+ * structure, colour, contrast, legibility and the kit's DOM contract all measure the
+ * drawing, not the sentence under it.
  *
- * So this reads the sentence. For each figure it takes the readout at several settings
- * — the default, then each control at its extremes and one value in between, because
- * `interest-growth` was wrong at 6.5% and right at 5% — and recomputes every
- * `left = right` where both sides are pure numbers.
+ * **An assertion is data.** A figure calls `claim([{expression, values, answer, shown}])`
+ * once per redraw; `panel()` records it on the element, and `--verify` hands the lot to
+ * `python -m textbook.working`, which evaluates each expression with the same exact
+ * computer algebra the problem banks use. This command collects honest data — at
+ * several settings, because the defect showed up at 6.5% and not at 5% — and reports
+ * how many figures state arithmetic and declare none.
  *
- * **What it does not do, and says so.** It cannot read a formula with symbols, a
- * complex number, or a statement it cannot parse; those are counted as *unread* and
- * reported. A check that silently skipped what it could not read would be a check that
- * says "0 wrong" about nothing.
+ * The sentence heuristic that first tried to parse the readout is gone. It needed
+ * `<sup>`, `√`, `%` and thousands separators to read 43% of what it saw, and every new
+ * formatting choice was a new case.
  *
  *     tools readout <siteDir> [--only slug] [--json file] [--defaults-only]
- *     tools readout --self-test
  *
- * Those two lines are the `SURFACE` table below, rendered; `tools help readout` is
- * generated from the same table, and the parser reads nothing else.
+ * That line is the `SURFACE` table below, rendered; `tools help readout` is generated
+ * from the same table, and the parser reads nothing else.
  */
 import fs from "node:fs";
 import os from "node:os";
@@ -31,7 +31,6 @@ import { launchBrowser, openContext, serveStatic, ORIGIN } from "../lib/browser.
 import { parseArgs, type Surface } from "../lib/flags.js";
 import { discoverFigures } from "../lib/site.js";
 import { mapPool } from "../lib/pool.js";
-import { checkArithmetic } from "../lib/readout-arithmetic.js";
 
 export type Control = {
   kind: "range" | "select" | "checkbox";
@@ -56,10 +55,6 @@ export const SURFACE: Surface = {
     only: { kind: "string", value: "<slug>", help: "read one figure" },
     json: { kind: "string", value: "<file>", help: "write what each figure declares here" },
     "defaults-only": { kind: "boolean", help: "read at the default settings only" },
-    text: {
-      kind: "boolean",
-      help: "run the sentence heuristic too, which is a hint and not a guarantee",
-    },
     verify: { kind: "boolean", help: "hand the claims to `python -m textbook.working`" },
     settings: {
       kind: "string",
@@ -68,7 +63,6 @@ export const SURFACE: Surface = {
       help: "how many settings to try, the default and its neighbours",
     },
     jobs: { kind: "string", value: "<n>", help: "pages in flight at once; one unless asked" },
-    "self-test": { kind: "boolean", help: "check the checker's own cases and stop" },
   },
 };
 
@@ -203,59 +197,13 @@ export function settingsFor(controls: Control[], cap: number, defaultsOnly: bool
   return settings;
 }
 
-const SELF_TEST: [string, boolean][] = [
-  // The two real defects, as they were printed.
-  ["Simple interest is €1,500.00 × 0.07 × 4 = €390.00, so the total is €1,890.00.", false],
-  ["The shares are 3 × 14.29 = 42.86 and 4 × 14.29 = 57.14.", false],
-  // The same statements once fixed.
-  ["Simple interest is €1,500.00 × 0.065 × 4 = €390.00, so the total is €1,890.00.", true],
-  ["The first share is 3 parts, which is 42.86 to 2 decimal places.", true],
-  // Legitimate rounding: the result is the expression rounded to the places shown.
-  ["One part is 100 ÷ 7, which is 14.29 to 2 decimal places.", true],
-  ["100 ÷ 7 = 14.29", true],
-  // Powers, superscripts and percentages.
-  ["Compound interest gives €1,500.00 × 1.065^4 = €1,929.70.", true],
-  ["The kinetic energy is 0.5 × 2 × 3² = 9 J.", true],
-  ["50% of 240 is 50/100 × 240 = 120.", true],
-  // Not this check's business: a definition, a comparison, an approximation.
-  ["z = 3.0 + 4.0i", true],
-  ["x < 5, so the shading runs to the left.", true],
-  ["The gradient is about 6.55 ≈ 6.6.", true],
-  ["A = lw", true],
-];
-
-function selfTest(): number {
-  let failed = 0;
-  for (const [text, shouldPass] of SELF_TEST) {
-    const result = checkArithmetic(text);
-    const passed = result.wrong.length === 0;
-    if (passed !== shouldPass) {
-      failed += 1;
-      const detail = result.wrong[0];
-      console.error(
-        `  FAIL ${JSON.stringify(text)}\n       expected ${shouldPass ? "no finding" : "a finding"}` +
-          (detail
-            ? `, got ${detail.left} = ${detail.computed} but shown ${detail.shown}`
-            : ", got none"),
-      );
-    }
-  }
-  const wrongCount = SELF_TEST.filter(([t]) => checkArithmetic(t).wrong.length).length;
-  console.log(
-    `  self-test: ${SELF_TEST.length} statements, ${wrongCount} deliberately wrong, ${failed} disagreement(s)`,
-  );
-  return failed ? 1 : 0;
-}
-
 export async function run(argv: string[]): Promise<number> {
   const { values, positional } = parseArgs(argv, SURFACE);
-  if (values["self-test"] === true) return selfTest();
 
   const siteDir = positional[0] ?? "site";
   const only = values.only ? String(values.only) : "";
   const jsonOut = values.json ? String(values.json) : "";
   const defaultsOnly = values["defaults-only"] === true;
-  const textOnly = values.text === true;
   const verify = values.verify === true;
   const jobsFlag = Number(values.jobs) || 0;
   // The default plus five single-control variations. It is a **sample**, not a sweep:
@@ -301,12 +249,6 @@ export async function run(argv: string[]): Promise<number> {
   let declared = 0;
   const undeclaredSlugs: string[] = [];
   let readouts = 0;
-  // Only the text heuristic uses these, which is why they are declared beside it and
-  // not at the top: the declared-claim path needs no parser state at all.
-  let statements = 0;
-  let right = 0;
-  let unread = 0;
-  const wrong: { slug: string; where: string; detail: unknown }[] = [];
 
   await mapPool(slugs, jobs, async (slug, index) => {
     const page = pagesPool[index % jobs]!;
@@ -346,14 +288,6 @@ export async function run(argv: string[]): Promise<number> {
         if (claims.length) {
           figureDeclared += 1;
           records.push({ slug, route, settings: overrides, readout: text, claims });
-        } else if (textOnly) {
-          // The text heuristic. It is a hint and never a guarantee: it cannot read most
-          // of what it sees, and every new formatting choice was a new case.
-          const result = checkArithmetic(text);
-          statements += result.right + result.wrong.length;
-          right += result.right;
-          unread += result.unread.length;
-          for (const detail of result.wrong) wrong.push({ slug, where: route, detail });
         }
       }
     } catch (error) {
@@ -375,22 +309,6 @@ export async function run(argv: string[]): Promise<number> {
     `  ${slugs.length} figures, ${readouts} readouts; ` +
       `${declared} declare ${claimCount} claim(s), ${undeclaredSlugs.length} state arithmetic and declare none`,
   );
-  if (textOnly) {
-    console.log(
-      `  text heuristic: ${statements} statements readable (${right} right, ${wrong.length} wrong), ` +
-        `${unread} unreadable`,
-    );
-    for (const finding of wrong.slice(0, 20)) {
-      const d = finding.detail as { statement: string; left: string; shown: number; computed: number };
-      console.error(`\n  ${finding.slug} [${d.left}]\n     ${d.statement}`);
-      console.error(`     ${d.left} = ${d.computed.toFixed(6)}, but the figure says ${d.shown}`);
-    }
-    if (wrong.length) {
-      console.error(`\n  readout arithmetic failed: ${wrong.length} statement(s)`);
-      return 1;
-    }
-  }
-
   if (verify) {
     // The arithmetic is the verifier's, not this command's: SymPy rationalises 0.065 to
     // 13/200, so a claim is decided exactly and the notation a figure chose cannot
