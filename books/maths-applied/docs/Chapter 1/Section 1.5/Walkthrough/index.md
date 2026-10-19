@@ -134,7 +134,7 @@ one is right.
 
 The ladder is this page's model, recomputed by the figure on every load. The
 package's compliant export is vendored at
-`docs/assets/data/package/double-wishbone-compliant/out.js`, but it carries one
+`docs/assets/data/otkd/models/double-wishbone-compliant/out.js`, but it carries one
 stiffness rather than a ladder, and the package **refuses** to compile a kernel for
 it: *"a compliant model needs the equilibrium root-find, which is not compiled yet"*.
 So the ladder's evidence is still the page's model. When the package reports a

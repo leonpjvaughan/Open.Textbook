@@ -64,6 +64,9 @@ export const manifest = {
       "joint": "tie-rod"
     }
   ],
+  "default_numbers": [
+    0.3706750598570127
+  ],
   "rows": [
     {
       "name": "lca-ground.tx",

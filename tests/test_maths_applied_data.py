@@ -1,15 +1,16 @@
-"""The vendored `suspension-kinematics` payload: what is here is what it says it is.
+"""The vendored `otkd` bundle: what is here is what it says it is, and where it came from.
 
-`books/maths-applied/docs/assets/data/package/` holds another repository's output —
-four committed `out.js` exports and one solver compiled to WebAssembly. Vendoring it
-is what lets a page solve the mechanism with no build step, no network and no Python,
-and it is the second route the chapter's argument needs.
+`books/maths-applied/docs/assets/data/otkd/` is another repository's release artefact —
+one `out.js` per model and a solver compiled to WebAssembly for each kinematic one. It
+is vendored rather than fetched at build time because the collection's rule is that a
+clone builds with no network, and because a generated file is drift-checked. The fetch
+is `scripts/vendor-otkd.sh`, run by a person when the version changes; CI runs its
+`--check`, which needs nothing but the committed bytes.
 
 **Why the hashes matter.** A vendored binary that nobody can check is a binary that
-gets edited. `provenance.json` records the sha256 of the wasm and of every source it
-was generated from; the module a browser actually imports carries the same bytes as
-base64. If either drifts, the page is running something the record does not describe,
-and these tests are the only thing that would say so.
+gets edited. The bundle ships a `SHA256SUMS` covering every file and a `MANIFEST.json`
+naming the generator and the git commit; the module a browser actually imports carries
+the same bytes as base64. These tests are what would notice either drifting.
 """
 
 from __future__ import annotations
@@ -19,82 +20,97 @@ import hashlib
 import json
 import re
 
-import yaml
+import pytest
 
 from textbook.book import repo_root
 
-PACKAGE = repo_root() / "books" / "maths-applied" / "docs" / "assets" / "data" / "package"
-RIGID = PACKAGE / "double-wishbone"
-EXAMPLES = (
+BUNDLE = repo_root() / "books" / "maths-applied" / "docs" / "assets" / "data" / "otkd"
+SCRIPT = repo_root() / "scripts" / "vendor-otkd.sh"
+
+#: Models the manifest says carry a kernel; read from the manifest, then asserted here
+#: so a model that silently loses its kernel is a failure rather than one fewer loop.
+KINEMATIC = (
     "double-wishbone",
-    "double-wishbone-two-leg",
     "double-wishbone-compliant",
+    "double-wishbone-two-leg",
     "ride-height",
 )
 
 
-def provenance() -> dict:
-    return json.loads((RIGID / "provenance.json").read_text(encoding="utf-8"))
+def manifest() -> dict:
+    return json.loads((BUNDLE / "MANIFEST.json").read_text(encoding="utf-8"))
 
 
-def test_the_vendored_wasm_is_the_binary_the_provenance_records():
-    wasm = (RIGID / "kernel.wasm").read_bytes()
-    assert hashlib.sha256(wasm).hexdigest() == provenance()["wasm_sha256"]
+def test_the_bundle_is_the_version_the_vendor_script_pins():
+    """One version in one place: the script decides what a refresh fetches.
+
+    A tree fetched at 0.4.0 and a script pinning 0.3.0 would disagree about what the
+    next refresh does, and nothing else in the repository would say so.
+    """
+    pinned = re.search(r'^VERSION="([^"]+)"', SCRIPT.read_text(encoding="utf-8"), re.M)
+    assert pinned, "scripts/vendor-otkd.sh does not pin a version"
+    assert manifest()["generator"] == f"otkd {pinned.group(1)}", manifest()["generator"]
 
 
-def test_the_module_a_page_imports_embeds_that_same_binary():
+def test_every_vendored_file_matches_the_bundles_own_sums():
+    """`SHA256SUMS` covers every file the release ships.
+
+    The Python distributions are not vendored — they are the package, not this book's
+    data — so their lines are skipped by name rather than by ignoring a failure.
+    """
+    lines = [
+        line
+        for line in (BUNDLE / "SHA256SUMS").read_text(encoding="utf-8").splitlines()
+        if line.strip() and "  package/" not in line
+    ]
+    assert lines, "the bundle carries no sums"
+    for line in lines:
+        digest, name = line.split(maxsplit=1)
+        path = BUNDLE / name.strip()
+        assert path.is_file(), f"{name} is listed but not vendored"
+        assert hashlib.sha256(path.read_bytes()).hexdigest() == digest, name
+
+
+@pytest.mark.parametrize("model", KINEMATIC)
+def test_each_kernel_module_embeds_the_binary_it_ships(model):
     """One import and the page has a solver: the binary travels as base64.
 
     That is deliberate — a `.wasm` fetched over the network is a second file, a MIME
     type and a race. It also means the embedded copy is the one to check, because it is
     the one the browser runs.
     """
-    source = (RIGID / "kernel.js").read_text(encoding="utf-8")
+    kernel = BUNDLE / "models" / model / "kernel"
+    source = (kernel / "kernel.js").read_text(encoding="utf-8")
     match = re.search(r'const BASE64 = "([^"]+)"', source)
-    assert match, "kernel.js does not embed its binary"
+    assert match, f"{model}: kernel.js does not embed its binary"
     embedded = base64.b64decode(match.group(1))
-    assert hashlib.sha256(embedded).hexdigest() == provenance()["wasm_sha256"]
+    assert hashlib.sha256(embedded).hexdigest() == hashlib.sha256(
+        (kernel / "kernel.wasm").read_bytes()
+    ).hexdigest(), model
 
 
-def test_the_manifest_is_the_abi_the_figures_call():
-    manifest = json.loads((RIGID / "kernel.json").read_text(encoding="utf-8"))
-    assert manifest["abi"] == "otkd-kernel-2"
-    assert manifest["model"] == "dw-1dof"
-    assert manifest["layout"]["sizes"]["q"] == 21
-    assert manifest["rows"][0]["name"] == "lca-ground.tx"
-    assert {"camber", "toe", "track"} <= set(manifest["metrics"])
+@pytest.mark.parametrize("model", KINEMATIC)
+def test_every_payload_is_the_package_output_it_claims_to_be(model):
+    """`agreement` may be null: the compliant model has no closed form to compare with.
 
-
-def test_every_export_is_the_package_output_it_claims_to_be():
-    """`agreement` may be null, and one of these says so.
-
-    The compliant model has no closed form to compare against, so its export carries
-    `agreement = null` rather than an invented difference — the same honesty the book
-    asks of its own pages. Where agreement exists, it must carry `max_abs_diff`.
+    That is the same honesty the book asks of its own pages — a missing comparison is
+    recorded as missing, not invented.
     """
-    for name in EXAMPLES:
-        text = (PACKAGE / name / "out.js").read_text(encoding="utf-8")
-        assert text.startswith("// Generated by otkd. Do not edit by hand."), name
-        for key in ("meta", "sweep", "iterations", "agreement"):
-            assert f"export const {key} =" in text, f"{name}: no {key}"
-        if "export const agreement = null;" not in text:
-            assert '"max_abs_diff"' in text, f"{name}: no agreement figure"
+    text = (BUNDLE / "models" / model / "out.js").read_text(encoding="utf-8")
+    assert text.startswith("// Generated by otkd. Do not edit by hand."), model
+    for key in ("meta", "sweep", "iterations", "agreement"):
+        assert f"export const {key} =" in text, f"{model}: no {key}"
+    if "export const agreement = null;" not in text:
+        assert '"max_abs_diff"' in text, f"{model}: no agreement figure"
 
 
-def test_the_geometry_module_agrees_with_the_yaml_beside_it():
-    """`geometry.js` exists so a page needs no YAML parser; it must not drift.
+def test_the_manifest_says_why_a_model_has_no_kernel():
+    """`quarter-car` is a dynamics study: a trajectory, not a sweep, and no solver.
 
-    The YAML is the package's own file, vendored unchanged. The module is generated
-    from it — this is the test that says the generation was faithful, and the only
-    reason keeping both is safe.
+    The bundle records the reason rather than leaving a hole, so a reader of the data
+    can tell "not compiled yet" from "not compiled on purpose".
     """
-    data = yaml.safe_load((RIGID / "geometry.yaml").read_text(encoding="utf-8"))
-    source = (RIGID / "geometry.js").read_text(encoding="utf-8")
-    for name, value in data["points"].items():
-        rendered = re.search(rf"^\s+{name}: \[([^\]]+)\],$", source, re.M)
-        assert rendered, f"geometry.js has no point {name}"
-        assert [float(part) for part in rendered.group(1).split(",")] == [float(v) for v in value], name
-    for name, value in data["axes"].items():
-        rendered = re.search(rf'^\s+"{name}": \[([^\]]+)\],$', source, re.M)
-        assert rendered, f"geometry.js has no axis {name}"
-        assert [float(part) for part in rendered.group(1).split(",")] == [float(v) for v in value], name
+    entry = manifest()["models"]["quarter-car"]
+    assert entry["kernel"].startswith("none")
+    assert entry["payload"].startswith("none")
+    assert not (BUNDLE / "models" / "quarter-car").exists()

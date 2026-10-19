@@ -25,7 +25,7 @@ export const GEOMETRY = {
   lcar: [0.3, -0.12, 0.16],
   // **These four numbers are the package's**, from its
   // `examples/double-wishbone/geometry.yaml` (vendored under
-  // `docs/assets/data/package/`), so the page's front view and the generated
+  // `docs/assets/data/otkd/`), so the page's front view and the generated
   // three-dimensional kernel are looking at the same corner.
   ucaf: [0.38, 0.1, 0.48],
   ucar: [0.38, -0.1, 0.47],

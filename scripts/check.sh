@@ -9,6 +9,12 @@ cd "$ROOT"
 
 step() { printf '\n== %s ==\n' "$1"; }
 
+step "the vendored otkd bundle is intact"
+# Offline: the bundle's own SHA256SUMS against the committed bytes, with the version
+# pinned in one place. The fetch is a person's refresh, not a build step — see
+# `scripts/vendor-otkd.sh`.
+scripts/vendor-otkd.sh --check
+
 step "generated files are in sync"
 # The TypeScript compiles first, because the kit's output is committed and the drift
 # check below diffs it against the source. `tsc` transpiles without checking: type

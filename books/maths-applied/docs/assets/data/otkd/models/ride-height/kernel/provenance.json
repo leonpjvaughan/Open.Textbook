@@ -1,0 +1,41 @@
+{
+  "abi": "otkd-kernel-2",
+  "generator": "otkd 0.4.0",
+  "layout": {
+    "offsets": {
+      "axs": 1015,
+      "g": 28,
+      "jac": 149,
+      "met": 933,
+      "num": 1024,
+      "out": 121,
+      "pts": 979,
+      "q": 0,
+      "t": 120,
+      "world": 943
+    },
+    "sizes": {
+      "axs": 9,
+      "g": 92,
+      "jac": 784,
+      "met": 10,
+      "num": 2,
+      "out": 28,
+      "pts": 36,
+      "q": 28,
+      "t": 1,
+      "world": 36
+    },
+    "slots": 1026
+  },
+  "model": "ride-height",
+  "rustc": "rustc 1.99.1 (58cf8f9c3 2026-10-13)",
+  "sources": {
+    "constraints.yaml": "fd35357ac45c8d77b9225caa8fc036c42f7d79f1952bf642bd24ca6b25513038",
+    "geometry.yaml": "8ef9a231244413f5526c76769f1bb25db7a0b6f5989cb576d9f67915a716145a",
+    "study.yaml": "bdc0f0ca2dd3ab974f910e51a9b521d5b2be1fbac8c02a720b96ab69192cc82a",
+    "topology.yaml": "4581c269df9039f022e6db563d03e6c6808eb16269309929973499333c97fd3e"
+  },
+  "target": "wasm32-unknown-unknown",
+  "wasm_sha256": "1067b35f3dd25374ac38ca94ebc6b1e81d44d6d0ca5b12dd107997ee1748b84c"
+}

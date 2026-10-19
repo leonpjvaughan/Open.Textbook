@@ -1,0 +1,41 @@
+{
+  "abi": "otkd-kernel-2",
+  "generator": "otkd 0.4.0",
+  "layout": {
+    "offsets": {
+      "axs": 622,
+      "g": 21,
+      "jac": 111,
+      "met": 552,
+      "num": 628,
+      "out": 90,
+      "pts": 592,
+      "q": 0,
+      "t": 89,
+      "world": 562
+    },
+    "sizes": {
+      "axs": 6,
+      "g": 68,
+      "jac": 441,
+      "met": 10,
+      "num": 2,
+      "out": 21,
+      "pts": 30,
+      "q": 21,
+      "t": 1,
+      "world": 30
+    },
+    "slots": 630
+  },
+  "model": "dw-compliant",
+  "rustc": "rustc 1.99.1 (58cf8f9c3 2026-10-13)",
+  "sources": {
+    "constraints.yaml": "fd35357ac45c8d77b9225caa8fc036c42f7d79f1952bf642bd24ca6b25513038",
+    "geometry.yaml": "38e51b60d47a5f03eba06dc3aa50ad2038169bcb95e8a26ff348577c83765ae3",
+    "study.yaml": "8f816685afc9413c5b679309dd876ca7e680f00299ccada40507f7b57f62b050",
+    "topology.yaml": "cc046b47031835d3572524c02b3f5c2767b565947f8ea7b6e1b27effed46c45d"
+  },
+  "target": "wasm32-unknown-unknown",
+  "wasm_sha256": "2fd63a1a04611830b837d7cf1fdb33d504b02ce24be0048c3e59bb14fd2e0521"
+}

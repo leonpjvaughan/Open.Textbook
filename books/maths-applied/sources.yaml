@@ -60,13 +60,15 @@ references:
     attribution: true
     title: suspension-kinematics — the model, its exports and a generated solver
     url: https://github.com/leonpjvaughan/suspension-kinematics
-    ref: "commit d1afcdc2874ddd1d237aee65ba632d896c30c81c, 2026-10-18; otkd 0.1.0, rustc 1.99.1"
+    ref: "release 0.4.0 (commit f5d2c92), 2026-10-19; otkd 0.4.0"
     role: >-
       The package the chapter's numbers come from: topology, geometry and study as
       data, the residual and Jacobian derived symbolically, and the same derivation
-      compiled to WebAssembly. Its four example exports and one kernel are vendored
-      under `docs/assets/data/package/`, with the sha256 of every source and of the
-      binary in `provenance.json`. A figure on §1.2 runs the kernel in the page.
+      compiled to WebAssembly. Its 0.4.0 bundle is vendored under
+      `docs/assets/data/otkd/` — four model exports and four kernels, with the bundle's
+      `MANIFEST.json` and `SHA256SUMS` — by `scripts/vendor-otkd.sh`, which pins the
+      release and the zip's digest. A figure on §1.2 runs the rigid model's kernel in
+      the page.
 
   - id: dixon
     title: Suspension Geometry and Computation

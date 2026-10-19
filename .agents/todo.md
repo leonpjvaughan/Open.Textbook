@@ -12,7 +12,7 @@ reasoning, so nothing is compressed on the way across and nothing is deleted.
 **An item is here because it is still true.** Before closing one, run its own
 done-means; an item whose heading says done and whose checklist does not is the
 failure this file has had twice, so the list below, the headings and the boxes
-are checked against each other on every pass. One item is open, and two of them
+are checked against each other on every pass. Two items are open, and two of them
 say which single line is not met.
 
 The *interactive-aid backlog* — which figures and interactions a book still wants —
@@ -24,8 +24,10 @@ author choosing what to build next.
 - [ ] 75. The solver's example declares a 0.2 m tyre on a 0.32 m wheel centre, so the
       roll centre it exports is 39 mm low — camber is unaffected, which is why §1.2's
       panel is sound
-- [ ] 83. §1.5's ladder is still the page's model — the package's compliant export
-      carries one stiffness, and its kernel refuses to compile
+- [ ] 83. §1.5's ladder is still the page's model — 0.4.0 compiles an equilibrium
+      kernel, but its compliance is the tie rod and the loads never reach the solve
+- [ ] 84. §1.6 can now be written — 0.4.0 ships the quarter-car model, and the
+      section is still a draft with no numbers
 
 **Not in the queue, and not forgotten.** Accepted limitations live where the check
 that records them lives, not here: the booklets whose items cannot be parsed
@@ -36,37 +38,46 @@ defect this repository can fix; those are decisions already taken.
 
 ---
 
-## 83. §1.5's ladder is still the page's model — **open**
+## 83. §1.5's ladder is still the page's model — **open, half unblocked by 0.4.0**
 
 **What is wrong.** `books/numerical-methods`'s worked case and `Maths Applied` §1.5
 quote a stiffness ladder (1.92°/1.94°/1.95° over the travel at 0.2/1/10/100 MN/m).
-Those numbers come from the page's own equilibrium model. The package's compliant
-export is vendored — `data/package/double-wishbone-compliant/out.js` — but it carries
-**one** stiffness, and `otkd emit --format wasm` refuses it by name:
+Those numbers come from the page's own equilibrium model, and the ladder is the one
+place in the chapter where two routes would be evidence.
 
-```
-the WASM kernel cannot solve this model yet: it is 'equilibrium'; a compliant model
-needs the equilibrium root-find, which is not compiled yet
-```
+**Measured 2026-10-19, on the 0.4.0 bundle.** The package now **does** compile the
+compliant model: `otkd emit examples/double-wishbone-compliant --format wasm` writes a
+kernel with `solver: "equilibrium"` and two number slots —
+`[{kind: "length", joint: "tie-rod"}, {kind: "compliance", joint: "tie-rod",
+component: "length"}]` — so a page can set a compliance at run time. The manifest lists
+kernels for all four kinematic models.
 
-The page says so in one sentence, which is the honest position, but it is not the
-position the chapter's argument wants: a ladder generated from the export, checked
-against the page's model, is two routes.
+**Why the ladder still cannot come from it.** Two independent reasons, both measured:
 
-**The fix.** When the package can solve the compliant model, emit a study that sweeps
-the stiffness (`study.yaml` already has the shape), vendor the export, and generate
-§1.5's table from `sweep.frames[]` — then assert the page's model agrees with it to
-the panel's rounding.
+- **The compliance is in the wrong place.** The package's compliant example softens the
+  **tie rod**; §1.5 softens the **upper ball joint**, and asks how stiff that bush must
+  be. Different joint, different curve, and the ladder is a statement about the second.
+- **The load does not reach the solve.** At the design position the compliant export
+  reports camber **−0.0003°** and toe **0.0094°**, and its camber change over the sweep
+  is **−2.028°** against the rigid model's −2.029° — the compliant export is the rigid
+  curve. The study's two loads (3500 N down, 1800 N lateral) do not appear in
+  `kernel.rs`, so the equilibrium kernel solves unloaded.
+
+So the page's sentence stands: the table is the page's model, and it says so.
+
+**The fix, when the package can express it.** A compliant joint (`ubj`) in the
+topology, a stiffness axis in the study, and loads compiled into the kernel; then emit
+a ladder, vendor it, and generate §1.5's table from `sweep.frames[]` while asserting
+the page's model agrees to the panel's rounding.
 
 **Done means**
 
-- [ ] `otkd emit examples/double-wishbone-compliant … --format wasm` succeeds, or the
-      compliant study is emitted as a `js` export with a stiffness axis.
+- [ ] A compliant-ubj model in the package sweeps stiffness and its export reports the
+      ladder.
 - [ ] §1.5's table is generated from the vendored export rather than typed.
 - [ ] The page's model and the export agree to the rounding shown, and the panel says
       which is which.
 - [ ] `grep -n "one stiffness" books/maths-applied/docs` prints nothing.
-
 ## 75. The solver's example declares a 0.2 m tyre on a 0.32 m wheel centre, so its roll centre is 39 mm low
 
 **What is wrong.** `suspension-kinematics`'s example geometry has the wheel centre at
@@ -100,8 +111,13 @@ wheel centre's lateral position.
 
 **Why it is here rather than in the package's tracker.** That repository has issues
 switched off; its own queue is `docs/follow-ups.md` there. The vendored
-`books/maths-applied/docs/assets/data/package/README.md` states the disagreement and the
+`books/maths-applied/docs/assets/data/otkd/README.md` states the disagreement and the
 numbers, so nobody plots `rc` from the payload beside the chapter's table.
+
+**Measured on 0.4.0 (2026-10-19): unchanged.** Both kinematic examples still declare
+`tyre-radius: 0.200`, the design contact patch is `[0.81, 0.12]`, and the exported roll
+centre is `0.1385` — 138 mm, against the page's 57 mm. The bundle's kernel carries the
+same numbers, so the fix is upstream as described, not in the vendoring.
 
 **The fix.** In the package, declare `tyre-radius: 0.320` in the examples — the contact
 patch moves to `z = 0` and the roll centre to 57 mm, and every output then agrees with the
@@ -115,3 +131,33 @@ the four exports and re-run the payload tests here.
 - [ ] Re-vendored `out.js` gives a roll centre within 2 mm of the page's front view, and
       `package/README.md` says so instead of explaining a 39 mm gap.
 - [ ] A book figure may plot `rc` from the payload, and §1.2's panel gains that row.
+
+## 84. §1.6 can now be written — the quarter-car model exists — **open**
+
+**What changed.** `suspension-kinematics` 0.4.0 ships `examples/quarter-car`: a dynamics
+study (`analysis: dynamics`, 0.5 s, 101 steps) over topology, geometry and a study.
+`otkd solve examples/quarter-car --json` prints the trajectory, and the bundle's
+manifest records why it has neither payload nor kernel — *"none (dynamics)"*.
+
+§1.6 is drafted and stops rather than pretending, because the model it describes did
+not exist. It does now, in the package, with its own tests (`docs/dynamics.md`,
+"dynamics v2.2 and the velocity-product fix" is the 0.4.0 headline).
+
+**The fix.** Solve the quarter-car study, vendor the trajectory (the bundle does not
+carry it — it is `otkd solve --json` output, so each vendoring records how it was
+produced), and write §1.6's numbers from it: the transient camber during a bump, the
+natural frequencies, and the limit test the section already promises — with the masses
+taken to zero, the dynamic model must settle to §1.2's quasi-static sweep, in the
+limit rather than close to it. The quarter-car's camber is relative and signed the
+package's way; §1.2's convention note applies.
+
+**Done means**
+
+- [ ] The quarter-car trajectory is vendored with its provenance (the command, the
+      version, the digest of the output).
+- [ ] §1.6's "Draft" banner is replaced by numbers, and every one of them comes from
+      the trajectory.
+- [ ] The limit test is asserted in the package's suite, or in this repository if the
+      package's suite cannot express it.
+- [ ] A figure shows the transient, and `audit`/`readout` pass on it.
+- [ ] Item 83's note and §1.6's text no longer say the model has not been built.

@@ -20,6 +20,7 @@ releases** and **Toolchain** still apply.
 | `scripts/deploy.sh` | Build the collection and deploy it to Cloudflare |
 | `scripts/next-tag.sh` | Print the next release tag, `yy.<day>.<increment>` |
 | `scripts/protect-main.sh` | Require the gate check on `main` (needs GitHub Pro) |
+| `scripts/vendor-otkd.sh` | The `otkd` release bundle — model exports and compiled kernels — into `books/maths-applied/docs/assets/data/otkd/`. Checked offline by `--check`, which is in `check.sh`; the fetch is a refresh a person runs when the pinned version changes |
 | `scripts/fetch_sources.sh` | Fetch the tracked primary sources into `research/sources/` |
 | `scripts/launch_chapter_agents.sh` | Feed `.agents/prompts/` to chapter sub-agents |
 | `scripts/launch_review_agents.sh` | The same for the review prompts |

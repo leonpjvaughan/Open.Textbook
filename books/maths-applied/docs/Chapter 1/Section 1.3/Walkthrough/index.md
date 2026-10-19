@@ -108,7 +108,7 @@ the solver more work.
 
 These are the page's own model's numbers, recomputed by the figure on every load.
 The package's export for the same mechanism is vendored at
-`docs/assets/data/package/double-wishbone-two-leg/out.js`, and it does carry
+`docs/assets/data/otkd/models/double-wishbone-two-leg/out.js`, and it does carry
 `iterations` — one residual vector and one set of singular values per Newton step —
 but that is a system with twenty-one unknowns, not the three rows above. Two sets of
 numbers, two different systems; the comparison they support is the pose, which is
