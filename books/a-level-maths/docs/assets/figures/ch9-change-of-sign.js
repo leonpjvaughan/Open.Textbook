@@ -44,7 +44,7 @@ function curve() {
     const x = X_MIN + ((X_MAX - X_MIN) * i) / 240;
     points.push(`${toPx(x).toFixed(1)},${toPy(f(x)).toFixed(1)}`);
   }
-  return `<polyline class="fig-accent" fill="none" points="${points.join(" ")}"></polyline>`;
+  return `<polyline class="fig-accent" style="fill:none" points="${points.join(" ")}"></polyline>`;
 }
 
 function sign(v) {

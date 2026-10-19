@@ -69,7 +69,7 @@ export function mount(el) {
       ? `<circle cx="${x}" cy="${y}" r="3.4" class="fig-accent"></circle>`
       : `<line x1="${x - 5}" y1="${y - 5}" x2="${x + 5}" y2="${y + 5}" class="fig-accent" stroke-width="2"></line>` +
         `<line x1="${x - 5}" y1="${y + 5}" x2="${x + 5}" y2="${y - 5}" class="fig-accent" stroke-width="2"></line>`;
-    const ring = `<circle cx="${x}" cy="${y}" r="10" fill="none" class="fig-accent" stroke-width="2.5"></circle>`;
+    const ring = `<circle cx="${x}" cy="${y}" r="10" style="fill:none" class="fig-accent" stroke-width="2.5"></circle>`;
     // A current out of the page gives an upward force; into the page gives a
     // downward one.
     const direction = out ? -1 : 1;

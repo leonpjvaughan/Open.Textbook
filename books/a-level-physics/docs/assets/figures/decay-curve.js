@@ -13,7 +13,14 @@
 // The scaffolding — the surface, its accessible name, the sliders, the live
 // readout and the redraw — comes from `kit.js`. What is left here is the drawing
 // and the sentences, which are the parts that differ from every other figure.
-import { SIZE, label, panel, react, slider } from "./kit.js";
+import {
+  label,
+  panel,
+  quantity,
+  react,
+  slider,
+  SIZE,
+} from "./kit.js";
 
 export function mount(el) {
   const { svg, readout } = panel(el, {
@@ -93,7 +100,7 @@ export function mount(el) {
     }
 
     const line =
-      `<polyline points="${curve.trim()}" class="fig-accent" fill="none" stroke-width="3"></polyline>`;
+      `<polyline points="${curve.trim()}" class="fig-accent" style="fill:none" stroke-width="3"></polyline>`;
 
     let halfMarks = "";
     for (let step = 1; step <= 5; step += 1) {
@@ -110,8 +117,8 @@ export function mount(el) {
     readout.innerHTML =
       `After <strong>${n.toFixed(1)} half-lives</strong> the fraction remaining is ` +
       `<strong>${fraction.toFixed(3)}</strong>. Starting at ${start} Bq, the activity is ` +
-      `<strong>${remaining.toFixed(1)} Bq</strong>. The time elapsed is ` +
-      `<strong>${elapsed.toFixed(1)} hours</strong>, with a half-life of ${halfLifeHours} hours. ` +
+      `<strong>${quantity(remaining, "Bq", 1)}</strong>. The time elapsed is ` +
+      `<strong>${quantity(elapsed, "hours", 1)}</strong>, with a half-life of ${halfLifeHours} hours. ` +
       `The dots mark whole half-lives. ` +
       `<em>Set the time to 3 half-lives. What fraction remains? Try 4.</em>`;
   }

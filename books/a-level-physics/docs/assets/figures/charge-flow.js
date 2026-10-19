@@ -14,7 +14,14 @@
 // The scaffolding — the surface, its accessible name, the sliders, the live
 // readout and the redraw — comes from `kit.js`. What is left here is the drawing
 // and the sentences, which are the parts that differ from every other figure.
-import { SIZE, label, panel, react, slider } from "./kit.js";
+import {
+  label,
+  panel,
+  quantity,
+  react,
+  slider,
+  SIZE,
+} from "./kit.js";
 
 export function mount(el) {
   const ELEMENTARY = 1.6e-19; // coulombs, the charge on one electron
@@ -132,8 +139,8 @@ export function mount(el) {
       },
     ]);
     readout.innerHTML =
-      `A current of <strong>${amps.toFixed(1)} A</strong> for ` +
-      `<strong>${seconds.toFixed(0)} s</strong> transfers a charge of ` +
+      `A current of <strong>${quantity(amps, "A", 1)}</strong> for ` +
+      `<strong>${quantity(seconds, "s", 0)}</strong> transfers a charge of ` +
       `<strong>${charge.toFixed(1)} C</strong>. That charge is carried by about ` +
       `<strong>${sci(electrons)}</strong> electrons. ` +
       `<em>Which transfers more charge: doubling the current, or doubling the time?</em>`;

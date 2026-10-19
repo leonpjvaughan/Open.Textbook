@@ -10,7 +10,19 @@
 //
 // Nothing here carries a colour. Every shape uses a `fig-*` class and every word a
 // `text-*` class, so the figure follows the reader's theme in both schemes.
-import { SIZE, circle, coord, fmt, label, line, panel, path, react, stepper } from "./kit.js";
+import {
+  circle,
+  coord,
+  fmt,
+  label,
+  line,
+  panel,
+  path,
+  quantity,
+  react,
+  stepper,
+  SIZE,
+} from "./kit.js";
 
 // The drawing is a scale drawing: 24 units on the page are 1 cm on the paper, so the
 // segment [AB] is 10 cm and the compass is open to 6.5 cm.
@@ -24,22 +36,22 @@ const Q = [(A[0] + B[0]) / 2, A[1] + HALF];
 
 const STEPS = [
   {
-    text: `Draw the segment [AB]. It is ${fmt(10)} cm long, so its midpoint is ${fmt(5)} cm from each end.`,
+    text: `Draw the segment [AB]. It is ${quantity(10, "cm")} long, so its midpoint is ${quantity(5, "cm")} from each end.`,
   },
   {
     text:
-      `Open the compass to ${fmt(6.5)} cm, which is more than half of ${fmt(10)} cm. ` +
+      `Open the compass to ${quantity(6.5, "cm")}, which is more than half of ${quantity(10, "cm")}. ` +
       `Draw an arc above [AB] and an arc below it, both centred on A.`,
   },
   {
     text:
       `With centre B and the same compass width, draw two more arcs. They cross the first pair at P and Q. ` +
-      `Each of P and Q is ${fmt(6.5)} cm from A and ${fmt(6.5)} cm from B.`,
+      `Each of P and Q is ${quantity(6.5, "cm")} from A and ${quantity(6.5, "cm")} from B.`,
   },
   {
     text:
       `Draw the line through P and Q. It is the perpendicular bisector of [AB]: ` +
-      `it meets [AB] at the midpoint, ${fmt(5)} cm from A and ${fmt(5)} cm from B, at a right angle.`,
+      `it meets [AB] at the midpoint, ${quantity(5, "cm")} from A and ${quantity(5, "cm")} from B, at a right angle.`,
   },
 ];
 

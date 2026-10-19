@@ -43,6 +43,11 @@ ball joint, the force the wishbone carries. That is a **differential-algebraic**
 system: differential equations for the motion, algebraic equations for the
 constraints, solved together.
 
+That structure has a name, and it changes the method: the constraint is enforced by
+an unknown force, so the state and the forces are solved as one system.
+
+:::class saddle-point
+
 **Dampers.** A damper's force depends on how fast it is moving, not how far it has
 moved. So it enters the equations as a rate, which is exactly what the algebraic
 models could not represent.
@@ -67,6 +72,12 @@ models could not represent.
   differential or algebraic equations alone. The cost is not arithmetic; it is the
   care needed to know the answer is real.
 
+With the mass and the rate terms in, the class has changed again: the answer now
+moves forward in time and forgets where it started, and the step is decided by the
+fastest thing in the model.
+
+:::class parabolic
+
 ## The agreement this section owes
 
 The chapter's rule is that a model earns its place by failing, and that agreement
@@ -78,12 +89,11 @@ is a number. So §1.6's promise is specific, and it is the same shape as §1.5's
 If that test cannot be made to pass, the dynamic model is wrong about something, and
 the place to look is the constraint forces. It is the first test to write.
 
-```text
-TODO(phase-a): a quarter-car model — one corner, with mass, spring and damper — has
-not been built. When it is, this section's numbers come from its `sweep` and its
-`agreement` exports, and the limit test above becomes the fifth load-bearing test
-in the solver's suite.
-```
+This section is an outline. The quarter-car model it describes has not been built,
+so there is no number to compare and no test to run — and a section that printed one
+anyway would be the thing this book argues against. It stops here rather than
+pretending. When the model exists, the limit test above is the first thing to write,
+and its numbers come from the model's own sweep.
 
 ## You should now be able to
 

@@ -14,7 +14,15 @@
 // The scaffolding — the surface, its accessible name, the slider, the live
 // readout and the redraw — comes from `kit.js`. What is left here is the drawing
 // and the sentences, which are the parts that differ from every other figure.
-import { SIZE, chooser, label, panel, react, slider } from "./kit.js";
+import {
+  chooser,
+  label,
+  panel,
+  quantity,
+  react,
+  slider,
+  SIZE,
+} from "./kit.js";
 
 export function mount(el) {
   const { svg, readout } = panel(el, {
@@ -92,7 +100,7 @@ export function mount(el) {
       const value = Math.max(-I_MAX, Math.min(I_MAX, current(name, s)));
       points += `${px(s).toFixed(1)},${py(value).toFixed(1)} `;
     }
-    const curve = `<polyline points="${points.trim()}" fill="none" class="fig-accent" stroke-width="3"></polyline>`;
+    const curve = `<polyline points="${points.trim()}" style="fill:none" class="fig-accent" stroke-width="3"></polyline>`;
 
     const i = Math.max(-I_MAX, Math.min(I_MAX, current(name, v)));
     const marker = `<circle cx="${px(v).toFixed(1)}" cy="${py(i).toFixed(1)}" r="6" class="fig-warn"></circle>`;
@@ -101,14 +109,14 @@ export function mount(el) {
 
     let message;
     if (name === "resistor") {
-      message = `The graph is a straight line through the origin, so the resistance is constant at 5 ohm. At ${v.toFixed(1)} V the current is ${i.toFixed(2)} A.`;
+      message = `The graph is a straight line through the origin, so the resistance is constant at 5 ohm. At ${quantity(v, "V", 1)} the current is ${quantity(i, "A", 2)}.`;
     } else if (name === "lamp") {
       const r = v !== 0 ? (v / i) : 0;
-      message = `The graph bends. At ${v.toFixed(1)} V the current is ${i.toFixed(2)} A, so the resistance is ${Math.abs(r).toFixed(1)} ohm. A larger pd makes the filament hotter and the resistance larger.`;
+      message = `The graph bends. At ${quantity(v, "V", 1)} the current is ${quantity(i, "A", 2)}, so the resistance is ${quantity(Math.abs(r), "ohm", 1)}. A larger pd makes the filament hotter and the resistance larger.`;
     } else if (v <= 0.6) {
-      message = `In this direction the diode blocks the current, so the current is almost zero. The pd is ${v.toFixed(1)} V.`;
+      message = `In this direction the diode blocks the current, so the current is almost zero. The pd is ${quantity(v, "V", 1)}.`;
     } else {
-      message = `Above about 0.6 V the diode conducts. At ${v.toFixed(1)} V the current is ${i.toFixed(2)} A, and it rises quickly as the pd increases.`;
+      message = `Above about 0.6 V the diode conducts. At ${quantity(v, "V", 1)} the current is ${quantity(i, "A", 2)}, and it rises quickly as the pd increases.`;
     }
     readout.innerHTML = `${message} <em>Which component gives a straight line, and why?</em>`;
   }

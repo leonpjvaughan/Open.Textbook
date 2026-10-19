@@ -102,13 +102,13 @@ export function mount(el) {
       label({ x: originX + 7, y: 46, text: "y", anchor: "start", size: SIZE.tick, class: "text-ink" }) +
       `<g clip-path="url(#ct-clip)">` +
       `<circle cx="${originX.toFixed(1)}" cy="${originY.toFixed(1)}" ` +
-      `r="${(r * SCALE).toFixed(1)}" class="fig-accent" fill="none" stroke-width="2"></circle>` +
+      `r="${(r * SCALE).toFixed(1)}" class="fig-accent" style="fill:none" stroke-width="2"></circle>` +
       `<line x1="${originX.toFixed(1)}" y1="${originY.toFixed(1)}" ` +
       `x2="${xPix.toFixed(1)}" y2="${yPix.toFixed(1)}" class="fig-good" stroke-width="2"></line>` +
       `<line x1="${start.x.toFixed(1)}" y1="${start.y.toFixed(1)}" ` +
       `x2="${end.x.toFixed(1)}" y2="${end.y.toFixed(1)}" class="fig-warn" ` +
       `stroke-width="2" stroke-dasharray="8 5"></line>` +
-      `<polyline points="${square}" class="fig-ink" fill="none" stroke-width="1.5"></polyline>` +
+      `<polyline points="${square}" class="fig-ink" style="fill:none" stroke-width="1.5"></polyline>` +
       `</g>` +
       `<circle cx="${originX.toFixed(1)}" cy="${originY.toFixed(1)}" r="3.5" class="fig-ink"></circle>` +
       `<circle cx="${xPix.toFixed(1)}" cy="${yPix.toFixed(1)}" r="5" class="fig-warn"></circle>` +

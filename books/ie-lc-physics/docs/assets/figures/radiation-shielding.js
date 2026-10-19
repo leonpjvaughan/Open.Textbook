@@ -59,7 +59,7 @@ export function mount(el) {
     drawing += label({ x: 176 + slabWidth / 2, y: 196, text: "lead", size: SIZE.tick });
 
     // The detector, with a bar whose height is the count rate.
-    drawing += `<rect x="436" y="52" width="60" height="124" rx="6" fill="none" class="fig-accent" stroke-width="2.5"></rect>`;
+    drawing += `<rect x="436" y="52" width="60" height="124" rx="6" style="fill:none" class="fig-accent" stroke-width="2.5"></rect>`;
     drawing += `<rect x="452" y="${(BAR_BASE - barHeight).toFixed(1)}" width="28" height="${barHeight.toFixed(1)}" class="fig-accent"></rect>`;
     drawing += label({ x: 466, y: 196, text: "detector", size: SIZE.tick });
     drawing += `<line x1="436" y1="${BAR_TOP}" x2="496" y2="${BAR_TOP}" class="fig-grid" stroke-width="1.5" stroke-dasharray="3 3"></line>`;

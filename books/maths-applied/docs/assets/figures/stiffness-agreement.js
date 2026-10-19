@@ -78,24 +78,17 @@ export function mount(el) {
       class: "text-ink",
     });
 
-    // **A curve is a stroke, and the kit's `path()` cannot yet say so.** It writes
-    // `fill="none"` as an attribute, and a `fig-*` class sets `fill`, which wins —
-    // so a kit-drawn curve is a filled shape whose fill is the lens between the curve
-    // and its chord. Nearly invisible for a straight line, a purple wedge for a
-    // curved one. An inline style wins where an attribute loses, so the attribute is
-    // rewritten here until the kit is fixed: `.agents/todo.md` item 74.
-    const stroke = (markup) => markup.replace(/fill="none"/g, 'style="fill:none"');
-    drawing += stroke(
-      curve(
-        rigid.map((point) => [point.travel, point.camber]),
-        { x, y, class: "fig-ink", width: 3 }
-      )
+    // A curve is a stroke, and `path()` now says so with an inline fill: a `fig-*`
+    // class sets `fill` and beats an attribute, which used to turn every kit-drawn
+    // curve into a filled shape. The workaround that rewrote the attribute here is
+    // gone, because the kit does it (`.agents/todo.md` item 74).
+    drawing += curve(
+      rigid.map((point) => [point.travel, point.camber]),
+      { x, y, class: "fig-ink", width: 3 }
     );
-    drawing += stroke(
-      curve(
-        soft.map((point) => [point.travel, point.camber]),
-        { x, y, class: "fig-accent", width: 2.6, dash: "7 5" }
-      )
+    drawing += curve(
+      soft.map((point) => [point.travel, point.camber]),
+      { x, y, class: "fig-accent", width: 2.6, dash: "7 5" }
     );
 
     // The gap at rest, drawn where a reader can compare it with the scale, and

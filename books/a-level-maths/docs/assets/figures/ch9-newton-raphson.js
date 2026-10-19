@@ -178,7 +178,7 @@ export function mount(el) {
       curvePoints.push(`${px(x).toFixed(1)},${py(y).toFixed(1)}`);
     }
     const curve =
-      `<polyline class="fig-accent" fill="none" points="${curvePoints.join(" ")}"></polyline>`;
+      `<polyline class="fig-accent" style="fill:none" points="${curvePoints.join(" ")}"></polyline>`;
 
     // The starting point, and the tangent it launches.
     let marks = "";

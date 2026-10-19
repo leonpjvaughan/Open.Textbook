@@ -100,7 +100,7 @@ export function mount(el) {
       const y = yToPx(curve.fy(t)).toFixed(1);
       points += `${i === 0 ? "M" : "L"} ${x} ${y} `;
     }
-    return `<path d="${points}" fill="none" class="fig-accent" stroke-width="2"></path>`;
+    return `<path d="${points}" style="fill:none" class="fig-accent" stroke-width="2"></path>`;
   }
 
   function applyCurveRange() {

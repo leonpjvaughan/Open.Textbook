@@ -83,7 +83,7 @@ export function mount(el) {
     }
 
     const line =
-      `<polyline points="${curve.trim()}" class="fig-accent" fill="none" stroke-width="3"></polyline>`;
+      `<polyline points="${curve.trim()}" class="fig-accent" style="fill:none" stroke-width="3"></polyline>`;
     const marker =
       `<circle cx="${px(v).toFixed(1)}" cy="${py(lamPm).toFixed(1)}" r="6" class="fig-warn"></circle>`;
 

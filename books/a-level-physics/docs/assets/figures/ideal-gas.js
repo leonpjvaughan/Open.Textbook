@@ -13,7 +13,14 @@
 // The scaffolding — the surface, its accessible name, the sliders, the live
 // readout and the redraw — comes from `kit.js`. What is left here is the drawing
 // and the sentences, which are the parts that differ from every other figure.
-import { SIZE, label, panel, react, slider } from "./kit.js";
+import {
+  label,
+  panel,
+  quantity,
+  react,
+  slider,
+  SIZE,
+} from "./kit.js";
 
 export function mount(el) {
   const { svg, readout } = panel(el, {
@@ -83,7 +90,7 @@ export function mount(el) {
     }
 
     const frame =
-      `<rect x="${BOX_LEFT}" y="${BOX_TOP}" width="${width.toFixed(1)}" height="${BOX_BOTTOM - BOX_TOP}" fill="none" class="fig-ink" stroke-width="3"></rect>` +
+      `<rect x="${BOX_LEFT}" y="${BOX_TOP}" width="${width.toFixed(1)}" height="${BOX_BOTTOM - BOX_TOP}" style="fill:none" class="fig-ink" stroke-width="3"></rect>` +
       `<line x1="${boxRight}" y1="${BOX_TOP}" x2="${boxRight}" y2="${BOX_BOTTOM}" class="fig-ink" stroke-width="6"></line>` +
       `${label({ x: (BOX_LEFT + boxRight) / 2, y: BOX_BOTTOM + 26, text: `volume`, anchor: "middle", size: SIZE.heading, class: "text-ink" })}` +
       `${label({ x: (boxRight + 6).toFixed(1), y: BOX_TOP - 8, text: `piston`, anchor: "start", size: SIZE.value, class: "text-ink" })}`;
@@ -94,7 +101,7 @@ export function mount(el) {
       `At <strong>${temperature} K</strong> and a volume of <strong>${(volume / 1e-3).toFixed(1)} x 10^-3 m^3</strong>, ` +
       `the pressure is <strong>${(pressure / 1000).toFixed(1)} kPa</strong>, ` +
       `the average molecular kinetic energy is <strong>${kineticEnergy.toExponential(2)} J</strong>, ` +
-      `and the rms speed is <strong>${rmsSpeed.toFixed(0)} m/s</strong>. ` +
+      `and the rms speed is <strong>${quantity(rmsSpeed, "m", 0)}/s</strong>. ` +
       `<em>Double the temperature. What happens to the pressure, and what happens to the volume?</em>`;
   }
 

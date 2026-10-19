@@ -13,7 +13,14 @@
 // one of the kit's controls, so they are built here inside the kit's control
 // column. What is left is the drawing and the sentences, which are the parts that
 // differ from every other figure.
-import { SIZE, label, panel, react, slider } from "./kit.js";
+import {
+  label,
+  panel,
+  quantity,
+  react,
+  slider,
+  SIZE,
+} from "./kit.js";
 
 export function mount(el) {
   const { svg, readout, claim } = panel(el, {
@@ -99,7 +106,7 @@ export function mount(el) {
       },
     ]);
     readout.innerHTML =
-      `Mass <strong>${mass.toFixed(1)} kg</strong>. ` +
+      `Mass <strong>${quantity(mass, "kg", 1)}</strong>. ` +
       `Volume <strong>${volumeCm3} cm3 = ${volumeM3.toExponential(2)} m3</strong>. ` +
       `Density <strong>${Math.round(density)} kg/m3</strong>. ` +
       `<em>Compare your density with the water line. Does the material float, ` +

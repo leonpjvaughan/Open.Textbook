@@ -14,7 +14,14 @@
 // one of the kit's controls, so they are built here inside the kit's control
 // column. What is left is the drawing and the sentence, which are the parts that
 // differ from every other figure.
-import { SIZE, label, panel, react, slider } from "./kit.js";
+import {
+  label,
+  panel,
+  quantity,
+  react,
+  slider,
+  SIZE,
+} from "./kit.js";
 
 export function mount(el) {
   const { svg, readout, controls } = panel(el, {
@@ -70,7 +77,7 @@ export function mount(el) {
 
   function timeText(seconds) {
     if (seconds >= 120) return `${(seconds / 60).toFixed(1)} min`;
-    return `${seconds.toFixed(0)} s`;
+    return `${quantity(seconds, "s", 0)}`;
   }
 
   function update() {
@@ -94,7 +101,7 @@ export function mount(el) {
       .join(" ");
 
     svg.innerHTML =
-      `<line x1="70" y1="200" x2="555" y2="200" class="fig-ink" stroke-width="2"></line><line x1="70" y1="200" x2="70" y2="20" class="fig-ink" stroke-width="2"></line><line x1="70" y1="${yPixel(0).toFixed(1)}" x2="555" y2="${yPixel(0).toFixed(1)}" class="fig-grid" stroke-dasharray="4 4"></line><line x1="70" y1="${yPixel(100).toFixed(1)}" x2="555" y2="${yPixel(100).toFixed(1)}" class="fig-grid" stroke-dasharray="4 4"></line>${label({ x: 10, y: yPixel(0).toFixed(1), text: `0`, anchor: "start", size: SIZE.value, class: "text-ink" })}${label({ x: 4, y: yPixel(100).toFixed(1), text: `100`, anchor: "start", size: SIZE.value, class: "text-ink" })}${label({ x: 300, y: 222, text: `time (s)`, anchor: "middle", size: SIZE.heading, class: "text-ink" })}${label({ x: 14, y: 110, text: 'temperature (C)', anchor: "start", size: SIZE.value, class: "text-ink", rotate: -90 })}<path d="${line}" class="fig-accent" fill="none" stroke-width="3"></path>${label({ x: 150, y: (yPixel(0) - 8).toFixed(1), text: `melting`, anchor: "start", size: SIZE.value, class: "text-ink" })}${label({ x: 300, y: (yPixel(100) - 8).toFixed(1), text: `boiling`, anchor: "start", size: SIZE.value, class: "text-ink" })}`;
+      `<line x1="70" y1="200" x2="555" y2="200" class="fig-ink" stroke-width="2"></line><line x1="70" y1="200" x2="70" y2="20" class="fig-ink" stroke-width="2"></line><line x1="70" y1="${yPixel(0).toFixed(1)}" x2="555" y2="${yPixel(0).toFixed(1)}" class="fig-grid" stroke-dasharray="4 4"></line><line x1="70" y1="${yPixel(100).toFixed(1)}" x2="555" y2="${yPixel(100).toFixed(1)}" class="fig-grid" stroke-dasharray="4 4"></line>${label({ x: 10, y: yPixel(0).toFixed(1), text: `0`, anchor: "start", size: SIZE.value, class: "text-ink" })}${label({ x: 4, y: yPixel(100).toFixed(1), text: `100`, anchor: "start", size: SIZE.value, class: "text-ink" })}${label({ x: 300, y: 222, text: `time (s)`, anchor: "middle", size: SIZE.heading, class: "text-ink" })}${label({ x: 14, y: 110, text: 'temperature (C)', anchor: "start", size: SIZE.value, class: "text-ink", rotate: -90 })}<path d="${line}" class="fig-accent" style="fill:none" stroke-width="3"></path>${label({ x: 150, y: (yPixel(0) - 8).toFixed(1), text: `melting`, anchor: "start", size: SIZE.value, class: "text-ink" })}${label({ x: 300, y: (yPixel(100) - 8).toFixed(1), text: `boiling`, anchor: "start", size: SIZE.value, class: "text-ink" })}`;
 
     readout.innerHTML =
       `Heater power <strong>${power} W</strong>. Total energy <strong>${energyText(TOTAL_ENERGY)}</strong> in <strong>${timeText(TOTAL_ENERGY / power)}</strong>. <em>${summary.join(". ")}. Compare a low power with a high power: what changes, and what stays the same?</em>`;

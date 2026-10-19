@@ -13,7 +13,14 @@
 // The scaffolding — the surface, its accessible name, the sliders, the live
 // readout and the redraw — comes from `kit.js`. What is left here is the drawing
 // and the sentences, which are the parts that differ from every other figure.
-import { SIZE, label, panel, react, slider } from "./kit.js";
+import {
+  label,
+  panel,
+  quantity,
+  react,
+  slider,
+  SIZE,
+} from "./kit.js";
 
 export function mount(el) {
   const { svg, readout } = panel(el, {
@@ -102,10 +109,10 @@ export function mount(el) {
 
     const direction = vEnd < 0 ? "moving in the negative direction" : "moving in the positive direction";
     readout.innerHTML =
-      `With u = ${u} m/s and a = ${a.toFixed(1)} m/s², the line has gradient ` +
-      `<strong>${a.toFixed(1)} m/s²</strong> and the shaded area is ` +
-      `<strong>${displacement.toFixed(0)} m</strong>. ` +
-      `After ${T_MAX} s the velocity is ${vEnd.toFixed(1)} m/s, so the object is ${direction}. ` +
+      `With u = ${u} m/s and a = ${quantity(a, "m", 1)}/s², the line has gradient ` +
+      `<strong>${quantity(a, "m", 1)}/s²</strong> and the shaded area is ` +
+      `<strong>${quantity(displacement, "m", 0)}</strong>. ` +
+      `After ${T_MAX} s the velocity is ${quantity(vEnd, "m", 1)}/s, so the object is ${direction}. ` +
       `<em>Set a = 0. What is the gradient, and why is the area still the displacement?</em>`;
   }
 

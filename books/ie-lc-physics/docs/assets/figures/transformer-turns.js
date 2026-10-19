@@ -11,7 +11,16 @@
 //
 // The scaffolding — the panel, its accessible name, the sliders, the readout and
 // the redraw — comes from `kit.js`. What is left is the drawing and the sentences.
-import { SIZE, fmt, label, panel, scale, slider, react } from "./kit.js";
+import {
+  fmt,
+  label,
+  panel,
+  quantity,
+  react,
+  scale,
+  slider,
+  SIZE,
+} from "./kit.js";
 
 export function mount(el) {
   const { svg, readout } = panel(el, {
@@ -96,7 +105,7 @@ export function mount(el) {
 
     const ratio = ns / np;
     const kind = ratio > 1 ? "a step-up transformer" : ratio < 1 ? "a step-down transformer" : "an isolating transformer with the same voltage";
-    readout.textContent = `Primary ${fmt(vp, 0)} V across ${np} turns. Secondary ${fmt(vs, 0)} V across ${ns} turns. The turns ratio is ${fmt(ratio, 2)}, so this is ${kind}.`;
+    readout.textContent = `Primary ${quantity(vp, "V", 0)} across ${np} turns. Secondary ${quantity(vs, "V", 0)} across ${ns} turns. The turns ratio is ${fmt(ratio, 2)}, so this is ${kind}.`;
   }
 
   react([primaryTurns, secondaryTurns, primaryVolts], update);

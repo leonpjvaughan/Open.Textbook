@@ -17,7 +17,14 @@
 // The scaffolding — the surface, its accessible name, the sliders, the live
 // readout, the redraw — comes from `kit.js`. What is left here is the drawing and
 // the sentence, which are the parts that differ from every other figure.
-import { SIZE, label, panel, react, slider } from "./kit.js";
+import {
+  label,
+  panel,
+  quantity,
+  react,
+  slider,
+  SIZE,
+} from "./kit.js";
 
 const G = 9.8; // metres per second squared, downwards
 const SCALE = 12; // pixels per metre
@@ -59,7 +66,7 @@ function velocityArrow(ballY, v) {
   return (
     `<line x1="${BALL_X}" y1="${baseY.toFixed(1)}" x2="${BALL_X}" ` +
     `y2="${(tipY + direction * size).toFixed(1)}" class="${cls}" ` +
-    `fill="none" stroke-width="3"></line>` +
+    `style="fill:none" stroke-width="3"></line>` +
     `<polygon points="${BALL_X},${tipY.toFixed(1)} ` +
     `${BALL_X - size * 0.7},${(tipY + direction * size).toFixed(1)} ` +
     `${BALL_X + size * 0.7},${(tipY + direction * size).toFixed(1)}" ` +
@@ -188,7 +195,7 @@ export function mount(el) {
     const twice =
       earlier > 0.05
         ? ` The ball was at this same height on the way up at t = ` +
-          `${earlier.toFixed(1)} s, so one height gives two times.`
+          `${quantity(earlier, "s", 1)}, so one height gives two times.`
         : "";
 
     const prompt =
@@ -211,14 +218,14 @@ export function mount(el) {
     ]);
     readout.innerHTML =
       `The ball leaves the ground at u = ${u} m/s, and upwards is positive, so ` +
-      `a = ${MINUS}9.8 m/s${SQUARED}. At t = ${t.toFixed(1)} s: ` +
+      `a = ${MINUS}9.8 m/s${SQUARED}. At t = ${quantity(t, "s", 1)}: ` +
       `v = u + a t = ${u} ${MINUS} 9.8 &times; ${t.toFixed(1)} = ` +
       `<strong>${one(v)} m/s</strong>, and ` +
       `s = u t + 0.5 &times; a &times; t${SQUARED} = ${u} &times; ` +
       `${t.toFixed(1)} ${MINUS} 4.9 &times; ${t.toFixed(1)}${SQUARED} = ` +
       `<strong>${one(s)} m</strong>. ${state} ` +
       `The greatest height is <strong>${one(sMax)} m</strong>, reached at ` +
-      `t = ${tTop.toFixed(2)} s, where v = 0 and the formula ` +
+      `t = ${quantity(tTop, "s", 2)}, where v = 0 and the formula ` +
       `v${SQUARED} = u${SQUARED} + 2as gives the height.${twice} ` +
       prompt;
 

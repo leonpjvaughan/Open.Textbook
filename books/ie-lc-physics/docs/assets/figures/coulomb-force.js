@@ -11,7 +11,16 @@
 //
 // The scaffolding — the panel, its accessible name, the sliders, the readout and
 // the redraw — comes from `kit.js`. What is left is the drawing and the sentences.
-import { SIZE, fmt, label, panel, react, scale, slider } from "./kit.js";
+import {
+  fmt,
+  label,
+  panel,
+  quantity,
+  react,
+  scale,
+  slider,
+  SIZE,
+} from "./kit.js";
 
 // The Coulomb constant, in N m^2 C^-2.
 const K = 9.0e9;
@@ -97,10 +106,10 @@ export function mount(el) {
 
     svg.innerHTML = `${axes}${charges}${curve}${marker}`;
 
-    readout.textContent = `F = ${fmt(f, f < 1 ? 3 : 2)} N when the charges are ${fmt(
+    readout.textContent = `F = ${quantity(f, f < 1 ? 3 : 2, "N")} when the charges are ${fmt(
       chargeMicro,
       1,
-    )} \u00b5C each and ${fmt(distance, 2)} m apart. Doubling the separation divides the force by four.`;
+    )} \u00b5C each and ${quantity(distance, "m", 2)} apart. Doubling the separation divides the force by four.`;
   }
 
   react([chargeInput, distanceInput], update);

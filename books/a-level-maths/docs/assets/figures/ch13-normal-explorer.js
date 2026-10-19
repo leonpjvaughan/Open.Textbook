@@ -125,7 +125,7 @@ export function mount(el) {
       })
       .join("");
 
-    svg.innerHTML = shade + `<polyline points="${curve}" fill="none" class="fig-ink"></polyline>` + axis + markers;
+    svg.innerHTML = shade + `<polyline points="${curve}" style="fill:none" class="fig-ink"></polyline>` + axis + markers;
 
     const probability = normalCdf(x, mu, sigma);
     const z = (x - mu) / sigma;

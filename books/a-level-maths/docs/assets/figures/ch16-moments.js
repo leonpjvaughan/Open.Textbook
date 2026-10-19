@@ -28,7 +28,7 @@ function arrow(x1, y1, x2, y2, cls) {
   return (
     `<line x1="${x1.toFixed(1)}" y1="${y1.toFixed(1)}" ` +
     `x2="${x2.toFixed(1)}" y2="${y2.toFixed(1)}" class="${cls}" ` +
-    `fill="none" stroke-width="2"></line>` +
+    `style="fill:none" stroke-width="2"></line>` +
     `<polygon points="${x2.toFixed(1)},${y2.toFixed(1)} ` +
     `${leftX.toFixed(1)},${leftY.toFixed(1)} ${rightX.toFixed(1)},${rightY.toFixed(1)}" ` +
     `class="${cls}"></polygon>`

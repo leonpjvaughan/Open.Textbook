@@ -10,7 +10,16 @@
 //
 // The scaffolding — the panel, its accessible name, the sliders, the readout and
 // the redraw — comes from `kit.js`. What is left is the drawing and the sentences.
-import { SIZE, fmt, label, panel, scale, slider, react } from "./kit.js";
+import {
+  fmt,
+  label,
+  panel,
+  quantity,
+  react,
+  scale,
+  slider,
+  SIZE,
+} from "./kit.js";
 
 // The top of the emf axis, in volts. The largest setting gives 200 turns, a change
 // of 10 mWb and a time of 5 ms, which is 400 V, so 420 V keeps every setting on
@@ -92,9 +101,9 @@ export function mount(el) {
     svg.innerHTML = `${axes}${ticks}${bar}`;
 
     if (emf > Y_MAX) {
-      readout.textContent = `Induced emf = above the top of the scale. ${turns} turns, a change in flux of ${fmt(milliwebers, 1)} mWb in ${fmt(milliseconds, 0)} ms.`;
+      readout.textContent = `Induced emf = above the top of the scale. ${turns} turns, a change in flux of ${quantity(milliwebers, "mWb", 1)} in ${quantity(milliseconds, "ms", 0)}.`;
     } else {
-      readout.textContent = `Induced emf = ${fmt(emf, 1)} V. ${turns} turns, a change in flux of ${fmt(milliwebers, 1)} mWb through one turn, in ${fmt(milliseconds, 0)} ms.`;
+      readout.textContent = `Induced emf = ${quantity(emf, "V", 1)}. ${turns} turns, a change in flux of ${quantity(milliwebers, "mWb", 1)} through one turn, in ${quantity(milliseconds, "ms", 0)}.`;
     }
   }
 

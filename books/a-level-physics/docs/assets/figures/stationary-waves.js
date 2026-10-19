@@ -13,7 +13,14 @@
 // The scaffolding — the surface, its accessible name, the sliders, the live
 // readout and the redraw — comes from `kit.js`. What is left here is the drawing
 // and the sentences, which are the parts that differ from every other figure.
-import { SIZE, label, panel, react, slider } from "./kit.js";
+import {
+  label,
+  panel,
+  quantity,
+  react,
+  slider,
+  SIZE,
+} from "./kit.js";
 
 export function mount(el) {
   const { svg, readout } = panel(el, {
@@ -106,17 +113,17 @@ export function mount(el) {
 
     svg.innerHTML =
       frame +
-      `<polyline points="${envelope.trim()}" class="fig-grid" fill="none" stroke-dasharray="3 3"></polyline>` +
-      `<polyline points="${curve.trim()}" class="fig-accent" fill="none" stroke-width="3"></polyline>` +
+      `<polyline points="${envelope.trim()}" class="fig-grid" style="fill:none" stroke-dasharray="3 3"></polyline>` +
+      `<polyline points="${curve.trim()}" class="fig-accent" style="fill:none" stroke-width="3"></polyline>` +
       nodes +
       antinodes;
 
     const wavelength = (2 * lengthM) / n;
     const frequency = (n * SPEED) / (2 * lengthM);
     readout.innerHTML =
-      `Harmonic ${n}, string ${lengthM.toFixed(2)} m long, wave speed ${SPEED} m/s. ` +
-      `The wavelength is <strong>${wavelength.toFixed(3)} m</strong> and the frequency is ` +
-      `<strong>${frequency.toFixed(0)} Hz</strong>. ` +
+      `Harmonic ${n}, string ${quantity(lengthM, "m", 2)} long, wave speed ${SPEED} m/s. ` +
+      `The wavelength is <strong>${quantity(wavelength, "m", 3)}</strong> and the frequency is ` +
+      `<strong>${quantity(frequency, "Hz", 0)}</strong>. ` +
       `There are ${n + 1} nodes and ${n} antinodes. ` +
       `<em>Drag the phase: which points never move, and why?</em>`;
   }

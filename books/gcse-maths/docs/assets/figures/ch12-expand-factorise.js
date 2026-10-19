@@ -79,7 +79,7 @@ export function mount(el) {
       `<line x1="${x1.toFixed(1)}" y1="${y2.toFixed(1)}" x2="${x3.toFixed(1)}" ` +
       `y2="${y2.toFixed(1)}" class="fig-ink" stroke-width="1.5"></line>` +
       `<rect x="${x1.toFixed(1)}" y="${y1.toFixed(1)}" width="${w.toFixed(1)}" ` +
-      `height="${h.toFixed(1)}" class="fig-accent" fill="none" stroke-width="2.5"></rect>` +
+      `height="${h.toFixed(1)}" class="fig-accent" style="fill:none" stroke-width="2.5"></rect>` +
       text((x1 + x2) / 2, y1 - 10, "x", "accent") +
       text((x2 + x3) / 2, y1 - 10, String(a), "accent") +
       text(x1 - 12, (y1 + y2) / 2 + 5, "x", "accent", "end") +

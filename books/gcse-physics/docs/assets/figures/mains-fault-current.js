@@ -10,7 +10,14 @@
 // The scaffolding — the surface, its accessible name, the toggle, the live
 // readout and the redraw — comes from `kit.js`. What is left here is the drawing
 // and the sentences, which are the parts that differ from every other figure.
-import { SIZE, label, panel, react, toggle } from "./kit.js";
+import {
+  label,
+  panel,
+  quantity,
+  react,
+  toggle,
+  SIZE,
+} from "./kit.js";
 
 export function mount(el) {
   const { svg, readout } = panel(el, {
@@ -47,7 +54,7 @@ export function mount(el) {
     const neutral = on ? 0 : normal;
     const earth = on ? surge : 0;
     const peak = surge;
-    const liveText = on ? `${surge.toFixed(0)} A` : `${normal.toFixed(1)} A`;
+    const liveText = on ? `${quantity(surge, "A", 0)}` : `${quantity(normal, "A", 1)}`;
 
     svg.innerHTML =
       // The supply and the metal case.
@@ -93,20 +100,20 @@ export function mount(el) {
       // The current in each wire, written out.
       `${label({ x: 200, y: 64, text: `${liveText}`, anchor: "middle", size: SIZE.value, class: "text-ink" })}` +
       (on
-        ? `${label({ x: 200, y: 134, text: `${surge.toFixed(0)} A`, anchor: "middle", size: SIZE.value, class: "text-ink" })}`
-        : `${label({ x: 200, y: 204, text: `${normal.toFixed(1)} A`, anchor: "middle", size: SIZE.value, class: "text-ink" })}`);
+        ? `${label({ x: 200, y: 134, text: `${quantity(surge, "A", 0)}`, anchor: "middle", size: SIZE.value, class: "text-ink" })}`
+        : `${label({ x: 200, y: 204, text: `${quantity(normal, "A", 1)}`, anchor: "middle", size: SIZE.value, class: "text-ink" })}`);
 
     if (on) {
       readout.innerHTML =
         `The live wire touches the metal case. The case is joined to the earth wire, ` +
         `so the case stays at <strong>0 V</strong>. The low-resistance path to earth ` +
-        `carries a large current of about <strong>${surge.toFixed(0)} A</strong>. ` +
+        `carries a large current of about <strong>${quantity(surge, "A", 0)}</strong>. ` +
         `The same large current flows through the fuse, so the <strong>13 A fuse melts</strong> ` +
         `and breaks the live wire. ` +
         `<em>Why is the fuse placed in the live wire, and not in the neutral wire?</em>`;
     } else {
       readout.innerHTML =
-        `In normal use the appliance takes <strong>${normal.toFixed(1)} A</strong>. ` +
+        `In normal use the appliance takes <strong>${quantity(normal, "A", 1)}</strong>. ` +
         `The current flows along the live wire, through the heating element, and back ` +
         `along the neutral wire. The earth wire carries <strong>no current</strong>. ` +
         `<em>Now make a fault. Which wire will carry the large current?</em>`;

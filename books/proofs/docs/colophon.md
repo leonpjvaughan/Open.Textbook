@@ -5,14 +5,14 @@
 
 ## What this book is
 
-This is a reference book of proofs. Every page shows why one fact is
-true, in the shortest way a reader can follow rather than the shortest
-way there is. Most of them have something you can move, so the reason
-is visible rather than only readable.
+This is a reference book of proofs. Every page shows why one fact is true, in
+the shortest way a reader can follow rather than the shortest way there is.
+Most of them have something you can move, so the reason is visible rather than
+only readable.
 
-This is not a course. There are no chapters and no questions to
-practise. You can read a proof on its own, or follow a link to it from
-the page that stated the fact.
+This is not a course. There are no chapters and no questions to practise. You
+can read a proof on its own, or follow a link to it from the page that stated
+the fact.
 
 ## Who made it
 

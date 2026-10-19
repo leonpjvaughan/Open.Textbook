@@ -50,7 +50,7 @@ function arrow(dx, dy, cls, width) {
   const by = y2 - size * Math.sin(angle);
   return (
     `<line x1="${CX}" y1="${CY}" x2="${bx.toFixed(1)}" y2="${by.toFixed(1)}" ` +
-    `class="${cls}" fill="none" stroke-width="${width}"></line>` +
+    `class="${cls}" style="fill:none" stroke-width="${width}"></line>` +
     `<polygon points="${x2.toFixed(1)},${y2.toFixed(1)} ` +
     `${(bx - size * Math.sin(angle) * spread).toFixed(1)},` +
     `${(by + size * Math.cos(angle) * spread).toFixed(1)} ` +
@@ -220,7 +220,7 @@ export function mount(el) {
     const moving =
       arrowLength > 3
         ? `<line x1="40" y1="352" x2="${(40 + arrowLength).toFixed(1)}" ` +
-          `y2="352" class="fig-accent" fill="none" stroke-width="2"></line>` +
+          `y2="352" class="fig-accent" style="fill:none" stroke-width="2"></line>` +
           `<polygon points="${(40 + arrowLength + 10).toFixed(1)},352 ` +
           `${(40 + arrowLength).toFixed(1)},347 ${(40 + arrowLength).toFixed(1)},357" ` +
           `class="fig-accent"></polygon>` +

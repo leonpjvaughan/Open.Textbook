@@ -11,7 +11,14 @@
 // The scaffolding — the surface, its accessible name, the slider, the live
 // readout and the redraw — comes from `kit.js`. What is left here is the drawing
 // and the sentence, which are the parts that differ from every other figure.
-import { SIZE, label, panel, react, slider } from "./kit.js";
+import {
+  label,
+  panel,
+  quantity,
+  react,
+  slider,
+  SIZE,
+} from "./kit.js";
 
 export function mount(el) {
   const { svg, readout } = panel(el, {
@@ -83,7 +90,7 @@ export function mount(el) {
 
     readout.innerHTML =
       `Object distance <strong>${u} cm</strong>. The image forms ` +
-      `<strong>${v.toFixed(1)} cm</strong> from the lens, on the other side. ` +
+      `<strong>${quantity(v, "cm", 1)}</strong> from the lens, on the other side. ` +
       `Magnification <strong>${magnification.toFixed(2)}</strong>. ` +
       `The image is <strong>real and inverted</strong>. ` +
       `<em>Move the object closer to the lens. Does the image get bigger or smaller?</em>`;

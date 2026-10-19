@@ -8,7 +8,14 @@
 // The scaffolding — the surface, its accessible name, the slider, the live
 // readout and the redraw — comes from `kit.js`. What is left here is the drawing
 // and the sentence, which are the parts that differ from every other figure.
-import { SIZE, label, panel, react, slider } from "./kit.js";
+import {
+  label,
+  panel,
+  quantity,
+  react,
+  slider,
+  SIZE,
+} from "./kit.js";
 
 export function mount(el) {
   const { svg, readout } = panel(el, {
@@ -67,7 +74,7 @@ export function mount(el) {
     }
     const way = current > 0 ? "outwards, away from the magnet" : "inwards, towards the magnet";
     readout.innerHTML =
-      `Current <strong>${current.toFixed(1)} A</strong>. The force on the coil pushes the ` +
+      `Current <strong>${quantity(current, "A", 1)}</strong>. The force on the coil pushes the ` +
       `cone <strong>${way}</strong>. ` +
       `<em>Now reverse the current. Which way does the cone move?</em>`;
   }

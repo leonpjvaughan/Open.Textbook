@@ -14,7 +14,6 @@
 // Nothing here carries a colour. Every shape uses a `fig-*` class and every word a
 // `text-*` class, so the figure follows the reader's bundle in both schemes.
 import {
-  SIZE,
   arrow,
   circle,
   coord,
@@ -24,10 +23,12 @@ import {
   panel,
   path,
   polygon,
+  quantity,
   react,
   rect,
   sigfig,
   slider,
+  SIZE,
 } from "./kit.js";
 
 const G = 9.8;
@@ -262,8 +263,8 @@ export function mount(el) {
     svg.innerHTML = drawing;
 
     readout.textContent =
-      `The hanging weight is ${fmt(drive, 2)} N and the component of the weight along ` +
-      `the string is ${fmt(hold, 2)} N. The acceleration is ${sigfig(a, 3)} m/s² and ` +
+      `The hanging weight is ${quantity(drive, "N", 2)} and the component of the weight along ` +
+      `the string is ${quantity(hold, "N", 2)}. The acceleration is ${sigfig(a, 3)} m/s² and ` +
       `the tension is ${sigfig(tension, 3)} N.` +
       (balanced
         ? " The two pulls balance closely, so the system hardly moves."

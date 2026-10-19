@@ -39,7 +39,7 @@ export function mount(el) {
     const trough = centre + a * scale;
     svg.innerHTML = `<line x1="40" y1="${centre}" x2="510" y2="${centre}" class="fig-ink" />
       <line x1="40" y1="${centre - 3 * scale}" x2="40" y2="${centre + 3 * scale}" class="fig-grid" />
-      <polyline points="${points.join(' ')}" fill="none" stroke="currentColor" stroke-width="3" class="fig-accent" />
+      <polyline points="${points.join(' ')}" style="fill:none" stroke="currentColor" stroke-width="3" class="fig-accent" />
       <circle cx="157" cy="${peak}" r="5" class="fig-good" />
       <circle cx="391" cy="${trough}" r="5" class="fig-warn" />
       ${label({ x: 35, y: 215, text: "0°", anchor: "start", class: "text-ink" })}${label({ x: 490, y: 215, text: "360°", anchor: "start", class: "text-ink" })}

@@ -35,8 +35,8 @@ export function mount(el) {
       const balance = compound ? start * (1 + rate) ** i : start * (1 + rate * i);
       return [30 + i * (360 / n), 120 - (balance - start) * scale];
     });
-    const line = (pts, cls) => `<polyline points="${pts.map(p => p.join(',')).join(' ')}" fill="none" stroke="currentColor" stroke-width="3" class="${cls}"/>`;
-    svg.innerHTML = `<path d="M30 120 H400 M30 120 V20" fill="none" stroke="currentColor" class="fig-grid"/>` + line(points(false), 'fig-accent') + line(points(true), 'fig-good') + label({ x: 32, y: 18, text: "Blue: simple · Green: compound", anchor: "start", class: "text-ink" });
+    const line = (pts, cls) => `<polyline points="${pts.map(p => p.join(',')).join(' ')}" style="fill:none" stroke="currentColor" stroke-width="3" class="${cls}"/>`;
+    svg.innerHTML = `<path d="M30 120 H400 M30 120 V20" style="fill:none" stroke="currentColor" class="fig-grid"/>` + line(points(false), 'fig-accent') + line(points(true), 'fig-good') + label({ x: 32, y: 18, text: "Blue: simple · Green: compound", anchor: "start", class: "text-ink" });
     const simple = start * (1 + rate * n);
     const compound = start * (1 + rate) ** n;
     readout.textContent = `After ${n} years: simple £${simple.toFixed(2)}; compound £${compound.toFixed(2)}. Why does compound interest grow faster?`;

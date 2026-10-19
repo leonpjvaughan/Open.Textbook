@@ -75,7 +75,7 @@ export function mount(el) {
         d += ` L ${x.toFixed(1)} ${y.toFixed(1)}`;
         if (Math.hypot(x - SX, y - PY) < 12) break;
       }
-      paths.push(`<path d="${d}" class="fig-grid" fill="none" stroke-width="1.2"></path>`);
+      paths.push(`<path d="${d}" class="fig-grid" style="fill:none" stroke-width="1.2"></path>`);
     }
     return paths.join("");
   }
@@ -106,7 +106,7 @@ export function mount(el) {
     const tailX = cx - r * 0.7 * ux;
     const tailY = cy - r * 0.7 * uy;
     const compass = `
-      <circle cx="${cx}" cy="${cy}" r="${r}" class="fig-ink" fill="none" stroke-width="1.5"></circle>
+      <circle cx="${cx}" cy="${cy}" r="${r}" class="fig-ink" style="fill:none" stroke-width="1.5"></circle>
       <line x1="${cx}" y1="${cy}" x2="${tipX}" y2="${tipY}"
             class="fig-accent" stroke-width="3"></line>
       <line x1="${cx}" y1="${cy}" x2="${tailX}" y2="${tailY}"

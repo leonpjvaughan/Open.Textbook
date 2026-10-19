@@ -1,0 +1,55 @@
+# A map of problems and the methods that solve them.
+#
+# This is a **reference work**, not a course, and the declaration below says so
+# rather than leaving a reader to infer it:
+#
+#   * `qualification: Reference` — it belongs to no qualification, so the landing
+#     page files it beside the proof book rather than beside a course.
+#   * `chapters: []` (in `map.yaml`) — there is no syllabus to follow and no
+#     teaching order to respect. A reader arrives with a system, not a lesson.
+#   * `tier_axis: {}` — nothing here is Foundation or Higher.
+#   * `oracles: []` — no problem bank, so nothing to verify. The claims are
+#     sourced in `sources.yaml` instead.
+#
+# **Why it is a book and not a chapter of one.** `books/maths-applied/` is a book
+# about modelling one mechanism, and its rules (a model earns its place by
+# failing; the main thread stands alone) are right for that book and cannot host a
+# lookup. A lookup is entered by symptom, not read front to back. The collection
+# already publishes one reference work; this is the second.
+#
+# The navigation comes from `map.yaml → pages`, because a reference work has no
+# chapters for the scaffold to list. See `Book.pages` in the engine.
+
+id: numerical-methods
+title: Numerical Methods
+qualification: Reference
+subject: Applied Mathematics
+# After the proof book: a reader reaches this one from a page that needs it, and
+# from the shelf second.
+order: 2
+description: >-
+  A map of problems and the methods that solve them. Say how you modelled your
+  system, find the kind of problem it became, and get the techniques that work on
+  it — and the ones that look like they should but do not.
+
+profiles:
+  - id: all
+    name: Read
+    tier_filter: all
+    default: true
+
+# Empty by design, and stated so a reader of this file does not go looking.
+tier_axis: {}
+
+# Nothing here claims a computer checked an answer. The arithmetic in this book is
+# the reader's, and the provenance of every claim is `sources.yaml`.
+oracles: []
+
+# A reference work belongs to no subject, so it takes the bundle's own colour
+# rather than tinting it. `clean` refuses a tint anyway — see tests/test_themes.py.
+theme: {}
+
+# Paths, relative to this directory.
+curriculum: map.yaml
+banks: problems
+sources: sources.yaml

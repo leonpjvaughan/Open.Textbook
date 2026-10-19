@@ -94,7 +94,7 @@ export function mount(el) {
 
     svg.innerHTML =
       axes +
-      `<path d="${path}" fill="none" class="fig-accent" stroke-width="2"></path>` +
+      `<path d="${path}" style="fill:none" class="fig-accent" stroke-width="2"></path>` +
       `<circle cx="${xToPx(h).toFixed(1)}" cy="${yToPx(v).toFixed(1)}" r="4" class="fig-accent"></circle>`;
 
     const inside = k === 1 ? `(x ${signed(-h)})` : `${k}(x ${signed(-h)})`;

@@ -8,7 +8,15 @@
 //
 // The scaffolding — the surface, its accessible name, the two sliders, the live
 // readout, the redraw, the number formatting — comes from `kit.js`.
-import { SIZE, fmt, label, panel, react, slider } from "./kit.js";
+import {
+  fmt,
+  label,
+  panel,
+  quantity,
+  react,
+  slider,
+  SIZE,
+} from "./kit.js";
 
 export function mount(el) {
   const LEFT = 64;
@@ -75,7 +83,7 @@ export function mount(el) {
     const height = BASE - cornerY;
     const areaLabel =
       width > 70 && height > 40
-        ? label({ x: LEFT + width / 2, y: BASE - height / 3, text: `${fmt(distance)} m`, anchor: "middle", size: SIZE.value, class: "text-accent" })
+        ? label({ x: LEFT + width / 2, y: BASE - height / 3, text: `${quantity(distance, "m")}`, anchor: "middle", size: SIZE.value, class: "text-accent" })
         : "";
 
     svg.innerHTML =
@@ -107,7 +115,7 @@ export function mount(el) {
       },
     ]);
     readout.innerHTML =
-      `The velocity rises from <strong>0 m/s</strong> to <strong>${fmt(speed)} m/s</strong> in <strong>${fmt(time)} s</strong>. Gradient = ${fmt(speed)} ÷ ${fmt(time)} = <strong>${fmt(acceleration)} m/s²</strong>, so the acceleration is <strong>${fmt(acceleration)} m/s²</strong>. Area = ½ × ${fmt(time)} × ${fmt(speed)} = <strong>${fmt(distance)} m</strong>, so the distance travelled is <strong>${fmt(distance)} m</strong>.`;
+      `The velocity rises from <strong>0 m/s</strong> to <strong>${quantity(speed, "m")}/s</strong> in <strong>${quantity(time, "s")}</strong>. Gradient = ${fmt(speed)} ÷ ${fmt(time)} = <strong>${quantity(acceleration, "m")}/s²</strong>, so the acceleration is <strong>${quantity(acceleration, "m")}/s²</strong>. Area = ½ × ${fmt(time)} × ${fmt(speed)} = <strong>${quantity(distance, "m")}</strong>, so the distance travelled is <strong>${quantity(distance, "m")}</strong>.`;
   }
 
   react([speedInput, timeInput], update);

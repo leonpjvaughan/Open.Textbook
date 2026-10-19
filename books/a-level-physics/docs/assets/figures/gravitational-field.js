@@ -9,7 +9,14 @@
 // The scaffolding — the surface, its accessible name, the slider, the live
 // readout and the redraw — comes from `kit.js`. What is left here is the drawing
 // and the sentences, which are the parts that differ from every other figure.
-import { SIZE, label, panel, react, slider } from "./kit.js";
+import {
+  label,
+  panel,
+  quantity,
+  react,
+  slider,
+  SIZE,
+} from "./kit.js";
 
 export function mount(el) {
   const { svg, readout } = panel(el, {
@@ -86,14 +93,14 @@ export function mount(el) {
 
     svg.innerHTML =
       axes +
-      `<polyline points="${curve.trim()}" class="fig-accent" fill="none" stroke-width="3"></polyline>` +
+      `<polyline points="${curve.trim()}" class="fig-accent" style="fill:none" stroke-width="3"></polyline>` +
       surface +
       marker;
 
     const ratio = g / G0;
     readout.innerHTML =
       `At ${Number(radius.value).toFixed(1)} megametres from the centre, ` +
-      `g = <strong>${g.toFixed(2)} N kg<sup>-1</sup></strong>. ` +
+      `g = <strong>${quantity(g, "N", 2)} kg<sup>-1</sup></strong>. ` +
       `That is <strong>${ratio.toFixed(3)}</strong> of the surface value. ` +
       `The gravitational potential is <strong>${(V / 1e6).toFixed(1)} MJ kg<sup>-1</sup></strong>. ` +
       `The dashed line is the surface field strength. ` +

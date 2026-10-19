@@ -79,7 +79,7 @@ export function mount(el) {
       `<line x1="${GX}" y1="${GY}" x2="${GX}" y2="${GY - RADIUS}" class="fig-grid" stroke-dasharray="4 4"></line>` +
       `${label({ x: GX + 4, y: GY - RADIUS + 12, text: `n = 0`, anchor: "start", size: SIZE.value, class: "text-ink" })}`;
 
-    const arc = `<path d="${arcPath.trim()}" fill="none" class="fig-ink"></path>`;
+    const arc = `<path d="${arcPath.trim()}" style="fill:none" class="fig-ink"></path>`;
 
     let rays = "";
     let count = 0;

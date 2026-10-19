@@ -147,13 +147,33 @@ ES module by the `suspension-kinematics` package, and copied into the site from
 - **The payload shape is a contract**: `meta`, `sweep.input.values`,
   `sweep.frames[]`, `iterations[]`, `agreement`. Read the shape from
   `HANDOFF.md` in that repository before consuming a key.
-- **`agreement` is evidence, not decoration.** An agreement panel reads it. If a
-  value is missing because the package has not produced it yet, the page carries a
-  `TODO(phase-a):` marker and the panel says what it is waiting for — the panel does
-  **not** print a number a human typed.
+- **`agreement` is evidence, not decoration.** An agreement panel reads it, or says
+  in one sentence where its number comes from and what is not available. What it must
+  never do is print a number a human typed. The package's four exports and one kernel
+  are now vendored under `docs/assets/data/package/`, so there is nothing left to
+  fetch: a panel that needs a value the package does not export says which value and
+  why, in the reader's words, rather than leaving a marker in the page.
 - A figure may solve a small closed-form problem in its own module (two circles
   meeting is arithmetic, not a solver). It may **not** carry a second implementation
   of the general solver, and it may not print iteration data it invented.
+
+**A generated solver is not a second implementation.** `docs/assets/data/package/`
+holds the `suspension-kinematics` package's own exports and one solver it compiled to
+WebAssembly — the same derivation as its Python engine, not a hand copy. A figure may
+import it (`../data/package/double-wishbone/kernel.js`) and solve in the page. Three
+rules:
+
+- **Vendored means unchanged.** Do not edit anything under `package/`; regenerate it
+  from the package and copy the output. `tests/test_maths_applied_data.py` checks the
+  wasm against `provenance.json`, the module's embedded base64 against the same hash,
+  and the geometry module against the YAML beside it.
+- **One import, no fetch.** The binary travels inside `kernel.js` as base64, so a page
+  needs no second request, no MIME type and no network. The `.wasm` file is there for
+  provenance and inspection.
+- **Say which model is speaking.** The kernel solves the three-dimensional mechanism
+  and reports camber with the opposite sign to this book. A figure that uses it says
+  both, as §1.2's does — and a difference between the two models is printed, never
+  tuned away.
 
 ## Snippets: pseudocode, not source
 
@@ -220,3 +240,12 @@ the entry condition: no test, no chapter.
    incomplete: gyroscopic effects are not what keeps a bicycle upright. **Limit test:**
    the model must reproduce the known result that a bicycle with no gyroscopic effect
    can still be self-stable — which is a test of the *explanation*, not of a curve.
+
+**Kinds of question are not a chapter of this book.** A map of problem classes was
+proposed as chapter 0 and rejected: this book's rules (a model earns its place by
+failing; one mechanism; the main thread stands alone) cannot host a lookup, and the
+map is entered by symptom rather than read in order. It is a reference work of its
+own — `books/numerical-methods/`, which records the decision in its `AGENTS.md`.
+The callbacks are not written yet: a section that names a class should link there
+with a root-absolute href, `/numerical-methods/<slug>/`, the way `:::prove` links a
+proof. Until then, a section names the class in words and links the page plainly.

@@ -13,7 +13,19 @@
 //
 // Nothing here carries a colour. Every shape uses a `fig-*` class and every word a
 // `text-*` class, so the figure follows the reader's bundle in both schemes.
-import { SIZE, axes, curve, dots, fmt, label, panel, react, rect, slider } from "./kit.js";
+import {
+  axes,
+  curve,
+  dots,
+  fmt,
+  label,
+  panel,
+  quantity,
+  react,
+  rect,
+  slider,
+  SIZE,
+} from "./kit.js";
 
 const G = 9.8;
 const WALL_X = 15; // m, the wall from the chapter problem
@@ -120,7 +132,7 @@ export function mount(el) {
       drawing += label({
         x: x(WALL_X) + 12,
         y: y(Math.max(0, yWall)) - 10,
-        text: `${fmt(yWall, 2)} m`,
+        text: `${quantity(yWall, "m", 2)}`,
         size: SIZE.tick,
         class: "text-accent",
         anchor: "start",
@@ -140,20 +152,20 @@ export function mount(el) {
     svg.innerHTML = drawing;
 
     const opening =
-      `At ${fmt(u, 1)} m/s and ${fmt(theta, 0)}° the horizontal velocity is ` +
-      `${fmt(ux, 2)} m/s and the vertical velocity is ${fmt(uy, 2)} m/s. `;
+      `At ${quantity(u, "m", 1)}/s and ${fmt(theta, 0)}° the horizontal velocity is ` +
+      `${quantity(ux, "m", 2)}/s and the vertical velocity is ${quantity(uy, "m", 2)}/s. `;
     if (!reaches) {
       readout.textContent =
         `${opening}The ball lands before it reaches the wall, so it does not clear it.`;
     } else if (clears) {
       readout.textContent =
-        `${opening}The ball takes ${fmt(tWall, 3)} s to reach the wall and it is ` +
-        `${fmt(yWall, 2)} m high there. That is above the 3 m wall, so it clears the ` +
-        `wall by ${fmt(yWall - WALL_Y, 2)} m.`;
+        `${opening}The ball takes ${quantity(tWall, "s", 3)} to reach the wall and it is ` +
+        `${quantity(yWall, "m", 2)} high there. That is above the 3 m wall, so it clears the ` +
+        `wall by ${quantity(yWall - WALL_Y, "m", 2)}.`;
     } else {
       readout.textContent =
-        `${opening}The ball takes ${fmt(tWall, 3)} s to reach the wall and it is ` +
-        `${fmt(yWall, 2)} m high there. That is below the 3 m wall, so the ball hits ` +
+        `${opening}The ball takes ${quantity(tWall, "s", 3)} to reach the wall and it is ` +
+        `${quantity(yWall, "m", 2)} high there. That is below the 3 m wall, so the ball hits ` +
         `the wall.`;
     }
   }

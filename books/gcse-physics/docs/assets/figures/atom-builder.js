@@ -80,12 +80,12 @@ export function mount(el) {
         const isProton = index < protons;
         const shape = isProton
           ? `<circle cx="${point.x.toFixed(1)}" cy="${point.y.toFixed(1)}" r="6" class="fig-accent"></circle>`
-          : `<circle cx="${point.x.toFixed(1)}" cy="${point.y.toFixed(1)}" r="6" class="fig-grid" fill="none" stroke-width="2"></circle>`;
+          : `<circle cx="${point.x.toFixed(1)}" cy="${point.y.toFixed(1)}" r="6" class="fig-grid" style="fill:none" stroke-width="2"></circle>`;
         return shape;
       })
       .join("");
 
-    const nucleus = `<circle cx="${CENTRE.x}" cy="${CENTRE.y}" r="14" class="fig-grid" fill="none" stroke-dasharray="2 3"></circle>`;
+    const nucleus = `<circle cx="${CENTRE.x}" cy="${CENTRE.y}" r="14" class="fig-grid" style="fill:none" stroke-dasharray="2 3"></circle>`;
 
     // One shell for the electrons the neutral atom carries.
     const orbitRadius = 74;
@@ -95,18 +95,18 @@ export function mount(el) {
       const x = CENTRE.x + orbitRadius * Math.cos(angle);
       const y = CENTRE.y + orbitRadius * Math.sin(angle);
       electrons.push(
-        `<circle cx="${x.toFixed(1)}" cy="${y.toFixed(1)}" r="7" class="fig-ink" fill="none" stroke-width="2"></circle>` +
+        `<circle cx="${x.toFixed(1)}" cy="${y.toFixed(1)}" r="7" class="fig-ink" style="fill:none" stroke-width="2"></circle>` +
           `${label({ x: x.toFixed(1), y: (y + 3.5).toFixed(1), text: `-`, anchor: "middle", size: SIZE.tick, class: "text-ink" })}`,
       );
     }
-    const orbit = `<circle cx="${CENTRE.x}" cy="${CENTRE.y}" r="${orbitRadius}" class="fig-grid" fill="none" stroke-dasharray="3 3"></circle>`;
+    const orbit = `<circle cx="${CENTRE.x}" cy="${CENTRE.y}" r="${orbitRadius}" class="fig-grid" style="fill:none" stroke-dasharray="3 3"></circle>`;
 
     const legend =
       `<circle cx="286" cy="24" r="6" class="fig-accent"></circle>` +
       `${label({ x: 298, y: 28, text: `proton`, anchor: "start", size: SIZE.tick, class: "text-ink" })}` +
-      `<circle cx="286" cy="48" r="6" class="fig-grid" fill="none" stroke-width="2"></circle>` +
+      `<circle cx="286" cy="48" r="6" class="fig-grid" style="fill:none" stroke-width="2"></circle>` +
       `${label({ x: 298, y: 52, text: `neutron`, anchor: "start", size: SIZE.tick, class: "text-ink" })}` +
-      `<circle cx="286" cy="72" r="6" class="fig-ink" fill="none" stroke-width="2"></circle>` +
+      `<circle cx="286" cy="72" r="6" class="fig-ink" style="fill:none" stroke-width="2"></circle>` +
       `${label({ x: 298, y: 76, text: `electron`, anchor: "start", size: SIZE.tick, class: "text-ink" })}`;
 
     svg.innerHTML = legend + orbit + nucleus + nucleons + electrons.join("");

@@ -98,7 +98,7 @@ export function mount(el) {
 
     svg.innerHTML =
       axes +
-      `<path d="${path}" fill="none" class="fig-accent" stroke-width="2"></path>` +
+      `<path d="${path}" style="fill:none" class="fig-accent" stroke-width="2"></path>` +
       marker;
 
     const bracket =

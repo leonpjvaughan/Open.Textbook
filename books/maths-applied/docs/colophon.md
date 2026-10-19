@@ -29,11 +29,15 @@ Vaughan, who wrote and assembled it.
 This book follows no syllabus, and it is not tied to a country's
 curriculum.
 
-The mathematics is standard, the geometry is illustrative rather than measured, and every number in a figure is computed by the model the page describes.
+The mathematics is standard, the geometry is illustrative rather than
+measured, and every number in a figure is computed by the model the page
+describes.
 
 The claims in this book rest on these documents:
 
 - [SAE J670: Vehicle Dynamics Terminology](https://www.sae.org/standards/content/j670_202208/)
+- [A.d.Tramontana front suspension (cutaway display, Wikimedia Commons)](https://commons.wikimedia.org/wiki/File:A.d.Tramontana_Front_Suspension.jpg)
+- [suspension-kinematics — the model, its exports and a generated solver](https://github.com/leonpjvaughan/suspension-kinematics)
 
 These sources were last checked on 2026-10-18.
 

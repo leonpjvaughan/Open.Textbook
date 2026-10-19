@@ -87,7 +87,7 @@ export function mount(el) {
 
     const circle =
       `<circle cx="${xToPx(a).toFixed(1)}" cy="${yToPx(b).toFixed(1)}" r="${(r * SCALE).toFixed(1)}" ` +
-      `fill="none" class="fig-accent" stroke-width="2"></circle>` +
+      `style="fill:none" class="fig-accent" stroke-width="2"></circle>` +
       `<circle cx="${xToPx(a).toFixed(1)}" cy="${yToPx(b).toFixed(1)}" r="3" class="fig-accent"></circle>`;
 
     // The fixed line x + y = 19, clipped to the view.

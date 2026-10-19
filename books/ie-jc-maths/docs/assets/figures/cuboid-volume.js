@@ -10,7 +10,16 @@
 //
 // The dimensions are labelled on the drawing as well as in the readout, so the reader
 // can see which length is which without matching colours.
-import { SIZE, camera3d, fmt, label, panel, react, slider } from "./kit.js";
+import {
+  camera3d,
+  fmt,
+  label,
+  panel,
+  quantity,
+  react,
+  slider,
+  SIZE,
+} from "./kit.js";
 
 export function mount(el) {
   const { svg, readout, claim } = panel(el, {
@@ -66,11 +75,11 @@ export function mount(el) {
       return { x: (p.x + q.x) / 2, y: (p.y + q.y) / 2 };
     };
     const lengthAt = mid(3, 2);
-    drawing += label({ x: lengthAt.x, y: lengthAt.y + 20, text: `${fmt(L)} cm`, size: SIZE.tick, class: "text-accent" });
+    drawing += label({ x: lengthAt.x, y: lengthAt.y + 20, text: `${quantity(L, "cm")}`, size: SIZE.tick, class: "text-accent" });
     const widthAt = mid(0, 3);
-    drawing += label({ x: widthAt.x - 6, y: widthAt.y + 16, text: `${fmt(W)} cm`, size: SIZE.tick, class: "text-accent", anchor: "end" });
+    drawing += label({ x: widthAt.x - 6, y: widthAt.y + 16, text: `${quantity(W, "cm")}`, size: SIZE.tick, class: "text-accent", anchor: "end" });
     const heightAt = mid(0, 4);
-    drawing += label({ x: heightAt.x - 8, y: heightAt.y + 5, text: `${fmt(H)} cm`, size: SIZE.tick, class: "text-accent", anchor: "end" });
+    drawing += label({ x: heightAt.x - 8, y: heightAt.y + 5, text: `${quantity(H, "cm")}`, size: SIZE.tick, class: "text-accent", anchor: "end" });
 
     const volume = L * W * H;
     const surface = 2 * (L * W + L * H + W * H);
@@ -78,7 +87,7 @@ export function mount(el) {
     // its height, so a cuboid is `L × W` squares stacked `H` deep.
     const layers = L * W;
     readout.textContent =
-      `${fmt(L)} cm by ${fmt(W)} cm by ${fmt(H)} cm. Volume = ${fmt(L)} × ${fmt(W)} × ${fmt(H)} = ${fmt(volume)} cm³, ` +
+      `${quantity(L, "cm")} by ${quantity(W, "cm")} by ${quantity(H, "cm")}. Volume = ${fmt(L)} × ${fmt(W)} × ${fmt(H)} = ${fmt(volume)} cm³, ` +
       `which is ${fmt(layers)} one-centimetre cubes in each layer and ${fmt(H)} layers. ` +
       `Surface area = 2(${fmt(L * W)} + ${fmt(L * H)} + ${fmt(W * H)}) = ${fmt(surface)} cm².`;
 

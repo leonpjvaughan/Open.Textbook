@@ -12,7 +12,14 @@
 // The scaffolding — the surface, its accessible name, the sliders, the live
 // readout, the redraw — comes from `kit.js`. What is left here is the drawing and
 // the sentence, which are the parts that differ from every other figure.
-import { SIZE, label, panel, react, slider } from "./kit.js";
+import {
+  label,
+  panel,
+  quantity,
+  react,
+  slider,
+  SIZE,
+} from "./kit.js";
 
 const LEFT = 60;
 const RIGHT = 440;
@@ -113,7 +120,7 @@ export function mount(el) {
       `u = ${u} m/s, a = ${a} m/s squared, T = ${T} s. ` +
       `The line is ${rising}, so the acceleration is ${a} m/s squared, the ` +
       `gradient. The final velocity is v = u + aT = ${v} m/s. ` +
-      `The signed area is the displacement: ${displacement.toFixed(1)} m.` +
+      `The signed area is the displacement: ${quantity(displacement, "m", 1)}.` +
       (crossing
         ? " The line crosses the time axis, so part of the area is negative."
         : "");

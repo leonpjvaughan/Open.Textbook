@@ -24,7 +24,7 @@ function arrow(x1, y1, x2, y2, cls) {
   return (
     `<line x1="${x1.toFixed(1)}" y1="${y1.toFixed(1)}" ` +
     `x2="${x2.toFixed(1)}" y2="${y2.toFixed(1)}" class="${cls}" ` +
-    `fill="none" stroke-width="2"></line>` +
+    `style="fill:none" stroke-width="2"></line>` +
     `<polygon points="${x2.toFixed(1)},${y2.toFixed(1)} ` +
     `${leftX.toFixed(1)},${leftY.toFixed(1)} ${rightX.toFixed(1)},${rightY.toFixed(1)}" ` +
     `class="${cls}"></polygon>`
@@ -77,7 +77,7 @@ export function mount(el) {
 
     const box =
       `<rect x="${blockX}" y="${blockY}" width="${blockW}" height="${blockH}" ` +
-      `class="fig-ink" fill="none" stroke-width="2"></rect>`;
+      `class="fig-ink" style="fill:none" stroke-width="2"></rect>`;
     const floor =
       `<line x1="30" y1="${floorY}" x2="450" y2="${floorY}" class="fig-ink" stroke-width="2"></line>`;
 

@@ -79,7 +79,7 @@ export function mount(el) {
             })
             .join("");
           return (
-            `<circle cx="${CX}" cy="${CY}" r="${R}" class="fig-good" fill="none" stroke-width="2.6"></circle>` +
+            `<circle cx="${CX}" cy="${CY}" r="${R}" class="fig-good" style="fill:none" stroke-width="2.6"></circle>` +
             ticks +
             label({
               x: CX,

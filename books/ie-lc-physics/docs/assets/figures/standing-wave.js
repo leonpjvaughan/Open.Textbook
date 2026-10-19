@@ -10,7 +10,20 @@
 //
 // Nothing here carries a colour. Every shape uses a fig-* class and every word a
 // text-* class, so the figure follows the reader's theme in both schemes.
-import { SIZE, axes, curve, dots, fmt, label, line, panel, react, sigfig, slider } from "./kit.js";
+import {
+  axes,
+  curve,
+  dots,
+  fmt,
+  label,
+  line,
+  panel,
+  quantity,
+  react,
+  sigfig,
+  slider,
+  SIZE,
+} from "./kit.js";
 
 // The speed of the wave on the page's guitar string, in metres per second.
 const SPEED = 255;
@@ -99,7 +112,7 @@ export function mount(el) {
 
     // Half a wavelength lies between neighbouring nodes, drawn along the axis.
     drawing += line({ x1: x(0), y1: y(0), x2: x(L / n), y2: y(0), class: "fig-warn", width: 2.4 });
-    drawing += label({ x: x(L / (2 * n)), y: y(0) - 10, text: `λ/2 = ${fmt(L / n)} m`, size: SIZE.tick, class: "text-warn" });
+    drawing += label({ x: x(L / (2 * n)), y: y(0) - 10, text: `λ/2 = ${quantity(L / n, "m")}`, size: SIZE.tick, class: "text-warn" });
 
     // Name the first node and antinode, so the dots have a meaning.
     if (n >= 2) {
@@ -108,7 +121,7 @@ export function mount(el) {
     drawing += label({ x: x(L / (2 * n)), y: y(1) - 12, text: "antinode", size: SIZE.tick, class: "text-warn" });
 
     // The two numbers the section is about.
-    drawing += label({ x: box.x0, y: 24, text: `λ = 2L/n = ${fmt(lambda)} m`, size: SIZE.value, class: "text-accent", anchor: "start" });
+    drawing += label({ x: box.x0, y: 24, text: `λ = 2L/n = ${quantity(lambda, "m")}`, size: SIZE.value, class: "text-accent", anchor: "start" });
     drawing += label({ x: box.x1, y: 24, text: `f = v/λ = ${sigfig(frequency, 3)} Hz`, size: SIZE.value, class: "text-accent", anchor: "end" });
 
     svg.innerHTML = drawing;
@@ -118,8 +131,8 @@ export function mount(el) {
         ? `This is the fundamental.`
         : `This is harmonic n = ${n}, a whole-number multiple of the fundamental.`;
     readout.textContent =
-      `The string is ${fmt(L)} m long and fixed at both ends. ` +
-      `Harmonic n = ${n} fits ${n} half-wavelength${n === 1 ? "" : "s"} on the string, so λ = 2L/n = ${fmt(lambda)} m. ` +
+      `The string is ${quantity(L, "m")} long and fixed at both ends. ` +
+      `Harmonic n = ${n} fits ${n} half-wavelength${n === 1 ? "" : "s"} on the string, so λ = 2L/n = ${quantity(lambda, "m")}. ` +
       `The wave travels at ${SPEED} m/s, so f = v/λ = ${sigfig(frequency, 3)} Hz. ` +
       `The fundamental frequency is ${sigfig(fundamental, 3)} Hz. ${relation}`;
   }

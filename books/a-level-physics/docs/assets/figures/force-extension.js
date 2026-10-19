@@ -14,7 +14,14 @@
 // The scaffolding — the surface, its accessible name, the sliders, the live
 // readout and the redraw — comes from `kit.js`. What is left here is the drawing
 // and the sentences, which are the parts that differ from every other figure.
-import { SIZE, label, panel, react, slider } from "./kit.js";
+import {
+  label,
+  panel,
+  quantity,
+  react,
+  slider,
+  SIZE,
+} from "./kit.js";
 
 export function mount(el) {
   const { svg, readout } = panel(el, {
@@ -99,9 +106,9 @@ export function mount(el) {
     const energy = 0.5 * f * x;
     readout.innerHTML =
       `Force <strong>${f} N</strong>, stiffness <strong>${k} N/m</strong>. ` +
-      `The extension is <strong>${x.toFixed(3)} m</strong>. ` +
+      `The extension is <strong>${quantity(x, "m", 3)}</strong>. ` +
       `The gradient of the line is the spring constant, and the shaded area is the energy stored, ` +
-      `<strong>${energy.toFixed(2)} J</strong>. ` +
+      `<strong>${quantity(energy, "J", 2)}</strong>. ` +
       `<em>Double the force on the same spring: by what factor does the shaded area grow?</em>`;
   }
 

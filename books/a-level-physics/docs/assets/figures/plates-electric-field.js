@@ -12,7 +12,14 @@
 // The scaffolding — the surface, its accessible name, the sliders, the live
 // readout and the redraw — comes from `kit.js`. What is left here is the drawing
 // and the sentences, which are the parts that differ from every other figure.
-import { SIZE, label, panel, react, slider } from "./kit.js";
+import {
+  label,
+  panel,
+  quantity,
+  react,
+  slider,
+  SIZE,
+} from "./kit.js";
 
 export function mount(el) {
   const { svg, readout } = panel(el, {
@@ -81,12 +88,12 @@ export function mount(el) {
       `${label({ x: ionX, y: ionY + 4, text: `+`, anchor: "middle", size: SIZE.value, class: "text-ink" })}` +
       `<line x1="${ionX + 12}" y1="${ionY}" x2="${ionX + 70}" y2="${ionY}" class="fig-good" stroke-width="2"></line>` +
       `<polygon points="${ionX + 70},${ionY - 5} ${ionX + 70},${ionY + 5} ${ionX + 80},${ionY}" class="fig-good"></polygon>` +
-      `${label({ x: LEFT + 30, y: BOTTOM + 28, text: `gap ${Number(gap.value).toFixed(1)} mm`, anchor: "start", size: SIZE.heading, class: "text-ink" })}`;
+      `${label({ x: LEFT + 30, y: BOTTOM + 28, text: `gap ${quantity(Number(gap.value), "mm", 1)}`, anchor: "start", size: SIZE.heading, class: "text-ink" })}`;
 
     svg.innerHTML = drawing;
 
     readout.innerHTML =
-      `With ${V} V across ${Number(gap.value).toFixed(1)} mm, ` +
+      `With ${V} V across ${quantity(Number(gap.value), "mm", 1)}, ` +
       `E = <strong>${(E / 1000).toFixed(0)} kV m<sup>-1</sup></strong>. ` +
       `The force on one xenon ion is <strong>${F.toExponential(2)} N</strong>. ` +
       `The ion gains <strong>${V} eV</strong> = ` +

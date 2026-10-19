@@ -31,7 +31,7 @@ export function mount(el) {
       <line x1="${x(q3)}" y1="55" x2="475" y2="55" class="fig-accent" />
       <line x1="${x(12)}" y1="35" x2="${x(12)}" y2="75" class="fig-ink" />
       <line x1="${x(42)}" y1="35" x2="${x(42)}" y2="75" class="fig-ink" />
-      <rect x="${x(q1)}" y="35" width="${x(q3) - x(q1)}" height="40" fill="none" stroke="currentColor" stroke-width="3" class="fig-accent" />
+      <rect x="${x(q1)}" y="35" width="${x(q3) - x(q1)}" height="40" style="fill:none" stroke="currentColor" stroke-width="3" class="fig-accent" />
       <line x1="270" y1="35" x2="270" y2="75" class="fig-warn" stroke-width="3" />
       ${label({ x: x(12), y: 120, text: "12", anchor: "middle", class: "text-ink" })}
       ${label({ x: x(q1), y: 120, text: "17.5", anchor: "middle", class: "text-ink" })}

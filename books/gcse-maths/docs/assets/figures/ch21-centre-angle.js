@@ -31,7 +31,7 @@ export function mount(el) {
     const x1 = 180 - 88 * Math.sin(a * rad);
     const x2 = 180 + 88 * Math.sin(a * rad);
     const y = 118 - 88 * Math.cos(a * rad);
-    svg.innerHTML = `<circle cx="180" cy="118" r="88" fill="none" class="fig-ink" stroke="currentColor" stroke-width="2" />
+    svg.innerHTML = `<circle cx="180" cy="118" r="88" style="fill:none" class="fig-ink" stroke="currentColor" stroke-width="2" />
       <circle cx="180" cy="118" r="4" class="fig-warn" />
       <circle cx="${x1.toFixed(1)}" cy="${y.toFixed(1)}" r="4" class="fig-accent" />
       <circle cx="${x2.toFixed(1)}" cy="${y.toFixed(1)}" r="4" class="fig-accent" />

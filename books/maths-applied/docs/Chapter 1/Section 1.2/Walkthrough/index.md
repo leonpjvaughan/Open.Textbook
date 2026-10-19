@@ -83,6 +83,11 @@ Both answers are real solutions of the same two equations. They are two differen
 assemblies of the same parts, and only one of them is a car. Which one you keep is
 a modelling decision, not a mathematical one, and §1.2's depth page is about it.
 
+Two answers from one rule is the signature of this kind of problem, and the start
+decides which one you land in.
+
+:::class root
+
 ## Camber, from the pose
 
 The wheel plane is fixed in the upright, so the wheel's angle is the upright's
@@ -104,46 +109,63 @@ and the readout gives the number.
 
 | Wheel travel | Lower arm turns | Camber | Instant centre | Roll centre |
 |---|---|---|---|---|
-| −40 mm | −5.3° | −2.36° | 1.04 m inboard, 0.30 m up | 102 mm |
-| −20 mm | −2.7° | −1.71° | 0.92 m inboard, 0.23 m up | 91 mm |
-| 0 mm | 0.0° | −1.00° | 0.81 m inboard, 0.17 m up | 82 mm |
-| +20 mm | 2.7° | −0.24° | 0.70 m inboard, 0.12 m up | 72 mm |
-| +40 mm | 5.3° | +0.58° | 0.59 m inboard, 0.08 m up | 64 mm |
+| −40 mm | −5.4° | −1.87° | 2.21 m inboard, 0.42 m up | 78 mm |
+| −20 mm | −2.7° | −1.46° | 1.88 m inboard, 0.28 m up | 67 mm |
+| 0 mm | 0.0° | −1.00° | 1.60 m inboard, 0.18 m up | 57 mm |
+| +20 mm | 2.7° | −0.49° | 1.36 m inboard, 0.10 m up | 47 mm |
+| +40 mm | 5.4° | +0.08° | 1.15 m inboard, 0.04 m up | 38 mm |
 
 Three numbers matter for the chapter's question:
 
-- camber moves **2.94°** from one end of the travel to the other;
-- that is **0.037° per millimetre**, so 40 mm of bump is worth about 1.6°;
-- the track narrows by **6.0 mm** at the bump end, and widens a little in droop.
+- camber moves **1.95°** from one end of the travel to the other;
+- that is **0.024° per millimetre**, so 40 mm of bump is worth about 0.98°;
+- the track narrows by **9.7 mm** at the bump end, and widens a little in droop.
 
 The **instant centre** is where the two arm axes would meet if they carried on
-past the wheel. It is 1.57 m from the hub, which is why the drawing has to say
+past the wheel. It is 2.36 m from the hub, which is why the drawing has to say
 "to the instant centre" rather than showing it. The **roll centre** is where the
 line from the contact patch through that point crosses the middle of the car: it
-is 82 mm above the ground at rest, and it moves down as the wheel rises.
+is 57 mm above the ground at rest, and it moves down as the wheel rises.
 
 ## The agreement panel
 
-Every section after this one ends with a panel of numbers. This one has two
-solvers rather than two models: the two-circle construction above, and the general
-Newton iteration that §1.3 meets.
+Every section after this one ends with a panel of numbers. This one has three
+routes to the same answer: the two-circle construction above, the general Newton
+iteration that §1.3 meets, and the package's compiled kernel.
 
 | Check | Value |
 |---|---|
-| Camber over the whole travel, closed form | −2.36° to +0.58° |
-| Camber over the whole travel, from the general solver | waiting on its export, below |
-| Largest difference between the two, over the sweep | waiting on its export, below |
+| Camber over the whole travel, from the construction above | −1.87° to +0.08° |
+| Camber from the generated kernel in three dimensions | within **0.088°** of the construction, over the range in the figure above |
+| The package's own two routes, `agreement.max_abs_diff` | **2 × 10⁻¹³** |
 
-```text
-TODO(phase-a): replace this row with `agreement.max_abs_diff` from
-examples/double-wishbone/out.js, which the solver package asserts is below 1e-9
-and reports as about 1e-14. The panel must read the exported object, not a number
-typed here.
-```
+The last row is read from the vendored `out.js`, not typed here; the middle one is
+what the figure above computes in the page. The closed form is the fast path and the
+independent check at once: it gets the answer without a solver, so it can be used to
+test one. Two routes to one number is evidence; one route is a claim.
 
-The closed form is the fast path and the independent check at once: it gets the
-answer without the solver, so it can be used to test the solver. Two routes to one
-number is evidence; one route is a claim.
+## The same corner, solved in three dimensions
+
+This section's model is a front view. The package the chapter's numbers come from,
+`suspension-kinematics`, solves the full mechanism instead: three bodies, twenty-one
+equations, Newton at every step. Its derivation also generates a **solver compiled to
+WebAssembly**, and that solver ships with this page — vendored under
+`docs/assets/data/package/`, with the package's own exported sweeps beside it and a
+record of the hashes.
+
+Given the geometry above, it solves the same linkage in three dimensions. What comes
+out is a second answer to the chapter's question, and the gap between the two answers
+is what the front view costs.
+
+:::figure kernel-camber
+
+The kernel reports camber with the opposite sign to this book, so the figure flips it
+and says so. Nothing else is adjusted: the same geometry goes in and the same range
+of travel is covered.
+
+The gap is inside a tenth of a degree, which is the budget the chapter set. That is
+the argument for the small model stated as a number rather than as a preference: the
+front view is wrong by less than the accuracy anyone asked for.
 
 ## Pseudocode, and the file it comes from
 
@@ -185,7 +207,7 @@ where the branch changes. A curve with a jump in it is a solver finding a
 different assembly, not a wheel doing something surprising.
 
 A related trap: the two arms are nearly horizontal, so their axes meet a long way
-away from the wheel — 1.57 m here. If a drawing shows the instant centre inside
+away from the wheel — 2.36 m here. If a drawing shows the instant centre inside
 the wheel, it is not drawn to the same scale in both directions, and every angle
 in it is wrong.
 

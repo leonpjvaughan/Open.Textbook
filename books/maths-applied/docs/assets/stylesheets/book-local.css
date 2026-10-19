@@ -5,3 +5,14 @@
  * for components that are genuinely specific to this book, and keep it
  * small — a book should be recognisable, not a different design system.
  */
+
+/* The photograph above the chapter. A portrait image at full content width pushed
+   the rest of the page a screen and a half down, so it is bounded to a width a
+   reader can take in at once and centred. */
+.corner-photo {
+  display: block;
+  max-width: min(100%, 22rem);
+  height: auto;
+  margin: 1rem auto 0.6rem;
+  border-radius: 4px;
+}

@@ -75,14 +75,14 @@ export function mount(el) {
     const y = 90 - x;
 
     svg.innerHTML = `
-      <circle cx="${CX}" cy="${CY}" r="${R}" fill="none" stroke-width="2" class="fig-ink"></circle>
+      <circle cx="${CX}" cy="${CY}" r="${R}" style="fill:none" stroke-width="2" class="fig-ink"></circle>
       <line x1="${A.x}" y1="${A.y}" x2="${B.x}" y2="${B.y}" stroke-width="2" class="fig-ink"></line>
       <line x1="${A.x}" y1="${A.y}" x2="${P.x.toFixed(1)}" y2="${P.y.toFixed(1)}" stroke-width="2" class="fig-accent"></line>
       <line x1="${B.x}" y1="${B.y}" x2="${P.x.toFixed(1)}" y2="${P.y.toFixed(1)}" stroke-width="2" class="fig-accent"></line>
       <line x1="${O.x}" y1="${O.y}" x2="${P.x.toFixed(1)}" y2="${P.y.toFixed(1)}"
             stroke-width="2" stroke-dasharray="5 4" class="fig-grid"></line>
       <circle cx="${P.x.toFixed(1)}" cy="${P.y.toFixed(1)}" r="4.5" class="fig-warn"></circle>
-      <path d="${corner}" fill="none" stroke-width="2" class="fig-good"></path>
+      <path d="${corner}" style="fill:none" stroke-width="2" class="fig-good"></path>
       ${text(A.x - 14, A.y + 18, "A")}
       ${text(B.x + 14, B.y + 18, "B")}
       ${text(O.x, O.y + 18, "O")}

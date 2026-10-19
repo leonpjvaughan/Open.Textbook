@@ -10,7 +10,14 @@
 // The scaffolding — the surface, its accessible name, the slider, the live
 // readout and the redraw — comes from `kit.js`. What is left here is the drawing
 // and the sentences, which are the parts that differ from every other figure.
-import { SIZE, label, panel, react, slider } from "./kit.js";
+import {
+  label,
+  panel,
+  quantity,
+  react,
+  slider,
+  SIZE,
+} from "./kit.js";
 
 export function mount(el) {
   const { svg, readout, claim } = panel(el, {
@@ -77,7 +84,7 @@ export function mount(el) {
     readout.innerHTML =
       `The change in momentum is fixed: ${MASS} kg &times; ${SPEED} m/s = ` +
       `<strong>${Math.round(MOMENTUM_CHANGE)} kg m/s</strong>. ` +
-      `Over a collision time of ${time.toFixed(2)} s, the force is ` +
+      `Over a collision time of ${quantity(time, "s", 2)}, the force is ` +
       `${Math.round(MOMENTUM_CHANGE)} &divide; ${time.toFixed(2)} = ` +
       `<strong>${Math.round(force)} N</strong>. ` +
       `<em>Double the collision time. What happens to the force? Why can the momentum change stay the same?</em>`;

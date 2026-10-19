@@ -152,7 +152,7 @@ export function mount(el) {
     for (const start of starts) {
       const points = traceLine(poles, start);
       if (points.length < 3) continue;
-      lines += `<path d="${pathFrom(points)}" fill="none" class="fig-accent" stroke-width="1.3" marker-end="url(#bar-magnet-arrow)"></path>`;
+      lines += `<path d="${pathFrom(points)}" style="fill:none" class="fig-accent" stroke-width="1.3" marker-end="url(#bar-magnet-arrow)"></path>`;
     }
 
     let bodies = "";

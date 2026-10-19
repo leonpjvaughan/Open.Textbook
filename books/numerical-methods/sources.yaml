@@ -1,0 +1,170 @@
+# Provenance for Numerical Methods.
+#
+# Three different claims live here, and they are not the same claim:
+#
+#   * **The classification.** Elliptic, parabolic and hyperbolic are standard, and
+#     the signature of each — propagation speed, smoothing, memory — is stated in
+#     the textbooks below rather than invented here. The one page that argues
+#     something less common is `elliptic`, which says the class is a choice made
+#     when the model is written down; that rests on the relativity literature.
+#   * **The techniques.** Every method named in the tables is a textbook method,
+#     and the cost and the failure stated beside it are the textbook's, not a
+#     measurement made here. Nothing in this book claims a benchmark.
+#   * **Everything else is further reading.** A `role` says which is which,
+#     because "we read this" and "read this next" are different statements.
+#
+# `attribution: true` marks the references a reader is entitled to see linked from
+# the About page: the ones a claim in this book actually rests on. A reference
+# without it is further reading, and is listed here for a reader rather than
+# claimed as a citation. Every `url` below was resolved and its title checked
+# against Crossref on 2026-10-18, rather than written from memory — two of the
+# twenty candidate links turned out to point at different books.
+#
+# What this book does not do: it does not rest on a syllabus, and it does not
+# claim that any technique is the best one in general. The map is a map, not a
+# league table.
+
+retrieved: 2026-10-18
+
+note: >-
+  The mathematics is standard numerical analysis. Where a claim is contested, or
+  where a technique's reputation is better than its record, the page says so and
+  the source for the doubt is the reference below. A reader who needs the
+  derivation follows the reference rather than expecting it here.
+
+references:
+  # --- the classes --------------------------------------------------------------
+  - id: leveque
+    attribution: true
+    title: Finite Difference Methods for Ordinary and Partial Differential Equations
+    url: https://doi.org/10.1137/1.9780898717839
+    ref: "Randall J. LeVeque, SIAM, 2007"
+    role: >-
+      The three classes of partial differential equation, the method of lines, and
+      the stability and convergence arguments behind the upwind and CFL pages.
+
+  - id: baumgarte
+    title: "Numerical Relativity: Solving Einstein's Equations on the Computer"
+    ref: "Thomas W. Baumgarte and Stuart L. Shapiro, Cambridge University Press, 2010"
+    role: >-
+      The worked case of a class being a *choice*: the same physics, posed with
+      elliptic gauge conditions, produces a problem that cannot be evolved. Also
+      the source for free evolution against constrained evolution, which is the
+      same decision as projection in a fluid solver. Print reference; no stable
+      link was verified for it, so it is not linked from the About page.
+
+  - id: ferziger
+    attribution: true
+    title: Computational Methods for Fluid Dynamics
+    url: https://doi.org/10.1007/978-3-642-56026-2
+    ref: "Joel H. Ferziger and Milovan Perić, Springer, 3rd edition, 2002"
+    role: >-
+      The saddle-point structure of incompressible flow, the pressure equation, and
+      why the projection method is a way of paying a constraint rather than solving
+      a differential equation. Also artificial compressibility, which replaces the
+      constraint with a stiff pressure evolution and changes the class — the second
+      case on the `choosing-the-class` page.
+
+  # --- the techniques -----------------------------------------------------------
+  - id: trefethen
+    attribution: true
+    title: Numerical Linear Algebra
+    url: https://doi.org/10.1137/1.9780898719574
+    ref: "Lloyd N. Trefethen and David Bau III, SIAM, 1997"
+    role: >-
+      QR, the QR algorithm, Krylov subspaces and why an iterative method can beat a
+      direct one. The eigenvalue page rests on this.
+
+  - id: saad
+    attribution: true
+    title: Iterative Methods for Sparse Linear Systems
+    url: https://doi.org/10.1137/1.9780898718003
+    ref: "Yousef Saad, SIAM, 2nd edition, 2003"
+    role: >-
+      GMRES, conjugate gradients, and preconditioning. Where a page says a method
+      needs a preconditioner to be usable, this is the argument.
+
+  - id: briggs
+    attribution: true
+    title: A Multigrid Tutorial
+    url: https://doi.org/10.1137/1.9780898719505
+    ref: "William L. Briggs, Van Emden Henson and Steve F. McCormick, SIAM, 2nd edition, 2000"
+    role: >-
+      Why multigrid is close to linear in the number of unknowns, and why it works
+      only when the class is elliptic.
+
+  - id: benzi
+    attribution: true
+    title: Numerical solution of saddle point problems
+    url: https://doi.org/10.1017/S0962492904000212
+    ref: "Michele Benzi, Gene H. Golub and Jörg Liesen, Acta Numerica 14, 2005"
+    role: >-
+      The indefinite block structure, the Schur complement, and why the obvious
+      iterative method on a saddle-point system stalls. The saddle-point page.
+
+  - id: hairer-wanner
+    attribution: true
+    title: "Solving Ordinary Differential Equations II: Stiff and Differential-Algebraic Problems"
+    url: https://doi.org/10.1007/978-3-642-05221-7
+    ref: "Ernst Hairer and Gerhard Wanner, Springer, 2nd edition, 1996"
+    role: >-
+      Stiffness, BDF and Radau methods, and differential-algebraic systems. The
+      parabolic page and the `stiff` flag.
+
+  - id: hairer-lubich
+    attribution: true
+    title: Geometric Numerical Integration
+    url: https://doi.org/10.1007/3-540-30666-8
+    ref: "Ernst Hairer, Christian Lubich and Gerhard Wanner, Springer, 2nd edition, 2006"
+    role: >-
+      Why a method that respects the structure of a problem keeps an answer a
+      general-purpose method loses. Referred to from the hyperbolic page only;
+      symplectic integration is not a class of its own here.
+
+  - id: nocedal
+    attribution: true
+    title: Numerical Optimization
+    url: https://doi.org/10.1007/978-0-387-40065-5
+    ref: "Jorge Nocedal and Stephen J. Wright, Springer, 2nd edition, 2006"
+    role: >-
+      Newton, quasi-Newton, Gauss–Newton and Levenberg–Marquardt, with the
+      conditions under which each is the right choice. The optimisation page and
+      the root-finding page.
+
+  - id: boyd
+    attribution: true
+    title: Convex Optimization
+    url: https://doi.org/10.1017/CBO9780511804441
+    ref: "Stephen Boyd and Lieven Vandenberghe, Cambridge University Press, 2004"
+    role: >-
+      The distinction that changes the answer: a convex problem has one bottom, and
+      a method that finds a local one has found the answer. Also duality, which is
+      where a constraint turns into a saddle point.
+
+  - id: robert-casella
+    attribution: true
+    title: Monte Carlo Statistical Methods
+    url: https://doi.org/10.1007/978-1-4757-4145-2
+    ref: "Christian P. Robert and George Casella, Springer, 2nd edition, 2004"
+    role: >-
+      The averaging page: what a Monte Carlo estimate converges to, why an
+      independent sample is not the same as a Markov chain sample, and what the
+      error bar means.
+
+  - id: roache
+    title: Verification and Validation in Computational Science and Engineering
+    ref: "Patrick J. Roache, Hermosa, 1998"
+    role: >-
+      The difference between a converged answer and a correct one. The symptoms
+      page leans on this: most of the failures it lists are discretisation
+      failures, and a finer mesh is the test.
+
+  - id: scipy
+    attribution: true
+    title: SciPy user guide
+    url: https://docs.scipy.org/doc/scipy/tutorial/index.html
+    role: >-
+      Evidence that organising numerical software by the task rather than by the
+      technique is the normal convention: the guide is grouped as integration,
+      interpolation, optimisation, sparse eigenvalues, and so on. Not a source for
+      any claim about a method.

@@ -105,7 +105,7 @@ export function mount(el) {
     svg.innerHTML =
       axes(yMax, step) +
       frame +
-      `<path d="${path}" fill="none" class="fig-warn" stroke-width="2"></path>` +
+      `<path d="${path}" style="fill:none" class="fig-warn" stroke-width="2"></path>` +
       marks;
 
     button.textContent = logMode

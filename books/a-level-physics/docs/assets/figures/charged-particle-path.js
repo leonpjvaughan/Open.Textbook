@@ -11,7 +11,14 @@
 // The scaffolding — the surface, its accessible name, the sliders, the live
 // readout and the redraw — comes from `kit.js`. What is left here is the drawing
 // and the sentences, which are the parts that differ from every other figure.
-import { SIZE, label, panel, react, slider } from "./kit.js";
+import {
+  label,
+  panel,
+  quantity,
+  react,
+  slider,
+  SIZE,
+} from "./kit.js";
 
 export function mount(el) {
   const { svg, readout } = panel(el, {
@@ -74,18 +81,18 @@ export function mount(el) {
       for (let y = TOP + 30; y < BOTTOM - 10; y += 46) {
         dots +=
           `<circle cx="${x}" cy="${y}" r="2.5" class="fig-ink"></circle>` +
-          `<circle cx="${x}" cy="${y}" r="6" class="fig-ink" fill="none"></circle>`;
+          `<circle cx="${x}" cy="${y}" r="6" class="fig-ink" style="fill:none"></circle>`;
       }
     }
 
     const circle =
-      `<circle cx="${centreX}" cy="${centreY.toFixed(1)}" r="${rPx.toFixed(1)}" class="fig-grid" fill="none" stroke-dasharray="5 4"></circle>`;
+      `<circle cx="${centreX}" cy="${centreY.toFixed(1)}" r="${rPx.toFixed(1)}" class="fig-grid" style="fill:none" stroke-dasharray="5 4"></circle>`;
 
     const endAngle = Math.PI / 2;
     const endX = centreX + rPx * Math.sin(endAngle);
     const endY = centreY - rPx * Math.cos(endAngle);
     const arc =
-      `<path d="M ${entryX} ${entryY} A ${rPx.toFixed(1)} ${rPx.toFixed(1)} 0 0 1 ${endX.toFixed(1)} ${endY.toFixed(1)}" class="fig-accent" fill="none" stroke-width="3"></path>` +
+      `<path d="M ${entryX} ${entryY} A ${rPx.toFixed(1)} ${rPx.toFixed(1)} 0 0 1 ${endX.toFixed(1)} ${endY.toFixed(1)}" class="fig-accent" style="fill:none" stroke-width="3"></path>` +
       `<circle cx="${endX.toFixed(1)}" cy="${endY.toFixed(1)}" r="6" class="fig-good"></circle>` +
       `<circle cx="${entryX}" cy="${entryY}" r="6" class="fig-ink"></circle>` +
       `${label({ x: entryX + 12, y: entryY + 4, text: `proton in`, anchor: "start", size: SIZE.value, class: "text-ink" })}` +
@@ -94,7 +101,7 @@ export function mount(el) {
     svg.innerHTML = dots + circle + arc;
 
     readout.innerHTML =
-      `With B = ${B.toFixed(2)} T and v = ${Number(speed.value).toFixed(1)} x 10<sup>6</sup> m s<sup>-1</sup>, ` +
+      `With B = ${quantity(B, "T", 2)} and v = ${Number(speed.value).toFixed(1)} x 10<sup>6</sup> m s<sup>-1</sup>, ` +
       `the radius is <strong>${(r * 1000).toFixed(1)} mm</strong> and ` +
       `the time for one full circle is <strong>${(period * 1e9).toFixed(0)} ns</strong>. ` +
       `The drawing is not to scale. ` +

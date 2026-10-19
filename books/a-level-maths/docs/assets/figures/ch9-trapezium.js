@@ -127,7 +127,7 @@ export function mount(el) {
       curvePoints.push(`${px(x).toFixed(1)},${py(map.f(x)).toFixed(1)}`);
     }
     const curve =
-      `<polyline class="fig-accent" fill="none" points="${curvePoints.join(" ")}"></polyline>`;
+      `<polyline class="fig-accent" style="fill:none" points="${curvePoints.join(" ")}"></polyline>`;
 
     // Each strip: a translucent trapezium and its straight top.
     let stripLayer = "";

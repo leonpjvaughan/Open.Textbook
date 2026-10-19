@@ -117,7 +117,7 @@ export function mount(el) {
     };
 
     svg.innerHTML = `
-      <circle cx="${O.x}" cy="${O.y}" r="${R}" fill="none" stroke-width="2" class="fig-ink"></circle>
+      <circle cx="${O.x}" cy="${O.y}" r="${R}" style="fill:none" stroke-width="2" class="fig-ink"></circle>
       ${line(P, Q, "fig-grid", 2, "6 5")}
       ${line(O, A, "fig-good", 2)}
       ${line(O, B, "fig-good", 2)}
@@ -125,9 +125,9 @@ export function mount(el) {
       ${line(P, B, "fig-accent", 3)}
       <circle cx="${P.x.toFixed(1)}" cy="${P.y.toFixed(1)}" r="5" class="fig-warn"></circle>
       <path d="${arc(O.x, O.y, 38, centreStart, centreSize)}"
-            fill="none" stroke-width="3" class="fig-good"></path>
+            style="fill:none" stroke-width="3" class="fig-good"></path>
       <path d="${arc(P.x, P.y, 30, pStart, travel)}"
-            fill="none" stroke-width="3" class="fig-warn"></path>
+            style="fill:none" stroke-width="3" class="fig-warn"></path>
       ${text(aLab.x, aLab.y, "A")}
       ${text(bLab.x, bLab.y, "B")}
       ${text(pLab.x, pLab.y, "P", "text-warn")}

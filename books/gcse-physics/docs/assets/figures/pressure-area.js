@@ -9,7 +9,14 @@
 // The scaffolding — the surface, its accessible name, the sliders, the live
 // readout and the redraw — comes from `kit.js`. What is left here is the drawing
 // and the sentence, which are the parts that differ from every other figure.
-import { SIZE, label, panel, react, slider } from "./kit.js";
+import {
+  label,
+  panel,
+  quantity,
+  react,
+  slider,
+  SIZE,
+} from "./kit.js";
 
 export function mount(el) {
   const { svg, readout } = panel(el, {
@@ -70,7 +77,7 @@ export function mount(el) {
       `${label({ x: CENTRE, y: 18, text: `force = ${force} N`, anchor: "middle", size: SIZE.tick, class: "text-ink" })}`;
 
     readout.innerHTML =
-      `Pressure = force &divide; area = ${force} N &divide; ${area.toFixed(2)} m&sup2; = ` +
+      `Pressure = force &divide; area = ${force} N &divide; ${quantity(area, "m", 2)}&sup2; = ` +
       `<strong>${Math.round(pressure)} Pa</strong>. ` +
       `<em>Keep the force at ${force} N and halve the area. What happens to the pressure?</em>`;
   }

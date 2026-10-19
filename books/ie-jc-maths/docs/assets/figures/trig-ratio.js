@@ -10,7 +10,19 @@
 //
 // Nothing here carries a colour. Every shape uses a `fig-*` class and every word a
 // `text-*` class, so the figure follows the reader's theme in both schemes.
-import { SIZE, axes, curve, dots, fmt, label, line, panel, react, slider } from "./kit.js";
+import {
+  axes,
+  curve,
+  dots,
+  fmt,
+  label,
+  line,
+  panel,
+  quantity,
+  react,
+  slider,
+  SIZE,
+} from "./kit.js";
 
 export function mount(el) {
   const { svg, readout } = panel(el, {
@@ -151,8 +163,8 @@ export function mount(el) {
     const cosine = Math.cos(radians);
     const tangent = Math.tan(radians);
     readout.textContent =
-      `The angle is ${fmt(degrees, 0)}° and the hypotenuse is ${fmt(hyp, 0)} cm long, ` +
-      `so the opposite side is ${fmt(opposite)} cm and the adjacent side is ${fmt(adjacent)} cm. ` +
+      `The angle is ${fmt(degrees, 0)}° and the hypotenuse is ${quantity(hyp, "cm", 0)} long, ` +
+      `so the opposite side is ${quantity(opposite, "cm")} and the adjacent side is ${quantity(adjacent, "cm")}. ` +
       `The three ratios are sin θ = ${fmt(sine, 3)}, cos θ = ${fmt(cosine, 3)} and tan θ = ${fmt(tangent, 3)}.`;
   }
 

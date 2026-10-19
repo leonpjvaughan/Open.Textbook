@@ -76,10 +76,10 @@ export function mount(el) {
       `class="fig-ink" stroke-dasharray="4 3"></line>`;
 
     const reference =
-      `<path d="${curve(Math.E)}" fill="none" class="fig-ink" stroke-width="1.5" stroke-dasharray="4 3"></path>`;
+      `<path d="${curve(Math.E)}" style="fill:none" class="fig-ink" stroke-width="1.5" stroke-dasharray="4 3"></path>`;
 
     const main =
-      `<path d="${curve(a)}" fill="none" class="fig-accent" stroke-width="2"></path>` +
+      `<path d="${curve(a)}" style="fill:none" class="fig-accent" stroke-width="2"></path>` +
       `<circle cx="${xToPx(0)}" cy="${yToPx(1)}" r="4" class="fig-accent"></circle>`;
 
     svg.innerHTML = grid() + axes + asymptote + reference + main;

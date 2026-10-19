@@ -9,7 +9,14 @@
 // The scaffolding — the surface, its accessible name, the sliders, the live
 // readout and the redraw — comes from `kit.js`. What is left here is the drawing
 // and the sentences, which are the parts that differ from every other figure.
-import { SIZE, label, panel, react, slider } from "./kit.js";
+import {
+  label,
+  panel,
+  quantity,
+  react,
+  slider,
+  SIZE,
+} from "./kit.js";
 
 export function mount(el) {
   const { svg, readout } = panel(el, {
@@ -55,7 +62,7 @@ export function mount(el) {
       `<line x1="70" y1="${y}" x2="70" y2="${GROUND}" class="fig-grid" ` +
       `stroke-dasharray="3 3"></line>` +
       `<line x1="40" y1="${GROUND}" x2="150" y2="${GROUND}" class="fig-ink"></line>` +
-      `${label({ x: 84, y: (y + GROUND) / 2, text: `h = ${height.toFixed(1)} m`, anchor: "start", size: SIZE.tick, class: "text-ink" })}`;
+      `${label({ x: 84, y: (y + GROUND) / 2, text: `h = ${quantity(height, "m", 1)}`, anchor: "start", size: SIZE.tick, class: "text-ink" })}`;
 
     // Two bars sharing one scale, so a taller drop visibly stores more energy.
     const barWidth = (energy / ENERGY_MAX) * 330;
@@ -68,14 +75,14 @@ export function mount(el) {
 
     svg.innerHTML =
       ball +
-      bar(30, "fig-accent", "Gravitational potential store", `${energy.toFixed(1)} J`) +
-      bar(90, "fig-warn", "Kinetic store at the bottom", `${energy.toFixed(1)} J`);
+      bar(30, "fig-accent", "Gravitational potential store", `${quantity(energy, "J", 1)}`) +
+      bar(90, "fig-warn", "Kinetic store at the bottom", `${quantity(energy, "J", 1)}`);
 
     readout.innerHTML =
-      `Mass ${mass.toFixed(1)} kg, height ${height.toFixed(1)} m. ` +
-      `The gravitational potential store holds <strong>${energy.toFixed(1)} J</strong>. ` +
+      `Mass ${quantity(mass, "kg", 1)}, height ${quantity(height, "m", 1)}. ` +
+      `The gravitational potential store holds <strong>${quantity(energy, "J", 1)}</strong>. ` +
       `With no friction that energy moves to the kinetic store, so the ball reaches ` +
-      `<strong>${speed.toFixed(1)} m/s</strong> at the bottom. ` +
+      `<strong>${quantity(speed, "m", 1)}/s</strong> at the bottom. ` +
       `<em>Now double the height: which of the two numbers doubles, and which does not?</em>`;
   }
 

@@ -89,7 +89,7 @@ export function mount(el) {
       const { x, y } = at(centre);
       drawing += `<circle cx="${x.toFixed(1)}" cy="${y.toFixed(1)}" r="${(
         radius * SCALE
-      ).toFixed(1)}" class="fig-grid" fill="none" stroke-width="1.4" stroke-dasharray="5 4"></circle>`;
+      ).toFixed(1)}" class="fig-grid" style="fill:none" stroke-width="1.4" stroke-dasharray="5 4"></circle>`;
     }
     const target = at(answer.D);
     drawing += `<circle cx="${target.x.toFixed(1)}" cy="${target.y.toFixed(

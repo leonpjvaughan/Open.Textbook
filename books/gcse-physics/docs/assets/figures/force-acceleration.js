@@ -9,7 +9,14 @@
 // The scaffolding — the surface, its accessible name, the sliders, the live
 // readout and the redraw — comes from `kit.js`. What is left here is the drawing
 // and the sentence, which are the parts that differ from every other figure.
-import { SIZE, label, panel, react, slider } from "./kit.js";
+import {
+  label,
+  panel,
+  quantity,
+  react,
+  slider,
+  SIZE,
+} from "./kit.js";
 
 export function mount(el) {
   const { svg, readout } = panel(el, {
@@ -67,11 +74,11 @@ export function mount(el) {
       trolley +
       arrow +
       `${label({ x: CENTRE, y: GROUND - height - 12, text: `m = ${mass} kg`, anchor: "middle", size: SIZE.tick, class: "text-ink" })}` +
-      `${label({ x: CENTRE, y: GROUND + 42, text: `a = F ÷ m = ${force} ÷ ${mass} = ${acceleration.toFixed(2)} m/s²`, anchor: "middle", size: SIZE.value, class: "text-ink" })}`;
+      `${label({ x: CENTRE, y: GROUND + 42, text: `a = F ÷ m = ${force} ÷ ${mass} = ${quantity(acceleration, "m", 2)}/s²`, anchor: "middle", size: SIZE.value, class: "text-ink" })}`;
 
     readout.innerHTML =
       `Resultant force ${force} N, mass ${mass} kg, so the acceleration is ` +
-      `<strong>${acceleration.toFixed(2)} m/s&sup2;</strong>. ` +
+      `<strong>${quantity(acceleration, "m", 2)}/s&sup2;</strong>. ` +
       `<em>Double the force: what happens to the acceleration? Then raise the mass: what happens now?</em>`;
   }
 

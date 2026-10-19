@@ -13,7 +13,14 @@
 // The scaffolding — the surface, its accessible name, the sliders, the live
 // readout and the redraw — comes from `kit.js`. What is left here is the drawing
 // and the sentences, which are the parts that differ from every other figure.
-import { SIZE, label, panel, react, slider } from "./kit.js";
+import {
+  label,
+  panel,
+  quantity,
+  react,
+  slider,
+  SIZE,
+} from "./kit.js";
 
 export function mount(el) {
   const { svg, readout } = panel(el, {
@@ -86,8 +93,10 @@ export function mount(el) {
     const axes =
       `<line x1="${LEFT}" y1="${BOTTOM}" x2="${RIGHT}" y2="${BOTTOM}" class="fig-ink"></line>` +
       `<line x1="${LEFT}" y1="${TOP}" x2="${LEFT}" y2="${BOTTOM}" class="fig-ink"></line>` +
-      `${label({ x: RIGHT, y: BOTTOM + 18, text: `range (m)`, anchor: "end", size: SIZE.heading, class: "text-ink" })}` +
-      `${label({ x: LEFT - 60, y: TOP - 8, text: `height (m)`, anchor: "start", size: SIZE.heading, class: "text-ink" })}`;
+      // Titles on their own row. They used to sit on the tick rows and ran through
+      // the last x tick and the top y tick; found by looking at a capture.
+      `${label({ x: RIGHT, y: BOTTOM + 38, text: `range (m)`, anchor: "end", size: SIZE.heading, class: "text-ink" })}` +
+      `${label({ x: LEFT - 8, y: TOP - 8, text: `height (m)`, anchor: "start", size: SIZE.heading, class: "text-ink" })}`;
 
     let path = "";
     const steps = 60;
@@ -107,17 +116,17 @@ export function mount(el) {
     svg.innerHTML =
       grid +
       axes +
-      `<polyline points="${path.trim()}" class="fig-accent" fill="none" stroke-width="3"></polyline>` +
+      `<polyline points="${path.trim()}" class="fig-accent" style="fill:none" stroke-width="3"></polyline>` +
       marker;
 
     const bestAngle = degrees === 45 ? " This angle gives the greatest range for this speed." : "";
     readout.innerHTML =
       `Speed ${u} m/s at ${degrees}&deg;. The horizontal component is ` +
-      `<strong>${ux.toFixed(1)} m/s</strong> and the vertical component is ` +
-      `<strong>${uy.toFixed(1)} m/s</strong>. ` +
-      `The time of flight is <strong>${flight.toFixed(2)} s</strong>, the range is ` +
-      `<strong>${range.toFixed(1)} m</strong> and the maximum height is ` +
-      `<strong>${height.toFixed(1)} m</strong>.${bestAngle} ` +
+      `<strong>${quantity(ux, "m", 1)}/s</strong> and the vertical component is ` +
+      `<strong>${quantity(uy, "m", 1)}/s</strong>. ` +
+      `The time of flight is <strong>${quantity(flight, "s", 2)}</strong>, the range is ` +
+      `<strong>${quantity(range, "m", 1)}</strong> and the maximum height is ` +
+      `<strong>${quantity(height, "m", 1)}</strong>.${bestAngle} ` +
       `<em>At the highest point, what is the vertical velocity, and what is the horizontal velocity?</em>`;
   }
 

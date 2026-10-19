@@ -26,7 +26,7 @@ export function mount(el) {
     const circumferenceFactor = r, areaFactor = r * r, scale = 100 / 64;
     const ch = circumferenceFactor * scale, ah = areaFactor * scale;
     svg.setAttribute('aria-label', `Relative to radius 1: circumference scales by ${circumferenceFactor}; area scales by ${areaFactor}.`);
-    svg.innerHTML = `<path d="M45 140 H400 M45 140 V20" fill="none" class="fig-grid"/>` +
+    svg.innerHTML = `<path d="M45 140 H400 M45 140 V20" style="fill:none" class="fig-grid"/>` +
       `<rect x="100" y="${140 - ch}" width="70" height="${ch}" class="fig-accent"/>` +
       `<rect x="230" y="${140 - ah}" width="70" height="${ah}" class="fig-good"/>` +
       label({ x: 111, y: Math.max(18, 132 - ch), text: `${circumferenceFactor}×`, anchor: "start", class: "text-ink" }) +
