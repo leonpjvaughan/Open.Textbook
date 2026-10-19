@@ -12,7 +12,7 @@ reasoning, so nothing is compressed on the way across and nothing is deleted.
 **An item is here because it is still true.** Before closing one, run its own
 done-means; an item whose heading says done and whose checklist does not is the
 failure this file has had twice, so the list below, the headings and the boxes
-are checked against each other on every pass. One item is open, and two of them
+are checked against each other on every pass. Two items are open, and two of them
 say which single line is not met.
 
 The *interactive-aid backlog* — which figures and interactions a book still wants —
@@ -23,6 +23,8 @@ author choosing what to build next.
 
 - [ ] 83. §1.5's ladder is still the page's model — the compliant kernel exists, but
       the joint it softens is the tie rod; the request is with the package
+- [ ] 85. §1.6's numbers depend on the package's quarter car, whose coil has no
+      damper; the trajectory records its source digests, and a release must re-derive it
 
 **Not in the queue, and not forgotten.** Accepted limitations live where the check
 that records them lives, not here: the booklets whose items cannot be parsed
