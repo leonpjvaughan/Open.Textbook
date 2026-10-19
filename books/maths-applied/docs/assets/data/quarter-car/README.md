@@ -12,7 +12,22 @@ it, which runs the package's own integration and writes what the page draws.
 | duration | **3.0 s in 601 steps** — longer than the shipped study's 0.5 s, so the settling is visible |
 | energy drift over the run | 6.3 × 10⁻⁸ of the starting energy |
 | largest constraint violation | 1.3 × 10⁻¹⁵ |
-| `trajectory.js` sha256 | `175e1faac994671c0daebfdc2d3fa847d022b7cad0011a6ccadb6b12a9eef62f` |
+| `trajectory.js` sha256 | `4c34cb1cef617f9bfe7b699239b89b57daa782735ad0f351a42e9a89af430d21` |
+
+## The model it came from
+
+The three config files are recorded by digest in `meta.sources` of the trajectory, so a
+release that changes the quarter car is detectable: re-extract and the digests move.
+
+| file | sha256 |
+|---|---|
+| `topology.yaml` | `b957f7c4595c81d52312916cb3ce5528a59e6dc1f5e25375b33365fb0b27547c` |
+| `geometry.yaml` | `6c42385c57b26da44421d5e340eac42a00cc05a3deaf339d6d2df9325a6ea389` |
+| `study.yaml` | `0655fc27b5410f1985de8d79b37f295e1ff6d60698fc59f313de126a79a778f1` |
+
+**The coil in this model is a spring with no damper** (`modes: {length: spring}`), which is
+why the motion repeats instead of dying away. If a release adds damping, §1.6's numbers change
+with it — item 85 in `.agents/todo.md`.
 
 ## What it records
 
