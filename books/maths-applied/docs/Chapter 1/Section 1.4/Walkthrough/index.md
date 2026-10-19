@@ -120,8 +120,14 @@ number for rather than an assurance.
 | Least squares with all three rows | same point as §1.2, to 10⁻¹⁶ m |
 | Direct 2×2 solve with the spare row deleted | the same point again |
 
-The decomposition is computed by the page's own model at load, and the figure shows
-it on every frame. What the section claims is structural — three rows, two unknowns,
+The same structure appears in the package's three-dimensional model, which these three
+rows are a front-view imitation of: `otkd check examples/double-wishbone-two-leg` reports
+**21 unknowns, 22 rows, rank 20, redundancy 1** — one dependent row, exactly as here, and
+its diagnosis names the rows that participate. The toy is not a toy in this respect; it is
+the same rank story with fewer numbers to read.
+
+The decomposition is computed by the page's own model at load, and the figure shows it on
+every frame. What the section claims is structural — three rows, two unknowns,
 one dependent row — and the null vector's support is the evidence: a vector with
 entries in the two leg rows says those two rows are one. The vendored exports solve
 the three-dimensional model, whose unknowns are not these two, so they cannot check

@@ -7,7 +7,7 @@
 // mathematics each keep their own vocabulary.
 //
 // **The tyre is drawn as its cross-section, not as a circle.** A wheel seen from
-// the front is 0.2 m wide and 0.64 m across, so it draws as a tall rectangle — and a
+// the front is 0.2 m wide and 0.4 m across, so it draws as a rectangle — and a
 // rectangle *leans* when the wheel's camber changes, which a circle cannot show. The
 // first version of this figure drew the wheel as a disc and then had to claim a
 // camber the drawing could not display.
@@ -16,11 +16,11 @@
 // `data/mechanism.js` — the same model the rest of the chapter and the other
 // figures use.
 import { SIZE, label, line, panel, react, slider } from "./kit.js";
-import { GEOMETRY, pose, thetaFor } from "../data/mechanism.js";
+import { FRONT, GEOMETRY, GROUND, pose, thetaFor } from "../data/mechanism.js";
 
 // The view is the whole corner: one scale in both directions, because a front view
 // with two scales would misreport every angle in it.
-const VIEW = { x0: 0.24, x1: 0.98, z0: -0.02, z1: 0.64 };
+const VIEW = { x0: 0.24, x1: 0.98, z0: GROUND - 0.02, z1: 0.56 };
 const WIDTH = 520;
 const SCALE = WIDTH / (VIEW.x1 - VIEW.x0);
 const HEIGHT = Math.round((VIEW.z1 - VIEW.z0) * SCALE);
@@ -97,16 +97,17 @@ export function mount(el) {
     "The solid tyre is where it is now; the dashed one is where it sits at rest. The " +
     "thin dashed lines run to the instant centre, which is off the drawing.";
 
-  const A = [0.3, 0.155];
-  const B = [0.38, 0.449];
+  // From the model, not typed twice: the arm lines have to end where the solver's
+  // axes are, or the drawing is of a different car.
+  const [A, B] = [FRONT.A, FRONT.B];
   const design = pose(0);
 
   function draw() {
     const metres = Number(travel.value);
     const theta = thetaFor(metres);
     const state = pose(theta);
-    const left = at([VIEW.x0, 0]);
-    const right = at([VIEW.x1, 0]);
+    const left = at([VIEW.x0, GROUND]);
+    const right = at([VIEW.x1, GROUND]);
     const ground = left.y;
     const C = at(state.C);
     const D = at(state.D);
@@ -181,9 +182,12 @@ export function mount(el) {
         dash: "5 5",
       });
     }
+    // Above the arm, not below it: at 0.2 m the tyre is shorter, the ground moves up
+    // to meet it, and the label that used to sit under the arm landed on the ground
+    // line. Found by looking at the capture.
     drawing += label({
       x: Apx.x + 18,
-      y: Apx.y + 26,
+      y: Apx.y - 12,
       text: "lower arm",
       anchor: "start",
       size: SIZE.tick,
@@ -234,7 +238,7 @@ export function mount(el) {
 
     const change = state.camber - design.camber;
     const lean = state.camber < 0 ? "inboard" : "outboard";
-    const rollCentre = state.rc ? state.rc[1] * 1000 : null;
+    const rollCentre = state.rc ? (state.rc[1] - GROUND) * 1000 : null;
     const track = (state.W[0] - design.W[0]) * 1000;
 
     readout.textContent =
@@ -247,7 +251,7 @@ export function mount(el) {
           ? "from where it sits at rest"
           : `${change < 0 ? "further in" : "further out"} than at rest`
       }. The instant centre is ${num(Math.abs(state.ic ? state.ic[0] : 0), 2)} m ` +
-      `inboard of the hub and ${num(state.ic ? state.ic[1] : 0, 2)} m above the ground, so the ` +
+      `inboard of the hub and ${num(state.ic ? state.ic[1] - GROUND : 0, 2)} m above the ground, so the ` +
       `roll centre is ` +
       `${rollCentre === null ? "not defined" : `${num(rollCentre, 0)} mm above the ground`}. ` +
       `The track has moved by ${num(track, 1)} mm.`;

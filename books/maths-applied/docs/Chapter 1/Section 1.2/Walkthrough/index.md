@@ -109,11 +109,11 @@ and the readout gives the number.
 
 | Wheel travel | Lower arm turns | Camber | Instant centre | Roll centre |
 |---|---|---|---|---|
-| −40 mm | −5.4° | −1.87° | 2.21 m inboard, 0.42 m up | 78 mm |
-| −20 mm | −2.7° | −1.46° | 1.88 m inboard, 0.28 m up | 67 mm |
-| 0 mm | 0.0° | −1.00° | 1.60 m inboard, 0.18 m up | 57 mm |
-| +20 mm | 2.7° | −0.49° | 1.36 m inboard, 0.10 m up | 47 mm |
-| +40 mm | 5.4° | +0.08° | 1.15 m inboard, 0.04 m up | 38 mm |
+| −40 mm | −5.4° | −1.87° | 2.21 m inboard, 0.30 m up | 47 mm |
+| −20 mm | −2.7° | −1.46° | 1.88 m inboard, 0.16 m up | 33 mm |
+| 0 mm | 0.0° | −1.00° | 1.60 m inboard, 0.06 m up | 19 mm |
+| +20 mm | 2.7° | −0.49° | 1.36 m inboard, 0.02 m down | 5 mm |
+| +40 mm | 5.4° | +0.08° | 1.15 m inboard, 0.08 m down | −9 mm |
 
 Three numbers matter for the chapter's question:
 
@@ -125,7 +125,7 @@ The **instant centre** is where the two arm axes would meet if they carried on
 past the wheel. It is 2.36 m from the hub, which is why the drawing has to say
 "to the instant centre" rather than showing it. The **roll centre** is where the
 line from the contact patch through that point crosses the middle of the car: it
-is 57 mm above the ground at rest, and it moves down as the wheel rises.
+is 19 mm above the ground at rest, and it falls below the ground as the wheel rises.
 
 ## The agreement panel
 
@@ -139,8 +139,11 @@ iteration that §1.3 meets, and the package's compiled kernel.
 | Camber from the generated kernel in three dimensions | within **0.088°** of the construction, over the range in the figure above |
 | The package's own two routes, `agreement.max_abs_diff` | **2 × 10⁻¹³** |
 
-The last row is read from the vendored `out.js`, not typed here; the middle one is
-what the figure above computes in the page. The closed form is the fast path and the
+The last row is read from the vendored `out.js`, not typed here; the middle one is what
+the figure above computes in the page. The package checks itself the same way this section
+does: its `agreement` compares a closed-form construction — circle against circle, then the
+tie rod, with no Jacobian and no Newton — against its symbolic solver. Two derivations, one
+answer. The closed form is the fast path and the
 independent check at once: it gets the answer without a solver, so it can be used to
 test one. Two routes to one number is evidence; one route is a claim.
 
