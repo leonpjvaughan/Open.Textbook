@@ -21,6 +21,9 @@ author choosing what to build next.
 
 **Open, and the list is the index:**
 
+- [ ] 75. The solver's example declares a 0.2 m tyre on a 0.32 m wheel centre, so the
+      roll centre it exports is 39 mm low — camber is unaffected, which is why §1.2's
+      panel is sound
 - [ ] 83. §1.5's ladder is still the page's model — the package's compliant export
       carries one stiffness, and its kernel refuses to compile
 
@@ -63,3 +66,52 @@ the panel's rounding.
 - [ ] The page's model and the export agree to the rounding shown, and the panel says
       which is which.
 - [ ] `grep -n "one stiffness" books/maths-applied/docs` prints nothing.
+
+## 75. The solver's example declares a 0.2 m tyre on a 0.32 m wheel centre, so its roll centre is 39 mm low
+
+**What is wrong.** `suspension-kinematics`'s example geometry has the wheel centre at
+`z = 0.320` and `tyre-radius: 0.200`, so its contact patch lands at `z = 0.120` and every
+height it reports is measured from a plane 120 mm below the one the car stands on. The
+page's vendored copy inherits it. Measured 2026-10-19 on
+`examples/double-wishbone/out.js`, frame 40 (design):
+
+```
+contact  [0.81, 0.12]        the tyre's lowest point, 120 mm above z = 0
+ic       [-1.6223, 0.1755]
+rc       [0, 0.138488]       so 18.5 mm above the contact patch, not 138 mm
+```
+
+The book's front-view model uses `tyre-radius: 0.320`, because its drawing stands the
+tyre on `z = 0`. The two agree about the instant centre to about 2 cm, and about camber
+and toe exactly (which is what §1.2's panel compares, and why that panel is sound). They
+disagree about the roll centre:
+
+| | book's front view | the package |
+|---|---|---|
+| tyre radius | 0.320 | 0.200 |
+| contact patch | `[0.76, 0.00]` | `[0.81, 0.12]` |
+| roll centre above the contact patch | 57 mm | 18 mm |
+
+A secondary point, measured on the same frame: `outputs.py::_contact` takes the wheel
+centre as the midpoint of the two axle points, so with the axle given as `[wc, wco]` the
+patch is 50 mm outboard of `wc` (`contact[0]` is 0.81, not 0.76). Its effect on the roll
+centre is about 1 mm — cosmetic next to the radius, but it means `contact[0]` is not the
+wheel centre's lateral position.
+
+**Why it is here rather than in the package's tracker.** That repository has issues
+switched off; its own queue is `docs/follow-ups.md` there. The vendored
+`books/maths-applied/docs/assets/data/package/README.md` states the disagreement and the
+numbers, so nobody plots `rc` from the payload beside the chapter's table.
+
+**The fix.** In the package, declare `tyre-radius: 0.320` in the examples — the contact
+patch moves to `z = 0` and the roll centre to 57 mm, and every output then agrees with the
+page. Failing that, document that `tyre-radius` defines the ground plane. Then re-vendor
+the four exports and re-run the payload tests here.
+
+**Done means**
+
+- [ ] The example's `tyre-radius` and wheel-centre height agree about the wheel, and the
+      package's own tests pin the contact patch's `z`.
+- [ ] Re-vendored `out.js` gives a roll centre within 2 mm of the page's front view, and
+      `package/README.md` says so instead of explaining a 39 mm gap.
+- [ ] A book figure may plot `rc` from the payload, and §1.2's panel gains that row.
