@@ -3167,3 +3167,659 @@ served the same page for every route. It is proportional to what the build conta
 - Every figure's readout agrees with a hand calculation.
 
 ---
+
+---
+
+## 75. No book links into the map of problem classes — **done, absorbed into 78**
+
+**What is wrong.** `books/numerical-methods/` was built to be arrived at from a
+model, and nothing arrives. `grep -rn "numerical-methods" books/*/docs` finds only
+the book itself; `books/maths-applied/` §1.2 to §1.7 name no class at all. A
+reference work that no page links to is a book with a shelf and no door.
+
+**Why it was left.** The decision on 2026-10-18 was to add the callbacks after the
+map existed and passed its own checks. Both are now true, so this is next rather
+than parked.
+
+**The fix.** A `:::class <slug>` directive, mirroring `hooks/proofs.py`: resolve the
+slug against `map.yaml → pages`, emit a root-absolute `/numerical-methods/<slug>/`
+href with the box's name in the link text, and fail the build on a slug the map does
+not list. Then the callbacks, in `books/maths-applied/`: §1.2 and §1.3 are root
+finding, §1.5 is a saddle point, §1.6 is parabolic plus the stiff flag. One per
+section, at the point where the class is first true, not in a list at the top.
+
+**Done means**
+
+- [ ] `:::class parabolic` renders one link and nothing else — no script, no dialog.
+- [ ] An unlisted slug fails the build with the known slugs in the message.
+- [ ] A page outside `books/numerical-methods/` can emit the directive; the href is
+      root-absolute and survives `check_links`, which skips it by design.
+- [ ] At least three sections in `books/maths-applied/` carry one.
+- [ ] `books/maths-applied/AGENTS.md` replaces its "until then, link the page
+      plainly" paragraph with the contract, and `books/numerical-methods/AGENTS.md`
+      records that it now has inbound links.
+
+---
+
+## 78. Batch A of the map — **done**
+
+**What is wrong.** Cut into batches in
+`.agents/planning/2026-10-18-numerical-methods-batches.md`, which is the record of
+why. The short version: the tree is missing its most common entry point, and no page
+in the collection links to the map because the directive it needs does not exist.
+
+**The work.**
+
+1. A **linear-system** box. The map sends "a finite list of unknowns" to root
+   finding, so `Ax = b` has no branch, and its methods are buried in `elliptic`.
+2. A **`:::class <slug>`** directive, mirroring `:::prove`: registry-resolved from
+   `map.yaml → pages`, root-absolute href, one plain `<a>`, unknown slug fails.
+3. **Callbacks** in `maths-applied` (§1.2 root, §1.4 linear system, §1.5 root,
+   §1.6 saddle point and parabolic) and `a-level-maths` 9.3 (root). The planned
+   physics callbacks were dropped: those sections solve analytically, so a "kind of
+   problem" aside there would have decorated a chapter and changed nothing a reader
+   does. Recorded in the planning note.
+
+**Done means**
+
+- [x] `linear-system` is a page, the ninth box, on the linear arm of Q3.
+- [x] `map.yaml` lists it in tree order and the figure draws the branch.
+- [x] `techniques/` and `symptoms/` carry its rows; `AGENTS.md` says nine boxes.
+- [x] `tests/test_reference_books.py` expects nine classes in tree order.
+- [x] `:::class parabolic` renders one link, and an unlisted slug fails the build.
+- [x] `:::class` works from a page in another book; the href is root-absolute.
+- [x] Five sections in `books/maths-applied/` carry one, and 9.3 of
+      `a-level-maths` carries one. Physics: dropped, with the reason recorded.
+- [x] `lint`, both profiles' pipelines, no `math-error`, and `pytest tests/` pass.
+- [x] This item is closed, and the callbacks in §1.6 are the ones that let item 75
+      close too.
+
+---
+
+## 76. Hamiltonian is a flag with no worked case — **done**
+
+**What is wrong.** `books/numerical-methods/AGENTS.md` decides that Hamiltonian
+problems are a flag rather than a ninth box, and the book then gives the reader no
+way to see what the flag buys. `docs/hyperbolic/index.md` names symplectic
+integration once, as a table row. `grep -rc symplectic books/numerical-methods/docs`
+is 1.
+
+That is the same defect the map accuses other books of: a claim with no number.
+
+**The fix.** Make the decision visible, in one of two ways. Either a listed page
+(`symplectic/index.md`, in `map.yaml` and in the figure only if it earns a branch),
+or a worked example on `hyperbolic`: one wave problem run for a long time with a
+general method and with a structure-preserving one, drawn as an energy plot whose
+numbers come from the model in the module. The second is cheaper and better: the
+point is the loss, and the loss is a curve.
+
+**Done means**
+
+- [x] The decision is written down where a reader can act on it: a page, or a
+      paragraph with a figure.
+- [x] The number on the page comes from the figure, and the figure declares its
+      arithmetic through `claim()` if it states any.
+- [x] `node tools/dist/cli.js audit site --mobile` still reports none below 9px, and
+      `readout site --verify` reports no untrue render.
+- [x] `books/numerical-methods/AGENTS.md` says which of the two was chosen, and why
+      the other was not.
+
+
+
+**Done.** `docs/hyperbolic/index.md` now says the flag is a flag, and carries `:::figure energy-drift`: the same oscillator run for 2000 periods with RK4 and with velocity Verlet. The general method's error climbs from 2.0e-13 to 1.6e-7 and keeps climbing; the structure-preserving one stays inside a band between 6.0e-15 and 6.1e-5, and the band does not rise. The first draft of the figure printed the *final* error of both and would have shown the bounded method's number above the general one — honest, and the opposite of the claim — so the readout is about the trend, and the page says which is which.
+
+---
+
+## 77. The statistical half is one page — **done, by decision**
+
+**What is wrong.** `docs/averaging/index.md` is the whole statistical answer to
+"what do you want?", and the `techniques` page gives it nine rows against about
+thirty for the differential half. The request that started the book described a
+version for statistical problems as a follow-on pass; what shipped is one page that
+names the methods and does not walk any of them.
+
+This may be the right answer — one page per box is the shape of the map — but it is
+currently an accident of effort rather than a decision.
+
+**The fix.** Decide, and record the decision in `books/numerical-methods/AGENTS.md`.
+If more is wanted, the three pages that carry their weight are inference (the answer
+is a distribution, and the prior is part of the model), filtering over time (the
+Kalman and particle pages, where `averaging` meets `parabolic`), and design of
+experiments (where to put the samples when each one costs a run). Each is a page in
+`map.yaml`, listed after `averaging`, with `techniques/` and `symptoms/` rows.
+
+**Done means**
+
+- [x] The decision is in `AGENTS.md`, with the reason it is the answer.
+- [x] If pages were added: each passes `tests/test_reference_books.py`, the home page
+      lists them, and the figure's `LEAVES` either draws the new branch or says in a
+      comment why the branch stays at the box.
+- [x] If one page is the answer: `docs/averaging/index.md` says so in a sentence, so
+      a reader who wanted more knows the map stopped on purpose.
+
+---
+
+
+
+**Done, by decision.** The statistical half is one page on purpose, and the decision is now written down twice: on `docs/averaging/index.md` for a reader, and in `books/numerical-methods/AGENTS.md` for the next author. The reason is the shape of the book: one page per box, entered by the question, with methods named and priced rather than derived. A five-page statistics sub-map would be a second book wearing this one's furniture.
+
+---
+
+## 79. Batch B of the map — **open**
+
+Cut in the same plan. Mechanical work that makes the book a lookup rather than a
+set of essays:
+
+- the class column of `techniques/` becomes links; tables get anchors;
+- each class page gains a generated and drift-checked **Used in this collection**;
+- a test that the ten headings of a class page are present, in order;
+- the proof book's About prose moves out of `scaffold.colophon_page` into
+  `books/proofs/proofs.yaml → meta.what_it_is`.
+
+**Done means**
+
+- [ ] A class page links to `techniques/#<family>` and back again.
+- [ ] `python -m textbook.plan --generated` diffs clean after the callbacks are
+      added, and a removed callback shows up in the diff.
+- [ ] A page missing "What goes wrong" fails `pytest tests/`.
+- [ ] `grep -n "reference book of proofs" engine/src/textbook/*.py` prints nothing,
+      and `books/proofs/docs/colophon.md` is unchanged by the move.
+
+---
+
+## 80. Batch C1 of the map — **open**
+
+Two authored pages, no figures: `choosing-the-class` (the thesis, three cases) and a
+worked case (the suspension corner, five ways). See the plan for what each must not
+do. Item 77 (the statistical half) is decided here too: either record that one page
+is the answer, or name the pages that follow.
+
+**Done means**
+
+- [ ] `choosing-the-class` names three systems, each written two ways, and one of the
+      two failing.
+- [ ] The worked case uses only numbers `books/maths-applied/docs/assets/data/
+      mechanism.js` prints, and says which page printed each one.
+- [ ] Both pages are in `map.yaml`, on the home page, and pass
+      `tests/test_reference_books.py`.
+- [ ] Item 77's decision is written into `books/numerical-methods/AGENTS.md`.
+
+---
+
+## 81. Batch C2 of the map — **open**
+
+The two figures: the Δx² step limit on `parabolic`, and energy drift on `hyperbolic`.
+The second closes item 76 by showing what a structure-preserving method keeps.
+
+**Done means**
+
+- [ ] Both figures are drawn through `kit.js` with `SIZE`, `label()` and `scale()`.
+- [ ] No number on the page is typed by hand; anything printed as arithmetic is
+      declared through `claim()`.
+- [ ] `audit site` in both schemes, `audit site --mobile` with 0 below 9px, and
+      `readout site --verify` with 0 untrue renders.
+- [ ] Item 76 is closed by the energy figure, or by the decision to keep the flag
+      and say so on the page.
+
+---
+
+## 82. The map's two new figures have been measured but never looked at — **done**
+
+**What was wrong (and wrong twice).** Two new figures had been through every
+mechanical check — `audit site` in both schemes, `audit site --mobile`, `readout
+site --verify` — and had never been looked at. That part was true: the audits read
+computed paint and font size, and cannot see a label sitting on a curve.
+
+The second half was false. It said Playwright was not installed, on the evidence of
+`node -e "require('playwright')"`. Playwright **was** installed, via mise, and
+`tools/src/lib/browser.ts` has a candidate list that finds it — which is why the
+audits had been running. The bare resolve was asked, believed, and written down.
+
+**What looking found.** Five defects in two figures, none of which any check saw:
+
+- **Both curves were filled wedges.** `path()` emits `fill="none"`, but `fig-accent`
+  sets `fill` in CSS and wins, so an open curve is painted as a closed shape. The
+  energy figure was two solid blobs. Fix: `fig-line`, the class whose fill is `none`.
+  This is the same defect as item 74, found from the other end.
+- **The rotated axis titles ran through the tick labels** on both figures. Fix:
+  `pad: { left: 86 }` on `axes`, and 92 where the labels are wider.
+- **The energy figure argued the opposite of its caption.** It plotted
+  `log10(error)` sampled every ten periods; sampling an oscillation at an arbitrary
+  phase draws its envelope as a smooth rising curve, so the bounded method appeared
+  to climb *above* the general one. Fix: plot the signed change in energy on a linear
+  axis, windowed into 200 slices so each run is drawn as a band. A band that stays and
+  a line that leaves are then two different pictures.
+- **The readout printed `0.000000020`.** Fix: `8.1 × 10⁻¹¹`, with superscript digits.
+- **A missing y tick label at the frame corner**, where a tick sat on the axis line.
+  Fix: move the domain so the bottom tick is off-frame.
+
+**Also fixed while there.** `tools screenshot` gained `--width`, because the check
+needs 390 px and the command only spoke 1440. And four documents pointed at
+`scripts/screenshot.cjs`, which does not exist — the tool is
+`node tools/dist/cli.js screenshot`.
+
+**Done means**
+
+- [x] The captures differ from one another (the 404 trap): four routes, four schemes
+      and widths, all different.
+- [x] `/numerical-methods/parabolic/` and `/numerical-methods/hyperbolic/` captured at
+      1440 px and 390 px, light and dark — eight images, all inspected.
+- [x] No annotation overlaps a curve, an axis title, a tick label or another
+      annotation at either width.
+- [x] Nothing was fixed by shrinking text: every label still uses `SIZE`, and
+      `audit --mobile` still reports 0 below 9px.
+- [x] The wrong premise is corrected above, and `AGENTS.md` says not to trust a bare
+      `require.resolve` for Playwright.
+
+---
+
+## 61. A figure's readout can state false working — **done**
+
+**Done (2026-10-18, the last line).** `--text`, the sentence heuristic behind it and
+`--self-test` — which existed only to test the heuristic's own cases — are deleted
+with `tools/src/lib/readout-arithmetic.ts`. Measured after the deletion: `tools
+readout site` reports **253 figures, 1222 readouts, 41 declare 640 claim(s), 0 state
+arithmetic and declare none**, and `--verify` proves all 640 with SymPy, 0 untrue.
+`tools help readout` no longer lists a heuristic because there is not one.
+
+**What is wrong.** Two of the fourteen figures added on 2026-10-17 printed a
+calculation that does not produce the number printed beside it, and **every check
+passed**: `tests/test_figures.py`, the build's math-error scan, `tools audit` and
+`tools kit`. None of them reads a number.
+
+- `interest-growth` printed `€1,500.00 × 0.07 × 4 = €390.00`. The rate is 6.5%, so
+  the multiplier is 0.065; `fmt(r, 2)` rounded it to 0.07, and 1500 × 0.07 × 4 is
+  €420.
+- `ratio-share` printed `3 × 14.29 = 42.86` where 100 ÷ 7 was already rounded.
+
+**The first fix was wrong, and how it was wrong is the lesson.** It parsed the
+printed sentence back out of the text, and by the end it needed `<sup>`, `√`, `%`,
+thousands separators, a trailing sentence period and the words "and"/"is" to read
+**43%** of what it saw. Every new formatting choice was a new case; every new figure
+was a new chance to be silently unreadable.
+
+**Done (the mechanism, 2026-10-17).** An assertion is data. `panel()` returns
+`claim`; a figure calls `claim([{ expression, values, answer, shown }])` once per
+redraw; `python -m textbook.working` proves each with the same exact CAS the banks
+use (`cas._rationalize` makes 0.065 `13/200`, so there is no tolerance to tune) and
+requires the readout to contain the claimed string. `tools readout site --verify` is
+in `scripts/preview-themes.sh`. Verified against the defect itself: reintroducing
+`fmt(r, 2)` while claiming `fmt(r, 3)` fails with *"claims to show '0.065', but the
+readout does not contain it"*. Three figures converted — `interest-growth`,
+`ratio-share`, `restitution` — with the `√` case proving no notation table is needed.
+The text heuristic survives only as `--text`, and is documented as a hint.
+
+**Done (2026-10-18).** `tools readout` reports **0 figures that state arithmetic and
+declare none** — 33 figures declare **588 claims**, and `readout site --verify` proves
+all 588 with SymPy: **0 untrue**. The command now names any remaining figure rather than
+only counting them, because a count says the gap exists and a list says where.
+
+**Done means**
+
+- `node tools/dist/cli.js readout site` reports **0** figures that state arithmetic
+  and declare none (35 remain, measured 2026-10-17).
+- Every remaining figure declares its printed numbers, not only its totals.
+- [x] `--text` is deleted, because nothing depends on the heuristic. **Not met:** the
+      flag still ships, documented as a hint (`tools/AGENTS.md`); nothing depends on it,
+      and `readout site` reports 0 without it. Either delete the heuristic or replace
+      this line with the measurement that it is unused — the other two are proved.
+
+---
+
+---
+
+## 71. `tools/build.mjs` says the tools build is bundled, and it is not — **done**
+
+**Done (2026-10-18).** The header now says `the tools tools/src/** -> tools/dist/**`,
+one output file per source, and records why the shape is kept: `tools kit` serves
+`tools/dist/lib/kit-contract.js` to the page at `/__kit-contract.js`, which a bundle
+could not do without being split or copied.
+
+**What is wrong.** The header of `tools/build.mjs` describes the tools target as
+"Bundled, because it is a program rather than a library". It is not: `buildTools` runs
+`tsc -p tsconfig.tools.json`, which emits one file per source into `tools/dist/` —
+`dist/commands/kit.js`, `dist/lib/browser.js`, and so on. Measured 2026-10-18: `ls
+tools/dist/lib` prints seven files, and adding a module to `tools/src/lib/` adds a
+seventh to `dist/lib/`.
+
+It stopped being a cosmetic error when `tools kit` began serving
+`tools/dist/lib/kit-contract.js` to the page at `/__kit-contract.js`. That works only
+because the module is emitted as its own file with no runtime imports; a bundle would
+have to be split or copied to be reachable from the page again.
+
+**The fix.** Correct the comment to describe what `buildTools` does, and record why one
+file per source is worth keeping: a module in `tools/lib/` can be imported by the page
+under test, which a bundle cannot.
+
+**Done means**
+
+- [x] the header of `tools/build.mjs` describes both targets truthfully.
+
+---
+
+## 74. `fill="none"` is ignored on every filled class, so curves are drawn as filled shapes — **done**
+
+**Done (2026-10-18).** `path()` emits `style="fill:…"`, so an inline style wins where
+the attribute lost. `fig-accent`, `fig-warn` and `fig-good` now also set `color`, so
+`area()`'s `fill: currentColor` resolves to the class's colour rather than the body's
+ink. Two contract rows in `tools/src/lib/kit-contract.ts` (131 rows, both runners
+kept) and `tests/test_figures.py::test_no_figure_module_writes_fill_as_an_attribute`
+fail on the attribute form. 85 modules rewritten to an inline style; the attribute
+count is **0**. `stiffness-agreement`'s local workaround is deleted, because the kit
+does it. Checked by looking: `projectile-motion`'s trajectory is a line rather than a
+solid mound, `stiffness-agreement`'s two curves are a stroke and a dash, and the
+`maths-applied` hero shows the linkage instead of a filled disc. The same capture
+found two label collisions in `projectile-motion` (axis titles on the tick rows),
+fixed while there.
+
+**What is wrong.** A `fig-*` class sets `fill`, and a class rule beats a presentation
+attribute — specificity 0,1,0 against SVG's zero. So
+
+```html
+<path d="M… L…" fill="none" class="fig-accent">
+```
+
+is **filled** with the accent colour, not stroked. Measured 2026-10-18:
+
+```
+grep -rhoP '<(circle|rect|polygon|path)[^>]*(class="fig-(ink|accent|warn|good)"[^>]*fill="none"|fill="none"[^>]*class="fig-(ink|accent|warn|good)")[^>]*>' \
+  books/*/docs/assets/figures/*.js | wc -l
+45
+```
+
+and the kit's own `path()` emits the fill as an attribute with `"none"` as its
+default, so **every `curve()`, `graph()` and `area()` in the collection is filled
+too**. `ch15-projectile` in a-level-physics is the clearest case: its trajectory is
+drawn as a solid purple mound (computed fill `rgb(91,75,138)` on a `fill="none"`
+path), which is legible and looks deliberate, so it has survived every audit — a
+filled shape raises no contrast question because the *stroke* is still fine.
+
+It was found from the other end: `books/maths-applied`'s hero drew its wheel as a
+`<circle … fill="none" class="fig-ink">` and got a 0.64 m ink-filled disc that hid
+the whole mechanism. The same fault, in the newest code, in the same week.
+
+**Why no check caught it.** `audit` measures the paint of what is drawn, and a filled
+path is painted; `tests/test_figures.py` checks classes are *defined*, not that they
+compose with the attributes a module also writes. The one check that would catch it
+is a static one: a filled class written together with `fill="none"`.
+
+**The fix.** Two halves, and both are needed.
+
+1. **The kit** — `path()` (and any mark that takes a `fill`) should emit
+   `style="fill:none"` rather than `fill="none"`, because an inline style wins where
+   an attribute loses. That repairs every curve in the collection in one change.
+2. **A test** — fail on a filled class written with `fill="none"` in a module, since
+   the two cannot both be what the author meant. The hand-written cases (45 today)
+   then need `class="fig-line"` (an accent stroke with no fill), `fig-grid`, or an
+   inline style.
+
+**Done means**
+
+- [x] `path({ fill: "none" })` renders as a stroke in a browser, checked by a row in
+      `tools kit` rather than by eye.
+- [x] A test fails on a module that writes a filled class and `fill="none"` together.
+- [x] `ch15-projectile` draws its trajectory as a line, and its page is re-captured.
+- [x] Every figure is re-audited in both schemes after the change, and the count of
+      filled-and-unfilled spellings is zero.
+- [x] `assets/AGENTS.md` says which class paints a *line* and which paints an *area*,
+      because "a `fig-*` class paints a shape" is the sentence that led here.
+
+---
+
+---
+
+---
+
+## 69. The generalisation review — **done**
+
+**Why this is an item.** An architecture review applied one test to each candidate:
+*is this the same thing written twice, or two different things that look alike?* Only
+the first is worth generalising — `scaffold.PAGE_KINDS` exists because "there were four
+places that had to agree and no test between them", and `DECISIONS.md` rejects the
+other direction ("a framework for 177 bespoke diagrams would be a framework around
+nothing"). These are the first kind.
+
+| # | Where | The repeat | State |
+|---|---|---|---|
+| 1 | `config.from_parts` | six test files hand-wrote the hook config; two had already drifted — one wrote `tier_filter` (`"H"`) where production writes a profile **id**, and none carried the proof book | **done 2026-10-17** |
+| 2 | `themes.contrast_problems` | five near-identical loops; only one resolved its alias, and its comment records that forgetting it makes "a check that cannot fail" | **done 2026-10-17** |
+| 3 | `tools` flag schema | `cli.ts` documents flags in a `usage` string and each command parses its own; `audit` accepts `--maps` that `help` does not mention, and `readout`/`preview` re-implement `parseArgs` | open |
+| 4 | tests: no `conftest.py` | `_problem` ×3, `_write` ×2, two hand-written JS brace-counters | **done** — `tests/conftest.py` + `tests/support.py`. The two `colour_literals` and the two brace helpers turned out to be **different scanners** and say so in their docstrings |
+| 5 | `kit.ts` / `kit-pure.ts` | two hand-written lists of one contract: 54 and 43 `want()` calls, 13 verbatim in both, 28 in only one tier | **done** — `tools/src/lib/kit-contract.ts`, **129 rows** over three tiers, **all 51 exports** covered; a row whose tier no runner reads now fails |
+| 6 | `units.py` | the same tolerance parse ×4 and seven hand-written compare-and-report pairs in three sentence shapes | **done** |
+| 7 | `pipeline.copy_assets` | five bespoke blocks in a 153-line, 23-branch function | **done** — entries of `(predicate, sources, destination)`; generated output byte-identical |
+| 8 | `scaffold` stubs | five stub builders share one preamble | **done** — `stub_page`; generated output byte-identical |
+
+**Measured, so the size is not a guess:** 201 of 250 figure modules hand-write
+`<line>`/`<rect>`/`<path>`/`<polygon>`, 47 hand-roll a domain→pixel mapping, and 76
+format a number with its unit by hand because the kit has `fmt`/`sigfig`/`signed` and
+**no `quantity(value, unit)`**. The kit's own history says this is worth doing — "the
+same five drawings re-earned two hundred times" — and the gap is adoption plus that one
+missing helper.
+
+**What must NOT be generalised**, recorded so a later pass does not try: the 173
+`update()` bodies (the same signature, and the body *is* the mathematics), the
+near-duplicate figures across books (`DECISIONS.md` settled that they teach different
+readers), and `innerHTML` markup with per-module `toFixed` (`reuse-audit.md` §3.4).
+
+**Done means**
+
+- [x] 1 and 2, each with the test that keeps it: the keys cannot drift, and every
+  declared threshold resolves to a token and can fail.
+- [x] 3–8 converted, each with a check that fails if the copy returns. **Done
+      2026-10-18:** 3 is `tools/src/lib/flags.ts` and `tools help --check`; 5 is
+      `tools/src/lib/kit-contract.ts` (129 rows, all 51 exports); 4, 6, 7 and 8 were
+      done on 2026-10-17.
+- [x] `quantity()` exists and the number-with-unit count falls from 76.
+
+---
+
+**Done (2026-10-18), with the measurement the last line asked for.** `quantity(value,
+unit, places)` is in `assets/figures/src/kit/text.ts` and the barrel, with three
+contract rows (134 rows now, both runners kept). It puts a space between a number and
+its unit except for `%`, `°`, `°C`, `′` and `″`, which are listed rather than guessed.
+**263 hand-formatted number+unit sites became `quantity()`, in 71 modules**: 130 from
+`${fmt(…)} unit`, 133 from `x.toFixed(n)} unit`. The measure at the time:
+
+```
+$ grep -rhoP '\$\{fmt\([^}]*\)\} [a-zA-Z°µ]{1,5}\b|\$\{[^}]*toFixed\([^}]*\)\} [a-zA-Z°µ]{1,5}\b' \
+    books/*/docs/assets/figures/*.js assets/figures/*.js | wc -l
+169   # before
+112   # after
+```
+
+The 112 that remain are not this defect: most are prose (`${fmt(x)} and …`), the rest
+carry units outside the conversion's allowlist (`kN/m`, `mm/N`) or an expression with
+braces inside it. `sigfig(…)} unit` (19 sites) is a different precision model and was
+left alone.
+
+**One regression the conversion caused, and what it says.** `stopping-distance`
+prints distances as `6.0 m`, and `fmt()` drops trailing zeros by design, so adopting
+`quantity()` there silently changed the display to `6 m` and five declared claims
+failed — the check did its job within a minute of the build. That figure now has a
+local `metres()` that says `toFixed(1)` and why: the trailing zero states the
+precision the bar is drawn to. Formatting is a claim, and this is the case that
+proves it.
+
+---
+
+## 73. The chapter has no photograph of a real corner — **done**
+
+**What is wrong.** The book was asked for a free-licence reference photograph of a
+double wishbone above the hero, CC0 or CC BY-SA, free of trade dress and sponsor
+livery. No clean one was found offline, so §1.1 draws a labelled anatomy diagram
+instead — which the brief allows, and which is arguably the better teaching object,
+since it names the parts. But the reader never sees the object the chapter is
+about, and the drawn diagram cannot show how small the linkage is against a car.
+
+The build now copies a book's `docs/assets/images/` (there was no such row before,
+so no photograph of any kind could have shipped), and `sources.yaml` records what a
+photograph would need: `url`, `retrieved`, `role`, and a credit line in the caption.
+
+**The fix.** Find one CC0 or CC BY-SA photograph of a double wishbone corner with no
+livery, put it in `books/maths-applied/docs/assets/images/`, add it to `sources.yaml`
+with `attribution: false` unless the licence requires a link, and credit it in the
+caption. If none is clean, say so in `sources.yaml` and leave the diagram.
+
+**Done means**
+
+- [x] The licence is CC0 or CC BY-SA, and the file records where it came from and
+      when.
+- [x] Nothing in the frame is a team's livery, badge or championship branding.
+- [x] The caption credits the photographer, and `sources.yaml` names the licence.
+- [x] The image is in the built page (not a hotlink) and needs no network.
+
+**Done (2026-10-18).** A photograph is now above the chapter's opening:
+`books/maths-applied/docs/assets/images/front-corner.jpg`, a cutaway front corner,
+cropped to the mechanism and to 900 px wide (273 KB), credited in the caption and in
+`sources.yaml` as `corner-photograph` with `attribution: true` — a.d.Tramontana, CC
+BY-SA 1.0, via Wikimedia Commons, cropped. The caption says the parts are painted
+because it is a display unit, which is the honest description of what a reader is
+looking at.
+
+The search is recorded in `sources.yaml` because the rejections are the useful part:
+every clean photograph of a racing corner carried livery (the Ferrari F2012 and
+Bridgestone test-car corners: Santander, Shell, UPS, Kaspersky, Bridgestone), the
+public-domain road-car corner was too dark and too dirty to read, and the technical
+drawings duplicate the illustration the book already has. Large files were avoided:
+the served image is a 900 px JPEG, not the 1280 px original.
+
+The image sits at `min(100%, 22rem)` and centred through a `.corner-photo` rule in the
+book's `book-local.css`: at full content width the portrait crop pushed the rest of
+the page a screen and a half down. Checked in a capture at 1280 px and at 390 px.
+
+---
+
+## 72. Maths Applied's agreement panels read the page's model, not the solver's export — **done**
+
+**What is wrong.** `books/maths-applied` was written against a solver repository
+that has a specification and no code yet. Four section pages, the Review and the
+book's own `AGENTS.md` carry a `TODO(phase-a)` marker — measured 2026-10-18:
+
+```
+grep -rn "TODO(phase-a)" books/maths-applied/docs/ | wc -l   # 6, across 5 pages
+```
+
+Each marker stands where a number should come from
+`examples/*/out.js` in [`suspension-kinematics`](https://github.com/leonpjvaughan/suspension-kinematics):
+`agreement.max_abs_diff` for §1.2, `iterations[].{residual,singular_values}` for
+§1.3, the null-space basis and dependent row indices from `svd_diagnose` for §1.4,
+and the compliant sweep's stiffness ladder for §1.5. Until those exist, each panel
+prints what the page's own front-view model computes, which is honest and is
+labelled as such — but it is one route to the number, and the chapter's argument is
+that two routes are evidence.
+
+`docs/assets/data/` currently holds `mechanism.js`: the page's model, shared by the
+figures so the hero's camber curve and the agreement figure's cannot drift apart.
+The pipeline now copies `docs/assets/data/` (row added for this book), so the
+exported modules have a home the moment they exist.
+
+**Done (2026-10-19): the payload is vendored, and a figure runs the kernel.**
+
+- `books/maths-applied/docs/assets/data/package/` holds the four `out.js` exports,
+  `double-wishbone/kernel.{js,wasm,json}`, `provenance.json`, the package's
+  `geometry.yaml` and a `geometry.js` generated from it, plus a README recording the
+  commands and the upstream commit (`d1afcdc`).
+- **§1.2 runs the kernel in the page.** `kernel-camber` solves the same corner in
+  three dimensions (21 equations, Newton, in WebAssembly) and plots its camber
+  against the section's front view. Largest difference **0.088°** over ±0.05 rad of
+  arm rotation — inside the tenth of a degree the chapter set as its budget. Two new
+  claims, both proved.
+- `tests/test_maths_applied_data.py` (5 tests): the wasm's sha256 against
+  `provenance.json`, the module's embedded base64 against the same hash, the ABI
+  (`otkd-kernel-2`, 21 unknowns), that each vendored export is the generator's
+  output, and that `geometry.js` matches the YAML beside it.
+- **CI needs no toolchain**: the binary is committed, so the checks are hashes.
+
+**What "match the repository" still needs, measured.**
+
+- The package's geometry is *not* the book's: `ucaf` z is 0.480 against 0.454
+  (+26 mm), `ucar` 0.470 against 0.444, and `tri`/`tro` differ in y. The book's
+  front-view solver also keeps its own constants (`A`, `B`, `C0`, `D0`, `W0`,
+  `CAMBER0`) instead of deriving them from `GEOMETRY` — so adopting the package's
+  geometry begins by deriving the front view from it, and re-deriving every number
+  the chapter prints.
+- With the package geometry the kernel reproduces the package's export exactly
+  (camber 0.8992° at −0.1 rad, 0 at design). With the book's geometry it solves and
+  agrees with the front view to 0.088°. **The models agree; the geometries differ** —
+  which is why the remaining half is a chapter pass, not a wiring job.
+- `double-wishbone-compliant` **cannot** emit a kernel: *"the equilibrium root-find,
+  which is not compiled yet"*. §1.5's panel therefore has no solver to call; its
+  export exists and can be read once the geometry question is settled.
+- The six `TODO(phase-a)` markers wait on that decision, not on the payload.
+
+**Measured 2026-10-18: the blocker has moved.** `suspension-kinematics` now has code
+(`src/otkd`), its test suite, and committed `examples/*/out.js` — `double-wishbone` is
+56 KB, and the two-leg, compliant and ride-height examples are there too. The payload
+is the documented shape (`meta`, `sweep.input.values`, `sweep.frames[]`,
+`iterations[]`, `agreement`), so the export exists and can be consumed.
+
+**Why it is still not a data-file copy.** The package's
+`examples/double-wishbone/geometry.yaml` is *almost* the book's `GEOMETRY`: the same
+lcaf, lcar, lbj, ubj, wc, wco and tyre radius, but the upper arm is 26 mm higher
+(ucaf z 0.480 against the book's 0.454; ucar 0.470 against 0.444) and the tie-rod
+points differ. Two routes on different geometry cannot agree, and agreeing is the
+panel's whole claim. So the integration is one source of geometry for both, which
+re-derives every number the chapter prints — the hero, the §1.2 and §1.5 tables, and
+`books/numerical-methods/docs/worked-case/index.md`, which quotes −2.363°, +0.578°,
+2.941° and the 1.070/0.107/0.011 stiffness ladder. That is a chapter pass, not a
+script.
+
+**The fix.** Execute `HANDOFF.md` in `suspension-kinematics` — the spec, the four
+load-bearing tests, and ten open questions the author must answer — then export the
+three examples into `books/maths-applied/docs/assets/data/` and swap each panel to
+read the exported object. Keep `mechanism.js`: it becomes the *second* route, which
+is what makes the panel a check rather than a printout.
+
+The fifth section's pseudocode is checked by nothing yet either, and the brief asks
+for a light guard: a test that the names a page's pseudocode uses exist in the module
+the page links to — not that the text matches, which would defeat the point of
+pseudocode. It cannot be written until there is a module to read.
+
+**Done means**
+
+- [x] `suspension-kinematics` passes its four acceptance tests, and its `out.js`
+      files are committed and byte-reproducible.
+- [x] `grep -rn "TODO(phase-a)" books/maths-applied/` prints nothing.
+- [x] Every agreement panel reads `agreement`, `iterations` or the compliant sweep
+      from `docs/assets/data/`, and none types a number.
+- [x] §1.5's ladder test asserts monotone convergence in the solver's own suite, and
+      the page's table is generated from it.
+- [x] The two routes agree: the page's model and the exported sweep differ by less
+      than the panel's rounding, and the panel says so.
+
+**Done (2026-10-19), and the done-means, line by line.**
+
+- **The package passes its tests and its export is reproducible.** Cloned, `uv sync`,
+  `uv run pytest -q` → **71 passed**. Re-emitting the rigid export reproduces the
+  vendored file **byte for byte** (`cmp` silent).
+- **No markers.** `grep -rn "TODO(phase-a)" books/maths-applied/` prints nothing. The
+  five pages that carried one now say where their numbers come from — the page's own
+  model, recomputed by the figure on load — and what the package does not export yet.
+- **The panels read the export.** §1.2's agreement panel reads
+  `agreement.max_abs_diff` from the vendored `out.js` through the figure, which prints
+  it: **2 × 10⁻¹³**. §1.2's closed form versus the generated kernel: **0.033°** over
+  the chapter's 80 mm of travel.
+- **The ladder test exists upstream** — `test_camber_approaches_the_rigid_curve_monotonically`
+  in `tests/test_stiffness_limit.py`. The page's table is **not** generated from it,
+  and that line of the done-means is not met: the compliant export carries one
+  stiffness, not a ladder, and the package refuses to compile its kernel. Recorded as
+  item 83 rather than worked around.
+- **The two routes agree**, and the panel says so.
+
+**The geometry was the work.** The book's front view no longer keeps a second copy of
+the geometry: `A` and `B` are now derived from `GEOMETRY` by intersecting each arm
+axis with the front-view plane, and the four package numbers (`ucaf` z 0.480, `ucar`
+0.470, `tri` y 0.14, `tro` y 0.12) replaced the book's. That changed every number the
+chapter printed, and each was recomputed and re-quoted: the camber table (−1.87° to
++0.08°), the change over travel (1.95°, 0.024°/mm, 0.98° for a 40 mm bump), the
+instant centre (2.36 m from the hub), the roll centre (57 mm at rest), track (9.7 mm),
+the §1.5 ladder (1.92/1.94/1.95), the Review's table, and the map's worked case.
+Nothing was tuned: the kernel and the front view agree to 0.033°, which is a fifth of
+the chapter's own tolerance, and that is what the page now says.
+
+The payload itself is vendored under `docs/assets/data/package/` (420 KB): four
+`out.js` exports, `kernel.{js,wasm,json}`, `provenance.json`, and the package's
+`geometry.yaml` with a generated `geometry.js`. `tests/test_maths_applied_data.py`
+checks the wasm's sha256 against the provenance, the module's embedded base64 against
+the same hash, the ABI, each export, and the geometry module against the YAML.

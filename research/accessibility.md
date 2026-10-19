@@ -82,7 +82,7 @@ off. The landing page is not covered here.
 ### Method
 
 The audit serves a copy of the built site through Playwright request
-interception (no port), exactly the way `scripts/screenshot.cjs` does, then
+interception (no port), exactly the way `tools screenshot` does, then
 drives it with real key presses. Every finding records the page and the
 keystrokes that produced it.
 
