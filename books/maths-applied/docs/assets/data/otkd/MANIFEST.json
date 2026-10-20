@@ -1,35 +1,65 @@
 {
-  "bundle": "otkd-bundle-1",
-  "generator": "otkd 0.4.0",
-  "git": "f5d2c92",
+  "bundle": "otkd-bundle-2",
+  "generator": "otkd 0.5.0",
+  "git": "59b0053",
   "models": {
     "double-wishbone": {
       "id": "dw-1dof",
       "kernel": "kernel.wasm",
-      "payload": "out.js"
+      "payload": "out.js",
+      "sources": {
+        "constraints.yaml": "fd35357ac45c8d77b9225caa8fc036c42f7d79f1952bf642bd24ca6b25513038",
+        "geometry.yaml": "403a199ff68a7cb5682e70b06dfcf328036f407255f6b7e76a023f6dad29e466",
+        "study.yaml": "584f2a46a441fe83572d50ab95e8c540c31690012d514d064031505c991f2e47",
+        "topology.yaml": "a43179c7945d1f61c8482c52e70d0ff62c6322b9b2a97c254e1b39aa16499a79"
+      }
     },
     "double-wishbone-compliant": {
       "id": "dw-compliant",
       "kernel": "kernel.wasm",
-      "payload": "out.js"
+      "payload": "out.js",
+      "sources": {
+        "constraints.yaml": "fd35357ac45c8d77b9225caa8fc036c42f7d79f1952bf642bd24ca6b25513038",
+        "geometry.yaml": "38e51b60d47a5f03eba06dc3aa50ad2038169bcb95e8a26ff348577c83765ae3",
+        "study.yaml": "8f816685afc9413c5b679309dd876ca7e680f00299ccada40507f7b57f62b050",
+        "topology.yaml": "cc046b47031835d3572524c02b3f5c2767b565947f8ea7b6e1b27effed46c45d"
+      }
     },
     "double-wishbone-two-leg": {
       "id": "dw-two-leg",
       "kernel": "kernel.wasm",
-      "payload": "out.js"
+      "payload": "out.js",
+      "sources": {
+        "constraints.yaml": "fd35357ac45c8d77b9225caa8fc036c42f7d79f1952bf642bd24ca6b25513038",
+        "geometry.yaml": "403a199ff68a7cb5682e70b06dfcf328036f407255f6b7e76a023f6dad29e466",
+        "study.yaml": "53993a0dcbe36954433eb35208c2f289fab10915c05d73c476199f7b016786a7",
+        "topology.yaml": "91645928b3ef32afbc4591d76e815c93e2ed37a838d9a3cc122dd9156c761c45"
+      }
     },
     "quarter-car": {
       "id": "quarter-car",
       "kernel": "none (dynamics)",
-      "payload": "none (dynamics)"
+      "payload": "none (dynamics)",
+      "sources": {
+        "constraints.yaml": "fd35357ac45c8d77b9225caa8fc036c42f7d79f1952bf642bd24ca6b25513038",
+        "geometry.yaml": "6c42385c57b26da44421d5e340eac42a00cc05a3deaf339d6d2df9325a6ea389",
+        "study.yaml": "0655fc27b5410f1985de8d79b37f295e1ff6d60698fc59f313de126a79a778f1",
+        "topology.yaml": "b957f7c4595c81d52312916cb3ce5528a59e6dc1f5e25375b33365fb0b27547c"
+      }
     },
     "ride-height": {
       "id": "ride-height",
       "kernel": "kernel.wasm",
-      "payload": "out.js"
+      "payload": "out.js",
+      "sources": {
+        "constraints.yaml": "fd35357ac45c8d77b9225caa8fc036c42f7d79f1952bf642bd24ca6b25513038",
+        "geometry.yaml": "8ef9a231244413f5526c76769f1bb25db7a0b6f5989cb576d9f67915a716145a",
+        "study.yaml": "bdc0f0ca2dd3ab974f910e51a9b521d5b2be1fbac8c02a720b96ab69192cc82a",
+        "topology.yaml": "4581c269df9039f022e6db563d03e6c6808eb16269309929973499333c97fd3e"
+      }
     }
   },
   "python": "3.12.3",
   "rustc": "rustc 1.99.1 (58cf8f9c3 2026-10-13)",
-  "version": "0.4.0"
+  "version": "0.5.0"
 }

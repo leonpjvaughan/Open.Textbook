@@ -1,0 +1,5 @@
+# The book's run, not the package's: §1.6 shows the settling, so it needs longer than the
+# shipped study's 0.5 s. Everything else is the example's own model.
+analysis: dynamics
+duration: 3.0
+steps: 601
