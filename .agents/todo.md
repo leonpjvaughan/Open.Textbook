@@ -60,18 +60,27 @@ Two conventions to apply before comparing anything: the export's camber is **pos
 the opposite of §1.2, and its travel band is ±0.1 rad of the lower arm, which is +1 to +86 mm of
 wheel travel because the loads push the corner into bump.
 
-**The blocker is a baseline, not a convention.** Flipping the sign and reading the same columns,
-the page's rigid model gains **1.00°** of camber under load and the export's gains **0.002°**.
-Those are different model *statements*, not different arithmetic: the page's corner has compliance
-somewhere else — a tyre, a lower-arm bush — and the package's example has only the bush, so with a
-rigid bush a rigid mechanism does not deflect at all. Regenerating the table from the export
-therefore moves the whole ladder by about a degree, and which model is right is the author's
-decision:
+**The measurement, and a hypothesis that did not survive it.** The page's camber carries a static
+−1.0° at the design position (`CAMBER0` in `mechanism.js`), and the export's is 0 there by
+construction: that accounts for exactly one degree of the gap and is a convention, not a difference.
 
-- **(a)** the example gains the corner's other compliance, and the page's ladder is reproduced;
-- **(b)** §1.5 adopts the export's baseline and says what the export does *not* model, which is
-  also a lesson — the ladder is about the bush, and a page that wants the tyre in it must put it
-  there.
+The rest is a model. With the page's own load case — one lateral 3 kN at the contact patch — the
+package's bush deflects **2.508 mm** at 0.2 MN/m where the page's model says **6.8 mm**, and the
+camber shift at rest is **0.308°** where the page's is **1.05°**. Softening the tie rod was the
+first suspect — a front view has no tie rod, so the package's mechanism might be sharing the load
+with it — and it is **ruled out**: at 1e-5 m/N the deflection moves from 2.508 to 2.561 mm, two per
+cent, and the camber shift falls. So the page's model has something the package's has not, on the
+page's side: the patch's position, or how `F x_P` distributes the force, is the place to look.
+
+**The decision.** The package half is done and the export is the real 3D corner; the page's model is
+a front-view idealisation. Two routes, and the second is now the better-evidenced one:
+
+- **(a)** find the page's difference, change the example to match, and reproduce the page's ladder —
+  but the example is the mechanism §1.2 and §1.4 already use, so this means altering what the
+  chapter's other sections are built on;
+- **(b)** §1.5 adopts the export's ladder and the page says what its own model idealises away. The
+  gap is then the evidence for the section's thesis rather than a defect in it: two models of one
+  corner, neither wrong, differing by exactly what the simpler one leaves out.
 
 **Done means**
 
