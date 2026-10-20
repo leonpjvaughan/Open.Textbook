@@ -1,7 +1,7 @@
 {
   "bundle": "otkd-bundle-2",
-  "generator": "otkd 0.5.0",
-  "git": "59b0053",
+  "generator": "otkd 0.6.0",
+  "git": "725cbb9",
   "models": {
     "double-wishbone": {
       "id": "dw-1dof",
@@ -36,6 +36,17 @@
         "topology.yaml": "91645928b3ef32afbc4591d76e815c93e2ed37a838d9a3cc122dd9156c761c45"
       }
     },
+    "double-wishbone-ubj": {
+      "id": "dw-ubj",
+      "kernel": "not compiled: an equilibrium kernel expects one free direction; this model has 3",
+      "payload": "out.js",
+      "sources": {
+        "constraints.yaml": "fd35357ac45c8d77b9225caa8fc036c42f7d79f1952bf642bd24ca6b25513038",
+        "geometry.yaml": "28c245897a1ee67586f70e63c0271ed9155534a5d6834e0afec5c1c49ed46414",
+        "study.yaml": "43c91ac3fa5bf95b0e20c37ffd1c10f79b46ef52d263eca791245fb1747b5862",
+        "topology.yaml": "8e3ed5b9afa8a413bfd38c9f8eb93ad32fbce5248b627ad868032983ecf3852e"
+      }
+    },
     "quarter-car": {
       "id": "quarter-car",
       "kernel": "none (dynamics)",
@@ -61,5 +72,5 @@
   },
   "python": "3.12.3",
   "rustc": "rustc 1.99.1 (58cf8f9c3 2026-10-13)",
-  "version": "0.5.0"
+  "version": "0.6.0"
 }
