@@ -5,9 +5,9 @@ that script, run it, and commit what it writes.
 
 | | |
 |---|---|
-| generator | `otkd 0.6.0` |
-| release | <https://github.com/leonpjvaughan/suspension-kinematics/releases/tag/0.6.0> |
-| zip sha256 | `1248c7f5306cc60cab6bb0c1fecb550dbfe58629ac5594a13d133737d8006015` |
+| generator | `otkd 0.7.0` |
+| release | <https://github.com/leonpjvaughan/suspension-kinematics/releases/tag/0.7.0> |
+| zip sha256 | `4754dfa11c341311079e79e4f2e4f09fa290641d467fd9886a6369096afb3062` |
 
 `models/<name>/out.js` is the model's static payload (`meta`, `sweep.frames[]`,
 `iterations[]`, `agreement`); `models/<name>/kernel/` is its solver — `kernel.js` is

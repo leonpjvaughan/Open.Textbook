@@ -2119,32 +2119,32 @@ pub extern "C" fn metrics() {
 }
 
 #[inline]
-fn solve_linear(a: &mut [f64; N*N], b: &mut [f64; N]) -> bool {
-    for col in 0..N {
+fn solve_linear(n: usize, a: &mut [f64], b: &mut [f64]) -> bool {
+    for col in 0..n {
         let mut pivot = col;
-        let mut best = a[col*N + col].abs();
-        for row in col+1..N {
-            let value = a[row*N + col].abs();
+        let mut best = a[col*n + col].abs();
+        for row in col+1..n {
+            let value = a[row*n + col].abs();
             if value > best { best = value; pivot = row; }
         }
         if best < 1e-14 { return false; }
         if pivot != col {
-            for k in 0..N { a.swap(col*N + k, pivot*N + k); }
+            for k in 0..n { a.swap(col*n + k, pivot*n + k); }
             b.swap(col, pivot);
         }
-        let d = a[col*N + col];
-        for row in col+1..N {
-            let f = a[row*N + col] / d;
+        let d = a[col*n + col];
+        for row in col+1..n {
+            let f = a[row*n + col] / d;
             if f != 0.0 {
-                for k in col..N { a[row*N + k] -= f * a[col*N + k]; }
+                for k in col..n { a[row*n + k] -= f * a[col*n + k]; }
                 b[row] -= f * b[col];
             }
         }
     }
-    for row in (0..N).rev() {
+    for row in (0..n).rev() {
         let mut s = b[row];
-        for k in row+1..N { s -= a[row*N + k] * b[k]; }
-        b[row] = s / a[row*N + row];
+        for k in row+1..n { s -= a[row*n + k] * b[k]; }
+        b[row] = s / a[row*n + row];
     }
     true
 }
@@ -2188,7 +2188,7 @@ pub extern "C" fn solve(iters: i32) -> f64 {
             }
         }
         for d in 0..N { a[d*N + d] += lambda * (a[d*N + d] + 1e-12); }
-        if !solve_linear(&mut a, &mut b) { return -1.0; }
+        if !solve_linear(N, &mut a, &mut b) { return -1.0; }
         let mut trial = q;
         for i in 0..N { trial[i] += b[i]; }
         let mut out_trial = [0.0f64; M];

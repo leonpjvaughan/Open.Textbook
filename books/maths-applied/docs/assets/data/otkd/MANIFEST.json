@@ -1,7 +1,7 @@
 {
   "bundle": "otkd-bundle-2",
-  "generator": "otkd 0.6.0",
-  "git": "725cbb9",
+  "generator": "otkd 0.7.0",
+  "git": "bc5de5b",
   "models": {
     "double-wishbone": {
       "id": "dw-1dof",
@@ -38,7 +38,7 @@
     },
     "double-wishbone-ubj": {
       "id": "dw-ubj",
-      "kernel": "not compiled: an equilibrium kernel expects one free direction; this model has 3",
+      "kernel": "kernel.wasm",
       "payload": "out.js",
       "sources": {
         "constraints.yaml": "fd35357ac45c8d77b9225caa8fc036c42f7d79f1952bf642bd24ca6b25513038",
@@ -72,5 +72,5 @@
   },
   "python": "3.12.3",
   "rustc": "rustc 1.99.1 (58cf8f9c3 2026-10-13)",
-  "version": "0.6.0"
+  "version": "0.7.0"
 }
