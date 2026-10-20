@@ -54,8 +54,8 @@ and it stiffens as it is pushed further.
 
 So the compliant model is a **linearisation**, and its accuracy is the accuracy of
 that line over the deflections it predicts. §1.5's own numbers are the check: at
-1 MN/m the bush deflects 1.4 mm, which is inside a rubber bush's linear range; at
-0.2 MN/m it deflects 6.9 mm, which is not, and the answer there is a direction
+1 MN/m the bush deflects 1.2 mm, which is inside a rubber bush's linear range; at
+0.2 MN/m it deflects 6.1 mm, which is not, and the answer there is a direction
 rather than a value.
 
 That is worth saying plainly, because it is the sort of limit a reader can use. A

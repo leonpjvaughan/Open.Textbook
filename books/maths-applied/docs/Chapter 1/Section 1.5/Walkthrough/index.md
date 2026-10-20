@@ -60,9 +60,10 @@ two forces agree, and finding it is a root-finding loop with two unknowns.
 
 ## Stiffen it, and watch the curve move
 
-The load used here is 3 kN at the contact patch, which is what one front corner
-carries through a hard corner. The slider moves the bush's stiffness over three
-orders of magnitude.
+The load is the corner's own: 3.5 kN downwards and 1.8 kN sideways at the wheel
+centre, which is what one front wheel carries under braking in a corner. The
+exported model carries the same pair at the same point, so the two routes are one
+experiment. The slider moves the bush's stiffness over three orders of magnitude.
 
 :::figure stiffness-agreement
 
@@ -72,10 +73,16 @@ same geometry, same travel.
 
 | Bush stiffness | Bush deflection | Camber at rest | Difference at rest | Change over the travel |
 |---|---|---|---|---|
-| 0.2 MN/m | 6.8 mm | −2.05° | −1.05° | 1.92° |
-| 1 MN/m | 1.37 mm | −1.21° | −0.21° | 1.94° |
-| 10 MN/m | 0.14 mm | −1.02° | −0.02° | 1.95° |
-| 100 MN/m | 0.014 mm | −1.00° | −0.002° | 1.95° |
+| 0.2 MN/m | 6.1 mm | −1.91° | −0.91° | 1.96° |
+| 1 MN/m | 1.21 mm | −1.18° | −0.18° | 1.92° |
+| 10 MN/m | 0.12 mm | −1.02° | −0.02° | 1.91° |
+| 100 MN/m | 0.012 mm | −1.00° | −0.002° | 1.91° |
+
+**The table is the exported model's**, and this section's front view gives the same
+ladder to within **0.04°** — inside the tenth of a degree the chapter asked for, and
+outside the last digit of the camber column. Two routes to one answer is the
+evidence; the small gap between them is the front view's idealisation, and §1.4 is
+where that is measured.
 
 Each tenfold increase in stiffness cuts the difference by roughly a factor of ten,
 and the numbers keep going the same way: down. That monotonic approach is the
@@ -85,8 +92,8 @@ rather than at one convenient value.
 Look at the last column, though, because it is the surprise. The bush mostly
 **moves** the curve rather than tilting it: the load is constant, so the deflection
 is roughly constant, and the camber change over the travel barely notices. A soft
-bush of 0.2 MN/m shifts the whole curve by a degree and changes the total travel by
-three hundredths of a degree.
+bush of 0.2 MN/m shifts the whole curve by about a degree and changes the total
+travel by five hundredths of a degree.
 
 ## The chapter's problem, answered
 
@@ -94,14 +101,14 @@ The chapter asked how far the camber changes, and how little model can answer it
 within a tenth of a degree. Both halves now have numbers, and the second one turns
 out to depend on a distinction the question hides.
 
-Over the full travel the rigid model gives a camber change of **1.95°**, from
-−1.87° at 40 mm of droop to +0.08° at 40 mm of bump. Call that 2°, or 0.98° for a
+Over the full travel the rigid model gives a camber change of **1.91°**, from
+−1.86° at 40 mm of droop to +0.05° at 40 mm of bump. Call that 2°, or 1.05° for a
 40 mm bump from rest.
 
 Now the tolerance. A tenth of a degree can be asked of two different things:
 
 - **of the camber at a given position**, which is what a designer setting the
-  wheel's angle cares about: the bush has to be about **2.1 MN/m** before the rigid
+  wheel's angle cares about: the bush has to be about **1.8 MN/m** before the rigid
   model is within a tenth of a degree;
 - **of the change over the travel**, which is what this chapter asked: even a soft
   bush of 0.15 MN/m is enough, because the bush shifts the curve rather than tilting
@@ -113,7 +120,7 @@ and the size of the effect the simpler model leaves out — and the comparison h
 be made against **the quantity the question is about**, not against a number that
 happens to be nearby.
 
-Here the two tolerances are fourteen times apart, and a reader who took the wrong
+Here the two tolerances are twelve times apart, and a reader who took the wrong
 one would either throw away a model that answers the question or trust a model that
 misses it by a degree. That is why this section is the centre of the chapter rather
 than an appendix to it. §1.2's model and this one do not compete. They answer
@@ -124,11 +131,12 @@ one is right.
 
 | Check | Value |
 |---|---|
-| Camber change over the full travel, rigid model | 1.95° |
-| Camber at rest, bush model at 1 MN/m | −1.21°, which is 0.21° from rigid |
+| Camber change over the full travel, rigid model | 1.91° |
+| Camber at rest, bush model at 1 MN/m | −1.18°, which is 0.18° from rigid |
 | Camber at rest, bush model at 100 MN/m | −1.00°, which is 0.002° from rigid |
-| Camber change, bush model at 0.2 MN/m | 1.92°, which is 0.034° from rigid |
-| Bush stiffness for a tenth of a degree **at rest** | about 2.1 MN/m |
+| Camber change, bush model at 0.2 MN/m | 1.96°, which is 0.05° from rigid |
+| Bush stiffness for a tenth of a degree **at rest** | about 1.8 MN/m |
+| The front view's ladder against the export's | within 0.04°, over four stiffnesses |
 | Bush stiffness for a tenth of a degree **in the change** | about 0.15 MN/m |
 | The trend as stiffness rises | monotone, in the solver's ladder test |
 
@@ -195,11 +203,11 @@ would collapse back onto the rigid one at any stiffness at all.
 So compliance is not a property of the bush on its own. It is a property of the
 bush **and the load**, and a model that has one without the other will show nothing
 and look reassuring. The number to look for is the deflection, and §1.5's figure
-prints it: 6.9 mm at the softest setting, 0.014 mm at the stiffest.
+prints it: 12 mm at the softest setting, 0.06 mm at the stiffest.
 
 The second trap is thinking that "more complex" means "more correct". Which model
 answers the question depends on which quantity the tolerance is attached to, and
-this chapter has shown two answers fourteen times apart. A stiffness you have
+this chapter has shown two answers twelve times apart. A stiffness you have
 to guess is a new source of error, not a removed one — and a model that needs one
 should have to earn it by changing the answer the question asked for.
 
