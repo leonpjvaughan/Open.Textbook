@@ -15,7 +15,11 @@ import { curve as camberCurve, compliant, pose, thetaFor } from "../data/mechani
 
 const WIDTH = 560;
 const HEIGHT = 340;
-const LOAD = 3000; // newtons at the contact patch: a cornering load, shared across the axle
+// The corner's load, at the wheel centre: the same pair the package's example carries,
+// so this model and the exported ladder are one experiment. 1.8 kN sideways is a hard
+// corner's share; 3.5 kN down is the weight on one front wheel under braking.
+const LATERAL = 1800;
+const DOWN = 3500;
 
 /** A number as the prose writes it: a true minus sign, not a hyphen. */
 const num = (value, places) => value.toFixed(places).replace("-", "\u2212");
@@ -27,9 +31,9 @@ export function mount(el) {
     description:
       "Camber is plotted against wheel travel. The solid curve is the rigid model: the wheel's " +
       "angle follows the linkage alone. The dashed curve is the compliant model, where a bush " +
-      "stands in for the upper ball joint and a sideways load at the contact patch pushes the " +
-      "wheel. As the bush is made stiffer, the dashed curve moves towards the solid one and lands " +
-      "on it.",
+      "stands in for the upper ball joint and the corner's load — 1.8 kilonewtons sideways and " +
+      "3.5 kilonewtons downwards at the wheel centre — pushes the wheel. As the bush is made " +
+      "stiffer, the dashed curve moves towards the solid one and lands on it.",
     prompt: "Drag the stiffness up. Which curve moves, and what does it move towards?",
     width: WIDTH,
     height: HEIGHT,
@@ -51,7 +55,7 @@ export function mount(el) {
 
   function draw() {
     const k = Number(stiffness.value) * 1e6;
-    const soft = camberCurve({ travel: 40, count: 41, k, F: LOAD });
+    const soft = camberCurve({ travel: 40, count: 41, k, F: LATERAL, V: DOWN });
     const { draw: frame, x, y, box } = axes({
       width: WIDTH,
       height: HEIGHT,
@@ -93,7 +97,7 @@ export function mount(el) {
 
     // The gap at rest, drawn where a reader can compare it with the scale, and
     // labelled on the inboard side so the words sit over empty plot.
-    const atRest = compliant(thetaFor(0), k, LOAD);
+    const atRest = compliant(thetaFor(0), k, LATERAL, DOWN);
     const rigidRest = pose(0).camber;
     const gap = atRest.camber - rigidRest;
     drawing += line({
@@ -118,7 +122,7 @@ export function mount(el) {
 
     svg.innerHTML = drawing;
 
-    const atBump = compliant(thetaFor(40), k, LOAD);
+    const atBump = compliant(thetaFor(40), k, LATERAL, DOWN);
     const atBumpRigid = pose(thetaFor(40)).camber;
     readout.textContent =
       `With a bush of ${num(Number(stiffness.value), 1)} meganewtons per metre, the upright's ` +

@@ -266,15 +266,17 @@ export function leastSquares(start, theta, steps = 6) {
 //
 // The upper ball joint is a bush, not a joint: the upright's upper point and the
 // upper arm's outer point are joined by a spring of stiffness `k`, and the wheel
-// carries a lateral force `F` at the contact patch. Two unknowns — how far the
-// upright has turned about the lower ball joint, and where the upper arm points —
-// and two equilibria: the total force through the bush must balance the tyre's.
+// carries the corner's load: `F` sideways and `V` downwards, both at the wheel
+// centre. **The engine's example carries the same pair at the same point**, so this
+// model and the exported ladder are one experiment rather than two: a load applied
+// at the contact patch instead of the wheel centre would tilt the upright as well as
+// push it, and the two routes would disagree for a reason that is not the model.
 //
 // Still algebra, still swept one angle at a time. As `k` grows the two ends of the
 // bush are forced together, and the answer becomes the rigid one.
 
 /** The compliant pose at one lower-arm rotation, for a stiffness and a load. */
-export function compliant(theta, k, F, side = SIDE) {
+export function compliant(theta, k, F, V = 0, side = SIDE) {
   const base = pose(theta, side);
   if (!base) return null;
   const C = base.C;
@@ -285,9 +287,10 @@ export function compliant(theta, k, F, side = SIDE) {
     const u = unit(sub(D, C));
     const v = perp(u);
     const W = add(C, add(mul(u, LOCAL_W[0]), mul(v, LOCAL_W[1])));
-    const P = [W[0], W[1] - GEOMETRY.tyreRadius];
     const gap = sub(D, U);
-    return (k / 2) * dot(gap, gap) - F * P[0];
+    // The potential of a constant force is minus its work: `-F x` for a sideways push,
+    // and `+V z` for a downward one, because a wheel that rises stores energy against it.
+    return (k / 2) * dot(gap, gap) - F * W[0] + V * W[1];
   };
   const gradient = (alpha, beta, h = 1e-7) => [
     (energy(alpha + h, beta) - energy(alpha - h, beta)) / (2 * h),
@@ -388,13 +391,13 @@ export function nullDirection(J) {
 }
 
 /** A curve of camber against travel, from either model. */
-export function curve({ travel = 40, count = 41, k = null, F = 3000 } = {}) {
+export function curve({ travel = 40, count = 41, k = null, F = 3000, V = 0 } = {}) {
   const points = [];
   for (let i = 0; i < count; i += 1) {
     const t = -travel + (2 * travel * i) / (count - 1);
     const theta = thetaFor(t);
     const state = pose(theta);
-    const camber = k === null ? state.camber : compliant(theta, k, F).camber;
+    const camber = k === null ? state.camber : compliant(theta, k, F, V).camber;
     points.push({ travel: t, camber });
   }
   return points;

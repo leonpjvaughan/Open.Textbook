@@ -12,28 +12,28 @@ kind: review
 is the simplest model that gives an answer you would trust within a tenth of a
 degree?**
 
-The camber moves **1.95°** over that travel: from −1.87° at 40 mm of droop to
-+0.08° at 40 mm of bump. Rest is at −1.00°, so a little more of the change happens
+The camber moves **1.91°** over that travel: from −1.86° at 40 mm of droop to
++0.05° at 40 mm of bump. Rest is at −1.00°, so a little more of the change happens
 above rest than below.
 
 Which model earns the answer depends on the tolerance and on the car:
 
 | Model | Camber change over the travel | Cost | Camber at rest, and its difference from rigid |
 |---|---|---|---|
-| Rigid triangle | 1.95° | one degree of freedom, no numbers to measure | −1.00° |
-| With a bush at 0.2 MN/m | 1.92° | a stiffness to measure | −2.05°, which is 1.05° away |
-| With a bush at 1 MN/m | 1.94° | a stiffness to measure | −1.21°, which is 0.21° away |
-| With a bush at 100 MN/m | 1.95° | a stiffness to measure | −1.00°, which is 0.002° away |
+| Rigid triangle | 1.91° | one degree of freedom, no numbers to measure | −1.00° |
+| With a bush at 0.2 MN/m | 1.96° | a stiffness to measure | −1.91°, which is 0.91° away |
+| With a bush at 1 MN/m | 1.92° | a stiffness to measure | −1.18°, which is 0.18° away |
+| With a bush at 100 MN/m | 1.91° | a stiffness to measure | −1.00°, which is 0.002° away |
 
 So the answer has two parts, and the second is the one that matters.
 
 The camber **change** over the travel is almost untouched: even a very soft bush of
-0.2 MN/m changes it by three hundredths of a degree, because the bush shifts the
+0.2 MN/m changes it by five hundredths of a degree, because the bush shifts the
 whole curve rather than tilting it. If the question is only about the change, the
 rigid model earns its place down to a bush of about 0.15 MN/m.
 
 The camber **itself** is a different matter. A tenth of a degree there needs a bush
-of about 2.1 MN/m, fourteen times stiffer. If a designer wants to know where the
+of about 1.8 MN/m, twelve times stiffer. If a designer wants to know where the
 wheel actually points, the rigid model is wrong by a degree on a soft car.
 
 The chapter's answer is therefore not "use the simple model" or "use the detailed
@@ -41,11 +41,11 @@ one". It is: **measure the effect the simpler model leaves out, compare it with 
 the question needs, and check that the comparison is with the quantity the question
 is about.**
 
-The compliant rows are this book's model, recomputed by the figures from the same
-geometry the exported sweeps use. The package's compliant export is vendored, but it
-carries one stiffness rather than a ladder, so this table is the page's evidence; when
-the package reports a ladder, these rows are generated from it and the two must
-agree.
+The compliant rows are the package's own ladder, vendored with the bundle and checked
+against it by `tests/test_maths_applied_ladder.py`. The page's front view is the same
+experiment — same geometry, same load at the same point — and its own ladder lands
+within **0.04°** of these rows, which is inside the tenth of a degree this chapter
+asked for.
 
 ## The four models, and the numbers where they meet
 
@@ -55,7 +55,8 @@ agree.
 | Three-row least squares | §1.2's closed form | the same pose, to 10⁻¹² m |
 | Three rows, diagnosed | the two-row system | the same pose, and one row fewer |
 | Compliant at 100 MN/m | rigid | 0.002° at rest, and falling as the stiffness rises |
-| Compliant at 0.2 MN/m | rigid | 1.05° at rest, 0.034° in the change over the travel |
+| Compliant at 0.2 MN/m | rigid | 0.91° at rest, 0.05° in the change over the travel |
+| The exported ladder | this section's front view | within 0.04°, over four stiffnesses |
 
 Every one of those numbers is a comparison between two models of the same
 mechanism. None of them is a comparison with the car. That is the honest limit of
