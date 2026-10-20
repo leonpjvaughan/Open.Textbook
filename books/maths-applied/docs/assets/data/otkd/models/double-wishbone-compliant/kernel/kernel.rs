@@ -2023,32 +2023,32 @@ pub extern "C" fn metrics() {
 }
 
 #[inline]
-fn solve_linear(a: &mut [f64; N*N], b: &mut [f64; N]) -> bool {
-    for col in 0..N {
+fn solve_linear(n: usize, a: &mut [f64], b: &mut [f64]) -> bool {
+    for col in 0..n {
         let mut pivot = col;
-        let mut best = a[col*N + col].abs();
-        for row in col+1..N {
-            let value = a[row*N + col].abs();
+        let mut best = a[col*n + col].abs();
+        for row in col+1..n {
+            let value = a[row*n + col].abs();
             if value > best { best = value; pivot = row; }
         }
         if best < 1e-14 { return false; }
         if pivot != col {
-            for k in 0..N { a.swap(col*N + k, pivot*N + k); }
+            for k in 0..n { a.swap(col*n + k, pivot*n + k); }
             b.swap(col, pivot);
         }
-        let d = a[col*N + col];
-        for row in col+1..N {
-            let f = a[row*N + col] / d;
+        let d = a[col*n + col];
+        for row in col+1..n {
+            let f = a[row*n + col] / d;
             if f != 0.0 {
-                for k in col..N { a[row*N + k] -= f * a[col*N + k]; }
+                for k in col..n { a[row*n + k] -= f * a[col*n + k]; }
                 b[row] -= f * b[col];
             }
         }
     }
-    for row in (0..N).rev() {
+    for row in (0..n).rev() {
         let mut s = b[row];
-        for k in row+1..N { s -= a[row*N + k] * b[k]; }
-        b[row] = s / a[row*N + row];
+        for k in row+1..n { s -= a[row*n + k] * b[k]; }
+        b[row] = s / a[row*n + row];
     }
     true
 }
@@ -2066,22 +2066,26 @@ const ROW_INDEX: [usize; ROWS] = [0,1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,17,18,19
 const SPRING_ROWS: [usize; 1] = [16];
 const SPRING_C: [usize; 1] = [67];
 const FORCE_SCALE: f64 = 5.30000000000000000e+03;
+/// The KKT system's dimension: the pose unknowns, then one multiplier per constrained row.
+const K: usize = N + ROWS;
 
 #[inline]
-fn maxabs(v: &[f64; N]) -> f64 {
+fn maxabs(v: &[f64]) -> f64 {
     let mut worst = 0.0f64;
-    for i in 0..N { let a = v[i].abs(); if a > worst { worst = a; } }
+    for i in 0..v.len() { let a = v[i].abs(); if a > worst { worst = a; } }
     worst
 }
 
 #[inline]
-fn equilibrium_rows(q: &[f64; N], g: &[f64; G], t: &[f64; A]) -> [f64; N] {
-    let mut out = [0.0f64; M];
+fn kkt(x: &[f64], g: &[f64; G], t: &[f64; A], out: &mut [f64]) {
+    let mut q = [0.0f64; N];
+    for i in 0..N { q[i] = x[i]; }
+    let mut rows = [0.0f64; M];
     let mut jac = [0.0f64; N*M];
-    compute_inner(q, g, t, &mut out, &mut jac);
+    compute_inner(&q, g, t, &mut rows, &mut jac);
     let mut grad = [0.0f64; N];
     for s in 0..SPRING_ROWS.len() {
-        let scale = out[SPRING_ROWS[s]] / g[SPRING_C[s]];
+        let scale = rows[SPRING_ROWS[s]] / g[SPRING_C[s]];
         for j in 0..N { grad[j] += scale * jac[SPRING_ROWS[s]*N + j]; }
     }
     let jx = [
@@ -2096,36 +2100,16 @@ fn equilibrium_rows(q: &[f64; N], g: &[f64; G], t: &[f64; A]) -> [f64; N] {
         0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 1.0, -2.0*g[24]*q[19] + 2.0*g[25]*q[18] + 2.0*g[26]*q[17], 2.0*g[24]*q[20] + 2.0*g[25]*q[17] - 2.0*g[26]*q[18], -2.0*g[24]*q[17] + 2.0*g[25]*q[20] - 2.0*g[26]*q[19], 2.0*g[24]*q[18] + 2.0*g[25]*q[19] + 2.0*g[26]*q[20],
     ];
     for j in 0..N { grad[j] -= jx[0*N + j] * 1.80000000000000000e+03; }
-    let mut rows = [0.0f64; ROWS];
-    for i in 0..ROWS { rows[i] = out[ROW_INDEX[i]]; }
-    // one linear solve gives the free direction: J_c u = 0, with the spring gradient
-    // appended so the matrix is square and the result is not the zero vector.
-    let mut a = [0.0f64; N*N];
-    let mut b = [0.0f64; N];
-    for i in 0..ROWS {
-        for j in 0..N { a[i*N + j] = jac[ROW_INDEX[i]*N + j]; }
+    for r in 0..ROWS {
+        let lam = x[N + r];
+        for j in 0..N { grad[j] -= jac[ROW_INDEX[r]*N + j] * lam; }
     }
-    for j in 0..N { a[ROWS*N + j] = jac[SPRING_ROWS[0]*N + j]; }
-    for j in 0..N { b[j] = 0.0; }
-    b[N - 1] = 1.0;
-    let mut residual = [0.0f64; N];
-    for i in 0..ROWS { residual[i] = rows[i]; }
-    residual[N - 1] = 0.0;
-    if solve_linear(&mut a, &mut b) {
-        let mut norm = 0.0f64;
-        for j in 0..N { norm += b[j] * b[j]; }
-        norm = norm.sqrt();
-        let mut projected = 0.0f64;
-        for j in 0..N { projected += b[j] * grad[j]; }
-        residual[N - 1] = projected / (norm * FORCE_SCALE);
-    } else {
-        residual[N - 1] = f64::NAN;
-    }
-    residual
+    for j in 0..N { out[j] = grad[j] / FORCE_SCALE; }
+    for r in 0..ROWS { out[N + r] = rows[ROW_INDEX[r]]; }
 }
 
-/// Newton on the equilibrium residual. Returns its infinity norm, or -1 if the
-/// constrained Jacobian was singular.
+/// Newton on the KKT residual. Returns its infinity norm, or -1 if the system was
+/// singular.
 #[no_mangle]
 pub extern "C" fn solve(iters: i32) -> f64 {
     let mut q = [0.0f64; N];
@@ -2136,37 +2120,46 @@ pub extern "C" fn solve(iters: i32) -> f64 {
         for i in 0..G { g[i] = MEM[O_G + i]; }
         for i in 0..A { t[i] = MEM[O_T + i]; }
     }
-    let mut r = equilibrium_rows(&q, &g, &t);
+    let mut x = [0.0f64; K];
+    for i in 0..N { x[i] = q[i]; }
+    let mut r = [0.0f64; K];
+    kkt(&x, &g, &t, &mut r);
     let mut worst = maxabs(&r);
     for _ in 0..iters {
-        if worst < 1e-10 { break; }
-        let mut a = [0.0f64; N*N];
-        for j in 0..N {
-            let h = 1e-7 * (1.0 + q[j].abs());
-            let mut qp = q;
-            let mut qm = q;
-            qp[j] += h;
-            qm[j] -= h;
-            let rp = equilibrium_rows(&qp, &g, &t);
-            let rm = equilibrium_rows(&qm, &g, &t);
-            for i in 0..N { a[i*N + j] = (rp[i] - rm[i]) / (2.0 * h); }
+        // Tight, because the finite-difference Newton approaches the root from one side and
+        // stops wherever the threshold is; a browser pays for two more iterations of a
+        // 40-unknown system and gets a residual the conformance tests can read.
+        if worst < 1e-13 { break; }
+        let mut a = [0.0f64; K*K];
+        for j in 0..K {
+            let h = 1e-7 * (1.0 + x[j].abs());
+            let mut xp = x;
+            let mut xm = x;
+            xp[j] += h;
+            xm[j] -= h;
+            let mut rp = [0.0f64; K];
+            let mut rm = [0.0f64; K];
+            kkt(&xp, &g, &t, &mut rp);
+            kkt(&xm, &g, &t, &mut rm);
+            for i in 0..K { a[i*K + j] = (rp[i] - rm[i]) / (2.0 * h); }
         }
-        let mut step = r;
-        for i in 0..N { step[i] = -step[i]; }
-        if !solve_linear(&mut a, &mut step) { return -1.0; }
+        let mut step = [0.0f64; K];
+        for i in 0..K { step[i] = -r[i]; }
+        if !solve_linear(K, &mut a, &mut step) { return -1.0; }
         let base = worst;
         let mut alpha = 1.0;
         let mut moved = false;
-        for _ in 0..12 {
-            let mut trial = q;
-            for i in 0..N { trial[i] += alpha * step[i]; }
-            let candidate = equilibrium_rows(&trial, &g, &t);
-            let value = maxabs(&candidate);
-            if value < base { q = trial; r = candidate; worst = value; moved = true; break; }
+        for _ in 0..16 {
+            let mut trial = x;
+            for i in 0..K { trial[i] += alpha * step[i]; }
+            let mut cand = [0.0f64; K];
+            kkt(&trial, &g, &t, &mut cand);
+            let value = maxabs(&cand);
+            if value < base { x = trial; r = cand; worst = value; moved = true; break; }
             alpha *= 0.5;
         }
         if !moved { break; }
     }
-    unsafe { for i in 0..N { MEM[O_Q + i] = q[i]; } }
+    unsafe { for i in 0..N { MEM[O_Q + i] = x[i]; } }
     worst
 }

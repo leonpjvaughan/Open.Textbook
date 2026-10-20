@@ -5,7 +5,7 @@ export const meta = {
  "analysis": "dynamics",
  "duration": 3.0,
  "steps": 601,
- "generator": "otkd 0.6.0",
+ "generator": "otkd 0.7.0",
  "command": "uv run otkd solve examples/quarter-car --study study.yaml --json trajectory.json",
  "sources": {
   "topology.yaml": "b957f7c4595c81d52312916cb3ce5528a59e6dc1f5e25375b33365fb0b27547c",
