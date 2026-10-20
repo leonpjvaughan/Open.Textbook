@@ -2,32 +2,41 @@
 
 `trajectory.js` is not part of the `otkd` release bundle: the bundle ships no payload for
 a dynamics study, because a trajectory is not a sweep. It is produced by the script beside
-it, which runs the package's own integration and writes what the page draws.
+it, which asks the package's own CLI for the run — `otkd solve --json` — and maps each step
+to the numbers the page draws. Nothing is re-integrated here, so there is no second reading
+of the model to drift out of step with the package.
 
 | | |
 |---|---|
-| generator | `otkd 0.4.0` |
-| model | `examples/quarter-car` (topology, geometry and study from release 0.4.0) |
-| command | `uv run python extract.py trajectory.js` from a checkout of `suspension-kinematics` |
-| duration | **3.0 s in 601 steps** — longer than the shipped study's 0.5 s, so the settling is visible |
+| generator | `otkd 0.5.0` |
+| model | `examples/quarter-car` (topology, geometry and study from release 0.5.0) |
+| command | `uv run python extract.py trajectory.js` from a checkout of `suspension-kinematics` at the vendored tag |
+| duration | **3.0 s in 601 steps** — `study.yaml` beside this file, longer than the shipped study's 0.5 s, so the settling is visible |
 | energy drift over the run | 6.3 × 10⁻⁸ of the starting energy |
 | largest constraint violation | 1.3 × 10⁻¹⁵ |
-| `trajectory.js` sha256 | `4c34cb1cef617f9bfe7b699239b89b57daa782735ad0f351a42e9a89af430d21` |
+| `trajectory.js` sha256 | `53e1fd5e5a7a74397fadc35789229b05f7efde1954b6760044d808fc6faa744f` |
 
 ## The model it came from
 
-The three config files are recorded by digest in `meta.sources` of the trajectory, so a
-release that changes the quarter car is detectable: re-extract and the digests move.
+`meta.sources` records the four config files by digest. The library is one of them because it
+lives outside the model directory: a release that changed what `spring` means would change this
+model without changing a model file.
 
 | file | sha256 |
 |---|---|
 | `topology.yaml` | `b957f7c4595c81d52312916cb3ce5528a59e6dc1f5e25375b33365fb0b27547c` |
 | `geometry.yaml` | `6c42385c57b26da44421d5e340eac42a00cc05a3deaf339d6d2df9325a6ea389` |
 | `study.yaml` | `0655fc27b5410f1985de8d79b37f295e1ff6d60698fc59f313de126a79a778f1` |
+| `constraints.yaml` | `fd35357ac45c8d77b9225caa8fc036c42f7d79f1952bf642bd24ca6b25513038` |
+
+The bundle now carries those bytes at `../otkd/models/quarter-car/source/` — for a dynamics
+model they are the only provenance the bundle has — so `tests/test_maths_applied_data.py`
+compares the trajectory's digests against the vendored files. A release that changes the
+quarter car fails there rather than invalidating §1.6 in silence.
 
 **The coil in this model is a spring with no damper** (`modes: {length: spring}`), which is
 why the motion repeats instead of dying away. If a release adds damping, §1.6's numbers change
-with it — item 85 in `.agents/todo.md`.
+with it; the digests above are what makes that visible.
 
 ## What it records
 
@@ -35,17 +44,10 @@ One row per step: `t`, `heave` (mm, positive when the chassis rises), `travel` (
 wheel's vertical distance from the chassis, positive in bump), `camber` and `toe` in
 degrees, and `energy`.
 
+`heave` and `travel` are this book's quantities, derived here from the package's world points.
+The rest are the package's own numbers at the precision its payload uses — angles to four
+decimal places, lengths to six — so a page and the package cannot disagree about a digit.
+
 **The package's conventions, not this book's.** Camber is positive with the top of the
 wheel outboard — the opposite sign to §1.2 — and it is measured from the design position.
 The heave and travel signs are the package's too. The page says so where it quotes them.
-
-## How to regenerate
-
-```bash
-git clone https://github.com/leonpjvaughan/suspension-kinematics
-cd suspension-kinematics && uv sync && uv run pytest -q      # 71 passed at 0.4.0
-uv run python /path/to/extract.py trajectory.js
-```
-
-Then replace `trajectory.js` here and update this table's digest. `trajectory.js` is
-68 KB; the repository's drift check does not cover it, so commit the change.

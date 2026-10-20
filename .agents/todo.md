@@ -12,8 +12,8 @@ reasoning, so nothing is compressed on the way across and nothing is deleted.
 **An item is here because it is still true.** Before closing one, run its own
 done-means; an item whose heading says done and whose checklist does not is the
 failure this file has had twice, so the list below, the headings and the boxes
-are checked against each other on every pass. Two items are open, and two of them
-say which single line is not met.
+are checked against each other on every pass. One item is open, and it says which
+single line is not met.
 
 The *interactive-aid backlog* — which figures and interactions a book still wants —
 is `ideas.md`. It is a plan rather than a defect list, and it is written for the
@@ -22,9 +22,9 @@ author choosing what to build next.
 **Open, and the list is the index:**
 
 - [ ] 83. §1.5's ladder is still the page's model — the compliant kernel exists, but
-      the joint it softens is the tie rod; the request is with the package
-- [ ] 85. §1.6's numbers depend on the package's quarter car, whose coil has no
-      damper; the trajectory records its source digests, and a release must re-derive it
+      the joint it softens is the tie rod; the package has accepted the request
+      (`docs/follow-ups.md`, "A compliant upper joint, and a stiffness axis") and the
+      page waits for a release that carries it
 
 **Not in the queue, and not forgotten.** Accepted limitations live where the check
 that records them lives, not here: the booklets whose items cannot be parsed
@@ -81,29 +81,3 @@ page's model agrees to the panel's rounding.
 - [ ] The page's model and the export agree to the rounding shown, and the panel says
       which is which.
 - [ ] `grep -n "one stiffness" books/maths-applied/docs` prints nothing.
-
-## 85. §1.6 quotes a spring with no damper, and a release may add one — **open**
-
-**What is wrong.** The book's §1.6 numbers (0 → 212.8 mm every 0.625 s, five identical peaks,
-camber 0° to −9.53°) are a property of the quarter-car example's coil, which is
-`modes: {length: spring}` — a spring with no damper. That is stated on the page and in the
-data README, so it is not a claim about every quarter car. But it is a dependency on another
-repository's example, and nothing fails if that example changes: the trajectory is vendored
-separately from the `otkd` bundle (the bundle ships no payload for a dynamics study).
-
-**The guard that exists.** `meta.sources` in `trajectory.js` records the sha256 of the three
-config files the run used, and the README repeats them. A release that changes the quarter car
-is detectable by re-extracting — but only by a person who thinks to look.
-
-**The fix.** When a release changes the quarter car, re-run
-`data/quarter-car/extract.py`, replace `trajectory.js`, update the README's digest, and
-re-derive §1.6's table, figure and the 0.006° agreement. If the release ever vendors the
-quarter-car sources (the manifest currently lists the model with "none (dynamics)"), add a
-test that compares `meta.sources` against the vendored bytes.
-
-**Done means**
-
-- [ ] The package's quarter car is unchanged at the vendored version, or §1.6 is re-derived.
-- [ ] If the sources are ever vendored, `tests/test_maths_applied_data.py` compares the
-      trajectory's source digests with the bundle's files.
-- [ ] §1.6's table and figure are regenerated together, never one without the other.

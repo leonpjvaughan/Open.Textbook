@@ -25,6 +25,7 @@ import pytest
 from textbook.book import repo_root
 
 BUNDLE = repo_root() / "books" / "maths-applied" / "docs" / "assets" / "data" / "otkd"
+DATA = repo_root() / "books" / "maths-applied" / "docs" / "assets" / "data"
 SCRIPT = repo_root() / "scripts" / "vendor-otkd.sh"
 
 #: Models the manifest says carry a kernel; read from the manifest, then asserted here
@@ -108,9 +109,39 @@ def test_the_manifest_says_why_a_model_has_no_kernel():
     """`quarter-car` is a dynamics study: a trajectory, not a sweep, and no solver.
 
     The bundle records the reason rather than leaving a hole, so a reader of the data
-    can tell "not compiled yet" from "not compiled on purpose".
+    can tell "not compiled yet" from "not compiled on purpose" — and it ships the model's
+    config files anyway, which is all the provenance a dynamics model can have.
     """
     entry = manifest()["models"]["quarter-car"]
     assert entry["kernel"].startswith("none")
     assert entry["payload"].startswith("none")
-    assert not (BUNDLE / "models" / "quarter-car").exists()
+    model = BUNDLE / "models" / "quarter-car"
+    assert not (model / "out.js").exists()
+    assert not (model / "kernel").exists()
+    assert sorted(path.name for path in (model / "source").iterdir()) == sorted(entry["sources"])
+
+
+def test_the_trajectory_records_the_model_the_bundle_ships():
+    """§1.6's numbers are a property of one quarter car, and now checkable.
+
+    The trajectory is vendored separately from the bundle, so its `meta.sources` digests
+    were a ledger with nothing to check them against. The bundle now carries the four
+    config files of every model, dynamics included: a release that changed the coil fails
+    here rather than quietly invalidating a chapter.
+    """
+    text = (DATA / "quarter-car" / "trajectory.js").read_text(encoding="utf-8")
+    match = re.search(r'"sources": (\{.*?\})', text, re.S)
+    assert match, "the trajectory records no sources"
+    recorded = json.loads(match.group(1))
+
+    vendored = BUNDLE / "models" / "quarter-car" / "source"
+    assert set(recorded) == {path.name for path in vendored.iterdir()}
+    for name, digest in recorded.items():
+        assert hashlib.sha256((vendored / name).read_bytes()).hexdigest() == digest, name
+
+
+def test_the_trajectory_is_the_version_the_vendor_script_pins():
+    """The run and the bundle have to be the same release, or §1.6 quotes a model we do not ship."""
+    text = (DATA / "quarter-car" / "trajectory.js").read_text(encoding="utf-8")
+    generator = json.loads(re.search(r'"generator": "([^"]+)"', text).group(0).split(": ", 1)[1])
+    assert generator == manifest()["generator"]

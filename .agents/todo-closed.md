@@ -4010,3 +4010,49 @@ oscillates — 0 → 212.8 mm every 0.625 s (1.6 Hz), five identical peaks in 3 
 6.3 × 10⁻⁸ and constraint violation 1.3 × 10⁻¹⁵. The section now says that, and the
 frequency is the number the static model cannot produce.
 
+---
+
+## 85. §1.6 quotes a spring with no damper, and a release may add one — **done**
+
+**What is wrong.** The book's §1.6 numbers (0 → 212.8 mm every 0.625 s, five identical peaks,
+camber 0° to −9.53°) are a property of the quarter-car example's coil, which is
+`modes: {length: spring}` — a spring with no damper. That is stated on the page and in the
+data README, so it is not a claim about every quarter car. But it is a dependency on another
+repository's example, and nothing fails if that example changes: the trajectory is vendored
+separately from the `otkd` bundle (the bundle ships no payload for a dynamics study).
+
+**The guard that existed.** `meta.sources` in `trajectory.js` records the sha256 of the three
+config files the run used, and the README repeats them. A release that changes the quarter car
+is detectable by re-extracting — but only by a person who thinks to look.
+
+**The fix.** When a release changes the quarter car, re-run
+`data/quarter-car/extract.py`, replace `trajectory.js`, update the README's digest, and
+re-derive §1.6's table, figure and the 0.006° agreement. If the release ever vendors the
+quarter-car sources (the manifest currently lists the model with "none (dynamics)"), add a
+test that compares `meta.sources` against the vendored bytes.
+
+**Done means**
+
+- [x] The package's quarter car is unchanged at the vendored version, or §1.6 is re-derived.
+- [x] If the sources are ever vendored, `tests/test_maths_applied_data.py` compares the
+      trajectory's source digests with the bundle's files.
+- [x] §1.6's table and figure are regenerated together, never one without the other.
+
+**Done (2026-10-20).** `suspension-kinematics` 0.5.0 carries the model in the bundle. Every model
+now ships `models/<id>/source/` — the four config files, the library included, because it lives
+outside the model directory — with their digests in `MANIFEST.json` (`otkd-bundle-2`). That was
+the half that was a correctness question rather than a convenience: a dynamics model has no
+payload and no kernel, so its sources are the only provenance the bundle can offer.
+
+The trajectory is now regenerated from the release rather than from a working tree. `extract.py`
+integrates nothing itself: it calls `otkd solve --json` with `study.yaml` beside it and maps each
+step to the four numbers the page draws, so there is no second reading of the model to drift out
+of step. `meta.sources` records four files, and
+`test_the_trajectory_records_the_model_the_bundle_ships` compares them with the vendored bytes. A
+second test requires the trajectory's `generator` to equal the version `scripts/vendor-otkd.sh`
+pins, so a bundle and a run cannot come from different releases.
+
+§1.6 did not have to be re-derived, which is the guard working: at 0.5.0 the run reproduces the
+section's numbers exactly — 0 → 212.823 mm, camber 0° to −9.5294°, energy drift 6.3 × 10⁻⁸,
+constraint 1.3 × 10⁻¹⁵ — and the coil is still `modes: {length: spring}`. A release that adds a
+damper now fails a test instead of invalidating a chapter.
