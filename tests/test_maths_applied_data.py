@@ -34,6 +34,7 @@ KINEMATIC = (
     "double-wishbone",
     "double-wishbone-compliant",
     "double-wishbone-two-leg",
+    "double-wishbone-ubj",
     "ride-height",
 )
 
