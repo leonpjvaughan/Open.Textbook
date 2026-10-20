@@ -177,6 +177,21 @@ rules:
   both, as §1.2's does — and a difference between the two models is printed, never
   tuned away.
 
+## The solver's findings are chapter material
+
+`docs/handoff-from-maths-site.md` in `suspension-kinematics` carries a section — *Solver findings
+the book could teach* — which the package keeps as part of its own instructions. Each entry is a
+finding with a **tell**: a measurement that separates two explanations, which is what a reader can
+reproduce. The energy error that did not shrink when the step was quartered. The residual that did
+not move when the load changed by three orders of magnitude. The iteration trace that differed
+between two machines while every frame was identical.
+
+These are candidates, not a plan: the book decides how to teach one, and this chapter is where
+several of them belong, because it is the chapter about modelling rather than about the answers.
+When a section is written or revised, read that list and ask whether one of its tells would serve
+the page better than a statement of the result. A wrong number with a reproducible reason teaches
+more than a right one, and the package's own tests are where the tell was found.
+
 ## Snippets: pseudocode, not source
 
 Each section shows its mathematics as **Python-style pseudocode** — the residual,

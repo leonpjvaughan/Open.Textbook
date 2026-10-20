@@ -23,8 +23,8 @@
 set -euo pipefail
 
 # Both are bumped together, by a person, in one commit that also refreshes the tree.
-VERSION="0.5.0"
-ZIP_SHA256="c5867c167c037ade967a67c87f3536330b610c86b86ee2a133c423a949483444"
+VERSION="0.6.0"
+ZIP_SHA256="1248c7f5306cc60cab6bb0c1fecb550dbfe58629ac5594a13d133737d8006015"
 OWNER="leonpjvaughan"
 REPO="suspension-kinematics"
 
