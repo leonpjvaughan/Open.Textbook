@@ -21,10 +21,9 @@ author choosing what to build next.
 
 **Open, and the list is the index:**
 
-- [ ] 83. §1.5's ladder is still the page's model — the compliant kernel exists, but
-      the joint it softens is the tie rod; the package has accepted the request
-      (`docs/follow-ups.md`, "A compliant upper joint, and a stiffness axis") and the
-      page waits for a release that carries it
+- [ ] 83. §1.5's ladder is the page's model and the export's baseline is not the page's —
+      the package has the joint, the axis and (in 0.7.0) the kernel; the open question
+      is where the corner's other compliance lives
 
 **Not in the queue, and not forgotten.** Accepted limitations live where the check
 that records them lives, not here: the booklets whose items cannot be parsed
@@ -35,49 +34,49 @@ defect this repository can fix; those are decisions already taken.
 
 ---
 
-## 83. §1.5's ladder is still the page's model — **open, blocked on the joint**
+## 83. §1.5's ladder is the page's model, and the export's baseline is not the page's — **open, one decision**
 
-**What is wrong.** `books/numerical-methods`'s worked case and `Maths Applied` §1.5
-quote a stiffness ladder (1.92°/1.94°/1.95° over the travel at 0.2/1/10/100 MN/m).
-Those numbers come from the page's own equilibrium model, and the ladder is the one
-place in the chapter where two routes would be evidence.
+**What is wrong.** `Maths Applied` §1.5 quotes a stiffness ladder (1.92°/1.94°/1.95° over the
+travel at 0.2/1/10/100 MN/m) from the page's own equilibrium model. The ladder is the one place in
+the chapter where two routes would be evidence, and it has only ever had one.
 
-**Measured 2026-10-19, on the 0.4.0 bundle.** The package does compile the compliant
-model: `solver: "equilibrium"`, with two number slots — tie-rod length and tie-rod
-compliance — settable at run time. The manifest lists kernels for all four kinematic
-models.
+**The package's half is done.** `suspension-kinematics` 0.6.0 added the joint — `uca-up` with its
+three translations compliant, a per-joint `modes:` override, no new kind — and a **stiffness axis**
+on the study, so one model sweeps 0.2, 1, 10 and 100 MN/m in a single export of 164 frames.
+Camber responds to it monotonically. 0.7.0 adds the compiled kernel for that model, which the
+earlier one-free-direction equilibrium path refused.
 
-**Correction, made after a second measurement.** An earlier version of this item said
-the loads never reach the solve, because the design pose shows camber −0.0003° and toe
-0.0094° and the export looks like the rigid curve. That was wrong. Sweeping the
-compliance on the kernel shows the loads are compiled in — they move **toe**:
+**Measured 2026-10-20, on the 0.6.0 bundle**, reading `models/double-wishbone-ubj/out.js` the way a
+page would. Rest is the frame at zero drive, 40 mm is wheel travel from there:
 
-| tie-rod compliance | toe | camber |
+| stiffness | camber at rest | change over ±40 mm |
 |---|---|---|
-| 10⁻⁶ m/N | 0.009° | −0.0003° |
-| 10⁻⁴ m/N | 0.58° | −0.015° |
-| 10⁻² m/N | 1.46° | −0.037° |
+| 0.2 MN/m | 0.909° | 1.873° |
+| 1 MN/m | 0.180° | 1.834° |
+| 10 MN/m | 0.018° | 1.825° |
+| 100 MN/m | 0.002° | 1.824° |
 
-A hundred times softer moves the toe by 1.5° and the camber by 0.04°, because the tie rod
-is the fore-aft link. So the single blocker is **the joint**: the package softens the tie
-rod; §1.5 softens the upper ball joint. The section now uses the tie-rod sweep for exactly
-what it teaches — *which joint you soften decides which angle moves* — and the ladder it
-asks for is still the page's model.
+Two conventions to apply before comparing anything: the export's camber is **positive outboard**,
+the opposite of §1.2, and its travel band is ±0.1 rad of the lower arm, which is +1 to +86 mm of
+wheel travel because the loads push the corner into bump.
 
-**The request is with the package**, on branch `handoff/maths-site` of
-`suspension-kinematics`, as `docs/handoff-from-maths-site.md`: a compliant upper joint, a
-stiffness axis in the study, a dynamics pose export, and the SVD diagnosis in `out.js`,
-each with its acceptance test.
+**The blocker is a baseline, not a convention.** Flipping the sign and reading the same columns,
+the page's rigid model gains **1.00°** of camber under load and the export's gains **0.002°**.
+Those are different model *statements*, not different arithmetic: the page's corner has compliance
+somewhere else — a tyre, a lower-arm bush — and the package's example has only the bush, so with a
+rigid bush a rigid mechanism does not deflect at all. Regenerating the table from the export
+therefore moves the whole ladder by about a degree, and which model is right is the author's
+decision:
 
-**The fix.** When the handoff lands: a compliant `ubj`, a stiffness axis in the study, and
-an export of the ladder; then generate §1.5's table from `sweep.frames[]` and assert the
-page's model agrees to the panel's rounding.
+- **(a)** the example gains the corner's other compliance, and the page's ladder is reproduced;
+- **(b)** §1.5 adopts the export's baseline and says what the export does *not* model, which is
+  also a lesson — the ladder is about the bush, and a page that wants the tyre in it must put it
+  there.
 
 **Done means**
 
-- [ ] A compliant-ubj model in the package sweeps stiffness and its export reports the
-      ladder.
-- [ ] §1.5's table is generated from the vendored export rather than typed.
-- [ ] The page's model and the export agree to the rounding shown, and the panel says
-      which is which.
+- [x] A compliant-ubj model in the package sweeps stiffness and its export reports the ladder.
+- [ ] The decision above is taken and §1.5's table follows from it.
+- [ ] §1.5's table is generated from the vendored export rather than typed, or a test asserts it
+      against the export so a release that moves it fails.
 - [ ] `grep -n "one stiffness" books/maths-applied/docs` prints nothing.
