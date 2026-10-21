@@ -157,6 +157,14 @@ ES module by the `suspension-kinematics` package, and copied into the site from
   meeting is arithmetic, not a solver). It may **not** carry a second implementation
   of the general solver, and it may not print iteration data it invented.
 
+**Where a page's numbers come from, figure by figure.** Audited 2026-10-21: every figure that
+displays an *engine result* reads `docs/assets/data/otkd/` — `kernel-camber` imports the rigid
+kernel, `quarter-car` plots the vendored trajectory. The three that compute for themselves
+(`wishbone-hero`, `solver-loop`, `stiffness-agreement`) are the three that teach a model, and they
+are the book's on purpose: §1.2's evidence is that its front view agrees with the kernel, which
+needs both. A new figure that needs an engine answer imports the bundle; it does not get a second
+solver. The package's `docs/handoff-from-maths-site.md` carries the same table.
+
 **A generated solver is not a second implementation.** `docs/assets/data/otkd/` holds
 the `suspension-kinematics` package's own bundle: one `out.js` per model and a solver
 it compiled to WebAssembly — the same derivation as its Python engine, not a hand
