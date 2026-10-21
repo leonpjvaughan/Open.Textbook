@@ -393,7 +393,8 @@ Three consequences shape everything else:
   unexplained regression.
 
 `site/` is assembled by the engine, so the root of the deployment is ours:
-`site/index.html` and `site/404.html` come from `textbook.portal`, with one
+`site/index.html`, `site/404.html`, `site/terms/index.html` and
+`site/acknowledgements/index.html` come from `textbook.portal`, with one
 pipeline build per book profile beside them. A Worker whose static assets are that
 directory therefore serves the whole collection from one place, and the service
 worker's scope will be the whole site without needing a header at all.

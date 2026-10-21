@@ -6,15 +6,16 @@ files — it is stated once, here, and tested.
 Order matters:
 
 1. ``tier`` strips Higher-only blocks before anything else expands;
-2. ``toc`` expands ``:::chapters`` from the curriculum;
-3. ``figures`` expands ``:::figure`` and injects the loader;
-4. ``proofs`` expands ``:::prove`` into a link to the shared proof book;
-5. ``classes`` expands ``:::class`` into a link to the map of problem classes;
-6. ``usedin`` expands ``:::used`` on a class page into the sections that name it;
-7. ``deeper`` expands ``:::deeper`` into a link to this section's depth page;
-8. ``problems`` expands ``:::problems`` / ``:::answers`` from the verified bank;
-9. ``maths`` renders the ``$...$`` those hooks emitted — last, because it runs
-   on rendered HTML rather than markdown.
+2. ``disclaimer`` expands ``:::disclaimer`` into the book's short note;
+3. ``toc`` expands ``:::chapters`` from the curriculum;
+4. ``figures`` expands ``:::figure`` and injects the loader;
+5. ``proofs`` expands ``:::prove`` into a link to the shared proof book;
+6. ``classes`` expands ``:::class`` into a link to the map of problem classes;
+7. ``usedin`` expands ``:::used`` on a class page into the sections that name it;
+8. ``deeper`` expands ``:::deeper`` into a link to this section's depth page;
+9. ``problems`` expands ``:::problems`` / ``:::answers`` from the verified bank;
+10. ``maths`` renders the ``$...$`` those hooks emitted — last, because it runs
+    on rendered HTML rather than markdown.
 
 The reader-preference script is not a hook: ``prefs.snippet`` generates it and
 both page templates carry the result, so the pipeline and the portal share one
@@ -23,7 +24,7 @@ implementation rather than a MkDocs hook that no renderer calls.
 
 from __future__ import annotations
 
-from . import classes, deeper, figures, maths, problems, proofs, tier, toc, usedin
+from . import classes, deeper, disclaimer, figures, maths, problems, proofs, tier, toc, usedin
 
 __all__ = ["MARKDOWN_HOOKS", "on_files", "on_page_markdown", "on_page_content"]
 
@@ -33,7 +34,7 @@ __all__ = ["MARKDOWN_HOOKS", "on_files", "on_page_markdown", "on_page_content"]
 #: a reader would have found the order stated in two places with no test comparing
 #: them. `pipeline.MARKDOWN_HOOKS` is this object, and
 #: `tests/test_render_hooks.py` fails if the two ever part company again.
-MARKDOWN_HOOKS = (tier, toc, figures, proofs, classes, usedin, deeper, problems)
+MARKDOWN_HOOKS = (tier, disclaimer, toc, figures, proofs, classes, usedin, deeper, problems)
 
 
 def on_files(files, config, **kwargs):

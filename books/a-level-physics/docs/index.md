@@ -63,3 +63,5 @@ book stays board-neutral.
 
 - [Glossary](Glossary/index.md) — the key words, by topic
 - [Mechanics](Chapter 3/index.md) · [Electric circuits](Chapter 5/index.md) · [Waves](Chapter 6/index.md) · [Fields](Chapter 9/index.md)
+
+:::disclaimer

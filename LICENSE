@@ -14,8 +14,9 @@ Two things it does not cover.
   the formulae sheets belong to their awarding bodies and keep their own terms.
   None of it is relicensed here. The reader-facing page
   `books/gcse-maths/docs/colophon.md` carries the attribution each source
-  requires, and `books/gcse-maths/sources.yaml` records where every claim came
-  from.
+  requires, `books/gcse-maths/sources.yaml` records where every claim came
+  from, and the site's `acknowledgements` page compiles the sources for every
+  book. The site's `terms` page states the warranty and liability position.
 
 Attribution, for anyone reusing the book content:
 

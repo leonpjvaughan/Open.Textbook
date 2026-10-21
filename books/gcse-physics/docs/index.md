@@ -45,3 +45,5 @@ the reasoning in **Learn** as well.
 
 - [Glossary](Glossary/index.md) — the key words, by topic
 - [Energy](Chapter 1/index.md) · [Forces and motion](Chapter 3/index.md) · [Waves](Chapter 4/index.md) · [Electricity](Chapter 6/index.md) · [Space physics](Chapter 10/index.md)
+
+:::disclaimer

@@ -21,6 +21,7 @@ from pathlib import Path
 
 import yaml
 
+from . import legal
 from . import yamlio
 
 from .book import (
@@ -656,6 +657,10 @@ def colophon_page(book: Book, licence: object = _USE_COLLECTION) -> str:
         "",
         *what_it_is,
         "",
+        "## Before you use this book",
+        "",
+        *legal.disclaimer_lines(),
+        "",
         "## Who made it",
         "",
         "This book is part of **Open.Textbook**, an independent project by Leon",
@@ -801,6 +806,11 @@ def colophon_page(book: Book, licence: object = _USE_COLLECTION) -> str:
         "In your report, say which page you were reading, what you expected, and what",
         "you saw. That is enough to find the mistake and fix it.",
     ]
+    lines += [
+        "",
+        "The [terms of use](/terms/) and [acknowledgements](/acknowledgements/)",
+        "cover the whole collection.",
+    ]
     if licence_md:
         lines += [
             "",
@@ -838,6 +848,12 @@ def home_stub(book: Book, chapters: list[dict]) -> str:
     lines.append("## Chapters\n")
     for c in chapters:
         lines.append(f"1. [Chapter {c['id']}: {c['title']}](Chapter {c['id']}/index.md)")
+    lines.append("")
+    # The note a reader meets before starting. It is a directive rather than ten
+    # lines of HTML here, so the wording lives in one place (`legal.py`) and the
+    # same compact note is on every book's home page, including a book authored
+    # before this existed.
+    lines.append(":::disclaimer")
     lines.append("")
     return stub_page(fm, book.title, *lines)
 

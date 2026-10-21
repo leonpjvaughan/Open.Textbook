@@ -128,3 +128,5 @@ mechanism through five questions and quotes the numbers where the models agree.
 
 Nothing here is a course, and there is nothing to practise. Every page stands on
 its own, and a page you skip is a page you did not need.
+
+:::disclaimer

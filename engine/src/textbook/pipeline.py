@@ -883,6 +883,7 @@ def check_links(
     pages: list[RenderedPage],
     scope: str | None = None,
     siblings: tuple[str, ...] = (),
+    root_pages: tuple[str, ...] = (),
 ) -> list[str]:
     """Every internal link in every built page must resolve to a built file.
 
@@ -910,6 +911,11 @@ def check_links(
     ``siblings`` are the other books' deploy roots. A link into one of them is
     outside this build and is skipped — see `sibling_roots` for why that is not
     the same as assuming it works.
+
+    ``root_pages`` are the collection pages the portal writes at the site root,
+    beside the books rather than inside this build. Like a sibling root, such a
+    page is not absent by accident: `portal.legal_page` generates it and the
+    deploy tests check that it exists.
 
     Every page carries the whole sidebar, so a full book is around 200,000 link
     targets. Resolution is therefore done lexically against one listing of the
@@ -948,6 +954,11 @@ def check_links(
             # href as if it did would silently accept bare root-relative links,
             # which break as soon as a page is nested.
             root_relative = path.lstrip("/")
+            if path.startswith("/") and any(
+                root_relative == root or root_relative.startswith(f"{root}/")
+                for root in root_pages
+            ):
+                continue  # a collection page the portal writes at the site root
             if path.startswith("/") and any(
                 root_relative == root or root_relative.startswith(f"{root}/")
                 for root in siblings
@@ -1133,6 +1144,7 @@ def build(
             result.pages,
             scope=link_scope,
             siblings=sibling_roots(exclude=book.id),
+            root_pages=portal.root_page_slugs(),
         )
     )
     result.seconds = time.time() - started

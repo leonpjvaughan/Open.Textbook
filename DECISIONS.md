@@ -1,5 +1,41 @@
 # Decisions
 
+## 2026-10-21 — The disclaimer is one promise, made once, and reachable three ways
+
+**The problem.** A free textbook is used without a teacher beside the reader, and
+exam preparation carries a real risk of lost marks if a page is wrong. The author
+wanted to say plainly that the book is a companion rather than a replacement, and
+that no liability is accepted for incorrect information — without turning the
+front page into a legal warning, and without repeating the same paragraph in
+eleven books.
+
+**The decision.** The wording lives once, in `engine/src/textbook/legal.py`. It
+reaches the reader in three places: a section on every book's generated **About
+this book** page, a native `<details>` note at the bottom of every book's home
+page (`:::disclaimer`), and a collection-level **Terms of use** page at
+`/terms/`. A separate **Acknowledgements** page at `/acknowledgements/` compiles
+every book's `sources.yaml` and the software that builds the site. The landing
+page footer links both, and every About page links both.
+
+**Why three places.** The About page is where a reader checks provenance; the
+home page is where they start reading; the footer is where a reader looks for
+the terms of a site. One of them alone is either invisible or repetitive.
+
+**Why the wording is cautious.** The text says "to the extent the law allows"
+and leaves the statutory carve-outs in: liability for death or personal injury
+caused by negligence, fraud, and the consumer's statutory rights cannot be
+excluded. It also says what is checked (the algebra) and what is not (the prose),
+which is the honest version of "no liability for incorrect information".
+`research/legal/disclaimer-and-terms.md` records the precedents and the limits.
+
+**The cross-artefact seam.** A book is built into its own output directory, so
+its link checker cannot see `/terms/` at the site root. `pipeline.check_links`
+now skips the pages `portal.root_page_slugs()` owns — the same treatment another
+book's deploy root already receives — and the deploy tests check that the pages
+were actually written.
+
+---
+
 ## 2026-10-18 — A book declares its own page structure, and its own depth
 
 **The problem.** Three things were global, and each was right for a course and wrong
