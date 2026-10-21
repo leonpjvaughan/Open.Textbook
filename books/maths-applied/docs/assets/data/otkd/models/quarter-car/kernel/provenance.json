@@ -1,6 +1,6 @@
 {
   "abi": "otkd-kernel-2",
-  "generator": "otkd 0.10.0",
+  "generator": "otkd 0.11.0",
   "layout": {
     "offsets": {
       "acc": 1102,
@@ -24,7 +24,7 @@
       "axs": 9,
       "g": 109,
       "jac": 784,
-      "ld": 0,
+      "ld": 6,
       "met": 10,
       "num": 4,
       "out": 28,
@@ -36,16 +36,16 @@
       "v": 28,
       "world": 51
     },
-    "slots": 6786
+    "slots": 6792
   },
   "model": "quarter-car",
   "rustc": "rustc 1.99.1 (58cf8f9c3 2026-10-13)",
   "sources": {
     "constraints.yaml": "fd35357ac45c8d77b9225caa8fc036c42f7d79f1952bf642bd24ca6b25513038",
     "geometry.yaml": "6c42385c57b26da44421d5e340eac42a00cc05a3deaf339d6d2df9325a6ea389",
-    "study.yaml": "0655fc27b5410f1985de8d79b37f295e1ff6d60698fc59f313de126a79a778f1",
+    "study.yaml": "ea9f94b613c02ad4451ec5ee4349f4516c086da72d506d51fabf942b442008bf",
     "topology.yaml": "b957f7c4595c81d52312916cb3ce5528a59e6dc1f5e25375b33365fb0b27547c"
   },
   "target": "wasm32-unknown-unknown",
-  "wasm_sha256": "eb71f3915fc8f7786e9bbd97ae0f8a960699844e5932caa63baa65fe540adb54"
+  "wasm_sha256": "d840ec99dda6077ea4bf9d528d29855dbacd58c67e4077437048d6408e97f64d"
 }

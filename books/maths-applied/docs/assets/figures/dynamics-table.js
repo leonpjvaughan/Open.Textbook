@@ -6,10 +6,10 @@
 // peak heave, the travel, the period, and the constraint violation the kernel reports. Nothing here
 // is a recording: each column is an integration done in the browser, in about eighty milliseconds.
 //
-// **What the control changes.** The one free number is the coil's compliance, which the kernel
-// takes as a run-time slot, so the slider is a real stiffness. The coil is a *spring with no
-// damper* — the page says so — and the load is the corner's own, baked into the model: 3.5 kN down
-// and 1.8 kN sideways at the wheel centre.
+// **Two controls, two effects.** The coil's stiffness is one run-time number and the sideways load
+// at the wheel centre is another; both are slots the kernel exposes. Stiffness changes the *period*,
+// a load changes where the corner *sits* — which is the pair of statements this table is for. The
+// model ships with both loads at zero, so the first column is the example's own answer.
 //
 // **The step is part of the model.** The kernel integrates at the study's step, five milliseconds.
 // Stiffen the coil far enough and five milliseconds stops resolving the period, so the control
@@ -20,9 +20,10 @@ import * as kernel from "../data/otkd/models/quarter-car/kernel/kernel.js";
 const WIDTH = 560;
 const HEIGHT = 300;
 const COLUMN_X = [4, 250, 410];
-const HEADERS = ["quantity", "at 0.1 MN/m", "your value"];
+const HEADERS = ["quantity", "the example's own", "with your controls"];
 const ROWS = [
   { key: "peak", title: "peak heave", unit: "mm", places: 1 },
+  { key: "rest", title: "resting height", unit: "mm", places: 1 },
   { key: "span", title: "travel", unit: "mm", places: 1 },
   { key: "period", title: "period", unit: "s", places: 3 },
   { key: "constraint", title: "constraint", unit: "m", places: 1 },
@@ -39,11 +40,13 @@ function complianceSlot() {
   );
 }
 
-/** One integration at a stiffness, and the four numbers the table prints. */
-function run(stiffness) {
+/** One integration at a stiffness and a sideways load, and the numbers the table prints. */
+function run(stiffness, lateral = 0) {
   const numbers = [...kernel.manifest.default_geometry.numbers];
   numbers[complianceSlot()] = 1 / (stiffness * 1e6);
   kernel.setGeometry({ ...kernel.manifest.default_geometry, numbers });
+  // The model's own loads are zero; the first carries the sideways force, the second the vertical.
+  kernel.setLoads([lateral, 0, 0, 0, 0, 0]);
   kernel.design();
   kernel.setDrive(0);
   kernel.setVelocity(new Array(kernel.manifest.layout.sizes.q).fill(0));
@@ -67,6 +70,7 @@ function run(stiffness) {
   const second = crossings[1];
   return {
     peak: peak * 1000,
+    rest: heave[heave.length - 1] * 1000,
     span: span * 1000,
     period: second === undefined ? NaN : second - first,
     first,
@@ -105,11 +109,23 @@ export async function mount(el) {
     unit: "MN/m",
   });
 
-  const design = run(DESIGN);
+  const sideways = slider(el, {
+    id: "sideways",
+    label: "Sideways force at the wheel",
+    min: 0,
+    max: 3000,
+    step: 250,
+    value: 0,
+    show: true,
+    unit: "N",
+  });
+
+  // The example's own answer: its own stiffness and its own loads, which are zero.
+  const design = run(DESIGN, 0);
 
   function draw() {
     const value = Number(stiffness.value);
-    const mine = run(value);
+    const mine = run(value, Number(sideways.value));
     const columns = [design, mine];
 
     const { draw: frame, box } = axes({
@@ -166,9 +182,10 @@ export async function mount(el) {
     svg.innerHTML = drawing;
 
     readout.textContent =
-      `At ${num(value, 2)} meganewtons per metre the chassis falls ` +
-      `${num(Math.abs(mine.peak), 1)} mm and swings with a period of ${num(mine.period, 3)} s. ` +
-      `The stiffness the example ships with gives ${num(Math.abs(design.peak), 1)} mm and ` +
+      `At ${num(value, 2)} meganewtons per metre and ${num(Number(sideways.value), 0)} newtons ` +
+      `sideways, the chassis falls ${num(Math.abs(mine.peak), 1)} mm, comes to rest ` +
+      `${num(mine.rest, 1)} mm down, and swings with a period of ${num(mine.period, 3)} s. ` +
+      `The example's own run gives ${num(Math.abs(design.peak), 1)} mm and ` +
       `${num(design.period, 3)} s. Every run keeps the constraint violation near ` +
       `${mine.constraint.toExponential(1)} m, which is what the projection is for.`;
 
@@ -186,9 +203,9 @@ export async function mount(el) {
   }
 
   caption.textContent =
-    "Every column is one integration of the vendored kernel in this page: same model, same load at " +
-    "the wheel centre, only the coil's stiffness changed. The coil has no damper, so the swing " +
-    "repeats rather than settling.";
+    "Every column is one integration of the vendored kernel in this page: same model, and the " +
+    "controls change two numbers it takes at run time — the coil's stiffness and the sideways load " +
+    "at the wheel centre. The coil has no damper, so the swing repeats rather than settling.";
 
-  react(stiffness, draw);
+  react([stiffness, sideways], draw);
 }

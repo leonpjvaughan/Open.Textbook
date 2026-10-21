@@ -5,12 +5,12 @@ export const meta = {
  "analysis": "dynamics",
  "duration": 3.0,
  "steps": 601,
- "generator": "otkd 0.10.0",
+ "generator": "otkd 0.11.0",
  "command": "uv run otkd solve examples/quarter-car --study study.yaml --json trajectory.json",
  "sources": {
   "topology.yaml": "b957f7c4595c81d52312916cb3ce5528a59e6dc1f5e25375b33365fb0b27547c",
   "geometry.yaml": "6c42385c57b26da44421d5e340eac42a00cc05a3deaf339d6d2df9325a6ea389",
-  "study.yaml": "0655fc27b5410f1985de8d79b37f295e1ff6d60698fc59f313de126a79a778f1",
+  "study.yaml": "ea9f94b613c02ad4451ec5ee4349f4516c086da72d506d51fabf942b442008bf",
   "constraints.yaml": "fd35357ac45c8d77b9225caa8fc036c42f7d79f1952bf642bd24ca6b25513038"
  },
  "energy_drift": 6.32654965063431e-08,

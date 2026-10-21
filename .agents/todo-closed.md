@@ -4171,3 +4171,44 @@ which the section now says, because the step is part of the model.
 
 After the fix the ladder is 0.05 MN/m → −326 mm of peak heave, 0.1 → −213, 0.2 → −117, 0.5 → −49,
 1 → −25, 2 → −13, every run at a constraint violation of `1e-15`.
+
+---
+
+## 87. §1.6's control moves stiffness; the engine can also move a force — **done**
+
+**What is wrong.** The table under §1.6 changes the coil's stiffness and nothing else. A reader of a
+section about *loads and masses* would reasonably expect to change the load, and the engine now
+supports it: `suspension-kinematics` 0.10.0 gives a dynamics kernel a load buffer, and the kernel
+agrees with the package's own Python integration at the study's load and at twice it, to `1e-8` m.
+
+**Why the table cannot use it yet.** The quarter car carries no *study* load. Its load is gravity,
+which is a property of the model rather than the study, so its kernel has no load slots at all. The
+example is a chassis on a spring with no applied force, and §1.6's numbers — 212.8 mm of heave, the
+0.006° agreement, the five peaks — are all derived from that.
+
+**The decision.** Give the quarter car the corner's own load — 3.5 kN down and 1.8 kN sideways at
+the wheel centre — and:
+
+- §1.6's quoted numbers change, every one of them, because the equilibrium moves;
+- `data/quarter-car/` is re-extracted, its digest and README updated, and the section re-derived;
+- in exchange the table gains a second control, and the section can show the two effects side by
+  side: stiffness changes the *period*, load changes where the corner *sits*.
+
+**Done means**
+
+- [x] The decision is taken: the quarter car keeps gravity alone, or gains the corner's load.
+- [x] If it gains one: §1.6 re-derived, the trajectory re-vendored with its digest, and the table
+      given a load control through `kernel.setLoads`.
+- [x] Either way the page says which loads its numbers were computed under.
+
+**Done (2026-10-21).** The decision was taken the cheap way: the quarter car's study declares the
+corner's two loads **at zero**, so its trajectory is identical to the run before the change — checked
+entry by entry, same times and energies and camber on all 101 steps — while its compiled kernel
+carries the magnitudes as run-time slots. The example's own answer stays gravity's alone, and the
+page puts the corner under load deliberately.
+
+§1.6's table now has both controls, and they say different things: stiffness changes the **period**
+(0.34 s to 0.08 s across the range) and a sideways load changes the **resting height** without
+touching the period, because a constant force shifts the answer rather than the dynamics. A new row,
+resting height, is what makes the second visible. The trajectory was re-vendored with its digest: same
+numbers, new sources.
