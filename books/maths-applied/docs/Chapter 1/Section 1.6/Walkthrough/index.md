@@ -134,6 +134,23 @@ the algebraic one". A free quarter car cannot run it — with no weight there is
 swing against — and a driven model would be needed to state it properly. The comparison
 above is the same claim in the form this model can answer.
 
+## One trajectory, or a family of them
+
+The run above is one stiffness. The section's point is that the stiffness decides the motion, and a
+reader can watch that happen instead of taking it on trust: the control below sets the coil's
+stiffness and the engine re-runs, in this page.
+
+:::figure dynamics-table
+
+Each column is an integration, not a recording. Across the control's range the chassis falls from a
+third of a metre to about a centimetre, and the period shortens with it — the number the static
+model cannot produce at all. The constraint column stays near `1e-15` whatever the stiffness, which
+is the projection doing its job after every step.
+
+The range stops at 2 MN/m, and that is worth knowing rather than hiding: the kernel steps at this
+study's five milliseconds, and a stiffer coil swings faster than five milliseconds can resolve. The
+step is part of the model, in the same way the stiffness is.
+
 ## The code behind these numbers
 
 None of the numbers above was typed. The package derives the equations with sympy — the mass
