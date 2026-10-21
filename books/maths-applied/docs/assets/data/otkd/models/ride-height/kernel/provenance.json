@@ -1,6 +1,6 @@
 {
   "abi": "otkd-kernel-2",
-  "generator": "otkd 0.8.0",
+  "generator": "otkd 0.9.0",
   "layout": {
     "offsets": {
       "axs": 1015,
@@ -37,5 +37,5 @@
     "topology.yaml": "4581c269df9039f022e6db563d03e6c6808eb16269309929973499333c97fd3e"
   },
   "target": "wasm32-unknown-unknown",
-  "wasm_sha256": "1067b35f3dd25374ac38ca94ebc6b1e81d44d6d0ca5b12dd107997ee1748b84c"
+  "wasm_sha256": "b4b409eae7d20d10ef5039ea8671c7f07b984223b08bb8034738d2003c047e20"
 }
