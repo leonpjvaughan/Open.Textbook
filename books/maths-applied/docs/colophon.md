@@ -19,6 +19,25 @@ You can read the whole book in a browser, and there is nothing to
 install.
 Each chapter opens with a question you can answer by the end, and closes with a **Review**.
 
+## Before you use this book
+
+This book is a study companion. It builds on what your school or college
+provides. It is not a replacement for your teacher, your lessons, or your
+exam board's current specification.
+
+We check the answers with a computer and read the pages carefully, but no
+book is perfect. To the extent the law allows,
+the author accepts no liability for any incorrect information in this book,
+or for any loss arising from using it or relying on it. Nothing in this note
+limits your statutory rights, or any liability that cannot lawfully be excluded.
+
+If this book disagrees with your specification or your teacher, follow
+them. Please report the mistake so it can be corrected.
+
+The [terms of use](/terms/) explain this in more detail. The
+[acknowledgements](/acknowledgements/) credit the sources and software
+the collection rests on.
+
 ## Who made it
 
 This book is part of **Open.Textbook**, an independent project by Leon
@@ -53,6 +72,9 @@ because it does not run a mail service.
 
 In your report, say which page you were reading, what you expected, and what
 you saw. That is enough to find the mistake and fix it.
+
+The [terms of use](/terms/) and [acknowledgements](/acknowledgements/)
+cover the whole collection.
 
 ## Licence
 

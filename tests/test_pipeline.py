@@ -354,6 +354,23 @@ def test_check_links_accepts_a_leading_slash_from_the_root(tmp_path, write):
     assert pipeline.check_links(tmp_path, [page]) == []
 
 
+def test_check_links_accepts_a_collection_page_built_elsewhere(tmp_path, write):
+    """The terms and acknowledgements live at the root, beside this book.
+
+    Like another book's deploy root, the page is not in this output directory
+    and never will be; `portal.legal_page` writes it and the deploy tests check
+    it. Without this, every book's About page would report its own terms link as
+    broken.
+    """
+    write("page/index.html", '<a href="/terms/">terms</a>')
+    page = pipeline.RenderedPage(url="page/", title="P")
+    assert pipeline.check_links(tmp_path, [page]) == ["page/ -> /terms/"]
+    assert pipeline.check_links(tmp_path, [page], root_pages=("terms",)) == []
+    assert pipeline.check_links(
+        tmp_path, [page], root_pages=("terms", "acknowledgements")
+    ) == []
+
+
 def test_check_links_ignores_the_search_script(tmp_path, write):
     write(
         "page/index.html",

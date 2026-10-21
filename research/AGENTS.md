@@ -28,6 +28,7 @@ keep claims to what the briefing supports. See `research/pedagogy.md`.
 | `research/design/figure-audit.md` | **Every figure, measured in a browser** in both schemes, and the defects it found |
 | `research/design/navigation.md` | **Previous/next at the end of a page**: the pattern, the two places this book differs from it, what was rejected and why |
 | `research/design/background-effects.md` | The measurement behind opt-in backgrounds |
+| `research/legal/disclaimer-and-terms.md` | **The legal wording and its limits**: the precedents, the statutory carve-outs, and what a disclaimer cannot do |
 | `research/sources/` | Fetched primary sources — git-ignored, not build input |
 | `research/notes/` | Working notes |
 | `research/pedagogy-audit/` | Chapter-by-chapter audits against the formula |

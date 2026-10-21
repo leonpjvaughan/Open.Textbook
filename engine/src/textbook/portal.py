@@ -8,6 +8,8 @@ the books build to subdirectories beside it:
 
     site/index.html
     site/404.html
+    site/terms/index.html
+    site/acknowledgements/index.html
     site/_headers
     site/robots.txt
     site/sitemap.xml
@@ -45,6 +47,7 @@ from string import Template
 
 from . import book as books
 from . import headers
+from . import legal
 from .hooks.prefs import snippet as prefs_snippet
 from .themes import default_bundle, ordered_bundles
 
@@ -66,6 +69,25 @@ def assets() -> Path:
 def site() -> Path:
     return root() / "site"
 TEMPLATE = Path(__file__).resolve().parent / "templates" / "portal.html"
+LEGAL_TEMPLATE = Path(__file__).resolve().parent / "templates" / "portal_page.html"
+
+#: The prose pages the portal writes at the site root, outside every book build.
+#: They are collection-level pages: a reader reaches them from the landing page
+#: footer, from every book's About page, and from the note on a book's home page.
+#: The build's link checker cannot see them because each book is built into its
+#: own output directory, so `pipeline.check_links` treats these roots the same
+#: way it treats another book's deploy root: a page built elsewhere, checked by
+#: the tests that generate it.
+LEGAL_PAGES: dict[str, tuple[str, str]] = {
+    "terms": (
+        "Terms of use",
+        "What this site promises, and what it does not.",
+    ),
+    "acknowledgements": (
+        "Acknowledgements",
+        "The sources and software the books rest on.",
+    ),
+}
 
 
 def card(book: books.Book) -> str:
@@ -397,6 +419,67 @@ document.body.setAttribute(
 """
 
 
+def footer() -> str:
+    """The landing page's footer, shared with the legal pages.
+
+    The legal links are root-absolute because the same footer is used at the site
+    root and one directory down, and a relative link would mean two different
+    pages in those two places.
+    """
+    return f"""<footer class="footer">
+  <div class="wrap">
+    <p>
+      The questions and answers in every <strong>Practise</strong> set are printed
+      from one checked source. A computer checks the algebra; worked examples and
+      proofs are written by hand.
+    </p>
+    <nav class="footer__links" aria-label="About this site">
+      <a href="/terms/">Terms of use</a>
+      <a href="/acknowledgements/">Acknowledgements</a>
+      <a href="{html.escape(legal.CONTACT_URL, quote=True)}">Report a mistake</a>
+    </nav>
+    <p class="footer__fine">Built {date.today().year} · static, no account, nothing to install.</p>
+  </div>
+</footer>"""
+
+
+def legal_body(slug: str) -> str:
+    """The body of one collection-level legal page."""
+    if slug == "terms":
+        return legal.terms_html()
+    if slug == "acknowledgements":
+        return legal.acknowledgements_html()
+    raise KeyError(f"no legal page '{slug}'")
+
+
+def legal_page(slug: str) -> str:
+    """One root page: Terms of use or Acknowledgements.
+
+    It uses the same masthead, reader preferences and Settings control as the
+    landing page, so it does not look like a different site and a reader who
+    chose a bundle keeps it. The body is trusted markup generated here, not
+    reader input.
+    """
+    title, description = LEGAL_PAGES[slug]
+    template = Template(LEGAL_TEMPLATE.read_text(encoding="utf-8"))
+    return template.substitute(
+        title=html.escape(title),
+        description=html.escape(description),
+        site_title=html.escape(str(books.load_collection().get("title", "Textbooks"))),
+        body=legal_body(slug),
+        footer=footer(),
+        build_meta=build_meta(),
+        prefs_script=prefs_snippet(prefs_config()),
+        settings_trigger=settings_trigger(),
+        settings_dialog=settings_dialog(),
+    )
+
+
+def root_page_slugs() -> tuple[str, ...]:
+    """The root pages the portal owns, for the build's link checker."""
+    return tuple(LEGAL_PAGES)
+
+
 def render() -> str:
     collection = books.load_collection()
     all_books = books.discover_books()
@@ -405,7 +488,7 @@ def render() -> str:
         title=html.escape(str(collection.get("title", "Textbooks"))),
         description=html.escape(str(collection.get("description", ""))),
         groups=groups_html(all_books),
-        year=date.today().year,
+        footer=footer(),
         build_meta=build_meta(),
         prefs_script=prefs_snippet(prefs_config()),
         settings_trigger=settings_trigger(),
@@ -536,6 +619,10 @@ def main() -> int:
     site().mkdir(parents=True, exist_ok=True)
     (site() / "index.html").write_text(render(), encoding="utf-8")
     (site() / "404.html").write_text(not_found(), encoding="utf-8")
+    for slug in root_page_slugs():
+        page = site() / slug / "index.html"
+        page.parent.mkdir(parents=True, exist_ok=True)
+        page.write_text(legal_page(slug), encoding="utf-8")
     (site() / "robots.txt").write_text(robots_txt(), encoding="utf-8")
     (site() / "sitemap.xml").write_text(sitemap_index(), encoding="utf-8")
     (site() / "version.json").write_text(version_json(), encoding="utf-8")
@@ -565,7 +652,8 @@ def main() -> int:
     label = build_label() or "no build identity"
     print(
         "wrote the deployment root: index.html, 404.html, _headers, "
-        "robots.txt, sitemap.xml, version.json, manifest.webmanifest, sw.js "
+        "robots.txt, sitemap.xml, version.json, manifest.webmanifest, sw.js, "
+        "terms/, acknowledgements/ "
         f"({len(all_books)} books, {label})"
     )
     return 0

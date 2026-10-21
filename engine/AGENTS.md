@@ -27,6 +27,7 @@ file adds what is particular to the engine, and it now owns the **Maths** and
 | `engine/src/textbook/book.py` | Loads `book.yaml` and `collection.yaml`; the scheme tokens |
 | `engine/src/textbook/config.py` | Resolves hook paths from the build's `config.extra` |
 | `engine/src/textbook/scaffold.py` | Generates the docs tree, book CSS, `themes.css`, the curriculum map |
+| `engine/src/textbook/legal.py` | The disclaimer, terms of use and compiled acknowledgements, shared by every book |
 | `engine/src/textbook/booklet.py` | Validates booklet data, emits JSON and MathML |
 | `engine/src/textbook/portal.py` | The collection landing page |
 | `engine/src/textbook/lint.py` | The voice, style and structure checks |

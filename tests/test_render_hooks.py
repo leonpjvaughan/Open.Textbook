@@ -182,6 +182,14 @@ def test_a_real_page_without_a_figure_gets_no_loader(built):
     assert "assets/figures/figures.js" not in html
 
 
+def test_a_real_home_page_carries_the_disclaimer(built):
+    """The directive on the home page survives the whole build, not only the hook."""
+    html = (built.out / "index.html").read_text(encoding="utf-8")
+    assert '<details class="disclaimer">' in html
+    assert "Using this book alongside your course" in html
+    assert "not a replacement" in html
+
+
 # --- tier strategies ----------------------------------------------------------
 
 H_PAGE = "---\ntitle: Higher only\ntier: H\n---\n\n# Higher only\n\nHigher-only body.\n"
@@ -325,6 +333,7 @@ def test_the_hook_chain_is_defined_once_and_the_pipeline_uses_that_one():
     # `deeper` follows them because its target is a page this build writes.
     assert order == [
         "tier",
+        "disclaimer",
         "toc",
         "figures",
         "proofs",

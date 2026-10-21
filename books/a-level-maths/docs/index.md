@@ -56,3 +56,5 @@ computer checks the algebra, not the argument, so read the reasoning in
 
 - [Glossary](Glossary/index.md) — the key words, by strand
 - [Pure mathematics](Chapter 1/index.md) · [Statistics](Chapter 11/index.md) · [Mechanics](Chapter 15/index.md)
+
+:::disclaimer

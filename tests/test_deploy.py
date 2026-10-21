@@ -54,10 +54,26 @@ def test_the_root_404_links_absolutely():
     assert 'href="/"' in portal.not_found()
 
 
-def test_the_landing_page_and_the_404_are_the_only_root_pages():
+def test_the_landing_page_and_the_404_are_the_only_root_html_files():
     portal.main()
     roots = sorted(p.name for p in (ROOT / "site").glob("*.html"))
     assert roots == ["404.html", "index.html"], roots
+
+
+def test_the_collection_legal_pages_are_generated():
+    """The footer's two links must lead to pages the portal actually wrote."""
+    portal.main()
+    for slug in portal.root_page_slugs():
+        page = ROOT / "site" / slug / "index.html"
+        assert page.is_file(), f"no {slug} page; run `python -m textbook.portal`"
+        assert page.read_text(encoding="utf-8") == portal.legal_page(slug)
+
+
+def test_the_landing_footer_links_the_legal_pages():
+    page = portal.render()
+    assert 'href="/terms/"' in page
+    assert 'href="/acknowledgements/"' in page
+    assert "Report a mistake" in page
 
 
 # --- the Worker ---------------------------------------------------------------

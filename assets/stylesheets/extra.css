@@ -180,6 +180,24 @@
   font-weight: 600;
 }
 
+/* The short note on a book's home page. It is a `details` element, so the
+   summary is visible before it is opened and the full sentence is there for a
+   reader who wants it. The accent rule is the only emphasis: a warning icon or
+   a stronger colour would make a study companion look like a safety notice. */
+.md-typeset details.disclaimer {
+  border-left: 3px solid var(--tb-accent);
+  background: color-mix(in srgb, var(--tb-accent) 4%, transparent);
+  padding: 0.45rem 0.9rem;
+}
+
+.md-typeset details.disclaimer > summary {
+  color: var(--tb-ink);
+}
+
+.md-typeset details.disclaimer p {
+  margin: 0.45rem 0;
+}
+
 .math-error {
   color: var(--tb-fig-warn);
   font-family: var(--tb-font-mono);

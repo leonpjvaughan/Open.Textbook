@@ -45,3 +45,5 @@ reasoning in **Learn** as well.
 
 - [Glossary](Glossary/index.md) — the key words, by topic
 - [Number](Chapter 1/index.md) · [Algebra](Chapter 8/index.md) · [Geometry](Chapter 16/index.md) · [Probability and statistics](Chapter 23/index.md)
+
+:::disclaimer
