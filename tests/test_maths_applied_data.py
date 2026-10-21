@@ -106,19 +106,21 @@ def test_every_payload_is_the_package_output_it_claims_to_be(model):
         assert '"max_abs_diff"' in text, f"{model}: no agreement figure"
 
 
-def test_the_manifest_says_why_a_model_has_no_kernel():
-    """`quarter-car` is a dynamics study: a trajectory, not a sweep, and no solver.
+def test_a_dynamics_model_ships_a_kernel_and_no_payload():
+    """`quarter-car` is a dynamics study: no sweep to publish, and an integrator to run.
 
-    The bundle records the reason rather than leaving a hole, so a reader of the data
-    can tell "not compiled yet" from "not compiled on purpose" — and it ships the model's
-    config files anyway, which is all the provenance a dynamics model can have.
+    0.8.0 changed this hole into a kernel — `solver: "dynamics"`, with the trajectory buffers
+    beside the pose — so the test now says which of the two is missing and which is there.
     """
     entry = manifest()["models"]["quarter-car"]
-    assert entry["kernel"].startswith("none")
     assert entry["payload"].startswith("none")
+    assert entry["kernel"] == "kernel.wasm", entry["kernel"]
     model = BUNDLE / "models" / "quarter-car"
     assert not (model / "out.js").exists()
-    assert not (model / "kernel").exists()
+    kernel = json.loads((model / "kernel" / "kernel.json").read_text())
+    assert kernel["solver"] == "dynamics"
+    assert kernel["integration"]["steps"] >= 2
+    assert "traj" in kernel["layout"]["sizes"]
     assert sorted(path.name for path in (model / "source").iterdir()) == sorted(entry["sources"])
 
 
