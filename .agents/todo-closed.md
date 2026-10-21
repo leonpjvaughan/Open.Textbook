@@ -4129,3 +4129,45 @@ stores energy against it, and with `−V z` the front view deflected *less* as t
 payload and requires every cell to round to it, so a release that moves the ladder fails there. The
 Review page's summary rows and the Deeper page's deflection figures moved with it, and the section
 no longer says anywhere that the package carries one stiffness.
+
+---
+
+## 86. §1.6 shows one trajectory; the engine can show a family — **done**
+
+**What is wrong.** §1.6 quotes one run. The section's own point is that a damper or a stiffness
+changes the motion, and a reader cannot see that from a single curve of numbers.
+
+**What makes it possible now.** `suspension-kinematics` 0.8.0 compiles an **integrator** for a
+dynamics study, and the vendored `models/quarter-car/kernel/` is one: `solver: "dynamics"`, the
+coil's compliance as a run-time **number slot**, and `integrate(steps)` filling a trajectory buffer
+that `trajectory()` and `velocities()` read. So a page can re-run the engine rather than replay a
+recording.
+
+**What a table would need.** No figure machinery: a control writes one number
+(`setGeometry({ numbers })` on the coil's compliance slot), `integrate(steps)` runs, and the table
+shows what came out — peak heave, the period, the energy drift the kernel reports, the camber at a
+chosen instant. Three or four free values would sit in a row.
+
+**Done means**
+
+- [x] A §1.6 table whose numbers come from the vendored kernel, with the free value named on the
+      page and the run's energy drift printed beside it.
+- [x] A browser check that the table agrees with the kernel — the `claim()` pattern the other
+      figures use — so a release that changes the integrator fails rather than drifts.
+- [x] The page says the coil has no damper, so what the slider changes is stiffness, not damping.
+
+**Done (2026-10-21).** `suspension-kinematics` 0.9.0 compiles the integrator and publishes
+`default_geometry`, so a control can set the model and change one number; the vendored quarter-car
+kernel takes the coil's compliance as a run-time slot. The figure `dynamics-table` drives it: a
+slider sets the stiffness, four rows of numbers come back from integrations done in the page, and
+the second column keeps the example's own stiffness for comparison.
+
+Two things came out of it. `design()` had been writing only the non-zero pose entries, so it reset
+the rotations and left the positions where the last run stopped — invisible for a kinematic page,
+fatal for one that re-integrates, and found because a table of six stiffnesses in one process
+disagreed with six single-stiffness runs. And the range stops at 2 MN/m because the kernel steps at
+the study's five milliseconds: stiffen the coil further and the step stops resolving the period,
+which the section now says, because the step is part of the model.
+
+After the fix the ladder is 0.05 MN/m → −326 mm of peak heave, 0.1 → −213, 0.2 → −117, 0.5 → −49,
+1 → −25, 2 → −13, every run at a constraint violation of `1e-15`.
