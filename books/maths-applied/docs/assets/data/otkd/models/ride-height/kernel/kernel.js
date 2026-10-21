@@ -360,7 +360,15 @@ export function setGeometry(geometry) {
     mem.set(a, at('axs') + 3 * i);
   });
   (geometry.numbers ?? []).forEach((value, i) => { mem[at('num') + i] = value ?? NaN; });
-  return instance.exports.pack();
+  const status = instance.exports.pack();
+  // A kernel with a load buffer starts from the model's own loads, so a page that changes nothing
+  // gets the model; `setLoads` is the override, not a requirement.
+  if (manifest.layout.sizes.ld) {
+    (manifest.loads ?? []).forEach((load, l) => load.force.forEach((value, k) => {
+      mem[at('ld') + 3 * l + k] = value;
+    }));
+  }
+  return status;
 }
 
 /** Set the driven coordinate(s). */

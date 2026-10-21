@@ -1,12 +1,13 @@
 {
   "abi": "otkd-kernel-2",
-  "generator": "otkd 0.9.0",
+  "generator": "otkd 0.10.0",
   "layout": {
     "offsets": {
       "acc": 1102,
       "axs": 1061,
       "g": 28,
       "jac": 165,
+      "ld": 6786,
       "met": 949,
       "num": 1070,
       "out": 137,
@@ -23,6 +24,7 @@
       "axs": 9,
       "g": 109,
       "jac": 784,
+      "ld": 0,
       "met": 10,
       "num": 4,
       "out": 28,
@@ -45,5 +47,5 @@
     "topology.yaml": "b957f7c4595c81d52312916cb3ce5528a59e6dc1f5e25375b33365fb0b27547c"
   },
   "target": "wasm32-unknown-unknown",
-  "wasm_sha256": "fd604ddde5d630cb1be2e86c330a88fc1727c82a5f9861752466f5dc824c5d0d"
+  "wasm_sha256": "eb71f3915fc8f7786e9bbd97ae0f8a960699844e5932caa63baa65fe540adb54"
 }

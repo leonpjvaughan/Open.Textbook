@@ -22,6 +22,7 @@ const O_V: usize = 1074;
 const O_ACC: usize = 1102;
 const O_TRAJ: usize = 1130;
 const O_TRAJV: usize = 3958;
+const O_LD: usize = 6786;
 const TOTAL: usize = 6786;
 
 #[no_mangle]
@@ -4178,6 +4179,7 @@ pub extern "C" fn solve(iters: i32) -> f64 {
 // ---- dynamics: M qddot + C = f - Phi^T lambda, with Phi qddot = gamma ----
 const NB: usize = 4;
 const R: usize = 27;
+const LD: usize = 0;
 const S: usize = 1;
 const K: usize = N + R;
 const DT: f64 = 5.00000000000000010e-03;
@@ -4310,7 +4312,7 @@ fn velocity_products(q: &[f64; N], v: &[f64; N], out: &mut [f64; N]) {
 }
 
 /// Gravity, the study's loads, and the springs' and dampers' internal forces.
-fn forces(q: &[f64; N], v: &[f64; N], g: &[f64; G], t: &[f64; A], out: &mut [f64; N]) {
+fn forces(q: &[f64; N], v: &[f64; N], g: &[f64; G], t: &[f64; A], ld: &[f64; LD], out: &mut [f64; N]) {
     for i in 0..N { out[i] = 0.0; }
     for b in 0..NB {
         let s = BODY_START[b];
@@ -4363,7 +4365,7 @@ fn gamma(q: &[f64; N], v: &[f64; N], g: &[f64; G], t: &[f64; A], out: &mut [f64;
 }
 
 /// One acceleration, by the saddle-point system.
-fn accel(q: &[f64; N], v: &[f64; N], g: &[f64; G], t: &[f64; A], out: &mut [f64; N], lam: &mut [f64; R]) {
+fn accel(q: &[f64; N], v: &[f64; N], g: &[f64; G], t: &[f64; A], ld: &[f64; LD], out: &mut [f64; N], lam: &mut [f64; R]) {
     let mut m = [0.0f64; N*N];
     for b in 0..NB {
         let block = body_block(b, q);
@@ -4371,7 +4373,7 @@ fn accel(q: &[f64; N], v: &[f64; N], g: &[f64; G], t: &[f64; A], out: &mut [f64;
         for r in 0..7 { for c in 0..7 { m[(s + r) * N + (s + c)] = block[r][c]; } }
     }
     let mut f = [0.0f64; N];
-    forces(q, v, g, t, &mut f);
+    forces(q, v, g, t, ld, &mut f);
     let mut c = [0.0f64; N];
     velocity_products(q, v, &mut c);
     for i in 0..N { f[i] -= c[i]; }
@@ -4483,11 +4485,11 @@ fn gauge(q: &mut [f64; N]) {
     }
 }
 
-fn derivative(q: &[f64; N], v: &[f64; N], g: &[f64; G], t: &[f64; A], dq: &mut [f64; N], dv: &mut [f64; N]) {
+fn derivative(q: &[f64; N], v: &[f64; N], g: &[f64; G], t: &[f64; A], ld: &[f64; LD], dq: &mut [f64; N], dv: &mut [f64; N]) {
     let mut stage = *q;
     gauge(&mut stage);
     let mut lam = [0.0f64; R];
-    accel(&stage, v, g, t, dv, &mut lam);
+    accel(&stage, v, g, t, ld, dv, &mut lam);
     for i in 0..N { dq[i] = v[i]; }
 }
 
@@ -4504,9 +4506,11 @@ pub extern "C" fn accelerations() -> f64 {
         for i in 0..G { g[i] = MEM[O_G + i]; }
         for i in 0..A { t[i] = MEM[O_T + i]; }
     }
+    let mut ld = [0.0f64; LD];
+    unsafe { for i in 0..LD { ld[i] = MEM[O_LD + i]; } }
     let mut out = [0.0f64; N];
     let mut lam = [0.0f64; R];
-    accel(&q, &v, &g, &t, &mut out, &mut lam);
+    accel(&q, &v, &g, &t, &ld, &mut out, &mut lam);
     unsafe { for i in 0..N { MEM[O_ACC + i] = out[i]; } }
     dyn_maxabs(&out)
 }
@@ -4527,31 +4531,33 @@ pub extern "C" fn integrate(steps: i32) -> f64 {
         for i in 0..G { g[i] = MEM[O_G + i]; }
         for i in 0..A { t[i] = MEM[O_T + i]; }
     }
+    let mut ld = [0.0f64; LD];
+    unsafe { for i in 0..LD { ld[i] = MEM[O_LD + i]; } }
     gauge(&mut q);
     let mut worst = 0.0f64;
     for step in 0..steps {
         if step > 0 {
             let mut k1q = [0.0f64; N];
             let mut k1v = [0.0f64; N];
-            derivative(&q, &v, &g, &t, &mut k1q, &mut k1v);
+            derivative(&q, &v, &g, &t, &ld, &mut k1q, &mut k1v);
             let mut q2 = q;
             let mut v2 = v;
             for i in 0..N { q2[i] += 0.5 * DT * k1q[i]; v2[i] += 0.5 * DT * k1v[i]; }
             let mut k2q = [0.0f64; N];
             let mut k2v = [0.0f64; N];
-            derivative(&q2, &v2, &g, &t, &mut k2q, &mut k2v);
+            derivative(&q2, &v2, &g, &t, &ld, &mut k2q, &mut k2v);
             let mut q3 = q;
             let mut v3 = v;
             for i in 0..N { q3[i] += 0.5 * DT * k2q[i]; v3[i] += 0.5 * DT * k2v[i]; }
             let mut k3q = [0.0f64; N];
             let mut k3v = [0.0f64; N];
-            derivative(&q3, &v3, &g, &t, &mut k3q, &mut k3v);
+            derivative(&q3, &v3, &g, &t, &ld, &mut k3q, &mut k3v);
             let mut q4 = q;
             let mut v4 = v;
             for i in 0..N { q4[i] += DT * k3q[i]; v4[i] += DT * k3v[i]; }
             let mut k4q = [0.0f64; N];
             let mut k4v = [0.0f64; N];
-            derivative(&q4, &v4, &g, &t, &mut k4q, &mut k4v);
+            derivative(&q4, &v4, &g, &t, &ld, &mut k4q, &mut k4v);
             for i in 0..N {
                 q[i] += DT / 6.0 * (k1q[i] + 2.0 * k2q[i] + 2.0 * k3q[i] + k4q[i]);
                 v[i] += DT / 6.0 * (k1v[i] + 2.0 * k2v[i] + 2.0 * k3v[i] + k4v[i]);
