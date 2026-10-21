@@ -60,15 +60,18 @@ references:
     attribution: true
     title: suspension-kinematics — the model, its exports and a generated solver
     url: https://github.com/leonpjvaughan/suspension-kinematics
-    ref: "release 0.4.0 (commit f5d2c92), 2026-10-19; otkd 0.4.0"
+    ref: "release 0.11.0, 2026-10-21; otkd 0.11.0"
     role: >-
       The package the chapter's numbers come from: topology, geometry and study as
       data, the residual and Jacobian derived symbolically, and the same derivation
-      compiled to WebAssembly. Its 0.4.0 bundle is vendored under
-      `docs/assets/data/otkd/` — four model exports and four kernels, with the bundle's
-      `MANIFEST.json` and `SHA256SUMS` — by `scripts/vendor-otkd.sh`, which pins the
-      release and the zip's digest. A figure on §1.2 runs the rigid model's kernel in
-      the page.
+      compiled to WebAssembly — five kernels on the kinematic models and an integrator
+      on the quarter car. Its 0.11.0 bundle is vendored under `docs/assets/data/otkd/`,
+      with the bundle's `MANIFEST.json` and `SHA256SUMS`, by `scripts/vendor-otkd.sh`,
+      which pins the release and the zip's digest. Figures run the kernels in the page:
+      §1.2 compares the rigid one with its own front view, §1.5's ladder is the bushed
+      model's export, and §1.6's table re-integrates the quarter car under two controls.
+      The quarter car's trajectory is not in the bundle — a trajectory is not a sweep —
+      so it is vendored beside the chapter with the digests of the model it came from.
 
   - id: dixon
     title: Suspension Geometry and Computation
