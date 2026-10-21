@@ -134,6 +134,23 @@ the algebraic one". A free quarter car cannot run it — with no weight there is
 swing against — and a driven model would be needed to state it properly. The comparison
 above is the same claim in the form this model can answer.
 
+## The code behind these numbers
+
+None of the numbers above was typed. The package derives the equations with sympy — the mass
+matrix, the velocity-product term that `M q̈ = f` leaves out, and the forces are in
+[`otkd/problem/dynamics.py`](https://github.com/leonpjvaughan/suspension-kinematics/blob/main/src/otkd/problem/dynamics.py)
+— and
+[`otkd/emitters/wasm.py`](https://github.com/leonpjvaughan/suspension-kinematics/blob/main/src/otkd/emitters/wasm.py)
+factors the same expressions into a straight-line program, prints it as Rust and compiles it to
+WebAssembly. The kernel that would run in a page is generated from this model by that pipeline, and
+[`scripts/run_kernel.py`](https://github.com/leonpjvaughan/suspension-kinematics/blob/main/scripts/run_kernel.py)
+runs it and prints the table: the trajectory, the energy drift, and the difference from the
+package's own Python integration.
+
+That is worth a look for two reasons. It is the same derivation in two languages, so nothing can
+drift between the figure and the engine. And the pipeline is short enough to read: sympy residual,
+common subexpressions, Rust, `wasm32-unknown-unknown`, one buffer of `f64`.
+
 ## You should now be able to
 
 - say what a differential-algebraic model is, and why the constraint forces appear

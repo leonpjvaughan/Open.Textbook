@@ -1,6 +1,6 @@
 {
   "abi": "otkd-kernel-2",
-  "generator": "otkd 0.7.0",
+  "generator": "otkd 0.8.0",
   "layout": {
     "offsets": {
       "axs": 621,
