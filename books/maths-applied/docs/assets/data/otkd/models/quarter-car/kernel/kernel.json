@@ -18,7 +18,7 @@
       "acc": 28,
       "traj": 2828,
       "trajv": 2828,
-      "ld": 0
+      "ld": 6
     },
     "offsets": {
       "q": 0,
@@ -37,7 +37,7 @@
       "trajv": 3958,
       "ld": 6786
     },
-    "slots": 6786
+    "slots": 6792
   },
   "metrics": [
     "camber",
@@ -356,7 +356,24 @@
     "steps": 101,
     "dt": 0.005
   },
-  "loads": [],
+  "loads": [
+    {
+      "site": "wc",
+      "force": [
+        0.0,
+        0.0,
+        0.0
+      ]
+    },
+    {
+      "site": "wc",
+      "force": [
+        0.0,
+        0.0,
+        0.0
+      ]
+    }
+  ],
   "wasm": "kernel.wasm",
   "note": ""
 }

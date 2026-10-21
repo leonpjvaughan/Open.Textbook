@@ -142,10 +142,15 @@ stiffness and the engine re-runs, in this page.
 
 :::figure dynamics-table
 
-Each column is an integration, not a recording. Across the control's range the chassis falls from a
-third of a metre to about a centimetre, and the period shortens with it — the number the static
-model cannot produce at all. The constraint column stays near `1e-15` whatever the stiffness, which
-is the projection doing its job after every step.
+The two controls change two numbers the model takes at run time, and they do different things.
+**Stiffness changes the period**: across its range the swing shortens from a third of a second to a
+twelfth, and the chassis stops falling so far. **A sideways load changes where the corner sits**: it
+moves the resting height without touching the period, because a constant force shifts the answer
+rather than the dynamics.
+
+Each column is an integration, not a recording, and the first column is the example's own answer —
+its own stiffness and no load. The constraint column stays near `1e-15` throughout, which is the
+projection doing its job after every step.
 
 The range stops at 2 MN/m, and that is worth knowing rather than hiding: the kernel steps at this
 study's five milliseconds, and a stiffer coil swings faster than five milliseconds can resolve. The
