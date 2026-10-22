@@ -46,13 +46,20 @@ def sources() -> dict[str, str]:
     Taken from the package's own resolution of the model rather than from the vendored bundle:
     a digest copied out of the bundle could not disagree with the bundle, and then nothing would
     be recorded at all. The library is included because it lives outside the model directory.
+
+    **The study is the one file the book replaces**, so it is recorded from the bytes this run
+    passed to `--study` rather than from the package's resolution of the model. Reading it from
+    the model records the shipped 0.5 s study as the input to a 3.0 s run — which is what happened
+    the first time, and what `tests/test_maths_applied_data.py` then held in place.
     """
     files = otkd.load(MODEL).files
-    return {
+    digests = {
         Path(path).name: hashlib.sha256(Path(path).read_bytes()).hexdigest()
         for path in files.values()
         if path
     }
+    digests[STUDY.name] = hashlib.sha256(STUDY.read_bytes()).hexdigest()
+    return digests
 
 
 def main() -> None:

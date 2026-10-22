@@ -13,8 +13,8 @@ of the model to drift out of step with the package.
 | command | `uv run python extract.py trajectory.js` from a checkout of `suspension-kinematics` at the vendored tag |
 | duration | **3.0 s in 601 steps** — `study.yaml` beside this file, longer than the shipped study's 0.5 s, so the settling is visible |
 | energy drift over the run | 6.3 × 10⁻⁸ of the starting energy |
-| largest constraint violation | 1.3 × 10⁻¹⁵ |
-| `trajectory.js` sha256 | `e837bd7c1855a4e5ac90c5e2228e1dd7cad8f4221911f4a0697b49000aba0ba9` |
+| largest constraint violation | 1.1 × 10⁻¹⁵ |
+| `trajectory.js` sha256 | `24b6f241e83e4cb9efa37f5639063448573652eed3c7094fb29910d972b9ae2d` |
 
 ## The model it came from
 
@@ -26,8 +26,13 @@ model without changing a model file.
 |---|---|
 | `topology.yaml` | `b957f7c4595c81d52312916cb3ce5528a59e6dc1f5e25375b33365fb0b27547c` |
 | `geometry.yaml` | `6c42385c57b26da44421d5e340eac42a00cc05a3deaf339d6d2df9325a6ea389` |
-| `study.yaml` | `0655fc27b5410f1985de8d79b37f295e1ff6d60698fc59f313de126a79a778f1` |
+| `study.yaml` | `b31dd76a2e34a1e4a54f7afc0e66516fad15580eb37791f2b835e9ff7559ec6a` |
 | `constraints.yaml` | `fd35357ac45c8d77b9225caa8fc036c42f7d79f1952bf642bd24ca6b25513038` |
+
+The first, second and fourth are the release's own bytes, and the test compares them with
+`../otkd/models/quarter-car/source/`. The third is **not**: the study is the one file this
+book replaces, so it is the digest of the 3.0 s file beside it — the package ships 0.5 s — and
+`tests/test_maths_applied_data.py` checks that row against that file rather than the bundle.
 
 The bundle now carries those bytes at `../otkd/models/quarter-car/source/` — for a dynamics
 model they are the only provenance the bundle has — so `tests/test_maths_applied_data.py`

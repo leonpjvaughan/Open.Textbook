@@ -21,6 +21,7 @@ import json
 import re
 
 import pytest
+import yaml
 
 from textbook.book import repo_root
 
@@ -124,6 +125,18 @@ def test_a_dynamics_model_ships_a_kernel_and_no_payload():
     assert sorted(path.name for path in (model / "source").iterdir()) == sorted(entry["sources"])
 
 
+def trajectory_meta() -> dict:
+    """The run's own record: generator, inputs, duration and the two diagnostics.
+
+    `trajectory.js` writes `meta` with `json.dumps`, so the object is JSON apart from the
+    `export const` around it — which is why it can be read here rather than parsed as text.
+    """
+    text = (DATA / "quarter-car" / "trajectory.js").read_text(encoding="utf-8")
+    match = re.search(r"export const meta = (\{.*?\n\});\n", text, re.S)
+    assert match, "trajectory.js has no meta object"
+    return json.loads(match.group(1))
+
+
 def test_the_trajectory_records_the_model_the_bundle_ships():
     """§1.6's numbers are a property of one quarter car, and now checkable.
 
@@ -131,20 +144,45 @@ def test_the_trajectory_records_the_model_the_bundle_ships():
     were a ledger with nothing to check them against. The bundle now carries the four
     config files of every model, dynamics included: a release that changed the coil fails
     here rather than quietly invalidating a chapter.
+
+    **Three of the four, not four.** The study is the file this book overrides, so it is
+    checked against the book's own copy by the test below. Asserting the bundle's digest
+    for it is what made a 3.0 s run record a 0.5 s study and call the ledger checked.
     """
-    text = (DATA / "quarter-car" / "trajectory.js").read_text(encoding="utf-8")
-    match = re.search(r'"sources": (\{.*?\})', text, re.S)
-    assert match, "the trajectory records no sources"
-    recorded = json.loads(match.group(1))
+    recorded = trajectory_meta()["sources"]
 
     vendored = BUNDLE / "models" / "quarter-car" / "source"
     assert set(recorded) == {path.name for path in vendored.iterdir()}
-    for name, digest in recorded.items():
-        assert hashlib.sha256((vendored / name).read_bytes()).hexdigest() == digest, name
+    for name in ("topology.yaml", "geometry.yaml", "constraints.yaml"):
+        assert hashlib.sha256((vendored / name).read_bytes()).hexdigest() == recorded[name], name
+
+
+def test_the_trajectory_records_the_study_it_ran():
+    """The one input the book replaces, recorded from the bytes the run read.
+
+    `extract.py` passes `--study` the book's own file and used to ask the package for the
+    digests of the model's, so a 3.0 s run named the shipped 0.5 s study as its input. Two
+    checks, because they fail differently: the digest says *which* file the run recorded,
+    and the declared duration and step count say whether that file is the one it ran. The
+    second is what a reader can verify without hashing anything.
+    """
+    meta = trajectory_meta()
+    study = DATA / "quarter-car" / "study.yaml"
+    shipped = BUNDLE / "models" / "quarter-car" / "source" / "study.yaml"
+    recorded = meta["sources"]["study.yaml"]
+    assert recorded == hashlib.sha256(study.read_bytes()).hexdigest(), (
+        "the run records a study other than the 3.0 s file beside it"
+    )
+
+    by_digest = {hashlib.sha256(path.read_bytes()).hexdigest(): path for path in (study, shipped)}
+    assert recorded in by_digest, "the recorded study is neither the book's nor the release's"
+    declared = yaml.safe_load(by_digest[recorded].read_text(encoding="utf-8"))
+    assert (meta["duration"], meta["steps"]) == (declared["duration"], declared["steps"]), (
+        f"the run took {meta['duration']} s in {meta['steps']} steps and the study it "
+        f"records declares {declared['duration']} s in {declared['steps']}"
+    )
 
 
 def test_the_trajectory_is_the_version_the_vendor_script_pins():
     """The run and the bundle have to be the same release, or §1.6 quotes a model we do not ship."""
-    text = (DATA / "quarter-car" / "trajectory.js").read_text(encoding="utf-8")
-    generator = json.loads(re.search(r'"generator": "([^"]+)"', text).group(0).split(": ", 1)[1])
-    assert generator == manifest()["generator"]
+    assert trajectory_meta()["generator"] == manifest()["generator"]

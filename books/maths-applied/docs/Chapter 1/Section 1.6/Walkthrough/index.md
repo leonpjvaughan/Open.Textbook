@@ -100,7 +100,7 @@ positive with the top of the wheel outboard, the opposite of §1.2):
 | period, and frequency | 0.625 s, 1.6 Hz |
 | camber through the cycle | 0° to −9.53° |
 | energy drift over 601 steps | 6.3 × 10⁻⁸ of the starting value |
-| largest constraint violation | 1.3 × 10⁻¹⁵ |
+| largest constraint violation | 1.1 × 10⁻¹⁵ |
 
 The package integrates with classical Runge–Kutta and then **projects the state back onto
 the constraints after every step**, rather than adding a Baumgarte term that pulls the state
