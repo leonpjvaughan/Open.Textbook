@@ -4212,3 +4212,147 @@ page puts the corner under load deliberately.
 touching the period, because a constant force shifts the answer rather than the dynamics. A new row,
 resting height, is what makes the second visible. The trajectory was re-vendored with its digest: same
 numbers, new sources.
+
+## 98. The map's figure draws a chain of five questions, not a tree — **done**
+
+**What is wrong.** `books/numerical-methods/docs/assets/figures/class-map.js` draws the five questions on one unbroken vertical spine at `x = 34`, from Q1 to Q5, and hangs the nine boxes off it on a bus at `x = 310`. The graph it draws is therefore
+
+    Q1 → Q2 → Q3 → Q4 → Q5
+
+which is not the tree. The tree is: Q2 *no* → Q3; Q3 *a finite list* → the linear sub-question → linear system or root finding; Q3 *at every point* → Q4; Q2 *yes* → Q5, skipping Q3 and Q4. Four faults follow from the one:
+
+- **The spine asserts sequence the book does not claim.** Q3→Q4 and Q4→Q5 are drawn exactly like Q1→Q2, so nothing says which question each segment is an answer to, and Q4→Q5 is not an edge at all.
+- **"Yes" is a hairpin in the left margin** — `M34 164 L16 164 L16 384 L34 384`, with a rotated label at `(10, 274)`. It is parallel to the spine, one pixel-ish away, and rejoins at Q5, so the drawing offers two vertical rails and no way to tell which one the reader is on. It was written to show that the moving branch *skips* Q3 and Q4, and it is the part that shows least.
+- **Two boxes hang off "Is it everywhere?" with no rule stated.** Linear system and root finding are separated by a sub-question — is every rule linear in the unknowns? — that the drawing does not contain. The prose carries it; the figure is silent.
+- **The boxes look like buttons and are not links.** `draw()` emits `rect()` and `label()` and no `<a>`; the only links are in the readout below. A reader's first instinct is to click "Optimisation" and nothing happens.
+
+There is also a colour fault with the same origin: `edge()` returns `fig-grid` for everything not in the current step, and step 0 is "the whole map", so the one frame that has to carry the map on its own is drawn in the colour of graph paper. `.fig-line` is the accent, so the module has no "ordinary content line" to use — `.fig-ink` sets `fill` as well as `stroke`, which is why an outlined box could not use it.
+
+**The fix, and the choice it needs.** Two honest options, and the second is cheap:
+
+1. **Redraw as a tree.** Questions as internal nodes, one row per node, an incoming edge label on each row's elbow (`├─ no, a finite list ─► …`), the linear sub-question as its own node, arrowheads, and a leaf box wrapped in `<a>`. This is the Markdown tree below the figure, drawn; it needs no crossings and no margin rail. It costs an outline class (or a `fill` option on `rect()`) so a box can be stroked in ink rather than in grid or accent.
+2. **Retire it.** The five questions now name every class in brackets (they were changed to do so), and the Markdown tree below already links all nine pages. The figure would then be the third copy of one list. That means deleting `:::figure class-map`, the module, and the two tests that read `key:` and `links:` out of it.
+
+Option 2 is right if the figure's only job was to make the questions concrete; option 1 is right if the walkthrough — one question at a time — is what earns its place. The author's documented intent is that the still *is* the content (`books/numerical-methods/AGENTS.md`, **Figures**), and the still is the version that fails, so the choice is which way to honour that.
+
+**Same fault, one level up.** The home page's introduction has the same problem and is
+not fixed by the figure: it presents the taxonomy three times (five questions, the tree,
+this figure) and gives no instance. Measured 2026-10-22: `matrix`, `derivative`, `heat`,
+`damper`, `casting` and `camera` appear **0** times in the home page's nine boxes, and 30
+times in the class pages' own *Systems that live here* lists. A reader with no context is
+handed the index to a book they have not opened. Three strategies — nine reasons, one
+story, or "what have you got?" — are with the author for a decision.
+
+**Done means**
+
+- [ ] the figure draws the real tree: every edge labelled with the answer it is, and the linear sub-question is a node
+- [ ] a reader can tell from the still alone which question each box answers
+- [ ] the still is drawn in a content colour, not in the grid colour
+- [ ] leaf boxes are links, or do not look like them
+- [ ] `tools audit site --only class-map` and the 390px legibility check still pass
+
+**Done (2026-10-22), by taking option 2: the figure is retired.**
+
+The page was rewritten rather than the drawing. The home page is now *Nine kinds of problem*:
+an opening claim, the counts that back it (62 methods, 64 systems, nine kinds, each measured
+from the book and pinned by `tests/test_reference_books.py`), the nine kinds as a four-column
+table — the kind, the question, the shape of the answer, and how to recognise it — then the
+three circumstances that decide the method inside a kind, then why the count is nine.
+
+The drawing went for the three reasons above, and for a fourth that settled it: **the three
+defects were one defect.** A tree is a navigation device, and a reader with no model yet is not
+navigating. What the author asked for was the reduction — a very large field cut into a few
+kinds, each holding several methods chosen by circumstances — and that is a table, read once,
+with every cell a door. The walkthrough asked the reader to answer five questions before saying
+what any of the answers was called.
+
+What was deleted: `:::figure class-map` from `docs/index.md`, `docs/assets/figures/class-map.js`,
+and the two tests that read `key:` and `links:` out of the module. The book's `AGENTS.md`
+**Figures** section now records the retirement and why a replacement would hit the same wall,
+so the next person does not rebuild it. `books/numerical-methods/AGENTS.md` also loses
+"add it to the figure's `LEAVES`" from the five places a new class must be added; it is four now.
+
+**What is still true, and not lost.** The five questions are the cuts that produce the nine, so
+they survive as one sentence under the table ("the order is the order the questions reach
+them"), and the argument that the cut is a choice stays on `choosing-the-class`. Nothing in the
+book depended on the figure to be readable, which is the test the page now passes and the
+figure could not.
+
+## 98. The quarter-car's provenance names a study it did not run — **done**
+
+**What is wrong.** `docs/assets/data/quarter-car/trajectory.js` says two contradictory things about itself. Its `meta` records `"duration": 3.0, "steps": 601`, which is the book's own `study.yaml`, and its `meta.sources["study.yaml"]` is `ea9f94b6…`, which is the digest of the **package's** `examples/quarter-car/study.yaml` (`duration: 0.5, steps: 101`, vendored at `otkd/models/quarter-car/source/study.yaml`). The file beside the trajectory is another value again, `b31dd76a…`, and the README's table prints a third, `0655fc27…`, which matches no file in the tree:
+
+```
+sha256sum data/quarter-car/study.yaml                      -> b31dd76a…   (duration 3.0, steps 601)
+sha256sum otkd/models/quarter-car/source/study.yaml        -> ea9f94b6…   (duration 0.5, steps 101)
+trajectory.js  meta.sources["study.yaml"]                  -> ea9f94b6…
+README.md      "| `study.yaml` |" row                       -> 0655fc27…   (no file in the tree)
+```
+
+The cause is in `extract.py`: `trajectory()` runs `otkd solve MODEL --study HERE/study.yaml`, and `sources()` then records `otkd.load(MODEL).files`, which resolves the model's own config. The override never reaches the ledger, so the run's provenance names the study that was replaced. `tests/test_maths_applied_data.py::test_the_trajectory_records_the_model_the_bundle_ships` asserts every recorded digest equals the bundle's, so it passes **because** of the error and would fail if the extractor were fixed — the test pins the defect in place.
+
+A second number has the same smell. §1.6 and the README both quote "largest constraint violation **1.3 × 10⁻¹⁵**"; the payload's `meta.constraint_max` is `1.1102230246251565e-15`, computed by this same script from this same run. Everything else in the table matches the payload (212.823 mm, −9.5294°, 6.3265 × 10⁻⁸), so 1.3 is the one figure that did not come from the file it cites.
+
+**The fix.** `sources()` records the digest of the `STUDY` it actually passed, and keeps the model configs from the package's own resolution; regenerate `trajectory.js`, and write the regenerated digests into the README table. Print the constraint from `meta.constraint_max` in §1.6 and the README. Then split the test: the three model configs stay bundle-checked, and `study.yaml` is checked against `data/quarter-car/study.yaml` — plus one assertion that `meta.duration` and `meta.steps` equal what that file declares, which is the check that would have caught this without knowing any digest.
+
+**Done means**
+
+- [x] `trajectory.js`, the README table and `sha256sum data/quarter-car/study.yaml` give one digest
+- [x] `meta.duration`/`meta.steps` are asserted against the study file beside them, so a run cannot disagree with the study it records
+- [x] §1.6 and the README print the payload's constraint figure, or say where 1.3 came from
+- [x] `pytest tests/test_maths_applied_data.py -q` passes with the extractor fixed
+
+**Done (2026-10-22).** `extract.py::sources()` now records the study it passed to `--study`
+rather than the one the package resolves, and the docstring says why. `trajectory.js`'s
+`meta.sources["study.yaml"]` is `b31dd76a…` — the value a regeneration writes, since the file
+beside it has not changed since the run and its 3.0 s / 601 steps are the run's own. The README
+carries the same digest, states that the study is the one file the book replaces, and prints
+1.1 × 10⁻¹⁵ for the constraint violation, as does §1.6. The test is split: the three model
+configs stay compared with the bundle, the study is compared with `data/quarter-car/study.yaml`,
+and a second assertion reads the recorded study's own `duration` and `steps` and requires the
+run's to match — which catches the defect without knowing any digest. Restoring the old value
+fails it.
+
+## 99. *When it goes wrong* never reaches the class it names — **done**
+
+**What is wrong.** The symptoms page has 26 rows whose second column names a likely class, and not one of them is a link:
+
+```
+$ grep -n '| Elliptic |' books/numerical-methods/docs/symptoms/index.md
+16:| The iteration count grows every time the mesh is refined | Elliptic | No preconditioner, or a smoother used alone | Multigrid or algebraic multigrid |
+```
+
+The book's home page offers three ways in, and this is the third: "**You have a wrong answer.** Start at When it goes wrong. It goes symptom → **kind** → cause → fix." Every other hop in the map is clickable — the nine-kinds table links each kind, and `techniques/` links the class in every row. So a reader who arrives with a wrong answer, which is the reader in most need of the route, is sent back to the index to find the page the row was written to name. Rows naming two classes ("Elliptic, Saddle point") make the trip harder, because the reader has to guess which of the two the cause belongs to.
+
+**The fix.** Link each class name in the cell to its page (`[Elliptic](../elliptic/index.md)`, and two links where the cell names two). Add a test in `tests/test_reference_books.py` that every class name appearing in a symptoms or techniques cell resolves against `map.yaml → pages`, so a tenth kind cannot arrive unlinked. Leave the wording alone: item 96 owns the duplication between these rows and the class pages' *What goes wrong* tables, and this edit should not touch it.
+
+**Done means**
+
+- [x] every class named in the symptoms tables is a link to its page
+- [x] a test fails when a class name in a cell does not resolve against the registry
+- [x] `python -m textbook.lint numerical-methods` reports nothing
+
+**Done (2026-10-22).** All 26 `likely class` cells now carry links (`[Elliptic](../elliptic/)`,
+and two links where the cell names two classes), in the same trailing-slash form as
+`techniques/`. `tests/test_reference_books.py::test_the_two_indexes_link_every_class_they_name`
+reads both index pages, fails on a class title left as plain text in any table line, and fails
+on a link whose text is a class but whose href is not that class's page. Removing one link
+fails it; restoring it passes. Wording untouched — item 96 still owns the duplication between
+these rows and the class pages.
+
+## 100. §1.3 turns the corner into a linear system and does not say so — **done**
+
+**What is wrong.** §1.3 writes the normal equations — `JᵀJ Δ = −Jᵀr` — and its agreement panel prints the Jacobian's singular values (`1.415, 0.998, 0.000`). That is the class becoming true, and the section says nothing about the kind of problem it has made. The chapter's only `:::class linear-system` is in §1.4, at the SVD diagnosis, which is a different claim: what the spare row *is*. `books/maths-applied/AGENTS.md` (and the map's own rule) says to "put it where the class first becomes true, not in a list at the top of the section". Here the aside arrives a section after the class does, so the reader meets a `3 × 2` least-squares problem with no name for it.
+
+**The fix.** Add `:::class linear-system` in §1.3 directly under the normal-equations step, and keep §1.4's: the two say different things, one that the work is now in a matrix and one that the matrix's null vector names the spare rule. If the single aside in §1.4 was deliberate, say why in the section instead — the current arrangement reads as an omission.
+
+**Done means**
+
+- [x] §1.3 carries the aside where the normal equations are written
+- [x] `:::used` on `linear-system` lists both §1.3 and §1.4
+- [x] `python -m textbook.lint maths-applied` reports nothing
+
+**Done (2026-10-22).** §1.3 carries `:::class linear-system` directly under the normal
+equations, before the Gauss–Newton paragraph, and §1.4 keeps its own where the null vector is
+read. The two say different things, and the page now names the class at the moment the reader
+writes it down. `:::used` on `linear-system` lists §1.3 and §1.4, checked in the built page.
