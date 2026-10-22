@@ -131,8 +131,8 @@ at 72 mm the front view is already a degree out. The small model is not wrong; i
 
 A third test was written and taken out: "as the masses go to zero the model must become
 the algebraic one". A free quarter car cannot run it — with no weight there is nothing to
-swing against — and a driven model would be needed to state it properly. The comparison
-above is the same claim in the form this model can answer.
+swing against — and stating it would need a driven model. The comparison above is the same
+claim in the form this model can answer.
 
 ## One trajectory, or a family of them
 

@@ -14,7 +14,7 @@ mechanism, four models, and the number where each pair of them agrees.
 
 A car's front suspension is a linkage of two wishbones, an upright and a wheel. As
 the wheel moves up and down, its angles change, and the change is small enough to
-be small enough to ignore and large enough to matter.
+ignore and large enough to matter.
 
 This book works out those angles with four models of the same mechanism, each one
 introduced only when the one before it has stopped answering the question. Every

@@ -59,6 +59,8 @@ the iteration solves them:
 $$ J^{\mathsf{T}}J\;\Delta = -J^{\mathsf{T}}\mathbf{r},
 \qquad D \leftarrow D + \Delta. $$
 
+:::class linear-system
+
 This is Gauss–Newton. With two unknowns, $J^{\mathsf{T}}J$ is a $2\times2$ matrix,
 and the step is written down with no linear algebra library at all. The rows of
 $J$ are simple too, because every row is a distance:

@@ -123,8 +123,8 @@ number for rather than an assurance.
 The same structure appears in the package's three-dimensional model, which these three
 rows are a front-view imitation of: `otkd check examples/double-wishbone-two-leg` reports
 **21 unknowns, 22 rows, rank 20, redundancy 1** — one dependent row, exactly as here, and
-its diagnosis names the rows that participate. The toy is not a toy in this respect; it is
-the same rank story with fewer numbers to read.
+its diagnosis names the rows that participate. The three-row model is not a smaller story;
+it is the same rank story with fewer numbers to read.
 
 The decomposition is computed by the page's own model at load, and the figure shows it on
 every frame. What the section claims is structural — three rows, two unknowns,

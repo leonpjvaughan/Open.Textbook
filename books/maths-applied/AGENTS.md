@@ -271,6 +271,9 @@ proposed as chapter 0 and rejected: this book's rules (a model earns its place b
 failing; one mechanism; the main thread stands alone) cannot host a lookup, and the
 map is entered by symptom rather than read in order. It is a reference work of its
 own — `books/numerical-methods/`, which records the decision in its `AGENTS.md`.
-The callbacks are not written yet: a section that names a class should link there
-with a root-absolute href, `/numerical-methods/<slug>/`, the way `:::prove` links a
-proof. Until then, a section names the class in words and links the page plainly.
+The callback is `:::class <slug>`, and it is written: the directive resolves the
+slug against `map.yaml → pages`, emits a root-absolute
+`/numerical-methods/<slug>/` href inside one small aside, prints the entry's
+`signature` under the link so the section does not restate it, and fails the build
+on a slug that is not a class. Put it where the class first becomes true, not in a
+list at the top of the section.
