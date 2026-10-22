@@ -113,6 +113,115 @@ def test_the_home_page_links_every_page_in_the_registry():
     assert missing == [], f"the home page does not link {missing}"
 
 
+def _counts() -> tuple[int, int]:
+    """The two numbers the home page prints, measured from the pages themselves.
+
+    62 methods is the number of rows in the four tables under *Methods, A to Z*, because
+    that page is the book's own claim about how many methods it names. 64 systems is the
+    number of entries in the nine class pages' *Systems that live here* lists, because
+    those are the systems the reduction is claimed to cover. Both are counted here rather
+    than typed, so adding a method or a system fails the home page until it says the new
+    number — a count in the argument that nobody recomputes is just a number.
+    """
+    book = map_book()
+    methods = 0
+    for line in (book.docs / "techniques" / "index.md").read_text(encoding="utf-8").splitlines():
+        cells = [cell.strip() for cell in line.strip().strip("|").split("|")]
+        if len(cells) == 3 and not set(cells[0]) <= set("-: ") and cells[0] != "method":
+            methods += 1
+    systems = 0
+    for slug in CLASSES:
+        page = (book.docs / slug / "index.md").read_text(encoding="utf-8")
+        start = page.index("## Systems that live here")
+        block = page[start : page.index("## What goes wrong", start)]
+        systems += len(re.findall(r"^- \S", block, re.M))
+    return methods, systems
+
+
+def test_the_nine_kinds_table_names_and_links_every_class():
+    """The reduction is the home page's whole argument, so it has to be complete.
+
+    One table row per kind, each linking its page, is the book's claim that nine of them
+    cover the field. A class missing from the table is a kind the reader cannot reach
+    from the argument; a row that does not link is a name with nowhere to go. The count
+    of rows is asserted too, so a tenth class cannot be added to the registry without
+    the table growing a row.
+    """
+    book = map_book()
+    home = (book.docs / "index.md").read_text(encoding="utf-8")
+    unlinked = [
+        entry["title"]
+        for entry in book.pages
+        if entry.get("signature")
+        and f"[{entry['title']}]({entry['path']})" not in home
+    ]
+    assert unlinked == [], f"the home page never links {unlinked}"
+    rows = [
+        line
+        for line in home.splitlines()
+        if line.startswith("|")
+        and re.search(r"\]\((" + "|".join(CLASSES) + r")/index\.md\)", line)
+    ]
+    assert len(rows) == len(CLASSES), f"the nine-kinds table has {len(rows)} rows"
+
+
+def test_the_two_indexes_link_every_class_they_name():
+    """A hop in a lookup has to be clickable, or it is a word and not a hop.
+
+    `symptoms/` goes symptom → kind and `techniques/` goes method → kind, and both
+    name the kind in a table cell. The home page offers them as two of the three
+    ways in, so a bare class name here sends the reader back to the index to find
+    the page the row was written to name — which is the trip the row exists to
+    save. The nine-kinds table already links every kind, and this holds the pair to
+    the same standard.
+
+    Every link whose text is a class title is checked too, because a renamed class
+    and a stale href are two halves of one defect and only one of them is a link
+    that looks correct.
+    """
+    book = map_book()
+    slug_of = {
+        entry["title"]: entry["path"].split("/")[0]
+        for entry in book.pages
+        if entry.get("signature")
+    }
+    link = re.compile(r"\[([^\]]+)\]\(([^)]+)\)")
+    unlinked, misdirected = [], []
+    for index in ("symptoms", "techniques"):
+        text = (book.docs / index / "index.md").read_text(encoding="utf-8")
+        for line in text.splitlines():
+            if not line.startswith("|"):
+                continue
+            for match in link.finditer(line):
+                if match.group(1) in slug_of:
+                    wanted = f"../{slug_of[match.group(1)]}/"
+                    if match.group(2) != wanted:
+                        misdirected.append((index, match.group(1), match.group(2), wanted))
+            plain = link.sub("", line)
+            for title in slug_of:
+                if re.search(rf"(?<![\w-]){re.escape(title)}(?![\w-])", plain):
+                    unlinked.append((index, title, line))
+    assert unlinked == [], f"a class named but not linked: {unlinked}"
+    assert misdirected == [], f"a class linked to the wrong page: {misdirected}"
+
+
+def test_the_home_page_states_the_counts_it_claims():
+    """The page opens with an arithmetic claim: 62 methods, 64 systems, nine kinds.
+
+    Each number is measured from the book, so the argument cannot quietly become false
+    when a method is added or a system is dropped. This is the same rule as §1.5's
+    stiffness ladder in `Maths Applied`: the page prints the export's number, and a test
+    recomputes it.
+    """
+    methods, systems = _counts()
+    book = map_book()
+    home = (book.docs / "index.md").read_text(encoding="utf-8")
+    opening = home[: home.index("## The nine kinds")]
+    assert f"**{methods}**" in opening, f"the page does not say it names {methods} methods"
+    assert f"**{systems}**" in opening, f"the page does not say {systems} systems live here"
+    assert f"**{len(CLASSES)}**" in opening, "the page does not say how many kinds there are"
+
+
 def test_the_classes_come_first_in_tree_order():
     """The two indexes come after the classes, in the order the tree reaches them.
 
@@ -128,40 +237,6 @@ def test_the_classes_come_first_in_tree_order():
         "techniques",
         "symptoms",
     ]
-
-
-def test_the_figure_draws_every_class_page():
-    """The figure is the map, so a class missing from it is a branch that stops.
-
-    Read as text rather than mounted: the module's own layout data is the registry
-    of what it draws, and a browser is not needed to check that the two lists agree.
-    """
-    module = (
-        map_book().docs / "assets" / "figures" / "class-map.js"
-    ).read_text(encoding="utf-8")
-    missing = [slug for slug in CLASSES if f'key: "{slug}"' not in module]
-    assert missing == [], f"class-map.js does not draw {missing}"
-
-
-def test_every_link_the_figure_emits_is_a_page_the_book_lists():
-    """The figure's hrefs are root-absolute, so the build's link check skips them.
-
-    `SHAPE.md` says a link into another book is outside the linking book's own build
-    and `check_links` skips it by design. The figure writes `/numerical-methods/<slug>/`
-    for the same reason a proof link does — it must not resolve against whichever
-    page mounts the figure — so the same skip applies. That leaves a renamed class
-    shipping a dead link that every other check passes, and this is the check that
-    replaces the one the build cannot make.
-    """
-    module = (map_book().docs / "assets" / "figures" / "class-map.js").read_text(
-        encoding="utf-8"
-    )
-    listed = {entry["path"].split("/")[0] for entry in map_book().pages}
-    drawn = set(re.findall(r'key: "([a-z-]+)"', module))
-    linked_block = " ".join(re.findall(r"links: \[(.*?)\]", module))
-    linked = set(re.findall(r'"([a-z-]+)"', linked_block))
-    assert drawn <= listed, f"the figure draws {sorted(drawn - listed)}, which is no page"
-    assert linked <= listed, f"a step links {sorted(linked - listed)}, which is no page"
 
 
 def test_no_stub_page_survives_in_the_book():

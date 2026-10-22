@@ -1,132 +1,109 @@
 ---
-title: Which kind of problem do you have?
+title: Nine kinds of problem
 ---
 
-# Which kind of problem do you have?
+# Nine kinds of problem
 
-You have a system in front of you. Perhaps it is a suspension link, a cooling
-casting, or a star that will not sit still on a computer. Before anything can be
-solved, the system has to be written down — and the way you write it down decides
-what kind of problem you now have. That kind decides which techniques can solve
-it, which ones waste a week, and which ones look right and are not.
+Numerical work looks enormous from the outside. A thousand algorithms, each with a
+name and a paper behind it, and no obvious place to start. This book takes the
+opposite view. The field is nine kinds of question, and a few circumstances decide
+which method answers each one.
 
-This book is a map of those kinds. It does not teach numerical analysis. It
-answers one question: **I have this model; what kind of problem is it, and what
-solves it?**
+The numbers are the whole argument:
 
-## Five questions, in this order
+| | |
+|---|---|
+| methods named in [Methods, A to Z](techniques/index.md) | **62** |
+| systems the nine kinds are used on | **64** |
+| kinds of question | **9** |
 
-The mnemonic is the chapter. Each question is about your *system*, not about the
-mathematics, so you can answer it before you have solved anything.
+Nobody holds sixty-two methods in their head. Nine kinds is a different size of
+task. Learn the nine, and each method becomes a lookup inside a kind you already
+understand, chosen by a circumstance you can name.
 
-1. **What do you want?** The best one? How likely something is? Which values are
-   allowed? Or the state that obeys the rules?
-2. **Does it move?** Is there a rate of change in the model, or is the answer
-   settled?
-3. **Is it everywhere?** One unknown at a point, or one unknown at every point in
-   a region?
-4. **What does it cost?** Is there a rule that has to hold everywhere, paid for by
-   a second unknown?
-5. **Does it remember?** As the answer moves forward, does it keep where it came
-   from, or does it forget?
+## The nine kinds
 
-## The map
+Every kind is a page. The last column is the one to read first: it says how to
+recognise the kind from the model in front of you.
 
-Every box is a page. Follow the branch that matches your model.
+| Kind | What you are asking, and what comes back | How you know it is this one |
+|---|---|---|
+| [Optimisation](optimisation/index.md) | which allowed choice is best → one choice, and the price of every rule | you can score a choice with a number |
+| [Averaging](averaging/index.md) | how likely, and how spread out → a distribution, or an average with an error bar | the inputs vary, or two runs disagree |
+| [Eigenvalues](eigenvalue/index.md) | which values the system allows → those values, and the patterns that belong to them | you want a set of values, not one of them |
+| [Linear system](linear-system/index.md) | what state balances every rule at once → one solve, and the work is in the matrix | every rule is a sum of the unknowns |
+| [Root finding](root/index.md) | where a rule comes out zero → a point, found by looping from a start | you can write "this is zero" and cannot rearrange it |
+| [Saddle point](saddle-point/index.md) | what holds a rule true everywhere → the state, and the force that enforces it | something has to stay true, and nothing chooses it |
+| [Elliptic](elliptic/index.md) | what a settled field is, point by point → a value everywhere, fixed by the edges | nothing travels; the answer is a shape |
+| [Parabolic](parabolic/index.md) | what smoothing does as time passes → a field that moves forward and forgets | the model spreads, cools or diffuses |
+| [Hyperbolic](hyperbolic/index.md) | what travels, and how fast → a field carried along paths, shocks and all | carries something: a wave, a flood, a jam |
 
-1. **What do you want?**
-   - the best one → [Optimisation](optimisation/index.md)
-   - how likely, how spread out → [Averaging](averaging/index.md)
-   - which values are allowed → [Eigenvalues](eigenvalue/index.md)
-   - the state that obeys the rules → question 2
-2. **Does it move?**
-   - no → question 3
-   - yes → question 5
-3. **Is it everywhere?**
-   - no, a finite list of unknowns → is every rule linear in the unknowns?
-     - yes → [Linear system](linear-system/index.md)
-     - no → [Root finding](root/index.md)
-   - yes, one unknown at every point → question 4
-4. **What does it cost?**
-   - a rule holds everywhere, paid for by a second unknown → [Saddle point](saddle-point/index.md)
-   - no such rule → [Elliptic](elliptic/index.md)
-5. **Does it remember?**
-   - no, it smooths the answer and forgets where it started → [Parabolic](parabolic/index.md)
-   - yes, it carries information along paths → [Hyperbolic](hyperbolic/index.md)
+The order is the order the questions reach them: what you want comes first, then
+whether the answer is settled or moving, and then what the answer looks like.
 
-:::figure class-map
+## What decides the method, once you know the kind
 
-The same tree, drawn and walked step by step. The question you are stuck on is
-usually the one you have not asked.
+Three circumstances cut across the kinds. Each one changes the method without
+changing the question, which is how a kind can hold ten methods and stay one kind.
+They are not more boxes. They are the choices inside a box.
 
-## Three flags, not three more boxes
+| Circumstance | What it changes |
+|---|---|
+| **Non-linear** | The answer appears inside the rule, so the model changes as you solve it. Every method becomes a loop around a linear one, and the starting guess starts to matter. |
+| **Stiff** | The model contains a fast change you do not care about, and that change decides your step. This is the one that turns an explicit method into an implicit one. |
+| **Geometry not known in advance** | The region is part of the question: a melting front, a contact patch, a crack. The mesh becomes an unknown too. |
 
-Two models can be the same class and still need different treatment, because of
-flags. They modify the technique; they do not change the class.
+Each kind also has properties of its own that narrow the choice — how sparse a
+matrix is, whether it is symmetric, how well conditioned it is, how wide a mesh is —
+and its page names them. That is the whole reason nine kinds hold sixty-two
+methods: the kind is the question, and the circumstances are the choices.
 
-- **Non-linear.** The answer appears inside the model, so the model changes as you
-  solve it. Every method becomes a loop around a linear one, and the starting
-  guess starts to matter.
-- **Stiff.** The model contains a fast change you do not care about. The fast part
-  decides the step size unless the method is implicit, which is why a method that
-  works at one speed fails at another.
-- **Geometry not known in advance.** The region the answer lives in is part of the
-  question — a melting front, a contact patch, a crack. The mesh becomes an
-  unknown too.
+## Why the number is nine
 
-## The class is a choice you make
+Nine is a choice, not a fact about nature. The same physics can be written as two
+different kinds, and the writing decides what a solver can do with it.
 
-This is the idea the rest of the map rests on, and it is not a fact about nature.
-
-The clearest case comes from numerical relativity. Written with elliptic
-coordinate conditions, the Einstein equations give a problem in which a change
-inside the region has to be felt everywhere at once. A solver cannot do that, and
-the calculation does not run. Written with hyperbolic conditions, the same physics
-gives a problem where information travels at a finite speed, and it does run.
-Same equations, different class, one of them usable.
-
-The field has names for the two ways out. **Constrained evolution** solves the
-elliptic constraint at every step. **Free evolution** solves it once and evolves
-the rest, hoping it stays satisfied. A fluid solver makes the same choice every
-time it decides whether to project the velocity onto the incompressible set or let
-the divergence drift.
+The Einstein equations make the case. Written with a rule that has to hold
+everywhere, a change inside the region must be felt everywhere at once, and a solver
+cannot step forward. Written with a rule that travels at a finite speed, the same
+physics runs. The equations did not change. The writing did.
 
 So when a page here says "this is an elliptic problem", read it as "you wrote it
-down that way". If the method you need does not exist for your class, the model is
-what changes.
+down that way". If the method you need does not exist for your kind, the model is
+what changes. [The class is a choice](choosing-the-class/index.md) argues this with
+three cases, including one from the next section.
 
-The full argument, with three cases: [The class is a choice you make](choosing-the-class/index.md).
+## One model, several kinds
 
-## One system, several boxes
+A kind belongs to a term, not to a problem. A single model can hold three kinds at
+once, and each term is handled its own way.
 
-A box is a property of a term, not of a problem. A single model can have terms in
-three boxes at once, and the solver handles each term its own way.
-
-Navier–Stokes has a constraint (the flow cannot compress, so pressure is a second
-unknown priced against it), an advection term that carries information along paths,
-and a viscous term that smooths. That is a saddle point, a hyperbolic part and a
-parabolic part in one line. Nobody solves it as one class.
-
-The same applies below the model. Once a steady problem is discretised, the step
-that solves it is a [linear system](linear-system/index.md) — which is why that box
+Navier–Stokes has a rule that the flow cannot compress, a term that carries
+information along paths, and a term that smooths. That is a saddle point, a
+hyperbolic part and a parabolic part in one line, and nobody solves it as one kind.
+The same happens below the model: once a steady problem is discretised, the step
+that solves it is a [linear system](linear-system/index.md), which is why that kind
 exists even though no physics says "linear".
 
-The same is true of the suspension corner in `Maths Applied`: the rigid linkage is
-a root-finding problem; keep the joint rigid and price it and it becomes a saddle
-point, whose multiplier is the force in the joint; give the joint a spring instead and
-it is a root problem again, with no multiplier at all. The bounce is parabolic, and
-choosing a spring rate is optimisation. [The same corner, five ways](worked-case/index.md) takes that one
-mechanism through five questions and quotes the numbers where the models agree.
+The suspension corner in `Maths Applied` is the small version of this. The rigid
+linkage is [root finding](root/index.md); hold the joint rigid and price it instead
+and it becomes a [saddle point](saddle-point/index.md), whose multiplier is the force
+in the joint; make the joint a spring and it is a root problem again, with no
+multiplier at all. Its bounce is [parabolic](parabolic/index.md). [The same corner,
+five ways](worked-case/index.md) takes that one mechanism through five kinds and
+quotes the numbers where the models agree.
 
-## How to use this book
+## Three ways in
 
-- **You have a wrong answer.** Start at [When it goes wrong](symptoms/index.md).
-  It goes symptom → class → cause → fix.
-- **You know a method and want to use it.** Start at [Methods, A to Z](techniques/index.md).
-  It goes method → classes it works on, and says what it costs.
-- **You have a model and no idea what it is.** Start with the five questions above.
+- **You have a model and no idea what it is.** Start with the nine kinds above, and
+  read the last column before the others.
+- **You know a method by name and want to know where it applies.** Start at
+  [Methods, A to Z](techniques/index.md). It goes method → kinds it works on → what
+  it costs.
+- **You have a wrong answer.** Start at [When it goes wrong](symptoms/index.md). It
+  goes symptom → kind → cause → fix.
 
-Nothing here is a course, and there is nothing to practise. Every page stands on
-its own, and a page you skip is a page you did not need.
+Nothing here is a course, and there is nothing to practise. Every page stands on its
+own, and a page you skip is a page you did not need.
 
 :::disclaimer

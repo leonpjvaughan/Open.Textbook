@@ -68,8 +68,10 @@ error bar.
 
 ## The nine boxes, and the three flags
 
-The tree in `docs/index.md` is the source of truth and the figure draws it. In
-order:
+`docs/index.md` is the source of truth: the table of nine kinds there is the map,
+and a class missing from it is a kind a reader cannot reach from the argument. In
+order (the registry's order is the tree's, and `tests/test_reference_books.py`
+holds the two together):
 
 1. **Optimisation** — the best one.
 2. **Averaging** — how likely, how spread out. The statistical half.
@@ -153,14 +155,31 @@ method is advanced learns nothing about whether it applies.
 
 `assets/AGENTS.md` is binding, and this book adds one rule.
 
-**The map is drawn once and read in full.** The figure mounts showing the whole
-tree, every edge and every box, so a reader who never touches the control still has
-the map. The control narrows it; it does not reveal it. This is the "static frame"
-rule with the emphasis moved: for a reference work the still *is* the content.
+**The map is a table, not a drawing.** The book used to mount a `class-map` figure
+on its home page: a decision tree, stepped through one question at a time. It was
+retired on 2026-10-22, and the reason is worth keeping, because a new one would hit
+the same wall.
 
-`docs/assets/figures/class-map.js` is that figure, and it is the only one. Every
-leaf is a root-absolute link (`/numerical-methods/<slug>/`), because a relative one
-would resolve against whichever page the figure is mounted on.
+- **Its graph was wrong.** The five questions were drawn on one unbroken spine, so
+the picture said `Q1 → Q2 → Q3 → Q4 → Q5`. The tree is not a chain: Q3 is reached only
+when Q2 answers *no*, Q4 only when Q3 answers *at every point*, and Q5 comes from Q2
+with Q3 and Q4 skipped. The skip was a hairpin down the left margin, parallel to the
+spine and indistinguishable from it.
+- **It was the third copy of one list.** The figure drew the same nine boxes as the
+Markdown tree, which links them, and both sat under a prose list of the same nine.
+A reader met the index three times before meeting an instance.
+- **It answered the wrong question.** A tree is a navigation device: it asks *which
+box am I in?* A reader who has no model yet needs the opposite — what the nine kinds
+are, what each is for, and how to recognise one. A table does that in one screen, it
+works with scripting off, it is searchable, and every cell can link.
+
+So this book's home page carries a table of nine kinds with four columns — the kind,
+the question, the shape of the answer, and how to recognise it — and the three
+circumstances that decide the method inside a kind. That is the whole map, and it is
+read rather than walked.
+
+The two figures that remain are on class pages, and they obey the ordinary rule: they
+mount in a state that already carries the idea.
 
 ## How another book points here
 
@@ -210,9 +229,11 @@ Two rules for the section that uses it:
 ## Adding to the map
 
 A new class page: add the page, add its entry to `map.yaml → pages` in tree order,
-add it to the branch it leaves from in `docs/index.md` and in the figure's `LEAVES`,
-and add its row to `techniques/` and `symptoms/` where it appears. Five places, and
-`tests/test_reference_books.py` fails when they disagree.
+add its row to the nine-kinds table in `docs/index.md` with the four columns the
+others use, and add it to `techniques/` and `symptoms/` where it appears. Four
+places, and `tests/test_reference_books.py` fails when they disagree — including
+on the counts the home page opens with, which are measured from the pages rather
+than typed.
 
 A new technique: a row in `techniques/` under its family, naming the class and the
 price. It does not get a page of its own until two class pages need the same
