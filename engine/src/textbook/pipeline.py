@@ -83,11 +83,20 @@ MARKDOWN_HOOKS = MARKDOWN_HOOKS
 # measured usage across all 457 pages of the first book is zero, zero, zero and
 # one.
 #
+# **`fenced_code` is not optional.** Without it a ``` fence is not a block at all:
+# Python-Markdown reads the backticks back as inline code, so every fenced block in
+# the collection shipped as `<p><code>python …</code></p>` — the info string printed
+# to the reader as a word, and the line breaks collapsed by HTML, which destroys an
+# ASCII probability tree and a stem-and-leaf plot outright. The first book measured
+# zero fences; `maths-applied` then shipped five, and the second measured zero for
+# the wrong reason.
+#
 # These are Extension *instances*. The ``{name: {options}}`` mapping a config
 # file accepts is sugar: Python-Markdown wants a name or an Extension.
 EXTENSIONS = [
     "md_in_html",  # <details markdown="1">
     "tables",
+    "fenced_code",  # ``` blocks: preformatted text, not inline code
     ArithmatexExtension(generic=True),  # $...$ delimiters for the maths hook
 ]
 

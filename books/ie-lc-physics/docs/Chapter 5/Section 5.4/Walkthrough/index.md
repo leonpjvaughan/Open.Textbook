@@ -47,8 +47,7 @@ You need:
 6. Draw the straight line of best fit through the points that lie on a straight line,
    and find its gradient.
 
-```figure hooke-law
-```
+:::figure hooke-law
 
 **Predict, then test.** Before you plot anything, write down what you expect the graph
 to look like if the spring obeys Hooke's law. Then look at your points. **Explain** any

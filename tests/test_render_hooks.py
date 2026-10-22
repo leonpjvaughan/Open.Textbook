@@ -160,6 +160,65 @@ def test_the_pipeline_uses_this_hook_on_every_page():
     assert tier in pipeline.MARKDOWN_HOOKS
 
 
+# --- fenced code --------------------------------------------------------------
+#
+# A fence is preformatted text, and its whole point is the layout inside it: an ASCII
+# probability tree, a stem-and-leaf plot, a pseudocode listing. `fenced_code` is what
+# makes Python-Markdown treat ``` as a block. Without it the opening backticks came
+# back as inline code, so six pages across two books shipped
+# `<p><code>text …</code></p>` — the info string printed to the reader as a word, and
+# the newlines collapsed by HTML, which turns a tree into a run-on sentence. Nothing
+# caught it because no test ever rendered a fence.
+
+
+def test_a_fence_keeps_its_line_breaks_and_its_columns():
+    html = render("```text\nFirst draw    Second draw\nRed  ────┬─ Red\n         └─ Blue\n```\n")
+    assert '<pre><code class="language-text">' in html
+    assert "First draw    Second draw" in html, "the columns did not survive"
+    assert "Red  ────┬─ Red\n         └─ Blue" in html, "the line breaks did not survive"
+
+
+def test_the_info_string_is_a_class_and_not_a_word_on_the_page():
+    """`python` names the language; it is not part of the sentence the reader sees."""
+    html = render("```python\nfor x in y:\n    pass\n```\n")
+    assert 'class="language-python"' in html
+    assert ">python" not in html, "the language label reached the reader as text"
+    assert "<p><code>python" not in html, "the fence is still being read as inline code"
+
+
+#: The directives a page can use. An info string that matches one of these is a
+#: directive that lost its colons — the fence then prints the words to the reader and
+#: the hook never fires. `books/ie-lc-physics` shipped ```` ```figure hooke-law ````
+#: this way: the figure did not mount and the page read "figure hooke-law".
+DIRECTIVES = (
+    "figure",
+    "prove",
+    "class",
+    "deeper",
+    "used",
+    "answers",
+    "tier",
+    "disclaimer",
+)
+
+
+def test_no_page_opens_a_fence_with_a_directive():
+    """A fenced directive is a directive that never ran, printed to the reader.
+
+    A directive belongs on its own line, outside a fence. Inside one it is literal
+    text, so the reader sees `:::figure hooke-law` instead of a figure — or, as here,
+    the info string alone, because the fence was the whole mistake.
+    """
+    offenders = []
+    for book in pipeline.books.discover_books():
+        for page in book.docs.rglob("*.md"):
+            for line in page.read_text(encoding="utf-8").splitlines():
+                if re.match(rf"^```(?:{'|'.join(DIRECTIVES)})\b", line):
+                    where = page.relative_to(book.docs).as_posix()
+                    offenders.append(f"{book.id}: {where}: {line}")
+    assert offenders == []
+
+
 # --- the figure loader on a real built page -----------------------------------
 
 

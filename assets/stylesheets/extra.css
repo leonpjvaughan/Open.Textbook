@@ -198,6 +198,47 @@
   margin: 0.45rem 0;
 }
 
+/* Preformatted text: a probability tree, a stem-and-leaf plot, a pseudocode
+   listing. Three things have to survive, and each is a rule here. The **line
+   breaks and the alignment** the author typed, which is why the block scrolls
+   rather than wrapping — a wrapped tree is a different tree. The **monospace
+   font**, because the columns only line up if every glyph is the same width. And
+   the **quiet box**, so a block reads as a block and not as a paragraph that
+   happens to have a different typeface. The background is the scheme's own
+   `--tb-code-bg`, so it follows the bundle and the reader's light/dark choice. */
+.md-typeset pre {
+  margin: 1.1rem 0;
+  padding: 0.7rem 0.9rem;
+  background: var(--tb-code-bg);
+  border-radius: 3px;
+  /* The scroll is a keyboard reach too: a focusable region with no outline is a
+     scroll a keyboard user cannot get to. */
+  overflow-x: auto;
+}
+
+.md-typeset pre > code {
+  display: block;
+  padding: 0;
+  background: none;
+  font-family: var(--tb-font-mono);
+  font-size: 0.82em;
+  line-height: 1.5;
+  /* `pre` already preserves newlines; `pre-wrap` must not be inherited from
+     anywhere, and `white-space: pre` states that the block is preformatted. */
+  white-space: pre;
+}
+
+/* Inline code is a name, not a listing: one word of a filename, a symbol, a term
+   a page is about. It gets the same mono font and a lighter box, and it may
+   break across a line because a name inside a sentence has to. */
+.md-typeset :not(pre) > code {
+  padding: 0.05em 0.3em;
+  background: var(--tb-code-bg);
+  border-radius: 3px;
+  font-family: var(--tb-font-mono);
+  font-size: 0.9em;
+}
+
 .math-error {
   color: var(--tb-fig-warn);
   font-family: var(--tb-font-mono);
