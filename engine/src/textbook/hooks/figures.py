@@ -33,17 +33,30 @@ def figures_dir(config):
     return cfg.docs_dir(config) / "assets" / "figures"
 
 
+def module_paths(config) -> dict[str, Path]:
+    """Every figure this book can mount, by slug, and the file it comes from.
+
+    One map, because three things have to agree about it: which slugs a page may
+    name, which name the build copies each module to, and which name the page tells
+    the loader to import. They used to be computed separately — the slugs here and
+    the copies in `pipeline` — which is how a figure can exist and still fail.
+    """
+    directory = figures_dir(config)
+    modules: dict[str, Path] = {}
+    if directory.is_dir():
+        for path in sorted(directory.glob("*.js")):
+            if path.name not in SHARED:
+                modules[path.stem] = path
+    modules.update(scaffold.shared_figure_modules())
+    return modules
+
+
 def local_slugs(config) -> set[str]:
     """The slugs this book's own figures directory provides."""
     path = figures_dir(config)
     if not path.is_dir():
         return set()
     return {p.stem for p in path.glob("*.js") if p.name not in SHARED}
-
-
-def known_slugs(config) -> set[str]:
-    """This book's own slugs together with the shared library's."""
-    return local_slugs(config) | set(scaffold.shared_figure_modules())
 
 
 def shadowing_slugs(config) -> list[str]:
@@ -66,7 +79,8 @@ def root_prefix(page) -> str:
 
 
 def on_page_markdown(markdown, page, config, files):
-    known = known_slugs(config)
+    modules = module_paths(config)
+    known = set(modules)
     shadowing = shadowing_slugs(config)
     if shadowing:
         raise ValueError(
@@ -91,7 +105,19 @@ def on_page_markdown(markdown, page, config, files):
         # put its own `<div>` inside. It also left every figure with no element sibling,
         # which a module that needs to reach the block above it cannot work around.
         # A `<div>` is a block tag Python-Markdown knows, so it passes through unwrapped.
-        return f'<div><maths-figure data-figure="{slug}"></maths-figure></div>'
+        #
+        # `data-figure-src` is the name the build writes the module under: content,
+        # not the build label, so a module that did not change keeps its URL and a
+        # cached copy is still the one served. The loader falls back to
+        # `data-figure` when the attribute is absent, which is what keeps one
+        # module readable in the Quarto / MyST / MDX ports, where nothing is hashed.
+        filename = (config.get("figure_modules") or {}).get(slug) or scaffold.addressed_name(
+            modules[slug]
+        )
+        return (
+            f'<div><maths-figure data-figure="{slug}" '
+            f'data-figure-src="{filename}"></maths-figure></div>'
+        )
 
     markdown = transform_outside_fences(markdown, lambda text: MARKER.sub(replace, text))
     if used:

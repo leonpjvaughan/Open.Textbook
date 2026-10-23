@@ -669,10 +669,12 @@ def test_the_build_writes_every_shared_module_beside_the_loader(tmp_path):
     shared = shared_modules()
     assert shared, "the shared library is empty, so this test proves nothing"
     for slug, source in shared.items():
-        built = figures / source.name
+        # Content-addressed: the page names this file in `data-figure-src`, so the
+        # name has to be the bytes and the bytes have to be the library's.
+        built = figures / scaffold.addressed_name(source)
         assert built.is_file(), (
             f"the shared module {source.name} is mounted by slug and the build did not "
-            "write it beside the loader, so `import(`./{slug}.js`)` fails at runtime"
+            "write it beside the loader, so the loader's import fails at runtime"
         )
         assert built.read_bytes() == source.read_bytes(), f"{source.name} differs between the library and the build"
 

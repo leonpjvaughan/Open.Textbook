@@ -150,6 +150,18 @@ STYLE_WORDS: tuple[Word, ...] = (
     Word("easily", "(rewrite)", "The same word as an adverb."),
     Word("trivial", "(remove)", "The most dismissive of the set."),
     Word(
+        "naive",
+        "(name the method instead)",
+        "It calls a method foolish for answering the question it was asked, so it "
+        "tells a reader the honest answer must be the complicated one.",
+    ),
+    Word(
+        "toy",
+        "(name the model instead)",
+        "'A toy model' says a simple model is not worth the reader's attention — the "
+        "claim this collection argues against in every book.",
+    ),
+    Word(
         "just",
         "(check: often removable)",
         "Belittling in 'it is just a table', and precise in 'just below zero' or "
@@ -261,6 +273,13 @@ ALLOWED_PHRASES: tuple[Allowed, ...] = (
     Allowed(STYLE, "just hold", "a threshold met: only just holds"),
     Allowed(STYLE, "just holds", "a threshold met: only just holds"),
     Allowed(STYLE, "just underneath", "a position: just underneath"),
+    # The two words that call a model worthless are ordinary English in two senses
+    # the collection actually writes: the uncorrected standard error is *the naive
+    # error bar* in numerical methods, and a mechanics question may put a mass in a
+    # toy car. Each sense is a row, because a rule narrower than the word could not
+    # say which of the two it wanted and would misfire on the next phrasing.
+    Allowed(STYLE, "naive error bar", "the uncorrected standard error: a named quantity, not a judgement of a method"),
+    Allowed(STYLE, "toy car", "a child's toy is an ordinary noun, not a model called worthless"),
     # A meter that measures. Each row is an instrument the books actually write
     # about; the fix for a new one is a new row here, not a narrower regex.
     Allowed(SPELLING, "the meter", "an instrument that measures is a meter; only the unit of length is a metre"),

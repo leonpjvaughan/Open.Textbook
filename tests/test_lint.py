@@ -122,6 +122,64 @@ def test_removing_display_maths_keeps_the_line_numbers(tmp_path, monkeypatch):
     assert any(":7:" in where for where in examples.get("voice:style-word", [])), examples
 
 
+# --- the words that call a model worthless ------------------------------------
+#
+# `books/maths-applied/AGENTS.md` used to ban eight words outright when describing
+# a model and call the last two "the seductive ones", while the lint enforced four
+# of them. A word rule is right for the words whose disparagement is in the word,
+# and wrong for the ones where it depends on what the word is attached to: over the
+# collection `real` appears 625 times (real numbers, real roots, a real image) and
+# `full` 5,353 (5,097 of them "full working"), so both are a review note. `naive`
+# and `toy` are rules, and the two ordinary senses the collection writes are rows.
+
+
+def style_findings(tmp_path: Path, monkeypatch, text: str) -> list[str]:
+    """Lint one authored page and return its ``voice:style-word`` examples."""
+    findings, examples = lint_page(tmp_path, monkeypatch, text)
+    return examples.get("voice:style-word", [])
+
+
+@pytest.mark.parametrize(
+    "sentence",
+    [
+        "A naive model assumes the road is flat.",
+        "This is a toy model of the suspension.",
+    ],
+)
+def test_a_model_called_naive_or_a_toy_is_reported(tmp_path, monkeypatch, sentence):
+    assert style_findings(tmp_path, monkeypatch, f"# Page\n\n{sentence}\n"), (
+        f"{sentence!r} is no longer reported as a style word"
+    )
+
+
+@pytest.mark.parametrize(
+    "sentence",
+    [
+        "The naive error bar is then too small, sometimes by a factor of a hundred.",
+        "A toy car of mass 0.50 kg moves at 2.0 m/s.",
+    ],
+)
+def test_the_ordinary_senses_of_naive_and_toy_are_not_reported(
+    tmp_path, monkeypatch, sentence
+):
+    assert style_findings(tmp_path, monkeypatch, f"# Page\n\n{sentence}\n") == []
+
+
+def test_real_full_and_properly_are_a_note_not_a_rule(tmp_path, monkeypatch):
+    """The measurement is the argument, so the decision is pinned.
+
+    625 uses of ``real``, 5,353 of ``full`` and 9 of ``properly`` in the collection
+    are ordinary English. A blanket word rule is what would fire on them, so a rule
+    added here has to argue with these counts rather than with this test.
+    """
+    text = (
+        "# Page\n\n"
+        "The real roots are real numbers, and the full travel is 40 mm.\n"
+        "Work out the real length of the path properly.\n"
+    )
+    assert style_findings(tmp_path, monkeypatch, text) == []
+
+
 # --- a finding fails the gate -------------------------------------------------
 #
 # The linter returned 0 whatever it found, so `scripts/check.sh` passed while 42

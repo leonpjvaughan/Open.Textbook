@@ -72,3 +72,21 @@ def call_expressions(text: str, name: str) -> list[str]:
                     break
             i += 1
     return calls
+
+
+def written_assets(manifest: str) -> dict[str, str]:
+    """The build's record of where it wrote each content-addressed asset, from text.
+
+    A hashed name cannot be predicted from the source tree — that is what makes it
+    worth having — so a test that follows a stylesheet link resolves it through
+    ``assets/manifest.json`` instead of rebuilding the hash or hard-coding eight hex
+    digits that change whenever a sheet does.
+    """
+    import json
+
+    return json.loads(manifest)["assets"]
+
+
+def stylesheet_href(manifest: str, relative: str, prefix: str = "") -> str:
+    """The ``href`` a built page carries for a logical sheet path, at one depth."""
+    return prefix + written_assets(manifest)[relative]

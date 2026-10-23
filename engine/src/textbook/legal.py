@@ -11,10 +11,14 @@ generator that renders it, in the same way the About page's own prose lives in
 ``scaffold.py``.
 
 The disclaimer is deliberately short and calm. It says three things a reader
-needs: this is a companion rather than a replacement, no book is perfect, and
-the law does not let an author promise more than it can. The full terms carry
-the legal wording; the book page carries the sentence a reader will actually
-read.
+needs: what kind of book this is, that no book is perfect, and that the law does
+not let an author promise more than it can. The full terms carry the legal
+wording; the book page carries the sentence a reader will actually read.
+
+What kind of book it is comes from ``book.yaml``, not from a list of book ids. A
+book that names no awarding body is not a course, so it is not told about a
+teacher it does not have, and a book that declares no oracle is not told that a
+computer checked its answers.
 
 The text is not legal advice, and it is not a substitute for a solicitor
 reviewing the wording for the author's own jurisdiction. ``research/legal/``
@@ -39,54 +43,141 @@ LAST_UPDATED = "21 October 2026"
 CONTACT_URL = "https://github.com/leonpjvaughan/Open.Textbook/issues/new"
 
 #: The heading and summary used on a book's home page. The summary is what a
-#: reader sees before opening the note, so it must not sound like a warning.
+#: reader sees before opening the note, so it must not sound like a warning. A
+#: course book is read alongside a course; a book that is not one must not tell
+#: the reader that it is, because the first thing a general reader of
+#: `maths-applied` or the map meets would then be about a course they are not on.
 DISCLAIMER_HEADING = "Before you use this book"
-DISCLAIMER_SUMMARY = "Using this book alongside your course"
+COURSE_SUMMARY = "Using this book alongside your course"
+STANDALONE_SUMMARY = "Using this book"
 
 
-def disclaimer_lines() -> list[str]:
+def _is_a_course(book: books.Book) -> bool:
+    """Whether this book prepares a reader for an examination.
+
+    The declaration that answers this is ``book.yaml → boards``: the bodies that
+    publish the specifications the book follows. A book that names none follows
+    no specification, so the sentences about a board and a teacher are not true of
+    it. `maths-applied` names none, and neither reference work does; every course
+    in the collection names at least one.
+    """
+    return bool(book.boards)
+
+
+#: The liability position, which is the same promise in every book. The sentence
+#: before it says what was checked, and that is the only part a book's kind
+#: changes.
+_LIABILITY = (
+    "the author accepts no liability for any incorrect information in this book,",
+    "or for any loss arising from using it or relying on it. Nothing in this note",
+    "limits your statutory rights, or any liability that cannot lawfully be excluded.",
+)
+
+
+def _accuracy(book: books.Book) -> list[str]:
+    """What was checked, before the liability position.
+
+    A book with an oracle has a verified problem bank behind it, and may say a
+    computer checked the answers. A book that declares none has no answers to
+    check — the arithmetic in `maths-applied` is the reader's, and the map's
+    claims rest on its sources — so it must not make that claim.
+    """
+    if book.oracles:
+        opening = [
+            "We check the answers with a computer and read the pages carefully, but no",
+            "book is perfect. To the extent the law allows,",
+        ]
+    else:
+        opening = [
+            "There are no answers to check, and we read the pages carefully. No book is",
+            "perfect. To the extent the law allows,",
+        ]
+    return opening + list(_LIABILITY)
+
+
+def disclaimer_lines(book: books.Book) -> list[str]:
     """The disclaimer as Markdown lines, wrapped for the About page.
 
     ``scaffold.colophon_page`` inserts these under a heading of its own. The
     links are root-absolute because the About page is nested several directories
     deep inside a book, while the terms and acknowledgements are collection
     pages at the site root.
+
+    The book is not optional: the promise differs between a course and a work
+    that is not one, and a default would make the wrong promise silently.
     """
-    return [
-        "This book is a study companion. It builds on what your school or college",
-        "provides. It is not a replacement for your teacher, your lessons, or your",
-        "exam board's current specification.",
-        "",
-        "We check the answers with a computer and read the pages carefully, but no",
-        "book is perfect. To the extent the law allows,",
-        "the author accepts no liability for any incorrect information in this book,",
-        "or for any loss arising from using it or relying on it. Nothing in this note",
-        "limits your statutory rights, or any liability that cannot lawfully be excluded.",
-        "",
-        "If this book disagrees with your specification or your teacher, follow",
-        "them. Please report the mistake so it can be corrected.",
-        "",
-        "The [terms of use](/terms/) explain this in more detail. The",
-        "[acknowledgements](/acknowledgements/) credit the sources and software",
-        "the collection rests on.",
-    ]
+    course = _is_a_course(book)
+    if course:
+        lines = [
+            "This book is a study companion. It builds on what your school or college",
+            "provides. It is not a replacement for your teacher, your lessons, or your",
+            "exam board's current specification.",
+            "",
+        ]
+    else:
+        lines = [
+            "This book is not a course. You can read it whether or not you are",
+            "studying one.",
+            "",
+        ]
+    lines += _accuracy(book) + [""]
+    if course:
+        lines += [
+            "If this book disagrees with your specification or your teacher, follow",
+            "them. Please report the mistake so it can be corrected.",
+            "",
+            "The [terms of use](/terms/) explain this in more detail. The",
+            "[acknowledgements](/acknowledgements/) credit the sources and software",
+            "the collection rests on.",
+        ]
+    else:
+        lines += [
+            "The sources behind this book are named in the",
+            "[acknowledgements](/acknowledgements/). If something here is",
+            "wrong, please report the mistake so it can be corrected.",
+            "",
+            "The [terms of use](/terms/) explain this in more detail.",
+        ]
+    return lines
 
 
-def disclaimer_html() -> str:
+def disclaimer_html(book: books.Book) -> str:
     """The compact, expandable note on a book's home page.
 
     A native ``<details>`` element: no script, no runtime, and a reader with
     JavaScript off still sees the summary and can open it. The link is to the
     book's own source path, which the pipeline rewrites to the published URL.
+
+    It says the same three things as the About page's note, in the same voice, so
+    a book's two notes cannot make different promises.
     """
+    course = _is_a_course(book)
+    summary = COURSE_SUMMARY if course else STANDALONE_SUMMARY
+    if book.oracles:
+        accuracy = "We check the answers, but no book is perfect."
+    else:
+        accuracy = (
+            "There are no answers to check, and we read the pages carefully. "
+            "No book is perfect."
+        )
+    if course:
+        body = (
+            "<p>This book is a study companion. It builds on what your school or "
+            "college provides, and it is not a replacement for your teacher, your "
+            "lessons, or your exam board's current specification.</p>\n"
+            f"<p>{accuracy} If something here disagrees with your specification or "
+            "your teacher, follow them.</p>\n"
+        )
+    else:
+        body = (
+            "<p>This book is not a course. You can read it whether or not you are "
+            "studying one.</p>\n"
+            f"<p>{accuracy} If something here is wrong, report it.</p>\n"
+        )
     return (
         '<details class="disclaimer">\n'
-        f"<summary>{html.escape(DISCLAIMER_SUMMARY)}</summary>\n"
-        "<p>This book is a study companion. It builds on what your school or college "
-        "provides, and it is not a replacement for your teacher, your lessons, or your "
-        "exam board's current specification.</p>\n"
-        "<p>We check the answers, but no book is perfect. If something here disagrees "
-        "with your specification or your teacher, follow them.</p>\n"
+        f"<summary>{html.escape(summary)}</summary>\n"
+        f"{body}"
         '<p><a href="colophon.md">Read the full note in About this book</a>.</p>\n'
         "</details>"
     )

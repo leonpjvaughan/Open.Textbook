@@ -47,6 +47,7 @@ from string import Template
 
 from . import book as books
 from . import headers
+from . import scaffold
 from . import legal
 from .hooks.prefs import snippet as prefs_snippet
 from .themes import default_bundle, ordered_bundles
@@ -68,6 +69,43 @@ def assets() -> Path:
 
 def site() -> Path:
     return root() / "site"
+
+#: The files the portal writes at the deployment root and the pages link. Content-
+#: addressed, because a book page reaches the registration script by a root-absolute
+#: URL and the two builds do not run in a fixed order: they agree because both derive
+#: the name from the source bytes, not because one reads the other's output.
+ROOT_ASSETS: tuple[str, ...] = (
+    "assets/stylesheets/themes.css",
+    "assets/stylesheets/portal.css",
+    "assets/stylesheets/settings.css",
+    "assets/settings/settings.js",
+    "assets/settings/service-worker.js",
+)
+
+
+def root_assets() -> dict[str, str]:
+    """Logical path -> the path each is written and linked under."""
+    return {relative: scaffold.addressed_url(relative) for relative in ROOT_ASSETS}
+
+
+def root_links(rooted: bool) -> dict[str, str]:
+    """The five URLs a root page links, in the shape that page needs.
+
+    The landing page sits at the root, so it links relative paths; a 404 and a
+    legal page are served at any depth, so theirs are root-absolute. One function so
+    the two cannot disagree about anything but the leading slash.
+    """
+    prefix = "/" if rooted else ""
+    assets = root_assets()
+    return {
+        "themes_css": prefix + assets["assets/stylesheets/themes.css"],
+        "portal_css": prefix + assets["assets/stylesheets/portal.css"],
+        "settings_css": prefix + assets["assets/stylesheets/settings.css"],
+        "settings_js": prefix + assets["assets/settings/settings.js"],
+        "worker_script": prefix + assets["assets/settings/service-worker.js"],
+    }
+
+
 TEMPLATE = Path(__file__).resolve().parent / "templates" / "portal.html"
 LEGAL_TEMPLATE = Path(__file__).resolve().parent / "templates" / "portal_page.html"
 
@@ -232,7 +270,7 @@ def _radio(name: str, value: str, title: str, description: str = "") -> str:
     )
 
 
-def settings_dialog() -> str:
+def settings_dialog(book: books.Book | None = None) -> str:
     """The reader's Settings panel, the same one every book page carries.
 
     A native ``<dialog>``, so opening it never changes the URL, Escape closes
@@ -244,6 +282,13 @@ def settings_dialog() -> str:
     is the menu of themes, and the id is what the collection has always used to
     see whether the choice is offered. The collection can still withdraw the
     theme choice with ``theme_selector: false``.
+
+    ``book`` adds the group that keeps **this book** on the device, and it is
+    absent on the landing page because there is no book there to keep. The button
+    is ``hidden`` in the markup and revealed by script, which is the same rule the
+    Settings trigger follows: a reader without JavaScript sees no control, rather
+    than one that does nothing. The size in its label is filled in from the build's
+    own manifest, so the number a reader is shown is the number that was measured.
     """
     collection = books.load_collection()
     offer_themes = bool(collection.get("theme_selector", True))
@@ -272,6 +317,28 @@ def settings_dialog() -> str:
             '      <p class="tb-settings__hint">Applies to every book you read here.</p>\n'
             '      <div class="tb-settings__options">\n'
             f"{themes}\n"
+            "      </div>\n"
+            "    </fieldset>"
+        )
+
+    if book is not None:
+        # The reader's own device is the only thing this touches: nothing here
+        # fetches until the button is pressed, and the manifest is read when the
+        # panel opens so the size is known before the reader commits to it.
+        groups.append(
+            '    <fieldset class="tb-settings__group" id="tb-offline"'
+            f' data-offline-book="{html.escape(book.id, quote=True)}">\n'
+            '      <legend class="tb-settings__legend">Reading offline</legend>\n'
+            '      <p class="tb-settings__hint" id="tb-offline-status">'
+            "You can keep this book on this device and read it without a connection."
+            "</p>\n"
+            '      <div class="tb-settings__options">\n'
+            '        <button type="button" class="tb-settings__download"'
+            ' id="tb-offline-download" hidden>Download this book</button>\n'
+            '        <button type="button" class="tb-settings__download"'
+            ' id="tb-offline-cancel" hidden>Stop</button>\n'
+            '        <progress class="tb-settings__progress" id="tb-offline-progress"'
+            ' max="100" value="0" hidden></progress>\n' 
             "      </div>\n"
             "    </fieldset>"
         )
@@ -384,6 +451,7 @@ def not_found() -> str:
         if label
         else ""
     )
+    links = root_links(rooted=True)
     return f"""<!DOCTYPE html>
 <html lang="en">
 <head>
@@ -396,8 +464,8 @@ def not_found() -> str:
 <!-- Root-absolute, like the stylesheets below and this page's link home: a
      404 is served for a request at any depth. -->
 <link rel="apple-touch-icon" href="/assets/icons/apple-touch-icon.png">
-<link rel="stylesheet" href="/assets/stylesheets/themes.css">
-<link rel="stylesheet" href="/assets/stylesheets/portal.css">
+<link rel="stylesheet" href="{links['themes_css']}">
+<link rel="stylesheet" href="{links['portal_css']}">
 </head>
 <body>
 <script>
@@ -472,6 +540,7 @@ def legal_page(slug: str) -> str:
         prefs_script=prefs_snippet(prefs_config()),
         settings_trigger=settings_trigger(),
         settings_dialog=settings_dialog(),
+        **root_links(rooted=True),
     )
 
 
@@ -493,6 +562,7 @@ def render() -> str:
         prefs_script=prefs_snippet(prefs_config()),
         settings_trigger=settings_trigger(),
         settings_dialog=settings_dialog(),
+        **root_links(rooted=False),
     )
 
 
@@ -635,14 +705,24 @@ def main() -> int:
     # The bundle stylesheet is shared with every book: one copy, one truth. The
     # Settings stylesheet and runtime are shared too, so the landing page and the
     # books use one control rather than two.
-    shutil.copyfile(assets() / "stylesheets" / "themes.css", target / "themes.css")
-    shutil.copyfile(assets() / "stylesheets" / "portal.css", target / "portal.css")
-    shutil.copyfile(assets() / "stylesheets" / "settings.css", target / "settings.css")
-
-    settings_target = site() / "assets" / "settings"
-    settings_target.mkdir(parents=True, exist_ok=True)
-    for name in ("settings.js", "service-worker.js"):
-        shutil.copyfile(assets() / "settings" / name, settings_target / name)
+    # Each of these is written under the name its own bytes produce, which is the
+    # name every page links — a book page reaches the registration script by a
+    # root-absolute URL, so the two builds have to agree without seeing each other's
+    # output. They do: `addressed_url` is a function of the source bytes alone.
+    addressed = root_assets()
+    # A stable-named copy from an older build is stale by definition now, and the one
+    # thing this scheme promises is that no such file exists to be served.
+    for relative in ROOT_ASSETS:
+        (site() / relative).unlink(missing_ok=True)
+    for relative in ROOT_ASSETS:
+        destination = site() / addressed[relative]
+        destination.parent.mkdir(parents=True, exist_ok=True)
+        shutil.copyfile(assets() / Path(relative).relative_to("assets"), destination)
+    (site() / "assets" / "manifest.json").write_text(
+        json.dumps({"build": build_label(), "assets": addressed}, indent=2, sort_keys=True)
+        + "\n",
+        encoding="utf-8",
+    )
 
     icons_target = site() / "assets" / "icons"
     icons_target.mkdir(parents=True, exist_ok=True)

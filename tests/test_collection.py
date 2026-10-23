@@ -316,10 +316,16 @@ def test_every_declared_shared_file_is_one_the_build_writes(tmp_path):
     out = tmp_path / "site"
     pipeline.build(book.id, book.default_profile.id, out=out, index=False)
 
+    # Where each shared file lands. Stylesheets are content-addressed, so their
+    # site name is not their repository name and the build says which it used; the
+    # rest are written under the name they are declared with.
+    from support import written_assets
+
+    written = written_assets((out / "assets" / "manifest.json").read_text())
     missing = sorted(
         relative
         for relative in scaffold.SHARED_FILES
-        if not (out / relative).is_file()
+        if not (out / written.get(relative, relative)).is_file()
     )
     assert not missing, (
         f"the build does not write {missing}, which the scaffold declares shared — "
@@ -328,7 +334,8 @@ def test_every_declared_shared_file_is_one_the_build_writes(tmp_path):
     )
     # And byte-identical, because the point of one copy is that it is one copy.
     for relative in scaffold.SHARED_FILES:
-        assert (out / relative).read_bytes() == (repo_root() / relative).read_bytes(), (
+        shipped = out / written.get(relative, relative)
+        assert shipped.read_bytes() == (repo_root() / relative).read_bytes(), (
             f"{relative} differs between assets/ and the built site"
         )
 

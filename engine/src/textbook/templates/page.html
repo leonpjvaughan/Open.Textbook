@@ -21,13 +21,15 @@ $pager_head
      than 2 kB in git. See assets/icons/README.md. -->
 <link rel="apple-touch-icon" href="${prefix}assets/icons/apple-touch-icon.png">
 $prefs_script
-<link rel="stylesheet" href="${prefix}assets/stylesheets/themes.css">
-<link rel="stylesheet" href="${prefix}assets/stylesheets/extra.css">
-<link rel="stylesheet" href="${prefix}assets/stylesheets/book.css">
-<link rel="stylesheet" href="${prefix}assets/stylesheets/book-local.css">
-<link rel="stylesheet" href="${prefix}assets/stylesheets/shell.css">
-<link rel="stylesheet" href="${prefix}assets/stylesheets/settings.css">
-<script src="/assets/settings/service-worker.js" defer></script>
+<!-- The cascade, in the one order the build writes it. Content-addressed, so a
+     sheet that did not change keeps its URL across a deploy; the build emits these
+     links from `pipeline.STYLESHEETS` rather than the template naming them. -->
+$stylesheets
+<!-- Root-absolute: one worker for the collection, registered once, scoped to the
+     deployment root. Content-addressed like the stylesheets, derived from the same
+     source bytes by both this build and the portal, so neither build has to read
+     the other's output. -->
+<script src="$worker_script" defer></script>
 </head>
 <body>
 <script>
@@ -81,7 +83,10 @@ document.body.setAttribute(
 
 $settings_dialog
 $booklet_script
-<script src="${prefix}assets/settings/settings.js"></script>
+<script src="$settings_js"></script>
+<!-- Keeps the rest of this chapter for a reader who is about to lose the signal.
+     Deferred, idle, and inert on a metered connection; see assets/offline/offline.js. -->
+<script src="$offline_js" defer></script>
 
 <script type="module">
 /* Search, powered by Pagefind: the index is built over the rendered HTML after

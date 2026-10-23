@@ -13,6 +13,7 @@ Usage:
 from __future__ import annotations
 
 import argparse
+import hashlib
 import os
 import re
 import sys
@@ -70,6 +71,7 @@ SHARED_FILES: tuple[str, ...] = (
     "assets/stylesheets/extra.css",
     "assets/stylesheets/settings.css",
     "assets/settings/settings.js",
+    "assets/offline/offline.js",
     "assets/figures/figures.js",
     "assets/figures/kit.js",
 )
@@ -112,6 +114,35 @@ SHARED_FIGURE_FILES: tuple[str, ...] = ("figures.js", "kit.js")
 #: modules with one slug would make the page's meaning depend on build order, and the
 #: book can always rename its own.
 FIGURE_LIBRARY = "assets/figures"
+
+
+def digest(path: Path) -> str:
+    """Eight hex digits of a file's SHA-256: a cache key short enough for a URL."""
+    return hashlib.sha256(path.read_bytes()).hexdigest()[:8]
+
+
+def addressed_name(path: Path) -> str:
+    """``ch10-nth-term.js`` -> ``ch10-nth-term.a1b2c3d4.js``.
+
+    The name is the bytes, so a file that did not change keeps its URL across a
+    deploy and a cached copy is still *the* copy. The one place this cannot be
+    applied is a module's own relative imports: 213 figure modules write
+    ``from "./kit.js"`` and the kit writes ``from "./kit/draw.js"``, so the kit is
+    named stably and revalidated by the ETag the Worker sends instead.
+    """
+    return f"{path.stem}.{digest(path)}{path.suffix}"
+
+
+def addressed_url(relative: str) -> str:
+    """A repository file's site path, with its content-addressed basename.
+
+    Used for the files the *portal* writes at the deployment root, because a book
+    page reaches some of them by a root-absolute URL: the two builds must agree on
+    the name, and they do not run in a fixed order. They agree because both derive
+    it from the same source bytes — not because one reads the other's output.
+    """
+    path = Path(relative)
+    return f"{path.parent.as_posix()}/{addressed_name(path)}" if path.parent.as_posix() != "." else addressed_name(path)
 
 
 def shared_figure_modules() -> dict[str, Path]:
@@ -659,7 +690,7 @@ def colophon_page(book: Book, licence: object = _USE_COLLECTION) -> str:
         "",
         "## Before you use this book",
         "",
-        *legal.disclaimer_lines(),
+        *legal.disclaimer_lines(book),
         "",
         "## Who made it",
         "",

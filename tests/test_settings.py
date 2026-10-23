@@ -48,7 +48,13 @@ def test_the_page_template_carries_the_generated_control():
     template = pipeline.PAGE_TEMPLATE.read_text(encoding="utf-8")
     assert "$settings_trigger" in template
     assert "$settings_dialog" in template
-    assert "assets/settings/settings.js" in template
+    # Content-addressed: the template names a slot, and the build fills it with the
+    # URL `addressed_assets` computed. A literal path here would be a stable name
+    # nothing invalidates.
+    assert "$settings_js" in template
+    assert "assets/settings/settings.js" in pipeline.addressed_assets(
+        __import__("textbook.book", fromlist=["x"]).book_by_id("gcse-maths")
+    )
 
 
 # --- the trigger and the dialog ----------------------------------------------
@@ -103,9 +109,7 @@ def test_every_book_offers_every_bundle_and_loads_the_runtime(book):
         assert escape(bundle.title) in dialog
     template = pipeline.PAGE_TEMPLATE.read_text(encoding="utf-8")
     assert "$settings_dialog" in template, f"{book.id}: the page does not carry the panel"
-    assert "assets/settings/settings.js" in template, (
-        f"{book.id}: the Settings runtime is not loaded"
-    )
+    assert "$settings_js" in template, f"{book.id}: the Settings runtime is not loaded"
 
 
 @pytest.mark.parametrize("book", BOOKS, ids=IDS)
@@ -129,8 +133,12 @@ def test_the_assets_are_declared_shared_and_loaded():
     assert "assets/settings/settings.js" in scaffold.SHARED_FILES
     assert SETTINGS_CSS.is_file() and SETTINGS_JS.is_file()
     template = pipeline.PAGE_TEMPLATE.read_text(encoding="utf-8")
-    assert "assets/stylesheets/settings.css" in template
-    assert "assets/settings/settings.js" in template
+    # The cascade is one list in the build and one placeholder in the template: the
+    # sheet is declared, not spelled out six times where a seventh could be added in
+    # the wrong place.
+    assert "assets/stylesheets/settings.css" in pipeline.STYLESHEETS
+    assert "$stylesheets" in template
+    assert "$settings_js" in template
 
 
 # --- behaviour pinned by inspection of the runtime ---------------------------
@@ -192,8 +200,9 @@ def test_the_panel_and_its_stylesheet_declare_no_colour():
 def test_the_landing_page_loads_the_shared_settings_assets():
     """One runtime, so the landing page and the books cannot drift apart."""
     html = portal.render()
-    assert "assets/settings/settings.js" in html
-    assert "assets/stylesheets/settings.css" in html
+    links = portal.root_links(rooted=False)
+    assert links["settings_js"] in html
+    assert links["settings_css"] in html
     assert "window.textbookPrefs" in html, "the landing page does not expose the shared store"
 
 

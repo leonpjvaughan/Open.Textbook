@@ -45,8 +45,10 @@ def test_the_root_404_honours_reader_preferences():
     assert "textbooks:theme" in page
     # It carries the one generated script, not a fourth hand-written copy.
     assert prefs.snippet(portal.prefs_config()) in page
-    # Colour comes from the bundles, so the 404 loads the same stylesheet.
-    assert "assets/stylesheets/themes.css" in page
+    # Colour comes from the bundles, so the 404 loads the same stylesheet — under
+    # the content-addressed name the portal writes, at the root, because a 404 is
+    # served for a request at any depth.
+    assert portal.root_links(rooted=True)["themes_css"] in page
 
 
 def test_the_root_404_links_absolutely():

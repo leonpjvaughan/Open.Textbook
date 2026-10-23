@@ -86,6 +86,42 @@ def test_the_eyebrow_names_the_move(current, target, forward, expected):
     assert pipeline._pager_eyebrow(current, target, forward) == expected
 
 
+@pytest.mark.parametrize(
+    "current, target, forward, expected",
+    [
+        # Every neighbour of a reference work is a page: its depth-2 paths are entries
+        # in a registry, not chapter indexes, so "Chapter contents" and "Next chapter"
+        # both name a thing the book does not have.
+        ("index.md", "optimisation/index.md", True, "Next page"),
+        ("optimisation/index.md", "averaging/index.md", True, "Next page"),
+        ("saddle-point/index.md", "optimisation/index.md", False, "Previous page"),
+        ("hyperbolic/index.md", "index.md", False, "Contents"),
+    ],
+)
+def test_a_reference_work_names_the_move_a_page(current, target, forward, expected):
+    assert pipeline._pager_eyebrow(current, target, forward, reference=True) == expected
+
+
+def _eyebrows(book_id: str) -> set[str]:
+    book = books.book_by_id(book_id)
+    paths = pipeline.nav_paths(pipeline.nav_for(book, frozenset(book.tier_codes)))
+    order = pipeline.pager_for(paths, book)
+    return {neighbour["eyebrow"] for pair in order.values() for neighbour in pair if neighbour}
+
+
+@pytest.mark.parametrize("book_id", ["numerical-methods", "proofs"])
+def test_no_reference_page_calls_its_neighbour_a_chapter(book_id):
+    """A book with no chapters must not offer to move to one."""
+    eyebrows = _eyebrows(book_id)
+    assert "chapter" not in " ".join(eyebrows).lower(), sorted(eyebrows)
+    assert "Next page" in eyebrows, sorted(eyebrows)
+
+
+def test_a_course_book_keeps_its_sections_and_chapter_reviews():
+    eyebrows = _eyebrows("gcse-maths")
+    assert {"Next section", "Chapter review", "Next chapter"} <= eyebrows, sorted(eyebrows)
+
+
 # --- the chain ----------------------------------------------------------------
 
 
@@ -159,6 +195,15 @@ def test_the_body_and_the_head_agree(tmp_path):
     # `rel` is what a crawler and an extension read; the anchors are what a reader taps.
     assert 'rel="prev"' in html and 'rel="next"' in html
     assert '<link rel="prev" href=' in html and '<link rel="next" href=' in html
+
+
+def test_a_built_reference_page_offers_the_next_page(tmp_path):
+    """The eyebrow a reader sees is the one `pager_for` computed, not a second wording."""
+    build("numerical-methods", tmp_path)
+    html = (tmp_path / "averaging" / "index.html").read_text(encoding="utf-8")
+    anchors, _, _ = pager(html)
+    eyebrows = sorted(eyebrow for eyebrow, _, _ in anchors)
+    assert eyebrows == ["Next page", "Previous page"], anchors
 
 
 def test_the_pager_is_outside_the_search_index(tmp_path):

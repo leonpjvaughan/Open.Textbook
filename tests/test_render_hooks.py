@@ -103,8 +103,15 @@ def test_the_portable_substrate_passes_through_untouched(docs):
 
 
 def test_the_directive_expands_to_the_portable_element(docs):
+    """The slug stays the name an author and a tool read; the src is built.
+
+    `data-figure-src` is the content-addressed file the build wrote, so a module
+    that did not change keeps its URL across a deploy. The loader falls back to the
+    slug when the attribute is absent, which is what keeps the element portable.
+    """
     html = render(run_figure_hook("# A\n\n:::figure gradient\n", docs))
-    assert '<maths-figure data-figure="gradient"></maths-figure>' in html
+    assert 'data-figure="gradient"' in html
+    assert re.search(r'data-figure-src="gradient\.[0-9a-f]{8}\.js"', html)
     assert ":::figure" not in html
 
 
@@ -232,8 +239,14 @@ def test_a_real_figure_page_carries_the_loader(built):
     html = (built.out / "chapter-1/section-1.1/learn/index.html").read_text(
         encoding="utf-8"
     )
-    assert '<maths-figure data-figure="number-line">' in html
+    assert 'data-figure="number-line"' in html
     assert 'src="../../../assets/figures/figures.js"' in html
+    # The module the page names must be the file the build wrote, or the figure
+    # mounts into a 404 — a failure the build's link check cannot see, because a
+    # module import is not a link on any page.
+    written = re.search(r'data-figure-src="(number-line\.[0-9a-f]{8}\.js)"', html)
+    assert written, "the page does not name an addressed module"
+    assert (built.out / "assets" / "figures" / written.group(1)).is_file()
 
 
 def test_a_real_page_without_a_figure_gets_no_loader(built):

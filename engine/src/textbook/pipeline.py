@@ -26,6 +26,7 @@ from __future__ import annotations
 
 import argparse
 import html
+import json
 import logging
 import posixpath
 from functools import lru_cache
@@ -65,6 +66,140 @@ TEMPLATES = Path(__file__).resolve().parent / "templates"
 CSS = Path(__file__).resolve().parent / "css"
 PAGE_TEMPLATE = TEMPLATES / "page.html"
 SHELL_CSS = CSS / "shell.css"
+
+#: The sheets the shell links, in cascade order, as site-relative paths.
+#:
+#: The order is behaviour at every level — the shared design system, then the
+#: book's authored sheets, then the engine shell, then the Settings runtime — so it
+#: lives here rather than in the template, where adding a seventh sheet is a line in
+#: the wrong place waiting to happen. The build writes them in this order and the
+#: page links them in this order, from one list.
+STYLESHEETS: tuple[str, ...] = (
+    "assets/stylesheets/themes.css",
+    "assets/stylesheets/extra.css",
+    "assets/stylesheets/book.css",
+    "assets/stylesheets/book-local.css",
+    "assets/stylesheets/shell.css",
+    "assets/stylesheets/settings.css",
+)
+
+
+def stylesheet_sources(book: books.Book) -> dict[str, Path]:
+    """Where each sheet is authored, by its site-relative path.
+
+    A site path is not a repository path for three of them: two are the shared
+    design system in ``assets/``, one belongs to the renderer in ``engine/``, and the
+    pair called ``book`` are the book's own.
+    """
+    root = Path(books.repo_root())
+    return {
+        "assets/stylesheets/themes.css": root / "assets/stylesheets/themes.css",
+        "assets/stylesheets/extra.css": root / "assets/stylesheets/extra.css",
+        "assets/stylesheets/book.css": book.docs / "assets/stylesheets/book.css",
+        "assets/stylesheets/book-local.css": book.docs / "assets/stylesheets/book-local.css",
+        "assets/stylesheets/shell.css": SHELL_CSS,
+        "assets/stylesheets/settings.css": root / "assets/stylesheets/settings.css",
+    }
+
+
+#: Hash and naming live in the scaffold, because the figure hook needs the same
+#: answer as the copy that writes the file, and `hooks` may not import `pipeline`.
+digest = scaffold.digest
+addressed_name = scaffold.addressed_name
+
+
+def hashed_stylesheets(book: books.Book) -> dict[str, str]:
+    """Site-relative sheet path -> the path it is written and linked under.
+
+    **Content, not the build label.** A sheet that did not change keeps its URL
+    across a deploy, so a reader's cached copy of a book keeps resolving its
+    stylesheet instead of fetching the same bytes under a new name. That is what
+    makes an offline download survive a release, and it is why the cache name is
+    allowed to rotate while these names do not.
+
+    A sheet that is not authored is simply absent from the result, and a page does
+    not link what the build did not write.
+    """
+    written: dict[str, str] = {}
+    for relative, source in stylesheet_sources(book).items():
+        if not source.is_file():
+            continue
+        stem, suffix = posixpath.splitext(relative)
+        written[relative] = f"{stem}.{scaffold.digest(source)}{suffix}"
+    return written
+
+
+def addressed_assets(book: books.Book) -> dict[str, str]:
+    """Every asset a page links directly, by logical path, addressed.
+
+    The stylesheets are computed from their sources; the three runtimes are added
+    here because they are copied from one place but linked from another. `booklet.js`
+    is absent for a book without one, and the page then carries no script for it.
+
+    `booklet.json` keeps its name on purpose: the widget finds it with
+    ``new URL("booklet.json", script.src)``, so it is a *sibling* of the script —
+    and it is fetched, not imported, so the worker treats it as network-first.
+    """
+    addressed = dict(hashed_stylesheets(book))
+    # The booklet is the one that depends on the book: a book without one ships
+    # neither the script nor the data, and a manifest that named it would point at a
+    # file the build deliberately did not write. `tools assets` checks exactly that,
+    # which is how this was found — five profiles were claiming a booklet they do not
+    # have.
+    runtimes = [
+        "assets/settings/settings.js",
+        "assets/settings/service-worker.js",
+        "assets/offline/offline.js",
+    ]
+    if book.booklet_name:
+        runtimes.append("assets/booklet/booklet.js")
+    for relative in runtimes:
+        source = Path(books.repo_root()) / relative
+        if source.is_file():
+            addressed[relative] = scaffold.addressed_url(relative)
+    return addressed
+
+
+def stylesheet_links(prefix: str, sheets: dict[str, str]) -> str:
+    """The ``<link>`` block for one page, in cascade order, skipping absent sheets."""
+    return "\n".join(
+        f'<link rel="stylesheet" href="{html.escape(prefix + sheets[relative], quote=True)}">'
+        for relative in STYLESHEETS
+        if relative in sheets
+    )
+
+
+def asset_manifest(
+    book: books.Book,
+    sheets: dict[str, str],
+    figures: dict[str, str],
+    pages: dict[str, int] | None = None,
+) -> str:
+    """The build's own record of where every named asset was written.
+
+    A content-addressed name cannot be guessed from the source tree, so the build
+    has to say what it did. This is what the tests and the tools read instead of
+    reconstructing a hash, and it is the seed of the offline manifest: a download
+    list is a route list plus these URLs.
+    """
+    return (
+        json.dumps(
+            {
+                "book": book.id,
+                "build": portal.build_label(),
+                "assets": sheets,
+                "figures": figures,
+                "pages": pages or {},
+                # What the download would cost on the wire, before compression. The
+                # figure a reader is shown is this one, so it is measured here rather
+                # than guessed in the browser.
+                "bytes": sum((pages or {}).values()),
+            },
+            indent=2,
+            sort_keys=True,
+        )
+        + "\n"
+    )
 
 # The hooks that transform page Markdown, in order. This is the same order as
 # hooks/__init__.py, which cannot express it by listing files because several
@@ -111,7 +246,10 @@ SHARED_CSS = ("themes.css", "extra.css", "portal.css", "settings.css")
 HTML_LINK = re.compile(r'(href|src)="([^"]+?\.md)(#[^"]*)?"')
 SCRIPT_STYLE = re.compile(r"<(script|style)\b.*?</\1>", re.S | re.I)
 MATH_ERROR = re.compile(r'<span class="math-error"')
-ATTR_LINK = re.compile(r'(?:href|src)="([^"]+)"')
+# `href="…"` and `src="…"`, and not a longer attribute that happens to end in one.
+# `data-figure-src` names a figure module and is not a request the page makes, so
+# matching it here reported every figure as a broken link.
+ATTR_LINK = re.compile(r'(?<![\w-])(?:href|src)="([^"]+)"')
 # The anchor targets in a rendered page. Fragments are resolved against these,
 # so a link to an anchor that was deleted or renamed fails the build.
 ID_ATTR = re.compile(r'\bid="([^"]*)"')
@@ -134,17 +272,18 @@ def pagefind() -> Path:
 # --- paths and URLs -----------------------------------------------------------
 
 
-def booklet_widget(book: books.Book, prefix: str) -> str:
+def booklet_widget(book: books.Book, prefix: str, filename: str = "booklet.js") -> str:
     """The formulae-booklet `<script>` a page carries, or the empty string.
 
     A classic deferred script rather than a module: it resolves its sibling
     ``booklet.json`` from ``document.currentScript.src``, which is null in a
-    module. A book without a booklet gets no element at all, so no page fetches
-    data that is not there.
+    module — so the JSON keeps its name and only the script is addressed. A book
+    without a booklet gets no element at all, so no page fetches data that is not
+    there.
     """
     if not book.booklet_name:
         return ""
-    return f'<script src="{prefix}assets/booklet/booklet.js" defer></script>'
+    return f'<script src="{prefix}assets/booklet/{filename}" defer></script>'
 
 
 # --- navigation ---------------------------------------------------------------
@@ -281,7 +420,9 @@ def _level(path: str, depth: int) -> str:
     return "/".join(path.split("/")[:depth])
 
 
-def _pager_eyebrow(current: str, target: str, forward: bool) -> str:
+def _pager_eyebrow(
+    current: str, target: str, forward: bool, reference: bool = False
+) -> str:
     """What the move is, in the reader's words: page, section, chapter, chapter review.
 
     The eyebrow is the whole value of a pager over a bare arrow: "Next section" tells a
@@ -291,12 +432,19 @@ def _pager_eyebrow(current: str, target: str, forward: bool) -> str:
     The two special cases are the ones a reader would otherwise misread: a neighbour
     that is a chapter's own index page is *contents*, not the next chapter, and a
     chapter's Review is the end of the chapter rather than the start of the next.
+
+    ``reference`` is a book that declares `qualification: Reference` — the proof book
+    and the map of problem classes. It has no chapters and no sections, so a depth-2
+    path is *one entry* rather than a chapter index, and the course rules below would
+    call the next entry "Next chapter" on every page of a book that has none.
     """
     if target == "index.md":
         return "Contents"
     if target.startswith("Glossary/"):
         return "Glossary"
     direction = "Next" if forward else "Previous"
+    if reference:
+        return f"{direction} page"
     parts = target.split("/")
     same_chapter = _level(current, 1) == _level(target, 1)
     if len(parts) == 2 and parts[-1] == "index.md":
@@ -331,6 +479,7 @@ def pager_for(paths: list[str], book: books.Book) -> dict[str, tuple[dict | None
     # and went to an optional detour. They are skipped here, and each one borrows the
     # pager of the page that offers it, so a reader who takes the detour can step back
     # onto the thread from it.
+    reference = book.qualification == books.REFERENCE
     deeper = {page["path"] for page in book.deeper_pages}
     ordered = [
         p for p in paths if p not in deeper and not p.startswith("Glossary/")
@@ -358,14 +507,18 @@ def pager_for(paths: list[str], book: books.Book) -> dict[str, tuple[dict | None
             previous = {
                 "href": url_for(target),
                 "title": titles[target],
-                "eyebrow": _pager_eyebrow(md_path, target, forward=False),
+                "eyebrow": _pager_eyebrow(
+                    md_path, target, forward=False, reference=reference
+                ),
             }
         if index + 1 < len(ordered):
             target = ordered[index + 1]
             following = {
                 "href": url_for(target),
                 "title": titles[target],
-                "eyebrow": _pager_eyebrow(md_path, target, forward=True),
+                "eyebrow": _pager_eyebrow(
+                    md_path, target, forward=True, reference=reference
+                ),
             }
         order[md_path] = (previous, following)
 
@@ -381,7 +534,9 @@ def pager_for(paths: list[str], book: books.Book) -> dict[str, tuple[dict | None
                     {
                         "href": url_for(anchor),
                         "title": titles[anchor],
-                        "eyebrow": _pager_eyebrow(md_path, anchor, forward=False),
+                        "eyebrow": _pager_eyebrow(
+                            md_path, anchor, forward=False, reference=reference
+                        ),
                     },
                     order[anchor][1],
                 )
@@ -530,6 +685,7 @@ def render_page(
     leaf_cache: dict[int, set[str]] | None = None,
     subtree_cache: dict[tuple[int, str], str] | None = None,
     pager: tuple[dict | None, dict | None] = (None, None),
+    assets: dict[str, str] | None = None,
 ) -> tuple[str, RenderedPage, bool]:
     """Render one page of one profile. Returns (html, index entry, maths error).
 
@@ -560,7 +716,13 @@ def render_page(
     # ``document.currentScript.src`` to find its sibling JSON, so it must be a
     # real script element rather than a module. A book without a booklet gets no
     # element at all, so no page ever fetches data that is not there.
-    booklet = booklet_widget(book, prefix)
+    booklet = booklet_widget(
+        book,
+        prefix,
+        posixpath.basename(
+            (assets or {}).get("assets/booklet/booklet.js", "assets/booklet/booklet.js")
+        ),
+    )
     pager_html, pager_head_html = render_pager(pager, prefix)
     rendered = template.substitute(
         title=html.escape(title),
@@ -571,6 +733,22 @@ def render_page(
         pager=pager_html,
         pager_head=pager_head_html,
         nav=render_nav(nav, url, leaf_cache, subtree_cache),
+        stylesheets=stylesheet_links(prefix, assets or {}),
+        # The registration script is root-absolute (one worker for the collection,
+        # written by the portal); the Settings runtime is beside the page, so it
+        # takes the page's prefix.
+        worker_script=html.escape(
+            "/" + (assets or {}).get("assets/settings/service-worker.js", "assets/settings/service-worker.js"),
+            quote=True,
+        ),
+        settings_js=html.escape(
+            prefix + (assets or {}).get("assets/settings/settings.js", "assets/settings/settings.js"),
+            quote=True,
+        ),
+        offline_js=html.escape(
+            prefix + (assets or {}).get("assets/offline/offline.js", "assets/offline/offline.js"),
+            quote=True,
+        ),
         prefix=prefix,
         build=html.escape(build, quote=True),
         settings_trigger=trigger,
@@ -667,6 +845,11 @@ class AssetRow:
     booklet's widget fetches its sibling from the same directory), and ``fail`` for
     a file the engine owns, where absence is a defect and the build must say so
     rather than ship pages with no stylesheet.
+
+    ``rename`` decides a destination from the source and its logical destination,
+    and is how a content-addressed file is written under the name the page links.
+    It takes both because a content hash is a property of the **source**: reading it
+    from the destination before the copy is a file that is not there yet.
     """
 
     sources: tuple[tuple[Path, Path], ...] = ()
@@ -674,11 +857,16 @@ class AssetRow:
     writes: tuple[tuple[Path, Callable[[], str]], ...] = ()
     missing: str = "skip"
     select: Callable[[Path], list[Path]] | None = None
+    rename: Callable[[Path, Path], Path] | None = None
     label: str = ""
     report_zero: bool = False
 
     def copy(self) -> list[str]:
         """Copy the row, and name what it copied."""
+
+        def destination_of(source: Path, destination: Path) -> Path:
+            return self.rename(source, destination) if self.rename else destination
+
         if self.writes:
             for path, produce in self.writes:
                 path.parent.mkdir(parents=True, exist_ok=True)
@@ -693,7 +881,7 @@ class AssetRow:
         for source, destination in self.sources:
             if self.select is None:
                 if self.missing != "skip" or source.exists():
-                    copied.append(_copy_file(source, destination))
+                    copied.append(_copy_file(source, destination_of(source, destination)))
                     seen = True
                 continue
             if not source.is_dir():
@@ -705,7 +893,10 @@ class AssetRow:
                 # have any figures.
                 destination.mkdir(parents=True, exist_ok=True)
             copied.extend(
-                _copy_file(path, destination / path.relative_to(source))
+                _copy_file(
+                    path,
+                    destination_of(path, destination / path.relative_to(source)),
+                )
                 for path in self.select(source)
             )
         if not self.label:
@@ -718,18 +909,43 @@ class AssetRow:
         return [f"{len(copied)} {self.label}"]
 
 
-def copy_assets(book: books.Book, out: Path) -> list[str]:
+def copy_assets(
+    book: books.Book,
+    out: Path,
+    assets: dict[str, str] | None = None,
+    figures: dict[str, str] | None = None,
+    pages: dict[str, int] | None = None,
+) -> list[str]:
     """Copy the shared design system, the shell, and this book's own assets.
 
     The rows below are data because **the order is behaviour**: a later copy wins,
     so the cascade — the shared design system, then the engine's own shell, then
     the book's generated and then its authored sheets — is the order of these rows.
     Adding a kind of asset is a row, not another branch.
+
+    ``assets`` is the content-addressed map ``addressed_assets`` produced for this
+    build. The pages were rendered against it, so the files have to be written under
+    the same names or every page links a 404; a row that can produce one of them
+    therefore carries the rename, and one that cannot is unaffected by it.
     """
     root = Path(books.repo_root())
-    assets = root / "assets"
-    sheets = out / "assets" / "stylesheets"
-    figures = out / "assets" / "figures"
+    asset_root = root / "assets"
+    assets = assets if assets is not None else addressed_assets(book)
+    addressed = {out / relative: out / hashed for relative, hashed in assets.items()}
+
+    def rename(source: Path, destination: Path) -> Path:
+        return addressed.get(destination, destination)
+
+    def addressed_module(source: Path, destination: Path) -> Path:
+        """A figure module's site name: the source's content, and nothing else.
+
+        The library's `kit.js` never reaches this — it is a shared file, not a
+        module — so the 213 modules that import `./kit.js` keep resolving.
+        """
+        return destination.with_name(scaffold.addressed_name(source))
+
+    sheet_dir = out / "assets" / "stylesheets"
+    figure_dir = out / "assets" / "figures"
 
     rows = [
         # Every shared file, from the one list that declares them — repository path
@@ -738,7 +954,10 @@ def copy_assets(book: books.Book, out: Path) -> list[str]:
         # symlinks the scaffold created, which is the pair of lists the engine review
         # flagged: an asset added to one and not the other was either a broken link
         # or a file the pages requested and the build never wrote.
-        AssetRow(tuple((root / relative, out / relative) for relative in scaffold.SHARED_FILES)),
+        AssetRow(
+            tuple((root / relative, out / relative) for relative in scaffold.SHARED_FILES),
+            rename=rename,
+        ),
         # A shared directory's whole contents. The kit is a library of layers rather
         # than one file, and a barrel that imports a layer the build did not copy is a
         # figure that fails to mount — with the build green, because an asset reached
@@ -750,22 +969,23 @@ def copy_assets(book: books.Book, out: Path) -> list[str]:
         # The shell is the engine's own stylesheet, not a shared asset: it is part of
         # the renderer rather than the design system a book composes, so a missing one
         # fails the build instead of quietly shipping pages with no shell.
-        AssetRow(((SHELL_CSS, sheets / "shell.css"),), missing="fail"),
+        AssetRow(((SHELL_CSS, sheet_dir / "shell.css"),), missing="fail", rename=rename),
         # The book's generated stylesheet, and then its author-local one, last in the
         # cascade. `book-local.css` is authored, not generated, and may be empty; a
         # book that has one must ship it or its own component rules silently disappear.
         AssetRow(
             (
-                (book.docs / "assets" / "stylesheets" / "book.css", sheets / "book.css"),
-                (book.docs / "assets" / "stylesheets" / "book-local.css", sheets / "book-local.css"),
-            )
+                (book.docs / "assets" / "stylesheets" / "book.css", sheet_dir / "book.css"),
+                (book.docs / "assets" / "stylesheets" / "book-local.css", sheet_dir / "book-local.css"),
+            ),
+            rename=rename,
         ),
         # The formulae booklet: the shared widget and the book's generated data,
         # copied together so the widget's sibling fetch resolves. A book without a
         # booklet ships neither the script nor a request for one.
         AssetRow(
             (
-                (assets / "booklet" / "booklet.js", out / "assets" / "booklet" / "booklet.js"),
+                (asset_root / "booklet" / "booklet.js", out / "assets" / "booklet" / "booklet.js"),
                 (
                     book.docs / "assets" / "booklet" / "booklet.json",
                     out / "assets" / "booklet" / "booklet.json",
@@ -773,6 +993,7 @@ def copy_assets(book: books.Book, out: Path) -> list[str]:
             ),
             needed=lambda built: bool(built.booklet_name),
             missing="all",
+            rename=rename,
         ),
         # The Settings runtime's service-worker registration. The registration script
         # is loaded by the deferred <script> every page carries; without it in the
@@ -781,8 +1002,9 @@ def copy_assets(book: books.Book, out: Path) -> list[str]:
         # registration script is this build's own.
         AssetRow(
             (
-                (assets / "settings" / "service-worker.js", out / "assets" / "settings" / "service-worker.js"),
-            )
+                (asset_root / "settings" / "service-worker.js", out / "assets" / "settings" / "service-worker.js"),
+            ),
+            rename=rename,
         ),
         # The PWA: the manifest and the worker. Written from the portal rather than
         # copied raw, so the worker carries the same build label the pages do and the
@@ -800,7 +1022,7 @@ def copy_assets(book: books.Book, out: Path) -> list[str]:
         # by the same prefix-relative path the stylesheets use.
         AssetRow(
             tuple(
-                (assets / "icons" / name, out / "assets" / "icons" / name)
+                (asset_root / "icons" / name, out / "assets" / "icons" / name)
                 for name in ("app-icon.svg", "favicon.svg", "apple-touch-icon.png")
             )
         ),
@@ -832,12 +1054,13 @@ def copy_assets(book: books.Book, out: Path) -> list[str]:
         # build, a broken browser, and nothing in the output to say so. `figures.js`
         # and `kit.js` arrive with `SHARED_FILES` above.
         AssetRow(
-            ((book.docs / "assets" / "figures", figures),),
+            ((book.docs / "assets" / "figures", figure_dir),),
             select=lambda directory: [
                 path
                 for path in sorted(directory.glob("*.js"))
                 if not path.is_symlink() and path.name not in scaffold.SHARED_FIGURE_FILES
             ],
+            rename=addressed_module,
             label="figure modules",
             report_zero=True,
         ),
@@ -847,12 +1070,13 @@ def copy_assets(book: books.Book, out: Path) -> list[str]:
         # than an override — see `shared_figure_modules` — so there is nothing to
         # decide here.
         AssetRow(
-            ((root / scaffold.FIGURE_LIBRARY, figures),),
+            ((root / scaffold.FIGURE_LIBRARY, figure_dir),),
             select=lambda directory: [
                 path
                 for path in sorted(directory.glob("*.js"))
                 if path.name not in scaffold.SHARED_FIGURE_FILES
             ],
+            rename=addressed_module,
             label="shared figure modules",
         ),
     ]
@@ -861,6 +1085,13 @@ def copy_assets(book: books.Book, out: Path) -> list[str]:
     for row in rows:
         if row.needed(book):
             copied.extend(row.copy())
+    # The record of what was written, and under what name. A content-addressed
+    # name cannot be derived from the source tree by whoever reads the output — a
+    # test, a tool, the offline download list — so the build states it.
+    (out / "assets" / "manifest.json").write_text(
+        asset_manifest(book, assets, figures or {}, pages), encoding="utf-8"
+    )
+    copied.append("manifest.json")
     return copied
 
 def sibling_roots(exclude: str | None = None) -> tuple[str, ...]:
@@ -1053,8 +1284,18 @@ def build(
     template = Template(PAGE_TEMPLATE.read_text(encoding="utf-8"))
     # The Settings control is the one the landing page uses: same trigger, same
     # dialog, built from the same bundles. Computed once per build, not per page.
-    settings = (portal.settings_trigger(), portal.settings_dialog())
+    settings = (portal.settings_trigger(), portal.settings_dialog(book=book))
     build_label = portal.build_label()
+    # Where each stylesheet is written and linked, computed once per build: the
+    # pages reference it and `copy_assets` writes to it, and a second computation
+    # is a second answer.
+    assets = addressed_assets(book)
+    # The same map the hook writes into a page's `data-figure-src` and the copy uses
+    # for the filename. Computed once: a per-page hash of 43 modules across 458 pages
+    # is 20,000 reads of the same files.
+    modules = hooks.figures.module_paths(config)
+    figure_modules = {slug: scaffold.addressed_name(path) for slug, path in modules.items()}
+    config["figure_modules"] = figure_modules
 
     if clean and out.exists():
         shutil.rmtree(out)
@@ -1108,6 +1349,9 @@ def build(
     # with the contents list. Built once: it reads each page's front matter for a
     # title, and a page must not read its neighbours on every render.
     pager_map = pager_for(paths, book)
+    # Every page this build wrote, and how many bytes each is: the download list and
+    # the size a reader is shown both come from here.
+    page_bytes: dict[str, int] = {}
     for md_path in paths:
         source = book.docs / md_path
         if not source.exists():
@@ -1125,15 +1369,23 @@ def build(
             leaf_cache=nav_cache,
             subtree_cache=nav_render_cache,
             pager=pager_map.get(md_path, (None, None)),
+            assets=assets,
         )
         destination = out / entry.output
         destination.parent.mkdir(parents=True, exist_ok=True)
         destination.write_text(rendered, encoding="utf-8")
+        # Bytes as written, which is what a download has to fetch — not the
+        # compressed size, because a reader's device stores what it decodes.
+        page_bytes["/" + entry.url] = len(rendered.encode("utf-8")) if entry.url else len(
+            rendered.encode("utf-8")
+        )
         result.pages.append(entry)
         if maths_failed:
             result.maths_errors.append(entry.url)
 
-    result.assets = copy_assets(book, out)
+    result.assets = copy_assets(
+        book, out, assets=assets, figures=figure_modules, pages=page_bytes
+    )
     result.indexed = run_pagefind(out) if index else False
     # The same 404 the landing page uses, rather than a second one. It loads the
     # bundle stylesheet from the site root and applies the reader's own scheme and

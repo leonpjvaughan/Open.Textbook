@@ -850,9 +850,14 @@ def test_the_landing_page_applies_the_theme_before_paint():
 
 
 def test_the_landing_page_shares_the_books_stylesheet():
-    """One bundle stylesheet, so the front door cannot drift from the books."""
-    target = repo_root() / "site" / "assets" / "stylesheets" / "themes.css"
+    """One bundle stylesheet, so the front door cannot drift from the books.
+
+    Content-addressed at the root, so the file is found through the portal's own
+    manifest rather than by the source's name.
+    """
     portal.main()
+    relative = portal.root_assets()["assets/stylesheets/themes.css"]
+    target = repo_root() / "site" / relative
     assert target.is_file()
     assert target.read_text(encoding="utf-8") == THEMES_CSS.read_text(encoding="utf-8")
 

@@ -30,6 +30,8 @@ from textbook.book import book_by_id, repo_root
 from textbook.hooks import prefs
 from textbook.themes import ordered_bundles
 
+from support import stylesheet_href, written_assets
+
 BOOK = "gcse-maths"
 
 
@@ -477,7 +479,8 @@ def test_build_writes_the_expected_files(subset):
     for name in ("404.html", "robots.txt", "sitemap.xml"):
         assert (subset.out / name).exists(), name
     assert (subset.out / "chapter-1" / "index.html").exists()
-    assert (subset.out / "assets" / "stylesheets" / "shell.css").exists()
+    sheets = written_assets((subset.out / "assets" / "manifest.json").read_text())
+    assert (subset.out / sheets["assets/stylesheets/shell.css"]).exists()
 
 
 def test_every_page_links_the_book_local_stylesheet(subset):
@@ -486,20 +489,26 @@ def test_every_page_links_the_book_local_stylesheet(subset):
     A book's own component rules live here; a build that copies `book.css` but
     not `book-local.css` would silently drop them.
     """
+    manifest = (subset.out / "assets" / "manifest.json").read_text()
     page = (subset.out / "chapter-1/index.html").read_text()
-    assert 'href="../assets/stylesheets/book-local.css"' in page
-    assert (subset.out / "assets" / "stylesheets" / "book-local.css").is_file()
+    href = stylesheet_href(manifest, "assets/stylesheets/book-local.css", prefix="../")
+    assert f'href="{href}"' in page
+    assert (subset.out / stylesheet_href(manifest, "assets/stylesheets/book-local.css")).is_file()
 
 
 def test_the_formulae_booklet_and_its_data_are_shipped(subset):
     """The widget and the JSON it fetches are one feature, so they ship together."""
     book = pipeline.books.book_by_id(BOOK)
     assert book.booklet_name, "this test assumes the book declares a booklet"
-    for asset in ("booklet.js", "booklet.json"):
-        assert (subset.out / "assets" / "booklet" / asset).is_file(), asset
+    written = written_assets((subset.out / "assets" / "manifest.json").read_text())
+    # The script is content-addressed; the JSON keeps its name, because the widget
+    # finds it as a sibling of `document.currentScript.src`.
+    script = written["assets/booklet/booklet.js"]
+    assert (subset.out / script).is_file(), script
+    assert (subset.out / "assets" / "booklet" / "booklet.json").is_file()
     page = (subset.out / "chapter-1/index.html").read_text()
-    assert 'src="../assets/booklet/booklet.js"' in page
-    assert page.count("assets/booklet/booklet.js") == 1
+    assert f'src="../{script}"' in page
+    assert page.count(script) == 1
 
 
 def test_a_book_without_a_booklet_ships_no_widget():
@@ -554,8 +563,10 @@ def test_every_page_applies_preferences_from_the_shared_snippet(subset):
 
 
 def test_build_uses_relative_asset_prefixes_for_a_subpath_deployment(subset):
+    manifest = (subset.out / "assets" / "manifest.json").read_text()
     html = (subset.out / "chapter-1/section-1.1/learn/index.html").read_text()
-    assert 'href="../../../assets/stylesheets/shell.css"' in html
+    href = stylesheet_href(manifest, "assets/stylesheets/shell.css", prefix="../../../")
+    assert f'href="{href}"' in html
 
 
 def test_build_is_deterministic(subset, tmp_path):
@@ -725,16 +736,23 @@ def test_every_page_links_the_manifest_and_the_shared_runtimes(subset):
     html = (subset.out / "chapter-1/index.html").read_text()
     assert '<link rel="manifest" href="/manifest.webmanifest">' in html
     assert 'rel="icon" type="image/svg+xml" href="../assets/icons/favicon.svg"' in html
-    assert "/assets/settings/service-worker.js" in html
-    assert "assets/settings/settings.js" in html
-    assert "assets/stylesheets/settings.css" in html
+    written = written_assets((subset.out / "assets" / "manifest.json").read_text())
+    # Root-absolute for the worker (one registration for the collection), the page's
+    # own prefix for the runtime that sits beside it.
+    assert f'src="/{written["assets/settings/service-worker.js"]}"' in html
+    assert f'src="../{written["assets/settings/settings.js"]}"' in html
+    assert written["assets/stylesheets/settings.css"] in html
 
 
 def test_build_copies_the_settings_and_pwa_assets(subset):
+    written = written_assets((subset.out / "assets" / "manifest.json").read_text())
     for relative in (
         "assets/stylesheets/settings.css",
         "assets/settings/settings.js",
         "assets/settings/service-worker.js",
+    ):
+        assert (subset.out / written[relative]).exists(), relative
+    for relative in (
         "assets/icons/app-icon.svg",
         "assets/icons/favicon.svg",
         "manifest.webmanifest",
@@ -746,13 +764,15 @@ def test_build_copies_the_settings_and_pwa_assets(subset):
 def test_the_copied_settings_assets_are_the_shared_ones(subset):
     """No second control: the build ships the bytes the landing page loads."""
     shared = repo_root() / "assets"
+    written = written_assets((subset.out / "assets" / "manifest.json").read_text())
     for relative in (
-        "stylesheets/settings.css",
-        "settings/settings.js",
-        "settings/service-worker.js",
+        "assets/settings/settings.js",
+        "assets/settings/service-worker.js",
+        "assets/stylesheets/settings.css",
     ):
-        copied = (subset.out / "assets" / relative).read_bytes()
-        assert copied == (shared / relative).read_bytes(), relative
+        shipped = subset.out / written[relative]
+        source = shared / relative.removeprefix("assets/")
+        assert shipped.read_bytes() == source.read_bytes(), relative
 
 
 def test_the_service_worker_carries_the_build_label_not_the_placeholder(subset):

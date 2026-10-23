@@ -167,9 +167,14 @@ def test_no_template_holds_a_second_copy_of_the_script(relative):
 
 
 def test_the_page_template_has_no_inline_before_paint_script():
-    """The old copy is gone: the slot is the only script before the stylesheets."""
+    """The old copy is gone: the slot is the only script before the stylesheets.
+
+    The cascade is one placeholder in the template (`$stylesheets`, filled from
+    `pipeline.STYLESHEETS`) rather than six literal `<link>`s, so the marker this
+    slices at is the placeholder, not a sheet's filename.
+    """
     template = pipeline.PAGE_TEMPLATE.read_text(encoding="utf-8")
-    head = template[: template.index("themes.css")]
+    head = template[: template.index("$stylesheets")]
     assert "<script" not in head, "an inline script survives in the head"
 
 
@@ -214,7 +219,9 @@ def test_landing_page_can_write_the_preference_too():
     copy that could drift.
     """
     html = portal.render()
-    assert "assets/settings/settings.js" in html, "the shared Settings runtime is not loaded"
+    assert portal.root_links(rooted=False)["settings_js"] in html, (
+        "the shared Settings runtime is not loaded"
+    )
     assert "window.textbookPrefs" in html, "the landing page does not expose the shared store"
     runtime = (repo_root() / "assets" / "settings" / "settings.js").read_text(encoding="utf-8")
     assert prefs.SCHEME_KEY in runtime, "the runtime never writes the shared scheme key"
