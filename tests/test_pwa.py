@@ -19,7 +19,10 @@ import json
 import re
 from xml.etree import ElementTree
 
+import pytest
+
 from textbook import headers, pipeline, portal
+from textbook import book as books
 from textbook.book import repo_root
 
 ROOT = repo_root()
@@ -148,6 +151,22 @@ def test_the_tab_icon_is_shipped_by_the_portal():
     assert (SITE / "assets" / "icons" / "favicon.svg").read_bytes() == FAVICON.read_bytes()
 
 
+@pytest.fixture(scope="module")
+def built_site(tmp_path_factory):
+    """One real chapter, built for real.
+
+    A chapter rather than a whole book: the manifest is the same shape either way,
+    and this test is about the *shape* — every page listed, every size the page's.
+    The whole-book download is checked in a browser by `tools offline --download`,
+    against a full build, because that is where the question lives.
+    """
+    from textbook import pipeline
+
+    out = tmp_path_factory.mktemp("pwa") / "book"
+    pipeline.build("gcse-maths", "higher", out=out, chapter=1, index=False)
+    return out
+
+
 # --- the service worker and its update path -----------------------------------
 
 
@@ -164,8 +183,12 @@ def test_the_portal_stamps_the_build_label_into_the_cache_name():
     assert portal.SW_PLACEHOLDER not in emitted
     label = re.sub(r"[^A-Za-z0-9._-]", "-", portal.build_label() or "dev")
     assert f'var VERSION = "{label}";' in emitted
-    # A versioned cache is what makes the update path a deploy, not a hope.
-    assert "var CACHE = PREFIX + VERSION;" in emitted
+    # A versioned cache is what makes the update path a deploy, not a hope — but it
+    # is now only the *runtime* cache that is versioned. The cache that holds pages
+    # and content-addressed assets must not carry the build label, or a deploy would
+    # take away the book a reader downloaded.
+    assert 'var RUNTIME = PREFIX + "runtime-" + VERSION;' in emitted
+    assert 'var SITE = PREFIX + "site";' in emitted
 
 
 def test_the_cache_name_changes_with_the_build(monkeypatch):
@@ -182,19 +205,70 @@ def test_navigations_are_network_first():
     source = SW.read_text(encoding="utf-8")
     body = function_body(source, "networkFirst")
     assert body.index("fetch(request)") < body.index("caches.match(request)")
-    # And it is the strategy the navigation branch actually uses.
+    # And it is the strategy the navigation branch actually uses — against the cache
+    # that survives a deploy, because a page is not a stable name.
     fetch_handler = function_body(source, "onFetch")
     assert 'request.mode === "navigate"' in fetch_handler
-    assert "event.respondWith(networkFirst(request))" in fetch_handler
+    assert "event.respondWith(networkFirst(request, SITE))" in fetch_handler
 
 
-def test_static_assets_are_cache_first():
+def test_addressed_assets_are_cache_first_and_kept():
+    """The name is the bytes, so the cache can decide — and a deploy leaves it alone."""
     source = SW.read_text(encoding="utf-8")
     body = function_body(source, "cacheFirst")
-    assert body.index("caches.match(request)") < body.index("fetch(request)")
+    assert body.index("cache.match(request)") < body.index("fetch(request)")
+    fetch_handler = function_body(source, "onFetch")
+    assert "ADDRESSED.test(url.pathname)" in fetch_handler
+    assert "event.respondWith(cacheFirst(request, SITE))" in fetch_handler
+
+
+def test_the_addressed_pattern_is_the_one_the_build_writes(tmp_path):
+    """The worker's regex and `scaffold.addressed_name` are one rule in two places.
+
+    A worker that does not recognise an addressed name puts it in the runtime cache,
+    which a deploy deletes — so a downloaded book would silently stop resolving its
+    stylesheet. This is the test that ties the two together.
+    """
+    from textbook import scaffold
+
+    source = SW.read_text(encoding="utf-8")
+    written = re.search(r"var ADDRESSED = /(.+?)/;", source)
+    assert written, "the worker has no ADDRESSED pattern"
+    # The pattern is JavaScript, but it is also a plain regular expression: compile
+    # it as written rather than paraphrasing it here, so this test cannot pass
+    # against a copy of the rule instead of the rule.
+    pattern = re.compile(written.group(1))
+
+    for name in ("themes.css", "ch10-nth-term.js", "app-icon.svg", "apple-touch-icon.png"):
+        sheet = tmp_path / name
+        sheet.write_bytes(b"x")
+        assert pattern.search("/assets/" + scaffold.addressed_name(sheet)), name
+        assert not pattern.search("/assets/" + name), name
+
+
+def test_stable_named_static_assets_are_cache_first_in_the_runtime_cache():
+    """The six names that cannot be addressed are versioned instead."""
+    source = SW.read_text(encoding="utf-8")
     fetch_handler = function_body(source, "onFetch")
     assert "STATIC_DESTINATIONS[request.destination]" in fetch_handler
-    assert "event.respondWith(cacheFirst(request))" in fetch_handler
+    assert "event.respondWith(cacheFirst(request, RUNTIME))" in fetch_handler
+
+
+def test_pagefind_is_revalidated_rather_than_cached():
+    """Its names are pagefind's, so the network decides for it.
+
+    `pagefind.js` is imported by name from the page and the index is fetched by
+    pagefind's own code with relative URLs, so nothing can address it without
+    rewriting pagefind's output. Cache-first would serve a month-old script beside a
+    fresh index — a search that ranks pages that no longer exist — and the payload is
+    2–3 MB per book, which is not something to hold until the next deploy.
+    """
+    source = SW.read_text(encoding="utf-8")
+    fetch_handler = function_body(source, "onFetch")
+    pagefind = fetch_handler.index('"/pagefind/"')
+    static = fetch_handler.index("STATIC_DESTINATIONS[request.destination]")
+    assert pagefind < static, "the pagefind branch must run before the cache-first one"
+    assert "networkFirst(request, RUNTIME)" in fetch_handler[pagefind:static]
 
 
 def test_the_worker_has_an_explicit_update_path():
@@ -209,11 +283,123 @@ def test_the_worker_has_an_explicit_update_path():
     source = SW.read_text(encoding="utf-8")
     assert ".skipWaiting()" in source
     assert ".clients.claim()" in source
-    # Old caches are deleted on activate, so a deploy cannot leave one behind.
-    activate = function_body(source, "onActivate")
-    assert "caches.delete(key)" in activate
-    assert "key !== CACHE" in activate
+    # Old runtime caches are deleted on activate, so a deploy cannot leave one
+    # behind — and the site cache is exempt, which is the whole point of the split.
+    prune = function_body(source, "prune")
+    assert "caches.delete(key)" in prune
+    assert "key !== SITE" in prune
+    assert "key !== RUNTIME" in prune
     assert "require(" not in source, "the worker must be self-contained"
+
+
+def test_a_deploy_cannot_delete_a_downloaded_book():
+    """The one behaviour the split exists for, stated as an assertion.
+
+    `activate` may delete every runtime cache it likes; it may not delete the cache
+    that holds pages and addressed assets, and it may not delete it "as a version"
+    either — that cache has no version in its name.
+    """
+    source = SW.read_text(encoding="utf-8")
+    assert 'var SITE = PREFIX + "site";' in source
+    prune = function_body(source, "prune")
+    assert "key !== SITE" in prune
+    # Nothing else in the worker deletes a whole cache: the only other delete is the
+    # age-based one, entry by entry.
+    for name in ("onInstall", "onActivate", "onFetch", "networkFirst", "cacheFirst"):
+        assert "caches.delete(" not in function_body(source, name), name
+
+
+def test_the_site_cache_is_pruned_by_age_not_by_deploy():
+    """Unbounded growth is the cost of a cache no deploy clears, so it is bounded."""
+    source = SW.read_text(encoding="utf-8")
+    prune = function_body(source, "prune")
+    assert 'headers.get("date")' in prune, "no Date, no idea how old an entry is"
+    assert "MAX_AGE" in prune
+    assert "cache.delete(request)" in prune
+
+
+def test_a_page_is_a_page_however_it_is_fetched():
+    """The routing rule the chapter prefetch depends on.
+
+    A prefetched chapter is fetched by the page, not navigated to, so its `destination`
+    is empty. If the worker routed on destination alone, every prefetched page would
+    land in the cache a deploy deletes — and the whole point of keeping a chapter would
+    evaporate on the next release. The site's routes are directories, so shape decides.
+    """
+    source = SW.read_text(encoding="utf-8")
+    fetch_handler = function_body(source, "onFetch")
+    routing = fetch_handler[fetch_handler.index("request.mode") :]
+    assert 'request.mode === "navigate" || url.pathname.endsWith("/")' in routing
+    assert "networkFirst(request, SITE)" in routing
+
+
+def test_the_chapter_prefetch_is_optional_and_cheap():
+    """It must never cost a reader their data budget, and never delay a page.
+
+    Three promises, each one a line a future edit could remove: it is deferred, it
+    stops on a metered or slow connection, and it fetches one chapter of pages rather
+    than a book.
+    """
+    loader = (repo_root() / "assets" / "offline" / "offline.js").read_text(encoding="utf-8")
+    assert "saveData" in loader, "a reader who asked not to be metered is still metered"
+    assert "slow-2g|2g|3g" in loader, "a slow connection is not excluded"
+    assert "requestIdleCallback" in loader, "the prefetch would compete with the page"
+    assert "LIMIT" in loader, "no cap on how many pages one nav can ask for"
+    assert "a[href]" in loader, "the page list is not taken from the nav"
+    # And nothing in it is a colour: it is a network decision, not a drawing.
+    assert not re.search(r"#[0-9a-fA-F]{3,8}\b", loader), "a colour literal reached the prefetch"
+
+    template = pipeline.PAGE_TEMPLATE.read_text(encoding="utf-8")
+    assert '$offline_js" defer' in template, "the prefetch is not deferred"
+
+    from textbook import scaffold
+
+    assert "assets/offline/offline.js" in scaffold.SHARED_FILES, (
+        "the prefetch is not declared shared, so the build does not ship it"
+    )
+
+
+def test_the_manifest_is_a_download_list(built_site):
+    """Every page, and its bytes: the number a reader is shown comes from here."""
+    import json
+
+    out = built_site
+    data = json.loads((out / "assets" / "manifest.json").read_text(encoding="utf-8"))
+    assert data["pages"], "the manifest lists no pages, so nothing can be downloaded"
+    assert data["bytes"] == sum(data["pages"].values())
+    # Each listed route is a page the build wrote, and each size is that page's.
+    for route, size in data["pages"].items():
+        page = out / route.lstrip("/") / "index.html"
+        assert page.is_file(), f"{route} is in the manifest and not in the build"
+        assert size == page.stat().st_size, f"{route} is {page.stat().st_size} bytes on disk"
+        assert size > 1000, f"{route} is {size} bytes, which is not a page"
+
+
+def test_the_offline_control_is_only_offered_where_there_is_a_book():
+    """A landing page has nothing to keep, so it offers nothing to keep."""
+    landing = portal.settings_dialog()
+    assert "tb-offline-download" not in landing
+    page = portal.settings_dialog(book=books.book_by_id("gcse-maths"))
+    assert 'id="tb-offline-download" hidden' in page
+    assert 'data-offline-book="gcse-maths"' in page
+    # Hidden in the markup and revealed by script, like the Settings trigger: a
+    # reader without JavaScript sees no control rather than a dead one.
+    assert "hidden" in page
+
+
+def test_the_download_is_stoppable_and_asks_for_persistent_storage():
+    """Three promises in `offline.js` that a rewrite could quietly drop."""
+    loader = (repo_root() / "assets" / "offline" / "offline.js").read_text(encoding="utf-8")
+    assert "AbortController" in loader and ".abort()" in loader, "a download cannot be stopped"
+    assert "storage.persist()" in loader, "nothing asks the browser to keep the book"
+    assert "storage.estimate()" in loader, "the size is never checked against the device"
+    assert "manifest.bytes * 1.2" in loader or "plan.bytes * 1.2" in loader, (
+        "no headroom is left between what the book needs and what the device has"
+    )
+    assert 'manifest.json' in loader
+    # The build's own list, not the sidebar: a download is every page, including the
+    # ones the reader has not opened.
+    assert "plan.pages" in loader
 
 
 def test_the_worker_only_touches_same_origin_get_requests():
@@ -239,14 +425,15 @@ def test_the_worker_registers_but_never_blocks_the_page():
 def test_the_book_template_adds_the_manifest_and_the_registration():
     template = pipeline.PAGE_TEMPLATE.read_text(encoding="utf-8")
     assert '<link rel="manifest" href="/manifest.webmanifest">' in template
-    assert 'src="/assets/settings/service-worker.js"' in template
+    # Content-addressed, so the template names a slot the build fills.
+    assert 'src="$worker_script"' in template
     assert "defer" in template, "an eager script would delay the page"
 
 
 def test_the_landing_page_is_installable_too():
     html = portal.render()
     assert '<link rel="manifest" href="/manifest.webmanifest">' in html
-    assert "assets/settings/service-worker.js" in html
+    assert portal.root_links(rooted=False)["worker_script"] in html
 
 
 # --- the portal ships every new asset -----------------------------------------
@@ -254,14 +441,20 @@ def test_the_landing_page_is_installable_too():
 
 def test_the_portal_copies_the_new_assets_into_the_site():
     portal.main()
+    addressed = portal.root_assets()
+    for relative in portal.ROOT_ASSETS:
+        assert (SITE / addressed[relative]).is_file(), f"{relative} is not in site/"
+    # And under no other name: a stable-named copy is exactly what this scheme
+    # removes, because nothing would ever invalidate it.
+    for relative in portal.ROOT_ASSETS:
+        assert not (SITE / relative).exists(), f"{relative} was written unaddressed"
     for relative in (
-        "assets/stylesheets/settings.css",
-        "assets/settings/settings.js",
-        "assets/settings/service-worker.js",
         "assets/icons/app-icon.svg",
         "assets/icons/favicon.svg",
     ):
         assert (SITE / relative).is_file(), f"{relative} is not in site/"
+    root_manifest = json.loads((SITE / "assets" / "manifest.json").read_text(encoding="utf-8"))
+    assert root_manifest["assets"] == addressed
     assert (SITE / "manifest.webmanifest").read_text(encoding="utf-8") == portal.manifest()
     assert (SITE / "sw.js").read_text(encoding="utf-8") == portal.service_worker()
 

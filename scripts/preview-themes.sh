@@ -87,6 +87,11 @@ run_check phone node tools/dist/cli.js audit site --mobile
 # The kit's own contract, before the modules that build on it.
 run_check kit node tools/dist/cli.js kit site
 
+# A book read with the network off, after a deploy has emptied the runtime cache. The
+# only check that drives the service worker's two caches; the strategy is pinned in
+# `tests/test_pwa.py`, and whether a reader can still read is a question for a browser.
+run_check offline node tools/dist/cli.js offline site
+
 
 # The matrix, 6 bundles x 2 schemes x 3 routes = 36 pages.
 run_check preview node tools/dist/cli.js preview \

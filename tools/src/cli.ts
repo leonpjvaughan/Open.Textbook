@@ -23,10 +23,12 @@
  *     tools <command> [options]
  *     tools help [<command>] [--check]
  */
+import { SURFACE as ASSETS, run as runAssets } from "./commands/assets.js";
 import { SURFACE as AUDIT, run as runAuditFigures } from "./commands/audit-figures.js";
 import { SURFACE as CHECK_MOBILE, run as runCheckMobile } from "./commands/check-mobile.js";
 import { SURFACE as KIT, run as runKit } from "./commands/kit.js";
 import { SURFACE as KIT_PURE, run as runKitPure } from "./commands/kit-pure.js";
+import { SURFACE as OFFLINE, run as runOffline } from "./commands/offline.js";
 import { SURFACE as BUDGET, run as runMeasureBudget } from "./commands/measure-budget.js";
 import { SURFACE as PREVIEW, run as runPreview } from "./commands/preview.js";
 import { SURFACE as READOUT, run as runReadout } from "./commands/readout.js";
@@ -49,6 +51,11 @@ type Command = {
 };
 
 const COMMANDS: Record<string, Command> = {
+  assets: {
+    summary: "check every asset a built site's pages reach for, and every manifest entry",
+    surface: ASSETS,
+    run: runAssets,
+  },
   "check-mobile": {
     summary: "fail when a phone-width page is wider than the screen",
     surface: CHECK_MOBILE,
@@ -68,6 +75,11 @@ const COMMANDS: Record<string, Command> = {
     summary: "the kit's DOM contract, checked through a real page",
     surface: KIT,
     run: runKit,
+  },
+  offline: {
+    summary: "read a book with the network off, after a deploy emptied the runtime cache",
+    surface: OFFLINE,
+    run: runOffline,
   },
   preview: {
     summary: "every theme bundle in both schemes, with the reader's preference and contrast checked",

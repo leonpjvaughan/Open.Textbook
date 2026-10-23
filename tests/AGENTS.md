@@ -28,7 +28,10 @@ pins it.
 - **Verification oracles** — `test_verify_algebra.py`, `test_verify_oracles.py`,
   `test_verify_coverage.py`, `test_verify_units.py`,
   `test_verify_statistics.py`.
-- **Platform** — `test_themes.py`, `test_pwa.py`, `test_mobile.py`,
+- **Platform** — `test_themes.py`, `test_pwa.py`, `test_hashed_assets.py` (the
+  content-addressed names, and every asset a page reaches resolving to a file the
+  build wrote), `test_offline_browser.py` (a book still readable with the network
+  off after a deploy emptied the runtime cache; marked `browser`), `test_mobile.py`,
   `test_prefs.py`, `test_settings.py`, `test_no_javascript.py`, `test_print.py`,
   `test_backgrounds.py`, `test_colophon.py`, `test_deploy.py`, `test_release.py`.
 - **Preconditions** — `test_toolchain.py` fails loudly when Node or
@@ -70,9 +73,9 @@ pins it.
   deselected by default (`addopts` in `pyproject.toml`) because measuring every
   figure under all six bundles takes about twelve minutes, which is the whole rest
   of the gate. **CI runs the substance of them** in `scripts/preview-themes.sh`
-  — the kit's contract, the contrast audit and the phone audit — so a browser-only
-  defect still fails the gate; the marked tests are for running the sweep under
-  every bundle by hand.
+  — the kit's contract, the contrast audit, the phone audit and `tools offline` — so
+  a browser-only defect still fails the gate; the marked tests are for running the
+  sweep under every bundle by hand.
 - **A helper is defined once.** A builder two files both need is a fixture in
   `conftest.py` when it takes `tmp_path`, and a plain function in `support.py`
   when it is pure; two copies drift, and a scanner fixed in one place and stale

@@ -82,4 +82,12 @@ if grep -rl 'math-error' site --include='*.html'; then
 fi
 echo "none"
 
+step "the asset graph of the assembled site"
+# Every file a page reaches for resolves — root-absolute references included, which
+# resolve at the site root and not at the book's — every content-addressed name a
+# page links is in the manifest the build wrote, and every manifest entry is a file
+# on disk. It needs the books built first, which is why it is here and not with the
+# other `node tools/dist/cli.js` checks in the "types" step.
+node tools/dist/cli.js assets site
+
 printf '\nall checks passed\n'

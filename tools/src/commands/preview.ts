@@ -492,8 +492,16 @@ export async function run(argv: string[]): Promise<number> {
   }
 
   if (!themes) {
-    // Read the bundle ids from the selectors the generated stylesheet emits.
-    const css = fs.readFileSync(path.join(siteDir, "assets", "stylesheets", "themes.css"), "utf8");
+    // Read the bundle ids from the selectors the generated stylesheet emits. The
+    // sheet is content-addressed, so its site name is not its source name: the
+    // portal records what it wrote in `assets/manifest.json`, and that is the one
+    // place to ask.
+    const manifestPath = path.join(siteDir, "assets", "manifest.json");
+    const manifest = fs.existsSync(manifestPath)
+      ? (JSON.parse(fs.readFileSync(manifestPath, "utf8")) as { assets?: Record<string, string> })
+      : {};
+    const sheet = manifest.assets?.["assets/stylesheets/themes.css"] ?? "assets/stylesheets/themes.css";
+    const css = fs.readFileSync(path.join(siteDir, sheet), "utf8");
     themes = [...new Set([...css.matchAll(/html\[data-theme="([^"]+)"\]/g)].map((m) => m[1]))];
   }
 
