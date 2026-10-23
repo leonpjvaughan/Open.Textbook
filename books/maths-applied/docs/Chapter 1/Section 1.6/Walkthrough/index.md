@@ -59,6 +59,13 @@ models could not represent.
 - **The natural frequencies.** How the wheel hops, and how the body heaves, are
   numbers a model with mass can predict and a model without one cannot.
 
+How fast it hops is not a separate calculation. The frequencies at which the motion
+repeats are carried by the same equations, as their eigenvalues, and the step has to
+be short compared with the fastest of them. Asking which change makes one of those
+frequencies unstable is a different kind of problem from solving for the motion.
+
+:::class eigenvalue
+
 ## What it costs
 
 - **A time step, and therefore an error budget.** The answer now depends on a step
@@ -129,9 +136,10 @@ design position and not far from it. Within the chapter's 80 mm the two agree to
 at 72 mm the front view is already a degree out. The small model is not wrong; it is
 *bounded*, and the bound is the number.
 
-A third test was written and taken out: "as the masses go to zero the model must become
-the algebraic one". A free quarter car cannot run it — with no weight there is nothing to
-swing against — and stating it would need a driven model. The comparison above is the same
+A third test is the sharper one, and this model cannot run it. As the masses go to zero,
+the dynamic model must become the algebraic one, exactly, at any stiffness. Once the masses
+are gone, a free quarter car has nothing to swing against. The test therefore needs a
+driven model, one that prescribes the wheel's travel. The comparison above is the same
 claim in the form this model can answer.
 
 ## One trajectory, or a family of them
@@ -178,15 +186,20 @@ common subexpressions, Rust, `wasm32-unknown-unknown`, one buffer of `f64`.
 - say what a differential-algebraic model is, and why the constraint forces appear
   in it
 - say what mass and damping each add to the question, and what each costs
-- state the limit in which the dynamic model must reproduce §1.2's answers
+- say what the dynamic model adds to the static one, and how closely the two agree
 
 ## Watch out
 
-The seductive shortcut is to run a dynamic simulation, wait for it to stop moving,
+The tempting shortcut is to run a dynamic simulation, wait for it to stop moving,
 and call the result the steady answer. It usually is, and it usually takes long
 enough that nobody checks.
 
-The limit test exists because "usually" is not evidence. Take the mass to zero and
-the model must *become* the algebraic one, exactly, at any stiffness — and if it
-does not, the difference is a modelling error that a long simulation would have
-hidden behind round-off.
+"Usually" is not evidence. The evidence here is a comparison. At any moment, the
+dynamic camber must equal the static camber at the same travel, and the two agree
+to **0.006°**. If they did not, a long run would hide the model error behind
+round-off.
+
+The sharper test is the one this section named, and it cannot be run here. Take the
+masses to zero, and the model must become the algebraic one, exactly. A free quarter
+car has nothing to swing against once the mass is gone. This page does not claim to
+have passed that test.

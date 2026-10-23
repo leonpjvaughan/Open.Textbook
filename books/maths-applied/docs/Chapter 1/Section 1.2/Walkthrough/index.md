@@ -118,8 +118,10 @@ and the readout gives the number.
 Three numbers matter for the chapter's question:
 
 - camber moves **1.95°** from one end of the travel to the other;
-- that is **0.024° per millimetre**, so 40 mm of bump is worth about 0.98°;
-- the track narrows by **9.7 mm** at the bump end, and widens a little in droop.
+- that is **0.024° per millimetre** averaged over the whole 80 mm. The curve is not
+  a straight line: 40 mm of bump from rest is worth **1.08°**, a little more than
+  half the total;
+- the track narrows by **9.2 mm** at the bump end, and widens a little in droop.
 
 The **instant centre** is where the two arm axes would meet if they carried on
 past the wheel. It is 2.36 m from the hub, which is why the drawing has to say
@@ -136,7 +138,7 @@ iteration that §1.3 meets, and the package's compiled kernel.
 | Check | Value |
 |---|---|
 | Camber over the whole travel, from the construction above | −1.87° to +0.08° |
-| Camber from the generated kernel in three dimensions | within **0.088°** of the construction, over the range in the figure above |
+| Camber from the generated kernel in three dimensions | within **0.033°** of the construction, over the range in the figure above |
 | The package's own two routes, `agreement.max_abs_diff` | **2 × 10⁻¹³** |
 
 The last row is read from the vendored `out.js`, not typed here; the middle one is what

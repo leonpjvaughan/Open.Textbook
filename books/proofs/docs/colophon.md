@@ -16,22 +16,20 @@ the fact.
 
 ## Before you use this book
 
-This book is a study companion. It builds on what your school or college
-provides. It is not a replacement for your teacher, your lessons, or your
-exam board's current specification.
+This book is not a course. You can read it whether or not you are
+studying one.
 
-We check the answers with a computer and read the pages carefully, but no
-book is perfect. To the extent the law allows,
+There are no answers to check, and we read the pages carefully. No book is
+perfect. To the extent the law allows,
 the author accepts no liability for any incorrect information in this book,
 or for any loss arising from using it or relying on it. Nothing in this note
 limits your statutory rights, or any liability that cannot lawfully be excluded.
 
-If this book disagrees with your specification or your teacher, follow
-them. Please report the mistake so it can be corrected.
+The sources behind this book are named in the
+[acknowledgements](/acknowledgements/). If something here is
+wrong, please report the mistake so it can be corrected.
 
-The [terms of use](/terms/) explain this in more detail. The
-[acknowledgements](/acknowledgements/) credit the sources and software
-the collection rests on.
+The [terms of use](/terms/) explain this in more detail.
 
 ## Who made it
 

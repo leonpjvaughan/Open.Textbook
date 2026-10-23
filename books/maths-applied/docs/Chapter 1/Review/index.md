@@ -12,25 +12,25 @@ kind: review
 is the simplest model that gives an answer you would trust within a tenth of a
 degree?**
 
-The camber moves **1.91°** over that travel: from −1.86° at 40 mm of droop to
-+0.05° at 40 mm of bump. Rest is at −1.00°, so a little more of the change happens
+The camber moves **1.95°** over that travel: from −1.87° at 40 mm of droop to
++0.08° at 40 mm of bump. Rest is at −1.00°, so a little more of the change happens
 above rest than below.
 
 Which model earns the answer depends on the tolerance and on the car:
 
 | Model | Camber change over the travel | Cost | Camber at rest, and its difference from rigid |
 |---|---|---|---|
-| Rigid triangle | 1.91° | one degree of freedom, no numbers to measure | −1.00° |
+| Rigid triangle | 1.95° | one degree of freedom, no numbers to measure | −1.00° |
 | With a bush at 0.2 MN/m | 1.96° | a stiffness to measure | −1.91°, which is 0.91° away |
 | With a bush at 1 MN/m | 1.92° | a stiffness to measure | −1.18°, which is 0.18° away |
 | With a bush at 100 MN/m | 1.91° | a stiffness to measure | −1.00°, which is 0.002° away |
 
 So the answer has two parts, and the second is the one that matters.
 
-The camber **change** over the travel is almost untouched: even a very soft bush of
-0.2 MN/m changes it by five hundredths of a degree, because the bush shifts the
-whole curve rather than tilting it. If the question is only about the change, the
-rigid model earns its place down to a bush of about 0.15 MN/m.
+The camber **change** over the travel is almost untouched: at 0.2 MN/m the export
+gives 1.96° and at 100 MN/m it gives 1.91°, five hundredths apart, because the bush
+shifts the whole curve rather than tilting it. If the question is only about the
+change, the rigid model earns its place down to a bush of about 0.15 MN/m.
 
 The camber **itself** is a different matter. A tenth of a degree there needs a bush
 of about 1.8 MN/m, twelve times stiffer. If a designer wants to know where the
@@ -55,7 +55,7 @@ asked for.
 | Three-row least squares | §1.2's closed form | the same pose, to 10⁻¹² m |
 | Three rows, diagnosed | the two-row system | the same pose, and one row fewer |
 | Compliant at 100 MN/m | rigid | 0.002° at rest, and falling as the stiffness rises |
-| Compliant at 0.2 MN/m | rigid | 0.91° at rest, 0.05° in the change over the travel |
+| Compliant at 0.2 MN/m | rigid | 0.91° at rest, 0.01° in the change over the travel |
 | The exported ladder | this section's front view | within 0.04°, over four stiffnesses |
 
 Every one of those numbers is a comparison between two models of the same

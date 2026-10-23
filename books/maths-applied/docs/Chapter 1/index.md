@@ -43,8 +43,10 @@ The main thread is §1.1 to §1.5, in order, and it is complete on its own. Each
 those sections ends with an optional page marked **Going deeper**, and a reader who
 skips every one of them has still read the chapter.
 
-§1.6 and §1.7 are different: they are drafted, they say so, and they are the road
-out of the chapter rather than part of the argument.
+§1.6 and §1.7 both stand outside the main thread, and neither is needed for the chapter
+problem. §1.6 is a finished section in its own right. It asks what the mechanism does on
+the way to a position, and answers it with a model and a number. §1.7 is an outline of the
+whole car, and says so, because a whole vehicle is a book rather than a section.
 
 ## The sections
 
@@ -55,7 +57,7 @@ out of the chapter rather than part of the argument.
 | 1.3 Two legs, one contradiction | three equations, two unknowns | what an extra equation does |
 | 1.4 The redundancy was ours | the same, diagnosed | which equation was spare, and how to tell |
 | 1.5 Bushes are not rigid | a spring under load | when the simpler model stops being enough |
-| 1.6 Mass and dampers | drafted | what changes when the mechanism has mass |
+| 1.6 Mass and dampers | a mass and a rate | what changes when the mechanism has mass |
 | 1.7 The full vehicle | outline | where these models sit in a whole car |
 
 ## Your turn to connect it

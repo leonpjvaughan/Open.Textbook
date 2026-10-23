@@ -100,7 +100,7 @@ Every method named here is in [Methods, A to Z](../techniques/#linear-systems), 
 
 | symptom | cause | fix |
 |---|---|---|
-| The residual is tiny and the answer is wrong | The matrix is ill-conditioned, so a small residual says little | Check the condition number; scale the unknowns |
+| The residual is tiny and the answer is wrong | The matrix is ill-conditioned; a small residual says little | Check the condition number; scale the unknowns |
 | The factorisation runs out of memory | Fill-in: a sparse matrix with a dense factor | A fill-reducing ordering, or an iterative method |
 | Conjugate gradients stalls or returns nonsense | The matrix is not symmetric positive definite | Check symmetry; use GMRES or MINRES |
 | The answer changes when the rows are reordered | Rounding, amplified by conditioning | Fix a pivot ordering, and report the conditioning |

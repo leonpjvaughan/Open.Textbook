@@ -22,6 +22,20 @@ kinds, not about the corner.
 | How does the wheel bounce? | mass, a spring and a damper | [parabolic](../parabolic/index.md), plus [eigenvalues](../eigenvalue/index.md) | a time step, and a choice of integrator |
 | How hot does the damper get? | the same, plus heat | [parabolic](../parabolic/index.md), and stiff | a time step chosen for the wrong scale |
 
+The map has nine kinds, and this collection gives a section to four of them: §1.2
+and §1.5 say the corner is a [root problem](../root/index.md), §1.3 and §1.4 say it
+is a [linear system](../linear-system/index.md), and §1.6 says it is a
+[saddle point](../saddle-point/index.md) inside a [parabolic](../parabolic/index.md)
+integration. Three more —
+[averaging](../averaging/index.md), [elliptic](../elliptic/index.md) and
+[hyperbolic](../hyperbolic/index.md) — have no section that names them yet, and
+their pages say so under **Used in this collection**. The stiffness sweep below is
+an [optimisation](../optimisation/index.md) and the bounce is a
+[stability eigenvalue](../eigenvalue/index.md), and `Maths Applied` now names both
+where the class becomes true: §1.5 for the stiffness that meets a tolerance, §1.6 for
+the frequencies the motion repeats at. The remaining three wait for a chapter that
+poses a field problem, or one that measures a model with an error bar.
+
 ## Where is the wheel: root finding
 
 Set the lower arm's angle, and the upper ball joint is wherever two circles meet.
@@ -53,18 +67,28 @@ Replace the joint with a spring and the corner is a root problem at each wheel
 position. That makes one question worth asking: how stiff does the spring have to be
 before the bushed model agrees with the rigid one?
 
-The answer is a sweep, and the sweep is a number:
+The answer is a sweep, and the sweep is a number. These are the export's own four
+stiffnesses, and `Maths Applied` §1.5 prints the same ladder from the same model:
 
-| bush stiffness | camber at rest | difference from the rigid model | change over the travel |
+| bush stiffness | camber at rest | difference at rest | change over the travel |
 |---|---|---|---|
-| 0.2 MN/m | −2.053° | 1.053° | 1.916° |
-| 2 MN/m | −1.106° | 0.106° | 1.948° |
-| 20 MN/m | −1.011° | 0.011° | 1.950° |
+| 0.2 MN/m | −1.91° | −0.91° | 1.96° |
+| 1 MN/m | −1.18° | −0.18° | 1.92° |
+| 10 MN/m | −1.02° | −0.02° | 1.91° |
+| 100 MN/m | −1.00° | −0.002° | 1.91° |
 
-Ten times the stiffness buys one more digit, which is what a stiff limit looks like
-when you sweep it. A stiffness chosen for a tenth of a degree is 2 MN/m, and that is
+The difference column is the bushed camber minus the rigid model's −1.000° at rest,
+so a negative number means the bush has moved the wheel further from the design
+value. Ten times the stiffness brings the two models closer, which is what a stiff
+limit looks like when you sweep it. The last column barely moves: the bush shifts
+the curve rather than tilting it.
+
+A stiffness chosen for a tenth of a degree **at rest** is **1.8 MN/m**, and that is
 an [optimisation](../optimisation/index.md) with a stated tolerance — `Maths Applied`
-§1.5 prints the table.
+§1.5 prints the table. §1.5 also shows that the same tenth of a degree asked of the
+change over the travel is met by 0.15 MN/m, twelve times softer, because it is a
+question about a different quantity. That is why a tolerance has to name what it is
+a tolerance on.
 
 ## How does the wheel bounce: parabolic, and eigenvalues
 

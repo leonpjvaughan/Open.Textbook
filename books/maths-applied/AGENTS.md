@@ -52,12 +52,24 @@ simple model, and never treats complexity as maturity.
 - Do **not** call a model naive, toy, crude, simplistic or a starting point for
   something "proper". Those words tell a reader that the honest answer is the
   complicated one, which is the opposite of the book's thesis.
-- Banned outright when describing a model: **naive, toy, just, simply, properly,
-  obviously, real, full**. ("Real" and "full" are the seductive ones: "the real
-  model" implies every other model is a lie. Write the model's name instead —
-  "the compliant model", "the two-leg model".)
-- The lint rules already ban `just`, `simply`, `obviously`, `clearly`, `easy`,
-  `trivial`. The rest is on you, and on review.
+- **Linted, because the disparagement is in the word:** `naive` and `toy`, and the
+  ones every book bans — `just`, `simply`, `obviously`, `clearly`, `easy`, `easily`,
+  `trivial`. `naive` and `toy` also have two ordinary senses this collection writes
+  on purpose, "the naive error bar" and "a toy car", so each sense is a row in
+  `ALLOWED_PHRASES`; the fix for the next false positive is a row there, not a
+  narrower rule.
+- **real**, **full** and **properly** are a review rule, not a lint rule. They are
+  the seductive ones — "the real model" implies every other model is a lie, and
+  "the full model" implies the elaborate one is the honest one — but the fault is in
+  what the word is attached to, not in the word. Measured over the collection:
+  `real` 625 times on 263 pages (`real numbers`, `real roots`, the `real image` of
+  optics), `full` 5,353 times on 873 pages (5,097 of them "full working"), and
+  `properly` 9 times, every one meaning "correctly". A word rule would have to
+  allowlist all of those senses and would still fire on the first "a real machine".
+  So write the model's name instead — "the compliant model", "the two-leg model" —
+  and catch it at review.
+- `crude` and `simplistic` are banned and not linted, because no page writes them
+  yet: a rule added before the prose that needs it is a rule nobody has measured.
 
 ### Where two models overlap, show that they agree — with a number
 

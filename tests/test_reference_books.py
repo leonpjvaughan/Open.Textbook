@@ -16,10 +16,18 @@ for this book and, by design, never overwrites an authored page.
 from __future__ import annotations
 
 import re
+from pathlib import Path
 
 import pytest
 
 from textbook import book as books
+from textbook.hooks import usedin
+
+# The two pages' numbers are one model's, and §1.5's test already knows how to read that
+# model. Re-importing the export's conventions here would be a second copy of them, and
+# the two copies would drift — which is the defect these tests exist to catch.
+from test_maths_applied_ladder import SECTION as SECTION_1_5
+from test_maths_applied_ladder import STIFFNESS, crossing
 
 MAP = "numerical-methods"
 
@@ -116,7 +124,7 @@ def test_the_home_page_links_every_page_in_the_registry():
 def _counts() -> tuple[int, int]:
     """The two numbers the home page prints, measured from the pages themselves.
 
-    62 methods is the number of rows in the four tables under *Methods, A to Z*, because
+    76 methods is the number of rows in the five tables under *Methods, A to Z*, because
     that page is the book's own claim about how many methods it names. 64 systems is the
     number of entries in the nine class pages' *Systems that live here* lists, because
     those are the systems the reduction is claimed to cover. Both are counted here rather
@@ -206,7 +214,7 @@ def test_the_two_indexes_link_every_class_they_name():
 
 
 def test_the_home_page_states_the_counts_it_claims():
-    """The page opens with an arithmetic claim: 62 methods, 64 systems, nine kinds.
+    """The page opens with an arithmetic claim: 76 methods, 64 systems, nine kinds.
 
     Each number is measured from the book, so the argument cannot quietly become false
     when a method is added or a system is dropped. This is the same rule as §1.5's
@@ -300,3 +308,221 @@ def test_a_class_page_keeps_the_shared_skeleton(slug):
     missing = [h for h, p in zip(SKELETON, positions) if p < 0]
     assert missing == [], f"{slug} is missing {missing}"
     assert positions == sorted(positions), f"{slug} has the headings out of order"
+
+
+# --- the two indexes are views of the class pages --------------------------------
+
+
+def _table_rows(page: Path, columns: int, heading: str | None = None) -> list[list[str]]:
+    """The rows of the Markdown tables on a page, as cells.
+
+    A table is found by its width, because the page's other tables are a different
+    width and the header row is the only row that names the columns. `heading` limits
+    the search to one section, which is how a class page's *What goes wrong* table is
+    told apart from any other three-column table that arrives later.
+    """
+    text = page.read_text(encoding="utf-8")
+    if heading is not None:
+        text = text[text.index(heading) :].split("\n## ", 1)[0]
+    rows = []
+    for line in text.splitlines():
+        if not line.startswith("|"):
+            continue
+        cells = [cell.strip() for cell in line.strip().strip("|").split("|")]
+        if len(cells) != columns:
+            continue
+        if set(cells[0]) <= set("-: ") or cells[0].lower() in ("method", "technique", "symptom"):
+            continue
+        rows.append(cells)
+    return rows
+
+
+def _names(cell: str) -> list[str]:
+    """The method names a cell carries: its commas, minus the ones inside brackets.
+
+    ``Control variates, antithetic pairs`` is two methods, and ``Preconditioners
+    (ILU, AMG, Jacobi)`` is one whose brackets happen to contain commas. Splitting on
+    every comma would turn the second into three names the A–Z is not expected to have.
+    """
+    parts, depth, current = [], 0, ""
+    for char in cell:
+        if char == "(":
+            depth += 1
+        elif char == ")":
+            depth -= 1
+        if char == "," and depth == 0:
+            parts.append(current)
+            current = ""
+        else:
+            current += char
+    parts.append(current)
+    return [part.strip() for part in parts if part.strip()]
+
+
+def _plain(name: str) -> str:
+    """A name as the index compares it: no bracketed qualifier, no dash variants."""
+    return re.sub(r"\s*\(.*?\)", "", name).replace("–", "-").replace("—", "-").strip().lower()
+
+
+def _named(candidate: str, names: set[str]) -> bool:
+    """Whether a class page's name is one the A–Z carries.
+
+    Not equality: the A–Z groups synonyms in one row, and a class page says what the
+    local variant is — ``GMRES with a block preconditioner`` is the ``GMRES`` row. A
+    whole-word match either way is the loosest rule that still fails when a name is
+    absent, which is the property this test is for.
+    """
+    if not candidate:
+        return True
+    word = lambda text: rf"(?<![\w-]){re.escape(text)}(?![\w-])"  # noqa: E731
+    return any(
+        candidate == name or re.search(word(candidate), name) or re.search(word(name), candidate)
+        for name in names
+    )
+
+
+@pytest.mark.parametrize("slug", CLASSES)
+def test_every_method_a_class_page_names_is_in_methods_a_to_z(slug):
+    """The class page's claim: "Every method named here is in Methods, A to Z".
+
+    That sentence makes the A–Z the second copy of every techniques table, which is
+    exactly the kind of copy that rots. The asymmetry is the point: the class pages
+    are the authority on what applies to a class, and the index must carry every name
+    they use with its price. A method added to a class page and not to the index fails
+    here, before a reader follows the link and finds nothing.
+    """
+    known = {
+        _plain(name)
+        for row in _table_rows(map_book().docs / "techniques" / "index.md", 3)
+        for name in _names(row[0])
+    }
+    page = map_book().docs / slug / "index.md"
+    missing = [
+        name
+        for row in _table_rows(page, 4, heading="## Techniques")
+        for name in _names(row[0])
+        if not _named(_plain(name), known)
+    ]
+    assert missing == [], f"{slug} names methods the index does not carry: {missing}"
+
+
+def test_every_symptom_is_one_row_in_one_wording_on_both_pages():
+    """A wrong answer is looked up by observation, and the class page is where the fix is.
+
+    The two pages had drifted into two hand-kept lists: ``the smallest eigenvalue is
+    wrong`` against ``comes out wrong``, and a cause stated twice with a different fix.
+    So the symptom text is the key, and a row is the same row only when the cause and
+    the fix match too. Both directions are checked — an index row whose class page has
+    never heard of it is the same defect seen from the other side, and it is the one
+    that arrives when somebody adds a row to the index alone.
+    """
+    index: dict[str, tuple[str, str, str]] = {}
+    for symptom, classes, cause, fix in _table_rows(
+        map_book().docs / "symptoms" / "index.md", 4
+    ):
+        assert symptom not in index, f"the symptom index has two rows for {symptom!r}"
+        index[symptom] = (classes, cause, fix)
+
+    for slug in CLASSES:
+        page = map_book().docs / slug / "index.md"
+        for symptom, cause, fix in _table_rows(page, 3, heading="## What goes wrong"):
+            assert symptom in index, f"{slug} names a symptom the index does not: {symptom!r}"
+            classes, page_cause, page_fix = index[symptom]
+            assert (page_cause, page_fix) == (cause, fix), (
+                f"{symptom!r} has two versions, on {slug} and on the symptom index"
+            )
+            assert f"](../{slug}/)" in classes, (
+                f"the symptom index does not send {symptom!r} to {slug}"
+            )
+
+    for symptom, (classes, cause, fix) in index.items():
+        for slug in re.findall(r"\]\(\.\./([a-z-]+)/\)", classes):
+            rows = {
+                row[0]: (row[1], row[2])
+                for row in _table_rows(
+                    map_book().docs / slug / "index.md", 3, heading="## What goes wrong"
+                )
+            }
+            assert rows.get(symptom) == (cause, fix), (
+                f"the symptom index cites {slug} for {symptom!r}, and that page does not carry it"
+            )
+
+
+# --- the worked case quotes one model ------------------------------------------
+
+
+def _ladder(page: Path, columns: int) -> dict[float, list[str]]:
+    """A stiffness ladder as a page prints it, keyed by stiffness."""
+    rows: dict[float, list[str]] = {}
+    for row in _table_rows(page, columns):
+        match = re.fullmatch(r"([0-9.]+) MN/m", row[0])
+        if match:
+            rows[float(match.group(1))] = row[1:]
+    return rows
+
+
+def test_the_worked_cases_ladder_is_section_1_5s_ladder():
+    """The page quoted a ladder from §1.5, and its cells were a different model's.
+
+    §1.5's table is the vendored export's, and `test_maths_applied_ladder.py` recomputes
+    it. This compares the two pages cell for cell at the stiffnesses the export carries,
+    so a page that sweeps 2 and 20 MN/m, or prints 1.053° where the export says 0.91°,
+    fails here rather than in a reader's hands. The difference column keeps §1.5's sign:
+    the bushed camber is further from zero than the rigid one, so the difference is
+    negative, and a magnitude with a positive sign is a second convention for one number.
+    """
+    section = _ladder(SECTION_1_5, 5)
+    worked = _ladder(map_book().docs / "worked-case" / "index.md", 4)
+    assert sorted(worked) == list(STIFFNESS), (
+        f"the worked case sweeps {sorted(worked)} MN/m, the export carries {list(STIFFNESS)}"
+    )
+    for stiffness, cells in worked.items():
+        assert cells == section[stiffness][1:], (
+            f"{stiffness} MN/m: the worked case says {cells}, §1.5 says {section[stiffness][1:]}"
+        )
+
+
+def test_the_worked_case_names_the_exports_tenth_of_a_degree_stiffness():
+    """The ladder's conclusion, recomputed: 1.8 MN/m, not the front view's 2.
+
+    §1.5's printed ladder rounds, so the crossing has to come from the export rather
+    than from the two rows either side of a tenth of a degree — that interpolation
+    gives 1.9. ``crossing`` is §1.5's own test's arithmetic, imported rather than
+    restated, so the two books cannot disagree about which number the model produces.
+    """
+    page = (map_book().docs / "worked-case" / "index.md").read_text(encoding="utf-8")
+    number = f"**{round(crossing(), 1)} MN/m**"
+    assert number in page, f"the worked case does not name the export's {number}"
+
+
+# --- the kinds with no caller ---------------------------------------------------
+
+
+#: The five kinds no section in the collection carries a `:::class` for, so their
+#: pages print the "no page names this class yet" sentence. Written out rather than
+#: derived from `:::used`: a test that reads its expectation from the hook agrees with
+#: itself when a callback is dropped. When a chapter fills one of these, this fails and
+#: says to update `worked-case`, which names the five and would otherwise be wrong.
+DEAD_ENDS = ["averaging", "elliptic", "hyperbolic"]
+
+
+def test_the_worked_case_agrees_with_the_callers_each_kind_actually_has():
+    """`:::used` is derived; the worked case's claim about it has to be too.
+
+    The five questions on that page are five kinds, and two of them — the stiffness
+    sweep and the bounce — are named by no section in the collection. The page now
+    says so, because a reader who follows the link from it to a class page used to
+    arrive at "no page names this class yet". This is the check that the admission and
+    the derived list are about the same five.
+    """
+    for slug in CLASSES:
+        callers = usedin.used_in(slug)
+        if slug in DEAD_ENDS:
+            assert callers == [], (
+                f"a page now names {slug}; the worked case must stop saying none does"
+            )
+        else:
+            assert callers, f"{slug} has lost its callers, or the worked case is now wrong"
+    worked = (map_book().docs / "worked-case" / "index.md").read_text(encoding="utf-8")
+    missing = [slug for slug in DEAD_ENDS if f"](../{slug}/index.md)" not in worked]
+    assert missing == [], f"the worked case does not name the kinds with no caller: {missing}"

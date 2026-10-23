@@ -95,8 +95,9 @@ Every method named here is in [Methods, A to Z](../techniques/#linear-systems), 
 | symptom | cause | fix |
 |---|---|---|
 | The iteration count grows as the mesh is refined | No preconditioner, or a smoother used alone | Multigrid, or AMG |
-| Conjugate gradients stalls or gives nonsense | The matrix is not symmetric positive definite | Check the model; use GMRES |
-| The answer looks right but the flux is wrong | The boundary condition was applied to the wrong quantity | Check whether the value or its derivative was given |
+| It ran all night and moved nowhere | The method moves information one cell per step | A method that sees the whole region at once |
+| Conjugate gradients stalls or returns nonsense | The matrix is not symmetric positive definite | Check symmetry; use GMRES or MINRES |
+| The answer looks right but the flux is wrong | The boundary condition is on the wrong quantity | Check whether the value or its derivative was given |
 | Refining the mesh changes the answer a lot | A point load or a re-entrant corner | Graded mesh, or a formulation that expects it |
 | Two different solvers agree but the numbers differ | The system is ill-conditioned | Scale the unknowns; check the residual, not the answer |
 

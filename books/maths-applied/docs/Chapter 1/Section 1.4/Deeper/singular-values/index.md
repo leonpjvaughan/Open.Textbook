@@ -28,7 +28,7 @@ direction the machine flattens to nothing.
 
 Here $J$ takes two inputs (how far to move the ball joint, across and up) and
 returns three outputs (how much each equation changes). Its three singular values
-are 1.446, 0.953 and 0. That is as many as three inputs can produce, and the third
+are 1.415, 0.998 and 0. That is as many as two inputs can produce, and the third
 is zero because two inputs cannot fill three dimensions.
 
 ## Two null spaces, and only one is about the equations
@@ -69,14 +69,14 @@ others.
 
 | Quantity | Value | What it says |
 |---|---|---|
-| σ₁ | 1.446 | the strongest single combination of equations |
-| σ₂ | 0.953 | the other one, nearly as strong |
+| σ₁ | 1.415 | the strongest single combination of equations |
+| σ₂ | 0.998 | the other one, nearly as strong |
 | σ₃ | 0.000 | no third combination exists |
-| σ₁ / σ₂ | 1.5 | well conditioned: no near-collapse |
+| σ₁ / σ₂ | 1.42 | well conditioned: no near-collapse |
 | left null vector | (0.707, −0.707, 0) | rows 1 and 2 cancel |
 
 The ratio is the number practitioners actually watch. If σ₂ had come out at 0.001
-rather than 0.953, the model would be in trouble of a different kind: two equations
+rather than 0.998, the model would be in trouble of a different kind: two equations
 that are *almost* the same, so that a small measurement error in one of them swings
 the answer wildly. That is not redundancy, it is fragility, and the cure is
 different — measure better, or model differently.

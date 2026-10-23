@@ -102,6 +102,7 @@ Every method named here is in [Methods, A to Z](../techniques/#moving-problems),
 | symptom | cause | fix |
 |---|---|---|
 | The answer oscillates once the step is large | The explicit stability limit was crossed | Go implicit, or reduce the step |
+| The step size collapses to nothing | Stiff, with an explicit method | An implicit method |
 | It takes far more steps than expected | The $\Delta x^{2}$ limit, with a fine mesh | Implicit method, or a coarser mesh with a check |
 | The total quantity is not conserved | A non-conservative discretisation | Write the flux form, and check the balance |
 | The early time is wrong and the late time is fine | The initial data does not match the boundary | Make them consistent before blaming the solver |

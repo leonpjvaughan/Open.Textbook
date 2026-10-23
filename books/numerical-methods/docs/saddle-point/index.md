@@ -82,7 +82,7 @@ Every method named here is in [Methods, A to Z](../techniques/#linear-systems), 
 | technique | what it does | when it wins | when it is the wrong tool |
 |---|---|---|---|
 | Sparse direct with pivoting | Factorises the block system | Small problems; two dimensions | Large three-dimensional problems |
-| Schur complement, solved iteratively | Eliminates the state, solves for the multiplier | Good solver for $A$, clear block structure | $A^{-1}$ is expensive to apply |
+| Schur complement | Eliminates the state, solves for the multiplier | Good solver for $A$, clear block structure | $A^{-1}$ is expensive to apply |
 | Uzawa | Iterates on the multiplier alone | Short, and quick to write | Without a good preconditioner it converges slowly |
 | MINRES | Krylov method for symmetric indefinite systems | The system is symmetric | Non-symmetric blocks |
 | GMRES with a block preconditioner | Krylov on the whole system | The standard answer for large problems | No preconditioner, or a poor one |

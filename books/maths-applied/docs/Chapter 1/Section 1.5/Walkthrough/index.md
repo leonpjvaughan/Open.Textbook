@@ -92,8 +92,9 @@ rather than at one convenient value.
 Look at the last column, though, because it is the surprise. The bush mostly
 **moves** the curve rather than tilting it: the load is constant, so the deflection
 is roughly constant, and the camber change over the travel barely notices. A soft
-bush of 0.2 MN/m shifts the whole curve by about a degree and changes the total
-travel by five hundredths of a degree.
+bush of 0.2 MN/m shifts the whole curve by about a degree, and the change over the
+travel moves by five hundredths of a degree, from 1.96° at 0.2 MN/m to 1.91° at
+100 MN/m.
 
 ## The chapter's problem, answered
 
@@ -101,9 +102,11 @@ The chapter asked how far the camber changes, and how little model can answer it
 within a tenth of a degree. Both halves now have numbers, and the second one turns
 out to depend on a distinction the question hides.
 
-Over the full travel the rigid model gives a camber change of **1.91°**, from
-−1.86° at 40 mm of droop to +0.05° at 40 mm of bump. Call that 2°, or 1.05° for a
-40 mm bump from rest.
+Over the full travel the rigid model gives a camber change of **1.95°**, from
+−1.87° at 40 mm of droop to +0.08° at 40 mm of bump. Call that 2°, or 1.08° for a
+40 mm bump from rest. The export's ladder gives 1.91° at 100 MN/m, four
+hundredths below the rigid model's. That gap is the front view's idealisation,
+measured in §1.4, and it is inside the tenth of a degree this chapter asked for.
 
 Now the tolerance. A tenth of a degree can be asked of two different things:
 
@@ -127,14 +130,22 @@ than an appendix to it. §1.2's model and this one do not compete. They answer
 different versions of the same question, and which version you asked decides which
 one is right.
 
+Read the first bullet again, though, because it is a different kind of question from
+everything above. "About 1.8 MN/m" is not a solve: it is the stiffness that makes a
+number meet a target, and finding it means searching over the stiffness rather than
+settling at the equilibrium for one. The bush still settles where the two forces
+agree; what changes is what you are asking for.
+
+:::class optimisation
+
 ## The agreement panel
 
 | Check | Value |
 |---|---|
-| Camber change over the full travel, rigid model | 1.91° |
+| Camber change over the full travel, rigid model | 1.95° |
 | Camber at rest, bush model at 1 MN/m | −1.18°, which is 0.18° from rigid |
 | Camber at rest, bush model at 100 MN/m | −1.00°, which is 0.002° from rigid |
-| Camber change, bush model at 0.2 MN/m | 1.96°, which is 0.05° from rigid |
+| Camber change, bush model at 0.2 MN/m | 1.96°, five hundredths above the 100 MN/m row |
 | Bush stiffness for a tenth of a degree **at rest** | about 1.8 MN/m |
 | The front view's ladder against the export's | within 0.04°, over four stiffnesses |
 | Bush stiffness for a tenth of a degree **in the change** | about 0.15 MN/m |

@@ -118,6 +118,7 @@ Every method named here is in [Methods, A to Z](../techniques/#moving-problems),
 | The answer behind the shock is wrong | A non-conservative form, or the wrong Riemann solver | Write the flux form; check the wave speeds |
 | It blows up at a step that worked before | CFL crossed, usually by a finer mesh | Reduce the step, and compute it from the fastest wave |
 | A rarefaction has a jump in it | The Riemann solver has no entropy fix | Add one |
+| Energy grows without a source | A method that does not respect the structure | Symplectic or energy-preserving integration |
 | The boundary at the outlet reflects | A value was applied where information leaves | A one-sided, non-reflecting condition |
 
 ## Used in this collection

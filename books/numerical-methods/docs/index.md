@@ -13,11 +13,11 @@ The numbers are the whole argument:
 
 | | |
 |---|---|
-| methods named in [Methods, A to Z](techniques/index.md) | **62** |
+| methods named in [Methods, A to Z](techniques/index.md) | **76** |
 | systems the nine kinds are used on | **64** |
 | kinds of question | **9** |
 
-Nobody holds sixty-two methods in their head. Nine kinds is a different size of
+Nobody holds seventy-six methods in their head. Nine kinds is a different size of
 task. Learn the nine, and each method becomes a lookup inside a kind you already
 understand, chosen by a circumstance you can name.
 
@@ -55,7 +55,7 @@ They are not more boxes. They are the choices inside a box.
 
 Each kind also has properties of its own that narrow the choice — how sparse a
 matrix is, whether it is symmetric, how well conditioned it is, how wide a mesh is —
-and its page names them. That is the whole reason nine kinds hold sixty-two
+and its page names them. That is the whole reason nine kinds hold seventy-six
 methods: the kind is the question, and the circumstances are the choices.
 
 ## Why the number is nine

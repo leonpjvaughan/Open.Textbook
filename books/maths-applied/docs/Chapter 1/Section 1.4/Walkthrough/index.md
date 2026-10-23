@@ -26,10 +26,10 @@ The Jacobian is a $3 \times 2$ matrix. Its singular value decomposition is
 
 $$ J = U\,\Sigma\,V^{\mathsf{T}}, $$
 
-with $\Sigma$ holding the singular values down its diagonal. For the pose at the
-bump end of the travel, those values are
+with $\Sigma$ holding the singular values down its diagonal. At the design pose,
+those values are
 
-$$ \sigma = \left(1.446,\ 0.953,\ 0.000\right). $$
+$$ \sigma = \left(1.415,\ 0.998,\ 0.000\right). $$
 
 Two of them are not zero, so the Jacobian has rank 2: the two unknowns are both
 determined, and no direction in the point's own plane is left free. The third
@@ -101,8 +101,9 @@ the decision you made was the one you thought you made.
 
 One loose end, stated because the chapter's method is to state it. A projection of a
 triangle is not a triangle with the same edges: the upper arm in this chapter's front
-view is 0.30829 m long, and the two legs of the real wishbone project to 0.30717 m
-and 0.30948 m. The view's single arm sits between them, within about a millimetre.
+view is 0.30336 m long, and the two legs of the real wishbone are 0.31875 m and
+0.32016 m. The view's single arm is shorter than either leg, by 15 mm and 17 mm,
+because the front view flattens the fore-aft splay of the two chassis pivots.
 
 So the front view is an idealisation *of the three-dimensional linkage*, chosen to
 match it at the design position and to be simple enough to solve in closed form. The
@@ -115,7 +116,7 @@ number for rather than an assurance.
 
 | Check | Value |
 |---|---|
-| Singular values of the three-row Jacobian | 1.415, 0.998, 0.000 |
+| Singular values of the three-row Jacobian at the design pose | 1.415, 0.998, 0.000 |
 | Left null vector | (0.707, −0.707, 0), so the two legs cancel |
 | Least squares with all three rows | same point as §1.2, to 10⁻¹⁶ m |
 | Direct 2×2 solve with the spare row deleted | the same point again |

@@ -92,7 +92,7 @@ Every method named here is in [Methods, A to Z](../techniques/#averaging), with 
 
 | symptom | cause | fix |
 |---|---|---|
-| The error bar is tiny but the answer is wrong | Samples were not independent, or the model is biased | Check the autocorrelation; check the model, not the sampler |
+| A tiny error bar, and the answer is wrong | Samples were not independent, or the model is biased | Check the autocorrelation and the model |
 | The chain never settles | The target has not been normalised, or the support is wrong | Fix the model before tuning the sampler |
 | A rare event never appears | Plain sampling, and the event is rare | Importance sampling or subset simulation |
 | Ten million samples and still noisy | The variance of $g$ is large | A control variate, or a quasi-random sequence |
