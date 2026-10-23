@@ -324,28 +324,66 @@ never a dependency.
 ### The service-worker caching decision
 
 The worker must not undo the guarantee above, so its strategy is deliberately
-one-directional:
+one-directional, and it is **two caches, because there are two kinds of URL**.
 
-| Request | Strategy | Why |
-|---|---|---|
-| Navigation (`mode === "navigate"`) | **network-first** | Online, the network always wins, so a reader is never served a page from before a fix. The cache answers only when the network cannot. |
-| Static asset (style/script/font/image) | **cache-first** | The bytes do not change under a stable name. |
-| Anything else | network-first | Same reason as a navigation. |
-| Non-GET, or another origin | not intercepted | A worker that intercepts everything breaks something. |
+| Request | Strategy | Cache | Why |
+|---|---|---|---|
+| Navigation (`mode === "navigate"`) | **network-first** | site | Online, the network always wins, so a reader is never served a page from before a fix. The cache answers only when the network cannot. |
+| Content-addressed asset (`…/themes.10b6507e.css`) | **cache-first** | site | The name is the bytes, so a cached copy cannot be stale and a deploy leaves it alone. |
+| `…/pagefind/…` | **network-first** | runtime | Pagefind's names are pagefind's: a stale script beside a fresh index ranks pages that no longer exist, and the payload is 2–3 MB per book. |
+| Static asset with a stable name | **cache-first** | runtime | `figures.js`, `kit.js`, the icons, `booklet.json`: there is no name to change, so the cache is versioned instead. |
+| Anything else | network-first | runtime | Same reason as a navigation. |
+| Non-GET, or another origin | not intercepted | — | A worker that intercepts everything breaks something. |
+
+**The site cache is what a reader keeps.** Its name carries no build label, and
+`activate` may not delete it — that is the whole reason for the split: a reader who
+has read a book, or downloaded one, still has it after a deploy. It is bounded by
+age instead, from the `Date` each response carries: `activate` drops anything older
+than `MAX_AGE` (six months). A book a reader has not opened in six months is a book
+they are not revising from.
+
+**The runtime cache is what a deploy replaces.** Its name carries the build label,
+so `activate` deletes every other one. It holds only the names that cannot be
+addressed, so deleting it costs a reader six small files and a search index.
 
 Only `/` and `/manifest.webmanifest` are precached, and nothing else: a failed
 precache fails the whole install, so the list stays tiny. Every other page is
 cached as it is visited, and an uncached navigation falls back to the front door
 rather than to the browser's error page.
 
-**The update path is explicit rather than hoped for.** `assets/sw.js` carries the
-placeholder `__TB_BUILD__`, and the portal stamps the build label (the release
-tag, or the commit) into the cache name. Every deploy therefore ships a
-byte-different worker. Because Workers revalidates `sw.js` on request, the
-browser installs it, `skipWaiting()` activates it without waiting for every tab
-to close, `clients.claim()` takes over pages that are already open, and
-`activate` deletes every cache named `open-textbook-*` other than the current
-one. A stale asset cannot outlive a deploy.
+**A chapter keeps itself.** `assets/offline/offline.js` is deferred on every book
+page. When the page has settled it fetches the rest of the chapter the nav has open —
+the page list is the markup the reader can see, so it needs no second source of truth
+and no request to compute — together with each page's figure module. It is idempotent
+(every fetch goes through the worker, which answers from the cache when the network
+cannot) and it declines to run on `saveData` or an `effectiveType` of `2g` or worse.
+The whole book is still a choice the reader makes, with a size beside it.
+
+For that to work, a page must reach the site cache **however it was fetched**:
+`fetch()` from a page has an empty `destination`, so the worker routes on shape —
+a path ending in `/` is a page, because every route in this site is a directory.
+
+**The whole book, when the reader asks.** The Settings panel carries a group that
+says how large this book is and offers to keep it: the size comes from
+`assets/manifest.json`, which lists every page the build wrote and its bytes, so the
+number shown is the number that was measured rather than an estimate made in the
+browser. Pressing it asks for persistent storage, refuses to start if
+`navigator.storage.estimate()` says the device has less than 1.2× the room, fetches
+one page at a time with an `AbortController` that a Stop button aborts, and keeps
+each page's figure module with it. Nothing is fetched until the panel is opened, the
+control is `hidden` in the markup and revealed by script, and the whole group is
+absent on the landing page because there is no book there to keep.
+
+**This is checked in a browser, not argued.** `node tools/dist/cli.js offline site`
+visits a page, reloads through the worker, deletes the runtime cache — exactly what
+a deploy does — goes offline, and asserts the page is 200, its prose is there, every
+stylesheet it links still resolves, and the figure on it still mounts. It also waits for the
+chapter prefetch to go quiet, then goes offline and reads a **sibling** page the
+reader never opened, so "the chapter survives" is measured rather than assumed. It
+runs in `scripts/preview-themes.sh` and as `tests/test_offline_browser.py` (marked
+`browser`). It is proved able to fail: pointing addressed assets at the runtime
+cache makes it report seven errors, and disabling the prefetch reports that no page
+of the chapter was kept.
 
 The whole loop was driven in Chromium, not assumed: an initial cache
 (`open-textbook-<build>`), then a byte-different worker served under the same

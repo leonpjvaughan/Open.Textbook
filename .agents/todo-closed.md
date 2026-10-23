@@ -4356,3 +4356,574 @@ these rows and the class pages.
 equations, before the Gauss–Newton paragraph, and §1.4 keeps its own where the null vector is
 read. The two say different things, and the page now names the class at the moment the reader
 writes it down. `:::used` on `linear-system` lists §1.3 and §1.4, checked in the built page.
+
+---
+
+## 98. The assets a page links kept one name forever, so every deploy re-downloaded them
+
+**What was wrong.** Only the stylesheets were content-addressed. Everything else a
+page reached was stable-named — the 626 figure modules, `settings.js`, `booklet.js`,
+the worker registration, and the portal's three root sheets — so the only correct
+thing `assets/sw.js` could do on a new build was delete every cache under
+`open-textbook-`, which cost a re-download of ~23 MB of assets per deploy and was
+what blocked the offline work (item 101).
+
+Measured on a clean rebuild of all 18 profiles, after the change: of the 4,522 built
+pages, the only asset references that are not content-addressed are `favicon.svg`
+and `apple-touch-icon.png` (on all 4,522), `figures.js` (1,922 pages that mount a
+figure), and one book photograph. Command:
+
+```bash
+python3 - <<'EOF'
+import re, collections, pathlib
+refs = collections.Counter()
+for page in pathlib.Path('site').rglob('*.html'):
+    for ref in re.findall(r'(?<![\w-])(?:href|src)="([^"]+)"', page.read_text()):
+        if '/assets/' in ref or ref.startswith('assets/'):
+            name = ref.split('/')[-1]
+            if not re.search(r'\.[0-9a-f]{8}$', name.rsplit('.', 1)[0]):
+                refs[name] += 1
+print(refs)
+EOF
+```
+
+**The fix, in four parts.**
+
+1. `scaffold.digest` / `scaffold.addressed_name` / `scaffold.addressed_url` — one
+   naming rule, in the one module both `pipeline` and `hooks` may import.
+2. The figure hook writes `data-figure-src="ch10-nth-term.422b3c46.js"` beside the
+   slug, and the loader imports that name, falling back to the slug so the element
+   still works unbuilt in the Quarto / MyST / MDX ports. The slug stays what an
+   author writes and what `audit-figures` selects on.
+3. `addressed_assets(book)` is the one map the page is rendered against and the copy
+   is written from — stylesheets, `settings.js`, the registration script, and
+   `booklet.js`. `copy_assets` renames through it. `booklet.json` keeps its name on
+   purpose: the widget finds it as a sibling of `document.currentScript.src`, and it
+   is fetched rather than imported, so the worker treats it as network-first.
+4. The portal derives the same names from the same source bytes with
+   `scaffold.addressed_url`, so a book page's **root-absolute** registration URL
+   resolves to the file the portal writes without either build reading the other's
+   output. The landing page, the 404 and the legal pages take their five URLs from
+   `portal.root_links(rooted=…)`, and `portal.main()` writes `site/assets/manifest.json`
+   and removes any stable-named copy an older build left behind.
+
+**And the one that cannot be renamed.** `pagefind/pagefind.js` is imported by name
+from the page and the index is fetched by pagefind's own code with relative URLs, so
+no build step can address it. It is now **network-first by URL prefix** in the
+service worker — a stale script beside a fresh index ranks pages that no longer
+exist, and the payload is 2–3 MB per book.
+
+**Left stable on purpose**, and named in `DEPLOY.md`: `figures.js` and `kit.js`
+(213 modules import `./kit.js` by relative name, and addressing the kit would
+invalidate every figure anyway), `sw.js` (its scope comes from its path), the two
+icons, and `booklet.json`. Those are revalidated by the ETag the Worker sends.
+
+**Found on the way.** `ATTR_LINK` was `(?:href|src)="…"`, which matched inside
+`data-figure-src="…"` and reported every figure as a broken link; it is now
+`(?<![\w-])(?:href|src)="…"`. And `AssetRow.rename` was called with only the
+destination, so a content hash was read from a file the copy had not written yet —
+it takes `(source, destination)`, because a hash is a property of the source.
+
+**Verified.**
+
+```
+python -m textbook.pipeline, all 18 profiles, clean   4,522 pages, 0 broken
+node tools/dist/cli.js kit site                      contract kept
+node tools/dist/cli.js audit site                    504 of 504 figures, both schemes
+pytest tests/ -q                                     8,116 passed
+python -m textbook.lint                              scanned 2,595 pages
+```
+
+---
+
+## 101. The worker deleted every cache on activate, so a downloaded book could not survive a deploy
+
+**What was wrong.** `assets/sw.js` deleted every cache prefixed `open-textbook-` that
+was not the current build's, and `skipWaiting()` made that immediate. Correct while
+assets kept stable names; fatal for anything a reader had downloaded — and the
+reason item 102 was blocked rather than merely unbuilt.
+
+**The fix.** Two caches, split by the one property that decides the question: can a
+file's URL change when its bytes do?
+
+- `open-textbook-site` — every navigation and every content-addressed asset. Its name
+  carries no build label and `activate` may not delete it. Bounded by age instead:
+  `activate` drops entries whose server `Date` is older than `MAX_AGE` (six months),
+  which is the price of a cache no deploy clears.
+- `open-textbook-runtime-<build>` — the names that cannot be addressed (`figures.js`,
+  `kit.js`, the icons, `booklet.json`) and the pagefind payload. Versioned by build
+  and deleted on `activate`, as before.
+
+`ADDRESSED` in the worker is the naming rule in its second home, and that is the risk
+this change carried: a name the worker does not recognise lands in the cache a deploy
+deletes, so a downloaded book would quietly stop resolving its stylesheet.
+`tests/test_pwa.py::test_the_addressed_pattern_is_the_one_the_build_writes` compiles
+the worker's own regex and checks it against `scaffold.addressed_name`, so the two
+cannot drift.
+
+**The check that mattered was a browser, so one exists now.** `node tools/dist/cli.js
+offline site` visits a page, reloads through the worker, deletes the runtime cache
+(the deploy), goes offline, and asserts the page is 200, the prose is there, every
+stylesheet still resolves, and the figure mounts. Wired into
+`scripts/preview-themes.sh` and `tests/test_offline_browser.py` (marked `browser`).
+
+**Proved able to fail.** Pointing addressed assets at the runtime cache — a one-line
+regression — makes it report seven errors: no addressed asset in the site cache, and
+all six stylesheets missing offline.
+
+**Found on the way.** `tools/src/commands/preview.ts` read the bundle tokens from
+`site/assets/stylesheets/themes.css` by name, so the theme preview failed the moment
+the sheet was addressed. It now resolves through `site/assets/manifest.json`, the
+contract the portal publishes, and `scripts/preview-themes.sh` passes 6 bundles × 2
+schemes with the offline check added.
+
+**Verified.**
+
+```
+node tools/dist/cli.js offline site    3 cache checks examined, 0 errors
+node tools/dist/cli.js types           0 errors, holding at the baseline
+scripts/preview-themes.sh              all checks passed, 6 themes x 2 schemes
+pytest tests/ -q                       8,120 passed, 11 deselected
+```
+
+---
+
+## 103. The age prune in the site cache had never been exercised
+
+**What was wrong.** `prune()` in `assets/sw.js` deletes an entry from
+`open-textbook-site` when the server's `Date` header is older than `MAX_AGE` (180
+days). The cache exists so a deploy cannot take away a book a reader downloaded, and
+the prune is what stops it growing forever — but the only evidence it worked was that
+the source contained those lines. A `Date.parse` that returned `NaN` on a real
+header, a `cache.delete` passed the wrong argument, or a `Response` whose `Date` the
+Cache API silently drops would all keep the cache growing and say nothing: the cache
+still answers every request correctly, it just never shrinks.
+
+**The fix.** `tools offline` now drives a real activation over entries it seeds
+itself. After the page is read, it puts two responses into the site cache — one dated
+200 days ago, one dated today — drops the registration and reloads, which runs
+`install` and `activate` again (unregistering does not touch Cache Storage, so the
+seeded entries are there to be judged). It then asserts:
+
+- the 200-day-old entry is gone,
+- the entry dated today is still there,
+- the book's own addressed assets are still there.
+
+The seed is asserted as stored *before* the prune is asserted, because a `Date` the
+Cache API refused to keep would make the prune untestable rather than wrong, and the
+two failures need different fixes.
+
+**Proved able to fail.** Making the age comparison unreachable
+(`if (false) return cache.delete(request)`) reports
+`an entry dated 200 days ago survived activation` and exits 1.
+
+**Verified.**
+
+```
+node tools/dist/cli.js offline site    4 cache checks examined, 0 errors
+node tools/dist/cli.js types           0 errors, holding at the baseline
+pytest tests/ -q                       8,120 passed, 11 deselected
+```
+
+---
+
+## 93. The map's pager said "Next chapter", in a book with no chapters
+
+**What was wrong.** `pipeline._pager_eyebrow` returned "Next chapter"/"Previous chapter"
+for any neighbour at depth 2, which is every page of a reference work
+(`optimisation/index.md` → `averaging/index.md`). Every page of `numerical-methods` and
+`proofs` ended with "Previous chapter · Linear system / Next chapter · Saddle point", in
+books whose own `AGENTS.md` says they have no chapters.
+
+**The fix.** The eyebrow takes the book's kind, which the engine already declares:
+`book.qualification == books.REFERENCE`. A reference work's neighbour is a page, so it
+reads "Next page"/"Previous page"; a target of `index.md` still reads "Contents". No new
+field, and no per-book list.
+
+**Verified.** `pytest tests/test_pager.py -q` passes, including a reference book's
+eyebrows computed from its real nav, and a course book's "Next section", "Chapter
+review" and "Next chapter" asserted unchanged. Both reference books were also built to
+`/tmp` and grepped for "chapter" in a pager: none.
+
+## 94. The About page was an exam-shaped disclaimer, in books that have no exam
+
+**What was wrong.** `legal.disclaimer_lines()` and `disclaimer_html()` were one fixed text
+for all eleven books. On `numerical-methods` and `maths-applied` it said the book "builds
+on what your school or college provides", was "not a replacement for your teacher … or
+your exam board's current specification", and that "we check the answers with a computer"
+— in books that declare `oracles: []` and have no answers at all, and whose reader
+`maths-applied/AGENTS.md` describes as "anyone: a student … an engineer reading for
+pleasure, someone who fixes cars".
+
+**The fix.** One branch on the book, read from what `book.yaml` already declares, never
+from a list of book ids:
+
+- `book.boards` decides whether it is a course. A book that names no awarding body follows
+  no specification, so the sentences about a board and a teacher are not true of it; its
+  summary reads "Using this book", not "Using this book alongside your course".
+- `book.oracles` decides whether the accuracy sentence may say a computer checked the
+  answers. A book with none says what was checked instead and points at
+  `sources.yaml`/the acknowledgements.
+
+The hook now passes the build's own book (`cfg.book(config)`) rather than reading a global,
+and the generated colophons were regenerated with `python -m textbook.scaffold` — they are
+generator output (`scaffold.py` calls `legal.disclaimer_lines(book)`), not hand-edited.
+
+**Verified.** `pytest tests/test_legal.py -q` passes, covering both kinds; a course book's
+disclaimer output was rendered before and after the change and compared byte for byte, so
+the change is provably local; `pytest tests/test_pipeline.py tests/test_home_page.py -q`
+passes.
+
+## 97. The style lint did not enforce maths-applied's own ban list
+
+**What was wrong.** `books/maths-applied/AGENTS.md` banned **naive, toy, just, simply,
+properly, obviously, real and full** "when describing a model" and called that a rule, while
+`lint.py::STYLE_WORDS` enforced four of them. The list was therefore half a rule and half a
+note, and nothing said which was which.
+
+**The fix, and why it is split rather than completed.** The distinction is whether the
+disparagement is in the word or in what it is attached to.
+
+- `naive` and `toy` are now linted, because the insult is carried by the word. Both have an
+  ordinary sense this collection writes on purpose — "the naive error bar" (the uncorrected
+  standard error) and "a toy car" — so each sense is a row in `ALLOWED_PHRASES`, and the fix
+  for the next false positive is a row there rather than a narrower regex.
+- `real`, `full` and `properly` are now written down as a **review** rule, with the
+  measurement that decided it: `real` appears 625 times on 263 pages (`real numbers`, `real
+  roots`, the real image of optics), `full` 5,353 times on 873 pages (5,097 of them "full
+  working"), `properly` 9 times, every one meaning "correctly". A word rule would have to
+  allowlist all of that and would still fire on the first "a real machine". The fault is in
+  the noun, and no word rule can see the noun.
+
+**Verified.** `pytest tests/test_lint.py -q` passes with a case per new word and per
+exemption; `python -m textbook.lint` still reports nothing over 2,595 pages.
+
+## 99. Nothing checked the asset graph of a whole built site
+
+**What was wrong.** `test_every_asset_a_page_reaches_for_is_in_the_build` built one chapter
+of one book. In any of the other 17 profiles, a mistyped hash or a file written under one
+name and linked under another was a 404 nothing reported: `pipeline.check_links` follows
+`<a href>` only, and a content hash is not a typo anyone can see.
+
+**The fix.** `node tools/dist/cli.js assets site`, wired into `scripts/check.sh`. It walks
+every built page and asks three questions:
+
+1. does every relative file reference resolve? (page routes are the pipeline's job)
+2. is every **content-addressed** name a page uses recorded in the manifest for its
+   directory — the book profile's or the portal's root one? An unaddressed name (the loader,
+   the kit, the icons) is deliberately not in a manifest, and question 1 already covers it;
+3. does every manifest entry exist on disk? A manifest is the offline download list's seed,
+   so an entry naming a file the build did not write is that list lying.
+
+Two shapes it had to learn: root-absolute references belong to the portal and resolve at the
+site root rather than being skipped — which is why a profile built alone cannot pass this and
+the assembled site can — and a figure module is named in `data-figure-src`, not `href`/`src`.
+
+**It found a real defect on its first run**, one introduced two items earlier: five profiles
+declared `assets/booklet/booklet.6b8b5499.js` in their manifest while the build deliberately
+wrote no booklet for them. `addressed_assets` now asks `book.booklet_name` before adding it,
+because a book without a booklet ships neither the script nor the data.
+
+**Verified.** `assets: 66,697 references and manifest entries examined, 0 errors` in 6.5 s on
+the assembled site; `pytest tests/test_assets_check.py -q` builds a chapter into `tmp_path`
+and proves the check fails on a hand-edited `book.deadbeef.css` and on a stylesheet written
+but linked under another name; `node tools/dist/cli.js types` reports 0 errors.
+
+---
+
+
+## 88. Chapter 1 stated numbers its own model did not produce
+
+**What was wrong.** Five numbers in `books/maths-applied/` had been typed against the
+geometry before `mechanism.js` adopted the package's four chassis points, and nothing
+recomputed prose. Two of them contradicted the figure on the same page.
+
+**The fix.** Each was recomputed from `mechanism.js` or the vendored export and the
+page now names its model:
+
+| Page | Was | Now |
+|---|---|---|
+| §1.2 agreement panel | kernel agrees "within 0.088°" | **0.033°** |
+| §1.2 what the model says | track narrows by 9.7 mm | **9.2 mm** (4.59 mm per side) |
+| §1.4 body | σ = (1.446, 0.953, 0) at the bump end | the design pose's set, which the panel prints |
+| §1.4 + singular-values | arm 0.30829 m, legs 0.30717/0.30948, "between them" | **0.30336 m** against legs **0.31875/0.32016** — shorter than both, and the paragraph now makes *that* the point |
+| §1.5 and the Review | "1.91°, −1.86° to +0.05°" called the rigid model | the rigid front view's **1.950°, −1.869° to +0.082°**; the 1.91° ladder is named as the export's at 100 MN/m |
+
+Two of these were decisions rather than substitutions: §1.4's σ set is one pose (the
+design one the panel prints, and `singular-values` now carries the same set), and
+§1.5/Review name which model each number belongs to, because the section's argument
+turns on the difference.
+
+A sixth number was corrected while test 89 was written: 40 mm of bump from rest is
+worth **1.08°**, not the 0.98° a linear interpolation gave — the curve is not
+straight, and the page now says so.
+
+**Verified.** `pytest tests/test_maths_applied_numbers.py -q` — 14 tests, reading each
+number out of the page and the answer out of the model.
+
+## 89. Nothing recomputed Chapter 1's prose numbers, and that is how 88 happened
+
+**What was wrong.** `tests/test_maths_applied_ladder.py` pinned §1.5's four stiffness
+rows and the 1.8 MN/m crossing. Nothing else in the chapter was checked, so a number
+could drift for as long as nobody read that page.
+
+**The fix.** `tests/test_maths_applied_numbers.py`: read the number out of the page,
+compute it from `docs/assets/data/mechanism.js` or the vendored payload, compare at the
+precision the page prints. It covers §1.2's agreement panel and travel figures, the
+full-travel camber change and its two endpoints, the 40 mm-from-rest figure, the
+kernel-versus-construction difference, §1.4's σ set and arm lengths, and §1.6's
+`212.8 mm / 0.625 s`. It needs no browser; `mechanism.js` is DOM-free by design.
+
+**Verified.** `pytest tests/test_maths_applied_numbers.py tests/test_maths_applied_ladder.py -q`
+passes; putting any of item 88's numbers back fails it.
+
+## 90. `worked-case`'s stiffness ladder contradicted §1.5's tested one
+
+**What was wrong.** `books/numerical-methods/docs/worked-case/index.md` attributed a
+bush ladder to `Maths Applied` §1.5 and mixed two models: its 0.2 MN/m row read
+−2.053° / 1.053° / 1.916° where §1.5's is −1.91° / −0.91° / 1.96°, it used
+0.2/2/20 MN/m where the export carries 0.2/1/10/100, and it concluded that a tenth of a
+degree costs **2 MN/m** where the export and §1.5 both give **1.8 MN/m**.
+
+**The fix.** The table is the export's own four rows at the stiffnesses the export has,
+and the crossing is §1.5's 1.8 MN/m.
+
+**Verified.** `tests/test_reference_books.py` gained
+`test_the_worked_cases_ladder_is_section_1_5s_ladder`,
+`test_the_worked_case_names_the_exports_tenth_of_a_degree_stiffness` and
+`test_the_worked_case_agrees_with_the_callers_each_kind_actually_has`, so the pair
+cannot drift again.
+
+## 91. §1.6's *Watch out* asserted the limit test the section says was removed
+
+**What was wrong.** The body said a third test "was written and taken out", because a
+free quarter car cannot run it — with the masses gone, nothing swings against anything
+and the position is not determined. Twenty lines later the callout said "the limit test
+exists", and the objectives asked the reader to state that limit.
+
+**The fix.** The body now says the sharper test exists **and this model cannot run it**,
+with the reason; the callout points at the test the section did run — dynamic camber
+equals static camber at the same travel, to **0.006°** — and says plainly that the
+mass-to-zero test "cannot be run here" and that the page does not claim to have passed
+it; the objective asks only for the comparison. One answer, and it is the true one.
+
+## 92. §1.6 was "drafted" in four places and "finished" in two
+
+**What was wrong.** The chapter index, the curriculum summary and the section's own
+prose disagreed about whether §1.6 is finished.
+
+**The fix.** It is a **finished** section: it names the question, names the model, gives
+the agreement as a number, carries three figures and vendored data with digests, and
+states its own limit rather than stopping. §1.7 remains the chapter's only outline
+page. The chapter index says so in one sentence, and the section table no longer says
+"drafted" anywhere.
+
+## 95. Five of the map's nine classes had no worked example anywhere
+
+**What was wrong.** The map names nine kinds of problem and `Maths Applied` gave a
+section to four. The other five were reachable from the map with no section behind
+them, and `worked-case` said so only after a reader had followed the link.
+
+**The fix, in two halves.** The two kinds the chapter's own argument actually uses are
+now named where the class becomes true: §1.5 links **optimisation** — "about 1.8 MN/m"
+is the stiffness that makes a number meet a target, which is a search rather than a
+solve — and §1.6 links **eigenvalue** — the frequencies at which the motion repeats are
+the eigenvalues of the same equations, and the step is set by the fastest. The remaining
+three (averaging, elliptic, hyperbolic) have no section that names them, and
+`worked-case` now says which they are, why, and what chapter would give them one.
+
+**Verified.** `test_the_worked_case_agrees_with_the_callers_each_kind_actually_has`
+reads the derived `:::used` list for every class and fails if a dead end gains a caller
+or a caller disappears; the five questions on `worked-case` and the derived list are
+checked against each other.
+
+## 96. *Methods, A to Z* was missing 13 methods it says holds them all
+
+**What was wrong.** Every class page carries "Every method named here is in **Methods,
+A to Z**", and thirteen of them were not: fixed-point iteration, trust region, stratified
+and Latin hypercube sampling, subspace iteration, contour integral (FEAST), augmented
+Lagrangian, constraint elimination, boundary element, spectral methods, exponential
+integrators, Lax–Wendroff, spectral element, and Jacobi/Gauss–Seidel/SOR. The symptom
+lists were also two hand-kept copies in different wordings.
+
+**The fix.** The thirteen are in the A–Z in the same three columns, and the symptom
+tables now match word for word: "The smallest eigenvalue is wrong" and "…comes out
+wrong" are one row again. The pair is checkable rather than hoped for:
+`test_every_method_a_class_page_names_is_in_methods_a_to_z` (per class) and
+`test_every_symptom_is_one_row_in_one_wording_on_both_pages` (both directions).
+
+Four symptom rows exceeded the 32-word sentence rule once the index and the class pages
+agreed; they were shortened in both places rather than exempted.
+
+**Verified.** `pytest tests/test_reference_books.py -q` — 41 tests — and
+`python -m textbook.lint` clean over 2,595 pages.
+
+---
+
+
+## 102. Nothing could download a book for offline reading
+
+**What was wrong.** The site was installable and a page that had been visited read
+offline, but there was no way to say "this book, all of it". Only `/` and the manifest
+were precached, so a reader on a train got the chapter they had opened and a fallback
+to the front door.
+
+**The fix, in three stages, each useful alone.**
+
+1. **The chapter keeps itself.** `assets/offline/offline.js`, deferred on every book
+   page, fetches the rest of the chapter the nav has open once the page has settled,
+   with each page's figure module. It declines on `saveData` or `2g`. Measured at
+   **0.2 MB** gzipped for the median chapter and 0.46 MB for the largest in the
+   collection, a fifth of what this item first estimated.
+2. **A page is a page however it was fetched.** The worker routes a path ending in `/`
+   to the site cache whatever the request's `destination`, because a prefetched page
+   arrives with an empty one — without that rule every prefetched page would land in
+   the cache a deploy deletes.
+3. **The whole book, when the reader asks.** The build's `assets/manifest.json` now
+   lists every page it wrote with its own byte size, and the Settings panel carries a
+   group built from it: the button's label is the measured size (35.4 MB for
+   `gcse-maths/higher`), pressing it asks `navigator.storage.persist()`, refuses when
+   `estimate()` leaves less than 1.2× the room, fetches one page at a time under an
+   `AbortController`, and keeps each page's figure module. The control is `hidden` in
+   the markup and revealed by script, like the Settings trigger, and the group is
+   absent on the landing page because there is no book there to keep.
+
+**Verified in a browser, on the reader's own button.** `tools offline site --download`
+opens the panel, waits for the size, presses Stop mid-download and checks the control
+settles, then presses Download, waits for the cache to go quiet, deletes the **runtime**
+cache (the deploy), goes offline, and reads a page from a **later chapter** — one
+nothing visited and nothing prefetched — with its figure mounted. Eleven checks, no
+errors. Proved able to fail: pointing the book root one directory too high reports
+that the download kept 18 pages, not a book, and that no page outside the chapter was
+kept.
+
+**Also verified.** `test_the_manifest_is_a_download_list` asserts every listed route is
+a page on disk and every size is that page's; `test_the_offline_control_is_only_offered_where_there_is_a_book`
+pins the landing page's absence and the hidden-until-scripted rule;
+`test_the_download_is_stoppable_and_asks_for_persistent_storage` pins the abort, the
+`persist()` request, the estimate check and the 1.2× headroom.
+
+---
+
+## 100. The shared nav dictionary was worth 34% of the HTML transfer, and the host cannot serve it
+
+**What is wrong (and what is not).** The saving is real: a shared nav dictionary takes
+a page from 9,380 to 6,771 bytes, measured **in Chrome on the real page** rather than by
+`wc`, which is −28% of every HTML response and about **10 MB** off a 69 MB library
+download. What is missing is not the compression but the party that can choose it.
+
+`wrangler.jsonc` serves the collection as Workers **static assets with no Worker script**
+("an asset server with no script of its own"). Choosing an encoding needs a per-request
+decision — read `Available-Dictionary` and `Accept-Encoding`, then send the right variant
+— and `_headers` cannot express a variant: it sets one header per path, and Cloudflare's
+own compression layer sits in front of it. So the negotiation has to happen in a script,
+which is a change to the deployment's shape, not to the build.
+
+**What the spike established** (`var/spike/cdt-spike.mjs`, Chrome 155, the real
+`gcse-maths/higher` page):
+
+| Request | Accept-Encoding | Served |
+|---|---|---|
+| navigation, first visit | `gzip, deflate, br, zstd` | br, 9,380 B |
+| the same page fetched later by the chapter prefetch | `…, dcb, dcz` + `Available-Dictionary` | **dcb, 6,771 B** |
+| the chapter's other pages, prefetched | `…, dcb, dcz` | dcb, 5,149–6,771 B |
+
+The wire format is the one MDN documents: `\xffDCB` + the dictionary's SHA-256 + a
+brotli payload compressed with the dictionary, and `<link rel="compression-dictionary">`
+plus `Use-As-Dictionary: match="/gcse-maths/higher/*"` on the dictionary resource. Chrome
+negotiates it correctly. **The navigations themselves did not offer the dictionary** — the
+first request of a page load has no `Available-Dictionary` — so the benefit lands on
+prefetched pages and subresources, which for this site is most of the traffic but not the
+page the reader is waiting for.
+
+**And it collides with the offline model.** A `dcb` page stored by the service worker
+keeps `Content-Encoding: dcb` in its cached headers while Cache Storage holds the **decoded**
+body: the cached text was byte-identical to the live text, header notwithstanding. Chrome
+served it correctly offline, but the header is a lie, and anything that trusts it — another
+browser version, a proxy, a future spec change — double-decodes it. So any implementation
+must normalise the response the worker stores (drop `Content-Encoding` and `Content-Length`)
+rather than cache it as received.
+
+**Why this is closed rather than left open.** The item's own done-means begin "a spike
+against the real Worker shows `dcb` reaching a browser that asked for it" — and the real
+Worker is a script-free asset server, so that spike cannot be run without changing what the
+deployment *is*. That decision (add a Worker script that fetches pre-compressed variants,
+and teach the service worker to normalise cached responses, for ~10 MB off a 69 MB
+download) belongs to whoever owns the platform, not to a build change. It is recorded as
+item 104 so the measurement is not lost.
+
+**The decision this does settle:** the nav stays markup. A JavaScript nav would save 5 KB of
+10 and strand a reader with scripting off; a dictionary would save 3 KB of 10 and keep the
+nav, if the host could serve it. Neither justifies the former.
+
+---
+
+## 104. The dictionary encoding was not worth a Worker script
+
+**What is wrong.** Measured, not guessed: a shared nav dictionary takes a page from
+9,380 to 6,771 bytes in Chrome (−28%), about 10 MB off a 69 MB library download. The
+collection is served by Workers **static assets with no Worker script**, so nothing can
+read `Available-Dictionary` and choose a variant. `_headers` sets one header per path and
+cannot vary on a request header; Cloudflare's compression layer sits in front of it.
+
+**The fix, if it is worth it.** Add the one script the deployment has so far refused:
+read `Available-Dictionary` and `Accept-Encoding`, serve the pre-compressed variant the
+build emitted, and set `Use-As-Dictionary` on the dictionary resource. That makes three
+things true that are not true today:
+
+- the build emits `*.dcb`/`*.dcz` beside each page and one dictionary per profile, with the
+  SHA-256 prefix the format requires (`var/spike/cdt-spike.mjs` is the working wire format);
+- a client that does not ask for `dcb` receives exactly today's bytes, so nothing regresses;
+- the **service worker normalises what it stores** — a `dcb` response is cached with its
+  decoded body and its `Content-Encoding` header intact today, which is a lie that happens
+  to work; the worker must drop `Content-Encoding` (and `Content-Length`) when it writes.
+
+The saving lands on prefetched pages and subresources, not on the navigation the reader
+waits for: the first request of a page load carries no `Available-Dictionary`.
+
+**What an attempt at it established, so the next one starts further along.** The
+dictionary differs per profile, so the Worker needs a map from a profile prefix to that
+profile's dictionary digest, and the digest has to be compared with `Available-Dictionary`
+before a `dcb` body is sent: a stale dictionary (a page cached by the reader's worker from
+before a deploy, decoded against the profile's *new* dictionary) fails to decode with no
+fallback. That makes the dictionary name a build artefact — `nav.<build label>.dict`, so a
+deploy retires the old one — and makes `site/_worker.js` a generated file like `sw.js`,
+stamped with the build label and the per-profile digests. It also means the portal must run
+*after* the profiles it stamps, which is the opposite of today's order in
+`scripts/check.sh`; that ordering is the first thing to settle, before any of the code.
+
+**Done means**
+
+- [ ] a spike against the real Worker shows `dcb` served to a browser that asked, and
+      plain brotli to one that did not
+- [ ] `tools/assets` and `tests/test_pwa.py` cover the `.dcb` variants and the header
+- [ ] the service worker strips `Content-Encoding` from what it caches, with a test that
+      an offline page is byte-identical to the live one
+- [ ] the measured page weight on `gcse-maths/higher` drops below 7 KB, and a client
+      without dictionary support measures exactly what it does today
+
+**Closed 2026-10-23, having measured it and then declined it.** The saving is real and
+was measured in Chrome on the real page: 9,380 → 6,771 bytes per response (−28%), about
+10 MB off a 69 MB library download. It is not worth what it costs, for four reasons:
+
+1. **It lands on the wrong requests.** The first page load of a visit carries no
+   `Available-Dictionary`, so navigations do not benefit — only prefetched pages and
+   subresources, which are exactly the requests item 102's chapter prefetch and download
+   already turn into cache hits. The marginal saving is well under 28% of what a reader
+   actually fetches, and at mobile-data prices it is about half a penny per book read.
+2. **It costs the deployment its one virtue.** The site is Workers static assets with no
+   script. Adding one puts code in every request path to save bytes on most of them.
+3. **It adds a silent failure with no fallback.** A stale dictionary does not decode;
+   avoiding that forces per-build dictionary names, a generated `_worker.js` carrying
+   per-profile digests, and the portal running *after* the profiles — the reverse of the
+   order in `scripts/check.sh`.
+4. **It is two code paths forever.** Chrome negotiates `dcb`; Safari and Firefox will not,
+   so the plain path is maintained regardless.
+
+**What would reopen it:** a stated data constraint (school devices on metered
+connections, a market where 3 MB matters); Cloudflare shipping dictionary support
+natively, which makes it a header on a file the build already emits; or the site
+acquiring a Worker script for another reason, which makes this three lines inside it.
+
+The measurement, the wire format (`var/spike/cdt-spike.mjs`), the 28% and the traps are
+all here, so a future attempt starts from evidence rather than from a spike.
