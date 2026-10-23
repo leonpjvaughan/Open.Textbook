@@ -128,16 +128,23 @@ def test_every_cell_of_the_ladder_is_the_exports_number(stiffness):
         )
 
 
-def test_the_stiffness_a_tenth_of_a_degree_needs_is_the_exports():
-    """The section's conclusion, computed rather than typed: 1.8 MN/m."""
+def crossing() -> float:
+    """The stiffness at which the difference at rest reaches a tenth of a degree.
+
+    Log-log interpolation between the two rows either side, because the ladder falls by
+    about a decade per decade. §1.5 prints "about 1.8 MN/m"; this recomputes it from the
+    export, and `tests/test_reference_books.py` holds the map's page to the same number.
+    """
     differences = [abs(ladder()[k]["difference"]) for k in STIFFNESS]
     xs = [math.log10(k) for k in STIFFNESS]
     ys = [math.log10(d) for d in differences]
     for i in range(len(xs) - 1):
         if differences[i] >= 0.1 >= differences[i + 1]:
             share = (ys[i] - math.log10(0.1)) / (ys[i] - ys[i + 1])
-            found = 10 ** (xs[i] + share * (xs[i + 1] - xs[i]))
-            break
-    else:
-        pytest.fail("the export's ladder does not cross a tenth of a degree")
-    assert round(found, 1) == 1.8, found
+            return 10 ** (xs[i] + share * (xs[i + 1] - xs[i]))
+    raise AssertionError("the export's ladder does not cross a tenth of a degree")
+
+
+def test_the_stiffness_a_tenth_of_a_degree_needs_is_the_exports():
+    """The section's conclusion, computed rather than typed: 1.8 MN/m."""
+    assert round(crossing(), 1) == 1.8, crossing()
