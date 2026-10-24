@@ -14,7 +14,7 @@
 // **The step is part of the model.** The kernel integrates at the study's step, five milliseconds.
 // The control stops at 2 MN/m, where the period is about 0.16 s; beyond that the period keeps
 // falling and the step would have to be shortened with it. The section says why.
-import { SIZE, label, line, panel, react, slider } from "./kit.js";
+import { SIZE, axes, label, line, panel, react, slider } from "./kit.js";
 import * as kernel from "../data/otkd/models/quarter-car/kernel/kernel.js";
 import { run } from "../data/quarter-car/period.js";
 

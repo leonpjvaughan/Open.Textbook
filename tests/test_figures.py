@@ -770,3 +770,70 @@ def test_no_module_shadows_a_kit_import(book, path):
         "and redeclared, so the imported one is unreachable inside that scope and the "
         "figure throws on mount. Rename the parameter or the local."
     )
+
+# --- the kit's names are either imported or defined ----------------------------
+
+
+def kit_exports() -> set[str]:
+    """Every name the shared kit exports, from its entry point and its parts."""
+    root = repo_root() / scaffold.FIGURE_LIBRARY
+    files = [root / "kit.js", *sorted((root / "kit").glob("*.js"))]
+    names: set[str] = set()
+    for path in files:
+        text = path.read_text(encoding="utf-8")
+        names.update(
+            re.findall(r"export\s+(?:async\s+)?function\s+([A-Za-z_$][\w$]*)", text)
+        )
+        names.update(
+            re.findall(r"export\s+(?:const|let|var|class)\s+([A-Za-z_$][\w$]*)", text)
+        )
+        for body in re.findall(r"export\s*\{([^}]*)\}", text, re.S):
+            for item in body.split(","):
+                local = item.strip().split(" as ")[-1].strip()
+                if local:
+                    names.add(local)
+    return names
+
+
+def without_comments_or_strings(text: str) -> str:
+    """Enough of a JavaScript lexer to keep a comment from looking like a call."""
+    return re.sub(
+        r"//[^\n]*|/\*.*?\*/|\"(?:\\.|[^\"])*\"|'(?:\\.|[^'])*'|`(?:\\.|[^`])*`",
+        "",
+        text,
+        flags=re.S,
+    )
+
+
+def test_every_figure_calls_only_kit_names_it_imported_or_defined():
+    """A missing `axes` import broke the §1.6 table after the gate stayed green.
+
+    The module called `axes()` without importing it, so the figure threw at mount
+    time. A static check catches the class without a browser: every kit name used as
+    a call must be imported from the kit (or another module), or defined locally.
+    """
+    exports = kit_exports()
+    assert "axes" in exports and "panel" in exports
+
+    missing: list[str] = []
+    for book, path in figure_modules():
+        text = path.read_text(encoding="utf-8")
+        code = without_comments_or_strings(text)
+        imported: set[str] = set()
+        for body in re.findall(r"import\s*\{([^}]*)\}\s*from\s*[\"'][^\"']*[\"']", text, re.S):
+            for item in body.split(","):
+                local = item.strip().split(" as ")[-1].strip()
+                if local:
+                    imported.add(local)
+        defined = set(
+            re.findall(r"\b(?:function|const|let|var|class)\s+([A-Za-z_$][\w$]*)", code)
+        )
+        for name in sorted(exports - imported - defined):
+            if re.search(rf"(?<![\w.$]){re.escape(name)}\s*\(", code):
+                missing.append(f"{book.id}/{path.name}: {name}")
+
+    assert not missing, (
+        "figures call kit names they never imported or defined: "
+        + ", ".join(missing)
+    )
+
