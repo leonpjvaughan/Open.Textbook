@@ -15,8 +15,8 @@ Something has to enforce that, and the something is a force, a pressure or a
 multiplier — a second unknown that exists only to hold the rule.
 
 The second unknown is often the interesting one. In a fluid it is the pressure. In
-a mechanism it is the force in the bush. In an optimisation it is the price of the
-constraint.
+a mechanism it is the force in a rigid joint — the ball joint, the pin, the contact.
+In an optimisation it is the price of the constraint.
 
 ## The model you write down
 
@@ -95,12 +95,18 @@ Every method named here is in [Methods, A to Z](../techniques/#linear-systems), 
 ## Systems that live here
 
 - Incompressible flow: the pressure is the multiplier on the no-compression rule.
-- A bushed suspension joint: the force in the bush is the multiplier on the joint.
+- A rigid suspension joint: the force in the joint is the multiplier on its constraint.
 - Contact between two bodies: the contact force is the multiplier on non-penetration.
 - Mixed finite elements for flow in a porous medium.
 - The KKT system of any constrained optimisation.
 - Electrostatics with a prescribed total charge.
 - A rigid body mechanism with more constraints than degrees of freedom.
+
+A **bushed** joint is the counterexample, and it is worth keeping beside the rigid
+one. Replace the constraint with a spring, and the multiplier is gone: the force is
+`k` times the deflection, not a solved unknown. That is the
+[root problem](../root/index.md) on [The class is a choice](../choosing-the-class/index.md),
+not this class.
 
 ## What goes wrong
 

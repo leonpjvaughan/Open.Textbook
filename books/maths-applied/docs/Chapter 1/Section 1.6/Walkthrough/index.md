@@ -19,15 +19,17 @@ and nothing had a rate of change in it, so nothing in them could say anything ab
 *speed*.
 
 But a wheel travelling over a bump is not settled. It arrives, it is pushed, it
-overshoots, it settles. During that, the camber is not the camber of the steady
+overshoots, and it settles. During that, the camber is not the camber of the steady
 table in §1.2 — it is somewhere else, and it is somewhere else *because of* the
-mass of the wheel and the force in the damper.
+mass of the wheel and the spring that holds it. A damper would change how it
+settles, and this section will say what that would take.
 
 That is a different question, and it needs a different model.
 
 ## What changes
 
-Two things, and they change the kind of problem rather than its size.
+Two things change the kind of problem rather than its size, and only one of them is
+in the run on this page.
 
 **Mass.** Give each body a mass and a moment of inertia, and the forces no longer
 have to balance: they have to *accelerate* things. The equations become
@@ -45,15 +47,21 @@ an unknown force, so the state and the forces are solved as one system.
 
 :::class saddle-point
 
-**Dampers.** A damper's force depends on how fast it is moving, not how far it has
-moved. So it enters the equations as a rate, which is exactly what the algebraic
-models could not represent.
+**A damper would add a rate term.** A damper's force depends on how fast it is
+moving, not how far it has moved. The $C\dot q$ term in the equation above is where
+that would live. In the quarter car on this page $C=0$: there is a spring and no
+damper, so the motion repeats. A damped model would settle instead, and that decay
+would be a parabolic problem — a different model, not this one.
+
+:::class parabolic
+
+That damped model is what the parabolic page describes; this section does not build it.
 
 ## What it buys
 
-- **A transient.** Camber during a bump, not only after it. A stiffer damper and a
-  softer one can settle to the same steady camber and behave differently on the way
-  there.
+- **A transient.** Camber during a bump, not only after it. This run has no damper,
+  so the transient repeats; adding one would make it settle, and the difference
+  between settling and repeating is the next model.
 - **Load transfer.** The force at the contact patch is no longer something you
   choose; it is something the motion produces.
 - **The natural frequencies.** How the wheel hops, and how the body heaves, are
@@ -76,18 +84,19 @@ frequencies unstable is a different kind of problem from solving for the motion.
   differential or algebraic equations alone. The cost is not arithmetic; it is the
   care needed to know the answer is real.
 
-With the mass and the rate terms in, the class has changed again: the answer now
-moves forward in time and forgets where it started, and the step is decided by the
-fastest thing in the model.
-
-:::class parabolic
+With mass in and no damper, the model is **conservative**: it moves forward in time
+and keeps its energy rather than forgetting where it started. The map files that
+structure as the **Hamiltonian flag**, not as a kind of its own. The
+[hyperbolic page](/numerical-methods/hyperbolic/)
+carries the flag, and the quarter car is its smallest case: one oscillator, no
+decay, and an energy drift that has to stay small.
 
 ## What the model says
 
-The package's quarter car is this model, built: a chassis that can heave, a coil-over
-between the chassis and the lower arm, and a tyre held on the road. Released from the
-design position, with no driver and no bump, it swings under its own weight and the
-coil pulls it back.
+The package's quarter car is this model, built: a chassis that can heave, a coil
+spring between the chassis and the lower arm, and a tyre held on the road. Released
+from the design position, with no driver and no bump, it swings under its own weight
+and the spring pulls it back.
 
 :::figure quarter-car
 
@@ -125,16 +134,16 @@ The chapter's rule is that a model earns its place by failing, and that agreemen
 number. §1.6's agreement is the one this model can state: **at any moment, the dynamic
 model's camber is the static model's camber at the same travel.**
 
-It is, to **0.006°**. At the instant the wheel is 72.35 mm into bump, the dynamic model
-gives −2.079° and the package's static model at that travel gives −2.073°. The same
+It is, to **0.001°**. At the instant the wheel is 72.35 mm into bump, the dynamic model
+gives −2.079° and the package's static model at that travel gives −2.079°. The same
 holds anywhere in the swing, because the geometry and the constraints are the same model
 — what the masses and the forces add is *time*, not a different linkage.
 
 There is a second comparison here, and it is the one worth keeping. **§1.2's front view
-gives 0.93° at that travel**, not 0.006° — because it is a projection, accurate near the
-design position and not far from it. Within the chapter's 80 mm the two agree to 0.033°;
-at 72 mm the front view is already a degree out. The small model is not wrong; it is
-*bounded*, and the bound is the number.
+is 0.94° from the static model at that travel**, not 0.001° — because it is a projection,
+accurate near the design position and not far from it. Within the chapter's 80 mm the two
+agree to 0.033°; at 72 mm the front view is already a degree out. The small model is not
+wrong; it is *bounded*, and the bound is the number.
 
 A third test is the sharper one, and this model cannot run it. As the masses go to zero,
 the dynamic model must become the algebraic one, exactly, at any stiffness. Once the masses
@@ -185,7 +194,7 @@ common subexpressions, Rust, `wasm32-unknown-unknown`, one buffer of `f64`.
 
 - say what a differential-algebraic model is, and why the constraint forces appear
   in it
-- say what mass and damping each add to the question, and what each costs
+- say what mass adds to the question, and what a damper would change
 - say what the dynamic model adds to the static one, and how closely the two agree
 
 ## Watch out
@@ -196,7 +205,7 @@ enough that nobody checks.
 
 "Usually" is not evidence. The evidence here is a comparison. At any moment, the
 dynamic camber must equal the static camber at the same travel, and the two agree
-to **0.006°**. If they did not, a long run would hide the model error behind
+to **0.001°**. If they did not, a long run would hide the model error behind
 round-off.
 
 The sharper test is the one this section named, and it cannot be run here. Take the

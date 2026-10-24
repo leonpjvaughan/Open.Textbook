@@ -4927,3 +4927,691 @@ acquiring a Worker script for another reason, which makes this three lines insid
 
 The measurement, the wire format (`var/spike/cdt-spike.mjs`), the 28% and the traps are
 all here, so a future attempt starts from evidence rather than from a spike.
+
+---
+
+## 105. §1.5's tie-rod ladder prints the package's radians with degree signs
+
+**What is wrong.** The table under *The same idea, on a different joint* is the
+`dw-compliant` model's own output, and that output is in radians while its export
+declares degrees. Every cell is therefore 57.3 times too small, and the prose built on
+the table says things the table's own rows do not.
+
+Measured, at the design position, with the model's own study loads
+(`source/study.yaml`: 3.5 kN down and 1.8 kN sideways at `wc`):
+
+```
+$ node --input-type=module -e '
+import k from "./books/maths-applied/docs/assets/data/otkd/models/double-wishbone-compliant/kernel/kernel.js";
+await k.ready();
+for (const c of [1e-7, 1e-6, 1e-5]) {
+  const r = await k.frame({...k.manifest.default_geometry,
+                          numbers: [k.manifest.default_numbers[0], c]}, 0);
+  console.log(c, "camber°", (r.metrics.camber*180/Math.PI).toFixed(4),
+                  "toe°", (r.metrics.toe*180/Math.PI).toFixed(4));
+}'
+1e-7      camber° -0.0015  toe° 0.0543
+0.000001  camber° -0.0146  toe° 0.5398
+0.00001   camber° -0.1376  toe° 5.1067
+```
+
+The kernel returns `{camber: -0.0002545478058381045, toe: 0.009421369505574278}`
+for the 1e-6 row — the radians of those two numbers — and
+`models/double-wishbone-compliant/out.js` states the same frame with
+`meta.units.angle: "deg"`. The page prints `0.009°` and `−0.0003°`.
+
+The physics agrees with the radian reading. The `1e-6 m/N` tie rod deflects
+`1800 × 1e-6 = 1.8 mm`; its outer point `tro` is 0.114 m from the kingpin axis, so
+1.8 mm yaws the upright by about 0.9°. `0.0094°` would need an 11 m lever.
+
+Two further faults come from the same table. **The prose's factor is wrong:** "A
+hundred times softer moves the toe by a degree and a half" spans the `1e-6` to `1e-2`
+rows, which is ten thousand times softer (`1e-4` to `1e-2` is the hundred, and moves
+0.88°). **The top rung is not a small perturbation at all:** at `1e-2 m/N` the tie
+rod deflects `1800 × 1e-2 = 18 m`, and the model's toe is 83.6°, not 1.46°.
+
+Nothing checks this table. `grep -rn '0.009\|1.46\|tie-rod compliance' tests/` finds
+only §1.2's unrelated `−1.46°`, so a number no test recomputes is a number nothing
+catches — the exact failure items 88 and 89 were opened for.
+
+**The fix.** Rebuild the ladder from the vendored kernel in degrees, over
+compliances where the model is still a small perturbation — `1e-7`, `3e-7`, `1e-6`
+(the model's own default), or `1e-7…1e-5` — and state the conversion the page applies,
+because `dw-compliant` reports radians and declares degrees. Rewrite the two sentences
+the table carries so the factor and the size are the table's own. File the unit bug
+against `suspension-kinematics` (two models from one generator, opposite angle units:
+`double-wishbone` and `double-wishbone-ubj` are degrees, `dw-compliant` is radians) and
+record it in `sources.yaml`; when a release fixes it, re-vendor and delete the
+conversion.
+
+**Done means.**
+
+- [x] §1.5's three rows are what the vendored `dw-compliant` kernel returns in
+      degrees, at compliances whose deflection is small against the mechanism.
+- [x] The page says, in one sentence, that this model's angles need converting and
+      why, or the re-vendored kernel no longer needs one.
+- [x] The prose's "ten times softer" and "half a degree / a hundredth of a degree"
+      are the table's own arithmetic, and the top rung is inside the small-angle regime.
+- [x] A test recomputes all six cells from the vendored kernel, like
+      `tests/test_maths_applied_ladder.py` does for §1.5's bush ladder, so a
+      re-vendored release fails here instead of in a reader's hands.
+
+**Done (2026-10-24).** Rebuilt the tie-rod ladder from the vendored `dw-compliant` kernel in degrees at 10⁻⁷, 3 × 10⁻⁷ and 10⁻⁶ m/N; stated the radian-to-degree conversion; the new test recomputes all six cells and the prose's factor.
+
+## 106. Four pseudocode links point at a package path that no longer exists
+
+**What is wrong.** Each section links the file behind its snippet, and §1.2–§1.5 link
+`src/suspension/`, which the package renamed to `src/otkd/`:
+
+```
+$ grep -rn 'src/suspension' books/maths-applied/docs --include=*.md | cut -c1-120
+Chapter 1/Section 1.2/Walkthrough/index.md:190:… blob/main/src/suspension/analytic.py)
+Chapter 1/Section 1.2/Walkthrough/index.md:191:… blob/main/src/suspension/derive.py)
+Chapter 1/Section 1.3/Walkthrough/index.md:136:… blob/main/src/suspension/solve.py)
+Chapter 1/Section 1.4/Walkthrough/index.md:152:… blob/main/src/suspension/solve.py)
+Chapter 1/Section 1.5/Walkthrough/index.md:195:… blob/main/src/suspension/sweep.py)
+$ for p in src/suspension/analytic.py src/otkd/analysis/analytic.py; do
+>   curl -s -o /dev/null -w "%{http_code} $p\n" \
+>     "https://api.github.com/repos/leonpjvaughan/suspension-kinematics/contents/$p"; done
+404 src/suspension/analytic.py
+200 src/otkd/analysis/analytic.py
+```
+
+The four dead links are §1.2's `analytic.py` and `derive.py`, §1.3's `solve.py` and
+§1.4's `solve.py`, all at `blob/main/src/suspension/…`. §1.6's links are already right
+(`src/otkd/problem/dynamics.py`, `src/otkd/emitters/wasm.py`), which is how the drift
+went unnoticed: two sections in one chapter disagree about where the code lives.
+
+**The fix.** Point each link at the file it means: `analytic.py →
+src/otkd/analysis/analytic.py`; §1.2's `derive.py → src/otkd/problem/compile.py` (the
+symbolic derivation); §1.3's `solve.py → src/otkd/solvers/least_squares.py`; §1.4's
+`solve.py → src/otkd/solvers/svd.py`; §1.5's `sweep.py → src/otkd/solvers/sweep.py`.
+Each snippet's first-line comment names the old filename, so change that too, and
+check the symbols the pseudocode uses still exist in the module it now names — that is
+what the book's snippet rule asks for, not a text match.
+
+**Done means.**
+
+- [x] Every `suspension-kinematics` link in `books/maths-applied/docs/` returns 200.
+- [x] No snippet's `# file.py` comment names a file that does not exist.
+- [x] A test resolves every `github.com/leonpjvaughan/suspension-kinematics` `blob/`
+      path in the book against the package's tree, skipped when the network is off, so
+      the next rename fails in CI rather than in a reader's browser.
+
+**Done (2026-10-24).** Repointed the four links and snippet comments to `src/otkd/`; replaced §1.4's `svd_diagnose` with the module's `diagnose`; added the network link test and the snippet/comment test.
+
+## 107. §1.5 says the package refuses to compile a kernel the bundle ships
+
+**What is wrong.** §1.5 tells the reader that the compliant model cannot be run:
+
+> it carries one stiffness rather than a ladder, and the package **refuses** to compile
+> a kernel for it: *"a compliant model needs the equilibrium root-find, which is not
+> compiled yet"*
+
+The bundle this book vendors ships that kernel:
+
+```
+$ ls books/maths-applied/docs/assets/data/otkd/models/double-wishbone-compliant/kernel/
+kernel.js  kernel.json  kernel.rs  kernel.wasm  provenance.json  source
+$ python3 -c "import json; print(json.load(open('…/kernel.json'))['solver'])"
+equilibrium
+```
+
+It is what produces the tie-rod table three lines above the sentence, and the page
+says so a paragraph earlier ("Its kernel takes that compliance at run time"). The
+quotation attributed to the package is not true of version 0.11.0, which is the
+version the bundle pins.
+
+**The fix.** Delete the refusal claim and the quotation. Say what is true: the export
+carries one compliance, the kernel takes it at run time, and the page's ladder is the
+kernel's. If the sentence exists to explain why the *bush* ladder is not also a
+kernel, say that instead — the `ubj` export ships a ladder and a kernel, so the
+contrast is the right one and it is checkable.
+
+**Done means.**
+
+- [x] §1.5 contains no claim that the package cannot compile or run the compliant
+      model, and no quotation that the pinned release does not make.
+- [x] The paragraph reads as one story with the `ubj` ladder above it: two exports,
+      one with a ladder and one taking its compliance at run time, both vendored.
+- [x] Nothing in the page prints a marker or a promise in place of a number.
+
+**Done (2026-10-24).** Removed the refusal claim and quotation; the paragraph now reads as two vendored exports, one with a ladder and one taking its compliance at run time.
+
+## 108. §1.6 is "drafted" in six places and finished in one — item 92's fix was partial
+
+**What is wrong.** Item 92 closed with "The chapter index says so in one sentence, and
+the section table no longer says 'drafted' anywhere." The chapter index was fixed; five
+other places still say it:
+
+```
+$ grep -rn "drafted" books/maths-applied/ --include=*.md --include=*.yaml
+books/maths-applied/AGENTS.md:130:  drafted as the destination.
+books/maths-applied/curriculum.yaml:15:# are drafted as the destination the chapter is walking towards.
+books/maths-applied/curriculum.yaml:118:          costs. This section is drafted rather than finished: it is the chapter's
+books/maths-applied/docs/index.md:28:The chapter is a single argument, in five parts, with two drafted sections
+books/maths-applied/docs/index.md:41:Then, drafted: **mass and dampers**, where the problem stops being algebra, and
+```
+
+§1.6 is finished: it names the question, names the model, carries `quarter-car` and
+`dynamics-table`, and prints the package's trajectory — 212.8 mm of travel, 0.625 s,
+1.6 Hz, −9.53° of camber, an energy drift of 6.3 × 10⁻⁸ — with
+`tests/test_maths_applied_numbers.py::test_section_1_6_states_the_trajectorys_numbers`
+holding the page to the data. `curriculum.yaml:15` is wrong twice over: it calls
+§1.5–§1.6 drafted when §1.5 is the chapter's centre.
+
+**The fix.** One sentence per place, in that place's voice: §1.6 is a finished section
+and §1.7 is the chapter's only outline. Fix `AGENTS.md:130`, both `curriculum.yaml`
+comments (and §1.6's `summary:`), and both `docs/index.md` sentences. §1.6's own page
+already speaks in the present tense and needs nothing.
+
+**Done means.**
+
+- [x] `grep -rn "drafted" books/maths-applied/ --include=*.md --include=*.yaml`
+      returns only §1.7's "outline" and item-free prose.
+- [x] `python -m textbook.scaffold` reports no drift, and the built home page reads
+      "six sections, and one outline".
+- [x] A test fails when a section the curriculum calls drafted carries a figure and a
+      verified number, or the reverse — so the two cannot drift apart again.
+
+**Done (2026-10-24).** Removed every stale “drafted” sentence from `AGENTS.md`, `curriculum.yaml` and the home page; regenerated the colophon; added the no-drafted guard.
+
+## 109. `worked-case` still says four kinds have a section, and names five dead ends
+
+**What is wrong.** Item 95 added `:::class optimisation` to §1.5 and
+`:::class eigenvalue` to §1.6, and left the sentence that counts them:
+
+> The map has nine kinds, and this collection gives a section to four of them: §1.2 and
+> §1.5 … root …, §1.3 and §1.4 … linear system …, and §1.6 … saddle point inside a
+> parabolic integration. Three more — averaging, elliptic and hyperbolic — have no
+> section that names them yet … `Maths Applied` now names both …
+
+Six are named, and the derived list says so:
+
+```
+$ grep -rn ':::class' books/maths-applied/docs | sed 's|.*docs/||'
+Chapter 1/Section 1.2/Walkthrough/index.md:89::::class root
+Chapter 1/Section 1.3/Walkthrough/index.md:62::::class linear-system
+Chapter 1/Section 1.4/Walkthrough/index.md:76::::class linear-system
+Chapter 1/Section 1.5/Walkthrough/index.md:59::::class root
+Chapter 1/Section 1.5/Walkthrough/index.md:139::::class optimisation
+Chapter 1/Section 1.6/Walkthrough/index.md:46::::class saddle-point
+Chapter 1/Section 1.6/Walkthrough/index.md:67::::class eigenvalue
+Chapter 1/Section 1.6/Walkthrough/index.md:83::::class parabolic
+```
+
+Six distinct kinds. The built pages agree: `:::used` under `optimisation`, `eigenvalue`,
+`linear-system`, `root`, `saddle-point` and `parabolic` lists `Maths Applied`, and
+`averaging`, `elliptic` and `hyperbolic` print "No page in this collection names this
+class yet."
+
+So the paragraph accounts for seven kinds and names the other two in the next
+sentence. The test that guards it carries the same drift in its own docstring:
+`DEAD_ENDS` has three entries and the docstring above it says "The five kinds no
+section in the collection carries a `:::class` for".
+
+**The fix.** Say six, list all six where the sentence enumerates them, and keep three
+as the dead ends. Rewrite the test's docstring to say three, and rename `DEAD_ENDS`'s
+comment, which also says five.
+
+**Done means.**
+
+- [x] The paragraph's count is the length of `usedin.used_in()` for every class, and
+      the arithmetic on the page closes: six named, three not, nine in all.
+- [x] No test docstring or comment in `tests/test_reference_books.py` says five dead
+      ends.
+- [x] `test_the_worked_case_agrees_with_the_callers_each_kind_actually_has` asserts the
+      number the page states, not only that each dead end is linked.
+
+**Done (2026-10-24).** `worked-case` now says six named kinds and three dead ends; the test asserts the counts as well as the links and the derived `:::used` lists.
+
+## 110. The linear-system page's 441 / 161 is right and nothing checks it
+
+**What is wrong.** The page makes a sparsity claim about the vendored kernel:
+
+> the package this collection uses solves 21 equations whose Jacobian has 441 entries,
+> of which **161 are not zero**
+
+Both numbers are true — the kernel's layout declares `jac: 441`, and the generated Rust
+writes 441 cells of which 280 are the literal `0.0`:
+
+```
+$ F=books/maths-applied/docs/assets/data/otkd/models/double-wishbone/kernel/kernel.rs
+$ awk '/fn compute_inner/,/pub extern "C" fn compute/' $F | grep -c 'jac\[[0-9]*\] = '
+441
+$ awk '/fn compute_inner/,/pub extern "C" fn compute/' $F | grep -c 'jac\[[0-9]*\] = 0.0;'
+280
+```
+
+441 written, 280 of them zero, so 161 are not — and the layout declares `jac: 441`.
+
+No test reads either number, and unpinned prose is exactly what item 96 was about.
+A re-vendored release with a different topology would leave the page quoting a
+sparsity the book no longer ships.
+
+**The fix.** A test in `tests/test_maths_applied_data.py` that derives both numbers from
+`models/double-wishbone/kernel/{kernel.rs,provenance.json}` and requires the page's
+sentence to carry them. It is the only claim either book makes about a kernel's shape
+without a figure behind it, and it costs one assertion.
+
+**Done means.**
+
+- [x] A test recomputes 441 and 161 from the vendored kernel and fails when the page
+      disagrees.
+- [x] The page keeps a sentence that says which model the numbers are about, so the
+      claim is checkable by a reader as well as by the test.
+
+**Done (2026-10-24).** Added the test that derives 441 and 161 from `kernel.rs` and `provenance.json`; the page now names the `double-wishbone` example it is about.
+
+## 111. `ideas.md`'s measured table is five modules out and omits a whole book
+
+**What is wrong.** `ideas.md` opens with a table it says is "a command and its output":
+
+```
+$ find books/*/docs/assets/figures -name '*.js' ! -name kit.js ! -name figures.js | wc -l
+256
+$ # per book
+  maths-applied            5 modules    1 chapter
+```
+
+The table says 251 in total and 5 for `maths-applied`; there are 256, 8 of them in
+`maths-applied`, and `numerical-methods` is not a row at all (it has 2). The prose
+around it knows something moved — "each of them calls `panel()`, `react()`, `slider()`
+and `label()`, so every number here is five higher today" — but five was the count
+before `wishbone-3d`, `dynamics-table`, `quarter-car` and the numerical-methods pair
+existed.
+
+**The fix.** Re-measure the table and the interaction counts in one pass, add the
+`numerical-methods` row, and date the measurement. The interaction counts are a
+`grep` over the same files; the section already says how.
+
+**Done means.**
+
+- [x] The total and every per-book row are the `find | wc -l` of the tree, including
+      `numerical-methods`.
+- [x] The interaction counts are re-measured, not adjusted by a remembered delta.
+- [x] The "Retrieved" date and the paragraph that explains the counts match the table.
+
+**Done (2026-10-24).** Re-measured `ideas.md` at 256 modules, added the `numerical-methods` row, and replaced every stale interaction and keyboard count with the 2026-10-24 measurement.
+
+## 112. §1.5's deflection figures are the slider's ends, not the table's rows
+
+**What is wrong.** A reader who checks §1.5's prose against its table cannot reconcile
+them:
+
+> The number to look for is the deflection, and §1.5's figure prints it: 12 mm at the
+> softest setting, 0.06 mm at the stiffest.
+
+The table's softest row is 0.2 MN/m at 6.1 mm and its stiffest 100 MN/m at 0.012 mm.
+Both prose numbers are right — they are the `stiffness-agreement` figure's control, whose
+slider runs 0.1 to 20 MN/m — and the prose does not say so, so it reads as a contradiction of
+the table three paragraphs above it. It is also the only place the page gives a reader a
+number the table cannot confirm.
+
+**The fix.** Name the control: "at the two ends of the figure's control, 0.1 and
+20 MN/m, the bush moves 12 mm and 0.06 mm". One clause, and the reader can check it by
+dragging the slider to either end.
+
+**Done means.**
+
+- [x] The sentence names the two stiffnesses its deflections belong to.
+- [x] Every number in §1.5 is either in the exported ladder's table or reachable by the
+      figure's control, and the page says which.
+
+**Done (2026-10-24).** The deflection sentence now names the figure control's 0.1 and 20 MN/m ends; a test reads those ends from `stiffness-agreement.js`.
+
+## 113. §1.6 names the parabolic class, but the quarter car has no damper
+
+**What is wrong.** §1.6 says the class has changed because “the mass and the rate terms”
+are in, and tags the section `:::class parabolic`. The model has no rate term. Its coil
+is `modes: {length: spring}` (`models/quarter-car/source/topology.yaml`), the data
+README says “a spring with no damper”, and the page itself says “there is a spring and no
+damper, so the motion repeats”.
+
+The class is defined on the page it links to as **“moves forward in time and smooths as
+it goes, so it forgets where it started”**. The quarter car does the opposite: it returns
+to 212.8 mm every 0.625 s with the same peak, and its energy drift is 6.3 × 10⁻⁸. That
+is the **Hamiltonian** case the `hyperbolic` page carries as a flag — “A single oscillator
+shows it” — and the section already prints the energy-drift diagnostic that flag asks for.
+`usedin.used_in('parabolic')` returns `Maths Applied · §1.6 Mass and dampers`;
+`usedin.used_in('hyperbolic')` returns nothing.
+
+The same false premise is in the map:
+
+- `books/numerical-methods/docs/worked-case/index.md` table: “How does the wheel bounce?
+  | mass, a spring and a damper | parabolic, plus eigenvalues”.
+- Same page, §“How does the wheel bounce”: “How long a bump takes to settle is a parabolic
+  decay”. It never settles, and the section says so three lines later.
+- `books/numerical-methods/docs/index.md`: “Its bounce is parabolic.”
+
+**The fix.** Choose one, and make the model and the class agree:
+
+1. **Add the damper.** If the package can put damping on the coil, re-vendor the quarter
+   car with a rate term, and then parabolic is the right class: the motion settles, and
+   the 0.625 s oscillation becomes the undamped limit. This is the version the section
+title and the “what it buys” paragraph already promise.
+2. **Keep the undamped model and say what it is.** Remove the `:::class parabolic`
+   callout (or move it to a sentence that explicitly describes a damped model the section
+   does *not* build), name the conservative/eigenvalue class, and link the Hamiltonian
+   flag on `hyperbolic` where the energy drift is quoted. Update `worked-case` and the
+   index so “settle” and “damper” are not claimed for a run that has neither. Decide
+   whether `parabolic` then has no caller; `worked-case` already has a paragraph for the
+   kinds with no caller.
+
+**Done means.**
+
+- [x] The class `:::class` on §1.6 is exhibited by the model the page runs, and the page
+      says which model that is.
+- [x] No page says “mass, a spring and a damper” or “takes to settle” about the vendored
+      run unless the run actually has damping.
+- [x] `usedin.used_in('parabolic')` and `usedin.used_in('hyperbolic')` agree with the
+      pages and with `worked-case`'s list of callers and non-callers.
+- [x] A test fails when the quarter car's damping mode changes without the class, the
+      period and the “settles/repeats” sentence being re-derived together.
+
+**Done (2026-10-24).** §1.6 is a conservative/Hamiltonian oscillator with `C=0`; parabolic is named only for the damped model it does not build. `worked-case`, the index, `the-four-models` and the `usedin` lists agree, with a test on the undamped coil.
+
+## 114. §1.3's iteration table and panel are numbers the current model does not produce
+
+**What is wrong.** The page says the table and panel are “the page's own model's numbers,
+recomputed by the figure on every load”. The figure runs `leastSquares([0.75, 0.6],
+5.32°, 5)` in `mechanism.js`; running that model gives a different table:
+
+```
+$ cd books/maths-applied/docs/assets && node --input-type=module -e '
+import { leastSquares } from "./data/mechanism.js";
+const h = leastSquares([0.75, 0.6], 5.32 * Math.PI / 180, 5);
+for (const s of h) console.log(s.k, (s.norm * 1000).toExponential(3), s.sigma.map(x => x.toFixed(3)).join(" "));
+0 1.297e+2 1.499 0.869 0.000
+1 8.026e+0 1.434 0.971 0.000
+2 1.543e-1 1.430 0.978 0.000
+3 1.627e-5 1.430 0.978 0.000
+4 7.087e-13 1.430 0.978 0.000
+5 9.615e-14 1.430 0.978 0.000
+```
+
+The page prints 135, 8.9, 0.20, 2.6 × 10⁻⁵, 1.7 × 10⁻¹², 1.7 × 10⁻¹³ mm, a final
+residual of 5.6 × 10⁻¹⁴ mm, and singular values 1.415, 0.998, 0.000. The last three are
+the **design pose's** set (`test_maths_applied_numbers.py` pins §1.4's σ to that pose);
+the figure is at the bump end, where the same model gives 1.430 and 0.978. So the table,
+the panel and the figure are three different experiments, and the sentence that says
+they are one is false.
+
+The same pass found two smaller numbers in the section's depth page:
+
+- `Section 1.3/Walkthrough` line 39: “the pivots are 0.24 m apart”. The upper wishbone's
+  pivots (`ucaf`, `ucar`) are 0.20 m apart; 0.24 m is the lower wishbone's spacing. The
+  section is about the upper ball joint, so the sentence names the wrong wishbone.
+- `Section 1.2/Deeper/two-solutions` line 27: the other assembly is “(0.35, 0.14) m”. At
+  the design pose `upperJoint(pose(0).C)` returns `(0.3486, 0.1733)`, which rounds to
+  `(0.35, 0.17)`, not `(0.35, 0.14)`.
+
+**The fix.** Regenerate the table and the panel from one stated pose and the figure's own
+`START`/`THETA`, or change the figure to the design pose if that is the pose the prose
+means. Make the depth page's coordinates and pivot spacing the model's numbers. Add a
+test in `test_maths_applied_numbers.py` that runs the same `leastSquares` call and checks
+every cell of §1.3's table, the panel's residual and σ, the depth page's second assembly
+and the pivot spacing — the same shape as the §1.2/§1.4/§1.5 guards that already exist.
+
+**Done means.**
+
+- [x] Every number in §1.3's table and panel is a node run of the model the figure mounts.
+- [x] The page names the pose the σ values belong to, and the figure uses that pose.
+- [x] The two-solutions page's second assembly and the pivot spacing are the model's.
+- [x] A test recomputes all of them from `mechanism.js` and fails on drift.
+
+**Done (2026-10-24).** §1.3's table and panel are the figure's `leastSquares([0.75, 0.6], 5.32°, 5)` run at the bump end; the pivot spacing is 0.20 m and the second assembly is (0.35, 0.17). New tests recompute all of them.
+
+## 115. `saddle-point` calls a bushed joint's spring force a multiplier
+
+**What is wrong.** The map's saddle-point page says:
+
+> In a mechanism it is the force in the bush.
+>
+> - A bushed suspension joint: the force in the bush is the multiplier on the joint.
+
+That is the one case that is **not** a saddle point. `choosing-the-class` states the two
+writings side by side: “Keep the joint rigid, and price it. The joint is a constraint, its
+force is a multiplier … Replace the joint with a spring. The constraint is gone, so the
+multiplier is gone … the force is that spring's stiffness times the deflection it
+produced.” §1.6's `:::class saddle-point` is on the rigid joint's constraint force, not on
+a bush. A reader who follows the §1.6 callout to the class page is told the opposite of
+what the class page in the same book argues.
+
+**The fix.** Name the rigid joint in both places: the multiplier is the force in a ball
+joint, pin or contact, the thing that keeps a hard constraint true. Say in one sentence
+that a bushed joint leaves the class: its force is `k` times the deflection, and finding
+it is the root problem on `choosing-the-class`. Change the “bushed suspension joint”
+bullet to a rigid joint, and add the bushed case under a sentence that says why it is not
+this class.
+
+**Done means.**
+
+- [x] `saddle-point` no longer calls a spring force a multiplier.
+- [x] `saddle-point`, `choosing-the-class` and `Maths Applied` §1.6 give one account of
+      which joint is priced and which is a spring.
+- [x] A reader who arrives from §1.6's `:::class saddle-point` can tell which force is
+      the unknown.
+
+**Done (2026-10-24).** `saddle-point` now names a rigid joint's constraint force and gives the bushed joint as the root-finding counterexample, matching `choosing-the-class` and §1.6.
+
+## 116. `worked-case` still says §1.6 is drafted and prints no numbers
+
+**What is wrong.** The map's worked case says:
+
+> `Maths Applied` §1.6 is drafted and not finished. It says what changes and what it
+> costs, and it prints no numbers, because the model that would produce them is not
+> written.
+
+§1.6 is finished, and it prints 212.8 mm of travel, a 0.625 s period, 1.6 Hz, −9.53° of
+camber, an energy drift of 6.3 × 10⁻⁸ and a constraint violation of 1.1 × 10⁻¹⁵.
+`tests/test_maths_applied_numbers.py::test_section_1_6_states_the_trajectorys_numbers`
+holds the page to the vendored payload. The paragraph above it also says “The questions
+that open up are the ones this book cannot yet answer with a number”, which is no longer
+true of the frequency and the period.
+
+**The fix.** Replace the paragraph with what §1.6 does answer — the period, the
+frequency, the energy drift — and name only what is still missing (the damper and the
+damper's heat, which are the two later boxes). If item 113 changes the class from
+parabolic to a conservative one, this paragraph and the table row change with it, so do
+them together.
+
+**Done means.**
+
+- [x] `worked-case` no longer says §1.6 is drafted, unfinished, or without numbers.
+- [x] The page quotes at least the period or frequency from the trajectory, and says
+      which question is still open.
+- [x] The paragraph agrees with §1.6's class after item 113 is decided.
+
+**Done (2026-10-24).** `worked-case` quotes §1.6's 212.8 mm, 0.625 s, 1.6 Hz and energy drift, and names the damper and heat as the questions still open.
+
+## 117. The map's `root` and `linear-system` pages overstate iteration
+
+**What is wrong.** Both pages state a universal rule their own worked examples break.
+
+- `root`: “A loop. … This is Newton's method, and everything else in the box is a way of
+  doing it more safely or more cheaply.” The signature: “the point is found by
+  iteration.” But §1.2's root is two circles meeting, solved in closed form, and
+  `worked-case` says “one closed-form step, no iteration”.
+- `linear-system`: “Nothing here is non-linear, so nothing has to be iterated. The work is
+  done once the rows are written.” But §1.3's model is three **non-linear** distance
+  constraints solved by Gauss–Newton; the `:::class linear-system` is on the normal
+  equations at each step, not on the whole model. §1.4's `:::class linear-system` is the
+  same inner step (the SVD of that Jacobian).
+
+A reader who follows either callout from `Maths Applied` meets a definition that says
+their model is not the class the callout just named. That is the opposite of the map's
+purpose.
+
+**The fix.** Add one paragraph to each page, in the page's own voice:
+
+- `root`: a closed form is a root solution too; iteration is the usual method when no
+  closed form exists, and §1.2's two circles are the closed-form case.
+- `linear-system`: a linear system is often one step inside a non-linear solve; the rules
+  at that step are linear, and the outer model can be a root or an optimisation. Name
+  §1.3's Gauss–Newton step as the example.
+
+Do not weaken the pages' useful advice — the point is that a class can be an inner step,
+not that the definitions are wrong.
+
+**Done means.**
+
+- [x] Neither page says a root is *always* iterated or a linear system is *never* part of
+      an iteration.
+- [x] Both pages name the `Maths Applied` example that is the exception, and why it is
+      still the class.
+- [x] A reader who arrives from §1.2/§1.3's `:::class` can tell whether the page is
+      describing the whole model or the step inside it.
+
+**Done (2026-10-24).** `root` allows a closed form; `linear-system` explains a linear step inside a nonlinear solve; both name the `Maths Applied` example that is the exception.
+
+## 118. `the-four-models` says all the chapter's numbers come from the front view
+
+**What is wrong.** The depth page's “What is deliberately absent” says:
+
+> **No three-dimensional solve.** The 3D picture is drawn, and the three-dimensional
+> solver exists, but the numbers in this chapter come from the front view.
+
+That is false in three places a reader can open: §1.2's `kernel-camber` compares the front
+view with the generated 3D kernel and prints the 0.033° gap; §1.5's ladder is the
+`double-wishbone-ubj` export, a 3D model; §1.6's quarter car is the 3D dynamics model.
+The sentence currently tells a reader that the check the chapter is proudest of is not
+part of the chapter.
+
+**The fix.** Say what is true: the main thread's model is the front view; the 3D solver
+is used to check it (§1.2), to produce the export's ladder (§1.5), and as the model with
+mass (§1.6). Keep the point that the projection is what the main thread derives; do not
+deny the uses that make the derivation evidence.
+
+**Done means.**
+
+- [x] The page no longer says all the chapter's numbers come from the front view.
+- [x] It names the three uses of the 3D solver, in the sections where they happen.
+- [x] A reader who has just read §1.2's kernel comparison is not told it does not exist.
+
+**Done (2026-10-24).** `the-four-models` now names the three uses of the 3D solver — the §1.2 check, the §1.5 export ladder and the §1.6 mass model — instead of denying them.
+
+## 119. §1.6's 0.006° agreement and 0.93° bound have drifted and nothing checks them
+
+**What is wrong.** The agreement paragraph says the dynamic camber equals the static
+camber at the same travel “to **0.006°**”, and gives the pair at 72.35 mm as −2.079°
+(dynamic) and −2.073° (static). The current vendored `double-wishbone` kernel, driven to
+72.35 mm, gives −2.0792° (package convention); the trajectory row at 72.351 mm also
+gives −2.0792°. The difference is below the printed precision, not 0.006°. The front
+view at 72.35 mm is +1.1396° in this book's convention; against the static model's
++2.0792° it is 0.94° out, not 0.93°.
+
+```
+$ node --input-type=module -e '
+import * as k from "./books/maths-applied/docs/assets/data/otkd/models/double-wishbone/kernel/kernel.js";
+await k.ready();
+if (k.setGeometry(k.manifest.default_geometry) !== 0) throw new Error("geometry");
+let lo = -0.2, hi = 0.3, best = 0;
+for (let i = 0; i < 60; i += 1) {
+  const d = (lo + hi) / 2;
+  k.design(); k.setDrive(d);
+  if (k.solve(80) < 0) break;
+  const travel = (k.world().wc[2] - 0.32) * 1000;
+  best = d;
+  if (travel < 72.35) lo = d; else hi = d;
+}
+k.design(); k.setDrive(best); k.solve(80);
+console.log(k.metrics().camber.toFixed(4));
+'
+-2.0792
+```
+
+The numbers were derived when the package was 0.5.0 (closed item 84); the book now
+vendors 0.11.0, and `test_maths_applied_numbers.py` checks the trajectory but not this
+agreement. The sentence “§1.2's front view gives 0.93° at that travel” also reads as the
+front view's camber, when it means the difference between the two models; the front
+view's own camber there is +1.14°.
+
+**The fix.** Recompute the static camber at 72.35 mm from the vendored 3D kernel (or
+record the exact Python model and version if that is the source), update 0.006, −2.073
+and 0.93, and write the bound as “the front view is 0.94° from the static model” so the
+quantity is named. Add a test that drives the static kernel to the same travel and
+compares the dynamic row, so the next re-vendor fails here rather than in a reader's
+hands.
+
+**Done means.**
+
+- [x] The dynamic and static cambers at 72.35 mm are the vendored model's, and the
+      difference is rounded at the precision the page prints.
+- [x] The 0.93/0.94 sentence names the difference, not a camber.
+- [x] A test recomputes the paragraph from the kernel/trajectory and fails on drift.
+
+**Done (2026-10-24).** The agreement paragraph is the current kernel and trajectory: 0.001°, −2.079° twice, and 0.94° from the front view. A node-backed test recomputes it.
+
+## 120. *Methods, A to Z* says multigrid is only for elliptic problems
+
+**What is wrong.** The closing note says “**Multigrid** appears only under elliptic
+problems”, but the table above it lists multigrid under `Linear system` and `Elliptic`,
+and the linear-system page carries a `Multigrid` row whose “when it wins” is “The matrix
+came from an elliptic problem”. The same page's `Read next` and the elliptic page both
+treat multigrid as a choice inside a linear solve. A reader comparing the note with the
+table sees a contradiction in one screen.
+
+**The fix.** Say what the table says: multigrid is tied to an elliptic origin, and it
+appears under linear systems and elliptic problems because an elliptic problem is solved
+as one. Keep the warning that it does not work on a hyperbolic problem. While there,
+soften the elliptic page's “Multigrid is not an optimisation; it is the answer” to “it is
+the method the class is built for”, because the book's own rule forbids ranking methods.
+
+**Done means.**
+
+- [x] The closing note, the A–Z table and the linear-system page agree on multigrid's
+      classes.
+- [x] No page calls one method “the answer” without naming the class it is the answer
+      for.
+- [x] A reader can tell the difference between “multigrid is the wrong class” and
+      “multigrid is the wrong method”.
+
+**Done (2026-10-24).** The multigrid note now agrees with the A–Z table and the linear-system page; the elliptic page no longer calls one method “the answer”.
+
+## 121. Small claims in the two books that name a number or a model they do not have
+
+**What is wrong.** Five small mismatches, each one sentence, found in the same pass.
+They share a failure mode — the prose names a quantity the model or the figure does not
+produce — so they are one edit pass rather than five queue items.
+
+- **§1.5's 0.15 MN/m and “twelve times apart”.** The ladder's softest row is 0.2 MN/m,
+  and it already meets the change tolerance (1.96° against 1.95°, a hundredth). The
+  model's front-view change tolerance crosses a tenth at about 0.04 MN/m, not 0.15. The
+  page's 0.15 is a sufficient value, not the crossing, and 1.8/0.15 is not the ratio of
+  the two tolerances. Say “the export's softest row already meets the change tolerance;
+  the at-rest tolerance needs 1.8 MN/m”, or compute the crossing and quote it.
+- **`optimisation`'s “camber curve flat over the travel”.** §1.5's optimisation is the
+  stiffness that meets a tolerance at rest (and the change over travel), not a flatness
+  objective. Change the example to “choosing a bush stiffness so the corner's camber
+  meets a tolerance”, which is what the `:::class optimisation` callout actually does.
+- **The home page's “Every number a figure shows is computed in the figure”.** The
+  `quarter-car` figure plots the vendored `trajectory.js`, and `kernel-camber` imports
+  the export's `agreement` object; both are computed by the model, not in the figure.
+  Say “computed by the model the page describes, in the figure or in the data beside it”.
+- **“Four models” after §1.6.** `book.yaml`, `curriculum.yaml`, `docs/index.md` and the
+  generated colophon say the book has four models; §1.6 adds a fifth with mass. Either
+  say “four models of where the wheel is, and a fifth with mass” or say that four answer
+  the chapter problem and §1.6 extends it. Pick one wording and use it in all four
+  places, including `curriculum.yaml → meta.what_it_is`, which generates the colophon.
+- **§1.2's “the track narrows by 9.2 mm”.** The figure's readout is the one-corner change,
+  4.6 mm at 40 mm of bump; 9.2 mm is both sides of the car. Add “across the car” or give
+  the one-corner number beside the figure's. The test already computes "2 ×" and its
+  docstring says “two sides”, so the page is the only place the doubling is invisible.
+
+**The fix.** One edit pass over the five sentences, then re-run the guards that already
+own the numbers (§1.5's ladder test, §1.2's track test, the home-page render) so the
+wording changes cannot move a number.
+
+**Done means.**
+
+- [x] Every number in the five sentences is in the model, the export or the figure's
+      control, and the sentence says which.
+- [x] “Four models” is consistent in `book.yaml`, `curriculum.yaml`, the home page and
+      the generated colophon.
+- [x] The `optimisation` example is the problem §1.5 actually solves.
+- [x] `python -m textbook.lint maths-applied numerical-methods` is clean and the
+      generated colophon is regenerated, not hand-edited.
+
+**Done (2026-10-24).** The five small claims now name the right source: 0.2 MN/m from the export, the tolerance example, the model behind the figures, four static models plus mass, and 9.2 mm across the car.
+

@@ -126,9 +126,9 @@ reasoning together. Three things are particular to this book.
   here, and a section that needs practice is a section with a figure missing.
 - `curriculum.yaml` is the source of truth for chapters, sections and deeper pages.
   `CURRICULUM-MAP.md` is generated; never edit it.
-- `Chapter 1` is the whole book for now: §1.1–§1.5 are authored, §1.6–§1.7 are
-  drafted as the destination. A drafted section says so on its page, in the reader's
-  words, and stops rather than pretending.
+- `Chapter 1` is the whole book for now: §1.1–§1.6 are finished, and §1.7 is an
+  outline. An outline says so on its page, in the reader's words, and stops rather
+  than pretending.
 
 ## Figures
 
@@ -238,7 +238,7 @@ not that the text matches.
 
 ## What the book could hold next
 
-Chapter 1 is one mechanism and four models. A second chapter should be a **different
+Chapter 1 is one mechanism, four static models and a fifth with mass. A second chapter should be a **different
 mechanism**, chosen because a simple model of it fails in a way a reader can watch —
 that is the pattern the book is built on, and a chapter without a failure at its centre
 is a chapter of exercises.

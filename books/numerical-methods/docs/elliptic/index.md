@@ -46,8 +46,9 @@ information one cell per step — Jacobi, Gauss–Seidel, a plain Krylov method 
 therefore crippled, and needs as many steps as the mesh is wide in every direction.
 
 Two consequences follow:
-- **Multigrid is not an optimisation; it is the answer.** It moves the smooth part
-  of the error on a coarse mesh, where it is not smooth at all.
+- **Multigrid is not an optimisation of another method; it is what the class makes
+  available.** It moves the smooth part of the error on a coarse mesh, where it is not
+  smooth at all.
 - **The solution is smooth even when the data is not.** A point load gives a
   continuous answer, and its derivative is the thing that has a corner.
 

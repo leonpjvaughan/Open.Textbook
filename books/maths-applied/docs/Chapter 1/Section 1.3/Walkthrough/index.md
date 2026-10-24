@@ -36,9 +36,9 @@ is the view along them: the two pivots $B_1$ and $B_2$ project onto **the same
 point**, and the two leg lengths project onto **the same circle**.
 
 That is a fact about the projection rather than about the wishbone — the pivots are
-0.24 m apart, and this view throws that direction away. So the first two rows are
-**the same equation written twice**: the same centre, the same radius, the same
-derivative. The model has three rows and two genuinely different equations.
+0.20 m apart fore and aft, and this view throws that direction away. So the first two
+rows are **the same equation written twice**: the same centre, the same radius, the
+same derivative. The model has three rows and two genuinely different equations.
 
 That is not a mistake to be embarrassed about. It is exactly what a projection
 does: it throws away the direction that told the legs apart. The three-dimensional
@@ -82,12 +82,12 @@ three equations still is.
 
 | Step | Total error |
 |---|---|
-| 0, the first guess | 135 mm |
-| 1 | 8.9 mm |
-| 2 | 0.20 mm |
-| 3 | 2.6 × 10⁻⁵ mm |
-| 4 | 1.7 × 10⁻¹² mm |
-| 5 | 1.7 × 10⁻¹³ mm |
+| 0, the first guess | 129.7 mm |
+| 1 | 8.03 mm |
+| 2 | 0.154 mm |
+| 3 | 1.63 × 10⁻⁵ mm |
+| 4 | 7.09 × 10⁻¹³ mm |
+| 5 | 9.62 × 10⁻¹⁴ mm |
 
 The error does not fall to nothing: it falls to the smallest number a double
 precision float can tell apart from nothing, and stays there. That floor is
@@ -104,11 +104,13 @@ the solver more work.
 | Check | Value |
 |---|---|
 | Least squares, after five steps | agrees with §1.2's closed form to 10⁻¹⁶ m |
-| Total residual at the end | 5.6 × 10⁻¹⁴ mm, which is round-off |
-| Singular values of the Jacobian | 1.415, 0.998, 0.000 |
+| Total residual at the end | 9.6 × 10⁻¹⁴ mm, which is round-off |
+| Singular values of the Jacobian | 1.430, 0.978, 0.000 |
 | The smallest, and what it means | nothing on its own — see §1.4 |
 
-These are the page's own model's numbers, recomputed by the figure on every load.
+These are the page's own model's numbers, recomputed by the figure on every load. They are
+at the bump end of the travel, the pose the figure mounts; the design pose's σ set is
+1.415 and 0.998, which is §1.4's table.
 The package's export for the same mechanism is vendored at
 `docs/assets/data/otkd/models/double-wishbone-two-leg/out.js`, and it does carry
 `iterations` — one residual vector and one set of singular values per Newton step —
@@ -119,7 +121,7 @@ what §1.4 checks.
 ## Pseudocode, and the file it comes from
 
 ```python
-# solve.py — least squares by Gauss-Newton, with the diagnosis attached
+# least_squares.py — least squares by Gauss-Newton, with the diagnosis attached
 def least_squares(start, theta, steps=20, tol=1e-12):
     D = start
     for k in range(steps):
@@ -133,7 +135,7 @@ def least_squares(start, theta, steps=20, tol=1e-12):
 ```
 
 The real function is
-[`solve.py`](https://github.com/leonpjvaughan/suspension-kinematics/blob/main/src/suspension/solve.py),
+[`least_squares.py`](https://github.com/leonpjvaughan/suspension-kinematics/blob/main/src/otkd/solvers/least_squares.py),
 and it returns the cost, the optimality and the singular values of $J$ at the
 solution, because a least-squares answer without its residual is a number with no
 error bar.

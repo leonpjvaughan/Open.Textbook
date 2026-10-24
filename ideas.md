@@ -12,8 +12,8 @@ one book. The rules an idea must obey are in `AGENTS.md`; the figure contract is
 `research/pedagogy.md`; the measured state of what exists is in
 `research/design/reuse-audit.md` and `research/design/figure-audit.md`.
 
-**Retrieved:** 2026-10-16, with `maths-applied`'s five modules counted 2026-10-18.
-Every count below is a command and its output. Anything not measured says so.
+**Retrieved:** 2026-10-24. Every count below is a command and its output. Anything
+not measured says so.
 
 ---
 
@@ -21,7 +21,7 @@ Every count below is a command and its output. Anything not measured says so.
 
 ```
 $ find books/*/docs/assets/figures -name '*.js' ! -name kit.js ! -name figures.js | wc -l
-251
+256
 
 $ # per book
   a-level-maths           58 modules   16 chapters
@@ -33,7 +33,8 @@ $ # per book
   proofs                  14 modules   23 proof pages (14 carry a figure)
   ie-lc-maths             10 modules   18 chapters
   ie-lc-applied-maths     10 modules    9 chapters
-  maths-applied            5 modules    1 chapter
+  maths-applied            8 modules    1 chapter
+  numerical-methods        2 modules  13 registry pages, no chapters
 
 $ # and four shared modules, each mountable by any book
   assets/figures/venn-regions.js       the same set diagram, two books
@@ -53,26 +54,25 @@ reads the number a figure's readout prints.
 
 ### The interaction vocabulary in practice
 
-The counts below were taken on 2026-10-16, before `maths-applied`'s five figures
-existed; each of them calls `panel()`, `react()`, `slider()` and `label()`, so every
-number here is five higher today and the table has not been re-measured.
+The counts below were taken on 2026-10-24 over all 256 modules. They count modules
+that call each function, not calls, so a module that calls `slider()` twice counts once.
 
 ```
-$ # counting the 250 modules
-  245  call panel()          the frame, the accessible name, the readout
-  244  call react()          redraw on input
-  235  call slider()         the dominant control by a wide margin
-   72  call label()          positioned text, with a colour class by default
-   29  call chooser()        a select, for 3-6 named alternatives
+$ # counting the 256 modules
+  250  call panel()          the frame, the accessible name, the readout
+  247  call react()          redraw on input
+  238  call slider()         the dominant control by a wide margin
+  213  call label()          positioned text, with a colour class by default
+   28  call chooser()        a select, for 3-6 named alternatives
+   27  call axes()           the plot area, its ticks and its mappers together
    23  call scale()          map a domain onto a range
-   22  call axes()           the plot area, its ticks and its mappers together
    14  call toggle()         a checkbox, for on/off
-    5  call diagram()        named parts, explored one at a time
-    2  call camera3d()       a fixed camera and a painter's algorithm
-    1  call stepper()        next/back through a fixed sequence
+    6  call diagram()        named parts, explored one at a time
+    3  call camera3d()       a fixed camera and a painter's algorithm
+    2  call stepper()        next/back through a fixed sequence
     1  call draggable()      a handle that is also a slider
     1  call practice()       an endless generated question
-    1  call remember()       store the reader's own words
+    0  call remember()       store the reader's own words
     0  call table()          a grid the reader fills in
     0  call vectorField()    arrows on a grid, from a function
 ```
@@ -81,15 +81,15 @@ One shape accounts for nine modules in ten:
 
 > **a panel, one or two sliders, a hand-drawn SVG that redraws, and a live readout.**
 
-That is the pattern that has survived 209 authors, and it is cheap to build and easy to
+That is the pattern that has survived 256 modules, and it is cheap to build and easy to
 check. It is also, on this evidence, the *only* one — which is the interesting fact. Nine
 interaction forms in §3 have no kit support at all.
 
-**Every module is keyboard-operable.** 208 mount a kit control (a native `<input>` or
-`<select>`); the one that mounts none (`gcse-physics/radiation-penetration.js`) creates
-`<button>` elements with `aria-pressed`. Nothing here needs a keyboard fix. That is a
-property worth keeping as the kit grows: **a new interaction must arrive keyboard-operable
-or not arrive.**
+**Every figure that has a control is keyboard-operable.** 252 of 256 modules mount a kit
+control or create their own buttons; the four with no control (`kernel-camber`,
+`quarter-car`, `energy-drift`, `step-limit`) are still drawings. Nothing here needs a
+keyboard fix. That is a property worth keeping as the kit grows: **a new interaction must
+arrive keyboard-operable or not arrive.**
 
 **Nothing animates.** Zero modules call `requestAnimationFrame`. Motion exists only in the
 optional page backgrounds, which honour `prefers-reduced-motion`.

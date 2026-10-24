@@ -46,8 +46,8 @@ TRAVELS = (-40.0, -20.0, 0.0, 20.0, 40.0)
 _SCRIPT = (
     "const BASE = " + json.dumps(str(DATA)) + ";\n"
     + """
-const { GEOMETRY, GROUND, FRONT, pose, thetaFor, legsJacobian, singularValues } =
-  await import(BASE + "/mechanism.js");
+const { GEOMETRY, GROUND, FRONT, pose, thetaFor, legsJacobian, singularValues,
+        leastSquares, upperJoint } = await import(BASE + "/mechanism.js");
 const kernel = await import(BASE + "/otkd/models/double-wishbone/kernel/kernel.js");
 const quarter = await import(BASE + "/quarter-car/trajectory.js");
 
@@ -111,6 +111,35 @@ for (let index = 1; index < travel.length - 1; index += 1) {
   }
 }
 
+// §1.6's agreement at 72.35 mm: the current kernel, the trajectory and the front view.
+if (kernel.setGeometry(kernel.manifest.default_geometry) !== 0) {
+  throw new Error("the kernel rejected its default geometry");
+}
+let low = -0.2;
+let high = 0.3;
+let drive = 0;
+for (let index = 0; index < 80; index += 1) {
+  const middle = (low + high) / 2;
+  kernel.design();
+  kernel.setDrive(middle);
+  if (kernel.solve(80) < 0) break;
+  const current = (kernel.world().wc[2] - 0.32) * 1000;
+  drive = middle;
+  if (current < 72.35) low = middle; else high = middle;
+}
+kernel.design();
+kernel.setDrive(drive);
+kernel.solve(80);
+const staticCamber = kernel.metrics().camber;
+const dynamicRow = quarter.rows.reduce((best, row) =>
+  Math.abs(row.travel - 72.35) < Math.abs(best.travel - 72.35) ? row : best);
+const frontCamber = pose(thetaFor(72.35)).camber;
+
+// §1.3's iteration at the figure's own start and pose.
+const iteration = leastSquares([0.75, 0.6], 5.32 * Math.PI / 180, 5);
+const iterationPose = pose(5.32 * Math.PI / 180);
+const otherAssembly = upperJoint(pose(0).C)[1];
+
 console.log(JSON.stringify({
   rows: [-40, -20, 0, 20, 40].map(at),
   change: bump.camber - droop.camber,
@@ -125,6 +154,29 @@ console.log(JSON.stringify({
     period: peaks[1] - peaks[0],
     drift: quarter.meta.energy_drift,
   },
+  agreement: {
+    travel: dynamicRow.travel,
+    dynamic: dynamicRow.camber,
+    static: staticCamber,
+    difference: Math.abs(staticCamber - dynamicRow.camber),
+    front: frontCamber,
+    frontDifference: Math.abs(frontCamber + staticCamber),
+  },
+  iteration: iteration.map((step) => ({
+    k: step.k,
+    norm: step.norm * 1000,
+    sigma: step.sigma,
+  })),
+  iterationPose: {
+    D: iteration[iteration.length - 1].D,
+    pose: iterationPose.D,
+    difference: Math.hypot(
+      iteration[iteration.length - 1].D[0] - iterationPose.D[0],
+      iteration[iteration.length - 1].D[1] - iterationPose.D[1],
+    ),
+  },
+  upperPivotSpacing: Math.abs(GEOMETRY.ucar[1] - GEOMETRY.ucaf[1]),
+  otherAssembly,
 }));
 """
 )
@@ -155,6 +207,21 @@ def numbers(text: str) -> list[float]:
     """Every number in a piece of page text, with the page's true minus signs read."""
     found = re.findall(rf"[{MINUS}-]?\d+(?:\.\d+)?", text)
     return [float(value.replace(MINUS, "-")) for value in found]
+
+
+def measure(cell: str) -> float:
+    """One page number, including the `1.6 × 10⁻⁵ mm` form and a true minus sign."""
+    text = cell.replace(MINUS, "-").replace("mm", "").strip()
+    match = re.search(r"([\d.]+)(?:\s*×\s*10([⁻]?[⁰¹²³⁴⁵⁶⁷⁸⁹]+))?", text)
+    assert match, f"not a number: {cell!r}"
+    value = float(match.group(1))
+    if match.group(2):
+        superscript = match.group(2)
+        sign = -1 if "⁻" in superscript else 1
+        digits = superscript.replace("⁻", "")
+        power = int("".join(str("⁰¹²³⁴⁵⁶⁷⁸⁹".index(ch)) for ch in digits))
+        value *= 10 ** (sign * power)
+    return value
 
 
 def table(text: str) -> list[list[str]]:
@@ -225,6 +292,7 @@ def test_the_track_narrowing_is_the_front_views(model):
     text = page("Section 1.2/Walkthrough")
     found = stated(r"the track narrows by \*\*([\d.]+) mm\*\*", text)
     assert found == round(model["trackNarrowing"], 1)
+    assert "across the car" in text
 
 
 def test_the_bump_half_is_not_the_average_rate(model):
@@ -361,3 +429,78 @@ def test_section_1_6_states_the_trajectorys_numbers(model):
     assert numbers(row(text, "energy drift over 601 steps")[0])[0] == round(
         quarter["drift"] * 1e8, 1
     )
+
+
+def test_section_1_6_agreement_is_the_current_models(model):
+    """The agreement paragraph is the current kernel and trajectory, not 0.5.0's pair."""
+    text = page("Section 1.6/Walkthrough")
+    agreement = model["agreement"]
+
+    assert round(agreement["dynamic"], 3) == -2.079
+    assert round(agreement["static"], 3) == -2.079
+    assert agreement["difference"] < 0.001
+    assert "to **0.001°**" in text
+    assert text.count("−2.079°") == 2, "the page no longer prints both cambers"
+
+    assert round(agreement["frontDifference"], 2) == 0.94
+    assert "0.94°" in text
+    assert "0.93°" not in text
+
+
+def test_section_1_6_names_parabolic_only_for_the_future_damper():
+    """The undamped quarter car is conservative; parabolic is the model it does not build."""
+    text = page("Section 1.6/Walkthrough")
+    assert "conservative" in text
+    assert "Hamiltonian flag" in text
+    assert ":::class parabolic" in text
+    assert "a different model, not this one" in text
+    assert text.index(":::class parabolic") > text.index("a different model, not this one")
+
+
+def test_section_1_3_table_and_panel_are_the_figures_model(model):
+    """The iteration table, total residual and σ are the figure's own run."""
+    text = page("Section 1.3/Walkthrough")
+    rows = [
+        cells
+        for cells in table(text)
+        if re.fullmatch(r"\d+(, the first guess)?", cells[0])
+    ]
+    assert len(rows) == 6, f"§1.3 has {len(rows)} iteration rows"
+
+    for cells, expected in zip(rows, model["iteration"]):
+        assert measure(cells[1]) == pytest.approx(expected["norm"], rel=0.005)
+
+    assert measure(row(text, "Total residual at the end")[0]) == pytest.approx(
+        model["iteration"][-1]["norm"], rel=0.005
+    )
+    printed = [round(value, 3) for value in numbers(row(text, "Singular values of the Jacobian")[0])]
+    expected = [round(value, 3) for value in model["iteration"][-1]["sigma"]]
+    assert printed == expected
+    assert model["iterationPose"]["difference"] < 1e-15
+
+
+def test_section_1_3_spacing_and_the_other_assembly_are_the_models(model):
+    """The 0.20 m pivot spacing and the second assembly's (0.35, 0.17) are the model's."""
+    text = page("Section 1.3/Walkthrough")
+    assert f"{model['upperPivotSpacing']:.2f} m apart" in text
+
+    other = page("Section 1.2/Deeper/two-solutions")
+    x, z = numbers(row(other, "the other one")[0])
+    assert (round(x, 2), round(z, 2)) == (
+        round(model["otherAssembly"][0], 2),
+        round(model["otherAssembly"][1], 2),
+    )
+
+
+def test_section_1_6_is_finished_and_nothing_is_called_drafted():
+    """The chapter stopped calling §1.6 drafted; the page still carries its figures."""
+    root = repo_root() / "books" / "maths-applied"
+    for name in ("AGENTS.md", "curriculum.yaml", "docs/index.md"):
+        text = (root / name).read_text(encoding="utf-8")
+        assert "drafted" not in text, f"{name} still calls a finished section drafted"
+
+    section = page("Section 1.6/Walkthrough")
+    assert ":::figure quarter-car" in section
+    assert ":::figure dynamics-table" in section
+    assert "212.8 mm" in section
+

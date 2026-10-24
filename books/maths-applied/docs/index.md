@@ -5,7 +5,8 @@ title: Maths Applied
 # Maths Applied
 
 How a car's suspension moves, and how little model you can get away with. One
-mechanism, four models, and the number where each pair of them agrees.
+mechanism, four static models and a fifth with mass, and the number where each pair
+agrees.
 
 - 1 chapter, 7 sections
 - No syllabus, no tiers, no answers to mark
@@ -16,16 +17,17 @@ A car's front suspension is a linkage of two wishbones, an upright and a wheel. 
 the wheel moves up and down, its angles change, and the change is small enough to
 ignore and large enough to matter.
 
-This book works out those angles with four models of the same mechanism, each one
-introduced only when the one before it has stopped answering the question. Every
-replacement is checked against the last by a number the book shows.
+This book works out those angles with four static models of the same mechanism, then
+gives it mass. Each model is introduced only when the one before it has stopped
+answering the question, and every replacement is checked against the last by a number
+the book shows.
 
 It is not a course, and nothing here is examined. You need trigonometry and not
 much else; each piece of mathematics is introduced where it is used.
 
 ## Chapter 1: Suspension kinematics
 
-The chapter is a single argument, in five parts, with two drafted sections
+The chapter is a single argument, in six sections, and one outline
 sketching what lies beyond it.
 
 1. **The question** — the parts, the two angles, and where the chapter is going.
@@ -37,9 +39,10 @@ sketching what lies beyond it.
    value decomposition says so.
 5. **Bushes are not rigid** — a spring instead of a joint, and the number where the
    two models meet.
+6. **Mass and dampers** — mass, a conservative oscillation, and the damper the model
+   does not have.
 
-Then, drafted: **mass and dampers**, where the problem stops being algebra, and
-**the full vehicle**, where these models are used many times over.
+Then, outline: **the full vehicle**, where these models are used many times over.
 
 [Start at §1.1](Chapter 1/Section 1.1/Walkthrough/index.md)
 
@@ -54,8 +57,8 @@ it.
 
 ## Where the numbers come from
 
-Every number a figure shows is computed in the figure, by the model the page
-describes. The same model, in three dimensions and with its tests, is
+Every number a figure shows is computed by the model the page describes, in the
+figure or in the data beside it. The same model, in three dimensions and with its tests, is
 [`suspension-kinematics`](https://github.com/leonpjvaughan/suspension-kinematics).
 
 :::disclaimer

@@ -121,7 +121,8 @@ Three numbers matter for the chapter's question:
 - that is **0.024° per millimetre** averaged over the whole 80 mm. The curve is not
   a straight line: 40 mm of bump from rest is worth **1.08°**, a little more than
   half the total;
-- the track narrows by **9.2 mm** at the bump end, and widens a little in droop.
+- the track narrows by **9.2 mm** across the car at the bump end, and widens a little
+  in droop.
 
 The **instant centre** is where the two arm axes would meet if they carried on
 past the wheel. It is 2.36 m from the hub, which is why the drawing has to say
@@ -175,7 +176,7 @@ front view is wrong by less than the accuracy anyone asked for.
 ## Pseudocode, and the file it comes from
 
 ```python
-# derive.py — the residual and its Jacobian, symbolically, once
+# compile.py — the residual and its Jacobian, symbolically, once
 unknowns = symbols("C_x C_z D_x D_z")
 rows = [
     dist(C, A) - R_A,            # the lower arm keeps its length
@@ -187,8 +188,8 @@ residual = lambdify((...), rows, cse=True)
 jacobian = lambdify((...), J, cse=True)
 ```
 
-The file is [`analytic.py`](https://github.com/leonpjvaughan/suspension-kinematics/blob/main/src/suspension/analytic.py)
-for the closed form, and [`derive.py`](https://github.com/leonpjvaughan/suspension-kinematics/blob/main/src/suspension/derive.py)
+The file is [`analytic.py`](https://github.com/leonpjvaughan/suspension-kinematics/blob/main/src/otkd/analysis/analytic.py)
+for the closed form, and [`compile.py`](https://github.com/leonpjvaughan/suspension-kinematics/blob/main/src/otkd/problem/compile.py)
 for the derivation. The pseudocode uses the same names and shapes as the files;
 it is not a copy of them.
 

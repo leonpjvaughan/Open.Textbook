@@ -138,19 +138,22 @@ comparison at the bottom.
 ## Pseudocode, and the file it comes from
 
 ```python
-# solve.py — what a diagnosis has to return to be useful
-def svd_diagnose(J):
+# svd.py — what a diagnosis has to return to be useful
+def diagnose(system, q, rows=None, rtol=1e-9):
     """Which equations are the same equation, and by how much."""
-    U, sigma, Vt = svd(J)
-    dependent = []                        # row indices the null direction points at
-    for w in null_space(J.T):             # combinations of rows that vanish
-        dependent.append([i for i, value in enumerate(w) if abs(value) > 1e-9])
-    return Diagnosis(singular_values=sigma, rows=dependent, null_space=w)
+    jac = system.jacobian(q, rows)
+    rank, null, sigma = left_null(jac, rtol)
+    names = [system.problem.rows[i].name for i in rows or system.constrained]
+    dependent = [name for name, w in zip(names, np.max(np.abs(null), axis=1))
+                 if w > rtol]
+    return Diagnosis(singular_values=sigma, rank=rank,
+                     redundancy=len(names) - rank,
+                     dependent_rows=dependent, null_space=null)
 ```
 
 The file is
-[`solve.py`](https://github.com/leonpjvaughan/suspension-kinematics/blob/main/src/suspension/solve.py).
-Returning the row indices rather than only the singular values is the whole point:
+[`svd.py`](https://github.com/leonpjvaughan/suspension-kinematics/blob/main/src/otkd/solvers/svd.py).
+Returning the row names rather than only the singular values is the whole point:
 a figure can then say *which* equations are the same, instead of shouting that
 something is wrong somewhere.
 

@@ -10,9 +10,9 @@
 #   * Where two models overlap, the book shows they agree, **with a number**.
 #   * The main thread is readable end to end without opening a single depth page.
 #
-# This chapter is one mechanism, four models, and the numbers where each pair
-# agrees. It is the whole book's argument in one place: §1–§4 are authored, §5–§6
-# are drafted as the destination the chapter is walking towards.
+# This chapter is one mechanism, four static models and a fifth with mass, and the
+# numbers where each pair agrees. It is the whole book's argument in one place:
+# §1.1–§1.6 are finished; §1.7 is an outline.
 #
 # `deeper:` pages are optional and **authored, never scaffolded** — the scaffold
 # deliberately writes no stub for them, and the navigation lists each one as a
@@ -33,10 +33,10 @@ meta:
   what_it_is: >-
     This is a book about modelling, worked out on one mechanism: the front
     suspension of a car. It asks one question — how far does the camber change as
-    the wheel moves — and answers it with four models of increasing complexity.
-    Each one is introduced only when the one before it has stopped answering the
-    question, and every model is checked against the last by a number the book
-    shows.
+    the wheel moves — and answers it with four static models of increasing
+    complexity, then gives the mechanism mass. Each one is introduced only when the
+    one before it has stopped answering the question, and every model is checked
+    against the last by a number the book shows.
   level_word: level
   retrieved: 2026-10-18
 
@@ -114,9 +114,8 @@ chapters:
         title: Mass and dampers
         summary: >-
           Give the mechanism mass and the problem stops being algebra: it becomes
-          differential-algebraic, and it needs time. What that buys, and what it
-          costs. This section is drafted rather than finished: it is the chapter's
-          destination, not its destination met.
+          differential-algebraic, and it needs time. The run is a conservative
+          oscillation; a damper would make it settle, and that is the next model.
       - id: "1.7"
         title: The full vehicle
         summary: >-

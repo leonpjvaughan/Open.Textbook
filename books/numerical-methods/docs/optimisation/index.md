@@ -73,7 +73,7 @@ Every method named here is in [Methods, A to Z](../techniques/#finding-a-state),
 
 ## Systems that live here
 
-- Choosing a spring rate so the camber curve is flat over the travel.
+- Choosing a bush stiffness so the corner's camber meets a tolerance.
 - Fitting a tyre model to rig data — a least-squares problem, and therefore
   Gauss–Newton with damping.
 - Optimal control: the damper curve that keeps the tyre loaded.

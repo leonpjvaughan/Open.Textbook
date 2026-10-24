@@ -19,6 +19,8 @@ import base64
 import hashlib
 import json
 import re
+import urllib.error
+import urllib.request
 
 import pytest
 import yaml
@@ -186,3 +188,163 @@ def test_the_trajectory_records_the_study_it_ran():
 def test_the_trajectory_is_the_version_the_vendor_script_pins():
     """The run and the bundle have to be the same release, or §1.6 quotes a model we do not ship."""
     assert trajectory_meta()["generator"] == manifest()["generator"]
+
+# --- the page's links and the kernel's sparsity -------------------------------
+
+
+def book_pages() -> list[Path]:
+    """Every Markdown page this book ships, whatever the chapter or depth directory."""
+    return sorted((repo_root() / "books" / "maths-applied" / "docs").rglob("*.md"))
+
+
+def package_links() -> set[str]:
+    """Every suspension-kinematics blob URL the book prints."""
+    found = set()
+    for page in book_pages():
+        found.update(
+            re.findall(
+                r"https://github\.com/leonpjvaughan/suspension-kinematics/blob/[^)\s]+",
+                page.read_text(encoding="utf-8"),
+            )
+        )
+    return found
+
+
+def test_every_package_link_names_a_file_the_package_has():
+    """The package renamed `src/suspension/` to `src/otkd/`; a dead link is a dead end.
+
+    The network is not a build dependency, so this test skips when it is unavailable.
+    A 404 still fails: the check exists to catch a rename, not to pass when GitHub is
+    unreachable.
+    """
+    links = package_links()
+    assert links, "the book has no suspension-kinematics blob links"
+    for url in sorted(links):
+        match = re.fullmatch(
+            r"https://github\.com/leonpjvaughan/suspension-kinematics/blob/[^/]+/(.+)", url
+        )
+        assert match, f"not a blob URL: {url}"
+        api = (
+            "https://api.github.com/repos/leonpjvaughan/suspension-kinematics/contents/"
+            + match.group(1)
+        )
+        request = urllib.request.Request(api, headers={"User-Agent": "Open.Textbook"})
+        try:
+            with urllib.request.urlopen(request, timeout=10) as response:
+                assert response.status == 200, f"{url} returned {response.status}"
+        except urllib.error.HTTPError as error:
+            if error.code in (403, 429):
+                pytest.skip(f"GitHub rate-limited the link check: {error}")
+            assert error.code != 404, f"{url} is a dead link"
+            raise
+        except (urllib.error.URLError, TimeoutError) as error:
+            pytest.skip(f"network unavailable, so {url} was not checked: {error}")
+
+
+def test_every_pseudocode_snippet_names_a_file_the_page_links():
+    """A snippet's `# file.py` comment and its link are the same file, in the current tree."""
+    for page in book_pages():
+        text = page.read_text(encoding="utf-8")
+        for block in re.findall(r"```python\n(.*?)```", text, re.S):
+            first = block.splitlines()[0].strip()
+            named = re.fullmatch(r"# ([a-z_]+\.py) — .*", first)
+            if not named:
+                continue
+            name = named.group(1)
+            assert re.search(
+                rf"\[`{re.escape(name)}`\]\(https://github\.com/leonpjvaughan/"
+                rf"suspension-kinematics/blob/[^)]*{re.escape(name)}\)",
+                text,
+            ), f"{page}: the {name} snippet has no link to {name}"
+
+
+def test_the_linear_system_page_sparsity_is_the_vendored_kernels():
+    """The 441 / 161 claim is the kernel's Jacobian, not a number typed beside it.
+
+    `kernel.rs` writes every cell, including the zeros, so the count of non-zero
+    assignments is derived from the generated Rust and the layout's declared size is
+    read from `provenance.json`. A re-vendored topology that changes either number
+    fails here instead of leaving the page quoting a matrix the book no longer ships.
+    """
+    kernel = BUNDLE / "models" / "double-wishbone" / "kernel"
+    provenance = json.loads((kernel / "provenance.json").read_text(encoding="utf-8"))
+    declared = provenance["layout"]["sizes"]["jac"]
+    unknowns = provenance["layout"]["sizes"]["q"]
+
+    rust = (kernel / "kernel.rs").read_text(encoding="utf-8")
+    body = rust[rust.index("fn compute_inner") : rust.index('pub extern "C" fn compute')]
+    assignments = re.findall(r"jac\[\d+\] = ([^;]+);", body)
+    non_zero = sum(1 for value in assignments if value.strip() != "0.0")
+    assert len(assignments) == declared, f"the Rust writes {len(assignments)} Jacobian cells"
+
+    page = (
+        repo_root()
+        / "books"
+        / "numerical-methods"
+        / "docs"
+        / "linear-system"
+        / "index.md"
+    ).read_text(encoding="utf-8")
+    match = re.search(
+        r"Jacobian has (\d+) entries, of which \*\*(\d+) are not zero\*\*", page
+    )
+    assert match, "the linear-system page no longer states its Jacobian's sparsity"
+    assert (int(match.group(1)), int(match.group(2))) == (declared, non_zero)
+    assert re.search(rf"solves\s+{unknowns}\s+equations", page), (
+        f"the page no longer names the kernel's {unknowns} unknowns"
+    )
+
+
+def test_the_quarter_car_is_undamped_and_the_pages_say_so():
+    """A release that adds a damper changes the class, the period and the prose together.
+
+    §1.6 now calls the run conservative and says it repeats. That is true only while the
+    coil is a spring with no damper. The test reads the vendored model, then both pages
+    that describe it, so a re-vendor cannot silently turn a conservative oscillator into
+    a parabolic decay.
+    """
+    topology = yaml.safe_load(
+        (BUNDLE / "models" / "quarter-car" / "source" / "topology.yaml").read_text(
+            encoding="utf-8"
+        )
+    )
+    coil = next(joint for joint in topology["joints"] if joint["name"] == "coil")
+    assert coil["modes"] == {"length": "spring"}, "the quarter car now has a damper"
+
+    section = (
+        repo_root()
+        / "books"
+        / "maths-applied"
+        / "docs"
+        / "Chapter 1"
+        / "Section 1.6"
+        / "Walkthrough"
+        / "index.md"
+    ).read_text(encoding="utf-8")
+    assert "conservative" in section
+    assert "no damper" in section
+    assert "a different model, not this one" in section
+    assert section.index(":::class parabolic") > section.index("a different model, not this one")
+
+    worked = (
+        repo_root() / "books" / "numerical-methods" / "docs" / "worked-case" / "index.md"
+    ).read_text(encoding="utf-8")
+    assert "mass, a spring and a damper" not in worked
+
+
+def test_the_book_level_wording_is_four_static_models_and_a_fifth_with_mass():
+    """The book's self-description matches §1.6's fifth model."""
+    root = repo_root() / "books" / "maths-applied"
+    for name in ("book.yaml", "curriculum.yaml", "docs/index.md", "docs/colophon.md"):
+        text = (root / name).read_text(encoding="utf-8")
+        assert "four static models" in text, f"{name} does not say four static models"
+
+
+def test_the_home_page_names_the_model_behind_a_figures_numbers():
+    """The home page no longer claims every number is computed inside the figure."""
+    page = (repo_root() / "books" / "maths-applied" / "docs" / "index.md").read_text(
+        encoding="utf-8"
+    )
+    assert "computed by the model the page describes" in page
+    assert "computed in the figure" not in page
+

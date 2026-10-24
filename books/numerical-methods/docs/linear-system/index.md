@@ -13,8 +13,8 @@ A balance. The forces at a joint add to zero, the currents into a node add to ze
 the flow through a face equals the flow out of it. Or a fit: the model is a sum of
 known shapes, and you want the amounts of each.
 
-Nothing here is non-linear, so nothing has to be iterated. The work is done once the
-rows are written, and the difficulty has moved into the matrix.
+The system itself is linear, so the solve does not iterate. The work is done once
+the rows are written, and the difficulty has moved into the matrix.
 
 ## The model you write down
 
@@ -41,6 +41,13 @@ of the matrix**, not by the subject the matrix came from:
   the [saddle point](../saddle-point/index.md) page.
 - **Rectangular.** More equations than unknowns is a least-squares problem, and the
   answer is a projection rather than a solution.
+
+A linear system is often one step inside a non-linear solve. `Maths Applied` §1.3's
+three distance rules are non-linear, and Gauss–Newton iterates them; each step solves
+the linear system on this page. The rules at that step are linear, and the outer model
+is a root problem or an optimisation. That is the distinction the
+[class is a choice](../choosing-the-class/index.md) page makes: the class belongs to the
+writing, and the writing can be one step of a larger model.
 
 ## The signature
 
@@ -89,9 +96,10 @@ Every method named here is in [Methods, A to Z](../techniques/#linear-systems), 
 - Nodal analysis of a circuit: the voltage at every node.
 - Any steady discretisation, once the equations are assembled: see
   [Elliptic](../elliptic/index.md).
-- A suspension's Jacobian: the package this collection uses solves 21 equations whose
-  Jacobian has 441 entries, of which **161 are not zero** — sparse enough that the sparsity
-  is the method, not a detail of it: the generated solver touches only the non-zeros.
+- The `double-wishbone` example's Jacobian: the package this collection uses solves 21
+  equations whose Jacobian has 441 entries, of which **161 are not zero** — sparse enough
+  that the sparsity is the method, not a detail of it: the generated solver touches only
+  the non-zeros.
 - A least-squares fit: a tyre model, a calibration curve, a camera model.
 - Network flows, and the stationary vector of a link matrix.
 - Spline and surface fitting, where the unknowns are the control points.

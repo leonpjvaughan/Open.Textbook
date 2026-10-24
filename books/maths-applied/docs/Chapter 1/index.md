@@ -7,8 +7,8 @@ strand: applied
 # Chapter 1: Suspension kinematics
 
 A car's wheel does not stay upright as it moves. This chapter works out how far it
-tilts, using one mechanism and four models of it — and it is as much about the
-models as about the wheel.
+tilts, using one mechanism and four static models of it, then a fifth with mass — and
+it is as much about the models as about the wheel.
 
 ## The chapter problem
 

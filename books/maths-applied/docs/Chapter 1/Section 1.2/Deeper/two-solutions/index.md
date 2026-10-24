@@ -24,7 +24,7 @@ At the rest position of this chapter's geometry, the two answers are:
 | Solution | Upper ball joint |
 |---|---|
 | the one the car is built on | (0.68, 0.52) m |
-| the other one | (0.35, 0.14) m |
+| the other one | (0.35, 0.17) m |
 
 Both satisfy the equations exactly. Both are the same parts, rigid, in a valid
 arrangement. The second has the upright folded down and inwards, past the lower

@@ -498,22 +498,22 @@ def test_the_worked_case_names_the_exports_tenth_of_a_degree_stiffness():
 # --- the kinds with no caller ---------------------------------------------------
 
 
-#: The five kinds no section in the collection carries a `:::class` for, so their
+#: The three kinds no section in the collection carries a `:::class` for, so their
 #: pages print the "no page names this class yet" sentence. Written out rather than
 #: derived from `:::used`: a test that reads its expectation from the hook agrees with
 #: itself when a callback is dropped. When a chapter fills one of these, this fails and
-#: says to update `worked-case`, which names the five and would otherwise be wrong.
+#: says to update `worked-case`, which names the three and would otherwise be wrong.
 DEAD_ENDS = ["averaging", "elliptic", "hyperbolic"]
 
 
 def test_the_worked_case_agrees_with_the_callers_each_kind_actually_has():
     """`:::used` is derived; the worked case's claim about it has to be too.
 
-    The five questions on that page are five kinds, and two of them — the stiffness
-    sweep and the bounce — are named by no section in the collection. The page now
-    says so, because a reader who follows the link from it to a class page used to
-    arrive at "no page names this class yet". This is the check that the admission and
-    the derived list are about the same five.
+    The worked case names the three kinds no section carries a `:::class` for:
+    averaging, elliptic and hyperbolic. It also names the six the chapter does use,
+    including parabolic for the damped model §1.6 does not build. This is the check
+    that the admission and the derived list are about the same kinds, so a reader who
+    follows a link does not arrive at "no page names this class yet".
     """
     for slug in CLASSES:
         callers = usedin.used_in(slug)
@@ -526,3 +526,19 @@ def test_the_worked_case_agrees_with_the_callers_each_kind_actually_has():
     worked = (map_book().docs / "worked-case" / "index.md").read_text(encoding="utf-8")
     missing = [slug for slug in DEAD_ENDS if f"](../{slug}/index.md)" not in worked]
     assert missing == [], f"the worked case does not name the kinds with no caller: {missing}"
+
+    named = len(CLASSES) - len(DEAD_ENDS)
+    words = {3: "Three", 4: "Four", 5: "Five", 6: "Six"}
+    assert f"names {words[named].lower()} of them" in worked, (
+        f"the worked case does not say it names {named} kinds"
+    )
+    assert f"{words[len(DEAD_ENDS)]} more" in worked, (
+        f"the worked case does not say {len(DEAD_ENDS)} kinds have no caller"
+    )
+
+def test_the_optimisation_example_is_the_tolerance_problem():
+    """The class page's example is the problem §1.5 actually solves."""
+    page = (map_book().docs / "optimisation" / "index.md").read_text(encoding="utf-8")
+    assert "Choosing a bush stiffness so the corner's camber meets a tolerance." in page
+    assert "flat over the travel" not in page
+

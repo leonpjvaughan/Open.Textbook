@@ -58,6 +58,7 @@ thread and not a detour.
 - **No tyre model.** A tyre turns an angle into a force, and camber's importance
   comes through it. That is a separate subject, and §1.7 says where it belongs.
 - **No mass.** Everything here is statics. §1.6 says what changes.
-- **No three-dimensional solve.** The 3D picture is drawn, and the three-dimensional
-  solver exists, but the numbers in this chapter come from the front view. §1.4
-  explains what the projection costs and why the model can afford it.
+- **No three-dimensional solve in the main thread.** The front view is what §1.2 to
+  §1.5 derive. The 3D solver is used to check it in §1.2, to produce the export's
+  ladder in §1.5, and as the model with mass in §1.6. §1.4 explains what the
+  projection costs and why the model can afford it.

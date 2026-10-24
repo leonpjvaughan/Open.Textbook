@@ -19,22 +19,24 @@ kinds, not about the corner.
 | Where is the wheel? | two circles and a rigid upright | [root finding](../root/index.md) | one closed-form step, no iteration |
 | Which row is the spare one? | three rules, two unknowns | [linear system](../linear-system/index.md) | one factorisation of a three-by-two matrix |
 | How stiff should the bush be? | the same corner, swept over stiffness | [optimisation](../optimisation/index.md) | one sweep, and a target to hit |
-| How does the wheel bounce? | mass, a spring and a damper | [parabolic](../parabolic/index.md), plus [eigenvalues](../eigenvalue/index.md) | a time step, and a choice of integrator |
-| How hot does the damper get? | the same, plus heat | [parabolic](../parabolic/index.md), and stiff | a time step chosen for the wrong scale |
+| How does the wheel bounce? | mass and a spring, with no damper | [eigenvalues](../eigenvalue/index.md), and the [Hamiltonian flag](../hyperbolic/index.md) | a time step, and a choice of integrator |
+| How hot does the damper get? | a damper, and the heat it makes | [parabolic](../parabolic/index.md), and stiff | a time step chosen for the wrong scale |
 
-The map has nine kinds, and this collection gives a section to four of them: §1.2
-and §1.5 say the corner is a [root problem](../root/index.md), §1.3 and §1.4 say it
-is a [linear system](../linear-system/index.md), and §1.6 says it is a
-[saddle point](../saddle-point/index.md) inside a [parabolic](../parabolic/index.md)
-integration. Three more —
+The map has nine kinds, and this collection names six of them: §1.2 and §1.5 say the
+corner is a [root problem](../root/index.md); §1.3 and §1.4 say it is a
+[linear system](../linear-system/index.md); §1.5 asks an
+[optimisation](../optimisation/index.md) question; and §1.6 prices the constraints
+as a [saddle point](../saddle-point/index.md), reads the oscillation as
+[eigenvalues](../eigenvalue/index.md), and names [parabolic](../parabolic/index.md)
+for the damped model it does not build. Three more —
 [averaging](../averaging/index.md), [elliptic](../elliptic/index.md) and
 [hyperbolic](../hyperbolic/index.md) — have no section that names them yet, and
 their pages say so under **Used in this collection**. The stiffness sweep below is
 an [optimisation](../optimisation/index.md) and the bounce is a
-[stability eigenvalue](../eigenvalue/index.md), and `Maths Applied` now names both
-where the class becomes true: §1.5 for the stiffness that meets a tolerance, §1.6 for
-the frequencies the motion repeats at. The remaining three wait for a chapter that
-poses a field problem, or one that measures a model with an error bar.
+[stability eigenvalue](../eigenvalue/index.md), and `Maths Applied` names both where
+the class becomes true: §1.5 for the stiffness that meets a tolerance, §1.6 for the
+frequencies the motion repeats at. The remaining three wait for a chapter that poses
+a field problem, or one that measures a model with an error bar.
 
 ## Where is the wheel: root finding
 
@@ -86,26 +88,28 @@ the curve rather than tilting it.
 A stiffness chosen for a tenth of a degree **at rest** is **1.8 MN/m**, and that is
 an [optimisation](../optimisation/index.md) with a stated tolerance — `Maths Applied`
 §1.5 prints the table. §1.5 also shows that the same tenth of a degree asked of the
-change over the travel is met by 0.15 MN/m, twelve times softer, because it is a
-question about a different quantity. That is why a tolerance has to name what it is
+change over the travel is met by the export's softest row, 0.2 MN/m, at least nine
+times softer, because it is a question about a different quantity. That is why a tolerance has to name what it is
 a tolerance on.
 
-## How does the wheel bounce: parabolic, and eigenvalues
+## How does the wheel bounce: eigenvalues, and a conservative model
 
 Give the corner mass and the problem stops being algebra. The equations become
 differential-algebraic, the constraint needs a force to hold it, and the class
-becomes a [saddle point](../saddle-point/index.md) inside a
-[parabolic](../parabolic/index.md) time integration.
+becomes a [saddle point](../saddle-point/index.md) whose motion is an
+[eigenvalue](../eigenvalue/index.md) problem. With no damper, the motion is
+**conservative**: it repeats rather than decaying, and the energy drift is the
+diagnostic that says so.
 
-The questions that open up are the ones this book cannot yet answer with a number.
 How the wheel hops and how the body heaves are [eigenvalues](../eigenvalue/index.md)
-of the linearised system. How long a bump takes to settle is a
-[parabolic](../parabolic/index.md) decay, and its step is decided by the fastest scale
-in the model.
+of the linearised system. With no damper, "how long a bump takes to settle" has no
+answer: the motion never settles. A damped model would settle, and that decay would
+be a [parabolic](../parabolic/index.md) problem; this model does not build one.
 
-`Maths Applied` §1.6 is drafted and not finished. It says what changes and what it
-costs, and it prints no numbers, because the model that would produce them is not
-written. This page says so rather than quoting a figure from somewhere else.
+`Maths Applied` §1.6 is finished. It prints the run: 212.8 mm of travel, a 0.625 s
+period (1.6 Hz), and an energy drift of 6.3 × 10⁻⁸. What it does not model is a
+damper, so the motion repeats; the parabolic decay and the damper's heat are the two
+later questions.
 
 ## How hot does the damper get: the same class, and stiff
 
@@ -114,7 +118,7 @@ second [parabolic](../parabolic/index.md) problem, coupled to the first.
 
 It is also the clearest case of the **stiff** flag: the heat equation's fast scale is
 not the wheel's motion, and a step chosen for the motion will either take forever or
-diverge. Nothing is in this book's model for it yet.
+diverge. The quarter car has no damper yet, so there is no heat to model.
 
 ## What the five have in common
 

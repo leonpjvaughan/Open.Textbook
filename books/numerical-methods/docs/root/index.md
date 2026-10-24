@@ -27,7 +27,7 @@ rule, and zero means satisfied.
 
 ## What it becomes on a computer
 
-A loop. Each step replaces $F$ by its tangent and solves the linear problem
+Usually a loop. Each step replaces $F$ by its tangent and solves the linear problem
 
 $$
 J(x_k)\,\delta = -F(x_k), \qquad x_{k+1} = x_k + \delta ,
@@ -36,14 +36,19 @@ $$
 where $J$ is the Jacobian. This is Newton's method, and everything else in the box
 is a way of doing it more safely or more cheaply.
 
+A closed form is a root solution too. Iteration is the usual method when the rule
+cannot be rearranged, not a requirement of the class. `Maths Applied` §1.2's two
+circles meeting is the counterexample: it is a root problem solved in one closed-form
+step.
+
 Two things decide whether you get an answer: **the start**, and **the number of
 solutions**. Newton is fast near a solution and unreliable away from one. A
 bracketing method is the reverse.
 
 ## The signature
 
-The rule holds at a point, and the point is found by iteration. There is no region
-and no time. The difficulty is:
+The rule holds at a point, and the point is found — usually by iteration, sometimes
+in closed form. There is no region and no time. The difficulty is:
 - which of the solutions you land in;
 - whether the Jacobian is invertible where you need it;
 - whether your start is inside the region where the method converges.

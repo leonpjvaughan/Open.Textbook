@@ -24,7 +24,8 @@ subject: Applied Mathematics
 order: 1
 description: >-
   How a car's suspension moves, and how little model you can get away with.
-  One mechanism, four models, and the number where each pair of them agrees.
+  One mechanism, four static models and a fifth with mass, and the number where each
+  pair agrees.
 
 profiles:
   - id: book

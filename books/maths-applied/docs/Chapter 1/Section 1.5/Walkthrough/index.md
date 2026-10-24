@@ -113,9 +113,9 @@ Now the tolerance. A tenth of a degree can be asked of two different things:
 - **of the camber at a given position**, which is what a designer setting the
   wheel's angle cares about: the bush has to be about **1.8 MN/m** before the rigid
   model is within a tenth of a degree;
-- **of the change over the travel**, which is what this chapter asked: even a soft
-  bush of 0.15 MN/m is enough, because the bush shifts the curve rather than tilting
-  it.
+- **of the change over the travel**, which is what this chapter asked: even the
+  export's softest row, 0.2 MN/m, is enough, because the bush shifts the curve rather
+  than tilting it.
 
 So the answer to "which model do I need" is not a matter of taste, and it is not
 even a single number. It is a comparison between the tolerance the question asks for
@@ -123,7 +123,7 @@ and the size of the effect the simpler model leaves out — and the comparison h
 be made against **the quantity the question is about**, not against a number that
 happens to be nearby.
 
-Here the two tolerances are twelve times apart, and a reader who took the wrong
+Here the two thresholds are at least nine times apart, and a reader who took the wrong
 one would either throw away a model that answers the question or trust a model that
 misses it by a degree. That is why this section is the centre of the chapter rather
 than an appendix to it. §1.2's model and this one do not compete. They answer
@@ -148,7 +148,7 @@ agree; what changes is what you are asking for.
 | Camber change, bush model at 0.2 MN/m | 1.96°, five hundredths above the 100 MN/m row |
 | Bush stiffness for a tenth of a degree **at rest** | about 1.8 MN/m |
 | The front view's ladder against the export's | within 0.04°, over four stiffnesses |
-| Bush stiffness for a tenth of a degree **in the change** | about 0.15 MN/m |
+| Bush stiffness for a tenth of a degree **in the change** | 0.2 MN/m or softer |
 | The trend as stiffness rises | monotone, in the solver's ladder test |
 
 ### The same idea, on a different joint
@@ -159,22 +159,22 @@ compliance at run time, and the quantity it moves is not camber.
 
 | tie-rod compliance | toe | camber |
 |---|---|---|
-| 10⁻⁶ m/N | 0.009° | −0.0003° |
-| 10⁻⁴ m/N | 0.58° | −0.015° |
-| 10⁻² m/N | 1.46° | −0.037° |
+| 10⁻⁷ m/N | 0.054° | −0.0015° |
+| 3 × 10⁻⁷ m/N | 0.163° | −0.0044° |
+| 10⁻⁶ m/N | 0.540° | −0.0146° |
 
-A hundred times softer moves the toe by a degree and a half and the camber by four
-hundredths of a degree. That is the section's real lesson in a second form: **which joint you
-soften decides which angle moves.** A bush at the upper ball joint tilts the wheel; a bush in
-the tie rod turns it. The model has to name the joint, not just the stiffness.
+The top rung is the model's own default compliance. Ten times softer moves the toe by
+half a degree and the camber by a hundredth of a degree. That is the section's real lesson
+in a second form: **which joint you soften decides which angle moves.** A bush at the upper
+ball joint tilts the wheel; a bush in the tie rod turns it. The model has to name the joint,
+not just the stiffness.
 
-The ladder is this page's model, recomputed by the figure on every load. The
-package's compliant export is vendored at
-`docs/assets/data/otkd/models/double-wishbone-compliant/out.js`, but it carries one
-stiffness rather than a ladder, and the package **refuses** to compile a kernel for
-it: *"a compliant model needs the equilibrium root-find, which is not compiled yet"*.
-So the ladder's evidence is still the page's model. When the package reports a
-ladder, the table is generated from its sweep, and the two must agree.
+Two vendored exports, two ways of carrying the number. The bush ladder above is the
+`double-wishbone-ubj` export's, which carries four stiffnesses. The compliant export
+carries one compliance; its kernel takes that compliance at run time, so the three rows
+above are the kernel's. This model's kernel reports angles in radians while its export
+declares degrees, so the table converts both columns to degrees. That conversion is the
+only adjustment.
 
 ## Pseudocode, and the file it comes from
 
@@ -192,7 +192,7 @@ def equilibrium(theta, stiffness, load):
 ```
 
 The file is
-[`sweep.py`](https://github.com/leonpjvaughan/suspension-kinematics/blob/main/src/suspension/sweep.py),
+[`sweep.py`](https://github.com/leonpjvaughan/suspension-kinematics/blob/main/src/otkd/solvers/sweep.py),
 and the stiffness ladder is one of its tests. Each frame starts from the previous
 frame's answer, so the sweep follows one branch of the model rather than jumping
 between branches that happen to be nearby.
@@ -214,11 +214,12 @@ would collapse back onto the rigid one at any stiffness at all.
 So compliance is not a property of the bush on its own. It is a property of the
 bush **and the load**, and a model that has one without the other will show nothing
 and look reassuring. The number to look for is the deflection, and §1.5's figure
-prints it: 12 mm at the softest setting, 0.06 mm at the stiffest.
+prints it: at the two ends of its control, 0.1 and 20 MN/m, the bush moves 12 mm and
+0.06 mm.
 
 The second trap is thinking that "more complex" means "more correct". Which model
 answers the question depends on which quantity the tolerance is attached to, and
-this chapter has shown two answers twelve times apart. A stiffness you have
+this chapter has shown two answers more than nine times apart. A stiffness you have
 to guess is a new source of error, not a removed one — and a model that needs one
 should have to earn it by changing the answer the question asked for.
 

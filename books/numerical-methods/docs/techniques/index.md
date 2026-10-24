@@ -126,6 +126,6 @@ price: what the method needs from you, and what it will not do.
 - **Newton** appears under root finding and under optimisation, because setting a
   gradient to zero is a root problem. Same method, and the Jacobian of the first is
   the Hessian of the second.
-- **Multigrid** appears only under elliptic problems. It is the clearest case of a
-  method that is tied to a class: on a hyperbolic problem the coarse mesh carries
-  the wrong physics, and it does not work.
+- **Multigrid** is tied to an elliptic origin. It appears under linear systems and
+  elliptic problems, because an elliptic problem is solved as one. On a hyperbolic
+  problem the coarse mesh carries the wrong physics, and it does not work.

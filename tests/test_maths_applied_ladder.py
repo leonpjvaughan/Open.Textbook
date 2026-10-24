@@ -21,6 +21,8 @@ from __future__ import annotations
 import json
 import math
 import re
+import shutil
+import subprocess
 from pathlib import Path
 
 import pytest
@@ -148,3 +150,112 @@ def crossing() -> float:
 def test_the_stiffness_a_tenth_of_a_degree_needs_is_the_exports():
     """The section's conclusion, computed rather than typed: 1.8 MN/m."""
     assert round(crossing(), 1) == 1.8, crossing()
+
+
+# --- the tie-rod ladder: the compliant kernel, in degrees ---------------------
+
+COMPLIANT = (
+    BUNDLE
+    / "models"
+    / "double-wishbone-compliant"
+    / "kernel"
+    / "kernel.js"
+)
+TIE_ROD = (1e-7, 3e-7, 1e-6)
+TIE_ROD_LABELS = ("10⁻⁷ m/N", "3 × 10⁻⁷ m/N", "10⁻⁶ m/N")
+
+_TIE_ROD_SCRIPT = (
+    "const kernel = await import(" + json.dumps(str(COMPLIANT)) + ");\n"
+    "await kernel.default.ready();\n"
+    "const rows = [];\n"
+    "for (const compliance of " + json.dumps(list(TIE_ROD)) + ") {\n"
+    "  const run = await kernel.default.frame({\n"
+    "    ...kernel.default.manifest.default_geometry,\n"
+    "    numbers: [kernel.default.manifest.default_numbers[0], compliance],\n"
+    "  }, 0);\n"
+    "  rows.push({\n"
+    "    compliance,\n"
+    "    toe: run.metrics.toe * 180 / Math.PI,\n"
+    "    camber: run.metrics.camber * 180 / Math.PI,\n"
+    "  });\n"
+    "}\n"
+    "console.log(JSON.stringify(rows));\n"
+)
+
+
+@pytest.fixture(scope="module")
+def tie_rod() -> list[dict]:
+    """The compliant kernel's three rows, in degrees, at the page's compliances."""
+    node = shutil.which("node")
+    if node is None:
+        pytest.skip("node is not on PATH, so the compliant kernel cannot be run")
+    done = subprocess.run(
+        [node, "--input-type=module", "-e", _TIE_ROD_SCRIPT],
+        capture_output=True,
+        text=True,
+        check=False,
+    )
+    assert done.returncode == 0, f"node could not run the compliant kernel: {done.stderr.strip()}"
+    return json.loads(done.stdout)
+
+
+def tie_rod_rows() -> list[list[str]]:
+    """The tie-rod table as the page prints it, one row per compliance."""
+    rows = []
+    for line in SECTION.read_text(encoding="utf-8").splitlines():
+        cells = [cell.strip() for cell in line.strip().strip("|").split("|")]
+        if len(cells) == 3 and cells[0].endswith("m/N"):
+            rows.append(cells)
+    assert len(rows) == len(TIE_ROD_LABELS), f"§1.5 has {len(rows)} tie-rod rows"
+    return rows
+
+
+def test_the_tie_rod_ladder_is_the_kernels_degrees(tie_rod):
+    """All six cells are the kernel's radians converted on the page, not typed."""
+    text = SECTION.read_text(encoding="utf-8")
+    assert "radians" in text and "declares degrees" in text, (
+        "the page no longer says why the tie-rod table needs a conversion"
+    )
+
+    for row, label, expected in zip(tie_rod_rows(), TIE_ROD_LABELS, tie_rod):
+        assert row[0] == label
+        assert _number(row[1]) == round(expected["toe"], 3)
+        assert _number(row[2]) == round(expected["camber"], 4)
+
+    # The prose's factor and size are the table's own, not the old 10⁻⁶…10⁻² span.
+    assert round(tie_rod[-1]["toe"] - tie_rod[0]["toe"], 1) == 0.5
+    assert round(abs(tie_rod[-1]["camber"] - tie_rod[0]["camber"]), 2) == 0.01
+    assert "Ten times softer" in text
+
+
+def test_the_deflection_sentence_names_the_controls_ends():
+    """12 mm and 0.06 mm are the slider's two ends, and the page says so."""
+    figure = (
+        repo_root()
+        / "books"
+        / "maths-applied"
+        / "docs"
+        / "assets"
+        / "figures"
+        / "stiffness-agreement.js"
+    ).read_text(encoding="utf-8")
+    control = re.search(r"slider\(el, \{(.*?)\}\)", figure, re.S)
+    assert control, "the stiffness figure no longer mounts a slider"
+    low = re.search(r"min:\s*([\d.]+)", control.group(1))
+    high = re.search(r"max:\s*([\d.]+)", control.group(1))
+    assert low and high, "the stiffness figure no longer declares its control's ends"
+
+    text = SECTION.read_text(encoding="utf-8")
+    assert f"at the two ends of its control, {low.group(1)} and {high.group(1)} MN/m" in text
+    assert "12 mm and\n0.06 mm" in text
+
+
+def test_the_change_tolerance_is_met_by_the_softest_exported_row():
+    """§1.5's change tolerance is met by 0.2, not an invented 0.15."""
+    assert min(STIFFNESS) == 0.2
+    text = SECTION.read_text(encoding="utf-8")
+    assert "export's softest row, 0.2 MN/m" in text
+    assert "at least nine times" in text
+    assert "0.15 MN/m" not in text
+    assert "twelve times" not in text
+

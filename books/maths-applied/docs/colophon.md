@@ -7,10 +7,10 @@
 
 This is a book about modelling, worked out on one mechanism: the front
 suspension of a car. It asks one question — how far does the camber change as
-the wheel moves — and answers it with four models of increasing complexity.
-Each one is introduced only when the one before it has stopped answering the
-question, and every model is checked against the last by a number the book
-shows.
+the wheel moves — and answers it with four static models of increasing
+complexity, then gives the mechanism mass. Each one is introduced only when
+the one before it has stopped answering the question, and every model is
+checked against the last by a number the book shows.
 Every section has one page.
 **Learn** teaches the ideas and the method.
 Some sections offer an optional page as well, for a reader who wants
