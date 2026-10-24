@@ -3305,7 +3305,7 @@ experiments (where to put the samples when each one costs a run). Each is a page
 
 ---
 
-## 79. Batch B of the map — **open**
+## 79. Batch B of the map — **done**
 
 Cut in the same plan. Mechanical work that makes the book a lookup rather than a
 set of essays:
@@ -3318,16 +3318,22 @@ set of essays:
 
 **Done means**
 
-- [ ] A class page links to `techniques/#<family>` and back again.
-- [ ] `python -m textbook.plan --generated` diffs clean after the callbacks are
+- [x] A class page links to `techniques/#<family>` and back again.
+- [x] `python -m textbook.plan --generated` diffs clean after the callbacks are
       added, and a removed callback shows up in the diff.
-- [ ] A page missing "What goes wrong" fails `pytest tests/`.
-- [ ] `grep -n "reference book of proofs" engine/src/textbook/*.py` prints nothing,
+- [x] A page missing "What goes wrong" fails `pytest tests/`.
+- [x] `grep -n "reference book of proofs" engine/src/textbook/*.py` prints nothing,
       and `books/proofs/docs/colophon.md` is unchanged by the move.
+
+**Done (2026-10-24).** Every class page links to its `techniques/#family` table and
+the tables link back; `:::used` derives the caller list at build time;
+`test_a_class_page_keeps_the_shared_skeleton` fails on a missing heading; the engine
+has no "reference book of proofs" prose, and `books/proofs/proofs.yaml` carries
+`what_it_is`, so the colophon is generated from the book.
 
 ---
 
-## 80. Batch C1 of the map — **open**
+## 80. Batch C1 of the map — **done**
 
 Two authored pages, no figures: `choosing-the-class` (the thesis, three cases) and a
 worked case (the suspension corner, five ways). See the plan for what each must not
@@ -3336,30 +3342,42 @@ is the answer, or name the pages that follow.
 
 **Done means**
 
-- [ ] `choosing-the-class` names three systems, each written two ways, and one of the
+- [x] `choosing-the-class` names three systems, each written two ways, and one of the
       two failing.
-- [ ] The worked case uses only numbers `books/maths-applied/docs/assets/data/
-      mechanism.js` prints, and says which page printed each one.
-- [ ] Both pages are in `map.yaml`, on the home page, and pass
+- [x] The worked case uses only numbers its named source prints, and says which page
+      printed each one.
+- [x] Both pages are in `map.yaml`, on the home page, and pass
       `tests/test_reference_books.py`.
-- [ ] Item 77's decision is written into `books/numerical-methods/AGENTS.md`.
+- [x] Item 77's decision is written into `books/numerical-methods/AGENTS.md`.
+
+**Done (2026-10-24).** `choosing-the-class` has the Einstein equations, incompressible
+flow and the suspension corner, each written two ways; `worked-case` names the page
+behind each number (its §1.5 ladder and §1.6 trajectory entries were later corrected by
+items 90 and 119, which is why the source is named rather than assumed); both pages are
+in `map.yaml` and on the home page; `AGENTS.md` records the one-page averaging decision.
 
 ---
 
-## 81. Batch C2 of the map — **open**
+## 81. Batch C2 of the map — **done**
 
 The two figures: the Δx² step limit on `parabolic`, and energy drift on `hyperbolic`.
 The second closes item 76 by showing what a structure-preserving method keeps.
 
 **Done means**
 
-- [ ] Both figures are drawn through `kit.js` with `SIZE`, `label()` and `scale()`.
-- [ ] No number on the page is typed by hand; anything printed as arithmetic is
+- [x] Both figures are drawn through `kit.js` with `SIZE`, `label()` and a kit mapper
+      (`axes()` supplies the scale).
+- [x] No number on the page is typed by hand; anything printed as arithmetic is
       declared through `claim()`.
-- [ ] `audit site` in both schemes, `audit site --mobile` with 0 below 9px, and
+- [x] `audit site` in both schemes, `audit site --mobile` with 0 below 9px, and
       `readout site --verify` with 0 untrue renders.
-- [ ] Item 76 is closed by the energy figure, or by the decision to keep the flag
+- [x] Item 76 is closed by the energy figure, or by the decision to keep the flag
       and say so on the page.
+
+**Done (2026-10-24).** `step-limit` and `energy-drift` use kit primitives and declare
+their arithmetic; each audits 2/2 in light and dark, `audit site --mobile` reports 0
+below 9px (median 9.6px), and `readout site --verify` reports 4/4 and 2/2 claims true.
+The energy figure closes item 76.
 
 ---
 

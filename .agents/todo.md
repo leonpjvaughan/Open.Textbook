@@ -14,8 +14,8 @@ done-means; an item whose heading says done and whose checklist does not is the
 failure this file has had twice, so the list below, the headings and the boxes
 are checked against each other on every pass.
 
-**Nothing is open.** Items 105–121 are closed, each with its measurement and fix
-in `.agents/todo-closed.md`; items 88–104 are closed there too. The
+**Nothing is open.** Items 79–121 are closed, each with its measurement and fix
+in `.agents/todo-closed.md`. The
 *interactive-aid backlog* — which figures and interactions a book still wants — is
 `ideas.md`; it is a plan rather than a defect list, and it is written for the
 author choosing what to build next.
