@@ -5129,10 +5129,11 @@ already speaks in the present tense and needs nothing.
       returns only §1.7's "outline" and item-free prose.
 - [x] `python -m textbook.scaffold` reports no drift, and the built home page reads
       "six sections, and one outline".
-- [x] A test reads every section and asserts `drafted/outline == no figure`, so a
-      drafted section with a figure, or a figure section not marked finished, fails.
+- [x] A test reads every section and asserts `drafted/outline == no figure and no
+      verified number`, so a drafted section with either, or a finished section with
+      neither, fails.
 
-**Done (2026-10-24).** Removed every stale “drafted” sentence from `AGENTS.md`, `curriculum.yaml` and the home page; regenerated the colophon; added the no-drafted guard and the two-way `test_section_status_and_figures_are_two_way`.
+**Done (2026-10-24).** Removed every stale “drafted” sentence from `AGENTS.md`, `curriculum.yaml` and the home page; regenerated the colophon. `verified_number_sections()` reads the test source for functions that name a section and assert a number, and `test_section_status_and_figures_are_two_way` checks both directions against the figure/verified-number evidence.
 
 ## 109. `worked-case` still says four kinds have a section, and names five dead ends
 

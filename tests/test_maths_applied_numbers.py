@@ -24,6 +24,7 @@ answers and the chapter had been carrying both:
 
 from __future__ import annotations
 
+import ast
 import json
 import math
 import re
@@ -546,26 +547,60 @@ def test_the_dynamics_table_periods_are_finite_and_the_sections():
     assert "about 0.48 s to about 0.16 s" in text
 
 
+def verified_number_sections() -> set[str]:
+    """Sections whose numbers a test function names and asserts.
+
+    The check is on the test source, not on a hand-kept list: a function whose body
+    contains ``Section <id>`` and an ``assert`` with a digit is evidence that the
+    section's numbers are recomputed. Structural tests that only read a page do not
+    count, which is why §1.1 can be finished with a figure and no numeric test.
+    """
+    tests = repo_root() / "tests"
+    ids = ("1.1", "1.2", "1.3", "1.4", "1.5", "1.6", "1.7")
+    verified: set[str] = set()
+    for path in tests.glob("test_*.py"):
+        text = path.read_text(encoding="utf-8")
+        tree = ast.parse(text)
+        for node in ast.walk(tree):
+            if not isinstance(node, ast.FunctionDef) or not node.name.startswith("test_"):
+                continue
+            segment = ast.get_source_segment(text, node)
+            if not segment:
+                continue
+            numeric = any(
+                isinstance(child, ast.Assert)
+                and re.search(r"\d", ast.get_source_segment(text, child.test) or "")
+                for child in ast.walk(node)
+            )
+            if not numeric:
+                continue
+            verified.update(
+                section_id for section_id in ids if f"Section {section_id}" in segment
+            )
+    return verified
+
+
 def test_section_status_and_figures_are_two_way():
-    """A section called drafted/outline has no figure, and a figure means it is finished.
+    """A drafted/outline section has no figure and no verified number; a finished one has evidence.
 
     §1.7 is the one legitimate no-figure section, and its summary says outline. If a
-    finished section is later marked drafted, or a drafted section gains a figure,
-    this fails in either direction without needing a list of the sections.
+    finished section is later marked drafted, or a drafted section gains a figure or a
+    tested number, this fails in either direction without needing a list of sections.
     """
     curriculum = yaml.safe_load(
         (repo_root() / "books" / "maths-applied" / "curriculum.yaml").read_text(
             encoding="utf-8"
         )
     )
+    verified = verified_number_sections()
+    assert "1.6" in verified and "1.7" not in verified, verified
     for section in curriculum["chapters"][0]["sections"]:
         summary = str(section.get("summary", ""))
         marked = bool(re.search(r"\b(drafted|outline)\b", summary, re.IGNORECASE))
         text = page(f"Section {section['id']}/Walkthrough")
-        has_figure = ":::figure" in text
-        assert marked == (not has_figure), (
+        evidence = ":::figure" in text or section["id"] in verified
+        assert marked == (not evidence), (
             f"§{section['id']} is {'marked' if marked else 'not marked'} drafted/outline "
-            f"and {'has' if has_figure else 'has no'} figure; those are two descriptions "
-            "of one status"
+            f"and {'has' if evidence else 'has no'} figure or verified number; those are "
+            "two descriptions of one status"
         )
-
