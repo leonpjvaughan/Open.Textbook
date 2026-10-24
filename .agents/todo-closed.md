@@ -5258,7 +5258,7 @@ dragging the slider to either end.
 - [x] Every number in §1.5 is either in the exported ladder's table or reachable by the
       figure's control, and the page says which.
 
-**Done (2026-10-24).** The deflection sentence now names the figure control's 0.1 and 20 MN/m ends; a test reads those ends from `stiffness-agreement.js`.
+**Done (2026-10-24).** The deflection sentence names the figure control's 0.1 and 20 MN/m ends, and the page says the control spans two orders of magnitude; a test reads those ends and checks the ratio.
 
 ## 113. §1.6 names the parabolic class, but the quarter car has no damper
 
@@ -5613,5 +5613,5 @@ wording changes cannot move a number.
 - [x] `python -m textbook.lint maths-applied numerical-methods` is clean and the
       generated colophon is regenerated, not hand-edited.
 
-**Done (2026-10-24).** The five small claims now name the right source: 0.2 MN/m from the export in §1.5 and the Review, the tolerance example, the model behind the figures, four static models plus mass, and 9.2 mm across the car.
+**Done (2026-10-24).** The five small claims now name the right source: 0.2 MN/m from the export in §1.5 and the Review, about nine times from the model's 1.794 MN/m crossing, two orders for the 0.1–20 MN/m control, the tolerance example, the model behind the figures, four static models plus mass, and 9.2 mm across the car.
 
