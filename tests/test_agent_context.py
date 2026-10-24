@@ -28,6 +28,7 @@ GENERATED_DIRS = {
     ".mypy_cache",
     ".od",
     ".od-skills",
+    ".pi",
     ".pytest_cache",
     ".ruff_cache",
     ".venv",
