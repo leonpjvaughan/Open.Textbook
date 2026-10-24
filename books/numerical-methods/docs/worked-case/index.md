@@ -88,7 +88,7 @@ the curve rather than tilting it.
 A stiffness chosen for a tenth of a degree **at rest** is **1.8 MN/m**, and that is
 an [optimisation](../optimisation/index.md) with a stated tolerance — `Maths Applied`
 §1.5 prints the table. §1.5 also shows that the same tenth of a degree asked of the
-change over the travel is met by the export's softest row, 0.2 MN/m, at least nine
+change over the travel is met by the export's softest row, 0.2 MN/m, about nine
 times softer, because it is a question about a different quantity. That is why a tolerance has to name what it is
 a tolerance on.
 

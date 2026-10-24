@@ -63,7 +63,7 @@ two forces agree, and finding it is a root-finding loop with two unknowns.
 The load is the corner's own: 3.5 kN downwards and 1.8 kN sideways at the wheel
 centre, which is what one front wheel carries under braking in a corner. The
 exported model carries the same pair at the same point, so the two routes are one
-experiment. The slider moves the bush's stiffness over three orders of magnitude.
+experiment. The slider moves the bush's stiffness over two orders of magnitude.
 
 :::figure stiffness-agreement
 
@@ -123,7 +123,7 @@ and the size of the effect the simpler model leaves out — and the comparison h
 be made against **the quantity the question is about**, not against a number that
 happens to be nearby.
 
-Here the two thresholds are at least nine times apart, and a reader who took the wrong
+Here the two thresholds are about nine times apart, and a reader who took the wrong
 one would either throw away a model that answers the question or trust a model that
 misses it by a degree. That is why this section is the centre of the chapter rather
 than an appendix to it. §1.2's model and this one do not compete. They answer
@@ -219,7 +219,7 @@ prints it: at the two ends of its control, 0.1 and 20 MN/m, the bush moves 12 mm
 
 The second trap is thinking that "more complex" means "more correct". Which model
 answers the question depends on which quantity the tolerance is attached to, and
-this chapter has shown two answers more than nine times apart. A stiffness you have
+this chapter has shown two answers about nine times apart. A stiffness you have
 to guess is a new source of error, not a removed one — and a model that needs one
 should have to earn it by changing the answer the question asked for.
 

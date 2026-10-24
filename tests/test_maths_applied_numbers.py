@@ -25,6 +25,7 @@ answers and the chapter had been carrying both:
 from __future__ import annotations
 
 import json
+import math
 import re
 import shutil
 import subprocess
@@ -510,7 +511,36 @@ def test_the_review_uses_the_exports_softest_row_too():
     """The Review's change-tolerance sentence is §1.5's, not the old 0.15."""
     text = " ".join(page("Review").split())
     assert "export's softest row, 0.2 MN/m, already meets it" in text
-    assert "at least nine times stiffer" in text
+    assert "about nine times stiffer" in text
     assert "0.15 MN/m" not in text
     assert "twelve times" not in text
+
+
+_DYNAMICS_SCRIPT = (
+    "const BASE = " + json.dumps(str(DATA)) + ";\n"
+    "const kernel = await import(BASE + \"/otkd/models/quarter-car/kernel/kernel.js\");\n"
+    "const { run } = await import(BASE + \"/quarter-car/period.js\");\n"
+    "await kernel.ready();\n"
+    "console.log(JSON.stringify([0.1, 0.2, 2].map((stiffness) => run(stiffness).period)));\n"
+)
+
+
+def test_the_dynamics_table_periods_are_finite_and_the_sections():
+    """The figure's period is the model's, and the section quotes the figure's range."""
+    node = shutil.which("node")
+    if node is None:
+        pytest.skip("node is not on PATH, so the dynamics table cannot be run")
+    done = subprocess.run(
+        [node, "--input-type=module", "-e", _DYNAMICS_SCRIPT],
+        capture_output=True,
+        text=True,
+        check=False,
+    )
+    assert done.returncode == 0, f"node could not run the dynamics table: {done.stderr.strip()}"
+    periods = json.loads(done.stdout)
+    assert all(math.isfinite(value) for value in periods), periods
+    assert [round(value, 3) for value in periods] == [0.625, 0.475, 0.160]
+
+    text = " ".join(page("Section 1.6/Walkthrough").split())
+    assert "about 0.48 s to about 0.16 s" in text
 

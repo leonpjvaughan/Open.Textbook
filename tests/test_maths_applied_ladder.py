@@ -248,6 +248,8 @@ def test_the_deflection_sentence_names_the_controls_ends():
     text = SECTION.read_text(encoding="utf-8")
     assert f"at the two ends of its control, {low.group(1)} and {high.group(1)} MN/m" in text
     assert "12 mm and\n0.06 mm" in text
+    assert "over two orders of magnitude" in text
+    assert float(high.group(1)) / float(low.group(1)) >= 100
 
 
 def test_the_change_tolerance_is_met_by_the_softest_exported_row():
@@ -255,7 +257,8 @@ def test_the_change_tolerance_is_met_by_the_softest_exported_row():
     assert min(STIFFNESS) == 0.2
     text = SECTION.read_text(encoding="utf-8")
     assert "export's softest row, 0.2 MN/m" in text
-    assert "at least nine times" in text
+    assert "about nine times" in text
+    assert round(crossing() / min(STIFFNESS), 0) == 9
     assert "0.15 MN/m" not in text
     assert "twelve times" not in text
 

@@ -12,10 +12,11 @@
 // model ships with both loads at zero, so the first column is the example's own answer.
 //
 // **The step is part of the model.** The kernel integrates at the study's step, five milliseconds.
-// Stiffen the coil far enough and five milliseconds stops resolving the period, so the control
-// stops at 2 MN/m; the section says why.
+// The control stops at 2 MN/m, where the period is about 0.16 s; beyond that the period keeps
+// falling and the step would have to be shortened with it. The section says why.
 import { SIZE, label, line, panel, react, slider } from "./kit.js";
 import * as kernel from "../data/otkd/models/quarter-car/kernel/kernel.js";
+import { run } from "../data/quarter-car/period.js";
 
 const WIDTH = 560;
 const HEIGHT = 300;
@@ -32,52 +33,6 @@ const ROWS = [
 const DESIGN = 0.1;
 
 const num = (value, places) => value.toFixed(places).replace("-", "\u2212");
-
-/** The index of the coil's compliance among the kernel's run-time numbers. */
-function complianceSlot() {
-  return kernel.manifest.numbers.findIndex(
-    (number) => number.kind === "compliance" && number.joint === "coil",
-  );
-}
-
-/** One integration at a stiffness and a sideways load, and the numbers the table prints. */
-function run(stiffness, lateral = 0) {
-  const numbers = [...kernel.manifest.default_geometry.numbers];
-  numbers[complianceSlot()] = 1 / (stiffness * 1e6);
-  kernel.setGeometry({ ...kernel.manifest.default_geometry, numbers });
-  // The model's own loads are zero; the first carries the sideways force, the second the vertical.
-  kernel.setLoads([lateral, 0, 0, 0, 0, 0]);
-  kernel.design();
-  kernel.setDrive(0);
-  kernel.setVelocity(new Array(kernel.manifest.layout.sizes.q).fill(0));
-  const constraint = kernel.integrate(kernel.manifest.integration.steps);
-
-  const start = kernel.manifest.points.indexOf("chassis-origin") * 3;
-  const heave = kernel.trajectory().map((q) => q[start + 2]);
-  const peak = Math.min(...heave);
-  const span = Math.max(...heave) - peak;
-
-  // The period, from the first two upward crossings of the mean, by linear interpolation.
-  const dt = kernel.manifest.integration.dt;
-  const mean = heave.reduce((sum, value) => sum + value, 0) / heave.length;
-  const crossings = [];
-  for (let i = 1; i < heave.length; i += 1) {
-    if (heave[i - 1] < mean && heave[i] >= mean) {
-      crossings.push((i - 1 + (mean - heave[i - 1]) / (heave[i] - heave[i - 1])) * dt);
-    }
-  }
-  const first = crossings[0];
-  const second = crossings[1];
-  return {
-    peak: peak * 1000,
-    rest: heave[heave.length - 1] * 1000,
-    span: span * 1000,
-    period: second === undefined ? NaN : second - first,
-    first,
-    second,
-    constraint,
-  };
-}
 
 export async function mount(el) {
   await kernel.ready();
@@ -101,7 +56,7 @@ export async function mount(el) {
   const stiffness = slider(el, {
     id: "coil",
     label: "Coil stiffness",
-    min: 0.05,
+    min: 0.2,
     max: 2,
     step: 0.05,
     value: 0.2,
@@ -193,7 +148,7 @@ export async function mount(el) {
     // values, the subtraction is the expression, and the table prints what the claim answers.
     claim([
       {
-        label: "period between the first two upward crossings of the mean",
+        label: "period between the first two peaks of the heave",
         expression: "second - first",
         values: { first: mine.first, second: mine.second },
         answer: mine.period,

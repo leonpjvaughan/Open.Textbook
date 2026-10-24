@@ -33,7 +33,7 @@ shifts the whole curve rather than tilting it. If the question is only about the
 change, the export's softest row, 0.2 MN/m, already meets it.
 
 The camber **itself** is a different matter. A tenth of a degree there needs a bush
-of about 1.8 MN/m, at least nine times stiffer. If a designer wants to know where the
+of about 1.8 MN/m, about nine times stiffer. If a designer wants to know where the
 wheel actually points, the rigid model is wrong by a degree on a soft car.
 
 The chapter's answer is therefore not "use the simple model" or "use the detailed
