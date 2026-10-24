@@ -4,7 +4,7 @@
 // reader cannot see that from one curve of numbers. So this figure drives the *vendored kernel* —
 // the package's own compiled integrator, `solver: "dynamics"` — and tabulates what comes back:
 // peak heave, the travel, the period, and the constraint violation the kernel reports. Nothing here
-// is a recording: each column is an integration done in the browser, in about eighty milliseconds.
+// is a recording: each column is an integration done in the browser, in a few tenths of a second.
 //
 // **Two controls, two effects.** The coil's stiffness is one run-time number and the sideways load
 // at the wheel centre is another; both are slots the kernel exposes. Stiffness changes the *period*,
