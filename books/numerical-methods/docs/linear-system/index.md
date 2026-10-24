@@ -13,8 +13,9 @@ A balance. The forces at a joint add to zero, the currents into a node add to ze
 the flow through a face equals the flow out of it. Or a fit: the model is a sum of
 known shapes, and you want the amounts of each.
 
-The system itself is linear, so the solve does not iterate. The work is done once
-the rows are written, and the difficulty has moved into the matrix.
+The system itself is linear, so no non-linear iteration is needed. The work is done once
+the rows are written, and the difficulty has moved into the matrix — where a large sparse
+system may still call for an iterative solver.
 
 ## The model you write down
 

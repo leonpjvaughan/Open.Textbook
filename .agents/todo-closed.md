@@ -5463,7 +5463,7 @@ not that the definitions are wrong.
 - [x] A reader who arrives from §1.2/§1.3's `:::class` can tell whether the page is
       describing the whole model or the step inside it.
 
-**Done (2026-10-24).** `root` allows a closed form; `linear-system` explains a linear step inside a nonlinear solve; both name the `Maths Applied` example that is the exception.
+**Done (2026-10-24).** `root` allows a closed form; `linear-system` explains a linear step inside a nonlinear solve and now says only the non-linear iteration is avoided, while a large sparse system may still use an iterative solver. Both name the `Maths Applied` example that is the exception.
 
 ## 118. `the-four-models` says all the chapter's numbers come from the front view
 
