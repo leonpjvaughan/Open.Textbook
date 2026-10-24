@@ -550,10 +550,11 @@ def test_the_dynamics_table_periods_are_finite_and_the_sections():
 def verified_number_sections() -> set[str]:
     """Sections whose numbers a test function names and asserts.
 
-    The check is on the test source, not on a hand-kept list: a function whose body
-    contains ``Section <id>`` and an ``assert`` with a digit is evidence that the
-    section's numbers are recomputed. Structural tests that only read a page do not
-    count, which is why §1.1 can be finished with a figure and no numeric test.
+    The check is on the test source, not on a hand-kept list: a function that calls
+    the book's ``page()`` helper for the real ``Section <id>/Walkthrough`` path and
+    contains an ``assert`` with a digit is evidence that the section's numbers are
+    recomputed. Structural tests that build a synthetic path do not count, which is
+    why §1.1 stays figure-only.
     """
     tests = repo_root() / "tests"
     ids = ("1.1", "1.2", "1.3", "1.4", "1.5", "1.6", "1.7")
@@ -575,7 +576,9 @@ def verified_number_sections() -> set[str]:
             if not numeric:
                 continue
             verified.update(
-                section_id for section_id in ids if f"Section {section_id}" in segment
+                section_id
+                for section_id in ids
+                if f'page("Section {section_id}/Walkthrough")' in segment
             )
     return verified
 
@@ -593,7 +596,9 @@ def test_section_status_and_figures_are_two_way():
         )
     )
     verified = verified_number_sections()
-    assert "1.6" in verified and "1.7" not in verified, verified
+    assert "1.1" not in verified, f"§1.1 has no numeric test, but was counted: {verified}"
+    assert {"1.2", "1.3", "1.4", "1.5", "1.6"} <= verified, verified
+    assert "1.7" not in verified, verified
     for section in curriculum["chapters"][0]["sections"]:
         summary = str(section.get("summary", ""))
         marked = bool(re.search(r"\b(drafted|outline)\b", summary, re.IGNORECASE))

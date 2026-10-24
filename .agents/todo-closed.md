@@ -5133,7 +5133,7 @@ already speaks in the present tense and needs nothing.
       verified number`, so a drafted section with either, or a finished section with
       neither, fails.
 
-**Done (2026-10-24).** Removed every stale “drafted” sentence from `AGENTS.md`, `curriculum.yaml` and the home page; regenerated the colophon. `verified_number_sections()` reads the test source for functions that name a section and assert a number, and `test_section_status_and_figures_are_two_way` checks both directions against the figure/verified-number evidence.
+**Done (2026-10-24).** Removed every stale “drafted” sentence from `AGENTS.md`, `curriculum.yaml` and the home page; regenerated the colophon. `verified_number_sections()` reads the test source for functions that call the book's `page()` helper for the real `Section <id>/Walkthrough` path and assert a number; the two-way test also requires §1.1 not to be counted, §§1.2–1.6 to be counted, and §1.7 not to be.
 
 ## 109. `worked-case` still says four kinds have a section, and names five dead ends
 
