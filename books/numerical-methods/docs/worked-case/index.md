@@ -22,21 +22,21 @@ kinds, not about the corner.
 | How does the wheel bounce? | mass and a spring, with no damper | [eigenvalues](../eigenvalue/index.md), and the [Hamiltonian flag](../hyperbolic/index.md) | a time step, and a choice of integrator |
 | How hot does the damper get? | a damper, and the heat it makes | [parabolic](../parabolic/index.md), and stiff | a time step chosen for the wrong scale |
 
-The map has nine kinds, and this collection names six of them: §1.2 and §1.5 say the
-corner is a [root problem](../root/index.md); §1.3 and §1.4 say it is a
+The map has nine kinds, and this collection names five of them: §1.2 and §1.5 say
+the corner is a [root problem](../root/index.md); §1.3 and §1.4 say it is a
 [linear system](../linear-system/index.md); §1.5 asks an
 [optimisation](../optimisation/index.md) question; and §1.6 prices the constraints
-as a [saddle point](../saddle-point/index.md), reads the oscillation as
-[eigenvalues](../eigenvalue/index.md), and names [parabolic](../parabolic/index.md)
-for the damped model it does not build. Three more —
-[averaging](../averaging/index.md), [elliptic](../elliptic/index.md) and
-[hyperbolic](../hyperbolic/index.md) — have no section that names them yet, and
-their pages say so under **Used in this collection**. The stiffness sweep below is
-an [optimisation](../optimisation/index.md) and the bounce is a
-[stability eigenvalue](../eigenvalue/index.md), and `Maths Applied` names both where
-the class becomes true: §1.5 for the stiffness that meets a tolerance, §1.6 for the
-frequencies the motion repeats at. The remaining three wait for a chapter that poses
-a field problem, or one that measures a model with an error bar.
+as a [saddle point](../saddle-point/index.md) and reads the oscillation as
+[eigenvalues](../eigenvalue/index.md). Four more —
+[averaging](../averaging/index.md), [elliptic](../elliptic/index.md),
+[parabolic](../parabolic/index.md) and [hyperbolic](../hyperbolic/index.md) — have
+no section that names them yet, and their pages say so under **Used in this
+collection**. The stiffness sweep below is an [optimisation](../optimisation/index.md)
+and the bounce is a [stability eigenvalue](../eigenvalue/index.md), and `Maths
+Applied` names both where the class becomes true: §1.5 for the stiffness that meets
+a tolerance, §1.6 for the frequencies the motion repeats at. The remaining four wait
+for a chapter that poses a field problem, one that measures a model with an error
+bar, or one that adds a damper.
 
 ## Where is the wheel: root finding
 

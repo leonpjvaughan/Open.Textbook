@@ -30,10 +30,10 @@ So the answer has two parts, and the second is the one that matters.
 The camber **change** over the travel is almost untouched: at 0.2 MN/m the export
 gives 1.96° and at 100 MN/m it gives 1.91°, five hundredths apart, because the bush
 shifts the whole curve rather than tilting it. If the question is only about the
-change, the rigid model earns its place down to a bush of about 0.15 MN/m.
+change, the export's softest row, 0.2 MN/m, already meets it.
 
 The camber **itself** is a different matter. A tenth of a degree there needs a bush
-of about 1.8 MN/m, twelve times stiffer. If a designer wants to know where the
+of about 1.8 MN/m, at least nine times stiffer. If a designer wants to know where the
 wheel actually points, the rigid model is wrong by a degree on a soft car.
 
 The chapter's answer is therefore not "use the simple model" or "use the detailed

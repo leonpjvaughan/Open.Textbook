@@ -498,22 +498,22 @@ def test_the_worked_case_names_the_exports_tenth_of_a_degree_stiffness():
 # --- the kinds with no caller ---------------------------------------------------
 
 
-#: The three kinds no section in the collection carries a `:::class` for, so their
+#: The four kinds no section in the collection carries a `:::class` for, so their
 #: pages print the "no page names this class yet" sentence. Written out rather than
 #: derived from `:::used`: a test that reads its expectation from the hook agrees with
 #: itself when a callback is dropped. When a chapter fills one of these, this fails and
-#: says to update `worked-case`, which names the three and would otherwise be wrong.
-DEAD_ENDS = ["averaging", "elliptic", "hyperbolic"]
+#: says to update `worked-case`, which names the four and would otherwise be wrong.
+DEAD_ENDS = ["averaging", "elliptic", "hyperbolic", "parabolic"]
 
 
 def test_the_worked_case_agrees_with_the_callers_each_kind_actually_has():
     """`:::used` is derived; the worked case's claim about it has to be too.
 
-    The worked case names the three kinds no section carries a `:::class` for:
-    averaging, elliptic and hyperbolic. It also names the six the chapter does use,
-    including parabolic for the damped model §1.6 does not build. This is the check
-    that the admission and the derived list are about the same kinds, so a reader who
-    follows a link does not arrive at "no page names this class yet".
+    The worked case names the four kinds no section carries a `:::class` for:
+    averaging, elliptic, hyperbolic and parabolic. It also names the five the chapter
+    does use. This is the check that the admission and the derived list are about the
+    same kinds, so a reader who follows a link does not arrive at "no page names this
+    class yet".
     """
     for slug in CLASSES:
         callers = usedin.used_in(slug)

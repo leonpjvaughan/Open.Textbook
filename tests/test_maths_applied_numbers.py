@@ -447,14 +447,15 @@ def test_section_1_6_agreement_is_the_current_models(model):
     assert "0.93°" not in text
 
 
-def test_section_1_6_names_parabolic_only_for_the_future_damper():
-    """The undamped quarter car is conservative; parabolic is the model it does not build."""
+def test_section_1_6_is_conservative_and_does_not_name_parabolic():
+    """The undamped quarter car is conservative; the damped model is left to the map."""
     text = page("Section 1.6/Walkthrough")
-    assert "conservative" in text
-    assert "Hamiltonian flag" in text
-    assert ":::class parabolic" in text
-    assert "a different model, not this one" in text
-    assert text.index(":::class parabolic") > text.index("a different model, not this one")
+    flat = " ".join(text.split())
+    assert "conservative" in flat
+    assert "Hamiltonian flag" in flat
+    assert "does not name as a class" in flat
+    assert ":::class parabolic" not in text
+    assert "parabolic" not in flat
 
 
 def test_section_1_3_table_and_panel_are_the_figures_model(model):
@@ -503,4 +504,13 @@ def test_section_1_6_is_finished_and_nothing_is_called_drafted():
     assert ":::figure quarter-car" in section
     assert ":::figure dynamics-table" in section
     assert "212.8 mm" in section
+
+
+def test_the_review_uses_the_exports_softest_row_too():
+    """The Review's change-tolerance sentence is §1.5's, not the old 0.15."""
+    text = " ".join(page("Review").split())
+    assert "export's softest row, 0.2 MN/m, already meets it" in text
+    assert "at least nine times stiffer" in text
+    assert "0.15 MN/m" not in text
+    assert "twelve times" not in text
 

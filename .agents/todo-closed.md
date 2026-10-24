@@ -4996,7 +4996,7 @@ conversion.
       `tests/test_maths_applied_ladder.py` does for §1.5's bush ladder, so a
       re-vendored release fails here instead of in a reader's hands.
 
-**Done (2026-10-24).** Rebuilt the tie-rod ladder from the vendored `dw-compliant` kernel in degrees at 10⁻⁷, 3 × 10⁻⁷ and 10⁻⁶ m/N; stated the radian-to-degree conversion; the new test recomputes all six cells and the prose's factor.
+**Done (2026-10-24).** Rebuilt the tie-rod ladder from the vendored `dw-compliant` kernel in degrees at 10⁻⁷, 3 × 10⁻⁷ and 10⁻⁶ m/N; stated the radian-to-degree conversion; recorded the unit caveat in `sources.yaml`; the new test recomputes all six cells and the prose's factor.
 
 ## 106. Four pseudocode links point at a package path that no longer exists
 
@@ -5157,13 +5157,13 @@ comment, which also says five.
 **Done means.**
 
 - [x] The paragraph's count is the length of `usedin.used_in()` for every class, and
-      the arithmetic on the page closes: six named, three not, nine in all.
+      the arithmetic on the page closes: five named, four not, nine in all.
 - [x] No test docstring or comment in `tests/test_reference_books.py` says five dead
       ends.
 - [x] `test_the_worked_case_agrees_with_the_callers_each_kind_actually_has` asserts the
       number the page states, not only that each dead end is linked.
 
-**Done (2026-10-24).** `worked-case` now says six named kinds and three dead ends; the test asserts the counts as well as the links and the derived `:::used` lists.
+**Done (2026-10-24).** `worked-case` now says five named kinds and four dead ends; the test asserts the counts as well as the links and the derived `:::used` lists. Item 113's reclassification is why parabolic is one of the four: the page left it for the damped model it does not build.
 
 ## 110. The linear-system page's 441 / 161 is right and nothing checks it
 
@@ -5309,7 +5309,7 @@ title and the “what it buys” paragraph already promise.
 - [x] A test fails when the quarter car's damping mode changes without the class, the
       period and the “settles/repeats” sentence being re-derived together.
 
-**Done (2026-10-24).** §1.6 is a conservative/Hamiltonian oscillator with `C=0`; parabolic is named only for the damped model it does not build. `worked-case`, the index, `the-four-models` and the `usedin` lists agree, with a test on the undamped coil.
+**Done (2026-10-24).** §1.6 is a conservative/Hamiltonian oscillator with `C=0`; it does not name the parabolic class, leaving it as a dead end for the damped model it does not build. The Hamiltonian flag is described on the hyperbolic page without claiming that class. `worked-case`, the index, `the-four-models` and the `usedin` lists agree, with a test on the undamped coil.
 
 ## 114. §1.3's iteration table and panel are numbers the current model does not produce
 
@@ -5613,5 +5613,5 @@ wording changes cannot move a number.
 - [x] `python -m textbook.lint maths-applied numerical-methods` is clean and the
       generated colophon is regenerated, not hand-edited.
 
-**Done (2026-10-24).** The five small claims now name the right source: 0.2 MN/m from the export, the tolerance example, the model behind the figures, four static models plus mass, and 9.2 mm across the car.
+**Done (2026-10-24).** The five small claims now name the right source: 0.2 MN/m from the export in §1.5 and the Review, the tolerance example, the model behind the figures, four static models plus mass, and 9.2 mm across the car.
 

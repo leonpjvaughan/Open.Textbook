@@ -56,6 +56,7 @@ references:
       the standard rather than a textbook can find the number to ask for.
 
   # --- suspension geometry, in more depth than this book goes -----------------
+  # Known unit caveat in 0.11.0: `dw-compliant` reports radians; its `out.js` says deg.
   - id: suspension-kinematics
     attribution: true
     title: suspension-kinematics — the model, its exports and a generated solver
@@ -72,6 +73,10 @@ references:
       model's export, and §1.6's table re-integrates the quarter car under two controls.
       The quarter car's trajectory is not in the bundle — a trajectory is not a sweep —
       so it is vendored beside the chapter with the digests of the model it came from.
+      One unit caveat is the package's, not the book's: the `dw-compliant` kernel
+      returns angles in radians while its `out.js` declares degrees. §1.5 converts both
+      columns and its test recomputes them; remove the conversion when a release fixes
+      the unit.
 
   - id: dixon
     title: Suspension Geometry and Computation

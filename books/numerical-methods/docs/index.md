@@ -90,11 +90,10 @@ linkage is [root finding](root/index.md); hold the joint rigid and price it inst
 and it becomes a [saddle point](saddle-point/index.md), whose multiplier is the force
 in the joint; make the joint a spring and it is a root problem again, with no
 multiplier at all. Its bounce is an [eigenvalue](eigenvalue/index.md) problem, and
-with no damper it keeps its energy: the
-[Hamiltonian flag](hyperbolic/index.md) on the
-hyperbolic page is the structure that decides the method. [The same corner, five
-ways](worked-case/index.md) takes that one mechanism through five kinds and quotes
-the numbers where the models agree.
+with no damper it keeps its energy: the Hamiltonian flag is described on the
+[hyperbolic page](hyperbolic/index.md), though no section names that class. [The
+same corner, five ways](worked-case/index.md) takes that one mechanism through five
+kinds and quotes the numbers where the models agree.
 
 ## Three ways in
 

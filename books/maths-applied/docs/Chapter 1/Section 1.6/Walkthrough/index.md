@@ -50,12 +50,8 @@ an unknown force, so the state and the forces are solved as one system.
 **A damper would add a rate term.** A damper's force depends on how fast it is
 moving, not how far it has moved. The $C\dot q$ term in the equation above is where
 that would live. In the quarter car on this page $C=0$: there is a spring and no
-damper, so the motion repeats. A damped model would settle instead, and that decay
-would be a parabolic problem — a different model, not this one.
-
-:::class parabolic
-
-That damped model is what the parabolic page describes; this section does not build it.
+damper, so the motion repeats. A damped model would settle instead; that is the next
+model, not this one.
 
 ## What it buys
 
@@ -86,10 +82,9 @@ frequencies unstable is a different kind of problem from solving for the motion.
 
 With mass in and no damper, the model is **conservative**: it moves forward in time
 and keeps its energy rather than forgetting where it started. The map files that
-structure as the **Hamiltonian flag**, not as a kind of its own. The
-[hyperbolic page](/numerical-methods/hyperbolic/)
-carries the flag, and the quarter car is its smallest case: one oscillator, no
-decay, and an energy drift that has to stay small.
+structure as the **Hamiltonian flag**, not as a kind of its own. The flag is described
+on the [hyperbolic page](/numerical-methods/hyperbolic/), which this section does not
+name as a class: the quarter car is an oscillator, not a wave.
 
 ## What the model says
 

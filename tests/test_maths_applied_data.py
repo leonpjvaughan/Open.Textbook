@@ -321,10 +321,11 @@ def test_the_quarter_car_is_undamped_and_the_pages_say_so():
         / "Walkthrough"
         / "index.md"
     ).read_text(encoding="utf-8")
-    assert "conservative" in section
-    assert "no damper" in section
-    assert "a different model, not this one" in section
-    assert section.index(":::class parabolic") > section.index("a different model, not this one")
+    flat = " ".join(section.split())
+    assert "conservative" in flat
+    assert "no damper" in flat
+    assert "the next model, not this one" in flat
+    assert "parabolic" not in flat
 
     worked = (
         repo_root() / "books" / "numerical-methods" / "docs" / "worked-case" / "index.md"
