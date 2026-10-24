@@ -31,6 +31,7 @@ import shutil
 import subprocess
 
 import pytest
+import yaml
 
 from textbook.book import repo_root
 
@@ -543,4 +544,28 @@ def test_the_dynamics_table_periods_are_finite_and_the_sections():
 
     text = " ".join(page("Section 1.6/Walkthrough").split())
     assert "about 0.48 s to about 0.16 s" in text
+
+
+def test_section_status_and_figures_are_two_way():
+    """A section called drafted/outline has no figure, and a figure means it is finished.
+
+    §1.7 is the one legitimate no-figure section, and its summary says outline. If a
+    finished section is later marked drafted, or a drafted section gains a figure,
+    this fails in either direction without needing a list of the sections.
+    """
+    curriculum = yaml.safe_load(
+        (repo_root() / "books" / "maths-applied" / "curriculum.yaml").read_text(
+            encoding="utf-8"
+        )
+    )
+    for section in curriculum["chapters"][0]["sections"]:
+        summary = str(section.get("summary", ""))
+        marked = bool(re.search(r"\b(drafted|outline)\b", summary, re.IGNORECASE))
+        text = page(f"Section {section['id']}/Walkthrough")
+        has_figure = ":::figure" in text
+        assert marked == (not has_figure), (
+            f"§{section['id']} is {'marked' if marked else 'not marked'} drafted/outline "
+            f"and {'has' if has_figure else 'has no'} figure; those are two descriptions "
+            "of one status"
+        )
 
