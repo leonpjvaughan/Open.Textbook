@@ -30,6 +30,12 @@ from ..problem.compile import Problem
 
 TARGET = "wasm32-unknown-unknown"
 
+#: The rustc invocation. The cache key includes it as well as the generated source, so a
+#: change to the flags is a different key without bumping anything.
+BUILD_FLAGS = (
+    "-O", "-C", "panic=abort", "-C", "strip=symbols",
+    "-C", "lto=fat", "-C", "codegen-units=1",
+)
 
 @dataclass(frozen=True)
 class Layout:
@@ -1494,9 +1500,7 @@ def _build(target: Path) -> tuple[Path | None, str]:
         return None, "rustc not found: kernel.rs written, kernel.wasm not built"
     command = [
         rustc, "--target", TARGET, "--crate-type", "cdylib", "--edition", "2021",
-        "-O", "-C", "panic=abort", "-C", "strip=symbols",
-        "-C", "lto=fat", "-C", "codegen-units=1",
-        "kernel.rs", "-o", "kernel.wasm",
+        *BUILD_FLAGS, "kernel.rs", "-o", "kernel.wasm",
     ]
     result = subprocess.run(command, cwd=target, capture_output=True, text=True)
     if result.returncode != 0:

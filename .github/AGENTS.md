@@ -97,12 +97,14 @@ Two consequences, and both are the point:
   `scripts/build-solvers.sh --check` and `scripts/build-otkd.sh --check` are those
   jobs; `--verify` is the offline check the local gate and the deploy can run with no
   toolchain.
-- **The otkd jobs are path-gated and split.** The suite is 110 tests, about twelve
-  minutes, and the bundle rebuild another eight; a single job would be twenty. They run
-  as three jobs — the Python suite without the kernel compiles, the kernel conformance
-  tests, and the bundle rebuild — only when the push changed `solvers/otkd/` or
-  `scripts/build-otkd.sh`, and print the skip when it does not. This is the split the
-  old `suspension-kinematics` repository used.
+- **The otkd job is path-gated, and tested against the runner count.** The suite is
+  110 tests, about twelve minutes, and the bundle rebuild another eight. A split into
+  three jobs looked like the old `suspension-kinematics` repository, but here it made
+  the wall worse: four runners and a shared `.venv`, so the jobs queued and raced. It
+  is one job, with `pytest -n 2` and a parallel bundle build (`OTKD_JOBS=2`). A kernel
+  cache was tried and did not move the bundle: its time is the symbolic derivation,
+  not rustc. The job runs only when the push changed `solvers/otkd/` or
+  `scripts/build-otkd.sh`, and prints the skip when it does not.
 - **`rollback.yml` is manual on purpose.** A rollback is not the moment to
   discover an automated path for the first time; it must never be cancelled
   in flight.
