@@ -3,6 +3,7 @@
 #
 # Usage:
 #   scripts/deploy.sh              # build, then deploy
+#   scripts/deploy.sh --built      # use the site/ already built; do not rebuild
 #   scripts/deploy.sh --dry-run    # build, then check the deploy without uploading
 #
 # Credentials come from .env (git-ignored) as CF_ACCOUNT_ID / CF_API_TOKEN, or
@@ -16,6 +17,15 @@ set -euo pipefail
 
 ROOT="$(cd "$(dirname "${BASH_SOURCE[0]}")/.." && pwd)"
 cd "$ROOT"
+
+built=0
+wrangler_args=()
+for arg in "$@"; do
+  case "$arg" in
+    --built) built=1 ;;
+    *) wrangler_args+=("$arg") ;;
+  esac
+done
 
 if [ -f .env ]; then
   set -a
@@ -37,19 +47,27 @@ fi
 
 step() { printf '\n== %s ==\n' "$1"; }
 
-step "build"
-uv run python -m textbook.scaffold
-uv run python -m textbook.booklet
-# The pipeline is the site now. It replaces `mkdocs build --strict`: check_links()
-# requires every internal link to resolve to a built file, and the build exits
-# non-zero when one does not.
-#
-# **Every profile four at a time, and the portal last.** This walked the profiles one
-# at a time — 82 seconds of the deploy's critical path for work that finishes in 25,
-# and the deploy is the last job in the gate, so those seconds are the end of the run.
-# `build-all.sh` is the same script the `build` job runs, so a deploy and a check build
-# the site the same way.
-scripts/build-all.sh
+if [ "$built" = "1" ]; then
+  step "use the built site"
+  [ -d site ] || {
+    echo "deploy: --built needs a site/ directory" >&2
+    exit 1
+  }
+else
+  step "build"
+  uv run python -m textbook.scaffold
+  uv run python -m textbook.booklet
+  # The pipeline is the site now. It replaces `mkdocs build --strict`: check_links()
+  # requires every internal link to resolve to a built file, and the build exits
+  # non-zero when one does not.
+  #
+  # **Every profile four at a time, and the portal last.** This walked the profiles
+  # one at a time — 82 seconds of the deploy's critical path for work that finishes in
+  # 25, and the deploy is the last job in the gate, so those seconds are the end of the
+  # run. `build-all.sh` is the same script the `build` job runs, so a deploy and a
+  # check build the site the same way.
+  scripts/build-all.sh
+fi
 
 step "refuse to ship broken maths"
 if grep -rl 'math-error' site --include='*.html'; then
@@ -64,4 +82,4 @@ step "the reader's report route"
 scripts/check-contact.sh
 
 step "deploy"
-exec npx wrangler deploy "$@"
+exec npx wrangler deploy "${wrangler_args[@]}"

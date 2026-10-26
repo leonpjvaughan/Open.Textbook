@@ -176,7 +176,8 @@ being ordered, not by the branch rule.
 
 ```bash
 cp .env.example .env     # then fill in CF_ACCOUNT_ID and CF_API_TOKEN
-scripts/deploy.sh        # build, guard, deploy
+scripts/deploy.sh             # build, guard, deploy
+scripts/deploy.sh --built     # deploy the site/ already built
 scripts/deploy.sh --dry-run   # build and check, without uploading
 ```
 
@@ -185,6 +186,10 @@ scripts/deploy.sh --dry-run   # build and check, without uploading
 Wrangler also reads `CLOUDFLARE_API_TOKEN` and `CLOUDFLARE_ACCOUNT_ID` directly;
 the `CF_*` names still work but Wrangler warns that they are deprecated, so
 `scripts/deploy.sh` maps them across. Renaming them in `.env` removes the warning.
+
+**CI does not rebuild on deploy.** The `build every profile` job uploads `site/` as an
+artefact; the preview and the deploy download it. The deploy restamps only the root
+with the release tag, because the tag is created after the gate has run.
 
 ## Rolling back
 

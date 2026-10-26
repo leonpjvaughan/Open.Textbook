@@ -26,10 +26,9 @@ jobs:
   # needs no workflow edit.
   plan:
     name: plan
-    # A repository variable, so pointing the gate at a self-hosted runner is a
-    # setting rather than a commit — and `gh variable delete RUNNER_LABEL` puts it
-    # back. See `deploy/runner/README.md`.
-    runs-on: ${{ vars.RUNNER_LABEL || 'ubuntu-latest' }}
+    # Hosted runner. The self-hosted pool is idle; `deploy/runner/README.md` has the
+    # switch back if the hosted minutes run out.
+    runs-on: ubuntu-latest
     timeout-minutes: 10
     outputs:
       include: ${{ steps.matrix.outputs.include }}
@@ -51,10 +50,9 @@ jobs:
   generated:
     name: generated files are in sync
     needs: plan
-    # A repository variable, so pointing the gate at a self-hosted runner is a
-    # setting rather than a commit — and `gh variable delete RUNNER_LABEL` puts it
-    # back. See `deploy/runner/README.md`.
-    runs-on: ${{ vars.RUNNER_LABEL || 'ubuntu-latest' }}
+    # Hosted runner. The self-hosted pool is idle; `deploy/runner/README.md` has the
+    # switch back if the hosted minutes run out.
+    runs-on: ubuntu-latest
     timeout-minutes: 15
     steps:
       - uses: actions/checkout@v7
@@ -97,10 +95,9 @@ jobs:
   build:
     name: build every profile
     needs: plan
-    # A repository variable, so pointing the gate at a self-hosted runner is a
-    # setting rather than a commit — and `gh variable delete RUNNER_LABEL` puts it
-    # back. See `deploy/runner/README.md`.
-    runs-on: ${{ vars.RUNNER_LABEL || 'ubuntu-latest' }}
+    # Hosted runner. The self-hosted pool is idle; `deploy/runner/README.md` has the
+    # switch back if the hosted minutes run out.
+    runs-on: ubuntu-latest
     timeout-minutes: 20
     # **One job, every profile, four at a time — not one job per profile.** The matrix
     # this replaces was thirteen rows at about a hundred seconds each: 1300 of the
@@ -108,8 +105,8 @@ jobs:
     # paid its own `checkout`, `uv sync` and `npm ci`, and on four self-hosted runners
     # they then queued behind each other.
     #
-    # Nothing is lost but the job list: `deploy` builds the site itself, so this job is
-    # a check, and a failing profile prints its own log and the job fails on it.
+    # **This is the one build.** The site is uploaded as an artefact; the preview and
+    # the deploy download it. A failing profile prints its own log and the job fails.
     steps:
       - uses: actions/checkout@v7
 
@@ -136,8 +133,8 @@ jobs:
       # deployment root and therefore goes last, alone.
       - name: Build every profile
         env:
-          # Two, for the reason above: the machine has eight cores shared by four
-          # agents, and four concurrent builds per job made the batch slower than two.
+          # A hosted runner has four vCPUs; two concurrent profiles leave room for the
+          # Node work the pipeline does while it renders.
           BUILD_JOBS: 2
         run: scripts/build-all.sh
 
@@ -148,13 +145,20 @@ jobs:
             exit 1
           fi
 
+      - name: Upload the built site
+        uses: actions/upload-artifact@v4
+        with:
+          name: site
+          path: site
+          retention-days: 1
+          if-no-files-found: error
+
   content:
     name: banks, tests and voice
     needs: plan
-    # A repository variable, so pointing the gate at a self-hosted runner is a
-    # setting rather than a commit — and `gh variable delete RUNNER_LABEL` puts it
-    # back. See `deploy/runner/README.md`.
-    runs-on: ${{ vars.RUNNER_LABEL || 'ubuntu-latest' }}
+    # Hosted runner. The self-hosted pool is idle; `deploy/runner/README.md` has the
+    # switch back if the hosted minutes run out.
+    runs-on: ubuntu-latest
     timeout-minutes: 20
     steps:
       - uses: actions/checkout@v7
@@ -187,13 +191,10 @@ jobs:
 
       - name: Test
         env:
-          # **Two workers, not four, on a shared host.** A runner has the machine's eight
-          # cores to itself only when it is the only job running; with four agents the
-          # gate is oversubscribed about threefold, and every job parallelising
-          # internally makes it worse — measured, `theme preview` is 194 s alone and
-          # 432 s under that load. The runners carry the parallelism; a job carrying its
-          # own is the same cores counted twice.
-          PYTEST_WORKERS: 2
+          # Four vCPUs on `ubuntu-latest`, and the build and preview are on their own
+          # machines now, so the suite may use all four. The old two-worker rule was
+          # measured on a shared eight-core host with four agents.
+          PYTEST_WORKERS: 4
         run: uv run pytest tests/ -q -n "$PYTEST_WORKERS"
 
   # The Rust kernels. The wasm is committed, so this job's job is to prove the
@@ -203,7 +204,7 @@ jobs:
   solvers:
     name: solvers
     needs: plan
-    runs-on: ${{ vars.RUNNER_LABEL || 'ubuntu-latest' }}
+    runs-on: ubuntu-latest
     timeout-minutes: 10
     steps:
       - uses: actions/checkout@v7
@@ -247,24 +248,23 @@ jobs:
       - name: Replay every selftest through the page's loader
         run: node scripts/check-solvers.mjs
 
-  # otkd is a project of its own inside solvers/, and its work is expensive: about
-  # twelve minutes for the suite and eight for the bundle rebuild. **It is serial and
-  # one job.** A three-job split, `pytest -n 2`, a `--jobs 2` bundle and a kernel cache
-  # were all measured on this four-runner host: the split was 21 minutes, the xdist and
-  # parallel bundle 25m41, and the cache did not move the bundle (its time is the
-  # symbolic derivation, not rustc). The serial job is the measured 20. The parallel
-  # bundle stays a developer setting (`--jobs 4`); CI uses one. A skip prints why.
+  # otkd is a project of its own inside solvers/, and its work is expensive: the kernel
+  # tests compile Rust, and the bundle rebuild re-derives every model. **The full
+  # validation is main-only**; a branch runs the Python suite without the kernel
+  # compiles, which is the fast check that catches a config or solver change. On main
+  # the three jobs run on separate hosted runners, so the wall is the longest of them,
+  # not their sum — the `suspension-kinematics` split, now on machines that can take it.
+  # Every job is path-gated; a skip prints why.
   otkd:
-    name: otkd
+    name: otkd (dev)
+    if: github.ref != 'refs/heads/main'
     needs: plan
-    runs-on: ${{ vars.RUNNER_LABEL || 'ubuntu-latest' }}
-    timeout-minutes: 30
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
     steps:
       - uses: actions/checkout@v7
         with:
-          # The diff needs the parent commit; the version needs the tags.
-          fetch-depth: 0
-          fetch-tags: true
+          fetch-depth: 2
 
       - id: changed
         name: Did this push touch solvers/otkd?
@@ -274,7 +274,53 @@ jobs:
             echo "run=yes" >> "$GITHUB_OUTPUT"
           else
             echo "run=no" >> "$GITHUB_OUTPUT"
-            echo "NOTE: solvers/otkd unchanged; the suite and bundle rebuild are skipped."
+            echo "NOTE: solvers/otkd unchanged; the fast suite is skipped."
+          fi
+
+      - name: Set up uv
+        if: steps.changed.outputs.run == 'yes'
+        uses: astral-sh/setup-uv@1c37ad07a6a961277cf70c0d37d6f313000f5884 # v10.3.0
+        with:
+          enable-cache: true
+
+      # `test_release_bundle.py` compiles one kernel, so the fast suite still needs
+      # the wasm target.
+      - name: Rust toolchain
+        if: steps.changed.outputs.run == 'yes'
+        uses: dtolnay/rust-toolchain@b725eda525362e7cf34af9a7243cac1e3f01a7ec # stable
+        with:
+          toolchain: "1.99.1"
+          targets: wasm32-unknown-unknown
+
+      - name: Install
+        if: steps.changed.outputs.run == 'yes'
+        run: uv sync --project solvers/otkd --frozen
+
+      - name: Python suite, without the kernel compiles
+        if: steps.changed.outputs.run == 'yes'
+        working-directory: solvers/otkd
+        run: uv run --frozen pytest -q --ignore=tests/test_wasm.py -n 2
+
+  otkd-tests:
+    name: otkd tests
+    if: github.ref == 'refs/heads/main'
+    needs: plan
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v7
+        with:
+          fetch-depth: 2
+
+      - id: changed
+        name: Did this push touch solvers/otkd?
+        run: |
+          base="$(git rev-parse HEAD^ 2>/dev/null || true)"
+          if [ -z "$base" ] || git diff --name-only "$base" HEAD -- solvers/otkd scripts/build-otkd.sh | grep -q .; then
+            echo "run=yes" >> "$GITHUB_OUTPUT"
+          else
+            echo "run=no" >> "$GITHUB_OUTPUT"
+            echo "NOTE: solvers/otkd unchanged; the Python suite is skipped."
           fi
 
       - name: Set up uv
@@ -290,35 +336,111 @@ jobs:
           toolchain: "1.99.1"
           targets: wasm32-unknown-unknown
 
-      - name: Musl target for the workspace toolchain
+      - name: Install
         if: steps.changed.outputs.run == 'yes'
-        run: rustup target add x86_64-unknown-linux-musl
+        run: uv sync --project solvers/otkd --frozen
+
+      - name: Python suite, without the kernel compiles
+        if: steps.changed.outputs.run == 'yes'
+        working-directory: solvers/otkd
+        run: uv run --frozen pytest -q --ignore=tests/test_wasm.py -n 2
+
+  otkd-kernels:
+    name: otkd kernels
+    if: github.ref == 'refs/heads/main'
+    needs: plan
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    steps:
+      - uses: actions/checkout@v7
+        with:
+          fetch-depth: 2
+
+      - id: changed
+        name: Did this push touch solvers/otkd?
+        run: |
+          base="$(git rev-parse HEAD^ 2>/dev/null || true)"
+          if [ -z "$base" ] || git diff --name-only "$base" HEAD -- solvers/otkd scripts/build-otkd.sh | grep -q .; then
+            echo "run=yes" >> "$GITHUB_OUTPUT"
+          else
+            echo "run=no" >> "$GITHUB_OUTPUT"
+            echo "NOTE: solvers/otkd unchanged; the kernel tests are skipped."
+          fi
+
+      - name: Set up uv
+        if: steps.changed.outputs.run == 'yes'
+        uses: astral-sh/setup-uv@1c37ad07a6a961277cf70c0d37d6f313000f5884 # v10.3.0
+        with:
+          enable-cache: true
+
+      - name: Rust toolchain
+        if: steps.changed.outputs.run == 'yes'
+        uses: dtolnay/rust-toolchain@b725eda525362e7cf34af9a7243cac1e3f01a7ec # stable
+        with:
+          toolchain: "1.99.1"
+          targets: wasm32-unknown-unknown
 
       - name: Install
         if: steps.changed.outputs.run == 'yes'
         run: uv sync --project solvers/otkd --frozen
 
-      - name: Test
+      - name: Kernel conformance
         if: steps.changed.outputs.run == 'yes'
-        # The project's own pytest config applies only when pytest starts here; from
-        # the repository root it collects the site's tests against the otkd environment.
         working-directory: solvers/otkd
-        run: uv run --frozen pytest -q
+        run: uv run --frozen pytest -q tests/test_wasm.py -n 2
+
+  otkd-bundle:
+    name: otkd bundle
+    if: github.ref == 'refs/heads/main'
+    needs: plan
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    steps:
+      - uses: actions/checkout@v7
+        with:
+          # The diff needs the parent; the version needs the tags.
+          fetch-depth: 0
+          fetch-tags: true
+
+      - id: changed
+        name: Did this push touch solvers/otkd?
+        run: |
+          base="$(git rev-parse HEAD^ 2>/dev/null || true)"
+          if [ -z "$base" ] || git diff --name-only "$base" HEAD -- solvers/otkd scripts/build-otkd.sh | grep -q .; then
+            echo "run=yes" >> "$GITHUB_OUTPUT"
+          else
+            echo "run=no" >> "$GITHUB_OUTPUT"
+            echo "NOTE: solvers/otkd unchanged; the bundle rebuild is skipped."
+          fi
+
+      - name: Set up uv
+        if: steps.changed.outputs.run == 'yes'
+        uses: astral-sh/setup-uv@1c37ad07a6a961277cf70c0d37d6f313000f5884 # v10.3.0
+        with:
+          enable-cache: true
+
+      - name: Rust toolchain
+        if: steps.changed.outputs.run == 'yes'
+        uses: dtolnay/rust-toolchain@b725eda525362e7cf34af9a7243cac1e3f01a7ec # stable
+        with:
+          toolchain: "1.99.1"
+          targets: wasm32-unknown-unknown
+
+      - name: Install
+        if: steps.changed.outputs.run == 'yes'
+        run: uv sync --project solvers/otkd --frozen
 
       - name: The committed bundle is what the source builds
         if: steps.changed.outputs.run == 'yes'
         env:
-          # Serial in CI: four models at once oversubscribed the eight cores the
-          # last time this job shared the host with the content and browser jobs.
-          OTKD_JOBS: 1
+          OTKD_JOBS: 2
         run: scripts/build-otkd.sh --check
 
   workflows:
     name: lint workflows
-    # A repository variable, so pointing the gate at a self-hosted runner is a
-    # setting rather than a commit — and `gh variable delete RUNNER_LABEL` puts it
-    # back. See `deploy/runner/README.md`.
-    runs-on: ${{ vars.RUNNER_LABEL || 'ubuntu-latest' }}
+    # Hosted runner. The self-hosted pool is idle; `deploy/runner/README.md` has the
+    # switch back if the hosted minutes run out.
+    runs-on: ubuntu-latest
     timeout-minutes: 5
     steps:
       - uses: actions/checkout@v7
@@ -352,10 +474,11 @@ jobs:
   # client is installed and no browser is downloaded.
   preview:
     name: theme preview
-    # **The one job a run may skip, and the reason is its cost.** It is about fifteen
-    # minutes: it builds every profile and then drives Chrome over 490 figure renders,
-    # 201 phone viewports and 1465 readouts. Everything else in this file finishes in
-    # under three.
+    needs: [plan, build]
+    # **The one job a run may skip, and the reason is its cost.** It drives Chrome over
+    # 490 figure renders, 201 phone viewports and 1465 readouts against the site the
+    # build job wrote. It used to build the site again; the artefact removes four
+    # minutes of duplicate work.
     #
     # So it runs where it changes an outcome: on `main`, which tags and deploys, and on
     # a manual dispatch. On `dev` and on a pull request it runs **only when asked** —
@@ -369,11 +492,10 @@ jobs:
       github.event_name == 'workflow_dispatch' ||
       contains(github.event.pull_request.labels.*.name, 'browser') ||
       vars.CI_BROWSER == 'always'
-    # A repository variable, so pointing the gate at a self-hosted runner is a
-    # setting rather than a commit — and `gh variable delete RUNNER_LABEL` puts it
-    # back. See `deploy/runner/README.md`.
-    runs-on: ${{ vars.RUNNER_LABEL || 'ubuntu-latest' }}
-    timeout-minutes: 20
+    # Hosted runner. The self-hosted pool is idle; `deploy/runner/README.md` has the
+    # switch back if the hosted minutes run out.
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
     steps:
       - uses: actions/checkout@v7
 
@@ -404,24 +526,27 @@ jobs:
       - name: Chrome is available
         run: google-chrome --version || google-chrome-stable --version
 
-      # Builds every profile and the portal, then audits every bundle in both schemes
-      # across three routes. The
-      # script asserts the route layout first, so a renderer swap fails on a
-      # missing route rather than auditing a 404.
+      - name: Download the built site
+        uses: actions/download-artifact@v4
+        with:
+          name: site
+          path: site
+
+      # Audits the site the build job wrote. The script asserts the route layout first,
+      # so a renderer swap fails on a missing route rather than auditing a 404.
       - name: Preview every bundle on the built site
-        run: scripts/preview-themes.sh
+        run: scripts/preview-themes.sh --built
 
   # One stable check name for branch protection to require. The build matrix
   # generates per-book job names, so requiring those would mean editing the
   # protection rule every time a book is added; requiring this does not.
   gate:
     name: all checks
-    needs: [plan, generated, build, content, solvers, otkd, workflows, preview]
+    needs: [plan, generated, build, content, solvers, otkd, otkd-tests, otkd-kernels, otkd-bundle, workflows, preview]
     if: always()
-    # A repository variable, so pointing the gate at a self-hosted runner is a
-    # setting rather than a commit — and `gh variable delete RUNNER_LABEL` puts it
-    # back. See `deploy/runner/README.md`.
-    runs-on: ${{ vars.RUNNER_LABEL || 'ubuntu-latest' }}
+    # Hosted runner. The self-hosted pool is idle; `deploy/runner/README.md` has the
+    # switch back if the hosted minutes run out.
+    runs-on: ubuntu-latest
     timeout-minutes: 5
     steps:
       - name: Every required job must have succeeded
@@ -432,6 +557,9 @@ jobs:
           CONTENT: ${{ needs.content.result }}
           SOLVERS: ${{ needs.solvers.result }}
           OTKD: ${{ needs.otkd.result }}
+          OTKD_TESTS: ${{ needs.otkd-tests.result }}
+          OTKD_KERNELS: ${{ needs.otkd-kernels.result }}
+          OTKD_BUNDLE: ${{ needs.otkd-bundle.result }}
           WORKFLOWS: ${{ needs.workflows.result }}
           PREVIEW: ${{ needs.preview.result }}
         run: |
@@ -450,7 +578,27 @@ jobs:
           required build "$BUILD"
           required content "$CONTENT"
           required solvers "$SOLVERS"
-          required otkd "$OTKD"
+          # The otkd split: the full validation is main-only, the fast suite is for
+          # every other ref. The gate knows which to require, and a skip is announced.
+          if [ "$GITHUB_REF" = "refs/heads/main" ]; then
+            required otkd-tests "$OTKD_TESTS"
+            required otkd-kernels "$OTKD_KERNELS"
+            required otkd-bundle "$OTKD_BUNDLE"
+            case "$OTKD" in
+              skipped) echo "NOTE: the dev otkd suite does not run on main." ;;
+              *) echo "required job otkd finished as '$OTKD' on main"; failed=1 ;;
+            esac
+          else
+            required otkd "$OTKD"
+            for pair in "otkd-tests:$OTKD_TESTS" "otkd-kernels:$OTKD_KERNELS" "otkd-bundle:$OTKD_BUNDLE"; do
+              name="${pair%%:*}"
+              result="${pair#*:}"
+              case "$result" in
+                skipped) ;;
+                *) echo "required job $name finished as '$result' on a branch"; failed=1 ;;
+              esac
+            done
+          fi
           required workflows "$WORKFLOWS"
 
           # The browser suite may be skipped on a branch; `main` always runs it before
@@ -483,10 +631,9 @@ jobs:
       tag: ${{ steps.release.outputs.tag }}
     # Main only: a branch whose whole purpose is work in progress must not tag.
     if: github.ref == 'refs/heads/main' && (github.event_name == 'push' || github.event_name == 'workflow_dispatch')
-    # A repository variable, so pointing the gate at a self-hosted runner is a
-    # setting rather than a commit — and `gh variable delete RUNNER_LABEL` puts it
-    # back. See `deploy/runner/README.md`.
-    runs-on: ${{ vars.RUNNER_LABEL || 'ubuntu-latest' }}
+    # Hosted runner. The self-hosted pool is idle; `deploy/runner/README.md` has the
+    # switch back if the hosted minutes run out.
+    runs-on: ubuntu-latest
     timeout-minutes: 10
     permissions:
       contents: write
@@ -520,12 +667,11 @@ jobs:
     # Everything must have verified, and the release must exist: nothing ships
     # that did not verify, and nothing ships unreleased. Main only, which is what
     # keeps a push to any other branch from changing what is live.
-    needs: [release]
+    needs: [release, build]
     if: github.ref == 'refs/heads/main' && (github.event_name == 'push' || github.event_name == 'workflow_dispatch')
-    # A repository variable, so pointing the gate at a self-hosted runner is a
-    # setting rather than a commit — and `gh variable delete RUNNER_LABEL` puts it
-    # back. See `deploy/runner/README.md`.
-    runs-on: ${{ vars.RUNNER_LABEL || 'ubuntu-latest' }}
+    # Hosted runner. The self-hosted pool is idle; `deploy/runner/README.md` has the
+    # switch back if the hosted minutes run out.
+    runs-on: ubuntu-latest
     timeout-minutes: 20
     environment:
       name: production
@@ -549,26 +695,20 @@ jobs:
           uv sync --locked
           npm ci
 
-      # Rebuilt rather than passed between jobs. The toolchain is pinned by
-      # uv.lock and package-lock.json and the generated files are checked for
-      # drift above, so this reproduces what was verified; the maths guard is
-      # re-run here for the same reason.
-      - name: Build the site
+      - name: Download the built site
+        uses: actions/download-artifact@v4
+        with:
+          name: site
+          path: site
+
+      # The profiles are the bytes the build job verified. Only the root is restamped:
+      # the release tag is created after the gate, so the build job could not know it,
+      # and `version.json` and the service worker's cache name must carry it.
+      - name: Stamp the release tag
         env:
-          # Stamped into site/version.json and every page's <meta name="build">,
-          # so a live site can be traced back to a commit. See textbook.portal.
           BUILD_COMMIT: ${{ github.sha }}
           BUILD_TAG: ${{ needs.release.outputs.tag }}
-        run: |
-          uv run python -m textbook.scaffold
-          uv run python -m textbook.booklet
-          uv run python -m textbook.portal
-          # The pipeline replaces `mkdocs build --strict`: it checks every
-          # internal link and exits non-zero on a broken one. `--configs` emits
-          # the pipeline's arguments, not MkDocs config paths.
-          while read -r -a build; do
-            uv run python -m textbook.pipeline "${build[@]}"
-          done < <(uv run python -m textbook.plan --configs)
+        run: uv run python -m textbook.portal
 
       - name: Refuse to ship broken maths
         run: |
@@ -586,4 +726,4 @@ jobs:
         env:
           CLOUDFLARE_API_TOKEN: ${{ secrets.CLOUDFLARE_API_TOKEN }}
           CLOUDFLARE_ACCOUNT_ID: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
-        run: npx wrangler deploy
+        run: scripts/deploy.sh --built

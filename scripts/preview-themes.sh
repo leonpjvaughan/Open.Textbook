@@ -17,8 +17,10 @@
 # are independent processes with their own browser, so they run together and the wall
 # clock is the longest of them, not the sum.
 #
-# Usage: scripts/preview-themes.sh [--shots] [extra node args...]
+# Usage: scripts/preview-themes.sh [--shots] [--built] [extra node args...]
 #   --shots     also write the PNGs to --out (default: checks only)
+#   --built     audit the site that is already in `site/`; do not rebuild it. CI
+#               downloads the `build every profile` artefact and passes this.
 set -euo pipefail
 
 ROOT="$(cd "$(dirname "${BASH_SOURCE[0]}")/.." && pwd)"
@@ -28,25 +30,34 @@ cd "$ROOT"
 # to var/theme-preview/ (git-ignored), which is what a human reviewing a bundle
 # wants.
 shots=(--no-shots)
+built=0
 extra=()
 for arg in "$@"; do
   case "$arg" in
     --shots) shots=(--out var/theme-preview) ;;
+    --built) built=1 ;;
     *) extra+=("$arg") ;;
   esac
 done
 
-# Generated CSS (book.css, themes.css) and the shared symlinks come from the
-# scaffold; the booklet widget and the landing page from their own generators.
-# The harness reads the bundle ids out of the generated themes.css, so the
-# order matters: build, then preview.
-uv run python -m textbook.scaffold
-uv run python -m textbook.booklet
+if [ "$built" = "1" ]; then
+  [ -d site ] || {
+    echo "preview-themes: --built needs a site/ directory" >&2
+    exit 1
+  }
+else
+  # Generated CSS (book.css, themes.css) and the shared symlinks come from the
+  # scaffold; the booklet widget and the landing page from their own generators.
+  # The harness reads the bundle ids out of the generated themes.css, so the
+  # order matters: build, then preview.
+  uv run python -m textbook.scaffold
+  uv run python -m textbook.booklet
 
-# Every profile, four at a time, then the portal. **The same script the `build` job and
-# `deploy.sh` run**, so all three build the site the same way — this had its own copy of
-# the loop, which is how three places come to disagree.
-scripts/build-all.sh
+  # Every profile, four at a time, then the portal. **The same script the `build` job
+  # and `deploy.sh` run**, so all three build the site the same way — this had its own
+  # copy of the loop, which is how three places come to disagree.
+  scripts/build-all.sh
+fi
 
 # --- the six checks, concurrently -------------------------------------------------
 #

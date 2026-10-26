@@ -106,6 +106,20 @@ Two consequences, and both are the point:
   The serial job is the 20-minute result, and the parallel bundle is a developer
   setting (`--jobs 4`), not a CI one. The job runs only when the push changed
   `solvers/otkd/` or `scripts/build-otkd.sh`, and prints the skip when it does not.
+- **The build is uploaded and reused.** `build every profile` writes `site/` and uploads
+  it as the `site` artefact; the preview downloads it and runs
+  `scripts/preview-themes.sh --built`, and the deploy downloads it and runs
+  `scripts/deploy.sh --built`. The deploy restamps only the root with the release tag
+  (`textbook.portal`), because the tag is created after the gate; the profiles are the
+  bytes the gate verified.
+- **The full otkd validation is `main`-only.** A branch runs the Python suite without the
+  kernel compiles; `main` runs that suite, the kernel conformance tests and the bundle
+  rebuild on separate hosted runners. The gate requires the right set for the ref and
+  says so when the other is skipped.
+- **CI runs on hosted runners.** `runs-on: ubuntu-latest` is written in the file, not a
+  repository variable: each job gets its own machine, which is what makes the parallel
+  jobs worth having. `deploy/runner/README.md` records the self-hosted switch if the
+  hosted minutes run out.
 - **`rollback.yml` is manual on purpose.** A rollback is not the moment to
   discover an automated path for the first time; it must never be cancelled
   in flight.

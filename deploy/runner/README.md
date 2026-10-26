@@ -12,10 +12,10 @@ gh variable delete RUNNER_LABEL              # put CI back on ubuntu-latest
 deploy/runner/start.sh --stop                # deregister and remove
 ```
 
-The workflow reads `vars.RUNNER_LABEL` and falls back to `ubuntu-latest`, so pointing CI
-at this runner is a repository variable and not a commit. Nothing about the gate is
-different on it: `scripts/check.sh` and `scripts/preview-themes.sh` are the same scripts,
-and the same sums decide.
+**CI now uses `ubuntu-latest`.** This runner is idle: the hosted runners give each job
+its own machine, which is what the otkd split and the parallel gate need. To use it
+again, set `RUNNER_LABEL` and restore `runs-on: ${{ vars.RUNNER_LABEL || 'ubuntu-latest' }}`
+in `.github/workflows/verify.yml`; nothing about the gate is different on it.
 
 ## What the image holds, and what it deliberately does not
 

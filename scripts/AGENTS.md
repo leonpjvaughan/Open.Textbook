@@ -16,8 +16,8 @@ releases** and **Toolchain** still apply.
 |---|---|
 | `scripts/check.sh` | **Everything CI enforces, in one call.** Run this before pushing |
 | `scripts/build-all.sh` | Every profile, `BUILD_JOBS` at a time (default 4), then the portal. **One job in CI, not one matrix row per profile**: 16 profiles in 43 seconds locally, against 13 rows at ~100 seconds each because every row paid its own install |
-| `scripts/preview-themes.sh` | Every bundle in both schemes over three routes, plus both figure audits |
-| `scripts/deploy.sh` | Build the collection and deploy it to Cloudflare; it follows the reader's report route before uploading |
+| `scripts/preview-themes.sh` | Every bundle in both schemes over three routes, plus both figure audits. `--built` audits the `site/` already there; CI passes the build job's artefact |
+| `scripts/deploy.sh` | Build the collection and deploy it to Cloudflare; it follows the reader's report route before uploading. `--built` deploys the `site/` already there |
 | `scripts/check-contact.sh` | Follow the About page's contact URL as a signed-out reader would; `deploy.sh` runs it so a private or renamed repository fails the deploy, not the reader |
 | `scripts/next-tag.sh` | Print the next release tag, `yy.<day>.<increment>` |
 | `scripts/protect-main.sh` | Require the gate check on `main` (public repository, or GitHub Pro) |
