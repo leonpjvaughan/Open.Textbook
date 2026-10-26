@@ -42,9 +42,12 @@ build() {
   # commit and cannot be compared.
   SETUPTOOLS_SCM_PRETEND_VERSION="$VERSION" \
     uv sync --project "$PROJECT" --frozen --reinstall-package open-textbook-otkd >/dev/null
+  # One BLAS thread per model, four models at once: the build is SymPy and rustc,
+  # not a linear-algebra kernel, and oversubscribing the eight cores is slower.
+  OMP_NUM_THREADS=1 OPENBLAS_NUM_THREADS=1 MKL_NUM_THREADS=1 \
   SETUPTOOLS_SCM_PRETEND_VERSION="$VERSION" \
     uv run --project "$PROJECT" --frozen python "$PROJECT/scripts/build_release.py" \
-      --version "$VERSION" --out "$out"
+      --version "$VERSION" --out "$out" --jobs "${OTKD_JOBS:-4}"
 }
 
 case "${1:-}" in
@@ -55,10 +58,12 @@ case "${1:-}" in
     build "$tmp" >/dev/null
     # The payloads and kernels must be byte-identical. Three files are not compared
     # directly: the README is hand-written; MANIFEST.json's `git` and `python` record
-    # the commit and interpreter of the build, so they move with every checkout; and
+    # the commit and interpreter of the build, and each kernel's `provenance.json`
+    # repeats the generator, so those are stamps that move with a checkout or a tag;
     # SHA256SUMS covers the manifest, so it moves with them. The manifest is compared
-    # with those two fields removed, and each tree's own sums are verified.
-    if ! diff -r --exclude=README.md --exclude=MANIFEST.json --exclude=SHA256SUMS "$tmp/bundle" "$TARGET"; then
+    # with its stamps removed, each tree's own sums are verified, and the payloads and
+    # kernels are compared byte for byte.
+    if ! diff -r --exclude=README.md --exclude=MANIFEST.json --exclude=SHA256SUMS --exclude=provenance.json "$tmp/bundle" "$TARGET"; then
       echo >&2
       echo "build-otkd: the committed bundle is not what solvers/otkd builds." >&2
       echo "  Run scripts/build-otkd.sh and commit what it writes." >&2

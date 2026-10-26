@@ -247,23 +247,25 @@ jobs:
       - name: Replay every selftest through the page's loader
         run: node scripts/check-solvers.mjs
 
-  # otkd is a project of its own inside solvers/, and its suite is slow: 110 tests take
-  # about twelve minutes, and a bundle rebuild another eight. It cannot run on every
-  # push without breaking the ten-minute gate, so the expensive steps run only when the
-  # push changed `solvers/otkd/`. A skip is printed, so "not run" is not read as
-  # "passed". On such a push the gate takes longer; that is the price of a truthful
-  # kernel.
+  # otkd is a project of its own inside solvers/. Its suite is slow because the kernel
+  # tests compile Rust: the old `suspension-kinematics` repository split them into a
+  # separate job for exactly that reason, and so does this. Three jobs, gated on the
+  # path, run at once instead of one twenty-minute chain:
+  #
+  #   otkd          the Python suite, without the kernel tests
+  #   otkd-kernels  the kernel tests, which compile wasm
+  #   otkd-bundle   the rebuild-and-compare of the committed bundle
+  #
+  # A skip is printed, so "not run" is not read as "passed".
   otkd:
-    name: otkd
+    name: otkd tests
     needs: plan
     runs-on: ${{ vars.RUNNER_LABEL || 'ubuntu-latest' }}
-    timeout-minutes: 35
+    timeout-minutes: 15
     steps:
       - uses: actions/checkout@v7
         with:
-          # The diff needs the parent commit; the version needs the tags.
-          fetch-depth: 0
-          fetch-tags: true
+          fetch-depth: 2
 
       - id: changed
         name: Did this push touch solvers/otkd?
@@ -273,7 +275,52 @@ jobs:
             echo "run=yes" >> "$GITHUB_OUTPUT"
           else
             echo "run=no" >> "$GITHUB_OUTPUT"
-            echo "NOTE: solvers/otkd unchanged; the otkd suite and bundle rebuild are skipped."
+            echo "NOTE: solvers/otkd unchanged; the Python suite is skipped."
+          fi
+
+      - name: Set up uv
+        if: steps.changed.outputs.run == 'yes'
+        uses: astral-sh/setup-uv@1c37ad07a6a961277cf70c0d37d6f313000f5884 # v10.3.0
+        with:
+          enable-cache: true
+
+      # `test_release_bundle.py` compiles one kernel, so the Python suite still needs
+      # the wasm target even though the kernel conformance suite is elsewhere.
+      - name: Rust toolchain
+        if: steps.changed.outputs.run == 'yes'
+        uses: dtolnay/rust-toolchain@b725eda525362e7cf34af9a7243cac1e3f01a7ec # stable
+        with:
+          toolchain: "1.99.1"
+          targets: wasm32-unknown-unknown
+
+      - name: Install
+        if: steps.changed.outputs.run == 'yes'
+        run: uv sync --project solvers/otkd --frozen
+
+      - name: Test, without the kernel compiles
+        if: steps.changed.outputs.run == 'yes'
+        working-directory: solvers/otkd
+        run: uv run --frozen pytest -q --ignore=tests/test_wasm.py -n 2
+
+  otkd-kernels:
+    name: otkd kernels
+    needs: plan
+    runs-on: ${{ vars.RUNNER_LABEL || 'ubuntu-latest' }}
+    timeout-minutes: 20
+    steps:
+      - uses: actions/checkout@v7
+        with:
+          fetch-depth: 2
+
+      - id: changed
+        name: Did this push touch solvers/otkd?
+        run: |
+          base="$(git rev-parse HEAD^ 2>/dev/null || true)"
+          if [ -z "$base" ] || git diff --name-only "$base" HEAD -- solvers/otkd scripts/build-otkd.sh | grep -q .; then
+            echo "run=yes" >> "$GITHUB_OUTPUT"
+          else
+            echo "run=no" >> "$GITHUB_OUTPUT"
+            echo "NOTE: solvers/otkd unchanged; the kernel tests are skipped."
           fi
 
       - name: Set up uv
@@ -297,12 +344,50 @@ jobs:
         if: steps.changed.outputs.run == 'yes'
         run: uv sync --project solvers/otkd --frozen
 
-      - name: Test
+      - name: Kernel conformance
         if: steps.changed.outputs.run == 'yes'
-        # The project's own pytest config applies only when pytest starts here; from
-        # the repository root it collects the site's tests against the otkd environment.
         working-directory: solvers/otkd
-        run: uv run --frozen pytest -q
+        run: uv run --frozen pytest -q tests/test_wasm.py -n 2
+
+  otkd-bundle:
+    name: otkd bundle
+    needs: plan
+    runs-on: ${{ vars.RUNNER_LABEL || 'ubuntu-latest' }}
+    timeout-minutes: 20
+    steps:
+      - uses: actions/checkout@v7
+        with:
+          # The diff needs the parent; the version needs the tags.
+          fetch-depth: 0
+          fetch-tags: true
+
+      - id: changed
+        name: Did this push touch solvers/otkd?
+        run: |
+          base="$(git rev-parse HEAD^ 2>/dev/null || true)"
+          if [ -z "$base" ] || git diff --name-only "$base" HEAD -- solvers/otkd scripts/build-otkd.sh | grep -q .; then
+            echo "run=yes" >> "$GITHUB_OUTPUT"
+          else
+            echo "run=no" >> "$GITHUB_OUTPUT"
+            echo "NOTE: solvers/otkd unchanged; the bundle rebuild is skipped."
+          fi
+
+      - name: Set up uv
+        if: steps.changed.outputs.run == 'yes'
+        uses: astral-sh/setup-uv@1c37ad07a6a961277cf70c0d37d6f313000f5884 # v10.3.0
+        with:
+          enable-cache: true
+
+      - name: Rust toolchain
+        if: steps.changed.outputs.run == 'yes'
+        uses: dtolnay/rust-toolchain@b725eda525362e7cf34af9a7243cac1e3f01a7ec # stable
+        with:
+          toolchain: "1.99.1"
+          targets: wasm32-unknown-unknown
+
+      - name: Install
+        if: steps.changed.outputs.run == 'yes'
+        run: uv sync --project solvers/otkd --frozen
 
       - name: The committed bundle is what the source builds
         if: steps.changed.outputs.run == 'yes'
@@ -411,7 +496,7 @@ jobs:
   # protection rule every time a book is added; requiring this does not.
   gate:
     name: all checks
-    needs: [plan, generated, build, content, solvers, otkd, workflows, preview]
+    needs: [plan, generated, build, content, solvers, otkd, otkd-kernels, otkd-bundle, workflows, preview]
     if: always()
     # A repository variable, so pointing the gate at a self-hosted runner is a
     # setting rather than a commit — and `gh variable delete RUNNER_LABEL` puts it
@@ -427,6 +512,8 @@ jobs:
           CONTENT: ${{ needs.content.result }}
           SOLVERS: ${{ needs.solvers.result }}
           OTKD: ${{ needs.otkd.result }}
+          OTKD_KERNELS: ${{ needs.otkd-kernels.result }}
+          OTKD_BUNDLE: ${{ needs.otkd-bundle.result }}
           WORKFLOWS: ${{ needs.workflows.result }}
           PREVIEW: ${{ needs.preview.result }}
         run: |
@@ -446,6 +533,8 @@ jobs:
           required content "$CONTENT"
           required solvers "$SOLVERS"
           required otkd "$OTKD"
+          required otkd-kernels "$OTKD_KERNELS"
+          required otkd-bundle "$OTKD_BUNDLE"
           required workflows "$WORKFLOWS"
 
           # The browser suite may be skipped on a branch; `main` always runs it before
