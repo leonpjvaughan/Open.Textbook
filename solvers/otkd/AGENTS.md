@@ -68,6 +68,10 @@ package is [`docs/handoff-from-maths-site.md`](docs/handoff-from-maths-site.md).
 $ uv sync                                   # install this project (from solvers/otkd)
 $ uv run pytest -q                          # the whole suite, ~2 minutes
 $ uv run --project solvers/otkd pytest -q   # the same, from the repository root
+
+`uv run pytest` **from this directory** uses this project's `testpaths`; from the
+repository root it collects the site's tests against this environment. The CI job starts
+pytest here for that reason.
 $ uv run otkd check examples/double-wishbone
 $ uv run otkd solve examples/double-wishbone
 $ uv run otkd emit examples/double-wishbone examples/double-wishbone/out.js

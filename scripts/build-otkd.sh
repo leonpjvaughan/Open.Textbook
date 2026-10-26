@@ -19,17 +19,20 @@ set -euo pipefail
 ROOT="$(cd "$(dirname "${BASH_SOURCE[0]}")/.." && pwd)"
 PROJECT="$ROOT/solvers/otkd"
 TARGET="$ROOT/books/maths-applied/docs/assets/data/otkd"
-# The collection's tag is the package version. `hatch-vcs` reads the same tag, so the
-# bundle, the package and the site cannot name three different versions.
-VERSION="$(git -C "$ROOT" describe --tags --abbrev=0 2>/dev/null || true)"
-if [ -z "$VERSION" ]; then
-  echo "build-otkd: the repository has no tag, so the bundle has no version" >&2
-  echo "  A shallow clone needs its tags: git fetch --tags" >&2
-  exit 1
-fi
-
 usage() {
   sed -n '2,18p' "$0" | sed 's/^# \{0,1\}//'
+}
+
+# The collection's tag is the package version. `hatch-vcs` reads the same tag, so the
+# bundle, the package and the site cannot name three different versions. `--verify`
+# does not call this: a shallow clone can verify the bytes without its tags.
+need_version() {
+  VERSION="$(git -C "$ROOT" describe --tags --abbrev=0 2>/dev/null || true)"
+  if [ -z "$VERSION" ]; then
+    echo "build-otkd: the repository has no tag, so the bundle has no version" >&2
+    echo "  A shallow clone needs its tags: git fetch --tags" >&2
+    exit 1
+  fi
 }
 
 build() {
@@ -46,6 +49,7 @@ build() {
 
 case "${1:-}" in
   --check)
+    need_version
     tmp="$(mktemp -d)"
     trap 'rm -rf "$tmp"' EXIT
     build "$tmp" >/dev/null
@@ -81,6 +85,7 @@ PYTHON
     echo "otkd: $(grep -c . "$TARGET/SHA256SUMS") files verified from SHA256SUMS, offline"
     ;;
   "")
+    need_version
     tmp="$(mktemp -d)"
     trap 'rm -rf "$tmp"' EXIT
     build "$tmp"

@@ -208,6 +208,14 @@ jobs:
     steps:
       - uses: actions/checkout@v7
 
+      # A host Rust build links its build script, and the runner image does not carry
+      # `cc`. The wasm link is rust-lld and needs nothing, but `cargo test` and the
+      # build tool are host programs.
+      - name: Host linker
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y build-essential
+
       # Pinned to the channel in solvers/rust-toolchain.toml. The .wasm bytes depend
       # on the compiler, so a floating toolchain would make the drift check fail for
       # the wrong reason.
@@ -286,7 +294,10 @@ jobs:
 
       - name: Test
         if: steps.changed.outputs.run == 'yes'
-        run: uv run --project solvers/otkd --frozen pytest -q
+        # The project's own pytest config applies only when pytest starts here; from
+        # the repository root it collects the site's tests against the otkd environment.
+        working-directory: solvers/otkd
+        run: uv run --frozen pytest -q
 
       - name: The committed bundle is what the source builds
         if: steps.changed.outputs.run == 'yes'
