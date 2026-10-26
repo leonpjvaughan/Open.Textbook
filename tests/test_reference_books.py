@@ -630,7 +630,11 @@ def test_the_worked_table_is_recomputed_from_the_equations():
         if not line.startswith("|"):
             continue
         cells = [cell.strip() for cell in line.strip().strip("|").split("|")]
-        if len(cells) == 4 and cells[0].split(":")[0] in worked:
+        # Six columns: equation, the three coefficients, the discriminant, the class.
+        # The coefficients had cell padding nowhere, so they were once merged into a
+        # single "$1$, $0$, $1$" cell; the design system now pads a cell and the table
+        # sets each one in its own column.
+        if len(cells) == 6 and cells[0].split(":")[0] in worked:
             rows[cells[0].split(":")[0]] = cells
     assert set(rows) == set(worked), f"the worked table holds {sorted(rows)}, not three rows"
     for name, (pde, unknown, vars) in worked.items():
@@ -640,16 +644,16 @@ def test_the_worked_table_is_recomputed_from_the_equations():
         delta = sp.simplify(B**2 - 4 * A * C)
         verdict = "hyperbolic" if delta > 0 else "parabolic" if delta == 0 else "elliptic"
         printed = [
-            part.strip().strip("$").replace("\u2212", "-") for part in rows[name][1].split(",")
+            cell.strip("$ ").replace("\u2212", "-") for cell in rows[name][1:4]
         ]
         expected = [str(A), str(B), str(C)]
         assert printed == expected, f"{name}: the page prints {printed}, the equation gives {expected}"
-        discriminant = rows[name][2].strip("$ ").replace("\u2212", "-")
+        discriminant = rows[name][4].strip("$ ").replace("\u2212", "-")
         assert discriminant == str(delta), (
             f"{name}: the page prints B² − 4AC = {discriminant}, the equation gives {delta}"
         )
-        assert rows[name][3] == verdict, (
-            f"{name}: the page says {rows[name][3]}, the sign of the discriminant says {verdict}"
+        assert rows[name][5] == verdict, (
+            f"{name}: the page says {rows[name][5]}, the sign of the discriminant says {verdict}"
         )
 
 

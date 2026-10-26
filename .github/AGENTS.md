@@ -97,15 +97,23 @@ Two consequences, and both are the point:
   `scripts/build-solvers.sh --check` and `scripts/build-otkd.sh --check` are those
   jobs; `--verify` is the offline check the local gate and the deploy can run with no
   toolchain.
-- **The otkd job is path-gated, serial, and measured against this host.** The suite is
-  110 tests, about twelve minutes, and the bundle rebuild another eight. The
-  `suspension-kinematics` three-job split works on GitHub-hosted runners, where every
-  job has its own machine; here four runners share eight cores. Measured on this host:
-  the split was 21 minutes, `pytest -n 2` plus a `--jobs 2` bundle was 25m41, and a
-  kernel cache did not move the bundle because its time is the symbolic derivation.
-  The serial job is the 20-minute result, and the parallel bundle is a developer
-  setting (`--jobs 4`), not a CI one. The job runs only when the push changed
-  `solvers/otkd/` or `scripts/build-otkd.sh`, and prints the skip when it does not.
+- **The otkd jobs are path-gated, and each one is measured.** On hosted runners, where
+  every job gets its own machine, the three `main` jobs took **3m27** (`otkd kernels`),
+  **3m50** (`otkd tests`) and **3m39** (`otkd bundle`) on the first run that executed
+  them; much of each is uv installing NumPy and SciPy. On the four self-hosted runners,
+  which shared eight cores, the same split measured 21 minutes and bought nothing, so
+  the split is a hosted-runner decision, not a general one. Every job runs only when
+  the push changed `solvers/otkd/` or `scripts/build-otkd.sh`, and prints the skip
+  when it does not; a skipped job finishing in four seconds is green, so the timings
+  above are what a real run looks like.
+- **The bundle check compares structure and refuses only real movement.** The first
+  real run of `otkd bundle` failed on a last-bit float: the runner rebuilt
+  `0.49862310415783984` where this machine writes `0.4986231041578398`, from a
+  different BLAS, with no displayed figure changed. `scripts/build-otkd.sh --check`
+  therefore compares the trees structurally: every byte must match except a
+  floating-point number, which may differ by at most `1e-12` relative, and an integer
+  token must match exactly. A changed sign, step or cell count still fails, and the
+  message names the file, the token and the size of the difference.
 - **The build is uploaded and reused.** `build every profile` writes `site/` and uploads
   it as the `site` artefact; the preview downloads it and runs
   `scripts/preview-themes.sh --built`, and the deploy downloads it and runs

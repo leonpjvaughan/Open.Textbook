@@ -61,14 +61,86 @@ case "${1:-}" in
     # the commit and interpreter of the build, and each kernel's `provenance.json`
     # repeats the generator, so those are stamps that move with a checkout or a tag;
     # SHA256SUMS covers the manifest, so it moves with them. The manifest is compared
-    # with its stamps removed, each tree's own sums are verified, and the payloads and
-    # kernels are compared byte for byte.
-    if ! diff -r --exclude=README.md --exclude=MANIFEST.json --exclude=SHA256SUMS --exclude=provenance.json "$tmp/bundle" "$TARGET"; then
-      echo >&2
-      echo "build-otkd: the committed bundle is not what solvers/otkd builds." >&2
-      echo "  Run scripts/build-otkd.sh and commit what it writes." >&2
-      exit 1
-    fi
+    # with its stamps removed and each tree's own sums are verified.
+    #
+    # The payloads and kernels are compared **structurally**: every byte must match
+    # except a floating-point number, which may differ in its last bits. That is not
+    # a relaxation for convenience. Measured on the first real run of the split CI
+    # job, on GitHub's runner, the quarter-car equilibrium came back as
+    # `0.4986231041578398` where this machine writes `0.49862310415783984`: one unit
+    # in the last place, from a different BLAS, with every displayed figure unchanged
+    # and the model identical. Byte equality across machines is not a promise this
+    # project can keep; what it can promise is that no number moved by more than
+    # float noise and nothing else moved at all. A changed step, sign or cell count is
+    # an integer token and must match exactly.
+    uv run --project "$PROJECT" --frozen python - "$tmp/bundle" "$TARGET" <<'PYTHON'
+import re
+import sys
+from pathlib import Path
+
+EXCLUDED = {"README.md", "MANIFEST.json", "SHA256SUMS", "provenance.json"}
+NUMBER = re.compile(rb"-?\d+(?:\.\d+)?(?:[eE][-+]?\d+)?")
+TOLERANCE = 1e-12
+
+
+def files(root):
+    return {
+        path.relative_to(root)
+        for path in Path(root).rglob("*")
+        if path.is_file() and path.name not in EXCLUDED
+    }
+
+
+def compare_numbers(left, right, where, worst):
+    if left == right:
+        return None
+    integral = b"." not in left and b"e" not in left and b"E" not in left
+    if integral:
+        return f"{where}: {left.decode()} is not {right.decode()}"
+    a, b = float(left), float(right)
+    if a == b:
+        return None
+    relative = abs(a - b) / max(abs(a), abs(b), 1e-300)
+    worst[0] = max(worst[0], relative)
+    if relative > TOLERANCE:
+        return f"{where}: {left.decode()} differs from {right.decode()} by {relative:.3g}"
+    return None
+
+
+def compare_file(left_path, right_path, name, worst):
+    left = left_path.read_bytes()
+    right = right_path.read_bytes()
+    if left == right:
+        return
+    left_parts, left_numbers = NUMBER.split(left), NUMBER.findall(left)
+    right_parts, right_numbers = NUMBER.split(right), NUMBER.findall(right)
+    if len(left_numbers) != len(right_numbers) or left_parts != right_parts:
+        raise SystemExit(
+            f"build-otkd: {name} differs from what solvers/otkd builds, "
+            "and not only in a number"
+        )
+    for index, (a, b) in enumerate(zip(left_numbers, right_numbers)):
+        problem = compare_numbers(a, b, f"{name} number {index}", worst)
+        if problem:
+            raise SystemExit(f"build-otkd: {problem}")
+
+
+left_root, right_root = (Path(path) for path in sys.argv[1:3])
+left_files, right_files = files(left_root), files(right_root)
+missing = sorted(str(name) for name in left_files ^ right_files)
+if missing:
+    raise SystemExit(f"build-otkd: these files are in one tree and not the other: {missing}")
+worst = [0.0]
+for name in sorted(left_files):
+    compare_file(left_root / name, right_root / name, str(name), worst)
+if worst[0]:
+    print(
+        f"otkd: every number agrees except float noise, largest relative "
+        f"difference {worst[0]:.3g}"
+    )
+else:
+    print("otkd: the bundle is byte-identical to the source")
+PYTHON
     uv run --project "$PROJECT" --frozen python - "$tmp/bundle/MANIFEST.json" "$TARGET/MANIFEST.json" <<'PYTHON'
 import json, sys
 left, right = (json.load(open(path)) for path in sys.argv[1:3])

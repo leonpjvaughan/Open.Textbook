@@ -73,9 +73,15 @@ one, and now it is not needed either.
 
 `otkd` is a nested `uv` project with its own `uv.lock`; it is deliberately **not** a
 member of the root workspace, because NumPy and SciPy would then be installed for
-every site job. Its suite is slow (110 tests, about twelve minutes), so the CI job that
-runs it and rebuilds the bundle is gated on `solvers/otkd/` changing. The local gate
-and the deploy only run `scripts/build-otkd.sh --verify`.
+every site job. Its suite is 95 tests, 27 of which compile a kernel, so CI splits it
+across three hosted-runner jobs (`otkd tests`, `otkd kernels`, `otkd bundle`), each
+about three and a half minutes, and all three are gated on `solvers/otkd/` changing.
+A branch runs the fast suite on its own (`otkd (dev)`). The local gate and the deploy
+only run `scripts/build-otkd.sh --verify`, which needs no toolchain.
+
+`--check` compares the rebuilt trees **structurally**, not byte for byte: see the note
+in `.github/AGENTS.md`. A different BLAS moves the last bits of a solved equilibrium,
+and that is not a change to the model.
 
 The bundle at `books/maths-applied/docs/assets/data/otkd/` is built from
 `solvers/otkd`, not downloaded. **A rebuild that changes a number is a reviewable
