@@ -837,3 +837,50 @@ def test_every_figure_calls_only_kit_names_it_imported_or_defined():
         + ", ".join(missing)
     )
 
+
+
+def test_every_lab_names_a_parameter_or_output_its_kernel_has():
+    """A name in a lab module is a name in the generated manifest, or it is a break.
+
+    ``kernel-lab.js`` builds a control from the manifest's parameter and reads an
+    output by name, so a lab module is a list of names the Rust declared. Renaming a
+    parameter or an output in ``solvers/ot-solve`` therefore breaks the figure at run
+    time, in a browser, on a page nobody rebuilt. Every lab mounted when it was written;
+    this is the check that keeps looking after the Rust moves.
+    """
+    import json
+
+    root = repo_root()
+    library = root / "assets" / "figures"
+    data = root / "assets" / "data" / "solvers"
+    broken: list[str] = []
+    seen = 0
+    for path in sorted(library.glob("*-lab.js")):
+        text = path.read_text(encoding="utf-8")
+        match = re.search(r"data/solvers/([\w-]+)/kernel\.js", text)
+        if match is None:
+            # The shared renderer: `kernel-lab.js` imports no kernel of its own.
+            continue
+        kernel_id = match.group(1)
+        manifest_path = data / kernel_id / "manifest.json"
+        if not manifest_path.exists():
+            broken.append(f"{path.name}: no manifest for {kernel_id}")
+            continue
+        manifest = json.loads(manifest_path.read_text(encoding="utf-8"))
+        names = {param["name"] for param in manifest["params"]}
+        names |= {output["name"] for output in manifest["outputs"]}
+        used = set(
+            re.findall(r'kernel\.(?:scalar|output|set|get|spec)\("([^"]+)"\)', text)
+        )
+        controls = re.search(r"controls:\s*\[([^\]]*)\]", text, re.S)
+        if controls is not None:
+            used.update(re.findall(r'"([^"]+)"', controls.group(1)))
+        seen += 1
+        broken.extend(
+            f"{path.name}: '{name}' is not a parameter or output of {kernel_id}"
+            for name in sorted(used - names)
+        )
+    assert seen >= 7, f"{seen} lab modules carry a kernel import; the discovery is wrong"
+    assert not broken, "lab modules name what their kernel does not have: " + "; ".join(
+        broken
+    )
