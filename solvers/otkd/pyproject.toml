@@ -1,0 +1,56 @@
+[build-system]
+requires = ["hatchling", "hatch-vcs"]
+build-backend = "hatchling.build"
+
+[project]
+name = "open-textbook-otkd"
+# The collection's tag is the version. `hatch-vcs` reads it from the repository root,
+# so the package reports `26.299.0` at a tag and a development version between tags.
+dynamic = ["version"]
+description = "Open textbook kinematics and dynamics: config files in, mathematical problems out."
+readme = "README.md"
+requires-python = ">=3.12"
+license = { file = "LICENSE" }
+dependencies = [
+  "numpy>=1.26",
+  "scipy>=1.11",
+  "sympy>=1.12",
+  "pydantic>=2.7",
+  "pyyaml>=6.0",
+]
+
+[dependency-groups]
+dev = ["pytest>=8"]
+
+[project.optional-dependencies]
+ui = ["ruamel.yaml>=0.18"]
+
+[project.scripts]
+# The import is namespaced; the command keeps the short name a reader types.
+otkd = "open_textbook.otkd.cli:main"
+
+[tool.hatch.version]
+source = "vcs"
+
+[tool.hatch.version.raw-options]
+# The repository root, two levels above the project. `hatch-vcs` reads the same tags
+# the site releases under, so there is one version for the collection and its packages.
+root = "../.."
+fallback_version = "0.0.0"
+
+[tool.hatch.build.hooks.vcs]
+version-file = "src/open_textbook/otkd/_version.py"
+
+[tool.hatch.build.targets.wheel]
+# The namespace package's parent is the package root, so `open_textbook.otkd` and any
+# future `open_textbook.*` share one directory. No `__init__.py` in `open_textbook/`.
+packages = ["src/open_textbook"]
+
+# Build output must never enter the sdist: a build that writes into `dist/` would otherwise
+# package its own previous output, making the second build differ from the first.
+[tool.hatch.build.targets.sdist]
+exclude = ["/dist*", "/.venv", "/.pytest_cache", "/build"]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+addopts = "-q"

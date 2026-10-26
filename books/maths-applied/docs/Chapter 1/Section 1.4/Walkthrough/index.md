@@ -153,7 +153,7 @@ def diagnose(system, q, rows=None, rtol=1e-9):
 ```
 
 The file is
-[`svd.py`](https://github.com/leonpjvaughan/suspension-kinematics/blob/main/src/otkd/solvers/svd.py).
+[`svd.py`](https://github.com/leonpjvaughan/Open.Textbook/blob/main/solvers/otkd/src/open_textbook/otkd/solvers/svd.py).
 Returning the row names rather than only the singular values is the whole point:
 a figure can then say *which* equations are the same, instead of shouting that
 something is wrong somewhere.

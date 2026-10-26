@@ -42,6 +42,13 @@ the matrix, not on its entries:
   can be turned into the largest one of another problem.
 - Is it small and dense? Then compute all of them, and stop worrying.
 
+The gap between the two eigenvalues is the speed. The figure multiplies a vector by
+a symmetric matrix and draws it turning toward the dominant eigenvector. The ratio
+of the second eigenvalue to the first is the factor by which the wrong direction
+shrinks each step.
+
+:::figure power-lab
+
 ## The signature
 
 The answers are a discrete set, not a curve. The question is usually *local* — the

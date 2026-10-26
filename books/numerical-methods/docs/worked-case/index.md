@@ -136,6 +136,83 @@ That is the map's claim, and this page is the evidence for it: one mechanism, fi
 questions and six kinds of problem, five of which a section already names. One of
 the methods needs no iteration at all.
 
+<a id="what-a-kernel-is"></a>
+## What a kernel is
+
+The numbers on this page come from the model in `Maths Applied`, and that model is
+also compiled to a **kernel**. The word has more than one meaning in numerical work,
+so this section says which one this collection uses.
+
+A kernel here is a **compiled solver for one model**. Its core is two functions: the
+residual $\Phi(q,g,t)$, which is zero when the model's rules hold, and its Jacobian
+$J=\partial\Phi/\partial q$. The pair is the same map the package's Python engine
+evaluates. The form is different: the kernel is a straight line of arithmetic, not a
+tree of expressions.
+
+The pipeline has five steps.
+
+| step | what goes in | what comes out |
+|---|---|---|
+| derive | the model's rules | $\Phi$ and $J$ as SymPy expressions |
+| flatten | those expressions | a straight line of scalar assignments |
+| print | the straight line | Rust source |
+| compile | the Rust source | a WebAssembly module |
+| wrap | the module | `kernel.js`, with the binary inlined |
+
+That is the sense behind the phrase *SymPy → Rust → WebAssembly kernel*: SymPy
+derives the arithmetic, Rust is the source language, and WebAssembly is what the
+page loads.
+
+**Derive.** SymPy differentiates the residual to get the Jacobian. The derivation is
+exact and happens once, before any number is solved. The Python engine and the page
+use the same derivation, and a test solves the same case with both. If they disagree,
+the Python derivation is right and the kernel is stale.
+
+**Flatten.** Common-subexpression elimination finds a term that appears more than
+once, computes it once and gives it a name. The model's arithmetic becomes a list of
+scalar assignments, with no allocation and no interpreter. The model's size is known
+before the build, so the kernel needs no memory manager.
+
+**Print and compile.** The list is printed as Rust and compiled for
+`wasm32-unknown-unknown`. The module has one buffer of `f64` values, with fixed
+offsets for the unknowns, the geometry, the residual, the Jacobian and the outputs.
+It imports nothing. A page writes numbers into the buffer, calls a function, and
+reads the answer out.
+
+**Wrap.** `kernel.js` carries the WebAssembly binary as base64, so a page needs one
+import and no second request. The binary is there for inspection. The module the
+browser runs is the one inside the JavaScript file.
+
+The word *kernel* is used in its software sense: the small core of arithmetic that
+the rest of the program calls. It is not the whole program. The page decides what to
+put in, when to call it, and how many iterations to allow. The method was chosen when
+the kernel was generated: Newton's step for the rigid model, a least-squares or
+constrained step for the others, and an integrator for the quarter car.
+
+**Common error.** It is tempting to read *kernel* as a method. A kernel is not
+Newton's method, and it is not a Runge–Kutta step. It is one model's arithmetic,
+printed as code. A different topology needs a new kernel, even when the same method
+solves both.
+
+### The same word, other senses
+
+Numerical work uses *kernel* for other things too. Two of them appear in this book.
+
+| sense | where you meet it | what it is |
+|---|---|---|
+| integral kernel | [Boundary element](../techniques/#linear-systems) | the function $G(x,y)$ inside the boundary integral |
+| null space | [Saddle point](../saddle-point/index.md) | the vectors $x$ with $Ax=0$ |
+| compiled kernel | this section | the generated solver for one model |
+
+The first is a function you integrate. The second is a set of vectors a matrix sends
+to zero; it is also called the kernel of the matrix. The third is a piece of code.
+The context decides which one is meant: an integral sign, a matrix equation, or a
+module a page imports.
+
+`Maths Applied` [§1.6](/maths-applied/chapter-1/section-1.6/learn/) walks the
+pipeline on the quarter car, from the SymPy derivative to the Rust source and the
+module the page runs.
+
 ## Read next
 
 - [The class is a choice](../choosing-the-class/index.md) — why the same physics can

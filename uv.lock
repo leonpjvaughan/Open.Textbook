@@ -191,7 +191,6 @@ wheels = [
 
 [[package]]
 name = "textbook"
-version = "0.0.0"
 source = { editable = "engine" }
 dependencies = [
     { name = "antlr4-python3-runtime" },

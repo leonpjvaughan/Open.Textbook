@@ -54,7 +54,7 @@ The claims in this book rest on these documents:
 
 - [SAE J670: Vehicle Dynamics Terminology](https://www.sae.org/standards/content/j670_202208/)
 - [A.d.Tramontana front suspension (cutaway display, Wikimedia Commons)](https://commons.wikimedia.org/wiki/File:A.d.Tramontana_Front_Suspension.jpg)
-- [suspension-kinematics — the model, its exports and a generated solver](https://github.com/leonpjvaughan/suspension-kinematics)
+- [otkd — the model, its exports and a generated solver](https://github.com/leonpjvaughan/Open.Textbook/tree/main/solvers/otkd)
 
 These sources were last checked on 2026-10-18.
 

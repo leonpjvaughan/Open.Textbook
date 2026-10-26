@@ -46,6 +46,11 @@ Two things decide whether you get an answer: **the start**, and **the number of
 solutions**. Newton is fast near a solution and unreliable away from one. A
 bracketing method is the reverse.
 
+The tangent step is the method in one line. The figure takes one step at a time and
+draws the residual; the start decides whether the sequence lands, and how fast.
+
+:::figure newton-lab
+
 ## The signature
 
 The rule holds at a point, and the point is found — usually by iteration, sometimes

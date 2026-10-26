@@ -135,7 +135,7 @@ def least_squares(start, theta, steps=20, tol=1e-12):
 ```
 
 The function itself is
-[`least_squares.py`](https://github.com/leonpjvaughan/suspension-kinematics/blob/main/src/otkd/solvers/least_squares.py).
+[`least_squares.py`](https://github.com/leonpjvaughan/Open.Textbook/blob/main/solvers/otkd/src/open_textbook/otkd/solvers/least_squares.py).
 It returns the cost, the optimality and the singular values of $J$ at the
 solution. A least-squares answer without its residual is a number with no error
 bar.

@@ -1,6 +1,7 @@
 [project]
 name = "textbook"
-version = "0.0.0"
+# The collection's tag is the version: `hatch-vcs` reads it from the repository root.
+dynamic = ["version"]
 description = "Shared engine for the interactive textbook collection"
 requires-python = ">=3.12"
 dependencies = [
@@ -15,8 +16,18 @@ dependencies = [
 ]
 
 [build-system]
-requires = ["hatchling"]
+requires = ["hatchling", "hatch-vcs"]
 build-backend = "hatchling.build"
+
+[tool.hatch.version]
+source = "vcs"
+
+[tool.hatch.version.raw-options]
+root = ".."
+fallback_version = "0.0.0"
+
+[tool.hatch.build.hooks.vcs]
+version-file = "src/textbook/_version.py"
 
 [tool.hatch.build.targets.wheel]
 packages = ["src/textbook"]

@@ -110,7 +110,9 @@ problem again, with no multiplier at all. Its bounce is an [eigenvalue](eigenval
 with no damper it keeps its energy: the Hamiltonian flag is described on the
 [hyperbolic page](hyperbolic/index.md), though no section names that class. [The
 same corner, five ways](worked-case/index.md) takes that one mechanism through five
-kinds and quotes the numbers where the models agree.
+kinds and quotes the numbers where the models agree. The page's last section explains
+[what a kernel is](worked-case/#what-a-kernel-is): the compiled solver some pages in
+the collection run, and the two other senses the word has in numerical work.
 
 ## Three ways in
 

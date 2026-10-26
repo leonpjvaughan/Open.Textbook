@@ -1,5 +1,44 @@
 # Decisions
 
+## 2026-10-26 — The solvers live here, one ABI, and the tag names the version
+
+**The problem.** Two repositories produced the numbers a page runs: this one, and
+`suspension-kinematics`, whose `otkd` package was released as a zip and vendored by
+digest. A model change meant a tag, a release, a download and a pasted checksum, and
+nothing proved the committed bytes came from the source. The new Rust kernels had no
+home at all.
+
+**The decision.** `solvers/` holds both producers: `ot-solve` (hand-written numerical
+kernels, Rust → WebAssembly) and `otkd` (the mechanism compiler, moved here and
+archived at its old address). One ABI, `solvers/ABI.md`: a fixed `f64` arena, four
+named blocks, seven exports, status codes rather than traps, a generated manifest and
+a native selftest replayed through the page's loader. `scripts/build-solvers.sh` and
+`scripts/build-otkd.sh` rebuild the committed artefacts; CI **builds to compare, never
+to ship**, and the deploy installs no compiler. The otkd suite is path-gated because it
+is twelve minutes.
+
+**The move, and why there is no history.** The files were copied from the last release,
+not carried with `git subtree`. The history stays in the archived repository, which
+remains readable; the trade was deliberate. The acceptance test was that the move
+changed **no number**: every `out.js` and every `kernel.wasm` is byte-identical to the
+0.11.0 release, and only the generator, commit and version stamps differ.
+
+**The version is the collection's.** `hatch-vcs` reads the repository tag in both
+Python packages, so `otkd` and `textbook` report `26.299.0` at a tag rather than a
+number maintained by hand. The bundle records the tag it was built at. A shallow clone
+without tags cannot name a version, and the build says so.
+
+**The import is namespaced.** `otkd` imports as `open_textbook.otkd`; the command is
+still `otkd`. The engine still imports as `textbook`: its rename is ~90 import and
+command sites and is a mechanical change of its own, not a rider on this one.
+
+**What this changes in the rules.** The `.github/AGENTS.md` rule that CI installs no
+compiler became "builds a vendored binary only to prove it". A statement about a
+simulated number is no longer a `claim()`: `assets/AGENTS.md` says why, and the
+selftest replaces the CAS for that class of number.
+
+---
+
 ## 2026-10-21 — The disclaimer is one promise, made once, and reachable three ways
 
 **The problem.** A free textbook is used without a teacher beside the reader, and

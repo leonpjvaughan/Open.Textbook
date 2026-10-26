@@ -132,5 +132,5 @@ package that also solves the three-dimensional version. Each section shows the
 mathematics as pseudocode and links to the file that implements it, so a reader
 who wants the whole of it can find it:
 
-- [`suspension-kinematics`](https://github.com/leonpjvaughan/suspension-kinematics) —
+- [`otkd`](https://github.com/leonpjvaughan/Open.Textbook/tree/main/solvers/otkd) —
   the solver, its tests, and the data the later figures draw.

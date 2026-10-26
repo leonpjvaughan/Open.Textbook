@@ -182,6 +182,7 @@ per-book layout is in `books/AGENTS.md`.
 | `SHAPE.md`, `.agents/planning/plan.md`, `.agents/chapter-brief.md`, `PROBLEMS.md`, `BOOKLETS.md`, `DEPLOY.md`, `DECISIONS.md`, `ideas.md`, `.agents/todo.md`, `collection.yaml`, `wrangler.jsonc` | shape, plan, brief, banks, booklets, deploy, decisions, the interactive-aid queue, queue, collection, Worker |
 | `engine/`, `engine/AGENTS.md`, `assets/`, `assets/AGENTS.md` | the engine and the design system, and their rules |
 | `tools/`, `tools/AGENTS.md` | **the checks and measurements**, one TypeScript package with one entry point |
+| `solvers/`, `solvers/AGENTS.md`, `solvers/ABI.md`, `solvers/otkd/AGENTS.md` | the numerical kernels: Rust `ot-solve` and the `otkd` mechanism compiler, one ABI, and the build that vendors their wasm |
 | `themes/`, `books/`, `books/AGENTS.md`, `books/gcse-maths/`, `books/gcse-maths/AGENTS.md` | bundles; the books and their rules |
 | `books/a-level-maths/`, `books/a-level-maths/AGENTS.md` | the A-level Mathematics book and its rules |
 | `books/gcse-physics/`, `books/gcse-physics/AGENTS.md`, `books/a-level-physics/`, `books/a-level-physics/AGENTS.md` | the two physics books and their rules |
@@ -231,6 +232,9 @@ node tools/dist/cli.js help                     # every check and measurement
 node tools/dist/cli.js kit-pure                 # the kit's drawing and formatting layers
 node tools/dist/cli.js types                    # the type ratchet (target 0)
 node tools/dist/cli.js kit site                 # the kit's DOM contract, on a build
+scripts/build-solvers.sh --verify               # the committed wasm, offline
+scripts/build-otkd.sh --verify                  # the otkd bundle, offline
+node scripts/check-solvers.mjs                  # replay every kernel selftest
 node tools/dist/cli.js readout site --verify  # the arithmetic every figure declares
 node tools/dist/cli.js audit site --mobile      # every figure at 390px; none below 9px
 scripts/preview-themes.sh   # 6 bundles x 2 schemes x 3 routes, and both figure audits
@@ -283,6 +287,10 @@ Pagefind); without Node, maths silently degrades to `.math-error` spans.
 `actionlint` runs shellcheck only when it is on `PATH` (true in CI, not
 locally), so a whole class of workflow error can pass locally. Install it with
 `mise use -g shellcheck@0.11.0` and check `command -v shellcheck` first.
+
+`solvers/` needs Rust and the `wasm32-unknown-unknown` target; `solvers/rust-toolchain.toml`
+pins both. Without them the gate still runs: `scripts/build-solvers.sh --verify` checks the
+committed wasm offline, and only the diff against a rebuild needs the compiler.
 
 `tools screenshot` serves the built site by Playwright request interception, not a
 bound port (no free port, no clash with a running server); a listening socket does

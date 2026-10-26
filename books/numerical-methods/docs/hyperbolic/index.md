@@ -41,6 +41,12 @@ The step is limited by the **CFL condition**: in one step, information must not
 cross more than one cell. That limit comes from the physics and the mesh, not from
 the diffusion of the scheme.
 
+The CFL condition is easiest to see as an experiment. The figure sends a pulse
+through the scheme; below $c = 1$ it splits into two halves and keeps its energy,
+and above $c = 1$ the short modes grow.
+
+:::figure wave-lab
+
 ## The signature
 
 Disturbances travel at a finite speed. That single fact explains almost everything

@@ -1,6 +1,6 @@
 # Provenance for Numerical Methods.
 #
-# Three different claims live here, and they are not the same claim:
+# Four different things live here, and they are not the same claim:
 #
 #   * **The classification.** Elliptic, parabolic and hyperbolic are standard, and
 #     the signature of each — propagation speed, smoothing, memory — is stated in
@@ -10,6 +10,10 @@
 #   * **The techniques.** Every method named in the tables is a textbook method,
 #     and the cost and the failure stated beside it are the textbook's, not a
 #     measurement made here. Nothing in this book claims a benchmark.
+#   * **The generated solver.** The word *kernel* and the pipeline behind it are
+#     the package's, not this book's. `otkd` documents the
+#     SymPy → Rust → WebAssembly route, and the bundle `Maths Applied` runs is built
+#     from the same source at the collection tag.
 #   * **Everything else is further reading.** A `role` says which is which,
 #     because "we read this" and "read this next" are different statements.
 #
@@ -18,9 +22,10 @@
 # without it is further reading, and is listed here for a reader rather than
 # claimed as a citation. Every `url` below was resolved and its title checked
 # against Crossref on 2026-10-18, rather than written from memory — two of the
-# twenty candidate links turned out to point at different books. The one added
-# after that pass is `herman`, a LibreTexts chapter rather than a Crossref record;
-# its link was resolved and its page title checked on 2026-10-26.
+# twenty candidate links turned out to point at different books. The two added
+# after that pass are `herman`, a LibreTexts chapter rather than a Crossref record,
+# and `otkd-kernel`, a package's own pipeline note; both links were
+# resolved and their titles checked on 2026-10-26.
 #
 # What this book does not do: it does not rest on a syllabus, and it does not
 # claim that any technique is the best one in general. The map is a map, not a
@@ -77,6 +82,20 @@ references:
       a differential equation. Also artificial compressibility, which replaces the
       constraint with a stiff pressure evolution and changes the class — the second
       case on the `choosing-the-class` page.
+
+  # --- the generated solver ------------------------------------------------------
+  - id: otkd-kernel
+    attribution: true
+    title: "otkd — generated kernels: SymPy, Rust and WebAssembly"
+    url: https://github.com/leonpjvaughan/Open.Textbook/blob/main/solvers/otkd/docs/wasm.md
+    ref: "the package's `docs/wasm.md`, read 2026-10-26; the bundle in `Maths Applied` is built from the same source at the collection tag"
+    role: >-
+      The pipeline behind the word *kernel* on `worked-case`: the residual and its
+      Jacobian derived with SymPy, common-subexpression elimination into a
+      straight-line program, printing as Rust, compiling for `wasm32-unknown-unknown`,
+      and the fixed `f64` buffer with no allocator and no imports. Also the rule that
+      the kernel is generated from the same derivation as the Python engine, and that
+      the Python engine is the reference when the two disagree.
 
   # --- the techniques -----------------------------------------------------------
   - id: trefethen

@@ -38,6 +38,12 @@ The cost is in solving that system. A direct solve is fine in two dimensions and
 becomes a memory problem in three. An iterative method is cheap per step and needs
 to move information across the whole mesh.
 
+The system is the problem. The figure solves a one-dimensional version by conjugate
+gradients. The field moves toward the exact curve, and the residual below it falls
+to the floor in at most one iteration per cell.
+
+:::figure cg-lab
+
 ## The signature
 
 There is no speed of propagation, because there is no propagation. A change in one

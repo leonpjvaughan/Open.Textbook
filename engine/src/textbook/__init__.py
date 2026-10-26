@@ -10,3 +10,10 @@ Layers, from the bottom up:
 * :mod:`textbook.scaffold`, :mod:`textbook.booklet`, :mod:`textbook.portal` —
   the generators whose output CI checks for drift.
 """
+
+# Written by hatch-vcs at install time from the collection's tag. The fallback keeps a
+# source tree importable before the first `uv sync`.
+try:
+    from ._version import __version__  # type: ignore[import-not-found]
+except ImportError:  # pragma: no cover - only without an install
+    __version__ = "0.0.0"

@@ -1,6 +1,6 @@
 """The quarter-car transient, as numbers a page can draw.
 
-Run from a checkout of `suspension-kinematics` with `uv run python extract.py trajectory.js`.
+Run from a checkout of `otkd` with `uv run python extract.py trajectory.js`.
 The trajectory is not re-integrated here: the package's own `otkd solve --json` writes it, and
 this script only asks for it and maps each step to the four numbers the page draws. That is the
 point — the package's output is what the book reads, so there is no second reading of the model
@@ -18,8 +18,8 @@ import sys
 import tempfile
 from pathlib import Path
 
-import otkd
-from otkd.cli import main as otkd_main
+import open_textbook.otkd as otkd
+from open_textbook.otkd.cli import main as otkd_main
 
 MODEL = "examples/quarter-car"
 HERE = Path(__file__).resolve().parent

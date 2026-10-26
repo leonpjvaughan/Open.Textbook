@@ -190,6 +190,14 @@ future edit is tempted to add arrows between its panels, it has become the tree 
 The other two figures are on class pages, and they obey the ordinary rule: they mount
 in a state that already carries the idea.
 
+The class pages also mount the **shared kernel labs**: `heat-lab` on parabolic,
+`wave-lab` on hyperbolic, `cg-lab` on elliptic and linear-system, `power-lab` on
+eigenvalue, `newton-lab` on root, `gradient-lab` on optimisation and `monte-carlo-lab`
+on averaging. They live in `assets/figures/`, not this book's own directory, because a
+physics book will want the same pictures. They are not `claim()`ed: a simulated number
+is proved by the kernel's selftest. Each one's Predict line is in the figure; the prose
+around it states the model, not the result.
+
 ## How another book points here
 
 A section that names a class links it with one line, and gets the map's own sentence

@@ -1,6 +1,6 @@
 // Two models of the same corner: this section's front view, and a generated kernel.
 //
-// `books/maths-applied/docs/assets/data/otkd/` holds the `suspension-kinematics`
+// `books/maths-applied/docs/assets/data/otkd/` holds the `otkd`
 // package's own bundle: one `out.js` per model and a solver compiled to WebAssembly
 // for each of the kinematic ones. The kernel is generated from the same derivation as the package's
 // Python engine — sympy residual and Jacobian, common-subexpression elimination, Rust,

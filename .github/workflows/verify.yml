@@ -75,11 +75,12 @@ jobs:
           uv sync --locked
           npm ci
 
-      - name: Verify the vendored otkd bundle
-        # Offline by design: the bundle's SHA256SUMS against the committed bytes, and
-        # the version pinned in `scripts/vendor-otkd.sh`. A build that downloaded the
-        # release would break the rule that a clone builds with no network.
-        run: scripts/vendor-otkd.sh --check
+      - name: Verify the otkd bundle
+        # Offline by design: the bundle's SHA256SUMS against the committed bytes. The
+        # rebuild-and-compare needs the otkd environment and eight minutes, so it is
+        # the changed-path `otkd` job below; this step is what a clone can check with
+        # no toolchain and no network.
+        run: scripts/build-otkd.sh --verify
 
       - name: Regenerate and check for drift
         run: |
@@ -195,6 +196,102 @@ jobs:
           PYTEST_WORKERS: 2
         run: uv run pytest tests/ -q -n "$PYTEST_WORKERS"
 
+  # The Rust kernels. The wasm is committed, so this job's job is to prove the
+  # committed bytes are the source: it rebuilds into a temporary directory and fails
+  # on any difference. It does not write what ships — the deploy job installs no
+  # compiler and reads the committed tree.
+  solvers:
+    name: solvers
+    needs: plan
+    runs-on: ${{ vars.RUNNER_LABEL || 'ubuntu-latest' }}
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v7
+
+      # Pinned to the channel in solvers/rust-toolchain.toml. The .wasm bytes depend
+      # on the compiler, so a floating toolchain would make the drift check fail for
+      # the wrong reason.
+      - name: Rust toolchain
+        uses: dtolnay/rust-toolchain@b725eda525362e7cf34af9a7243cac1e3f01a7ec # stable
+        with:
+          toolchain: "1.99.1"
+          targets: wasm32-unknown-unknown
+          components: rustfmt, clippy
+
+      - name: Format
+        run: cargo fmt --manifest-path solvers/Cargo.toml --all -- --check
+
+      - name: Lint
+        run: cargo clippy --manifest-path solvers/Cargo.toml --locked --all-targets -- -D warnings
+
+      - name: Test the mathematics
+        run: cargo test --manifest-path solvers/Cargo.toml --locked
+
+      - name: The committed wasm is what the source builds
+        run: scripts/build-solvers.sh --check
+
+      - name: Set up Node
+        uses: actions/setup-node@v7
+        with:
+          node-version: 22
+
+      - name: Replay every selftest through the page's loader
+        run: node scripts/check-solvers.mjs
+
+  # otkd is a project of its own inside solvers/, and its suite is slow: 110 tests take
+  # about twelve minutes, and a bundle rebuild another eight. It cannot run on every
+  # push without breaking the ten-minute gate, so the expensive steps run only when the
+  # push changed `solvers/otkd/`. A skip is printed, so "not run" is not read as
+  # "passed". On such a push the gate takes longer; that is the price of a truthful
+  # kernel.
+  otkd:
+    name: otkd
+    needs: plan
+    runs-on: ${{ vars.RUNNER_LABEL || 'ubuntu-latest' }}
+    timeout-minutes: 35
+    steps:
+      - uses: actions/checkout@v7
+        with:
+          # The diff needs the parent commit; the version needs the tags.
+          fetch-depth: 0
+          fetch-tags: true
+
+      - id: changed
+        name: Did this push touch solvers/otkd?
+        run: |
+          base="$(git rev-parse HEAD^ 2>/dev/null || true)"
+          if [ -z "$base" ] || git diff --name-only "$base" HEAD -- solvers/otkd | grep -q .; then
+            echo "run=yes" >> "$GITHUB_OUTPUT"
+          else
+            echo "run=no" >> "$GITHUB_OUTPUT"
+            echo "NOTE: solvers/otkd unchanged; the otkd suite and bundle rebuild are skipped."
+          fi
+
+      - name: Set up uv
+        if: steps.changed.outputs.run == 'yes'
+        uses: astral-sh/setup-uv@1c37ad07a6a961277cf70c0d37d6f313000f5884 # v10.3.0
+        with:
+          enable-cache: true
+
+      - name: Rust toolchain
+        if: steps.changed.outputs.run == 'yes'
+        uses: dtolnay/rust-toolchain@b725eda525362e7cf34af9a7243cac1e3f01a7ec # stable
+        with:
+          toolchain: "1.99.1"
+          targets: wasm32-unknown-unknown
+
+      - name: Install
+        if: steps.changed.outputs.run == 'yes'
+        run: uv sync --project solvers/otkd --frozen
+
+      - name: Test
+        if: steps.changed.outputs.run == 'yes'
+        run: uv run --project solvers/otkd --frozen pytest -q
+
+      - name: The committed bundle is what the source builds
+        if: steps.changed.outputs.run == 'yes'
+        run: scripts/build-otkd.sh --check
+
   workflows:
     name: lint workflows
     # A repository variable, so pointing the gate at a self-hosted runner is a
@@ -298,7 +395,7 @@ jobs:
   # protection rule every time a book is added; requiring this does not.
   gate:
     name: all checks
-    needs: [plan, generated, build, content, workflows, preview]
+    needs: [plan, generated, build, content, solvers, otkd, workflows, preview]
     if: always()
     # A repository variable, so pointing the gate at a self-hosted runner is a
     # setting rather than a commit — and `gh variable delete RUNNER_LABEL` puts it
@@ -312,6 +409,8 @@ jobs:
           GENERATED: ${{ needs.generated.result }}
           BUILD: ${{ needs.build.result }}
           CONTENT: ${{ needs.content.result }}
+          SOLVERS: ${{ needs.solvers.result }}
+          OTKD: ${{ needs.otkd.result }}
           WORKFLOWS: ${{ needs.workflows.result }}
           PREVIEW: ${{ needs.preview.result }}
         run: |
@@ -329,6 +428,8 @@ jobs:
           required generated "$GENERATED"
           required build "$BUILD"
           required content "$CONTENT"
+          required solvers "$SOLVERS"
+          required otkd "$OTKD"
           required workflows "$WORKFLOWS"
 
           # The browser suite may be skipped on a branch; `main` always runs it before

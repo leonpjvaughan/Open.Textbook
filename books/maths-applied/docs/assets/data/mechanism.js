@@ -207,7 +207,7 @@ export function legsResiduals(D, C) {
  * Every row here is a distance, and the derivative of a distance with respect to the
  * point is the unit vector along it — so there is nothing to approximate and no
  * finite difference to tune. The general solver differentiates symbolically (see
- * `suspension-kinematics`); this is the same fact written down for the two rows that
+ * `otkd`); this is the same fact written down for the two rows that
  * matter here.
  */
 export function legsJacobian(D, C) {

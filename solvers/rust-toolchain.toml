@@ -1,0 +1,8 @@
+[toolchain]
+# Pinned, not "stable": the .wasm bytes depend on the compiler, and CI compares a
+# rebuild against the committed bytes. Bump this in its own commit, with the diff
+# as the evidence.
+channel = "1.99.1"
+profile = "minimal"
+targets = ["wasm32-unknown-unknown"]
+components = ["rustfmt", "clippy"]

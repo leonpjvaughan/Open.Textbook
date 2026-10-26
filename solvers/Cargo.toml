@@ -1,0 +1,24 @@
+[workspace]
+resolver = "2"
+members = ["ot-solve", "ot-solve-build"]
+
+[workspace.package]
+version = "0.1.0"
+edition = "2021"
+license = "MIT"
+repository = "https://github.com/leonpjvaughan/Open.Textbook"
+rust-version = "1.99"
+
+[workspace.dependencies]
+ot-solve = { path = "ot-solve" }
+
+# The wasm artefacts are committed and compared in CI. The settings below are the
+# ones the Rust and WebAssembly book measures: optimise for size, inline across the
+# whole crate, abort rather than unwind, and ship no symbol names. `strip` is what
+# keeps a path or a panic message out of the bytes.
+[profile.release]
+opt-level = "s"
+lto = "fat"
+codegen-units = 1
+panic = "abort"
+strip = "symbols"

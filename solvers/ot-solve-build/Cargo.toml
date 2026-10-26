@@ -1,0 +1,11 @@
+[package]
+name = "ot-solve-build"
+version.workspace = true
+edition.workspace = true
+license.workspace = true
+repository.workspace = true
+rust-version.workspace = true
+description = "Builds the ot-solve wasm bundle: kernel, manifest, selftest, module, sums"
+
+[dependencies]
+ot-solve = { workspace = true }

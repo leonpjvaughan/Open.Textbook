@@ -38,6 +38,13 @@ The shape of $f$ is what decides the difficulty:
 - **Not convex.** Many bottoms. Every method finds one, and which one depends on
   where you started.
 
+The step size is the whole difficulty of the simplest case. The figure runs
+gradient descent on a quadratic, where the condition is
+$0 < \text{step} < 2/a$; above it the iterates grow while the objective is still
+defined.
+
+:::figure gradient-lab
+
 ## The signature
 
 There is no propagation and no memory. The answer is a single point, and the

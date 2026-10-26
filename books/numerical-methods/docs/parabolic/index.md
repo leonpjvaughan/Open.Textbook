@@ -109,6 +109,13 @@ Every method named here is in [Methods, A to Z](../techniques/#moving-problems),
 | Refining the time step changes the answer | It is not converged in time | Halve the step and compare; use an error estimate |
 | The result depends on the mesh in a way the physics does not | Numerical diffusion from the scheme | Higher order, or a different discretisation |
 
+The first row of the table is the one to see rather than read. The figure starts a
+triangular temperature profile on a grid; at $r = 0.4$ the kink smooths, and at
+$r = 0.6$ the same scheme grows. The number that decides it is
+$r = \alpha\Delta t/\Delta x^2$, not the size of the step on its own.
+
+:::figure heat-lab
+
 ## Used in this collection
 
 :::used

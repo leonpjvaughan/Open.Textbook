@@ -48,6 +48,7 @@ The claims in this book rest on these documents:
 - [Finite Difference Methods for Ordinary and Partial Differential Equations](https://doi.org/10.1137/1.9780898717839)
 - [Introduction to Partial Differential Equations — 2.6: Classification of Second Order PDEs](https://math.libretexts.org/Bookshelves/Differential_Equations/Introduction_to_Partial_Differential_Equations_(Herman)/02%3A_Second_Order_Partial_Differential_Equations/2.06%3A_Classification_of_Second_Order_PDEs)
 - [Computational Methods for Fluid Dynamics](https://doi.org/10.1007/978-3-642-56026-2)
+- [otkd — generated kernels: SymPy, Rust and WebAssembly](https://github.com/leonpjvaughan/Open.Textbook/blob/main/solvers/otkd/docs/wasm.md)
 - [Numerical Linear Algebra](https://doi.org/10.1137/1.9780898719574)
 - [Iterative Methods for Sparse Linear Systems](https://doi.org/10.1137/1.9780898718003)
 - [A Multigrid Tutorial](https://doi.org/10.1137/1.9780898719505)

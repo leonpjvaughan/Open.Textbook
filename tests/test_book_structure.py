@@ -307,5 +307,9 @@ def test_a_book_without_data_or_images_gets_no_empty_directories(tmp_path):
     book = make_book(tmp_path)
     out = tmp_path / "site"
     pipeline.copy_assets(book, out)
-    assert not (out / "assets" / "data").exists()
+    # The shared `assets/data/solvers` bundle is copied into every book from
+    # `SHARED_DIRS`. A book with no data of its own still gets that one directory;
+    # what it must not get is an empty one, or an `images/` it never uses.
+    data = out / "assets" / "data"
+    assert not data.exists() or {path.name for path in data.iterdir()} == {"solvers"}
     assert not (out / "assets" / "images").exists()

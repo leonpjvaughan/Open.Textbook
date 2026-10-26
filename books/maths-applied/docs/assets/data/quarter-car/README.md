@@ -8,13 +8,13 @@ of the model to drift out of step with the package.
 
 | | |
 |---|---|
-| generator | `otkd 0.11.0` |
-| model | `examples/quarter-car` (topology, geometry and study from release 0.11.0) |
-| command | `uv run python extract.py trajectory.js` from a checkout of `suspension-kinematics` at the vendored tag |
+| generator | `otkd 26.299.0` |
+| model | `examples/quarter-car` (topology, geometry and study from `solvers/otkd`) |
+| command | `uv run python extract.py trajectory.js` from `solvers/otkd` |
 | duration | **3.0 s in 601 steps** — `study.yaml` beside this file, longer than the shipped study's 0.5 s, so the settling is visible |
 | energy drift over the run | 6.3 × 10⁻⁸ of the starting energy |
 | largest constraint violation | 1.1 × 10⁻¹⁵ |
-| `trajectory.js` sha256 | `24b6f241e83e4cb9efa37f5639063448573652eed3c7094fb29910d972b9ae2d` |
+| `trajectory.js` sha256 | `e4841dd630423d36c5cff0fe59d28849d2174e827d50cd581c0dbe57d5dc62c3` |
 
 ## The model it came from
 

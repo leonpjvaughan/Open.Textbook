@@ -187,13 +187,14 @@ def test_every_figure_a_page_names_is_recorded_in_the_manifest(built):
         "".join(p.read_text(encoding="utf-8") for p in built.out.rglob("*.html")),
     ):
         assert src in addresses, f"{src} is on a page but not in the manifest"
-    # The flat files that are *not* addressed are exactly the two that must not be:
-    # the loader (pinned by the template and the audits) and the kit barrel (213
-    # modules import it, and its layers import each other, all by stable name).
+    # The flat files that are *not* addressed are exactly the libraries that must not
+    # be: the loader (pinned by the template and the audits), the kit barrel, and the
+    # kernel loader and its visual language. A generated kernel module imports the
+    # loader by path and a lab module imports the shared layout, all by stable name.
     unaddressed = {
         path.name for path in files if not re.fullmatch(r".+\.[0-9a-f]{8}\.js", path.name)
     }
-    assert unaddressed == {"figures.js", "kit.js"}
+    assert unaddressed == {"figures.js", "kit.js", "kernel.js", "kernel-lab.js"}
     # The kit's own layers keep their names too, for the same reason.
     for layer in (built.out / "assets" / "figures" / "kit").glob("*.js"):
         assert re.fullmatch(r"[a-z0-9-]+\.js", layer.name), layer.name

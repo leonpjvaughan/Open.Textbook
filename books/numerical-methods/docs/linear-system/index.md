@@ -51,6 +51,13 @@ or an optimisation. That is the distinction the
 [class is a choice](../choosing-the-class/index.md) page makes: the class belongs to
 the writing, and the writing can be one step of a larger model.
 
+Conjugate gradients is the method for the symmetric positive-definite case, and the
+residual is its progress bar. The figure solves the one-dimensional Poisson system
+from the elliptic page. The residual reaches the floor in at most $n$ iterations.
+That is exactness in exact arithmetic, not a tuning choice.
+
+:::figure cg-lab
+
 ## The signature
 
 The answer comes from a matrix, and the matrix's properties decide the method. Two
@@ -100,8 +107,8 @@ Every method named here is in [Methods, A to Z](../techniques/#linear-systems), 
   [Elliptic](../elliptic/index.md).
 - The `double-wishbone` example's Jacobian: the package this collection uses solves 21
   equations whose Jacobian has 441 entries, of which **161 are not zero** — sparse enough
-  that the sparsity is the method, not a detail of it: the generated solver touches only
-  the non-zeros.
+  that the sparsity is the method, not a detail of it. The generated kernel, which
+  [this book explains here](../worked-case/#what-a-kernel-is), touches only the non-zeros.
 - A least-squares fit: a tyre model, a calibration curve, a camera model.
 - Network flows, and the stationary vector of a link matrix.
 - Spline and surface fitting, where the unknowns are the control points.

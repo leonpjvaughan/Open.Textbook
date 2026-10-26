@@ -1,11 +1,12 @@
 """The vendored `otkd` bundle: what is here is what it says it is, and where it came from.
 
-`books/maths-applied/docs/assets/data/otkd/` is another repository's release artefact —
+`books/maths-applied/docs/assets/data/otkd/` is the `otkd` package's build artefact —
 one `out.js` per model and a solver compiled to WebAssembly for each kinematic one. It
-is vendored rather than fetched at build time because the collection's rule is that a
-clone builds with no network, and because a generated file is drift-checked. The fetch
-is `scripts/vendor-otkd.sh`, run by a person when the version changes; CI runs its
-`--check`, which needs nothing but the committed bytes.
+is vendored rather than built at deploy time because the collection's rule is that a
+clone builds with no network, and because a generated file is drift-checked. The build
+is `scripts/build-otkd.sh`, run by a person when the version changes; the local gate and
+CI's `--verify` need nothing but the committed bytes, and the changed-path job rebuilds
+and diffs.
 
 **Why the hashes matter.** A vendored binary that nobody can check is a binary that
 gets edited. The bundle ships a `SHA256SUMS` covering every file and a `MANIFEST.json`
@@ -29,7 +30,7 @@ from textbook.book import repo_root
 
 BUNDLE = repo_root() / "books" / "maths-applied" / "docs" / "assets" / "data" / "otkd"
 DATA = repo_root() / "books" / "maths-applied" / "docs" / "assets" / "data"
-SCRIPT = repo_root() / "scripts" / "vendor-otkd.sh"
+SCRIPT = repo_root() / "scripts" / "build-otkd.sh"
 
 #: Models the manifest says carry a kernel; read from the manifest, then asserted here
 #: so a model that silently loses its kernel is a failure rather than one fewer loop.
@@ -46,15 +47,19 @@ def manifest() -> dict:
     return json.loads((BUNDLE / "MANIFEST.json").read_text(encoding="utf-8"))
 
 
-def test_the_bundle_is_the_version_the_vendor_script_pins():
-    """One version in one place: the script decides what a refresh fetches.
+def test_the_bundle_names_its_generator_and_version():
+    """The bundle says which generator and version produced it.
 
-    A tree fetched at 0.4.0 and a script pinning 0.3.0 would disagree about what the
-    next refresh does, and nothing else in the repository would say so.
+    The version is the collection's tag at the time of the build (`hatch-vcs` reads the
+    same tag for the package). It is deliberately not compared with the *current* tag:
+    a release tags the commit after the gate ran, so a bundle built at that commit names
+    the previous tag until the next rebuild. The payload and kernel bytes are what the
+    drift check compares; the label is provenance.
     """
-    pinned = re.search(r'^VERSION="([^"]+)"', SCRIPT.read_text(encoding="utf-8"), re.M)
-    assert pinned, "scripts/vendor-otkd.sh does not pin a version"
-    assert manifest()["generator"] == f"otkd {pinned.group(1)}", manifest()["generator"]
+    generator = manifest()["generator"]
+    version = manifest()["version"]
+    assert generator == f"otkd {version}", (generator, version)
+    assert re.fullmatch(r"\d+(?:\.\d+)+(?:[.+-].*)?", version), version
 
 
 def test_every_vendored_file_matches_the_bundles_own_sums():
@@ -198,12 +203,12 @@ def book_pages() -> list[Path]:
 
 
 def package_links() -> set[str]:
-    """Every suspension-kinematics blob URL the book prints."""
+    """Every otkd blob URL the book prints, in this repository."""
     found = set()
     for page in book_pages():
         found.update(
             re.findall(
-                r"https://github\.com/leonpjvaughan/suspension-kinematics/blob/[^)\s]+",
+                r"https://github\.com/leonpjvaughan/Open\.Textbook/blob/[^)\s]+",
                 page.read_text(encoding="utf-8"),
             )
         )
@@ -218,14 +223,14 @@ def test_every_package_link_names_a_file_the_package_has():
     unreachable.
     """
     links = package_links()
-    assert links, "the book has no suspension-kinematics blob links"
+    assert links, "the book has no otkd blob links"
     for url in sorted(links):
         match = re.fullmatch(
-            r"https://github\.com/leonpjvaughan/suspension-kinematics/blob/[^/]+/(.+)", url
+            r"https://github\.com/leonpjvaughan/Open\.Textbook/blob/[^/]+/(.+)", url
         )
         assert match, f"not a blob URL: {url}"
         api = (
-            "https://api.github.com/repos/leonpjvaughan/suspension-kinematics/contents/"
+            "https://api.github.com/repos/leonpjvaughan/Open.Textbook/contents/"
             + match.group(1)
         )
         request = urllib.request.Request(api, headers={"User-Agent": "Open.Textbook"})
@@ -253,7 +258,7 @@ def test_every_pseudocode_snippet_names_a_file_the_page_links():
             name = named.group(1)
             assert re.search(
                 rf"\[`{re.escape(name)}`\]\(https://github\.com/leonpjvaughan/"
-                rf"suspension-kinematics/blob/[^)]*{re.escape(name)}\)",
+                rf"Open\.Textbook/blob/[^)]*{re.escape(name)}\)",
                 text,
             ), f"{page}: the {name} snippet has no link to {name}"
 

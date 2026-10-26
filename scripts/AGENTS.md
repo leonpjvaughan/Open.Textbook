@@ -21,7 +21,7 @@ releases** and **Toolchain** still apply.
 | `scripts/check-contact.sh` | Follow the About page's contact URL as a signed-out reader would; `deploy.sh` runs it so a private or renamed repository fails the deploy, not the reader |
 | `scripts/next-tag.sh` | Print the next release tag, `yy.<day>.<increment>` |
 | `scripts/protect-main.sh` | Require the gate check on `main` (public repository, or GitHub Pro) |
-| `scripts/vendor-otkd.sh` | The `otkd` release bundle — model exports and compiled kernels — into `books/maths-applied/docs/assets/data/otkd/`. Checked offline by `--check`, which is in `check.sh`; the fetch is a refresh a person runs when the pinned version changes |
+| `scripts/build-otkd.sh` | Builds the `otkd` bundle — model exports and compiled kernels — from `solvers/otkd` into `books/maths-applied/docs/assets/data/otkd/`. `--verify` is the offline digest check in `check.sh`; `--check` rebuilds and diffs in the changed-path CI job |
 | `scripts/fetch_sources.sh` | Fetch the tracked primary sources into `research/sources/` |
 | `scripts/launch_chapter_agents.sh` | Feed `.agents/prompts/` to chapter sub-agents |
 | `scripts/launch_review_agents.sh` | The same for the review prompts |

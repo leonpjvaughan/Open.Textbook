@@ -60,6 +60,6 @@ it.
 
 Every number a figure shows is computed by the model the page describes, in the
 figure or in the data beside it. The same model, in three dimensions and with its tests, is
-[`suspension-kinematics`](https://github.com/leonpjvaughan/suspension-kinematics).
+[`otkd`](https://github.com/leonpjvaughan/Open.Textbook/tree/main/solvers/otkd).
 
 :::disclaimer

@@ -46,6 +46,12 @@ Two facts follow, and they are the whole character of the class.
 - **Every answer carries an error bar.** An average without one is a number with no
   claim attached.
 
+The error bar is the answer's honesty. The figure draws the estimate and two
+standard errors around it as the samples accumulate; the bar narrows as
+$1/\sqrt{N}$, and the dashed line is the value the method cannot see.
+
+:::figure monte-carlo-lab
+
 ## The signature
 
 The answer is an estimate. There is no equilibrium to solve and no region to

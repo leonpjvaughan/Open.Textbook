@@ -1,0 +1,25 @@
+[package]
+name = "ot-solve"
+version.workspace = true
+edition.workspace = true
+license.workspace = true
+repository.workspace = true
+rust-version.workspace = true
+description = "Numerical kernels for Open.Textbook, compiled to WebAssembly"
+
+[lib]
+# The rlib is what the host build tool and the tests link; the cdylib is the wasm
+# artefact. One source, two consumers, and no second implementation.
+crate-type = ["cdylib", "rlib"]
+
+[features]
+# One feature selects the kernel a wasm build exports. The library API always
+# contains every kernel, so the build tool and the tests need no feature at all.
+default = []
+heat-explicit = []
+wave-explicit = []
+cg-poisson = []
+newton-root = []
+power-iteration = []
+gradient-descent = []
+monte-carlo-pi = []

@@ -143,6 +143,27 @@ for a Venn diagram — that every region's label lands inside the region it name
 sets and three — and for a solid, that a cube's hidden edges number exactly three. `node tools/dist/cli.js audit site --mobile` measures what
 actually reaches a 390px screen; the current state is **0 figures below 9px**.
 
+### Kernels in figures
+
+`assets/data/solvers/` is the committed `ot-solve` bundle: one directory per kernel,
+with `kernel.js` beside `manifest.json`, `selftest.json` and `kernel.wasm`. A figure
+imports `../data/solvers/<id>/kernel.js`. The module uses top-level `await`, so it is a
+**value** by the time the figure imports it and `mount` stays synchronous.
+`assets/figures/kernel.js` is the loader — ABI, slot count, layout digest, typed-array
+views — and `assets/figures/kernel-lab.js` is the shared visual language: `field`,
+`line`, `plane` and `estimate`, each above a trace.
+
+- **Do not `claim()` a simulated number.** `claim()` is arithmetic the CAS proves; a
+  number that came out of a time step is proved by the kernel's selftest. Printing it as
+  exact is the defect, not a missing claim.
+- **Build the controls from the manifest.** `kernelLab` reads `kernel.spec(name)` for the
+  range; the manifest is generated from the Rust, so a slider cannot drift from the
+  kernel.
+- **A status is not a verdict.** `r > 1/2` is the page's claim; the kernel's `Unstable`
+  means only that the numbers stopped being usable. The figure says which.
+- **Never edit the bundle or a generated module.** Change `solvers/ot-solve`, run
+  `scripts/build-solvers.sh`, and commit what it writes. `solvers/ABI.md` is the contract.
+
 ## Before you add a shared thing
 
 The collection is nine books and will be more. Two rules keep it from turning into nine

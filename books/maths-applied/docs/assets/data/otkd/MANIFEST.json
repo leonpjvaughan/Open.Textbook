@@ -1,7 +1,7 @@
 {
   "bundle": "otkd-bundle-2",
-  "generator": "otkd 0.11.0",
-  "git": "ddbed3e",
+  "generator": "otkd 26.299.0",
+  "git": "1729e8b3",
   "models": {
     "double-wishbone": {
       "id": "dw-1dof",
@@ -70,7 +70,7 @@
       }
     }
   },
-  "python": "3.14.4",
+  "python": "3.13.16",
   "rustc": "rustc 1.99.1 (58cf8f9c3 2026-10-13)",
-  "version": "0.11.0"
+  "version": "26.299.0"
 }

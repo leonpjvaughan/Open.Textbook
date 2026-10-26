@@ -124,4 +124,4 @@ and none of them is the source of a number in it.
 
 The solver that goes with this book, with its own tests and the three-dimensional
 version of every figure here, is
-[`suspension-kinematics`](https://github.com/leonpjvaughan/suspension-kinematics).
+[`otkd`](https://github.com/leonpjvaughan/Open.Textbook/tree/main/solvers/otkd).

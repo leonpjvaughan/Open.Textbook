@@ -56,19 +56,19 @@ references:
       the standard rather than a textbook can find the number to ask for.
 
   # --- suspension geometry, in more depth than this book goes -----------------
-  # Known unit caveat in 0.11.0: `dw-compliant` reports radians; its `out.js` says deg.
-  - id: suspension-kinematics
+  # Known unit caveat in the package: `dw-compliant` reports radians; its `out.js` says deg.
+  - id: otkd
     attribution: true
-    title: suspension-kinematics — the model, its exports and a generated solver
-    url: https://github.com/leonpjvaughan/suspension-kinematics
-    ref: "release 0.11.0, 2026-10-21; otkd 0.11.0"
+    title: otkd — the model, its exports and a generated solver
+    url: https://github.com/leonpjvaughan/Open.Textbook/tree/main/solvers/otkd
+    ref: "otkd at the collection tag (26.299.0 at the move), 2026-10-26"
     role: >-
       The package the chapter's numbers come from: topology, geometry and study as
       data, the residual and Jacobian derived symbolically, and the same derivation
       compiled to WebAssembly — five kernels on the kinematic models and an integrator
-      on the quarter car. Its 0.11.0 bundle is vendored under `docs/assets/data/otkd/`,
-      with the bundle's `MANIFEST.json` and `SHA256SUMS`, by `scripts/vendor-otkd.sh`,
-      which pins the release and the zip's digest. Figures run the kernels in the page:
+      on the quarter car. Its bundle at the collection tag is built from `solvers/otkd` into `docs/assets/data/otkd/`,
+      with the bundle's `MANIFEST.json` and `SHA256SUMS`, by `scripts/build-otkd.sh`,
+      which rebuilds it from the source in this repository. Figures run the kernels in the page:
       §1.2 compares the rigid one with its own front view, §1.5's ladder is the bushed
       model's export, and §1.6's table re-integrates the quarter car under two controls.
       The quarter car's trajectory is not in the bundle — a trajectory is not a sweep —

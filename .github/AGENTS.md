@@ -88,13 +88,19 @@ Two consequences, and both are the point:
   `command -v shellcheck`; the root's **Toolchain** has the rest.
 - **Pin actions to a commit SHA**, as the existing workflows do, and keep the
   top-of-file comment that explains the branch policy.
-- **CI installs no compiler for a vendored binary.** `books/maths-applied/docs/assets/
-  data/package/` holds a WebAssembly solver built from the `suspension-kinematics`
-  package; it is committed, and `tests/test_maths_applied_data.py` checks it by
-  sha256 against a provenance record rather than by rebuilding it. Regenerating it is
-  an authoring step on a machine with Rust and the `wasm32-unknown-unknown` target,
-  never a job here — a CI that builds a binary the page ships would let the two
-  disagree silently.
+- **CI builds a vendored binary only to prove it.** `solvers/` holds the Rust kernels,
+  and `books/maths-applied/docs/assets/data/otkd/` the bundle `otkd` builds; both are
+  committed. A job may rebuild them and fail if the bytes differ from the committed
+  tree, but it may not write what ships: the deploy reads the committed bytes and
+  installs no compiler. A rebuild that differs is a red gate, which is the opposite of
+  the silent disagreement the old "never a job here" rule feared.
+  `scripts/build-solvers.sh --check` and `scripts/build-otkd.sh --check` are those
+  jobs; `--verify` is the offline check the local gate and the deploy can run with no
+  toolchain.
+- **The otkd job is path-gated.** Its suite is 110 tests, about twelve minutes, and the
+  bundle rebuild another eight. It runs only when the push changed `solvers/otkd/`, and
+  prints the skip when it does not; the ten-minute gate is for the rest of the
+  collection.
 - **`rollback.yml` is manual on purpose.** A rollback is not the moment to
   discover an automated path for the first time; it must never be cancelled
   in flight.

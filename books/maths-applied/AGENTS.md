@@ -153,7 +153,7 @@ Three rules particular to this book:
 ## Data
 
 The numbers a figure draws come from a sweep of the mechanism, emitted as a static
-ES module by the `suspension-kinematics` package, and copied into the site from
+ES module by the `otkd` package, and copied into the site from
 `docs/assets/data/`.
 
 - **The payload shape is a contract**: `meta`, `sweep.input.values`,
@@ -178,17 +178,18 @@ needs both. A new figure that needs an engine answer imports the bundle; it does
 solver. The package's `docs/handoff-from-maths-site.md` carries the same table.
 
 **A generated solver is not a second implementation.** `docs/assets/data/otkd/` holds
-the `suspension-kinematics` package's own bundle: one `out.js` per model and a solver
-it compiled to WebAssembly — the same derivation as its Python engine, not a hand
-copy. A figure may import one
+the `otkd` package's own bundle, built from `solvers/otkd`: one `out.js` per model and
+a solver it compiled to WebAssembly — the same derivation as its Python engine, not a
+hand copy. A figure may import one
 (`../data/otkd/models/double-wishbone/kernel/kernel.js`) and solve in the page. Four
 rules:
 
-- **Vendored means unchanged.** Do not edit anything under `otkd/`. Bump `VERSION` and
-  `ZIP_SHA256` in `scripts/vendor-otkd.sh`, run it, and commit what it writes; CI runs
-  `scripts/vendor-otkd.sh --check`, which verifies every file against the bundle's own
-  `SHA256SUMS` with no network. `tests/test_maths_applied_data.py` also checks each
-  kernel's embedded base64 against its `.wasm`.
+- **Vendored means unchanged.** Do not edit anything under `otkd/`. Change the source
+  in `solvers/otkd`, run `scripts/build-otkd.sh`, and commit what it writes. The local
+  gate and the deploy run `--verify`, which checks every file against the bundle's own
+  `SHA256SUMS` with no network; the changed-path CI job rebuilds and diffs. A rebuild
+  that changes a number is a reviewable change, not drift. `tests/test_maths_applied_data.py`
+  also checks each kernel's embedded base64 against its `.wasm`.
 - **One import, no fetch.** The binary travels inside `kernel.js` as base64, so a page
   needs no second request, no MIME type and no network. The `.wasm` file is there for
   provenance and inspection.
@@ -199,7 +200,7 @@ rules:
 
 ## The solver's findings are chapter material
 
-`docs/handoff-from-maths-site.md` in `suspension-kinematics` carries a section — *Solver findings
+`docs/handoff-from-maths-site.md` in `otkd` carries a section — *Solver findings
 the book could teach* — which the package keeps as part of its own instructions. Each entry is a
 finding with a **tell**: a measurement that separates two explanations, which is what a reader can
 reproduce. The energy error that did not shrink when the step was quartered. The residual that did
@@ -217,7 +218,7 @@ more than a right one, and the package's own tests are where the tell was found.
 Each section shows its mathematics as **Python-style pseudocode** — the residual,
 the Jacobian, the step, the rank test — with real names and real shapes and the
 implementation elided. Then a link to the corresponding file in
-`suspension-kinematics`.
+`otkd`.
 
 Do **not** paste the package's source. A snippet that drifts from the code is a
 lie; a snippet that must be kept identical to the code is a second copy of it.

@@ -154,7 +154,7 @@ test one. Two routes to one number is evidence; one route is a claim.
 ## The same corner, solved in three dimensions
 
 This section's model is a front view. The package the chapter's numbers come from,
-`suspension-kinematics`, solves the full mechanism instead: three bodies, twenty-one
+`otkd`, solves the full mechanism instead: three bodies, twenty-one
 equations, Newton at every step. Its derivation also generates a **solver compiled
 to WebAssembly**. That solver ships with this page, vendored under
 `docs/assets/data/otkd/`, with the package's own exported sweeps beside it and a
@@ -189,8 +189,8 @@ residual = lambdify((...), rows, cse=True)
 jacobian = lambdify((...), J, cse=True)
 ```
 
-The file is [`analytic.py`](https://github.com/leonpjvaughan/suspension-kinematics/blob/main/src/otkd/analysis/analytic.py)
-for the closed form, and [`compile.py`](https://github.com/leonpjvaughan/suspension-kinematics/blob/main/src/otkd/problem/compile.py)
+The file is [`analytic.py`](https://github.com/leonpjvaughan/Open.Textbook/blob/main/solvers/otkd/src/open_textbook/otkd/analysis/analytic.py)
+for the closed form, and [`compile.py`](https://github.com/leonpjvaughan/Open.Textbook/blob/main/solvers/otkd/src/open_textbook/otkd/problem/compile.py)
 for the derivation. The pseudocode uses the same names and shapes as the files;
 it is not a copy of them.
 

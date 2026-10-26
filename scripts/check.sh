@@ -9,11 +9,11 @@ cd "$ROOT"
 
 step() { printf '\n== %s ==\n' "$1"; }
 
-step "the vendored otkd bundle is intact"
-# Offline: the bundle's own SHA256SUMS against the committed bytes, with the version
-# pinned in one place. The fetch is a person's refresh, not a build step — see
-# `scripts/vendor-otkd.sh`.
-scripts/vendor-otkd.sh --check
+step "the otkd bundle is intact"
+# Offline: the bundle's own SHA256SUMS against the committed bytes. Rebuilding needs
+# the otkd environment and about eight minutes, so it is the changed-path CI job; the
+# local gate verifies the bytes. See `scripts/build-otkd.sh`.
+scripts/build-otkd.sh --verify
 
 step "generated files are in sync"
 # The TypeScript compiles first, because the kit's output is committed and the drift
@@ -62,6 +62,17 @@ step "types"
 # ships and reports on it. The count is not zero yet, so this ratchets — it fails
 # if the number grows, and fails if it falls without the baseline being lowered.
 node tools/dist/cli.js types
+
+step "solvers"
+# The wasm is committed. With Rust, rebuild it and compare byte for byte; without,
+# verify the digests and still replay every selftest through the JS loader. The
+# replay is the check that the bytes a page loads are the bytes the Rust computed.
+if command -v cargo >/dev/null 2>&1; then
+  scripts/build-solvers.sh --check
+else
+  scripts/build-solvers.sh --verify
+fi
+node scripts/check-solvers.mjs
 
 step "tests"
 uv run python -m pytest tests/ -q -n "${PYTEST_WORKERS:-4}"

@@ -74,6 +74,11 @@ SHARED_FILES: tuple[str, ...] = (
     "assets/offline/offline.js",
     "assets/figures/figures.js",
     "assets/figures/kit.js",
+    # The kernel loader and the visual language it feeds. Both are libraries, not
+    # figures: they must keep a stable name, because a generated kernel module
+    # imports the loader by path and the figure library addresses figure modules.
+    "assets/figures/kernel.js",
+    "assets/figures/kernel-lab.js",
 )
 
 #: Directories whose **whole contents** are shared, copied recursively by the build.
@@ -89,13 +94,13 @@ SHARED_FILES: tuple[str, ...] = (
 #: the build's own link check cannot see it. Declaring the directory makes the
 #: contents shared by construction, and `tests/test_collection.py` compares what is
 #: on disk with what the build wrote, so a file that nothing copies fails the suite.
-SHARED_DIRS: tuple[str, ...] = ("assets/figures/kit",)
+SHARED_DIRS: tuple[str, ...] = ("assets/figures/kit", "assets/data/solvers")
 
 # Files that live in a book's `docs/assets/figures/` but are not figures. The
 # loader mounts a module by slug and the kit is imported by one, so neither is a
 # slug a `:::figure` directive may name. Read by the directive's slug registry and
 # by `pipeline.copy_assets`, so there is one list rather than two.
-SHARED_FIGURE_FILES: tuple[str, ...] = ("figures.js", "kit.js")
+SHARED_FIGURE_FILES: tuple[str, ...] = ("figures.js", "kit.js", "kernel.js", "kernel-lab.js")
 
 #: The shared figure library: modules in `assets/figures/` that more than one book
 #: mounts.

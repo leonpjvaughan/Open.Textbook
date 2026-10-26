@@ -173,13 +173,13 @@ model, in the same way the stiffness is.
 None of the numbers above was typed. The package derives the equations with sympy:
 the mass matrix, the velocity-product term that `M q̈ = f` leaves out, and the forces
 are in
-[`otkd/problem/dynamics.py`](https://github.com/leonpjvaughan/suspension-kinematics/blob/main/src/otkd/problem/dynamics.py).
+[`otkd/problem/dynamics.py`](https://github.com/leonpjvaughan/Open.Textbook/blob/main/solvers/otkd/src/open_textbook/otkd/problem/dynamics.py).
 Then
-[`otkd/emitters/wasm.py`](https://github.com/leonpjvaughan/suspension-kinematics/blob/main/src/otkd/emitters/wasm.py)
+[`otkd/emitters/wasm.py`](https://github.com/leonpjvaughan/Open.Textbook/blob/main/solvers/otkd/src/open_textbook/otkd/emitters/wasm.py)
 factorises the same expressions into a straight-line program, prints it as Rust and
 compiles it to WebAssembly. The kernel that would run in a page is generated from
 this model by that pipeline.
-[`scripts/run_kernel.py`](https://github.com/leonpjvaughan/suspension-kinematics/blob/main/scripts/run_kernel.py)
+[`scripts/run_kernel.py`](https://github.com/leonpjvaughan/Open.Textbook/blob/main/solvers/otkd/scripts/run_kernel.py)
 runs it and prints the table: the trajectory, the energy drift, and the difference
 from the package's own Python integration.
 
