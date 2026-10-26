@@ -221,14 +221,20 @@ jobs:
       - name: Musl target for the host tools
         run: rustup target add x86_64-unknown-linux-musl
 
+      # **From `solvers/`, not the repository root.** Cargo reads `.cargo/config.toml`
+      # from the current directory upwards, not from `--manifest-path`; from the root
+      # it would miss the musl target and the `rust-lld` linker and fall back to `cc`.
       - name: Format
-        run: cargo fmt --manifest-path solvers/Cargo.toml --all -- --check
+        working-directory: solvers
+        run: cargo fmt --all -- --check
 
       - name: Lint
-        run: cargo clippy --manifest-path solvers/Cargo.toml --locked --all-targets -- -D warnings
+        working-directory: solvers
+        run: cargo clippy --locked --all-targets -- -D warnings
 
       - name: Test the mathematics
-        run: cargo test --manifest-path solvers/Cargo.toml --locked
+        working-directory: solvers
+        run: cargo test --locked
 
       - name: The committed wasm is what the source builds
         run: scripts/build-solvers.sh --check
