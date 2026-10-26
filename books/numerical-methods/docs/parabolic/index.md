@@ -39,8 +39,11 @@ Then there is a choice, and it is the whole of this page:
 - **Implicit.** A linear system at every step, and no such limit. More work per step,
   far fewer steps.
 
-The first limit is the one that decides whether a mesh is affordable, and it is
-worth seeing rather than being told.
+The first limit decides whether a mesh is affordable, and the figure below is that
+arithmetic rather than a warning. Hold the time you want to reach fixed and count
+the steps. Four times the cells means a quarter of the time step, so four times as
+many steps, and four times the work inside each one. The curve turns up because
+both multiply, and the last point costs sixty-four times the first.
 
 :::figure step-limit
 
@@ -109,10 +112,12 @@ Every method named here is in [Methods, A to Z](../techniques/#moving-problems),
 | Refining the time step changes the answer | It is not converged in time | Halve the step and compare; use an error estimate |
 | The result depends on the mesh in a way the physics does not | Numerical diffusion from the scheme | Higher order, or a different discretisation |
 
-The first row of the table is the one to see rather than read. The figure starts a
-triangular temperature profile on a grid; at $r = 0.4$ the kink smooths, and at
-$r = 0.6$ the same scheme grows. The number that decides it is
-$r = \alpha\Delta t/\Delta x^2$, not the size of the step on its own.
+The first row of the table is the one to see rather than read. It is the other half
+of the limit: the count above says what a small time step costs, and this says what
+it protects. The figure starts a triangular temperature profile on a grid and runs
+the same scheme at two values of $r = \alpha\Delta t/\Delta x^2$. At $r = 0.4$ the
+kink smooths. At $r = 0.6$ the same scheme grows, and that growth is the numerics
+failing rather than the physics.
 
 :::figure heat-lab
 
