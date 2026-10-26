@@ -248,11 +248,12 @@ jobs:
         run: node scripts/check-solvers.mjs
 
   # otkd is a project of its own inside solvers/, and its work is expensive: about
-  # twelve minutes for the suite and eight for the bundle rebuild. Both are one job,
-  # because the host has four runners: splitting them into three made the wall worse
-  # and raced on the shared `.venv`. The speed-ups that measured are `-n 2` for the
-  # suite and a parallel bundle build (`--jobs 2`); a kernel cache did not move the
-  # bundle, whose time is the symbolic derivation. A skip prints why.
+  # twelve minutes for the suite and eight for the bundle rebuild. **It is serial and
+  # one job.** A three-job split, `pytest -n 2`, a `--jobs 2` bundle and a kernel cache
+  # were all measured on this four-runner host: the split was 21 minutes, the xdist and
+  # parallel bundle 25m41, and the cache did not move the bundle (its time is the
+  # symbolic derivation, not rustc). The serial job is the measured 20. The parallel
+  # bundle stays a developer setting (`--jobs 4`); CI uses one. A skip prints why.
   otkd:
     name: otkd
     needs: plan
@@ -302,15 +303,14 @@ jobs:
         # The project's own pytest config applies only when pytest starts here; from
         # the repository root it collects the site's tests against the otkd environment.
         working-directory: solvers/otkd
-        run: uv run --frozen pytest -q -n 2
+        run: uv run --frozen pytest -q
 
       - name: The committed bundle is what the source builds
         if: steps.changed.outputs.run == 'yes'
         env:
-          # Two models at once: the host is shared with the content and browser jobs,
-          # and four oversubscribed the eight cores when the tests and the bundle ran
-          # together here.
-          OTKD_JOBS: 2
+          # Serial in CI: four models at once oversubscribed the eight cores the
+          # last time this job shared the host with the content and browser jobs.
+          OTKD_JOBS: 1
         run: scripts/build-otkd.sh --check
 
   workflows:
