@@ -237,7 +237,10 @@ def test_the_policy_allows_exactly_what_the_site_loads():
     policy = headers.HEADERS["Content-Security-Policy"]
     assert "default-src 'self'" in policy
     # The generated reader-preference script and the page's inline scripts need it.
-    assert "script-src 'self' 'unsafe-inline'" in policy
+    # `wasm-unsafe-eval` is the solver kernels' token: they compile an inlined
+    # WebAssembly module in the page. It is not `unsafe-eval`, which would allow
+    # evaluating a JavaScript string.
+    assert "script-src 'self' 'unsafe-inline' 'wasm-unsafe-eval'" in policy
     assert "style-src 'self' 'unsafe-inline'" in policy
     # Material's search is a same-origin worker, not a blob.
     assert "worker-src 'self'" in policy

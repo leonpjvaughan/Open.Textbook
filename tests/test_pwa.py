@@ -85,6 +85,9 @@ def test_the_manifest_link_and_worker_are_allowed_by_the_policy():
     policy = headers.HEADERS["Content-Security-Policy"]
     assert "manifest-src 'self'" in policy
     assert "worker-src 'self'" in policy
+    # The solver kernels compile inlined wasm in the page. Without this token the
+    # browser refuses the compilation and every kernel figure shows "failed to load".
+    assert "'wasm-unsafe-eval'" in policy
 
 
 # --- the tab icon -------------------------------------------------------------

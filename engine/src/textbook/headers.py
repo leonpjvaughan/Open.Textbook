@@ -24,6 +24,11 @@ The policy is written for what the site actually loads, which is little:
   ``script-src`` and ``style-src`` need ``'unsafe-inline'``. There is no server,
   no user input and no cookie, so there is nothing for an injected script to
   steal; a nonce or hash policy is a later hardening step, not a gate.
+* the solver kernels in ``assets/data/solvers`` compile an **inlined**
+  WebAssembly module in the page, so ``script-src`` needs
+  ``'wasm-unsafe-eval'``. It is the CSP token for WebAssembly compilation, not
+  ``'unsafe-eval'``: it does not allow evaluating a JavaScript string, and the
+  wasm arrives inside the module rather than from a fetch.
 * Material's search runs in a **same-origin** worker
   (``assets/javascripts/workers/search.*.min.js``), so ``worker-src 'self'``.
 * no external origin at runtime. KaTeX runs at build time; fonts are the
@@ -47,7 +52,7 @@ from pathlib import Path
 POLICY = "; ".join(
     (
         "default-src 'self'",
-        "script-src 'self' 'unsafe-inline'",
+        "script-src 'self' 'unsafe-inline' 'wasm-unsafe-eval'",
         "style-src 'self' 'unsafe-inline'",
         "img-src 'self' data:",
         "font-src 'self'",
