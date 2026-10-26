@@ -41,9 +41,9 @@ Then there is a choice, and it is the whole of this page:
 
 The first limit decides whether a mesh is affordable, and the figure below is that
 arithmetic rather than a warning. Hold the time you want to reach fixed and count
-the steps. Four times the cells means a quarter of the time step, so four times as
-many steps, and four times the work inside each one. The curve turns up because
-both multiply, and the last point costs sixty-four times the first.
+the steps. Twice the cells means a quarter of the time step, so four times as many
+steps, and twice as much arithmetic in each one. The curve turns up because both
+multiply: eight times the resolution costs sixty-four times the steps.
 
 :::figure step-limit
 
