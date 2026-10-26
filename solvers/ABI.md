@@ -4,10 +4,10 @@
 contract. A change to any sentence here is a change to the version.
 
 A kernel is one WebAssembly module compiled from one Rust module. It owns a fixed
-block of `f64` slots, four named blocks, and two entry points. JavaScript writes the
-parameters and the initial state, calls `init`, then `step` or `run`, and reads the
-outputs. Nothing is allocated, nothing is returned by pointer, and a failure is a
-number rather than a trap.
+arena of `f64` slots, arranged in four named blocks, behind seven exports. JavaScript
+writes the parameters and the initial state, calls `init`, then `step` or `run`, and
+reads the outputs. Nothing is allocated, nothing is returned by pointer, and a failure
+is a number rather than a trap.
 
 ## The arena
 

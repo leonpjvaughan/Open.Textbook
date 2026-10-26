@@ -39,6 +39,10 @@ repo/
 │   └── figures/              #   the kit (compiled) and the shared figure library
 │       └── src/              #   the kit's TypeScript source
 ├── tools/                    # the checks and measurements, as one TypeScript package
+├── solvers/                  # the numerical kernels: Rust -> wasm, and the otkd package
+│   ├── ot-solve/             #   hand-written kernels, one wasm module per kernel
+│   ├── ot-solve-build/       #   the host tool that writes the manifest and the module
+│   └── otkd/                 #   the mechanism compiler, a nested uv project
 ├── research/                 # pedagogy, notes, fetched sources
 ├── books/<id>/               # one self-contained book
 ├── scripts/                  # shell entry points; they orchestrate, they do not compute

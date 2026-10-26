@@ -66,7 +66,7 @@ else does.
 | Dependabot alerts | enabled |
 | Dependabot security updates | enabled |
 | private vulnerability reporting | enabled — see [`SECURITY.md`](../SECURITY.md) |
-| Dependabot version updates | [`.github/dependabot.yml`](../.github/dependabot.yml), weekly, grouped |
+| Dependabot version updates | `.github/dependabot.yml`, weekly, grouped (the collection's own file now) |
 | secret scanning: non-provider patterns, validity checks | **not planned.** The API accepts the request and ignores it, and the maintainer has declined the manual toggle; push protection and provider patterns are on, which covers the realistic leak |
 
 ## Reversing any of it

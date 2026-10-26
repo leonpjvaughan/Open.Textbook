@@ -50,34 +50,41 @@ Everything the workflow installs for itself is left alone: Node through
 The runner release is pinned by version **and checksum** and the checksum is verified
 before the tarball is unpacked, so a download that changes fails the build.
 
-## The Docker socket, and what it costs
+## What a job on this runner can reach
 
-The compose file mounts `/var/run/docker.sock` because one job is a Docker action
-(`rhysd/actionlint`) and it pulls an image to run in. **A job that can reach the Docker
-daemon can mount the host filesystem, so this is equivalent to root on this machine.**
-That is acceptable here only because:
+**No Docker socket.** The compose file mounts two cache volumes and nothing else. It
+used to mount `/var/run/docker.sock` for one Docker action (`rhysd/actionlint`), and a
+job that can reach the daemon can mount the host filesystem, which is root on this
+machine. The workflow installs actionlint as a checksummed binary now, so the socket
+went with it and the runner is an ordinary unprivileged container.
 
-- the repository is **private**, so a workflow run is started by a collaborator, not by
-  anyone who can open a pull request;
-- no job is given a secret (`permissions: contents: read` and nothing else);
-- the runner is not in the `docker` group on the host — the container is given the
-  socket's group id by `start.sh`, so the host's own user permissions are unchanged.
+**This repository is public**, which changes what a runner here may be asked to run. A
+fork can open a pull request whose workflow executes on the machine it names: fork
+pull requests from first-time contributors wait for approval, and a returning
+contributor's do not. So the fleet is for `push`-only work, and it must not be the
+target of a `pull_request` job. That is one of the reasons CI stays on
+`ubuntu-latest`; the other is that each hosted job gets its own machine.
 
-If the repository is ever made public, **stop the runner**: on a public repository a fork
-can open a pull request whose workflow executes here. The variable-driven `runs-on` means
-that is `gh variable delete RUNNER_LABEL`, not a revert.
+**No secret reaches a job that could run here.** The gate's jobs declare
+`permissions: contents: read` and read no `secrets.*`. The two that do —
+`tag and release` (`GITHUB_TOKEN`) and `deploy to production` (the Cloudflare token) —
+are `main`-only and stay on hosted runners.
+
+Stopping the fleet is `deploy/runner/start.sh --stop`; there is no variable to delete.
 
 ## Where the pieces are
 
 | File | Role |
 |---|---|
 | `Dockerfile` | Chrome, the pinned runner, the fonts |
-| `docker-compose.yml` | the service, the socket, the work volume |
+| `docker-compose.yml` | the service and the two cache volumes |
 | `entrypoint.sh` | configure on first start, then `exec ./run.sh` |
-| `start.sh` | mint a token with `gh`, set the socket's gid, start or stop |
+| `start.sh` | mint a token with `gh`, start, inspect or stop |
 
-The runner registers as `<hostname>-open-textbook` with `self-hosted,linux,x64`. It
-deregisters on `docker compose down`; a ghost left online is at
+The runner registers under the container's own hostname — a `--scale` replica cannot
+take a name from the environment without three of the four colliding — with the labels
+`self-hosted,linux,x64`. It deregisters on `docker compose down`, which is what
+`--stop` runs. A ghost left online by a rebuild is removed by `--prune`, not by hand in
 *Settings → Actions → Runners*.
 
 ## Limits worth knowing
