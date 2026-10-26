@@ -118,4 +118,6 @@ Every method named here is in [Methods, A to Z](../techniques/#moving-problems),
 - [Hyperbolic](../hyperbolic/index.md) — the class where the answer remembers, and the
   pair to this one.
 - [Elliptic](../elliptic/index.md) — what is left when the transient has finished.
+- [Reading the class off the equation](../reading-the-class/index.md) — the one number
+  that says an equation like this one is parabolic.
 - [When it goes wrong](../symptoms/index.md) — the symptom table for every class.

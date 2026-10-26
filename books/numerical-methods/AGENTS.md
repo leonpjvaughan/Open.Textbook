@@ -104,9 +104,11 @@ A flag modifies the technique; a box would multiply the taxonomy.
 
 **Hamiltonian problems are a flag too, for now.** Symplectic integration is a real
 choice, and it is not a class: it is what you do when a hyperbolic or parabolic
-problem has a structure that must survive a long run. Whether it earns a tenth box
-is an open item in `.agents/todo.md`, and the answer needs a page that shows the
-loss, not an argument that it is interesting.
+problem has a structure that must survive a long run. The book has not given it a
+tenth box, and the reason is that the answer needs a page that shows the loss: the
+`hyperbolic` page carries that page, one oscillator run with a general method and
+with a structure-preserving one. A tenth box would need a case the flag cannot
+carry.
 
 ## What a page is
 
@@ -174,12 +176,19 @@ are, what each is for, and how to recognise one. A table does that in one screen
 works with scripting off, it is searchable, and every cell can link.
 
 So this book's home page carries a table of nine kinds with four columns — the kind,
-the question, the shape of the answer, and how to recognise it — and the three
-circumstances that decide the method inside a kind. That is the whole map, and it is
-read rather than walked.
+the question and the shape of its answer, the model the kind writes down, and how to
+recognise it — and the three circumstances that decide the method inside a kind.
+That is the whole map, and it is read rather than walked.
 
-The two figures that remain are on class pages, and they obey the ordinary rule: they
-mount in a state that already carries the idea.
+**The one figure on the home page is a gallery, not a map.** `:::figure kind-shapes`
+draws the shape of each answer in the same order as the table: a point, a set, or a
+field, and for the field problems what the field does over time. It is not the retired
+tree in another form. It answers "what does the answer look like?", which the table's
+recognition column cannot show, and it carries no navigation and no decision. If a
+future edit is tempted to add arrows between its panels, it has become the tree again.
+
+The other two figures are on class pages, and they obey the ordinary rule: they mount
+in a state that already carries the idea.
 
 ## How another book points here
 
@@ -235,6 +244,9 @@ places, and `tests/test_reference_books.py` fails when they disagree — includi
 on the counts the home page opens with, which are measured from the pages rather
 than typed.
 
-A new technique: a row in `techniques/` under its family, naming the class and the
-price. It does not get a page of its own until two class pages need the same
-derivation, because a method page that is one paragraph is a table row with a URL.
+A new technique: a row in `techniques/` under its family, naming the class, the step
+in symbols, and the price. The step is the update the method repeats or the equation
+it solves; a family may show its representative member, but a row with no arithmetic
+is a glossary entry and fails `test_every_method_states_its_step_in_symbols`. It does
+not get a page of its own until two class pages need the same derivation, because a
+method page that is one paragraph is a table row with a URL.

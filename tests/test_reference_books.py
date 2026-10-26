@@ -15,10 +15,13 @@ for this book and, by design, never overwrites an authored page.
 
 from __future__ import annotations
 
+import contextlib
+import io
 import re
 from pathlib import Path
 
 import pytest
+import sympy as sp
 
 from textbook import book as books
 from textbook.hooks import usedin
@@ -135,7 +138,7 @@ def _counts() -> tuple[int, int]:
     methods = 0
     for line in (book.docs / "techniques" / "index.md").read_text(encoding="utf-8").splitlines():
         cells = [cell.strip() for cell in line.strip().strip("|").split("|")]
-        if len(cells) == 3 and not set(cells[0]) <= set("-: ") and cells[0] != "method":
+        if len(cells) == 4 and not set(cells[0]) <= set("-: ") and cells[0] != "method":
             methods += 1
     systems = 0
     for slug in CLASSES:
@@ -171,6 +174,29 @@ def test_the_nine_kinds_table_names_and_links_every_class():
         and re.search(r"\]\((" + "|".join(CLASSES) + r")/index\.md\)", line)
     ]
     assert len(rows) == len(CLASSES), f"the nine-kinds table has {len(rows)} rows"
+    # Every row carries the kind's model, not only its name. The table's claim is
+    # that a reader can recognise the kind from the model in front of them, and a
+    # row with no equation asks them to take the recognition column on trust.
+    cells = [[cell.strip() for cell in row.strip().strip("|").split("|")] for row in rows]
+    assert all(len(row) == 4 for row in cells), (
+        f"the nine-kinds table is not four columns: {[len(row) for row in cells]}"
+    )
+    missing = [row[0] for row in cells if "$" not in row[2]]
+    assert missing == [], f"these kinds do not show their model: {missing}"
+
+
+def test_every_method_states_its_step_in_symbols():
+    """A name and a price are not enough to recognise a method you have met.
+
+    The A–Z is the reverse lookup, and every row now carries the update the method
+    repeats, or the equation it solves. A family is allowed to show its
+    representative member, but it is not allowed to show nothing: a row that names
+    a method and never says what it does is a glossary entry, not a technique.
+    """
+    rows = _table_rows(map_book().docs / "techniques" / "index.md", 4)
+    assert len(rows) == 76, f"the A–Z has {len(rows)} method rows, not 76"
+    missing = [row[0] for row in rows if "$" not in row[2]]
+    assert missing == [], f"these methods do not state their step: {missing}"
 
 
 def test_the_two_indexes_link_every_class_they_name():
@@ -231,15 +257,18 @@ def test_the_home_page_states_the_counts_it_claims():
 
 
 def test_the_classes_come_first_in_tree_order():
-    """The two indexes come after the classes, in the order the tree reaches them.
+    """The pages that are not classes come after them, in the order the tree reaches them.
 
     The order is the argument: a reader walking the five questions meets the boxes
     in this sequence, and a registry sorted some other way would put the symptom
-    index between two classes.
+    index between two classes. The two pages of argument — how to read a class off
+    an equation, and how to change which one you are in — sit before the two
+    indexes, because both are answers a reader reaches while still holding a model.
     """
     slug_of = lambda path: path.split("/")[0]  # noqa: E731 - a one-line helper
     assert [slug_of(e["path"]) for e in map_book().pages[:9]] == CLASSES
     assert [slug_of(e["path"]) for e in map_book().pages[9:]] == [
+        "reading-the-class",
         "choosing-the-class",
         "worked-case",
         "techniques",
@@ -393,7 +422,7 @@ def test_every_method_a_class_page_names_is_in_methods_a_to_z(slug):
     """
     known = {
         _plain(name)
-        for row in _table_rows(map_book().docs / "techniques" / "index.md", 3)
+        for row in _table_rows(map_book().docs / "techniques" / "index.md", 4)
         for name in _names(row[0])
     }
     page = map_book().docs / slug / "index.md"
@@ -541,4 +570,124 @@ def test_the_optimisation_example_is_the_tolerance_problem():
     page = (map_book().docs / "optimisation" / "index.md").read_text(encoding="utf-8")
     assert "Choosing a bush stiffness so the corner's camber meets a tolerance." in page
     assert "flat over the travel" not in page
+
+
+# --- reading the class off the equation ----------------------------------------
+#
+# One page in this map hands the reader a program, which is a claim of a kind the book
+# has no machinery for: a printed output is evidence, and evidence nobody runs is a
+# number typed into a fence. So the program is executed here, the worked table is
+# recomputed by a route the page does not use, the sign table is held to three rows,
+# and the figure the page mounts is held to the guided-investigation rule the
+# collection runs on.
+
+CLASSIFY = "reading-the-class"
+
+
+def _classify_page() -> str:
+    return (map_book().docs / CLASSIFY / "index.md").read_text(encoding="utf-8")
+
+
+def test_the_program_prints_what_the_page_shows():
+    """Both blocks come from the page; only one of them is executed.
+
+    The claim is narrow and checkable: run the python block exactly as printed and
+    its standard output is the text block beside it. A reader who runs the program
+    gets what the page said, and an edit to either block fails here rather than in
+    front of a reader learning the rule.
+    """
+    page = _classify_page()
+    code = re.findall(r"```python\n(.*?)```", page, re.S)
+    shown = re.findall(r"```text\n(.*?)```", page, re.S)
+    assert len(code) == 1, f"the page holds {len(code)} program blocks, not one"
+    assert len(shown) == 1, f"the page holds {len(shown)} output blocks, not one"
+    printed = io.StringIO()
+    with contextlib.redirect_stdout(printed):
+        exec(compile(code[0], f"{CLASSIFY}/index.md", "exec"), {})
+    assert printed.getvalue() == shown[0], (
+        "the page's printed output is not what its program prints"
+    )
+
+
+def test_the_worked_table_is_recomputed_from_the_equations():
+    """The table teaches a rule, so its rows are rebuilt rather than believed.
+
+    The page reaches its coefficients by applying the equation to $e^{px+qy}$; this
+    reaches them by reading the derivative terms straight off the expression. Two
+    routes to the same three rows, and the table has to agree with the second — a row
+    out by a sign teaches a reader a rule that turns elliptic problems hyperbolic.
+    """
+    x, y, t = sp.symbols("x y t")
+    u = sp.Function("u")
+    D = sp.diff
+    worked = {
+        "Laplace": (D(u(x, y), x, 2) + D(u(x, y), y, 2), u(x, y), (x, y)),
+        "Heat": (D(u(x, t), x, 2) - D(u(x, t), t), u(x, t), (x, t)),
+        "Wave": (D(u(x, t), t, 2) - D(u(x, t), x, 2), u(x, t), (x, t)),
+    }
+    rows = {}
+    for line in _classify_page().splitlines():
+        if not line.startswith("|"):
+            continue
+        cells = [cell.strip() for cell in line.strip().strip("|").split("|")]
+        if len(cells) == 4 and cells[0].split(":")[0] in worked:
+            rows[cells[0].split(":")[0]] = cells
+    assert set(rows) == set(worked), f"the worked table holds {sorted(rows)}, not three rows"
+    for name, (pde, unknown, vars) in worked.items():
+        A = pde.coeff(D(unknown, vars[0], 2))
+        B = pde.coeff(D(unknown, vars[0], vars[1]))
+        C = pde.coeff(D(unknown, vars[1], 2))
+        delta = sp.simplify(B**2 - 4 * A * C)
+        verdict = "hyperbolic" if delta > 0 else "parabolic" if delta == 0 else "elliptic"
+        printed = [
+            part.strip().strip("$").replace("\u2212", "-") for part in rows[name][1].split(",")
+        ]
+        expected = [str(A), str(B), str(C)]
+        assert printed == expected, f"{name}: the page prints {printed}, the equation gives {expected}"
+        discriminant = rows[name][2].strip("$ ").replace("\u2212", "-")
+        assert discriminant == str(delta), (
+            f"{name}: the page prints B² − 4AC = {discriminant}, the equation gives {delta}"
+        )
+        assert rows[name][3] == verdict, (
+            f"{name}: the page says {rows[name][3]}, the sign of the discriminant says {verdict}"
+        )
+
+
+def test_the_sign_table_carries_one_row_per_class():
+    """Three signs, three classes, each row leading to the page it names.
+
+    The table is the book's rule for the three field kinds. A sign with no row, or a
+    row that does not link, leaves a reader with a class they cannot reach from the
+    rule that was supposed to decide between them.
+    """
+    page = _classify_page()
+    for sign, slug in (
+        ("$\\Delta > 0$", "hyperbolic"),
+        ("$\\Delta = 0$", "parabolic"),
+        ("$\\Delta < 0$", "elliptic"),
+    ):
+        rows = [line for line in page.splitlines() if line.startswith("|") and sign in line]
+        assert len(rows) == 1, f"the sign {sign} is on {len(rows)} table rows"
+        assert f"](../{slug}/index.md)" in rows[0], f"the sign {sign} does not lead to {slug}"
+
+
+def test_the_figure_on_that_page_is_guided():
+    """Predict, test, explain — the collection's rule for a tool, on a reference page.
+
+    This book has no Learn pages, so no other test asks it of this book. But the page
+    mounts controls the reader moves, and a control with no prediction and no question
+    after it is a sandbox: the beats are what make moving it a lesson rather than a
+    toy. The prediction comes before the figure and the explanation after it, because
+    a prediction written after the answer is not one.
+    """
+    page = _classify_page()
+    figure = page.find(":::figure discriminant")
+    assert figure != -1, f"{CLASSIFY} mounts no figure"
+    beats = {beat: page.find(f"**{beat}") for beat in ("Predict", "Test", "Explain")}
+    missing = [beat for beat, position in beats.items() if position == -1]
+    assert not missing, f"the figure has no {', '.join(missing)} step"
+    assert beats["Predict"] < figure < beats["Test"] < beats["Explain"], (
+        "the beats are not in order around the figure: "
+        f"{beats}, figure at {figure}"
+    )
 

@@ -23,9 +23,9 @@ meta:
   # asks for one only when a book has not said what it is, and this one says it.
   # No `syllabus`, because there is none.
   what_it_is: >-
-    This is a map of problems. You arrive with a system you have modelled, find the
-    kind of problem that model became, and leave with the techniques that solve it
-    and the ones that look like they should but do not. The classes are not
+    This is a map of problems. You arrive with a system you have modelled and find
+    the kind of problem that model became. You leave with the techniques that solve
+    it, and with the ones that look like they should but do not. The classes are not
     chapters to work through. They are boxes to look things up in, and one system
     often belongs in more than one.
   level_word: level
@@ -67,6 +67,8 @@ pages:
   - title: Hyperbolic
     path: hyperbolic/index.md
     signature: The answer moves along paths and keeps its shape.
+  - title: Reading the class off the equation
+    path: reading-the-class/index.md
   - title: The class is a choice
     path: choosing-the-class/index.md
   - title: The same corner, five ways

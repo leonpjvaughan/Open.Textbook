@@ -64,8 +64,8 @@ conditions give a finite speed, and it can.
 Remembering has a price in the method: the answer has no decay to hide the error in,
 so an integrator that quietly adds or removes a little energy every step shows it.
 
-This is the **Hamiltonian** case, and it is a flag rather than a box: the class has
-not changed, and what changes is that the method must respect the structure or a long
+This is the **Hamiltonian** case, and it is a flag rather than a box. The class has
+not changed; what changes is that the method must respect the structure, or a long
 run is worthless. A single oscillator shows it. Run the same one with a general
 method and with a structure-preserving one, and only one of them stays bounded.
 
@@ -131,4 +131,6 @@ Every method named here is in [Methods, A to Z](../techniques/#moving-problems),
   diffuses instead of carrying.
 - [Eigenvalues](../eigenvalue/index.md) — the stability of a wave problem is decided by
   eigenvalues.
+- [Reading the class off the equation](../reading-the-class/index.md) — the one number
+  that says an equation like this one is hyperbolic.
 - [When it goes wrong](../symptoms/index.md) — the symptom table for every class.

@@ -5,10 +5,10 @@
 
 ## What this book is
 
-This is a map of problems. You arrive with a system you have modelled, find
-the kind of problem that model became, and leave with the techniques that
-solve it and the ones that look like they should but do not. The classes are
-not chapters to work through. They are boxes to look things up in, and one
+This is a map of problems. You arrive with a system you have modelled and find
+the kind of problem that model became. You leave with the techniques that
+solve it, and with the ones that look like they should but do not. The classes
+are not chapters to work through. They are boxes to look things up in, and one
 system often belongs in more than one.
 
 ## Before you use this book
@@ -46,6 +46,7 @@ derivation follows the reference rather than expecting it here.
 The claims in this book rest on these documents:
 
 - [Finite Difference Methods for Ordinary and Partial Differential Equations](https://doi.org/10.1137/1.9780898717839)
+- [Introduction to Partial Differential Equations — 2.6: Classification of Second Order PDEs](https://math.libretexts.org/Bookshelves/Differential_Equations/Introduction_to_Partial_Differential_Equations_(Herman)/02%3A_Second_Order_Partial_Differential_Equations/2.06%3A_Classification_of_Second_Order_PDEs)
 - [Computational Methods for Fluid Dynamics](https://doi.org/10.1007/978-3-642-56026-2)
 - [Numerical Linear Algebra](https://doi.org/10.1137/1.9780898719574)
 - [Iterative Methods for Sparse Linear Systems](https://doi.org/10.1137/1.9780898718003)

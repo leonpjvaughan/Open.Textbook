@@ -18,7 +18,9 @@
 # without it is further reading, and is listed here for a reader rather than
 # claimed as a citation. Every `url` below was resolved and its title checked
 # against Crossref on 2026-10-18, rather than written from memory — two of the
-# twenty candidate links turned out to point at different books.
+# twenty candidate links turned out to point at different books. The one added
+# after that pass is `herman`, a LibreTexts chapter rather than a Crossref record;
+# its link was resolved and its page title checked on 2026-10-26.
 #
 # What this book does not do: it does not rest on a syllabus, and it does not
 # claim that any technique is the best one in general. The map is a map, not a
@@ -42,6 +44,17 @@ references:
     role: >-
       The three classes of partial differential equation, the method of lines, and
       the stability and convergence arguments behind the upwind and CFL pages.
+
+  - id: herman
+    attribution: true
+    title: "Introduction to Partial Differential Equations — 2.6: Classification of Second Order PDEs"
+    url: https://math.libretexts.org/Bookshelves/Differential_Equations/Introduction_to_Partial_Differential_Equations_(Herman)/02%3A_Second_Order_Partial_Differential_Equations/2.06%3A_Classification_of_Second_Order_PDEs
+    ref: "Russell Herman, Mathematics LibreTexts, CC BY-NC-SA 3.0, read 2026-10-26"
+    role: >-
+      The test on `reading-the-class`: the second-order operator written with three
+      coefficients, the discriminant whose sign separates the three classes, the
+      characteristic directions each sign allows, and the conics the class names are
+      borrowed from.
 
   - id: baumgarte
     title: "Numerical Relativity: Solving Einstein's Equations on the Computer"

@@ -5,3 +5,40 @@
  * for components that are genuinely specific to this book, and keep it
  * small — a book should be recognisable, not a different design system.
  */
+
+/* Methods, A to Z: the step column is a formula, and MathML cannot wrap.
+ *
+ * With the browser's automatic table layout, one long update sets the width of the
+ * step column and every price wraps into a narrow strip. The page measured 12,500px
+ * tall at a 1280px viewport, and much of that was the last column. A fixed layout
+ * gives the price the width its prose needs and holds the formulas in a column the
+ * page can plan for; the longest updates are broken over lines in the page itself.
+ *
+ * Only on a wide screen. On a phone the table keeps its automatic layout and
+ * scrolls, which is how every data table in the collection behaves. */
+@media (min-width: 1024px) {
+  .method-index table {
+    table-layout: fixed;
+    width: 100%;
+  }
+
+  .method-index th:nth-child(1),
+  .method-index td:nth-child(1) {
+    width: 18%;
+  }
+
+  .method-index th:nth-child(2),
+  .method-index td:nth-child(2) {
+    width: 17%;
+  }
+
+  .method-index th:nth-child(3),
+  .method-index td:nth-child(3) {
+    width: 41%;
+  }
+
+  .method-index th:nth-child(4),
+  .method-index td:nth-child(4) {
+    width: 24%;
+  }
+}

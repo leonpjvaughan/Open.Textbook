@@ -111,4 +111,6 @@ Every method named here is in [Methods, A to Z](../techniques/#linear-systems), 
 - [Saddle point](../saddle-point/index.md) — what an elliptic problem becomes when a
   constraint is added.
 - [Parabolic](../parabolic/index.md) — the same operator, with time put back in.
+- [Reading the class off the equation](../reading-the-class/index.md) — the one number
+  that says an equation like this one is elliptic.
 - [When it goes wrong](../symptoms/index.md) — the symptom table for every class.
