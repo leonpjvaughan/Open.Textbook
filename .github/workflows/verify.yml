@@ -630,7 +630,9 @@ jobs:
     outputs:
       tag: ${{ steps.release.outputs.tag }}
     # Main only: a branch whose whole purpose is work in progress must not tag.
-    if: github.ref == 'refs/heads/main' && (github.event_name == 'push' || github.event_name == 'workflow_dispatch')
+    # The ref is enough: a pull request runs under refs/pull/..., and a branch
+    # under refs/heads/<branch>; only main tags and deploys.
+    if: github.ref == 'refs/heads/main'
     # Hosted runner. The self-hosted pool is idle; `deploy/runner/README.md` has the
     # switch back if the hosted minutes run out.
     runs-on: ubuntu-latest
@@ -668,7 +670,9 @@ jobs:
     # that did not verify, and nothing ships unreleased. Main only, which is what
     # keeps a push to any other branch from changing what is live.
     needs: [release, build]
-    if: github.ref == 'refs/heads/main' && (github.event_name == 'push' || github.event_name == 'workflow_dispatch')
+    # The ref is enough: a pull request runs under refs/pull/..., and a branch
+    # under refs/heads/<branch>; only main tags and deploys.
+    if: github.ref == 'refs/heads/main'
     # Hosted runner. The self-hosted pool is idle; `deploy/runner/README.md` has the
     # switch back if the hosted minutes run out.
     runs-on: ubuntu-latest
