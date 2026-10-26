@@ -99,6 +99,30 @@
   font-size: 1.05em;
 }
 
+/* A table is a grid of numbers at least as often as it is a paragraph of words.
+ *
+ * Nothing here styled a cell, so the user-agent default was what every reader
+ * saw. Measured on the built site, a `td` computed `padding: 1px`:
+ *
+ *     { "td": { "padding": "1px", "text-align": "start" },
+ *       "th": { "padding": "1px", "text-align": "center" } }
+ *
+ * Text-heavy tables survive that, because each column is wide enough that its
+ * own text separates it from the next. A table of short numbers does not: the
+ * worked table on `reading-the-class` printed `1 0 1 −4` as one blob, and the
+ * fix at the time was local, merging three cells into one. This is the
+ * collection-wide rule instead.
+ *
+ * 0.4em keeps a row about as tall as a line of the surrounding text, and 0.6em
+ * is the gutter a column needs to read as a column. The padding comes out of
+ * the content box, so the one table with fixed percentage widths — the A–Z's
+ * `method-index` in `books/numerical-methods` — was re-measured at 1024px and
+ * 1280px rather than assumed. */
+.md-typeset table th,
+.md-typeset table td {
+  padding: 0.4em 0.6em;
+}
+
 /* Interactive figures read as instrument panels, not decoration.
  *
  * The tint is 4%, and it was 8% until the contrast of every figure token was measured

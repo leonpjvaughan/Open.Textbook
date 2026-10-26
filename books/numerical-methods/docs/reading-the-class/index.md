@@ -83,11 +83,11 @@ Read the coefficients in the order $xx$, $xy$, $yy$, after every term has been m
 to one side. The two variables are whatever the two variables are: $x$ and $y$ for
 Laplace, and $x$ and $t$, with $t$ standing for time, for the heat and wave rows.
 
-| Equation | $A$, $B$, $C$ | $B^2-4AC$ | Class |
-|---|---|---|---|
-| Laplace: $u_{xx} + u_{yy} = 0$ | $1$, $0$, $1$ | $-4$ | elliptic |
-| Heat: $u_t = u_{xx}$ | $1$, $0$, $0$ | $0$ | parabolic |
-| Wave: $u_{tt} = u_{xx}$ | $-1$, $0$, $1$ | $4$ | hyperbolic |
+| Equation | $A$ | $B$ | $C$ | $B^2-4AC$ | Class |
+|---|---|---|---|---|---|
+| Laplace: $u_{xx} + u_{yy} = 0$ | $1$ | $0$ | $1$ | $-4$ | elliptic |
+| Heat: $u_t = u_{xx}$ | $1$ | $0$ | $0$ | $0$ | parabolic |
+| Wave: $u_{tt} = u_{xx}$ | $-1$ | $0$ | $1$ | $4$ | hyperbolic |
 
 **Common error.** The order and the signs are where a hand classification goes
 wrong. Leave $u_{yy}$ on the other side of Laplace's equation, so it reads
