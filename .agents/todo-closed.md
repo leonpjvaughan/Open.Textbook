@@ -5634,3 +5634,117 @@ wording changes cannot move a number.
 
 **Done (2026-10-24).** The five small claims now name the right source: 0.2 MN/m from the export in §1.5 and the Review, about nine times from the model's 1.794 MN/m crossing, two orders for the 0.1–20 MN/m control, the tolerance example, the model behind the figures, four static models plus mass, and 9.2 mm across the car.
 
+## 122. The "report a mistake" link is a 404, in every book's About page — **done**
+
+**What is wrong.** Every colophon carries a line telling a reader to report a
+mistake at `https://github.com/leonpjvaughan/Open.Textbook/issues/new`. On
+2026-10-25 that URL returns 404 to a reader who is not signed in, and so does the
+repository root:
+
+```
+$ curl -s -o /dev/null -w '%{http_code}\n' https://github.com/leonpjvaughan/Open.Textbook/issues/new
+404
+$ curl -s https://api.github.com/repos/leonpjvaughan/Open.Textbook
+{"message": "Not Found"}
+$ curl -s 'https://api.github.com/users/leonpjvaughan/repos?per_page=100'
+["ddclient_cloudflare", "suspension-kinematics"]
+```
+
+The repository is private or renamed, and no GitHub account can open an issue on a
+repository it cannot see. The page says "That route needs a free GitHub account",
+which makes the promise more specific and the failure worse. The same repository is
+linked from the legal pages as the source of `LICENSE` and `LICENSE-CODE`, so those
+links are dead too. `tests/test_colophon.py` asserts the URL string is present and
+`tests/test_legal.py` asserts the two `blob/main` URLs, so the tests pin the broken
+address rather than a reachable one.
+
+The two books' own source links are not affected: `suspension-kinematics` is public
+and every file link under `src/otkd/` returned 200 on the same day.
+
+**The fix.** Decide which is true and say it in the book. If the repository becomes
+public before the next deploy, add a check that follows the issue URL (skipped when
+readers are offline) so a rename or a privatisation fails CI rather than the reader.
+If it stays private, replace the route with one that exists — the acknowledgements
+page already names the sources, and a contact route is a separate decision. Either
+way, edit `engine/src/textbook/legal.py` (or `scaffold.py`, whichever owns the line)
+and regenerate the colophons; do not hand-edit a generated page.
+
+**Done means**
+
+- [x] the reporting route in a built colophon answers for a signed-out reader, or the
+      colophon names a route that does
+- [x] the licence links in the legal pages answer the same way
+- [x] the check is automatic, so a renamed repository fails CI and not the reader
+- [x] `tests/test_colophon.py` and `tests/test_legal.py` assert the reachable route,
+      not the literal old one
+
+**Done (2026-10-25).** The repository is public (`gh repo edit
+leonpjvaughan/Open.Textbook --visibility public --accept-visibility-change-consequences`),
+and the link a signed-out reader follows now answers: `issues/new` returns 302 and
+lands on the sign-in page, and `blob/main/LICENSE` and `blob/main/LICENSE-CODE`
+return 200. `scripts/check-contact.sh` follows the URL the way a reader does, and
+the deploy job in `.github/workflows/verify.yml` and `scripts/deploy.sh` both run
+it before uploading, so a rename or a re-privatisation fails the deploy rather than
+the reader. `scripts/protect-main.sh` was corrected to
+read "not protected" as the answer to `--check` instead of as an unavailable
+feature, and then applied: `all checks` required, force pushes and deletions
+refused, admins may bypass so the push pipeline still works. The history was
+searched for tokens and keys before the switch: `.env` was never committed, and the
+only match for `CLOUDFLARE_API_TOKEN=` in `git log -p --all` is a shell expansion in
+a script, not a credential.
+
+## 123. The 32-word sentence rule cannot see a sentence that wraps — **done**
+
+**What is wrong.** `textbook.lint` applies `style:long-sentence` one physical line
+at a time: `prose_lines` yields a line, and `SENTENCE` is matched inside it. Every
+page is hard-wrapped near 80 characters, so a 40-word sentence is normally spread
+over three lines and every line is under the ceiling. The rule reports nothing, and
+the two reference books carry sentences longer than that:
+
+```
+$ uv run python .agents/skills/verify-textbook-change/scripts/textbook-audit.py maths-applied numerical-methods
+  reading-age: mean sentence 16.6 words, max 55, Flesch-Kincaid grade 7.3
+  reading-age: mean sentence 14.5 words, max 45, Flesch-Kincaid grade 6.7
+$ uv run python -m textbook.lint maths-applied numerical-methods
+scanned 18 pages
+scanned 15 pages
+```
+
+The house target is a mean of 9–15 words and no sentence over about 25, with 32 the
+hard ceiling (`write-textbook-prose`). The reading-age target still passes, which is
+why the audit calls it a note; the sentence ceiling is the part that is documented
+and not enforced. The longest are in `maths-applied` §1.5's depth page and its
+Review; the numerical-methods pages are shorter on average, but their class pages
+still carry sentences over 32 words.
+There is no test for the rule in `tests/test_lint.py`.
+
+**The fix.** Split paragraphs, not lines: join consecutive prose lines inside a
+paragraph, stopping at blank lines, headings, tables, lists, fences and display
+maths as the audit's `prose_paragraphs` already does, then apply the ceiling and
+report the finding at the paragraph's first line. Add two tests: a 40-word sentence
+wrapped over three lines must be reported once, and a table row, a code span and a
+display equation must not be read. Triage the two reference books first, because
+they are the smallest corpus and the audit has already named their longest.
+
+**Done means**
+
+- [x] a 40-word sentence wrapped at 80 columns gives one `style:long-sentence` finding
+- [x] the rule does not read tables, code, display maths or front matter
+- [x] every sentence over 32 words in the two reference books is rewritten, or is a
+      quotation/list item the rule must not count
+- [x] the check runs on every book in CI, and `pytest tests/ -q` passes
+
+**Done (2026-10-25).** `textbook.lint` now reads paragraphs:
+`prose_paragraphs` joins a paragraph's lines and skips headings, tables,
+directives, block quotes, list items and front matter (front matter is replaced by
+its own newlines, so every finding keeps its line number). `long_sentences` applies
+the 32-word ceiling to each sentence. `SENTENCE_DEBT` records the rest of the
+collection's existing count per book, so the rule lands without a 461-sentence
+rewrite; a book may only go down, and the two reference books are at 0. The audit
+lists every over-ceiling sentence behind a debt number, so the debt is visible. The
+two books' sentences over the ceiling were rewritten: 39 in `maths-applied` and 12
+in `numerical-methods`. The audit now reports a maximum of 32 in both (was 55 and
+45) and a mean of 15.4 and 14.0 (was 16.6 and 14.5).
+`tests/test_lint.py` pins a wrapped 40-word sentence as exactly one finding, the
+table/list/front-matter exclusions, and the debt as per-book rather than per-page.
+The lint runs in CI, so a new long sentence in either reference book fails it.
