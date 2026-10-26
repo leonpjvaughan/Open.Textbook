@@ -15,7 +15,9 @@ named blocks, seven exports, status codes rather than traps, a generated manifes
 a native selftest replayed through the page's loader. `scripts/build-solvers.sh` and
 `scripts/build-otkd.sh` rebuild the committed artefacts; CI **builds to compare, never
 to ship**, and the deploy installs no compiler. The otkd suite is path-gated because it
-is twelve minutes.
+is twelve minutes. The host tests and the build tool are static Rust (`musl` +
+`rust-lld`), and the artefact is Rust (`wasm32` + `rust-lld`); there is no C or C++
+toolchain on either side.
 
 **The move, and why there is no history.** The files were copied from the last release,
 not carried with `git subtree`. The history stays in the archived repository, which

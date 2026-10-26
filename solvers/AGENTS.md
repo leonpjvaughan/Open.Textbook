@@ -62,6 +62,13 @@ CI `solvers` job rebuilds and compares, and never writes what ships. That is the
 The toolchain is pinned in `rust-toolchain.toml`. The wasm bytes depend on the
 compiler, so bumping it is its own commit, with the byte diff as the evidence.
 
+**There is no C or C++ toolchain.** The wasm half is `wasm32-unknown-unknown`, linked
+by `rust-lld`; the host half — the tests and the build tool — is static Rust on
+`x86_64-unknown-linux-musl`, also linked by `rust-lld` (`.cargo/config.toml`). Rust's
+default host linker is `cc`, which needs the system C runtime to make an ELF
+executable; that is why a host build once looked like a C dependency. It never was
+one, and now it is not needed either.
+
 ## otkd
 
 `otkd` is a nested `uv` project with its own `uv.lock`; it is deliberately **not** a

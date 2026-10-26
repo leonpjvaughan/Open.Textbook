@@ -288,9 +288,11 @@ Pagefind); without Node, maths silently degrades to `.math-error` spans.
 locally), so a whole class of workflow error can pass locally. Install it with
 `mise use -g shellcheck@0.11.0` and check `command -v shellcheck` first.
 
-`solvers/` needs Rust and the `wasm32-unknown-unknown` target; `solvers/rust-toolchain.toml`
-pins both. Without them the gate still runs: `scripts/build-solvers.sh --verify` checks the
-committed wasm offline, and only the diff against a rebuild needs the compiler.
+`solvers/` needs Rust and the `wasm32-unknown-unknown` and `x86_64-unknown-linux-musl`
+targets; `solvers/rust-toolchain.toml` pins both. **No C or C++ toolchain is involved**:
+the wasm and the host tests both link with `rust-lld`. Without the toolchain the gate
+still runs: `scripts/build-solvers.sh --verify` checks the committed wasm offline, and
+only the diff against a rebuild needs the compiler.
 
 `tools screenshot` serves the built site by Playwright request interception, not a
 bound port (no free port, no clash with a running server); a listening socket does

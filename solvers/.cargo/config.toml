@@ -1,0 +1,14 @@
+# Host programs are static Rust: musl libc and rust-lld. There is no C or C++
+# toolchain in this build. The one thing this does not decide is the wasm artefact:
+# every wasm build passes `--target wasm32-unknown-unknown` explicitly, and that
+# target links with rust-lld too.
+#
+# The alternative is Rust's default host linker, `cc`, which needs the system C
+# runtime to produce an ELF executable. The host programs here are tests and one
+# build tool that runs on the build machine, not the kernel a page loads.
+[build]
+target = "x86_64-unknown-linux-musl"
+
+[target.x86_64-unknown-linux-musl]
+# rustc resolves this name from its own sysroot; it is not on PATH.
+linker = "rust-lld"

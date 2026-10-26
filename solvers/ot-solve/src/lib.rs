@@ -15,6 +15,71 @@ pub mod kernels;
 
 pub use abi::{Arena, Block, Case, Kernel, Meta, Output, Param, Status};
 
+// One wasm build exports one kernel; its `init`, `step` and `run` have fixed names.
+// The feature pairs are a compile-time check, not a runtime one.
+#[cfg(all(feature = "heat-explicit", feature = "wave-explicit"))]
+compile_error!("enable at most one kernel feature: a wasm build exports one kernel");
+
+#[cfg(all(feature = "heat-explicit", feature = "cg-poisson"))]
+compile_error!("enable at most one kernel feature: a wasm build exports one kernel");
+
+#[cfg(all(feature = "heat-explicit", feature = "newton-root"))]
+compile_error!("enable at most one kernel feature: a wasm build exports one kernel");
+
+#[cfg(all(feature = "heat-explicit", feature = "power-iteration"))]
+compile_error!("enable at most one kernel feature: a wasm build exports one kernel");
+
+#[cfg(all(feature = "heat-explicit", feature = "gradient-descent"))]
+compile_error!("enable at most one kernel feature: a wasm build exports one kernel");
+
+#[cfg(all(feature = "heat-explicit", feature = "monte-carlo-pi"))]
+compile_error!("enable at most one kernel feature: a wasm build exports one kernel");
+
+#[cfg(all(feature = "wave-explicit", feature = "cg-poisson"))]
+compile_error!("enable at most one kernel feature: a wasm build exports one kernel");
+
+#[cfg(all(feature = "wave-explicit", feature = "newton-root"))]
+compile_error!("enable at most one kernel feature: a wasm build exports one kernel");
+
+#[cfg(all(feature = "wave-explicit", feature = "power-iteration"))]
+compile_error!("enable at most one kernel feature: a wasm build exports one kernel");
+
+#[cfg(all(feature = "wave-explicit", feature = "gradient-descent"))]
+compile_error!("enable at most one kernel feature: a wasm build exports one kernel");
+
+#[cfg(all(feature = "wave-explicit", feature = "monte-carlo-pi"))]
+compile_error!("enable at most one kernel feature: a wasm build exports one kernel");
+
+#[cfg(all(feature = "cg-poisson", feature = "newton-root"))]
+compile_error!("enable at most one kernel feature: a wasm build exports one kernel");
+
+#[cfg(all(feature = "cg-poisson", feature = "power-iteration"))]
+compile_error!("enable at most one kernel feature: a wasm build exports one kernel");
+
+#[cfg(all(feature = "cg-poisson", feature = "gradient-descent"))]
+compile_error!("enable at most one kernel feature: a wasm build exports one kernel");
+
+#[cfg(all(feature = "cg-poisson", feature = "monte-carlo-pi"))]
+compile_error!("enable at most one kernel feature: a wasm build exports one kernel");
+
+#[cfg(all(feature = "newton-root", feature = "power-iteration"))]
+compile_error!("enable at most one kernel feature: a wasm build exports one kernel");
+
+#[cfg(all(feature = "newton-root", feature = "gradient-descent"))]
+compile_error!("enable at most one kernel feature: a wasm build exports one kernel");
+
+#[cfg(all(feature = "newton-root", feature = "monte-carlo-pi"))]
+compile_error!("enable at most one kernel feature: a wasm build exports one kernel");
+
+#[cfg(all(feature = "power-iteration", feature = "gradient-descent"))]
+compile_error!("enable at most one kernel feature: a wasm build exports one kernel");
+
+#[cfg(all(feature = "power-iteration", feature = "monte-carlo-pi"))]
+compile_error!("enable at most one kernel feature: a wasm build exports one kernel");
+
+#[cfg(all(feature = "gradient-descent", feature = "monte-carlo-pi"))]
+compile_error!("enable at most one kernel feature: a wasm build exports one kernel");
+
 /// The wasm module's arena, in `f64` slots. The largest kernel (CG) uses 1670;
 /// the margin is for a larger grid, not for growth at run time.
 const SLOTS: usize = 2048;

@@ -15,7 +15,7 @@ set -euo pipefail
 
 ROOT="$(cd "$(dirname "${BASH_SOURCE[0]}")/.." && pwd)"
 TREE="$ROOT/assets/data/solvers"
-BIN="$ROOT/solvers/target/debug/ot-solve-build"
+BIN="$ROOT/solvers/target/x86_64-unknown-linux-musl/debug/ot-solve-build"
 
 usage() {
   sed -n '2,16p' "$0" | sed 's/^# \{0,1\}//'

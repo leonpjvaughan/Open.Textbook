@@ -218,6 +218,9 @@ jobs:
           targets: wasm32-unknown-unknown
           components: rustfmt, clippy
 
+      - name: Musl target for the host tools
+        run: rustup target add x86_64-unknown-linux-musl
+
       - name: Format
         run: cargo fmt --manifest-path solvers/Cargo.toml --all -- --check
 
@@ -279,6 +282,10 @@ jobs:
         with:
           toolchain: "1.99.1"
           targets: wasm32-unknown-unknown
+
+      - name: Musl target for the workspace toolchain
+        if: steps.changed.outputs.run == 'yes'
+        run: rustup target add x86_64-unknown-linux-musl
 
       - name: Install
         if: steps.changed.outputs.run == 'yes'

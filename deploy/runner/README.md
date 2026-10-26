@@ -20,10 +20,9 @@ and the same sums decide.
 ## What the image holds, and what it deliberately does not
 
 `Dockerfile` installs three things: **Chrome**, the **runner**, and the fonts and
-libraries a headless browser needs. It also installs **`build-essential`**: the Rust
-kernels in `solvers/` are host-built for their tests and lint, and a host Rust build
-links its build script and test binaries. The wasm link uses `rust-lld` and needs
-nothing extra. Chrome is the reason the image exists at all — the
+libraries a headless browser needs. It deliberately installs **no C toolchain**: the
+Rust kernels in `solvers/` use Rust's own linker for both halves — `wasm32` for the
+artefact and static `musl` for the host tests and build tool. Chrome is the reason the image exists at all — the
 preview job measures every figure's paint and its label size at two viewports, so a
 runner whose browser comes from the host is a runner that works on one machine.
 
