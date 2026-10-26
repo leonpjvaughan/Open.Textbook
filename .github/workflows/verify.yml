@@ -208,14 +208,6 @@ jobs:
     steps:
       - uses: actions/checkout@v7
 
-      # A host Rust build links its build script, and the runner image does not carry
-      # `cc`. The wasm link is rust-lld and needs nothing, but `cargo test` and the
-      # build tool are host programs.
-      - name: Host linker
-        run: |
-          sudo apt-get update
-          sudo apt-get install -y build-essential
-
       # Pinned to the channel in solvers/rust-toolchain.toml. The .wasm bytes depend
       # on the compiler, so a floating toolchain would make the drift check fail for
       # the wrong reason.
@@ -268,7 +260,7 @@ jobs:
         name: Did this push touch solvers/otkd?
         run: |
           base="$(git rev-parse HEAD^ 2>/dev/null || true)"
-          if [ -z "$base" ] || git diff --name-only "$base" HEAD -- solvers/otkd | grep -q .; then
+          if [ -z "$base" ] || git diff --name-only "$base" HEAD -- solvers/otkd scripts/build-otkd.sh | grep -q .; then
             echo "run=yes" >> "$GITHUB_OUTPUT"
           else
             echo "run=no" >> "$GITHUB_OUTPUT"

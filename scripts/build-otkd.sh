@@ -64,7 +64,7 @@ case "${1:-}" in
       echo "  Run scripts/build-otkd.sh and commit what it writes." >&2
       exit 1
     fi
-    python3 - "$tmp/bundle/MANIFEST.json" "$TARGET/MANIFEST.json" <<'PYTHON'
+    uv run --project "$PROJECT" --frozen python - "$tmp/bundle/MANIFEST.json" "$TARGET/MANIFEST.json" <<'PYTHON'
 import json, sys
 left, right = (json.load(open(path)) for path in sys.argv[1:3])
 for manifest in (left, right):

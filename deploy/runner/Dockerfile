@@ -26,6 +26,10 @@ ENV DEBIAN_FRONTEND=noninteractive
 RUN apt-get update && apt-get install -y --no-install-recommends \
       ca-certificates curl git gnupg jq tar unzip xz-utils \
       libicu74 libssl3 zlib1g libatomic1 \
+      # A host Rust build links its build script and its test binaries. The wasm link
+      # uses rust-lld and needs nothing, so this is the one gap the image had when
+      # `solvers/` arrived.
+      build-essential \
       # `shellcheck`, because actionlint runs it only when it is on PATH — and the
       # repository documents that as true in CI. Without it the shell half of the
       # workflow lint is silently skipped, which is a check that cannot fail.
