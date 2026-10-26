@@ -630,9 +630,10 @@ jobs:
     outputs:
       tag: ${{ steps.release.outputs.tag }}
     # Main only: a branch whose whole purpose is work in progress must not tag.
-    # The ref is enough: a pull request runs under refs/pull/..., and a branch
-    # under refs/heads/<branch>; only main tags and deploys.
-    if: github.ref == 'refs/heads/main'
+    # `always()` plus an explicit result: a job whose `needs` includes a skipped job
+    # (the dev otkd suite on main) is skipped by the implicit success() even when the
+    # gate itself is green. The gate is the one thing that must be green.
+    if: always() && github.ref == 'refs/heads/main' && needs.gate.result == 'success'
     # Hosted runner. The self-hosted pool is idle; `deploy/runner/README.md` has the
     # switch back if the hosted minutes run out.
     runs-on: ubuntu-latest
@@ -670,9 +671,8 @@ jobs:
     # that did not verify, and nothing ships unreleased. Main only, which is what
     # keeps a push to any other branch from changing what is live.
     needs: [release, build]
-    # The ref is enough: a pull request runs under refs/pull/..., and a branch
-    # under refs/heads/<branch>; only main tags and deploys.
-    if: github.ref == 'refs/heads/main'
+    # Same reason as the release: the build is a need and the ref is the gate.
+    if: always() && github.ref == 'refs/heads/main' && needs.release.result == 'success' && needs.build.result == 'success'
     # Hosted runner. The self-hosted pool is idle; `deploy/runner/README.md` has the
     # switch back if the hosted minutes run out.
     runs-on: ubuntu-latest
