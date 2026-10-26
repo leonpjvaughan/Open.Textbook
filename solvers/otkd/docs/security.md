@@ -1,5 +1,12 @@
 # Repository protection
 
+> **Historical, 2026-10-26.** This file describes `suspension-kinematics`, which
+> moved into `Open.Textbook` at `solvers/otkd` and is archived. Its settings,
+> interaction limits and workflows went with the archive; the collection's own
+> controls are in `.github/AGENTS.md` and `DEPLOY.md`. Nothing here is a live
+> instruction.
+
+
 **Status:** applied to `leonpjvaughan/suspension-kinematics` on 2026-10-18. Recorded here because
 repository settings are not in the tree and would otherwise be folklore.
 

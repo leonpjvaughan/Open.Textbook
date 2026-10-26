@@ -79,8 +79,12 @@ $ uv run otkd emit <model> <dir> --format wasm    # generated Rust kernel
 $ uv run python scripts/build_release.py --version <v> --out dist --package
 ```
 
-The version is written in `src/open_textbook/otkd/__init__.py`, not derived from a tag.
-The bundle's `MANIFEST.json` records the commit and the compiler; that is the provenance.
+The version is the **collection's tag**, read by `hatch-vcs` into
+`src/open_textbook/otkd/_version.py` at install time; no version text is written by
+hand. That is what keeps the package, the bundle and the site agreeing, and it is
+why `scripts/build-otkd.sh` sets `SETUPTOOLS_SCM_PRETEND_VERSION` when it builds a
+bundle from a checkout without tags. The bundle's `MANIFEST.json` records the
+commit and the compiler; that is the provenance.
 
 ## End every run with this
 

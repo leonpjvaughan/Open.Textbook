@@ -4,6 +4,14 @@ Everything below is **accepted**; the documents are now the contract and this fi
 record of why. Where a decision replaced a handoff sketch, the handoff's own words are
 quoted so the change is visible.
 
+> **Two mechanics below are historical, 2026-10-26.** The package moved into
+> `Open.Textbook` at `solvers/otkd`, and the repository it was written in is
+> archived. Rounds 7 to 9 describe `scripts/version.py` and
+> `.github/workflows/release.yml`; neither exists now. The *decisions* still hold:
+> the tag is the version, `hatch-vcs` serves it, and artefacts carry no version
+> text. What changed is who makes the tag: the collection's own release, not a
+> job here.
+
 ## Round 1
 
 | # | question | decision |

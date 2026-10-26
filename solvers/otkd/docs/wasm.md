@@ -241,12 +241,17 @@ sha256 40d6f315…
 Five pose solvers and one integrator: the compliant and the redundant models compile now, and a
 dynamics model has no payload because a trajectory is not a sweep.
 
-`.github/workflows/release.yml` runs that on every push to `main` that warrants a release: the
-version is decided from the Conventional Commits, applied as a tag only once the artefacts exist,
-and served to the package by `hatch-vcs` ([`releasing.md`](releasing.md)). It rebuilds the
-archive once to prove it is byte-reproducible, then attaches the zip and its `.sha256` to the
-release. There is no `v` prefix. Reproducibility is
-not an assertion: the workflow compares the two builds.
+> **The workflow described below no longer exists.** The package moved into
+> `Open.Textbook` on 2026-10-26, there is no release job, and the bundle is built
+> from this tree by `scripts/build-otkd.sh` in the collection. The reproducibility
+> argument is the part that survived: that script builds the bundle twice into
+> temporary directories and diffs them, and CI runs it on every push that touches
+> this project. The paragraph is kept because the reasoning is the record.
+
+The release job rebuilt the archive once to prove it byte-reproducible, then
+attached the zip and its `.sha256`. There was no `v` prefix; the tag was the
+version, served by `hatch-vcs` ([`releasing.md`](releasing.md)). Reproducibility was
+not an assertion: the workflow compared the two builds.
 
 ```
 otkd-0.1.0/

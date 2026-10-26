@@ -5,17 +5,33 @@ Actions minutes are spent, and faster on the second run because Chrome, `node_mo
 and the checkout are already on disk.
 
 ```bash
-deploy/runner/start.sh                       # build, register, start
-gh variable set RUNNER_LABEL --body self-hosted   # point CI at it
-deploy/runner/start.sh --logs                # watch it pick up a job
-gh variable delete RUNNER_LABEL              # put CI back on ubuntu-latest
-deploy/runner/start.sh --stop                # deregister and remove
+deploy/runner/start.sh          # build, register, start four runners
+deploy/runner/start.sh --status # containers, their registrations, where CI runs
+deploy/runner/start.sh --logs   # watch them pick up jobs
+deploy/runner/start.sh --prune  # remove registrations left offline
+deploy/runner/start.sh --stop   # deregister and remove
 ```
 
-**CI now uses `ubuntu-latest`.** This runner is idle: the hosted runners give each job
-its own machine, which is what the otkd split and the parallel gate need. To use it
-again, set `RUNNER_LABEL` and restore `runs-on: ${{ vars.RUNNER_LABEL || 'ubuntu-latest' }}`
-in `.github/workflows/verify.yml`; nothing about the gate is different on it.
+**CI runs on `ubuntu-latest`, and this fleet is the warm fallback.** The hosted runners
+give every job its own machine, which is what the otkd split and the parallel gate
+need; the fleet is kept up because the second run here is much faster, with Chrome,
+`node_modules` and the checkout already on disk.
+
+**There is no variable to set.** `runs-on` used to be
+`${{ vars.RUNNER_LABEL || 'ubuntu-latest' }}`, and that indirection was removed on
+purpose: a repository setting deciding which machine runs a job is a dependency
+nobody can see in the workflow. To point CI here, edit `runs-on:` in
+`.github/workflows/verify.yml` for the jobs you want; nothing else about the gate
+changes.
+
+A registration is minted on every start, and only `--stop` removes it. A rebuild that
+replaces a container leaves its old registration behind, offline and forever, so
+`--status` counts them and `--prune` deletes them:
+
+```
+$ deploy/runner/start.sh --status
+4 container(s), 4 online, 0 offline
+```
 
 ## What the image holds, and what it deliberately does not
 
