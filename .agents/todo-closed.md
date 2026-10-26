@@ -6058,3 +6058,68 @@ paragraph no longer repeats it. Both figures audit clean in both schemes
 (`audit site --only step-limit|heat-lab`, 2 of 2 measurements each) and the page's
 captures show a cost curve and a live threshold, not two versions of one point.
 `textbook.lint numerical-methods` reports nothing.
+
+## 130. The runner README described a machine that does not exist — **done**
+
+**What is wrong.** Review pass one read the file next to the thing it describes and
+found five contradictions, in a document about exposing a machine to the internet:
+
+```
+$ grep -n "docker.sock" deploy/runner/README.md deploy/runner/docker-compose.yml
+deploy/runner/README.md:53:The compose file mounts `/var/run/docker.sock` because one job is a Docker action
+deploy/runner/docker-compose.yml:23:    # **No Docker socket.** It was here for one Docker action (`rhysd/actionlint`), ...
+
+$ gh repo view --json visibility -q .visibility
+PUBLIC
+
+$ grep -c "vars.RUNNER_LABEL" .github/workflows/verify.yml
+0
+```
+
+The README said the socket was mounted (it is not), that the repository is private (it
+is public), that a fork pull request could not run here (a returning contributor's does
+not need approval), that the switch back is `gh variable delete RUNNER_LABEL` (removed on
+purpose), and it named a socket group id `start.sh` no longer sets and a registration
+name no container has. A security note that reassures on the wrong grounds is worse than
+no note.
+
+**The fix.** The section is now what is true: no socket, the repository is public, the
+fleet is for `push`-only work and must not be the target of a `pull_request` job, no
+secret reaches a job that could run there (the two jobs that read one are `main`-only and
+hosted), and stopping it is `deploy/runner/start.sh --stop`. The piece table lost the
+socket too.
+
+**Done (2026-10-26).** Every claim was checked against `docker-compose.yml`, `gh repo
+view`, `.github/workflows/verify.yml` and `entrypoint.sh`. Two smaller findings were
+fixed in the same pass: `solvers/otkd/docs/security.md` linked a `.github/dependabot.yml`
+that went with the archived repository, and `solvers/ABI.md` said "two entry points" in
+the paragraph that then lists three.
+
+## 131. The parabolic page's step count was wrong by a power of four — **done**
+
+**What is wrong.** Review pass two read the sentence it had just written:
+
+> Four times the cells means a quarter of the time step, so four times as many steps,
+> and four times the work inside each one.
+
+Four times the cells is a quarter of the *spacing*, and the stable step goes as the
+square of the spacing, so it is a **sixteenth** of the step and **sixteen** times as many
+steps. The figure doubles the cells (10, 20, 40, 80), which is a quarter of the step and
+four times the steps, so the sentence also described a figure that is not on the page.
+The claim a reader can check against the plot is 64, because 12800 / 200 = 64.
+
+**The fix.** The sentence doubles with the figure: "Twice the cells means a quarter of
+the time step, so four times as many steps, and twice as much arithmetic in each one …
+eight times the resolution costs sixty-four times the steps."
+
+**Done (2026-10-26).** The arithmetic was checked against `stepsFor = 2N²`: 10 → 200,
+80 → 12800, ratio 64; and against the figure's own caption, which already said "twice
+the cells, four times the steps". `textbook.lint numerical-methods` reports nothing.
+
+**The test that came out of it.** `tests/test_figures.py` now checks that every name a
+lab module passes to `kernel.scalar`, `output`, `get`, `set` or `spec`, and every entry
+in its `controls` list, is a parameter or output the kernel's generated manifest
+declares. Renaming a parameter in Rust breaks the figure at run time otherwise, in a
+browser, on a page nobody rebuilt. Verified by breaking it: `norm` → `norm_missing` in
+`heat-lab.js` fails the test, and the restored file passes.
+
