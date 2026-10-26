@@ -39,8 +39,8 @@ Three reasons, in increasing order of importance.
 - **Squares give linear equations.** Setting $\partial S/\partial D = 0$ gives
   $J^{\mathsf{T}}\mathbf{r} = 0$ — the normal equations — which are linear in the
   unknown once $J$ is evaluated. Nothing has to be searched.
-- **The answer is a projection.** This is the real reason. Moving $D$ by a small
-  amount $\Delta$ changes $\mathbf{r}$ by $J\Delta$, and $J$ maps the plane of
+- **The answer is a projection.** This is the reason that matters most. Moving $D$ by a
+  small amount $\Delta$ changes $\mathbf{r}$ by $J\Delta$, and $J$ maps the plane of
   possible moves into three-dimensional residual space. The set of reachable
   residuals is a **plane through $\mathbf{r}$**, and the closest point on a plane to
   the origin is found by dropping a perpendicular onto it. That perpendicular is
@@ -74,8 +74,8 @@ which is not the same as $\mathbf{r} = 0$. A least-squares solve has converged w
 it can no longer improve — not when it has satisfied the equations.
 
 That distinction is why the numbers in the main thread's table fall to the round-off
-floor and then stop. They are not getting closer to zero because the solver gave up;
-they are at the point where the solver has nothing left to improve, and the leftover
+floor and then stop. They are not getting closer to zero because the solver gave up.
+They are at the point where the solver has nothing left to improve, and the leftover
 is the arithmetic's own noise.
 
 ## Why not the smallest possible misfit instead

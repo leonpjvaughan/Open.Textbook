@@ -49,10 +49,10 @@ within the speed you picked.
 Neither is wrong. One is exact and expensive; the other is approximate and cheap. The
 choice was made when the model was written.
 
-## The same corner, in this book
+## The same corner, in Maths Applied
 
-The suspension corner has a joint that is a bush, and there are two ways to write it
-down.
+The [suspension corner](/maths-applied/chapter-1/section-1.5/learn/) has a joint that
+is a bush, and there are two ways to write it down.
 
 **Keep the joint rigid, and price it.** The joint is a constraint, its force is a
 multiplier, and the state and the force are solved together. The class is a saddle

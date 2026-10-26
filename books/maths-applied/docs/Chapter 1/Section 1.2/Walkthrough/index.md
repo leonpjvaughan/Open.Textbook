@@ -127,7 +127,7 @@ Three numbers matter for the chapter's question:
 The **instant centre** is where the two arm axes would meet if they carried on
 past the wheel. It is 2.36 m from the hub, which is why the drawing has to say
 "to the instant centre" rather than showing it. The **roll centre** is where the
-line from the contact patch through that point crosses the middle of the car: it
+line from the contact patch through that point crosses the middle of the car. It
 is 19 mm above the ground at rest, and it falls below the ground as the wheel rises.
 
 ## The agreement panel
@@ -143,9 +143,10 @@ iteration that §1.3 meets, and the package's compiled kernel.
 | The package's own two routes, `agreement.max_abs_diff` | **2 × 10⁻¹³** |
 
 The last row is read from the vendored `out.js`, not typed here; the middle one is what
-the figure above computes in the page. The package checks itself the same way this section
-does: its `agreement` compares a closed-form construction — circle against circle, then the
-tie rod, with no Jacobian and no Newton — against its symbolic solver. Two derivations, one
+the figure above computes in the page. The package checks itself the same way this
+section does. Its `agreement` compares a closed-form construction against its
+symbolic solver: circle against circle, then the tie rod, with no Jacobian and no
+Newton. Two derivations, one
 answer. The closed form is the fast path and the
 independent check at once: it gets the answer without a solver, so it can be used to
 test one. Two routes to one number is evidence; one route is a claim.
@@ -154,8 +155,8 @@ test one. Two routes to one number is evidence; one route is a claim.
 
 This section's model is a front view. The package the chapter's numbers come from,
 `suspension-kinematics`, solves the full mechanism instead: three bodies, twenty-one
-equations, Newton at every step. Its derivation also generates a **solver compiled to
-WebAssembly**, and that solver ships with this page — vendored under
+equations, Newton at every step. Its derivation also generates a **solver compiled
+to WebAssembly**. That solver ships with this page, vendored under
 `docs/assets/data/otkd/`, with the package's own exported sweeps beside it and a
 record of the hashes.
 
@@ -207,7 +208,7 @@ looks like a physics bug. The mechanism is then assembled the other way up, the
 camber curve starts somewhere else, and it can leap from one solution to the other
 part-way through the travel.
 
-The check is one line long and hard to live without: solve each position from the
+The check is one line long and hard to live without. Solve each position from the
 previous one, keep the branch the design position was on, and record any frame
 where the branch changes. A curve with a jump in it is a solver finding a
 different assembly, not a wheel doing something surprising.

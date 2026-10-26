@@ -28,8 +28,8 @@ At the rest position of this chapter's geometry, the two answers are:
 
 Both satisfy the equations exactly. Both are the same parts, rigid, in a valid
 arrangement. The second has the upright folded down and inwards, past the lower
-arm: a position the mechanism can reach mathematically and cannot reach with the
-wheel attached, because the wheel would be inside the car.
+arm. The mechanism can reach that position mathematically. It cannot reach it with
+the wheel attached, because the wheel would be inside the car.
 
 So the equations do not have one answer, and no amount of care with the algebra
 will make them. **Which assembly the mechanism is in is a fact about the object,
@@ -40,7 +40,7 @@ not about the equations.**
 Two habits, and both are needed.
 
 **Seed every solve from the last one.** Consecutive positions of a wheel are close
-together, so the previous answer is the best possible starting guess: it converges
+together, so the previous answer is the best possible starting guess. It converges
 in two or three steps instead of ten, and — more importantly — it converges to the
 same branch.
 
@@ -72,7 +72,7 @@ be used.
 
 In the front view the upright is a line, and the two circles fix its upper end in
 two ways. In three dimensions the upright is a body and the arm is a plane of
-motion, so the same mechanism still has two assemblies, reached by the upright
+motion. The same mechanism still has two assemblies. Each is reached by the upright
 swinging about the line between the ball joints.
 
 The count of solutions does not change. What changes is that the second one is

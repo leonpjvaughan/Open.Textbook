@@ -27,7 +27,7 @@ Two questions follow, and only the second one is interesting.
 ## The model, changed in exactly one place
 
 The upper ball joint stops being a joint and becomes a spring. The upper arm's
-outer point and the upright's upper point are no longer the same place: they are
+outer point and the upright's upper point are no longer the same place. They are
 joined by a spring of stiffness $k$, and the distance between them is the bush's
 deflection.
 
@@ -37,11 +37,11 @@ spring pushes, the tyre pushes, and the two balance.
 
 $$ E(\alpha,\beta) = \tfrac12 k\left|D(\alpha) - U(\beta)\right|^2 - F\,x_P(\alpha) $$
 
-Here $\alpha$ is how far the upright has turned about the lower ball joint, $\beta$
-is where the upper arm points, $U$ is the upper arm's outer end, $D$ is the
-upright's upper point, and $F$ is a sideways force at the contact patch — the force
-a cornering car puts through the tyre. The first term is the energy stored in the
-bush. The second is the work the tyre's force does as the contact patch moves.
+Here $\alpha$ is how far the upright has turned about the lower ball joint, and
+$\beta$ is where the upper arm points. $U$ is the upper arm's outer end, $D$ is the
+upright's upper point, and $F$ is a sideways force at the contact patch. That is
+the force a cornering car puts through the tyre. The first term is the energy stored
+in the bush. The second is the work the tyre's force does as the contact patch moves.
 
 Equilibrium is where that energy stops changing:
 
@@ -119,11 +119,11 @@ Now the tolerance. A tenth of a degree can be asked of two different things:
 
 So the answer to "which model do I need" is not a matter of taste, and it is not
 even a single number. It is a comparison between the tolerance the question asks for
-and the size of the effect the simpler model leaves out — and the comparison has to
+and the size of the effect the simpler model leaves out. The comparison has to
 be made against **the quantity the question is about**, not against a number that
 happens to be nearby.
 
-Here the two thresholds are about nine times apart, and a reader who took the wrong
+Here the two thresholds are about nine times apart. A reader who took the wrong
 one would either throw away a model that answers the question or trust a model that
 misses it by a degree. That is why this section is the centre of the chapter rather
 than an appendix to it. §1.2's model and this one do not compete. They answer
@@ -131,7 +131,7 @@ different versions of the same question, and which version you asked decides whi
 one is right.
 
 Read the first bullet again, though, because it is a different kind of question from
-everything above. "About 1.8 MN/m" is not a solve: it is the stiffness that makes a
+everything above. "About 1.8 MN/m" is not a solve. It is the stiffness that makes a
 number meet a target, and finding it means searching over the stiffness rather than
 settling at the equilibrium for one. The bush still settles where the two forces
 agree; what changes is what you are asking for.
@@ -164,10 +164,10 @@ compliance at run time, and the quantity it moves is not camber.
 | 10⁻⁶ m/N | 0.540° | −0.0146° |
 
 The top rung is the model's own default compliance. Ten times softer moves the toe by
-half a degree and the camber by a hundredth of a degree. That is the section's real lesson
-in a second form: **which joint you soften decides which angle moves.** A bush at the upper
-ball joint tilts the wheel; a bush in the tie rod turns it. The model has to name the joint,
-not just the stiffness.
+half a degree and the camber by a hundredth of a degree. That is the section's point
+in a second form: **which joint you soften decides which angle moves.** A bush at
+the upper ball joint tilts the wheel; a bush in the tie rod turns it. The model
+has to name the joint, not just the stiffness.
 
 Two vendored exports, two ways of carrying the number. The bush ladder above is the
 `double-wishbone-ubj` export's, which carries four stiffnesses. The compliant export
@@ -208,8 +208,8 @@ between branches that happen to be nearby.
 ## Watch out
 
 A spring with nothing pushing it does nothing. If the load $F$ were zero, the
-energy would be smallest exactly where the bush has no deflection, and the model
-would collapse back onto the rigid one at any stiffness at all.
+energy would be smallest exactly where the bush has no deflection. The model
+would then collapse back onto the rigid one at any stiffness at all.
 
 So compliance is not a property of the bush on its own. It is a property of the
 bush **and the load**, and a model that has one without the other will show nothing
@@ -220,7 +220,7 @@ prints it: at the two ends of its control, 0.1 and 20 MN/m, the bush moves 12 mm
 The second trap is thinking that "more complex" means "more correct". Which model
 answers the question depends on which quantity the tolerance is attached to, and
 this chapter has shown two answers about nine times apart. A stiffness you have
-to guess is a new source of error, not a removed one — and a model that needs one
+to guess is a new source of error, not a removed one. A model that needs one
 should have to earn it by changing the answer the question asked for.
 
 ## Going further

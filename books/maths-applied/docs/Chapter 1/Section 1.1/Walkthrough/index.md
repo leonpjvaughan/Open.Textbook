@@ -25,8 +25,8 @@ move and how much the design can be changed to suit.
 its camber change, and what is the simplest model that answers the question
 within a tenth of a degree?
 
-The second half of that question is the real subject. The first half has one
-answer. The second half is a judgement, and the chapter's argument is that the
+The second half of that question is where the chapter's argument lives. The first half
+has one answer. The second half is a judgement, and the chapter's argument is that the
 judgement can be made with numbers rather than with taste.
 
 ## The object
@@ -102,8 +102,8 @@ what lies beyond that — mass, dampers, and the rest of the car.
 
 The next section builds the first model, and the figure there shows the mechanism
 moving with the camber read off as it goes. It is worth knowing before then that
-the answer is not obvious: the wheel leans one way as it rises and the other way
-as it falls, and which way is a property of the linkage rather than a rule.
+the answer is not obvious. The wheel leans one way as it rises and the other way
+as it falls. Which way is a property of the linkage rather than a rule.
 
 There is no agreement panel in this section, because there is nothing yet to
 agree with. From §1.2 onwards, every section ends by putting a number on how far
@@ -121,9 +121,9 @@ Positive camber leans the **top** of the wheel out. It is a common mistake to re
 the other way round, and a whole chapter of signs then comes out upside down.
 
 The check that settles it: a wheel with positive camber looks like the top of an
-`A` that has been pushed outwards at the top — `/ \` seen from the front of the
-car, leaning away from the middle. Every sign in this chapter follows from that
-one convention, and the code that computes camber uses the same definition.
+`A` that has been pushed outwards at the top. It looks like `/ \` seen from the
+front of the car, leaning away from the middle. Every sign in this chapter follows
+from that one convention, and the code that computes camber uses the same definition.
 
 ## Where the mathematics lives
 

@@ -43,12 +43,13 @@ of the matrix**, not by the subject the matrix came from:
 - **Rectangular.** More equations than unknowns is a least-squares problem, and the
   answer is a projection rather than a solution.
 
-A linear system is often one step inside a non-linear solve. `Maths Applied` §1.3's
-three distance rules are non-linear, and Gauss–Newton iterates them; each step solves
-the linear system on this page. The rules at that step are linear, and the outer model
-is a root problem or an optimisation. That is the distinction the
-[class is a choice](../choosing-the-class/index.md) page makes: the class belongs to the
-writing, and the writing can be one step of a larger model.
+A linear system is often one step inside a non-linear solve. `Maths Applied`
+[§1.3](/maths-applied/chapter-1/section-1.3/learn/)'s three distance rules are
+non-linear, and Gauss–Newton iterates them; each step solves the linear system on
+this page. The rules at that step are linear, and the outer model is a root problem
+or an optimisation. That is the distinction the
+[class is a choice](../choosing-the-class/index.md) page makes: the class belongs to
+the writing, and the writing can be one step of a larger model.
 
 ## The signature
 

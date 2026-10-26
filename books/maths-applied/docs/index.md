@@ -22,8 +22,9 @@ gives it mass. Each model is introduced only when the one before it has stopped
 answering the question, and every replacement is checked against the last by a number
 the book shows.
 
-It is not a course, and nothing here is examined. You need trigonometry and not
-much else; each piece of mathematics is introduced where it is used.
+It is not a course, and nothing here is examined. You need trigonometry to start.
+The chapter says what each new piece of mathematics is for as it arrives, and the
+optional pages take it further.
 
 ## Chapter 1: Suspension kinematics
 

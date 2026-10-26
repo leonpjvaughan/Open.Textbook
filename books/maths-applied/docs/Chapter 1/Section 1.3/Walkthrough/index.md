@@ -32,7 +32,7 @@ two-leg model is not wrong about the car. It is wrong about the *counting*.
 ## In the front view, two of those are one equation
 
 Look from in front of the car. The wishbone's legs lie almost fore and aft, so this
-is the view along them: the two pivots $B_1$ and $B_2$ project onto **the same
+is the view along them. The two pivots $B_1$ and $B_2$ project onto **the same
 point**, and the two leg lengths project onto **the same circle**.
 
 That is a fact about the projection rather than about the wishbone — the pivots are
@@ -91,7 +91,7 @@ three equations still is.
 
 The error does not fall to nothing: it falls to the smallest number a double
 precision float can tell apart from nothing, and stays there. That floor is
-**round-off**, not physics. It is worth knowing the difference, because a residual
+**round-off**, not physics. It is worth knowing the difference. A residual
 that flattens out *above* the round-off floor means the equations genuinely
 disagree, and that is a modelling problem rather than a numerical one.
 
@@ -113,8 +113,8 @@ at the bump end of the travel, the pose the figure mounts; the design pose's σ 
 1.415 and 0.998, which is §1.4's table.
 The package's export for the same mechanism is vendored at
 `docs/assets/data/otkd/models/double-wishbone-two-leg/out.js`, and it does carry
-`iterations` — one residual vector and one set of singular values per Newton step —
-but that is a system with twenty-one unknowns, not the three rows above. Two sets of
+`iterations`: one residual vector and one set of singular values per Newton step.
+But that is a system with twenty-one unknowns, not the three rows above. Two sets of
 numbers, two different systems; the comparison they support is the pose, which is
 what §1.4 checks.
 
@@ -134,11 +134,11 @@ def least_squares(start, theta, steps=20, tol=1e-12):
     return Solution(D, cost=0.5 * norm(r)**2, singular_values=svd(J)[0], ...)
 ```
 
-The real function is
-[`least_squares.py`](https://github.com/leonpjvaughan/suspension-kinematics/blob/main/src/otkd/solvers/least_squares.py),
-and it returns the cost, the optimality and the singular values of $J$ at the
-solution, because a least-squares answer without its residual is a number with no
-error bar.
+The function itself is
+[`least_squares.py`](https://github.com/leonpjvaughan/suspension-kinematics/blob/main/src/otkd/solvers/least_squares.py).
+It returns the cost, the optimality and the singular values of $J$ at the
+solution. A least-squares answer without its residual is a number with no error
+bar.
 
 ## You should now be able to
 

@@ -50,8 +50,8 @@ wheel's vertical distance from the chassis, positive in bump), `camber` and `toe
 degrees, and `energy`.
 
 `heave` and `travel` are this book's quantities, derived here from the package's world points.
-The rest are the package's own numbers at the precision its payload uses — angles to four
-decimal places, lengths to six — so a page and the package cannot disagree about a digit.
+The rest are the package's own numbers at the precision its payload uses: angles to four
+decimal places, lengths to six. So a page and the package cannot disagree about a digit.
 
 **The package's conventions, not this book's.** Camber is positive with the top of the
 wheel outboard — the opposite sign to §1.2 — and it is measured from the design position.

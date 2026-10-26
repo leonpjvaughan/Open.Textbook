@@ -9,9 +9,10 @@ equation that has to hold at a point, and nothing changes with time.
 
 ## What you are modelling
 
-A state that has to satisfy a condition. The condition can come from geometry — two
-circles have to meet — from balance — the forces have to add to zero — or from
-closure — a loop of links has to come back to where it started.
+A state that has to satisfy a condition. The condition can come from geometry,
+because two circles have to meet. It can come from balance, because the forces have
+to add to zero. It can come from closure, because a loop of links has to come back
+to where it started.
 
 The answer is the state where the condition holds. There may be more than one.
 

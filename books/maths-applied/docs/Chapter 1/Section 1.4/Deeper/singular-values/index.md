@@ -76,8 +76,8 @@ others.
 | left null vector | (0.707, −0.707, 0) | rows 1 and 2 cancel |
 
 The ratio is the number practitioners actually watch. If σ₂ had come out at 0.001
-rather than 0.998, the model would be in trouble of a different kind: two equations
-that are *almost* the same, so that a small measurement error in one of them swings
+rather than 0.998, the model would be in trouble of a different kind. Two equations
+would be *almost* the same, so a small measurement error in one of them would swing
 the answer wildly. That is not redundancy, it is fragility, and the cure is
 different — measure better, or model differently.
 

@@ -55,6 +55,66 @@ def prose_lines(text: str):
         yield number, line, stripped
 
 
+#: A line that starts a heading, a table, a directive, a block quote or a list.
+#: These are structure rather than prose, and the sentence rule does not join
+#: them: a table cell is not a sentence, and a list item is a list.
+STRUCTURAL = re.compile(r"^\s*(?:#{1,6}\s|\||<|:::|>)")
+LIST_ITEM = re.compile(r"^\s{0,3}(?:[-*+]|\d+\.)\s")
+FRONT_MATTER = re.compile(r"\A---\r?\n.*?\r?\n---\r?\n", re.S)
+
+
+def prose_paragraphs(text: str):
+    """Yield ``(first_line, joined_prose)`` for each paragraph in a page.
+
+    The line-based rules stay line-based: a missing space or a US spelling lives
+    on one line, and splitting a paragraph to find it would only lose the line
+    number. The sentence ceiling is the exception. Every page is hard-wrapped
+    near 80 columns, so a 40-word sentence is normally spread over three lines
+    and a per-line rule can never see it — which is why the ceiling was
+    documented and unenforced. Joining the lines of a paragraph is the smallest
+    change that makes the sentence the unit the rule is about.
+
+    Headings, tables, directives, block quotes, list items and display maths are
+    structure, not prose. A list is skipped whole, including its continuation
+    lines, because a bullet is a list of things rather than a sentence.
+    """
+    buffer: list[str] = []
+    start = 0
+    in_list = False
+    # Front matter is data for the engine, not a paragraph for the reader. Replace
+    # it with its own newlines so every finding after it keeps its line number.
+    text = FRONT_MATTER.sub(lambda m: "\n" * m.group(0).count("\n"), text)
+    for number, _raw, stripped in prose_lines(text):
+        body = stripped.strip()
+        if not body or body == "\x00":
+            if buffer:
+                yield start, " ".join(buffer)
+                buffer = []
+            in_list = False
+            continue
+        if STRUCTURAL.match(stripped) or LIST_ITEM.match(stripped):
+            if buffer:
+                yield start, " ".join(buffer)
+                buffer = []
+            in_list = bool(LIST_ITEM.match(stripped))
+            continue
+        if in_list:
+            continue
+        if not buffer:
+            start = number
+        buffer.append(stripped)
+    if buffer:
+        yield start, " ".join(buffer)
+
+
+def long_sentences(text: str):
+    """Yield ``(line_number, sentence)`` for each sentence over the ceiling."""
+    for number, paragraph in prose_paragraphs(text):
+        for sentence in SENTENCE.findall(paragraph):
+            if len(re.findall(r"[A-Za-z]+", sentence)) > 32:
+                yield number, " ".join(sentence.split())
+
+
 # --- rules --------------------------------------------------------------------
 
 # --- rules --------------------------------------------------------------------
@@ -320,6 +380,28 @@ DOUBLE_SPACE = re.compile(r"(?<=[a-z,;:.)]) {2,}(?=[A-Za-z])")
 DOUBLE_WORD = re.compile(r"\b(\w+)\s+\1\b", re.I)
 MISSING_SPACE = re.compile(r"(?<![:/\w])[,;](?=[A-Za-z])")
 SENTENCE = re.compile(r"[^.!?]+[.!?]?")
+
+#: The sentences over the ceiling a book still carries, counted on the day the rule
+#: learned to read paragraphs rather than lines. The debt is grandfathered so the
+#: rule can land without a 461-sentence rewrite in the nine books that still have
+#: one, and it may only go down: fix a sentence and lower the number, and a new
+#: book starts at 0. It is a count rather than a list, so a new sentence in a book
+#: with debt can replace one that was fixed; the two reference books are at 0 and
+#: stay there, and the audit lists the over-ceiling sentences it finds
+#: (`textbook-audit.py <book>`), so the debt is visible rather than hidden.
+SENTENCE_DEBT: dict[str, int] = {
+    "gcse-maths": 3,
+    "gcse-physics": 44,
+    "a-level-maths": 124,
+    "a-level-physics": 35,
+    "ie-jc-maths": 55,
+    "ie-lc-maths": 42,
+    "ie-lc-applied-maths": 50,
+    "ie-lc-physics": 100,
+    "proofs": 8,
+    "numerical-methods": 0,
+    "maths-applied": 0,
+}
 LINK = re.compile(r"\[([^\]]+)\]\(([^)]+)\)")
 SECTION_REF = re.compile(r"\bSection (\d+\.\d+)\b")
 CHAPTER_REF = re.compile(r"\bChapter (\d+)\b")
@@ -395,6 +477,7 @@ def lint(book: books.Book, fix: bool, findings: Counter, examples: dict) -> tupl
 
     fixed_files = 0
     paths = sorted(docs.rglob("*.md"))
+    long_found: list[tuple[str, int, str]] = []
     for path in paths:
         text = path.read_text(encoding="utf-8")
         # A scaffold stub is not reader content. It carries the marker the
@@ -436,10 +519,6 @@ def lint(book: books.Book, fix: bool, findings: Counter, examples: dict) -> tupl
                 ("-", "*", "|", "#", "1.", "2.")
             ):
                 note("style:long-line", where)
-            for sentence in SENTENCE.findall(stripped):
-                if len(sentence.split()) > 32:
-                    note("style:long-sentence", where)
-                    break
             if PLACEHOLDERS.search(stripped):
                 note("mechanics:placeholder", where)
             if DOUBLE_SPACE.search(stripped):
@@ -454,6 +533,12 @@ def lint(book: books.Book, fix: bool, findings: Counter, examples: dict) -> tupl
             fixed_files += 1
 
         rel_posix = path.as_posix()
+        # The sentence ceiling, on paragraphs rather than lines. The sentences are
+        # collected here and judged after the pages, because the debt is a book's,
+        # not a page's.
+        long_found.extend(
+            (rel, line, sentence) for line, sentence in long_sentences(text)
+        )
         if re.search(r"Chapter \d+/index\.md$", rel_posix):
             if "## The chapter problem" not in text:
                 note("structure:chapter-missing-anchor", rel)
@@ -471,6 +556,16 @@ def lint(book: books.Book, fix: bool, findings: Counter, examples: dict) -> tupl
         if practise and f"/{practise}/" in rel_posix:
             if ":::problems" not in text or ":::answers" not in text:
                 note("structure:problems-missing-markers", rel)
+
+    # The sentence ceiling. A book's existing debt is allowed; everything after it
+    # is a finding. Sorting longest first means the findings a book without debt
+    # prints are the sentences most worth splitting.
+    for index, (rel, line_number, sentence) in enumerate(
+        sorted(long_found, key=lambda item: len(item[2]), reverse=True)
+    ):
+        if index < SENTENCE_DEBT.get(book.id, 0):
+            continue
+        note("style:long-sentence", f"{rel}:{line_number}: {sentence[:90]}")
 
     # A retrieval starter repeated across a chapter's sections is a copy-paste, not
     # a design (P4). Advisory: it reports, and the content pass acts on it.

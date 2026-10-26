@@ -119,9 +119,9 @@ towards them. That is why the two diagnostics can both be small at once: the con
 enforced rather than encouraged.
 
 The two diagnostics at the bottom are the ones that make the oscillation trustworthy.
-An integrator that leaked energy would show a motion that grew or died, and the
-constraint drift is the measure of whether the linkage is still a linkage: at 10⁻¹⁵ m
-it is round-off, not a stretched arm.
+An integrator that leaked energy would show a motion that grew or died. The
+constraint drift is the measure of whether the linkage is still a linkage. At
+10⁻¹⁵ m it is round-off, not a stretched arm.
 
 ## The agreement this section owes
 
@@ -148,9 +148,9 @@ claim in the form this model can answer.
 
 ## One trajectory, or a family of them
 
-The run above is one stiffness. The section's point is that the stiffness decides the motion, and a
-reader can watch that happen instead of taking it on trust: the control below sets the coil's
-stiffness and the engine re-runs, in this page.
+The run above is one stiffness. The section's point is that the stiffness decides
+the motion. A reader can watch that happen instead of taking it on trust: the
+control below sets the coil's stiffness and the engine re-runs, in this page.
 
 :::figure dynamics-table
 
@@ -170,20 +170,23 @@ model, in the same way the stiffness is.
 
 ## The code behind these numbers
 
-None of the numbers above was typed. The package derives the equations with sympy — the mass
-matrix, the velocity-product term that `M q̈ = f` leaves out, and the forces are in
-[`otkd/problem/dynamics.py`](https://github.com/leonpjvaughan/suspension-kinematics/blob/main/src/otkd/problem/dynamics.py)
-— and
+None of the numbers above was typed. The package derives the equations with sympy:
+the mass matrix, the velocity-product term that `M q̈ = f` leaves out, and the forces
+are in
+[`otkd/problem/dynamics.py`](https://github.com/leonpjvaughan/suspension-kinematics/blob/main/src/otkd/problem/dynamics.py).
+Then
 [`otkd/emitters/wasm.py`](https://github.com/leonpjvaughan/suspension-kinematics/blob/main/src/otkd/emitters/wasm.py)
-factors the same expressions into a straight-line program, prints it as Rust and compiles it to
-WebAssembly. The kernel that would run in a page is generated from this model by that pipeline, and
+factorises the same expressions into a straight-line program, prints it as Rust and
+compiles it to WebAssembly. The kernel that would run in a page is generated from
+this model by that pipeline.
 [`scripts/run_kernel.py`](https://github.com/leonpjvaughan/suspension-kinematics/blob/main/scripts/run_kernel.py)
-runs it and prints the table: the trajectory, the energy drift, and the difference from the
-package's own Python integration.
+runs it and prints the table: the trajectory, the energy drift, and the difference
+from the package's own Python integration.
 
-That is worth a look for two reasons. It is the same derivation in two languages, so nothing can
-drift between the figure and the engine. And the pipeline is short enough to read: sympy residual,
-common subexpressions, Rust, `wasm32-unknown-unknown`, one buffer of `f64`.
+That is worth a look for two reasons. It is the same derivation in two languages,
+so nothing can drift between the figure and the engine. And the pipeline is short
+enough to read: sympy residual, common subexpressions, Rust, `wasm32-unknown-unknown`,
+one buffer of `f64`.
 
 ## You should now be able to
 

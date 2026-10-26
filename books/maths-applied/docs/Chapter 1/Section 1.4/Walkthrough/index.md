@@ -52,7 +52,7 @@ different geometry gives a different $\sigma$ and the same pattern.
 ## Drop the row, and you are back where you started
 
 If one row of a three-row model is a duplicate, deleting it cannot change the
-answer. That is a claim worth testing rather than asserting, and it is the third of
+answer. That is a claim worth testing rather than asserting. It is the third of
 the four tests in the solver's own suite: with the spare equation removed, the
 least-squares answer and the direct answer are the same number.
 
@@ -65,8 +65,8 @@ Two cautions, and the second one matters more than the first.
 
 **A zero singular value is not evidence.** Three rows and two unknowns always give
 a zero. If the mechanism had four equations, it would give two. The evidence is the
-null vector and its pattern of zeros: a null vector supported on two rows says
-those two rows are one; a null vector with entries in every row says the equations
+null vector and its pattern of zeros. A null vector supported on two rows says
+those two rows are one. A null vector with entries in every row says the equations
 are in conflict, which is a different situation with a different remedy.
 
 What the decomposition inspects is the matrix, not the mechanism. Which rows are
@@ -83,7 +83,7 @@ what makes the choice visible.
 ## In three dimensions the legs come apart
 
 Everything above is a statement about the front view. Look from the side, or from
-above, and the wishbone's two legs no longer lie on top of each other: they are two
+above, and the wishbone's two legs no longer lie on top of each other. They are two
 distinct demands on the same point, and the upright's length is a third.
 
 :::figure wishbone-3d
@@ -107,10 +107,10 @@ because the front view flattens the fore-aft splay of the two chassis pivots.
 
 So the front view is an idealisation *of the three-dimensional linkage*, chosen to
 match it at the design position and to be simple enough to solve in closed form. The
-three-dimensional solver and this chapter's model therefore agree at the design pose
-and drift apart by a fraction of a millimetre elsewhere — a difference far below the
-question the chapter asks, and exactly the kind of difference a reader should want a
-number for rather than an assurance.
+three-dimensional solver and this chapter's model therefore agree at the design pose.
+Elsewhere they drift apart by a fraction of a millimetre. That difference is far below
+the question the chapter asks, and exactly the kind a reader should want a number for
+rather than an assurance.
 
 ## The agreement panel
 
@@ -122,17 +122,18 @@ number for rather than an assurance.
 | Direct 2×2 solve with the spare row deleted | the same point again |
 
 The same structure appears in the package's three-dimensional model, which these three
-rows are a front-view imitation of: `otkd check examples/double-wishbone-two-leg` reports
-**21 unknowns, 22 rows, rank 20, redundancy 1** — one dependent row, exactly as here, and
-its diagnosis names the rows that participate. The three-row model is not a smaller story;
-it is the same rank story with fewer numbers to read.
+rows are a front-view imitation of. `otkd check
+examples/double-wishbone-two-leg` reports **21 unknowns, 22 rows, rank 20,
+redundancy 1** — one dependent row, exactly as here. Its diagnosis names the rows
+that participate. The three-row model is not a smaller story; it is the same rank story
+with fewer numbers to read.
 
 The decomposition is computed by the page's own model at load, and the figure shows it on
-every frame. What the section claims is structural — three rows, two unknowns,
-one dependent row — and the null vector's support is the evidence: a vector with
+every frame. What the section claims is structural: three rows, two unknowns,
+one dependent row. The null vector's support is the evidence. A vector with
 entries in the two leg rows says those two rows are one. The vendored exports solve
 the three-dimensional model, whose unknowns are not these two, so they cannot check
-this table; the structure is checked by the arithmetic above and by the pose
+this table. The structure is checked by the arithmetic above and by the pose
 comparison at the bottom.
 
 ## Pseudocode, and the file it comes from
@@ -169,7 +170,7 @@ something is wrong somewhere.
 
 The tempting reading — "a zero singular value means the model is over-determined"
 — is true here and false as a rule. The zero is guaranteed by the shape of the
-matrix, so it appears whether or not the model is redundant, and it disappears
+matrix, so it appears whether or not the model is redundant. It disappears
 from view the moment you write a square system instead.
 
 The other trap is a null vector whose entries are all non-zero. That is not a

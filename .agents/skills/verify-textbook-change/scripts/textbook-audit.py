@@ -3,7 +3,8 @@
 
 Reports on the checks the voice linter does not make: whether support actually
 fades, whether a chapter keeps one set of heading names, whether a page is still
-at the target reading age, and whether structure held. Findings need judgement;
+at the target reading age, which sentences are over the 32-word ceiling, and
+whether structure held. Findings need judgement;
 by default the script reports and exits 0. Pass --strict to fail on any finding.
 
 Usage:
@@ -221,6 +222,7 @@ def audit(book_dir: Path, findings: list[str], notes: list[str]) -> None:
     lengths: list[int] = []
     words = 0
     syllables_total = 0
+    over_ceiling: list[tuple[int, Path, str]] = []
     for path in pages:
         for paragraph in prose_paragraphs(path.read_text(encoding="utf-8")):
             for match in re.finditer(r"[^.!?]+[.!?]", paragraph):
@@ -231,6 +233,8 @@ def audit(book_dir: Path, findings: list[str], notes: list[str]) -> None:
                 lengths.append(len(tokens))
                 words += len(tokens)
                 syllables_total += sum(syllables(token) for token in tokens)
+                if len(tokens) > 32:
+                    over_ceiling.append((len(tokens), path, sentence))
     if lengths:
         asl = words / len(lengths)
         asw = syllables_total / words
@@ -241,6 +245,16 @@ def audit(book_dir: Path, findings: list[str], notes: list[str]) -> None:
         )
         if grade > 9:
             findings.append(f"reading-age: FK grade {grade:.1f} is above the target")
+    if over_ceiling:
+        over_ceiling.sort(reverse=True)
+        notes.append(
+            f"long-sentence: {book_dir.name} has {len(over_ceiling)} over 32 words "
+            f"(longest {over_ceiling[0][0]})"
+        )
+        for length, path, sentence in over_ceiling[:5]:
+            notes.append(
+                f"  [{length}] {path.relative_to(REPO)}: {sentence[:140]}"
+            )
 
 
 def main() -> int:

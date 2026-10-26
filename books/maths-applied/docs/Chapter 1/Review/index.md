@@ -94,8 +94,16 @@ words before you leave:
 
 If you can say where that test applies in this chapter, and where it does not, you
 have the thing the chapter was for. §1.6 and §1.7 show where the method goes next:
-a model with mass, and a model of the whole car, each of which is judged the same
-way — by what it agrees with, and by what it can no longer answer.
+a model with mass, and a model of the whole car. Each is judged the same way, by
+what it agrees with and by what it can no longer answer.
+
+## Where this corner sits in the collection
+
+The collection's map of numerical methods takes this one mechanism through five
+questions, from the two circles to the heat a damper would make:
+[The same corner, five ways](/numerical-methods/worked-case/). It quotes the numbers
+this chapter prints, so a reader who wants to know what kind of problem each model
+became can start there.
 
 ## Where to read more
 

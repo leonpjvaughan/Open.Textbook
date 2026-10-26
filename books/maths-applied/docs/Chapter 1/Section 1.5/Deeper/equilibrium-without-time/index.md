@@ -33,7 +33,7 @@ the equilibrium condition is that the total energy stops changing:
 
 $$ \frac{\partial E}{\partial q} = 0 \quad\text{for every unknown } q. $$
 
-The two forms are the same statement with a derivative between them, and the energy
+The two forms are the same statement with a derivative between them. The energy
 form is the one to write down when the constraints are awkward, because it needs no
 free-body diagram.
 
@@ -88,8 +88,8 @@ The expensive way to find a static answer is to add mass, run the dynamics, wait
 the motion to die away, and read the answer off the end.
 
 It usually gives the right number and it is usually a bad trade. It costs a time
-step, an integrator, a set of initial conditions and a stopping rule; the answer
-depends on how long you waited; and every one of those choices is a new place for a
+step, an integrator, a set of initial conditions and a stopping rule. The answer
+depends on how long you waited, and every one of those choices is a new place for a
 mistake to hide. A model with no mass has none of those failure modes, because it
 has none of those parts.
 

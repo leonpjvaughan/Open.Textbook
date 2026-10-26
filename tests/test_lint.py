@@ -229,3 +229,92 @@ def _fixture_book(root: Path) -> Book:
         description="",
         root=root,
     )
+
+
+# --- the sentence ceiling reads paragraphs, not lines -------------------------
+#
+# The rule used to test one physical line at a time. Every page is hard-wrapped
+# near 80 columns, so a 40-word sentence was spread over three lines, each under
+# the ceiling, and the rule that was documented to catch it could never fire.
+# These pin the paragraph as the unit, and the debt table as a per-book ratchet
+# rather than a per-page allowance.
+
+LONG_SENTENCE = (
+    "Each of the words in this deliberately long sentence is here to make the total "
+    "length cross the ceiling that the rule applies to a paragraph of prose when it "
+    "is wrapped across several lines by the author."
+)
+
+
+def wrapped(text: str) -> str:
+    """The sentence as the pages write it: hard-wrapped near 80 columns."""
+    words = text.split()
+    lines, line = [], ""
+    for word in words:
+        if len(line) + len(word) + 1 > 72:
+            lines.append(line)
+            line = word
+        else:
+            line = f"{line} {word}".strip()
+    lines.append(line)
+    return "\n".join(lines)
+
+
+def test_a_wrapped_long_sentence_is_one_finding(tmp_path, monkeypatch):
+    text = f"# Page\n\n{wrapped(LONG_SENTENCE)}\n"
+    findings, examples = lint_page(tmp_path, monkeypatch, text)
+    assert findings["style:long-sentence"] == 1, examples
+    assert len(examples["style:long-sentence"]) == 1
+
+
+def test_a_short_sentence_is_not_reported(tmp_path, monkeypatch):
+    text = "# Page\n\nA short sentence is not over the ceiling, even when it wraps.\n"
+    findings, _ = lint_page(tmp_path, monkeypatch, text)
+    assert "style:long-sentence" not in findings
+
+
+def test_a_table_cell_is_not_a_sentence(tmp_path, monkeypatch):
+    row = "| " + " ".join(["word"] * 40) + " |"
+    text = f"# Page\n\n| column | other |\n|---|---|\n{row}\n"
+    findings, _ = lint_page(tmp_path, monkeypatch, text)
+    assert "style:long-sentence" not in findings
+
+
+def test_a_list_item_is_not_a_sentence(tmp_path, monkeypatch):
+    text = f"# Page\n\n- {wrapped(LONG_SENTENCE)}\n"
+    findings, _ = lint_page(tmp_path, monkeypatch, text)
+    assert "style:long-sentence" not in findings
+
+
+def test_the_debt_is_the_books_not_the_pages(tmp_path, monkeypatch):
+    """Two long sentences on two pages, one unit of debt: one finding."""
+    (tmp_path / "curriculum.yaml").write_text("chapters: []\n", encoding="utf-8")
+    docs = tmp_path / "docs"
+    docs.mkdir()
+    for name in ("one.md", "two.md"):
+        (docs / name).write_text(f"# Page\n\n{wrapped(LONG_SENTENCE)}\n", encoding="utf-8")
+
+    monkeypatch.setitem(lint.SENTENCE_DEBT, "fixture", 1)
+    findings: Counter = Counter()
+    examples: dict[str, list[str]] = {}
+    lint.lint(_fixture_book(tmp_path), fix=False, findings=findings, examples=examples)
+    assert findings["style:long-sentence"] == 1, examples
+
+    monkeypatch.setitem(lint.SENTENCE_DEBT, "fixture", 0)
+    findings = Counter()
+    examples = {}
+    lint.lint(_fixture_book(tmp_path), fix=False, findings=findings, examples=examples)
+    assert findings["style:long-sentence"] == 2, examples
+
+
+def test_front_matter_is_not_a_sentence(tmp_path, monkeypatch):
+    """A description is data for the engine, not prose for the reader."""
+    text = (
+        "---\n"
+        f"description: {LONG_SENTENCE}\n"
+        "---\n\n"
+        "# Page\n\n"
+        "A short sentence.\n"
+    )
+    findings, _ = lint_page(tmp_path, monkeypatch, text)
+    assert "style:long-sentence" not in findings

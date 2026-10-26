@@ -31,7 +31,7 @@ corner does depends on what the others are doing. A model of the whole car adds:
 ## Where the small model goes
 
 It stays. A full vehicle model calls a corner model, once per wheel, at every
-evaluation, and the corner model it calls is the one this chapter built: the
+evaluation. The corner model it calls is the one this chapter built: the
 kinematics that turn a wheel's travel into its camber and its track change.
 
 That is the shape of every serious vehicle model, and it is the point of this

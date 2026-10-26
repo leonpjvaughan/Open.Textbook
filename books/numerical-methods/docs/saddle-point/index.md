@@ -28,8 +28,8 @@ $$
 $$
 
 The top row is the physics. The bottom row is the rule. The zero block is where the
-trouble is: the matrix is symmetric but **indefinite** — it has both positive and
-negative eigenvalues — so the methods that rely on positive definiteness are closed
+trouble is. The matrix is symmetric but **indefinite** — it has both positive and
+negative eigenvalues. So the methods that rely on positive definiteness are closed
 to you.
 
 The same problem written as a constrained minimum is
@@ -62,8 +62,8 @@ a price.
 
 There is a second signature, and it is the one that catches people: **the
 constraint may be redundant.** If two rows of $B$ say the same thing, the system has
-either no solution or infinitely many, and a solver that does not notice will
-return one of them.
+either no solution or infinitely many. A solver that does not notice will return one
+of them.
 
 ## Flags that matter here
 
