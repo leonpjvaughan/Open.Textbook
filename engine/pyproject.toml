@@ -9,7 +9,7 @@ dependencies = [
     # Used by textbook.pipeline, which renders Markdown without a site
     # generator. Declaring them here keeps the engine honest about what it
     # imports and lets it be installed on its own.
-    "markdown>=3.6",
+    "markdown>=3.11.2",
     "pymdown-extensions>=10.2",
     "antlr4-python3-runtime==4.11",
 ]
