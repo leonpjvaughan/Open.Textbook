@@ -17,9 +17,10 @@ releases** and **Toolchain** still apply.
 | `scripts/check.sh` | **Everything CI enforces, in one call.** Run this before pushing |
 | `scripts/build-all.sh` | Every profile, `BUILD_JOBS` at a time (default 4), then the portal. **One job in CI, not one matrix row per profile**: 16 profiles in 43 seconds locally, against 13 rows at ~100 seconds each because every row paid its own install |
 | `scripts/preview-themes.sh` | Every bundle in both schemes over three routes, plus both figure audits |
-| `scripts/deploy.sh` | Build the collection and deploy it to Cloudflare |
+| `scripts/deploy.sh` | Build the collection and deploy it to Cloudflare; it follows the reader's report route before uploading |
+| `scripts/check-contact.sh` | Follow the About page's contact URL as a signed-out reader would; `deploy.sh` runs it so a private or renamed repository fails the deploy, not the reader |
 | `scripts/next-tag.sh` | Print the next release tag, `yy.<day>.<increment>` |
-| `scripts/protect-main.sh` | Require the gate check on `main` (needs GitHub Pro) |
+| `scripts/protect-main.sh` | Require the gate check on `main` (public repository, or GitHub Pro) |
 | `scripts/vendor-otkd.sh` | The `otkd` release bundle — model exports and compiled kernels — into `books/maths-applied/docs/assets/data/otkd/`. Checked offline by `--check`, which is in `check.sh`; the fetch is a refresh a person runs when the pinned version changes |
 | `scripts/fetch_sources.sh` | Fetch the tracked primary sources into `research/sources/` |
 | `scripts/launch_chapter_agents.sh` | Feed `.agents/prompts/` to chapter sub-agents |

@@ -152,12 +152,12 @@ scripts/protect-main.sh          # apply
 scripts/protect-main.sh --check  # report
 ```
 
-**This needs GitHub Pro.** Protected branches are available on public
-repositories with GitHub Free, and on public *and private* repositories with Pro,
-Team or Enterprise. This repository is private on a Free plan, so the API refuses
-and the script says so instead of failing with an HTTP code. Either make the
-repository public — which a free, open textbook probably wants anyway — or upgrade
-the account, then run it.
+**This needs GitHub Pro, or a public repository.** Protected branches are
+available on public repositories with GitHub Free, and on public *and private*
+repositories with Pro, Team or Enterprise. This repository is public, so the
+rule can be applied. (It was private on a Free plan when this section was first
+written, and the script said so instead of failing with an HTTP code.) Run
+`scripts/protect-main.sh`, then `--check` to confirm it.
 
 Two deliberate choices once it is available:
 

@@ -20,18 +20,6 @@ if ! gh api "repos/$REPO/branches/$BRANCH" >/dev/null 2>&1; then
   exit 1
 fi
 
-if ! gh api "repos/$REPO/branches/$BRANCH/protection" >/dev/null 2>&1; then
-  echo "Branch protection is not available for $REPO." >&2
-  echo >&2
-  echo "Protected branches are available on public repositories with GitHub Free," >&2
-  echo "and on public and private repositories with GitHub Pro, Team or Enterprise." >&2
-  echo "This repository is private on a Free plan, so the API refuses." >&2
-  echo >&2
-  echo "Either make the repository public — which a free, open textbook probably" >&2
-  echo "wants anyway — or upgrade the account, then re-run this script." >&2
-  exit 2
-fi
-
 read -r -d '' BODY <<JSON || true
 {
   "required_status_checks": {
@@ -49,20 +37,32 @@ read -r -d '' BODY <<JSON || true
 JSON
 
 if [ "${1:-}" = "--check" ]; then
-  gh api "repos/$REPO/branches/$BRANCH/protection" --jq '{
+  if OUT="$(gh api "repos/$REPO/branches/$BRANCH/protection" --jq '{
     checks: .required_status_checks.contexts,
     strict: .required_status_checks.strict,
     force_pushes: .allow_force_pushes.enabled,
     deletions: .allow_deletions.enabled,
     admins_must_comply: .enforce_admins.enabled
-  }'
-  exit 0
+  }' 2>/dev/null)"; then
+    echo "$OUT"
+    exit 0
+  fi
+  echo "not protected: $REPO@$BRANCH" >&2
+  exit 1
 fi
 
-printf '%s' "$BODY" | gh api -X PUT \
+if ! printf '%s' "$BODY" | gh api -X PUT \
   -H "Accept: application/vnd.github+json" \
   --input - \
-  "repos/$REPO/branches/$BRANCH/protection" >/dev/null
+  "repos/$REPO/branches/$BRANCH/protection" >/dev/null; then
+  echo >&2
+  echo "Could not protect $REPO@$BRANCH." >&2
+  echo "Protected branches are available on public repositories with GitHub Free," >&2
+  echo "and on public and private repositories with GitHub Pro, Team or Enterprise." >&2
+  echo "If the repository is private on a Free plan, make it public or upgrade it." >&2
+  echo "Otherwise the token may lack admin rights for this repository." >&2
+  exit 2
+fi
 
 echo "protected $REPO@$BRANCH:"
 echo "  required check : $CHECK"

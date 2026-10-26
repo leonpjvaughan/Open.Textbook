@@ -58,5 +58,10 @@ if grep -rl 'math-error' site --include='*.html'; then
 fi
 echo "none"
 
+step "the reader's report route"
+# The About page's contact URL is data, not a link in the tree, so the build cannot
+# fail on it. It was a 404 for a signed-out reader while the repository was private.
+scripts/check-contact.sh
+
 step "deploy"
 exec npx wrangler deploy "$@"
