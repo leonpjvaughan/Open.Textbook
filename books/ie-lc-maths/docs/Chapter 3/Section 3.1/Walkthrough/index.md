@@ -27,7 +27,8 @@ of surface inside it.
 The **perimeter** of a plane figure is the total distance around its edge. To find it, add
 the lengths of all the sides.
 
-For a rectangle with length $l$ and width $w$, the two pairs of sides are equal, so
+For a rectangle with length $l$ and width $w$, the two pairs of sides are equal,
+so the perimeter $P$ is
 
 $$P = 2l + 2w$$
 
@@ -44,7 +45,7 @@ The **area** of a plane figure is the amount of surface it covers. Area is measu
 square units.
 
 A rectangle $7$ m long and $4$ m wide can be covered by $7 \times 4 = 28$ unit squares of
-side $1$ m. So
+side $1$ m. So the area $A$ is
 
 $$A = l \times w = 7 \times 4 = 28 \text{ m}^2$$
 

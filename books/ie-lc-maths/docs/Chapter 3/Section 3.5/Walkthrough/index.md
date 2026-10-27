@@ -28,7 +28,7 @@ net, because the net is exactly the surface laid flat.
 To find a surface area, list every face, find the area of each one, and add them. Nothing
 is doubled by accident and nothing is left out.
 
-**Example 1.** Find the surface area of a cuboid $5$ cm by $3$ cm by $2$ cm.
+**Example 1.** Find the surface area $A$ of a cuboid $5$ cm by $3$ cm by $2$ cm.
 
 The faces come in three pairs.
 

@@ -6369,6 +6369,31 @@ so a screen reader still hears the column names. The formula cell keeps its own
 horizontal scroll, because MathML cannot wrap and one Lax–Wendroff update is wider
 than a phone whatever the font size.
 
+**The first version was wrong, and a reader said so.** Cards without labels are
+easier to scan and worse to understand: "A bracket. Certain, and slow" says nothing
+about what it is a price *for*, and the 15px grey sentence was the tiring part. Three
+sources settle the pattern. NN/g's mobile-table findings are that columns must be
+legible without zooming, that headers must stay available because a reader who loses
+them loses what the data is, and that horizontal scrolling needs an affordance if you
+keep it. GOV.UK's `govuk-table--small-text-until-tablet` exists for dense numeric grids,
+not for a sentence per row, so shrinking the price to 15px was the wrong lever.
+Adrian Roselli's analysis of `display: block` on table parts is that it overrides
+native semantics, and that the pattern which survives is explicit roles plus generated
+content standing in for the hidden headers — with the warning that it needs testing.
+
+So the cards now carry a label above each field, taken from the header the table
+already had ("Class", "The step, in symbols", "What it needs, and what it costs"), the
+method's own name being the card's heading. The header row is hidden below 44rem
+because the label replaces it, and every value is at the body size (17px) in ink
+rather than a caption's grey. Measured in Chromium at 390px, a card's last cell is
+exposed as `cell` with the accessible name
+"WHAT IT NEEDS, AND WHAT IT COSTS A bracket. Certain, and slow: about three steps per
+digit", so the label reaches a screen reader as well as the eye. One formula still
+overflowed by 10px (Lax–Wendroff); its continuation line lost a `\quad` and now no
+cell scrolls at 390px in either scheme. `tests/test_reference_books.py` pins the
+labels, the hidden header and the heading exception, and fails when a label is
+deleted.
+
 **Done (2026-10-27).** Measured after the change:
 
 ```

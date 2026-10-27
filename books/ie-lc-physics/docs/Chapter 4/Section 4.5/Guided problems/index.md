@@ -50,6 +50,9 @@ $d = \dfrac{0.5 \times 900 \times 15^2}{4500}$.
 
 $$Fd = \frac{1}{2}mv^2$$
 
+where $F$ is the force, $d$ the distance, $m$ the mass, $v$ the final speed and $t$
+the time.
+
 $$d = \frac{0.5 \times 900 \times 15^2}{4500} = \frac{101250}{4500} = 22.5\,\text{m}$$
 
 The distance is 22.5 m. Doubling the speed would quadruple this distance, because the
@@ -126,6 +129,8 @@ $\Delta E_k = 0.5 \times 4.0 \times (5.0^2 - 2.0^2)$, then $F = \dfrac{\Delta E_
 <summary>Full working</summary>
 
 $$\Delta E_k = \frac{1}{2}m(v^2 - u^2) = 0.5 \times 4.0 \times (25 - 4) = 42\,\text{J}$$
+
+where $u$ is the starting speed and $F_f$ the friction force.
 
 $$F_f = \frac{\Delta E_k}{d} = \frac{42}{6.0} = 7.0\,\text{N}$$
 

@@ -61,6 +61,9 @@ The gradient of the straight line is the spring constant.
 
 $$\text{gradient} = \frac{\text{change in force}}{\text{change in extension}} = \frac{\Delta F}{\Delta x} = k$$
 
+Here $\Delta F$ is the change in force, $\Delta x$ the change in extension and $k$
+the spring constant.
+
 **Example 1.** Two readings from one experiment: a force of 2.0 N gives an extension of
 0.05 m, and a force of 6.0 N gives 0.15 m. Calculate the spring constant.
 

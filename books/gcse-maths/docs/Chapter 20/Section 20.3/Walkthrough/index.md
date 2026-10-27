@@ -19,7 +19,7 @@ An **angle of elevation** is measured upwards from a horizontal line. An **angle
 
 **Example 1.** A person stands $20$ m from a tower. The angle of elevation to its top is $35^\circ$. Find the height above the person's eye level.
 
-Draw a right-angled triangle. The height is opposite and $20$ m is adjacent.
+Draw a right-angled triangle. The height $h$ is opposite and $20$ m is adjacent.
 
 $$\tan 35^\circ=\frac{h}{20}$$
 

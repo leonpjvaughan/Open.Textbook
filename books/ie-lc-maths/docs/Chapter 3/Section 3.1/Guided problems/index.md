@@ -33,7 +33,8 @@ this section. Keep them exact until the final line.
 
 ## Practise with help
 
-**1.** Find the area and the perimeter of a rectangle $8$ m long and $5$ m wide.
+**1.** Find the area $A$ and the perimeter $P$ of a rectangle $8$ m long and $5$ m
+wide.
 
 <details markdown="1">
 <summary>Hint</summary>

@@ -68,6 +68,8 @@ Rearranging $P = W/t$ gives the energy transferred:
 
 $$E = Pt$$
 
+Here $E$ is the energy transferred, $P$ the power and $t$ the time.
+
 This is useful for an appliance. A 2.0 kW heater running for 5.0 minutes transfers
 
 $$

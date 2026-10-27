@@ -66,6 +66,8 @@ Use the rule that the square root of a product is the product of the square root
 
 $$\sqrt{ab} = \sqrt{a} \times \sqrt{b}$$
 
+Here $a$ and $b$ are positive numbers.
+
 So look for the largest square factor of the number inside the root.
 
 **Example 1.** Simplify $\sqrt{50}$.

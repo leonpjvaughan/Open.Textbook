@@ -35,6 +35,9 @@ $F = ma$ on the whole system and on one object.
 
 ## Practise with help
 
+In these problems $m_1$ and $m_2$ are the two masses, $g$ the acceleration of free
+fall, $a$ the acceleration, $T$ the tension and $F$ a force.
+
 **1.** Masses of 6.0 kg and 2.0 kg hang from a light string over a frictionless
 pulley. Calculate the acceleration. Take $g = 9.8$ m/s$^2$.
 

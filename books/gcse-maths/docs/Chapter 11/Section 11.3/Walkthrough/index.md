@@ -35,7 +35,7 @@ Check: when $x=2$, $y=3(2)-5=1$.
 
 To find a line through two points, first calculate the gradient, then substitute one point to find $c$.
 
-> **Watch out.** The vertical intercept is not the $y$-coordinate of every point. Substitute the known point into $y=mx+c$ before stating $c$.
+> **Watch out.** The vertical intercept $c$ is not the $y$-coordinate of every point. Substitute the known point into $y=mx+c$ before stating $c$.
 > **Re-check:** substitute your line back into $y=mx+c$ and ask whether the point really lies on it.
 
 ## Progress check

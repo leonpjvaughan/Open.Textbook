@@ -52,7 +52,8 @@ A surd is an exact number. $\sqrt{2}$ is not approximately $1.414$; it is exactl
 $\sqrt{2}$, and $1.414$ is a rounded version of it. Keep the surd unless a
 question asks for a decimal.
 
-The key rule is that a square root splits across a **product**:
+The key rule is that for positive numbers $a$ and $b$, a square root splits across
+a **product**:
 
 $$\sqrt{ab} = \sqrt{a}\,\sqrt{b}$$
 
@@ -104,7 +105,7 @@ expression.
 Back to the chapter problem. The room measures $4.35$ m by $3.28$ m, and a
 diagonal brace runs from one corner to the opposite corner.
 
-By Pythagoras' theorem, the brace has length
+By Pythagoras' theorem, the brace has length $d$
 
 $$d = \sqrt{4.35^2 + 3.28^2} = \sqrt{29.6809}$$
 

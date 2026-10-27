@@ -30,6 +30,8 @@ $$
 6.35\leq L<6.45
 $$
 
+where $L$ is the length in centimetres.
+
 So the lower bound is $6.35$ cm and the upper bound is $6.45$ cm.
 
 ## Bounds in calculations
@@ -41,6 +43,8 @@ For positive values, a maximum quotient uses the largest numerator and smallest 
 $$
 119.5\leq d<120.5,\qquad1.95\leq t<2.05
 $$
+
+where $d$ is the distance in kilometres and $t$ is the time in hours.
 
 The speed is less than $120.5\div1.95\approx61.7949$ km/h. To 3 significant figures, this is about $61.8$ km/h.
 

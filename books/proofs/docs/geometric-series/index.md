@@ -8,7 +8,8 @@ A geometric sequence multiplies by the same number each time. Its sum is
 
 $$S_n = \frac{a(1 - r^n)}{1 - r} \qquad (r \neq 1)$$
 
-where $a$ is the first term and $r$ is the common ratio.
+where $S_n$ is the sum of the first $n$ terms, $a$ is the first term, $r$ is the
+common ratio and $n$ is the number of terms.
 
 ## The proof
 

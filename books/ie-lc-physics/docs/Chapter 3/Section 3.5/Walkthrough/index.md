@@ -39,6 +39,9 @@ mass being accelerated is the total mass.
 
 $$a = \frac{(m_1 - m_2)g}{m_1 + m_2}$$
 
+where $m_1$ and $m_2$ are the two masses, $g$ the gravitational field strength, $a$
+the acceleration and $T$ the tension.
+
 **Example 1.** Masses of 3.0 kg and 1.0 kg hang from a light string over a
 frictionless pulley. Calculate the acceleration.
 

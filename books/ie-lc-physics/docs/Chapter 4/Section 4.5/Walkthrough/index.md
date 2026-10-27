@@ -27,6 +27,9 @@ The work done by the **net force** on an object equals the change in its kinetic
 
 $$W_{\text{net}} = \Delta E_k$$
 
+Here $W_{\text{net}}$ is the net work done and $\Delta E_k$ is the change in kinetic
+energy. The mass is $m$, the starting speed $u$ and the final speed $v$.
+
 This is the **work-energy model**. It joins ideas you already have: work transfers
 energy, and a change in kinetic energy is a change in the store of motion.
 

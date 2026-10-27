@@ -9,8 +9,8 @@ amount each time — and you get
 
 $$S_n = \tfrac{1}{2}n(a + l) = \tfrac{1}{2}n\left[2a + (n-1)d\right]$$
 
-where $a$ is the first term, $l$ the last, $d$ the common difference and $n$ the
-number of terms.
+where $S_n$ is the sum of the first $n$ terms, $a$ is the first term, $l$ the
+last, $d$ the common difference and $n$ the number of terms.
 
 ## Predict first
 

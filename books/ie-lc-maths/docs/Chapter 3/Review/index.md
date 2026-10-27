@@ -18,6 +18,9 @@ Both tanks have radius $r = 0.6$ m.
 
 $$V_A = \pi \times 0.6^2 \times 1.2 = 0.432\pi \approx 1.36 \text{ m}^3$$
 
+Here $V_A$ and $V_B$ are the volumes of the two tanks, and $A_A$ and $A_B$ are
+their surface areas.
+
 That is about $1360$ litres. The total surface area of a closed cylinder is
 $2\pi r^2 + 2\pi r h$, so
 

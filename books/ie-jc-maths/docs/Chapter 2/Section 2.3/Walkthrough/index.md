@@ -64,6 +64,8 @@ Flip the base over and keep the index positive.
 
 $$a^{-n} = \frac{1}{a^n}\quad(a\ne0)$$
 
+Here $a$ is the base and $n$ is the index.
+
 **Example 2.** Work out $5^{-2}$.
 
 $$5^{-2} = \frac{1}{5^2} = \frac{1}{25}$$

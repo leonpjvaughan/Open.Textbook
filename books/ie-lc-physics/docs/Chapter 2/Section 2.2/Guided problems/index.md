@@ -176,7 +176,8 @@ $\text{area} = \dfrac{2.0 + 8.0}{2} \times 6.0$.
 
 $$\text{area} = \frac{u + v}{2}\,t = \frac{2.0 + 8.0}{2} \times 6.0 = 30\,\text{m}$$
 
-The displacement is $30\,\text{m}$.
+where $u$ is the starting velocity, $v$ the final velocity and $t$ the time. The
+displacement is $30\,\text{m}$.
 
 </details>
 </details>

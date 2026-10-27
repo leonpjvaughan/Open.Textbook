@@ -8,6 +8,10 @@ The derivative of $x^n$ is
 
 $$\frac{d}{dx}\left(x^n\right) = n x^{n-1}.$$
 
+Here $\frac{d}{dx}$ means the derivative with respect to $x$: the instruction to
+differentiate whatever follows it. So $\frac{d}{dx}\left(x^n\right)$ is the
+derivative of $x^n$.
+
 Raising the power by one brings the **old power** down in front, multiplied by
 $x$ raised to **one less** than before. This page proves that from the definition
 of the derivative, for every positive whole number $n$.

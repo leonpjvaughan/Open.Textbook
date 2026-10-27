@@ -28,6 +28,8 @@ $$
 4.65\leq L<4.75
 $$
 
+where $L$ is the length in centimetres.
+
 The lower endpoint is included because it rounds up to $4.7$. The upper endpoint is excluded because it rounds to $4.8$.
 
 **Example 1.** A mass is $320$ g to the nearest $10$ g. Give its error interval.
@@ -37,6 +39,8 @@ Half of $10$ is $5$. Subtract and add $5$ to the stated value.
 $$
 315\leq m<325
 $$
+
+where $m$ is the mass in grams and $t$ the time in seconds.
 
 **Example 2.** A time is $12.4$ seconds to the nearest tenth. Give its interval.
 

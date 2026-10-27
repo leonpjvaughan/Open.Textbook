@@ -31,6 +31,9 @@ side $1$ m, so
 
 $$V = l \times w \times h = 30 \text{ m}^3$$
 
+where $V$ is the volume, $l$ is the length, $w$ is the width and $h$ is the
+height.
+
 The first two numbers, $l \times w$, are the area of the base. So the volume is the area of
 the base multiplied by the height.
 

@@ -51,7 +51,8 @@ $W = Fd = 25 \times 4.0$.
 
 $$W = Fd = 25 \times 4.0 = 100\,\text{J}$$
 
-The unit works out too: $\text{N} \times \text{m} = \text{J}$.
+where $W$ is the work, $F$ the force and $d$ the distance moved in the direction of
+the force. The unit works out too: $\text{N} \times \text{m} = \text{J}$.
 
 </details>
 </details>
@@ -75,7 +76,8 @@ $W = 6.0 \times 9.8 \times 0.80$.
 
 $$W = mgh = 6.0 \times 9.8 \times 0.80 = 47\,\text{J}$$
 
-To two significant figures the work is $47\,\text{J}$. The bag is lifted slowly, so all
+where $m$ is the mass, $g$ the gravitational field strength and $h$ the height
+lifted. To two significant figures the work is $47\,\text{J}$. The bag is lifted slowly, so all
 the work goes into raising it, not into speeding it up.
 
 </details>

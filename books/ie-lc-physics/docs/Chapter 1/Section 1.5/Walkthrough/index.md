@@ -50,6 +50,9 @@ The **gradient** of a straight line is its rise divided by its run.
 
 $$\text{gradient} = \frac{\text{change in the vertical quantity}}{\text{change in the horizontal quantity}} = \frac{\Delta y}{\Delta x}$$
 
+Here $\Delta y$ is the change in the vertical quantity and $\Delta x$ is the change
+in the horizontal quantity.
+
 Choose two points **far apart on the line**, not two data points, and read them off
 the line. The wider the run, the smaller the effect of a reading error on the
 gradient.

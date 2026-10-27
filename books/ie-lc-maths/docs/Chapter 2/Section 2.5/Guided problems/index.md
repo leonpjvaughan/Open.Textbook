@@ -237,6 +237,9 @@ each year:
 
 $$P = \frac{F}{(1 + i)^t}$$
 
+where $P$ is the present value, $F$ is the future value, $i$ is the rate as a
+decimal and $t$ is the number of years.
+
 Dividing brings a future amount back to today, which is the reverse of compound
 interest.
 

@@ -19,7 +19,7 @@ A **3D diagonal** joins two vertices that do not lie on one face. Work in stages
 
 **Example 1.** A cuboid measures $3$ cm by $4$ cm by $12$ cm. Find its space diagonal $d$.
 
-First find the diagonal across the $3$ by $4$ base.
+First find the face diagonal $b$ across the $3$ by $4$ base.
 
 $$b^2=3^2+4^2$$
 
@@ -31,7 +31,7 @@ $$d^2=5^2+12^2$$
 
 $$d=13\text{ cm}$$
 
-**Example 2.** In the same cuboid, find the angle between the space diagonal and the base. The diagonal's vertical rise is $12$ cm and its horizontal projection is $5$ cm.
+**Example 2.** In the same cuboid, find the angle $\theta$ between the space diagonal and the base. The diagonal's vertical rise is $12$ cm and its horizontal projection is $5$ cm.
 
 $$\tan\theta=\frac{12}{5}$$
 

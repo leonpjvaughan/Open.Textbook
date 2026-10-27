@@ -14,6 +14,10 @@ lift starts from rest and speeds up at $1.2\,\text{m/s}^2$ for 2.0 s. It then tr
 at a constant speed, and finally slows down at $1.2\,\text{m/s}^2$ and stops. A
 passenger of mass 60 kg stands on a scale inside the lift. Take $g = 9.8$ N/kg.
 
+In these formulas $W$ is the weight, $m$ the mass, $g$ the gravitational field
+strength, $T$ the tension and $f$ the friction. Also $a$ is the acceleration, $N$ the
+contact force, $t$ the time, $p$ the momentum and $\Delta p$ the change in momentum.
+
 **The forces on the lift.** Three forces act on the lift: the tension $T$ upwards, the
 weight downwards, and friction downwards. The weight is
 

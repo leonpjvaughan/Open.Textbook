@@ -64,6 +64,8 @@ Multiplication distributes over addition and over subtraction.
 
 $$a(b + c) = ab + ac \qquad a(b - c) = ab - ac$$
 
+The letters $a$, $b$ and $c$ stand for any numbers.
+
 This is the **distributive property**, and it is the reason a written method for
 multiplication works. It also gives you a quicker route when one number is close to a
 round number.

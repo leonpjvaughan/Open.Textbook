@@ -18,7 +18,7 @@ kind: walkthrough
 
 ## The formula
 
-For $ax^2+bx+c=0$, where $a\ne 0$,
+For $ax^2+bx+c=0$, where $a$ is the coefficient of $x^2$, $b$ the coefficient of $x$, $c$ the constant term and $a\ne 0$,
 
 $$
 x=

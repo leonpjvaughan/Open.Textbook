@@ -66,6 +66,9 @@ factor $k$, so the new radius is $kr$ and the new height is $kh$.
 
 $$V_{\text{new}} = \pi (kr)^2 (kh) = \pi k^2 r^2 \cdot k h = k^3 \pi r^2 h = k^3 V_{\text{old}}$$
 
+where $V_{\text{old}}$ and $V_{\text{new}}$ are the volumes before and after the
+enlargement.
+
 The two powers of $k$ from the radius and the one from the height make $k^3$. The surface
 area works the same way, because every face is a flat area, and every flat area is
 multiplied by $k^2$.

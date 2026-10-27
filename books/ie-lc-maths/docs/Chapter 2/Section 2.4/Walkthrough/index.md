@@ -26,10 +26,10 @@ say why compound interest grows faster than simple interest.
 **Simple interest** is paid on the original amount only. The original amount is
 called the **principal**.
 
-> **Simple interest.** $I = P \times r \times t$, where $P$ is the principal, $r$
-> is the rate as a decimal, and $t$ is the number of years.
+> **Simple interest.** $I = P \times r \times t$, where $I$ is the interest, $P$
+> is the principal, $r$ is the rate as a decimal, and $t$ is the number of years.
 
-The total value is the principal plus the interest:
+The total value $A$ is the principal plus the interest:
 
 $$A = P(1 + rt)$$
 

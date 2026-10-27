@@ -99,6 +99,8 @@ $$
 W = mg = 60 \times 9.8 = 588\,\text{N}
 $$
 
+where $W$ is the weight, $m$ the mass and $g$ the gravitational field strength.
+
 A scale measures the **contact force** it pushes up with. That force is not always
 equal to her weight, because the lift can accelerate.
 

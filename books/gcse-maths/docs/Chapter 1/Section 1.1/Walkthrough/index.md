@@ -54,6 +54,8 @@ $$
 a = b \quad a \neq b \quad a < b \quad a > b \quad a \leq b \quad a \geq b
 $$
 
+Here $a$ and $b$ are any two numbers.
+
 To order decimals, compare the same column in each number, working left to right.
 
 **Example 1.** Which is larger, $1.7$ or $0.95$?

@@ -35,11 +35,11 @@ that is the best way to write an answer unless the question asks for a decimal.
 
 ## Circumference
 
-Because the circumference divided by the diameter is $\pi$,
+Because the circumference $C$ divided by the diameter $d$ is $\pi$,
 
 $$C = \pi d$$
 
-The radius is half the diameter, so $d = 2r$ and
+The radius $r$ is half the diameter, so $d = 2r$ and
 
 $$C = 2\pi r$$
 
@@ -55,7 +55,7 @@ Both formulas say the same thing. Use the one that matches the measurement you a
 
 ## Area
 
-The area of a circle is
+The area $A$ of a circle is
 
 $$A = \pi r^2$$
 

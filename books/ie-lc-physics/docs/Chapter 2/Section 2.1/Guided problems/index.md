@@ -101,7 +101,8 @@ $a = \dfrac{24 - 12}{6.0}$.
 
 $$a = \frac{v - u}{t} = \frac{24 - 12}{6.0} = 2.0\,\text{m/s}^2$$
 
-The train gains 2.0 m/s of velocity every second.
+where $a$ is the acceleration, $v$ the final velocity, $u$ the initial velocity and
+$t$ the time. The train gains 2.0 m/s of velocity every second.
 
 </details>
 </details>

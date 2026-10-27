@@ -140,7 +140,7 @@ $$
 **Example 5.** Express $\dfrac{6x^2 + 5x - 5}{(x - 1)(x + 1)(x + 2)}$ in partial
 fractions.
 
-Three distinct factors give three fractions:
+Three distinct factors give three fractions, with constants $A$, $B$ and $C$:
 
 $$
 \frac{6x^2 + 5x - 5}{(x - 1)(x + 1)(x + 2)} = \frac{A}{x - 1} + \frac{B}{x + 1} + \frac{C}{x + 2}.

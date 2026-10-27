@@ -27,7 +27,7 @@ Section 1.2 showed that $\sqrt{2}$ is not a fraction. That is a statement about
 arithmetic. It does not mean the length is out of reach. A square of side $1$ has
 a diagonal of length $\sqrt{2}$, and you can draw that square.
 
-Pythagoras' theorem gives the length:
+Pythagoras' theorem gives the length $d$:
 
 $$d = \sqrt{1^2 + 1^2} = \sqrt{2}$$
 

@@ -16,6 +16,9 @@ force. For a ball dropped from rest:
 
 $$s = \frac{1}{2}gt^2 \qquad v = gt$$
 
+where $s$ is the distance fallen, $g$ the acceleration of free fall, $t$ the fall
+time and $v$ the landing speed.
+
 For a drop of 1.25 m, with $g = 9.8\,\text{m/s}^2$:
 
 $$t = \sqrt{\frac{2 \times 1.25}{9.8}} = 0.51\,\text{s} \qquad v = \sqrt{2gs} = 4.9\,\text{m/s}$$

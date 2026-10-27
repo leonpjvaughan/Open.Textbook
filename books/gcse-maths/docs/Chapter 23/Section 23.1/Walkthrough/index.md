@@ -24,6 +24,8 @@ For equally likely outcomes, count the outcomes that match the event and divide 
 
 $$P(\text{event})=\frac{\text{number of matching outcomes}}{\text{total number of outcomes}}$$
 
+The probability of an event is written $P(\text{event})$.
+
 The complement is the event that does not happen. Its probability is
 $1-P(\text{event})$. An event and its complement are mutually exclusive and
 include every possible outcome, so their probabilities add to 1.

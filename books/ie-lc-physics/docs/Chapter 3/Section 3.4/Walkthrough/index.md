@@ -120,6 +120,8 @@ $$
 W = mg = 80 \times 9.8 = 784\,\text{N}
 $$
 
+where $W$ is the weight, $m$ the mass and $g$ the gravitational field strength.
+
 The drag force is 784 N upwards.
 
 :::figure friction-graph

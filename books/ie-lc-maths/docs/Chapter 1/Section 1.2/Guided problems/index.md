@@ -202,7 +202,7 @@ stays under the radical sign is a surd.
 
 ## The chapter problem
 
-**8.** The diagonal of the room is $\sqrt{4.35^2 + 3.28^2}$. Work out the value
+**8.** The diagonal $d$ of the room is $\sqrt{4.35^2 + 3.28^2}$. Work out the value
 under the root, then write the diagonal to 2 decimal places.
 
 <details markdown="1">

@@ -42,7 +42,7 @@ For each question, name the method and say why it fits before working.
 
 1. $2700$ mm.
 2. $36\div1.5=24$ km/h.
-3. $5.55\leq m<5.65$ kg.
+3. $5.55\leq m<5.65$ kg, where $m$ is the mass.
 4. Upper bounds: $8.25$ cm and $3.45$ cm. Area upper bound $=28.4625\text{ cm}^2$.
 5. $(4\times3)\times10^{6+(-2)}=12\times10^4=1.2\times10^5$.
 6. $6\sqrt3-2\sqrt3=4\sqrt3$.

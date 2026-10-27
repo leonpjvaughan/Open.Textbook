@@ -69,7 +69,7 @@ Then $x=3(15/7)+2=59/7$. Check by substitution in both original equations.
 
 ## Progress check
 
-For Company B, the fares give $f+4r=16$ and $f+8r=24$. Use the first equation to write $f$ in terms of $r$. What equation do you get after substitution?
+For Company B, the fares give $f+4r=16$ and $f+8r=24$, where $f$ is the fixed fee and $r$ the price per kilometre. Use the first equation to write $f$ in terms of $r$. What equation do you get after substitution?
 
 ## You should now be able to
 

@@ -91,6 +91,8 @@ divided by the time taken.
 
 $$a = \frac{\Delta v}{\Delta t} = \frac{v - u}{t}$$
 
+Here $\Delta v$ is the change in velocity and $\Delta t$ the time taken.
+
 - $a$ is the acceleration, in metres per second squared (m/s$^2$);
 - $u$ is the velocity at the start, in m/s;
 - $v$ is the velocity at the end, in m/s;

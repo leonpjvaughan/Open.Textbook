@@ -8,8 +8,8 @@ A trapezium is a shape with one pair of parallel sides. Its area is
 
 $$A = \tfrac{1}{2}(a + b)h$$
 
-where $a$ and $b$ are the lengths of the parallel sides and $h$ is the distance
-between them.
+where $A$ is the area, $a$ and $b$ are the lengths of the parallel sides and $h$
+is the distance between them.
 
 Nobody proves this at school — it is handed over with the formula sheet. Here is
 why it is true, and it takes one picture.

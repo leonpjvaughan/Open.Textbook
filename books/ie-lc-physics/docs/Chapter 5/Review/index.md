@@ -18,6 +18,9 @@ spring constant:
 
 $$k = \frac{\Delta F}{\Delta x}$$
 
+Here $\Delta F$ is the change in force, $\Delta x$ the change in extension and $k$
+the spring constant.
+
 An experiment giving 2.0 N at 0.05 m and 6.0 N at 0.15 m has
 
 $$k = \frac{6.0 - 2.0}{0.15 - 0.05} = \frac{4.0}{0.10} = 40\,\text{N/m}$$

@@ -123,7 +123,7 @@ $v = \dfrac{1800}{600}$.
 
 $$v = \frac{d}{t} = \frac{1800}{600} = 3.0\,\text{m/s}$$
 
-The unit comes from the division: metres divided by seconds gives m/s. Both readings
+where $v$ is the average speed, $d$ the distance and $t$ the time. The unit comes from the division: metres divided by seconds gives m/s. Both readings
 carry two significant figures, so 3.0 m/s is the right way to write it.
 
 </details>
@@ -148,7 +148,7 @@ $\rho = \dfrac{2.4}{0.00030}$.
 
 $$\rho = \frac{m}{V} = \frac{2.4}{0.00030} = 8000\,\text{kg/m}^3$$
 
-To two significant figures that is $8.0 \times 10^{3}\,\text{kg/m}^3$. The unit
+where $\rho$ is the density, $m$ the mass and $V$ the volume. To two significant figures that is $8.0 \times 10^{3}\,\text{kg/m}^3$. The unit
 kg/m$^3$ is a derived unit: kilograms divided by cubic metres.
 
 </details>

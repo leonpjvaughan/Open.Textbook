@@ -29,8 +29,9 @@ the same, and a promise of €1,050 in a year is worth only €1,000 today.
 That today-value is called the **present value**. Finding it is called
 **discounting**, because the future sum is reduced to its value today.
 
-> **Present value.** $P = \dfrac{F}{(1 + i)^t}$, where $F$ is the future value,
-> $i$ is the rate as a decimal, and $t$ is the number of years.
+> **Present value.** $P = \dfrac{F}{(1 + i)^t}$, where $P$ is the present value,
+> $F$ is the future value, $i$ is the rate as a decimal, and $t$ is the number of
+> years.
 
 This is the reverse of compound interest. Compound interest grows a present value
 into a future one, and dividing brings a future value back to today.

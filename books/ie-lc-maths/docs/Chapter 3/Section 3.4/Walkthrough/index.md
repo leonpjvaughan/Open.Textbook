@@ -41,7 +41,7 @@ A prism has two identical ends and rectangular sides.
 
 The net of a cuboid with length $l$, width $w$ and height $h$ holds three pairs of
 rectangles: two of $l \times w$, two of $l \times h$ and two of $w \times h$. So its
-surface area is
+surface area $A$ is
 
 $$A = 2(lw + lh + wh)$$
 

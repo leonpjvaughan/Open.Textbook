@@ -81,7 +81,7 @@ Check the pair in both original equations: $3(10/3)+2(3)=16$ and $3(10/3)-3=7$.
 
 ## Progress check
 
-The two taxi fares for Company A are $f+4r=14$ and $f+8r=22$. Subtract the first equation from the second. What does the result tell you about $r$?
+The two taxi fares for Company A are $f+4r=14$ and $f+8r=22$, where $f$ is the fixed fee and $r$ the price per kilometre. Subtract the first equation from the second. What does the result tell you about $r$?
 
 ## You should now be able to
 

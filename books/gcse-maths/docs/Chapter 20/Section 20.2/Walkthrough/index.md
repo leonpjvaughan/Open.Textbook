@@ -19,7 +19,7 @@ For an acute angle $\theta$, label the sides from that angle. The **opposite** s
 
 SOHCAHTOA is a memory aid: sine uses opposite and hypotenuse, cosine uses adjacent and hypotenuse, and tangent uses opposite and adjacent.
 
-**Example 1.** Find the opposite side when $\theta=30^\circ$ and the hypotenuse is $10$ cm.
+**Example 1.** Find the opposite side $x$ when $\theta=30^\circ$ and the hypotenuse is $10$ cm.
 
 $$\sin 30^\circ=\frac{x}{10}$$
 

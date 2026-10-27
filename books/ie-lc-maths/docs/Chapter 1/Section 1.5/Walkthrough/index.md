@@ -36,6 +36,8 @@ The index is also called the power. A base raised to a power is a **power**.
 
 $$a^m \times a^n = a^{m+n}$$
 
+where $a$ is the base and $m$ and $n$ are indices.
+
 **Why.** $a^3 \times a^4$ is three copies of $a$ followed by four more, which is
 seven copies in all.
 
@@ -61,6 +63,8 @@ $$(a^3)^2 = a^{3 \times 2} = a^6$$
 There is a fourth rule for a power of a product:
 
 $$(ab)^n = a^n b^n$$
+
+where $b$ is a second factor.
 
 The index applies to every factor inside the bracket, including a number in
 front.

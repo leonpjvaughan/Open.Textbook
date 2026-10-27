@@ -18,6 +18,9 @@ $$v = u + at = 0 + 2.0 \times 4.0 = 8.0\,\text{m/s}$$
 
 $$s = ut + \frac{1}{2}at^2 = 0 + \frac{1}{2} \times 2.0 \times 4.0^2 = 16\,\text{m}$$
 
+where $u$ is the initial velocity, $v$ the final velocity, $a$ the acceleration, $s$
+the displacement and $t$ the time.
+
 The drone reaches $8.0\,\text{m/s}$ after rising $16\,\text{m}$.
 
 **The steady phase.** At $8.0\,\text{m/s}$ for $0.50\,\text{s}$:
@@ -41,6 +44,9 @@ $g = 9.8\,\text{m/s}^2$:
 $$t = \sqrt{\frac{2s}{g}} = \sqrt{\frac{2 \times 20}{9.8}} = 2.0\,\text{s}$$
 
 $$v = \sqrt{2gs} = \sqrt{2 \times 9.8 \times 20} = 20\,\text{m/s}$$
+
+where $s$ is the distance fallen, $g$ the acceleration of free fall, $t$ the fall
+time and $v$ the landing speed.
 
 The parcel takes about $2.0\,\text{s}$ to fall and lands at about $20\,\text{m/s}$.
 

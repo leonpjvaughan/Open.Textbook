@@ -30,6 +30,8 @@ Two formulas describe a sphere, and both are given in the Formulae and Tables bo
 
 $$V = \tfrac{4}{3}\pi r^3 \qquad A = 4\pi r^2$$
 
+where $V$ is the volume and $A$ is the surface area.
+
 The volume uses $r^3$, because a volume is three-dimensional. The surface area uses $r^2$,
 because a surface is two-dimensional.
 

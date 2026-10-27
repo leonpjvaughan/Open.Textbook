@@ -31,6 +31,8 @@ Three copies of 2 and two more copies of 2 make five copies of 2. The indices ad
 
 $$a^m\times a^n = a^{m+n}$$
 
+Here $a$ is the base, and $m$ and $n$ are the indices.
+
 **Example 1.** Simplify $3^4\times3^2$.
 
 $$3^4\times3^2 = 3^{4+2} = 3^6$$
@@ -81,6 +83,8 @@ $$(2\times5)^3 = (2\times5)(2\times5)(2\times5) = 2^3\times5^3$$
 Every factor inside the bracket is raised to the power.
 
 $$(ab)^n = a^n b^n$$
+
+Here $b$ is a second base.
 
 **Example 4.** Simplify $(2x)^4$.
 

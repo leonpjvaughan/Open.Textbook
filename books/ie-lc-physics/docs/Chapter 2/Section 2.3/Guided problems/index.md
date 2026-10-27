@@ -33,6 +33,9 @@ first equation of motion turns an acceleration and a time into a change in veloc
 
 ## Practise with help
 
+In these equations $s$ is the displacement, $u$ the initial velocity, $v$ the final
+velocity, $a$ the acceleration and $t$ the time.
+
 **1.** A motorbike starts from rest and accelerates at 4.0 m/s$^2$ for 5.0 s. Calculate
 its final velocity.
 

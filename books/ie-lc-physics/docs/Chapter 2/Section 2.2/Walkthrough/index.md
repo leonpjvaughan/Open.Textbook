@@ -35,6 +35,9 @@ divided by the change in time.
 
 $$\text{speed} = \frac{\Delta d}{\Delta t}$$
 
+Here $\Delta d$ is the change in distance and $\Delta t$ the change in time; later,
+$\Delta v$ is the change in velocity.
+
 **Example 1.** A distance-time graph is a straight line through the origin and the point
 (5.0 s, 20 m). Calculate the gradient and state what it represents.
 
@@ -80,6 +83,8 @@ find it.
   \text{height}$.
 - A **trapezium** for a change between two speeds:
   $\text{area} = \frac{u + v}{2} \times t$.
+
+In the trapezium rule, $u$ is the starting speed, $v$ the final speed and $t$ the time.
 
 **Example 3.** A velocity-time graph is a straight line from 4.0 m/s to 14 m/s over
 5.0 s. Calculate the area under the line.

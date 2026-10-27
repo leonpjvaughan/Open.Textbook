@@ -165,6 +165,7 @@ solution set, with an open circle at a value the set leaves out and a filled
 circle at a value it includes.
 
 **Explain.** Keep the roots fixed and switch between $f(x) > 0$ and $f(x) < 0$.
+Here $f$ is the quadratic whose roots you set.
 Why does one inequality give a single interval and the other give two separate
 pieces? Write two sentences referring to where the parabola sits above and below
 the $x$-axis.

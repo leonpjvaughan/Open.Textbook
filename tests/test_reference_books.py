@@ -779,3 +779,33 @@ def test_the_relativity_claim_says_what_it_is_a_reduction_of():
         "can couple into a system that is not",  # why the reduction stops here
     ):
         assert claim in section, f"the relativity section no longer says {claim!r}"
+
+
+def test_the_method_tables_name_each_field_on_a_phone():
+    """A card per method only works if each field still says what it is.
+
+    At 390px the A–Z's four columns became clipped, so each row is a card below
+    44rem. The first version of that dropped the column names with the header row, and
+    a price like "A bracket. Certain, and slow" then said nothing about what it was a
+    price for — the header is the label, and on a card it belongs on the field. This
+    pins the labels to the stylesheet, because the layout has no other record of them:
+    a screenshot proves it once, and a test proves it stays.
+    """
+    stylesheet = (
+        books.repo_root()
+        / "books/numerical-methods/docs/assets/stylesheets/book-local.css"
+    ).read_text(encoding="utf-8")
+    card = stylesheet[stylesheet.index("@media (max-width: 43.99rem)") :]
+    assert ".method-index table" in card, "the card layout is scoped to the A–Z"
+    assert "display: none" in card.split(".method-index thead", 1)[1][:120], (
+        "the header row must be hidden, because the labels replace it"
+    )
+    labels = re.findall(r'content: "([^"]+)"', card)
+    assert labels == [
+        "Class",
+        "The step, in symbols",
+        "What it needs, and what it costs",
+    ], f"the card's field labels are {labels}"
+    assert "td:nth-child(1)::before" in card and "content: none" in card, (
+        "the method's own name is the card heading, so it carries no label"
+    )

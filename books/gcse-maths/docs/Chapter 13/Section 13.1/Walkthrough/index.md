@@ -43,7 +43,7 @@ So the intercepts are $(-2,0),(0,0),(2,0)$. The $y$-intercept is found by settin
 
 ## Reciprocal graphs
 
-A reciprocal rule has the form $y=\frac{k}{x}$. The curve has two branches and approaches both axes. An **asymptote** is a line that a curve approaches without reaching.
+A reciprocal rule has the form $y=\frac{k}{x}$, where $k$ is a constant. The curve has two branches and approaches both axes. An **asymptote** is a line that a curve approaches without reaching.
 
 **Example 2.** Find values for $y=\frac1x$ at $x=-2,-1,1,2$.
 

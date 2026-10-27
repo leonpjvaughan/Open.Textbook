@@ -23,6 +23,8 @@ $$\text{arc length}=\frac{\theta}{360}\times2\pi r$$
 
 $$\text{sector area}=\frac{\theta}{360}\times\pi r^2$$
 
+Here $\theta$ is the angle of the sector in degrees and $r$ is the radius of the circle.
+
 **Example 1.** Find the arc length for radius 12 cm and angle $60^\circ$.
 
 Find the fraction of the full turn: $60\div360=\frac16$.

@@ -105,7 +105,8 @@ the equation $x^2 + 3x + 7 = 0$ has.
 <details markdown="1">
 <summary>Hint</summary>
 
-The discriminant is $b^2 - 4ac$. Here $a = 1$, $b = 3$ and $c = 7$.
+The discriminant, written $\Delta$, is $b^2 - 4ac$. Here $a = 1$, $b = 3$ and
+$c = 7$.
 </details>
 
 <details markdown="1">

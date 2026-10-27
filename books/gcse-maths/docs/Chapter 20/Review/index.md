@@ -8,7 +8,7 @@ kind: review
 
 ## The chapter problem, solved
 
-The garden is $9$ m by $12$ m. The path is the hypotenuse of a right-angled triangle.
+The garden is $9$ m by $12$ m. The path is the hypotenuse of a right-angled triangle, with length $d$.
 
 $$d^2=9^2+12^2$$
 

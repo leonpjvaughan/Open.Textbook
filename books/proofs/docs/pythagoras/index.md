@@ -9,7 +9,8 @@ squares on the other two:
 
 $$a^2 + b^2 = c^2$$
 
-where $c$ is the side opposite the right angle.
+where $a$ and $b$ are the two shorter sides and $c$ is the side opposite the
+right angle.
 
 This is one of the oldest results in mathematics and it has hundreds of proofs. The
 one here needs no algebra at all — only a square drawn four times.

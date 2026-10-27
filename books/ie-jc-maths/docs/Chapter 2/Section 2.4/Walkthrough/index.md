@@ -79,6 +79,8 @@ keeps the numbers small.
 
 $$a^{\frac mn} = \left(\sqrt[n]{a}\right)^m$$
 
+Here $m$ is the numerator of the index and $n$ is the denominator.
+
 **Example 3.** Work out $16^{\frac34}$.
 
 $$16^{\frac34} = \left(16^{\frac14}\right)^3 = 2^3 = 8$$

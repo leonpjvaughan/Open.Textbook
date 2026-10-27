@@ -8,7 +8,7 @@ kind: review
 
 ## The chapter problem, solved
 
-The ball reaches the ground when its height is zero:
+The ball reaches the ground when its height is zero. Here $t$ is the time in seconds and $h$ is the height in metres.
 
 $$
 -t^2+4t+5=0

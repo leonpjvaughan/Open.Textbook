@@ -117,7 +117,7 @@ its density.
 
 $$\rho = \frac{m}{V} = \frac{0.54}{0.00020} = 2700\,\text{kg/m}^3$$
 
-Both readings carry two significant figures, so the answer is
+where $\rho$ is the density, $m$ the mass and $V$ the volume. Both readings carry two significant figures, so the answer is
 $2.7 \times 10^{3}\,\text{kg/m}^3$.
 
 ## Dimensional consistency

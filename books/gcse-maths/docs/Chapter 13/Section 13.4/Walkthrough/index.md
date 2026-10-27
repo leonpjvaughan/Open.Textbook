@@ -67,7 +67,7 @@ $$
 m_{\text{tangent}}=-\frac34
 $$
 
-Use $y-y_1=m(x-x_1)$ through $(3,4)$:
+Use $y-y_1=m(x-x_1)$ through $(3,4)$, where $(x_1,y_1)$ is the point on the line and $m$ is the gradient:
 
 $$
 y-4=-\frac34(x-3)

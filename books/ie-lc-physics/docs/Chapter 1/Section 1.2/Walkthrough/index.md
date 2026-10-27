@@ -83,7 +83,7 @@ the work and its uncertainty.
 
 $$W = Fd = 12.0 \times 0.50 = 6.0\,\text{J}$$
 
-The percentage uncertainties add: $3\% + 2\% = 5\%$. That is $0.30$ J of $6.0$ J, so
+where $W$ is the work, $F$ the force and $d$ the distance moved. The percentage uncertainties add: $3\% + 2\% = 5\%$. That is $0.30$ J of $6.0$ J, so
 
 $$W = 6.0\,\text{J} \pm 0.30\,\text{J}$$
 

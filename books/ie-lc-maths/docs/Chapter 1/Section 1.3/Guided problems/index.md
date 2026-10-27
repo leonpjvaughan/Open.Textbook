@@ -31,7 +31,7 @@ kind: guided-problems
 
 ## Practise with help
 
-**1.** Find the length of the diagonal of a unit square.
+**1.** Find the length $d$ of the diagonal of a unit square.
 
 <details markdown="1">
 <summary>Hint</summary>
