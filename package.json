@@ -11,7 +11,7 @@
     "pagefind": "1.5.2",
     "prettier": "^3.9.10",
     "typescript": "^7.0.2",
-    "wrangler": "4.149.0"
+    "wrangler": "4.152.0"
   },
   "scripts": {
     "build": "node tools/build.mjs",
