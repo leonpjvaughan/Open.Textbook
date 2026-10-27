@@ -8,11 +8,15 @@ Compression here would delete the reasoning and keep the number.
 An item arrives here by being closed in `todo.md` — marked `**done**` in its heading and
 checked in the list at the top of that file. Nothing is deleted.
 
-**Some numbers repeat** — 31, 75, 98, 99 and 100 appear twice or three times — because
-a group was renumbered as work landed and the later item kept the number the earlier
-one had. The cross-references inside this file are by number, so renumbering now would
-break more than it fixed; the repeats stay, and each item's heading is its own
-identifier.
+**Some numbers repeat** — 31, 75, 98, 99 and 100 each appear two or three times —
+because a group was renumbered as work landed and the later item kept the number the
+earlier one had. Renumbering them was attempted on 2026-10-27 and reverted: the number
+is a date order in this file, and three of the duplicates arrived out of order (the
+items written on 2026-10-22 carry 98, 99 and 100 because they were renumbered to those
+on 2026-10-23, so they sit after items written later in the day). Restoring uniqueness
+means moving the newest items, which is the opposite of what a number here is for. Each
+item's heading is its own identifier, and a cross-reference that names a number says
+which item it means.
 
 ## 1. Theme menu — reader settings in the header — **done**
 
