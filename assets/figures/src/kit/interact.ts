@@ -213,8 +213,8 @@ export type RandomSource = {
  *     they saw are comparing different data. The collection's Tier-2 rule already
  *     requires determinism for a committed sweep; randomness in a figure is the same
  *     requirement;
- *   * `check-figure-kit.cjs` and `tests/test_figure_browser.py` cannot assert anything
- *     about a figure whose data changes on every load;
+ *   * `node tools/dist/cli.js kit site` and `tests/test_figure_browser.py` cannot
+ *     assert anything about a figure whose data changes on every load;
  *   * a reader who wants another sample should get one on purpose, not by accident.
  *
  * One module in 209 uses `Math.random`, so this is not a retrofit — it is the
@@ -647,8 +647,9 @@ export function remember(key: string, fallback: unknown = null): Remembered {
  *
  * What makes it trustworthy anyway is that the *generator* is checked: a template whose
  * `answer` is a function of the parameters it drew is testable by generating a thousand
- * and asserting the invariants a reader would check by hand. `tests/test_figure_kit_pure.py`
- * does exactly that for the kinds the collection ships.
+ * and asserting the invariants a reader would check by hand.
+ * `tests/test_figures.py::test_the_figure_kit_keeps_its_pure_contract` does exactly
+ * that for the kinds the collection ships.
  *
  * @param {object} o
  * @param {Array<{id: string, build: (rng: object) => {text, answer, tolerance?, unit?}}>} o.kinds

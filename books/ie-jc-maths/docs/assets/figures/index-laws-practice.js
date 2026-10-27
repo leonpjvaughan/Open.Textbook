@@ -9,7 +9,7 @@
 // build time. A generated answer cannot be, so this claims something different and
 // weaker: the answer is computed by the same function that wrote the question, so the
 // two cannot disagree. The *generator* is what is checked — 300 seeds at a time, in
-// `scripts/check-figure-kit-pure.mjs` — and the page must not say "checked by a
+// `node tools/dist/cli.js kit-pure` — and the page must not say "checked by a
 // computer".
 //
 // The question is written in **plain text**, not LaTeX: the maths hook runs at build

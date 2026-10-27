@@ -6248,3 +6248,49 @@ pass once restored.
 **Done (2026-10-26).** `scripts/check.sh` green, `pytest` 8344 passed, and the live page
 carries no reference to a script that is not there.
 
+## 134. The dead command survived in the kit's own comments, and shipped to readers — **done**
+
+**What is wrong.** Item 133 fixed the paths in the rule documents and said the class was
+closed by a test. It was not: the same four names survived in source comments, and the
+kit is compiled, so one of them was served to every reader who downloaded it:
+
+```
+$ grep -rn "check-figure-kit\|audit-figures" assets/figures/src/
+assets/figures/src/kit/interact.ts:216: *   * `check-figure-kit.cjs` and `tests/test_figure_browser.py` cannot assert anything
+assets/figures/src/kit/interact.ts:650: * and asserting the invariants a reader would check by hand. `tests/test_figure_kit_pure.py`
+assets/figures/src/kit/text.ts:30: * factor, and `check-figure-kit.cjs` measures the arithmetic rather than trusting the
+assets/figures/src/kit/text.ts:38: * of the drawing's. Re-measure with `audit-figures.cjs --mobile` before changing these.
+assets/figures/src/kit.ts:73: * `scripts/audit-figures.cjs`.
+
+$ curl -s https://open-textbook.org/numerical-methods/assets/figures/kit.js | grep -c audit-figures
+1
+```
+
+`kit/text.ts:38` was not a historical note but an instruction — "Re-measure with
+`audit-figures.cjs --mobile` before changing these" — which dies on `MODULE_NOT_FOUND`
+for the one person who follows it. `tests/test_figure_kit_pure.py` does not exist; the
+pure-kit contract is a test inside `tests/test_figures.py`. Two more names were stale
+outside the kit: `scripts/check-figure-kit-pure.mjs` in
+`books/ie-jc-maths/docs/assets/figures/index-laws-practice.js`, and
+`node scripts/screenshot.cjs` in `research/design/make_mocks.py`.
+
+**The fix.** Every comment names the command that exists — `node tools/dist/cli.js kit
+site`, `audit site --mobile`, `audit site`, `kit-pure` — and the kit was rebuilt so the
+compiled copy carries the same text. `engine/AGENTS.md`'s "a stray
+`engine/textbook.py` cannot shadow it" became "a module placed at the project root",
+which says the same thing without naming a path that is not there.
+
+**Why the test missed it, and what changed.** `test_every_script_the_rules_name_exists`
+walked a fixed list of rule documents and never read a source comment, which is where
+the kit keeps its instructions. It now scans `assets/figures/src/**/*.ts`, the compiled
+`assets/figures/kit*.js` and `kit/*.js` (committed, so a stale comment there is one a
+reader downloads), every book's figure modules, `engine/src/textbook/**/*.py`,
+`scripts/*.sh|*.mjs` and `tools/src/**/*.ts`. The pattern is anchored at a top-level
+directory so another project's path — `"$PROJECT/scripts/build_release.py"` in
+`scripts/build-otkd.sh` — is not read as ours. Shown to fail on the pre-fix tree:
+the first run reported `assets/figures/kit.js: scripts/audit-figures.cjs`.
+
+**Done (2026-10-26).** `grep -rn "check-figure-kit\|audit-figures"` over the sources and
+the built kit prints nothing; `pytest` and `scripts/check.sh` are green; the deployed
+`kit.js` carries no dead path.
+

@@ -70,7 +70,7 @@
  *
  * The rules and the measurements behind them are in `assets/AGENTS.md`; the queue of
  * what to add next is `ideas.md`; the audit that measures every figure in a browser is
- * `scripts/audit-figures.cjs`.
+ * `node tools/dist/cli.js audit site`.
  */
 
 export { UI_FONT, diagram, panel } from "./kit/frame.js";

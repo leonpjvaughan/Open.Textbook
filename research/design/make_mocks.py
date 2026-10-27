@@ -7,7 +7,7 @@ subject tint" through to genuinely subject-native treatments, so the directions
 can be compared side by side.
 
     python research/design/make_mocks.py        # writes var/mockups/
-    node scripts/screenshot.cjs var/mockups <out> --schemes light,dark -- ...
+    node tools/dist/cli.js screenshot var/mockups <out> --schemes light,dark -- ...
 
 Every mock links the real assets/stylesheets/extra.css, so what is shown is the
 real token layer with per-direction overrides — not a drawing of what it might

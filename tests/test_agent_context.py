@@ -258,9 +258,10 @@ def rule_documents():
     """Every file an agent is told to read as a rule, or told to run as a step.
 
     The root `AGENTS.md` was the only file the first version of this test read, and
-    that is how `scripts/check-figure-kit.cjs` survived in `assets/AGENTS.md`, in a
-    skill's verification block and in four `package.json` scripts after it became
-    `node tools/dist/cli.js kit`. A promise to run a command lives in all of them.
+    that is how the old figure-kit script's path survived in `assets/AGENTS.md`, in a
+    skill's verification block, in four `package.json` scripts and in the kit's own
+    source comments, after the check became `node tools/dist/cli.js kit`. A promise to
+    run a command lives in all of them.
     """
     documents = [AGENTS]
     documents += sorted(ROOT.glob("*/AGENTS.md"))
@@ -283,21 +284,54 @@ def rule_documents():
     return [path for path in documents if path.is_file()]
 
 
+def source_files():
+    """The sources that carry a command in a comment: the kit, the tools, the figures.
+
+    `assets/figures/src/kit/text.ts` told a maintainer to "re-measure with
+    `audit-figures.cjs --mobile`" for a year after that script became
+    `node tools/dist/cli.js audit site --mobile`, and the comment shipped to readers in
+    the compiled `kit/text.js`. Generated files are read too: they are committed, so a
+    stale comment in one is a stale comment a reader downloads.
+    """
+    patterns = (
+        "assets/figures/src/**/*.ts",
+        "assets/figures/*.js",
+        "assets/figures/kit/*.js",
+        "assets/figures/kit.js",
+        "books/*/docs/assets/figures/*.js",
+        "engine/src/textbook/**/*.py",
+        "scripts/*.sh",
+        "scripts/*.mjs",
+        "tools/src/**/*.ts",
+    )
+    files = []
+    for pattern in patterns:
+        files.extend(sorted(ROOT.glob(pattern)))
+    return files
+
+
 def test_every_script_the_rules_name_exists():
     """A command in the rules is a command somebody will run.
 
-    `scripts/audit-figures.cjs` was named by the root `AGENTS.md` and by
+    The figure audit's old path was named by the root `AGENTS.md` and by
     `assets/AGENTS.md` long after it had moved into `tools/`, so the verification
     block and the prose disagreed and neither was the one that ran. A path in the
-    instructions is a promise; this is the check that keeps it, over every document
-    that makes one.
+    instructions is a promise, and a comment beside a constant is the same promise to
+    the person who changes it, so this reads both: every rule document, and every
+    source file that tells a maintainer which command to run.
     """
     missing = []
-    for path in rule_documents():
+    for path in rule_documents() + source_files():
         text = path.read_text(encoding="utf-8")
-        for token in set(
-            re.findall(r"[\w./-]*scripts/[a-zA-Z0-9_.-]+\.(?:sh|cjs|mjs|py)", text)
-        ):
+        # Anchored at a top-level directory, so a path belonging to another project
+        # (`"$PROJECT/scripts/build_release.py"` in `scripts/build-otkd.sh`) is not read
+        # as one of ours.
+        pattern = (
+            r"(?<![\w$/-])(?:\./)?"
+            r"(?:assets|books|deploy|engine|scripts|solvers|tests|tools|\.agents|\.github)"
+            r"/[\w./-]*\.(?:sh|cjs|mjs|py)"
+        )
+        for token in set(re.findall(pattern, text)):
             name = token[2:] if token.startswith("./") else token
             if not (ROOT / name).is_file():
                 missing.append(f"{path.relative_to(ROOT)}: {name}")

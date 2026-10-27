@@ -27,15 +27,16 @@
  *
  * The values assume a viewBox around 420–560 units wide, which is what `panel`
  * produces. A figure with a much wider viewBox needs to scale these up by the same
- * factor, and `check-figure-kit.cjs` measures the arithmetic rather than trusting the
- * name.
+ * factor, and `node tools/dist/cli.js kit site` measures the arithmetic rather than
+ * trusting the name.
  *
  * The scale is not a round number and it is not the panel's own width. Measured at a
  * 390px viewport, the `maths-figure` element is 358px wide but carries 17.6px of
  * padding on each side, so **the drawing is 322.8px** and a 560-unit viewBox draws at
  * 322.8 / 560 = 0.576. `SIZE.tick` was 15 units for a while, which is 8.6px — below
  * the 9px floor — and the guard missed it because it used the element's width instead
- * of the drawing's. Re-measure with `audit-figures.cjs --mobile` before changing these.
+ * of the drawing's. Re-measure with `node tools/dist/cli.js audit site --mobile`
+ * before changing these.
  */
 export const SIZE = {
   /** An axis tick or a minor annotation. 16 units is 9.2px at the 0.576 phone scale. */

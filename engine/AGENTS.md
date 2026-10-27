@@ -1,8 +1,8 @@
 # AGENTS.md — the shared engine
 
 The engine is one installable package, `textbook`, under `engine/src/` — a **src
-layout**, so the importable package is not the project directory and a stray
-`engine/textbook.py` cannot shadow it. It is a uv workspace member with its own
+layout**, so the importable package is not the project directory and a module placed
+at the project root cannot shadow it. It is a uv workspace member with its own
 `pyproject.toml` (hatchling, `packages = ["src/textbook"]`). It renders every book to
 static HTML, generates the docs tree and the CSS, verifies the problem banks and builds
 the landing page. Nothing here knows a subject.
