@@ -135,8 +135,8 @@ measurements and the reasoning are in `research/design/reuse-audit.md`.
   avoids by refusing a pointer with no backing control. A figure uses `diagram()` or
   `panel()`, not both — two navigation models in one drawing is worse than one.
 
-`scripts/check-figure-kit.cjs` verifies all of this through a real page, including the
-phone-floor arithmetic, and `scripts/check-figure-kit-pure.mjs` verifies the drawing and
+`node tools/dist/cli.js kit site` verifies all of this through a real page, including the
+phone-floor arithmetic, and `node tools/dist/cli.js kit-pure` verifies the drawing and
 formatting layers under plain `node`, so they are in the ordinary gate rather than only
 where Playwright is configured. Between them they check the invariant that matters most
 for a Venn diagram — that every region's label lands inside the region it names, for two

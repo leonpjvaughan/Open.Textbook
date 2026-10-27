@@ -1,9 +1,18 @@
 # HANDOFF — Maths Applied, Chapter 1: Suspension Kinematics
 
-**Status:** ready to execute
+**Status:** executed, and kept as the record
 **Written:** 2026-10-18
-**Spans:** two repositories — a new `suspension-kinematics`, and this one
+**Spans:** two repositories, then — `suspension-kinematics` and this one; one now, at
+`solvers/otkd` (the old repository is archived)
 **Reader of this file:** an agent with no prior context for this work
+
+> **Historical, 2026-10-26.** This handoff was carried out. The package it tells you to
+> create lives in this repository at `solvers/otkd`, imports as `open_textbook.otkd`,
+> and the repository it was created in is archived. Every command below that names
+> `suspension-kinematics` or a `scripts/*.cjs` helper is the state of the work on the day
+> it was written: the helpers became `node tools/dist/cli.js <command>`, and the paper
+> path is in `DECISIONS.md` under 2026-10-26. The decisions are still the book's, which
+> is why the file is kept.
 
 You are building a new book in an existing, opinionated repository. Read the
 repository before you write anything; most of the rules you need already exist and
@@ -412,7 +421,7 @@ point of pseudocode.
 - §0–§4 authored end to end. `grep -rl 'scaffold:stub' books/maths-applied/docs/`
   prints nothing for those sections.
 - Every figure mounts and renders in **both** schemes; passes
-  `scripts/audit-figures.cjs` at 390px.
+  `node tools/dist/cli.js audit site` at 390px.
 - Every animation has a static frame that carries the idea on its own.
 - Every agreement panel's numbers come from the exported `agreement` object, not
   from prose written by hand.
@@ -425,11 +434,9 @@ point of pseudocode.
 ## VERIFICATION
 
 ```bash
-# Phase A
-cd suspension-kinematics
-uv run pytest -q
-uv run suspension export examples/double-wishbone examples/double-wishbone/out.js
-git add -A && git diff --cached --exit-code   # emitted data is committed and stable
+# Phase A — now `solvers/otkd` in this repository
+uv run --project solvers/otkd --frozen pytest -q
+scripts/build-otkd.sh --verify                # the committed bundle matches its sums
 
 # Phase B
 cd maths-site
@@ -439,8 +446,8 @@ python -m textbook.lint
 while read -r -a b; do python -m textbook.pipeline "${b[@]}"; done \
   < <(python -m textbook.plan --configs)
 grep -rl 'math-error' site --include='*.html'   # must print nothing
-node scripts/audit-figures.cjs site
-node scripts/audit-figures.cjs site --mobile
+node tools/dist/cli.js audit site
+node tools/dist/cli.js audit site --mobile
 pytest tests/ -q
 scripts/check.sh
 ```

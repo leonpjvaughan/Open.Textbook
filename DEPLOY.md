@@ -427,7 +427,7 @@ and a practise page) the range is 7–13 requests, 47–153 kB and a document of
 Re-measure with:
 
 ```bash
-node scripts/measure-budget.cjs site /gcse-maths/higher/chapter-1/section-1.1/learn/
+node tools/dist/cli.js budget site /gcse-maths/higher/chapter-1/section-1.1/learn/
 ```
 
 It binds a local server on an ephemeral port rather than serving through request

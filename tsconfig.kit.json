@@ -22,7 +22,7 @@
     "types": [],
     "strict": false,
     // **Transpile, do not check.** Type checking is `tsconfig.json` and
-    // `scripts/check-types.mjs`, which ratchets. If this config checked as well, the
+    // `node tools/dist/cli.js types`, which ratchets. If this config checked as well, the
     // build would refuse to emit a figure kit that has 105 known-untyped lines in
     // `draw.js` — and a build that cannot run until every type is annotated is a build
     // nobody runs. Emit and check are separate jobs with separate failure modes.

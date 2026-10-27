@@ -178,7 +178,7 @@ under about a quarter of a chapter.
 never colour as the only signal; no colour literals, only `fig-*`/`text-*` and `--tb-*`;
 a drawing has `role="img"` and a name and a readout is a live region without `role="img"`.
 Six of these are enforced by `tests/test_figures.py`, and the rendered contrast of every
-figure in both schemes is measured by `scripts/audit-figures.cjs` on every build.
+figure in both schemes is measured by `node tools/dist/cli.js audit site` on every build.
 
 Everything else — how many sliders, whether it animates, whether it needs a new primitive,
 whether it wants a library — is an engineering decision to be made per idea. That is the
@@ -734,8 +734,8 @@ This file is the queue, so an idea leaves it by being built.
 
 - Move it to **Built**, below, with the book, the section, the module slug and the date.
 - A new kit primitive goes into `assets/figures/kit.js` with its check added to
-  `scripts/check-figure-kit.cjs` and its rule written into `assets/AGENTS.md` **in the same
-  change** — the three have drifted apart before.
+  `tools/src/commands/kit.ts` (or `kit-pure.ts`) and its rule written into
+  `assets/AGENTS.md` **in the same change** — the three have drifted apart before.
 - A defect it reveals goes to `.agents/todo.md` as a numbered item with the command that
   found it, not here.
 - If it changes a rule, change the rule and leave a note saying why.

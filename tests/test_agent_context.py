@@ -254,15 +254,80 @@ def test_every_book_names_its_parent_agents_file():
     )
 
 
-def test_every_script_the_root_instructions_name_exists():
+def rule_documents():
+    """Every file an agent is told to read as a rule, or told to run as a step.
+
+    The root `AGENTS.md` was the only file the first version of this test read, and
+    that is how `scripts/check-figure-kit.cjs` survived in `assets/AGENTS.md`, in a
+    skill's verification block and in four `package.json` scripts after it became
+    `node tools/dist/cli.js kit`. A promise to run a command lives in all of them.
+    """
+    documents = [AGENTS]
+    documents += sorted(ROOT.glob("*/AGENTS.md"))
+    documents += sorted(ROOT.glob("books/*/AGENTS.md"))
+    documents += sorted(ROOT.glob(".agents/skills/**/SKILL.md"))
+    documents += [
+        ROOT / name
+        for name in (
+            "SHAPE.md",
+            "DEPLOY.md",
+            "PROBLEMS.md",
+            "BOOKLETS.md",
+            "DECISIONS.md",
+            "ideas.md",
+            "tests/README.md",
+            ".agents/chapter-brief.md",
+            ".agents/maths-applied-handoff.md",
+        )
+    ]
+    return [path for path in documents if path.is_file()]
+
+
+def test_every_script_the_rules_name_exists():
     """A command in the rules is a command somebody will run.
 
     `scripts/audit-figures.cjs` was named by the root `AGENTS.md` and by
     `assets/AGENTS.md` long after it had moved into `tools/`, so the verification
     block and the prose disagreed and neither was the one that ran. A path in the
-    instructions is a promise; this is the check that keeps it.
+    instructions is a promise; this is the check that keeps it, over every document
+    that makes one.
     """
-    text = AGENTS.read_text(encoding="utf-8")
-    named = set(re.findall(r"scripts/[a-zA-Z0-9_.-]+\.(?:sh|cjs|mjs|py)", text))
-    missing = sorted(name for name in named if not (ROOT / name).is_file())
-    assert not missing, f"the root AGENTS.md names scripts that do not exist: {missing}"
+    missing = []
+    for path in rule_documents():
+        text = path.read_text(encoding="utf-8")
+        for token in set(
+            re.findall(r"[\w./-]*scripts/[a-zA-Z0-9_.-]+\.(?:sh|cjs|mjs|py)", text)
+        ):
+            name = token[2:] if token.startswith("./") else token
+            if not (ROOT / name).is_file():
+                missing.append(f"{path.relative_to(ROOT)}: {name}")
+    assert not missing, "the rules name scripts that do not exist: " + ", ".join(sorted(missing))
+
+
+def test_every_npm_script_runs_something_that_exists():
+    """`npm run kit` was four dead aliases for a year: a command, and no target.
+
+    A package script is a promise made in `package.json` and repeated in the rules,
+    so both halves are checked: the file a script names is there, and the alias a
+    document tells you to run is one of the scripts that exists.
+    """
+    import json
+
+    package = json.loads((ROOT / "package.json").read_text(encoding="utf-8"))
+    scripts = package["scripts"]
+    dead = []
+    for name, command in scripts.items():
+        for target in re.findall(r"(?:node|bash|sh)\s+([\w./-]+\.(?:mjs|js|cjs|sh))", command):
+            if not (ROOT / target).is_file():
+                dead.append(f"{name}: {target}")
+    assert not dead, "package scripts name files that do not exist: " + ", ".join(dead)
+
+    unknown = []
+    for path in rule_documents():
+        text = path.read_text(encoding="utf-8")
+        for name in set(re.findall(r"npm run ([a-zA-Z0-9:_-]+)", text)):
+            if "<" in name:
+                continue
+            if name not in scripts:
+                unknown.append(f"{path.relative_to(ROOT)}: npm run {name}")
+    assert not unknown, "the rules name npm scripts that do not exist: " + ", ".join(sorted(unknown))

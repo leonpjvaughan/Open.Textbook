@@ -6201,3 +6201,50 @@ implemented" in `engine/`, `assets/`, `scripts/`, `tools/`, `tests/`, `deploy/` 
 is now inside a dated record or a superseded note.
 
 **Done (2026-10-26).** All five fixed and `scripts/check.sh` is green.
+
+## 133. Four `npm run` aliases and three rule documents named scripts that no longer exist — **done**
+
+**What is wrong.** The tools moved from `scripts/*.cjs` into `tools/` and the references
+did not follow, so the documentation named commands that die on `MODULE_NOT_FOUND`:
+
+```
+$ node scripts/check-figure-kit-pure.mjs; echo "exit=$?"
+Error: Cannot find module '/home/leon/Work/maths-site/scripts/check-figure-kit-pure.mjs'
+exit=1
+
+$ for f in assets/AGENTS.md DEPLOY.md ideas.md tests/README.md \
+      .agents/skills/build-guided-figure/SKILL.md package.json; do
+    git show "HEAD:$f"; done | grep -c "\.cjs"
+10
+```
+
+Five command paths were dead, every one reachable from a document an agent is told to
+read: `npm run kit`, `kit:browser`, `audit` and `audit:mobile` in `package.json`;
+`scripts/check-figure-kit.cjs` and `scripts/check-figure-kit-pure.mjs` in
+`assets/AGENTS.md`; `scripts/measure-budget.cjs` in `DEPLOY.md`; three scripts in the
+verify block of `.agents/skills/build-guided-figure/SKILL.md`, which an agent is
+required to run before claiming a figure done; `scripts/audit-figures.cjs` in `ideas.md`,
+`tests/README.md` and `package.json`; and `scripts/check-types.mjs` in two `tsconfig`
+comments. `scripts/AGENTS.md` promised "or `npm run <name>`" for four names that did not
+run.
+
+**The fix.** Every reference now names the command that exists: `node tools/dist/cli.js
+kit-pure`, `kit site`, `audit site`, `audit site --mobile`, `budget site`, `screenshot`,
+and `types`. `tests/README.md` and the figure skill name `scripts/preview-themes.sh` and
+`node tools/dist/cli.js preview`. `.agents/maths-applied-handoff.md` carries the same
+historical banner as the planning record: it was executed, its package is `solvers/otkd`,
+and its `suspension-kinematics` phase is an archived repository.
+
+**The class, closed by a test.** `tests/test_agent_context.py` had a test for exactly
+this, which read the root `AGENTS.md` only — which is how `assets/AGENTS.md` kept a dead
+path for a year. It now reads every rule document: the root and nested `AGENTS.md`, every
+`books/*/AGENTS.md`, every `.agents/skills/**/SKILL.md`, `SHAPE.md`, `DEPLOY.md`,
+`PROBLEMS.md`, `BOOKLETS.md`, `DECISIONS.md`, `ideas.md`, `tests/README.md`,
+`.agents/chapter-brief.md` and the handoff. A second test checks the other half:
+`package.json`'s scripts name files that exist, and every `npm run <name>` a document
+mentions is a script that exists. Both were shown to fail on an injected dead path and to
+pass once restored.
+
+**Done (2026-10-26).** `scripts/check.sh` green, `pytest` 8344 passed, and the live page
+carries no reference to a script that is not there.
+

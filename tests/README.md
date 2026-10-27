@@ -118,7 +118,8 @@ renderers (the comment degrades to visible content, which a port codemod strips)
 
 ## 3. Theme preview
 
-`theme-preview.cjs` previews every bundle on the **built** site, in both schemes,
+`scripts/preview-themes.sh` (and `node tools/dist/cli.js preview`) previews every
+bundle on the **built** site, in both schemes,
 and checks the two things a screenshot cannot: that the reader's preference
 actually reached the page, and that the text on it has enough contrast.
 

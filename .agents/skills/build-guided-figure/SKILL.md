@@ -74,11 +74,11 @@ runs it:
 ## Verify
 
 ```bash
-node scripts/check-figure-kit-pure.mjs           # the drawing and formatting layers, no browser
+node tools/dist/cli.js kit-pure                  # the drawing and formatting layers, no browser
 uv run python -m pytest tests/ -q                # manifest coverage, the kit's pure contract
 uv run python -m textbook.pipeline --book <book> --profile <profile>
-node scripts/check-figure-kit.cjs site            # the DOM contract, needs PLAYWRIGHT_PATH
-node scripts/screenshot.cjs site ~/out --schemes light,dark -- \
+node tools/dist/cli.js kit site                  # the DOM contract, needs a browser
+node tools/dist/cli.js screenshot site ~/out --schemes light,dark -- \
   "learn:/<book>/<profile>/chapter-<n>/section-<n.m>/learn/"
 ```
 

@@ -2,7 +2,7 @@
   // Emit config for the tools CLI: `tools/src/**` -> `tools/dist/**`.
   //
   // `noCheck`, for the same reason as the kit: emitting and type-checking are separate
-  // jobs. Checking is `tsconfig.json` and `scripts/check-types.mjs`.
+  // jobs. Checking is `tsconfig.json` and `node tools/dist/cli.js types`.
   "compilerOptions": {
     "target": "ES2022",
     "module": "NodeNext",
