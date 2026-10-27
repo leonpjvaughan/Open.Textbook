@@ -22,6 +22,8 @@ releases** and **Toolchain** still apply.
 | `scripts/next-tag.sh` | Print the next release tag, `yy.<day>.<increment>` |
 | `scripts/protect-main.sh` | Require the gate check on `main` (public repository, or GitHub Pro) |
 | `scripts/build-otkd.sh` | Builds the `otkd` bundle — model exports and compiled kernels — from `solvers/otkd` into `books/maths-applied/docs/assets/data/otkd/`. `--verify` is the offline digest check in `check.sh`; `--check` rebuilds and diffs in the changed-path CI job |
+| `scripts/build-solvers.sh` | Build every `ot-solve` kernel to wasm and write `assets/data/solvers/`. `--check` rebuilds into a temporary directory and fails if the committed bytes differ; `--verify` is the offline digest check in `check.sh`; no argument writes the bundle |
+| `scripts/check-solvers.mjs` | Replay each kernel's `selftest.json` against the wasm in Node, the way the page's loader instantiates it. `check.sh` runs it, so a stale artefact or a moved offset fails locally, not in a figure |
 | `scripts/fetch_sources.sh` | Fetch the tracked primary sources into `research/sources/` |
 | `scripts/launch_chapter_agents.sh` | Feed `.agents/prompts/` to chapter sub-agents |
 | `scripts/launch_review_agents.sh` | The same for the review prompts |

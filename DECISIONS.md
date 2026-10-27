@@ -11,7 +11,7 @@ home at all.
 **The decision.** `solvers/` holds both producers: `ot-solve` (hand-written numerical
 kernels, Rust → WebAssembly) and `otkd` (the mechanism compiler, moved here and
 archived at its old address). One ABI, `solvers/ABI.md`: a fixed `f64` arena, four
-named blocks, seven exports, status codes rather than traps, a generated manifest and
+named blocks, seven exports and the memory, status codes rather than traps, a generated manifest and
 a native selftest replayed through the page's loader. `scripts/build-solvers.sh` and
 `scripts/build-otkd.sh` rebuild the committed artefacts; CI **builds to compare, never
 to ship**, and the deploy installs no compiler. The otkd suite is path-gated because it

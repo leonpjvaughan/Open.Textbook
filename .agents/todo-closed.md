@@ -8,6 +8,12 @@ Compression here would delete the reasoning and keep the number.
 An item arrives here by being closed in `todo.md` — marked `**done**` in its heading and
 checked in the list at the top of that file. Nothing is deleted.
 
+**Some numbers repeat** — 31, 75, 98, 99 and 100 appear twice or three times — because
+a group was renumbered as work landed and the later item kept the number the earlier
+one had. The cross-references inside this file are by number, so renumbering now would
+break more than it fixed; the repeats stay, and each item's heading is its own
+identifier.
+
 ## 1. Theme menu — reader settings in the header — **done**
 
 **Request.** The theme (starting with `Editorial`) should be selectable from a
@@ -357,7 +363,7 @@ Other notes:
 
 ---
 
-## 5. Worker version URLs are public, and rollback is untested — **done**
+## 5. Worker version URLs are public, and rollback is untested — **done, one drill deferred**
 
 **Deferred by the author, 2026-10-12.** Not because it is not worth doing — a
 rollback that has never been run is a plan, not a capability — but because it is a
@@ -1279,7 +1285,7 @@ runnable; `scripts/preview-themes.sh` still passes on the six bundles.
 
 ---
 
-## 25. iOS gets a page screenshot, not an icon — **done**
+## 25. iOS gets a page screenshot, not an icon — **done, one check unverified**
 
 **What is wrong.** The site ships a tab icon (`assets/icons/favicon.svg`) and a
 launcher icon for Android (`assets/icons/app-icon.svg`, declared in the manifest as
@@ -1586,7 +1592,7 @@ Poisson and chi-squared distributions — so that dependency decision comes firs
 - [x] The §6 limit written in `PROBLEMS.md` and in the oracle module.
 - [x] A physics bank that uses it — **157 physics banks across two complete books**,
       every one verified by the `units` oracle.
-- [ ] The equations-sheet coverage test (§3.6) — **moved to item 44**, because it
+- [x] The equations-sheet coverage test (§3.6) — **moved to item 44**, because it
       cannot be made honest without a declaration the banks do not carry.
       (`books/<id>/booklet/*.yaml`) as data; it was not in the mission's build
       order and cannot run without the book.
@@ -3190,16 +3196,22 @@ section, at the point where the class is first true, not in a list at the top.
 
 **Done means**
 
-- [ ] `:::class parabolic` renders one link and nothing else — no script, no dialog.
-- [ ] An unlisted slug fails the build with the known slugs in the message.
-- [ ] A page outside `books/numerical-methods/` can emit the directive; the href is
+- [x] `:::class parabolic` renders one link and nothing else — no script, no dialog.
+- [x] An unlisted slug fails the build with the known slugs in the message.
+- [x] A page outside `books/numerical-methods/` can emit the directive; the href is
       root-absolute and survives `check_links`, which skips it by design.
-- [ ] At least three sections in `books/maths-applied/` carry one.
-- [ ] `books/maths-applied/AGENTS.md` replaces its "until then, link the page
+- [x] At least three sections in `books/maths-applied/` carry one.
+- [x] `books/maths-applied/AGENTS.md` replaces its "until then, link the page
       plainly" paragraph with the contract, and `books/numerical-methods/AGENTS.md`
       records that it now has inbound links.
 
 ---
+
+**The five boxes are item 78's work, and all five hold.** `tests/test_class_links.py`
+covers one link and nothing else, the root-absolute href from a page anywhere, and the
+build failure that names the known classes; `books/maths-applied/AGENTS.md` carries the
+contract at line 287; and eight pages emit the directive (five of them in
+`books/maths-applied`).
 
 ## 78. Batch A of the map — **done**
 
@@ -4231,7 +4243,7 @@ touching the period, because a constant force shifts the answer rather than the 
 resting height, is what makes the second visible. The trajectory was re-vendored with its digest: same
 numbers, new sources.
 
-## 98. The map's figure draws a chain of five questions, not a tree — **done**
+## 98. The map's figure draws a chain of five questions, not a tree — **closed by retiring the figure**
 
 **What is wrong.** `books/numerical-methods/docs/assets/figures/class-map.js` draws the five questions on one unbroken vertical spine at `x = 34`, from Q1 to Q5, and hangs the nine boxes off it on a bus at `x = 310`. The graph it draws is therefore
 
@@ -4261,7 +4273,8 @@ times in the class pages' own *Systems that live here* lists. A reader with no c
 handed the index to a book they have not opened. Three strategies — nine reasons, one
 story, or "what have you got?" — are with the author for a decision.
 
-**Done means**
+**Done means — the redraw, which was not the option taken.** The boxes are kept
+unchecked on purpose: they describe option 1, and the item closed by option 2 below.
 
 - [ ] the figure draws the real tree: every edge labelled with the answer it is, and the linear sub-question is a node
 - [ ] a reader can tell from the still alone which question each box answers
@@ -6123,3 +6136,68 @@ declares. Renaming a parameter in Rust breaks the figure at run time otherwise, 
 browser, on a page nobody rebuilt. Verified by breaking it: `norm` → `norm_missing` in
 `heat-lab.js` fails the test, and the restored file passes.
 
+**The same defect, three times on one page — found by a fresh reading, not by a test.**
+The fix above corrected the *paragraph*, and left the page pricing the same refinement
+three different ways:
+
+| where | said | 1D truth |
+|---|---|---|
+| `parabolic/index.md`, the Explicit bullet | "four times the work per step and the same again in the number of steps" | twice the work per step, four times the steps, eight times the total |
+| `parabolic/index.md`, the paragraph before the figure | four times the steps and twice the arithmetic | right |
+| `step-limit.js`, the readout | "Four times the **work** for twice the resolution" | four times the **steps**; the work is eight times |
+
+The page is one-dimensional throughout — the figure's x-axis is "cells across the
+region", and the scheme is `2N²` — so the bullet's 4 × 4 = 16 is a two-dimensional
+answer on a one-dimensional page, and the readout named the step count "work". All
+three now agree: twice the cells is twice the work per step and four times the steps,
+eight times in total, and the plot counts steps only. The readout is in a capture of
+both schemes; a test cannot read a sentence, so this is what review is for.
+
+## 132. The docs named commands and counts that are not there — **done**
+
+**What is wrong.** Review pass two checked each guide against the thing it describes,
+rather than reading it:
+
+```
+$ uv run python -c "from textbook.book import discover_books; print(len(discover_books()))"
+11
+$ grep -n "nine books" assets/AGENTS.md
+169:The collection is nine books and will be more. Two rules keep it from turning into nine
+
+$ node tools/dist/cli.js help | grep -cE "^  (assets|offline) "
+2
+$ grep -cE "assets \[|offline \[" tools/AGENTS.md
+0
+
+$ ls scripts/*.sh scripts/*.mjs | grep -E "solvers"
+scripts/build-solvers.sh
+scripts/check-solvers.mjs
+$ grep -c "build-solvers\|check-solvers" scripts/AGENTS.md
+0
+```
+
+So the design system claimed nine books where the build discovers eleven, and two
+guides did not name commands that exist: `tools assets` and `tools offline` in
+`tools/AGENTS.md`, and `scripts/build-solvers.sh` and `scripts/check-solvers.mjs` in
+`scripts/AGENTS.md` — the two scripts every kernel figure depends on.
+
+The closed queue had the same species of gap: 17 unchecked boxes, eight of them inside
+items whose heading said "done" (5, 25, 30, 75, 98), which is the contract
+`.agents/todo-closed.md` states it enforces. Items 30 and 75 described work that had
+landed (the `:::class` directive exists and eight pages emit it) and are now checked;
+5 and 25 describe a drill and a device check that a desk cannot perform, so their
+headings say so ("done, one drill deferred", "done, one check unverified"); 98 closed
+by retiring its figure, and its five boxes are now labelled as the redraw that was not
+taken. Five numbers repeat (31, 75, 98, 99, 100) and the preamble says why rather than
+renumbering, because the cross-references are by number.
+
+**What pass two covered, so the next pass need not repeat it.** Every relative link in
+509 Markdown files; the root docs' links; `scripts/AGENTS.md` against `scripts/`;
+`tools/AGENTS.md` against `node tools/dist/cli.js help`; the book count against
+`discover_books()`; `grep` for `TODO`, `FIXME`, `XXX`, "coming soon" and "not yet
+implemented" in `engine/`, `assets/`, `scripts/`, `tools/`, `tests/`, `deploy/` and
+`.github/` (none); and the stale-string sweep for `vendor-otkd`, `0.12.0`,
+`RUNNER_LABEL`, `wasm-pack`, `git subtree` and `suspension-kinematics`, whose every hit
+is now inside a dated record or a superseded note.
+
+**Done (2026-10-26).** All five fixed and `scripts/check.sh` is green.

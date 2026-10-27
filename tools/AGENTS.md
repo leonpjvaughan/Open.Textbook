@@ -21,6 +21,8 @@ command accepts is in its `SURFACE` table and in `tools help <command>`.
 
 | Command | What it does |
 |---|---|
+| `assets [siteDir]` | **Every asset a built page reaches for, and every manifest entry**, checked against the tree: an orphan, a miss, or an entry nothing reaches is named |
+| `offline [siteDir] [--route path]` | Read a book with the network off, after a deploy emptied the runtime cache: the service worker's answer, not the server's |
 | `audit <siteDir>` | **Measure every figure's paint in both schemes** against the panel behind it. `--mobile` asks the other question — what reaches a 390px screen — and fails below 9px |
 | `kit [siteDir] [route]` | The figure kit's **DOM** contract, checked through a real page: roles, live regions, focus stops, colour classes |
 | `kit-pure [kitPath]` | The kit's drawing and formatting layers, under plain `node`, so they are in the ordinary gate |

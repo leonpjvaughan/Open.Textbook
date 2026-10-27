@@ -166,8 +166,8 @@ views — and `assets/figures/kernel-lab.js` is the shared visual language: `fie
 
 ## Before you add a shared thing
 
-The collection is nine books and will be more. Two rules keep it from turning into nine
-copies of the same component.
+The collection is eleven books and will be more. Two rules keep it from turning into
+eleven copies of the same component.
 
 - **If two books need it, it belongs in `assets/`, not in a book.** A book's
   `docs/assets/` holds only what is that book's own. Shared files are declared once in
