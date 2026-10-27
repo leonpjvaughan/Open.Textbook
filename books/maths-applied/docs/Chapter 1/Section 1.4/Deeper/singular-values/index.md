@@ -88,7 +88,9 @@ are the square roots of its eigenvalues:
 
 $$ \sigma_i = \sqrt{\lambda_i\left(J^{\mathsf{T}}J\right)}. $$
 
-For the left null vector, the page's own code diagonalises the $3\times3$ matrix
+Here $\lambda_i$ is the $i$-th eigenvalue of the $2 \times 2$ matrix
+$J^{\mathsf{T}}J$, and $\sigma_i$ is the singular value it gives. For the left null
+vector, the page's own code diagonalises the $3\times3$ matrix
 $JJ^{\mathsf{T}}$ by Jacobi rotations and takes the eigenvector of the smallest
 eigenvalue. Twenty lines, no library — and the same definition the general solver
 uses, which is why the two agree rather than merely resemble each other.

@@ -94,8 +94,10 @@ Every method named here is in [Methods, A to Z](../techniques/#linear-systems), 
 - The pressure equation inside an incompressible flow solver — but the *constraint*
   that produces it is a saddle point, and the pressure equation is how that
   constraint is paid.
-- The elliptic gauge conditions in numerical relativity, in the formulations where
-  they cannot be evolved.
+- The elliptic coordinate conditions in numerical relativity, in the formulations where
+  they cannot be evolved — the lapse equation among them, which [The class is a
+  choice](../choosing-the-class/#the-same-equations-classified) puts through the test
+  beside its hyperbolic version.
 
 ## What goes wrong
 

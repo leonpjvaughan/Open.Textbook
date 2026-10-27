@@ -65,7 +65,8 @@ $$ \begin{aligned}
 (D_x - C_x)^2 + (D_z - C_z)^2 &= L^2.
 \end{aligned} $$
 
-Two circles meet in two places, or none, or touch. In code, the two places are
+$R_B$ is the upper arm's length, $L$ is the upright's, and $B$ and $C$ are the two
+points the circles are drawn around. Two circles meet in two places, or none, or touch. In code, the two places are
 found without any searching at all:
 
 ```python
@@ -95,7 +96,8 @@ angle, plus whatever the upright was built with at rest:
 
 $$ \gamma = \gamma_0 + \left(\phi - \phi_0\right), $$
 
-where $\phi$ is the direction of the line between the two ball joints and
+where $\gamma$ is the camber angle, $\phi$ is the direction of the line between the
+two ball joints and
 $\phi_0$ is that direction at rest. The design used here has $\gamma_0 = -1.0°$:
 the top of the wheel leans in by one degree when the car is standing still.
 

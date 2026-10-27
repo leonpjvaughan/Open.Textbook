@@ -6353,3 +6353,35 @@ prints nothing — the shipped import is `open_textbook.otkd` everywhere — and
 `import otkd` or `suspension-kinematics` inside the package is a banner, a dated record, or a
 sentence about what the move rewrote. `pytest` and `scripts/check.sh` are green.
 
+## 137. The A–Z table is clipped on a phone, and the formula is the column that goes — **done**
+
+**What is wrong.** `books/numerical-methods/docs/techniques/index.md` is four columns
+of dense content, sized for a desktop. Measured at 390px the table was 650px wide
+inside a 358px scroll box, so 45% of it was off-screen and the second column was cut
+mid-word: the reader's first sight read "ass | the step, in symbols | what … and c".
+`check-mobile` passed, because the table scrolled and the page did not overflow. The
+defect was legibility, which no layout check can see.
+
+**The fix.** Below `44rem` each row is a card (`book-local.css`): the method as its
+heading, the class as the link it already is, the formula, then the price as a
+sentence. The header row is moved out of sight with a clip rather than `display: none`,
+so a screen reader still hears the column names. The formula cell keeps its own
+horizontal scroll, because MathML cannot wrap and one Lax–Wendroff update is wider
+than a phone whatever the font size.
+
+**Done (2026-10-27).** Measured after the change:
+
+```
+$ node var/z-measure.mjs
+390  {"tableWidth":358,"boxClient":358,"scrolls":false,...}  docOverflow:0
+414  {"tableWidth":382,"boxClient":382,"scrolls":false,...}  docOverflow:0
+768  {"tableWidth":662,"boxClient":662,"scrolls":false,...}  docOverflow:0
+1024 {"tableWidth":662,...,"cells":[122,117,256,157]}        docOverflow:0
+1280 {"tableWidth":662,...,"cells":[122,117,256,157]}        docOverflow:0
+```
+
+At 390px a reader sees the method, the formula and its price without a sideways
+scroll, in both schemes (`var/tables/techniques-390.png`); the four-column table
+returns above 44rem and still fits at 1024px and 1280px with no scroll. The symbol
+lists under each table stay full width and read as prose, which is why defining them
+there works on a phone.

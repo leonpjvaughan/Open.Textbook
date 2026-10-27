@@ -42,3 +42,76 @@
     width: 24%;
   }
 }
+
+/* Methods, A to Z on a phone: a card per method, not four columns.
+ *
+ * Measured at 390px, the table was 650px wide inside a 358px scroll box, so 45% of
+ * it was off-screen and the second column was cut mid-word — "ass", "the step, in
+ * symbols". `check-mobile` passed, because the table scrolled and the page did not
+ * overflow: the defect was legibility, which no layout check can see.
+ *
+ * Below 44rem each row becomes a card: the method as its heading, the class as the
+ * link it already is, the formula, then the price as a sentence. The header row is
+ * moved out of sight rather than removed, so a screen reader still hears the column
+ * names; `display: none` would take them out of the accessibility tree.
+ *
+ * The formula cell keeps its own scroll: MathML cannot wrap, and one Lax–Wendroff
+ * update is wider than a phone whatever the font size. Scrolling one line is better
+ * than a page that scrolls sideways, which is what this replaces. */
+@media (max-width: 43.99rem) {
+  .method-index .table-scroll {
+    overflow: visible;
+  }
+
+  .method-index table,
+  .method-index tbody,
+  .method-index tr,
+  .method-index td {
+    display: block;
+    width: auto;
+  }
+
+  .method-index thead {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    margin: -1px;
+    padding: 0;
+    overflow: hidden;
+    clip-path: inset(50%);
+    white-space: nowrap;
+    border: 0;
+  }
+
+  .method-index tr {
+    margin: 0 0 0.9rem;
+    padding: 0.7rem 0.8rem;
+    border: 1px solid var(--md-default-fg-color--lightest);
+    border-radius: 0.4rem;
+  }
+
+  .method-index td {
+    padding: 0.1rem 0;
+    border: 0;
+  }
+
+  .method-index td:nth-child(1) {
+    font-family: var(--tb-font-display);
+    font-weight: 700;
+    line-height: 1.3;
+  }
+
+  .method-index td:nth-child(2) {
+    font-size: 0.9rem;
+  }
+
+  .method-index td:nth-child(3) {
+    padding: 0.45rem 0;
+    overflow-x: auto;
+  }
+
+  .method-index td:nth-child(4) {
+    color: var(--md-default-fg-color--light);
+    font-size: 0.95rem;
+  }
+}

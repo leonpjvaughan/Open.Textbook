@@ -36,7 +36,9 @@ have to balance: they have to *accelerate* things. The equations become
 
 $$ M\ddot{q} + C\dot{q} + \Phi_q^{\mathsf{T}}\lambda = Q, \qquad \Phi(q) = 0, $$
 
-where $q$ collects the positions, $\Phi(q) = 0$ is the constraint set from §1.2,
+where $q$ collects the positions, $M$ is the mass matrix, $C$ is the damping,
+$\Phi_q$ is the Jacobian of the constraints, $Q$ holds the applied forces,
+$\Phi(q) = 0$ is the constraint set from §1.2,
 and $\lambda$ holds the forces that keep the constraints true — the force in the
 ball joint, the force the wishbone carries. That is a **differential-algebraic**
 system: differential equations for the motion, algebraic equations for the

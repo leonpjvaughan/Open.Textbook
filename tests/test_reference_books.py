@@ -695,3 +695,87 @@ def test_the_figure_on_that_page_is_guided():
         f"{beats}, figure at {figure}"
     )
 
+
+
+# --- the relativity case, classified -------------------------------------------
+#
+# `choosing-the-class` used to assert that the Einstein equations become a different
+# class when the coordinate conditions change, and left the reader with the claim and
+# no arithmetic. It now prints two equations, three coefficients each and the sign of
+# the discriminant, so the claim is checkable — and these tests check it, the same way
+# `reading-the-class`'s table is checked, by rebuilding the rows from the equations
+# rather than by reading the page back to itself.
+
+CHOOSING = "choosing-the-class"
+
+
+def test_the_two_lapse_conditions_are_classified_by_the_books_own_test():
+    """The lapse rows, recomputed: one parabola, one hyperbola, one sign between them.
+
+    The page's claim is *same physics, one equation written two ways, two classes*.
+    The reduction it uses is one equation in one unknown, and each row is read off by
+    the rule on `reading-the-class` — three coefficients, and the sign of $B^2-4AC$.
+    A row out by a sign would make the page's whole argument false while still
+    looking like arithmetic, which is why the coefficients are asserted too.
+
+    The elliptic row lands on `parabolic`, and that is the point rather than a slip:
+    the test counts characteristic directions in the two variables it is handed, and
+    an equation with no time derivative has none. The page says so in the prose. This
+    test holds the arithmetic to what the page prints; the page holds the reader to
+    what the arithmetic means.
+    """
+    x, t = sp.symbols("x t", real=True)
+    u = sp.Function("u")
+    D = sp.diff
+    # Each equation as the page writes it: moved to one side, in (space, time).
+    equations = {
+        "elliptic": D(u(x, t), x, 2) - u(x, t),
+        "hyperbolic": D(u(x, t), t, 2) - D(u(x, t), x, 2),
+    }
+    page = (map_book().docs / CHOOSING / "index.md").read_text(encoding="utf-8")
+    rows = {}
+    for line in page.splitlines():
+        if not line.startswith("|"):
+            continue
+        cells = [cell.strip() for cell in line.strip().strip("|").split("|")]
+        # Seven columns: name, equation, the three coefficients, the discriminant,
+        # the class the sign names.
+        if len(cells) == 7 and cells[0] in equations:
+            rows[cells[0]] = cells
+    assert set(rows) == set(equations), (
+        f"the lapse table holds {sorted(rows)}, not {sorted(equations)}"
+    )
+    for name, pde in equations.items():
+        A = pde.coeff(D(u(x, t), x, 2))
+        B = pde.coeff(D(u(x, t), x, t))
+        C = pde.coeff(D(u(x, t), t, 2))
+        delta = sp.simplify(B**2 - 4 * A * C)
+        printed = [cell.strip("$ ").replace("\u2212", "-") for cell in rows[name][2:5]]
+        assert printed == [str(A), str(B), str(C)], (
+            f"{name}: the page prints {printed}, the equation gives {[str(A), str(B), str(C)]}"
+        )
+        shown = rows[name][5].strip("$ ").replace("\u2212", "-")
+        assert shown == str(delta), f"{name}: the page prints B² − 4AC = {shown}, not {delta}"
+        verdict = "hyperbolic" if delta > 0 else "parabolic" if delta == 0 else "elliptic"
+        assert rows[name][6] == verdict, (
+            f"{name}: the page says {rows[name][6]}, the sign of the discriminant says {verdict}"
+        )
+
+
+def test_the_relativity_claim_says_what_it_is_a_reduction_of():
+    """One equation is not the Einstein system, and the page has to say so.
+
+    The reduction classifies the lapse equation. Ten metric components, four
+    equations, and a coupling that can turn two hyperbolic equations into a system
+    that is neither: the page states all of that, because a map whose hardest case is
+    argued honestly is worth more than one that claims a four-equation system falls
+    out of a two-variable test. This checks the qualifier survives an edit.
+    """
+    page = (map_book().docs / CHOOSING / "index.md").read_text(encoding="utf-8")
+    section = re.sub(r"\s+", " ", page[page.index("## The same equations, classified") :])
+    for claim in (
+        "reduction, not a proof",  # the qualifier itself
+        "ten independent components",  # what the real system has instead
+        "can couple into a system that is not",  # why the reduction stops here
+    ):
+        assert claim in section, f"the relativity section no longer says {claim!r}"

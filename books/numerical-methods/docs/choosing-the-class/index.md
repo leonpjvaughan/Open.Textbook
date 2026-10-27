@@ -9,11 +9,12 @@ kind attached. It does not. **The kind is a property of how you wrote the model
 down**, and the same physics can be written as two different kinds. One of them will
 run and one will not, and the choice is yours to make before anything is solved.
 
-Three cases, from the least familiar to the most.
+Three cases. The first is the hardest there is, and the arithmetic that settles it
+comes after the other two.
 
 ## The same equations, one of which cannot be evolved
 
-Take the Einstein equations, which are the hardest case there is. Written with
+Take the Einstein equations. Written with
 **elliptic** coordinate conditions, a change anywhere inside the region has to be
 felt everywhere at once. A solver cannot do that: to compute the next moment it
 would need the answer at the same moment. Written with **hyperbolic** conditions,
@@ -67,6 +68,73 @@ The second is simpler to solve. It is also the one this book can sweep, because 
 root can be found at each wheel position without assembling a coupled system. What it
 gives up is the force being a solved unknown; you multiply instead.
 
+<a id="the-same-equations-classified"></a>
+
+## The same equations, classified
+
+This is the arithmetic behind the first case. The two coordinate conditions are
+one equation each in one unknown, and that is few enough to put through the test.
+The unknown is the **lapse**: the number that says how fast the clock runs at each
+point of space, so that the model knows which moment counts as *now*. Write it
+$\alpha$, and let $x$ be one direction in space and $t$ the time the model keeps.
+
+**The elliptic choice.** One way to fix the lapse asks for a balance at every
+point, with no rate of change left in it. That is what makes the slicing
+*elliptic*: the lapse is settled by the geometry around it, all at once. In one
+direction of space the condition is
+
+$$ \alpha_{xx} = \alpha . $$
+
+Read $A$, $B$ and $C$ off the second derivatives of $\alpha_{xx} - \alpha = 0$, in
+the order $xx$, $xt$, $tt$. There is no $tt$ term, so $C = 0$, and no mixed term,
+so $B = 0$. Then $B^2 - 4AC = 0$ and the test names it **parabolic** — the boundary
+case, not the elliptic box.
+
+That is the test being honest about its limits, and the limits are worth knowing.
+It counts characteristic directions in the two variables you handed it, $u_{xx}$,
+$u_{xy}$ and $u_{yy}$. Here $x$ and $t$ are not interchangeable, because the
+equation is second order in $x$ and first order in nothing at all. A solver asks a
+different question — *can I step this forward in $t$?* — and the answer is no,
+because there is no $\alpha_t$ anywhere to step. This page's box is for an
+equation that fixes the answer in space and leaves time out of it. The number
+$B^2 - 4AC$, read against $x$ and $t$, cannot tell that apart from an equation
+that is second order in both.
+
+**The hyperbolic choice.** The other way gives the lapse a rate of change of its
+own, and lets the change travel:
+
+$$ \alpha_{tt} = \alpha_{xx} . $$
+
+Now $A = -1$, $B = 0$ and $C = 1$, so $B^2 - 4AC = 4$, and the test names it
+**hyperbolic** without hesitation. The two signs that decide the class are the two
+signs of a wave equation: one from $\alpha_{tt}$, one from $\alpha_{xx}$, and the
+difference of them.
+
+| slicing | equation | $A$ | $B$ | $C$ | $B^2-4AC$ | class |
+|---|---|---|---|---|---|---|
+| elliptic | $\alpha_{xx} - \alpha = 0$ | $1$ | $0$ | $0$ | $0$ | parabolic |
+| hyperbolic | $\alpha_{tt} - \alpha_{xx} = 0$ | $-1$ | $0$ | $1$ | $4$ | hyperbolic |
+
+The first row is the one to look at. The slicing is called elliptic and the test
+calls the equation parabolic, and both names are right about different things.
+The slicing is settled rather than propagated. The equation, written against $x$
+and $t$, has one characteristic direction rather than none.
+
+**Compare the two rows with the sign that matters.** The first has a $1$ where the
+second has $-1$ and a $0$, and that one entry is the whole difference between a
+program that cannot start and one that runs. Neither equation is harder than the
+other to write. Both are one line. Only one of them can be marched forward in
+time.
+
+**A caution, because this is the hardest case there is.** The real Einstein
+system is four equations for the ten independent components of the metric, and
+the lapse is one unknown among several. Classifying it one equation at a time is a
+reduction, not a proof: two equations that are each hyperbolic can couple into a
+system that is not. So the claim here is narrow — **same physics, one equation
+written two ways, two classes, and only one of them can be solved.** The full
+system is where the field's real formulations do their work, and the reference
+this page rests on is where to read it.
+
 ## The rule this gives you
 
 If the method you need does not exist for the class your model is in, **change how
@@ -74,11 +142,17 @@ you wrote the model**. That is not a trick, and it is not cheating, as long as t
 things stay true:
 
 - the two models must agree in the limit where the difference disappears — a stiff
-  spring must reproduce the rigid joint, and a fast pressure wave must reproduce the
-  incompressible flow;
+  spring must reproduce the rigid joint, a fast pressure wave must reproduce the
+  incompressible flow, and the two slicings must describe the same geometry;
 - you must say which one you solved, because a reader who thinks they have a force
   and has a product of two numbers has been misled by the write-up rather than by
   the mathematics.
+
+On the first count the relativity case is the easiest of the three to check, and
+the hardest to make work. Neither slicing changes the geometry, so agreement is
+exact by construction, and what the field argues about is stability rather than
+accuracy. In the other two cases the limit is an idealisation you approach and
+never reach.
 
 The [worked case](../worked-case/index.md) checks the first of those against
 numbers: the bushed model is swept until it returns the rigid one.

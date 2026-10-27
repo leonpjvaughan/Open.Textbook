@@ -21,7 +21,8 @@ and no history, so solving it needs no clock.
 
 $$ \sum \mathbf{F} = 0, \qquad \sum \mathbf{M} = 0. $$
 
-The honest caveat is that this describes a state the mechanism may never reach on
+Here $\mathbf{F}$ is a force and $\mathbf{M}$ a moment, and each sum runs over
+everything acting on the body. The honest caveat is that this describes a state the mechanism may never reach on
 its own. A real suspension is never exactly at rest: it is being driven, and it
 overshoots. The static answer is the answer to "where would it settle", which is
 useful and is not the same as "where is it now".
@@ -41,7 +42,9 @@ In this chapter:
 
 $$ E(\alpha,\beta) = \underbrace{\tfrac12 k\left|D-U\right|^2}_{\text{the bush}} \;-\; \underbrace{F\,x_P}_{\text{the tyre's work}}. $$
 
-The minus sign is not decoration. A force pushing in the $+x$ direction does work
+$E$ is the total energy and $k$ is the bush's stiffness. $D$ and $U$ are the two
+ends of the bush, $F$ is the sideways force at the contact patch, and $x_P$ is how
+far the patch has moved along $x$. The minus sign is not decoration. A force pushing in the $+x$ direction does work
 when the point it pushes moves in $+x$, so the energy *falls*: an equilibrium is a
 minimum of $E$ and not a maximum. Get the sign wrong and the mechanism settles the
 wrong way — which it will do cheerfully, since the arithmetic will not complain.

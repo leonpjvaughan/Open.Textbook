@@ -15,7 +15,7 @@ failure this file has had twice, so the list below, the headings and the boxes
 are checked against each other on every pass.
 
 **Items 79–123 are closed,** each with its measurement and fix in
-`.agents/todo-closed.md`; 136 and 137 below are open; everything before them is closed. The
+`.agents/todo-closed.md`; 136 is the open one, and the books it names are the work left. The
 *interactive-aid backlog* — which figures and interactions a book still wants — is
 `ideas.md`; it is a plan rather than a defect list, and it is written for the
 author choosing what to build next.
@@ -62,6 +62,18 @@ symbol defined in the question stem of a worked example counts as defined, so th
 sweep is over displayed formulas rather than every `$…$`. Editorial decisions —
 which symbols a page should rename for consistency — are part of it, not a blocker.
 
+**Progress.** `numerical-methods` is done: the A–Z's five tables carry a **The
+symbols** list each (`techniques/index.md`), written 2026-10-27. `maths-applied` is
+done: its 24 display formulas were read one by one, and eight clauses were added
+where a letter was used before it was named — the two radii on the two-circles pages,
+$\gamma$ on the camber rule, $J$ and $\Delta$ on the least-squares pages, $U$ and $V$
+in the decomposition, $\lambda_i$ on the singular-value page, $k$ and $x_P$ in the
+bush energy, $\mathbf F$ and $\mathbf M$ in the equilibrium statement, and $M$, $C$,
+$\Phi_q$ and $Q$ in the equation of motion. The rest already defined their symbols in
+the paragraph under the formula, which is the pattern the rule asks for. Left: the
+four Irish books, `a-level-maths`, `a-level-physics`, `gcse-physics`, `gcse-maths` and
+`proofs`, in that order.
+
 **done means**
 
 - [ ] every displayed formula in each book is followed by a definition of each
@@ -70,37 +82,4 @@ which symbols a page should rename for consistency — are part of it, not a blo
 - [ ] `textbook.lint` reports nothing for each book as it is swept
 - [ ] the inventory above is re-measured and each book's row is closed with its
       count, in `.agents/todo-closed.md`
-
-## 137 — The A–Z table is clipped on a phone, and the formula is the column that goes
-
-**What is wrong.** `books/numerical-methods/docs/techniques/index.md` is four
-columns of dense content, sized for a desktop. At 390px the table is 650px wide
-inside a 358px scroll box:
-
-```
-$ node var/measure-z.mjs
-{"viewport":390,"data":[{"tableWidth":650,"boxClient":358,"boxScroll":650}]}
-```
-
-So 45% of it is off-screen, and the reader's first sight is a table whose second
-column is cut mid-word — the screenshot that prompted this reads "ass | the step,
-in symbols | what … and c". The horizontal scroll exists (`.table-scroll`) and the
-page does not overflow, so `check-mobile` passes: the defect is legibility, not
-layout, and no check can see it.
-
-**The fix, and the choice it needs.** Either (a) turn each table into a card per
-method below ~44rem — the method as a heading, the class as a link, the formula as
-a display line, the price as a sentence — which is what a reader on a phone
-actually wants, or (b) keep the table and drop the `class` column below `44rem`,
-since the class is already the section heading above it. (a) is more work and much
-better; (b) is a rule in `book-local.css` and no content change. Decide with the
-section's own reading in front of you, then measure both widths again.
-
-**done means**
-
-- [ ] at 390px a reader sees the method, the formula and its price without a
-      sideways scroll, in both schemes
-- [ ] the symbol lists under each table stay full width and read as prose
-- [ ] `node tools/dist/cli.js check-mobile site` still reports 0 errors
-- [ ] the A–Z's five tables still fit at 1024px and 1280px, with no scroll
 

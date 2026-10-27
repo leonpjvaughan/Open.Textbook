@@ -83,7 +83,9 @@ different kinds, and the writing decides what a solver can do with it.
 The Einstein equations make the case. Written with a rule that has to hold
 everywhere, a change inside the region must be felt everywhere at once, and a solver
 cannot step forward. Written with a rule that travels at a finite speed, the same
-physics runs. The equations did not change. The writing did.
+physics runs. The equations did not change. The writing did. [The class is a
+choice](choosing-the-class/#the-same-equations-classified) writes both rules down,
+reads the three coefficients off each, and shows the one sign that decides it.
 
 So when a page here says "this is an elliptic problem", read it as "you wrote it
 down that way". If the method you need does not exist for your kind, the model is

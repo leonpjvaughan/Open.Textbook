@@ -26,7 +26,8 @@ The Jacobian is a $3 \times 2$ matrix. Its singular value decomposition is
 
 $$ J = U\,\Sigma\,V^{\mathsf{T}}, $$
 
-with $\Sigma$ holding the singular values down its diagonal. At the design pose,
+with $\Sigma$ holding the singular values down its diagonal, and $U$ and $V$ the
+two rotations it is built from. At the design pose,
 those values are
 
 $$ \sigma = \left(1.415,\ 0.998,\ 0.000\right). $$

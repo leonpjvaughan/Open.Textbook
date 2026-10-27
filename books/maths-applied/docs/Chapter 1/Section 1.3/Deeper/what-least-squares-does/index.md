@@ -38,7 +38,8 @@ Three reasons, in increasing order of importance.
   and a minimiser that sits at a corner is awkward to find by differentiation.
 - **Squares give linear equations.** Setting $\partial S/\partial D = 0$ gives
   $J^{\mathsf{T}}\mathbf{r} = 0$ — the normal equations — which are linear in the
-  unknown once $J$ is evaluated. Nothing has to be searched.
+  unknown once $J$ is evaluated. Nothing has to be searched. $J$ is the Jacobian:
+  how fast each residual changes as the point moves.
 - **The answer is a projection.** This is the reason that matters most. Moving $D$ by a
   small amount $\Delta$ changes $\mathbf{r}$ by $J\Delta$, and $J$ maps the plane of
   possible moves into three-dimensional residual space. The set of reachable

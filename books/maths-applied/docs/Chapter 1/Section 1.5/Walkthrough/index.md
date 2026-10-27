@@ -39,7 +39,8 @@ $$ E(\alpha,\beta) = \tfrac12 k\left|D(\alpha) - U(\beta)\right|^2 - F\,x_P(\alp
 
 Here $\alpha$ is how far the upright has turned about the lower ball joint, and
 $\beta$ is where the upper arm points. $U$ is the upper arm's outer end, $D$ is the
-upright's upper point, and $F$ is a sideways force at the contact patch. That is
+upright's upper point, and $F$ is a sideways force at the contact patch. $k$ is the
+bush's stiffness, and $x_P$ is how far along $x$ the contact patch has moved. That is
 the force a cornering car puts through the tyre. The first term is the energy stored
 in the bush. The second is the work the tyre's force does as the contact patch moves.
 

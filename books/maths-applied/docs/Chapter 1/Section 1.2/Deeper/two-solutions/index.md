@@ -59,7 +59,8 @@ The circles meet when the distance $d$ between their centres satisfies
 
 $$ \left|R_B - L\right| \le d \le R_B + L. $$
 
-Outside that range the model has **no** answer, and a solver that returns one
+Here $R_B$ is the upper arm's length and $L$ is the upright's, so the two circles
+have those radii. Outside that range the model has **no** answer, and a solver that returns one
 anyway is returning something it did not solve. A physical mechanism would have
 reached a bump stop, or bent a part, or torn a bush — three things this model does
 not contain.

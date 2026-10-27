@@ -59,6 +59,10 @@ the iteration solves them:
 $$ J^{\mathsf{T}}J\;\Delta = -J^{\mathsf{T}}\mathbf{r},
 \qquad D \leftarrow D + \Delta. $$
 
+Here $J$ is the Jacobian: how fast each of the three residuals changes as the point
+$D$ moves, with one column for each unknown. $\Delta$ is the step the solve returns,
+and $D \leftarrow D + \Delta$ is the point moved by it.
+
 :::class linear-system
 
 This is Gauss–Newton. With two unknowns, $J^{\mathsf{T}}J$ is a $2\times2$ matrix,

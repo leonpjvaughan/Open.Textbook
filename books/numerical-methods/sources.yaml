@@ -68,8 +68,12 @@ references:
       The worked case of a class being a *choice*: the same physics, posed with
       elliptic gauge conditions, produces a problem that cannot be evolved. Also
       the source for free evolution against constrained evolution, which is the
-      same decision as projection in a fluid solver. Print reference; no stable
-      link was verified for it, so it is not linked from the About page.
+      same decision as projection in a fluid solver, and for the two lapse
+      conditions `choosing-the-class` classifies — a slicing equation with no time
+      derivative in it, and a wave equation for the same quantity. Print reference;
+      no stable link was verified for it, so it is not linked from the About page.
+      The classification on that page is the book's own arithmetic, done with the
+      test on `reading-the-class`; the reference supplies the equations.
 
   - id: ferziger
     attribution: true
