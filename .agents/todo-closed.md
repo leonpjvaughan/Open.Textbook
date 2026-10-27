@@ -6457,9 +6457,14 @@ ie-lc-applied-maths       1447         60        14
 unit letters (`J`, `N`, `W`, `s`, `Ω`), nuclide symbols (`²³⁵U`, `¹n`), "1 d.p.",
 the differential `d` in `dy/dx`, and letters whose quantity the sentence above names
 in words ("the period" then `T = 1/f`). Two things were deliberately not done: a
-Review page re-uses the chapter's letters, which its teaching pages name, rather
-than repeating a symbol key eleven times; and a worked solution that substitutes
-numbers into a formula the page has already named does not repeat the naming.
+Review page re-uses the chapter's letters rather than repeating a symbol key eleven
+times, and a worked solution that substitutes numbers into a formula the page has
+already named does not repeat the naming.
+
+The Review decision was checked rather than assumed. Its 64 pages that carry displays
+were read: every letter in them is named by the Review's own prose or taught on an
+earlier page of the chapter. The one exception — `H` for the release height in
+`a-level-physics` Chapter 3 — was named.
 
 **Defects the sweep found and fixed.** Each is a separate line in the diff:
 
