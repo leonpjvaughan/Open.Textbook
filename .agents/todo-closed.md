@@ -6509,3 +6509,66 @@ exit 0
 The rule now has a page-by-page record in each book rather than a promise in a skill
 file, and the two books whose tables carry many formulas show the shape the others
 follow: one **The symbols** list under the table.
+
+## 138 — 4.2's worked example needed 4.1's period relation, and never said so
+
+**What the item said.** `gcse-physics` 4.2 never taught the relation between period
+and frequency, then used it in Worked example 1. The measurement behind that:
+
+```
+$ grep -n "period" books/gcse-physics/docs/Chapter\ 4/Section\ 4.2/Walkthrough/index.md
+54:20 Hz. Calculate the period of this sound wave.
+64:Here $T$ is the period in seconds and $f$ is the frequency in hertz.
+```
+
+**What reading the chapter showed.** The item was wrong about "never taught". Section
+4.1, the section before, teaches it in full:
+
+```
+$ sed -n 50,55p books/gcse-physics/docs/Chapter\ 4/Section\ 4.1/Walkthrough/index.md
+The **period** is the time for one complete wave to pass a point. It is measured
+in seconds. The period and the frequency are linked:
+
+$$ \text{period} = \frac{1}{\text{frequency}} \qquad T = \frac{1}{f} $$
+```
+
+with its own worked example straight after, and "use $T = \dfrac{1}{f}$ to link
+period and frequency" in its "You should now be able to" list. So 4.2's example is
+retrieval of a taught relation, which is what a Learn page is allowed to do.
+
+**The defect that was real.** 4.2 never told the reader it depended on that. Its
+prerequisites named "the wave equation and longitudinal waves" and left out the
+period relation; its objectives did not include calculating a period; and its "You
+should now be able to" list omitted it too. So a reader revising from 4.2's own
+promises would not know the page asked it, and a teacher planning from the objectives
+would not know the section needed 4.1's second half.
+
+**The fix, in 4.2.** Three lines, no change to the physics and no change to the worked
+answer:
+
+```diff
+-**Prerequisites:** Section 4.1, especially the wave equation and longitudinal
+-waves; Section 3.1 for speed as distance divided by time; powers of ten and
+-prefixes.
++**Prerequisites:** Section 4.1, especially the wave equation, the link between
++period and frequency, and longitudinal waves; Section 3.1 for speed as distance
++divided by time; powers of ten and prefixes.
+```
+```diff
+-range of frequencies; calculate a distance from an echo; describe how ultrasound
++range of frequencies; calculate a period from a frequency and a distance from an
++echo; describe how ultrasound
+```
+```diff
++- calculate a period from a frequency, using $T = \dfrac{1}{f}$;
+```
+
+**Done (2026-10-27).** `uv run python -m textbook.lint gcse-physics` prints only
+`scanned 142 pages`; `scripts/check.sh` exits 0 with 8,349 tests passing; the worked
+answer $0.050\,\text{s}$ is unchanged and the page is live at
+`/gcse-physics/higher/chapter-4/section-4.2/learn/`.
+
+**What this is worth remembering for.** The queue item was written from one grep in
+one file, and the chapter had already solved the problem one section earlier. The
+defect was in what the page promised, not in what it did — a cheaper and more honest
+thing to fix, and only visible by reading the neighbour.

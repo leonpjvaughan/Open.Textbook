@@ -12,15 +12,15 @@ kind: walkthrough
 
 # 4.2 Sound waves and waves for detection and exploration — Learn
 
-**Prerequisites:** Section 4.1, especially the wave equation and longitudinal
-waves; Section 3.1 for speed as distance divided by time; powers of ten and
-prefixes.
+**Prerequisites:** Section 4.1, especially the wave equation, the link between
+period and frequency, and longitudinal waves; Section 3.1 for speed as distance
+divided by time; powers of ten and prefixes.
 
 **By the end of this section you can:** describe how sound travels through
 solids and how the ear detects it; explain why hearing covers only a limited
-range of frequencies; calculate a distance from an echo; describe how ultrasound
-is used for medical and industrial imaging; and describe how seismic waves give
-evidence about the structure of the Earth.
+range of frequencies; calculate a period from a frequency and a distance from an
+echo; describe how ultrasound is used for medical and industrial imaging; and
+describe how seismic waves give evidence about the structure of the Earth.
 
 ## 1. Sound needs a medium
 
@@ -206,6 +206,7 @@ needs at least 12 m.
 - explain why sound needs a medium, and why it cannot travel through a vacuum;
 - describe how sound waves make solids vibrate, using the ear as an example;
 - explain why human hearing is limited to about 20 Hz to 20 kHz;
+- calculate a period from a frequency, using $T = \dfrac{1}{f}$;
 - calculate the distance to a boundary from an echo, using
   $s = \dfrac{v t}{2}$;
 - describe how ultrasound is used for medical and industrial imaging;
