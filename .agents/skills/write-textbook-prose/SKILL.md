@@ -32,6 +32,14 @@ these; keep it that way.
 - **One idea per sentence.** If a sentence needs "and" twice, split it.
 - **Plain English. Explain every term on first use.** A term the reader has met
   is not a term they can be assumed to know.
+- **Define every symbol in a formula.** A formula is not self-explaining: a reader
+  who meets $r=\alpha\Delta t/\Delta x^{2}$ and is told nothing about $r$,
+  $\alpha$, $\Delta t$ and $\Delta x$ has been handed a puzzle. Name each one
+  straight after the formula — "where $r$ is the dimensionless time step, $\alpha$
+  the diffusivity, $\Delta t$ the time step and $\Delta x$ the cell width" — or,
+  where a table carries many formulas, give one **The symbols** list under it. A
+  symbol used once still counts, and the same letter used for two things in one
+  table needs both definitions, named by the row they belong to.
 - **No slang, idioms or cultural references.** They exclude EAL readers and date
   quickly. "piece of cake", "no-brainer" and "blunder" are out.
 - **Address the reader as `you`.** Use `we` only for reasoning together ("we can

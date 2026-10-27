@@ -139,6 +139,13 @@ The traps for writing `$…$` — the markdown escape, the `throwOnError` build
 trap, `\pounds` and `latex2mathml` — are the maths hook's, so they now live in
 `engine/AGENTS.md`. Read that section before you author or check maths.
 
+**Every symbol in a formula is defined where the reader meets it.** A `where …`
+line under the formula names each one, or one **The symbols** list under a table
+of formulas does it for the whole table. A formula whose letters are not named is
+a puzzle, not an explanation; `write-textbook-prose` has the pattern. The
+reference books' tables are the hardest case, because a table row has room for the
+arithmetic and no room for the prose.
+
 ## Common tasks
 
 - **Authoring a chapter** — load the `author-textbook-chapter` skill and read
