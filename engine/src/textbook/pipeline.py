@@ -639,7 +639,20 @@ def wrap_tables(html_text: str) -> str:
     anything pinned to the viewport — the masthead controls, the booklet button —
     is pushed off the right edge. That is how a reader lost the settings button.
     """
-    return TABLE.sub(lambda m: f'<div class="table-scroll">{m.group(0)}</div>', html_text)
+    def wrap(match: "re.Match[str]") -> str:
+        # **Focusable, and named.** A scroll container is operable only if a keyboard
+        # can reach it: Chromium 127 focuses one by itself, Safari and Firefox do not,
+        # so a table that scrolls would be unreadable to a keyboard user on those
+        # engines (WCAG 2.1.1). `role="group"` gives the tab stop something to be, and
+        # the label says what scrolling it does — the hint a sighted reader gets from
+        # the cut-off column and a screen reader cannot.
+        return (
+            '<div class="table-scroll" tabindex="0" role="group" '
+            'aria-label="Table. Scroll sideways to see every column.">'
+            f"{match.group(0)}</div>"
+        )
+
+    return TABLE.sub(wrap, html_text)
 
 
 def render_pager(pager, prefix: str) -> tuple[str, str]:

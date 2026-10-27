@@ -43,110 +43,49 @@
   }
 }
 
-/* Methods, A to Z on a phone: a card per method, with each field named.
+/* Methods, A to Z: one section per class, one block per method.
  *
- * Measured at 390px, the four-column table was 650px wide inside a 358px box, so 45%
- * of it was off-screen and the second column was cut mid-word. `check-mobile` passed,
- * because the page did not overflow: the defect was legibility, which no layout check
- * can see.
+ * The page was five four-column tables until 2026-10-27. A table earns its keep when
+ * a reader compares values down a shared column; these rows were records — a name, a
+ * class, a formula and a sentence of price — and at 390px the table was 650px wide
+ * inside a 358px box, so 45% of it was off screen. Cards fixed the clipping and lost
+ * the column names; the page is one class per section now, with the method as a
+ * heading, its class as a link, the step, and the price. Nothing is hidden at any
+ * width and nothing needs a label to say what it is.
  *
- * The first card layout fixed the clipping and lost the column names, which is half
- * of what a table is for: "A bracket. Certain, and slow" says nothing about what it
- * is a price *for*. So each field carries its own label below 44rem, and the header
- * row is hidden rather than left to be announced twice — the label is the header, in
- * the place where the reader needs it. This is the pattern Adrian Roselli documents
- * for a table whose rows become cards: generated content taking the place of the
- * hidden headers, because a hidden header helps nobody who is reading one row.
- *
- * Text sizes are the body's, not a caption's. GOV.UK's `small-text-until-tablet`
- * is for dense numeric grids; this is a sentence per row, and a 15px grey sentence
- * was the "awful to read" part. The formula keeps its own horizontal scroll because
- * MathML cannot wrap, and one Lax–Wendroff update is wider than a phone whatever the
- * size; scroll containers are keyboard-focusable in current Chromium, so a keyboard
- * user can reach it. */
-@media (max-width: 43.99rem) {
-  .method-index .table-scroll {
-    overflow: visible;
-  }
+ * The class headings stick: the page is 34,000px on a phone, and a reader deep inside
+ * "Moving problems" needs to know which section they are in. `top` clears the masthead,
+ * which is not sticky, so zero is the top of the reading surface; the paper background
+ * is what stops the text scrolling underneath. */
 
-  .method-index table,
-  .method-index tbody,
-  .method-index tr,
-  .method-index td {
-    display: block;
-    width: auto;
-  }
+.method-index h2 {
+  position: sticky;
+  top: 0;
+  z-index: 1;
+  background: var(--md-default-bg-color);
+  padding: 0.4rem 0;
+  /* A hairline under a stuck heading, so it reads as a bar rather than as text
+   * floating over the paragraph that has slid beneath it. */
+  box-shadow: 0 1px 0 var(--md-default-fg-color--lightest);
+}
 
-  /* The label replaces the header, so the header goes. */
-  .method-index thead {
-    display: none;
-  }
+.method-index h3 {
+  margin: 1.6rem 0 0.3rem;
+  font-family: var(--tb-font-display);
+  font-size: 1.0625rem;
+  line-height: 1.3;
+}
 
-  .method-index tr {
-    margin: 0 0 1rem;
-    padding: 0.9rem 1rem;
-    border: 1px solid var(--md-default-fg-color--lightest);
-    border-radius: 0.45rem;
-  }
+/* The class line, the step and the price are three short paragraphs that belong
+ * together, so the gaps inside a block are tighter than the gap between blocks. */
+.method-index h3 + p,
+.method-index h3 + p + p,
+.method-index h3 + p + p + p {
+  margin-top: 0;
+  margin-bottom: 0.35rem;
+}
 
-  .method-index td {
-    padding: 0;
-    border: 0;
-  }
-
-  /* A field is a label above its value; the label is what the header used to say. */
-  .method-index td + td {
-    margin-top: 0.7rem;
-  }
-
-  .method-index td::before {
-    display: block;
-    margin-bottom: 0.15rem;
-    color: var(--md-default-fg-color--light);
-    font-size: 0.75rem;
-    font-weight: 600;
-    letter-spacing: 0.04em;
-    line-height: 1.3;
-    text-transform: uppercase;
-  }
-
-  .method-index td:nth-child(1) {
-    font-family: var(--tb-font-display);
-    font-size: 1.0625rem;
-    font-weight: 700;
-    line-height: 1.3;
-  }
-
-  /* The method's own name is the card's heading, so it needs no label above it. */
-  .method-index td:nth-child(1)::before {
-    content: none;
-  }
-
-  .method-index td:nth-child(2)::before {
-    content: "Class";
-  }
-
-  .method-index td:nth-child(3)::before {
-    content: "The step, in symbols";
-  }
-
-  .method-index td:nth-child(4)::before {
-    content: "What it needs, and what it costs";
-  }
-
-  .method-index td:nth-child(2) {
-    font-size: 1rem;
-  }
-
-  .method-index td:nth-child(3) {
-    overflow-x: auto;
-    font-size: 1.0625rem;
-    line-height: 1.6;
-  }
-
-  .method-index td:nth-child(4) {
-    color: var(--md-default-fg-color);
-    font-size: 1.0625rem;
-    line-height: 1.55;
-  }
+.method-index h3 + p {
+  color: var(--md-default-fg-color--light);
+  font-size: 0.95rem;
 }

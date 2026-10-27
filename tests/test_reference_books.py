@@ -135,11 +135,7 @@ def _counts() -> tuple[int, int]:
     number — a count in the argument that nobody recomputes is just a number.
     """
     book = map_book()
-    methods = 0
-    for line in (book.docs / "techniques" / "index.md").read_text(encoding="utf-8").splitlines():
-        cells = [cell.strip() for cell in line.strip().strip("|").split("|")]
-        if len(cells) == 4 and not set(cells[0]) <= set("-: ") and cells[0] != "method":
-            methods += 1
+    methods = len(_methods_a_to_z())
     systems = 0
     for slug in CLASSES:
         page = (book.docs / slug / "index.md").read_text(encoding="utf-8")
@@ -193,9 +189,9 @@ def test_every_method_states_its_step_in_symbols():
     representative member, but it is not allowed to show nothing: a row that names
     a method and never says what it does is a glossary entry, not a technique.
     """
-    rows = _table_rows(map_book().docs / "techniques" / "index.md", 4)
-    assert len(rows) == 76, f"the A–Z has {len(rows)} method rows, not 76"
-    missing = [row[0] for row in rows if "$" not in row[2]]
+    methods = _methods_a_to_z()
+    assert len(methods) == 76, f"the A–Z has {len(methods)} method blocks, not 76"
+    missing = [method["name"] for method in methods if "$" not in method["step"]]
     assert missing == [], f"these methods do not state their step: {missing}"
 
 
@@ -221,20 +217,24 @@ def test_the_two_indexes_link_every_class_they_name():
     }
     link = re.compile(r"\[([^\]]+)\]\(([^)]+)\)")
     unlinked, misdirected = [], []
-    for index in ("symptoms", "techniques"):
-        text = (book.docs / index / "index.md").read_text(encoding="utf-8")
-        for line in text.splitlines():
-            if not line.startswith("|"):
-                continue
-            for match in link.finditer(line):
-                if match.group(1) in slug_of:
-                    wanted = f"../{slug_of[match.group(1)]}/"
-                    if match.group(2) != wanted:
-                        misdirected.append((index, match.group(1), match.group(2), wanted))
-            plain = link.sub("", line)
-            for title in slug_of:
-                if re.search(rf"(?<![\w-]){re.escape(title)}(?![\w-])", plain):
-                    unlinked.append((index, title, line))
+    # The A–Z names its class on each method's `Class:` line, and `symptoms/` names
+    # one in a table cell. Both are a hop the reader is meant to take.
+    lines: list[tuple[str, str]] = []
+    for method in _methods_a_to_z():
+        lines.append(("techniques", f"Class: {method['class']}"))
+    for line in (book.docs / "symptoms" / "index.md").read_text(encoding="utf-8").splitlines():
+        if line.startswith("|"):
+            lines.append(("symptoms", line))
+    for index, line in lines:
+        for match in link.finditer(line):
+            if match.group(1) in slug_of:
+                wanted = f"../{slug_of[match.group(1)]}/"
+                if match.group(2) != wanted:
+                    misdirected.append((index, match.group(1), match.group(2), wanted))
+        plain = link.sub("", line)
+        for title in slug_of:
+            if re.search(rf"(?<![\w-]){re.escape(title)}(?![\w-])", plain):
+                unlinked.append((index, title, line))
     assert unlinked == [], f"a class named but not linked: {unlinked}"
     assert misdirected == [], f"a class linked to the wrong page: {misdirected}"
 
@@ -342,6 +342,25 @@ def test_a_class_page_keeps_the_shared_skeleton(slug):
 # --- the two indexes are views of the class pages --------------------------------
 
 
+def _methods_a_to_z() -> list[dict[str, str]]:
+    """The A–Z's method blocks, in page order.
+
+    The page stopped being five tables on 2026-10-27: a method is a heading, its class
+    as a link, the step, and the price, because four columns of prose are a record per
+    row rather than a comparison across rows. The anchors are the parser's proof that
+    the block is complete — every method is linkable by name.
+    """
+    text = (map_book().docs / "techniques" / "index.md").read_text(encoding="utf-8")
+    blocks = re.findall(
+        r'<a id="([\w-]+)"></a>\n### (.+?)\n\nClass: (.+?)\n\n(.+?)\n\n(.+?)\n',
+        text,
+    )
+    return [
+        {"anchor": anchor, "name": name, "class": klass, "step": step, "price": price}
+        for anchor, name, klass, step, price in blocks
+    ]
+
+
 def _table_rows(page: Path, columns: int, heading: str | None = None) -> list[list[str]]:
     """The rows of the Markdown tables on a page, as cells.
 
@@ -422,8 +441,8 @@ def test_every_method_a_class_page_names_is_in_methods_a_to_z(slug):
     """
     known = {
         _plain(name)
-        for row in _table_rows(map_book().docs / "techniques" / "index.md", 4)
-        for name in _names(row[0])
+        for method in _methods_a_to_z()
+        for name in _names(method["name"])
     }
     page = map_book().docs / slug / "index.md"
     missing = [
@@ -781,31 +800,44 @@ def test_the_relativity_claim_says_what_it_is_a_reduction_of():
         assert claim in section, f"the relativity section no longer says {claim!r}"
 
 
-def test_the_method_tables_name_each_field_on_a_phone():
-    """A card per method only works if each field still says what it is.
+def test_the_a_to_z_is_a_contents_table_and_a_section_per_class():
+    """The A–Z is an index, so it is laid out like one: contents, then sections.
 
-    At 390px the A–Z's four columns became clipped, so each row is a card below
-    44rem. The first version of that dropped the column names with the header row, and
-    a price like "A bracket. Certain, and slow" then said nothing about what it was a
-    price for — the header is the label, and on a card it belongs on the field. This
-    pins the labels to the stylesheet, because the layout has no other record of them:
-    a screenshot proves it once, and a test proves it stays.
+    It was five four-column tables until 2026-10-27, which put a name, a class, a
+    formula and a sentence of price on one line. A table is for comparing values down
+    a shared column, and those rows were records: at 390px the table was 650px wide in
+    a 358px box and 45% of it was off screen. The page is now a contents table whose
+    class names jump to five sections, and inside a section each method is a heading,
+    its class as a link, the step, and the price — the same on a phone as on a desktop,
+    with nothing hidden and no labels needed to say which field is which.
+
+    The anchors are asserted as well as the order, because a contents table that jumps
+    nowhere is worse than no contents table.
     """
-    stylesheet = (
-        books.repo_root()
-        / "books/numerical-methods/docs/assets/stylesheets/book-local.css"
-    ).read_text(encoding="utf-8")
-    card = stylesheet[stylesheet.index("@media (max-width: 43.99rem)") :]
-    assert ".method-index table" in card, "the card layout is scoped to the A–Z"
-    assert "display: none" in card.split(".method-index thead", 1)[1][:120], (
-        "the header row must be hidden, because the labels replace it"
+    text = (map_book().docs / "techniques" / "index.md").read_text(encoding="utf-8")
+    sections = re.findall(r'<a id="([\w-]+)"></a>\n\n## (.+)', text)
+    assert [title for _, title in sections] == [
+        "Finding a state",
+        "Linear systems",
+        "Eigenvalues",
+        "Moving problems",
+        "Averaging",
+    ], f"the A–Z's sections are {[title for _, title in sections]}"
+
+    contents = [line for line in text.splitlines() if line.startswith("| [")]
+    assert len(contents) == len(sections), (
+        f"the contents table has {len(contents)} rows for {len(sections)} sections"
     )
-    labels = re.findall(r'content: "([^"]+)"', card)
-    assert labels == [
-        "Class",
-        "The step, in symbols",
-        "What it needs, and what it costs",
-    ], f"the card's field labels are {labels}"
-    assert "td:nth-child(1)::before" in card and "content: none" in card, (
-        "the method's own name is the card heading, so it carries no label"
-    )
+    for (anchor, title), row in zip(sections, contents):
+        assert f"[{title}](#{anchor})" in row, f"{title} does not jump to its section"
+        assert row.rstrip().endswith("|"), f"the contents row for {title} is malformed"
+
+    methods = _methods_a_to_z()
+    assert len(methods) == 76, f"the A–Z has {len(methods)} methods, not 76"
+    assert len({method["anchor"] for method in methods}) == 76, "two methods share an anchor"
+    for method in methods:
+        assert "(../" in method["class"] or "[../" in method["class"], (
+            f"{method['name']}: the class line carries no link"
+        )
+        assert method["step"] and "$" in method["step"], f"{method['name']}: no step"
+        assert method["price"], f"{method['name']}: no price"

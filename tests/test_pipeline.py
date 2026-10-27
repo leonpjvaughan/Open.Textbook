@@ -875,10 +875,30 @@ def test_every_table_is_in_a_scroll_container(subset):
     for page in subset.pages:
         html = (subset.out / page.output).read_text(encoding="utf-8")
         tables = html.count("<table")
-        wrapped = html.count('<div class="table-scroll">')
+        wrapped = html.count('class="table-scroll"')
         if tables != wrapped:
             unwrapped.append(f"{page.url}: {tables} tables, {wrapped} wrapped")
     assert not unwrapped, unwrapped
+
+
+def test_every_table_scroll_container_is_focusable_and_named(subset):
+    """A table that scrolls sideways is operable only if a keyboard can reach it.
+
+    Chromium 127 made a scroll container focusable on its own; Safari and Firefox did
+    not, so on those engines a wide table — a gcse-maths table at eight columns
+    scrolls even at 1280px — could not be read by a keyboard user at all. The wrapper
+    therefore carries a tab stop, a role for the tab stop to have, and a label saying
+    what scrolling it does.
+    """
+    assert subset.ok, subset.broken + subset.maths_errors
+    bare = []
+    for page in subset.pages:
+        html = (subset.out / page.output).read_text(encoding="utf-8")
+        for match in re.finditer(r'<div class="table-scroll"[^>]*>', html):
+            tag = match.group(0)
+            if 'tabindex="0"' not in tag or 'aria-label=' not in tag:
+                bare.append(f"{page.url}: {tag}")
+    assert not bare, f"scroll containers a keyboard cannot reach: {bare[:5]}"
 
 
 def test_an_unknown_profile_is_refused_rather_than_built(tmp_path):
