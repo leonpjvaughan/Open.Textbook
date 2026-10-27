@@ -2,9 +2,11 @@
 
 [`HANDOFF.md`](../HANDOFF.md) is the specification: what the package is for, the four
 acceptance tests, the export contract the book reads. It is a contract, and a contract
-should not be quietly edited. It also predates the rename and the module layout: where it
-names the package, read `otkd` ([`naming.md`](naming.md) §2); where it lays out modules, read
-§3.
+should not be quietly edited. It also predates the rename, the move into `Open.Textbook`
+and the module layout: where it names the package, read `open_textbook.otkd` for the import
+and `otkd` for the command ([`naming.md`](naming.md) §2); where it lays out modules, read §3.
+The repository it was written in is archived, and the package now lives here, at
+`solvers/otkd` — see the banner at the top of [`HANDOFF.md`](../HANDOFF.md).
 
 These documents are the design that satisfies it. Where one of them disagrees with a handoff
 sketch, it says so and gives the reason; [`decisions.md`](decisions.md) records the answer.

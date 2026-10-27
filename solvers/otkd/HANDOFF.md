@@ -1,9 +1,18 @@
 # HANDOFF — `suspension-kinematics`, v1
 
-**Status:** ready to execute. The repository exists and holds this file, a README and
-the MIT licence. Everything else is yours to build.
+**Status:** executed, and kept as the record of what was asked for.
 **Written:** 2026-10-18
 **Reader of this file:** an agent with no prior context for this work.
+
+> **Historical, 2026-10-26.** This specification was carried out. The package lived in the
+> `suspension-kinematics` repository, which is archived; it now lives here, in
+> `Open.Textbook` at `solvers/otkd`, and imports as `open_textbook.otkd` with the command
+> still `otkd`. So every path, import and distribution name below is the state of the
+> question on the day it was written: `src/suspension/`, `cd suspension-kinematics`, and
+> `suspension-kinematics 0.1.0` in a generator string. The *contract* — the four
+> acceptance tests, the export shape, the error rules — is still what the code satisfies,
+> which is why this file is kept rather than rewritten. [`naming.md`](docs/naming.md) §2
+> has the names as shipped; [`decisions.md`](docs/decisions.md) Round 31 records the move.
 
 You are building a small, public Python package that solves the kinematics of a
 suspension linkage and emits the numbers a set of figures draws. It exists because a

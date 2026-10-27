@@ -1,6 +1,6 @@
 # From a model to a problem, and from a problem to a solver
 
-**Status:** design, not yet implemented. Companion to
+**Status:** implemented, except where a section says otherwise. Companion to
 [`config-layer.md`](config-layer.md), which defines what a model *is*. This document
 defines what is *built* from one, and how each of the four chapters' problems is selected
 and solved. It refines handoff §5 and does not change the export contract in §7.

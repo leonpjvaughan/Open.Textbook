@@ -15,7 +15,7 @@ failure this file has had twice, so the list below, the headings and the boxes
 are checked against each other on every pass.
 
 **Items 79–123 are closed,** each with its measurement and fix in
-`.agents/todo-closed.md`; **124–134 are closed too**, and nothing is open. The
+`.agents/todo-closed.md`; **124–135 are closed too**, and nothing is open. The
 *interactive-aid backlog* — which figures and interactions a book still wants — is
 `ideas.md`; it is a plan rather than a defect list, and it is written for the
 author choosing what to build next.

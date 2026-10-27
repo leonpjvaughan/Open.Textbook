@@ -6294,3 +6294,62 @@ the first run reported `assets/figures/kit.js: scripts/audit-figures.cjs`.
 the built kit prints nothing; `pytest` and `scripts/check.sh` are green; the deployed
 `kit.js` carries no dead path.
 
+## 135. The package's own docs still decided a name it no longer uses — **done**
+
+**What is wrong.** The success criterion says no document still contradicts the shipped
+version, history or namespace. The moved package's live design record contradicted all
+three, and every one of them is linked as current guidance from `solvers/otkd/AGENTS.md`:
+
+```
+$ sed -n 3p solvers/otkd/docs/naming.md
+**Status:** design, not yet implemented. This document decides what the thing is called, how
+$ sed -n 19p solvers/otkd/docs/naming.md
+**Recommendation: `otkd` everywhere** — distribution, import, and command.
+
+$ grep -n '^name = \|^otkd = ' solvers/otkd/pyproject.toml
+6:name = "open-textbook-otkd"
+30:otkd = "open_textbook.otkd.cli:main"
+
+$ sed -n 5,7p solvers/otkd/docs/README.md
+should not be quietly edited. It also predates the rename and the module layout: where it
+names the package, read `otkd` ([`naming.md`](naming.md) §2); where it lays out modules, read
+
+$ head -3 solvers/otkd/HANDOFF.md
+# HANDOFF — `suspension-kinematics`, v1
+**Status:** ready to execute. The repository exists and holds this file, a README and
+```
+
+`naming.md` was "design, not yet implemented" and recommended one spelling where the
+shipped package has three; `docs/README.md` sent a reader to the wrong import; `HANDOFF.md`
+had no historical banner and still read as an instruction to `cd suspension-kinematics`;
+`decisions.md` said its decisions "still hold" while Round 4's naming decision did not;
+`config-layer.md` and `problem-mapping.md` called themselves unimplemented when the modules
+they describe are the code, and `docs/ui.md` — correctly unimplemented — named
+`solvers/equilibrium.py`, which resolves from nowhere.
+
+**The fix.** `naming.md` says shipped, states the three names, and keeps its candidate
+comparison as the evaluation it was. `decisions.md` gains **Round 31**, which records the
+namespace move, names Round 4 as superseded on the name, and explains why the command keeps
+its short spelling; the 2026-10-26 banner lists it with the other two historical mechanics.
+`docs/README.md` sends a reader to `open_textbook.otkd` for the import and `otkd` for the
+command, and points at the archived history. `HANDOFF.md` carries a banner — the contract is
+not quietly edited — that says it was executed, that the repository is archived, and that
+its paths are the state of the question on the day it was written. The two design documents
+say implemented; `ui.md` says implemented-or-not where it is true and names the module that
+exists.
+
+**The sweep now reads the package.** Review pass two's stale-string sweep covered `engine/`,
+`assets/`, `scripts/`, `tools/`, `tests/`, `deploy/` and `.github/` but not
+`solvers/otkd/docs`, which is where these survived. `test_every_script_the_rules_name_exists`
+now reads `solvers/otkd/*.md` and `solvers/otkd/docs/*.md`, resolving a path against both
+the repository root and the package root, and excludes the four files that are dated records
+(`decisions.md`, `releasing.md`, `handoff-from-maths-site.md`, and the already-annotated
+`security.md`) — a record must be able to name a file that was there then. Shown to fail:
+adding "Re-measure with `scripts/audit-figures.cjs`" to `naming.md` fails the test, and the
+restored file passes.
+
+**Done (2026-10-26).** `grep -rn "^import otkd\|^from otkd" solvers/otkd/src solvers/otkd/tests`
+prints nothing — the shipped import is `open_textbook.otkd` everywhere — and every remaining
+`import otkd` or `suspension-kinematics` inside the package is a banner, a dated record, or a
+sentence about what the move rewrote. `pytest` and `scripts/check.sh` are green.
+

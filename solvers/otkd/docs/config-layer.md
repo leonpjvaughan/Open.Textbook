@@ -1,6 +1,6 @@
 # The config layer
 
-**Status:** design, not yet implemented. This document supersedes
+**Status:** implemented, except where a section says otherwise. This document supersedes
 [`HANDOFF.md`](../HANDOFF.md) §4 (the config split) and refines §5 where the two
 disagree. It does not change the export contract in §7 or the acceptance tests in §8.
 

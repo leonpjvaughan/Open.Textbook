@@ -1,7 +1,9 @@
 # Naming, layout and the command line
 
-**Status:** design, not yet implemented. This document decides what the thing is called, how
-its modules are arranged, and what its verbs are. The substance is in
+**Status:** shipped. What this document decides is what `pyproject.toml` and the CLI say
+now: the distribution is `open-textbook-otkd`, the import is `open_textbook.otkd`, and the
+command is `otkd`. §2 records why the first draft's recommendation changed. The substance
+is in
 [`config-layer.md`](config-layer.md), [`problem-mapping.md`](problem-mapping.md) and
 [`entry-points.md`](entry-points.md); this is the wrapper.
 
@@ -16,14 +18,25 @@ consumer, not the subject: nothing in the config layer knows what a wishbone is,
 
 ## 2. The name
 
-**Recommendation: `otkd` everywhere** — distribution, import, and command. Prose expands it
-as *open textbook kinematics and dynamics* on first use, and then never again.
+**Decided: one package, two long names and one short one.** The distribution is
+`open-textbook-otkd`, the import is `open_textbook.otkd`, and the command is `otkd`. Prose
+expands the acronym as *open textbook kinematics and dynamics* on first use, and then never
+again.
 
-The virtue of one name in three places is that every other option produces three spellings
-to keep in sync, and the two failures people actually hit are `pip install` versus `import`
-and the command versus the import. `otkd` is short, distinct, and already yours.
+The first draft of this document recommended `otkd` in all three places, on the argument
+that three spellings are three things to keep in sync, and that the two failures people
+actually hit are `pip install` versus `import`, and the command versus the import. That
+argument still governs the command: `otkd` is short, distinct and what a reader types. What
+changed is that the package moved into `Open.Textbook` (`DECISIONS.md`, 2026-10-26) and is
+now one of a family installed beside the site's engine rather than from PyPI, so the import
+takes the family's namespace — `open_textbook.otkd` — and the distribution says which
+project it belongs to. Renaming an import twice is still the thing not to do; this is the
+one rename, and Round 31 of [`decisions.md`](decisions.md) records it.
 
-| candidate | distribution / import / command | for | against |
+The comparison below is kept as the evaluation it was, before the move changed which
+package the name belongs to; the shipped names are the three in the sentence above.
+
+| candidate as evaluated | distribution / import / command | for | against |
 |---|---|---|---|
 | **`otkd`** | `otkd` / `otkd` / `otkd` | one name; short; expands cleanly | opaque until expanded; ties the name to a book |
 | `ot-kin-dyn` | `ot-kin-dyn` / `ot_kin_dyn` / `otkd` | the expansion is in the name | three spellings, a long import, and a hyphen/underscore trap |
@@ -40,7 +53,8 @@ import. Do not rename the import twice.
 **What the rename touches that a rename should not:**
 
 - `HANDOFF.md` predates it and keeps its own wording; where it names the package, read
-  `otkd`. The repository name is the owner's to change.
+  `open_textbook.otkd` for the import and `otkd` for the command. It now carries a
+  historical banner, because the repository it was written for is archived.
 - The export's `meta.generator` becomes `otkd <version>` (`HANDOFF.md` §7). That is a change
   to a **value** in a frozen contract, so it is recorded here: a consumer that prints the
   generator string will print a different string, and should be reading the version rather

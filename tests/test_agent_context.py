@@ -267,6 +267,19 @@ def rule_documents():
     documents += sorted(ROOT.glob("*/AGENTS.md"))
     documents += sorted(ROOT.glob("books/*/AGENTS.md"))
     documents += sorted(ROOT.glob(".agents/skills/**/SKILL.md"))
+    # The moved package keeps its own record beside its code; its documents name paths
+    # in both trees, so the check resolves against `solvers/otkd` as well.
+    documents += sorted(ROOT.glob("solvers/otkd/*.md"))
+    # Its decision log, its superseded release note and the handoff it answered are
+    # dated records: a record has to be able to name a file that was there then, which
+    # is the same reason `research/`, `.agents/planning/` and the closed queue are not
+    # read. What is read is the package's instructions: the design documents beside it.
+    records = {"decisions.md", "releasing.md", "handoff-from-maths-site.md"}
+    documents += [
+        path
+        for path in sorted(ROOT.glob("solvers/otkd/docs/*.md"))
+        if path.name not in records
+    ]
     documents += [
         ROOT / name
         for name in (
@@ -333,6 +346,8 @@ def test_every_script_the_rules_name_exists():
         )
         for token in set(re.findall(pattern, text)):
             name = token[2:] if token.startswith("./") else token
+            if (ROOT / name).is_file() or (ROOT / "solvers/otkd" / name).is_file():
+                continue
             if not (ROOT / name).is_file():
                 missing.append(f"{path.relative_to(ROOT)}: {name}")
     assert not missing, "the rules name scripts that do not exist: " + ", ".join(sorted(missing))

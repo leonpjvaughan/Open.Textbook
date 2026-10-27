@@ -4,13 +4,15 @@ Everything below is **accepted**; the documents are now the contract and this fi
 record of why. Where a decision replaced a handoff sketch, the handoff's own words are
 quoted so the change is visible.
 
-> **Two mechanics below are historical, 2026-10-26.** The package moved into
+> **Three things below are historical, 2026-10-26.** The package moved into
 > `Open.Textbook` at `solvers/otkd`, and the repository it was written in is
 > archived. Rounds 7 to 9 describe `scripts/version.py` and
 > `.github/workflows/release.yml`; neither exists now. The *decisions* still hold:
 > the tag is the version, `hatch-vcs` serves it, and artefacts carry no version
 > text. What changed is who makes the tag: the collection's own release, not a
-> job here.
+> job here. And Round 4's name — `otkd` for the distribution, the import and the
+> command — is superseded by Round 31, which gives the import the collection's
+> namespace and keeps the command short.
 
 ## Round 1
 
@@ -176,7 +178,7 @@ and no Pyodide build — that stays a comment in `emit/js.py`.
 
 ---
 
-## Round 4: the name, the verbs, and the UI (accepted)
+## Round 4: the name, the verbs, and the UI (accepted; superseded on the name by round 31)
 
 The package outgrew its first name. It is not a suspension package: nothing in the config
 layer knows what a wishbone is, and `plane-gap` is as happy with a pantograph as with a tyre.
@@ -902,3 +904,39 @@ all and the book's table can sweep stiffness but not force. Giving it a load is 
 the corner's own 3.5 kN and 1.8 kN — and that re-derives every number §1.6 quotes, from the 212.8 mm
 to the 0.006° agreement. That is the book's decision, not the package's, and it is recorded in
 `maths-site`'s queue rather than taken here.
+
+---
+
+## Round 31: the namespace is the collection's, the command keeps its short name (accepted, supersedes round 4 on the name)
+
+Round 4 chose one name in three places — `otkd` for the distribution, the import and the
+command — on the argument that three spellings are three things to keep in sync. That
+argument is still right about *the command*, and the move into the collection changed
+what the other two are for.
+
+The package is not a standalone project any more. It is one of a family that will grow
+(`open_textbook.otkd`, and whatever is next), and it is installed beside the site's own
+engine rather than from PyPI:
+
+| | round 4 | shipped |
+|---|---|---|
+| distribution | `otkd` | `open-textbook-otkd` |
+| import | `otkd` | `open_textbook.otkd` |
+| command | `otkd` | `otkd` |
+
+1. **The import carries the family name.** `open_textbook` is a namespace package with no
+   `__init__.py`, so a second family member is a sibling directory and no packaging
+   decision has to be revisited. It also means the import cannot collide with a stranger's
+   `otkd` if one is ever published.
+2. **The command does not change.** `otkd` is what a reader types and what every document
+   and habit in the book was written against. Round 4's own rule — "do not rename the
+   import twice" — is honoured by renaming it once, here, and recording it.
+3. **The distribution name is the long one** because it is the only one a registry would
+   ever see, and because `open-textbook-otkd` says which project it belongs to. Nothing is
+   published, so this costs nothing today; it is set now so a later publication is not a
+   rename.
+
+The cost is real and was accepted: every `import otkd`, the console script's target and
+the tests' imports were rewritten once, in the same change as the move, and the old
+spelling appears from here on only in dated records. `pyproject.toml` is the authority on
+all three names; [`naming.md`](naming.md) §2 states the same table.

@@ -104,7 +104,7 @@ endpoint** when the drag ends. The compliant model's 340 ms is the one number wo
 the equilibrium solve currently differentiates the projected potential numerically in 21
 dimensions, and the free direction is one-dimensional, so a reduced solve along that
 direction (a scalar root-find, each evaluation a warm-started rigid Newton) should land near
-40 ms. That is an optimisation inside `solvers/equilibrium.py`, not a new architecture.
+40 ms. That is an optimisation inside `src/open_textbook/otkd/solvers/equilibrium.py`, not a new architecture.
 
 **Framework.** FastAPI behind the optional `otkd[ui]` extra, not in the core. The reasons are
 not novelty: the request and response bodies *are* the pydantic config models, so validation
