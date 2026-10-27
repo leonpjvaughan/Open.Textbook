@@ -761,7 +761,7 @@ build that places the directory, and two checkers.
 | `exercise`, `practice` | `kit/interact.js` | endless practice, with the honest limit stated: internal consistency, not verification |
 | the shared figure library | `assets/figures/` | a figure two books want identically is written once — see §9 for what it is *not* for |
 | `SHARED_DIRS` and the recursive copy | `engine/src/textbook/` | the kit is a library now, and a layer the build did not copy would break every figure silently |
-| `check-figure-kit-pure.mjs` | `scripts/` | the drawing and formatting layers now checked without a browser |
+| the kit's pure check | `tools/src/commands/kit-pure.ts` | the drawing and formatting layers now checked without a browser |
 
 
 **Twenty more figures, 2026-10-17.** The largest gaps in §5's table, built after the kit and
