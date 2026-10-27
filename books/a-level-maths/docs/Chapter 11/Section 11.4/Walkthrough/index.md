@@ -62,10 +62,10 @@ $$
 y = a + bx,
 $$
 
-where $b$ is the gradient and $a$ is the intercept on the $y$-axis. The
-**gradient** says how much the response changes for each extra unit of the
-explanatory variable. The **intercept** is the predicted response when the
-explanatory variable is zero.
+where $x$ is the explanatory variable, $y$ is the response variable, $b$ is the
+gradient and $a$ is the intercept on the $y$-axis. The **gradient** says how
+much the response changes for each extra unit of the explanatory variable. The
+**intercept** is the predicted response when the explanatory variable is zero.
 
 **Example 2.** A line of best fit for hours of study $x$ and test score $y$ is
 $y = 4x + 30$. Interpret the gradient and the intercept, and predict the score

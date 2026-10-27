@@ -76,7 +76,8 @@ north as positive.
 <details markdown="1">
 <summary>Next step</summary>
 
-Write 4.0 km as $+4.0$ and 2.5 km south as $-2.5$, then add the signed numbers.
+Write 4.0 km as $+4.0$ and 2.5 km south as $-2.5$, then add the signed numbers to
+give the displacement $s$.
 </details>
 
 <details markdown="1">

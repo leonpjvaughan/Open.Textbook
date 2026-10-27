@@ -101,9 +101,9 @@ fraction of a person.
 
 ## 4. The limit of a recurrence
 
-For a recurrence of the form $u_{n+1} = ru_n + c$ with $|r| < 1$, the terms
-settle on a fixed value $L$. At that value the next term equals the current one,
-so $L = rL + c$, which gives
+For a recurrence of the form $u_{n+1} = ru_n + c$, where $r$ is the multiplier,
+$c$ a constant and $|r| < 1$, the terms settle on a fixed value $L$. At that
+value the next term equals the current one, so $L = rL + c$, which gives
 
 $$
 L = \frac{c}{1 - r}.

@@ -11,12 +11,12 @@ kind: review
 The hospital scanning unit uses a tracer with 43 protons and 56 neutrons, a
 half-life of 6.0 hours and a starting count rate of 800 counts per second.
 
-**1. The particles in the tracer atom.** The atomic number is the number of
+**1. The particles in the tracer atom.** The atomic number $Z$ is the number of
 protons.
 
 $$ Z = 43 $$
 
-The mass number counts protons and neutrons together.
+The mass number $A$ counts protons and neutrons together.
 
 $$ A = 43 + 56 = 99 $$
 

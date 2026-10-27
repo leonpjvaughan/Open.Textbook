@@ -50,8 +50,9 @@ constant,
 
 $$ F = \frac{\Delta p}{\Delta t} $$
 
-The resultant force equals the rate of change of momentum. For a force that acts
-for a time $\Delta t$, rearranging gives the **impulse**:
+The resultant force equals the rate of change of momentum, where $\Delta$ means
+the change in a quantity. For a force that acts for a time $\Delta t$,
+rearranging gives the **impulse**:
 
 $$ F\Delta t = \Delta p $$
 
@@ -186,7 +187,7 @@ conserved.
   momenta.
 
 **Worked example 6.** In Worked example 4, check whether the collision is
-elastic.
+elastic by comparing the kinetic energy $E_k$ before and after.
 
 $$
 \begin{aligned}

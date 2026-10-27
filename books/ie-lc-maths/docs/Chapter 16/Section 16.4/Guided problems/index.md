@@ -219,7 +219,8 @@ The ratio gives the fraction of the whole segment that lies before $C$.
 <details markdown="1">
 <summary>Next step</summary>
 
-$C$ is $\frac{3}{3+2} = \frac{3}{5}$ of the way from $A$ to $B$.
+Write the $x$-coordinate of $C$ as $x_C$. Then $C$ is $\frac{3}{3+2} = \frac{3}{5}$ of
+the way from $A$ to $B$.
 
 <details markdown="1">
 <summary>Full working</summary>

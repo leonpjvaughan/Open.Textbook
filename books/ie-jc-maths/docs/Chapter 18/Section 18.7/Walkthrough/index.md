@@ -42,8 +42,8 @@ side in the other.
 foot of the ladder is from the wall, and the angle the ladder makes with the
 ground.
 
-**Step 1.** The ladder is the hypotenuse, so use Pythagoras for the distance along
-the ground.
+**Step 1.** The ladder is the hypotenuse, so use Pythagoras for the distance $d$
+along the ground.
 
 $$d^2 = 6^2-5^2 = 36-25 = 11$$
 
@@ -51,7 +51,7 @@ $$d = \sqrt{11} = 3.316\ldots$$
 
 The foot is about 3.3 m from the wall.
 
-**Step 2.** Now two sides are known. Use an inverse ratio for the angle.
+**Step 2.** Now two sides are known. Use an inverse ratio for the angle $\theta$.
 
 $$\sin\theta = \frac{5}{6} = 0.8333\ldots$$
 
@@ -62,7 +62,7 @@ The ladder makes an angle of about 56.4° with the ground.
 **Example 2.** A flagpole stands on level ground. From a point 8 m away, the angle
 of elevation to the top is 55°. Find the height of the flagpole.
 
-An angle and a side, so use a ratio.
+An angle and a side, so use a ratio and call the height $h$.
 
 $$\tan 55^\circ = \frac{h}{8}$$
 

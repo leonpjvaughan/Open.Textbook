@@ -50,7 +50,8 @@ $$
 = \frac{25(\sqrt{3} + 1)}{2} \approx 34.2 \text{ km}^2.
 $$
 
-**Step 4. Find the harbour measurements.** The angle is already in radians, so
+**Step 4. Find the harbour measurements.** The sector angle is $\theta = 0.9$
+radians and its radius is $r = 4$ km, so
 
 $$
 \text{arc} = r\theta = 4 \times 0.9 = 3.6 \text{ km},
@@ -73,7 +74,7 @@ R = \sqrt{12^2 + 5^2} = 13,
 \alpha \approx 0.395 \text{ radians}.
 $$
 
-Both coefficients are positive, so $\alpha$ is acute and
+Both coefficients are positive, so the shift $\alpha$ is acute and
 
 $$
 h = 13\cos(\theta - 0.395).

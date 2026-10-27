@@ -50,6 +50,9 @@ $12 - 4$.
 
 $$s - a = 12 - 4 = 8$$
 
+Here $s$ and $a$ are the service and arrival rates, $Q$ is the number of
+students in the queue and $T$ is the clear time, in minutes.
+
 The queue shrinks by 8 students each minute. The rate is positive, so the queue
 drains rather than grows.
 
@@ -148,6 +151,9 @@ $15 \times 8$, and m/s multiplied by s leaves m.
 <summary>Full working</summary>
 
 $$d = vt = 15 \times 8 = 120$$
+
+Here $d$ is the distance in metres, $v$ is the speed in metres per second and
+$t$ is the time in seconds.
 
 The distance is 120 m. The units confirm it: metres per second multiplied by
 seconds cancels the seconds and leaves metres.

@@ -53,7 +53,7 @@ $$c = \sqrt{225} = 15 \text{ cm}$$
 
 **Example 2.** A rectangle is $8$ m long and $6$ m wide. Find the length of a diagonal.
 
-The diagonal is the hypotenuse of a right triangle with legs $8$ m and $6$ m.
+The diagonal $d$ is the hypotenuse of a right triangle with legs $8$ m and $6$ m.
 
 $$d^2 = 8^2 + 6^2 = 64 + 36 = 100 \qquad d = 10 \text{ m}$$
 
@@ -102,7 +102,7 @@ If the two sides did **not** agree, the triangle would have no right angle.
 The theorem also finds a diagonal through a box. Use it twice.
 
 **Example 6.** A box is $4$ m long, $3$ m wide and $12$ m high. Find the length of the
-longest diagonal.
+longest diagonal $D$.
 
 First find the diagonal of the base:
 

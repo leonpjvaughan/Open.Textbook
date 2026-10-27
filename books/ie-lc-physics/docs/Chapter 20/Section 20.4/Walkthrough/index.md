@@ -91,6 +91,8 @@ One quarter is $\left(\dfrac{1}{2}\right)^2$, so two half-lives have passed:
 
 $$t = 2 \times 5730 = 11460\ \text{years}$$
 
+Here $t$ is the age of the sample.
+
 That is $1.1 \times 10^4$ years to two significant figures.
 
 **Why the method has a limit.** After about ten half-lives the activity left is

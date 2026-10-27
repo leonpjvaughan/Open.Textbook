@@ -38,6 +38,8 @@ Two facts describe it.
 
 > **The standard error of the mean.**
 > $$\sigma_{\bar{x}} = \frac{\sigma}{\sqrt{n}}$$
+> where $\sigma$ is the population standard deviation, $\sigma_{\bar{x}}$ the standard
+> error of the mean and $n$ the sample size.
 > This is the formula in the formulae and tables booklet.
 
 The standard error gets smaller as $n$ grows. A larger sample gives a more precise
@@ -71,6 +73,8 @@ Because the sample mean is approximately normal for large $n$, the standardising
 of Section 11.6 works with the standard error in place of $\sigma$:
 
 $$z = \frac{\bar{x} - \mu}{\sigma / \sqrt{n}}$$
+
+Here $z$ counts how many standard errors the sample mean lies from $\mu$.
 
 **Example 2.** For the population above, find the probability that a sample of $25$ has a
 mean above $106$.

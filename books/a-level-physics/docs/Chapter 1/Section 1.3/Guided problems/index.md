@@ -67,9 +67,9 @@ $$
 The diameter is $0.541 \pm 0.003\,\text{mm}$.
 </details>
 
-**2.** A single length is read from a metre rule as $0.542\,\text{m}$. The rule
-has a smallest division of 1 mm. Find the absolute uncertainty and the
-percentage uncertainty in the length.
+**2.** A single length $L$ is read from a metre rule as $0.542\,\text{m}$. The
+rule has a smallest division of 1 mm. Find the absolute uncertainty $\Delta L$
+and the percentage uncertainty in the length.
 
 <details markdown="1">
 <summary>Hint</summary>
@@ -138,7 +138,8 @@ volume is $39 \pm 3\,\text{cm}^3$ to one significant figure in the uncertainty.
 </details>
 
 **4.** Two lengths of a rod are measured as $12.4 \pm 0.1\,\text{cm}$ and
-$8.6 \pm 0.1\,\text{cm}$. Find the total length and its absolute uncertainty.
+$8.6 \pm 0.1\,\text{cm}$. Find the total length $L$ and its absolute uncertainty
+$\Delta L$.
 
 <details markdown="1">
 <summary>Hint</summary>
@@ -166,7 +167,7 @@ The total length is $21.0 \pm 0.2\,\text{cm}$. Adding absolute uncertainties is
 the rule for a sum and for a difference.
 </details>
 
-**5.** A timer gives a value of $4.567\,\text{s}$ with an uncertainty of
+**5.** A timer gives a time $t = 4.567\,\text{s}$ with an uncertainty of
 $0.1\,\text{s}$. Write the result in the correct form.
 
 <details markdown="1">
@@ -191,9 +192,10 @@ Quoting $4.567\,\text{s}$ would suggest that the timer knows the value to the
 third decimal place, which the uncertainty of 0.1 s does not support.
 </details>
 
-**6.** A student wants the percentage uncertainty in $g$ to be below 0.5% when
-using a pendulum. The timing uncertainty for one measurement is about 0.2 s.
-Decide how many oscillations the student should time. Use $T = 1.795\,\text{s}$.
+**6.** A student wants the percentage uncertainty in $g$, the acceleration due
+to gravity, to be below 0.5% when using a pendulum. The timing uncertainty for
+one measurement is about 0.2 s. Decide how many oscillations the student should
+time. Use the period $T = 1.795\,\text{s}$.
 
 <details markdown="1">
 <summary>Hint</summary>

@@ -81,8 +81,9 @@ AB = |\vec{AB}| = \sqrt{(x_2 - x_1)^2 + (y_2 - y_1)^2}
 $$
 
 in two dimensions, with a third square for the $z$-coordinates in three
-dimensions. This is the same formula as the distance between two points from
-coordinate geometry, now written with vectors.
+dimensions. Here $(x_1, y_1)$ are the coordinates of $A$ and $(x_2, y_2)$ are the
+coordinates of $B$. This is the same formula as the distance between two points
+from coordinate geometry, now written with vectors.
 
 **Example 4.** Find the distance between $A(1, 2)$ and $B(5, 7)$.
 

@@ -102,6 +102,8 @@ $$
 N = \frac{3.0 \times 10^{-3}}{3.3 \times 10^{-19}}
 $$
 
+Here $N$ is the number of photons the lamp emits each second.
+
 $$
 N = 9.1 \times 10^{15}\,\text{photons each second}
 $$

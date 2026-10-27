@@ -45,6 +45,8 @@ mean:
 
 > **The one-sample $z$-test.**
 > $$z = \frac{\bar{x} - \mu}{\sigma / \sqrt{n}}$$
+> where $\bar{x}$ is the sample mean, $\mu$ the claimed mean, $\sigma$ the population
+> standard deviation and $n$ the sample size.
 > This is the formula in the formulae and tables booklet.
 
 **Example 2.** A sample of $80$ new phones has mean charging time $45.4$ minutes. The
@@ -95,7 +97,8 @@ The interval does not contain $44$, so a two-tailed test at the $5\%$ level reje
 claim that the mean is $44$. That link always holds: a $95\%$ confidence interval contains
 exactly the values that a two-tailed test at the $5\%$ level would retain.
 
-For a proportion, the $95\%$ confidence interval is
+For a population proportion $p$ and a sample proportion $\hat{p}$ from a sample of
+size $n$, the $95\%$ confidence interval is
 
 $$\hat{p} \pm 1.96\sqrt{\frac{\hat{p}(1 - \hat{p})}{n}}$$
 

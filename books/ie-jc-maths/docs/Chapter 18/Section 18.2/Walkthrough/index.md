@@ -27,6 +27,8 @@ the square root.
 
 $$c = \sqrt{a^2+b^2}$$
 
+where $c$ is the hypotenuse and $a$ and $b$ are the two legs.
+
 **Example 1.** A right-angled triangle has legs of 9 cm and 12 cm. Find the
 hypotenuse.
 
@@ -68,7 +70,7 @@ The other leg is 12 cm.
 wall does the ladder reach?
 
 The ladder is the hypotenuse. The distance along the ground is one leg, and the
-height up the wall is the other leg.
+height up the wall is the other leg $h$.
 
 $$h^2 = 5^2-3^2 = 25-9 = 16$$
 

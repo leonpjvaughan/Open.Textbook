@@ -43,6 +43,8 @@ t &= \frac{d}{v} \\
 \end{aligned}
 $$
 
+where $t$ is the time, $d$ is the distance and $v$ is the speed.
+
 The signal takes $1.8 \times 10^{-3}\,\text{s}$, or 1.8 ms, to reach the ground.
 
 **5. Why a star such as the Sun is stable.** Fusion reactions in the core release

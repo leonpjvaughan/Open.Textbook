@@ -29,6 +29,8 @@ the $y$ terms are on one side and all the $x$ terms are on the other:
 
 $$\frac{dy}{dx} = f(x)g(y).$$
 
+Here $f$ is a function of $x$ alone and $g$ is a function of $y$ alone.
+
 The equation $\dfrac{dy}{dx} = xy$ is separable, because it is $x$ times $y$. So
 is $\dfrac{dy}{dx} = \dfrac{x}{y}$, and so is every equation in this chapter.
 

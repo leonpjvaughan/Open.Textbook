@@ -129,6 +129,8 @@ t &= \frac{d}{v} \\
 \end{aligned}
 $$
 
+where $t$ is the time, $d$ is the distance and $v$ is the speed.
+
 The signal travels at a steady speed, so use $\text{time} =
 \dfrac{\text{distance}}{\text{speed}}$. First change the height to metres, so
 $540\,\text{km} = 5.4 \times 10^{5}\,\text{m}$. The answer is

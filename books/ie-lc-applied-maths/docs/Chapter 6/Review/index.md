@@ -13,11 +13,11 @@ $15$ m/s and hits a stationary car of mass $800$ kg. The centre runs the test
 three times with different bumpers. Take the original direction of travel as
 positive.
 
-**The momentum before.** The moving car carries
+**The momentum before.** The moving car carries momentum $p$:
 
 $$p = mv = 1200 \times 15 = 18000\,\text{kg m/s}$$
 
-The kinetic energy before is
+The kinetic energy before, $E_k$, is
 
 $$E_k = \frac{1}{2} \times 1200 \times 15^2 = 135000\,\text{J}$$
 

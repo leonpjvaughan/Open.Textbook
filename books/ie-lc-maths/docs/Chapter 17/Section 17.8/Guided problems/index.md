@@ -151,7 +151,7 @@ The matching vertex of $A$ is $D$.
 <details markdown="1">
 <summary>Next step</summary>
 
-The scale factor is $|PD| \div |PA|$, with a minus sign.
+The scale factor $k$ is $|PD| \div |PA|$, with a minus sign.
 
 <details markdown="1">
 <summary>Full working</summary>

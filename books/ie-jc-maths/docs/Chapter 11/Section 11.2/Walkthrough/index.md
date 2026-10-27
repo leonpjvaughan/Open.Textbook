@@ -28,6 +28,8 @@ Multiplying out a bracket, or **expanding**, uses the distributive property.
 
 $$a(b+c) = ab + ac$$
 
+Here $a$, $b$ and $c$ stand for numbers.
+
 The number outside the bracket multiplies **every** term inside it.
 
 **Example 1.** Expand $3(x+4)$.

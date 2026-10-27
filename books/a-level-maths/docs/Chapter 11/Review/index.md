@@ -49,7 +49,8 @@ $$
 \bar{x} = \frac{749}{30} = 24.97 \ (2 \text{ d.p.}).
 $$
 
-The standard deviation, dividing by $n$, is
+Write each journey time as $x$ minutes, with $n = 30$ journeys. The standard
+deviation, dividing by $n$, is
 
 $$
 \sigma = \sqrt{\frac{\sum (x - \bar{x})^2}{30}} = \frac{\sqrt{69389}}{30}

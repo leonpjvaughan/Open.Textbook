@@ -144,6 +144,8 @@ The degrees are $3, 3, 2, 2, 2$, adding to $12$. So
 
 $$E = \frac{12}{2} = 6$$
 
+Here $E$ is the number of edges.
+
 You did not need the matrix itself — only its row sums. That is the handshake lemma, and
 it is the quickest way to count edges from a matrix.
 
@@ -273,8 +275,9 @@ a degree. So
 
 $$\sum \deg(v) = \text{total of all entries} = 2E$$
 
-which is exactly the handshake lemma. The lemma is not a fact about drawings; it is a
-fact about the matrix, and that is why it is always true.
+where $v$ is a vertex. This is exactly the handshake lemma. The lemma is not a
+fact about drawings; it is a fact about the matrix, and that is why it is
+always true.
 
 </details>
 </details>

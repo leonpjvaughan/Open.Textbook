@@ -46,7 +46,8 @@ resistance that would give the same current as the whole series combination.
 
 $$ R_{total} = R_1 + R_2 $$
 
-where $R_1$ and $R_2$ are the resistances in ohms.
+where $R_{total}$ is the total resistance, and $R_1$ and $R_2$ are the
+resistances in ohms.
 
 Adding a resistor in series raises the total resistance. A larger resistance
 gives a smaller current for the same supply, so the current through every
@@ -71,6 +72,9 @@ A larger total current for the same supply means a smaller total resistance.
 **Worked example 1.** A 4.0 $\Omega$ resistor and a 6.0 $\Omega$ resistor are
 connected in series with a 5.0 V supply. Calculate the total resistance, the
 current, and the potential difference across each resistor.
+
+Here $V$ is the supply potential difference and $I$ is the current through the
+circuit.
 
 $$
 \begin{aligned}

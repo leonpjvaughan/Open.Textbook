@@ -18,7 +18,7 @@ from Section 9.4.
 **Objectives:** describe how a stationary wave forms on a stretched string; define a
 node, an antinode, the fundamental frequency and a harmonic; relate the length of a
 string to the wavelength of the fundamental; use
-$f = \dfrac{1}{2l}\sqrt{\dfrac{T}{\mu}}$; explain resonance.
+$f = \dfrac{1}{2L}\sqrt{\dfrac{T}{\mu}}$; explain resonance.
 
 By the end of this section, you can explain why a guitar string sounds a particular note
 and where its nodes and antinodes are.
@@ -54,6 +54,8 @@ are the ends of the string, so the length of the string is half a wavelength:
 
 $$L = \frac{\lambda}{2} \qquad \lambda = 2L$$
 
+where $L$ is the length of the string.
+
 A **harmonic** is a vibration whose frequency is a whole-number multiple of the
 fundamental frequency $f_1$. Higher harmonics fit more half-wavelengths on the same
 string:
@@ -81,14 +83,14 @@ The speed of a wave on a string depends on how tight the string is and how heavy
 for its length. That gives the frequency of the fundamental:
 
 > **Fundamental frequency of a stretched string.**
-> $$f = \frac{1}{2l}\sqrt{\frac{T}{\mu}}$$
+> $$f = \frac{1}{2L}\sqrt{\frac{T}{\mu}}$$
 > - $f$ is the fundamental frequency, in hertz (Hz);
-> - $l$ is the length of the string, in metres (m);
+> - $L$ is the length of the string, in metres (m);
 > - $T$ is the tension in the string, in newtons (N);
 > - $\mu$ is the mass per unit length of the string, in kilograms per metre (kg/m).
 
 A tighter string has a higher note, because $f$ increases with $T$. A longer or heavier
-string has a lower note, because $f$ decreases as $l$ or $\mu$ increases. A guitarist
+string has a lower note, because $f$ decreases as $L$ or $\mu$ increases. A guitarist
 tunes by turning the tuning peg, which changes the tension.
 
 **Example 3.** A stretched string is 0.50 m long. Its tension is 500 N and its mass per
@@ -156,6 +158,6 @@ Keep your answers. The Review uses them to resolve the chapter problem.
 - define a node and an antinode, and say where they are on a string fixed at both ends;
 - define the fundamental frequency and a harmonic, and use $f_n = n f_1$;
 - use $\lambda = \dfrac{2L}{n}$ to find the wavelength of a harmonic;
-- use $f = \dfrac{1}{2l}\sqrt{\dfrac{T}{\mu}}$ to find the fundamental frequency of a
+- use $f = \dfrac{1}{2L}\sqrt{\dfrac{T}{\mu}}$ to find the fundamental frequency of a
   stretched string;
 - explain resonance, and give an example of it.

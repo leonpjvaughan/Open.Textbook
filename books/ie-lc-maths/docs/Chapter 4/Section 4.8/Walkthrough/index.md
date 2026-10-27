@@ -28,6 +28,9 @@ power. Its standard form is
 
 $$ax^2 + bx + c = 0 \qquad (a \neq 0)$$
 
+where $a$ is the coefficient of $x^2$, $b$ is the coefficient of $x$ and $c$ is
+the constant.
+
 The graph of a quadratic is a curve called a parabola. A curve can cross a
 horizontal line twice, once or not at all, so a quadratic equation can have two
 solutions, one solution, or none.
@@ -97,10 +100,15 @@ extra candle:
 
 $$p = 10 - 0.1(n - 40)$$
 
+where $n$ is the number of candles sold and $p$ is the price in euro of one
+candle.
+
 The income is now the price multiplied by the number sold, and the price depends
 on $n$, so the income is a quadratic:
 
 $$R = n\left(10 - 0.1(n - 40)\right) = n(14 - 0.1n) = 14n - 0.1n^2$$
+
+Here $R$ is the income in euro.
 
 Break-even is still where the income equals the cost:
 

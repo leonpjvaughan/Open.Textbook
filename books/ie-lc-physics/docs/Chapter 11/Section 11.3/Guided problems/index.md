@@ -105,6 +105,8 @@ $20\,\text{kHz} = 20000\,\text{Hz}$, then $\lambda = \dfrac{340}{20000}$.
 
 $$\lambda = \frac{v}{f} = \frac{340}{20000} = 0.017\,\text{m}$$
 
+where $\lambda$ is the wavelength, $v$ the speed of sound and $f$ the frequency.
+
 That is 17 mm. This is the shortest wavelength you can hear, and it is the wavelength of
 the highest note in the audible range.
 

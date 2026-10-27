@@ -32,6 +32,9 @@ volumes.
 
 $$V_{\text{total}} = V_1 + V_2$$
 
+Here $V_{\text{total}}$ is the volume of the whole solid, $V_1$ and $V_2$ the
+volumes of the two parts, and $S$ the surface area.
+
 The surface area needs more care. When two solids are joined, the faces at the join
 touch each other. Those faces are hidden inside the new solid, so they are not part of
 the surface. Leave them out.
@@ -69,7 +72,8 @@ a sphere.
 hemisphere of radius 3 cm on top. Find its volume and its surface area in terms of
 $\pi$.
 
-Volume first.
+Volume first. Here $V$ is the volume, $r$ is the radius and $h$ is the height of the
+cylinder.
 
 $$V = \pi r^2 h + \tfrac{2}{3}\pi r^3 = \pi(9)(10) + \tfrac{2}{3}\pi(27)$$
 

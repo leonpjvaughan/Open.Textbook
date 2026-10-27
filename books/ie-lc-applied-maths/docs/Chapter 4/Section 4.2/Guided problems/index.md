@@ -116,8 +116,8 @@ horizontal and vertical components, to three significant figures.
 <details markdown="1">
 <summary>Hint</summary>
 
-The horizontal component is along the direction of the angle, so it uses
-cosine. The vertical component uses sine.
+The horizontal component $F_x$ is along the direction of the angle, so it uses
+cosine. The vertical component $F_y$ uses sine.
 
 <details markdown="1">
 <summary>Next step</summary>

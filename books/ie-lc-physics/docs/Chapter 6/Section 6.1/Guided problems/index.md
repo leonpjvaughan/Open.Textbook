@@ -38,7 +38,7 @@ $g = 9.8\,\text{N/kg}$.
 <details markdown="1">
 <summary>Hint</summary>
 
-Use $W = mg$. The mass is already in kilograms.
+Use $W = mg$, where $W$ is the weight. The mass is already in kilograms.
 
 <details markdown="1">
 <summary>Next step</summary>

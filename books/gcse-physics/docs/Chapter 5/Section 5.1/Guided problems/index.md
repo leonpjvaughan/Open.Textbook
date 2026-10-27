@@ -47,8 +47,9 @@ the radio waves.
 <details markdown="1">
 <summary>Hint</summary>
 
-The wave equation is $v = f\lambda$. You know the speed, and you want the
-wavelength. Rearrange the equation so that $\lambda$ is on its own.
+The wave equation is $v = f\lambda$. These waves travel through a vacuum at
+the speed of light, $c = 3.0 \times 10^8\,\text{m/s}$. You know the speed, and
+you want the wavelength. Rearrange the equation so that $\lambda$ is on its own.
 </details>
 
 <details markdown="1">

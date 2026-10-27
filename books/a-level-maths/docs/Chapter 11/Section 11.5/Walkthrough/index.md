@@ -118,6 +118,9 @@ $$
 \sigma = \sqrt{\frac{\sum (x - \bar{x})^2}{n}}.
 $$
 
+Here $\sigma$ is the standard deviation, $x$ stands for each value and $n$ is the
+number of values.
+
 A useful calculating form is
 
 $$

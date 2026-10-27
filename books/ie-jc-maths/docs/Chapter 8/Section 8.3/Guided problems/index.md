@@ -146,6 +146,8 @@ $$14 + 11 - 5$$
 
 $$n(T \cup K) = 14 + 11 - 5 = 20$$
 
+Here $T$ is the set of students who like tea and $K$ is the set who like coffee.
+
 So 20 students like at least one of the drinks. The remaining $25 - 20 = 5$
 students like neither.
 

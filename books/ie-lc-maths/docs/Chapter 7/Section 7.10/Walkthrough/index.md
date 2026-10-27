@@ -32,6 +32,8 @@ The chain rule extends this to any constant multiple of $x$ in the exponent.
 
 $$\frac{d}{dx}\left(e^{kx}\right) = ke^{kx}$$
 
+Here $k$ is a constant.
+
 **Example 1.** Differentiate $y = e^{3x}$.
 
 $$\frac{dy}{dx} = 3e^{3x}.$$

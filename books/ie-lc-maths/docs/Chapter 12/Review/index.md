@@ -72,7 +72,7 @@ $$d = \sqrt{60^2 + 378.8^2} = 383.5 \text{ m}$$
 
 ### When the yacht floats
 
-The depth of water over the sandbank, $t$ hours after low water, is
+The depth of water $d$ over the sandbank, $t$ hours after low water, is
 
 $$d = 1.4 + 1.2\sin(30^\circ t)$$
 

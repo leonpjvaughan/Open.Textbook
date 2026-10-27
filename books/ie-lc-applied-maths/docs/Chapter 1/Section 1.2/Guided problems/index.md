@@ -106,6 +106,9 @@ The till serves 10 of them each minute, so divide 40 by 10.
 
 $$W = \frac{Q}{s} = \frac{40}{10} = 4$$
 
+Here $W$ is the wait in minutes, $Q$ is the number of students in the queue
+and $s$ is the service rate in students each minute.
+
 The student waits 4 minutes, so they are served at about 12:34. Check it:
 $10 \times 4 = 40$ students are served in that time.
 
@@ -159,6 +162,9 @@ $45 \div 9$.
 <summary>Full working</summary>
 
 $$s - a = \frac{Q}{T} = \frac{45}{9} = 5$$
+
+Here $T$ is the time until the queue is gone, in minutes, and $a$ is the
+arrival rate in students each minute.
 
 The queue shrank by 5 students each minute. If 4 students joined each minute,
 then the till served $5 + 4 = 9$ each minute.

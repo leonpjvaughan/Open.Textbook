@@ -41,7 +41,8 @@ free fall, and its sideways speed carries it around the Earth instead of into it
 ## The orbital speed
 
 The gravitational force provides the centripetal force. Set the two equal for a
-satellite of mass $m$ in a circle of radius $r$ around a body of mass $M$:
+satellite of mass $m$ in a circle of radius $r$ around a body of mass $M$, moving at
+speed $v$:
 
 $$\frac{GMm}{r^2} = \frac{mv^2}{r}$$
 

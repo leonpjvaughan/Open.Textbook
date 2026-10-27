@@ -47,7 +47,8 @@ Use half the chord as one side of a right-angled triangle.
 <details markdown="1">
 <summary>Next step</summary>
 
-The half-chord is $8$ cm. Pythagoras gives $d^2 + 8^2 = 10^2$.
+The half-chord is $8$ cm. With $d$ the distance from the centre, Pythagoras gives
+$d^2 + 8^2 = 10^2$.
 
 <details markdown="1">
 <summary>Full working</summary>
@@ -77,7 +78,8 @@ Find the half-chord first, then double it.
 <details markdown="1">
 <summary>Next step</summary>
 
-Pythagoras gives $\left(\tfrac12 c\right)^2 + 5^2 = 13^2$.
+With $c$ the length of the chord, Pythagoras gives
+$\left(\tfrac12 c\right)^2 + 5^2 = 13^2$.
 
 <details markdown="1">
 <summary>Full working</summary>
@@ -101,7 +103,7 @@ The chord is $24$ cm long.
 <details markdown="1">
 <summary>Hint</summary>
 
-The half-chord is $15$ cm, and the radius is the hypotenuse.
+The half-chord is $15$ cm, and the radius $r$ is the hypotenuse.
 
 <details markdown="1">
 <summary>Next step</summary>

@@ -55,7 +55,8 @@ $$v = \sqrt{gr\tan\theta}
 
 The radius times the tangent simplifies, because
 $r\tan\theta = L\sin\theta\tan\theta = L\sin\theta \times \dfrac{\sin\theta}{\cos\theta}$.
-Here $\sin 60^\circ = \tan 60^\circ$, so the product is $3$.
+With $L = 2$ and $\theta = 60^\circ$ that is
+$2 \times \dfrac{3/4}{1/2} = 3$, so $r\tan\theta = \sqrt{3} \times \sqrt{3} = 3$.
 
 </details>
 </details>

@@ -209,7 +209,7 @@ The solutions are $90^\circ$, $210^\circ$ and $330^\circ$.
 </details>
 </details>
 
-**8.** The depth over the sandbank is $d = 1.4 + 1.2\sin(30^\circ t)$ metres, $t$ hours
+**8.** The depth $d$ over the sandbank is $d = 1.4 + 1.2\sin(30^\circ t)$ metres, $t$ hours
 after low water. Solve $d = 2.0$ for $0 \le t \le 12$.
 
 <details markdown="1">

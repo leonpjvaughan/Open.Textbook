@@ -21,20 +21,21 @@ positive coordinates, so all three lie in the first quadrant.
 
 $$\text{across} = 9-1 = 8 \qquad \text{up} = 8-2 = 6$$
 
-Square the steps, add, and take the root.
+Square the steps, add, and take the root to get the distance $d$.
 
 $$d = \sqrt{8^2+6^2} = \sqrt{64+36} = \sqrt{100} = 10$$
 
 **The main path is 10 m long.**
 
 **Step 3. The bench.** The bench is at the midpoint of the main path. Average the
-coordinates.
+coordinates to find the midpoint $M$.
 
 $$M = \left(\frac{1+9}{2},\ \frac{2+8}{2}\right) = (5,5)$$
 
 **The bench is at $(5,5)$.**
 
-**Step 4. The slope of the main path.** Divide the rise by the run.
+**Step 4. The slope of the main path.** Divide the rise by the run to find
+the slope $m$.
 
 $$m = \frac{8-2}{9-1} = \frac{6}{8} = \frac{3}{4}$$
 
@@ -57,7 +58,7 @@ The product is $-1$, so the paths meet at a right angle.
 "yes", the slopes have now proved it.
 
 **Step 7. The equation of the main path.** The path passes through $G(1,2)$ with
-slope $\tfrac{3}{4}$. Find the intercept.
+slope $\tfrac{3}{4}$. Find the intercept $c$.
 
 $$c = y - mx = 2 - \frac{3}{4} \times 1 = \frac{8}{4}-\frac{3}{4} = \frac{5}{4}$$
 

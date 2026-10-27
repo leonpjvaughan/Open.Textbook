@@ -198,7 +198,7 @@ radius, then write down the length of a diameter.
 <details markdown="1">
 <summary>Hint</summary>
 
-Use half the chord and Pythagoras.
+Use half the chord and Pythagoras, with $r$ the radius.
 
 <details markdown="1">
 <summary>Next step</summary>

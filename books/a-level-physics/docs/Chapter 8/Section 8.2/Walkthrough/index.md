@@ -66,6 +66,9 @@ E_k &= eV = 1.60 \times 10^{-19} \times 150 \\
 \end{aligned}
 $$
 
+Here $e$ is the elementary charge and $V$ is the accelerating potential
+difference.
+
 The momentum comes from the kinetic energy. Since $E_k = \dfrac{p^2}{2m}$,
 $p = \sqrt{2mE_k}$.
 

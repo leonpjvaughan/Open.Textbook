@@ -139,7 +139,7 @@ uncertainty is divided in the same way.
 <details markdown="1">
 <summary>Next step</summary>
 
-Divide 0.3 s by 25 to find the uncertainty in one period.
+Divide 0.3 s by 25 to find the uncertainty in one period $T$.
 </details>
 
 <details markdown="1">

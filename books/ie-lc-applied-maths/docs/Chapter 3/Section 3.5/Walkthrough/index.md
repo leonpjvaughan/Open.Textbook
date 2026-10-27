@@ -32,8 +32,9 @@ The rule for a power of $t$ is the reverse of the differentiation rule:
 
 $$\int t^n\,dt = \frac{t^{n+1}}{n+1} + C.$$
 
-Raise the power by one, then divide by the new power. The letter $C$ stands for
-any constant, because a constant has derivative zero.
+Here $n$ is the power of $t$. Raise the power by one, then divide by the new
+power. The letter $C$ stands for any constant, because a constant has
+derivative zero.
 
 **Example 1.** Find $\displaystyle\int 6t\,dt$.
 
@@ -54,6 +55,8 @@ The **fundamental theorem of calculus** connects the two ideas. If $F$ is any
 antiderivative of $f$, then
 
 $$\int_a^b f(t)\,dt = F(b) - F(a).$$
+
+Here $a$ is the lower limit and $b$ is the upper limit.
 
 To evaluate a definite integral: find an antiderivative, substitute the upper
 limit, substitute the lower limit, and subtract.

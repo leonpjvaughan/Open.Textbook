@@ -62,7 +62,7 @@ Each bounce reaches one quarter of the previous height.
 
 The first fall is a distance $h$. Each bounce after that covers a rise and a
 fall, both of the same height, so the distance for the $n$th bounce is $2h_n$.
-The total distance is therefore
+The total distance $D$ is therefore
 
 $$D = h + 2he^2 + 2he^4 + 2he^6 + \cdots$$
 
@@ -113,7 +113,7 @@ At a rebound the velocity reverses, so the change in momentum is larger than a
 simple stop.
 
 **Example 5.** A test car of mass $1200$ kg hits a barrier at $15$ m/s and
-rebounds at $6$ m/s. Find the impulse on the car.
+rebounds at $6$ m/s. Find the impulse $J$ on the car.
 
 Take the direction towards the barrier as positive. The velocity changes from
 $+15$ m/s to $-6$ m/s:

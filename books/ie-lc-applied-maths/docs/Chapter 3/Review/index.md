@@ -19,6 +19,10 @@ $$u_x = 20\cos 30^\circ = 17.32\,\text{m/s}$$
 
 $$u_y = 20\sin 30^\circ = 10\,\text{m/s}$$
 
+Here $u_x$ and $u_y$ are the horizontal and vertical components of the
+velocity, $t$ is the time, and $y$ is the height. $T$ is the time of flight and
+$R$ is the range.
+
 **Does the ball clear the wall?** The wall is $15$ m away. Find the time from
 the horizontal motion, then the height from the vertical motion.
 

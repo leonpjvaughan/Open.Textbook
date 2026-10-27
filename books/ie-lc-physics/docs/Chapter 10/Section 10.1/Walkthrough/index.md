@@ -103,6 +103,9 @@ of sound in air is 340 m/s. Calculate the distance to the wall.
 
 $$s = \frac{vt}{2} = \frac{340 \times 0.80}{2} = 136\,\text{m}$$
 
+where $s$ is the distance to the wall, $v$ the speed of sound and $t$ the time for the
+echo to return.
+
 Ultrasound works the same way. A pulse is sent into water, and the echo is timed to
 find the depth. Sonar, radar and medical ultrasound imaging all measure a distance
 from the time a reflected pulse takes to return.

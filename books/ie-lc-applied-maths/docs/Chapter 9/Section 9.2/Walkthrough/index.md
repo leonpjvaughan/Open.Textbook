@@ -48,6 +48,8 @@ same fraction each minute.
 
 $$T = T_r + (T_0 - T_r)e^{-kt}$$
 
+Here $e$ is the number $2.718\ldots$.
+
 The letters are defined above, so a reader can put the real values in. When you
 write a relationship, do three things.
 

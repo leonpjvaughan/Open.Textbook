@@ -109,8 +109,8 @@ $$
 A calculator gives $0.08017$, so the error is about $0.00017$.
 </details>
 
-**4.** A pendulum of length $0.6$ m swings through a small angle
-$\theta = 0.12$ radians. Estimate the horizontal displacement of the bob.
+**4.** A pendulum of length $L = 0.6$ m swings through a small angle
+$\theta = 0.12$ radians. Estimate the horizontal displacement $x$ of the bob.
 
 <details markdown="1">
 <summary>Hint</summary>

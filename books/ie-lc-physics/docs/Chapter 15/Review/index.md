@@ -12,6 +12,9 @@ kind: review
 coil of 50 turns, the side of the coil in the magnetic field is 2.0 cm long, the flux
 density is 0.15 T, and the coil carries a current of 0.25 A.
 
+In these formulas $F$ is a force, $B$ the magnetic flux density, $I$ the current,
+$l$ the length of wire in the field, $q$ a charge and $v$ its speed.
+
 **Step 1: the force on one side of one turn.** The side of the coil is at right angles
 to the field, so
 

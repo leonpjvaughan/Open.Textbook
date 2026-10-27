@@ -139,13 +139,14 @@ defined as zero at infinity, so every real potential is negative. A mass falls
 towards the body, which releases energy, so the potential energy is lower than
 at infinity. The minus sign carries that meaning.
 
-The **gravitational potential energy** of a mass $m$ at a point is
+The **gravitational potential energy** $E_p$ of a mass $m$ at a point is
 
 $$ E_{p} = mV = -\frac{GMm}{r} $$
 
 The potential difference between two points is the energy needed to move unit
 mass between them. To move a mass from the surface to infinity requires the
-energy $\dfrac{GMm}{R}$, which is why it is positive.
+energy $\dfrac{GMm}{R}$, which is why it is positive. Here $R$ is the radius of
+the body.
 
 **Worked example 3.** Find the gravitational potential at the Earth's surface
 and at the orbit, and the energy needed to lift an 800 kg spacecraft from the

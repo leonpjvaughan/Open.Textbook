@@ -12,7 +12,8 @@ kind: review
 stall, and €4 for each candle. Each candle sells for €10. Above $40$ candles the
 price falls by $10$ cent for each extra candle.
 
-**The two expressions.** For $n$ candles,
+**The two expressions.** For $n$ candles, the cost $C$ and the income $R$, both
+in euro, are
 
 $$C = 240 + 4n \qquad R = 10n$$
 
@@ -31,7 +32,7 @@ Below $40$ candles the cost line is above the income line, so the business makes
 a loss. Above $40$ candles the income line is above the cost line, so it makes a
 profit of $6n - 240$ euro.
 
-**The discount.** Above $40$ candles the price falls:
+**The discount.** Above $40$ candles the price $p$, in euro, falls:
 
 $$p = 10 - 0.1(n - 40)$$
 
@@ -51,7 +52,7 @@ So $n = 40$ or $n = 60$. There are two break-even points: one at $40$ candles,
 where the discount has not yet started, and one at $60$ candles, where the price
 has fallen to €8.
 
-**The profit region.** The profit with the discount is
+**The profit region.** The profit $P$ with the discount, in euro, is
 
 $$P = 14n - 0.1n^2 - (240 + 4n) = -0.1n^2 + 10n - 240$$
 

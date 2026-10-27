@@ -35,6 +35,9 @@ When you add two vectors, add the matching components:
 
 $$\begin{pmatrix} a_1 \\ a_2 \end{pmatrix} + \begin{pmatrix} b_1 \\ b_2 \end{pmatrix} = \begin{pmatrix} a_1 + b_1 \\ a_2 + b_2 \end{pmatrix}$$
 
+where $a_1$ and $a_2$ are the components of $\mathbf{a}$, and $b_1$ and $b_2$ are the
+components of $\mathbf{b}$.
+
 The sum of two or more vectors is called their **resultant**.
 
 :::figure vector-addition
@@ -63,7 +66,8 @@ Section 18.1, written with vectors.
 ## Multiplying by a scalar
 
 A **scalar** is an ordinary number. Multiplying a vector by a scalar changes its length
-and, if the scalar is negative, its direction. Multiply each component by the scalar:
+and, if the scalar is negative, its direction. Multiply each component by the scalar. For
+a vector with components $x$ and $y$:
 
 $$k\begin{pmatrix} x \\ y \end{pmatrix} = \begin{pmatrix} kx \\ ky \end{pmatrix}$$
 

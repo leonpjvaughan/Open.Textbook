@@ -235,6 +235,9 @@ $n(F \cup G) = 18 + 14 - 6$.
 
 $$n(F \cup G) = 18 + 14 - 6 = 26 \qquad n(G \cup F) = 14 + 18 - 6 = 26$$
 
+Here $F$ is the set of students who study French and $G$ is the set who study
+German.
+
 Both orders give 26, because union is commutative.
 
 </details>

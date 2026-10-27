@@ -112,7 +112,7 @@ vector in the opposite direction then has a negative sign. Adding the signed
 numbers gives the resultant, and its sign gives the direction.
 
 **Worked example 1.** A walker walks 3.0 km east, then 1.5 km west. Find the
-resultant displacement.
+resultant displacement $s$.
 
 $$
 \begin{aligned}
@@ -125,8 +125,8 @@ $$
 The resultant is 1.5 km east. The distance travelled is 4.5 km, but the
 displacement is only 1.5 km.
 
-**Worked example 2.** A cyclist travels 500 m east in 20 s. Find the average
-velocity.
+**Worked example 2.** A cyclist travels a distance $d = 500\,\text{m}$ east in a
+time $t = 20\,\text{s}$. Find the average velocity $v$.
 
 $$
 \begin{aligned}

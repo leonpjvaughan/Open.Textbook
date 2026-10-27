@@ -117,6 +117,8 @@ $$
 V = x(16 - 2x)(10 - 2x).
 $$
 
+Here $V$ is the volume of the box.
+
 Expand:
 
 $$

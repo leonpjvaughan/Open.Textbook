@@ -50,6 +50,9 @@ $$v = u + at = 5 + 3 \times 4$$
 
 $$v = u + at = 5 + 3 \times 4 = 5 + 12 = 17\,\text{m/s}$$
 
+Here $u$ is the initial velocity, $v$ the final velocity, $a$ the acceleration,
+$s$ the displacement and $t$ the time.
+
 The car ends at 17 m/s. Its velocity grows by 3 m/s every second, so after
 4 s it has grown by 12 m/s.
 

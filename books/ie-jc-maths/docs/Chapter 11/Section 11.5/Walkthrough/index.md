@@ -24,7 +24,8 @@ brackets.
 ## A quadratic expression
 
 A **quadratic expression** has an $x^2$ term as its highest power. The form
-$x^2+bx+c$ has three terms, and the coefficient of $x^2$ is 1.
+$x^2+bx+c$ has three terms, and the coefficient of $x^2$ is 1. Here $b$ is the
+coefficient of $x$ and $c$ is the constant term.
 
 You already know how to expand $(x+5)(x+2)$.
 

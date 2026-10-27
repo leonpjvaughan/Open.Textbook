@@ -45,8 +45,8 @@ direction are in equilibrium:
 
 $$R = mg\cos\theta$$
 
-The normal reaction is smaller than the weight, unless the plane is horizontal.
-On a steeper plane, less of the weight pushes into the surface.
+The normal reaction $R$ is smaller than the weight, unless the plane is
+horizontal. On a steeper plane, less of the weight pushes into the surface.
 
 ## The acceleration down a smooth slope
 

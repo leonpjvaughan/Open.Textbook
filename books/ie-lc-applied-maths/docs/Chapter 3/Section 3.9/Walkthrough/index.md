@@ -30,6 +30,8 @@ range is
 
 $$R = \frac{u^2\sin 2\theta}{g}.$$
 
+Here $g$ is the acceleration of free fall, about 9.8 m/s² near the ground.
+
 Everything except the angle is fixed once the launch speed is fixed. So the
 angle alone decides the range.
 
@@ -98,6 +100,8 @@ The components are $u_x = 12.99$ m/s and $u_y = 7.5$ m/s. Take the top of the
 cliff as $y = 0$, so the ball lands at $y = -10$.
 
 $$y = 7.5t - 4.9t^2 = -10$$
+
+Here $t$ is the time in seconds.
 
 $$4.9t^2 - 7.5t - 10 = 0$$
 

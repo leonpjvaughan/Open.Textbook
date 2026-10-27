@@ -33,6 +33,10 @@ stronger. When the current is switched off, the coil's field goes and the
 iron loses its magnetism, so the steel drops.
 
 <!-- tier:h -->
+Here $n_p$ and $n_s$ are the numbers of turns on the primary and secondary
+coils. $V_p$ and $V_s$ are their potential differences, $P$ is power, $V$ is
+potential difference and $I$ is current.
+
 **5. The transformer.** The yard is supplied at 12 000 V and steps this down to
 240 V. The primary coil has 4000 turns.
 

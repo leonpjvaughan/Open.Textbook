@@ -25,7 +25,7 @@ $60$ m above the sea.
 - From $C$, the bearing of the yacht $Y$ is $048^\circ$.
 - From $L$, the bearing of $Y$ is $330^\circ$.
 
-**When.** The depth of water over the sandbank, $t$ hours after low water, is
+**When.** The depth of water $d$ over the sandbank, $t$ hours after low water, is
 
 $$d = 1.4 + 1.2\sin(30^\circ t)$$
 

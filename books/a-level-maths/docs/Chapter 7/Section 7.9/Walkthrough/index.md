@@ -33,6 +33,8 @@ $$
 \frac{d}{dx}\left(y^2\right) = 2y\frac{dy}{dx}.
 $$
 
+Here $\frac{d}{dx}$ means the derivative with respect to $x$.
+
 The derivative of $x^2$ is $2x$, as usual.
 
 **Example 1.** Find $\dfrac{dy}{dx}$ for the circle $x^2 + y^2 = 25$.
@@ -77,7 +79,7 @@ $$
 **Example 3.** Find the equation of the tangent to $x^2 + y^2 = 25$ at the point
 $(3, 4)$.
 
-From Example 1, $\dfrac{dy}{dx} = -\dfrac{x}{y}$. At $(3, 4)$ the gradient is
+From Example 1, $\dfrac{dy}{dx} = -\dfrac{x}{y}$. At $(3, 4)$ the gradient $m$ is
 
 $$
 m = -\frac{3}{4}.

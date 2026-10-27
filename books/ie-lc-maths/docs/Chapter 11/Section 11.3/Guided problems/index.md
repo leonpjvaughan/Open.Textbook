@@ -196,6 +196,8 @@ The common difference is $7 - 4 = 3$.
 
 $$T_n = a + (n - 1)d$$
 
+Here $T_n$ is the $n$th term, $a$ is the first term and $d$ is the common difference.
+
 <details markdown="1">
 <summary>Full working</summary>
 

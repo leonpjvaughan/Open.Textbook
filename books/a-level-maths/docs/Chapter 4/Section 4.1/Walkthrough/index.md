@@ -94,7 +94,8 @@ which is the property $\binom{n}{r} = \binom{n}{n-r}$ again.
 
 ## 4. The binomial theorem
 
-The expansion of $(a + b)^n$ for a positive whole number $n$ is
+The expansion of $(a + b)^n$, for two terms $a$ and $b$ and a positive whole
+number $n$, is
 
 $$
 (a + b)^n = \binom{n}{0}a^n + \binom{n}{1}a^{n-1}b + \binom{n}{2}a^{n-2}b^2

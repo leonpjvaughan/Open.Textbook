@@ -29,6 +29,8 @@ rate, so they never meet.
 
 $$m_1 = m_2$$
 
+where $m_1$ and $m_2$ are the slopes of the two lines.
+
 For example, $y = 3x + 1$ and $y = 3x - 4$ both have slope $3$, so they are
 parallel. They cross the $y$-axis at different heights, which is why they are
 distinct lines rather than the same one.

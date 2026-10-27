@@ -117,12 +117,13 @@ multiplies the value by the same factor.
 
 $$ Q = Q_0 e^{-t/RC} \qquad V = V_0 e^{-t/RC} \qquad I = I_0 e^{-t/RC} $$
 
-The product $RC$ is the **time constant**, $\tau = RC$. It has the unit of time,
-because resistance is volts per ampere and capacitance is coulombs per volt, so
-$RC$ is coulombs per ampere, which is seconds. After one time constant the value
-has fallen to $\dfrac{1}{e}$ of its starting value, which is about $37\%$. After
-five time constants the value has fallen to about $1\%$ of the start, and the
-discharge is treated as finished.
+Here $Q_0$, $V_0$ and $I_0$ are the values at the start of the discharge, and
+$t$ is the time since it began. The product $RC$ is the **time constant**,
+$\tau = RC$. It has the unit of time, because resistance is volts per ampere and
+capacitance is coulombs per volt, so $RC$ is coulombs per ampere, which is
+seconds. After one time constant the value has fallen to $\dfrac{1}{e}$ of its
+starting value, which is about $37\%$. After five time constants the value has
+fallen to about $1\%$ of the start, and the discharge is treated as finished.
 
 The **half-life** is the time for the value to halve. It is
 $t_{1/2} = RC\ln 2 \approx 0.69\,RC$.

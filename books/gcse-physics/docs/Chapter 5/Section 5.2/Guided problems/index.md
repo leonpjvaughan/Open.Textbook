@@ -46,8 +46,8 @@ Calculate its wavelength.
 <details markdown="1">
 <summary>Hint</summary>
 
-This is a wave equation calculation. You know the speed and the frequency, and
-you want the wavelength.
+This is a wave equation calculation. You know the speed of light in a vacuum,
+$c = 3.0 \times 10^8\,\text{m/s}$, and the frequency. You want the wavelength.
 </details>
 
 <details markdown="1">

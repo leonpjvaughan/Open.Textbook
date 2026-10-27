@@ -61,7 +61,8 @@ An atom is written with these numbers beside its symbol.
 
 $$ ^{A}_{Z}\text{X} $$
 
-Here $Z$ is the atomic number and $A$ is the mass number. So $^{23}_{11}\text{Na}$
+Here $Z$ is the atomic number, $A$ is the mass number and $\text{X}$ is the
+element symbol. So $^{23}_{11}\text{Na}$
 has 11 protons and $23 - 11 = 12$ neutrons.
 
 **Worked example 1.** An atom has 11 protons and 12 neutrons. State its atomic

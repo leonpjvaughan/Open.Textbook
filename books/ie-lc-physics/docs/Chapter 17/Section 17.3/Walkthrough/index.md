@@ -87,6 +87,8 @@ electric and magnetic forces on each electron are equal and opposite:
 
 $$eE = Bev$$
 
+where $E$ is the electric field strength.
+
 The charge cancels, leaving
 
 $$v = \frac{E}{B}$$

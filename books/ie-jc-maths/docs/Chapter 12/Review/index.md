@@ -55,6 +55,8 @@ hospice would receive $8n-150$, and it needs at least €1500.
 
 $$8n-150\geq1500$$
 
+Here $n$ is the number of student tickets.
+
 $$8n\geq1650 \qquad n\geq206.25$$
 
 A ticket count is a whole number, so round up.

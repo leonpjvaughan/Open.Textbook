@@ -171,6 +171,8 @@ how quickly the potential changes with distance:
 
 $$E = -\frac{dV}{dx}$$
 
+Here $x$ is distance measured along the field.
+
 Between parallel plates the field is uniform, so the potential falls steadily. The
 gradient is constant, and $E = V/d$ gives it. Around a point charge the field is not
 uniform, so the potential does not fall steadily, and $E = V/d$ cannot be used there.

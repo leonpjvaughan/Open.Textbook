@@ -28,6 +28,8 @@ $$
 \frac{dy}{dx} = f(x)g(y).
 $$
 
+Here $f$ is a function of $x$ and $g$ is a function of $y$.
+
 To solve it, divide by $g(y)$ and integrate both sides with respect to $x$:
 
 $$

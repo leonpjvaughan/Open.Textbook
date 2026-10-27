@@ -22,8 +22,8 @@ distance in a static problem.
 ## 1. The moment of a force
 
 A **moment** measures the turning effect of a force about a point. It is the
-force multiplied by the **perpendicular** distance from the point to the line of
-the force:
+force $F$ multiplied by the **perpendicular** distance $d$ from the point to the
+line of the force:
 
 $$
 \text{moment} = F \times d.

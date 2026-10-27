@@ -27,7 +27,8 @@ move, so the total mass is $20 + 15 = 35$ kg.
 
 $$a = \frac{49}{35} = 1.4\,\text{m/s}^2$$
 
-**The tension.** Use the hanging mass, which accelerates downwards:
+**The tension.** Use the hanging mass $m_2$, which accelerates downwards, to
+find the tension $T$:
 
 $$m_2 g - T = m_2 a$$
 

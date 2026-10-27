@@ -44,8 +44,8 @@ The distance is $10$ units.
 
 ## The midpoint of a segment
 
-The **midpoint** is the point exactly halfway along the segment. Its coordinates
-are the averages of the two endpoints:
+The **midpoint** is the point exactly halfway along the segment. The midpoint $M$ has
+the averages of the two endpoints as its coordinates:
 
 $$M = \left(\frac{x_1 + x_2}{2}, \frac{y_1 + y_2}{2}\right)$$
 
@@ -58,8 +58,8 @@ along the segment in both directions at once.
 
 ## The slope of a line
 
-The **slope** of a line measures how steeply it rises. It is the rise divided by
-the run:
+The **slope** $m$ of a line measures how steeply it rises. It is the rise divided
+by the run:
 
 $$m = \frac{y_2 - y_1}{x_2 - x_1}$$
 

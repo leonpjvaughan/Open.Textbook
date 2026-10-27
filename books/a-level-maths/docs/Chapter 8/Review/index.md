@@ -29,7 +29,7 @@ The edges cross at $x = -1$ and $x = 2$.
 curve gives $0$. The line is the upper edge between the crossings.
 
 **Step 3. Integrate the height.** The height of the glass at each $x$ is
-$(x + 2) - x^2$:
+$(x + 2) - x^2$, so the area $A$ is
 
 $$
 A = \int_{-1}^{2} \left((x + 2) - x^2\right)dx
@@ -65,6 +65,8 @@ $55$°C. The temperature $T$ satisfies
 $$
 \frac{dT}{dt} = -k(T - 20).
 $$
+
+where $k$ is a positive constant.
 
 **Step 1. Separate and integrate.**
 

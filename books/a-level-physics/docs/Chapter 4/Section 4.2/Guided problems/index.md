@@ -132,15 +132,17 @@ $1.0\,\text{mm}$.
 <details markdown="1">
 <summary>Hint</summary>
 
-The stiffness of a wire is $k = \dfrac{EA}{L}$. Change the extension to metres
-before you find the energy.
+The stiffness of a wire is $k = \dfrac{EA}{L}$, where $E$ is the Young modulus and
+$A$ is the cross-sectional area. Change the extension to metres before you find
+the energy.
 </details>
 
 <details markdown="1">
 <summary>Next step</summary>
 
 Work out $k$ from the first three values, then use
-$E = \tfrac{1}{2}k(\Delta L)^2$ with $\Delta L = 1.0 \times 10^{-3}\,\text{m}$.
+$E = \tfrac{1}{2}k(\Delta L)^2$ for the energy stored, with
+$\Delta L = 1.0 \times 10^{-3}\,\text{m}$.
 </details>
 
 <details markdown="1">

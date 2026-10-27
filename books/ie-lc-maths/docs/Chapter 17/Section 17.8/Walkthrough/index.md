@@ -67,7 +67,7 @@ The centre of the enlargement is the crossing point $P$, and the scale factor is
 of a pair of corresponding sides. The triangles lie on opposite sides of $P$, so the scale
 factor is negative, and the image is turned through a half-turn about $P$.
 
-For the matching order $A \to D$, the scale factor is
+For the matching order $A \to D$, the scale factor $k$ is
 $$k = -\frac{|PD|}{|PA|}.$$
 
 The same factor takes $C$ to $B$, because

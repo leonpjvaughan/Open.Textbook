@@ -38,7 +38,8 @@ unit of heat. Power is the rate at which energy is transferred.
 <details markdown="1">
 <summary>Hint</summary>
 
-Use $T = \theta + 273$. Add 273 to the Celsius value.
+Use $T = \theta + 273$, where $T$ is the temperature in kelvin and $\theta$ the
+temperature in degrees Celsius. Add 273 to the Celsius value.
 
 <details markdown="1">
 <summary>Next step</summary>

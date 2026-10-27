@@ -46,6 +46,9 @@ most of it. This is why a black car warms up faster than a white car in the
 Sun. It is also why a shiny emergency blanket helps to keep a casualty warm: the
 shiny surface reflects infrared radiation back to the body.
 
+Light travels through a vacuum at $c = 3.0 \times 10^8\,\text{m/s}$, and every
+other electromagnetic wave travels at that same speed.
+
 **Worked example 1.** A microwave oven uses radiation with a frequency of
 2.5 GHz. Calculate its wavelength.
 

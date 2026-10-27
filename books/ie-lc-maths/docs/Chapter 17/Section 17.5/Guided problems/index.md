@@ -46,7 +46,7 @@ The circumcentre of a right-angled triangle is the midpoint of the hypotenuse.
 <details markdown="1">
 <summary>Next step</summary>
 
-The circumradius is half the hypotenuse.
+The circumradius $r$ is half the hypotenuse.
 
 <details markdown="1">
 <summary>Full working</summary>

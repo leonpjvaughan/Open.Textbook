@@ -71,12 +71,15 @@ $v^2 = u^2 + 2as$ gives $as = \dfrac{v^2 - u^2}{2}$, so
 
 $$ W = m\left(\frac{v^2 - u^2}{2}\right) = \tfrac{1}{2}mv^2 - \tfrac{1}{2}mu^2 $$
 
+where $u$ is the initial speed and $v$ is the final speed.
+
 The work done equals the gain in **kinetic energy**,
 
 $$ E_k = \tfrac{1}{2}mv^2 $$
 
 When a force raises an object through a vertical height $\Delta h$, the work done
-against gravity is stored as **gravitational potential energy**:
+against gravity is stored as a change in **gravitational potential energy**,
+$\Delta E_p$:
 
 $$ \Delta E_p = mg\Delta h $$
 
@@ -131,7 +134,7 @@ one.
 
 ## 4. Power
 
-**Power** is the rate of transfer of energy.
+The **power** $P$ is the rate of transfer of energy.
 
 $$ P = \frac{W}{t} $$
 

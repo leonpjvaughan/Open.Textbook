@@ -48,9 +48,14 @@ each of them before you divide.
 
 $$m = \frac{7+13}{2} = \frac{20}{2} = 10$$
 
+Here $m$ is the mean of $a$ and $b$, the number halfway between them.
+
 **Example 4.** Find $F$ when $C=35$, using $F=\dfrac{9}{5}C+32$.
 
 $$F = \frac{9}{5}\times35+32 = 63+32 = 95$$
+
+Here $F$ is the temperature in degrees Fahrenheit and $C$ is the temperature in
+degrees Celsius.
 
 So $35^\circ$C is $95^\circ$F.
 

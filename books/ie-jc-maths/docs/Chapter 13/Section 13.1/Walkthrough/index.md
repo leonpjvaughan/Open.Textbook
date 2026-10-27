@@ -58,6 +58,8 @@ $s=\dfrac{d}{t}$.
 
 $$s = \frac{d}{t} = \frac{150}{3} = 50$$
 
+Here $d$ is the distance and $t$ is the time.
+
 The average speed is 50 km/h.
 
 ## Formulae with an index
@@ -104,6 +106,8 @@ Eight tickets cost €101.
 > $A=2h(l+w)$ with $h=4$, $l=10$ and $w=3$, the common error is to work out
 > $2\times4\times10+3=83$, by dropping the bracket. The bracket is still there:
 > $l+w=13$, and then $2\times4\times13=104$.
+>
+> Here $h$ is the height.
 >
 > **Re-check:** replace each letter with its number in brackets, then follow the order
 > of operations. A bracket in the formula is a bracket in the calculation.

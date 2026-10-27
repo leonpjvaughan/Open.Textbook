@@ -56,7 +56,8 @@ fit a whole number of half wavelengths between the ends:
 
 $$ L = n\frac{\lambda}{2} \qquad \lambda = \frac{2L}{n} $$
 
-where $n = 1, 2, 3, \ldots$ The lowest frequency is the **fundamental**, or first
+where $L$ is the length of the string, $\lambda$ the wavelength and
+$n = 1, 2, 3, \ldots$ The lowest frequency is the **fundamental**, or first
 harmonic, with $n = 1$. It has one antinode in the middle. The second harmonic
 has two antinodes and twice the frequency. The frequency of the $n$th harmonic is
 

@@ -12,7 +12,7 @@ anchor: How large a box can you fold, and how fast is the balloon growing?
 A sheet of card measures $16$ cm by $10$ cm. Four equal squares of side $x$ cm
 are cut from the corners, and the sides are folded up to make an open box.
 
-The volume of the box is
+The volume $V$ of the box is
 
 $$
 V = x(16 - 2x)(10 - 2x).

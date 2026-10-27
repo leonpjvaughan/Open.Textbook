@@ -133,7 +133,7 @@ frequency but a shorter bar, because it is twice as wide.
 </details>
 
 **5.** A histogram of 80 values has frequency density 0.5 in the class $20$–$40$.
-Estimate the probability that a value lies in the class.
+Estimate the probability $P$ that a value lies in the class.
 
 <details markdown="1">
 <summary>Hint</summary>

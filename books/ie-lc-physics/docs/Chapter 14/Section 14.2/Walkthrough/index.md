@@ -93,6 +93,9 @@ $$
 R = \frac{\Delta V}{\Delta I} = \frac{9.0 - 3.0}{0.60 - 0.20}
 $$
 
+where $\Delta V$ is the change in potential difference and $\Delta I$ is the change
+in current.
+
 $$
 R = \frac{6.0}{0.40} = 15\,\Omega
 $$

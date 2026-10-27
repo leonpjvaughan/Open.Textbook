@@ -102,7 +102,8 @@ or $2\pi$ radians, so
 $$ \Delta\phi = \frac{\Delta x}{\lambda} \times 360^\circ
    = \frac{\Delta x}{\lambda} \times 2\pi $$
 
-where $\Delta x$ is the distance between the points.
+where $\Delta\phi$ is the phase difference and $\Delta x$ is the distance
+between the points.
 
 **Worked example 3.** Two points on a wave are 0.150 m apart. The wavelength is
 0.600 m. Find the phase difference between them.

@@ -106,6 +106,9 @@ F &= B I l \\
 \end{aligned}
 $$
 
+where $F$ is the force, $B$ is the magnetic flux density, $I$ is the current and
+$l$ is the length of wire in the field.
+
 The force changes size and direction as the current changes, so the cone vibrates.
 
 > **Watch out.** A microphone uses the generator effect, and a loudspeaker uses

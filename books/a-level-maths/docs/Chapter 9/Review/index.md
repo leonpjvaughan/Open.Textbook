@@ -69,8 +69,9 @@ The engineer records the depth every two metres across a twelve metre channel.
 |---|---|---|---|---|---|---|---|
 | Depth (m) | $0$ | $1.2$ | $2.5$ | $3.1$ | $2.4$ | $0.9$ | $0$ |
 
-**Step 1. Estimate the area.** The readings are equally spaced with $h = 2$ and
-the interior depths add to $10.1$. The trapezium rule gives
+**Step 1. Estimate the area.** The readings are equally spaced with strip width
+$h = 2$ and the interior depths add to $10.1$. The trapezium rule gives the area
+$A$:
 
 $$
 A \approx \frac{2}{2}\Bigl[0 + 0 + 2(10.1)\Bigr] = 20.2
@@ -94,7 +95,7 @@ The true area lies between $14.0$ and $26.4$ square metres. The estimate $20.2$
 sits inside the limits.
 
 **Step 3. Find the flow rate.** The water flows at about $0.8$ metres per
-second. The flow rate is the area multiplied by the speed:
+second. The flow rate $Q$ is the area multiplied by the speed:
 
 $$
 Q \approx 20.2 \times 0.8 = 16.16.

@@ -151,7 +151,8 @@ $\sqrt{29}$ does not simplify, so leave it as a surd.
 <details markdown="1">
 <summary>Hint</summary>
 
-Use $|z / w| = |z| / |w|$ and the fact that $|\bar z| = |z|$.
+Use $|z / w| = |z| / |w|$ for any two complex numbers $z$ and $w$, and the fact
+that $|\bar z| = |z|$.
 
 <details markdown="1">
 <summary>Next step</summary>

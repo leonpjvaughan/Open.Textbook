@@ -21,6 +21,10 @@ E_p &= m g h \\
 \end{aligned}
 $$
 
+where $E_p$ is the energy in the gravitational potential store, $m$ is the mass
+of water, $g$ is the gravitational field strength and $h$ is the height it
+falls.
+
 The water gives up 3528 J each second, so its gravitational potential store
 empties at a rate of 3528 J/s.
 
@@ -52,6 +56,10 @@ $$
          &= 5.0 \times 10^5\,\text{J}
 \end{aligned}
 $$
+
+where $\Delta E$ is the energy transferred to the water, $c$ is the specific
+heat capacity of water and $\Delta\theta$ is the temperature rise in degrees
+Celsius.
 
 **5. The time the kettle takes on the generator's output.**
 

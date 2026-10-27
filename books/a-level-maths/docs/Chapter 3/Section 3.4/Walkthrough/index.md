@@ -28,8 +28,10 @@ terms of a third quantity. That third quantity is the **parameter**, and the two
 equations are **parametric equations**.
 
 $$
-x = f(t), \qquad y = g(t).
+x = f(t), \qquad y = g(t),
 $$
+
+where $f$ and $g$ are functions of the parameter $t$.
 
 Each value of $t$ gives one point $(x, y)$. As $t$ varies over its range, the
 point traces the curve.

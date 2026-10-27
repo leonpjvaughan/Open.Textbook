@@ -193,6 +193,9 @@ R &= \sqrt{30^2 + 40^2} = 50\,\text{N} \\
 \end{aligned}
 $$
 
+Here $R$ is the magnitude of the resultant force, in newtons, and $\theta$ is the
+angle it makes with the 30 N force.
+
 The resultant is 50 N, at $53^\circ$ to the 30 N force.
 <!-- /tier:h -->
 

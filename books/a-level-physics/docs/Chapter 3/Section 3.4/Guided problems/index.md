@@ -33,7 +33,7 @@ you substitute.
 
 If question 1 goes wrong, use $F = ma$. If question 2 goes wrong, use
 $E_k = \tfrac{1}{2}mv^2$. If question 3 goes wrong, use conservation of energy
-with $mg\Delta h = \tfrac{1}{2}mv^2$.
+with $mg\Delta h = \tfrac{1}{2}mv^2$, where $\Delta h$ is the height fallen.
 </details>
 
 :::figure warm-up-gate

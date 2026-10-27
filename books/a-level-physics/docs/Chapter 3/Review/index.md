@@ -12,9 +12,11 @@ The car and riders have a total mass of 500 kg. The first drop is a straight
 track at 60° to the horizontal, with a vertical descent of 45 m. The loop has a
 radius of 12 m. The car is released from rest, and at the end the brakes stop it
 from $29.7\,\text{m}\,\text{s}^{-1}$ in 3.0 s. Air resistance and friction are
-negligible on the first drop. Take $g = 9.81\,\text{m}\,\text{s}^{-2}$.
+negligible on the first drop. Take $g = 9.81\,\text{m}\,\text{s}^{-2}$. Here $u$
+is the speed at the start of a stage and $\Delta$ means the change in a
+quantity.
 
-**1. The acceleration down the first drop.** Only the component of the weight
+**1. The acceleration down the first drop.** Only the component of the weight $W$
 along the slope accelerates the car.
 
 $$
@@ -89,7 +91,7 @@ $$
 a = \frac{v^2}{r} = \frac{20.3^2}{12} = 34.3\,\text{m}\,\text{s}^{-2}
 $$
 
-At the top, the track force and the weight both act downwards, towards the
+At the top, the track force $N$ and the weight both act downwards, towards the
 centre, so
 
 $$

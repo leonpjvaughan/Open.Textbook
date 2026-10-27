@@ -45,9 +45,9 @@ $$
 F \leq \mu R,
 $$
 
-where $\mu$ is the **coefficient of friction** between the two surfaces. The
-coefficient has no unit, because it is a ratio of two forces. It depends on the
-two surfaces, not on the mass of the body.
+where $F$ is the friction force and $\mu$ is the **coefficient of friction**
+between the two surfaces. The coefficient has no unit, because it is a ratio of
+two forces. It depends on the two surfaces, not on the mass of the body.
 
 - If the body stays at rest, friction takes a value **below** the limit, and it
   equals the driving force.

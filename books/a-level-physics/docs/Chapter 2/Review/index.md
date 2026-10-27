@@ -11,7 +11,7 @@ kind: review
 The ferry moves at 4.0 m s⁻¹ through the water, and the river is 120 m wide. The
 current flows at 3.0 m s⁻¹, at right angles to the crossing.
 
-**1. The velocity over the ground on the first crossing.** The ferry points
+**1. The velocity $v$ over the ground on the first crossing.** The ferry points
 straight across, so its 4.0 m s⁻¹ is one perpendicular component and the 3.0 m s⁻¹
 current is the other.
 
@@ -30,8 +30,8 @@ $$
 The velocity over the ground is 5.0 m s⁻¹ at 36.9° to the straight-across
 direction, on the downstream side.
 
-**2. The crossing time.** The crossing time depends on the across component and
-the width of the river. The current has no across component, so it does not
+**2. The crossing time $t$.** The crossing time depends on the across component
+and the width of the river. The current has no across component, so it does not
 change the time.
 
 $$

@@ -216,6 +216,10 @@ $$12 - 4 = 8\ \text{students each minute}$$
 
 $$T = \frac{Q}{s - a} = \frac{60}{12 - 4} = \frac{60}{8} = 7.5$$
 
+Here $T$ is the clear time in minutes and $Q$ is the number of students in the
+queue. The rate $s$ is how many students the till serves each minute, and $a$ is
+how many join the queue.
+
 The clear time is 7.5 minutes. The question is measurable, because the answer is
 a time in minutes. The data is available, because the three rates can be
 counted. It is manageable, because the model is one division. This is the kind

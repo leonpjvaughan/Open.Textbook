@@ -36,7 +36,8 @@ denominator.
 **Example 1.** A right-angled triangle has an angle of 35°. The side adjacent to
 the angle is 8 cm. Find the side opposite the angle.
 
-The two sides in the question are the opposite and the adjacent, so use tangent.
+The two sides in the question are the opposite and the adjacent, so use tangent and
+call the opposite side $x$.
 
 $$\tan 35^\circ = \frac{x}{8}$$
 
@@ -49,7 +50,8 @@ The opposite side is 5.6 cm, to one decimal place.
 **Example 2.** A right-angled triangle has an angle of 40°. The side opposite the
 angle is 6 m. Find the hypotenuse.
 
-The two sides are the opposite and the hypotenuse, so use sine.
+The two sides are the opposite and the hypotenuse, so use sine and call the
+hypotenuse $h$.
 
 $$\sin 40^\circ = \frac{6}{h}$$
 
@@ -62,7 +64,8 @@ The hypotenuse is 9.3 m, to one decimal place.
 **Example 3.** A right-angled triangle has an angle of 50°. The hypotenuse is
 12 cm. Find the side adjacent to the angle.
 
-The two sides are the adjacent and the hypotenuse, so use cosine.
+The two sides are the adjacent and the hypotenuse, so use cosine and call the
+adjacent side $a$.
 
 $$\cos 50^\circ = \frac{a}{12}$$
 

@@ -57,6 +57,9 @@ $$
 I = \frac{V}{R} = \frac{12}{12} = 1.0\,\text{A}
 $$
 
+where $I$ is the current from the supply, $V$ its potential difference and $R$ the
+combined resistance.
+
 The current is the same through both resistors. Then
 
 $$

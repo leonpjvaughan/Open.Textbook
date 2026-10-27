@@ -28,6 +28,8 @@ $$
 \int \frac{A}{x - a}dx = A\ln|x - a| + C.
 $$
 
+Here $A$ and $a$ are constants, and $C$ is the constant of integration.
+
 When the denominator is a product of linear factors, split the fraction into
 partial fractions first. Each partial fraction then integrates to its own
 logarithm.

@@ -97,6 +97,8 @@ is
 
 $$W = \frac{Q}{s}$$
 
+where $W$ is the wait for that student, in minutes.
+
 With $Q = 40$ and $s = 10$, the wait is $W = 40 \div 10 = 4$ minutes.
 
 > **Watch out.** A question without a unit or a moment cannot be checked. "How

@@ -46,6 +46,9 @@ says that each one knocks the next. Together, every domino falls.
 **Theorem.** For every whole number $n \ge 1$,
 $$\sum_{r=1}^{n} r = 1 + 2 + \dots + n = \frac{n(n+1)}{2}$$
 
+Here $\sum_{r=1}^{n}$ means the sum for $r = 1, 2, \dots, n$, where $r$ counts the terms
+and is not the common ratio.
+
 **Base case ($n = 1$).** Left-hand side $= 1$. Right-hand side $= \dfrac{1 \times 2}{2} = 1$.
 Both sides are $1$, so the statement holds.
 

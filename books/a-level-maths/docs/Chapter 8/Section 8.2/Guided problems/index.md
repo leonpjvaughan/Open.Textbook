@@ -132,6 +132,8 @@ $9x - \dfrac{x^3}{3}$.
 <details markdown="1">
 <summary>Full working</summary>
 
+The area $A$ is
+
 $$
 A = \int_0^3 (9 - x^2)dx = \left[9x - \frac{x^3}{3}\right]_0^3
 = (27 - 9) - 0 = 18.

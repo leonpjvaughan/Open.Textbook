@@ -155,6 +155,9 @@ The intensity of the light is proportional to the square of the amplitude, so
 
 $$ I = I_0\cos^2\theta $$
 
+Here $E_0$ and $I_0$ are the amplitude and the intensity before the analyser,
+and $E$ and $I$ are the values after it.
+
 Only transverse waves can be polarised. Sound is longitudinal, so it has no
 direction to filter out, and you cannot polarise a sound wave. This is direct
 evidence that light is a transverse wave.

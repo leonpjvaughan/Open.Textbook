@@ -26,7 +26,8 @@ Two predictions were made on the chapter opener.
 ### The bar across the window
 
 The bar is a chord of length $48$ cm. The perpendicular from the centre bisects it, so the
-half-chord is $24$ cm. The right-angled triangle has hypotenuse $25$ cm:
+half-chord is $24$ cm. The distance $d$ from the centre is one leg of a right-angled
+triangle with hypotenuse $25$ cm:
 
 $$d^2 + 24^2 = 25^2$$
 

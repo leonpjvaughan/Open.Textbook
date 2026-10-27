@@ -43,8 +43,8 @@ of the integrand. Then
 $$\int 2x(x^2 + 1)^3\,dx = \int u^3\,du = \frac{u^4}{4} + C
 = \frac{(x^2 + 1)^4}{4} + C.$$
 
-Check by differentiating. The chain rule brings back $2x$ and the cube, so the answer is
-right.
+Here $C$ is the constant of integration. Check by differentiating. The chain rule brings
+back $2x$ and the cube, so the answer is right.
 
 **Example 2.** Find $\displaystyle\int 6x(3x^2 + 1)^2\,dx$.
 

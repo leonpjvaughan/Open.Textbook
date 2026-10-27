@@ -86,8 +86,8 @@ The rate is the slope.
 
 $$\text{rate} = \frac{25-10}{5-0} = \frac{15}{5} = 3$$
 
-The rate is 3 euro per hour. The starting value is the $y$-intercept, which is the
-cost at 0 hours.
+The rate is 3 euro per hour. The starting value is the $y$-intercept $c$, which is
+the cost at 0 hours.
 
 $$c = 10$$
 

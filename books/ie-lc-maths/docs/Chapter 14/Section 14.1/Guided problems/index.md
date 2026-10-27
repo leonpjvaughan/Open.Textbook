@@ -85,7 +85,8 @@ The image is $(-4,-2)$.
 <details markdown="1">
 <summary>Hint</summary>
 
-Subtract the object coordinate from the image coordinate, one axis at a time.
+The horizontal shift is $a$ and the vertical shift is $b$. Subtract the object
+coordinate from the image coordinate, one axis at a time.
 
 <details markdown="1">
 <summary>Next step</summary>

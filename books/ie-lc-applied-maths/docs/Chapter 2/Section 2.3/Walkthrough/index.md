@@ -76,7 +76,7 @@ all the entries is $8$, so
 
 $$E = \frac{8}{2} = 4$$
 
-which matches the four edges listed.
+where $E$ is the number of edges. That matches the four edges listed.
 
 ## Directed networks
 

@@ -233,7 +233,8 @@ either. Energy always moves from the hotter place to the colder place.
 <details markdown="1">
 <summary>Hint</summary>
 
-Use $T = \theta + 273$.
+Use $T = \theta + 273$, where $T$ is the temperature in kelvin and $\theta$ the
+temperature in degrees Celsius.
 
 <details markdown="1">
 <summary>Next step</summary>

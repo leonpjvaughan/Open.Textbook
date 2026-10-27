@@ -51,6 +51,9 @@ $F = \dfrac{6.67 \times 10^{-11} \times 1000 \times 1000}{2.0^2}$.
 
 $$F = \frac{6.67 \times 10^{-11} \times 10^{6}}{4.0} = 1.7 \times 10^{-5}\,\text{N}$$
 
+where $F$ is the force between the masses, $m_1$ and $m_2$ their masses, $d$ the
+distance between their centres and $G$ the gravitational constant.
+
 That is a tiny force. $G$ is very small, so two everyday masses pull each other by an
 amount you cannot feel.
 

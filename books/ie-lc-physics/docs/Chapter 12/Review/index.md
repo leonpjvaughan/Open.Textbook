@@ -14,6 +14,11 @@ $1.5 \times 10^{11}$ m from the Earth, and light travels at
 $3.0 \times 10^{8}$ m/s. A student spreads the light with a prism and focuses it
 with a converging lens of focal length 12.0 cm.
 
+In these formulas $t$ is a time, $d$ a distance, $c$ the speed of light, $f$ a
+frequency, $\lambda$ a wavelength and $A$ an area. Also $P$ is a power, $I$ an
+irradiance, $E$ an energy, $m$ a magnification, and $u$ and $v$ the object and
+image distances.
+
 **Step 1: the spectrum.** The seven families, from the longest wavelength to the
 shortest, are radio, microwave, infrared, visible, ultraviolet, X-ray and gamma.
 The frequency runs the other way, from the lowest for radio to the highest for

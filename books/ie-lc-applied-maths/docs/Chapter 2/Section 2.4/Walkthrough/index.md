@@ -27,6 +27,9 @@ pairs, then add.
 
 $$(AB)_{ij} = \sum_k A_{ik} B_{kj}$$
 
+Here $k$ runs over every column of the first matrix, which is every row of the
+second.
+
 The entry in row $i$, column $j$ of the product is **row $i$ of the first matrix times
 column $j$ of the second**.
 

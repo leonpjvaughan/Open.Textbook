@@ -49,7 +49,7 @@ x = 0 \text{ or } x = 2.
 $$
 
 Between $x = 0$ and $x = 2$ the line lies above the curve. Check with $x = 1$:
-the line gives $2$ and the curve gives $1$. So the area is
+the line gives $2$ and the curve gives $1$. So the area $A$ is
 
 $$
 A = \int_0^2 (2x - x^2)dx = \left[x^2 - \frac{x^3}{3}\right]_0^2

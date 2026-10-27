@@ -67,8 +67,8 @@ the $3$ kg ball moved upwards.
 </details>
 
 **2.** The $2$ kg ball in the previous question has momentum components
-$9$ kg m/s and $3\sqrt{3}$ kg m/s at right angles. Find its speed and the angle
-of its motion to the $x$-axis.
+$9$ kg m/s and $3\sqrt{3}$ kg m/s at right angles. Find its speed $v$ and
+the angle of its motion to the $x$-axis.
 
 <details markdown="1">
 <summary>Hint</summary>
@@ -255,7 +255,8 @@ the horizontal and vertical components of its velocity.
 <details markdown="1">
 <summary>Hint</summary>
 
-Use the cosine for the horizontal component and the sine for the vertical one.
+Use the cosine for the horizontal component $u_x$ and the sine for the vertical
+one $u_y$.
 
 <details markdown="1">
 <summary>Next step</summary>

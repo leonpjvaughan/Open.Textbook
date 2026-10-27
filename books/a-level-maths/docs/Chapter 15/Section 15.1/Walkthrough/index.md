@@ -159,6 +159,9 @@ $$
 W = mg.
 $$
 
+Here $W$ is the weight in newtons, $m$ is the mass in kilograms and $g$ is the
+acceleration of free fall.
+
 A mass of $1$ kg has a weight of about $9.8$ N. Mass and weight are not the
 same quantity: the mass is the same everywhere, while the weight depends on the
 local value of $g$.

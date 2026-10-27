@@ -73,13 +73,17 @@ $$
 \sum_{r=1}^{n}k u_r = k\sum_{r=1}^{n}u_r
 $$
 
-for a constant $k$. So
+for a constant $k$, where $u_r$ and $v_r$ are the $r$th terms of two
+sequences. So
 
 $$
 \sum_{r=1}^{n}(au_r + bv_r) = a\sum_{r=1}^{n}u_r + b\sum_{r=1}^{n}v_r.
 $$
 
-A constant inside the sum is added once for each value of the index, which gives
+Here $a$ and $b$ are constants.
+
+A constant $c$ inside the sum is added once for each value of the index, which
+gives
 
 $$
 \sum_{r=1}^{n} c = nc.

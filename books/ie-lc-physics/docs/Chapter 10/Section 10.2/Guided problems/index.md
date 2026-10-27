@@ -56,6 +56,9 @@ $$\sin r = \frac{\sin 30.0^\circ}{1.33} = \frac{0.5000}{1.33} = 0.3759$$
 
 $$r = 22.1^\circ$$
 
+where $n$ is the refractive index, $i$ and $r$ the angles of incidence and refraction,
+and $c_1$ and $c_2$ the speeds of light in air and in the medium.
+
 The ray bends towards the normal, because water is a slower medium than air. The
 angle of refraction is smaller than the angle of incidence.
 
@@ -134,6 +137,8 @@ $\lambda_2 = \dfrac{6.00 \times 10^{-7}}{1.33}$.
 
 $$\lambda_2 = \frac{\lambda_1}{n} = \frac{6.00 \times 10^{-7}}{1.33}
 = 4.51 \times 10^{-7}\,\text{m}$$
+
+where $\lambda_1$ is the wavelength in air and $\lambda_2$ the wavelength in the medium.
 
 That is 451 nm. The light is red in the air and stays red in the water, because the
 frequency is unchanged. Only the wavelength and the speed change.

@@ -9,19 +9,19 @@ kind: review
 ## The chapter problem, solved
 
 **The skier on the slope.** A skier of total mass $70$ kg is on a slope
-inclined at $30^\circ$. The coefficient of friction is $0.20$, and the air
+inclined at $30^\circ$. The coefficient of friction $\mu$ is $0.20$, and the air
 resistance is $D = kv^2$ with $k = 0.30$ kg/m. Take $g = 9.8$ m/s².
 
 **Does the skier slide from rest?** The slope slides the skier when
 $\tan\theta > \mu$. Here $\tan 30^\circ = 0.577$, and $0.577 > 0.20$. So the
 skier slides. If you predicted that, your reasoning was right.
 
-**The normal reaction.** The skier does not move perpendicular to the slope, so
-the forces in that direction balance:
+**The normal reaction $R$.** The skier does not move perpendicular to the slope,
+so the forces in that direction balance:
 
 $$R = mg\cos 30^\circ = 70 \times 9.8 \times 0.8660 = 594.1\,\text{N}$$
 
-**The friction force.** The skier is sliding, so friction is limiting:
+**The friction force $F$.** The skier is sliding, so friction is limiting:
 
 $$F = \mu R = 0.20 \times 594.1 = 118.8\,\text{N}$$
 

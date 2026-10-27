@@ -42,6 +42,8 @@ The two models are
 
 $$D = kv \qquad\text{or}\qquad D = kv^2$$
 
+where $D$ is the drag and $v$ is the speed.
+
 The letter $k$ is a constant that depends on the shape and size of the object,
 and on the fluid. It is not a pure number, because the drag must come out in
 newtons. Check the units of $k$ for each model.

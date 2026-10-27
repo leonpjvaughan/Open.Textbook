@@ -27,6 +27,8 @@ before you change the integral. For parts, write $u$ and $\dfrac{dv}{dx}$.
 2. $\dfrac{dy}{dx} = e^{2x} + 2xe^{2x} = e^{2x}(1 + 2x)$.
 3. $\dfrac{1}{3}e^{3x} + C$.
 
+Here $C$ is the constant of integration.
+
 If question 1 was hard, revise the chain rule in Section 7.7.
 </details>
 

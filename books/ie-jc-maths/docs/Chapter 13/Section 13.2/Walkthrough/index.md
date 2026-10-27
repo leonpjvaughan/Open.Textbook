@@ -24,11 +24,13 @@ the subject.
 ## The subject
 
 The **subject** of a formula is the letter that stands on its own on one side. In
-$v=u+at$, the subject is $v$.
+$v=u+at$, the subject is $v$. Here $v$ is the final velocity, $u$ is the initial
+velocity, $a$ is the acceleration and $t$ is the time.
 
 A formula is often written with the subject that was convenient when it was first
 written. The speed formula $s=\frac{d}{t}$ has $s$ as its subject. A driver who knows
 the speed and the time wants the distance instead, so the subject has to change.
+Here $d$ is the distance.
 
 ## Inverse operations
 

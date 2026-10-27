@@ -161,7 +161,7 @@ Here $52\neq64$, so the triangle is not right-angled.
 </details>
 
 **6.** A square has sides of 9 cm. A diagonal splits it into two right-angled
-triangles. Find the length of the diagonal, correct to one decimal place.
+triangles. Find the length $d$ of the diagonal, correct to one decimal place.
 
 <details markdown="1">
 <summary>Hint</summary>

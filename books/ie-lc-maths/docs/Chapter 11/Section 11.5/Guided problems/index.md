@@ -52,7 +52,7 @@ The squared deviations add to $40$, so the variance is $\dfrac{40}{5} = 8$ and
 
 $$\sigma = \sqrt{8} = 2\sqrt{2} \approx 2.83$$
 
-The standard deviation is about $2.83$, in the same units as the data.
+The standard deviation $\sigma$ is about $2.83$, in the same units as the data.
 
 </details>
 </details>
@@ -87,12 +87,12 @@ the $(n + 1)$ position method.
 <details markdown="1">
 <summary>Hint</summary>
 
-There are $8$ values, so the position of $Q_1$ is $\dfrac{9}{4} = 2.25$.
+There are $8$ values, so the position of the lower quartile $Q_1$ is $\dfrac{9}{4} = 2.25$.
 
 <details markdown="1">
 <summary>Next step</summary>
 
-The position of $Q_3$ is $\dfrac{27}{4} = 6.75$.
+The position of the upper quartile $Q_3$ is $\dfrac{27}{4} = 6.75$.
 
 <details markdown="1">
 <summary>Full working</summary>
@@ -120,7 +120,7 @@ The IQR is the spread of the middle half of the data.
 <details markdown="1">
 <summary>Hint</summary>
 
-Find the mean first. It is $3$.
+Find the mean $\mu$ first. It is $3$.
 
 <details markdown="1">
 <summary>Next step</summary>
@@ -156,8 +156,8 @@ $$s = \sqrt{\frac{40}{4}}$$
 
 $$s = \sqrt{10} \approx 3.16$$
 
-This is larger than the value $2.83$ found by dividing by $n$. The sample estimate is
-used when the data are a sample from a larger population.
+The sample standard deviation $s$ is larger than the value $2.83$ found by dividing by
+$n$. The sample estimate is used when the data are a sample from a larger population.
 
 </details>
 </details>

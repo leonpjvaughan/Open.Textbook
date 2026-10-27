@@ -25,7 +25,8 @@ origin.
 ## 1. Hooke's law
 
 Stretch a spring and it pulls back. For a spring that has not been stretched too
-far, the force needed is proportional to the extension. This is **Hooke's law**.
+far, the force needed is proportional to the extension $\Delta L$. This is
+**Hooke's law**.
 
 $$ F = k\Delta L $$
 
@@ -55,8 +56,9 @@ is
 
 $$ k = \frac{EA}{L} $$
 
-so a wire of larger area or shorter length is stiffer. This links the graph to
-the stress and the Young modulus from Section 4.1.
+where $E$ is the Young modulus and $A$ is the cross-sectional area, so a wire of
+larger area or shorter length is stiffer. This links the graph to the stress and
+the Young modulus from Section 4.1.
 
 **Worked example 2.** A force-extension graph for a spring is a straight line
 through the origin. The line passes through $(0.010\,\text{m}, 4.0\,\text{N})$

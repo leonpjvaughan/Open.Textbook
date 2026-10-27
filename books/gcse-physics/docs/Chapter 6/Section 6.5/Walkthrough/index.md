@@ -89,6 +89,9 @@ I &= \frac{Q}{t} \\
 \end{aligned}
 $$
 
+where $I$ is the current, $Q$ is the charge transferred and $t$ is the time in
+seconds.
+
 The average current is 2.0 A. The spark lasts for a very short time, so the
 current is large even though the charge is small.
 

@@ -27,7 +27,9 @@ means, not only what number it is.
 the answer. Write the relationship first, then substitute, then calculate. Keep
 the unit beside every number.
 
-For the canteen, with $Q = 40$, $a = 5$ and $s = 10$:
+For the canteen, let $W$ be the wait and $T$ the clear time, both in minutes.
+Here $Q = 40$ students are in the queue, $a = 5$ join each minute and $s = 10$
+are served each minute:
 
 $$W = \frac{Q}{s} = \frac{40}{10} = 4$$
 

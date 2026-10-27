@@ -94,6 +94,9 @@ a &= \frac{-225}{50} \\
 \end{aligned}
 $$
 
+where $u$ is the initial velocity, $v$ is the final velocity, $a$ is the
+acceleration and $s$ is the distance.
+
 The deceleration is $4.5\,\text{m/s}^2$.
 
 The stopping distance of this car is $12 + 25 = 37\,\text{m}$: a thinking

@@ -12,6 +12,12 @@ kind: review
 block has a refractive index of 1.50. The beam meets the top face of the block at an
 angle of incidence of 40.0°. The speed of light in air is $3.0 \times 10^{8}$ m/s.
 
+In these formulas $i$ and $r$ are the angles of incidence and refraction, $n$ the
+refractive index, $c_1$ and $c_2$ the speeds of light in air and in the glass, and
+$\lambda_1$ and $\lambda_2$ the wavelengths in air and in the glass. $f$ is the
+frequency, $C$ the critical angle, $d$ the slit spacing and $\theta$ the angle of a
+maximum from the normal.
+
 **Step 1: the reflected ray.** The law of reflection gives the angle of reflection
 straight from the angle of incidence, both measured from the normal:
 

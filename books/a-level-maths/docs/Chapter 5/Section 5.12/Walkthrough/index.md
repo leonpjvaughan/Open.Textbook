@@ -91,7 +91,8 @@ and the velocity of the current add as vectors.
 $3$ m s$^{-1}$ due north. Find the size and the direction of the boat's
 resultant velocity.
 
-The two velocities are perpendicular, so Pythagoras' theorem gives the size:
+The two velocities are perpendicular, so Pythagoras' theorem
+gives the size $v$:
 
 $$
 v = \sqrt{4^2 + 3^2} = \sqrt{25} = 5 \text{ m s}^{-1}.

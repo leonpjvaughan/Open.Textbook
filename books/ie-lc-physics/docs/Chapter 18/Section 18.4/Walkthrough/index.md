@@ -58,7 +58,9 @@ $$\lambda_{\text{min}} = \frac{hc}{eV}$$
 
 - $e$ is the charge on the electron, in coulombs (C);
 - $V$ is the tube voltage, in volts (V);
-- $\lambda_{\text{min}}$ is the shortest wavelength in the spectrum, in metres (m).
+- $\lambda_{\text{min}}$ is the shortest wavelength in the spectrum, in metres (m);
+- $h$ is the Planck constant, $6.6 \times 10^{-34}$ J s;
+- $c$ is the speed of light in a vacuum, $3.0 \times 10^{8}$ m/s.
 
 The shortest wavelength therefore depends only on the tube voltage. Raise the voltage
 and the whole continuous spectrum shifts to shorter wavelengths. Change the target and

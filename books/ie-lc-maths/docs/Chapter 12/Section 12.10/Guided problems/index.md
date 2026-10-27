@@ -232,7 +232,8 @@ A face meets the base at the midpoint of a side, $5$ m from the centre.
 <details markdown="1">
 <summary>Next step</summary>
 
-The right triangle has height $12$ and base $5$.
+The right triangle has height $12$ and base $5$, and the angle between the face and the
+base is $\phi$.
 
 <details markdown="1">
 <summary>Full working</summary>

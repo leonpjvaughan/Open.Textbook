@@ -57,7 +57,8 @@ this curve: it fixes where the curve turns.
 ## 3. The one-, two- and three-standard-deviation bands
 
 The symmetry of the curve and the standard Normal table give three useful
-probabilities.
+probabilities. Here $z$ is a standardised value, and $\Phi(z)$ is the area to
+the left of $z$ under the standard Normal curve.
 
 $$
 P(\mu - \sigma < X < \mu + \sigma) = \Phi(1) - \Phi(-1)

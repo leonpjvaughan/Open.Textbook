@@ -154,6 +154,9 @@ The speed is multiplied by 3. What happens to the square of the speed?
 
 $$D_2 = D_1 \left(\frac{v_2}{v_1}\right)^2 = 10 \times 3^2$$
 
+where $v_1$ and $v_2$ are the two speeds, and $D_1$ and $D_2$ are the drags at
+those speeds.
+
 <details markdown="1">
 <summary>Full working</summary>
 

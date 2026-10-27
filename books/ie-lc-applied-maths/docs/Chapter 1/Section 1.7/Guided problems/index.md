@@ -73,6 +73,9 @@ $40 \div 10$.
 
 $$W = \frac{Q}{s} = \frac{40}{10} = 4$$
 
+Here $W$ is the wait in minutes, $Q$ is the number of students in the queue
+and $s$ is the service rate in students each minute.
+
 The report states the answer as "about 4 minutes", because the model is an
 estimate. A report that claims exactly 4 minutes claims more than the model can
 support.

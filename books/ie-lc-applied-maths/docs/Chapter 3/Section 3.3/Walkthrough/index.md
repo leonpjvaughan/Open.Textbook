@@ -62,6 +62,8 @@ The area is a triangle with base $6$ s and height $12$ m/s:
 
 $$s = \frac{1}{2} \times 6 \times 12 = 36\,\text{m}$$
 
+Here $s$ is the displacement in metres.
+
 ## Area below the time axis
 
 When the graph dips below the time axis, the velocity is negative. Area above
@@ -80,6 +82,8 @@ $3 \times 2 = 6$ m.
 $$s = 24 - 6 = 18\,\text{m}$$
 
 $$d = 24 + 6 = 30\,\text{m}$$
+
+Here $d$ is the distance travelled, in metres.
 
 The displacement is 18 m and the distance is 30 m.
 

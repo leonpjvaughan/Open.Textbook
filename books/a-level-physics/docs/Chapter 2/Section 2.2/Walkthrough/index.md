@@ -115,7 +115,8 @@ Two perpendicular vectors are already two components of their resultant. Put the
 tail of the second vector at the tip of the first, and draw the resultant from the
 first tail to the second tip. The three vectors form a right-angled triangle.
 
-- The magnitude of the resultant comes from **Pythagoras**:
+- The magnitude of the resultant comes from **Pythagoras**, where $x$ and $y$
+  are the two perpendicular components:
 
 $$ R = \sqrt{x^2 + y^2} $$
 
@@ -151,9 +152,9 @@ force.
 
 ## 5. Resolving on a slope
 
-A weight on a slope is a common resolution. The weight acts vertically down. The
-slope makes an angle $\theta$ with the horizontal, so the weight makes the same
-angle with the perpendicular to the slope.
+A weight $W$ on a slope is a common resolution. The weight acts vertically down.
+The slope makes an angle $\theta$ with the horizontal, so the weight makes the
+same angle with the perpendicular to the slope.
 
 The component of the weight **along the slope** is
 
@@ -193,7 +194,7 @@ angle, so Pythagoras does not apply. Two methods work.
   so this reduces to the Pythagoras method of Section 4.
 
 **Worked example 5.** A displacement of 120 m east is followed by a displacement
-of 50 m north. Find the resultant displacement.
+of 50 m north. Find the resultant displacement $s$.
 
 The two displacements are already perpendicular components.
 

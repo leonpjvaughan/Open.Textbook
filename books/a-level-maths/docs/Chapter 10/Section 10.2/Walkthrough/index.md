@@ -132,6 +132,9 @@ F_x = 10\cos 30^\circ = 10 \times \frac{\sqrt{3}}{2} = 5\sqrt{3},
 F_y = 10\sin 30^\circ = 10 \times \frac{1}{2} = 5.
 $$
 
+Here $F_x$ is the horizontal component of the force and $F_y$ is the vertical
+component.
+
 The force is $5\sqrt{3}\mathbf{i} + 5\mathbf{j}$ newtons, or about
 $8.66\mathbf{i} + 5\mathbf{j}$ N.
 

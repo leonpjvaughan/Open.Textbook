@@ -12,7 +12,9 @@ kind: guided-problems
 # 15.4 The constant-acceleration formulae — Practise with help
 
 Work each one first, closed book. Write down $u$, $v$, $a$, $s$ and $t$ and
-mark the three you know. That tells you which formula to use.
+mark the three you know. Here $u$ is the initial velocity, $v$ the final
+velocity, $a$ the acceleration, $s$ the displacement and $t$ the time. That
+tells you which formula to use.
 
 ## Warm-up: remember
 

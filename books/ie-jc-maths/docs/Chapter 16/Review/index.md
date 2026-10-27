@@ -18,6 +18,8 @@ radius 0.5 m, and the cylindrical part is 1 m tall.
 
 $$P = 2(10+6) = 32$$
 
+Here $P$ is the perimeter and $A$ is the area.
+
 **The perimeter of the plot is 32 m.**
 
 **Step 2. The area of the plot.** Multiply the length by the width.

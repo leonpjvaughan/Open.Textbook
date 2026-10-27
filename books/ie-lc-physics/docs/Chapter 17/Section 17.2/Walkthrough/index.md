@@ -123,8 +123,9 @@ $$
 E = 3.2 \times 10^{-16}\,\text{J}
 $$
 
-In electronvolts the answer is 2000 eV, because one electronvolt is the energy
-gained by an electron accelerated through one volt.
+Here $E$ is the kinetic energy gained, in joules. In electronvolts the answer is
+2000 eV, because one electronvolt is the energy gained by an electron accelerated
+through one volt.
 
 > **Watch out.** The speed depends on the **square root** of the voltage. Doubling the
 > voltage does not double the speed. It multiplies the speed by $\sqrt{2}$, which is

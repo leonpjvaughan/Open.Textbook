@@ -97,7 +97,8 @@ double each time. Section 4.6 returns to that link.
 
 ## 4. Taking out the factor a to the power n
 
-Most brackets are not in the form $(1 + x)^n$. Write
+Most brackets are not in the form $(1 + x)^n$. Write them with $a$ the constant
+term and $b$ the coefficient of $x$:
 
 $$
 (a + bx)^n = a^n\left(1 + \frac{bx}{a}\right)^n,

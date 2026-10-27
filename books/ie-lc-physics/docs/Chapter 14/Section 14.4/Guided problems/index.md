@@ -213,6 +213,9 @@ The temperature rise is $70 - 20 = 50$ K, so $E = 2.0 \times 900 \times 50$.
 
 $$E = mc\Delta\theta = 2.0 \times 900 \times 50 = 9.0 \times 10^{4}\,\text{J}$$
 
+where $m$ is the mass, $c$ the specific heat capacity and $\Delta\theta$ the
+temperature rise.
+
 This matters here because an electric heater transfers energy at a rate you can now
 calculate. A 1.5 kW heater would supply $9.0 \times 10^{4}$ J in
 $\dfrac{9.0 \times 10^{4}}{1500} = 60$ s, if all the energy reached the block.

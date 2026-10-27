@@ -84,7 +84,8 @@ because there is more room for the charge to flow.
 
 $$ R = \frac{\rho L}{A} $$
 
-The constant $\rho$ is the **resistivity** of the material. It is a property of
+Here $L$ is the length of the wire and $A$ is its cross-sectional area. The
+constant $\rho$ is the **resistivity** of the material. It is a property of
 the material, not of the particular wire. Resistivity is measured in ohm metres,
 $\Omega\,\text{m}$. The resistivity of a metal is very small, because metals
 conduct well. The resistivity of an insulator is very large.

@@ -17,6 +17,8 @@ $$
 E = 60e^{-kt}.
 $$
 
+Here $k$ is the decay constant and $t$ the time in minutes.
+
 After $10$ minutes the coffee is at $65^\circ$C, so $E = 45$.
 
 **Step 1. Find k.** Substitute $t = 10$ and $E = 45$:
@@ -75,7 +77,8 @@ $$
 
 The number multiplies by $1.5$ each hour, so $b = 1.5$ and $k = 200$.
 
-**Step 2. Read it from a log graph.** For the model $N = kb^t$,
+**Step 2. Read it from a log graph.** For the model $N = kb^t$, where $N$ is the
+count after $t$ hours, $k$ the starting count and $b$ the growth factor,
 
 $$
 \ln N = \ln k + t\ln b.

@@ -51,7 +51,7 @@ The run is $5 - 2 = 3$ and the rise is $7 - 3 = 4$.
 
 $$d = \sqrt{(5 - 2)^2 + (7 - 3)^2} = \sqrt{3^2 + 4^2} = \sqrt{9 + 16} = \sqrt{25} = 5$$
 
-The distance is $5$ units.
+The distance $d$ is $5$ units.
 
 </details>
 </details>
@@ -75,7 +75,7 @@ $\frac{3 + (-1)}{2}$.
 
 $$M = \left(\frac{2 + 8}{2}, \frac{3 + (-1)}{2}\right) = \left(\frac{10}{2}, \frac{2}{2}\right) = (5, 1)$$
 
-The midpoint is $(5, 1)$. It is the average of the endpoints, so it is halfway
+The midpoint $M$ is $(5, 1)$. It is the average of the endpoints, so it is halfway
 along in both directions.
 
 </details>
@@ -99,7 +99,7 @@ Use the same order on the top and the bottom: $\frac{10 - 2}{5 - 1}$.
 
 $$m = \frac{10 - 2}{5 - 1} = \frac{8}{4} = 2$$
 
-The slope is $2$. The line rises $2$ units for every $1$ unit to the right, and
+The slope $m$ is $2$. The line rises $2$ units for every $1$ unit to the right, and
 the answer is positive because the line rises.
 
 </details>

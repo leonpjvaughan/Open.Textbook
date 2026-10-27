@@ -27,8 +27,8 @@ The area of a triangle is $\tfrac12 \times \text{base} \times \text{height}$. Th
 is not always given, but trigonometry can find it.
 
 > **The area of a triangle.** $$A = \tfrac12 ab\sin C$$
-> where $a$ and $b$ are two sides and $C$ is the angle **between** them. The Formulae and
-> Tables booklet gives this formula.
+> where $A$ is the area, $a$ and $b$ are two sides and $C$ is the angle **between** them.
+> The Formulae and Tables booklet gives this formula.
 
 **Why it is true.** Take the side $c$ as the base and drop a perpendicular from $C$ to the
 base, of length $h$. In the right triangle on the $A$ side, $\sin A = \dfrac{h}{b}$, so

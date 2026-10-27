@@ -33,6 +33,8 @@ $$
 \int f\big(g(x)\big)g'(x)dx = \int f(u)du.
 $$
 
+Here $f$ is the function being integrated.
+
 Choose $u$ to be the inside function whose derivative also appears in the
 integral. Then replace every part of the integral, including $dx$, and finish
 with a standard integral.
@@ -44,6 +46,8 @@ Let $u = x^2 + 1$. Then $du = 2xdx$, so $2xdx = du$. The integral becomes
 $$
 \int u^3du = \frac{u^4}{4} + C.
 $$
+
+Here $C$ is the constant of integration.
 
 Substitute back:
 

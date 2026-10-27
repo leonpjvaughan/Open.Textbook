@@ -97,7 +97,7 @@ The post and its shadow make a triangle similar to the tree and its shadow.
 <details markdown="1">
 <summary>Next step</summary>
 
-Put the heights over the shadows.
+Let the height of the tree be $h$ m. Put the heights over the shadows.
 
 <details markdown="1">
 <summary>Full working</summary>

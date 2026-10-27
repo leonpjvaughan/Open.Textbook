@@ -61,7 +61,7 @@ Write the fare in words, then in symbols.
 
 In words: **fare = €5 + €2 × number of kilometres**.
 
-In symbols, with $n$ for the number of kilometres:
+In symbols, with $F$ for the fare and $n$ for the number of kilometres:
 
 $$F = 5 + 2n$$
 

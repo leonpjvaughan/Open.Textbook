@@ -55,6 +55,8 @@ $d = \dfrac{0.001}{400}$.
 
 $$d = \frac{0.001\,\text{m}}{400} = 2.5 \times 10^{-6}\,\text{m}$$
 
+where $d$ is the slit spacing.
+
 Each slit is 2.5 μm from the next one. The slit spacing is often called the grating
 constant.
 
@@ -110,6 +112,8 @@ $$\sin\theta = \frac{\lambda}{d} = \frac{5.89 \times 10^{-7}}
 {3.33 \times 10^{-6}} = 0.1767$$
 
 $$\theta = 10.2^\circ$$
+
+where $\theta$ is the angle of the maximum from the normal.
 
 This wavelength is the yellow light from a sodium lamp, which is used as a standard
 in spectrometry.

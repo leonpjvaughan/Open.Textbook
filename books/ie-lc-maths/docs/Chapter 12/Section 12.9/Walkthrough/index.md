@@ -157,7 +157,7 @@ The solutions are $90^\circ$, $210^\circ$ and $330^\circ$.
 
 ## Progress check
 
-Back to the chapter problem. The depth of water over the sandbank is
+Back to the chapter problem. The depth of water $d$ over the sandbank is
 
 $$d = 1.4 + 1.2\sin(30^\circ t)$$
 

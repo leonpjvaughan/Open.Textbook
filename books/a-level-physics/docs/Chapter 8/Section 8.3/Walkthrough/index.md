@@ -31,8 +31,8 @@ A nuclide is written with these numbers:
 
 $$ ^{A}_{Z}\text{X} $$
 
-For example, $^{18}_{9}\text{F}$ has 9 protons and 18 nucleons, so it has
-$18 - 9 = 9$ neutrons.
+Here $\text{X}$ is the symbol of the element. For example, $^{18}_{9}\text{F}$
+has 9 protons and 18 nucleons, so it has $18 - 9 = 9$ neutrons.
 
 Some nuclei are unstable. They change into a more stable nucleus and release
 radiation. This is **radioactive decay**. The decay is **random**: you cannot
@@ -86,6 +86,9 @@ curve. The **decay constant** $\lambda$ is the probability that a given nucleus
 decays in one second. It has the unit $\text{s}^{-1}$.
 
 $$ N = N_0 e^{-\lambda t} \qquad A = A_0 e^{-\lambda t} $$
+
+Here $N$ is the number of undecayed nuclei and $N_0$ the number at the start.
+$A$ is the activity, $A_0$ the activity at the start and $t$ the time.
 
 The activity is proportional to the number of undecayed nuclei, which gives
 

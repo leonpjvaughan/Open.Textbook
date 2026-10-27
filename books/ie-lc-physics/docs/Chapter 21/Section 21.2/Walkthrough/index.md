@@ -58,6 +58,9 @@ nucleons, and the energy released when the nucleons come together to form it.
 
 $$E_b = \Delta m\,c^2$$
 
+where $E_b$ is the binding energy, $\Delta m$ is the mass defect and $c$ is the speed
+of light.
+
 **Example 1.** Calculate the binding energy of a helium-4 nucleus, whose mass
 defect is 0.0305 u.
 

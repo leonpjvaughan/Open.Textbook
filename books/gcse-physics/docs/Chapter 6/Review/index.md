@@ -11,6 +11,9 @@ kind: review
 The cabin runs from the 230 V mains supply and from a 12 V battery. Work through
 the facts one at a time.
 
+Here $P$ is power, $V$ is potential difference, $I$ is current and $R$ is
+resistance. $E$ is energy, $Q$ is charge and $t$ is time.
+
 **1. The heater.** The heater takes a current of 5.0 A from the 230 V supply.
 
 $$

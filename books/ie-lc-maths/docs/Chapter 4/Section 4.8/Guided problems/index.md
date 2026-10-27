@@ -188,12 +188,13 @@ leaving $\pi$ in your answer.
 <details markdown="1">
 <summary>Hint</summary>
 
-Volume of a cylinder is $\pi r^2 h$.
+Volume of a cylinder is $\pi r^2 h$, where $r$ is the radius and $h$ is the
+height.
 
 <details markdown="1">
 <summary>Next step</summary>
 
-$\pi \times 3^2 \times 10$.
+The volume $V$ is $\pi \times 3^2 \times 10$.
 
 <details markdown="1">
 <summary>Full working</summary>

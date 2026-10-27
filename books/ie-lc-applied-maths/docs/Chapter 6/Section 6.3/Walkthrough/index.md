@@ -36,8 +36,12 @@ The impulse on a body is its change in momentum:
 
 $$J_1 = m_1v_1 - m_1u_1$$
 
+where $J_1$ is the impulse on the first body, $m_1$ its mass, $u_1$ its velocity
+before the collision and $v_1$ its velocity after it.
+
 Because the force on the first body and the force on the second are equal and
-opposite, and act for the same time, the two impulses are equal and opposite:
+opposite, and act for the same time, the two impulses, $J_1$ and $J_2$, are
+equal and opposite:
 
 $$J_1 = -J_2$$
 
@@ -47,7 +51,8 @@ $$J_1 = -J_2$$
 struck by another car. The two cars move off together at $9$ m/s. Find the
 impulse on the $800$ kg car.
 
-The impulse equals the change in momentum:
+The impulse equals the change in momentum, with $u$ the velocity before and $v$
+the velocity after:
 
 $$J = m(v - u) = 800 \times (9 - 0) = 7200\,\text{N s}$$
 
@@ -78,6 +83,8 @@ The bat both reverses the ball's momentum and adds to it.
 force on the ball.
 
 $$F = \frac{J}{\Delta t} = \frac{10.5}{0.002} = 5250\,\text{N}$$
+
+Here $F$ is the average force and $\Delta t$ is the contact time.
 
 The contact is brief, so the average force is large.
 

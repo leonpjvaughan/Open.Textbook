@@ -72,8 +72,8 @@ Find the strain.
 <details markdown="1">
 <summary>Hint</summary>
 
-The extension and the original length must have the same unit before you divide
-them. The answer is a ratio, so it has no unit.
+The extension $\Delta L$ and the original length $L$ must have the same unit
+before you divide them. The answer is a ratio, so it has no unit.
 </details>
 
 <details markdown="1">

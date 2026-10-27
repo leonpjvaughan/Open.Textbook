@@ -45,8 +45,9 @@ Find the photon energy first, then subtract the work function.
 <details markdown="1">
 <summary>Next step</summary>
 
-The photon energy is $3.96 \times 10^{-19}$ J, so $E_k = 3.96 \times 10^{-19} -
-3.3 \times 10^{-19}$.
+The photon energy is $3.96 \times 10^{-19}$ J for a wavelength
+$\lambda = 5.0 \times 10^{-7}$ m, so $E_k = 3.96 \times 10^{-19} - 3.3 \times
+10^{-19}$.
 
 <details markdown="1">
 <summary>Full working</summary>

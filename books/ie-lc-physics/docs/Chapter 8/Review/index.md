@@ -13,6 +13,10 @@ adds 0.20 kg of ice at 0°C and seals the flask. The specific heat capacity of
 water is 4200 J/(kg K), and the specific latent heat of fusion of ice is
 $3.34 \times 10^{5}$ J/kg.
 
+In these formulas $m$ is a mass, $L$ the specific latent heat of fusion of ice, $c$
+the specific heat capacity of water and $\Delta\theta$ a temperature change. $\theta_f$
+is the final temperature of the mixture and $E$ an energy transferred.
+
 **Step 1: the energy needed to melt the ice.** The ice is already at its melting
 point, so the energy changes its state and not its temperature.
 

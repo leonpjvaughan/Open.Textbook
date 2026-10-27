@@ -17,8 +17,9 @@ length is what is left.
 
 $$L(x) = 12-2x$$
 
-This is a linear function, and its graph is a straight line that falls by 2 for each
-extra metre of width.
+Here $L(x)$ is the fenced length when the width is $x$ metres. This is a linear
+function, and its graph is a straight line that falls by 2 for each extra metre of
+width.
 
 **Step 2. The area.** The area of a rectangle is its length times its width.
 

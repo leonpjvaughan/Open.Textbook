@@ -100,7 +100,7 @@ $3 + 2 = 5$ metres. The period is $\dfrac{360^\circ}{30^\circ} = 12$ hours.
 
 ## Progress check
 
-Back to the chapter problem. The depth over the sandbank is
+Back to the chapter problem. The depth $d$ over the sandbank is
 
 $$d = 1.4 + 1.2\sin(30^\circ t)$$
 

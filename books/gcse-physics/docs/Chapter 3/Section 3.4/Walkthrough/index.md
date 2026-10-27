@@ -111,8 +111,8 @@ Newton's second law links the force to the **rate of change of momentum**.
 
 $$ F = \frac{m \Delta v}{\Delta t} $$
 
-where $m\Delta v$ is the change in momentum and $\Delta t$ is the time taken. The
-force equals the rate of change of momentum.
+where $F$ is the force in newtons, $m\Delta v$ is the change in momentum and
+$\Delta t$ is the time taken. The force equals the rate of change of momentum.
 
 You can see where this comes from. Write $F = ma$, and replace the acceleration
 $a$ with $\dfrac{\Delta v}{\Delta t}$.

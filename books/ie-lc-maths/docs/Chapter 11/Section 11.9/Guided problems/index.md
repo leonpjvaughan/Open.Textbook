@@ -41,6 +41,8 @@ standard deviation is $3.1$ minutes. Find the standard error.
 
 $$\frac{\sigma}{\sqrt{n}}$$
 
+Here $\sigma$ is the population standard deviation and $n$ is the sample size.
+
 <details markdown="1">
 <summary>Next step</summary>
 
@@ -64,6 +66,8 @@ $45.4$ and the standard error $0.3466$. Find the test statistic $z$.
 <summary>Hint</summary>
 
 $$z = \frac{\bar{x} - \mu}{\sigma / \sqrt{n}}$$
+
+Here $\bar{x}$ is the sample mean and $\mu$ is the claimed mean.
 
 <details markdown="1">
 <summary>Next step</summary>

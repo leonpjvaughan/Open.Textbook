@@ -104,7 +104,7 @@ resultant.
 
 Weight is a force, measured in newtons. Mass is measured in kilograms and does
 not change with position. On the Moon the mass of an astronaut is unchanged, but
-the weight is smaller because $g$ is smaller.
+the weight is smaller because $g$, the acceleration of free fall, is smaller.
 
 **Worked example 3.** A crate of mass 30 kg rests on a slope at 20° to the
 horizontal. Find the normal reaction and the component of the weight along the
@@ -165,10 +165,11 @@ flight the only force on it is its weight, which acts downwards.
 
 The key idea is that the horizontal and vertical motions are independent.
 
-- **Horizontally** there is no force, so the horizontal velocity is constant:
-  $x = u_x t$.
+- **Horizontally** there is no force, so the horizontal velocity is constant, and
+  the horizontal displacement is $x = u_x t$.
 - **Vertically** the acceleration is $g$ downwards, so the equations of motion
-  apply: $v_y = u_y - gt$ and $y = u_y t - \tfrac{1}{2}gt^2$.
+  apply: the vertical velocity is $v_y = u_y - gt$ and the vertical displacement
+  is $y = u_y t - \tfrac{1}{2}gt^2$.
 
 Resolve the initial velocity into components first:
 $u_x = u\cos\theta$ and $u_y = u\sin\theta$, where $\theta$ is measured from the
@@ -180,8 +181,8 @@ total time of flight is twice that, if the projectile lands at the same height i
 started from.
 
 **Worked example 5.** A ball is kicked at $20\,\text{m}\,\text{s}^{-1}$ at 30°
-above the horizontal. Find the time of flight, the range and the maximum height.
-Take $g = 9.81\,\text{m}\,\text{s}^{-2}$.
+above the horizontal. Find the time of flight, the range and the maximum height
+$h_{\max}$. Take $g = 9.81\,\text{m}\,\text{s}^{-2}$.
 
 $$
 \begin{aligned}
@@ -235,7 +236,7 @@ upwards.
   accelerating and falls at a constant **terminal velocity**.
 
 **Worked example 6.** A skydiver of mass 80 kg falls at terminal velocity. Find
-the drag force. At one instant during the fall the drag is 600 N. Find the
+the drag force $D$. At one instant during the fall the drag is 600 N. Find the
 acceleration at that instant.
 
 At terminal velocity the resultant is zero, so the drag equals the weight.

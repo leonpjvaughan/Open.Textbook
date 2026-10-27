@@ -50,6 +50,9 @@ $500 \div 20$.
 
 $$T = \frac{V}{r} = \frac{500}{20} = 25$$
 
+Here $T$ is the time in minutes, $V$ is the volume in litres and $r$ is the
+rate in litres each minute.
+
 The tank takes 25 minutes to fill. Check it: $20 \times 25 = 500$, which is the
 volume of the tank.
 
@@ -149,6 +152,9 @@ $12 - 6 = 6$ students each minute.
 <summary>Full working</summary>
 
 $$T = \frac{Q}{s - a} = \frac{30}{12 - 6} = \frac{30}{6} = 5$$
+
+Here $Q$ is the number of students in the queue, $s$ is the service rate and
+$a$ is the arrival rate, both in students each minute.
 
 The queue is gone after 5 minutes. The same time as question 4, because the net
 rate is the same.

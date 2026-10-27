@@ -17,8 +17,9 @@ error is
 
 $$SE = \sqrt{\frac{p(1-p)}{n}} = \sqrt{\frac{0.5 \times 0.5}{1000}} = 0.0158$$
 
-which is $1.58$ percentage points. The margin of error at $95\%$ confidence is about twice
-that:
+where $SE$ is the standard error, $p$ is the population proportion and $n$ is the sample
+size. This is $1.58$ percentage points. The margin of error at $95\%$ confidence is about
+twice that:
 
 $$1.96 \times 1.58\% \approx 3.1 \text{ percentage points}$$
 

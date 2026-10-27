@@ -31,6 +31,9 @@ $$
 \frac{d}{dx}\left(e^{kx}\right) = k e^{kx}.
 $$
 
+Here $\frac{d}{dx}$ means the derivative with respect to $x$: the instruction to
+differentiate whatever follows it.
+
 The derivative has the same shape as the original function, and the constant $k$
 appears in front. When $k = 1$ the derivative of $e^x$ is $e^x$. That is the
 special property of the base $e$: at every point, the gradient equals the value

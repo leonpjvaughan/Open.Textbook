@@ -96,6 +96,8 @@ $$
 c = f\lambda
 $$
 
+where $f$ is the frequency and $\lambda$ is the wavelength.
+
 $$
 f = \frac{c}{\lambda} = \frac{3.0 \times 10^{8}}{5.89 \times 10^{-7}}
 $$

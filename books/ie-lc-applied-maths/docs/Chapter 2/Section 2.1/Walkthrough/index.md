@@ -74,7 +74,7 @@ touches. Add up all the degrees and you have counted each edge twice, once at ea
 >
 > $$\sum \deg(v) = 2E$$
 
-where $E$ is the number of edges.
+where $v$ is a vertex and $E$ is the number of edges.
 
 **Example 2.** A network has degrees $3, 3, 2, 2, 2$. How many edges does it have?
 

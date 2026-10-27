@@ -10,20 +10,20 @@ kind: review
 
 The crane lifts a steel beam of mass 2500 kg on a cable 20.0 m long. The cable
 has a cross-sectional area of $1.5 \times 10^{-4}\,\text{m}^2$, the steel has a
-Young modulus of $2.0 \times 10^{11}\,\text{Pa}$, and the working stress must
+Young modulus $E = 2.0 \times 10^{11}\,\text{Pa}$, and the working stress must
 not exceed $3.0 \times 10^{8}\,\text{Pa}$.
 
-**1. The load in the cable.** The cable carries the weight of the beam.
+**1. The load $W$ in the cable.** The cable carries the weight of the beam.
 
 $$ W = mg = 2500 \times 9.81 = 24\,525\,\text{N} $$
 
-**2. The stress in the cable.**
+**2. The stress $\sigma$ in the cable.**
 
 $$ \sigma = \frac{F}{A} = \frac{24\,525}{1.5 \times 10^{-4}} = 1.635 \times 10^{8}\,\text{Pa} $$
 
 The stress is about $1.64 \times 10^{8}\,\text{Pa}$, or $164\,\text{MPa}$.
 
-**3. The strain in the cable.**
+**3. The strain $\varepsilon$ in the cable.**
 
 $$ \varepsilon = \frac{\sigma}{E} = \frac{1.635 \times 10^{8}}{2.0 \times 10^{11}} = 8.175 \times 10^{-4} $$
 

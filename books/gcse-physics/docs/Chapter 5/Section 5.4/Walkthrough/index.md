@@ -33,6 +33,8 @@ Red light has the longest wavelength and the lowest frequency. Violet light has
 the shortest wavelength and the highest frequency. White light is a mixture of
 all the visible wavelengths.
 
+All light travels through a vacuum at $c = 3.0 \times 10^8\,\text{m/s}$.
+
 **Worked example 1.** Red light has a wavelength of 750 nm. Calculate its
 frequency.
 

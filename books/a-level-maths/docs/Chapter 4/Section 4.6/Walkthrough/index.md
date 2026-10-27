@@ -23,6 +23,7 @@ infinity.
 
 A **geometric sequence** is made by multiplying by the same amount at every step.
 That fixed multiplier is the **common ratio**, written $r$. With first term $a$,
+the $n$th term is
 
 $$
 u_n = a r^{n-1}.

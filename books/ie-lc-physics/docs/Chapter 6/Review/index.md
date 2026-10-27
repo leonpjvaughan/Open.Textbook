@@ -13,6 +13,11 @@ geostationary orbit $4.22 \times 10^{7}\,\text{m}$ from the centre of the Earth.
 Earth has a mass of $5.97 \times 10^{24}\,\text{kg}$ and a radius of
 $6.37 \times 10^{6}\,\text{m}$.
 
+In these formulas $W$ is a weight, $m$ a mass, $g$ the gravitational field strength,
+$G$ the gravitational constant and $F$ the force between the Earth and the satellite.
+$M$ is the mass of the Earth, $r$ the distance from its centre, $R$ its radius,
+$\Delta E_p$ a change in potential energy, $v$ a speed and $T$ a period.
+
 **Step 1: mass and weight.** The mass is 1200 kg on the launch pad and 1200 kg in
 orbit. Mass does not change. The weight does change, because the field strength
 changes.

@@ -48,6 +48,8 @@ $15 - 1$.
 
 $$E = 15 - 1 = 14$$
 
+Here $E$ is the number of edges and $n$ is the number of vertices.
+
 The number of edges is fixed by the number of vertices. Any tree on 15 vertices has 14
 edges.
 

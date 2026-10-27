@@ -29,8 +29,9 @@ energy**, and it comes back if the book falls. You met the formula in Chapter 4:
 
 $$E_p = mgh$$
 
-It works because $g$ is nearly constant over the heights you meet in a laboratory. A
-climb of 5 m changes $g$ by less than one part in a million.
+where $m$ is the mass, $g$ the gravitational field strength and $h$ the height it
+rises. It works because $g$ is nearly constant over the heights you meet in a
+laboratory. A climb of 5 m changes $g$ by less than one part in a million.
 
 **Example 1.** A 2.0 kg mass is raised 5.0 m near the Earth's surface. Calculate the
 gain in gravitational potential energy.
@@ -113,7 +114,7 @@ needed to carry the fuel.
 ## Gravitational potential
 
 It is useful to separate the mass placed in the field from the field itself. The
-**gravitational potential** at a point is the energy per unit mass at that point.
+**gravitational potential** $V$ at a point is the energy per unit mass at that point.
 
 $$V = -\frac{GM}{r}$$
 
@@ -139,6 +140,8 @@ energy is zero. The smallest speed that does it is the **escape velocity**.
 At the surface, the kinetic energy must equal the energy needed to reach infinity:
 
 $$\tfrac{1}{2}mv^2 = \frac{GMm}{R}$$
+
+where $R$ is the radius of the planet.
 
 The mass $m$ cancels, which means the escape velocity does not depend on the mass of
 the escaping body:

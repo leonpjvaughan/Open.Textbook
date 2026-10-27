@@ -30,7 +30,7 @@ The word **fair** is the signal. A fair die is equally likely to show each of it
 six faces.
 
 When the outcomes are equally likely, the probability of an event is a count
-divided by a count.
+divided by a count. Here $P(\text{event})$ means the probability of the event.
 
 $$P(\text{event})=\frac{\text{number of outcomes in the event}}{\text{total number of outcomes in the sample space}}$$
 

@@ -40,6 +40,8 @@ called the **standard error**:
 
 > **The standard error of the proportion.**
 > $$\sigma_{\hat{p}} = \sqrt{\frac{p(1 - p)}{n}}$$
+> where $\sigma_{\hat{p}}$ is the standard error of the sample proportion and $n$ is the
+> sample size.
 > This is the formula in the formulae and tables booklet.
 
 The standard error measures how much $\hat{p}$ varies from sample to sample. It gets

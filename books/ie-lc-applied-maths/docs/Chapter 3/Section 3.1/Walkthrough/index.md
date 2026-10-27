@@ -46,6 +46,8 @@ $$d = 120 + 80$$
 
 $$d = 200\,\text{m}$$
 
+Here $d$ is the distance in metres and $s$ is the displacement in metres.
+
 For displacement, the second leg points the other way, so it counts as negative:
 
 $$s = 120 - 80$$
@@ -71,6 +73,9 @@ single moment of it.
 **Example 2.** A runner covers 400 m in 50 s. Find the average speed.
 
 $$v = \frac{d}{t}$$
+
+Here $v$ is the average speed in metres per second and $t$ is the time in
+seconds.
 
 $$v = \frac{400}{50}$$
 

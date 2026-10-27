@@ -13,6 +13,10 @@ are connected across it in parallel: a lamp of resistance 12 Ω, a second lamp o
 resistance 6.0 Ω, and a heater rated at 36 W when the potential difference across it
 is 12 V.
 
+In these formulas $P$ is a power, $V$ a potential difference, $R$ a resistance and
+$I$ a current. Also $E$ is an energy in Step 4 and the electromotive force in Step
+5, $r$ is the internal resistance and $t$ is the time.
+
 **Step 1: the resistance of the heater.** The rating gives the power at 12 V, so
 
 $$P = \frac{V^2}{R} \qquad R = \frac{V^2}{P} = \frac{12^2}{36} = 4.0\,\Omega$$

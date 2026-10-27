@@ -84,6 +84,8 @@ $$
 R = \frac{U^2 \sin 2\theta}{g} = \frac{400}{9.8} \approx 40.8 \text{ m}.
 $$
 
+where $U$ is the launch speed and $\theta$ the launch angle.
+
 So the ball crosses the goal line at $0.8$ m and would land $40.8$ m from the
 kick, past the line.
 

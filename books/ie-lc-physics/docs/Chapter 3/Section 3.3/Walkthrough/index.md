@@ -19,7 +19,7 @@ velocity from Chapter 2.
 momentum and a change in momentum; use the impulse.
 
 By the end of this section, you can find the force on an object from the change in its
-momentum, and you can say why a pair of third-law forces never cancels.
+momentum. You can also say why a pair of third-law forces never cancels.
 
 ## Newton's third law
 

@@ -23,7 +23,7 @@ By the end of this section, you can compare two lines from their slopes alone.
 ## Parallel lines
 
 Two lines are **parallel** when they run in the same direction and never meet.
-Their slopes are equal.
+Their slopes $m_1$ and $m_2$ are equal.
 
 $$m_1 = m_2 \quad \text{means the lines are parallel}$$
 

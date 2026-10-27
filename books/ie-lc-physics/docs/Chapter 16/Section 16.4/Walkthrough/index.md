@@ -63,7 +63,7 @@ the outside circuit.
 Both generators have the same main parts: a coil, a magnetic field, slip rings or
 a commutator, and brushes.
 
-The **frequency** of the output is the number of revolutions the coil makes each
+The **frequency** $f$ of the output is the number of revolutions the coil makes each
 second. A coil turning 50 times each second gives a 50 Hz supply, and one complete
 wave takes $\dfrac{1}{50} = 0.020$ s.
 
@@ -106,6 +106,8 @@ for one complete revolution, and the time for one quarter of a revolution.
 $$
 T = \frac{1}{f} = \frac{1}{50} = 0.020\,\text{s}
 $$
+
+Here $T$ is the period, the time for one complete revolution.
 
 $$
 \frac{T}{4} = \frac{0.020}{4} = 5.0 \times 10^{-3}\,\text{s}

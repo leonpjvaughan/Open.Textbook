@@ -87,6 +87,9 @@ energy of the photon is the energy gap between the two levels:
 
 $$ hf = E_1 - E_2 $$
 
+Here $h$ is the Planck constant, $f$ is the frequency of the emitted photon,
+$E_1$ is the energy of the higher level and $E_2$ the energy of the lower one.
+
 Because the levels are fixed, an atom emits only certain photon energies. Each
 element gives a unique set of bright lines, called its **line spectrum**. This is
 how the elements in a star are identified.
@@ -188,6 +191,8 @@ electron to rest. The work done against the electric field equals the maximum
 kinetic energy, so
 
 $$ eV_s = E_{k(\text{max})} \qquad V_s = \frac{E_{k(\text{max})}}{e} $$
+
+Here $e$ is the elementary charge, $1.60 \times 10^{-19}\,\text{C}$.
 
 If the maximum kinetic energy is measured in electronvolts, the stopping
 potential in volts is the same number. A maximum kinetic energy of 2.97 eV needs

@@ -60,6 +60,9 @@ $$
 \frac{d}{dx}\left(ax^n + bx^m\right) = anx^{n-1} + bmx^{m-1}.
 $$
 
+Here $\frac{d}{dx}$ means the derivative with respect to $x$, and $a$ and $b$
+are constants with $m$ a rational power.
+
 **Example 4.** Differentiate $y = 4x^3 - 6x + \dfrac{1}{x}$.
 
 Rewrite $\dfrac{1}{x}$ as $x^{-1}$ and differentiate each term:

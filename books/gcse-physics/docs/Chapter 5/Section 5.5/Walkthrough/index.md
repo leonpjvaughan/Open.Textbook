@@ -50,6 +50,9 @@ A cool object emits most of its radiation at long infrared wavelengths. A hotter
 object emits more radiation, and its peak moves to shorter wavelengths. A very
 hot object, like the Sun, peaks in the visible range.
 
+Every electromagnetic wave travels through a vacuum at
+$c = 3.0 \times 10^8\,\text{m/s}$.
+
 **Worked example 1.** A warm object emits most of its radiation at a wavelength
 of 8.0 μm. Calculate the frequency of this radiation.
 

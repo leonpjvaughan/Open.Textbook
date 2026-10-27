@@ -42,7 +42,8 @@ form $y=mx+c$.
 <details markdown="1">
 <summary>Hint</summary>
 
-A point on the $y$-axis gives the intercept straight away.
+In the form $y=mx+c$, $m$ is the slope and $c$ is the intercept. A point on the
+$y$-axis gives the intercept straight away.
 
 <details markdown="1">
 <summary>Next step</summary>

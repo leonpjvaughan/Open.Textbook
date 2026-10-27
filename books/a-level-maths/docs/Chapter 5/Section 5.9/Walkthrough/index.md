@@ -27,7 +27,8 @@ $$
 a\cos\theta + b\sin\theta \equiv R\cos(\theta - \alpha),
 $$
 
-where
+where $R$ is the amplitude of the wave, $\alpha$ the angle by which it is
+shifted from $\theta$, and
 
 $$
 R = \sqrt{a^2 + b^2}, \qquad \tan\alpha = \frac{b}{a}.

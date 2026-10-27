@@ -29,6 +29,8 @@ The **kinetic energy** of a body is the energy it has because it is moving:
 
 $$E_k = \frac{1}{2}mv^2$$
 
+where $E_k$ is the kinetic energy, $m$ is the mass and $v$ is the speed.
+
 The unit is the joule, J. Kinetic energy is a scalar, so it has no sign. A body
 moving in either direction has the same kinetic energy.
 

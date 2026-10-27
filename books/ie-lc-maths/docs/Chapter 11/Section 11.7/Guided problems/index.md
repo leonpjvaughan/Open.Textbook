@@ -106,7 +106,7 @@ because the sample size sits under a square root.
 </details>
 </details>
 
-**4.** A sample of $800\) people contains $320$ who support a plan. Find the sample
+**4.** A sample of $800$ people contains $320$ who support a plan. Find the sample
 proportion $\hat{p}$.
 
 <details markdown="1">

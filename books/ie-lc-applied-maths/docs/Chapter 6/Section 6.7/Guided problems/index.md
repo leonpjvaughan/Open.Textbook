@@ -59,7 +59,7 @@ $0.75^2 = 0.5625$.
 </details>
 
 **2.** A ball hits the floor at $10$ m/s. The coefficient of restitution is
-$0.5$. Find the speed with which it hits the floor on the third bounce.
+$0.5$. Find the speed $v$ with which it hits the floor on the third bounce.
 
 <details markdown="1">
 <summary>Hint</summary>
@@ -111,7 +111,7 @@ square of the speed.
 </details>
 
 **4.** A ball is dropped from a height of $2$ m. The coefficient of restitution
-is $0.5$. Find the total distance it travels before it stops.
+is $0.5$. Find the total distance $D$ it travels before it stops.
 
 <details markdown="1">
 <summary>Hint</summary>
@@ -166,7 +166,7 @@ previous speed, because $\dfrac{1 + e}{2} = 0.8$.
 </details>
 
 **6.** A ball of mass $0.5$ kg hits a wall at $8$ m/s and rebounds at $4$ m/s.
-Taking the direction away from the wall as positive, find the impulse on the
+Taking the direction away from the wall as positive, find the impulse $J$ on the
 ball.
 
 <details markdown="1">

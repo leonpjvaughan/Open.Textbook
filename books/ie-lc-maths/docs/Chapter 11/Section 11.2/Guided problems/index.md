@@ -82,7 +82,7 @@ reach, so it is a convenience sample and it is biased.
 </details>
 </details>
 
-**3.** A charity sends out $800\) questionnaires and $320$ are returned. Work out the
+**3.** A charity sends out $800$ questionnaires and $320$ are returned. Work out the
 response rate as a percentage.
 
 <details markdown="1">
@@ -184,7 +184,7 @@ result is biased by non-response.
 
 ## Higher-level practice
 
-**7.** A school has $360$ girls and $240$ boys, so $600\) students. A stratified sample
+**7.** A school has $360$ girls and $240$ boys, so $600$ students. A stratified sample
 of $60$ students is taken. How many girls and how many boys are in the sample?
 
 <details markdown="1">
@@ -247,6 +247,8 @@ There are $\dbinom{3}{2}$ ways to choose which two tosses are heads.
 
 <details markdown="1">
 <summary>Next step</summary>
+
+Let $X$ be the number of heads, so $P(X = 2)$ means the probability of exactly $2$ heads.
 
 $$P(X = 2) = \binom{3}{2}\left(\frac12\right)^2\left(\frac12\right)$$
 

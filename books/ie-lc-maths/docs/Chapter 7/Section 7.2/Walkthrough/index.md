@@ -28,6 +28,9 @@ clear: multiply by the old power, then reduce the power by one.
 > **The power rule.** For any real number $n$,
 > $$\frac{d}{dx}\left(x^n\right) = nx^{n-1}.$$
 
+The symbol $\frac{d}{dx}$ means the derivative with respect to $x$: the instruction to
+differentiate whatever follows it.
+
 **Example 1.** Differentiate $y = x^7$.
 
 $$\frac{dy}{dx} = 7x^{7 - 1} = 7x^6$$
@@ -38,11 +41,11 @@ Here $n = 1$, so $\dfrac{dy}{dx} = 1x^0 = 1$. The gradient of the line $y = x$ i
 
 ## Constants and constant multiples
 
-A constant function does not change, so its rate of change is zero.
+A constant function $c$ does not change, so its rate of change is zero.
 
 $$\frac{d}{dx}(c) = 0$$
 
-A constant multiplying a function stays in front.
+A constant multiplying a function $f(x)$ stays in front.
 
 $$\frac{d}{dx}\left(c\,f(x)\right) = c\,f'(x)$$
 
@@ -52,8 +55,8 @@ $$\frac{dy}{dx} = 5 \times 4x^3 = 20x^3$$
 
 ## Sums and differences
 
-Differentiate a sum or difference term by term. This is the rule that makes polynomials
-quick.
+Differentiate a sum or difference of two functions $f(x)$ and $g(x)$ term by term. This is
+the rule that makes polynomials quick.
 
 $$\frac{d}{dx}\left(f(x) \pm g(x)\right) = f'(x) \pm g'(x)$$
 

@@ -55,8 +55,10 @@ $$
 Many questions give the circle in an expanded form:
 
 $$
-x^2 + y^2 + Dx + Ey + F = 0.
+x^2 + y^2 + Dx + Ey + F = 0,
 $$
+
+where $D$, $E$ and $F$ are constants.
 
 To read the centre and the radius, **complete the square** twice, once in $x$ and
 once in $y$.
@@ -145,14 +147,15 @@ angle.
 **Example 5.** Find the tangent to the circle $x^2 + y^2 = 25$ at the point
 $(3, 4)$.
 
-The centre is $(0, 0)$. The gradient of the radius from $(0, 0)$ to $(3, 4)$ is
+The centre is $(0, 0)$. The gradient of the radius from $(0, 0)$ to $(3, 4)$,
+written $m_r$, is
 
 $$
 m_r = \frac{4 - 0}{3 - 0} = \frac{4}{3}.
 $$
 
-The tangent is perpendicular to the radius, so its gradient is the negative
-reciprocal:
+The tangent is perpendicular to the radius, so its gradient, written $m_t$, is the
+negative reciprocal:
 
 $$
 m_t = -\frac{3}{4}.

@@ -106,7 +106,7 @@ Take $g = 9.81\,\text{m}\,\text{s}^{-2}$.
 <summary>Hint</summary>
 
 The potential energy lost becomes kinetic energy. You can write
-$mg\Delta h = \tfrac{1}{2}mv^2$.
+$mg\Delta h = \tfrac{1}{2}mv^2$, where $\Delta h$ is the height fallen.
 </details>
 
 <details markdown="1">

@@ -172,7 +172,7 @@ $0.4$. Find the height from which it was dropped.
 <details markdown="1">
 <summary>Hint</summary>
 
-The rebound height is $e^2$ times the drop height.
+The rebound height $h_2$ is $e^2$ times the drop height $h_1$.
 
 <details markdown="1">
 <summary>Next step</summary>
@@ -225,13 +225,14 @@ energy.
 ## A question from Chapter 5
 
 **8.** A block of mass $5$ kg slides on a rough horizontal floor. The
-coefficient of friction is $0.3$. Find the friction force. Take $g = 9.8$ m/s².
+coefficient of friction $\mu$ is $0.3$. Find the friction force. Take
+$g = 9.8$ m/s².
 
 <details markdown="1">
 <summary>Hint</summary>
 
-On a horizontal floor the normal reaction equals the weight, and friction is
-limiting while the block slides.
+On a horizontal floor the normal reaction $R$ equals the weight, and the friction
+$F$ is limiting while the block slides.
 
 <details markdown="1">
 <summary>Next step</summary>

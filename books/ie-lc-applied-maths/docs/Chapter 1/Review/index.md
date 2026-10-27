@@ -22,6 +22,9 @@ students already in front. The till serves 10 of them each minute.
 
 $$W = \frac{Q}{s} = \frac{40}{10} = 4$$
 
+Here $W$ is the wait in minutes, $Q$ is the number of students in the queue,
+$s$ is the service rate and $a$ is the arrival rate.
+
 The wait is about 4 minutes, so the student is served at about 12:34.
 
 **The clear time.** The queue drains at the net rate.
@@ -31,6 +34,8 @@ $$s - a = 10 - 5 = 5$$
 The clear time is the queue divided by the net rate.
 
 $$T = \frac{Q}{s - a} = \frac{40}{10 - 5} = \frac{40}{5} = 8$$
+
+Here $T$ is the clear time in minutes.
 
 The queue is gone about 8 minutes after 12:30, at about 12:38. The two answers
 are different because the questions are different: the student at 12:30 waits

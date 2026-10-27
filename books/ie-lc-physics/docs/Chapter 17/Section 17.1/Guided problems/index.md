@@ -210,7 +210,8 @@ For a uniform field, field strength is potential difference divided by separatio
 <details markdown="1">
 <summary>Next step</summary>
 
-$V = Ed = 2.0 \times 10^4 \times 0.05$.
+$V = Ed = 2.0 \times 10^4 \times 0.05$, with $V$ the potential difference, $E$ the
+field strength and $d$ the separation of the plates.
 
 <details markdown="1">
 <summary>Full working</summary>

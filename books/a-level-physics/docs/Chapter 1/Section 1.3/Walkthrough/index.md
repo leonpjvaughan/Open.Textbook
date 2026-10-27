@@ -59,7 +59,8 @@ The time for 20 oscillations is $35.90 \pm 0.05\,\text{s}$.
 
 **Worked example 2.** The pendulum length is found from two metre-rule readings:
 $0.000\,\text{m}$ at the pivot and $0.800\,\text{m}$ at the centre of the bob.
-Each reading has an uncertainty of 0.0005 m. Find the length and its uncertainty.
+Each reading has an uncertainty of 0.0005 m. Find the length $L$ and its
+uncertainty $\Delta L$.
 
 $$
 \begin{aligned}

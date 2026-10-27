@@ -51,6 +51,9 @@ $Q = W \times s = 6 \times 10$.
 
 $$Q = Ws = 6 \times 10 = 60$$
 
+Here $Q$ is the number of students in the queue, $W$ is the wait in minutes
+and $s$ is the service rate in students each minute.
+
 The queue held 60 students, not 40. The starting queue was the assumption that
 was wrong, and the corrected model now matches the measurement.
 
@@ -75,6 +78,9 @@ $10 - 6 = 4$ students each minute.
 <summary>Full working</summary>
 
 $$T = \frac{Q}{s - a} = \frac{40}{10 - 6} = \frac{40}{4} = 10$$
+
+Here $T$ is the clear time in minutes and $a$ is the arrival rate in students
+each minute.
 
 The clear time is 10 minutes. The model in the chapter problem used an arrival
 rate of 5, which gave 8 minutes.

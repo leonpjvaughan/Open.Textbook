@@ -84,7 +84,7 @@ Every factor inside the bracket is raised to the power.
 
 $$(ab)^n = a^n b^n$$
 
-Here $b$ is a second base.
+Here $a$ and $b$ are bases and $n$ is the index.
 
 **Example 4.** Simplify $(2x)^4$.
 

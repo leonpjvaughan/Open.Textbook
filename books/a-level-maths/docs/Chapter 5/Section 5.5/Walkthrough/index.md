@@ -52,7 +52,7 @@ A calculator gives $\sin 0.1 \approx 0.09983$ and $\cos 0.1 \approx 0.99500$.
 Both estimates are close.
 
 **Example 2.** A pendulum of length $L$ swings through a small angle $\theta$.
-The horizontal displacement of the bob is approximately
+The horizontal displacement $x$ of the bob is approximately
 
 $$
 x = L\sin\theta \approx L\theta.

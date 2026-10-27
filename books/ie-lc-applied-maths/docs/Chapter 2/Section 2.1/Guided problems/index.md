@@ -79,6 +79,8 @@ $5 + 4 + 4 + 3 + 2 = 18$, so $E = 18 \div 2$.
 
 $$\sum \deg(v) = 18 \qquad E = \frac{18}{2} = 9$$
 
+Here $v$ is a vertex and $E$ is the number of edges.
+
 The network has 9 edges. Notice that the sum came out even, which it must — if you had
 got an odd number you would know to look for a miscounted degree.
 
@@ -166,9 +168,9 @@ Both exist, so $k = 1$ or $k = 3$.
 </details>
 </details>
 
-**6.** Explain why a network cannot have exactly two vertices of odd degree and one
-vertex of odd degree... read that again — it cannot, and the reason is the same one that
-rules out three. State the rule and apply it.
+**6.** Explain why a network cannot have exactly one vertex of odd degree. Read that
+again — it cannot, and the reason is the same one that rules out three. State the rule
+and apply it.
 
 <details markdown="1">
 <summary>Hint</summary>

@@ -24,6 +24,9 @@ $$
 \frac{dT}{dt} = -k(T - 20).
 $$
 
+Here $T$ is the temperature in °C, $t$ is the time in minutes and $k$ is a
+positive constant.
+
 Integration turns this rate equation into a formula for the temperature at any
 time. Then the formula answers a practical question: what is the temperature
 after $40$ minutes, and how cool will the coffee become in the long run?

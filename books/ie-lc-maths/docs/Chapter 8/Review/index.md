@@ -16,7 +16,7 @@ $$r(t) = 12t - 3t^2 \text{ litres per minute}, \qquad 0 \le t \le 4.$$
 The tank is empty at $t = 0$.
 
 **The volume function.** The volume is an antiderivative of the rate, because the rate is
-the derivative of the volume:
+the derivative of the volume. Every antiderivative carries the constant of integration $C$:
 
 $$V(t) = \int (12t - 3t^2)\,dt = 6t^2 - t^3 + C.$$
 

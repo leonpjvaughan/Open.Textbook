@@ -63,7 +63,8 @@ litres each minute. The time is the volume divided by the net rate, so
 
 $$T = \frac{V}{r}$$
 
-where $V$ is the volume in litres and $r$ is the net rate in litres per minute.
+where $T$ is the time in minutes, $V$ is the volume in litres and $r$ is the
+net rate in litres per minute.
 
 *Compute.*
 
@@ -109,8 +110,9 @@ is
 
 $$T = \frac{Q}{s - a} = \frac{40}{10 - 5} = \frac{40}{5} = 8$$
 
-The queue is gone 8 minutes after 12:30, at 12:38. It takes longer than in
-Example 2, because the till also has to serve the students who keep arriving.
+Here $Q$ is the number of students in the queue at 12:30. The queue is gone
+8 minutes after 12:30, at 12:38. It takes longer than in Example 2, because
+the till also has to serve the students who keep arriving.
 
 > **Watch out.** A model gives an estimate, not an exact promise. The canteen
 > model assumes that every student is served in exactly six seconds, and that

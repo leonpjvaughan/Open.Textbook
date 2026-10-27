@@ -6410,3 +6410,95 @@ scroll, in both schemes (`var/tables/techniques-390.png`); the four-column table
 returns above 44rem and still fits at 1024px and 1280px with no scroll. The symbol
 lists under each table stay full width and read as prose, which is why defining them
 there works on a phone.
+
+## 136 — Most books' formulas named none of the symbols they used
+
+**What was wrong.** The rule was written down ("every symbol in a formula is defined
+where the reader meets it") and only the two reference books followed it. `proofs`,
+`gcse-maths`, `gcse-physics`, `a-level-physics`, `a-level-maths` and the four Irish
+books carried displayed formulas whose letters were never named, so a reader met
+`$$v = u + at$$` with three letters and no definitions.
+
+The count, by displayed formulas (`$$…$$`), was:
+
+```
+a-level-maths  2251   ie-jc-maths  2498   ie-lc-maths  2158
+ie-lc-physics  1585   ie-lc-applied-maths 1447   a-level-physics  586
+gcse-physics    373   gcse-maths    306   proofs        174
+```
+
+**How it was swept.** A screen over each page — a symbol occurring in a display and
+never in the page's prose, and a second list of symbols that occur in prose with no
+defining phrase near them — produced a worksheet per chapter. A worksheet is a lead,
+not a verdict: the second list is mostly false positives ("for a base $a$" is a
+definition). Twenty-eight readers worked one chapter range each, read every listed
+page, and added the shortest clause that names what is missing: a `where …` clause
+under a formula, a named subject ("$S_n$ is the sum of the first $n$ terms"), or one
+**The symbols** paragraph under a table of formulas. The pattern is the one
+`books/numerical-methods/docs/techniques/index.md` already used.
+
+433 pages were touched; about 300 clauses were added. The screen's near-certain tier
+(the symbol never named anywhere on the page) fell as follows:
+
+```
+book                  formulas   A before   A after
+proofs                     174          2         1
+gcse-maths                 306          8         1
+gcse-physics               373         39        25
+a-level-physics            586         42        27
+a-level-maths             2251         67        34
+ie-jc-maths               2498         28         6
+ie-lc-maths               2158         62        13
+ie-lc-physics             1585         80        34
+ie-lc-applied-maths       1447         60        14
+```
+
+**Why the remainder is not a defect list.** Every remaining row was read. They are
+unit letters (`J`, `N`, `W`, `s`, `Ω`), nuclide symbols (`²³⁵U`, `¹n`), "1 d.p.",
+the differential `d` in `dy/dx`, and letters whose quantity the sentence above names
+in words ("the period" then `T = 1/f`). Two things were deliberately not done: a
+Review page re-uses the chapter's letters, which its teaching pages name, rather
+than repeating a symbol key eleven times; and a worked solution that substitutes
+numbers into a formula the page has already named does not repeat the naming.
+
+**Defects the sweep found and fixed.** Each is a separate line in the diff:
+
+- `ie-lc-maths` had three inline spans closed with `\)` instead of `$`
+  (`$800\)`), which KaTeX rejects. Fixed in 11.2 and 11.7.
+- `ie-lc-maths` 10.4: the answer said `$n(S) = 15$ out of $28$ pairs`, but the sample
+  space is $28$ and $15$ is the star-prize count. Now "15 of the 28 pairs give the
+  star prize, and $n(S) = 28$".
+- `ie-lc-applied-maths` 7.4 said `$\sin 60^\circ = \tan 60^\circ$`, which is false;
+  the product is $3$ because $L\sin^2\theta/\cos\theta = 2 \times (3/4)/(1/2)$.
+- `ie-lc-applied-maths` 8.8 compared the $h = 0.5$ estimate at $x = 1$ with the
+  $h = 1$ estimate at $x = 2$; it now compares $156.25$ with $150$ at the same $x$.
+- `ie-lc-applied-maths` 2.1 carried an editing note in reader-facing prose ("…and one
+  vertex of odd degree… read that again"), and the question contradicted the answer
+  key: it asked about one odd-degree vertex, not two.
+- `ie-lc-physics` 20.3 said a beta particle has charge $+1$ "relative to the
+  daughter"; the $+1$ is the parent's gain in atomic number and the electron is $-1$.
+- `ie-lc-physics` 9.5 used `L` and `l` for the string length on one page. The
+  chapter's `l` became `L`, and the where clause follows.
+- `a-level-physics` 8.1 printed `hf = E_1 - E_2` without saying which level is which;
+  it now names $E_1$ as the higher level, and 5.1 names $\Delta$.
+- `a-level-maths` 4.4 had a clause about $u_r$ and $v_r$ attached to the formula that
+  contains only $u_r$; moved to the formula that uses both.
+- `proofs`: $S_n$, $A$, $a$ and $b$ were the unnamed parts of four formulas, and
+  $\frac{d}{dx}$ arrived before it was explained.
+- `ie-lc-physics` 3.3 carried a 33-word sentence the lint rejects — a pre-existing
+  `style:long-sentence` on `main`, now split.
+
+**Done (2026-10-27).**
+
+```
+$ for b in ...; do uv run python -m textbook.lint $b; done
+scanned 23 / 458 / 142 / 119 / 362 / 438 / 446 / 348 / 226 pages
+$ uv run pytest tests/ -q -n 4
+8349 passed, 50 skipped
+$ scripts/check.sh
+exit 0
+```
+
+The rule now has a page-by-page record in each book rather than a promise in a skill
+file, and the two books whose tables carry many formulas show the shape the others
+follow: one **The symbols** list under the table.

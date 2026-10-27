@@ -134,8 +134,8 @@ component along the slope and the component perpendicular to the slope.
 <details markdown="1">
 <summary>Hint</summary>
 
-The weight acts vertically down. The slope makes 20° with the horizontal, so the
-weight makes 20° with the perpendicular to the slope.
+The weight $W$ acts vertically down. The slope makes 20° with the horizontal, so
+the weight makes 20° with the perpendicular to the slope.
 </details>
 
 <details markdown="1">

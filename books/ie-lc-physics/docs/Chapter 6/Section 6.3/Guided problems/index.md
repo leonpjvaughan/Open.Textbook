@@ -20,7 +20,8 @@ kind: guided-problems
 <details markdown="1">
 <summary>Answers and feedback</summary>
 
-1. $E_p = mgh = 3.0 \times 9.8 \times 2.0 = 58.8\,\text{J}$.
+1. $E_p = mgh = 3.0 \times 9.8 \times 2.0 = 58.8\,\text{J}$, where $m$ is the mass,
+   $g$ the gravitational field strength and $h$ the height.
 2. $E_k = \tfrac{1}{2}mv^2$.
 
 Both return in this section. The near-surface energy uses a constant $g$; the field
@@ -65,7 +66,8 @@ surface. Take $M = 5.97 \times 10^{24}\,\text{kg}$ and $R = 6.37 \times 10^{6}\,
 <details markdown="1">
 <summary>Hint</summary>
 
-Use $E_p = -\dfrac{GMm}{r}$ with $r = R$.
+Use $E_p = -\dfrac{GMm}{r}$ with $r = R$, where $M$ is the mass and $R$ the radius of
+the Earth.
 
 <details markdown="1">
 <summary>Next step</summary>

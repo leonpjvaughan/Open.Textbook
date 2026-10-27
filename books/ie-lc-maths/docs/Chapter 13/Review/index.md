@@ -54,7 +54,7 @@ $$(x - 3)^2 + (8 - x)^2 = 25 \quad\Rightarrow\quad x^2 - 11x + 24 = 0
 So $x = 3$ or $x = 8$, giving $(3, 9)$ and $(8, 4)$. The chord between them is
 $\sqrt{5^2 + (-5)^2} = 5\sqrt{2}$ units, about $7.07$ units or $70.7$ m.
 
-**The bus stop.** Dividing $AB$ in the ratio $2 : 3$:
+**The bus stop.** The bus stop is the point $P$ that divides $AB$ in the ratio $2 : 3$:
 
 $$P = \left(\frac{3 \times (-1) + 2 \times 7}{5}, \frac{3 \times 1 + 2 \times 7}{5}\right)
 = \left(\frac{11}{5}, \frac{17}{5}\right)$$

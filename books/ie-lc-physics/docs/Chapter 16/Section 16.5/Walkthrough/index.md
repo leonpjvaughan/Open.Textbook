@@ -62,6 +62,9 @@ An ideal transformer transfers all the power from the primary to the secondary, 
 
 $$V_p I_p = V_s I_s$$
 
+where $I_p$ is the current in the primary coil and $I_s$ is the current in the
+secondary coil.
+
 If the voltage is stepped up, the current is stepped down by the same factor. The
 turns ratio and the current ratio are opposite ways round:
 

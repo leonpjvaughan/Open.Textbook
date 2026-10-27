@@ -80,6 +80,8 @@ left. Below it, no electron escapes at all.
 
 $$\Phi = hf_0$$
 
+where $h$ is the Planck constant and $c$ is the speed of light.
+
 Because $f_0 = \dfrac{c}{\lambda_0}$, the work function also fixes a **threshold
 wavelength**, $\lambda_0$. Light of longer wavelength than that cannot release
 electrons from the metal.

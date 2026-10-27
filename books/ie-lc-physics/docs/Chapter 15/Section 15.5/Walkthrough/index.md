@@ -104,9 +104,13 @@ $$
 P = VI = 3.0 \times 0.25 = 0.75\,\text{W}
 $$
 
+where $P$ is the power, $V$ the potential difference and $I$ the current.
+
 $$
 E = Pt = 0.75 \times 60 = 45\,\text{J}
 $$
+
+where $E$ is the energy transferred and $t$ the time.
 
 Some of that 45 J turns the coil and some warms it. That is why a motor gets warm when
 it has been running for a while.

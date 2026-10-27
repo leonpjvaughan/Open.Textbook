@@ -222,7 +222,8 @@ Using 500 instead of 0.50 would make the answer 1000 times too large.
 <details markdown="1">
 <summary>Hint</summary>
 
-Use $T = \theta + 273$.
+Use $T = \theta + 273$, where $T$ is the temperature in kelvin and $\theta$ the
+temperature in degrees Celsius.
 
 <details markdown="1">
 <summary>Next step</summary>

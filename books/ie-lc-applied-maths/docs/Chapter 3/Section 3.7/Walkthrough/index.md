@@ -56,6 +56,9 @@ and the vertical motion is
 $$v_y = u_y - gt, \qquad y = u_y t - \frac{1}{2}gt^2, \qquad
 v_y^2 = u_y^2 - 2gy.$$
 
+Here $x$ is the horizontal distance in metres, $y$ is the height in metres and
+$v_y$ is the vertical velocity in m/s.
+
 **Example 1.** A ball is kicked at $20$ m/s at $30^\circ$ above the horizontal.
 Find the two components of its velocity.
 

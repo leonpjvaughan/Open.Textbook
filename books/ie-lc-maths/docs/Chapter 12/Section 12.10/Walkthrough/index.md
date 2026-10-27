@@ -58,7 +58,7 @@ line.
 **Example 2.** A walker goes $5$ km north, then $8$ km east. Find the distance and the
 bearing of the walker from the start.
 
-The two legs are perpendicular, so they form a right triangle. The distance is the
+The two legs are perpendicular, so they form a right triangle. The distance $d$ is the
 hypotenuse:
 
 $$d = \sqrt{5^2 + 8^2} = \sqrt{89} = 9.43 \text{ km}$$
@@ -123,7 +123,8 @@ on the base is the diagonal of the base:
 
 $$\text{base diagonal} = \sqrt{5^2 + 4^2} = \sqrt{41}$$
 
-The right triangle has height $3$ and base $\sqrt{41}$. The angle at the bottom corner is
+The right triangle has height $3$ and base $\sqrt{41}$. The angle $\theta$ at the bottom
+corner is
 
 $$\tan\theta = \frac{3}{\sqrt{41}} \qquad \theta = 25.1^\circ$$
 
@@ -140,7 +141,8 @@ $$\tan\theta = \frac{6}{4\sqrt{2}} \qquad \theta = 46.7^\circ$$
 **Example 6.** For the same pyramid, find the angle between a sloping face and the base.
 
 A face meets the base along the middle of a side. The horizontal distance from the centre
-to that midpoint is $4$ m, half the base side.
+to that midpoint is $4$ m, half the base side. The angle between the face and the base
+is $\phi$.
 
 $$\tan\phi = \frac{6}{4} \qquad \phi = 56.3^\circ$$
 

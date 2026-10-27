@@ -181,7 +181,8 @@ where one watt is one joule per second.
 
 $$ P = \frac{E}{t} $$
 
-where $E$ is the energy transferred in joules and $t$ is the time in seconds.
+where $P$ is the power in watts, $E$ is the energy transferred in joules and $t$
+is the time in seconds.
 
 **Worked example 5.** A heater transfers 90000 J in 45 s. Calculate its power.
 

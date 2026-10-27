@@ -25,7 +25,7 @@ with their units.
 The **gradient** of a line measures how steeply it rises. It is the change in
 $y$ for each unit of change in $x$. You can read it as **rise over run**.
 
-For two points $(x_1, y_1)$ and $(x_2, y_2)$ on a line,
+For two points $(x_1, y_1)$ and $(x_2, y_2)$ on a line, the gradient $m$ is
 
 $$
 m = \frac{y_2 - y_1}{x_2 - x_1}.

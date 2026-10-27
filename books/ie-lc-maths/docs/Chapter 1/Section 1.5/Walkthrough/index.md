@@ -64,7 +64,7 @@ There is a fourth rule for a power of a product:
 
 $$(ab)^n = a^n b^n$$
 
-where $b$ is a second factor.
+where $a$ and $b$ are factors and $n$ is the index.
 
 The index applies to every factor inside the bracket, including a number in
 front.

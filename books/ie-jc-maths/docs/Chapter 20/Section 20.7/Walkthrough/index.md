@@ -128,7 +128,7 @@ $$5\times3^2=5\times9=45$$
 The area of the large triangle is **45 cm²**.
 
 **Example 6.** A vertical stick 1.5 m tall casts a shadow 2 m long. At the same
-time a tree casts a shadow 8 m long. Find the height of the tree.
+time a tree casts a shadow 8 m long. Find the height $h$ of the tree.
 
 The two triangles are similar, so
 

@@ -27,8 +27,9 @@ radius.
 
 $$ \theta = \frac{s}{r} $$
 
-Here $s$ is the arc length and $r$ is the radius. Because the ratio of two
-lengths has no unit, an angle in radians is a pure number.
+Here $\theta$ is the angle in radians, $s$ is the arc length and $r$ is the
+radius. Because the ratio of two lengths has no unit, an angle in radians is a
+pure number.
 
 A full circle has an arc length of $2\pi r$, so
 
@@ -47,7 +48,10 @@ $$ 150 \times \frac{\pi}{180} = \frac{5\pi}{6} = 2.62\ \text{rad} $$
 
 $$ \omega = \frac{\Delta\theta}{\Delta t} $$
 
-It is measured in radians per second, $\text{rad}\,\text{s}^{-1}$. For an object
+Here $\Delta\theta$ is the change in angle and $\Delta t$ is the time taken.
+
+The angular velocity is measured in radians per second,
+$\text{rad}\,\text{s}^{-1}$. For an object
 that goes round a circle once in a time $T$, the angle changes by $2\pi$ in one
 period, so
 
@@ -101,8 +105,8 @@ roundabout.
 ## 4. Centripetal force
 
 Newton's second law says that a resultant force is needed to produce the
-centripetal acceleration. That force points towards the centre and is called the
-**centripetal force**.
+centripetal acceleration. That force $F$ points towards the centre and is called
+the **centripetal force**.
 
 $$ F = ma = \frac{mv^2}{r} = m\omega^2 r $$
 

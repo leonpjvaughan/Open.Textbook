@@ -39,7 +39,8 @@ $6$ m/s. Find the impulse on it.
 <details markdown="1">
 <summary>Hint</summary>
 
-The impulse equals the change in momentum, and the ball starts at rest.
+The impulse $J$ equals the change in momentum, and the ball starts at rest.
+Here $u$ is the velocity before and $v$ is the velocity after.
 
 <details markdown="1">
 <summary>Next step</summary>
@@ -113,7 +114,7 @@ direction. That is why a rebound needs a larger impulse than a stop.
 <details markdown="1">
 <summary>Hint</summary>
 
-Force is impulse divided by time.
+Force $F$ is the impulse divided by the time $t$.
 
 <details markdown="1">
 <summary>Next step</summary>
@@ -239,7 +240,7 @@ $$a = \frac{v - u}{t} = \frac{0 - 20}{4}$$
 
 $$a = -5\,\text{m/s}^2$$
 
-The distance is the average velocity times the time:
+The distance $s$ is the average velocity times the time:
 
 $$s = \frac{u + v}{2} \times t = \frac{20 + 0}{2} \times 4 = 40\,\text{m}$$
 

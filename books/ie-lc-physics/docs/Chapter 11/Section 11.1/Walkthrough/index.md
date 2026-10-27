@@ -111,6 +111,9 @@ $$
 s = vt
 $$
 
+where $s$ is the distance the sound travels, $v$ the speed of sound and $t$ the
+time.
+
 $$
 s = 340 \times 2.0
 $$

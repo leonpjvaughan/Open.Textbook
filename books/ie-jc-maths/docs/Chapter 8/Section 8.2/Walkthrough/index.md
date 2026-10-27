@@ -94,6 +94,8 @@ in $A$. You write it $A'$.
 
 $$A' = \{x \in U : x \notin A\}$$
 
+Here $x$ stands for any element of $U$.
+
 **Example 5.** Let $U = \{1, 2, 3, 4, 5, 6\}$ and $A = \{2, 4, 6\}$. Find $A'$.
 
 Take the elements of $U$ and remove the ones in $A$. What is left is the

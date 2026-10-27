@@ -27,6 +27,7 @@ In 1905 Einstein showed that mass and energy are two forms of the same thing:
 
 $$ E = mc^2 $$
 
+Here $c$ is the speed of light, $3.00 \times 10^{8}\,\text{m}\,\text{s}^{-1}$.
 The relation says that a mass $m$ has an **energy equivalent** $mc^2$, and that
 an energy $E$ has a mass equivalent $\dfrac{E}{c^2}$. The total mass-energy of an
 isolated system is conserved.

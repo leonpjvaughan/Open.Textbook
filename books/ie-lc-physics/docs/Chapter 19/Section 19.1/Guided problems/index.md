@@ -53,6 +53,8 @@ The charge is $2 \times 1.6 \times 10^{-19}$ C. A gold nucleus is positive.
 
 $$q = 2e = 2 \times 1.6 \times 10^{-19} = 3.2 \times 10^{-19}\,\text{C}$$
 
+Here $q$ is the charge on the alpha particle.
+
 The gold nucleus carries positive charge, and the alpha particle is also positive.
 Two positive charges repel each other, so the nucleus pushes the alpha particle away.
 

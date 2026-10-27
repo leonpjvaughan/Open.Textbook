@@ -97,7 +97,8 @@ You can work backwards when you know the area.
 **Example 5.** A triangle has an area of 24 m² and a base of 6 m. Find its
 perpendicular height.
 
-Start from the area formula, and put in what you know.
+Start from the area formula, and put in what you know. Here $h$ is the perpendicular
+height.
 
 $$24 = \tfrac{1}{2} \times 6 \times h$$
 

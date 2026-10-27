@@ -114,6 +114,9 @@ The distance is the speed multiplied by the time:
 
 $$d = vt$$
 
+where $d$ is the distance in metres, $v$ is the speed in metres per second and
+$t$ is the time in seconds.
+
 The unit of the right-hand side is metres per second multiplied by seconds. The
 seconds cancel, leaving metres.
 

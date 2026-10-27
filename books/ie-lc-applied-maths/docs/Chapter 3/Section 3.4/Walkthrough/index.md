@@ -41,7 +41,8 @@ The rule for a power of $t$ is
 
 $$\text{if } y = t^n \text{ then } \frac{dy}{dt} = n t^{n-1}.$$
 
-Multiply by the power, then reduce the power by one.
+Here $n$ is the power of $t$. Multiply by the power, then reduce the power by
+one.
 
 **Example 1.** Differentiate $y = 5t^3$.
 

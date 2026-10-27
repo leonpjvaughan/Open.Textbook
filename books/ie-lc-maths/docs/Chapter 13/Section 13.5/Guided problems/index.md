@@ -127,7 +127,7 @@ Write the line as $4x + 3y - 49 = 0$.
 $$d = \frac{|4 \times 3 + 3 \times 4 - 49|}{\sqrt{4^2 + 3^2}}
 = \frac{|12 + 12 - 49|}{5} = \frac{25}{5} = 5$$
 
-The distance equals the radius $5$, so the line touches the circle exactly once
+The distance $d$ equals the radius $5$, so the line touches the circle exactly once
 and is a tangent.
 
 </details>

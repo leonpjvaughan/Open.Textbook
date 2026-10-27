@@ -49,7 +49,7 @@ $$
 
 **Step 3. Decide whether the causeway crosses the lake.** The shortest distance
 from the centre to the line is measured along the perpendicular. Using the
-formula with $x + y - 19 = 0$:
+distance formula, with $x + y - 19 = 0$, the distance $d$ is
 
 $$
 d = \frac{|6 + 8 - 19|}{\sqrt{1^2 + 1^2}} = \frac{5}{\sqrt{2}} = \frac{5\sqrt{2}}{2} \approx 3.54 \text{ units}.

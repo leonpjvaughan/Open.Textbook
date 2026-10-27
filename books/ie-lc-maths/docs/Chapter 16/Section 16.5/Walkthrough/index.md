@@ -129,13 +129,13 @@ and one other **S**ide.
 **Example 1.** A right-angled triangle has legs of $9$ cm and $12$ cm. Find the
 hypotenuse.
 
-The hypotenuse is opposite the right angle, so
+The hypotenuse $h$ is opposite the right angle, so
 $$h^2 = 9^2 + 12^2 = 81 + 144 = 225.$$
 
 $$h = \sqrt{225} = 15 \text{ cm}.$$
 
 **Example 2.** A right-angled triangle has a hypotenuse of $13$ cm and one leg of $5$ cm.
-Find the other leg.
+Find the other leg $b$.
 
 The unknown side is a leg, so it is found by subtraction:
 $$b^2 = 13^2 - 5^2 = 169 - 25 = 144.$$
@@ -154,7 +154,7 @@ the triangle is right-angled. The right angle is opposite the $10$ cm side.
 the base of the wall. How far up the wall does the ladder reach?
 
 The wall, the ground and the ladder make a right-angled triangle, with the ladder as the
-hypotenuse.
+hypotenuse and the height up the wall $h$.
 $$h^2 = 5^2 - 3^2 = 25 - 9 = 16, \qquad h = 4 \text{ m}.$$
 
 The ladder reaches $4$ m up the wall.

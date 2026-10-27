@@ -69,8 +69,9 @@ $$
 \vec{OP} = \frac{n\mathbf{a} + m\mathbf{b}}{m + n}.
 $$
 
-The weight on $\mathbf{a}$ is the part of the ratio nearer $B$. Check the
-formula on a simple case: if $m = n$, then $P$ is the midpoint,
+The weight on $\mathbf{a}$ is the part of the ratio nearer $B$. Here
+$\mathbf{a}$ and $\mathbf{b}$ are the position vectors of $A$ and $B$. Check
+the formula on a simple case: if $m = n$, then $P$ is the midpoint,
 $\frac{\mathbf{a} + \mathbf{b}}{2}$.
 
 **Example 3.** The points are $A(1, 2)$ and $B(4, 8)$. Find the point $P$ on

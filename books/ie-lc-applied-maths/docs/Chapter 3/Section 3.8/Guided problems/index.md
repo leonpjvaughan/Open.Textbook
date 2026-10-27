@@ -32,6 +32,11 @@ kind: guided-problems
 
 ## Practise with help
 
+**The symbols.** Here $u$ is the launch speed and $\theta$ the launch angle, so
+$u_x = u\cos\theta$ and $u_y = u\sin\theta$ are the components of the
+velocity. $T$ is the time of flight, $H$ the greatest height, $R$ the range and
+$g = 9.8$ m/s² the acceleration of free fall.
+
 **1.** A ball is kicked at $20$ m/s at $30^\circ$ above the horizontal. Its
 vertical component is $10$ m/s. Taking $g = 9.8$ m/s², find the time of flight.
 

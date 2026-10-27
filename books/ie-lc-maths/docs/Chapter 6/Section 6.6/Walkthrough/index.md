@@ -59,6 +59,8 @@ $$\log_a\!\left(\frac{x}{y}\right) = \log_a x - \log_a y$$
 
 $$\log_a(x^n) = n\log_a x$$
 
+In these laws $x$ and $y$ are positive numbers and $n$ is any number.
+
 **Example 4.** Simplify $\log 3 + \log 4$.
 
 $$\log 3 + \log 4 = \log 12$$

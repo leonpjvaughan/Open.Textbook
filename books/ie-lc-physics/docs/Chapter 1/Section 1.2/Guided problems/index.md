@@ -216,8 +216,8 @@ $v = \dfrac{1.50}{0.55}$.
 
 $$v = \frac{d}{t} = \frac{1.50}{0.55} = 2.7\,\text{m/s}$$
 
-where $v$ is the average speed, $d$ the distance fallen and $t$ the time taken. Both readings carry two significant figures, so the answer does too. The unit is
-metres per second, m/s.
+where $v$ is the average speed, $d$ the distance fallen and $t$ the time taken. Both readings carry two significant figures, so the answer does too.
+The unit is metres per second, m/s.
 
 This is an average speed for the whole fall. The ball starts from rest and speeds up,
 so it is moving faster than 2.7 m/s at the end.

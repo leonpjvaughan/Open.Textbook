@@ -39,7 +39,7 @@ If either answer felt uncertain, look again at Section 15.6 before you carry on.
 <details markdown="1">
 <summary>Hint</summary>
 
-The hypotenuse is opposite the right angle, so add the two squares.
+The hypotenuse $h$ is opposite the right angle, so add the two squares.
 
 <details markdown="1">
 <summary>Next step</summary>
@@ -65,7 +65,7 @@ other leg.
 <details markdown="1">
 <summary>Hint</summary>
 
-The unknown side is a leg, so subtract.
+The unknown side is the leg $b$, so subtract.
 
 <details markdown="1">
 <summary>Next step</summary>
@@ -115,7 +115,8 @@ of the wall. How far up the wall does the ladder reach?
 <details markdown="1">
 <summary>Hint</summary>
 
-The ladder is the hypotenuse of a right-angled triangle.
+The ladder is the hypotenuse of a right-angled triangle, and the height up the wall is
+$h$.
 
 <details markdown="1">
 <summary>Next step</summary>
@@ -140,7 +141,8 @@ The ladder reaches $4$ m up the wall.
 <details markdown="1">
 <summary>Hint</summary>
 
-A diagonal of a rectangle makes a right-angled triangle with two sides.
+Write the diagonal as $d$. A diagonal of a rectangle makes a right-angled triangle with
+two sides.
 
 <details markdown="1">
 <summary>Next step</summary>

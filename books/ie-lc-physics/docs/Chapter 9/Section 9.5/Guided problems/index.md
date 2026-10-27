@@ -42,7 +42,8 @@ fundamental note.
 <details markdown="1">
 <summary>Hint</summary>
 
-Half a wavelength fits between the two fixed ends.
+Half a wavelength fits between the two fixed ends, so $\lambda = 2L$, where $L$ is the
+length of the string.
 
 <details markdown="1">
 <summary>Next step</summary>
@@ -118,7 +119,7 @@ length of the string. It has a node at each end and one more node in the middle.
 <summary>Hint</summary>
 
 Find the wave speed from $v = \sqrt{\dfrac{T}{\mu}}$ first, then use
-$f = \dfrac{v}{2l}$.
+$f = \dfrac{v}{2L}$.
 
 <details markdown="1">
 <summary>Next step</summary>
@@ -131,7 +132,7 @@ $f = \dfrac{400}{2 \times 0.50}$.
 
 $$\sqrt{\frac{T}{\mu}} = \sqrt{\frac{800}{0.0050}} = \sqrt{160000} = 400\,\text{m/s}$$
 
-$$f = \frac{v}{2l} = \frac{400}{2 \times 0.50} = 400\,\text{Hz}$$
+$$f = \frac{v}{2L} = \frac{400}{2 \times 0.50} = 400\,\text{Hz}$$
 
 The unit check: $\sqrt{\dfrac{\text{N}}{\text{kg/m}}} =
 \sqrt{\dfrac{\text{kg m/s}^{2}}{\text{kg/m}}} = \sqrt{\text{m}^{2}/\text{s}^{2}} =
@@ -174,7 +175,7 @@ tightened.
 <details markdown="1">
 <summary>Hint</summary>
 
-Use $f = \dfrac{1}{2l}\sqrt{\dfrac{T}{\mu}}$ and decide which quantity changes.
+Use $f = \dfrac{1}{2L}\sqrt{\dfrac{T}{\mu}}$ and decide which quantity changes.
 
 <details markdown="1">
 <summary>Next step</summary>
@@ -186,7 +187,7 @@ length $\mu$ do not change.
 <summary>Full working</summary>
 
 The fundamental frequency of the string is
-$f = \dfrac{1}{2l}\sqrt{\dfrac{T}{\mu}}$. Tightening the string increases the tension
+$f = \dfrac{1}{2L}\sqrt{\dfrac{T}{\mu}}$. Tightening the string increases the tension
 $T$, and the length $l$ and the mass per unit length $\mu$ stay the same. A larger $T$
 makes $\sqrt{\dfrac{T}{\mu}}$ larger, so $f$ increases. A higher frequency is heard as a
 higher pitch.

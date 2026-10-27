@@ -121,6 +121,8 @@ glass of refractive index 1.50. Calculate its wavelength in the glass.
 $$\lambda_2 = \frac{\lambda_1}{n} = \frac{6.50 \times 10^{-7}}{1.50}
 = 4.33 \times 10^{-7}\,\text{m}$$
 
+where $\lambda_1$ is the wavelength in air and $\lambda_2$ the wavelength in the glass.
+
 That is 433 nm. The frequency is unchanged, the speed is smaller and the wavelength
 is shorter.
 

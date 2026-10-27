@@ -155,6 +155,8 @@ $$s = 20 - 8 = 12\,\text{m}$$
 
 $$d = 20 + 8 = 28\,\text{m}$$
 
+Here $s$ is the displacement and $d$ is the distance, both in metres.
+
 The displacement is 12 m, because the journey back cancels part of the journey
 out. The distance is 28 m, because the object moved along both parts of the
 path.
@@ -207,6 +209,8 @@ The triangle has base $1.224$ s and height $12$ m/s.
 <summary>Full working</summary>
 
 $$H = \frac{1}{2} \times 1.224 \times 12 = 7.35\,\text{m}$$
+
+Here $H$ is the greatest height, in metres.
 
 The ball rises about 7.35 m. The area below the axis is not part of this height,
 because it describes the fall back down.

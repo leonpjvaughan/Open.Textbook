@@ -105,6 +105,8 @@ Q &= It \\
 \end{aligned}
 $$
 
+where $Q$ is the charge flow, $I$ is the current and $t$ is the time in seconds.
+
 The same 600 C flows through the live wire and back through the neutral wire.
 The current is not used up by the appliance.
 

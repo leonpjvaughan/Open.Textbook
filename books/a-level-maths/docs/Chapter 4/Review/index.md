@@ -26,6 +26,9 @@ $$
 a_n = 600(0.8)^{n-1}.
 $$
 
+Here $q_n$ is the amount the quiz night raises in month $n$ and $a_n$ is the
+amount the appeal raises.
+
 **Step 2. Find the first few months, to check the models.** The quiz night gives
 $150, 200, 250, \dots$, and the appeal gives $600, 480, 384, \dots$. The quiz
 night grows by a fixed amount, and the appeal falls by a fixed factor. Over a

@@ -10,7 +10,8 @@ kind: review
 
 **The two savings plans.** Both start with €50 and run for 24 months.
 
-**Plan A — arithmetic.** €50, then €20 more each month: $a = 50$, $d = 20$.
+**Plan A — arithmetic.** €50, then €20 more each month: $a = 50$, $d = 20$. The total saved
+in 24 months is $S_{24}$.
 
 $$S_{24} = \frac{24}{2}\left(2(50) + 23(20)\right) = 12(100 + 460) = 12 \times 560 = 6720$$
 

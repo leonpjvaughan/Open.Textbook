@@ -51,12 +51,14 @@ the object is pulled back towards the centre. The constant $\omega^2$ sets how
 quickly the motion repeats.
 
 This condition is met whenever the **restoring force** is proportional to the
-displacement. A mass on a spring obeys Hooke's law, $F = -kx$, so
+displacement. A mass on a spring obeys Hooke's law, $F = -kx$, where $k$ is the
+spring constant, so
 
 $$ a = \frac{F}{m} = -\frac{k}{m}x \quad\Rightarrow\quad \omega^2 = \frac{k}{m} $$
 
-For a simple pendulum at a small angle $\theta$, the restoring force is
-$-mg\sin\theta$. For small angles, $\sin\theta \approx \theta = \dfrac{x}{l}$, so
+For a simple pendulum of length $l$ at a small angle $\theta$, the restoring
+force is $-mg\sin\theta$. For small angles,
+$\sin\theta \approx \theta = \dfrac{x}{l}$, so
 
 $$ a = -\frac{g}{l}x \quad\Rightarrow\quad \omega^2 = \frac{g}{l} $$
 

@@ -212,7 +212,8 @@ block does not slide. Take $g = 9.8$ m/s².
 <details markdown="1">
 <summary>Hint</summary>
 
-The block is at rest, so friction balances the weight component down the plane.
+The block is at rest, so the friction force $F$ balances the weight component
+down the plane.
 
 <details markdown="1">
 <summary>Next step</summary>

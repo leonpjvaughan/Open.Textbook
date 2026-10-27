@@ -12,6 +12,11 @@ kind: review
 ink a charge of $-2.0 \times 10^{-12}$ C. Two plates $2.0$ mm apart, with a potential
 difference of $1200$ V across them, steer the drop to the right spot on the page.
 
+In these formulas $q$ is a charge, $n$ a number of electrons, $e$ the charge on one
+electron, $F$ a force and $d$ a distance. Also $E$ is an electric field strength,
+$V$ a potential difference, $W$ the work done, $k$ the Coulomb constant and $Q$ a
+point charge.
+
 **Step 1: the electrons on a drop.** The drop is negative, so it carries an excess of
 electrons. The number follows from $q = ne$:
 

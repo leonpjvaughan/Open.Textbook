@@ -50,7 +50,8 @@ falls to zero. At that point the field has stopped the fastest electrons, so
 
 $$eV_s = \tfrac{1}{2}mv_{\text{max}}^2$$
 
-where $V_s$ is the **stopping voltage** in volts.
+where $V_s$ is the **stopping voltage** in volts and $e$ is the charge on an
+electron.
 
 **Example 1.** Light of wavelength 500 nm falls on a metal of work function
 $3.3 \times 10^{-19}$ J. Calculate the maximum kinetic energy of the emitted
@@ -62,6 +63,9 @@ $$
 \frac{hc}{\lambda} = \frac{6.6 \times 10^{-34} \times 3.0 \times 10^{8}}{5.0 \times
 10^{-7}} = 3.96 \times 10^{-19}\,\text{J}
 $$
+
+Here $h$ is the Planck constant, $c$ is the speed of light and $\lambda$ is the
+wavelength.
 
 Then use Einstein's equation:
 

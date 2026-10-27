@@ -62,6 +62,8 @@ Five hours is $5.0 \times 3600 = 18000$ s. Then
 
 $$E = Pt = 2000 \times 18000 = 3.6 \times 10^{7}\,\text{J}$$
 
+where $E$ is the energy transferred, $P$ the power and $t$ the time.
+
 The hours must be turned into seconds first, because the watt is a joule per
 second.
 
@@ -97,6 +99,9 @@ Calculate the irradiance at a distance twice as far from the Sun.
 
 $$I_2 = I_1 \left(\frac{d_1}{d_2}\right)^2 = 1000 \times \left(\frac{1.0}{2.0}\right)^2
 = 1000 \times \frac{1}{4} = 250\,\text{W/m}^2$$
+
+where $I_1$ and $I_2$ are the irradiances at distances $d_1$ and $d_2$ from the
+source, and $d$ is the distance from the source.
 
 ## Energy in one photon
 

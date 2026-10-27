@@ -13,6 +13,9 @@ speed of sound in sea water is 1500 m/s. A pulse returns from the sea floor afte
 0.020 s. The echo sounder works at 50 kHz. The ripple tank makes waves at
 5.0 Hz with a wavelength of 0.12 m.
 
+In the working below, $s$ is a distance, $v$ a speed, $t$ a time, $f$ a
+frequency, $\lambda$ a wavelength and $T$ a period.
+
 **1. The depth of the sea floor.** The pulse travels to the sea floor and back,
 so the depth is half of the distance the pulse covers.
 

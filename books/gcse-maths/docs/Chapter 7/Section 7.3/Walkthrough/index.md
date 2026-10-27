@@ -40,7 +40,7 @@ $$
 315\leq m<325
 $$
 
-where $m$ is the mass in grams and $t$ the time in seconds.
+where $m$ is the mass in grams.
 
 **Example 2.** A time is $12.4$ seconds to the nearest tenth. Give its interval.
 
@@ -49,6 +49,8 @@ Half of $0.1$ is $0.05$.
 $$
 12.35\leq t<12.45
 $$
+
+where $t$ is the time in seconds.
 
 > **Watch out.** A common error is to include the upper endpoint. For $4.7$ cm to the nearest $0.1$ cm, $4.75$ cm rounds to $4.8$ cm, so write $L<4.75$.
 > **Re-check:** ask whether your interval includes the endpoint or stops just before it.

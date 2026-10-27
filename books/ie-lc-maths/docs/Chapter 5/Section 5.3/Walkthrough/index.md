@@ -77,6 +77,8 @@ The conjugate behaves well under the operations, and two of these are worth know
 
 $$\overline{z + w} = \bar z + \bar w \qquad \overline{zw} = \bar z\,\bar w$$
 
+where $z$ and $w$ are any two complex numbers.
+
 In words: the conjugate of a sum is the sum of the conjugates, and the conjugate of a
 product is the product of the conjugates. Both are true because changing the sign of each
 imaginary part commutes with adding and with multiplying.

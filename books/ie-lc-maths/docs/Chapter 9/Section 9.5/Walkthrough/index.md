@@ -49,7 +49,7 @@ $T_5 = 3 + 4(7) = 31$.
 ## Fixed points
 
 A **fixed point** of a recurrence is a value $L$ that would stay the same if the sequence
-reached it.
+reached it. If the recurrence is $T_{n+1} = f(T_n)$, the fixed point satisfies
 
 $$L = f(L)$$
 

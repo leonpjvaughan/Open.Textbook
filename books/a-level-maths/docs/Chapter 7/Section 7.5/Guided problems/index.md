@@ -162,7 +162,7 @@ $$
 </details>
 
 **5.** A rectangle has a perimeter of $20$ cm. Let one side be $x$ cm. Write the
-area as a function of $x$, and find the value of $x$ that gives the greatest
+area $A$ as a function of $x$, and find the value of $x$ that gives the greatest
 area.
 
 <details markdown="1">

@@ -67,6 +67,8 @@ To **expand** a bracket, multiply every term inside by the number outside.
 
 $$a(bx + c) = abx + ac$$
 
+where $a$, $b$ and $c$ are numbers.
+
 **Example 4.** Expand $4(2x + 3)$.
 
 $$4(2x) + 4(3) = 8x + 12$$
@@ -90,6 +92,8 @@ Two brackets are expanded by multiplying every term in the first by every term i
 the second, then collecting.
 
 $$(x + y)(w + z) = xw + xz + yw + yz$$
+
+where $x$, $y$, $w$ and $z$ stand for any numbers.
 
 **Example 6.** Expand $(x + 3)(x + 4)$.
 

@@ -93,7 +93,7 @@ change and its starting value.
 <details markdown="1">
 <summary>Hint</summary>
 
-The rate is the slope. The starting value is the $y$-intercept.
+The rate is the slope. The starting value is the $y$-intercept $c$.
 
 <details markdown="1">
 <summary>Next step</summary>

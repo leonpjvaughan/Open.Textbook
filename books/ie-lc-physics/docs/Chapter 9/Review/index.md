@@ -12,6 +12,10 @@ kind: review
 sounds a note of 196 Hz. Waves travel along the string at 255 m/s, and the speed of sound
 in air is 340 m/s.
 
+In these formulas $L$ is the length of the string, $\lambda$ a wavelength, $v$ a wave
+speed and $f$ a frequency. $f_1$ is the fundamental frequency and $f_2$ the second
+harmonic.
+
 **Step 1: what travels, and what stays.** Energy travels from the string, through the air,
 to your ear. The string and the air stay in place. Their particles vibrate about fixed
 positions and pass the disturbance on to their neighbours.
@@ -108,7 +112,7 @@ relationships, and two come from earlier chapters.
 - describe how a stationary wave forms on a stretched string, and find its nodes and
   antinodes;
 - use $\lambda = \dfrac{2L}{n}$ and $f_n = n f_1$ for the harmonics of a string;
-- use $f = \dfrac{1}{2l}\sqrt{\dfrac{T}{\mu}}$ for the fundamental frequency of a
+- use $f = \dfrac{1}{2L}\sqrt{\dfrac{T}{\mu}}$ for the fundamental frequency of a
   stretched string;
 - explain resonance, and say why a string responds strongly at its natural frequencies.
 

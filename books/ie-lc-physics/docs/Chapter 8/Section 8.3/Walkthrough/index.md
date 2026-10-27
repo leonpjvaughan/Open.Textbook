@@ -85,6 +85,9 @@ $$
 E_1 = mc\Delta\theta = 0.50 \times 4200 \times 80 = 1.68 \times 10^{5}\,\text{J}
 $$
 
+where $c$ is the specific heat capacity of water and $\Delta\theta$ the temperature
+change.
+
 Boiling 0.10 kg:
 
 $$

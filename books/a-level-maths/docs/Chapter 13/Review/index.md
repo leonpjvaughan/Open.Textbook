@@ -64,6 +64,9 @@ $$
 z = \frac{52 - 45}{6} = 1.1667 \ (4 \text{ d.p.}).
 $$
 
+Here $z$ is the standardised value, and $\Phi(z)$ is the area to its left
+under the standard Normal curve.
+
 The table gives $\Phi(1.2) = 0.8849$ and $\Phi(1.1) = 0.8643$, so
 $\Phi(1.1667) \approx 0.8783$. Then
 

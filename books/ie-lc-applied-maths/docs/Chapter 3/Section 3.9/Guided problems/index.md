@@ -32,6 +32,11 @@ kind: guided-problems
 
 ## Practise with help
 
+**The symbols.** Here $u$ is the launch speed and $\theta$ the launch angle, so
+$u_x$ and $u_y$ are the horizontal and vertical components of the launch
+velocity. $R$ is the range, $H$ the greatest height, $t$ the time and
+$g = 9.8$ m/s² the acceleration of free fall.
+
 **1.** A ball is kicked at $20$ m/s at $60^\circ$ above the horizontal. Its
 components are $10$ m/s horizontally and $17.32$ m/s vertically. Taking
 $g = 9.8$ m/s², find its range.

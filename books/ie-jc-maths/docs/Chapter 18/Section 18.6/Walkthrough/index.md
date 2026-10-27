@@ -40,7 +40,7 @@ you can use whichever angle the question gives you.
 **Example 1.** A person stands 20 m from a tree. The angle of elevation to the top
 of the tree is 30°. Find the height of the tree.
 
-The height is opposite the 30° angle, and 20 m is adjacent to it. Use tangent.
+The height $h$ is opposite the 30° angle, and 20 m is adjacent to it. Use tangent.
 
 $$\tan 30^\circ = \frac{h}{20}$$
 
@@ -51,8 +51,8 @@ The tree is about 11.5 m tall.
 **Example 2.** From the top of a cliff 40 m above the sea, the angle of depression
 to a boat is 25°. Find the horizontal distance from the cliff to the boat.
 
-The height of 40 m is opposite the 25° angle, and the distance is adjacent to it.
-Use tangent.
+The height of 40 m is opposite the 25° angle, and the distance $d$ is
+adjacent to it. Use tangent.
 
 $$\tan 25^\circ = \frac{40}{d}$$
 

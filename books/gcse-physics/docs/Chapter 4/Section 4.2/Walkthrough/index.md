@@ -61,6 +61,8 @@ T &= \frac{1}{f} \\
 \end{aligned}
 $$
 
+Here $T$ is the period in seconds and $f$ is the frequency in hertz.
+
 ## 3. Using an echo to find a distance
 
 When a wave meets the boundary between two different media, part of the wave is

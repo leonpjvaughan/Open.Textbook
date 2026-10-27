@@ -11,6 +11,11 @@ kind: review
 **The spin cycle.** A washing machine drum has a radius of 0.24 m and turns at 1400
 revolutions per minute. A wet towel of mass 0.20 kg lies against the wall of the drum.
 
+In these formulas $f$ is the frequency, $T$ the period, $\omega$ the angular velocity,
+$v$ the speed of a point on the wall and $r$ the radius of the drum. $a$ is the
+centripetal acceleration, $F$ the force the wall exerts, $m$ the mass of the towel and
+$g$ the gravitational field strength.
+
 **Step 1: the frequency and the period.** The rate in revolutions per minute must be
 converted into hertz first.
 

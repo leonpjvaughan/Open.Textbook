@@ -46,10 +46,12 @@ The steps are 4 across and 6 up.
 
 ## The distance between two points
 
-The distance between two points is found from the two steps. Square each step, add
-the squares, and take the square root.
+The distance $d$ between two points is found from the two steps. Square each step,
+add the squares, and take the square root.
 
 $$d = \sqrt{(x_2-x_1)^2 + (y_2-y_1)^2}$$
+
+Here $(x_1,y_1)$ and $(x_2,y_2)$ are the two points.
 
 This is the coordinate form of Pythagoras' theorem. You will meet that theorem,
 and its proof, in Chapter 18. Here you can use the result to measure any segment.
@@ -85,7 +87,7 @@ distance is a whole number.
 
 ## The midpoint of a segment
 
-The **midpoint** of a segment is the point exactly halfway between its two
+The **midpoint** $M$ of a segment is the point exactly halfway between its two
 endpoints. It is found by averaging the two $x$-coordinates and the two
 $y$-coordinates.
 

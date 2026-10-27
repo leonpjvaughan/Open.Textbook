@@ -206,7 +206,7 @@ $$
 1.2 + 2.5 + 3.1 + 2.4 + 0.9 = 10.1.
 $$
 
-Substitute into the rule:
+Substitute into the rule for the area $A$:
 
 $$
 A \approx \frac{2}{2}\Bigl[0 + 0 + 2(10.1)\Bigr] = 20.2.

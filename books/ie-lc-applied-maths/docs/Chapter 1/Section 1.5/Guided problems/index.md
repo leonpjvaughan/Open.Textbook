@@ -49,6 +49,9 @@ $40 \div 10$.
 
 $$W = \frac{Q}{s} = \frac{40}{10} = 4$$
 
+Here $W$ is the wait in minutes, $Q$ is the number of students in the queue
+and $s$ is the service rate in students each minute.
+
 The wait is 4 minutes, so the student is served at about 12:34. Check it:
 $10 \times 4 = 40$ students are served in that time.
 
@@ -74,6 +77,9 @@ $10 - 5 = 5$ students each minute.
 <summary>Full working</summary>
 
 $$T = \frac{Q}{s - a} = \frac{40}{10 - 5} = \frac{40}{5} = 8$$
+
+Here $T$ is the clear time in minutes and $a$ is the arrival rate in students
+each minute.
 
 The queue is gone after 8 minutes, at about 12:38. Notice that this is longer
 than the 4-minute wait in question 1, because the questions are different.

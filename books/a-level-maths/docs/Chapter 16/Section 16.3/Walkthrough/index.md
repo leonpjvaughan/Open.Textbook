@@ -32,10 +32,10 @@ $$
 W = mg,
 $$
 
-where $m$ is the mass in kilograms and $g$ is the **acceleration due to
-gravity**. Near the Earth's surface, $g = 9.8$ m s$^{-2}$. The value of $g$ is
-smaller on the Moon and on other planets, so a body's weight changes from place
-to place while its mass stays the same.
+where $W$ is the weight, $m$ is the mass in kilograms and $g$ is the
+**acceleration due to gravity**. Near the Earth's surface, $g = 9.8$
+m s$^{-2}$. The value of $g$ is smaller on the Moon and on other planets, so a
+body's weight changes from place to place while its mass stays the same.
 
 A body of mass $1$ kg has a weight of $9.8$ N on the Earth. That is why a
 kilogram of sugar feels heavy but has no weight at all in deep space.

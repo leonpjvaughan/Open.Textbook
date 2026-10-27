@@ -26,7 +26,8 @@ $\sqrt{2}$ is a surd: it is about $1.414$, but no fraction equals it exactly.
 Leaving an answer as $\sqrt{2}$ keeps it exact, while $1.414$ is only an
 approximation.
 
-Two laws let you move factors in and out of a root:
+Two laws let you move factors in and out of a root, for positive numbers $a$ and
+$b$:
 
 $$
 \sqrt{ab} = \sqrt{a}\,\sqrt{b} \qquad \text{and} \qquad \sqrt{\frac{a}{b}} = \frac{\sqrt{a}}{\sqrt{b}}.

@@ -142,6 +142,9 @@ at which work is done.
 
 $$ P = \frac{W}{t} $$
 
+where $P$ is the power in watts, $W$ is the work done in joules and $t$ is the
+time taken in seconds.
+
 **Worked example 6.** A motor does 1800 J of work in 6.0 s. Calculate the power
 of the motor.
 

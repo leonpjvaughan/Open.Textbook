@@ -35,7 +35,8 @@ kind: guided-problems
 <details markdown="1">
 <summary>Hint</summary>
 
-Compare it with $y = mx + c$.
+Compare it with $y = mx + c$, where $m$ is the gradient and $c$ is the
+$y$-intercept.
 
 <details markdown="1">
 <summary>Next step</summary>

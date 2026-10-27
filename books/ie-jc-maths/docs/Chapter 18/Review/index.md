@@ -13,7 +13,8 @@ kind: review
 You stand 12 m from the foot of the building. The distance in a straight line to
 the top is 15 m, and the angle of elevation is 37°.
 
-**Method 1: Pythagoras' theorem.** The 15 m line is the hypotenuse.
+**Method 1: Pythagoras' theorem.** The 15 m line is the hypotenuse, and the height
+is $h$.
 
 $$h^2 = 15^2-12^2 = 225-144 = 81$$
 

@@ -54,6 +54,8 @@ integrate $(4 - x^2)$ between the limits.
 <details markdown="1">
 <summary>Full working</summary>
 
+The area $A$ is
+
 $$
 A = \int_{-2}^{2} (4 - x^2)dx = \left[4x - \frac{x^3}{3}\right]_{-2}^{2}
 = \frac{16}{3} + \frac{16}{3} = \frac{32}{3}.

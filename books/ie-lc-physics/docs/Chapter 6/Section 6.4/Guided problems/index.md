@@ -39,7 +39,8 @@ the centre. Calculate its orbital speed. Take $M = 5.97 \times 10^{24}\,\text{kg
 <details markdown="1">
 <summary>Hint</summary>
 
-Use $v = \sqrt{\dfrac{GM}{r}}$.
+Use $v = \sqrt{\dfrac{GM}{r}}$, where $v$ is the orbital speed, $G$ the gravitational
+constant, $M$ the mass of the Earth and $r$ the radius of the orbit.
 
 <details markdown="1">
 <summary>Next step</summary>

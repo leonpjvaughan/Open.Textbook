@@ -46,7 +46,7 @@ The **normal reaction** is the force from a surface, perpendicular to it. The
 word *normal* means at right angles, so the normal reaction is at right angles
 to the surface.
 
-On a horizontal surface, the normal reaction balances the weight:
+On a horizontal surface, the normal reaction $R$ balances the weight:
 
 $$R = mg$$
 

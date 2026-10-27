@@ -25,8 +25,8 @@ opposite idea: what it means for forces to cancel completely.
 
 ## Forces along a line
 
-If two forces act along the same line, their resultant is found by adding or
-subtracting, depending on their directions.
+If two forces act along the same line, their resultant $R$ is found by adding
+or subtracting, depending on their directions.
 
 - Same direction: add the sizes.
 - Opposite directions: subtract the smaller size from the larger. The resultant
@@ -52,6 +52,8 @@ Forces at right angles do not add like ordinary numbers. They form two sides of 
 right-angled triangle, and the resultant is the hypotenuse.
 
 $$R = \sqrt{F_1^2 + F_2^2}$$
+
+where $F_1$ and $F_2$ are the sizes of the two forces.
 
 **Example 2.** Forces of $6$ N and $8$ N act at right angles. Find the size of
 the resultant.

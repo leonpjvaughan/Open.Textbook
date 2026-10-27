@@ -58,6 +58,8 @@ $\dfrac{2.6 \times 10^{-6}}{6.5 \times 10^{-7}}$.
 $$\frac{\text{path difference}}{\lambda} = \frac{2.6 \times 10^{-6}}
 {6.5 \times 10^{-7}} = 4$$
 
+where $\lambda$ is the wavelength of the light.
+
 The path difference is 4 wavelengths. A whole number of wavelengths means the waves
 arrive in step, so the point is a bright fringe.
 

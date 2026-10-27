@@ -33,6 +33,8 @@ the whole calculation.
 
 ## Practise with help
 
+In these questions $\theta$ is the angle you measure the sides from.
+
 **1.** A right-angled triangle has an opposite side of 6 cm, an adjacent side of
 8 cm and a hypotenuse of 10 cm. Write down $\sin\theta$, $\cos\theta$ and
 $\tan\theta$.

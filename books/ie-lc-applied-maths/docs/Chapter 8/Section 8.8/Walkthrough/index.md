@@ -81,7 +81,8 @@ Second half-step: rate $0.5 \times 125 = 62.5$,
 $$y_2 = 125 + 0.5(62.5) = 156.25.$$
 
 The exact value at $x = 1$ is $100e^{0.5} \approx 164.9$. The estimate $156.25$
-is much closer than $225$, so halving the step improves the estimate.
+is much closer than the one-step value $150$ at the same $x$, so halving the step
+improves the estimate.
 
 ## Why the two models differ
 

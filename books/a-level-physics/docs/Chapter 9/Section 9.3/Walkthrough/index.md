@@ -131,9 +131,9 @@ Rearranging gives the radius of the circle:
 
 $$ r = \frac{mv}{BQ} $$
 
-A faster particle or a heavier particle makes a larger circle. A stronger field
-or a larger charge makes a smaller circle. The time for one full circle is the
-circumference divided by the speed:
+Here $m$ is the mass of the particle. A faster particle or a heavier particle
+makes a larger circle. A stronger field or a larger charge makes a smaller
+circle. The time for one full circle is the circumference divided by the speed:
 
 $$ T = \frac{2\pi r}{v} = \frac{2\pi m}{BQ} $$
 

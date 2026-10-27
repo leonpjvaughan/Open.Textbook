@@ -63,6 +63,8 @@ for radians and once for degrees.
 
 > **With the angle in radians.** For a circle of radius $r$ and a sector angle $\theta$,
 > $$l = r\theta \qquad A = \tfrac{1}{2}r^2\theta$$
+>
+> Here $l$ is the arc length and $A$ is the area of the sector.
 
 **Example 3.** A sector has radius $6$ cm and angle $\dfrac{\pi}{3}$ radians. Find the
 arc length and the area.

@@ -170,6 +170,8 @@ The interior heights are $3, 5, 6$, so they add to $14$ and twice that is $28$.
 <details markdown="1">
 <summary>Full working</summary>
 
+The distance $s$ is
+
 $$
 s \approx \frac{1}{2}\Bigl[0 + 6 + 2(3 + 5 + 6)\Bigr] = \frac{1}{2}(6 + 28) = 17.
 $$

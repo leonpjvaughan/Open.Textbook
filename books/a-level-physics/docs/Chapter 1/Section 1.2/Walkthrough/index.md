@@ -37,8 +37,8 @@ $2 \times 10^2$, could stand for a wide range of values. An order-of-magnitude
 estimate cares only that the power of ten is right.
 
 **Worked example 1.** A classroom is 10 m long, 6.0 m wide and 2.5 m high. The
-density of air is $1.2\,\text{kg}\,\text{m}^{-3}$. Estimate the mass of air in the
-room.
+density of air is $1.2\,\text{kg}\,\text{m}^{-3}$. Estimate the volume $V$ of the
+room, and then the mass of air in it.
 
 $$
 \begin{aligned}

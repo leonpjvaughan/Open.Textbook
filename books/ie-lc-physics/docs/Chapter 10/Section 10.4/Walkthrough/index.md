@@ -76,6 +76,8 @@ $$\text{bright: } \text{path difference} = n\lambda$$
 
 $$\text{dark: } \text{path difference} = \left(n + \tfrac{1}{2}\right)\lambda$$
 
+where $\lambda$ is the wavelength of the light.
+
 The pattern is a row of bright and dark fringes. The centre is bright, because the
 path difference there is zero.
 

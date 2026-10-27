@@ -153,6 +153,9 @@ $$
 a = \frac{v - u}{t} = \frac{20 - 5}{3} = \frac{15}{3} = 5 \text{ m/s}^2.
 $$
 
+where $u$ is the starting velocity, $v$ the finishing velocity and $t$ the
+time.
+
 The acceleration is positive, and the cyclist is speeding up.
 </details>
 

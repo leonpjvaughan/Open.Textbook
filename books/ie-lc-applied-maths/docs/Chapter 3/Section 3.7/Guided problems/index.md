@@ -34,6 +34,11 @@ kind: guided-problems
 
 ## Practise with help
 
+**The symbols.** Here $u$ is the launch speed and $\theta$ the launch angle, so
+$u_x = u\cos\theta$ and $u_y = u\sin\theta$ are the components of the
+velocity. $x$ is the horizontal distance and $y$ is the height, both in
+metres, and $g$ is the acceleration of free fall.
+
 **1.** A ball is kicked at $20$ m/s at $30^\circ$ above the horizontal. Find
 the horizontal and vertical components of its velocity, each to $3$
 significant figures.

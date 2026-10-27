@@ -28,6 +28,8 @@ $$
 \frac{d}{dx}(uv) = u\frac{dv}{dx} + v\frac{du}{dx}.
 $$
 
+Here $\frac{d}{dx}$ means the derivative with respect to $x$.
+
 In words: differentiate the first and keep the second, then keep the first and
 differentiate the second, and add the two results.
 

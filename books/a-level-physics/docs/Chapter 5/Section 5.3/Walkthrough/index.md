@@ -123,7 +123,8 @@ the internal resistance and through the external circuit. So the current is
 
 $$ I = \frac{\varepsilon}{R + r} $$
 
-where $R$ is the equivalent resistance of the external circuit. The terminal
+where $I$ is the current, $\varepsilon$ is the emf of the source, $R$ is the
+equivalent resistance of the external circuit and $r$ is the internal resistance. The terminal
 potential difference is the pd across $R$.
 
 $$ V = IR = \varepsilon - Ir $$

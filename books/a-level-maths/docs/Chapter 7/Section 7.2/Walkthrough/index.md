@@ -151,6 +151,8 @@ $$
 \frac{d}{dx}(\sin x) = \cos x.
 $$
 
+Here $\frac{d}{dx}$ means the derivative with respect to $x$.
+
 A similar argument starting from $\cos(x + h) = \cos x\cos h - \sin x\sin h$
 gives
 

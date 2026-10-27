@@ -64,6 +64,8 @@ time sunlight takes to reach the Earth.
 
 $$t = \frac{d}{c} = \frac{1.5 \times 10^{11}}{3.0 \times 10^{8}} = 500\,\text{s}$$
 
+where $t$ is the time the light takes and $d$ is the distance it travels.
+
 That is 8.3 minutes. The sunlight you see left the Sun about eight minutes ago.
 
 **Example 2.** A radio station broadcasts at 100 MHz. Calculate the wavelength of

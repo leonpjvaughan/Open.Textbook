@@ -28,6 +28,9 @@ $$
 \int_a^b f(x)dx = \Big[F(x)\Big]_a^b = F(b) - F(a).
 $$
 
+Here $a$ is the lower limit, $b$ is the upper limit, $f$ is the function being
+integrated and $F$ is an antiderivative of $f$.
+
 The constant of integration never appears, because it cancels in the subtraction.
 
 **Example 1.** Evaluate $\displaystyle\int_1^4 (2x + 1)dx$.

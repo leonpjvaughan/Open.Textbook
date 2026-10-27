@@ -120,6 +120,8 @@ Put the numbers you know into $A=\tfrac{1}{2}\times\text{base}\times\text{height
 
 $$36=\tfrac{1}{2}\times9\times h \qquad 36=4.5h$$
 
+Here $h$ is the perpendicular height.
+
 <details markdown="1">
 <summary>Full working</summary>
 
@@ -170,6 +172,8 @@ of them.
 <summary>Next step</summary>
 
 $$P=4\times6 \qquad A=6\times6$$
+
+Here $P$ is the perimeter and $A$ is the area.
 
 <details markdown="1">
 <summary>Full working</summary>

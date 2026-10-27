@@ -28,6 +28,8 @@ You write it $A \cap B$, and it holds the elements the two sets share.
 
 $$A \cap B = \{x : x \in A \text{ and } x \in B\}$$
 
+Here $x$ stands for any element.
+
 **Example 1.** Find $\{1, 2, 3, 4\} \cap \{3, 4, 5, 6\}$.
 
 Look for the elements that appear in both lists: 3 and 4.
@@ -86,6 +88,9 @@ students play both. How many play at least one of the two sports?
 Add the two totals, then subtract the students counted twice.
 
 $$n(F \cup B) = 18 + 12 - 6 = 24$$
+
+Here $F$ is the set of students who play football and $B$ is the set who play
+basketball.
 
 So 24 students play at least one of the two sports.
 

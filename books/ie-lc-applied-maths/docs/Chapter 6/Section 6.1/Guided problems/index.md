@@ -142,7 +142,7 @@ The velocity reverses, so give it a sign before and after.
 <details markdown="1">
 <summary>Next step</summary>
 
-The velocity before is $-5$ m/s and after is $+3$ m/s.
+The velocity before, $u$, is $-5$ m/s and the velocity after, $v$, is $+3$ m/s.
 
 $$J = m(v - u) = 0.2 \times (3 - (-5))$$
 

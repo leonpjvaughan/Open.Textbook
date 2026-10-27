@@ -46,8 +46,8 @@ An assumption costs you accuracy. The question is how much.
 model is **sensitive** to an assumption when a small change makes a large
 difference to the answer.
 
-Take the clear time $T = \dfrac{Q}{s - a}$, with $Q = 40$ and $a = 5$. Change
-the service rate $s$ and watch $T$.
+Take the clear time $T = \dfrac{Q}{s - a}$, with $Q = 40$ students in the queue
+and $a = 5$ joining each minute. Change the service rate $s$ and watch $T$.
 
 | Service rate $s$ (per minute) | Net rate $s - a$ (per minute) | Clear time $T$ (minutes) |
 |---|---|---|

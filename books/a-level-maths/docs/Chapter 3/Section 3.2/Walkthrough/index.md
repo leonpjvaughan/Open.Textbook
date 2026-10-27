@@ -25,8 +25,10 @@ Two lines are **parallel** when they point in the same direction. Direction is
 the gradient, so parallel lines have the same gradient.
 
 $$
-m_1 = m_2.
+m_1 = m_2,
 $$
+
+where $m_1$ and $m_2$ are the gradients of the two lines.
 
 **Example 1.** Find the equation of the line through $(3, -2)$ parallel to
 $y = 4x - 1$.
@@ -108,7 +110,7 @@ Multiplying by $2$ gives the whole-number form $3x - 2y - 13 = 0$.
 
 ## 3. The midpoint of a segment
 
-The **midpoint** of the segment joining $(x_1, y_1)$ and $(x_2, y_2)$ is the
+The **midpoint** $M$ of the segment joining $(x_1, y_1)$ and $(x_2, y_2)$ is the
 average of the two endpoints:
 
 $$

@@ -63,7 +63,7 @@ to the roundabout at $B$.
 A line is a tangent when the distance from the centre to the line equals the
 radius. This is often quicker than solving equations.
 
-For the line $ax + by + c = 0$ and the centre $(a_1, b_1)$, the distance is
+For the line $ax + by + c = 0$ and the centre $(a_1, b_1)$, the distance $d$ is
 
 $$d = \frac{|a a_1 + b b_1 + c|}{\sqrt{a^2 + b^2}}$$
 
@@ -84,6 +84,8 @@ triangle $CQT$ has a right angle at $T$, because the radius $CT$ is
 perpendicular to the tangent. Pythagoras gives
 
 $$QT^2 = CQ^2 - r^2$$
+
+where $r$ is the radius.
 
 **Example 4.** From $Q(6, 9)$, a tangent is drawn to the circle with centre
 $C(3, 4)$ and radius $5$. Find the length of the tangent.

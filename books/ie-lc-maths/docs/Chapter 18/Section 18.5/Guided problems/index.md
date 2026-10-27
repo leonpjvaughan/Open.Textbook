@@ -148,7 +148,7 @@ $\begin{pmatrix} 1 \\ 0 \\ 0 \end{pmatrix}$.
 <details markdown="1">
 <summary>Hint</summary>
 
-The dot product and the two lengths give the cosine.
+The dot product and the two lengths give $\cos\theta$, where $\theta$ is the angle.
 
 <details markdown="1">
 <summary>Next step</summary>

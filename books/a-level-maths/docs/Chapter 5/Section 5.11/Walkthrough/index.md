@@ -60,7 +60,8 @@ $$
 The left-hand side equals the right-hand side, so the identity is proved.
 
 **Example 2.** Prove that
-$\sin(A + B)\sin(A - B) \equiv \sin^2 A - \sin^2 B$.
+$\sin(A + B)\sin(A - B) \equiv \sin^2 A - \sin^2 B$ for any angles $A$ and
+$B$.
 
 Use the two addition formulae:
 

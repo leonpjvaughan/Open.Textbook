@@ -122,6 +122,8 @@ $$
 T = \frac{100\sqrt{2}}{49} \approx 2.89 \text{ s}.
 $$
 
+Here $T$ is the time of flight in seconds.
+
 The range is the horizontal distance in that time:
 
 $$

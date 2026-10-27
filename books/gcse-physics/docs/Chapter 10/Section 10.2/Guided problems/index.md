@@ -194,6 +194,8 @@ t &= \frac{d}{v} \\
 \end{aligned}
 $$
 
+where $t$ is the time, $d$ is the distance and $v$ is the speed.
+
 $$
 \begin{aligned}
 t &= \frac{8.0 \times 10^{13}}{3.15 \times 10^{7}} \\

@@ -20,7 +20,8 @@ $$
 V = x(16 - 2x)(10 - 2x) = 4x^3 - 52x^2 + 160x.
 $$
 
-**Step 2. Differentiate and solve.** Differentiate with the power rule:
+**Step 2. Differentiate and solve.** Differentiate with the power rule to find
+the derivative $\dfrac{dV}{dx}$:
 
 $$
 \frac{dV}{dx} = 12x^2 - 104x + 160 = 4(3x^2 - 26x + 40).
@@ -60,7 +61,7 @@ $144$ cm$^3$.
 ### The rising balloon
 
 A spherical balloon is inflated so that its volume grows at $100$ cm$^3$ per
-second. Its volume is $V = \dfrac{4}{3}\pi r^3$, so
+second. Its volume $V = \dfrac{4}{3}\pi r^3$, where $r$ is its radius, so
 
 $$
 \frac{dV}{dr} = 4\pi r^2.

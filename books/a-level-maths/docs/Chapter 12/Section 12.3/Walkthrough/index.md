@@ -141,7 +141,7 @@ compare the old answer and the new one.
 base rate of $0.001$. Suppose the detector is old and the false-alarm rate rises
 to $0.05$. Find the new probability of a fire, given an alarm.
 
-The two alarm paths are
+Let $F$ be a fire and $A$ an alarm. The two alarm paths are
 
 $$
 P(F \text{ and } A) = 0.001 \times 0.95 = 0.00095,

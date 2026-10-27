@@ -31,7 +31,8 @@ The **electric current** is the rate of flow of charge.
 
 $$ I = \frac{\Delta Q}{\Delta t} $$
 
-The unit of current is the **ampere**, $\text{A}$. One ampere is one coulomb per
+Here $\Delta$ means the change in a quantity: $\Delta Q$ is the charge that flows
+in the time $\Delta t$. The unit of current is the **ampere**, $\text{A}$. One ampere is one coulomb per
 second. Charge is measured in **coulombs**, $\text{C}$. Rearranged, this gives
 the charge that flows in a time.
 

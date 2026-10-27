@@ -25,7 +25,7 @@ heat taken by the table and the cup is not modelled.
 
 **The model.** $T$ is the temperature in °C, $t$ is the time in minutes, $T_0$ is
 the starting temperature, $T_r$ is the room temperature and $k$ is the cooling
-rate in each minute.
+rate in each minute. Here $e$ is the number $2.718\ldots$.
 
 $$T = T_r + (T_0 - T_r)e^{-kt}$$
 

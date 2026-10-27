@@ -28,9 +28,9 @@ the height.
 
 $$\mathbf{a} = \begin{pmatrix} x \\ y \\ z \end{pmatrix} = x\mathbf{i} + y\mathbf{j} + z\mathbf{k}$$
 
-The three vectors $\mathbf{i}$, $\mathbf{j}$ and $\mathbf{k}$ are the unit vectors along
-the three perpendicular axes. Every rule from the plane carries over, with one more
-component to carry.
+The numbers $x$, $y$ and $z$ are the three components. The vectors $\mathbf{i}$,
+$\mathbf{j}$ and $\mathbf{k}$ are the unit vectors along the three perpendicular axes.
+Every rule from the plane carries over, with one more component to carry.
 
 ## Length in three dimensions
 

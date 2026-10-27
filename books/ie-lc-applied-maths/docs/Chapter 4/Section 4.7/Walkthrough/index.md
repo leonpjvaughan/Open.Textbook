@@ -31,8 +31,9 @@ two-dimensional vector can be written as a combination of them.
 
 $$\mathbf{F} = F_x\mathbf{i} + F_y\mathbf{j}$$
 
-Here $F_x$ is the component along the $x$-axis, and $F_y$ is the component along
-the $y$-axis. The same vector can be written as a column:
+Here $\mathbf{F}$ is a force in component form, $F_x$ is its component along
+the $x$-axis, and $F_y$ is its component along the $y$-axis. The same vector
+can be written as a column:
 
 $$\mathbf{F} = \begin{pmatrix} F_x \\ F_y \end{pmatrix}$$
 
@@ -44,6 +45,9 @@ matching components.
 $$(a\mathbf{i} + b\mathbf{j}) + (c\mathbf{i} + d\mathbf{j}) =
 (a + c)\mathbf{i} + (b + d)\mathbf{j}$$
 
+where $a$ and $b$ are the components of the first vector and $c$ and $d$ are the
+components of the second.
+
 **Example 1.** Two forces act on a particle:
 $\mathbf{F}_1 = (3\mathbf{i} + 4\mathbf{j})$ N and
 $\mathbf{F}_2 = (2\mathbf{i} - \mathbf{j})$ N. Find the resultant.
@@ -54,7 +58,7 @@ $$\mathbf{R} = (3 + 2)\mathbf{i} + (4 - 1)\mathbf{j}$$
 
 $$\mathbf{R} = 5\mathbf{i} + 3\mathbf{j}$$
 
-The resultant is $5\mathbf{i} + 3\mathbf{j}$ N.
+The resultant $\mathbf{R}$ is $5\mathbf{i} + 3\mathbf{j}$ N.
 
 ## Equilibrium in vector form
 

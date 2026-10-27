@@ -72,6 +72,8 @@ $$
 T = \frac{1}{f}
 $$
 
+where $T$ is the period and $f$ is the frequency.
+
 $$
 T = \frac{1}{440}
 $$
@@ -88,6 +90,8 @@ of sound in air is 340 m/s. Calculate the wavelength of this sound.
 $$
 \lambda = \frac{v}{f}
 $$
+
+where $\lambda$ is the wavelength and $v$ is the speed of sound.
 
 $$
 \lambda = \frac{340}{20000}

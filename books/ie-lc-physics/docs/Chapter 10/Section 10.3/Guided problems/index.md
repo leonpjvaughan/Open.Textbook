@@ -58,6 +58,8 @@ $$\sin C = \frac{1}{n} = \frac{1}{1.60} = 0.625$$
 
 $$C = 38.7^\circ$$
 
+where $C$ is the critical angle and $n$ the refractive index.
+
 A larger refractive index gives a smaller critical angle. This glass traps light
 more strongly than glass of refractive index 1.50.
 
@@ -141,6 +143,8 @@ the glass.
 $$\sin r = n\sin i = 1.50 \times \sin 40.0^\circ = 1.50 \times 0.6428 = 0.9642$$
 
 $$r = 74.6^\circ$$
+
+where $i$ is the angle of incidence and $r$ the angle of refraction.
 
 The refracted ray is close to the surface. A slightly larger angle of incidence
 would take the light past the critical angle, and no light would leave at all.

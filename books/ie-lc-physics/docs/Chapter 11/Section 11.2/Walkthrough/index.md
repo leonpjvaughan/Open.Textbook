@@ -80,6 +80,8 @@ wavelength:
 
 $$L_2 - L_1 = \frac{\lambda}{2} \qquad \text{so} \qquad \lambda = 2(L_2 - L_1)$$
 
+where $L_1$ and $L_2$ are the two resonance lengths and $\lambda$ is the wavelength.
+
 The frequency is printed on the tuning fork, so once you have the wavelength you can find
 the speed from the wave equation:
 

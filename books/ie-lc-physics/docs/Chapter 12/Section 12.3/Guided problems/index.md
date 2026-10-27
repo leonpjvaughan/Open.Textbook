@@ -102,6 +102,9 @@ $I_2 = 800 \times \left(\dfrac{1}{2}\right)^2$.
 $$I_2 = I_1 \left(\frac{d_1}{d_2}\right)^2 = 800 \times \left(\frac{1.0}{2.0}\right)^2
 = 800 \times \frac{1}{4} = 200\,\text{W/m}^2$$
 
+where $I_1$ and $I_2$ are the irradiances at distances $d_1$ and $d_2$ from the
+source.
+
 The same power now spreads over four times the area, so the irradiance is one
 quarter of its value.
 

@@ -15,8 +15,8 @@ and read its graph.
 ## The chapter problem
 
 **The cooling coffee.** A cup of coffee is poured at $90^\circ C$ in a room at $20^\circ C$.
-The gap between the coffee and the room halves every $5$ minutes, so the temperature after
-$t$ minutes is
+The gap between the coffee and the room halves every $5$ minutes, so the temperature $T$
+after $t$ minutes is
 
 $$T(t) = 20 + 70(0.5)^{t/5}.$$
 

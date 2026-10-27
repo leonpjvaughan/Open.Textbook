@@ -43,6 +43,9 @@ points towards the centre at the top and away from it at the bottom.
 
 $$T + mg = \frac{mv^2}{r}$$
 
+where $T$ is the tension, $m$ the mass, $v$ the speed, $g$ the gravitational field
+strength and $r$ the radius of the circle.
+
 **At the bottom.** The tension points upwards, towards the centre, and the weight points
 downwards, away from it:
 
@@ -108,6 +111,8 @@ For a bend banked so that no friction is needed, the vertical forces balance and
 horizontal component of the normal force supplies the centripetal force:
 
 $$N\cos\theta = mg \qquad N\sin\theta = \frac{mv^2}{r}$$
+
+where $N$ is the normal force and $\theta$ the angle at which the road is banked.
 
 Dividing the second equation by the first gives
 

@@ -174,13 +174,16 @@ Its unit is the joule per coulomb, $\text{J}\,\text{C}^{-1}$, which is the volt.
 For a positive charge the potential is positive, and for a negative charge it is
 negative. Unlike gravitational potential, it can have either sign.
 
-The **electric potential energy** of a charge $q$ at a point is
+The **electric potential energy** $E_p$ of a charge $q$ at a point is
 
 $$ E_{p} = qV = \frac{kQq}{r} $$
 
 The work done moving a charge through a potential difference $\Delta V$ is
 
 $$ W = q\,\Delta V $$
+
+where $W$ is the work done, $q$ is the charge moved and $\Delta V$ is the
+potential difference it moves through.
 
 If the charge moves in the direction of the electric force, the field does the
 work and the potential energy falls. To move a positive charge towards a

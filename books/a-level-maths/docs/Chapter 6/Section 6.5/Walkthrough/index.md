@@ -63,6 +63,12 @@ The table below shows which plot is needed for each model.
 | $y = kb^x$ | $\ln y$ against $x$ | $\ln b$ | $\ln k$ |
 | $y = ax^n$ | $\ln y$ against $\ln x$ | $n$ | $\ln a$ |
 
+**The symbols.** In $y = kb^x$, $k$ is the value of $y$ when $x = 0$ and $b$ is
+the growth factor. In $y = ax^n$, $a$ is the value of $y$ when $x = 1$ and $n$
+is the power. On a plot, $X$ is the quantity on the horizontal axis and $Y$ the
+quantity on the vertical axis, so $Y = mX + c$ has gradient $m$ and intercept
+$c$.
+
 **Example 1.** A model $y = kb^x$ has data points $(0, 200)$ and $(1, 300)$.
 Estimate $k$ and $b$.
 

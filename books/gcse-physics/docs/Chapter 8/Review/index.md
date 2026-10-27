@@ -12,6 +12,10 @@ The weather station stores its water as a block of ice. The block has a volume o
 $2.5 \times 10^{-3}\,\text{m}^3$ and the density of ice is
 $920\,\text{kg/m}^3$.
 
+Here $\rho$ is density, $m$ is mass, $V$ is volume and $L$ is specific latent
+heat. $E$ and $\Delta E$ are energies transferred, $c$ is specific heat capacity,
+$\Delta\theta$ is the temperature change and $p$ is pressure.
+
 **1. The mass of the ice.**
 
 $$

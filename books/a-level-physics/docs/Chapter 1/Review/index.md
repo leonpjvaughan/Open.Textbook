@@ -8,10 +8,10 @@ kind: review
 
 ## The chapter problem, solved
 
-The pendulum in the church tower has a length of 0.800 m from the pivot to the
-centre of the bob. The time for 20 oscillations was measured three times as
-35.90 s, 35.85 s and 35.95 s. The metre rule reads to 1 mm, so each reading
-carries an uncertainty of 0.0005 m, and the length carries
+The pendulum in the church tower has a length $L = 0.800\,\text{m}$ from the
+pivot to the centre of the bob. The time for 20 oscillations was measured three
+times as 35.90 s, 35.85 s and 35.95 s. The metre rule reads to 1 mm, so each
+reading carries an uncertainty of 0.0005 m, and the length carries
 $0.0005 + 0.0005 = 0.001\,\text{m}$.
 
 **1. The mean time for 20 oscillations.**
@@ -26,8 +26,8 @@ $$
 
 The time is $35.90 \pm 0.05\,\text{s}$.
 
-**2. The period and its absolute uncertainty.** Dividing by 20 divides both the
-time and its uncertainty.
+**2. The period $T$ and its absolute uncertainty $\Delta T$.** Dividing by 20
+divides both the time and its uncertainty.
 
 $$
 \begin{aligned}

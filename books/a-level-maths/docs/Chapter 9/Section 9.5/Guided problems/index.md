@@ -211,6 +211,8 @@ $80$.
 <details markdown="1">
 <summary>Full working</summary>
 
+The distance $s$ is
+
 $$
 s \approx \frac{2}{2}\Bigl[0 + 15 + 2(5 + 9 + 12 + 14)\Bigr] = 15 + 80 = 95.
 $$
@@ -256,6 +258,9 @@ is the gap between readings. Substitute the depths into
 $$
 A \approx \frac{h}{2}\Bigl[y_0 + y_n + 2\left(y_1 + \cdots + y_{n-1}\right)\Bigr].
 $$
+
+Here $A$ is the area, $y_0$ to $y_n$ are the readings and $n$ is the number of
+strips.
 
 Give the answer in centimetre-minutes, then convert if the question needs square
 metres. State that the answer is an estimate, and give limits from the smaller

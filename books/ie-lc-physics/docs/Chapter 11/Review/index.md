@@ -12,6 +12,10 @@ kind: review
 ambulance travels at 30 m/s along a straight road past you, and you stand at the roadside.
 The speed of sound in air is 340 m/s.
 
+In these formulas $\lambda$ is the wavelength, $v$ and $c$ are both the speed of
+sound, $f$ the frequency the source makes and $s$ the distance the sound travels.
+Also $f'$ is the observed frequency and $u$ the speed of the source.
+
 **Step 1: what carries the sound.** The siren sound is a longitudinal wave. The air
 particles vibrate back and forth along the direction the sound travels, bunching into
 compressions and spreading into rarefactions. The wave carries energy from the siren to

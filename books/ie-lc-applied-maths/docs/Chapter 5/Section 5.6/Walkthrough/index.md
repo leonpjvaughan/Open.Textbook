@@ -72,6 +72,8 @@ $$mg\sin\theta - \mu mg\cos\theta = kv_T^2$$
 
 $$v_T = \sqrt{\frac{mg\sin\theta - \mu mg\cos\theta}{k}}$$
 
+Here $\mu$ is the coefficient of friction.
+
 The numerator is the resultant force from Section 5.3, the force that would
 accelerate the object if there were no drag. The drag eats into that resultant
 as the speed rises, until nothing is left.

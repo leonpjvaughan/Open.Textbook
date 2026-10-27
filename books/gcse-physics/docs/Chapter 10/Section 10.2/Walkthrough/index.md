@@ -164,6 +164,8 @@ t &= \frac{d}{v} \\
 \end{aligned}
 $$
 
+where $t$ is the time, $d$ is the distance and $v$ is the speed.
+
 The time in seconds is very large. One year is about
 $3.15 \times 10^{7}\,\text{s}$, so the time in years is
 

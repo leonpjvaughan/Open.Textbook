@@ -34,6 +34,8 @@ This works for any two terms.
 
 $$(a+b)(a-b) = a^2 - b^2$$
 
+Here $a$ and $b$ stand for numbers or expressions.
+
 Read it backwards to factorise.
 
 $$a^2 - b^2 = (a+b)(a-b)$$

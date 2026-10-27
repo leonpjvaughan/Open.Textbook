@@ -15,8 +15,8 @@ every minute, and the electrical output is 16 MW. When it pumps, the pumps take 
 from the grid and lift the same mass of water back up each minute.
 
 In these formulas $W$ is the work done, $E_p$ the potential energy and $E_k$ the
-kinetic energy. Also $m$ is the mass, $g$ the gravitational field strength, $h$ the
-height, $v$ the speed, $P$ the power, $E$ the energy transferred and $t$ the time.
+kinetic energy. The other symbols are $m$ mass, $g$ gravitational field strength, $h$
+height, $v$ speed, $P$ power, $E$ energy and $t$ time.
 
 **The work done lifting the water.** The pumps lift against the weight of the water,
 $mg$. For $1.0 \times 10^5$ kg lifted through 300 m:

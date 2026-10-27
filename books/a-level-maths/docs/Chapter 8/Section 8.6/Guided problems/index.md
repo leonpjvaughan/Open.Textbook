@@ -59,6 +59,8 @@ $$
 = \frac{1}{2}\ln|x + 1| - \frac{1}{2}\ln|x + 3| + C.
 $$
 
+Here $C$ is the constant of integration.
+
 Both terms are logarithms, because each partial fraction has a power of one in
 the denominator.
 </details>
@@ -127,6 +129,8 @@ The sign of each coefficient is the sign in the final answer.
 
 The repeated factor needs two fractions, for $(x + 1)$ and for $(x + 1)^2$:
 $\dfrac{A}{x} + \dfrac{B}{x + 1} + \dfrac{C}{(x + 1)^2}$.
+
+Here $A$, $B$ and $C$ are the numerator constants.
 </details>
 
 <details markdown="1">

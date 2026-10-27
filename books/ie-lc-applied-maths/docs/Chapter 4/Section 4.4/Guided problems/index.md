@@ -63,7 +63,7 @@ figures.
 <details markdown="1">
 <summary>Hint</summary>
 
-The normal reaction on a slope is $mg\cos\theta$.
+The normal reaction $R$ on a slope is $mg\cos\theta$.
 
 <details markdown="1">
 <summary>Next step</summary>
@@ -114,8 +114,8 @@ $g = 9.8$ m/s².
 <details markdown="1">
 <summary>Hint</summary>
 
-In equilibrium the force up the plane balances the component of the weight down
-the plane.
+In equilibrium the force $F$ up the plane balances the component of the weight
+down the plane.
 
 <details markdown="1">
 <summary>Next step</summary>

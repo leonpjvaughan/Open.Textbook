@@ -102,6 +102,8 @@ $$
 d = 2.9 \times 10^{-15}\,\text{m}
 $$
 
+Here $d$ is the diameter of the nucleus.
+
 **Example 2.** A gold atom has a diameter of about $2.9 \times 10^{-10}$ m and its
 nucleus has a diameter of about $1.4 \times 10^{-14}$ m. Calculate the ratio of the
 diameter of the atom to the diameter of the nucleus.

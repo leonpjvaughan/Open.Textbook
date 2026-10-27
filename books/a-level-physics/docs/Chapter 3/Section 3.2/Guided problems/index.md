@@ -160,8 +160,8 @@ passenger feels lighter while the lift accelerates downwards.
 </details>
 
 **5.** A ball is thrown at $15\,\text{m}\,\text{s}^{-1}$ at 40° above the
-horizontal. Find the maximum height, the time of flight and the range. Take
-$g = 9.81\,\text{m}\,\text{s}^{-2}$.
+horizontal. Find the maximum height $h_{\max}$, the time of flight and the range.
+Take $g = 9.81\,\text{m}\,\text{s}^{-2}$.
 
 <details markdown="1">
 <summary>Hint</summary>
@@ -173,8 +173,9 @@ component. The horizontal component stays constant.
 <details markdown="1">
 <summary>Next step</summary>
 
-At the highest point the vertical velocity is zero, so use $v_y^2 = u_y^2 - 2gh$.
-The time of flight is twice the time to the highest point.
+At the highest point the vertical velocity is zero, so use $v_y^2 = u_y^2 - 2gh$,
+where $h$ is the height reached. The time of flight is twice the time to the
+highest point.
 </details>
 
 <details markdown="1">

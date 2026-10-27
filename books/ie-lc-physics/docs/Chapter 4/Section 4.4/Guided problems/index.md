@@ -99,7 +99,8 @@ $E = 1500 \times 40$.
 
 $$E = Pt = 1500 \times 40 = 60000\,\text{J}$$
 
-where $E$ is the energy transferred, $P$ the power and $t$ the time. That is $6.0 \times 10^4\,\text{J}$. If you left the power as 1.5 kW, the answer would
+where $E$ is the energy transferred, $P$ the power and $t$ the time. That is $6.0 \times 10^4\,\text{J}$.
+If you left the power as 1.5 kW, the answer would
 be in kilojoules, so keep the units consistent.
 
 </details>

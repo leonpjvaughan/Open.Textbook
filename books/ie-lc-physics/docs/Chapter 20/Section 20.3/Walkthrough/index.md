@@ -31,7 +31,8 @@ $$^{A}_{Z}\text{X}$$
 
 - $A$ is the **mass number**: the number of protons plus the number of neutrons;
 - $Z$ is the **atomic number**: the number of protons, which fixes the element;
-- $\text{X}$ is the chemical symbol of the element.
+- $\text{X}$ is the chemical symbol of the element;
+- $\text{Y}$ is the daughter nucleus.
 
 For carbon-14, $A = 14$ and $Z = 6$, so it is $^{14}_{6}\text{C}$. The number of
 neutrons is $A - Z = 8$.
@@ -142,8 +143,9 @@ $^{4}_{2}\text{He}$.
 emitted.
 
 The mass number is unchanged, because $32 - 32 = 0$. The atomic number rises from
-15 to 16, so the change is $16 - 15 = +1$. A particle with mass number 0 and charge
-$+1$ relative to the daughter is a beta particle, $^{0}_{-1}\text{e}$. The equation
+15 to 16, so the parent has gained one unit of positive charge. That happens when a
+neutron turns into a proton and the nucleus emits an electron. The particle has mass
+number 0 and charge $-1$, so it is a beta particle, $^{0}_{-1}\text{e}$. The equation
 is the one in Example 2.
 
 > **Watch out.** In beta decay the atomic number *rises*, so the emitted electron

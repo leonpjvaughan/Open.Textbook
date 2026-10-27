@@ -23,7 +23,7 @@ kind: guided-problems
 1. $\frac{1}{2} \times 3 \times 2 = 3$ cm². The area of a triangle is half the base times
    the height.
 2. $3^2 = 9$ and $\left(\frac{1}{2}\right)^2 = \frac{1}{4}$. Squaring multiplies a
-   number by itself, and the area factor of an enlargement is $k^2$.
+   number by itself, and the area factor of an enlargement with scale factor $k$ is $k^2$.
 
 If the area of a triangle felt uncertain, revisit Chapter 3 before you carry on.
 

@@ -53,7 +53,7 @@ one, so it can give no new information.
 
 **Example 2.** Prove that $97$ is prime.
 
-The primes with $p^2 \leq 97$ are $2$, $3$, $5$ and $7$, because
+The primes $p$ with $p^2 \leq 97$ are $2$, $3$, $5$ and $7$, because
 $7^2 = 49 \leq 97$ and $11^2 = 121 > 97$.
 
 $$
@@ -88,6 +88,9 @@ n = 3k + 1 &\quad\text{gives}\quad n^2 + 1 = 9k^2 + 6k + 2, \\
 n = 3k + 2 &\quad\text{gives}\quad n^2 + 1 = 9k^2 + 12k + 5.
 \end{aligned}
 $$
+
+Here $k$ is a whole number, so $3k$, $3k + 1$ and $3k + 2$ are the three possible
+forms of $n$.
 
 The remainders on division by $3$ are $1$, $2$ and $2$. None is $0$, so $n^2 + 1$
 is never a multiple of $3$. The three cases cover every whole number, so this is

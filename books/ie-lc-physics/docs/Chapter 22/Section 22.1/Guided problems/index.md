@@ -208,6 +208,8 @@ fallen from rest is
 
 $$s = \frac{1}{2}gt^2$$
 
+Here $t$ is the time since the ball was released.
+
 The assumption is what makes the model simple enough to solve. It is also the
 reason the model fails for a light object with a large surface area, such as a
 feather. Naming the assumption is how you judge whether the model suits your

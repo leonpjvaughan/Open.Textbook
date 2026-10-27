@@ -89,7 +89,8 @@ $$ 4.7\,\mu\text{F} = 4.7 \times 10^{-6}\,\text{F} $$
 There is no power on the unit here, so the factor is used once.
 </details>
 
-**3.** Show that $s = ut + \tfrac{1}{2}at^2$ is homogeneous.
+**3.** Show that $s = ut + \tfrac{1}{2}at^2$ is homogeneous, where $u$ is the
+initial velocity, $a$ is the acceleration and $t$ is the time.
 
 <details markdown="1">
 <summary>Hint</summary>

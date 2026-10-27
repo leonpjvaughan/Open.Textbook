@@ -131,6 +131,8 @@ listener:
 
 $$\lambda' = \frac{c - u}{f}$$
 
+where $\lambda'$ is the observed wavelength.
+
 For a source moving away:
 
 $$\lambda' = \frac{c + u}{f}$$

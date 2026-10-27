@@ -29,6 +29,9 @@ vertical displacement is zero at both moments.
 
 $$y = u_y t - \frac{1}{2}gt^2 = t\left(u_y - \frac{1}{2}gt\right)$$
 
+Here $u$ is the launch speed, $\theta$ the launch angle, $u_y$ the vertical
+component of that speed and $g$ the acceleration of free fall.
+
 One root is $t = 0$, the launch. The other is the **time of flight**:
 
 $$T = \frac{2u_y}{g} = \frac{2u\sin\theta}{g}.$$
@@ -41,6 +44,8 @@ At the highest point the vertical velocity is zero. The time to get there is
 half the time of flight, $t = \dfrac{u_y}{g}$.
 
 $$H = \frac{u_y^2}{2g} = \frac{u^2\sin^2\theta}{2g}$$
+
+Here $H$ is the greatest height, in metres.
 
 ## Range
 

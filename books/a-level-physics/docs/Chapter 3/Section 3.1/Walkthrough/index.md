@@ -30,6 +30,9 @@ too.
 
 $$ a = \frac{\Delta v}{\Delta t} $$
 
+Here $\Delta$ means the change in a quantity: $\Delta v$ is the change in velocity
+and $\Delta t$ the time taken.
+
 A negative acceleration does not always mean slowing down. It means the
 acceleration points in the negative direction. A car moving in the negative
 direction and speeding up has a negative acceleration as well.

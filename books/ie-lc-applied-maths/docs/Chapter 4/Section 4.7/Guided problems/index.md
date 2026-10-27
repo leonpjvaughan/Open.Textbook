@@ -51,7 +51,7 @@ $$(2 + 3)\mathbf{i} + (5 - 2)\mathbf{j}$$
 
 $$\mathbf{R} = 5\mathbf{i} + 3\mathbf{j}\,\text{N}$$
 
-The resultant is $5\mathbf{i} + 3\mathbf{j}$ N.
+The resultant $\mathbf{R}$ is $5\mathbf{i} + 3\mathbf{j}$ N.
 
 </details>
 </details>

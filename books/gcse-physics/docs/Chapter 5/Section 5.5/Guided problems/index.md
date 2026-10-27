@@ -72,8 +72,9 @@ Calculate the frequency of this radiation.
 <details markdown="1">
 <summary>Hint</summary>
 
-Use the wave equation as $f = \dfrac{c}{\lambda}$. Convert micrometres to metres
-first.
+Use the wave equation as $f = \dfrac{c}{\lambda}$, where
+$c = 3.0 \times 10^8\,\text{m/s}$ is the speed of light in a vacuum. Convert
+micrometres to metres first.
 </details>
 
 <details markdown="1">

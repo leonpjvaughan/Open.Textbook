@@ -103,6 +103,8 @@ $\lambda = 2(L_2 - L_1) = 2(0.60 - 0.20)$.
 
 $$\lambda = 2(L_2 - L_1) = 2(0.60 - 0.20) = 2 \times 0.40 = 0.80\,\text{m}$$
 
+where $L_1$ and $L_2$ are the first and second resonance lengths.
+
 The first resonance puts a quarter of a wavelength in the tube and the second puts three
 quarters, so the extra 0.40 m of air is half a wavelength.
 

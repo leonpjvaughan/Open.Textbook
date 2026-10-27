@@ -104,7 +104,7 @@ $$
 The force points opposite to the field, because the electron is negative.
 
 **Example 2.** Calculate the acceleration of the same electron. Take its mass as
-$9.1 \times 10^{-31}$ kg.
+$m = 9.1 \times 10^{-31}$ kg.
 
 $$
 a = \frac{F}{m}
@@ -127,6 +127,9 @@ electron.
 $$
 W = mg = 9.1 \times 10^{-31} \times 9.8 = 8.9 \times 10^{-30}\,\text{N}
 $$
+
+Here $W$ is the weight and $g = 9.8\,\text{m/s}^2$ is the gravitational field
+strength.
 
 The electric force is about $10^{15}$ times larger. This is why the weight of an
 electron is ignored in every calculation in this chapter.

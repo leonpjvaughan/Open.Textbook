@@ -42,9 +42,10 @@ assumption to look at.
 Change one assumption at a time, so that you can see which change caused which
 effect.
 
-The model's wait is $W = \dfrac{Q}{s}$. To make the wait longer, either $Q$ is
-larger or $s$ is smaller. Count again: if 60 students are already queuing at
-12:30, the wait becomes
+The model's wait is $W = \dfrac{Q}{s}$, where $Q$ is the number of students in
+the queue and $s$ is the service rate in students each minute. To make the
+wait longer, either $Q$ is larger or $s$ is smaller. Count again: if 60
+students are already queuing at 12:30, the wait becomes
 
 $$W = \frac{60}{10} = 6$$
 
@@ -67,6 +68,9 @@ Find the clear time for both rates, with $Q = 40$ and $s = 10$.
 At $a = 5$:
 
 $$T = \frac{40}{10 - 5} = 8$$
+
+Here $T$ is the clear time in minutes and $a$ is the arrival rate in students
+each minute.
 
 At $a = 6$:
 

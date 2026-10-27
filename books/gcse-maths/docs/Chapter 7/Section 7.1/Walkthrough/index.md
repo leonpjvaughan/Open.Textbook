@@ -30,8 +30,6 @@ $$
 1\text{ km}=1000\text{ m},\quad 1\text{ m}=100\text{ cm},\quad 1\text{ kg}=1000\text{ g},\quad 1\text{ litre}=1000\text{ ml}
 $$
 
-where km, m, cm, kg, g and ml are kilometres, metres, centimetres, kilograms, grams and millilitres.
-
 For area, square the length conversion: $1\text{ m}^2=10\,000\text{ cm}^2$.
 
 **Example 1.** Convert $3.6$ km to metres.

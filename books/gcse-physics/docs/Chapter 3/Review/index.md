@@ -62,6 +62,8 @@ a &= -8.0\,\text{m/s}^2
 \end{aligned}
 $$
 
+where $u$ is the initial velocity and $v$ is the final velocity.
+
 A deceleration of $8.0\,\text{m/s}^2$ is large. It is close to the acceleration of
 a falling object, which is why the brakes become hot and why the passengers need
 restraints.

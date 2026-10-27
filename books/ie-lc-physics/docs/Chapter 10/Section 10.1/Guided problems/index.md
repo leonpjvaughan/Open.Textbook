@@ -54,6 +54,8 @@ The normal is at 90° to the surface, so subtract 35° from 90°.
 
 $$i = 90^\circ - 35^\circ = 55^\circ$$
 
+where $i$ is the angle of incidence and $r$ the angle of reflection.
+
 The ray is close to the surface, so it is far from the normal. A small angle to the
 surface means a large angle of incidence.
 
@@ -156,6 +158,9 @@ $$d = \frac{vt}{2} = \frac{1500 \times 0.040}{2}$$
 <summary>Full working</summary>
 
 $$d = \frac{1500 \times 0.040}{2} = 30\,\text{m}$$
+
+where $d$ is the depth, $v$ the speed of the pulse and $t$ the time for the echo to
+return.
 
 The same method is used in sonar, in radar and in medical ultrasound imaging. The
 echo time is measured, and the speed is known.

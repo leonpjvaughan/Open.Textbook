@@ -40,6 +40,7 @@ the tension. Take $g = 9.8$ m/s².
 <summary>Hint</summary>
 
 The driving force is the hanging weight. The total mass is $3 + 2 = 5$ kg.
+Write $T$ for the tension and $m_1$ for the mass on the table.
 
 <details markdown="1">
 <summary>Next step</summary>

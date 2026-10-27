@@ -13,14 +13,16 @@ kind: guided-problems
 
 ## Warm-up: remember
 
-1. Write down the equation for the centripetal force in terms of $m$, $v$ and $r$.
+1. Write down the equation for the centripetal force in terms of the mass $m$, the
+   speed $v$ and the radius $r$.
 2. A 0.40 kg mass hangs on a string. Calculate its weight.
 
 <details markdown="1">
 <summary>Answers and feedback</summary>
 
 1. $F = \dfrac{mv^2}{r}$, directed towards the centre of the circle.
-2. $W = mg = 0.40 \times 9.8 = 3.9\,\text{N}$.
+2. $W = mg = 0.40 \times 9.8 = 3.9\,\text{N}$, where $W$ is the weight and $g$ the
+   gravitational field strength.
 
 Both ideas return here. Every problem in this section ends in $F = \dfrac{mv^2}{r}$, and
 the weight decides the sign of each term in the equation.

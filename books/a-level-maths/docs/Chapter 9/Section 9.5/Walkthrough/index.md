@@ -153,7 +153,8 @@ A car's speed is recorded every two seconds for ten seconds.
 | Speed (m/s) | $0$ | $5$ | $9$ | $12$ | $14$ | $15$ |
 
 The distance travelled is the area under the speed–time graph. The readings do
-not follow a formula, so use the trapezium rule with $h = 2$:
+not follow a formula, so use the trapezium rule with $h = 2$ to find the
+distance $s$:
 
 $$
 s \approx \frac{2}{2}\Bigl[0 + 15 + 2\left(5 + 9 + 12 + 14\right)\Bigr]

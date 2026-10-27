@@ -28,6 +28,9 @@ Faraday's law is written
 
 $$E = -N\frac{\Delta\Phi}{\Delta t}$$
 
+where $E$ is the induced emf, $N$ is the number of turns, $\Delta\Phi$ is the
+change in flux through one turn and $\Delta t$ is the time taken.
+
 The minus sign is not a detail. It fixes the **direction** of the induced emf, and
 that direction is the subject of Lenz's law.
 
@@ -96,6 +99,9 @@ Calculate the force on the side, and state its direction.
 $$
 F = BIL = 0.20 \times 0.50 \times 0.15 = 0.015\,\text{N}
 $$
+
+where $F$ is the force on the side, $B$ is the flux density, $I$ is the current
+and $L$ is the length of the side.
 
 The force opposes the motion of the coil. That is Lenz's law in the form the
 turbine feels: the water must push the coil against this force, and the work it

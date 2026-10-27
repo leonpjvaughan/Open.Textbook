@@ -86,6 +86,8 @@ $$
 5g - T = 5a.
 $$
 
+where $T$ is the tension in the string.
+
 For the $3$ kg mass, taking upwards as positive:
 
 $$

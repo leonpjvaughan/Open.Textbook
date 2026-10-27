@@ -126,7 +126,7 @@ First find the component of the weight down the plane.
 
 $$mg\sin 30^\circ = 6 \times 9.8 \times 0.5 = 29.4\,\text{N}$$
 
-The block is at rest, so friction makes up the difference.
+The block is at rest, so the friction force $F$ makes up the difference.
 
 <details markdown="1">
 <summary>Full working</summary>

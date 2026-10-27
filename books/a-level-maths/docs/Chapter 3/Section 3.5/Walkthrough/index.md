@@ -28,8 +28,10 @@ Many parametric curves describe something that moves. When $t$ is time, the
 equations give the position at each moment:
 
 $$
-x = f(t), \qquad y = g(t).
+x = f(t), \qquad y = g(t),
 $$
+
+where $f$ and $g$ are functions of the parameter $t$.
 
 The curve is the **path** of the object. The parameter carries the **timing**.
 The two are different pieces of information, and a good answer keeps them apart.
@@ -99,8 +101,8 @@ when it is there. To answer a "when" question, go back to the parameter.
 ## 3. A circular model
 
 An object moving at a steady speed around a circle has a natural parametric
-description. With centre $(a, b)$, radius $r$ and a steady turn, the position at
-time $t$ is
+description. With centre $(a, b)$, radius $r$ and a steady rate of turn $\omega$,
+the position at time $t$ is
 
 $$
 x = a + r\cos(\omega t), \qquad y = b + r\sin(\omega t).

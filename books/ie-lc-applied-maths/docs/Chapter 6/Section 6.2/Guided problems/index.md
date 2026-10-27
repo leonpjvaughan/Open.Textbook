@@ -233,6 +233,8 @@ The difference in weight is the resultant:
 
 $$5g - 3g = 2g$$
 
+where $g$ is the acceleration due to gravity.
+
 The total mass is $3 + 5 = 8$ kg.
 
 <details markdown="1">

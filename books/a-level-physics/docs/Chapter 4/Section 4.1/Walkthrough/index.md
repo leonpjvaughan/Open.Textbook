@@ -31,6 +31,8 @@ sample. The force per unit area does that job. It is called the **stress**.
 
 $$ \text{stress} = \frac{\text{force}}{\text{cross-sectional area}} \qquad \sigma = \frac{F}{A} $$
 
+Here $\sigma$ is the stress, $F$ is the force and $A$ is the cross-sectional area.
+
 The unit of stress is the newton per square metre, $\text{N}\,\text{m}^{-2}$.
 This unit has a name: the **pascal**, $\text{Pa}$. One pascal is one newton per
 square metre. The pascal is also $\text{kg}\,\text{m}^{-1}\,\text{s}^{-2}$ in
@@ -73,7 +75,7 @@ The stress is $1.0 \times 10^{8}\,\text{Pa}$, or $100\,\text{MPa}$.
 
 Stress alone does not tell you how far a wire stretches. A long wire stretches
 further than a short wire under the same stress. The **strain** compares the
-extension with the original length.
+extension $\Delta L$ with the original length $L$.
 
 $$ \text{strain} = \frac{\text{extension}}{\text{original length}} \qquad \varepsilon = \frac{\Delta L}{L} $$
 

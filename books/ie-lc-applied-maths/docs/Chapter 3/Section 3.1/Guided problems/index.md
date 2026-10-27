@@ -31,6 +31,10 @@ kind: guided-problems
 
 ## Practise with help
 
+**The symbols.** Here $d$ is a distance and $s$ is a displacement, both in
+metres. $v$ is a speed or a velocity, $a$ is an acceleration, $u$ is an initial
+velocity and $t$ is the time.
+
 **1.** A walker walks 300 m north, then 100 m south. Find the distance travelled
 and the displacement. Take north as positive.
 

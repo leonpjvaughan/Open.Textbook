@@ -47,6 +47,8 @@ Multiply $2 \times 2$.
 <details markdown="1">
 <summary>Full working</summary>
 
+The sample space is written $\xi$.
+
 $$\xi = \{\text{HH}, \text{HT}, \text{TH}, \text{TT}\}$$
 
 The sample space has $4$ outcomes. Order matters, so HT and TH are different outcomes.
@@ -170,7 +172,7 @@ $$\binom{8}{2} = 28 \text{ pairs in the sample space}$$
 
 $$5 \times 3 = 15 \text{ star-prize pairs}$$
 
-So $n(S) = 15$ out of $28$ pairs.
+So $15$ of the $28$ pairs give the star prize, and $n(S) = 28$.
 
 </details>
 </details>

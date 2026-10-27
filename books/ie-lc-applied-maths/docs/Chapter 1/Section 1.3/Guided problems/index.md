@@ -51,6 +51,10 @@ The net rate is $8 - 5 = 3$ students each minute.
 
 $$T = \frac{Q}{s - a} = \frac{40}{8 - 5} = \frac{40}{3}$$
 
+Here $T$ is the clear time in minutes, $Q$ is the number of students in the
+queue, $s$ is the service rate and $a$ is the arrival rate, both in students
+each minute.
+
 The clear time is $\dfrac{40}{3}$ minutes, which is about 13.3 minutes. The till
 is slower than in the chapter problem, and the clear time is much longer.
 

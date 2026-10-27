@@ -127,6 +127,8 @@ you have rearranged or remembered.
 
 Write each quantity with its base units, then simplify. The constant numbers,
 such as the $\tfrac{1}{2}$ in kinetic energy, carry no units and can be ignored.
+The joule, $\text{J}$, is the unit of energy, and it is
+$\text{kg}\,\text{m}^2\,\text{s}^{-2}$.
 
 **Worked example 3.** Show that $E_k = \tfrac{1}{2}mv^2$ is homogeneous.
 
@@ -141,8 +143,9 @@ $$
 Both sides are $\text{kg}\,\text{m}^2\,\text{s}^{-2}$, so the equation is
 homogeneous.
 
-**Worked example 4.** The drag force on a small sphere moving slowly through a
-liquid is $F = 6\pi\eta rv$. Find the base units of the viscosity $\eta$.
+**Worked example 4.** The drag force on a small sphere of radius $r$ moving
+slowly at speed $v$ through a liquid is $F = 6\pi\eta rv$. Find the base units of
+the viscosity $\eta$.
 
 $$
 \begin{aligned}
