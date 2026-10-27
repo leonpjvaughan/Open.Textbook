@@ -62,6 +62,22 @@ symbol defined in the question stem of a worked example counts as defined, so th
 sweep is over displayed formulas rather than every `$…$`. Editorial decisions —
 which symbols a page should rename for consistency — are part of it, not a blocker.
 
+**A screen, not a verdict.** A regex over every display formula and the four lines
+either side of it reports how many have no `where`/`here`/`is the` nearby:
+
+```
+a-level-maths         1907 of 2251      ie-lc-maths        1662 of 2158
+ie-jc-maths           2093 of 2498      ie-lc-physics      1206 of 1585
+ie-lc-applied-maths   1172 of 1447      a-level-physics     466 of  586
+gcse-physics           296 of  373      gcse-maths          271 of  306
+proofs                  91 of  174      maths-applied         7 of   24
+```
+
+It over-reports, and the `proofs` pages show why: `laws-of-logarithms` scores 16 of
+18, and it defines its base, its two inputs and its two proof letters in the opening
+sentence and again where they are used. So treat the table as where to start reading,
+not as a list of defects, and close a page by reading it.
+
 **Progress.** `numerical-methods` is done: the A–Z's five tables carry a **The
 symbols** list each (`techniques/index.md`), written 2026-10-27. `maths-applied` is
 done: its 24 display formulas were read one by one, and eight clauses were added
