@@ -24,6 +24,9 @@ __pycache__/
 .od/
 .od-skills/
 
+# pi's own goal and session state: this harness's, not the repository's
+.pi/
+
 # Node build dependency (build-time KaTeX only)
 node_modules/
 

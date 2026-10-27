@@ -74,8 +74,8 @@ single moment of it.
 
 $$v = \frac{d}{t}$$
 
-Here $v$ is the average speed in metres per second and $t$ is the time in
-seconds.
+Here $v$ is the average speed in metres per second, $d$ is the distance in
+metres and $t$ is the time in seconds.
 
 $$v = \frac{400}{50}$$
 
@@ -87,6 +87,8 @@ the starting point. Find the average velocity.
 The displacement is 0 m, because the runner finishes where they started.
 
 $$v = \frac{s}{t}$$
+
+Here $v$ is the average velocity and $s$ is the displacement in metres.
 
 $$v = \frac{0}{50}$$
 
