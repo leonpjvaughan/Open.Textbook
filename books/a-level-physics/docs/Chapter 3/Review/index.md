@@ -117,6 +117,8 @@ $$
 mgH = \tfrac{1}{2}mgr + mg(2r) \quad\Rightarrow\quad H = \tfrac{5}{2}r = 30\,\text{m}
 $$
 
+Here $H$ is the release height, measured from the bottom of the loop.
+
 The actual release height is 45 m, so the car has a margin of 15 m.
 
 **10. The braking force.** The momentum at the bottom is
