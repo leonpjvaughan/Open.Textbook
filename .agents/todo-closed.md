@@ -6461,10 +6461,12 @@ Review page re-uses the chapter's letters rather than repeating a symbol key ele
 times, and a worked solution that substitutes numbers into a formula the page has
 already named does not repeat the naming.
 
-The Review decision was checked rather than assumed. Its 64 pages that carry displays
-were read: every letter in them is named by the Review's own prose or taught on an
-earlier page of the chapter. The one exception — `H` for the release height in
-`a-level-physics` Chapter 3 — was named.
+The Review decision was checked rather than assumed. 117 Review pages carry displays,
+and the screen flagged 21 of them. Five of those 21 used a letter no teaching page in
+the chapter writes; four of the five name that letter on the Review page itself
+(`W` as "the load", `T` as "the thrust", `Q` as "the flow rate", `\theta_f` in a
+symbol sentence), so the chapter's silence was a false positive. The fifth, `H` for
+the release height in `a-level-physics` Chapter 3, was named.
 
 **Defects the sweep found and fixed.** Each is a separate line in the diff:
 
