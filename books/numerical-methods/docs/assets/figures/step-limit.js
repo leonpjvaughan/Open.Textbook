@@ -96,7 +96,8 @@ export function mount(el) {
   readout.textContent =
     `At ${last.cells} cells the explicit limit needs ${fmt(last.steps, 0)} steps to ` +
     `reach the same time; at ${previous.cells} it needed ${fmt(previous.steps, 0)}. ` +
-    "Four times the work for twice the resolution is the wall, not a tuning problem.";
+    "Four times the steps for twice the resolution, and twice the work inside each, " +
+    "is the wall, not a tuning problem.";
   caption.textContent =
     "The stable step falls as the square of the cell size, so the cost rises as its " +
     "square; the constant is set to one, and the shape is what matters. An implicit " +

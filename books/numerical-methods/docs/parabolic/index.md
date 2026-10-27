@@ -34,16 +34,18 @@ $$
 Then there is a choice, and it is the whole of this page:
 
 - **Explicit.** Simple, one function evaluation per step, and the step is limited by
-  $\Delta t \propto \Delta x^{2}$. Refining the mesh by two costs four times the
-  work per step and the same again in the number of steps.
+  $\Delta t \propto \Delta x^{2}$. Refining the mesh by two costs twice the work per
+  step and four times the number of steps, so eight times the work for the same
+  interval.
 - **Implicit.** A linear system at every step, and no such limit. More work per step,
   far fewer steps.
 
 The first limit decides whether a mesh is affordable, and the figure below is that
 arithmetic rather than a warning. Hold the time you want to reach fixed and count
 the steps. Twice the cells means a quarter of the time step, so four times as many
-steps, and twice as much arithmetic in each one. The curve turns up because both
-multiply: eight times the resolution costs sixty-four times the steps.
+steps. The plot counts those steps and nothing else; the work per step also doubles,
+so the total goes up eight times. Eight times the resolution is sixty-four times the
+steps.
 
 :::figure step-limit
 
