@@ -60,7 +60,7 @@ NAMELESS = {"", "here", "click here", "more", "details", "see more", "open", "ex
 #: `lint.SENTENCE_DEBT` is, and under the same rule: **it may only go down.** Fix a
 #: line and lower the number; a book that starts clean starts at 0 and stays there,
 #: and every new page must be written to the limit. The reflow task drives this to 0.
-PROSE_DEBT: dict[str, int] = {"numerical-methods": 457}
+PROSE_DEBT: dict[str, int] = {"numerical-methods": 0}
 
 
 def _lines(text: str):
@@ -101,6 +101,10 @@ def _is_exempt_prose(line: str) -> bool:
     if stripped.startswith("|"):
         return True
     if stripped.startswith("#"):
+        return True
+    # A line that is only display maths is a layout, like a table row. The site
+    # renders it as a centred display block; wrapping it would change the formula.
+    if re.fullmatch(r"\$.*\$[,.;]?", stripped):
         return True
     if re.search(r"\]\([^)\s]{40,}\)", stripped):
         return True

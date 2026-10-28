@@ -63,18 +63,16 @@ def test_a_long_prose_line_is_not_code():
     assert rules.prose_too_wide(page)
 
 
-def test_the_tree_has_one_code_line_over_the_limit():
-    """The ratchet: 1, measured on 2026-10-27, and the reflow task takes it to 0.
+def test_the_tree_has_no_code_line_over_the_limit():
+    """The ratchet: the one 81-column docstring line is gone with the reflow.
 
-    `reading-the-class/index.md:117` is an 81-column docstring line inside the book's
-    one program. Asserting the count rather than the absence is what makes a new
-    offence visible without demanding a rewrite of the page this rule lands on.
+    A new offence is a failure here rather than a raised debt, because the book is
+    now written to the rule and every page added after it is measured against it.
     """
     over = []
     for name, text in pages():
         over.extend((name, line) for line, _ in rules.code_too_wide(text))
-    assert len(over) == 1, f"code lines over {rules.CODE_COLUMNS} columns: {over}"
-    assert over[0] == ("reading-the-class/index.md", 117)
+    assert over == [], f"code lines over {rules.CODE_COLUMNS} columns: {over}"
 
 
 # --- the prose width ------------------------------------------------------------

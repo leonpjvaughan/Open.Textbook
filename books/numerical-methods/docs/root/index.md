@@ -10,8 +10,10 @@ equation that has to hold at a point, and nothing changes with time.
 ## What you are modelling
 
 A state that has to satisfy a condition. The condition can come from geometry,
-because two circles have to meet. It can come from balance, because the forces have
-to add to zero. It can come from closure, because a loop of links has to come back
+because two circles have to meet. It can come from balance, because the forces
+have
+to add to zero. It can come from closure, because a loop of links has to come
+back
 to where it started.
 
 The answer is the state where the condition holds. There may be more than one.
@@ -22,50 +24,60 @@ $$
 F(x) = 0 .
 $$
 
-One equation for one unknown, or $n$ equations for $n$ unknowns. The function $F$
-is usually a residual: it measures how far the current guess is from satisfying the
+One equation for one unknown, or $n$ equations for $n$ unknowns. The function
+$F$
+is usually a residual: it measures how far the current guess is from satisfying
+the
 rule, and zero means satisfied.
 
 ## What it becomes on a computer
 
-Usually a loop. Each step replaces $F$ by its tangent and solves the linear problem
+Usually a loop. Each step replaces $F$ by its tangent and solves the linear
+problem
 
 $$
 J(x_k)\,\delta = -F(x_k), \qquad x_{k+1} = x_k + \delta ,
 $$
 
-where $J$ is the Jacobian. This is Newton's method, and everything else in the box
+where $J$ is the Jacobian. This is Newton's method, and everything else in the
+box
 is a way of doing it more safely or more cheaply.
 
-A closed form is a root solution too. Iteration is the usual method when the rule
+A closed form is a root solution too. Iteration is the usual method when the
+rule
 cannot be rearranged, not a requirement of the class. `Maths Applied` §1.2's two
-circles meeting is the counterexample: it is a root problem solved in one closed-form
+circles meeting is the counterexample: it is a root problem solved in one
+closed-form
 step.
 
 Two things decide whether you get an answer: **the start**, and **the number of
 solutions**. Newton is fast near a solution and unreliable away from one. A
 bracketing method is the reverse.
 
-The tangent step is the method in one line. The figure takes one step at a time and
+The tangent step is the method in one line. The figure takes one step at a time
+and
 draws the residual; the start decides whether the sequence lands, and how fast.
 
 :::figure newton-lab
 
 ## The signature
 
-The rule holds at a point, and the point is found — usually by iteration, sometimes
+The rule holds at a point, and the point is found — usually by iteration,
+sometimes
 in closed form. There is no region and no time. The difficulty is:
 - which of the solutions you land in;
 - whether the Jacobian is invertible where you need it;
 - whether your start is inside the region where the method converges.
 
-A mechanism at a toggle point has a singular Jacobian, and that is a fact about the
+A mechanism at a toggle point has a singular Jacobian, and that is a fact about
+the
 mechanism, not a failure of the method.
 
 ## Flags that matter here
 
-- **Several solutions.** Two circles meet twice, and a linkage has two assemblies.
-  The start decides the branch, which is why a continuation from a known state is
+-  **Several solutions.** Two circles meet twice, and a linkage has two
+  assemblies.
+The start decides the branch, which is why a continuation from a known state is
   often the right tool.
 - **Singular Jacobian.** At a toggle or a bifurcation the step cannot be solved.
   Arc-length continuation walks around it.
@@ -74,7 +86,8 @@ mechanism, not a failure of the method.
 
 ## Techniques
 
-Every method named here is in [Methods, A to Z](../techniques/#finding-a-state), with its price and what it will not do.
+Every method named here is in [Methods, A to Z](../techniques/#finding-a-state),
+with its price and what it will not do.
 
 | technique | what it does | when it wins | when it is the wrong tool |
 |---|---|---|---|
@@ -92,9 +105,11 @@ Every method named here is in [Methods, A to Z](../techniques/#finding-a-state),
 
 - Where the wheel goes: two circles meet, and the meeting point is the pose.
 - The position of a four-bar linkage at a given crank angle.
-- The equilibrium of a bushed linkage, where the spring force and the geometry have
+-  The equilibrium of a bushed linkage, where the spring force and the geometry
+  have
   to agree.
-- A boundary-value problem solved by shooting: guess the slope, integrate, correct.
+-  A boundary-value problem solved by shooting: guess the slope, integrate,
+  correct.
 - Chemical equilibrium: the species have to balance.
 - Power flow: the network has to satisfy Kirchhoff's laws.
 - A CAD constraint solver: the sketch has to close.
@@ -115,6 +130,9 @@ Every method named here is in [Methods, A to Z](../techniques/#finding-a-state),
 
 ## Read next
 
-- [Saddle point](../saddle-point/index.md) — the same loop with a constraint priced in.
-- [Optimisation](../optimisation/index.md) — a minimum is a root of the gradient.
-- [When it goes wrong](../symptoms/index.md) — the symptom table for every class.
+-  [Saddle point](../saddle-point/index.md) — the same loop with a constraint
+  priced in.
+-  [Optimisation](../optimisation/index.md) — a minimum is a root of the
+  gradient.
+-  [When it goes wrong](../symptoms/index.md) — the symptom table for every
+  class.

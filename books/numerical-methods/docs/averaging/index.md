@@ -9,14 +9,19 @@ an average over possibilities you cannot list.
 
 ## What you are modelling
 
-The system has randomness in it, or so many states that counting them is hopeless.
-You are not asking where it is. You are asking how likely something is, how spread
+The system has randomness in it, or so many states that counting them is
+hopeless.
+You are not asking where it is. You are asking how likely something is, how
+spread
 out it is, or what happens on average when the inputs vary.
 
 This is the statistical half of the map, and it is the same box as the physical
-half. It is also the whole of that half: one box, one page. The methods are named
-and priced rather than derived, because a reference work's job is to tell you where
-your problem belongs, not to teach you the sampler. A suspension corner whose bush stiffness is only known to within ten per
+half. It is also the whole of that half: one box, one page. The methods are
+named
+and priced rather than derived, because a reference work's job is to tell you
+where
+your problem belongs, not to teach you the sampler. A suspension corner whose
+bush stiffness is only known to within ten per
 cent is an averaging problem in exactly the sense that a queue is.
 
 ## The model you write down
@@ -40,10 +45,12 @@ $$
 
 Two facts follow, and they are the whole character of the class.
 
-- **The error falls as $1/\sqrt{N}$, whatever the dimension.** Four times the work
-  halves the error. That is slow, and it is also why the method survives problems
+-  **The error falls as $1/\sqrt{N}$, whatever the dimension.** Four times the
+  work
+halves the error. That is slow, and it is also why the method survives problems
   with a hundred inputs where a grid would need $10^{100}$ points.
-- **Every answer carries an error bar.** An average without one is a number with no
+-  **Every answer carries an error bar.** An average without one is a number
+  with no
   claim attached.
 
 The error bar is the answer's honesty. The figure draws the estimate and two
@@ -55,21 +62,26 @@ $1/\sqrt{N}$, and the dashed line is the value the method cannot see.
 ## The signature
 
 The answer is an estimate. There is no equilibrium to solve and no region to
-discretise; there is a sample, a variance, and a convergence rate you can measure.
+discretise; there is a sample, a variance, and a convergence rate you can
+measure.
 
 ## Flags that matter here
 
 - **Correlated samples.** A Markov chain gives a valid average, but consecutive
-  samples are not independent. The naive error bar is then too small, sometimes by
+samples are not independent. The naive error bar is then too small, sometimes by
   a factor of a hundred.
-- **Rare events.** If the thing you want happens once in $10^{9}$ draws, sampling
+-  **Rare events.** If the thing you want happens once in $10^{9}$ draws,
+  sampling
   will not see it. The method has to be aimed.
-- **An expensive model.** Ten thousand runs of a two-hour simulation is not a plan.
-  A cheap stand-in, itself fitted by a smaller number of runs, is the usual answer.
+-  **An expensive model.** Ten thousand runs of a two-hour simulation is not a
+  plan.
+A cheap stand-in, itself fitted by a smaller number of runs, is the usual
+answer.
 
 ## Techniques
 
-Every method named here is in [Methods, A to Z](../techniques/#averaging), with its price and what it will not do.
+Every method named here is in [Methods, A to Z](../techniques/#averaging), with
+its price and what it will not do.
 
 | technique | what it does | when it wins | when it is the wrong tool |
 |---|---|---|---|
@@ -86,13 +98,15 @@ Every method named here is in [Methods, A to Z](../techniques/#averaging), with 
 
 ## Systems that live here
 
-- How much the camber varies when the bush stiffness is only known to ten per cent.
+-  How much the camber varies when the bush stiffness is only known to ten per
+  cent.
 - Weather and climate ensembles: one model, many starting states.
 - Option pricing, where the average is over paths.
 - Bayesian parameter fitting: the answer is a distribution, not a number.
 - Sensor fusion: where the car is, from noisy measurements.
 - Reliability: the probability that a part fails before a mileage.
-- Detector and radiotherapy simulation: the average is over millions of histories.
+-  Detector and radiotherapy simulation: the average is over millions of
+  histories.
 
 ## What goes wrong
 
@@ -126,4 +140,5 @@ theory. They are optional: the class page is complete without them.
   minimum at the same time.
 - [Parabolic](../parabolic/index.md) — a distribution that spreads is the same
   equation as heat.
-- [When it goes wrong](../symptoms/index.md) — the symptom table for every class.
+-  [When it goes wrong](../symptoms/index.md) — the symptom table for every
+  class.

@@ -5,14 +5,17 @@ title: Eigenvalues
 # Eigenvalues
 
 **You have one of these when** you ask which values are allowed — which
-frequencies, which loads, which energies, which growth rates — rather than what a
+frequencies, which loads, which energies, which growth rates — rather than what
+a
 particular one is.
 
 ## What you are modelling
 
-A system with patterns in it. Most patterns get distorted or decayed by the system.
+A system with patterns in it. Most patterns get distorted or decayed by the
+system.
 A few come back unchanged, scaled by a number. Those numbers are the answer, and
-they decide what the system is like: how it rings, when it buckles, whether it is
+they decide what the system is like: how it rings, when it buckles, whether it
+is
 stable.
 
 ## The model you write down
@@ -28,7 +31,8 @@ $$
 A x = \lambda B x .
 $$
 
-The vector $x$ is the pattern. The scalar $\lambda$ is what the system does to it.
+The vector $x$ is the pattern. The scalar $\lambda$ is what the system does to
+it.
 
 ## What it becomes on a computer
 
@@ -42,8 +46,10 @@ the matrix, not on its entries:
   can be turned into the largest one of another problem.
 - Is it small and dense? Then compute all of them, and stop worrying.
 
-The gap between the two eigenvalues is the speed. The figure multiplies a vector by
-a symmetric matrix and draws it turning toward the dominant eigenvector. The ratio
+The gap between the two eigenvalues is the speed. The figure multiplies a vector
+by
+a symmetric matrix and draws it turning toward the dominant eigenvector. The
+ratio
 of the second eigenvalue to the first is the factor by which the wrong direction
 shrinks each step.
 
@@ -51,7 +57,8 @@ shrinks each step.
 
 ## The signature
 
-The answers are a discrete set, not a curve. The question is usually *local* — the
+The answers are a discrete set, not a curve. The question is usually *local* —
+the
 first three modes, the smallest one, the one nearest zero — and that locality is
 what makes the problem tractable on a matrix with a million rows.
 
@@ -62,7 +69,8 @@ equilibrium, linearise, and look at the sign of the real part.
 
 - **Non-symmetric.** Complex eigenvalues arrive in pairs, and a real-only solver
   will either fail or silently lie.
-- **Generalised, with a singular $B$.** Infinite eigenvalues appear. That is not a
+-  **Generalised, with a singular $B$ .** Infinite eigenvalues appear. That is
+  not a
   bug; it is what a constraint looks like.
 - **Non-linear in $\lambda$.** The eigenvalue is inside the matrix — a frequency
   in a foundation, a delay in a control loop. Then each step is a root problem
@@ -70,7 +78,8 @@ equilibrium, linearise, and look at the sign of the real part.
 
 ## Techniques
 
-Every method named here is in [Methods, A to Z](../techniques/#eigenvalues), with its price and what it will not do.
+Every method named here is in [Methods, A to Z](../techniques/#eigenvalues),
+with its price and what it will not do.
 
 | technique | what it does | when it wins | when it is the wrong tool |
 |---|---|---|---|
@@ -86,7 +95,8 @@ Every method named here is in [Methods, A to Z](../techniques/#eigenvalues), wit
 
 ## Systems that live here
 
-- The bounce and wheel-hop frequencies of a quarter car — one mass or two, and the
+-  The bounce and wheel-hop frequencies of a quarter car — one mass or two, and
+  the
   answer changes when the second mass is added.
 - Buckling of a chassis member: the smallest load at which it gives way.
 - Brake squeal and flutter: a complex eigenvalue with a positive real part.
@@ -112,8 +122,10 @@ Every method named here is in [Methods, A to Z](../techniques/#eigenvalues), wit
 
 ## Read next
 
-- [Root finding](../root/index.md) — an eigenvalue of a small matrix is the root of its
+-  [Root finding](../root/index.md) — an eigenvalue of a small matrix is the
+  root of its
   determinant.
 - [Hyperbolic](../hyperbolic/index.md) — the stability of a wave problem is an
   eigenvalue question in disguise.
-- [When it goes wrong](../symptoms/index.md) — the symptom table for every class.
+-  [When it goes wrong](../symptoms/index.md) — the symptom table for every
+  class.

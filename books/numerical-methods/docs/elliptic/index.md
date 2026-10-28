@@ -9,7 +9,8 @@ nothing travels, and a change at the boundary is felt everywhere at once.
 
 ## What you are modelling
 
-A settled state. The system has had time to reach equilibrium, so there is no rate
+A settled state. The system has had time to reach equilibrium, so there is no
+rate
 of change left in the model. What remains is a balance that has to hold at every
 point, with conditions given on the edge.
 
@@ -20,7 +21,8 @@ $$
 $$
 
 with $u$ given on part of the boundary and its derivative given on the rest. The
-simplest case is Laplace's equation, with $f = 0$: no source, and a value on every
+simplest case is Laplace's equation, with $f = 0$: no source, and a value on
+every
 edge.
 
 ## What it becomes on a computer
@@ -31,29 +33,37 @@ $$
 A u = b .
 $$
 
-The matrix is symmetric and positive definite in the simple case, which is a strong
+The matrix is symmetric and positive definite in the simple case, which is a
+strong
 statement: it has a fast, reliable iterative method, and the answer is unique.
 
 The cost is in solving that system. A direct solve is fine in two dimensions and
-becomes a memory problem in three. An iterative method is cheap per step and needs
+becomes a memory problem in three. An iterative method is cheap per step and
+needs
 to move information across the whole mesh.
 
-The system is the problem. The figure solves a one-dimensional version by conjugate
-gradients. The field moves toward the exact curve, and the residual below it falls
+The system is the problem. The figure solves a one-dimensional version by
+conjugate
+gradients. The field moves toward the exact curve, and the residual below it
+falls
 to the floor in at most one iteration per cell.
 
 :::figure cg-lab
 
 ## The signature
 
-There is no speed of propagation, because there is no propagation. A change in one
+There is no speed of propagation, because there is no propagation. A change in
+one
 boundary value changes the solution everywhere immediately. A method that moves
 information one cell per step — Jacobi, Gauss–Seidel, a plain Krylov method — is
-therefore crippled, and needs as many steps as the mesh is wide in every direction.
+therefore crippled, and needs as many steps as the mesh is wide in every
+direction.
 
 Two consequences follow:
-- **Multigrid is not an optimisation of another method; it is what the class makes
-  available.** It moves the smooth part of the error on a coarse mesh, where it is not
+-  **Multigrid is not an optimisation of another method; it is what the class
+  makes
+available.** It moves the smooth part of the error on a coarse mesh, where it is
+not
   smooth at all.
 - **The solution is smooth even when the data is not.** A point load gives a
   continuous answer, and its derivative is the thing that has a corner.
@@ -62,15 +72,18 @@ Two consequences follow:
 
 - **A coefficient that varies.** Layers and jumps in $k$ make a simple iterative
   method fail; algebraic multigrid is built for this.
-- **A non-linear coefficient.** Then each outer step is an elliptic solve, and the
+-  **A non-linear coefficient.** Then each outer step is an elliptic solve, and
+  the
   loop is a root problem.
-- **Any coupling to a constraint.** If a rule is enforced by a second unknown, the
-  problem is a [saddle point](../saddle-point/index.md), and the positive-definite
+-  **Any coupling to a constraint.** If a rule is enforced by a second unknown,
+  the
+problem is a [saddle point](../saddle-point/index.md), and the positive-definite
   guarantee is gone.
 
 ## Techniques
 
-Every method named here is in [Methods, A to Z](../techniques/#linear-systems), with its price and what it will not do.
+Every method named here is in [Methods, A to Z](../techniques/#linear-systems),
+with its price and what it will not do.
 
 | technique | what it does | when it wins | when it is the wrong tool |
 |---|---|---|---|
@@ -91,12 +104,15 @@ Every method named here is in [Methods, A to Z](../techniques/#linear-systems), 
 - Potential flow around a body.
 - Linear elasticity: the stress in a loaded bracket.
 - Groundwater flow through soil.
-- The pressure equation inside an incompressible flow solver — but the *constraint*
+-  The pressure equation inside an incompressible flow solver — but the
+  *constraint*
   that produces it is a saddle point, and the pressure equation is how that
   constraint is paid.
-- The elliptic coordinate conditions in numerical relativity, in the formulations where
+-  The elliptic coordinate conditions in numerical relativity, in the
+  formulations where
   they cannot be evolved — the lapse equation among them, which [The class is a
-  choice](../choosing-the-class/#the-same-equations-classified) puts through the test
+choice](../choosing-the-class/#the-same-equations-classified) puts through the
+test
   beside its hyperbolic version.
 
 ## What goes wrong
@@ -116,9 +132,12 @@ Every method named here is in [Methods, A to Z](../techniques/#linear-systems), 
 
 ## Read next
 
-- [Saddle point](../saddle-point/index.md) — what an elliptic problem becomes when a
+-  [Saddle point](../saddle-point/index.md) — what an elliptic problem becomes
+  when a
   constraint is added.
 - [Parabolic](../parabolic/index.md) — the same operator, with time put back in.
-- [Reading the class off the equation](../reading-the-class/index.md) — the one number
+-  [Reading the class off the equation](../reading-the-class/index.md) — the one
+  number
   that says an equation like this one is elliptic.
-- [When it goes wrong](../symptoms/index.md) — the symptom table for every class.
+-  [When it goes wrong](../symptoms/index.md) — the symptom table for every
+  class.
