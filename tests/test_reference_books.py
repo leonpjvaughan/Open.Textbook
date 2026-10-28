@@ -286,6 +286,9 @@ def test_the_classes_come_first_in_tree_order():
     slug_of = lambda path: path.split("/")[0]  # noqa: E731 - a one-line helper
     assert [slug_of(e["path"]) for e in map_book().pages[:9]] == CLASSES
     assert [slug_of(e["path"]) for e in map_book().pages[9:]] == [
+        "error",
+        "order",
+        "checking",
         "reading-the-class",
         "choosing-the-class",
         "worked-case",

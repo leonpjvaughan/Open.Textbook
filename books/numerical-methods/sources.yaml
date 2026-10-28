@@ -109,7 +109,18 @@ references:
     ref: "Lloyd N. Trefethen and David Bau III, SIAM, 1997"
     role: >-
       QR, the QR algorithm, Krylov subspaces and why an iterative method can beat a
-      direct one. The eigenvalue page rests on this.
+      direct one. The eigenvalue page rests on this, and the condition-number bound
+      on the error and checking pages is its Lecture 12.
+
+  - id: higham
+    attribution: true
+    title: Accuracy and Stability of Numerical Algorithms
+    url: https://doi.org/10.1137/1.9780898718027
+    ref: "Nicholas J. Higham, SIAM, 2nd edition, 2002"
+    role: >-
+      Round-off, machine epsilon, cancellation, backward error and the conditioning
+      of a problem against the stability of a method. The error page is a short
+      walk through its first three chapters.
 
   - id: saad
     attribution: true
@@ -191,9 +202,10 @@ references:
     title: Verification and Validation in Computational Science and Engineering
     ref: "Patrick J. Roache, Hermosa, 1998"
     role: >-
-      The difference between a converged answer and a correct one. The symptoms
-      page leans on this: most of the failures it lists are discretisation
-      failures, and a finer mesh is the test.
+      The difference between a converged answer and a correct one. The checking page
+      uses its manufactured-solution method and its verified/validated distinction;
+      the symptoms page leans on it too, because most of the failures it lists are
+      discretisation failures, and a finer mesh is the test.
 
   - id: scipy
     attribution: true

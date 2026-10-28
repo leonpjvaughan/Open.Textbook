@@ -75,6 +75,26 @@ wide a mesh is. The class page names them. That is the whole reason nine kinds h
 seventy-six methods: the kind is the question, and the circumstances are the
 choices.
 
+## Where the working is
+
+Nine kinds is the whole of the map, and the map is summary. Under each kind
+there are pages with the working on them: the algebra, a program that prints a
+number, and the argument for why the method does what it does. They are optional
+in the same way that the class pages are. Nothing here needs them, and a reader
+who wants to know why an error falls as $1/\sqrt N$ rather than being told that
+it does has somewhere to go.
+
+Three pages cross the kinds. They are the working that no single class owns.
+
+| Page | What it settles |
+|---|---|
+| [Error, and what a tolerance is](error/index.md) | Round-off, machine epsilon, cancellation, conditioning, and what a tolerance is a statement about |
+| [Convergence, and how to measure it](order/index.md) | Observed order, Richardson extrapolation, and what a rate does not promise |
+| [Knowing the answer is right](checking/index.md) | Manufactured solutions, grid convergence, residuals, and the difference between verified and validated |
+
+A class page gains a detail page when there is working under it that the class
+page cannot hold. Those pages sit under their class in the sidebar.
+
 ## Why the number is nine
 
 Nine is a choice, not a fact about nature. The same physics can be written as two

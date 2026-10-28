@@ -67,6 +67,15 @@ pages:
   - title: Hyperbolic
     path: hyperbolic/index.md
     signature: The answer moves along paths and keeps its shape.
+  # The three spine pages. They cross the nine kinds, so they sit after them and
+  # before the two indexes. No `signature`: a `:::class` link is a kind of problem,
+  # and "error" is not a tenth kind.
+  - title: Error, and what a tolerance is
+    path: error/index.md
+  - title: Convergence, and how to measure it
+    path: order/index.md
+  - title: Knowing the answer is right
+    path: checking/index.md
   - title: Reading the class off the equation
     path: reading-the-class/index.md
   - title: The class is a choice
