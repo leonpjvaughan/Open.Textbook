@@ -62,6 +62,9 @@ $r$. It always lies between $-1$ and $+1$.
 A calculator or spreadsheet finds $r$ from the data. The sign tells you the direction, and
 the distance from $0$ tells you the strength.
 
+The booklet also gives the critical value a rank correlation is compared with.
+[Spearman's critical values](#booklet=spearman-critical) open that table.
+
 > **Correlation is not causation.** A strong correlation between two variables does not
 > prove that one causes the other. A third variable may drive both, or the two may be
 > related by coincidence.

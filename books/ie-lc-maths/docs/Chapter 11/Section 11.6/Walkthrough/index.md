@@ -85,8 +85,8 @@ So $78$ lies one standard deviation above the mean.
 
 ## Reading the table
 
-The standard normal table in the booklet gives $P(Z \le z)$, the area to the left of
-$z$. For a negative $z$, use the symmetry of the curve:
+The [standard normal table in the booklet](#booklet=standard-normal) gives
+$P(Z \le z)$, the area to the left of $z$. For a negative $z$, use the symmetry of the curve:
 
 $$P(Z \le -z) = 1 - P(Z \le z)$$
 

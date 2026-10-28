@@ -281,7 +281,8 @@
         return `<tr>${cells}</tr>`;
       })
       .join("");
-    return `<section class="bk-section"><h3>${esc(table.title)}</h3>
+    return `<section class="bk-section" id="bk-table-${esc(table.id)}">
+      <h3>${esc(table.title)}</h3>
       <table class="bk-table"><thead><tr>${head}</tr></thead><tbody>${rows}</tbody></table></section>`;
   }
 
@@ -429,12 +430,33 @@
   }
 
   // ---------- panel behaviour ----------
-  function open() {
+  /**
+   * The table a link asked for, from a `#booklet=<id>` fragment.
+   *
+   * A page that says "the standard normal table in the booklet" can then link to
+   * the table itself rather than to the widget's button: the fragment opens the
+   * panel, switches to the tables tab and brings that table into view.
+   *
+   * @returns {string|null} the table id, "" for the tables tab, or null for no request
+   */
+  function tableFromHash() {
+    const match = location.hash.match(/^#booklet(?:=(.+))?$/);
+    return match ? decodeURIComponent(match[1] || "") : null;
+  }
+
+  function open(tableId) {
+    if (tableId !== undefined) state.tab = "tables";
     panel.hidden = false;
     state.open = true;
     fab.setAttribute("aria-expanded", "true");
     ensureData()
-      .then(render)
+      .then(() => {
+        render();
+        if (tableId) {
+          const target = document.getElementById(`bk-table-${tableId}`);
+          if (target) target.scrollIntoView({ block: "start" });
+        }
+      })
       .catch((err) => {
         el(panel, ".bk-content").innerHTML =
           `<p class="bk-empty">Could not load the booklet. ${esc(err.message)}</p>`;
@@ -706,6 +728,12 @@
     loadState();
     build();
     applyRect();
+    const table = tableFromHash();
+    if (table !== null) open(table);
+    window.addEventListener("hashchange", () => {
+      const requested = tableFromHash();
+      if (requested !== null) open(requested);
+    });
   }
 
   if (document.readyState === "loading") {

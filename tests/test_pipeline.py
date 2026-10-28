@@ -1009,3 +1009,26 @@ def test_the_shared_figure_files_are_copied_from_assets_not_through_a_symlink(tm
     assert not any(
         (figures / "kit" / name).stat().st_size < 200 for name in layers
     ), f"a kit layer is a path, not a program: {layers}"
+
+
+def test_the_statistics_pages_link_the_booklet_tables():
+    """Item 149's reader half: the page that names a table can open it.
+
+    The anchor is a same-page fragment the widget reads, so this checks the promise
+    the pages make rather than a route that happens to exist.
+    """
+    book = book_by_id("ie-lc-maths")
+    pages = {
+        "Chapter 11/Section 11.6/Walkthrough/index.md": "standard-normal",
+        "Chapter 11/Section 11.10/Walkthrough/index.md": "spearman-critical",
+    }
+    for relative, table in pages.items():
+        text = (book.docs / relative).read_text(encoding="utf-8")
+        assert f"#booklet={table}" in text, (relative, table)
+
+
+def test_the_booklet_widget_opens_a_named_table():
+    """The fragment is not decoration: the widget must read it and find the table."""
+    script = (repo_root() / "assets" / "booklet" / "booklet.js").read_text(encoding="utf-8")
+    assert "#booklet" in script
+    assert "bk-table-" in script
