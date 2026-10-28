@@ -63,6 +63,21 @@ The test statistic is
 
 $$z = \frac{45.4 - 44}{0.3466} \approx 4.04$$
 
+**Predict first.** The figure draws a normal curve and shades the critical
+region for a $5\%$ test. Before you move a control, predict what happens to the
+shaded area when the sample size rises from $16$ to $64$. Write down whether the
+shaded region grows, shrinks or stays the same, and why.
+
+:::figure ch14-normal-test
+
+**Test.** Set the sample mean to $45.4$, the standard deviation to $3.1$ and the
+sample size to $80$. Read the test statistic and the $p$-value. Now raise the
+sample size and watch both values. Then change the tail to "two tails".
+
+**Explain.** Write two sentences. The first explains why a larger sample makes
+the same sample mean give a more extreme test statistic. The second explains why
+the two-tailed $p$-value is twice the one-tailed value.
+
 ## The p-value and the decision
 
 The **$p$-value** is the probability of getting a result at least as extreme as the one
@@ -98,6 +113,8 @@ $$(44.72, 46.08)$$
 The interval does not contain $44$, so a two-tailed test at the $5\%$ level rejects the
 claim that the mean is $44$. That link always holds: a $95\%$ confidence interval contains
 exactly the values that a two-tailed test at the $5\%$ level would retain.
+
+:::prove mean-minimises-squared-error
 
 For a population proportion $p$ and a sample proportion $\hat{p}$ from a sample of
 size $n$, the $95\%$ confidence interval is

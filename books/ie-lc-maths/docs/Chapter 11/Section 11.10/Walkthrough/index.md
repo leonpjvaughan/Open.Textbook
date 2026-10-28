@@ -49,6 +49,8 @@ scattered widely.
 The strength and direction are combined in one number, the **correlation coefficient**
 $r$. It always lies between $-1$ and $+1$.
 
+:::prove correlation-between-minus-one-and-one
+
 | Value of $r$ | Meaning |
 |---|---|
 | $r = 1$ | perfect positive correlation |

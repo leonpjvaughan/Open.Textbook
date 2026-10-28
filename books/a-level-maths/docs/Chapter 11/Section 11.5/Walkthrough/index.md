@@ -146,6 +146,11 @@ $$
 
 The squared deviations from the mean are
 
+The mean is the value that makes the total squared deviation smallest, which is
+why the deviations are measured from it.
+
+:::prove mean-minimises-squared-error
+
 $$
 16,\ 4,\ 0,\ 4,\ 16.
 $$
@@ -217,7 +222,9 @@ amount to every reading leaves the standard deviation unchanged.
 > **Forgetting to square the deviations.** The formula uses $\sum(x - \bar{x})^2$,
 > not $\sum(x - \bar{x})$. The unsquared deviations add to zero for any data set,
 > so the squares are essential.
->
+
+:::prove mean-minimises-squared-error
+
 > **Dividing by $n - 1$ without saying so.** If your calculator uses $n - 1$,
 > state it. The two values are close for a large sample, but they differ for a
 > small one.

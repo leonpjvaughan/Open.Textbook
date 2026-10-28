@@ -26,6 +26,8 @@ the points lie to a straight line.
 
 The value of $r$ always lies between $-1$ and $1$.
 
+:::prove correlation-between-minus-one-and-one
+
 - $r = 1$ means every point lies exactly on an upward-sloping line.
 - $r = -1$ means every point lies exactly on a downward-sloping line.
 - $r = 0$ means there is no linear pattern. The points may still curve.

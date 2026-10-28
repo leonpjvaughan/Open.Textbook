@@ -49,11 +49,12 @@ estimate, and the precision improves with the square root of the sample size.
 
 Here is the surprising part. When $n$ is large, the sampling distribution of the mean is
 approximately normal, whatever shape the population has. This is the **central limit
-theorem**.
+theorem**. It is stated here and not proved: the proof is a limit argument beyond this
+course, and the result is used rather than reproduced.
 
-> **The central limit theorem.** For a large sample size $n$, the sample mean $\bar{x}$
-> is approximately normally distributed with mean $\mu$ and standard deviation
-> $\dfrac{\sigma}{\sqrt{n}}$.
+> **The central limit theorem (stated, not proved here).** For a large sample size $n$,
+> the sample mean $\bar{x}$ is approximately normally distributed with mean $\mu$ and
+> standard deviation $\dfrac{\sigma}{\sqrt{n}}$.
 
 A population can be skewed, or flat, or have two peaks. Take enough samples and average
 them, and the means pile up in a bell shape. A sample size of about $30$ or more is often
@@ -66,6 +67,20 @@ mean.
 The mean of the sampling distribution is the population mean, $100$. The standard error is
 
 $$\sigma_{\bar{x}} = \frac{15}{\sqrt{25}} = \frac{15}{5} = 3$$
+
+**Predict first.** The figure draws a binomial distribution and shades a tail.
+Before you move a control, predict what happens to the shape as the number of
+trials grows. Write down whether it becomes more or less like a bell, and why.
+
+:::figure ch14-binomial-tail
+
+**Test.** Start with a small number of trials and increase it. Watch the shape
+and the shaded tail. Then change the tail from "lower tail" to "two tails" and
+compare the shaded area.
+
+**Explain.** Write two sentences. The first explains why the binomial shape
+becomes more symmetric as the number of trials grows. The second explains why the
+central limit theorem lets a normal distribution stand in for it.
 
 ## Using the normal distribution
 

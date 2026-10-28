@@ -33,6 +33,21 @@ sample proportion $\hat{p}$ that is close to $p$, and how close depends on the s
 size. The collection of all the values $\hat{p}$ could take, with their probabilities, is
 the **sampling distribution** of the proportion.
 
+**Predict first.** The figure shows a population and draws a random sample from
+it. Before you touch a control, predict what happens to the sample mean when you
+make the sample larger. Write down whether the sample means will spread out more
+or less, and why.
+
+:::figure ch11-sampling-variability
+
+**Test.** Set the sample size to its smallest value and take several samples.
+Watch where each sample mean lands. Now set the sample size to its largest value
+and take several more samples.
+
+**Explain.** Write two sentences. The first explains why two samples of the same
+size give different means. The second explains why a larger sample usually gives
+a mean closer to the population mean.
+
 ## The standard error
 
 The sampling distribution of the proportion has a mean of $p$ and a standard deviation

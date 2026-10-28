@@ -28,8 +28,11 @@ a range and be spread out in completely different ways. The **standard deviation
 every value, so it measures the whole data set.
 
 The standard deviation starts from the **deviation** of each value from the mean,
-$x - \mu$. Some deviations are positive and some are negative, and they add to zero. To
-stop them cancelling, we square each one. The mean of the squared deviations is the
+$x - \mu$. Some deviations are positive and some are negative, and they add to zero.
+
+:::prove mean-minimises-squared-error
+
+To stop them cancelling, we square each one. The mean of the squared deviations is the
 **variance**, and its square root is the standard deviation.
 
 > **The standard deviation of a list.** For values with mean $\mu$,

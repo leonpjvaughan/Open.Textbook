@@ -323,6 +323,22 @@ def figure_colour_literals(text: str) -> list[str]:
 
 
 @pytest.mark.parametrize(("book", "path"), FIGURES, ids=IDS)
+def test_no_figure_module_uses_unseeded_randomness(book, path):
+    """A figure that samples must be reproducible from a seed.
+
+    Two readers comparing what they saw are comparing different data if the module
+    draws from Math.random, and no other check can see that difference. The kit's
+    seed() is deterministic across engines; use it for data, and leave Math.random
+    to DOM id generation in the kit itself.
+    """
+    code = code_only(path.read_text(encoding="utf-8"))
+    assert "Math.random" not in code, (
+        f"{book.id}/{path.name}: use seed() from kit.js rather than Math.random, "
+        "so the same figure shows the same data to every reader"
+    )
+
+
+@pytest.mark.parametrize(("book", "path"), FIGURES, ids=IDS)
 def test_no_figure_module_hard_codes_a_colour(book, path):
     literals = figure_colour_literals(code_only(path.read_text(encoding="utf-8")))
     assert not literals, (

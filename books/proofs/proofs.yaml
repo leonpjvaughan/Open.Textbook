@@ -223,3 +223,22 @@ proofs:
       formula arrives rather than appears.
     qualifications: []
     strand: sequences
+
+  - id: correlation-between-minus-one-and-one
+    title: A correlation coefficient lies between −1 and 1
+    summary: >-
+      The covariance is bounded by the product of the two standard deviations.
+      Cauchy–Schwarz gives the inequality, and equality is the case where every
+      point lies on one straight line.
+    qualifications: [A-level, Leaving Certificate]
+    strand: statistics
+
+  - id: mean-minimises-squared-error
+    title: The mean minimises the squared error
+    summary: >-
+      Differentiate the total squared distance from a candidate centre. The mean
+      is the only stationary point and it is a minimum, so the deviations add to
+      zero; the same rearrangement makes a confidence interval and a two-sided
+      test one calculation.
+    qualifications: [GCSE, A-level, Leaving Certificate]
+    strand: statistics

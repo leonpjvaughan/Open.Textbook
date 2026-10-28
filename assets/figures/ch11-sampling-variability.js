@@ -10,7 +10,7 @@
 // The scaffolding — the surface, its accessible name, the slider, the live
 // readout and the redraw — comes from `kit.js`. The kit has no button helper, so
 // the two action buttons stay here.
-import { SIZE, label, panel, react, slider } from "./kit.js";
+import { SIZE, label, panel, react, seed, slider } from "./kit.js";
 
 const POPULATION_SIZE = 240;
 const MIN_VALUE = 0;
@@ -34,6 +34,9 @@ function buildPopulation() {
 }
 
 const POPULATION = buildPopulation();
+// A seeded stream, so two readers comparing what they saw are comparing the same
+// samples. Each click advances the stream; a reload starts it again at sample one.
+const SAMPLER = seed(1);
 const POPULATION_MEAN =
   POPULATION.reduce((total, value) => total + value, 0) / POPULATION.length;
 
@@ -45,7 +48,7 @@ function drawSample(size) {
   const values = [];
   let total = 0;
   for (let i = 0; i < size; i += 1) {
-    const value = POPULATION[Math.floor(Math.random() * POPULATION.length)];
+    const value = POPULATION[SAMPLER.int(0, POPULATION.length - 1)];
     values.push(value);
     total += value;
   }
