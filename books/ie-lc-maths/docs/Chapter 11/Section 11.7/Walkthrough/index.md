@@ -48,6 +48,8 @@ The standard error measures how much $\hat{p}$ varies from sample to sample. It 
 smaller as $n$ grows, because dividing by a larger $n$ makes the fraction smaller. To
 halve the standard error, you must quadruple the sample size.
 
+:::class averaging
+
 ## The margin of error
 
 A $95\%$ confidence interval for $p$ is

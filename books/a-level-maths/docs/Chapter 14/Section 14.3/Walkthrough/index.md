@@ -52,6 +52,8 @@ sample mean is likely to lie from the population mean.
 A larger sample gives a smaller standard error, so a large sample mean is more
 reliable than a small one.
 
+:::class averaging
+
 To test the claim, standardise the sample mean:
 
 $$

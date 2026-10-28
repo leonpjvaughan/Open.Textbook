@@ -156,9 +156,9 @@ def test_the_used_list_does_not_name_the_map_itself():
 
 
 def test_a_class_no_page_names_says_so_rather_than_printing_nothing():
-    """Five of the nine classes have no callback yet. An empty list is ambiguous."""
-    assert usedin.used_in("averaging") == []
-    out = render_used("numerical-methods", "averaging/index.md", ":::used\n")
+    """Three of the nine classes have no callback yet. An empty list is ambiguous."""
+    assert usedin.used_in("elliptic") == []
+    out = render_used("numerical-methods", "elliptic/index.md", ":::used\n")
     assert usedin.EMPTY in out
 
 

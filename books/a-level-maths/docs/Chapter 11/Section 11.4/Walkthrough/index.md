@@ -47,6 +47,10 @@ correlation.
 A **regression line**, or line of best fit, is a straight line drawn through the
 middle of the points. It is used to summarise the trend and to make predictions.
 
+:::class optimisation
+
+:::class linear-system
+
 **Example 1.** A scatter diagram plots the distance of a house from a city
 centre against its price. The points fall from left to right, fairly close to a
 straight line. Describe the correlation.

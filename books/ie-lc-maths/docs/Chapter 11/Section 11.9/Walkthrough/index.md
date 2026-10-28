@@ -57,6 +57,8 @@ The standard error is
 
 $$\frac{3.1}{\sqrt{80}} \approx 0.3466$$
 
+:::class averaging
+
 The test statistic is
 
 $$z = \frac{45.4 - 44}{0.3466} \approx 4.04$$

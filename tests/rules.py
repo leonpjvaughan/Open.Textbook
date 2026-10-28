@@ -60,7 +60,7 @@ NAMELESS = {"", "here", "click here", "more", "details", "see more", "open", "ex
 #: `lint.SENTENCE_DEBT` is, and under the same rule: **it may only go down.** Fix a
 #: line and lower the number; a book that starts clean starts at 0 and stays there,
 #: and every new page must be written to the limit. The reflow task drives this to 0.
-PROSE_DEBT: dict[str, int] = {"numerical-methods": 462}
+PROSE_DEBT: dict[str, int] = {"numerical-methods": 457}
 
 
 def _lines(text: str):

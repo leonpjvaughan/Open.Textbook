@@ -15,13 +15,16 @@ of the method, the update it repeats or the equation it solves. Then the **price
 what it needs from you, and what it will not do. Where a method is a family, the step
 is the representative member, and the class line says what the family covers.
 
-| class | what it answers | methods |
+| class | what it answers | entries |
 |---|---|---|
-| [Finding a state](#finding-a-state) | $F(x)=0$: one unknown, or $n$ equations in $n$ unknowns | 20 |
-| [Linear systems](#linear-systems) | $Ax=b$: one answer that satisfies many equations at once | 21 |
-| [Eigenvalues](#eigenvalues) | $Av=\lambda v$: the directions a matrix does not turn | 9 |
-| [Moving problems](#moving-problems) | $\dot u=F(u)$: an answer that travels, or settles, in time | 20 |
+| [Finding a state](#finding-a-state) | $F(x)=0$: one unknown, or $n$ equations in $n$ unknowns | 19 |
+| [Linear systems](#linear-systems) | $Ax=b$: one answer that satisfies many equations at once | 20 |
+| [Eigenvalues](#eigenvalues) | $Av=\lambda v$: the directions a matrix does not turn | 8 |
+| [Moving problems](#moving-problems) | $\dot u=F(u)$: an answer that travels, or settles, in time | 19 |
 | [Averaging](#averaging) | $\mathbb E[g(X)]$: an answer that is a distribution, not a number | 11 |
+
+A family counts once, and a method filed under two classes appears in both, so
+the column is entries rather than a partition of the book's methods.
 
 <div class="method-index" markdown="1">
 
@@ -816,6 +819,15 @@ Class: [Averaging](../averaging/) (data)
 $\hat\theta^*_b$ from resamples; $\widehat{\operatorname{se}}=\operatorname{sd}(\hat\theta^*_1,\dots,\hat\theta^*_B)$
 
 A sample. Error bars without a formula, and none for dependence
+
+<a id="least-squares-fit"></a>
+### Least-squares fit
+
+Class: [Optimisation](../optimisation/), [Linear system](../linear-system/)
+
+$X^{\mathsf T}X\beta=X^{\mathsf T}y$; solve for the coefficients
+
+A model linear in its parameters. A small residual is not a good fit
 
 <a id="gaussian-quadrature"></a>
 ### Gaussian quadrature

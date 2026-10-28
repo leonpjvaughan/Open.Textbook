@@ -190,7 +190,7 @@ def test_every_method_states_its_step_in_symbols():
     a method and never says what it does is a glossary entry, not a technique.
     """
     methods = _methods_a_to_z()
-    assert len(methods) == 76, f"the A–Z has {len(methods)} method blocks, not 76"
+    assert len(methods) == 77, f"the A–Z has {len(methods)} method blocks, not 77"
     missing = [method["name"] for method in methods if "$" not in method["step"]]
     assert missing == [], f"these methods do not state their step: {missing}"
 
@@ -254,6 +254,20 @@ def test_the_home_page_states_the_counts_it_claims():
     assert f"**{methods}**" in opening, f"the page does not say it names {methods} methods"
     assert f"**{systems}**" in opening, f"the page does not say {systems} systems live here"
     assert f"**{len(CLASSES)}**" in opening, "the page does not say how many kinds there are"
+
+
+def test_the_counting_table_sums_to_the_method_blocks():
+    """The table's column is entries, and it must equal the blocks below it.
+
+    It said 81 from before the page stopped being five tables; the conversion kept
+    the old row count including a header, so every class was overstated by one and
+    nobody noticed because no test read the column.
+    """
+    text = (map_book().docs / "techniques" / "index.md").read_text(encoding="utf-8")
+    rows = [line for line in text.splitlines() if line.startswith("| [")]
+    counts = [int(line.rsplit("|", 2)[1]) for line in rows]
+    assert len(counts) == 5, rows
+    assert sum(counts) == len(_methods_a_to_z()), (counts, len(_methods_a_to_z()))
 
 
 def test_the_landing_card_counts_pages_and_methods():
@@ -571,19 +585,19 @@ def test_the_worked_case_names_the_exports_tenth_of_a_degree_stiffness():
 # --- the kinds with no caller ---------------------------------------------------
 
 
-#: The four kinds no section in the collection carries a `:::class` for, so their
+#: The three kinds no section in the collection carries a `:::class` for, so their
 #: pages print the "no page names this class yet" sentence. Written out rather than
 #: derived from `:::used`: a test that reads its expectation from the hook agrees with
 #: itself when a callback is dropped. When a chapter fills one of these, this fails and
 #: says to update `worked-case`, which names the four and would otherwise be wrong.
-DEAD_ENDS = ["averaging", "elliptic", "hyperbolic", "parabolic"]
+DEAD_ENDS = ["elliptic", "hyperbolic", "parabolic"]
 
 
 def test_the_worked_case_agrees_with_the_callers_each_kind_actually_has():
     """`:::used` is derived; the worked case's claim about it has to be too.
 
-    The worked case names the four kinds no section carries a `:::class` for:
-    averaging, elliptic, hyperbolic and parabolic. It also names the five the chapter
+    The worked case names the three kinds no section carries a `:::class` for:
+    elliptic, hyperbolic and parabolic. It also names the five the chapter
     does use. This is the check that the admission and the derived list are about the
     same kinds, so a reader who follows a link does not arrive at "no page names this
     class yet".
@@ -633,6 +647,22 @@ def _detail_pages():
         text = page.read_text(encoding="utf-8")
         if DETAIL_HEADING in text:
             yield page.relative_to(map_book().docs).as_posix(), text
+
+
+def test_the_regression_page_states_the_mean_point_fact():
+    """Item 141 recorded that no page in the collection stated it.
+
+    The least-squares line passes through (x-bar, y-bar). The page's program
+    prints both coordinates and its own value at x-bar, so the fact is checkable
+    rather than asserted: this reads the statement and the printed row.
+    """
+    page = (map_book().docs / "averaging" / "regression" / "index.md").read_text(
+        encoding="utf-8"
+    )
+    assert "passes through" in page
+    assert "(\\bar x, \\bar y)" in page
+    assert "mean point  (2.0, 3.0)" in page
+    assert "line at x-bar 3.0" in page
 
 
 def test_every_detail_program_prints_what_its_page_shows():
@@ -906,8 +936,8 @@ def test_the_a_to_z_is_a_contents_table_and_a_section_per_class():
         assert row.rstrip().endswith("|"), f"the contents row for {title} is malformed"
 
     methods = _methods_a_to_z()
-    assert len(methods) == 76, f"the A–Z has {len(methods)} methods, not 76"
-    assert len({method["anchor"] for method in methods}) == 76, "two methods share an anchor"
+    assert len(methods) == 77, f"the A–Z has {len(methods)} methods, not 77"
+    assert len({method["anchor"] for method in methods}) == 77, "two methods share an anchor"
     for method in methods:
         assert "(../" in method["class"] or "[../" in method["class"], (
             f"{method['name']}: the class line carries no link"
