@@ -87,6 +87,26 @@ def render(markdown: str) -> str:
     )
 
 
+# --- headings and fragments ---------------------------------------------------
+
+
+def test_a_heading_gets_the_id_a_fragment_names():
+    """A section is linkable without an author writing an invisible anchor.
+
+    Before the toc extension was enabled no body heading had an id, so a fragment
+    had to name a hand-written `<a id>` and a deep link could not name a section.
+    The slug is the one the toc extension generates, and it is stable because a
+    published fragment depends on it.
+    """
+    html = render("## The same equations, classified\n\nText.\n")
+    assert '<h2 id="the-same-equations-classified">' in html
+
+
+def test_headings_keep_their_ids_when_the_page_has_maths():
+    html = render("## A rate of $1/\\sqrt{N}$\n")
+    assert re.search(r'<h2 id="[^"]+">', html), html
+
+
 # --- the figure hook ----------------------------------------------------------
 
 

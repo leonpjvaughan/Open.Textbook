@@ -1086,7 +1086,19 @@ def build_nav_list(
                 {page["title"]: page["path"]}
                 for page in by_section.get((str(c["id"]), str(s["id"])), [])
             )
-            children.append({f"{s['id']} {s['title']}": section_children})
+            # A book with one page per section does not need that page named: the
+            # section title already says what it is, and "1.1 The question / Learn"
+            # repeats the only kind the book has. The section becomes the link. A
+            # section that also has depth pages keeps a list, because those pages
+            # need somewhere to sit; its own page is then called Overview. This is
+            # T1 in research/review/maths-applied-and-numerical-methods.md.
+            label = f"{s['id']} {s['title']}"
+            if len(kinds) == 1 and len(section_children) == 1:
+                children.append({label: next(iter(section_children[0].values()))})
+            else:
+                if len(kinds) == 1:
+                    section_children[0] = {"Overview": next(iter(section_children[0].values()))}
+                children.append({label: section_children})
         children.append({"Review": f"Chapter {c['id']}/Review/index.md"})
         nav.append({f"Chapter {c['id']}: {c['title']}": children})
     # The colophon sits last, where a reader expects to find it.

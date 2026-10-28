@@ -43,6 +43,23 @@ a { color: var(--tb-link); }
 
 /* masthead ---------------------------------------------------------------- */
 
+/* The sticky masthead's height, so a fragment target can clear it. Measured:
+ * about 57px at desktop widths and about 97px at 390px, where the row wraps and
+ * the search takes a second line. A token rather than a number in each rule,
+ * because a heading and the sidebar have to agree with the bar above them. */
+:root { --tb-masthead-height: 3.6rem; }
+
+@media (max-width: 48rem) {
+  :root { --tb-masthead-height: 6.1rem; }
+}
+
+/* A fragment link puts the target at the very top of the viewport, which is
+ * under the sticky masthead. This is what makes a deep link land on the heading
+ * it names rather than on the middle of the paragraph above it. */
+:is(h1, h2, h3, h4, h5, h6, [id]) {
+  scroll-margin-top: calc(var(--tb-masthead-height) + 0.5rem);
+}
+
 .masthead {
   position: sticky;
   top: 0;
@@ -140,7 +157,7 @@ a { color: var(--tb-link); }
 
 .sidebar {
   position: sticky;
-  top: 4.5rem;
+  top: calc(var(--tb-masthead-height) + 0.9rem);
   max-height: calc(100vh - 5rem);
   overflow: auto;
   padding: 1.25rem 0;

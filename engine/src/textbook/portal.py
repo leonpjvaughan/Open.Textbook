@@ -128,6 +128,21 @@ LEGAL_PAGES: dict[str, tuple[str, str]] = {
 }
 
 
+def method_count(book: books.Book) -> int:
+    """The methods a reference work's A–Z page lists.
+
+    A reference work's landing card should count something true about it. The
+    methods are the `###` entries under *Methods, A to Z*, which is the page a
+    reader consults for a method and the page the home page's own arithmetic claim
+    is built from, so the card and the page agree by construction. A book with no
+    such page gets no methods fact rather than a zero.
+    """
+    page = book.docs / "techniques" / "index.md"
+    if not page.is_file():
+        return 0
+    return sum(1 for line in page.read_text(encoding="utf-8").splitlines() if line.startswith("### "))
+
+
 def card(book: books.Book) -> str:
     """One landing-page card, tinted with the book's own accents.
 
@@ -151,9 +166,16 @@ def card(book: books.Book) -> str:
 
     # What the card counts depends on what the book is. A course counts chapters
     # and sections; a reference work has neither, and "0 chapters" is not a fact
-    # about it — the proofs are.
+    # about it. The proof book counts its proofs. A reference work without a proof
+    # registry — the map of problem classes — counts its pages and its methods,
+    # which are facts about it that a reader can use.
     if book.proofs:
         facts = [f"{len(book.proofs)} proofs"]
+    elif book.qualification == books.REFERENCE:
+        facts = [f"{len(book.pages)} pages"]
+        methods = method_count(book)
+        if methods:
+            facts.append(f"{methods} methods")
     else:
         facts = [
             f"{book.chapter_count} chapters",

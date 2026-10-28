@@ -68,8 +68,6 @@ The second is simpler to solve. It is also the one this book can sweep, because 
 root can be found at each wheel position without assembling a coupled system. What it
 gives up is the force being a solved unknown; you multiply instead.
 
-<a id="the-same-equations-classified"></a>
-
 ## The same equations, classified
 
 This is the arithmetic behind the first case. The two coordinate conditions are

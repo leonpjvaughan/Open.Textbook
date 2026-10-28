@@ -136,7 +136,6 @@ That is the map's claim, and this page is the evidence for it: one mechanism, fi
 questions and six kinds of problem, five of which a section already names. One of
 the methods needs no iteration at all.
 
-<a id="what-a-kernel-is"></a>
 ## What a kernel is
 
 The numbers on this page come from the model in `Maths Applied`, and that model is

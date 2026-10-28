@@ -55,12 +55,12 @@
  *
  * The class headings stick: the page is 34,000px on a phone, and a reader deep inside
  * "Moving problems" needs to know which section they are in. `top` clears the masthead,
- * which is not sticky, so zero is the top of the reading surface; the paper background
- * is what stops the text scrolling underneath. */
+ * which is sticky, so it is the masthead's own height rather than zero; the paper
+ * background is what stops the text scrolling underneath. */
 
 .method-index h2 {
   position: sticky;
-  top: 0;
+  top: var(--tb-masthead-height);
   z-index: 1;
   background: var(--md-default-bg-color);
   padding: 0.4rem 0;

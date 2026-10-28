@@ -256,6 +256,24 @@ def test_the_home_page_states_the_counts_it_claims():
     assert f"**{len(CLASSES)}**" in opening, "the page does not say how many kinds there are"
 
 
+def test_the_landing_card_counts_pages_and_methods():
+    """A reference work's card says what the book is, not that it has no syllabus.
+
+    "0 chapters / 0 sections" is true of every reference work and a fact about
+    none. The map counts its pages and its methods, the two numbers a reader can
+    use, and both are measured rather than typed.
+    """
+    from textbook import portal
+
+    book = map_book()
+    methods, _systems = _counts()
+    card = portal.card(book)
+    assert "0 chapters" not in card
+    assert "0 sections" not in card
+    assert f"{len(book.pages)} pages" in card
+    assert f"{methods} methods" in card
+
+
 def test_the_classes_come_first_in_tree_order():
     """The pages that are not classes come after them, in the order the tree reaches them.
 

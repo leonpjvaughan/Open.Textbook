@@ -113,11 +113,30 @@ def section_children(nav, section_id: str):
     raise AssertionError(f"no section {section_id} in the nav")
 
 
-def test_the_navigation_lists_only_the_declared_pages():
+def test_a_book_with_one_page_kind_links_the_section_itself():
+    """A one-page-per-section book does not repeat its only page kind in the nav.
+
+    The section title already says what the page is. "1.1 One point one / Learn"
+    names the only kind the book has, which distinguishes nothing; the section
+    itself becomes the link.
+    """
     chapters = [{"id": 1, "title": "One", "sections": [{"id": "1.1", "title": "One point one"}]}]
     nav = scaffold.build_nav_list([], chapters, page_kinds=("walkthrough",))
-    listed = [list(child)[0] for child in section_children(nav, "1.1")]
-    assert listed == ["Learn"]
+    assert section_children(nav, "1.1") == "Chapter 1/Section 1.1/Walkthrough/index.md"
+
+
+def test_a_one_kind_book_with_a_depth_page_calls_its_page_overview():
+    chapters = [{"id": 1, "title": "One", "sections": [{"id": "1.1", "title": "One point one"}]}]
+    nav = scaffold.build_nav_list(
+        [],
+        chapters,
+        page_kinds=("walkthrough",),
+        deepers=[{"chapter": "1", "section": "1.1", "title": "More", "path": "Chapter 1/Section 1.1/Deeper/more/index.md"}],
+    )
+    assert section_children(nav, "1.1") == [
+        {"Overview": "Chapter 1/Section 1.1/Walkthrough/index.md"},
+        {"More": "Chapter 1/Section 1.1/Deeper/more/index.md"},
+    ]
 
 
 def test_an_unknown_page_kind_is_refused_at_load(tmp_path):
@@ -189,7 +208,7 @@ def test_the_navigation_lists_each_deeper_page_below_its_section(tmp_path):
     )
     section = section_children(nav, "1.1")
     assert section == [
-        {"Learn": "Chapter 1/Section 1.1/Walkthrough/index.md"},
+        {"Overview": "Chapter 1/Section 1.1/Walkthrough/index.md"},
         {"A little more": "Chapter 1/Section 1.1/Deeper/more/index.md"},
     ]
 

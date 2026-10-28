@@ -44,6 +44,7 @@ from string import Template
 from types import SimpleNamespace
 
 import markdown
+from markdown.extensions.toc import TocExtension
 from pymdownx.arithmatex import ArithmatexExtension
 
 from . import backgrounds
@@ -233,6 +234,12 @@ EXTENSIONS = [
     "tables",
     "fenced_code",  # ``` blocks: preformatted text, not inline code
     ArithmatexExtension(generic=True),  # $...$ delimiters for the maths hook
+    # Every heading gets an id, so a fragment can name a section. Until this was
+    # enabled the only anchors were 83 hand-written `<a id>` elements, invisible
+    # to the reader, and `check_links` had to reject a heading slug because no
+    # heading had one. `permalink=False` because the id is for linking to, not
+    # for printing a paragraph mark beside every heading.
+    TocExtension(permalink=False),
 ]
 
 # Shared stylesheets, in load order. book.css is generated per book by the
@@ -1147,11 +1154,11 @@ def check_links(
     target's ids are read and the fragment must be one of them, so a deleted
     anchor or a heading whose slug changed is reported.
 
-    The ids accepted are those already in the output. Headings carry none (the
-    Markdown ``toc`` extension is not enabled), so a fragment naming a heading
-    slug is reported rather than silently accepted: at the moment the link is
-    written, that anchor cannot take the reader to the section. A page that wants
-    a target writes one explicitly as ``<a id="…"></a>``.
+    The ids accepted are those already in the output: a heading gets one from the
+    Markdown ``toc`` extension, and a page may also write one explicitly as
+    ``<a id="…"></a>`` where its chosen name differs from the generated slug. A
+    fragment naming neither is reported, so a deleted anchor or a renamed heading
+    still fails the build.
 
     ``<script>`` bodies are excluded because the search client builds its hrefs
     at runtime.
