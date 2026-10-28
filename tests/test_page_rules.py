@@ -265,3 +265,18 @@ def test_a_detail_page_with_no_program_is_reported():
     end = GOOD_PAGE.index("## The theory")
     page = GOOD_PAGE[:start] + GOOD_PAGE[end:]
     assert "no fenced python program" in rules.detail_page_offences(page)
+
+
+def test_every_detail_page_meets_the_detail_contract():
+    """The skeleton, widths, folds and program output are checked on every page.
+
+    The cases above prove each rule catches a violation. This is the tree-wide
+    application: a page that carries the detail heading is held to the whole
+    contract, so the seven pages cannot drift from the shape the handoff fixed.
+    """
+    failures = []
+    for name, text in pages():
+        if "## What this page answers" not in text:
+            continue
+        failures.extend(f"{name}: {offence}" for offence in rules.detail_page_offences(text))
+    assert failures == [], "\n".join(failures)
