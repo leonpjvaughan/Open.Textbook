@@ -291,7 +291,7 @@ def test_the_linear_system_page_sparsity_is_the_vendored_kernels():
         / "index.md"
     ).read_text(encoding="utf-8")
     match = re.search(
-        r"Jacobian has (\d+) entries, of which \*\*(\d+) are not zero\*\*", page
+        r"Jacobian has (\d+) entries, of which\s+\*\*(\d+) are not\s+zero\*\*", page
     )
     assert match, "the linear-system page no longer states its Jacobian's sparsity"
     assert (int(match.group(1)), int(match.group(2))) == (declared, non_zero)

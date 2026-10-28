@@ -444,6 +444,7 @@
     return match ? decodeURIComponent(match[1] || "") : null;
   }
 
+  /** @param {string} [tableId] */
   function open(tableId) {
     if (tableId !== undefined) state.tab = "tables";
     panel.hidden = false;
