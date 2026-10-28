@@ -15,15 +15,15 @@ number, and this page computes it.
 
 ## The mathematics
 
-Write the answer as $x$ and the number a computer returns as $\hat x$ . The
-error is $\hat x - x$ . An error on its own is not a verdict, because the same
-absolute error is large for $10^{-8}$ and tiny for $10^{8}$ . The useful measure
+Write the answer as $x$ and the number a computer returns as $\hat x$. The
+error is $\hat x - x$. An error on its own is not a verdict, because the same
+absolute error is large for $10^{-8}$ and tiny for $10^{8}$. The useful measure
 is **relative error**:
 
 $$ \text{relative error} = \frac{|\hat x - x|}{|x|}. $$
 
 A double stores about 16 decimal digits. The gap between $1$ and the next double
-is $2^{-52} \approx 2.22 \times 10^{-16}$ . Call it $\epsilon$ , the **machine
+is $2^{-52} \approx 2.22 \times 10^{-16}$. Call it $\epsilon$, the **machine
 epsilon**. No operation on doubles can promise more than about $\epsilon$
 relative accuracy, and a chain of $n$ operations can lose a factor of $n$ on top
 of that.
@@ -31,35 +31,35 @@ of that.
 ### Cancellation
 
 Some of the loss is not the arithmetic. It is the question. Compute
-$\sqrt{1+x}-1$ for $x=10^{-16}$ . The true value is about $5 \times 10^{-17}$ ,
+$\sqrt{1+x}-1$ for $x=10^{-16}$. The true value is about $5 \times 10^{-17}$,
 but $\sqrt{1+x}$ rounds to $1$ in double precision, and the subtraction returns
-$0$ . The two operands were each accurate; their difference was not.
+$0$. The two operands were each accurate; their difference was not.
 
 The fix is algebra, not precision. Multiply by the conjugate:
 
 $$ \sqrt{1+x}-1 = \frac{x}{\sqrt{1+x}+1}. $$
 
-The right side is a quotient of two numbers of size $1$ , so it keeps its
+The right side is a quotient of two numbers of size $1$, so it keeps its
 digits. A formula that subtracts nearly equal numbers is the defect; the same
 formula rewritten is not.
 
 ### Conditioning
 
 Some problems amplify an input error whoever solves them. Write the problem as a
-function $f$ and perturb $x$ by a relative amount $\delta$ . The **condition
+function $f$ and perturb $x$ by a relative amount $\delta$. The **condition
 number** is the factor by which the relative error grows:
 
 $$ \kappa(x) = \left| \frac{x f'(x)}{f(x)} \right|. $$
 
-For $f(x)=e^x$ , $\kappa(x)=x$ . At $x=10$ , a relative error of $10^{-16}$ in
+For $f(x)=e^x$, $\kappa(x)=x$. At $x=10$, a relative error of $10^{-16}$ in
 the input becomes about $10^{-15}$ in the answer. That is the problem's
 arithmetic, not the method's.
 
-For a linear system $Ax=b$ , the same idea is
+For a linear system $Ax=b$, the same idea is
 
 $$ \kappa(A) = \|A\|\,\|A^{-1}\|, $$
 
-and it bounds the answer's error in terms of the **residual** $r=b-A\hat x$ :
+and it bounds the answer's error in terms of the **residual** $r=b-A\hat x$:
 
 $$ \frac{\|\hat x-x\|}{\|x\|} \le \kappa(A)\,\frac{\|r\|}{\|b\|}. $$
 
@@ -70,7 +70,7 @@ one into a bound on the other.
 
 A **backward-stable** method returns the exact answer to a nearby question:
 there is a small perturbation of the data for which $\hat x$ is exact. The size
-of that perturbation is the **backward error**. The forward error, $\hat x-x$ ,
+of that perturbation is the **backward error**. The forward error, $\hat x-x$,
 is then roughly the backward error multiplied by the condition number.
 
 This splits the blame correctly. A large forward error is either a large
@@ -95,7 +95,7 @@ total, and it is a fact about the formula rather than the machine.
 
 ## The code
 
-The program prints the machine epsilon, the two routes to $\sqrt{1+x}-1$ , and
+The program prints the machine epsilon, the two routes to $\sqrt{1+x}-1$, and
 the condition number of $e^x$ at two points.
 
 ```python
@@ -132,10 +132,10 @@ away the information it had computed.
 ## The theory
 
 The model is the standard floating-point one: every operation returns the exact
-result rounded to the nearest double, with relative error at most $\epsilon/2$ .
+result rounded to the nearest double, with relative error at most $\epsilon/2$.
 Under that model, addition, subtraction, multiplication and division are all
 backward stable, and a sum of $n$ terms has a backward error of order
-$n\epsilon$ . The factor $n$ is why a long accumulation needs a compensated sum.
+$n\epsilon$. The factor $n$ is why a long accumulation needs a compensated sum.
 
 The condition number is a property of the problem, not of the algorithm. A
 well-conditioned problem solved by a stable method has a small forward error; an

@@ -21,16 +21,16 @@ Write the error after a step of size $h$ as
 $$ E(h) = C h^p + O(h^{p+1}). $$
 
 The number $p$ is the **order** of the method, and $C$ is a constant that
-depends on the problem but not on $h$ . Halve the step and the leading term
-falls by $2^p$ : first order by 2, second order by 4, fourth order by 16.
+depends on the problem but not on $h$. Halve the step and the leading term
+falls by $2^p$: first order by 2, second order by 4, fourth order by 16.
 
-That gives the **observed order**. With errors at $h$ and $h/2$ ,
+That gives the **observed order**. With errors at $h$ and $h/2$,
 
 $$ p \approx \log_2 \frac{E(h)}{E(h/2)}. $$
 
 When the exact answer is unknown, the errors are unknown too. But the same
 argument works on three approximations. If $f_h$ is the computed value at step
-$h$ , then $f_h - f_{h/2}$ has the same leading behaviour as $E(h)$ , so
+$h$, then $f_h - f_{h/2}$ has the same leading behaviour as $E(h)$, so
 
 $$ p \approx \log_2 \frac{|f_h - f_{h/2}|}{|f_{h/2} - f_{h/4}|}. $$
 
@@ -38,7 +38,7 @@ This is the **Richardson** estimate. It needs no exact answer, only three runs,
 and it is the reason a convergence table is evidence rather than decoration.
 
 The same three values give an **extrapolated** answer. If the leading error is
-$C h^p$ , then
+$C h^p$, then
 
 $$ f_0 \approx f_{h/2} + \frac{f_{h/2} - f_h}{2^p - 1} $$
 
@@ -57,9 +57,16 @@ So a convergence table has three regions: pre-asymptotic, where the order is
 noise; asymptotic, where it is the method's order; and round-off, where it turns
 over. Reading the table means knowing which region you are in.
 
-**The check.** For $f(x)=e^x$ at $x=1$ , the forward difference has order 1 and
+**The check.** For $f(x)=e^x$ at $x=1$, the forward difference has order 1 and
 the central difference order 2. The table below shows observed orders of 1.05
-and 2.00 at $h=0.1$ , which is the arithmetic the page claims.
+and 2.00 at $h=0.1$, which is the arithmetic the page claims.
+
+:::figure order-rate
+
+**Predict.** On log-log axes, how much lower is the central error than the
+forward error at the same step? **Test.** Move from one marker to the next on
+each line and read the change. **Explain.** Why the exponent, not the constant,
+is what the slope shows.
 
 ## The code
 
@@ -114,18 +121,18 @@ forward difference the Taylor series gives
 
 $$ \frac{f(x+h)-f(x)}{h} = f'(x) + \frac{h}{2}f''(x) + O(h^2), $$
 
-so $p=1$ and $C=f''(x)/2$ . For the central difference the $h$ terms cancel and
-the leading error is $-h^2 f'''(x)/6$ , so $p=2$ .
+so $p=1$ and $C=f''(x)/2$. For the central difference the $h$ terms cancel and
+the leading error is $-h^2 f'''(x)/6$, so $p=2$.
 
-Richardson extrapolation assumes the same expansion and a known $p$ . If the
+Richardson extrapolation assumes the same expansion and a known $p$. If the
 observed order is not stable across two refinements, the assumption is wrong and
 the extrapolated value is not more accurate. The check is cheap: compare the
 observed order before and after the extrapolation.
 
 Round-off enters as a second term with the opposite slope. The difference
-quotient divides by $h$ , so an absolute error $\epsilon$ in each value becomes
-$\epsilon/h$ in the result. The total error is roughly $C h^p + \epsilon/h$ ,
-which has a minimum at $h \sim \epsilon^{1/(p+1)}$ . Making $h$ smaller than
+quotient divides by $h$, so an absolute error $\epsilon$ in each value becomes
+$\epsilon/h$ in the result. The total error is roughly $C h^p + \epsilon/h$,
+which has a minimum at $h \sim \epsilon^{1/(p+1)}$. Making $h$ smaller than
 that makes the answer worse. The turnover is not a bug in the method; it is the
 arithmetic of subtraction.
 

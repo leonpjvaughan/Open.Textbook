@@ -16,7 +16,7 @@ not the same thing.
 
 ## The mathematics
 
-For a linear system $Ax=b$ with computed solution $\hat x$ , the **residual** is
+For a linear system $Ax=b$ with computed solution $\hat x$, the **residual** is
 
 $$ r = b - A\hat x. $$
 
@@ -25,7 +25,7 @@ But
 
 $$ \hat x - x = A^{-1}r, $$
 
-so the error is the residual passed through $A^{-1}$ . Taking norms,
+so the error is the residual passed through $A^{-1}$. Taking norms,
 
 $$ \|\hat x - x\| \le \|A^{-1}\|\,\|r\|, $$
 
@@ -34,7 +34,7 @@ and dividing by $\|x\|$ gives the bound from the previous page,
 $$ \frac{\|\hat x-x\|}{\|x\|} \le \kappa(A)\, \frac{\|r\|}{\|b\|}. $$
 
 A residual of $10^{-13}$ with a condition number of $10^6$ permits an error of
-$10^{-7}$ . Both numbers are true, and only the second is about the answer.
+$10^{-7}$. Both numbers are true, and only the second is about the answer.
 
 ### Three kinds of check
 
@@ -63,15 +63,15 @@ convergence answers that. A model can be verified to machine precision and still
 be the wrong model, which is why the agreement panels in `Maths Applied` compare
 two models rather than one model with itself.
 
-**The check.** The 2-by-2 system below has condition number about $10^6$ . A
+**The check.** The 2-by-2 system below has condition number about $10^6$. A
 perturbation of $10^{-10}$ in one entry of $b$ produces a relative error of
-$10^{-7}$ while the relative residual is $10^{-13}$ . The residual is four
+$10^{-7}$ while the relative residual is $10^{-13}$. The residual is four
 orders smaller than the answer's error, and the bound is the bridge between
 them.
 
 ## The code
 
-The program solves the system twice, perturbs one entry of $b$ , and prints the
+The program solves the system twice, perturbs one entry of $b$, and prints the
 condition number, the relative residual and the relative error.
 
 ```python
