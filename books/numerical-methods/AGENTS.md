@@ -131,6 +131,41 @@ because nine pages that each invent their own order stop being a map:
 Two indexes sit outside that order and exist for the other directions of lookup:
 `techniques/` goes method → class, and `symptoms/` goes wrong answer → class.
 
+### A detail page is a different page
+
+A class page is the map. A **detail page** is the working under it: the algebra, a
+program that prints a number, and the argument for why the method does what it
+does. Detail pages sit under their class (`averaging/error-bars/`) or, for the
+three that cross every class, at the top level (`error/`, `order/`, `checking/`).
+A top-level one carries no `signature`, because it is not a tenth class.
+
+Every detail page runs the same six headings, in this order:
+
+1. **What this page answers** — one sentence, and the question the class page left.
+2. **The mathematics** — the derivation, one reasoning line per algebra line,
+   ending in a statement the reader can check.
+3. **The code** — a program, folded if it is longer than ten lines, with its printed
+   output beside it.
+4. **The theory** — why it works, what it assumes, and when it stops working.
+5. **What this cost** — work, memory, accuracy and what it will not do.
+6. **Back to the map** — the parent class page and at least one sibling detail page.
+
+The rules that are checked, not suggested:
+
+- **`sympy` and the standard library only.** No numpy, no scipy. If a page needs
+  one, that is an escalation rather than a new dependency.
+- **The printed output is on the page, and a test runs the program** and compares.
+  `tests/test_reference_books.py` executes every page with the detail heading.
+- **Prose is 80 columns and code is 72**, hard-wrapped at word boundaries. Table
+  rows, fenced lines, display maths and link URLs are exempt.
+- **A listing longer than ten lines is folded** in native `<details markdown="1">`,
+  with a summary that names what is inside. The page must read as complete with
+  every fold closed, and no `:::` directive goes inside one.
+- **Every claim about a method comes from `sources.yaml`**, with a `role`.
+- The six headings, the widths, the folds and the program/output pair are held by
+  `tests/test_page_rules.py` and `tests/test_reference_books.py`; a new detail page
+  is measured by the same tests as the seven that exist.
+
 ## Voice, and the words to avoid
 
 The root's **Voice and language** applies in full. Four things are particular:

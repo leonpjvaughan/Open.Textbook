@@ -6730,9 +6730,9 @@ critical values, `provision: {sec: given}`, keywords, and a source note.
 
 **Done means:** `len(d['tables'])` is at least 2; `uv run python -m textbook.booklet` prints
 `(96 formulae, 2 tables)` or more for this book and reports nothing; the widget shows both
-on `ie-lc-maths` and neither on `a-level-maths`; `tests/test_pipeline.py`'s booklet test
-passes.
+on `ie-lc-maths` and neither on `a-level-maths`; the two pages that name the table link to
+it; `tests/test_pipeline.py`'s booklet test passes.
 
 ---
 
-**Closed (2026-10-28).** The Leaving Certificate booklet carries the standard normal grid (31 rows), Spearman's one-tailed 5%/2.5% critical values and the t values used for Pearson's r, each with `provision: {sec: given}`, keywords and a source note. `uv run python -m textbook.booklet` writes `96 formulae, 3 tables` for this book and `0 tables` for A-level Mathematics.
+**Closed (2026-10-28).** The Leaving Certificate booklet carries the standard normal grid (31 rows), Spearman's one-tailed 5%/2.5% critical values and the t values used for Pearson's r, each with `provision: {sec: given}`, keywords and a source note. `uv run python -m textbook.booklet` writes `96 formulae, 3 tables` for this book and `0 tables` for A-level Mathematics. The two pages that name the tables link to them with `#booklet=standard-normal` and `#booklet=spearman-critical`: the fragment opens the widget on the tables tab and brings that table into view. Checked in a browser at 390px: the standard-normal table opens with all 31 rows.
