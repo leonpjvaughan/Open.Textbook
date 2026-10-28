@@ -14,8 +14,8 @@ done-means; an item whose heading says done and whose checklist does not is the
 failure this file has had twice, so the list below, the headings and the boxes
 are checked against each other on every pass.
 
-**Items 79–138 are all closed,** each with its measurement and fix in
-`.agents/todo-closed.md`. Items **139–149 are open** and were found in one pass over the
+**Items 79–140, 142–144 and 147–149 are closed,** each with its measurement and fix in
+`.agents/todo-closed.md`. Items **141, 145 and 146 are open** and were found in one pass over the
 statistics chapters; the full evidence for each — the command, its output, and what
 reading the page added — is **Appendix B of `.agents/numerical-methods-handoff.md`**, and
 the lines below are the queue entry that points at it. Items **150–153** are the four
@@ -33,43 +33,6 @@ that records them lives, not here: the booklets whose items cannot be parsed
 granularity than a strand (`books/*/curriculum.yaml`), and the deferred chapter
 rewrites ranked in `research/pedagogy-audit/README.md`. An item in this file is a
 defect this repository can fix; those are decisions already taken.
-
----
-
-## 139 — The detail track under the map, starting with `averaging`
-
-**What is wrong.** `books/numerical-methods/docs/averaging/index.md` is 1,028 words and
-names eleven methods without deriving one; the book has 1 program in 15 pages, and 0
-occurrences of round-off, machine epsilon, Richardson, von Neumann, consistency, a
-regression, a confidence interval or a sensitivity. The summary is right and the working
-is absent.
-
-**The fix.** Exactly as `.agents/numerical-methods-handoff.md` specifies: Phase A (the
-front door and three spine pages), Phase B (four `averaging` detail pages, end to end),
-then **stop for review** before Phase C.
-
-**Done means:** the handoff's own ACCEPTANCE, VERIFICATION and width/fold rules, plus
-`scripts/check.sh`.
-
----
-
-## 140 — The statistics strand states results it never proves, and `proofs` has no statistics page
-
-**What is wrong.** `grep -rn ":::prove" books/*/docs/Chapter*/Section*/Walkthrough/index.md`
-never touches a statistics section, and `proofs.yaml`'s 21 entries are algebra, calculus,
-geometry, mensuration, sequences and trigonometry — statistics is the only strand with
-zero. Five stated results are unproved: $|r|\le1$; the deviations adding to zero; the mean
-minimising the squared error (the proof book already owns the completing-the-square page);
-the CLT (not provable, and must be reworded to say so); the CI/test equivalence in
-ie-lc 11.9.
-
-**The fix.** Two proof pages — `correlation-between-minus-one-and-one` (`[A-level]`) and
-`mean-minimises-squared-error` (`[GCSE, A-level]`), both `strand: statistics` — linked from
-the six stating lines, and the CLT line reworded.
-
-**Done means:** both pages exist and are listed in `proofs.yaml` and
-`books/proofs/docs/index.md`; at least five `:::prove` links in statistics sections;
-`uv run python -m pytest tests/test_proofs.py tests/test_proof_maths.py -q` passes.
 
 ---
 
@@ -92,54 +55,6 @@ linked from 11.4; the page cites both existing derivations it does not repeat.
 
 ---
 
-## 142 — The map has no `Least-squares fit` entry, so the commonest statistical computation has no row
-
-**What is wrong.** `grep -niE "^### .*(regress|least squares|fit)"`
-`books/numerical-methods/docs/techniques/index.md` finds nothing. Fitting is reachable only
-as `Gauss–Newton`'s price line and as `### Normal equations`.
-
-**The fix.** One A–Z entry, `Least-squares fit`,
-`Class: [Optimisation](../optimisation/), [Linear system](../linear-system/)`, the normal
-equations as its step, "a small residual is not a good fit" as its price. Two classes on
-one `Class:` line is already the pattern (`Newton`).
-
-**Done means:** the entry and anchor exist; home-page and A–Z counts recomputed;
-`uv run python -m pytest tests/test_reference_books.py -q` passes.
-
----
-
-## 143 — The map's statistical box has no callback from any page
-
-**What is wrong.** `:::class` appears 0 times in the four statistics chapters, and the
-built `averaging` page prints *"No page in this collection names this class yet."* The
-callback counts, from `textbook.hooks.usedin`, are `averaging` 0, `optimisation` 1, `root` 3,
-`linear-system` 2, `eigenvalue` 1, `saddle-point` 1, and `elliptic`, `parabolic`,
-`hyperbolic` all 0.
-
-**The fix.** Add `:::class averaging` where a standard error first appears (a-level 14.3
-§2, ie-lc 11.7 and 11.9), and `:::class optimisation` / `:::class linear-system` where a
-line is fitted.
-
-**Done means:** `site/numerical-methods/averaging/index.html` lists at least three sections
-under *Used in this collection*; `tests/test_class_links.py` passes.
-
----
-
-## 144 — The A–Z counting table over-states every class by one, and says 81 where the book says 76
-
-**What is wrong.** The `methods` column of the counting table in `techniques/index.md`
-reads 20, 21, 9, 20, 11 — sum 81 — against 19, 20, 8, 19, 10 method blocks (sum 76). The
-origin: before `b86f6fb8` the column was the old four-column table's row count **including
-its header row**, and the conversion carried the number over. No test reads the column.
-
-**The fix.** Count `### ` blocks, relabel the column `entries`, footnote that a family is
-one entry and a method in two classes appears in both, add the test that the column sums to
-the block count, and settle the home page's label (76 entries, 97 named methods).
-
-**Done means:** the column sums to 76; a new test fails when it does not;
-`uv run python -m pytest tests/test_reference_books.py -q` passes.
-
----
 
 ## 145 — A-level says $r$ is never computed, and a review bank requires computing it
 
@@ -156,6 +71,7 @@ computed for the reader because a computer can, and never required.
 agree.
 
 ---
+
 
 ## 146 — GCSE claims S4 and teaches neither the modal class nor an estimate from grouped data
 
@@ -176,56 +92,6 @@ page; `uv run python -m textbook.verify books/gcse-maths/problems/` reports `ok`
 
 ---
 
-## 147 — `ie-lc-maths` Chapter 11 is the largest statistics unit in the collection and has no figure
-
-**What is wrong.** 11 sections, 19,848 words, 0 figures — including 11.7 (margin of error),
-11.8 (CLT) and 11.9 (tests and intervals). All eleven figures in the chapter are the
-warm-up gate.
-
-**The fix.** Fix 148 first, then move `ch11-sampling-variability`, `ch14-binomial-tail` and
-`ch14-normal-test` into `assets/figures/` (they are generic tools) and mount them on
-ie-lc 11.7–11.9 with `Predict → Test → Explain`.
-
-**Done means:** the chapter has at least three figures besides the gate; both figure audits
-pass; `tests/test_figures.py` passes.
-
----
-
-## 148 — The figure the 11.1 investigation runs on uses `Math.random`, and nothing checks the rule
-
-**What is wrong.** `books/a-level-maths/docs/assets/figures/ch11-sampling-variability.js:48`
-uses `Math.random`, against the unconditional rule at `assets/AGENTS.md:78`. The figure is
-the one "Take a new sample" investigation in a-level 11.1, so two readers comparing what
-they saw are comparing different data. No test looks for it: 22 tests in
-`tests/test_figures.py` and 23 `read_text` calls, none for randomness.
-
-**The fix.** `seed(1)` and `rng.int(0, POPULATION.length - 1)`, plus the missing test beside
-the others so the next figure cannot repeat it.
-
-**Done means:** `grep -rn "Math.random" books/*/docs/assets/figures/` prints nothing; a test
-fails when a module contains it; the figure draws the same sample twice on reload.
-
----
-
-## 149 — The Leaving Certificate booklet widget cannot show the normal table its own pages point at
-
-**What is wrong.** `books/ie-lc-maths/booklet/ie-lc-maths.yaml` has no `tables:` key at all —
-all 96 items are under `sections`. ie-lc 11.6 says "The standard normal table in the booklet
-gives $P(Z \le z)$", and the widget carries only the *formula*
-$f(Z)=\frac{1}{\sqrt{2\pi}}e^{-Z^2/2}$. The SEC document prints the grid, Spearman's
-critical values and the Pearson significance formula
-(`research/sources/ie-lc-maths/SEC_Formulae_and_Tables.txt:869-1055`), and
-`BOOKLETS.md` records this booklet as **built**.
-
-**The fix.** A `tables:` section with the standard normal grid, the Pearson and Spearman
-critical values, `provision: {sec: given}`, keywords, and a source note.
-
-**Done means:** `len(d['tables'])` is at least 2; `uv run python -m textbook.booklet` prints
-`(96 formulae, 2 tables)` or more for this book and reports nothing; the widget shows both
-on `ie-lc-maths` and neither on `a-level-maths`; `tests/test_pipeline.py`'s booklet test
-passes.
-
----
 
 ## 150 — No body heading has an `id`, so a deep link lands under the masthead (B1)
 
@@ -254,6 +120,7 @@ clear the masthead; a test fails when a heading has no `id` or a fragment does n
 
 ---
 
+
 ## 151 — `numerical-methods` uses its own vocabulary before defining it (B2)
 
 **What is wrong.** Measured first use and whether a definition exists anywhere:
@@ -277,6 +144,7 @@ numerical-methods` reports nothing.
 
 ---
 
+
 ## 152 — No class page works an example through to a number (B3, W7)
 
 **What is wrong.** Digits in class-page prose outside tables: `averaging` 0,
@@ -298,6 +166,7 @@ recomputes each from the figure or program that produces it; the symbols blocks 
 `node tools/dist/cli.js readout site --verify` reports no untrue claim.
 
 ---
+
 
 ## 153 — `maths-applied` states one agreement comparison as two numbers, and no check reads either (B4, W1, W2)
 
