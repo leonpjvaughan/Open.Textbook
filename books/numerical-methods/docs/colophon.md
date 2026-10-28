@@ -50,6 +50,7 @@ The claims in this book rest on these documents:
 - [Computational Methods for Fluid Dynamics](https://doi.org/10.1007/978-3-642-56026-2)
 - [otkd — generated kernels: SymPy, Rust and WebAssembly](https://github.com/leonpjvaughan/Open.Textbook/blob/main/solvers/otkd/docs/wasm.md)
 - [Numerical Linear Algebra](https://doi.org/10.1137/1.9780898719574)
+- [Accuracy and Stability of Numerical Algorithms](https://doi.org/10.1137/1.9780898718027)
 - [Iterative Methods for Sparse Linear Systems](https://doi.org/10.1137/1.9780898718003)
 - [A Multigrid Tutorial](https://doi.org/10.1137/1.9780898719505)
 - [Numerical solution of saddle point problems](https://doi.org/10.1017/S0962492904000212)

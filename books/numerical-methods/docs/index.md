@@ -168,7 +168,7 @@ the collection run, and the two other senses the word has in numerical work.
 
 ## Three ways in
 
--  **You have a model and no idea what it is.** Start with the nine kinds above,
+- **You have a model and no idea what it is.** Start with the nine kinds above,
   and
   read the last column before the others.
 - **You know a method by name and want to know where it applies.** Start at

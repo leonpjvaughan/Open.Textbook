@@ -216,7 +216,7 @@ argument of [The class is a choice](../choosing-the-class/index.md).
   coefficients form a symmetric matrix, and the test becomes the signs of its
   eigenvalues: all one sign means elliptic, exactly one of the other sign means
   hyperbolic, a zero eigenvalue means parabolic.
--  **Terms below second order.** The test reads the second derivatives only.
+- **Terms below second order.** The test reads the second derivatives only.
   Whether
 the question has a solution also depends on the conditions supplied with it, on
   the first-order terms, and on what is given at the edge.
@@ -231,9 +231,9 @@ model
 - [Elliptic](../elliptic/index.md), [Parabolic](../parabolic/index.md) and
 [Hyperbolic](../hyperbolic/index.md) — the three classes, what they are used on,
   and what goes wrong in each.
--  [The class is a choice](../choosing-the-class/index.md) — the same physics
+- [The class is a choice](../choosing-the-class/index.md) — the same physics
   written
   two ways, one of which cannot be solved at all.
--  [Methods, A to Z](../techniques/index.md) — the reverse lookup, from a method
+- [Methods, A to Z](../techniques/index.md) — the reverse lookup, from a method
   to
   the classes it works on.

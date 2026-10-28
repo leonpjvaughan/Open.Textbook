@@ -28,8 +28,8 @@ Picture a rectangle with width $u$ and height $v$, so its area is $uv$. Now let
 both sides grow: the width grows by $\delta u$ and the height grows by
 $\delta v$.
 
-**Before you read on, predict:** is the growth in area the two new strips alone —
-the strip along the right and the strip along the top — or is something else
+**Before you read on, predict:** is the growth in area the two new strips alone?
+One strip runs along the right, the other along the top. Or is something else
 there as well? Draw the grown rectangle and look at the corner where the two
 strips meet.
 

@@ -391,13 +391,24 @@ def _methods_a_to_z() -> list[dict[str, str]]:
     """
     text = (map_book().docs / "techniques" / "index.md").read_text(encoding="utf-8")
     blocks = re.findall(
-        r'<a id="([\w-]+)"></a>\n### (.+?)\n\nClass: (.+?)\n\n(.+?)\n\n(.+?)\n',
+        r'<a id="([\w-]+)"></a>\n### (.+?)\n(.*?)(?=\n(?:<a id=|</div>))',
         text,
+        re.S,
     )
-    return [
-        {"anchor": anchor, "name": name, "class": klass, "step": step, "price": price}
-        for anchor, name, klass, step, price in blocks
-    ]
+    methods = []
+    for anchor, name, body in blocks:
+        parts = [part.strip() for part in re.split(r"\n\s*\n", body.strip()) if part.strip()]
+        if len(parts) < 3 or not parts[0].startswith("Class:"):
+            continue
+        klass = parts[0][len("Class:") :].strip()
+        # The step and the price may wrap across source lines after the 80-column
+        # reflow; the rendered page joins them, so the parser does too.
+        step = " ".join(parts[1].splitlines())
+        price = " ".join(parts[2].splitlines())
+        methods.append(
+            {"anchor": anchor, "name": name, "class": klass, "step": step, "price": price}
+        )
+    return methods
 
 
 def _table_rows(page: Path, columns: int, heading: str | None = None) -> list[list[str]]:

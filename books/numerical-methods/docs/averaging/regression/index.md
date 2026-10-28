@@ -114,13 +114,13 @@ the arithmetic that needs no extra data.
 
 What a small residual does not say:
 
--  **That the model is right.** A straight line through a curve can have a small
+- **That the model is right.** A straight line through a curve can have a small
 residual over a narrow range and be badly wrong outside it.
--  **That the slope is stable.** A single high-leverage point can move it a long
+- **That the slope is stable.** A single high-leverage point can move it a long
 way; the standard error is a guide, not a guarantee.
--  **That the errors are independent.** A time series with a trend has a small
+- **That the errors are independent.** A time series with a trend has a small
 residual and a slope that is mostly the trend.
--  **That prediction is safe.** Extrapolation is a different question, and the
+- **That prediction is safe.** Extrapolation is a different question, and the
 standard error of a prediction at a new $x$ is larger than the standard error of
 the slope.
 

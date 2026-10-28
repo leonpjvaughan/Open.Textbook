@@ -273,10 +273,10 @@ module the page runs.
 
 ## Read next
 
--  [The class is a choice](../choosing-the-class/index.md) — why the same
+- [The class is a choice](../choosing-the-class/index.md) — why the same
   physics can
   be two kinds, and what has to stay true when you switch.
 - [Root finding](../root/index.md) — the first of the five.
--  [When it goes wrong](../symptoms/index.md) — when a solve of one of these
+- [When it goes wrong](../symptoms/index.md) — when a solve of one of these
   returns a
   plausible wrong answer.

@@ -100,12 +100,12 @@ one-dimensional ones: the rate is slow, but it does not depend on the dimension.
 
 What breaks the rate:
 
--  **Dependence.** If the samples are correlated, the variance of the mean is
+- **Dependence.** If the samples are correlated, the variance of the mean is
   not
 $\sigma^2/N$. The next page derives the correction.
--  **A heavy tail.** If the variance is infinite, the standard error is infinite
+- **A heavy tail.** If the variance is infinite, the standard error is infinite
 and the bar is not a bar. The mean may still converge, but not at this rate.
--  **A biased sampler.** If the samples do not come from the target
+- **A biased sampler.** If the samples do not come from the target
   distribution,
 the bar describes the wrong quantity. No sample size fixes that.
 

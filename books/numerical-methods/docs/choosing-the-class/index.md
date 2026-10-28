@@ -36,7 +36,7 @@ solver has:
 
 - **Constrained evolution.** Solve the elliptic constraint at every step, so the
   answer is consistent by construction.
--  **Free evolution.** Solve the constraint once, evolve the rest, and hope it
+- **Free evolution.** Solve the constraint once, evolve the rest, and hope it
   stays
   satisfied.
 
@@ -173,11 +173,11 @@ you wrote the model**. That is not a trick, and it is not cheating, as long as
 two
 things stay true:
 
--  the two models must agree in the limit where the difference disappears — a
+- the two models must agree in the limit where the difference disappears — a
   stiff
   spring must reproduce the rigid joint, a fast pressure wave must reproduce the
   incompressible flow, and the two slicings must describe the same geometry;
--  you must say which one you solved, because a reader who thinks they have a
+- you must say which one you solved, because a reader who thinks they have a
   force
 and has a product of two numbers has been misled by the write-up rather than by
   the mathematics.
@@ -193,10 +193,10 @@ numbers: the bushed model is swept until it returns the rigid one.
 
 ## Read next
 
--  [The worked case](../worked-case/index.md) — one corner, five questions, and
+- [The worked case](../worked-case/index.md) — one corner, five questions, and
   the
   numbers where the models agree.
--  [Elliptic](../elliptic/index.md) and [Hyperbolic](../hyperbolic/index.md) —
+- [Elliptic](../elliptic/index.md) and [Hyperbolic](../hyperbolic/index.md) —
   the two
   classes the relativity case turns between.
 - [Saddle point](../saddle-point/index.md) — the price of keeping a constraint.

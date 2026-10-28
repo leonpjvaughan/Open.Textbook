@@ -36,13 +36,13 @@ $$
 
 Then there is a choice, and it is the whole of this page:
 
--  **Explicit.** Simple, one function evaluation per step, and the step is
+- **Explicit.** Simple, one function evaluation per step, and the step is
   limited by
 $\Delta t \propto \Delta x^{2}$. Refining the mesh by two costs twice the work
 per
   step and four times the number of steps, so eight times the work for the same
   interval.
--  **Implicit.** A linear system at every step, and no such limit. More work per
+- **Implicit.** A linear system at every step, and no such limit. More work per
   step,
   far fewer steps.
 
@@ -64,10 +64,10 @@ steps.
 
 Two properties, and both are testable:
 
--  **The answer is smoother than its initial data.** A kink becomes a curve.
+- **The answer is smoother than its initial data.** A kink becomes a curve.
   This is
   not an artefact; it is the class.
--  **The fast modes decay fastest.** That is what makes the problem **stiff**.
+- **The fast modes decay fastest.** That is what makes the problem **stiff**.
   The
 time step is set by a scale that vanishes almost immediately and that you do not
   care about, while the scale you do care about is slow.
@@ -83,7 +83,7 @@ explicit and the mesh is fine".
 changes with temperature, makes each step non-linear and puts a root-finding
 loop
   around it.
--  **Advection as well as diffusion.** Then the model has both a parabolic term
+- **Advection as well as diffusion.** Then the model has both a parabolic term
   and a
   hyperbolic one, and the advection decides the time step and the accuracy. See
   [Hyperbolic](../hyperbolic/index.md).
@@ -150,13 +150,13 @@ failing rather than the physics.
 
 ## Read next
 
--  [Hyperbolic](../hyperbolic/index.md) — the class where the answer remembers,
+- [Hyperbolic](../hyperbolic/index.md) — the class where the answer remembers,
   and the
   pair to this one.
--  [Elliptic](../elliptic/index.md) — what is left when the transient has
+- [Elliptic](../elliptic/index.md) — what is left when the transient has
   finished.
--  [Reading the class off the equation](../reading-the-class/index.md) — the one
+- [Reading the class off the equation](../reading-the-class/index.md) — the one
   number
   that says an equation like this one is parabolic.
--  [When it goes wrong](../symptoms/index.md) — the symptom table for every
+- [When it goes wrong](../symptoms/index.md) — the symptom table for every
   class.

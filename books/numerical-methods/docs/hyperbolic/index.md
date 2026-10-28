@@ -33,7 +33,7 @@ and the whole solution is $u$ shifted along the line $x = a t$.
 
 Two routes, and the first one is often forgotten:
 
--  **Follow the characteristics.** If information travels along known curves,
+- **Follow the characteristics.** If information travels along known curves,
   solve
   along those curves. This is exact for the linear case and is why the method of
   characteristics is worth knowing.
@@ -62,10 +62,10 @@ about the class:
 
 - **Discontinuities are allowed.** Smooth data can steepen into a shock, and the
   shock is a real feature that a scheme must capture rather than smear.
--  **The answer is not smoother than its data.** A square wave stays roughly
+- **The answer is not smoother than its data.** A square wave stays roughly
   square,
   and a scheme that smooths it is adding something the physics did not.
--  **Boundary conditions are one-sided.** Information enters at an inflow
+- **Boundary conditions are one-sided.** Information enters at an inflow
   boundary
   and leaves at an outflow one. Applying a value at an outflow boundary is a
   common and quiet error.
@@ -96,13 +96,13 @@ method and with a structure-preserving one, and only one of them stays bounded.
 
 - **Non-linear.** Genuine shocks and rarefactions. A linear method applied to a
   non-linear flux gives the wrong wave speed.
--  **Stiff source terms.** Chemistry or relaxation inside the flow changes the
+- **Stiff source terms.** Chemistry or relaxation inside the flow changes the
   step
   limit; the source is solved implicitly while the flux stays explicit.
--  **A conservative form.** If the quantity is conserved, the scheme must be
+- **A conservative form.** If the quantity is conserved, the scheme must be
   written
   in flux form, or it will conserve the wrong total.
--  **Long-time structure.** Wave problems that must stay bounded over many
+- **Long-time structure.** Wave problems that must stay bounded over many
   periods
   need a method that respects their structure, or the energy drifts.
 
@@ -154,11 +154,11 @@ with its price and what it will not do.
 
 - [Parabolic](../parabolic/index.md) — the other moving class, and the one that
   diffuses instead of carrying.
--  [Eigenvalues](../eigenvalue/index.md) — the stability of a wave problem is
+- [Eigenvalues](../eigenvalue/index.md) — the stability of a wave problem is
   decided by
   eigenvalues.
--  [Reading the class off the equation](../reading-the-class/index.md) — the one
+- [Reading the class off the equation](../reading-the-class/index.md) — the one
   number
   that says an equation like this one is hyperbolic.
--  [When it goes wrong](../symptoms/index.md) — the symptom table for every
+- [When it goes wrong](../symptoms/index.md) — the symptom table for every
   class.

@@ -75,7 +75,7 @@ mechanism, not a failure of the method.
 
 ## Flags that matter here
 
--  **Several solutions.** Two circles meet twice, and a linkage has two
+- **Several solutions.** Two circles meet twice, and a linkage has two
   assemblies.
 The start decides the branch, which is why a continuation from a known state is
   often the right tool.
@@ -105,10 +105,10 @@ with its price and what it will not do.
 
 - Where the wheel goes: two circles meet, and the meeting point is the pose.
 - The position of a four-bar linkage at a given crank angle.
--  The equilibrium of a bushed linkage, where the spring force and the geometry
+- The equilibrium of a bushed linkage, where the spring force and the geometry
   have
   to agree.
--  A boundary-value problem solved by shooting: guess the slope, integrate,
+- A boundary-value problem solved by shooting: guess the slope, integrate,
   correct.
 - Chemical equilibrium: the species have to balance.
 - Power flow: the network has to satisfy Kirchhoff's laws.
@@ -130,9 +130,9 @@ with its price and what it will not do.
 
 ## Read next
 
--  [Saddle point](../saddle-point/index.md) — the same loop with a constraint
+- [Saddle point](../saddle-point/index.md) — the same loop with a constraint
   priced in.
--  [Optimisation](../optimisation/index.md) — a minimum is a root of the
+- [Optimisation](../optimisation/index.md) — a minimum is a root of the
   gradient.
--  [When it goes wrong](../symptoms/index.md) — the symptom table for every
+- [When it goes wrong](../symptoms/index.md) — the symptom table for every
   class.

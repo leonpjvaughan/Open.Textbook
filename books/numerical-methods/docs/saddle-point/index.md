@@ -77,12 +77,12 @@ of them.
 
 ## Flags that matter here
 
--  **Non-linear.** Incompressible flow, contact, and any mechanism with a joint
+- **Non-linear.** Incompressible flow, contact, and any mechanism with a joint
   limit
 make the coupled system non-linear, so each step is a saddle-point solve inside
 a
   root-finding loop.
--  **A nearly singular constraint.** A constraint that is almost dependent gives
+- **A nearly singular constraint.** A constraint that is almost dependent gives
   an
   ill-conditioned Schur complement, and a force that is nonsense.
 - **A rank-deficient constraint.** The redundancy is in the model, not in the
@@ -108,11 +108,11 @@ with its price and what it will not do.
 
 ## Systems that live here
 
--  Incompressible flow: the pressure is the multiplier on the no-compression
+- Incompressible flow: the pressure is the multiplier on the no-compression
   rule.
--  A rigid suspension joint: the force in the joint is the multiplier on its
+- A rigid suspension joint: the force in the joint is the multiplier on its
   constraint.
--  Contact between two bodies: the contact force is the multiplier on
+- Contact between two bodies: the contact force is the multiplier on
   non-penetration.
 - Mixed finite elements for flow in a porous medium.
 - The KKT system of any constrained optimisation.
@@ -146,7 +146,7 @@ not this class.
 ## Read next
 
 - [Elliptic](../elliptic/index.md) — the same operator, without the constraint.
--  [Root finding](../root/index.md) — the outer loop, once the model is
+- [Root finding](../root/index.md) — the outer loop, once the model is
   non-linear.
--  [When it goes wrong](../symptoms/index.md) — the symptom table for every
+- [When it goes wrong](../symptoms/index.md) — the symptom table for every
   class.

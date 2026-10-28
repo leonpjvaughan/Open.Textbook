@@ -69,7 +69,7 @@ equilibrium, linearise, and look at the sign of the real part.
 
 - **Non-symmetric.** Complex eigenvalues arrive in pairs, and a real-only solver
   will either fail or silently lie.
--  **Generalised, with a singular $B$ .** Infinite eigenvalues appear. That is
+- **Generalised, with a singular $B$ .** Infinite eigenvalues appear. That is
   not a
   bug; it is what a constraint looks like.
 - **Non-linear in $\lambda$.** The eigenvalue is inside the matrix — a frequency
@@ -95,7 +95,7 @@ with its price and what it will not do.
 
 ## Systems that live here
 
--  The bounce and wheel-hop frequencies of a quarter car — one mass or two, and
+- The bounce and wheel-hop frequencies of a quarter car — one mass or two, and
   the
   answer changes when the second mass is added.
 - Buckling of a chassis member: the smallest load at which it gives way.
@@ -122,10 +122,10 @@ with its price and what it will not do.
 
 ## Read next
 
--  [Root finding](../root/index.md) — an eigenvalue of a small matrix is the
+- [Root finding](../root/index.md) — an eigenvalue of a small matrix is the
   root of its
   determinant.
 - [Hyperbolic](../hyperbolic/index.md) — the stability of a wave problem is an
   eigenvalue question in disguise.
--  [When it goes wrong](../symptoms/index.md) — the symptom table for every
+- [When it goes wrong](../symptoms/index.md) — the symptom table for every
   class.

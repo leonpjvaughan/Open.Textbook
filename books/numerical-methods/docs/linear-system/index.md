@@ -40,20 +40,20 @@ A matrix, and a choice between two families. The choice is made by the
 **properties
 of the matrix**, not by the subject the matrix came from:
 
--  **Dense and small.** Factorise it. The cost is cubic in the number of
+- **Dense and small.** Factorise it. The cost is cubic in the number of
   unknowns, and
   for a few thousand that is the end of the story.
--  **Sparse and large.** Factorising fills in the zeros and runs out of memory,
+- **Sparse and large.** Factorising fills in the zeros and runs out of memory,
   so
 iterate instead — and the iteration count is decided by conditioning, not by
 size.
--  **Symmetric positive definite.** Conjugate gradients works, and fails on
+- **Symmetric positive definite.** Conjugate gradients works, and fails on
   anything
   else.
--  **Symmetric indefinite.** A different Krylov method is needed, and the reason
+- **Symmetric indefinite.** A different Krylov method is needed, and the reason
   is
   the [saddle point](../saddle-point/index.md) page.
--  **Rectangular.** More equations than unknowns is a least-squares problem, and
+- **Rectangular.** More equations than unknowns is a least-squares problem, and
   the
   answer is a projection rather than a solution.
 
@@ -84,7 +84,7 @@ The answer comes from a matrix, and the matrix's properties decide the method.
 Two
 consequences follow, and both surprise people:
 
--  **Scale is not difficulty.** A million-unknown sparse system with good
+- **Scale is not difficulty.** A million-unknown sparse system with good
   conditioning
 solves in seconds; a hundred-unknown matrix with a condition number of $10^{12}$
   has lost twelve digits and cannot give you an answer you can trust.
@@ -95,16 +95,16 @@ ill-conditioned
 
 ## Flags that matter here
 
--  **Conditioning.** The one flag that matters most, and the one nobody checks.
+- **Conditioning.** The one flag that matters most, and the one nobody checks.
   It is
   the number of digits you lose.
--  **Symmetry and definiteness.** They decide which methods are available, and a
+- **Symmetry and definiteness.** They decide which methods are available, and a
   method
   used outside its class does not merely run slowly; it returns nonsense.
--  **Sparsity and fill-in.** A sparse matrix that factorises into a dense one is
+- **Sparsity and fill-in.** A sparse matrix that factorises into a dense one is
   a
   memory problem wearing a maths problem's clothes.
--  **Redundant rows.** Two rows that say the same thing give either no solution
+- **Redundant rows.** Two rows that say the same thing give either no solution
   or
   infinitely many, and a solver that does not notice returns one of them.
 
@@ -133,7 +133,7 @@ with its price and what it will not do.
 - Nodal analysis of a circuit: the voltage at every node.
 - Any steady discretisation, once the equations are assembled: see
   [Elliptic](../elliptic/index.md).
--  The `double-wishbone` example's Jacobian: the package this collection uses
+- The `double-wishbone` example's Jacobian: the package this collection uses
   solves 21
 equations whose Jacobian has 441 entries, of which **161 are not zero** — sparse
 enough
@@ -161,11 +161,11 @@ non-zeros.
 
 ## Read next
 
--  [Root finding](../root/index.md) — the same question when a rule bends with
+- [Root finding](../root/index.md) — the same question when a rule bends with
   the answer.
 - [Elliptic](../elliptic/index.md) — where most of these matrices come from.
--  [Saddle point](../saddle-point/index.md) — a symmetric matrix that is not
+- [Saddle point](../saddle-point/index.md) — a symmetric matrix that is not
   positive
   definite, and why that changes the method.
--  [When it goes wrong](../symptoms/index.md) — the symptom table for every
+- [When it goes wrong](../symptoms/index.md) — the symptom table for every
   class.

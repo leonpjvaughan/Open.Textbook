@@ -60,7 +60,7 @@ therefore crippled, and needs as many steps as the mesh is wide in every
 direction.
 
 Two consequences follow:
--  **Multigrid is not an optimisation of another method; it is what the class
+- **Multigrid is not an optimisation of another method; it is what the class
   makes
 available.** It moves the smooth part of the error on a coarse mesh, where it is
 not
@@ -72,10 +72,10 @@ not
 
 - **A coefficient that varies.** Layers and jumps in $k$ make a simple iterative
   method fail; algebraic multigrid is built for this.
--  **A non-linear coefficient.** Then each outer step is an elliptic solve, and
+- **A non-linear coefficient.** Then each outer step is an elliptic solve, and
   the
   loop is a root problem.
--  **Any coupling to a constraint.** If a rule is enforced by a second unknown,
+- **Any coupling to a constraint.** If a rule is enforced by a second unknown,
   the
 problem is a [saddle point](../saddle-point/index.md), and the positive-definite
   guarantee is gone.
@@ -104,11 +104,11 @@ with its price and what it will not do.
 - Potential flow around a body.
 - Linear elasticity: the stress in a loaded bracket.
 - Groundwater flow through soil.
--  The pressure equation inside an incompressible flow solver — but the
+- The pressure equation inside an incompressible flow solver — but the
   *constraint*
   that produces it is a saddle point, and the pressure equation is how that
   constraint is paid.
--  The elliptic coordinate conditions in numerical relativity, in the
+- The elliptic coordinate conditions in numerical relativity, in the
   formulations where
   they cannot be evolved — the lapse equation among them, which [The class is a
 choice](../choosing-the-class/#the-same-equations-classified) puts through the
@@ -132,12 +132,12 @@ test
 
 ## Read next
 
--  [Saddle point](../saddle-point/index.md) — what an elliptic problem becomes
+- [Saddle point](../saddle-point/index.md) — what an elliptic problem becomes
   when a
   constraint is added.
 - [Parabolic](../parabolic/index.md) — the same operator, with time put back in.
--  [Reading the class off the equation](../reading-the-class/index.md) — the one
+- [Reading the class off the equation](../reading-the-class/index.md) — the one
   number
   that says an equation like this one is elliptic.
--  [When it goes wrong](../symptoms/index.md) — the symptom table for every
+- [When it goes wrong](../symptoms/index.md) — the symptom table for every
   class.

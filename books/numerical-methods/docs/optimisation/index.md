@@ -36,7 +36,7 @@ model that takes a day to run changes the whole method.
 
 The shape of $f$ is what decides the difficulty:
 
--  **Convex.** One bottom. Find it and you have the answer. This is not a
+- **Convex.** One bottom. Find it and you have the answer. This is not a
   detail; it
   is the difference between a problem with an answer and a problem with a good
   try.
@@ -57,15 +57,15 @@ difficulty is entirely in the shape of the landscape and in the constraints.
 
 ## Flags that matter here
 
--  **Constraints.** A constraint turns the problem into one with a price
+- **Constraints.** A constraint turns the problem into one with a price
   attached,
 and the price is a second unknown. That is the
 [saddle point](../saddle-point/index.md)
   page, because the KKT system has the same block structure.
--  **Expensive evaluations.** A day per run, or a physical test per run, rules
+- **Expensive evaluations.** A day per run, or a physical test per run, rules
   out
   finite differences and pushes you to a surrogate model.
--  **Noise.** If the same $x$ gives a different $f$ each time, a method that
+- **Noise.** If the same $x$ gives a different $f$ each time, a method that
   trusts
   small differences will chase noise.
 
@@ -114,10 +114,10 @@ with its price and what it will not do.
 
 ## Read next
 
--  [Saddle point](../saddle-point/index.md) — the same problem with constraints,
+- [Saddle point](../saddle-point/index.md) — the same problem with constraints,
   and
   where the price comes from.
--  [Root finding](../root/index.md) — setting the gradient to zero is a root
+- [Root finding](../root/index.md) — setting the gradient to zero is a root
   problem.
--  [When it goes wrong](../symptoms/index.md) — the symptom table for every
+- [When it goes wrong](../symptoms/index.md) — the symptom table for every
   class.
