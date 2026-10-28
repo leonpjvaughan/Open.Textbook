@@ -1,3 +1,6 @@
+// @ts-nocheck
+// Moved from a book's figure directory by item 147: a hand-authored figure,
+// measured by tests/test_figures.py. The TS ratchet covers the kit and the tools.
 // Guided investigation for 14.1: the p-value, the critical region and the tail
 // of a binomial test. Pure HTML and SVG, an ES module, no framework and no
 // colour of its own: the fig-* classes carry the theme. Runtime text is plain

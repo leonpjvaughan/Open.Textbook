@@ -1,3 +1,6 @@
+// @ts-nocheck
+// Moved from a book's figure directory by item 147: a hand-authored figure,
+// measured by tests/test_figures.py. The TS ratchet covers the kit and the tools.
 // Guided investigation for 14.3: a hypothesis test for a mean when the standard
 // deviation is known. The reader moves the sample mean, the standard deviation
 // and the sample size and watches the test statistic and the tail area. Pure

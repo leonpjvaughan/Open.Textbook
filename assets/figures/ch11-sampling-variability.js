@@ -1,3 +1,6 @@
+// @ts-nocheck
+// Moved from a book's figure directory by item 147: a hand-authored figure,
+// measured by tests/test_figures.py. The TS ratchet covers the kit and the tools.
 // Guided investigation for 11.1: sampling variability.
 // A fixed population with a stable, deterministic shape, and a random sample
 // drawn from it. The reader changes the sample size and draws again. Changing
