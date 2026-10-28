@@ -359,6 +359,7 @@ def test_a_nested_registry_page_is_listed_under_its_parent(tmp_path):
     assert listings == [
         {
             "Averaging": [
+                {"Overview": "averaging/index.md"},
                 {"An average, and its error bar": "averaging/error-bars/index.md"},
             ]
         }

@@ -1066,7 +1066,14 @@ def build_nav_list(
     for entry in top_level:
         (title, path), = entry.items()
         children = grouped.get(path.split("/")[0])
-        nav.append({title: children} if children else entry)
+        if children:
+            # The class page stays a page, not only a container: the sidebar needs a
+            # link to it, and `nav_paths` builds the list of pages to render from
+            # the leaves. "Overview" is the word the chapters already use for the
+            # entry that is the section's own page.
+            nav.append({title: [{"Overview": path}, *children]})
+        else:
+            nav.append(entry)
     for c in chapters:
         children = [{"Overview": f"Chapter {c['id']}/index.md"}]
         for s in c["sections"]:

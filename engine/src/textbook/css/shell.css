@@ -49,10 +49,6 @@ a { color: var(--tb-link); }
  * because a heading and the sidebar have to agree with the bar above them. */
 :root { --tb-masthead-height: 3.6rem; }
 
-@media (max-width: 48rem) {
-  :root { --tb-masthead-height: 6.1rem; }
-}
-
 /* A fragment link puts the target at the very top of the viewport, which is
  * under the sticky masthead. This is what makes a deep link land on the heading
  * it names rather than on the middle of the paragraph above it. */
@@ -259,6 +255,7 @@ a { color: var(--tb-link); }
  * control a reader needs to change the theme. So the row wraps, and the search —
  * the one item that is comfortable at full width — takes the second line. */
 @media (max-width: 48rem) {
+  :root { --tb-masthead-height: 6.1rem; }
   .masthead__inner {
     flex-wrap: wrap;
     row-gap: 0.5rem;
