@@ -609,6 +609,54 @@ def test_the_optimisation_example_is_the_tolerance_problem():
     assert "flat over the travel" not in page
 
 
+# --- every detail page's program is run, not believed ---------------------------
+#
+# A detail page's printed output is evidence, and evidence nobody runs is a number
+# typed into a fence. The skeleton, width and fold rules are in `tests/rules.py`;
+# this is the rule that needs a process: run every python block exactly as printed
+# and compare its standard output with the text block the page shows.
+
+DETAIL_HEADING = "## What this page answers"
+
+
+def _detail_pages():
+    for page in sorted(map_book().docs.rglob("*.md")):
+        if "assets" in page.parts:
+            continue
+        text = page.read_text(encoding="utf-8")
+        if DETAIL_HEADING in text:
+            yield page.relative_to(map_book().docs).as_posix(), text
+
+
+def test_every_detail_program_prints_what_its_page_shows():
+    """Every page with the detail skeleton runs its program and prints its output.
+
+    Both blocks come from the page. This executes each python block in a fresh
+    namespace and compares what it prints with the text block beside it, so an edit
+    to either one fails here rather than in front of a reader who trusted it.
+    """
+    failures = []
+    for name, text in _detail_pages():
+        code = re.findall(r"```python\n(.*?)```", text, re.S)
+        shown = re.findall(r"```text\n(.*?)```", text, re.S)
+        if len(code) != len(shown):
+            failures.append(f"{name}: {len(code)} programs, {len(shown)} outputs")
+            continue
+        for index, (source, expected) in enumerate(zip(code, shown)):
+            printed = io.StringIO()
+            try:
+                with contextlib.redirect_stdout(printed):
+                    exec(compile(source, f"{name}#{index}", "exec"), {})
+            except Exception as error:  # noqa: BLE001 - the page's program is the subject
+                failures.append(f"{name}#{index}: {type(error).__name__}: {error}")
+                continue
+            if printed.getvalue() != expected:
+                failures.append(
+                    f"{name}#{index}: printed output differs from the page"
+                )
+    assert failures == [], "\n".join(failures)
+
+
 # --- reading the class off the equation ----------------------------------------
 #
 # One page in this map hands the reader a program, which is a claim of a kind the book
