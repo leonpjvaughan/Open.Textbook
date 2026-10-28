@@ -292,6 +292,12 @@ def rule_documents():
             "tests/README.md",
             ".agents/chapter-brief.md",
             ".agents/maths-applied-handoff.md",
+            # A handoff tells an agent which documents to read and which commands to
+            # run. That is exactly the promise this test exists to check, and this one
+            # names `tools/dist/cli.js`, the pipeline, the pytest paths and the lint
+            # invocation. Left out until now because there was one handoff and it was
+            # a record rather than a brief.
+            ".agents/numerical-methods-handoff.md",
         )
     ]
     return [path for path in documents if path.is_file()]
