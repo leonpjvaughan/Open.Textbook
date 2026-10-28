@@ -21,8 +21,8 @@ Write the error after a step of size $h$ as
 $$ E(h) = C h^p + O(h^{p+1}). $$
 
 The number $p$ is the **order** of the method, and $C$ is a constant that
-depends on the problem but not on $h$. Halve the step and the leading term
-falls by $2^p$: first order by 2, second order by 4, fourth order by 16.
+depends on the problem but not on $h$. Halve the step and the leading term falls
+by $2^p$: first order by 2, second order by 4, fourth order by 16.
 
 That gives the **observed order**. With errors at $h$ and $h/2$,
 
@@ -73,6 +73,9 @@ is what the slope shows.
 The program computes both differences for four step sizes and prints the error
 and the observed order at each.
 
+<details markdown="1">
+<summary>The two difference formulas and the convergence table</summary>
+
 ```python
 import math
 
@@ -109,6 +112,7 @@ h        forward error   order   central error   order
 0.02500  3.426e-02    1.01  2.832e-04    2.00
 ```
 
+</details>
 The forward column approaches 1 and the central column sits at 2. The first
 forward estimate is 1.05 rather than 1.00 because $h=0.1$ is not yet small
 enough for the $h^2$ term to be negligible. That is the pre-asymptotic region,
@@ -132,8 +136,8 @@ observed order before and after the extrapolation.
 Round-off enters as a second term with the opposite slope. The difference
 quotient divides by $h$, so an absolute error $\epsilon$ in each value becomes
 $\epsilon/h$ in the result. The total error is roughly $C h^p + \epsilon/h$,
-which has a minimum at $h \sim \epsilon^{1/(p+1)}$. Making $h$ smaller than
-that makes the answer worse. The turnover is not a bug in the method; it is the
+which has a minimum at $h \sim \epsilon^{1/(p+1)}$. Making $h$ smaller than that
+makes the answer worse. The turnover is not a bug in the method; it is the
 arithmetic of subtraction.
 
 The sources for the rate and its verification are in `sources.yaml`. Roache's

@@ -11,15 +11,12 @@ for it with a second unknown.
 
 A system with a constraint that is not a boundary condition: the fluid cannot
 compress, the bodies cannot pass through each other, the linkage cannot come
-apart.
-Something has to enforce that, and the something is a force, a pressure or a
-multiplier — a second unknown that exists only to hold the rule.
+apart. Something has to enforce that, and the something is a force, a pressure
+or a multiplier — a second unknown that exists only to hold the rule.
 
 The second unknown is often the interesting one. In a fluid it is the pressure.
-In
-a mechanism it is the force in a rigid joint — the ball joint, the pin, the
-contact.
-In an optimisation it is the price of the constraint.
+In a mechanism it is the force in a rigid joint — the ball joint, the pin, the
+contact. In an optimisation it is the price of the constraint.
 
 ## The model you write down
 
@@ -31,12 +28,9 @@ $$
 $$
 
 The top row is the physics. The bottom row is the rule. The zero block is where
-the
-trouble is. The matrix is symmetric but **indefinite** — it has both positive
-and
-negative eigenvalues. So the methods that rely on positive definiteness are
-closed
-to you.
+the trouble is. The matrix is symmetric but **indefinite** — it has both
+positive and negative eigenvalues. So the methods that rely on positive
+definiteness are closed to you.
 
 The same problem written as a constrained minimum is
 
@@ -57,34 +51,27 @@ B A^{-1} B^{\mathsf{T}} p = B A^{-1} f - g ,
 $$
 
 which is dense even when $A$ and $B$ are sparse. That is why the obvious
-approach —
-iterate on the whole system with a method that worked for the elliptic case —
-stalls. The constraint block has to be handled as a constraint.
+approach — iterate on the whole system with a method that worked for the
+elliptic case — stalls. The constraint block has to be handled as a constraint.
 
 ## The signature
 
 Two unknowns per point, one of them a rule. The matrix has no positive-definite
 guarantee. The solution is a pair, and the second member of the pair is a force
-or
-a price.
+or a price.
 
 There is a second signature, and it is the one that catches people: **the
 constraint may be redundant.** If two rows of $B$ say the same thing, the system
-has
-either no solution or infinitely many. A solver that does not notice will return
-one
-of them.
+has either no solution or infinitely many. A solver that does not notice will
+return one of them.
 
 ## Flags that matter here
 
 - **Non-linear.** Incompressible flow, contact, and any mechanism with a joint
-  limit
-make the coupled system non-linear, so each step is a saddle-point solve inside
-a
-  root-finding loop.
+  limit make the coupled system non-linear, so each step is a saddle-point solve
+  inside a root-finding loop.
 - **A nearly singular constraint.** A constraint that is almost dependent gives
-  an
-  ill-conditioned Schur complement, and a force that is nonsense.
+  an ill-conditioned Schur complement, and a force that is nonsense.
 - **A rank-deficient constraint.** The redundancy is in the model, not in the
   solver. A singular value decomposition of $B$ says which row to drop.
 
@@ -120,13 +107,10 @@ with its price and what it will not do.
 - A rigid body mechanism with more constraints than degrees of freedom.
 
 A **bushed** joint is the counterexample, and it is worth keeping beside the
-rigid
-one. Replace the constraint with a spring, and the multiplier is gone: the force
-is
-`k` times the deflection, not a solved unknown. That is the
+rigid one. Replace the constraint with a spring, and the multiplier is gone: the
+force is `k` times the deflection, not a solved unknown. That is the
 [root problem](../root/index.md) on
-[The class is a choice](../choosing-the-class/index.md),
-not this class.
+[The class is a choice](../choosing-the-class/index.md), not this class.
 
 ## What goes wrong
 

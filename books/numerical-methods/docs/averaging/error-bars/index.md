@@ -40,8 +40,8 @@ In practice $\sigma$ is unknown too. The sample variance
 
 $$ s^2 = \frac{1}{N-1}\sum_{i=1}^N (X_i - \bar X)^2 $$
 
-is unbiased for $\sigma^2$, and $s/\sqrt N$ is the estimated standard error.
-The $N-1$ is there because the deviations are measured from $\bar X$ rather than
+is unbiased for $\sigma^2$, and $s/\sqrt N$ is the estimated standard error. The
+$N-1$ is there because the deviations are measured from $\bar X$ rather than
 from $\mu$, which costs one degree of freedom.
 
 A **two-standard-error bar** is $\bar X \pm 2 s/\sqrt N$. For a normal
@@ -51,15 +51,18 @@ limit theorem. The theorem is stated here, not proved; it is not a small piece
 of arithmetic.
 
 **The check.** With $\sigma=1$ and $N=1000$, the standard error is
-$1/\sqrt{1000} = 0.0316$, so the two-standard-error bar is $0.0632$. At
-$N=2000$ it is $0.0447$. Doubling the samples divides the bar by
-$\sqrt2 = 1.414$, and $0.0632/1.414 = 0.0447$.
+$1/\sqrt{1000} = 0.0316$, so the two-standard-error bar is $0.0632$. At $N=2000$
+it is $0.0447$. Doubling the samples divides the bar by $\sqrt2 = 1.414$, and
+$0.0632/1.414 = 0.0447$.
 
 ## The code
 
 The program draws samples from a fixed seed, so the numbers below are the
 numbers a reader gets. It prints the mean and the two-standard-error bar at four
 sample sizes.
+
+<details markdown="1">
+<summary>The sampler and the four error bars</summary>
 
 ```python
 import random
@@ -82,6 +85,7 @@ N=1000  mean=+0.0190  2se=0.0632
 N=2000  mean=-0.0094  2se=0.0447
 ```
 
+</details>
 The bar halves when the sample size quadruples. The mean moves inside the bar
 from row to row, which is what a sampling fluctuation looks like: the estimate
 is not converging monotonically, because each row is a different sample.
@@ -100,14 +104,12 @@ one-dimensional ones: the rate is slow, but it does not depend on the dimension.
 
 What breaks the rate:
 
-- **Dependence.** If the samples are correlated, the variance of the mean is
-  not
-$\sigma^2/N$. The next page derives the correction.
+- **Dependence.** If the samples are correlated, the variance of the mean is not
+  $\sigma^2/N$. The next page derives the correction.
 - **A heavy tail.** If the variance is infinite, the standard error is infinite
-and the bar is not a bar. The mean may still converge, but not at this rate.
-- **A biased sampler.** If the samples do not come from the target
-  distribution,
-the bar describes the wrong quantity. No sample size fixes that.
+  and the bar is not a bar. The mean may still converge, but not at this rate.
+- **A biased sampler.** If the samples do not come from the target distribution,
+  the bar describes the wrong quantity. No sample size fixes that.
 
 The sources are in `sources.yaml`: Robert and Casella for the Monte Carlo
 argument, and the standard error as the square root of the variance of the
@@ -119,9 +121,9 @@ One pass over the samples, so $O(N)$ time and $O(1)$ memory if the sums are
 accumulated. The sample variance needs a second pass, or a numerically stable
 one-pass update; the two-pass form is clearer and costs one more pass.
 
-The accuracy improves as $1/\sqrt N$: a hundredfold cost for one more digit.
-The bar itself is an estimate, and at small $N$ the estimate of $\sigma$ is as
-noisy as the mean it is describing.
+The accuracy improves as $1/\sqrt N$: a hundredfold cost for one more digit. The
+bar itself is an estimate, and at small $N$ the estimate of $\sigma$ is as noisy
+as the mean it is describing.
 
 What it will not do: it will not correct a biased sample, and it will not tell
 you that the samples are independent. That assumption is yours to defend.

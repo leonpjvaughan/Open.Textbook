@@ -10,19 +10,15 @@ an average over possibilities you cannot list.
 ## What you are modelling
 
 The system has randomness in it, or so many states that counting them is
-hopeless.
-You are not asking where it is. You are asking how likely something is, how
-spread
-out it is, or what happens on average when the inputs vary.
+hopeless. You are not asking where it is. You are asking how likely something
+is, how spread out it is, or what happens on average when the inputs vary.
 
 This is the statistical half of the map, and it is the same box as the physical
 half. It is also the whole of that half: one box, one page. The methods are
-named
-and priced rather than derived, because a reference work's job is to tell you
-where
-your problem belongs, not to teach you the sampler. A suspension corner whose
-bush stiffness is only known to within ten per
-cent is an averaging problem in exactly the sense that a queue is.
+named and priced rather than derived, because a reference work's job is to tell
+you where your problem belongs, not to teach you the sampler. A suspension
+corner whose bush stiffness is only known to within ten per cent is an averaging
+problem in exactly the sense that a queue is.
 
 ## The model you write down
 
@@ -46,12 +42,10 @@ $$
 Two facts follow, and they are the whole character of the class.
 
 - **The error falls as $1/\sqrt{N}$, whatever the dimension.** Four times the
-  work
-halves the error. That is slow, and it is also why the method survives problems
-  with a hundred inputs where a grid would need $10^{100}$ points.
-- **Every answer carries an error bar.** An average without one is a number
-  with no
-  claim attached.
+  work halves the error. That is slow, and it is also why the method survives
+  problems with a hundred inputs where a grid would need $10^{100}$ points.
+- **Every answer carries an error bar.** An average without one is a number with
+  no claim attached.
 
 The error bar is the answer's honesty. The figure draws the estimate and two
 standard errors around it as the samples accumulate; the bar narrows as
@@ -68,15 +62,13 @@ measure.
 ## Flags that matter here
 
 - **Correlated samples.** A Markov chain gives a valid average, but consecutive
-samples are not independent. The naive error bar is then too small, sometimes by
-  a factor of a hundred.
+  samples are not independent. The naive error bar is then too small, sometimes
+  by a factor of a hundred.
 - **Rare events.** If the thing you want happens once in $10^{9}$ draws,
-  sampling
-  will not see it. The method has to be aimed.
+  sampling will not see it. The method has to be aimed.
 - **An expensive model.** Ten thousand runs of a two-hour simulation is not a
-  plan.
-A cheap stand-in, itself fitted by a smaller number of runs, is the usual
-answer.
+  plan. A cheap stand-in, itself fitted by a smaller number of runs, is the
+  usual answer.
 
 ## Techniques
 

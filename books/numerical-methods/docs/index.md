@@ -5,11 +5,9 @@ title: Nine kinds of problem
 # Nine kinds of problem
 
 Numerical work looks enormous from the outside. A thousand algorithms, each with
-a
-name and a paper behind it, and no obvious place to start. This book takes the
+a name and a paper behind it, and no obvious place to start. This book takes the
 opposite view. The field is nine kinds of question, and a few circumstances
-decide
-which method answers each one.
+decide which method answers each one.
 
 The numbers are the whole argument:
 
@@ -20,16 +18,14 @@ The numbers are the whole argument:
 | kinds of question | **9** |
 
 Nobody holds seventy-seven methods in their head. Nine kinds is a different size
-of
-task. Learn the nine, and each method becomes a lookup inside a kind you already
-understand, chosen by a circumstance you can name.
+of task. Learn the nine, and each method becomes a lookup inside a kind you
+already understand, chosen by a circumstance you can name.
 
 ## The nine kinds
 
 Every kind is a page. The third column is the model the kind writes down. Read
-the
-last column first: it says how to recognise the kind from the model in front of
-you.
+the last column first: it says how to recognise the kind from the model in front
+of you.
 
 | Kind | What you are asking, and what comes back | The model you write down | How you know it is this one |
 |---|---|---|---|
@@ -65,8 +61,7 @@ gives that number, the reason it decides, and a program that computes it.
 
 Three circumstances cut across the kinds. Each one changes the method without
 changing the question, which is how a kind can hold ten methods and stay one
-kind.
-They are not more boxes. They are the choices inside a box.
+kind. They are not more boxes. They are the choices inside a box.
 
 | Circumstance | What it changes |
 |---|---|
@@ -75,12 +70,10 @@ They are not more boxes. They are the choices inside a box.
 | **Geometry not known in advance** | The region is part of the question: a melting front, a contact patch, a crack. The mesh becomes an unknown too. |
 
 Each kind also has properties of its own that narrow the choice. They include
-how
-sparse a matrix is, whether it is symmetric, how well conditioned it is, and how
-wide a mesh is. The class page names them. That is the whole reason nine kinds
-hold
-seventy-seven methods: the kind is the question, and the circumstances are the
-choices.
+how sparse a matrix is, whether it is symmetric, how well conditioned it is, and
+how wide a mesh is. The class page names them. That is the whole reason nine
+kinds hold seventy-seven methods: the kind is the question, and the
+circumstances are the choices.
 
 ## Where the working is
 
@@ -113,73 +106,58 @@ under Averaging are the first of them.
 ## Why the number is nine
 
 Nine is a choice, not a fact about nature. The same physics can be written as
-two
-different kinds, and the writing decides what a solver can do with it.
+two different kinds, and the writing decides what a solver can do with it.
 
 The Einstein equations make the case. Written with a rule that has to hold
 everywhere, a change inside the region must be felt everywhere at once, and a
-solver
-cannot step forward. Written with a rule that travels at a finite speed, the
-same
-physics runs. The equations did not change. The writing did. [The class is a
-choice](choosing-the-class/#the-same-equations-classified) writes both rules
-down,
-reads the three coefficients off each, and shows the one sign that decides it.
+solver cannot step forward. Written with a rule that travels at a finite speed,
+the same physics runs. The equations did not change. The writing did.
+[The class is a choice](choosing-the-class/#the-same-equations-classified)
+writes both rules down, reads the three coefficients off each, and shows the one
+sign that decides it.
 
 So when a page here says "this is an elliptic problem", read it as "you wrote it
 down that way". If the method you need does not exist for your kind, the model
-is
-what changes. [The class is a choice](choosing-the-class/index.md) argues this
-with
-three cases, including one from the next section.
+is what changes. [The class is a choice](choosing-the-class/index.md) argues
+this with three cases, including one from the next section.
 
 ## One model, several kinds
 
 A kind belongs to a term, not to a problem. A single model can hold three kinds
-at
-once, and each term is handled its own way.
+at once, and each term is handled its own way.
 
 Navier–Stokes has a rule that the flow cannot compress, a term that carries
 information along paths, and a term that smooths. That is a saddle point, a
 hyperbolic part and a parabolic part in one line, and nobody solves it as one
-kind.
-The same happens below the model. Once a steady problem is discretised, the step
-that solves it is a [linear system](linear-system/index.md). That is why the
-kind
-exists even though no physics says "linear".
+kind. The same happens below the model. Once a steady problem is discretised,
+the step that solves it is a [linear system](linear-system/index.md). That is
+why the kind exists even though no physics says "linear".
 
 The suspension corner in [`Maths Applied`](/maths-applied/) is the small version
-of
-this. The rigid linkage is [root finding](root/index.md). Hold the joint rigid
-and
-price it instead, and it becomes a [saddle point](saddle-point/index.md), whose
-multiplier is the force in the joint. Make the joint a spring and it is a root
-problem again, with no multiplier at all. Its bounce is an
-[eigenvalue](eigenvalue/index.md) problem, and
-with no damper it keeps its energy: the Hamiltonian flag is described on the
-[hyperbolic page](hyperbolic/index.md), though no section names that class. [The
-same corner, five ways](worked-case/index.md) takes that one mechanism through
-five
-kinds and quotes the numbers where the models agree. The page's last section
-explains
-[what a kernel is](worked-case/#what-a-kernel-is): the compiled solver some
-pages in
-the collection run, and the two other senses the word has in numerical work.
+of this. The rigid linkage is [root finding](root/index.md). Hold the joint
+rigid and price it instead, and it becomes a
+[saddle point](saddle-point/index.md), whose multiplier is the force in the
+joint. Make the joint a spring and it is a root problem again, with no
+multiplier at all. Its bounce is an [eigenvalue](eigenvalue/index.md) problem,
+and with no damper it keeps its energy: the Hamiltonian flag is described on the
+[hyperbolic page](hyperbolic/index.md), though no section names that class.
+[The same corner, five ways](worked-case/index.md) takes that one mechanism
+through five kinds and quotes the numbers where the models agree. The page's
+last section explains [what a kernel is](worked-case/#what-a-kernel-is): the
+compiled solver some pages in the collection run, and the two other senses the
+word has in numerical work.
 
 ## Three ways in
 
 - **You have a model and no idea what it is.** Start with the nine kinds above,
-  and
-  read the last column before the others.
+  and read the last column before the others.
 - **You know a method by name and want to know where it applies.** Start at
-[Methods, A to Z](techniques/index.md). It goes method → kinds it works on →
-what
-  it costs.
-- **You have a wrong answer.** Start at
-  [When it goes wrong](symptoms/index.md). It goes symptom → kind → cause → fix.
+  [Methods, A to Z](techniques/index.md). It goes method → kinds it works on →
+  what it costs.
+- **You have a wrong answer.** Start at [When it goes wrong](symptoms/index.md).
+  It goes symptom → kind → cause → fix.
 
 Nothing here is a course, and there is nothing to practise. Every page stands on
-its
-own, and a page you skip is a page you did not need.
+its own, and a page you skip is a page you did not need.
 
 :::disclaimer

@@ -5,13 +5,11 @@ title: When it goes wrong
 # When it goes wrong
 
 A wrong answer has a shape, and the shape usually names the class. This page is
-the
-one to open when a solver is running and the number is not right.
+the one to open when a solver is running and the number is not right.
 
 Read the first column as the thing you observed, not as the thing you suspect.
-Every
-row here is also on the class page it names, in the same words, so a reader who
-arrives from either direction meets one list rather than two.
+Every row here is also on the class page it names, in the same words, so a
+reader who arrives from either direction meets one list rather than two.
 
 ## It does not finish
 
@@ -95,15 +93,12 @@ Three checks cost an hour and save a week, in this order:
 
 1. **Is the answer converged?** Halve the mesh, and halve the time step. If the
    answer moves, the solver is not the problem.
-2.  **Is the model what you meant?** Evaluate the residual at the reported
-   answer. A
-solver that converged to a solution of the wrong equations is behaving
-correctly.
-3.  **Does a limit case agree?** Shrink the new term to zero and check you
-   recover
-   the simpler model you already trusted. If you cannot, the new term is not the
-   one you think it is.
+2. **Is the model what you meant?** Evaluate the residual at the reported
+   answer. A solver that converged to a solution of the wrong equations is
+   behaving correctly.
+3. **Does a limit case agree?** Shrink the new term to zero and check you
+   recover the simpler model you already trusted. If you cannot, the new term is
+   not the one you think it is.
 
 A converged answer to the wrong model is the most expensive kind of wrong,
-because
-nothing about the run looks unusual.
+because nothing about the run looks unusual.

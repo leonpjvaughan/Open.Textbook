@@ -6,17 +6,14 @@ title: Eigenvalues
 
 **You have one of these when** you ask which values are allowed — which
 frequencies, which loads, which energies, which growth rates — rather than what
-a
-particular one is.
+a particular one is.
 
 ## What you are modelling
 
 A system with patterns in it. Most patterns get distorted or decayed by the
-system.
-A few come back unchanged, scaled by a number. Those numbers are the answer, and
-they decide what the system is like: how it rings, when it buckles, whether it
-is
-stable.
+system. A few come back unchanged, scaled by a number. Those numbers are the
+answer, and they decide what the system is like: how it rings, when it buckles,
+whether it is stable.
 
 ## The model you write down
 
@@ -47,20 +44,17 @@ the matrix, not on its entries:
 - Is it small and dense? Then compute all of them, and stop worrying.
 
 The gap between the two eigenvalues is the speed. The figure multiplies a vector
-by
-a symmetric matrix and draws it turning toward the dominant eigenvector. The
-ratio
-of the second eigenvalue to the first is the factor by which the wrong direction
-shrinks each step.
+by a symmetric matrix and draws it turning toward the dominant eigenvector. The
+ratio of the second eigenvalue to the first is the factor by which the wrong
+direction shrinks each step.
 
 :::figure power-lab
 
 ## The signature
 
 The answers are a discrete set, not a curve. The question is usually *local* —
-the
-first three modes, the smallest one, the one nearest zero — and that locality is
-what makes the problem tractable on a matrix with a million rows.
+the first three modes, the smallest one, the one nearest zero — and that
+locality is what makes the problem tractable on a matrix with a million rows.
 
 Eigenvalues are also the standard way a stability question is asked: perturb the
 equilibrium, linearise, and look at the sign of the real part.
@@ -70,11 +64,10 @@ equilibrium, linearise, and look at the sign of the real part.
 - **Non-symmetric.** Complex eigenvalues arrive in pairs, and a real-only solver
   will either fail or silently lie.
 - **Generalised, with a singular $B$ .** Infinite eigenvalues appear. That is
-  not a
-  bug; it is what a constraint looks like.
-- **Non-linear in $\lambda$.** The eigenvalue is inside the matrix — a frequency
-  in a foundation, a delay in a control loop. Then each step is a root problem
-  again, and the safe methods are the ones built on linear solves.
+  not a bug; it is what a constraint looks like.
+- **Non-linear in $\lambda$ .** The eigenvalue is inside the matrix — a
+  frequency in a foundation, a delay in a control loop. Then each step is a root
+  problem again, and the safe methods are the ones built on linear solves.
 
 ## Techniques
 
@@ -96,8 +89,7 @@ with its price and what it will not do.
 ## Systems that live here
 
 - The bounce and wheel-hop frequencies of a quarter car — one mass or two, and
-  the
-  answer changes when the second mass is added.
+  the answer changes when the second mass is added.
 - Buckling of a chassis member: the smallest load at which it gives way.
 - Brake squeal and flutter: a complex eigenvalue with a positive real part.
 - Linear stability of a flow, where the eigenvalues of the linearised operator
@@ -122,9 +114,8 @@ with its price and what it will not do.
 
 ## Read next
 
-- [Root finding](../root/index.md) — an eigenvalue of a small matrix is the
-  root of its
-  determinant.
+- [Root finding](../root/index.md) — an eigenvalue of a small matrix is the root
+  of its determinant.
 - [Hyperbolic](../hyperbolic/index.md) — the stability of a wave problem is an
   eigenvalue question in disguise.
 - [When it goes wrong](../symptoms/index.md) — the symptom table for every

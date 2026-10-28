@@ -15,10 +15,10 @@ number, and this page computes it.
 
 ## The mathematics
 
-Write the answer as $x$ and the number a computer returns as $\hat x$. The
-error is $\hat x - x$. An error on its own is not a verdict, because the same
-absolute error is large for $10^{-8}$ and tiny for $10^{8}$. The useful measure
-is **relative error**:
+Write the answer as $x$ and the number a computer returns as $\hat x$. The error
+is $\hat x - x$. An error on its own is not a verdict, because the same absolute
+error is large for $10^{-8}$ and tiny for $10^{8}$. The useful measure is
+**relative error**:
 
 $$ \text{relative error} = \frac{|\hat x - x|}{|x|}. $$
 
@@ -39,9 +39,9 @@ The fix is algebra, not precision. Multiply by the conjugate:
 
 $$ \sqrt{1+x}-1 = \frac{x}{\sqrt{1+x}+1}. $$
 
-The right side is a quotient of two numbers of size $1$, so it keeps its
-digits. A formula that subtracts nearly equal numbers is the defect; the same
-formula rewritten is not.
+The right side is a quotient of two numbers of size $1$, so it keeps its digits.
+A formula that subtracts nearly equal numbers is the defect; the same formula
+rewritten is not.
 
 ### Conditioning
 
@@ -51,9 +51,9 @@ number** is the factor by which the relative error grows:
 
 $$ \kappa(x) = \left| \frac{x f'(x)}{f(x)} \right|. $$
 
-For $f(x)=e^x$, $\kappa(x)=x$. At $x=10$, a relative error of $10^{-16}$ in
-the input becomes about $10^{-15}$ in the answer. That is the problem's
-arithmetic, not the method's.
+For $f(x)=e^x$, $\kappa(x)=x$. At $x=10$, a relative error of $10^{-16}$ in the
+input becomes about $10^{-15}$ in the answer. That is the problem's arithmetic,
+not the method's.
 
 For a linear system $Ax=b$, the same idea is
 
@@ -87,7 +87,7 @@ magnitude.
 
 A tolerance therefore needs three things: a **norm** (what is being measured), a
 **scale** (absolute or relative), and a **reason** (what the step tells you
-about the error). "Solve to $10^{-8}$" without them is a number with no units.
+about the error). "Solve to $10^{-8}$ " without them is a number with no units.
 
 **The check.** For $x=10^{-16}$, the direct $\sqrt{1+x}-1$ returns $0$ in double
 precision and the conjugate form returns about $5 \times 10^{-17}$. The gap is
@@ -97,6 +97,9 @@ total, and it is a fact about the formula rather than the machine.
 
 The program prints the machine epsilon, the two routes to $\sqrt{1+x}-1$, and
 the condition number of $e^x$ at two points.
+
+<details markdown="1">
+<summary>The epsilon, the two square roots and the conditioning check</summary>
 
 ```python
 import math
@@ -125,6 +128,7 @@ condition number of exp at  1.0:  1.0
 condition number of exp at 10.0: 10.0
 ```
 
+</details>
 The first two lines are the whole argument. The direct formula is not less exact
 because the computer is bad at square roots. It is less exact because it throws
 away the information it had computed.

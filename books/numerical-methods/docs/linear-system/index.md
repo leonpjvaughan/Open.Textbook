@@ -5,22 +5,17 @@ title: Linear system
 # Linear system
 
 **You have one of these when** every rule in the model is linear in the
-unknowns,
-the unknowns are a finite list, and nothing changes with time.
+unknowns, the unknowns are a finite list, and nothing changes with time.
 
 ## What you are modelling
 
 A balance. The forces at a joint add to zero, the currents into a node add to
-zero,
-the flow through a face equals the flow out of it. Or a fit: the model is a sum
-of
-known shapes, and you want the amounts of each.
+zero, the flow through a face equals the flow out of it. Or a fit: the model is
+a sum of known shapes, and you want the amounts of each.
 
 The system itself is linear, so no non-linear iteration is needed. The work is
-done once
-the rows are written, and the difficulty has moved into the matrix — where a
-large sparse
-system may still call for an iterative solver.
+done once the rows are written, and the difficulty has moved into the matrix —
+where a large sparse system may still call for an iterative solver.
 
 ## The model you write down
 
@@ -29,84 +24,65 @@ A x = b .
 $$
 
 Each row is one rule, each column is one unknown, and $b$ is what the rules have
-to
-equal. The physics of the problem has already finished its job by the time you
-have
-$A$.
+to equal. The physics of the problem has already finished its job by the time
+you have $A$.
 
 ## What it becomes on a computer
 
 A matrix, and a choice between two families. The choice is made by the
-**properties
-of the matrix**, not by the subject the matrix came from:
+**properties of the matrix**, not by the subject the matrix came from:
 
 - **Dense and small.** Factorise it. The cost is cubic in the number of
-  unknowns, and
-  for a few thousand that is the end of the story.
+  unknowns, and for a few thousand that is the end of the story.
 - **Sparse and large.** Factorising fills in the zeros and runs out of memory,
-  so
-iterate instead — and the iteration count is decided by conditioning, not by
-size.
+  so iterate instead — and the iteration count is decided by conditioning, not
+  by size.
 - **Symmetric positive definite.** Conjugate gradients works, and fails on
-  anything
-  else.
+  anything else.
 - **Symmetric indefinite.** A different Krylov method is needed, and the reason
-  is
-  the [saddle point](../saddle-point/index.md) page.
+  is the [saddle point](../saddle-point/index.md) page.
 - **Rectangular.** More equations than unknowns is a least-squares problem, and
-  the
-  answer is a projection rather than a solution.
+  the answer is a projection rather than a solution.
 
 A linear system is often one step inside a non-linear solve. `Maths Applied`
-[§1.3](/maths-applied/chapter-1/section-1.3/learn/)'s three distance rules are
+[§1.3](/maths-applied/chapter-1/section-1.3/learn/) 's three distance rules are
 non-linear, and Gauss–Newton iterates them; each step solves the linear system
-on
-this page. The rules at that step are linear, and the outer model is a root
-problem
-or an optimisation. That is the distinction the
+on this page. The rules at that step are linear, and the outer model is a root
+problem or an optimisation. That is the distinction the
 [class is a choice](../choosing-the-class/index.md) page makes: the class
-belongs to
-the writing, and the writing can be one step of a larger model.
+belongs to the writing, and the writing can be one step of a larger model.
 
 Conjugate gradients is the method for the symmetric positive-definite case, and
-the
-residual is its progress bar. The figure solves the one-dimensional Poisson
-system
-from the elliptic page. The residual reaches the floor in at most $n$
-iterations.
-That is exactness in exact arithmetic, not a tuning choice.
+the residual is its progress bar. The figure solves the one-dimensional Poisson
+system from the elliptic page. The residual reaches the floor in at most $n$
+iterations. That is exactness in exact arithmetic, not a tuning choice.
 
 :::figure cg-lab
 
 ## The signature
 
 The answer comes from a matrix, and the matrix's properties decide the method.
-Two
-consequences follow, and both surprise people:
+Two consequences follow, and both surprise people:
 
 - **Scale is not difficulty.** A million-unknown sparse system with good
-  conditioning
-solves in seconds; a hundred-unknown matrix with a condition number of $10^{12}$
-  has lost twelve digits and cannot give you an answer you can trust.
+  conditioning solves in seconds; a hundred-unknown matrix with a condition
+  number of $10^{12}$ has lost twelve digits and cannot give you an answer you
+  can trust.
 - **Reordering the rows changes the answer.** In exact arithmetic it cannot. In
-floating point, a different pivot order changes the rounding, and an
-ill-conditioned
-  matrix turns that into a different last digit or a different answer.
+  floating point, a different pivot order changes the rounding, and an
+  ill-conditioned matrix turns that into a different last digit or a different
+  answer.
 
 ## Flags that matter here
 
 - **Conditioning.** The one flag that matters most, and the one nobody checks.
-  It is
-  the number of digits you lose.
+  It is the number of digits you lose.
 - **Symmetry and definiteness.** They decide which methods are available, and a
-  method
-  used outside its class does not merely run slowly; it returns nonsense.
+  method used outside its class does not merely run slowly; it returns nonsense.
 - **Sparsity and fill-in.** A sparse matrix that factorises into a dense one is
-  a
-  memory problem wearing a maths problem's clothes.
+  a memory problem wearing a maths problem's clothes.
 - **Redundant rows.** Two rows that say the same thing give either no solution
-  or
-  infinitely many, and a solver that does not notice returns one of them.
+  or infinitely many, and a solver that does not notice returns one of them.
 
 ## Techniques
 
@@ -134,12 +110,11 @@ with its price and what it will not do.
 - Any steady discretisation, once the equations are assembled: see
   [Elliptic](../elliptic/index.md).
 - The `double-wishbone` example's Jacobian: the package this collection uses
-  solves 21
-equations whose Jacobian has 441 entries, of which **161 are not zero** — sparse
-enough
-that the sparsity is the method, not a detail of it. The generated kernel, which
-[this book explains here](../worked-case/#what-a-kernel-is), touches only the
-non-zeros.
+  solves 21 equations whose Jacobian has 441 entries, of which **161 are not
+  zero** — sparse enough that the sparsity is the method, not a detail of it.
+  The generated kernel, which
+  [this book explains here](../worked-case/#what-a-kernel-is), touches only the
+  non-zeros.
 - A least-squares fit: a tyre model, a calibration curve, a camera model.
 - Network flows, and the stationary vector of a link matrix.
 - Spline and surface fitting, where the unknowns are the control points.
@@ -165,7 +140,6 @@ non-zeros.
   the answer.
 - [Elliptic](../elliptic/index.md) — where most of these matrices come from.
 - [Saddle point](../saddle-point/index.md) — a symmetric matrix that is not
-  positive
-  definite, and why that changes the method.
+  positive definite, and why that changes the method.
 - [When it goes wrong](../symptoms/index.md) — the symptom table for every
   class.

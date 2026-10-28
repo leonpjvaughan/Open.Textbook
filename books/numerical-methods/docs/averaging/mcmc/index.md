@@ -17,8 +17,8 @@ process, and a process that has not settled has no error bar worth computing.
 ## The mathematics
 
 The target is a distribution $\pi(x)$. A Metropolis chain proposes a move from
-the current point $x$ to $y$ from a proposal density $q(y \mid x)$, then
-accepts it with probability
+the current point $x$ to $y$ from a proposal density $q(y \mid x)$, then accepts
+it with probability
 
 $$ \alpha(x, y) = \min\left(1, \frac{\pi(y)\,q(x \mid y)}{\pi(x)\,q(y \mid
 x)}\right). $$
@@ -31,10 +31,10 @@ The rule satisfies **detailed balance**:
 
 $$ \pi(x)\,q(y \mid x)\,\alpha(x, y) = \pi(y)\,q(x \mid y)\,\alpha(y, x). $$
 
-Summing over $x$ shows that $\pi$ is stationary: if the chain starts from $\pi$
-, it stays there. That is the whole justification for using the chain's samples
-as samples from $\pi$. It does not say how fast the chain reaches $\pi$, which
-is why the diagnostics exist.
+Summing over $x$ shows that $\pi$ is stationary: if the chain starts from $\pi$,
+it stays there. That is the whole justification for using the chain's samples as
+samples from $\pi$. It does not say how fast the chain reaches $\pi$, which is
+why the diagnostics exist.
 
 The proposal scale is the tuning knob. A small step accepts almost everything
 and moves slowly; a large step moves far and is rejected. Both increase the
@@ -67,6 +67,9 @@ testing.
 
 Each chain has its own seed, so the numbers below are reproducible. The burn-in
 is discarded before any statistic is computed.
+
+<details markdown="1">
+<summary>The chains, R-hat and the effective sample size</summary>
 
 ```python
 import math
@@ -133,6 +136,7 @@ mean tau         5.11
 effective N      3915
 ```
 
+</details>
 The chain has settled and the mean is within about two standard errors of zero,
 which is the target's mean. The effective sample size is a fifth of the draws,
 which is the price of the random walk.

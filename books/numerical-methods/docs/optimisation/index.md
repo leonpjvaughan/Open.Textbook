@@ -10,9 +10,8 @@ number, and you want the best one.
 ## What you are modelling
 
 Nothing moves and nothing is at every point. You have a set of choices, and a
-rule
-that turns a choice into a cost, a profit, an error or a score. The model says
-which choices are allowed and how good each one is.
+rule that turns a choice into a cost, a profit, an error or a score. The model
+says which choices are allowed and how good each one is.
 
 ## The model you write down
 
@@ -22,31 +21,26 @@ $$
 
 The function $f$ is what you want to be small. The constraints say which $x$ you
 are allowed to try. If there are no constraints, the model is one function and
-one
-region.
+one region.
 
 ## What it becomes on a computer
 
 A function that can be evaluated, and often differentiated. Each step asks
-"which
-way is downhill, and how far?" — so the cost of a solve is the number of
+"which way is downhill, and how far?" — so the cost of a solve is the number of
 evaluations multiplied by the cost of one evaluation. That second factor is why
-a
-model that takes a day to run changes the whole method.
+a model that takes a day to run changes the whole method.
 
 The shape of $f$ is what decides the difficulty:
 
-- **Convex.** One bottom. Find it and you have the answer. This is not a
-  detail; it
-  is the difference between a problem with an answer and a problem with a good
-  try.
+- **Convex.** One bottom. Find it and you have the answer. This is not a detail;
+  it is the difference between a problem with an answer and a problem with a
+  good try.
 - **Not convex.** Many bottoms. Every method finds one, and which one depends on
   where you started.
 
 The step size is the whole difficulty of the simplest case. The figure runs
-gradient descent on a quadratic, where the condition is
-$0 < \text{step} < 2/a$; above it the iterates grow while the objective is still
-defined.
+gradient descent on a quadratic, where the condition is $0 < \text{step} < 2/a$;
+above it the iterates grow while the objective is still defined.
 
 :::figure gradient-lab
 
@@ -58,16 +52,13 @@ difficulty is entirely in the shape of the landscape and in the constraints.
 ## Flags that matter here
 
 - **Constraints.** A constraint turns the problem into one with a price
-  attached,
-and the price is a second unknown. That is the
-[saddle point](../saddle-point/index.md)
-  page, because the KKT system has the same block structure.
+  attached, and the price is a second unknown. That is the
+  [saddle point](../saddle-point/index.md) page, because the KKT system has the
+  same block structure.
 - **Expensive evaluations.** A day per run, or a physical test per run, rules
-  out
-  finite differences and pushes you to a surrogate model.
+  out finite differences and pushes you to a surrogate model.
 - **Noise.** If the same $x$ gives a different $f$ each time, a method that
-  trusts
-  small differences will chase noise.
+  trusts small differences will chase noise.
 
 ## Techniques
 
@@ -115,8 +106,7 @@ with its price and what it will not do.
 ## Read next
 
 - [Saddle point](../saddle-point/index.md) — the same problem with constraints,
-  and
-  where the price comes from.
+  and where the price comes from.
 - [Root finding](../root/index.md) — setting the gradient to zero is a root
   problem.
 - [When it goes wrong](../symptoms/index.md) — the symptom table for every

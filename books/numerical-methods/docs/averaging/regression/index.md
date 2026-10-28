@@ -55,14 +55,17 @@ $\hat b/\operatorname{SE}(\hat b)$ is a $t$ statistic: how many standard errors
 the slope is from zero.
 
 **The check.** For the five points below, the slope is $0.99$, the residual
-standard deviation is $0.1889$, and the standard error of the slope is $0.0597$
-. The line passes through $(2.0, 3.0)$, which is $(\bar x, \bar y)$, and the
-slope is $16.6$ standard errors from zero.
+standard deviation is $0.1889$, and the standard error of the slope is $0.0597$.
+The line passes through $(2.0, 3.0)$, which is $(\bar x, \bar y)$, and the slope
+is $16.6$ standard errors from zero.
 
 ## The code
 
 The program fits the line from the normal equations, prints the slope and its
 standard error, and checks the mean point.
+
+<details markdown="1">
+<summary>The fit, the slope's standard error and the mean point</summary>
 
 ```python
 x = [0.0, 1.0, 2.0, 3.0, 4.0]
@@ -96,6 +99,7 @@ mean point  (2.0, 3.0)
 line at x-bar 3.0
 ```
 
+</details>
 The slope is nearly one and the intercept is nearly one, which is what the data
 were built to show. The standard error says how much the slope would move if the
 data were redrawn; it does not say that the line is the right model.
@@ -115,18 +119,18 @@ the arithmetic that needs no extra data.
 What a small residual does not say:
 
 - **That the model is right.** A straight line through a curve can have a small
-residual over a narrow range and be badly wrong outside it.
+  residual over a narrow range and be badly wrong outside it.
 - **That the slope is stable.** A single high-leverage point can move it a long
-way; the standard error is a guide, not a guarantee.
+  way; the standard error is a guide, not a guarantee.
 - **That the errors are independent.** A time series with a trend has a small
-residual and a slope that is mostly the trend.
+  residual and a slope that is mostly the trend.
 - **That prediction is safe.** Extrapolation is a different question, and the
-standard error of a prediction at a new $x$ is larger than the standard error of
-the slope.
+  standard error of a prediction at a new $x$ is larger than the standard error
+  of the slope.
 
 The geometry of least squares is the projection of $y$ onto the column space of
-$X$. [§1.3 of Maths Applied](/maths-applied/chapter-1/section-1.3/learn/) uses
-that projection to solve a linkage, and
+$X$. [§1.3's deeper page](/maths-applied/chapter-1/section-1.3/deeper/what-least-squares-does/)
+uses that projection to solve a linkage, and
 [§9.4 of the Leaving Certificate Applied Mathematics book](/ie-lc-applied-maths/higher/chapter-9/section-9.4/learn/)
 takes up overfitting. Neither is restated here.
 
@@ -151,6 +155,5 @@ missing variable. Those are judgement, and the residual plot is the evidence.
 
 [Averaging](../index.md) is the class page this works under.
 [An average, and its error bar](../error-bars/index.md) is the same
-standard-error idea for a mean. [Walking a chain that
-settles](../mcmc/index.md) is the sampler that fits a model when the likelihood
-has no closed form.
+standard-error idea for a mean. [Walking a chain that settles](../mcmc/index.md)
+is the sampler that fits a model when the likelihood has no closed form.

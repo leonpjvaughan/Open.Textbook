@@ -65,14 +65,16 @@ two models rather than one model with itself.
 
 **The check.** The 2-by-2 system below has condition number about $10^6$. A
 perturbation of $10^{-10}$ in one entry of $b$ produces a relative error of
-$10^{-7}$ while the relative residual is $10^{-13}$. The residual is four
-orders smaller than the answer's error, and the bound is the bridge between
-them.
+$10^{-7}$ while the relative residual is $10^{-13}$. The residual is four orders
+smaller than the answer's error, and the bound is the bridge between them.
 
 ## The code
 
 The program solves the system twice, perturbs one entry of $b$, and prints the
 condition number, the relative residual and the relative error.
+
+<details markdown="1">
+<summary>The perturbed solve and the bound it demonstrates</summary>
 
 ```python
 import sympy as sp
@@ -99,6 +101,7 @@ relative error    1.0e-07
 bound             1.0e-07
 ```
 
+</details>
 The residual is small, the error is not, and the bound predicts the error. A
 solver that reported only the residual would have called this answer good.
 
@@ -117,8 +120,8 @@ comparison cover that gap from different directions.
 
 The residual itself can be computed in the wrong norm. A residual that is small
 in the infinity norm and large in the energy norm is a real possibility for a
-symmetric problem. The norm has to match the quantity a reader cares about.
-This is the same rule the tolerance page states: a norm, a scale, and a reason.
+symmetric problem. The norm has to match the quantity a reader cares about. This
+is the same rule the tolerance page states: a norm, a scale, and a reason.
 
 Roache's *Verification and Validation in Computational Science and Engineering*
 is the source for the manufactured-solution method and for the distinction

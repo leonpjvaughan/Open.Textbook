@@ -5,15 +5,13 @@ title: Hyperbolic
 # Hyperbolic
 
 **You have one of these when** information travels at a finite speed along
-paths,
-and what arrives keeps the shape of what was sent.
+paths, and what arrives keeps the shape of what was sent.
 
 ## What you are modelling
 
 Something carried. A pressure wave, a shock, a crowd, a flood, a gravitational
-wave.
-The model has a direction of travel in it, and that direction is the reason the
-class behaves differently from a diffusing one.
+wave. The model has a direction of travel in it, and that direction is the
+reason the class behaves differently from a diffusing one.
 
 ## The model you write down
 
@@ -24,71 +22,60 @@ $$
 $$
 
 or the wave equation, which is the same statement written twice. The flux $F$
-says
-how much of $u$ crosses a boundary per unit time. For the simplest case
-$F = a u$,
-and the whole solution is $u$ shifted along the line $x = a t$.
+says how much of $u$ crosses a boundary per unit time. For the simplest case
+$F = a u$, and the whole solution is $u$ shifted along the line $x = a t$.
 
 ## What it becomes on a computer
 
 Two routes, and the first one is often forgotten:
 
 - **Follow the characteristics.** If information travels along known curves,
-  solve
-  along those curves. This is exact for the linear case and is why the method of
-  characteristics is worth knowing.
+  solve along those curves. This is exact for the linear case and is why the
+  method of characteristics is worth knowing.
 - **Discretise and flux.** Divide the region into cells, compute the flux across
-each face, and update. This is a finite-volume method, and the flux is where all
-the difficulty lives: it has to decide what happens where two states meet, which
-  is a Riemann problem.
+  each face, and update. This is a finite-volume method, and the flux is where
+  all the difficulty lives: it has to decide what happens where two states meet,
+  which is a Riemann problem.
 
 The step is limited by the **CFL condition**: in one step, information must not
 cross more than one cell. That limit comes from the physics and the mesh, not
-from
-the diffusion of the scheme.
+from the diffusion of the scheme.
 
 The CFL condition is easiest to see as an experiment. The figure sends a pulse
 through the scheme; below $c = 1$ it splits into two halves and keeps its
-energy,
-and above $c = 1$ the short modes grow.
+energy, and above $c = 1$ the short modes grow.
 
 :::figure wave-lab
 
 ## The signature
 
 Disturbances travel at a finite speed. That single fact explains almost
-everything
-about the class:
+everything about the class:
 
 - **Discontinuities are allowed.** Smooth data can steepen into a shock, and the
   shock is a real feature that a scheme must capture rather than smear.
 - **The answer is not smoother than its data.** A square wave stays roughly
-  square,
-  and a scheme that smooths it is adding something the physics did not.
+  square, and a scheme that smooths it is adding something the physics did not.
 - **Boundary conditions are one-sided.** Information enters at an inflow
-  boundary
-  and leaves at an outflow one. Applying a value at an outflow boundary is a
-  common and quiet error.
+  boundary and leaves at an outflow one. Applying a value at an outflow boundary
+  is a common and quiet error.
 
 The same classification argument decides whether a problem can be evolved at
-all.
-Elliptic coordinate conditions in numerical relativity make a change inside the
-region felt everywhere at once, and the calculation cannot run. Hyperbolic
+all. Elliptic coordinate conditions in numerical relativity make a change inside
+the region felt everywhere at once, and the calculation cannot run. Hyperbolic
 conditions give a finite speed, and it can.
 
 ## A wave that must keep its energy
 
 Remembering has a price in the method: the answer has no decay to hide the error
-in,
-so an integrator that quietly adds or removes a little energy every step shows
-it.
+in, so an integrator that quietly adds or removes a little energy every step
+shows it.
 
 This is the **Hamiltonian** case, and it is a flag rather than a box. The class
-has
-not changed; what changes is that the method must respect the structure, or a
-long
-run is worthless. A single oscillator shows it. Run the same one with a general
-method and with a structure-preserving one, and only one of them stays bounded.
+has not changed; what changes is that the method must respect the structure, or
+a long run is worthless. A single oscillator shows it. Run the same one with a
+general method and with a structure-preserving one, and only one of them stays
+bounded.
 
 :::figure energy-drift
 
@@ -97,14 +84,11 @@ method and with a structure-preserving one, and only one of them stays bounded.
 - **Non-linear.** Genuine shocks and rarefactions. A linear method applied to a
   non-linear flux gives the wrong wave speed.
 - **Stiff source terms.** Chemistry or relaxation inside the flow changes the
-  step
-  limit; the source is solved implicitly while the flux stays explicit.
+  step limit; the source is solved implicitly while the flux stays explicit.
 - **A conservative form.** If the quantity is conserved, the scheme must be
-  written
-  in flux form, or it will conserve the wrong total.
+  written in flux form, or it will conserve the wrong total.
 - **Long-time structure.** Wave problems that must stay bounded over many
-  periods
-  need a method that respects their structure, or the energy drifts.
+  periods need a method that respects their structure, or the energy drifts.
 
 ## Techniques
 
@@ -155,10 +139,8 @@ with its price and what it will not do.
 - [Parabolic](../parabolic/index.md) — the other moving class, and the one that
   diffuses instead of carrying.
 - [Eigenvalues](../eigenvalue/index.md) — the stability of a wave problem is
-  decided by
-  eigenvalues.
+  decided by eigenvalues.
 - [Reading the class off the equation](../reading-the-class/index.md) — the one
-  number
-  that says an equation like this one is hyperbolic.
+  number that says an equation like this one is hyperbolic.
 - [When it goes wrong](../symptoms/index.md) — the symptom table for every
   class.
