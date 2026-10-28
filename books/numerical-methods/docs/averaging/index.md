@@ -104,6 +104,18 @@ Every method named here is in [Methods, A to Z](../techniques/#averaging), with 
 | Ten million samples and still noisy | The variance of $g$ is large | A control variate, or a quasi-random sequence |
 | A different run gives a different answer | That is the method, not a bug | Report the error bar, and the seed |
 
+## The working under this page
+
+Four pages take one method family each and carry the algebra, a program and the
+theory. They are optional: the class page is complete without them.
+
+| Page | What it settles |
+|---|---|
+| [An average, and its error bar](error-bars/index.md) | The variance of an estimate, the $\sigma/\sqrt N$ rate, and what a two-standard-error bar means |
+| [When the samples are not independent](correlated/index.md) | Autocorrelation, the integrated autocorrelation time, and the effective sample size |
+| [Walking a chain that settles](mcmc/index.md) | Metropolis, detailed balance, R-hat and the effective sample size |
+| [Fitting, and what the fit does not say](regression/index.md) | Least squares as maximum likelihood, the normal equations, and the slope's standard error |
+
 ## Used in this collection
 
 :::used

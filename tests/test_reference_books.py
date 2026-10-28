@@ -294,6 +294,10 @@ def test_the_classes_come_first_in_tree_order():
         "worked-case",
         "techniques",
         "symptoms",
+        "averaging",
+        "averaging",
+        "averaging",
+        "averaging",
     ]
 
 

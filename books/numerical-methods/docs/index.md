@@ -93,7 +93,15 @@ Three pages cross the kinds. They are the working that no single class owns.
 | [Knowing the answer is right](checking/index.md) | Manufactured solutions, grid convergence, residuals, and the difference between verified and validated |
 
 A class page gains a detail page when there is working under it that the class
-page cannot hold. Those pages sit under their class in the sidebar.
+page cannot hold. Those pages sit under their class in the sidebar. The four
+under Averaging are the first of them.
+
+| Page | What it settles |
+|---|---|
+| [An average, and its error bar](averaging/error-bars/index.md) | The variance of an estimate, the $\sigma/\sqrt N$ rate, and the two-standard-error bar |
+| [When the samples are not independent](averaging/correlated/index.md) | Autocorrelation and the effective sample size $N/\tau$ |
+| [Walking a chain that settles](averaging/mcmc/index.md) | Metropolis, detailed balance, R-hat and the effective sample size |
+| [Fitting, and what the fit does not say](averaging/regression/index.md) | Least squares, the normal equations, and the slope's standard error |
 
 ## Why the number is nine
 

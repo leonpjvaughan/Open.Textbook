@@ -86,3 +86,11 @@ pages:
     path: techniques/index.md
   - title: When it goes wrong
     path: symptoms/index.md
+  - title: An average, and its error bar
+    path: averaging/error-bars/index.md
+  - title: When the samples are not independent
+    path: averaging/correlated/index.md
+  - title: Walking a chain that settles
+    path: averaging/mcmc/index.md
+  - title: Fitting, and what the fit does not say
+    path: averaging/regression/index.md
