@@ -313,3 +313,45 @@ def test_a_book_without_data_or_images_gets_no_empty_directories(tmp_path):
     data = out / "assets" / "data"
     assert not data.exists() or {path.name for path in data.iterdir()} == {"solvers"}
     assert not (out / "assets" / "images").exists()
+
+
+# --- a reference work's registry nests by path -----------------------------------
+
+
+def test_a_nested_registry_page_is_listed_under_its_parent(tmp_path):
+    """A detail page is the working under a class page, so the sidebar says so.
+
+    The registry lists `averaging/index.md` and `averaging/error-bars/index.md`. As
+    siblings they read as two pages about sampling; nested, the second is visibly the
+    working under the first. The path's shape is the rule — a page two directories
+    deep belongs to the page one directory deep — so there is no second field to keep
+    in step with the first.
+    """
+    nav = scaffold.build_nav_list(
+        [],
+        [],
+        pages=[
+            {"title": "Averaging", "path": "averaging/index.md"},
+            {"title": "An average, and its error bar", "path": "averaging/error-bars/index.md"},
+            {"title": "Methods, A to Z", "path": "techniques/index.md"},
+        ],
+    )
+    listings = [entry for entry in nav if "Averaging" in entry]
+    assert listings == [
+        {
+            "Averaging": [
+                {"An average, and its error bar": "averaging/error-bars/index.md"},
+            ]
+        }
+    ], listings
+    # A page on its own stays a plain link: nesting must not turn every entry into a
+    # container with an empty list under it.
+    assert {"Methods, A to Z": "techniques/index.md"} in nav
+
+
+def test_a_nested_page_whose_parent_is_missing_is_refused():
+    """The alternative is a page that quietly loses its place in the sidebar."""
+    with pytest.raises(ValueError, match="not in the registry"):
+        scaffold.build_nav_list(
+            [], [], pages=[{"title": "Orphan", "path": "nowhere/deep/index.md"}]
+        )

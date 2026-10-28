@@ -1009,6 +1009,11 @@ def build_nav_list(
     passes both, so the nav and the scaffold cannot disagree about what a section
     has. The defaults — every kind, no depth pages — are for a caller holding
     chapter data but no book, and are the shape every course book uses.
+
+    ``pages`` is a reference work's registry, and its entries may nest: a page whose
+    path is ``averaging/error-bars/index.md`` is listed as a child of the entry whose
+    path is ``averaging/index.md``. See the block that builds it for why the path's
+    shape is the rule rather than a second field.
     """
     kinds = tuple(page_kinds or (kind for _directory, kind, _title, _slug in PAGE_KINDS))
     wanted = set(kinds)
@@ -1025,11 +1030,43 @@ def build_nav_list(
         nav.append({"Glossary": glossary_children})
     for proof in proofs or []:
         nav.append({proof["title"]: f"{proof['id']}/index.md"})
-    # A reference work's own pages, in the order it lists them. Flat rather than
-    # grouped: it has no chapters to nest them under, and the registry order is
-    # the reading order the book chose. `Book.pages` is the one declaration.
+    # A reference work's own pages, in the order it lists them. `Book.pages` is the
+    # one declaration, and its order is the reading order the book chose.
+    #
+    # **A page whose path names a parent is nested under it.** The registry lists
+    # `averaging/index.md` and `averaging/error-bars/index.md`; the second is the
+    # working under the first, so the sidebar shows it as a child. Without this the
+    # two are siblings and a reader 34,000px down a phone page has no way to see that
+    # one belongs to the other. The rule is the path's shape, not a second field to
+    # keep in step: a page two directories deep belongs to the page one directory
+    # deep, and a page whose parent is not registered is an error rather than a page
+    # that silently loses its place.
+    grouped: dict[str, list[dict]] = {}
+    top_level: list[dict] = []
+    # The parents are the entries at `slug/index.md`. Built from those alone, so a
+    # page cannot be its own parent — which is what a set built from every entry's
+    # first component would allow, silently.
+    registered = {
+        str(page["path"]).split("/")[0]
+        for page in pages or []
+        if len(str(page["path"]).split("/")) == 2
+    }
     for page in pages or []:
-        nav.append({str(page["title"]): str(page["path"])})
+        parts = str(page["path"]).split("/")
+        if len(parts) < 3:
+            top_level.append({str(page["title"]): str(page["path"])})
+            continue
+        slug = parts[0]
+        if slug not in registered:
+            raise ValueError(
+                f"{page['path']}: a nested page whose parent {slug}/index.md is not "
+                "in the registry, so the nav has nothing to nest it under"
+            )
+        grouped.setdefault(slug, []).append({str(page["title"]): str(page["path"])})
+    for entry in top_level:
+        (title, path), = entry.items()
+        children = grouped.get(path.split("/")[0])
+        nav.append({title: children} if children else entry)
     for c in chapters:
         children = [{"Overview": f"Chapter {c['id']}/index.md"}]
         for s in c["sections"]:
