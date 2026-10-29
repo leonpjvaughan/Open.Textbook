@@ -29,8 +29,8 @@ you have $A$.
 
 ## What it becomes on a computer
 
-**Worked number.** The system $4x+y=1$, $x+3y=2$ has the solution
-$x=1/11$, $y=7/11$, and substituting it leaves a residual of zero.
+**Worked number.** The system $4x+y=1$, $x+3y=2$ has the solution $x=1/11$,
+$y=7/11$, and substituting it leaves a residual of zero.
 
 A matrix, and a choice between two families. The choice is made by the
 **properties of the matrix**, not by the subject the matrix came from:
@@ -144,6 +144,8 @@ with its price and what it will not do.
 
 ## Read next
 
+- [One matrix, two errors](conditioning/index.md) — the working under this
+  class: a condition number and the two errors, on one matrix.
 - [Root finding](../root/index.md) — the same question when a rule bends with
   the answer.
 - [Elliptic](../elliptic/index.md) — where most of these matrices come from.

@@ -119,6 +119,8 @@ with its price and what it will not do.
 
 ## Read next
 
+- [Finding a chosen eigenvalue](shift-and-invert/index.md) — the working under
+  this class: the shift that finds any eigenvalue, not only the largest.
 - [Root finding](../root/index.md) — an eigenvalue of a small matrix is the root
   of its determinant.
 - [Hyperbolic](../hyperbolic/index.md) — the stability of a wave problem is an

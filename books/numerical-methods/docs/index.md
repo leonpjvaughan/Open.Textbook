@@ -103,6 +103,20 @@ under Averaging are the first of them.
 | [Walking a chain that settles](averaging/mcmc/index.md) | Metropolis, detailed balance, R-hat and the effective sample size |
 | [Fitting, and what the fit does not say](averaging/regression/index.md) | Least squares, the normal equations, and the slope's standard error |
 
+The other eight classes have one page each. Each closes a row of the gap table
+below, and none of them restates its class page.
+
+| Page | What it settles |
+|---|---|
+| [A step has a direction and a length](optimisation/descent/index.md) | Why a step length is a separate decision, and the window a fixed step has to sit in |
+| [Finding a chosen eigenvalue](eigenvalue/shift-and-invert/index.md) | The shift that finds any eigenvalue, not only the largest |
+| [One matrix, two errors](linear-system/conditioning/index.md) | Forward against backward error, and the condition number that joins them |
+| [Why Newton is fast, and when it is not](root/order-of-newton/index.md) | The squared error, and the linear rate a double root imposes |
+| [The second unknown](saddle-point/the-multiplier/index.md) | What the multiplier is, and why the forces are the sensitive half |
+| [Where the matrix comes from](elliptic/the-weak-form/index.md) | The weak form, one element's stiffness, and the assembled matrix |
+| [Why the time step is tied to the square of the mesh](parabolic/stability/index.md) | von Neumann's argument, and the limit the grid-scale mode sets |
+| [The condition a wave equation imposes](hyperbolic/the-cfl-condition/index.md) | The domain of dependence, and the CFL condition derived from it |
+
 ## Why the number is nine
 
 Nine is a choice, not a fact about nature. The same physics can be written as

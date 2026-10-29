@@ -103,7 +103,8 @@ with its price and what it will not do.
   how that constraint is paid.
 - The elliptic coordinate conditions in numerical relativity, in the
   formulations where they cannot be evolved — the lapse equation among them,
-  which [The class is a choice](../choosing-the-class/#the-same-equations-classified)
+  which
+  [The class is a choice](../choosing-the-class/#the-same-equations-classified)
   puts through the test beside its hyperbolic version.
 
 ## What goes wrong
@@ -123,6 +124,8 @@ with its price and what it will not do.
 
 ## Read next
 
+- [Where the matrix comes from](the-weak-form/index.md) — the working under this
+  class: the weak form, the element, and the assembled matrix.
 - [Saddle point](../saddle-point/index.md) — what an elliptic problem becomes
   when a constraint is added.
 - [Parabolic](../parabolic/index.md) — the same operator, with time put back in.

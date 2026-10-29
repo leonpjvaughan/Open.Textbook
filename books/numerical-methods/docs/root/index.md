@@ -122,6 +122,9 @@ with its price and what it will not do.
 
 ## Read next
 
+- [Why Newton is fast, and when it is not](order-of-newton/index.md) — the
+  working under this class: the squared error, and what a double root does to
+  it.
 - [Saddle point](../saddle-point/index.md) — the same loop with a constraint
   priced in.
 - [Optimisation](../optimisation/index.md) — a minimum is a root of the

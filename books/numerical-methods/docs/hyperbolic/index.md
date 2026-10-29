@@ -27,8 +27,8 @@ $F = a u$, and the whole solution is $u$ shifted along the line $x = a t$.
 
 ## What it becomes on a computer
 
-**Worked number.** With wave speed $a=2$ and $\Delta x=0.1$, the stability
-limit is $\Delta t\le \Delta x/a=0.05$.
+**Worked number.** With wave speed $a=2$ and $\Delta x=0.1$, the stability limit
+is $\Delta t\le \Delta x/a=0.05$.
 
 Two routes, and the first one is often forgotten:
 
@@ -139,6 +139,9 @@ with its price and what it will not do.
 
 ## Read next
 
+- [The condition a wave equation imposes](the-cfl-condition/index.md) — the
+  working under this class: the domain of dependence, and the condition derived
+  from it.
 - [Parabolic](../parabolic/index.md) — the other moving class, and the one that
   diffuses instead of carrying.
 - [Eigenvalues](../eigenvalue/index.md) — the stability of a wave problem is

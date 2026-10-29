@@ -312,6 +312,14 @@ def test_the_classes_come_first_in_tree_order():
         "averaging",
         "averaging",
         "averaging",
+        "optimisation",
+        "eigenvalue",
+        "linear-system",
+        "root",
+        "saddle-point",
+        "elliptic",
+        "parabolic",
+        "hyperbolic",
     ]
 
 

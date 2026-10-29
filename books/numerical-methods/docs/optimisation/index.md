@@ -108,6 +108,8 @@ with its price and what it will not do.
 
 ## Read next
 
+- [A step has a direction and a length](descent/index.md) — the working under
+  this class: the step length, and the window it has to be in.
 - [Saddle point](../saddle-point/index.md) — the same problem with constraints,
   and where the price comes from.
 - [Root finding](../root/index.md) — setting the gradient to zero is a root

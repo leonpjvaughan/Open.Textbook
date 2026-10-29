@@ -94,3 +94,19 @@ pages:
     path: averaging/mcmc/index.md
   - title: Fitting, and what the fit does not say
     path: averaging/regression/index.md
+  - title: A step has a direction and a length
+    path: optimisation/descent/index.md
+  - title: Finding a chosen eigenvalue
+    path: eigenvalue/shift-and-invert/index.md
+  - title: One matrix, two errors
+    path: linear-system/conditioning/index.md
+  - title: Why Newton is fast, and when it is not
+    path: root/order-of-newton/index.md
+  - title: The second unknown
+    path: saddle-point/the-multiplier/index.md
+  - title: Where the matrix comes from
+    path: elliptic/the-weak-form/index.md
+  - title: Why the time step is tied to the square of the mesh
+    path: parabolic/stability/index.md
+  - title: The condition a wave equation imposes
+    path: hyperbolic/the-cfl-condition/index.md

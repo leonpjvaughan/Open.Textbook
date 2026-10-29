@@ -133,6 +133,9 @@ growth is the numerics failing rather than the physics.
 
 ## Read next
 
+- [Why the time step is tied to the square of the mesh](stability/index.md) —
+  the working under this class: von Neumann, and the limit the grid-scale mode
+  sets.
 - [Hyperbolic](../hyperbolic/index.md) — the class where the answer remembers,
   and the pair to this one.
 - [Elliptic](../elliptic/index.md) — what is left when the transient has

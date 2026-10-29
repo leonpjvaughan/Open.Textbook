@@ -273,10 +273,21 @@ def sourced_pages(text: str, references: list[dict[str, object]]) -> list[str]:
     """
     named = []
     for entry in references:
-        ref = str(entry.get("ref") or "")
+        ref = str(entry.get("ref") or "").replace("`", "")
         role = str(entry.get("role") or "").strip()
-        surname = ref.split(",")[0].split()[-1] if ref.split(",")[0].split() else ""
-        if role and surname and re.search(rf"\b{re.escape(surname)}\b", text):
+        if not role:
+            continue
+        # The first author's part of the reference, before the publisher. Every
+        # capitalised word in it is a name the page may use: an entry written
+        # "Lloyd N. Trefethen and David Bau III" is cited as Trefethen or as Bau,
+        # and taking the last word instead would look for "III".
+        head = ref.split(",")[0]
+        names = [
+            name
+            for name in re.findall(r"[A-Z][A-Za-z]+", head)
+            if name not in {"and", "The", "Press", "University"}
+        ]
+        if any(re.search(rf"\b{re.escape(name)}\b", text) for name in names):
             named.append(str(entry.get("id")))
     return named
 

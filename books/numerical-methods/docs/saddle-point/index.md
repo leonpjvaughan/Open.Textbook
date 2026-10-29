@@ -45,9 +45,8 @@ words.
 ## What it becomes on a computer
 
 **Worked number.** The KKT system
-$\begin{bmatrix}1&1\\1&0\end{bmatrix}\begin{bmatrix}x\\\lambda\end{bmatrix}
-=\begin{bmatrix}2\\1\end{bmatrix}$ has $x=1$ and $\lambda=1$, so the
-constraint force is the multiplier.
+$\begin{bmatrix}1&1\\1&0\end{bmatrix}\begin{bmatrix}x\\\lambda\end{bmatrix} =\begin{bmatrix}2\\1\end{bmatrix}$
+has $x=1$ and $\lambda=1$, so the constraint force is the multiplier.
 
 A block system. Eliminating $u$ leaves the **Schur complement**
 
@@ -138,6 +137,8 @@ pressure cannot develop the checkerboard pattern the table below names.
 
 ## Read next
 
+- [The second unknown](the-multiplier/index.md) — the working under this class:
+  what the second unknown is, and why it is the one that goes wrong.
 - [Elliptic](../elliptic/index.md) — the same operator, without the constraint.
 - [Root finding](../root/index.md) — the outer loop, once the model is
   non-linear.
