@@ -14,9 +14,10 @@ hopeless. You are not asking where it is. You are asking how likely something
 is, how spread out it is, or what happens on average when the inputs vary.
 
 This is the statistical half of the map, and it is the same box as the physical
-half. It is also the whole of that half: one box, one page. The methods are
-named and priced rather than derived, because a reference work's job is to tell
-you where your problem belongs, not to teach you the sampler. A suspension
+half. It is also the whole of that half: one box, and a page that names the
+methods. Four of them are derived in full under this page, and the rest are
+named and priced, because a reference work's job is to tell you where your
+problem belongs. A suspension
 corner whose bush stiffness is only known to within ten per cent is an averaging
 problem in exactly the sense that a queue is.
 
@@ -31,6 +32,9 @@ probabilistically, the model is a rule for how the distribution moves — a
 transition, a likelihood, and a prior.
 
 ## What it becomes on a computer
+
+**Worked number.** With $\sigma=1$ and $N=1000$ samples, the standard error is
+$1/\sqrt{1000}=0.0316$, so a two-standard-error bar is $0.063$.
 
 You draw samples and average them. The estimate is
 

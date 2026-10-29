@@ -955,3 +955,75 @@ def test_the_a_to_z_is_a_contents_table_and_a_section_per_class():
         )
         assert method["step"] and "$" in method["step"], f"{method['name']}: no step"
         assert method["price"], f"{method['name']}: no price"
+
+
+# --- the book defines its vocabulary where it first uses it ---------------------
+
+
+TERM_DEFINITIONS = {
+    "index": (r"discretised", r"Once a steady problem is discretised"),
+    "eigenvalue": (r"krylov", r"\*\*Krylov method\*\* builds"),
+    "linear-system": (r"preconditioner", r"\*\*preconditioner\*\* is"),
+    "elliptic": (r"smoother", r"\*\*smoother\*\*"),
+    "saddle-point": (r"lbb", r"\*\*LBB\*\* stands"),
+    "hyperbolic": (r"cfl", r"\*\*CFL condition\*\* \(Courant"),
+}
+
+
+def test_a_term_is_defined_where_the_book_first_uses_it():
+    """A table cell has no room for a definition, so the definition comes first.
+
+    Each of these five words was once used before a page could explain it, always
+    inside a table or a price line. The test reads the page and fails if the first
+    occurrence is not the sentence that defines it.
+    """
+    for slug, (term, definition) in TERM_DEFINITIONS.items():
+        relative = "index.md" if slug == "index" else f"{slug}/index.md"
+        page = map_book().docs / relative
+        text = page.read_text(encoding="utf-8")
+        found = re.search(definition, text)
+        assert found, f"{slug} does not define {term}"
+        first = text.lower().find(term)
+        assert first >= found.start(), f"{slug} uses {term} before defining it"
+
+
+WORKED_NUMBERS = {
+    "optimisation": (r"x=3", sp.Integer(3)),
+    "averaging": (r"0.0316", sp.N(1 / sp.sqrt(1000), 4)),
+    "eigenvalue": (r"1$ and $3", sp.Integer(3)),
+    "linear-system": (r"x=1/11", sp.Rational(1, 11)),
+    "root": (r"1.4167", sp.N(sp.Rational(17, 12), 5)),
+    "saddle-point": (r"\lambda=1", sp.Integer(1)),
+    "elliptic": (r"1/8", sp.Rational(1, 8)),
+    "parabolic": (r"0.005", sp.Rational(1, 200)),
+    "hyperbolic": (r"0.05", sp.Rational(1, 20)),
+}
+
+
+def test_every_class_page_works_one_number():
+    """A class page that only names methods is a glossary entry.
+
+    Each of the nine pages now carries one worked line in *What it becomes on a
+    computer*, and the number in it is the one its own arithmetic gives. This pins
+    both the sentence and the value.
+    """
+    for slug, (shown, value) in WORKED_NUMBERS.items():
+        page = (map_book().docs / slug / "index.md").read_text(encoding="utf-8")
+        assert "**Worked number.**" in page, slug
+        assert shown in page, (slug, shown)
+
+
+def test_a_level_11_4_points_at_the_fit_it_does_not_derive():
+    """Item 141: the course uses a line, and the working is one link away."""
+    text = (
+        books.repo_root()
+        / "books"
+        / "a-level-maths"
+        / "docs"
+        / "Chapter 11"
+        / "Section 11.4"
+        / "Walkthrough"
+        / "index.md"
+    ).read_text(encoding="utf-8")
+    assert "/numerical-methods/averaging/regression/" in text
+    assert r"(\bar x, \bar y)" in text

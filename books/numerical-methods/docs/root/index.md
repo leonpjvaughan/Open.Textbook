@@ -28,6 +28,9 @@ satisfying the rule, and zero means satisfied.
 
 ## What it becomes on a computer
 
+**Worked number.** Newton's method on $f(x)=x^2-2$ from $x=1$ gives $x_1=1.5$
+and $x_2=1.4167$; the error falls from $0.414$ to $0.0024$.
+
 Usually a loop. Each step replaces $F$ by its tangent and solves the linear
 problem
 

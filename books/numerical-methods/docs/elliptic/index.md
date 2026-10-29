@@ -25,6 +25,9 @@ every edge.
 
 ## What it becomes on a computer
 
+**Worked number.** For $-u''=1$ on $[0,1]$ with $u=0$ at both ends,
+$u(x)=x(1-x)/2$, whose maximum is $1/8$ at $x=1/2$.
+
 A mesh, one unknown at each node, and a large sparse linear system
 
 $$
@@ -48,10 +51,11 @@ below it falls to the floor in at most one iteration per cell.
 ## The signature
 
 There is no speed of propagation, because there is no propagation. A change in
-one boundary value changes the solution everywhere immediately. A method that
-moves information one cell per step — Jacobi, Gauss–Seidel, a plain Krylov
-method — is therefore crippled, and needs as many steps as the mesh is wide in
-every direction.
+one boundary value changes the solution everywhere immediately. A **smoother**
+is one sweep of Jacobi or Gauss–Seidel; multigrid uses a coarse mesh for the
+part of the error a sweep cannot see. A method that moves information one cell
+per step — Jacobi, Gauss–Seidel, a plain Krylov method — is therefore crippled,
+and needs as many steps as the mesh is wide in every direction.
 
 Two consequences follow:
 - **Multigrid is not an optimisation of another method; it is what the class

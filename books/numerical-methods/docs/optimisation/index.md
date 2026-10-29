@@ -25,6 +25,9 @@ one region.
 
 ## What it becomes on a computer
 
+**Worked number.** For $f(x)=(x-3)^2$, setting $f'(x)=2(x-3)$ to zero gives
+$x=3$, and one Newton step from $x=0$ lands there.
+
 A function that can be evaluated, and often differentiated. Each step asks
 "which way is downhill, and how far?" — so the cost of a solve is the number of
 evaluations multiplied by the cost of one evaluation. That second factor is why

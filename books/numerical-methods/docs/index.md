@@ -13,13 +13,13 @@ The numbers are the whole argument:
 
 | | |
 |---|---|
-| methods named in [Methods, A to Z](techniques/index.md) | **77** |
+| entries in [Methods, A to Z](techniques/index.md) | **77** |
 | systems the nine kinds are used on | **64** |
 | kinds of question | **9** |
 
-Nobody holds seventy-seven methods in their head. Nine kinds is a different size
-of task. Learn the nine, and each method becomes a lookup inside a kind you
-already understand, chosen by a circumstance you can name.
+Nobody holds seventy-seven method entries in their head. Nine kinds is a
+different size of task. Learn the nine, and each method becomes a lookup
+inside a kind you already understand, chosen by a circumstance you can name.
 
 ## The nine kinds
 
@@ -72,7 +72,7 @@ kind. They are not more boxes. They are the choices inside a box.
 Each kind also has properties of its own that narrow the choice. They include
 how sparse a matrix is, whether it is symmetric, how well conditioned it is, and
 how wide a mesh is. The class page names them. That is the whole reason nine
-kinds hold seventy-seven methods: the kind is the question, and the
+kinds hold seventy-seven entries: the kind is the question, and the
 circumstances are the choices.
 
 ## Where the working is
@@ -130,8 +130,9 @@ Navier–Stokes has a rule that the flow cannot compress, a term that carries
 information along paths, and a term that smooths. That is a saddle point, a
 hyperbolic part and a parabolic part in one line, and nobody solves it as one
 kind. The same happens below the model. Once a steady problem is discretised,
-the step that solves it is a [linear system](linear-system/index.md). That is
-why the kind exists even though no physics says "linear".
+with the unknowns replaced by a finite set on a mesh, the step that solves it is
+a [linear system](linear-system/index.md). That is why the kind exists even
+though no physics says "linear".
 
 The suspension corner in [`Maths Applied`](/maths-applied/) is the small version
 of this. The rigid linkage is [root finding](root/index.md). Hold the joint

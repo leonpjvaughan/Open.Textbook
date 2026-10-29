@@ -24,6 +24,9 @@ The right-hand side is a balance of what flows in and out. There is no term for
 
 ## What it becomes on a computer
 
+**Worked number.** On a mesh with $\Delta x=0.1$, the explicit heat step is
+stable only while $\Delta t\le \Delta x^2/2=0.005$.
+
 Method of lines: discretise space, and what is left is a large system of
 ordinary differential equations in time,
 

@@ -27,6 +27,9 @@ $F = a u$, and the whole solution is $u$ shifted along the line $x = a t$.
 
 ## What it becomes on a computer
 
+**Worked number.** With wave speed $a=2$ and $\Delta x=0.1$, the stability
+limit is $\Delta t\le \Delta x/a=0.05$.
+
 Two routes, and the first one is often forgotten:
 
 - **Follow the characteristics.** If information travels along known curves,
@@ -37,9 +40,9 @@ Two routes, and the first one is often forgotten:
   all the difficulty lives: it has to decide what happens where two states meet,
   which is a Riemann problem.
 
-The step is limited by the **CFL condition**: in one step, information must not
-cross more than one cell. That limit comes from the physics and the mesh, not
-from the diffusion of the scheme.
+The step is limited by the **CFL condition** (Courant–Friedrichs–Lewy): in one
+step, information must not cross more than one cell. That limit comes from the
+physics and the mesh, not from the diffusion of the scheme.
 
 The CFL condition is easiest to see as an experiment. The figure sends a pulse
 through the scheme; below $c = 1$ it splits into two halves and keeps its

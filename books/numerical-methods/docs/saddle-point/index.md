@@ -44,6 +44,11 @@ words.
 
 ## What it becomes on a computer
 
+**Worked number.** The KKT system
+$\begin{bmatrix}1&1\\1&0\end{bmatrix}\begin{bmatrix}x\\\lambda\end{bmatrix}
+=\begin{bmatrix}2\\1\end{bmatrix}$ has $x=1$ and $\lambda=1$, so the
+constraint force is the multiplier.
+
 A block system. Eliminating $u$ leaves the **Schur complement**
 
 $$
@@ -111,6 +116,10 @@ rigid one. Replace the constraint with a spring, and the multiplier is gone: the
 force is `k` times the deflection, not a solved unknown. That is the
 [root problem](../root/index.md) on
 [The class is a choice](../choosing-the-class/index.md), not this class.
+
+**LBB** stands for Ladyzhenskaya–Babuška–Brezzi. An LBB-stable pair is a
+velocity space and a pressure space that satisfy their condition, so the
+pressure cannot develop the checkerboard pattern the table below names.
 
 ## What goes wrong
 

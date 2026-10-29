@@ -33,10 +33,15 @@ it.
 
 ## What it becomes on a computer
 
+**Worked number.** The matrix $\begin{bmatrix}2&1\\1&2\end{bmatrix}$ has
+eigenvalues $1$ and $3$: subtract $\lambda$ from the diagonal and set the
+determinant to zero.
+
 A matrix, usually large and sparse, and usually not written down on purpose. It
 arrives from somewhere else: a discretised structure, a linearisation about an
 equilibrium, a network of links. So the method depends on what you can *do* with
-the matrix, not on its entries:
+the matrix, not on its entries. A **Krylov method** builds a small subspace from
+repeated products $Av$ and solves the eigenvalue problem inside that subspace.
 
 - Can you multiply by it cheaply? Then a Krylov method is open to you.
 - Can you solve with it, or with a shifted version? Then the eigenvalue you want

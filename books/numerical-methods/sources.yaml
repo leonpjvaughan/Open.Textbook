@@ -110,7 +110,8 @@ references:
     role: >-
       QR, the QR algorithm, Krylov subspaces and why an iterative method can beat a
       direct one. The eigenvalue page rests on this, and the condition-number bound
-      on the error and checking pages is its Lecture 12.
+      on the error and checking pages is its Lecture 12. The regression page's
+      projection and normal equations are its least-squares lecture.
 
   - id: higham
     attribution: true
@@ -147,7 +148,9 @@ references:
     ref: "Michele Benzi, Gene H. Golub and Jörg Liesen, Acta Numerica 14, 2005"
     role: >-
       The indefinite block structure, the Schur complement, and why the obvious
-      iterative method on a saddle-point system stalls. The saddle-point page.
+      iterative method on a saddle-point system stalls. The saddle-point page. The
+      LBB condition and the multiplier are the two ideas the vocabulary paragraph
+      now names.
 
   - id: hairer-wanner
     attribution: true
@@ -194,9 +197,11 @@ references:
     url: https://doi.org/10.1007/978-1-4757-4145-2
     ref: "Christian P. Robert and George Casella, Springer, 2nd edition, 2004"
     role: >-
-      The averaging page: what a Monte Carlo estimate converges to, why an
-      independent sample is not the same as a Markov chain sample, and what the
-      error bar means.
+      The averaging class page and its four detail pages: what a Monte Carlo
+      estimate converges to, why an independent sample is not the same as a Markov
+      chain sample, the integrated autocorrelation time and effective sample size,
+      R-hat, and the error bar. The regression page's likelihood reading is here
+      too.
 
   - id: roache
     title: Verification and Validation in Computational Science and Engineering

@@ -29,11 +29,19 @@ you have $A$.
 
 ## What it becomes on a computer
 
+**Worked number.** The system $4x+y=1$, $x+3y=2$ has the solution
+$x=1/11$, $y=7/11$, and substituting it leaves a residual of zero.
+
 A matrix, and a choice between two families. The choice is made by the
 **properties of the matrix**, not by the subject the matrix came from:
 
 - **Dense and small.** Factorise it. The cost is cubic in the number of
   unknowns, and for a few thousand that is the end of the story.
+
+A **preconditioner** is a cheaper approximation $M$ to $A$. The iteration solves
+$M^{-1}Ax=M^{-1}b$, an easier problem with the same answer, and then corrects
+it; the price is that $M$ has to be built and applied.
+
 - **Sparse and large.** Factorising fills in the zeros and runs out of memory,
   so iterate instead — and the iteration count is decided by conditioning, not
   by size.
