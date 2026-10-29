@@ -1,5 +1,27 @@
 # Decisions
 
+## 2026-10-28 — Correlation and the fitted line are given, not computed
+
+**The problem.** A-level 14.4 said plainly that $r$ is always given and its
+calculation is not required, which is what the DfE content this book follows says.
+Two review-bank items then asked the reader to compute $r$ and a least-squares
+line, so the bank and the pages disagreed about what the course requires.
+
+**The decision.** The pages are right and the bank changes. $r$ and the fitted
+line are computed for the reader by a computer, and the examined work is to
+interpret them: direction, strength, gradient, intercept, prediction, and what the
+number does not prove. The bank items now give the value and ask for that
+interpretation. Their checks still compute the coefficient and the line from the
+data, because that verifies the given value is the one the data produce; the
+reader is not asked to do that arithmetic.
+
+**Why not the other way.** Computing $r$ by hand is not in the content the book
+follows, and a bank that requires it would teach a reader to spend exam time on
+arithmetic the specification does not ask for. The least-squares derivation is
+not lost: it is a page in `numerical-methods/averaging/regression/`, linked from
+A-level 11.4 for a reader who wants to see why the line passes through
+$(\bar x, \bar y)$.
+
 ## 2026-10-26 — The solvers live here, one ABI, and the tag names the version
 
 **The problem.** Two repositories produced the numbers a page runs: this one, and
