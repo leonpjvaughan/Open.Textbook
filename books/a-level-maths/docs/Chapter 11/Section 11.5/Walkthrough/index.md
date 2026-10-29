@@ -44,6 +44,21 @@ $$
 The middle value is the fourth, so the median is 6. The value 4 occurs twice,
 and no other value occurs more than once, so the mode is 4.
 
+**Grouped data.** When the values are given only as classes, use the midpoint of
+each class as a stand-in for every value in it. For classes $0$–$10$, $10$–$20$
+and $20$–$30$ with frequencies $12$, $20$ and $18$, the midpoints are $5$, $15$
+and $25$, and
+
+$$
+\bar{x} \approx \frac{5 \times 12 + 15 \times 20 + 25 \times 18}{50}
+= \frac{810}{50} = 16.2.
+$$
+
+This is an **estimate**: every value in a class is treated as if it were at the
+midpoint, so a different grouping can give a different answer. For grouped data
+the mode becomes the **modal class**, the class with the highest frequency,
+because no single value is recorded.
+
 ## 2. Measures of variation
 
 A measure of variation says how spread out the data are. Two data sets can have

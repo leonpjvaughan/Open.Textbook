@@ -76,26 +76,26 @@ problems:
   - id: r6-correlation
     section: "13"
     refs: [L2]
-    statement: 'The pairs of values $(1, 2)$, $(2, 3)$, $(3, 5)$, $(4, 4)$ and $(5, 6)$ are plotted. Work out Pearson product-moment correlation coefficient $r$.'
+    statement: 'The pairs of values $(1, 2)$, $(2, 3)$, $(3, 5)$, $(4, 4)$ and $(5, 6)$ are plotted, and a computer gives Pearson product-moment correlation coefficient $r = 0.9$. Interpret the value: direction, strength, and what it does not prove.'
     answer_label: 'The correlation coefficient'
     check:
       kind: correlation
       x: [1, 2, 3, 4, 5]
       y: [2, 3, 5, 4, 6]
       answer: '9/10'
-    answer_text: 'The correlation coefficient is $r = \tfrac{9}{10} = 0.9$. The points rise from left to right and lie close to a straight line, so the correlation is positive and strong. A strong correlation does not prove that one variable causes the other.'
+    answer_text: 'The value $r = 0.9$ is positive and close to $1$, so the points rise from left to right and lie close to a straight line: the correlation is positive and strong. A strong correlation does not prove that one variable causes the other.'
 
   - id: r7-regression
     section: "13"
     refs: [L2]
-    statement: 'For the pairs $(1, 2)$, $(2, 3)$, $(3, 5)$, $(4, 4)$ and $(5, 6)$, find the least-squares regression line $y = a + bx$.'
+    statement: 'For the pairs $(1, 2)$, $(2, 3)$, $(3, 5)$, $(4, 4)$ and $(5, 6)$, a computer gives the least-squares regression line $y = 1.3 + 0.9x$. Interpret the gradient and the intercept, and predict $y$ when $x = 6$.'
     answer_label: 'The line'
     check:
       kind: regression
       x: [1, 2, 3, 4, 5]
       y: [2, 3, 5, 4, 6]
       answer: {gradient: '9/10', intercept: '13/10'}
-    answer_text: 'The least-squares line is $y = 1.3 + 0.9x$, so the gradient is $b = \tfrac{9}{10} = 0.9$ and the intercept is $a = \tfrac{13}{10} = 1.3$. The gradient says that each extra unit of $x$ is associated with about 0.9 more of $y$.'
+    answer_text: 'The line is $y = 1.3 + 0.9x$. The gradient $0.9$ says that each extra unit of $x$ is associated with about 0.9 more of $y$. The intercept $1.3$ is the predicted $y$ when $x = 0$. At $x = 6$ the prediction is $1.3 + 0.9 \times 6 = 6.7$.'
 
   - id: r8-binomial-coefficient
     section: "13"

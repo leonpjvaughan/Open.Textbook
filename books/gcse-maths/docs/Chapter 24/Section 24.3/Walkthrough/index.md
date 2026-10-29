@@ -44,6 +44,29 @@ The large value raises the mean more than the median.
 > **Watch out.** The median is not always one of the data values. With an even count, average the two middle values.
 > **Re-check:** count the values and ask whether the middle lies on a value or between two values.
 
+## The modal class
+
+When data are grouped into classes, there is no single most frequent value. The
+class with the highest frequency is the **modal class**. It tells you where the
+most common values lie, not an exact value.
+
+**Example.** A survey records journey times in three classes.
+
+| Time (minutes) | Frequency |
+|---|---|
+| $0$ to $10$ | 4 |
+| $10$ to $20$ | 9 |
+| $20$ to $30$ | 5 |
+
+The class $10$ to $20$ has the highest frequency, so it is the modal class. It
+does not say that $15$ minutes is the most common time; it says that more
+journeys fell in that class than in either of the others.
+
+> **Watch out.** The modal class is not the midpoint of the class. It is the
+> class itself, named by its two endpoints.
+> **Re-check:** compare the frequencies, then write the class with the largest
+> one, not a single number from inside it.
+
 ## Progress check
 
 Which average would you report for the number of pupils choosing each travel method? Explain why the mode could help.

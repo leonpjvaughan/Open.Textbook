@@ -71,17 +71,6 @@ problems:
       answer: "50"
     answer_text: 'Add the frequencies: $12 + 20 + 18 = 50$ values.'
 
-  - id: p7-grouped-mean
-    section: "11.3"
-    refs: [L1]
-    statement: 'A grouped table has classes $0$–$10$ with frequency 12, $10$–$20$ with frequency 20, and $20$–$30$ with frequency 18. Using midpoints $5$, $15$ and $25$, estimate the mean.'
-    answer_label: 'The estimated mean'
-    check:
-      kind: evaluate
-      expression: "(5 * 12 + 15 * 20 + 25 * 18) / 50"
-      answer: "81/5"
-    answer_text: 'Multiply each midpoint by its frequency: $60 + 300 + 450 = 810$. Divide by the total frequency: $\dfrac{810}{50} = 16.2$. This is an estimate, because the midpoints stand for the values in each class.'
-
   - id: p8-density-of-class
     section: "11.3"
     refs: [L1]

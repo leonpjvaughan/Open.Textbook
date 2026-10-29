@@ -38,6 +38,34 @@ Mode $=2$ because its frequency is greatest. Range $=3-1=2$.
 > **Watch out.** Do not divide the weighted total by the number of rows. Divide by the total frequency.
 > **Re-check:** add the frequencies and confirm that you divided by that total.
 
+## Grouped data: estimating the mean
+
+A grouped table gives a class, not the individual values inside it. To estimate
+the mean, use the **midpoint** of each class as a stand-in for every value in
+that class.
+
+**Example.** The journey times are grouped.
+
+| Time (minutes) | Midpoint | Frequency |
+|---|---|---|
+| $0$ to $10$ | 5 | 12 |
+| $10$ to $20$ | 15 | 20 |
+| $20$ to $30$ | 25 | 18 |
+
+Multiply each midpoint by its frequency: $5\times12=60$, $15\times20=300$ and
+$25\times18=450$. Add: $60+300+450=810$. The total frequency is $50$, so the
+estimated mean is $810/50=16.2$ minutes.
+
+This is an **estimate**, not the exact mean. Every value in a class is treated as
+if it were at the midpoint, and the real values are spread across the class. A
+different grouping of the same data can give a slightly different estimate.
+
+> **Watch out.** Do not use the class endpoints as the values, and do not divide
+> by the number of classes. Use the midpoint of each class and divide by the
+> total frequency.
+> **Re-check:** every class contributes one product, and the products are divided
+> by the sum of the frequencies.
+
 ## Progress check
 
 The travel survey can be recorded as categories and frequencies. What would the total frequency count, and why?

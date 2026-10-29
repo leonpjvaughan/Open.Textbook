@@ -46,6 +46,10 @@ correlation.
 
 A **regression line**, or line of best fit, is a straight line drawn through the
 middle of the points. It is used to summarise the trend and to make predictions.
+The line is the least-squares fit, and it passes through $(\bar x, \bar y)$;
+[the derivation and the slope's standard error](/numerical-methods/averaging/regression/)
+are worked through for a reader who wants them. In this course the line is
+computed for you, and the work is to interpret it.
 
 :::class optimisation
 

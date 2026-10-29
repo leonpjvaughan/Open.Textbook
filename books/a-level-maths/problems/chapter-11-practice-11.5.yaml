@@ -152,3 +152,14 @@ problems:
         - {kind: statistic, data: [6, 7, 7, 8, 9, 9, 10, 12], stat: mean, answer: "17/2"}
         - {kind: statistic, data: [6, 7, 7, 8, 9, 9, 10, 12], stat: median, answer: "17/2"}
     answer_text: 'The mean is $\dfrac{68}{8} = 8.5$ and the median is $\dfrac{8 + 9}{2} = 8.5$. The data are fairly symmetric with no outlier, so either average is suitable. The mean uses every value, so report it.'
+  - id: p7-grouped-mean
+    section: "11.5"
+    refs: [L3]
+    statement: 'A grouped table has classes $0$–$10$ with frequency 12, $10$–$20$ with frequency 20, and $20$–$30$ with frequency 18. Using midpoints $5$, $15$ and $25$, estimate the mean.'
+    answer_label: 'The estimated mean'
+    check:
+      kind: evaluate
+      expression: "(5 * 12 + 15 * 20 + 25 * 18) / 50"
+      answer: "81/5"
+    answer_text: 'Multiply each midpoint by its frequency: $60 + 300 + 450 = 810$. Divide by the total frequency: $\dfrac{810}{50} = 16.2$. This is an estimate, because the midpoints stand for the values in each class.'
+
