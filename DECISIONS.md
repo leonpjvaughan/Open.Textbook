@@ -5,17 +5,17 @@
 **The problem.** The combined goal that closed items 139–153 says "work on dev, never
 commit to main". Partway through it the user asked, in those words, to "finish off the
 body of work" and then to "push through to production". That was done: `dev` was
-fast-forwarded into `main`, pushed, and CI released `26.302.0` and deployed it. Thirty
-of the goal's 34 commits are therefore on `main` and live, and an independent audit of
-the goal's completion read that as the branch rule broken.
+fast-forwarded into `main`, pushed, and CI released `26.302.0` and deployed it. Every
+commit up to `0f328d93` is therefore on `main` and live, and an independent audit of the
+goal's completion read that as the branch rule broken.
 
-**The decision.** The deploy stands. A user's direct instruction is not the goal text,
-and the goal text was written before it. Returning `main` to `48fccea` would delete a
-published release tag, take live pages down and break the `version.json` the site
-serves, to satisfy a rule that the user had already overridden. So the record keeps the
-deploy and says why, and the work that followed the audit — the Phase C pages, the six
-detail-page rules, the masthead label — is on `dev` and on `main`, which is where a
-release is assembled.
+**The decision, and its exact state.** The deploy stands, and this paragraph says what
+is where, because an earlier draft of it was wrong. `main` and `origin/main` are at
+`0f328d93`, which carries the work up to item 153 and the 26.302.0 release. Everything
+after that — Phase C's eight pages, the six detail-page rules, the masthead label, the
+chapter-problem fix and the recomputed worked numbers — is on `dev` only, and `dev` is
+ahead of `origin/dev` until it is pushed. Nothing in this paragraph is a claim that the
+late work is live; it is not.
 
 **Why not the other way.** Reverting would be an action nobody asked for, on a
 deployed artefact, in order to make a completion check pass. The queue's own rule is
@@ -35,6 +35,24 @@ completion, because a claim that measures something else is how a gate rots:
   and the goal's in-scope list did not name `research/`. It stays there: three reviews
   already live in that directory, and every closed item from 150 to 153 cites this one
   for its measurements, so moving it would break the evidence the queue points at.
+
+**The scope accounting, measured.** The goal's verification contract asks that the
+final diff contain only in-scope paths. Measured over the whole goal, `48fccea..HEAD`
+is 35 commits and 98 files, and eight of those paths are outside the objective's
+literal list. Each is named here rather than omitted:
+
+| Path | Why it is in this work |
+|---|---|
+| `.agents/numerical-methods-handoff.md` | The specification the detail track implements; every task from Phase A to Phase C cites it |
+| `.agents/planning/2026-10-28-goal-reconciliation.md` | The record that the paused 105–121 goal is verified and closed, which the objective asks for by name |
+| `assets/booklet/booklet.js` | Item 149's reader half: a page that names a booklet table can open it |
+| `books/a-level-maths/problems/chapter-11-practice-11.3.yaml` | Item 146 moved `p7-grouped-mean` out of the 11.3 bank |
+| `books/a-level-maths/problems/chapter-11-practice-11.5.yaml` | The same item moved it in, with `refs: [L3]` |
+| `books/a-level-maths/problems/chapter-13-review.yaml` | Item 145: the review bank now interprets a given $r$ instead of computing it |
+| `research/review/maths-applied-and-numerical-methods.md` | The measurements items 150–153 were filed from and closed against |
+
+The remaining 90 files are inside the enumerated scope, and no file was added for a
+purpose outside the objective's five success criteria.
 
 ## 2026-10-28 — Correlation and the fitted line are given, not computed
 

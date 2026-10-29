@@ -211,6 +211,8 @@ $\begin{aligned}x_{k+1}={}&\arg\max_x\mathbb E\big[\\&\max(0,f_{\min}-f(x))\big]
 A surrogate and a prior. Best when one run costs a day
 
 
+**The symbols used above.**
+
 - $f$ is the function whose zero you want.
 - $F$ carries the same idea for several equations at once: a vector that is zero
   when they all hold.
@@ -437,6 +439,8 @@ A penalty and a multiplier together. Better conditioning; the penalty term hides
 the constraint error
 
 
+**The symbols used above.**
+
 - $A$ is the matrix, $b$ the right-hand side and $x$ the answer they solve for.
 - $P$ is a permutation, which reorders rows for stability.
 - $L$ and $U$ are the lower and upper triangular factors, and $y$ is the
@@ -550,6 +554,8 @@ $\frac{1}{2\pi i}\oint_\Gamma(zI-A)^{-1}V\,dz$, eigenvalues inside $\Gamma$
 A contour and a linear solve. Every eigenvalue in a window; needs a good shifted
 solver
 
+
+**The symbols used above.**
 
 - $A$ and $B$ are the matrices, and $I$ is the identity.
 - $\lambda$ is an eigenvalue with eigenvector $v$, so $Av=\lambda v$.
@@ -750,6 +756,8 @@ $u=u^*-\frac{1}{a_p}\nabla p'$
 A pressure correction. The workhorse of steady flow solvers
 
 
+**The symbols used above.**
+
 - $u$ is the field being advanced and $u_n$ its value at step $n$; $\Delta t$
   and $\Delta x$ are the time and space steps.
 - $F(u)$ is the right-hand side of the semi-discrete system $\dot u=F(u)$, and
@@ -889,6 +897,8 @@ $\int_a^bf(x)w(x)\,dx\approx\sum_{i=1}^{n}w_if(x_i)$; exact to degree $2n-1$
 A smooth integrand. Exact to a degree, and hopeless above about ten dimensions
 </div>
 
+
+**The symbols used above.**
 
 - $\mu$ is the mean you want, $\hat\mu$ an estimate of it, and $\hat\mu_N$ the
   estimate from $N$ samples.
