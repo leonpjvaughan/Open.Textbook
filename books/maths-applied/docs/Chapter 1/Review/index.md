@@ -8,9 +8,8 @@ kind: review
 
 ## The chapter problem, answered
 
-**A wheel moves 40 mm up and 40 mm down. How far does its camber change, and what
-is the simplest model that gives an answer you would trust within a tenth of a
-degree?**
+[The chapter problem](../index.md) asked for a number and for a judgement about
+the model. Both can now be answered.
 
 The camber moves **1.95°** over that travel: from −1.87° at 40 mm of droop to
 +0.08° at 40 mm of bump. Rest is at −1.00°, so a little more of the change happens

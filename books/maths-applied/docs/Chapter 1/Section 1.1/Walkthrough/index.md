@@ -21,9 +21,9 @@ enormously, because a tyre grips best at a particular angle. So a suspension
 designer wants to know, before a single part is made, how the wheel's angles will
 move and how much the design can be changed to suit.
 
-**This chapter's question.** A wheel moves 40 mm up and 40 mm down. How far does
-its camber change, and what is the simplest model that answers the question
-within a tenth of a degree?
+**This chapter's question.** It is [the chapter problem](../index.md), and this
+section is the first step towards it: the geometry that turns a wheel's rise and
+fall into an angle.
 
 The second half of that question is where the chapter's argument lives. The first half
 has one answer. The second half is a judgement, and the chapter's argument is that the

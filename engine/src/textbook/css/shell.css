@@ -84,6 +84,15 @@ a { color: var(--tb-link); }
   text-decoration: none;
 }
 
+/* The section a page belongs to, beside the book's name in the same link. It is
+ * allowed to shrink and to lose its tail before it pushes the actions off the row. */
+.masthead__section {
+  margin-left: 0.5rem;
+  font-size: 0.85rem;
+  font-weight: 400;
+  color: var(--tb-ink-soft);
+}
+
 .masthead__actions {
   display: flex;
   align-items: center;

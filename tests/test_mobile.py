@@ -71,3 +71,25 @@ def test_the_search_is_a_sibling_of_the_actions_not_a_child():
         "the search is back inside the actions, so it cannot take its own row"
     )
     assert 'class="search"' in page
+
+
+def test_the_masthead_names_the_section_a_page_is_in():
+    """T1: a reader who lands from a search result could not tell the section.
+
+    The masthead said the book and nothing else, so 1.2's Learn page and 1.5's
+    were indistinguishable in the one piece of chrome every page carries. The
+    label comes from the page's own front matter, and a page without it gets no
+    element rather than an empty one.
+    """
+    from textbook import pipeline
+
+    assert pipeline.masthead_section(
+        {"section": "1.2", "section_title": "One rigid triangle"}
+    ) == '<span class="masthead__section">1.2 One rigid triangle</span>'
+    assert pipeline.masthead_section({"title": "Chapter 1"}) == ""
+    assert pipeline.masthead_section({"section": "", "section_title": ""}) == ""
+    # The template puts it inside the brand's link, beside the book's name.
+    page = PAGE.read_text(encoding="utf-8")
+    brand = page[page.index('class="masthead__brand"') :]
+    assert "$masthead_section" in brand[:120]
+    assert ".masthead__section" in shell()

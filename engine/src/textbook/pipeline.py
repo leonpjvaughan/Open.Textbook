@@ -293,6 +293,23 @@ def booklet_widget(book: books.Book, prefix: str, filename: str = "booklet.js") 
     return f'<script src="{prefix}assets/booklet/{filename}" defer></script>'
 
 
+def masthead_section(meta: dict) -> str:
+    """The page's section, as the masthead names it, or the empty string.
+
+    A course page carries ``section`` and ``section_title`` in its front matter, and
+    a reader who arrives from a search result or a deep link has no way to tell which
+    section they are in: the masthead says the book and nothing else. The section is
+    printed beside the book's name, in the same link, so it also says where the link
+    goes. A page without the front matter gets no element rather than an empty one.
+    """
+    section = str(meta.get("section") or "").strip()
+    title = str(meta.get("section_title") or "").strip()
+    if not section and not title:
+        return ""
+    label = f"{section} {title}".strip()
+    return f'<span class="masthead__section">{html.escape(label)}</span>'
+
+
 # --- navigation ---------------------------------------------------------------
 
 
@@ -748,6 +765,7 @@ def render_page(
         title=html.escape(title),
         description=html.escape(str(meta.get("description") or book.description)),
         site_title=html.escape(book.title),
+        masthead_section=masthead_section(meta),
         canonical=canonical_url(book, profile, url),
         content=content,
         pager=pager_html,

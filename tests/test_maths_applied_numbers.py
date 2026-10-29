@@ -651,3 +651,19 @@ def test_the_instant_centre_names_the_line_it_is_measured_from():
     ).read_text(encoding="utf-8")
     assert "inboard of the car's centreline" in figure
     assert "inboard of the hub" not in figure
+
+
+def test_the_chapter_problem_is_stated_once_in_one_wording():
+    """T3: three pages carried three versions of the same question.
+
+    The chapter index states it; §1.1 and the Review link to it. A second wording
+    is a second question, and the reader is left to decide which one the chapter
+    answers.
+    """
+    docs = CHAPTER
+    stating = [
+        p.relative_to(docs).as_posix()
+        for p in docs.rglob("*.md")
+        if "A wheel moves 40 mm up and 40 mm down" in p.read_text(encoding="utf-8")
+    ]
+    assert stating == ["index.md"], stating
