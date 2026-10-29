@@ -609,3 +609,45 @@ def test_section_status_and_figures_are_two_way():
             f"and {'has' if evidence else 'has no'} figure or verified number; those are "
             "two descriptions of one status"
         )
+
+
+def test_the_roundoff_floor_is_stated_once_in_one_unit():
+    """The chapter's strongest agreement was stated at three precisions.
+
+    Four lines said 10⁻¹² m, 10⁻¹⁶ m and 10⁻¹² mm about one comparison, and the
+    model's step-5 residual is 9.6 × 10⁻¹⁶ m with a pose difference below 10⁻¹⁵.
+    The arithmetic pages now say the round-off floor, and the structural pages say
+    the same pose; no page in the chapter understates it by four orders.
+    """
+    arithmetic = [page("Section 1.3/Walkthrough"), page("Section 1.4/Walkthrough")]
+    for text in arithmetic:
+        assert "last bit of a double" in text
+        assert "10⁻¹⁶ m" in text
+    structural = [page("Review"), page("Section 1.1/Deeper/the-four-models")]
+    for text in structural:
+        assert "the same pose" in text
+    for path in (repo_root() / "books" / "maths-applied" / "docs").rglob("*.md"):
+        assert "10⁻¹²" not in path.read_text(encoding="utf-8"), path
+
+
+def test_the_instant_centre_names_the_line_it_is_measured_from():
+    """The figure printed a centreline distance under the hub's name.
+
+    The table and the figure say the distance is from the car's centreline; the
+    prose says the hub is 2.36 m from the centre. One word was carrying the wrong
+    line, and a reader with a tape measure would catch it.
+    """
+    text = page("Section 1.2/Walkthrough")
+    assert "from the car's centreline" in text
+    assert "2.36 m from the hub" in text
+    figure = (
+        repo_root()
+        / "books"
+        / "maths-applied"
+        / "docs"
+        / "assets"
+        / "figures"
+        / "wishbone-hero.js"
+    ).read_text(encoding="utf-8")
+    assert "inboard of the car's centreline" in figure
+    assert "inboard of the hub" not in figure
