@@ -28,6 +28,7 @@ and a review impossible; it is **not** a limit on what renders, which wraps by i
 from __future__ import annotations
 
 import re
+import sys
 
 #: Code is read in a column, so the limit is the width of one. `black`'s default is
 #: 88; this is that less 16, because a listing at 72 columns is 602px — it scrolls by
@@ -49,6 +50,15 @@ DETAIL_SKELETON = [
     "## What this cost",
     "## Back to the map",
 ]
+
+#: A listing longer than this is folded. The handoff's rule: a short listing is not
+#: folded, because a fold around a five-line program costs a click and saves nothing.
+FOLD_AFTER = 10
+
+#: What a detail page's program may import: the standard library and `sympy`. The
+#: book promises a program that runs where `sympy` is installed and `numpy` is not,
+#: and until this rule existed nothing noticed a page that imported one.
+STDLIB = frozenset(sys.stdlib_module_names) | {"sympy"}
 
 #: The summaries that name nothing. A summary that is one of these, or is empty, is a
 #: click that buys the reader nothing — which is the whole cost the rule is about.
@@ -190,6 +200,87 @@ def programs_and_outputs(text: str) -> tuple[list[str], list[str]]:
     )
 
 
+def _python_blocks(text: str) -> list[tuple[int, str]]:
+    """``(offset, body)`` for every fenced ``python`` block, offset at the body.
+
+    The offset is what maps a line inside the program back to its line on the page,
+    so an offence names the line an author has to open.
+    """
+    return [
+        (match.start(1), match.group(1))
+        for match in re.finditer(r"```python\n(.*?)```", text, re.S)
+    ]
+
+
+def program_imports(text: str) -> list[tuple[int, str]]:
+    """``(page line, module)`` for every import a detail page's program makes.
+
+    The book's environment is `sympy` plus the standard library — `numpy` and
+    `scipy` are deliberately not installed, so a program that imports either cannot
+    run, and its printed output would be a number typed into a fence.
+    """
+    offences = []
+    for offset, body in _python_blocks(text):
+        for number, line in enumerate(body.splitlines(), start=1):
+            match = re.match(
+                r"\s*(?:from\s+([A-Za-z_][\w.]*)|import\s+([A-Za-z_][\w.]*))", line
+            )
+            if not match:
+                continue
+            module = (match.group(1) or match.group(2)).split(".")[0]
+            if module not in STDLIB:
+                offences.append((text[:offset].count("\n") + number, module))
+    return offences
+
+
+def unfolded_programs(text: str) -> list[int]:
+    """Line numbers of programs over :data:`FOLD_AFTER` lines that no fold encloses."""
+    folds = [
+        (match.start(), match.end())
+        for match in re.finditer(r"<details\b.*?</details>", text, re.S)
+    ]
+    offences = []
+    for offset, body in _python_blocks(text):
+        if body.count("\n") <= FOLD_AFTER:
+            continue
+        if not any(start <= offset < end for start, end in folds):
+            offences.append(text[:offset].count("\n") + 1)
+    return offences
+
+
+def back_to_map_links(text: str) -> list[str]:
+    """The link targets under ``## Back to the map``.
+
+    The section exists so a reader can leave the page. A heading with no links under
+    it is a dead end wearing the name of a route, and a heading with only one link is
+    either the parent or a sibling, never the pair the acceptance rule asks for.
+    """
+    marker = "## Back to the map"
+    found = text.find(marker)
+    if found < 0:
+        return []
+    return re.findall(r"\[[^\]]+\]\(([^)\s]+)", text[found + len(marker) :])
+
+
+def sourced_pages(text: str, references: list[dict[str, object]]) -> list[str]:
+    """The references whose author the page names and whose ``role`` says why.
+
+    The acceptance rule is that every claim about a method comes from `sources.yaml`
+    and that the entry says whether it is the claim's source or further reading. That
+    cannot be read mechanically per claim; what can be read is whether the page names
+    a recorded author at all, and whether the entry it names carries a role. A page
+    that names nobody, or names someone with an empty role, fails.
+    """
+    named = []
+    for entry in references:
+        ref = str(entry.get("ref") or "")
+        role = str(entry.get("role") or "").strip()
+        surname = ref.split(",")[0].split()[-1] if ref.split(",")[0].split() else ""
+        if role and surname and re.search(rf"\b{re.escape(surname)}\b", text):
+            named.append(str(entry.get("id")))
+    return named
+
+
 def detail_page_offences(text: str) -> list[str]:
     """Everything a detail page must satisfy, as messages a reader of the failure can act on.
 
@@ -211,6 +302,18 @@ def detail_page_offences(text: str) -> list[str]:
         offences.append(f"line {line}: {columns} columns of prose, limit {PROSE_COLUMNS}")
     for line in folds_without_a_summary(text):
         offences.append(f"line {line}: a <details> whose summary names nothing")
+    for line, module in program_imports(text):
+        offences.append(f"line {line}: the program imports {module}, not sympy or the stdlib")
+    for line in unfolded_programs(text):
+        offences.append(
+            f"line {line}: a program over {FOLD_AFTER} lines that no fold encloses"
+        )
+    links = back_to_map_links(text)
+    if len(links) < 2:
+        offences.append(
+            "Back to the map names "
+            f"{len(links)} link(s); a parent and one sibling are the minimum"
+        )
 
     code, shown = programs_and_outputs(text)
     if not code:

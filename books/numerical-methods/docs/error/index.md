@@ -157,6 +157,10 @@ for a relative accuracy, and state which quantity the stopping rule bounds. When
 the method is quadratically convergent, the step is a good proxy for the error.
 When it is not, the step is a number that happens to be small.
 
+The model of rounding is Higham's, and the reason a worst-case bound is often
+loose is Trefethen and Bau's. This page uses both and repeats neither: a reader
+who wants the proofs follows them from `sources.yaml`.
+
 ## What this cost
 
 Nothing beyond one pass over the data for a residual, and one solve for a
