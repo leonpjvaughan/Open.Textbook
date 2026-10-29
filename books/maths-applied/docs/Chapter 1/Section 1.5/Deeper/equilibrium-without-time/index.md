@@ -56,7 +56,7 @@ stiffness, no limit. A rubber bush is only linear for a fraction of a millimetre
 and it stiffens as it is pushed further.
 
 So the compliant model is a **linearisation**, and its accuracy is the accuracy of
-that line over the deflections it predicts. §1.5's own numbers are the check: at
+that line over the deflections it predicts. [§1.5](../../learn/)'s own numbers are the check: at
 1 MN/m the bush deflects 1.2 mm, which is inside a rubber bush's linear range; at
 0.2 MN/m it deflects 6.1 mm, which is not, and the answer there is a direction
 rather than a value.
@@ -77,7 +77,7 @@ Two things follow:
   high that the solver's own arithmetic is struggling.
 - **A trend is evidence.** Run a ladder of stiffnesses, and require the distance from
   the rigid answer to fall, monotonically, all the way up. That is what the solver's
-  test suite does, and it is why the numbers in §1.5's table are all in one column:
+  test suite does, and it is why the numbers in [§1.5](../../learn/)'s table are all in one column:
   they are meant to be read downwards.
 
 This is the general shape of a limit test, and it is worth recognising: *take the
@@ -97,5 +97,5 @@ mistake to hide. A model with no mass has none of those failure modes, because i
 has none of those parts.
 
 Mass is not a cost to be paid for accuracy. It is the right model for a different
-question — what happens *during* the movement — and §1.6 is where that question
+question — what happens *during* the movement — and [§1.6](../../../section-1.6/learn/) is where that question
 lives.

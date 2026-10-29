@@ -251,7 +251,7 @@ export function mount(el) {
           ? "from where it sits at rest"
           : `${change < 0 ? "further in" : "further out"} than at rest`
       }. The instant centre is ${num(Math.abs(state.ic ? state.ic[0] : 0), 2)} m ` +
-      `inboard of the hub and ${num(state.ic ? state.ic[1] - GROUND : 0, 2)} m above the ground, so the ` +
+      `inboard of the car's centreline and ${num(state.ic ? state.ic[1] - GROUND : 0, 2)} m above the ground, so the ` +
       `roll centre is ` +
       `${rollCentre === null ? "not defined" : `${num(rollCentre, 0)} mm above the ground`}. ` +
       `The track has moved by ${num(track, 1)} mm.`;

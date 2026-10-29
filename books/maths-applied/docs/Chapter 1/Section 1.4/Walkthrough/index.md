@@ -1,5 +1,5 @@
 ---
-title: 1.4 The redundancy was ours — Learn
+title: 1.4 The redundancy was ours
 chapter: 1
 chapter_title: Suspension kinematics
 section: '1.4'
@@ -12,7 +12,7 @@ kind: walkthrough
 
 ## The question this section answers
 
-§1.3 ended with a model that had three equations for two unknowns, and a
+[§1.3](../../section-1.3/learn/) ended with a model that had three equations for two unknowns, and a
 decomposition that reported a singular value of zero. But a zero singular value,
 on its own, proves nothing at all: any matrix with more rows than columns has one.
 It is a fact about the shape of the matrix, not about the model.
@@ -119,7 +119,7 @@ rather than an assurance.
 |---|---|
 | Singular values of the three-row Jacobian at the design pose | 1.415, 0.998, 0.000 |
 | Left null vector | (0.707, −0.707, 0), so the two legs cancel |
-| Least squares with all three rows | same point as §1.2, to 10⁻¹⁶ m |
+| Least squares with all three rows | same point as [§1.2](../../section-1.2/learn/), to the last bit of a double, about 10⁻¹⁶ m |
 | Direct 2×2 solve with the spare row deleted | the same point again |
 
 The same structure appears in the package's three-dimensional model, which these three

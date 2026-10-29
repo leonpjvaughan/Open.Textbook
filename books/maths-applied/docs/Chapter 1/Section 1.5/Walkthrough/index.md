@@ -1,5 +1,5 @@
 ---
-title: 1.5 Bushes are not rigid — Learn
+title: 1.5 Bushes are not rigid
 chapter: 1
 chapter_title: Suspension kinematics
 section: '1.5'
@@ -12,7 +12,7 @@ kind: walkthrough
 
 ## What the rigid model could not know
 
-§1.2 assumed the joints do not move. A car's joints are bushes: rubber liners,
+[§1.2](../../section-1.2/learn/) assumed the joints do not move. A car's joints are bushes: rubber liners,
 pressed in, that hold a pin in the middle of a sleeve. Under load the pin sits
 off-centre by a few tenths of a millimetre, and a few tenths of a millimetre at
 the end of an upright is a different camber.
@@ -52,7 +52,7 @@ $$ \frac{\partial E}{\partial \alpha} = 0, \qquad
 Two equations, two unknowns. **No time, no differential equation, nothing that has
 to be integrated.** Stiffen the spring, and the two ends of the bush are forced
 together until they cannot separate — which is the rigid joint, and therefore
-§1.2's model.
+[§1.2](../../section-1.2/learn/)'s model.
 
 No searching and no solving for the best of anything: the bush settles where the
 two forces agree, and finding it is a root-finding loop with two unknowns.
@@ -82,7 +82,7 @@ same geometry, same travel.
 **The table is the exported model's**, and this section's front view gives the same
 ladder to within **0.04°** — inside the tenth of a degree the chapter asked for, and
 outside the last digit of the camber column. Two routes to one answer is the
-evidence; the small gap between them is the front view's idealisation, and §1.4 is
+evidence; the small gap between them is the front view's idealisation, and [§1.4](../../section-1.4/learn/) is
 where that is measured.
 
 Each tenfold increase in stiffness cuts the difference by roughly a factor of ten,
@@ -107,7 +107,7 @@ Over the full travel the rigid model gives a camber change of **1.95°**, from
 −1.87° at 40 mm of droop to +0.08° at 40 mm of bump. Call that 2°, or 1.08° for a
 40 mm bump from rest. The export's ladder gives 1.91° at 100 MN/m, four
 hundredths below the rigid model's. That gap is the front view's idealisation,
-measured in §1.4, and it is inside the tenth of a degree this chapter asked for.
+measured in [§1.4](../../section-1.4/learn/), and it is inside the tenth of a degree this chapter asked for.
 
 Now the tolerance. A tenth of a degree can be asked of two different things:
 
@@ -127,7 +127,7 @@ happens to be nearby.
 Here the two thresholds are about nine times apart. A reader who took the wrong
 one would either throw away a model that answers the question or trust a model that
 misses it by a degree. That is why this section is the centre of the chapter rather
-than an appendix to it. §1.2's model and this one do not compete. They answer
+than an appendix to it. [§1.2](../../section-1.2/learn/)'s model and this one do not compete. They answer
 different versions of the same question, and which version you asked decides which
 one is right.
 
@@ -214,7 +214,7 @@ would then collapse back onto the rigid one at any stiffness at all.
 
 So compliance is not a property of the bush on its own. It is a property of the
 bush **and the load**, and a model that has one without the other will show nothing
-and look reassuring. The number to look for is the deflection, and §1.5's figure
+and look reassuring. The number to look for is the deflection, and [§1.5](.)'s figure
 prints it: at the two ends of its control, 0.1 and 20 MN/m, the bush moves 12 mm and
 0.06 mm.
 

@@ -20,7 +20,7 @@ each model exists because the one before it could not answer a particular questi
 | Model | Assumes | Answers | Costs | Meets the last one at |
 |---|---|---|---|---|
 | Rigid triangle | one rigid body per wishbone, one degree of freedom | where the wheel is, and at what angle | nothing measurable | — |
-| Two legs | each leg a fixed length, plus the upright's | what an extra equation does | one redundancy to explain | the same pose, to 10⁻¹² m |
+| Two legs | each leg a fixed length, plus the upright's | what an extra equation does | one redundancy to explain | the same pose |
 | Diagnosed | the same, read with a decomposition | which equation was spare | a null vector to interpret | the reduced system's answer |
 | With a bush | the upper joint is a spring | how far the angles move | a stiffness to measure | the rigid curve, as stiffness rises |
 
@@ -41,13 +41,13 @@ most detailed. Starting there would lose three things:
 
 ## Reading this chapter in two tracks
 
-The main thread is §1.1 to §1.5, in order, and it is complete on its own. Each of
+The main thread is [§1.1](../../learn/) to [§1.5](../../../section-1.5/learn/), in order, and it is complete on its own. Each of
 those sections offers one optional page, marked *Going deeper*:
 
-- **§1.2** — why two circles meet twice, and what the second answer is.
-- **§1.3** — what least squares is minimising, and why squared error.
-- **§1.4** — what a singular value is telling you, geometrically.
-- **§1.5** — why equilibrium is algebra rather than a simulation.
+- **[§1.2](../../../section-1.2/learn/)** — why two circles meet twice, and what the second answer is.
+- **[§1.3](../../../section-1.3/learn/)** — what least squares is minimising, and why squared error.
+- **[§1.4](../../../section-1.4/learn/)** — what a singular value is telling you, geometrically.
+- **[§1.5](../../../section-1.5/learn/)** — why equilibrium is algebra rather than a simulation.
 
 None of them is needed for the next section. That is a deliberate promise rather
 than a hope: if a depth page turned out to be required, it would be part of the main
@@ -56,9 +56,9 @@ thread and not a detour.
 ## What is deliberately absent
 
 - **No tyre model.** A tyre turns an angle into a force, and camber's importance
-  comes through it. That is a separate subject, and §1.7 says where it belongs.
-- **No mass.** Everything here is statics. §1.6 says what changes.
-- **No three-dimensional solve in the main thread.** The front view is what §1.2 to
-  §1.5 derive. The 3D solver is used to check it in §1.2, to produce the export's
-  ladder in §1.5, and as the model with mass in §1.6. §1.4 explains what the
+  comes through it. That is a separate subject, and [§1.7](../../../section-1.7/learn/) says where it belongs.
+- **No mass.** Everything here is statics. [§1.6](../../../section-1.6/learn/) says what changes.
+- **No three-dimensional solve in the main thread.** The front view is what [§1.2](../../../section-1.2/learn/) to
+  [§1.5](../../../section-1.5/learn/) derive. The 3D solver is used to check it in [§1.2](../../../section-1.2/learn/), to produce the export's
+  ladder in [§1.5](../../../section-1.5/learn/), and as the model with mass in [§1.6](../../../section-1.6/learn/). [§1.4](../../../section-1.4/learn/) explains what the
   projection costs and why the model can afford it.

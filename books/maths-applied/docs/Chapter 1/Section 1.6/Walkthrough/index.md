@@ -1,5 +1,5 @@
 ---
-title: 1.6 Mass and dampers — Learn
+title: 1.6 Mass and dampers
 chapter: 1
 chapter_title: Suspension kinematics
 section: '1.6'
@@ -14,13 +14,13 @@ kind: walkthrough
 ## The question the first five sections could not ask
 
 Every model so far has answered a question about a **position**. Where is the wheel,
-at what angle, when the car is settled? Nothing in §1.2 to §1.5 had a mass in it,
+at what angle, when the car is settled? Nothing in [§1.2](../../section-1.2/learn/) to [§1.5](../../section-1.5/learn/) had a mass in it,
 and nothing had a rate of change in it, so nothing in them could say anything about
 *speed*.
 
 But a wheel travelling over a bump is not settled. It arrives, it is pushed, it
 overshoots, and it settles. During that, the camber is not the camber of the steady
-table in §1.2 — it is somewhere else, and it is somewhere else *because of* the
+table in [§1.2](../../section-1.2/learn/) — it is somewhere else, and it is somewhere else *because of* the
 mass of the wheel and the spring that holds it. A damper would change how it
 settles, and this section will say what that would take.
 
@@ -38,7 +38,7 @@ $$ M\ddot{q} + C\dot{q} + \Phi_q^{\mathsf{T}}\lambda = Q, \qquad \Phi(q) = 0, $$
 
 where $q$ collects the positions, $M$ is the mass matrix, $C$ is the damping,
 $\Phi_q$ is the Jacobian of the constraints, $Q$ holds the applied forces,
-$\Phi(q) = 0$ is the constraint set from §1.2,
+$\Phi(q) = 0$ is the constraint set from [§1.2](../../section-1.2/learn/),
 and $\lambda$ holds the forces that keep the constraints true — the force in the
 ball joint, the force the wishbone carries. That is a **differential-algebraic**
 system: differential equations for the motion, algebraic equations for the
@@ -97,7 +97,7 @@ and the spring pulls it back.
 
 :::figure quarter-car
 
-That is the whole difference. §1.2's table answers "where is the wheel when it is
+That is the whole difference. [§1.2](../../section-1.2/learn/)'s table answers "where is the wheel when it is
 settled"; this answers "what is it doing on the way there". And in this model it never
 arrives: there is a spring and no damper, so the motion repeats. The wheel travels from
 the design position to **212.8 mm** into bump and back, once every **0.625 s** — a
@@ -105,7 +105,7 @@ frequency of **1.6 Hz** — with the same peak every time, which is a number no 
 model can produce.
 
 The numbers, from the package's own solver and quoted with its sign convention (camber
-positive with the top of the wheel outboard, the opposite of §1.2):
+positive with the top of the wheel outboard, the opposite of [§1.2](../../section-1.2/learn/)):
 
 | | |
 |---|---|
@@ -128,7 +128,7 @@ constraint drift is the measure of whether the linkage is still a linkage. At
 ## The agreement this section owes
 
 The chapter's rule is that a model earns its place by failing, and that agreement is a
-number. §1.6's agreement is the one this model can state: **at any moment, the dynamic
+number. [§1.6](.)'s agreement is the one this model can state: **at any moment, the dynamic
 model's camber is the static model's camber at the same travel.**
 
 It is, to **0.001°**. At the instant the wheel is 72.35 mm into bump, the dynamic model
@@ -136,7 +136,7 @@ gives −2.079° and the package's static model at that travel gives −2.079°.
 holds anywhere in the swing, because the geometry and the constraints are the same model
 — what the masses and the forces add is *time*, not a different linkage.
 
-There is a second comparison here, and it is the one worth keeping. **§1.2's front view
+There is a second comparison here, and it is the one worth keeping. **[§1.2](../../section-1.2/learn/)'s front view
 is 0.94° from the static model at that travel**, not 0.001° — because it is a projection,
 accurate near the design position and not far from it. Within the chapter's 80 mm the two
 agree to 0.033°; at 72 mm the front view is already a degree out. The small model is not
@@ -199,14 +199,15 @@ one buffer of `f64`.
 
 ## Watch out
 
-The tempting shortcut is to run a dynamic simulation, wait for it to stop moving,
-and call the result the steady answer. It usually is, and it usually takes long
-enough that nobody checks.
+This section adds mass, and the temptation is to treat it as the more accurate
+model. The evidence is a comparison. At any moment, the dynamic camber must equal
+the static camber at the same travel, and the two agree to **0.001°**. If they did
+not, a longer run would hide the model error behind round-off.
 
-"Usually" is not evidence. The evidence here is a comparison. At any moment, the
-dynamic camber must equal the static camber at the same travel, and the two agree
-to **0.001°**. If they did not, a long run would hide the model error behind
-round-off.
+The static model's own argument, including why simulating to a steady state is a
+worse trade, is on the
+[equilibrium without time](../../Section%201.5/Deeper/equilibrium-without-time/index.md)
+page rather than repeated here.
 
 The sharper test is the one this section named, and it cannot be run here. Take the
 masses to zero, and the model must become the algebraic one, exactly. A free quarter

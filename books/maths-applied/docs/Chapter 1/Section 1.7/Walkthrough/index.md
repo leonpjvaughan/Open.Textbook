@@ -1,5 +1,5 @@
 ---
-title: 1.7 The full vehicle — Learn
+title: 1.7 The full vehicle
 chapter: 1
 chapter_title: Suspension kinematics
 section: '1.7'

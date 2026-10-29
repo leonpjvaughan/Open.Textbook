@@ -1,5 +1,5 @@
 ---
-title: 1.3 Two legs, one contradiction — Learn
+title: 1.3 Two legs, one contradiction
 chapter: 1
 chapter_title: Suspension kinematics
 section: '1.3'
@@ -26,7 +26,7 @@ $$ \begin{aligned}
 Three equations, two unknowns. That is the whole of this section: the model has
 one more thing to say than it has freedom to say it with.
 
-§1.2 avoided this by treating the wishbone as one rigid body, which it is. The
+[§1.2](../../section-1.2/learn/) avoided this by treating the wishbone as one rigid body, which it is. The
 two-leg model is not wrong about the car. It is wrong about the *counting*.
 
 ## In the front view, two of those are one equation
@@ -42,7 +42,7 @@ same derivative. The model has three rows and two genuinely different equations.
 
 That is not a mistake to be embarrassed about. It is exactly what a projection
 does: it throws away the direction that told the legs apart. The three-dimensional
-model keeps them apart, and §1.4 shows what that costs.
+model keeps them apart, and [§1.4](../../section-1.4/learn/) shows what that costs.
 
 ## Least squares: the best you can do with too many demands
 
@@ -99,7 +99,7 @@ precision float can tell apart from nothing, and stays there. That floor is
 that flattens out *above* the round-off floor means the equations genuinely
 disagree, and that is a modelling problem rather than a numerical one.
 
-The point it settles on is the point §1.2 found, to the last digit a double holds. Adding
+The point it settles on is the point [§1.2](../../section-1.2/learn/) found, to the last digit a double holds. Adding
 an equation that says the same thing twice did not change the answer. It only gave
 the solver more work.
 
@@ -107,20 +107,20 @@ the solver more work.
 
 | Check | Value |
 |---|---|
-| Least squares, after five steps | agrees with §1.2's closed form to 10⁻¹⁶ m |
+| Least squares, after five steps | agrees with [§1.2](../../section-1.2/learn/)'s closed form to the last bit of a double, about 10⁻¹⁶ m |
 | Total residual at the end | 9.6 × 10⁻¹⁴ mm, which is round-off |
 | Singular values of the Jacobian | 1.430, 0.978, 0.000 |
-| The smallest, and what it means | nothing on its own — see §1.4 |
+| The smallest, and what it means | nothing on its own — see [§1.4](../../section-1.4/learn/) |
 
 These are the page's own model's numbers, recomputed by the figure on every load. They are
 at the bump end of the travel, the pose the figure mounts; the design pose's σ set is
-1.415 and 0.998, which is §1.4's table.
+1.415 and 0.998, which is [§1.4](../../section-1.4/learn/)'s table.
 The package's export for the same mechanism is vendored at
 `docs/assets/data/otkd/models/double-wishbone-two-leg/out.js`, and it does carry
 `iterations`: one residual vector and one set of singular values per Newton step.
 But that is a system with twenty-one unknowns, not the three rows above. Two sets of
 numbers, two different systems; the comparison they support is the pose, which is
-what §1.4 checks.
+what [§1.4](../../section-1.4/learn/) checks.
 
 ## Pseudocode, and the file it comes from
 
@@ -165,7 +165,7 @@ measurement, or a second model, can say anything about the world.
 The second trap is the mirror of it: an equation that repeats another one looks
 harmless, and it makes every error message the solver produces about the *wrong*
 thing. A rank-deficient Jacobian is not a numerical accident here. It is a
-statement about the model, and it has a name: §1.4.
+statement about the model, and it has a name: [§1.4](../../section-1.4/learn/).
 
 ## Going further
 

@@ -52,7 +52,7 @@ asked for.
 | From | To | The number |
 |---|---|---|
 | Closed form | Newton iteration | the same camber curve, to about 10⁻¹⁴° |
-| Three-row least squares | §1.2's closed form | the same pose, to 10⁻¹² m |
+| Three-row least squares | [§1.2](../section-1.2/learn/)'s closed form | the same pose |
 | Three rows, diagnosed | the two-row system | the same pose, and one row fewer |
 | Compliant at 100 MN/m | rigid | 0.002° at rest, and falling as the stiffness rises |
 | Compliant at 0.2 MN/m | rigid | 0.91° at rest, 0.01° in the change over the travel |
@@ -78,7 +78,7 @@ the point.
 3. The front view throws away one dimension, and with it the difference between the
    wishbone's two legs. Name one thing the front view can say, and one thing it
    cannot — using only what the chapter has shown you.
-4. A model has a least-squares residual of 10⁻¹² mm and a null vector with
+4. A model has a least-squares residual near 10⁻¹⁶ m and a null vector with
    non-zero entries in every row. What is it telling you, and what would you do
    next?
 5. The chapter never let a model be replaced without a number. Which replacement in
@@ -93,7 +93,7 @@ words before you leave:
 > should become.
 
 If you can say where that test applies in this chapter, and where it does not, you
-have the thing the chapter was for. §1.6 and §1.7 show where the method goes next:
+have the thing the chapter was for. [§1.6](../section-1.6/learn/) and [§1.7](../section-1.7/learn/) show where the method goes next:
 a model with mass, and a model of the whole car. Each is judged the same way, by
 what it agrees with and by what it can no longer answer.
 
@@ -117,7 +117,7 @@ and none of them is the source of a number in it.
   matters. Camber is worth computing because of what a tyre does with it, and this is
   where that story starts.
 - **McCarthy and Soh, *Geometric Design of Linkages* (Springer, 2011)** — the general
-  theory behind §1.2 to §1.4: mobility, branches, and what happens at a singular
+  theory behind [§1.2](../section-1.2/learn/) to [§1.4](../section-1.4/learn/): mobility, branches, and what happens at a singular
   configuration.
 - **George E. P. Box, "Science and Statistics" (1976)** — the argument the chapter is
   a worked example of: a model is judged by what it is for.

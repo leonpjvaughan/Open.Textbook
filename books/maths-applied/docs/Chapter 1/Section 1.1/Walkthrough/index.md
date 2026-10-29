@@ -1,5 +1,5 @@
 ---
-title: 1.1 The question — Learn
+title: 1.1 The question
 chapter: 1
 chapter_title: Suspension kinematics
 section: '1.1'
@@ -77,7 +77,7 @@ $$ \text{positive camber} \;\Longleftrightarrow\; \text{the top of the wheel lea
 
 **Toe** is the angle in the view from above: whether the front of the wheel points
 slightly in towards the car or slightly out. This chapter meets toe only in
-passing, and §1.4 explains why: the front view is a projection, and a projection
+passing, and [§1.4](../../section-1.4/learn/) explains why: the front view is a projection, and a projection
 loses one of the two angles.
 
 ## The chapter's four models
@@ -93,7 +93,7 @@ the question.
 | Diagnosed | the same, read with a singular value decomposition | which equation was never needed |
 | With a bush | the upper joint is a spring | how far the angles move under load |
 
-The chapter's problem is answered at the end of §1.5, and §1.6 and §1.7 sketch
+The chapter's problem is answered at the end of [§1.5](../../section-1.5/learn/), and [§1.6](../../section-1.6/learn/) and [§1.7](../../section-1.7/learn/) sketch
 what lies beyond that — mass, dampers, and the rest of the car.
 
 :::deeper the-four-models
@@ -106,7 +106,7 @@ the answer is not obvious. The wheel leans one way as it rises and the other way
 as it falls. Which way is a property of the linkage rather than a rule.
 
 There is no agreement panel in this section, because there is nothing yet to
-agree with. From §1.2 onwards, every section ends by putting a number on how far
+agree with. From [§1.2](../../section-1.2/learn/) onwards, every section ends by putting a number on how far
 the new model and the previous one differ.
 
 ## You should now be able to

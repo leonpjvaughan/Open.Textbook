@@ -39,13 +39,13 @@ and its angles are measured or modelled before a manufacturer commits to a desig
 
 ## How to read it
 
-The main thread is §1.1 to §1.5, in order, and it is complete on its own. Each of
+The main thread is [§1.1](section-1.1/learn/) to [§1.5](section-1.5/learn/), in order, and it is complete on its own. Each of
 those sections ends with an optional page marked **Going deeper**, and a reader who
 skips every one of them has still read the chapter.
 
-§1.6 and §1.7 both stand outside the main thread, and neither is needed for the chapter
-problem. §1.6 is a finished section in its own right. It asks what the mechanism does on
-the way to a position, and answers it with a model and a number. §1.7 is an outline of the
+[§1.6](section-1.6/learn/) and [§1.7](section-1.7/learn/) both stand outside the main thread, and neither is needed for the chapter
+problem. [§1.6](section-1.6/learn/) is a finished section in its own right. It asks what the mechanism does on
+the way to a position, and answers it with a model and a number. [§1.7](section-1.7/learn/) is an outline of the
 whole car, and says so, because a whole vehicle is a book rather than a section.
 
 ## Roadmap

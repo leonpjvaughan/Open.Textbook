@@ -1,5 +1,5 @@
 ---
-title: 1.2 One rigid triangle — Learn
+title: 1.2 One rigid triangle
 chapter: 1
 chapter_title: Suspension kinematics
 section: '1.2'
@@ -82,7 +82,7 @@ def upper_joint(C):
 
 Both answers are real solutions of the same two equations. They are two different
 assemblies of the same parts, and only one of them is a car. Which one you keep is
-a modelling decision, not a mathematical one, and §1.2's depth page is about it.
+a modelling decision, not a mathematical one, and [§1.2](.)'s depth page is about it.
 
 Two answers from one rule is the signature of this kind of problem, and the start
 decides which one you land in.
@@ -117,6 +117,9 @@ and the readout gives the number.
 | +20 mm | 2.7° | −0.49° | 1.36 m inboard, 0.02 m down | 5 mm |
 | +40 mm | 5.4° | +0.08° | 1.15 m inboard, 0.08 m down | −9 mm |
 
+Distances in the instant-centre column are measured from the car's centreline.
+The hub is a further 0.76 m outboard, so at rest the centre is 2.36 m from the hub.
+
 Three numbers matter for the chapter's question:
 
 - camber moves **1.95°** from one end of the travel to the other;
@@ -136,7 +139,7 @@ is 19 mm above the ground at rest, and it falls below the ground as the wheel ri
 
 Every section after this one ends with a panel of numbers. This one has three
 routes to the same answer: the two-circle construction above, the general Newton
-iteration that §1.3 meets, and the package's compiled kernel.
+iteration that [§1.3](../../section-1.3/learn/) meets, and the package's compiled kernel.
 
 | Check | Value |
 |---|---|
