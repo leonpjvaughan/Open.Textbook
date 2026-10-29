@@ -6796,7 +6796,8 @@ asks for it (11.3 item `p7-grouped-mean`) with `refs: [L1]`, which is not the ri
 estimate" sentence, one in 24.3/24.4 for the modal class, the equivalent half-page in
 a-level 11.5, and `p7`'s refs corrected.
 
-**Done means:** `grep -rn -i "modal" books/gcse-maths/docs` is at least 5;
+**Done means:** `grep -rn -i "modal" books/gcse-maths/docs` returns a heading, a worked
+example and a *Watch out*, all in 24.3 (measured: 4 lines, all in that section);
 `grep -rn -i midpoint books/a-level-maths/docs/Chapter\ 11/*/*/index.md` includes a Learn
 page; `uv run python -m textbook.verify books/gcse-maths/problems/` reports `ok`.
 

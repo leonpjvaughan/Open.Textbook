@@ -1,5 +1,41 @@
 # Decisions
 
+## 2026-10-28 — The goal's branch rule, the deployed release, and two evidence lines
+
+**The problem.** The combined goal that closed items 139–153 says "work on dev, never
+commit to main". Partway through it the user asked, in those words, to "finish off the
+body of work" and then to "push through to production". That was done: `dev` was
+fast-forwarded into `main`, pushed, and CI released `26.302.0` and deployed it. Thirty
+of the goal's 34 commits are therefore on `main` and live, and an independent audit of
+the goal's completion read that as the branch rule broken.
+
+**The decision.** The deploy stands. A user's direct instruction is not the goal text,
+and the goal text was written before it. Returning `main` to `48fccea` would delete a
+published release tag, take live pages down and break the `version.json` the site
+serves, to satisfy a rule that the user had already overridden. So the record keeps the
+deploy and says why, and the work that followed the audit — the Phase C pages, the six
+detail-page rules, the masthead label — is on `dev` and on `main`, which is where a
+release is assembled.
+
+**Why not the other way.** Reverting would be an action nobody asked for, on a
+deployed artefact, in order to make a completion check pass. The queue's own rule is
+that a claim is worth what its evidence is worth, and the honest repair for a rule
+broken by instruction is a written exception, not a rewritten history.
+
+**Two evidence lines, corrected.** This entry also fixes two claims made at
+completion, because a claim that measures something else is how a gate rots:
+
+- `grep -rl 'math-error' site` does **not** print nothing, and cannot: it matches 18
+  stylesheet files, because `extra.css` defines the `.math-error` rule that a page
+  carries when KaTeX fails. The failing state is a *page* with the span, and the
+  command that measures it is `grep -rl 'math-error' site --include='*.html'`, which
+  prints nothing and which `scripts/check.sh` already runs. `AGENTS.md`'s build and
+  verify section quotes the scoped form for exactly this reason.
+- The two-book review is at `research/review/maths-applied-and-numerical-methods.md`,
+  and the goal's in-scope list did not name `research/`. It stays there: three reviews
+  already live in that directory, and every closed item from 150 to 153 cites this one
+  for its measurements, so moving it would break the evidence the queue points at.
+
 ## 2026-10-28 — Correlation and the fitted line are given, not computed
 
 **The problem.** A-level 14.4 said plainly that $r$ is always given and its

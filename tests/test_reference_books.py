@@ -995,30 +995,82 @@ def test_a_term_is_defined_where_the_book_first_uses_it():
         assert first >= found.start(), f"{slug} uses {term} before defining it"
 
 
+def _newton(f, x0, steps):
+    """Newton's iterates on one variable, in exact arithmetic."""
+    x = sp.symbols("x")
+    d = sp.diff(f, x)
+    p = sp.Rational(x0)
+    for _ in range(steps):
+        p = sp.simplify(p - f.subs(x, p) / d.subs(x, p))
+    return p
+
+
+def _maximiser(expr):
+    """Where one-variable expression ``expr`` peaks, in exact arithmetic."""
+    x = sp.symbols("x")
+    return sp.solve(sp.diff(expr, x), x)[0]
+
+
+# Each entry: the regex that captures the number the page prints, and the value
+# computed from the page's own statement of the problem. The two are compared, so a
+# page that rounds a number wrongly fails here — a typed literal would pass a test
+# that only looked for the string, which is exactly what item 152 was filed about.
 WORKED_NUMBERS = {
-    "optimisation": (r"x=3", sp.Integer(3)),
-    "averaging": (r"0.0316", sp.N(1 / sp.sqrt(1000), 4)),
-    "eigenvalue": (r"1$ and $3", sp.Integer(3)),
-    "linear-system": (r"x=1/11", sp.Rational(1, 11)),
-    "root": (r"1.4167", sp.N(sp.Rational(17, 12), 5)),
-    "saddle-point": (r"\lambda=1", sp.Integer(1)),
-    "elliptic": (r"1/8", sp.Rational(1, 8)),
-    "parabolic": (r"0.005", sp.Rational(1, 200)),
-    "hyperbolic": (r"0.05", sp.Rational(1, 20)),
+    "optimisation": (
+        r"to zero gives\s+\$x=([-\d/]+)\$",
+        sp.solve(2 * (sp.Symbol("x") - 3), sp.Symbol("x"))[0],
+    ),
+    "averaging": (r"1/\\sqrt\{1000\}=([\d.]+)", 1 / sp.sqrt(1000)),
+    "eigenvalue": (
+        r"eigenvalues \$1\$ and \$([-\d/]+)\$",
+        max(sp.Matrix([[2, 1], [1, 2]]).eigenvals()),
+    ),
+    "linear-system": (
+        r"solution \$x=([-\d/]+)\$",
+        sp.Matrix([[4, 1], [1, 3]]).solve(sp.Matrix([1, 2]))[0],
+    ),
+    "root": (r"\$x_2=([\d.]+)\$", _newton(sp.Symbol("x") ** 2 - 2, 1, 2)),
+    "saddle-point": (
+        r"\\lambda=(\d+)\$",
+        sp.Matrix([[1, 1], [1, 0]]).solve(sp.Matrix([2, 1]))[1],
+    ),
+    "elliptic": (
+        r"maximum is \$([-\d/]+)\$",
+        (sp.Symbol("x") * (1 - sp.Symbol("x")) / 2).subs(
+            sp.Symbol("x"), _maximiser(sp.Symbol("x") * (1 - sp.Symbol("x")) / 2)
+        ),
+    ),
+    "parabolic": (r"\^2/2=([\d.]+)\$", sp.Rational(1, 10) ** 2 / 2),
+    "hyperbolic": (r"\\Delta x/a=([\d.]+)\$", sp.Rational(1, 10) / 2),
 }
 
 
 def test_every_class_page_works_one_number():
     """A class page that only names methods is a glossary entry.
 
-    Each of the nine pages now carries one worked line in *What it becomes on a
-    computer*, and the number in it is the one its own arithmetic gives. This pins
-    both the sentence and the value.
+    Each of the nine pages carries one worked line in *What it becomes on a
+    computer*. The number in it is parsed from the page and compared with the value
+    recomputed here from the page's own statement of the problem: an exact integer
+    or fraction must match exactly, and a decimal must be the correct rounding of
+    the computed value to the digits it prints.
     """
-    for slug, (shown, value) in WORKED_NUMBERS.items():
+    for slug, (pattern, value) in WORKED_NUMBERS.items():
         page = (map_book().docs / slug / "index.md").read_text(encoding="utf-8")
         assert "**Worked number.**" in page, slug
-        assert shown in page, (slug, shown)
+        match = re.search(pattern, page, re.S)
+        assert match, f"{slug}: the printed number no longer matches {pattern}"
+        shown = match.group(1)
+        printed = sp.sympify(shown)
+        if "." in shown:
+            places = len(shown.split(".")[1])
+            error = abs(printed - sp.N(value, places + 3))
+            assert error <= sp.Rational(1, 2) * sp.Rational(1, 10) ** places, (
+                slug,
+                shown,
+                sp.N(value, places + 3),
+            )
+        else:
+            assert sp.simplify(printed - value) == 0, (slug, shown, value)
 
 
 def test_a_level_11_4_points_at_the_fit_it_does_not_derive():
