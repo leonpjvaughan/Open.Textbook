@@ -138,3 +138,6 @@ theory. They are optional: the class page is complete without them.
   equation as heat.
 - [When it goes wrong](../symptoms/index.md) — the symptom table for every
   class.
+
+Back to the map: [the nine kinds](../index.md) puts this class among the
+other eight.

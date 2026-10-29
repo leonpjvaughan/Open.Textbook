@@ -127,3 +127,6 @@ with its price and what it will not do.
   eigenvalue question in disguise.
 - [When it goes wrong](../symptoms/index.md) — the symptom table for every
   class.
+
+Back to the map: [the nine kinds](../index.md) puts this class among the
+other eight.

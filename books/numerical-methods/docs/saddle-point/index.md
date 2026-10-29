@@ -144,3 +144,6 @@ pressure cannot develop the checkerboard pattern the table below names.
   non-linear.
 - [When it goes wrong](../symptoms/index.md) — the symptom table for every
   class.
+
+Back to the map: [the nine kinds](../index.md) puts this class among the
+other eight.

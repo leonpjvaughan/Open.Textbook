@@ -153,3 +153,6 @@ with its price and what it will not do.
   positive definite, and why that changes the method.
 - [When it goes wrong](../symptoms/index.md) — the symptom table for every
   class.
+
+Back to the map: [the nine kinds](../index.md) puts this class among the
+other eight.
