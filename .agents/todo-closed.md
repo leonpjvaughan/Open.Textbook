@@ -6594,7 +6594,12 @@ then **stop for review** before Phase C.
 
 ---
 
-**Closed (2026-10-28).** Phase A's `error/`, `order/` and `checking/` pages and Phase B's four `averaging/` detail pages exist, are registered, and each prints a program output that `tests/test_reference_books.py` runs and compares. The reflow took the book to zero prose lines over 80 columns. `uv run python -m pytest tests/ -q` -> 8,694 passed, 50 skipped; `scripts/check.sh` -> all checks passed; `node tools/dist/cli.js audit site` -> 530 of 530 measurements, no defect; `audit site --mobile` -> 220 figures, 0 below 9px. Phase C is unstarted.
+**Closed (2026-10-28).** Phase A's `error/`, `order/` and `checking/` pages and Phase B's four `averaging/` detail pages exist, are registered, and each prints a program output that `tests/test_reference_books.py` runs and compares. The reflow took the book to zero prose lines over 80 columns. `uv run python -m pytest tests/ -q` -> 8,694 passed, 50 skipped; `scripts/check.sh` -> all checks passed; `node tools/dist/cli.js audit site` -> 530 of 530 measurements, no defect; `audit site --mobile` -> 220 figures, 0 below 9px. Phase C followed on 2026-10-28: the
+eight one-per-class pages exist and are registered, each with a sympy-only program whose
+printed output `tests/test_reference_books.py` runs and compares, and the Phase B shape
+was reviewed before they were written (four rules the review found unguarded are now
+tests in `tests/rules.py`). `uv run python -m textbook.lint numerical-methods` -> 31
+pages, no finding.
 
 
 ## 140 — The statistics strand states results it never proves, and `proofs` has no statistics page — **done**
