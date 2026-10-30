@@ -7357,3 +7357,66 @@ Evidence: `textbook.lint numerical-methods maths-applied` clean over 49 pages; t
 classes `maths-applied` links render five distinct notes, capitalised, each the registry's
 own string; the home page's nine-kinds table still names and links every class, and
 `test_the_nine_kinds_table_names_and_links_every_class` holds it to the registry.
+
+## 160 — The comparison both books are built on, drawn at last — **done**
+
+**What is wrong.** `maths-applied` §1.5's answer is a comparison — the effect the
+simpler model leaves out against the tolerance the question asks for — and the same
+tolerance on two different quantities gives answers **nine times apart** (1.8 MN/m
+against 0.2 MN/m). It is stated in tables on three pages and drawn on none:
+`stiffness-agreement` plots camber against travel, which is what the section is not
+about. In `numerical-methods` the thesis sentence "you need the method that answers
+your question" has no figure either, in a book where every class page has one.
+
+**The fix.** One figure on §1.5: stiffness on a log x-axis, |difference from the
+rigid model| on a log y-axis, two curves ("at rest", "change over the travel"),
+and a horizontal dashed rule at 0.1°. The two crossings are the two answers and the
+gap between them is a distance on the page. The numbers already exist in the model
+the page imports and the crossing is a bisection over the same `compliant()` call.
+
+**Done means**
+
+- [ ] the figure mounts with a static frame that carries the two crossings on its own
+- [ ] both crossings are held by a check that can recompute them — `claim()` and
+      `readout --verify` handle closed-form arithmetic only, so this is either a new
+      interval kind in the verifier or a recompute test in
+      `tests/test_maths_applied_numbers.py`
+- [ ] the log axes are drawn by a scale the kit owns, or by an explicit `log10`
+      mapping whose ticks are relabelled
+- [ ] the prose quotes the numbers the figure prints, not a second set
+
+**Outcome, 2026-10-30.** `tolerance-crossing` mounts on §1.5, between the table of
+stiffnesses and the paragraph that draws the conclusion. Two curves — the effect the rigid
+model leaves out, at rest and over the travel — against a dashed rule at a tenth of a degree,
+on logarithmic axes, with the two crossings marked.
+
+**The numbers changed, and the prose with them.** The section said the two thresholds were
+"about nine times apart", comparing 1.8 MN/m for the angle with 0.2 MN/m — the export's
+softest *row*, not the second threshold. Measured by bisection over the model the figure
+imports, the change-over-the-travel effect reaches a tenth of a degree at **0.034 MN/m**, so
+the two answers are **more than fifty times apart**, and 0.2 MN/m is comfortably inside the
+second. §1.5 states both crossings, the Review states the fifty-times version, and
+`test_the_change_tolerance_is_met_by_the_softest_exported_row` no longer asserts a ratio
+between two different quantities.
+
+**The log axes are the figure's own.** The kit has no logarithmic scale and one figure is not
+a reason to add one, so the axes are linear in `log10`: `axes()` supplies the frame, the
+curves are sampled in log space, and every tick is drawn at `log10` of a value a reader
+recognises. Two functions know about it, `lx` and `ly`, and the file says so.
+
+**A crossing is not a claim.** `claim()` verifies a closed-form expression at stated values;
+the model's difference at a bisected root is 0.100000024, which is not `0.1` within the
+verifier's 1e-12. So the claims hold what the reader is shown — "a difference of 0.10
+degrees" — at the precision it is printed, and the crossings themselves are recomputed by
+`test_the_two_tolerance_crossings_are_the_figures_own`, which bisects the same `mechanism.js`
+and requires the page to print 1.85 and 0.034.
+
+**What the figure says that the prose did not.** The dashed curve passes through zero near
+0.05 MN/m: at that stiffness the bush shifts the curve by exactly the amount it would have to
+tilt it, so the two models agree about the change over the travel and then diverge with the
+sign the other way. The caption says so, because a reader would otherwise read the V as a
+drawing slip.
+
+Evidence: `readout --verify` — 2 claims, 0 untrue; `canvas` — 0 findings; `audit` light and
+dark — no finding; the readout, the caption and the prose carry the same two numbers;
+`pytest tests/test_maths_applied_numbers.py tests/test_maths_applied_ladder.py` — 34 passed.

@@ -14,10 +14,10 @@ done-means; an item whose heading says done and whose checklist does not is the
 failure this file has had twice, so the list below, the headings and the boxes
 are checked against each other on every pass.
 
-**Every item from 79 to 159 is closed,** each with its measurement, its fix and its
-outcome in `.agents/todo-closed.md`. Items 160 and 161 are the review's last two
-defects, from `research/review/maths-applied-and-numerical-methods-ii.md`, which also
-carries the design proposals they do not cover; 163 is the prose half of 154,
+**Every item from 79 to 160 is closed,** each with its measurement, its fix and its
+outcome in `.agents/todo-closed.md`. Item 161 is the review's last defect, from
+`research/review/maths-applied-and-numerical-methods-ii.md`, which also carries the
+design proposals it does not cover; 163 is the prose half of 154,
 measured while closing it, and 164 is the label tail the figure check measured. A new
 item goes at the number after the last one, with its diagnosis, its fix and its own
 done-means. The
@@ -33,33 +33,6 @@ rewrites ranked in `research/pedagogy-audit/README.md`. An item in this file is 
 defect this repository can fix; those are decisions already taken.
 
 ---
-
-## 160 — The comparisons both books are built on are never drawn
-
-**What is wrong.** `maths-applied` §1.5's answer is a comparison — the effect the
-simpler model leaves out against the tolerance the question asks for — and the same
-tolerance on two different quantities gives answers **nine times apart** (1.8 MN/m
-against 0.2 MN/m). It is stated in tables on three pages and drawn on none:
-`stiffness-agreement` plots camber against travel, which is what the section is not
-about. In `numerical-methods` the thesis sentence "you need the method that answers
-your question" has no figure either, in a book where every class page has one.
-
-**The fix.** One figure on §1.5: stiffness on a log x-axis, |difference from the
-rigid model| on a log y-axis, two curves ("at rest", "change over the travel"),
-and a horizontal dashed rule at 0.1°. The two crossings are the two answers and the
-gap between them is a distance on the page. The numbers already exist in the model
-the page imports and the crossing is a bisection over the same `compliant()` call.
-
-**Done means**
-
-- [ ] the figure mounts with a static frame that carries the two crossings on its own
-- [ ] both crossings are held by a check that can recompute them — `claim()` and
-      `readout --verify` handle closed-form arithmetic only, so this is either a new
-      interval kind in the verifier or a recompute test in
-      `tests/test_maths_applied_numbers.py`
-- [ ] the log axes are drawn by a scale the kit owns, or by an explicit `log10`
-      mapping whose ticks are relabelled
-- [ ] the prose quotes the numbers the figure prints, not a second set
 
 ## 161 — `linear-system` splits its five-item list into three, with the definition of `preconditioner` in the gap
 
