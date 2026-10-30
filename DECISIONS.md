@@ -9,18 +9,24 @@ fast-forwarded into `main`, pushed, and CI released `26.302.0` and deployed it. 
 commit up to `0f328d93` is therefore on `main` and live, and an independent audit of the
 goal's completion read that as the branch rule broken.
 
-**The decision, and its exact state.** The deploy stands, and this paragraph says what
-is where, because an earlier draft of it was wrong. `main` and `origin/main` are at
-`0f328d93`, which carries the work up to item 153 and the 26.302.0 release. Everything
-after that — Phase C's eight pages, the six detail-page rules, the masthead label, the
-chapter-problem fix and the recomputed worked numbers — is on `dev` only, and `dev` is
-ahead of `origin/dev` until it is pushed. Nothing in this paragraph is a claim that the
-late work is live; it is not.
+**The decision, and its exact state.** The deploy stands, and the user has said so. On
+2026-10-30 the choice between keeping the deploy and restoring `main` to `48fccea` was
+put to the user, who answered "Keep main". That answer is the authorisation this
+exception needs: the user owns the deployed release, and neither the agent nor the
+auditor can grant it.
 
-**Why not the other way.** Reverting would be an action nobody asked for, on a
-deployed artefact, in order to make a completion check pass. The queue's own rule is
-that a claim is worth what its evidence is worth, and the honest repair for a rule
-broken by instruction is a written exception, not a rewritten history.
+What is where, measured on 2026-10-30: `main` and `origin/main` are at `0f328d93`,
+released as `26.302.0` and live, which carries the work up to item 153. Everything after
+it — Phase C's eight pages, the six detail-page rules, the masthead label, the
+chapter-problem fix and the recomputed worked numbers — is on `dev`, pushed at
+`3d3e224b`, level with `origin/dev`, and **not live**. That is the ordinary state
+between a merge and its release: `dev` takes the gate, `main` takes the deploy, and the
+next release carries these commits.
+
+**Why not the other way.** Reverting would have deleted a published release and taken
+live pages down in order to satisfy a rule the user had already overridden when asking
+for the push. It was offered and declined, so the record keeps the deploy and says who
+authorised it.
 
 **Two evidence lines, corrected.** This entry also fixes two claims made at
 completion, because a claim that measures something else is how a gate rots:
