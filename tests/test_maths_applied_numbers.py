@@ -513,7 +513,7 @@ def test_the_review_uses_the_exports_softest_row_too():
     """The Review's change-tolerance sentence is §1.5's, not the old 0.15."""
     text = " ".join(page("Review").split())
     assert "export's softest row, 0.2 MN/m, already meets it" in text
-    assert "about nine times stiffer" in text
+    assert "more than fifty times stiffer" in text
     assert "0.15 MN/m" not in text
     assert "twelve times" not in text
 
@@ -667,3 +667,58 @@ def test_the_chapter_problem_is_stated_once_in_one_wording():
         if "A wheel moves 40 mm up and 40 mm down" in p.read_text(encoding="utf-8")
     ]
     assert stating == ["index.md"], stating
+
+
+_CROSSINGS_SCRIPT = (
+    "const BASE = " + json.dumps(str(DATA)) + ";\n"
+    + """
+const { compliant, pose, thetaFor } = await import(BASE + "/mechanism.js");
+const LATERAL = 1800;
+const DOWN = 3500;
+const camber = (travel, k) =>
+  k === null ? pose(thetaFor(travel)).camber : compliant(thetaFor(travel), k, LATERAL, DOWN).camber;
+const rest = (k) => Math.abs(camber(0, k) - camber(0, null));
+const overTravel = (k) =>
+  Math.abs(camber(40, k) - camber(-40, k) - (camber(40, null) - camber(-40, null)));
+const cross = (effect) => {
+  let low = Math.log10(0.02e6);
+  let high = Math.log10(20e6);
+  for (let i = 0; i < 80; i += 1) {
+    const mid = (low + high) / 2;
+    if (effect(10 ** mid) > 0.1) low = mid;
+    else high = mid;
+  }
+  return 10 ** ((low + high) / 2) / 1e6;
+};
+console.log(JSON.stringify({ rest: cross(rest), travel: cross(overTravel) }));
+"""
+)
+
+
+def test_the_two_tolerance_crossings_are_the_figures_own():
+    """§1.5's figure draws an effect against a tolerance, and prints where they cross.
+
+    A figure that states a number has to be recomputed somewhere, and a crossing is not
+    arithmetic: `claim()` verifies a closed-form expression at stated values, and a root
+    found by bisection is not one. So the two crossings are held here, by bisection over
+    the same `mechanism.js` the figure imports, and the page has to print what this
+    computes — 1.85 MN/m for the wheel's angle, 0.034 for the change over the travel.
+    """
+    node = shutil.which("node")
+    if node is None:
+        pytest.skip("node is not on PATH, so the book's models cannot be recomputed")
+    done = subprocess.run(
+        [node, "--input-type=module", "-e", _CROSSINGS_SCRIPT],
+        capture_output=True,
+        text=True,
+        check=False,
+    )
+    assert done.returncode == 0, f"node could not run the model: {done.stderr.strip()}"
+    crossings = json.loads(done.stdout)
+    assert round(crossings["rest"], 2) == 1.85, crossings
+    assert round(crossings["travel"], 3) == 0.034, crossings
+
+    text = " ".join(page("Section 1.5/Walkthrough").split())
+    assert "1.85 MN/m for the wheel's angle" in text
+    assert "0.034 MN/m for the change over the travel" in text
+    assert ":::figure tolerance-crossing" in text

@@ -253,12 +253,18 @@ def test_the_deflection_sentence_names_the_controls_ends():
 
 
 def test_the_change_tolerance_is_met_by_the_softest_exported_row():
-    """§1.5's change tolerance is met by 0.2, not an invented 0.15."""
+    """§1.5's change tolerance is met by 0.2, not an invented 0.15.
+
+    The page used to call the two thresholds "about nine times apart" — 1.8 MN/m for the
+    angle against the ladder's softest row. That compared a threshold with a bound on the
+    other one. The figure on the section measures both crossings, and they are more than
+    fifty times apart; the softest row is still the answer to "is 0.2 enough", so it stays.
+    """
     assert min(STIFFNESS) == 0.2
     text = SECTION.read_text(encoding="utf-8")
     assert "export's softest row, 0.2 MN/m" in text
-    assert "about nine times" in text
-    assert round(crossing() / min(STIFFNESS), 0) == 9
+    assert "more than fifty times apart" in text
+    assert "nine times" not in text
     assert "0.15 MN/m" not in text
     assert "twelve times" not in text
 

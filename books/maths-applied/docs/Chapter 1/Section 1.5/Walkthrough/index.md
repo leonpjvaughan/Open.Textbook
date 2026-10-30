@@ -118,15 +118,26 @@ Now the tolerance. A tenth of a degree can be asked of two different things:
   export's softest row, 0.2 MN/m, is enough, because the bush shifts the curve rather
   than tilting it.
 
+:::figure tolerance-crossing
+
+Two curves, one rule. Each curve is the effect the rigid model leaves out, as a
+function of how stiff the bush is: one for the wheel's angle at rest, one for the
+change of that angle over the travel. The dashed rule is the tenth of a degree the
+question asks for, and where a curve crosses it is the stiffness that answers the
+question. The two crossings are the two answers, and the distance between them on the
+page is the point of the section.
+
 So the answer to "which model do I need" is not a matter of taste, and it is not
 even a single number. It is a comparison between the tolerance the question asks for
 and the size of the effect the simpler model leaves out. The comparison has to
 be made against **the quantity the question is about**, not against a number that
 happens to be nearby.
 
-Here the two thresholds are about nine times apart. A reader who took the wrong
-one would either throw away a model that answers the question or trust a model that
-misses it by a degree. That is why this section is the centre of the chapter rather
+Here the two thresholds are 1.85 MN/m for the wheel's angle and 0.034 MN/m for the
+change over the travel — more than fifty times apart, and the exported ladder's
+softest row, 0.2 MN/m, sits comfortably inside the second. A reader who took the
+wrong one would either throw away a model that answers the question or trust a model
+that misses it by a degree. That is why this section is the centre of the chapter rather
 than an appendix to it. [§1.2](../../section-1.2/learn/)'s model and this one do not compete. They answer
 different versions of the same question, and which version you asked decides which
 one is right.
@@ -220,7 +231,7 @@ prints it: at the two ends of its control, 0.1 and 20 MN/m, the bush moves 12 mm
 
 The second trap is thinking that "more complex" means "more correct". Which model
 answers the question depends on which quantity the tolerance is attached to, and
-this chapter has shown two answers about nine times apart. A stiffness you have
+this chapter has shown two answers more than fifty times apart. A stiffness you have
 to guess is a new source of error, not a removed one. A model that needs one
 should have to earn it by changing the answer the question asked for.
 
