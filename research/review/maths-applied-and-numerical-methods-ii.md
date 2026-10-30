@@ -179,6 +179,16 @@ broken, and the page is the book's only finished section with mass in it.
 3. Add the case to `tests/test_figures.py`, whose contract already pins "a new
    figure cannot repeat a defect the measurement found".
 
+**Status, 2026-10-30: done.** `tools canvas site` implements the two rules (a `<text>`
+inside; a mark crossing but with ink inside), `canvas --cases` runs them under plain
+`node` inside `tests/test_figures.py`, and the command is in
+`scripts/preview-themes.sh`. `dynamics-table` and `kernel-camber` are fixed, the
+`axes()` end ticks are now anchored inwards, and the check found four more figures
+drawing outside their canvas — `slope-field`'s equation label 42,623 units away,
+`argand-diagram`, `ch9-newton-raphson` and `ch22-vector-translation` — all fixed. The
+site reports 0 errors over 248 figures. The 39 labels that still overhang are item 164,
+carried by `CANVAS_DEBT` so that a new figure gets no allowance. Items 156 and 162.
+
 ---
 
 ## N2. On a phone the book is printed above every page

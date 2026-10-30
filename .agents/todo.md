@@ -14,13 +14,13 @@ done-means; an item whose heading says done and whose checklist does not is the
 failure this file has had twice, so the list below, the headings and the boxes
 are checked against each other on every pass.
 
-**Every item from 79 to 155 is closed,** each with its measurement, its fix and its
-outcome in `.agents/todo-closed.md`. Items 156–161 are the review's six defects, from
-`research/review/maths-applied-and-numerical-methods-ii.md`, which also carries the
-design proposals those six do not cover; 162 is that review's figure measurement
-re-run, which found two figures its own section on the check did not; 163 is the
-prose half of 154, measured while closing it. A new item goes at the number after the
-last one, with its diagnosis, its fix and its own done-means. The
+**Every item from 79 to 156 is closed,** each with its measurement, its fix and its
+outcome in `.agents/todo-closed.md`. Items 157–161 are the review's remaining five
+defects, from `research/review/maths-applied-and-numerical-methods-ii.md`, which also
+carries the design proposals those five do not cover; 162 (now closed) was that
+review's figure measurement re-run, 163 is the prose half of 154, measured while closing
+it, and 164 is the label tail the figure check measured. A new item goes at the number
+after the last one, with its diagnosis, its fix and its own done-means. The
 *interactive-aid backlog* — which figures and interactions a book still wants — is
 `ideas.md`; it is a plan rather than a defect list, and it is written for the
 author choosing what to build next.
@@ -33,59 +33,6 @@ rewrites ranked in `research/pedagogy-audit/README.md`. An item in this file is 
 defect this repository can fix; those are decisions already taken.
 
 ---
-
-## 156 — `dynamics-table` draws its rows below its own viewBox, so §1.6's figure is an empty frame
-
-**What is wrong.** `maths-applied` §1.6 mounts `dynamics-table`, and 15 of the
-figure's 22 `<text>` elements have a box below the frame — the five rows of three
-cells. The reader sees a bordered box with two rules, two floating column heads, a
-slider and a readout, while the prose under it says "Each column is an integration"
-and the caption says "Every column is one integration of the vendored kernel". There
-are no columns.
-
-Measured on the built page:
-
-```
-viewBox 0 0 560 300, rendered 560×300
-textYs  [304,304,287,35,20,20,20,316,316,316,364,364,364,412,412,412,460,460,460,508,508,508]
-outside 15 of 22 texts (33 marks in all)
-```
-
-The `y` attributes say 304…508; a transformed `getBBox()` says fifteen, because two
-of those attributes belong to elements inside the frame. The count the check reports
-is the one to use.
-
-**The cause is one line.** `books/maths-applied/docs/assets/figures/dynamics-table.js:95`
-reads `box.y0 + 34 + index * 48`. `axes()` returns `y0 = height - margin.bottom`
-(the bottom edge, 282) and `y1 = margin.top` (the top, 30) —
-`assets/figures/src/kit/draw.ts:470` — so the rows start 34 px below the bottom rule
-and march off the canvas. Every other module uses `box.y0 + 34` for a single label
-placed near the bottom **inside** the plot, which is why the idiom looked right.
-The line has been wrong since the file was created (`d95a3d98`).
-
-**Why nothing caught it.** `audit` measures paint (contrast, font size): an element
-outside the viewBox is painted correctly. `readout --verify` recomputes the
-arithmetic: the numbers are right, they are in the wrong place. `kit site` checks
-the DOM contract. The collection has a strong contract on what a figure says and
-how it is painted, and none on whether it is inside its own canvas.
-
-**The fix.** `box.y1 + 34 + index * 48` (64, 112, 160, 208, 256 against a box of
-30…282), which is one line. Then make the measurement: for every `maths-figure`,
-transform each element's `getBBox()` into the SVG's user space and compare it with the
-`viewBox`. Two rules, not one: **a `<text>` must be inside**, and **a mark may cross
-the edge but must have ink inside** — `wishbone-hero` draws its rays to the instant
-centre, 1,295 units off-canvas, and a single rule would fail it. The transform is the
-work — an element's own `getBBox()` is in its parent's space, which is why reading
-attributes reported one offender where there are three.
-
-**Done means**
-
-- [ ] §1.6's `dynamics-table` shows five labelled rows with both columns inside the
-      drawing at 390px and at 1280px, in both schemes
-- [ ] a tool check fails on a figure that draws outside its `viewBox`, and its case
-      list in `tests/test_figures.py` includes this defect
-- [ ] the check reports 0 findings on the whole site with the text/mark rule 162
-      states, and fails when the old `rowY` is restored
 
 ## 157 — On a phone the whole book is printed above every page
 
@@ -225,44 +172,6 @@ closing paragraph. One paragraph moves and the list is whole.
 - [ ] `preconditioner` is still defined on the page before the technique table
 - [ ] `python -m textbook.lint numerical-methods` is clean
 
-## 162 — two more figures draw outside their canvas, and they decide what the 156 check may call a defect
-
-**What is wrong.** The sweep item 156 specifies — every mark's `getBBox()` transformed
-into the SVG's own user space, compared with the `viewBox` — was run over both books'
-19 routes and 21 modules on a build at HEAD (`f296ff8`). It finds three figures, not
-one:
-
-```
-dynamics-table   15 of 33 marks outside   rows at y = 300…492 in a 300 canvas
-dynamics-table   (5 rows × 3 cells; the y attributes read 304…508)
-kernel-camber     1 of 38   text "40 mm"  bbox x 516…565, viewBox width 560
-wishbone-hero     2 of 24   fig-grid rays to x = −1295, viewBox width 520
-```
-
-The `kernel-camber` one is a clipped tick label: the right-most x label loses its
-last four units, about a glyph. The `wishbone-hero` rays are **intentional** — the
-module draws each wishbone's line to the instant centre, which is off the drawing
-("so they run to the edge" is the comment) — but they run to the point itself, 1,295
-units off-canvas, and only the `viewBox` hides that.
-
-So the check has to separate the two cases or it cannot reach the "0 findings"
-item 156 asks for: **a `<text>` must be inside; a mark may cross the edge but must
-have ink inside.** A rule applied to both fails `wishbone-hero`, which is correct
-as drawn.
-
-**The fix.** Clamp the ray to the canvas edge in `wishbone-hero` (or accept the
-crossing and keep the rule above), move the `kernel-camber` tick label inside (the
-last tick's `anchor` or the domain's end), and say the text-versus-mark rule in the
-check's own docstring, because it is the difference between three findings and
-false positives.
-
-**Done means**
-
-- [ ] the "40 mm" label is fully inside its `viewBox` at 390px and 1280px, both schemes
-- [ ] the check from 156 passes every figure in every book at HEAD with the text/mark rule
-- [ ] the check fails each of the three cases when the old code is restored, and its
-      case list in `tests/test_figures.py` names them
-
 ## 163 — 473 display equations in page prose keep their dollars, because they share a paragraph with the text
 
 **What is wrong.** Item 154 fixed this in the problem banks. Page prose has the same
@@ -291,3 +200,42 @@ finding is zero with no debt entry.
 - [ ] a scan of the built site finds 0 pages with a bare `$` before a `<math>`
 - [ ] `tests/test_lint.py` fails when a planted `$$` line loses its blank line
 - [ ] the four affected books rebuild with no `math-error` page
+
+## 164 — 39 labels in 31 figures overhang their frame, mostly a y-axis title written the wrong way round
+
+**What is wrong.** The `canvas` check measures every element against its drawing. After
+156 and 162 fixed the figures that were wholly misplaced, **39 `<text>` elements in 31
+modules** still cross the edge. The largest are not marginal:
+
+```
+internal-resistance   "terminal potential difference / V"   168 units of 221 outside
+fission-chain-reaction "A neutron strikes the nucleus. …"    98
+model-fit             "temperature / degC"                   95
+hooke-law             "spring"                               56
+ch4-model-explorer    "Right bar: multiply by 1.1 each …"     48
+ch16-pull-at-an-angle "acceleration a = 2.25 m/s²"           34
+ohms-law-graph        "current / A"                          21
+growth-curves         "Aoife", "Cara", "Ben"              19, 17, 11
+ice-heating-curve     "temperature (C)"                      17
+```
+
+**The cause is one habit, not 31 mistakes.** A y-axis title is written horizontally —
+`label({ x: PLOT.x0 - 6, text: "terminal potential difference / V", anchor: "end" })` — so
+a 221-unit label ending 6 units left of the axis begins 168 units outside a 420-unit
+drawing. The reader sees the last two words of it, or none. `label()` already rotates
+(`rotate`, about the label's own position, added when nine modules were moved off
+hand-written `<text>`), so the fix is a title that runs *up* the axis instead of off it.
+
+Three of the 39 are not axis titles — a label above the top edge (`enlargement-grid`'s "y",
+`profit-slider`'s "£114.00", `coulomb-force`'s "+q") — and each needs its own nudge.
+
+**The fix.** Rotate each y-axis title with `label({ rotate: -90, anchor: "start" })` at the
+plot's bottom-left, and nudge the three overhead labels inside. Then delete the figure from
+`CANVAS_DEBT` in `tools/src/commands/canvas.ts`, one at a time: the table is the list.
+
+**Done means**
+
+- [ ] `CANVAS_DEBT` is empty, and `node tools/dist/cli.js canvas site` reports 0 errors
+- [ ] every rotated title reads as a title in a capture at 390px and at 1280px, both schemes
+- [ ] `scripts/preview-themes.sh` still reports 0 findings on `audit`, `kit`, `canvas` and
+      `check-mobile`

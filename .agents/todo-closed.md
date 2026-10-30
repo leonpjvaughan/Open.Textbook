@@ -7041,3 +7041,137 @@ rebuilt at every profile with no `math-error` page.
 
 **The 72 in the diagnosis stays one short**, as the re-measurement said it was: 44 minus
 the nine false findings is 35, which is what closed.
+
+## 156 — `dynamics-table` drew its rows below its own viewBox, so §1.6's figure was an empty frame — **done**
+
+**What is wrong.** `maths-applied` §1.6 mounts `dynamics-table`, and 15 of the
+figure's 22 `<text>` elements have a box below the frame — the five rows of three
+cells. The reader sees a bordered box with two rules, two floating column heads, a
+slider and a readout, while the prose under it says "Each column is an integration"
+and the caption says "Every column is one integration of the vendored kernel". There
+are no columns.
+
+Measured on the built page:
+
+```
+viewBox 0 0 560 300, rendered 560×300
+textYs  [304,304,287,35,20,20,20,316,316,316,364,364,364,412,412,412,460,460,460,508,508,508]
+outside 15 of 22 texts (33 marks in all)
+```
+
+The `y` attributes say 304…508; a transformed `getBBox()` says fifteen, because two
+of those attributes belong to elements inside the frame. The count the check reports
+is the one to use.
+
+**The cause is one line.** `books/maths-applied/docs/assets/figures/dynamics-table.js:95`
+reads `box.y0 + 34 + index * 48`. `axes()` returns `y0 = height - margin.bottom`
+(the bottom edge, 282) and `y1 = margin.top` (the top, 30) —
+`assets/figures/src/kit/draw.ts:470` — so the rows start 34 px below the bottom rule
+and march off the canvas. Every other module uses `box.y0 + 34` for a single label
+placed near the bottom **inside** the plot, which is why the idiom looked right.
+The line has been wrong since the file was created (`d95a3d98`).
+
+**Why nothing caught it.** `audit` measures paint (contrast, font size): an element
+outside the viewBox is painted correctly. `readout --verify` recomputes the
+arithmetic: the numbers are right, they are in the wrong place. `kit site` checks
+the DOM contract. The collection has a strong contract on what a figure says and
+how it is painted, and none on whether it is inside its own canvas.
+
+**The fix.** `box.y1 + 34 + index * 48` (64, 112, 160, 208, 256 against a box of
+30…282), which is one line. Then make the measurement: for every `maths-figure`,
+transform each element's `getBBox()` into the SVG's user space and compare it with the
+`viewBox`. Two rules, not one: **a `<text>` must be inside**, and **a mark may cross
+the edge but must have ink inside** — `wishbone-hero` draws its rays to the instant
+centre, 1,295 units off-canvas, and a single rule would fail it. The transform is the
+work — an element's own `getBBox()` is in its parent's space, which is why reading
+attributes reported one offender where there are three.
+
+**Done means**
+
+- [ ] §1.6's `dynamics-table` shows five labelled rows with both columns inside the
+      drawing at 390px and at 1280px, in both schemes
+- [ ] a tool check fails on a figure that draws outside its `viewBox`, and its case
+      list in `tests/test_figures.py` includes this defect
+- [ ] the check reports 0 findings on the whole site with the text/mark rule 162
+      states, and fails when the old `rowY` is restored
+
+**Outcome, 2026-10-30.** Fixed, and the check that was missing now exists: `tools canvas
+site` transforms every element's `getBBox()` into the SVG's own user space and compares it
+with the `viewBox`, under two rules (a `<text>` must be inside; a mark may cross the edge
+but must have ink inside). `node tools/dist/cli.js canvas --cases` runs the rules under
+plain `node` and is in `tests/test_figures.py`; `canvas site` runs in
+`scripts/preview-themes.sh` beside `audit`, `kit` and `check-mobile`.
+
+`rowY` now steps down from `box.y1`, and the rows also start at x = 20 rather than 4: the
+frame's left rule ran through the first letter of "peak heave", which nobody had seen
+because the rows were below the canvas. Both widths, both schemes: five labelled rows, two
+number columns, inside the frame.
+
+Evidence, and the defect restored to prove the check bites: with the old `rowY` back,
+`canvas --only dynamics-table` reports **15 of 29 elements outside, the furthest "constraint"
+by 212 units**; with the fix, 0. Over the whole site: **248 figures examined, 0 errors**.
+
+Fixed with the same check, which found them: `kernel-camber`'s last x tick label (now
+anchored inwards by `axes()` itself, so every figure's end ticks are inside),
+`slope-field`'s equation label (passed through `x(box.x1)`, a pixel coordinate mapped as a
+data value, and drawn 42,623 units off canvas — invisible since the figure was written),
+`argand-diagram`'s two outermost grid lines, `ch9-newton-raphson`'s y-axis line (its domain
+excludes zero) and `ch22-vector-translation`'s two outermost grid lines.
+
+**Still open, as item 164:** 39 labels in 31 modules overhang their frame, mostly a y-axis
+title written horizontally to the left of its axis. The check carries them as a down-only
+table, `CANVAS_DEBT`, so they are named rather than hidden and a new figure gets no allowance.
+
+## 162 — two more figures drew outside their canvas, and they decided what the 156 check may call a defect — **done**
+
+**What is wrong.** The sweep item 156 specifies — every mark's `getBBox()` transformed
+into the SVG's own user space, compared with the `viewBox` — was run over both books'
+19 routes and 21 modules on a build at HEAD (`f296ff8`). It finds three figures, not
+one:
+
+```
+dynamics-table   15 of 33 marks outside   rows at y = 300…492 in a 300 canvas
+dynamics-table   (5 rows × 3 cells; the y attributes read 304…508)
+kernel-camber     1 of 38   text "40 mm"  bbox x 516…565, viewBox width 560
+wishbone-hero     2 of 24   fig-grid rays to x = −1295, viewBox width 520
+```
+
+The `kernel-camber` one is a clipped tick label: the right-most x label loses its
+last four units, about a glyph. The `wishbone-hero` rays are **intentional** — the
+module draws each wishbone's line to the instant centre, which is off the drawing
+("so they run to the edge" is the comment) — but they run to the point itself, 1,295
+units off-canvas, and only the `viewBox` hides that.
+
+So the check has to separate the two cases or it cannot reach the "0 findings"
+item 156 asks for: **a `<text>` must be inside; a mark may cross the edge but must
+have ink inside.** A rule applied to both fails `wishbone-hero`, which is correct
+as drawn.
+
+**The fix.** Clamp the ray to the canvas edge in `wishbone-hero` (or accept the
+crossing and keep the rule above), move the `kernel-camber` tick label inside (the
+last tick's `anchor` or the domain's end), and say the text-versus-mark rule in the
+check's own docstring, because it is the difference between three findings and
+false positives.
+
+**Done means**
+
+- [ ] the "40 mm" label is fully inside its `viewBox` at 390px and 1280px, both schemes
+- [ ] the check from 156 passes every figure in every book at HEAD with the text/mark rule
+- [ ] the check fails each of the three cases when the old code is restored, and its
+      case list in `tests/test_figures.py` names them
+
+**Outcome, 2026-10-30.** The text-versus-mark rule is in `tools/src/lib/canvas.ts` and its
+cases are `canvas --cases`, which run under plain `node` in the ordinary gate.
+
+`kernel-camber`'s "40 mm" was the x-axis end tick: `axes()` centred every tick label, so the
+last one hung half of itself outside. It now anchors the first and last ticks inwards, and
+that one kit change is why `kernel-camber` measures 0 today.
+
+`wishbone-hero`'s rays are left as drawn, and deliberately: the mark rule exists so that a
+crop is not a defect. Had one rule covered texts and marks, those rays would have failed and
+the five rows of 156 would have passed.
+
+The same sweep found three more drawings with marks outside: `argand-diagram`,
+`ch9-newton-raphson` and `ch22-vector-translation` all had grid or axis lines in space the
+canvas does not show. All three are fixed. The site now reports **0 errors over 248
+figures**, and the 39 labels that remain are item 164's.
