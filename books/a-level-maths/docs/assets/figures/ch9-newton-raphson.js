@@ -168,8 +168,13 @@ export function mount(el) {
     const axes =
       `<line class="fig-grid" x1="${LEFT}" y1="${py(0).toFixed(1)}" ` +
       `x2="${RIGHT}" y2="${py(0).toFixed(1)}" stroke-width="1"></line>` +
-      `<line class="fig-grid" x1="${px(0).toFixed(1)}" y1="${TOP}" ` +
-      `x2="${px(0).toFixed(1)}" y2="${BOTTOM}" stroke-width="1"></line>`;
+      // The vertical axis is drawn only when zero is in the domain: this curve's
+      // domain starts above it, so `px(0)` is 71 units left of the drawing and the
+      // axis line was painted where no reader can see it.
+      (px(0) >= LEFT
+        ? `<line class="fig-grid" x1="${px(0).toFixed(1)}" y1="${TOP}" ` +
+          `x2="${px(0).toFixed(1)}" y2="${BOTTOM}" stroke-width="1"></line>`
+        : "");
 
     const curvePoints = [];
     for (let i = 0; i <= 240; i += 1) {

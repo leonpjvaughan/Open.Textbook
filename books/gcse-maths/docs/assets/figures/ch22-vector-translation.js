@@ -37,7 +37,10 @@ export function mount(el) {
     const px = ox + x * 28;
     const py = oy - y * 28;
     const grid = [];
-    for (let i = -5; i <= 5; i += 1) {
+    // `i` stops at 4: the grid is 9 lines each way, and at 5 the outermost horizontal
+    // line sat at y = −10 and 270 in a 260-unit drawing, so the last two were drawn
+    // outside the canvas and never seen.
+    for (let i = -4; i <= 4; i += 1) {
       grid.push(`<line x1="${ox + i * 28}" y1="20" x2="${ox + i * 28}" y2="240" class="fig-grid"></line>`);
       grid.push(`<line x1="40" y1="${oy - i * 28}" x2="320" y2="${oy - i * 28}" class="fig-grid"></line>`);
     }

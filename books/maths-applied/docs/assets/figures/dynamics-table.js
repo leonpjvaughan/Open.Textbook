@@ -20,7 +20,10 @@ import { run } from "../data/quarter-car/period.js";
 
 const WIDTH = 560;
 const HEIGHT = 300;
-const COLUMN_X = [4, 250, 410];
+// The row labels start clear of the frame's left rule at x = 12: at 4 the rule was drawn
+// through the first letter of "peak heave", which nobody had seen because the rows were
+// below the canvas.
+const COLUMN_X = [20, 250, 410];
 const HEADERS = ["quantity", "the example's own", "with your controls"];
 const ROWS = [
   { key: "peak", title: "peak heave", unit: "mm", places: 1 },
@@ -92,7 +95,12 @@ export async function mount(el) {
     });
 
     let drawing = frame;
-    const rowY = (index) => box.y0 + 34 + index * 48;
+    // The rows start at the **top** of the box and step down: `axes()` returns `y0` as
+    // the bottom edge (282 here) and `y1` as the top (30), so `box.y0 + 34` put the
+    // first row 34px below the frame and marched the rest off the canvas. That is the
+    // idiom every other module uses for a single label near the bottom *inside* the
+    // plot, which is why it read correctly and was not.
+    const rowY = (index) => box.y1 + 34 + index * 48;
     HEADERS.forEach((title, index) => {
       drawing += label({
         x: COLUMN_X[index],

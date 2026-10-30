@@ -224,8 +224,11 @@ export function mount(el) {
 
     drawing += dots([[x0, y0]], { x, y, r: 6, class: "fig-good" });
     drawing += label({
-      x: x(box.x1) - 8,
-      y: y(box.y1) + 14,
+      // `box.x1` and `box.y1` are already in pixels; passing them through `x()` and `y()`
+      // mapped a pixel coordinate as if it were a data value, and the label landed
+      // 42,623 units off the canvas — invisible, since the figure's first build.
+      x: box.x1 - 8,
+      y: box.y1 + 14,
       text: equation.label,
       size: SIZE.value,
       class: "text-ink",
