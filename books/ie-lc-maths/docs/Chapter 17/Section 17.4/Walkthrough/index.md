@@ -34,6 +34,7 @@ is the point of contact.
 ## Theorem 20: the tangent and the radius
 
 > **Theorem 20.**
+>
 > 1. Each tangent is perpendicular to the radius drawn to the point of contact.
 > 2. If $P$ lies on a circle, and a line through $P$ is perpendicular to the radius $OP$,
 >    then the line is a tangent to the circle.

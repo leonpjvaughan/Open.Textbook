@@ -167,6 +167,7 @@ $$100\times100=10000 \qquad 4\times10000$$
 So 4 m² is $40000$ cm².
 
 One metre is 100 cm, so one square metre is $100\times100=10000$ cm². Then multiply by
+
 4. Using 100 here instead of 10000 would make the answer 100 times too small.
 
 </details>

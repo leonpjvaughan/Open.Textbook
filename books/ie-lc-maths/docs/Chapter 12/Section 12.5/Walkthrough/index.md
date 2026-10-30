@@ -64,6 +64,7 @@ A formula such as $f(\theta) = a + b\sin c\theta$ changes three things, and each
 name.
 
 > **For $f(\theta) = a + b\sin c\theta$:**
+>
 > - **amplitude** $= |b|$ — how far the curve rises above and falls below its middle;
 > - **period** $= \dfrac{360^\circ}{c}$ — how long one full wave takes;
 > - **vertical shift** $= a$ — the middle line, $y = a$;

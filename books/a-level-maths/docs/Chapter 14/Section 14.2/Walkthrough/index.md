@@ -32,6 +32,7 @@ the order becomes automatic.
    X \sim \mathrm{B}(n,\ p_0),
    $$
    where $n$ is the sample size and $p_0$ is the value in $H_0$.
+
 3. Find the observed value of $X$ from the sample.
 4. Find the p-value, or compare $X$ with the critical region.
 5. Compare with $\alpha$, decide the test, and write the conclusion in the

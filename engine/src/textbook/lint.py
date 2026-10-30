@@ -139,6 +139,12 @@ def lists_without_a_blank_line(text: str):
     is the same list, not a new one. The block ends at a blank line or at a
     non-indented line that is not an item. The scan runs inside block quotes too,
     because the defect does.
+
+    A display equation is not prose either. `$$` … `$$` is one maths block however
+    many lines it spans, and its continuation lines start with `+` and `-` because
+    that is how an equation wraps: `+ \frac{1}{16}(x/4)^3` was reported as a list
+    item eight times in `a-level-maths`, and the false findings spent that book's
+    `LIST_DEBT` budget, which is where real defects were hiding.
     """
     # Front matter is YAML, not Markdown: `refs:` followed by `- A23` is a list
     # either way, and a rule about prose lists has nothing to say about it. Blanked
@@ -148,6 +154,7 @@ def lists_without_a_blank_line(text: str):
     offences = []
     in_fence = False
     in_list = False
+    in_maths = False
     for index, line in enumerate(lines):
         stripped = line.strip()
         if stripped.startswith("```"):
@@ -155,6 +162,17 @@ def lists_without_a_blank_line(text: str):
             in_list = False
             continue
         if in_fence:
+            continue
+        # A maths block, entered and left by an unpaired `$$` on a line. A line
+        # that carries both delimiters changes nothing, and a continuation line
+        # that begins `-` or `+` is arithmetic, not a list item.
+        if in_maths:
+            if stripped.count("$$") % 2:
+                in_maths = False
+            continue
+        if stripped.count("$$") % 2:
+            in_maths = True
+            in_list = False
             continue
         if not stripped:
             in_list = False
@@ -475,17 +493,13 @@ SENTENCE_DEBT: dict[str, int] = {
 #: rule was written, each with the number of pages it is spread over. Fixed like every
 #: other debt here: it may only go down, and a book at 0 stays at 0.
 #:
-#: `numerical-methods`, `maths-applied` and the statistics pages of the other four books
-#: are at 0 because the work that introduced this rule fixed them. The rest are pages
-#: outside that work's scope, queued as item 155 in `.agents/todo.md` so they are named
-#: rather than dropped.
-LIST_DEBT: dict[str, int] = {
-    "a-level-maths": 10,  # 6 pages
-    "ie-jc-maths": 7,  # 7 pages
-    "ie-lc-maths": 9,  # 7 pages
-    "ie-lc-applied-maths": 11,  # 7 pages
-    "ie-lc-physics": 7,  # 6 pages
-}
+#: It is empty, which is the state the rule is written to reach. Item 155 fixed the 35
+#: that were left, and measuring them first found nine of the original 44 were not
+#: defects at all: a wrapped display equation's continuation line begins with `+` or
+#: `-`, and the rule was reading arithmetic as a bullet. Those nine were spending
+#: `a-level-maths`'s budget of 10, so that book's real defects — two of them — were
+#: the ones the allowance was hiding.
+LIST_DEBT: dict[str, int] = {}
 
 LINK = re.compile(r"\[([^\]]+)\]\(([^)]+)\)")
 SECTION_REF = re.compile(r"\bSection (\d+\.\d+)\b")

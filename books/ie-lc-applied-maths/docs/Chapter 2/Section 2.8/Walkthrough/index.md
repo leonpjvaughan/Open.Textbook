@@ -37,6 +37,7 @@ Edsger Dijkstra's method finds the shortest distance from one start to **every**
 which is more than you asked for and exactly what makes it work.
 
 > **Dijkstra's algorithm.**
+>
 > 1. Give the start vertex a distance of 0. Give every other vertex a tentative distance
 >    of $\infty$ (unknown).
 > 2. Of the vertices not yet settled, choose the one with the smallest tentative distance.

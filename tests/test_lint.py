@@ -352,3 +352,24 @@ def test_a_list_after_a_heading_or_a_fence_is_not_reported():
 def test_front_matter_lists_are_not_prose_lists():
     text = "---\ntitle: A page\nrefs:\n- A23\n---\n\nBody.\n"
     assert lint.lists_without_a_blank_line(text) == []
+
+
+def test_display_maths_continuation_lines_are_not_list_items():
+    """A wrapped equation's `+` and `-` lines are arithmetic, not bullets.
+
+    `$$` … `$$` is one maths block. Its continuation lines start with the operator
+    that carried over, so the rule reported eight false findings in `a-level-maths`
+    — which spent that book's `LIST_DEBT` budget, the allowance real defects were
+    hiding in. Item 155's own measurement is what surfaced it.
+    """
+    text = (
+        "Substitute into the expansion:\n\n$$\n(x/4) = 2\\left[1 + \\frac{1}{2}(x/4)\n"
+        "- \\frac{1}{8}(x/4)^2\n+ \\frac{1}{16}(x/4)^3\\right]\n$$\n"
+    )
+    assert lint.lists_without_a_blank_line(text) == []
+
+
+def test_a_list_after_a_display_maths_block_still_needs_its_blank_line():
+    """Skipping maths must not swallow the line that follows it."""
+    text = "The steps are:\n\n$$\nx = 1\n$$\n- the first correction\n"
+    assert lint.lists_without_a_blank_line(text) == [6]

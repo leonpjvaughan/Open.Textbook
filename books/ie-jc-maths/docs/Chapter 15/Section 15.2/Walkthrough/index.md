@@ -33,6 +33,7 @@ The rule has two directions.
 - To a **larger** unit, **divide**. A larger unit needs fewer of them.
 
 A length of 1 m is 100 cm. The centimetre is the smaller unit, so the number is bigger:
+
 100. The metre is the larger unit, so the number is smaller: 1.
 
 ## The factors to learn
