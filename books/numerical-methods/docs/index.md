@@ -27,6 +27,7 @@ Every kind is a page. The third column is the model the kind writes down. Read
 the last column first: it says how to recognise the kind from the model in front
 of you.
 
+<!-- table: cards -->
 | Kind | What you are asking, and what comes back | The model you write down | How you know it is this one |
 |---|---|---|---|
 | [Optimisation](optimisation/index.md) | which allowed choice is best → one choice, and the price of every rule | $\min_x f(x)$ s.t. $g(x)\le0$, $h(x)=0$ | you can score a choice with a number |

@@ -89,3 +89,97 @@
   color: var(--md-default-fg-color--light);
   font-size: 0.95rem;
 }
+
+/* The nine-kinds table: the page's central artefact, and the hardest thing on it.
+ *
+ * Measured at 1280px before this: 662px wide with columns 116/184/210/142, so the
+ * recognition column — the one the page tells a reader to read first — was about 18
+ * characters and every cell wrapped to five lines in a 126px row. On a phone it was
+ * 544px inside a 358px scroll box, 34% off screen. The A–Z in this book had the same
+ * problem in 2026-10-27 and answered it with one card per method; this is the same
+ * object and the more important one, so it gets the same two answers at once.
+ *
+ * **Above 60rem, a wider column.** The cap was not the screen: `.content` is held at
+ * the 70ch prose measure, which is right for prose and wrong for a four-column table.
+ * The content column grows for this page only — its paragraphs keep their measure
+ * because `extra.css` scopes that rule to `> p, > ul, > ol, > blockquote` — and the
+ * table takes the grid column's own width, capped at 56rem.
+ *
+ * **Below 60rem, one card per kind.** `wrap_tables` puts each cell's heading on the
+ * cell as `data-label`, so a row can stack into labelled lines: the kind, then the
+ * question, the model and the recognition line, each under its own name. Nothing is
+ * off screen and no column name is lost with the header row. */
+@media (min-width: 60rem) {
+  .content:has(.table-scroll > table.table--cards) {
+    max-width: min(56rem, 100%);
+  }
+
+  /* The columns are the page's four questions, and each needs room for prose. A
+   * fixed layout gives the recognition line the width it reads at — auto layout
+   * spent it on the question column and left the column the page says to read
+   * first at 218px, two short of the 220 the item asks for. Measured at 1280px,
+   * these percentages of 56rem are 115 / 293 / 203 / 276, and the table is 887px
+   * tall against 1,308px before. */
+  .md-typeset table.table--cards {
+    table-layout: fixed;
+  }
+
+  .md-typeset table.table--cards th:nth-child(1),
+  .md-typeset table.table--cards td:nth-child(1) { width: 13%; }
+
+  .md-typeset table.table--cards th:nth-child(2),
+  .md-typeset table.table--cards td:nth-child(2) { width: 34%; }
+
+  .md-typeset table.table--cards th:nth-child(3),
+  .md-typeset table.table--cards td:nth-child(3) { width: 22%; }
+
+  .md-typeset table.table--cards th:nth-child(4),
+  .md-typeset table.table--cards td:nth-child(4) { width: 32%; }
+}
+
+@media (max-width: 60rem) {
+  .md-typeset table.table--cards,
+  .md-typeset table.table--cards tbody,
+  .md-typeset table.table--cards tr,
+  .md-typeset table.table--cards td {
+    display: block;
+    width: auto;
+  }
+
+  /* The header row is the card's labels, so it is not printed as a row of its own. */
+  .md-typeset table.table--cards thead {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    overflow: hidden;
+    clip-path: inset(50%);
+    white-space: nowrap;
+  }
+
+  .md-typeset table.table--cards tr {
+    padding: 0.65rem 0;
+    border-top: 1px solid var(--tb-rule);
+  }
+
+  .md-typeset table.table--cards tr:first-child { border-top: 0; }
+
+  .md-typeset table.table--cards td {
+    padding: 0.15rem 0;
+    border: 0;
+  }
+
+  .md-typeset table.table--cards td::before {
+    display: block;
+    content: attr(data-label);
+    color: var(--tb-ink-soft);
+    font-size: 0.78rem;
+  }
+
+  /* The kind is the card's heading: its own label would only repeat its name. */
+  .md-typeset table.table--cards td:first-child {
+    font-size: 1.02rem;
+    font-weight: 600;
+  }
+
+  .md-typeset table.table--cards td:first-child::before { content: none; }
+}

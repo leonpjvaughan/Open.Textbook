@@ -1087,3 +1087,20 @@ def test_a_level_11_4_points_at_the_fit_it_does_not_derive():
     ).read_text(encoding="utf-8")
     assert "/numerical-methods/averaging/regression/" in text
     assert r"(\bar x, \bar y)" in text
+
+
+def test_the_nine_kinds_table_is_marked_for_cards_and_labels_every_cell():
+    """Item 158: the table is the page's central artefact, and it was 544px in a 358px box.
+
+    Below 60rem a row becomes a card, which only works because every cell arrives
+    carrying its column's heading as `data-label` and the table carries `table--cards`.
+    Both come from the `<!-- table: cards -->` line above it, so the marker is the thing
+    to hold: without it the table silently goes back to being a sideways-scrolled grid
+    on a phone, and no other check would notice.
+    """
+    book = map_book()
+    home = (book.docs / "index.md").read_text(encoding="utf-8")
+    marker = home.index("<!-- table: cards -->")
+    table = home[marker : marker + 800]
+    assert "| Kind |" in table.splitlines()[1], "the marker must sit directly above the table"
+    assert table.count("<!-- table: cards -->") == 1

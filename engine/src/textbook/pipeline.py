@@ -652,7 +652,47 @@ class RenderedPage:
 
 
 
-TABLE = re.compile(r"<table\b.*?</table>", re.S | re.I)
+#: A table, and the comment that can mark it. `<!-- table: cards -->` on the line above
+#: a table says its rows are records rather than a column to compare, which is what the
+#: card layout below 60rem needs to know. Python-Markdown passes the comment through, so
+#: the marker arrives here and is consumed by this pattern instead of being printed. A
+#: class would be tidier and needs `attr_list`, which this collection measured at zero
+#: uses and does not load.
+TABLE = re.compile(
+    r"(?:(?P<marker><!--\s*table:\s*cards\s*-->)\s*)?<table\b.*?</table>", re.S | re.I
+)
+THEAD = re.compile(r"<thead\b.*?</thead>", re.S | re.I)
+CELL = re.compile(r"<th\b[^>]*>(.*?)</th>", re.S | re.I)
+TD = re.compile(r"<td\b(?P<attrs>[^>]*)>", re.I)
+TAG = re.compile(r"<[^>]+>")
+
+
+def label_cells(table: str) -> str:
+    """Give every `<td>` its column's heading as `data-label`.
+
+    A table becomes a stack of records below 60rem only if each cell can say what it
+    is: the header row scrolls away with the columns, so the label has to travel with
+    the value. Reading it from the `<th>`s rather than from a second list in the CSS
+    means the label and the heading cannot come apart.
+    """
+    head = THEAD.search(table)
+    if not head:
+        return table
+    headings = [html.unescape(TAG.sub("", cell)).strip() for cell in CELL.findall(head.group(0))]
+    if not headings:
+        return table
+    body = table[head.end():]
+    index = 0
+
+    def relabel(match: "re.Match[str]") -> str:
+        nonlocal index
+        label = headings[index % len(headings)]
+        index += 1
+        if "data-label=" in match.group("attrs"):
+            return match.group(0)
+        return f'<td{match.group("attrs")} data-label="{html.escape(label, quote=True)}">'
+
+    return table[: head.end()] + TD.sub(relabel, body)
 
 
 def wrap_tables(html_text: str) -> str:
@@ -664,6 +704,13 @@ def wrap_tables(html_text: str) -> str:
     is pushed off the right edge. That is how a reader lost the settings button.
     """
     def wrap(match: "re.Match[str]") -> str:
+        table = match.group(0)
+        if match.group("marker"):
+            # The marker is part of the match, so taking it off the front is also what
+            # stops it being printed; nothing else in the collection reads a comment.
+            table = table.replace(match.group("marker"), "", 1).lstrip()
+            table = table.replace("<table", '<table class="table--cards"', 1)
+        table = label_cells(table)
         # **Focusable, and named.** A scroll container is operable only if a keyboard
         # can reach it: Chromium 127 focuses one by itself, Safari and Firefox do not,
         # so a table that scrolls would be unreadable to a keyboard user on those
@@ -673,7 +720,7 @@ def wrap_tables(html_text: str) -> str:
         return (
             '<div class="table-scroll" tabindex="0" role="group" '
             'aria-label="Table. Scroll sideways to see every column.">'
-            f"{match.group(0)}</div>"
+            f"{table}</div>"
         )
 
     return TABLE.sub(wrap, html_text)
