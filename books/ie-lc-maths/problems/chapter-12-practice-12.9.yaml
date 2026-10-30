@@ -163,7 +163,7 @@ problems:
       equation: '2*cos(x)**2 + sin(x) = 1'
       interval: [0, '2*pi']
       answer: ['pi/2', '7*pi/6', '11*pi/6']
-    answer_text: >-
+    answer_text: |-
       The booklet gives $\cos^2\theta + \sin^2\theta = 1$, so
       $\cos^2\theta = 1 - \sin^2\theta$. Substitute this to leave only the sine:
 
@@ -212,7 +212,7 @@ problems:
             are the reference angle and 180 degrees minus it; for a negative k they are
             180 degrees plus it and 360 degrees minus it.
           concepts: [solving-equations]
-    answer_text: >-
+    answer_text: |-
       Find the **reference angle** first: the acute angle whose sine is the size of $k$.
       A calculator gives it as the inverse sine of the positive value.
 

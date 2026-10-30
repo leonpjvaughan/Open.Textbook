@@ -32,6 +32,7 @@ many left. Induction is the method that proves a statement for all of them at on
 ## The three parts
 
 > **Proof by induction.**
+>
 > 1. **Base case.** Show the statement is true for the first value, usually $n = 1$.
 > 2. **Inductive hypothesis.** Assume it is true for $n = k$, for some $k \ge 1$.
 > 3. **Inductive step.** Using that assumption, prove it is true for $n = k + 1$.

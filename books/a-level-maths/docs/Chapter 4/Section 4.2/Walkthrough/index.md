@@ -84,6 +84,7 @@ $\binom{-1}{r} = (-1)^r$.
 
 $$
 (1 - 2x)^{-1} = 1 + (-1)(-2x) + \frac{(-1)(-2)}{2}(-2x)^2
+
 + \frac{(-1)(-2)(-3)}{6}(-2x)^3 + \dots
 $$
 
@@ -123,6 +124,7 @@ Use the coefficients from Example 1 with $\frac{x}{4}$ in place of $x$:
 
 $$
 = 2\left[1 + \frac{1}{2}\left(\frac{x}{4}\right)
+
 - \frac{1}{8}\left(\frac{x}{4}\right)^2
 + \frac{1}{16}\left(\frac{x}{4}\right)^3 + \dots\right]
 $$
@@ -171,6 +173,7 @@ So
 
 $$
 (1.06)^{\frac{5}{2}} \approx 1 + \frac{5}{2}(0.06) + \frac{15}{8}(0.06)^2
+
 + \frac{5}{16}(0.06)^3.
 $$
 

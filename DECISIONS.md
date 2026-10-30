@@ -44,8 +44,8 @@ completion, because a claim that measures something else is how a gate rots:
 
 **The scope accounting, measured.** The goal's verification contract asks that the
 final diff contain only in-scope paths. Measured over the whole goal, `48fccea..HEAD`
-is 35 commits and 98 files, and eight of those paths are outside the objective's
-literal list. Each is named here rather than omitted:
+touches 98 files, and seven of them are outside the objective's literal list. Each is
+named here rather than omitted:
 
 | Path | Why it is in this work |
 |---|---|

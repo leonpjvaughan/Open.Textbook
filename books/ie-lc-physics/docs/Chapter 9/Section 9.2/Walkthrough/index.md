@@ -47,6 +47,7 @@ by exactly one wavelength. That gives the most useful equation in this chapter.
 
 > **The wave equation.**
 > $$v = f\lambda$$
+>
 > - $v$ is the wave speed, in metres per second (m/s);
 > - $f$ is the frequency, in hertz (Hz);
 > - $\lambda$ is the wavelength, in metres (m).

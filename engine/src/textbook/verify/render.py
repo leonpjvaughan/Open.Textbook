@@ -118,7 +118,16 @@ def render_problem(problem: dict, number: int) -> str:
         lines.extend(f"- {point['text']}" for point in check["points"])
     if answer:
         lines.append("")
-        lines.append(f"**Answer:** {answer}")
+        # An answer with a newline in it carries structure — a list, a display
+        # equation, a second paragraph. Putting it on the label's own line folds it
+        # back into that paragraph, which is how a four-step method arrived as one
+        # sentence with numbers in it. A single-paragraph answer stays inline.
+        if "\n" in answer:
+            lines.append("**Answer:**")
+            lines.append("")
+            lines.append(answer)
+        else:
+            lines.append(f"**Answer:** {answer}")
     return "\n".join(lines)
 
 

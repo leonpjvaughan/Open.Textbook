@@ -24,6 +24,7 @@ $$P = \frac{V^2}{R} \qquad R = \frac{V^2}{P} = \frac{12^2}{36} = 4.0\,\Omega$$
 **Step 2: the combined resistance.** The three appliances are in parallel, so
 
 $$\frac{1}{R} = \frac{1}{12} + \frac{1}{6.0} + \frac{1}{4.0} = \frac{1}{12} + \frac{2}{12}
+
 + \frac{3}{12} = \frac{6}{12} = \frac{1}{2.0}$$
 
 $$R = 2.0\,\Omega$$

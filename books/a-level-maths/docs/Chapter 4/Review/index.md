@@ -106,6 +106,7 @@ $2\frac{1}{2}$ years instead, the binomial expansion for a rational power gives
 
 $$
 (1.06)^{\frac{5}{2}} \approx 1 + \frac{5}{2}(0.06) + \frac{15}{8}(0.06)^2
+
 + \frac{5}{16}(0.06)^3 = 1.1568175\dots,
 $$
 

@@ -308,3 +308,28 @@ def test_every_bank_renders_an_answer_for_every_record():
                 continue
             missing.append(f"{path.name}:{record.get('id')}")
     assert not missing, "records that would render no answer: " + ", ".join(missing)
+
+
+def test_no_rendered_answer_has_a_list_inside_a_paragraph():
+    """W3, one layer down: the answer text is data, and a folded scalar flattens it.
+
+    `answer_text: >-` turns every single newline into a space and keeps only the
+    blank lines, so a list arrives as "... each one.\n- item ...". The renderer puts
+    the answer after `**Answer:**`, so the first line joins that paragraph, the list
+    never forms, and the reader sees three hyphens in a sentence. Measured on
+    ie-lc 7.8 and 12.9 — the last pages the site scan found doing it — and fixed
+    with a literal scalar (`|-`).
+
+    The check runs on what the renderer produces rather than on the YAML style,
+    because that is what reaches the page: a list item must start a block.
+    """
+    from textbook.lint import lists_without_a_blank_line
+    from textbook.verify.render import render_problem
+
+    broken = []
+    for bank in ALL_BANKS:
+        data = yaml.safe_load(bank.read_text(encoding="utf-8")) or {}
+        for problem in data.get("problems") or []:
+            if lists_without_a_blank_line(render_problem(problem, 1)):
+                broken.append(f"{bank.name}: {problem.get('id')}")
+    assert broken == [], "an answer renders a list inside a paragraph: " + ", ".join(broken)

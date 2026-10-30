@@ -138,7 +138,7 @@ problems:
             then work out f'' at each point: a negative value gives a local maximum, a
             positive value gives a local minimum, and zero gives no information
           concepts: [maximum-minimum]
-    answer_text: >-
+    answer_text: |-
       First solve $f'(x) = 0$ to find the stationary points. Then work out $f''$ at
       each one.
 

@@ -17,6 +17,7 @@ school. The sample is the 20 students who were asked. A sample is used because
 asking all 600 students would take too long.
 
 **Step 2. A fair choice of sample.** Number every student on the roll from 1 to
+
 600. Use a random number generator to pick 20 different numbers. Every student
 then has the same chance of being chosen, so the sample is not biased.
 

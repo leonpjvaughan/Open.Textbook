@@ -6675,7 +6675,8 @@ its header row**, and the conversion carried the number over. No test reads the 
 one entry and a method in two classes appears in both, add the test that the column sums to
 the block count, and settle the home page's label (76 entries, 97 named methods).
 
-**Done means:** the column sums to 76; a new test fails when it does not;
+**Done means:** the column sums to the number of method blocks — 77 after item 142
+added `Least-squares fit`; a new test fails when it does not;
 `uv run python -m pytest tests/test_reference_books.py -q` passes.
 
 ---
@@ -6915,3 +6916,13 @@ under budget; `grep -rn "§1\\."` links rather than names; lint and the maths-ap
 pass.
 
 **Closed (2026-10-28).** The chapter states one round-off floor: the arithmetic pages say the last bit of a double, about $10^{-16}$ m, and the structural pages say the same pose; no page says $10^{-12}$. The instant-centre figure names the car's centreline and the prose names 2.36 m from the hub. `front-corner.jpg` is 118 kB rather than 277 kB for its 352-pixel slot, the duplicated §1.6 Watch out is replaced by a link to the §1.5 depth page, sixty `§1.x` references are links, and the maths-applied titles no longer end in `— Learn`. Tests for the floor and the instant centre pass.
+
+W3, the ride-along this note did not name, is fixed and now enforced. A list needs a
+blank line before it or the parser keeps the bullet inside the paragraph above, so the
+reader sees three hyphens in a sentence: measured on 22 built pages, including the two
+`numerical-methods` class pages the review named. `lint.lists_without_a_blank_line`
+reports it, 27 Markdown lists and 19 inside block quotes were given their blank line
+(a quoted one gets `>`, so the list stays in the callout), and 4 answers whose folded
+`>-` scalar had swallowed a list were switched to `|-` with the renderer putting a
+multi-line answer in its own block. `grep` on the built site for a hyphen list inside a
+`<p>` now finds 0 pages, down from 22.

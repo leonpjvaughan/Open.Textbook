@@ -58,6 +58,7 @@ per step — Jacobi, Gauss–Seidel, a plain Krylov method — is therefore crip
 and needs as many steps as the mesh is wide in every direction.
 
 Two consequences follow:
+
 - **Multigrid is not an optimisation of another method; it is what the class
   makes available.** It moves the smooth part of the error on a coarse mesh,
   where it is not smooth at all.

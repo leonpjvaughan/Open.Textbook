@@ -318,3 +318,37 @@ def test_front_matter_is_not_a_sentence(tmp_path, monkeypatch):
     )
     findings, _ = lint_page(tmp_path, monkeypatch, text)
     assert "style:long-sentence" not in findings
+
+
+# --- a list needs a blank line before it (review W3) ----------------------------
+
+
+def test_a_list_after_prose_with_no_blank_line_is_reported():
+    """The source reads as a list; the built page shows three hyphens in a sentence.
+
+    W3: `The difficulty is:` followed straight by `- which ...` is one paragraph to
+    the Markdown parser, so the reader never sees a list.
+    """
+    text = "The difficulty is:\n- which solution you land in;\n- whether it converges.\n"
+    assert lint.lists_without_a_blank_line(text) == [2]
+
+
+def test_a_list_after_a_blank_line_is_not_reported():
+    text = "The difficulty is:\n\n- which solution you land in;\n- whether it converges.\n"
+    assert lint.lists_without_a_blank_line(text) == []
+
+
+def test_a_list_that_continues_through_its_own_items_is_not_reported():
+    """`2.` after an indented continuation is the same list, not a new block."""
+    text = "1. A prism has triangular ends. How many faces does it\n   have?\n2. A cuboid measures 3 cm by 4 cm.\n"
+    assert lint.lists_without_a_blank_line(text) == []
+
+
+def test_a_list_after_a_heading_or_a_fence_is_not_reported():
+    assert lint.lists_without_a_blank_line("## Steps\n- one\n- two\n") == []
+    assert lint.lists_without_a_blank_line("```text\nx\n```\n- one\n") == []
+
+
+def test_front_matter_lists_are_not_prose_lists():
+    text = "---\ntitle: A page\nrefs:\n- A23\n---\n\nBody.\n"
+    assert lint.lists_without_a_blank_line(text) == []

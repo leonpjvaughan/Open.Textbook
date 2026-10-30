@@ -60,6 +60,7 @@ fast.
 
 The rule holds at a point, and the point is found — usually by iteration,
 sometimes in closed form. There is no region and no time. The difficulty is:
+
 - which of the solutions you land in;
 - whether the Jacobian is invertible where you need it;
 - whether your start is inside the region where the method converges.

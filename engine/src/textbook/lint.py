@@ -107,6 +107,75 @@ def prose_paragraphs(text: str):
         yield start, " ".join(buffer)
 
 
+QUOTE = re.compile(r"^\s{0,3}>\s?")
+
+
+def _unquoted(line: str) -> str:
+    """The line with its block-quote markers removed.
+
+    A block quote is a container, and the rules inside it are Markdown's: `> - one`
+    after `> The steps are:` is the same defect as the unquoted pair, and it folds
+    into the paragraph the same way. Stripping the markers is what lets one scan
+    see both.
+    """
+    while QUOTE.match(line):
+        line = QUOTE.sub("", line, count=1)
+    return line
+
+
+def lists_without_a_blank_line(text: str):
+    """Line numbers of list items the Markdown parser will not read as a list.
+
+    A list is a block: it starts a paragraph, so the first item needs a blank line
+    before it unless the line above already ends a block (a heading, a table, a
+    fence, a directive). Without one the parser keeps the bullet inside the
+    paragraph it followed and the reader sees the hyphen — a sentence ending in a
+    colon, then three lines of dashes. That is the defect the review filed as W3,
+    and it was invisible because the source reads as a list and only the built page
+    shows what happened.
+
+    Items after the first are not reported: a list continues through its own items
+    and through their indented continuation lines, so `2.` after `   answers it.`
+    is the same list, not a new one. The block ends at a blank line or at a
+    non-indented line that is not an item. The scan runs inside block quotes too,
+    because the defect does.
+    """
+    # Front matter is YAML, not Markdown: `refs:` followed by `- A23` is a list
+    # either way, and a rule about prose lists has nothing to say about it. Blanked
+    # line for line so every finding still names the line the author has to open.
+    text = FRONT_MATTER.sub(lambda match: "\n" * match.group(0).count("\n"), text)
+    lines = [_unquoted(line) for line in text.splitlines()]
+    offences = []
+    in_fence = False
+    in_list = False
+    for index, line in enumerate(lines):
+        stripped = line.strip()
+        if stripped.startswith("```"):
+            in_fence = not in_fence
+            in_list = False
+            continue
+        if in_fence:
+            continue
+        if not stripped:
+            in_list = False
+            continue
+        if LIST_ITEM.match(line):
+            if in_list:
+                continue
+            previous = lines[index - 1] if index else ""
+            if previous.strip() and not previous.lstrip().startswith(
+                ("#", "|", "```", ":::", "<")
+            ):
+                offences.append(index + 1)
+            in_list = True
+            continue
+        # An indented line continues the item above it; anything flush left ends
+        # the list, so the next item will need its own blank line.
+        if not line.startswith((" ", "\t")):
+            in_list = False
+    return offences
+
+
 def long_sentences(text: str):
     """Yield ``(line_number, sentence)`` for each sentence over the ceiling."""
     for number, paragraph in prose_paragraphs(text):
@@ -402,6 +471,12 @@ SENTENCE_DEBT: dict[str, int] = {
     "numerical-methods": 0,
     "maths-applied": 0,
 }
+#: The lists a book still starts without a blank line, counted when the rule was
+#: written. Fixed like every other debt here: it may only go down, and a book at 0
+#: stays at 0. The count is a page-and-line list rather than a number, because the
+#: point of the rule is that each one is a defect with a line to fix.
+LIST_DEBT: dict[str, int] = {}
+
 LINK = re.compile(r"\[([^\]]+)\]\(([^)]+)\)")
 SECTION_REF = re.compile(r"\bSection (\d+\.\d+)\b")
 CHAPTER_REF = re.compile(r"\bChapter (\d+)\b")
@@ -544,6 +619,12 @@ def lint(book: books.Book, fix: bool, findings: Counter, examples: dict) -> tupl
                 note("structure:chapter-missing-anchor", rel)
             if "By the end of this chapter" not in text:
                 note("structure:chapter-missing-outcomes", rel)
+        broken_lists = lists_without_a_blank_line(text)
+        for index, line_number in enumerate(broken_lists):
+            if index < LIST_DEBT.get(book.id, 0):
+                continue
+            note("structure:list-without-blank-line", f"{rel}:{line_number}")
+
         if walkthrough and f"/{walkthrough}/" in rel_posix:
             for label, needle in (
                 ("structure:walkthrough-missing-checklist", "You should now be able to"),
