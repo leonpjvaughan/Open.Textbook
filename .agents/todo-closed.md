@@ -7420,3 +7420,32 @@ drawing slip.
 Evidence: `readout --verify` — 2 claims, 0 untrue; `canvas` — 0 findings; `audit` light and
 dark — no finding; the readout, the caption and the prose carry the same two numbers;
 `pytest tests/test_maths_applied_numbers.py tests/test_maths_applied_ladder.py` — 34 passed.
+
+## 161 — `linear-system` split its five-item list in two, with the definition of `preconditioner` in the gap — **done**
+
+**What is wrong.** The first pass's B2 fix added the `preconditioner` definition and
+put it in the middle of the list that states the five matrix situations deciding the
+method. On the built page the section is `<ul>` with one item ("Dense and small"),
+then a paragraph, then a second `<ul>` with the other four. The five items are the
+reader's own vocabulary and the most useful paragraph on the page; splitting them
+hides both.
+
+**The fix.** Move the definition above the list as a lead-in, or below it as a
+closing paragraph. One paragraph moves and the list is whole.
+
+**Done means**
+
+- [ ] the built page has one `<ul>` of five items in *What it becomes on a computer*
+- [ ] `preconditioner` is still defined on the page before the technique table
+- [ ] `python -m textbook.lint numerical-methods` is clean
+
+**Outcome, 2026-10-30.** The definition moved below the list, under a sentence that says why it
+belongs to both families: "Both families can be helped by the same idea." The five situations
+are one `<ul>` again, and `preconditioner` is defined before the technique table, where it was.
+
+The lead-in keeps its colon and now introduces five items rather than one. Nothing else on the
+page moved.
+
+Held by `test_the_linear_system_list_is_one_list_and_the_definition_is_not_in_it`, which fails
+if a blank line appears between the first and last situation — the shape the split had — and if
+the definition is back inside the list. `textbook.lint numerical-methods` clean over 31 pages.

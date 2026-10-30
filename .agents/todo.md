@@ -14,10 +14,9 @@ done-means; an item whose heading says done and whose checklist does not is the
 failure this file has had twice, so the list below, the headings and the boxes
 are checked against each other on every pass.
 
-**Every item from 79 to 160 is closed,** each with its measurement, its fix and its
-outcome in `.agents/todo-closed.md`. Item 161 is the review's last defect, from
-`research/review/maths-applied-and-numerical-methods-ii.md`, which also carries the
-design proposals it does not cover; 163 is the prose half of 154,
+**Every item from 79 to 161 is closed,** each with its measurement, its fix and its
+outcome in `.agents/todo-closed.md`. The review that filed 159–161 also carries five
+design proposals, which are not items; 163 is the prose half of 154,
 measured while closing it, and 164 is the label tail the figure check measured. A new
 item goes at the number after the last one, with its diagnosis, its fix and its own
 done-means. The
@@ -33,24 +32,6 @@ rewrites ranked in `research/pedagogy-audit/README.md`. An item in this file is 
 defect this repository can fix; those are decisions already taken.
 
 ---
-
-## 161 — `linear-system` splits its five-item list into three, with the definition of `preconditioner` in the gap
-
-**What is wrong.** The first pass's B2 fix added the `preconditioner` definition and
-put it in the middle of the list that states the five matrix situations deciding the
-method. On the built page the section is `<ul>` with one item ("Dense and small"),
-then a paragraph, then a second `<ul>` with the other four. The five items are the
-reader's own vocabulary and the most useful paragraph on the page; splitting them
-hides both.
-
-**The fix.** Move the definition above the list as a lead-in, or below it as a
-closing paragraph. One paragraph moves and the list is whole.
-
-**Done means**
-
-- [ ] the built page has one `<ul>` of five items in *What it becomes on a computer*
-- [ ] `preconditioner` is still defined on the page before the technique table
-- [ ] `python -m textbook.lint numerical-methods` is clean
 
 ## 163 — 473 display equations in page prose keep their dollars, because they share a paragraph with the text
 
