@@ -39,34 +39,42 @@ meta:
 # and an entry without one is not linkable as a class — which is why the two
 # indexes have none. That is deliberate: the directive exists to say what kind of
 # problem a page is talking about, and "see also the methods index" is not a kind.
+#
+# **One sentence, two places, and it is written here first.** The class page prints
+# the same string verbatim after "You have one of these when", so it is stored in the
+# form that reads there — lowercase initial — and the directive capitalises it for its
+# own note (`hooks/classes.py`). Before this the nine sentences existed in eighteen
+# wordings, and two of them disagreed about the class: the registry said a root's rule
+# "bends with the answer" and the page did not. A test now holds the page to the
+# registry, so the next edit has to make both.
 pages:
   - title: Optimisation
     path: optimisation/index.md
-    signature: One score, one set of choices, and you want the best one.
+    signature: you can score any candidate answer with a single number, and you want the best one.
   - title: Averaging
     path: averaging/index.md
-    signature: The answer is a distribution, or an average over what you cannot list.
+    signature: the answer is not a number but a distribution, or an average over possibilities you cannot list.
   - title: Eigenvalues
     path: eigenvalue/index.md
-    signature: You are asking which values are allowed, not what one of them is.
+    signature: you ask which values are allowed — which frequencies, which loads, which energies — rather than what any one of them is.
   - title: Linear system
     path: linear-system/index.md
-    signature: Every rule is linear, and the unknowns are a finite list.
+    signature: every rule in the model is linear in the unknowns, the unknowns are a finite list, and nothing changes with time.
   - title: Root finding
     path: root/index.md
-    signature: A rule has to hold at a point, and the rule bends with the answer.
+    signature: a rule has to hold at a point, the rule bends with the answer, and nothing changes with time.
   - title: Saddle point
     path: saddle-point/index.md
-    signature: A rule holds everywhere, and a second unknown pays for it.
+    signature: a rule has to hold everywhere, and the model pays for it with a second unknown.
   - title: Elliptic
     path: elliptic/index.md
-    signature: The answer is a value at every point, and nothing travels.
+    signature: the answer is a value at every point in a region, and nothing travels.
   - title: Parabolic
     path: parabolic/index.md
-    signature: The answer moves forward and forgets where it started.
+    signature: the answer moves forward in time and smooths as it goes, so it forgets where it started.
   - title: Hyperbolic
     path: hyperbolic/index.md
-    signature: The answer moves along paths and keeps its shape.
+    signature: information travels at a finite speed along paths, and what arrives keeps the shape of what was sent.
   # The three spine pages. They cross the nine kinds, so they sit after them and
   # before the two indexes. No `signature`: a `:::class` link is a kind of problem,
   # and "error" is not a tenth kind.

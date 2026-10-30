@@ -4,8 +4,8 @@ title: Averaging
 
 # Averaging
 
-**You have one of these when** the answer is not a number but a distribution, or
-an average over possibilities you cannot list.
+**You have one of these when** the answer is not a number but a distribution, or an
+average over possibilities you cannot list.
 
 ## What you are modelling
 

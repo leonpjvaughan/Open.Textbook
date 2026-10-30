@@ -4,8 +4,8 @@ title: Optimisation
 
 # Optimisation
 
-**You have one of these when** you can score any candidate answer with a single
-number, and you want the best one.
+**You have one of these when** you can score any candidate answer with a single number,
+and you want the best one.
 
 ## What you are modelling
 

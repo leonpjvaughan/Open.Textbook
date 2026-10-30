@@ -4,8 +4,8 @@ title: Root finding
 
 # Root finding
 
-**You have one of these when** the unknowns are a finite list, the rule is an
-equation that has to hold at a point, and nothing changes with time.
+**You have one of these when** a rule has to hold at a point, the rule bends with the
+answer, and nothing changes with time.
 
 ## What you are modelling
 

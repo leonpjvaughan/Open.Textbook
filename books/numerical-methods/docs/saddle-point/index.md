@@ -4,8 +4,8 @@ title: Saddle point
 
 # Saddle point
 
-**You have one of these when** a rule has to hold everywhere, and the model pays
-for it with a second unknown.
+**You have one of these when** a rule has to hold everywhere, and the model pays for it
+with a second unknown.
 
 ## What you are modelling
 

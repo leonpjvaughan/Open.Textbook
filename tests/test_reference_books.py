@@ -1104,3 +1104,45 @@ def test_the_nine_kinds_table_is_marked_for_cards_and_labels_every_cell():
     table = home[marker : marker + 800]
     assert "| Kind |" in table.splitlines()[1], "the marker must sit directly above the table"
     assert table.count("<!-- table: cards -->") == 1
+
+
+@pytest.mark.parametrize("slug", CLASSES)
+def test_a_class_page_prints_its_registry_signature_verbatim(slug):
+    """Item 159: nine signatures existed in eighteen wordings, and two disagreed.
+
+    The registry's `signature` is what a `:::class` link prints in another book; the
+    class page opened with the same sentence written again. `root`'s registry line said
+    the rule "bends with the answer" and its page did not, so a reader who followed the
+    link met a page that defined the class differently.
+
+    The sentence is now the registry's, verbatim, and the page wraps it after "You have
+    one of these when". Whitespace is normalised because the page wraps its lines and
+    the registry does not; nothing else about the string is allowed to differ.
+    """
+    book = map_book()
+    entry = next(page for page in book.pages if page["path"].startswith(f"{slug}/"))
+    text = " ".join((book.docs / slug / "index.md").read_text(encoding="utf-8").split())
+    signature = " ".join(str(entry["signature"]).split())
+    assert signature in text, (
+        f"{slug}'s page does not print its registry signature.\n"
+        f"  registry: {signature}\n"
+        f"  page:     {text[text.find('You have one of these when') :][:160]}"
+    )
+
+
+def test_a_one_word_edit_on_either_side_is_caught():
+    """The check above is only worth having if it fails on the edit it describes."""
+    entry = {"signature": "a rule has to hold at a point, and the rule bends with the answer."}
+    text = "**You have one of these when** a rule has to hold at a point, and the rule bends with the answer."
+    assert " ".join(entry["signature"].split()) in " ".join(text.split())
+    edited_page = text.replace("bends", "changes")
+    assert " ".join(entry["signature"].split()) not in " ".join(edited_page.split())
+
+
+def test_the_class_directive_capitalises_the_stored_signature():
+    """Stored lowercase because a page prints it after "…when"; capitalised where it
+    stands alone. The stored string is what both places compare, which is the point."""
+    from textbook.hooks import classes
+
+    html = classes.render({"title": "Root finding", "signature": "a rule bends.", "url": "/x/"})
+    assert '<p class="classlink__note">A rule bends.</p>' in html

@@ -4,8 +4,8 @@ title: Hyperbolic
 
 # Hyperbolic
 
-**You have one of these when** information travels at a finite speed along
-paths, and what arrives keeps the shape of what was sent.
+**You have one of these when** information travels at a finite speed along paths, and
+what arrives keeps the shape of what was sent.
 
 ## What you are modelling
 

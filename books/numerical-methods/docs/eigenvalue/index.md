@@ -4,9 +4,8 @@ title: Eigenvalues
 
 # Eigenvalues
 
-**You have one of these when** you ask which values are allowed — which
-frequencies, which loads, which energies, which growth rates — rather than what
-a particular one is.
+**You have one of these when** you ask which values are allowed — which frequencies,
+which loads, which energies — rather than what any one of them is.
 
 ## What you are modelling
 

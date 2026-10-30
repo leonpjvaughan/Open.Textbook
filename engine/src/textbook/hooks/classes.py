@@ -32,10 +32,21 @@ MARKER = re.compile(r"^:::[ \t]*class[ \t]+([a-z0-9-]+)[ \t]*$", re.M)
 ASK = "Kind of problem"
 
 
+def sentence(text: str) -> str:
+    """The signature with a capital, because here it stands alone.
+
+    The registry stores each signature in the form a class page prints it: straight
+    after "You have one of these when", which needs no capital. A `:::class` note is a
+    sentence of its own, so it gets one — and the *stored* string is what both the page
+    and the check compare, which is how the two wordings stop being two.
+    """
+    return text[:1].upper() + text[1:] if text else text
+
+
 def render(entry: dict) -> str:
     """The affordance: one link, and the one sentence that makes it useful."""
     title = html.escape(str(entry.get("title") or ""))
-    signature = html.escape(str(entry.get("signature") or ""))
+    signature = html.escape(sentence(str(entry.get("signature") or "")))
     return (
         f'<aside class="classlink">'
         f'<a class="classlink__link" href="{html.escape(entry["url"], quote=True)}">'
