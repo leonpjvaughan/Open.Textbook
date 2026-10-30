@@ -14,11 +14,13 @@ done-means; an item whose heading says done and whose checklist does not is the
 failure this file has had twice, so the list below, the headings and the boxes
 are checked against each other on every pass.
 
-**Every item from 79 to 153 is closed,** each with its measurement and fix in
-`.agents/todo-closed.md`. Items 154–159 are open, all from
+**Every item from 79 to 155 is closed,** each with its measurement, its fix and its
+outcome in `.agents/todo-closed.md`. Items 156–161 are the review's six defects, from
 `research/review/maths-applied-and-numerical-methods-ii.md`, which also carries the
-design proposals those six defects do not cover. A new item goes
-at the number after the last one, with its diagnosis, its fix and its own done-means. The
+design proposals those six do not cover; 162 is that review's figure measurement
+re-run, which found two figures its own section on the check did not; 163 is the
+prose half of 154, measured while closing it. A new item goes at the number after the
+last one, with its diagnosis, its fix and its own done-means. The
 *interactive-aid backlog* — which figures and interactions a book still wants — is
 `ideas.md`; it is a plan rather than a defect list, and it is written for the
 author choosing what to build next.
@@ -32,22 +34,26 @@ defect this repository can fix; those are decisions already taken.
 
 ---
 
-## 154. `dynamics-table` draws its rows below its own viewBox, so §1.6's figure is an empty frame
+## 156 — `dynamics-table` draws its rows below its own viewBox, so §1.6's figure is an empty frame
 
-**What is wrong.** `maths-applied` §1.6 mounts `dynamics-table`, and 17 of the
-figure's 22 `<text>` elements sit at y = 304…508 in a `0 0 560 300` canvas. The
-reader sees a bordered box with two rules, two floating column heads, a slider and
-a readout, while the prose under it says "Each column is an integration" and the
-caption says "Every column is one integration of the vendored kernel". There are no
-columns.
+**What is wrong.** `maths-applied` §1.6 mounts `dynamics-table`, and 15 of the
+figure's 22 `<text>` elements have a box below the frame — the five rows of three
+cells. The reader sees a bordered box with two rules, two floating column heads, a
+slider and a readout, while the prose under it says "Each column is an integration"
+and the caption says "Every column is one integration of the vendored kernel". There
+are no columns.
 
 Measured on the built page:
 
 ```
 viewBox 0 0 560 300, rendered 560×300
 textYs  [304,304,287,35,20,20,20,316,316,316,364,364,364,412,412,412,460,460,460,508,508,508]
-outside 17 of 22
+outside 15 of 22 texts (33 marks in all)
 ```
+
+The `y` attributes say 304…508; a transformed `getBBox()` says fifteen, because two
+of those attributes belong to elements inside the frame. The count the check reports
+is the one to use.
 
 **The cause is one line.** `books/maths-applied/docs/assets/figures/dynamics-table.js:95`
 reads `box.y0 + 34 + index * 48`. `axes()` returns `y0 = height - margin.bottom`
@@ -65,10 +71,12 @@ how it is painted, and none on whether it is inside its own canvas.
 
 **The fix.** `box.y1 + 34 + index * 48` (64, 112, 160, 208, 256 against a box of
 30…282), which is one line. Then make the measurement: for every `maths-figure`,
-transform each unrotated `<text>`'s and each mark's `getBBox()` into the SVG's user
-space and fail outside the `viewBox`. The transform is the whole work — a rotated
-axis label's own `getBBox` is not in the parent's space, which is why a naive
-version reports 14 false positives across these two books and exactly one true one.
+transform each element's `getBBox()` into the SVG's user space and compare it with the
+`viewBox`. Two rules, not one: **a `<text>` must be inside**, and **a mark may cross
+the edge but must have ink inside** — `wishbone-hero` draws its rays to the instant
+centre, 1,295 units off-canvas, and a single rule would fail it. The transform is the
+work — an element's own `getBBox()` is in its parent's space, which is why reading
+attributes reported one offender where there are three.
 
 **Done means**
 
@@ -76,10 +84,10 @@ version reports 14 false positives across these two books and exactly one true o
       drawing at 390px and at 1280px, in both schemes
 - [ ] a tool check fails on a figure that draws outside its `viewBox`, and its case
       list in `tests/test_figures.py` includes this defect
-- [ ] the check reports 0 findings on the whole site, and 1 when the old `rowY` is
-      restored
+- [ ] the check reports 0 findings on the whole site with the text/mark rule 162
+      states, and fails when the old `rowY` is restored
 
-## 155. On a phone the whole book is printed above every page
+## 157 — On a phone the whole book is printed above every page
 
 **What is wrong.** At 390px `shell.css:253` collapses `.layout` to one column and
 makes `.sidebar` static, so the navigation becomes the first block of every page.
@@ -102,22 +110,30 @@ width — no script and no focus trap, and `details` is already the collection's
 progressive-disclosure primitive. The summary line should carry the book's name and
 the page's own section, which is the one thing a reader 600px into a nav wants.
 
+**The mechanism has to be named, or the done-means cannot pass.** One page is built
+for every width, so CSS cannot set `open` by media query: a `<details open>` leaves
+the `h1` at 798px on a phone, and a `<details>` without `open` cannot be shown at
+desktop without something to open it. Three answers are workable — override the user
+agent's closed-content rendering at ≥60rem (the new `::details-content`, not in every
+browser), reveal a fixed drawer on `:focus-within` (the skip link is already that
+stop), or a dozen lines of script on `matchMedia`. Pick one in the fix.
+
 **Done means**
 
 - [ ] the `h1` of every route is above 300px at 390px, measured over both books
 - [ ] the drawer is one focus stop, opens with `Enter`, and is inert at ≥60rem
 - [ ] `tools check-mobile site` still reports 0 pages wider than the screen
 
-## 156. The nine-kinds table is starved at every width
+## 158 — The nine-kinds table is starved at every width
 
 **What is wrong.** The home page of `numerical-methods` says "Read the last column
 first", and that column is 142px at 1280px — about 18 characters — so each cell
 wraps to five lines and a row is 126px tall. Measured:
 
 ```
-1280px  table 662, columns 116/184/210/142, rows 98–154, table ~1,200 tall
- 390px  table 544 inside a 358 scroll box, rows 210–266, 34% off screen
-1600px  table still exactly 662 — the width is the prose measure, not the screen
+1280px  table 662 × 1,308, columns 116/184/210/142, row 126
+ 390px  table 544 inside a 358 scroll box, row 210, 34% off screen
+1600px  table still exactly 662 — `.content`'s `70ch` cap, not the screen
 ```
 
 The book's central artefact is the hardest object on its own home page, and the
@@ -128,9 +144,10 @@ it). The nine-kinds table is the same object and the more important one.
 
 **The fix.** Below 60rem, one card per kind: the kind as a linked heading, then the
 question, the model and the recognition line as three labelled lines — the
-`techniques` pattern. Above 60rem, a wide-table variant that takes the grid column
-rather than `70ch`, capped near 56rem, which takes the recognition column from
-142px to about 240px.
+`techniques` pattern. Above 60rem, a wide-table variant that escapes `.content`'s
+`max-width: var(--tb-measure)` (`engine/src/textbook/css/shell.css:172`) and takes
+the grid column instead — about 234px of headroom at 1280px — capped near 56rem,
+which takes the recognition column from 142px to about 280px.
 
 **Done means**
 
@@ -140,30 +157,7 @@ rather than `70ch`, capped near 56rem, which takes the recognition column from
       falls by a third
 - [ ] `tests/test_reference_books.py` still holds the table's rows to the registry
 
-## 157. `root` and `elliptic` render the signature's list as hyphens in a paragraph
-
-**What is wrong.** Python-Markdown needs a blank line before a list, and both
-pages omit it, so the built HTML is one `<p>` containing `The difficulty is: -
-which of the solutions you land in; - …`. On both pages the broken list sits inside
-**The signature** — the section the home page tells a reader to read first. Six
-built pages still do this, down from 22; the other four are Irish.
-
-The earlier review measured 22 and specified the rule; the fix reached 16 of them
-and missed these two.
-
-**The fix.** The blank line on both pages, plus the lint rule: a line matching
-`^\s{0,3}([-*+]|\d+\.)\s` immediately after a prose line with no blank between
-is a finding. `lint.py:62` already has the pattern and `prose_paragraphs` already
-treats a list item as structure; the rule is four lines and turns the remaining
-four defects into a build failure in the same commit.
-
-**Done means**
-
-- [ ] `grep '<p>[^<]*: - '` over `site/` prints nothing
-- [ ] a page that opens a list without a blank line fails `python -m textbook.lint`
-- [ ] `tests/test_lint.py` carries the case
-
-## 158. Nine signatures, eighteen wordings, and no check that they agree
+## 159 — Nine signatures, eighteen wordings, and no check that they agree
 
 **What is wrong.** `map.yaml` gives each class one `signature`, which `:::class`
 prints under the link in another book; each class page also opens with "**You have
@@ -186,7 +180,7 @@ clause the page needs moves into the registry.
 - [ ] `tests/test_reference_books.py` fails when one is edited and the other is not
 - [ ] the home page's nine-kinds table still matches both
 
-## 159. The comparisons both books are built on are never drawn
+## 160 — The comparisons both books are built on are never drawn
 
 **What is wrong.** `maths-applied` §1.5's answer is a comparison — the effect the
 simpler model leaves out against the tolerance the question asks for — and the same
@@ -205,61 +199,95 @@ the page imports and the crossing is a bisection over the same `compliant()` cal
 **Done means**
 
 - [ ] the figure mounts with a static frame that carries the two crossings on its own
-- [ ] both crossings are declared with `claim()` and `readout --verify` passes
+- [ ] both crossings are held by a check that can recompute them — `claim()` and
+      `readout --verify` handle closed-form arithmetic only, so this is either a new
+      interval kind in the verifier or a recompute test in
+      `tests/test_maths_applied_numbers.py`
+- [ ] the log axes are drawn by a scale the kit owns, or by an explicit `log10`
+      mapping whose ticks are relabelled
 - [ ] the prose quotes the numbers the figure prints, not a second set
 
+## 161 — `linear-system` splits its five-item list into three, with the definition of `preconditioner` in the gap
 
+**What is wrong.** The first pass's B2 fix added the `preconditioner` definition and
+put it in the middle of the list that states the five matrix situations deciding the
+method. On the built page the section is `<ul>` with one item ("Dense and small"),
+then a paragraph, then a second `<ul>` with the other four. The five items are the
+reader's own vocabulary and the most useful paragraph on the page; splitting them
+hides both.
 
-## 154 — 257 answers in the Leaving Certificate bank carry display maths a folded scalar flattened
+**The fix.** Move the definition above the list as a lead-in, or below it as a
+closing paragraph. One paragraph moves and the list is whole.
 
-**What is wrong.** `answer_text: >-` folds every single newline into a space, so a
-`$$…$$` block written under it arrives on one line and the renderer puts it after
-`**Answer:**`, inside a paragraph. The reader gets a display equation that is not
-displayed. Measured over `books/*/problems/*.yaml` on 2026-10-30: **257 answers**, all
-of them `ie-lc-maths`.
+**Done means**
 
-Same defect class as W3 (fixed in item 153): the source reads as structure and only the
-built page shows what happened. W3 was the list case, and it was found by grepping the
-built site for a hyphen inside a `<p>`; display maths has no such tell, which is why
-this was not in that sweep.
+- [ ] the built page has one `<ul>` of five items in *What it becomes on a computer*
+- [ ] `preconditioner` is still defined on the page before the technique table
+- [ ] `python -m textbook.lint numerical-methods` is clean
 
-**The fix.** Switch those scalars to `|-` so the lines survive, in the same way W3's
-four answers were fixed, and keep the text unchanged apart from the newlines. Then hold
-it: extend `test_no_rendered_answer_has_a_list_inside_a_paragraph` (or add its
-sibling) so a rendered answer whose text contains `$$` must carry it in a paragraph of
-its own, which fails today for these 257 and passes after the switch.
+## 162 — two more figures draw outside their canvas, and they decide what the 156 check may call a defect
 
-**Done means:**
+**What is wrong.** The sweep item 156 specifies — every mark's `getBBox()` transformed
+into the SVG's own user space, compared with the `viewBox` — was run over both books'
+19 routes and 21 modules on a build at HEAD (`f296ff8`). It finds three figures, not
+one:
 
-- `grep -rn 'answer_text: >-' books/*/problems/*.yaml` returns nothing that loads with
-  `$$` inside its string;
-- every affected page's built HTML contains `<math display="block">` for those
-  equations rather than an inline `<math>` inside a `<p>`;
-- the new test fails on a planted folded answer and passes on the tree;
-- `uv run python -m textbook.verify books/ie-lc-maths/problems` reports `ok` for every
-  file, `python -m textbook.lint` is clean, and `scripts/check.sh` exits 0.
+```
+dynamics-table   15 of 33 marks outside   rows at y = 300…492 in a 300 canvas
+dynamics-table   (5 rows × 3 cells; the y attributes read 304…508)
+kernel-camber     1 of 38   text "40 mm"  bbox x 516…565, viewBox width 560
+wishbone-hero     2 of 24   fig-grid rays to x = −1295, viewBox width 520
+```
 
-## 155 — 45 lists in five books still start without a blank line, and the reader sees hyphens
+The `kernel-camber` one is a clipped tick label: the right-most x label loses its
+last four units, about a glyph. The `wishbone-hero` rays are **intentional** — the
+module draws each wishbone's line to the instant centre, which is off the drawing
+("so they run to the edge" is the comment) — but they run to the point itself, 1,295
+units off-canvas, and only the `viewBox` hides that.
 
-**What is wrong.** The rule that a list item must start a block (`lint.lists_without_a_blank_line`,
-added with item 153's W3 fix) found 72 cases in the collection. The 27 in
-`numerical-methods`, `maths-applied` and the statistics pages were fixed, and so were 19
-inside block quotes. The remaining **45, across 33 pages**, are in chapters this work did
-not open, so they are grandfathered in `lint.LIST_DEBT` rather than fixed here:
-`a-level-maths` 10 in 6 pages, `ie-lc-applied-maths` 11 in 7, `ie-lc-maths` 9 in 7,
-`ie-jc-maths` 7 in 7, `ie-lc-physics` 7 in 6.
+So the check has to separate the two cases or it cannot reach the "0 findings"
+item 156 asks for: **a `<text>` must be inside; a mark may cross the edge but must
+have ink inside.** A rule applied to both fails `wishbone-hero`, which is correct
+as drawn.
 
-The reader-visible effect is the one the review measured: `… the difficulty is:` followed
-by three lines of dashes inside one paragraph, because the parser folds the bullets into
-the sentence above.
+**The fix.** Clamp the ray to the canvas edge in `wishbone-hero` (or accept the
+crossing and keep the rule above), move the `kernel-camber` tick label inside (the
+last tick's `anchor` or the domain's end), and say the text-versus-mark rule in the
+check's own docstring, because it is the difference between three findings and
+false positives.
 
-**The fix.** Run the fixer the W3 work used — insert a blank line before each item, and a
-line of `>` where the item is inside a callout so the list stays in it — over the 33
-pages, then set each book's `LIST_DEBT` entry to 0 and delete the entry.
+**Done means**
 
-**Done means:**
+- [ ] the "40 mm" label is fully inside its `viewBox` at 390px and 1280px, both schemes
+- [ ] the check from 156 passes every figure in every book at HEAD with the text/mark rule
+- [ ] the check fails each of the three cases when the old code is restored, and its
+      case list in `tests/test_figures.py` names them
 
-- `uv run python -m textbook.lint` is clean with `LIST_DEBT` empty;
-- a scan of the built site for a hyphen list inside a `<p>` returns 0 pages (measured 22
-  before item 153, 0 for the pages fixed then, and 33 pages today);
-- `scripts/check.sh` exits 0 and every affected book rebuilds with no `math-error` page.
+## 163 — 473 display equations in page prose keep their dollars, because they share a paragraph with the text
+
+**What is wrong.** Item 154 fixed this in the problem banks. Page prose has the same
+defect, and in four books. Measured on the built site after the banks were rebuilt:
+
+```
+stray `$` before `<math>`   ie-lc-maths 449   ie-lc-physics 15
+                            ie-lc-applied-maths 6   proofs 3
+```
+
+`> **The addition rule.**` followed by `> $$P(A \cup B) = \ldots$$` is one paragraph, so
+the delimiters survive, and the reader sees a dollar, the equation set on the line of
+the sentence, and a dollar. A state machine over the source finds **556** lines that
+need a blank line on one side of them — 185 before and 253 after in plain prose, 69
+before and 35 after inside block quotes, and 14 inside indented blocks.
+
+**The fix.** The rule first: `lint.display_maths_without_a_blank_line`, the maths
+sibling of `lists_without_a_blank_line`, reusing the `$$` state machine item 155 added.
+It has to exempt a display equation in a table cell, which is inline by design. Then a
+fixer over the 556 — insert a blank line, or a line carrying the quote prefix — and the
+finding is zero with no debt entry.
+
+**Done means**
+
+- [ ] the lint rule reports nothing over the collection, with no debt entry
+- [ ] a scan of the built site finds 0 pages with a bare `$` before a `<math>`
+- [ ] `tests/test_lint.py` fails when a planted `$$` line loses its blank line
+- [ ] the four affected books rebuild with no `math-error` page

@@ -6930,3 +6930,114 @@ this goal did not open — `a-level-maths` 10, `ie-lc-applied-maths` 11, `ie-lc-
 `ie-jc-maths` 7, `ie-lc-physics` 7 — and are grandfathered in `LIST_DEBT` and queued as
 item 155 rather than dropped. On the pages this work touched, a hyphen list inside a
 `<p>` is gone from the built site.
+
+## 154 — 308 Leaving Certificate answers carried display maths a folded scalar flattened — **done**
+
+**What is wrong.** `answer_text: >-` folds every single newline into a space, so a
+`$$…$$` block written under it arrives on one line and the renderer puts it after
+`**Answer:**`, inside a paragraph. The reader gets a display equation that is not
+displayed. Measured over `books/*/problems/*.yaml` on 2026-10-30: **257 answers**, all
+of them `ie-lc-maths` — the count that held on re-measurement was **308**, and the
+outcome below says which.
+
+Same defect class as W3 (fixed in item 153): the source reads as structure and only the
+built page shows what happened. W3 was the list case, and it was found by grepping the
+built site for a hyphen inside a `<p>`; display maths has no such tell, which is why
+this was not in that sweep.
+
+**The fix.** Switch those scalars to `|-` so the lines survive, in the same way W3's
+four answers were fixed, and keep the text unchanged apart from the newlines. Then hold
+it: extend `test_no_rendered_answer_has_a_list_inside_a_paragraph` (or add its
+sibling) so a rendered answer whose text contains `$$` must carry it in a paragraph of
+its own, which fails today for these 257 and passes after the switch.
+
+**Done means:**
+
+- `grep -rn 'answer_text: >-' books/*/problems/*.yaml` returns nothing that loads with
+  `$$` inside its string;
+- every affected page's built HTML contains `<math display="block">` for those
+  equations rather than an inline `<math>` inside a `<p>`;
+- the new test fails on a planted folded answer and passes on the tree;
+- `uv run python -m textbook.verify books/ie-lc-maths/problems` reports `ok` for every
+  file, `python -m textbook.lint` is clean, and `scripts/check.sh` exits 0.
+
+**Outcome, 2026-10-30.** Measured before the fix: **308** answers in **58** banks, all
+`ie-lc-maths`, holding 366 display equations — not the 257 the item was filed with. The
+tell the item said did not exist does exist: **1,205** `$<math` pairs across 248 built
+pages, one stray dollar on each side of what should have been a block.
+
+Fixed: the 308 scalars became `|-`, text identical apart from the newlines (every
+`answer_text` compared with its value at HEAD, whitespace removed); one answer
+(`chapter-10-practice-10.7`) had its equation on the same line as its sentence and
+gained a blank line; `render_problem` now treats an answer containing `$$` as
+structure, because two `chapter-08-practice-8.2` answers are a **single-line** display
+equation and had no newline for the renderer to notice; and seven
+`a-level-physics/chapter-05` answers ended `\,\Omega$$.` — a stray second dollar that
+the new check found and that nothing had seen before.
+
+Held by two tests in `tests/test_problem_bank.py`:
+`test_a_rendered_answer_puts_display_maths_in_a_block_of_its_own`, whose planted case
+fails on the defect, and `test_the_display_maths_check_catches_a_folded_answer`. The
+first was also checked against the real pipeline: flipping one bank block back to `>-`
+fails it, restoring it passes.
+
+Evidence: `textbook.verify books/ie-lc-maths/problems` → ok for 134 of 134 files;
+answer-bearing built pages carrying a stray dollar → 0 of 1,332; `ie-lc-maths` now
+holds 4,784 `display="block"` maths elements; `textbook.lint` clean; no `math-error`
+page in any rebuilt profile.
+
+**Not closed by this item, and filed as 163:** the same defect in page prose — 473 stray
+dollars in four books, measured while closing this one.
+
+## 155 — Lists in five books started without a blank line, and nine of them were arithmetic — **done**
+
+**What is wrong.** The rule that a list item must start a block (`lint.lists_without_a_blank_line`,
+added with item 153's W3 fix) found 72 cases in the collection. The 27 in
+`numerical-methods`, `maths-applied` and the statistics pages were fixed, and so were 19
+inside block quotes. The remaining **44, across 33 pages**, are in chapters this work did
+not open, so they are grandfathered in `lint.LIST_DEBT` rather than fixed here:
+`a-level-maths` 10 in 6 pages, `ie-lc-applied-maths` 11 in 7, `ie-lc-maths` 9 in 7,
+`ie-jc-maths` 7 in 7, `ie-lc-physics` 7 in 6. Measured on 2026-10-30, that leaves the
+history one short — 27 fixed and 44 left is 71, not 72 — and the 44 is the number that
+holds: it is what `lint.lists_without_a_blank_line` counts over the tree today, and
+what `LIST_DEBT` sums to.
+
+The reader-visible effect is the one the review measured: `… the difficulty is:` followed
+by three lines of dashes inside one paragraph, because the parser folds the bullets into
+the sentence above.
+
+**The fix.** Run the fixer the W3 work used — insert a blank line before each item, and a
+line of `>` where the item is inside a callout so the list stays in it — over the 33
+pages, then set each book's `LIST_DEBT` entry to 0 and delete the entry.
+
+**Done means:**
+
+- `uv run python -m textbook.lint` is clean with `LIST_DEBT` empty;
+- a scan of the built site for a hyphen list inside a `<p>` returns 0 pages (measured 22
+  before item 153, 0 for the pages fixed then, and **2** pages today:
+  `ie-lc-applied-maths §2.9`, in both profiles — the 33 is source pages, counted by
+  `lint.lists_without_a_blank_line`, not built ones)
+- `scripts/check.sh` exits 0 and every affected book rebuilds with no `math-error` page.
+
+**Outcome, 2026-10-30.** The item's 44 was the rule's count, and nine of the 44 were not
+lists at all: a wrapped display equation's continuation line begins `+` or `-`, and
+`lists_without_a_blank_line` read arithmetic as a bullet. Eight of the nine were in
+`a-level-maths`, whose `LIST_DEBT` budget was 10 — so the allowance was hiding that
+book's **two** real defects. The rule now skips a `$$` … `$$` block, and the debt
+re-measured at **35 lists on 28 pages**: `a-level-maths` 2 in 2 pages, `ie-jc-maths` 7
+in 7, `ie-lc-maths` 9 in 7, `ie-lc-applied-maths` 11 in 7, `ie-lc-physics` 6 in 5.
+
+Fixed: all 35, by inserting a blank line before each item — or a line of `>` where the
+item is inside a callout, so the list stays in the quote. `LIST_DEBT` is empty and the
+comment above it says why. The rule's new edge is held by
+`test_display_maths_continuation_lines_are_not_list_items` and
+`test_a_list_after_a_display_maths_block_still_needs_its_blank_line` in
+`tests/test_lint.py`.
+
+Evidence: `textbook.lint` clean over 2,613 pages with `LIST_DEBT` empty; the built-site
+scan for a hyphen list inside a `<p>` returns **0** pages (the 2 pages the review saw,
+`ie-lc-applied-maths §2.9` in both profiles, are among the 35); the five affected books
+rebuilt at every profile with no `math-error` page.
+
+**The 72 in the diagnosis stays one short**, as the re-measurement said it was: 44 minus
+the nine false findings is 35, which is what closed.

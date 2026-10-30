@@ -56,7 +56,7 @@ named here rather than omitted:
 | `books/a-level-maths/problems/chapter-11-practice-11.5.yaml` | The same item moved it in, with `refs: [L3]` |
 | `books/a-level-maths/problems/chapter-13-review.yaml` | Item 145: the review bank now interprets a given $r$ instead of computing it |
 | `research/review/maths-applied-and-numerical-methods.md` | The measurements items 150–153 were filed from and closed against |
-| `research/review/maths-applied-and-numerical-methods-ii.md` | The second review, which filed W3 and the items closed after it |
+| `research/review/maths-applied-and-numerical-methods-ii.md` | The second review of the two books, and the measurements items 156–161 were filed from |
 
 The remaining 90 files are inside the enumerated scope, and no file was added for a
 purpose outside the objective's five success criteria.

@@ -8,9 +8,9 @@ This is a follow-up to `research/review/maths-applied-and-numerical-methods.md`
 (the first pass, 14 items). That file is not edited: this one records which of
 its items closed, and what is left that it did not see.
 
-**Nothing was changed.** Every claim below is a command and its output, or a
-file and line I read. The two changes I would make first are in
-`.agents/todo.md` as items 154 and 155.
+**No book content was changed.** Every claim below is a command and its output, or a
+file and line I read. This document and seven items in `.agents/todo.md` are the
+only artefacts; the two changes I would make first are items 156 and 157.
 
 Evidence baseline, so that nothing here is an existing failure of a check:
 
@@ -42,7 +42,8 @@ it.
 prose.** Four things, in order of cost.
 
 1. **One figure in `maths-applied` draws its content outside its own canvas.** §1.6's
-   `dynamics-table` is an empty frame, and 17 of its 22 labels are clipped. The
+   `dynamics-table` is an empty frame, and 15 of its 22 labels are clipped — five
+   rows of three cells. Two more figures miss the edge by a little; see N1. The
    section's prose then refers to "each column" of a table the reader cannot see.
    Nothing in `tools` measures where a figure puts its ink, so this shipped and
    stayed shipped.
@@ -51,12 +52,13 @@ prose.** Four things, in order of cost.
    page starts with 614–670 px of navigation and its title is at y = 798–854.
 3. **The central artefact of `numerical-methods` is starved at every width.** The
    nine-kinds table is 662 px wide in a 1280 px window with 116/184/210/142 px
-   columns and 98–154 px rows, and on a phone it is 544 px inside a 358 px scroll
+   columns and 126 px rows, and on a phone it is 544 px inside a 358 px scroll
    box. The book opens by telling a reader to read a table's last column first, and
    that table is the hardest object on the page to read.
-4. **Two class pages still render a bullet list as hyphens inside a paragraph**, in
-   the *signature* section — the three lines that say what makes this class this
-   class.
+4. **The reader meets `stiff` in the wrong sense first.** The word is used 40 times
+   and the first use in reading order is a bush's *stiffness* on `averaging`, while
+   the numerical flag is defined once, in a table cell on the home page. `discretise`
+   is used 19 times and defined nowhere.
 
 Then, measured rather than fixed: the nine `signature` sentences exist in eighteen
 wordings, `maths-applied`'s required pages are the longer-winded ones while its
@@ -75,7 +77,7 @@ books are built on — an effect against a tolerance — is drawn nowhere.
 | B4 the round-off floor in one unit | **closed** | `tests/test_maths_applied_numbers.py:614` `test_the_roundoff_floor_is_stated_once_in_one_unit`; both pages say "the last bit of a double, about 10⁻¹⁶ m" |
 | W1 the 271 kB photograph | **closed** | `du -b` → 118,532 |
 | W2 the duplicated paragraph | **closed** | §1.6's *Watch out* now states the 0.001° comparison and nothing else |
-| W3 the bullet list rendered as hyphens | **not closed** | see N4: `root` and `elliptic` still render it; 6 pages collection-wide |
+| W3 the bullet list rendered as hyphens | **closed, both halves** | `root` and `elliptic` have the blank line; 07cd3a0f added `lint.lists_without_a_blank_line` and `LIST_DEBT`; item 155 then fixed the 35 lists those pages carried and item 154 the 308 bank answers, and a fresh scan of the built site returns **0** pages with a hyphen list inside a `<p>` |
 | W4 `0 chapters / 0 sections` | **closed** | portal card reads `29 pages`, `77 methods` |
 | W5 60 unlinked `§`-references | **mostly closed** | 59 of 64 `§1.N` now link |
 | W6 no route from a class page to the map | **closed** | 197e1fc8; every class page ends "Back to the map" |
@@ -84,38 +86,54 @@ books are built on — an effect against a tolerance — is drawn nowhere.
 | T2 no stated reading order | **open** | "Three ways in" still lists three lookups and no reading order |
 | T3 the chapter problem stated thrice | **closed** | stated once in the masthead of each section (fd4d690d) |
 
-Nine new findings follow. Six are defects with a checkable fix; three are the
-design argument the brief asks for.
+Ten findings follow. N1, N2, N3 and N9 are defects with a checkable fix. N4 is a
+defect that closed while this pass was measuring it, and is kept because it is the
+reason every number here was re-taken against a fresh build. N5 and N7 are smaller
+defects and gaps, N6 is a measurement that says where *not* to aim a fix, and N8
+and N10 are the design case the brief asks for. N1's check was then run over every
+figure in both books, and it found two more offenders than the sweep below reports;
+they are measured in N1 and filed as item 162.
 
 ---
 
 ## N1. `dynamics-table` draws its rows below its own viewBox, and no check looks
 
-**Measured, on the built page.**
+**Measured on the built pages, with the check this section proposes**: every
+element's `getBBox()` transformed into the SVG's own user space and compared with
+its `viewBox`, over the 19 routes and 22 mounts of both books.
 
 ```
-$ # maths-applied §1.6, the dynamics-table figure
-{"viewBox":"0 0 560 300","rendered":{"w":560,"h":300},
- "textYs":[304,304,287,35,20,20,20,316,316,316,364,364,364,412,412,412,
-           460,460,460,508,508,508],
- "outside":[304,304,316,316,316,364,364,364,412,412,412,460,460,460,508,508,508],
- "minY":20,"maxY":508}
+figure           outside / marks   where the ink is
+dynamics-table      15 / 33        five rows of three cells, at y = 300…512 in a
+                                   300-unit canvas
+kernel-camber        1 / 38        the last x label, "40 mm", bbox x 516…565 in 560
+wishbone-hero        2 / 24        two `fig-grid` rays drawn to x ≈ −1295 in 520
 ```
 
-**17 of the figure's 22 `<text>` elements are at y = 304…508 in a 300-unit canvas.**
-The visible result is an empty bordered box with two rules and two floating column
-heads, a slider, and a readout. The row labels — `peak heave`, `resting height`,
-`travel`, `period`, `constraint` — and every number beside them are clipped away.
+**15 of the figure's 22 `<text>` elements are outside the frame** — the five rows of
+three cells. Their `y` attributes read 304…508, which is where the old count came
+from: an attribute is not a bounding box, and two of those readings are inside the
+frame. The visible result is an empty bordered box with two rules and two floating
+column heads, a slider, and a readout. The row labels — `peak heave`, `resting
+height`, `travel`, `period`, `constraint` — and every number beside them are clipped
+away.
 
-**The cause is one line.** `assets/figures/dynamics-table.js:95`:
+**The sweep finds two more, which this section did not.** `kernel-camber`'s
+right-most x label loses its last four units, about a glyph. `wishbone-hero` draws
+each wishbone's line to the instant centre, which is off the drawing, and it draws it
+to the point 1,295 units off-canvas, leaving the `viewBox` to do the clipping —
+correct as drawn, and the reason one rule cannot cover texts and marks alike.
+
+**The cause is one line.** `books/maths-applied/docs/assets/figures/dynamics-table.js:95`:
 
 ```js
 const rowY = (index) => box.y0 + 34 + index * 48;
 ```
 
-`axes()` returns `box` with `y0 = height - margin.bottom` (the **bottom** edge, 282
-here) and `y1 = margin.top` (the top, 30) — `assets/figures/src/kit/draw.ts:470`.
-So the rows start 34 px *below* the bottom rule and march down the canvas. Every
+`axes()` returns `box` with `y0 = height - margin.bottom` and `y1 = margin.top`
+(`assets/figures/src/kit/draw.ts:470`), which for this module's `pad: { top: 30,
+bottom: 18 }` is 282 and 30 — the **bottom** edge and the top. So the rows start
+34 px *below* the bottom rule and march down the canvas. Every
 other module uses `box.y0 + 34` for a single label placed near the bottom inside
 the plot, which is why the idiom looked right and is not:
 
@@ -151,12 +169,13 @@ broken, and the page is the book's only finished section with mass in it.
 1. `rowY` steps down from the top: `box.y1 + 34 + index * 48` (64, 112, 160, 208,
    256 against a box of 30…282). One line.
 2. Add the measurement to `tools`, in the shape the other checks already have:
-   for every `maths-figure`, take each unrotated `<text>` and every mark's
-   `getBBox()`, transform it into the SVG's user space, and fail when it falls
-   outside the `viewBox`. A rotated axis label's own `getBBox` is not in the parent
-   space, which is why a naive check reports 14 false positives across these two
-   books and exactly one true one — the check has to transform, and that is the
-   whole work.
+   for every `maths-figure`, take each element's `getBBox()`, transform it into the
+   SVG's own user space, and compare it with the `viewBox`. Two rules, because the
+   measurements differ: **a `<text>` must be inside**, and **a mark may cross the
+   edge but must have ink inside** — `wishbone-hero`'s rays are the case a single
+   rule would fail. The transform is the work: an element's own `getBBox()` is in
+   its parent's space, which is why a check that reads attributes reports one
+   offender where there are three.
 3. Add the case to `tests/test_figures.py`, whose contract already pins "a new
    figure cannot repeat a defect the measurement found".
 
@@ -209,6 +228,15 @@ disclaimer), so this reuses a component a reader has already met. The summary li
 can carry the book's name and the page's own section, which is the one thing a
 reader scrolling a 600 px nav wants and cannot get.
 
+**The mechanism, which item 157 has to name.** One page is built for every width, so
+CSS cannot set `open` by media query: a `<details open>` leaves the `h1` at 798 px on
+a phone, and a `<details>` without `open` cannot be shown at desktop without
+something to open it. The three workable answers are an override of the user agent's
+closed-content rendering at ≥60 rem (the new `::details-content`, not universal), a
+fixed drawer revealed by `:focus-within` — the skip link is already that focus stop —
+or a dozen lines of script on `matchMedia`. The item should pick one, because
+without one its own done-means cannot pass.
+
 **Done means** the `h1` of `/numerical-methods/` is above 300 px at 390 px, the
 drawer is a focus stop that opens with the keyboard, and `tools check-mobile`
 still reports 0 pages wider than the screen.
@@ -221,9 +249,9 @@ still reports 0 pages wider than the screen.
 
 ```
 1280px viewport
-  table 662 × ~1,200    columns 116 / 184 / 210 / 142    rows 98–154
+  table 662 × 1,308     columns 116 / 184 / 210 / 142    row 126
 390px viewport
-  .table-scroll   358 wide, scrollWidth 544             rows 210–266
+  .table-scroll   358 wide, scrollWidth 544             row 210
   columns 115 / 113 / 203 / 104                         34% off screen
 ```
 
@@ -233,10 +261,14 @@ recognise the kind from the model in front of you." That column is 142 px at
 tall. To compare two rows, which is the only thing a table is for, a reader tracks
 across 662 px through five-line cells.
 
-And the 662 px is not a constraint of the screen. At 1280 px the window spends
-240 px on the sidebar and leaves roughly 600 px unused, and at 1600 px the table
-is still exactly 662 px (measured at both widths). The measure is `70ch` for
-prose, which is right, and the table inherits it, which is not.
+And the 662 px is not a constraint of the screen. The layout's container is 76 rem
+and the sidebar takes up to 18 of them, so at 1280 px the content column is about
+896 px and the table uses 662 of it — roughly 234 px unused, the headroom the fix
+below has to work with. At 1600 px the table is still exactly 662 px (measured at
+both widths). The cap is `.content { max-width: var(--tb-measure) }`
+(`engine/src/textbook/css/shell.css:172`), which is the right rule for prose and the
+wrong one for a table; the `70ch` measure on `> p, > ul, > ol, > blockquote`
+(`assets/stylesheets/extra.css:90`) never reaches a table at all.
 
 **This has already been solved once in this exact book, and the fix was not
 applied to the home page.** `books/numerical-methods/docs/assets/stylesheets/book-local.css`
@@ -252,11 +284,11 @@ because it is the page the book rests on.
    question, the model, and the recognition line as three labelled lines. That is
    the `techniques` pattern, already written and already measured, and it removes
    the 34% off-screen in one change.
-2. **Above 60rem, let a wide table out of the prose measure.** A `table--wide`
-   variant that takes the grid column's full width rather than 70ch, capped at
-   about 56rem, takes the recognition column from 142 px to roughly 240 px at
-   1280 px. The measure rule in `extra.css` already scopes itself to `> p, > ul,
-   > ol, > blockquote`, so cells are not the problem; the table's own width is.
+2. **Above 60rem, let a wide table out of `.content`'s measure.** The table already
+   fills its parent, and the parent is 662 px because `.content` is capped — so the
+   variant has to take the grid column (~896 px at 1280, capped near 56 rem), which
+   means a wrapper or a negative margin rather than a wider `table` rule. That takes
+   the recognition column from 142 px to roughly 280 px at 1280 px.
 3. **State the reading order on the table.** The instruction "read the last column
    first" is in prose above a table whose columns are in the opposite order. Put
    "how you know it is this one" second, or number the instruction against the
@@ -264,38 +296,44 @@ because it is the page the book rests on.
 
 ---
 
-## N4. Two class pages render the signature's list as hyphens in a paragraph
+## N4. `site/` was a stale build, and that is how a fixed defect nearly became a finding
 
-**Measured on the built pages.**
+This section originally reported a defect: `root` and `elliptic` rendered **The
+signature**'s bullet list as hyphens inside one paragraph, and, on that build, six
+pages did it. The measurement was true — of the `site/` directory that was on disk.
+It was not true of the source.
 
 ```
-/numerical-methods/root/
-  <p>The rule holds at a point, and the point is found — usually by iteration,
-     sometimes in closed form. There is no region and no time. The difficulty is:
-     - which of the solutions you land in; - whether the Jacobian is invertible
-     where you need it; - whether your start is inside the region where the method
-     converges.</p>
+$ sed -n '60,64p' books/numerical-methods/docs/root/index.md
+The rule holds at a point, and the point is found — usually by iteration,
+sometimes in closed form. There is no region and no time. The difficulty is:
 
-/numerical-methods/elliptic/
-  <p>Two consequences follow: - <strong>Multigrid is not an optimisation of
-     another method; …</strong> … - <strong>The solution is smooth even when the
-     data is not.</strong> …</p>
+- which of the solutions you land in;
+
+$ # after rebuilding both books
+$ grep '<p>[^<]*: - ' site/numerical-methods/**/index.html
+(no output — the two pages that still matched it, `ie-lc-applied-maths §2.9`, were
+ fixed with item 155's 35 lists; the scan returns 0 pages today)
 ```
 
-Six built pages still do this, down from 22: these two and four Irish ones.
+The blank line was there, `lint.lists_without_a_blank_line` and `LIST_DEBT` are in
+`lint.py`, and `.agents/todo.md` item 155 already carries the collection-wide
+remainder. The build under `site/` predated the commit that fixed it.
 
-**Why it matters more than a missing blank line.** Python-Markdown needs a blank
-line before a list, and `lint.py:62` already has the pattern to see a list item
-(`LIST_ITEM`) but nothing checks that the list is *preceded* by one. On `root` and
-`elliptic` the broken list sits inside **The signature** — the section the home
-page tells a reader to read first, and the three lines that state what makes the
-class the class. The most important paragraph on the page renders as a run-on
-sentence with hyphens in it, and the run-on also breaks the sentence-length
-measurement that would otherwise have flagged it (37 words, counted as one).
+**Why this is a finding rather than an embarrassment.** The other measurements in
+this pass were taken on the same stale build, so each was re-taken after
+`python -m textbook.pipeline --book <id> --profile <p>` rebuilt both books: the
+`dynamics-table` clipping (15 elements), the phone navigation (614–670 px) and the
+nine-kinds table (662 px at 1280, 544 in 358 at 390) are all unchanged, and the
+list defect is gone. Three survived and one did not, which is the ratio a stale
+build produces and the reason the rebuild is now in the method below.
 
-**Fix.** The blank line on both pages, and the four-line lint rule the first pass
-specified, which turns the remaining four defects into a build failure in the same
-commit.
+There is a check hiding here. `site/` is a build output and nothing says how old
+it is; `tools` measures whatever it is pointed at, so every audit in this
+collection can report a clean result for a tree that has moved on. The portal
+carries `version.json` and the pages carry a `<meta name="build">`, so the date is
+available — a one-line warning from each tool when `site/` is older than the newest
+source file would have saved this pass its one false finding.
 
 ---
 
@@ -366,7 +404,7 @@ The worst are the three hardest sections: §1.7 (21.5 words, 23% over 25), §1.2
 (20.2, 21%) and §1.6 (19.0, 20%); the chapter index is 21.7 and the Review 19.2.
 
 That is not a contract breach — the house rule is "~15–20 words, one idea each"
-and the mean is inside it — but `lint.py:114` fails only a sentence over **32**
+and the mean is inside it — but `lint.py:183` fails only a sentence over **32**
 words, so the register the contract names and the register the check enforces are
 two different things, and the tail from 25 to 32 is unpoliced. A ceiling of 25 on
 a section page, with the existing down-only ratchet, would catch the 57 sentences
@@ -393,9 +431,10 @@ averaging/index.md:21:corner whose bush stiffness is only known to within ten pe
 it means a bush's *stiffness* — the engineering noun, not the numerical flag. The
 flag itself is defined once, on the home page, inside a table cell ("the model
 contains a fast change you do not care about, and that change decides your step").
-So a reader who reads the sidebar top to bottom meets a familiar engineering word
-in its ordinary sense eleven pages before the book redefines it, and the
-redefinition is in a cell, which is the one place a definition cannot go.
+The home page comes first in the sidebar, so a reader does meet the definition before
+`averaging` — but in a table cell, the one place a definition cannot go, in a table of
+flags they are not yet looking for. The first **prose** use of the word is the
+ordinary engineering sense, eleven pages later.
 
 `discretise` is used 19 times and defined nowhere; its first use is on `averaging`
 in the sentence that explains why averaging is not a field problem.
@@ -439,7 +478,36 @@ currently invisible.
 
 ---
 
-## N9. The one comparison both books are built on is drawn nowhere
+## N9. `linear-system` splits one bullet list into three, and the paragraph between them is a definition
+
+**Measured on the built page, after a rebuild.** The page's *What it becomes on a
+computer* section opens:
+
+```
+<p>A matrix, and a choice between two families …</p>
+<ul><li>Dense and small. Factorise it …</li></ul>          ← one item
+<p>A preconditioner is a cheaper approximation M to A …</p>  ← a definition, mid-list
+<ul><li>Sparse and large …</li><li>Symmetric positive definite …</li> …</ul>
+```
+
+The list states the five matrix situations that decide the method — dense, sparse,
+SPD, symmetric indefinite, rectangular. The preconditioner paragraph was added by
+the first pass's B2 fix and landed *inside* the list, so the reader meets one item,
+a paragraph about something else, then the rest of the list. The paragraph is also
+the only definition of `preconditioner` in the book, so it cannot simply be deleted.
+
+**Why it matters.** The five-item list is the reader's own vocabulary and the most
+useful paragraph on the page: it is what the design proposal below inverts the
+techniques table *into*. Splitting it hides the most useful thing on the page behind
+the least readable layout on it — and the definition is now in a place a reader
+scanning a list will skip.
+
+**Fix.** Move the definition above the list ("Two families, and one idea that helps
+both"), or below it as a closing paragraph. One paragraph moves; the list is whole.
+
+---
+
+## N10. The one comparison both books are built on is drawn nowhere
 
 `maths-applied` §1.5 is the chapter's centre, and its answer is a comparison: the
 effect a simpler model leaves out, against the tolerance the question asks for.
@@ -475,6 +543,16 @@ answers, 1.8 MN/m and 0.2 MN/m, and the nine-times gap is a distance on the page
 Nothing in the prose changes; the numbers already exist in the model the page
 imports, and the crossing is found by bisection over the same `compliant()` call
 the existing figure uses.
+
+**Two constraints on that figure, both from the kit rather than the maths.** `claim()`
+declares closed-form arithmetic — `python -m textbook.working` evaluates the
+expression at the stated values (`engine/src/textbook/verify/working.py:76`) — and no
+figure in the collection declares a root, so the two crossings cannot be verified the
+way every other figure's numbers are; either the verifier gains an interval kind or a
+recompute test in `tests/test_maths_applied_numbers.py` holds them. And the kit has no
+logarithmic scale (`Math.log10` appears only in tick formatting), so the log axes are
+either a new scale in `assets/figures/src/kit/draw.ts` or an explicit `log10` mapping
+in the module with the ticks relabelled.
 
 **The same shape is missing in `numerical-methods`, once.** `elliptic` says "needs
 as many steps as the mesh is wide in every direction", `step-limit` counts steps
@@ -648,9 +726,15 @@ is for.
 - `node tools/dist/cli.js screenshot site /tmp/shots …` for six routes, then a
   Playwright script of my own over both books' built routes at 390 and 1280 px for
   the nav, table, heading and page-height measurements. The figure sweep transforms
-  no labels: it reads each `<text>`'s own `y` attribute and skips every text with a
-  `transform`, which is why it reports one true positive (17 elements) instead of
-  fourteen.
+  every element's `getBBox()` into the SVG's own user space before comparing it with
+  the `viewBox` — the check N1 asks for — and reports three figures: `dynamics-table`
+  15 marks, `kernel-camber` 1, `wishbone-hero` 2.
+- **Then `uv run python -m textbook.pipeline --book numerical-methods --profile
+  all` and `--book maths-applied --profile book`, and every measurement re-taken.**
+  The `site/` tree that was on disk did not contain a fix that had already landed in
+  the source, and one finding (N4) did not survive. This is not a footnote: `tools`
+  measures whatever directory it is pointed at, and a stale build is a clean report
+  about a tree that has moved on.
 - A sentence and readability pass over every page in both books, twice. The first
   pass counted table rows as sentences and put the class pages at grade 12.3; the
   second removes table rows, headings, code, maths and directives, keeps list
