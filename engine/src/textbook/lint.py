@@ -194,6 +194,81 @@ def lists_without_a_blank_line(text: str):
     return offences
 
 
+def display_maths_without_a_blank_line(text: str):
+    """Line numbers of display equations that share a paragraph with the prose.
+
+    `$$…$$` is a block, so it starts a paragraph, so it needs a blank line above it
+    unless the line above already ends one. Without it the maths hook leaves the
+    delimiters in the sentence and the reader sees a dollar, the equation set on the
+    line, and a dollar: 473 of them across the collection on 2026-10-30, in four
+    books, because nothing looked.
+
+    Three shapes are reported, and they are one defect:
+
+    * a `$$` line with prose directly above it;
+    * a closing `$$` with prose directly below it;
+    * a `$$…$$` in the middle of a sentence, which no blank line can fix — the
+      equation has to be given its own paragraph.
+
+    A line inside a block quote is read with the markers stripped, because a list or a
+    display block inside `>` is the same block. A fenced code block is skipped, and so
+    is a table row: `| $$x$$ |` is a cell, and a cell is not prose.
+    """
+    text = FRONT_MATTER.sub(lambda match: "\n" * match.group(0).count("\n"), text)
+    raw = text.splitlines()
+    lines = []
+    for line in raw:
+        content = _unquoted(line)
+        # `> $$x$$` is a block at the start of its line; `>    $$x$$` is not. Removing
+        # the marker leaves the space that followed it, so one space is taken off —
+        # only when the line really was quoted.
+        if line is not content and content.startswith(" ") and not line.startswith((" ", "\t")):
+            content = content[1:]
+        lines.append(content)
+    offences = []
+    in_fence = False
+    in_maths = False
+    for index, line in enumerate(lines):
+        stripped = line.strip()
+        if stripped.startswith("```"):
+            in_fence = not in_fence
+            continue
+        if in_fence or "$$" not in stripped or stripped.startswith("|"):
+            continue
+        # **Count the delimiters.** A line that is `$$` on its own is the opening of a
+        # multi-line block, not a whole equation, and reading "starts and ends with"
+        # reported every line of every block — 7,386 findings on the first run.
+        delimiters = stripped.count("$$")
+        if in_maths:
+            if delimiters % 2:
+                in_maths = False
+                if index + 1 < len(lines) and lines[index + 1].strip():
+                    offences.append(index + 2)
+            continue
+        if not stripped.startswith("$$") and not stripped.endswith("$$"):
+            # Mid-sentence, which is a different repair: no blank line helps here.
+            offences.append(index + 1)
+            continue
+        if not stripped.startswith("$$") and stripped.endswith("$$"):
+            # Text before the equation on the same line: a label with its maths after
+            # it. A blank line does not separate them, so it is the same defect.
+            offences.append(index + 1)
+            continue
+        if line != line.lstrip(" \t"):
+            # An indented `$$` is not a block to the maths hook, whatever is around it.
+            offences.append(index + 1)
+            continue
+        if index and lines[index - 1].strip():
+            offences.append(index + 1)
+        if delimiters % 2 == 0:
+            # A whole equation on one line: the line below needs its own blank too.
+            if index + 1 < len(lines) and lines[index + 1].strip():
+                offences.append(index + 2)
+        else:
+            in_maths = True
+    return offences
+
+
 def long_sentences(text: str):
     """Yield ``(line_number, sentence)`` for each sentence over the ceiling."""
     for number, paragraph in prose_paragraphs(text):
@@ -648,6 +723,8 @@ def lint(book: books.Book, fix: bool, findings: Counter, examples: dict) -> tupl
             if index < LIST_DEBT.get(book.id, 0):
                 continue
             note("structure:list-without-blank-line", f"{rel}:{line_number}")
+        for line_number in display_maths_without_a_blank_line(text):
+            note("structure:display-maths-without-blank-line", f"{rel}:{line_number}")
 
         if walkthrough and f"/{walkthrough}/" in rel_posix:
             for label, needle in (

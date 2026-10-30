@@ -373,3 +373,32 @@ def test_a_list_after_a_display_maths_block_still_needs_its_blank_line():
     """Skipping maths must not swallow the line that follows it."""
     text = "The steps are:\n\n$$\nx = 1\n$$\n- the first correction\n"
     assert lint.lists_without_a_blank_line(text) == [6]
+
+
+def test_a_display_equation_that_shares_a_paragraph_is_reported():
+    """Item 163: 473 of them across the collection, in four books, and nothing looked.
+
+    `$$…$$` is a block, so it starts a paragraph. Without a blank line the maths hook
+    leaves the delimiters in the sentence, and the reader sees a dollar, the equation
+    set on the line, and a dollar.
+    """
+    assert lint.display_maths_without_a_blank_line("The rule is:\n$$a = b$$\n") == [2]
+    assert lint.display_maths_without_a_blank_line("The rule is:\n\n$$a = b$$\n\nfine.\n") == []
+    assert lint.display_maths_without_a_blank_line("$$a = b$$\nfrom it.\n") == [2]
+
+
+def test_the_display_maths_rule_reads_a_multi_line_block_and_a_quote():
+    """A block opened with `$$` alone is not a whole equation, and `>` is a container.
+
+    Reading "starts and ends with `$$`" reported every line of every multi-line block —
+    7,386 findings on the first run — and stripping a quote marker leaves the space that
+    followed it, which read as indentation.
+    """
+    multi = "Text.\n\n$$\na = b\n$$\n\nAfter.\n"
+    assert lint.display_maths_without_a_blank_line(multi) == []
+    quoted = "> **A rule.**\n>\n> $$a = b$$\n"
+    assert lint.display_maths_without_a_blank_line(quoted) == []
+    quoted_joined = "> **A rule.** $$a = b$$\n"
+    assert lint.display_maths_without_a_blank_line(quoted_joined) == [1]
+    indented = "Text.\n\n  $$a = b$$\n"
+    assert lint.display_maths_without_a_blank_line(indented) == [3]
