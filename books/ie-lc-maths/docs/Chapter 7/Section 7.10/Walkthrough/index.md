@@ -26,7 +26,10 @@ growth, decay and waves.
 The number $e \approx 2.718$ is chosen so that the exponential curve $y = e^x$ has a special
 property: its gradient at every point equals its height there.
 
-> **The exponential derivative.** $$\frac{d}{dx}\left(e^x\right) = e^x.$$
+> **The exponential derivative.**
+>
+>
+> $$\frac{d}{dx}\left(e^x\right) = e^x.$$
 
 The chain rule extends this to any constant multiple of $x$ in the exponent.
 
@@ -50,7 +53,10 @@ The derivative is negative, so the curve falls, which matches the negative expon
 
 For a base $a$ that is not $e$, the derivative brings a logarithm of the base.
 
-> **Base $a$.** $$\frac{d}{dx}\left(a^x\right) = a^x \ln a.$$
+> **Base $a$.**
+>
+>
+> $$\frac{d}{dx}\left(a^x\right) = a^x \ln a.$$
 
 **Example 3.** Differentiate $y = 2^x$.
 
@@ -66,6 +72,8 @@ the gradient follows the shape of $\cos x$. As you move along $y = \cos x$, the 
 follows the shape of $-\sin x$.
 
 > **Trigonometric derivatives.**
+>
+>
 > $$\frac{d}{dx}\left(\sin x\right) = \cos x, \qquad
 > \frac{d}{dx}\left(\cos x\right) = -\sin x.$$
 

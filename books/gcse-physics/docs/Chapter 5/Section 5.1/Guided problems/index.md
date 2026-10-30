@@ -68,6 +68,7 @@ $$
         &= 3.0\,\text{m}
 \end{aligned}
 $$
+
 </details>
 
 **2.** A radar transmitter sends microwaves at 10 GHz. Calculate their
@@ -98,6 +99,7 @@ $$
         &= 3.0\,\text{cm}
 \end{aligned}
 $$
+
 </details>
 
 **3.** A detector measures infrared radiation with a frequency of
@@ -129,6 +131,7 @@ $$
         &= 5.0\,\mu\text{m}
 \end{aligned}
 $$
+
 </details>
 
 **4.** Place these four groups in order of increasing wavelength: gamma rays,

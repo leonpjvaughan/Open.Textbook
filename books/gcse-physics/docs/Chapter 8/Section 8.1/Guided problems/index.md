@@ -68,6 +68,7 @@ $$
      &= 800\,\text{kg/m}^3
 \end{aligned}
 $$
+
 </details>
 
 **2.** A block of concrete has a density of $2400\,\text{kg/m}^3$ and a volume
@@ -96,6 +97,7 @@ m &= \rho V \\
   &= 600\,\text{kg}
 \end{aligned}
 $$
+
 </details>
 
 **3.** A bottle holds $1.2\,\text{kg}$ of water. The density of water is
@@ -125,6 +127,7 @@ V &= \frac{m}{\rho} \\
   &= 1.2 \times 10^{-3}\,\text{m}^3
 \end{aligned}
 $$
+
 </details>
 
 **4.** A stone has a mass of $64.8\,\text{g}$. It is lowered into a measuring

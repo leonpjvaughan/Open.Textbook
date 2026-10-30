@@ -59,7 +59,11 @@ $$P(A') = 1 - 0.4 = 0.6$$
 ## Combining events
 
 > **The addition rule.**
+>
+>
 > $$P(A \cup B) = P(A) + P(B) - P(A \cap B)$$
+>
+>
 >
 > When $A$ and $B$ are mutually exclusive, $P(A \cap B) = 0$, so
 > $P(A \cup B) = P(A) + P(B)$.

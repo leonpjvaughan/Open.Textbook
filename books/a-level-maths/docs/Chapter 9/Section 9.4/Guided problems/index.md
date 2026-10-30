@@ -59,6 +59,7 @@ $$
 \int_0^2 x^2\, dx \approx \frac{0.5}{2}\Bigl[0 + 4 + 2(0.25 + 1 + 2.25)\Bigr]
 = 0.25(4 + 7) = 2.75.
 $$
+
 </details>
 
 **2.** Find the exact value of $\displaystyle\int_0^2 x^2\, dx$, and state whether

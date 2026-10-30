@@ -165,6 +165,7 @@ Let $h \to 0$. The terms $3xh$ and $h^2$ vanish:
 $$
 f'(x) = 3x^2 + 1.
 $$
+
 </details>
 
 **5.** A student differentiates $f(x) = x^2$ like this:

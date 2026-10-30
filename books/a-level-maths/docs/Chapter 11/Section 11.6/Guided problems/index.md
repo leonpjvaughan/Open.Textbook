@@ -66,6 +66,7 @@ The interquartile range is
 $$
 \text{IQR} = 11.5 - 6.5 = 5.
 $$
+
 </details>
 
 **2.** For the data in question 1, find the two fences and decide whether 30 is

@@ -89,6 +89,8 @@ move away.
 
 > **The inverse square law.** For a point source, the irradiance falls with the
 > square of the distance from the source.
+>
+>
 > $$I \propto \frac{1}{d^2}$$
 
 Double the distance and the irradiance falls to a quarter. Treble the distance

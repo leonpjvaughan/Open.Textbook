@@ -43,7 +43,11 @@ At the critical angle the angle of refraction is 90°, so $\sin r = 1$. Putting 
 into Snell's law gives a very short relationship.
 
 > **The critical angle.**
+>
+>
 > $$\sin C = \frac{1}{n} \qquad \text{or} \qquad n = \frac{1}{\sin C}$$
+>
+>
 > $C$ is measured inside the denser medium, from the normal.
 > $n$ is the refractive index of the denser medium.
 

@@ -215,6 +215,7 @@ F &= B I l \\
   &= 0.24\,\text{N}
 \end{aligned}
 $$
+
 </details>
 
 **8.** The force on a wire is 0.60 N. The wire is 0.50 m long and sits at right
@@ -244,5 +245,6 @@ I &= \frac{F}{B l} \\
   &= 4.0\,\text{A}
 \end{aligned}
 $$
+
 </details>
 <!-- /tier:h -->

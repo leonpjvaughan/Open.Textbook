@@ -88,6 +88,7 @@ For the $\mathbf{k}$ row, work out $-1 + 4$.
 $$
 \mathbf{a} + \mathbf{b} = (1 + 2)\mathbf{i} + (2 - 3)\mathbf{j} + (-1 + 4)\mathbf{k} = 3\mathbf{i} - \mathbf{j} + 3\mathbf{k}.
 $$
+
 </details>
 
 **3.** Multiply $\mathbf{a} = 2\mathbf{i} - 3\mathbf{j}$ by $4$.
@@ -141,6 +142,7 @@ $3\mathbf{b} = 9\mathbf{i} - 3\mathbf{j}$. Now add matching components.
 $$
 2\mathbf{a} + 3\mathbf{b} = (2\mathbf{i} + 4\mathbf{j}) + (9\mathbf{i} - 3\mathbf{j}) = 11\mathbf{i} + \mathbf{j}.
 $$
+
 </details>
 
 **5.** For $\mathbf{a} = 2\mathbf{i} - \mathbf{j}$ and
@@ -168,6 +170,7 @@ $2\mathbf{b} = 2\mathbf{i} + 6\mathbf{j}$, so $-2\mathbf{b} = -2\mathbf{i} - 6\m
 $$
 3\mathbf{a} - 2\mathbf{b} = (6\mathbf{i} - 3\mathbf{j}) + (-2\mathbf{i} - 6\mathbf{j}) = 4\mathbf{i} - 9\mathbf{j}.
 $$
+
 </details>
 
 **6.** Two forces $\mathbf{F}_1 = 5\mathbf{i} + 2\mathbf{j}$ N and
@@ -232,6 +235,7 @@ $$
 \qquad
 \mathbf{C} = -(3\mathbf{i} + 2\mathbf{j}) = -3\mathbf{i} - 2\mathbf{j} \text{ N}.
 $$
+
 </details>
 
 **8.** A ship sails displacement $6\mathbf{i} - 2\mathbf{j}$ km, then
@@ -264,4 +268,5 @@ $$
 $$
 \text{distance} = \sqrt{4^2 + 3^2} = \sqrt{25} = 5 \text{ km}.
 $$
+
 </details>

@@ -146,6 +146,7 @@ f'(1) = 4,
 \qquad
 \left(f^{-1}\right)'(2) = \frac{1}{4}.
 $$
+
 </details>
 
 **5.** The function $f(x) = x^5$ has inverse $f^{-1}(y) = y^{1/5}$. Find

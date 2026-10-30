@@ -44,7 +44,11 @@ The test statistic counts how many standard errors the sample mean lies from the
 mean:
 
 > **The one-sample $z$-test.**
+>
+>
 > $$z = \frac{\bar{x} - \mu}{\sigma / \sqrt{n}}$$
+>
+>
 > where $\bar{x}$ is the sample mean, $\mu$ the claimed mean, $\sigma$ the population
 > standard deviation and $n$ the sample size.
 > This is the formula in the formulae and tables booklet.

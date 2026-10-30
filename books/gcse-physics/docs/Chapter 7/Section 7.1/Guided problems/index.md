@@ -239,4 +239,5 @@ a &= \frac{F}{m} \\
   &= 4.0\,\text{m/s}^2
 \end{aligned}
 $$
+
 </details>

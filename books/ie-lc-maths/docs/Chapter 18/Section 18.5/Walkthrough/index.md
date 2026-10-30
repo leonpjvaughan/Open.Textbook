@@ -38,6 +38,8 @@ The length formula squares every component and adds. With three components, add 
 squares.
 
 > **Length of a three-dimensional vector.**
+>
+>
 > $$\left|\begin{pmatrix} x \\ y \\ z \end{pmatrix}\right| = \sqrt{x^2 + y^2 + z^2}$$
 
 This is Pythagoras' theorem used twice: once across the base, and again with the height.
@@ -82,6 +84,8 @@ three products.
 > **The dot product in three dimensions.** For
 > $\mathbf{a} = \begin{pmatrix} a_1 \\ a_2 \\ a_3 \end{pmatrix}$ and
 > $\mathbf{b} = \begin{pmatrix} b_1 \\ b_2 \\ b_3 \end{pmatrix}$,
+>
+>
 > $$\mathbf{a} \cdot \mathbf{b} = a_1 b_1 + a_2 b_2 + a_3 b_3$$
 
 All the properties from Section 18.3 still hold, including

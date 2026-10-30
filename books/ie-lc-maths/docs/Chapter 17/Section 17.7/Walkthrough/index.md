@@ -81,10 +81,12 @@ The angle in a semicircle follows from Theorem 19 in two lines.
 
 **Proof.** The points $B$, $O$ and $C$ lie on one line, because $BC$ is a diameter. So the
 angle $\angle BOC$ at the centre is the straight angle, and
+
 $$|\angle BOC| = 180^\circ.$$
 
 The angle $\angle BAC$ stands on the same arc $BC$, so by Theorem 19 it is half of the
 angle at the centre:
+
 $$|\angle BAC| = \tfrac12 \times 180^\circ = 90^\circ. \qquad \blacksquare$$
 
 ## Proof by contradiction

@@ -150,6 +150,7 @@ So
 $$
 x^3 - 3x^2 - 4x + 12 = (x - 2)(x - 3)(x + 2).
 $$
+
 </details>
 
 **5.** Find the values of $k$ for which $x - 1$ is a factor of

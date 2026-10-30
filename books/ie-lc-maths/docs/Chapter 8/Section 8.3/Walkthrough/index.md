@@ -44,6 +44,8 @@ the reverse of differentiation, and it is the whole content of the next result.
 ## The fundamental theorem of calculus
 
 > **The fundamental theorem of calculus.** If $F$ is any antiderivative of $f$, then
+>
+>
 > $$\int_a^b f(x)\,dx = F(b) - F(a).$$
 
 The theorem says that to find an area, you do not need to add strips. You find an

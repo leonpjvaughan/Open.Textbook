@@ -33,6 +33,7 @@ quadrilateral into the two triangles $ABC$ and $ACD$.
 The angles of each triangle add to $180^\circ$, by Theorem 4. The six angles of the two
 triangles are the four angles of the quadrilateral, with the two parts of $\angle A$ and
 the two parts of $\angle C$ counted separately. Adding the two triangles gives
+
 $$|\angle A| + |\angle B| + |\angle C| + |\angle D| = 180^\circ + 180^\circ = 360^\circ.
 \quad \blacksquare$$
 
@@ -47,9 +48,11 @@ A true statement can have more than one valid converse. Theorem 9 has two.
 $|\angle B| = |\angle D|$.
 
 The four angles add to $360^\circ$, so
+
 $$|\angle A| + |\angle B| + |\angle C| + |\angle D| = 360^\circ.$$
 
 Substitute the two equalities:
+
 $$2|\angle A| + 2|\angle B| = 360^\circ, \qquad |\angle A| + |\angle B| = 180^\circ.$$
 
 The angles $\angle A$ and $\angle B$ lie on the same side of the transversal $AB$, between
@@ -118,6 +121,7 @@ The sides $AD$ and $BC$ are opposite sides of the parallelogram, so $|AD| = |BC|
 Theorem 9.
 
 The triangles $ADE$ and $CBE$ have two equal angles and the side between them equal, so
+
 $$\triangle ADE \cong \triangle CBE \quad \text{by ASA.}$$
 
 Therefore $|AE| = |EC|$ and $|DE| = |EB|$. The point $E$ is the midpoint of both
@@ -178,6 +182,7 @@ $|BE| = 4$ cm, find $|EC|$ and $|ED|$.
 
 The diagonals bisect one another, by Theorem 10. So $E$ is the midpoint of both
 diagonals:
+
 $$|EC| = |AE| = 5 \text{ cm}, \qquad |ED| = |BE| = 4 \text{ cm}.$$
 
 **Example 5.** A quadrilateral has diagonals of $10$ cm and $8$ cm that bisect one

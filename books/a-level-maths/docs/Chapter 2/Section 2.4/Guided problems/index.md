@@ -93,6 +93,7 @@ So $(x + 3)^2 = 7$, and $x + 3 = \pm\sqrt{7}$. Therefore
 $$
 x = -3 \pm \sqrt{7}.
 $$
+
 </details>
 
 **3.** Solve $3x^2 - 5x - 2 = 0$ by the formula.

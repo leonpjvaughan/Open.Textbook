@@ -43,6 +43,7 @@ the right angle is the **hypotenuse**, and it is the longest side.
 
 **Proof.** The three angles of a triangle add to $180^\circ$, by Theorem 4. One of them
 is $90^\circ$, so the other two add to
+
 $$180^\circ - 90^\circ = 90^\circ. \quad \blacksquare$$
 
 Two angles that add to $90^\circ$ are called **complementary**.
@@ -111,6 +112,7 @@ it is the same distance from $A$ as from $B$.
 acute angle.
 
 The two acute angles add to $90^\circ$.
+
 $$90^\circ - 35^\circ = 55^\circ$$
 
 **Example 2.** A line $l$ is perpendicular to a line $m$, and a line $n$ is also
@@ -123,6 +125,7 @@ they might be two different lines, but they never meet unless they are the same 
 $AB$ at $M$. Find $|AM|$ and the angle between the perpendicular bisector and $AB$.
 
 The perpendicular bisector passes through the midpoint, so
+
 $$|AM| = \frac{18}{2} = 9 \text{ cm}.$$
 
 It is perpendicular to $AB$, so the angle between them is $90^\circ$.
@@ -137,6 +140,7 @@ Property 2, $P$ lies on the perpendicular bisector of $[AB]$.
 each acute angle.
 
 The two acute angles add to $90^\circ$, and they are equal, so each is
+
 $$90^\circ \div 2 = 45^\circ.$$
 
 > **Watch out.** Two lines that cross are perpendicular only when the angle between them

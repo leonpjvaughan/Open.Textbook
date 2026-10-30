@@ -129,9 +129,12 @@ it lands about $35.35$ m away.
 Answer two questions about other angles.
 
 - At what other angle does the ball have the same range?
-  $$90^\circ - 30^\circ = \underline{\hspace{2cm}}$$
+
+$$90^\circ - 30^\circ = \underline{\hspace{2cm}}$$
+
 - At what angle is the range greatest, and what is that range?
-  $$R_{\max} = \frac{u^2}{g} = \frac{400}{9.8} = \underline{\hspace{2cm}}\,\text{m}$$
+
+$$R_{\max} = \frac{u^2}{g} = \frac{400}{9.8} = \underline{\hspace{2cm}}\,\text{m}$$
 
 The other angle is $60^\circ$, and the greatest range is about $40.82$ m at
 $45^\circ$. The Review brings the whole problem together.

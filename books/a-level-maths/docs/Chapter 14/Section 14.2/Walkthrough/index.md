@@ -28,9 +28,11 @@ the order becomes automatic.
    significance level $\alpha$.
 2. State the model for the test statistic under $H_0$. For a proportion the model
    is
-   $$
+
+$$
    X \sim \mathrm{B}(n,\ p_0),
-   $$
+$$
+
    where $n$ is the sample size and $p_0$ is the value in $H_0$.
 
 3. Find the observed value of $X$ from the sample.

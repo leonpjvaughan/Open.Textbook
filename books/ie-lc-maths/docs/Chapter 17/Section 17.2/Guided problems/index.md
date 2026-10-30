@@ -182,6 +182,7 @@ Let $BC$ be a diameter and let $A$ be another point of the circle. The angle at 
 standing on the arc $BC$ is the straight angle along the diameter, which is $180^\circ$.
 
 By Theorem 19, the angle at the circle is half the angle at the centre:
+
 $$|\angle BAC| = 180^\circ \div 2 = 90^\circ.$$
 
 So every angle in a semicircle is a right angle.

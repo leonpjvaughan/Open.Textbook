@@ -165,6 +165,7 @@ $$
 $$
 |\mathbf{F}_3| = \sqrt{1^2 + (-6)^2} = \sqrt{37} \approx 6.08 \text{ N}.
 $$
+
 </details>
 
 **5.** A particle starts at position vector $\mathbf{r}_0 = \mathbf{i} + 2\mathbf{j}$
@@ -199,6 +200,7 @@ The position is $(11, 17)$ m. The distance from the origin is
 $$
 |\mathbf{r}| = \sqrt{11^2 + 17^2} = \sqrt{121 + 289} = \sqrt{410} \approx 20.2 \text{ m}.
 $$
+
 </details>
 
 **6.** A boat moves at $4\mathbf{i}$ m/s through still water. A current flows at

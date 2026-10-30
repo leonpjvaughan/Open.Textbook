@@ -14,9 +14,10 @@ done-means; an item whose heading says done and whose checklist does not is the
 failure this file has had twice, so the list below, the headings and the boxes
 are checked against each other on every pass.
 
-**Every item from 79 to 161 is closed,** each with its measurement, its fix and its
-outcome in `.agents/todo-closed.md`. The review that filed 159–161 also carries five
-design proposals, which are not items; 163 is the prose half of 154,
+**Every item from 79 to 163 is closed,** each with its measurement, its fix and its
+outcome in `.agents/todo-closed.md`, except 164, which the figure check measured and
+carries in a debt table. The review that filed 159–161 also carries five design
+proposals, which are not items; 163 is the prose half of 154,
 measured while closing it, and 164 is the label tail the figure check measured. A new
 item goes at the number after the last one, with its diagnosis, its fix and its own
 done-means. The
@@ -32,35 +33,6 @@ rewrites ranked in `research/pedagogy-audit/README.md`. An item in this file is 
 defect this repository can fix; those are decisions already taken.
 
 ---
-
-## 163 — 473 display equations in page prose keep their dollars, because they share a paragraph with the text
-
-**What is wrong.** Item 154 fixed this in the problem banks. Page prose has the same
-defect, and in four books. Measured on the built site after the banks were rebuilt:
-
-```
-stray `$` before `<math>`   ie-lc-maths 449   ie-lc-physics 15
-                            ie-lc-applied-maths 6   proofs 3
-```
-
-`> **The addition rule.**` followed by `> $$P(A \cup B) = \ldots$$` is one paragraph, so
-the delimiters survive, and the reader sees a dollar, the equation set on the line of
-the sentence, and a dollar. A state machine over the source finds **556** lines that
-need a blank line on one side of them — 185 before and 253 after in plain prose, 69
-before and 35 after inside block quotes, and 14 inside indented blocks.
-
-**The fix.** The rule first: `lint.display_maths_without_a_blank_line`, the maths
-sibling of `lists_without_a_blank_line`, reusing the `$$` state machine item 155 added.
-It has to exempt a display equation in a table cell, which is inline by design. Then a
-fixer over the 556 — insert a blank line, or a line carrying the quote prefix — and the
-finding is zero with no debt entry.
-
-**Done means**
-
-- [ ] the lint rule reports nothing over the collection, with no debt entry
-- [ ] a scan of the built site finds 0 pages with a bare `$` before a `<math>`
-- [ ] `tests/test_lint.py` fails when a planted `$$` line loses its blank line
-- [ ] the four affected books rebuild with no `math-error` page
 
 ## 164 — 39 labels in 31 figures overhang their frame, mostly a y-axis title written the wrong way round
 

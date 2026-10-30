@@ -31,7 +31,10 @@ the main ones come from, and then uses them.
 
 ## The Pythagorean identity
 
-> **Pythagoras' identity.** $$\cos^2A + \sin^2A = 1$$
+> **Pythagoras' identity.**
+>
+>
+> $$\cos^2A + \sin^2A = 1$$
 
 **Why it is true.** On the unit circle, the point at angle $A$ is $(\cos A, \sin A)$. The
 distance from the origin to that point is the radius, which is $1$. By Pythagoras'
@@ -67,7 +70,10 @@ $$1 + \tan^2A = \sec^2A$$
 
 The formula for $\cos(A - B)$ is the one the others are built from.
 
-> **The cosine of a difference.** $$\cos(A - B) = \cos A\cos B + \sin A\sin B$$
+> **The cosine of a difference.**
+>
+>
+> $$\cos(A - B) = \cos A\cos B + \sin A\sin B$$
 
 **Why it is true.** Take two points on the unit circle: $P$ at angle $A$ and $Q$ at angle
 $B$, so $P = (\cos A, \sin A)$ and $Q = (\cos B, \sin B)$.
@@ -102,7 +108,10 @@ $$\cos(A - B) = \cos A\cos B + \sin A\sin B$$
 Now replace $B$ with $-B$. The booklet gives $\cos(-B) = \cos B$ and
 $\sin(-B) = -\sin B$, so
 
-> **The cosine of a sum.** $$\cos(A + B) = \cos A\cos B - \sin A\sin B$$
+> **The cosine of a sum.**
+>
+>
+> $$\cos(A + B) = \cos A\cos B - \sin A\sin B$$
 
 The sign flips, and that is the only change.
 
@@ -116,7 +125,10 @@ $\sin(90^\circ - A) = \cos A$:
 
 $$\sin(A + B) = \cos(90^\circ - A)\cos B + \sin(90^\circ - A)\sin B = \sin A\cos B + \cos A\sin B$$
 
-> **The sine of a sum.** $$\sin(A + B) = \sin A\cos B + \cos A\sin B$$
+> **The sine of a sum.**
+>
+>
+> $$\sin(A + B) = \sin A\cos B + \cos A\sin B$$
 
 Replacing $B$ with $-B$ gives the difference form:
 

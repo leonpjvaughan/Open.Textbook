@@ -97,6 +97,7 @@ Q &= It \\
   &= 720\,\text{C}
 \end{aligned}
 $$
+
 </details>
 
 **3.** Describe the job of the live wire, the neutral wire and the earth wire

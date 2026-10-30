@@ -46,7 +46,11 @@ A wave travels at a steady speed through a given medium. In one period it moves 
 by exactly one wavelength. That gives the most useful equation in this chapter.
 
 > **The wave equation.**
+>
+>
 > $$v = f\lambda$$
+>
+>
 >
 > - $v$ is the wave speed, in metres per second (m/s);
 > - $f$ is the frequency, in hertz (Hz);

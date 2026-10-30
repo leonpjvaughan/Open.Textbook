@@ -38,7 +38,11 @@ measured from the normal, not from the surface.
   normal.
 
 > **The law of reflection.** The angle of incidence equals the angle of reflection:
+>
+>
 > $$i = r$$
+>
+>
 > The incident ray, the reflected ray and the normal all lie in the same plane.
 
 The law holds for every wave and for every surface, whether the surface is a mirror,

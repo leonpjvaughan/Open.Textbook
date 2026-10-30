@@ -101,9 +101,11 @@ The exterior angle also equals the interior opposite angle.
 <summary>Full working</summary>
 
 The interior angle and the exterior angle add to $180^\circ$, so
+
 $$|\angle ABC| = 180^\circ - 124^\circ = 56^\circ.$$
 
 The exterior angle equals the interior opposite angle, so
+
 $$|\angle ADC| = 124^\circ.$$
 
 Check with Corollary 5: $56 + 124 = 180$. Correct.
@@ -129,6 +131,7 @@ Both opposite pairs must sum to $180^\circ$.
 <summary>Full working</summary>
 
 The first and third angles are opposite:
+
 $$88 + 75 = 163 \neq 180.$$
 
 So the quadrilateral is not cyclic. The other pair gives $92 + 105 = 197$, which is also

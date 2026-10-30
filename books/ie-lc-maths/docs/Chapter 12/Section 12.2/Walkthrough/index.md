@@ -25,7 +25,11 @@ whether a triangle contains a right angle.
 
 > **Pythagoras' theorem.** In a right triangle, the square on the hypotenuse equals the
 > sum of the squares on the other two sides.
+>
+>
 > $$a^2 + b^2 = c^2$$
+>
+>
 > where $c$ is the hypotenuse and $a$ and $b$ are the other two sides.
 
 The hypotenuse is the side opposite the right angle, and it is always the longest side.

@@ -27,6 +27,8 @@ vectors and returns a single number. The number is a scalar, not a vector.
 
 > **The dot product.** For $\mathbf{a} = \begin{pmatrix} a_1 \\ a_2 \end{pmatrix}$ and
 > $\mathbf{b} = \begin{pmatrix} b_1 \\ b_2 \end{pmatrix}$,
+>
+>
 > $$\mathbf{a} \cdot \mathbf{b} = a_1 b_1 + a_2 b_2$$
 
 Multiply the matching components, then add the two products. The answer is a single
@@ -65,6 +67,8 @@ The dot product carries the angle between the two vectors as well as their lengt
 
 > **The angle formula.** If $\theta$ is the angle between the non-zero vectors
 > $\mathbf{a}$ and $\mathbf{b}$, then
+>
+>
 > $$\mathbf{a} \cdot \mathbf{b} = |\mathbf{a}|\,|\mathbf{b}|\cos\theta$$
 
 **Why it is true.** Take the two vectors from a common point, and join their ends. The

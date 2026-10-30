@@ -88,6 +88,7 @@ $$
 \text{acceleration} = \frac{\text{velocity}}{\text{time}} =
 \frac{\text{m/s}}{\text{s}} = \text{m/s}^2 = \text{m s}^{-2}.
 $$
+
 </details>
 
 **3.** Convert $4.5$ km to metres, and $60$ cm to metres.
@@ -115,6 +116,7 @@ $$
 \qquad
 60 \text{ cm} = 60 \div 100 = 0.6 \text{ m}.
 $$
+
 </details>
 
 **4.** Convert $54$ km/h to m/s.
@@ -140,6 +142,7 @@ Work out $54 \times 5$ first, then divide by $18$.
 $$
 54 \times \frac{5}{18} = \frac{270}{18} = 15 \text{ m/s}.
 $$
+
 </details>
 
 **5.** Find the weight of a mass of $12$ kg. Take $g = 9.8$ m/s$^2$.
@@ -164,6 +167,7 @@ Substitute $m = 12$ and $g = 9.8$ into $W = mg$.
 $$
 W = mg = 12 \times 9.8 = 117.6 \text{ N}.
 $$
+
 </details>
 
 **6.** Find the moment of a force of $15$ N acting at a perpendicular distance
@@ -191,6 +195,7 @@ together as N m.
 $$
 \text{moment} = 15 \times 0.3 = 4.5 \text{ N m}.
 $$
+
 </details>
 
 **7.** A force of $24$ N acts on a mass of $6$ kg. Find the acceleration, and

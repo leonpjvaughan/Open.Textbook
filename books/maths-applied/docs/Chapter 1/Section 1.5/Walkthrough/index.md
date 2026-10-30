@@ -120,8 +120,8 @@ Now the tolerance. A tenth of a degree can be asked of two different things:
 
 :::figure tolerance-crossing
 
-Two curves, one rule. Each curve is the effect the rigid model leaves out, as a
-function of how stiff the bush is: one for the wheel's angle at rest, one for the
+Two curves, one rule. Each curve is the effect the rigid model leaves out, plotted
+against how stiff the bush is. One is the wheel's angle at rest. The other is the
 change of that angle over the travel. The dashed rule is the tenth of a degree the
 question asks for, and where a curve crosses it is the stiffness that answers the
 question. The two crossings are the two answers, and the distance between them on the

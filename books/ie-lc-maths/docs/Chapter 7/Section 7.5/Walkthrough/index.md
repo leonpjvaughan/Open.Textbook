@@ -36,6 +36,8 @@ Give the inner function a name, $u$. Then $y$ is a function of $u$, and $u$ is a
 $x$. The chain rule links the three rates.
 
 > **The chain rule.** If $y$ is a function of $u$, and $u$ is a function of $x$, then
+>
+>
 > $$\frac{dy}{dx} = \frac{dy}{du} \times \frac{du}{dx}.$$
 
 The rates multiply. If $y$ changes twice as fast as $u$, and $u$ changes three times as fast

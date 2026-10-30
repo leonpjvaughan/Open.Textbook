@@ -172,6 +172,7 @@ meets $AB$ at its midpoint.
 **Example 1.** Bisect an angle of $90^\circ$. What is each part?
 
 Construction 1 gives two equal parts:
+
 $$90^\circ \div 2 = 45^\circ.$$
 
 **Example 2.** A segment has length $21$ cm. It is divided into three equal parts by
@@ -184,6 +185,7 @@ Find the four angles.
 
 The first bisection gives two angles of $30^\circ$. The second bisection gives four angles
 of
+
 $$30^\circ \div 2 = 15^\circ.$$
 
 **Example 4.** A student constructs a perpendicular bisector but changes the compass

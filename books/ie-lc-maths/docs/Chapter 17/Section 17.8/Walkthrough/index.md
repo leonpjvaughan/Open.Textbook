@@ -68,9 +68,11 @@ of a pair of corresponding sides. The triangles lie on opposite sides of $P$, so
 factor is negative, and the image is turned through a half-turn about $P$.
 
 For the matching order $A \to D$, the scale factor $k$ is
+
 $$k = -\frac{|PD|}{|PA|}.$$
 
 The same factor takes $C$ to $B$, because
+
 $$\frac{|PB|}{|PC|} = \frac{|PD|}{|PA|},$$
 
 which is the crossing-chords rule rearranged. That is the enlargement link between the two
@@ -82,6 +84,7 @@ results: the equal products are the equal scale factors.
 $|PB| = 8$ cm and $|PC| = 4$ cm, find $|PD|$.
 
 Use the crossing-chords rule:
+
 $$6 \times 8 = 4 \times |PD|$$
 
 $$48 = 4|PD|$$
@@ -102,6 +105,7 @@ with $|PA| = 4$ cm. The other chord has one part $|PC| = 6$ cm. Find its other p
 $|PD|$.
 
 The two parts of $AB$ are $4$ cm and $13 - 4 = 9$ cm.
+
 $$4 \times 9 = 6 \times |PD|$$
 
 $$36 = 6|PD|$$
@@ -112,6 +116,7 @@ $$|PD| = 6 \text{ cm}.$$
 takes the triangle $APC$ to the triangle $DPB$.
 
 The matching vertex of $A$ is $D$, so the scale factor is
+
 $$k = -\frac{|PD|}{|PA|} = -\frac{12}{6} = -2.$$
 
 The image is twice as far from $P$ as the object, and on the other side of $P$. The side
@@ -128,6 +133,7 @@ $PC$ maps to $PB$, and $4 \times 2 = 8$ cm, which agrees with Example 1.
 
 Back to the chapter problem. Two straight lead bars $AB$ and $CD$ cross at a point $P$
 inside the window. The mason measures three of the four parts:
+
 $$|PA| = 6 \text{ cm}, \qquad |PB| = 8 \text{ cm}, \qquad |PC| = 4 \text{ cm}.$$
 
 1. Name the two similar triangles, and give the two pairs of equal angles that make them

@@ -137,6 +137,7 @@ m &= \frac{F}{a} \\
   &= 500\,\text{kg}
 \end{aligned}
 $$
+
 <!-- /tier:h -->
 
 ## 4. Newton's third law

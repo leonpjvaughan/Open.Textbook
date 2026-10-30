@@ -52,6 +52,7 @@ The gate is $24$ m along $AB$, so $|AG| = 24$ m and $|GB| = 36$ m. The dividing 
 the gate is parallel to $BC$.
 
 By Theorem 12, it cuts the opposite side $DC$ in the same ratio:
+
 $$|DH| : |HC| = 24 : 36 = 2 : 3.$$
 
 So $|DH| = 24$ m and $|HC| = 36$ m. The fence is parallel to $BC$, and the two parallel
@@ -62,7 +63,9 @@ The two parts are rectangles:
 $$24 \times 25 = 600 \text{ m}^2, \qquad 36 \times 25 = 900 \text{ m}^2.$$
 
 The ratio of the two areas is
+
 $$\frac{600}{900} = \frac{2}{3},$$
+
 which is the same as the ratio of the two parts of the side. That is the check the chapter
 problem asked for.
 

@@ -112,6 +112,7 @@ $\alpha = \pi - \dfrac{\pi}{3}$.
 $$
 -\cos\theta + \sqrt{3}\sin\theta = 2\cos\left(\theta - \frac{2\pi}{3}\right).
 $$
+
 </details>
 
 **4.** Solve $3\cos\theta + 4\sin\theta = 2$ for $0 \le \theta < 2\pi$.

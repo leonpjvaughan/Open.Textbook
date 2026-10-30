@@ -165,6 +165,7 @@ Swap the letters:
 $$
 f^{-1}(x) = \frac{3x + 1}{x - 2}, \qquad x \neq 2.
 $$
+
 </details>
 
 **5.** Show that $f(x) = x^2$ has no inverse on the whole real line, and find the
@@ -200,6 +201,7 @@ $x = \sqrt{y}$, and swapping the letters gives
 $$
 f^{-1}(x) = \sqrt{x}, \qquad x \geq 0.
 $$
+
 </details>
 
 **6.** The function $g(x) = \sqrt{x - 1}$ is defined for $x \geq 1$. Find its
@@ -234,4 +236,5 @@ $g(x) \geq 0$. For $x = 10$:
 $$
 g(10) = \sqrt{10 - 1} = \sqrt{9} = 3.
 $$
+
 </details>

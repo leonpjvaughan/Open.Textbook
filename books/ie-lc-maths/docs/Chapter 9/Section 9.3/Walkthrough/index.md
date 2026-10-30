@@ -55,7 +55,11 @@ term $45$. Taking a square root always gives two answers.
 ## The sum of a geometric series
 
 > **The sum of a geometric series.** The sum of the first $n$ terms is written $S_n$:
+>
+>
 > $$S_n = \frac{a(r^n - 1)}{r - 1} = \frac{a(1 - r^n)}{1 - r}$$
+>
+>
 >
 > The two forms are the same; the second is often easier when $r < 1$.
 

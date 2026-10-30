@@ -61,6 +61,7 @@ s &= v t \\
   &= 9.0\,\text{m}
 \end{aligned}
 $$
+
 </details>
 
 **2.** A car travels at 20 m/s. The driver's reaction time is 0.60 s and the
@@ -91,6 +92,7 @@ $$ s = v t = 20 \times 0.60 = 12\,\text{m} $$
 Stopping distance:
 
 $$ \text{stopping distance} = 12 + 35 = 47\,\text{m} $$
+
 </details>
 
 **3.** A car travels at 12 m/s and stops in a distance of 18 m. Calculate the
@@ -156,6 +158,7 @@ $$
 The deceleration is $6.0\,\text{m/s}^2$. The braking force is
 
 $$ F = m a = 900 \times 6.0 = 5400\,\text{N} = 5.4 \times 10^3\,\text{N} $$
+
 </details>
 <!-- /tier:h -->
 

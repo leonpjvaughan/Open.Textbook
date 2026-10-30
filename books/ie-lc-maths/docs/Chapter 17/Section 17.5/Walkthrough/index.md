@@ -53,9 +53,11 @@ Let the perpendicular bisectors of $AB$ and of $AC$ meet at $O$. The perpendicul
 bisectors are not parallel, because $AB$ and $AC$ meet at $A$. So the point $O$ exists.
 
 The point $O$ is on the perpendicular bisector of $AB$, so
+
 $$|OA| = |OB|.$$
 
 The point $O$ is on the perpendicular bisector of $AC$, so
+
 $$|OA| = |OC|.$$
 
 The two right-hand sides are equal, so $|OB| = |OC|$. That makes $O$ a point on the
@@ -94,6 +96,7 @@ parallel to $BA$ and half its length, by the midpoint theorem.
 
 The triangles $GAB$ and $GMN$ are similar. The angle at $G$ is common, and the angles at
 $A$ and at $M$ are equal because $AB$ is parallel to $MN$. The ratio of the sides is
+
 $$|AB| \div |MN| = 2,$$
 
 so $|GA| = 2|GM|$. The centroid divides each median in the ratio $2:1$, with the longer
@@ -151,9 +154,11 @@ The sides $AB$ and $AC$ lie along the axes, so they are perpendicular, and the a
 $A$ is a right angle. The hypotenuse is $BC$.
 
 The midpoint of $BC$ is
+
 $$\left(\frac{8+0}{2}, \frac{0+6}{2}\right) = (4,3).$$
 
 So the circumcentre is $(4,3)$. The circumradius is half of $|BC|$:
+
 $$|BC| = \sqrt{8^2 + 6^2} = \sqrt{100} = 10,$$
 
 so the circumradius is $5$.
@@ -171,11 +176,13 @@ the $8$ cm side.
 the incircle.
 
 The area of the right-angled triangle is
+
 $$\tfrac12 \times 6 \times 8 = 24 \text{ cm}^2.$$
 
 Join the incentre to each vertex. The triangle is split into three triangles, each with
 height equal to the inradius $r$ and base equal to one side. Their areas add to the whole
 area:
+
 $$\tfrac12 r (6 + 8 + 10) = 24.$$
 
 $$12r = 24$$

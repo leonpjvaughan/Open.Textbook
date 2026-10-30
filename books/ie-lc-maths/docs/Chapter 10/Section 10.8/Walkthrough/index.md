@@ -32,6 +32,8 @@ has a **binomial distribution**.
 > **The binomial distribution.** A random variable $X$ has the binomial distribution
 > $B(n, p)$ when there are $n$ independent trials, each with the same probability $p$ of
 > success. Then
+>
+>
 > $$P(X = r) = \binom{n}{r} p^r (1-p)^{n-r}$$
 
 The binomial coefficient $\dbinom{n}{r}$ counts the ways to choose which $r$ of the $n$

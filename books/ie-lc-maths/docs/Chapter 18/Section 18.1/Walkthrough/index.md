@@ -73,6 +73,8 @@ The two components are at right angles, so they are the two shorter sides of a r
 triangle. Pythagoras' theorem gives the length.
 
 > **Length of a vector.** For $\mathbf{a} = \begin{pmatrix} x \\ y \end{pmatrix}$,
+>
+>
 > $$|\mathbf{a}| = \sqrt{x^2 + y^2}$$
 
 The length is never negative, and it is zero only for the **zero vector**

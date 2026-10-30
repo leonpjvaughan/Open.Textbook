@@ -104,6 +104,7 @@ V_{2.0} &= 1.0 \times 2.0 = 2.0\,\text{V} \\
 V_{4.0} &= 1.0 \times 4.0 = 4.0\,\text{V}
 \end{aligned}
 $$
+
 </details>
 
 **3.** An 8.0 $\Omega$ resistor and a 24 $\Omega$ resistor are connected in

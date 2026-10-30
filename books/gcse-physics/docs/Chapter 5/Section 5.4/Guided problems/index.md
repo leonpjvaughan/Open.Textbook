@@ -118,6 +118,7 @@ f &= \frac{c}{\lambda} \\
   &= 7.5 \times 10^{14}\,\text{Hz}
 \end{aligned}
 $$
+
 </details>
 
 **4.** Explain why white light spreads into a spectrum when it passes through a

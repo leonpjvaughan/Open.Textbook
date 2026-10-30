@@ -208,9 +208,11 @@ If the two diagonals have the same midpoint, they bisect one another.
 <summary>Full working</summary>
 
 Midpoint of $AC$:
+
 $$\left(\frac{1 + 4}{2}, \frac{1 + 6}{2}\right) = (2.5, 3.5).$$
 
 Midpoint of $BD$:
+
 $$\left(\frac{5 + 0}{2}, \frac{2 + 5}{2}\right) = (2.5, 3.5).$$
 
 The two diagonals have the same midpoint, so they bisect one another. By Proposition 6,

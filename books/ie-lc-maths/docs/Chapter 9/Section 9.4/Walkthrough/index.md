@@ -34,7 +34,11 @@ the total settles down. When $|r| \ge 1$, the terms do not shrink, so the total 
 settle.
 
 > **The sum to infinity.** If $|r| < 1$, the geometric series has a sum to infinity
+>
+>
 > $$S_\infty = \frac{a}{1 - r}$$
+>
+>
 > If $|r| \ge 1$, it has no finite sum.
 
 **Example 1.** Find the sum to infinity of $8 + 4 + 2 + \dots$

@@ -61,6 +61,7 @@ v &= f \lambda \\
   &= 0.60\,\text{m/s}
 \end{aligned}
 $$
+
 </details>
 
 **2.** A sound wave in air has a frequency of 155 Hz. The speed of sound in air
@@ -90,6 +91,7 @@ v &= f \lambda \\
   &= 2.0\,\text{m}
 \end{aligned}
 $$
+
 </details>
 
 **3.** A wave travels along a rope at 15 m/s. The wavelength is 3.0 m. Calculate
@@ -119,6 +121,7 @@ f &= \frac{v}{\lambda} \\
   &= 5.0\,\text{Hz}
 \end{aligned}
 $$
+
 </details>
 
 **4.** A wave has a frequency of 2.0 Hz. Calculate its period.
@@ -145,6 +148,7 @@ T &= \frac{1}{f} \\
   &= 0.50\,\text{s}
 \end{aligned}
 $$
+
 </details>
 
 **5.** A wave travels at 1200 m/s with a frequency of 400 Hz. Calculate the
@@ -172,6 +176,7 @@ $$
   &= 3.0\,\text{m}
 \end{aligned}
 $$
+
 </details>
 
 **6.** Twenty waves pass a point in 5.0 s. Calculate the frequency of the waves.

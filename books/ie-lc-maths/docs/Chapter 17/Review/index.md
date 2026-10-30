@@ -50,6 +50,7 @@ Corollary 4, and the angle at $A$ is the angle in a semicircle. Either route giv
 $$|\angle BAC| = 90^\circ.$$
 
 The other two angles follow from the angle sum of a triangle:
+
 $$|\angle ABC| + |\angle ACB| = 90^\circ.$$
 
 The centre $O$ is the circumcentre of the triangle, because $BC$ is a diameter and the

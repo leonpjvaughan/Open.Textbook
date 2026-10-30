@@ -62,6 +62,7 @@ F &= m a \\
   &= 4.5 \times 10^3\,\text{N}
 \end{aligned}
 $$
+
 </details>
 
 **2.** A resultant force of 90 N gives an object an acceleration of
@@ -89,6 +90,7 @@ m &= \frac{F}{a} \\
   &= 15\,\text{kg}
 \end{aligned}
 $$
+
 </details>
 
 **3.** A resultant force of 200 N acts on a trolley of mass 50 kg. Calculate the
@@ -116,6 +118,7 @@ a &= \frac{F}{m} \\
   &= 4.0\,\text{m/s}^2
 \end{aligned}
 $$
+
 </details>
 
 **4.** A car travels along a straight road at a steady 15 m/s. Explain why the

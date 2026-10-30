@@ -65,6 +65,7 @@ $$
 $$
 \text{vertical} = 70\sin 25^\circ \approx 29.58 \text{ N}.
 $$
+
 </details>
 
 **2.** A weight of $200$ N acts on a body on a slope of $20^\circ$. Find the
@@ -97,6 +98,7 @@ $$
 $$
 \text{perpendicular} = 200\cos 20^\circ \approx 187.94 \text{ N}.
 $$
+
 </details>
 
 **3.** A block of mass $10$ kg rests on a smooth slope of $30^\circ$. A light
@@ -128,6 +130,7 @@ $$
 $$
 R = 98\cos 30^\circ = 49\sqrt{3} \approx 84.87 \text{ N}.
 $$
+
 </details>
 
 **4.** A particle of weight $60$ N hangs in equilibrium from two light strings
@@ -225,6 +228,7 @@ $$
 $$
 R = 196\cos 30^\circ + P\sin 30^\circ \approx 169.74 + 56.58 = 226.32 \text{ N}.
 $$
+
 </details>
 
 **7.** A particle is in equilibrium under four forces. Three of them are
@@ -282,4 +286,5 @@ $$
 $$
 \text{thrust} = T\cos 40^\circ \approx 58.40 \text{ N}.
 $$
+
 </details>

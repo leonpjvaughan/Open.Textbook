@@ -26,7 +26,12 @@ sides and an angle or all three sides.
 The area of a triangle is $\tfrac12 \times \text{base} \times \text{height}$. The height
 is not always given, but trigonometry can find it.
 
-> **The area of a triangle.** $$A = \tfrac12 ab\sin C$$
+> **The area of a triangle.**
+>
+>
+> $$A = \tfrac12 ab\sin C$$
+>
+>
 > where $A$ is the area, $a$ and $b$ are two sides and $C$ is the angle **between** them.
 > The Formulae and Tables booklet gives this formula.
 
@@ -55,6 +60,8 @@ $$A = \tfrac12 \times 6 \times 6 \times \sin 60^\circ = 18 \times \frac{\sqrt{3}
 When you know all three sides and no angle, the booklet gives **Heron's formula**.
 
 > **Heron's formula.** Let $s = \dfrac{a + b + c}{2}$, the semi-perimeter. Then
+>
+>
 > $$A = \sqrt{s(s-a)(s-b)(s-c)}$$
 
 **Example 3.** A triangle has sides $5$ cm, $7$ cm and $9$ cm. Find its area, correct to
@@ -68,7 +75,12 @@ $$A = \sqrt{10.5 \times 5.5 \times 3.5 \times 1.5} = \sqrt{303.1875} = 17.41 \te
 
 A parallelogram is two copies of a triangle, so its area is twice $\tfrac12 ab\sin C$.
 
-> **The area of a parallelogram.** $$A = ab\sin C$$
+> **The area of a parallelogram.**
+>
+>
+> $$A = ab\sin C$$
+>
+>
 > where $a$ and $b$ are two adjacent sides and $C$ is the angle between them.
 
 **Example 4.** A parallelogram has sides $6$ cm and $9$ cm, and the angle between them is

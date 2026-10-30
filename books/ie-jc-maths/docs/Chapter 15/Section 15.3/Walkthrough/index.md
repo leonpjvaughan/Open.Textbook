@@ -113,7 +113,11 @@ Time is not decimal. The minutes are sixtieths of an hour, not hundredths.
 
 > **Watch out.** Do not write 1 hour 30 minutes as 1.30 hours.
 >
+>
+>
 > $$1\ \text{h}\ 30\ \text{min} = 1 + \frac{30}{60} = 1.5\ \text{h}$$
+>
+>
 >
 > An answer of 1.30 h is wrong by 18 minutes.
 >

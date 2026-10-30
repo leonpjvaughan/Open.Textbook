@@ -27,6 +27,7 @@ matching side and angle of the other. The two triangles are the same size and th
 shape. You could slide one onto the other and they would fit exactly.
 
 We write
+
 $$\triangle ABC \cong \triangle A'B'C'.$$
 
 The dashes name the image of each point. The order of the letters carries meaning: $A$
@@ -85,6 +86,7 @@ angles were never measured, and never needed to be.
 
 The order of the letters says that $A$ matches $P$ and $B$ matches $Q$. So the side $AB$
 matches the side $PQ$.
+
 $$|PQ| = |AB| = 12 \text{ cm}$$
 
 ## The test that does not work
@@ -99,6 +101,7 @@ between the two given sides.
 
 Use the sine rule from Chapter 12. The side $BC = 4$ is opposite $A = 30^\circ$, and the
 side $AB = 6$ is opposite $C$.
+
 $$\frac{4}{\sin 30^\circ} = \frac{6}{\sin C} \qquad \sin C = \frac{6 \times 0.5}{4} = 0.75$$
 
 So $C = 48.6^\circ$ or $C = 131.4^\circ$, the two-answer case from Chapter 12. Both

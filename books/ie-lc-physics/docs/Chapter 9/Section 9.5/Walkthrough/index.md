@@ -83,7 +83,11 @@ The speed of a wave on a string depends on how tight the string is and how heavy
 for its length. That gives the frequency of the fundamental:
 
 > **Fundamental frequency of a stretched string.**
+>
+>
 > $$f = \frac{1}{2L}\sqrt{\frac{T}{\mu}}$$
+>
+>
 >
 > - $f$ is the fundamental frequency, in hertz (Hz);
 > - $L$ is the length of the string, in metres (m);

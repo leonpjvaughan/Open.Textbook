@@ -47,6 +47,7 @@ point $R$ on $l$ on the other side of $Q$ from $P$, with $|QR| = |QP|$.
 
 The triangles $OQP$ and $OQR$ both have a right angle at $Q$, the side $OQ$ is common, and
 $|QP| = |QR|$. So they are congruent by SAS, and therefore
+
 $$|OR| = |OP|.$$
 
 The point $P$ is on the circle, so $|OP|$ is the radius, and $R$ is on the circle too. The
@@ -58,9 +59,11 @@ $\blacksquare$
 perpendicular to $OP$. Let $Q$ be any other point of $l$.
 
 The triangle $OPQ$ has a right angle at $P$, so Pythagoras' theorem gives
+
 $$|OQ|^2 = |OP|^2 + |PQ|^2.$$
 
 The length $|PQ|$ is not zero, because $Q$ is not $P$, so $|OQ|^2 > |OP|^2$ and
+
 $$|OQ| > |OP|.$$
 
 The point $Q$ is further from $O$ than the radius, so it is not on the circle. Every point
@@ -79,6 +82,7 @@ So the triangles $OUT$ and $OVT$ both have a right angle, at $U$ and at $V$.
 
 The two radii are equal, $|OU| = |OV|$, and the side $OT$ is common. Two right-angled
 triangles with the hypotenuse and one other side equal are congruent, so
+
 $$|TU| = |TV|. \qquad \blacksquare$$
 
 The same congruence gives $|\angle UTO| = |\angle OTV|$, so the line $OT$ bisects the angle
@@ -91,6 +95,7 @@ length of the tangent from $T$ to the circle.
 
 The radius to the point of contact is perpendicular to the tangent, so the triangle has a
 right angle. Pythagoras gives
+
 $$|TU|^2 + 5^2 = 13^2$$
 
 $$|TU|^2 = 169 - 25 = 144$$
@@ -102,6 +107,7 @@ Find the distance from $T$ to the centre.
 
 The radius, the tangent and the line to the centre make a right-angled triangle with the
 line to the centre as hypotenuse:
+
 $$|OT|^2 = 7^2 + 24^2 = 49 + 576 = 625$$
 
 $$|OT| = 25 \text{ cm}.$$
@@ -110,6 +116,7 @@ $$|OT| = 25 \text{ cm}.$$
 $|\angle UTV| = 70^\circ$. Find $|\angle OTV|$.
 
 The line $OT$ bisects the angle between the two tangents:
+
 $$|\angle OTV| = 70^\circ \div 2 = 35^\circ.$$
 
 **Example 4.** A line is $8$ cm from the centre of a circle of radius $8$ cm. Is the line a

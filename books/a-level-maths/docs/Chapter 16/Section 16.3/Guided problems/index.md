@@ -85,6 +85,7 @@ Use $m = \dfrac{W}{g}$ and divide $735$ by $9.8$.
 $$
 m = \frac{W}{g} = \frac{735}{9.8} = 75 \text{ kg}.
 $$
+
 </details>
 
 **3.** A bag of mass $2$ kg is taken to the Moon, where $g = 1.6$ m s$^{-2}$.
@@ -196,6 +197,7 @@ Use $R = m(g + a)$.
 $$
 R = 65(9.8 + 2) = 65 \times 11.8 = 767 \text{ N}.
 $$
+
 </details>
 
 **7.** A person of mass $65$ kg stands in a lift that accelerates downwards at

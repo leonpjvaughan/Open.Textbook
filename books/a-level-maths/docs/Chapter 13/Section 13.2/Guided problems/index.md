@@ -71,6 +71,7 @@ Add the three terms:
 $$
 P(X \le 2) = \tfrac{1 + 8 + 28}{256} = \tfrac{37}{256} \approx 0.1445.
 $$
+
 </details>
 
 **2.** The random variable $X \sim B(10, 0.2)$. Find $P(X \ge 3)$.
@@ -108,6 +109,7 @@ $$
 P(X \ge 3) = 1 - (0.1073742 + 0.2684355 + 0.3019899)
 = 1 - 0.6777996 = 0.3222 \ (4 \text{ d.p.}).
 $$
+
 </details>
 
 **3.** The random variable $X \sim B\left(6, \tfrac12\right)$. Find
@@ -133,6 +135,7 @@ $$
 P(2 \le X \le 4) = \frac{\binom{6}{2} + \binom{6}{3} + \binom{6}{4}}{64}
 = \frac{15 + 20 + 15}{64} = \frac{50}{64} = \frac{25}{32} = 0.78125.
 $$
+
 </details>
 
 **4.** The random variable $X \sim B(15, 0.4)$. Find $P(X < 5)$.
@@ -176,6 +179,7 @@ $$
 P(X < 5) = 0.0004702 + 0.0047018 + 0.0219418 + 0.0633874 + 0.1267748
 = 0.2173 \ (4 \text{ d.p.}).
 $$
+
 </details>
 
 **5.** The random variable $X \sim B(20, 0.3)$. Find $P(X > 12)$.

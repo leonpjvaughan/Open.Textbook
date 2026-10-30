@@ -61,6 +61,7 @@ $$
 $$
 x_1 = 0.7 - \frac{0.043}{2.47} = 0.6826.
 $$
+
 </details>
 
 **2.** Continue the iteration in question 1 to find $x_2$. Give the root to
@@ -118,6 +119,7 @@ Then $f(2.1) = 0.061$ and $f'(2.1) = 11.23$, so
 $$
 x_2 = 2.1 - \frac{0.061}{11.23} = 2.0946.
 $$
+
 </details>
 
 **4.** Show that $x_{n+1} = \dfrac{1}{2}\left(x_n + \dfrac{7}{x_n}\right)$ is
@@ -154,6 +156,7 @@ x_1 = \frac{1}{2}\left(3 + \frac{7}{3}\right) = 2.6667,
 \qquad
 x_2 = \frac{1}{2}\left(2.6667 + \frac{7}{2.6667}\right) = 2.6458.
 $$
+
 </details>
 
 **5.** Explain why Newton–Raphson fails for $f(x) = x^2 - 9$ when the starting

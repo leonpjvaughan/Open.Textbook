@@ -62,6 +62,7 @@ p &= \frac{F}{A} \\
   &= 1.2 \times 10^4\,\text{Pa}
 \end{aligned}
 $$
+
 </details>
 
 **2.** A pressure of 2500 Pa acts on an area of 0.48 m². Calculate the force
@@ -90,6 +91,7 @@ F &= p A \\
   &= 1.2 \times 10^3\,\text{N}
 \end{aligned}
 $$
+
 </details>
 
 **3.** Calculate the pressure due to a column of water 0.20 m high. The density
@@ -119,6 +121,7 @@ p &= h \rho g \\
   &= 2.0 \times 10^3\,\text{Pa}
 \end{aligned}
 $$
+
 </details>
 
 **4.** Explain why atmospheric pressure decreases as the height above the ground

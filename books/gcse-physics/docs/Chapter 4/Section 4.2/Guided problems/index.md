@@ -64,6 +64,7 @@ s &= \frac{v t}{2} \\
   &= 0.15\,\text{m}
 \end{aligned}
 $$
+
 </details>
 
 **2.** A ship sends a pulse of sound down through water at 1500 m/s. The
@@ -93,6 +94,7 @@ s &= \frac{v t}{2} \\
   &= 30\,\text{m}
 \end{aligned}
 $$
+
 </details>
 
 **3.** An earthquake P-wave travels 45 km in 15 s. Calculate the speed of the
@@ -122,6 +124,7 @@ v &= \frac{s}{t} \\
   &= 3000\,\text{m/s}
 \end{aligned}
 $$
+
 </details>
 
 **4.** An ultrasound scanner works at a frequency of 2.5 MHz. The speed of sound

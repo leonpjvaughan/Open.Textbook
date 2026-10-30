@@ -45,6 +45,7 @@ says that each one knocks the next. Together, every domino falls.
 ## A full proof
 
 **Theorem.** For every whole number $n \ge 1$,
+
 $$\sum_{r=1}^{n} r = 1 + 2 + \dots + n = \frac{n(n+1)}{2}$$
 
 Here $\sum_{r=1}^{n}$ means the sum for $r = 1, 2, \dots, n$, where $r$ counts the terms
@@ -54,9 +55,11 @@ and is not the common ratio.
 Both sides are $1$, so the statement holds.
 
 **Inductive hypothesis.** Assume the statement is true for $n = k$:
+
 $$1 + 2 + \dots + k = \frac{k(k+1)}{2}$$
 
 **Inductive step.** Prove it for $n = k + 1$, that is, that
+
 $$1 + 2 + \dots + k + (k+1) = \frac{(k+1)(k+2)}{2}$$
 
 Start from the left and use the hypothesis:
@@ -75,6 +78,7 @@ for every $n \ge 1$ by induction.
 ## A second example
 
 **Theorem.** The sum of the first $n$ odd numbers is $n^2$:
+
 $$1 + 3 + 5 + \dots + (2n - 1) = n^2$$
 
 **Base case ($n = 1$).** $1 = 1^2$. True.

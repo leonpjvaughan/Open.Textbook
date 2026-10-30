@@ -45,6 +45,7 @@ Take out a negative factor first. Then use the same method.
 $$
 -2x^2+5x+3=-(2x^2-5x-3)
 $$
+
 The product is $-6$ and the sum is $-5$, so use $-6$ and $1$.
 
 $$

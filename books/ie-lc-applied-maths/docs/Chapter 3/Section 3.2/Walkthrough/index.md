@@ -165,10 +165,13 @@ Use the equations of motion to fill in the blanks.
 
 - Use $v = u + at$ to find the time at which the vertical velocity is zero.
   Here $u = 10$, $v = 0$ and $a = -9.8$:
-  $$0 = 10 - 9.8t, \qquad t = \underline{\hspace{2cm}}\,\text{s}$$
+
+$$0 = 10 - 9.8t, \qquad t = \underline{\hspace{2cm}}\,\text{s}$$
+
 - Use $v^2 = u^2 + 2as$ to find the greatest height. Here $u = 10$, $v = 0$
   and $a = -9.8$:
-  $$0 = 100 - 19.6s, \qquad s = \underline{\hspace{2cm}}\,\text{m}$$
+
+$$0 = 100 - 19.6s, \qquad s = \underline{\hspace{2cm}}\,\text{m}$$
 
 The greatest height is about $5.1$ m. The wall is $3$ m high, so the ball rises
 above the wall. Whether it is above $3$ m at the wall itself is a different

@@ -44,7 +44,11 @@ The dot product is zero, so the two vectors are perpendicular.
 Rearranging the angle formula gives the angle itself:
 
 > **The angle between two vectors.** For non-zero vectors $\mathbf{a}$ and $\mathbf{b}$,
+>
+>
 > $$\cos\theta = \frac{\mathbf{a} \cdot \mathbf{b}}{|\mathbf{a}|\,|\mathbf{b}|}$$
+>
+>
 > Then $\theta = \cos^{-1}$ of that value, between $0^\circ$ and $180^\circ$.
 
 The value of $\cos\theta$ always lies between $-1$ and $1$, because it is a cosine. If your

@@ -63,6 +63,7 @@ v &= \frac{s}{t} \\
   &= 15\,\text{m/s}
 \end{aligned}
 $$
+
 </details>
 
 **2.** A walker moves at a steady 1.4 m/s for 300 s. Calculate the distance she
@@ -91,6 +92,7 @@ s &= v t \\
   &= 4.2 \times 10^2\,\text{m}
 \end{aligned}
 $$
+
 </details>
 
 **3.** A car speeds up from 6.0 m/s to 18 m/s in 4.0 s. Calculate its
@@ -119,6 +121,7 @@ a &= \frac{\Delta v}{t} \\
   &= 3.0\,\text{m/s}^2
 \end{aligned}
 $$
+
 </details>
 
 **4.** A velocity-time graph is a straight line through $(0\,\text{s}, 0\,\text{m/s})$,
@@ -148,6 +151,7 @@ a &= \frac{\text{change in velocity}}{\text{change in time}} \\
   &= 2.0\,\text{m/s}^2
 \end{aligned}
 $$
+
 </details>
 
 **5.** A van travels at 16 m/s. The driver brakes with a steady deceleration of
@@ -179,6 +183,7 @@ s &= \frac{256}{8.0} \\
   &= 32\,\text{m}
 \end{aligned}
 $$
+
 </details>
 
 **6.** A skydiver jumps from a plane. Explain, in terms of forces, why the

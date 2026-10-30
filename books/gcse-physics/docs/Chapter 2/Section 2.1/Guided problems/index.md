@@ -63,6 +63,7 @@ W &= m g \\
   &= 640\,\text{N} \quad (2\ \text{significant figures})
 \end{aligned}
 $$
+
 </details>
 
 **2.** A force of 185 N acts to the right and a force of 120 N acts to the left.
@@ -143,6 +144,7 @@ F_{\text{horizontal}} &= 80 \cos 25^\circ = 72.5\,\text{N} \\
 F_{\text{vertical}}   &= 80 \sin 25^\circ = 33.8\,\text{N}
 \end{aligned}
 $$
+
 </details>
 
 **5.** Two forces of 25 N and 40 N act on a box in the same direction. Calculate

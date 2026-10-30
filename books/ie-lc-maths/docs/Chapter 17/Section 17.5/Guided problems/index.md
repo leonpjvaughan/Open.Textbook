@@ -76,6 +76,7 @@ $9^2 + 12^2 = 81 + 144 = 225 = 15^2$, so the right angle is opposite the $15$ cm
 <summary>Full working</summary>
 
 The hypotenuse is $15$ cm, so the circumradius is
+
 $$15 \div 2 = 7.5 \text{ cm}.$$
 
 </details>
@@ -127,6 +128,7 @@ $(5 + 12 + 13) \div 2 = 15$ cm.
 
 Join the incentre to each vertex. The triangle splits into three triangles, each with
 height $r$ and base one side. Their areas add to the whole area:
+
 $$\tfrac12 r (5 + 12 + 13) = 30.$$
 
 $$15r = 30$$

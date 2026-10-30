@@ -125,6 +125,7 @@ At $t = 0$, $s = 0$, so $C = 0$ and
 $$
 s = 2t^2 + t \text{ m}.
 $$
+
 </details>
 
 **4.** A particle has constant acceleration $a = 10$ m/s$^2$. Its velocity is
@@ -156,6 +157,7 @@ At $t = 0$, $v = 3$, so $C = 3$ and
 $$
 v = 10t + 3 \text{ m/s}.
 $$
+
 </details>
 
 **5.** A particle has velocity $v = 3t^2 + 4$ m/s. Its displacement is $0$ m
@@ -188,6 +190,7 @@ At $t = 0$, $s = 0$, so $C = 0$ and
 $$
 s = t^3 + 4t \text{ m}.
 $$
+
 </details>
 
 **6.** The displacement of a particle is $s = t^3 - 3t^2$ metres. Find the

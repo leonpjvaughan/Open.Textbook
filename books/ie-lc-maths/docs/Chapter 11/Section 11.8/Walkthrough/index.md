@@ -37,7 +37,11 @@ Two facts describe it.
   mean**:
 
 > **The standard error of the mean.**
+>
+>
 > $$\sigma_{\bar{x}} = \frac{\sigma}{\sqrt{n}}$$
+>
+>
 > where $\sigma$ is the population standard deviation, $\sigma_{\bar{x}}$ the standard
 > error of the mean and $n$ the sample size.
 > This is the formula in the formulae and tables booklet.

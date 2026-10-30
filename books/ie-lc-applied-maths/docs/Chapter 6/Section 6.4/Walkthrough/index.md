@@ -29,6 +29,8 @@ single number, and it gives the second equation that a collision needs.
 > **Newton's experimental law of restitution.** For two bodies colliding along a
 > line, the speed of separation is a fixed fraction of the speed of approach.
 >
+>
+>
 > $$e = \frac{v_2 - v_1}{u_1 - u_2}$$
 
 Here $u_1$ and $u_2$ are the velocities before the collision, $v_1$ and $v_2$

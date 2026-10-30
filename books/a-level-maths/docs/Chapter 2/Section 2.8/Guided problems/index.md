@@ -135,6 +135,7 @@ $B = \frac{4}{3}$. Therefore
 $$
 \frac{5x + 1}{(x - 2)(x + 1)} = \frac{11}{3(x - 2)} + \frac{4}{3(x + 1)}.
 $$
+
 </details>
 
 **4.** Express $\dfrac{4x - 1}{(x + 2)^2}$ in partial fractions.
@@ -174,6 +175,7 @@ $-9 = B$. So
 $$
 \frac{4x - 1}{(x + 2)^2} = \frac{4}{x + 2} - \frac{9}{(x + 2)^2}.
 $$
+
 </details>
 
 **5.** Express $\dfrac{2x^2 - x + 3}{(x - 1)(x + 2)}$ in partial fractions.
@@ -213,6 +215,7 @@ so $A = \frac{4}{3}$. At $x = -2$: $13 = -3B$, so $B = -\frac{13}{3}$. Therefore
 $$
 \frac{2x^2 - x + 3}{(x - 1)(x + 2)} = 2 + \frac{4}{3(x - 1)} - \frac{13}{3(x + 2)}.
 $$
+
 </details>
 
 **6.** The fraction $\dfrac{1}{x - a} - \dfrac{1}{x + a}$ can be written as a

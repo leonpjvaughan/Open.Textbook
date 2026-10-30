@@ -68,6 +68,7 @@ For the $2$ kg mass, moving up:
 $$
 T = 2(9.8 + 3.27) = 26.13 \text{ N}.
 $$
+
 </details>
 
 **2.** A block of mass $3$ kg rests on a smooth horizontal table. It is joined by
@@ -100,6 +101,7 @@ $$
 $$
 T = 3a = 3 \times 3.92 = 11.76 \text{ N}.
 $$
+
 </details>
 
 **3.** A book rests on a table. A student says the weight of the book and the
@@ -164,6 +166,7 @@ For the $4$ kg mass, moving up:
 $$
 T = 4(9.8 + 1.96) = 47.04 \text{ N}.
 $$
+
 </details>
 
 **5.** A block of mass $5$ kg rests on a smooth table and is joined over a
@@ -194,6 +197,7 @@ $$
 $$
 T = 5a = 5 \times 1.633 \approx 8.17 \text{ N}.
 $$
+
 </details>
 
 **6.** A block on a smooth table is joined over a smooth pulley to a hanging
@@ -255,6 +259,7 @@ For the $3$ kg mass, moving up:
 $$
 T = 3(9.8 + 3.92) = 41.16 \text{ N}.
 $$
+
 </details>
 
 **8.** A particle is in equilibrium under three forces. Explain what this says

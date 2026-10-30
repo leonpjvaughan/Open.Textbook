@@ -59,6 +59,7 @@ Energy is conserved, so the kinetic store gains the 30 J that the gravitational
 potential store loses.
 
 $$ E_k = 30\,\text{J} $$
+
 </details>
 
 **2.** In a real room, the ball from question 1 lands with 26 J in its kinetic
@@ -114,6 +115,7 @@ $$
                   &= 75\%
 \end{aligned}
 $$
+
 </details>
 
 **4.** A machine is 25% efficient and its useful output is 150 J. Calculate the
@@ -142,6 +144,7 @@ $$
                    &= 600\,\text{J}
 \end{aligned}
 $$
+
 </details>
 
 **5.** A hot drink is poured into a thin plastic cup. The same drink in a thick

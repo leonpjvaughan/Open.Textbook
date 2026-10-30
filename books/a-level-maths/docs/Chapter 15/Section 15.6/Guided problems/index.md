@@ -69,6 +69,7 @@ $$
 $$
 u_y = 24\sin 30^\circ = 24 \times \frac{1}{2} = 12 \text{ m/s}.
 $$
+
 </details>
 
 **2.** For the ball in question 1, find the time to the greatest height. Take
@@ -97,6 +98,7 @@ $$
 \qquad
 t = \frac{12}{9.8} = \frac{120}{98} = \frac{60}{49} \approx 1.22 \text{ s}.
 $$
+
 </details>
 
 **3.** For the ball in question 1, find the total time of flight and the range.
@@ -129,6 +131,7 @@ $$
 R = u_x T = 12\sqrt{3} \times \frac{120}{49} =
 \frac{1440\sqrt{3}}{49} \approx 50.9 \text{ m}.
 $$
+
 </details>
 
 **4.** For the ball in question 1, find the greatest height.
@@ -156,6 +159,7 @@ $$
 \qquad
 H = \frac{144}{19.6} = \frac{360}{49} \approx 7.35 \text{ m}.
 $$
+
 </details>
 
 **5.** A ball is kicked at $30$ m/s at $60^\circ$ to the horizontal. Find its
@@ -223,6 +227,7 @@ $$
 $$
 x = 12 \times \frac{5\sqrt{10}}{7} = \frac{60\sqrt{10}}{7} \approx 27.1 \text{ m}.
 $$
+
 </details>
 
 **7.** A ball is kicked from the ground at $20$ m/s at $45^\circ$. Find its

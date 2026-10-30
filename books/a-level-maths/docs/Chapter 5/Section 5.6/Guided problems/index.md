@@ -57,6 +57,7 @@ $\cos\dfrac{\pi}{3} = \dfrac{1}{2}$, so take its reciprocal.
 $$
 \sec\frac{\pi}{3} = \frac{1}{\cos\frac{\pi}{3}} = \frac{1}{\frac{1}{2}} = 2.
 $$
+
 </details>
 
 **2.** Write down the value of $\operatorname{cosec}\dfrac{\pi}{6}$.
@@ -79,6 +80,7 @@ $\sin\dfrac{\pi}{6} = \dfrac{1}{2}$, so take its reciprocal.
 $$
 \operatorname{cosec}\frac{\pi}{6} = \frac{1}{\sin\frac{\pi}{6}} = \frac{1}{\frac{1}{2}} = 2.
 $$
+
 </details>
 
 **3.** Write down the value of $\cot\dfrac{\pi}{4}$.
@@ -103,6 +105,7 @@ $$
 \cot\frac{\pi}{4} = \frac{\cos\frac{\pi}{4}}{\sin\frac{\pi}{4}}
 = \frac{\frac{\sqrt{2}}{2}}{\frac{\sqrt{2}}{2}} = 1.
 $$
+
 </details>
 
 **4.** Simplify $\operatorname{cosec}^2\theta - \cot^2\theta$.
@@ -127,6 +130,7 @@ $$
 \operatorname{cosec}^2\theta - \cot^2\theta
 = (1 + \cot^2\theta) - \cot^2\theta = 1.
 $$
+
 </details>
 
 **5.** Given that $\cos\theta = \dfrac{5}{13}$ and $\theta$ is acute, find
@@ -157,6 +161,7 @@ $$
 $$
 \operatorname{cosec}\theta = \frac{1}{\sin\theta} = \frac{13}{12}.
 $$
+
 </details>
 
 **6.** Work out $\arcsin\dfrac{\sqrt{3}}{2}$ in radians, giving the principal

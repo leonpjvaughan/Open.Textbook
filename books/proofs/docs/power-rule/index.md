@@ -21,9 +21,13 @@ of the derivative, for every positive whole number $n$.
 You need three facts.
 
 - **The derivative is a limit.** The gradient of $y = f(x)$ at a point is
-  $$f'(x) = \lim_{h \to 0} \frac{f(x + h) - f(x)}{h}.$$
+
+$$f'(x) = \lim_{h \to 0} \frac{f(x + h) - f(x)}{h}.$$
+
 - **The binomial expansion** of $(x + h)^n$, for a positive whole number $n$:
-  $$(x + h)^n = x^n + n x^{n-1} h + \binom{n}{2} x^{n-2} h^2 + \cdots + n x h^{n-1} + h^n.$$
+
+$$(x + h)^n = x^n + n x^{n-1} h + \binom{n}{2} x^{n-2} h^2 + \cdots + n x h^{n-1} + h^n.$$
+
 - **A sum of terms that tend to limits.** If a quantity is a finite sum of terms,
   and each term tends to a limit, then the whole sum tends to the sum of those
   limits. In particular, any term carrying a factor of $h$ tends to $0$ as

@@ -67,6 +67,7 @@ $$
 $$
 s = 4 \times 5 + \frac{1}{2} \times 6 \times 5^2 = 20 + 75 = 95 \text{ m}.
 $$
+
 </details>
 
 **2.** A car starts from rest and accelerates at $4$ m/s$^2$ for $7$ s. Find its
@@ -98,6 +99,7 @@ $$
 $$
 s = 0 \times 7 + \frac{1}{2} \times 4 \times 7^2 = 98 \text{ m}.
 $$
+
 </details>
 
 **3.** A car travelling at $20$ m/s brakes uniformly and stops in $8$ s. Find
@@ -169,6 +171,7 @@ $$
 \qquad
 t = \frac{20}{3.6} = \frac{200}{36} = \frac{50}{9} \approx 5.56 \text{ s}.
 $$
+
 </details>
 
 **5.** A ball is thrown vertically upwards at $15$ m/s. Find its velocity and
@@ -237,6 +240,7 @@ $$
 \qquad
 t = 2 \text{ s}.
 $$
+
 </details>
 
 **7.** A car travelling at $25$ m/s brakes at $5$ m/s$^2$ until it stops. Find
@@ -272,4 +276,5 @@ $$
 \qquad
 t = 5 \text{ s}.
 $$
+
 </details>

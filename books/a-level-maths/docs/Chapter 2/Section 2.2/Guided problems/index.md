@@ -60,6 +60,7 @@ Split the square factor out of the root:
 $$
 \sqrt{48} = \sqrt{16 \times 3} = \sqrt{16}\,\sqrt{3} = 4\sqrt{3}.
 $$
+
 </details>
 
 **2.** Simplify $\sqrt{18} + \sqrt{50}$.
@@ -91,6 +92,7 @@ Both are multiples of $\sqrt{2}$, so add the coefficients:
 $$
 3\sqrt{2} + 5\sqrt{2} = 8\sqrt{2}.
 $$
+
 </details>
 
 **3.** Expand and simplify $\left(3 + \sqrt{2}\right)\left(1 - \sqrt{2}\right)$.
@@ -121,6 +123,7 @@ Use $\sqrt{2}\,\sqrt{2} = 2$:
 $$
 3 - 3\sqrt{2} + \sqrt{2} - 2 = 1 - 2\sqrt{2}.
 $$
+
 </details>
 
 **4.** Write $\dfrac{8}{\sqrt{2}}$ with a rational denominator.
@@ -146,6 +149,7 @@ Multiply the top and the bottom by $\sqrt{2}$:
 $$
 \frac{8}{\sqrt{2}} = \frac{8\sqrt{2}}{\sqrt{2}\sqrt{2}} = \frac{8\sqrt{2}}{2} = 4\sqrt{2}.
 $$
+
 </details>
 
 **5.** Write $\dfrac{2}{5 - \sqrt{3}}$ with a rational denominator.
@@ -184,6 +188,7 @@ So
 $$
 \frac{2}{5 - \sqrt{3}} = \frac{2\left(5 + \sqrt{3}\right)}{22} = \frac{5 + \sqrt{3}}{11}.
 $$
+
 </details>
 
 **6.** A rectangle has length $\left(4 + \sqrt{5}\right)$ cm and width

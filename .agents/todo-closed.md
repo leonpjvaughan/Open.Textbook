@@ -7449,3 +7449,59 @@ page moved.
 Held by `test_the_linear_system_list_is_one_list_and_the_definition_is_not_in_it`, which fails
 if a blank line appears between the first and last situation — the shape the split had — and if
 the definition is back inside the list. `textbook.lint numerical-methods` clean over 31 pages.
+
+## 163 — Display equations in page prose kept their dollars, because they shared a paragraph with the text — **done**
+
+**What is wrong.** Item 154 fixed this in the problem banks. Page prose has the same
+defect, and in four books. Measured on the built site after the banks were rebuilt:
+
+```
+stray `$` before `<math>`   ie-lc-maths 449   ie-lc-physics 15
+                            ie-lc-applied-maths 6   proofs 3
+```
+
+`> **The addition rule.**` followed by `> $$P(A \cup B) = \ldots$$` is one paragraph, so
+the delimiters survive, and the reader sees a dollar, the equation set on the line of
+the sentence, and a dollar. A state machine over the source finds **556** lines that
+need a blank line on one side of them — 185 before and 253 after in plain prose, 69
+before and 35 after inside block quotes, and 14 inside indented blocks.
+
+**The fix.** The rule first: `lint.display_maths_without_a_blank_line`, the maths
+sibling of `lists_without_a_blank_line`, reusing the `$$` state machine item 155 added.
+It has to exempt a display equation in a table cell, which is inline by design. Then a
+fixer over the 556 — insert a blank line, or a line carrying the quote prefix — and the
+finding is zero with no debt entry.
+
+**Done means**
+
+- [ ] the lint rule reports nothing over the collection, with no debt entry
+- [ ] a scan of the built site finds 0 pages with a bare `$` before a `<math>`
+- [ ] `tests/test_lint.py` fails when a planted `$$` line loses its blank line
+- [ ] the four affected books rebuild with no `math-error` page
+
+**Outcome, 2026-10-30.** Nothing on the built site now shows a bare `$` before a `<math>`: 0
+pages, from 473 strays in four books.
+
+Three passes, because the first two did not see the whole defect:
+
+1. **357 blank lines** inserted where a display block met prose, by a state machine over the
+   source that counts `$$` delimiters — a line that is `$$` on its own opens a block, it does
+   not close one. The first pass (310 lines) missed every block opened that way, which is most
+   of the long ones, and `lint` is what found the rest.
+2. **Nine quoted labels** of the shape `> **The conversion.** $$…$$` split into the label, a
+   `>` line, and the equation — a blank line cannot separate two things on one line.
+3. **Ten indented blocks** dedented to the start of their line. An indented `$$` is not a
+   block to `pymdownx.arithmatex`, whatever surrounds it, so the delimiters survived inside a
+   list item or a quote.
+
+Held by `lint.display_maths_without_a_blank_line`, added to `textbook.lint` with no debt table
+— the collection is clean on the day it landed, so the next one to appear is a finding rather
+than an allowance. It reads a block quote by stripping its marker and one following space (a
+space after `>` is not indentation), skips fenced code and table rows, and reports three
+shapes: prose above a `$$` line, prose below a closing `$$`, and text before an equation on
+one line. Its first version reported 7,386 findings by reading "starts and ends with `$$`" as
+a whole equation; the count is what showed the rule was wrong, not the content.
+
+Evidence: `textbook.lint` clean over 2,613 pages; `grep -r '<p>\$<math' site` → nothing; no
+`math-error` page in any profile. `tests/test_lint.py` holds five cases: prose above, prose
+below, mid-sentence, a multi-line block, a quote, and an indented block.

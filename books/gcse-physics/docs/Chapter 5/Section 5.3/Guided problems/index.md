@@ -65,6 +65,7 @@ $$
                      &= 4.0
 \end{aligned}
 $$
+
 </details>
 
 **2.** A lens has a magnification of 6.0. A bee in front of it is 1.5 mm long.
@@ -92,6 +93,7 @@ $$
                     &= 9.0\,\text{mm}
 \end{aligned}
 $$
+
 </details>
 
 **3.** A slide 5.0 cm tall is projected so that its image is 0.40 m tall.
@@ -120,6 +122,7 @@ $$
                      &= 8.0
 \end{aligned}
 $$
+
 </details>
 
 **4.** Describe the two ray rules you use to draw a ray diagram for a convex

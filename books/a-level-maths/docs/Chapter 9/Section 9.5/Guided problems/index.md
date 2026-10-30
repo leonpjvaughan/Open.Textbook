@@ -90,6 +90,7 @@ $$
 $$
 t_1 = 5 - \frac{1.4602}{-4.8650} = 5.3001.
 $$
+
 </details>
 
 **3.** Continue question 2 to find $t_2$, and state the landing time to three

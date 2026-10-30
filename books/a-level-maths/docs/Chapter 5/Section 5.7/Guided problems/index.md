@@ -87,6 +87,7 @@ $$
 = \cos\theta \times \frac{\sin\theta}{\cos\theta}
 = \sin\theta.
 $$
+
 </details>
 
 **3.** Prove that $1 + \tan^2\theta \equiv \sec^2\theta$.
@@ -115,6 +116,7 @@ $$
 = \frac{1}{\cos^2\theta}
 = \sec^2\theta.
 $$
+
 </details>
 
 **4.** Prove that $(\sin\theta - \cos\theta)^2 \equiv 1 - 2\sin\theta\cos\theta$.
@@ -141,6 +143,7 @@ $$
 = (\sin^2\theta + \cos^2\theta) - 2\sin\theta\cos\theta
 = 1 - 2\sin\theta\cos\theta.
 $$
+
 </details>
 
 **5.** Prove that $\dfrac{\cos^2\theta}{1 - \sin\theta} \equiv 1 + \sin\theta$
@@ -169,6 +172,7 @@ $$
 = \frac{(1 - \sin\theta)(1 + \sin\theta)}{1 - \sin\theta}
 = 1 + \sin\theta.
 $$
+
 </details>
 
 **6.** Prove that $\sec^2\theta + \operatorname{cosec}^2\theta \equiv
@@ -198,4 +202,5 @@ $$
 = \frac{1}{\cos^2\theta\sin^2\theta}
 = \sec^2\theta\,\operatorname{cosec}^2\theta.
 $$
+
 </details>

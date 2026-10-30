@@ -114,7 +114,11 @@ $$12 - 15 = -3 \qquad -3 + 7 = 4$$
 > amounts add. The common error is to treat $-4 - 6$ as $-4 + 6 = 2$. It is not:
 > both numbers are negative, so you move left twice.
 >
+>
+>
 > $$-4 - 6 = -10$$
+>
+>
 >
 > **Re-check:** say the movement out loud. "Start at $-4$, move 6 to the left." That
 > lands you at $-10$, not 2.

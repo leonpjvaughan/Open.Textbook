@@ -54,6 +54,7 @@ $AB$ matches $PQ$, so the scale factor is $\frac{4}{6}$.
 $$\frac{|PQ|}{|AB|} = \frac{4}{6} = \frac{2}{3}$$
 
 The side $QR$ matches $BC$, so
+
 $$|QR| = \frac{2}{3} \times 9 = 6 \text{ cm}.$$
 
 </details>

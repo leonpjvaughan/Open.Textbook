@@ -44,6 +44,7 @@ angles are added. It is one click away if you would like it now.
 
 In symbols, if $A$, $A'$, $B$ and $C$ lie on a circle, and $A$ and $A'$ are on the same
 side of the line $BC$, then
+
 $$|\angle BAC| = |\angle BA'C|.$$
 
 **Proof.** Each angle is half of the same angle at the centre, by Theorem 19. Two halves
@@ -57,6 +58,7 @@ angles in the same segment are equal.
 > **Corollary 3.** Each angle in a semicircle is a right angle.
 
 In symbols, if $BC$ is a diameter and $A$ is any other point of the circle, then
+
 $$|\angle BAC| = 90^\circ.$$
 
 :::prove angle-in-a-semicircle
@@ -96,21 +98,25 @@ $|\angle AOB| = 130^\circ$. $C$ is a point on the major arc. Find $|\angle ACB|$
 
 The angle at the centre is $130^\circ$, and the angle at $C$ stands on the same arc. By
 Theorem 19, the angle at the circle is half the angle at the centre:
+
 $$|\angle ACB| = 130^\circ \div 2 = 65^\circ.$$
 
 **Example 2.** $BC$ is a diameter of a circle and $A$ is another point of the circle.
 Given $|\angle ABC| = 35^\circ$, find $|\angle BAC|$ and $|\angle ACB|$.
 
 The angle in a semicircle is a right angle, so
+
 $$|\angle BAC| = 90^\circ.$$
 
 The three angles of the triangle add to $180^\circ$:
+
 $$|\angle ACB| = 180^\circ - 90^\circ - 35^\circ = 55^\circ.$$
 
 **Example 3.** $A$, $B$, $C$ and $D$ are points of a circle, and $A$ and $D$ are on the
 same side of the chord $BC$. Given $|\angle BAC| = 42^\circ$, find $|\angle BDC|$.
 
 The two angles stand on the same arc $BC$, so they are equal by Corollary 2:
+
 $$|\angle BDC| = 42^\circ.$$
 
 **Example 4.** $O$ is the centre of a circle. $A$ and $B$ are points of the circle with
@@ -118,9 +124,11 @@ $|\angle AOB| = 130^\circ$. The point $C$ lies on the **minor** arc $AB$. Find
 $|\angle ACB|$.
 
 The angle at the centre on the minor arc is the reflex angle
+
 $$360^\circ - 130^\circ = 230^\circ.$$
 
 The angle $\angle ACB$ stands on the minor arc, so it is half of the reflex angle:
+
 $$|\angle ACB| = 230^\circ \div 2 = 115^\circ.$$
 
 The two answers $65^\circ$ and $115^\circ$ add to $180^\circ$, which is what a cyclic

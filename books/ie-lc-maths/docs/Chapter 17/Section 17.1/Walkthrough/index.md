@@ -49,12 +49,15 @@ section.
 of the perpendicular from $O$ to $AB$, so that $OC$ is at right angles to $AB$.
 
 The points $A$ and $B$ are both on the circle, so
+
 $$|OA| = |OB|.$$
 
 Both triangles $OCA$ and $OCB$ have a right angle at $C$, so Pythagoras' theorem gives
+
 $$|OC|^2 + |AC|^2 = |OA|^2 \quad\text{and}\quad |OC|^2 + |CB|^2 = |OB|^2.$$
 
 The two right-hand sides are equal, so $|AC|^2 = |CB|^2$. Both are lengths, so
+
 $$|AC| = |CB|.$$
 
 So $C$ is the midpoint of $AB$, and the perpendicular from $O$ bisects the chord.
@@ -97,6 +100,7 @@ surveyor's method as well as the mason's.
 from the centre to the chord.
 
 The half-chord is $24 \div 2 = 12$ cm. Use the right-angled triangle:
+
 $$d^2 + 12^2 = 13^2$$
 
 $$d^2 + 144 = 169$$
@@ -111,6 +115,7 @@ we need.
 **Example 2.** A chord of length $48$ cm lies $7$ cm from the centre. Find the radius.
 
 The half-chord is $24$ cm.
+
 $$r^2 = 7^2 + 24^2 = 49 + 576 = 625$$
 
 $$r = 25 \text{ cm}.$$
@@ -128,9 +133,11 @@ same distance from the centre.
 
 Let the chords have length $c$, and let their distances from the centre be $d_1$ and
 $d_2$. The radius $r$ is the same for both, so the right-angled triangle gives
+
 $$d_1^2 + \left(\tfrac12 c\right)^2 = r^2 \quad\text{and}\quad d_2^2 + \left(\tfrac12 c\right)^2 = r^2.$$
 
 Subtract the first equation from the second:
+
 $$d_2^2 - d_1^2 = 0,$$
 
 so $d_1^2 = d_2^2$. Both distances are positive, so $d_1 = d_2$. Equal chords are the same

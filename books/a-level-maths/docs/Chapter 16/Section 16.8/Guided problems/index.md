@@ -60,6 +60,7 @@ Multiply the force by the distance.
 $$
 \text{moment} = 25 \times 0.4 = 10 \text{ N m}.
 $$
+
 </details>
 
 **2.** A force of $40$ N acts at the end of a rod of length $1.2$ m. The force
@@ -86,6 +87,7 @@ Work out $1.2\sin 60^\circ$ first, then multiply by $40$.
 $$
 \text{moment} = 40 \times 1.2 \times \sin 60^\circ \approx 40 \times 1.039 = 41.57 \text{ N m}.
 $$
+
 </details>
 
 **3.** A child of mass $40$ kg sits $1.5$ m from the pivot of a seesaw. A second
@@ -112,6 +114,7 @@ Set $40g \times 1.5 = 60g \times d$. The $g$ cancels.
 $$
 40 \times 1.5 = 60d, \qquad 60 = 60d, \qquad d = 1 \text{ m}.
 $$
+
 </details>
 
 **4.** A uniform beam $AB$ has length $5$ m and mass $20$ kg. It rests on
@@ -143,6 +146,7 @@ $$
 $$
 R_A = (196 + 294) - 215.6 = 274.4 \text{ N}.
 $$
+
 </details>
 
 **5.** A uniform beam $AB$ has length $3$ m and mass $15$ kg. It rests on
@@ -174,6 +178,7 @@ $$
 $$
 R_A = (147 + 245) - 155.17 \approx 236.83 \text{ N}.
 $$
+
 </details>
 
 **6.** A uniform rod $AB$ has mass $10$ kg and length $3$ m. It is hinged at $A$
@@ -200,6 +205,7 @@ The weight is $98$ N at $1.5$ m from $A$. Set $3T = 98 \times 1.5$.
 $$
 T = \frac{98 \times 1.5}{3} = \frac{147}{3} = 49 \text{ N}.
 $$
+
 </details>
 
 **7.** A non-uniform rod $AB$ has length $2$ m and mass $5$ kg. It is pivoted at
@@ -260,4 +266,5 @@ $$
 $$
 R_A = (294 + 588) - 539 = 343 \text{ N}.
 $$
+
 </details>

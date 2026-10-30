@@ -29,6 +29,8 @@ collision problems.
 > **The law of conservation of momentum.** When no external resultant force acts
 > on a system, the total momentum of the system stays constant.
 >
+>
+>
 > $$\text{total momentum before} = \text{total momentum after}$$
 
 For two bodies moving along a line, with velocities $u_1$ and $u_2$ before and

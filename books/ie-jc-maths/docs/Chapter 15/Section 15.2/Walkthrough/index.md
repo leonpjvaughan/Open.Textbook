@@ -132,7 +132,11 @@ is the wrong move when the unit gets smaller.
 > Change 4.5 kg to grams. The gram is smaller than the kilogram, so there are more
 > grams than kilograms.
 >
+>
+>
 > $$4.5 \times 1000 = 4500$$
+>
+>
 >
 > An answer of 0.0045 g is a warning sign. **Re-check:** ask whether the unit became
 > smaller or larger. A smaller unit needs a larger number.
