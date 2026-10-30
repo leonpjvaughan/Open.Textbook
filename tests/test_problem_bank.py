@@ -2,6 +2,7 @@
 
 from __future__ import annotations
 
+import re
 from pathlib import Path
 
 import pytest
@@ -333,3 +334,67 @@ def test_no_rendered_answer_has_a_list_inside_a_paragraph():
             if lists_without_a_blank_line(render_problem(problem, 1)):
                 broken.append(f"{bank.name}: {problem.get('id')}")
     assert broken == [], "an answer renders a list inside a paragraph: " + ", ".join(broken)
+
+
+DISPLAY_MATHS = re.compile(r"\$\$.*?\$\$", re.S)
+
+
+def display_maths_shares_a_paragraph(text: str) -> bool:
+    """True when a `$$…$$` run sits in a paragraph with other text.
+
+    A display equation is a block, so it has to start a paragraph. When a line of
+    prose sits beside it, Markdown keeps them in one paragraph, the maths hook
+    leaves the delimiters alone, and the reader sees a `$`, the equation on the
+    sentence's own line, and a `$`. Splitting on a blank line is the test, because
+    a blank line is exactly what makes the block.
+
+    An unpaired `$$` is a defect too: the hook needs both delimiters, so a count
+    that will not pair leaves the reader looking at dollars.
+    """
+    for paragraph in re.split(r"\n[ \t]*\n", text):
+        if "$$" not in paragraph:
+            continue
+        if paragraph.count("$$") % 2:
+            return True
+        if DISPLAY_MATHS.sub("", paragraph).strip():
+            return True
+    return False
+
+
+def test_a_rendered_answer_puts_display_maths_in_a_block_of_its_own():
+    """Item 154: the maths half of W3's defect, and a folded scalar is the cause.
+
+    `answer_text: >-` keeps a blank line as **one** newline, so an equation written
+    under a sentence arrives on the next line of the same Markdown paragraph. The
+    hook only makes a display block when the `$$` starts one, so the reader gets
+    `$`, the equation set on a line inside the sentence, `$`. Measured on the built
+    site at `f296ff8`: 1,205 stray dollars in `ie-lc-maths`, from 308 answers in 58
+    banks. A literal scalar (`|-`) keeps the blank line, and the equation becomes a
+    block.
+
+    The check runs on what the renderer produces, for the reason the list test
+    gives: the YAML style is not what reaches the page.
+    """
+    from textbook.verify.render import render_problem
+
+    broken = []
+    for bank in ALL_BANKS:
+        data = yaml.safe_load(bank.read_text(encoding="utf-8")) or {}
+        for problem in data.get("problems") or []:
+            if display_maths_shares_a_paragraph(render_problem(problem, 1)):
+                broken.append(f"{bank.name}: {problem.get('id')}")
+    assert broken == [], (
+        "an answer renders display maths inside a paragraph: " + ", ".join(broken)
+    )
+
+
+def test_the_display_maths_check_catches_a_folded_answer():
+    """A check that cannot fail on the defect it was written for is decoration."""
+    assert display_maths_shares_a_paragraph(
+        "The rule is:\n$$a = b$$\nand that is all."
+    )
+    assert not display_maths_shares_a_paragraph(
+        "The rule is:\n\n$$a = b$$\n\nand that is all."
+    )
+    assert not display_maths_shares_a_paragraph("The rule is $a = b$ in a sentence.")
+    assert display_maths_shares_a_paragraph("Two runs:\n\n$$a = b$$\n\nand $$c = d$$ here.")

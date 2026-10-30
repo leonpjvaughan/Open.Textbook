@@ -14,7 +14,7 @@ problems:
       Given that $\sin A = 0.6$ and $A$ is acute, find $\cos A$.
     answer_label: '$\cos A$'
     check: {kind: evaluate, expression: 'sqrt(1 - 0.6**2)', answer: '0.8'}
-    answer_text: >-
+    answer_text: |-
       From the identity in the booklet,
 
       $$\cos^2A = 1 - \sin^2A = 1 - 0.36 = 0.64 \qquad \cos A = \pm 0.8$$
@@ -33,7 +33,7 @@ problems:
       Given that $\sin A = 0.6$ and $A$ is acute, find $\tan A$.
     answer_label: '$\tan A$'
     check: {kind: evaluate, expression: '0.6 / sqrt(1 - 0.6**2)', answer: '0.75'}
-    answer_text: >-
+    answer_text: |-
       The booklet gives $\tan A = \dfrac{\sin A}{\cos A}$. From the last answer,
       $\cos A = 0.8$, so
 
@@ -53,7 +53,7 @@ problems:
       value: 'sqrt(1 - 0.6691**2)'
       target: '0.7432'
       tolerance: '0.001'
-    answer_text: >-
+    answer_text: |-
       $$\cos^2 42^\circ = 1 - 0.6691^2 = 1 - 0.4477 = 0.5523$$
 
       $$\cos 42^\circ = \sqrt{0.5523} = 0.7432$$
@@ -74,7 +74,7 @@ problems:
       value: '0.6691 / 0.7432'
       target: '0.9003'
       tolerance: '0.001'
-    answer_text: >-
+    answer_text: |-
       $$\tan 42^\circ = \frac{\sin 42^\circ}{\cos 42^\circ} = \frac{0.6691}{0.7432} = 0.9003$$
 
       A calculator agrees, which is the check.
@@ -88,7 +88,7 @@ problems:
       Given that $\sin A = \dfrac{3}{5}$ and $A$ is acute, find $\sin 2A$ as a fraction.
     answer_label: '$\sin 2A$'
     check: {kind: evaluate, expression: '2 * (3/5) * (4/5)', answer: '24 / 25'}
-    answer_text: >-
+    answer_text: |-
       From the identity, $\cos A = \dfrac{4}{5}$, because $A$ is acute. The booklet gives
 
       $$\sin 2A = 2\sin A\cos A = 2 \times \frac{3}{5} \times \frac{4}{5} = \frac{24}{25}$$
@@ -105,7 +105,7 @@ problems:
       Given that $\sin A = \dfrac{3}{5}$ and $A$ is acute, find $\cos 2A$ as a fraction.
     answer_label: '$\cos 2A$'
     check: {kind: evaluate, expression: '(4/5)**2 - (3/5)**2', answer: '7 / 25'}
-    answer_text: >-
+    answer_text: |-
       $$\cos 2A = \cos^2A - \sin^2A = \frac{16}{25} - \frac{9}{25} = \frac{7}{25}$$
 
       The other form gives the same answer:
@@ -125,7 +125,7 @@ problems:
       kind: evaluate
       expression: '(4/5) * (5/13) - (3/5) * (12/13)'
       answer: '-16 / 65'
-    answer_text: >-
+    answer_text: |-
       First find the two values the formula needs. From the identity,
       $\cos A = \dfrac{4}{5}$ and $\sin B = \dfrac{12}{13}$.
 
@@ -160,7 +160,7 @@ problems:
             Pythagoras' theorem on those two distances gives cos squared A plus sin
             squared A equals 1 squared, which is 1.
           concepts: [unit-circle-identity]
-    answer_text: >-
+    answer_text: |-
       On the unit circle, the point at angle $A$ is $(\cos A, \sin A)$. So $\cos A$ is the
       horizontal distance from the origin and $\sin A$ is the vertical distance.
 

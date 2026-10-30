@@ -23,7 +23,7 @@ problems:
       kind: evaluate
       expression: '2 * (3**5 - 1) / (3 - 1)'
       answer: '242'
-    answer_text: >-
+    answer_text: |-
       $S_n = \dfrac{a(r^n - 1)}{r - 1}$, so
 
       $$S_5 = \frac{2(243 - 1)}{2} = 242$$
@@ -59,7 +59,7 @@ problems:
       kind: evaluate
       expression: '80 * (1 - (1/2)**4) / (1 - 1/2)'
       answer: '150'
-    answer_text: >-
+    answer_text: |-
       $a = 80$ and $r = \dfrac{1}{2}$, so
 
       $$S_4 = \frac{80\left(1 - \frac{1}{16}\right)}{1 - \frac{1}{2}} = \frac{80 \times \frac{15}{16}}{\frac{1}{2}} = 150$$

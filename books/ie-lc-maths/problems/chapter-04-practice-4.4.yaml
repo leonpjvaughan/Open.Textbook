@@ -31,7 +31,7 @@ problems:
     statement: 'Find the gradient of the line through $(1, 4)$ and $(3, 10)$.'
     answer_label: 'The gradient'
     check: {kind: evaluate, expression: '(10 - 4) / (3 - 1)', answer: '3'}
-    answer_text: >-
+    answer_text: |-
       $$m = \frac{10 - 4}{3 - 1} = \frac{6}{2} = 3$$
 
       The change in $y$ is divided by the change in $x$, and the coordinates are

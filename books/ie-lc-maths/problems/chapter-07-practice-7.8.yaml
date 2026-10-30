@@ -88,7 +88,7 @@ problems:
       checks:
         - {kind: solve, equation: '24*t - 3*t**2 = 0', variable: t, answer: [0, 8]}
         - {kind: evaluate, expression: '12*8**2 - 8**3', answer: '256'}
-    answer_text: >-
+    answer_text: |-
       $V'(t) = 24t - 3t^2 = 3t(8 - t)$. This is zero at $t = 0$ and at $t = 8$. At
       $t = 0$ the tank is empty, so the greatest volume is at $t = 8$:
 
@@ -109,7 +109,7 @@ problems:
       checks:
         - {kind: solve, equation: '24 - 6*t = 0', variable: t, answer: [4]}
         - {kind: evaluate, expression: '24*4 - 3*4**2', answer: '48'}
-    answer_text: >-
+    answer_text: |-
       To make the rate greatest, set its derivative to zero: $V''(t) = 24 - 6t = 0$,
       so $t = 4$. The rate there is
 

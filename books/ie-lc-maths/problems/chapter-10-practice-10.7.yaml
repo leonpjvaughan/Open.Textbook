@@ -109,8 +109,9 @@ problems:
         - id: compare
           text: the events are independent when that product equals P(A and B); if the two differ they are not independent
           concepts: [equality]
-    answer_text: >-
+    answer_text: |-
       Two events are independent when
+
       $$P(A \cap B) = P(A) \times P(B)$$
 
       Work out the product of the two separate probabilities and compare it with

@@ -44,7 +44,7 @@ problems:
     statement: 'Write $\dfrac{6}{\sqrt{3}}$ with a whole-number denominator.'
     answer_label: 'The rationalised form'
     check: {kind: evaluate, expression: '6/sqrt(3)', answer: '2*sqrt(3)'}
-    answer_text: >-
+    answer_text: |-
       Multiply top and bottom by $\sqrt{3}$:
 
       $$\frac{6}{\sqrt{3}} \times \frac{\sqrt{3}}{\sqrt{3}} = \frac{6\sqrt{3}}{3} = 2\sqrt{3}$$
@@ -59,7 +59,7 @@ problems:
     statement: 'Write $\dfrac{1}{\sqrt{5} - 2}$ in the form $a + b\sqrt{5}$.'
     answer_label: 'The rationalised form'
     check: {kind: evaluate, expression: '1/(sqrt(5) - 2)', answer: 'sqrt(5) + 2'}
-    answer_text: >-
+    answer_text: |-
       Multiply top and bottom by the conjugate $\sqrt{5} + 2$:
 
       $$\frac{1}{\sqrt{5} - 2} \times \frac{\sqrt{5} + 2}{\sqrt{5} + 2} = \frac{\sqrt{5} + 2}{5 - 4} = \sqrt{5} + 2$$
@@ -74,7 +74,7 @@ problems:
     statement: 'Simplify $(\sqrt{7} + \sqrt{3})(\sqrt{7} - \sqrt{3})$.'
     answer_label: 'The product in simplest form'
     check: {kind: evaluate, expression: '(sqrt(7) + sqrt(3))*(sqrt(7) - sqrt(3))', answer: '4'}
-    answer_text: >-
+    answer_text: |-
       This is the difference of two squares:
 
       $$(\sqrt{7})^2 - (\sqrt{3})^2 = 7 - 3 = 4$$
@@ -99,7 +99,7 @@ problems:
         - id: compare
           text: so sqrt(2) + sqrt(3) is not equal to sqrt(5); the square root of a sum is not the sum of the square roots
           concepts: [not-equal]
-    answer_text: >-
+    answer_text: |-
       The square root does not split across a sum. Squaring gives
 
       $$(\sqrt{2} + \sqrt{3})^2 = 2 + 3 + 2\sqrt{6} = 5 + 2\sqrt{6}$$

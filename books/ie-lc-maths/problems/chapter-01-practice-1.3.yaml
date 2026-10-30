@@ -10,7 +10,7 @@ problems:
     statement: 'A square has sides of length $1$. Use Pythagoras to find the length of a diagonal.'
     answer_label: 'The diagonal of the unit square'
     check: {kind: evaluate, expression: 'sqrt(1**2 + 1**2)', answer: 'sqrt(2)'}
-    answer_text: >-
+    answer_text: |-
       The diagonal is the hypotenuse of a right triangle with legs $1$ and $1$:
 
       $$d = \sqrt{1^2 + 1^2} = \sqrt{2}$$
@@ -26,7 +26,7 @@ problems:
     statement: 'A square has sides of length $3$. Find the length of a diagonal in simplest surd form.'
     answer_label: 'The diagonal of the square of side 3'
     check: {kind: evaluate, expression: 'sqrt(3**2 + 3**2)', answer: '3*sqrt(2)'}
-    answer_text: >-
+    answer_text: |-
       $$d = \sqrt{3^2 + 3^2} = \sqrt{18} = 3\sqrt{2}$$
 
       The diagonal of a square of side $s$ is always $s\sqrt{2}$.
@@ -73,7 +73,7 @@ problems:
         - id: arc
           text: open the compass to the hypotenuse and mark that distance on the number line from 0; the point marked is sqrt(3)
           concepts: [compass-arc]
-    answer_text: >-
+    answer_text: |-
       Draw a right triangle with one leg of length $1$ and the other of length
       $\sqrt{2}$. Its hypotenuse is
 
@@ -89,7 +89,7 @@ problems:
     statement: 'A right triangle has legs of length $1$ and $\sqrt{2}$. Find the length of the hypotenuse.'
     answer_label: 'The hypotenuse'
     check: {kind: evaluate, expression: 'sqrt(1**2 + (sqrt(2))**2)', answer: 'sqrt(3)'}
-    answer_text: >-
+    answer_text: |-
       $$h = \sqrt{1^2 + (\sqrt{2})^2} = \sqrt{1 + 2} = \sqrt{3}$$
 
       This is the triangle that gives $\sqrt{3}$ from $\sqrt{2}$.
@@ -101,7 +101,7 @@ problems:
     statement: 'A rectangle is $2$ units by $3$ units. Find the length of a diagonal in simplest surd form.'
     answer_label: 'The diagonal of the rectangle'
     check: {kind: evaluate, expression: 'sqrt(2**2 + 3**2)', answer: 'sqrt(13)'}
-    answer_text: >-
+    answer_text: |-
       $$d = \sqrt{2^2 + 3^2} = \sqrt{4 + 9} = \sqrt{13}$$
 
       $13$ has no square factor, so $\sqrt{13}$ is already in simplest form.
@@ -140,7 +140,7 @@ problems:
         - id: arc
           text: open the compass to the diagonal and mark that distance on the number line from 0
           concepts: [compass-arc]
-    answer_text: >-
+    answer_text: |-
       Draw a right triangle with legs $1$ and $2$. Its hypotenuse is
 
       $$\sqrt{1^2 + 2^2} = \sqrt{1 + 4} = \sqrt{5}$$

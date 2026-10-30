@@ -50,7 +50,7 @@ problems:
       expression: '3*x**2 - 4*x + 7'
       apply: {op: diff, args: [x]}
       answer: '6*x - 4'
-    answer_text: >-
+    answer_text: |-
       Differentiate term by term. The derivative of $3x^2$ is $6x$, of $-4x$ is
       $-4$, and of the constant $7$ is $0$:
 
@@ -119,7 +119,7 @@ problems:
       expression: '12*t**2 - t**3'
       apply: {op: diff, args: [t]}
       answer: '24*t - 3*t**2'
-    answer_text: >-
+    answer_text: |-
       Differentiate term by term: the derivative of $12t^2$ is $24t$, and the
       derivative of $t^3$ is $3t^2$. So
 

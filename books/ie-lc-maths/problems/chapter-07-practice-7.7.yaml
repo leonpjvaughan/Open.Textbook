@@ -22,7 +22,7 @@ problems:
       expression: 't**3 - 6*t**2 + 9*t'
       apply: {op: diff, args: [t]}
       answer: '3*t**2 - 12*t + 9'
-    answer_text: >-
+    answer_text: |-
       Velocity is the rate of change of distance, so differentiate:
 
       $$s'(t) = 3t^2 - 12t + 9 \text{ metres per second}$$
@@ -60,7 +60,7 @@ problems:
       That is, divide the volume gained by the time taken.
     answer_label: 'The average rate'
     check: {kind: evaluate, expression: '(12*4**2 - 4**3)/4', answer: '32'}
-    answer_text: >-
+    answer_text: |-
       $V(4) = 12(16) - 64 = 128$ litres, and the tank started empty, so the average
       rate is
 
@@ -83,7 +83,7 @@ problems:
       checks:
         - {kind: apply, expression: '(4/3)*pi*r**3', apply: {op: diff, args: [r]}, answer: '4*pi*r**2'}
         - {kind: evaluate, expression: '4*pi*3**2', answer: '36*pi'}
-    answer_text: >-
+    answer_text: |-
       $\dfrac{dV}{dr} = 4\pi r^2$. At $r = 3$,
 
       $$\frac{dV}{dr} = 4\pi(9) = 36\pi \approx 113.1 \text{ cubic centimetres per

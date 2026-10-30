@@ -11,7 +11,7 @@ problems:
     statement: 'Work out $15\%$ of €80.'
     answer_label: '$15\%$ of €80'
     check: {kind: evaluate, expression: '0.15 * 80', answer: '12'}
-    answer_text: >-
+    answer_text: |-
       $15\%$ means $15$ parts in every $100$, so $15\% = 0.15$.
 
       $$0.15 \times 80 = 12$$
@@ -23,7 +23,7 @@ problems:
     statement: 'Increase €250 by $12\%$.'
     answer_label: '€250 increased by $12\%$'
     check: {kind: evaluate, expression: '250 * 1.12', answer: '280'}
-    answer_text: >-
+    answer_text: |-
       An increase of $12\%$ is the same as multiplying by $1.12$, because the
       original $100\%$ and the extra $12\%$ are both kept.
 
@@ -38,7 +38,7 @@ problems:
     statement: 'Decrease €180 by $35\%$.'
     answer_label: '€180 decreased by $35\%$'
     check: {kind: evaluate, expression: '180 * 0.65', answer: '117'}
-    answer_text: >-
+    answer_text: |-
       A decrease of $35\%$ leaves $100\% - 35\% = 65\%$, so multiply by $0.65$.
 
       $$180 \times 0.65 = 117$$
@@ -53,7 +53,7 @@ problems:
       A price rises from €40 to €46. Work out the percentage increase.
     answer_label: 'The percentage increase'
     check: {kind: evaluate, expression: '(46 - 40) / 40 * 100', answer: '15'}
-    answer_text: >-
+    answer_text: |-
       The change is $46 - 40 = 6$. Divide by the **original** value, not the new
       one:
 
@@ -70,7 +70,7 @@ problems:
       the reduction.
     answer_label: 'The price before the reduction'
     check: {kind: evaluate, expression: '64 / 0.8', answer: '80'}
-    answer_text: >-
+    answer_text: |-
       After a $20\%$ reduction the price is $80\%$ of the original, so €64 is
       $0.8$ times the original price.
 
@@ -93,7 +93,7 @@ problems:
       checks:
         - {kind: evaluate, expression: '9000 * 1.23', answer: '11070'}
         - {kind: evaluate, expression: '9000 * 0.23', answer: '2070'}
-    answer_text: >-
+    answer_text: |-
       VAT adds $23\%$ to the price before VAT, so multiply by $1.23$:
 
       $$9000 \times 1.23 = 11\,070$$
@@ -114,7 +114,7 @@ problems:
       percentage change.
     answer_label: 'The overall percentage change'
     check: {kind: evaluate, expression: '(1.2 * 0.8 - 1) * 100', answer: '-4'}
-    answer_text: >-
+    answer_text: |-
       Multiply the two multipliers rather than adding the percentages:
 
       $$1.2 \times 0.8 = 0.96$$
@@ -142,7 +142,7 @@ problems:
         - id: divide
           text: divide the price you are given by that multiplier, because the given price is the original multiplied by it
           concepts: [original-base]
-    answer_text: >-
+    answer_text: |-
       Write the increase as a multiplier first. An increase of $23\%$ means
       multiplying by $1.23$. The price you are given is the original price
       already multiplied by $1.23$, so divide to undo it.

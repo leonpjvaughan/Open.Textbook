@@ -102,7 +102,7 @@ problems:
       Find the eighth term of the sequence $20, 17, 14, \dots$
     answer_label: 'The eighth term'
     check: {kind: evaluate, expression: '20 - 3 * 7', answer: '-1'}
-    answer_text: >-
+    answer_text: |-
       The gap is $-3$, because each term is $3$ less than the one before. At
       $n = 1$, $-3n = -3$, but the first term is $20$, so add $23$:
 

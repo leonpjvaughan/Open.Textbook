@@ -80,7 +80,7 @@ problems:
         - {kind: evaluate, expression: '240 + 4 * 50', answer: '440'}
         - {kind: evaluate, expression: '10 * 50', answer: '500'}
         - {kind: evaluate, expression: '10 * 50 - (240 + 4 * 50)', answer: '60'}
-    answer_text: >-
+    answer_text: |-
       The cost is $240 + 200 = 440$, which is €440, the income is €500, and the profit is
 
       $$500 - 440 = 60$$

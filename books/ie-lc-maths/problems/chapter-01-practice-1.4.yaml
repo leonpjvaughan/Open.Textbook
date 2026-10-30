@@ -48,7 +48,7 @@ problems:
     statement: 'Solve $|x - 2| = 5$ for $x$.'
     answer_label: 'Both values of $x$'
     check: {kind: solve, equation: 'Abs(x - 2) = 5', variable: x, answer: ['7', '-3']}
-    answer_text: >-
+    answer_text: |-
       The distance from $x$ to $2$ is $5$, so $x$ is $5$ either side of $2$:
 
       $$x - 2 = 5 \quad\text{or}\quad x - 2 = -5$$
@@ -96,7 +96,7 @@ problems:
     statement: 'Solve $|x| < 4$ and show the solution on the number line.'
     answer_label: 'The solution set'
     check: {kind: inequality, inequality: 'Abs(x) < 4', variable: x, answer: 'Interval.open(-4, 4)'}
-    answer_text: >-
+    answer_text: |-
       The solutions are the numbers whose distance from $0$ is less than $4$:
 
       $$-4 < x < 4$$
@@ -111,7 +111,7 @@ problems:
     statement: 'Solve $|2x - 1| = 7$ for $x$.'
     answer_label: 'Both values of $x$'
     check: {kind: solve, equation: 'Abs(2*x - 1) = 7', variable: x, answer: ['4', '-3']}
-    answer_text: >-
+    answer_text: |-
       Split the absolute value into its two cases:
 
       $$2x - 1 = 7 \quad\text{or}\quad 2x - 1 = -7$$

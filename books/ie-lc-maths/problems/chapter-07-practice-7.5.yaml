@@ -19,7 +19,7 @@ problems:
       expression: '(2*x + 3)**5'
       apply: {op: diff, args: [x]}
       answer: '10*(2*x + 3)**4'
-    answer_text: >-
+    answer_text: |-
       Let $u = 2x + 3$, so $\dfrac{du}{dx} = 2$. Then $y = u^5$ and
       $\dfrac{dy}{du} = 5u^4$. The chain rule gives
 
@@ -37,7 +37,7 @@ problems:
       expression: 'sqrt(3*x + 1)'
       apply: {op: diff, args: [x]}
       answer: '3/(2*sqrt(3*x + 1))'
-    answer_text: >-
+    answer_text: |-
       Write $y = (3x + 1)^{1/2}$. The outer derivative is
       $\tfrac{1}{2}(3x + 1)^{-1/2}$, and the inner derivative is $3$. Multiplying:
 
@@ -56,7 +56,7 @@ problems:
       expression: '(x**2 + 1)**3'
       apply: {op: diff, args: [x]}
       answer: '6*x*(x**2 + 1)**2'
-    answer_text: >-
+    answer_text: |-
       Let $u = x^2 + 1$, so $\dfrac{du}{dx} = 2x$. Then
 
       $$\frac{dy}{dx} = 3(x^2 + 1)^2 \times 2x = 6x(x^2 + 1)^2$$
@@ -73,7 +73,7 @@ problems:
       expression: '(1 - 4*x)**3'
       apply: {op: diff, args: [x]}
       answer: '-12*(1 - 4*x)**2'
-    answer_text: >-
+    answer_text: |-
       The outer derivative is $3(1 - 4x)^2$, and the inner derivative is $-4$. So
 
       $$\frac{dy}{dx} = 3(1 - 4x)^2 \times (-4) = -12(1 - 4x)^2$$
@@ -92,7 +92,7 @@ problems:
       expression: '(5*x - 2)**4'
       apply: {op: diff, args: [x]}
       answer: '20*(5*x - 2)**3'
-    answer_text: >-
+    answer_text: |-
       The outer derivative is $4(5x - 2)^3$, and the inner derivative is $5$. So
 
       $$\frac{dy}{dx} = 4(5x - 2)^3 \times 5 = 20(5x - 2)^3$$
@@ -107,7 +107,7 @@ problems:
       the chain rule to work out $\dfrac{dh}{dt}$ at that instant.
     answer_label: 'The rate of rise of the water'
     check: {kind: evaluate, expression: '48/(4*pi)', answer: '12/pi'}
-    answer_text: >-
+    answer_text: |-
       From $V = 4\pi h$ we get $\dfrac{dV}{dh} = 4\pi$. The chain rule says
 
       $$\frac{dV}{dt} = \frac{dV}{dh} \times \frac{dh}{dt}$$
@@ -129,7 +129,7 @@ problems:
           text: >-
             dy/dx equals dy/du times du/dx, so the two rates multiply
           concepts: [chain-rule, rates-multiply]
-    answer_text: >-
+    answer_text: |-
       $$\frac{dy}{dx} = \frac{dy}{du} \times \frac{du}{dx}$$
 
       If $y$ changes twice as fast as $u$, and $u$ changes three times as fast as $x$,

@@ -55,7 +55,7 @@ problems:
       where $t$ is in hours. Find the greatest depth.
     answer_label: 'The greatest depth'
     check: {kind: evaluate, expression: '1.4 + 1.2', answer: '2.6'}
-    answer_text: >-
+    answer_text: |-
       The amplitude is $1.2$ and the vertical shift is $1.4$, so the middle line is
       $d = 1.4$ and the greatest depth is
 
@@ -73,7 +73,7 @@ problems:
       Find the smallest depth.
     answer_label: 'The smallest depth'
     check: {kind: evaluate, expression: '1.4 - 1.2', answer: '0.2'}
-    answer_text: >-
+    answer_text: |-
       Subtract the amplitude from the middle line:
 
       $$d = 1.4 - 1.2 = 0.2 \text{ m}$$
@@ -89,7 +89,7 @@ problems:
       say what it means.
     answer_label: 'The period'
     check: {kind: evaluate, expression: '360 / 30', answer: '12'}
-    answer_text: >-
+    answer_text: |-
       $$\text{period} = \frac{360^\circ}{30^\circ} = 12 \text{ hours}$$
 
       The tide repeats every $12$ hours, so there are two high waters and two low waters
@@ -108,7 +108,7 @@ problems:
       value: '1.4 + 1.2 * sin(30 * 2 * pi / 180)'
       target: '2.44'
       tolerance: '0.01'
-    answer_text: >-
+    answer_text: |-
       Substitute $t = 2$:
 
       $$d = 1.4 + 1.2\sin 60^\circ = 1.4 + 1.2 \times 0.8660 = 2.44 \text{ m}$$

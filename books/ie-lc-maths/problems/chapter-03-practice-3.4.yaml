@@ -19,7 +19,7 @@ problems:
         w: {value: '3', unit: cm}
         h: {value: '2', unit: cm}
       answer: {value: '62', unit: 'cm^2'}
-    answer_text: >-
+    answer_text: |-
       The net holds three pairs of rectangles:
 
       $$A = 2(15 + 10 + 6) = 62 \text{ cm}^2$$
@@ -39,7 +39,7 @@ problems:
       values:
         s: {value: '4', unit: cm}
       answer: {value: '96', unit: 'cm^2'}
-    answer_text: >-
+    answer_text: |-
       A cube net is $6$ squares, and each one has area $16 \text{ cm}^2$:
 
       $$A = 6 \times 16 = 96 \text{ cm}^2$$
@@ -53,7 +53,7 @@ problems:
       its net.
     answer_label: 'The width of the rectangle'
     check: {kind: evaluate, expression: '2 * pi * 5', answer: '10 * pi'}
-    answer_text: >-
+    answer_text: |-
       The width is the circumference of the base:
 
       $$\text{Width} = 2\pi r = 2\pi \times 5 = 10\pi \approx 31.42 \text{ cm}$$
@@ -67,7 +67,7 @@ problems:
       its net.
     answer_label: 'The area of the rectangle'
     check: {kind: evaluate, expression: '2 * pi * 5 * 10', answer: '100 * pi'}
-    answer_text: >-
+    answer_text: |-
       The rectangle is $10\pi$ cm wide and $10$ cm high, so
 
       $$A = 10\pi \times 10 = 100\pi \approx 314.16 \text{ cm}^2$$
@@ -82,7 +82,7 @@ problems:
     statement: 'A cylinder has diameter $12$ cm. Find the width of the rectangle in its net.'
     answer_label: 'The width of the rectangle'
     check: {kind: evaluate, expression: 'pi * 12', answer: '12 * pi'}
-    answer_text: >-
+    answer_text: |-
       $$\text{Width} = \pi d = 12\pi \approx 37.70 \text{ cm}$$
 
       The width is the circumference, not the diameter. A rectangle $12$ cm wide would
@@ -107,7 +107,7 @@ problems:
         c: {value: '5', unit: cm}
         L: {value: '10', unit: cm}
       answer: {value: '132', unit: 'cm^2'}
-    answer_text: >-
+    answer_text: |-
       The net has two triangles and three rectangles:
 
       $$A = 2(6) + 30 + 40 + 50 = 132 \text{ cm}^2$$
@@ -123,7 +123,7 @@ problems:
       A cylinder has radius $5$ cm and height $10$ cm. Find the total area of its net.
     answer_label: 'The total area of the net'
     check: {kind: evaluate, expression: '2 * pi * 5**2 + 2 * pi * 5 * 10', answer: '150 * pi'}
-    answer_text: >-
+    answer_text: |-
       The two circles together have area $2 \times 25\pi = 50\pi \text{ cm}^2$, and the
       rectangle has area $100\pi \text{ cm}^2$. So
 

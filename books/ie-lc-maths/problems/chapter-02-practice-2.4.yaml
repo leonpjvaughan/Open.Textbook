@@ -20,7 +20,7 @@ problems:
       checks:
         - {kind: evaluate, expression: '2000 * (4/100) * 3', answer: '240'}
         - {kind: evaluate, expression: '2000 * (1 + (4/100) * 3)', answer: '2240'}
-    answer_text: >-
+    answer_text: |-
       Simple interest is paid on the original amount only, so each year adds
       $4\%$ of €2,000:
 
@@ -41,7 +41,7 @@ problems:
       total value.
     answer_label: 'The total value'
     check: {kind: evaluate, expression: '2000 * (104/100)**3', answer: '281216/125'}
-    answer_text: >-
+    answer_text: |-
       Compound interest pays interest on the interest as well, so multiply by
       $1.04$ once for each year:
 
@@ -58,7 +58,7 @@ problems:
     statement: '€5,000 is invested at $6\%$ compound interest for 2 years. Work out the total value.'
     answer_label: 'The total value'
     check: {kind: evaluate, expression: '5000 * (106/100)**2', answer: '5618'}
-    answer_text: >-
+    answer_text: |-
       Multiply by $1.06$ once for each of the two years:
 
       $$5\,000 \times 1.06^2 = 5\,618$$
@@ -76,7 +76,7 @@ problems:
       $4\%$ simple interest over 3 years.
     answer_label: 'How much more compound interest earns'
     check: {kind: evaluate, expression: '2000 * (104/100)**3 - 2000 * (1 + (4/100) * 3)', answer: '1216/125'}
-    answer_text: >-
+    answer_text: |-
       The compound total is $2\,000 \times 1.04^3 = 2\,249.728$ and the simple
       total is $2\,000 \times 1.12 = 2\,240$. The difference is
 
@@ -94,7 +94,7 @@ problems:
       Work out the amount invested at the start.
     answer_label: 'The amount invested'
     check: {kind: evaluate, expression: '5618 / (106/100)**2', answer: '5000'}
-    answer_text: >-
+    answer_text: |-
       The final value is the starting value multiplied by $1.06$ twice, so divide
       by $1.06^2$ to undo it:
 
@@ -112,7 +112,7 @@ problems:
       Work out the value of the savings after 2 years.
     answer_label: 'The value after 2 years'
     check: {kind: evaluate, expression: '11070 * (103/100)**2', answer: '11744163/1000'}
-    answer_text: >-
+    answer_text: |-
       Multiply by $1.03$ once for each year:
 
       $$11\,070 \times 1.03^2 = 11\,744.163$$
@@ -127,7 +127,7 @@ problems:
     statement: 'A house worth €240,000 rises in value by $5\%$ each year. Work out its value after 2 years.'
     answer_label: 'The value after 2 years'
     check: {kind: evaluate, expression: '240000 * (105/100)**2', answer: '264600'}
-    answer_text: >-
+    answer_text: |-
       A rise of $5\%$ each year is compound growth, so multiply by $1.05$ twice:
 
       $$240\,000 \times 1.05^2 = 264\,600$$

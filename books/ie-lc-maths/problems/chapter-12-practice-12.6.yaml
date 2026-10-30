@@ -19,7 +19,7 @@ problems:
       value: '10 * sin(60 * pi / 180) / sin(40 * pi / 180)'
       target: '13.47'
       tolerance: '0.01'
-    answer_text: >-
+    answer_text: |-
       The booklet gives the sine rule, so write the fraction for the pair you know and
       the pair you want:
 
@@ -39,7 +39,7 @@ problems:
       checks:
         - {kind: approx, value: 'asin(11 * sin(35 * pi / 180) / 8) * 180 / pi', target: '52.1', tolerance: '0.05'}
         - {kind: approx, value: '180 - asin(11 * sin(35 * pi / 180) / 8) * 180 / pi', target: '127.9', tolerance: '0.05'}
-    answer_text: >-
+    answer_text: |-
       $$\sin B = \frac{11\sin 35^\circ}{8} = 0.7887$$
 
       $$B = \sin^{-1}(0.7887) = 52.1^\circ \quad\text{or}\quad 180^\circ - 52.1^\circ = 127.9^\circ$$
@@ -62,7 +62,7 @@ problems:
       value: 'sqrt(8**2 + 11**2 - 2 * 8 * 11 * cos(35 * pi / 180))'
       target: '6.39'
       tolerance: '0.01'
-    answer_text: >-
+    answer_text: |-
       Two sides and the angle between them, so use the cosine rule from the booklet:
 
       $$a^2 = 64 + 121 - 2(8)(11)\cos 35^\circ = 185 - 176 \times 0.8192 = 40.83$$
@@ -83,7 +83,7 @@ problems:
       value: 'acos(-1 / 10) * 180 / pi'
       target: '95.7'
       tolerance: '0.05'
-    answer_text: >-
+    answer_text: |-
       The largest angle is opposite the largest side, so find $C$ opposite $c = 9$:
 
       $$81 = 25 + 49 - 2(5)(7)\cos C$$
@@ -111,7 +111,7 @@ problems:
       value: '8 * sin(60 * pi / 180) / sin(78 * pi / 180)'
       target: '7.08'
       tolerance: '0.01'
-    answer_text: >-
+    answer_text: |-
       The third angle is $180^\circ - 42^\circ - 60^\circ = 78^\circ$, at the yacht. Use
       the sine rule:
 
@@ -133,7 +133,7 @@ problems:
       value: '8 * sin(42 * pi / 180) / sin(78 * pi / 180)'
       target: '5.47'
       tolerance: '0.01'
-    answer_text: >-
+    answer_text: |-
       $$\frac{LY}{\sin 42^\circ} = \frac{8}{\sin 78^\circ}$$
 
       $$LY = \frac{8 \times 0.6691}{0.9781} = 5.47 \text{ km}$$
@@ -156,7 +156,7 @@ problems:
       value: 'sqrt(8**2 + 5.472**2 - 2 * 8 * 5.472 * cos(60 * pi / 180))'
       target: '7.08'
       tolerance: '0.01'
-    answer_text: >-
+    answer_text: |-
       $$CY^2 = 64 + 29.94 - 2(8)(5.472)\cos 60^\circ$$
 
       $$CY^2 = 93.94 - 87.55 \times 0.5 \times 2 = 93.94 - 43.78 = 50.16$$

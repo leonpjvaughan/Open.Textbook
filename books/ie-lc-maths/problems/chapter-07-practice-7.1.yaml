@@ -18,7 +18,7 @@ problems:
       kind: evaluate
       expression: '((31/10)**2 - 3**2) / (31/10 - 3)'
       answer: '61/10'
-    answer_text: >-
+    answer_text: |-
       The average gradient is the change in $y$ divided by the change in $x$:
 
       $$\frac{3.1^2 - 3^2}{3.1 - 3} = \frac{9.61 - 9}{0.1} = \frac{0.61}{0.1} = 6.1$$
@@ -35,7 +35,7 @@ problems:
       expression: 'x**2'
       apply: {op: diff, args: [x]}
       answer: '2*x'
-    answer_text: >-
+    answer_text: |-
       The average gradient over the interval from $x$ to $x + h$ is
 
       $$\frac{(x + h)^2 - x^2}{h} = \frac{x^2 + 2xh + h^2 - x^2}{h}
@@ -54,7 +54,7 @@ problems:
       expression: '3*x**2'
       apply: {op: diff, args: [x]}
       answer: '6*x'
-    answer_text: >-
+    answer_text: |-
       $$\frac{3(x + h)^2 - 3x^2}{h} = \frac{3(x^2 + 2xh + h^2) - 3x^2}{h}
       = \frac{6xh + 3h^2}{h} = 6x + 3h$$
 
@@ -72,7 +72,7 @@ problems:
       expression: '5*x + 2'
       apply: {op: diff, args: [x]}
       answer: '5'
-    answer_text: >-
+    answer_text: |-
       $$\frac{(5(x + h) + 2) - (5x + 2)}{h} = \frac{5h}{h} = 5$$
 
       The $h$ cancels and nothing is left to take a limit of. The derivative of a
@@ -89,7 +89,7 @@ problems:
       expression: 'x**3'
       apply: {op: diff, args: [x]}
       answer: '3*x**2'
-    answer_text: >-
+    answer_text: |-
       Expand $(x + h)^3 = x^3 + 3x^2h + 3xh^2 + h^3$. Subtract $x^3$ and divide by
       $h$:
 
@@ -123,7 +123,7 @@ problems:
       kind: evaluate
       expression: '((12*(41/10)**2 - (41/10)**3) - (12*4**2 - 4**3)) / (1/10)'
       answer: '4799/100'
-    answer_text: >-
+    answer_text: |-
       $V(4) = 12(16) - 64 = 128$ litres and
       $V(4.1) = 12(16.81) - 68.921 = 132.799$ litres. The average rate is
 

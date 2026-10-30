@@ -22,7 +22,7 @@ problems:
       expression: 'x**2'
       apply: {op: integrate, args: [x, '0', '2']}
       answer: '8/3'
-    answer_text: >-
+    answer_text: |-
       The curve lies above the axis on this interval, so the area is the definite
       integral:
 
@@ -44,7 +44,7 @@ problems:
       expression: 'x**2 - 1'
       apply: {op: integrate, args: [x, '1', '2']}
       answer: '4/3'
-    answer_text: >-
+    answer_text: |-
       The curve crosses the axis at $x = 1$, and it is above the axis between $1$ and
       $2$. The area is
 
@@ -66,7 +66,7 @@ problems:
         - {kind: apply, expression: 'x**2 - 4', apply: {op: integrate, args: [x, '0', '2']}, answer: '-16/3'}
         - {kind: apply, expression: 'x**2 - 4', apply: {op: integrate, args: [x, '2', '3']}, answer: '7/3'}
         - {kind: evaluate, expression: '16/3 + 7/3', answer: '23/3'}
-    answer_text: >-
+    answer_text: |-
       The curve crosses the axis where $x^2 - 4 = 0$, that is at $x = 2$. Split the
       region there.
 
@@ -100,7 +100,7 @@ problems:
         - {kind: apply, expression: 'x**2 - 2*x', apply: {op: integrate, args: [x, '0', '2']}, answer: '-4/3'}
         - {kind: apply, expression: 'x**2 - 2*x', apply: {op: integrate, args: [x, '2', '3']}, answer: '4/3'}
         - {kind: evaluate, expression: '4/3 + 4/3', answer: '8/3'}
-    answer_text: >-
+    answer_text: |-
       The curve crosses the axis at $x = 0$ and $x = 2$. On the whole interval,
 
       $$\int_0^3 (x^2 - 2x)\,dx = \left[\frac{x^3}{3} - x^2\right]_0^3 = (9 - 9) - 0 = 0$$
@@ -130,7 +130,7 @@ problems:
       expression: 'x**2'
       apply: {op: integrate, args: [x, '-2', '2']}
       answer: '16/3'
-    answer_text: >-
+    answer_text: |-
       The curve lies above the axis on the whole interval, so there is no split:
 
       $$\int_{-2}^{2} x^2\,dx = \left[\frac{x^3}{3}\right]_{-2}^{2}
@@ -151,7 +151,7 @@ problems:
       checks:
         - {kind: apply, expression: '12*t - 3*t**2', apply: {op: integrate, args: [t, '4', '6']}, answer: '-32'}
         - {kind: evaluate, expression: 'abs(-32)', answer: '32'}
-    answer_text: >-
+    answer_text: |-
       $$\int_4^6 (12t - 3t^2)\,dt = \Big[6t^2 - t^3\Big]_4^6
       = (216 - 216) - (96 - 64) = 0 - 32 = -32$$
 

@@ -115,7 +115,7 @@ problems:
         - id: restricted-space
           text: the condition restricts attention to the outcomes where B happens, and asks what fraction of those also have A
           concepts: [condition-restricts]
-    answer_text: >-
+    answer_text: |-
       $$P(A \mid B) = \frac{P(A \cap B)}{P(B)}$$
 
       The condition restricts attention to the outcomes where $B$ happens. The formula

@@ -18,7 +18,7 @@ problems:
       checks:
         - {kind: apply, expression: 'x**4 - 2*x**2', apply: {op: diff, args: [x]}, answer: '4*x**3 - 4*x'}
         - {kind: apply, expression: '4*x**3 - 4*x', apply: {op: diff, args: [x]}, answer: '12*x**2 - 4'}
-    answer_text: >-
+    answer_text: |-
       Differentiate once: $\dfrac{dy}{dx} = 4x^3 - 4x$. Differentiate again:
 
       $$\frac{d^2y}{dx^2} = 12x^2 - 4$$
@@ -34,7 +34,7 @@ problems:
       checks:
         - {kind: apply, expression: '2*x**3 - 3*x**2 + 5', apply: {op: diff, args: [x]}, answer: '6*x**2 - 6*x'}
         - {kind: apply, expression: '6*x**2 - 6*x', apply: {op: diff, args: [x]}, answer: '12*x - 6'}
-    answer_text: >-
+    answer_text: |-
       First derivative: $\dfrac{dy}{dx} = 6x^2 - 6x$. Second derivative:
 
       $$\frac{d^2y}{dx^2} = 12x - 6$$
@@ -50,7 +50,7 @@ problems:
       checks:
         - {kind: apply, expression: 'x**3 - 6*x**2 + 9*x', apply: {op: diff, args: [x]}, answer: '3*x**2 - 12*x + 9'}
         - {kind: apply, expression: '3*x**2 - 12*x + 9', apply: {op: diff, args: [x]}, answer: '6*x - 12'}
-    answer_text: >-
+    answer_text: |-
       Differentiate once: $\dfrac{dy}{dx} = 3x^2 - 12x + 9$. Differentiate again:
 
       $$\frac{d^2y}{dx^2} = 6x - 12$$
@@ -97,7 +97,7 @@ problems:
       variable: t
       inequality: '24 - 6*t > 0'
       answer: 'Interval.open(-oo, 4)'
-    answer_text: >-
+    answer_text: |-
       The graph is concave up when $V''(t) > 0$:
 
       $$24 - 6t > 0 \qquad 24 > 6t \qquad t < 4$$
