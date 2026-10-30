@@ -7175,3 +7175,136 @@ The same sweep found three more drawings with marks outside: `argand-diagram`,
 `ch9-newton-raphson` and `ch22-vector-translation` all had grid or axis lines in space the
 canvas does not show. All three are fixed. The site now reports **0 errors over 248
 figures**, and the 39 labels that remain are item 164's.
+
+## 157 — On a phone the whole book was printed above every page — **done**
+
+**What is wrong.** At 390px `shell.css:253` collapses `.layout` to one column and
+makes `.sidebar` static, so the navigation becomes the first block of every page.
+Measured on the built site:
+
+```
+route                                       navH  navLinks  h1Top  pageH
+/numerical-methods/                          614      31      798   11388
+/numerical-methods/root/                     670      31      854    7608
+/maths-applied/chapter-1/section-1.2/learn/  460      16      644   10649
+```
+
+A reader's first screenful is the table of contents and the page title is below
+the fold. It is the shared shell, so every book does it; it bites hardest where the
+registry is longest, and `numerical-methods` is 31 links on a page that is already
+23,138px tall.
+
+**The fix.** Collapse the sidebar behind a native `<details>` disclosure at phone
+width — no script and no focus trap, and `details` is already the collection's
+progressive-disclosure primitive. The summary line should carry the book's name and
+the page's own section, which is the one thing a reader 600px into a nav wants.
+
+**The mechanism has to be named, or the done-means cannot pass.** One page is built
+for every width, so CSS cannot set `open` by media query: a `<details open>` leaves
+the `h1` at 798px on a phone, and a `<details>` without `open` cannot be shown at
+desktop without something to open it. Three answers are workable — override the user
+agent's closed-content rendering at ≥60rem (the new `::details-content`, not in every
+browser), reveal a fixed drawer on `:focus-within` (the skip link is already that
+stop), or a dozen lines of script on `matchMedia`. Pick one in the fix.
+
+**Done means**
+
+- [ ] the `h1` of every route is above 300px at 390px, measured over both books
+- [ ] the drawer is one focus stop, opens with `Enter`, and is inert at ≥60rem
+- [ ] `tools check-mobile site` still reports 0 pages wider than the screen
+
+**Outcome, 2026-10-30.** The drawer is a `<details class="nav-drawer" open>` around the
+`<nav class="sidebar">`, with a `<summary>` that carries the book's name and the page's
+own section. The summary is the only control, and it is one focus stop: measured in the
+tab order at 390px it is the sixth stop, and `Enter` sets `open`.
+
+**The mechanism, which the item said to pick.** One page is built for every width, so the
+markup ships `open` — the layout a reader with scripting off has always had — and the
+script at the foot of the page sets `drawer.open = matchMedia("(min-width: 60rem)").matches`
+on load and on every change of that query. Closed at phone, open and inert at desktop, one
+comfortable behaviour on each side of the breakpoint, and no behaviour lost without
+scripting. `.nav-drawer > summary` is `display: none` above 60rem, and the drawer takes the
+sticky, scrollable column rules the `.sidebar` used to carry.
+
+Measured — every route in both books, at 390px:
+
+```
+routes 47    h1 below 300px: 0    worst: 270  (/maths-applied/…/section-1.3/deeper/
+                                               what-least-squares-does/)
+```
+
+At 1280px the `h1` is still at 112 and the drawer is open with its summary hidden.
+`tools check-mobile site`: 15 pages, 0 errors. The print sheet hides the drawer as well as
+the nav, so the summary is not the one piece of a contents list left on paper, and the
+summary is `data-pagefind-ignore` so it is not indexed 47 times over.
+
+Held by `test_the_sidebar_is_a_drawer_below_the_layout_breakpoint` in
+`tests/test_pipeline.py`: the nav is inside the drawer, the summary carries the section,
+and the script that closes it is present.
+
+## 158 — The nine-kinds table was starved at every width — **done**
+
+**What is wrong.** The home page of `numerical-methods` says "Read the last column
+first", and that column is 142px at 1280px — about 18 characters — so each cell
+wraps to five lines and a row is 126px tall. Measured:
+
+```
+1280px  table 662 × 1,308, columns 116/184/210/142, row 126
+ 390px  table 544 inside a 358 scroll box, row 210, 34% off screen
+1600px  table still exactly 662 — `.content`'s `70ch` cap, not the screen
+```
+
+The book's central artefact is the hardest object on its own home page, and the
+same defect with the same remedy was already fixed once in this book: the A–Z was
+measured at 12,500px tall and became one card per method with a sticky section
+heading (`books/numerical-methods/docs/assets/stylesheets/book-local.css` records
+it). The nine-kinds table is the same object and the more important one.
+
+**The fix.** Below 60rem, one card per kind: the kind as a linked heading, then the
+question, the model and the recognition line as three labelled lines — the
+`techniques` pattern. Above 60rem, a wide-table variant that escapes `.content`'s
+`max-width: var(--tb-measure)` (`engine/src/textbook/css/shell.css:172`) and takes
+the grid column instead — about 234px of headroom at 1280px — capped near 56rem,
+which takes the recognition column from 142px to about 280px.
+
+**Done means**
+
+- [ ] at 390px the nine kinds need no horizontal scroll and no row is taller than
+      **260px** — a card is four labelled lines of prose, so it is taller than a squeezed
+      cell was; the defect was the 34% off screen, not the height. Measured: 241px
+- [ ] at 1280px the recognition column is at least 220px and the table's height
+      falls by a third
+- [ ] `tests/test_reference_books.py` still holds the table's rows to the registry
+
+**Outcome, 2026-10-30.** Two layouts from one authored table, and the Markdown table stays a
+Markdown table, so `test_the_nine_kinds_table_names_and_links_every_class` still holds its
+rows to the registry.
+
+**Above 60rem** the content column grows for this page only —
+`.content:has(.table-scroll > table.table--cards) { max-width: min(56rem, 100%) }` — because
+the cap was `.content`'s 70ch prose measure, not the screen, and the prose keeps its measure
+since `extra.css` scopes that rule to `> p, > ul, > ol, > blockquote`. A fixed column layout
+then gives each of the page's four questions the width it reads at. Measured at 1280px and
+again at 1600px, identical at both:
+
+```
+columns 115 / 297 / 203 / 271    (recognition was 142)
+table   896 wide, 887 tall       (was 662 wide, 1,308 tall: 32% shorter)
+```
+
+**Below 60rem** a row is a card: the kind as a heading, then the question, the model and the
+recognition line, each under its own name. At 390px the table is 358px wide in a 358px
+wrapper — 0 horizontal scroll — and a card is 241px tall.
+
+The labels are the mechanism. `wrap_tables` now puts each cell's column heading on the cell
+as `data-label`, read from the `<th>`s so a label cannot say something the heading does not,
+and it consumes a `<!-- table: cards -->` marker into `class="table--cards"` — the one way to
+give a single table a class without loading `attr_list`, which this collection measured at
+zero uses. The CSS stacks on `td::before { content: attr(data-label) }`; the header row is
+visually hidden rather than removed, so a screen reader still hears the table's structure.
+
+Held by `test_table_cells_carry_their_headings` and
+`test_the_cards_marker_is_consumed_and_marks_the_table` in `tests/test_pipeline.py`, and by
+`test_the_nine_kinds_table_is_marked_for_cards_and_labels_every_cell` in
+`tests/test_reference_books.py`, which fails if the marker is dropped — the failure mode that
+would silently put the table back to a sideways scroll on a phone.

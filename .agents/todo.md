@@ -14,13 +14,13 @@ done-means; an item whose heading says done and whose checklist does not is the
 failure this file has had twice, so the list below, the headings and the boxes
 are checked against each other on every pass.
 
-**Every item from 79 to 156 is closed,** each with its measurement, its fix and its
-outcome in `.agents/todo-closed.md`. Items 157–161 are the review's remaining five
+**Every item from 79 to 158 is closed,** each with its measurement, its fix and its
+outcome in `.agents/todo-closed.md`. Items 159–161 are the review's remaining three
 defects, from `research/review/maths-applied-and-numerical-methods-ii.md`, which also
-carries the design proposals those five do not cover; 162 (now closed) was that
-review's figure measurement re-run, 163 is the prose half of 154, measured while closing
-it, and 164 is the label tail the figure check measured. A new item goes at the number
-after the last one, with its diagnosis, its fix and its own done-means. The
+carries the design proposals those three do not cover; 163 is the prose half of 154,
+measured while closing it, and 164 is the label tail the figure check measured. A new
+item goes at the number after the last one, with its diagnosis, its fix and its own
+done-means. The
 *interactive-aid backlog* — which figures and interactions a book still wants — is
 `ideas.md`; it is a plan rather than a defect list, and it is written for the
 author choosing what to build next.
@@ -33,76 +33,6 @@ rewrites ranked in `research/pedagogy-audit/README.md`. An item in this file is 
 defect this repository can fix; those are decisions already taken.
 
 ---
-
-## 157 — On a phone the whole book is printed above every page
-
-**What is wrong.** At 390px `shell.css:253` collapses `.layout` to one column and
-makes `.sidebar` static, so the navigation becomes the first block of every page.
-Measured on the built site:
-
-```
-route                                       navH  navLinks  h1Top  pageH
-/numerical-methods/                          614      31      798   11388
-/numerical-methods/root/                     670      31      854    7608
-/maths-applied/chapter-1/section-1.2/learn/  460      16      644   10649
-```
-
-A reader's first screenful is the table of contents and the page title is below
-the fold. It is the shared shell, so every book does it; it bites hardest where the
-registry is longest, and `numerical-methods` is 31 links on a page that is already
-23,138px tall.
-
-**The fix.** Collapse the sidebar behind a native `<details>` disclosure at phone
-width — no script and no focus trap, and `details` is already the collection's
-progressive-disclosure primitive. The summary line should carry the book's name and
-the page's own section, which is the one thing a reader 600px into a nav wants.
-
-**The mechanism has to be named, or the done-means cannot pass.** One page is built
-for every width, so CSS cannot set `open` by media query: a `<details open>` leaves
-the `h1` at 798px on a phone, and a `<details>` without `open` cannot be shown at
-desktop without something to open it. Three answers are workable — override the user
-agent's closed-content rendering at ≥60rem (the new `::details-content`, not in every
-browser), reveal a fixed drawer on `:focus-within` (the skip link is already that
-stop), or a dozen lines of script on `matchMedia`. Pick one in the fix.
-
-**Done means**
-
-- [ ] the `h1` of every route is above 300px at 390px, measured over both books
-- [ ] the drawer is one focus stop, opens with `Enter`, and is inert at ≥60rem
-- [ ] `tools check-mobile site` still reports 0 pages wider than the screen
-
-## 158 — The nine-kinds table is starved at every width
-
-**What is wrong.** The home page of `numerical-methods` says "Read the last column
-first", and that column is 142px at 1280px — about 18 characters — so each cell
-wraps to five lines and a row is 126px tall. Measured:
-
-```
-1280px  table 662 × 1,308, columns 116/184/210/142, row 126
- 390px  table 544 inside a 358 scroll box, row 210, 34% off screen
-1600px  table still exactly 662 — `.content`'s `70ch` cap, not the screen
-```
-
-The book's central artefact is the hardest object on its own home page, and the
-same defect with the same remedy was already fixed once in this book: the A–Z was
-measured at 12,500px tall and became one card per method with a sticky section
-heading (`books/numerical-methods/docs/assets/stylesheets/book-local.css` records
-it). The nine-kinds table is the same object and the more important one.
-
-**The fix.** Below 60rem, one card per kind: the kind as a linked heading, then the
-question, the model and the recognition line as three labelled lines — the
-`techniques` pattern. Above 60rem, a wide-table variant that escapes `.content`'s
-`max-width: var(--tb-measure)` (`engine/src/textbook/css/shell.css:172`) and takes
-the grid column instead — about 234px of headroom at 1280px — capped near 56rem,
-which takes the recognition column from 142px to about 280px.
-
-**Done means**
-
-- [ ] at 390px the nine kinds need no horizontal scroll and no row is taller than
-      140px
-- [ ] at 1280px the recognition column is at least 220px and the table's height
-      falls by a third
-- [ ] `tests/test_reference_books.py` still holds the table's rows to the registry
 
 ## 159 — Nine signatures, eighteen wordings, and no check that they agree
 
