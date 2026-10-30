@@ -759,6 +759,9 @@ maths-figure label {
    * `.md-content` stay because the content column still carries both: the
    * reader-facing typography is shared with the landing page. */
   .masthead,
+  /* The drawer as well as the nav: print shows the prose, and the summary would
+   * otherwise be the only part of a contents list left on the sheet. */
+  .nav-drawer,
   .sidebar,
   .search,
   .skip,

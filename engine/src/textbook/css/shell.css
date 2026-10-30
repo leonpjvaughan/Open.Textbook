@@ -160,12 +160,43 @@ a { color: var(--tb-link); }
   align-items: start;
 }
 
-.sidebar {
+/* The drawer that holds the sidebar.
+ *
+ * At 60rem and up it *is* the sidebar column: sticky, scrollable, no summary, always open.
+ * Below that the column collapses and this becomes a disclosure whose summary is the one
+ * control between a reader and 614px of navigation — measured on `/numerical-methods/` at
+ * 390px, where the page's own title sat at y = 798. */
+.nav-drawer {
   position: sticky;
   top: calc(var(--tb-masthead-height) + 0.9rem);
   max-height: calc(100vh - 5rem);
   overflow: auto;
   padding: 1.25rem 0;
+}
+
+/* No summary on a wide screen: the contents are a column, not something to open. */
+.nav-drawer > summary { display: none; }
+
+.nav-drawer__summary {
+  cursor: pointer;
+  padding: 0.55rem 0;
+  color: var(--tb-ink);
+  font-weight: 600;
+}
+
+.nav-drawer__book { margin-right: 0.5rem; }
+
+.nav-drawer__summary::marker { color: var(--tb-ink-lighter); }
+
+/* It carries the page's own section, in the masthead's muted ink, because the one thing a
+ * reader 600px into a contents list wants is to know where they are. */
+.nav-drawer__summary .masthead__section {
+  color: var(--tb-ink-soft);
+  font-weight: 400;
+}
+
+.sidebar {
+  padding: 0;
   font-size: 0.85rem;
 }
 
@@ -252,11 +283,17 @@ a { color: var(--tb-link); }
 
 @media (max-width: 60rem) {
   .layout { grid-template-columns: 1fr; }
-  .sidebar {
+  .nav-drawer {
     position: static;
     max-height: none;
+    overflow: visible;
+    padding: 0.25rem 0 0;
     border-bottom: 1px solid var(--tb-rule);
   }
+  /* The control exists only where the collapse does. */
+  .nav-drawer > summary { display: list-item; }
+  .nav-drawer[open] > summary { padding-bottom: 0.3rem; }
+  .sidebar { padding-bottom: 0.75rem; }
 }
 
 /* Phone widths. The masthead is three controls wide and does not fit beside a

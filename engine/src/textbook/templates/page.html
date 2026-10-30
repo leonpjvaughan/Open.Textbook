@@ -65,9 +65,25 @@ document.body.setAttribute(
 </header>
 
 <div class="wrap layout">
-  <nav class="sidebar" aria-label="Book contents" data-pagefind-ignore>
-    $nav
-  </nav>
+  <!-- **The drawer.** At 60rem and up this is the sidebar column and nothing about it
+       changes. Below that the layout is one column, so without a control the whole book
+       is printed above every page: at 390px a `numerical-methods` page began with 614px
+       of navigation, 31 links, and its own title sat at y = 798.
+
+       A `<details>` is the collection's progressive-disclosure primitive and a `<summary>`
+       is one focus stop that opens with Enter, so the control is native. It is `open` in
+       the markup because that is the layout a reader with scripting off has always had;
+       the script at the foot of the page closes it at phone width, which is the only way
+       to have a different default on each side of one breakpoint from one HTML file. -->
+  <details class="nav-drawer" open>
+    <summary class="nav-drawer__summary" data-pagefind-ignore>
+      <span class="nav-drawer__book">$site_title</span>
+      $masthead_section
+    </summary>
+    <nav class="sidebar" aria-label="Book contents" data-pagefind-ignore>
+      $nav
+    </nav>
+  </details>
 
   <!-- data-pagefind-body scopes the index to the page's own content. Without it
        every page also indexes the whole sidebar, so every search hit would match
@@ -87,6 +103,24 @@ $booklet_script
 <!-- Keeps the rest of this chapter for a reader who is about to lose the signal.
      Deferred, idle, and inert on a metered connection; see assets/offline/offline.js. -->
 <script src="$offline_js" defer></script>
+
+<script type="module">
+/* The phone drawer: closed on arrival below 60rem, open and inert above it.
+ *
+ * One page is built for every width, so CSS cannot set `open` by media query: a drawer
+ * that starts closed hides the navigation at desktop, and one that starts open puts 614px
+ * of contents above a phone's title. So the markup ships `open` — the layout a reader
+ * with scripting off has always had — and this closes it where the layout needs it to be
+ * closed. The media query is listened to, so a rotated phone or a resized window leaves
+ * the drawer in the state that width calls for. */
+const drawer = document.querySelector(".nav-drawer");
+if (drawer) {
+  const wide = window.matchMedia("(min-width: 60rem)");
+  const apply = () => { drawer.open = wide.matches; };
+  apply();
+  wide.addEventListener("change", apply);
+}
+</script>
 
 <script type="module">
 /* Search, powered by Pagefind: the index is built over the rendered HTML after
