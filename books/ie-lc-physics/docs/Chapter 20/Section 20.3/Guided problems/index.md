@@ -186,7 +186,6 @@ Isotopes are nuclei of the same element, so they have the same number of protons
 different numbers of neutrons.
 
 Every carbon nucleus has six protons, so every isotope of carbon has atomic number
-
 6. Carbon-14 has mass number 14, so it has $14 - 6 = 8$ neutrons, while carbon-12
 has six. The extra neutrons make carbon-14 unstable, which is why it decays.
 

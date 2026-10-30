@@ -6917,12 +6917,16 @@ pass.
 
 **Closed (2026-10-28).** The chapter states one round-off floor: the arithmetic pages say the last bit of a double, about $10^{-16}$ m, and the structural pages say the same pose; no page says $10^{-12}$. The instant-centre figure names the car's centreline and the prose names 2.36 m from the hub. `front-corner.jpg` is 118 kB rather than 277 kB for its 352-pixel slot, the duplicated §1.6 Watch out is replaced by a link to the §1.5 depth page, sixty `§1.x` references are links, and the maths-applied titles no longer end in `— Learn`. Tests for the floor and the instant centre pass.
 
-W3, the ride-along this note did not name, is fixed and now enforced. A list needs a
-blank line before it or the parser keeps the bullet inside the paragraph above, so the
-reader sees three hyphens in a sentence: measured on 22 built pages, including the two
-`numerical-methods` class pages the review named. `lint.lists_without_a_blank_line`
-reports it, 27 Markdown lists and 19 inside block quotes were given their blank line
-(a quoted one gets `>`, so the list stays in the callout), and 4 answers whose folded
-`>-` scalar had swallowed a list were switched to `|-` with the renderer putting a
-multi-line answer in its own block. `grep` on the built site for a hyphen list inside a
-`<p>` now finds 0 pages, down from 22.
+W3, the ride-along this note did not name, is fixed where this work reaches and now
+enforced everywhere. A list needs a blank line before it or the parser keeps the bullet
+inside the paragraph above, so the reader sees three hyphens in a sentence: measured on
+22 built pages, including the two `numerical-methods` class pages the review named, and
+those two are fixed. `lint.lists_without_a_blank_line` reports the class of defect,
+inside block quotes too: 27 Markdown lists and 19 quoted ones in scope were given their
+blank line (a quoted one gets a line of `>`, so the list stays in a callout), and four
+answers whose folded `>-` scalar had swallowed a list are `|-`, with the renderer
+putting a multi-line answer in a block of its own. The 45 that remain are in chapters
+this goal did not open — `a-level-maths` 10, `ie-lc-applied-maths` 11, `ie-lc-maths` 9,
+`ie-jc-maths` 7, `ie-lc-physics` 7 — and are grandfathered in `LIST_DEBT` and queued as
+item 155 rather than dropped. On the pages this work touched, a hyphen list inside a
+`<p>` is gone from the built site.

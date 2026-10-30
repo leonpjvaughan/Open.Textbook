@@ -471,11 +471,21 @@ SENTENCE_DEBT: dict[str, int] = {
     "numerical-methods": 0,
     "maths-applied": 0,
 }
-#: The lists a book still starts without a blank line, counted when the rule was
-#: written. Fixed like every other debt here: it may only go down, and a book at 0
-#: stays at 0. The count is a page-and-line list rather than a number, because the
-#: point of the rule is that each one is a defect with a line to fix.
-LIST_DEBT: dict[str, int] = {}
+#: The lists a book still starts without a blank line, counted on 2026-10-30 when the
+#: rule was written, each with the number of pages it is spread over. Fixed like every
+#: other debt here: it may only go down, and a book at 0 stays at 0.
+#:
+#: `numerical-methods`, `maths-applied` and the statistics pages of the other four books
+#: are at 0 because the work that introduced this rule fixed them. The rest are pages
+#: outside that work's scope, queued as item 155 in `.agents/todo.md` so they are named
+#: rather than dropped.
+LIST_DEBT: dict[str, int] = {
+    "a-level-maths": 10,  # 6 pages
+    "ie-jc-maths": 7,  # 7 pages
+    "ie-lc-maths": 9,  # 7 pages
+    "ie-lc-applied-maths": 11,  # 7 pages
+    "ie-lc-physics": 7,  # 6 pages
+}
 
 LINK = re.compile(r"\[([^\]]+)\]\(([^)]+)\)")
 SECTION_REF = re.compile(r"\bSection (\d+\.\d+)\b")

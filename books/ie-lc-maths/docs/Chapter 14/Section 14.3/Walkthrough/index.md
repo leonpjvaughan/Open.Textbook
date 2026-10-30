@@ -43,7 +43,6 @@ The point $C$ is called the **centre of symmetry**.
 The three turns about the origin have simple coordinate rules.
 
 > **Rotation rules about the origin.**
->
 > - $90^\circ$ anticlockwise: $(x,y) \to (-y,x)$.
 > - $180^\circ$: $(x,y) \to (-x,-y)$.
 > - $90^\circ$ clockwise: $(x,y) \to (y,-x)$.

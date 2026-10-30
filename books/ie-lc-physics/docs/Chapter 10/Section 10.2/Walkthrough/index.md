@@ -48,7 +48,6 @@ with its speed in the medium.
 
 > **Refractive index.**
 > $$n = \frac{c_1}{c_2}$$
->
 > - $c_1$ is the speed of light in air or a vacuum, in metres per second (m/s);
 > - $c_2$ is the speed of light in the medium, in metres per second (m/s).
 
@@ -73,7 +72,6 @@ The angles are linked to the refractive index by **Snell's law**.
 
 > **Snell's law.**
 > $$n = \frac{\sin i}{\sin r}$$
->
 > - $i$ is the angle of incidence, measured from the normal;
 > - $r$ is the angle of refraction, measured from the normal.
 

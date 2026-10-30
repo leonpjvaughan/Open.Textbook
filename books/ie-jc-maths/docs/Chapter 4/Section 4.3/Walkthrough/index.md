@@ -29,7 +29,6 @@ power of 10.
 $$a\times10^{n}, \qquad 1\le a<10$$
 
 The number $a$ is called the **coefficient**. It must be at least 1 and less than
-
 10. The index $n$ is a whole number. It is positive for large numbers, zero for
 numbers from 1 up to 10, and negative for small numbers.
 

@@ -27,7 +27,6 @@ cheapest edge anywhere. Robert Prim's method is different. It keeps **one connec
 and grows it outwards, one vertex at a time.
 
 > **Prim's algorithm.**
->
 > 1. Choose any vertex to start. It is the tree.
 > 2. Find the cheapest edge that leaves the tree — one end in the tree, one end outside.
 > 3. Add it, bringing in a new vertex.

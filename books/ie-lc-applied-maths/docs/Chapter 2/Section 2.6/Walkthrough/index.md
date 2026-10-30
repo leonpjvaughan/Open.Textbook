@@ -38,7 +38,6 @@ $n - 1$ edges to choose, so choose the cheapest ones — but never one that woul
 cycle, because a tree has none.
 
 > **Kruskal's algorithm.**
->
 > 1. List all the edges in order of weight, smallest first.
 > 2. Go through the list. Add the next edge **unless** adding it would close a cycle with
 >    the edges already chosen.

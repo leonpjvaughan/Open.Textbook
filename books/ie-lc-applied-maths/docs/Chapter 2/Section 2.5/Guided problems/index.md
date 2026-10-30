@@ -159,7 +159,6 @@ neighbour *were* on the path, that would close a cycle, which a tree does not ha
 $v$ has degree 1.
 
 The same argument applies to the other end, so there are at least two vertices of degree
-
 1. (This is also forced by the handshake lemma: the degree sum is $2(n-1)$, which is
 even, so the number of odd-degree vertices is even — and a tree must have some of them,
 since it cannot be all even and connected without a cycle.)

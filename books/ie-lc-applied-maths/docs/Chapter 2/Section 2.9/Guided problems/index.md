@@ -50,12 +50,10 @@ From $B$: $3$? No — from $B$ the cost to $D$ is $BD = 2$. From $C$ it is $CD =
 Stage 3 ($D$): cost to the end $= 0$.
 
 Stage 2:
-
 - From $B$: $BD = 2$, so cost $= 2 + 0 = 2$.
 - From $C$: $CD = 8$, so cost $= 8 + 0 = 8$.
 
 Stage 1 ($A$):
-
 - $A \to B$ then $2$: $3 + 2 = 5$.
 - $A \to C$ then $8$: $1 + 8 = 9$.
 
@@ -114,17 +112,14 @@ From $S$: $SU = 4$. From $T$: $TU = 1$. Then from $Q$: $\min(3+4, 6+1)$.
 Stage 4 ($U$): $0$.
 
 Stage 3:
-
 - $S$: $SU = 4$, cost $= 4$.
 - $T$: $TU = 1$, cost $= 1$.
 
 Stage 2:
-
 - $Q$: $\min(QS + 4,\; QT + 1) = \min(3 + 4,\; 6 + 1) = \min(7, 7) = 7$.
 - $R$: $\min(RS + 4,\; RT + 1) = \min(2 + 4,\; 5 + 1) = \min(6, 6) = 6$.
 
 Stage 1 ($P$):
-
 - $\min(PQ + 7,\; PR + 6) = \min(1 + 7,\; 4 + 6) = \min(8, 10) = 8$.
 
 Least total cost $= 8$, along $P \to Q \to S \to U$ ($1 + 3 + 4 = 8$) or

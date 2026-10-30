@@ -99,7 +99,6 @@ number $n$, is
 
 $$
 (a + b)^n = \binom{n}{0}a^n + \binom{n}{1}a^{n-1}b + \binom{n}{2}a^{n-2}b^2
-
 + \dots + \binom{n}{n}b^n.
 $$
 
@@ -132,7 +131,6 @@ $-3x$ is negative.
 
 $$
 (2 - 3x)^4 = \binom{4}{0}2^4 + \binom{4}{1}2^3(-3x) + \binom{4}{2}2^2(-3x)^2
-
 + \binom{4}{3}2(-3x)^3 + \binom{4}{4}(-3x)^4.
 $$
 

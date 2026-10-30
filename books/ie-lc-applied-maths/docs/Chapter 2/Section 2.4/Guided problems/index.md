@@ -135,7 +135,6 @@ M^3 = \begin{pmatrix} 2&1&1\\ 1&2&1\\ 1&1&2 \end{pmatrix}\begin{pmatrix} 0&1&1\\
 $$
 
 The diagonal entry for vertex 1 is $2$, so there are 2 walks of length 3 from 1 back to
-
 1. They are $1 \to 2 \to 3 \to 1$ and $1 \to 3 \to 2 \to 1$: round the triangle in
 either direction.
 

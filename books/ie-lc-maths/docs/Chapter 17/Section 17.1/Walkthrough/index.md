@@ -41,7 +41,6 @@ The centre and a chord are linked by a right angle, and that link is the main to
 section.
 
 > **Theorem 21.**
->
 > 1. The perpendicular from the centre to a chord bisects the chord.
 > 2. The perpendicular bisector of a chord passes through the centre.
 

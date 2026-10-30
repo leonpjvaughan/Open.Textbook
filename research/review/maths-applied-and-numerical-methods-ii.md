@@ -58,9 +58,9 @@ prose.** Four things, in order of cost.
    the *signature* section — the three lines that say what makes this class this
    class.
 
-Then, measured rather than fixed: the entry surface is the hardest-reading text in
-either book (grade 12.3 on the nine class pages against 9.2 under them), the nine
-`signature` sentences exist in eighteen wordings, and the one comparison both
+Then, measured rather than fixed: the nine `signature` sentences exist in eighteen
+wordings, `maths-applied`'s required pages are the longer-winded ones while its
+optional pages are the calmest prose in the book, and the one comparison both
 books are built on — an effect against a tolerance — is drawn nowhere.
 
 ---
@@ -334,46 +334,48 @@ extra clause, the clause goes in the registry.
 
 ---
 
-## N6. The entry surface is the hardest reading in either book
+## N6. In `maths-applied` the required pages are the longer-winded ones, and the class pages' difficulty is not in their sentences
 
-**Measured** per page: Flesch reading ease, Flesch–Kincaid grade, and mean words
-per sentence, over prose only (tables, code, display maths and link URLs removed).
+**Measured** per page: Flesch reading ease, Flesch–Kincaid grade, mean words per
+sentence and the share of sentences over 25 words, over prose only — table rows,
+heading lines, code, display maths, inline maths, `:::` directives and link URLs
+removed, list items kept.
 
-| group | pages | mean words/sentence | FRE | grade |
-|---|---|---|---|---|
-| the nine class pages | 9 | **23.7** | 42–56 | **12.3** |
-| the twelve detail pages | 12 | 19.1 | 60–72 | 9.2 |
-| the seven spine pages | 7 | 19.4 | 54–67 | 8.9 |
-| `maths-applied`, main thread | 7 | **21.7** | 58–68 | 9.6 |
-| `maths-applied`, depth pages | 5 | 20.0 | 58–73 | 9.3 |
+| group | pages | prose words | mean words/sentence | over 25w | FRE | grade |
+|---|---|---|---|---|---|---|
+| `numerical-methods`, nine class pages | 9 | 5,844 | **14.6** | 7.3% | 65.0 | 7.8 |
+| `numerical-methods`, twelve detail pages | 12 | 9,872 | 16.8 | 14.2% | 62.7 | 8.7 |
+| `numerical-methods`, six spine pages | 6 | 5,855 | 15.5 | 7.8% | 63.9 | 8.2 |
+| `maths-applied`, seven sections | 7 | 7,664 | **19.1** | **18.6%** | 67.8 | 8.6 |
+| `maths-applied`, five depth pages | 5 | 2,711 | 16.2 | 11.4% | 67.6 | 7.9 |
 
-The hardest pages are the ones a lost reader opens: `elliptic` (26.9 words a
-sentence, grade 13.7), `linear-system` (24.8, 13.6), `averaging` (26.0, 13.0),
-`hyperbolic` (22.9, 12.1), `eigenvalue` (21.6, 11.9). The pages a reader reaches
-*after* deciding they are interested — the detail pages, 19.1 words and grade 9.2
-— are three reading years easier. The relationship is backwards.
+**Two opposite results, and the first one is a correction to my own first attempt.**
+An earlier pass over these books counted table rows as sentences and reported the
+class pages at grade 12.3. Measured properly, the class pages are the *calmest*
+prose in `numerical-methods` — 14.6 words a sentence, 7.3% over 25, grade 7.8 — and
+the detail pages are harder. So the class page's difficulty is not its sentence
+length. Strip the tables and what is left is short. The difficulty is the tables
+(N3) and the vocabulary (N7), which is where the fixes should go, and a sentence
+rewrite there would be work aimed at the wrong thing.
 
-`maths-applied` is the same shape: the main thread averages 21.7 words a sentence
-and 24% of its sentences are over 25 words (§1.2 28%, §1.7 30%), while its depth
-pages are the calmest prose in the book.
+**`maths-applied` is the one group outside the pattern.** Its eight required pages
+average 19.1 words a sentence with 18.6% over 25, while its five optional pages
+average 16.2 with 11.4% — so the pages a reader must read are the longer-winded
+ones, and the calmest prose in the book is in pages the book says are not needed.
+The worst are the three hardest sections: §1.7 (21.5 words, 23% over 25), §1.2
+(20.2, 21%) and §1.6 (19.0, 20%); the chapter index is 21.7 and the Review 19.2.
 
-**Why the checks do not see it.** `lint.py:114` fails a sentence over **32**
-words. The house contract in `AGENTS.md` says "~15–20 words, one idea each". The
-checked ceiling is 60% above the stated one, and at 32 the pages above pass with
-"0 long sentences" — which is exactly what the first pass reported. The rules and
-the check are measuring different registers.
+That is not a contract breach — the house rule is "~15–20 words, one idea each"
+and the mean is inside it — but `lint.py:114` fails only a sentence over **32**
+words, so the register the contract names and the register the check enforces are
+two different things, and the tail from 25 to 32 is unpoliced. A ceiling of 25 on
+a section page, with the existing down-only ratchet, would catch the 57 sentences
+in the seven sections that a reader has to work hardest on, and leave every depth
+page alone.
 
-This is not an argument for a rewrite. It is an argument that the ceilings are in
-the wrong place for the pages that matter: the class page is the one place a
-reader has no context and no commitment, and it is where the longest sentences and
-the most technical nouns are.
-
-**Fix.** Lower the ceiling for a **class page and a section page** to 25 words in
-`lint.py`, book by book and page kind by page kind, with the existing ratchet
-(`SENTENCE_CEILING` in the same file is already a count that "may only go down"),
-so a new book starts at 0 and these two shrink. There are 47 sentences over 25
-words across the nine class pages and the seven `maths-applied` sections; that is
-a morning's work, and the measurement above says where to start.
+**Fix.** One line in `lint.py` keyed to the page kind, and a pass over the 57. Not
+a rewrite: the fix is that the required page should be the easiest one, and today
+it is the other way round.
 
 ---
 
@@ -630,9 +632,10 @@ is for.
 - **The figure vocabulary.** 22 mounts, every one above its contrast floor in both
   schemes at 390 px. N1 is one module's arithmetic, not a fault in the kit or the
   contract.
-- **The prose in the detail pages.** 19.1 words a sentence, grade 9.2, on the
-  hardest mathematics in either book. That is the model the class pages should be
-  brought to, not the other way round.
+- **The prose in the class pages.** 14.6 words a sentence, grade 7.8, on the
+  hardest content in either book. That is what the house register produces when it
+  is applied to a page with a table in it, and it is the reason N6 points at the
+  tables and the vocabulary rather than at the sentences.
 
 ---
 
@@ -648,9 +651,11 @@ is for.
   no labels: it reads each `<text>`'s own `y` attribute and skips every text with a
   `transform`, which is why it reports one true positive (17 elements) instead of
   fourteen.
-- A sentence and readability pass over every page in both books: prose only, tables
-  and code and display maths and URLs removed, syllables by vowel group. The same
-  pass at 25 words is what N6's fix would enforce.
+- A sentence and readability pass over every page in both books, twice. The first
+  pass counted table rows as sentences and put the class pages at grade 12.3; the
+  second removes table rows, headings, code, maths and directives, keeps list
+  items, and puts them at 7.8. The second is the one quoted in N6, and the
+  correction is recorded there rather than quietly dropped.
 - `grep`, `du -b`, `git log -L` for the provenance of `dynamics-table`'s `rowY`
   line (present since the file was created, `d95a3d98`).
 - DOIs in this file were resolved against `api.crossref.org` on 2026-10-28 and the

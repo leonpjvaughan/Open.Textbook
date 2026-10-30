@@ -51,7 +51,6 @@ difference is a whole number of wavelengths.
 
 > **The grating equation.**
 > $$n\lambda = d\sin\theta$$
->
 > - $n$ is the **order** of the maximum, a whole number: 0, 1, 2, 3, …;
 > - $\lambda$ is the wavelength of the light, in metres (m);
 > - $d$ is the slit spacing, in metres (m);

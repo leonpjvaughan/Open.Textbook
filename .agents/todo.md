@@ -238,3 +238,28 @@ its own, which fails today for these 257 and passes after the switch.
 - the new test fails on a planted folded answer and passes on the tree;
 - `uv run python -m textbook.verify books/ie-lc-maths/problems` reports `ok` for every
   file, `python -m textbook.lint` is clean, and `scripts/check.sh` exits 0.
+
+## 155 — 45 lists in five books still start without a blank line, and the reader sees hyphens
+
+**What is wrong.** The rule that a list item must start a block (`lint.lists_without_a_blank_line`,
+added with item 153's W3 fix) found 72 cases in the collection. The 27 in
+`numerical-methods`, `maths-applied` and the statistics pages were fixed, and so were 19
+inside block quotes. The remaining **45, across 33 pages**, are in chapters this work did
+not open, so they are grandfathered in `lint.LIST_DEBT` rather than fixed here:
+`a-level-maths` 10 in 6 pages, `ie-lc-applied-maths` 11 in 7, `ie-lc-maths` 9 in 7,
+`ie-jc-maths` 7 in 7, `ie-lc-physics` 7 in 6.
+
+The reader-visible effect is the one the review measured: `… the difficulty is:` followed
+by three lines of dashes inside one paragraph, because the parser folds the bullets into
+the sentence above.
+
+**The fix.** Run the fixer the W3 work used — insert a blank line before each item, and a
+line of `>` where the item is inside a callout so the list stays in it — over the 33
+pages, then set each book's `LIST_DEBT` entry to 0 and delete the entry.
+
+**Done means:**
+
+- `uv run python -m textbook.lint` is clean with `LIST_DEBT` empty;
+- a scan of the built site for a hyphen list inside a `<p>` returns 0 pages (measured 22
+  before item 153, 0 for the pages fixed then, and 33 pages today);
+- `scripts/check.sh` exits 0 and every affected book rebuilds with no `math-error` page.

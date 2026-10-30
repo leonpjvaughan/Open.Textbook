@@ -253,7 +253,6 @@ $$
 
 $$
 y = 10\sqrt{2} \times \frac{3\sqrt{2}}{2}
-
 - 4.9 \times \left(\frac{3\sqrt{2}}{2}\right)^2
 = 30 - 4.9 \times \frac{18}{4}
 = 30 - 22.05 = 7.95 \text{ m}.

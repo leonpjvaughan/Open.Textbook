@@ -141,7 +141,6 @@ $X \sim B(20, 0.8)$.
 The **height of a plant** is a measurement. Heights vary about a mean in a
 roughly symmetric way. A standard deviation of 6 cm about a mean of 45 cm is
 consistent with the model, because 45 cm is several standard deviations above
-
 0. So the height fits the Normal model, $X \sim N(45, 6^2)$.
 
 </details>
