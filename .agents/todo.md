@@ -14,10 +14,10 @@ done-means; an item whose heading says done and whose checklist does not is the
 failure this file has had twice, so the list below, the headings and the boxes
 are checked against each other on every pass.
 
-**Every item from 79 to 158 is closed,** each with its measurement, its fix and its
-outcome in `.agents/todo-closed.md`. Items 159–161 are the review's remaining three
+**Every item from 79 to 159 is closed,** each with its measurement, its fix and its
+outcome in `.agents/todo-closed.md`. Items 160 and 161 are the review's last two
 defects, from `research/review/maths-applied-and-numerical-methods-ii.md`, which also
-carries the design proposals those three do not cover; 163 is the prose half of 154,
+carries the design proposals they do not cover; 163 is the prose half of 154,
 measured while closing it, and 164 is the label tail the figure check measured. A new
 item goes at the number after the last one, with its diagnosis, its fix and its own
 done-means. The
@@ -33,29 +33,6 @@ rewrites ranked in `research/pedagogy-audit/README.md`. An item in this file is 
 defect this repository can fix; those are decisions already taken.
 
 ---
-
-## 159 — Nine signatures, eighteen wordings, and no check that they agree
-
-**What is wrong.** `map.yaml` gives each class one `signature`, which `:::class`
-prints under the link in another book; each class page also opens with "**You have
-one of these when**", which is the same sentence written again. Two of the nine do
-not just differ in wording but in claim: `root`'s signature adds "the rule bends
-with the answer" and `hyperbolic`'s adds "keeps its shape", and neither appears on
-the page. A reader who follows `:::class root` from `maths-applied` meets a page
-that defines the class in different words.
-
-`tests/test_reference_books.py` holds the registry, the home page's table and the
-nav together, and does not hold the signature to the page.
-
-**The fix.** One sentence per class, printed in both places: the page keeps its
-`**You have one of these when**` lead-in and uses the registry's sentence, and a
-clause the page needs moves into the registry.
-
-**Done means**
-
-- [ ] each class page contains its registry signature verbatim
-- [ ] `tests/test_reference_books.py` fails when one is edited and the other is not
-- [ ] the home page's nine-kinds table still matches both
 
 ## 160 — The comparisons both books are built on are never drawn
 

@@ -7308,3 +7308,52 @@ Held by `test_table_cells_carry_their_headings` and
 `test_the_nine_kinds_table_is_marked_for_cards_and_labels_every_cell` in
 `tests/test_reference_books.py`, which fails if the marker is dropped — the failure mode that
 would silently put the table back to a sideways scroll on a phone.
+
+## 159 — Nine signatures, eighteen wordings, and no check that they agreed — **done**
+
+**What is wrong.** `map.yaml` gives each class one `signature`, which `:::class`
+prints under the link in another book; each class page also opens with "**You have
+one of these when**", which is the same sentence written again. Two of the nine do
+not just differ in wording but in claim: `root`'s signature adds "the rule bends
+with the answer" and `hyperbolic`'s adds "keeps its shape", and neither appears on
+the page. A reader who follows `:::class root` from `maths-applied` meets a page
+that defines the class in different words.
+
+`tests/test_reference_books.py` holds the registry, the home page's table and the
+nav together, and does not hold the signature to the page.
+
+**The fix.** One sentence per class, printed in both places: the page keeps its
+`**You have one of these when**` lead-in and uses the registry's sentence, and a
+clause the page needs moves into the registry.
+
+**Done means**
+
+- [ ] each class page contains its registry signature verbatim
+- [ ] `tests/test_reference_books.py` fails when one is edited and the other is not
+- [ ] the home page's nine-kinds table still matches both
+
+**Outcome, 2026-10-30.** One sentence per class, stored once in `map.yaml`, printed
+verbatim on the page after "**You have one of these when**", and printed with a capital in a
+`:::class` note by `hooks/classes.py::sentence`. The registry stores it in the form the page
+needs — a lowercase initial, because the page's lead-in supplies the capital — and the note
+capitalises it for the place it stands alone. Two renderings, one string, which is what stops
+them being two sentences.
+
+The two classes whose registry line claimed more than the page have both clauses on the page
+now: `root`'s "the rule bends with the answer" and `hyperbolic`'s "keeps the shape of what was
+sent". The clauses that only the page had went into the registry, so nothing was dropped:
+`linear-system`'s "nothing changes with time", `saddle-point`'s "the model pays for it",
+`averaging`'s "possibilities you cannot list", and `eigenvalue`'s examples — "which
+frequencies, which loads, which energies".
+
+Held by `test_a_class_page_prints_its_registry_signature_verbatim` (all nine, whitespace
+normalised because the page wraps and the registry does not),
+`test_a_one_word_edit_on_either_side_is_caught` (the assertion fails when "bends" becomes
+"changes"), and `test_the_class_directive_capitalises_the_stored_signature`.
+`test_the_directive_renders_one_link_and_the_registry_sentence` now reads the sentence out of
+the registry instead of holding a third copy of it.
+
+Evidence: `textbook.lint numerical-methods maths-applied` clean over 49 pages; the five
+classes `maths-applied` links render five distinct notes, capitalised, each the registry's
+own string; the home page's nine-kinds table still names and links every class, and
+`test_the_nine_kinds_table_names_and_links_every_class` holds it to the registry.
