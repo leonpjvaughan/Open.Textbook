@@ -4,8 +4,8 @@ title: Elliptic
 
 # Elliptic
 
-**You have one of these when** the answer is a value at every point in a region, and
-nothing travels.
+**You have one of these when** the answer is a value at every point in a region,
+and nothing travels.
 
 ## What you are modelling
 

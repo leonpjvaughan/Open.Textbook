@@ -4,8 +4,8 @@ title: Parabolic
 
 # Parabolic
 
-**You have one of these when** the answer moves forward in time and smooths as it goes,
-so it forgets where it started.
+**You have one of these when** the answer moves forward in time and smooths as
+it goes, so it forgets where it started.
 
 ## What you are modelling
 

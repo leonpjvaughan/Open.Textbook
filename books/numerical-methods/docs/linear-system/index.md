@@ -4,8 +4,8 @@ title: Linear system
 
 # Linear system
 
-**You have one of these when** every rule in the model is linear in the unknowns, the
-unknowns are a finite list, and nothing changes with time.
+**You have one of these when** every rule in the model is linear in the
+unknowns, the unknowns are a finite list, and nothing changes with time.
 
 ## What you are modelling
 

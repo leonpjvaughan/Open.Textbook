@@ -32,6 +32,12 @@ granularity than a strand (`books/*/curriculum.yaml`), and the deferred chapter
 rewrites ranked in `research/pedagogy-audit/README.md`. An item in this file is a
 defect this repository can fix; those are decisions already taken.
 
+The five **design proposals** in `research/review/maths-applied-and-numerical-methods-ii.md`
+are adopted, and they are in `ideas.md` §12 rather than here, because they are a plan
+for how the books *show* mathematics and not defects: inverting the techniques table,
+a look-alike per class, retrieval on `symptoms`, a figure readout in the page's own
+columns, and the two procedures named once with the number each produced.
+
 ---
 
 ## 164 — 39 labels in 31 figures overhang their frame, mostly a y-axis title written the wrong way round
@@ -72,3 +78,85 @@ plot's bottom-left, and nudge the three overhead labels inside. Then delete the 
 - [ ] every rotated title reads as a title in a capture at 390px and at 1280px, both schemes
 - [ ] `scripts/preview-themes.sh` still reports 0 findings on `audit`, `kit`, `canvas` and
       `check-mobile`
+
+## 165 — `maths-applied`'s required pages are the longest-winded ones, and the tail from 25 to 32 words is unpoliced
+
+**What is wrong.** Measured over prose only — table rows, headings, code, display
+maths and directives removed, list items kept — the eight pages a reader of
+`maths-applied` has to read average **19.1 words a sentence**, with 18.6% of their
+sentences over 25 words; the five pages it calls optional average 16.2 and 11.4%. The
+calmest prose in the book is in the pages the book says are not needed. The worst are
+the three hardest sections: §1.7 (21.5 words, 23% over 25), §1.2 (20.2, 21%) and §1.6
+(19.0, 20%); the chapter index is 21.7 and the Review 19.2.
+
+That is inside the house register ("~15–20 words, one idea each") and outside what the
+check enforces: `lint.py:183` fails only a sentence over **32** words, so the tail from
+25 to 32 is unpoliced — **57 sentences** across the seven sections.
+
+**The fix.** A ceiling of 25 words on a section page, keyed to the page kind, with the
+existing `SENTENCE_DEBT` ratchet so the other books are untouched; then a pass over
+those 57. Not a rewrite: the point is that the *required* page should be the easiest
+one, and today it is the other way round.
+
+**Done means**
+
+- [ ] `textbook.lint` fails a 26-word sentence on a section page, and `tests/test_lint.py`
+      holds that case
+- [ ] `maths-applied`'s eight required pages average under 17 words a sentence, with
+      under 12% over 25
+- [ ] every other book's `SENTENCE_DEBT` is unchanged, and `textbook.lint` is clean
+
+## 166 — `stiff` meets the reader in the wrong sense first, and `discretise` is defined nowhere
+
+**What is wrong.** `stiff` is used **40** times in `numerical-methods`; the first use in
+reading order is on the Averaging page (`averaging/index.md:21`), and it means a bush's
+*stiffness* — the engineering noun, not the numerical flag. The flag is defined once, in
+a table cell on the home page (`index.md:69`, under "Stiff: the model contains a fast
+change you do not care about"), which is the one place a definition cannot go: a reader
+skimming for a definition does not read a cell in a table of flags.
+
+`discretise` is used **19** times and defined nowhere. Its first use is the sentence on
+Averaging that says why averaging is not a field problem.
+
+**The fix.** Each of the three flags the home page's table names — non-linear, stiff,
+geometry not known in advance — gets a paragraph of its own, or a page; a flag that
+changes the method in every class is not a cell. The bush sense becomes "the bush's
+stiffness" everywhere in this book, so one word has one meaning; `discretise` is defined
+where it first appears, in one sentence.
+
+**Done means**
+
+- [ ] no table cell carries the only definition of a flag
+- [ ] a reader searching the book for `discretise` finds a definition before its first use
+- [ ] the word `stiff` is not used of a bush anywhere in `numerical-methods`
+- [ ] `textbook.lint numerical-methods` is clean
+
+## 167 — No page carries a contents list, and `techniques` is 23,144px on a phone
+
+**What is wrong.** Heading ids exist, so a fragment works. Nothing prints them:
+`:::contents` does not exist anywhere in the engine, and no page carries a list of its
+own headings. Measured at 390px:
+
+```
+page                              height    h2/h3
+/numerical-methods/techniques/    23,144      83
+/numerical-methods/              11,388      14
+/maths-applied/…/section-1.5/    10,649      14
+```
+
+`techniques` is a lookup page with 77 entries; its five class headings are sticky, which
+tells a reader which section they are in but not what is in it. The reader's only way to
+the right entry is find-in-page or the site search.
+
+**The fix.** A `:::contents` directive reading the heading list the `toc` extension
+already produces, printed as a compact two-column list under a page's first paragraph
+when the page has more than six `h2`s. It cannot rot, because it is the same list the ids
+come from. On `techniques` it is the index the page is missing.
+
+**Done means**
+
+- [ ] `:::contents` renders from the `toc` extension's own list, and a test fails if a
+      heading is added and the list is not
+- [ ] `techniques` carries it, and the page's height at 390px falls by at least 2,000px
+      (the list replaces scrolling, and it is priced, not asserted)
+- [ ] a page with six or fewer `h2`s gets no list

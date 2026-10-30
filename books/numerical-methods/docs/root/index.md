@@ -4,8 +4,8 @@ title: Root finding
 
 # Root finding
 
-**You have one of these when** a rule has to hold at a point, the rule bends with the
-answer, and nothing changes with time.
+**You have one of these when** a rule has to hold at a point, the rule bends
+with the answer, and nothing changes with time.
 
 ## What you are modelling
 

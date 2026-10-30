@@ -811,3 +811,90 @@ stands.
 | `ie-jc-maths` | 9.4 | `growth-curves` | three growth curves, and the week each crosses |
 | `ie-jc-maths` | 16.5 | `cuboid-volume` | a cuboid in 3D, volume as layers and surface as faces |
 | **shared** | `ie-jc-maths` 8.4, `ie-lc-maths` 10.4 | `venn-regions` | one module, two books |
+
+---
+
+## 12. Adopted from the second review — five ways to make the hard ideas land
+
+`research/review/maths-applied-and-numerical-methods-ii.md` ends with five proposals.
+They are **not defects** — nothing is broken — so they are recorded here rather than in
+`.agents/todo.md`, which is a defect queue. All five are adopted; the review carries the
+argument and the citations, and this section carries the decision and what would show it
+worked. They are ordered by what they cost, cheapest first.
+
+### 1. Turn the technique table's key around — adopted
+
+Every class page's techniques table is keyed by the **method** (`| technique | what it
+does | when it wins | when it is the wrong tool |`), so a reader who arrives holding a
+model — "sparse, symmetric, indefinite" — reads eleven rows to find the two that apply.
+`linear-system` already contains the inverted key as five bullets ("Dense and small",
+"Sparse and large", …); those five do not name a method, and the eleven methods do not
+name a property. One table keyed by the property, with the methods that fit and the
+price, is recognition rather than recall (Chi, Feltovich & Glaser 1981). Keep the
+method-keyed table as the lookup; both state a price, not a winner, so the book's rule
+against ranking methods is not at risk.
+
+**What would show it worked:** on a class page, a reader can name the two methods that
+fit their matrix without reading more than five rows.
+
+### 2. Give each class one look-alike it is not — adopted
+
+Classification is learned by discriminating near-misses. The book has `worked-case` (one
+corner, five kinds, the right direction) and no page in the other direction — one kind,
+and the look-alikes a reader will confuse it with. A two-line "this, not that" row per
+class page:
+
+> **Root, not linear system.** A rule that bends is iterated; a rule that is linear is
+> solved. If every row is a sum of the unknowns, the iteration is doing nothing but
+> rediscovering a factorisation.
+
+**What would show it worked:** the map has a second axis — not only "which box am I in"
+but "which neighbouring box will I mistake this for".
+
+### 3. Make the recognition a retrieval exercise that needs no JavaScript — adopted
+
+`Systems that live here` lists 5–8 systems per class, 64 in the book, and they confirm a
+class the reader has already been told. The same content asked the other way is retrieval
+practice with feedback — P4's requirement, in the one place a reference work can meet it:
+
+```markdown
+<details markdown="1">
+<summary>A tyre's slip angle at a given load</summary>
+
+[Root finding](../root/index.md). The rule holds at a point, and nothing travels.
+</details>
+```
+
+Ten of these on `symptoms`, which is entered by a wrong answer, turns the book's weakest
+page into its best exercise (Rohrer & Taylor 2007). Native `<details>`, scripting off,
+and the answers are already written and already linked.
+
+**What would show it worked:** `symptoms` carries the exercise, and the answer behind
+each summary is a link into the page that argues it.
+
+### 4. Give a figure's readout the page's own columns — adopted
+
+`wishbone-hero` prints five quantities in six sentences and about 90 words; the page's
+table prints the same five in five columns, with signs instead of direction words. So a
+reader who wants the number the figure is showing parses a sentence for it and then
+converts between two presentations — and §1.1 makes the sign convention its first *Watch
+out*. Five label/value rows in the table's order, drawn with `label()` as
+`dynamics-table`'s are, gives the number in one glance (Mayer: spatial contiguity,
+signalling). `quarter-car`, `kernel-camber` and `stiffness-agreement` have the same habit.
+
+**What would show it worked:** a figure's readout and the page's table give the same
+number, in the same notation, and the claim in `claim()` is the readout's own value.
+
+### 5. Name the two procedures, once, and give each the number it produced — adopted
+
+`maths-applied` teaches two distinct procedures and presents them as one: the **tolerance
+comparison** (which model do I need? — 1.85 MN/m against 0.034) and the **limit test** (is
+this model the generalisation of that one? — the ladder's monotone approach). The first is
+stated inside a table caption and restated in the Review; the second is the Review's
+*Reflection*, presented as the same sentence in other words. A boxed panel at the end of
+§1.5 with what each procedure answers and the number that earned it, and the Review
+pointing at the panel, is the highest-value edit in either book — it is the only content
+here a reader can carry to a *different* mechanism.
+
+**What would show it worked:** a reader who has finished the chapter can say which
+question each procedure answers, and quote the number that earned it.
