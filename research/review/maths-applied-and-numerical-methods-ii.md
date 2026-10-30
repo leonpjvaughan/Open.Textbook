@@ -25,7 +25,7 @@ $ uv run python -m pytest tests/test_reference_books.py \
 
 The books: `maths-applied` 16 authored pages and 14,810 words; `numerical-methods`
 31 authored pages, 29 of them in `map.yaml`, 32,257 words, 77 method entries.
-Between them 22 figure mounts from 20 modules.
+Between them 22 figure mounts from 21 modules.
 
 ---
 
@@ -84,7 +84,7 @@ books are built on — an effect against a tolerance — is drawn nowhere.
 | T2 no stated reading order | **open** | "Three ways in" still lists three lookups and no reading order |
 | T3 the chapter problem stated thrice | **closed** | stated once in the masthead of each section (fd4d690d) |
 
-Seven new findings follow. Four are defects with a checkable fix; three are the
+Nine new findings follow. Six are defects with a checkable fix; three are the
 design argument the brief asks for.
 
 ---

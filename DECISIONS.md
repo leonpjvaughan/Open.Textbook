@@ -44,7 +44,7 @@ completion, because a claim that measures something else is how a gate rots:
 
 **The scope accounting, measured.** The goal's verification contract asks that the
 final diff contain only in-scope paths. Measured over the whole goal, `48fccea..HEAD`
-touches 98 files, and seven of them are outside the objective's literal list. Each is
+touches 106 files, and eight of them are outside the objective's literal list. Each is
 named here rather than omitted:
 
 | Path | Why it is in this work |
@@ -56,6 +56,7 @@ named here rather than omitted:
 | `books/a-level-maths/problems/chapter-11-practice-11.5.yaml` | The same item moved it in, with `refs: [L3]` |
 | `books/a-level-maths/problems/chapter-13-review.yaml` | Item 145: the review bank now interprets a given $r$ instead of computing it |
 | `research/review/maths-applied-and-numerical-methods.md` | The measurements items 150–153 were filed from and closed against |
+| `research/review/maths-applied-and-numerical-methods-ii.md` | The second review, which filed W3 and the items closed after it |
 
 The remaining 90 files are inside the enumerated scope, and no file was added for a
 purpose outside the objective's five success criteria.
