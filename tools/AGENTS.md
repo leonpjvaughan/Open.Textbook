@@ -25,6 +25,7 @@ command accepts is in its `SURFACE` table and in `tools help <command>`.
 | `offline [siteDir] [--route path]` | Read a book with the network off, after a deploy emptied the runtime cache: the service worker's answer, not the server's |
 | `audit <siteDir>` | **Measure every figure's paint in both schemes** against the panel behind it. `--mobile` asks the other question — what reaches a 390px screen — and fails below 9px |
 | `kit [siteDir] [route]` | The figure kit's **DOM** contract, checked through a real page: roles, live regions, focus stops, colour classes |
+| `canvas [siteDir]` | **Where the ink lands**: every element's `getBBox()` transformed into the SVG's own space and compared with its `viewBox`. A `<text>` must be inside; a mark may cross the edge but must have ink inside, because `wishbone-hero` draws its rays to an instant centre off the drawing. `--cases` runs the rules under plain `node` |
 | `kit-pure [kitPath]` | The kit's drawing and formatting layers, under plain `node`, so they are in the ordinary gate |
 | `check-mobile [siteDir]` | Fail when a phone-width page is wider than the screen, at five widths |
 | `budget [siteDir] [route]` | Bytes over the wire on a first load, against a server that reproduces the Worker's cache headers |

@@ -232,6 +232,7 @@ node tools/dist/cli.js help                     # every check and measurement
 node tools/dist/cli.js kit-pure                 # the kit's drawing and formatting layers
 node tools/dist/cli.js types                    # the type ratchet (target 0)
 node tools/dist/cli.js kit site                 # the kit's DOM contract, on a build
+node tools/dist/cli.js canvas site              # every figure draws inside its viewBox
 scripts/build-solvers.sh --verify               # the committed wasm, offline
 scripts/build-otkd.sh --verify                  # the otkd bundle, offline
 node scripts/check-solvers.mjs                  # replay every kernel selftest

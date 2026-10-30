@@ -900,3 +900,41 @@ def test_every_lab_names_a_parameter_or_output_its_kernel_has():
     assert not broken, "lab modules name what their kernel does not have: " + "; ".join(
         broken
     )
+
+
+# --- the drawing is inside its own canvas ------------------------------------------
+#
+# `dynamics-table` put five rows of numbers at y = 300…512 in a 300-unit canvas, and
+# every check passed: `audit` measures paint, and an element outside the box is painted
+# correctly; `readout --verify` recomputes arithmetic, and the numbers were right; `kit`
+# checks the DOM contract, and there was nothing wrong with it. The reader got an empty
+# frame under prose that described columns.
+#
+# The rule has two halves, and one rule for both would be wrong: a `<text>` must be
+# inside, and a mark may cross the edge but must have ink inside — `wishbone-hero` draws
+# its rays to an instant centre 1,295 units off a 520-unit canvas on purpose.
+
+
+def test_a_figure_that_draws_outside_its_viewbox_is_caught():
+    """The rules' own cases, under plain `node`, so they are in the ordinary gate.
+
+    Three are the defects measured on this collection — `dynamics-table`'s rows,
+    `kernel-camber`'s clipped tick label, `wishbone-hero`'s intentional ray — and the
+    rest are the edges: a label exactly on the frame, a mark wholly outside, and a
+    rotated label whose box is not in its parent's space.
+    """
+    import subprocess
+
+    tools = repo_root() / "tools" / "dist" / "cli.js"
+    assert tools.is_file(), "the tools CLI is missing; run `npm run build`"
+    result = subprocess.run(
+        ["node", str(tools), "canvas", "--cases"],
+        capture_output=True,
+        text=True,
+        check=False,
+        cwd=repo_root(),
+    )
+    assert result.returncode == 0, (
+        "the canvas rules no longer catch what they were written for.\n"
+        f"{result.stdout[-3000:]}\n{result.stderr[-2000:]}"
+    )

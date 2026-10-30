@@ -30,6 +30,7 @@ import { SURFACE as KIT, run as runKit } from "./commands/kit.js";
 import { SURFACE as KIT_PURE, run as runKitPure } from "./commands/kit-pure.js";
 import { SURFACE as OFFLINE, run as runOffline } from "./commands/offline.js";
 import { SURFACE as BUDGET, run as runMeasureBudget } from "./commands/measure-budget.js";
+import { SURFACE as CANVAS, run as runCanvas } from "./commands/canvas.js";
 import { SURFACE as PREVIEW, run as runPreview } from "./commands/preview.js";
 import { SURFACE as READOUT, run as runReadout } from "./commands/readout.js";
 import { SURFACE as SCREENSHOT, run as runScreenshot } from "./commands/screenshot.js";
@@ -70,6 +71,11 @@ const COMMANDS: Record<string, Command> = {
     summary: "measure the bytes over the wire on a first load",
     surface: BUDGET,
     run: runMeasureBudget,
+  },
+  canvas: {
+    summary: "fail when a figure draws its ink outside its own viewBox",
+    surface: CANVAS,
+    run: runCanvas,
   },
   kit: {
     summary: "the kit's DOM contract, checked through a real page",
