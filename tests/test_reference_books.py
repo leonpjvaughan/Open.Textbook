@@ -1146,3 +1146,30 @@ def test_the_class_directive_capitalises_the_stored_signature():
 
     html = classes.render({"title": "Root finding", "signature": "a rule bends.", "url": "/x/"})
     assert '<p class="classlink__note">A rule bends.</p>' in html
+
+
+def test_the_linear_system_list_is_one_list_and_the_definition_is_not_in_it():
+    """Item 161: the five situations are the reader's vocabulary, and they were split.
+
+    A definition landed between "Dense and small" and "Sparse and large", so the reader
+    met one item, a paragraph about a preconditioner, then the rest of the list — and
+    the definition sat where a reader scanning a list skips it. One list, and the
+    definition after it.
+    """
+    page = (map_book().docs / "linear-system/index.md").read_text(encoding="utf-8")
+    situations = [
+        "**Dense and small.**",
+        "**Sparse and large.**",
+        "**Symmetric positive definite.**",
+        "**Symmetric indefinite.**",
+        "**Rectangular.**",
+    ]
+    positions = [page.find(item) for item in situations]
+    assert all(position >= 0 for position in positions), "a situation is missing"
+    between = page[positions[0] : positions[-1]]
+    assert "\n\n" not in between, (
+        "something interrupts the five situations; the list is split again"
+    )
+    assert "**preconditioner**" in page[positions[-1] :], (
+        "the preconditioner is still inside the list"
+    )

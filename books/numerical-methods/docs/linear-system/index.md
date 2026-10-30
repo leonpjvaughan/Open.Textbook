@@ -37,11 +37,6 @@ A matrix, and a choice between two families. The choice is made by the
 
 - **Dense and small.** Factorise it. The cost is cubic in the number of
   unknowns, and for a few thousand that is the end of the story.
-
-A **preconditioner** is a cheaper approximation $M$ to $A$. The iteration solves
-$M^{-1}Ax=M^{-1}b$, an easier problem with the same answer, and then corrects
-it; the price is that $M$ has to be built and applied.
-
 - **Sparse and large.** Factorising fills in the zeros and runs out of memory,
   so iterate instead — and the iteration count is decided by conditioning, not
   by size.
@@ -51,6 +46,11 @@ it; the price is that $M$ has to be built and applied.
   is the [saddle point](../saddle-point/index.md) page.
 - **Rectangular.** More equations than unknowns is a least-squares problem, and
   the answer is a projection rather than a solution.
+
+Both families can be helped by the same idea. A **preconditioner** is a cheaper
+approximation $M$ to $A$. The iteration solves $M^{-1}Ax=M^{-1}b$, an easier
+problem with the same answer, and then corrects it; the price is that $M$ has to
+be built and applied.
 
 A linear system is often one step inside a non-linear solve. `Maths Applied`
 [§1.3](/maths-applied/chapter-1/section-1.3/learn/) 's three distance rules are
