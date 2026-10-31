@@ -49,7 +49,7 @@ the three hardest sections: §1.7 (21.5 words, 23% over 25), §1.2 (20.2, 21%) a
 (19.0, 20%); the chapter index is 21.7 and the Review 19.2.
 
 That is inside the house register ("~15–20 words, one idea each") and outside what the
-check enforces: `lint.py:183` fails only a sentence over **32** words, so the tail from
+check enforces: `lint.py:276` fails only a sentence over **32** words, so the tail from
 25 to 32 is unpoliced — **57 sentences** across the seven sections.
 
 **The fix.** A ceiling of 25 words on a section page, keyed to the page kind, with the
@@ -91,7 +91,7 @@ where it first appears, in one sentence.
 - [ ] the word `stiff` is not used of a bush anywhere in `numerical-methods`
 - [ ] `textbook.lint numerical-methods` is clean
 
-## 167 — No page carries a contents list, and `techniques` is 23,144px on a phone
+## 167 — No page carries a contents list, and `techniques` is 22,574px on a phone
 
 **What is wrong.** Heading ids exist, so a fragment works. Nothing prints them:
 `:::contents` does not exist anywhere in the engine, and no page carries a list of its

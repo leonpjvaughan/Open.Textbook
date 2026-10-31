@@ -15,7 +15,7 @@ this pass found is that the **lookup surfaces** are less finished than the
 pages they index.
 
 **Changed in this pass:** nine class pages, the map's home page, the A–Z's
-opening vocabulary, one paragraph of `maths-applied`, and one test. The rest is
+opening vocabulary, two passages of `maths-applied`, and one test. The rest is
 recorded here and filed as items 173 and 174.
 
 Evidence baseline, so that nothing below is an existing failure of a check:
@@ -219,6 +219,11 @@ leaves it slightly wrong", which is the distinction the sentence is making. The
 second keeps the name and adds the gloss: "classical Runge–Kutta — a standard
 step-by-step method". Neither loses a fact; both now give the reader the idea
 before the name.
+
+One more sentence in `maths-applied` was false rather than unexplained. Its
+home page said "Each section offers one optional page marked **Going deeper**",
+and §1.6 and §1.7 have none. It now says "Each section of the main thread", which
+is the five sections that do.
 
 `discretise` and the `stiff` flag remain undefined in `numerical-methods`. That
 is item 166, and it is the right fix: a flag that changes the method in every

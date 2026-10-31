@@ -124,7 +124,7 @@ each wishbone's line to the instant centre, which is off the drawing, and it dra
 to the point 1,295 units off-canvas, leaving the `viewBox` to do the clipping —
 correct as drawn, and the reason one rule cannot cover texts and marks alike.
 
-**The cause is one line.** `books/maths-applied/docs/assets/figures/dynamics-table.js:95`:
+**The cause is one line.** `books/maths-applied/docs/assets/figures/dynamics-table.js:103`:
 
 ```js
 const rowY = (index) => box.y0 + 34 + index * 48;
@@ -139,7 +139,7 @@ the plot, which is why the idiom looked right and is not:
 
 ```
 $ grep -rn "box.y0 + 34" assets/figures books/*/docs/assets/figures
-books/maths-applied/docs/assets/figures/dynamics-table.js:95   ← the only one that steps
+books/maths-applied/docs/assets/figures/dynamics-table.js:103   ← the only one that steps
 books/numerical-methods/docs/assets/figures/energy-drift.js:134
 books/numerical-methods/docs/assets/figures/order-rate.js:65
 books/numerical-methods/docs/assets/figures/step-limit.js:69
@@ -204,7 +204,7 @@ route                                          navH  navLinks  h1Top  pageH
 /maths-applied/chapter-1/section-1.2/learn/     460      16      644   10649
 ```
 
-`engine/src/textbook/css/shell.css:253`:
+`engine/src/textbook/css/shell.css:284`:
 
 ```css
 @media (max-width: 60rem) {
@@ -277,7 +277,7 @@ and the sidebar takes up to 18 of them, so at 1280 px the content column is abou
 896 px and the table uses 662 of it — roughly 234 px unused, the headroom the fix
 below has to work with. At 1600 px the table is still exactly 662 px (measured at
 both widths). The cap is `.content { max-width: var(--tb-measure) }`
-(`engine/src/textbook/css/shell.css:172`), which is the right rule for prose and the
+(`engine/src/textbook/css/shell.css:205`), which is the right rule for prose and the
 wrong one for a table; the `70ch` measure on `> p, > ul, > ol, > blockquote`
 (`assets/stylesheets/extra.css:90`) never reaches a table at all.
 
@@ -415,7 +415,7 @@ The worst are the three hardest sections: §1.7 (21.5 words, 23% over 25), §1.2
 (20.2, 21%) and §1.6 (19.0, 20%); the chapter index is 21.7 and the Review 19.2.
 
 That is not a contract breach — the house rule is "~15–20 words, one idea each"
-and the mean is inside it — but `lint.py:183` fails only a sentence over **32**
+and the mean is inside it — but `lint.py:276` fails only a sentence over **32**
 words, so the register the contract names and the register the check enforces are
 two different things, and the tail from 25 to 32 is unpoliced. A ceiling of 25 on
 a section page, with the existing down-only ratchet, would catch the 57 sentences

@@ -7063,7 +7063,7 @@ The `y` attributes say 304…508; a transformed `getBBox()` says fifteen, becaus
 of those attributes belong to elements inside the frame. The count the check reports
 is the one to use.
 
-**The cause is one line.** `books/maths-applied/docs/assets/figures/dynamics-table.js:95`
+**The cause is one line.** `books/maths-applied/docs/assets/figures/dynamics-table.js:103`
 reads `box.y0 + 34 + index * 48`. `axes()` returns `y0 = height - margin.bottom`
 (the bottom edge, 282) and `y1 = margin.top` (the top, 30) —
 `assets/figures/src/kit/draw.ts:470` — so the rows start 34 px below the bottom rule
@@ -7194,7 +7194,7 @@ reported 17, 19, 22 and 25 figures with no drawing before that.
 
 ## 157 — On a phone the whole book was printed above every page — **done**
 
-**What is wrong.** At 390px `shell.css:253` collapses `.layout` to one column and
+**What is wrong.** At 390px `shell.css:284` collapses `.layout` to one column and
 makes `.sidebar` static, so the navigation becomes the first block of every page.
 Measured on the built site:
 
@@ -7279,7 +7279,7 @@ it). The nine-kinds table is the same object and the more important one.
 **The fix.** Below 60rem, one card per kind: the kind as a linked heading, then the
 question, the model and the recognition line as three labelled lines — the
 `techniques` pattern. Above 60rem, a wide-table variant that escapes `.content`'s
-`max-width: var(--tb-measure)` (`engine/src/textbook/css/shell.css:172`) and takes
+`max-width: var(--tb-measure)` (`engine/src/textbook/css/shell.css:205`) and takes
 the grid column instead — about 234px of headroom at 1280px — capped near 56rem,
 which takes the recognition column from 142px to about 280px.
 
