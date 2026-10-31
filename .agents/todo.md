@@ -14,7 +14,7 @@ done-means; an item whose heading says done and whose checklist does not is the
 failure this file has had twice, so the list below, the headings and the boxes
 are checked against each other on every pass.
 
-**Every item from 79 to 167 is closed,** each with its measurement, its fix, its outcome
+**Every item from 79 to 168 is closed,** each with its measurement, its fix, its outcome
 and its ticked done-means in `.agents/todo-closed.md`. Items 166–174 are open: three
 defects the second review measured (165–167), five designs it proposed (168–172), and the
 two ways into the map the third review measured (173–174). A new item goes at the number after the
@@ -37,30 +37,6 @@ argument and the citations, and the review holds the measurement. The two indexe
 review holds their measurement.
 
 ---
-
-## 168 — Every class page's techniques table is keyed by method, so a reader who has a model reads eleven rows
-
-**What is wrong.** A reader arrives at a class page holding a property of their matrix —
-sparse, symmetric, indefinite — and the table is keyed by the **method**:
-`| technique | what it does | when it wins | when it is the wrong tool |`. `linear-system`
-already carries the inverted key as five bullets ("Dense and small", "Sparse and large", …),
-but those do not name a method, and the eleven methods do not name a property. Recognition
-over recall (Chi, Feltovich & Glaser 1981): a reference work that sorts by the method's name
-asks the reader to know the answer before they can look it up. The argument and the evidence
-are `research/review/maths-applied-and-numerical-methods-ii.md`'s first proposal and
-`ideas.md` §12.1.
-
-**The fix.** One table keyed by the property — what your model is, the methods that fit, the
-price — on each class page. The method-keyed table stays as the lookup; both state a price and
-neither ranks methods, so the book's rule against a league table is not at risk.
-
-**Done means**
-
-- [ ] each class page's techniques section opens with a property-keyed table, and the
-      property names are the ones the class page's own bullets use
-- [ ] every method in the method-keyed table appears in the property-keyed one, and a test
-      fails if one does not
-- [ ] no row states that a method is best
 
 ## 169 — No class page names the look-alike it is most likely to be mistaken for
 

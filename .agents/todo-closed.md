@@ -7777,3 +7777,45 @@ numbers above price rather than assert.
 Held by `test_the_contents_list_is_derived_from_the_headings` (five headings → five links, four →
 nothing, and the directive is in `techniques` with the headings it lists). `textbook.lint
 numerical-methods` clean; `tests/test_reference_books.py tests/test_page_rules.py` — 121 passed.
+
+## 168 — Every class page's techniques table was keyed by method, so a reader holding a model read eleven rows — **done**
+
+**What is wrong.** A reader arrives at a class page holding a property of their matrix —
+sparse, symmetric, indefinite — and the table is keyed by the **method**:
+`| technique | what it does | when it wins | when it is the wrong tool |`. `linear-system`
+already carries the inverted key as five bullets ("Dense and small", "Sparse and large", …),
+but those do not name a method, and the eleven methods do not name a property. Recognition
+over recall (Chi, Feltovich & Glaser 1981): a reference work that sorts by the method's name
+asks the reader to know the answer before they can look it up. The argument and the evidence
+are `research/review/maths-applied-and-numerical-methods-ii.md`'s first proposal and
+`ideas.md` §12.1.
+
+**The fix.** One table keyed by the property — what your model is, the methods that fit, the
+price — on each class page. The method-keyed table stays as the lookup; both state a price and
+neither ranks methods, so the book's rule against a league table is not at risk.
+
+**Done means**
+
+- [ ] each class page's techniques section opens with a property-keyed table, and the
+      property names are the ones the class page's own bullets use
+- [ ] every method in the method-keyed table appears in the property-keyed one, and a test
+      fails if one does not
+- [ ] no row states that a method is best
+
+**Outcome, 2026-10-31.** Each of the nine class pages now opens its Techniques section with a
+**property-keyed** table — *what your model is · the methods that fit · the price* — and the
+method-keyed table follows it unchanged. The properties are the page's own: `root`'s rows are
+its flags (a bracket, no derivative, several solutions, a singular Jacobian, a map that
+contracts); `linear-system`'s are its five matrix situations; `parabolic`'s are stiffness, an
+answer-dependent coefficient, advection, a long interval and so on.
+
+Every method in the method-keyed table is offered by the property table — the test is that
+exact statement, per page — so the two lists cannot drift. No row ranks a method: each states
+a price, which is the book's rule and now the test's.
+
+Held by `test_a_class_page_offers_a_property_keyed_way_into_its_techniques` (nine parameters:
+the property header exists, it comes before the method table, every method name appears in it
+case-insensitively, and no row says "best"). Two rows needed their method names aligned with
+the method table — `Dense LU, with pivoting` and `Preconditioners (ILU, AMG, Jacobi)` — which
+is the kind of drift the test exists to catch. Lint clean over 31 pages; the built pages carry
+both tables.

@@ -83,6 +83,19 @@ the mechanism, not a failure of the method.
 Every method named here is in [Methods, A to Z](../techniques/#finding-a-state),
 with its price and what it will not do.
 
+**Start from the model you have.** Each row is a property of the model in front of you,
+the methods that fit it, and what the fit costs. The method-keyed table below is the same
+list sorted by name.
+
+| what your model is | the methods that fit | the price |
+|---|---|---|
+| one rule, and you have a bracket | Bisection, Brent | certain and slow: forty steps for ten digits |
+| one rule, no derivative | Secant, false position, Brent | a poor bracket misleads |
+| one rule, derivative available | Newton, quasi-Newton (Broyden) | a bad start, or a singular Jacobian |
+| several solutions, and the start decides | Continuation, homotopy | the path has a fold, and you step in $x$ |
+| many unknowns, or a step the model cannot trust | Levenberg–Marquardt, trust region | the linear algebra is the cost |
+| a map that shrinks the error | Fixed-point iteration | the map must be a contraction |
+
 <!-- table: cards -->
 | technique | what it does | when it wins | when it is the wrong tool |
 |---|---|---|---|

@@ -79,6 +79,21 @@ There is a sample, a variance, and a convergence rate you can measure.
 Every method named here is in [Methods, A to Z](../techniques/#averaging), with
 its price and what it will not do.
 
+**Start from the model you have.** Each row is a property of the model in front of you,
+the methods that fit it, and what the fit costs. The method-keyed table below is the same
+list sorted by name.
+
+| what your model is | the methods that fit | the price |
+|---|---|---|
+| anything you can run | Monte Carlo | a slow $1/\sqrt{N}$ |
+| a rare event | Importance sampling | the weights have a huge variance |
+| a smooth integrand, modest dimension | Stratified and Latin hypercube sampling, quasi-Monte Carlo, Gaussian quadrature | smoothness is the assumption |
+| a cheap correlated model | Control variates, antithetic pairs | a weak correlation buys little |
+| a distribution known up to a constant | Markov chain Monte Carlo | the samples are correlated |
+| a state moving as data arrive | Particle filter, sequential Monte Carlo | the cloud has to be large |
+| a linear model with Gaussian noise | Kalman filter | non-linear, or multi-modal, and it fails |
+| data, and no formula | Bootstrap | small or dependent samples |
+
 <!-- table: cards -->
 | technique | what it does | when it wins | when it is the wrong tool |
 |---|---|---|---|

@@ -1277,3 +1277,31 @@ def test_the_contents_list_is_derived_from_the_headings():
     techniques = (book.docs / "techniques/index.md").read_text(encoding="utf-8")
     assert ":::contents" in techniques
     assert techniques.count("\n## ") >= contents.MINIMUM
+
+
+@pytest.mark.parametrize("slug", CLASSES)
+def test_a_class_page_offers_a_property_keyed_way_into_its_techniques(slug):
+    """Item 168: a reader arrives holding a model, and the table was keyed by method.
+
+    The method-keyed table answers "what does Newton do?"; a reader holding "sparse and
+    symmetric" has to read eleven rows to find the two that fit. The property table comes
+    first and is keyed by the page's own property names, so recognition comes before
+    recall — and every method in the method table has to appear in it, or the two lists
+    have drifted.
+    """
+    page = (map_book().docs / slug / "index.md").read_text(encoding="utf-8")
+    assert "| what your model is | the methods that fit | the price |" in page, slug
+    property_at = page.index("| what your model is |")
+    method_at = page.index("| technique | what it does |")
+    assert property_at < method_at, f"{slug}: the method-keyed table comes first"
+
+    property_rows = page[property_at:method_at]
+    end = page.find("\n## ", method_at)
+    method_rows = page[method_at : end if end > 0 else len(page)]
+    methods = re.findall(r"^\| \[([^\]|]+)\]", method_rows, re.M)
+    assert methods, f"{slug} has no method rows"
+    offered = property_rows.lower()
+    missing = [name for name in methods if name.lower() not in offered]
+    assert missing == [], f"{slug}: the property table does not offer {missing}"
+    # and no row ranks a method
+    assert "best" not in property_rows.lower().replace("best one", ""), slug

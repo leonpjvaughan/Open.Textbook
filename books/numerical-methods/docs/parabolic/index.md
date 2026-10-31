@@ -83,6 +83,19 @@ explicit and the mesh is fine".
 Every method named here is in [Methods, A to Z](../techniques/#moving-problems),
 with its price and what it will not do.
 
+**Start from the model you have.** Each row is a property of the model in front of you,
+the methods that fit it, and what the fit costs. The method-keyed table below is the same
+list sorted by name.
+
+| what your model is | the methods that fit | the price |
+|---|---|---|
+| a coarse mesh, a short interval, no stiffness | Forward Euler, explicit Runge–Kutta | the step is limited by the mesh |
+| stiffness, which in practice is almost always | Backward Euler, BDF, Radau, implicit Runge–Kutta | a solve per step |
+| accuracy at a moderate step | Crank–Nicolson | it can ring at a sharp start |
+| a coefficient that depends on the answer | Adaptive step control around the implicit methods | an outer loop |
+| a rectangle, and a long interval | ADI, spectral methods | the geometry, or the regularity |
+| advection as well as diffusion | Exponential integrators | the linear part has to be handled exactly |
+
 <!-- table: cards -->
 | technique | what it does | when it wins | when it is the wrong tool |
 |---|---|---|---|

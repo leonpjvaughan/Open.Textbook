@@ -84,6 +84,18 @@ return one of them.
 Every method named here is in [Methods, A to Z](../techniques/#linear-systems),
 with its price and what it will not do.
 
+**Start from the model you have.** Each row is a property of the model in front of you,
+the methods that fit it, and what the fit costs. The method-keyed table below is the same
+list sorted by name.
+
+| what your model is | the methods that fit | the price |
+|---|---|---|
+| a linear constraint, and you can factorise the block | Sparse direct with pivoting, Schur complement | the fill is the cost |
+| a linear constraint, and the block is too large | Uzawa, MINRES, GMRES with a block preconditioner | the iteration count depends on the constraint |
+| a non-linear constraint | Augmented Lagrangian | an outer loop around each solve |
+| incompressible flow | Projection (Chorin), SIMPLE | the split limits the time step |
+| a rank-deficient constraint | Null-space method, constraint elimination | the null space has to be found |
+
 <!-- table: cards -->
 | technique | what it does | when it wins | when it is the wrong tool |
 |---|---|---|---|

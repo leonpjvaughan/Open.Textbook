@@ -78,6 +78,19 @@ equilibrium, linearise, and look at the sign of the real part.
 Every method named here is in [Methods, A to Z](../techniques/#eigenvalues),
 with its price and what it will not do.
 
+**Start from the model you have.** Each row is a property of the model in front of you,
+the methods that fit it, and what the fit costs. The method-keyed table below is the same
+list sorted by name.
+
+| what your model is | the methods that fit | the price |
+|---|---|---|
+| the largest eigenvalue, and a matrix you can multiply | Power iteration | one eigenvalue, and it may converge slowly |
+| the one nearest a value you choose | Inverse iteration, shift-invert | a factorisation per shift |
+| symmetric, and several eigenvalues | Lanczos, subspace iteration | reorthogonalisation is the cost |
+| non-symmetric | Arnoldi, QR algorithm | storage grows with the basis |
+| generalised, or a singular $B$ | QZ | cubic, and it is dense |
+| a non-linear eigenvalue, or a large sparse one | Jacobi–Davidson, contour integral (FEAST) | a solve inside every step |
+
 <!-- table: cards -->
 | technique | what it does | when it wins | when it is the wrong tool |
 |---|---|---|---|

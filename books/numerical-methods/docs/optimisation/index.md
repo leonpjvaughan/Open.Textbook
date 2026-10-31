@@ -68,6 +68,19 @@ difficulty is entirely in the shape of the landscape and in the constraints.
 Every method named here is in [Methods, A to Z](../techniques/#finding-a-state),
 with its price and what it will not do.
 
+**Start from the model you have.** Each row is a property of the model in front of you,
+the methods that fit it, and what the fit costs. The method-keyed table below is the same
+list sorted by name.
+
+| what your model is | the methods that fit | the price |
+|---|---|---|
+| no constraints, and a derivative you can compute | Gradient descent, Newton, quasi-Newton (BFGS) | the step length is a separate decision |
+| no constraints, and no derivative | Nelder–Mead | slow above a few dimensions |
+| a sum of squares you are fitting | Gauss–Newton | the Jacobian is the cost |
+| constraints that are linear or smooth | Simplex method, interior point, sequential quadratic programming | the constraint handling is the code |
+| a function you can only sample, or one with noise | Stochastic gradient, Adam, Bayesian optimisation | many runs, and no guarantee |
+| several local answers | Multistart | the cost multiplies by the number of starts |
+
 <!-- table: cards -->
 | technique | what it does | when it wins | when it is the wrong tool |
 |---|---|---|---|
