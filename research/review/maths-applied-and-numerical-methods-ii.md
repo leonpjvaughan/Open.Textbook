@@ -186,8 +186,9 @@ inside; a mark crossing but with ink inside), `canvas --cases` runs them under p
 `axes()` end ticks are now anchored inwards, and the check found four more figures
 drawing outside their canvas — `slope-field`'s equation label 42,623 units away,
 `argand-diagram`, `ch9-newton-raphson` and `ch22-vector-translation` — all fixed. The
-site reports 0 errors over 248 figures. The 39 labels that still overhang are item 164,
-carried by `CANVAS_DEBT` so that a new figure gets no allowance. Items 156 and 162.
+site reports **0 errors over 254 figures with `CANVAS_DEBT` empty** — the 39 labels this
+paragraph first counted were fixed as item 164, so nothing is carried. Items 156, 162 and
+164.
 
 ---
 

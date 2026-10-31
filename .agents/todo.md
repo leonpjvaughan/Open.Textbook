@@ -15,9 +15,9 @@ failure this file has had twice, so the list below, the headings and the boxes
 are checked against each other on every pass.
 
 **Every item from 79 to 164 is closed,** each with its measurement, its fix, its outcome
-and its ticked done-means in `.agents/todo-closed.md`. Items 165–172 are open: three
-defects the second review measured (165–167) and five designs it proposed (168–172), the
-latter carrying their argument in `ideas.md` §12. A new item goes at the number after the
+and its ticked done-means in `.agents/todo-closed.md`. Items 165–174 are open: three
+defects the second review measured (165–167), five designs it proposed (168–172), and the
+two ways into the map the third review measured (173–174). A new item goes at the number after the
 last one, with its diagnosis, its fix and its own done-means. The
 *interactive-aid backlog* — which figures and interactions a book still wants — is
 `ideas.md`; it is a plan rather than a defect list, and it is written for the
@@ -32,7 +32,9 @@ defect this repository can fix; those are decisions already taken.
 
 The five **design proposals** in `research/review/maths-applied-and-numerical-methods-ii.md`
 are adopted as items **168–172**, listed in the paragraph above; `ideas.md` §12 holds the
-argument and the citations, and the review holds the measurement.
+argument and the citations, and the review holds the measurement. The two indexes in
+`research/review/maths-applied-and-numerical-methods-iii.md` are items **173–174**, and that
+review holds their measurement.
 
 ---
 
@@ -97,7 +99,7 @@ own headings. Measured at 390px:
 
 ```
 page                              height    h2/h3
-/numerical-methods/techniques/    23,144      83
+/numerical-methods/techniques/    22,574      83   (h2: 6, the rest h3)
 /numerical-methods/              11,388      14
 /maths-applied/…/section-1.5/    10,649      14
 ```
@@ -108,8 +110,9 @@ the right entry is find-in-page or the site search.
 
 **The fix.** A `:::contents` directive reading the heading list the `toc` extension
 already produces, printed as a compact two-column list under a page's first paragraph
-when the page has more than six `h2`s. It cannot rot, because it is the same list the ids
-come from. On `techniques` it is the index the page is missing.
+when the page has **six or more** `h2`s — six, not "more than six", because `techniques`
+has exactly six and is the page this exists for. It cannot rot, because it is the same
+list the ids come from.
 
 **Done means**
 
@@ -117,7 +120,7 @@ come from. On `techniques` it is the index the page is missing.
       heading is added and the list is not
 - [ ] `techniques` carries it, and the page's height at 390px falls by at least 2,000px
       (the list replaces scrolling, and it is priced, not asserted)
-- [ ] a page with six or fewer `h2`s gets no list
+- [ ] a page with five or fewer `h2`s gets no list
 
 ## 168 — Every class page's techniques table is keyed by method, so a reader who has a model reads eleven rows
 
@@ -225,3 +228,71 @@ it in other words.
 - [ ] the numbers in the panel are the ones the figures and the ladder print, and a test
       recomputes them
 - [ ] the Review's *Reflection* no longer presents the limit test as a restatement
+
+## 173 — *Methods, A to Z* is not alphabetical, and a reader holding a name cannot reach its entry
+
+**What is wrong.** The page calls itself the inverse lookup — "You have heard of a method and
+want to know where it applies" — and then sorts by method family, and within a family by the
+order the class page happens to use. Measured on the built page:
+
+```
+$ grep '^### ' books/numerical-methods/docs/techniques/index.md | head -5
+### Bisection
+### Secant, false position
+### Newton
+### Quasi-Newton (Broyden)
+### Brent
+```
+
+`Bisection` before `Brent` before `Newton` is a teaching order, not an alphabetical one. At
+390px the page is **22,580px**; `Uzawa` is at **9,598px** and `Monte Carlo` at **19,108px**.
+The only name-based route is find-in-page or the site search, and a search result opens the
+page at the top, not at the anchor. The title promises a lookup the page does not offer.
+
+This is not 167. That item lists the page's five family headings; a reader who has the name
+`Uzawa` does not need to know it is a linear-system method before they can find it.
+
+**The fix.** A compact index at the top, one line per initial letter, each method name linking
+to the anchor that already exists (`<a id="uzawa"></a>` and 76 others). Generate it from those
+anchors rather than typing it: a hand-kept list of 77 names is a second copy, and item 167's
+argument against a second copy is the same argument here. If generation is too much for one
+change, sort the method blocks alphabetically inside each family and keep the five family
+anchors as fragment targets — but then the family grouping stops being a reading order and
+the page's opening paragraph has to say so.
+
+**Done means**
+
+- [ ] a reader at the top of the page can reach any of the 77 entries in one click
+- [ ] every method anchor appears exactly once, sorted by its display name, and a test fails
+      when one is missing, duplicated or out of order
+- [ ] every index link resolves to an anchor the page carries, and a test fails on a stale one
+- [ ] the page height at 390px does not grow by more than the index's own measured height
+- [ ] `python -m textbook.lint numerical-methods` is clean
+
+## 174 — No way into the map by system, although the book counts 64 of them
+
+**What is wrong.** The home page's opening number is **64 systems** the nine kinds are used
+on. Every one of them is a bullet under **Systems that live here** on a class page, and nowhere
+else. A reader who arrives holding "incompressible flow", "a tyre's slip angle" or "weather
+ensembles" has to guess which of nine pages lists it, or read all nine. The book states three
+ways in — a model, a method name, a wrong answer — and the most concrete thing a reader often
+holds, the system they are trying to model, is not one of them.
+
+The other directions are already written: `symptoms` goes wrong answer → class, `techniques`
+goes method → class, `reading-the-class` goes equation → class. This is the missing fourth,
+and the content already exists and is already linked.
+
+**The fix.** One page, `systems/`, listing each system, the class it lives in, and the class
+page that argues it — derived from the class pages' own lists the way `:::used` is derived
+from the `:::class` callbacks, so it cannot fall behind. Add it to `map.yaml → pages` and to
+the home page's ways in, and count it from the pages rather than typing 64 a second time.
+
+**Done means**
+
+- [ ] every system in a class page's *Systems that live here* appears in the index with that
+      class, and a test fails when a class page adds one the index lacks
+- [ ] every entry links the class page that argues it, and a test fails on a stale link
+- [ ] the home page's "Three ways in" becomes four, or links the index from the section
+- [ ] the page is listed in `map.yaml`, reachable from the home page, and `tests/test_reference_books.py`
+      holds the three places together
+- [ ] `python -m textbook.lint numerical-methods` is clean

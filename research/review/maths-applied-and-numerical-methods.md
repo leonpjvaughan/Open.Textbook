@@ -628,7 +628,7 @@ named and given the number they produced:
 
 | the procedure | what it answers | where it earned its keep |
 |---|---|---|
-| **The tolerance comparison** | which model do I need? | 0.2 MN/m vs 1.8 MN/m — nine times apart |
+| **The tolerance comparison** | which model do I need? | 0.034 MN/m vs 1.85 MN/m — more than fifty times apart (this file said 0.2 vs 1.8, nine times: 0.2 is the export's softest row, a bound on the second answer rather than the answer, and item 160's figure measures both) |
 | **The limit test** | is this model the generalisation of that one? | 1.91° → 1.95°, monotone over four stiffnesses |
 
 **Fix.** A short boxed panel at the end of §1.5 — not a new page — with the two procedures,

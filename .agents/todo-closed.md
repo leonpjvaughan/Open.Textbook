@@ -7308,8 +7308,9 @@ table   896 wide, 853 tall       (was 662 wide, 1,308 tall: 34.8% shorter)
 ```
 
 **Below 60rem** a row is a card: the kind as a heading, then the question, the model and the
-recognition line, each under its own name. At 390px the table is 358px wide in a 358px
-wrapper — 0 horizontal scroll — and the tallest of the nine cards is **254px**.
+recognition line, each inline with its own name. At 390px the table is 358px wide in a 358px
+wrapper — 0 horizontal scroll — and the nine cards measure **96, 97, 97, 97, 98, 113, 113,
+114, 114**, the tallest 114px.
 
 **The 140px box, met.** The first card layout stacked each label above its value, and a
 stack of four labelled lines cannot fit 140px: the tallest card measured 254px, and the floor
