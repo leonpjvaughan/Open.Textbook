@@ -898,3 +898,35 @@ here a reader can carry to a *different* mechanism.
 
 **What would show it worked:** a reader who has finished the chapter can say which
 question each procedure answers, and quote the number that earned it.
+
+## 13. From the third review — the two ways into the map that are missing
+
+`research/review/maths-applied-and-numerical-methods-iii.md` is a third pass over the two
+reference-shaped books. It fixed the class pages' clipped technique tables and the missing
+method links; two surfaces remain, and both are indexes rather than pages of argument.
+Items 173–174 carry the fixes and their done-means.
+
+### 1. An index by method name — adopted
+
+*Methods, A to Z* is entered by name, but sorted by family and then by the class page's
+teaching order. At 390px the page is **22,580px**; `Uzawa` is at 9,598px and `Monte Carlo`
+at 19,108px. Find-in-page works, and the site search opens the page at the top, not the
+anchor. The anchors already exist, so a compact alphabetical list at the top is a render
+of data the page has, not a second copy — provided it is generated from the anchors and
+tested against them. Item 167 lists the five family headings; this lists the 77 methods.
+
+**What would show it worked:** a reader holding a method name reaches its entry in one
+click from the top of the page, and a test fails when an anchor is missing from the list.
+
+### 2. An index by system — adopted
+
+The map counts **64 systems** and puts every one inside a class page. A reader holding
+"incompressible flow" or "a tyre's slip angle" has to guess the class. `symptoms` goes
+wrong answer → class, `techniques` method → class, `reading-the-class` equation → class;
+nothing goes system → class. The same lists the class pages already carry are the index's
+rows, so the page can be derived from them the way `:::used` is derived from `:::class`,
+and a test can hold the two together.
+
+**What would show it worked:** every system in a class page's *Systems that live here*
+appears in the index with a link to that class page, and the home page offers the index as
+a fourth way in.
