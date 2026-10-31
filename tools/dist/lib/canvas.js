@@ -19,8 +19,17 @@
  *     crop. `wishbone-hero` does exactly that, and a single rule for both would either
  *     fail it or miss a row of labels drawn below the frame.
  */
-/** The default slack, in user units. Sub-pixel rounding is not a defect. */
+/** The default slack for a label, in user units. Sub-pixel rounding is not a defect. */
 export const TOLERANCE = 0.5;
+/**
+ * The slack for a mark, and why it is larger.
+ *
+ * A stroke is centred on its path, so half of it lies on the far side of that path by
+ * construction: a 3-unit axis line drawn exactly on the frame's edge has 1.5 units
+ * outside it and none of that is a defect. 1.6 is half the widest stroke in the
+ * collection, with a tenth of a unit of arithmetic.
+ */
+export const STROKE_TOLERANCE = 1.6;
 /** How far `inner` reaches outside `outer`, in user units. Negative means inside. */
 export function overflow(inner, outer) {
     return Math.max(outer.x - inner.x, outer.y - inner.y, inner.x + inner.width - (outer.x + outer.width), inner.y + inner.height - (outer.y + outer.height));
@@ -42,8 +51,9 @@ export function outside(ink, box, canvas, tolerance = TOLERANCE) {
     const over = overflow(box, canvas);
     if (ink === "text")
         return { outside: over > tolerance, over };
-    // A mark that reaches the canvas is drawn, so the crop is working as intended.
-    return { outside: !overlaps(box, canvas, tolerance), over };
+    // A mark that reaches the canvas is drawn, so the crop is working as intended, and
+    // its own stroke is allowed for: see `STROKE_TOLERANCE`.
+    return { outside: !overlaps(box, canvas, STROKE_TOLERANCE), over };
 }
 /** Transform a box through a matrix, returning the axis-aligned box it covers. */
 export function transformBox(box, m) {

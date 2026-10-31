@@ -91,7 +91,10 @@ export function mount(el) {
       mirror +
       `<line x1="${cx}" y1="${cy}" x2="${cx}" y2="${ORIGIN.y}" class="fig-grid" stroke-width="1.2" stroke-dasharray="4 3"></line>` +
       `<circle cx="${cx}" cy="${cy}" r="8" class="fig-warn"></circle>` +
-      label({ x: cx + 14, y: cy + 22, text: "z\u0304", size: SIZE.value, class: "text-warn", anchor: "start", weight: "bold" })
+      // The label goes above the point when the point is in the lower half of the
+      // drawing: below it, a conjugate at im = 4 sat on y = 360 and the `canvas` check
+      // measured it four units outside the frame.
+      label({ x: cx + 14, y: cy > ORIGIN.y ? cy - 12 : cy + 22, text: "z\u0304", size: SIZE.value, class: "text-warn", anchor: "start", weight: "bold" })
     );
   }
 

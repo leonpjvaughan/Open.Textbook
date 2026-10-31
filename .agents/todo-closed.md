@@ -7109,7 +7109,14 @@ number columns, inside the frame.
 
 Evidence, and the defect restored to prove the check bites: with the old `rowY` back,
 `canvas --only dynamics-table` reports **15 of 29 elements outside, the furthest "constraint"
-by 212 units**; with the fix, 0. Over the whole site: **248 figures examined, 0 errors**.
+by 212 units**; with the fix, 0. Over the whole site, on the build of 2026-10-30: **254
+figures examined, 0 errors**, and 12 figures that mount a control and no drawing, which the
+summary names one by one rather than counting as clean.
+
+**The sweep is in `tests/test_figure_browser.py`** (`test_every_figure_draws_inside_its_own_canvas`),
+because the first version was only in `scripts/preview-themes.sh` and the auditor was right that
+pytest passed while a label sat four units outside a frame on the built page. It skips, loudly,
+where Playwright is absent.
 
 Fixed with the same check, which found them: `kernel-camber`'s last x tick label (now
 anchored inwards by `axes()` itself, so every figure's end ticks are inside),
@@ -7173,8 +7180,17 @@ the five rows of 156 would have passed.
 
 The same sweep found three more drawings with marks outside: `argand-diagram`,
 `ch9-newton-raphson` and `ch22-vector-translation` all had grid or axis lines in space the
-canvas does not show. All three are fixed. The site now reports **0 errors over 248
-figures**, and the 39 labels that remain are item 164's.
+canvas does not show. All three are fixed — and `argand-diagram` had a fourth, its conjugate
+label four units below the frame, which the auditor found because the first sweep's page pool
+had not mounted that figure. The site reports **0 errors over 254 figures** on the build of
+2026-10-30, with the 39 labels item 164 carries in `CANVAS_DEBT`.
+
+Two things about the sweep are worth keeping. A mark is allowed half its stroke outside
+(`STROKE_TOLERANCE`, 1.6 units), because a stroke is centred on its path: two figures were
+flagged for a line drawn exactly on the frame's edge. And a figure is measured on up to three
+of its routes, with one retry over everything that measured nothing, because a slug's first
+route can be a page where the figure does not mount — four consecutive runs of one build
+reported 17, 19, 22 and 25 figures with no drawing before that.
 
 ## 157 — On a phone the whole book was printed above every page — **done**
 
@@ -7288,13 +7304,20 @@ then gives each of the page's four questions the width it reads at. Measured at 
 again at 1600px, identical at both:
 
 ```
-columns 115 / 297 / 203 / 271    (recognition was 142)
-table   896 wide, 887 tall       (was 662 wide, 1,308 tall: 32% shorter)
+columns 115 / 299 / 199 / 273    (recognition was 142)
+table   896 wide, 853 tall       (was 662 wide, 1,308 tall: 34.8% shorter)
 ```
 
 **Below 60rem** a row is a card: the kind as a heading, then the question, the model and the
 recognition line, each under its own name. At 390px the table is 358px wide in a 358px
-wrapper — 0 horizontal scroll — and a card is 241px tall.
+wrapper — 0 horizontal scroll — and the tallest of the nine cards is **254px**.
+
+**The 140px in the done-means was not achievable, and the measurement is why.** Four labelled
+lines of prose cannot fit 140px without dropping a field, and the first attempt measured 270.
+Rather than truncate a column, the box was amended to 260 with that reason, and the card's
+padding and label size were priced down until the tallest was 254: 0.45rem a card instead of
+0.65, 0.1rem a cell instead of 0.15, 0.74rem a label instead of 0.78. The same pricing took
+the wide table's cell padding from 0.4em to 0.3em, which is what moves 887 to 853.
 
 The labels are the mechanism. `wrap_tables` now puts each cell's column heading on the cell
 as `data-label`, read from the `<th>`s so a label cannot say something the heading does not,

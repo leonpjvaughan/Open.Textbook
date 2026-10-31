@@ -44,6 +44,9 @@ import { discoverFigures } from "../lib/site.js";
  * `label()`'s `rotate`, which is why this is one habit and not 32 unrelated mistakes.
  * The largest is `internal-resistance`, whose "terminal potential difference / V" loses
  * 168 of its 221 units. Item 164 carries the measurement and the list.
+ *
+ * Measured on the build of 2026-10-30: 39 labels in 31 figures, over 254 figures that
+ * draw (a further 12 mount a control and no drawing at all).
  */
 const CANVAS_DEBT = {
     "black-body-curve": 1,
@@ -51,8 +54,8 @@ const CANVAS_DEBT = {
     "ch12-conditional-reverse": 1,
     "ch14-normal-test": 1,
     "ch16-pull-at-an-angle": 1,
-    "ch2-inequality-region": 3,
-    "ch3-line-explorer": 2,
+    "ch2-inequality-region": 2,
+    "ch3-line-explorer": 1,
     "ch4-model-explorer": 1,
     "ch4-series-explorer": 1,
     "coulomb-force": 3,
@@ -107,15 +110,15 @@ export const SURFACE = {
 export function readInk(slug) {
     const host = document.querySelector(`maths-figure[data-figure="${slug}"]`);
     if (!host)
-        return { slug, viewBox: null, drawings: 0, elements: [] };
+        return { slug, viewBox: null, hasSvg: false, drawings: 0, elements: [] };
     const svg = host.querySelector("svg");
     if (!svg)
-        return { slug, viewBox: null, drawings: 0, elements: [] };
+        return { slug, viewBox: null, hasSvg: false, drawings: 0, elements: [] };
     const vb = svg.viewBox.baseVal;
     const viewBox = { x: vb.x, y: vb.y, width: vb.width, height: vb.height };
     const rootScreen = svg.getScreenCTM();
     if (!rootScreen || !viewBox.width || !viewBox.height) {
-        return { slug, viewBox: null, drawings: 0, elements: [] };
+        return { slug, viewBox: null, hasSvg: true, drawings: 0, elements: [] };
     }
     const rootInverse = rootScreen.inverse();
     const skip = new Set(["defs", "clipPath", "marker", "pattern", "mask", "symbol"]);
@@ -158,7 +161,7 @@ export function readInk(slug) {
             matrix: [m.a, m.b, m.c, m.d, m.e, m.f],
         });
     }
-    return { slug, viewBox, drawings: elements.length, elements };
+    return { slug, viewBox, hasSvg: true, drawings: elements.length, elements };
 }
 /**
  * The rule's own cases, under plain `node`.
@@ -227,64 +230,159 @@ export async function run(argv) {
     await serveStatic(context, siteDir);
     const pool = await Promise.all(Array.from({ length: jobs }, () => context.newPage()));
     const records = [];
+    let noDrawing = 0;
+    const unmeasured = [];
     await mapPool(slugs, jobs, async (slug, index) => {
         const page = pool[index % jobs];
-        const route = pages[slug][0];
-        // Two attempts: a page whose own script reloads it destroys the execution context
-        // under `page.evaluate`, and that is a property of the page rather than a figure
-        // defect. `angles-on-a-line` did it once in five sweeps.
-        for (let attempt = 1;; attempt += 1) {
-            try {
-                await page.goto(`${ORIGIN}${route}`, { waitUntil: "load" });
-                // Wait for the figure to mount, not for a fixed pause: every figure here is
-                // drawn by a module that may await a kernel, and 60ms of sleep measured the
-                // empty frame before it drew — which reads as a clean result.
-                await page
-                    .waitForFunction((s) => {
-                    const figure = document.querySelector(`maths-figure[data-figure="${s}"]`);
-                    if (!figure)
-                        return false;
-                    const svg = figure.querySelector("svg");
-                    return !!svg && svg.childElementCount > 0;
-                }, slug, { timeout: 10000 })
-                    .catch(() => { });
-                await page.waitForTimeout(80);
-                const figure = (await page.evaluate(readInk, slug));
-                records.push(figure);
-                if (!figure.viewBox)
-                    return;
-                report.examined += 1;
-                let worst = { over: 0, what: "" };
-                let count = 0;
-                for (const element of figure.elements) {
-                    const drawn = transformBox(element.box, element.matrix);
-                    const verdict = outside(element.ink, drawn, figure.viewBox, 0.5);
-                    if (!verdict.outside)
-                        continue;
-                    count += 1;
-                    if (verdict.over > worst.over) {
-                        worst = {
-                            over: verdict.over,
-                            what: `${element.ink === "text" ? "label" : element.tag.toLowerCase()} ${element.text ? `"${element.text}" ` : ""}by ${Math.round(verdict.over)} units`,
-                        };
+        // **Every route the figure appears on is a candidate.** A slug's first route
+        // alphabetically can be a page where the figure does not mount — the audit and the
+        // readout sweep both learned this — and a route that mounts nothing would otherwise
+        // read as "draws nothing" on one run and as a finding on the next. So the routes are
+        // tried in turn, and a figure is only called drawing-free when none of them has one.
+        let measured = false;
+        let drawings = 0;
+        // Three routes at most per slug, and one attempt each unless the browser threw: a
+        // figure that mounts no `svg` will not mount one on a second look, and the wait is
+        // what a sweep costs. Retrying a missing drawing took this command from four
+        // minutes to over forty.
+        for (const route of pages[slug].slice(0, 3)) {
+            let figure = null;
+            for (let attempt = 1; attempt <= 2 && !figure; attempt += 1) {
+                try {
+                    // A page that reloads itself — the tier redirect and the settings runtime both
+                    // can — interrupts the navigation that asked for it. The document that is
+                    // there afterwards is the one to measure, so the failure is swallowed and the
+                    // wait below decides whether a figure arrived.
+                    await page.goto(`${ORIGIN}${route}`, { waitUntil: "load" }).catch(() => { });
+                    // Wait for the figure to mount, not for a fixed pause: every figure here is
+                    // drawn by a module that may await a kernel, and 60ms of sleep measured the
+                    // empty frame before it drew — which reads as a clean result.
+                    await page
+                        .waitForFunction((s) => {
+                        const host = document.querySelector(`maths-figure[data-figure="${s}"]`);
+                        if (!host)
+                            return false;
+                        const svg = host.querySelector("svg");
+                        if (svg && svg.childElementCount > 0)
+                            return true;
+                        // A figure with a control and no drawing has mounted; waiting the full
+                        // timeout for an `svg` that is never coming is what made this sweep
+                        // unstable in wall-clock and in what it counted.
+                        return !!host.querySelector("input, select, button, .fig");
+                    }, slug, { timeout: 8000 })
+                        .catch(() => { });
+                    await page.waitForTimeout(80);
+                    figure = (await page.evaluate(readInk, slug));
+                }
+                catch (error) {
+                    const transient = /Execution context was destroyed|interrupted by another|not attached to an active page|Target closed/.test(String(error));
+                    if (!transient) {
+                        report.error(`${slug} on ${route}`, `could not be measured: ${String(error).slice(0, 120)}`);
+                        break;
                     }
+                    await page.waitForTimeout(200);
                 }
-                if (count > (CANVAS_DEBT[slug] ?? 0)) {
-                    report.error(`${slug} on ${route}`, `${count} of ${figure.drawings} elements are outside the viewBox` +
-                        (CANVAS_DEBT[slug] ? `, and the debt is ${CANVAS_DEBT[slug]}` : "") +
-                        `; the furthest is ${worst.what}`);
-                }
-                break;
             }
-            catch (error) {
-                if (attempt < 2 && String(error).includes("Execution context was destroyed"))
+            if (!figure)
+                continue;
+            if (!figure.viewBox) {
+                // An `<svg>` with no `viewBox` cannot be measured and cannot be read either.
+                if (figure.hasSvg) {
+                    report.error(`${slug} on ${route}`, "the drawing has no viewBox to measure against");
+                    break;
+                }
+                continue; // this route mounts nothing; the next one may
+            }
+            drawings = figure.drawings;
+            records.push({ ...figure, slug });
+            report.examined += 1;
+            let worst = { over: 0, what: "" };
+            let count = 0;
+            for (const element of figure.elements) {
+                const drawn = transformBox(element.box, element.matrix);
+                const verdict = outside(element.ink, drawn, figure.viewBox, 0.5);
+                if (!verdict.outside)
                     continue;
-                report.error(`${slug} on ${route}`, `could not be measured: ${String(error).slice(0, 120)}`);
-                break;
+                count += 1;
+                if (verdict.over > worst.over) {
+                    worst = {
+                        over: verdict.over,
+                        what: `${element.ink === "text" ? "label" : element.tag.toLowerCase()} ${element.text ? `"${element.text}" ` : ""}by ${Math.round(verdict.over)} units`,
+                    };
+                }
             }
+            if (count > (CANVAS_DEBT[slug] ?? 0)) {
+                report.error(`${slug} on ${route}`, `${count} of ${figure.drawings} elements are outside the viewBox` +
+                    (CANVAS_DEBT[slug] ? `, and the debt is ${CANVAS_DEBT[slug]}` : "") +
+                    `; the furthest is ${worst.what}`);
+            }
+            measured = true;
+            break;
         }
+        if (!measured && !drawings)
+            unmeasured.push(slug);
         process.stdout.write(".");
     });
+    // **One more pass over what measured nothing.** A figure whose module is slow on the
+    // first visit mounts on the second: a sweep reported 17, 19, 22 and 25 figures with no
+    // drawing on four consecutive runs of the same build, and a figure that is skipped is
+    // a figure whose overhang is not measured. The second pass gives the remainder the
+    // benefit of a warm page, and whatever is still unmeasured is named in the summary —
+    // never silently counted as clean.
+    const retry = unmeasured.splice(0);
+    if (retry.length) {
+        await mapPool(retry, jobs, async (slug, index) => {
+            const page = pool[index % jobs];
+            for (const route of pages[slug]) {
+                try {
+                    await page.goto(`${ORIGIN}${route}`, { waitUntil: "load" }).catch(() => { });
+                    // The same mount wait as the first pass: a kernel figure is slower than 600ms,
+                    // and a retry that waits less than the pass it is repeating measures less.
+                    await page
+                        .waitForFunction((s) => {
+                        const host = document.querySelector(`maths-figure[data-figure="${s}"]`);
+                        if (!host)
+                            return false;
+                        const svg = host.querySelector("svg");
+                        if (svg && svg.childElementCount > 0)
+                            return true;
+                        return !!host.querySelector("input, select, button, .fig");
+                    }, slug, { timeout: 8000 })
+                        .catch(() => { });
+                    await page.waitForTimeout(120);
+                    const figure = (await page.evaluate(readInk, slug));
+                    if (!figure.viewBox)
+                        continue;
+                    records.push(figure);
+                    report.examined += 1;
+                    let count = 0;
+                    let worst = { over: 0, what: "" };
+                    for (const element of figure.elements) {
+                        const drawn = transformBox(element.box, element.matrix);
+                        const verdict = outside(element.ink, drawn, figure.viewBox, 0.5);
+                        if (!verdict.outside)
+                            continue;
+                        count += 1;
+                        if (verdict.over > worst.over) {
+                            worst = {
+                                over: verdict.over,
+                                what: `${element.ink === "text" ? "label" : element.tag.toLowerCase()} by ${Math.round(verdict.over)} units`,
+                            };
+                        }
+                    }
+                    if (count > (CANVAS_DEBT[slug] ?? 0)) {
+                        report.error(`${slug} on ${route}`, `${count} of ${figure.drawings} elements are outside the viewBox; the furthest is ${worst.what}`);
+                    }
+                    return;
+                }
+                catch {
+                    /* the next route may mount it */
+                }
+            }
+            noDrawing += 1;
+            unmeasured.push(slug);
+        });
+    }
     for (const page of pool)
         await page.close();
     await browser.close();
@@ -294,5 +392,9 @@ export async function run(argv) {
         fs.writeFileSync(path.resolve(jsonOut), JSON.stringify(records.sort((a, b) => a.slug.localeCompare(b.slug)), null, 1) + "\n");
     }
     report.print("figures");
+    if (noDrawing) {
+        console.log(`canvas: ${noDrawing} figure(s) never mounted a drawing, and were not measured: ` +
+            unmeasured.sort().join(", "));
+    }
     return report.exitCode();
 }

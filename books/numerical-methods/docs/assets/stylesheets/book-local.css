@@ -124,6 +124,13 @@
     table-layout: fixed;
   }
 
+  /* Priced, not guessed: 9 rows at 0.4em of cell padding is 887px, and the item asks
+   * for a third off the table's 1,308px. A tenth of an em a side takes it to 858. */
+  .md-typeset table.table--cards th,
+  .md-typeset table.table--cards td {
+    padding: 0.3em 0.5em;
+  }
+
   .md-typeset table.table--cards th:nth-child(1),
   .md-typeset table.table--cards td:nth-child(1) { width: 13%; }
 
@@ -156,15 +163,17 @@
     white-space: nowrap;
   }
 
+  /* 0.45rem, not 0.65: the two longest cards were 270px at 390px, and the item's box is
+   * no row over 260 — a card is four labelled lines and the padding was the slack. */
   .md-typeset table.table--cards tr {
-    padding: 0.65rem 0;
+    padding: 0.45rem 0;
     border-top: 1px solid var(--tb-rule);
   }
 
   .md-typeset table.table--cards tr:first-child { border-top: 0; }
 
   .md-typeset table.table--cards td {
-    padding: 0.15rem 0;
+    padding: 0.1rem 0;
     border: 0;
   }
 
@@ -172,7 +181,7 @@
     display: block;
     content: attr(data-label);
     color: var(--tb-ink-soft);
-    font-size: 0.78rem;
+    font-size: 0.74rem;
   }
 
   /* The kind is the card's heading: its own label would only repeat its name. */

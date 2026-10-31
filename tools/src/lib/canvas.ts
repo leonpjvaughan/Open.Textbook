@@ -25,8 +25,18 @@ export type Box = { x: number; y: number; width: number; height: number };
 /** Text must be inside; a mark only has to reach. */
 export type Ink = "text" | "mark";
 
-/** The default slack, in user units. Sub-pixel rounding is not a defect. */
+/** The default slack for a label, in user units. Sub-pixel rounding is not a defect. */
 export const TOLERANCE = 0.5;
+
+/**
+ * The slack for a mark, and why it is larger.
+ *
+ * A stroke is centred on its path, so half of it lies on the far side of that path by
+ * construction: a 3-unit axis line drawn exactly on the frame's edge has 1.5 units
+ * outside it and none of that is a defect. 1.6 is half the widest stroke in the
+ * collection, with a tenth of a unit of arithmetic.
+ */
+export const STROKE_TOLERANCE = 1.6;
 
 /** How far `inner` reaches outside `outer`, in user units. Negative means inside. */
 export function overflow(inner: Box, outer: Box): number {
@@ -62,8 +72,9 @@ export function outside(
 ): { outside: boolean; over: number } {
   const over = overflow(box, canvas);
   if (ink === "text") return { outside: over > tolerance, over };
-  // A mark that reaches the canvas is drawn, so the crop is working as intended.
-  return { outside: !overlaps(box, canvas, tolerance), over };
+  // A mark that reaches the canvas is drawn, so the crop is working as intended, and
+  // its own stroke is allowed for: see `STROKE_TOLERANCE`.
+  return { outside: !overlaps(box, canvas, STROKE_TOLERANCE), over };
 }
 
 /** The element's own space into the SVG's, as `page.evaluate` reports it: `[a,b,c,d,e,f]`. */
