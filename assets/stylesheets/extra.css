@@ -835,3 +835,37 @@ maths-figure label {
 @page {
   margin: 18mm 16mm;
 }
+
+/* A page's own contents list (`:::contents`).
+ *
+ * Two columns, because these pages carry six to eighty-three headings and a single
+ * column of them would be the wall the list exists to avoid. It is a plain nav of
+ * links, so it works with scripting off and costs one paint. */
+.md-typeset .contents {
+  max-width: var(--tb-measure);
+  margin: 1rem 0 1.4rem;
+  padding: 0.6rem 0.8rem;
+  border: 1px solid var(--tb-rule);
+  border-radius: var(--tb-radius);
+}
+
+.md-typeset .contents__title {
+  margin: 0 0 0.35rem;
+  color: var(--tb-ink-soft);
+  font-size: 0.8rem;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+}
+
+.md-typeset .contents__list {
+  margin: 0;
+  padding-left: 1.1rem;
+  columns: 2;
+  column-gap: 1.6rem;
+  font-size: 0.85rem;
+  line-height: 1.45;
+}
+
+@media (max-width: 44rem) {
+  .md-typeset .contents__list { columns: 1; }
+}

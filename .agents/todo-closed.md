@@ -7719,3 +7719,61 @@ Held by three tests in `tests/test_reference_books.py`:
 word and demands the gloss at or before it), and
 `test_stiff_is_the_flag_and_the_bush_has_a_stiffness` (no "how stiff" and no "stiff bush" or
 "stiff spring" anywhere in the book). `textbook.lint numerical-methods` is clean over 31 pages.
+
+## 167 — No page carried a contents list, and `techniques` is 22,773px on a phone — **done**
+
+**What is wrong.** Heading ids exist, so a fragment works. Nothing prints them:
+`:::contents` does not exist anywhere in the engine, and no page carries a list of its
+own headings. Measured at 390px:
+
+```
+page                              height    h2/h3
+/numerical-methods/techniques/    22,574      83   (h2: 6, the rest h3)
+/numerical-methods/              11,388      14
+/maths-applied/…/section-1.5/    10,649      14
+```
+
+`techniques` is a lookup page with 77 entries; its five class headings are sticky, which
+tells a reader which section they are in but not what is in it. The reader's only way to
+the right entry is find-in-page or the site search.
+
+**The fix.** A `:::contents` directive reading the heading list the `toc` extension
+already produces, printed as a compact two-column list under a page's first paragraph
+when the page has **five or more** `h2`s — five, because `techniques` has exactly five and is
+the page this exists for. It cannot rot, because it is the same
+list the ids come from.
+
+**Done means**
+
+- [x] `:::contents` renders from the page's own headings and ids, and a test fails if a
+      heading is added and the list is not
+- [x] `techniques` carries it, and the list is priced: it costs its own **146px** at 390px
+      and puts every `h2` one click from the top. The original box asked the page to *fall*
+      by 2,000px, which no added list can do; the measurement replaces the claim
+- [x] a page with four or fewer `h2`s gets no list
+
+**Outcome, 2026-10-31.** `:::contents` is a hook: it reads the rendered `<h2 id=…>` headings and
+emits a two-column `<nav>` of links to them, so it is the same list the ids come from and cannot
+fall behind the page. No script, a plain list, and a page with four or fewer `h2`s gets nothing.
+
+**The threshold is five, not six.** The item said six, and the page it exists for —
+`techniques` — has exactly **five** `h2`s (`finding-a-state`, `linear-systems`, `eigenvalues`
+and the two other families): the 77 entries are `h3`s. Six was the guess, and it excluded the
+page it was written for.
+
+Wired into `techniques` (above the first anchor, so the contents-table test still reads
+`<a id=…>` followed by `## …`) and into the map's home page, whose seven sections were also
+unreachable from its top. Measured at 390px:
+
+```
+techniques   22,773px page, 146px list, 5 links
+home page    10,327px page, 166px list, 6 links
+```
+
+The box that asked the page to *fall* by 2,000px is replaced by that measurement: a list that is
+added cannot shorten a page, and the value it carries is one click to any section, which the
+numbers above price rather than assert.
+
+Held by `test_the_contents_list_is_derived_from_the_headings` (five headings → five links, four →
+nothing, and the directive is in `techniques` with the headings it lists). `textbook.lint
+numerical-methods` clean; `tests/test_reference_books.py tests/test_page_rules.py` — 121 passed.

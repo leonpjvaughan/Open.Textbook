@@ -31,6 +31,8 @@ inside a kind you already understand, chosen by a circumstance you can name.
 - **You have a wrong answer.** Start at [When it goes wrong](symptoms/index.md).
   It goes symptom → kind → cause → fix.
 
+:::contents
+
 ## The nine kinds
 
 Every kind is a page. The third column is the model the kind writes down. Read
@@ -82,19 +84,21 @@ kind. They are not more boxes. They are the choices inside a box.
 
 ### The three flags, in words
 
-**Non-linear.** The answer appears inside the rule you are trying to satisfy, so the
-model changes as you solve it. Every method becomes a loop around a linear one, and the
-starting guess starts to matter — which is why the guess is a decision, not a detail.
+**Non-linear.** The answer appears inside the rule you are trying to satisfy, so
+the model changes as you solve it. Every method becomes a loop around a linear
+one, and the starting guess starts to matter — which is why the guess is a
+decision, not a detail.
 
-**Stiff.** The model contains a fast change you do not care about, and that change
-decides how short your step must be. It is a property of the *model and the step
-together*, not of the physics: the same diffusion equation is stiff at one mesh and not
-at another. This is the flag that turns an explicit method into an implicit one, and it
-is why a solver can be driven to a step so small that the answer never arrives.
+**Stiff.** The model contains a fast change you do not care about, and that
+change decides how short your step must be. It is a property of the *model and
+the step together*, not of the physics: the same diffusion equation is stiff at
+one mesh and not at another. This is the flag that turns an explicit method into
+an implicit one, and it is why a solver can be driven to a step so small that
+the answer never arrives.
 
-**Geometry not known in advance.** The region is part of the question: a melting front,
-a contact patch, a crack. The mesh becomes an unknown too, so the method has to move it
-and the answer has to be checked against the shape it chose.
+**Geometry not known in advance.** The region is part of the question: a melting
+front, a contact patch, a crack. The mesh becomes an unknown too, so the method
+has to move it and the answer has to be checked against the shape it chose.
 
 Each kind also has properties of its own that narrow the choice. They include
 how sparse a matrix is, whether it is symmetric, how well conditioned it is, and

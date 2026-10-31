@@ -69,7 +69,8 @@ Dropping that row returns the two-circle problem, and the class changes from a
 ## What stiffness should the bush have: optimisation
 
 Replace the joint with a spring and the corner is a root problem at each wheel
-position. That makes one question worth asking: what stiffness does the spring need
+position. That makes one question worth asking: what stiffness does the spring
+need
 before the bushed model agrees with the rigid one?
 
 The answer is a sweep, and the sweep is a number. These are the export's own

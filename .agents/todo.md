@@ -14,7 +14,7 @@ done-means; an item whose heading says done and whose checklist does not is the
 failure this file has had twice, so the list below, the headings and the boxes
 are checked against each other on every pass.
 
-**Every item from 79 to 166 is closed,** each with its measurement, its fix, its outcome
+**Every item from 79 to 167 is closed,** each with its measurement, its fix, its outcome
 and its ticked done-means in `.agents/todo-closed.md`. Items 166–174 are open: three
 defects the second review measured (165–167), five designs it proposed (168–172), and the
 two ways into the map the third review measured (173–174). A new item goes at the number after the
@@ -37,37 +37,6 @@ argument and the citations, and the review holds the measurement. The two indexe
 review holds their measurement.
 
 ---
-
-## 167 — No page carries a contents list, and `techniques` is 22,574px on a phone
-
-**What is wrong.** Heading ids exist, so a fragment works. Nothing prints them:
-`:::contents` does not exist anywhere in the engine, and no page carries a list of its
-own headings. Measured at 390px:
-
-```
-page                              height    h2/h3
-/numerical-methods/techniques/    22,574      83   (h2: 6, the rest h3)
-/numerical-methods/              11,388      14
-/maths-applied/…/section-1.5/    10,649      14
-```
-
-`techniques` is a lookup page with 77 entries; its five class headings are sticky, which
-tells a reader which section they are in but not what is in it. The reader's only way to
-the right entry is find-in-page or the site search.
-
-**The fix.** A `:::contents` directive reading the heading list the `toc` extension
-already produces, printed as a compact two-column list under a page's first paragraph
-when the page has **six or more** `h2`s — six, not "more than six", because `techniques`
-has exactly six and is the page this exists for. It cannot rot, because it is the same
-list the ids come from.
-
-**Done means**
-
-- [ ] `:::contents` renders from the `toc` extension's own list, and a test fails if a
-      heading is added and the list is not
-- [ ] `techniques` carries it, and the page's height at 390px falls by at least 2,000px
-      (the list replaces scrolling, and it is priced, not asserted)
-- [ ] a page with five or fewer `h2`s gets no list
 
 ## 168 — Every class page's techniques table is keyed by method, so a reader who has a model reads eleven rows
 

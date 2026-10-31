@@ -14,6 +14,8 @@ Order matters:
 7. ``usedin`` expands ``:::used`` on a class page into the sections that name it;
 8. ``deeper`` expands ``:::deeper`` into a link to this section's depth page;
 9. ``problems`` expands ``:::problems`` / ``:::answers`` from the verified bank;
+   ``contents`` expands ``:::contents`` into a list of the page's own headings, which is
+   why it runs on rendered HTML rather than markdown — the ids are there;
 10. ``maths`` renders the ``$...$`` those hooks emitted — last, because it runs
     on rendered HTML rather than markdown.
 
@@ -24,7 +26,19 @@ implementation rather than a MkDocs hook that no renderer calls.
 
 from __future__ import annotations
 
-from . import classes, deeper, disclaimer, figures, maths, problems, proofs, tier, toc, usedin
+from . import (
+    classes,
+    contents,
+    deeper,
+    disclaimer,
+    figures,
+    maths,
+    problems,
+    proofs,
+    tier,
+    toc,
+    usedin,
+)
 
 __all__ = ["MARKDOWN_HOOKS", "on_files", "on_page_markdown", "on_page_content"]
 
@@ -48,4 +62,7 @@ def on_page_markdown(markdown, page, config, files):
 
 
 def on_page_content(content, page, config, files):
+    # `contents` first: it reads the headings while they still carry their LaTeX, and
+    # `maths` then renders the `$...$` in the headings themselves.
+    content = contents.on_page_content(content, page, config, files)
     return maths.on_page_content(content, page, config, files)

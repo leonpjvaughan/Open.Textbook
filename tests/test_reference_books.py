@@ -1252,3 +1252,28 @@ def test_stiff_is_the_flag_and_the_bush_has_a_stiffness():
         for match in re.finditer(r"[Hh]ow stiff|stiff (bush|spring)", text):
             offenders.append(f"{path.relative_to(book.docs)}: {match.group(0)}")
     assert offenders == [], offenders
+
+
+def test_the_contents_list_is_derived_from_the_headings():
+    """Item 167: the list is the same list the ids come from, so it cannot rot.
+
+    Built from the rendered `<h2 id=…>` headings rather than typed, which is the only
+    reason a 22,773px page can carry an index that stays true when a section is added.
+    A page with four or fewer gets nothing: below that the list is furniture.
+    """
+    from textbook.hooks import contents
+
+    five = "".join(f'<h2 id="h{i}">Section {i}</h2>' for i in range(5))
+    nav = contents.render(five)
+    assert nav.count("<li>") == 5
+    for i in range(5):
+        assert f'href="#h{i}"' in nav
+
+    four = "".join(f'<h2 id="h{i}">Section {i}</h2>' for i in range(4))
+    assert contents.render(four) == ""
+
+    # The directive is in the page, and the page has the headings it lists.
+    book = map_book()
+    techniques = (book.docs / "techniques/index.md").read_text(encoding="utf-8")
+    assert ":::contents" in techniques
+    assert techniques.count("\n## ") >= contents.MINIMUM
