@@ -269,7 +269,7 @@ export async function run(argv) {
                         // timeout for an `svg` that is never coming is what made this sweep
                         // unstable in wall-clock and in what it counted.
                         return !!host.querySelector("input, select, button, .fig");
-                    }, slug, { timeout: 8000 })
+                    }, slug, { timeout: 20000 })
                         .catch(() => { });
                     await page.waitForTimeout(80);
                     figure = (await page.evaluate(readInk, slug));
@@ -347,7 +347,7 @@ export async function run(argv) {
                         if (svg && svg.childElementCount > 0)
                             return true;
                         return !!host.querySelector("input, select, button, .fig");
-                    }, slug, { timeout: 8000 })
+                    }, slug, { timeout: 20000 })
                         .catch(() => { });
                     await page.waitForTimeout(120);
                     const figure = (await page.evaluate(readInk, slug));

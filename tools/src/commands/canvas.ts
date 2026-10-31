@@ -332,7 +332,7 @@ export async function run(argv: string[]): Promise<number> {
                 return !!host.querySelector("input, select, button, .fig");
               },
               slug,
-              { timeout: 8000 },
+              { timeout: 20000 },  // the kernel figures load a wasm module first
             )
             .catch(() => {});
           await page.waitForTimeout(80);
@@ -416,7 +416,7 @@ export async function run(argv: string[]): Promise<number> {
                 return !!host.querySelector("input, select, button, .fig");
               },
               slug,
-              { timeout: 8000 },
+              { timeout: 20000 },  // the kernel figures load a wasm module first
             )
             .catch(() => {});
           await page.waitForTimeout(120);
