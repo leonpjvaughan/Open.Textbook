@@ -7088,11 +7088,11 @@ attributes reported one offender where there are three.
 
 **Done means**
 
-- [ ] §1.6's `dynamics-table` shows five labelled rows with both columns inside the
+- [x] §1.6's `dynamics-table` shows five labelled rows with both columns inside the
       drawing at 390px and at 1280px, in both schemes
-- [ ] a tool check fails on a figure that draws outside its `viewBox`, and its case
+- [x] a tool check fails on a figure that draws outside its `viewBox`, and its case
       list in `tests/test_figures.py` includes this defect
-- [ ] the check reports 0 findings on the whole site with the text/mark rule 162
+- [x] the check reports 0 findings on the whole site with the text/mark rule 162
       states, and fails when the old `rowY` is restored
 
 **Outcome, 2026-10-30.** Fixed, and the check that was missing now exists: `tools canvas
@@ -7162,9 +7162,9 @@ false positives.
 
 **Done means**
 
-- [ ] the "40 mm" label is fully inside its `viewBox` at 390px and 1280px, both schemes
-- [ ] the check from 156 passes every figure in every book at HEAD with the text/mark rule
-- [ ] the check fails each of the three cases when the old code is restored, and its
+- [x] the "40 mm" label is fully inside its `viewBox` at 390px and 1280px, both schemes
+- [x] the check from 156 passes every figure in every book at HEAD with the text/mark rule
+- [x] the check fails each of the three cases when the old code is restored, and its
       case list in `tests/test_figures.py` names them
 
 **Outcome, 2026-10-30.** The text-versus-mark rule is in `tools/src/lib/canvas.ts` and its
@@ -7225,9 +7225,9 @@ stop), or a dozen lines of script on `matchMedia`. Pick one in the fix.
 
 **Done means**
 
-- [ ] the `h1` of every route is above 300px at 390px, measured over both books
-- [ ] the drawer is one focus stop, opens with `Enter`, and is inert at ≥60rem
-- [ ] `tools check-mobile site` still reports 0 pages wider than the screen
+- [x] the `h1` of every route is above 300px at 390px, measured over both books
+- [x] the drawer is one focus stop, opens with `Enter`, and is inert at ≥60rem
+- [x] `tools check-mobile site` still reports 0 pages wider than the screen
 
 **Outcome, 2026-10-30.** The drawer is a `<details class="nav-drawer" open>` around the
 `<nav class="sidebar">`, with a `<summary>` that carries the book's name and the page's
@@ -7285,12 +7285,11 @@ which takes the recognition column from 142px to about 280px.
 
 **Done means**
 
-- [ ] at 390px the nine kinds need no horizontal scroll and no row is taller than
-      **260px** — a card is four labelled lines of prose, so it is taller than a squeezed
-      cell was; the defect was the 34% off screen, not the height. Measured: 241px
-- [ ] at 1280px the recognition column is at least 220px and the table's height
-      falls by a third
-- [ ] `tests/test_reference_books.py` still holds the table's rows to the registry
+- [x] at 390px the nine kinds need no horizontal scroll and no row is taller than
+      **140px**. Measured: 96, 97, 97, 97, 98, 113, 113, 114, 114 — the tallest is 114
+- [x] at 1280px the recognition column is at least 220px and the table's height
+      falls by a third — measured 273px, and 853 against 1,308 (34.8%)
+- [x] `tests/test_reference_books.py` still holds the table's rows to the registry
 
 **Outcome, 2026-10-30.** Two layouts from one authored table, and the Markdown table stays a
 Markdown table, so `test_the_nine_kinds_table_names_and_links_every_class` still holds its
@@ -7328,6 +7327,204 @@ Measured on the built page at 390px, all nine cards:
 The other two halves of the item never moved: 358px in a 358px wrapper (no horizontal
 scroll), and at 1280px the table is 896×853 against 1,308 (34.8% shorter) with the
 recognition column at 273px, up from 142.
+
+Evidence: the nine row heights above are `getBoundingClientRect().height` on the built
+page at 390px; the wide layout is measured at 1280px and again at 1600px, identical at both;
+`tests/test_reference_books.py`'s nine-kinds test and the marker test pass; `check-mobile`
+reports 0 pages wider than the screen; and no `math-error` page exists in any profile.
+
+## 159 — Nine signatures, eighteen wordings, and no check that they agreed — **done**
+
+**What is wrong.** `map.yaml` gives each class one `signature`, which `:::class`
+prints under the link in another book; each class page also opens with "**You have
+one of these when**", which is the same sentence written again. Two of the nine do
+not just differ in wording but in claim: `root`'s signature adds "the rule bends
+with the answer" and `hyperbolic`'s adds "keeps its shape", and neither appears on
+the page. A reader who follows `:::class root` from `maths-applied` meets a page
+that defines the class in different words.
+
+`tests/test_reference_books.py` holds the registry, the home page's table and the
+nav together, and does not hold the signature to the page.
+
+**The fix.** One sentence per class, printed in both places: the page keeps its
+`**You have one of these when**` lead-in and uses the registry's sentence, and a
+clause the page needs moves into the registry.
+
+**Done means**
+
+- [x] each class page contains its registry signature verbatim
+- [x] `tests/test_reference_books.py` fails when one is edited and the other is not
+- [x] the home page's nine-kinds table still matches both
+
+**Outcome, 2026-10-30.** One sentence per class, stored once in `map.yaml`, printed
+verbatim on the page after "**You have one of these when**", and printed with a capital in a
+`:::class` note by `hooks/classes.py::sentence`. The registry stores it in the form the page
+needs — a lowercase initial, because the page's lead-in supplies the capital — and the note
+capitalises it for the place it stands alone. Two renderings, one string, which is what stops
+them being two sentences.
+
+The two classes whose registry line claimed more than the page have both clauses on the page
+now: `root`'s "the rule bends with the answer" and `hyperbolic`'s "keeps the shape of what was
+sent". The clauses that only the page had went into the registry, so nothing was dropped:
+`linear-system`'s "nothing changes with time", `saddle-point`'s "the model pays for it",
+`averaging`'s "possibilities you cannot list", and `eigenvalue`'s examples — "which
+frequencies, which loads, which energies".
+
+Held by `test_a_class_page_prints_its_registry_signature_verbatim` (all nine, whitespace
+normalised because the page wraps and the registry does not),
+`test_a_one_word_edit_on_either_side_is_caught` (the assertion fails when "bends" becomes
+"changes"), and `test_the_class_directive_capitalises_the_stored_signature`.
+`test_the_directive_renders_one_link_and_the_registry_sentence` now reads the sentence out of
+the registry instead of holding a third copy of it.
+
+Evidence: `textbook.lint numerical-methods maths-applied` clean over 49 pages; the five
+classes `maths-applied` links render five distinct notes, capitalised, each the registry's
+own string; the home page's nine-kinds table still names and links every class, and
+`test_the_nine_kinds_table_names_and_links_every_class` holds it to the registry.
+
+## 160 — The comparison both books are built on, drawn at last — **done**
+
+**What is wrong.** `maths-applied` §1.5's answer is a comparison — the effect the
+simpler model leaves out against the tolerance the question asks for — and the same
+tolerance on two different quantities gives answers **nine times apart** (1.8 MN/m
+against 0.2 MN/m). It is stated in tables on three pages and drawn on none:
+`stiffness-agreement` plots camber against travel, which is what the section is not
+about. In `numerical-methods` the thesis sentence "you need the method that answers
+your question" has no figure either, in a book where every class page has one.
+
+**The fix.** One figure on §1.5: stiffness on a log x-axis, |difference from the
+rigid model| on a log y-axis, two curves ("at rest", "change over the travel"),
+and a horizontal dashed rule at 0.1°. The two crossings are the two answers and the
+gap between them is a distance on the page. The numbers already exist in the model
+the page imports and the crossing is a bisection over the same `compliant()` call.
+
+**Done means**
+
+- [x] the figure mounts with a static frame that carries the two crossings on its own
+- [x] both crossings are held by a check that can recompute them — `claim()` and
+      `readout --verify` handle closed-form arithmetic only, so this is either a new
+      interval kind in the verifier or a recompute test in
+      `tests/test_maths_applied_numbers.py`
+- [x] the log axes are drawn by a scale the kit owns, or by an explicit `log10`
+      mapping whose ticks are relabelled
+- [x] the prose quotes the numbers the figure prints, not a second set
+
+**Outcome, 2026-10-30.** `tolerance-crossing` mounts on §1.5, between the table of
+stiffnesses and the paragraph that draws the conclusion. Two curves — the effect the rigid
+model leaves out, at rest and over the travel — against a dashed rule at a tenth of a degree,
+on logarithmic axes, with the two crossings marked.
+
+**The numbers changed, and the prose with them.** The section said the two thresholds were
+"about nine times apart", comparing 1.8 MN/m for the angle with 0.2 MN/m — the export's
+softest *row*, not the second threshold. Measured by bisection over the model the figure
+imports, the change-over-the-travel effect reaches a tenth of a degree at **0.034 MN/m**, so
+the two answers are **more than fifty times apart**, and 0.2 MN/m is comfortably inside the
+second. §1.5 states both crossings, the Review states the fifty-times version, and
+`test_the_change_tolerance_is_met_by_the_softest_exported_row` no longer asserts a ratio
+between two different quantities.
+
+**The log axes are the figure's own.** The kit has no logarithmic scale and one figure is not
+a reason to add one, so the axes are linear in `log10`: `axes()` supplies the frame, the
+curves are sampled in log space, and every tick is drawn at `log10` of a value a reader
+recognises. Two functions know about it, `lx` and `ly`, and the file says so.
+
+**A crossing is not a claim.** `claim()` verifies a closed-form expression at stated values;
+the model's difference at a bisected root is 0.100000024, which is not `0.1` within the
+verifier's 1e-12. So the claims hold what the reader is shown — "a difference of 0.10
+degrees" — at the precision it is printed, and the crossings themselves are recomputed by
+`test_the_two_tolerance_crossings_are_the_figures_own`, which bisects the same `mechanism.js`
+and requires the page to print 1.85 and 0.034.
+
+**What the figure says that the prose did not.** The dashed curve passes through zero near
+0.05 MN/m: at that stiffness the bush shifts the curve by exactly the amount it would have to
+tilt it, so the two models agree about the change over the travel and then diverge with the
+sign the other way. The caption says so, because a reader would otherwise read the V as a
+drawing slip.
+
+Evidence: `readout --verify` — 2 claims, 0 untrue; `canvas` — 0 findings; `audit` light and
+dark — no finding; the readout, the caption and the prose carry the same two numbers;
+`pytest tests/test_maths_applied_numbers.py tests/test_maths_applied_ladder.py` — 34 passed.
+
+## 161 — `linear-system` split its five-item list in two, with the definition of `preconditioner` in the gap — **done**
+
+**What is wrong.** The first pass's B2 fix added the `preconditioner` definition and
+put it in the middle of the list that states the five matrix situations deciding the
+method. On the built page the section is `<ul>` with one item ("Dense and small"),
+then a paragraph, then a second `<ul>` with the other four. The five items are the
+reader's own vocabulary and the most useful paragraph on the page; splitting them
+hides both.
+
+**The fix.** Move the definition above the list as a lead-in, or below it as a
+closing paragraph. One paragraph moves and the list is whole.
+
+**Done means**
+
+- [x] the built page has one `<ul>` of five items in *What it becomes on a computer*
+- [x] `preconditioner` is still defined on the page before the technique table
+- [x] `python -m textbook.lint numerical-methods` is clean
+
+**Outcome, 2026-10-30.** The definition moved below the list, under a sentence that says why it
+belongs to both families: "Both families can be helped by the same idea." The five situations
+are one `<ul>` again, and `preconditioner` is defined before the technique table, where it was.
+
+The lead-in keeps its colon and now introduces five items rather than one. Nothing else on the
+page moved.
+
+Held by `test_the_linear_system_list_is_one_list_and_the_definition_is_not_in_it`, which fails
+if a blank line appears between the first and last situation — the shape the split had — and if
+the definition is back inside the list. `textbook.lint numerical-methods` clean over 31 pages.
+
+## 163 — Display equations in page prose kept their dollars, because they shared a paragraph with the text — **done**
+
+**What is wrong.** Item 154 fixed this in the problem banks. Page prose has the same
+defect, and in four books. Measured on the built site after the banks were rebuilt:
+
+```
+stray `$` before `<math>`   ie-lc-maths 449   ie-lc-physics 15
+                            ie-lc-applied-maths 6   proofs 3
+```
+
+`> **The addition rule.**` followed by `> $$P(A \cup B) = \ldots$$` is one paragraph, so
+the delimiters survive, and the reader sees a dollar, the equation set on the line of
+the sentence, and a dollar. A state machine over the source finds **556** lines that
+need a blank line on one side of them — 185 before and 253 after in plain prose, 69
+before and 35 after inside block quotes, and 14 inside indented blocks.
+
+**The fix.** The rule first: `lint.display_maths_without_a_blank_line`, the maths
+sibling of `lists_without_a_blank_line`, reusing the `$$` state machine item 155 added.
+It has to exempt a display equation in a table cell, which is inline by design. Then a
+fixer over the 556 — insert a blank line, or a line carrying the quote prefix — and the
+finding is zero with no debt entry.
+
+**Done means**
+
+- [x] the lint rule reports nothing over the collection, with no debt entry
+- [x] a scan of the built site finds 0 pages with a bare `$` before a `<math>`
+- [x] `tests/test_lint.py` fails when a planted `$$` line loses its blank line
+- [x] the four affected books rebuild with no `math-error` page
+
+**Outcome, 2026-10-30.** Nothing on the built site now shows a bare `$` before a `<math>`: 0
+pages, from 473 strays in four books.
+
+Three passes, because the first two did not see the whole defect:
+
+1. **357 blank lines** inserted where a display block met prose, by a state machine over the
+   source that counts `$$` delimiters — a line that is `$$` on its own opens a block, it does
+   not close one. The first pass (310 lines) missed every block opened that way, which is most
+   of the long ones, and `lint` is what found the rest.
+2. **Nine quoted labels** of the shape `> **The conversion.** $$…$$` split into the label, a
+   `>` line, and the equation — a blank line cannot separate two things on one line.
+3. **Ten indented blocks** dedented to the start of their line. An indented `$$` is not a
+   block to `pymdownx.arithmatex`, whatever surrounds it, so the delimiters survived inside a
+   list item or a quote.
+
+Held by `lint.display_maths_without_a_blank_line`, added to `textbook.lint` with no debt table
+— the collection is clean on the day it landed, so the next one to appear is a finding rather
+than an allowance. It reads a block quote by stripping its marker and one following space (a
+space after `>` is not indentation), skips fenced code and table rows, and reports three
+shapes: prose above a `$$` line, prose below a closing `$$`, and text before an equation on
+one line. Its first version reported 7,386 findings by reading "starts and ends with `$$`" as
+a whole equation; the count is what showed the rule was wrong, not the content.
 
 Evidence: `textbook.lint` clean over 2,613 pages; `grep -r '<p>\$<math' site` → nothing; no
 `math-error` page in any profile. `tests/test_lint.py` holds five cases: prose above, prose
@@ -7367,9 +7564,9 @@ plot's bottom-left, and nudge the three overhead labels inside. Then delete the 
 
 **Done means**
 
-- [ ] `CANVAS_DEBT` is empty, and `node tools/dist/cli.js canvas site` reports 0 errors
-- [ ] every rotated title reads as a title in a capture at 390px and at 1280px, both schemes
-- [ ] `scripts/preview-themes.sh` still reports 0 findings on `audit`, `kit`, `canvas` and
+- [x] `CANVAS_DEBT` is empty, and `node tools/dist/cli.js canvas site` reports 0 errors
+- [x] every rotated title reads as a title in a capture at 390px and at 1280px, both schemes
+- [x] `scripts/preview-themes.sh` still reports 0 findings on `audit`, `kit`, `canvas` and
       `check-mobile`
 
 **Outcome, 2026-10-30.** All 39 are inside their frames and `CANVAS_DEBT` is empty, so a

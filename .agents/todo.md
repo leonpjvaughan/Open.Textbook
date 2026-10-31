@@ -14,13 +14,11 @@ done-means; an item whose heading says done and whose checklist does not is the
 failure this file has had twice, so the list below, the headings and the boxes
 are checked against each other on every pass.
 
-**Every item from 79 to 164 is closed,** each with its measurement, its fix and its
-outcome in `.agents/todo-closed.md`. Items 165–172 are open: three defects the second
-review measured and five designs it proposed. The review that filed 159–161 also carries five
-design proposals, which are items 168–172; 163 is the prose half of 154,
-measured while closing it, and 164 is the label tail the figure check measured. A new
-item goes at the number after the last one, with its diagnosis, its fix and its own
-done-means. The
+**Every item from 79 to 164 is closed,** each with its measurement, its fix, its outcome
+and its ticked done-means in `.agents/todo-closed.md`. Items 165–172 are open: three
+defects the second review measured (165–167) and five designs it proposed (168–172), the
+latter carrying their argument in `ideas.md` §12. A new item goes at the number after the
+last one, with its diagnosis, its fix and its own done-means. The
 *interactive-aid backlog* — which figures and interactions a book still wants — is
 `ideas.md`; it is a plan rather than a defect list, and it is written for the
 author choosing what to build next.
@@ -33,11 +31,8 @@ rewrites ranked in `research/pedagogy-audit/README.md`. An item in this file is 
 defect this repository can fix; those are decisions already taken.
 
 The five **design proposals** in `research/review/maths-applied-and-numerical-methods-ii.md`
-are adopted and are items **168–172** here: inverting the techniques table (168), a
-look-alike per class (169), retrieval on `symptoms` (170), a figure readout in the
-page's own columns (171), and the two procedures named once with the number each produced
-(172). Each item carries its own fix and done-means; `ideas.md` §12 holds the argument and
-the citations, and the review holds the measurement.
+are adopted as items **168–172**, listed in the paragraph above; `ideas.md` §12 holds the
+argument and the citations, and the review holds the measurement.
 
 ---
 
