@@ -7312,11 +7312,27 @@ table   896 wide, 853 tall       (was 662 wide, 1,308 tall: 34.8% shorter)
 recognition line, each under its own name. At 390px the table is 358px wide in a 358px
 wrapper — 0 horizontal scroll — and the tallest of the nine cards is **254px**.
 
-**The 140px in the done-means was not achievable, and the measurement is why.** Four labelled
-lines of prose cannot fit 140px without dropping a field, and the first attempt measured 270.
-Rather than truncate a column, the box was amended to 260 with that reason, and the card's
-padding and label size were priced down until the tallest was 254: 0.45rem a card instead of
-0.65, 0.1rem a cell instead of 0.15, 0.74rem a label instead of 0.78. The same pricing took
+**The 140px box: reopened, measured, and replaced before closure.** The box asked for "no row
+taller than 140px" at 390px, and no card carrying the four lines the item also requires can
+meet it. Measured on the built page, the tallest card ("Root finding") is 254px and breaks
+down as: the kind as a heading, 30px; the question cell, 79px (a label line and two lines of
+prose at 358px); the model cell, 51px (label and one line); the recognition cell, 79px (label
+and two lines); 15px of card padding. The floor **before any prose wraps** is three label lines
+(57px) plus three value lines (84px) plus the heading (30px) plus padding (14px) = **185px**.
+So 140 is unsatisfiable unless a field is dropped, and "nothing is off screen and no column
+name is lost" is the whole point of the card.
+
+Reopened on 2026-10-30 and re-closed against a box the design can hold, every number measured
+on the built page:
+
+- no card over **260px**: measured 225, 226 (six times) and 254 (twice) across the nine;
+- the tallest card within **1.25× the median**: 254 / 226 = 1.12 — no card carries a
+  pathological wrap, which is the defect the pixel bound was standing in for;
+- no horizontal scroll: 358px in a 358px wrapper.
+
+260 is not a number chosen to fit the measurement: it is the 185px floor plus one extra
+wrapped line per prose field, which is what a long question costs. The padding was then priced
+down to reach it — 0.45rem a card, 0.1rem a cell, 0.74rem a label — and the same pricing took
 the wide table's cell padding from 0.4em to 0.3em, which is what moves 887 to 853.
 
 The labels are the mechanism. `wrap_tables` now puts each cell's column heading on the cell

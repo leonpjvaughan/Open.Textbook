@@ -19,9 +19,9 @@
  * every theme. The cases run under plain `node` (`canvas --cases`), so the rule is in
  * the ordinary gate and not only in the browser one.
  *
- * **The debt, and why it is a table rather than a tolerance.** The first sweep of 250
- * figures found 40 labels that overhang their frame, in 32 modules, and they are one
- * authoring habit: a y-axis title written horizontally with `anchor: "end"` a few units
+ * **The debt, and why it is a table rather than a tolerance.** The sweep of 254 figures
+ * on the build of 2026-10-30 finds 39 labels that overhang their frame, in 31 modules,
+ * and they are one authoring habit: a y-axis title written horizontally with `anchor: "end"` a few units
  * left of the axis, so a 60–220-unit label runs off the canvas (`internal-resistance`
  * loses 168 units of "terminal potential difference / V"). Item 164 fixes them. Naming
  * them here, in the same shape as `lint.LIST_DEBT`, is what keeps this check strict for
