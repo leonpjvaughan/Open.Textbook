@@ -7604,3 +7604,67 @@ Evidence: `canvas site --json` recomputed independently finds **0** text element
 their `viewBox`, against 39 before; `types` at 0; `kit`, `audit` and `check-mobile`
 unchanged; a capture of the nine-kinds cards and of `dynamics-table` at 390px and 1280px
 reads clean.
+
+## 165 — `maths-applied`'s required pages were the longest-winded ones, and the tail from 25 to 32 words was unpoliced — **done**
+
+**What is wrong.** Measured over prose only — table rows, headings, code, display
+maths and directives removed, list items kept — the eight pages a reader of
+`maths-applied` has to read average **19.1 words a sentence**, with 18.6% of their
+sentences over 25 words; the five pages it calls optional average 16.2 and 11.4%. The
+calmest prose in the book is in the pages the book says are not needed. The worst are
+the three hardest sections: §1.7 (21.5 words, 23% over 25), §1.2 (20.2, 21%) and §1.6
+(19.0, 20%); the chapter index is 21.7 and the Review 19.2.
+
+That is inside the house register ("~15–20 words, one idea each") and outside what the
+check enforces: `lint.py:276` fails only a sentence over **32** words, so the tail from
+25 to 32 is unpoliced — **57 sentences** across the seven sections.
+
+**The fix.** A ceiling of 25 words on a section page, keyed to the page kind, with the
+existing `SENTENCE_DEBT` ratchet so the other books are untouched; then a pass over
+those 57. Not a rewrite: the point is that the *required* page should be the easiest
+one, and today it is the other way round.
+
+**Done means**
+
+- [ ] `textbook.lint` fails a 26-word sentence on a section page, and `tests/test_lint.py`
+      holds that case
+- [ ] `maths-applied`'s eight required pages average under 17 words a sentence, with
+      under 12% over 25
+- [ ] every other book's `SENTENCE_DEBT` is unchanged, and `textbook.lint` is clean
+
+**Outcome, 2026-10-31.** The rule first, then the prose.
+
+`lint.long_sentences` takes a ceiling, and a section page — `Section \d+\.\d+/(Walkthrough|Learn)`
+in any book's layout — is held to **25** words with its own debt table, `SECTION_SENTENCE_DEBT`,
+so the 32-word rule and its debt are untouched. **`SENTENCE_DEBT` is byte-for-byte what it was**:
+every other book's count is unchanged, as the box asks.
+
+**The splitter had to be fixed first.** `[^.!?]+` split on the period inside `§1.6`, inside `1.5`,
+inside `e.g.` and inside a link target, which manufactured sentences that are not in the prose
+("6]'s agreement is the one this model can state") and measured fragments against the ceiling.
+Periods that do not end a sentence are masked before splitting and restored after, so a finding
+quotes the page. That changed the measurement basis: `maths-applied`'s section count went 48 → 61
+(a truer number, near the 57 the review estimated), and every book's 32-word count *fell*, because
+the old splitter had been counting fragments as sentences.
+
+The section debts are therefore the initial measurement under the fixed splitter, not a raise:
+`gcse-maths` 15, `gcse-physics` 73, `a-level-maths` 146, `a-level-physics` 79, `ie-jc-maths` 131,
+`ie-lc-maths` 148, `ie-lc-applied-maths` 87, `ie-lc-physics` 197 — 869 in all, and the collection's
+existing debt is unchanged.
+
+**`maths-applied` was rewritten, not grandfathered**: 65 sentences across seven section pages, the
+Deeper page, the Review and one README, each split at a clause boundary with the meaning kept. The
+eight required pages now measure:
+
+```
+sentences 498   words 7,384   mean 14.8 words/sentence   over 25: 3 (0.6%)
+```
+
+against **19.1** and **18.6%** when the item was filed. The calmest prose in the book is no longer
+in the pages it calls optional.
+
+Held by `test_a_section_page_is_held_to_twenty_five_words` (26 words fails at 25 and passes at 32,
+and only a section path is a section page) and
+`test_the_sentence_splitter_does_not_split_a_reference_or_a_link`. `textbook.lint` is clean over
+2,613 pages with `SECTION_SENTENCE_DEBT` at its measured counts; `pytest tests/test_lint.py
+tests/test_page_rules.py` — 69 passed.

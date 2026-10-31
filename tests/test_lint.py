@@ -402,3 +402,34 @@ def test_the_display_maths_rule_reads_a_multi_line_block_and_a_quote():
     assert lint.display_maths_without_a_blank_line(quoted_joined) == [1]
     indented = "Text.\n\n  $$a = b$$\n"
     assert lint.display_maths_without_a_blank_line(indented) == [3]
+
+
+def test_a_section_page_is_held_to_twenty_five_words():
+    """Item 165: the house register is 15–20 words, and a section is where the work is.
+
+    The collection's 32-word ceiling let the pages a reader has to read carry the longest
+    sentences: `maths-applied`'s eight required pages averaged 19.1 words with 18.6% over
+    25, while the five it calls optional averaged 16.2. The section page has its own
+    ceiling and its own debt, so the two rules ratchet separately.
+    """
+    section = "/Chapter 1/Section 1.1/Walkthrough/index.md"
+    other = "/Chapter 1/Review/index.md"
+    long_sentence = "one " * 26 + "end."          # 26 words
+    assert list(lint.long_sentences(long_sentence, lint.SECTION_CEILING))
+    assert not list(lint.long_sentences(long_sentence, lint.SENTENCE_CEILING))
+    assert lint.SECTION_PAGE.search(section)
+    assert not lint.SECTION_PAGE.search(other)
+
+
+def test_the_sentence_splitter_does_not_split_a_reference_or_a_link():
+    """A period inside `§1.6`, a decimal or a URL is not the end of a sentence.
+
+    The naive splitter manufactured sentences that are not in the prose — "6]'s agreement
+    is the one this model can state" — and measured fragments against the ceiling. The
+    first run of the section rule reported 7,386 findings of the same kind on lists.
+    """
+    text = "See [§1.6](../x/) and 1.5 mm, e.g. the pin. A link [label](https://a.b/c) ends it."
+    assert [s.strip() for s in lint._sentences(text)] == [
+        "See [§1.6](../x/) and 1.5 mm, e.g. the pin.",
+        "A link [label](https://a.b/c) ends it.",
+    ]

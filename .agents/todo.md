@@ -14,8 +14,8 @@ done-means; an item whose heading says done and whose checklist does not is the
 failure this file has had twice, so the list below, the headings and the boxes
 are checked against each other on every pass.
 
-**Every item from 79 to 164 is closed,** each with its measurement, its fix, its outcome
-and its ticked done-means in `.agents/todo-closed.md`. Items 165–174 are open: three
+**Every item from 79 to 165 is closed,** each with its measurement, its fix, its outcome
+and its ticked done-means in `.agents/todo-closed.md`. Items 166–174 are open: three
 defects the second review measured (165–167), five designs it proposed (168–172), and the
 two ways into the map the third review measured (173–174). A new item goes at the number after the
 last one, with its diagnosis, its fix and its own done-means. The
@@ -37,33 +37,6 @@ argument and the citations, and the review holds the measurement. The two indexe
 review holds their measurement.
 
 ---
-
-## 165 — `maths-applied`'s required pages are the longest-winded ones, and the tail from 25 to 32 words is unpoliced
-
-**What is wrong.** Measured over prose only — table rows, headings, code, display
-maths and directives removed, list items kept — the eight pages a reader of
-`maths-applied` has to read average **19.1 words a sentence**, with 18.6% of their
-sentences over 25 words; the five pages it calls optional average 16.2 and 11.4%. The
-calmest prose in the book is in the pages the book says are not needed. The worst are
-the three hardest sections: §1.7 (21.5 words, 23% over 25), §1.2 (20.2, 21%) and §1.6
-(19.0, 20%); the chapter index is 21.7 and the Review 19.2.
-
-That is inside the house register ("~15–20 words, one idea each") and outside what the
-check enforces: `lint.py:276` fails only a sentence over **32** words, so the tail from
-25 to 32 is unpoliced — **57 sentences** across the seven sections.
-
-**The fix.** A ceiling of 25 words on a section page, keyed to the page kind, with the
-existing `SENTENCE_DEBT` ratchet so the other books are untouched; then a pass over
-those 57. Not a rewrite: the point is that the *required* page should be the easiest
-one, and today it is the other way round.
-
-**Done means**
-
-- [ ] `textbook.lint` fails a 26-word sentence on a section page, and `tests/test_lint.py`
-      holds that case
-- [ ] `maths-applied`'s eight required pages average under 17 words a sentence, with
-      under 12% over 25
-- [ ] every other book's `SENTENCE_DEBT` is unchanged, and `textbook.lint` is clean
 
 ## 166 — `stiff` meets the reader in the wrong sense first, and `discretise` is defined nowhere
 

@@ -18,8 +18,8 @@ The first model makes two claims and no more.
    chassis pivots. It is a triangle, and a triangle cannot change shape.
 2. The upright is **one rigid body** too, carrying both ball joints and the hub.
 
-From those two claims, the whole front view follows. There is nothing else in the
-model: no bending, no play in the joints, no give in the bushes.
+From those two claims, the whole front view follows. There is nothing else in
+the model: no bending, no play in the joints, no give in the bushes.
 
 ## It has exactly one degree of freedom
 
@@ -43,31 +43,30 @@ well posed before you try to solve it:
 
 $$ 3\,(n-1) - \sum_i c_i = \text{degrees of freedom}, $$
 
-where $n$ counts the bodies and $c_i$ is the number of freedoms each constraint
-removes — 2 for a hinge in a plane, 3 for a ball joint in space, and 1 for a fixed
-length. The solver refuses to run a mechanism whose freedom count does not match
-the number of things being driven, because such a model has no single answer to
+where $n$ counts the bodies and $c$ is the number of freedoms each constraint
+removes. A hinge in a plane removes 2, a ball joint in space 3, and a fixed
+length 1.The solver refuses to run a mechanism whose freedom count does not
+match the number of things being driven. Such a model has no single answer to
 give.
 
 ## Two circles, and where they meet
 
-Set the lower arm's angle to $\theta$. The lower ball joint $C$ swings on a circle
-about its pivot $A$, so its position is known exactly:
+Set the lower arm's angle to $\theta$. The lower ball joint $C$ swings on a
+circle about its pivot $A$, so its position is known exactly:
 
 $$ C = A + R_A\,(\cos(\alpha+\theta),\, \sin(\alpha+\theta)), $$
 
-where $\alpha$ is the arm's angle at rest and $R_A$ is its length. The upper ball
-joint $D$ is at the end of the upper arm, and also at a fixed distance from $C$,
-because the upright is rigid. Both facts are distances, so both are circles:
+where $\alpha$ is the arm's angle at rest and $R_A$ is its length. The upper
+ball joint $D$ is at the end of the upper arm, and also at a fixed distance from
+$C$, because the upright is rigid. Both facts are distances, so both are
+circles:
 
-$$ \begin{aligned}
-(D_x - B_x)^2 + (D_z - B_z)^2 &= R_B^{\,2}, \\
-(D_x - C_x)^2 + (D_z - C_z)^2 &= L^2.
-\end{aligned} $$
+$$ \begin{aligned} (D_x - B_x)^2 + (D_z - B_z)^2 &= R_B^{\,2}, \\ (D_x - C_x)^2
++ (D_z - C_z)^2 &= L^2. \end{aligned} $$
 
-$R_B$ is the upper arm's length, $L$ is the upright's, and $B$ and $C$ are the two
-points the circles are drawn around. Two circles meet in two places, or none, or touch. In code, the two places are
-found without any searching at all:
+$R_B$ is the upper arm's length, $L$ is the upright's, and $B$ and $C$ are the
+two points the circles are drawn around. Two circles meet in two places, or
+none, or touch. In code, the two places are found without any searching at all:
 
 ```python
 def upper_joint(C):
@@ -80,26 +79,27 @@ def upper_joint(C):
     return [mid + across * n, mid - across * n]   # two assemblies; the car has one
 ```
 
-Both answers are real solutions of the same two equations. They are two different
-assemblies of the same parts, and only one of them is a car. Which one you keep is
-a modelling decision, not a mathematical one, and [§1.2](.)'s depth page is about it.
+Both answers are real solutions of the same two equations. They are two
+different assemblies of the same parts, and only one of them is a car. Which one
+you keep is a modelling decision, not a mathematical one, and [§1.2](.)'s depth
+page is about it.
 
-Two answers from one rule is the signature of this kind of problem, and the start
-decides which one you land in.
+Two answers from one rule is the signature of this kind of problem, and the
+start decides which one you land in.
 
 :::class root
 
 ## Camber, from the pose
 
-The wheel plane is fixed in the upright, so the wheel's angle is the upright's
+The wheel plane is fixed in the upright. So the wheel's angle is the upright's
 angle, plus whatever the upright was built with at rest:
 
 $$ \gamma = \gamma_0 + \left(\phi - \phi_0\right), $$
 
-where $\gamma$ is the camber angle, $\phi$ is the direction of the line between the
-two ball joints and
-$\phi_0$ is that direction at rest. The design used here has $\gamma_0 = -1.0°$:
-the top of the wheel leans in by one degree when the car is standing still.
+where $\gamma$ is the camber angle, $\phi$ is the direction of the line between
+the two ball joints and $\phi_0$ is that direction at rest. The design used here
+has $\gamma_0 = -1.0°$: the top of the wheel leans in by one degree when the car
+is standing still.
 
 :::figure wishbone-hero
 
@@ -118,7 +118,8 @@ and the readout gives the number.
 | +40 mm | 5.4° | +0.08° | 1.15 m inboard, 0.08 m down | −9 mm |
 
 Distances in the instant-centre column are measured from the car's centreline.
-The hub is a further 0.76 m outboard, so at rest the centre is 2.36 m from the hub.
+The hub is a further 0.76 m outboard, so at rest the centre is 2.36 m from the
+hub.
 
 Three numbers matter for the chapter's question:
 
@@ -133,13 +134,14 @@ The **instant centre** is where the two arm axes would meet if they carried on
 past the wheel. It is 2.36 m from the hub, which is why the drawing has to say
 "to the instant centre" rather than showing it. The **roll centre** is where the
 line from the contact patch through that point crosses the middle of the car. It
-is 19 mm above the ground at rest, and it falls below the ground as the wheel rises.
+is 19 mm above the ground at rest, and it falls below the ground as the wheel
+rises.
 
 ## The agreement panel
 
-Every section after this one ends with a panel of numbers. This one has three
-routes to the same answer: the two-circle construction above, the general Newton
-iteration that [§1.3](../../section-1.3/learn/) meets, and the package's compiled kernel.
+Every section after this one ends with a panel of numbers.This one has three
+routes to the same answer. They are the two-circle construction above, the
+general Newton iteration that [§1.3] meets, and the package's compiled kernel.
 
 | Check | Value |
 |---|---|
@@ -147,37 +149,37 @@ iteration that [§1.3](../../section-1.3/learn/) meets, and the package's compil
 | Camber from the generated kernel in three dimensions | within **0.033°** of the construction, over the range in the figure above |
 | The package's own two routes, `agreement.max_abs_diff` | **2 × 10⁻¹³** |
 
-The last row is read from the vendored `out.js`, not typed here; the middle one is what
-the figure above computes in the page. The package checks itself the same way this
-section does. Its `agreement` compares a closed-form construction against its
-symbolic solver: circle against circle, then the tie rod, with no Jacobian and no
-Newton. Two derivations, one
-answer. The closed form is the fast path and the
-independent check at once: it gets the answer without a solver, so it can be used to
-test one. Two routes to one number is evidence; one route is a claim.
+The last row is read from the vendored `out.js`, not typed here; the middle one
+is what the figure above computes in the page. The package checks itself the
+same way this section does. Its `agreement` compares a closed-form construction
+against its symbolic solver: circle against circle, then the tie rod, with no
+Jacobian and no Newton. Two derivations, one answer.The closed form is the fast
+path and the independent check at once. It gets the answer without a solver, so
+it can be used to test one. Two routes to one number is evidence; one route is a
+claim.
 
 ## The same corner, solved in three dimensions
 
-This section's model is a front view. The package the chapter's numbers come from,
-`otkd`, solves the full mechanism instead: three bodies, twenty-one
-equations, Newton at every step. Its derivation also generates a **solver compiled
-to WebAssembly**. That solver ships with this page, vendored under
+This section's model is a front view. The package the chapter's numbers come
+from, `otkd`, solves the full mechanism instead: three bodies, twenty-one
+equations, Newton at every step. Its derivation also generates a **solver
+compiled to WebAssembly**. That solver ships with this page, vendored under
 `docs/assets/data/otkd/`, with the package's own exported sweeps beside it and a
 record of the hashes.
 
-Given the geometry above, it solves the same linkage in three dimensions. What comes
-out is a second answer to the chapter's question, and the gap between the two answers
-is what the front view costs.
+Given the geometry above, it solves the same linkage in three dimensions. What
+comes out is a second answer to the chapter's question, and the gap between the
+two answers is what the front view costs.
 
 :::figure kernel-camber
 
-The kernel reports camber with the opposite sign to this book, so the figure flips it
-and says so. Nothing else is adjusted: the same geometry goes in and the same range
-of travel is covered.
+The kernel reports camber with the opposite sign to this book, so the figure
+flips it and says so. Nothing else is adjusted: the same geometry goes in and
+the same range of travel is covered.
 
-The gap is inside a tenth of a degree, which is the budget the chapter set. That is
-the argument for the small model stated as a number rather than as a preference: the
-front view is wrong by less than the accuracy anyone asked for.
+The gap is inside a tenth of a degree, which is the budget the chapter set.That
+is the argument for the small model stated as a number rather than as a
+preference. The front view is wrong by less than the accuracy anyone asked for.
 
 ## Pseudocode, and the file it comes from
 
@@ -194,8 +196,10 @@ residual = lambdify((...), rows, cse=True)
 jacobian = lambdify((...), J, cse=True)
 ```
 
-The file is [`analytic.py`](https://github.com/leonpjvaughan/Open.Textbook/blob/main/solvers/otkd/src/open_textbook/otkd/analysis/analytic.py)
-for the closed form, and [`compile.py`](https://github.com/leonpjvaughan/Open.Textbook/blob/main/solvers/otkd/src/open_textbook/otkd/problem/compile.py)
+The file is
+[`analytic.py`](https://github.com/leonpjvaughan/Open.Textbook/blob/main/solvers/otkd/src/open_textbook/otkd/analysis/analytic.py)
+for the closed form, and
+[`compile.py`](https://github.com/leonpjvaughan/Open.Textbook/blob/main/solvers/otkd/src/open_textbook/otkd/problem/compile.py)
 for the derivation. The pseudocode uses the same names and shapes as the files;
 it is not a copy of them.
 
@@ -208,20 +212,20 @@ it is not a copy of them.
 
 ## Watch out
 
-The two circles meet in **two** places, and taking the other one is a mistake that
-looks like a physics bug. The mechanism is then assembled the other way up, the
-camber curve starts somewhere else, and it can leap from one solution to the other
-part-way through the travel.
+The two circles meet in **two** places, and taking the other one is a mistake
+that looks like a physics bug.The mechanism is then assembled the other way up,
+so the camber curve starts somewhere else. It can leap from one solution to the
+other part-way through the travel.
 
-The check is one line long and hard to live without. Solve each position from the
-previous one, keep the branch the design position was on, and record any frame
-where the branch changes. A curve with a jump in it is a solver finding a
+The check is one line long and hard to live without. Solve each position from
+the previous one, keep the branch the design position was on, and record any
+frame where the branch changes. A curve with a jump in it is a solver finding a
 different assembly, not a wheel doing something surprising.
 
-A related trap: the two arms are nearly horizontal, so their axes meet a long way
-away from the wheel — 2.36 m here. If a drawing shows the instant centre inside
-the wheel, it is not drawn to the same scale in both directions, and every angle
-in it is wrong.
+A related trap: the two arms are nearly horizontal, so their axes meet a long
+way away from the wheel — 2.36 m here.If a drawing shows the instant centre
+inside the wheel, it is not drawn to the same scale in both directions. Every
+angle in it is wrong.
 
 ## Going further
 
