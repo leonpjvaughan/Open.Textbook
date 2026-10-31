@@ -7668,3 +7668,54 @@ and only a section path is a section page) and
 `test_the_sentence_splitter_does_not_split_a_reference_or_a_link`. `textbook.lint` is clean over
 2,613 pages with `SECTION_SENTENCE_DEBT` at its measured counts; `pytest tests/test_lint.py
 tests/test_page_rules.py` — 69 passed.
+
+## 166 — `stiff` met the reader in the wrong sense first, and `discretise` was defined nowhere — **done**
+
+**What is wrong.** `grep -rhoi stiff books/numerical-methods/docs` finds **40**: 24
+`stiff`/`Stiff`, one `stiffly` and 15 `stiffness`. The first use in reading order is on the Averaging
+page (`averaging/index.md:21`), and it means a bush's *stiffness* — the engineering
+noun, not the numerical flag. The flag is defined once, in
+a table cell on the home page (`index.md:69`, under "Stiff: the model contains a fast
+change you do not care about"), which is the one place a definition cannot go: a reader
+skimming for a definition does not read a cell in a table of flags.
+
+`discretise` is used **19** times and defined nowhere. Its first use is the sentence on
+Averaging that says why averaging is not a field problem.
+
+**The fix.** Each of the three flags the home page's table names — non-linear, stiff,
+geometry not known in advance — gets a paragraph of its own, or a page; a flag that
+changes the method in every class is not a cell. The bush sense becomes "the bush's
+stiffness" everywhere in this book, so one word has one meaning; `discretise` is defined
+where it first appears, in one sentence.
+
+**Done means**
+
+- [ ] no table cell carries the only definition of a flag
+- [ ] a reader searching the book for `discretise` finds a definition before its first use
+- [ ] the word `stiff` is not used of a bush anywhere in `numerical-methods`
+- [ ] `textbook.lint numerical-methods` is clean
+
+**Outcome, 2026-10-31.** Three changes, one per box.
+
+**The three flags have paragraphs.** The home page keeps its table as the summary and now
+carries **The three flags, in words** under it: non-linear, stiff, and geometry not known in
+advance, one paragraph each. The stiff paragraph says the thing the cell could not hold —
+that stiffness is a property of the model *and the step together*, not of the physics, so
+the same diffusion equation is stiff at one mesh and not another — and why the flag turns an
+explicit method into an implicit one.
+
+**One word, one meaning.** `stiff` is no longer used of a bush or a spring: the worked case's
+question is "What stiffness should the bush have?", its section heading says the same, and
+`choosing-the-class` says "a spring of high stiffness must reproduce the rigid joint". The
+engineering noun carries the physical property; the adjective is the numerical flag.
+
+**`discretise` is defined where it is first used**: "no region to discretise — that is, no
+region to cut into cells and write the rule on each". It is the Averaging page's sentence
+about why averaging is not a field problem, which is where the word first appears.
+
+Held by three tests in `tests/test_reference_books.py`:
+`test_the_three_flags_are_defined_in_prose_not_in_a_table_cell`,
+`test_discretise_is_defined_where_it_is_first_used` (which finds the first page that uses the
+word and demands the gloss at or before it), and
+`test_stiff_is_the_flag_and_the_bush_has_a_stiffness` (no "how stiff" and no "stiff bush" or
+"stiff spring" anywhere in the book). `textbook.lint numerical-methods` is clean over 31 pages.

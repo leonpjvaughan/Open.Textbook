@@ -1206,3 +1206,49 @@ def test_the_linear_system_list_is_one_list_and_the_definition_is_not_in_it():
     assert "**preconditioner**" in page[positions[-1] :], (
         "the preconditioner is still inside the list"
     )
+
+
+def test_the_three_flags_are_defined_in_prose_not_in_a_table_cell():
+    """Item 166: a flag that changes the method in every class is not a cell.
+
+    The home page summarises the three in a table, and a table cell was the only place
+    any of them was defined: a reader skimming for "stiff" met a cell in a table of flags
+    they were not yet looking for. Each now has a paragraph, and the table stays as the
+    summary.
+    """
+    book = map_book()
+    home = (book.docs / "index.md").read_text(encoding="utf-8")
+    assert "### The three flags, in words" in home
+    for flag in ("**Non-linear.**", "**Stiff.**", "**Geometry not known in advance.**"):
+        assert flag in home, f"the home page does not define {flag}"
+    # each definition is a paragraph, not the row it also appears in
+    prose = home.split("### The three flags, in words", 1)[1]
+    assert prose.count("\n\n") >= 6
+
+
+def test_discretise_is_defined_where_it_is_first_used():
+    """Item 166: `discretise` was used 19 times in this book and defined nowhere."""
+    book = map_book()
+    averaging = (book.docs / "averaging/index.md").read_text(encoding="utf-8")
+    assert "cut into cells and write the rule on each" in averaging
+    first = next(
+        (p for p in sorted(book.docs.rglob("*.md")) if "discretis" in p.read_text(encoding="utf-8")),
+        None,
+    )
+    assert first is not None
+    text = first.read_text(encoding="utf-8")
+    before = text[: text.index("discretis")]
+    assert "cut into cells" in text[text.index("discretis") : text.index("discretis") + 200] or "cut into cells" in before, (
+        f"{first} uses `discretise` before the book defines it"
+    )
+
+
+def test_stiff_is_the_flag_and_the_bush_has_a_stiffness():
+    """Item 166: one word, one meaning. `stiff` of a bush is the engineering sense."""
+    book = map_book()
+    offenders = []
+    for path in sorted(book.docs.rglob("*.md")):
+        text = path.read_text(encoding="utf-8")
+        for match in re.finditer(r"[Hh]ow stiff|stiff (bush|spring)", text):
+            offenders.append(f"{path.relative_to(book.docs)}: {match.group(0)}")
+    assert offenders == [], offenders

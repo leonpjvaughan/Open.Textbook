@@ -60,8 +60,8 @@ $1/\sqrt{N}$, and the dashed line is the value the method cannot see.
 ## The signature
 
 The answer is an estimate. There is no equilibrium to solve and no region to
-discretise; there is a sample, a variance, and a convergence rate you can
-measure.
+discretise — that is, no region to cut into cells and write the rule on each.
+There is a sample, a variance, and a convergence rate you can measure.
 
 ## Flags that matter here
 
