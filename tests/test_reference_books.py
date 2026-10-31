@@ -127,7 +127,7 @@ def test_the_home_page_links_every_page_in_the_registry():
 def _counts() -> tuple[int, int]:
     """The two numbers the home page prints, measured from the pages themselves.
 
-    76 methods is the number of rows in the five tables under *Methods, A to Z*, because
+    77 methods is the number of method blocks under *Methods, A to Z*, because
     that page is the book's own claim about how many methods it names. 64 systems is the
     number of entries in the nine class pages' *Systems that live here* lists, because
     those are the systems the reduction is claimed to cover. Both are counted here rather
@@ -240,7 +240,7 @@ def test_the_two_indexes_link_every_class_they_name():
 
 
 def test_the_home_page_states_the_counts_it_claims():
-    """The page opens with an arithmetic claim: 76 methods, 64 systems, nine kinds.
+    """The page opens with an arithmetic claim: 77 methods, 64 systems, nine kinds.
 
     Each number is measured from the book, so the argument cannot quietly become false
     when a method is added or a system is dropped. This is the same rule as §1.5's
@@ -449,7 +449,11 @@ def _names(cell: str) -> list[str]:
     ``Control variates, antithetic pairs`` is two methods, and ``Preconditioners
     (ILU, AMG, Jacobi)`` is one whose brackets happen to contain commas. Splitting on
     every comma would turn the second into three names the A–Z is not expected to have.
+
+    A class page's first cell is now a link per method, so the link markup comes off
+    first: the name is the link's text, and the URL is not a name.
     """
+    cell = re.sub(r"\[([^\]]*)\]\([^)]*\)", r"\1", cell)
     parts, depth, current = [], 0, ""
     for char in cell:
         if char == "(":
@@ -510,6 +514,35 @@ def test_every_method_a_class_page_names_is_in_methods_a_to_z(slug):
         if not _named(_plain(name), known)
     ]
     assert missing == [], f"{slug} names methods the index does not carry: {missing}"
+
+
+@pytest.mark.parametrize("slug", CLASSES)
+def test_every_method_a_class_page_names_links_to_its_entry(slug):
+    """A name in a class page's table is a hop, not a word.
+
+    The sentence above the table says every method is in *Methods, A to Z* with its
+    price. The table is where a reader is holding the name and wants the step, so the
+    name is the link. The test holds both halves: every name is a link, and every link
+    points at a method block the A–Z actually carries. A renamed entry and a stale
+    anchor are the same defect seen from each end.
+    """
+    page = map_book().docs / slug / "index.md"
+    text = page.read_text(encoding="utf-8")
+    assert "<!-- table: cards -->\n| technique |" in text, (
+        f"{slug}'s technique table is not a stack of records below 60rem"
+    )
+    anchors = {method["anchor"] for method in _methods_a_to_z()}
+    for row in _table_rows(page, 4, heading="## Techniques"):
+        links = re.findall(r"\[([^\]]+)\]\(([^)]*)\)", row[0])
+        assert links, f"{slug} names a method with no link: {row[0]}"
+        # The text outside the links is the separator between them, never a name.
+        outside = re.sub(r"\[[^\]]*\]\([^)]*\)", "", row[0])
+        assert not re.search(r"[A-Za-z]", outside), (
+            f"{slug} has a method name outside a link: {row[0]}"
+        )
+        known = {f"../techniques/#{anchor}" for anchor in anchors}
+        broken = [target for _text, target in links if target not in known]
+        assert broken == [], f"{slug} links to methods the A–Z does not carry: {broken}"
 
 
 def test_every_symptom_is_one_row_in_one_wording_on_both_pages():

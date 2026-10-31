@@ -97,19 +97,20 @@ Two consequences follow, and both surprise people:
 Every method named here is in [Methods, A to Z](../techniques/#linear-systems),
 with its price and what it will not do.
 
+<!-- table: cards -->
 | technique | what it does | when it wins | when it is the wrong tool |
 |---|---|---|---|
-| Dense LU, with pivoting | Factorises a general matrix | A few thousand unknowns, one solve or many right-hand sides | Large sparse problems |
-| Cholesky | Factorises a symmetric positive definite matrix | The matrix is SPD, and you want half the work of LU | Any non-symmetric or indefinite matrix |
-| QR, SVD | Factorises a rectangular matrix | Least squares, rank deficiency, a diagnostic of conditioning | Very large sparse problems |
-| Normal equations | Squares the system and uses Cholesky | Overdetermined and well conditioned, and you want speed | Anything else: it squares the condition number |
-| Sparse direct (multifrontal) | Factorises with a fill-reducing ordering | Two dimensions; repeated solves with the same matrix | Three dimensions, where fill-in wins |
-| Conjugate gradients | Krylov method for SPD systems | Large, sparse, symmetric positive definite | Indefinite or non-symmetric matrices |
-| GMRES, BiCGSTAB | Krylov methods for general matrices | Non-symmetric, sparse | Memory: GMRES stores every vector unless restarted |
-| MINRES | Krylov method for symmetric indefinite systems | Symmetry with indefiniteness | Non-symmetric matrices |
-| Preconditioners (ILU, AMG, Jacobi) | Changes the system the iteration sees | Almost always, in practice | You have not measured the iteration count |
-| Multigrid | Solves on a hierarchy of meshes | The matrix came from an elliptic problem | A matrix from anywhere else |
-| Iterative refinement | Corrects a solve with its own residual | Ill-conditioned, and you want every digit | The factorisation is expensive, and a second solve is not affordable |
+| [Dense LU, with pivoting](../techniques/#dense-lu) | Factorises a general matrix | A few thousand unknowns, one solve or many right-hand sides | Large sparse problems |
+| [Cholesky](../techniques/#cholesky) | Factorises a symmetric positive definite matrix | The matrix is SPD, and you want half the work of LU | Any non-symmetric or indefinite matrix |
+| [QR, SVD](../techniques/#qr) | Factorises a rectangular matrix | Least squares, rank deficiency, a diagnostic of conditioning | Very large sparse problems |
+| [Normal equations](../techniques/#normal-equations) | Squares the system and uses Cholesky | Overdetermined and well conditioned, and you want speed | Anything else: it squares the condition number |
+| [Sparse direct (multifrontal)](../techniques/#sparse-direct-cholesky) | Factorises with a fill-reducing ordering | Two dimensions; repeated solves with the same matrix | Three dimensions, where fill-in wins |
+| [Conjugate gradients](../techniques/#conjugate-gradients) | Krylov method for SPD systems | Large, sparse, symmetric positive definite | Indefinite or non-symmetric matrices |
+| [GMRES, BiCGSTAB](../techniques/#gmres) | Krylov methods for general matrices | Non-symmetric, sparse | Memory: GMRES stores every vector unless restarted |
+| [MINRES](../techniques/#minres) | Krylov method for symmetric indefinite systems | Symmetry with indefiniteness | Non-symmetric matrices |
+| [Preconditioners (ILU, AMG, Jacobi)](../techniques/#preconditioners-ilu) | Changes the system the iteration sees | Almost always, in practice | You have not measured the iteration count |
+| [Multigrid](../techniques/#multigrid) | Solves on a hierarchy of meshes | The matrix came from an elliptic problem | A matrix from anywhere else |
+| [Iterative refinement](../techniques/#iterative-refinement) | Corrects a solve with its own residual | Ill-conditioned, and you want every digit | The factorisation is expensive, and a second solve is not affordable |
 
 ## Systems that live here
 
@@ -144,6 +145,8 @@ with its price and what it will not do.
 
 ## Read next
 
+- [The same corner, five ways](../worked-case/index.md) — this class, worked
+  on one mechanism with the numbers beside it.
 - [One matrix, two errors](conditioning/index.md) — the working under this
   class: a condition number and the two errors, on one matrix.
 - [Root finding](../root/index.md) — the same question when a rule bends with

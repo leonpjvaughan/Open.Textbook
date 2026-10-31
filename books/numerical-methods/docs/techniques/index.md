@@ -7,16 +7,16 @@ title: Methods, A to Z
 The inverse lookup. You have heard of a method and want to know where it
 applies, or you are choosing between two and want to know what each costs.
 
-Five classes, and one section for each. **Read the class first**: a method
-outside its class is not a slower answer, it is a wrong one, or a run that does
-not finish. Inside a section, each method gives three things. Its **class**
-comes first, as the link to the page that argues for it. Then the **step**: the
-arithmetic at the centre of the method, the update it repeats or the equation it
-solves. Then the **price**: what it needs from you, and what it will not do.
-Where a method is a family, the step is the representative member, and the class
-line says what the family covers.
+Five families of methods, and one section for each. **Read the method's class
+first**: a method outside its class is not a slower answer, it is a wrong one,
+or a run that does not finish. Inside a section, each method gives three things.
+Its **class** comes first, as the link to the page that argues for it. Then the
+**step**: the arithmetic at the centre of the method, the update it repeats or
+the equation it solves. Then the **price**: what it needs from you, and what it
+will not do. Where a method has several variants, the step is the representative
+member, and the class links say what each variant covers.
 
-| class | what it answers | entries |
+| family | what it answers | entries |
 |---|---|---|
 | [Finding a state](#finding-a-state) | $F(x)=0$: one unknown, or $n$ equations in $n$ unknowns | 19 |
 | [Linear systems](#linear-systems) | $Ax=b$: one answer that satisfies many equations at once | 20 |

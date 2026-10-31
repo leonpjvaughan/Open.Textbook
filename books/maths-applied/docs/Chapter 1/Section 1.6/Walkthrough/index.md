@@ -115,10 +115,11 @@ positive with the top of the wheel outboard, the opposite of [§1.2](../../secti
 | energy drift over 601 steps | 6.3 × 10⁻⁸ of the starting value |
 | largest constraint violation | 1.1 × 10⁻¹⁵ |
 
-The package integrates with classical Runge–Kutta and then **projects the state back onto
-the constraints after every step**, rather than adding a Baumgarte term that pulls the state
-towards them. That is why the two diagnostics can both be small at once: the constraints are
-enforced rather than encouraged.
+The package integrates with classical Runge–Kutta — a standard step-by-step
+method — and then **projects the state back onto the constraints after every step**.
+It does not add a term that pulls the state softly towards the constraints and leaves
+it slightly wrong. That is why the two diagnostics can both be small at once: the
+constraints are enforced rather than encouraged.
 
 The two diagnostics at the bottom are the ones that make the oscillation trustworthy.
 An integrator that leaked energy would show a motion that grew or died. The

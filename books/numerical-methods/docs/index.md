@@ -21,6 +21,16 @@ Nobody holds seventy-seven method entries in their head. Nine kinds is a
 different size of task. Learn the nine, and each method becomes a lookup
 inside a kind you already understand, chosen by a circumstance you can name.
 
+## Three ways in
+
+- **You have a model and no idea what it is.** Start with the nine kinds below,
+  and read the last column before the others.
+- **You know a method by name and want to know where it applies.** Start at
+  [Methods, A to Z](techniques/index.md). It goes method → kinds it works on →
+  what it costs.
+- **You have a wrong answer.** Start at [When it goes wrong](symptoms/index.md).
+  It goes symptom → kind → cause → fix.
+
 ## The nine kinds
 
 Every kind is a page. The third column is the model the kind writes down. Read
@@ -162,16 +172,6 @@ through five kinds and quotes the numbers where the models agree. The page's
 last section explains [what a kernel is](worked-case/#what-a-kernel-is): the
 compiled solver some pages in the collection run, and the two other senses the
 word has in numerical work.
-
-## Three ways in
-
-- **You have a model and no idea what it is.** Start with the nine kinds above,
-  and read the last column before the others.
-- **You know a method by name and want to know where it applies.** Start at
-  [Methods, A to Z](techniques/index.md). It goes method → kinds it works on →
-  what it costs.
-- **You have a wrong answer.** Start at [When it goes wrong](symptoms/index.md).
-  It goes symptom → kind → cause → fix.
 
 Nothing here is a course, and there is nothing to practise. Every page stands on
 its own, and a page you skip is a page you did not need.

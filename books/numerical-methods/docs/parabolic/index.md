@@ -83,17 +83,18 @@ explicit and the mesh is fine".
 Every method named here is in [Methods, A to Z](../techniques/#moving-problems),
 with its price and what it will not do.
 
+<!-- table: cards -->
 | technique | what it does | when it wins | when it is the wrong tool |
 |---|---|---|---|
-| Forward Euler, explicit Runge–Kutta | Steps forward using the current rate | Cheap steps, short intervals, coarse meshes | Stiff problems: the step limit is brutal |
-| Backward Euler | Solves implicitly, unconditionally stable | Stiff problems, steady settling | Accuracy: it is only first order |
-| Crank–Nicolson | Averages the explicit and implicit sides | Second order, stable, smooth answers | Sharp transients: it rings |
-| BDF | Uses several past steps, implicitly | Stiff problems with a smooth solution | Starting up; the first steps need another method |
-| Radau, implicit Runge–Kutta | High order, stiffly stable, adaptive | Stiff problems where accuracy matters | Very large systems: the linear algebra is heavy |
-| ADI | Splits the operator by direction | Rectangular grids in two or three dimensions | Complicated geometry |
-| Spectral methods | Expands in smooth basis functions | Smooth solutions, simple regions | Shocks, or complex boundaries |
-| Exponential integrators | Treats the linear part exactly | A dominant linear term, a small non-linear one | The linear part is not the hard part |
-| Adaptive step control | Estimates the error and changes the step | Any time-dependent problem | You have not checked the error estimate is honest |
+| [Forward Euler, explicit Runge–Kutta](../techniques/#forward-euler) | Steps forward using the current rate | Cheap steps, short intervals, coarse meshes | Stiff problems: the step limit is brutal |
+| [Backward Euler](../techniques/#backward-euler) | Solves implicitly, unconditionally stable | Stiff problems, steady settling | Accuracy: it is only first order |
+| [Crank–Nicolson](../techniques/#crank-nicolson) | Averages the explicit and implicit sides | Second order, stable, smooth answers | Sharp transients: it rings |
+| [BDF](../techniques/#bdf) | Uses several past steps, implicitly | Stiff problems with a smooth solution | Starting up; the first steps need another method |
+| [Radau, implicit Runge–Kutta](../techniques/#bdf) | High order, stiffly stable, adaptive | Stiff problems where accuracy matters | Very large systems: the linear algebra is heavy |
+| [ADI](../techniques/#adi) | Splits the operator by direction | Rectangular grids in two or three dimensions | Complicated geometry |
+| [Spectral methods](../techniques/#spectral-methods) | Expands in smooth basis functions | Smooth solutions, simple regions | Shocks, or complex boundaries |
+| [Exponential integrators](../techniques/#exponential-integrators) | Treats the linear part exactly | A dominant linear term, a small non-linear one | The linear part is not the hard part |
+| [Adaptive step control](../techniques/#adaptive-step-control) | Estimates the error and changes the step | Any time-dependent problem | You have not checked the error estimate is honest |
 
 ## Systems that live here
 

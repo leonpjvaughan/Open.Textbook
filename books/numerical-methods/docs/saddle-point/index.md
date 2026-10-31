@@ -84,18 +84,19 @@ return one of them.
 Every method named here is in [Methods, A to Z](../techniques/#linear-systems),
 with its price and what it will not do.
 
+<!-- table: cards -->
 | technique | what it does | when it wins | when it is the wrong tool |
 |---|---|---|---|
-| Sparse direct with pivoting | Factorises the block system | Small problems; two dimensions | Large three-dimensional problems |
-| Schur complement | Eliminates the state, solves for the multiplier | Good solver for $A$, clear block structure | $A^{-1}$ is expensive to apply |
-| Uzawa | Iterates on the multiplier alone | Short, and quick to write | Without a good preconditioner it converges slowly |
-| MINRES | Krylov method for symmetric indefinite systems | The system is symmetric | Non-symmetric blocks |
-| GMRES with a block preconditioner | Krylov on the whole system | The standard answer for large problems | No preconditioner, or a poor one |
-| Augmented Lagrangian | Adds a penalty to improve conditioning | The multiplier is hard to get | The penalty term hides the constraint error |
-| Projection (Chorin) | Projects the velocity onto the constraint set | Time-dependent incompressible flow | Steady problems, where the constraint must be exact |
-| SIMPLE | Corrects pressure and velocity together | Steady flow, finite volumes | Large time steps; it is a steady method |
-| Null-space method | Solves in the directions the constraint allows | The constraint has a clean parameterisation | The null space is hard to build |
-| Constraint elimination | Removes dependent unknowns | The constraint is simple and local | Dense, coupled constraints |
+| [Sparse direct with pivoting](../techniques/#sparse-direct-cholesky) | Factorises the block system | Small problems; two dimensions | Large three-dimensional problems |
+| [Schur complement](../techniques/#schur-complement) | Eliminates the state, solves for the multiplier | Good solver for $A$, clear block structure | $A^{-1}$ is expensive to apply |
+| [Uzawa](../techniques/#uzawa) | Iterates on the multiplier alone | Short, and quick to write | Without a good preconditioner it converges slowly |
+| [MINRES](../techniques/#minres) | Krylov method for symmetric indefinite systems | The system is symmetric | Non-symmetric blocks |
+| [GMRES with a block preconditioner](../techniques/#gmres) | Krylov on the whole system | The standard answer for large problems | No preconditioner, or a poor one |
+| [Augmented Lagrangian](../techniques/#augmented-lagrangian) | Adds a penalty to improve conditioning | The multiplier is hard to get | The penalty term hides the constraint error |
+| [Projection (Chorin)](../techniques/#projection) | Projects the velocity onto the constraint set | Time-dependent incompressible flow | Steady problems, where the constraint must be exact |
+| [SIMPLE](../techniques/#simple) | Corrects pressure and velocity together | Steady flow, finite volumes | Large time steps; it is a steady method |
+| [Null-space method](../techniques/#null-space-method) | Solves in the directions the constraint allows | The constraint has a clean parameterisation | The null space is hard to build |
+| [Constraint elimination](../techniques/#constraint-elimination) | Removes dependent unknowns | The constraint is simple and local | Dense, coupled constraints |
 
 ## Systems that live here
 
@@ -137,6 +138,8 @@ pressure cannot develop the checkerboard pattern the table below names.
 
 ## Read next
 
+- [The same corner, five ways](../worked-case/index.md) — this class, worked
+  on one mechanism with the numbers beside it.
 - [The second unknown](the-multiplier/index.md) — the working under this class:
   what the second unknown is, and why it is the one that goes wrong.
 - [Elliptic](../elliptic/index.md) — the same operator, without the constraint.

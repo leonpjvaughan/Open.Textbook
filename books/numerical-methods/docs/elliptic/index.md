@@ -80,17 +80,18 @@ Two consequences follow:
 Every method named here is in [Methods, A to Z](../techniques/#linear-systems),
 with its price and what it will not do.
 
+<!-- table: cards -->
 | technique | what it does | when it wins | when it is the wrong tool |
 |---|---|---|---|
-| Sparse direct (Cholesky, LU) | Factorises the matrix once | Two dimensions; many right-hand sides | Three dimensions: the factors fill in |
-| Conjugate gradients | Minimises the energy over a Krylov subspace | Symmetric positive definite | Any coupling or convection makes it fail |
-| GMRES, BiCGSTAB | Krylov methods for general matrices | Not symmetric; a constraint is present | A symmetric problem, where CG is cheaper |
-| Jacobi, Gauss–Seidel, SOR | Simple sweeps over the mesh | As a smoother inside multigrid | Alone: the step count grows with the mesh |
-| Multigrid, algebraic multigrid | Solves on several meshes at once | Large, smooth, elliptic problems | Non-elliptic problems; jumping coefficients without AMG |
-| Preconditioners (ILU, AMG, Jacobi) | Makes the system easier for a Krylov method | Almost always, in practice | You have not measured the iteration count |
-| Domain decomposition | Splits the region into pieces | Very large problems on many cores | The interface problem is not solved well |
-| Fast Fourier transform | Diagonalises a constant-coefficient operator | Periodic, constant coefficients | Varying coefficients or complex boundaries |
-| Boundary element | Solves on the boundary only | Linear, homogeneous, unbounded regions | Varying coefficients inside the region |
+| [Sparse direct (Cholesky, LU)](../techniques/#sparse-direct-cholesky) | Factorises the matrix once | Two dimensions; many right-hand sides | Three dimensions: the factors fill in |
+| [Conjugate gradients](../techniques/#conjugate-gradients) | Minimises the energy over a Krylov subspace | Symmetric positive definite | Any coupling or convection makes it fail |
+| [GMRES, BiCGSTAB](../techniques/#gmres) | Krylov methods for general matrices | Not symmetric; a constraint is present | A symmetric problem, where CG is cheaper |
+| [Jacobi, Gauss–Seidel, SOR](../techniques/#jacobi) | Simple sweeps over the mesh | As a smoother inside multigrid | Alone: the step count grows with the mesh |
+| [Multigrid, algebraic multigrid](../techniques/#multigrid) | Solves on several meshes at once | Large, smooth, elliptic problems | Non-elliptic problems; jumping coefficients without AMG |
+| [Preconditioners (ILU, AMG, Jacobi)](../techniques/#preconditioners-ilu) | Makes the system easier for a Krylov method | Almost always, in practice | You have not measured the iteration count |
+| [Domain decomposition](../techniques/#domain-decomposition) | Splits the region into pieces | Very large problems on many cores | The interface problem is not solved well |
+| [Fast Fourier transform](../techniques/#fast-fourier-transform) | Diagonalises a constant-coefficient operator | Periodic, constant coefficients | Varying coefficients or complex boundaries |
+| [Boundary element](../techniques/#boundary-element) | Solves on the boundary only | Linear, homogeneous, unbounded regions | Varying coefficients inside the region |
 
 ## Systems that live here
 

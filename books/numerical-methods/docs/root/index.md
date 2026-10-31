@@ -83,17 +83,18 @@ the mechanism, not a failure of the method.
 Every method named here is in [Methods, A to Z](../techniques/#finding-a-state),
 with its price and what it will not do.
 
+<!-- table: cards -->
 | technique | what it does | when it wins | when it is the wrong tool |
 |---|---|---|---|
-| Bisection | Halves a bracket that contains a sign change | You have a bracket and need certainty | Needs 40 steps for ten digits; one equation only |
-| Secant, false position | Interpolates between two points | The derivative is unavailable | The bracket is poor |
-| Newton | Uses the Jacobian | Few unknowns, Jacobian available | A bad start; a singular Jacobian |
-| Quasi-Newton (Broyden) | Updates an approximate Jacobian | The Jacobian is expensive | Many unknowns with strong coupling |
-| Brent | Combines a bracket with fast interpolation | One equation, no derivative, need reliability | Systems of equations |
-| Fixed-point iteration | Repeats a map that shrinks the error | The map is a contraction | The map expands; most interesting cases |
-| Continuation, homotopy | Solves a sequence from a known case | Several solutions, toggle points | The path has a fold and you step in $x$ |
-| Levenberg–Marquardt | Damped least squares | Overdetermined or near-singular systems | A square, well-conditioned system |
-| Trust region | Limits the step to where the model is trusted | The linear model is poor far from the answer | Cheap, well-scaled problems |
+| [Bisection](../techniques/#bisection) | Halves a bracket that contains a sign change | You have a bracket and need certainty | Needs 40 steps for ten digits; one equation only |
+| [Secant, false position](../techniques/#secant) | Interpolates between two points | The derivative is unavailable | The bracket is poor |
+| [Newton](../techniques/#newton) | Uses the Jacobian | Few unknowns, Jacobian available | A bad start; a singular Jacobian |
+| [Quasi-Newton (Broyden)](../techniques/#quasi-newton-broyden) | Updates an approximate Jacobian | The Jacobian is expensive | Many unknowns with strong coupling |
+| [Brent](../techniques/#brent) | Combines a bracket with fast interpolation | One equation, no derivative, need reliability | Systems of equations |
+| [Fixed-point iteration](../techniques/#fixed-point-iteration) | Repeats a map that shrinks the error | The map is a contraction | The map expands; most interesting cases |
+| [Continuation, homotopy](../techniques/#continuation) | Solves a sequence from a known case | Several solutions, toggle points | The path has a fold and you step in $x$ |
+| [Levenberg–Marquardt](../techniques/#levenberg-marquardt) | Damped least squares | Overdetermined or near-singular systems | A square, well-conditioned system |
+| [Trust region](../techniques/#trust-region) | Limits the step to where the model is trusted | The linear model is poor far from the answer | Cheap, well-scaled problems |
 
 ## Systems that live here
 
@@ -123,6 +124,8 @@ with its price and what it will not do.
 
 ## Read next
 
+- [The same corner, five ways](../worked-case/index.md) — this class, worked
+  on one mechanism with the numbers beside it.
 - [Why Newton is fast, and when it is not](order-of-newton/index.md) — the
   working under this class: the squared error, and what a double root does to
   it.

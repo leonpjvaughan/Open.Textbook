@@ -98,17 +98,18 @@ bounded.
 Every method named here is in [Methods, A to Z](../techniques/#moving-problems),
 with its price and what it will not do.
 
+<!-- table: cards -->
 | technique | what it does | when it wins | when it is the wrong tool |
 |---|---|---|---|
-| Method of characteristics | Solves along the paths information takes | Linear or simple non-linear problems | Shocks form, or the region is complex |
-| Upwind | Uses the direction of travel to choose the stencil | Convection-dominated problems | The wave speed changes sign |
-| Lax–Wendroff | Second-order centred, with a correction | Smooth solutions | Shocks: it oscillates |
-| Godunov, finite volume | Solves a Riemann problem at each face | Shocks, conservation laws | Smooth, low-amplitude waves where it is overkill |
-| Riemann solvers (Roe, HLLC, exact) | Decides the flux between two states | Systems of conservation laws | You have not checked the solver's entropy fix |
-| WENO, limiters | High order away from a shock, low across it | Shocks and smooth parts in one problem | A smooth answer, where high order alone is cheaper |
-| Discontinuous Galerkin | High order inside each cell, with a flux between | Complex geometry, high order, parallel machines | Strictly bounded problems without a limiter |
-| Spectral element | High order on large elements | Smooth waves over long times | Shocks |
-| Symplectic integration | Preserves the structure of a Hamiltonian problem | Long-time wave and orbit problems | Dissipative problems |
+| [Method of characteristics](../techniques/#method-of-characteristics) | Solves along the paths information takes | Linear or simple non-linear problems | Shocks form, or the region is complex |
+| [Upwind](../techniques/#upwind) | Uses the direction of travel to choose the stencil | Convection-dominated problems | The wave speed changes sign |
+| [Lax–Wendroff](../techniques/#lax-wendroff) | Second-order centred, with a correction | Smooth solutions | Shocks: it oscillates |
+| [Godunov, finite volume](../techniques/#godunov) | Solves a Riemann problem at each face | Shocks, conservation laws | Smooth, low-amplitude waves where it is overkill |
+| [Riemann solvers (Roe, HLLC, exact)](../techniques/#riemann-solvers-roe) | Decides the flux between two states | Systems of conservation laws | You have not checked the solver's entropy fix |
+| [WENO, limiters](../techniques/#weno) | High order away from a shock, low across it | Shocks and smooth parts in one problem | A smooth answer, where high order alone is cheaper |
+| [Discontinuous Galerkin](../techniques/#discontinuous-galerkin) | High order inside each cell, with a flux between | Complex geometry, high order, parallel machines | Strictly bounded problems without a limiter |
+| [Spectral element](../techniques/#spectral-element) | High order on large elements | Smooth waves over long times | Shocks |
+| [Symplectic integration](../techniques/#symplectic-integration) | Preserves the structure of a Hamiltonian problem | Long-time wave and orbit problems | Dissipative problems |
 
 ## Systems that live here
 

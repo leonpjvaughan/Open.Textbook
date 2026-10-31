@@ -79,18 +79,19 @@ measure.
 Every method named here is in [Methods, A to Z](../techniques/#averaging), with
 its price and what it will not do.
 
+<!-- table: cards -->
 | technique | what it does | when it wins | when it is the wrong tool |
 |---|---|---|---|
-| Monte Carlo | Draws independent samples and averages | Any dimension, any model you can run | You need precision; $1/\sqrt{N}$ is slow |
-| Importance sampling | Draws where the answer is, and reweights | Rare events; a known region of interest | The weight has huge variance |
-| Stratified and Latin hypercube sampling | Spreads the draws over the space | Smooth response, modest dimension | Discontinuous response |
-| Quasi-Monte Carlo | Uses a low-discrepancy sequence instead of random draws | Smooth integrands, moderate dimension | No reliable error estimate |
-| Control variates, antithetic pairs | Uses a known answer to cancel part of the error | A cheap correlated model exists | The correlation is weak |
-| Markov chain Monte Carlo | Walks a chain that settles to $p$ | $p$ known up to a constant; Bayesian fitting | You need independent samples, or speed |
-| Particle filter, sequential Monte Carlo | Carries a cloud of weighted samples through time | State estimation as data arrive | Very high dimension |
-| Kalman filter | Exact update for linear models with Gaussian noise | The model is linear and the noise is Gaussian | Non-linear, or multi-modal state |
-| Bootstrap | Resamples your data to get an error bar | You have data and no formula | Very small samples; dependent data |
-| Gaussian quadrature | Chooses points and weights exactly | Smooth, low-dimensional integrands | Dimension above about ten |
+| [Monte Carlo](../techniques/#monte-carlo) | Draws independent samples and averages | Any dimension, any model you can run | You need precision; $1/\sqrt{N}$ is slow |
+| [Importance sampling](../techniques/#importance-sampling) | Draws where the answer is, and reweights | Rare events; a known region of interest | The weight has huge variance |
+| [Stratified and Latin hypercube sampling](../techniques/#stratified-and-latin-hypercube-sampling) | Spreads the draws over the space | Smooth response, modest dimension | Discontinuous response |
+| [Quasi-Monte Carlo](../techniques/#quasi-monte-carlo) | Uses a low-discrepancy sequence instead of random draws | Smooth integrands, moderate dimension | No reliable error estimate |
+| [Control variates, antithetic pairs](../techniques/#control-variates) | Uses a known answer to cancel part of the error | A cheap correlated model exists | The correlation is weak |
+| [Markov chain Monte Carlo](../techniques/#markov-chain-monte-carlo) | Walks a chain that settles to $p$ | $p$ known up to a constant; Bayesian fitting | You need independent samples, or speed |
+| [Particle filter, sequential Monte Carlo](../techniques/#particle-filter) | Carries a cloud of weighted samples through time | State estimation as data arrive | Very high dimension |
+| [Kalman filter](../techniques/#kalman-filter) | Exact update for linear models with Gaussian noise | The model is linear and the noise is Gaussian | Non-linear, or multi-modal state |
+| [Bootstrap](../techniques/#bootstrap) | Resamples your data to get an error bar | You have data and no formula | Very small samples; dependent data |
+| [Gaussian quadrature](../techniques/#gaussian-quadrature) | Chooses points and weights exactly | Smooth, low-dimensional integrands | Dimension above about ten |
 
 ## Systems that live here
 
