@@ -83,12 +83,12 @@ export function mount(el) {
     })).sort((a, b) => b.value - a.value);
     ends.forEach((end, index) => {
       drawing += label({
-        x: x(LAST_WEEK) + 6,
+        x: x(LAST_WEEK) - 6,
         y: y(end.value) + 5,
         text: end.plan.name,
         size: SIZE.tick,
         class: `text-${end.plan.cls.replace("fig-", "")}`,
-        anchor: "start",
+        anchor: "end",
       });
       // `index` only keeps the three labels from being drawn on top of each other when
       // two plans coincide at the last week.

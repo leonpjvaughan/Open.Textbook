@@ -105,7 +105,7 @@ export function mount(el) {
         const y = yFor(term);
         return (
           `<circle cx="${x.toFixed(1)}" cy="${y.toFixed(1)}" r="5" class="fig-accent"></circle>` +
-          label({ x, y: y - 11, text: fmt(term), anchor: "middle", size: SIZE.value, class: "text-accent" })
+          label({ x, y: Math.max(y - 11, TOP + 12), text: fmt(term), anchor: "middle", size: SIZE.value, class: "text-accent" })
         );
       })
       .join("");

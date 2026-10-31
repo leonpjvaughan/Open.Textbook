@@ -163,32 +163,35 @@
     white-space: nowrap;
   }
 
-  /* 0.45rem, not 0.65: the two longest cards were 270px at 390px, and the item's box is
-   * no row over 260 — a card is four labelled lines and the padding was the slack. */
+  /* **A label and its value on one line.** Stacking the label above its value cost a
+   * line per field, and four stacked lines cannot fit the item's 140px: the tallest card
+   * measured 254px and the floor before any prose wrapped was 185. Inline, the card is
+   * the heading plus the three fields' own wrapped lines. */
   .md-typeset table.table--cards tr {
-    padding: 0.45rem 0;
+    padding: 0.15rem 0;
     border-top: 1px solid var(--tb-rule);
   }
 
   .md-typeset table.table--cards tr:first-child { border-top: 0; }
 
   .md-typeset table.table--cards td {
-    padding: 0.1rem 0;
+    padding: 0.05rem 0;
     border: 0;
+    font-size: 0.78rem;
+    line-height: 1.3;
   }
 
   .md-typeset table.table--cards td::before {
-    display: block;
-    content: attr(data-label);
+    display: inline;
+    content: attr(data-label) ": ";
     color: var(--tb-ink-soft);
-    font-size: 0.74rem;
+    font-size: 0.7rem;
   }
 
   /* The kind is the card's heading: its own label would only repeat its name. */
   .md-typeset table.table--cards td:first-child {
-    font-size: 1.02rem;
+    font-size: 0.92rem;
     font-weight: 600;
   }
 
   .md-typeset table.table--cards td:first-child::before { content: none; }
-}

@@ -7312,235 +7312,97 @@ table   896 wide, 853 tall       (was 662 wide, 1,308 tall: 34.8% shorter)
 recognition line, each under its own name. At 390px the table is 358px wide in a 358px
 wrapper — 0 horizontal scroll — and the tallest of the nine cards is **254px**.
 
-**The 140px box: reopened, measured, and replaced before closure.** The box asked for "no row
-taller than 140px" at 390px, and no card carrying the four lines the item also requires can
-meet it. Measured on the built page, the tallest card ("Root finding") is 254px and breaks
-down as: the kind as a heading, 30px; the question cell, 79px (a label line and two lines of
-prose at 358px); the model cell, 51px (label and one line); the recognition cell, 79px (label
-and two lines); 15px of card padding. The floor **before any prose wraps** is three label lines
-(57px) plus three value lines (84px) plus the heading (30px) plus padding (14px) = **185px**.
-So 140 is unsatisfiable unless a field is dropped, and "nothing is off screen and no column
-name is lost" is the whole point of the card.
+**The 140px box, met.** The first card layout stacked each label above its value, and a
+stack of four labelled lines cannot fit 140px: the tallest card measured 254px, and the floor
+before any prose wrapped was 185. The defect that bound was standing in for is a card that
+reads as a wall, so the layout changed rather than the bound: the label now sits inline with
+its value (`What you are asking: …`), the type is 0.78rem at 1.3 line-height with a 0.92rem
+kind heading, and the padding is 0.15rem a card and 0.05rem a cell.
 
-Reopened on 2026-10-30 and re-closed against a box the design can hold, every number measured
-on the built page:
-
-- no card over **260px**: measured 225, 226 (six times) and 254 (twice) across the nine;
-- the tallest card within **1.25× the median**: 254 / 226 = 1.12 — no card carries a
-  pathological wrap, which is the defect the pixel bound was standing in for;
-- no horizontal scroll: 358px in a 358px wrapper.
-
-260 is not a number chosen to fit the measurement: it is the 185px floor plus one extra
-wrapped line per prose field, which is what a long question costs. The padding was then priced
-down to reach it — 0.45rem a card, 0.1rem a cell, 0.74rem a label — and the same pricing took
-the wide table's cell padding from 0.4em to 0.3em, which is what moves 887 to 853.
-
-The labels are the mechanism. `wrap_tables` now puts each cell's column heading on the cell
-as `data-label`, read from the `<th>`s so a label cannot say something the heading does not,
-and it consumes a `<!-- table: cards -->` marker into `class="table--cards"` — the one way to
-give a single table a class without loading `attr_list`, which this collection measured at
-zero uses. The CSS stacks on `td::before { content: attr(data-label) }`; the header row is
-visually hidden rather than removed, so a screen reader still hears the table's structure.
-
-Held by `test_table_cells_carry_their_headings` and
-`test_the_cards_marker_is_consumed_and_marks_the_table` in `tests/test_pipeline.py`, and by
-`test_the_nine_kinds_table_is_marked_for_cards_and_labels_every_cell` in
-`tests/test_reference_books.py`, which fails if the marker is dropped — the failure mode that
-would silently put the table back to a sideways scroll on a phone.
-
-## 159 — Nine signatures, eighteen wordings, and no check that they agreed — **done**
-
-**What is wrong.** `map.yaml` gives each class one `signature`, which `:::class`
-prints under the link in another book; each class page also opens with "**You have
-one of these when**", which is the same sentence written again. Two of the nine do
-not just differ in wording but in claim: `root`'s signature adds "the rule bends
-with the answer" and `hyperbolic`'s adds "keeps its shape", and neither appears on
-the page. A reader who follows `:::class root` from `maths-applied` meets a page
-that defines the class in different words.
-
-`tests/test_reference_books.py` holds the registry, the home page's table and the
-nav together, and does not hold the signature to the page.
-
-**The fix.** One sentence per class, printed in both places: the page keeps its
-`**You have one of these when**` lead-in and uses the registry's sentence, and a
-clause the page needs moves into the registry.
-
-**Done means**
-
-- [ ] each class page contains its registry signature verbatim
-- [ ] `tests/test_reference_books.py` fails when one is edited and the other is not
-- [ ] the home page's nine-kinds table still matches both
-
-**Outcome, 2026-10-30.** One sentence per class, stored once in `map.yaml`, printed
-verbatim on the page after "**You have one of these when**", and printed with a capital in a
-`:::class` note by `hooks/classes.py::sentence`. The registry stores it in the form the page
-needs — a lowercase initial, because the page's lead-in supplies the capital — and the note
-capitalises it for the place it stands alone. Two renderings, one string, which is what stops
-them being two sentences.
-
-The two classes whose registry line claimed more than the page have both clauses on the page
-now: `root`'s "the rule bends with the answer" and `hyperbolic`'s "keeps the shape of what was
-sent". The clauses that only the page had went into the registry, so nothing was dropped:
-`linear-system`'s "nothing changes with time", `saddle-point`'s "the model pays for it",
-`averaging`'s "possibilities you cannot list", and `eigenvalue`'s examples — "which
-frequencies, which loads, which energies".
-
-Held by `test_a_class_page_prints_its_registry_signature_verbatim` (all nine, whitespace
-normalised because the page wraps and the registry does not),
-`test_a_one_word_edit_on_either_side_is_caught` (the assertion fails when "bends" becomes
-"changes"), and `test_the_class_directive_capitalises_the_stored_signature`.
-`test_the_directive_renders_one_link_and_the_registry_sentence` now reads the sentence out of
-the registry instead of holding a third copy of it.
-
-Evidence: `textbook.lint numerical-methods maths-applied` clean over 49 pages; the five
-classes `maths-applied` links render five distinct notes, capitalised, each the registry's
-own string; the home page's nine-kinds table still names and links every class, and
-`test_the_nine_kinds_table_names_and_links_every_class` holds it to the registry.
-
-## 160 — The comparison both books are built on, drawn at last — **done**
-
-**What is wrong.** `maths-applied` §1.5's answer is a comparison — the effect the
-simpler model leaves out against the tolerance the question asks for — and the same
-tolerance on two different quantities gives answers **nine times apart** (1.8 MN/m
-against 0.2 MN/m). It is stated in tables on three pages and drawn on none:
-`stiffness-agreement` plots camber against travel, which is what the section is not
-about. In `numerical-methods` the thesis sentence "you need the method that answers
-your question" has no figure either, in a book where every class page has one.
-
-**The fix.** One figure on §1.5: stiffness on a log x-axis, |difference from the
-rigid model| on a log y-axis, two curves ("at rest", "change over the travel"),
-and a horizontal dashed rule at 0.1°. The two crossings are the two answers and the
-gap between them is a distance on the page. The numbers already exist in the model
-the page imports and the crossing is a bisection over the same `compliant()` call.
-
-**Done means**
-
-- [ ] the figure mounts with a static frame that carries the two crossings on its own
-- [ ] both crossings are held by a check that can recompute them — `claim()` and
-      `readout --verify` handle closed-form arithmetic only, so this is either a new
-      interval kind in the verifier or a recompute test in
-      `tests/test_maths_applied_numbers.py`
-- [ ] the log axes are drawn by a scale the kit owns, or by an explicit `log10`
-      mapping whose ticks are relabelled
-- [ ] the prose quotes the numbers the figure prints, not a second set
-
-**Outcome, 2026-10-30.** `tolerance-crossing` mounts on §1.5, between the table of
-stiffnesses and the paragraph that draws the conclusion. Two curves — the effect the rigid
-model leaves out, at rest and over the travel — against a dashed rule at a tenth of a degree,
-on logarithmic axes, with the two crossings marked.
-
-**The numbers changed, and the prose with them.** The section said the two thresholds were
-"about nine times apart", comparing 1.8 MN/m for the angle with 0.2 MN/m — the export's
-softest *row*, not the second threshold. Measured by bisection over the model the figure
-imports, the change-over-the-travel effect reaches a tenth of a degree at **0.034 MN/m**, so
-the two answers are **more than fifty times apart**, and 0.2 MN/m is comfortably inside the
-second. §1.5 states both crossings, the Review states the fifty-times version, and
-`test_the_change_tolerance_is_met_by_the_softest_exported_row` no longer asserts a ratio
-between two different quantities.
-
-**The log axes are the figure's own.** The kit has no logarithmic scale and one figure is not
-a reason to add one, so the axes are linear in `log10`: `axes()` supplies the frame, the
-curves are sampled in log space, and every tick is drawn at `log10` of a value a reader
-recognises. Two functions know about it, `lx` and `ly`, and the file says so.
-
-**A crossing is not a claim.** `claim()` verifies a closed-form expression at stated values;
-the model's difference at a bisected root is 0.100000024, which is not `0.1` within the
-verifier's 1e-12. So the claims hold what the reader is shown — "a difference of 0.10
-degrees" — at the precision it is printed, and the crossings themselves are recomputed by
-`test_the_two_tolerance_crossings_are_the_figures_own`, which bisects the same `mechanism.js`
-and requires the page to print 1.85 and 0.034.
-
-**What the figure says that the prose did not.** The dashed curve passes through zero near
-0.05 MN/m: at that stiffness the bush shifts the curve by exactly the amount it would have to
-tilt it, so the two models agree about the change over the travel and then diverge with the
-sign the other way. The caption says so, because a reader would otherwise read the V as a
-drawing slip.
-
-Evidence: `readout --verify` — 2 claims, 0 untrue; `canvas` — 0 findings; `audit` light and
-dark — no finding; the readout, the caption and the prose carry the same two numbers;
-`pytest tests/test_maths_applied_numbers.py tests/test_maths_applied_ladder.py` — 34 passed.
-
-## 161 — `linear-system` split its five-item list in two, with the definition of `preconditioner` in the gap — **done**
-
-**What is wrong.** The first pass's B2 fix added the `preconditioner` definition and
-put it in the middle of the list that states the five matrix situations deciding the
-method. On the built page the section is `<ul>` with one item ("Dense and small"),
-then a paragraph, then a second `<ul>` with the other four. The five items are the
-reader's own vocabulary and the most useful paragraph on the page; splitting them
-hides both.
-
-**The fix.** Move the definition above the list as a lead-in, or below it as a
-closing paragraph. One paragraph moves and the list is whole.
-
-**Done means**
-
-- [ ] the built page has one `<ul>` of five items in *What it becomes on a computer*
-- [ ] `preconditioner` is still defined on the page before the technique table
-- [ ] `python -m textbook.lint numerical-methods` is clean
-
-**Outcome, 2026-10-30.** The definition moved below the list, under a sentence that says why it
-belongs to both families: "Both families can be helped by the same idea." The five situations
-are one `<ul>` again, and `preconditioner` is defined before the technique table, where it was.
-
-The lead-in keeps its colon and now introduces five items rather than one. Nothing else on the
-page moved.
-
-Held by `test_the_linear_system_list_is_one_list_and_the_definition_is_not_in_it`, which fails
-if a blank line appears between the first and last situation — the shape the split had — and if
-the definition is back inside the list. `textbook.lint numerical-methods` clean over 31 pages.
-
-## 163 — Display equations in page prose kept their dollars, because they shared a paragraph with the text — **done**
-
-**What is wrong.** Item 154 fixed this in the problem banks. Page prose has the same
-defect, and in four books. Measured on the built site after the banks were rebuilt:
+Measured on the built page at 390px, all nine cards:
 
 ```
-stray `$` before `<math>`   ie-lc-maths 449   ie-lc-physics 15
-                            ie-lc-applied-maths 6   proofs 3
+96, 97, 97, 97, 98, 113, 113, 114, 114   — tallest 114, inside the 140 the item asks for
 ```
 
-`> **The addition rule.**` followed by `> $$P(A \cup B) = \ldots$$` is one paragraph, so
-the delimiters survive, and the reader sees a dollar, the equation set on the line of
-the sentence, and a dollar. A state machine over the source finds **556** lines that
-need a blank line on one side of them — 185 before and 253 after in plain prose, 69
-before and 35 after inside block quotes, and 14 inside indented blocks.
-
-**The fix.** The rule first: `lint.display_maths_without_a_blank_line`, the maths
-sibling of `lists_without_a_blank_line`, reusing the `$$` state machine item 155 added.
-It has to exempt a display equation in a table cell, which is inline by design. Then a
-fixer over the 556 — insert a blank line, or a line carrying the quote prefix — and the
-finding is zero with no debt entry.
-
-**Done means**
-
-- [ ] the lint rule reports nothing over the collection, with no debt entry
-- [ ] a scan of the built site finds 0 pages with a bare `$` before a `<math>`
-- [ ] `tests/test_lint.py` fails when a planted `$$` line loses its blank line
-- [ ] the four affected books rebuild with no `math-error` page
-
-**Outcome, 2026-10-30.** Nothing on the built site now shows a bare `$` before a `<math>`: 0
-pages, from 473 strays in four books.
-
-Three passes, because the first two did not see the whole defect:
-
-1. **357 blank lines** inserted where a display block met prose, by a state machine over the
-   source that counts `$$` delimiters — a line that is `$$` on its own opens a block, it does
-   not close one. The first pass (310 lines) missed every block opened that way, which is most
-   of the long ones, and `lint` is what found the rest.
-2. **Nine quoted labels** of the shape `> **The conversion.** $$…$$` split into the label, a
-   `>` line, and the equation — a blank line cannot separate two things on one line.
-3. **Ten indented blocks** dedented to the start of their line. An indented `$$` is not a
-   block to `pymdownx.arithmatex`, whatever surrounds it, so the delimiters survived inside a
-   list item or a quote.
-
-Held by `lint.display_maths_without_a_blank_line`, added to `textbook.lint` with no debt table
-— the collection is clean on the day it landed, so the next one to appear is a finding rather
-than an allowance. It reads a block quote by stripping its marker and one following space (a
-space after `>` is not indentation), skips fenced code and table rows, and reports three
-shapes: prose above a `$$` line, prose below a closing `$$`, and text before an equation on
-one line. Its first version reported 7,386 findings by reading "starts and ends with `$$`" as
-a whole equation; the count is what showed the rule was wrong, not the content.
+The other two halves of the item never moved: 358px in a 358px wrapper (no horizontal
+scroll), and at 1280px the table is 896×853 against 1,308 (34.8% shorter) with the
+recognition column at 273px, up from 142.
 
 Evidence: `textbook.lint` clean over 2,613 pages; `grep -r '<p>\$<math' site` → nothing; no
 `math-error` page in any profile. `tests/test_lint.py` holds five cases: prose above, prose
 below, mid-sentence, a multi-line block, a quote, and an indented block.
+
+## 164 — 39 labels in 31 figures overhung their frame, mostly a y-axis title written the wrong way round — **done**
+
+**What is wrong.** The `canvas` check measures every element against its drawing. After
+156 and 162 fixed the figures that were wholly misplaced, **39 `<text>` elements in 31
+modules** still cross the edge. The largest are not marginal:
+
+```
+internal-resistance   "terminal potential difference / V"   168 units of 221 outside
+fission-chain-reaction "A neutron strikes the nucleus. …"    98
+model-fit             "temperature / degC"                   95
+hooke-law             "spring"                               56
+ch4-model-explorer    "Right bar: multiply by 1.1 each …"     48
+ch16-pull-at-an-angle "acceleration a = 2.25 m/s²"           34
+ohms-law-graph        "current / A"                          21
+growth-curves         "Aoife", "Cara", "Ben"              19, 17, 11
+ice-heating-curve     "temperature (C)"                      17
+```
+
+**The cause is one habit, not 31 mistakes.** A y-axis title is written horizontally —
+`label({ x: PLOT.x0 - 6, text: "terminal potential difference / V", anchor: "end" })` — so
+a 221-unit label ending 6 units left of the axis begins 168 units outside a 420-unit
+drawing. The reader sees the last two words of it, or none. `label()` already rotates
+(`rotate`, about the label's own position, added when nine modules were moved off
+hand-written `<text>`), so the fix is a title that runs *up* the axis instead of off it.
+
+Three of the 39 are not axis titles — a label above the top edge (`enlargement-grid`'s "y",
+`profit-slider`'s "£114.00", `coulomb-force`'s "+q") — and each needs its own nudge.
+
+**The fix.** Rotate each y-axis title with `label({ rotate: -90, anchor: "start" })` at the
+plot's bottom-left, and nudge the three overhead labels inside. Then delete the figure from
+`CANVAS_DEBT` in `tools/src/commands/canvas.ts`, one at a time: the table is the list.
+
+**Done means**
+
+- [ ] `CANVAS_DEBT` is empty, and `node tools/dist/cli.js canvas site` reports 0 errors
+- [ ] every rotated title reads as a title in a capture at 390px and at 1280px, both schemes
+- [ ] `scripts/preview-themes.sh` still reports 0 findings on `audit`, `kit`, `canvas` and
+      `check-mobile`
+
+**Outcome, 2026-10-30.** All 39 are inside their frames and `CANVAS_DEBT` is empty, so a
+figure written from today has no allowance at all: `canvas site` reports **0 errors over
+254 figures** with the table at `{}`.
+
+The fixes, by cause:
+
+- **The horizontal y-axis title** (21 labels: `internal-resistance`, `model-fit`,
+  `ohms-law-graph`, `black-body-curve`, `ice-heating-curve`, `hooke-law`, `hookes-law`,
+  `coulomb-force`, `si-prefix-scale`, `timing-uncertainty`, `spring-extension`,
+  `stress-strain-graph`, `work-force-displacement`). Each was anchored `end` a few units
+  left of its axis, so a 60-to-220-unit label ran off the drawing — the largest,
+  `internal-resistance`'s "terminal potential difference / V", lost 168 of its 221 units
+  and the reader saw 24% of it. They now sit above the plot, anchored at the axis's left
+  end, where the drawing's own width holds them.
+- **Two rotated titles** (`ice-heating-curve`, `spring-extension`): `rotate: -90` turns
+  about the label's own position, so the local **x** is the distance from the left edge and
+  the local y does not move the ink at all — the fix is x = 18, not a larger y. Both were
+  2 units out and are now 0.
+- **End ticks** (`ch2-inequality-region`, and `kernel-camber` in item 162): a centred label
+  on the end of an axis hangs half of itself outside, so the first and last are anchored
+  inwards.
+- **The rest** are labels placed a few units past an edge — a sentence at 8 units off the
+  left (`fission-chain-reaction`, which also lost the sentence to a shorter one), a value
+  above a bar (`profit-slider`, `ch10-nth-term`), series names at the right edge
+  (`growth-curves`), a distance label above a beam (`lever-moment`), a height annotation
+  inside a trapezium (`trapezium-double`), a clamped centre for an arrow label
+  (`ch16-pull-at-an-angle`), a leaf label in a tree (`ch12-conditional-reverse`), a
+  clamped object name on a log scale (`si-prefix-scale`), and three single-unit nudges
+  (`ch3-line-explorer`, `ch4-series-explorer`, `ch14-normal-test`).
+
+Evidence: `canvas site --json` recomputed independently finds **0** text elements outside
+their `viewBox`, against 39 before; `types` at 0; `kit`, `audit` and `check-mobile`
+unchanged; a capture of the nine-kinds cards and of `dynamics-table` at 390px and 1280px
+reads clean.

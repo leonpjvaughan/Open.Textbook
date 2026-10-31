@@ -77,7 +77,7 @@ export function mount(el) {
       `<line x1="${PLOT.x0}" y1="${PLOT.y0}" x2="${PLOT.x1}" y2="${PLOT.y0}" class="fig-grid" stroke-width="1.5"></line>` +
       `<line x1="${PLOT.x0}" y1="${PLOT.y0}" x2="${PLOT.x0}" y2="${PLOT.y1}" class="fig-grid" stroke-width="1.5"></line>` +
       label({ x: PLOT.x1, y: PLOT.y0 + 24, text: "extension / m", size: SIZE.value, class: "text-ink", anchor: "end" }) +
-      label({ x: PLOT.x0 - 10, y: PLOT.y1 - 6, text: "force / N", size: SIZE.value, class: "text-ink", anchor: "end" });
+      label({ x: PLOT.x0, y: PLOT.y1 - 10, text: "force / N", size: SIZE.value, class: "text-ink", anchor: "start" });
 
     const straight = `<line x1="${sx(0)}" y1="${sy(0)}" x2="${sx(LIMIT_X)}" y2="${sy(K * LIMIT_X)}" class="fig-accent" stroke-width="3"></line>`;
 

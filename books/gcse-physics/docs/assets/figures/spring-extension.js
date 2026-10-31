@@ -103,7 +103,7 @@ export function mount(el) {
     const path = (list) =>
       list.map(([ex, f], i) => `${i === 0 ? "M" : "L"} ${xPixel(ex).toFixed(1)} ${yPixel(f).toFixed(1)}`).join(" ");
     const axis =
-      `<line x1="70" y1="200" x2="310" y2="200" class="fig-ink"></line><line x1="70" y1="200" x2="70" y2="30" class="fig-ink"></line><line x1="70" y1="${yPixel(LIMIT).toFixed(1)}" x2="310" y2="${yPixel(LIMIT).toFixed(1)}" class="fig-grid" stroke-dasharray="3 3"></line>${label({ x: 185, y: 222, text: `extension (m)`, anchor: "middle", size: SIZE.value, class: "text-ink" })}${label({ x: 14, y: 120, text: 'force (N)', anchor: "start", size: SIZE.value, class: "text-ink", rotate: -90 })}${label({ x: 300, y: (yPixel(LIMIT) - 5).toFixed(1), text: `limit`, anchor: "end", size: SIZE.tick, class: "text-ink" })}`;
+      `<line x1="70" y1="200" x2="310" y2="200" class="fig-ink"></line><line x1="70" y1="200" x2="70" y2="30" class="fig-ink"></line><line x1="70" y1="${yPixel(LIMIT).toFixed(1)}" x2="310" y2="${yPixel(LIMIT).toFixed(1)}" class="fig-grid" stroke-dasharray="3 3"></line>${label({ x: 185, y: 222, text: `extension (m)`, anchor: "middle", size: SIZE.value, class: "text-ink" })}${label({ x: 18, y: 122, text: 'force (N)', anchor: "start", size: SIZE.value, class: "text-ink", rotate: -90 })}${label({ x: 300, y: (yPixel(LIMIT) - 5).toFixed(1), text: `limit`, anchor: "end", size: SIZE.tick, class: "text-ink" })}`;
     const graph =
       axis +
       `<path d="${path(straight)}" class="fig-accent" style="fill:none" stroke-width="3"></path><path d="${path(curved)}" class="fig-warn" style="fill:none" stroke-width="3"></path><circle cx="${xPixel(e).toFixed(1)}" cy="${yPixel(force).toFixed(1)}" r="5" class="fig-good"></circle>`;

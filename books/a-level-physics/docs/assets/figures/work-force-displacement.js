@@ -103,7 +103,7 @@ export function mount(el) {
       forceTicks +
       `<line x1="${LEFT}" y1="${BASE}" x2="${RIGHT}" y2="${BASE}" class="fig-ink" stroke-width="2"></line><line x1="${LEFT}" y1="${BASE}" x2="${LEFT}" y2="${TOP}" class="fig-ink" stroke-width="2"></line>` +
       distanceTicks +
-      `${label({ x: (LEFT + RIGHT) / 2, y: BASE + 38, text: `displacement / m`, anchor: "middle", size: SIZE.tick, class: "text-ink" })}${label({ x: 18, y: (TOP + BASE) / 2, text: 'force along displacement / N', anchor: "middle", size: SIZE.tick, class: "text-ink", rotate: -90 })}<rect x="${LEFT}" y="${rectTop.toFixed(1)}" width="${rectWidth.toFixed(1)}" height="${rectHeight.toFixed(1)}" class="fig-accent" fill-opacity="0.18" stroke-width="2"></rect>` +
+      `${label({ x: (LEFT + RIGHT) / 2, y: BASE + 33, text: `displacement / m`, anchor: "middle", size: SIZE.tick, class: "text-ink" })}${label({ x: 18, y: (TOP + BASE) / 2, text: 'force along displacement / N', anchor: "middle", size: SIZE.tick, class: "text-ink", rotate: -90 })}<rect x="${LEFT}" y="${rectTop.toFixed(1)}" width="${rectWidth.toFixed(1)}" height="${rectHeight.toFixed(1)}" class="fig-accent" fill-opacity="0.18" stroke-width="2"></rect>` +
       areaLabel;
 
     readout.innerHTML =

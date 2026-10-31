@@ -14,10 +14,10 @@ done-means; an item whose heading says done and whose checklist does not is the
 failure this file has had twice, so the list below, the headings and the boxes
 are checked against each other on every pass.
 
-**Every item from 79 to 163 is closed,** each with its measurement, its fix and its
-outcome in `.agents/todo-closed.md`, except 164, which the figure check measured and
-carries in a debt table. The review that filed 159–161 also carries five design
-proposals, which are not items; 163 is the prose half of 154,
+**Every item from 79 to 164 is closed,** each with its measurement, its fix and its
+outcome in `.agents/todo-closed.md`. Items 165–172 are open: three defects the second
+review measured and five designs it proposed. The review that filed 159–161 also carries five
+design proposals, which are items 168–172; 163 is the prose half of 154,
 measured while closing it, and 164 is the label tail the figure check measured. A new
 item goes at the number after the last one, with its diagnosis, its fix and its own
 done-means. The
@@ -40,45 +40,6 @@ page's own columns (171), and the two procedures named once with the number each
 the citations, and the review holds the measurement.
 
 ---
-
-## 164 — 39 labels in 31 figures overhang their frame, mostly a y-axis title written the wrong way round
-
-**What is wrong.** The `canvas` check measures every element against its drawing. After
-156 and 162 fixed the figures that were wholly misplaced, **39 `<text>` elements in 31
-modules** still cross the edge. The largest are not marginal:
-
-```
-internal-resistance   "terminal potential difference / V"   168 units of 221 outside
-fission-chain-reaction "A neutron strikes the nucleus. …"    98
-model-fit             "temperature / degC"                   95
-hooke-law             "spring"                               56
-ch4-model-explorer    "Right bar: multiply by 1.1 each …"     48
-ch16-pull-at-an-angle "acceleration a = 2.25 m/s²"           34
-ohms-law-graph        "current / A"                          21
-growth-curves         "Aoife", "Cara", "Ben"              19, 17, 11
-ice-heating-curve     "temperature (C)"                      17
-```
-
-**The cause is one habit, not 31 mistakes.** A y-axis title is written horizontally —
-`label({ x: PLOT.x0 - 6, text: "terminal potential difference / V", anchor: "end" })` — so
-a 221-unit label ending 6 units left of the axis begins 168 units outside a 420-unit
-drawing. The reader sees the last two words of it, or none. `label()` already rotates
-(`rotate`, about the label's own position, added when nine modules were moved off
-hand-written `<text>`), so the fix is a title that runs *up* the axis instead of off it.
-
-Three of the 39 are not axis titles — a label above the top edge (`enlargement-grid`'s "y",
-`profit-slider`'s "£114.00", `coulomb-force`'s "+q") — and each needs its own nudge.
-
-**The fix.** Rotate each y-axis title with `label({ rotate: -90, anchor: "start" })` at the
-plot's bottom-left, and nudge the three overhead labels inside. Then delete the figure from
-`CANVAS_DEBT` in `tools/src/commands/canvas.ts`, one at a time: the table is the list.
-
-**Done means**
-
-- [ ] `CANVAS_DEBT` is empty, and `node tools/dist/cli.js canvas site` reports 0 errors
-- [ ] every rotated title reads as a title in a capture at 390px and at 1280px, both schemes
-- [ ] `scripts/preview-themes.sh` still reports 0 findings on `audit`, `kit`, `canvas` and
-      `check-mobile`
 
 ## 165 — `maths-applied`'s required pages are the longest-winded ones, and the tail from 25 to 32 words is unpoliced
 
@@ -109,8 +70,8 @@ one, and today it is the other way round.
 
 ## 166 — `stiff` meets the reader in the wrong sense first, and `discretise` is defined nowhere
 
-**What is wrong.** `stiff` and `stiffness` occur **38** times in `numerical-methods`'s
-pages (24 bare, 14 as `stiffness`); the first use in reading order is on the Averaging
+**What is wrong.** `grep -rhoi stiff books/numerical-methods/docs` finds **40**: 24
+`stiff`/`Stiff`, one `stiffly` and 15 `stiffness`. The first use in reading order is on the Averaging
 page (`averaging/index.md:21`), and it means a bush's *stiffness* — the engineering
 noun, not the numerical flag. The flag is defined once, in
 a table cell on the home page (`index.md:69`, under "Stiff: the model contains a fast

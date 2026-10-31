@@ -136,7 +136,7 @@ export function mount(el) {
 
     const yLabel =
       label({ x: xToPx(X_MAX) - 14, y: yToPx(0) - 6, text: "x", anchor: "start", class: "text-ink" }) +
-      label({ x: xToPx(0) + 6, y: yToPx(Y_MAX) + 14, text: "y", anchor: "start", class: "text-ink" });
+      label({ x: xToPx(0) + 6, y: yToPx(Y_MAX) + 20, text: "y", anchor: "start", class: "text-ink" });
 
     svg.innerHTML = grid() + axes + step + line + marker + yLabel;
 

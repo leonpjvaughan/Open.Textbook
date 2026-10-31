@@ -27,7 +27,7 @@ export function mount(el) {
     const base = 100;
     return `<rect x="${x}" y="${base - h}" width="${w}" height="${h}" class="${cls}"></rect>
       ${label({ x: x + w / 2, y: base + 12, text: words, anchor: "middle", size: SIZE.tick, class: "text-ink" })}
-      ${label({ x: x + w / 2, y: base - h - 4, text: value, anchor: "middle", size: SIZE.tick, class: "text-ink" })}`;
+      ${label({ x: x + w / 2, y: Math.max(base - h - 4, 16), text: value, anchor: "middle", size: SIZE.tick, class: "text-ink" })}`;
   }
 
   react([bought, costEach, priceEach, sold], () => {

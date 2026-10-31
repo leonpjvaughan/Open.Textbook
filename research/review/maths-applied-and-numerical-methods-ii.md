@@ -543,13 +543,18 @@ kernel-camber.js:168:  "inside the tenth of a "   ← prose in a caption
 is *not* about: camber against travel, two curves converging. The reader is asked
 to hold 1.96, 1.91, and 0.1 in working memory and do the subtraction and the
 comparison themselves — and the section's own punchline is that the same tolerance
-attached to two different quantities gives answers **nine times apart**. That is
+attached to two different quantities gives answers **more than fifty times apart** (the
+figure measures 1.85 MN/m against 0.034; the section quoted 0.2, which is the export's
+softest row and a bound on the second answer, not the answer). That is
 the hardest idea in the book and it is currently a table.
 
 **The figure that carries it**: stiffness on a logarithmic x-axis, |difference from
 the rigid model| on a logarithmic y-axis, two curves — "at rest" and "change over
 the travel" — and a horizontal dashed rule at 0.1°. The two crossings are the two
-answers, 1.8 MN/m and 0.2 MN/m, and the nine-times gap is a distance on the page.
+answers, and the gap between them is a distance on the page. (Measured since: 1.85 MN/m for
+the angle against 0.034 for the change — more than fifty times, not nine. The 0.2 the section
+had quoted is the export's softest *row*, which is a bound on the second answer, not the
+answer. Item 160 and `books/maths-applied`'s §1.5 carry the corrected numbers.)
 Nothing in the prose changes; the numbers already exist in the model the page
 imports, and the crossing is found by bisection over the same `compliant()` call
 the existing figure uses.
@@ -687,7 +692,7 @@ extraction work at the exact moment the figure exists to remove it.
 
 | the procedure | the question it answers | the number that earned it |
 |---|---|---|
-| **the tolerance comparison** — measure the effect the simpler model leaves out, compare it with the tolerance the question asks for, and make sure the tolerance is on the quantity the question is about | which model do I need? | 1.8 MN/m against 0.2 MN/m, nine times apart |
+| **the tolerance comparison** — measure the effect the simpler model leaves out, compare it with the tolerance the question asks for, and make sure the tolerance is on the quantity the question is about | which model do I need? | 1.85 MN/m against 0.034 MN/m, more than fifty times apart |
 | **the limit test** — take the parameter to the edge and check the model becomes the simpler one it should | is this model the generalisation of that one? | 1.91° at 100 MN/m against 1.95° rigid, monotone over four stiffnesses |
 
 The first is stated inside a table caption in §1.5 and restated in the Review. The

@@ -88,7 +88,7 @@ export function mount(el) {
       `<rect x="${LEFT}" y="${TOP}" width="${width.toFixed(1)}" height="${HEIGHT}" class="fig-ink" style="fill:none" stroke-width="2"></rect>` +
       `<line x1="${(LEFT + width).toFixed(1)}" y1="${TOP - 18}" x2="${(LEFT + width).toFixed(1)}" y2="${TOP + HEIGHT + 18}" class="fig-warn" stroke-width="5"></line>` +
       `<line x1="${LEFT}" y1="${TOP + HEIGHT + 30}" x2="${LEFT + WIDTH_MAX}" y2="${TOP + HEIGHT + 30}" class="fig-ink" stroke-width="2"></line>` +
-      `${label({ x: (LEFT + width / 2).toFixed(1), y: TOP + HEIGHT + 48, text: `piston`, anchor: "middle", size: SIZE.tick, class: "text-ink" })}` +
+      `${label({ x: (LEFT + width / 2).toFixed(1), y: TOP + HEIGHT + 36, text: `piston`, anchor: "middle", size: SIZE.tick, class: "text-ink" })}` +
       dots;
 
     readout.innerHTML =

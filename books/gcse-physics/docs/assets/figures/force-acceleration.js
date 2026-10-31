@@ -74,7 +74,7 @@ export function mount(el) {
       trolley +
       arrow +
       `${label({ x: CENTRE, y: GROUND - height - 12, text: `m = ${mass} kg`, anchor: "middle", size: SIZE.tick, class: "text-ink" })}` +
-      `${label({ x: CENTRE, y: GROUND + 42, text: `a = F ÷ m = ${force} ÷ ${mass} = ${quantity(acceleration, "m", 2)}/s²`, anchor: "middle", size: SIZE.value, class: "text-ink" })}`;
+      `${label({ x: CENTRE, y: GROUND + 36, text: `a = F ÷ m = ${force} ÷ ${mass} = ${quantity(acceleration, "m", 2)}/s²`, anchor: "middle", size: SIZE.value, class: "text-ink" })}`;
 
     readout.innerHTML =
       `Resultant force ${force} N, mass ${mass} kg, so the acceleration is ` +

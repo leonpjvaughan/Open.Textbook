@@ -98,7 +98,7 @@ export function mount(el) {
       <line x1="${PLOT.x0}" y1="${PLOT.y0}" x2="${PLOT.x0}" y2="${PLOT.y1}" class="fig-grid" stroke-width="1.5"></line>
       ${label({ x: PLOT.x0 - 8, y: PLOT.y0 + 4, text: "0", anchor: "end", size: SIZE.tick })}
       ${label({ x: PLOT.x1, y: PLOT.y0 + 18, text: "potential difference / V", anchor: "end", size: SIZE.tick })}
-      ${label({ x: PLOT.x0 - 6, y: PLOT.y1 - 4, text: "current / A", anchor: "end", size: SIZE.tick })}
+      ${label({ x: PLOT.x0, y: PLOT.y1 - 10, text: "current / A", anchor: "start", size: SIZE.tick })}
     `;
 
     // The curve, sampled, because the lamp's and the diode's graphs are not straight.

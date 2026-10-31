@@ -108,7 +108,7 @@ export function mount(el) {
       ${outline}
       ${text(LEFT + BASE / 2, GROUND + 22, `b = ${BASE}`)}
       ${text(LEFT + inset + a / 2, topY - 9, `a = ${a}`)}
-      ${text(LEFT - 24, GROUND - h / 2, `h = ${h}`)}
+      ${text(LEFT + 10, GROUND - h / 2, `h = ${h}`)}
       <line x1="${LEFT - 10}" y1="${GROUND}" x2="${LEFT - 10}" y2="${topY}"
             stroke-width="2" class="fig-ink"></line>`;
   }

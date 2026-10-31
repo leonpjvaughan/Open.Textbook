@@ -19,14 +19,14 @@
  * every theme. The cases run under plain `node` (`canvas --cases`), so the rule is in
  * the ordinary gate and not only in the browser one.
  *
- * **The debt, and why it is a table rather than a tolerance.** The sweep of 254 figures
- * on the build of 2026-10-30 finds 39 labels that overhang their frame, in 31 modules,
- * and they are one authoring habit: a y-axis title written horizontally with `anchor: "end"` a few units
+ * **The debt is empty, and why it is still a table.** The first sweep of 254 figures on
+ * 2026-10-30 found 39 labels that overhang their frame, in 31 modules, and they were one
+ * authoring habit: a y-axis title written horizontally with `anchor: "end"` a few units
  * left of the axis, so a 60–220-unit label runs off the canvas (`internal-resistance`
  * loses 168 units of "terminal potential difference / V"). Item 164 fixes them. Naming
- * them here, in the same shape as `lint.LIST_DEBT`, is what keeps this check strict for
- * every figure written from now on without pretending the 40 are not there: an entry
- * is a count, it may only go down, and a new overhang in a listed figure is a finding.
+ * them here, in the same shape as `lint.LIST_DEBT`, kept the check strict while they were
+ * being fixed. All 39 are inside their frames now (item 164), so the table is empty and a
+ * figure written from today gets no allowance at all.
  */
 import fs from "node:fs";
 import path from "node:path";
@@ -49,39 +49,7 @@ import { discoverFigures } from "../lib/site.js";
  * Measured on the build of 2026-10-30: 39 labels in 31 figures, over 254 figures that
  * draw (a further 12 mount a control and no drawing at all).
  */
-const CANVAS_DEBT: Record<string, number> = {
-  "black-body-curve": 1,
-  "ch10-nth-term": 1,
-  "ch12-conditional-reverse": 1,
-  "ch14-normal-test": 1,
-  "ch16-pull-at-an-angle": 1,
-  "ch2-inequality-region": 2,
-  "ch3-line-explorer": 1,
-  "ch4-model-explorer": 1,
-  "ch4-series-explorer": 1,
-  "coulomb-force": 3,
-  "enlargement-grid": 1,
-  "fission-chain-reaction": 2,
-  "force-acceleration": 1,
-  "gas-pressure-volume": 1,
-  "growth-curves": 3,
-  "hooke-law": 2,
-  "hookes-law": 1,
-  "ice-heating-curve": 1,
-  "interference-2source": 2,
-  "internal-resistance": 1,
-  "lever-moment": 1,
-  "model-fit": 1,
-  "ohms-law-graph": 1,
-  "profit-slider": 1,
-  "proof-prime-search": 1,
-  "si-prefix-scale": 1,
-  "spring-extension": 1,
-  "stress-strain-graph": 1,
-  "timing-uncertainty": 1,
-  "trapezium-double": 1,
-  "work-force-displacement": 1,
-};
+const CANVAS_DEBT: Record<string, number> = {};
 
 /** What this command accepts. `tools help canvas` is generated from it. */
 export const SURFACE: Surface = {

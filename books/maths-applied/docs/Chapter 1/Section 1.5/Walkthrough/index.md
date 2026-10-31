@@ -158,9 +158,9 @@ agree; what changes is what you are asking for.
 | Camber at rest, bush model at 1 MN/m | −1.18°, which is 0.18° from rigid |
 | Camber at rest, bush model at 100 MN/m | −1.00°, which is 0.002° from rigid |
 | Camber change, bush model at 0.2 MN/m | 1.96°, five hundredths above the 100 MN/m row |
-| Bush stiffness for a tenth of a degree **at rest** | about 1.8 MN/m |
+| Bush stiffness for a tenth of a degree **at rest** | 1.85 MN/m on the front view, 1.8 on the export's ladder |
 | The front view's ladder against the export's | within 0.04°, over four stiffnesses |
-| Bush stiffness for a tenth of a degree **in the change** | 0.2 MN/m or softer |
+| Bush stiffness for a tenth of a degree **in the change** | 0.034 MN/m on the front view; the export's softest row, 0.2 MN/m, is already inside it |
 | The trend as stiffness rises | monotone, in the solver's ladder test |
 
 ### The same idea, on a different joint

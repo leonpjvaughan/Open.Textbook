@@ -72,7 +72,7 @@ export function mount(el) {
       `<line x1="${PLOT.x0}" y1="${PLOT.y0}" x2="${PLOT.x1}" y2="${PLOT.y0}" class="fig-grid" stroke-width="1.5"></line>` +
       `<line x1="${PLOT.x0}" y1="${PLOT.y0}" x2="${PLOT.x0}" y2="${PLOT.y1}" class="fig-grid" stroke-width="1.5"></line>` +
       label({ x: PLOT.x1, y: PLOT.y0 + 24, text: "time / min", size: SIZE.value, class: "text-ink", anchor: "end" }) +
-      label({ x: PLOT.x0 - 10, y: PLOT.y1 - 6, text: "temperature / degC", size: SIZE.value, class: "text-ink", anchor: "end" });
+      label({ x: PLOT.x0, y: PLOT.y1 - 10, text: "temperature / degC", size: SIZE.value, class: "text-ink", anchor: "start" });
 
     const roomLine =
       `<line x1="${PLOT.x0}" y1="${sy(T_ROOM)}" x2="${PLOT.x1}" y2="${sy(T_ROOM)}" class="fig-grid" stroke-width="1.2" stroke-dasharray="4 4"></line>` +

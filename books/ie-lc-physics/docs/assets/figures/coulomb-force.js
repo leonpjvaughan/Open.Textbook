@@ -80,15 +80,15 @@ export function mount(el) {
       `<line x1="${PLOT.x0}" y1="${PLOT.y0}" x2="${PLOT.x0}" y2="${PLOT.y1}" class="fig-grid" stroke-width="1.5"></line>` +
       label({ x: PLOT.x0 - 8, y: PLOT.y0 + 4, text: "0", anchor: "end", size: SIZE.tick }) +
       label({ x: PLOT.x1, y: PLOT.y0 + 22, text: "separation / m", anchor: "end", size: SIZE.tick }) +
-      label({ x: PLOT.x0 - 8, y: PLOT.y1 - 2, text: "force / N", anchor: "end", size: SIZE.tick });
+      label({ x: PLOT.x0 + 6, y: PLOT.y1 - 10, text: "force / N", anchor: "start", size: SIZE.tick });
 
     // The two charges, drawn above the graph, to fix what the curve describes.
     const chargeY = 18;
     const charges =
       `<circle cx="${PLOT.x0 + 28}" cy="${chargeY}" r="6" class="fig-ink"></circle>` +
       `<circle cx="${PLOT.x0 + 66}" cy="${chargeY}" r="6" class="fig-ink"></circle>` +
-      label({ x: PLOT.x0 + 28, y: chargeY - 12, text: "+q", size: SIZE.tick }) +
-      label({ x: PLOT.x0 + 66, y: chargeY - 12, text: "+q", size: SIZE.tick });
+      label({ x: PLOT.x0 + 28, y: chargeY + 22, text: "+q", size: SIZE.tick }) +
+      label({ x: PLOT.x0 + 66, y: chargeY + 22, text: "+q", size: SIZE.tick });
 
     // The curve, sampled because the law is not a straight line.
     let curve = "";
