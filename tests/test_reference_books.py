@@ -308,6 +308,7 @@ def test_the_classes_come_first_in_tree_order():
         "worked-case",
         "techniques",
         "symptoms",
+        "systems",
         "averaging",
         "averaging",
         "averaging",
@@ -1406,3 +1407,48 @@ def test_the_name_index_lists_every_method_once_and_links_its_entry():
     # sorted by display name, within and across letters
     names = [re.sub(r"<[^>]+>", "", n) for n in re.findall(r'href="#[^"]+">([^<]+)</a>', nav)]
     assert names == sorted(names, key=str.lower), "the index is not alphabetical"
+
+
+def test_the_system_index_is_derived_from_the_class_pages():
+    """Item 174: 64 systems were written and linked, and nothing went system → class.
+
+    A reader holding "incompressible flow" had to guess which of nine pages listed it.
+    The index is built from the class pages' own *Systems that live here* lists, so adding
+    a system to a class page adds it here with no second edit — and the test counts both.
+    """
+    from textbook import classmap
+    from textbook.hooks import systems
+
+    book = map_book()
+    config = None  # `entries` reads the registry and the book from the build config
+    from textbook import config as cfg
+
+    config = cfg.from_parts(book.docs, book=book, profile=book.default_profile.id)
+    rows = systems.entries(config)
+    assert rows, "the system index is empty"
+
+    listed = 0
+    for slug in CLASSES:
+        section = re.search(
+            r"## Systems that live here\n(.*?)\n## ",
+            (book.docs / slug / "index.md").read_text(encoding="utf-8"),
+            re.S,
+        )
+        assert section, f"{slug} has no systems list"
+        listed += len(
+            [
+                line
+                for line in section.group(1).splitlines()
+                if line.startswith("- ")
+            ]
+        )
+    assert len(rows) == listed, f"the index has {len(rows)} systems, the pages list {listed}"
+
+    registry = classmap.entries(config)
+    urls = {entry["url"] for entry in registry.values()}
+    for system, title, href in rows:
+        assert href in urls, f"{system!r} links {href!r}, which is not a class"
+        assert title in {entry["title"] for entry in registry.values()}
+
+    page = (book.docs / "systems/index.md").read_text(encoding="utf-8")
+    assert ":::systems" in page

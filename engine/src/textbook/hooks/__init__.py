@@ -16,7 +16,8 @@ Order matters:
 9. ``problems`` expands ``:::problems`` / ``:::answers`` from the verified bank;
    ``contents`` expands ``:::contents`` into a list of the page's own headings, which is
    why it runs on rendered HTML rather than markdown — the ids are there;
-10. ``maths`` renders the ``$...$`` those hooks emitted — last, because it runs
+10. ``systems`` expands ``:::systems`` into the system → class index;
+11. ``maths`` renders the ``$...$`` those hooks emitted — last, because it runs
     on rendered HTML rather than markdown.
 
 The reader-preference script is not a hook: ``prefs.snippet`` generates it and
@@ -35,6 +36,7 @@ from . import (
     maths,
     problems,
     proofs,
+    systems,
     tier,
     toc,
     usedin,
@@ -48,7 +50,18 @@ __all__ = ["MARKDOWN_HOOKS", "on_files", "on_page_markdown", "on_page_content"]
 #: a reader would have found the order stated in two places with no test comparing
 #: them. `pipeline.MARKDOWN_HOOKS` is this object, and
 #: `tests/test_render_hooks.py` fails if the two ever part company again.
-MARKDOWN_HOOKS = (tier, disclaimer, toc, figures, proofs, classes, usedin, deeper, problems)
+MARKDOWN_HOOKS = (
+    tier,
+    disclaimer,
+    toc,
+    figures,
+    proofs,
+    classes,
+    usedin,
+    deeper,
+    problems,
+    systems,
+)
 
 
 def on_files(files, config, **kwargs):

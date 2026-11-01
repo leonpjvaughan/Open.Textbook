@@ -8041,3 +8041,48 @@ numerical-methods` clean over 31 pages.
 **What it does not fix, and the third review says so:** the page is still sorted by family, so a
 reader scrolling it meets `Bisection` before `Brent` before `Newton`. The index is the name route
 that was missing; re-sorting 77 entries is a different decision and a different item.
+
+## 174 — No way into the map by system, although the book counts 64 of them — **done**
+
+**What is wrong.** The home page's opening number is **64 systems** the nine kinds are used
+on. Every one of them is a bullet under **Systems that live here** on a class page, and nowhere
+else. A reader who arrives holding "incompressible flow", "a tyre's slip angle" or "weather
+ensembles" has to guess which of nine pages lists it, or read all nine. The book states three
+ways in — a model, a method name, a wrong answer — and the most concrete thing a reader often
+holds, the system they are trying to model, is not one of them.
+
+The other directions are already written: `symptoms` goes wrong answer → class, `techniques`
+goes method → class, `reading-the-class` goes equation → class. This is the missing fourth,
+and the content already exists and is already linked.
+
+**The fix.** One page, `systems/`, listing each system, the class it lives in, and the class
+page that argues it — derived from the class pages' own lists the way `:::used` is derived
+from the `:::class` callbacks, so it cannot fall behind. Add it to `map.yaml → pages` and to
+the home page's ways in, and count it from the pages rather than typing 64 a second time.
+
+**Done means**
+
+- [x] every system in a class page's *Systems that live here* appears in the index with that
+      class, and a test fails when a class page adds one the index lacks
+- [x] every entry links the class page that argues it, and a test fails on a stale link
+- [x] the home page's "Three ways in" is four, and names the index
+- [x] the page is listed in `map.yaml`, reachable from the home page, and `tests/test_reference_books.py`
+      holds the three places together
+- [x] `python -m textbook.lint numerical-methods` is clean
+
+**Outcome, 2026-10-31.** `:::systems` renders the index from the class pages' own *Systems that
+live here* lists at build time — 64 systems, each with a relative link to the class page that
+argues it, sorted by the system. Add a system to a class page and it appears here with no second
+edit, which is the same rule `:::used` follows for the class callbacks.
+
+The page is `docs/systems/index.md`, listed in `map.yaml` after the two indexes, and the home
+page's *Three ways in* is now four, with "you are holding the system" as the fourth.
+
+The links are **relative**, not root-absolute: the target is a page in this book, so
+`check_links` verifies every one of them, where a root-absolute href would be skipped by design.
+That is why the first build reported `broken 64 link(s)` and the second reports none.
+
+Held by `test_the_system_index_is_derived_from_the_class_pages`: the index's row count equals the
+number of bullets the nine class pages carry, every href is a registry URL, and every title is a
+registry title. `textbook.lint numerical-methods` clean over 32 pages; the build reports no broken
+link.

@@ -14,7 +14,7 @@ done-means; an item whose heading says done and whose checklist does not is the
 failure this file has had twice, so the list below, the headings and the boxes
 are checked against each other on every pass.
 
-**Every item from 79 to 173 is closed,** each with its measurement, its fix, its outcome
+**Every item from 79 to 174 is closed,** each with its measurement, its fix, its outcome
 and its ticked done-means in `.agents/todo-closed.md`. Items 166–174 are open: three
 defects the second review measured (165–167), five designs it proposed (168–172), and the
 two ways into the map the third review measured (173–174). A new item goes at the number after the
@@ -38,7 +38,7 @@ review holds their measurement.
 
 ---
 
-## 174 — No way into the map by system, although the book counts 64 of them
+## 174 — No way into the map by system, although the book counts 64 of them — **done**
 
 **What is wrong.** The home page's opening number is **64 systems** the nine kinds are used
 on. Every one of them is a bullet under **Systems that live here** on a class page, and nowhere
@@ -58,10 +58,27 @@ the home page's ways in, and count it from the pages rather than typing 64 a sec
 
 **Done means**
 
-- [ ] every system in a class page's *Systems that live here* appears in the index with that
+- [x] every system in a class page's *Systems that live here* appears in the index with that
       class, and a test fails when a class page adds one the index lacks
-- [ ] every entry links the class page that argues it, and a test fails on a stale link
-- [ ] the home page's "Three ways in" becomes four, or links the index from the section
-- [ ] the page is listed in `map.yaml`, reachable from the home page, and `tests/test_reference_books.py`
+- [x] every entry links the class page that argues it, and a test fails on a stale link
+- [x] the home page's "Three ways in" is four, and names the index
+- [x] the page is listed in `map.yaml`, reachable from the home page, and `tests/test_reference_books.py`
       holds the three places together
-- [ ] `python -m textbook.lint numerical-methods` is clean
+- [x] `python -m textbook.lint numerical-methods` is clean
+
+**Outcome, 2026-10-31.** `:::systems` renders the index from the class pages' own *Systems that
+live here* lists at build time — 64 systems, each with a relative link to the class page that
+argues it, sorted by the system. Add a system to a class page and it appears here with no second
+edit, which is the same rule `:::used` follows for the class callbacks.
+
+The page is `docs/systems/index.md`, listed in `map.yaml` after the two indexes, and the home
+page's *Three ways in* is now four, with "you are holding the system" as the fourth.
+
+The links are **relative**, not root-absolute: the target is a page in this book, so
+`check_links` verifies every one of them, where a root-absolute href would be skipped by design.
+That is why the first build reported `broken 64 link(s)` and the second reports none.
+
+Held by `test_the_system_index_is_derived_from_the_class_pages`: the index's row count equals the
+number of bullets the nine class pages carry, every href is a registry URL, and every title is a
+registry title. `textbook.lint numerical-methods` clean over 32 pages; the build reports no broken
+link.

@@ -94,6 +94,8 @@ pages:
     path: techniques/index.md
   - title: When it goes wrong
     path: symptoms/index.md
+  - title: Every system, and the class it belongs to
+    path: systems/index.md
   - title: An average, and its error bar
     path: averaging/error-bars/index.md
   - title: When the samples are not independent

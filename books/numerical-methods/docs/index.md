@@ -30,6 +30,9 @@ inside a kind you already understand, chosen by a circumstance you can name.
   what it costs.
 - **You have a wrong answer.** Start at [When it goes wrong](symptoms/index.md).
   It goes symptom → kind → cause → fix.
+- **You are holding the system.** Start at
+  [Every system](systems/index.md), which goes system → kind, and is built from
+  the class pages' own lists.
 
 :::contents
 
