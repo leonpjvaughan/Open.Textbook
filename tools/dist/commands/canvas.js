@@ -31,7 +31,7 @@
 import fs from "node:fs";
 import path from "node:path";
 import { launchBrowser, openContext, serveStatic, ORIGIN } from "../lib/browser.js";
-import { outside, transformBox } from "../lib/canvas.js";
+import { outside, transformBox, STROKE_TOLERANCE, TEXT_SLACK, } from "../lib/canvas.js";
 import { mapPool } from "../lib/pool.js";
 import { parseArgs } from "../lib/flags.js";
 import { Report } from "../lib/report.js";
@@ -127,6 +127,7 @@ export function readInk(slug) {
             text: (node.textContent || "").slice(0, 32),
             box: { x: box.x, y: box.y, width: box.width, height: box.height },
             matrix: [m.a, m.b, m.c, m.d, m.e, m.f],
+            fontSize: parseFloat(style.fontSize) || 16,
         });
     }
     return { slug, viewBox, hasSvg: true, drawings: elements.length, elements };
@@ -141,7 +142,7 @@ export function readInk(slug) {
 export function cases() {
     const failures = [];
     const check = (name, ink, box, canvas, want) => {
-        const got = outside(ink, box, canvas, 0.5);
+        const got = outside(ink, box, canvas, ink === "text" ? 8 : STROKE_TOLERANCE);
         if (got.outside !== want) {
             failures.push(`${name}: wanted outside=${want}, got ${got.outside} (over ${got.over})`);
         }
@@ -149,7 +150,11 @@ export function cases() {
     const dynamics = { x: 0, y: 0, width: 560, height: 300 };
     check("dynamics-table's first row (a label 20 units below the frame)", "text", { x: 4, y: 300, width: 93, height: 20 }, dynamics, true);
     check("dynamics-table's last row (212 units below the frame)", "text", { x: 4, y: 492, width: 78, height: 20 }, dynamics, true);
-    check("kernel-camber's last tick label (5 units past the right edge)", "text", { x: 516, y: 255, width: 49, height: 17 }, { x: 0, y: 0, width: 560, height: 300 }, true);
+    // A label's slack is half an em: the em box is taller than the glyphs, and a runner
+    // without the site's font measures the same label a few units wider. Five units is
+    // that slack; twenty is a label whose ink leaves the drawing.
+    check("a label five units past the right edge (the em box's slack)", "text", { x: 516, y: 255, width: 49, height: 17 }, { x: 0, y: 0, width: 560, height: 300 }, false);
+    check("a label twenty units past the right edge", "text", { x: 540, y: 255, width: 40, height: 17 }, { x: 0, y: 0, width: 560, height: 300 }, true);
     check("wishbone-hero's ray to an instant centre off the drawing", "mark", { x: -1295, y: 269, width: 1337, height: 16 }, { x: 0, y: 0, width: 520, height: 323 }, false);
     check("a mark wholly outside the drawing", "mark", { x: -400, y: 10, width: 90, height: 10 }, { x: 0, y: 0, width: 560, height: 300 }, true);
     check("a label that ends exactly on the right edge", "text", { x: 500, y: 10, width: 60, height: 18 }, { x: 0, y: 0, width: 560, height: 300 }, false);
@@ -169,7 +174,7 @@ export async function run(argv) {
         const failures = cases();
         for (const failure of failures)
             console.log(`FAIL  canvas: ${failure}`);
-        console.log(`canvas: 7 cases examined, ${failures.length} errors, 0 warnings`);
+        console.log(`canvas: 8 cases examined, ${failures.length} errors, 0 warnings`);
         return failures.length ? 1 : 0;
     }
     const siteDir = positional[0] ?? "site";
@@ -268,7 +273,8 @@ export async function run(argv) {
             let count = 0;
             for (const element of figure.elements) {
                 const drawn = transformBox(element.box, element.matrix);
-                const verdict = outside(element.ink, drawn, figure.viewBox, 0.5);
+                const slack = element.ink === "text" ? element.fontSize * TEXT_SLACK : STROKE_TOLERANCE;
+                const verdict = outside(element.ink, drawn, figure.viewBox, slack);
                 if (!verdict.outside)
                     continue;
                 count += 1;
@@ -327,7 +333,8 @@ export async function run(argv) {
                     let worst = { over: 0, what: "" };
                     for (const element of figure.elements) {
                         const drawn = transformBox(element.box, element.matrix);
-                        const verdict = outside(element.ink, drawn, figure.viewBox, 0.5);
+                        const slack = element.ink === "text" ? element.fontSize * TEXT_SLACK : STROKE_TOLERANCE;
+                        const verdict = outside(element.ink, drawn, figure.viewBox, slack);
                         if (!verdict.outside)
                             continue;
                         count += 1;
