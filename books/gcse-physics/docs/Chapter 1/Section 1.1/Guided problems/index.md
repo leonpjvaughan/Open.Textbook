@@ -67,6 +67,7 @@ E_p &= m g h \\
     &= 5900\,\text{J} \quad (2\ \text{significant figures})
 \end{aligned}
 $$
+
 </details>
 
 **2.** A ball of mass 0.16 kg is kicked at 20 m/s. Calculate the energy in its
@@ -96,6 +97,7 @@ E_k &= \tfrac{1}{2} m v^2 \\
     &= 32\,\text{J}
 \end{aligned}
 $$
+
 </details>
 
 **3.** A block of copper of mass 1.2 kg is heated from 20 °C to 70 °C. The
@@ -127,6 +129,7 @@ $$
          &= 2.3 \times 10^4\,\text{J} \quad (2\ \text{significant figures})
 \end{aligned}
 $$
+
 </details>
 
 **4.** A motor transfers 18000 J in 12 s. Calculate its power.
@@ -153,6 +156,7 @@ P &= \frac{E}{t} \\
   &= 1500\,\text{W}
 \end{aligned}
 $$
+
 </details>
 
 **5.** A ball is dropped and bounces back to a lower height each time. Explain,
@@ -215,4 +219,5 @@ E_k &= \tfrac{1}{2} m v^2 \\
     &= 7.2 \times 10^4\,\text{J} \quad (2\ \text{significant figures})
 \end{aligned}
 $$
+
 </details>

@@ -85,7 +85,7 @@ export function mount(el) {
       // Axes.
       `<line x1="${LEFT}" y1="${BASE}" x2="${RIGHT}" y2="${BASE}" class="fig-ink"></line>` +
       `<line x1="${LEFT}" y1="${BASE}" x2="${LEFT}" y2="${TOP}" class="fig-ink"></line>` +
-      `${label({ x: LEFT - 10, y: TOP + 8, text: `intensity`, anchor: "end", size: SIZE.value, class: "text-ink" })}` +
+      `${label({ x: LEFT, y: TOP + 8, text: `intensity`, anchor: "start", size: SIZE.value, class: "text-ink" })}` +
       `${label({ x: RIGHT, y: BASE + 34, text: `wavelength / micrometres`, anchor: "end", size: SIZE.value, class: "text-ink" })}` +
       // The visible band.
       `<rect x="${visibleLeft}" y="${TOP}" width="${(visibleRight - visibleLeft).toFixed(1)}" ` +

@@ -181,7 +181,16 @@ export function mount(el) {
       numberLine +=
         `<line x1="${px.toFixed(1)}" y1="${NL_Y - 4}" x2="${px.toFixed(1)}" y2="${NL_Y + 4}" ` +
         `class="fig-ink"></line>` +
-        label({ x: px, y: NL_Y + 20, text: x, anchor: "middle", size: SIZE.tick, class: "text-ink" });
+        // The end ticks are anchored inwards: a centred label at the end of the line hangs
+        // half of itself outside the drawing, which is the defect the `canvas` check found.
+        label({
+          x: px,
+          y: NL_Y + 20,
+          text: x,
+          anchor: px < 12 ? "start" : px > 448 ? "end" : "middle",
+          size: SIZE.tick,
+          class: "text-ink",
+        });
     }
     for (const iv of intervals) {
       const a = iv.a === -Infinity ? X_MIN : Math.max(iv.a, X_MIN);

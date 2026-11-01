@@ -7,16 +7,16 @@ title: Methods, A to Z
 The inverse lookup. You have heard of a method and want to know where it
 applies, or you are choosing between two and want to know what each costs.
 
-Five classes, and one section for each. **Read the class first**: a method
-outside its class is not a slower answer, it is a wrong one, or a run that does
-not finish. Inside a section, each method gives three things. Its **class**
-comes first, as the link to the page that argues for it. Then the **step**: the
-arithmetic at the centre of the method, the update it repeats or the equation it
-solves. Then the **price**: what it needs from you, and what it will not do.
-Where a method is a family, the step is the representative member, and the class
-line says what the family covers.
+Five families of methods, and one section for each. **Read the method's class
+first**: a method outside its class is not a slower answer, it is a wrong one,
+or a run that does not finish. Inside a section, each method gives three things.
+Its **class** comes first, as the link to the page that argues for it. Then the
+**step**: the arithmetic at the centre of the method, the update it repeats or
+the equation it solves. Then the **price**: what it needs from you, and what it
+will not do. Where a method has several variants, the step is the representative
+member, and the class links say what each variant covers.
 
-| class | what it answers | entries |
+| family | what it answers | entries |
 |---|---|---|
 | [Finding a state](#finding-a-state) | $F(x)=0$: one unknown, or $n$ equations in $n$ unknowns | 19 |
 | [Linear systems](#linear-systems) | $Ax=b$: one answer that satisfies many equations at once | 20 |
@@ -28,6 +28,10 @@ A family counts once, and a method filed under two classes appears in both, so
 the column is entries rather than a partition of the book's methods.
 
 <div class="method-index" markdown="1">
+
+:::method-index
+
+:::contents
 
 <a id="finding-a-state"></a>
 
@@ -210,6 +214,8 @@ $\begin{aligned}x_{k+1}={}&\arg\max_x\mathbb E\big[\\&\max(0,f_{\min}-f(x))\big]
 
 A surrogate and a prior. Best when one run costs a day
 
+
+**The symbols used above.**
 
 - $f$ is the function whose zero you want.
 - $F$ carries the same idea for several equations at once: a vector that is zero
@@ -437,6 +443,8 @@ A penalty and a multiplier together. Better conditioning; the penalty term hides
 the constraint error
 
 
+**The symbols used above.**
+
 - $A$ is the matrix, $b$ the right-hand side and $x$ the answer they solve for.
 - $P$ is a permutation, which reorders rows for stability.
 - $L$ and $U$ are the lower and upper triangular factors, and $y$ is the
@@ -550,6 +558,8 @@ $\frac{1}{2\pi i}\oint_\Gamma(zI-A)^{-1}V\,dz$, eigenvalues inside $\Gamma$
 A contour and a linear solve. Every eigenvalue in a window; needs a good shifted
 solver
 
+
+**The symbols used above.**
 
 - $A$ and $B$ are the matrices, and $I$ is the identity.
 - $\lambda$ is an eigenvalue with eigenvector $v$, so $Av=\lambda v$.
@@ -750,6 +760,8 @@ $u=u^*-\frac{1}{a_p}\nabla p'$
 A pressure correction. The workhorse of steady flow solvers
 
 
+**The symbols used above.**
+
 - $u$ is the field being advanced and $u_n$ its value at step $n$; $\Delta t$
   and $\Delta x$ are the time and space steps.
 - $F(u)$ is the right-hand side of the semi-discrete system $\dot u=F(u)$, and
@@ -889,6 +901,8 @@ $\int_a^bf(x)w(x)\,dx\approx\sum_{i=1}^{n}w_if(x_i)$; exact to degree $2n-1$
 A smooth integrand. Exact to a degree, and hopeless above about ten dimensions
 </div>
 
+
+**The symbols used above.**
 
 - $\mu$ is the mean you want, $\hat\mu$ an estimate of it, and $\hat\mu_N$ the
   estimate from $N$ samples.

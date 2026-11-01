@@ -77,22 +77,27 @@ Draw the diagonal $BD$.
 
 The line $BD$ is a transversal of the parallel lines $AB$ and $DC$. The angles
 $\angle ABD$ and $\angle BDC$ are alternate angles, so
+
 $$|\angle ABD| = |\angle BDC|.$$
 
 The same line $BD$ is a transversal of the parallel lines $AD$ and $BC$. The angles
 $\angle ADB$ and $\angle DBC$ are alternate angles, so
+
 $$|\angle ADB| = |\angle DBC|.$$
 
 The side $BD$ is common to the two triangles $DAB$ and $BCD$. So the triangles have two
 equal angles and the side between them equal, which is ASA. Therefore
+
 $$\triangle DAB \cong \triangle BCD.$$
 
 The matching parts of congruent triangles are equal. So
+
 $$|AB| = |DC|, \qquad |AD| = |BC|, \qquad |\angle DAB| = |\angle BCD|.$$
 
 That gives both pairs of opposite sides and one pair of opposite angles. For the other
 pair, add the two angles at $B$ and the two angles at $D$. The Protractor Axiom lets us
 add them:
+
 $$|\angle ABC| = |\angle ABD| + |\angle DBC| = |\angle BDC| + |\angle ADB| = |\angle CDA|.$$
 
 So both pairs of opposite angles are equal. $\blacksquare$
@@ -124,6 +129,7 @@ $180^\circ$. The same argument works at every vertex. $\blacksquare$
 **Example 1.** In a parallelogram $ABCD$, $|AB| = 14$ cm. Find $|DC|$.
 
 The sides $AB$ and $DC$ are opposite sides, so they are equal by Theorem 9.
+
 $$|DC| = |AB| = 14 \text{ cm}.$$
 
 **Example 2.** In a parallelogram $ABCD$, $|\angle A| = 68^\circ$. Find the other three
@@ -133,6 +139,7 @@ The angle $\angle C$ is opposite $\angle A$, so $|\angle C| = 68^\circ$ by Theor
 
 The angles $\angle B$ and $\angle D$ are consecutive to $\angle A$, so each is
 supplementary to it:
+
 $$|\angle B| = |\angle D| = 180^\circ - 68^\circ = 112^\circ.$$
 
 Check: $68 + 112 + 68 + 112 = 360$, which is the angle sum of the quadrilateral.
@@ -141,6 +148,7 @@ Check: $68 + 112 + 68 + 112 = 360$, which is the angle sum of the quadrilateral.
 perimeter.
 
 Opposite sides are equal, so the four sides are $9$, $7$, $9$ and $7$ cm.
+
 $$9 + 7 + 9 + 7 = 32 \text{ cm}.$$
 
 **Example 4.** A rhombus has a side of $6$ cm. Find its perimeter.

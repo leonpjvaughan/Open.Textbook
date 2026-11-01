@@ -4,8 +4,12 @@ title: Root finding
 
 # Root finding
 
-**You have one of these when** the unknowns are a finite list, the rule is an
-equation that has to hold at a point, and nothing changes with time.
+**You have one of these when** a rule has to hold at a point, the rule bends
+with the answer, and nothing changes with time.
+
+**Root finding, not a linear system.** A rule that bends is iterated; a rule
+that is linear is solved in one step. If every row is a sum of the unknowns, the
+iteration is rediscovering a factorisation.
 
 ## What you are modelling
 
@@ -60,6 +64,7 @@ fast.
 
 The rule holds at a point, and the point is found — usually by iteration,
 sometimes in closed form. There is no region and no time. The difficulty is:
+
 - which of the solutions you land in;
 - whether the Jacobian is invertible where you need it;
 - whether your start is inside the region where the method converges.
@@ -82,17 +87,31 @@ the mechanism, not a failure of the method.
 Every method named here is in [Methods, A to Z](../techniques/#finding-a-state),
 with its price and what it will not do.
 
+**Start from the model you have.** Each row is a property of the model in front
+of you, the methods that fit it, and what the fit costs. The method-keyed table
+below is the same list sorted by name.
+
+| what your model is | the methods that fit | the price |
+|---|---|---|
+| one rule, and you have a bracket | Bisection, Brent | certain and slow: forty steps for ten digits |
+| one rule, no derivative | Secant, false position, Brent | a poor bracket misleads |
+| one rule, derivative available | Newton, quasi-Newton (Broyden) | a bad start, or a singular Jacobian |
+| several solutions, and the start decides | Continuation, homotopy | the path has a fold, and you step in $x$ |
+| many unknowns, or a step the model cannot trust | Levenberg–Marquardt, trust region | the linear algebra is the cost |
+| a map that shrinks the error | Fixed-point iteration | the map must be a contraction |
+
+<!-- table: cards -->
 | technique | what it does | when it wins | when it is the wrong tool |
 |---|---|---|---|
-| Bisection | Halves a bracket that contains a sign change | You have a bracket and need certainty | Needs 40 steps for ten digits; one equation only |
-| Secant, false position | Interpolates between two points | The derivative is unavailable | The bracket is poor |
-| Newton | Uses the Jacobian | Few unknowns, Jacobian available | A bad start; a singular Jacobian |
-| Quasi-Newton (Broyden) | Updates an approximate Jacobian | The Jacobian is expensive | Many unknowns with strong coupling |
-| Brent | Combines a bracket with fast interpolation | One equation, no derivative, need reliability | Systems of equations |
-| Fixed-point iteration | Repeats a map that shrinks the error | The map is a contraction | The map expands; most interesting cases |
-| Continuation, homotopy | Solves a sequence from a known case | Several solutions, toggle points | The path has a fold and you step in $x$ |
-| Levenberg–Marquardt | Damped least squares | Overdetermined or near-singular systems | A square, well-conditioned system |
-| Trust region | Limits the step to where the model is trusted | The linear model is poor far from the answer | Cheap, well-scaled problems |
+| [Bisection](../techniques/#bisection) | Halves a bracket that contains a sign change | You have a bracket and need certainty | Needs 40 steps for ten digits; one equation only |
+| [Secant, false position](../techniques/#secant) | Interpolates between two points | The derivative is unavailable | The bracket is poor |
+| [Newton](../techniques/#newton) | Uses the Jacobian | Few unknowns, Jacobian available | A bad start; a singular Jacobian |
+| [Quasi-Newton (Broyden)](../techniques/#quasi-newton-broyden) | Updates an approximate Jacobian | The Jacobian is expensive | Many unknowns with strong coupling |
+| [Brent](../techniques/#brent) | Combines a bracket with fast interpolation | One equation, no derivative, need reliability | Systems of equations |
+| [Fixed-point iteration](../techniques/#fixed-point-iteration) | Repeats a map that shrinks the error | The map is a contraction | The map expands; most interesting cases |
+| [Continuation, homotopy](../techniques/#continuation) | Solves a sequence from a known case | Several solutions, toggle points | The path has a fold and you step in $x$ |
+| [Levenberg–Marquardt](../techniques/#levenberg-marquardt) | Damped least squares | Overdetermined or near-singular systems | A square, well-conditioned system |
+| [Trust region](../techniques/#trust-region) | Limits the step to where the model is trusted | The linear model is poor far from the answer | Cheap, well-scaled problems |
 
 ## Systems that live here
 
@@ -122,9 +141,17 @@ with its price and what it will not do.
 
 ## Read next
 
+- [The same corner, five ways](../worked-case/index.md) — this class, worked
+  on one mechanism with the numbers beside it.
+- [Why Newton is fast, and when it is not](order-of-newton/index.md) — the
+  working under this class: the squared error, and what a double root does to
+  it.
 - [Saddle point](../saddle-point/index.md) — the same loop with a constraint
   priced in.
 - [Optimisation](../optimisation/index.md) — a minimum is a root of the
   gradient.
 - [When it goes wrong](../symptoms/index.md) — the symptom table for every
   class.
+
+Back to the map: [the nine kinds](../index.md) puts this class among the
+other eight.

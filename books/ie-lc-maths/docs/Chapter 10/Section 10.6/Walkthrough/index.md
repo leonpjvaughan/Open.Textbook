@@ -27,6 +27,8 @@ Sometimes you learn something that changes the chance of an event. The probabili
 probability**.
 
 > **Conditional probability.**
+>
+>
 > $$P(A \mid B) = \frac{P(A \cap B)}{P(B)}, \qquad P(B) \ne 0$$
 
 The condition restricts attention to the outcomes where $B$ happens. The formula asks what
@@ -54,6 +56,8 @@ $$P(\text{second red} \mid \text{first red}) = \frac{4}{7}$$
 Rearranging the formula gives a way to find the probability that both events happen:
 
 > **The multiplication rule.**
+>
+>
 > $$P(A \cap B) = P(A \mid B) \times P(B)$$
 
 **Example 3.** In Example 2, $P(\text{first red}) = \dfrac{5}{8}$, so

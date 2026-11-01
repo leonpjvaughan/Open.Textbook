@@ -31,7 +31,11 @@ An **average** is a single value that stands for the whole data set. Three are u
 - The **mode** is the value that occurs most often.
 
 > **The mean of a list.** For values $x_1, x_2, \dots, x_n$,
+>
+>
 > $$\bar{x} = \frac{\sum x}{n}$$
+>
+>
 > where $\sum x$ means the sum of all the values and $n$ is how many there are.
 
 **Example 1.** Find the mean of $4$, $7$, $9$, $12$, $13$ and $15$.
@@ -66,7 +70,11 @@ When values repeat, a frequency table saves work. Multiply each value by its fre
 add the results, and divide by the total frequency.
 
 > **The mean from a frequency table.**
+>
+>
 > $$\bar{x} = \frac{\sum fx}{\sum f}$$
+>
+>
 > where $f$ is the frequency of the value $x$.
 
 **Example 4.** Find the mean of the data in this table.

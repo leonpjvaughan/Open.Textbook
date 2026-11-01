@@ -32,7 +32,10 @@ Babylonian arithmetic, and it has no mathematical reason behind it. A **radian**
 The circumference of a circle is $2\pi r$, which is $2\pi$ radii. So a full turn is
 $2\pi$ radians. Half a turn is $\pi$ radians, and half a turn is also $180^\circ$.
 
-> **The conversion.** $$\pi \text{ radians} = 180^\circ$$
+> **The conversion.**
+>
+>
+> $$\pi \text{ radians} = 180^\circ$$
 
 To change degrees into radians, multiply by $\dfrac{\pi}{180}$. To change radians into
 degrees, multiply by $\dfrac{180}{\pi}$.
@@ -62,7 +65,11 @@ The Formulae and Tables booklet gives both formulas, and it gives each one twice
 for radians and once for degrees.
 
 > **With the angle in radians.** For a circle of radius $r$ and a sector angle $\theta$,
+>
+>
 > $$l = r\theta \qquad A = \tfrac{1}{2}r^2\theta$$
+>
+>
 >
 > Here $l$ is the arc length and $A$ is the area of the sector.
 

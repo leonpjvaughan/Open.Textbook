@@ -96,6 +96,7 @@ $$
 $$
 a \approx \sqrt{102.4} \approx 10.1 \text{ cm}.
 $$
+
 </details>
 
 **3.** A triangle has sides $a = 6$ cm, $b = 7$ cm and $c = 10$ cm. Find angle
@@ -153,6 +154,7 @@ $$
 \text{area} = \tfrac{1}{2} \times 9 \times 14 \times \sin 48^\circ
 = 63 \times 0.7431 \approx 46.8 \text{ cm}^2.
 $$
+
 </details>
 
 **5.** In triangle $PQR$, side $p = 9$ cm, side $q = 12$ cm and angle
@@ -212,4 +214,5 @@ $$
 $$
 TP \approx \sqrt{11062} \approx 105 \text{ m}.
 $$
+
 </details>

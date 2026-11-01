@@ -13,42 +13,43 @@ kind: walkthrough
 ## Where this chapter is going
 
 A car's wheel does not stay upright as it moves up and down. The angle it leans
-at, and the angle it points at, both change, because the wheel is held by a
-linkage of arms that swing on the body.
+at, and the angle it points at, both change. The wheel is held by a linkage of
+arms that swing on the body.
 
-That change is small — a couple of degrees over the whole travel — and it matters
-enormously, because a tyre grips best at a particular angle. So a suspension
-designer wants to know, before a single part is made, how the wheel's angles will
-move and how much the design can be changed to suit.
+That change is small — a couple of degrees over the whole travel — and it
+matters enormously, because a tyre grips best at a particular angle. So a
+suspension designer wants to know this before a single part is made. How will
+the wheel's angles move, and how much can the design be changed to suit?
 
-**This chapter's question.** A wheel moves 40 mm up and 40 mm down. How far does
-its camber change, and what is the simplest model that answers the question
-within a tenth of a degree?
+**This chapter's question. It is [the chapter problem](../index.md), and this
+section is the first step towards it. The step is the geometry that turns a
+wheel's rise and fall into an angle.
 
-The second half of that question is where the chapter's argument lives. The first half
-has one answer. The second half is a judgement, and the chapter's argument is that the
-judgement can be made with numbers rather than with taste.
+The second half of that question is where the chapter's argument lives. The
+first half has one answer. The second half is a judgement, and the chapter's
+argument is that the judgement can be made with numbers rather than with taste.
 
 ## The object
 
-Before the mathematics, the object. This is a front corner in cutaway, built for a
-display: an upper wishbone, a coil-over spring and damper, an upright carrying the
-hub, and the lower wishbone underneath it.
+Before the mathematics, the object. This is a front corner in cutaway, built for
+a display. It has an upper wishbone, a coil-over spring and damper, an upright
+carrying the hub, and the lower wishbone underneath it.
 
 <img class="corner-photo" src="../../../assets/images/front-corner.jpg" alt="A cutaway front corner: an upper wishbone, a coil-over damper, a yellow upright carrying the hub, a brake disc, and the lower wishbone below">
 
-The parts are painted, which is a display's choice rather than a car's: on a real
-corner they are bare metal and covered in dust. What the paint is good for is
-showing which piece is which, and the shapes above are the shapes the chapter's
-model uses.
+The parts are painted, which is a display's choice rather than a car's. On a
+real corner they are bare metal and covered in dust. What the paint is good for
+is showing which piece is which, and the shapes above are the shapes the
+chapter's model uses.
 
-*Photograph: a.d.Tramontana, [CC BY-SA 1.0](https://creativecommons.org/licenses/by-sa/1.0/),
-via Wikimedia Commons; cropped. The image keeps its own licence.*
+*Photograph: a.d. Tramontana, [CC BY-SA
+1.0](https://creativecommons.org/licenses/by-sa/1.0/), via Wikimedia Commons;
+cropped. The image keeps its own licence.*
 
 ## The parts, and their names
 
-Before the mathematics, the words. A car's front corner is a mechanism of seven
-parts, and every one of them will be referred to by name for the rest of the
+Before the mathematics, the words.A car's front corner is a mechanism of seven
+parts. Every one of them will be referred to by name for the rest of the
 chapter.
 
 :::figure wishbone-anatomy
@@ -59,26 +60,28 @@ joint** and **contact patch**.
 
 The two wishbones each attach to the body at two points and to the upright at
 one. The upright carries the hub, and the wheel is bolted to the hub, so the
-upright and the wheel turn together. Everything in this chapter follows from that
-sentence.
+upright and the wheel turn together. Everything in this chapter follows from
+that sentence.
 
 ## Two angles that will be measured
 
 A wheel has an angle in two different directions, and they have separate names
 because they do separate jobs.
 
-**Camber** is the angle of the wheel in the view from in front of the car. A wheel
-standing straight up has zero camber. **Positive camber** means the top of the
-wheel leans out, away from the car. Negative camber means the top leans in.
+**Camber** is the angle of the wheel in the view from in front of the car. A
+wheel standing straight up has zero camber. **Positive camber** means the top of
+the wheel leans out, away from the car. Negative camber means the top leans in.
 
-Sign conventions differ between books, so this one states its own and keeps to it:
+Sign conventions differ between books, so this one states its own and keeps to
+it:
 
-$$ \text{positive camber} \;\Longleftrightarrow\; \text{the top of the wheel leans out.} $$
+$$ \text{positive camber} \;\Longleftrightarrow\; \text{the top of the wheel
+leans out.} $$
 
-**Toe** is the angle in the view from above: whether the front of the wheel points
-slightly in towards the car or slightly out. This chapter meets toe only in
-passing, and [§1.4](../../section-1.4/learn/) explains why: the front view is a projection, and a projection
-loses one of the two angles.
+**Toe** is the angle in the view from above: whether the front of the wheel
+points slightly in towards the car or slightly out. This chapter meets toe only
+in passing, and [§1.4](../../section-1.4/learn/) explains why: the front view is
+a projection, and a projection loses one of the two angles.
 
 ## The chapter's four models
 
@@ -93,21 +96,24 @@ the question.
 | Diagnosed | the same, read with a singular value decomposition | which equation was never needed |
 | With a bush | the upper joint is a spring | how far the angles move under load |
 
-The chapter's problem is answered at the end of [§1.5](../../section-1.5/learn/), and [§1.6](../../section-1.6/learn/) and [§1.7](../../section-1.7/learn/) sketch
-what lies beyond that — mass, dampers, and the rest of the car.
+The chapter's problem is answered at the end of
+[§1.5](../../section-1.5/learn/), and [§1.6](../../section-1.6/learn/) and
+[§1.7](../../section-1.7/learn/) sketch what lies beyond that — mass, dampers,
+and the rest of the car.
 
 :::deeper the-four-models
 
 ## A first look
 
-The next section builds the first model, and the figure there shows the mechanism
-moving with the camber read off as it goes. It is worth knowing before then that
-the answer is not obvious. The wheel leans one way as it rises and the other way
-as it falls. Which way is a property of the linkage rather than a rule.
+The next section builds the first model, and the figure there shows the
+mechanism moving with the camber read off as it goes. It is worth knowing before
+then that the answer is not obvious. The wheel leans one way as it rises and the
+other way as it falls. Which way is a property of the linkage rather than a
+rule.
 
 There is no agreement panel in this section, because there is nothing yet to
-agree with. From [§1.2](../../section-1.2/learn/) onwards, every section ends by putting a number on how far
-the new model and the previous one differ.
+agree with. From [§1.2](../../section-1.2/learn/) onwards, every section ends by
+putting a number on how far the new model and the previous one differ.
 
 ## You should now be able to
 
@@ -117,20 +123,22 @@ the new model and the previous one differ.
 
 ## Watch out
 
-Positive camber leans the **top** of the wheel out. It is a common mistake to read it
-the other way round, and a whole chapter of signs then comes out upside down.
+Positive camber leans the **top** of the wheel out. It is a common mistake to
+read it the other way round, and a whole chapter of signs then comes out upside
+down.
 
 The check that settles it: a wheel with positive camber looks like the top of an
 `A` that has been pushed outwards at the top. It looks like `/ \` seen from the
-front of the car, leaning away from the middle. Every sign in this chapter follows
-from that one convention, and the code that computes camber uses the same definition.
+front of the car, leaning away from the middle. Every sign in this chapter
+follows from that one convention, and the code that computes camber uses the
+same definition.
 
 ## Where the mathematics lives
 
 The model in this chapter is a small one, and it has been implemented in a
 package that also solves the three-dimensional version. Each section shows the
-mathematics as pseudocode and links to the file that implements it, so a reader
-who wants the whole of it can find it:
+mathematics as pseudocode and links to the file that implements it. A reader who
+wants the whole of it can follow the link:
 
 - [`otkd`](https://github.com/leonpjvaughan/Open.Textbook/tree/main/solvers/otkd) —
   the solver, its tests, and the data the later figures draw.

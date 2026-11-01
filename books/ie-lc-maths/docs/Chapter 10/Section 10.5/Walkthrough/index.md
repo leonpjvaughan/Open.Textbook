@@ -42,6 +42,7 @@ $$P(\text{red}) = \frac{4}{10} = \frac{2}{5}$$
 ## The two axioms
 
 > **The axioms of probability.**
+>
 > 1. For every event $A$, $0 \le P(A) \le 1$. A probability is never negative and never
 >    greater than $1$.
 > 2. The probabilities of all the outcomes in the sample space add up to $1$.
@@ -58,7 +59,11 @@ $$P(A') = 1 - 0.4 = 0.6$$
 ## Combining events
 
 > **The addition rule.**
+>
+>
 > $$P(A \cup B) = P(A) + P(B) - P(A \cap B)$$
+>
+>
 >
 > When $A$ and $B$ are mutually exclusive, $P(A \cap B) = 0$, so
 > $P(A \cup B) = P(A) + P(B)$.

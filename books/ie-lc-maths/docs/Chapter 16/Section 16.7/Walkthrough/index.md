@@ -170,6 +170,7 @@ $BC$.
 
 By Construction 7, mark four equal segments along a ray, join the last mark to the end of
 the segment, and draw parallels through the other marks. Each part is
+
 $$24 \div 4 = 6 \text{ cm}.$$
 
 **Example 2.** Construct a triangle with sides of $5$ cm, $6$ cm and $7$ cm. Which
@@ -183,6 +184,7 @@ Construct it, and find the third side.
 
 Use Construction 13. Draw the $5$ cm leg, construct a perpendicular at one end, and draw
 an arc of radius $13$ cm from the other end. The third side is found by Pythagoras:
+
 $$\sqrt{13^2 - 5^2} = \sqrt{144} = 12 \text{ cm}.$$
 
 **Example 4.** Construct a rectangle with sides of $60$ mm and $25$ mm.

@@ -54,7 +54,11 @@ The sampling distribution of the proportion has a mean of $p$ and a standard dev
 called the **standard error**:
 
 > **The standard error of the proportion.**
+>
+>
 > $$\sigma_{\hat{p}} = \sqrt{\frac{p(1 - p)}{n}}$$
+>
+>
 > where $\sigma_{\hat{p}}$ is the standard error of the sample proportion and $n$ is the
 > sample size.
 > This is the formula in the formulae and tables booklet.
@@ -77,7 +81,11 @@ $\dfrac{1}{\sqrt{n}}$. The course uses this maximum as the margin of error for a
 proportion:
 
 > **The margin of error for a proportion.**
+>
+>
 > $$\text{margin of error} = \frac{1}{\sqrt{n}}$$
+>
+>
 > This is the maximum radius of the $95\%$ confidence interval.
 
 **Example 1.** A poll asks $1000$ voters. Find the margin of error.

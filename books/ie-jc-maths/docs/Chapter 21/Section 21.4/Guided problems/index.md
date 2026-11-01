@@ -173,6 +173,7 @@ $1-\frac38$.
 $$P(\text{no prize})=1-\frac38=\frac58$$
 
 Write the 1 as $\frac88$: $\frac88-\frac38=\frac58$. The two probabilities add to
+
 1. Because $\frac58$ is more than one half, a player is more likely to win nothing
 than to win a prize.
 

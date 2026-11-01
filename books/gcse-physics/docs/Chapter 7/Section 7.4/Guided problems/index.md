@@ -151,4 +151,5 @@ F &= B I l \\
   &= 0.012\,\text{N}
 \end{aligned}
 $$
+
 </details>

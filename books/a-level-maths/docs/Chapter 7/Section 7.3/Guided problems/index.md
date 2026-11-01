@@ -135,6 +135,7 @@ $3$, giving $3\cos 3x$.
 $$
 \frac{dy}{dx} = 4 \times 2e^{2x} + 3\cos 3x = 8e^{2x} + 3\cos 3x.
 $$
+
 </details>
 
 **5.** Differentiate $y = \cos 4x - 2\ln x$.

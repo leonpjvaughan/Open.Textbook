@@ -288,3 +288,26 @@ def test_the_kit_keeps_the_contract_it_exists_to_keep():
         "the shared figure kit no longer keeps its contract.\n"
         f"{result.stdout[-2000:]}\n{result.stderr[-3000:]}"
     )
+
+
+def test_every_figure_draws_inside_its_own_canvas():
+    """`tools canvas site`, in the gate rather than only in the preview script.
+
+    The auditor's objection to item 156 was exact: `canvas --cases` ran under plain
+    `node`, but nothing ran the sweep over the site, so `pytest` passed while a label sat
+    four units outside a frame on the built page. This runs the sweep where a browser is
+    available and skips where it is not — and a skip is printed, so "could not look" and
+    "looked and it was fine" never read the same.
+    """
+    _require_environment()
+    result = subprocess.run(
+        ["node", str(TOOLS), "canvas", str(SITE)],
+        capture_output=True,
+        text=True,
+        check=False,
+    )
+    assert result.returncode == 0, (
+        "a figure draws outside its own viewBox.\n"
+        f"{result.stdout[-3000:]}\n{result.stderr[-1500:]}"
+    )
+    assert "figures examined" in result.stdout, result.stdout[-500:]

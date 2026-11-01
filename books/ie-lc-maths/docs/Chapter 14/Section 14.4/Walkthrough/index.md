@@ -34,6 +34,8 @@ The fixed point that the enlargement is measured from is the **centre of enlarge
 Every image point lies on the ray from the centre through the object point.
 
 > **Enlargement about the origin.**
+>
+>
 > $$(x,y) \to (kx,\; ky).$$
 
 Multiply both coordinates by the scale factor.
@@ -67,6 +69,8 @@ When the centre is $C(a,b)$, first find how far the point is from the centre, th
 multiply that distance by $k$, then add it back on.
 
 > **Enlargement about $C(a,b)$.**
+>
+>
 > $$(x,y) \to \bigl(a + k(x - a),\; b + k(y - b)\bigr).$$
 
 **Example 3.** Enlarge $(5,4)$ by scale factor $2$ about the centre $C(1,1)$.
@@ -87,6 +91,8 @@ An enlargement multiplies every length by $k$. A length has one dimension, so it
 once. An area has two dimensions, so it scales twice.
 
 > **The area rule.** If the scale factor is $k$, then
+>
+>
 > $$\text{area of image} = k^2 \times \text{area of object}.$$
 
 **Example 5.** A shape has area $3$ square units. Find the area of its image after an

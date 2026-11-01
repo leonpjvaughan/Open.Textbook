@@ -11,7 +11,7 @@ problems:
     statement: 'Find the circumference of a circle of radius $7$ cm.'
     answer_label: 'The circumference'
     check: {kind: evaluate, expression: '2 * pi * 7', answer: '14 * pi'}
-    answer_text: >-
+    answer_text: |-
       $$C = 2\pi r = 2\pi \times 7 = 14\pi \approx 43.98 \text{ cm}$$
 
       The exact answer is $14\pi$ cm. The decimal is that value to 2 decimal places.
@@ -23,7 +23,7 @@ problems:
     statement: 'Find the circumference of a circle of diameter $9$ m.'
     answer_label: 'The circumference'
     check: {kind: evaluate, expression: 'pi * 9', answer: '9 * pi'}
-    answer_text: >-
+    answer_text: |-
       $$C = \pi d = \pi \times 9 = 9\pi \approx 28.27 \text{ m}$$
 
       The diameter is given, so the short formula is $C = \pi d$.
@@ -35,7 +35,7 @@ problems:
     statement: 'Find the area of a circle of radius $5$ cm.'
     answer_label: 'The area'
     check: {kind: evaluate, expression: 'pi * 5**2', answer: '25 * pi'}
-    answer_text: >-
+    answer_text: |-
       $$A = \pi r^2 = \pi \times 25 = 25\pi \approx 78.54 \text{ cm}^2$$
 
       Square the radius first, then multiply by $\pi$.
@@ -47,7 +47,7 @@ problems:
     statement: 'Find the area of a circle of diameter $12$ m.'
     answer_label: 'The area'
     check: {kind: evaluate, expression: 'pi * (12 / 2)**2', answer: '36 * pi'}
-    answer_text: >-
+    answer_text: |-
       The radius is $6$ m, so
 
       $$A = \pi \times 6^2 = 36\pi \approx 113.10 \text{ m}^2$$
@@ -73,7 +73,7 @@ problems:
     statement: 'Find the area of a semicircle of radius $8$ cm.'
     answer_label: 'The area of the semicircle'
     check: {kind: evaluate, expression: 'pi * 8**2 / 2', answer: '32 * pi'}
-    answer_text: >-
+    answer_text: |-
       $$A = \tfrac{1}{2} \times \pi \times 8^2 = \tfrac{1}{2} \times 64\pi = 32\pi \approx 100.53 \text{ cm}^2$$
 
       A semicircle is half of a full circle, so find the full area and halve it.
@@ -87,7 +87,7 @@ problems:
       $1.2$ m sits on it. Find the area of the pad that the base does not cover.
     answer_label: 'The uncovered area'
     check: {kind: evaluate, expression: '1.6**2 - pi * 0.6**2', answer: '2.56 - 0.36 * pi'}
-    answer_text: >-
+    answer_text: |-
       The radius of the base is $0.6$ m, so
 
       $$A = 1.6^2 - \pi \times 0.6^2 = 2.56 - 0.36\pi \approx 1.43 \text{ m}^2$$

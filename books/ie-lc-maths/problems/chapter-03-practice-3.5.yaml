@@ -19,7 +19,7 @@ problems:
         w: {value: '3', unit: cm}
         h: {value: '2', unit: cm}
       answer: {value: '62', unit: 'cm^2'}
-    answer_text: >-
+    answer_text: |-
       $$A = 2(15 + 10 + 6) = 62 \text{ cm}^2$$
 
       Three pairs of rectangles, each pair counted twice.
@@ -42,7 +42,7 @@ problems:
         c: {value: '5', unit: cm}
         L: {value: '10', unit: cm}
       answer: {value: '132', unit: 'cm^2'}
-    answer_text: >-
+    answer_text: |-
       Two triangular ends and three rectangles:
 
       $$A = 2(6) + 30 + 40 + 50 = 132 \text{ cm}^2$$
@@ -54,7 +54,7 @@ problems:
     statement: 'Find the curved surface area of a cylinder of radius $7$ cm and height $4$ cm.'
     answer_label: 'The curved surface area'
     check: {kind: evaluate, expression: '2 * pi * 7 * 4', answer: '56 * pi'}
-    answer_text: >-
+    answer_text: |-
       $$2\pi r h = 2\pi \times 7 \times 4 = 56\pi \approx 175.93 \text{ cm}^2$$
 
       The word **curved** means the two circles are left out.
@@ -66,7 +66,7 @@ problems:
     statement: 'Find the total surface area of a closed cylinder of radius $7$ cm and height $4$ cm.'
     answer_label: 'The total surface area'
     check: {kind: evaluate, expression: '2 * pi * 7**2 + 2 * pi * 7 * 4', answer: '154 * pi'}
-    answer_text: >-
+    answer_text: |-
       Two circles give $2 \times 49\pi = 98\pi$, and the tube gives $56\pi$:
 
       $$A = 98\pi + 56\pi = 154\pi \approx 483.81 \text{ cm}^2$$
@@ -78,7 +78,7 @@ problems:
     statement: 'A cylinder of radius $7$ cm and height $4$ cm has no lid. Find its surface area.'
     answer_label: 'The surface area with no lid'
     check: {kind: evaluate, expression: 'pi * 7**2 + 2 * pi * 7 * 4', answer: '105 * pi'}
-    answer_text: >-
+    answer_text: |-
       With no lid there is one circle instead of two:
 
       $$A = 49\pi + 56\pi = 105\pi \approx 329.87 \text{ cm}^2$$
@@ -92,7 +92,7 @@ problems:
     statement: 'Find the total surface area of a closed cylinder of diameter $10$ cm and height $6$ cm.'
     answer_label: 'The total surface area'
     check: {kind: evaluate, expression: '2 * pi * (10 / 2)**2 + 2 * pi * (10 / 2) * 6', answer: '110 * pi'}
-    answer_text: >-
+    answer_text: |-
       The radius is $5$ cm, so
 
       $$A = 2\pi \times 25 + 2\pi \times 5 \times 6 = 50\pi + 60\pi = 110\pi \approx 345.58 \text{ cm}^2$$
@@ -106,7 +106,7 @@ problems:
       surface area in square metres, giving the exact answer in terms of $\pi$.
     answer_label: 'The total surface area of Tank A'
     check: {kind: evaluate, expression: '2 * pi * 0.6**2 + 2 * pi * 0.6 * 1.2', answer: '2.16 * pi'}
-    answer_text: >-
+    answer_text: |-
       The radius is $0.6$ m, so
 
       $$A = 2\pi \times 0.36 + 2\pi \times 0.6 \times 1.2 = 0.72\pi + 1.44\pi = 2.16\pi \approx 6.79 \text{ m}^2$$

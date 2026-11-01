@@ -103,6 +103,7 @@ $$
 $$
 a = \frac{150\cos 30^\circ - 50}{20} = \frac{129.90 - 50}{20} \approx 4.00 \text{ m s}^{-2}.
 $$
+
 </details>
 
 **3.** A block of mass $6$ kg is released on a smooth slope of $25^\circ$. Find
@@ -134,6 +135,7 @@ $$
 $$
 R = 58.8\cos 25^\circ \approx 53.29 \text{ N}.
 $$
+
 </details>
 
 **4.** A block of mass $5$ kg is pulled up a smooth slope of $35^\circ$ by a rope
@@ -195,6 +197,7 @@ $$
 $$
 T = 4a + 8 = 12.23 + 8 \approx 20.23 \text{ N}.
 $$
+
 </details>
 
 **6.** Forces of $8$ N due east, $6$ N due north and $3$ N due west act at a
@@ -223,6 +226,7 @@ The resultant is $(5, 6)$ N. Its size is
 $$
 \sqrt{5^2 + 6^2} = \sqrt{61} \approx 7.81 \text{ N}.
 $$
+
 </details>
 
 **7.** Two forces of $200$ N and $150$ N act at a point with an angle of
@@ -253,6 +257,7 @@ $$
 $$
 R = \sqrt{92500} \approx 304.14 \text{ N}.
 $$
+
 </details>
 
 **8.** A block of mass $12$ kg slides down a slope of $20^\circ$. A friction

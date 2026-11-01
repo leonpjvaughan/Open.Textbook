@@ -38,12 +38,15 @@ $BE$ from $B$ to $AC$.
 
 The triangles $BCE$ and $ACD$ are both right-angled. They also share the angle at $C$, so
 they are similar by the AA rule:
+
 $$\triangle BCE \sim \triangle ACD.$$
 
 The corresponding sides are proportional:
+
 $$\frac{|AD|}{|BE|} = \frac{|AC|}{|BC|}.$$
 
 Multiply both sides by $|BE| \times |BC|$:
+
 $$|AD| \times |BC| = |BE| \times |AC|.$$
 
 The left-hand side is the base $BC$ times its height $AD$. The right-hand side is the base
@@ -53,6 +56,8 @@ is the same whichever base is chosen. $\blacksquare$
 ## The area of a triangle
 
 > **Definition.** The **area** of a triangle is half the base by the height:
+>
+>
 > $$\text{area} = \frac{1}{2} \times \text{base} \times \text{height}.$$
 
 Theorem 16 is what makes the definition safe. If the product of base and height did not
@@ -66,11 +71,15 @@ The areas are equal because the corresponding bases and heights are equal.
 
 > **Proposition 13.** If a triangle $ABC$ is cut into two by a line from $A$ to a point
 > $D$ on $[BC]$, then
+>
+>
 > $$\text{area of } \triangle ABC = \text{area of } \triangle ABD + \text{area of } \triangle ADC.$$
 
 **Proof.** All three triangles have the same height, the perpendicular distance from $A$
 to the line $BC$. Call it $h$. Then
+
 $$\frac{|BC| \times h}{2} = \frac{|BD| \times h}{2} + \frac{|DC| \times h}{2},$$
+
 because $|BC| = |BD| + |DC|$. $\blacksquare$
 
 ## The area of a rectangle and a parallelogram
@@ -80,6 +89,7 @@ because $|BC| = |BD| + |DC|$. $\blacksquare$
 **Proof.** Draw a diagonal. It cuts the rectangle into two congruent triangles, each with
 base $a$ and height $b$. Each triangle has area $\frac{1}{2}ab$. The two triangles
 together make the rectangle, so its area is
+
 $$2 \times \frac{1}{2}ab = ab. \quad \blacksquare$$
 
 > **Theorem 17.** A diagonal of a parallelogram bisects the area.
@@ -96,6 +106,7 @@ equal areas by Theorem 17.
 
 The triangle $ABD$ has base $AB$ and height $h$, so its area is $\frac{1}{2} |AB| h$. The
 two triangles together have twice that area:
+
 $$\text{area of } ABCD = 2 \times \frac{1}{2} |AB| h = |AB| \times h. \quad \blacksquare$$
 
 ## Two more area formulae
@@ -104,6 +115,8 @@ The area of a trapezium is the average of the two parallel sides, times the heig
 
 > **Area of a trapezium.** A trapezium has parallel sides of length $a$ and $b$, and the
 > perpendicular distance between them is $h$. Its area is
+>
+>
 > $$\frac{a + b}{2} \times h.$$
 
 :::prove trapezium-area
@@ -112,7 +125,11 @@ When you know two sides of a triangle and the angle between them, the height is 
 Trigonometry gives the area directly.
 
 > **Area of a triangle from two sides and the included angle.** The area of a triangle is
+>
+>
 > $$\frac{1}{2}ab \sin C,$$
+>
+>
 > where $a$ and $b$ are two sides and $C$ is the angle between them.
 
 :::prove triangle-area-sinc
@@ -147,9 +164,11 @@ This is the field from the chapter problem. The area is $1500$ square metres.
 end. Find the area of each part.
 
 Each part is a rectangle. The first is $24$ m by $25$ m:
+
 $$24 \times 25 = 600 \text{ m}^2.$$
 
 The second is $36$ m by $25$ m:
+
 $$36 \times 25 = 900 \text{ m}^2.$$
 
 Check: $600 + 900 = 1500$, which is the area of the whole field.

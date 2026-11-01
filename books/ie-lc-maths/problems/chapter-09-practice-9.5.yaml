@@ -52,7 +52,7 @@ problems:
       terms approach, by solving $L = \dfrac{1}{2}L + 10$.
     answer_label: 'The limiting value'
     check: {kind: evaluate, expression: '10 / (1 - 1/2)', answer: '20'}
-    answer_text: >-
+    answer_text: |-
       Solve $L = \dfrac{1}{2}L + 10$:
 
       $$\frac{1}{2}L = 10 \quad\Rightarrow\quad L = 20$$

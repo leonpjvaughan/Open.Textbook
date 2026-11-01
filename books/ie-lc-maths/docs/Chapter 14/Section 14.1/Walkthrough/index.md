@@ -46,7 +46,11 @@ For example, $\binom{4}{-2}$ means **4 right and 2 down**.
 
 > **The translation rule.** Under the translation $\binom{a}{b}$, the point $(x,y)$ maps
 > to the image
+>
+>
 > $$(x + a,\; y + b).$$
+>
+>
 > Add the top number to the $x$-coordinate and the bottom number to the
 > $y$-coordinate.
 

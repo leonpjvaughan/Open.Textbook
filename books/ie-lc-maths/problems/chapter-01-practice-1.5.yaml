@@ -13,7 +13,7 @@ problems:
     statement: 'Simplify $2^3 \times 2^4$ by writing it as a single power of $2$.'
     answer_label: '$2^3 \times 2^4$ as a power'
     check: {kind: evaluate, expression: '2**3 * 2**4', answer: '2**7'}
-    answer_text: >-
+    answer_text: |-
       The bases are the same, so add the indices:
 
       $$2^3 \times 2^4 = 2^{3+4} = 2^7$$
@@ -27,7 +27,7 @@ problems:
     statement: 'Simplify $3^5 \div 3^2$.'
     answer_label: '$3^5 \div 3^2$'
     check: {kind: evaluate, expression: '3**5 / 3**2', answer: '3**3'}
-    answer_text: >-
+    answer_text: |-
       $$3^5 \div 3^2 = 3^{5-2} = 3^3 = 27$$
 
       Dividing powers of the same base subtracts the indices.
@@ -39,7 +39,7 @@ problems:
     statement: 'Simplify $(2^3)^2$.'
     answer_label: '$(2^3)^2$'
     check: {kind: evaluate, expression: '(2**3)**2', answer: '2**6'}
-    answer_text: >-
+    answer_text: |-
       A power of a power multiplies the indices:
 
       $$(2^3)^2 = 2^{3 \times 2} = 2^6 = 64$$
@@ -64,7 +64,7 @@ problems:
     statement: 'Write down the value of $2^{-3}$ as a fraction.'
     answer_label: '$2^{-3}$'
     check: {kind: evaluate, expression: '2**-3', answer: '1/8'}
-    answer_text: >-
+    answer_text: |-
       A negative index means the reciprocal:
 
       $$2^{-3} = \frac{1}{2^3} = \frac{1}{8}$$
@@ -77,7 +77,7 @@ problems:
     answer_label: '$x^3 \times x^5$'
     plays: index-product
     check: {kind: evaluate, expression: 'x**3 * x**5', answer: 'x**8'}
-    answer_text: >-
+    answer_text: |-
       The bases are the same, so add the indices:
 
       $$x^3 \times x^5 = x^{3+5} = x^8$$
@@ -91,7 +91,7 @@ problems:
     statement: 'Work out $27^{2/3}$.'
     answer_label: '$27^{2/3}$'
     check: {kind: evaluate, expression: '27**(2/3)', answer: '9'}
-    answer_text: >-
+    answer_text: |-
       The index $\frac{2}{3}$ means the cube root, then squared:
 
       $$27^{2/3} = \left(\sqrt[3]{27}\right)^2 = 3^2 = 9$$
@@ -107,7 +107,7 @@ problems:
     answer_label: '$(2x^3)^2$'
     plays: index-power-of-power
     check: {kind: evaluate, expression: '(2*x**3)**2', answer: '4*x**6'}
-    answer_text: >-
+    answer_text: |-
       The power applies to every factor inside the bracket:
 
       $$(2x^3)^2 = 2^2 \times (x^3)^2 = 4x^6$$

@@ -40,6 +40,7 @@ symmetry** or an **axis of symmetry**.
 The two coordinate axes give the simplest rules.
 
 > **Reflection rules for the axes.**
+>
 > - In the $x$-axis: $(x,y) \to (x,-y)$.
 > - In the $y$-axis: $(x,y) \to (-x,y)$.
 
@@ -63,6 +64,7 @@ $$(-4,5) \to (-4,-5)$$
 Two diagonal mirror lines are worth knowing.
 
 > **Reflection rules for the diagonals.**
+>
 > - In the line $y = x$: $(x,y) \to (y,x)$.
 > - In the line $y = -x$: $(x,y) \to (-y,-x)$.
 
@@ -86,6 +88,7 @@ When the mirror line is vertical, only the $x$-coordinate changes. When it is
 horizontal, only the $y$-coordinate changes.
 
 > **Reflection in a line parallel to an axis.**
+>
 > - In the line $x = c$: $(x,y) \to (2c - x,\; y)$.
 > - In the line $y = c$: $(x,y) \to (x,\; 2c - y)$.
 

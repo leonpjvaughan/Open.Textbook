@@ -143,6 +143,7 @@ x\frac{dy}{dx} = -(2x + y)
 \quad \Rightarrow \quad
 \frac{dy}{dx} = -\frac{2x + y}{x}.
 $$
+
 </details>
 
 **5.** A curve is given by $x = t^2$, $y = t^4$. Find $\dfrac{dy}{dx}$.

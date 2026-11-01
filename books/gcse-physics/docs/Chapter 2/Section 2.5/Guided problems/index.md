@@ -60,6 +60,7 @@ M &= F d \\
   &= 10\,\text{N m}
 \end{aligned}
 $$
+
 </details>
 
 **2.** A weight of 500 N sits 0.60 m from the pivot of a balanced beam. A second
@@ -89,6 +90,7 @@ F &= \frac{300}{1.5} \\
   &= 200\,\text{N}
 \end{aligned}
 $$
+
 </details>
 
 **3.** A lever has an effort of 120 N at 0.50 m from the pivot and a load at
@@ -117,6 +119,7 @@ F &= \frac{60}{0.10} \\
   &= 600\,\text{N}
 \end{aligned}
 $$
+
 </details>
 
 **4.** A lever is used to lift a heavy stone. Explain how the lever transmits the
@@ -166,4 +169,5 @@ The ratio of the teeth is $\dfrac{20}{40} = 0.5$. The driven gear has a smaller
 moment.
 
 $$ M = 12 \times 0.5 = 6.0\,\text{N m} $$
+
 </details>

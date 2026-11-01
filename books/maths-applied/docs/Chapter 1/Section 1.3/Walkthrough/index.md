@@ -12,37 +12,39 @@ kind: walkthrough
 
 ## A model that starts from the parts
 
-A wishbone is made of two legs welded to a plate. That suggests a model built from
-the legs: each leg has a fixed length, so each one is a distance that must not
-change. Write the upper ball joint's position as the two unknowns, and every fact
-you know about it becomes one equation:
+A wishbone is made of two legs welded to a plate. That suggests a model built
+from the legs: each leg has a fixed length, so each one is a distance that must
+not change. Write the upper ball joint's position as the two unknowns, and every
+fact you know about it becomes one equation:
 
-$$ \begin{aligned}
-\left|D - B_1\right| - R_1 &= 0 && \text{the front leg keeps its length} \\
-\left|D - B_2\right| - R_2 &= 0 && \text{the rear leg keeps its length} \\
-\left|D - C\right| - L &= 0 && \text{the upright keeps its length}
+$$ \begin{aligned} \left|D - B_1\right| - R_1 &= 0 && \text{the front leg keeps
+its length} \\ \left|D - B_2\right| - R_2 &= 0 && \text{the rear leg keeps its
+length} \\ \left|D - C\right| - L &= 0 && \text{the upright keeps its length}
 \end{aligned} $$
 
 Three equations, two unknowns. That is the whole of this section: the model has
 one more thing to say than it has freedom to say it with.
 
-[§1.2](../../section-1.2/learn/) avoided this by treating the wishbone as one rigid body, which it is. The
-two-leg model is not wrong about the car. It is wrong about the *counting*.
+[§1.2](../../section-1.2/learn/) avoided this by treating the wishbone as one
+rigid body, which it is. The two-leg model is not wrong about the car. It is
+wrong about the *counting*.
 
 ## In the front view, two of those are one equation
 
-Look from in front of the car. The wishbone's legs lie almost fore and aft, so this
-is the view along them. The two pivots $B_1$ and $B_2$ project onto **the same
-point**, and the two leg lengths project onto **the same circle**.
+Look from in front of the car. The wishbone's legs lie almost fore and aft, so
+this is the view along them. The two pivots $B_1$ and $B_2$ project onto **the
+same point**, and the two leg lengths project onto **the same circle**.
 
-That is a fact about the projection rather than about the wishbone — the pivots are
-0.20 m apart fore and aft, and this view throws that direction away. So the first two
-rows are **the same equation written twice**: the same centre, the same radius, the
-same derivative. The model has three rows and two genuinely different equations.
+That is a fact about the projection rather than about the wishbone. The pivots
+are 0.20 m apart fore and aft, and this view throws that direction away. So the
+first two rows are **the same equation written twice**: the same centre, the
+same radius, the same derivative. The model has three rows and two genuinely
+different equations.
 
 That is not a mistake to be embarrassed about. It is exactly what a projection
-does: it throws away the direction that told the legs apart. The three-dimensional
-model keeps them apart, and [§1.4](../../section-1.4/learn/) shows what that costs.
+does: it throws away the direction that told the legs apart. The
+three-dimensional model keeps them apart, and [§1.4](../../section-1.4/learn/)
+shows what that costs.
 
 ## Least squares: the best you can do with too many demands
 
@@ -50,37 +52,38 @@ When a system has more equations than unknowns, there is usually no point that
 satisfies all of them. The standard way to answer is to ask for the point that
 comes closest: minimise the total of the squared errors,
 
-$$ S(D) = \tfrac12\left|\mathbf{r}(D)\right|^2, \qquad
-\mathbf{r} = \begin{pmatrix} |D-B| - R_B \\ |D-B| - R_B \\ |D-C| - L \end{pmatrix}. $$
+$$ S(D) = \tfrac12\left|\mathbf{r}(D)\right|^2, \qquad \mathbf{r} =
+\begin{pmatrix} |D-B| - R_B \\ |D-B| - R_B \\ |D-C| - L \end{pmatrix}. $$
 
 Setting the derivative to zero gives the **normal equations**, and each step of
 the iteration solves them:
 
-$$ J^{\mathsf{T}}J\;\Delta = -J^{\mathsf{T}}\mathbf{r},
-\qquad D \leftarrow D + \Delta. $$
+$$ J^{\mathsf{T}}J\;\Delta = -J^{\mathsf{T}}\mathbf{r}, \qquad D \leftarrow D +
+\Delta. $$
 
-Here $J$ is the Jacobian: how fast each of the three residuals changes as the point
-$D$ moves, with one column for each unknown. $\Delta$ is the step the solve returns,
-and $D \leftarrow D + \Delta$ is the point moved by it.
+Here $J$ is the Jacobian: how fast each of the three residuals changes as the
+point $D$ moves, with one column for each unknown. $\Delta$ is the step the
+solve returns, and $D \leftarrow D + \Delta$ is the point moved by it.
 
 :::class linear-system
 
-This is Gauss–Newton. With two unknowns, $J^{\mathsf{T}}J$ is a $2\times2$ matrix,
-and the step is written down with no linear algebra library at all. The rows of
-$J$ are simple too, because every row is a distance:
+This is Gauss–Newton. With two unknowns, $J^{\mathsf{T}}J$ is a $2\times2$
+matrix, and the step is written down with no linear algebra library at all. The
+rows of $J$ are simple too, because every row is a distance:
 
-$$ J = \begin{pmatrix} \hat{u}^{\mathsf{T}} \\ \hat{u}^{\mathsf{T}} \\ \hat{v}^{\mathsf{T}} \end{pmatrix},
-\qquad \hat{u} = \frac{D-B}{|D-B|},\quad \hat{v} = \frac{D-C}{|D-C|}. $$
+$$ J = \begin{pmatrix} \hat{u}^{\mathsf{T}} \\ \hat{u}^{\mathsf{T}} \\
+\hat{v}^{\mathsf{T}} \end{pmatrix}, \qquad \hat{u} = \frac{D-B}{|D-B|},\quad
+\hat{v} = \frac{D-C}{|D-C|}. $$
 
-The derivative of a distance, with respect to the point, is the unit vector along
-it. The general solver differentiates symbolically, which matters when the rows
-are harder than these; here it can be written down.
+The derivative of a distance, with respect to the point, is the unit vector
+along it. The general solver differentiates symbolically, which matters when the
+rows are harder than these; here it can be written down.
 
 :::figure solver-loop
 
-Step through. The two dashed circles are where the point has to be to satisfy the
-two constraints it can satisfy. The bars on the right are how wrong each of the
-three equations still is.
+Step through. The two dashed circles are where the point has to be to satisfy
+the two constraints it can satisfy. The bars on the right are how wrong each of
+the three equations still is.
 
 ## What happens
 
@@ -95,13 +98,13 @@ three equations still is.
 
 The error does not fall to nothing: it falls to the smallest number a double
 precision float can tell apart from nothing, and stays there. That floor is
-**round-off**, not physics. It is worth knowing the difference. A residual
-that flattens out *above* the round-off floor means the equations genuinely
-disagree, and that is a modelling problem rather than a numerical one.
+**round-off**, not physics. It is worth knowing the difference.A residual that
+flattens out *above* the round-off floor means the equations genuinely disagree.
+That is a modelling problem rather than a numerical one.
 
-The point it settles on is the point [§1.2](../../section-1.2/learn/) found, to the last digit a double holds. Adding
-an equation that says the same thing twice did not change the answer. It only gave
-the solver more work.
+The point it settles on is the point [§1.2](../../section-1.2/learn/) found, to
+the last digit a double holds. Adding an equation that says the same thing twice
+did not change the answer. It only gave the solver more work.
 
 ## The agreement panel
 
@@ -112,15 +115,16 @@ the solver more work.
 | Singular values of the Jacobian | 1.430, 0.978, 0.000 |
 | The smallest, and what it means | nothing on its own — see [§1.4](../../section-1.4/learn/) |
 
-These are the page's own model's numbers, recomputed by the figure on every load. They are
-at the bump end of the travel, the pose the figure mounts; the design pose's σ set is
-1.415 and 0.998, which is [§1.4](../../section-1.4/learn/)'s table.
-The package's export for the same mechanism is vendored at
-`docs/assets/data/otkd/models/double-wishbone-two-leg/out.js`, and it does carry
-`iterations`: one residual vector and one set of singular values per Newton step.
-But that is a system with twenty-one unknowns, not the three rows above. Two sets of
-numbers, two different systems; the comparison they support is the pose, which is
-what [§1.4](../../section-1.4/learn/) checks.
+These are the page's own model's numbers, recomputed by the figure on every
+load. They are at the bump end of the travel, the pose the figure mounts; the
+design pose's σ set is 1.415 and 0.998, which is
+[§1.4](../../section-1.4/learn/)'s table. The package's export for the same
+mechanism is vendored here, and it does carry both. There is one residual vector
+and one set of singular values per Newton step.js`, and it does carry
+`iterations`: one residual vector and one set of singular values per Newton
+step. But that is a system with twenty-one unknowns, not the three rows above.
+Two sets of numbers, two different systems; the comparison they support is the
+pose, which is what [§1.4](../../section-1.4/learn/) checks.
 
 ## Pseudocode, and the file it comes from
 
@@ -153,16 +157,16 @@ bar.
 
 ## Watch out
 
-A small residual does **not** mean the model is a good model. It means the solver
-did well at satisfying the equations it was given.
+A small residual does **not** mean the model is a good model. It means the
+solver did well at satisfying the equations it was given.
 
 Those are different claims, and confusing them is the most expensive mistake in
-this chapter. A model that is missing something — a bush, a bend, a length that
-changes with temperature — will still have a tiny residual, because it is
-answering its own question perfectly. The residual measures the arithmetic. Only
-measurement, or a second model, can say anything about the world.
+this chapter.A model that is missing something — a bush, a bend, a length that
+changes with temperature — will still have a tiny residual. It is answering its
+own question perfectly. The residual measures the arithmetic. Only measurement,
+or a second model, can say anything about the world.
 
-The second trap is the mirror of it: an equation that repeats another one looks
+The second trap is the mirror of it. An equation that repeats another one looks
 harmless, and it makes every error message the solver produces about the *wrong*
 thing. A rank-deficient Jacobian is not a numerical accident here. It is a
 statement about the model, and it has a name: [§1.4](../../section-1.4/learn/).

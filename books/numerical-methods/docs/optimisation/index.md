@@ -7,6 +7,9 @@ title: Optimisation
 **You have one of these when** you can score any candidate answer with a single
 number, and you want the best one.
 
+**Optimisation, not eigenvalues.** Here you can score every candidate
+and pick the best. An eigenvalue problem says which values are allowed at all.
+
 ## What you are modelling
 
 Nothing moves and nothing is at every point. You have a set of choices, and a
@@ -68,19 +71,33 @@ difficulty is entirely in the shape of the landscape and in the constraints.
 Every method named here is in [Methods, A to Z](../techniques/#finding-a-state),
 with its price and what it will not do.
 
+**Start from the model you have.** Each row is a property of the model in front
+of you, the methods that fit it, and what the fit costs. The method-keyed table
+below is the same list sorted by name.
+
+| what your model is | the methods that fit | the price |
+|---|---|---|
+| no constraints, and a derivative you can compute | Gradient descent, Newton, quasi-Newton (BFGS) | the step length is a separate decision |
+| no constraints, and no derivative | Nelder–Mead | slow above a few dimensions |
+| a sum of squares you are fitting | Gauss–Newton | the Jacobian is the cost |
+| constraints that are linear or smooth | Simplex method, interior point, sequential quadratic programming | the constraint handling is the code |
+| a function you can only sample, or one with noise | Stochastic gradient, Adam, Bayesian optimisation | many runs, and no guarantee |
+| several local answers | Multistart | the cost multiplies by the number of starts |
+
+<!-- table: cards -->
 | technique | what it does | when it wins | when it is the wrong tool |
 |---|---|---|---|
-| Gradient descent | Steps downhill along $-\nabla f$ | Very many unknowns, cheap gradient | Narrow valleys; it zig-zags |
-| Newton | Uses the curvature as well as the slope | Few unknowns, second derivatives available | Each step costs a linear solve; needs a good start |
-| Quasi-Newton (BFGS) | Builds curvature from gradients it has seen | Second derivatives unavailable | Very large problems where the stored matrix is too big |
-| Gauss–Newton, Levenberg–Marquardt | Least squares, with damping | Fitting a model to data | Not a least-squares residual |
-| Nelder–Mead | Compares a simplex of points, no derivatives | Noisy or non-smooth $f$, few unknowns | More than about ten unknowns; it stalls |
-| Simplex method | Walks the corners of a linear problem | Linear objective, linear constraints | Anything non-linear |
-| Interior point | Approaches the boundary from inside | Large linear and convex problems | Non-convex problems with many local minima |
-| Sequential quadratic programming | Solves a quadratic model at each step | Smooth non-linear constraints | Constraints that are noisy or discontinuous |
-| Stochastic gradient, Adam | Samples the objective | Machine learning, huge data sets | You need a precise optimum |
-| Multistart | Runs a local method from many starts | Many local minima, cheap runs | Expensive runs; better to use a surrogate |
-| Bayesian optimisation | Fits a surrogate and chooses where to look | Very expensive evaluations | Cheap evaluations; a grid would do |
+| [Gradient descent](../techniques/#gradient-descent) | Steps downhill along $-\nabla f$ | Very many unknowns, cheap gradient | Narrow valleys; it zig-zags |
+| [Newton](../techniques/#newton) | Uses the curvature as well as the slope | Few unknowns, second derivatives available | Each step costs a linear solve; needs a good start |
+| [Quasi-Newton (BFGS)](../techniques/#quasi-newton-bfgs) | Builds curvature from gradients it has seen | Second derivatives unavailable | Very large problems where the stored matrix is too big |
+| [Gauss–Newton](../techniques/#gauss-newton), [Levenberg–Marquardt](../techniques/#levenberg-marquardt) | Least squares, with damping | Fitting a model to data | Not a least-squares residual |
+| [Nelder–Mead](../techniques/#nelder-mead) | Compares a simplex of points, no derivatives | Noisy or non-smooth $f$, few unknowns | More than about ten unknowns; it stalls |
+| [Simplex method](../techniques/#simplex-method) | Walks the corners of a linear problem | Linear objective, linear constraints | Anything non-linear |
+| [Interior point](../techniques/#interior-point) | Approaches the boundary from inside | Large linear and convex problems | Non-convex problems with many local minima |
+| [Sequential quadratic programming](../techniques/#sequential-quadratic-programming) | Solves a quadratic model at each step | Smooth non-linear constraints | Constraints that are noisy or discontinuous |
+| [Stochastic gradient, Adam](../techniques/#stochastic-gradient) | Samples the objective | Machine learning, huge data sets | You need a precise optimum |
+| [Multistart](../techniques/#multistart) | Runs a local method from many starts | Many local minima, cheap runs | Expensive runs; better to use a surrogate |
+| [Bayesian optimisation](../techniques/#bayesian-optimisation) | Fits a surrogate and chooses where to look | Very expensive evaluations | Cheap evaluations; a grid would do |
 
 ## Systems that live here
 
@@ -108,9 +125,16 @@ with its price and what it will not do.
 
 ## Read next
 
+- [The same corner, five ways](../worked-case/index.md) — this class, worked
+  on one mechanism with the numbers beside it.
+- [A step has a direction and a length](descent/index.md) — the working under
+  this class: the step length, and the window it has to be in.
 - [Saddle point](../saddle-point/index.md) — the same problem with constraints,
   and where the price comes from.
 - [Root finding](../root/index.md) — setting the gradient to zero is a root
   problem.
 - [When it goes wrong](../symptoms/index.md) — the symptom table for every
   class.
+
+Back to the map: [the nine kinds](../index.md) puts this class among the
+other eight.

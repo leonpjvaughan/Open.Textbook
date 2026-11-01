@@ -1032,3 +1032,60 @@ def test_the_booklet_widget_opens_a_named_table():
     script = (repo_root() / "assets" / "booklet" / "booklet.js").read_text(encoding="utf-8")
     assert "#booklet" in script
     assert "bk-table-" in script
+
+
+def test_the_sidebar_is_a_drawer_below_the_layout_breakpoint(subset):
+    """Item 157: at 390px the whole book was printed above every page.
+
+    The sidebar became a static block at 60rem, so a `numerical-methods` page opened
+    with 614px of navigation and its own title sat at y = 798. The fix is a native
+    disclosure, and the three things a static check can hold are what makes it work:
+    the nav is inside the drawer, the summary carries the page's own section, and the
+    control is only a control below the breakpoint — a summary at desktop would be a
+    second, redundant way into a column that is already open.
+    """
+    html = (subset.out / "chapter-1/section-1.1/learn/index.html").read_text()
+    assert '<details class="nav-drawer" open>' in html
+    assert '<summary class="nav-drawer__summary" data-pagefind-ignore>' in html
+    # The nav is inside the drawer, so the disclosure controls it.
+    drawer = html[html.index('<details class="nav-drawer"') :]
+    drawer = drawer[: drawer.index("</details>")]
+    assert 'class="sidebar" aria-label="Book contents" data-pagefind-ignore' in drawer
+    # The summary says which page the reader is on: the book, then the section.
+    assert "masthead__section" in drawer.split("</summary>")[0]
+    # The drawer is closed by the script at phone width and inert above it.
+    assert "matchMedia(\"(min-width: 60rem)\")" in html
+    assert "drawer.open = wide.matches" in html
+
+
+def test_table_cells_carry_their_headings():
+    """Item 158: a table that becomes cards has to say what each cell is.
+
+    Below 60rem the header row is not printed, so a stacked cell with no label is a
+    number with no name. The label travels on the cell — `data-label` — and it is read
+    from the `<th>`s rather than from a second list in the stylesheet, so the two
+    cannot drift.
+    """
+    html = pipeline.wrap_tables(
+        "<table><thead><tr><th>Kind</th><th>Model</th></tr></thead>"
+        "<tbody><tr><td>A</td><td>B</td></tr><tr><td>C</td><td>D</td></tr></tbody></table>"
+    )
+    assert '<td data-label="Kind">A</td>' in html
+    assert '<td data-label="Model">D</td>' in html
+
+
+def test_the_cards_marker_is_consumed_and_marks_the_table():
+    """`<!-- table: cards -->` is a marker, not a comment for the reader.
+
+    It is the only way to give one table a class without `attr_list`, which this
+    collection does not load. It must not reach the page, and it must mark exactly the
+    one table it sits above.
+    """
+    html = pipeline.wrap_tables(
+        "<!-- table: cards -->\n"
+        "<table><thead><tr><th>Kind</th></tr></thead><tbody><tr><td>A</td></tr></tbody></table>"
+        "<table><thead><tr><th>Other</th></tr></thead><tbody><tr><td>B</td></tr></tbody></table>"
+    )
+    assert "<!--" not in html
+    assert html.count('class="table--cards"') == 1
+    assert '<table class="table--cards">' in html

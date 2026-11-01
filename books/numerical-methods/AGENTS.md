@@ -161,10 +161,17 @@ The rules that are checked, not suggested:
 - **A listing longer than ten lines is folded** in native `<details markdown="1">`,
   with a summary that names what is inside. The page must read as complete with
   every fold closed, and no `:::` directive goes inside one.
-- **Every claim about a method comes from `sources.yaml`**, with a `role`.
-- The six headings, the widths, the folds and the program/output pair are held by
-  `tests/test_page_rules.py` and `tests/test_reference_books.py`; a new detail page
-  is measured by the same tests as the seven that exist.
+- **Every claim about a method comes from `sources.yaml`**, with a `role` that says
+  whether the reference is the claim's source or further reading.
+- **Every rule above is enforced by a test, not by care.** `tests/test_page_rules.py`
+  holds a case that fails for each violation, and applies the whole contract to
+  every page carrying the detail heading: the six headings, both widths, a fold whose
+  summary names nothing, a program importing anything beyond `sympy` and the standard
+  library, a program over ten lines that no fold encloses, a *Back to the map* naming
+  fewer than a parent and a sibling, and a page that names no reference `sources.yaml`
+  records with a role. `tests/test_reference_books.py` runs every program and compares
+  its printed output. A new detail page is measured by the same tests as the seven
+  that exist, which is the only reason eight more can be copied from them.
 
 ## Voice, and the words to avoid
 

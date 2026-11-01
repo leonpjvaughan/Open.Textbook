@@ -73,7 +73,9 @@ def test_the_directive_renders_one_link_and_the_registry_sentence():
     """One anchor, and the sentence comes from the map rather than from the page.
 
     Two copies of "what a saddle point costs" is how the section and the reference
-    start disagreeing. The registry is the only copy.
+    start disagreeing. The registry is the only copy, so this reads the sentence from
+    the registry and asserts the rendered note is that sentence with its capital:
+    storing it lowercase is what lets the class page print it after "…when".
     """
     out = render(
         "maths-applied",
@@ -83,7 +85,9 @@ def test_the_directive_renders_one_link_and_the_registry_sentence():
     assert out.count("<a ") == 1
     assert 'href="/numerical-methods/saddle-point/"' in out
     assert "Saddle point" in out
-    assert "A rule holds everywhere, and a second unknown pays for it." in out
+    _, config = page_in("maths-applied", "Chapter 1/Section 1.5/Walkthrough/index.md")
+    signature = classmap.entries(config)["saddle-point"]["signature"]
+    assert f'<p class="classlink__note">{signature[:1].upper()}{signature[1:]}</p>' in out
     # Nothing to load: the affordance works with scripting off.
     assert "<script" not in out
 

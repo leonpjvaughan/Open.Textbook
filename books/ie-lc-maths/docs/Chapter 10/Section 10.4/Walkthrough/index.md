@@ -73,6 +73,8 @@ If you add $n(A)$ and $n(B)$, the outcomes in both events are counted twice. The
 rule corrects for this:
 
 > **The addition rule.**
+>
+>
 > $$n(A \cup B) = n(A) + n(B) - n(A \cap B)$$
 
 For the example above, $n(A) = 3$, $n(B) = 2$ and $n(A \cap B) = 1$, so

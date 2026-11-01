@@ -9,7 +9,7 @@
 // The sign conventions are the package's: camber is positive with the top of the wheel
 // outboard, which is the opposite of §1.2's. The readout says so, and the page quotes
 // the same numbers with the same caveat.
-import { SIZE, axes, curve, label, panel, quantity } from "./kit.js";
+import { SIZE, axes, curve, label, panel, quantity, table } from "./kit.js";
 import { meta, rows } from "../data/quarter-car/trajectory.js";
 
 const UI = 2; // decimal places for a length in millimetres
@@ -88,13 +88,18 @@ export function mount(el) {
   if (!svg) throw new Error("quarter-car: the frame has no drawing surface");
   svg.innerHTML = marks;
 
-  readout.textContent =
-    `Released from the design position, the corner swings between ` +
-    `${quantity(0, "mm", 0)} and ${quantity(highest.travel, "mm", UI)}, once every ` +
-    `${quantity(period, "s", 3)} — ${quantity(1 / period, "Hz", 2)} — and does not settle: ` +
-    "the coil has no damper in this model. " +
-    `Camber, counted the package's way (positive with the top of the wheel outboard, ` +
-    `the opposite of §1.2), swings with it, from 0° to ${quantity(extreme.camber, "°", 2)}.`;
+  // The values as rows, in the page's own order and units (item 171): the drawing shows
+  // the swing, the rows give the numbers a reader can compare with §1.6's table.
+  table(readout, {
+    columns: ["quantity", "value"],
+    rows: [
+      ["travel, droop to bump", `${quantity(0, "mm", 0)} to ${quantity(highest.travel, "mm", UI)}`],
+      ["period", quantity(period, "s", 3)],
+      ["frequency", quantity(1 / period, "Hz", 2)],
+      ["camber swing", `0° to ${quantity(extreme.camber, "°", 2)}`],
+      ["damping", "none, so it does not settle"],
+    ],
+  });
   caption.textContent =
     `The energy drifts by ${sci(meta.energy_drift)} of its starting value over the run, ` +
     `and the largest constraint violation is ${sci(meta.constraint_max)}.`;

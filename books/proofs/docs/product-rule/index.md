@@ -17,7 +17,9 @@ You need two facts.
 
 - **The derivative is a limit.** The derivative measures a small change in $y$
   against the small change in $x$ that caused it:
-  $$\frac{dy}{dx} = \lim_{\delta x \to 0}\frac{\delta y}{\delta x}.$$
+
+$$\frac{dy}{dx} = \lim_{\delta x \to 0}\frac{\delta y}{\delta x}.$$
+
 - **A sum that tends to a limit.** If one part of an expression tends to a limit
   and another part tends to $0$, the second part disappears in the limit. That is
   what decides the fate of the corner in this proof.

@@ -21,12 +21,28 @@ Nobody holds seventy-seven method entries in their head. Nine kinds is a
 different size of task. Learn the nine, and each method becomes a lookup
 inside a kind you already understand, chosen by a circumstance you can name.
 
+## Three ways in
+
+- **You have a model and no idea what it is.** Start with the nine kinds below,
+  and read the last column before the others.
+- **You know a method by name and want to know where it applies.** Start at
+  [Methods, A to Z](techniques/index.md). It goes method → kinds it works on →
+  what it costs.
+- **You have a wrong answer.** Start at [When it goes wrong](symptoms/index.md).
+  It goes symptom → kind → cause → fix.
+- **You are holding the system.** Start at
+  [Every system](systems/index.md), which goes system → kind, and is built from
+  the class pages' own lists.
+
+:::contents
+
 ## The nine kinds
 
 Every kind is a page. The third column is the model the kind writes down. Read
 the last column first: it says how to recognise the kind from the model in front
 of you.
 
+<!-- table: cards -->
 | Kind | What you are asking, and what comes back | The model you write down | How you know it is this one |
 |---|---|---|---|
 | [Optimisation](optimisation/index.md) | which allowed choice is best → one choice, and the price of every rule | $\min_x f(x)$ s.t. $g(x)\le0$, $h(x)=0$ | you can score a choice with a number |
@@ -69,6 +85,24 @@ kind. They are not more boxes. They are the choices inside a box.
 | **Stiff** | The model contains a fast change you do not care about, and that change decides your step. This is the one that turns an explicit method into an implicit one. |
 | **Geometry not known in advance** | The region is part of the question: a melting front, a contact patch, a crack. The mesh becomes an unknown too. |
 
+### The three flags, in words
+
+**Non-linear.** The answer appears inside the rule you are trying to satisfy, so
+the model changes as you solve it. Every method becomes a loop around a linear
+one, and the starting guess starts to matter — which is why the guess is a
+decision, not a detail.
+
+**Stiff.** The model contains a fast change you do not care about, and that
+change decides how short your step must be. It is a property of the *model and
+the step together*, not of the physics: the same diffusion equation is stiff at
+one mesh and not at another. This is the flag that turns an explicit method into
+an implicit one, and it is why a solver can be driven to a step so small that
+the answer never arrives.
+
+**Geometry not known in advance.** The region is part of the question: a melting
+front, a contact patch, a crack. The mesh becomes an unknown too, so the method
+has to move it and the answer has to be checked against the shape it chose.
+
 Each kind also has properties of its own that narrow the choice. They include
 how sparse a matrix is, whether it is symmetric, how well conditioned it is, and
 how wide a mesh is. The class page names them. That is the whole reason nine
@@ -102,6 +136,20 @@ under Averaging are the first of them.
 | [When the samples are not independent](averaging/correlated/index.md) | Autocorrelation and the effective sample size $N/\tau$ |
 | [Walking a chain that settles](averaging/mcmc/index.md) | Metropolis, detailed balance, R-hat and the effective sample size |
 | [Fitting, and what the fit does not say](averaging/regression/index.md) | Least squares, the normal equations, and the slope's standard error |
+
+The other eight classes have one page each. Each closes a row of the gap table
+below, and none of them restates its class page.
+
+| Page | What it settles |
+|---|---|
+| [A step has a direction and a length](optimisation/descent/index.md) | Why a step length is a separate decision, and the window a fixed step has to sit in |
+| [Finding a chosen eigenvalue](eigenvalue/shift-and-invert/index.md) | The shift that finds any eigenvalue, not only the largest |
+| [One matrix, two errors](linear-system/conditioning/index.md) | Forward against backward error, and the condition number that joins them |
+| [Why Newton is fast, and when it is not](root/order-of-newton/index.md) | The squared error, and the linear rate a double root imposes |
+| [The second unknown](saddle-point/the-multiplier/index.md) | What the multiplier is, and why the forces are the sensitive half |
+| [Where the matrix comes from](elliptic/the-weak-form/index.md) | The weak form, one element's stiffness, and the assembled matrix |
+| [Why the time step is tied to the square of the mesh](parabolic/stability/index.md) | von Neumann's argument, and the limit the grid-scale mode sets |
+| [The condition a wave equation imposes](hyperbolic/the-cfl-condition/index.md) | The domain of dependence, and the CFL condition derived from it |
 
 ## Why the number is nine
 
@@ -147,16 +195,6 @@ through five kinds and quotes the numbers where the models agree. The page's
 last section explains [what a kernel is](worked-case/#what-a-kernel-is): the
 compiled solver some pages in the collection run, and the two other senses the
 word has in numerical work.
-
-## Three ways in
-
-- **You have a model and no idea what it is.** Start with the nine kinds above,
-  and read the last column before the others.
-- **You know a method by name and want to know where it applies.** Start at
-  [Methods, A to Z](techniques/index.md). It goes method → kinds it works on →
-  what it costs.
-- **You have a wrong answer.** Start at [When it goes wrong](symptoms/index.md).
-  It goes symptom → kind → cause → fix.
 
 Nothing here is a course, and there is nothing to practise. Every page stands on
 its own, and a page you skip is a page you did not need.

@@ -67,6 +67,7 @@ P &= VI \\
   &= 46\,\text{W}
 \end{aligned}
 $$
+
 </details>
 
 **2.** A current of 3.0 A flows through an 8.0 $\Omega$ resistor. Calculate the
@@ -96,6 +97,7 @@ P &= I^2R \\
   &= 72\,\text{W}
 \end{aligned}
 $$
+
 </details>
 
 **3.** The lamp of question 1 has a power of 46 W. It is switched on for 200 s.
@@ -125,6 +127,7 @@ E &= Pt \\
   &= 9.2 \times 10^3\,\text{J}
 \end{aligned}
 $$
+
 </details>
 
 **4.** A charge of 40 C flows through an appliance connected to the 230 V
@@ -184,6 +187,7 @@ I &= \frac{P}{V} \\
   &= 2.0\,\text{A}
 \end{aligned}
 $$
+
 </details>
 
 **6.** Explain why the National Grid transfers electrical power at a very high

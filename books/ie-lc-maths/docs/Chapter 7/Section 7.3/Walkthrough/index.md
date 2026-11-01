@@ -33,6 +33,8 @@ shortcut fails.
 ## The product rule
 
 > **The product rule.** If $y = uv$, where $u$ and $v$ are functions of $x$, then
+>
+>
 > $$\frac{dy}{dx} = u'v + uv'.$$
 
 In words: the derivative of the first times the second, plus the first times the derivative

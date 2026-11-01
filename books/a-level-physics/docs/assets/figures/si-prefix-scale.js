@@ -150,7 +150,7 @@ export function mount(el) {
       marks +=
         `<line x1="${x}" y1="${AXIS - 8}" x2="${x}" y2="${AXIS + 8}" class="fig-ink" stroke-width="1.5"></line>` +
         `${label({ x: x, y: AXIS + 22, text: `${prefix.symbol}`, anchor: "middle", size: SIZE.heading, class: state })}` +
-        `${label({ x: x, y: row, text: `${prefix.object}`, anchor: "middle", size: SIZE.heading, class: state })}`;
+        `${label({ x: Math.max(84, Math.min(x, 538)), y: row, text: `${prefix.object}`, anchor: "middle", size: SIZE.heading, class: state })}`;
     });
 
     // The factor between each pair of neighbours.

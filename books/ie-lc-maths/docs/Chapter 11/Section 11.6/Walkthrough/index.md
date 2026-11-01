@@ -70,7 +70,11 @@ To use the table, we turn any normal value into a **$z$-score**, which counts ho
 standard deviations the value lies from the mean.
 
 > **The standardising formula.**
+>
+>
 > $$z = \frac{x - \mu}{\sigma}$$
+>
+>
 > A $z$-score of $2$ means the value lies two standard deviations above the mean.
 
 A $z$-score has no units, because the units cancel in the division. A standardised normal

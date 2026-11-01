@@ -178,6 +178,7 @@ n_p &= n_s \times \frac{V_p}{V_s} \\
     &= 100
 \end{aligned}
 $$
+
 </details>
 
 **6.** A transformer has a primary potential difference of 11 000 V and a
@@ -208,6 +209,7 @@ I_s &= \frac{V_p I_p}{V_s} \\
     &= 22\,\text{A}
 \end{aligned}
 $$
+
 </details>
 
 **7.** Explain why a transformer does not work when it is connected to a steady

@@ -73,7 +73,17 @@ function guide(x2, y2) {
 }
 
 function forceLabel(x, y, words, cls, anchor) {
-  return label({ x, y, text: words, anchor, size: SIZE.tick, class: cls });
+  // `anchor` says which side the words run to, and the caller only ever asks for a
+  // centred label on an arrow, so the box is clamped here as well: an arrow near the
+  // edge put 34 units of "acceleration a = 2.25 m/s²" outside a 480-unit drawing.
+  return label({
+    x: Math.max(92, Math.min(x, WIDTH - 92)),
+    y,
+    text: words,
+    anchor,
+    size: SIZE.tick,
+    class: cls,
+  });
 }
 
 export function mount(el) {
@@ -225,7 +235,7 @@ export function mount(el) {
           `${(40 + arrowLength).toFixed(1)},347 ${(40 + arrowLength).toFixed(1)},357" ` +
           `class="fig-accent"></polygon>` +
           forceLabel(
-            40 + arrowLength / 2,
+            Math.min(40 + arrowLength / 2, 336),
             344,
             `acceleration a = ${two(acceleration)} m/s${SQUARED}`,
             "text-ink",

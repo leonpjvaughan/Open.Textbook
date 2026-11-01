@@ -28,7 +28,11 @@ Draw a radius from the origin. Measure the angle $\theta$ anticlockwise from the
 positive $x$-axis, and let the end of the radius be the point $P$.
 
 > **The definition.** The point $P$ has coordinates
+>
+>
 > $$P = (\cos\theta,\ \sin\theta)$$
+>
+>
 > So $\cos\theta$ is the $x$-coordinate and $\sin\theta$ is the $y$-coordinate.
 
 This definition agrees with the right-triangle one for angles between $0^\circ$ and

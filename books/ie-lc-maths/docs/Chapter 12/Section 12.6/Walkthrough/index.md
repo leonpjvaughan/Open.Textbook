@@ -33,7 +33,11 @@ right is most of the work.
 ## The sine rule
 
 > **The sine rule.** In any triangle,
+>
+>
 > $$\frac{a}{\sin A} = \frac{b}{\sin B} = \frac{c}{\sin C}$$
+>
+>
 > The Formulae and Tables booklet gives this formula.
 
 **Why it is true.** Drop a perpendicular from $C$ to the side $AB$, and call its length
@@ -67,7 +71,11 @@ the third angle stays positive.
 ## The cosine rule
 
 > **The cosine rule.** In any triangle,
+>
+>
 > $$a^2 = b^2 + c^2 - 2bc\cos A$$
+>
+>
 > The Formulae and Tables booklet gives this formula.
 
 **Why it is true.** Drop the perpendicular from $C$ to $AB$ again, and let the foot be

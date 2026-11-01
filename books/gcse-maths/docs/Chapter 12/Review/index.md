@@ -23,6 +23,7 @@ $$
 $$
 -(t-5)(t+1)=0
 $$
+
 So $t=5$ or $t=-1$. Time cannot be negative in this context, so the ball reaches the ground after **5 seconds**. Substitution gives $h=0$ when $t=5$.
 
 ## Mixed practice: choose a method and explain why

@@ -99,9 +99,17 @@ $$17 + 3 = 20 \qquad 20 + 38 = 58$$
 > **Watch out.** The distributive property is about a sum or a difference inside the
 > bracket. It does not apply to a product inside the bracket.
 >
+>
+>
 > $$3 \times (2 + 4) = 3 \times 2 + 3 \times 4$$
 >
+>
+>
+>
+>
 > $$3 \times (2 \times 4) \text{ is not } 3 \times 2 \times 3 \times 4$$
+>
+>
 >
 > **Re-check:** look at the sign inside the bracket. If it is a plus or a minus, you
 > may distribute. If it is a multiplication, leave the bracket alone.

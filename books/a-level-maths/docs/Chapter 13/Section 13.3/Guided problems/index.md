@@ -140,6 +140,7 @@ Then
 $$
 P(X < 36) = P(Z < 1.5) = \Phi(1.5) = 0.9332.
 $$
+
 </details>
 
 **5.** The random variable $X \sim N(200, 10^2)$. Find $P(X > 215)$.
@@ -171,6 +172,7 @@ Then
 $$
 P(X > 215) = 1 - \Phi(1.5) = 1 - 0.9332 = 0.0668.
 $$
+
 </details>
 
 **6.** The random variable $X \sim N(50, 6^2)$. Find the value $a$ such that

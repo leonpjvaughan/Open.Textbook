@@ -35,6 +35,7 @@ angles add to $180^\circ$. That was proved in Section 15.6.
 > the sum of the squares of the other two sides.
 
 In symbols, if the right angle is at $B$, then
+
 $$|AC|^2 = |AB|^2 + |BC|^2.$$
 
 There is a second proof of this theorem, by cutting up four copies of the triangle and
@@ -47,28 +48,37 @@ perpendicular from $B$ to the hypotenuse $AC$, and let it meet $AC$ at $D$.
 
 The triangles $ABC$ and $ADB$ both have a right angle, and they share the angle at $A$.
 So they are similar by the AA rule:
+
 $$\triangle ABC \sim \triangle ADB.$$
 
 By Theorem 13, the corresponding sides are proportional. The hypotenuse $AC$ of the large
 triangle matches the side $AB$ of the small triangle, and the side $AB$ matches the side
 $AD$:
+
 $$\frac{|AC|}{|AB|} = \frac{|AB|}{|AD|}.$$
 
 Multiply both sides by $|AB| \times |AD|$:
+
 $$|AB|^2 = |AC| \times |AD|.$$
 
 Call this the first equation. The same argument at the vertex $C$ gives
+
 $$\triangle ABC \sim \triangle BDC,$$
+
 so
+
 $$\frac{|AC|}{|BC|} = \frac{|BC|}{|DC|}, \qquad |BC|^2 = |AC| \times |DC|.$$
 
 Call this the second equation. Add the two equations:
+
 $$|AB|^2 + |BC|^2 = |AC| \times |AD| + |AC| \times |DC|.$$
 
 Take out the common factor $|AC|$:
+
 $$|AB|^2 + |BC|^2 = |AC| \times (|AD| + |DC|).$$
 
 The point $D$ lies between $A$ and $C$, so $|AD| + |DC| = |AC|$. Therefore
+
 $$|AB|^2 + |BC|^2 = |AC| \times |AC| = |AC|^2. \quad \blacksquare$$
 
 The proof uses three things: the AA rule for similar triangles, the proportionality of
@@ -88,9 +98,11 @@ Draw a ray from $B$ perpendicular to $BC$, and mark the point $D$ on it with
 $|BD| = |AB|$.
 
 The triangle $DBC$ has a right angle at $B$, so Pythagoras gives
+
 $$|DC|^2 = |BD|^2 + |BC|^2.$$
 
 Substitute $|BD| = |AB|$:
+
 $$|DC|^2 = |AB|^2 + |BC|^2.$$
 
 The hypothesis says the right-hand side is $|AC|^2$, so $|DC|^2 = |AC|^2$ and therefore
@@ -103,6 +115,7 @@ Now compare $\triangle ABC$ and $\triangle DBC$:
 - $|BC|$ is common to both triangles.
 
 So $\triangle ABC \cong \triangle DBC$ by SSS. The matching angles are equal, so
+
 $$|\angle ABC| = |\angle DBC| = 90^\circ. \quad \blacksquare$$
 
 ## Proposition 9: the RHS test
@@ -114,6 +127,7 @@ $$|\angle ABC| = |\angle DBC| = 90^\circ. \quad \blacksquare$$
 $|AC| = |A'C'|$ and $|AB| = |A'B'|$.
 
 Apply Pythagoras to each triangle:
+
 $$|BC|^2 = |AC|^2 - |AB|^2, \qquad |B'C'|^2 = |A'C'|^2 - |A'B'|^2.$$
 
 The two right-hand sides are equal, because $|AC| = |A'C'|$ and $|AB| = |A'B'|$. So
@@ -130,6 +144,7 @@ and one other **S**ide.
 hypotenuse.
 
 The hypotenuse $h$ is opposite the right angle, so
+
 $$h^2 = 9^2 + 12^2 = 81 + 144 = 225.$$
 
 $$h = \sqrt{225} = 15 \text{ cm}.$$
@@ -138,6 +153,7 @@ $$h = \sqrt{225} = 15 \text{ cm}.$$
 Find the other leg $b$.
 
 The unknown side is a leg, so it is found by subtraction:
+
 $$b^2 = 13^2 - 5^2 = 169 - 25 = 144.$$
 
 $$b = \sqrt{144} = 12 \text{ cm}.$$
@@ -145,6 +161,7 @@ $$b = \sqrt{144} = 12 \text{ cm}.$$
 **Example 3.** A triangle has sides of $6$ cm, $8$ cm and $10$ cm. Is it right-angled?
 
 The longest side is $10$ cm, so it would be the hypotenuse. Test the converse:
+
 $$6^2 + 8^2 = 36 + 64 = 100 = 10^2.$$
 
 The sum of the squares of the two shorter sides equals the square of the longest side, so
@@ -155,6 +172,7 @@ the base of the wall. How far up the wall does the ladder reach?
 
 The wall, the ground and the ladder make a right-angled triangle, with the ladder as the
 hypotenuse and the height up the wall $h$.
+
 $$h^2 = 5^2 - 3^2 = 25 - 9 = 16, \qquad h = 4 \text{ m}.$$
 
 The ladder reaches $4$ m up the wall.

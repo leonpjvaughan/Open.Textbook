@@ -79,8 +79,8 @@ export function mount(el) {
     const frame =
       `<line x1="${SLIT_X}" y1="20" x2="${SLIT_X}" y2="300" class="fig-ink" stroke-width="2"></line>` +
       `<line x1="${screenX}" y1="20" x2="${screenX}" y2="300" class="fig-ink" stroke-width="2"></line>` +
-      `${label({ x: SLIT_X - 6, y: 14, text: `two slits`, anchor: "end", size: SIZE.heading, class: "text-ink" })}` +
-      `${label({ x: screenX + 6, y: 14, text: `screen`, anchor: "start", size: SIZE.heading, class: "text-ink" })}` +
+      `${label({ x: SLIT_X - 6, y: 18.0, text: `two slits`, anchor: "end", size: SIZE.heading, class: "text-ink" })}` +
+      `${label({ x: screenX + 6, y: 22, text: `screen`, anchor: "start", size: SIZE.heading, class: "text-ink" })}` +
       `<circle cx="${SLIT_X}" cy="${yTop}" r="4" class="fig-good"></circle>` +
       `<circle cx="${SLIT_X}" cy="${yBottom}" r="4" class="fig-good"></circle>` +
       `<line x1="${SLIT_X + 8}" y1="${yTop}" x2="${SLIT_X + 8}" y2="${yBottom}" class="fig-warn" stroke-width="2"></line>` +

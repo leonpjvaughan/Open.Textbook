@@ -36,7 +36,11 @@ To stop them cancelling, we square each one. The mean of the squared deviations 
 **variance**, and its square root is the standard deviation.
 
 > **The standard deviation of a list.** For values with mean $\mu$,
+>
+>
 > $$\sigma = \sqrt{\frac{\sum (x - \mu)^2}{n}}$$
+>
+>
 > where $n$ is how many values there are. This is the formula in the formulae and tables
 > booklet. The Greek letter $\sigma$ is read "sigma".
 
@@ -65,6 +69,8 @@ When the data are in a frequency table, each squared deviation is multiplied by 
 frequency.
 
 > **The standard deviation from a frequency table.**
+>
+>
 > $$\sigma = \sqrt{\frac{\sum f(x - \mu)^2}{\sum f}}$$
 
 **Example 2.** Find the standard deviation of the data in this table.

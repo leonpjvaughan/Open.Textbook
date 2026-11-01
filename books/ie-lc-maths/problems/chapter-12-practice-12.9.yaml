@@ -22,7 +22,7 @@ problems:
       equation: 'sin(x) = sqrt(3)/2'
       interval: [0, '2*pi']
       answer: ['pi/3', '2*pi/3']
-    answer_text: >-
+    answer_text: |-
       The reference angle is $\sin^{-1}\!\left(\dfrac{\sqrt{3}}{2}\right) = 60^\circ$.
       The sine is positive, so the solutions lie in the first and second quadrants.
 
@@ -44,7 +44,7 @@ problems:
       equation: 'cos(x) = sqrt(3)/2'
       interval: [0, '2*pi']
       answer: ['pi/6', '11*pi/6']
-    answer_text: >-
+    answer_text: |-
       The reference angle is $\cos^{-1}\!\left(\dfrac{\sqrt{3}}{2}\right) = 30^\circ$.
       The cosine is positive, so the solutions lie in the first and fourth quadrants.
 
@@ -66,7 +66,7 @@ problems:
       equation: 'tan(x) = -1'
       interval: [0, '2*pi']
       answer: ['3*pi/4', '7*pi/4']
-    answer_text: >-
+    answer_text: |-
       The reference angle is $\tan^{-1}(1) = 45^\circ$, and the tangent is negative, so
       the solutions lie in the second and fourth quadrants.
 
@@ -89,7 +89,7 @@ problems:
       equation: 'sin(2*x) = 1/2'
       interval: [0, '2*pi']
       answer: ['pi/12', '5*pi/12', '13*pi/12', '17*pi/12']
-    answer_text: >-
+    answer_text: |-
       Let $x = 2\theta$, so $0^\circ \le x \le 720^\circ$. The reference angle is
       $30^\circ$, and the sine is positive, so
 
@@ -114,7 +114,7 @@ problems:
       equation: 'cos(2*x) = -1/2'
       interval: [0, '2*pi']
       answer: ['pi/3', '2*pi/3', '4*pi/3', '5*pi/3']
-    answer_text: >-
+    answer_text: |-
       Let $x = 2\theta$, so $0^\circ \le x \le 720^\circ$. The reference angle is
       $60^\circ$, and the cosine is negative, so
 
@@ -141,7 +141,7 @@ problems:
       equation: 'cos(x) = 1/2'
       interval: [0, '2*pi']
       answer: ['pi/3', '5*pi/3']
-    answer_text: >-
+    answer_text: |-
       The reference angle is $\dfrac{\pi}{3}$. The cosine is positive, so the solutions
       lie in the first and fourth quadrants.
 
@@ -163,7 +163,7 @@ problems:
       equation: '2*cos(x)**2 + sin(x) = 1'
       interval: [0, '2*pi']
       answer: ['pi/2', '7*pi/6', '11*pi/6']
-    answer_text: >-
+    answer_text: |-
       The booklet gives $\cos^2\theta + \sin^2\theta = 1$, so
       $\cos^2\theta = 1 - \sin^2\theta$. Substitute this to leave only the sine:
 
@@ -212,7 +212,7 @@ problems:
             are the reference angle and 180 degrees minus it; for a negative k they are
             180 degrees plus it and 360 degrees minus it.
           concepts: [solving-equations]
-    answer_text: >-
+    answer_text: |-
       Find the **reference angle** first: the acute angle whose sine is the size of $k$.
       A calculator gives it as the inverse sine of the positive value.
 

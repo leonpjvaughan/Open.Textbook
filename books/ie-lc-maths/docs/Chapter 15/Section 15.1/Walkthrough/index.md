@@ -64,6 +64,7 @@ point is unique.
 
 **Definition.** The **midpoint** of the segment $[AB]$ is the point $M$ of the segment
 with
+
 $$|AM| = |MB| = \frac{|AB|}{2}.$$
 
 > **Axiom 3 (Protractor).** The number of degrees in an angle is between $0^\circ$ and
@@ -73,7 +74,9 @@ $$|AM| = |MB| = \frac{|AB|}{2}.$$
 > 2. Given a ray $[AB$ and a number $d$ between $0$ and $180$, there is exactly one ray
 >    from $A$ on each side of the line $AB$ making an angle of $d$ degrees with $[AB$.
 > 3. If $D$ is a point inside the angle $\angle BAC$, then
->    $$|\angle BAC| = |\angle BAD| + |\angle DAC|.$$
+>
+>
+> $$|\angle BAC| = |\angle BAD| + |\angle DAC|.$$
 
 Part 3 says an angle can be split into two parts that add to the whole. That is the rule
 we use every time we add angles together.
@@ -139,18 +142,21 @@ statement is true, so this is a case where a true statement has a false converse
 **Example 3.** $M$ is the midpoint of $[AB]$, and $|AB| = 14$ cm. Find $|AM|$.
 
 The midpoint splits the segment into two equal parts.
+
 $$|AM| = \frac{|AB|}{2} = \frac{14}{2} = 7 \text{ cm}$$
 
 **Example 4.** The points $A$, $C$ and $B$ lie on a line, with $C$ between $A$ and $B$.
 Given $|AC| = 6$ cm and $|CB| = 11$ cm, find $|AB|$.
 
 The point $C$ is between $A$ and $B$, so the two parts add to the whole.
+
 $$|AB| = |AC| + |CB| = 6 + 11 = 17 \text{ cm}$$
 
 **Example 5.** $D$ is inside the angle $\angle BAC$. Given $|\angle BAC| = 74^\circ$ and
 $|\angle BAD| = 30^\circ$, find $|\angle DAC|$.
 
 The point $D$ splits the angle into two parts that add to the whole.
+
 $$|\angle DAC| = 74^\circ - 30^\circ = 44^\circ$$
 
 > **Watch out.** A statement and its converse are different statements, and one can be

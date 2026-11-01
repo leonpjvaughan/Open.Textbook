@@ -130,6 +130,7 @@ y - (-1) = 1(x - 1),
 \qquad
 y = x - 2.
 $$
+
 </details>
 
 **4.** Find the equation of the normal to $y = x^2$ at the point where $x = 2$.
@@ -159,6 +160,7 @@ y - 4 = -\tfrac{1}{4}(x - 2),
 \qquad
 y = -\tfrac{1}{4}x + \tfrac{9}{2}.
 $$
+
 </details>
 
 **5.** A rectangle has a perimeter of $20$ cm. Let one side be $x$ cm. Write the

@@ -181,7 +181,7 @@ problems:
         V: {value: "6.0", unit: "V"}
         I: {value: "0.40", unit: "A"}
       answer: {value: "15", unit: "ohm"}
-    answer_text: 'The resistance is $R = \dfrac{V}{I} = \dfrac{6.0}{0.40} = 15\,\Omega$$.'
+    answer_text: 'The resistance is $R = \dfrac{V}{I} = \dfrac{6.0}{0.40} = 15\,\Omega$.'
 
   - id: w2-lamp-resistance
     plays: resistance
@@ -212,7 +212,7 @@ problems:
         L: {value: "2.0", unit: "m"}
         A: {value: "1.0e-6", unit: "m^2"}
       answer: {value: "3.4e-2", unit: "ohm"}
-    answer_text: 'The resistance is $R = \dfrac{\rho L}{A} = \dfrac{1.7 \times 10^{-8} \times 2.0}{1.0 \times 10^{-6}} = 3.4 \times 10^{-2}\,\Omega$$.'
+    answer_text: 'The resistance is $R = \dfrac{\rho L}{A} = \dfrac{1.7 \times 10^{-8} \times 2.0}{1.0 \times 10^{-6}} = 3.4 \times 10^{-2}\,\Omega$.'
 
   - id: w4-resistivity
     plays: resistivity
@@ -259,7 +259,7 @@ problems:
         L: {value: "3.0", unit: "m"}
         A: {value: "5.0e-7", unit: "m^2"}
       answer: {value: "0.102", unit: "ohm"}
-    answer_text: '$R = \dfrac{1.7 \times 10^{-8} \times 3.0}{5.0 \times 10^{-7}} = 0.102\,\Omega$, about $0.10\,\Omega$$.'
+    answer_text: '$R = \dfrac{1.7 \times 10^{-8} \times 3.0}{5.0 \times 10^{-7}} = 0.102\,\Omega$, about $0.10\,\Omega$.'
 
   - id: g3-5.2-resistivity
     plays: resistivity
@@ -295,7 +295,7 @@ problems:
     statement: 'A copper wire has diameter 0.50 mm and length 2.0 m. Resistivity 1.7e-8 ohm m. Find its resistance.'
     answer_label: 'The resistance'
     check: {kind: approx, value: "1.7e-8 * 2.0 / (pi * (2.5e-4)**2)", target: "0.173", tolerance: "0.002"}
-    answer_text: 'The radius is $2.5 \times 10^{-4}\,\text{m}$, so $A = \pi (2.5 \times 10^{-4})^2 = 1.96 \times 10^{-7}\,\text{m}^2$. Then $R = \dfrac{1.7 \times 10^{-8} \times 2.0}{1.96 \times 10^{-7}} = 0.17\,\Omega$$.'
+    answer_text: 'The radius is $2.5 \times 10^{-4}\,\text{m}$, so $A = \pi (2.5 \times 10^{-4})^2 = 1.96 \times 10^{-7}\,\text{m}^2$. Then $R = \dfrac{1.7 \times 10^{-8} \times 2.0}{1.96 \times 10^{-7}} = 0.17\,\Omega$.'
 
   - id: g6-5.2-scaling
     section: '5.2'
@@ -327,7 +327,7 @@ problems:
     statement: 'Two 100 ohm resistors are in parallel. Find the equivalent resistance.'
     answer_label: 'The equivalent resistance'
     check: {kind: evaluate, expression: "1 / (1/100 + 1/100)", answer: "50"}
-    answer_text: 'The two equal resistors in parallel give $R = \dfrac{100}{2} = 50\,\Omega$$.'
+    answer_text: 'The two equal resistors in parallel give $R = \dfrac{100}{2} = 50\,\Omega$.'
 
   - id: w3-junction
     section: '5.3'
@@ -367,7 +367,7 @@ problems:
     statement: 'A 3.0 ohm and a 5.0 ohm resistor are in series. Find the equivalent resistance.'
     answer_label: 'The equivalent resistance'
     check: {kind: evaluate, expression: "3.0 + 5.0", answer: "8.0"}
-    answer_text: 'The equivalent resistance is $R = 3.0 + 5.0 = 8.0\,\Omega$$.'
+    answer_text: 'The equivalent resistance is $R = 3.0 + 5.0 = 8.0\,\Omega$.'
 
   - id: g2-5.3-parallel
     section: '5.3'
@@ -375,7 +375,7 @@ problems:
     statement: 'A 6.0 ohm and a 3.0 ohm resistor are in parallel. Find the equivalent resistance.'
     answer_label: 'The equivalent resistance'
     check: {kind: evaluate, expression: "1 / (1/6.0 + 1/3.0)", answer: "2.0"}
-    answer_text: '$\dfrac{1}{R} = \dfrac{1}{6.0} + \dfrac{1}{3.0} = \dfrac{1}{2.0}$, so $R = 2.0\,\Omega$$.'
+    answer_text: '$\dfrac{1}{R} = \dfrac{1}{6.0} + \dfrac{1}{3.0} = \dfrac{1}{2.0}$, so $R = 2.0\,\Omega$.'
 
   - id: g3-5.3-divider
     section: '5.3'

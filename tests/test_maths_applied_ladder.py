@@ -245,20 +245,28 @@ def test_the_deflection_sentence_names_the_controls_ends():
     high = re.search(r"max:\s*([\d.]+)", control.group(1))
     assert low and high, "the stiffness figure no longer declares its control's ends"
 
-    text = SECTION.read_text(encoding="utf-8")
-    assert f"at the two ends of its control, {low.group(1)} and {high.group(1)} MN/m" in text
-    assert "12 mm and\n0.06 mm" in text
+    # Whitespace-normalised and case-insensitive: the page is hard-wrapped, and a
+    # sentence that now begins with the phrase is not a sentence that lost it.
+    text = " ".join(SECTION.read_text(encoding="utf-8").split()).lower()
+    assert f"at the two ends of its control, {low.group(1)} and {high.group(1)} mn/m" in text
+    assert "the bush moves 12 mm and 0.06 mm" in text
     assert "over two orders of magnitude" in text
     assert float(high.group(1)) / float(low.group(1)) >= 100
 
 
 def test_the_change_tolerance_is_met_by_the_softest_exported_row():
-    """§1.5's change tolerance is met by 0.2, not an invented 0.15."""
+    """§1.5's change tolerance is met by 0.2, not an invented 0.15.
+
+    The page used to call the two thresholds "about nine times apart" — 1.8 MN/m for the
+    angle against the ladder's softest row. That compared a threshold with a bound on the
+    other one. The figure on the section measures both crossings, and they are more than
+    fifty times apart; the softest row is still the answer to "is 0.2 enough", so it stays.
+    """
     assert min(STIFFNESS) == 0.2
     text = SECTION.read_text(encoding="utf-8")
     assert "export's softest row, 0.2 MN/m" in text
-    assert "about nine times" in text
-    assert round(crossing() / min(STIFFNESS), 0) == 9
+    assert "more than fifty times apart" in text
+    assert "nine times" not in text
     assert "0.15 MN/m" not in text
     assert "twelve times" not in text
 

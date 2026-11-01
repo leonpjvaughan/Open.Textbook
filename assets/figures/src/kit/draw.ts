@@ -497,7 +497,14 @@ export function axes({
   }
   for (const t of xTicks) {
     draw += line({ x1: mapX(t), y1: box.y0, x2: mapX(t), y2: box.y0 + 6, class: "fig-ink", width: 1.4 });
-    draw += label({ x: mapX(t), y: box.y0 + 22, text: showX(t), size: SIZE.tick, class: "text-ink" });
+    // **The end ticks are anchored inwards.** A centred label on the axis end hangs
+    // half of itself outside the drawing: `kernel-camber`'s "40 mm" sat at x = 540 in a
+    // 560-unit canvas and lost its last four units, and the `canvas` check measures
+    // exactly that. The first and last ticks are the only ones that can overhang, so
+    // they are the only ones that change.
+    const px = mapX(t);
+    const anchor = px <= box.x0 + 0.5 ? "start" : px >= box.x1 - 0.5 ? "end" : "middle";
+    draw += label({ x: px, y: box.y0 + 22, text: showX(t), size: SIZE.tick, class: "text-ink", anchor });
   }
   for (const t of yTicks) {
     draw += line({ x1: box.x0 - 6, y1: mapY(t), x2: box.x0, y2: mapY(t), class: "fig-ink", width: 1.4 });

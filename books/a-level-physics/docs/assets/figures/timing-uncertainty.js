@@ -64,7 +64,7 @@ export function mount(el) {
     let axes = `
       <line x1="${LEFT}" y1="${TOP}" x2="${LEFT}" y2="${BOTTOM}" class="fig-ink"></line>
       <line x1="${LEFT}" y1="${BOTTOM}" x2="${RIGHT}" y2="${BOTTOM}" class="fig-ink"></line>
-      ${label({ x: LEFT, y: TOP - 8, text: `uncertainty in the period (%)`, anchor: "start", size: SIZE.heading, class: "text-ink" })}
+      ${label({ x: LEFT, y: TOP - 3, text: `uncertainty in the period (%)`, anchor: "start", size: SIZE.heading, class: "text-ink" })}
       ${label({ x: RIGHT, y: BOTTOM + 18, text: `oscillations timed`, anchor: "end", size: SIZE.heading, class: "text-ink" })}`;
 
     for (let tick = 0; tick <= 4; tick += 1) {

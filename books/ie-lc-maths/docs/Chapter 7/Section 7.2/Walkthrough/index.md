@@ -26,6 +26,8 @@ Differentiating $x^2$ and $x^3$ from first principles gave $2x$ and $3x^2$. The 
 clear: multiply by the old power, then reduce the power by one.
 
 > **The power rule.** For any real number $n$,
+>
+>
 > $$\frac{d}{dx}\left(x^n\right) = nx^{n-1}.$$
 
 The symbol $\frac{d}{dx}$ means the derivative with respect to $x$: the instruction to

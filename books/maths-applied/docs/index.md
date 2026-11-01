@@ -49,8 +49,9 @@ Then, outline: **the full vehicle**, where these models are used many times over
 
 ## How to read it
 
-Straight through, in order, is the intended way. Each section offers one optional
-page marked **Going deeper**; the main thread is complete without any of them.
+Straight through, in order, is the intended way. Each section of the main thread
+offers one optional page marked **Going deeper**; the main thread is complete
+without any of them.
 
 If a figure has a control, it has a still frame as well — every value is reachable
 without moving anything, and the drawing already carries the idea before you touch

@@ -66,6 +66,8 @@ towards zero. The term $h$ disappears, and $2x + h$ settles towards $2x$.
 
 > **The derivative.** The derivative of $f$ at $x$ is the limit of the average gradient as
 > $h$ goes to zero:
+>
+>
 > $$f'(x) = \lim_{h \to 0} \frac{f(x + h) - f(x)}{h}.$$
 
 The derivative is the **instantaneous rate of change** of $f$. On a graph it is the gradient

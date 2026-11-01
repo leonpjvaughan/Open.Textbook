@@ -71,6 +71,7 @@ $$
          &= 1.56 \times 10^4\,\text{J}
 \end{aligned}
 $$
+
 </details>
 
 **2.** A liquid of mass $1.5\,\text{kg}$ gains $13\,500\,\text{J}$ when its
@@ -100,6 +101,7 @@ c &= \frac{\Delta E}{m\Delta\theta} \\
   &= 450\,\text{J/kg}\,^\circ\text{C}
 \end{aligned}
 $$
+
 </details>
 
 **3.** Calculate the energy needed to melt $0.80\,\text{kg}$ of ice at
@@ -131,6 +133,7 @@ E &= mL \\
   &= 2.64 \times 10^5\,\text{J}
 \end{aligned}
 $$
+
 </details>
 
 **4.** Calculate the energy needed to boil away $0.050\,\text{kg}$ of water at
@@ -162,6 +165,7 @@ E &= mL \\
   &= 1.15 \times 10^5\,\text{J}
 \end{aligned}
 $$
+
 </details>
 
 **5.** Two students heat $1.0\,\text{kg}$ of ice at $0\,^\circ\text{C}$. One

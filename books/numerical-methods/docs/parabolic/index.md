@@ -7,6 +7,9 @@ title: Parabolic
 **You have one of these when** the answer moves forward in time and smooths as
 it goes, so it forgets where it started.
 
+**Parabolic, not hyperbolic.** What moves here smooths and forgets where it
+started. A hyperbolic answer keeps the shape of what was sent.
+
 ## What you are modelling
 
 A transient that settles. Heat spreading through a casting, a tyre warming, a
@@ -83,17 +86,31 @@ explicit and the mesh is fine".
 Every method named here is in [Methods, A to Z](../techniques/#moving-problems),
 with its price and what it will not do.
 
+**Start from the model you have.** Each row is a property of the model in front
+of you, the methods that fit it, and what the fit costs. The method-keyed table
+below is the same list sorted by name.
+
+| what your model is | the methods that fit | the price |
+|---|---|---|
+| a coarse mesh, a short interval, no stiffness | Forward Euler, explicit Runge–Kutta | the step is limited by the mesh |
+| stiffness, which in practice is almost always | Backward Euler, BDF, Radau, implicit Runge–Kutta | a solve per step |
+| accuracy at a moderate step | Crank–Nicolson | it can ring at a sharp start |
+| a coefficient that depends on the answer | Adaptive step control around the implicit methods | an outer loop |
+| a rectangle, and a long interval | ADI, spectral methods | the geometry, or the regularity |
+| advection as well as diffusion | Exponential integrators | the linear part has to be handled exactly |
+
+<!-- table: cards -->
 | technique | what it does | when it wins | when it is the wrong tool |
 |---|---|---|---|
-| Forward Euler, explicit Runge–Kutta | Steps forward using the current rate | Cheap steps, short intervals, coarse meshes | Stiff problems: the step limit is brutal |
-| Backward Euler | Solves implicitly, unconditionally stable | Stiff problems, steady settling | Accuracy: it is only first order |
-| Crank–Nicolson | Averages the explicit and implicit sides | Second order, stable, smooth answers | Sharp transients: it rings |
-| BDF | Uses several past steps, implicitly | Stiff problems with a smooth solution | Starting up; the first steps need another method |
-| Radau, implicit Runge–Kutta | High order, stiffly stable, adaptive | Stiff problems where accuracy matters | Very large systems: the linear algebra is heavy |
-| ADI | Splits the operator by direction | Rectangular grids in two or three dimensions | Complicated geometry |
-| Spectral methods | Expands in smooth basis functions | Smooth solutions, simple regions | Shocks, or complex boundaries |
-| Exponential integrators | Treats the linear part exactly | A dominant linear term, a small non-linear one | The linear part is not the hard part |
-| Adaptive step control | Estimates the error and changes the step | Any time-dependent problem | You have not checked the error estimate is honest |
+| [Forward Euler, explicit Runge–Kutta](../techniques/#forward-euler) | Steps forward using the current rate | Cheap steps, short intervals, coarse meshes | Stiff problems: the step limit is brutal |
+| [Backward Euler](../techniques/#backward-euler) | Solves implicitly, unconditionally stable | Stiff problems, steady settling | Accuracy: it is only first order |
+| [Crank–Nicolson](../techniques/#crank-nicolson) | Averages the explicit and implicit sides | Second order, stable, smooth answers | Sharp transients: it rings |
+| [BDF](../techniques/#bdf) | Uses several past steps, implicitly | Stiff problems with a smooth solution | Starting up; the first steps need another method |
+| [Radau, implicit Runge–Kutta](../techniques/#bdf) | High order, stiffly stable, adaptive | Stiff problems where accuracy matters | Very large systems: the linear algebra is heavy |
+| [ADI](../techniques/#adi) | Splits the operator by direction | Rectangular grids in two or three dimensions | Complicated geometry |
+| [Spectral methods](../techniques/#spectral-methods) | Expands in smooth basis functions | Smooth solutions, simple regions | Shocks, or complex boundaries |
+| [Exponential integrators](../techniques/#exponential-integrators) | Treats the linear part exactly | A dominant linear term, a small non-linear one | The linear part is not the hard part |
+| [Adaptive step control](../techniques/#adaptive-step-control) | Estimates the error and changes the step | Any time-dependent problem | You have not checked the error estimate is honest |
 
 ## Systems that live here
 
@@ -133,6 +150,9 @@ growth is the numerics failing rather than the physics.
 
 ## Read next
 
+- [Why the time step is tied to the square of the mesh](stability/index.md) —
+  the working under this class: von Neumann, and the limit the grid-scale mode
+  sets.
 - [Hyperbolic](../hyperbolic/index.md) — the class where the answer remembers,
   and the pair to this one.
 - [Elliptic](../elliptic/index.md) — what is left when the transient has
@@ -141,3 +161,6 @@ growth is the numerics failing rather than the physics.
   number that says an equation like this one is parabolic.
 - [When it goes wrong](../symptoms/index.md) — the symptom table for every
   class.
+
+Back to the map: [the nine kinds](../index.md) puts this class among the
+other eight.

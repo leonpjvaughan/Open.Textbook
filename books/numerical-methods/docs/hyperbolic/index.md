@@ -7,6 +7,9 @@ title: Hyperbolic
 **You have one of these when** information travels at a finite speed along
 paths, and what arrives keeps the shape of what was sent.
 
+**Hyperbolic, not elliptic.** Information travels at a finite speed and arrives.
+In an elliptic problem nothing travels, and the answer is already settled.
+
 ## What you are modelling
 
 Something carried. A pressure wave, a shock, a crowd, a flood, a gravitational
@@ -27,8 +30,8 @@ $F = a u$, and the whole solution is $u$ shifted along the line $x = a t$.
 
 ## What it becomes on a computer
 
-**Worked number.** With wave speed $a=2$ and $\Delta x=0.1$, the stability
-limit is $\Delta t\le \Delta x/a=0.05$.
+**Worked number.** With wave speed $a=2$ and $\Delta x=0.1$, the stability limit
+is $\Delta t\le \Delta x/a=0.05$.
 
 Two routes, and the first one is often forgotten:
 
@@ -98,17 +101,31 @@ bounded.
 Every method named here is in [Methods, A to Z](../techniques/#moving-problems),
 with its price and what it will not do.
 
+**Start from the model you have.** Each row is a property of the model in front
+of you, the methods that fit it, and what the fit costs. The method-keyed table
+below is the same list sorted by name.
+
+| what your model is | the methods that fit | the price |
+|---|---|---|
+| one simple wave, and a smooth solution | Method of characteristics | it cannot cross a shock |
+| a conservation law | Godunov, finite volume, Riemann solvers (Roe, HLLC, exact) | the Riemann problem is the work |
+| shocks, and you want order away from them | WENO, limiters, discontinuous Galerkin | the limiter costs accuracy at a smooth extremum |
+| smooth, and a fine mesh you can afford | Lax–Wendroff, spectral element | a shock makes it ring |
+| linear advection on a coarse mesh | Upwind | numerical diffusion |
+| a wave that must stay bounded over a long run | Symplectic integration | the structure has to be there to preserve |
+
+<!-- table: cards -->
 | technique | what it does | when it wins | when it is the wrong tool |
 |---|---|---|---|
-| Method of characteristics | Solves along the paths information takes | Linear or simple non-linear problems | Shocks form, or the region is complex |
-| Upwind | Uses the direction of travel to choose the stencil | Convection-dominated problems | The wave speed changes sign |
-| Lax–Wendroff | Second-order centred, with a correction | Smooth solutions | Shocks: it oscillates |
-| Godunov, finite volume | Solves a Riemann problem at each face | Shocks, conservation laws | Smooth, low-amplitude waves where it is overkill |
-| Riemann solvers (Roe, HLLC, exact) | Decides the flux between two states | Systems of conservation laws | You have not checked the solver's entropy fix |
-| WENO, limiters | High order away from a shock, low across it | Shocks and smooth parts in one problem | A smooth answer, where high order alone is cheaper |
-| Discontinuous Galerkin | High order inside each cell, with a flux between | Complex geometry, high order, parallel machines | Strictly bounded problems without a limiter |
-| Spectral element | High order on large elements | Smooth waves over long times | Shocks |
-| Symplectic integration | Preserves the structure of a Hamiltonian problem | Long-time wave and orbit problems | Dissipative problems |
+| [Method of characteristics](../techniques/#method-of-characteristics) | Solves along the paths information takes | Linear or simple non-linear problems | Shocks form, or the region is complex |
+| [Upwind](../techniques/#upwind) | Uses the direction of travel to choose the stencil | Convection-dominated problems | The wave speed changes sign |
+| [Lax–Wendroff](../techniques/#lax-wendroff) | Second-order centred, with a correction | Smooth solutions | Shocks: it oscillates |
+| [Godunov, finite volume](../techniques/#godunov) | Solves a Riemann problem at each face | Shocks, conservation laws | Smooth, low-amplitude waves where it is overkill |
+| [Riemann solvers (Roe, HLLC, exact)](../techniques/#riemann-solvers-roe) | Decides the flux between two states | Systems of conservation laws | You have not checked the solver's entropy fix |
+| [WENO, limiters](../techniques/#weno) | High order away from a shock, low across it | Shocks and smooth parts in one problem | A smooth answer, where high order alone is cheaper |
+| [Discontinuous Galerkin](../techniques/#discontinuous-galerkin) | High order inside each cell, with a flux between | Complex geometry, high order, parallel machines | Strictly bounded problems without a limiter |
+| [Spectral element](../techniques/#spectral-element) | High order on large elements | Smooth waves over long times | Shocks |
+| [Symplectic integration](../techniques/#symplectic-integration) | Preserves the structure of a Hamiltonian problem | Long-time wave and orbit problems | Dissipative problems |
 
 ## Systems that live here
 
@@ -139,6 +156,9 @@ with its price and what it will not do.
 
 ## Read next
 
+- [The condition a wave equation imposes](the-cfl-condition/index.md) — the
+  working under this class: the domain of dependence, and the condition derived
+  from it.
 - [Parabolic](../parabolic/index.md) — the other moving class, and the one that
   diffuses instead of carrying.
 - [Eigenvalues](../eigenvalue/index.md) — the stability of a wave problem is
@@ -147,3 +167,6 @@ with its price and what it will not do.
   number that says an equation like this one is hyperbolic.
 - [When it goes wrong](../symptoms/index.md) — the symptom table for every
   class.
+
+Back to the map: [the nine kinds](../index.md) puts this class among the
+other eight.

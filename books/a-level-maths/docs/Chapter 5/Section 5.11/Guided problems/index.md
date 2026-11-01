@@ -60,6 +60,7 @@ $$
 = (\sin^2 A + \cos^2 A) + 2\sin A\cos A
 = 1 + \sin 2A.
 $$
+
 </details>
 
 **2.** Prove that $\sin(A + B)\sin(A - B) \equiv \sin^2 A - \sin^2 B$.
@@ -92,6 +93,7 @@ $$
 = \sin^2 A - \sin^2 A\sin^2 B - \sin^2 B + \sin^2 A\sin^2 B
 = \sin^2 A - \sin^2 B.
 $$
+
 </details>
 
 **3.** Prove that $\cos 2A \equiv \dfrac{1 - \tan^2 A}{1 + \tan^2 A}$.
@@ -118,6 +120,7 @@ $$
 = \frac{\cos^2 A - \sin^2 A}{1}
 = \cos 2A.
 $$
+
 </details>
 
 **4.** Prove that $\tan A + \cot A \equiv 2\operatorname{cosec} 2A$ for
@@ -148,6 +151,7 @@ $$
 = \frac{2}{\sin 2A}
 = 2\operatorname{cosec} 2A.
 $$
+
 </details>
 
 **5.** Prove that $\cos^4 A - \sin^4 A \equiv \cos 2A$.
@@ -174,6 +178,7 @@ $$
 = (\cos 2A)(1)
 = \cos 2A.
 $$
+
 </details>
 
 **6.** Prove that $\sin 3A \equiv 3\sin A - 4\sin^3 A$.
@@ -212,4 +217,5 @@ $$
 = 2\sin A - 2\sin^3 A + \sin A - 2\sin^3 A
 = 3\sin A - 4\sin^3 A.
 $$
+
 </details>

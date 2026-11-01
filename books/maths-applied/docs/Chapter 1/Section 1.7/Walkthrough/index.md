@@ -31,13 +31,13 @@ corner does depends on what the others are doing. A model of the whole car adds:
 ## Where the small model goes
 
 It stays. A full vehicle model calls a corner model, once per wheel, at every
-evaluation. The corner model it calls is the one this chapter built: the
-kinematics that turn a wheel's travel into its camber and its track change.
+evaluation. The corner model it calls is the one this chapter built. The
+kinematics turn a wheel's travel into its camber and its track change.
 
 That is the shape of every serious vehicle model, and it is the point of this
 chapter's method. The big model is not the small model written larger. It is the
-small model **used many times, and used honestly**, with its limits stated where it
-is called.
+small model **used many times, and used honestly**, with its limits stated where
+it is called.
 
 The limits this chapter established are the ones to state:
 
@@ -48,13 +48,14 @@ The limits this chapter established are the ones to state:
 
 ## What a bigger model still cannot do
 
-It is worth saying, because the chapter's whole argument points this way: a bigger
-model is not more true. A full vehicle model with a wrong tyre and a guessed bush
-stiffness answers its own question, precisely, and may still be wrong about the car.
+It is worth saying, because the chapter's whole argument points this way: a
+bigger model is not more true.A full vehicle model with a wrong tyre and a
+guessed bush stiffness answers its own question, precisely. It may still be
+wrong about the car.
 
-What makes a model trustworthy is not its size. It is that the smaller models inside
-it have been checked, and that somebody has said which question it was built to
-answer.
+What makes a model trustworthy is not its size. It is that the smaller models
+inside it have been checked, and that somebody has said which question it was
+built to answer.
 
 ## You should now be able to
 
@@ -66,5 +67,5 @@ answer.
 
 The temptation at this point is to think that the chapter was a warm-up for the
 vehicle model. It is the other way round. The vehicle model is a way of using the
-corner model many times, and it is only as good as the corner model and the honesty
+corner model many times. It is only as good as the corner model and the honesty
 of the limits around it.

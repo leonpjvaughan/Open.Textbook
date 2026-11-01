@@ -210,17 +210,21 @@ Find the slope of each side, and compare opposite sides.
 <summary>Full working</summary>
 
 Slope of $AB$:
+
 $$\frac{1 - 0}{4 - 0} = \frac{1}{4}.$$
 
 Slope of $DC$:
+
 $$\frac{4 - 5}{2 - 6} = \frac{-1}{-4} = \frac{1}{4}.$$
 
 The slopes are equal, so $AB \parallel DC$.
 
 Slope of $AD$:
+
 $$\frac{4 - 0}{2 - 0} = 2.$$
 
 Slope of $BC$:
+
 $$\frac{5 - 1}{6 - 4} = \frac{4}{2} = 2.$$
 
 The slopes are equal, so $AD \parallel BC$. Both pairs of opposite sides are parallel, so

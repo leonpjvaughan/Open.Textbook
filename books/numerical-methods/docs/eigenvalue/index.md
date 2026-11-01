@@ -5,8 +5,10 @@ title: Eigenvalues
 # Eigenvalues
 
 **You have one of these when** you ask which values are allowed — which
-frequencies, which loads, which energies, which growth rates — rather than what
-a particular one is.
+frequencies, which loads, which energies — rather than what any one of them is.
+
+**Eigenvalues, not parabolic.** The answer is a set of allowed values, fixed
+once the matrix is written. A parabolic answer moves forward in time.
 
 ## What you are modelling
 
@@ -79,17 +81,31 @@ equilibrium, linearise, and look at the sign of the real part.
 Every method named here is in [Methods, A to Z](../techniques/#eigenvalues),
 with its price and what it will not do.
 
+**Start from the model you have.** Each row is a property of the model in front
+of you, the methods that fit it, and what the fit costs. The method-keyed table
+below is the same list sorted by name.
+
+| what your model is | the methods that fit | the price |
+|---|---|---|
+| the largest eigenvalue, and a matrix you can multiply | Power iteration | one eigenvalue, and it may converge slowly |
+| the one nearest a value you choose | Inverse iteration, shift-invert | a factorisation per shift |
+| symmetric, and several eigenvalues | Lanczos, subspace iteration | reorthogonalisation is the cost |
+| non-symmetric | Arnoldi, QR algorithm | storage grows with the basis |
+| generalised, or a singular $B$ | QZ | cubic, and it is dense |
+| a non-linear eigenvalue, or a large sparse one | Jacobi–Davidson, contour integral (FEAST) | a solve inside every step |
+
+<!-- table: cards -->
 | technique | what it does | when it wins | when it is the wrong tool |
 |---|---|---|---|
-| Power iteration | Multiplies repeatedly; finds the largest | One dominant eigenvalue, cheap multiply | You want the smallest, or two eigenvalues are close |
-| Inverse iteration, shift-invert | Multiplies by $(A-\sigma I)^{-1}$ | An eigenvalue near $\sigma$ | Each step needs a linear solve |
-| Lanczos | Krylov subspace, symmetric matrices | A few extreme eigenvalues, large sparse $A$ | Non-symmetric matrices |
-| Arnoldi | Krylov subspace, general matrices | A few extreme eigenvalues, non-symmetric | Memory: it stores every vector unless restarted |
-| QR algorithm | Similarity transformations to triangular form | All eigenvalues of a dense matrix | Large sparse problems |
-| QZ | Generalised problem $Ax=\lambda Bx$ | Singular or ill-conditioned $B$ | Large sparse problems; it is dense |
-| Jacobi–Davidson | Subspace correction aimed at one eigenvalue | Interior eigenvalues, non-linear problems | You need many eigenvalues |
-| Subspace iteration | Several vectors at once | A block of dominant eigenvalues | Interior eigenvalues |
-| Contour integral (FEAST) | Integrates around a region of the complex plane | All eigenvalues in a window | Very large problems without a good solver |
+| [Power iteration](../techniques/#power-iteration) | Multiplies repeatedly; finds the largest | One dominant eigenvalue, cheap multiply | You want the smallest, or two eigenvalues are close |
+| [Inverse iteration, shift-invert](../techniques/#inverse-iteration) | Multiplies by $(A-\sigma I)^{-1}$ | An eigenvalue near $\sigma$ | Each step needs a linear solve |
+| [Lanczos](../techniques/#lanczos) | Krylov subspace, symmetric matrices | A few extreme eigenvalues, large sparse $A$ | Non-symmetric matrices |
+| [Arnoldi](../techniques/#lanczos) | Krylov subspace, general matrices | A few extreme eigenvalues, non-symmetric | Memory: it stores every vector unless restarted |
+| [QR algorithm](../techniques/#qr-algorithm) | Similarity transformations to triangular form | All eigenvalues of a dense matrix | Large sparse problems |
+| [QZ](../techniques/#qz) | Generalised problem $Ax=\lambda Bx$ | Singular or ill-conditioned $B$ | Large sparse problems; it is dense |
+| [Jacobi–Davidson](../techniques/#jacobi-davidson) | Subspace correction aimed at one eigenvalue | Interior eigenvalues, non-linear problems | You need many eigenvalues |
+| [Subspace iteration](../techniques/#subspace-iteration) | Several vectors at once | A block of dominant eigenvalues | Interior eigenvalues |
+| [Contour integral (FEAST)](../techniques/#contour-integral) | Integrates around a region of the complex plane | All eigenvalues in a window | Very large problems without a good solver |
 
 ## Systems that live here
 
@@ -119,9 +135,16 @@ with its price and what it will not do.
 
 ## Read next
 
+- [The same corner, five ways](../worked-case/index.md) — this class, worked
+  on one mechanism with the numbers beside it.
+- [Finding a chosen eigenvalue](shift-and-invert/index.md) — the working under
+  this class: the shift that finds any eigenvalue, not only the largest.
 - [Root finding](../root/index.md) — an eigenvalue of a small matrix is the root
   of its determinant.
 - [Hyperbolic](../hyperbolic/index.md) — the stability of a wave problem is an
   eigenvalue question in disguise.
 - [When it goes wrong](../symptoms/index.md) — the symptom table for every
   class.
+
+Back to the map: [the nine kinds](../index.md) puts this class among the
+other eight.

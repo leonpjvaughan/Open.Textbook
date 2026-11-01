@@ -61,6 +61,7 @@ p &= m v \\
   &= 3.0\,\text{kg m/s}
 \end{aligned}
 $$
+
 </details>
 
 **2.** A lorry of mass 8000 kg travels at 25 m/s. Calculate its momentum.
@@ -89,6 +90,7 @@ p &= m v \\
   &= 2.0 \times 10^5\,\text{kg m/s}
 \end{aligned}
 $$
+
 </details>
 
 **3.** A trolley of mass 2.0 kg moves at 3.0 m/s and hits a stationary trolley of
@@ -118,6 +120,7 @@ $$
 v &= 2.0\,\text{m/s}
 \end{aligned}
 $$
+
 </details>
 
 **4.** A car of mass 1000 kg travels at 20 m/s and stops in 0.25 s. Calculate the
@@ -149,6 +152,7 @@ F &= \frac{m \Delta v}{\Delta t} \\
   &= 8.0 \times 10^4\,\text{N}
 \end{aligned}
 $$
+
 </details>
 
 **5.** Explain how a seat belt reduces the chance of injury in a crash.

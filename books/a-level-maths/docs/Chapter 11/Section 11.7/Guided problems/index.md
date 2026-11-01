@@ -120,6 +120,7 @@ $12 + 15 + 14 + 13 = 54$ over 4 values, so the mean is
 $$
 \frac{54}{4} = 13.5 \text{ mm}.
 $$
+
 </details>
 
 **4.** A histogram of wind speed has frequency density 5 in the class $20$–$30$

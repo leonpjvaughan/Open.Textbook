@@ -72,6 +72,8 @@ touches. Add up all the degrees and you have counted each edge twice, once at ea
 > **The handshake lemma.** In any network, the sum of the degrees of all the vertices is
 > twice the number of edges.
 >
+>
+>
 > $$\sum \deg(v) = 2E$$
 
 where $v$ is a vertex and $E$ is the number of edges.

@@ -127,7 +127,7 @@ export function mount(el) {
       treeText(lx + 6, 16, "fire, alarm") +
       treeText(lx + 6, 50, "fire, no alarm") +
       treeText(lx + 6, 96, "no fire, alarm") +
-      treeText(lx + 6, 130, "no fire, no alarm");
+      treeText(lx - 24, 126, "no fire, no alarm");
 
     bars.innerHTML =
       treeText(0, 17, "P(fire)") +

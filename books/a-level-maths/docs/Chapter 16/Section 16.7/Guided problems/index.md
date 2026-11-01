@@ -97,6 +97,7 @@ $$
 $$
 a = \frac{50 - 39.2}{8} = \frac{10.8}{8} = 1.35 \text{ m s}^{-2}.
 $$
+
 </details>
 
 **3.** A block of mass $10$ kg is released on a rough slope of $20^\circ$. The
@@ -213,6 +214,7 @@ $R = 15 \times 9.8 = 147$ N, and the limiting friction is $0.35 \times 147$.
 $$
 F_{\min} = \mu R = 0.35 \times 147 = 51.45 \text{ N}.
 $$
+
 </details>
 
 **7.** A block of mass $10$ kg is pulled along a rough horizontal floor by a rope
@@ -244,6 +246,7 @@ $$
 $$
 a = \frac{51.96 - 27.2}{10} = \frac{24.76}{10} \approx 2.48 \text{ m s}^{-2}.
 $$
+
 </details>
 
 **8.** A block of mass $20$ kg on a rough horizontal floor is on the point
@@ -270,4 +273,5 @@ $R = 20 \times 9.8 = 196$ N and $50 = \mu \times 196$.
 $$
 \mu = \frac{50}{196} \approx 0.255.
 $$
+
 </details>

@@ -94,6 +94,7 @@ f &= \frac{c}{\lambda} \\
   &= 3.0 \times 10^{13}\,\text{Hz}
 \end{aligned}
 $$
+
 </details>
 
 **3.** A hotter object emits most of its radiation at a wavelength of 2.0 μm.

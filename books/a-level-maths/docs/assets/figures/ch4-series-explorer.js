@@ -80,7 +80,7 @@ export function mount(el) {
       limitLine =
         `<line x1="${left}" y1="${y.toFixed(1)}" x2="${left + width}" y2="${y.toFixed(1)}" ` +
         `class="fig-good"></line>` +
-        label({ x: left + 4, y: y - 4, text: "limit", anchor: "start", class: "text-good" });
+        label({ x: left + 4, y: y + 12, text: "limit", anchor: "start", class: "text-good" });
     }
 
     svg.innerHTML = axis + bars + limitLine;

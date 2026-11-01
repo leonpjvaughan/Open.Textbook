@@ -18,7 +18,7 @@ and this page is about the kinds, not about the corner.
 |---|---|---|---|
 | Where is the wheel? | two circles and a rigid upright | [root finding](../root/index.md) | one closed-form step, no iteration |
 | Which row is the spare one? | three rules, two unknowns | [linear system](../linear-system/index.md) | one factorisation of a three-by-two matrix |
-| How stiff should the bush be? | the same corner, swept over stiffness | [optimisation](../optimisation/index.md) | one sweep, and a target to hit |
+| What stiffness should the bush have? | the same corner, swept over stiffness | [optimisation](../optimisation/index.md) | one sweep, and a target to hit |
 | How does the wheel bounce? | mass and a spring, with constraints priced | a [saddle point](../saddle-point/index.md), then [eigenvalues](../eigenvalue/index.md) and the [Hamiltonian flag](../hyperbolic/index.md) | a time step, and a choice of integrator |
 | How hot does the damper get? | a damper, and the heat it makes — not built here | [parabolic](../parabolic/index.md), and stiff | a time step chosen for the wrong scale |
 
@@ -66,11 +66,12 @@ Dropping that row returns the two-circle problem, and the class changes from a
 [root problem](../root/index.md) with a unique answer. `Maths Applied`
 [§1.4](/maths-applied/chapter-1/section-1.4/learn/) is where this is worked.
 
-## How stiff should the bush be: optimisation
+## What stiffness should the bush have: optimisation
 
 Replace the joint with a spring and the corner is a root problem at each wheel
-position. That makes one question worth asking: how stiff does the spring have
-to be before the bushed model agrees with the rigid one?
+position. That makes one question worth asking: what stiffness does the spring
+need
+before the bushed model agrees with the rigid one?
 
 The answer is a sweep, and the sweep is a number. These are the export's own
 four stiffnesses, and `Maths Applied`

@@ -201,7 +201,7 @@ export function mount(el) {
 
     const caption = label({
       x: 230,
-      y: 14,
+      y: 18,
       text: "Sampling distribution of the sample mean",
       anchor: "middle",
       size: SIZE.tick,

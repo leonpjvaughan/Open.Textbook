@@ -64,6 +64,7 @@ The original has $+3$ where the square has $+25$, so subtract the difference:
 $$
 x^2 + 10x + 3 = (x + 5)^2 - 22.
 $$
+
 </details>
 
 **2.** Write $x^2 - 8x + 1$ in completed-square form and state the minimum value.

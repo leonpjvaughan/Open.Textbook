@@ -107,11 +107,184 @@ def prose_paragraphs(text: str):
         yield start, " ".join(buffer)
 
 
-def long_sentences(text: str):
-    """Yield ``(line_number, sentence)`` for each sentence over the ceiling."""
+QUOTE = re.compile(r"^\s{0,3}>\s?")
+
+
+def _unquoted(line: str) -> str:
+    """The line with its block-quote markers removed.
+
+    A block quote is a container, and the rules inside it are Markdown's: `> - one`
+    after `> The steps are:` is the same defect as the unquoted pair, and it folds
+    into the paragraph the same way. Stripping the markers is what lets one scan
+    see both.
+    """
+    while QUOTE.match(line):
+        line = QUOTE.sub("", line, count=1)
+    return line
+
+
+def lists_without_a_blank_line(text: str):
+    """Line numbers of list items the Markdown parser will not read as a list.
+
+    A list is a block: it starts a paragraph, so the first item needs a blank line
+    before it unless the line above already ends a block (a heading, a table, a
+    fence, a directive). Without one the parser keeps the bullet inside the
+    paragraph it followed and the reader sees the hyphen — a sentence ending in a
+    colon, then three lines of dashes. That is the defect the review filed as W3,
+    and it was invisible because the source reads as a list and only the built page
+    shows what happened.
+
+    Items after the first are not reported: a list continues through its own items
+    and through their indented continuation lines, so `2.` after `   answers it.`
+    is the same list, not a new one. The block ends at a blank line or at a
+    non-indented line that is not an item. The scan runs inside block quotes too,
+    because the defect does.
+
+    A display equation is not prose either. `$$` … `$$` is one maths block however
+    many lines it spans, and its continuation lines start with `+` and `-` because
+    that is how an equation wraps: `+ \frac{1}{16}(x/4)^3` was reported as a list
+    item eight times in `a-level-maths`, and the false findings spent that book's
+    `LIST_DEBT` budget, which is where real defects were hiding.
+    """
+    # Front matter is YAML, not Markdown: `refs:` followed by `- A23` is a list
+    # either way, and a rule about prose lists has nothing to say about it. Blanked
+    # line for line so every finding still names the line the author has to open.
+    text = FRONT_MATTER.sub(lambda match: "\n" * match.group(0).count("\n"), text)
+    lines = [_unquoted(line) for line in text.splitlines()]
+    offences = []
+    in_fence = False
+    in_list = False
+    in_maths = False
+    for index, line in enumerate(lines):
+        stripped = line.strip()
+        if stripped.startswith("```"):
+            in_fence = not in_fence
+            in_list = False
+            continue
+        if in_fence:
+            continue
+        # A maths block, entered and left by an unpaired `$$` on a line. A line
+        # that carries both delimiters changes nothing, and a continuation line
+        # that begins `-` or `+` is arithmetic, not a list item.
+        if in_maths:
+            if stripped.count("$$") % 2:
+                in_maths = False
+            continue
+        if stripped.count("$$") % 2:
+            in_maths = True
+            in_list = False
+            continue
+        if not stripped:
+            in_list = False
+            continue
+        if LIST_ITEM.match(line):
+            if in_list:
+                continue
+            previous = lines[index - 1] if index else ""
+            if previous.strip() and not previous.lstrip().startswith(
+                ("#", "|", "```", ":::", "<")
+            ):
+                offences.append(index + 1)
+            in_list = True
+            continue
+        # An indented line continues the item above it; anything flush left ends
+        # the list, so the next item will need its own blank line.
+        if not line.startswith((" ", "\t")):
+            in_list = False
+    return offences
+
+
+def display_maths_without_a_blank_line(text: str):
+    """Line numbers of display equations that share a paragraph with the prose.
+
+    `$$…$$` is a block, so it starts a paragraph, so it needs a blank line above it
+    unless the line above already ends one. Without it the maths hook leaves the
+    delimiters in the sentence and the reader sees a dollar, the equation set on the
+    line, and a dollar: 473 of them across the collection on 2026-10-30, in four
+    books, because nothing looked.
+
+    Three shapes are reported, and they are one defect:
+
+    * a `$$` line with prose directly above it;
+    * a closing `$$` with prose directly below it;
+    * a `$$…$$` in the middle of a sentence, which no blank line can fix — the
+      equation has to be given its own paragraph.
+
+    A line inside a block quote is read with the markers stripped, because a list or a
+    display block inside `>` is the same block. A fenced code block is skipped, and so
+    is a table row: `| $$x$$ |` is a cell, and a cell is not prose.
+    """
+    text = FRONT_MATTER.sub(lambda match: "\n" * match.group(0).count("\n"), text)
+    raw = text.splitlines()
+    lines = []
+    for line in raw:
+        content = _unquoted(line)
+        # `> $$x$$` is a block at the start of its line; `>    $$x$$` is not. Removing
+        # the marker leaves the space that followed it, so one space is taken off —
+        # only when the line really was quoted.
+        if line is not content and content.startswith(" ") and not line.startswith((" ", "\t")):
+            content = content[1:]
+        lines.append(content)
+    offences = []
+    in_fence = False
+    in_maths = False
+    for index, line in enumerate(lines):
+        stripped = line.strip()
+        if stripped.startswith("```"):
+            in_fence = not in_fence
+            continue
+        if in_fence or "$$" not in stripped or stripped.startswith("|"):
+            continue
+        # **Count the delimiters.** A line that is `$$` on its own is the opening of a
+        # multi-line block, not a whole equation, and reading "starts and ends with"
+        # reported every line of every block — 7,386 findings on the first run.
+        delimiters = stripped.count("$$")
+        if in_maths:
+            if delimiters % 2:
+                in_maths = False
+                if index + 1 < len(lines) and lines[index + 1].strip():
+                    offences.append(index + 2)
+            continue
+        if not stripped.startswith("$$") and not stripped.endswith("$$"):
+            # Mid-sentence, which is a different repair: no blank line helps here.
+            offences.append(index + 1)
+            continue
+        if not stripped.startswith("$$") and stripped.endswith("$$"):
+            # Text before the equation on the same line: a label with its maths after
+            # it. A blank line does not separate them, so it is the same defect.
+            offences.append(index + 1)
+            continue
+        if line != line.lstrip(" \t"):
+            # An indented `$$` is not a block to the maths hook, whatever is around it.
+            offences.append(index + 1)
+            continue
+        if index and lines[index - 1].strip():
+            offences.append(index + 1)
+        if delimiters % 2 == 0:
+            # A whole equation on one line: the line below needs its own blank too.
+            if index + 1 < len(lines) and lines[index + 1].strip():
+                offences.append(index + 2)
+        else:
+            in_maths = True
+    return offences
+
+
+#: The house register is "~15–20 words, one idea each" (`AGENTS.md`), and a section page
+#: is where a reader does the work, so it is held to 25. Everything else keeps the 32 the
+#: collection was measured against, because a reference page may legitimately carry a
+#: longer sentence and the ratchet is per rule.
+SENTENCE_CEILING = 32
+SECTION_CEILING = 25
+
+#: A section page: the teaching page of a numbered section, in any book's layout.
+SECTION_PAGE = re.compile(r"(?i)/Section \d+\.\d+/(?:Walkthrough|Learn)/index\.md$")
+
+
+def long_sentences(text: str, ceiling: int = SENTENCE_CEILING):
+    """Yield ``(line_number, sentence)`` for each sentence over ``ceiling`` words."""
     for number, paragraph in prose_paragraphs(text):
-        for sentence in SENTENCE.findall(paragraph):
-            if len(re.findall(r"[A-Za-z]+", sentence)) > 32:
+        for sentence in _sentences(paragraph):
+            if len(re.findall(r"[A-Za-z]+", sentence)) > ceiling:
                 yield number, " ".join(sentence.split())
 
 
@@ -381,6 +554,31 @@ DOUBLE_WORD = re.compile(r"\b(\w+)\s+\1\b", re.I)
 MISSING_SPACE = re.compile(r"(?<![:/\w])[,;](?=[A-Za-z])")
 SENTENCE = re.compile(r"[^.!?]+[.!?]?")
 
+#: A period that is not the end of a sentence. `§1.6` is a reference, `1.5` is a number,
+#: `e.g.` and `i.e.` are abbreviations, and a markdown link's target is a URL — none of
+#: them ends a sentence, and splitting there manufactured sentences that are not in the
+#: prose ("6]'s agreement is the one this model can state") and measured fragments against
+#: the ceiling. Masked before splitting, restored after, so the finding quotes the page.
+#: A link target, whose periods are part of a URL or a path and never a sentence end.
+LINK_TARGET = re.compile(r"\]\([^)]*\)")
+
+#: Abbreviations whose final period is not a stop.
+ABBREV = re.compile(r"\b(?:e\.g|i\.e|vs|cf|etc|approx|Fig|Eq|Ref)\.", re.I)
+
+NON_STOP = re.compile(
+    r"(?<=§\d)\.(?=\d)"          # §1.6
+    r"|(?<=\d)\.(?=\d)"          # 1.5, 0.001
+)
+
+
+def _sentences(paragraph: str):
+    """The paragraph's sentences, with the periods that do not end one left alone."""
+    mask = lambda m: m.group(0).replace(".", "\x00")  # noqa: E731 - one expression
+    masked = LINK_TARGET.sub(mask, paragraph)
+    masked = ABBREV.sub(mask, masked)
+    masked = NON_STOP.sub("\x00", masked)
+    return [s.replace("\x00", ".") for s in SENTENCE.findall(masked)]
+
 #: The sentences over the ceiling a book still carries, counted on the day the rule
 #: learned to read paragraphs rather than lines. The debt is grandfathered so the
 #: rule can land without a 461-sentence rewrite in the nine books that still have
@@ -389,6 +587,21 @@ SENTENCE = re.compile(r"[^.!?]+[.!?]?")
 #: with debt can replace one that was fixed; the two reference books are at 0 and
 #: stay there, and the audit lists the over-ceiling sentences it finds
 #: (`textbook-audit.py <book>`), so the debt is visible rather than hidden.
+#: Sentences over 25 words on a **section page**, counted when the rule was written on
+#: 2026-10-31: 895 across the collection, and `maths-applied` is deliberately absent
+#: because its seven sections were rewritten instead of grandfathered. Down-only, like
+#: every debt here.
+SECTION_SENTENCE_DEBT: dict[str, int] = {
+    "gcse-maths": 15,
+    "gcse-physics": 73,
+    "a-level-maths": 146,
+    "a-level-physics": 79,
+    "ie-jc-maths": 131,
+    "ie-lc-maths": 148,
+    "ie-lc-applied-maths": 87,
+    "ie-lc-physics": 197,
+}
+
 SENTENCE_DEBT: dict[str, int] = {
     "gcse-maths": 3,
     "gcse-physics": 44,
@@ -402,6 +615,18 @@ SENTENCE_DEBT: dict[str, int] = {
     "numerical-methods": 0,
     "maths-applied": 0,
 }
+#: The lists a book still starts without a blank line, counted on 2026-10-30 when the
+#: rule was written, each with the number of pages it is spread over. Fixed like every
+#: other debt here: it may only go down, and a book at 0 stays at 0.
+#:
+#: It is empty, which is the state the rule is written to reach. Item 155 fixed the 35
+#: that were left, and measuring them first found nine of the original 44 were not
+#: defects at all: a wrapped display equation's continuation line begins with `+` or
+#: `-`, and the rule was reading arithmetic as a bullet. Those nine were spending
+#: `a-level-maths`'s budget of 10, so that book's real defects — two of them — were
+#: the ones the allowance was hiding.
+LIST_DEBT: dict[str, int] = {}
+
 LINK = re.compile(r"\[([^\]]+)\]\(([^)]+)\)")
 SECTION_REF = re.compile(r"\bSection (\d+\.\d+)\b")
 CHAPTER_REF = re.compile(r"\bChapter (\d+)\b")
@@ -478,6 +703,7 @@ def lint(book: books.Book, fix: bool, findings: Counter, examples: dict) -> tupl
     fixed_files = 0
     paths = sorted(docs.rglob("*.md"))
     long_found: list[tuple[str, int, str]] = []
+    section_found: list[tuple[str, int, str]] = []
     for path in paths:
         text = path.read_text(encoding="utf-8")
         # A scaffold stub is not reader content. It carries the marker the
@@ -536,14 +762,31 @@ def lint(book: books.Book, fix: bool, findings: Counter, examples: dict) -> tupl
         # The sentence ceiling, on paragraphs rather than lines. The sentences are
         # collected here and judged after the pages, because the debt is a book's,
         # not a page's.
-        long_found.extend(
-            (rel, line, sentence) for line, sentence in long_sentences(text)
-        )
+        # Two ceilings, two debts. A section page is held to 25 words because that is
+        # where the reader does the work; everything else keeps the 32 the collection was
+        # measured against. Judged per book, below, because a debt is a book's.
+        if SECTION_PAGE.search(rel):
+            section_found.extend(
+                (rel, line, sentence)
+                for line, sentence in long_sentences(text, SECTION_CEILING)
+            )
+        else:
+            long_found.extend(
+                (rel, line, sentence) for line, sentence in long_sentences(text)
+            )
         if re.search(r"Chapter \d+/index\.md$", rel_posix):
             if "## The chapter problem" not in text:
                 note("structure:chapter-missing-anchor", rel)
             if "By the end of this chapter" not in text:
                 note("structure:chapter-missing-outcomes", rel)
+        broken_lists = lists_without_a_blank_line(text)
+        for index, line_number in enumerate(broken_lists):
+            if index < LIST_DEBT.get(book.id, 0):
+                continue
+            note("structure:list-without-blank-line", f"{rel}:{line_number}")
+        for line_number in display_maths_without_a_blank_line(text):
+            note("structure:display-maths-without-blank-line", f"{rel}:{line_number}")
+
         if walkthrough and f"/{walkthrough}/" in rel_posix:
             for label, needle in (
                 ("structure:walkthrough-missing-checklist", "You should now be able to"),
@@ -566,6 +809,19 @@ def lint(book: books.Book, fix: bool, findings: Counter, examples: dict) -> tupl
         if index < SENTENCE_DEBT.get(book.id, 0):
             continue
         note("style:long-sentence", f"{rel}:{line_number}: {sentence[:90]}")
+
+    # The section ceiling, the same shape against its own debt. `maths-applied` is at 0:
+    # its seven sections were rewritten to the register rather than grandfathered, which
+    # is what this rule exists to make possible.
+    for index, (rel, line_number, sentence) in enumerate(
+        sorted(section_found, key=lambda item: len(item[2]), reverse=True)
+    ):
+        if index < SECTION_SENTENCE_DEBT.get(book.id, 0):
+            continue
+        note(
+            "style:long-sentence-in-a-section",
+            f"{rel}:{line_number}: {sentence[:90]}",
+        )
 
     # A retrieval starter repeated across a chapter's sections is a copy-paste, not
     # a design (P4). Advisory: it reports, and the content pass acts on it.

@@ -26,6 +26,7 @@ can decide from two ratios whether two lines are parallel.
 
 Let $s$ and $t$ be positive numbers. A point $C$ **divides the segment** $[AB]$ in the
 ratio $s : t$ when $C$ lies between $A$ and $B$ and
+
 $$\frac{|AC|}{|CB|} = \frac{s}{t}.$$
 
 A line **cuts** $[AB]$ in the ratio $s : t$ when it meets $AB$ at a point that divides
@@ -67,6 +68,7 @@ Now compare the triangles $ABE'$ and $F'B'E'$.
 So $\triangle ABE' \cong \triangle F'B'E'$ by AAS, and therefore $|AE'| = |F'E'|$.
 
 Put the pieces together:
+
 $$|DE| = |AE'| = |F'E'| = |EF|.$$
 
 The three parallel lines cut off equal segments on $t_2$ as well. $\blacksquare$
@@ -78,7 +80,9 @@ The three parallel lines cut off equal segments on $t_2$ as well. $\blacksquare$
 
 **Proof (the case where the ratio is a ratio of whole numbers).** Suppose the line $l$
 meets $[AB]$ at $D$, and
+
 $$\frac{|AD|}{|DB|} = \frac{m}{n}$$
+
 for natural numbers $m$ and $n$.
 
 Mark the points $D_0 = A$, $D_1$, $D_2$, $\ldots$, $D_{m+n} = B$ along $[AB]$ so that the
@@ -88,10 +92,12 @@ ratio is $m : n$.
 Through each point $D_i$, draw the line parallel to $BC$. It meets $[AC]$ at $E_i$. The
 parallel lines cut off equal segments on the transversal $AB$, so by Theorem 11 they cut
 off equal segments on the transversal $AC$:
+
 $$|AE_1| = |E_1E_2| = |E_2E_3| = \cdots = |E_{m+n-1}C|.$$
 
 The point $E = E_m$ is the one where $l$ meets $[AC]$. There are $m$ equal segments from
 $A$ to $E$, and $n$ equal segments from $E$ to $C$. So
+
 $$\frac{|AE|}{|EC|} = \frac{m}{n} = \frac{|AD|}{|DB|}.$$
 
 The line cuts the two sides in the same ratio. $\blacksquare$
@@ -103,9 +109,11 @@ needs a limiting step, which is beyond this course. The statement is the one we 
 > $AC$ in the same ratio, then it is parallel to $BC$.
 
 **Proof.** Let the line meet $AB$ at $D$ and $AC$ at $E$, with
+
 $$\frac{|AD|}{|DB|} = \frac{|AE|}{|EC|}.$$
 
 Draw the line through $D$ parallel to $BC$, and let it meet $AC$ at $E'$. By Theorem 12,
+
 $$\frac{|AD|}{|DB|} = \frac{|AE'|}{|E'C|}.$$
 
 The two fractions on the right are equal, so $E$ and $E'$ divide $[AC]$ in the same ratio.
@@ -116,6 +124,8 @@ line through $D$ parallel to $BC$, and it is parallel to $BC$. $\blacksquare$
 
 > **Theorem 13.** If two triangles are similar, then their corresponding sides are
 > proportional:
+>
+>
 > $$\frac{|AB|}{|A'B'|} = \frac{|BC|}{|B'C'|} = \frac{|CA|}{|C'A'|}.$$
 
 **Proof.** Let $\triangle ABC \sim \triangle A'B'C'$. Suppose $|A'B'| \le |AB|$. Choose the
@@ -131,12 +141,15 @@ transversal $AB$, so they are equal exactly when $B''C'' \parallel BC$. By Theor
 part 1, $B''C'' \parallel BC$.
 
 Now apply Theorem 12 to the triangle $ABC$ with the line $B''C''$ parallel to $BC$:
+
 $$\frac{|AB''|}{|AC''|} = \frac{|AB|}{|AC|}.$$
 
 Substitute $|AB''| = |A'B'|$ and $|AC''| = |A'C'|$, and rearrange:
+
 $$\frac{|A'B'|}{|A'C'|} = \frac{|AB|}{|AC|}, \qquad \frac{|AB|}{|A'B'|} = \frac{|AC|}{|A'C'|}.$$
 
 The same argument with the vertices $B$ and $B'$ gives
+
 $$\frac{|BC|}{|B'C'|} = \frac{|AB|}{|A'B'|}.$$
 
 The three ratios are equal. $\blacksquare$
@@ -153,13 +166,16 @@ and the triangles are congruent by SAS. Congruent triangles are similar.
 
 Otherwise $|A'B'| < |AB|$ and $|A'C'| < |AC|$. Choose $B''$ on $[AB]$ with
 $|AB''| = |A'B'|$, and $C''$ on $[AC]$ with $|AC''| = |A'C'|$. By SAS,
+
 $$\triangle AB''C'' \cong \triangle A'B'C'.$$
 
 Draw the line through $B''$ parallel to $BC$, meeting $AC$ at $D$. By Theorem 12,
+
 $$\frac{|AB''|}{|AB|} = \frac{|AD|}{|AC|}.$$
 
 The hypothesis says $\dfrac{|AB''|}{|AB|} = \dfrac{|AC''|}{|AC|}$, so $|AD| = |AC''|$ and
 $D = C''$. Therefore $B''C'' \parallel BC$, and the corresponding angles give
+
 $$|\angle B''| = |\angle B|, \qquad |\angle C''| = |\angle C|.$$
 
 The congruence carries these angles across to $\triangle A'B'C'$, so all three angles of
@@ -175,6 +191,7 @@ are congruent by SSS. Congruent triangles are similar.
 Otherwise suppose $|A'B'| < |AB|$. Choose $B''$ on $[AB]$ and $C''$ on $[AC]$ with
 $|AB''| = |A'B'|$ and $|AC''| = |A'C'|$. By Proposition 7, $\triangle AB''C''$ is similar
 to $\triangle ABC$. So
+
 $$|B''C''| = |AB''| \times \frac{|BC|}{|AB|} = |A'B'| \times \frac{|BC|}{|AB|}.$$
 
 The hypothesis says $\dfrac{|BC|}{|AB|} = \dfrac{|B'C'|}{|A'B'|}$, so $|B''C''| = |B'C'|$.
@@ -190,9 +207,11 @@ $|AD| : |DB| = 3 : 2$. Given $|AC| = 15$ cm, find $|AE|$ and $|EC|$, where $E$ i
 $[AC]$.
 
 By Theorem 12, the line cuts $[AC]$ in the same ratio:
+
 $$|AE| : |EC| = 3 : 2.$$
 
 The whole side is $15$ cm, and $3 + 2 = 5$ parts. So each part is $15 \div 5 = 3$ cm.
+
 $$|AE| = 3 \times 3 = 9 \text{ cm}, \qquad |EC| = 2 \times 3 = 6 \text{ cm}.$$
 
 Check: $9 + 6 = 15$, and $\frac{9}{6} = \frac{3}{2}$.
@@ -201,6 +220,7 @@ Check: $9 + 6 = 15$, and $\frac{9}{6} = \frac{3}{2}$.
 $|AD| = 4$ cm, $|DB| = 6$ cm, $|AE| = 6$ cm and $|EC| = 9$ cm. Is $DE$ parallel to $BC$?
 
 Compare the two ratios:
+
 $$\frac{|AD|}{|DB|} = \frac{4}{6} = \frac{2}{3}, \qquad \frac{|AE|}{|EC|} = \frac{6}{9} = \frac{2}{3}.$$
 
 The ratios are equal, so $DE \parallel BC$ by the converse of Theorem 12.
@@ -209,6 +229,7 @@ The ratios are equal, so $DE \parallel BC$ by the converse of Theorem 12.
 and $|A'B'| = 6$ cm. Find $|B'C'|$.
 
 By Theorem 13, the corresponding sides are proportional:
+
 $$\frac{|B'C'|}{|BC|} = \frac{|A'B'|}{|AB|} = \frac{6}{8} = \frac{3}{4}.$$
 
 $$|B'C'| = \frac{3}{4} \times 10 = 7.5 \text{ cm}.$$
@@ -219,6 +240,7 @@ $DE \parallel BC$.
 
 By the converse of Theorem 12, if the ratios are equal then $DE \parallel BC$. First find
 $|EC|$ from the ratio:
+
 $$\frac{5}{3} = \frac{7.5}{|EC|}, \qquad 5|EC| = 22.5, \qquad |EC| = 4.5 \text{ cm}.$$
 
 The two ratios are $\frac{5}{3}$ and $\frac{7.5}{4.5} = \frac{5}{3}$, so they are equal and

@@ -7,6 +7,9 @@ title: Averaging
 **You have one of these when** the answer is not a number but a distribution, or
 an average over possibilities you cannot list.
 
+**Averaging, not root finding.** The answer is a distribution, or a number with
+an error bar. A root is the point where a rule comes out zero.
+
 ## What you are modelling
 
 The system has randomness in it, or so many states that counting them is
@@ -60,8 +63,8 @@ $1/\sqrt{N}$, and the dashed line is the value the method cannot see.
 ## The signature
 
 The answer is an estimate. There is no equilibrium to solve and no region to
-discretise; there is a sample, a variance, and a convergence rate you can
-measure.
+discretise — that is, no region to cut into cells and write the rule on each.
+There is a sample, a variance, and a convergence rate you can measure.
 
 ## Flags that matter here
 
@@ -79,18 +82,34 @@ measure.
 Every method named here is in [Methods, A to Z](../techniques/#averaging), with
 its price and what it will not do.
 
+**Start from the model you have.** Each row is a property of the model in front
+of you, the methods that fit it, and what the fit costs. The method-keyed table
+below is the same list sorted by name.
+
+| what your model is | the methods that fit | the price |
+|---|---|---|
+| anything you can run | Monte Carlo | a slow $1/\sqrt{N}$ |
+| a rare event | Importance sampling | the weights have a huge variance |
+| a smooth integrand, modest dimension | Stratified and Latin hypercube sampling, quasi-Monte Carlo, Gaussian quadrature | smoothness is the assumption |
+| a cheap correlated model | Control variates, antithetic pairs | a weak correlation buys little |
+| a distribution known up to a constant | Markov chain Monte Carlo | the samples are correlated |
+| a state moving as data arrive | Particle filter, sequential Monte Carlo | the cloud has to be large |
+| a linear model with Gaussian noise | Kalman filter | non-linear, or multi-modal, and it fails |
+| data, and no formula | Bootstrap | small or dependent samples |
+
+<!-- table: cards -->
 | technique | what it does | when it wins | when it is the wrong tool |
 |---|---|---|---|
-| Monte Carlo | Draws independent samples and averages | Any dimension, any model you can run | You need precision; $1/\sqrt{N}$ is slow |
-| Importance sampling | Draws where the answer is, and reweights | Rare events; a known region of interest | The weight has huge variance |
-| Stratified and Latin hypercube sampling | Spreads the draws over the space | Smooth response, modest dimension | Discontinuous response |
-| Quasi-Monte Carlo | Uses a low-discrepancy sequence instead of random draws | Smooth integrands, moderate dimension | No reliable error estimate |
-| Control variates, antithetic pairs | Uses a known answer to cancel part of the error | A cheap correlated model exists | The correlation is weak |
-| Markov chain Monte Carlo | Walks a chain that settles to $p$ | $p$ known up to a constant; Bayesian fitting | You need independent samples, or speed |
-| Particle filter, sequential Monte Carlo | Carries a cloud of weighted samples through time | State estimation as data arrive | Very high dimension |
-| Kalman filter | Exact update for linear models with Gaussian noise | The model is linear and the noise is Gaussian | Non-linear, or multi-modal state |
-| Bootstrap | Resamples your data to get an error bar | You have data and no formula | Very small samples; dependent data |
-| Gaussian quadrature | Chooses points and weights exactly | Smooth, low-dimensional integrands | Dimension above about ten |
+| [Monte Carlo](../techniques/#monte-carlo) | Draws independent samples and averages | Any dimension, any model you can run | You need precision; $1/\sqrt{N}$ is slow |
+| [Importance sampling](../techniques/#importance-sampling) | Draws where the answer is, and reweights | Rare events; a known region of interest | The weight has huge variance |
+| [Stratified and Latin hypercube sampling](../techniques/#stratified-and-latin-hypercube-sampling) | Spreads the draws over the space | Smooth response, modest dimension | Discontinuous response |
+| [Quasi-Monte Carlo](../techniques/#quasi-monte-carlo) | Uses a low-discrepancy sequence instead of random draws | Smooth integrands, moderate dimension | No reliable error estimate |
+| [Control variates, antithetic pairs](../techniques/#control-variates) | Uses a known answer to cancel part of the error | A cheap correlated model exists | The correlation is weak |
+| [Markov chain Monte Carlo](../techniques/#markov-chain-monte-carlo) | Walks a chain that settles to $p$ | $p$ known up to a constant; Bayesian fitting | You need independent samples, or speed |
+| [Particle filter, sequential Monte Carlo](../techniques/#particle-filter) | Carries a cloud of weighted samples through time | State estimation as data arrive | Very high dimension |
+| [Kalman filter](../techniques/#kalman-filter) | Exact update for linear models with Gaussian noise | The model is linear and the noise is Gaussian | Non-linear, or multi-modal state |
+| [Bootstrap](../techniques/#bootstrap) | Resamples your data to get an error bar | You have data and no formula | Very small samples; dependent data |
+| [Gaussian quadrature](../techniques/#gaussian-quadrature) | Chooses points and weights exactly | Smooth, low-dimensional integrands | Dimension above about ten |
 
 ## Systems that live here
 
@@ -138,3 +157,6 @@ theory. They are optional: the class page is complete without them.
   equation as heat.
 - [When it goes wrong](../symptoms/index.md) — the symptom table for every
   class.
+
+Back to the map: [the nine kinds](../index.md) puts this class among the
+other eight.

@@ -89,6 +89,7 @@ The resultant force is $90 - 10 = 80$ N. Then divide by the mass.
 $$
 a = \frac{90 - 10}{20} = \frac{80}{20} = 4 \text{ m s}^{-2}.
 $$
+
 </details>
 
 **3.** A mass of $7$ kg accelerates at $3$ m s$^{-2}$. Find the resultant force.
@@ -113,6 +114,7 @@ Multiply the mass by the acceleration.
 $$
 F = ma = 7 \times 3 = 21 \text{ N}.
 $$
+
 </details>
 
 **4.** A resultant force of $144$ N gives a body an acceleration of
@@ -138,6 +140,7 @@ The mass is the force divided by the acceleration.
 $$
 m = \frac{F}{a} = \frac{144}{6} = 24 \text{ kg}.
 $$
+
 </details>
 
 **5.** A car of mass $1500$ kg has a driving force of $4000$ N and a total
@@ -163,6 +166,7 @@ The resultant is $4000 - 1600 = 2400$ N. Then use $a = \dfrac{F}{m}$.
 $$
 a = \frac{4000 - 1600}{1500} = \frac{2400}{1500} = 1.6 \text{ m s}^{-2}.
 $$
+
 </details>
 
 **6.** A car of mass $800$ kg brakes with a force of $2400$ N. Find the
@@ -221,6 +225,7 @@ a = \frac{15 - 0}{3} = 5 \text{ m s}^{-2},
 \qquad
 F = ma = 5 \times 5 = 25 \text{ N}.
 $$
+
 </details>
 
 **8.** A body of mass $12$ kg accelerates at $0.5$ m s$^{-2}$ against a

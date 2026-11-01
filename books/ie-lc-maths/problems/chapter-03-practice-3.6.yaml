@@ -33,7 +33,7 @@ problems:
     statement: 'A model of a tank is built to a scale of $1 : 20$. Find the ratio of the volume of the model to the volume of the real tank.'
     answer_label: 'The volume ratio of model to tank'
     check: {kind: evaluate, expression: '(1/20)**3', answer: '1/8000'}
-    answer_text: >-
+    answer_text: |-
       $$\left(\frac{1}{20}\right)^3 = \frac{1}{8000}$$
 
       The model volume is $\dfrac{1}{8000}$ of the real volume, because three lengths are
@@ -46,7 +46,7 @@ problems:
     statement: 'Two similar triangles have areas $25 \text{ cm}^2$ and $64 \text{ cm}^2$. Find the ratio of their corresponding sides.'
     answer_label: 'The ratio of the sides'
     check: {kind: evaluate, expression: 'sqrt(64/25)', answer: '8/5'}
-    answer_text: >-
+    answer_text: |-
       The area ratio is $\dfrac{64}{25}$, so the length ratio is
 
       $$\sqrt{\frac{64}{25}} = \frac{8}{5}$$
@@ -61,7 +61,7 @@ problems:
     statement: 'Two similar solids have volumes $8 \text{ cm}^3$ and $125 \text{ cm}^3$. Find the ratio of their corresponding lengths.'
     answer_label: 'The ratio of the lengths'
     check: {kind: evaluate, expression: '(125/8)**(1/3)', answer: '5/2'}
-    answer_text: >-
+    answer_text: |-
       The volume ratio is $\dfrac{125}{8}$, so the length ratio is
 
       $$\sqrt[3]{\frac{125}{8}} = \frac{5}{2}$$
@@ -82,7 +82,7 @@ problems:
       checks:
         - {kind: evaluate, expression: '0.432 * pi * 2**3', answer: '3.456 * pi'}
         - {kind: evaluate, expression: '2.16 * pi * 2**2', answer: '8.64 * pi'}
-    answer_text: >-
+    answer_text: |-
       The volume is multiplied by $2^3 = 8$:
 
       $$V = 0.432\pi \times 8 = 3.456\pi \approx 10.86 \text{ m}^3$$
@@ -101,7 +101,7 @@ problems:
     statement: 'Two similar cylinders have volumes in the ratio $27 : 64$. Find the ratio of their radii.'
     answer_label: 'The ratio of the radii'
     check: {kind: evaluate, expression: '(64/27)**(1/3)', answer: '4/3'}
-    answer_text: >-
+    answer_text: |-
       The radii are lengths, so the ratio of the radii is the cube root of the volume
       ratio:
 

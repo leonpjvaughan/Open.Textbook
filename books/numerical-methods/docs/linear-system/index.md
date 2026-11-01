@@ -7,6 +7,9 @@ title: Linear system
 **You have one of these when** every rule in the model is linear in the
 unknowns, the unknowns are a finite list, and nothing changes with time.
 
+**Linear system, not a saddle point.** The unknowns here are the only ones. A
+saddle point adds a second unknown for every rule that has to hold everywhere.
+
 ## What you are modelling
 
 A balance. The forces at a joint add to zero, the currents into a node add to
@@ -29,19 +32,14 @@ you have $A$.
 
 ## What it becomes on a computer
 
-**Worked number.** The system $4x+y=1$, $x+3y=2$ has the solution
-$x=1/11$, $y=7/11$, and substituting it leaves a residual of zero.
+**Worked number.** The system $4x+y=1$, $x+3y=2$ has the solution $x=1/11$,
+$y=7/11$, and substituting it leaves a residual of zero.
 
 A matrix, and a choice between two families. The choice is made by the
 **properties of the matrix**, not by the subject the matrix came from:
 
 - **Dense and small.** Factorise it. The cost is cubic in the number of
   unknowns, and for a few thousand that is the end of the story.
-
-A **preconditioner** is a cheaper approximation $M$ to $A$. The iteration solves
-$M^{-1}Ax=M^{-1}b$, an easier problem with the same answer, and then corrects
-it; the price is that $M$ has to be built and applied.
-
 - **Sparse and large.** Factorising fills in the zeros and runs out of memory,
   so iterate instead — and the iteration count is decided by conditioning, not
   by size.
@@ -51,6 +49,11 @@ it; the price is that $M$ has to be built and applied.
   is the [saddle point](../saddle-point/index.md) page.
 - **Rectangular.** More equations than unknowns is a least-squares problem, and
   the answer is a projection rather than a solution.
+
+Both families can be helped by the same idea. A **preconditioner** is a cheaper
+approximation $M$ to $A$. The iteration solves $M^{-1}Ax=M^{-1}b$, an easier
+problem with the same answer, and then corrects it; the price is that $M$ has to
+be built and applied.
 
 A linear system is often one step inside a non-linear solve. `Maths Applied`
 [§1.3](/maths-applied/chapter-1/section-1.3/learn/) 's three distance rules are
@@ -97,19 +100,32 @@ Two consequences follow, and both surprise people:
 Every method named here is in [Methods, A to Z](../techniques/#linear-systems),
 with its price and what it will not do.
 
+**Start from the model you have.** Each row is a property of the model in front
+of you, the methods that fit it, and what the fit costs. The method-keyed table
+below is the same list sorted by name.
+
+| what your model is | the methods that fit | the price |
+|---|---|---|
+| dense and a few thousand | Dense LU, with pivoting, QR, SVD, iterative refinement | cubic, once |
+| sparse and large | Sparse direct (multifrontal), GMRES, BiCGSTAB, Preconditioners (ILU, AMG, Jacobi) | the iteration count is the flag |
+| symmetric positive definite | Cholesky, conjugate gradients, multigrid | fails on anything else |
+| symmetric indefinite | MINRES | a different Krylov method is needed |
+| a least-squares or rank-deficient problem | QR, SVD, normal equations | squaring the condition number |
+
+<!-- table: cards -->
 | technique | what it does | when it wins | when it is the wrong tool |
 |---|---|---|---|
-| Dense LU, with pivoting | Factorises a general matrix | A few thousand unknowns, one solve or many right-hand sides | Large sparse problems |
-| Cholesky | Factorises a symmetric positive definite matrix | The matrix is SPD, and you want half the work of LU | Any non-symmetric or indefinite matrix |
-| QR, SVD | Factorises a rectangular matrix | Least squares, rank deficiency, a diagnostic of conditioning | Very large sparse problems |
-| Normal equations | Squares the system and uses Cholesky | Overdetermined and well conditioned, and you want speed | Anything else: it squares the condition number |
-| Sparse direct (multifrontal) | Factorises with a fill-reducing ordering | Two dimensions; repeated solves with the same matrix | Three dimensions, where fill-in wins |
-| Conjugate gradients | Krylov method for SPD systems | Large, sparse, symmetric positive definite | Indefinite or non-symmetric matrices |
-| GMRES, BiCGSTAB | Krylov methods for general matrices | Non-symmetric, sparse | Memory: GMRES stores every vector unless restarted |
-| MINRES | Krylov method for symmetric indefinite systems | Symmetry with indefiniteness | Non-symmetric matrices |
-| Preconditioners (ILU, AMG, Jacobi) | Changes the system the iteration sees | Almost always, in practice | You have not measured the iteration count |
-| Multigrid | Solves on a hierarchy of meshes | The matrix came from an elliptic problem | A matrix from anywhere else |
-| Iterative refinement | Corrects a solve with its own residual | Ill-conditioned, and you want every digit | The factorisation is expensive, and a second solve is not affordable |
+| [Dense LU, with pivoting](../techniques/#dense-lu) | Factorises a general matrix | A few thousand unknowns, one solve or many right-hand sides | Large sparse problems |
+| [Cholesky](../techniques/#cholesky) | Factorises a symmetric positive definite matrix | The matrix is SPD, and you want half the work of LU | Any non-symmetric or indefinite matrix |
+| [QR, SVD](../techniques/#qr) | Factorises a rectangular matrix | Least squares, rank deficiency, a diagnostic of conditioning | Very large sparse problems |
+| [Normal equations](../techniques/#normal-equations) | Squares the system and uses Cholesky | Overdetermined and well conditioned, and you want speed | Anything else: it squares the condition number |
+| [Sparse direct (multifrontal)](../techniques/#sparse-direct-cholesky) | Factorises with a fill-reducing ordering | Two dimensions; repeated solves with the same matrix | Three dimensions, where fill-in wins |
+| [Conjugate gradients](../techniques/#conjugate-gradients) | Krylov method for SPD systems | Large, sparse, symmetric positive definite | Indefinite or non-symmetric matrices |
+| [GMRES, BiCGSTAB](../techniques/#gmres) | Krylov methods for general matrices | Non-symmetric, sparse | Memory: GMRES stores every vector unless restarted |
+| [MINRES](../techniques/#minres) | Krylov method for symmetric indefinite systems | Symmetry with indefiniteness | Non-symmetric matrices |
+| [Preconditioners (ILU, AMG, Jacobi)](../techniques/#preconditioners-ilu) | Changes the system the iteration sees | Almost always, in practice | You have not measured the iteration count |
+| [Multigrid](../techniques/#multigrid) | Solves on a hierarchy of meshes | The matrix came from an elliptic problem | A matrix from anywhere else |
+| [Iterative refinement](../techniques/#iterative-refinement) | Corrects a solve with its own residual | Ill-conditioned, and you want every digit | The factorisation is expensive, and a second solve is not affordable |
 
 ## Systems that live here
 
@@ -144,6 +160,10 @@ with its price and what it will not do.
 
 ## Read next
 
+- [The same corner, five ways](../worked-case/index.md) — this class, worked
+  on one mechanism with the numbers beside it.
+- [One matrix, two errors](conditioning/index.md) — the working under this
+  class: a condition number and the two errors, on one matrix.
 - [Root finding](../root/index.md) — the same question when a rule bends with
   the answer.
 - [Elliptic](../elliptic/index.md) — where most of these matrices come from.
@@ -151,3 +171,6 @@ with its price and what it will not do.
   positive definite, and why that changes the method.
 - [When it goes wrong](../symptoms/index.md) — the symptom table for every
   class.
+
+Back to the map: [the nine kinds](../index.md) puts this class among the
+other eight.

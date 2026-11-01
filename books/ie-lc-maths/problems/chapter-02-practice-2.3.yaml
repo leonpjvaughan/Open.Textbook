@@ -24,7 +24,7 @@ problems:
       checks:
         - {kind: evaluate, expression: '30000 * 0.20', answer: '6000'}
         - {kind: evaluate, expression: '30000 * 0.20 - 3000', answer: '3000'}
-    answer_text: >-
+    answer_text: |-
       The whole €30,000 is below the €44,000 cut-off, so all of it is taxed at
       $20\%$:
 
@@ -50,7 +50,7 @@ problems:
       checks:
         - {kind: evaluate, expression: '44000 * 0.20 + (52000 - 44000) * 0.40', answer: '12000'}
         - {kind: evaluate, expression: '44000 * 0.20 + (52000 - 44000) * 0.40 - 3000', answer: '9000'}
-    answer_text: >-
+    answer_text: |-
       Split the income at the €44,000 cut-off. The first €44,000 is taxed at
       $20\%$ and the remaining €8,000 at $40\%$:
 
@@ -72,7 +72,7 @@ problems:
       the USC on an income of €18,000.
     answer_label: 'The USC'
     check: {kind: evaluate, expression: '12000 * 0.02 + (18000 - 12000) * 0.04', answer: '480'}
-    answer_text: >-
+    answer_text: |-
       Split the income at the €12,000 band. The first €12,000 is charged at
       $2\%$ and the remaining €6,000 at $4\%$:
 
@@ -94,7 +94,7 @@ problems:
       the USC on an income of €30,000.
     answer_label: 'The USC'
     check: {kind: evaluate, expression: '12000 * 0.02 + (30000 - 12000) * 0.04', answer: '960'}
-    answer_text: >-
+    answer_text: |-
       The first €12,000 is charged at $2\%$ and the remaining €18,000 at $4\%$:
 
       $$12\,000 \times 0.02 = 240$$
@@ -121,7 +121,7 @@ problems:
         - {kind: evaluate, expression: '44000 * 0.20 + (52000 - 44000) * 0.40 - 3000', answer: '9000'}
         - {kind: evaluate, expression: '12000 * 0.02 + (52000 - 12000) * 0.04', answer: '1840'}
         - {kind: evaluate, expression: '52000 - 9000 - 1840', answer: '41160'}
-    answer_text: >-
+    answer_text: |-
       Work out each deduction, then subtract them from the gross pay.
 
       Income tax: $44\,000 \times 0.20 = 8\,800$ and
@@ -150,7 +150,7 @@ problems:
         - {kind: evaluate, expression: '36000 * 0.20 - 3000', answer: '4200'}
         - {kind: evaluate, expression: '12000 * 0.02 + (36000 - 12000) * 0.04', answer: '1200'}
         - {kind: evaluate, expression: '36000 - 4200 - 1200 - 1200', answer: '29400'}
-    answer_text: >-
+    answer_text: |-
       All of the €36,000 is below the cut-off, so the income tax is
       $36\,000 \times 0.20 = 7\,200$ before the credit, and
       $7\,200 - 3\,000 = 4\,200$ after it.
@@ -180,7 +180,7 @@ problems:
         - {kind: evaluate, expression: '3000 * 0.20', answer: '600'}
         - {kind: evaluate, expression: '3000 * 0.02', answer: '60'}
         - {kind: evaluate, expression: '3000 - 600 - 60', answer: '2340'}
-    answer_text: >-
+    answer_text: |-
       The extra profit is below both cut-offs, so each rate applies to the whole
       amount.
 

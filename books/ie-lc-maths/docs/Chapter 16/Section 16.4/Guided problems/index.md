@@ -226,9 +226,11 @@ the way from $A$ to $B$.
 <summary>Full working</summary>
 
 The fraction of the way from $A$ to $B$ is
+
 $$\frac{3}{3 + 2} = \frac{3}{5}.$$
 
 So
+
 $$x_C = 0 + \frac{3}{5} \times 10 = 6.$$
 
 The point is $C(6,0)$. Check: $|AC| = 6$ and $|CB| = 4$, and

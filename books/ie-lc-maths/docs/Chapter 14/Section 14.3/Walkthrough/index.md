@@ -43,6 +43,7 @@ The point $C$ is called the **centre of symmetry**.
 The three turns about the origin have simple coordinate rules.
 
 > **Rotation rules about the origin.**
+>
 > - $90^\circ$ anticlockwise: $(x,y) \to (-y,x)$.
 > - $180^\circ$: $(x,y) \to (-x,-y)$.
 > - $90^\circ$ clockwise: $(x,y) \to (y,-x)$.
@@ -76,6 +77,8 @@ Every coordinate changes sign. This is central symmetry about the origin.
 For a half-turn about a point $C(c,d)$, each coordinate is reflected in the centre.
 
 > **Central symmetry about $C(c,d)$.**
+>
+>
 > $$(x,y) \to (2c - x,\; 2d - y).$$
 
 **Example 4.** Find the image of $(5,1)$ under central symmetry about $C(2,3)$.
@@ -103,6 +106,8 @@ shape onto itself. The **order** of the symmetry is the number of positions in a
 turn that look the same.
 
 > **Order of rotational symmetry.**
+>
+>
 > $$\text{order} = \frac{360^\circ}{\text{angle of the smallest turn that fits}}.$$
 
 A square fits onto itself after a quarter-turn, so its order is $360^\circ \div

@@ -11,6 +11,83 @@ Read the first column as the thing you observed, not as the thing you suspect.
 Every row here is also on the class page it names, in the same words, so a
 reader who arrives from either direction meets one list rather than two.
 
+## Which kind is this?
+
+A system, and the class it belongs to. Say the class before you open the
+answer: the sentence you wrote is the recognition you will use next time,
+and reading it is not the same as writing it.
+
+<details markdown="1">
+<summary>Incompressible flow</summary>
+
+[Saddle point](../saddle-point/). The pressure is the multiplier on the rule
+that nothing compresses. A constraint with a price is a saddle point, not a
+bigger linear system.
+</details>
+
+<details markdown="1">
+<summary>A casting cooling</summary>
+
+[Parabolic](../parabolic/). The answer is a field that moves forward in time and
+forgets where it started.
+</details>
+
+<details markdown="1">
+<summary>Where the wheel goes</summary>
+
+[Root finding](../root/). Two circles meet at a point, and the point is found by
+iteration. Nothing travels and there is no region.
+</details>
+
+<details markdown="1">
+<summary>The bounce and wheel-hop frequencies of a quarter car</summary>
+
+[Eigenvalues](../eigenvalue/). You are asking which frequencies are allowed, not
+what one of them is.
+</details>
+
+<details markdown="1">
+<summary>Topology optimisation</summary>
+
+[Optimisation](../optimisation/). You can score every layout, and you want the
+best one.
+</details>
+
+<details markdown="1">
+<summary>Shallow water</summary>
+
+[Hyperbolic](../hyperbolic/). Information travels at a finite speed, and what
+arrives keeps its shape.
+</details>
+
+<details markdown="1">
+<summary>Steady heat conduction in a casting</summary>
+
+[Elliptic](../elliptic/). The answer is a value at every point, and nothing
+travels.
+</details>
+
+<details markdown="1">
+<summary>Nodal analysis of a circuit</summary>
+
+[Linear system](../linear-system/). Every rule is linear in the unknowns, and
+the unknowns are a finite list.
+</details>
+
+<details markdown="1">
+<summary>How much the camber varies</summary>
+
+[Averaging](../averaging/). The answer is a distribution, or an average over
+what you cannot list.
+</details>
+
+<details markdown="1">
+<summary>The position of a four-bar linkage at a given crank angle</summary>
+
+[Root finding](../root/). A rule has to hold at a point, and the rule bends with
+the answer.
+</details>
+
 ## It does not finish
 
 | symptom | likely class | cause | fix |

@@ -55,6 +55,7 @@ Write $135 \times \dfrac{\pi}{180}$ and simplify the fraction $\dfrac{135}{180}$
 $$
 135 \times \frac{\pi}{180} = \frac{135\pi}{180} = \frac{3\pi}{4}.
 $$
+
 </details>
 
 **2.** Change $\dfrac{5\pi}{6}$ radians into degrees.
@@ -77,6 +78,7 @@ Work out $\dfrac{5}{6} \times 180$.
 $$
 \frac{5\pi}{6} \times \frac{180}{\pi} = \frac{5 \times 180}{6} = 150^\circ.
 $$
+
 </details>
 
 **3.** A circle has radius $12$ cm. Find the length of the arc that subtends
@@ -100,6 +102,7 @@ Substitute $r = 12$ and $\theta = 0.6$.
 $$
 l = r\theta = 12 \times 0.6 = 7.2 \text{ cm}.
 $$
+
 </details>
 
 **4.** A sector has radius $9$ cm and angle $2$ radians. Find its area.
@@ -122,6 +125,7 @@ The radius squared is $81$. Work out $\tfrac{1}{2} \times 81 \times 2$.
 $$
 A = \tfrac{1}{2} \times 9^2 \times 2 = \tfrac{1}{2} \times 81 \times 2 = 81 \text{ cm}^2.
 $$
+
 </details>
 
 **5.** A sector has radius $10$ cm and angle $\dfrac{\pi}{4}$ radians. Find the
@@ -150,6 +154,7 @@ $$
 $$
 A = \tfrac{1}{2} \times 100 \times \frac{\pi}{4} = \frac{25\pi}{2} \approx 39.3 \text{ cm}^2.
 $$
+
 </details>
 
 **6.** A circle has radius $5$ cm. Find the area of the segment cut off by an
@@ -183,4 +188,5 @@ $$
 $$
 \text{segment} = \frac{25\pi}{12} - 6.25 \approx 0.295 \text{ cm}^2.
 $$
+
 </details>

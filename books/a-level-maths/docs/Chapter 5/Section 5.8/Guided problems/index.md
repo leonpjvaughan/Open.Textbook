@@ -64,6 +64,7 @@ $$
 = \frac{\sqrt{6}}{4} + \frac{\sqrt{2}}{4}
 = \frac{\sqrt{6} + \sqrt{2}}{4}.
 $$
+
 </details>
 
 **2.** Use the addition formula to find the exact value of $\cos 15^\circ$.
@@ -89,6 +90,7 @@ $$
 = \frac{\sqrt{2}}{2} \times \frac{\sqrt{3}}{2} + \frac{\sqrt{2}}{2} \times \frac{1}{2}
 = \frac{\sqrt{6} + \sqrt{2}}{4}.
 $$
+
 </details>
 
 **3.** Use the addition formula to find the exact value of $\tan 75^\circ$.
@@ -124,6 +126,7 @@ $$
 = \frac{12 + 6\sqrt{3}}{6}
 = 2 + \sqrt{3}.
 $$
+
 </details>
 
 **4.** Given that $\sin A = \dfrac{5}{13}$ and $A$ is acute, find $\sin 2A$.
@@ -147,6 +150,7 @@ Then multiply.
 $$
 \sin 2A = 2 \times \frac{5}{13} \times \frac{12}{13} = \frac{120}{169}.
 $$
+
 </details>
 
 **5.** For the same $A$, find $\cos 2A$ using the sine form.
@@ -170,6 +174,7 @@ $1 - 2 \times \dfrac{25}{169}$.
 $$
 \cos 2A = 1 - 2 \times \frac{25}{169} = 1 - \frac{50}{169} = \frac{119}{169}.
 $$
+
 </details>
 
 **6.** Given that $\tan A = \dfrac{1}{2}$, find $\tan 2A$.
@@ -192,4 +197,5 @@ $\tan 2A = \dfrac{1}{1 - \frac{1}{4}} = \dfrac{1}{\frac{3}{4}}$.
 $$
 \tan 2A = \frac{2 \times \frac{1}{2}}{1 - \frac{1}{4}} = \frac{1}{\frac{3}{4}} = \frac{4}{3}.
 $$
+
 </details>

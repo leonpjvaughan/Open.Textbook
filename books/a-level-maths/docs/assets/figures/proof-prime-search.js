@@ -64,7 +64,7 @@ export function mount(el) {
       cells +
       `<line x1="${markerX}" y1="16" x2="${markerX}" y2="52" class="fig-ink"></line>` +
       label({ x: 2, y: 72, text: "n = 0", anchor: "start", class: "text-ink" }) +
-      label({ x: 326, y: 72, text: "n = 45", anchor: "start", class: "text-ink" });
+      label({ x: 315.1, y: 72, text: "n = 45", anchor: "start", class: "text-ink" });
     svg.setAttribute(
       "aria-label",
       `Values of n from 0 to 45. The current value is n equals ${n}, for which the expression equals ${value}, which is ${prime ? "prime" : "not prime"}.`

@@ -64,6 +64,7 @@ For the second power, raise that root to the power $2$:
 $$
 64^{\frac{2}{3}} = \left(64^{\frac{1}{3}}\right)^2 = 4^2 = 16.
 $$
+
 </details>
 
 **2.** Work out $100^{-\frac{3}{2}}$.
@@ -96,6 +97,7 @@ Now $100^{\frac{3}{2}} = \left(\sqrt{100}\right)^3 = 10^3 = 1000$, so
 $$
 \frac{1}{100^{\frac{3}{2}}} = \frac{1}{1000}.
 $$
+
 </details>
 
 **3.** Simplify $\dfrac{x^{\frac{7}{2}}}{x^{\frac{3}{2}}}$, where $x > 0$.
@@ -120,6 +122,7 @@ Subtract the exponents:
 $$
 \frac{x^{\frac{7}{2}}}{x^{\frac{3}{2}}} = x^{\frac{7}{2} - \frac{3}{2}} = x^{\frac{4}{2}} = x^{2}.
 $$
+
 </details>
 
 **4.** Simplify $\left(27x^3\right)^{\frac{2}{3}}$, where $x > 0$.

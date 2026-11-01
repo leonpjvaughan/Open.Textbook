@@ -10,7 +10,7 @@ problems:
     statement: 'Find the sum to infinity of $8 + 4 + 2 + \dots$.'
     answer_label: 'Sum to infinity'
     check: {kind: evaluate, expression: '8 / (1 - 1/2)', answer: '16'}
-    answer_text: >-
+    answer_text: |-
       $a = 8$ and $r = \dfrac{1}{2}$, and $|r| < 1$, so the sum to infinity exists:
 
       $$S_\infty = \frac{a}{1 - r} = \frac{8}{1 - \frac{1}{2}} = \frac{8}{\frac{1}{2}} = 16$$
@@ -25,7 +25,7 @@ problems:
     statement: 'Find the sum to infinity of $6 - 2 + \frac{2}{3} - \dots$.'
     answer_label: 'Sum to infinity'
     check: {kind: evaluate, expression: '6 / (1 - (-1/3))', answer: '9/2'}
-    answer_text: >-
+    answer_text: |-
       $a = 6$ and $r = -\dfrac{1}{3}$. Since $\left|-\frac{1}{3}\right| < 1$ the sum
       exists:
 
@@ -70,7 +70,7 @@ problems:
       common ratio is $\dfrac{2}{3}$. Find $a$.
     answer_label: 'The first term'
     check: {kind: evaluate, expression: '24 * (1 - 2/3)', answer: '8'}
-    answer_text: >-
+    answer_text: |-
       $S_\infty = \dfrac{a}{1 - r} = 24$, so
 
       $$a = 24\left(1 - \frac{2}{3}\right) = 24 \times \frac{1}{3} = 8$$
@@ -86,7 +86,7 @@ problems:
       kind: evaluate
       expression: '(7/10) / (1 - 1/10)'
       answer: '7/9'
-    answer_text: >-
+    answer_text: |-
       $0.777\dots = \dfrac{7}{10} + \dfrac{7}{100} + \dfrac{7}{1000} + \dots$, a
       geometric series with $a = \dfrac{7}{10}$ and $r = \dfrac{1}{10}$:
 
@@ -143,7 +143,7 @@ problems:
         - id: limit
           text: when |r| < 1 the powers r^n shrink to zero and S_n settles on a/(1-r); otherwise r^n does not shrink and S_n does not settle
           concepts: [finite-limit]
-    answer_text: >-
+    answer_text: |-
       The sum to infinity is the value $S_n$ approaches as $n$ grows. From the finite-sum
       formula,
 

@@ -118,6 +118,7 @@ a = \frac{20 - 8}{4} = 3 \text{ m/s}^2,
 \qquad
 s = \frac{8 + 20}{2} \times 4 = 14 \times 4 = 56 \text{ m}.
 $$
+
 </details>
 
 **4.** A velocity–time graph is a straight line from $(0, 15)$ to $(5, 0)$.

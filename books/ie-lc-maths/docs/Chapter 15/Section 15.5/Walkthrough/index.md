@@ -46,6 +46,7 @@ $\triangle ACB$.
 - $|\angle A| = |\angle A|$, the same angle.
 
 So $\triangle ABC \cong \triangle ACB$ by SAS. The congruence matches $B$ with $C$, so
+
 $$|\angle B| = |\angle C|. \quad \blacksquare$$
 
 **Proof of part 2.** Now suppose $|\angle B| = |\angle C|$. Compare $\triangle ABC$ with
@@ -86,10 +87,12 @@ The triangle $ABD$ is isosceles, so $|\angle ABD| = |\angle ADB|$ by Theorem 2 p
 
 The angle $\angle ADB$ is an exterior angle of the triangle $BDC$. By Theorem 6 it equals
 the sum of the two interior opposite angles, so
+
 $$|\angle ADB| = |\angle DBC| + |\angle BCD| > |\angle BCD| = |\angle ACB|.$$
 
 The ray $BD$ lies inside the angle $\angle ABC$, so $|\angle ABD| < |\angle ABC|$. Putting
 the pieces together,
+
 $$|\angle ACB| < |\angle ADB| = |\angle ABD| < |\angle ABC|. \quad \blacksquare$$
 
 **Proof of part 2.** This is a proof by contradiction. Suppose
@@ -110,6 +113,7 @@ Neither case can happen, so $|AC| > |AB|$. $\blacksquare$
 
 **Proof.** Let $\triangle ABC$ be any triangle. Choose the point $D$ on the ray $AB$,
 beyond $B$, with $|BD| = |BC|$. Then
+
 $$|AD| = |AB| + |BD| = |AB| + |BC|.$$
 
 The point $B$ lies inside the angle $\angle ACD$, so $|\angle BCD| < |\angle ACD|$.
@@ -117,10 +121,12 @@ The point $B$ lies inside the angle $\angle ACD$, so $|\angle BCD| < |\angle ACD
 The triangle $BCD$ is isosceles, because $|BD| = |BC|$. So $|\angle BCD| = |\angle BDC|$
 by Theorem 2 part 1. Since $B$ lies on the segment $AD$, the angle $\angle BDC$ is the
 same as the angle $\angle ADC$, so
+
 $$|\angle ADC| = |\angle BDC| = |\angle BCD| < |\angle ACD|.$$
 
 In the triangle $ADC$, the greater angle is opposite the greater side, by Theorem 7
 part 2. Since $|\angle ACD| > |\angle ADC|$, the side opposite $\angle ACD$ is longer:
+
 $$|AD| > |AC|.$$
 
 So $|AB| + |BC| > |AC|$. The same argument from either of the other two vertices gives
@@ -132,6 +138,7 @@ the other two inequalities. $\blacksquare$
 angle.
 
 The two base angles are equal, by Theorem 2 part 1. Let each be $x$.
+
 $$100 + x + x = 180$$
 
 $$2x = 80$$
@@ -143,12 +150,14 @@ Each base angle is $40^\circ$.
 **Example 2.** An isosceles triangle has a base angle of $55^\circ$. Find the apex angle.
 
 The two base angles are equal, so both are $55^\circ$.
+
 $$55 + 55 = 110 \qquad |\angle \text{apex}| = 180 - 110 = 70^\circ$$
 
 **Example 3.** In $\triangle ABC$, $|\angle B| = |\angle C| = 68^\circ$. Show that the
 triangle is isosceles.
 
 Two angles are equal, so by Theorem 2 part 2 the sides opposite them are equal:
+
 $$|AC| = |AB|.$$
 
 The triangle is isosceles, with apex at $A$.
@@ -163,6 +172,7 @@ so the longest side is $BC$.
 
 Two sides are equal, so the angles opposite them are equal, by Theorem 2 part 1. Repeating
 the argument for each pair of sides, all three angles are equal. Let each be $x$.
+
 $$3x = 180 \qquad x = 60^\circ$$
 
 Each angle of an equilateral triangle is $60^\circ$.

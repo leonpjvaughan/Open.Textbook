@@ -18,7 +18,7 @@ problems:
       value: '0.5 * 8 * 11 * sin(35 * pi / 180)'
       target: '25.24'
       tolerance: '0.01'
-    answer_text: >-
+    answer_text: |-
       The booklet gives $A = \tfrac12 ab\sin C$, and $C$ is the angle between the two
       sides:
 
@@ -34,7 +34,7 @@ problems:
       in its simplest form.
     answer_label: 'The area'
     check: {kind: evaluate, expression: '0.5 * 6 * 6 * sin(pi / 3)', answer: '9 * sqrt(3)'}
-    answer_text: >-
+    answer_text: |-
       Every angle of an equilateral triangle is $60^\circ$, so use two sides and the angle
       between them:
 
@@ -54,7 +54,7 @@ problems:
       value: 'sqrt(10.5 * 5.5 * 3.5 * 1.5)'
       target: '17.41'
       tolerance: '0.01'
-    answer_text: >-
+    answer_text: |-
       No angle is given, so use Heron's formula from the booklet. The semi-perimeter is
 
       $$s = \frac{5 + 7 + 9}{2} = 10.5$$
@@ -72,7 +72,7 @@ problems:
     statement: 'A triangle has base $12$ cm and perpendicular height $5$ cm. Find its area.'
     answer_label: 'The area'
     check: {kind: evaluate, expression: '0.5 * 12 * 5', answer: '30'}
-    answer_text: >-
+    answer_text: |-
       $$A = \tfrac12 \times \text{base} \times \text{height} = \tfrac12 \times 12 \times 5 = 30 \text{ cm}^2$$
 
       This is the same formula as the sine form. When the angle is $90^\circ$ the sine is
@@ -92,7 +92,7 @@ problems:
       value: '6 * 9 * sin(50 * pi / 180)'
       target: '41.37'
       tolerance: '0.01'
-    answer_text: >-
+    answer_text: |-
       A parallelogram is two copies of a triangle, so its area is twice
       $\tfrac12 ab\sin C$:
 
@@ -113,7 +113,7 @@ problems:
       value: '0.5 * 8 * 5.47 * sin(60 * pi / 180)'
       target: '18.9'
       tolerance: '0.05'
-    answer_text: >-
+    answer_text: |-
       Use the two sides that meet at the lighthouse and the angle between them:
 
       $$A = \tfrac12 \times 8 \times 5.47 \times \sin 60^\circ = 21.88 \times 0.8660 = 18.9 \text{ km}^2$$
@@ -171,7 +171,7 @@ problems:
       checks:
         - {kind: approx, value: 'sqrt(7.5 * 3.5 * 2.5 * 1.5)', target: '9.92', tolerance: '0.01'}
         - {kind: approx, value: '2 * sqrt(7.5 * 3.5 * 2.5 * 1.5) / 5', target: '3.97', tolerance: '0.01'}
-    answer_text: >-
+    answer_text: |-
       The semi-perimeter is $s = \dfrac{4+5+6}{2} = 7.5$, so
 
       $$A = \sqrt{7.5 \times 3.5 \times 2.5 \times 1.5} = \sqrt{98.4375} = 9.92 \text{ cm}^2$$

@@ -106,6 +106,7 @@ The angle at the centre on a diameter is $180^\circ$.
 **Proof.** The points $B$, $O$ and $C$ lie on one line, so the angle $\angle BOC$ is the
 straight angle, $180^\circ$. The angle $\angle BAC$ stands on the same arc $BC$, so by
 Theorem 19 it is half of the angle at the centre:
+
 $$|\angle BAC| = \tfrac12 \times 180^\circ = 90^\circ.$$
 
 </details>

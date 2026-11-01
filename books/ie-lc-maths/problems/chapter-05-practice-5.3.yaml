@@ -34,7 +34,7 @@ problems:
     statement: 'Write $\dfrac{3 + 2i}{1 - i}$ in the form $a + bi$.'
     answer_label: 'The quotient'
     check: {kind: evaluate, expression: '(3 + 2*I) / (1 - I)', answer: '(1 + 5*I) / 2'}
-    answer_text: >-
+    answer_text: |-
       Multiply top and bottom by the conjugate of the bottom, $1 + i$:
 
       $$\frac{3 + 2i}{1 - i} = \frac{(3 + 2i)(1 + i)}{(1 - i)(1 + i)}
@@ -50,7 +50,7 @@ problems:
     statement: 'Write $\dfrac{5}{2 + i}$ in the form $a + bi$.'
     answer_label: 'The quotient'
     check: {kind: evaluate, expression: '5 / (2 + I)', answer: '2 - I'}
-    answer_text: >-
+    answer_text: |-
       Multiply top and bottom by $2 - i$:
 
       $$\frac{5}{2 + i} = \frac{5(2 - i)}{(2 + i)(2 - i)} = \frac{10 - 5i}{5} = 2 - i$$
@@ -131,7 +131,7 @@ problems:
         - id: real
           text: since i squared is -1 the result is a squared plus b squared, with no i left
           concepts: [imaginary-cancels]
-    answer_text: >-
+    answer_text: |-
       Write the denominator as $a + bi$. Its conjugate is $a - bi$, and
 
       $$(a + bi)(a - bi) = a^2 - (bi)^2 = a^2 - b^2i^2 = a^2 + b^2$$

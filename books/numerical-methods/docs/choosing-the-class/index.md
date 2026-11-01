@@ -144,7 +144,8 @@ how you wrote the model**. That is not a trick, and it is not cheating, as long
 as two things stay true:
 
 - the two models must agree in the limit where the difference disappears — a
-  stiff spring must reproduce the rigid joint, a fast pressure wave must
+  spring of high stiffness must reproduce the rigid joint, a fast pressure wave
+  must
   reproduce the incompressible flow, and the two slicings must describe the same
   geometry;
 - you must say which one you solved, because a reader who thinks they have a

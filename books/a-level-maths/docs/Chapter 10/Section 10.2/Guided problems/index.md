@@ -169,6 +169,7 @@ $\tan^{-1}(1) = 45^\circ$, so its direction from the positive $x$-axis is
 $$
 180^\circ - 45^\circ = 135^\circ.
 $$
+
 </details>
 
 **6.** Find the direction of $\mathbf{d} = -3\mathbf{j}$ as an angle from the

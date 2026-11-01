@@ -318,3 +318,118 @@ def test_front_matter_is_not_a_sentence(tmp_path, monkeypatch):
     )
     findings, _ = lint_page(tmp_path, monkeypatch, text)
     assert "style:long-sentence" not in findings
+
+
+# --- a list needs a blank line before it (review W3) ----------------------------
+
+
+def test_a_list_after_prose_with_no_blank_line_is_reported():
+    """The source reads as a list; the built page shows three hyphens in a sentence.
+
+    W3: `The difficulty is:` followed straight by `- which ...` is one paragraph to
+    the Markdown parser, so the reader never sees a list.
+    """
+    text = "The difficulty is:\n- which solution you land in;\n- whether it converges.\n"
+    assert lint.lists_without_a_blank_line(text) == [2]
+
+
+def test_a_list_after_a_blank_line_is_not_reported():
+    text = "The difficulty is:\n\n- which solution you land in;\n- whether it converges.\n"
+    assert lint.lists_without_a_blank_line(text) == []
+
+
+def test_a_list_that_continues_through_its_own_items_is_not_reported():
+    """`2.` after an indented continuation is the same list, not a new block."""
+    text = "1. A prism has triangular ends. How many faces does it\n   have?\n2. A cuboid measures 3 cm by 4 cm.\n"
+    assert lint.lists_without_a_blank_line(text) == []
+
+
+def test_a_list_after_a_heading_or_a_fence_is_not_reported():
+    assert lint.lists_without_a_blank_line("## Steps\n- one\n- two\n") == []
+    assert lint.lists_without_a_blank_line("```text\nx\n```\n- one\n") == []
+
+
+def test_front_matter_lists_are_not_prose_lists():
+    text = "---\ntitle: A page\nrefs:\n- A23\n---\n\nBody.\n"
+    assert lint.lists_without_a_blank_line(text) == []
+
+
+def test_display_maths_continuation_lines_are_not_list_items():
+    """A wrapped equation's `+` and `-` lines are arithmetic, not bullets.
+
+    `$$` … `$$` is one maths block. Its continuation lines start with the operator
+    that carried over, so the rule reported eight false findings in `a-level-maths`
+    — which spent that book's `LIST_DEBT` budget, the allowance real defects were
+    hiding in. Item 155's own measurement is what surfaced it.
+    """
+    text = (
+        "Substitute into the expansion:\n\n$$\n(x/4) = 2\\left[1 + \\frac{1}{2}(x/4)\n"
+        "- \\frac{1}{8}(x/4)^2\n+ \\frac{1}{16}(x/4)^3\\right]\n$$\n"
+    )
+    assert lint.lists_without_a_blank_line(text) == []
+
+
+def test_a_list_after_a_display_maths_block_still_needs_its_blank_line():
+    """Skipping maths must not swallow the line that follows it."""
+    text = "The steps are:\n\n$$\nx = 1\n$$\n- the first correction\n"
+    assert lint.lists_without_a_blank_line(text) == [6]
+
+
+def test_a_display_equation_that_shares_a_paragraph_is_reported():
+    """Item 163: 473 of them across the collection, in four books, and nothing looked.
+
+    `$$…$$` is a block, so it starts a paragraph. Without a blank line the maths hook
+    leaves the delimiters in the sentence, and the reader sees a dollar, the equation
+    set on the line, and a dollar.
+    """
+    assert lint.display_maths_without_a_blank_line("The rule is:\n$$a = b$$\n") == [2]
+    assert lint.display_maths_without_a_blank_line("The rule is:\n\n$$a = b$$\n\nfine.\n") == []
+    assert lint.display_maths_without_a_blank_line("$$a = b$$\nfrom it.\n") == [2]
+
+
+def test_the_display_maths_rule_reads_a_multi_line_block_and_a_quote():
+    """A block opened with `$$` alone is not a whole equation, and `>` is a container.
+
+    Reading "starts and ends with `$$`" reported every line of every multi-line block —
+    7,386 findings on the first run — and stripping a quote marker leaves the space that
+    followed it, which read as indentation.
+    """
+    multi = "Text.\n\n$$\na = b\n$$\n\nAfter.\n"
+    assert lint.display_maths_without_a_blank_line(multi) == []
+    quoted = "> **A rule.**\n>\n> $$a = b$$\n"
+    assert lint.display_maths_without_a_blank_line(quoted) == []
+    quoted_joined = "> **A rule.** $$a = b$$\n"
+    assert lint.display_maths_without_a_blank_line(quoted_joined) == [1]
+    indented = "Text.\n\n  $$a = b$$\n"
+    assert lint.display_maths_without_a_blank_line(indented) == [3]
+
+
+def test_a_section_page_is_held_to_twenty_five_words():
+    """Item 165: the house register is 15–20 words, and a section is where the work is.
+
+    The collection's 32-word ceiling let the pages a reader has to read carry the longest
+    sentences: `maths-applied`'s eight required pages averaged 19.1 words with 18.6% over
+    25, while the five it calls optional averaged 16.2. The section page has its own
+    ceiling and its own debt, so the two rules ratchet separately.
+    """
+    section = "/Chapter 1/Section 1.1/Walkthrough/index.md"
+    other = "/Chapter 1/Review/index.md"
+    long_sentence = "one " * 26 + "end."          # 26 words
+    assert list(lint.long_sentences(long_sentence, lint.SECTION_CEILING))
+    assert not list(lint.long_sentences(long_sentence, lint.SENTENCE_CEILING))
+    assert lint.SECTION_PAGE.search(section)
+    assert not lint.SECTION_PAGE.search(other)
+
+
+def test_the_sentence_splitter_does_not_split_a_reference_or_a_link():
+    """A period inside `§1.6`, a decimal or a URL is not the end of a sentence.
+
+    The naive splitter manufactured sentences that are not in the prose — "6]'s agreement
+    is the one this model can state" — and measured fragments against the ceiling. The
+    first run of the section rule reported 7,386 findings of the same kind on lists.
+    """
+    text = "See [§1.6](../x/) and 1.5 mm, e.g. the pin. A link [label](https://a.b/c) ends it."
+    assert [s.strip() for s in lint._sentences(text)] == [
+        "See [§1.6](../x/) and 1.5 mm, e.g. the pin.",
+        "A link [label](https://a.b/c) ends it.",
+    ]

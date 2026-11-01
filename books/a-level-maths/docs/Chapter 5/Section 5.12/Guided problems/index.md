@@ -65,6 +65,7 @@ $$
 $$
 \text{vertical} = 20\sin 40^\circ \approx 12.9 \text{ N}.
 $$
+
 </details>
 
 **2.** Two forces of $5$ N and $9$ N act at $90^\circ$ to each other. Find the
@@ -88,6 +89,7 @@ $R = \sqrt{5^2 + 9^2} = \sqrt{25 + 81}$.
 $$
 R = \sqrt{25 + 81} = \sqrt{106} \approx 10.3 \text{ N}.
 $$
+
 </details>
 
 **3.** Two forces of $4$ N and $7$ N act at $50^\circ$ to each other. Find the
@@ -116,6 +118,7 @@ $$
 $$
 R \approx \sqrt{101.0} \approx 10.0 \text{ N}.
 $$
+
 </details>
 
 **4.** A swimmer heads due east at $1.2$ m s$^{-1}$ in a current of
@@ -139,6 +142,7 @@ $v = \sqrt{1.2^2 + 0.5^2}$.
 $$
 v = \sqrt{1.44 + 0.25} = \sqrt{1.69} = 1.3 \text{ m s}^{-1}.
 $$
+
 </details>
 
 **5.** A block of weight $120$ N is on a slope of $20^\circ$. Find the component
@@ -162,6 +166,7 @@ Work out $120\sin 20^\circ$.
 $$
 120\sin 20^\circ \approx 120 \times 0.3420 = 41.0 \text{ N}.
 $$
+
 </details>
 
 **6.** Two forces of $6$ N and $8$ N act at $60^\circ$ to each other. The
@@ -187,4 +192,5 @@ $\sin\alpha = \dfrac{6\sin 60^\circ}{12.2} = \dfrac{5.196}{12.2} \approx 0.4259$
 $$
 \alpha = \sin^{-1}(0.4259) \approx 25.2^\circ.
 $$
+
 </details>

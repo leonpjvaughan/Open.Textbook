@@ -15,7 +15,7 @@ problems:
       value.
     answer_label: 'The present value'
     check: {kind: evaluate, expression: '5200 / (104/100)', answer: '5000'}
-    answer_text: >-
+    answer_text: |-
       The present value is the amount that would grow to €5,200 in one year at
       $4\%$. Divide by the multiplier:
 
@@ -33,7 +33,7 @@ problems:
       value.
     answer_label: 'The present value'
     check: {kind: evaluate, expression: '5618 / (106/100)**2', answer: '5000'}
-    answer_text: >-
+    answer_text: |-
       Divide by $1.06$ once for each year:
 
       $$5\,618 \div 1.06^2 = 5\,000$$
@@ -50,7 +50,7 @@ problems:
       Money earns $3\%$ a year. Work out the present value of the €12,000.
     answer_label: 'The present value of the €12,000'
     check: {kind: evaluate, expression: '12000 / (103/100)**2', answer: '120000000/10609'}
-    answer_text: >-
+    answer_text: |-
       Divide the future amount by $1.03$ twice:
 
       $$12\,000 \div 1.03^2 = 11\,311.15$$
@@ -69,7 +69,7 @@ problems:
       money.
     answer_label: 'How much cheaper the better option is'
     check: {kind: evaluate, expression: '12000 / (103/100)**2 - 11070', answer: '2558370/10609'}
-    answer_text: >-
+    answer_text: |-
       Bring both amounts to today. The €11,070 is already a present amount, and
       the €12,000 has present value
 
@@ -92,7 +92,7 @@ problems:
       Work out the annual interest rate.
     answer_label: 'The annual interest rate'
     check: {kind: evaluate, expression: '(11236 / 10000)**(1/2) - 1', answer: '0.06'}
-    answer_text: >-
+    answer_text: |-
       The €10,000 grows to €11,236 in 2 years, so
 
       $$10\,000 \times (1 + i)^2 = 11\,236$$
@@ -114,7 +114,7 @@ problems:
       Work out what it is worth today.
     answer_label: 'The value today'
     check: {kind: evaluate, expression: '20000 / (105/100)**3', answer: '160000000/9261'}
-    answer_text: >-
+    answer_text: |-
       Divide by $1.05$ once for each of the three years:
 
       $$20\,000 \div 1.05^3 = 17\,276.75$$
@@ -131,7 +131,7 @@ problems:
       Work out the present value of the €9,800 and say which offer is better.
     answer_label: 'The present value of the €9,800, then the better offer'
     check: {kind: evaluate, expression: '9800 / (105/100)', answer: '28000/3'}
-    answer_text: >-
+    answer_text: |-
       The present value of the €9,800 is
 
       $$9\,800 \div 1.05 = 9\,333.33$$
@@ -159,7 +159,7 @@ problems:
         - id: divide
           text: the present value is found by dividing the future amount by the growth factor once for each year, which brings it back to today
           concepts: [discounting]
-    answer_text: >-
+    answer_text: |-
       Money you hold today can earn interest. At $5\%$ a year, €1,000 today
       becomes €1,050 in a year, so €1,000 today and €1,050 in a year are
       equivalent. A promise of €1,050 in a year is therefore worth only €1,000

@@ -84,12 +84,12 @@ export function mount(el) {
       `<circle cx="288" cy="65" r="7" class="fig-warn"></circle>` +
       `<circle cx="288" cy="106" r="7" class="fig-warn"></circle>` +
       `${label({ x: 306, y: 69, text: `three neutrons`, anchor: "start", size: SIZE.value, class: "text-ink" })}` +
-      `${label({ x: 30, y: 160, text: `A neutron strikes the nucleus. The nucleus splits and releases three neutrons.`, anchor: "start", size: SIZE.heading, class: "text-ink" })}`;
+      `${label({ x: 8, y: 160, text: `A neutron splits a nucleus. Three neutrons come out.`, anchor: "start", size: SIZE.heading, class: "text-ink" })}`;
 
     const chart =
       `<line x1="${LEFT}" y1="${TOP}" x2="${LEFT}" y2="${BOTTOM}" class="fig-ink"></line>` +
       `<line x1="${LEFT}" y1="${BOTTOM}" x2="${RIGHT}" y2="${BOTTOM}" class="fig-ink"></line>` +
-      `${label({ x: LEFT - 8, y: TOP + 4, text: `neutrons`, anchor: "end", size: SIZE.value, class: "text-ink" })}` +
+      `${label({ x: LEFT + 4, y: TOP - 6, text: `neutrons`, anchor: "start", size: SIZE.value, class: "text-ink" })}` +
       `${label({ x: RIGHT, y: BOTTOM + 36, text: `generation`, anchor: "end", size: SIZE.value, class: "text-ink" })}` +
       `<line x1="${LEFT}" y1="${steadyY.toFixed(1)}" x2="${RIGHT}" y2="${steadyY.toFixed(1)}" ` +
       `class="fig-grid" stroke-dasharray="4 4"></line>` +

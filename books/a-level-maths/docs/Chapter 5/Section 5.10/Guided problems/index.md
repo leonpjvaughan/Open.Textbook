@@ -56,6 +56,7 @@ The second solution is $\pi - \dfrac{\pi}{3}$.
 $$
 \theta = \frac{\pi}{3} \quad \text{or} \quad \theta = \pi - \frac{\pi}{3} = \frac{2\pi}{3}.
 $$
+
 </details>
 
 **2.** Solve $\cos\theta = -\dfrac{1}{2}$ for $0 \le \theta < 2\pi$.
@@ -79,6 +80,7 @@ The two angles are $\pi - \dfrac{\pi}{3}$ and $\pi + \dfrac{\pi}{3}$.
 $$
 \theta = \frac{2\pi}{3} \quad \text{or} \quad \theta = \frac{4\pi}{3}.
 $$
+
 </details>
 
 **3.** Solve $\tan\theta = \sqrt{3}$ for $0 \le \theta < 2\pi$.
@@ -102,6 +104,7 @@ still below $2\pi$.
 $$
 \theta = \frac{\pi}{3} \quad \text{or} \quad \theta = \frac{\pi}{3} + \pi = \frac{4\pi}{3}.
 $$
+
 </details>
 
 **4.** Solve $\sin 2\theta = \dfrac{\sqrt{3}}{2}$ for $0 \le \theta < 2\pi$.
@@ -127,6 +130,7 @@ each by $2$.
 $$
 \theta = \frac{\pi}{6}, \quad \frac{\pi}{3}, \quad \frac{7\pi}{6}, \quad \frac{4\pi}{3}.
 $$
+
 </details>
 
 **5.** Solve $2\cos^2\theta - \cos\theta = 0$ for $0 \le \theta < 2\pi$.
@@ -186,4 +190,5 @@ $\dfrac{7\pi}{6}$ and $\dfrac{11\pi}{6}$.
 $$
 \theta = \frac{\pi}{6}, \quad \frac{5\pi}{6}, \quad \frac{7\pi}{6}, \quad \frac{11\pi}{6}.
 $$
+
 </details>

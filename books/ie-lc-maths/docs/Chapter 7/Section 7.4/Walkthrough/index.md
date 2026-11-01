@@ -30,6 +30,8 @@ fractions the quotient rule is the tool.
 
 > **The quotient rule.** If $y = \dfrac{u}{v}$, where $u$ and $v$ are functions of $x$ and
 > $v \ne 0$, then
+>
+>
 > $$y' = \frac{u'v - uv'}{v^2}.$$
 
 In words: the derivative of the top times the bottom, minus the top times the derivative of

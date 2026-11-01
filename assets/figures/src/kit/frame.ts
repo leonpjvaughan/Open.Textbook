@@ -199,7 +199,10 @@ export function panel(el: HTMLElement, options: PanelOptions = {}): Panel {
 
   // The readout, always. It is a live region and never `role="img"` — that pairing
   // appeared in four modules and made the value unannounceable.
-  const readout = document.createElement("p");
+  // A `<div>`, not a `<p>`: a figure whose readout is a table of values cannot put a
+  // table inside a paragraph — the parser hoists it out and the live region ends up
+  // empty, which is a value a screen reader never hears (item 171).
+  const readout = document.createElement("div");
   readout.className = "readout";
   readout.setAttribute("aria-live", "polite");
   readout.style.cssText = `${UI_FONT};margin:.6rem 0 0`;

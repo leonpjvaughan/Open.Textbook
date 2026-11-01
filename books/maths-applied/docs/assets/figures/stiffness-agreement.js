@@ -10,7 +10,7 @@
 //
 // The numbers are computed here, by `data/mechanism.js`, and every curve is drawn
 // from the same geometry as the hero.
-import { SIZE, axes, curve, fmt, label, line, panel, react, slider } from "./kit.js";
+import { SIZE, axes, curve, fmt, label, line, panel, react, slider, table } from "./kit.js";
 import { curve as camberCurve, compliant, pose, thetaFor } from "../data/mechanism.js";
 
 const WIDTH = 560;
@@ -52,6 +52,10 @@ export function mount(el) {
   });
 
   const rigid = camberCurve({ travel: 40, count: 41 });
+
+  // §1.5's table has five columns; the readout is those five, in that order, with the
+  // table's signs (item 171).
+  const values = table(readout, { columns: ["quantity", "value"] });
 
   function draw() {
     const k = Number(stiffness.value) * 1e6;
@@ -124,13 +128,13 @@ export function mount(el) {
 
     const atBump = compliant(thetaFor(40), k, LATERAL, DOWN);
     const atBumpRigid = pose(thetaFor(40)).camber;
-    readout.textContent =
-      `With a bush of ${num(Number(stiffness.value), 1)} meganewtons per metre, the upright's ` +
-      `upper point is pulled ${num(atRest.bush, 2)} mm away from the upper arm's. Camber at rest ` +
-      `is ${num(atRest.camber, 2)} degrees, which is ${num(Math.abs(gap), 2)} degrees from ` +
-      `the rigid model's ${num(rigidRest, 2)}. ` +
-      `At 40 mm of bump the two differ by ${num(Math.abs(atBump.camber - atBumpRigid), 2)} degrees. ` +
-      `Stiffen the bush and both differences fall towards nothing.`;
+    values.update([
+      ["bush stiffness", `${num(Number(stiffness.value), 1)} MN/m`],
+      ["bush deflection", `${num(Math.abs(atRest.bush), 2)} mm`],
+      ["camber at rest", `${num(atRest.camber, 2)}\u00b0`],
+      ["difference at rest", `${num(Math.abs(gap), 2)}\u00b0`],
+      ["change over the travel", `${num(Math.abs(atBump.camber - atBumpRigid), 2)}\u00b0`],
+    ]);
 
     // The difference the readout states, declared so it cannot drift from the
     // model. It is the **size** of the difference: the readout says "from", and a

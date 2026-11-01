@@ -85,6 +85,8 @@ moving in a straight line at a steady speed. Both are allowed.
 > **Newton's second law.** The resultant force on an object equals its mass
 > times its acceleration.
 >
+>
+>
 > $$F = ma$$
 
 Here $F$ is the resultant force in N, $m$ is the mass in kg, and $a$ is the

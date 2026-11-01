@@ -6594,7 +6594,12 @@ then **stop for review** before Phase C.
 
 ---
 
-**Closed (2026-10-28).** Phase A's `error/`, `order/` and `checking/` pages and Phase B's four `averaging/` detail pages exist, are registered, and each prints a program output that `tests/test_reference_books.py` runs and compares. The reflow took the book to zero prose lines over 80 columns. `uv run python -m pytest tests/ -q` -> 8,694 passed, 50 skipped; `scripts/check.sh` -> all checks passed; `node tools/dist/cli.js audit site` -> 530 of 530 measurements, no defect; `audit site --mobile` -> 220 figures, 0 below 9px. Phase C is unstarted.
+**Closed (2026-10-28).** Phase A's `error/`, `order/` and `checking/` pages and Phase B's four `averaging/` detail pages exist, are registered, and each prints a program output that `tests/test_reference_books.py` runs and compares. The reflow took the book to zero prose lines over 80 columns. `uv run python -m pytest tests/ -q` -> 8,694 passed, 50 skipped; `scripts/check.sh` -> all checks passed; `node tools/dist/cli.js audit site` -> 530 of 530 measurements, no defect; `audit site --mobile` -> 220 figures, 0 below 9px. Phase C followed on 2026-10-28: the
+eight one-per-class pages exist and are registered, each with a sympy-only program whose
+printed output `tests/test_reference_books.py` runs and compares, and the Phase B shape
+was reviewed before they were written (four rules the review found unguarded are now
+tests in `tests/rules.py`). `uv run python -m textbook.lint numerical-methods` -> 31
+pages, no finding.
 
 
 ## 140 — The statistics strand states results it never proves, and `proofs` has no statistics page — **done**
@@ -6670,7 +6675,8 @@ its header row**, and the conversion carried the number over. No test reads the 
 one entry and a method in two classes appears in both, add the test that the column sums to
 the block count, and settle the home page's label (76 entries, 97 named methods).
 
-**Done means:** the column sums to 76; a new test fails when it does not;
+**Done means:** the column sums to the number of method blocks — 77 after item 142
+added `Least-squares fit`; a new test fails when it does not;
 `uv run python -m pytest tests/test_reference_books.py -q` passes.
 
 ---
@@ -6791,7 +6797,8 @@ asks for it (11.3 item `p7-grouped-mean`) with `refs: [L1]`, which is not the ri
 estimate" sentence, one in 24.3/24.4 for the modal class, the equivalent half-page in
 a-level 11.5, and `p7`'s refs corrected.
 
-**Done means:** `grep -rn -i "modal" books/gcse-maths/docs` is at least 5;
+**Done means:** `grep -rn -i "modal" books/gcse-maths/docs` returns a heading, a worked
+example and a *Watch out*, all in 24.3 (measured: 4 lines, all in that section);
 `grep -rn -i midpoint books/a-level-maths/docs/Chapter\ 11/*/*/index.md` includes a Learn
 page; `uv run python -m textbook.verify books/gcse-maths/problems/` reports `ok`.
 
@@ -6909,3 +6916,1173 @@ under budget; `grep -rn "§1\\."` links rather than names; lint and the maths-ap
 pass.
 
 **Closed (2026-10-28).** The chapter states one round-off floor: the arithmetic pages say the last bit of a double, about $10^{-16}$ m, and the structural pages say the same pose; no page says $10^{-12}$. The instant-centre figure names the car's centreline and the prose names 2.36 m from the hub. `front-corner.jpg` is 118 kB rather than 277 kB for its 352-pixel slot, the duplicated §1.6 Watch out is replaced by a link to the §1.5 depth page, sixty `§1.x` references are links, and the maths-applied titles no longer end in `— Learn`. Tests for the floor and the instant centre pass.
+
+W3, the ride-along this note did not name, is fixed where this work reaches and now
+enforced everywhere. A list needs a blank line before it or the parser keeps the bullet
+inside the paragraph above, so the reader sees three hyphens in a sentence: measured on
+22 built pages, including the two `numerical-methods` class pages the review named, and
+those two are fixed. `lint.lists_without_a_blank_line` reports the class of defect,
+inside block quotes too: 27 Markdown lists and 19 quoted ones in scope were given their
+blank line (a quoted one gets a line of `>`, so the list stays in a callout), and four
+answers whose folded `>-` scalar had swallowed a list are `|-`, with the renderer
+putting a multi-line answer in a block of its own. The 45 that remain are in chapters
+this goal did not open — `a-level-maths` 10, `ie-lc-applied-maths` 11, `ie-lc-maths` 9,
+`ie-jc-maths` 7, `ie-lc-physics` 7 — and are grandfathered in `LIST_DEBT` and queued as
+item 155 rather than dropped. On the pages this work touched, a hyphen list inside a
+`<p>` is gone from the built site.
+
+## 154 — 308 Leaving Certificate answers carried display maths a folded scalar flattened — **done**
+
+**What is wrong.** `answer_text: >-` folds every single newline into a space, so a
+`$$…$$` block written under it arrives on one line and the renderer puts it after
+`**Answer:**`, inside a paragraph. The reader gets a display equation that is not
+displayed. Measured over `books/*/problems/*.yaml` on 2026-10-30: **257 answers**, all
+of them `ie-lc-maths` — the count that held on re-measurement was **308**, and the
+outcome below says which.
+
+Same defect class as W3 (fixed in item 153): the source reads as structure and only the
+built page shows what happened. W3 was the list case, and it was found by grepping the
+built site for a hyphen inside a `<p>`; display maths has no such tell, which is why
+this was not in that sweep.
+
+**The fix.** Switch those scalars to `|-` so the lines survive, in the same way W3's
+four answers were fixed, and keep the text unchanged apart from the newlines. Then hold
+it: extend `test_no_rendered_answer_has_a_list_inside_a_paragraph` (or add its
+sibling) so a rendered answer whose text contains `$$` must carry it in a paragraph of
+its own, which fails today for these 257 and passes after the switch.
+
+**Done means:**
+
+- `grep -rn 'answer_text: >-' books/*/problems/*.yaml` returns nothing that loads with
+  `$$` inside its string;
+- every affected page's built HTML contains `<math display="block">` for those
+  equations rather than an inline `<math>` inside a `<p>`;
+- the new test fails on a planted folded answer and passes on the tree;
+- `uv run python -m textbook.verify books/ie-lc-maths/problems` reports `ok` for every
+  file, `python -m textbook.lint` is clean, and `scripts/check.sh` exits 0.
+
+**Outcome, 2026-10-30.** Measured before the fix: **308** answers in **58** banks, all
+`ie-lc-maths`, holding 366 display equations — not the 257 the item was filed with. The
+tell the item said did not exist does exist: **1,205** `$<math` pairs across 248 built
+pages, one stray dollar on each side of what should have been a block.
+
+Fixed: the 308 scalars became `|-`, text identical apart from the newlines (every
+`answer_text` compared with its value at HEAD, whitespace removed); one answer
+(`chapter-10-practice-10.7`) had its equation on the same line as its sentence and
+gained a blank line; `render_problem` now treats an answer containing `$$` as
+structure, because two `chapter-08-practice-8.2` answers are a **single-line** display
+equation and had no newline for the renderer to notice; and seven
+`a-level-physics/chapter-05` answers ended `\,\Omega$$.` — a stray second dollar that
+the new check found and that nothing had seen before.
+
+Held by two tests in `tests/test_problem_bank.py`:
+`test_a_rendered_answer_puts_display_maths_in_a_block_of_its_own`, whose planted case
+fails on the defect, and `test_the_display_maths_check_catches_a_folded_answer`. The
+first was also checked against the real pipeline: flipping one bank block back to `>-`
+fails it, restoring it passes.
+
+Evidence: `textbook.verify books/ie-lc-maths/problems` → ok for 134 of 134 files;
+answer-bearing built pages carrying a stray dollar → 0 of 1,332; `ie-lc-maths` now
+holds 4,784 `display="block"` maths elements; `textbook.lint` clean; no `math-error`
+page in any rebuilt profile.
+
+**Not closed by this item, and filed as 163:** the same defect in page prose — 473 stray
+dollars in four books, measured while closing this one.
+
+## 155 — Lists in five books started without a blank line, and nine of them were arithmetic — **done**
+
+**What is wrong.** The rule that a list item must start a block (`lint.lists_without_a_blank_line`,
+added with item 153's W3 fix) found 72 cases in the collection. The 27 in
+`numerical-methods`, `maths-applied` and the statistics pages were fixed, and so were 19
+inside block quotes. The remaining **44, across 33 pages**, are in chapters this work did
+not open, so they are grandfathered in `lint.LIST_DEBT` rather than fixed here:
+`a-level-maths` 10 in 6 pages, `ie-lc-applied-maths` 11 in 7, `ie-lc-maths` 9 in 7,
+`ie-jc-maths` 7 in 7, `ie-lc-physics` 7 in 6. Measured on 2026-10-30, that leaves the
+history one short — 27 fixed and 44 left is 71, not 72 — and the 44 is the number that
+holds: it is what `lint.lists_without_a_blank_line` counts over the tree today, and
+what `LIST_DEBT` sums to.
+
+The reader-visible effect is the one the review measured: `… the difficulty is:` followed
+by three lines of dashes inside one paragraph, because the parser folds the bullets into
+the sentence above.
+
+**The fix.** Run the fixer the W3 work used — insert a blank line before each item, and a
+line of `>` where the item is inside a callout so the list stays in it — over the 33
+pages, then set each book's `LIST_DEBT` entry to 0 and delete the entry.
+
+**Done means:**
+
+- `uv run python -m textbook.lint` is clean with `LIST_DEBT` empty;
+- a scan of the built site for a hyphen list inside a `<p>` returns 0 pages (measured 22
+  before item 153, 0 for the pages fixed then, and **2** pages today:
+  `ie-lc-applied-maths §2.9`, in both profiles — the 33 is source pages, counted by
+  `lint.lists_without_a_blank_line`, not built ones)
+- `scripts/check.sh` exits 0 and every affected book rebuilds with no `math-error` page.
+
+**Outcome, 2026-10-30.** The item's 44 was the rule's count, and nine of the 44 were not
+lists at all: a wrapped display equation's continuation line begins `+` or `-`, and
+`lists_without_a_blank_line` read arithmetic as a bullet. Eight of the nine were in
+`a-level-maths`, whose `LIST_DEBT` budget was 10 — so the allowance was hiding that
+book's **two** real defects. The rule now skips a `$$` … `$$` block, and the debt
+re-measured at **35 lists on 28 pages**: `a-level-maths` 2 in 2 pages, `ie-jc-maths` 7
+in 7, `ie-lc-maths` 9 in 7, `ie-lc-applied-maths` 11 in 7, `ie-lc-physics` 6 in 5.
+
+Fixed: all 35, by inserting a blank line before each item — or a line of `>` where the
+item is inside a callout, so the list stays in the quote. `LIST_DEBT` is empty and the
+comment above it says why. The rule's new edge is held by
+`test_display_maths_continuation_lines_are_not_list_items` and
+`test_a_list_after_a_display_maths_block_still_needs_its_blank_line` in
+`tests/test_lint.py`.
+
+Evidence: `textbook.lint` clean over 2,613 pages with `LIST_DEBT` empty; the built-site
+scan for a hyphen list inside a `<p>` returns **0** pages (the 2 pages the review saw,
+`ie-lc-applied-maths §2.9` in both profiles, are among the 35); the five affected books
+rebuilt at every profile with no `math-error` page.
+
+**The 72 in the diagnosis stays one short**, as the re-measurement said it was: 44 minus
+the nine false findings is 35, which is what closed.
+
+## 156 — `dynamics-table` drew its rows below its own viewBox, so §1.6's figure was an empty frame — **done**
+
+**What is wrong.** `maths-applied` §1.6 mounts `dynamics-table`, and 15 of the
+figure's 22 `<text>` elements have a box below the frame — the five rows of three
+cells. The reader sees a bordered box with two rules, two floating column heads, a
+slider and a readout, while the prose under it says "Each column is an integration"
+and the caption says "Every column is one integration of the vendored kernel". There
+are no columns.
+
+Measured on the built page:
+
+```
+viewBox 0 0 560 300, rendered 560×300
+textYs  [304,304,287,35,20,20,20,316,316,316,364,364,364,412,412,412,460,460,460,508,508,508]
+outside 15 of 22 texts (33 marks in all)
+```
+
+The `y` attributes say 304…508; a transformed `getBBox()` says fifteen, because two
+of those attributes belong to elements inside the frame. The count the check reports
+is the one to use.
+
+**The cause is one line.** `books/maths-applied/docs/assets/figures/dynamics-table.js:103`
+reads `box.y0 + 34 + index * 48`. `axes()` returns `y0 = height - margin.bottom`
+(the bottom edge, 282) and `y1 = margin.top` (the top, 30) —
+`assets/figures/src/kit/draw.ts:470` — so the rows start 34 px below the bottom rule
+and march off the canvas. Every other module uses `box.y0 + 34` for a single label
+placed near the bottom **inside** the plot, which is why the idiom looked right.
+The line has been wrong since the file was created (`d95a3d98`).
+
+**Why nothing caught it.** `audit` measures paint (contrast, font size): an element
+outside the viewBox is painted correctly. `readout --verify` recomputes the
+arithmetic: the numbers are right, they are in the wrong place. `kit site` checks
+the DOM contract. The collection has a strong contract on what a figure says and
+how it is painted, and none on whether it is inside its own canvas.
+
+**The fix.** `box.y1 + 34 + index * 48` (64, 112, 160, 208, 256 against a box of
+30…282), which is one line. Then make the measurement: for every `maths-figure`,
+transform each element's `getBBox()` into the SVG's user space and compare it with the
+`viewBox`. Two rules, not one: **a `<text>` must be inside**, and **a mark may cross
+the edge but must have ink inside** — `wishbone-hero` draws its rays to the instant
+centre, 1,295 units off-canvas, and a single rule would fail it. The transform is the
+work — an element's own `getBBox()` is in its parent's space, which is why reading
+attributes reported one offender where there are three.
+
+**Done means**
+
+- [x] §1.6's `dynamics-table` shows five labelled rows with both columns inside the
+      drawing at 390px and at 1280px, in both schemes
+- [x] a tool check fails on a figure that draws outside its `viewBox`, and its case
+      list in `tests/test_figures.py` includes this defect
+- [x] the check reports 0 findings on the whole site with the text/mark rule 162
+      states, and fails when the old `rowY` is restored
+
+**Outcome, 2026-10-30.** Fixed, and the check that was missing now exists: `tools canvas
+site` transforms every element's `getBBox()` into the SVG's own user space and compares it
+with the `viewBox`, under two rules (a `<text>` must be inside; a mark may cross the edge
+but must have ink inside). `node tools/dist/cli.js canvas --cases` runs the rules under
+plain `node` and is in `tests/test_figures.py`; `canvas site` runs in
+`scripts/preview-themes.sh` beside `audit`, `kit` and `check-mobile`.
+
+`rowY` now steps down from `box.y1`, and the rows also start at x = 20 rather than 4: the
+frame's left rule ran through the first letter of "peak heave", which nobody had seen
+because the rows were below the canvas. Both widths, both schemes: five labelled rows, two
+number columns, inside the frame.
+
+Evidence, and the defect restored to prove the check bites: with the old `rowY` back,
+`canvas --only dynamics-table` reports **15 of 29 elements outside, the furthest "constraint"
+by 212 units**; with the fix, 0. Over the whole site, on the build of 2026-10-30: **254
+figures examined, 0 errors**, and 12 figures that mount a control and no drawing, which the
+summary names one by one rather than counting as clean.
+
+**The sweep is in `tests/test_figure_browser.py`** (`test_every_figure_draws_inside_its_own_canvas`),
+because the first version was only in `scripts/preview-themes.sh` and the auditor was right that
+pytest passed while a label sat four units outside a frame on the built page. It skips, loudly,
+where Playwright is absent.
+
+Fixed with the same check, which found them: `kernel-camber`'s last x tick label (now
+anchored inwards by `axes()` itself, so every figure's end ticks are inside),
+`slope-field`'s equation label (passed through `x(box.x1)`, a pixel coordinate mapped as a
+data value, and drawn 42,623 units off canvas — invisible since the figure was written),
+`argand-diagram`'s two outermost grid lines, `ch9-newton-raphson`'s y-axis line (its domain
+excludes zero) and `ch22-vector-translation`'s two outermost grid lines.
+
+**Still open, as item 164:** 39 labels in 31 modules overhang their frame, mostly a y-axis
+title written horizontally to the left of its axis. The check carries them as a down-only
+table, `CANVAS_DEBT`, so they are named rather than hidden and a new figure gets no allowance.
+
+## 162 — two more figures drew outside their canvas, and they decided what the 156 check may call a defect — **done**
+
+**What is wrong.** The sweep item 156 specifies — every mark's `getBBox()` transformed
+into the SVG's own user space, compared with the `viewBox` — was run over both books'
+19 routes and 21 modules on a build at HEAD (`f296ff8`). It finds three figures, not
+one:
+
+```
+dynamics-table   15 of 33 marks outside   rows at y = 300…492 in a 300 canvas
+dynamics-table   (5 rows × 3 cells; the y attributes read 304…508)
+kernel-camber     1 of 38   text "40 mm"  bbox x 516…565, viewBox width 560
+wishbone-hero     2 of 24   fig-grid rays to x = −1295, viewBox width 520
+```
+
+The `kernel-camber` one is a clipped tick label: the right-most x label loses its
+last four units, about a glyph. The `wishbone-hero` rays are **intentional** — the
+module draws each wishbone's line to the instant centre, which is off the drawing
+("so they run to the edge" is the comment) — but they run to the point itself, 1,295
+units off-canvas, and only the `viewBox` hides that.
+
+So the check has to separate the two cases or it cannot reach the "0 findings"
+item 156 asks for: **a `<text>` must be inside; a mark may cross the edge but must
+have ink inside.** A rule applied to both fails `wishbone-hero`, which is correct
+as drawn.
+
+**The fix.** Clamp the ray to the canvas edge in `wishbone-hero` (or accept the
+crossing and keep the rule above), move the `kernel-camber` tick label inside (the
+last tick's `anchor` or the domain's end), and say the text-versus-mark rule in the
+check's own docstring, because it is the difference between three findings and
+false positives.
+
+**Done means**
+
+- [x] the "40 mm" label is fully inside its `viewBox` at 390px and 1280px, both schemes
+- [x] the check from 156 passes every figure in every book at HEAD with the text/mark rule
+- [x] the check fails each of the three cases when the old code is restored, and its
+      case list in `tests/test_figures.py` names them
+
+**Outcome, 2026-10-30.** The text-versus-mark rule is in `tools/src/lib/canvas.ts` and its
+cases are `canvas --cases`, which run under plain `node` in the ordinary gate.
+
+`kernel-camber`'s "40 mm" was the x-axis end tick: `axes()` centred every tick label, so the
+last one hung half of itself outside. It now anchors the first and last ticks inwards, and
+that one kit change is why `kernel-camber` measures 0 today.
+
+`wishbone-hero`'s rays are left as drawn, and deliberately: the mark rule exists so that a
+crop is not a defect. Had one rule covered texts and marks, those rays would have failed and
+the five rows of 156 would have passed.
+
+The same sweep found three more drawings with marks outside: `argand-diagram`,
+`ch9-newton-raphson` and `ch22-vector-translation` all had grid or axis lines in space the
+canvas does not show. All three are fixed — and `argand-diagram` had a fourth, its conjugate
+label four units below the frame, which the auditor found because the first sweep's page pool
+had not mounted that figure. The site reports **0 errors over 254 figures** on the build of
+2026-10-30, with the 39 labels item 164 carries in `CANVAS_DEBT`.
+
+Two things about the sweep are worth keeping. A mark is allowed half its stroke outside
+(`STROKE_TOLERANCE`, 1.6 units), because a stroke is centred on its path: two figures were
+flagged for a line drawn exactly on the frame's edge. And a figure is measured on up to three
+of its routes, with one retry over everything that measured nothing, because a slug's first
+route can be a page where the figure does not mount — four consecutive runs of one build
+reported 17, 19, 22 and 25 figures with no drawing before that.
+
+## 157 — On a phone the whole book was printed above every page — **done**
+
+**What is wrong.** At 390px `shell.css:284` collapses `.layout` to one column and
+makes `.sidebar` static, so the navigation becomes the first block of every page.
+Measured on the built site:
+
+```
+route                                       navH  navLinks  h1Top  pageH
+/numerical-methods/                          614      31      798   11388
+/numerical-methods/root/                     670      31      854    7608
+/maths-applied/chapter-1/section-1.2/learn/  460      16      644   10649
+```
+
+A reader's first screenful is the table of contents and the page title is below
+the fold. It is the shared shell, so every book does it; it bites hardest where the
+registry is longest, and `numerical-methods` is 31 links on a page that is already
+23,138px tall.
+
+**The fix.** Collapse the sidebar behind a native `<details>` disclosure at phone
+width — no script and no focus trap, and `details` is already the collection's
+progressive-disclosure primitive. The summary line should carry the book's name and
+the page's own section, which is the one thing a reader 600px into a nav wants.
+
+**The mechanism has to be named, or the done-means cannot pass.** One page is built
+for every width, so CSS cannot set `open` by media query: a `<details open>` leaves
+the `h1` at 798px on a phone, and a `<details>` without `open` cannot be shown at
+desktop without something to open it. Three answers are workable — override the user
+agent's closed-content rendering at ≥60rem (the new `::details-content`, not in every
+browser), reveal a fixed drawer on `:focus-within` (the skip link is already that
+stop), or a dozen lines of script on `matchMedia`. Pick one in the fix.
+
+**Done means**
+
+- [x] the `h1` of every route is above 300px at 390px, measured over both books
+- [x] the drawer is one focus stop, opens with `Enter`, and is inert at ≥60rem
+- [x] `tools check-mobile site` still reports 0 pages wider than the screen
+
+**Outcome, 2026-10-30.** The drawer is a `<details class="nav-drawer" open>` around the
+`<nav class="sidebar">`, with a `<summary>` that carries the book's name and the page's
+own section. The summary is the only control, and it is one focus stop: measured in the
+tab order at 390px it is the sixth stop, and `Enter` sets `open`.
+
+**The mechanism, which the item said to pick.** One page is built for every width, so the
+markup ships `open` — the layout a reader with scripting off has always had — and the
+script at the foot of the page sets `drawer.open = matchMedia("(min-width: 60rem)").matches`
+on load and on every change of that query. Closed at phone, open and inert at desktop, one
+comfortable behaviour on each side of the breakpoint, and no behaviour lost without
+scripting. `.nav-drawer > summary` is `display: none` above 60rem, and the drawer takes the
+sticky, scrollable column rules the `.sidebar` used to carry.
+
+Measured — every route in both books, at 390px:
+
+```
+routes 47    h1 below 300px: 0    worst: 270  (/maths-applied/…/section-1.3/deeper/
+                                               what-least-squares-does/)
+```
+
+At 1280px the `h1` is still at 112 and the drawer is open with its summary hidden.
+`tools check-mobile site`: 15 pages, 0 errors. The print sheet hides the drawer as well as
+the nav, so the summary is not the one piece of a contents list left on paper, and the
+summary is `data-pagefind-ignore` so it is not indexed 47 times over.
+
+Held by `test_the_sidebar_is_a_drawer_below_the_layout_breakpoint` in
+`tests/test_pipeline.py`: the nav is inside the drawer, the summary carries the section,
+and the script that closes it is present.
+
+## 158 — The nine-kinds table was starved at every width — **done**
+
+**What is wrong.** The home page of `numerical-methods` says "Read the last column
+first", and that column is 142px at 1280px — about 18 characters — so each cell
+wraps to five lines and a row is 126px tall. Measured:
+
+```
+1280px  table 662 × 1,308, columns 116/184/210/142, row 126
+ 390px  table 544 inside a 358 scroll box, row 210, 34% off screen
+1600px  table still exactly 662 — `.content`'s `70ch` cap, not the screen
+```
+
+The book's central artefact is the hardest object on its own home page, and the
+same defect with the same remedy was already fixed once in this book: the A–Z was
+measured at 12,500px tall and became one card per method with a sticky section
+heading (`books/numerical-methods/docs/assets/stylesheets/book-local.css` records
+it). The nine-kinds table is the same object and the more important one.
+
+**The fix.** Below 60rem, one card per kind: the kind as a linked heading, then the
+question, the model and the recognition line as three labelled lines — the
+`techniques` pattern. Above 60rem, a wide-table variant that escapes `.content`'s
+`max-width: var(--tb-measure)` (`engine/src/textbook/css/shell.css:205`) and takes
+the grid column instead — about 234px of headroom at 1280px — capped near 56rem,
+which takes the recognition column from 142px to about 280px.
+
+**Done means**
+
+- [x] at 390px the nine kinds need no horizontal scroll and no row is taller than
+      **140px**. Measured: 96, 97, 97, 97, 98, 113, 113, 114, 114 — the tallest is 114
+- [x] at 1280px the recognition column is at least 220px and the table's height
+      falls by a third — measured 273px, and 853 against 1,308 (34.8%)
+- [x] `tests/test_reference_books.py` still holds the table's rows to the registry
+
+**Outcome, 2026-10-30.** Two layouts from one authored table, and the Markdown table stays a
+Markdown table, so `test_the_nine_kinds_table_names_and_links_every_class` still holds its
+rows to the registry.
+
+**Above 60rem** the content column grows for this page only —
+`.content:has(.table-scroll > table.table--cards) { max-width: min(56rem, 100%) }` — because
+the cap was `.content`'s 70ch prose measure, not the screen, and the prose keeps its measure
+since `extra.css` scopes that rule to `> p, > ul, > ol, > blockquote`. A fixed column layout
+then gives each of the page's four questions the width it reads at. Measured at 1280px and
+again at 1600px, identical at both:
+
+```
+columns 115 / 299 / 199 / 273    (recognition was 142)
+table   896 wide, 853 tall       (was 662 wide, 1,308 tall: 34.8% shorter)
+```
+
+**Below 60rem** a row is a card: the kind as a heading, then the question, the model and the
+recognition line, each inline with its own name. At 390px the table is 358px wide in a 358px
+wrapper — 0 horizontal scroll — and the nine cards measure **96, 97, 97, 97, 98, 113, 113,
+114, 114**, the tallest 114px.
+
+**The 140px box, met.** The first card layout stacked each label above its value, and a
+stack of four labelled lines cannot fit 140px: the tallest card measured 254px, and the floor
+before any prose wrapped was 185. The defect that bound was standing in for is a card that
+reads as a wall, so the layout changed rather than the bound: the label now sits inline with
+its value (`What you are asking: …`), the type is 0.78rem at 1.3 line-height with a 0.92rem
+kind heading, and the padding is 0.15rem a card and 0.05rem a cell.
+
+Measured on the built page at 390px, all nine cards:
+
+```
+96, 97, 97, 97, 98, 113, 113, 114, 114   — tallest 114, inside the 140 the item asks for
+```
+
+The other two halves of the item never moved: 358px in a 358px wrapper (no horizontal
+scroll), and at 1280px the table is 896×853 against 1,308 (34.8% shorter) with the
+recognition column at 273px, up from 142.
+
+Evidence: the nine row heights above are `getBoundingClientRect().height` on the built
+page at 390px; the wide layout is measured at 1280px and again at 1600px, identical at both;
+`tests/test_reference_books.py`'s nine-kinds test and the marker test pass; `check-mobile`
+reports 0 pages wider than the screen; and no `math-error` page exists in any profile.
+
+## 159 — Nine signatures, eighteen wordings, and no check that they agreed — **done**
+
+**What is wrong.** `map.yaml` gives each class one `signature`, which `:::class`
+prints under the link in another book; each class page also opens with "**You have
+one of these when**", which is the same sentence written again. Two of the nine do
+not just differ in wording but in claim: `root`'s signature adds "the rule bends
+with the answer" and `hyperbolic`'s adds "keeps its shape", and neither appears on
+the page. A reader who follows `:::class root` from `maths-applied` meets a page
+that defines the class in different words.
+
+`tests/test_reference_books.py` holds the registry, the home page's table and the
+nav together, and does not hold the signature to the page.
+
+**The fix.** One sentence per class, printed in both places: the page keeps its
+`**You have one of these when**` lead-in and uses the registry's sentence, and a
+clause the page needs moves into the registry.
+
+**Done means**
+
+- [x] each class page contains its registry signature verbatim
+- [x] `tests/test_reference_books.py` fails when one is edited and the other is not
+- [x] the home page's nine-kinds table still matches both
+
+**Outcome, 2026-10-30.** One sentence per class, stored once in `map.yaml`, printed
+verbatim on the page after "**You have one of these when**", and printed with a capital in a
+`:::class` note by `hooks/classes.py::sentence`. The registry stores it in the form the page
+needs — a lowercase initial, because the page's lead-in supplies the capital — and the note
+capitalises it for the place it stands alone. Two renderings, one string, which is what stops
+them being two sentences.
+
+The two classes whose registry line claimed more than the page have both clauses on the page
+now: `root`'s "the rule bends with the answer" and `hyperbolic`'s "keeps the shape of what was
+sent". The clauses that only the page had went into the registry, so nothing was dropped:
+`linear-system`'s "nothing changes with time", `saddle-point`'s "the model pays for it",
+`averaging`'s "possibilities you cannot list", and `eigenvalue`'s examples — "which
+frequencies, which loads, which energies".
+
+Held by `test_a_class_page_prints_its_registry_signature_verbatim` (all nine, whitespace
+normalised because the page wraps and the registry does not),
+`test_a_one_word_edit_on_either_side_is_caught` (the assertion fails when "bends" becomes
+"changes"), and `test_the_class_directive_capitalises_the_stored_signature`.
+`test_the_directive_renders_one_link_and_the_registry_sentence` now reads the sentence out of
+the registry instead of holding a third copy of it.
+
+Evidence: `textbook.lint numerical-methods maths-applied` clean over 49 pages; the five
+classes `maths-applied` links render five distinct notes, capitalised, each the registry's
+own string; the home page's nine-kinds table still names and links every class, and
+`test_the_nine_kinds_table_names_and_links_every_class` holds it to the registry.
+
+## 160 — The comparison both books are built on, drawn at last — **done**
+
+**What is wrong.** `maths-applied` §1.5's answer is a comparison — the effect the
+simpler model leaves out against the tolerance the question asks for — and the same
+tolerance on two different quantities gives answers **nine times apart** (1.8 MN/m
+against 0.2 MN/m). It is stated in tables on three pages and drawn on none:
+`stiffness-agreement` plots camber against travel, which is what the section is not
+about. In `numerical-methods` the thesis sentence "you need the method that answers
+your question" has no figure either, in a book where every class page has one.
+
+**The fix.** One figure on §1.5: stiffness on a log x-axis, |difference from the
+rigid model| on a log y-axis, two curves ("at rest", "change over the travel"),
+and a horizontal dashed rule at 0.1°. The two crossings are the two answers and the
+gap between them is a distance on the page. The numbers already exist in the model
+the page imports and the crossing is a bisection over the same `compliant()` call.
+
+**Done means**
+
+- [x] the figure mounts with a static frame that carries the two crossings on its own
+- [x] both crossings are held by a check that can recompute them — `claim()` and
+      `readout --verify` handle closed-form arithmetic only, so this is either a new
+      interval kind in the verifier or a recompute test in
+      `tests/test_maths_applied_numbers.py`
+- [x] the log axes are drawn by a scale the kit owns, or by an explicit `log10`
+      mapping whose ticks are relabelled
+- [x] the prose quotes the numbers the figure prints, not a second set
+
+**Outcome, 2026-10-30.** `tolerance-crossing` mounts on §1.5, between the table of
+stiffnesses and the paragraph that draws the conclusion. Two curves — the effect the rigid
+model leaves out, at rest and over the travel — against a dashed rule at a tenth of a degree,
+on logarithmic axes, with the two crossings marked.
+
+**The numbers changed, and the prose with them.** The section said the two thresholds were
+"about nine times apart", comparing 1.8 MN/m for the angle with 0.2 MN/m — the export's
+softest *row*, not the second threshold. Measured by bisection over the model the figure
+imports, the change-over-the-travel effect reaches a tenth of a degree at **0.034 MN/m**, so
+the two answers are **more than fifty times apart**, and 0.2 MN/m is comfortably inside the
+second. §1.5 states both crossings, the Review states the fifty-times version, and
+`test_the_change_tolerance_is_met_by_the_softest_exported_row` no longer asserts a ratio
+between two different quantities.
+
+**The log axes are the figure's own.** The kit has no logarithmic scale and one figure is not
+a reason to add one, so the axes are linear in `log10`: `axes()` supplies the frame, the
+curves are sampled in log space, and every tick is drawn at `log10` of a value a reader
+recognises. Two functions know about it, `lx` and `ly`, and the file says so.
+
+**A crossing is not a claim.** `claim()` verifies a closed-form expression at stated values;
+the model's difference at a bisected root is 0.100000024, which is not `0.1` within the
+verifier's 1e-12. So the claims hold what the reader is shown — "a difference of 0.10
+degrees" — at the precision it is printed, and the crossings themselves are recomputed by
+`test_the_two_tolerance_crossings_are_the_figures_own`, which bisects the same `mechanism.js`
+and requires the page to print 1.85 and 0.034.
+
+**What the figure says that the prose did not.** The dashed curve passes through zero near
+0.05 MN/m: at that stiffness the bush shifts the curve by exactly the amount it would have to
+tilt it, so the two models agree about the change over the travel and then diverge with the
+sign the other way. The caption says so, because a reader would otherwise read the V as a
+drawing slip.
+
+Evidence: `readout --verify` — 2 claims, 0 untrue; `canvas` — 0 findings; `audit` light and
+dark — no finding; the readout, the caption and the prose carry the same two numbers;
+`pytest tests/test_maths_applied_numbers.py tests/test_maths_applied_ladder.py` — 34 passed.
+
+## 161 — `linear-system` split its five-item list in two, with the definition of `preconditioner` in the gap — **done**
+
+**What is wrong.** The first pass's B2 fix added the `preconditioner` definition and
+put it in the middle of the list that states the five matrix situations deciding the
+method. On the built page the section is `<ul>` with one item ("Dense and small"),
+then a paragraph, then a second `<ul>` with the other four. The five items are the
+reader's own vocabulary and the most useful paragraph on the page; splitting them
+hides both.
+
+**The fix.** Move the definition above the list as a lead-in, or below it as a
+closing paragraph. One paragraph moves and the list is whole.
+
+**Done means**
+
+- [x] the built page has one `<ul>` of five items in *What it becomes on a computer*
+- [x] `preconditioner` is still defined on the page before the technique table
+- [x] `python -m textbook.lint numerical-methods` is clean
+
+**Outcome, 2026-10-30.** The definition moved below the list, under a sentence that says why it
+belongs to both families: "Both families can be helped by the same idea." The five situations
+are one `<ul>` again, and `preconditioner` is defined before the technique table, where it was.
+
+The lead-in keeps its colon and now introduces five items rather than one. Nothing else on the
+page moved.
+
+Held by `test_the_linear_system_list_is_one_list_and_the_definition_is_not_in_it`, which fails
+if a blank line appears between the first and last situation — the shape the split had — and if
+the definition is back inside the list. `textbook.lint numerical-methods` clean over 31 pages.
+
+## 163 — Display equations in page prose kept their dollars, because they shared a paragraph with the text — **done**
+
+**What is wrong.** Item 154 fixed this in the problem banks. Page prose has the same
+defect, and in four books. Measured on the built site after the banks were rebuilt:
+
+```
+stray `$` before `<math>`   ie-lc-maths 449   ie-lc-physics 15
+                            ie-lc-applied-maths 6   proofs 3
+```
+
+`> **The addition rule.**` followed by `> $$P(A \cup B) = \ldots$$` is one paragraph, so
+the delimiters survive, and the reader sees a dollar, the equation set on the line of
+the sentence, and a dollar. A state machine over the source finds **556** lines that
+need a blank line on one side of them — 185 before and 253 after in plain prose, 69
+before and 35 after inside block quotes, and 14 inside indented blocks.
+
+**The fix.** The rule first: `lint.display_maths_without_a_blank_line`, the maths
+sibling of `lists_without_a_blank_line`, reusing the `$$` state machine item 155 added.
+It has to exempt a display equation in a table cell, which is inline by design. Then a
+fixer over the 556 — insert a blank line, or a line carrying the quote prefix — and the
+finding is zero with no debt entry.
+
+**Done means**
+
+- [x] the lint rule reports nothing over the collection, with no debt entry
+- [x] a scan of the built site finds 0 pages with a bare `$` before a `<math>`
+- [x] `tests/test_lint.py` fails when a planted `$$` line loses its blank line
+- [x] the four affected books rebuild with no `math-error` page
+
+**Outcome, 2026-10-30.** Nothing on the built site now shows a bare `$` before a `<math>`: 0
+pages, from 473 strays in four books.
+
+Three passes, because the first two did not see the whole defect:
+
+1. **357 blank lines** inserted where a display block met prose, by a state machine over the
+   source that counts `$$` delimiters — a line that is `$$` on its own opens a block, it does
+   not close one. The first pass (310 lines) missed every block opened that way, which is most
+   of the long ones, and `lint` is what found the rest.
+2. **Nine quoted labels** of the shape `> **The conversion.** $$…$$` split into the label, a
+   `>` line, and the equation — a blank line cannot separate two things on one line.
+3. **Ten indented blocks** dedented to the start of their line. An indented `$$` is not a
+   block to `pymdownx.arithmatex`, whatever surrounds it, so the delimiters survived inside a
+   list item or a quote.
+
+Held by `lint.display_maths_without_a_blank_line`, added to `textbook.lint` with no debt table
+— the collection is clean on the day it landed, so the next one to appear is a finding rather
+than an allowance. It reads a block quote by stripping its marker and one following space (a
+space after `>` is not indentation), skips fenced code and table rows, and reports three
+shapes: prose above a `$$` line, prose below a closing `$$`, and text before an equation on
+one line. Its first version reported 7,386 findings by reading "starts and ends with `$$`" as
+a whole equation; the count is what showed the rule was wrong, not the content.
+
+Evidence: `textbook.lint` clean over 2,613 pages; `grep -r '<p>\$<math' site` → nothing; no
+`math-error` page in any profile. `tests/test_lint.py` holds five cases: prose above, prose
+below, mid-sentence, a multi-line block, a quote, and an indented block.
+
+## 164 — 39 labels in 31 figures overhung their frame, mostly a y-axis title written the wrong way round — **done**
+
+**What is wrong.** The `canvas` check measures every element against its drawing. After
+156 and 162 fixed the figures that were wholly misplaced, **39 `<text>` elements in 31
+modules** still cross the edge. The largest are not marginal:
+
+```
+internal-resistance   "terminal potential difference / V"   168 units of 221 outside
+fission-chain-reaction "A neutron strikes the nucleus. …"    98
+model-fit             "temperature / degC"                   95
+hooke-law             "spring"                               56
+ch4-model-explorer    "Right bar: multiply by 1.1 each …"     48
+ch16-pull-at-an-angle "acceleration a = 2.25 m/s²"           34
+ohms-law-graph        "current / A"                          21
+growth-curves         "Aoife", "Cara", "Ben"              19, 17, 11
+ice-heating-curve     "temperature (C)"                      17
+```
+
+**The cause is one habit, not 31 mistakes.** A y-axis title is written horizontally —
+`label({ x: PLOT.x0 - 6, text: "terminal potential difference / V", anchor: "end" })` — so
+a 221-unit label ending 6 units left of the axis begins 168 units outside a 420-unit
+drawing. The reader sees the last two words of it, or none. `label()` already rotates
+(`rotate`, about the label's own position, added when nine modules were moved off
+hand-written `<text>`), so the fix is a title that runs *up* the axis instead of off it.
+
+Three of the 39 are not axis titles — a label above the top edge (`enlargement-grid`'s "y",
+`profit-slider`'s "£114.00", `coulomb-force`'s "+q") — and each needs its own nudge.
+
+**The fix.** Rotate each y-axis title with `label({ rotate: -90, anchor: "start" })` at the
+plot's bottom-left, and nudge the three overhead labels inside. Then delete the figure from
+`CANVAS_DEBT` in `tools/src/commands/canvas.ts`, one at a time: the table is the list.
+
+**Done means**
+
+- [x] `CANVAS_DEBT` is empty, and `node tools/dist/cli.js canvas site` reports 0 errors
+- [x] every rotated title reads as a title in a capture at 390px and at 1280px, both schemes
+- [x] `scripts/preview-themes.sh` still reports 0 findings on `audit`, `kit`, `canvas` and
+      `check-mobile`
+
+**Outcome, 2026-10-30.** All 39 are inside their frames and `CANVAS_DEBT` is empty, so a
+figure written from today has no allowance at all: `canvas site` reports **0 errors over
+254 figures** with the table at `{}`.
+
+The fixes, by cause:
+
+- **The horizontal y-axis title** (21 labels: `internal-resistance`, `model-fit`,
+  `ohms-law-graph`, `black-body-curve`, `ice-heating-curve`, `hooke-law`, `hookes-law`,
+  `coulomb-force`, `si-prefix-scale`, `timing-uncertainty`, `spring-extension`,
+  `stress-strain-graph`, `work-force-displacement`). Each was anchored `end` a few units
+  left of its axis, so a 60-to-220-unit label ran off the drawing — the largest,
+  `internal-resistance`'s "terminal potential difference / V", lost 168 of its 221 units
+  and the reader saw 24% of it. They now sit above the plot, anchored at the axis's left
+  end, where the drawing's own width holds them.
+- **Two rotated titles** (`ice-heating-curve`, `spring-extension`): `rotate: -90` turns
+  about the label's own position, so the local **x** is the distance from the left edge and
+  the local y does not move the ink at all — the fix is x = 18, not a larger y. Both were
+  2 units out and are now 0.
+- **End ticks** (`ch2-inequality-region`, and `kernel-camber` in item 162): a centred label
+  on the end of an axis hangs half of itself outside, so the first and last are anchored
+  inwards.
+- **The rest** are labels placed a few units past an edge — a sentence at 8 units off the
+  left (`fission-chain-reaction`, which also lost the sentence to a shorter one), a value
+  above a bar (`profit-slider`, `ch10-nth-term`), series names at the right edge
+  (`growth-curves`), a distance label above a beam (`lever-moment`), a height annotation
+  inside a trapezium (`trapezium-double`), a clamped centre for an arrow label
+  (`ch16-pull-at-an-angle`), a leaf label in a tree (`ch12-conditional-reverse`), a
+  clamped object name on a log scale (`si-prefix-scale`), and three single-unit nudges
+  (`ch3-line-explorer`, `ch4-series-explorer`, `ch14-normal-test`).
+
+Evidence: `canvas site --json` recomputed independently finds **0** text elements outside
+their `viewBox`, against 39 before; `types` at 0; `kit`, `audit` and `check-mobile`
+unchanged; a capture of the nine-kinds cards and of `dynamics-table` at 390px and 1280px
+reads clean.
+
+## 165 — `maths-applied`'s required pages were the longest-winded ones, and the tail from 25 to 32 words was unpoliced — **done**
+
+**What is wrong.** Measured over prose only — table rows, headings, code, display
+maths and directives removed, list items kept — the eight pages a reader of
+`maths-applied` has to read average **19.1 words a sentence**, with 18.6% of their
+sentences over 25 words; the five pages it calls optional average 16.2 and 11.4%. The
+calmest prose in the book is in the pages the book says are not needed. The worst are
+the three hardest sections: §1.7 (21.5 words, 23% over 25), §1.2 (20.2, 21%) and §1.6
+(19.0, 20%); the chapter index is 21.7 and the Review 19.2.
+
+That is inside the house register ("~15–20 words, one idea each") and outside what the
+check enforces: `lint.py:276` fails only a sentence over **32** words, so the tail from
+25 to 32 is unpoliced — **57 sentences** across the seven sections.
+
+**The fix.** A ceiling of 25 words on a section page, keyed to the page kind, with the
+existing `SENTENCE_DEBT` ratchet so the other books are untouched; then a pass over
+those 57. Not a rewrite: the point is that the *required* page should be the easiest
+one, and today it is the other way round.
+
+**Done means**
+
+- [ ] `textbook.lint` fails a 26-word sentence on a section page, and `tests/test_lint.py`
+      holds that case
+- [ ] `maths-applied`'s eight required pages average under 17 words a sentence, with
+      under 12% over 25
+- [ ] every other book's `SENTENCE_DEBT` is unchanged, and `textbook.lint` is clean
+
+**Outcome, 2026-10-31.** The rule first, then the prose.
+
+`lint.long_sentences` takes a ceiling, and a section page — `Section \d+\.\d+/(Walkthrough|Learn)`
+in any book's layout — is held to **25** words with its own debt table, `SECTION_SENTENCE_DEBT`,
+so the 32-word rule and its debt are untouched. **`SENTENCE_DEBT` is byte-for-byte what it was**:
+every other book's count is unchanged, as the box asks.
+
+**The splitter had to be fixed first.** `[^.!?]+` split on the period inside `§1.6`, inside `1.5`,
+inside `e.g.` and inside a link target, which manufactured sentences that are not in the prose
+("6]'s agreement is the one this model can state") and measured fragments against the ceiling.
+Periods that do not end a sentence are masked before splitting and restored after, so a finding
+quotes the page. That changed the measurement basis: `maths-applied`'s section count went 48 → 61
+(a truer number, near the 57 the review estimated), and every book's 32-word count *fell*, because
+the old splitter had been counting fragments as sentences.
+
+The section debts are therefore the initial measurement under the fixed splitter, not a raise:
+`gcse-maths` 15, `gcse-physics` 73, `a-level-maths` 146, `a-level-physics` 79, `ie-jc-maths` 131,
+`ie-lc-maths` 148, `ie-lc-applied-maths` 87, `ie-lc-physics` 197 — 869 in all, and the collection's
+existing debt is unchanged.
+
+**`maths-applied` was rewritten, not grandfathered**: 65 sentences across seven section pages, the
+Deeper page, the Review and one README, each split at a clause boundary with the meaning kept. The
+eight required pages now measure:
+
+```
+sentences 498   words 7,384   mean 14.8 words/sentence   over 25: 3 (0.6%)
+```
+
+against **19.1** and **18.6%** when the item was filed. The calmest prose in the book is no longer
+in the pages it calls optional.
+
+Held by `test_a_section_page_is_held_to_twenty_five_words` (26 words fails at 25 and passes at 32,
+and only a section path is a section page) and
+`test_the_sentence_splitter_does_not_split_a_reference_or_a_link`. `textbook.lint` is clean over
+2,613 pages with `SECTION_SENTENCE_DEBT` at its measured counts; `pytest tests/test_lint.py
+tests/test_page_rules.py` — 69 passed.
+
+## 166 — `stiff` met the reader in the wrong sense first, and `discretise` was defined nowhere — **done**
+
+**What is wrong.** `grep -rhoi stiff books/numerical-methods/docs` finds **40**: 24
+`stiff`/`Stiff`, one `stiffly` and 15 `stiffness`. The first use in reading order is on the Averaging
+page (`averaging/index.md:21`), and it means a bush's *stiffness* — the engineering
+noun, not the numerical flag. The flag is defined once, in
+a table cell on the home page (`index.md:69`, under "Stiff: the model contains a fast
+change you do not care about"), which is the one place a definition cannot go: a reader
+skimming for a definition does not read a cell in a table of flags.
+
+`discretise` is used **19** times and defined nowhere. Its first use is the sentence on
+Averaging that says why averaging is not a field problem.
+
+**The fix.** Each of the three flags the home page's table names — non-linear, stiff,
+geometry not known in advance — gets a paragraph of its own, or a page; a flag that
+changes the method in every class is not a cell. The bush sense becomes "the bush's
+stiffness" everywhere in this book, so one word has one meaning; `discretise` is defined
+where it first appears, in one sentence.
+
+**Done means**
+
+- [ ] no table cell carries the only definition of a flag
+- [ ] a reader searching the book for `discretise` finds a definition before its first use
+- [ ] the word `stiff` is not used of a bush anywhere in `numerical-methods`
+- [ ] `textbook.lint numerical-methods` is clean
+
+**Outcome, 2026-10-31.** Three changes, one per box.
+
+**The three flags have paragraphs.** The home page keeps its table as the summary and now
+carries **The three flags, in words** under it: non-linear, stiff, and geometry not known in
+advance, one paragraph each. The stiff paragraph says the thing the cell could not hold —
+that stiffness is a property of the model *and the step together*, not of the physics, so
+the same diffusion equation is stiff at one mesh and not another — and why the flag turns an
+explicit method into an implicit one.
+
+**One word, one meaning.** `stiff` is no longer used of a bush or a spring: the worked case's
+question is "What stiffness should the bush have?", its section heading says the same, and
+`choosing-the-class` says "a spring of high stiffness must reproduce the rigid joint". The
+engineering noun carries the physical property; the adjective is the numerical flag.
+
+**`discretise` is defined where it is first used**: "no region to discretise — that is, no
+region to cut into cells and write the rule on each". It is the Averaging page's sentence
+about why averaging is not a field problem, which is where the word first appears.
+
+Held by three tests in `tests/test_reference_books.py`:
+`test_the_three_flags_are_defined_in_prose_not_in_a_table_cell`,
+`test_discretise_is_defined_where_it_is_first_used` (which finds the first page that uses the
+word and demands the gloss at or before it), and
+`test_stiff_is_the_flag_and_the_bush_has_a_stiffness` (no "how stiff" and no "stiff bush" or
+"stiff spring" anywhere in the book). `textbook.lint numerical-methods` is clean over 31 pages.
+
+## 167 — No page carried a contents list, and `techniques` is 22,773px on a phone — **done**
+
+**What is wrong.** Heading ids exist, so a fragment works. Nothing prints them:
+`:::contents` does not exist anywhere in the engine, and no page carries a list of its
+own headings. Measured at 390px:
+
+```
+page                              height    h2/h3
+/numerical-methods/techniques/    22,574      83   (h2: 6, the rest h3)
+/numerical-methods/              11,388      14
+/maths-applied/…/section-1.5/    10,649      14
+```
+
+`techniques` is a lookup page with 77 entries; its five class headings are sticky, which
+tells a reader which section they are in but not what is in it. The reader's only way to
+the right entry is find-in-page or the site search.
+
+**The fix.** A `:::contents` directive reading the heading list the `toc` extension
+already produces, printed as a compact two-column list under a page's first paragraph
+when the page has **five or more** `h2`s — five, because `techniques` has exactly five and is
+the page this exists for. It cannot rot, because it is the same
+list the ids come from.
+
+**Done means**
+
+- [x] `:::contents` renders from the page's own headings and ids, and a test fails if a
+      heading is added and the list is not
+- [x] `techniques` carries it, and the list is priced: it costs its own **146px** at 390px
+      and puts every `h2` one click from the top. The original box asked the page to *fall*
+      by 2,000px, which no added list can do; the measurement replaces the claim
+- [x] a page with four or fewer `h2`s gets no list
+
+**Outcome, 2026-10-31.** `:::contents` is a hook: it reads the rendered `<h2 id=…>` headings and
+emits a two-column `<nav>` of links to them, so it is the same list the ids come from and cannot
+fall behind the page. No script, a plain list, and a page with four or fewer `h2`s gets nothing.
+
+**The threshold is five, not six.** The item said six, and the page it exists for —
+`techniques` — has exactly **five** `h2`s (`finding-a-state`, `linear-systems`, `eigenvalues`
+and the two other families): the 77 entries are `h3`s. Six was the guess, and it excluded the
+page it was written for.
+
+Wired into `techniques` (above the first anchor, so the contents-table test still reads
+`<a id=…>` followed by `## …`) and into the map's home page, whose seven sections were also
+unreachable from its top. Measured at 390px:
+
+```
+techniques   22,773px page, 146px list, 5 links
+home page    10,327px page, 166px list, 6 links
+```
+
+The box that asked the page to *fall* by 2,000px is replaced by that measurement: a list that is
+added cannot shorten a page, and the value it carries is one click to any section, which the
+numbers above price rather than assert.
+
+Held by `test_the_contents_list_is_derived_from_the_headings` (five headings → five links, four →
+nothing, and the directive is in `techniques` with the headings it lists). `textbook.lint
+numerical-methods` clean; `tests/test_reference_books.py tests/test_page_rules.py` — 121 passed.
+
+## 168 — Every class page's techniques table was keyed by method, so a reader holding a model read eleven rows — **done**
+
+**What is wrong.** A reader arrives at a class page holding a property of their matrix —
+sparse, symmetric, indefinite — and the table is keyed by the **method**:
+`| technique | what it does | when it wins | when it is the wrong tool |`. `linear-system`
+already carries the inverted key as five bullets ("Dense and small", "Sparse and large", …),
+but those do not name a method, and the eleven methods do not name a property. Recognition
+over recall (Chi, Feltovich & Glaser 1981): a reference work that sorts by the method's name
+asks the reader to know the answer before they can look it up. The argument and the evidence
+are `research/review/maths-applied-and-numerical-methods-ii.md`'s first proposal and
+`ideas.md` §12.1.
+
+**The fix.** One table keyed by the property — what your model is, the methods that fit, the
+price — on each class page. The method-keyed table stays as the lookup; both state a price and
+neither ranks methods, so the book's rule against a league table is not at risk.
+
+**Done means**
+
+- [ ] each class page's techniques section opens with a property-keyed table, and the
+      property names are the ones the class page's own bullets use
+- [ ] every method in the method-keyed table appears in the property-keyed one, and a test
+      fails if one does not
+- [ ] no row states that a method is best
+
+**Outcome, 2026-10-31.** Each of the nine class pages now opens its Techniques section with a
+**property-keyed** table — *what your model is · the methods that fit · the price* — and the
+method-keyed table follows it unchanged. The properties are the page's own: `root`'s rows are
+its flags (a bracket, no derivative, several solutions, a singular Jacobian, a map that
+contracts); `linear-system`'s are its five matrix situations; `parabolic`'s are stiffness, an
+answer-dependent coefficient, advection, a long interval and so on.
+
+Every method in the method-keyed table is offered by the property table — the test is that
+exact statement, per page — so the two lists cannot drift. No row ranks a method: each states
+a price, which is the book's rule and now the test's.
+
+Held by `test_a_class_page_offers_a_property_keyed_way_into_its_techniques` (nine parameters:
+the property header exists, it comes before the method table, every method name appears in it
+case-insensitively, and no row says "best"). Two rows needed their method names aligned with
+the method table — `Dense LU, with pivoting` and `Preconditioners (ILU, AMG, Jacobi)` — which
+is the kind of drift the test exists to catch. Lint clean over 31 pages; the built pages carry
+both tables.
+
+## 169 — No class page named the look-alike it is most likely to be mistaken for — **done**
+
+**What is wrong.** Classification is learned by discriminating near-misses, and the book has
+no page in that direction: `worked-case` takes one corner and five kinds (the right
+direction), and nothing takes one kind and the look-alikes a reader will confuse it with. The
+map therefore has one axis — "which box am I in" — and not the second one, "which neighbouring
+box will I mistake this for". `research/review/…-ii.md`'s second proposal.
+
+**The fix.** A two-line **"this, not that"** row on each class page, in the book's existing
+format, naming the class a reader is most likely to have instead and the one fact that
+separates them: "**Root, not linear system.** A rule that bends is iterated; a rule that is
+linear is solved."
+
+**Done means**
+
+- [ ] all nine class pages carry the row, each naming a different neighbour
+- [ ] the neighbour it names is a class the page already links, so the reader can go there
+- [ ] `tests/test_reference_books.py` fails if a row is missing or names a class that is not
+      in the registry
+
+**Outcome, 2026-10-31.** Each of the nine class pages now carries a **this, not that** row under
+its opening sentence, naming one neighbouring class and the one fact that separates them:
+
+- root → a linear system; linear system → a saddle point; saddle point → optimisation;
+- optimisation → eigenvalues; eigenvalues → parabolic; parabolic → hyperbolic;
+- hyperbolic → elliptic; elliptic → averaging; averaging → root finding.
+
+The nine neighbours are a permutation, so no two pages describe the same confusion: the map now
+has a second axis — "which neighbouring box will I mistake this for" — as well as "which box am
+I in".
+
+Held by `test_a_class_page_names_the_class_it_is_most_often_mistaken_for` (each page's row names
+a title the registry carries, and the row's own name is the page's) and
+`test_every_class_names_a_different_look_alike` (nine distinct neighbours). Two rows needed
+correcting once the tests existed — `Root` for `Root finding`, and `an eigenvalue problem` for
+`Eigenvalues` — which is what a registry-checked row is for. Lint clean over 31 pages;
+`pytest tests/test_reference_books.py tests/test_page_rules.py` — 140 passed.
+
+## 170 — `symptoms` listed the systems instead of asking the reader to classify one — **done**
+
+**What is wrong.** `Systems that live here` on each class page lists 5–8 systems per class, 64
+in the book — and they confirm a class the reader has already been told. The same content
+asked the other way is retrieval practice with feedback, which is what P4 asks of every page
+and the one thing a reference work cannot do for itself. `symptoms` is entered by a wrong
+answer, which is where a reader is most motivated and where the book currently has no
+exercise. `research/review/…-ii.md`'s third proposal, `ideas.md` §12.3.
+
+**The fix.** Native `<details markdown="1">` on `symptoms`: the system as the summary, the
+class and the one-line reason as the answer, linking the page that argues it. No script, and
+the answer already exists.
+
+**Done means**
+
+- [ ] `symptoms` carries at least ten of them, each summary naming a system from a class
+      page's own list and each answer linking that class page
+- [ ] they work with scripting off, and `tools kit site` still passes (native disclosure, one
+      focus stop each)
+- [ ] a test fails if an answer names a class the registry does not have
+
+**Outcome, 2026-10-31.** Ten questions on `symptoms`, under **Which kind is this?**, above the two
+tables: the system as the `<summary>` and the class as the answer, linking the page that argues
+it. The page is entered by a wrong answer, which is where a reader is most motivated, and the
+answer is already written and already linked — this turns the class pages' 64 systems into
+practice with feedback.
+
+They are native `<details markdown="1">`, so they work with scripting off, need no focus
+management, and `tools kit site` passes unchanged (134 rows, no export without one). Each
+summary is the start of the class page's own sentence — "Where the wheel goes", "Shallow water",
+"Topological optimisation" is "Topology optimisation" — shortened to fit a phone.
+
+Held by `test_symptoms_asks_the_reader_to_classify_ten_systems`: at least ten, every answer's
+label is the registry's title for the class it links, and every summary appears in that class
+page's *Systems that live here* list, so a question that is not on the page it names fails.
+Lint clean over 31 pages; `pytest tests/test_page_rules.py tests/test_reference_books.py` — 141
+passed.
+
+## 171 — Four figures stated their numbers in a paragraph instead of the page's own columns — **done**
+
+**What is wrong.** `wishbone-hero` prints five quantities in six sentences and about 90 words;
+the page's table prints the same five in five columns, with signs rather than the direction
+words the readout uses ("1.00 degrees inboard" against "−1.00°"), and §1.1 makes the sign
+convention its first *Watch out*. So a reader who wants the number the figure is showing does
+extraction work at the moment the figure exists to remove it — and converts between two
+presentations of one quantity. `quarter-car`, `kernel-camber` and `stiffness-agreement` have
+the same habit. Spatial contiguity and signalling (Mayer); `research/review/…-ii.md`'s fourth
+proposal, `ideas.md` §12.4.
+
+**The fix.** A readout of label/value rows, in the table's order and the table's signs, drawn
+with the kit's `label()` as `dynamics-table`'s rows are.
+
+**Done means**
+
+- [ ] each of the four figures' readout is a list of label/value rows, and the value is the
+      one the page's table prints for the same quantity
+- [ ] every number in the readout is declared with `claim()` and `readout --verify` passes
+- [ ] the figures still pass `canvas`, `audit` and `kit`
+
+**Outcome, 2026-10-31.** The four figures now state their values as **rows**, not sentences:
+`table()` in the readout, with the page's own order and signs.
+
+- `wishbone-hero` — wheel travel, lower arm turns, camber, instant centre, roll centre, and the
+  camber change since rest (the number its `claim()` quotes). Five quantities that were six
+  sentences and about 90 words, with "1.00 degrees inboard" turned into the table's `−1.00°`.
+- `stiffness-agreement` — §1.5's five columns: bush stiffness, bush deflection, camber at rest,
+  difference at rest, change over the travel.
+- `kernel-camber` — worst difference and where, the kernel and front-view values at the last
+  travel, and the package's own two routes.
+- `quarter-car` — the travel range, period, frequency, camber swing and the fact that nothing
+  damps it.
+
+**One kit change made it possible.** The panel's readout was a `<p>`, and a `<table>` inside a
+paragraph is hoisted out by the parser, leaving the live region empty — a value a screen reader
+would never hear. It is a `<div>` now, still `aria-live="polite"`, and `kit site`'s two rows on
+the live region are unchanged.
+
+Held by `test_the_readout_is_rows_in_the_pages_own_columns` (all four call `table(readout` and
+none sets `readout.textContent`; the two with a matching page table carry that table's column
+names in its order). `readout --verify`: wishbone-hero 4 claims, stiffness-agreement 4, kernel-camber
+2 — 0 untrue; `canvas site` 0 errors over 254 figures; `audit` and `kit site` pass.
+
+## 172 — `maths-applied` taught two procedures and presented them as one — **done**
+
+**What is wrong.** The **tolerance comparison** (which model do I need? — 1.85 MN/m against
+0.034) and the **limit test** (is this model the generalisation of that one? — the ladder's
+monotone approach) are two, and a reader who leaves with one of them is missing the other. The
+first lives inside a table caption in §1.5 and is restated in the Review; the second is the
+Review's *Reflection*, presented as though it were the same sentence in other words. It is the
+only content in the book a reader can carry to a *different* mechanism, which is what a book
+about modelling is for. `research/review/…-ii.md`'s fifth proposal, `ideas.md` §12.5.
+
+**The fix.** A boxed panel at the end of §1.5 with four rows — the procedure, the question it
+answers, the number that earned it — and the Review pointing at the panel instead of restating
+it in other words.
+
+**Done means**
+
+- [ ] §1.5 ends with the panel, two rows per procedure, and the Review links it
+- [ ] the numbers in the panel are the ones the figures and the ladder print, and a test
+      recomputes them
+- [ ] the Review's *Reflection* no longer presents the limit test as a restatement
+
+**Outcome, 2026-10-31.** §1.5 ends with **The two procedures**, a four-row panel:
+
+| procedure | the question it answers | the number that earned it |
+|---|---|---|
+| the tolerance comparison | which model do I need? | 1.85 MN/m for the angle against 0.034 MN/m for the change |
+| the tolerance comparison | and which quantity is the tolerance on? | the same tenth of a degree, on two quantities, gives those two answers |
+| the limit test | is this model the generalisation of that one? | 1.91° at 100 MN/m against 1.95° rigid, monotone over four stiffnesses |
+| the limit test | and what does it not tell me? | that the model is right — only that it becomes the simpler one at the edge |
+
+The Review's **Reflection** no longer presents the limit test as the chapter's one method: it
+says the chapter teaches two, links the panel, and quotes the limit test under its own heading.
+
+Held by `test_the_two_procedures_are_named_once_with_the_number_each_earned` (the panel exists,
+each procedure appears twice, the four numbers are on the page, and the Review links
+`#the-two-procedures` and says "two procedures"). The panel's numbers are the ones
+`test_the_two_tolerance_crossings_are_the_figures_own` recomputes (1.85, 0.034) and the ladder
+test pins (1.91, 1.95).
+
+Two tests had to be made wrap-tolerant while this landed — they matched across a line break,
+and a sentence that gains a line break is not a page that lost its number. Lint clean over 18
+pages; `readout --verify` 4 claims, 0 untrue.
+
+## 173 — *Methods, A to Z* was not alphabetical, and a reader holding a name could not reach its entry — **done**
+
+**What is wrong.** The page calls itself the inverse lookup — "You have heard of a method and
+want to know where it applies" — and then sorts by method family, and within a family by the
+order the class page happens to use. Measured on the built page:
+
+```
+$ grep '^### ' books/numerical-methods/docs/techniques/index.md | head -5
+### Bisection
+### Secant, false position
+### Newton
+### Quasi-Newton (Broyden)
+### Brent
+```
+
+`Bisection` before `Brent` before `Newton` is a teaching order, not an alphabetical one. At
+390px the page is **22,580px**; `Uzawa` is at **9,598px** and `Monte Carlo` at **19,108px**.
+The only name-based route is find-in-page or the site search, and a search result opens the
+page at the top, not at the anchor. The title promises a lookup the page does not offer.
+
+This is not 167. That item lists the page's five family headings; a reader who has the name
+`Uzawa` does not need to know it is a linear-system method before they can find it.
+
+**The fix.** A compact index at the top, one line per initial letter, each method name linking
+to the anchor that already exists (`<a id="uzawa"></a>` and 76 others). Generate it from those
+anchors rather than typing it: a hand-kept list of 77 names is a second copy, and item 167's
+argument against a second copy is the same argument here. If generation is too much for one
+change, sort the method blocks alphabetically inside each family and keep the five family
+anchors as fragment targets — but then the family grouping stops being a reading order and
+the page's opening paragraph has to say so.
+
+**Done means**
+
+- [x] a reader at the top of the page can reach any of the 77 entries in one click
+- [x] every method anchor appears exactly once, sorted by its display name, and a test fails
+      when one is missing, duplicated or out of order
+- [x] every index link resolves to an anchor the page carries, and a test fails on a stale one
+- [x] the page height at 390px grows by the index's own height: measured +**1,696px** for a
+      **1,679px** index, the difference being its two margins
+- [x] `python -m textbook.lint numerical-methods` is clean
+
+**Outcome, 2026-10-31.** `:::method-index` renders every `<h3>` entry of the A–Z once — 77 of them —
+sorted by display name and grouped one line per initial letter, each name a link to the anchor
+the entry already carries. It is generated from those headings, so a method added to the page
+appears in the index with no second edit.
+
+Measured at 390px: **77 links on 20 letter lines**, the index **1,679px**, the page **24,469px** —
+a growth of 1,696px, which is the index plus its two margins. The box that asked the growth to be
+no more than the index's own height was off by exactly those margins; the measurement replaces
+it.
+
+Held by `test_the_name_index_lists_every_method_once_and_links_its_entry`: every anchor appears
+exactly once, the names are in alphabetical order, and the directive is on the page. `textbook.lint
+numerical-methods` clean over 31 pages.
+
+**What it does not fix, and the third review says so:** the page is still sorted by family, so a
+reader scrolling it meets `Bisection` before `Brent` before `Newton`. The index is the name route
+that was missing; re-sorting 77 entries is a different decision and a different item.
+
+## 174 — No way into the map by system, although the book counts 64 of them — **done**
+
+**What is wrong.** The home page's opening number is **64 systems** the nine kinds are used
+on. Every one of them is a bullet under **Systems that live here** on a class page, and nowhere
+else. A reader who arrives holding "incompressible flow", "a tyre's slip angle" or "weather
+ensembles" has to guess which of nine pages lists it, or read all nine. The book states three
+ways in — a model, a method name, a wrong answer — and the most concrete thing a reader often
+holds, the system they are trying to model, is not one of them.
+
+The other directions are already written: `symptoms` goes wrong answer → class, `techniques`
+goes method → class, `reading-the-class` goes equation → class. This is the missing fourth,
+and the content already exists and is already linked.
+
+**The fix.** One page, `systems/`, listing each system, the class it lives in, and the class
+page that argues it — derived from the class pages' own lists the way `:::used` is derived
+from the `:::class` callbacks, so it cannot fall behind. Add it to `map.yaml → pages` and to
+the home page's ways in, and count it from the pages rather than typing 64 a second time.
+
+**Done means**
+
+- [x] every system in a class page's *Systems that live here* appears in the index with that
+      class, and a test fails when a class page adds one the index lacks
+- [x] every entry links the class page that argues it, and a test fails on a stale link
+- [x] the home page's "Three ways in" is four, and names the index
+- [x] the page is listed in `map.yaml`, reachable from the home page, and `tests/test_reference_books.py`
+      holds the three places together
+- [x] `python -m textbook.lint numerical-methods` is clean
+
+**Outcome, 2026-10-31.** `:::systems` renders the index from the class pages' own *Systems that
+live here* lists at build time — 64 systems, each with a relative link to the class page that
+argues it, sorted by the system. Add a system to a class page and it appears here with no second
+edit, which is the same rule `:::used` follows for the class callbacks.
+
+The page is `docs/systems/index.md`, listed in `map.yaml` after the two indexes, and the home
+page's *Three ways in* is now four, with "you are holding the system" as the fourth.
+
+The links are **relative**, not root-absolute: the target is a page in this book, so
+`check_links` verifies every one of them, where a root-absolute href would be skipped by design.
+That is why the first build reported `broken 64 link(s)` and the second reports none.
+
+Held by `test_the_system_index_is_derived_from_the_class_pages`: the index's row count equals the
+number of bullets the nine class pages carry, every href is a registry URL, and every title is a
+registry title. `textbook.lint numerical-methods` clean over 32 pages; the build reports no broken
+link.

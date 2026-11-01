@@ -108,6 +108,7 @@ Subtract the background count rate from the measured count rate.
 <summary>Full working</summary>
 
 $$ 95 - 15 = 80 \ \text{counts per minute} $$
+
 </details>
 
 **4.** Compare the hazard of an alpha source inside the body with the hazard of a

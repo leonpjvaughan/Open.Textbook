@@ -30,10 +30,19 @@ export function mount(el) {
 
   function grid() {
     let out = "";
+    // Only the lines the frame can show. `RANGE` is the sliders' range, not the canvas:
+    // at ±6 units from an origin at y = 186 the extreme lines landed at y = −42 and 414
+    // in a 360-unit drawing, so two of the thirteen were drawn where nothing is.
     for (let k = -RANGE; k <= RANGE; k += 1) {
       if (k === 0) continue;
-      out += `<line x1="${px(k)}" y1="14" x2="${px(k)}" y2="352" class="fig-grid" stroke-width="0.7"></line>`;
-      out += `<line x1="8" y1="${py(k)}" x2="552" y2="${py(k)}" class="fig-grid" stroke-width="0.7"></line>`;
+      const x = px(k);
+      const y = py(k);
+      if (x >= 8 && x <= 552) {
+        out += `<line x1="${x}" y1="14" x2="${x}" y2="352" class="fig-grid" stroke-width="0.7"></line>`;
+      }
+      if (y >= 14 && y <= 352) {
+        out += `<line x1="8" y1="${y}" x2="552" y2="${y}" class="fig-grid" stroke-width="0.7"></line>`;
+      }
     }
     return out;
   }
@@ -82,7 +91,10 @@ export function mount(el) {
       mirror +
       `<line x1="${cx}" y1="${cy}" x2="${cx}" y2="${ORIGIN.y}" class="fig-grid" stroke-width="1.2" stroke-dasharray="4 3"></line>` +
       `<circle cx="${cx}" cy="${cy}" r="8" class="fig-warn"></circle>` +
-      label({ x: cx + 14, y: cy + 22, text: "z\u0304", size: SIZE.value, class: "text-warn", anchor: "start", weight: "bold" })
+      // The label goes above the point when the point is in the lower half of the
+      // drawing: below it, a conjugate at im = 4 sat on y = 360 and the `canvas` check
+      // measured it four units outside the frame.
+      label({ x: cx + 14, y: cy > ORIGIN.y ? cy - 12 : cy + 22, text: "z\u0304", size: SIZE.value, class: "text-warn", anchor: "start", weight: "bold" })
     );
   }
 

@@ -10,7 +10,7 @@ problems:
     statement: 'Find the volume of a sphere of radius $3$ cm.'
     answer_label: 'The volume of the sphere'
     check: {kind: evaluate, expression: '(4/3) * pi * 3**3', answer: '36 * pi'}
-    answer_text: >-
+    answer_text: |-
       $$V = \tfrac{4}{3}\pi r^3 = \tfrac{4}{3}\pi \times 27 = 36\pi \approx 113.10 \text{ cm}^3$$
 
       Cube the radius first, then multiply by $\tfrac{4}{3}$ and by $\pi$.
@@ -22,7 +22,7 @@ problems:
     statement: 'Find the surface area of a sphere of radius $3$ cm.'
     answer_label: 'The surface area of the sphere'
     check: {kind: evaluate, expression: '4 * pi * 3**2', answer: '36 * pi'}
-    answer_text: >-
+    answer_text: |-
       $$A = 4\pi r^2 = 4\pi \times 9 = 36\pi \approx 113.10 \text{ cm}^2$$
 
       The volume and the surface area agree only when the radius is $3$ cm.
@@ -34,7 +34,7 @@ problems:
     statement: 'Find the volume of a sphere of diameter $12$ cm.'
     answer_label: 'The volume of the sphere'
     check: {kind: evaluate, expression: '(4/3) * pi * (12 / 2)**3', answer: '288 * pi'}
-    answer_text: >-
+    answer_text: |-
       The radius is $6$ cm, so
 
       $$V = \tfrac{4}{3}\pi \times 216 = 288\pi \approx 904.78 \text{ cm}^3$$
@@ -48,7 +48,7 @@ problems:
     statement: 'Find the volume of a hemisphere of radius $6$ cm.'
     answer_label: 'The volume of the hemisphere'
     check: {kind: evaluate, expression: '(4/3) * pi * 6**3 / 2', answer: '144 * pi'}
-    answer_text: >-
+    answer_text: |-
       A hemisphere is half a sphere, so
 
       $$V = \tfrac{1}{2} \times \tfrac{4}{3}\pi \times 216 = 144\pi \approx 452.39 \text{ cm}^3$$
@@ -62,7 +62,7 @@ problems:
     statement: 'Find the total surface area of a hemisphere of radius $5$ cm.'
     answer_label: 'The total surface area of the hemisphere'
     check: {kind: evaluate, expression: '2 * pi * 5**2 + pi * 5**2', answer: '75 * pi'}
-    answer_text: >-
+    answer_text: |-
       The curved surface is $2\pi \times 25 = 50\pi$, and the flat circle is
       $\pi \times 25 = 25\pi$:
 
@@ -83,7 +83,7 @@ problems:
       checks:
         - {kind: evaluate, expression: '(4/3) * pi * 0.6**3', answer: '0.288 * pi'}
         - {kind: evaluate, expression: '4 * pi * 0.6**2', answer: '1.44 * pi'}
-    answer_text: >-
+    answer_text: |-
       The radius is $0.6$ m, so
 
       $$V = \tfrac{4}{3}\pi \times 0.216 = 0.288\pi \approx 0.905 \text{ m}^3$$
@@ -106,7 +106,7 @@ problems:
       checks:
         - {kind: evaluate, expression: '(2.16 * pi) / (0.432 * pi)', answer: '5'}
         - {kind: evaluate, expression: '(1.44 * pi) / (0.288 * pi)', answer: '5'}
-    answer_text: >-
+    answer_text: |-
       $$\text{Tank A: } \frac{2.16\pi}{0.432\pi} = 5 \text{ m}^2/\text{m}^3$$
 
       $$\text{Tank B: } \frac{1.44\pi}{0.288\pi} = 5 \text{ m}^2/\text{m}^3$$

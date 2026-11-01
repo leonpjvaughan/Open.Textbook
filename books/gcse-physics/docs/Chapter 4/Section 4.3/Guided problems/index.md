@@ -89,6 +89,7 @@ t &= \frac{s}{v} \\
   &= 18\,\text{s}
 \end{aligned}
 $$
+
 </details>
 
 **3.** A wave of frequency 250 Hz passes from one material into another. Its
@@ -227,4 +228,5 @@ d &= \frac{v t}{2} \\
   &= 85\,\text{m}
 \end{aligned}
 $$
+
 </details>

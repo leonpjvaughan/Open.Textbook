@@ -40,6 +40,7 @@ Dynamic programming answers it differently, and the difference is what makes it 
 learning: it works **backwards from the end**.
 
 > **Backward recursion.**
+>
 > 1. At the last stage, the least cost from each state to the end is known directly.
 > 2. Move back one stage. For each state, add the cost of each edge forward to the least
 >    cost already found for the state it reaches, and take the smallest.

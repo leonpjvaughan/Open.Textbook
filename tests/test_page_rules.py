@@ -18,6 +18,7 @@ from __future__ import annotations
 import textwrap
 
 import pytest
+import yaml
 
 import rules
 from textbook import book as books
@@ -226,7 +227,8 @@ GOOD_PAGE = textwrap.dedent(
 
     ## Back to the map
 
-    [Averaging](index.md) puts this among the samplers.
+    [Averaging](../index.md) is the class page this works under.
+    [When the draws are not independent](../correlated/index.md) is the correction.
     """
 )
 
@@ -274,9 +276,77 @@ def test_every_detail_page_meets_the_detail_contract():
     application: a page that carries the detail heading is held to the whole
     contract, so the seven pages cannot drift from the shape the handoff fixed.
     """
+    references = yaml.safe_load(map_book().sources.read_text(encoding="utf-8"))["references"]
     failures = []
     for name, text in pages():
         if "## What this page answers" not in text:
             continue
         failures.extend(f"{name}: {offence}" for offence in rules.detail_page_offences(text))
+        if not rules.sourced_pages(text, references):
+            failures.append(f"{name}: names no source that sources.yaml records with a role")
     assert failures == [], "\n".join(failures)
+
+
+PROGRAM = '```python\nprint("N  estimate")\nprint(4, 1.0)\n```'
+SHOWN = "```text\nN  estimate\n4  1.0\n```"
+
+
+def test_a_program_that_imports_numpy_is_reported():
+    """`numpy` is not installed, so a program that imports it cannot have run."""
+    page = GOOD_PAGE.replace(
+        'print("N  estimate")', 'import numpy as np\nprint("N  estimate")'
+    )
+    offences = rules.detail_page_offences(page)
+    assert any("imports numpy, not sympy" in o for o in offences), offences
+
+
+def test_a_program_that_imports_sympy_and_the_stdlib_is_accepted():
+    page = GOOD_PAGE.replace(
+        'print("N  estimate")', 'import math\nfrom sympy import sqrt\nprint("N  estimate")'
+    )
+    assert rules.detail_page_offences(page) == []
+
+
+def test_a_long_unfolded_program_is_reported_and_a_folded_one_is_not():
+    """Eleven lines is over the fold line; the same lines inside a fold are fine."""
+    listing = "\n".join(f"print({n})" for n in range(11))
+    printed = "\n".join(str(n) for n in range(11))
+    page = GOOD_PAGE.replace(PROGRAM, f"```python\n{listing}\n```").replace(
+        SHOWN, f"```text\n{printed}\n```"
+    )
+    assert any(
+        "that no fold encloses" in o for o in rules.detail_page_offences(page)
+    )
+
+    folded = page.replace(
+        f"```python\n{listing}\n```",
+        '<details markdown="1">\n<summary>The full listing</summary>\n\n'
+        f"```python\n{listing}\n```\n\n```text\n{printed}\n```\n\n</details>",
+    ).replace(f"```text\n{printed}\n```\n", "", 1)
+    assert not any(
+        "that no fold encloses" in o for o in rules.detail_page_offences(folded)
+    )
+
+
+def test_a_back_to_the_map_with_one_link_is_reported():
+    page = GOOD_PAGE.replace(
+        "[When the draws are not independent](../correlated/index.md) is the correction.\n",
+        "",
+    )
+    assert (
+        "Back to the map names 1 link(s); a parent and one sibling are the minimum"
+        in rules.detail_page_offences(page)
+    )
+
+
+def test_a_page_that_names_no_recorded_source_is_reported():
+    references = [
+        {"id": "higham", "ref": "Nicholas J. Higham, SIAM, 2002", "role": "rounding"},
+        {"id": "ghost", "ref": "Nobody At All, 1999", "role": ""},
+    ]
+    assert rules.sourced_pages("The model of rounding is Higham's.", references) == [
+        "higham"
+    ]
+    assert rules.sourced_pages("The model of rounding is standard.", references) == []
+    # A recorded author whose role is empty is not a source: the role is the claim.
+    assert rules.sourced_pages("Nobody At All says so.", references) == []

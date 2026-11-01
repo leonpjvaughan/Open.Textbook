@@ -62,6 +62,7 @@ F &= k e \\
   &= 36\,\text{N}
 \end{aligned}
 $$
+
 </details>
 
 **2.** A force of 30 N stretches a spring by 0.12 m. Calculate the spring
@@ -89,6 +90,7 @@ k &= \frac{F}{e} \\
   &= 250\,\text{N/m}
 \end{aligned}
 $$
+
 </details>
 
 **3.** A spring has a spring constant of 350 N/m. It is stretched by 0.20 m.
@@ -117,6 +119,7 @@ E_e &= \tfrac{1}{2} k e^2 \\
     &= 7.0\,\text{J}
 \end{aligned}
 $$
+
 </details>
 
 **4.** A spring is stretched a little and springs back when it is released. A

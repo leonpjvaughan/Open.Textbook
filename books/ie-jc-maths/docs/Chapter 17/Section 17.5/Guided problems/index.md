@@ -54,6 +54,7 @@ $$m=2 \qquad c=4$$
 <summary>Full working</summary>
 
 The equation is $y=2x+4$. The point $(0,4)$ is on the $y$-axis, so the intercept is
+
 4. Check it: at $x=0$, $y=4$.
 
 </details>

@@ -127,7 +127,7 @@ export function mount(el) {
       stressTicks +
       `<line x1="${LEFT}" y1="${BASE}" x2="${RIGHT}" y2="${BASE}" class="fig-ink" stroke-width="2"></line><line x1="${LEFT}" y1="${BASE}" x2="${LEFT}" y2="${TOP}" class="fig-ink" stroke-width="2"></line>` +
       strainTicks +
-      `${label({ x: (LEFT + RIGHT) / 2, y: BASE + 38, text: `strain / 10⁻³`, anchor: "middle", size: SIZE.tick, class: "text-ink" })}${label({ x: 18, y: (TOP + BASE) / 2, text: 'stress / MPa', anchor: "middle", size: SIZE.tick, class: "text-ink", rotate: -90 })}` +
+      `${label({ x: (LEFT + RIGHT) / 2, y: BASE + 33, text: `strain / 10⁻³`, anchor: "middle", size: SIZE.tick, class: "text-ink" })}${label({ x: 18, y: (TOP + BASE) / 2, text: 'stress / MPa', anchor: "middle", size: SIZE.tick, class: "text-ink", rotate: -90 })}` +
       triangle +
       `<line x1="${LEFT}" y1="${BASE}" x2="${xFor(exitStrain).toFixed(1)}" y2="${yFor(exitStress).toFixed(1)}" class="fig-accent" stroke-width="3"></line>${label({ x: (xFor(exitStrain) - 6).toFixed(1), y: (yFor(exitStress) + 16).toFixed(1), text: `gradient = E`, anchor: "end", size: SIZE.tick, class: "text-accent" })}` +
       marker;

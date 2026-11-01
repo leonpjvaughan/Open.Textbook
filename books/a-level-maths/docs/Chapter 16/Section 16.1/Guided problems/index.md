@@ -167,6 +167,7 @@ Its size is
 $$
 \sqrt{10^2 + 24^2} = \sqrt{676} = 26 \text{ N}.
 $$
+
 </details>
 
 **5.** A car travels at a constant velocity of $20$ m/s along a straight road.
@@ -222,6 +223,7 @@ $$
 $$
 \text{size} = \sqrt{8^2 + 2^2} = \sqrt{68} = 2\sqrt{17} \approx 8.25 \text{ N}.
 $$
+
 </details>
 
 **7.** Forces $(2, 5)$ N, $(-4, 1)$ N and $(1, -3)$ N act at a point. Find the

@@ -70,6 +70,7 @@ p_2 &= \frac{p_1V_1}{V_2} \\
     &= 300\,\text{kPa}
 \end{aligned}
 $$
+
 </details>
 
 **2.** A fixed mass of gas at $100\,\text{kPa}$ fills $0.30\,\text{m}^3$. It
@@ -99,6 +100,7 @@ V_2 &= \frac{p_1V_1}{p_2} \\
     &= 0.25\,\text{m}^3
 \end{aligned}
 $$
+
 </details>
 
 **3.** A gas exerts a pressure of $250\,\text{kPa}$ on a flat plate of area
@@ -128,6 +130,7 @@ F &= pA \\
   &= 1.0 \times 10^4\,\text{N}
 \end{aligned}
 $$
+
 </details>
 
 **4.** Explain, using the particle model, why the pressure of a gas rises when

@@ -66,6 +66,7 @@ I &= \frac{Q}{t} \\
   &= 3.0\,\text{A}
 \end{aligned}
 $$
+
 </details>
 
 **2.** A current of 0.40 A flows through a heater for 5.0 minutes. Calculate the
@@ -126,6 +127,7 @@ I &= \frac{V}{R} \\
   &= 0.40\,\text{A}
 \end{aligned}
 $$
+
 </details>
 
 **4.** A current of 0.20 A flows through a 60 $\Omega$ resistor. Calculate the
@@ -154,6 +156,7 @@ V &= IR \\
   &= 12\,\text{V}
 \end{aligned}
 $$
+
 </details>
 
 **5.** The potential difference across a thermistor is 9.0 V, and the current
@@ -182,6 +185,7 @@ R &= \frac{V}{I} \\
   &= 180\,\Omega
 \end{aligned}
 $$
+
 </details>
 
 **6.** A filament lamp and an ohmic resistor are connected in turn to the same

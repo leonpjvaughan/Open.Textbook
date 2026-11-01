@@ -31,7 +31,11 @@ Learning that $B$ happened tells you nothing about $A$. Substituting into the co
 formula gives the test:
 
 > **Independence.** $A$ and $B$ are independent when
+>
+>
 > $$P(A \cap B) = P(A) \times P(B)$$
+>
+>
 >
 > For several independent events, multiply all the probabilities together.
 

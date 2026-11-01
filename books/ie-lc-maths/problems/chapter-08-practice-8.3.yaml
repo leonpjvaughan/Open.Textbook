@@ -19,7 +19,7 @@ problems:
       apply: {op: integrate, args: [x]}
       answer: 'exp(3*x)/3'
       variable: x
-    answer_text: >-
+    answer_text: |-
       Differentiating $e^{3x}$ multiplies by $3$, so integrating divides by $3$:
 
       $$\int e^{3x}\,dx = \frac{1}{3}e^{3x} + C$$
@@ -39,7 +39,7 @@ problems:
       apply: {op: integrate, args: [x]}
       answer: '-cos(2*x)/2'
       variable: x
-    answer_text: >-
+    answer_text: |-
       The derivative of $\cos 2x$ is $-2\sin 2x$, so the integral of $\sin 2x$ is
       negative and divided by $2$:
 
@@ -58,7 +58,7 @@ problems:
       apply: {op: integrate, args: [x]}
       answer: 'sin(4*x)/4'
       variable: x
-    answer_text: >-
+    answer_text: |-
       The derivative of $\sin 4x$ is $4\cos 4x$, so integrating divides by $4$:
 
       $$\int \cos 4x\,dx = \frac{1}{4}\sin 4x + C$$
@@ -75,7 +75,7 @@ problems:
       apply: {op: integrate, args: [x]}
       answer: '2**x/ln(2)'
       variable: x
-    answer_text: >-
+    answer_text: |-
       For a positive base $a$, the standard result is
 
       $$\int a^x\,dx = \frac{a^x}{\ln a} + C$$
@@ -95,7 +95,7 @@ problems:
       expression: 'cos(x)'
       apply: {op: integrate, args: [x, '0', 'pi/2']}
       answer: '1'
-    answer_text: >-
+    answer_text: |-
       An antiderivative of $\cos x$ is $\sin x$, so by the Fundamental Theorem of
       Calculus
 
@@ -113,7 +113,7 @@ problems:
       expression: '1/x'
       apply: {op: integrate, args: [x, '1', '2']}
       answer: 'ln(2)'
-    answer_text: >-
+    answer_text: |-
       The power rule does not cover $n = -1$, because dividing by $n + 1$ would divide
       by zero. The logarithm fills that gap, so
 
@@ -130,7 +130,7 @@ problems:
       expression: 'exp(2*x)'
       apply: {op: integrate, args: [x, '0', '1']}
       answer: '(exp(2) - 1)/2'
-    answer_text: >-
+    answer_text: |-
       An antiderivative of $e^{2x}$ is $\dfrac{1}{2}e^{2x}$, so
 
       $$\int_0^1 e^{2x}\,dx = \left[\frac{1}{2}e^{2x}\right]_0^1
@@ -164,7 +164,7 @@ problems:
             the constant would be added at the upper limit and subtracted at the lower
             limit, so it cancels
           concepts: [constant-cancels]
-    answer_text: >-
+    answer_text: |-
       **The Fundamental Theorem of Calculus.** If $F$ is any antiderivative of $f$,
       then
 

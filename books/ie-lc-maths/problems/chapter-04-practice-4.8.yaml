@@ -39,7 +39,7 @@ problems:
     statement: 'Solve $2x^2 - 7x + 3 = 0$ with the quadratic formula.'
     answer_label: 'Both values of x'
     check: {kind: solve, equation: '2*x**2 - 7*x + 3 = 0', variable: x, answer: ['3', '1/2']}
-    answer_text: >-
+    answer_text: |-
       With $a = 2$, $b = -7$ and $c = 3$:
 
       $$x = \frac{7 \pm \sqrt{49 - 24}}{4} = \frac{7 \pm 5}{4}$$
@@ -57,7 +57,7 @@ problems:
       equation: 'x**2 - 4*x + 1 = 0'
       variable: x
       answer: ['2 + sqrt(3)', '2 - sqrt(3)']
-    answer_text: >-
+    answer_text: |-
       $$x = \frac{4 \pm \sqrt{16 - 4}}{2} = \frac{4 \pm 2\sqrt{3}}{2} = 2 \pm \sqrt{3}$$
 
       The two values are $2 + \sqrt{3}$ and $2 - \sqrt{3}$. This quadratic does
@@ -96,7 +96,7 @@ problems:
       profit at $n = 50$.
     answer_label: 'The profit at n = 50'
     check: {kind: evaluate, expression: '14 * 50 - 0.1 * 50**2 - (240 + 4 * 50)', answer: '10'}
-    answer_text: >-
+    answer_text: |-
       $$R = 14(50) - 0.1(2500) = 700 - 250 = 450$$
 
       The revenue is €450.

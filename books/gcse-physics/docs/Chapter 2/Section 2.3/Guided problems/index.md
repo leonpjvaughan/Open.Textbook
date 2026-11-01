@@ -60,6 +60,7 @@ W &= F s \\
   &= 540\,\text{J}
 \end{aligned}
 $$
+
 </details>
 
 **2.** A machine does 1200 J of work over a distance of 25 m. Calculate the
@@ -87,6 +88,7 @@ F &= \frac{W}{s} \\
   &= 48\,\text{N}
 \end{aligned}
 $$
+
 </details>
 
 **3.** A bag of mass 6.0 kg is lifted 1.5 m onto a wall. Take
@@ -115,6 +117,7 @@ W &= F s = 58.8 \times 1.5 = 88.2\,\text{J} \\
   &= 88\,\text{J} \quad (2\ \text{significant figures})
 \end{aligned}
 $$
+
 </details>
 
 **4.** A box slides across a rough floor and slows to a stop. Describe the
@@ -176,4 +179,5 @@ W &= F s \\
   &= 350\,\text{J} \quad (2\ \text{significant figures})
 \end{aligned}
 $$
+
 </details>

@@ -369,8 +369,10 @@ def test_three_pages_state_the_same_rigid_change(model):
 
 def test_section_1_5_keeps_the_export_s_number_named_as_the_exports(model):
     """The export's 100 MN/m row stands beside the rigid model's, named as itself."""
-    text = page("Section 1.5/Walkthrough")
-    assert stated(r"or ([\d.]+)° for a\s+40 mm bump from rest", text) == round(
+    # Whitespace-normalised: the page is hard-wrapped, and a sentence that gains a line
+    # break is not a page that lost its number.
+    text = " ".join(page("Section 1.5/Walkthrough").split())
+    assert stated(r"or ([\d.]+)° for a 40 mm bump from rest", text) == round(
         model["bumpFromRest"], 2
     )
     assert stated(r"The export's ladder gives ([\d.]+)° at 100 MN/m", text) == 1.91
@@ -400,10 +402,10 @@ def test_the_singular_values_are_one_pose_on_both_pages(model):
 
 def test_the_arm_lengths_are_the_view_and_the_wishbones_legs(model):
     """The paragraph's point: a projection is not a rigid copy of either leg."""
-    section = page("Section 1.4/Walkthrough")
+    section = " ".join(page("Section 1.4/Walkthrough").split())
     match = re.search(
-        r"front\s+view is ([\d.]+) m long, and the two legs of the real wishbone are\s+"
-        r"([\d.]+) m and\s+([\d.]+) m",
+        r"front view is ([\d.]+) m long, and the two legs of the real wishbone are "
+        r"([\d.]+) m and ([\d.]+) m",
         section,
     )
     assert match, "§1.4 no longer states the front view's arm and the two legs' lengths"
@@ -513,7 +515,7 @@ def test_the_review_uses_the_exports_softest_row_too():
     """The Review's change-tolerance sentence is §1.5's, not the old 0.15."""
     text = " ".join(page("Review").split())
     assert "export's softest row, 0.2 MN/m, already meets it" in text
-    assert "about nine times stiffer" in text
+    assert "more than fifty times stiffer" in text
     assert "0.15 MN/m" not in text
     assert "twelve times" not in text
 
@@ -651,3 +653,123 @@ def test_the_instant_centre_names_the_line_it_is_measured_from():
     ).read_text(encoding="utf-8")
     assert "inboard of the car's centreline" in figure
     assert "inboard of the hub" not in figure
+
+
+def test_the_chapter_problem_is_stated_once_in_one_wording():
+    """T3: three pages carried three versions of the same question.
+
+    The chapter index states it; §1.1 and the Review link to it. A second wording
+    is a second question, and the reader is left to decide which one the chapter
+    answers.
+    """
+    docs = CHAPTER
+    stating = [
+        p.relative_to(docs).as_posix()
+        for p in docs.rglob("*.md")
+        if "A wheel moves 40 mm up and 40 mm down" in p.read_text(encoding="utf-8")
+    ]
+    assert stating == ["index.md"], stating
+
+
+_CROSSINGS_SCRIPT = (
+    "const BASE = " + json.dumps(str(DATA)) + ";\n"
+    + """
+const { compliant, pose, thetaFor } = await import(BASE + "/mechanism.js");
+const LATERAL = 1800;
+const DOWN = 3500;
+const camber = (travel, k) =>
+  k === null ? pose(thetaFor(travel)).camber : compliant(thetaFor(travel), k, LATERAL, DOWN).camber;
+const rest = (k) => Math.abs(camber(0, k) - camber(0, null));
+const overTravel = (k) =>
+  Math.abs(camber(40, k) - camber(-40, k) - (camber(40, null) - camber(-40, null)));
+const cross = (effect) => {
+  let low = Math.log10(0.02e6);
+  let high = Math.log10(20e6);
+  for (let i = 0; i < 80; i += 1) {
+    const mid = (low + high) / 2;
+    if (effect(10 ** mid) > 0.1) low = mid;
+    else high = mid;
+  }
+  return 10 ** ((low + high) / 2) / 1e6;
+};
+console.log(JSON.stringify({ rest: cross(rest), travel: cross(overTravel) }));
+"""
+)
+
+
+def test_the_two_tolerance_crossings_are_the_figures_own():
+    """§1.5's figure draws an effect against a tolerance, and prints where they cross.
+
+    A figure that states a number has to be recomputed somewhere, and a crossing is not
+    arithmetic: `claim()` verifies a closed-form expression at stated values, and a root
+    found by bisection is not one. So the two crossings are held here, by bisection over
+    the same `mechanism.js` the figure imports, and the page has to print what this
+    computes — 1.85 MN/m for the wheel's angle, 0.034 for the change over the travel.
+    """
+    node = shutil.which("node")
+    if node is None:
+        pytest.skip("node is not on PATH, so the book's models cannot be recomputed")
+    done = subprocess.run(
+        [node, "--input-type=module", "-e", _CROSSINGS_SCRIPT],
+        capture_output=True,
+        text=True,
+        check=False,
+    )
+    assert done.returncode == 0, f"node could not run the model: {done.stderr.strip()}"
+    crossings = json.loads(done.stdout)
+    assert round(crossings["rest"], 2) == 1.85, crossings
+    assert round(crossings["travel"], 3) == 0.034, crossings
+
+    text = " ".join(page("Section 1.5/Walkthrough").split())
+    assert "1.85 MN/m for the wheel's angle" in text
+    assert "0.034 MN/m for the change over the travel" in text
+    assert ":::figure tolerance-crossing" in text
+
+
+def test_the_readout_is_rows_in_the_pages_own_columns():
+    """Item 171: `wishbone-hero` printed five quantities in six sentences.
+
+    The page's table prints the same five in five columns, with signs rather than the
+    readout's direction words, so a reader who wanted the number the figure shows did
+    extraction and then a conversion. The four figures now state their values as a
+    `table()` of rows, and the two whose page carries the same quantities use that page's
+    column names in that page's order.
+    """
+    figures = CHAPTER / ".." / ".." / "assets" / "figures"
+    figures = repo_root() / "books" / "maths-applied" / "docs" / "assets" / "figures"
+    for slug in ("wishbone-hero", "quarter-car", "kernel-camber", "stiffness-agreement"):
+        source = (figures / f"{slug}.js").read_text(encoding="utf-8")
+        assert "table(readout" in source, f"{slug} still prints its readout as a sentence"
+        assert "readout.textContent" not in source, f"{slug} sets the readout text as well"
+
+    # wishbone-hero ↔ §1.2's table, in its order
+    hero = (figures / "wishbone-hero.js").read_text(encoding="utf-8")
+    for label in ("wheel travel", "lower arm turns", "camber", "instant centre", "roll centre"):
+        assert f'"{label}"' in hero, f"wishbone-hero has no {label!r} row"
+
+    # stiffness-agreement ↔ §1.5's table, in its order
+    agreement = (figures / "stiffness-agreement.js").read_text(encoding="utf-8")
+    for label in ("bush stiffness", "bush deflection", "camber at rest",
+                  "difference at rest", "change over the travel"):
+        assert f'"{label}"' in agreement, f"stiffness-agreement has no {label!r} row"
+
+
+def test_the_two_procedures_are_named_once_with_the_number_each_earned():
+    """Item 172: the chapter taught two procedures and presented them as one.
+
+    §1.5's tolerance comparison decides which model to build; the limit test decides
+    whether the model is the generalisation it claims to be. The Review presented the
+    second as though it were the first in other words, so a reader could leave with one
+    of the two.
+    """
+    section = page("Section 1.5/Walkthrough")
+    assert "## The two procedures" in section
+    assert section.count("**The tolerance comparison**") >= 2
+    assert section.count("**The limit test**") >= 2
+    # the numbers in the panel are the ones the figure and the ladder print
+    for number in ("1.85", "0.034", "1.91", "1.95"):
+        assert number in section, f"the panel does not carry {number}"
+
+    review = page("Review")
+    assert "#the-two-procedures" in review, "the Review does not point at the panel"
+    assert "two** procedures" in review, "the Review still presents one procedure"

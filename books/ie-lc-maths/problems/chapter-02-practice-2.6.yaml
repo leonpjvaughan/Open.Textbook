@@ -15,7 +15,7 @@ problems:
       figure.
     answer_label: 'The estimate'
     check: {kind: evaluate, expression: '5000 * 20', answer: '100000'}
-    answer_text: >-
+    answer_text: |-
       Round $4\,986$ to $5\,000$ and $21$ to $20$. Then
 
       $$5\,000 \times 20 = 100\,000$$
@@ -32,7 +32,7 @@ problems:
       the original price.
     answer_label: 'The original price'
     check: {kind: evaluate, expression: '11070 / 1.23', answer: '9000'}
-    answer_text: >-
+    answer_text: |-
       The increase multiplied the original price by $1.23$, so undo it by
       dividing:
 
@@ -51,7 +51,7 @@ problems:
       percentage error, to one decimal place.
     answer_label: 'The percentage error'
     check: {kind: rounded, value: '4706 / 104706 * 100', rounded: '4.5', to: '0.1'}
-    answer_text: >-
+    answer_text: |-
       The error is the size of the difference:
 
       $$104\,706 - 100\,000 = 4\,706$$
@@ -72,7 +72,7 @@ problems:
       years it takes to pay for itself, to one decimal place.
     answer_label: 'The payback time'
     check: {kind: rounded, value: '11070 / 2340', rounded: '4.7', to: '0.1'}
-    answer_text: >-
+    answer_text: |-
       Divide the cost by the profit added each year:
 
       $$11\,070 \div 2\,340 = 4.73\dots$$
@@ -102,7 +102,7 @@ problems:
         - id: estimate
           text: the deductions are about 21% of the gross pay, so an estimate of 52 000 times 0.78, about 40 560, should be close to the net pay
           concepts: [percentage-deducted]
-    answer_text: >-
+    answer_text: |-
       Net pay is what reaches the bank account after every deduction is taken out.
       Income tax, USC and any other deduction all come off the gross pay, so net
       pay is always smaller.
@@ -140,7 +140,7 @@ problems:
             - id: check-back
               text: check by taking 20% off 80, which gives 64, so the answer is right
               concepts: [forward-check]
-    answer_text: >-
+    answer_text: |-
       The $20\%$ was taken off the original price, not off €64. After the
       reduction, €64 is $80\%$ of the original:
 
@@ -193,7 +193,7 @@ problems:
       the net pay.
     answer_label: 'The estimate of the net pay'
     check: {kind: evaluate, expression: '52000 * 0.78', answer: '40560'}
-    answer_text: >-
+    answer_text: |-
       If $22\%$ is deducted, about $78\%$ is left, so multiply by $0.78$:
 
       $$52\,000 \times 0.78 = 40\,560$$

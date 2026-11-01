@@ -82,7 +82,7 @@ export function mount(el) {
 
     const key =
       label({ x: left, y: top - 8, text: `Left bar: add ${added} each step.`, anchor: "start", class: "text-ink" }) +
-      label({ x: left + 200, y: top - 8, text: `Right bar: multiply by ${factor} each step.`, anchor: "start", class: "text-ink" });
+      label({ x: left + 400, y: top - 8, text: `Right bar: multiply by ${factor} each step.`, anchor: "end", class: "text-ink" });
 
     svg.innerHTML = axis + bars + key;
 

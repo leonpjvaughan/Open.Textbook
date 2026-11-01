@@ -57,6 +57,7 @@ to it is $1$. The hypotenuse is $2$.
 $$
 \sin 60^\circ = \frac{\sqrt{3}}{2}, \qquad \cos 60^\circ = \frac{1}{2}.
 $$
+
 </details>
 
 **2.** Write down the exact value of $\tan 30^\circ$, in the form with a
@@ -83,6 +84,7 @@ denominator.
 $$
 \tan 30^\circ = \frac{1}{\sqrt{3}} = \frac{\sqrt{3}}{3}.
 $$
+
 </details>
 
 **3.** Find the exact value of $\sin\dfrac{2\pi}{3}$.
@@ -107,6 +109,7 @@ $60^\circ$. So the answer is $+\sin 60^\circ$.
 $$
 \sin\frac{2\pi}{3} = +\sin\frac{\pi}{3} = \frac{\sqrt{3}}{2}.
 $$
+
 </details>
 
 **4.** Find the exact value of $\cos\dfrac{5\pi}{4}$.
@@ -131,6 +134,7 @@ $45^\circ$. Cosine is negative in the third quadrant.
 $$
 \cos\frac{5\pi}{4} = -\cos\frac{\pi}{4} = -\frac{\sqrt{2}}{2}.
 $$
+
 </details>
 
 **5.** Find the exact value of $\tan\dfrac{5\pi}{6}$.
@@ -155,6 +159,7 @@ $30^\circ$. So the answer is $-\tan 30^\circ$.
 $$
 \tan\frac{5\pi}{6} = -\tan 30^\circ = -\frac{\sqrt{3}}{3}.
 $$
+
 </details>
 
 **6.** Find the exact value of $\sin\dfrac{7\pi}{6} + \cos\dfrac{\pi}{3}$.
@@ -179,4 +184,5 @@ $\cos\dfrac{\pi}{3} = \dfrac{1}{2}$. Add the two values.
 $$
 \sin\frac{7\pi}{6} + \cos\frac{\pi}{3} = -\frac{1}{2} + \frac{1}{2} = 0.
 $$
+
 </details>

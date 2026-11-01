@@ -7,6 +7,10 @@ title: Saddle point
 **You have one of these when** a rule has to hold everywhere, and the model pays
 for it with a second unknown.
 
+**Saddle point, not optimisation.** Something has to stay true and nothing
+chooses it. In optimisation a choice is scored, and the best score is the
+answer.
+
 ## What you are modelling
 
 A system with a constraint that is not a boundary condition: the fluid cannot
@@ -45,9 +49,8 @@ words.
 ## What it becomes on a computer
 
 **Worked number.** The KKT system
-$\begin{bmatrix}1&1\\1&0\end{bmatrix}\begin{bmatrix}x\\\lambda\end{bmatrix}
-=\begin{bmatrix}2\\1\end{bmatrix}$ has $x=1$ and $\lambda=1$, so the
-constraint force is the multiplier.
+$\begin{bmatrix}1&1\\1&0\end{bmatrix}\begin{bmatrix}x\\\lambda\end{bmatrix} =\begin{bmatrix}2\\1\end{bmatrix}$
+has $x=1$ and $\lambda=1$, so the constraint force is the multiplier.
 
 A block system. Eliminating $u$ leaves the **Schur complement**
 
@@ -85,18 +88,31 @@ return one of them.
 Every method named here is in [Methods, A to Z](../techniques/#linear-systems),
 with its price and what it will not do.
 
+**Start from the model you have.** Each row is a property of the model in front
+of you, the methods that fit it, and what the fit costs. The method-keyed table
+below is the same list sorted by name.
+
+| what your model is | the methods that fit | the price |
+|---|---|---|
+| a linear constraint, and you can factorise the block | Sparse direct with pivoting, Schur complement | the fill is the cost |
+| a linear constraint, and the block is too large | Uzawa, MINRES, GMRES with a block preconditioner | the iteration count depends on the constraint |
+| a non-linear constraint | Augmented Lagrangian | an outer loop around each solve |
+| incompressible flow | Projection (Chorin), SIMPLE | the split limits the time step |
+| a rank-deficient constraint | Null-space method, constraint elimination | the null space has to be found |
+
+<!-- table: cards -->
 | technique | what it does | when it wins | when it is the wrong tool |
 |---|---|---|---|
-| Sparse direct with pivoting | Factorises the block system | Small problems; two dimensions | Large three-dimensional problems |
-| Schur complement | Eliminates the state, solves for the multiplier | Good solver for $A$, clear block structure | $A^{-1}$ is expensive to apply |
-| Uzawa | Iterates on the multiplier alone | Short, and quick to write | Without a good preconditioner it converges slowly |
-| MINRES | Krylov method for symmetric indefinite systems | The system is symmetric | Non-symmetric blocks |
-| GMRES with a block preconditioner | Krylov on the whole system | The standard answer for large problems | No preconditioner, or a poor one |
-| Augmented Lagrangian | Adds a penalty to improve conditioning | The multiplier is hard to get | The penalty term hides the constraint error |
-| Projection (Chorin) | Projects the velocity onto the constraint set | Time-dependent incompressible flow | Steady problems, where the constraint must be exact |
-| SIMPLE | Corrects pressure and velocity together | Steady flow, finite volumes | Large time steps; it is a steady method |
-| Null-space method | Solves in the directions the constraint allows | The constraint has a clean parameterisation | The null space is hard to build |
-| Constraint elimination | Removes dependent unknowns | The constraint is simple and local | Dense, coupled constraints |
+| [Sparse direct with pivoting](../techniques/#sparse-direct-cholesky) | Factorises the block system | Small problems; two dimensions | Large three-dimensional problems |
+| [Schur complement](../techniques/#schur-complement) | Eliminates the state, solves for the multiplier | Good solver for $A$, clear block structure | $A^{-1}$ is expensive to apply |
+| [Uzawa](../techniques/#uzawa) | Iterates on the multiplier alone | Short, and quick to write | Without a good preconditioner it converges slowly |
+| [MINRES](../techniques/#minres) | Krylov method for symmetric indefinite systems | The system is symmetric | Non-symmetric blocks |
+| [GMRES with a block preconditioner](../techniques/#gmres) | Krylov on the whole system | The standard answer for large problems | No preconditioner, or a poor one |
+| [Augmented Lagrangian](../techniques/#augmented-lagrangian) | Adds a penalty to improve conditioning | The multiplier is hard to get | The penalty term hides the constraint error |
+| [Projection (Chorin)](../techniques/#projection) | Projects the velocity onto the constraint set | Time-dependent incompressible flow | Steady problems, where the constraint must be exact |
+| [SIMPLE](../techniques/#simple) | Corrects pressure and velocity together | Steady flow, finite volumes | Large time steps; it is a steady method |
+| [Null-space method](../techniques/#null-space-method) | Solves in the directions the constraint allows | The constraint has a clean parameterisation | The null space is hard to build |
+| [Constraint elimination](../techniques/#constraint-elimination) | Removes dependent unknowns | The constraint is simple and local | Dense, coupled constraints |
 
 ## Systems that live here
 
@@ -138,8 +154,15 @@ pressure cannot develop the checkerboard pattern the table below names.
 
 ## Read next
 
+- [The same corner, five ways](../worked-case/index.md) — this class, worked
+  on one mechanism with the numbers beside it.
+- [The second unknown](the-multiplier/index.md) — the working under this class:
+  what the second unknown is, and why it is the one that goes wrong.
 - [Elliptic](../elliptic/index.md) — the same operator, without the constraint.
 - [Root finding](../root/index.md) — the outer loop, once the model is
   non-linear.
 - [When it goes wrong](../symptoms/index.md) — the symptom table for every
   class.
+
+Back to the map: [the nine kinds](../index.md) puts this class among the
+other eight.

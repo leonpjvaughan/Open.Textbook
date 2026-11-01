@@ -68,6 +68,7 @@ $$
 P(X = 10) = \binom{20}{10}(0.5)^{10}(0.5)^{10}
 = \binom{20}{10}(0.5)^{20} = \frac{46189}{262144} \approx 0.1762.
 $$
+
 </details>
 
 **2.** The mass of an apple from an orchard is modelled as $X \sim N(120, 15^2)$
@@ -197,6 +198,7 @@ choose any three counters. So
 $$
 P(X = 0) = \frac{4}{120} = \frac{1}{30} \approx 0.0333.
 $$
+
 </details>
 
 **6.** A quiz has 10 questions, each answered true or false. A student guesses
@@ -226,4 +228,5 @@ $$
 P(X \le 2) = \frac{\binom{10}{0} + \binom{10}{1} + \binom{10}{2}}{1024}
 = \frac{1 + 10 + 45}{1024} = \frac{56}{1024} = \frac{7}{128} \approx 0.0547.
 $$
+
 </details>

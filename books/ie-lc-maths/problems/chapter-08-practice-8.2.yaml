@@ -25,7 +25,7 @@ problems:
       - expr: '8/3'
         relation: apply
         apply: {op: integrate, args: [x, '0', '2']}
-    answer_text: >-
+    answer_text: |-
       An antiderivative of $x^2$ is $\dfrac{x^3}{3}$, so
 
       $$\int_0^2 x^2\,dx = \left[\frac{x^3}{3}\right]_0^2
@@ -46,7 +46,7 @@ problems:
       expression: '2*x + 1'
       apply: {op: integrate, args: [x, '1', '3']}
       answer: '10'
-    answer_text: >-
+    answer_text: |-
       $$\int_1^3 (2x + 1)\,dx = \Big[x^2 + x\Big]_1^3 = (9 + 3) - (1 + 1) = 12 - 2 = 10$$
 
   - id: lc8-2-quadratic
@@ -61,7 +61,7 @@ problems:
       expression: '3*x**2 - 2*x + 1'
       apply: {op: integrate, args: [x, '0', '1']}
       answer: '1'
-    answer_text: >-
+    answer_text: |-
       $$\int_0^1 (3x^2 - 2x + 1)\,dx = \Big[x^3 - x^2 + x\Big]_0^1 = 1 - 0 = 1$$
 
   - id: lc8-2-below-axis
@@ -77,7 +77,7 @@ problems:
       expression: 'x**2 - 4'
       apply: {op: integrate, args: [x, '0', '3']}
       answer: '-3'
-    answer_text: >-
+    answer_text: |-
       $$\int_0^3 (x^2 - 4)\,dx = \left[\frac{x^3}{3} - 4x\right]_0^3 = 9 - 12 = -3$$
 
       The value is negative. Between $x = 0$ and $x = 2$ the curve lies below the
@@ -96,7 +96,7 @@ problems:
       expression: 'x**3'
       apply: {op: integrate, args: [x, '-1', '1']}
       answer: '0'
-    answer_text: >-
+    answer_text: |-
       $$\int_{-1}^{1} x^3\,dx = \left[\frac{x^4}{4}\right]_{-1}^{1}
       = \frac{1}{4} - \frac{1}{4} = 0$$
 
@@ -115,7 +115,7 @@ problems:
       expression: 'x**(-2)'
       apply: {op: integrate, args: [x, '1', '2']}
       answer: '1/2'
-    answer_text: >-
+    answer_text: |-
       Write $\dfrac{1}{x^2} = x^{-2}$. An antiderivative is $-\dfrac{1}{x}$, so
 
       $$\int_1^2 x^{-2}\,dx = \left[-\frac{1}{x}\right]_1^2
@@ -135,7 +135,7 @@ problems:
       expression: 'x**2'
       apply: {op: integrate, args: [x, '0', '3']}
       answer: '9'
-    answer_text: >-
+    answer_text: |-
       The region runs from $x = 0$ to $x = 3$, and the curve stays above the axis, so
       the area is the definite integral:
 
@@ -162,7 +162,7 @@ problems:
       - expr: '32'
         relation: apply
         apply: {op: integrate, args: [t, '0', '4']}
-    answer_text: >-
+    answer_text: |-
       $$\int_0^4 (12t - 3t^2)\,dt = \Big[6t^2 - t^3\Big]_0^4 = (96 - 64) - 0 = 32$$
 
       The value $32$ is the volume of water that entered the tank over the four

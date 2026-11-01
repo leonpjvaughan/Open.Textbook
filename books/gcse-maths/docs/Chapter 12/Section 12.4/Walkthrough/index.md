@@ -29,6 +29,7 @@ $$
 $$
 (x+2)(x+3)=0
 $$
+
 So $x+2=0$ or $x+3=0$.
 
 $$
@@ -44,6 +45,7 @@ $$
 $$
 (x-7)(x+2)=0
 $$
+
 Therefore $x=7$ or $x=-2$.
 
 ## A guided product investigation

@@ -44,7 +44,7 @@ problems:
     statement: 'Work out $(2 \times 10^3)(3 \times 10^5)$ and write the answer in scientific notation.'
     answer_label: 'The product in scientific notation'
     check: {kind: evaluate, expression: '(2*10**3)*(3*10**5)', answer: '6*10**8'}
-    answer_text: >-
+    answer_text: |-
       Multiply the front numbers and add the indices:
 
       $$(2 \times 10^3)(3 \times 10^5) = 6 \times 10^{3+5} = 6 \times 10^8$$
@@ -59,7 +59,7 @@ problems:
     statement: 'Round $0.004\,567$ to 2 significant figures.'
     answer_label: '$0.004\,567$ to 2 significant figures'
     check: {kind: rounded, value: '0.004567', rounded: '0.0046', to: '0.0001'}
-    answer_text: >-
+    answer_text: |-
       The first significant figure is the $4$, because leading zeros do not
       count. The next digit is $5$, so round the $4$ up:
 
@@ -92,7 +92,7 @@ problems:
       kind: evaluate
       expression: '(87/20)*(82/25)*(21/20)*(162/5)*(11/10)'
       answer: '533.937096'
-    answer_text: >-
+    answer_text: |-
       $$4.35 \times 3.28 = 14.268 \text{ m}^2$$
 
       $$14.268 \times 1.05 = 14.9814 \text{ m}^2$$
@@ -115,7 +115,7 @@ problems:
       kind: evaluate
       expression: '(87/20)*(82/25)*(21/20)*(162/5)*(11/10) - 4*3*(21/20)*(162/5)*(11/10)'
       answer: '84.873096'
-    answer_text: >-
+    answer_text: |-
       The rounded quote is
 
       $$4 \times 3 \times 1.05 \times 32.40 \times 1.10 = 449.064$$

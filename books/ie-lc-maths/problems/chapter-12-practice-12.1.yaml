@@ -18,7 +18,7 @@ problems:
       value: '7 / sin(35 * pi / 180)'
       target: '12.20'
       tolerance: '0.01'
-    answer_text: >-
+    answer_text: |-
       The sides involved are the opposite and the hypotenuse, so use sine:
 
       $$\sin 35^\circ = \frac{7}{h} \quad\Rightarrow\quad h = \frac{7}{\sin 35^\circ} = 12.20 \text{ cm}$$
@@ -38,7 +38,7 @@ problems:
       value: '12 * sin(40 * pi / 180)'
       target: '7.71'
       tolerance: '0.01'
-    answer_text: >-
+    answer_text: |-
       The opposite and the hypotenuse give the sine ratio:
 
       $$x = 12 \sin 40^\circ = 7.71 \text{ m}$$
@@ -58,7 +58,7 @@ problems:
       value: '15 * cos(25 * pi / 180)'
       target: '13.59'
       tolerance: '0.01'
-    answer_text: >-
+    answer_text: |-
       The adjacent and the hypotenuse give the cosine ratio:
 
       $$x = 15 \cos 25^\circ = 13.59 \text{ cm}$$
@@ -78,7 +78,7 @@ problems:
       value: 'atan(5 / 8) * 180 / pi'
       target: '32.0'
       tolerance: '0.05'
-    answer_text: >-
+    answer_text: |-
       The two known sides are the opposite and the adjacent, so use tangent:
 
       $$\tan\theta = \frac{5}{8} = 0.625 \quad\Rightarrow\quad \theta = \tan^{-1}(0.625) = 32.0^\circ$$
@@ -112,7 +112,7 @@ problems:
       value: '60 / tan(9 * pi / 180)'
       target: '378.8'
       tolerance: '0.1'
-    answer_text: >-
+    answer_text: |-
       The angle of depression equals the angle at the top of the cliff inside the
       triangle, because the two are alternate angles. The known sides are the height
       and the horizontal distance, which are the opposite and the adjacent.
@@ -166,7 +166,7 @@ problems:
       checks:
         - {kind: approx, value: '9 * tan(62 * pi / 180)', target: '16.93', tolerance: '0.01'}
         - {kind: approx, value: '9 / cos(62 * pi / 180)', target: '19.17', tolerance: '0.01'}
-    answer_text: >-
+    answer_text: |-
       The opposite and the adjacent give tangent:
 
       $$x = 9 \tan 62^\circ = 16.93 \text{ cm}$$

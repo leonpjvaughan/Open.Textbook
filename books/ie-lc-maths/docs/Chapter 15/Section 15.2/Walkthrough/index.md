@@ -50,15 +50,19 @@ at the crossing are called **vertically opposite angles**.
 $b$, $c$ and $d$, in order.
 
 The angles $a$ and $b$ sit on one straight line, so
+
 $$a + b = 180^\circ.$$
 
 The angles $c$ and $b$ sit on the other straight line, so
+
 $$c + b = 180^\circ.$$
 
 The two right-hand sides are equal, so
+
 $$a + b = c + b.$$
 
 Subtract $b$ from both sides:
+
 $$a = c.$$
 
 So the angle $a$ and the angle opposite it, $c$, are equal. The same argument with $b$
@@ -85,6 +89,7 @@ other three.
 The angle vertically opposite the $65^\circ$ angle is also $65^\circ$.
 
 The other two angles are supplementary to $65^\circ$:
+
 $$180^\circ - 65^\circ = 115^\circ.$$
 
 So the four angles are $65^\circ$, $115^\circ$, $65^\circ$ and $115^\circ$, in order
@@ -95,6 +100,7 @@ requires.
 $x^\circ$. Find $x$.
 
 The angles around a point add to $360^\circ$.
+
 $$120 + 95 + 70 + x = 360$$
 
 $$285 + x = 360$$
@@ -105,6 +111,7 @@ $$x = 75^\circ$$
 two angles.
 
 The angles add to $180^\circ$.
+
 $$3x + 2x = 180$$
 
 $$5x = 180$$
@@ -118,6 +125,7 @@ $108 + 72 = 180$, which agrees with the straight line.
 the same point.
 
 The ordinary angle and the reflex angle together fill a full angle.
+
 $$360^\circ - 65^\circ = 295^\circ$$
 
 The reflex angle is $295^\circ$, which is more than $180^\circ$, as a reflex angle must

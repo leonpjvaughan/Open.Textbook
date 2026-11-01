@@ -5,7 +5,10 @@ title: Elliptic
 # Elliptic
 
 **You have one of these when** the answer is a value at every point in a region,
-nothing travels, and a change at the boundary is felt everywhere at once.
+and nothing travels.
+
+**Elliptic, not averaging.** The answer is a value at every point. An average is
+one number over what you cannot list, and it comes with an error bar.
 
 ## What you are modelling
 
@@ -58,6 +61,7 @@ per step — Jacobi, Gauss–Seidel, a plain Krylov method — is therefore crip
 and needs as many steps as the mesh is wide in every direction.
 
 Two consequences follow:
+
 - **Multigrid is not an optimisation of another method; it is what the class
   makes available.** It moves the smooth part of the error on a coarse mesh,
   where it is not smooth at all.
@@ -79,17 +83,31 @@ Two consequences follow:
 Every method named here is in [Methods, A to Z](../techniques/#linear-systems),
 with its price and what it will not do.
 
+**Start from the model you have.** Each row is a property of the model in front
+of you, the methods that fit it, and what the fit costs. The method-keyed table
+below is the same list sorted by name.
+
+| what your model is | the methods that fit | the price |
+|---|---|---|
+| a constant coefficient, and a small mesh | Sparse direct (Cholesky, LU) | cubic in the unknowns |
+| a constant coefficient, and a large mesh | Conjugate gradients, multigrid, algebraic multigrid | the iteration count depends on the mesh |
+| a coefficient that varies or jumps | Preconditioners (ILU, AMG, Jacobi), domain decomposition | the preconditioner decides the rate |
+| a non-symmetric term | GMRES, BiCGSTAB | no short recurrence, so storage grows |
+| a simple operator on a rectangle | Fast Fourier transform, Jacobi, Gauss–Seidel, SOR | the geometry has to be simple |
+| a boundary value on a large domain | Boundary element | a dense system in the boundary unknowns |
+
+<!-- table: cards -->
 | technique | what it does | when it wins | when it is the wrong tool |
 |---|---|---|---|
-| Sparse direct (Cholesky, LU) | Factorises the matrix once | Two dimensions; many right-hand sides | Three dimensions: the factors fill in |
-| Conjugate gradients | Minimises the energy over a Krylov subspace | Symmetric positive definite | Any coupling or convection makes it fail |
-| GMRES, BiCGSTAB | Krylov methods for general matrices | Not symmetric; a constraint is present | A symmetric problem, where CG is cheaper |
-| Jacobi, Gauss–Seidel, SOR | Simple sweeps over the mesh | As a smoother inside multigrid | Alone: the step count grows with the mesh |
-| Multigrid, algebraic multigrid | Solves on several meshes at once | Large, smooth, elliptic problems | Non-elliptic problems; jumping coefficients without AMG |
-| Preconditioners (ILU, AMG, Jacobi) | Makes the system easier for a Krylov method | Almost always, in practice | You have not measured the iteration count |
-| Domain decomposition | Splits the region into pieces | Very large problems on many cores | The interface problem is not solved well |
-| Fast Fourier transform | Diagonalises a constant-coefficient operator | Periodic, constant coefficients | Varying coefficients or complex boundaries |
-| Boundary element | Solves on the boundary only | Linear, homogeneous, unbounded regions | Varying coefficients inside the region |
+| [Sparse direct (Cholesky, LU)](../techniques/#sparse-direct-cholesky) | Factorises the matrix once | Two dimensions; many right-hand sides | Three dimensions: the factors fill in |
+| [Conjugate gradients](../techniques/#conjugate-gradients) | Minimises the energy over a Krylov subspace | Symmetric positive definite | Any coupling or convection makes it fail |
+| [GMRES, BiCGSTAB](../techniques/#gmres) | Krylov methods for general matrices | Not symmetric; a constraint is present | A symmetric problem, where CG is cheaper |
+| [Jacobi, Gauss–Seidel, SOR](../techniques/#jacobi) | Simple sweeps over the mesh | As a smoother inside multigrid | Alone: the step count grows with the mesh |
+| [Multigrid, algebraic multigrid](../techniques/#multigrid) | Solves on several meshes at once | Large, smooth, elliptic problems | Non-elliptic problems; jumping coefficients without AMG |
+| [Preconditioners (ILU, AMG, Jacobi)](../techniques/#preconditioners-ilu) | Makes the system easier for a Krylov method | Almost always, in practice | You have not measured the iteration count |
+| [Domain decomposition](../techniques/#domain-decomposition) | Splits the region into pieces | Very large problems on many cores | The interface problem is not solved well |
+| [Fast Fourier transform](../techniques/#fast-fourier-transform) | Diagonalises a constant-coefficient operator | Periodic, constant coefficients | Varying coefficients or complex boundaries |
+| [Boundary element](../techniques/#boundary-element) | Solves on the boundary only | Linear, homogeneous, unbounded regions | Varying coefficients inside the region |
 
 ## Systems that live here
 
@@ -103,7 +121,8 @@ with its price and what it will not do.
   how that constraint is paid.
 - The elliptic coordinate conditions in numerical relativity, in the
   formulations where they cannot be evolved — the lapse equation among them,
-  which [The class is a choice](../choosing-the-class/#the-same-equations-classified)
+  which
+  [The class is a choice](../choosing-the-class/#the-same-equations-classified)
   puts through the test beside its hyperbolic version.
 
 ## What goes wrong
@@ -123,6 +142,8 @@ with its price and what it will not do.
 
 ## Read next
 
+- [Where the matrix comes from](the-weak-form/index.md) — the working under this
+  class: the weak form, the element, and the assembled matrix.
 - [Saddle point](../saddle-point/index.md) — what an elliptic problem becomes
   when a constraint is added.
 - [Parabolic](../parabolic/index.md) — the same operator, with time put back in.
@@ -130,3 +151,6 @@ with its price and what it will not do.
   number that says an equation like this one is elliptic.
 - [When it goes wrong](../symptoms/index.md) — the symptom table for every
   class.
+
+Back to the map: [the nine kinds](../index.md) puts this class among the
+other eight.

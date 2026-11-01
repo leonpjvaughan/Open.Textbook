@@ -61,6 +61,7 @@ $$
 \vec{OA} = 3\mathbf{i} - 2\mathbf{j} =
 \begin{pmatrix} 3 \\ -2 \end{pmatrix}.
 $$
+
 </details>
 
 **2.** The points are $A(2, 1)$ and $B(7, 4)$. Find $\vec{AB}$.
@@ -87,6 +88,7 @@ $$
 \vec{AB} = \mathbf{b} - \mathbf{a} =
 (7 - 2)\mathbf{i} + (4 - 1)\mathbf{j} = 5\mathbf{i} + 3\mathbf{j}.
 $$
+
 </details>
 
 **3.** Find the distance between $A(1, -1)$ and $B(4, 3)$.
@@ -114,6 +116,7 @@ $$
 \qquad
 AB = \sqrt{3^2 + 4^2} = \sqrt{25} = 5.
 $$
+
 </details>
 
 **4.** Find the distance between $A(2, 0, 1)$ and $B(5, 4, 3)$.
@@ -166,6 +169,7 @@ Square each coordinate, including $(-3)^2$ and $12^2$, then add.
 $$
 OP = \sqrt{(-3)^2 + 4^2 + 12^2} = \sqrt{9 + 16 + 144} = \sqrt{169} = 13.
 $$
+
 </details>
 
 **6.** Find the midpoint of $A(1, 3)$ and $B(7, -1)$.
@@ -258,4 +262,5 @@ $$
 \qquad
 PQ = \sqrt{4^2 + 3^2} = 5.
 $$
+
 </details>

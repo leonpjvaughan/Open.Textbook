@@ -67,7 +67,7 @@ export function mount(el) {
       `<line x1="${px(DOMAIN_X[0])}" y1="${py(0)}" x2="${px(DOMAIN_X[1])}" y2="${py(0)}" class="fig-ink" stroke-width="1.5"></line>` +
       `<line x1="${px(0)}" y1="${py(DOMAIN_Y[0])}" x2="${px(0)}" y2="${py(DOMAIN_Y[1])}" class="fig-ink" stroke-width="1.5"></line>` +
       label({ x: px(DOMAIN_X[1]) - 8, y: py(0) - 8, text: "x", size: SIZE.value, class: "text-ink", anchor: "end" }) +
-      label({ x: px(0) + 10, y: py(DOMAIN_Y[1]) + 4, text: "y", size: SIZE.value, class: "text-ink", anchor: "start" });
+      label({ x: px(0) + 10, y: py(DOMAIN_Y[1]) + 22, text: "y", size: SIZE.value, class: "text-ink", anchor: "start" });
 
     // The rays from the centre through each corner. Every image corner lies on one of
     // them, which is what makes the origin the centre of the enlargement.

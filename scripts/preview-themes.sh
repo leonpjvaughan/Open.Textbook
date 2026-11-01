@@ -98,6 +98,11 @@ run_check phone node tools/dist/cli.js audit site --mobile
 # The kit's own contract, before the modules that build on it.
 run_check kit node tools/dist/cli.js kit site
 
+# Where the ink lands. `audit` measures paint and `kit` measures the DOM contract;
+# neither sees an element drawn outside the figure's own viewBox, which is how
+# `dynamics-table` shipped an empty frame with five rows of numbers below it.
+run_check canvas node tools/dist/cli.js canvas site
+
 # A book read with the network off, after a deploy has emptied the runtime cache. The
 # only check that drives the service worker's two caches; the strategy is pinned in
 # `tests/test_pwa.py`, and whether a reader can still read is a question for a browser.

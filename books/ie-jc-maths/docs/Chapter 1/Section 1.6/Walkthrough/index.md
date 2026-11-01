@@ -141,7 +141,11 @@ The value has not changed, because you multiplied by $\frac{\sqrt{2}}{\sqrt{2}} 
 > **Watch out.** A square root does not split over an addition. The common error is
 > to write $\sqrt{9 + 16} = \sqrt{9} + \sqrt{16}$. It is not:
 >
+>
+>
 > $$\sqrt{9 + 16} = \sqrt{25} = 5 \qquad \text{but} \qquad \sqrt{9} + \sqrt{16} = 3 + 4 = 7$$
+>
+>
 >
 > The rule $\sqrt{ab} = \sqrt{a} \times \sqrt{b}$ is about a product, not a sum.
 > **Re-check:** work out the number under the root first. If it is a square number,

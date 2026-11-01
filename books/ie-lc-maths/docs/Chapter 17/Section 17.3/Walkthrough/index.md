@@ -33,6 +33,8 @@ circle is called the **circumcircle** of the quadrilateral.
 
 > **Corollary 5.** If $ABCD$ is a cyclic quadrilateral, then its opposite angles sum to
 > $180^\circ$. In symbols,
+>
+>
 > $$|\angle ABC| + |\angle ADC| = 180^\circ.$$
 
 **Proof.** Let $O$ be the centre of the circle. The angle $\angle ABC$ stands on the arc
@@ -42,6 +44,7 @@ one that does not contain $D$.
 The two arcs together make the whole circle, so the two angles at the centre add to
 $360^\circ$. By Theorem 19, each angle at the circle is half of its own angle at the
 centre. So
+
 $$|\angle ABC| + |\angle ADC| = \tfrac12 \times 360^\circ = 180^\circ. \qquad \blacksquare$$
 
 The same argument applies to the other pair, so $|\angle BAD| + |\angle BCD| = 180^\circ$
@@ -72,6 +75,7 @@ Draw the circle through $A$, $B$ and $C$. On the arc of this circle on the same 
 $AC$ as $D$, choose a point $D'$.
 
 The quadrilateral $ABCD'$ is cyclic, so its opposite angles sum to $180^\circ$:
+
 $$|\angle ABC| + |\angle AD'C| = 180^\circ.$$
 
 Comparing the two sums, $|\angle AD'C| = |\angle ADC|$. The points $D$ and $D'$ lie on the
@@ -88,11 +92,13 @@ $\blacksquare$
 $|\angle BCD|$.
 
 The angles at $A$ and at $C$ are opposite, so they sum to $180^\circ$:
+
 $$|\angle BCD| = 180^\circ - 85^\circ = 95^\circ.$$
 
 **Example 2.** A cyclic quadrilateral has two opposite angles of $x$ and $3x$. Find $x$.
 
 Opposite angles sum to $180^\circ$:
+
 $$x + 3x = 180$$
 
 $$4x = 180$$
@@ -105,12 +111,14 @@ The two angles are $45^\circ$ and $135^\circ$.
 at $B$ is $118^\circ$. Find $|\angle ADC|$.
 
 The exterior angle equals the interior opposite angle:
+
 $$|\angle ADC| = 118^\circ.$$
 
 **Example 4.** A convex quadrilateral has angles $95^\circ$, $85^\circ$, $80^\circ$ and
 $100^\circ$, in order. Is it cyclic?
 
 Check the opposite pairs. The first and third angles are opposite:
+
 $$95 + 80 = 175 \neq 180.$$
 
 So a pair of opposite angles does not add to $180^\circ$, and the quadrilateral is **not**

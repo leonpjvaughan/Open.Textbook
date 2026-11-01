@@ -1,5 +1,66 @@
 # Decisions
 
+## 2026-10-28 — The goal's branch rule, the deployed release, and two evidence lines
+
+**The problem.** The combined goal that closed items 139–153 says "work on dev, never
+commit to main". Partway through it the user asked, in those words, to "finish off the
+body of work" and then to "push through to production". That was done: `dev` was
+fast-forwarded into `main`, pushed, and CI released `26.302.0` and deployed it. Every
+commit up to `0f328d93` is therefore on `main` and live, and an independent audit of the
+goal's completion read that as the branch rule broken.
+
+**The decision, and its exact state.** The deploy stands, and the user has said so. On
+2026-10-30 the choice between keeping the deploy and restoring `main` to `48fccea` was
+put to the user, who answered "Keep main". That answer is the authorisation this
+exception needs: the user owns the deployed release, and neither the agent nor the
+auditor can grant it.
+
+What is where, measured on 2026-10-30: `main` and `origin/main` are at `0f328d93`,
+released as `26.302.0` and live, which carries the work up to item 153. Everything after
+it — Phase C's eight pages, the six detail-page rules, the masthead label, the
+chapter-problem fix and the recomputed worked numbers — is on `dev`, pushed at
+`3d3e224b`, level with `origin/dev`, and **not live**. That is the ordinary state
+between a merge and its release: `dev` takes the gate, `main` takes the deploy, and the
+next release carries these commits.
+
+**Why not the other way.** Reverting would have deleted a published release and taken
+live pages down in order to satisfy a rule the user had already overridden when asking
+for the push. It was offered and declined, so the record keeps the deploy and says who
+authorised it.
+
+**Two evidence lines, corrected.** This entry also fixes two claims made at
+completion, because a claim that measures something else is how a gate rots:
+
+- `grep -rl 'math-error' site` does **not** print nothing, and cannot: it matches 18
+  stylesheet files, because `extra.css` defines the `.math-error` rule that a page
+  carries when KaTeX fails. The failing state is a *page* with the span, and the
+  command that measures it is `grep -rl 'math-error' site --include='*.html'`, which
+  prints nothing and which `scripts/check.sh` already runs. `AGENTS.md`'s build and
+  verify section quotes the scoped form for exactly this reason.
+- The two-book review is at `research/review/maths-applied-and-numerical-methods.md`,
+  and the goal's in-scope list did not name `research/`. It stays there: three reviews
+  already live in that directory, and every closed item from 150 to 153 cites this one
+  for its measurements, so moving it would break the evidence the queue points at.
+
+**The scope accounting, measured.** The goal's verification contract asks that the
+final diff contain only in-scope paths. Measured over the whole goal, `48fccea..HEAD`
+touches 106 files, and eight of them are outside the objective's literal list. Each is
+named here rather than omitted:
+
+| Path | Why it is in this work |
+|---|---|
+| `.agents/numerical-methods-handoff.md` | The specification the detail track implements; every task from Phase A to Phase C cites it |
+| `.agents/planning/2026-10-28-goal-reconciliation.md` | The record that the paused 105–121 goal is verified and closed, which the objective asks for by name |
+| `assets/booklet/booklet.js` | Item 149's reader half: a page that names a booklet table can open it |
+| `books/a-level-maths/problems/chapter-11-practice-11.3.yaml` | Item 146 moved `p7-grouped-mean` out of the 11.3 bank |
+| `books/a-level-maths/problems/chapter-11-practice-11.5.yaml` | The same item moved it in, with `refs: [L3]` |
+| `books/a-level-maths/problems/chapter-13-review.yaml` | Item 145: the review bank now interprets a given $r$ instead of computing it |
+| `research/review/maths-applied-and-numerical-methods.md` | The measurements items 150–153 were filed from and closed against |
+| `research/review/maths-applied-and-numerical-methods-ii.md` | The second review of the two books, and the measurements items 156–161 were filed from |
+
+The remaining 90 files are inside the enumerated scope, and no file was added for a
+purpose outside the objective's five success criteria.
+
 ## 2026-10-28 — Correlation and the fitted line are given, not computed
 
 **The problem.** A-level 14.4 said plainly that $r$ is always given and its

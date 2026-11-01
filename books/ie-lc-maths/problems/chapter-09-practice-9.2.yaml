@@ -13,7 +13,7 @@ problems:
       kind: evaluate
       expression: '(20 / 2) * (2 * 5 + (20 - 1) * 3)'
       answer: '670'
-    answer_text: >-
+    answer_text: |-
       $S_n = \dfrac{n}{2}\left(2a + (n-1)d\right)$, so
 
       $$S_{20} = 10(10 + 57) = 670$$
@@ -29,7 +29,7 @@ problems:
       kind: evaluate
       expression: '(21 / 2) * (3 + 83)'
       answer: '903'
-    answer_text: >-
+    answer_text: |-
       From Section 9.1 this series has $21$ terms, with first term $3$ and last term
       $83$. Using $S_n = \dfrac{n}{2}(a + l)$:
 
@@ -61,7 +61,7 @@ problems:
     statement: 'Find the sum of the first $100$ whole numbers, $1 + 2 + 3 + \dots + 100$.'
     answer_label: 'The sum'
     check: {kind: evaluate, expression: '(100 / 2) * (1 + 100)', answer: '5050'}
-    answer_text: >-
+    answer_text: |-
       This is arithmetic with $a = 1$, $d = 1$, $n = 100$, so
 
       $$S_{100} = \frac{100}{2}(1 + 100) = 50 \times 101 = 5050$$
@@ -88,7 +88,7 @@ problems:
         - id: when
           text: the first is easier when the series is written out and the last term is visible; the second is needed when only a and d are given
           concepts: [first-and-last, a-and-d]
-    answer_text: >-
+    answer_text: |-
       The two forms are
 
       $$S_n = \frac{n}{2}(a + l) \qquad S_n = \frac{n}{2}\left(2a + (n-1)d\right)$$
@@ -119,7 +119,7 @@ problems:
         - id: average
           text: each pair sums to a + l, so the average of the whole series is the average of the first and last terms, and n of those averages make the sum
           concepts: [average]
-    answer_text: >-
+    answer_text: |-
       Pair the terms from the two ends: the first with the last, the second with the second
       last, and so on. Each pair adds to $a + l$:
 

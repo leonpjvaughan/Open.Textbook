@@ -66,6 +66,7 @@ So $\triangle BCE \cong \triangle CBF$ by SAS.
 
 The congruence gives $|\angle BCF| = |\angle CBE|$. Now $E$ lies on the line $AB$ on the
 opposite side of $BC$ from $A$, so $|\angle CBE| = 180^\circ - |\angle ABC|$. Therefore
+
 $$|\angle BCF| = 180^\circ - |\angle ABC| = 180^\circ - |\angle BCD|.$$
 
 That places $F$ on the line $DC$, on the far side of $C$. So both lines $AB$ and $CD$ pass
@@ -81,6 +82,7 @@ one such ray.
 
 By part 1, the line $CE$ is parallel to $AB$. By Axiom 5, there is only one line through
 $C$ parallel to $AB$. So $CE$ and $CD$ are the same line, and
+
 $$|\angle BCD| = |\angle BCE| = |\angle ABC|. \quad \blacksquare$$
 
 ## Theorem 4: the angle sum
@@ -96,18 +98,22 @@ opposite side of $AB$ from $C$, and $E$ is on the opposite side of $AC$ from $B$
 
 The line $AB$ is a transversal of the parallel lines $DE$ and $BC$. The angles $\angle ABC$
 and $\angle DAB$ are alternate angles, so by Theorem 3 part 2,
+
 $$|\angle ABC| = |\angle DAB|.$$
 
 The line $AC$ is also a transversal of the parallel lines $DE$ and $BC$. The angles
 $\angle ACB$ and $\angle CAE$ are alternate angles, so
+
 $$|\angle ACB| = |\angle CAE|.$$
 
 Now add the three angles of the triangle. The Protractor Axiom lets us add the parts of
 the straight angle at $A$.
+
 $$|\angle ABC| + |\angle ACB| + |\angle BAC| = |\angle DAB| + |\angle CAE| + |\angle BAC| = |\angle DAE|$$
 
 The angles $\angle DAB$, $\angle BAC$ and $\angle CAE$ together make the straight angle
 $\angle DAE$, which is $180^\circ$. So
+
 $$|\angle ABC| + |\angle ACB| + |\angle BAC| = 180^\circ. \quad \blacksquare$$
 
 The proof rests on three things: Axiom 5 (the parallel line), Theorem 3 part 2 (equal
@@ -138,12 +144,15 @@ equal. $\blacksquare$
 
 **Proof.** Let $\alpha$ be the exterior angle at $A$ in $\triangle ABC$. The exterior
 angle and the interior angle at $A$ are supplementary, so
+
 $$\alpha + |\angle A| = 180^\circ.$$
 
 The three angles of the triangle add to $180^\circ$, by Theorem 4, so
+
 $$|\angle A| + |\angle B| + |\angle C| = 180^\circ.$$
 
 The two right-hand sides are equal. Subtract $|\angle A|$ from both sides:
+
 $$\alpha = |\angle B| + |\angle C|. \quad \blacksquare$$
 
 ## Worked examples
@@ -156,12 +165,14 @@ $72^\circ$, by Theorem 5.
 
 The angle inside on the same side of the transversal is supplementary to the alternate
 angle, because the two together sit on a straight line:
+
 $$180^\circ - 72^\circ = 108^\circ.$$
 
 **Example 2.** In $\triangle ABC$, $|\angle A| = 65^\circ$ and $|\angle B| = 48^\circ$.
 Find $|\angle C|$.
 
 The three angles add to $180^\circ$, by Theorem 4.
+
 $$65 + 48 + |\angle C| = 180$$
 
 $$113 + |\angle C| = 180$$
@@ -175,6 +186,7 @@ made at the start of the chapter.
 $|\angle B| = 65^\circ$. Find $|\angle C|$.
 
 By Theorem 6, the exterior angle equals the sum of the two interior opposite angles.
+
 $$113 = 65 + |\angle C|$$
 
 $$|\angle C| = 48^\circ$$
@@ -186,6 +198,7 @@ $67 + 65 + 48 = 180$. Both rules agree.
 are $3x$ and $2x + 30$. Find $x$.
 
 Corresponding angles are equal, so
+
 $$3x = 2x + 30$$
 
 $$x = 30.$$

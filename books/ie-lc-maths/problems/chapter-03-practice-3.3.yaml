@@ -19,7 +19,7 @@ problems:
         w: {value: '3', unit: m}
         h: {value: '2', unit: m}
       answer: {value: '30', unit: 'm^3'}
-    answer_text: >-
+    answer_text: |-
       $$V = 5 \times 3 \times 2 = 30 \text{ m}^3$$
 
       Three lengths are multiplied, so the unit is cubic metres.
@@ -41,7 +41,7 @@ problems:
         h: {value: '5', unit: cm}
         L: {value: '20', unit: cm}
       answer: {value: '400', unit: 'cm^3'}
-    answer_text: >-
+    answer_text: |-
       The cross-section is a triangle, so its area is
 
       $$\tfrac{1}{2} \times 8 \times 5 = 20 \text{ cm}^2$$
@@ -69,7 +69,7 @@ problems:
         h: {value: '0.4', unit: m}
         L: {value: '12', unit: m}
       answer: {value: '3.84', unit: 'm^3'}
-    answer_text: >-
+    answer_text: |-
       The cross-section area is
 
       $$\tfrac{1}{2}(0.6 + 1.0)(0.4) = 0.32 \text{ m}^2$$
@@ -85,7 +85,7 @@ problems:
     statement: 'Find the volume of a cylinder of radius $3$ cm and height $10$ cm.'
     answer_label: 'The volume of the cylinder'
     check: {kind: evaluate, expression: 'pi * 3**2 * 10', answer: '90 * pi'}
-    answer_text: >-
+    answer_text: |-
       $$V = \pi r^2 h = \pi \times 9 \times 10 = 90\pi \approx 282.74 \text{ cm}^3$$
 
       Square the radius first, then multiply by the height.
@@ -97,7 +97,7 @@ problems:
     statement: 'Find the volume of a cylinder of diameter $10$ cm and height $12$ cm.'
     answer_label: 'The volume of the cylinder'
     check: {kind: evaluate, expression: 'pi * (10 / 2)**2 * 12', answer: '300 * pi'}
-    answer_text: >-
+    answer_text: |-
       The radius is $5$ cm, so
 
       $$V = \pi \times 25 \times 12 = 300\pi \approx 942.48 \text{ cm}^3$$
@@ -112,7 +112,7 @@ problems:
     statement: 'Find the volume of a cylinder of diameter $14$ cm and height $5$ cm.'
     answer_label: 'The volume of the cylinder'
     check: {kind: evaluate, expression: 'pi * (14 / 2)**2 * 5', answer: '245 * pi'}
-    answer_text: >-
+    answer_text: |-
       The radius is $7$ cm, so
 
       $$V = \pi \times 49 \times 5 = 245\pi \approx 769.69 \text{ cm}^3$$
@@ -124,7 +124,7 @@ problems:
     statement: 'A tank holds $2.5 \text{ m}^3$ of water. How many litres is that?'
     answer_label: 'The capacity in litres'
     check: {kind: convert, value: '2.5', from: 'm^3', to: 'L', answer: '2500'}
-    answer_text: >-
+    answer_text: |-
       $$2.5 \times 1000 = 2500 \text{ L}$$
 
       One cubic metre is $1000$ litres, so a capacity in cubic metres becomes litres
@@ -139,7 +139,7 @@ problems:
       cubic metres, giving the exact answer in terms of $\pi$.
     answer_label: 'The volume of Tank A'
     check: {kind: evaluate, expression: 'pi * 0.6**2 * 1.2', answer: '0.432 * pi'}
-    answer_text: >-
+    answer_text: |-
       The radius is $0.6$ m, so
 
       $$V = \pi \times 0.6^2 \times 1.2 = 0.432\pi \approx 1.36 \text{ m}^3$$

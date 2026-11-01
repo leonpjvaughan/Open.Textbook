@@ -113,7 +113,7 @@ problems:
             use f'' to decide the concavity and to classify each stationary point, then
             sketch the curve through these features
           concepts: [second-derivative-shape]
-    answer_text: >-
+    answer_text: |-
       1. **Intercepts.** Put $x = 0$ for the $y$-intercept, and solve $f(x) = 0$ for
          the $x$-intercepts.
       2. **Stationary points.** Solve $f'(x) = 0$ and work out the $y$-value at each

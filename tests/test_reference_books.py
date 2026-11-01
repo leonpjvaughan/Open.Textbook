@@ -127,7 +127,7 @@ def test_the_home_page_links_every_page_in_the_registry():
 def _counts() -> tuple[int, int]:
     """The two numbers the home page prints, measured from the pages themselves.
 
-    76 methods is the number of rows in the five tables under *Methods, A to Z*, because
+    77 methods is the number of method blocks under *Methods, A to Z*, because
     that page is the book's own claim about how many methods it names. 64 systems is the
     number of entries in the nine class pages' *Systems that live here* lists, because
     those are the systems the reduction is claimed to cover. Both are counted here rather
@@ -240,7 +240,7 @@ def test_the_two_indexes_link_every_class_they_name():
 
 
 def test_the_home_page_states_the_counts_it_claims():
-    """The page opens with an arithmetic claim: 76 methods, 64 systems, nine kinds.
+    """The page opens with an arithmetic claim: 77 methods, 64 systems, nine kinds.
 
     Each number is measured from the book, so the argument cannot quietly become false
     when a method is added or a system is dropped. This is the same rule as §1.5's
@@ -308,10 +308,19 @@ def test_the_classes_come_first_in_tree_order():
         "worked-case",
         "techniques",
         "symptoms",
+        "systems",
         "averaging",
         "averaging",
         "averaging",
         "averaging",
+        "optimisation",
+        "eigenvalue",
+        "linear-system",
+        "root",
+        "saddle-point",
+        "elliptic",
+        "parabolic",
+        "hyperbolic",
     ]
 
 
@@ -441,7 +450,11 @@ def _names(cell: str) -> list[str]:
     ``Control variates, antithetic pairs`` is two methods, and ``Preconditioners
     (ILU, AMG, Jacobi)`` is one whose brackets happen to contain commas. Splitting on
     every comma would turn the second into three names the A–Z is not expected to have.
+
+    A class page's first cell is now a link per method, so the link markup comes off
+    first: the name is the link's text, and the URL is not a name.
     """
+    cell = re.sub(r"\[([^\]]*)\]\([^)]*\)", r"\1", cell)
     parts, depth, current = [], 0, ""
     for char in cell:
         if char == "(":
@@ -502,6 +515,35 @@ def test_every_method_a_class_page_names_is_in_methods_a_to_z(slug):
         if not _named(_plain(name), known)
     ]
     assert missing == [], f"{slug} names methods the index does not carry: {missing}"
+
+
+@pytest.mark.parametrize("slug", CLASSES)
+def test_every_method_a_class_page_names_links_to_its_entry(slug):
+    """A name in a class page's table is a hop, not a word.
+
+    The sentence above the table says every method is in *Methods, A to Z* with its
+    price. The table is where a reader is holding the name and wants the step, so the
+    name is the link. The test holds both halves: every name is a link, and every link
+    points at a method block the A–Z actually carries. A renamed entry and a stale
+    anchor are the same defect seen from each end.
+    """
+    page = map_book().docs / slug / "index.md"
+    text = page.read_text(encoding="utf-8")
+    assert "<!-- table: cards -->\n| technique |" in text, (
+        f"{slug}'s technique table is not a stack of records below 60rem"
+    )
+    anchors = {method["anchor"] for method in _methods_a_to_z()}
+    for row in _table_rows(page, 4, heading="## Techniques"):
+        links = re.findall(r"\[([^\]]+)\]\(([^)]*)\)", row[0])
+        assert links, f"{slug} names a method with no link: {row[0]}"
+        # The text outside the links is the separator between them, never a name.
+        outside = re.sub(r"\[[^\]]*\]\([^)]*\)", "", row[0])
+        assert not re.search(r"[A-Za-z]", outside), (
+            f"{slug} has a method name outside a link: {row[0]}"
+        )
+        known = {f"../techniques/#{anchor}" for anchor in anchors}
+        broken = [target for _text, target in links if target not in known]
+        assert broken == [], f"{slug} links to methods the A–Z does not carry: {broken}"
 
 
 def test_every_symptom_is_one_row_in_one_wording_on_both_pages():
@@ -987,30 +1029,82 @@ def test_a_term_is_defined_where_the_book_first_uses_it():
         assert first >= found.start(), f"{slug} uses {term} before defining it"
 
 
+def _newton(f, x0, steps):
+    """Newton's iterates on one variable, in exact arithmetic."""
+    x = sp.symbols("x")
+    d = sp.diff(f, x)
+    p = sp.Rational(x0)
+    for _ in range(steps):
+        p = sp.simplify(p - f.subs(x, p) / d.subs(x, p))
+    return p
+
+
+def _maximiser(expr):
+    """Where one-variable expression ``expr`` peaks, in exact arithmetic."""
+    x = sp.symbols("x")
+    return sp.solve(sp.diff(expr, x), x)[0]
+
+
+# Each entry: the regex that captures the number the page prints, and the value
+# computed from the page's own statement of the problem. The two are compared, so a
+# page that rounds a number wrongly fails here — a typed literal would pass a test
+# that only looked for the string, which is exactly what item 152 was filed about.
 WORKED_NUMBERS = {
-    "optimisation": (r"x=3", sp.Integer(3)),
-    "averaging": (r"0.0316", sp.N(1 / sp.sqrt(1000), 4)),
-    "eigenvalue": (r"1$ and $3", sp.Integer(3)),
-    "linear-system": (r"x=1/11", sp.Rational(1, 11)),
-    "root": (r"1.4167", sp.N(sp.Rational(17, 12), 5)),
-    "saddle-point": (r"\lambda=1", sp.Integer(1)),
-    "elliptic": (r"1/8", sp.Rational(1, 8)),
-    "parabolic": (r"0.005", sp.Rational(1, 200)),
-    "hyperbolic": (r"0.05", sp.Rational(1, 20)),
+    "optimisation": (
+        r"to zero gives\s+\$x=([-\d/]+)\$",
+        sp.solve(2 * (sp.Symbol("x") - 3), sp.Symbol("x"))[0],
+    ),
+    "averaging": (r"1/\\sqrt\{1000\}=([\d.]+)", 1 / sp.sqrt(1000)),
+    "eigenvalue": (
+        r"eigenvalues \$1\$ and \$([-\d/]+)\$",
+        max(sp.Matrix([[2, 1], [1, 2]]).eigenvals()),
+    ),
+    "linear-system": (
+        r"solution \$x=([-\d/]+)\$",
+        sp.Matrix([[4, 1], [1, 3]]).solve(sp.Matrix([1, 2]))[0],
+    ),
+    "root": (r"\$x_2=([\d.]+)\$", _newton(sp.Symbol("x") ** 2 - 2, 1, 2)),
+    "saddle-point": (
+        r"\\lambda=(\d+)\$",
+        sp.Matrix([[1, 1], [1, 0]]).solve(sp.Matrix([2, 1]))[1],
+    ),
+    "elliptic": (
+        r"maximum is \$([-\d/]+)\$",
+        (sp.Symbol("x") * (1 - sp.Symbol("x")) / 2).subs(
+            sp.Symbol("x"), _maximiser(sp.Symbol("x") * (1 - sp.Symbol("x")) / 2)
+        ),
+    ),
+    "parabolic": (r"\^2/2=([\d.]+)\$", sp.Rational(1, 10) ** 2 / 2),
+    "hyperbolic": (r"\\Delta x/a=([\d.]+)\$", sp.Rational(1, 10) / 2),
 }
 
 
 def test_every_class_page_works_one_number():
     """A class page that only names methods is a glossary entry.
 
-    Each of the nine pages now carries one worked line in *What it becomes on a
-    computer*, and the number in it is the one its own arithmetic gives. This pins
-    both the sentence and the value.
+    Each of the nine pages carries one worked line in *What it becomes on a
+    computer*. The number in it is parsed from the page and compared with the value
+    recomputed here from the page's own statement of the problem: an exact integer
+    or fraction must match exactly, and a decimal must be the correct rounding of
+    the computed value to the digits it prints.
     """
-    for slug, (shown, value) in WORKED_NUMBERS.items():
+    for slug, (pattern, value) in WORKED_NUMBERS.items():
         page = (map_book().docs / slug / "index.md").read_text(encoding="utf-8")
         assert "**Worked number.**" in page, slug
-        assert shown in page, (slug, shown)
+        match = re.search(pattern, page, re.S)
+        assert match, f"{slug}: the printed number no longer matches {pattern}"
+        shown = match.group(1)
+        printed = sp.sympify(shown)
+        if "." in shown:
+            places = len(shown.split(".")[1])
+            error = abs(printed - sp.N(value, places + 3))
+            assert error <= sp.Rational(1, 2) * sp.Rational(1, 10) ** places, (
+                slug,
+                shown,
+                sp.N(value, places + 3),
+            )
+        else:
+            assert sp.simplify(printed - value) == 0, (slug, shown, value)
 
 
 def test_a_level_11_4_points_at_the_fit_it_does_not_derive():
@@ -1027,3 +1121,334 @@ def test_a_level_11_4_points_at_the_fit_it_does_not_derive():
     ).read_text(encoding="utf-8")
     assert "/numerical-methods/averaging/regression/" in text
     assert r"(\bar x, \bar y)" in text
+
+
+def test_the_nine_kinds_table_is_marked_for_cards_and_labels_every_cell():
+    """Item 158: the table is the page's central artefact, and it was 544px in a 358px box.
+
+    Below 60rem a row becomes a card, which only works because every cell arrives
+    carrying its column's heading as `data-label` and the table carries `table--cards`.
+    Both come from the `<!-- table: cards -->` line above it, so the marker is the thing
+    to hold: without it the table silently goes back to being a sideways-scrolled grid
+    on a phone, and no other check would notice.
+    """
+    book = map_book()
+    home = (book.docs / "index.md").read_text(encoding="utf-8")
+    marker = home.index("<!-- table: cards -->")
+    table = home[marker : marker + 800]
+    assert "| Kind |" in table.splitlines()[1], "the marker must sit directly above the table"
+    assert table.count("<!-- table: cards -->") == 1
+
+
+@pytest.mark.parametrize("slug", CLASSES)
+def test_a_class_page_prints_its_registry_signature_verbatim(slug):
+    """Item 159: nine signatures existed in eighteen wordings, and two disagreed.
+
+    The registry's `signature` is what a `:::class` link prints in another book; the
+    class page opened with the same sentence written again. `root`'s registry line said
+    the rule "bends with the answer" and its page did not, so a reader who followed the
+    link met a page that defined the class differently.
+
+    The sentence is now the registry's, verbatim, and the page wraps it after "You have
+    one of these when". Whitespace is normalised because the page wraps its lines and
+    the registry does not; nothing else about the string is allowed to differ.
+    """
+    book = map_book()
+    entry = next(page for page in book.pages if page["path"].startswith(f"{slug}/"))
+    text = " ".join((book.docs / slug / "index.md").read_text(encoding="utf-8").split())
+    signature = " ".join(str(entry["signature"]).split())
+    assert signature in text, (
+        f"{slug}'s page does not print its registry signature.\n"
+        f"  registry: {signature}\n"
+        f"  page:     {text[text.find('You have one of these when') :][:160]}"
+    )
+
+
+def test_a_one_word_edit_on_either_side_is_caught():
+    """The check above is only worth having if it fails on the edit it describes."""
+    entry = {"signature": "a rule has to hold at a point, and the rule bends with the answer."}
+    text = "**You have one of these when** a rule has to hold at a point, and the rule bends with the answer."
+    assert " ".join(entry["signature"].split()) in " ".join(text.split())
+    edited_page = text.replace("bends", "changes")
+    assert " ".join(entry["signature"].split()) not in " ".join(edited_page.split())
+
+
+def test_the_class_directive_capitalises_the_stored_signature():
+    """Stored lowercase because a page prints it after "…when"; capitalised where it
+    stands alone. The stored string is what both places compare, which is the point."""
+    from textbook.hooks import classes
+
+    html = classes.render({"title": "Root finding", "signature": "a rule bends.", "url": "/x/"})
+    assert '<p class="classlink__note">A rule bends.</p>' in html
+
+
+def test_the_linear_system_list_is_one_list_and_the_definition_is_not_in_it():
+    """Item 161: the five situations are the reader's vocabulary, and they were split.
+
+    A definition landed between "Dense and small" and "Sparse and large", so the reader
+    met one item, a paragraph about a preconditioner, then the rest of the list — and
+    the definition sat where a reader scanning a list skips it. One list, and the
+    definition after it.
+    """
+    page = (map_book().docs / "linear-system/index.md").read_text(encoding="utf-8")
+    situations = [
+        "**Dense and small.**",
+        "**Sparse and large.**",
+        "**Symmetric positive definite.**",
+        "**Symmetric indefinite.**",
+        "**Rectangular.**",
+    ]
+    positions = [page.find(item) for item in situations]
+    assert all(position >= 0 for position in positions), "a situation is missing"
+    between = page[positions[0] : positions[-1]]
+    assert "\n\n" not in between, (
+        "something interrupts the five situations; the list is split again"
+    )
+    assert "**preconditioner**" in page[positions[-1] :], (
+        "the preconditioner is still inside the list"
+    )
+
+
+def test_the_three_flags_are_defined_in_prose_not_in_a_table_cell():
+    """Item 166: a flag that changes the method in every class is not a cell.
+
+    The home page summarises the three in a table, and a table cell was the only place
+    any of them was defined: a reader skimming for "stiff" met a cell in a table of flags
+    they were not yet looking for. Each now has a paragraph, and the table stays as the
+    summary.
+    """
+    book = map_book()
+    home = (book.docs / "index.md").read_text(encoding="utf-8")
+    assert "### The three flags, in words" in home
+    for flag in ("**Non-linear.**", "**Stiff.**", "**Geometry not known in advance.**"):
+        assert flag in home, f"the home page does not define {flag}"
+    # each definition is a paragraph, not the row it also appears in
+    prose = home.split("### The three flags, in words", 1)[1]
+    assert prose.count("\n\n") >= 6
+
+
+def test_discretise_is_defined_where_it_is_first_used():
+    """Item 166: `discretise` was used 19 times in this book and defined nowhere."""
+    book = map_book()
+    averaging = (book.docs / "averaging/index.md").read_text(encoding="utf-8")
+    assert "cut into cells and write the rule on each" in averaging
+    first = next(
+        (p for p in sorted(book.docs.rglob("*.md")) if "discretis" in p.read_text(encoding="utf-8")),
+        None,
+    )
+    assert first is not None
+    text = first.read_text(encoding="utf-8")
+    before = text[: text.index("discretis")]
+    assert "cut into cells" in text[text.index("discretis") : text.index("discretis") + 200] or "cut into cells" in before, (
+        f"{first} uses `discretise` before the book defines it"
+    )
+
+
+def test_stiff_is_the_flag_and_the_bush_has_a_stiffness():
+    """Item 166: one word, one meaning. `stiff` of a bush is the engineering sense."""
+    book = map_book()
+    offenders = []
+    for path in sorted(book.docs.rglob("*.md")):
+        text = path.read_text(encoding="utf-8")
+        for match in re.finditer(r"[Hh]ow stiff|stiff (bush|spring)", text):
+            offenders.append(f"{path.relative_to(book.docs)}: {match.group(0)}")
+    assert offenders == [], offenders
+
+
+def test_the_contents_list_is_derived_from_the_headings():
+    """Item 167: the list is the same list the ids come from, so it cannot rot.
+
+    Built from the rendered `<h2 id=…>` headings rather than typed, which is the only
+    reason a 22,773px page can carry an index that stays true when a section is added.
+    A page with four or fewer gets nothing: below that the list is furniture.
+    """
+    from textbook.hooks import contents
+
+    five = "".join(f'<h2 id="h{i}">Section {i}</h2>' for i in range(5))
+    nav = contents.render(five)
+    assert nav.count("<li>") == 5
+    for i in range(5):
+        assert f'href="#h{i}"' in nav
+
+    four = "".join(f'<h2 id="h{i}">Section {i}</h2>' for i in range(4))
+    assert contents.render(four) == ""
+
+    # The directive is in the page, and the page has the headings it lists.
+    book = map_book()
+    techniques = (book.docs / "techniques/index.md").read_text(encoding="utf-8")
+    assert ":::contents" in techniques
+    assert techniques.count("\n## ") >= contents.MINIMUM
+
+
+@pytest.mark.parametrize("slug", CLASSES)
+def test_a_class_page_offers_a_property_keyed_way_into_its_techniques(slug):
+    """Item 168: a reader arrives holding a model, and the table was keyed by method.
+
+    The method-keyed table answers "what does Newton do?"; a reader holding "sparse and
+    symmetric" has to read eleven rows to find the two that fit. The property table comes
+    first and is keyed by the page's own property names, so recognition comes before
+    recall — and every method in the method table has to appear in it, or the two lists
+    have drifted.
+    """
+    page = (map_book().docs / slug / "index.md").read_text(encoding="utf-8")
+    assert "| what your model is | the methods that fit | the price |" in page, slug
+    property_at = page.index("| what your model is |")
+    method_at = page.index("| technique | what it does |")
+    assert property_at < method_at, f"{slug}: the method-keyed table comes first"
+
+    property_rows = page[property_at:method_at]
+    end = page.find("\n## ", method_at)
+    method_rows = page[method_at : end if end > 0 else len(page)]
+    methods = re.findall(r"^\| \[([^\]|]+)\]", method_rows, re.M)
+    assert methods, f"{slug} has no method rows"
+    offered = property_rows.lower()
+    missing = [name for name in methods if name.lower() not in offered]
+    assert missing == [], f"{slug}: the property table does not offer {missing}"
+    # and no row ranks a method
+    assert "best" not in property_rows.lower().replace("best one", ""), slug
+
+
+@pytest.mark.parametrize("slug", CLASSES)
+def test_a_class_page_names_the_class_it_is_most_often_mistaken_for(slug):
+    """Item 169: classification is learned by discriminating near-misses.
+
+    `worked-case` takes one mechanism and five kinds — the right direction. Nothing took
+    one kind and the look-alike a reader will confuse it with, so the map had one axis
+    ("which box am I in") and not the second ("which neighbouring box will I mistake this
+    for"). Each page now carries a **this, not that** row.
+    """
+    book = map_book()
+    page = (book.docs / slug / "index.md").read_text(encoding="utf-8")
+    match = re.search(r"^\*\*([^*]+), not (?:a |an )?([^*]+)\.\*\*", page, re.M)
+    assert match, f"{slug} has no look-alike row"
+    title = next(e["title"] for e in book.pages if e["path"].startswith(f"{slug}/"))
+    assert match.group(1).strip().lower() == title.lower(), (slug, match.group(1))
+    neighbours = {
+        e["title"].lower()
+        for e in book.pages
+        if e.get("signature")
+    }
+    assert match.group(2).strip().lower() in neighbours, (
+        f"{slug} names {match.group(2)!r}, which is not a class"
+    )
+
+
+def test_every_class_names_a_different_look_alike():
+    """Nine pages naming the same neighbour would describe one confusion, not nine."""
+    book = map_book()
+    named = {}
+    for slug in CLASSES:
+        page = (book.docs / slug / "index.md").read_text(encoding="utf-8")
+        match = re.search(r"^\*\*[^*]+, not (?:a |an )?([^*]+)\.\*\*", page, re.M)
+        assert match, slug
+        named[slug] = match.group(1).strip().lower()
+    assert len(set(named.values())) == len(named), f"two classes name the same neighbour: {named}"
+
+
+def test_symptoms_asks_the_reader_to_classify_ten_systems():
+    """Item 170: the systems are written and linked; asking them back is retrieval.
+
+    `Systems that live here` lists 64 systems across nine pages, and on `symptoms` the
+    reader is already holding a wrong answer — the one moment they are most motivated.
+    Ten natively-disclosed questions, the system as the summary and the class as the
+    answer, turn the list into practice with feedback and need no script.
+    """
+    book = map_book()
+    page = (book.docs / "symptoms/index.md").read_text(encoding="utf-8")
+    questions = re.findall(
+        r'<details markdown="1">\s*<summary>(.*?)</summary>\s*\n+\s*\[([^\]]+)\]\(\.\./([a-z-]+)/\)',
+        page,
+        re.S,
+    )
+    assert len(questions) >= 10, f"symptoms asks {len(questions)} questions"
+
+    classes = {e["title"]: e["path"].split("/")[0] for e in book.pages if e.get("signature")}
+    for summary, label, slug in questions:
+        assert label in classes and classes[label] == slug, f"{summary!r} names {label!r}"
+
+    # every question's system is one the class page actually lists
+    for summary, _label, slug in questions:
+        systems = re.search(
+            r"## Systems that live here\n(.*?)\n## ",
+            (book.docs / slug / "index.md").read_text(encoding="utf-8"),
+            re.S,
+        )
+        assert systems, f"{slug} has no systems list"
+        items = " ".join(systems.group(1).split()).lower()
+        # A summary is the start of the list's own sentence: the question is the system,
+        # shortened to what fits on a phone, not a second wording of it.
+        assert items.count(summary.strip().lower()) >= 1, (
+            f"the {slug} page does not list {summary!r}"
+        )
+
+
+def test_the_name_index_lists_every_method_once_and_links_its_entry():
+    """Item 173: the A–Z is entered by name and sorted by family, so a name had no route.
+
+    The index is generated from the page's own `h3` anchors, sorted by display name and
+    grouped by initial letter. Every entry appears exactly once, and every link resolves to
+    an anchor the page carries — the two ways an index rots.
+    """
+    from textbook.hooks import contents
+
+    book = map_book()
+    page = (book.docs / "techniques/index.md").read_text(encoding="utf-8")
+    assert ":::method-index" in page
+
+    # build the same page the hook sees, from the method headings it carries
+    headings = re.findall(r'<a id="([\w-]+)"></a>\n+### (.+)', page)
+    assert len(headings) >= 20, f"only {len(headings)} method headings found"
+    html = "".join(f'<h3 id="{anchor}">{title}</h3>' for anchor, title in headings)
+    nav = contents.render_methods(html)
+    assert nav.count("<a href=") == len(headings), "the index does not list every method"
+    for anchor, _title in headings:
+        assert nav.count(f'href="#{anchor}"') == 1, f"{anchor} appears {nav.count(f'href=\"{anchor}\"')} times"
+
+    # sorted by display name, within and across letters
+    names = [re.sub(r"<[^>]+>", "", n) for n in re.findall(r'href="#[^"]+">([^<]+)</a>', nav)]
+    assert names == sorted(names, key=str.lower), "the index is not alphabetical"
+
+
+def test_the_system_index_is_derived_from_the_class_pages():
+    """Item 174: 64 systems were written and linked, and nothing went system → class.
+
+    A reader holding "incompressible flow" had to guess which of nine pages listed it.
+    The index is built from the class pages' own *Systems that live here* lists, so adding
+    a system to a class page adds it here with no second edit — and the test counts both.
+    """
+    from textbook import classmap
+    from textbook.hooks import systems
+
+    book = map_book()
+    config = None  # `entries` reads the registry and the book from the build config
+    from textbook import config as cfg
+
+    config = cfg.from_parts(book.docs, book=book, profile=book.default_profile.id)
+    rows = systems.entries(config)
+    assert rows, "the system index is empty"
+
+    listed = 0
+    for slug in CLASSES:
+        section = re.search(
+            r"## Systems that live here\n(.*?)\n## ",
+            (book.docs / slug / "index.md").read_text(encoding="utf-8"),
+            re.S,
+        )
+        assert section, f"{slug} has no systems list"
+        listed += len(
+            [
+                line
+                for line in section.group(1).splitlines()
+                if line.startswith("- ")
+            ]
+        )
+    assert len(rows) == listed, f"the index has {len(rows)} systems, the pages list {listed}"
+
+    registry = classmap.entries(config)
+    urls = {entry["url"] for entry in registry.values()}
+    for system, title, href in rows:
+        assert href in urls, f"{system!r} links {href!r}, which is not a class"
+        assert title in {entry["title"] for entry in registry.values()}
+
+    page = (book.docs / "systems/index.md").read_text(encoding="utf-8")
+    assert ":::systems" in page

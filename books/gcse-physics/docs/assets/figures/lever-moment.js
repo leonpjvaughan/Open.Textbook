@@ -82,8 +82,8 @@ export function mount(el) {
       `<polygon points="${PIVOT},${BEAM + 6} ${PIVOT - 14},${BEAM + 30} ${PIVOT + 14},${BEAM + 30}" class="fig-grid"></polygon>` +
       `<line x1="${loadX.toFixed(1)}" y1="${BEAM - 24}" x2="${PIVOT}" y2="${BEAM - 24}" class="fig-grid" stroke-dasharray="3 3"></line>` +
       `<line x1="${PIVOT}" y1="${BEAM - 44}" x2="${effortX.toFixed(1)}" y2="${BEAM - 44}" class="fig-grid" stroke-dasharray="3 3"></line>` +
-      `${label({ x: ((loadX + PIVOT) / 2).toFixed(1), y: BEAM - 28, text: `${quantity(loadDistance, "m", 2)}`, anchor: "middle", size: SIZE.tick, class: "text-ink" })}` +
-      `${label({ x: ((PIVOT + effortX) / 2).toFixed(1), y: BEAM - 48, text: `${quantity(effortDistance, "m", 2)}`, anchor: "middle", size: SIZE.tick, class: "text-ink" })}` +
+      `${label({ x: ((loadX + PIVOT) / 2).toFixed(1), y: 24, text: `${quantity(loadDistance, "m", 2)}`, anchor: "middle", size: SIZE.tick, class: "text-ink" })}` +
+      `${label({ x: ((PIVOT + effortX) / 2).toFixed(1), y: BEAM - 42, text: `${quantity(effortDistance, "m", 2)}`, anchor: "middle", size: SIZE.tick, class: "text-ink" })}` +
       forceArrow(loadX, `${load} N`, "fig-warn") +
       forceArrow(effortX, `${Math.round(effort)} N`, "fig-accent");
 

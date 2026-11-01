@@ -40,6 +40,8 @@ opposite and the hypotenuse in each, and divide. The two answers are equal. This
 fact the whole chapter rests on.
 
 > **The trigonometric ratios.** For an angle $\theta$ in a right triangle,
+>
+>
 > $$\sin\theta = \frac{\text{opposite}}{\text{hypotenuse}} \qquad
 > \cos\theta = \frac{\text{adjacent}}{\text{hypotenuse}} \qquad
 > \tan\theta = \frac{\text{opposite}}{\text{adjacent}}$$

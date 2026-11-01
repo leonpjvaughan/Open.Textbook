@@ -64,6 +64,7 @@ toss, and the tosses are independent. There are 8 tosses, so
 $$
 X \sim B\left(8, \tfrac12\right).
 $$
+
 </details>
 
 **2.** The probabilities for a discrete random variable $X$ are $0.15$, $0.25$,
@@ -89,6 +90,7 @@ The probabilities add to 1, so
 $$
 k = 1 - (0.15 + 0.25 + 0.35) = 1 - 0.75 = 0.25.
 $$
+
 </details>
 
 **3.** The random variable $X \sim B(5, 0.3)$. Find $P(X = 3)$.
@@ -124,6 +126,7 @@ Multiply:
 $$
 P(X = 3) = 10 \times 0.027 \times 0.49 = 0.1323.
 $$
+
 </details>
 
 **4.** A bag holds 4 red counters and 2 blue counters. Two counters are taken
@@ -183,6 +186,7 @@ Multiply the fractions:
 $$
 P(X = 1) = \tfrac{32}{81} \approx 0.3951.
 $$
+
 </details>
 
 **6.** The random variable $X \sim B(6, \tfrac14)$. Find $P(X = 2)$, and explain
