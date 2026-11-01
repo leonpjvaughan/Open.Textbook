@@ -85,6 +85,7 @@ with its price and what it will not do.
 of you, the methods that fit it, and what the fit costs. The method-keyed table
 below is the same list sorted by name.
 
+<!-- table: cards -->
 | what your model is | the methods that fit | the price |
 |---|---|---|
 | the largest eigenvalue, and a matrix you can multiply | Power iteration | one eigenvalue, and it may converge slowly |
@@ -109,8 +110,8 @@ below is the same list sorted by name.
 
 ## Systems that live here
 
-- The bounce and wheel-hop frequencies of a quarter car — one mass or two, and
-  the answer changes when the second mass is added.
+- The bounce and wheel-hop frequencies of a quarter car: one mass or two changes
+  the answer.
 - Buckling of a chassis member: the smallest load at which it gives way.
 - Brake squeal and flutter: a complex eigenvalue with a positive real part.
 - Linear stability of a flow, where the eigenvalues of the linearised operator
@@ -121,6 +122,7 @@ below is the same list sorted by name.
 
 ## What goes wrong
 
+<!-- table: cards -->
 | symptom | cause | fix |
 |---|---|---|
 | A complex eigenvalue arrives and the code assumed real | The matrix is non-symmetric | Complex arithmetic, or work with the real block |

@@ -10,19 +10,23 @@ kind: walkthrough
 
 # 1.6 Mass and dampers
 
+:::contents
+
 
 ## The question the first five sections could not ask
 
 Every model so far has answered a question about a **position**. Where is the
-wheel, at what angle, when the car is settled?Nothing in [§1.2] to [§1.5] had a
-mass in it, and nothing had a rate of change in it. So nothing in them could say
+wheel, at what angle, when the car is settled? Nothing in
+[§1.2](../../section-1.2/learn/) to [§1.5](../../section-1.5/learn/) had a mass in
+it, and nothing had a rate of change in it. So nothing in them could say
 anything about *speed*.
 
 But a wheel travelling over a bump is not settled. It arrives, it is pushed, it
 overshoots, and it settles. During that, the camber is not the camber of the
-steady table in [§1.2]. It is somewhere else, and it is somewhere else *because
-of* the mass of the wheel and the spring that holds it. A damper would change
-how it settles, and this section will say what that would take.
+steady table in [§1.2](../../section-1.2/learn/). It is somewhere else, and it is
+somewhere else *because of* the mass of the wheel and the spring that holds it. A
+damper would change how it settles, and this section will say what that would
+take.
 
 That is a different question, and it needs a different model.
 
@@ -37,12 +41,12 @@ longer have to balance: they have to *accelerate* things. The equations become
 $$ M\ddot{q} + C\dot{q} + \Phi_q^{\mathsf{T}}\lambda = Q, \qquad \Phi(q) = 0, $$
 
 where $q$ collects the positions, $M$ is the mass matrix, $C$ is the damping,
-$J$ is the Jacobian of the constraints and $f$ holds the applied forces. The
-constraint set from [§1.2] is $g$, and $J^{\mathsf T}\lambda$ holds the forces
-that keep the constraints true — the force in the ball joint, the force the
-wishbone carries. That is a **differential-algebraic** system: differential
-equations for the motion, algebraic equations for the constraints, solved
-together.
+$Q$ holds the applied forces, and $\Phi(q) = 0$ is the constraint set from
+[§1.2](../../section-1.2/learn/). Its Jacobian is $\Phi_q$, and
+$\Phi_q^{\mathsf T}\lambda$ holds the forces that keep the constraints true — the
+force in the ball joint, the force the wishbone carries. That is a
+**differential-algebraic** system: differential equations for the motion,
+algebraic equations for the constraints, solved together.
 
 That structure has a name, and it changes the method. The constraint is enforced
 by an unknown force, so the state and the forces are solved as one system.
@@ -106,7 +110,8 @@ into bump and back, once every **0.625 s**. That is a frequency of **1.6 Hz**,
 with the same peak every time — a number no static model can produce.
 
 The numbers come from the package's own solver, quoted with its sign convention.
-Camber is positive with the top of the wheel outboard, the opposite of [§1.2].
+Camber is positive with the top of the wheel outboard, the opposite of
+[§1.2](../../section-1.2/learn/).
 
 | | |
 |---|---|
@@ -130,22 +135,22 @@ linkage. At 10⁻¹⁵ m it is round-off, not a stretched arm.
 ## The agreement this section owes
 
 The chapter's rule is that a model earns its place by failing, and that
-agreement is a number.[§1.6]'s agreement is the one this model can state. **At
-any moment, the dynamic model's camber is the static model's camber at the same
-travel.****
+agreement is a number. This section's agreement is the one this model can state.
+**At any moment, the dynamic model's camber is the static model's camber at the
+same travel.**
 
 It is, to **0.001°**. At the instant the wheel is 72.35 mm into bump, the
 dynamic model gives −2.079° and the package's static model at that travel gives
-−2.079°.The same holds anywhere in the swing, because the geometry and the
+−2.079°. The same holds anywhere in the swing, because the geometry and the
 constraints are the same model. What the masses and the forces add is *time*,
 not a different linkage.
 
-There is a second comparison here, and it is the one worth keeping.**[§1.2]'s
-front view is 0.94° from the static model at that travel**, not 0.001°. It is a
-projection: accurate near the design position, and not far from it. Within the
-chapter's 80 mm the two agree to 0.033°; at 72 mm the front view is already a
-degree out. The small model is not wrong; it is *bounded*, and the bound is the
-number.
+There is a second comparison here, and it is the one worth keeping.
+**[§1.2](../../section-1.2/learn/)'s front view is 0.94° from the static model at
+that travel**, not 0.001°. It is a projection: accurate near the design position,
+and not far from it. Within the chapter's 80 mm the two agree to 0.033°; at 72 mm
+the front view is already a degree out. The small model is not wrong; it is
+*bounded*, and the bound is the number.
 
 A third test is the sharper one, and this model cannot run it. As the masses go
 to zero, the dynamic model must become the algebraic one, exactly, at any
@@ -157,7 +162,7 @@ can answer.
 ## One trajectory, or a family of them
 
 The run above is one stiffness. The section's point is that the stiffness
-decides the motion.A reader can watch that happen instead of taking it on trust.
+decides the motion. A reader can watch that happen instead of taking it on trust.
 The control below sets the coil's stiffness, and the engine re-runs in this
 page.
 
@@ -165,10 +170,10 @@ page.
 
 The two controls change two numbers the model takes at run time, and they do
 different things. **Stiffness changes the period**: across its range the swing
-shortens from about 0.48 s to about 0.16 s, and the chassis stops falling so
-far.**A sideways load changes where the corner sits.** It moves the resting
-height without touching the period, because a constant force shifts the answer
-rather than the dynamics.
+shortens from about 0.48 s to about 0.16 s, and the chassis stops falling so far.
+**A sideways load changes where the corner sits.** It moves the resting height
+without touching the period, because a constant force shifts the answer rather
+than the dynamics.
 
 Each column is an integration, not a recording, and the first column is the
 example's own answer — its own stiffness and no load. The constraint column

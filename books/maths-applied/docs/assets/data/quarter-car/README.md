@@ -31,7 +31,7 @@ them because it lives outside the model directory: a release that changed what
 | `constraints.yaml` | `fd35357ac45c8d77b9225caa8fc036c42f7d79f1952bf642bd24ca6b25513038` |
 
 The first, second and fourth are the release's own bytes, and the test compares
-them with `../otkd/models/quarter-car/source/`.The third is **not**. The study
+them with `../otkd/models/quarter-car/source/`. The third is **not**. The study
 is the one file this book replaces, so it is the digest of the 3.0 s file beside
 it — the package ships 0.5 s. A check compares that row with that file rather
 than the bundle.py` checks that row against that file rather than the bundle.

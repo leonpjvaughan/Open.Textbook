@@ -46,9 +46,9 @@ where $J$ is the Jacobian. This is Newton's method, and everything else in the
 box is a way of doing it more safely or more cheaply.
 
 A closed form is a root solution too. Iteration is the usual method when the
-rule cannot be rearranged, not a requirement of the class. `Maths Applied`
-§1.2's two circles meeting is the counterexample: it is a root problem solved in
-one closed-form step.
+rule cannot be rearranged, not a requirement of the class. The two circles
+meeting in [§1.2 of Maths Applied](/maths-applied/chapter-1/section-1.2/learn/)
+is the counterexample: it is a root problem solved in one closed-form step.
 
 Two things decide whether you get an answer: **the start**, and **the number of
 solutions**. Newton is fast near a solution and unreliable away from one. A

@@ -87,6 +87,7 @@ with its price and what it will not do.
 of you, the methods that fit it, and what the fit costs. The method-keyed table
 below is the same list sorted by name.
 
+<!-- table: cards -->
 | what your model is | the methods that fit | the price |
 |---|---|---|
 | a constant coefficient, and a small mesh | Sparse direct (Cholesky, LU) | cubic in the unknowns |
@@ -116,17 +117,14 @@ below is the same list sorted by name.
 - Potential flow around a body.
 - Linear elasticity: the stress in a loaded bracket.
 - Groundwater flow through soil.
-- The pressure equation inside an incompressible flow solver — but the
-  *constraint* that produces it is a saddle point, and the pressure equation is
-  how that constraint is paid.
-- The elliptic coordinate conditions in numerical relativity, in the
-  formulations where they cannot be evolved — the lapse equation among them,
-  which
-  [The class is a choice](../choosing-the-class/#the-same-equations-classified)
-  puts through the test beside its hyperbolic version.
+- The pressure equation inside an incompressible flow solver, which is how a
+  [saddle point](../saddle-point/index.md) constraint is paid.
+- The elliptic coordinate conditions in numerical relativity — the lapse
+  equation among them.
 
 ## What goes wrong
 
+<!-- table: cards -->
 | symptom | cause | fix |
 |---|---|---|
 | The iteration count grows as the mesh is refined | No preconditioner, or a smoother used alone | Multigrid, or AMG |
@@ -149,6 +147,9 @@ below is the same list sorted by name.
 - [Parabolic](../parabolic/index.md) — the same operator, with time put back in.
 - [Reading the class off the equation](../reading-the-class/index.md) — the one
   number that says an equation like this one is elliptic.
+- [The class is a choice](../choosing-the-class/index.md) — the relativity
+  conditions in a formulation that can be evolved, and the one sign that decides
+  it.
 - [When it goes wrong](../symptoms/index.md) — the symptom table for every
   class.
 

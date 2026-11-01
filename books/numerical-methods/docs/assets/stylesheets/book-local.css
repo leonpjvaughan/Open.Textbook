@@ -144,54 +144,11 @@
   .md-typeset table.table--cards td:nth-child(4) { width: 32%; }
 }
 
-@media (max-width: 60rem) {
-  .md-typeset table.table--cards,
-  .md-typeset table.table--cards tbody,
-  .md-typeset table.table--cards tr,
-  .md-typeset table.table--cards td {
-    display: block;
-    width: auto;
-  }
-
-  /* The header row is the card's labels, so it is not printed as a row of its own. */
-  .md-typeset table.table--cards thead {
-    position: absolute;
-    width: 1px;
-    height: 1px;
-    overflow: hidden;
-    clip-path: inset(50%);
-    white-space: nowrap;
-  }
-
-  /* **A label and its value on one line.** Stacking the label above its value cost a
-   * line per field, and four stacked lines cannot fit the item's 140px: the tallest card
-   * measured 254px and the floor before any prose wrapped was 185. Inline, the card is
-   * the heading plus the three fields' own wrapped lines. */
-  .md-typeset table.table--cards tr {
-    padding: 0.15rem 0;
-    border-top: 1px solid var(--tb-rule);
-  }
-
-  .md-typeset table.table--cards tr:first-child { border-top: 0; }
-
-  .md-typeset table.table--cards td {
-    padding: 0.05rem 0;
-    border: 0;
-    font-size: 0.78rem;
-    line-height: 1.3;
-  }
-
-  .md-typeset table.table--cards td::before {
-    display: inline;
-    content: attr(data-label) ": ";
-    color: var(--tb-ink-soft);
-    font-size: 0.7rem;
-  }
-
-  /* The kind is the card's heading: its own label would only repeat its name. */
-  .md-typeset table.table--cards td:first-child {
-    font-size: 0.92rem;
-    font-weight: 600;
-  }
-
-  .md-typeset table.table--cards td:first-child::before { content: none; }
+/* The phone card layout for `<!-- table: cards -->` is in `assets/stylesheets/extra.css`.
+ *
+ * It was written here first, for the nine-kinds grid, and living in this book's local
+ * stylesheet meant the engine's marker did nothing in any other book: the class was
+ * emitted, no rule matched, and a page that had been marked looked untouched. The
+ * layout is a property of the marker, so it is shared. What stays here is what is about
+ * *this* table — the wider content column and the four column widths above.
+ */

@@ -14,6 +14,7 @@ and this page is about the kinds, not about the corner.
 
 ## The five questions
 
+<!-- table: cards -->
 | question | the model | the class | what a solve costs |
 |---|---|---|---|
 | Where is the wheel? | two circles and a rigid upright | [root finding](../root/index.md) | one closed-form step, no iteration |
@@ -35,9 +36,11 @@ their pages say so under **Used in this collection**. The last row above is one
 of them: a question the chapter names and does not reach. The stiffness sweep
 below is an [optimisation](../optimisation/index.md), and the bounce is a
 [stability eigenvalue](../eigenvalue/index.md). `Maths Applied` names both where
-the class becomes true: §1.5 for the stiffness that meets a tolerance, §1.6 for
-the frequencies the motion repeats at. The remaining three wait for a chapter
-that poses a field problem or one that adds a damper.
+the class becomes true:
+[§1.5](/maths-applied/chapter-1/section-1.5/learn/) for the stiffness that meets
+a tolerance, [§1.6](/maths-applied/chapter-1/section-1.6/learn/) for the
+frequencies the motion repeats at. The remaining three wait for a chapter that
+poses a field problem or one that adds a damper.
 
 ## Where is the wheel: root finding
 
@@ -78,6 +81,7 @@ four stiffnesses, and `Maths Applied`
 [§1.5](/maths-applied/chapter-1/section-1.5/learn/) prints the same ladder from
 the same model:
 
+<!-- table: cards -->
 | bush stiffness | camber at rest | difference at rest | change over the travel |
 |---|---|---|---|
 | 0.2 MN/m | −1.91° | −0.91° | 1.96° |

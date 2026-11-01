@@ -92,6 +92,7 @@ with its price and what it will not do.
 of you, the methods that fit it, and what the fit costs. The method-keyed table
 below is the same list sorted by name.
 
+<!-- table: cards -->
 | what your model is | the methods that fit | the price |
 |---|---|---|
 | a linear constraint, and you can factorise the block | Sparse direct with pivoting, Schur complement | the fill is the cost |
@@ -139,6 +140,7 @@ pressure cannot develop the checkerboard pattern the table below names.
 
 ## What goes wrong
 
+<!-- table: cards -->
 | symptom | cause | fix |
 |---|---|---|
 | The pressure has a checkerboard pattern | The velocity and pressure spaces do not fit together | An LBB-stable pair, or stabilisation |

@@ -42,7 +42,7 @@ it with what the question needs, and check that the comparison is with the
 quantity the question is about.**
 
 The compliant rows are the package's own ladder, vendored with the bundle and
-checked against it by `tests/test_maths_applied_ladder.py`.The page's front view
+checked against it by `tests/test_maths_applied_ladder.py`. The page's front view
 is the same experiment — same geometry, same load at the same point. Its own
 ladder lands within **0.04°** of these rows, which is inside the tenth of a
 degree this chapter asked for.

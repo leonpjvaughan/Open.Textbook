@@ -60,10 +60,10 @@ stiffness, no limit. A rubber bush is only linear for a fraction of a
 millimetre, and it stiffens as it is pushed further.
 
 So the compliant model is a **linearisation**, and its accuracy is the accuracy
-of that line over the deflections it predicts.[§1.5]'s own numbers are the
-check. At 1 MN/m the bush deflects 1.2 mm, which is inside a rubber bush's
-linear range. At 0.2 MN/m it deflects 6.1 mm, which is not, and the answer there
-is a direction rather than a value.
+of that line over the deflections it predicts. [§1.5](../../../section-1.5/learn/)'s
+own numbers are the check. At 1 MN/m the bush deflects 1.2 mm, which is inside a
+rubber bush's linear range. At 0.2 MN/m it deflects 6.1 mm, which is not, and
+the answer there is a direction rather than a value.
 
 That is worth saying plainly, because it is the sort of limit a reader can use.
 A model is not discredited by having a range. It is discredited by not saying

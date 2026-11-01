@@ -10,6 +10,8 @@ kind: walkthrough
 
 # 1.5 Bushes are not rigid
 
+:::contents
+
 ## What the rigid model could not know
 
 [§1.2](../../section-1.2/learn/) assumed the joints do not move. A car's joints
@@ -54,7 +56,7 @@ $$ \frac{\partial E}{\partial \alpha} = 0, \qquad \frac{\partial E}{\partial
 Two equations, two unknowns. **No time, no differential equation, nothing that
 has to be integrated.** Stiffen the spring, and the two ends of the bush are
 forced together until they cannot separate. That is the rigid joint, and
-therefore [§1.2]'s model.
+therefore [§1.2](../../section-1.2/learn/)'s model.
 
 No searching and no solving for the best of anything. The bush settles where the
 two forces agree, and finding it is a root-finding loop with two unknowns.
@@ -75,6 +77,7 @@ Drag the stiffness up. The dashed curve — the model with a bush — moves towa
 the solid one, and the gap at rest closes with it. Nothing else changes: same
 load, same geometry, same travel.
 
+<!-- table: cards -->
 | Bush stiffness | Bush deflection | Camber at rest | Difference at rest | Change over the travel |
 |---|---|---|---|---|
 | 0.2 MN/m | 6.1 mm | −1.91° | −0.91° | 1.96° |
@@ -96,7 +99,7 @@ stiffnesses rather than at one convenient value.
 Look at the last column, though, because it is the surprise. The bush mostly
 **moves** the curve rather than tilting it. The load is constant, so the
 deflection is roughly constant, and the camber change over the travel barely
-notices.A soft bush of 0.2 MN/m shifts the whole curve by about a degree. The
+notices. A soft bush of 0.2 MN/m shifts the whole curve by about a degree. The
 change over the travel moves by five hundredths of a degree, from 1.96° at 0.2
 MN/m to 1.91° at 100 MN/m.
 
@@ -139,7 +142,7 @@ that happens to be nearby.
 
 Here the two thresholds are 1.85 MN/m for the wheel's angle and 0.034 MN/m for
 the change over the travel. They are more than fifty times apart, and the
-exported ladder's softest row sits comfortably inside the second.A reader who
+exported ladder's softest row sits comfortably inside the second. A reader who
 took the wrong one would throw away a model that answers the question. Or they
 would trust a model that misses it by a degree. That is why this section is the
 centre of the chapter rather than an appendix to it.
@@ -235,7 +238,7 @@ nothing and look reassuring. The number to look for is the deflection, and the
 figure prints it. At the two ends of its control, 0.1 and 20 MN/m, the bush
 moves 12 mm and 0.06 mm.
 
-The second trap is thinking that "more complex" means "more correct".Which model
+The second trap is thinking that "more complex" means "more correct". Which model
 answers the question depends on which quantity the tolerance is attached to.
 This chapter has shown two answers more than fifty times apart. A stiffness you
 have to guess is a new source of error, not a removed one. A model that needs

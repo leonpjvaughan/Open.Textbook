@@ -60,8 +60,9 @@ solution and a convergence table are verification.
 
 **Validation** asks whether the equations describe the world. No amount of
 convergence answers that. A model can be verified to machine precision and still
-be the wrong model, which is why the agreement panels in `Maths Applied` compare
-two models rather than one model with itself.
+be the wrong model, which is why the agreement panels in
+[`Maths Applied`](/maths-applied/) compare two models rather than one model with
+itself.
 
 **The check.** The 2-by-2 system below has condition number about $10^6$. A
 perturbation of $10^{-10}$ in one entry of $b$ produces a relative error of

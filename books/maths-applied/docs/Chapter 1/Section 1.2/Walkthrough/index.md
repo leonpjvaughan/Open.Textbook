@@ -10,6 +10,8 @@ kind: walkthrough
 
 # 1.2 One rigid triangle
 
+:::contents
+
 ## What the model assumes
 
 The first model makes two claims and no more.
@@ -109,6 +111,7 @@ and the readout gives the number.
 
 ## What the model says
 
+<!-- table: cards -->
 | Wheel travel | Lower arm turns | Camber | Instant centre | Roll centre |
 |---|---|---|---|---|
 | −40 mm | −5.4° | −1.87° | 2.21 m inboard, 0.30 m up | 47 mm |
@@ -141,7 +144,8 @@ rises.
 
 Every section after this one ends with a panel of numbers. This one has three
 routes to the same answer. They are the two-circle construction above, the
-general Newton iteration that [§1.3] meets, and the package's compiled kernel.
+general Newton iteration that [§1.3](../../section-1.3/learn/) meets, and the
+package's compiled kernel.
 
 | Check | Value |
 |---|---|

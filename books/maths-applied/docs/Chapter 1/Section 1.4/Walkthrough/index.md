@@ -10,6 +10,8 @@ kind: walkthrough
 
 # 1.4 The redundancy was ours
 
+:::contents
+
 ## The question this section answers
 
 [§1.3](../../section-1.3/learn/) ended with a model that had three equations for
@@ -77,10 +79,10 @@ that matrix.
 
 :::class linear-system
 
-**Deleting a row is only safe when it is the spare one. Delete a row that carries
-information and the model changes silently. The answer is still a number, still
-looks plausible, and is the answer to a different question. The decomposition is
-what makes the choice visible.
+**Deleting a row is only safe when it is the spare one.** Delete a row that
+carries information and the model changes silently. The answer is still a
+number, still looks plausible, and is the answer to a different question. The
+decomposition is what makes the choice visible.
 
 ## In three dimensions the legs come apart
 
@@ -101,7 +103,7 @@ that the decision you made was the one you thought you made.
 
 ## The front view is an idealisation, and worth a number
 
-One loose end, stated because the chapter's method is to state it.A projection
+One loose end, stated because the chapter's method is to state it. A projection
 of a triangle is not a triangle with the same edges. The upper arm in this
 chapter's front view is 0.30336 m long, and the two legs of the real wishbone
 are 0.31875 m and 0.32016 m. The view's single arm is shorter than either leg, by

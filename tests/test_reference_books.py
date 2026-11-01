@@ -1452,3 +1452,40 @@ def test_the_system_index_is_derived_from_the_class_pages():
 
     page = (book.docs / "systems/index.md").read_text(encoding="utf-8")
     assert ":::systems" in page
+
+
+#: A system is a name, not a paragraph. The catalogue's median entry is 58 characters, and
+#: the three that were over this were the ones whose cell had become a page in a table:
+#: 342 characters of explanation of one Jacobian, sat beside sixty systems that are a noun
+#: phrase. The rule is measured, not chosen: 120 leaves room for a name and one clause,
+#: which is what the longest honest row (111, linear stability of a flow) needs.
+MAX_SYSTEM = 120
+
+
+def test_a_system_entry_is_a_name_not_a_paragraph_with_markup():
+    """The index prints plain text, so it must be given plain text.
+
+    Two failures were live when this was written, and both were the derived page doing
+    what a derived page does — inheriting the source's raw characters. One bullet carried
+    ``**161 are not zero**`` and another a ``code span``; the class page rendered them,
+    and the index printed the asterisks and the backticks to the reader.
+    """
+    from textbook import config as cfg
+    from textbook.hooks import systems
+
+    book = map_book()
+    config = cfg.from_parts(book.docs, book=book, profile=book.default_profile.id)
+    rows = systems.entries(config)
+
+    marked = [system for system, _title, _href in rows if re.search(r"[*`$\[\]]", system)]
+    assert not marked, (
+        "a system entry carries a mark the index cannot render:\n  " + "\n  ".join(marked)
+    )
+
+    long = [(len(system), system) for system, _title, _href in rows if len(system) > MAX_SYSTEM]
+    assert not long, (
+        f"a system entry is longer than {MAX_SYSTEM} characters, so the index has a "
+        "paragraph in a name's place. Name the system and move the explanation to the "
+        "class page's prose:\n  "
+        + "\n  ".join(f"{n}: {s[:90]}" for n, s in sorted(long, reverse=True))
+    )
