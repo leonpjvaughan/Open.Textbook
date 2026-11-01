@@ -7,8 +7,9 @@ title: Eigenvalues
 **You have one of these when** you ask which values are allowed — which
 frequencies, which loads, which energies — rather than what any one of them is.
 
-**Eigenvalues, not parabolic.** The answer is a set of allowed values, fixed
-once the matrix is written. A parabolic answer moves forward in time.
+**Eigenvalues, not [parabolic](../parabolic/).** The answer is a set of allowed
+values, fixed once the matrix is written. A parabolic answer moves forward in
+time.
 
 ## What you are modelling
 

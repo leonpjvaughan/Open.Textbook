@@ -7,8 +7,9 @@ title: Hyperbolic
 **You have one of these when** information travels at a finite speed along
 paths, and what arrives keeps the shape of what was sent.
 
-**Hyperbolic, not elliptic.** Information travels at a finite speed and arrives.
-In an elliptic problem nothing travels, and the answer is already settled.
+**Hyperbolic, not [elliptic](../elliptic/).** Information travels at a finite
+speed and arrives. In an elliptic problem nothing travels, and the answer is
+already settled.
 
 ## What you are modelling
 

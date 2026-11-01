@@ -21,7 +21,7 @@ Nobody holds seventy-seven method entries in their head. Nine kinds is a
 different size of task. Learn the nine, and each method becomes a lookup
 inside a kind you already understand, chosen by a circumstance you can name.
 
-## Three ways in
+## Four ways in
 
 - **You have a model and no idea what it is.** Start with the nine kinds below,
   and read the last column before the others.

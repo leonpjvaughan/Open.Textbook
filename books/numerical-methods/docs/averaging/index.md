@@ -7,8 +7,8 @@ title: Averaging
 **You have one of these when** the answer is not a number but a distribution, or
 an average over possibilities you cannot list.
 
-**Averaging, not root finding.** The answer is a distribution, or a number with
-an error bar. A root is the point where a rule comes out zero.
+**Averaging, not [root finding](../root/).** The answer is a distribution, or a
+number with an error bar. A root is the point where a rule comes out zero.
 
 ## What you are modelling
 
@@ -62,9 +62,9 @@ $1/\sqrt{N}$, and the dashed line is the value the method cannot see.
 
 ## The signature
 
-The answer is an estimate. There is no equilibrium to solve and no region to
-discretise — that is, no region to cut into cells and write the rule on each.
-There is a sample, a variance, and a convergence rate you can measure.
+The answer is an estimate. There is no equilibrium to solve, and no region to
+cut into cells and write the rule on each — nothing to discretise. There is a
+sample, a variance, and a convergence rate you can measure.
 
 ## Flags that matter here
 
