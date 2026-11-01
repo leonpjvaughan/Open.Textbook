@@ -19,7 +19,7 @@ mass in it, and nothing had a rate of change in it. So nothing in them could say
 anything about *speed*.
 
 But a wheel travelling over a bump is not settled. It arrives, it is pushed, it
-overshoots, and it settles.During that, the camber is not the camber of the
+overshoots, and it settles. During that, the camber is not the camber of the
 steady table in [§1.2]. It is somewhere else, and it is somewhere else *because
 of* the mass of the wheel and the spring that holds it. A damper would change
 how it settles, and this section will say what that would take.
@@ -65,7 +65,7 @@ is the next model, not this one.
 - **The natural frequencies.** How the wheel hops, and how the body heaves, are
   numbers a model with mass can predict and a model without one cannot.
 
-How fast it hops is not a separate calculation.The frequencies at which the
+How fast it hops is not a separate calculation. The frequencies at which the
 motion repeats are carried by the same equations, as their eigenvalues. The step
 has to be short compared with the fastest of them. Asking which change makes one
 of those frequencies unstable is a different kind of problem from solving for
@@ -85,7 +85,7 @@ the motion.
 
 With mass in and no damper, the model is **conservative**: it moves forward in
 time and keeps its energy rather than forgetting where it started. The map files
-that structure as the **Hamiltonian flag**, not as a kind of its own.The flag is
+that structure as the **Hamiltonian flag**, not as a kind of its own. The flag is
 described on the [hyperbolic page], which this section does not name as a class.
 The quarter car is an oscillator, not a wave.
 
@@ -101,7 +101,7 @@ under its own weight and the spring pulls it back.
 That is the whole difference. [§1.2](../../section-1.2/learn/)'s table answers
 "where is the wheel when it is settled"; this answers "what is it doing on the
 way there". And in this model it never arrives: there is a spring and no damper,
-so the motion repeats.The wheel travels from the design position to **212.8 mm**
+so the motion repeats. The wheel travels from the design position to **212.8 mm**
 into bump and back, once every **0.625 s**. That is a frequency of **1.6 Hz**,
 with the same peak every time — a number no static model can produce.
 
@@ -184,13 +184,13 @@ with it. The step is part of the model, in the same way the stiffness is.
 None of the numbers above was typed. The package derives the equations with
 sympy: the mass matrix, the velocity-product term that `M q̈ = f` leaves out,
 and the forces are in
-[`otkd/problem/dynamics.py`](https://github.com/leonpjvaughan/Open.Textbook/blob/main/solvers/otkd/src/open_textbook/otkd/problem/dynamics.py).
+[`otkd/problem/dynamics.py`](https://github.com/leonpjvaughan/Open. Textbook/blob/main/solvers/otkd/src/open_textbook/otkd/problem/dynamics.py).
 Then
-[`otkd/emitters/wasm.py`](https://github.com/leonpjvaughan/Open.Textbook/blob/main/solvers/otkd/src/open_textbook/otkd/emitters/wasm.py)
+[`otkd/emitters/wasm.py`](https://github.com/leonpjvaughan/Open. Textbook/blob/main/solvers/otkd/src/open_textbook/otkd/emitters/wasm.py)
 factorises the same expressions into a straight-line program, prints it as Rust
 and compiles it to WebAssembly. The kernel that would run in a page is generated
 from this model by that pipeline.
-[`scripts/run_kernel.py`](https://github.com/leonpjvaughan/Open.Textbook/blob/main/solvers/otkd/scripts/run_kernel.py)
+[`scripts/run_kernel.py`](https://github.com/leonpjvaughan/Open. Textbook/blob/main/solvers/otkd/scripts/run_kernel.py)
 runs it and prints the table: the trajectory, the energy drift, and the
 difference from the package's own Python integration.
 

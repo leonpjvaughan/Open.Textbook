@@ -14,7 +14,7 @@ kind: walkthrough
 
 [§1.2](../../section-1.2/learn/) assumed the joints do not move. A car's joints
 are bushes: rubber liners, pressed in, that hold a pin in the middle of a
-sleeve.Under load the pin sits off-centre by a few tenths of a millimetre. A few
+sleeve. Under load the pin sits off-centre by a few tenths of a millimetre. A few
 tenths of a millimetre at the end of an upright is a different camber.
 
 Two questions follow, and only the second one is interesting.
@@ -93,7 +93,7 @@ ten, and the numbers keep going the same way: down. That monotonic approach is
 the evidence, and the solver's test suite asserts it across a ladder of
 stiffnesses rather than at one convenient value.
 
-Look at the last column, though, because it is the surprise.The bush mostly
+Look at the last column, though, because it is the surprise. The bush mostly
 **moves** the curve rather than tilting it. The load is constant, so the
 deflection is roughly constant, and the camber change over the travel barely
 notices.A soft bush of 0.2 MN/m shifts the whole curve by about a degree. The
@@ -126,7 +126,7 @@ Now the tolerance. A tenth of a degree can be asked of two different things:
 
 Two curves, one rule. Each curve is the effect the rigid model leaves out,
 plotted against how stiff the bush is. One is the wheel's angle at rest. The
-other is the change of that angle over the travel.The dashed rule is the tenth
+other is the change of that angle over the travel. The dashed rule is the tenth
 of a degree the question asks for. Where a curve crosses it is the stiffness
 that answers the question. The two crossings are the two answers, and the
 distance between them on the page is the point of the section.
@@ -148,7 +148,7 @@ answer different versions of the same question, and which version you asked
 decides which one is right.
 
 Read the first bullet again, though, because it is a different kind of question
-from everything above. "About 1.8 MN/m" is not a solve.It is the stiffness that
+from everything above. "About 1.8 MN/m" is not a solve. It is the stiffness that
 makes a number meet a target. Finding it means searching over the stiffness,
 rather than settling at the equilibrium for one. The bush still settles where
 the two forces agree; what changes is what you are asking for.
@@ -210,8 +210,8 @@ def equilibrium(theta, stiffness, load):
 ```
 
 The file is
-[`sweep.py`](https://github.com/leonpjvaughan/Open.Textbook/blob/main/solvers/otkd/src/open_textbook/otkd/solvers/sweep.py),
-and the stiffness ladder is one of its tests.Each frame starts from the previous
+[`sweep.py`](https://github.com/leonpjvaughan/Open. Textbook/blob/main/solvers/otkd/src/open_textbook/otkd/solvers/sweep.py),
+and the stiffness ladder is one of its tests. Each frame starts from the previous
 frame's answer. So the sweep follows one branch of the model, rather than
 jumping between branches that happen to be nearby.
 
@@ -231,7 +231,7 @@ would then collapse back onto the rigid one at any stiffness at all.
 
 So compliance is not a property of the bush on its own. It is a property of the
 bush **and the load**, and a model that has one without the other will show
-nothing and look reassuring.The number to look for is the deflection, and the
+nothing and look reassuring. The number to look for is the deflection, and the
 figure prints it. At the two ends of its control, 0.1 and 20 MN/m, the bush
 moves 12 mm and 0.06 mm.
 
@@ -240,6 +240,22 @@ answers the question depends on which quantity the tolerance is attached to.
 This chapter has shown two answers more than fifty times apart. A stiffness you
 have to guess is a new source of error, not a removed one. A model that needs
 one should have to earn it by changing the answer the question asked for.
+
+## The two procedures
+
+The chapter teaches two, and they answer different questions. They are often
+confused, because each is "check the model against something". Here they are side by
+side, with the number each one produced in this chapter.
+
+| procedure | the question it answers | the number that earned it |
+|---|---|---|
+| **The tolerance comparison** | which model do I need? | 1.85 MN/m for the wheel's angle against 0.034 MN/m for the change — more than fifty times apart |
+| **The tolerance comparison** | and which quantity is the tolerance on? | the same tenth of a degree, attached to two different quantities, gives those two answers |
+| **The limit test** | is this model the generalisation of that one? | 1.91° at 100 MN/m against 1.95° for the rigid model, monotone over four stiffnesses |
+| **The limit test** | and what does it not tell me? | that the model is right — only that it becomes the simpler one at the edge |
+
+Neither replaces the other. The comparison decides which model to build; the limit
+test decides whether the model you built is the one it claims to be.
 
 ## Going further
 

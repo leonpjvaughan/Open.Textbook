@@ -14,7 +14,7 @@ done-means; an item whose heading says done and whose checklist does not is the
 failure this file has had twice, so the list below, the headings and the boxes
 are checked against each other on every pass.
 
-**Every item from 79 to 171 is closed,** each with its measurement, its fix, its outcome
+**Every item from 79 to 172 is closed,** each with its measurement, its fix, its outcome
 and its ticked done-means in `.agents/todo-closed.md`. Items 166–174 are open: three
 defects the second review measured (165–167), five designs it proposed (168–172), and the
 two ways into the map the third review measured (173–174). A new item goes at the number after the
@@ -37,27 +37,6 @@ argument and the citations, and the review holds the measurement. The two indexe
 review holds their measurement.
 
 ---
-
-## 172 — `maths-applied` teaches two procedures and presents them as one
-
-**What is wrong.** The **tolerance comparison** (which model do I need? — 1.85 MN/m against
-0.034) and the **limit test** (is this model the generalisation of that one? — the ladder's
-monotone approach) are two, and a reader who leaves with one of them is missing the other. The
-first lives inside a table caption in §1.5 and is restated in the Review; the second is the
-Review's *Reflection*, presented as though it were the same sentence in other words. It is the
-only content in the book a reader can carry to a *different* mechanism, which is what a book
-about modelling is for. `research/review/…-ii.md`'s fifth proposal, `ideas.md` §12.5.
-
-**The fix.** A boxed panel at the end of §1.5 with four rows — the procedure, the question it
-answers, the number that earned it — and the Review pointing at the panel instead of restating
-it in other words.
-
-**Done means**
-
-- [ ] §1.5 ends with the panel, two rows per procedure, and the Review links it
-- [ ] the numbers in the panel are the ones the figures and the ladder print, and a test
-      recomputes them
-- [ ] the Review's *Reflection* no longer presents the limit test as a restatement
 
 ## 173 — *Methods, A to Z* is not alphabetical, and a reader holding a name cannot reach its entry
 

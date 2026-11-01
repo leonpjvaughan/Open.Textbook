@@ -74,7 +74,7 @@ export function mount(el) {
       "Two wishbones join the chassis to an upright, which carries the wheel. The control sets " +
       "the wheel's travel, and the upper arm and upright follow it. Dashed lines run through each " +
       "arm towards the point where they would meet, and a line from the contact patch runs the " +
-      "same way.",
+      "same way. The distance is measured inboard of the car's centreline.",
     prompt:
       "Predict first: as the wheel rises, does the top of the wheel lean further out, or further in?",
     width: WIDTH,

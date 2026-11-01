@@ -53,7 +53,7 @@ a different geometry gives a different $\sigma$ and the same pattern.
 ## Drop the row, and you are back where you started
 
 If one row of a three-row model is a duplicate, deleting it cannot change the
-answer. That is a claim worth testing rather than asserting.It is the third of
+answer. That is a claim worth testing rather than asserting. It is the third of
 the four tests in the solver's own suite. With the spare equation removed, the
 least-squares answer and the direct answer are the same number.
 
@@ -77,7 +77,7 @@ that matrix.
 
 :::class linear-system
 
-**Deleting a row is only safe when it is the spare one.Delete a row that carries
+**Deleting a row is only safe when it is the spare one. Delete a row that carries
 information and the model changes silently. The answer is still a number, still
 looks plausible, and is the answer to a different question. The decomposition is
 what makes the choice visible.
@@ -104,7 +104,7 @@ that the decision you made was the one you thought you made.
 One loose end, stated because the chapter's method is to state it.A projection
 of a triangle is not a triangle with the same edges. The upper arm in this
 chapter's front view is 0.30336 m long, and the two legs of the real wishbone
-are 0.31875 m and 0.32016 m.The view's single arm is shorter than either leg, by
+are 0.31875 m and 0.32016 m. The view's single arm is shorter than either leg, by
 15 mm and 17 mm. The front view flattens the fore-aft splay of the two chassis
 pivots.
 
@@ -156,7 +156,7 @@ def diagnose(system, q, rows=None, rtol=1e-9):
 ```
 
 The file is
-[`svd.py`](https://github.com/leonpjvaughan/Open.Textbook/blob/main/solvers/otkd/src/open_textbook/otkd/solvers/svd.py).Returning
+[`svd.py`](https://github.com/leonpjvaughan/Open. Textbook/blob/main/solvers/otkd/src/open_textbook/otkd/solvers/svd.py). Returning
 the row names rather than only the singular values is the whole point. A figure
 can then say *which* equations are the same, instead of shouting that something
 is wrong somewhere.

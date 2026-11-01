@@ -86,13 +86,16 @@ are the point.
 
 ## Reflection
 
-The chapter's method is one sentence long, and it is worth writing down in your
-own words before you leave:
+The chapter teaches **two** procedures, and they are not one sentence in other
+words. The first decides which model to build — [§1.5](.)'s
+[two procedures panel](../section-1.5/learn/#the-two-procedures) puts them side by side,
+with the number each one produced. The second is the limit test, and it is worth
+writing down in your own words before you leave:
 
 > Take the parameter to the edge and check the model becomes the simpler one it
 > should become.
 
-If you can say where that test applies in this chapter, and where it does not,
+If you can say where each test applies in this chapter, and where neither does,
 you have the thing the chapter was for. [§1.6](../section-1.6/learn/) and
 [§1.7](../section-1.7/learn/) show where the method goes next: a model with
 mass, and a model of the whole car. Each is judged the same way, by what it
@@ -125,4 +128,4 @@ chapter, and none of them is the source of a number in it.
 
 The solver that goes with this book, with its own tests and the
 three-dimensional version of every figure here, is
-[`otkd`](https://github.com/leonpjvaughan/Open.Textbook/tree/main/solvers/otkd).
+[`otkd`](https://github.com/leonpjvaughan/Open. Textbook/tree/main/solvers/otkd).

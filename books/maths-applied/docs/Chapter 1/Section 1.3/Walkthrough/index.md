@@ -118,7 +118,7 @@ did not change the answer. It only gave the solver more work.
 These are the page's own model's numbers, recomputed by the figure on every
 load. They are at the bump end of the travel, the pose the figure mounts; the
 design pose's σ set is 1.415 and 0.998, which is
-[§1.4](../../section-1.4/learn/)'s table.The package's export for the same
+[§1.4](../../section-1.4/learn/)'s table. The package's export for the same
 mechanism is vendored here, and it does carry both. There is one residual vector
 and one set of singular values per Newton step.js`, and it does carry
 `iterations`: one residual vector and one set of singular values per Newton
@@ -143,7 +143,7 @@ def least_squares(start, theta, steps=20, tol=1e-12):
 ```
 
 The function itself is
-[`least_squares.py`](https://github.com/leonpjvaughan/Open.Textbook/blob/main/solvers/otkd/src/open_textbook/otkd/solvers/least_squares.py).
+[`least_squares.py`](https://github.com/leonpjvaughan/Open. Textbook/blob/main/solvers/otkd/src/open_textbook/otkd/solvers/least_squares.py).
 It returns the cost, the optimality and the singular values of $J$ at the
 solution. A least-squares answer without its residual is a number with no error
 bar.

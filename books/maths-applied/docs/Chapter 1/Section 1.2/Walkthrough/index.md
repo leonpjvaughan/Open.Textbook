@@ -45,7 +45,7 @@ $$ 3\,(n-1) - \sum_i c_i = \text{degrees of freedom}, $$
 
 where $n$ counts the bodies and $c$ is the number of freedoms each constraint
 removes. A hinge in a plane removes 2, a ball joint in space 3, and a fixed
-length 1.The solver refuses to run a mechanism whose freedom count does not
+length 1. The solver refuses to run a mechanism whose freedom count does not
 match the number of things being driven. Such a model has no single answer to
 give.
 
@@ -139,7 +139,7 @@ rises.
 
 ## The agreement panel
 
-Every section after this one ends with a panel of numbers.This one has three
+Every section after this one ends with a panel of numbers. This one has three
 routes to the same answer. They are the two-circle construction above, the
 general Newton iteration that [§1.3] meets, and the package's compiled kernel.
 
@@ -153,7 +153,7 @@ The last row is read from the vendored `out.js`, not typed here; the middle one
 is what the figure above computes in the page. The package checks itself the
 same way this section does. Its `agreement` compares a closed-form construction
 against its symbolic solver: circle against circle, then the tie rod, with no
-Jacobian and no Newton. Two derivations, one answer.The closed form is the fast
+Jacobian and no Newton. Two derivations, one answer. The closed form is the fast
 path and the independent check at once. It gets the answer without a solver, so
 it can be used to test one. Two routes to one number is evidence; one route is a
 claim.
@@ -177,7 +177,7 @@ The kernel reports camber with the opposite sign to this book, so the figure
 flips it and says so. Nothing else is adjusted: the same geometry goes in and
 the same range of travel is covered.
 
-The gap is inside a tenth of a degree, which is the budget the chapter set.That
+The gap is inside a tenth of a degree, which is the budget the chapter set. That
 is the argument for the small model stated as a number rather than as a
 preference. The front view is wrong by less than the accuracy anyone asked for.
 
@@ -197,9 +197,9 @@ jacobian = lambdify((...), J, cse=True)
 ```
 
 The file is
-[`analytic.py`](https://github.com/leonpjvaughan/Open.Textbook/blob/main/solvers/otkd/src/open_textbook/otkd/analysis/analytic.py)
+[`analytic.py`](https://github.com/leonpjvaughan/Open. Textbook/blob/main/solvers/otkd/src/open_textbook/otkd/analysis/analytic.py)
 for the closed form, and
-[`compile.py`](https://github.com/leonpjvaughan/Open.Textbook/blob/main/solvers/otkd/src/open_textbook/otkd/problem/compile.py)
+[`compile.py`](https://github.com/leonpjvaughan/Open. Textbook/blob/main/solvers/otkd/src/open_textbook/otkd/problem/compile.py)
 for the derivation. The pseudocode uses the same names and shapes as the files;
 it is not a copy of them.
 
@@ -213,7 +213,7 @@ it is not a copy of them.
 ## Watch out
 
 The two circles meet in **two** places, and taking the other one is a mistake
-that looks like a physics bug.The mechanism is then assembled the other way up,
+that looks like a physics bug. The mechanism is then assembled the other way up,
 so the camber curve starts somewhere else. It can leap from one solution to the
 other part-way through the travel.
 
@@ -223,7 +223,7 @@ frame where the branch changes. A curve with a jump in it is a solver finding a
 different assembly, not a wheel doing something surprising.
 
 A related trap: the two arms are nearly horizontal, so their axes meet a long
-way away from the wheel — 2.36 m here.If a drawing shows the instant centre
+way away from the wheel — 2.36 m here. If a drawing shows the instant centre
 inside the wheel, it is not drawn to the same scale in both directions. Every
 angle in it is wrong.
 

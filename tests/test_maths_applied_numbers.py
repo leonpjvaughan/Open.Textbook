@@ -369,8 +369,10 @@ def test_three_pages_state_the_same_rigid_change(model):
 
 def test_section_1_5_keeps_the_export_s_number_named_as_the_exports(model):
     """The export's 100 MN/m row stands beside the rigid model's, named as itself."""
-    text = page("Section 1.5/Walkthrough")
-    assert stated(r"or ([\d.]+)° for a\s+40 mm bump from rest", text) == round(
+    # Whitespace-normalised: the page is hard-wrapped, and a sentence that gains a line
+    # break is not a page that lost its number.
+    text = " ".join(page("Section 1.5/Walkthrough").split())
+    assert stated(r"or ([\d.]+)° for a 40 mm bump from rest", text) == round(
         model["bumpFromRest"], 2
     )
     assert stated(r"The export's ladder gives ([\d.]+)° at 100 MN/m", text) == 1.91
@@ -400,10 +402,10 @@ def test_the_singular_values_are_one_pose_on_both_pages(model):
 
 def test_the_arm_lengths_are_the_view_and_the_wishbones_legs(model):
     """The paragraph's point: a projection is not a rigid copy of either leg."""
-    section = page("Section 1.4/Walkthrough")
+    section = " ".join(page("Section 1.4/Walkthrough").split())
     match = re.search(
-        r"front\s+view is ([\d.]+) m long, and the two legs of the real wishbone are\s+"
-        r"([\d.]+) m and\s+([\d.]+) m",
+        r"front view is ([\d.]+) m long, and the two legs of the real wishbone are "
+        r"([\d.]+) m and ([\d.]+) m",
         section,
     )
     assert match, "§1.4 no longer states the front view's arm and the two legs' lengths"
@@ -750,3 +752,24 @@ def test_the_readout_is_rows_in_the_pages_own_columns():
     for label in ("bush stiffness", "bush deflection", "camber at rest",
                   "difference at rest", "change over the travel"):
         assert f'"{label}"' in agreement, f"stiffness-agreement has no {label!r} row"
+
+
+def test_the_two_procedures_are_named_once_with_the_number_each_earned():
+    """Item 172: the chapter taught two procedures and presented them as one.
+
+    §1.5's tolerance comparison decides which model to build; the limit test decides
+    whether the model is the generalisation it claims to be. The Review presented the
+    second as though it were the first in other words, so a reader could leave with one
+    of the two.
+    """
+    section = page("Section 1.5/Walkthrough")
+    assert "## The two procedures" in section
+    assert section.count("**The tolerance comparison**") >= 2
+    assert section.count("**The limit test**") >= 2
+    # the numbers in the panel are the ones the figure and the ladder print
+    for number in ("1.85", "0.034", "1.91", "1.95"):
+        assert number in section, f"the panel does not carry {number}"
+
+    review = page("Review")
+    assert "#the-two-procedures" in review, "the Review does not point at the panel"
+    assert "two** procedures" in review, "the Review still presents one procedure"

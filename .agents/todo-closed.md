@@ -7939,3 +7939,46 @@ Held by `test_the_readout_is_rows_in_the_pages_own_columns` (all four call `tabl
 none sets `readout.textContent`; the two with a matching page table carry that table's column
 names in its order). `readout --verify`: wishbone-hero 4 claims, stiffness-agreement 4, kernel-camber
 2 — 0 untrue; `canvas site` 0 errors over 254 figures; `audit` and `kit site` pass.
+
+## 172 — `maths-applied` taught two procedures and presented them as one — **done**
+
+**What is wrong.** The **tolerance comparison** (which model do I need? — 1.85 MN/m against
+0.034) and the **limit test** (is this model the generalisation of that one? — the ladder's
+monotone approach) are two, and a reader who leaves with one of them is missing the other. The
+first lives inside a table caption in §1.5 and is restated in the Review; the second is the
+Review's *Reflection*, presented as though it were the same sentence in other words. It is the
+only content in the book a reader can carry to a *different* mechanism, which is what a book
+about modelling is for. `research/review/…-ii.md`'s fifth proposal, `ideas.md` §12.5.
+
+**The fix.** A boxed panel at the end of §1.5 with four rows — the procedure, the question it
+answers, the number that earned it — and the Review pointing at the panel instead of restating
+it in other words.
+
+**Done means**
+
+- [ ] §1.5 ends with the panel, two rows per procedure, and the Review links it
+- [ ] the numbers in the panel are the ones the figures and the ladder print, and a test
+      recomputes them
+- [ ] the Review's *Reflection* no longer presents the limit test as a restatement
+
+**Outcome, 2026-10-31.** §1.5 ends with **The two procedures**, a four-row panel:
+
+| procedure | the question it answers | the number that earned it |
+|---|---|---|
+| the tolerance comparison | which model do I need? | 1.85 MN/m for the angle against 0.034 MN/m for the change |
+| the tolerance comparison | and which quantity is the tolerance on? | the same tenth of a degree, on two quantities, gives those two answers |
+| the limit test | is this model the generalisation of that one? | 1.91° at 100 MN/m against 1.95° rigid, monotone over four stiffnesses |
+| the limit test | and what does it not tell me? | that the model is right — only that it becomes the simpler one at the edge |
+
+The Review's **Reflection** no longer presents the limit test as the chapter's one method: it
+says the chapter teaches two, links the panel, and quotes the limit test under its own heading.
+
+Held by `test_the_two_procedures_are_named_once_with_the_number_each_earned` (the panel exists,
+each procedure appears twice, the four numbers are on the page, and the Review links
+`#the-two-procedures` and says "two procedures"). The panel's numbers are the ones
+`test_the_two_tolerance_crossings_are_the_figures_own` recomputes (1.85, 0.034) and the ladder
+test pins (1.91, 1.95).
+
+Two tests had to be made wrap-tolerant while this landed — they matched across a line break,
+and a sentence that gains a line break is not a page that lost its number. Lint clean over 18
+pages; `readout --verify` 4 claims, 0 untrue.

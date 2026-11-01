@@ -12,16 +12,16 @@ kind: walkthrough
 
 ## Where this chapter is going
 
-A car's wheel does not stay upright as it moves up and down.The angle it leans
+A car's wheel does not stay upright as it moves up and down. The angle it leans
 at, and the angle it points at, both change. The wheel is held by a linkage of
 arms that swing on the body.
 
 That change is small — a couple of degrees over the whole travel — and it
-matters enormously, because a tyre grips best at a particular angle.So a
+matters enormously, because a tyre grips best at a particular angle. So a
 suspension designer wants to know this before a single part is made. How will
 the wheel's angles move, and how much can the design be changed to suit?
 
-**This chapter's question.It is [the chapter problem](../index.md), and this
+**This chapter's question. It is [the chapter problem](../index.md), and this
 section is the first step towards it. The step is the geometry that turns a
 wheel's rise and fall into an angle.
 
@@ -31,7 +31,7 @@ argument is that the judgement can be made with numbers rather than with taste.
 
 ## The object
 
-Before the mathematics, the object.This is a front corner in cutaway, built for
+Before the mathematics, the object. This is a front corner in cutaway, built for
 a display. It has an upper wishbone, a coil-over spring and damper, an upright
 carrying the hub, and the lower wishbone underneath it.
 
@@ -42,7 +42,7 @@ real corner they are bare metal and covered in dust. What the paint is good for
 is showing which piece is which, and the shapes above are the shapes the
 chapter's model uses.
 
-*Photograph: a.d.Tramontana, [CC BY-SA
+*Photograph: a.d. Tramontana, [CC BY-SA
 1.0](https://creativecommons.org/licenses/by-sa/1.0/), via Wikimedia Commons;
 cropped. The image keeps its own licence.*
 
@@ -136,9 +136,9 @@ same definition.
 ## Where the mathematics lives
 
 The model in this chapter is a small one, and it has been implemented in a
-package that also solves the three-dimensional version.Each section shows the
+package that also solves the three-dimensional version. Each section shows the
 mathematics as pseudocode and links to the file that implements it. A reader who
 wants the whole of it can follow the link:
 
-- [`otkd`](https://github.com/leonpjvaughan/Open.Textbook/tree/main/solvers/otkd) —
+- [`otkd`](https://github.com/leonpjvaughan/Open. Textbook/tree/main/solvers/otkd) —
   the solver, its tests, and the data the later figures draw.
