@@ -235,7 +235,7 @@ export function mount(el) {
           `${(40 + arrowLength).toFixed(1)},347 ${(40 + arrowLength).toFixed(1)},357" ` +
           `class="fig-accent"></polygon>` +
           forceLabel(
-            Math.min(40 + arrowLength / 2, 290),
+            Math.min(40 + arrowLength / 2, 250),
             344,
             `acceleration a = ${two(acceleration)} m/s${SQUARED}`,
             "text-ink",

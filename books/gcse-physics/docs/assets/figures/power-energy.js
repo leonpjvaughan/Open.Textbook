@@ -90,7 +90,7 @@ export function mount(el) {
       `${label({ x: 225, y: (barY - 8).toFixed(1), text: `${formatEnergy(energy)}`, anchor: "middle", size: SIZE.tick, class: "text-ink" })}` +
       `${label({ x: 225, y: 158, text: `your setting`, anchor: "middle", size: SIZE.tick, class: "text-ink" })}` +
       `<line x1="360" y1="140" x2="360" y2="20" class="fig-grid" stroke-width="2" stroke-dasharray="4 4"></line>` +
-      `${label({ x: 366, y: 36, text: `lamp: 0.10 kW for 30 min`, anchor: "start", size: SIZE.tick, class: "text-ink" })}` +
+      `${label({ x: 366, y: 36, text: `lamp: 0.10 kW`, anchor: "start", size: SIZE.tick, class: "text-ink" })}` +
       `${label({ x: 366, y: 52, text: `= 180 kJ`, anchor: "start", size: SIZE.tick, class: "text-ink" })}` +
       `<line x1="360" y1="80" x2="530" y2="80" class="fig-grid" stroke-width="2" stroke-dasharray="4 4"></line>` +
       `${label({ x: 366, y: 96, text: `heater: 2.0 kW`, anchor: "start", size: SIZE.tick, class: "text-ink" })}` +
