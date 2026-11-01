@@ -7,8 +7,9 @@ title: Optimisation
 **You have one of these when** you can score any candidate answer with a single
 number, and you want the best one.
 
-**Optimisation, not eigenvalues.** Here you can score every candidate
-and pick the best. An eigenvalue problem says which values are allowed at all.
+**Optimisation, not [eigenvalues](../eigenvalue/).** Here you can score every
+candidate and pick the best. An eigenvalue problem says which values are allowed
+at all.
 
 ## What you are modelling
 

@@ -7,8 +7,9 @@ title: Linear system
 **You have one of these when** every rule in the model is linear in the
 unknowns, the unknowns are a finite list, and nothing changes with time.
 
-**Linear system, not a saddle point.** The unknowns here are the only ones. A
-saddle point adds a second unknown for every rule that has to hold everywhere.
+**Linear system, not [a saddle point](../saddle-point/).** The unknowns here are
+the only ones. A saddle point adds a second unknown for every rule that has to
+hold everywhere.
 
 ## What you are modelling
 
@@ -46,7 +47,6 @@ A matrix, and a choice between two families. The choice is made by the
   of that: it solves 21 equations, and its Jacobian has 441 entries, of which
   **161 are not zero**. At that sparsity the sparsity is the method rather
   than a detail of it, and the generated kernel touches only the non-zeros.
-  detail of it, and the generated kernel touches only the non-zeros.
   [What a kernel is](../worked-case/#what-a-kernel-is) is the page that explains
   the generated solver the figures in this collection run.
 - **Symmetric positive definite.** Conjugate gradients works, and fails on

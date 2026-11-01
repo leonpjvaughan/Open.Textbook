@@ -1227,21 +1227,29 @@ def test_the_three_flags_are_defined_in_prose_not_in_a_table_cell():
     assert prose.count("\n\n") >= 6
 
 
-def test_discretise_is_defined_where_it_is_first_used():
-    """Item 166: `discretise` was used 19 times in this book and defined nowhere."""
+def test_discretise_is_defined_before_its_first_use_in_reading_order():
+    """Item 166: `discretise` was used 19 times in this book and defined nowhere.
+
+    Reading order is the registry's order — the order the sidebar shows — not the
+    alphabetical order of the files: the first page a reader meets that uses the word is
+    the page that has to define it.
+    """
     book = map_book()
-    averaging = (book.docs / "averaging/index.md").read_text(encoding="utf-8")
-    assert "cut into cells and write the rule on each" in averaging
-    first = next(
-        (p for p in sorted(book.docs.rglob("*.md")) if "discretis" in p.read_text(encoding="utf-8")),
-        None,
-    )
-    assert first is not None
-    text = first.read_text(encoding="utf-8")
-    before = text[: text.index("discretis")]
-    assert "cut into cells" in text[text.index("discretis") : text.index("discretis") + 200] or "cut into cells" in before, (
-        f"{first} uses `discretise` before the book defines it"
-    )
+    first = None
+    for entry in book.pages:
+        text = (book.docs / entry["path"]).read_text(encoding="utf-8")
+        if "discretis" in text:
+            first = (entry["path"], text)
+            break
+    assert first, "the book never uses `discretise`"
+    path, text = first
+    # Normalised: the page is hard-wrapped, and the gloss may straddle a line break.
+    flat = " ".join(text.split())
+    use = flat.index("discretis")
+    gloss = "cut into cells"
+    assert gloss in flat, f"{path} uses `discretise` with no gloss"
+    assert flat.index(gloss) <= use, f"{path} defines `discretise` after it uses it"
+
 
 
 def test_stiff_is_the_flag_and_the_bush_has_a_stiffness():
@@ -1319,17 +1327,23 @@ def test_a_class_page_names_the_class_it_is_most_often_mistaken_for(slug):
     """
     book = map_book()
     page = (book.docs / slug / "index.md").read_text(encoding="utf-8")
-    match = re.search(r"^\*\*([^*]+), not (?:a |an )?([^*]+)\.\*\*", page, re.M)
-    assert match, f"{slug} has no look-alike row"
+    match = re.search(
+        r"^\*\*([^*]+), not \[([^\]]+)\]\(\.\./([a-z-]+)/\)\.\*\*", page, re.M
+    )
+    assert match, f"{slug} has no look-alike row with a link"
     title = next(e["title"] for e in book.pages if e["path"].startswith(f"{slug}/"))
     assert match.group(1).strip().lower() == title.lower(), (slug, match.group(1))
-    neighbours = {
-        e["title"].lower()
+    # **The neighbour is a hop, not a word.** The page names it and links it, and the
+    # target is the class whose title it used — the repo's own rule for a lookup.
+    classes = {
+        e["path"].split("/")[0]: e["title"]
         for e in book.pages
         if e.get("signature")
     }
-    assert match.group(2).strip().lower() in neighbours, (
-        f"{slug} names {match.group(2)!r}, which is not a class"
+    assert match.group(3) in classes, f"{slug} links {match.group(3)!r}, which is not a class"
+    named = re.sub(r"^(?:a|an)\s+", "", match.group(2).strip().lower())
+    assert named == classes[match.group(3)].lower(), (
+        f"{slug} links {match.group(3)!r} but calls it {match.group(2)!r}"
     )
 
 
@@ -1339,7 +1353,7 @@ def test_every_class_names_a_different_look_alike():
     named = {}
     for slug in CLASSES:
         page = (book.docs / slug / "index.md").read_text(encoding="utf-8")
-        match = re.search(r"^\*\*[^*]+, not (?:a |an )?([^*]+)\.\*\*", page, re.M)
+        match = re.search(r"^\*\*[^*]+, not \[([^\]]+)\]", page, re.M)
         assert match, slug
         named[slug] = match.group(1).strip().lower()
     assert len(set(named.values())) == len(named), f"two classes name the same neighbour: {named}"
@@ -1452,6 +1466,21 @@ def test_the_system_index_is_derived_from_the_class_pages():
 
     page = (book.docs / "systems/index.md").read_text(encoding="utf-8")
     assert ":::systems" in page
+
+    # **The three places are one promise**: the registry lists the page, the home page
+    # offers it as a way in, and the heading counts what it lists.
+    registry = (book.root / "map.yaml").read_text(encoding="utf-8")
+    assert "path: systems/index.md" in registry, "the index is not in map.yaml"
+    home = (book.docs / "index.md").read_text(encoding="utf-8")
+    heading = re.search(r"^## (\w+) ways in", home, re.M)
+    assert heading, "the home page has no ways-in section"
+    section = home[heading.end() : home.index("\n## ", heading.end())]
+    bullets = [line for line in section.splitlines() if line.startswith("- ")]
+    words = {"Three": 3, "Four": 4, "Five": 5, "Six": 6}
+    assert len(bullets) == words[heading.group(1)], (
+        f"the heading says {heading.group(1)} and there are {len(bullets)}"
+    )
+    assert "systems/index.md" in section, "the ways-in list does not offer the index"
 
 
 #: A system is a name, not a paragraph. The catalogue's median entry is 58 characters, and

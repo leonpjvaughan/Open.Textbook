@@ -7,9 +7,9 @@ title: Saddle point
 **You have one of these when** a rule has to hold everywhere, and the model pays
 for it with a second unknown.
 
-**Saddle point, not optimisation.** Something has to stay true and nothing
-chooses it. In optimisation a choice is scored, and the best score is the
-answer.
+**Saddle point, not [optimisation](../optimisation/).** Something has to stay
+true and nothing chooses it. In optimisation a choice is scored, and the best
+score is the answer.
 
 ## What you are modelling
 

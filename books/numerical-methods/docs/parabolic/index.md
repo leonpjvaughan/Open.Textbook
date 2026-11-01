@@ -7,8 +7,8 @@ title: Parabolic
 **You have one of these when** the answer moves forward in time and smooths as
 it goes, so it forgets where it started.
 
-**Parabolic, not hyperbolic.** What moves here smooths and forgets where it
-started. A hyperbolic answer keeps the shape of what was sent.
+**Parabolic, not [hyperbolic](../hyperbolic/).** What moves here smooths and
+forgets where it started. A hyperbolic answer keeps the shape of what was sent.
 
 ## What you are modelling
 

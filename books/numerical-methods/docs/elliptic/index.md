@@ -7,8 +7,9 @@ title: Elliptic
 **You have one of these when** the answer is a value at every point in a region,
 and nothing travels.
 
-**Elliptic, not averaging.** The answer is a value at every point. An average is
-one number over what you cannot list, and it comes with an error bar.
+**Elliptic, not [averaging](../averaging/).** The answer is a value at every
+point. An average is one number over what you cannot list, and it comes with an
+error bar.
 
 ## What you are modelling
 

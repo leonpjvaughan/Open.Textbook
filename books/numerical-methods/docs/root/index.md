@@ -7,9 +7,9 @@ title: Root finding
 **You have one of these when** a rule has to hold at a point, the rule bends
 with the answer, and nothing changes with time.
 
-**Root finding, not a linear system.** A rule that bends is iterated; a rule
-that is linear is solved in one step. If every row is a sum of the unknowns, the
-iteration is rediscovering a factorisation.
+**Root finding, not [a linear system](../linear-system/).** A rule that bends is
+iterated; a rule that is linear is solved in one step. If every row is a sum of
+the unknowns, the iteration is rediscovering a factorisation.
 
 ## What you are modelling
 
