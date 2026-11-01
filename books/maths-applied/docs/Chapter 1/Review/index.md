@@ -128,4 +128,4 @@ chapter, and none of them is the source of a number in it.
 
 The solver that goes with this book, with its own tests and the
 three-dimensional version of every figure here, is
-[`otkd`](https://github.com/leonpjvaughan/Open. Textbook/tree/main/solvers/otkd).
+[`otkd`](https://github.com/leonpjvaughan/Open.Textbook/tree/main/solvers/otkd).

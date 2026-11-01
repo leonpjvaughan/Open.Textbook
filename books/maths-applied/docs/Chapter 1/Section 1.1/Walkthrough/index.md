@@ -140,5 +140,5 @@ package that also solves the three-dimensional version. Each section shows the
 mathematics as pseudocode and links to the file that implements it. A reader who
 wants the whole of it can follow the link:
 
-- [`otkd`](https://github.com/leonpjvaughan/Open. Textbook/tree/main/solvers/otkd) —
+- [`otkd`](https://github.com/leonpjvaughan/Open.Textbook/tree/main/solvers/otkd) —
   the solver, its tests, and the data the later figures draw.

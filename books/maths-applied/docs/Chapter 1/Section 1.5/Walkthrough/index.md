@@ -210,7 +210,7 @@ def equilibrium(theta, stiffness, load):
 ```
 
 The file is
-[`sweep.py`](https://github.com/leonpjvaughan/Open. Textbook/blob/main/solvers/otkd/src/open_textbook/otkd/solvers/sweep.py),
+[`sweep.py`](https://github.com/leonpjvaughan/Open.Textbook/blob/main/solvers/otkd/src/open_textbook/otkd/solvers/sweep.py),
 and the stiffness ladder is one of its tests. Each frame starts from the previous
 frame's answer. So the sweep follows one branch of the model, rather than
 jumping between branches that happen to be nearby.

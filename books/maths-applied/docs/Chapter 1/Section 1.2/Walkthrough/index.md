@@ -197,9 +197,9 @@ jacobian = lambdify((...), J, cse=True)
 ```
 
 The file is
-[`analytic.py`](https://github.com/leonpjvaughan/Open. Textbook/blob/main/solvers/otkd/src/open_textbook/otkd/analysis/analytic.py)
+[`analytic.py`](https://github.com/leonpjvaughan/Open.Textbook/blob/main/solvers/otkd/src/open_textbook/otkd/analysis/analytic.py)
 for the closed form, and
-[`compile.py`](https://github.com/leonpjvaughan/Open. Textbook/blob/main/solvers/otkd/src/open_textbook/otkd/problem/compile.py)
+[`compile.py`](https://github.com/leonpjvaughan/Open.Textbook/blob/main/solvers/otkd/src/open_textbook/otkd/problem/compile.py)
 for the derivation. The pseudocode uses the same names and shapes as the files;
 it is not a copy of them.
 

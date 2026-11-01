@@ -38,7 +38,7 @@ The [terms of use](/terms/) explain this in more detail.
 
 ## Who made it
 
-This book is part of **Open. Textbook**, an independent project by Leon
+This book is part of **Open.Textbook**, an independent project by Leon
 Vaughan, who wrote and assembled it.
 
 ## Where the content comes from
@@ -53,8 +53,8 @@ describes.
 The claims in this book rest on these documents:
 
 - [SAE J670: Vehicle Dynamics Terminology](https://www.sae.org/standards/content/j670_202208/)
-- [A.d. Tramontana front suspension (cutaway display, Wikimedia Commons)](https://commons.wikimedia.org/wiki/File:A.d. Tramontana_Front_Suspension.jpg)
-- [otkd — the model, its exports and a generated solver](https://github.com/leonpjvaughan/Open. Textbook/tree/main/solvers/otkd)
+- [A.d.Tramontana front suspension (cutaway display, Wikimedia Commons)](https://commons.wikimedia.org/wiki/File:A.d.Tramontana_Front_Suspension.jpg)
+- [otkd — the model, its exports and a generated solver](https://github.com/leonpjvaughan/Open.Textbook/tree/main/solvers/otkd)
 
 These sources were last checked on 2026-10-18.
 
@@ -63,7 +63,7 @@ No awarding body endorses this book, and no curriculum body supplies it.
 ## Reporting a mistake
 
 If you find a mistake, report it as an issue on the project's GitHub page:
-<https://github.com/leonpjvaughan/Open. Textbook/issues/new>.
+<https://github.com/leonpjvaughan/Open.Textbook/issues/new>.
 
 That route needs a free GitHub account. The project has no email address,
 because it does not run a mail service.
