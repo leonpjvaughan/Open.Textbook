@@ -722,3 +722,31 @@ def test_the_two_tolerance_crossings_are_the_figures_own():
     assert "1.85 MN/m for the wheel's angle" in text
     assert "0.034 MN/m for the change over the travel" in text
     assert ":::figure tolerance-crossing" in text
+
+
+def test_the_readout_is_rows_in_the_pages_own_columns():
+    """Item 171: `wishbone-hero` printed five quantities in six sentences.
+
+    The page's table prints the same five in five columns, with signs rather than the
+    readout's direction words, so a reader who wanted the number the figure shows did
+    extraction and then a conversion. The four figures now state their values as a
+    `table()` of rows, and the two whose page carries the same quantities use that page's
+    column names in that page's order.
+    """
+    figures = CHAPTER / ".." / ".." / "assets" / "figures"
+    figures = repo_root() / "books" / "maths-applied" / "docs" / "assets" / "figures"
+    for slug in ("wishbone-hero", "quarter-car", "kernel-camber", "stiffness-agreement"):
+        source = (figures / f"{slug}.js").read_text(encoding="utf-8")
+        assert "table(readout" in source, f"{slug} still prints its readout as a sentence"
+        assert "readout.textContent" not in source, f"{slug} sets the readout text as well"
+
+    # wishbone-hero ↔ §1.2's table, in its order
+    hero = (figures / "wishbone-hero.js").read_text(encoding="utf-8")
+    for label in ("wheel travel", "lower arm turns", "camber", "instant centre", "roll centre"):
+        assert f'"{label}"' in hero, f"wishbone-hero has no {label!r} row"
+
+    # stiffness-agreement ↔ §1.5's table, in its order
+    agreement = (figures / "stiffness-agreement.js").read_text(encoding="utf-8")
+    for label in ("bush stiffness", "bush deflection", "camber at rest",
+                  "difference at rest", "change over the travel"):
+        assert f'"{label}"' in agreement, f"stiffness-agreement has no {label!r} row"

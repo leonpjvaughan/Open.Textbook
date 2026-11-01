@@ -17,7 +17,7 @@
 // camber with the sign this book does not use, so the kernel's values are negated to
 // match §1.2's rule (top of the wheel inboard is negative). Nothing else is adjusted:
 // the same geometry goes in, and the answers come out as they are.
-import { SIZE, axes, curve, label, panel, quantity } from "./kit.js";
+import { SIZE, axes, curve, label, panel, quantity, table } from "./kit.js";
 import * as kernel from "../data/otkd/models/double-wishbone/kernel/kernel.js";
 import { agreement } from "../data/otkd/models/double-wishbone/out.js";
 import { GEOMETRY, pose, thetaFor } from "../data/mechanism.js";
@@ -161,13 +161,17 @@ export async function mount(el) {
   if (!svg) throw new Error("kernel-camber: the frame has no drawing surface");
   svg.innerHTML = marks;
 
-  readout.textContent =
-    `Over the chapter's 80 mm of travel the kernel and the front view differ by at ` +
-    `most ${quantity(worst, "°", 3)}, at ${quantity(worstAt.travel, "mm", 0)} of travel. ` +
-    `At ${quantity(end.travel, "mm", 0)} the kernel gives ${quantity(end.kernel, "°", 3)} ` +
-    `against the front view's ${quantity(end.page, "°", 3)} — inside the tenth of a ` +
-    `degree this chapter set as its budget. The package's own two routes, its analytic ` +
-    `sweep and its numeric one, differ by at most ${sci(agreement.max_abs_diff)}°.`;
+  // Rows, not a paragraph: the two routes and the difference between them, which is what
+  // the section's 0.04° budget is about (item 171).
+  table(readout, {
+    columns: ["quantity", "value"],
+    rows: [
+      ["worst difference", `${quantity(worst, "°", 3)} at ${quantity(worstAt.travel, "mm", 0)}`],
+      ["kernel at the last travel", quantity(end.kernel, "°", 3)],
+      ["front view at the last travel", quantity(end.page, "°", 3)],
+      ["the package's two routes differ by", `${sci(agreement.max_abs_diff)}°`],
+    ],
+  });
   caption.textContent =
     "Same geometry, two models: the kernel solves the full mechanism, the front view " +
     "solves two circles. The kernel's camber sign is flipped to this book's convention.";

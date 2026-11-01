@@ -7895,3 +7895,47 @@ label is the registry's title for the class it links, and every summary appears 
 page's *Systems that live here* list, so a question that is not on the page it names fails.
 Lint clean over 31 pages; `pytest tests/test_page_rules.py tests/test_reference_books.py` — 141
 passed.
+
+## 171 — Four figures stated their numbers in a paragraph instead of the page's own columns — **done**
+
+**What is wrong.** `wishbone-hero` prints five quantities in six sentences and about 90 words;
+the page's table prints the same five in five columns, with signs rather than the direction
+words the readout uses ("1.00 degrees inboard" against "−1.00°"), and §1.1 makes the sign
+convention its first *Watch out*. So a reader who wants the number the figure is showing does
+extraction work at the moment the figure exists to remove it — and converts between two
+presentations of one quantity. `quarter-car`, `kernel-camber` and `stiffness-agreement` have
+the same habit. Spatial contiguity and signalling (Mayer); `research/review/…-ii.md`'s fourth
+proposal, `ideas.md` §12.4.
+
+**The fix.** A readout of label/value rows, in the table's order and the table's signs, drawn
+with the kit's `label()` as `dynamics-table`'s rows are.
+
+**Done means**
+
+- [ ] each of the four figures' readout is a list of label/value rows, and the value is the
+      one the page's table prints for the same quantity
+- [ ] every number in the readout is declared with `claim()` and `readout --verify` passes
+- [ ] the figures still pass `canvas`, `audit` and `kit`
+
+**Outcome, 2026-10-31.** The four figures now state their values as **rows**, not sentences:
+`table()` in the readout, with the page's own order and signs.
+
+- `wishbone-hero` — wheel travel, lower arm turns, camber, instant centre, roll centre, and the
+  camber change since rest (the number its `claim()` quotes). Five quantities that were six
+  sentences and about 90 words, with "1.00 degrees inboard" turned into the table's `−1.00°`.
+- `stiffness-agreement` — §1.5's five columns: bush stiffness, bush deflection, camber at rest,
+  difference at rest, change over the travel.
+- `kernel-camber` — worst difference and where, the kernel and front-view values at the last
+  travel, and the package's own two routes.
+- `quarter-car` — the travel range, period, frequency, camber swing and the fact that nothing
+  damps it.
+
+**One kit change made it possible.** The panel's readout was a `<p>`, and a `<table>` inside a
+paragraph is hoisted out by the parser, leaving the live region empty — a value a screen reader
+would never hear. It is a `<div>` now, still `aria-live="polite"`, and `kit site`'s two rows on
+the live region are unchanged.
+
+Held by `test_the_readout_is_rows_in_the_pages_own_columns` (all four call `table(readout` and
+none sets `readout.textContent`; the two with a matching page table carry that table's column
+names in its order). `readout --verify`: wishbone-hero 4 claims, stiffness-agreement 4, kernel-camber
+2 — 0 untrue; `canvas site` 0 errors over 254 figures; `audit` and `kit site` pass.

@@ -14,7 +14,7 @@ done-means; an item whose heading says done and whose checklist does not is the
 failure this file has had twice, so the list below, the headings and the boxes
 are checked against each other on every pass.
 
-**Every item from 79 to 170 is closed,** each with its measurement, its fix, its outcome
+**Every item from 79 to 171 is closed,** each with its measurement, its fix, its outcome
 and its ticked done-means in `.agents/todo-closed.md`. Items 166–174 are open: three
 defects the second review measured (165–167), five designs it proposed (168–172), and the
 two ways into the map the third review measured (173–174). A new item goes at the number after the
@@ -37,27 +37,6 @@ argument and the citations, and the review holds the measurement. The two indexe
 review holds their measurement.
 
 ---
-
-## 171 — Four figures state their numbers in a paragraph instead of the page's own columns
-
-**What is wrong.** `wishbone-hero` prints five quantities in six sentences and about 90 words;
-the page's table prints the same five in five columns, with signs rather than the direction
-words the readout uses ("1.00 degrees inboard" against "−1.00°"), and §1.1 makes the sign
-convention its first *Watch out*. So a reader who wants the number the figure is showing does
-extraction work at the moment the figure exists to remove it — and converts between two
-presentations of one quantity. `quarter-car`, `kernel-camber` and `stiffness-agreement` have
-the same habit. Spatial contiguity and signalling (Mayer); `research/review/…-ii.md`'s fourth
-proposal, `ideas.md` §12.4.
-
-**The fix.** A readout of label/value rows, in the table's order and the table's signs, drawn
-with the kit's `label()` as `dynamics-table`'s rows are.
-
-**Done means**
-
-- [ ] each of the four figures' readout is a list of label/value rows, and the value is the
-      one the page's table prints for the same quantity
-- [ ] every number in the readout is declared with `claim()` and `readout --verify` passes
-- [ ] the figures still pass `canvas`, `audit` and `kit`
 
 ## 172 — `maths-applied` teaches two procedures and presents them as one
 

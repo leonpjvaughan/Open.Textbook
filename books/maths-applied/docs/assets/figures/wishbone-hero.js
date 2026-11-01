@@ -15,7 +15,7 @@
 // Nothing here carries a colour, and every number comes from
 // `data/mechanism.js` — the same model the rest of the chapter and the other
 // figures use.
-import { SIZE, label, line, panel, react, slider } from "./kit.js";
+import { SIZE, label, line, panel, react, signed, slider, table } from "./kit.js";
 import { FRONT, GEOMETRY, GROUND, pose, thetaFor } from "../data/mechanism.js";
 
 // The view is the whole corner: one scale in both directions, because a front view
@@ -81,6 +81,17 @@ export function mount(el) {
     height: HEIGHT,
     max: 520,
   });
+
+  // The numbers are rows, not sentences: the page's own columns, in the page's order
+  // and with the page's signs, so a reader comparing the figure with the table does
+  // no conversion (item 171).
+  // A fixed number of decimals, with the page's sign: `claim()` quotes the strings it
+  // prints, and `signed()` trims a trailing zero, so "0.00" would never appear.
+  // `cell`, not `at`: `at` is this module's coordinate helper, and shadowing it broke
+  // every point in the drawing.
+  const cell = (value, places) =>
+    `${value < 0 ? "\u2212" : "+"}${Math.abs(value).toFixed(places)}`;
+  const values = table(readout, { columns: ["quantity", "value"] });
 
   const travel = slider(el, {
     id: "travel",
@@ -241,20 +252,20 @@ export function mount(el) {
     const rollCentre = state.rc ? (state.rc[1] - GROUND) * 1000 : null;
     const track = (state.W[0] - design.W[0]) * 1000;
 
-    readout.textContent =
-      `At ${num(metres, 0)} mm of travel the lower arm has turned through ` +
-      `${num((theta * 180) / Math.PI, 2)} degrees. Camber is ` +
-      `${num(Math.abs(state.camber), 2)} degrees ${lean} of vertical, ` +
-      `which is ${num(Math.abs(change), 2)} degrees ` +
-      `${
-        Math.abs(change) < 0.005
-          ? "from where it sits at rest"
-          : `${change < 0 ? "further in" : "further out"} than at rest`
-      }. The instant centre is ${num(Math.abs(state.ic ? state.ic[0] : 0), 2)} m ` +
-      `inboard of the car's centreline and ${num(state.ic ? state.ic[1] - GROUND : 0, 2)} m above the ground, so the ` +
-      `roll centre is ` +
-      `${rollCentre === null ? "not defined" : `${num(rollCentre, 0)} mm above the ground`}. ` +
-      `The track has moved by ${num(track, 1)} mm.`;
+    const up = state.ic ? state.ic[1] - GROUND : 0;
+    values.update([
+      ["wheel travel", `${cell(metres, 0)} mm`],
+      ["lower arm turns", `${cell((theta * 180) / Math.PI, 1)}\u00b0`],
+      ["camber", `${cell(state.camber, 2)}\u00b0`],
+      ["camber change since rest", `${cell(change, 2)}\u00b0`],
+      [
+        "instant centre",
+        `${num(Math.abs(state.ic ? state.ic[0] : 0), 2)} m inboard, ` +
+          `${num(Math.abs(up), 2)} m ${up >= 0 ? "up" : "down"}`,
+      ],
+      ["roll centre", rollCentre === null ? "not defined" : `${cell(rollCentre, 0)} mm`],
+      ["track", `${cell(track, 1)} mm`],
+    ]);
 
     // The one piece of arithmetic the readout states, declared so it cannot drift
     // from the model that computed it. The claim is on the **size** of the change:
