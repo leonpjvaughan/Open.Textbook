@@ -7819,3 +7819,41 @@ case-insensitively, and no row says "best"). Two rows needed their method names 
 the method table — `Dense LU, with pivoting` and `Preconditioners (ILU, AMG, Jacobi)` — which
 is the kind of drift the test exists to catch. Lint clean over 31 pages; the built pages carry
 both tables.
+
+## 169 — No class page named the look-alike it is most likely to be mistaken for — **done**
+
+**What is wrong.** Classification is learned by discriminating near-misses, and the book has
+no page in that direction: `worked-case` takes one corner and five kinds (the right
+direction), and nothing takes one kind and the look-alikes a reader will confuse it with. The
+map therefore has one axis — "which box am I in" — and not the second one, "which neighbouring
+box will I mistake this for". `research/review/…-ii.md`'s second proposal.
+
+**The fix.** A two-line **"this, not that"** row on each class page, in the book's existing
+format, naming the class a reader is most likely to have instead and the one fact that
+separates them: "**Root, not linear system.** A rule that bends is iterated; a rule that is
+linear is solved."
+
+**Done means**
+
+- [ ] all nine class pages carry the row, each naming a different neighbour
+- [ ] the neighbour it names is a class the page already links, so the reader can go there
+- [ ] `tests/test_reference_books.py` fails if a row is missing or names a class that is not
+      in the registry
+
+**Outcome, 2026-10-31.** Each of the nine class pages now carries a **this, not that** row under
+its opening sentence, naming one neighbouring class and the one fact that separates them:
+
+- root → a linear system; linear system → a saddle point; saddle point → optimisation;
+- optimisation → eigenvalues; eigenvalues → parabolic; parabolic → hyperbolic;
+- hyperbolic → elliptic; elliptic → averaging; averaging → root finding.
+
+The nine neighbours are a permutation, so no two pages describe the same confusion: the map now
+has a second axis — "which neighbouring box will I mistake this for" — as well as "which box am
+I in".
+
+Held by `test_a_class_page_names_the_class_it_is_most_often_mistaken_for` (each page's row names
+a title the registry carries, and the row's own name is the page's) and
+`test_every_class_names_a_different_look_alike` (nine distinct neighbours). Two rows needed
+correcting once the tests existed — `Root` for `Root finding`, and `an eigenvalue problem` for
+`Eigenvalues` — which is what a registry-checked row is for. Lint clean over 31 pages;
+`pytest tests/test_reference_books.py tests/test_page_rules.py` — 140 passed.

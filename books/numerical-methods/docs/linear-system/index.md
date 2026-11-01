@@ -7,6 +7,9 @@ title: Linear system
 **You have one of these when** every rule in the model is linear in the
 unknowns, the unknowns are a finite list, and nothing changes with time.
 
+**Linear system, not a saddle point.** The unknowns here are the only ones. A
+saddle point adds a second unknown for every rule that has to hold everywhere.
+
 ## What you are modelling
 
 A balance. The forces at a joint add to zero, the currents into a node add to
@@ -97,9 +100,9 @@ Two consequences follow, and both surprise people:
 Every method named here is in [Methods, A to Z](../techniques/#linear-systems),
 with its price and what it will not do.
 
-**Start from the model you have.** Each row is a property of the model in front of you,
-the methods that fit it, and what the fit costs. The method-keyed table below is the same
-list sorted by name.
+**Start from the model you have.** Each row is a property of the model in front
+of you, the methods that fit it, and what the fit costs. The method-keyed table
+below is the same list sorted by name.
 
 | what your model is | the methods that fit | the price |
 |---|---|---|

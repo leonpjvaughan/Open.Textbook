@@ -7,6 +7,9 @@ title: Eigenvalues
 **You have one of these when** you ask which values are allowed — which
 frequencies, which loads, which energies — rather than what any one of them is.
 
+**Eigenvalues, not parabolic.** The answer is a set of allowed values, fixed
+once the matrix is written. A parabolic answer moves forward in time.
+
 ## What you are modelling
 
 A system with patterns in it. Most patterns get distorted or decayed by the
@@ -78,9 +81,9 @@ equilibrium, linearise, and look at the sign of the real part.
 Every method named here is in [Methods, A to Z](../techniques/#eigenvalues),
 with its price and what it will not do.
 
-**Start from the model you have.** Each row is a property of the model in front of you,
-the methods that fit it, and what the fit costs. The method-keyed table below is the same
-list sorted by name.
+**Start from the model you have.** Each row is a property of the model in front
+of you, the methods that fit it, and what the fit costs. The method-keyed table
+below is the same list sorted by name.
 
 | what your model is | the methods that fit | the price |
 |---|---|---|

@@ -7,6 +7,10 @@ title: Root finding
 **You have one of these when** a rule has to hold at a point, the rule bends
 with the answer, and nothing changes with time.
 
+**Root finding, not a linear system.** A rule that bends is iterated; a rule
+that is linear is solved in one step. If every row is a sum of the unknowns, the
+iteration is rediscovering a factorisation.
+
 ## What you are modelling
 
 A state that has to satisfy a condition. The condition can come from geometry,
@@ -83,9 +87,9 @@ the mechanism, not a failure of the method.
 Every method named here is in [Methods, A to Z](../techniques/#finding-a-state),
 with its price and what it will not do.
 
-**Start from the model you have.** Each row is a property of the model in front of you,
-the methods that fit it, and what the fit costs. The method-keyed table below is the same
-list sorted by name.
+**Start from the model you have.** Each row is a property of the model in front
+of you, the methods that fit it, and what the fit costs. The method-keyed table
+below is the same list sorted by name.
 
 | what your model is | the methods that fit | the price |
 |---|---|---|

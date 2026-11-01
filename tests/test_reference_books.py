@@ -1305,3 +1305,40 @@ def test_a_class_page_offers_a_property_keyed_way_into_its_techniques(slug):
     assert missing == [], f"{slug}: the property table does not offer {missing}"
     # and no row ranks a method
     assert "best" not in property_rows.lower().replace("best one", ""), slug
+
+
+@pytest.mark.parametrize("slug", CLASSES)
+def test_a_class_page_names_the_class_it_is_most_often_mistaken_for(slug):
+    """Item 169: classification is learned by discriminating near-misses.
+
+    `worked-case` takes one mechanism and five kinds — the right direction. Nothing took
+    one kind and the look-alike a reader will confuse it with, so the map had one axis
+    ("which box am I in") and not the second ("which neighbouring box will I mistake this
+    for"). Each page now carries a **this, not that** row.
+    """
+    book = map_book()
+    page = (book.docs / slug / "index.md").read_text(encoding="utf-8")
+    match = re.search(r"^\*\*([^*]+), not (?:a |an )?([^*]+)\.\*\*", page, re.M)
+    assert match, f"{slug} has no look-alike row"
+    title = next(e["title"] for e in book.pages if e["path"].startswith(f"{slug}/"))
+    assert match.group(1).strip().lower() == title.lower(), (slug, match.group(1))
+    neighbours = {
+        e["title"].lower()
+        for e in book.pages
+        if e.get("signature")
+    }
+    assert match.group(2).strip().lower() in neighbours, (
+        f"{slug} names {match.group(2)!r}, which is not a class"
+    )
+
+
+def test_every_class_names_a_different_look_alike():
+    """Nine pages naming the same neighbour would describe one confusion, not nine."""
+    book = map_book()
+    named = {}
+    for slug in CLASSES:
+        page = (book.docs / slug / "index.md").read_text(encoding="utf-8")
+        match = re.search(r"^\*\*[^*]+, not (?:a |an )?([^*]+)\.\*\*", page, re.M)
+        assert match, slug
+        named[slug] = match.group(1).strip().lower()
+    assert len(set(named.values())) == len(named), f"two classes name the same neighbour: {named}"

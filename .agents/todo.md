@@ -14,7 +14,7 @@ done-means; an item whose heading says done and whose checklist does not is the
 failure this file has had twice, so the list below, the headings and the boxes
 are checked against each other on every pass.
 
-**Every item from 79 to 168 is closed,** each with its measurement, its fix, its outcome
+**Every item from 79 to 169 is closed,** each with its measurement, its fix, its outcome
 and its ticked done-means in `.agents/todo-closed.md`. Items 166–174 are open: three
 defects the second review measured (165–167), five designs it proposed (168–172), and the
 two ways into the map the third review measured (173–174). A new item goes at the number after the
@@ -37,26 +37,6 @@ argument and the citations, and the review holds the measurement. The two indexe
 review holds their measurement.
 
 ---
-
-## 169 — No class page names the look-alike it is most likely to be mistaken for
-
-**What is wrong.** Classification is learned by discriminating near-misses, and the book has
-no page in that direction: `worked-case` takes one corner and five kinds (the right
-direction), and nothing takes one kind and the look-alikes a reader will confuse it with. The
-map therefore has one axis — "which box am I in" — and not the second one, "which neighbouring
-box will I mistake this for". `research/review/…-ii.md`'s second proposal.
-
-**The fix.** A two-line **"this, not that"** row on each class page, in the book's existing
-format, naming the class a reader is most likely to have instead and the one fact that
-separates them: "**Root, not linear system.** A rule that bends is iterated; a rule that is
-linear is solved."
-
-**Done means**
-
-- [ ] all nine class pages carry the row, each naming a different neighbour
-- [ ] the neighbour it names is a class the page already links, so the reader can go there
-- [ ] `tests/test_reference_books.py` fails if a row is missing or names a class that is not
-      in the registry
 
 ## 170 — `symptoms` lists the systems instead of asking the reader to classify one
 

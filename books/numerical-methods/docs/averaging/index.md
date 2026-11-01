@@ -7,6 +7,9 @@ title: Averaging
 **You have one of these when** the answer is not a number but a distribution, or
 an average over possibilities you cannot list.
 
+**Averaging, not root finding.** The answer is a distribution, or a number with
+an error bar. A root is the point where a rule comes out zero.
+
 ## What you are modelling
 
 The system has randomness in it, or so many states that counting them is
@@ -79,9 +82,9 @@ There is a sample, a variance, and a convergence rate you can measure.
 Every method named here is in [Methods, A to Z](../techniques/#averaging), with
 its price and what it will not do.
 
-**Start from the model you have.** Each row is a property of the model in front of you,
-the methods that fit it, and what the fit costs. The method-keyed table below is the same
-list sorted by name.
+**Start from the model you have.** Each row is a property of the model in front
+of you, the methods that fit it, and what the fit costs. The method-keyed table
+below is the same list sorted by name.
 
 | what your model is | the methods that fit | the price |
 |---|---|---|

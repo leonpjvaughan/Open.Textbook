@@ -7,6 +7,9 @@ title: Hyperbolic
 **You have one of these when** information travels at a finite speed along
 paths, and what arrives keeps the shape of what was sent.
 
+**Hyperbolic, not elliptic.** Information travels at a finite speed and arrives.
+In an elliptic problem nothing travels, and the answer is already settled.
+
 ## What you are modelling
 
 Something carried. A pressure wave, a shock, a crowd, a flood, a gravitational
@@ -98,9 +101,9 @@ bounded.
 Every method named here is in [Methods, A to Z](../techniques/#moving-problems),
 with its price and what it will not do.
 
-**Start from the model you have.** Each row is a property of the model in front of you,
-the methods that fit it, and what the fit costs. The method-keyed table below is the same
-list sorted by name.
+**Start from the model you have.** Each row is a property of the model in front
+of you, the methods that fit it, and what the fit costs. The method-keyed table
+below is the same list sorted by name.
 
 | what your model is | the methods that fit | the price |
 |---|---|---|

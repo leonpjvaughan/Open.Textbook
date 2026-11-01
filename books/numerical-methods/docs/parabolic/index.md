@@ -7,6 +7,9 @@ title: Parabolic
 **You have one of these when** the answer moves forward in time and smooths as
 it goes, so it forgets where it started.
 
+**Parabolic, not hyperbolic.** What moves here smooths and forgets where it
+started. A hyperbolic answer keeps the shape of what was sent.
+
 ## What you are modelling
 
 A transient that settles. Heat spreading through a casting, a tyre warming, a
@@ -83,9 +86,9 @@ explicit and the mesh is fine".
 Every method named here is in [Methods, A to Z](../techniques/#moving-problems),
 with its price and what it will not do.
 
-**Start from the model you have.** Each row is a property of the model in front of you,
-the methods that fit it, and what the fit costs. The method-keyed table below is the same
-list sorted by name.
+**Start from the model you have.** Each row is a property of the model in front
+of you, the methods that fit it, and what the fit costs. The method-keyed table
+below is the same list sorted by name.
 
 | what your model is | the methods that fit | the price |
 |---|---|---|

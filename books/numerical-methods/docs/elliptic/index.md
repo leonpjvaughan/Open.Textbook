@@ -7,6 +7,9 @@ title: Elliptic
 **You have one of these when** the answer is a value at every point in a region,
 and nothing travels.
 
+**Elliptic, not averaging.** The answer is a value at every point. An average is
+one number over what you cannot list, and it comes with an error bar.
+
 ## What you are modelling
 
 A settled state. The system has had time to reach equilibrium, so there is no
@@ -80,9 +83,9 @@ Two consequences follow:
 Every method named here is in [Methods, A to Z](../techniques/#linear-systems),
 with its price and what it will not do.
 
-**Start from the model you have.** Each row is a property of the model in front of you,
-the methods that fit it, and what the fit costs. The method-keyed table below is the same
-list sorted by name.
+**Start from the model you have.** Each row is a property of the model in front
+of you, the methods that fit it, and what the fit costs. The method-keyed table
+below is the same list sorted by name.
 
 | what your model is | the methods that fit | the price |
 |---|---|---|

@@ -7,6 +7,10 @@ title: Saddle point
 **You have one of these when** a rule has to hold everywhere, and the model pays
 for it with a second unknown.
 
+**Saddle point, not optimisation.** Something has to stay true and nothing
+chooses it. In optimisation a choice is scored, and the best score is the
+answer.
+
 ## What you are modelling
 
 A system with a constraint that is not a boundary condition: the fluid cannot
@@ -84,9 +88,9 @@ return one of them.
 Every method named here is in [Methods, A to Z](../techniques/#linear-systems),
 with its price and what it will not do.
 
-**Start from the model you have.** Each row is a property of the model in front of you,
-the methods that fit it, and what the fit costs. The method-keyed table below is the same
-list sorted by name.
+**Start from the model you have.** Each row is a property of the model in front
+of you, the methods that fit it, and what the fit costs. The method-keyed table
+below is the same list sorted by name.
 
 | what your model is | the methods that fit | the price |
 |---|---|---|
