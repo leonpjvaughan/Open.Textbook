@@ -31,7 +31,15 @@
 import fs from "node:fs";
 import path from "node:path";
 import { launchBrowser, openContext, serveStatic, ORIGIN } from "../lib/browser.js";
-import { outside, transformBox, type Box, type Ink, type Matrix } from "../lib/canvas.js";
+import {
+  outside,
+  transformBox,
+  STROKE_TOLERANCE,
+  TEXT_SLACK,
+  type Box,
+  type Ink,
+  type Matrix,
+} from "../lib/canvas.js";
 import { mapPool } from "../lib/pool.js";
 import { parseArgs, type Surface } from "../lib/flags.js";
 import { Report } from "../lib/report.js";
@@ -76,6 +84,8 @@ type Element = {
   text: string;
   box: Box;
   matrix: Matrix;
+  /** A text element's font size, in user units: its slack is a fraction of this. */
+  fontSize: number;
 };
 
 type Figure = {
@@ -144,6 +154,7 @@ export function readInk(slug: string): Figure {
       text: (node.textContent || "").slice(0, 32),
       box: { x: box.x, y: box.y, width: box.width, height: box.height },
       matrix: [m.a, m.b, m.c, m.d, m.e, m.f],
+      fontSize: parseFloat(style.fontSize) || 16,
     });
   }
   return { slug, viewBox, hasSvg: true, drawings: elements.length, elements };
@@ -159,7 +170,7 @@ export function readInk(slug: string): Figure {
 export function cases(): string[] {
   const failures: string[] = [];
   const check = (name: string, ink: Ink, box: Box, canvas: Box, want: boolean) => {
-    const got = outside(ink, box, canvas, 0.5);
+    const got = outside(ink, box, canvas, ink === "text" ? 8 : STROKE_TOLERANCE);
     if (got.outside !== want) {
       failures.push(`${name}: wanted outside=${want}, got ${got.outside} (over ${got.over})`);
     }
@@ -179,10 +190,20 @@ export function cases(): string[] {
     dynamics,
     true,
   );
+  // A label's slack is half an em: the em box is taller than the glyphs, and a runner
+  // without the site's font measures the same label a few units wider. Five units is
+  // that slack; twenty is a label whose ink leaves the drawing.
   check(
-    "kernel-camber's last tick label (5 units past the right edge)",
+    "a label five units past the right edge (the em box's slack)",
     "text",
     { x: 516, y: 255, width: 49, height: 17 },
+    { x: 0, y: 0, width: 560, height: 300 },
+    false,
+  );
+  check(
+    "a label twenty units past the right edge",
+    "text",
+    { x: 540, y: 255, width: 40, height: 17 },
     { x: 0, y: 0, width: 560, height: 300 },
     true,
   );
@@ -228,7 +249,7 @@ export async function run(argv: string[]): Promise<number> {
     const failures = cases();
     for (const failure of failures) console.log(`FAIL  canvas: ${failure}`);
     console.log(
-      `canvas: 7 cases examined, ${failures.length} errors, 0 warnings`,
+      `canvas: 8 cases examined, ${failures.length} errors, 0 warnings`,
     );
     return failures.length ? 1 : 0;
   }
@@ -333,7 +354,9 @@ export async function run(argv: string[]): Promise<number> {
       let count = 0;
       for (const element of figure.elements) {
         const drawn = transformBox(element.box, element.matrix);
-        const verdict = outside(element.ink, drawn, figure.viewBox, 0.5);
+        const slack =
+          element.ink === "text" ? element.fontSize * TEXT_SLACK : STROKE_TOLERANCE;
+        const verdict = outside(element.ink, drawn, figure.viewBox, slack);
         if (!verdict.outside) continue;
         count += 1;
         if (verdict.over > worst.over) {
@@ -396,7 +419,9 @@ export async function run(argv: string[]): Promise<number> {
           let worst = { over: 0, what: "" };
           for (const element of figure.elements) {
             const drawn = transformBox(element.box, element.matrix);
-            const verdict = outside(element.ink, drawn, figure.viewBox, 0.5);
+            const slack =
+          element.ink === "text" ? element.fontSize * TEXT_SLACK : STROKE_TOLERANCE;
+        const verdict = outside(element.ink, drawn, figure.viewBox, slack);
             if (!verdict.outside) continue;
             count += 1;
             if (verdict.over > worst.over) {

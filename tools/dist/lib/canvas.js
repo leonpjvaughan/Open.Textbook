@@ -20,15 +20,15 @@
  *     fail it or miss a row of labels drawn below the frame.
  */
 /**
- * The slack for a label, in user units.
+ * The slack for a label, **as a fraction of its font size**.
  *
- * **A `<text>`'s box is the em box, and its metrics are the environment's font.** A
- * runner without the site's font falls back to another family and reports the same label
- * three units wider than this machine does — which is a different measurement, not a
- * different drawing. Six units is a third of the smallest label's line height: below
- * that the overhang is the box's ascent and side bearing, and above it a glyph is cut.
+ * A `<text>`'s box is the em box, and its width is the environment's font: a runner
+ * without the site's font reports the same label a few units wider than this machine
+ * does, which is a different measurement of the same drawing. Half an em covers the
+ * ascent and side bearing that no glyph reaches, and a label cut by more than that is a
+ * label whose ink is cut.
  */
-export const TOLERANCE = 6;
+export const TEXT_SLACK = 0.5;
 /**
  * The slack for a mark, and why it is larger.
  *
@@ -43,7 +43,7 @@ export function overflow(inner, outer) {
     return Math.max(outer.x - inner.x, outer.y - inner.y, inner.x + inner.width - (outer.x + outer.width), inner.y + inner.height - (outer.y + outer.height));
 }
 /** Do the two boxes overlap at all, allowing `tolerance` at the edges? */
-export function overlaps(a, b, tolerance = TOLERANCE) {
+export function overlaps(a, b, tolerance = STROKE_TOLERANCE) {
     return (a.x < b.x + b.width + tolerance &&
         b.x < a.x + a.width + tolerance &&
         a.y < b.y + b.height + tolerance &&
@@ -55,7 +55,7 @@ export function overlaps(a, b, tolerance = TOLERANCE) {
  * `over` is the worst overflow in user units, which is what a report needs to say —
  * "20 units below the frame" is actionable and "outside" is not.
  */
-export function outside(ink, box, canvas, tolerance = TOLERANCE) {
+export function outside(ink, box, canvas, tolerance) {
     const over = overflow(box, canvas);
     if (ink === "text")
         return { outside: over > tolerance, over };
