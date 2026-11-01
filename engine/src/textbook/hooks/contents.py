@@ -49,6 +49,42 @@ def render(content: str) -> str:
 
 
 def on_page_content(content: str, page, config, files) -> str:
+    if ":::method-index" in content:
+        content = METHOD_MARKER.sub(lambda _match: render_methods(content), content)
     if ":::contents" not in content:
         return content
     return MARKER.sub(lambda _match: render(content), content)
+
+
+#: The name index. `:::method-index` lists every `h3` entry on the page once, sorted by its
+#: display name and grouped by initial letter, each name linking the anchor the entry
+#: carries. It exists because *Methods, A to Z* is entered by name and sorted by family:
+#: at 390px the page is 22,773px and `Uzawa` was at 9,598px, so a reader holding a method
+#: name had find-in-page or the site search and nothing else.
+METHOD = re.compile(r'<h3 id="([^"]+)"[^>]*>(.*?)</h3>', re.S | re.I)
+METHOD_MARKER = re.compile(r"<p>\s*:::method-index\s*</p>", re.I)
+
+
+def render_methods(content: str) -> str:
+    entries = sorted(
+        ((_label(title), anchor) for anchor, title in METHOD.findall(content)),
+        key=lambda pair: pair[0].lower(),
+    )
+    if len(entries) < 20:
+        return ""
+    lines: dict[str, list[str]] = {}
+    for name, anchor in entries:
+        letter = name[:1].upper()
+        lines.setdefault(letter, []).append(
+            f'<a href="#{html.escape(anchor, quote=True)}">{html.escape(name)}</a>'
+        )
+    body = "".join(
+        f'<p class="method-index__line"><span class="method-index__letter">{letter}</span>'
+        f"{' · '.join(names)}</p>"
+        for letter, names in sorted(lines.items())
+    )
+    return (
+        '<nav class="method-index-nav" aria-label="Every method, by name">'
+        '<p class="contents__title">Every method, by name</p>'
+        f"{body}</nav>"
+    )

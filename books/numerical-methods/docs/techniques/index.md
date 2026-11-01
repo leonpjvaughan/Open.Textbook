@@ -29,6 +29,8 @@ the column is entries rather than a partition of the book's methods.
 
 <div class="method-index" markdown="1">
 
+:::method-index
+
 :::contents
 
 <a id="finding-a-state"></a>

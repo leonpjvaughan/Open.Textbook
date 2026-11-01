@@ -1379,3 +1379,30 @@ def test_symptoms_asks_the_reader_to_classify_ten_systems():
         assert items.count(summary.strip().lower()) >= 1, (
             f"the {slug} page does not list {summary!r}"
         )
+
+
+def test_the_name_index_lists_every_method_once_and_links_its_entry():
+    """Item 173: the A–Z is entered by name and sorted by family, so a name had no route.
+
+    The index is generated from the page's own `h3` anchors, sorted by display name and
+    grouped by initial letter. Every entry appears exactly once, and every link resolves to
+    an anchor the page carries — the two ways an index rots.
+    """
+    from textbook.hooks import contents
+
+    book = map_book()
+    page = (book.docs / "techniques/index.md").read_text(encoding="utf-8")
+    assert ":::method-index" in page
+
+    # build the same page the hook sees, from the method headings it carries
+    headings = re.findall(r'<a id="([\w-]+)"></a>\n+### (.+)', page)
+    assert len(headings) >= 20, f"only {len(headings)} method headings found"
+    html = "".join(f'<h3 id="{anchor}">{title}</h3>' for anchor, title in headings)
+    nav = contents.render_methods(html)
+    assert nav.count("<a href=") == len(headings), "the index does not list every method"
+    for anchor, _title in headings:
+        assert nav.count(f'href="#{anchor}"') == 1, f"{anchor} appears {nav.count(f'href=\"{anchor}\"')} times"
+
+    # sorted by display name, within and across letters
+    names = [re.sub(r"<[^>]+>", "", n) for n in re.findall(r'href="#[^"]+">([^<]+)</a>', nav)]
+    assert names == sorted(names, key=str.lower), "the index is not alphabetical"

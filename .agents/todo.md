@@ -14,7 +14,7 @@ done-means; an item whose heading says done and whose checklist does not is the
 failure this file has had twice, so the list below, the headings and the boxes
 are checked against each other on every pass.
 
-**Every item from 79 to 172 is closed,** each with its measurement, its fix, its outcome
+**Every item from 79 to 173 is closed,** each with its measurement, its fix, its outcome
 and its ticked done-means in `.agents/todo-closed.md`. Items 166–174 are open: three
 defects the second review measured (165–167), five designs it proposed (168–172), and the
 two ways into the map the third review measured (173–174). A new item goes at the number after the
@@ -37,46 +37,6 @@ argument and the citations, and the review holds the measurement. The two indexe
 review holds their measurement.
 
 ---
-
-## 173 — *Methods, A to Z* is not alphabetical, and a reader holding a name cannot reach its entry
-
-**What is wrong.** The page calls itself the inverse lookup — "You have heard of a method and
-want to know where it applies" — and then sorts by method family, and within a family by the
-order the class page happens to use. Measured on the built page:
-
-```
-$ grep '^### ' books/numerical-methods/docs/techniques/index.md | head -5
-### Bisection
-### Secant, false position
-### Newton
-### Quasi-Newton (Broyden)
-### Brent
-```
-
-`Bisection` before `Brent` before `Newton` is a teaching order, not an alphabetical one. At
-390px the page is **22,580px**; `Uzawa` is at **9,598px** and `Monte Carlo` at **19,108px**.
-The only name-based route is find-in-page or the site search, and a search result opens the
-page at the top, not at the anchor. The title promises a lookup the page does not offer.
-
-This is not 167. That item lists the page's five family headings; a reader who has the name
-`Uzawa` does not need to know it is a linear-system method before they can find it.
-
-**The fix.** A compact index at the top, one line per initial letter, each method name linking
-to the anchor that already exists (`<a id="uzawa"></a>` and 76 others). Generate it from those
-anchors rather than typing it: a hand-kept list of 77 names is a second copy, and item 167's
-argument against a second copy is the same argument here. If generation is too much for one
-change, sort the method blocks alphabetically inside each family and keep the five family
-anchors as fragment targets — but then the family grouping stops being a reading order and
-the page's opening paragraph has to say so.
-
-**Done means**
-
-- [ ] a reader at the top of the page can reach any of the 77 entries in one click
-- [ ] every method anchor appears exactly once, sorted by its display name, and a test fails
-      when one is missing, duplicated or out of order
-- [ ] every index link resolves to an anchor the page carries, and a test fails on a stale one
-- [ ] the page height at 390px does not grow by more than the index's own measured height
-- [ ] `python -m textbook.lint numerical-methods` is clean
 
 ## 174 — No way into the map by system, although the book counts 64 of them
 

@@ -869,3 +869,31 @@ maths-figure label {
 @media (max-width: 44rem) {
   .md-typeset .contents__list { columns: 1; }
 }
+
+/* The name index (`:::method-index`): every method once, by letter.
+ *
+ * Every name is a link to the entry the page already carries, so it is one click from the
+ * top of a page that was 22,773px tall on a phone. One line per letter, because 77 names
+ * in one column is the wall the index exists to avoid. */
+.md-typeset .method-index-nav {
+  max-width: var(--tb-measure);
+  margin: 1rem 0 1.4rem;
+  padding: 0.6rem 0.8rem;
+  border: 1px solid var(--tb-rule);
+  border-radius: var(--tb-radius);
+  font-size: 0.85rem;
+  line-height: 1.5;
+}
+
+.md-typeset .method-index__line {
+  margin: 0.15rem 0;
+  text-indent: -1.4rem;
+  padding-left: 1.4rem;
+}
+
+.md-typeset .method-index__letter {
+  display: inline-block;
+  width: 1.4rem;
+  color: var(--tb-ink-soft);
+  font-weight: 600;
+}

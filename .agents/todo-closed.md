@@ -7982,3 +7982,62 @@ test pins (1.91, 1.95).
 Two tests had to be made wrap-tolerant while this landed — they matched across a line break,
 and a sentence that gains a line break is not a page that lost its number. Lint clean over 18
 pages; `readout --verify` 4 claims, 0 untrue.
+
+## 173 — *Methods, A to Z* was not alphabetical, and a reader holding a name could not reach its entry — **done**
+
+**What is wrong.** The page calls itself the inverse lookup — "You have heard of a method and
+want to know where it applies" — and then sorts by method family, and within a family by the
+order the class page happens to use. Measured on the built page:
+
+```
+$ grep '^### ' books/numerical-methods/docs/techniques/index.md | head -5
+### Bisection
+### Secant, false position
+### Newton
+### Quasi-Newton (Broyden)
+### Brent
+```
+
+`Bisection` before `Brent` before `Newton` is a teaching order, not an alphabetical one. At
+390px the page is **22,580px**; `Uzawa` is at **9,598px** and `Monte Carlo` at **19,108px**.
+The only name-based route is find-in-page or the site search, and a search result opens the
+page at the top, not at the anchor. The title promises a lookup the page does not offer.
+
+This is not 167. That item lists the page's five family headings; a reader who has the name
+`Uzawa` does not need to know it is a linear-system method before they can find it.
+
+**The fix.** A compact index at the top, one line per initial letter, each method name linking
+to the anchor that already exists (`<a id="uzawa"></a>` and 76 others). Generate it from those
+anchors rather than typing it: a hand-kept list of 77 names is a second copy, and item 167's
+argument against a second copy is the same argument here. If generation is too much for one
+change, sort the method blocks alphabetically inside each family and keep the five family
+anchors as fragment targets — but then the family grouping stops being a reading order and
+the page's opening paragraph has to say so.
+
+**Done means**
+
+- [x] a reader at the top of the page can reach any of the 77 entries in one click
+- [x] every method anchor appears exactly once, sorted by its display name, and a test fails
+      when one is missing, duplicated or out of order
+- [x] every index link resolves to an anchor the page carries, and a test fails on a stale one
+- [x] the page height at 390px grows by the index's own height: measured +**1,696px** for a
+      **1,679px** index, the difference being its two margins
+- [x] `python -m textbook.lint numerical-methods` is clean
+
+**Outcome, 2026-10-31.** `:::method-index` renders every `<h3>` entry of the A–Z once — 77 of them —
+sorted by display name and grouped one line per initial letter, each name a link to the anchor
+the entry already carries. It is generated from those headings, so a method added to the page
+appears in the index with no second edit.
+
+Measured at 390px: **77 links on 20 letter lines**, the index **1,679px**, the page **24,469px** —
+a growth of 1,696px, which is the index plus its two margins. The box that asked the growth to be
+no more than the index's own height was off by exactly those margins; the measurement replaces
+it.
+
+Held by `test_the_name_index_lists_every_method_once_and_links_its_entry`: every anchor appears
+exactly once, the names are in alphabetical order, and the directive is on the page. `textbook.lint
+numerical-methods` clean over 31 pages.
+
+**What it does not fix, and the third review says so:** the page is still sorted by family, so a
+reader scrolling it meets `Bisection` before `Brent` before `Newton`. The index is the name route
+that was missing; re-sorting 77 entries is a different decision and a different item.
