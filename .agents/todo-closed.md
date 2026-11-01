@@ -7857,3 +7857,41 @@ a title the registry carries, and the row's own name is the page's) and
 correcting once the tests existed — `Root` for `Root finding`, and `an eigenvalue problem` for
 `Eigenvalues` — which is what a registry-checked row is for. Lint clean over 31 pages;
 `pytest tests/test_reference_books.py tests/test_page_rules.py` — 140 passed.
+
+## 170 — `symptoms` listed the systems instead of asking the reader to classify one — **done**
+
+**What is wrong.** `Systems that live here` on each class page lists 5–8 systems per class, 64
+in the book — and they confirm a class the reader has already been told. The same content
+asked the other way is retrieval practice with feedback, which is what P4 asks of every page
+and the one thing a reference work cannot do for itself. `symptoms` is entered by a wrong
+answer, which is where a reader is most motivated and where the book currently has no
+exercise. `research/review/…-ii.md`'s third proposal, `ideas.md` §12.3.
+
+**The fix.** Native `<details markdown="1">` on `symptoms`: the system as the summary, the
+class and the one-line reason as the answer, linking the page that argues it. No script, and
+the answer already exists.
+
+**Done means**
+
+- [ ] `symptoms` carries at least ten of them, each summary naming a system from a class
+      page's own list and each answer linking that class page
+- [ ] they work with scripting off, and `tools kit site` still passes (native disclosure, one
+      focus stop each)
+- [ ] a test fails if an answer names a class the registry does not have
+
+**Outcome, 2026-10-31.** Ten questions on `symptoms`, under **Which kind is this?**, above the two
+tables: the system as the `<summary>` and the class as the answer, linking the page that argues
+it. The page is entered by a wrong answer, which is where a reader is most motivated, and the
+answer is already written and already linked — this turns the class pages' 64 systems into
+practice with feedback.
+
+They are native `<details markdown="1">`, so they work with scripting off, need no focus
+management, and `tools kit site` passes unchanged (134 rows, no export without one). Each
+summary is the start of the class page's own sentence — "Where the wheel goes", "Shallow water",
+"Topological optimisation" is "Topology optimisation" — shortened to fit a phone.
+
+Held by `test_symptoms_asks_the_reader_to_classify_ten_systems`: at least ten, every answer's
+label is the registry's title for the class it links, and every summary appears in that class
+page's *Systems that live here* list, so a question that is not on the page it names fails.
+Lint clean over 31 pages; `pytest tests/test_page_rules.py tests/test_reference_books.py` — 141
+passed.

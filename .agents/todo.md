@@ -14,7 +14,7 @@ done-means; an item whose heading says done and whose checklist does not is the
 failure this file has had twice, so the list below, the headings and the boxes
 are checked against each other on every pass.
 
-**Every item from 79 to 169 is closed,** each with its measurement, its fix, its outcome
+**Every item from 79 to 170 is closed,** each with its measurement, its fix, its outcome
 and its ticked done-means in `.agents/todo-closed.md`. Items 166–174 are open: three
 defects the second review measured (165–167), five designs it proposed (168–172), and the
 two ways into the map the third review measured (173–174). A new item goes at the number after the
@@ -37,27 +37,6 @@ argument and the citations, and the review holds the measurement. The two indexe
 review holds their measurement.
 
 ---
-
-## 170 — `symptoms` lists the systems instead of asking the reader to classify one
-
-**What is wrong.** `Systems that live here` on each class page lists 5–8 systems per class, 64
-in the book — and they confirm a class the reader has already been told. The same content
-asked the other way is retrieval practice with feedback, which is what P4 asks of every page
-and the one thing a reference work cannot do for itself. `symptoms` is entered by a wrong
-answer, which is where a reader is most motivated and where the book currently has no
-exercise. `research/review/…-ii.md`'s third proposal, `ideas.md` §12.3.
-
-**The fix.** Native `<details markdown="1">` on `symptoms`: the system as the summary, the
-class and the one-line reason as the answer, linking the page that argues it. No script, and
-the answer already exists.
-
-**Done means**
-
-- [ ] `symptoms` carries at least ten of them, each summary naming a system from a class
-      page's own list and each answer linking that class page
-- [ ] they work with scripting off, and `tools kit site` still passes (native disclosure, one
-      focus stop each)
-- [ ] a test fails if an answer names a class the registry does not have
 
 ## 171 — Four figures state their numbers in a paragraph instead of the page's own columns
 

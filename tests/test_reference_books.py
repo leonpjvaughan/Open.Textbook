@@ -1342,3 +1342,40 @@ def test_every_class_names_a_different_look_alike():
         assert match, slug
         named[slug] = match.group(1).strip().lower()
     assert len(set(named.values())) == len(named), f"two classes name the same neighbour: {named}"
+
+
+def test_symptoms_asks_the_reader_to_classify_ten_systems():
+    """Item 170: the systems are written and linked; asking them back is retrieval.
+
+    `Systems that live here` lists 64 systems across nine pages, and on `symptoms` the
+    reader is already holding a wrong answer — the one moment they are most motivated.
+    Ten natively-disclosed questions, the system as the summary and the class as the
+    answer, turn the list into practice with feedback and need no script.
+    """
+    book = map_book()
+    page = (book.docs / "symptoms/index.md").read_text(encoding="utf-8")
+    questions = re.findall(
+        r'<details markdown="1">\s*<summary>(.*?)</summary>\s*\n+\s*\[([^\]]+)\]\(\.\./([a-z-]+)/\)',
+        page,
+        re.S,
+    )
+    assert len(questions) >= 10, f"symptoms asks {len(questions)} questions"
+
+    classes = {e["title"]: e["path"].split("/")[0] for e in book.pages if e.get("signature")}
+    for summary, label, slug in questions:
+        assert label in classes and classes[label] == slug, f"{summary!r} names {label!r}"
+
+    # every question's system is one the class page actually lists
+    for summary, _label, slug in questions:
+        systems = re.search(
+            r"## Systems that live here\n(.*?)\n## ",
+            (book.docs / slug / "index.md").read_text(encoding="utf-8"),
+            re.S,
+        )
+        assert systems, f"{slug} has no systems list"
+        items = " ".join(systems.group(1).split()).lower()
+        # A summary is the start of the list's own sentence: the question is the system,
+        # shortened to what fits on a phone, not a second wording of it.
+        assert items.count(summary.strip().lower()) >= 1, (
+            f"the {slug} page does not list {summary!r}"
+        )
