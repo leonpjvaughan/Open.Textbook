@@ -42,7 +42,13 @@ A matrix, and a choice between two families. The choice is made by the
   unknowns, and for a few thousand that is the end of the story.
 - **Sparse and large.** Factorising fills in the zeros and runs out of memory,
   so iterate instead — and the iteration count is decided by conditioning, not
-  by size.
+  by size. The `double-wishbone` example in this collection is the small version
+  of that: it solves 21 equations, and its Jacobian has 441 entries, of which
+  **161 are not zero**. At that sparsity the sparsity is the method rather
+  than a detail of it, and the generated kernel touches only the non-zeros.
+  detail of it, and the generated kernel touches only the non-zeros.
+  [What a kernel is](../worked-case/#what-a-kernel-is) is the page that explains
+  the generated solver the figures in this collection run.
 - **Symmetric positive definite.** Conjugate gradients works, and fails on
   anything else.
 - **Symmetric indefinite.** A different Krylov method is needed, and the reason
@@ -104,6 +110,7 @@ with its price and what it will not do.
 of you, the methods that fit it, and what the fit costs. The method-keyed table
 below is the same list sorted by name.
 
+<!-- table: cards -->
 | what your model is | the methods that fit | the price |
 |---|---|---|
 | dense and a few thousand | Dense LU, with pivoting, QR, SVD, iterative refinement | cubic, once |
@@ -133,18 +140,15 @@ below is the same list sorted by name.
 - Nodal analysis of a circuit: the voltage at every node.
 - Any steady discretisation, once the equations are assembled: see
   [Elliptic](../elliptic/index.md).
-- The `double-wishbone` example's Jacobian: the package this collection uses
-  solves 21 equations whose Jacobian has 441 entries, of which **161 are not
-  zero** — sparse enough that the sparsity is the method, not a detail of it.
-  The generated kernel, which
-  [this book explains here](../worked-case/#what-a-kernel-is), touches only the
-  non-zeros.
+- The `double-wishbone` example's Jacobian: 21 equations, 161 of 441 entries
+  non-zero.
 - A least-squares fit: a tyre model, a calibration curve, a camera model.
 - Network flows, and the stationary vector of a link matrix.
 - Spline and surface fitting, where the unknowns are the control points.
 
 ## What goes wrong
 
+<!-- table: cards -->
 | symptom | cause | fix |
 |---|---|---|
 | The residual is tiny and the answer is wrong | The matrix is ill-conditioned; a small residual says little | Check the condition number; scale the unknowns |

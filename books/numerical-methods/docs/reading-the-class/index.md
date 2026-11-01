@@ -36,6 +36,7 @@ Each of the three classes has **characteristics**: the directions in which a
 disturbance can travel through the plane. What the test counts is how many real
 characteristic directions pass through a point.
 
+<!-- table: cards -->
 | Sign of $\Delta$ | Class | Directions through a point | What the answer does |
 |---|---|---|---|
 | $\Delta > 0$ | [Hyperbolic](../hyperbolic/index.md) | two | travels along paths, and keeps its shape |
@@ -87,6 +88,7 @@ moved to one side. The two variables are whatever the two variables are: $x$ and
 $y$ for Laplace, and $x$ and $t$, with $t$ standing for time, for the heat and
 wave rows.
 
+<!-- table: cards -->
 | Equation | $A$ | $B$ | $C$ | $B^2-4AC$ | Class |
 |---|---|---|---|---|---|
 | Laplace: $u_{xx} + u_{yy} = 0$ | $1$ | $0$ | $1$ | $-4$ | elliptic |

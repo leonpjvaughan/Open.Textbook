@@ -21,6 +21,7 @@ added to `INTERNAL_PHRASES` is gated the moment it is added — see
 
 from __future__ import annotations
 
+import re
 from collections import Counter
 
 import pytest
@@ -142,4 +143,134 @@ def test_no_content_file_contains_a_tab(path):
         f"command it turns into one and the maths then renders *wrongly* without "
         f"erroring, which no check downstream can see. Restore the command "
         f"({offenders[0]})."
+    )
+
+
+# --- a markdown mark that renders as itself -------------------------------------
+#
+# The tab check above is one instance of a family: damage the build cannot see. A
+# literal tab makes the maths wrong; a mark left unbalanced makes the page *show the
+# mark*. Both render cheerfully, exit 0 and pass every other check, because the
+# renderer has no opinion about them.
+#
+# Found in `maths-applied`'s main thread on 2026-11-01, in four separate shapes:
+#
+#   `**This chapter's question. It is [the chapter problem]...`   an unclosed `**`,
+#       which printed two asterisks at the start of §1.1's second paragraph
+#   `travel.****`                                                 two bold runs
+#       colliding, which printed the collided pair after §1.6's key sentence
+#   `[§1.3] meets`                                                a reference whose
+#       link target had been lost, printed in square brackets in ten places
+#   `it.A projection`                                             a sentence run
+#       into the next, in eight places
+#
+# Every one was in the pages that carry the chapter's argument, and none was visible
+# to `textbook.lint`, to the broken-link check (there was no link to break) or to the
+# `math-error` grep. So the checks are below, and they are on the source rather than
+# on the output: a rendered page has no trace of a space that should be there.
+
+#: A block of prose, which is the unit emphasis has to balance over. Fenced code is
+#: removed first: a snippet is not prose, and a `**` in it is Python's power operator.
+FENCE = re.compile(r"```.*?```", re.S)
+CODE = re.compile(r"`[^`]*`")
+#: Four or more asterisks in a row. Two bold runs that meet produce these, and the
+#: renderer closes the first and prints the rest.
+COLLIDED = re.compile(r"\*{4,}")
+#: A sentence that ends and the next that begins with no space between them. The
+#: character before the capital has to be a full stop, a question mark, an
+#: exclamation mark, or the closing asterisks of a bold run. The capital is any
+#: capital, not a capital followed by a lowercase letter: the eight found in
+#: `maths-applied` all began with the word "A".
+RUN_TOGETHER = re.compile(r"[.?!]\*{0,4}(?=[A-Z])")
+#: An initialised acronym — `A.C.`, `R.M.S.`, and the like — is one word with dots
+#: inside it, and every one of the 43 candidates this rule found outside the two
+#: reference books was one of these. A line carrying one is not inspected.
+ABBREVIATION = re.compile(r"(?:^|[^A-Za-z])[A-Z](?:\.[A-Z])+\.")
+#: A named licence holder and a URL path both contain letter-dot-capital at a
+#: sentence boundary without being two sentences.
+RUN_TOGETHER_ALLOWED = ("Open.Textbook", "A.d.Tramontana", "a.d.Tramontana")
+
+
+def _prose(path) -> str:
+    return FENCE.sub("", path.read_text(encoding="utf-8"))
+
+
+def test_no_prose_prints_its_own_markup():
+    """Every `**` in a paragraph is matched, so none can arrive as a literal mark."""
+    offenders = []
+    for book in books.discover_books():
+        for path in sorted(book.docs.rglob("*.md")):
+            if "assets/data" in path.parts:
+                continue
+            for block in re.split(r"\n\s*\n", _prose(path)):
+                if CODE.sub("", block).count("**") % 2:
+                    offenders.append(
+                        f"{path}: {block.strip()[:90]!r}"
+                    )
+    assert not offenders, (
+        "an unclosed `**` renders as two asterisks in the middle of a sentence:\n  "
+        + "\n  ".join(offenders)
+    )
+
+
+def test_no_prose_collides_two_bold_runs():
+    offenders = []
+    for book in books.discover_books():
+        for path in sorted(book.docs.rglob("*.md")):
+            if "assets/data" in path.parts:
+                continue
+            for number, line in enumerate(_prose(path).splitlines(), 1):
+                if COLLIDED.search(line):
+                    offenders.append(f"{path}:{number}: {line.strip()[:80]!r}")
+    assert not offenders, (
+        "two bold runs that touch render as `<strong>…</strong>**`:\n  "
+        + "\n  ".join(offenders)
+    )
+
+
+def test_no_prose_runs_two_sentences_together():
+    """`it.A` is a missing space, and nothing in the pipeline notices one.
+
+    The allowlist is proper nouns and licence names, not a way to excuse prose: a
+    domain name (`Open.Textbook`) and a copyright holder's surname
+    (`A.d.Tramontana`) put a dot before a capital letter without ending a sentence.
+    Initialised acronyms and URLs are skipped on the line, for the same reason.
+    """
+    offenders = []
+    for book in books.discover_books():
+        for path in sorted(book.docs.rglob("*.md")):
+            for number, line in enumerate(_prose(path).splitlines(), 1):
+                if any(word in line for word in RUN_TOGETHER_ALLOWED):
+                    continue
+                if "http" in line or ABBREVIATION.search(line):
+                    continue
+                for match in RUN_TOGETHER.finditer(line):
+                    context = line[max(0, match.start() - 30) : match.end() + 30]
+                    offenders.append(f"{path}:{number}: …{context.strip()}…")
+    assert not offenders, (
+        "a sentence ran into the next one, with no space after the full stop:\n  "
+        + "\n  ".join(offenders)
+    )
+
+
+def test_a_reference_with_no_link_is_not_left_in_brackets():
+    """`[§1.3]` with no target prints as `[§1.3]`, brackets and all.
+
+    Ten of these were left in `maths-applied` when a link target was lost. A reader
+    who follows the bracket finds nothing, and a reader who does not finds a
+    paragraph that looks unfinished. The pattern is a section reference in square
+    brackets that is not followed by a link target or a colon (a definition).
+    """
+    special = re.compile(r"\[§[^\]]*\](?![(:\[])", re.M)
+    offenders = []
+    for book in books.discover_books():
+        for path in sorted(book.docs.rglob("*.md")):
+            if "assets/data" in path.parts:
+                continue
+            for number, line in enumerate(_prose(path).splitlines(), 1):
+                for match in special.finditer(line):
+                    offenders.append(f"{path}:{number}: {line.strip()[:80]!r}")
+    assert not offenders, (
+        "a section reference has no link target, so it prints its own brackets:\n  "
+        + "\n  ".join(offenders)
     )

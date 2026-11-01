@@ -15,13 +15,12 @@ failure this file has had twice, so the list below, the headings and the boxes
 are checked against each other on every pass.
 
 **Every item from 79 to 174 is closed,** each with its measurement, its fix, its outcome
-and its ticked done-means in `.agents/todo-closed.md`. Items 166–174 are open: three
-defects the second review measured (165–167), five designs it proposed (168–172), and the
-two ways into the map the third review measured (173–174). A new item goes at the number after the
-last one, with its diagnosis, its fix and its own done-means. The
-*interactive-aid backlog* — which figures and interactions a book still wants — is
-`ideas.md`; it is a plan rather than a defect list, and it is written for the
-author choosing what to build next.
+and its ticked done-means in `.agents/todo-closed.md`, and the queue is empty. A new item
+goes at the number after the last one, with its diagnosis, its fix and its own done-means.
+
+The *interactive-aid backlog* — which figures and interactions a book still wants — is
+`ideas.md`; it is a plan rather than a defect list, and it is written for the author
+choosing what to build next.
 
 **Not in the queue, and not forgotten.** Accepted limitations live where the check
 that records them lives, not here: the booklets whose items cannot be parsed

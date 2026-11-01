@@ -17,6 +17,7 @@ without it, and nothing later depends on having read it.
 The mechanism never changes. What changes is what the model is willing to say, and
 each model exists because the one before it could not answer a particular question.
 
+<!-- table: cards -->
 | Model | Assumes | Answers | Costs | Meets the last one at |
 |---|---|---|---|---|
 | Rigid triangle | one rigid body per wishbone, one degree of freedom | where the wheel is, and at what angle | nothing measurable | — |

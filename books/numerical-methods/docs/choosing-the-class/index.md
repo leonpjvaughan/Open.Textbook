@@ -112,6 +112,7 @@ Now $A = -1$, $B = 0$ and $C = 1$, so $B^2 - 4AC = 4$, and the test names it
 two signs of a wave equation: one from $\alpha_{tt}$, one from $\alpha_{xx}$,
 and the difference of them.
 
+<!-- table: cards -->
 | slicing | equation | $A$ | $B$ | $C$ | $B^2-4AC$ | class |
 |---|---|---|---|---|---|---|
 | elliptic | $\alpha_{xx} - \alpha = 0$ | $1$ | $0$ | $0$ | $0$ | parabolic |

@@ -10,6 +10,8 @@ kind: walkthrough
 
 # 1.3 Two legs, one contradiction
 
+:::contents
+
 ## A model that starts from the parts
 
 A wishbone is made of two legs welded to a plate. That suggests a model built
@@ -98,7 +100,7 @@ the three equations still is.
 
 The error does not fall to nothing: it falls to the smallest number a double
 precision float can tell apart from nothing, and stays there. That floor is
-**round-off**, not physics. It is worth knowing the difference.A residual that
+**round-off**, not physics. It is worth knowing the difference. A residual that
 flattens out *above* the round-off floor means the equations genuinely disagree.
 That is a modelling problem rather than a numerical one.
 
@@ -119,12 +121,11 @@ These are the page's own model's numbers, recomputed by the figure on every
 load. They are at the bump end of the travel, the pose the figure mounts; the
 design pose's σ set is 1.415 and 0.998, which is
 [§1.4](../../section-1.4/learn/)'s table. The package's export for the same
-mechanism is vendored here, and it does carry both. There is one residual vector
-and one set of singular values per Newton step.js`, and it does carry
-`iterations`: one residual vector and one set of singular values per Newton
-step. But that is a system with twenty-one unknowns, not the three rows above.
-Two sets of numbers, two different systems; the comparison they support is the
-pose, which is what [§1.4](../../section-1.4/learn/) checks.
+mechanism is vendored here. It carries the same `iterations` key: one residual
+vector and one set of singular values per Newton step. But that is a system
+with twenty-one unknowns, not the three rows above. Two sets of numbers, two
+different systems; the comparison they support is the pose, which is what
+[§1.4](../../section-1.4/learn/) checks.
 
 ## Pseudocode, and the file it comes from
 
@@ -161,7 +162,7 @@ A small residual does **not** mean the model is a good model. It means the
 solver did well at satisfying the equations it was given.
 
 Those are different claims, and confusing them is the most expensive mistake in
-this chapter.A model that is missing something — a bush, a bend, a length that
+this chapter. A model that is missing something — a bush, a bend, a length that
 changes with temperature — will still have a tiny residual. It is answering its
 own question perfectly. The residual measures the arithmetic. Only measurement,
 or a second model, can say anything about the world.

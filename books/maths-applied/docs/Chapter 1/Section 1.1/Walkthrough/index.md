@@ -10,6 +10,8 @@ kind: walkthrough
 
 # 1.1 The question
 
+:::contents
+
 ## Where this chapter is going
 
 A car's wheel does not stay upright as it moves up and down. The angle it leans
@@ -21,7 +23,7 @@ matters enormously, because a tyre grips best at a particular angle. So a
 suspension designer wants to know this before a single part is made. How will
 the wheel's angles move, and how much can the design be changed to suit?
 
-**This chapter's question. It is [the chapter problem](../index.md), and this
+**This chapter's question.** It is [the chapter problem](../index.md), and this
 section is the first step towards it. The step is the geometry that turns a
 wheel's rise and fall into an angle.
 
@@ -48,7 +50,7 @@ cropped. The image keeps its own licence.*
 
 ## The parts, and their names
 
-Before the mathematics, the words.A car's front corner is a mechanism of seven
+Before the mathematics, the words. A car's front corner is a mechanism of seven
 parts. Every one of them will be referred to by name for the rest of the
 chapter.
 

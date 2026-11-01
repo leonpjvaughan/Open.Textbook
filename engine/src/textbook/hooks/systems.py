@@ -27,9 +27,19 @@ LINK = re.compile(r"\[([^\]]+)\]\([^)]*\)")
 
 
 def _plain(text: str) -> str:
-    """A list item as prose: link targets and inline maths reduced to their text."""
+    """A list item as prose: link targets, emphasis and inline maths reduced to text.
+
+    The index prints its cells as **text**, so every mark that markdown would have
+    consumed has to go here too. Before this, two bullets whose source carried a
+    bolded word or a code span arrived on the page as literal ``**`` and backticks —
+    the class pages render the same words correctly, and the derived index did not,
+    which is the failure a derived page is most likely to have.
+    """
     text = LINK.sub(r"\1", text)
     text = re.sub(r"\$([^$]*)\$", r"\1", text)
+    text = re.sub(r"`([^`]*)`", r"\1", text)
+    text = re.sub(r"(\*\*|__)(.+?)\1", r"\2", text)
+    text = re.sub(r"(?:^|(?<=[\s(]))\*([A-Za-z][^*]*?)\*(?=[\s).,;:]|$)", r"\1", text)
     text = re.sub(r"\s+", " ", text).strip()
     return text.rstrip(".")
 

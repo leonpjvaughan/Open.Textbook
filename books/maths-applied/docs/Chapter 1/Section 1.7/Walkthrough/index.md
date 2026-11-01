@@ -49,7 +49,7 @@ The limits this chapter established are the ones to state:
 ## What a bigger model still cannot do
 
 It is worth saying, because the chapter's whole argument points this way: a
-bigger model is not more true.A full vehicle model with a wrong tyre and a
+bigger model is not more true. A full vehicle model with a wrong tyre and a
 guessed bush stiffness answers its own question, precisely. It may still be
 wrong about the car.
 

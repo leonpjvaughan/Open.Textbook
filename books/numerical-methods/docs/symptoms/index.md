@@ -90,6 +90,7 @@ the answer.
 
 ## It does not finish
 
+<!-- table: cards -->
 | symptom | likely class | cause | fix |
 |---|---|---|---|
 | The iteration count grows as the mesh is refined | [Elliptic](../elliptic/) | No preconditioner, or a smoother used alone | Multigrid, or AMG |
@@ -106,6 +107,7 @@ the answer.
 
 ## The answer is wrong, and looks plausible
 
+<!-- table: cards -->
 | symptom | likely class | cause | fix |
 |---|---|---|---|
 | It converged, but to a worse answer than a colleague's | [Optimisation](../optimisation/) | A different local minimum | Multistart, or make the model convex |
@@ -136,6 +138,7 @@ the answer.
 
 ## The answer moves, and it should not
 
+<!-- table: cards -->
 | symptom | likely class | cause | fix |
 |---|---|---|---|
 | The constraint drifts over a long run | [Saddle point](../saddle-point/) | Projection applied once, then forgotten | Project at every step, or use a formulation that preserves it |
@@ -146,6 +149,7 @@ the answer.
 
 ## The linear solve is the problem
 
+<!-- table: cards -->
 | symptom | likely class | cause | fix |
 |---|---|---|---|
 | The residual is tiny and the answer is wrong | [Linear system](../linear-system/) | The matrix is ill-conditioned; a small residual says little | Check the condition number; scale the unknowns |
@@ -157,6 +161,7 @@ the answer.
 
 ## The statistics are wrong
 
+<!-- table: cards -->
 | symptom | likely class | cause | fix |
 |---|---|---|---|
 | A tiny error bar, and the answer is wrong | [Averaging](../averaging/) | Samples were not independent, or the model is biased | Check the autocorrelation and the model |
