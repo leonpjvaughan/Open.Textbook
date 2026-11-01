@@ -213,7 +213,7 @@ export function mount(el) {
   drawing += label({
     x: box.x0,
     y: box.y1 - 14,
-    text: "the size of the effect the rigid model leaves out / degrees",
+    text: "the effect left out / degrees",
     anchor: "start",
     size: SIZE.value,
     class: "text-ink",

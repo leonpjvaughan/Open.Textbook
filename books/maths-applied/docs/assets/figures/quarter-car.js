@@ -53,10 +53,10 @@ export function mount(el) {
       { x, y, class: "fig-line" },
     ) +
     label({
-      x: x(highest.t) + 14,
+      x: x(highest.t) - 14,
       y: y(highest.travel) + 8,
       text: `reaches ${quantity(highest.travel, "mm", 0)}`,
-      anchor: "start",
+      anchor: "end",
       size: SIZE.tick,
       class: "text-ink",
     }) +

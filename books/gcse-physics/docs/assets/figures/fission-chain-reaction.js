@@ -93,7 +93,7 @@ export function mount(el) {
       `${label({ x: RIGHT, y: BOTTOM + 36, text: `generation`, anchor: "end", size: SIZE.value, class: "text-ink" })}` +
       `<line x1="${LEFT}" y1="${steadyY.toFixed(1)}" x2="${RIGHT}" y2="${steadyY.toFixed(1)}" ` +
       `class="fig-grid" stroke-dasharray="4 4"></line>` +
-      `${label({ x: RIGHT + 4, y: (steadyY + 4).toFixed(1), text: `steady`, anchor: "start", size: SIZE.value, class: "text-ink" })}` +
+      `${label({ x: RIGHT - 4, y: (steadyY + 4).toFixed(1), text: `steady`, anchor: "end", size: SIZE.value, class: "text-ink" })}` +
       bars;
 
     svg.innerHTML = schematic + chart;

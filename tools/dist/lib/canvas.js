@@ -19,8 +19,16 @@
  *     crop. `wishbone-hero` does exactly that, and a single rule for both would either
  *     fail it or miss a row of labels drawn below the frame.
  */
-/** The default slack for a label, in user units. Sub-pixel rounding is not a defect. */
-export const TOLERANCE = 0.5;
+/**
+ * The slack for a label, in user units.
+ *
+ * **A `<text>`'s box is the em box, and its metrics are the environment's font.** A
+ * runner without the site's font falls back to another family and reports the same label
+ * three units wider than this machine does — which is a different measurement, not a
+ * different drawing. Four units is a quarter of the smallest label's line height: below
+ * that the overhang is the box's ascent and side bearing, and above it a glyph is cut.
+ */
+export const TOLERANCE = 4;
 /**
  * The slack for a mark, and why it is larger.
  *

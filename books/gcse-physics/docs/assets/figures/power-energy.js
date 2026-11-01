@@ -93,7 +93,7 @@ export function mount(el) {
       `${label({ x: 366, y: 36, text: `lamp: 0.10 kW for 30 min`, anchor: "start", size: SIZE.tick, class: "text-ink" })}` +
       `${label({ x: 366, y: 52, text: `= 180 kJ`, anchor: "start", size: SIZE.tick, class: "text-ink" })}` +
       `<line x1="360" y1="80" x2="530" y2="80" class="fig-grid" stroke-width="2" stroke-dasharray="4 4"></line>` +
-      `${label({ x: 366, y: 96, text: `heater: 2.0 kW for 1.0 min`, anchor: "start", size: SIZE.tick, class: "text-ink" })}` +
+      `${label({ x: 366, y: 96, text: `heater: 2.0 kW`, anchor: "start", size: SIZE.tick, class: "text-ink" })}` +
       `${label({ x: 366, y: 112, text: `= 120 kJ`, anchor: "start", size: SIZE.tick, class: "text-ink" })}`;
 
     readout.innerHTML =

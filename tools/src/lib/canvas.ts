@@ -25,8 +25,16 @@ export type Box = { x: number; y: number; width: number; height: number };
 /** Text must be inside; a mark only has to reach. */
 export type Ink = "text" | "mark";
 
-/** The default slack for a label, in user units. Sub-pixel rounding is not a defect. */
-export const TOLERANCE = 0.5;
+/**
+ * The slack for a label, in user units.
+ *
+ * **A `<text>`'s box is the em box, and its metrics are the environment's font.** A
+ * runner without the site's font falls back to another family and reports the same label
+ * three units wider than this machine does — which is a different measurement, not a
+ * different drawing. Four units is a quarter of the smallest label's line height: below
+ * that the overhang is the box's ascent and side bearing, and above it a glyph is cut.
+ */
+export const TOLERANCE = 4;
 
 /**
  * The slack for a mark, and why it is larger.
