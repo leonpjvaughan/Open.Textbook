@@ -235,11 +235,13 @@ export function mount(el) {
           `${(40 + arrowLength).toFixed(1)},347 ${(40 + arrowLength).toFixed(1)},357" ` +
           `class="fig-accent"></polygon>` +
           forceLabel(
-            Math.min(40 + arrowLength / 2, 250),
+            // Anchored at the arrow's base and running right: a centred label on a wide
+            // font starts at the clamp and hangs out of the drawing on the left.
+            60,
             344,
             `acceleration a = ${two(acceleration)} m/s${SQUARED}`,
             "text-ink",
-            "middle",
+            "start",
           )
         : "";
 
