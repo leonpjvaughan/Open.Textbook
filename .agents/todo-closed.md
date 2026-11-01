@@ -7626,11 +7626,11 @@ one, and today it is the other way round.
 
 **Done means**
 
-- [ ] `textbook.lint` fails a 26-word sentence on a section page, and `tests/test_lint.py`
+- [x] `textbook.lint` fails a 26-word sentence on a section page, and `tests/test_lint.py`
       holds that case
-- [ ] `maths-applied`'s eight required pages average under 17 words a sentence, with
+- [x] `maths-applied`'s eight required pages average under 17 words a sentence, with
       under 12% over 25
-- [ ] every other book's `SENTENCE_DEBT` is unchanged, and `textbook.lint` is clean
+- [x] every other book's `SENTENCE_DEBT` is unchanged, and `textbook.lint` is clean
 
 **Outcome, 2026-10-31.** The rule first, then the prose.
 
@@ -7690,10 +7690,10 @@ where it first appears, in one sentence.
 
 **Done means**
 
-- [ ] no table cell carries the only definition of a flag
-- [ ] a reader searching the book for `discretise` finds a definition before its first use
-- [ ] the word `stiff` is not used of a bush anywhere in `numerical-methods`
-- [ ] `textbook.lint numerical-methods` is clean
+- [x] no table cell carries the only definition of a flag
+- [x] a reader searching the book for `discretise` finds a definition before its first use
+- [x] the word `stiff` is not used of a bush anywhere in `numerical-methods`
+- [x] `textbook.lint numerical-methods` is clean
 
 **Outcome, 2026-10-31.** Three changes, one per box.
 
@@ -7796,11 +7796,11 @@ neither ranks methods, so the book's rule against a league table is not at risk.
 
 **Done means**
 
-- [ ] each class page's techniques section opens with a property-keyed table, and the
+- [x] each class page's techniques section opens with a property-keyed table, and the
       property names are the ones the class page's own bullets use
-- [ ] every method in the method-keyed table appears in the property-keyed one, and a test
+- [x] every method in the method-keyed table appears in the property-keyed one, and a test
       fails if one does not
-- [ ] no row states that a method is best
+- [x] no row states that a method is best
 
 **Outcome, 2026-10-31.** Each of the nine class pages now opens its Techniques section with a
 **property-keyed** table — *what your model is · the methods that fit · the price* — and the
@@ -7835,9 +7835,9 @@ linear is solved."
 
 **Done means**
 
-- [ ] all nine class pages carry the row, each naming a different neighbour
-- [ ] the neighbour it names is a class the page already links, so the reader can go there
-- [ ] `tests/test_reference_books.py` fails if a row is missing or names a class that is not
+- [x] all nine class pages carry the row, each naming a different neighbour
+- [x] the neighbour it names is a class the page already links, so the reader can go there
+- [x] `tests/test_reference_books.py` fails if a row is missing or names a class that is not
       in the registry
 
 **Outcome, 2026-10-31.** Each of the nine class pages now carries a **this, not that** row under
@@ -7873,11 +7873,11 @@ the answer already exists.
 
 **Done means**
 
-- [ ] `symptoms` carries at least ten of them, each summary naming a system from a class
+- [x] `symptoms` carries at least ten of them, each summary naming a system from a class
       page's own list and each answer linking that class page
-- [ ] they work with scripting off, and `tools kit site` still passes (native disclosure, one
+- [x] they work with scripting off, and `tools kit site` still passes (native disclosure, one
       focus stop each)
-- [ ] a test fails if an answer names a class the registry does not have
+- [x] a test fails if an answer names a class the registry does not have
 
 **Outcome, 2026-10-31.** Ten questions on `symptoms`, under **Which kind is this?**, above the two
 tables: the system as the `<summary>` and the class as the answer, linking the page that argues
@@ -7912,10 +7912,10 @@ with the kit's `label()` as `dynamics-table`'s rows are.
 
 **Done means**
 
-- [ ] each of the four figures' readout is a list of label/value rows, and the value is the
+- [x] each of the four figures' readout is a list of label/value rows, and the value is the
       one the page's table prints for the same quantity
-- [ ] every number in the readout is declared with `claim()` and `readout --verify` passes
-- [ ] the figures still pass `canvas`, `audit` and `kit`
+- [x] every number in the readout is declared with `claim()` and `readout --verify` passes
+- [x] the figures still pass `canvas`, `audit` and `kit`
 
 **Outcome, 2026-10-31.** The four figures now state their values as **rows**, not sentences:
 `table()` in the readout, with the page's own order and signs.
@@ -7956,10 +7956,10 @@ it in other words.
 
 **Done means**
 
-- [ ] §1.5 ends with the panel, two rows per procedure, and the Review links it
-- [ ] the numbers in the panel are the ones the figures and the ladder print, and a test
+- [x] §1.5 ends with the panel, two rows per procedure, and the Review links it
+- [x] the numbers in the panel are the ones the figures and the ladder print, and a test
       recomputes them
-- [ ] the Review's *Reflection* no longer presents the limit test as a restatement
+- [x] the Review's *Reflection* no longer presents the limit test as a restatement
 
 **Outcome, 2026-10-31.** §1.5 ends with **The two procedures**, a four-row panel:
 
