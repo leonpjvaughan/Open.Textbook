@@ -104,6 +104,71 @@ export async function run(argv) {
         }
         await context.close();
     }
+    // --- tables, at 390px ------------------------------------------------------
+    //
+    // **A table cannot widen a page**, because `wrap_tables` puts every one in a
+    // `.table-scroll`, so the check above passes on a page whose last column is past the
+    // right edge: the wrapper hides the problem it was added to fix. This measures the
+    // table against its own wrapper — the width a reader has before scrolling sideways —
+    // and exempts `table--cards`, which stacks into records below 60rem and has no
+    // columns to lose.
+    const routes = [];
+    const walk = (dir) => {
+        for (const entry of fs.readdirSync(dir, { withFileTypes: true })) {
+            const full = path.join(dir, entry.name);
+            if (entry.isDirectory())
+                walk(full);
+            else if (entry.name === "index.html") {
+                const html = fs.readFileSync(full, "utf8");
+                if (!html.includes("<table"))
+                    continue;
+                const rel = path.relative(root, path.dirname(full));
+                routes.push("/" + rel.split(path.sep).join("/") + "/");
+            }
+        }
+    };
+    walk(root);
+    const tableContext = await openContext(browser, {
+        width: 390,
+        height: 800,
+        deviceScaleFactor: 1,
+        mobile: true,
+        touch: true,
+        blockServiceWorkers: true,
+    });
+    await serveStatic(tableContext, root);
+    const tablePage = await tableContext.newPage();
+    for (const route of routes.sort()) {
+        await tablePage.goto(`http://textbook.local${route}`, { waitUntil: "load" });
+        await tablePage.waitForTimeout(30);
+        const overflowing = (await tablePage.evaluate(() => {
+            const out = [];
+            for (const table of document.querySelectorAll("main table")) {
+                if (table.classList.contains("table--cards"))
+                    continue;
+                const wrapper = table.closest(".table-scroll") ?? table.parentElement;
+                const available = wrapper
+                    ? wrapper.clientWidth
+                    : document.documentElement.clientWidth;
+                const width = Math.round(table.getBoundingClientRect().width);
+                if (width <= available + 1)
+                    continue;
+                const head = table.querySelector("thead th");
+                out.push({
+                    head: head ? (head.textContent || "").trim().slice(0, 30) : "(no heading)",
+                    over: width - available,
+                });
+            }
+            return out;
+        }));
+        // Counted, so the summary says how many pages the table pass measured: a sweep
+        // over an empty set and a clean sweep print the same line otherwise.
+        report.examined += 1;
+        for (const { head, over } of overflowing) {
+            report.error(route, `table "${head}" is ${over}px wider than its container at 390px, and is not table--cards`);
+        }
+    }
+    await tableContext.close();
     await browser.close();
     report.print("pages");
     return report.exitCode();

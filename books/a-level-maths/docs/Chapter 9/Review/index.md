@@ -65,6 +65,7 @@ real event.
 
 The engineer records the depth every two metres across a twelve metre channel.
 
+<!-- table: cards -->
 | Distance across (m) | $0$ | $2$ | $4$ | $6$ | $8$ | $10$ | $12$ |
 |---|---|---|---|---|---|---|---|
 | Depth (m) | $0$ | $1.2$ | $2.5$ | $3.1$ | $2.4$ | $0.9$ | $0$ |

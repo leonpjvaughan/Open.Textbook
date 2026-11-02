@@ -68,10 +68,12 @@ $$
 
 The size of the error grows quickly with the angle.
 
+<!-- table: cards -->
 | $\theta$ | $0.05$ | $0.1$ | $0.2$ | $0.5$ |
 |---|---|---|---|---|
 | $\sin\theta$ | $0.04998$ | $0.09983$ | $0.19867$ | $0.47943$ |
 | $\theta$ | $0.05$ | $0.1$ | $0.2$ | $0.5$ |
+<!-- table: cards -->
 | error | $0.00002$ | $0.00017$ | $0.00133$ | $0.02057$ |
 
 At $\theta = 0.2$ radians, about $11.5^\circ$, the error in $\sin\theta$ is

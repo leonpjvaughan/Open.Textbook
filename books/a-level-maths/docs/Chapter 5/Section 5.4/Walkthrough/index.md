@@ -50,11 +50,13 @@ $$
 
 ## 2. The table to remember
 
+<!-- table: cards -->
 | $\theta$ | $0$ | $\dfrac{\pi}{6}$ | $\dfrac{\pi}{4}$ | $\dfrac{\pi}{3}$ | $\dfrac{\pi}{2}$ |
 |---|---|---|---|---|---|
 | degrees | $0^\circ$ | $30^\circ$ | $45^\circ$ | $60^\circ$ | $90^\circ$ |
 | $\sin\theta$ | $0$ | $\dfrac{1}{2}$ | $\dfrac{\sqrt{2}}{2}$ | $\dfrac{\sqrt{3}}{2}$ | $1$ |
 | $\cos\theta$ | $1$ | $\dfrac{\sqrt{3}}{2}$ | $\dfrac{\sqrt{2}}{2}$ | $\dfrac{1}{2}$ | $0$ |
+<!-- table: cards -->
 | $\tan\theta$ | $0$ | $\dfrac{\sqrt{3}}{3}$ | $1$ | $\sqrt{3}$ | undefined |
 
 The sine row increases from $0$ to $1$. The cosine row decreases from $1$ to
@@ -65,11 +67,13 @@ $0$. That pattern is the quickest way to remember which surd belongs where.
 The exact values above are all positive. For angles outside the first quadrant,
 find the **related acute angle** with the horizontal axis, then attach the sign.
 
+<!-- table: cards -->
 | Quadrant | Angle range | Positive functions |
 |---|---|---|
 | first | $0$ to $\dfrac{\pi}{2}$ | all |
 | second | $\dfrac{\pi}{2}$ to $\pi$ | sine only |
 | third | $\pi$ to $\dfrac{3\pi}{2}$ | tangent only |
+<!-- table: cards -->
 | fourth | $\dfrac{3\pi}{2}$ to $2\pi$ | cosine only |
 
 A common way to record this is the word **CAST**, read anticlockwise from the

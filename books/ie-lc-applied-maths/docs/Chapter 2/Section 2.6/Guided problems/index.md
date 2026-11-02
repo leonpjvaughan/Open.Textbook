@@ -97,6 +97,7 @@ Sorted: $AB = 1$, $BC = 2$, $CD = 3$, $DE = 4$, $EA = 5$, $AC = 6$.
 <details markdown="1">
 <summary>Full working</summary>
 
+<!-- table: cards -->
 | Edge | Weight | Add? | Why |
 |---|---|---|---|
 | $AB$ | 1 | yes | first edge |

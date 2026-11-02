@@ -30,6 +30,7 @@ An **isometry** is a transformation that preserves every distance. Translation,
 reflection and rotation are all isometries. An enlargement is not, unless the scale
 factor is $1$ or $-1$.
 
+<!-- table: cards -->
 | Transformation | Lengths | Angles | Area | Orientation |
 |---|---|---|---|---|
 | Translation | unchanged | unchanged | unchanged | unchanged |

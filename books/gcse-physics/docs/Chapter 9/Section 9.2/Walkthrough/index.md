@@ -42,6 +42,7 @@ detector, so the count rate is usually smaller than the activity.
 
 A nucleus can emit four kinds of nuclear radiation.
 
+<!-- table: cards -->
 | Radiation | What it is | Stopped by | Range in air | Ionising power |
 |---|---|---|---|---|
 | Alpha ($\alpha$) | Two protons and two neutrons; the same as a helium nucleus | Paper or skin | A few centimetres | Strongest |

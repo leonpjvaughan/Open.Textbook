@@ -118,6 +118,7 @@ data, each extra year of age is associated with about €$2000$ less in price.
 Back to the chapter problem. The table shows the last poll before eight referendums and
 the actual result, both as the percentage voting Yes.
 
+<!-- table: cards -->
 | Poll | $52$ | $60$ | $45$ | $70$ | $38$ | $55$ | $62$ | $49$ |
 |---|---|---|---|---|---|---|---|---|
 | Result | $48$ | $58$ | $47$ | $68$ | $40$ | $52$ | $63$ | $46$ |

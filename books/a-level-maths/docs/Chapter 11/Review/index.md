@@ -29,6 +29,8 @@ the population, not a measurement of it.
 The times are grouped for a histogram. The class widths are not all equal, so
 the bars are drawn with frequency density.
 
+
+<!-- table: cards -->
 | Class (minutes) | Frequency | Class width | Frequency density |
 |---|---|---|---|
 | $10$–$20$ | 7 | 10 | 0.7 |

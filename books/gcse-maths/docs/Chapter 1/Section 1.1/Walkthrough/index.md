@@ -24,6 +24,7 @@ Every digit in a number has a **place value** — what it is worth because of wh
 it stands. In the whole-number part the columns are ones, tens, hundreds, and so
 on. After the decimal point they are tenths, hundredths, thousandths.
 
+<!-- table: cards -->
 | thousands | hundreds | tens | ones | . | tenths | hundredths | thousandths |
 |---|---|---|---|---|---|---|---|
 | 1000 | 100 | 10 | 1 | | 0.1 | 0.01 | 0.001 |

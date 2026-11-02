@@ -17,6 +17,7 @@ kind: walkthrough
 
 An **exact value** uses fractions and surds instead of a rounded decimal. A **surd** is a root kept in exact form, such as $\sqrt2$. A $45^\circ$-$45^\circ$-$90^\circ$ triangle has sides $1,1,\sqrt2$, so $\sin45^\circ=\cos45^\circ=\frac{\sqrt2}{2}$ and $\tan45^\circ=1$. A $30^\circ$-$60^\circ$-$90^\circ$ triangle has sides $1,\sqrt3,2$.
 
+<!-- table: cards -->
 | Angle | $0^\circ$ | $30^\circ$ | $45^\circ$ | $60^\circ$ | $90^\circ$ |
 |---|---:|---:|---:|---:|---:|
 | $\sin$ | $0$ | $1/2$ | $\sqrt2/2$ | $\sqrt3/2$ | $1$ |

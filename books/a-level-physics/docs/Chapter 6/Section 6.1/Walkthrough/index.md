@@ -41,6 +41,7 @@ longitudinal, so it has no direction of vibration that you can see from the side
 
 ## 2. The quantities that describe a wave
 
+<!-- table: cards -->
 | Quantity | Symbol | Meaning | Unit |
 |---|---|---|---|
 | Displacement | $x$ | distance and direction of a point from its rest position | m |

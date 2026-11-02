@@ -104,6 +104,7 @@ $$
 
 The table gives $\Phi(z) = P(Z \le z)$ to four decimal places.
 
+<!-- table: cards -->
 | $z$ | $\Phi(z)$ | $z$ | $\Phi(z)$ | $z$ | $\Phi(z)$ |
 |---|---|---|---|---|---|
 | 0.0 | 0.5000 | 1.0 | 0.8413 | 2.0 | 0.9772 |

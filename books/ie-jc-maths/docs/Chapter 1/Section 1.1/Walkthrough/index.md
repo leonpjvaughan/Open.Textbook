@@ -92,6 +92,7 @@ So $2.5$ is rational. It is not an integer and not natural, because it sits betw
 
 ## The three sets together
 
+<!-- table: cards -->
 | Set | Symbol | What is in it | Examples |
 |---|---|---|---|
 | Natural numbers | $\mathbb{N}$ | the counting numbers | $1, 2, 3, 4$ |

@@ -86,6 +86,20 @@ while read -r -a build; do
   uv run python -m textbook.pipeline "${build[@]}"
 done < <(uv run python -m textbook.plan --configs)
 
+step "tables at phone width"
+# **A table cannot widen a page**, because `wrap_tables` puts every one in a
+# `.table-scroll` — so the page-width check is satisfied by the wrapper that hides the
+# problem, and a table whose last column is past the right edge reads as a pass. This
+# measures every table on every page at 390px and fails when one is wider than its
+# container and is not `table--cards`. It needs a browser; where there is none the skip
+# is announced rather than passed, the same rule the other browser checks follow.
+if node -e 'require(process.env.PLAYWRIGHT_PATH || "playwright")' 2>/dev/null \
+   || node -e 'require("/home/leon/.local/share/mise/installs/npm-playwright/latest/node_modules/playwright")' 2>/dev/null; then
+  node tools/dist/cli.js check-mobile site
+else
+  echo "playwright is not available here; the phone-width checks run in the preview job"
+fi
+
 step "no maths rendering errors"
 if grep -rl 'math-error' site --include='*.html'; then
   echo "KaTeX failed to render at least one expression" >&2

@@ -82,6 +82,7 @@ $x = -2$. Test $x = -3$, $x = 0$ and $x = 3$.
 <details markdown="1">
 <summary>Full working</summary>
 
+<!-- table: cards -->
 | Interval | Test value | Sign of $\dfrac{dy}{dx}$ | Behaviour |
 |---|---|---|---|
 | $x < -2$ | $x = -3$ | $3(-5)(-1) = 15 > 0$ | increasing |
@@ -112,6 +113,7 @@ are $x = -2$ and $x = 1$.
 <details markdown="1">
 <summary>Full working</summary>
 
+<!-- table: cards -->
 | Interval | Test value | Sign of $\dfrac{dy}{dx}$ | Behaviour |
 |---|---|---|---|
 | $x < -2$ | $x = -3$ | $6(-1)(-4) = 24 > 0$ | increasing |
@@ -142,6 +144,7 @@ the product is positive. At $x = 0$ the factors have opposite signs.
 <details markdown="1">
 <summary>Full working</summary>
 
+<!-- table: cards -->
 | Interval | Test value | Sign of $f'(x)$ | Behaviour |
 |---|---|---|---|
 | $x < -1$ | $x = -2$ | $(-5)(-1) = 5 > 0$ | increasing |

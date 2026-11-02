@@ -31,6 +31,7 @@ $$
 where $A = y(0)$ is the starting value and $k$ is the rate constant. The
 context decides the meaning of each symbol:
 
+<!-- table: cards -->
 | Context | $A$ | $k$ | Behaviour |
 |---|---|---|---|
 | Money, continuous interest | initial amount | interest rate per year | grows |

@@ -126,6 +126,7 @@ strips and adding them.
 
 **Worked example 4.** A rubber cord gives the forces in the table.
 
+<!-- table: cards -->
 | Extension / m | 0 | 0.020 | 0.040 | 0.060 | 0.080 |
 |---|---|---|---|---|---|
 | Force / N | 0 | 3.5 | 7.5 | 13 | 20 |
