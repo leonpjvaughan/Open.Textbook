@@ -15,7 +15,7 @@ failure this file has had twice, so the list below, the headings and the boxes
 are checked against each other on every pass.
 
 **Every item from 79 to 174, and 181, is closed,** each with its measurement, its fix, its
-outcome and its ticked done-means in `.agents/todo-closed.md`. Items **175–177** are open:
+outcome and its ticked done-means in `.agents/todo-closed.md`. Items **175 and 177** are open:
 the fourth review's three, and three more from the pass that followed it.
 A new item goes at the number after the last one, with its diagnosis, its fix and its own
 done-means.
@@ -77,35 +77,6 @@ the pattern: §1.4 already says a different pose gives the same `w`.
 - [ ] §1.4 mounts it beside the paragraph that names `w`, and the prose stops restating
       what the figure shows
 - [ ] `python -m textbook.lint maths-applied` is clean and `pytest tests/ -q` passes
-
-## 176 — A table can be wider than a phone and no check notices
-
-**What is wrong.** `tools check-mobile` fails when a page is wider than the screen. A
-table cannot make a page wider, because `wrap_tables` puts every one of them in a
-`.table-scroll` — so the check is satisfied by the wrapper that hides the problem. A
-table whose last column sits past the right edge therefore reads as a pass.
-
-Measured at 390px, before this pass: **18 tables in 11 pages** of `maths-applied` and
-`numerical-methods`, the worst 172px over — and §1.5's five-column ladder put its fifth
-column at `x=404` in a 390 viewport, which is the column that carries the section's
-point. All 18 are fixed (marked `<!-- table: cards -->`, or shortened) and both books now
-measure zero. The collection has not been swept: a 150-page sample of `proofs` and
-`a-level-maths` found two more (`chapter-11/review` 27px, `chapter-13/section-13.3`
-5px), so the rest of the library is unaudited.
-
-**The fix.** A fourth check in `tools/src/commands/check-mobile.ts`: for each examined
-page, every `main table` whose `scrollWidth > clientWidth + 1` and which does not carry
-`table--cards` is an error, naming the table's first heading and the overflow in pixels.
-Then sweep every book and fix each finding with the marker where the rows are records,
-or a shorter header where they are numbers.
-
-**Done means**
-
-- [ ] `tools check-mobile site` fails on a table 40px wider than its container, and a test
-      in `tests/test_mobile.py` pins the failure
-- [ ] every book in the collection reports zero overflowing tables at 390px
-- [ ] `scripts/check.sh` runs the new check and is green
-- [ ] the check's help line and `tools help --check` agree
 
 ## 177 — `:::contents` is opt-in, and 767 pages are over the hook's own threshold
 

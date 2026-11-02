@@ -8320,3 +8320,65 @@ the main thread* — and in a comment beside the key.
 
 Evidence: `textbook.lint maths-applied` clean over 18 pages; the built sidebar says "Main
 thread"; `pytest tests/ -q` — **8,820 passed, 50 skipped**.
+
+## 176 — A table could be wider than a phone and no check noticed — **done**
+
+**What is wrong.** `tools check-mobile` fails when a page is wider than the screen. A
+table cannot make a page wider, because `wrap_tables` puts every one of them in a
+`.table-scroll` — so the check is satisfied by the wrapper that hides the problem. A
+table whose last column sits past the right edge therefore reads as a pass.
+
+Measured at 390px, before this pass: **18 tables in 11 pages** of `maths-applied` and
+`numerical-methods`, the worst 172px over — and §1.5's five-column ladder put its fifth
+column at `x=404` in a 390 viewport, which is the column that carries the section's
+point. All 18 are fixed (marked `<!-- table: cards -->`, or shortened) and both books now
+measure zero. The collection has not been swept: a 150-page sample of `proofs` and
+`a-level-maths` found two more (`chapter-11/review` 27px, `chapter-13/section-13.3`
+5px), so the rest of the library is unaudited.
+
+**The fix.** A fourth check in `tools/src/commands/check-mobile.ts`: for each examined
+page, every `main table` whose `scrollWidth > clientWidth + 1` and which does not carry
+`table--cards` is an error, naming the table's first heading and the overflow in pixels.
+Then sweep every book and fix each finding with the marker where the rows are records,
+or a shorter header where they are numbers.
+
+**Done means**
+
+- [x] `tools check-mobile site` fails on a table 40px wider than its container, and two
+      tests in `tests/test_mobile.py` pin it
+- [x] every book reports zero: **4,522 routes swept at 390px, 0 tables over**
+- [x] `scripts/check.sh` runs the new check and is green
+- [x] the check's help line and `tools help --check` agree (no new flag)
+
+**Outcome, 2026-11-02.** `tools check-mobile site` now has a second pass: at 390px it
+measures **every table on every page** against the width of its own `.table-scroll`, and
+fails when the table is wider and does not carry `table--cards`.
+
+**The measurement had to be the container's, not the table's.** `table.scrollWidth >
+table.clientWidth` is false for every one of these tables — measured on
+`chapter-11/review`, the table is 385px inside a 358px wrapper and reports 385 == 385,
+because it fills its own box and the wrapper does the scrolling. Comparing the table's
+layout width with its wrapper reproduces the item's own numbers exactly (27px and 5px) and
+the whole backlog.
+
+**The backlog, swept and fixed.** 58 tables in eight books at 390px — `a-level-maths` 17,
+`ie-jc-maths` 12, `ie-lc-applied-maths` 8, `ie-lc-maths` 7, `gcse-maths` 5, `ie-lc-physics`
+4, `a-level-physics` 3, `gcse-physics` 2. All are marked `<!-- table: cards -->`: 39 matched
+by their own first heading, and three pages marked wholesale where the heading is maths
+(`$\theta$` renders as `θ\theta`, so no text match is possible — §5.4, §5.5 and
+`gcse-maths` §25.2). A re-sweep over **4,522 routes reports 0**.
+
+Held by two tests: a browser-free one that fails if the source stops exempting
+`table--cards`, stops measuring against the scroll container, or stops saying the overflow
+in pixels; and one that builds a 400px table inside a 358px wrapper, runs the command, and
+requires a non-zero exit with the message. In the gate, `scripts/check.sh` runs
+`node tools/dist/cli.js check-mobile site` after the builds, and announces a skip rather
+than passing where no browser is available.
+
+One planted-defect check, run by hand: removing the marker from
+`a-level-maths/chapter-11/review` makes the command print
+`FAIL /a-level-maths/chapter-11/review/: table "Class (minutes)" is 27px wider than its
+container at 390px, and is not table--cards`, and restoring it returns to 0.
+
+Evidence: `scripts/check.sh` — all checks passed, with the new step in it; `tools help
+--check` — 12 commands, 40 flags, every one named; `pytest tests/ -q` in the gate.
