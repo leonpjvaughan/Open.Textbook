@@ -41,6 +41,11 @@ tier_axis: {}
 # the lint rules all read this one declaration.
 section_pages: [learn]
 
+# What the sidebar calls a section's own page when the section also has a depth page.
+# The book's word, not the course formula's: a reader is on the main thread, and the
+# depth page beside it is optional.
+section_page_label: Main thread
+
 # No banks, so no oracle. A book that claims a computer checked its answers had
 # better have a bank; this one claims only what its figures compute in front of
 # the reader.

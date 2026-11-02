@@ -995,6 +995,7 @@ def build_nav_list(
     page_kinds: tuple[str, ...] | None = None,
     deepers: list[dict] | None = None,
     pages: list[dict] | None = None,
+    section_page_label: str = "",
 ) -> list[dict]:
     """The sidebar and page list.
 
@@ -1104,7 +1105,11 @@ def build_nav_list(
                 children.append({label: next(iter(section_children[0].values()))})
             else:
                 if len(kinds) == 1:
-                    section_children[0] = {"Overview": next(iter(section_children[0].values()))}
+                    # The word is the book's, not the chapters': a one-page section is
+                    # not an overview, and `maths-applied` calls it "Main thread".
+                    section_children[0] = {
+                        section_page_label or "Overview": next(iter(section_children[0].values()))
+                    }
                 children.append({label: section_children})
         children.append({"Review": f"Chapter {c['id']}/Review/index.md"})
         nav.append({f"Chapter {c['id']}: {c['title']}": children})

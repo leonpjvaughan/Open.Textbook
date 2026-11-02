@@ -94,6 +94,12 @@ saying what the extra model actually bought.
   link needed, and it is a plain link with no script.
 - Say on the depth page what the main thread already covered, so a reader who
   arrives there from search is not lost.
+- **The sidebar says "Main thread", not "Overview".** A section that has a depth page
+  lists its own page under the section title, and the engine's word for that child is
+  "Overview" — the chapters' word for a landing page between a title and its page
+  kinds. Here it is the only content page, so `book.yaml → section_page_label` names it
+  in this book's vocabulary, and a reader can see which page is required and which is
+  optional without reading the introduction.
 
 ### Every interactive has a static frame
 

@@ -417,6 +417,7 @@ def nav_for(book: books.Book, included_tiers: frozenset[str]) -> list:
         page_kinds=book.section_page_kinds,
         deepers=book.deeper_pages,
         pages=book.pages,
+        section_page_label=book.section_page_label,
     )
 
 

@@ -23,6 +23,7 @@ import pytest
 from textbook import book as books
 from textbook import config as cfg
 from textbook import lint, pipeline, scaffold
+from textbook.scaffold import build_nav_list
 from textbook.hooks import deeper as deeper_hook
 
 
@@ -456,3 +457,68 @@ def test_no_book_has_a_bracketed_reference_without_a_target():
             for line, bracket in bracketed_references(path.read_text(encoding="utf-8")):
                 broken.append(f"{path.relative_to(book.root)}:{line}: {bracket}")
     assert broken == [], "a bracketed reference in prose has no link target: " + "; ".join(broken[:6])
+
+
+def test_a_one_page_section_names_its_page_in_the_books_words():
+    """Item 180: the sidebar called `maths-applied`'s section page "Overview".
+
+    `scaffold` names a section's own page "Overview" once the section has children, and
+    for a book whose sections are one page each the children are its optional depth
+    pages — so §1.2 read "Overview / Why two circles meet twice" while §1.1, which has no
+    depth page, read "1.1 The question". The same book named its sections two ways.
+
+    The word is now the book's: `book.yaml → section_page_label`. A course book with
+    three kinds keeps "Overview", and so does a reference work's class page, because
+    there the page really is an overview of its children.
+    """
+    chapters = [
+        {"id": 1, "title": "A chapter", "sections": [{"id": "1.1", "title": "The question"}]}
+    ]
+    deeper = [
+        {
+            "title": "A depth page",
+            "path": "Chapter 1/Section 1.1/Deeper/a-page/index.md",
+            "chapter": "1",
+            "section": "1.1",
+        }
+    ]
+    walkthrough = "Chapter 1/Section 1.1/Walkthrough/index.md"
+
+    def label_for(path: str, **kwargs) -> str | None:
+        """The nav's word for a page, wherever it sits."""
+        found: list[str] = []
+
+        def walk(node) -> None:
+            if isinstance(node, dict):
+                for key, value in node.items():
+                    if value == path:
+                        found.append(key)
+                    else:
+                        walk(value)
+            elif isinstance(node, list):
+                for item in node:
+                    walk(item)
+
+        walk(build_nav_list([], chapters, deepers=deeper, **kwargs))
+        return found[0] if found else None
+
+    assert label_for(walkthrough, page_kinds=("walkthrough",), section_page_label="Main thread") == "Main thread"
+    assert label_for(walkthrough, page_kinds=("walkthrough",)) == "Overview"
+    # A course book names the page by its kind and is untouched by the new field: its
+    # sections have three pages, so the section is a container and no page there is
+    # "the section's own".
+    assert (
+        label_for(
+            walkthrough,
+            page_kinds=("walkthrough", "guided-problems", "problems"),
+        )
+        == "Learn"
+    ), "a course book's section page changed its name"
+    assert (
+        label_for(
+            walkthrough,
+            page_kinds=("walkthrough", "guided-problems", "problems"),
+            section_page_label="Main thread",
+        )
+        == "Learn"
+    ), "the label leaked into the course branch"
