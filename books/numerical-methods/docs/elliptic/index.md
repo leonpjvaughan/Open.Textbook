@@ -95,7 +95,7 @@ below is the same list sorted by name.
 | a constant coefficient, and a large mesh | Conjugate gradients, multigrid, algebraic multigrid | the iteration count depends on the mesh |
 | a coefficient that varies or jumps | Preconditioners (ILU, AMG, Jacobi), domain decomposition | the preconditioner decides the rate |
 | a non-symmetric term | GMRES, BiCGSTAB | no short recurrence, so storage grows |
-| a simple operator on a rectangle | Fast Fourier transform, Jacobi, Gauss–Seidel, SOR | the geometry has to be simple |
+| a simple operator on a rectangle | Fast Fourier transform, Jacobi, Gauss–Seidel, SOR | the geometry has to be [simple](../techniques/#simple) |
 | a boundary value on a large domain | [Boundary element](../techniques/#boundary-element) | a dense system in the boundary unknowns |
 
 <!-- table: cards -->
@@ -128,9 +128,9 @@ below is the same list sorted by name.
 <!-- table: cards -->
 | symptom | cause | fix |
 |---|---|---|
-| The iteration count grows as the mesh is refined | No preconditioner, or a smoother used alone | Multigrid, or AMG |
+| The iteration count grows as the mesh is refined | No preconditioner, or a smoother used alone | [Multigrid](../techniques/#multigrid), or AMG |
 | It ran all night and moved nowhere | The method moves information one cell per step | A method that sees the whole region at once |
-| Conjugate gradients stalls or returns nonsense | The matrix is not symmetric positive definite | Check symmetry; use GMRES or MINRES |
+| Conjugate gradients stalls or returns nonsense | The matrix is not symmetric positive definite | Check symmetry; use GMRES or [MINRES](../techniques/#minres) |
 | The answer looks right but the flux is wrong | The boundary condition is on the wrong quantity | Check whether the value or its derivative was given |
 | Refining the mesh changes the answer a lot | A point load or a re-entrant corner | Graded mesh, or a formulation that expects it |
 | Two different solvers agree but the numbers differ | The system is ill-conditioned | Scale the unknowns; check the residual, not the answer |

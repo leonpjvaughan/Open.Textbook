@@ -131,7 +131,7 @@ below is the same list sorted by name.
 |---|---|---|
 | It converged to the wrong assembly | Two solutions, and the start chose one | Start from the branch you want; continue from a solved case |
 | It oscillates and never settles | The step is too large, or the Jacobian is wrong | Damping or a line search; check the Jacobian by differences |
-| It fails exactly at a limit position | The Jacobian is singular at a toggle | Arc-length continuation, or re-parameterise the step |
+| It fails exactly at a limit position | The Jacobian is singular at a toggle | Arc-length [continuation](../techniques/#continuation), or re-parameterise the step |
 | It reports no solution | The model is infeasible, not the solver | Check the residual at the start; the rule may be contradictory |
 | Two unknowns moved in opposite directions | The system is ill-conditioned | Scale the variables; check for redundancy |
 

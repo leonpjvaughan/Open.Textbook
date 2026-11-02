@@ -1582,3 +1582,74 @@ def test_a_single_method_in_a_property_table_is_a_link(slug):
         elif len(named) > 1 and links:
             problems.append(f"{slug}: {cell[:50]!r} names several and carries a link")
     assert problems == [], problems
+
+
+def _technique_aliases() -> dict[str, str]:
+    """Every name the A–Z gives a method, mapped to its anchor.
+
+    The heading is the name, and its commas and brackets name the same method again:
+    `Multigrid, algebraic multigrid (AMG)` is three ways to say one entry, and a symptom
+    fix writes whichever comes to hand.
+    """
+    page = (map_book().docs / "techniques/index.md").read_text(encoding="utf-8")
+    aliases: dict[str, str] = {}
+    for anchor, heading in re.findall(r'<a id="([\w-]+)"></a>\n+### (.+)', page):
+        # The heading's first comma-segment is the name. A parenthetical tail names the
+        # same method again only when it is capitalised — `(AMG)`, `(SVD)` — because a
+        # lowercase one is a qualifier: `Riemann solvers (…, exact)` is not a method
+        # called "exact", and "exact" as an alias made a false positive.
+        parts = [heading.split(",")[0]]
+        parts += [p for p in re.findall(r"\(([^)]*)\)", heading)
+                  if re.match(r"^[A-Z]", p.strip())]
+        for part in parts:
+            for piece in part.split(","):
+                name = re.sub(r"^(the|a|an)\s+", "", piece.strip().lower())
+                if len(name) >= 4:
+                    aliases.setdefault(name, anchor)
+    return aliases
+
+
+def test_a_symptom_fix_that_names_a_technique_links_it():
+    """Item 179: 103 rows, 0 fix cells containing a link, 46 naming no entry.
+
+    A row that says "Multigrid, or AMG" sends the reader back to the A–Z to find by hand
+    what the page has already named. The fix cells that name an entry now link it, on both
+    pages, and this is what keeps a new row from arriving as text.
+    """
+    aliases = _technique_aliases()
+    pages = [map_book().docs / "symptoms" / "index.md"] + [
+        map_book().docs / slug / "index.md" for slug in CLASSES
+    ]
+    problems = []
+    rows = 0
+    linked = 0
+    for path in pages:
+        text = path.read_text(encoding="utf-8")
+        # **Only the symptom tables.** A class page's *technique* table also ends in a
+        # sentence naming a method, and its first column already carries the link.
+        if path.parent.name != "symptoms":
+            text = text[text.index("## What goes wrong") :]
+            following = text.find("\n## ", 3)
+            text = text[: following if following > 0 else len(text)]
+        for line in text.splitlines():
+            if not line.startswith("|"):
+                continue
+            cells = [cell.strip() for cell in line.strip().strip("|").split("|")]
+            if len(cells) not in (3, 4) or set(cells[0]) <= set("-"):
+                continue
+            if cells[0].lower() == "symptom":
+                continue
+            rows += 1
+            fix = cells[-1]
+            if "](../techniques/" in fix:
+                linked += 1
+                continue
+            named = [
+                alias
+                for alias in aliases
+                if re.search(rf"(?<![a-z-]){re.escape(alias)}(?![a-z-])", fix.lower())
+            ]
+            if named:
+                problems.append(f"{path.parent.name}: {fix[:50]!r} names {named[0]!r}")
+    assert problems == [], "a fix cell names a technique and links nothing: " + "; ".join(problems[:5])
+    assert linked, "no fix cell carries a link"

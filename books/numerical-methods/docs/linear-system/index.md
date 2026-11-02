@@ -153,7 +153,7 @@ below is the same list sorted by name.
 |---|---|---|
 | The residual is tiny and the answer is wrong | The matrix is ill-conditioned; a small residual says little | Check the condition number; scale the unknowns |
 | The factorisation runs out of memory | Fill-in: a sparse matrix with a dense factor | A fill-reducing ordering, or an iterative method |
-| Conjugate gradients stalls or returns nonsense | The matrix is not symmetric positive definite | Check symmetry; use GMRES or MINRES |
+| Conjugate gradients stalls or returns nonsense | The matrix is not symmetric positive definite | Check symmetry; use GMRES or [MINRES](../techniques/#minres) |
 | The answer changes when the rows are reordered | Rounding, amplified by conditioning | Fix a pivot ordering, and report the conditioning |
 | The solver reports no solution, or infinitely many | Redundant or contradictory rows | A rank-revealing factorisation, and fix the model |
 | The iterative method needs thousands of steps | No preconditioner, or a poor one | Precondition; measure the count before and after |

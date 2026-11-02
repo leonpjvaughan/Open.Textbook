@@ -144,7 +144,7 @@ below is the same list sorted by name.
 | symptom | cause | fix |
 |---|---|---|
 | The shock is smeared over many cells | First-order upwind, or too much numerical diffusion | Higher order with a limiter |
-| Wiggles appear near a shock | A centred scheme, or an unlimited high-order one | Upwind, or a limiter |
+| Wiggles appear near a shock | A centred scheme, or an unlimited high-order one | [Upwind](../techniques/#upwind), or a limiter |
 | The answer behind the shock is wrong | A non-conservative form, or the wrong Riemann solver | Write the flux form; check the wave speeds |
 | It blows up at a step that worked before | CFL crossed, usually by a finer mesh | Reduce the step, and compute it from the fastest wave |
 | A rarefaction has a jump in it | The Riemann solver has no entropy fix | Add one |

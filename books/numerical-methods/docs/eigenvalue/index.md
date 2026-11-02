@@ -127,7 +127,7 @@ below is the same list sorted by name.
 | symptom | cause | fix |
 |---|---|---|
 | A complex eigenvalue arrives and the code assumed real | The matrix is non-symmetric | Complex arithmetic, or work with the real block |
-| The smallest eigenvalue comes out wrong | Power iteration converges to the largest | Shift-invert about zero |
+| The smallest eigenvalue comes out wrong | Power iteration converges to the largest | [Shift-invert](../techniques/#inverse-iteration) about zero |
 | A known mode is missing | The start vector was orthogonal to it | Try several starts; use a block method |
 | Spurious eigenvalues near a boundary | The discretisation, not the physics | Refine, and check convergence of each eigenvalue |
 | The solver reports an infinite eigenvalue | A generalised problem with singular $B$ | That is a constraint; use QZ and read it as such |

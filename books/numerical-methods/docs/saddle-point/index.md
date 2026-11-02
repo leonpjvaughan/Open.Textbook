@@ -147,7 +147,7 @@ pressure cannot develop the checkerboard pattern the table below names.
 | The solver stalls on the constraint block | No block preconditioner | A Schur-complement preconditioner |
 | The forces are wrong but the displacements are right | The multiplier was recovered badly | Solve for the multiplier directly, not by differencing |
 | Two constraints say the same thing | The constraint set is redundant | A singular value decomposition of $B$, and drop a row |
-| Iterations grow as the viscosity falls | The Schur complement is badly conditioned | Precondition the Schur complement as well as $A$ |
+| Iterations grow as the viscosity falls | The Schur complement is badly conditioned | Precondition the [Schur complement](../techniques/#schur-complement) as well as $A$ |
 | The constraint drifts over a long run | Projection applied once, then forgotten | Project at every step, or use a formulation that preserves it |
 
 ## Used in this collection

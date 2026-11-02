@@ -8202,3 +8202,67 @@ Evidence: `node tools/dist/cli.js audit site --mobile` — 221 figures at 390px,
 `pytest tests/ -q` — **8,818 passed, 50 skipped**. One repair on the way: the linker joined
 `<!-- table: cards -->` to the method table's header line on all nine pages, which the
 existing marker test caught; the newline is restored.
+
+## 179 — The symptom fix column named the technique and never linked it — **done**
+
+**What is wrong.** Measured across every `| symptom | cause | fix |` table in the map:
+**103 rows, 0 fix cells containing a link, 46 fix cells naming no technique entry at all.**
+The rows that do name one — "Multigrid, or AMG", "Precondition the Schur complement as well
+as $A$", "An LBB-stable pair, or stabilisation", "Arc-length continuation, or
+re-parameterise the step" — send a reader back to the A–Z to find by hand what the page
+already named. `symptoms/index.md` and the class pages carry the same rows, so each fix is
+made twice.
+
+The 46 that name nothing are the harder half and are not a linking problem: "Check the
+residual at the start; the rule may be contradictory" is advice, not a technique. Those
+rows are what a reference work should either lift into an entry or stop pretending to have
+a fix for.
+
+**The fix.** Link the fix cells that name an A–Z entry, using the same anchor form the card
+tables use, in both the class page and `symptoms/index.md` (one wording, two pages, per the
+existing symptom test). Then triage the 46: each becomes either a link to the entry it
+really means, or a row whose fix says what to *check* rather than what to switch to.
+
+**Done means**
+
+- [x] every fix cell that names an A–Z entry links to it, on both pages, and
+      `test_every_symptom_is_one_row_in_one_wording_on_both_pages` still passes
+- [x] a new test fails when a fix cell names a technique and links nothing
+- [x] the unlinked rows are triaged and the count is recorded below, not an accident
+- [x] `pytest tests/ -q` passes
+
+**Outcome, 2026-11-02.** Measured after the change, on `symptoms/index.md` — the page both
+class pages agree with:
+
+```
+51 rows    10 fix cells link an A–Z entry    41 name no entry
+```
+
+The alias set is the A–Z's own vocabulary: each heading's first comma-segment, plus a
+parenthetical tail **only when it is capitalised** (`(AMG)`, `(SVD)`), because a lowercase
+one is a qualifier — `Riemann solvers (Roe, HLLC, exact)` is not a method called "exact",
+and treating it as one produced a false positive on a saddle-point row.
+
+**The 41 that name no entry are advice, not omission**, and they fall into four kinds:
+
+```
+16  check or measure something        (the residual, the conditioning, the error bar)
+15  choose or change the method       (a different family, a stabilisation, a limiter)
+ 7  restructure the model             (a formulation, a constraint, a mesh)
+ 3  change a parameter, step or tolerance
+```
+
+They are the rows item 179 called "the harder half": making them name an entry would mean
+writing entries that do not exist, and the honest fix for them is the one they already
+carry — what to check rather than what to switch to — so they are recorded here with their
+counts rather than forced into links.
+
+Held by `test_a_symptom_fix_that_names_a_technique_links_it`, which scans **only the
+symptom tables**: a class page's technique table also ends in a sentence naming a method
+and its first column already carries the link, so scanning every table would fail on
+correct prose. It also asserts at least one link exists, so the check cannot pass by
+scanning nothing.
+
+Evidence: `test_every_symptom_is_one_row_in_one_wording_on_both_pages` still passes (the
+same fix string on both pages); `textbook.lint numerical-methods` clean over 32 pages;
+`pytest tests/ -q` — **8,819 passed, 50 skipped**.

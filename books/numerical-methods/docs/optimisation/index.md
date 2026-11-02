@@ -114,9 +114,9 @@ below is the same list sorted by name.
 
 | symptom | cause | fix |
 |---|---|---|
-| It converged, but to a worse answer than a colleague's | A different local minimum | Multistart, or make the model convex |
-| The answer sits on a constraint boundary | The constraint was handled as a penalty | Use the KKT system, or an interior point method |
-| It zig-zags and crawls | Variables on wildly different scales | Scale them; use a quasi-Newton method |
+| It converged, but to a worse answer than a colleague's | A different local minimum | [Multistart](../techniques/#multistart), or make the model convex |
+| The answer sits on a constraint boundary | The constraint was handled as a penalty | Use the KKT system, or an [interior point](../techniques/#interior-point) method |
+| It zig-zags and crawls | Variables on wildly different scales | Scale them; use a [quasi-Newton](../techniques/#quasi-newton-broyden) method |
 | It stops on a flat region, far from the bottom | Gradient tolerance met too early | Tighten it, restart, or check the curvature |
 | Every evaluation costs a day | The model is the computer run | Surrogate model, then optimise the surrogate |
 
