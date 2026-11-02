@@ -8266,3 +8266,57 @@ scanning nothing.
 Evidence: `test_every_symptom_is_one_row_in_one_wording_on_both_pages` still passes (the
 same fix string on both pages); `textbook.lint numerical-methods` clean over 32 pages;
 `pytest tests/ -q` — **8,819 passed, 50 skipped**.
+
+## 180 — A `maths-applied` section was called "Overview" in the sidebar — **done**
+
+**What is wrong.** `scaffold.py` names a section's own page "Overview" once the section has
+children, and for `maths-applied` the children are the optional depth pages. So the sidebar
+shows
+
+```
+1.2 A compass, not a ruler
+    Overview
+    Why two circles meet twice
+```
+
+for a book whose sections are **one page each**: `section_pages: [learn]`. "Overview" is the
+chapters' word for a section's landing page between the title and its page kinds; here it is
+the only content page, and it reads as a summary a reader may skip. §1.1, §1.6 and §1.7 —
+the sections with no depth page — are labelled `1.1 The question` and so on, so the same
+book names its sections two ways depending on whether an optional page exists.
+
+**The fix.** In `scaffold.py`, the label for the section's own page is the book's, not the
+chapters': when `len(kinds) == 1` the section page keeps a name from the book's own
+vocabulary (`page title`, or the kind's title) instead of "Overview". The `kinds == 1`
+branch is already there and already special; the word is the only thing left to decide.
+The reference-work branch above it also uses "Overview" for a class page and should stay
+as it is, because there the class page *is* an overview of its children.
+
+**Done means**
+
+- [x] the section page is linked from the sidebar as **Main thread** — the five sections
+      with a depth page carry it, and the two without stay the section's own link
+- [x] no course book's sidebar changes (its section page still reads "Learn")
+- [x] the reference work's class pages still read "Overview"
+- [x] a test in `tests/test_book_structure.py` pins all three shapes
+- [x] `pytest tests/ -q` passes
+
+**Outcome, 2026-11-02.** The word is the book's: `book.yaml → section_page_label: Main thread`,
+read by `Book.section_page_label`, passed by the pipeline into `build_nav_list`, and used in
+the one branch where a one-page section has to name its own page.
+
+Measured on the built sidebar: chapter 1 lists **Main thread** for the five sections that
+have a depth page, while §1.1 and §1.7, which have none, stay the section's own link. A
+course book's section page is still its kind's title (**Learn**), and the map's class pages
+still read **Overview**, because there the class page really is an overview of its children.
+
+Held by `test_a_one_page_section_names_its_page_in_the_books_words`, which builds the nav
+three ways and finds the label wherever it sits: the book's word, the engine's default
+("Overview" when the book names none), and a course book's "Learn" — including with the
+field set, to prove it does not leak into the `kinds > 1` branch.
+
+Documented where the shape is explained — `books/maths-applied/AGENTS.md`, *Two tracks and
+the main thread* — and in a comment beside the key.
+
+Evidence: `textbook.lint maths-applied` clean over 18 pages; the built sidebar says "Main
+thread"; `pytest tests/ -q` — **8,820 passed, 50 skipped**.
