@@ -14,9 +14,8 @@ done-means; an item whose heading says done and whose checklist does not is the
 failure this file has had twice, so the list below, the headings and the boxes
 are checked against each other on every pass.
 
-**Every item from 79 to 174 is closed,** each with its measurement, its fix, its outcome
-and its ticked done-means in `.agents/todo-closed.md`. Items **175–177** are open: the three
-the fourth review measured (`research/review/maths-applied-and-numerical-methods-iv.md`).
+**Every item from 79 to 181 is closed,** each with its measurement, its fix, its outcome
+and its ticked done-means in `.agents/todo-closed.md`.
 A new item goes at the number after the last one, with its diagnosis, its fix and its own
 done-means.
 
@@ -137,3 +136,106 @@ a list on a class page is eleven links to eleven sections of one screen of prose
       pages that wanted a list still have one
 - [ ] `pytest tests/ -q` passes, including the existing contents test in
       `tests/test_reference_books.py`
+
+## 178 — Two tables on every class page list the same methods, and only one is linked
+
+**What is wrong.** Each of the nine class pages carries a **property table** ("what your
+model is | the methods that fit | the price") and, below it, a **method table** marked
+`<!-- table: cards -->` whose first column links into `techniques/index.md`. The prose
+between them says they are the same list: "The method-keyed table below is the same list
+sorted by name." Measured across the nine pages, the property table has **55 rows and 0
+links** — `averaging` 8, `eigenvalue` 6, `elliptic` 6, `hyperbolic` 6, `linear-system` 5,
+`optimisation` 6, `parabolic` 6, `root` 6, `saddle-point` 5 — while every name in it
+("Monte Carlo", "Power iteration", "GMRES, BiCGSTAB", "Simplex method, interior point,
+sequential quadratic programming") has an anchor in the A–Z.
+
+The counter-argument is real and is why this is a decision rather than a repair: the
+property table is a *decision aid* read by scanning a column, and a cell naming four
+methods would become four links, which is link soup at 390px. The card table below already
+carries the hop, and the sentence above the property table already names the family anchor
+(`../techniques/#finding-a-state`).
+
+**The fix.** Decide, and say so in the page-level paragraph rather than leaving a reader to
+notice:
+
+- either link only the cells that name **one** method (Bisection/Brent, Monte Carlo) and
+  leave multi-method cells as text — the asymmetry is then a rule, not an omission;
+- or link every name through the A–Z's short anchors, and accept the density.
+
+Whichever it is, `tests/test_reference_books.py` gets a test beside
+`test_every_method_a_class_page_names_links_to_its_entry` that applies it to the property
+table, so a name added later cannot arrive unlinked.
+
+**Done means**
+
+- [ ] the rule is written where the property tables are authored (`books/AGENTS.md`
+      or `books/numerical-methods/AGENTS.md`)
+- [ ] all nine class pages obey it, and a test fails when a new name in a property table
+      breaks it
+- [ ] `node tools/dist/cli.js audit site --mobile` reports no contrast or size failure on
+      the changed cells
+- [ ] `python -m textbook.lint numerical-methods` is clean and `pytest tests/ -q` passes
+
+## 179 — The symptom fix column names the technique and never links it
+
+**What is wrong.** Measured across every `| symptom | cause | fix |` table in the map:
+**103 rows, 0 fix cells containing a link, 46 fix cells naming no technique entry at all.**
+The rows that do name one — "Multigrid, or AMG", "Precondition the Schur complement as well
+as $A$", "An LBB-stable pair, or stabilisation", "Arc-length continuation, or
+re-parameterise the step" — send a reader back to the A–Z to find by hand what the page
+already named. `symptoms/index.md` and the class pages carry the same rows, so each fix is
+made twice.
+
+The 46 that name nothing are the harder half and are not a linking problem: "Check the
+residual at the start; the rule may be contradictory" is advice, not a technique. Those
+rows are what a reference work should either lift into an entry or stop pretending to have
+a fix for.
+
+**The fix.** Link the fix cells that name an A–Z entry, using the same anchor form the card
+tables use, in both the class page and `symptoms/index.md` (one wording, two pages, per the
+existing symptom test). Then triage the 46: each becomes either a link to the entry it
+really means, or a row whose fix says what to *check* rather than what to switch to.
+
+**Done means**
+
+- [ ] every fix cell that names an A–Z entry links to it, on both pages, and
+      `test_every_symptom_is_one_row_in_one_wording_on_both_pages` still passes
+- [ ] a new test fails when a fix cell names a technique and links nothing
+- [ ] the 46 unlinked rows are triaged and the count of rows naming no entry is a number
+      the file records, not an accident
+- [ ] `pytest tests/ -q` passes
+
+## 180 — A `maths-applied` section is called "Overview" in the sidebar
+
+**What is wrong.** `scaffold.py` names a section's own page "Overview" once the section has
+children, and for `maths-applied` the children are the optional depth pages. So the sidebar
+shows
+
+```
+1.2 A compass, not a ruler
+    Overview
+    Why two circles meet twice
+```
+
+for a book whose sections are **one page each**: `section_pages: [learn]`. "Overview" is the
+chapters' word for a section's landing page between the title and its page kinds; here it is
+the only content page, and it reads as a summary a reader may skip. §1.1, §1.6 and §1.7 —
+the sections with no depth page — are labelled `1.1 The question` and so on, so the same
+book names its sections two ways depending on whether an optional page exists.
+
+**The fix.** In `scaffold.py`, the label for the section's own page is the book's, not the
+chapters': when `len(kinds) == 1` the section page keeps a name from the book's own
+vocabulary (`page title`, or the kind's title) instead of "Overview". The `kinds == 1`
+branch is already there and already special; the word is the only thing left to decide.
+The reference-work branch above it also uses "Overview" for a class page and should stay
+as it is, because there the class page *is* an overview of its children.
+
+**Done means**
+
+- [ ] `site/maths-applied/chapter-1/section-1.2/learn/` is linked from the sidebar by a
+      name that is not "Overview", and the six sections with a depth page agree with the
+      one without
+- [ ] no course book's sidebar changes (the `kinds > 1` branch is untouched)
+- [ ] the reference work's class pages still read "Overview"
+- [ ] a test in `tests/test_book_structure.py` pins the label for both shapes
+- [ ] `pytest tests/ -q` passes

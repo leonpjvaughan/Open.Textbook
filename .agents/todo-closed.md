@@ -8086,3 +8086,53 @@ Held by `test_the_system_index_is_derived_from_the_class_pages`: the index's row
 number of bullets the nine class pages carry, every href is a registry URL, and every title is a
 registry title. `textbook.lint numerical-methods` clean over 32 pages; the build reports no broken
 link.
+
+## 181 — Nothing checked that a `[reference]` in prose is a link — **done**
+
+**What is wrong.** §1.6 carried two bracketed references with no target — `[hyperbolic
+page]` and `[equilibrium without time]` — and §1.2 and the Review each carried `[§1.2](.)`
+pointing at the page they sit on. All four are fixed by hand. Nothing would have caught
+them: they render as literal square brackets, which a reader reads as a mistake, and no
+check looks.
+
+A scan is not a one-line regex. Stripping fenced code, inline code and `$…$` leaves
+**498** hits across the collection, of which all but two are legitimate: `dfe_refs: [N1, N2]`
+in front matter, and the reason tables in the proof book (`[Angles on a straight line]` is a
+justification column, not a link). So the check needs a strip list — front matter first,
+then a table whose column is a reason — and the strip list is the work.
+
+**The fix.** A test in `tests/test_book_structure.py` that, for every book, strips front
+matter, fenced blocks, inline code, `$…$` and rows of a proof-style reason table, then fails
+on `[text]` not followed by `(`, `[` or `:`. Run it once over the collection first: the two
+prose hits are fixed, so it should start green.
+
+**Done means**
+
+- [x] the test exists, and reverting one of the four fixes by hand makes it fail
+- [x] the collection is green under it (0 hits), and every exclusion is a named entry in
+      the test's strip list with its reason
+- [x] `pytest tests/ -q` passes
+
+**Outcome, 2026-11-02.** `tests/test_book_structure.py` gains a scan and its cases.
+
+`bracketed_references(text)` strips six things, each a real shape in this collection, and
+then fails on a bracket that begins with a letter, contains a space and has no target:
+
+- **front matter** — `dfe_refs: [N1, N2]` is YAML;
+- **fenced blocks**, where brackets are syntax;
+- **display maths `$$…$$`** — `\left[ … \right]` spans lines and the reader sees one
+  bracket;
+- **inline code** and **inline maths** — `[3]` and `[n]` are interval notation;
+- **a bracket that is entirely bold** — `15.8` quotes the convention it teaches
+  (`**[Alternate angles, Theorem 3 part 2]** — a reason.`);
+- **a bracket at the end of an ordered step** — the same page's justification column
+  (`1. $a + b = 180^\circ$. [Angles on a straight line]`).
+
+With those, the collection reports **0** hits in every book. The scan was run with each
+exclusion absent while it was written: the naive version reports 498, and the count is how
+each exclusion was found rather than guessed.
+
+The planted-failure check, run by hand and recorded here: removing the target from
+`[hyperbolic page](/numerical-methods/hyperbolic/)` in §1.6 makes the collection test fail
+with `docs/Chapter 1/Section 1.6/Walkthrough/index.md:93: [hyperbolic page]`, and restoring
+it passes.

@@ -183,6 +183,4 @@ duplicate: it is a **conflict**, and least squares is then splitting the
 difference between equations that cannot all hold. The remedy is not to delete a
 row but to find out which equation is wrong.
 
-## Going further
-
 :::deeper singular-values

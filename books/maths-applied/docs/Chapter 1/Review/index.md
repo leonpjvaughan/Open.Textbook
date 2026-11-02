@@ -87,10 +87,10 @@ are the point.
 ## Reflection
 
 The chapter teaches **two** procedures, and they are not one sentence in other
-words. The first decides which model to build — [§1.5](.)'s
-[two procedures panel](../section-1.5/learn/#the-two-procedures) puts them side by side,
-with the number each one produced. The second is the limit test, and it is worth
-writing down in your own words before you leave:
+words. The first decides which model to build —
+[§1.5's two procedures panel](../section-1.5/learn/#the-two-procedures) puts them
+side by side, with the number each one produced. The second is the limit test,
+and it is worth writing down in your own words before you leave:
 
 > Take the parameter to the edge and check the model becomes the simpler one it
 > should become.

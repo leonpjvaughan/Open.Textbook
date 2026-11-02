@@ -172,6 +172,4 @@ harmless, and it makes every error message the solver produces about the *wrong*
 thing. A rank-deficient Jacobian is not a numerical accident here. It is a
 statement about the model, and it has a name: [§1.4](../../section-1.4/learn/).
 
-## Going further
-
 :::deeper what-least-squares-does

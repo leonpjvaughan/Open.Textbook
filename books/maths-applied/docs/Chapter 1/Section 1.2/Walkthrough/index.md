@@ -83,8 +83,8 @@ def upper_joint(C):
 
 Both answers are real solutions of the same two equations. They are two
 different assemblies of the same parts, and only one of them is a car. Which one
-you keep is a modelling decision, not a mathematical one, and [§1.2](.)'s depth
-page is about it.
+you keep is a modelling decision, not a mathematical one, and the [depth page
+for this section](../deeper/two-solutions/) is about it.
 
 Two answers from one rule is the signature of this kind of problem, and the
 start decides which one you land in.
@@ -230,7 +230,5 @@ A related trap: the two arms are nearly horizontal, so their axes meet a long
 way away from the wheel — 2.36 m here. If a drawing shows the instant centre
 inside the wheel, it is not drawn to the same scale in both directions. Every
 angle in it is wrong.
-
-## Going further
 
 :::deeper two-solutions

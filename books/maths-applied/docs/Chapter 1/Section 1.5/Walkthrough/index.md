@@ -260,6 +260,4 @@ side, with the number each one produced in this chapter.
 Neither replaces the other. The comparison decides which model to build; the limit
 test decides whether the model you built is the one it claims to be.
 
-## Going further
-
 :::deeper equilibrium-without-time

@@ -14,6 +14,7 @@ never writes.
 
 from __future__ import annotations
 
+import re
 from collections import Counter
 from types import SimpleNamespace
 
@@ -375,3 +376,83 @@ def test_a_nested_page_whose_parent_is_missing_is_refused():
         scaffold.build_nav_list(
             [], [], pages=[{"title": "Orphan", "path": "nowhere/deep/index.md"}]
         )
+
+
+# --- a bracketed reference in prose is a link ------------------------------------
+#
+# `[hyperbolic page]` and `[equilibrium without time]` rendered as literal square
+# brackets, and a reader reads that as a mistake. Nothing looked: Markdown leaves an
+# untargeted bracket alone, so it is not a broken link, not a lint finding and not a
+# maths error. This scans every book for one.
+#
+# **The strip list is the work, and each entry is a real thing in this collection.**
+# A naive scan reports 498 hits:
+#
+#   * **front matter** — `dfe_refs: [N1, N2]` is YAML, not prose;
+#   * **fenced blocks** — code, where brackets are syntax;
+#   * **display maths `$$…$$`** — `\left[ … \right]` is a bracket the reader sees as
+#     one, and it spans lines;
+#   * **inline code** and **inline maths `$…$`** — `[3]`, `[n]` are interval notation;
+#   * **a bracket that is entirely bold** (`**[Alternate angles, Theorem 3 part 2]**`) —
+#     the `15.8` page quotes the convention it teaches;
+#   * **a bracket at the end of an ordered step** (`1. $a + b = 180^\circ$. [Angles on a
+#     straight line]`) — the book's own justification column, written as a reason after
+#     the step.
+#
+# What is left has to be prose, and in prose a bracket with a space in it is a
+# reference, and a reference with no target is the defect.
+
+FRONT_MATTER = re.compile(r"\A---\n.*?\n---\n", re.S)
+FENCE = re.compile(r"```.*?```", re.S)
+DISPLAY_MATHS = re.compile(r"\$\$.*?\$\$", re.S)
+INLINE_CODE = re.compile(r"`[^`]*`")
+INLINE_MATHS = re.compile(r"\$[^$]*\$")
+BOLD_LABEL = re.compile(r"\*\*\[[^\]]+\]\*\*")
+#: A bracketed phrase: starts with a letter, has a space in it, and has no target.
+REFERENCE = re.compile(r"\[([A-Za-z][^\]\n]*?\s[^\]\n]*?)\](?![\(\[:])")
+STEP = re.compile(r"^\s*\d+\.\s")
+
+
+def bracketed_references(text: str) -> list[tuple[int, str]]:
+    """``(line, bracket)`` for every prose bracket with no link target."""
+    text = FRONT_MATTER.sub(lambda m: "\n" * m.group(0).count("\n"), text)
+    for pattern in (FENCE, DISPLAY_MATHS):
+        text = pattern.sub(lambda m: "\n" * m.group(0).count("\n"), text)
+    text = INLINE_CODE.sub("", text)
+    text = INLINE_MATHS.sub("", text)
+    text = BOLD_LABEL.sub("", text)
+
+    found: list[tuple[int, str]] = []
+    for number, line in enumerate(text.splitlines(), 1):
+        if STEP.match(line) and re.search(r"\[[^\]]+\]\s*$", line):
+            continue
+        for match in REFERENCE.finditer(line):
+            found.append((number, match.group(0)))
+    return found
+
+
+def test_a_bracketed_reference_in_prose_is_caught():
+    """The scan has to fail on the defect it was written for, in the four shapes it took."""
+    assert bracketed_references("See the [hyperbolic page] for that.") == [
+        (1, "[hyperbolic page]")
+    ]
+    # the four hand-fixed references: a missing target, and a self-link written `(.)`
+    assert bracketed_references("described on the [hyperbolic page], which this")
+    assert bracketed_references("and [equilibrium without time] as well")
+    # and the exclusions, so the rule does not become noise
+    assert bracketed_references("See the [hyperbolic page](/numerical-methods/hyperbolic/).") == []
+    assert bracketed_references("the interval [3, 5] and [n] are maths") == []
+    assert bracketed_references("$$\\left[ x^2 \\right]$$") == []
+    assert bracketed_references("`dfe_refs: [N1, N2]`") == []
+    assert bracketed_references("1. $a + b = 180^\\circ$. [Angles on a straight line]") == []
+    assert bracketed_references("**[Alternate angles, Theorem 3 part 2]** — a reason.") == []
+
+
+def test_no_book_has_a_bracketed_reference_without_a_target():
+    """Every book, every page: a prose bracket with no target is a mistake on the page."""
+    broken = []
+    for book in books.discover_books():
+        for path in sorted(book.root.rglob("*.md")):
+            for line, bracket in bracketed_references(path.read_text(encoding="utf-8")):
+                broken.append(f"{path.relative_to(book.root)}:{line}: {bracket}")
+    assert broken == [], "a bracketed reference in prose has no link target: " + "; ".join(broken[:6])

@@ -62,7 +62,7 @@ problem with the same answer, and then corrects it; the price is that $M$ has to
 be built and applied.
 
 A linear system is often one step inside a non-linear solve. `Maths Applied`
-[§1.3](/maths-applied/chapter-1/section-1.3/learn/) 's three distance rules are
+[§1.3](/maths-applied/chapter-1/section-1.3/learn/)'s three distance rules are
 non-linear, and Gauss–Newton iterates them; each step solves the linear system
 on this page. The rules at that step are linear, and the outer model is a root
 problem or an optimisation. That is the distinction the
