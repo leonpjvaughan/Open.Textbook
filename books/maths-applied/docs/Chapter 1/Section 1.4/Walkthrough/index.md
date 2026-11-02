@@ -43,9 +43,11 @@ Which combination? That is a vector in the left null space, and here it is:
 
 $$ w = \left(0.707,\ -0.707,\ 0.000\right). $$
 
-Read the entries: add 0.707 of the first equation to −0.707 of the second, add
-nothing of the third, and the result constrains nothing. The first two rows
-cancel each other, exactly. In plain words: **the two legs are one equation**.
+:::figure null-vector
+
+Add 0.707 of the first equation to −0.707 of the second, add nothing of the third,
+and the result constrains nothing. In plain words: **the two legs are one
+equation**.
 
 The numbers in $w$ are not a coincidence of the arithmetic. The rows of $J$ are
 $\hat{u}$, $\hat{u}$ and $\hat{v}$; two of them are equal, so their difference

@@ -8440,3 +8440,71 @@ threshold, none under it, one where the marker places it, none where the page op
 Evidence: `textbook.lint` clean over 2,614 pages; `tools check-mobile site` — 405 pages, 0
 errors; `canvas site` — 253 figures, 0 errors; `pytest tests/ -q` — **8,823 passed, 50
 skipped**.
+
+## 175 — The hardest idea in `maths-applied` is drawn nowhere
+
+**What is wrong.** §1.4 is where a reader meets a singular value decomposition, a left
+null space, and the sentence "the two legs are one equation". The page's only figure is
+`wishbone-3d`, which is about the legs in three dimensions; the decomposition itself is
+text and one row vector:
+
+```
+$$ \sigma = \left(1.415,\ 0.998,\ 0.000\right). $$
+Which combination? That is a vector in the left null space, and here it is:
+$$ w = \left(0.707,\ -0.707,\ 0.000\right). $$
+```
+
+A reader who does not already know what a null space is has to build one from a sentence
+and a row vector, on the page the chapter's argument turns on. The third review's rule
+was "every class page works a number"; this page works one and shows none of it.
+
+**The fix.** One figure, `null-vector`: the three rows of the Jacobian drawn as three
+arrows from one origin, the first two visibly the same arrow, and the cancellation
+`0.707·row1 − 0.707·row2` drawn as the pair that closes on nothing. Labels carry the
+numbers the page already prints (`1.415`, `0.998`, `0`; `0.707`, `−0.707`), read from the
+page's own model at build time. It mounts with the cancellation already drawn — the
+static frame carries the idea — and it has no control, because the pose does not change
+the pattern: §1.4 already says a different pose gives the same `w`.
+
+**Done means**
+
+- [x] the figure is in `books/maths-applied/docs/assets/figures/`, drawn through
+      `kit.js` with `SIZE`, `label()`, `scale()` and `arrow()`, and no colour of its own
+- [x] the numbers are computed from the page's model, not typed, and a test holds it to
+      the same three calls the numbers test makes
+- [x] `audit site` measures it in both schemes with no failure, and no label is below 9px
+- [x] `canvas site --only null-vector` — 1 figure, 0 errors
+- [x] §1.4 mounts it beside the paragraph that names `w`, and the prose stops restating
+      the cancellation the figure draws
+- [x] `textbook.lint maths-applied` is clean and `pytest tests/ -q` passes
+
+**Outcome, 2026-11-02.** `null-vector` mounts on §1.4, beside the paragraph that names `w`.
+
+It draws the Jacobian's three rows as three arrows from one origin: rows 1 and 2 are the
+same vector — `legsJacobian` returns the same array twice — and they are drawn 7px apart,
+solid and dashed, because a dashed arrow exactly on top of a solid one is one arrow to the
+eye and there being two is the whole point. Row 3 is the odd direction. On the right, half
+of row 1 is walked out and minus half of row 2 is walked back, and the pair returns to where
+it started: "back to nothing".
+
+**Nothing in it is typed.** The rows, the singular values and the null vector come from
+`legsJacobian`, `singularValues` and `nullDirection` at the design pose — the same three
+calls `tests/test_maths_applied_numbers.py` makes — and the figure has no control, because
+the pattern does not depend on the pose and §1.4 says so.
+
+Three claims, all verified: row 1 less row 2 is zero in each unknown, and the null
+combination is zero. `readout --verify`: **3 claims, 0 untrue**. The readout prints
+σ = (1.415, 0.998, 0) and w = (0.707, −0.707, 0); a negative zero in the third component was
+printing as "−0" and now prints as "0".
+
+The prose was trimmed where the figure now does the work: "Read the entries: add 0.707 of
+the first equation …" became "Add 0.707 of the first equation to −0.707 of the second, add
+nothing of the third, and the result constrains nothing" — the drawing shows the rest.
+
+Held by `test_the_null_vector_figure_reads_its_numbers_from_the_model`: the module calls the
+three model functions, types none of the four numbers it prints, and §1.4 mounts it.
+
+Evidence: `audit site` measures it in light and dark with no contrast failure; `canvas site
+--only null-vector` — 1 figure, 0 errors; `kit site` — all 52 exports have a row;
+`textbook.lint maths-applied` clean over 18 pages; `pytest tests/ -q` — **8,838 passed, 50
+skipped**.
