@@ -1518,3 +1518,67 @@ def test_a_system_entry_is_a_name_not_a_paragraph_with_markup():
         "class page's prose:\n  "
         + "\n  ".join(f"{n}: {s[:90]}" for n, s in sorted(long, reverse=True))
     )
+
+
+@pytest.mark.parametrize("slug", CLASSES)
+def test_a_single_method_in_a_property_table_is_a_link(slug):
+    """Item 178: the property table named 55 methods and linked none.
+
+    The sentence between the two tables says they are the same list, and only the second
+    one was clickable. **The rule is the asymmetry**: a cell naming one method links it —
+    one hop and no more — and a cell naming several stays text, because four links in one
+    cell is link soup at 390px and the method table below carries every hop.
+    """
+    book = map_book()
+    page = (book.docs / slug / "index.md").read_text(encoding="utf-8")
+    table = page[page.index("| what your model is |") : page.index("| technique | what it does |")]
+    anchors = {
+        name.strip().lower(): anchor
+        for anchor, name in re.findall(
+            r'<a id="([\w-]+)"></a>\n+### (.+)',
+            (book.docs / "techniques/index.md").read_text(encoding="utf-8"),
+        )
+    }
+
+    def normalise(text: str) -> str:
+        # A parenthetical tail is part of a name, not a second one:
+        # `Sparse direct (Cholesky, LU)` is one entry, `Sparse direct (...)`.
+        return re.sub(r"[()]", "", text.lower()).strip()
+
+    def target(name: str) -> str | None:
+        want = normalise(name)
+        for heading, anchor in anchors.items():
+            head = normalise(heading)
+            if head == want or head.startswith(want + ","):
+                return anchor
+        return None
+
+    def names(cell: str) -> list[str]:
+        """The methods a cell names, splitting on commas outside brackets."""
+        text = re.sub(r"\[([^\]]+)\]\([^)]*\)", r"\1", cell)
+        parts, depth, current = [], 0, ""
+        for char in text:
+            if char == "(":
+                depth += 1
+            elif char == ")":
+                depth -= 1
+            if char == "," and depth == 0:
+                parts.append(current)
+                current = ""
+            else:
+                current += char
+        if current.strip():
+            parts.append(current)
+        return [part.strip() for part in parts if part.strip()]
+
+    problems = []
+    for row in [line for line in table.splitlines() if line.startswith("|")][2:]:
+        cell = row.strip().strip("|").split("|")[1].strip()
+        named = names(cell)
+        links = re.findall(r"\[([^\]]+)\]\(../techniques/#([\w-]+)\)", cell)
+        if len(named) == 1 and target(named[0]):
+            if not (len(links) == 1 and links[0][1] == target(named[0])):
+                problems.append(f"{slug}: {named[0]!r} is not linked to its entry")
+        elif len(named) > 1 and links:
+            problems.append(f"{slug}: {cell[:50]!r} names several and carries a link")
+    assert problems == [], problems

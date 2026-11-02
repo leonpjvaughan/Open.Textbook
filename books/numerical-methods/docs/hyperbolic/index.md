@@ -108,12 +108,12 @@ below is the same list sorted by name.
 
 | what your model is | the methods that fit | the price |
 |---|---|---|
-| one simple wave, and a smooth solution | Method of characteristics | it cannot cross a shock |
+| one simple wave, and a smooth solution | [Method of characteristics](../techniques/#method-of-characteristics) | it cannot cross a shock |
 | a conservation law | Godunov, finite volume, Riemann solvers (Roe, HLLC, exact) | the Riemann problem is the work |
 | shocks, and you want order away from them | WENO, limiters, discontinuous Galerkin | the limiter costs accuracy at a smooth extremum |
 | smooth, and a fine mesh you can afford | Lax–Wendroff, spectral element | a shock makes it ring |
-| linear advection on a coarse mesh | Upwind | numerical diffusion |
-| a wave that must stay bounded over a long run | Symplectic integration | the structure has to be there to preserve |
+| linear advection on a coarse mesh | [Upwind](../techniques/#upwind) | numerical diffusion |
+| a wave that must stay bounded over a long run | [Symplectic integration](../techniques/#symplectic-integration) | the structure has to be there to preserve |
 
 <!-- table: cards -->
 | technique | what it does | when it wins | when it is the wrong tool |

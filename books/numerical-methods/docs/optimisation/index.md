@@ -79,11 +79,11 @@ below is the same list sorted by name.
 | what your model is | the methods that fit | the price |
 |---|---|---|
 | no constraints, and a derivative you can compute | Gradient descent, Newton, quasi-Newton (BFGS) | the step length is a separate decision |
-| no constraints, and no derivative | Nelder–Mead | slow above a few dimensions |
-| a sum of squares you are fitting | Gauss–Newton | the Jacobian is the cost |
+| no constraints, and no derivative | [Nelder–Mead](../techniques/#nelder-mead) | slow above a few dimensions |
+| a sum of squares you are fitting | [Gauss–Newton](../techniques/#gauss-newton) | the Jacobian is the cost |
 | constraints that are linear or smooth | Simplex method, interior point, sequential quadratic programming | the constraint handling is the code |
 | a function you can only sample, or one with noise | Stochastic gradient, Adam, Bayesian optimisation | many runs, and no guarantee |
-| several local answers | Multistart | the cost multiplies by the number of starts |
+| several local answers | [Multistart](../techniques/#multistart) | the cost multiplies by the number of starts |
 
 <!-- table: cards -->
 | technique | what it does | when it wins | when it is the wrong tool |

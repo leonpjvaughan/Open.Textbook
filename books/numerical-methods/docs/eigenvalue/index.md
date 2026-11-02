@@ -89,11 +89,11 @@ below is the same list sorted by name.
 <!-- table: cards -->
 | what your model is | the methods that fit | the price |
 |---|---|---|
-| the largest eigenvalue, and a matrix you can multiply | Power iteration | one eigenvalue, and it may converge slowly |
+| the largest eigenvalue, and a matrix you can multiply | [Power iteration](../techniques/#power-iteration) | one eigenvalue, and it may converge slowly |
 | the one nearest a value you choose | Inverse iteration, shift-invert | a factorisation per shift |
 | symmetric, and several eigenvalues | Lanczos, subspace iteration | reorthogonalisation is the cost |
 | non-symmetric | Arnoldi, QR algorithm | storage grows with the basis |
-| generalised, or a singular $B$ | QZ | cubic, and it is dense |
+| generalised, or a singular $B$ | [QZ](../techniques/#qz) | cubic, and it is dense |
 | a non-linear eigenvalue, or a large sparse one | Jacobi–Davidson, contour integral (FEAST) | a solve inside every step |
 
 <!-- table: cards -->

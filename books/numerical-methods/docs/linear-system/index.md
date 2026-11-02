@@ -116,7 +116,7 @@ below is the same list sorted by name.
 | dense and a few thousand | Dense LU, with pivoting, QR, SVD, iterative refinement | cubic, once |
 | sparse and large | Sparse direct (multifrontal), GMRES, BiCGSTAB, Preconditioners (ILU, AMG, Jacobi) | the iteration count is the flag |
 | symmetric positive definite | Cholesky, conjugate gradients, multigrid | fails on anything else |
-| symmetric indefinite | MINRES | a different Krylov method is needed |
+| symmetric indefinite | [MINRES](../techniques/#minres) | a different Krylov method is needed |
 | a least-squares or rank-deficient problem | QR, SVD, normal equations | squaring the condition number |
 
 <!-- table: cards -->

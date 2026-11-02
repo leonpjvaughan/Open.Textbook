@@ -97,7 +97,7 @@ below is the same list sorted by name.
 |---|---|---|
 | a linear constraint, and you can factorise the block | Sparse direct with pivoting, Schur complement | the fill is the cost |
 | a linear constraint, and the block is too large | Uzawa, MINRES, GMRES with a block preconditioner | the iteration count depends on the constraint |
-| a non-linear constraint | Augmented Lagrangian | an outer loop around each solve |
+| a non-linear constraint | [Augmented Lagrangian](../techniques/#augmented-lagrangian) | an outer loop around each solve |
 | incompressible flow | Projection (Chorin), SIMPLE | the split limits the time step |
 | a rank-deficient constraint | Null-space method, constraint elimination | the null space has to be found |
 

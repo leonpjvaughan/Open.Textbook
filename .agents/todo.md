@@ -14,8 +14,9 @@ done-means; an item whose heading says done and whose checklist does not is the
 failure this file has had twice, so the list below, the headings and the boxes
 are checked against each other on every pass.
 
-**Every item from 79 to 181 is closed,** each with its measurement, its fix, its outcome
-and its ticked done-means in `.agents/todo-closed.md`.
+**Every item from 79 to 174, and 181, is closed,** each with its measurement, its fix, its
+outcome and its ticked done-means in `.agents/todo-closed.md`. Items **175–177, 179 and 180** are open:
+the fourth review's three, and three more from the pass that followed it.
 A new item goes at the number after the last one, with its diagnosis, its fix and its own
 done-means.
 
@@ -137,7 +138,7 @@ a list on a class page is eleven links to eleven sections of one screen of prose
 - [ ] `pytest tests/ -q` passes, including the existing contents test in
       `tests/test_reference_books.py`
 
-## 178 — Two tables on every class page list the same methods, and only one is linked
+## 178 — Two tables on every class page listed the same methods, and only one was linked — **done**
 
 **What is wrong.** Each of the nine class pages carries a **property table** ("what your
 model is | the methods that fit | the price") and, below it, a **method table** marked
@@ -175,6 +176,34 @@ table, so a name added later cannot arrive unlinked.
 - [ ] `node tools/dist/cli.js audit site --mobile` reports no contrast or size failure on
       the changed cells
 - [ ] `python -m textbook.lint numerical-methods` is clean and `pytest tests/ -q` passes
+
+**Outcome, 2026-11-02.** The decision, and the rule that states it.
+
+**A cell that names one method is a link; a cell that names several is text.** The
+asymmetry is the rule, not an omission, and it is written where the tables are authored —
+`books/numerical-methods/AGENTS.md`, **The two technique tables, and which cells are
+links**. Four links in one cell is link soup at 390px, the method table below already
+carries every hop with the method it belongs to, and the property table is a decision aid
+read by scanning a column.
+
+Measured after the change, over the nine class pages: **54 property rows, 21 carrying a
+link** — every cell that names exactly one A–Z entry. The matching is by the entry's
+heading, with the parenthetical tail part of the name, so `Sparse direct (Cholesky, LU)` is
+one method and matches `Sparse direct (Cholesky, LU, multifrontal)`. Two cells needed
+saying exactly what they name: `Adaptive step control around the implicit methods` became
+`Adaptive step control`, the A–Z's entry.
+
+Held by `test_a_single_method_in_a_property_table_is_a_link` (nine parameters): a cell
+naming one A–Z entry must carry exactly the link to that entry, and a cell naming several
+must carry none — so a name added later cannot arrive unlinked, and a link added to a
+multi-method cell fails too.
+
+Evidence: `node tools/dist/cli.js audit site --mobile` — 221 figures at 390px, **0 below
+9px**, median smallest label 9.3px; `textbook.lint numerical-methods` clean over 32 pages;
+`pytest tests/ -q` — **8,818 passed, 50 skipped**. One repair on the way: the linker joined
+`<!-- table: cards -->` to the method table's header line on all nine pages, which the
+existing marker test caught; the newline is restored.
+
 
 ## 179 — The symptom fix column names the technique and never links it
 

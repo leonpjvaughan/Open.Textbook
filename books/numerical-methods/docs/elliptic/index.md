@@ -91,12 +91,12 @@ below is the same list sorted by name.
 <!-- table: cards -->
 | what your model is | the methods that fit | the price |
 |---|---|---|
-| a constant coefficient, and a small mesh | Sparse direct (Cholesky, LU) | cubic in the unknowns |
+| a constant coefficient, and a small mesh | [Sparse direct (Cholesky, LU)](../techniques/#sparse-direct-cholesky) | cubic in the unknowns |
 | a constant coefficient, and a large mesh | Conjugate gradients, multigrid, algebraic multigrid | the iteration count depends on the mesh |
 | a coefficient that varies or jumps | Preconditioners (ILU, AMG, Jacobi), domain decomposition | the preconditioner decides the rate |
 | a non-symmetric term | GMRES, BiCGSTAB | no short recurrence, so storage grows |
 | a simple operator on a rectangle | Fast Fourier transform, Jacobi, Gauss–Seidel, SOR | the geometry has to be simple |
-| a boundary value on a large domain | Boundary element | a dense system in the boundary unknowns |
+| a boundary value on a large domain | [Boundary element](../techniques/#boundary-element) | a dense system in the boundary unknowns |
 
 <!-- table: cards -->
 | technique | what it does | when it wins | when it is the wrong tool |

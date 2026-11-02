@@ -8136,3 +8136,69 @@ The planted-failure check, run by hand and recorded here: removing the target fr
 `[hyperbolic page](/numerical-methods/hyperbolic/)` in §1.6 makes the collection test fail
 with `docs/Chapter 1/Section 1.6/Walkthrough/index.md:93: [hyperbolic page]`, and restoring
 it passes.
+
+## 178 — Two tables on every class page listed the same methods, and only one was linked — **done**
+
+**What is wrong.** Each of the nine class pages carries a **property table** ("what your
+model is | the methods that fit | the price") and, below it, a **method table** marked
+`<!-- table: cards -->` whose first column links into `techniques/index.md`. The prose
+between them says they are the same list: "The method-keyed table below is the same list
+sorted by name." Measured across the nine pages, the property table has **55 rows and 0
+links** — `averaging` 8, `eigenvalue` 6, `elliptic` 6, `hyperbolic` 6, `linear-system` 5,
+`optimisation` 6, `parabolic` 6, `root` 6, `saddle-point` 5 — while every name in it
+("Monte Carlo", "Power iteration", "GMRES, BiCGSTAB", "Simplex method, interior point,
+sequential quadratic programming") has an anchor in the A–Z.
+
+The counter-argument is real and is why this is a decision rather than a repair: the
+property table is a *decision aid* read by scanning a column, and a cell naming four
+methods would become four links, which is link soup at 390px. The card table below already
+carries the hop, and the sentence above the property table already names the family anchor
+(`../techniques/#finding-a-state`).
+
+**The fix.** Decide, and say so in the page-level paragraph rather than leaving a reader to
+notice:
+
+- either link only the cells that name **one** method (Bisection/Brent, Monte Carlo) and
+  leave multi-method cells as text — the asymmetry is then a rule, not an omission;
+- or link every name through the A–Z's short anchors, and accept the density.
+
+Whichever it is, `tests/test_reference_books.py` gets a test beside
+`test_every_method_a_class_page_names_links_to_its_entry` that applies it to the property
+table, so a name added later cannot arrive unlinked.
+
+**Done means**
+
+- [ ] the rule is written where the property tables are authored (`books/AGENTS.md`
+      or `books/numerical-methods/AGENTS.md`)
+- [ ] all nine class pages obey it, and a test fails when a new name in a property table
+      breaks it
+- [ ] `node tools/dist/cli.js audit site --mobile` reports no contrast or size failure on
+      the changed cells
+- [ ] `python -m textbook.lint numerical-methods` is clean and `pytest tests/ -q` passes
+
+**Outcome, 2026-11-02.** The decision, and the rule that states it.
+
+**A cell that names one method is a link; a cell that names several is text.** The
+asymmetry is the rule, not an omission, and it is written where the tables are authored —
+`books/numerical-methods/AGENTS.md`, **The two technique tables, and which cells are
+links**. Four links in one cell is link soup at 390px, the method table below already
+carries every hop with the method it belongs to, and the property table is a decision aid
+read by scanning a column.
+
+Measured after the change, over the nine class pages: **54 property rows, 21 carrying a
+link** — every cell that names exactly one A–Z entry. The matching is by the entry's
+heading, with the parenthetical tail part of the name, so `Sparse direct (Cholesky, LU)` is
+one method and matches `Sparse direct (Cholesky, LU, multifrontal)`. Two cells needed
+saying exactly what they name: `Adaptive step control around the implicit methods` became
+`Adaptive step control`, the A–Z's entry.
+
+Held by `test_a_single_method_in_a_property_table_is_a_link` (nine parameters): a cell
+naming one A–Z entry must carry exactly the link to that entry, and a cell naming several
+must carry none — so a name added later cannot arrive unlinked, and a link added to a
+multi-method cell fails too.
+
+Evidence: `node tools/dist/cli.js audit site --mobile` — 221 figures at 390px, **0 below
+9px**, median smallest label 9.3px; `textbook.lint numerical-methods` clean over 32 pages;
+`pytest tests/ -q` — **8,818 passed, 50 skipped**. One repair on the way: the linker joined
+`<!-- table: cards -->` to the method table's header line on all nine pages, which the
+existing marker test caught; the newline is restored.

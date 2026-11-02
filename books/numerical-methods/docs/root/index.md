@@ -98,7 +98,7 @@ below is the same list sorted by name.
 | one rule, derivative available | Newton, quasi-Newton (Broyden) | a bad start, or a singular Jacobian |
 | several solutions, and the start decides | Continuation, homotopy | the path has a fold, and you step in $x$ |
 | many unknowns, or a step the model cannot trust | Levenberg–Marquardt, trust region | the linear algebra is the cost |
-| a map that shrinks the error | Fixed-point iteration | the map must be a contraction |
+| a map that shrinks the error | [Fixed-point iteration](../techniques/#fixed-point-iteration) | the map must be a contraction |
 
 <!-- table: cards -->
 | technique | what it does | when it wins | when it is the wrong tool |
