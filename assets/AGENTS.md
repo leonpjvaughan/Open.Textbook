@@ -265,6 +265,14 @@ Nothing in a page, and nothing in a figure, may carry a colour.
 - Never put `$...$` in text a figure injects at runtime: the maths hook runs at
   build time, so runtime LaTeX is not rendered. Use plain text or HTML.
 
+**A page over five `h2`s prints its own contents.** `hooks/contents.py` renders a
+two-column `<nav>` of links from the page's own heading ids, after the first paragraph: a
+reader 600px into a 23,000px lookup can see what else is on the page, and the list cannot
+rot because it is the same list the ids come from. It is **not** asked for — the threshold
+and the `:::contents` marker once disagreed, and 767 pages carried the list's shape without
+the list. A page places it itself with `:::contents`, and a page whose own index would
+duplicate it opts out with `:::no-contents`.
+
 The two icons are the exception, and the only one. `assets/icons/app-icon.svg`
 (the home-screen icon) and `assets/icons/favicon.svg` (the browser tab) are fixed
 images drawn in the house ink and paper, because a launcher tile and a tab cannot

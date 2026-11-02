@@ -1281,11 +1281,22 @@ def test_the_contents_list_is_derived_from_the_headings():
     four = "".join(f'<h2 id="h{i}">Section {i}</h2>' for i in range(4))
     assert contents.render(four) == ""
 
-    # The directive is in the page, and the page has the headings it lists.
+    # **Rendered for the page, not asked for by it.** The threshold and the directive
+    # disagreed once, and 767 pages carried the shape without the list; a page may still
+    # place it itself, and a page whose own index would duplicate it can opt out.
     book = map_book()
     techniques = (book.docs / "techniques/index.md").read_text(encoding="utf-8")
-    assert ":::contents" in techniques
-    assert techniques.count("\n## ") >= contents.MINIMUM
+    assert techniques.count("\n## ") >= contents.MINIMUM, (
+        "the A–Z is under the threshold, so this test no longer covers the page it was written for"
+    )
+    built = contents.on_page_content(
+        "<p>Intro.</p>" + "".join(f'<h2 id="h{i}">S{i}</h2>' for i in range(contents.MINIMUM)),
+        None,
+        None,
+        None,
+    )
+    assert 'class="contents"' in built
+    assert built.index("Intro") < built.index('class="contents"'), "the list did not follow the intro"
 
 
 @pytest.mark.parametrize("slug", CLASSES)

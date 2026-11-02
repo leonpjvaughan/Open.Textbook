@@ -34,8 +34,6 @@ inside a kind you already understand, chosen by a circumstance you can name.
   [Every system](systems/index.md), which goes system → kind, and is built from
   the class pages' own lists.
 
-:::contents
-
 ## The nine kinds
 
 Every kind is a page. The third column is the model the kind writes down. Read

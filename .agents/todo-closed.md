@@ -8382,3 +8382,61 @@ container at 390px, and is not table--cards`, and restoring it returns to 0.
 
 Evidence: `scripts/check.sh` — all checks passed, with the new step in it; `tools help
 --check` — 12 commands, 40 flags, every one named; `pytest tests/ -q` in the gate.
+
+## 177 — `:::contents` was opt-in, and 767 pages were over the hook's own threshold — **done**
+
+**What is wrong.** `hooks/contents.py` refuses to render below five `h2`s, which is a
+designed threshold, and then renders only where the page writes `:::contents`, which is a
+per-page decision nobody has made. Measured over every book: **767 pages** carry five or
+more `h2`s and no marker — including all nine class pages in the map (`averaging` has 11)
+and 21 pages of the proof book.
+
+The six `maths-applied` section pages fixed in this pass are the argument for the other
+answer: they are 6,573–12,870px at 390 and the list is nine lines. But a class page's ten
+headings are the same ten on every class page, and a list of them may be furniture a
+reader learns once. The two cases cannot both be right, and the hook currently says
+nothing about which it is.
+
+**The fix.** Decide, and make the decision the hook's: either `on_page_content` renders
+the list whenever a page has five `h2`s (the marker becomes unnecessary and is retired),
+or the marker stays and `books/AGENTS.md` says which pages owe one — with a lint rule for
+a page that has the `h2`s and not the list. The measurement that decides it is a reader's:
+a list on a class page is eleven links to eleven sections of one screen of prose.
+
+**Done means**
+
+- [ ] the decision is written in `books/AGENTS.md` (or in `hooks/contents.py`'s docstring
+      if the hook decides for itself)
+- [ ] every page over the threshold either carries the list or is exempt by a rule a test
+      can apply
+- [ ] if the marker is retired, every `:::contents` in the collection is removed and the
+      pages that wanted a list still have one
+- [ ] `pytest tests/ -q` passes, including the existing contents test in
+      `tests/test_reference_books.py`
+
+**Outcome, 2026-11-02.** The decision is **the page's, not the marker's**: `hooks/contents.py`
+renders the two-column list for any page with five or more `h2`s, after the page's first
+paragraph. A page may still place it itself with `:::contents` — maths-applied's section
+pages do — and a page whose own index would duplicate it opts out with `:::no-contents`.
+
+The measurement that forced it: **779 source pages carry five or more `h2`s**, and the
+marker was on two. The build now writes the list on **1,328 pages** across the eleven books,
+which is that count once per profile.
+
+Placement, checked on three shapes: a course Learn page puts it after the Prerequisites
+paragraph and before the first section; a class page after its opening paragraph and before
+the `:::used` list; `techniques` before its method index. The list is the same list the ids
+come from, so it cannot rot; a page added to a page is in the list with no second edit.
+
+The rule is stated twice, as the item asks: the hook's docstring gives the history (a
+threshold and a marker that disagreed), and `assets/AGENTS.md` — *What a page or a figure may
+do* — states the rule for an author.
+
+Held by two tests: `test_the_contents_list_is_derived_from_the_headings` (the A–Z is over the
+threshold, and a rendered page puts the list after its intro) and
+`test_the_contents_list_is_rendered_once_per_page_over_the_threshold` (one list over the
+threshold, none under it, one where the marker places it, none where the page opts out).
+
+Evidence: `textbook.lint` clean over 2,614 pages; `tools check-mobile site` — 405 pages, 0
+errors; `canvas site` — 253 figures, 0 errors; `pytest tests/ -q` — **8,823 passed, 50
+skipped**.

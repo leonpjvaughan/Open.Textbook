@@ -15,7 +15,7 @@ failure this file has had twice, so the list below, the headings and the boxes
 are checked against each other on every pass.
 
 **Every item from 79 to 174, and 181, is closed,** each with its measurement, its fix, its
-outcome and its ticked done-means in `.agents/todo-closed.md`. Items **175 and 177** are open:
+outcome and its ticked done-means in `.agents/todo-closed.md`. Item **175** is open:
 the fourth review's three, and three more from the pass that followed it.
 A new item goes at the number after the last one, with its diagnosis, its fix and its own
 done-means.
@@ -77,34 +77,3 @@ the pattern: §1.4 already says a different pose gives the same `w`.
 - [ ] §1.4 mounts it beside the paragraph that names `w`, and the prose stops restating
       what the figure shows
 - [ ] `python -m textbook.lint maths-applied` is clean and `pytest tests/ -q` passes
-
-## 177 — `:::contents` is opt-in, and 767 pages are over the hook's own threshold
-
-**What is wrong.** `hooks/contents.py` refuses to render below five `h2`s, which is a
-designed threshold, and then renders only where the page writes `:::contents`, which is a
-per-page decision nobody has made. Measured over every book: **767 pages** carry five or
-more `h2`s and no marker — including all nine class pages in the map (`averaging` has 11)
-and 21 pages of the proof book.
-
-The six `maths-applied` section pages fixed in this pass are the argument for the other
-answer: they are 6,573–12,870px at 390 and the list is nine lines. But a class page's ten
-headings are the same ten on every class page, and a list of them may be furniture a
-reader learns once. The two cases cannot both be right, and the hook currently says
-nothing about which it is.
-
-**The fix.** Decide, and make the decision the hook's: either `on_page_content` renders
-the list whenever a page has five `h2`s (the marker becomes unnecessary and is retired),
-or the marker stays and `books/AGENTS.md` says which pages owe one — with a lint rule for
-a page that has the `h2`s and not the list. The measurement that decides it is a reader's:
-a list on a class page is eleven links to eleven sections of one screen of prose.
-
-**Done means**
-
-- [ ] the decision is written in `books/AGENTS.md` (or in `hooks/contents.py`'s docstring
-      if the hook decides for itself)
-- [ ] every page over the threshold either carries the list or is exempt by a rule a test
-      can apply
-- [ ] if the marker is retired, every `:::contents` in the collection is removed and the
-      pages that wanted a list still have one
-- [ ] `pytest tests/ -q` passes, including the existing contents test in
-      `tests/test_reference_books.py`
