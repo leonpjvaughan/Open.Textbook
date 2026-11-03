@@ -15,6 +15,7 @@ which plan reaches 50 euro in a single week first?**
 
 Start by writing a general term for each plan.
 
+<!-- table: cards -->
 | Plan | Pattern | Kind of growth | General term |
 |---|---|---|---|
 | Aoife | $3, 6, 9, 12, \ldots$ | linear | $3n$ |

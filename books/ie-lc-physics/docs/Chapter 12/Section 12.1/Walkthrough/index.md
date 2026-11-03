@@ -49,6 +49,7 @@ The **electromagnetic spectrum** is the whole family, arranged in order of
 wavelength. The table gives the order, an approximate wavelength range, a source
 and an everyday use.
 
+<!-- table: cards -->
 | Family | Wavelength | Source | Use |
 |---|---|---|---|
 | radio | longer than 0.1 m | a transmitter aerial | broadcasting, wi-fi |

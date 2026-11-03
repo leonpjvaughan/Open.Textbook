@@ -1,21 +1,19 @@
 # AGENTS.md — repository instructions
 
-This repository builds a **collection of interactive, static, backend-free
-textbooks** sharing one engine. GCSE Mathematics is the first book; GCSE Physics
-and A-level Mathematics and Physics are planned. It is **Open.Textbook**
-(https://github.com/leonpjvaughan/Open.Textbook).
+This repository builds **Open.Textbook**: a collection of interactive, static,
+backend-free textbooks sharing one engine. Read this file first, then
+`books/<id>/AGENTS.md` for a book's exam boards, tier axis and pitfalls.
 
-`SHAPE.md` holds the repository shape and what a new book requires, `.agents/planning/plan.md` the
-authoring plan, `research/pedagogy.md` the evidence, `.agents/chapter-brief.md` the
-per-chapter contract. Read this file first, then `books/<id>/AGENTS.md` for a
-book's exam boards, tier axis and pitfalls.
+`SHAPE.md` holds the repository shape and what a new book requires,
+`.agents/planning/plan.md` the authoring plan, `research/pedagogy.md` the
+evidence, `.agents/chapter-brief.md` the per-chapter contract.
 
 ## Where to look
 
 A nested `AGENTS.md` is additive: it does not repeat the root, and the closest
 file wins. The Load column names the portable `.agents/skills/`; Claude Code
-reads them from `.claude/skills/`, projected with the
-`agent-repository-conventions` helper rather than copied by hand.
+reads them from `.claude/skills/`, projected with
+`agent-repository-conventions` rather than copied by hand.
 
 | If you are… | Read | Load |
 |---|---|---|
@@ -68,10 +66,8 @@ mixed practice, a reflection.
 
 ### A theorem stated without proof is a promise to write one
 
-Teaching a result and proving it are different jobs, and a book that stopped to
-prove everything would have no room to practise anything. So a result may be
-**stated** — and every result that is stated and not proved must have a page in
-the shared proof book, linked from the line that states it.
+A result may be **stated**, but every result that is stated and not proved must
+have a page in the shared proof book, linked from the line that states it.
 
 ```markdown
 A polygon can be split from one vertex into $n-2$ triangles, so its interior
@@ -82,15 +78,9 @@ angle sum is $(n-2)\times180^\circ$.
 
 The directive is on its own line and expands to a **Prove it to me** link. It is
 a link and nothing else — no script, no dialog — because a proof is a page and a
-reader with scripting off must still reach it.
-
-**Why this is a rule and not a preference.** A stated result is the one place a
-reader is asked to take something on trust, in books that are otherwise careful to
-show why. The proof book exists so that "because I said so" is never the last word
-available, and the link is what makes it reachable at the moment the reader
-wonders. `books/proofs/proofs.yaml` records who is examined on each proof, so the
-same page reads *Prove it to me* in the course that teaches it and **Beyond your
-course** in one that does not.
+reader with scripting off must still reach it. `books/proofs/proofs.yaml` records
+who is examined on each proof, so the same page reads *Prove it to me* in the
+course that teaches it and **Beyond your course** in one that does not.
 
 **Procedure:** `.agents/chapter-brief.md` — the four steps, the registry fields
 and the label. A definition is not a theorem and a convention is not a theorem;
@@ -121,7 +111,7 @@ Internal words never reach the reader: use the friendly names (`Learn`,
 chapter problem) and never print DfE codes, `tier F`/`tier H`, `scaffold`,
 `hook`, `JSON` or `front matter` (full table: `write-textbook-prose`).
 
-## Theming
+## Theming and figures
 
 A **bundle** (`themes/<id>.yaml`) is the reader's light-and-dark experience,
 applied to **every book**; a book contributes only its **subject tint**
@@ -137,30 +127,21 @@ and `text-*` paints words**, and in SVG that is the difference between `fill` an
 the one fixed-colour exception.
 
 Every figure is measured in a browser, in both schemes, by
-`node tools/dist/cli.js audit site` — the panel behind it, the computed paint of every
-element it draws, and the ratio between them. `research/design/figure-audit.md`
-is the result, table and all. `tests/test_figures.py` pins the contract so a new
-figure cannot repeat a defect the measurement found. The cascade, the contrast
-invariant, reader preferences and adding or previewing a bundle are in
-`assets/AGENTS.md`.
+`node tools/dist/cli.js audit site` — the panel behind it, the computed paint of
+every element it draws, and the ratio between them. `tests/test_figures.py` pins
+the contract. The cascade, the contrast invariant, reader preferences and adding
+or previewing a bundle are in `assets/AGENTS.md`.
 
 **Figures are drawn through `assets/figures/kit.js` and may not choose a number.**
-`SIZE`, `label()`, `scale()` and the marks are the rules; they are checked in CI and they
-exist because fourteen font sizes were in use across 213 modules, and **136 of them still
-hand-write a `<text>`** instead of calling `label()`. `assets/figures/` is also the
-**shared figure library** — a module there is mountable by its filename in every book.
-The rules and the measurements are in `assets/AGENTS.md`, the evidence in
-`research/design/reuse-audit.md`, and the queue of what to add next in `ideas.md`.
+`SIZE`, `label()`, `scale()` and the marks are the rules; they are checked in CI.
+`assets/figures/` is also the **shared figure library** — a module there is
+mountable by its filename in every book. The rules and measurements are in
+`assets/AGENTS.md`; the queue of what to add next is `ideas.md`.
 
-**The four Irish books are complete.** All 71 chapters are authored end to end — 429
-sections, every page, and every glossary and home page — so
-`grep -rl 'scaffold:stub' books/*/docs/` prints nothing and the built site has no stub
-page. The chapter problem, the corpus in hand and the record of what was found while
-writing are in `.agents/todo.md`; the per-chapter contract is
-`.agents/chapter-brief.md`.
+## Definition of done
 
-**A chapter is not finished until all of this is true.** It is the definition of done,
-and it is what CI and the gate check:
+A chapter is not finished until all of this is true. It is what CI and the gate
+check:
 
 - the chapter index, every section's three pages, and the Review all exist, and
   `grep -rl 'scaffold:stub' books/<id>/docs/Chapter <n>/` prints nothing;
@@ -173,15 +154,15 @@ and it is what CI and the gate check:
 
 ## Repository map
 
-Every top-level directory is listed, so nothing in the tree is a surprise. The
-per-book layout is in `books/AGENTS.md`.
+`SHAPE.md` has the full layout and `books/AGENTS.md` the per-book layout. Every
+top-level directory appears below.
 
 | Path | Role |
 |---|---|
 | `AGENTS.md` | cross-cutting rules, routing and map |
 | `SHAPE.md`, `.agents/planning/plan.md`, `.agents/chapter-brief.md`, `PROBLEMS.md`, `BOOKLETS.md`, `DEPLOY.md`, `DECISIONS.md`, `ideas.md`, `.agents/todo.md`, `collection.yaml`, `wrangler.jsonc` | shape, plan, brief, banks, booklets, deploy, decisions, the interactive-aid queue, queue, collection, Worker |
 | `engine/`, `engine/AGENTS.md`, `assets/`, `assets/AGENTS.md` | the engine and the design system, and their rules |
-| `tools/`, `tools/AGENTS.md` | **the checks and measurements**, one TypeScript package with one entry point |
+| `tools/`, `tools/AGENTS.md` | the checks and measurements, one TypeScript package with one entry point |
 | `solvers/`, `solvers/AGENTS.md`, `solvers/ABI.md`, `solvers/otkd/AGENTS.md` | the numerical kernels: Rust `ot-solve` and the `otkd` mechanism compiler, one ABI, and the build that vendors their wasm |
 | `themes/`, `books/`, `books/AGENTS.md`, `books/gcse-maths/`, `books/gcse-maths/AGENTS.md` | bundles; the books and their rules |
 | `books/a-level-maths/`, `books/a-level-maths/AGENTS.md` | the A-level Mathematics book and its rules |
@@ -190,28 +171,11 @@ per-book layout is in `books/AGENTS.md`.
 | `books/proofs/`, `books/proofs/AGENTS.md`, `books/numerical-methods/`, `books/numerical-methods/AGENTS.md` | the two reference works: the proof book, and the map of problem classes |
 | `books/maths-applied/`, `books/maths-applied/AGENTS.md` | the book about modelling, and the rules that replace the chapter formula |
 | `research/`, `research/AGENTS.md`, `scripts/`, `scripts/AGENTS.md`, `tests/`, `tests/AGENTS.md`, `tests/README.md`, `deploy/`, `deploy/AGENTS.md`, `.github/`, `.github/AGENTS.md`, `.claude/`, `.serena/` | corpus, scripts, tests, deploy, CI |
-| `.agents/`, `.agents/skills/`, `.agents/prompts/`, `.agents/planning/` | agent context: the portable skills; the chapter and review prompts the launch scripts feed to sub-agents; the dated planning record; `.agents/todo.md`; `.agents/chapter-brief.md` |
+| `.agents/`, `.agents/skills/`, `.agents/prompts/`, `.agents/planning/` | agent context: the portable skills; the chapter and review prompts the launch scripts feed to sub-agents; the dated planning record |
 
-## Where the agent files live
+A nested `AGENTS.md` stays beside what it governs, because it is read when that
+directory is opened.
 
-The root holds **project contracts** plus this file: `SHAPE.md`, `PROBLEMS.md`,
-`BOOKLETS.md`, `DECISIONS.md`, `DEPLOY.md`. They describe the system, a person
-reads them as often as an agent does, and they stay put. Everything that exists
-*only* to brief an agent is under `.agents/`, so the root is not a pile of files
-whose audience is unclear:
-
-| Path | What it is |
-|---|---|
-| `AGENTS.md` | the rules. At the root because every harness looks for it there |
-| `.agents/todo.md` | the work queue — open items only |
-| `.agents/todo-closed.md` | every finished item, in full |
-| `.agents/chapter-brief.md` | the per-chapter authoring contract |
-| `.agents/prompts/` | the templates `scripts/launch_*.sh` feed to sub-agents |
-| `.agents/planning/` | the dated record of how the work was planned, kept for the reasoning |
-| `.agents/skills/` | the portable skills; Claude Code reads `.claude/skills/` |
-
-A nested `AGENTS.md` stays beside what it governs — `engine/`, `assets/`,
-`books/`, `tests/` — because it is read when that directory is opened.
 
 ## Build and verify
 
@@ -246,17 +210,20 @@ scripts/next-tag.sh         # release tags: yy.day.increment
 scripts/protect-main.sh     # require the gate check on main (needs GitHub Pro)
 ```
 
+## Long runs
+
+When no human is present, do not block on a question tool; pause and leave the
+question. Stop after two independent-review rejections and ask rather than
+looping.
+
 ## Branches and releases
 
 `dev` takes the whole gate — banks, tests, voice, both tier builds, drift,
 actionlint — and nothing else, then merges into `main`, which reruns the gate,
 releases and deploys to open-textbook.org. Release and deploy require
-`refs/heads/main`, so they are skipped elsewhere by construction.
-
-**A workflow change is inert until it reaches `main`:** the pipeline that runs is
-the one on the branch being pushed, and release and deploy only run from `main`.
-Editing `.github/workflows/verify.yml` on `dev` changes nothing until the merge;
-pushing it straight to `main` deploys.
+`refs/heads/main`, so they are skipped elsewhere by construction. A workflow
+change is inert until it reaches `main`: the pipeline that runs is the one on the
+branch being pushed, and release and deploy only run from `main`.
 
 Releases are tagged `yy.<day of year>.<increment>` (`26.284.1` is the second on
 day 284 of 2026), so two deploys a day cannot collide; the scheme is
@@ -265,13 +232,13 @@ runbook for credentials, the domain, each stage and checking a deploy.
 
 ## Capturing work
 
-`.agents/todo.md` is the work queue: one item per change, ordered, the first being next.
-It is ours, not the reader's, so the voice rules do not apply — but these do.
+`.agents/todo.md` is the work queue: one item per change, ordered, the first being
+next. It is ours, not the reader's, so the voice rules do not apply — but these do.
 
-**Anything you notice and are not going to fix now goes in `.agents/todo.md` before you
-finish** — not in a commit message, a reply that scrolls away, or your head. That
-includes the small things: a setting nobody verified, a dead link, a false claim,
-a test that would have caught the bug you just fixed by hand.
+**Anything you notice and are not going to fix now goes in `.agents/todo.md`
+before you finish** — not in a commit message, a reply that scrolls away, or your
+head. That includes the small things: a setting nobody verified, a dead link, a
+false claim, a test that would have caught the bug you just fixed by hand.
 
 Write it the way the file already reads: **what is wrong** with the evidence you
 measured (a command and its output, or a primary source); **the fix**,
@@ -289,25 +256,20 @@ Pagefind); without Node, maths silently degrades to `.math-error` spans.
 locally), so a whole class of workflow error can pass locally. Install it with
 `mise use -g shellcheck@0.11.0` and check `command -v shellcheck` first.
 
-`solvers/` needs Rust and the `wasm32-unknown-unknown` and `x86_64-unknown-linux-musl`
-targets; `solvers/rust-toolchain.toml` pins both. **No C or C++ toolchain is involved**:
-the wasm and the host tests both link with `rust-lld`. Without the toolchain the gate
-still runs: `scripts/build-solvers.sh --verify` checks the committed wasm offline, and
-only the diff against a rebuild needs the compiler.
+`solvers/` needs Rust and the `wasm32-unknown-unknown` and
+`x86_64-unknown-linux-musl` targets; `solvers/rust-toolchain.toml` pins both.
+**No C or C++ toolchain is involved**: the wasm and the host tests both link with
+`rust-lld`. Without the toolchain the gate still runs:
+`scripts/build-solvers.sh --verify` checks the committed wasm offline, and only
+the diff against a rebuild needs the compiler.
 
-`tools screenshot` serves the built site by Playwright request interception, not a
-bound port (no free port, no clash with a running server); a listening socket does
-work here, so interception is a choice, not a workaround. A route maps to a file
-under the given directory, appending `index.html` only for a trailing slash, so
-an extension-less route 404s — and every capture then returns the same 404 page,
-making a broken run look successful. Check the captures differ first; set
-`PLAYWRIGHT_PATH` if `require("playwright")` does not resolve.
-
-**Do not conclude Playwright is missing from `require.resolve("playwright")`
-alone.** `tools/src/lib/browser.ts` tries `PLAYWRIGHT_PATH`, the local package and
-the mise install, so the audits can pass on a machine where the bare resolve fails.
-That answer was taken at face value once, written into the queue as "Playwright is
-not installed", and the four figure audits had been running all along.
+`tools screenshot` serves the built site by Playwright request interception, not
+a bound port. A route maps to a file under the given directory, appending
+`index.html` only for a trailing slash, so an extension-less route 404s; check
+the captures differ first. Set `PLAYWRIGHT_PATH` if `require("playwright")` does
+not resolve, and **do not conclude Playwright is missing from
+`require.resolve("playwright")` alone**: `tools/src/lib/browser.ts` also tries
+`PLAYWRIGHT_PATH`, the local package and the mise install.
 
 `tests/test_render_hooks.py` is the figure-hook and tier-profile evaluation,
 driven from `pipeline.MARKDOWN_HOOKS`. The area-specific traps live in the file

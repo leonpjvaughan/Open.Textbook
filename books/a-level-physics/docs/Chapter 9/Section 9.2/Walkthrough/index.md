@@ -237,6 +237,7 @@ right angles to the equipotentials.
 The two fields have the same shape and many of the same equations, but they
 differ in important ways.
 
+<!-- table: cards -->
 | | Gravitational field | Electric field |
 |---|---|---|
 | Force law | $F = \dfrac{GMm}{r^{2}}$ | $F = \dfrac{kQq}{r^{2}}$ |
@@ -245,6 +246,7 @@ differ in important ways.
 | Potential | $V = -\dfrac{GM}{r}$ | $V = \dfrac{kQ}{r}$ |
 | Force | always attractive | attractive or repulsive |
 | Potential sign | always negative | positive or negative |
+<!-- table: cards -->
 | Strength | very weak | very strong |
 
 Both forces follow an inverse-square law. Both have a field strength, a

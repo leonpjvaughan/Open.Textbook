@@ -74,6 +74,7 @@ The tallest bar is the class 20 to 39 minutes. The shortest bar is the class 80 
 
 The two look alike, so the difference is worth stating.
 
+<!-- table: cards -->
 | Graph | Bars | Gap between bars | Data |
 |---|---|---|---|
 | Bar chart | one bar per value or category | yes | separate values or groups |

@@ -487,3 +487,31 @@ def test_a_full_renderer_reply_substitutes_every_expression(monkeypatch):
     assert "arithmatex" not in html
     assert "\x00MATH" not in html
     assert html.count("<math>") == 2
+
+
+def test_the_contents_list_is_rendered_once_per_page_over_the_threshold():
+    """Item 177: the list is a page's, not a marker's — and it counts.
+
+    The threshold and the `:::contents` marker disagreed: 767 pages in the collection
+    carried five or more `h2`s and no marker, so the engine knew the list and the reader
+    did not get it. The count here is the contract: one list over the threshold, none
+    under it, none where the page opts out, and never two.
+    """
+    from textbook.hooks import contents
+
+    def page(headings: int, marker: str = "") -> str:
+        body = "".join(f'<h2 id="h{i}">Section {i}</h2><p>text</p>' for i in range(headings))
+        return f"<h1 id=\"t\">Title</h1><p>Intro.</p>{marker}{body}"
+
+    assert contents.on_page_content(page(contents.MINIMUM), None, None, None).count(
+        'class="contents"'
+    ) == 1
+    assert contents.on_page_content(page(contents.MINIMUM - 1), None, None, None).count(
+        'class="contents"'
+    ) == 0
+    assert contents.on_page_content(
+        page(contents.MINIMUM, "<p>:::contents</p>"), None, None, None
+    ).count('class="contents"') == 1
+    assert contents.on_page_content(
+        page(contents.MINIMUM, "<p>:::no-contents</p>"), None, None, None
+    ).count('class="contents"') == 0

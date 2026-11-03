@@ -191,6 +191,12 @@ class Book:
     #: `section_pages: [learn]`.
     section_pages: tuple[str, ...] = ()
 
+    #: What a section's own page is called in the sidebar when the section also has
+    #: depth pages. Empty means "Overview". A book whose sections are one page each
+    #: is not offering an overview, and says so in its own vocabulary: `maths-applied`
+    #: calls it "Main thread".
+    section_page_label: str = ""
+
     # --- paths ---------------------------------------------------------------
     @property
     def docs(self) -> Path:
@@ -482,6 +488,7 @@ def load_book(path: Path) -> Book:
         backgrounds=dict(data.get("backgrounds", {}) or {}),
         sources_name=data.get("sources", "sources.yaml"),
         section_pages=tuple(data.get("section_pages", ())),
+        section_page_label=str(data.get("section_page_label", "")).strip(),
     )
 
 

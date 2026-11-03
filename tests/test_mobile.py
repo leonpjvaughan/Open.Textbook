@@ -14,6 +14,8 @@ one fails in the main gate too rather than only in the browser job.
 
 from __future__ import annotations
 
+import pytest
+
 from textbook.book import repo_root
 
 SHELL_CSS = repo_root() / "engine" / "src" / "textbook" / "css" / "shell.css"
@@ -93,3 +95,85 @@ def test_the_masthead_names_the_section_a_page_is_in():
     brand = page[page.index('class="masthead__brand"') :]
     assert "$masthead_section" in brand[:120]
     assert ".masthead__section" in shell()
+
+
+# --- a table wider than a phone ------------------------------------------------
+#
+# `check-mobile` fails when a *page* is wider than the screen, and a table cannot make
+# a page wider: `wrap_tables` puts every one in a `.table-scroll`, so the check is
+# satisfied by the wrapper that hides the problem. A table whose last column sits past
+# the right edge therefore read as a pass — 18 tables in the two reference books, the
+# worst 172px over, and §1.5's fifth column at x = 404 in a 390 viewport.
+
+
+def test_the_check_measures_a_table_against_its_container():
+    """The rule, in the source, so deleting it fails in the main gate.
+
+    The browser-free half of the pair below: `check-mobile` must compare a table's
+    width with its wrapper's, exempt `table--cards`, and say the overflow in pixels.
+    """
+    source = (repo_root() / "tools" / "src" / "commands" / "check-mobile.ts").read_text(
+        encoding="utf-8"
+    )
+    assert 'table.classList.contains("table--cards")' in source, (
+        "the table pass no longer exempts a card table, which has no columns to lose"
+    )
+    assert 'table.closest(".table-scroll")' in source, (
+        "the table pass no longer measures against its scroll container"
+    )
+    assert "wider than its container at 390px" in source, (
+        "the finding no longer says how far past the container the table is"
+    )
+
+
+def test_a_table_40px_too_wide_fails_the_check(tmp_path):
+    """And the behaviour: a planted table, one book's wrapper, and a non-zero exit.
+
+    A browser test, skipped where Playwright is absent — the audit is its own job. The
+    page is 358px of container with a 400px table inside it, which is the shape the
+    collection had.
+    """
+    import json
+    import os
+    import shutil
+    import subprocess
+
+    candidates = (
+        "playwright",
+        "/home/leon/.local/share/mise/installs/npm-playwright/latest/node_modules/playwright",
+    )
+    if shutil.which("node") is None:
+        pytest.skip("node is not on PATH; the mobile check cannot run")
+    if not any(
+        subprocess.run(
+            ["node", "-e", f"require({json.dumps(c)})"],
+            capture_output=True,
+            check=False,
+            env={**os.environ, "PLAYWRIGHT_PATH": c},
+        ).returncode
+        == 0
+        for c in candidates
+    ):
+        pytest.skip("playwright is not installed; set PLAYWRIGHT_PATH")
+
+    site = tmp_path / "site"
+    site.mkdir()
+    (site / "index.html").write_text(
+        "<!doctype html><html><body><main>"
+        '<div class="table-scroll" style="width:358px;overflow:auto">'
+        '<table style="width:400px"><thead><tr><th>a wide heading</th></tr></thead>'
+        "<tbody><tr><td>one</td></tr></tbody></table></div>"
+        "</main></body></html>",
+        encoding="utf-8",
+    )
+    tools = repo_root() / "tools" / "dist" / "cli.js"
+    assert tools.is_file(), "the tools CLI is missing; run `npm run build`"
+    result = subprocess.run(
+        ["node", str(tools), "check-mobile", str(site)],
+        capture_output=True,
+        text=True,
+        check=False,
+        cwd=repo_root(),
+    )
+    assert result.returncode != 0, result.stdout[-1500:]
+    assert "wider than its container at 390px" in result.stdout, result.stdout[-1500:]

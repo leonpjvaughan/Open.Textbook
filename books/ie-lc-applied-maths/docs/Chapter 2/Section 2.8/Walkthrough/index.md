@@ -54,6 +54,7 @@ guess can be improved. A settled distance never changes.
 - $AB = 4$, $AC = 2$, $BC = 1$, $BD = 5$, $CD = 8$, $CE = 10$, $DE = 2$, $DF = 6$,
   $EF = 3$
 
+<!-- table: cards -->
 | Settled | Distance from $A$ | Updates |
 |---|---|---|
 | $A$ | 0 | $B \to 4$ via $A$; $C \to 2$ via $A$ |
@@ -105,6 +106,7 @@ down why the algorithm was able to settle it so early.
 The two problems look similar and the algorithms both take a cheapest something. They are
 not the same.
 
+<!-- table: cards -->
 | | Minimum spanning tree | Shortest path |
 |---|---|---|
 | Connects | every vertex | two vertices |

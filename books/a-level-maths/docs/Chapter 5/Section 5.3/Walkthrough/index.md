@@ -40,6 +40,7 @@ because $\tan x = \dfrac{\sin x}{\cos x}$ and both sine and cosine change sign
 together. The tangent has vertical asymptotes where $\cos x = 0$, at
 $x = \dfrac{\pi}{2}$ and $x = \dfrac{3\pi}{2}$.
 
+<!-- table: cards -->
 | Function | Period | Range | Symmetry |
 |---|---|---|---|
 | $y = \sin x$ | $2\pi$ | $-1 \le y \le 1$ | odd: $\sin(-x) = -\sin x$ |

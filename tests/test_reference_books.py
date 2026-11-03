@@ -1281,11 +1281,22 @@ def test_the_contents_list_is_derived_from_the_headings():
     four = "".join(f'<h2 id="h{i}">Section {i}</h2>' for i in range(4))
     assert contents.render(four) == ""
 
-    # The directive is in the page, and the page has the headings it lists.
+    # **Rendered for the page, not asked for by it.** The threshold and the directive
+    # disagreed once, and 767 pages carried the shape without the list; a page may still
+    # place it itself, and a page whose own index would duplicate it can opt out.
     book = map_book()
     techniques = (book.docs / "techniques/index.md").read_text(encoding="utf-8")
-    assert ":::contents" in techniques
-    assert techniques.count("\n## ") >= contents.MINIMUM
+    assert techniques.count("\n## ") >= contents.MINIMUM, (
+        "the A–Z is under the threshold, so this test no longer covers the page it was written for"
+    )
+    built = contents.on_page_content(
+        "<p>Intro.</p>" + "".join(f'<h2 id="h{i}">S{i}</h2>' for i in range(contents.MINIMUM)),
+        None,
+        None,
+        None,
+    )
+    assert 'class="contents"' in built
+    assert built.index("Intro") < built.index('class="contents"'), "the list did not follow the intro"
 
 
 @pytest.mark.parametrize("slug", CLASSES)
@@ -1518,3 +1529,138 @@ def test_a_system_entry_is_a_name_not_a_paragraph_with_markup():
         "class page's prose:\n  "
         + "\n  ".join(f"{n}: {s[:90]}" for n, s in sorted(long, reverse=True))
     )
+
+
+@pytest.mark.parametrize("slug", CLASSES)
+def test_a_single_method_in_a_property_table_is_a_link(slug):
+    """Item 178: the property table named 55 methods and linked none.
+
+    The sentence between the two tables says they are the same list, and only the second
+    one was clickable. **The rule is the asymmetry**: a cell naming one method links it —
+    one hop and no more — and a cell naming several stays text, because four links in one
+    cell is link soup at 390px and the method table below carries every hop.
+    """
+    book = map_book()
+    page = (book.docs / slug / "index.md").read_text(encoding="utf-8")
+    table = page[page.index("| what your model is |") : page.index("| technique | what it does |")]
+    anchors = {
+        name.strip().lower(): anchor
+        for anchor, name in re.findall(
+            r'<a id="([\w-]+)"></a>\n+### (.+)',
+            (book.docs / "techniques/index.md").read_text(encoding="utf-8"),
+        )
+    }
+
+    def normalise(text: str) -> str:
+        # A parenthetical tail is part of a name, not a second one:
+        # `Sparse direct (Cholesky, LU)` is one entry, `Sparse direct (...)`.
+        return re.sub(r"[()]", "", text.lower()).strip()
+
+    def target(name: str) -> str | None:
+        want = normalise(name)
+        for heading, anchor in anchors.items():
+            head = normalise(heading)
+            if head == want or head.startswith(want + ","):
+                return anchor
+        return None
+
+    def names(cell: str) -> list[str]:
+        """The methods a cell names, splitting on commas outside brackets."""
+        text = re.sub(r"\[([^\]]+)\]\([^)]*\)", r"\1", cell)
+        parts, depth, current = [], 0, ""
+        for char in text:
+            if char == "(":
+                depth += 1
+            elif char == ")":
+                depth -= 1
+            if char == "," and depth == 0:
+                parts.append(current)
+                current = ""
+            else:
+                current += char
+        if current.strip():
+            parts.append(current)
+        return [part.strip() for part in parts if part.strip()]
+
+    problems = []
+    for row in [line for line in table.splitlines() if line.startswith("|")][2:]:
+        cell = row.strip().strip("|").split("|")[1].strip()
+        named = names(cell)
+        links = re.findall(r"\[([^\]]+)\]\(../techniques/#([\w-]+)\)", cell)
+        if len(named) == 1 and target(named[0]):
+            if not (len(links) == 1 and links[0][1] == target(named[0])):
+                problems.append(f"{slug}: {named[0]!r} is not linked to its entry")
+        elif len(named) > 1 and links:
+            problems.append(f"{slug}: {cell[:50]!r} names several and carries a link")
+    assert problems == [], problems
+
+
+def _technique_aliases() -> dict[str, str]:
+    """Every name the A–Z gives a method, mapped to its anchor.
+
+    The heading is the name, and its commas and brackets name the same method again:
+    `Multigrid, algebraic multigrid (AMG)` is three ways to say one entry, and a symptom
+    fix writes whichever comes to hand.
+    """
+    page = (map_book().docs / "techniques/index.md").read_text(encoding="utf-8")
+    aliases: dict[str, str] = {}
+    for anchor, heading in re.findall(r'<a id="([\w-]+)"></a>\n+### (.+)', page):
+        # The heading's first comma-segment is the name. A parenthetical tail names the
+        # same method again only when it is capitalised — `(AMG)`, `(SVD)` — because a
+        # lowercase one is a qualifier: `Riemann solvers (…, exact)` is not a method
+        # called "exact", and "exact" as an alias made a false positive.
+        parts = [heading.split(",")[0]]
+        parts += [p for p in re.findall(r"\(([^)]*)\)", heading)
+                  if re.match(r"^[A-Z]", p.strip())]
+        for part in parts:
+            for piece in part.split(","):
+                name = re.sub(r"^(the|a|an)\s+", "", piece.strip().lower())
+                if len(name) >= 4:
+                    aliases.setdefault(name, anchor)
+    return aliases
+
+
+def test_a_symptom_fix_that_names_a_technique_links_it():
+    """Item 179: 103 rows, 0 fix cells containing a link, 46 naming no entry.
+
+    A row that says "Multigrid, or AMG" sends the reader back to the A–Z to find by hand
+    what the page has already named. The fix cells that name an entry now link it, on both
+    pages, and this is what keeps a new row from arriving as text.
+    """
+    aliases = _technique_aliases()
+    pages = [map_book().docs / "symptoms" / "index.md"] + [
+        map_book().docs / slug / "index.md" for slug in CLASSES
+    ]
+    problems = []
+    rows = 0
+    linked = 0
+    for path in pages:
+        text = path.read_text(encoding="utf-8")
+        # **Only the symptom tables.** A class page's *technique* table also ends in a
+        # sentence naming a method, and its first column already carries the link.
+        if path.parent.name != "symptoms":
+            text = text[text.index("## What goes wrong") :]
+            following = text.find("\n## ", 3)
+            text = text[: following if following > 0 else len(text)]
+        for line in text.splitlines():
+            if not line.startswith("|"):
+                continue
+            cells = [cell.strip() for cell in line.strip().strip("|").split("|")]
+            if len(cells) not in (3, 4) or set(cells[0]) <= set("-"):
+                continue
+            if cells[0].lower() == "symptom":
+                continue
+            rows += 1
+            fix = cells[-1]
+            if "](../techniques/" in fix:
+                linked += 1
+                continue
+            named = [
+                alias
+                for alias in aliases
+                if re.search(rf"(?<![a-z-]){re.escape(alias)}(?![a-z-])", fix.lower())
+            ]
+            if named:
+                problems.append(f"{path.parent.name}: {fix[:50]!r} names {named[0]!r}")
+    assert problems == [], "a fix cell names a technique and links nothing: " + "; ".join(problems[:5])
+    assert linked, "no fix cell carries a link"

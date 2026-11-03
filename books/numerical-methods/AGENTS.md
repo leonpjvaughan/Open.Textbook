@@ -131,6 +131,20 @@ because nine pages that each invent their own order stop being a map:
 Two indexes sit outside that order and exist for the other directions of lookup:
 `techniques/` goes method → class, and `symptoms/` goes wrong answer → class.
 
+### The two technique tables, and which cells are links
+
+A class page's **Techniques** section carries two tables. The **property table** comes
+first — *what your model is · the methods that fit · the price* — and is keyed by the
+reader's own property. The **method table** follows it, marked `<!-- table: cards -->`,
+and the sentence between them says the two are one list, sorted two ways.
+
+**A cell that names one method is a link to that method's A–Z entry; a cell that names
+several is text.** The asymmetry is the rule, not an omission. Four links in one cell is
+link soup on a phone, and the method table below already carries every hop with the method
+it belongs to; the property table is a decision aid, read by scanning a column. So
+`[Monte Carlo](../techniques/#monte-carlo)` links, `Monte Carlo, quasi-Monte Carlo` does
+not, and `tests/test_reference_books.py` holds both halves.
+
 ### A detail page is a different page
 
 A class page is the map. A **detail page** is the working under it: the algebra, a

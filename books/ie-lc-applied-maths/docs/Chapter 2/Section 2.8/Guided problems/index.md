@@ -48,6 +48,7 @@ Direct: $PR = 6$. Through $Q$: $PQ + QR = 3 + 4$.
 <details markdown="1">
 <summary>Full working</summary>
 
+<!-- table: cards -->
 | Settled | Distance | Updates |
 |---|---|---|
 | $P$ | 0 | $Q \to 3$; $R \to 6$ |
@@ -77,6 +78,7 @@ From $A$: $B \to 5$, $C \to 1$. Settle $C$ next.
 <details markdown="1">
 <summary>Full working</summary>
 
+<!-- table: cards -->
 | Settled | Distance | Updates |
 |---|---|---|
 | $A$ | 0 | $B \to 5$; $C \to 1$ |

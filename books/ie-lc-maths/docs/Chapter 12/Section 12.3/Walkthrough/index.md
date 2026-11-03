@@ -53,6 +53,7 @@ is easier to read back than $1.047$.
 
 The angles you will use most often are worth knowing by sight:
 
+<!-- table: cards -->
 | Degrees | $0^\circ$ | $30^\circ$ | $45^\circ$ | $60^\circ$ | $90^\circ$ | $180^\circ$ | $360^\circ$ |
 |---|---|---|---|---|---|---|---|
 | Radians | $0$ | $\dfrac{\pi}{6}$ | $\dfrac{\pi}{4}$ | $\dfrac{\pi}{3}$ | $\dfrac{\pi}{2}$ | $\pi$ | $2\pi$ |

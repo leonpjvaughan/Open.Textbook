@@ -773,3 +773,29 @@ def test_the_two_procedures_are_named_once_with_the_number_each_earned():
     review = page("Review")
     assert "#the-two-procedures" in review, "the Review does not point at the panel"
     assert "two** procedures" in review, "the Review still presents one procedure"
+
+
+def test_the_null_vector_figure_reads_its_numbers_from_the_model():
+    """Item 175: the decomposition was text, and the figure that draws it types nothing.
+
+    The rows, the singular values and the left null vector come from the same three calls
+    this file makes — `legsJacobian`, `singularValues`, `nullDirection` — so the drawing
+    cannot print a number the page does not. §1.4 mounts it beside the paragraph that
+    names `w`.
+    """
+    module = (
+        repo_root()
+        / "books"
+        / "maths-applied"
+        / "docs"
+        / "assets"
+        / "figures"
+        / "null-vector.js"
+    ).read_text(encoding="utf-8")
+    for name in ("legsJacobian", "singularValues", "nullDirection"):
+        assert name in module, f"the figure does not call {name}"
+    for typed in ("1.415", "0.998", "0.707", "0.000"):
+        assert f'"{typed}"' not in module, f"the figure types {typed}"
+
+    section = page("Section 1.4/Walkthrough")
+    assert ":::figure null-vector" in section

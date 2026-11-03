@@ -89,11 +89,11 @@ below is the same list sorted by name.
 <!-- table: cards -->
 | what your model is | the methods that fit | the price |
 |---|---|---|
-| the largest eigenvalue, and a matrix you can multiply | Power iteration | one eigenvalue, and it may converge slowly |
+| the largest eigenvalue, and a matrix you can multiply | [Power iteration](../techniques/#power-iteration) | one eigenvalue, and it may converge slowly |
 | the one nearest a value you choose | Inverse iteration, shift-invert | a factorisation per shift |
 | symmetric, and several eigenvalues | Lanczos, subspace iteration | reorthogonalisation is the cost |
 | non-symmetric | Arnoldi, QR algorithm | storage grows with the basis |
-| generalised, or a singular $B$ | QZ | cubic, and it is dense |
+| generalised, or a singular $B$ | [QZ](../techniques/#qz) | cubic, and it is dense |
 | a non-linear eigenvalue, or a large sparse one | Jacobi–Davidson, contour integral (FEAST) | a solve inside every step |
 
 <!-- table: cards -->
@@ -127,7 +127,7 @@ below is the same list sorted by name.
 | symptom | cause | fix |
 |---|---|---|
 | A complex eigenvalue arrives and the code assumed real | The matrix is non-symmetric | Complex arithmetic, or work with the real block |
-| The smallest eigenvalue comes out wrong | Power iteration converges to the largest | Shift-invert about zero |
+| The smallest eigenvalue comes out wrong | Power iteration converges to the largest | [Shift-invert](../techniques/#inverse-iteration) about zero |
 | A known mode is missing | The start vector was orthogonal to it | Try several starts; use a block method |
 | Spurious eigenvalues near a boundary | The discretisation, not the physics | Refine, and check convergence of each eigenvalue |
 | The solver reports an infinite eigenvalue | A generalised problem with singular $B$ | That is a constraint; use QZ and read it as such |

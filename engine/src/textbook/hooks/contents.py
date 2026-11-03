@@ -9,6 +9,14 @@ Two rules keep it from being noise. A page with fewer than five ``h2`` s gets no
 below that the page fits on a screen or two, and a list of four items is furniture. And the
 markup is a plain ``<nav>`` with a list of links: no script, no disclosure, nothing to
 break with scripting off.
+
+**The list is rendered wherever the threshold is met, not only where a page asked.** It
+used to need a ``:::contents`` line, and the threshold and the marker disagreed: 767 pages
+in the collection carried five or more ``h2`` s and no marker, including all nine class
+pages in the map (eleven ``h2`` s on ``averaging``) and 21 pages of the proof book. A page
+600px into a 23,000px lookup had no idea what else was on it, and the engine knew the list
+all along. A page may still place the list itself with ``:::contents``, and a page whose own
+index would duplicate it can opt out with ``:::no-contents``.
 """
 
 from __future__ import annotations
@@ -22,6 +30,8 @@ import re
 MINIMUM = 5
 
 MARKER = re.compile(r"<p>\s*:::contents\s*</p>", re.I)
+OPT_OUT = re.compile(r"<p>\s*:::no-contents\s*</p>", re.I)
+FIRST_PARAGRAPH = re.compile(r"</p>", re.I)
 HEADING = re.compile(r'<h2 id="([^"]+)"[^>]*>(.*?)</h2>', re.S | re.I)
 TAG = re.compile(r"<[^>]+>")
 
@@ -51,9 +61,20 @@ def render(content: str) -> str:
 def on_page_content(content: str, page, config, files) -> str:
     if ":::method-index" in content:
         content = METHOD_MARKER.sub(lambda _match: render_methods(content), content)
-    if ":::contents" not in content:
-        return content
-    return MARKER.sub(lambda _match: render(content), content)
+    if ":::no-contents" in content:
+        return OPT_OUT.sub("", content)
+    nav = render(content)
+    if not nav:
+        return MARKER.sub("", content)
+    if ":::contents" in content:
+        return MARKER.sub(lambda _match: nav, content)
+    # **After the page's first paragraph**, which is where a reader has been told what the
+    # page is for and before the first section begins. No paragraph at all means the page
+    # opens on a heading, and the list goes first.
+    first = FIRST_PARAGRAPH.search(content)
+    if not first:
+        return nav + content
+    return content[: first.end()] + nav + content[first.end():]
 
 
 #: The name index. `:::method-index` lists every `h3` entry on the page once, sorted by its

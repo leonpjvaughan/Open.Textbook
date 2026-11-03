@@ -47,6 +47,7 @@ orientation. A clockwise label on the object becomes anticlockwise on the image.
 
 The two coordinate axes are the easiest mirror lines.
 
+<!-- table: cards -->
 | Mirror line | Rule | Example |
 |---|---|---|
 | $x$-axis | $(x,y)\to(x,-y)$ | $(3,2)\to(3,-2)$ |

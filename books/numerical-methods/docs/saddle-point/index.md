@@ -97,7 +97,7 @@ below is the same list sorted by name.
 |---|---|---|
 | a linear constraint, and you can factorise the block | Sparse direct with pivoting, Schur complement | the fill is the cost |
 | a linear constraint, and the block is too large | Uzawa, MINRES, GMRES with a block preconditioner | the iteration count depends on the constraint |
-| a non-linear constraint | Augmented Lagrangian | an outer loop around each solve |
+| a non-linear constraint | [Augmented Lagrangian](../techniques/#augmented-lagrangian) | an outer loop around each solve |
 | incompressible flow | Projection (Chorin), SIMPLE | the split limits the time step |
 | a rank-deficient constraint | Null-space method, constraint elimination | the null space has to be found |
 
@@ -147,7 +147,7 @@ pressure cannot develop the checkerboard pattern the table below names.
 | The solver stalls on the constraint block | No block preconditioner | A Schur-complement preconditioner |
 | The forces are wrong but the displacements are right | The multiplier was recovered badly | Solve for the multiplier directly, not by differencing |
 | Two constraints say the same thing | The constraint set is redundant | A singular value decomposition of $B$, and drop a row |
-| Iterations grow as the viscosity falls | The Schur complement is badly conditioned | Precondition the Schur complement as well as $A$ |
+| Iterations grow as the viscosity falls | The Schur complement is badly conditioned | Precondition the [Schur complement](../techniques/#schur-complement) as well as $A$ |
 | The constraint drifts over a long run | Projection applied once, then forgotten | Project at every step, or use a formulation that preserves it |
 
 ## Used in this collection

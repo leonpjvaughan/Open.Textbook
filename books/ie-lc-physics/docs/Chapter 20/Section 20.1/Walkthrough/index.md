@@ -112,6 +112,7 @@ That is $6.2 \times 10^2$ counts per minute to two significant figures.
 
 An unstable nucleus can settle down in three different ways.
 
+<!-- table: cards -->
 | Emission | What it is | Charge | Mass | Ionising effect | Penetrating power |
 |---|---|---|---|---|---|
 | Alpha, $\alpha$ | a helium nucleus, $^{4}_{2}\text{He}$ | $+2e$ | 4 u | very strong | stopped by paper, or a few cm of air |

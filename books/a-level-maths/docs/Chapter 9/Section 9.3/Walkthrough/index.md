@@ -78,6 +78,7 @@ $$
 
 Now apply the formula. Keep the full value in the calculator at every step.
 
+<!-- table: cards -->
 | $n$ | $x_n$ | $f(x_n)$ | $f'(x_n)$ | $x_{n+1}$ |
 |---|---|---|---|---|
 | $0$ | $0.7$ | $0.043$ | $2.47$ | $0.6825911$ |

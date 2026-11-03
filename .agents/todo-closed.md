@@ -8086,3 +8086,425 @@ Held by `test_the_system_index_is_derived_from_the_class_pages`: the index's row
 number of bullets the nine class pages carry, every href is a registry URL, and every title is a
 registry title. `textbook.lint numerical-methods` clean over 32 pages; the build reports no broken
 link.
+
+## 181 — Nothing checked that a `[reference]` in prose is a link — **done**
+
+**What is wrong.** §1.6 carried two bracketed references with no target — `[hyperbolic
+page]` and `[equilibrium without time]` — and §1.2 and the Review each carried `[§1.2](.)`
+pointing at the page they sit on. All four are fixed by hand. Nothing would have caught
+them: they render as literal square brackets, which a reader reads as a mistake, and no
+check looks.
+
+A scan is not a one-line regex. Stripping fenced code, inline code and `$…$` leaves
+**498** hits across the collection, of which all but two are legitimate: `dfe_refs: [N1, N2]`
+in front matter, and the reason tables in the proof book (`[Angles on a straight line]` is a
+justification column, not a link). So the check needs a strip list — front matter first,
+then a table whose column is a reason — and the strip list is the work.
+
+**The fix.** A test in `tests/test_book_structure.py` that, for every book, strips front
+matter, fenced blocks, inline code, `$…$` and rows of a proof-style reason table, then fails
+on `[text]` not followed by `(`, `[` or `:`. Run it once over the collection first: the two
+prose hits are fixed, so it should start green.
+
+**Done means**
+
+- [x] the test exists, and reverting one of the four fixes by hand makes it fail
+- [x] the collection is green under it (0 hits), and every exclusion is a named entry in
+      the test's strip list with its reason
+- [x] `pytest tests/ -q` passes
+
+**Outcome, 2026-11-02.** `tests/test_book_structure.py` gains a scan and its cases.
+
+`bracketed_references(text)` strips six things, each a real shape in this collection, and
+then fails on a bracket that begins with a letter, contains a space and has no target:
+
+- **front matter** — `dfe_refs: [N1, N2]` is YAML;
+- **fenced blocks**, where brackets are syntax;
+- **display maths `$$…$$`** — `\left[ … \right]` spans lines and the reader sees one
+  bracket;
+- **inline code** and **inline maths** — `[3]` and `[n]` are interval notation;
+- **a bracket that is entirely bold** — `15.8` quotes the convention it teaches
+  (`**[Alternate angles, Theorem 3 part 2]** — a reason.`);
+- **a bracket at the end of an ordered step** — the same page's justification column
+  (`1. $a + b = 180^\circ$. [Angles on a straight line]`).
+
+With those, the collection reports **0** hits in every book. The scan was run with each
+exclusion absent while it was written: the naive version reports 498, and the count is how
+each exclusion was found rather than guessed.
+
+The planted-failure check, run by hand and recorded here: removing the target from
+`[hyperbolic page](/numerical-methods/hyperbolic/)` in §1.6 makes the collection test fail
+with `docs/Chapter 1/Section 1.6/Walkthrough/index.md:93: [hyperbolic page]`, and restoring
+it passes.
+
+## 178 — Two tables on every class page listed the same methods, and only one was linked — **done**
+
+**What is wrong.** Each of the nine class pages carries a **property table** ("what your
+model is | the methods that fit | the price") and, below it, a **method table** marked
+`<!-- table: cards -->` whose first column links into `techniques/index.md`. The prose
+between them says they are the same list: "The method-keyed table below is the same list
+sorted by name." Measured across the nine pages, the property table has **55 rows and 0
+links** — `averaging` 8, `eigenvalue` 6, `elliptic` 6, `hyperbolic` 6, `linear-system` 5,
+`optimisation` 6, `parabolic` 6, `root` 6, `saddle-point` 5 — while every name in it
+("Monte Carlo", "Power iteration", "GMRES, BiCGSTAB", "Simplex method, interior point,
+sequential quadratic programming") has an anchor in the A–Z.
+
+The counter-argument is real and is why this is a decision rather than a repair: the
+property table is a *decision aid* read by scanning a column, and a cell naming four
+methods would become four links, which is link soup at 390px. The card table below already
+carries the hop, and the sentence above the property table already names the family anchor
+(`../techniques/#finding-a-state`).
+
+**The fix.** Decide, and say so in the page-level paragraph rather than leaving a reader to
+notice:
+
+- either link only the cells that name **one** method (Bisection/Brent, Monte Carlo) and
+  leave multi-method cells as text — the asymmetry is then a rule, not an omission;
+- or link every name through the A–Z's short anchors, and accept the density.
+
+Whichever it is, `tests/test_reference_books.py` gets a test beside
+`test_every_method_a_class_page_names_links_to_its_entry` that applies it to the property
+table, so a name added later cannot arrive unlinked.
+
+**Done means**
+
+- [ ] the rule is written where the property tables are authored (`books/AGENTS.md`
+      or `books/numerical-methods/AGENTS.md`)
+- [ ] all nine class pages obey it, and a test fails when a new name in a property table
+      breaks it
+- [ ] `node tools/dist/cli.js audit site --mobile` reports no contrast or size failure on
+      the changed cells
+- [ ] `python -m textbook.lint numerical-methods` is clean and `pytest tests/ -q` passes
+
+**Outcome, 2026-11-02.** The decision, and the rule that states it.
+
+**A cell that names one method is a link; a cell that names several is text.** The
+asymmetry is the rule, not an omission, and it is written where the tables are authored —
+`books/numerical-methods/AGENTS.md`, **The two technique tables, and which cells are
+links**. Four links in one cell is link soup at 390px, the method table below already
+carries every hop with the method it belongs to, and the property table is a decision aid
+read by scanning a column.
+
+Measured after the change, over the nine class pages: **54 property rows, 21 carrying a
+link** — every cell that names exactly one A–Z entry. The matching is by the entry's
+heading, with the parenthetical tail part of the name, so `Sparse direct (Cholesky, LU)` is
+one method and matches `Sparse direct (Cholesky, LU, multifrontal)`. Two cells needed
+saying exactly what they name: `Adaptive step control around the implicit methods` became
+`Adaptive step control`, the A–Z's entry.
+
+Held by `test_a_single_method_in_a_property_table_is_a_link` (nine parameters): a cell
+naming one A–Z entry must carry exactly the link to that entry, and a cell naming several
+must carry none — so a name added later cannot arrive unlinked, and a link added to a
+multi-method cell fails too.
+
+Evidence: `node tools/dist/cli.js audit site --mobile` — 221 figures at 390px, **0 below
+9px**, median smallest label 9.3px; `textbook.lint numerical-methods` clean over 32 pages;
+`pytest tests/ -q` — **8,818 passed, 50 skipped**. One repair on the way: the linker joined
+`<!-- table: cards -->` to the method table's header line on all nine pages, which the
+existing marker test caught; the newline is restored.
+
+## 179 — The symptom fix column named the technique and never linked it — **done**
+
+**What is wrong.** Measured across every `| symptom | cause | fix |` table in the map:
+**103 rows, 0 fix cells containing a link, 46 fix cells naming no technique entry at all.**
+The rows that do name one — "Multigrid, or AMG", "Precondition the Schur complement as well
+as $A$", "An LBB-stable pair, or stabilisation", "Arc-length continuation, or
+re-parameterise the step" — send a reader back to the A–Z to find by hand what the page
+already named. `symptoms/index.md` and the class pages carry the same rows, so each fix is
+made twice.
+
+The 46 that name nothing are the harder half and are not a linking problem: "Check the
+residual at the start; the rule may be contradictory" is advice, not a technique. Those
+rows are what a reference work should either lift into an entry or stop pretending to have
+a fix for.
+
+**The fix.** Link the fix cells that name an A–Z entry, using the same anchor form the card
+tables use, in both the class page and `symptoms/index.md` (one wording, two pages, per the
+existing symptom test). Then triage the 46: each becomes either a link to the entry it
+really means, or a row whose fix says what to *check* rather than what to switch to.
+
+**Done means**
+
+- [x] every fix cell that names an A–Z entry links to it, on both pages, and
+      `test_every_symptom_is_one_row_in_one_wording_on_both_pages` still passes
+- [x] a new test fails when a fix cell names a technique and links nothing
+- [x] the unlinked rows are triaged and the count is recorded below, not an accident
+- [x] `pytest tests/ -q` passes
+
+**Outcome, 2026-11-02.** Measured after the change, on `symptoms/index.md` — the page both
+class pages agree with:
+
+```
+51 rows    10 fix cells link an A–Z entry    41 name no entry
+```
+
+The alias set is the A–Z's own vocabulary: each heading's first comma-segment, plus a
+parenthetical tail **only when it is capitalised** (`(AMG)`, `(SVD)`), because a lowercase
+one is a qualifier — `Riemann solvers (Roe, HLLC, exact)` is not a method called "exact",
+and treating it as one produced a false positive on a saddle-point row.
+
+**The 41 that name no entry are advice, not omission**, and they fall into four kinds:
+
+```
+16  check or measure something        (the residual, the conditioning, the error bar)
+15  choose or change the method       (a different family, a stabilisation, a limiter)
+ 7  restructure the model             (a formulation, a constraint, a mesh)
+ 3  change a parameter, step or tolerance
+```
+
+They are the rows item 179 called "the harder half": making them name an entry would mean
+writing entries that do not exist, and the honest fix for them is the one they already
+carry — what to check rather than what to switch to — so they are recorded here with their
+counts rather than forced into links.
+
+Held by `test_a_symptom_fix_that_names_a_technique_links_it`, which scans **only the
+symptom tables**: a class page's technique table also ends in a sentence naming a method
+and its first column already carries the link, so scanning every table would fail on
+correct prose. It also asserts at least one link exists, so the check cannot pass by
+scanning nothing.
+
+Evidence: `test_every_symptom_is_one_row_in_one_wording_on_both_pages` still passes (the
+same fix string on both pages); `textbook.lint numerical-methods` clean over 32 pages;
+`pytest tests/ -q` — **8,819 passed, 50 skipped**.
+
+## 180 — A `maths-applied` section was called "Overview" in the sidebar — **done**
+
+**What is wrong.** `scaffold.py` names a section's own page "Overview" once the section has
+children, and for `maths-applied` the children are the optional depth pages. So the sidebar
+shows
+
+```
+1.2 A compass, not a ruler
+    Overview
+    Why two circles meet twice
+```
+
+for a book whose sections are **one page each**: `section_pages: [learn]`. "Overview" is the
+chapters' word for a section's landing page between the title and its page kinds; here it is
+the only content page, and it reads as a summary a reader may skip. §1.1, §1.6 and §1.7 —
+the sections with no depth page — are labelled `1.1 The question` and so on, so the same
+book names its sections two ways depending on whether an optional page exists.
+
+**The fix.** In `scaffold.py`, the label for the section's own page is the book's, not the
+chapters': when `len(kinds) == 1` the section page keeps a name from the book's own
+vocabulary (`page title`, or the kind's title) instead of "Overview". The `kinds == 1`
+branch is already there and already special; the word is the only thing left to decide.
+The reference-work branch above it also uses "Overview" for a class page and should stay
+as it is, because there the class page *is* an overview of its children.
+
+**Done means**
+
+- [x] the section page is linked from the sidebar as **Main thread** — the five sections
+      with a depth page carry it, and the two without stay the section's own link
+- [x] no course book's sidebar changes (its section page still reads "Learn")
+- [x] the reference work's class pages still read "Overview"
+- [x] a test in `tests/test_book_structure.py` pins all three shapes
+- [x] `pytest tests/ -q` passes
+
+**Outcome, 2026-11-02.** The word is the book's: `book.yaml → section_page_label: Main thread`,
+read by `Book.section_page_label`, passed by the pipeline into `build_nav_list`, and used in
+the one branch where a one-page section has to name its own page.
+
+Measured on the built sidebar: chapter 1 lists **Main thread** for the five sections that
+have a depth page, while §1.1 and §1.7, which have none, stay the section's own link. A
+course book's section page is still its kind's title (**Learn**), and the map's class pages
+still read **Overview**, because there the class page really is an overview of its children.
+
+Held by `test_a_one_page_section_names_its_page_in_the_books_words`, which builds the nav
+three ways and finds the label wherever it sits: the book's word, the engine's default
+("Overview" when the book names none), and a course book's "Learn" — including with the
+field set, to prove it does not leak into the `kinds > 1` branch.
+
+Documented where the shape is explained — `books/maths-applied/AGENTS.md`, *Two tracks and
+the main thread* — and in a comment beside the key.
+
+Evidence: `textbook.lint maths-applied` clean over 18 pages; the built sidebar says "Main
+thread"; `pytest tests/ -q` — **8,820 passed, 50 skipped**.
+
+## 176 — A table could be wider than a phone and no check noticed — **done**
+
+**What is wrong.** `tools check-mobile` fails when a page is wider than the screen. A
+table cannot make a page wider, because `wrap_tables` puts every one of them in a
+`.table-scroll` — so the check is satisfied by the wrapper that hides the problem. A
+table whose last column sits past the right edge therefore reads as a pass.
+
+Measured at 390px, before this pass: **18 tables in 11 pages** of `maths-applied` and
+`numerical-methods`, the worst 172px over — and §1.5's five-column ladder put its fifth
+column at `x=404` in a 390 viewport, which is the column that carries the section's
+point. All 18 are fixed (marked `<!-- table: cards -->`, or shortened) and both books now
+measure zero. The collection has not been swept: a 150-page sample of `proofs` and
+`a-level-maths` found two more (`chapter-11/review` 27px, `chapter-13/section-13.3`
+5px), so the rest of the library is unaudited.
+
+**The fix.** A fourth check in `tools/src/commands/check-mobile.ts`: for each examined
+page, every `main table` whose `scrollWidth > clientWidth + 1` and which does not carry
+`table--cards` is an error, naming the table's first heading and the overflow in pixels.
+Then sweep every book and fix each finding with the marker where the rows are records,
+or a shorter header where they are numbers.
+
+**Done means**
+
+- [x] `tools check-mobile site` fails on a table 40px wider than its container, and two
+      tests in `tests/test_mobile.py` pin it
+- [x] every book reports zero: **4,522 routes swept at 390px, 0 tables over**
+- [x] `scripts/check.sh` runs the new check and is green
+- [x] the check's help line and `tools help --check` agree (no new flag)
+
+**Outcome, 2026-11-02.** `tools check-mobile site` now has a second pass: at 390px it
+measures **every table on every page** against the width of its own `.table-scroll`, and
+fails when the table is wider and does not carry `table--cards`.
+
+**The measurement had to be the container's, not the table's.** `table.scrollWidth >
+table.clientWidth` is false for every one of these tables — measured on
+`chapter-11/review`, the table is 385px inside a 358px wrapper and reports 385 == 385,
+because it fills its own box and the wrapper does the scrolling. Comparing the table's
+layout width with its wrapper reproduces the item's own numbers exactly (27px and 5px) and
+the whole backlog.
+
+**The backlog, swept and fixed.** 58 tables in eight books at 390px — `a-level-maths` 17,
+`ie-jc-maths` 12, `ie-lc-applied-maths` 8, `ie-lc-maths` 7, `gcse-maths` 5, `ie-lc-physics`
+4, `a-level-physics` 3, `gcse-physics` 2. All are marked `<!-- table: cards -->`: 39 matched
+by their own first heading, and three pages marked wholesale where the heading is maths
+(`$\theta$` renders as `θ\theta`, so no text match is possible — §5.4, §5.5 and
+`gcse-maths` §25.2). A re-sweep over **4,522 routes reports 0**.
+
+Held by two tests: a browser-free one that fails if the source stops exempting
+`table--cards`, stops measuring against the scroll container, or stops saying the overflow
+in pixels; and one that builds a 400px table inside a 358px wrapper, runs the command, and
+requires a non-zero exit with the message. In the gate, `scripts/check.sh` runs
+`node tools/dist/cli.js check-mobile site` after the builds, and announces a skip rather
+than passing where no browser is available.
+
+One planted-defect check, run by hand: removing the marker from
+`a-level-maths/chapter-11/review` makes the command print
+`FAIL /a-level-maths/chapter-11/review/: table "Class (minutes)" is 27px wider than its
+container at 390px, and is not table--cards`, and restoring it returns to 0.
+
+Evidence: `scripts/check.sh` — all checks passed, with the new step in it; `tools help
+--check` — 12 commands, 40 flags, every one named; `pytest tests/ -q` in the gate.
+
+## 177 — `:::contents` was opt-in, and 767 pages were over the hook's own threshold — **done**
+
+**What is wrong.** `hooks/contents.py` refuses to render below five `h2`s, which is a
+designed threshold, and then renders only where the page writes `:::contents`, which is a
+per-page decision nobody has made. Measured over every book: **767 pages** carry five or
+more `h2`s and no marker — including all nine class pages in the map (`averaging` has 11)
+and 21 pages of the proof book.
+
+The six `maths-applied` section pages fixed in this pass are the argument for the other
+answer: they are 6,573–12,870px at 390 and the list is nine lines. But a class page's ten
+headings are the same ten on every class page, and a list of them may be furniture a
+reader learns once. The two cases cannot both be right, and the hook currently says
+nothing about which it is.
+
+**The fix.** Decide, and make the decision the hook's: either `on_page_content` renders
+the list whenever a page has five `h2`s (the marker becomes unnecessary and is retired),
+or the marker stays and `books/AGENTS.md` says which pages owe one — with a lint rule for
+a page that has the `h2`s and not the list. The measurement that decides it is a reader's:
+a list on a class page is eleven links to eleven sections of one screen of prose.
+
+**Done means**
+
+- [ ] the decision is written in `books/AGENTS.md` (or in `hooks/contents.py`'s docstring
+      if the hook decides for itself)
+- [ ] every page over the threshold either carries the list or is exempt by a rule a test
+      can apply
+- [ ] if the marker is retired, every `:::contents` in the collection is removed and the
+      pages that wanted a list still have one
+- [ ] `pytest tests/ -q` passes, including the existing contents test in
+      `tests/test_reference_books.py`
+
+**Outcome, 2026-11-02.** The decision is **the page's, not the marker's**: `hooks/contents.py`
+renders the two-column list for any page with five or more `h2`s, after the page's first
+paragraph. A page may still place it itself with `:::contents` — maths-applied's section
+pages do — and a page whose own index would duplicate it opts out with `:::no-contents`.
+
+The measurement that forced it: **779 source pages carry five or more `h2`s**, and the
+marker was on two. The build now writes the list on **1,328 pages** across the eleven books,
+which is that count once per profile.
+
+Placement, checked on three shapes: a course Learn page puts it after the Prerequisites
+paragraph and before the first section; a class page after its opening paragraph and before
+the `:::used` list; `techniques` before its method index. The list is the same list the ids
+come from, so it cannot rot; a page added to a page is in the list with no second edit.
+
+The rule is stated twice, as the item asks: the hook's docstring gives the history (a
+threshold and a marker that disagreed), and `assets/AGENTS.md` — *What a page or a figure may
+do* — states the rule for an author.
+
+Held by two tests: `test_the_contents_list_is_derived_from_the_headings` (the A–Z is over the
+threshold, and a rendered page puts the list after its intro) and
+`test_the_contents_list_is_rendered_once_per_page_over_the_threshold` (one list over the
+threshold, none under it, one where the marker places it, none where the page opts out).
+
+Evidence: `textbook.lint` clean over 2,614 pages; `tools check-mobile site` — 405 pages, 0
+errors; `canvas site` — 253 figures, 0 errors; `pytest tests/ -q` — **8,823 passed, 50
+skipped**.
+
+## 175 — The hardest idea in `maths-applied` is drawn nowhere
+
+**What is wrong.** §1.4 is where a reader meets a singular value decomposition, a left
+null space, and the sentence "the two legs are one equation". The page's only figure is
+`wishbone-3d`, which is about the legs in three dimensions; the decomposition itself is
+text and one row vector:
+
+```
+$$ \sigma = \left(1.415,\ 0.998,\ 0.000\right). $$
+Which combination? That is a vector in the left null space, and here it is:
+$$ w = \left(0.707,\ -0.707,\ 0.000\right). $$
+```
+
+A reader who does not already know what a null space is has to build one from a sentence
+and a row vector, on the page the chapter's argument turns on. The third review's rule
+was "every class page works a number"; this page works one and shows none of it.
+
+**The fix.** One figure, `null-vector`: the three rows of the Jacobian drawn as three
+arrows from one origin, the first two visibly the same arrow, and the cancellation
+`0.707·row1 − 0.707·row2` drawn as the pair that closes on nothing. Labels carry the
+numbers the page already prints (`1.415`, `0.998`, `0`; `0.707`, `−0.707`), read from the
+page's own model at build time. It mounts with the cancellation already drawn — the
+static frame carries the idea — and it has no control, because the pose does not change
+the pattern: §1.4 already says a different pose gives the same `w`.
+
+**Done means**
+
+- [x] the figure is in `books/maths-applied/docs/assets/figures/`, drawn through
+      `kit.js` with `SIZE`, `label()`, `scale()` and `arrow()`, and no colour of its own
+- [x] the numbers are computed from the page's model, not typed, and a test holds it to
+      the same three calls the numbers test makes
+- [x] `audit site` measures it in both schemes with no failure, and no label is below 9px
+- [x] `canvas site --only null-vector` — 1 figure, 0 errors
+- [x] §1.4 mounts it beside the paragraph that names `w`, and the prose stops restating
+      the cancellation the figure draws
+- [x] `textbook.lint maths-applied` is clean and `pytest tests/ -q` passes
+
+**Outcome, 2026-11-02.** `null-vector` mounts on §1.4, beside the paragraph that names `w`.
+
+It draws the Jacobian's three rows as three arrows from one origin: rows 1 and 2 are the
+same vector — `legsJacobian` returns the same array twice — and they are drawn 7px apart,
+solid and dashed, because a dashed arrow exactly on top of a solid one is one arrow to the
+eye and there being two is the whole point. Row 3 is the odd direction. On the right, half
+of row 1 is walked out and minus half of row 2 is walked back, and the pair returns to where
+it started: "back to nothing".
+
+**Nothing in it is typed.** The rows, the singular values and the null vector come from
+`legsJacobian`, `singularValues` and `nullDirection` at the design pose — the same three
+calls `tests/test_maths_applied_numbers.py` makes — and the figure has no control, because
+the pattern does not depend on the pose and §1.4 says so.
+
+Three claims, all verified: row 1 less row 2 is zero in each unknown, and the null
+combination is zero. `readout --verify`: **3 claims, 0 untrue**. The readout prints
+σ = (1.415, 0.998, 0) and w = (0.707, −0.707, 0); a negative zero in the third component was
+printing as "−0" and now prints as "0".
+
+The prose was trimmed where the figure now does the work: "Read the entries: add 0.707 of
+the first equation …" became "Add 0.707 of the first equation to −0.707 of the second, add
+nothing of the third, and the result constrains nothing" — the drawing shows the rest.
+
+Held by `test_the_null_vector_figure_reads_its_numbers_from_the_model`: the module calls the
+three model functions, types none of the four numbers it prints, and §1.4 mounts it.
+
+Evidence: `audit site` measures it in light and dark with no contrast failure; `canvas site
+--only null-vector` — 1 figure, 0 errors; `kit site` — all 52 exports have a row;
+`textbook.lint maths-applied` clean over 18 pages; `pytest tests/ -q` — **8,838 passed, 50
+skipped**.

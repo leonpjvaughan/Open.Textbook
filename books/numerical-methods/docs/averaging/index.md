@@ -88,14 +88,14 @@ below is the same list sorted by name.
 
 | what your model is | the methods that fit | the price |
 |---|---|---|
-| anything you can run | Monte Carlo | a slow $1/\sqrt{N}$ |
-| a rare event | Importance sampling | the weights have a huge variance |
+| anything you can run | [Monte Carlo](../techniques/#monte-carlo) | a slow $1/\sqrt{N}$ |
+| a rare event | [Importance sampling](../techniques/#importance-sampling) | the weights have a huge variance |
 | a smooth integrand, modest dimension | Stratified and Latin hypercube sampling, quasi-Monte Carlo, Gaussian quadrature | smoothness is the assumption |
 | a cheap correlated model | Control variates, antithetic pairs | a weak correlation buys little |
-| a distribution known up to a constant | Markov chain Monte Carlo | the samples are correlated |
+| a distribution known up to a constant | [Markov chain Monte Carlo](../techniques/#markov-chain-monte-carlo) | the samples are correlated |
 | a state moving as data arrive | Particle filter, sequential Monte Carlo | the cloud has to be large |
-| a linear model with Gaussian noise | Kalman filter | non-linear, or multi-modal, and it fails |
-| data, and no formula | Bootstrap | small or dependent samples |
+| a linear model with Gaussian noise | [Kalman filter](../techniques/#kalman-filter) | non-linear, or multi-modal, and it fails |
+| data, and no formula | [Bootstrap](../techniques/#bootstrap) | small or dependent samples |
 
 <!-- table: cards -->
 | technique | what it does | when it wins | when it is the wrong tool |
@@ -129,7 +129,7 @@ below is the same list sorted by name.
 |---|---|---|
 | A tiny error bar, and the answer is wrong | Samples were not independent, or the model is biased | Check the autocorrelation and the model |
 | The chain never settles | The target has not been normalised, or the support is wrong | Fix the model before tuning the sampler |
-| A rare event never appears | Plain sampling, and the event is rare | Importance sampling or subset simulation |
+| A rare event never appears | Plain sampling, and the event is rare | [Importance sampling](../techniques/#importance-sampling) or subset simulation |
 | Ten million samples and still noisy | The variance of $g$ is large | A control variate, or a quasi-random sequence |
 | A different run gives a different answer | That is the method, not a bug | Report the error bar, and the seed |
 

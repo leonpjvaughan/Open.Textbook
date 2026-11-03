@@ -90,8 +90,8 @@ the motion.
 With mass in and no damper, the model is **conservative**: it moves forward in
 time and keeps its energy rather than forgetting where it started. The map files
 that structure as the **Hamiltonian flag**, not as a kind of its own. The flag is
-described on the [hyperbolic page], which this section does not name as a class.
-The quarter car is an oscillator, not a wave.
+described on the [hyperbolic page](/numerical-methods/hyperbolic/), which this
+section does not name as a class. The quarter car is an oscillator, not a wave.
 
 ## What the model says
 
@@ -219,7 +219,9 @@ equal the static camber at the same travel, and the two agree to **0.001°**. If
 they did not, a longer run would hide the model error behind round-off.
 
 The static model's own argument, including why simulating to a steady state is a
-worse trade, is on the [equilibrium without time] page. It is not repeated here.
+worse trade, is on the
+[equilibrium without time](../../section-1.5/deeper/equilibrium-without-time/)
+page. It is not repeated here.
 
 The sharper test is the one this section named, and it cannot be run here. Take
 the masses to zero, and the model must become the algebraic one, exactly. A free

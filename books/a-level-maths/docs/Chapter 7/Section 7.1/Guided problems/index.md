@@ -56,6 +56,7 @@ $\dfrac{5 - 2}{1}$. Repeat for $h = 0.5$ and $h = 0.1$.
 <details markdown="1">
 <summary>Full working</summary>
 
+<!-- table: cards -->
 | $h$ | $x = 1 + h$ | $y = x^2 + 1$ | gradient of the chord |
 |---|---|---|---|
 | $1$ | $2$ | $5$ | $\dfrac{5 - 2}{1} = 3$ |
@@ -140,6 +141,7 @@ gradient is $\dfrac{15.625 - 8}{0.5}$. Repeat for the other two values of $h$.
 <details markdown="1">
 <summary>Full working</summary>
 
+<!-- table: cards -->
 | $h$ | $x = 2 + h$ | $y = x^3$ | gradient of the chord |
 |---|---|---|---|
 | $1$ | $3$ | $27$ | $\dfrac{27 - 8}{1} = 19.00$ |

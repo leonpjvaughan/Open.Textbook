@@ -195,6 +195,7 @@ rule still works, because it only needs the heights.
 **Example 4.** A river survey records the water depth at points across a
 $12$ metre channel. Estimate the cross-sectional area of the water.
 
+<!-- table: cards -->
 | Distance across (m) | $0$ | $2$ | $4$ | $6$ | $8$ | $10$ | $12$ |
 |---|---|---|---|---|---|---|---|
 | Depth (m) | $0$ | $1.2$ | $2.5$ | $3.1$ | $2.4$ | $0.9$ | $0$ |

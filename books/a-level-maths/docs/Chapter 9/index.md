@@ -24,6 +24,7 @@ needs: how long until the rotors stop?
 The second question comes from a river survey. An engineer measures the water
 depth every $2$ metres across a $12$ metre channel:
 
+<!-- table: cards -->
 | Distance across (m) | $0$ | $2$ | $4$ | $6$ | $8$ | $10$ | $12$ |
 |---|---|---|---|---|---|---|---|
 | Depth (m) | $0$ | $1.2$ | $2.5$ | $3.1$ | $2.4$ | $0.9$ | $0$ |

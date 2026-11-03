@@ -82,6 +82,7 @@ which agrees.
 
 The table collects the results.
 
+<!-- table: cards -->
 | First transformation | Second transformation | Composition |
 |---|---|---|
 | Translation | Translation | a translation |

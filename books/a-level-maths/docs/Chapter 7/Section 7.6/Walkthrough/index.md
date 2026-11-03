@@ -77,6 +77,7 @@ $$
 
 The roots are $x = 0$ and $x = 2$. Test a value in each interval.
 
+<!-- table: cards -->
 | Interval | Test value | Sign of $f'(x)$ | Behaviour of $f$ |
 |---|---|---|---|
 | $x < 0$ | $x = -1$ | $3(-1)(-3) = 9 > 0$ | increasing |
@@ -97,6 +98,7 @@ $$
 
 The roots are $x = 1$ and $x = 2$. Test $x = 0$, $x = 1.5$ and $x = 3$.
 
+<!-- table: cards -->
 | Interval | Test value | Sign of $f'(x)$ | Behaviour of $f$ |
 |---|---|---|---|
 | $x < 1$ | $x = 0$ | $6(-1)(-2) = 12 > 0$ | increasing |

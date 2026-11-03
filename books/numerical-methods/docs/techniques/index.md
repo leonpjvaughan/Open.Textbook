@@ -31,8 +31,6 @@ the column is entries rather than a partition of the book's methods.
 
 :::method-index
 
-:::contents
-
 <a id="finding-a-state"></a>
 
 ## Finding a state
