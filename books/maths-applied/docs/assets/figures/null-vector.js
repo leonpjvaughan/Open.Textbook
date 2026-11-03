@@ -72,10 +72,10 @@ export function mount(el) {
     class: "text-ink",
   });
   drawing += label({
-    x: 330,
+    x: WIDTH - 16,
     y: 28,
     text: "0.707 \u00b7 row 1 \u2212 0.707 \u00b7 row 2",
-    anchor: "start",
+    anchor: "end",
     size: SIZE.value,
     class: "text-ink",
   });

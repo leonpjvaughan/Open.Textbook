@@ -123,6 +123,12 @@ export async function run(argv: string[]): Promise<number> {
   // table against its own wrapper — the width a reader has before scrolling sideways —
   // and exempts `table--cards`, which stacks into records below 60rem and has no
   // columns to lose.
+  // **Twenty pixels of slack, because a table's width is its text's.** The same table
+  // measured on a machine without the site's font is 6 to 17px wider than this one, and
+  // the rule must not fail a reader's font. Twenty is a line of text at the smallest
+  // label size: below it the last column loses less than a character, and a table 40px
+  // over — the item's example — still fails.
+  const TABLE_SLACK = 20;
   const routes: string[] = [];
   const walk = (dir: string) => {
     for (const entry of fs.readdirSync(dir, { withFileTypes: true })) {
@@ -151,7 +157,7 @@ export async function run(argv: string[]): Promise<number> {
   for (const route of routes.sort()) {
     await tablePage.goto(`http://textbook.local${route}`, { waitUntil: "load" });
     await tablePage.waitForTimeout(30);
-    const overflowing = (await tablePage.evaluate(() => {
+    const overflowing = (await tablePage.evaluate((slack: number) => {
       const out: { head: string; over: number }[] = [];
       for (const table of document.querySelectorAll("main table")) {
         if (table.classList.contains("table--cards")) continue;
@@ -160,7 +166,7 @@ export async function run(argv: string[]): Promise<number> {
           ? wrapper.clientWidth
           : document.documentElement.clientWidth;
         const width = Math.round(table.getBoundingClientRect().width);
-        if (width <= available + 1) continue;
+        if (width <= available + slack) continue;
         const head = table.querySelector("thead th");
         out.push({
           head: head ? (head.textContent || "").trim().slice(0, 30) : "(no heading)",
@@ -168,7 +174,7 @@ export async function run(argv: string[]): Promise<number> {
         });
       }
       return out;
-    })) as { head: string; over: number }[];
+    }, TABLE_SLACK)) as { head: string; over: number }[];
     // Counted, so the summary says how many pages the table pass measured: a sweep
     // over an empty set and a clean sweep print the same line otherwise.
     report.examined += 1;

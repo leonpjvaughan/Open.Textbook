@@ -112,6 +112,12 @@ export async function run(argv) {
     // table against its own wrapper — the width a reader has before scrolling sideways —
     // and exempts `table--cards`, which stacks into records below 60rem and has no
     // columns to lose.
+    // **Twenty pixels of slack, because a table's width is its text's.** The same table
+    // measured on a machine without the site's font is 6 to 17px wider than this one, and
+    // the rule must not fail a reader's font. Twenty is a line of text at the smallest
+    // label size: below it the last column loses less than a character, and a table 40px
+    // over — the item's example — still fails.
+    const TABLE_SLACK = 20;
     const routes = [];
     const walk = (dir) => {
         for (const entry of fs.readdirSync(dir, { withFileTypes: true })) {
@@ -141,7 +147,7 @@ export async function run(argv) {
     for (const route of routes.sort()) {
         await tablePage.goto(`http://textbook.local${route}`, { waitUntil: "load" });
         await tablePage.waitForTimeout(30);
-        const overflowing = (await tablePage.evaluate(() => {
+        const overflowing = (await tablePage.evaluate((slack) => {
             const out = [];
             for (const table of document.querySelectorAll("main table")) {
                 if (table.classList.contains("table--cards"))
@@ -151,7 +157,7 @@ export async function run(argv) {
                     ? wrapper.clientWidth
                     : document.documentElement.clientWidth;
                 const width = Math.round(table.getBoundingClientRect().width);
-                if (width <= available + 1)
+                if (width <= available + slack)
                     continue;
                 const head = table.querySelector("thead th");
                 out.push({
@@ -160,7 +166,7 @@ export async function run(argv) {
                 });
             }
             return out;
-        }));
+        }, TABLE_SLACK));
         // Counted, so the summary says how many pages the table pass measured: a sweep
         // over an empty set and a clean sweep print the same line otherwise.
         report.examined += 1;
