@@ -25,12 +25,14 @@ By the end of this section, you can choose a method that fits the question and s
 Every equation in this chapter can be solved in more than one way. The question in front
 of you decides which way is best.
 
+<!-- table: cards -->
 | Strategy | What you do | Good when |
 |---|---|---|
 | Algebraic | Rearrange the equation step by step | The equation is linear and tidy |
 | Graphic | Read the crossing point from a graph | A graph is already drawn |
 | Numeric | Use a table of values | The equation has a square or an awkward number |
 | Working backwards | Undo the story step by step | The question describes a chain of actions |
+<!-- table: cards -->
 | Trial and improvement | Try values and close in on the answer | No method rearranges neatly |
 
 The first three come from the word *algebraic, graphic, numeric*. The last two are the

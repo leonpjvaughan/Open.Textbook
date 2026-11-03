@@ -24,11 +24,13 @@ unknown, such as $x^4$, $2^x$ or $\sqrt{x}$.
 A quadratic equation has the form $ax^2 + bx + c = 0$. Four methods solve it, and
 the numbers tell you which to use.
 
+<!-- table: cards -->
 | Method | Use it when | What it gives |
 |---|---|---|
 | Factorising | the roots are whole numbers or simple fractions | exact roots, quickly |
 | Completing the square | the coefficient $a$ is $1$ and the roots contain a surd | exact roots, and the vertex |
 | The formula | factorising fails and $a \neq 1$ | exact roots, always |
+<!-- table: cards -->
 | A graph | the question asks where the curve meets a line | an estimate |
 
 The formula solves every quadratic equation:

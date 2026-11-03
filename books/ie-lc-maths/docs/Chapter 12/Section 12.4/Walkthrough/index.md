@@ -51,11 +51,13 @@ found in one sentence, and say why the circle forces it.
 The point $P$ moves round the circle as the angle grows. Its coordinates change sign
 when it crosses an axis.
 
+<!-- table: cards -->
 | Angle | Quadrant | $\cos\theta$ | $\sin\theta$ |
 |---|---|---|---|
 | $0^\circ$ to $90^\circ$ | first | positive | positive |
 | $90^\circ$ to $180^\circ$ | second | negative | positive |
 | $180^\circ$ to $270^\circ$ | third | negative | negative |
+<!-- table: cards -->
 | $270^\circ$ to $360^\circ$ | fourth | positive | negative |
 
 **Example 1.** An angle of $150^\circ$ lies in the second quadrant, so $\cos 150^\circ$
@@ -110,10 +112,12 @@ These values are worth knowing exactly. They come from two triangles: the half-s
 which gives $45^\circ$, and the half-equilateral triangle, which gives $30^\circ$ and
 $60^\circ$.
 
+<!-- table: cards -->
 | $\theta$ | $0^\circ$ | $30^\circ$ | $45^\circ$ | $60^\circ$ | $90^\circ$ |
 |---|---|---|---|---|---|
 | $\sin\theta$ | $0$ | $\dfrac{1}{2}$ | $\dfrac{\sqrt{2}}{2}$ | $\dfrac{\sqrt{3}}{2}$ | $1$ |
 | $\cos\theta$ | $1$ | $\dfrac{\sqrt{3}}{2}$ | $\dfrac{\sqrt{2}}{2}$ | $\dfrac{1}{2}$ | $0$ |
+<!-- table: cards -->
 | $\tan\theta$ | $0$ | $\dfrac{\sqrt{3}}{3}$ | $1$ | $\sqrt{3}$ | undefined |
 
 > **Watch out.** $\cos\theta$ is the **$x$**-coordinate and $\sin\theta$ is the **$y$**

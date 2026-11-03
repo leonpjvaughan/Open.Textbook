@@ -26,10 +26,12 @@ shows.
 Every pattern you have met grows in one of three ways. The arithmetic that builds the
 pattern is the test.
 
+<!-- table: cards -->
 | Kind | Test | General term |
 |---|---|---|
 | Linear | the first difference is constant | $an+b$ |
 | Quadratic | the second difference is constant | $an^2+bn+c$ |
+<!-- table: cards -->
 | Exponential | the multiplier is constant | $a\times r^{n-1}$ |
 
 In an exponential pattern you **multiply** to get from one term to the next. The fixed
@@ -99,6 +101,7 @@ Check your crossover weeks against this table.
 |---|---|---|---|---|---|---|---|---|
 | Aoife (€) | 3 | 6 | 9 | 12 | 15 | 18 | 21 | 24 |
 | Ben (€) | 1 | 4 | 9 | 16 | 25 | 36 | 49 | 64 |
+<!-- table: cards -->
 | Cara (€) | 1 | 2 | 4 | 8 | 16 | 32 | 64 | 128 |
 
 Cara beats Aoife in week 5, where $16$ passes $15$. She beats Ben in week 7, where $64$

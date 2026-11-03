@@ -65,8 +65,10 @@ $$
 The strip edges are $0, 0.5, 1, 1.5, 2$. The heights are the squares of those
 values:
 
+<!-- table: cards -->
 | $x$ | $0$ | $0.5$ | $1$ | $1.5$ | $2$ |
 |---|---|---|---|---|---|
+<!-- table: cards -->
 | $y = x^2$ | $0$ | $0.25$ | $1$ | $2.25$ | $4$ |
 
 Substitute into the rule:
@@ -198,6 +200,7 @@ $12$ metre channel. Estimate the cross-sectional area of the water.
 <!-- table: cards -->
 | Distance across (m) | $0$ | $2$ | $4$ | $6$ | $8$ | $10$ | $12$ |
 |---|---|---|---|---|---|---|---|
+<!-- table: cards -->
 | Depth (m) | $0$ | $1.2$ | $2.5$ | $3.1$ | $2.4$ | $0.9$ | $0$ |
 
 The readings are equally spaced, with width $h = 2$. The two end heights are $0$
@@ -218,9 +221,11 @@ The cross-sectional area is about $20.2$ square metres.
 Now find limits. On each strip, take the smaller of its two readings and the
 larger of its two readings.
 
+<!-- table: cards -->
 | Strip | $0$–$2$ | $2$–$4$ | $4$–$6$ | $6$–$8$ | $8$–$10$ | $10$–$12$ |
 |---|---|---|---|---|---|---|
 | Smaller (m) | $0$ | $1.2$ | $2.5$ | $2.4$ | $0.9$ | $0$ |
+<!-- table: cards -->
 | Larger (m) | $1.2$ | $2.5$ | $3.1$ | $3.1$ | $2.4$ | $0.9$ |
 
 The lower sum is $2(0 + 1.2 + 2.5 + 2.4 + 0.9 + 0) = 2(7.0) = 14.0$.
@@ -240,10 +245,12 @@ Between the readings the depth is unknown.
 A smaller strip width follows the curve more closely, so the estimate improves.
 For $\displaystyle\int_0^2 x^2\, dx$:
 
+<!-- table: cards -->
 | Number of strips | $h$ | Estimate | Error |
 |---|---|---|---|
 | $4$ | $0.5$ | $2.75$ | $0.0833$ |
 | $8$ | $0.25$ | $2.6875$ | $0.0208$ |
+<!-- table: cards -->
 | $16$ | $0.125$ | $2.671875$ | $0.0052$ |
 
 Each time the strip width halves, the error falls to about a quarter of its

@@ -17,11 +17,13 @@ happens above rest than below.
 
 Which model earns the answer depends on the tolerance and on the car:
 
+<!-- table: cards -->
 | Model | Camber change over the travel | Cost | Camber at rest, and its difference from rigid |
 |---|---|---|---|
 | Rigid triangle | 1.95° | one degree of freedom, no numbers to measure | −1.00° |
 | With a bush at 0.2 MN/m | 1.96° | a stiffness to measure | −1.91°, which is 0.91° away |
 | With a bush at 1 MN/m | 1.92° | a stiffness to measure | −1.18°, which is 0.18° away |
+<!-- table: cards -->
 | With a bush at 100 MN/m | 1.91° | a stiffness to measure | −1.00°, which is 0.002° away |
 
 So the answer has two parts, and the second is the one that matters.
@@ -49,6 +51,7 @@ degree this chapter asked for.
 
 ## The four models, and the numbers where they meet
 
+<!-- table: cards -->
 | From | To | The number |
 |---|---|---|
 | Closed form | Newton iteration | the same camber curve, to about 10⁻¹⁴° |
@@ -56,6 +59,7 @@ degree this chapter asked for.
 | Three rows, diagnosed | the two-row system | the same pose, and one row fewer |
 | Compliant at 100 MN/m | rigid | 0.002° at rest, and falling as the stiffness rises |
 | Compliant at 0.2 MN/m | rigid | 0.91° at rest, 0.01° in the change over the travel |
+<!-- table: cards -->
 | The exported ladder | this section's front view | within 0.04°, over four stiffnesses |
 
 Every one of those numbers is a comparison between two models of the same

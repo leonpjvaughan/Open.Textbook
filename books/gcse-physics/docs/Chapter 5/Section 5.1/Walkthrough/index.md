@@ -39,6 +39,7 @@ between the groups.
 The groups are usually listed from the longest wavelength to the shortest. The
 same order goes from the lowest frequency to the highest.
 
+<!-- table: cards -->
 | Group | Typical wavelength | Typical frequency |
 |---|---|---|
 | Radio waves | longer than 1 m | below 3 × 10⁸ Hz |
@@ -47,6 +48,7 @@ same order goes from the lowest frequency to the highest.
 | Visible light | 400 nm to 700 nm | 4 × 10¹⁴ Hz to 7.5 × 10¹⁴ Hz |
 | Ultraviolet | 10 nm to 400 nm | 7.5 × 10¹⁴ Hz to 3 × 10¹⁶ Hz |
 | X-rays | 0.01 nm to 10 nm | 3 × 10¹⁶ Hz to 3 × 10¹⁹ Hz |
+<!-- table: cards -->
 | Gamma rays | shorter than 0.01 nm | above 3 × 10¹⁹ Hz |
 
 Every group travels at the **same speed** in a vacuum. That speed is

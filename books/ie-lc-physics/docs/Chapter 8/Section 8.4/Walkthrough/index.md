@@ -75,10 +75,12 @@ space and are absorbed by the Earth.
 
 ## Comparing the three
 
+<!-- table: cards -->
 | Mechanism | How energy moves | Needs a medium? |
 |---|---|---|
 | Conduction | particle collisions | yes, particles in contact |
 | Convection | moving fluid | yes, a liquid or a gas |
+<!-- table: cards -->
 | Radiation | infrared waves | no |
 
 ## Slowing the transfer of energy

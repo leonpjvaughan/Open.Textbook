@@ -26,11 +26,13 @@ what it is for.
 A triangle has four famous points inside or near it. Each one is the meeting place of
 three lines, and each set of lines is different. That is the whole idea of the section.
 
+<!-- table: cards -->
 | The lines | The point | What it is for |
 |---|---|---|
 | The perpendicular bisectors of the sides | the **circumcentre** | the centre of the circle through the three vertices |
 | The bisectors of the angles | the **incentre** | the centre of the circle inside, touching all three sides |
 | The lines from each vertex to the midpoint of the opposite side | the **centroid** | the balance point of the triangle |
+<!-- table: cards -->
 | The lines from each vertex perpendicular to the opposite side | the **orthocentre** | the meeting point of the three heights |
 
 The line from a vertex to the midpoint of the opposite side is a **median**. The line from

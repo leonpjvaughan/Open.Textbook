@@ -94,12 +94,14 @@ A **free-body diagram** shows one object on its own with every force acting on
 it. Draw the forces as arrows from the object, and label each one. Then find the
 resultant.
 
+<!-- table: cards -->
 | Force | Acts | Notes |
 |---|---|---|
 | Weight | downwards, from the centre of mass | $W = mg$ |
 | Normal reaction | perpendicular to a surface | prevents the object sinking in |
 | Tension | along a rope or cable, away from the object | pulls |
 | Friction | along a surface, opposing sliding | opposes relative motion |
+<!-- table: cards -->
 | Drag | opposite to the velocity through a fluid | grows with speed |
 
 Weight is a force, measured in newtons. Mass is measured in kilograms and does

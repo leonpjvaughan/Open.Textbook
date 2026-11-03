@@ -25,10 +25,12 @@ the method — which is the skill the whole chapter has been building towards.
 Three different questions have appeared in this chapter, and they need three different
 answers. Read the question carefully before choosing.
 
+<!-- table: cards -->
 | The question asks for | It is | Use |
 |---|---|---|
 | the cheapest set of connections reaching **every** vertex | a minimum spanning tree | Kruskal or Prim |
 | the cheapest route between **two** vertices | a shortest path | Dijkstra |
+<!-- table: cards -->
 | the cheapest route through a **staged** network | dynamic programming | backward recursion |
 
 The first two are often confused, and the mistake is common. A spanning tree reaches
@@ -55,11 +57,13 @@ That gives a practical rule:
 Dijkstra's algorithm is the only one that needs a condition on the weights, and the
 condition is a real restriction, not a formality.
 
+<!-- table: cards -->
 | Algorithm | Weights | Gives |
 |---|---|---|
 | Kruskal | any | minimum spanning tree |
 | Prim | any | minimum spanning tree |
 | Dijkstra | **non-negative only** | shortest path from one start |
+<!-- table: cards -->
 | Backward recursion | any | shortest route through a staged network |
 
 **Example 1.** A network has 50 vertices and 60 edges. Which spanning-tree algorithm is

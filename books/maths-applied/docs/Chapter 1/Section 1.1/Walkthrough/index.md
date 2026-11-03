@@ -91,11 +91,13 @@ The mechanism stays the same all the way through. What changes is the model of
 it, and each model is replaced only when the one before it has stopped answering
 the question.
 
+<!-- table: cards -->
 | Model | What it treats as rigid, and what as free | The question it can answer |
 |---|---|---|
 | One rigid triangle | the wishbone is one body, the upright another | where the wheel is, and at what angle |
 | Two legs | the wishbone is written as its two legs | what a spare equation does to a model |
 | Diagnosed | the same, read with a singular value decomposition | which equation was never needed |
+<!-- table: cards -->
 | With a bush | the upper joint is a spring | how far the angles move under load |
 
 The chapter's problem is answered at the end of
