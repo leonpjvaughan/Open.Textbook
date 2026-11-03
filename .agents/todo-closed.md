@@ -8168,13 +8168,13 @@ table, so a name added later cannot arrive unlinked.
 
 **Done means**
 
-- [ ] the rule is written where the property tables are authored (`books/AGENTS.md`
+- [x] the rule is written where the property tables are authored (`books/AGENTS.md`
       or `books/numerical-methods/AGENTS.md`)
-- [ ] all nine class pages obey it, and a test fails when a new name in a property table
+- [x] all nine class pages obey it, and a test fails when a new name in a property table
       breaks it
-- [ ] `node tools/dist/cli.js audit site --mobile` reports no contrast or size failure on
+- [x] `node tools/dist/cli.js audit site --mobile` reports no contrast or size failure on
       the changed cells
-- [ ] `python -m textbook.lint numerical-methods` is clean and `pytest tests/ -q` passes
+- [x] `python -m textbook.lint numerical-methods` is clean and `pytest tests/ -q` passes
 
 **Outcome, 2026-11-02.** The decision, and the rule that states it.
 
@@ -8414,13 +8414,13 @@ a list on a class page is eleven links to eleven sections of one screen of prose
 
 **Done means**
 
-- [ ] the decision is written in `books/AGENTS.md` (or in `hooks/contents.py`'s docstring
+- [x] the decision is written in `books/AGENTS.md` and in `hooks/contents.py`'s docstring
       if the hook decides for itself)
-- [ ] every page over the threshold either carries the list or is exempt by a rule a test
+- [x] every page over the threshold either carries the list or is exempt by a rule a test
       can apply
-- [ ] if the marker is retired, every `:::contents` in the collection is removed and the
+- [x] if the marker is retired, every `:::contents` in the collection is removed and the
       pages that wanted a list still have one
-- [ ] `pytest tests/ -q` passes, including the existing contents test in
+- [x] `pytest tests/ -q` passes, including the existing contents test in
       `tests/test_reference_books.py`
 
 **Outcome, 2026-11-02.** The decision is **the page's, not the marker's**: `hooks/contents.py`
