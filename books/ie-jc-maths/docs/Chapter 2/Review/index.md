@@ -49,7 +49,6 @@ the square of that number.
 | 100% | 1 | $2^0$ | $2^0 = 1$ |
 | 71% | $\frac{1}{\sqrt2} \approx 0.707$ | $2^{-\frac12}$ | $2^{-1} = \frac12$ |
 | 50% | $\frac12$ | $2^{-1}$ | $2^{-2} = \frac14$ |
-<!-- table: cards -->
 | 25% | $\frac14$ | $2^{-2}$ | $2^{-4} = \frac{1}{16}$ |
 
 Two presses of 141% multiply the width by

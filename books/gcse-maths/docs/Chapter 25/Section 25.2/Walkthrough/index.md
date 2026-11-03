@@ -21,7 +21,6 @@ kind: walkthrough
 | Time $t$ (minutes) | $0<t\leq10$ | $10<t\leq20$ | $20<t\leq30$ | $30<t\leq40$ |
 |---|---:|---:|---:|---:|
 | Frequency | 4 | 9 | 5 | 2 |
-<!-- table: cards -->
 | Cumulative frequency | 4 | 13 | 18 | 20 |
 
 **Example 1.** Plot the cumulative frequency graph for the table.

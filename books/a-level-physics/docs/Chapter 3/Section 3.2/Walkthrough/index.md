@@ -101,7 +101,6 @@ resultant.
 | Normal reaction | perpendicular to a surface | prevents the object sinking in |
 | Tension | along a rope or cable, away from the object | pulls |
 | Friction | along a surface, opposing sliding | opposes relative motion |
-<!-- table: cards -->
 | Drag | opposite to the velocity through a fluid | grows with speed |
 
 Weight is a force, measured in newtons. Mass is measured in kilograms and does

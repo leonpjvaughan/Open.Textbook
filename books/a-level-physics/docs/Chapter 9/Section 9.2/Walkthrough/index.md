@@ -246,7 +246,6 @@ differ in important ways.
 | Potential | $V = -\dfrac{GM}{r}$ | $V = \dfrac{kQ}{r}$ |
 | Force | always attractive | attractive or repulsive |
 | Potential sign | always negative | positive or negative |
-<!-- table: cards -->
 | Strength | very weak | very strong |
 
 Both forces follow an inverse-square law. Both have a field strength, a

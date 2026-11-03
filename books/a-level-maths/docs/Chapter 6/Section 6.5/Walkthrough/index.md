@@ -62,7 +62,6 @@ The table below shows which plot is needed for each model.
 | Model | Plot | Gradient | Intercept |
 |---|---|---|---|
 | $y = kb^x$ | $\ln y$ against $x$ | $\ln b$ | $\ln k$ |
-<!-- table: cards -->
 | $y = ax^n$ | $\ln y$ against $\ln x$ | $n$ | $\ln a$ |
 
 **The symbols.** In $y = kb^x$, $k$ is the value of $y$ when $x = 0$ and $b$ is

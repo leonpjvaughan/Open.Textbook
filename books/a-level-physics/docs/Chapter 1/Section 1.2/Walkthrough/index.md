@@ -68,7 +68,6 @@ half the smallest division.
 | Metre rule | 1 mm | 0.5 mm |
 | Vernier caliper | 0.1 mm | 0.05 mm |
 | Micrometer | 0.01 mm | 0.005 mm |
-<!-- table: cards -->
 | Stopwatch | 0.01 s | 0.005 s from the display alone |
 
 **Worked example 2.** A stack of 100 sheets of paper is 12 mm thick. Find the
@@ -129,7 +128,6 @@ in two kinds.
 |---|---|---|
 | A balance reads 0.05 g when empty | Systematic | Zero the balance before use |
 | Reaction time on a stopwatch | Random | Repeat the timing and take the mean |
-<!-- table: cards -->
 | A thermometer reads 0.5 °C too high | Systematic | Check it at a known fixed point and correct |
 
 > **Watch out.** A small resolution does not make a result accurate. A digital

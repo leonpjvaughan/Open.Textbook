@@ -58,8 +58,11 @@ There is no speed of propagation, because there is no propagation. A change in
 one boundary value changes the solution everywhere immediately. A **smoother**
 is one sweep of Jacobi or Gauss–Seidel; multigrid uses a coarse mesh for the
 part of the error a sweep cannot see. A method that moves information one cell
-per step — Jacobi, Gauss–Seidel, a plain Krylov method — is therefore crippled,
-and needs as many steps as the mesh is wide in every direction.
+per step needs a number of steps that grows with the width of the mesh. Jacobi
+and Gauss–Seidel need of order the width squared. A Krylov method such as
+conjugate gradients, which the figure uses, does better — of order the width —
+but still grows. Multigrid is the one whose count does not grow with the mesh at
+all.
 
 Two consequences follow:
 

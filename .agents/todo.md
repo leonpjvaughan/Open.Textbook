@@ -14,7 +14,7 @@ done-means; an item whose heading says done and whose checklist does not is the
 failure this file has had twice, so the list below, the headings and the boxes
 are checked against each other on every pass.
 
-**Every item from 79 to 181 is closed,** each with its measurement, its fix, its outcome
+**Every item from 79 to 184 is closed,** each with its measurement, its fix, its outcome
 and its ticked done-means in `.agents/todo-closed.md`, and the queue is empty. A new item
 goes at the number after the last one, with its diagnosis, its fix and its own done-means.
 

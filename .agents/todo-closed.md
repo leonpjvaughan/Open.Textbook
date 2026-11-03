@@ -8517,3 +8517,146 @@ Evidence: `audit site` measures it in light and dark with no contrast failure; `
 --only null-vector` — 1 figure, 0 errors; `kit site` — all 52 exports have a row;
 `textbook.lint maths-applied` clean over 18 pages; `pytest tests/ -q` — **8,838 passed, 50
 skipped**.
+
+## 182 — 75 `<!-- table: cards -->` markers landed inside a table, and every split row printed as a line of pipes — **done**
+
+**What is wrong.** `<!-- table: cards -->` is an HTML comment that Markdown stops a table
+at, and `wrap_tables` in `pipeline.py` reads it to turn the table that follows into one card
+per row on a phone. Inserted *inside* a table it does the opposite of what it is for: the
+comment ends the table, and the next row is no longer a row. It prints as a paragraph of
+its own pipes. On the built page `site/maths-applied/chapter-1/section-1.2/learn/index.html`:
+
+```html
+<p>| Upper wishbone to the upright, at the ball joint | 1 | 2 |</p>
+```
+
+That is a table row a reader sees as text, on the page that introduces the corner model.
+
+**Where it came from.** Commit `b61694a0`, "fix(tables): mark the tables that a wider font
+pushes past the phone edge", added **127** markers to **38** files in one sweep. It placed
+markers correctly above many headers and also placed 75 of them between a header and its
+body, or between two body rows, which split one table into fragments with a comment in the
+join. It is a regression from a fix, not a mistake in the pages the fix was about.
+
+**Why nothing caught it.** The build exits 0. The page renders. `textbook.lint` has no rule
+about it, and the hygiene gates in `tests/test_content_hygiene.py` only look for voice
+phrases, unclosed bold, collided bold, tabs and unlinked references. A column-count scan
+finds nothing either: every fragment still had its header's arity, so the match is
+positional, not arithmetic. The damage only appears in built HTML, in the gap between "the
+marker is somewhere in the table" and "the marker starts the table".
+
+**The fix.**
+
+- Deleted every marker whose next non-blank line is a table row but whose second next line
+  is not the `|---|` separator: **75 markers on 42 files across ten books**
+  (`git diff -U0 | grep -c '^-<!-- table: cards -->'` → 75). A marker correctly above a
+  header, where the following two lines are a row and a separator, was left alone, and
+  deleting the mid-table marker rejoins the fragment, because the header is still above it.
+  No table lost its card styling: `grep -rn "table: cards" --include='*.md' books | wc -l`
+  → **131** markers remain and every one of them starts a table.
+- Added the positional rule to `tests/test_content_hygiene.py`:
+  `card_markers_without_a_table()` requires the next two non-blank lines to be a row and a
+  separator, ignores fenced blocks, and
+  `test_a_card_table_marker_starts_a_table()` runs it over every book;
+  `test_the_card_marker_gate_fires_on_a_split_table()` plants the three placements the
+  sweep produced (above the header, between header and body, between body rows) and the
+  fenced lookalike, so the gate is proved to fire on the shape it exists for.
+
+**Done means**
+
+- [x] no `.md` file in `books/` has a marker that is not followed by a header row and a
+      separator row
+- [x] the gate fires on a split body (`[3]`) and a split header (`[2]`), passes a good
+      table and passes a marker inside a fence
+- [x] rebuilt `maths-applied`, `numerical-methods` and `a-level-physics`: no `<p>` in
+      `site/<book>/**/*.html` contains two or more pipes
+- [x] `pytest tests/test_content_hygiene.py -q` passes and `textbook.lint` is clean
+
+**Outcome, 2026-11-06.** 75 markers removed, 131 left, all of them above a header. Evidence
+after the sweep and a rebuild of the three books above:
+
+```
+git diff -U0 | grep -c '^-<!-- table: cards -->'       75
+grep -rn "table: cards" --include='*.md' books | wc -l  131
+site pipe paragraphs, maths-applied                     0
+site pipe paragraphs, numerical-methods                 0
+site pipe paragraphs, a-level-physics                   0
+pytest tests/test_content_hygiene.py -q                 2628 passed
+```
+
+The scan that found them is worth keeping, because it is the check that would have caught
+this in CI: read every built page, and fail on a `<p>` whose text matches `^\|.*\|.*\|$`.
+It found 27 hits when only two of the eighteen profiles had been rebuilt and 0 after the
+rebuild, which is also the evidence that the remaining hits were stale output rather than
+authored damage. Run over *source* Markdown it is useless — most of its hits are absolute
+value bars in `$$\ln|y| = \frac{x^2}{2} + C$$` — so it belongs on the built site, not in the
+source gates.
+
+## 183 — The `elliptic` page called its own figure crippled — **done**
+
+**What is wrong.** Two adjacent sentences contradicted each other and the page's own
+figure. The sign is the same one a bearing's modulus draws: a figure that draws the maths
+has to be allowed to be right about it.
+
+```
+A method that moves information one cell per step — Jacobi, Gauss–Seidel, a plain
+Krylov method — is therefore crippled, and needs as many steps as the mesh is wide
+in every direction.
+```
+
+The figure on the same page is a conjugate-gradient solve that "falls to the floor in at
+most one iteration per cell", which is exactly *one step per cell of width*, not *width
+squared* — and conjugate gradients is a Krylov method. The sentence told the reader that
+the thing they were about to watch work cannot work, and it flattened a distinction the
+class is built on: Jacobi and Gauss–Seidel cost the width squared (they have a condition
+number of order the width squared), Krylov costs the width, multigrid costs nothing that
+grows.
+
+**The fix.** Kept the blanket claim as the general rule and separated the three costs:
+
+```
+A method that moves information one cell per step needs a number of steps that grows
+with the width of the mesh. Jacobi and Gauss–Seidel need of order the width squared.
+A Krylov method such as conjugate gradients, which the figure uses, does better — of
+order the width — but still grows. Multigrid is the one whose count does not grow
+with the mesh at all.
+```
+
+**Done means**
+
+- [x] the paragraph states three distinct costs, in the order the page's own figure
+      demonstrates them
+- [x] no sentence on the page says a Krylov method is crippled
+- [x] built `site/numerical-methods/elliptic/index.html` carries the new text
+- [x] the page is still under the 80-column prose limit (`tests/test_page_rules.py`)
+
+## 184 — "Predict first" was answered before the reader could answer it — **done**
+
+**What is wrong.** The prediction on `reading-the-class` asked "how many directions will
+appear, and which class the readout will name", with `A = 1`, `B = 0`, `C = 1` set in the
+open. A point at `B = 0` with `A = C = 1` has a discriminant of `−4`: the class is named in
+the readout beside the drawing and the count is on the plane, so the reader reads the
+answer off the panel instead of committing to one. A prediction the interface already made
+teaches nothing — the reader cannot be wrong, so cannot notice being right.
+
+**The fix.** Moved the question to the knob the reader has to move, and asked for a number
+before the move:
+
+> Set $A = 1$ and $C = 1$, which is Laplace's equation, and leave $B$ at $0$. Before you
+> move anything, write down the value of $B$ at which the point will first show a
+> direction. Then move $B$ and check.
+
+The answer is $B = \pm 2$, from $B^2 - 4AC = 0$ with $AC = 1$: a value the page has not
+printed, that the reader computes from the rule the page just gave, and that the drawing
+confirms on one drag. The figure's own `prompt` in `discriminant.js` was changed to match,
+so the panel and the page ask the same question rather than two.
+
+**Done means**
+
+- [x] the prediction has an answer the page does not already print, computed from the rule
+      the page states
+- [x] the figure's `prompt` and the page's "Predict first" ask the same question
+- [x] `audit site --only discriminant` — 2 measurements (light, dark), no failure
+- [x] `canvas site --only discriminant` — 1 figure, 0 errors
+- [x] `textbook.lint numerical-methods` clean, `tests/test_page_rules.py` green (the longer
+      paragraph was rewrapped to stay under 80 columns)

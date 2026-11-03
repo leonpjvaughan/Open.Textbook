@@ -99,7 +99,6 @@ below is the same list sorted by name.
 | one rule, derivative available | Newton, quasi-Newton (Broyden) | a bad start, or a singular Jacobian |
 | several solutions, and the start decides | Continuation, homotopy | the path has a fold, and you step in $x$ |
 | many unknowns, or a step the model cannot trust | Levenberg–Marquardt, trust region | the linear algebra is the cost |
-<!-- table: cards -->
 | a map that shrinks the error | [Fixed-point iteration](../techniques/#fixed-point-iteration) | the map must be a contraction |
 
 <!-- table: cards -->
@@ -113,7 +112,6 @@ below is the same list sorted by name.
 | [Fixed-point iteration](../techniques/#fixed-point-iteration) | Repeats a map that shrinks the error | The map is a contraction | The map expands; most interesting cases |
 | [Continuation, homotopy](../techniques/#continuation) | Solves a sequence from a known case | Several solutions, toggle points | The path has a fold and you step in $x$ |
 | [Levenberg–Marquardt](../techniques/#levenberg-marquardt) | Damped least squares | Overdetermined or near-singular systems | A square, well-conditioned system |
-<!-- table: cards -->
 | [Trust region](../techniques/#trust-region) | Limits the step to where the model is trusted | The linear model is poor far from the answer | Cheap, well-scaled problems |
 
 ## Systems that live here
@@ -137,7 +135,6 @@ below is the same list sorted by name.
 | It oscillates and never settles | The step is too large, or the Jacobian is wrong | Damping or a line search; check the Jacobian by differences |
 | It fails exactly at a limit position | The Jacobian is singular at a toggle | Arc-length [continuation](../techniques/#continuation), or re-parameterise the step |
 | It reports no solution | The model is infeasible, not the solver | Check the residual at the start; the rule may be contradictory |
-<!-- table: cards -->
 | Two unknowns moved in opposite directions | The system is ill-conditioned | Scale the variables; check for redundancy |
 
 ## Used in this collection

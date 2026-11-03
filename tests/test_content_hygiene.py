@@ -274,3 +274,80 @@ def test_a_reference_with_no_link_is_not_left_in_brackets():
         "a section reference has no link target, so it prints its own brackets:\n  "
         + "\n  ".join(offenders)
     )
+
+
+# --- a table marker has to start a table ----------------------------------------
+#
+# `<!-- table: cards -->` is read by `wrap_tables` in `pipeline.py`, which turns the
+# table that follows into one card per row on a phone. The marker is a comment, so if
+# it lands anywhere else — between a header and its body, or between two body rows —
+# Markdown ends the table there and prints the row below it as a paragraph of pipes:
+#
+#   | Upper wishbone to the upright, at the joint | 1 | 2 |
+#
+# A sweep for the wider-font tables inserted 127 markers and put **75** of them
+# inside a table, on 42 files, in ten books. Nothing failed: the build
+# exits 0, the page renders, and the damage is a line of vertical bars in the prose.
+# This is the positional rule the sweep should have used. It is not a column count —
+# every fragment still had its header's arity, so a count finds nothing.
+
+CARD_MARKER = "<!-- table: cards -->"
+#: The row that makes a header a table: pipes, dashes and optional alignment colons.
+SEPARATOR = re.compile(r"^\|[\s:|-]+\|?$")
+
+
+def card_markers_without_a_table(text: str) -> list[int]:
+    """Line numbers of markers that are not followed by a header and a separator."""
+    lines = text.splitlines()
+    fenced = False
+    offenders: list[int] = []
+    for index, line in enumerate(lines):
+        if line.lstrip().startswith("```"):
+            fenced = not fenced
+            continue
+        if fenced or line.strip() != CARD_MARKER:
+            continue
+        after = [row.strip() for row in lines[index + 1 :] if row.strip()]
+        if (
+            len(after) < 2
+            or not after[0].startswith("|")
+            or not SEPARATOR.match(after[1])
+        ):
+            offenders.append(index + 1)
+    return offenders
+
+
+def test_a_card_table_marker_starts_a_table():
+    """A marker mid-table splits it, and the orphan row prints its own pipes."""
+    offenders = []
+    for book in books.discover_books():
+        for path in sorted(book.docs.rglob("*.md")):
+            if "assets/data" in path.parts:
+                continue
+            for number in card_markers_without_a_table(
+                path.read_text(encoding="utf-8")
+            ):
+                offenders.append(f"{path}:{number}")
+    assert not offenders, (
+        "a `<!-- table: cards -->` marker is not directly above a table's header row, "
+        "so Markdown ends the table there and prints the next row as a line of pipes. "
+        "Move the marker above the header, or merge the fragment into the table it "
+        "belongs to:\n  " + "\n  ".join(offenders)
+    )
+
+
+def test_the_card_marker_gate_fires_on_a_split_table():
+    """The rule must catch the exact shape the 2026-11-03 sweep produced.
+
+    Three placements, one right and two wrong: above the header passes; between the
+    header and its body fails; between two body rows fails. A marker inside a fenced
+    block is code that shows the marker, not a marker.
+    """
+    good = "<!-- table: cards -->\n| a | b |\n|---|---|\n| 1 | 2 |\n"
+    split_body = "| a | b |\n|---|---|\n<!-- table: cards -->\n| 1 | 2 |\n"
+    split_header = "| a | b |\n<!-- table: cards -->\n|---|---|\n| 1 | 2 |\n"
+    quoted = "```\n<!-- table: cards -->\nnot a table\n```\n"
+    assert card_markers_without_a_table(good) == []
+    assert card_markers_without_a_table(split_body) == [3]
+    assert card_markers_without_a_table(split_header) == [2]
+    assert card_markers_without_a_table(quoted) == []

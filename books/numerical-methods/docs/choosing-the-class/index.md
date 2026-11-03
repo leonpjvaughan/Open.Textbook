@@ -16,10 +16,10 @@ it comes after the other two.
 ## The same equations, one of which cannot be evolved
 
 Take the Einstein equations. Written with **elliptic** coordinate conditions, a
-change anywhere inside the region has to be felt everywhere at once. A solver
-cannot do that: to compute the next moment it would need the answer at the same
-moment. Written with **hyperbolic** conditions, information travels at a finite
-speed and the calculation runs.
+change anywhere inside the region has to be felt everywhere at once. A
+time-stepping solver cannot march that forward: to compute the next moment it
+would need the answer at the same moment. Written with **hyperbolic**
+conditions, information travels at a finite speed and the calculation runs.
 
 The equations did not change. The physics did not change. What changed is the
 kind of problem the same physics became, and the difference is the difference

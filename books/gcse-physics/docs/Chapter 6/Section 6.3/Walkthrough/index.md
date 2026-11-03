@@ -48,7 +48,6 @@ a job and its own insulation colour.
 |---|---|---|
 | Live | Brown | Carries the alternating potential difference from the supply |
 | Neutral | Blue | Completes the circuit |
-<!-- table: cards -->
 | Earth | Green and yellow stripes | A safety wire, to stop the appliance becoming live |
 
 The potential difference between the live wire and earth is about 230 V. The
@@ -122,7 +121,6 @@ The table compares the two supplies you are most likely to meet.
 | Kind of current | Direct (d.c.) | Alternating (a.c.) |
 | Direction | One direction only | Changes direction |
 | Typical potential difference | 1.5 V to 12 V | About 230 V |
-<!-- table: cards -->
 | Frequency | 0 Hz | 50 Hz |
 
 > **Watch out.** The neutral wire is at about 0 V, but it is not the same wire as

@@ -51,9 +51,10 @@ statement on the [elliptic page](../elliptic/index.md) that a change at one edge
 is felt everywhere at once.
 
 **Predict first.** The plane below holds one point, and the directions the
-equation allows through it. Set $A = 1$, $B = 0$ and $C = 1$, which is Laplace's
-equation, and write down what you expect: how many directions will appear, and
-which class the readout will name.
+equation allows through it. Set $A = 1$ and $C = 1$, which is Laplace's
+equation, and leave $B$ at $0$. Before you move anything, write down the value
+of $B$ at which the point will first show a direction. Then move $B$ and
+check.
 
 :::figure discriminant
 

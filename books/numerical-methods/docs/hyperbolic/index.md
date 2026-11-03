@@ -114,7 +114,6 @@ below is the same list sorted by name.
 | shocks, and you want order away from them | WENO, limiters, discontinuous Galerkin | the limiter costs accuracy at a smooth extremum |
 | smooth, and a fine mesh you can afford | Lax–Wendroff, spectral element | a shock makes it ring |
 | linear advection on a coarse mesh | [Upwind](../techniques/#upwind) | numerical diffusion |
-<!-- table: cards -->
 | a wave that must stay bounded over a long run | [Symplectic integration](../techniques/#symplectic-integration) | the structure has to be there to preserve |
 
 <!-- table: cards -->
@@ -128,7 +127,6 @@ below is the same list sorted by name.
 | [WENO, limiters](../techniques/#weno) | High order away from a shock, low across it | Shocks and smooth parts in one problem | A smooth answer, where high order alone is cheaper |
 | [Discontinuous Galerkin](../techniques/#discontinuous-galerkin) | High order inside each cell, with a flux between | Complex geometry, high order, parallel machines | Strictly bounded problems without a limiter |
 | [Spectral element](../techniques/#spectral-element) | High order on large elements | Smooth waves over long times | Shocks |
-<!-- table: cards -->
 | [Symplectic integration](../techniques/#symplectic-integration) | Preserves the structure of a Hamiltonian problem | Long-time wave and orbit problems | Dissipative problems |
 
 ## Systems that live here
@@ -153,7 +151,6 @@ below is the same list sorted by name.
 | It blows up at a step that worked before | CFL crossed, usually by a finer mesh | Reduce the step, and compute it from the fastest wave |
 | A rarefaction has a jump in it | The Riemann solver has no entropy fix | Add one |
 | Energy grows without a source | A method that does not respect the structure | Symplectic or energy-preserving integration |
-<!-- table: cards -->
 | The boundary at the outlet reflects | A value was applied where information leaves | A one-sided, non-reflecting condition |
 
 ## Used in this collection

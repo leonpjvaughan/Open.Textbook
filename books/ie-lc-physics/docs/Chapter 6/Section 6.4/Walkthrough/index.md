@@ -144,7 +144,6 @@ Here are four real orbits around the Earth.
 | Space station | $6.78 \times 10^{6}$ | $5.56 \times 10^{3}$ |
 | Navigation satellite | $2.66 \times 10^{7}$ | $4.32 \times 10^{4}$ |
 | Communications satellite | $4.22 \times 10^{7}$ | $8.64 \times 10^{4}$ |
-<!-- table: cards -->
 | Moon | $3.84 \times 10^{8}$ | $2.36 \times 10^{6}$ |
 
 **Predict.** Before you calculate anything, write down whether you expect the quantity
