@@ -8450,7 +8450,7 @@ Evidence: `textbook.lint` clean over 2,614 pages; `tools check-mobile site` — 
 errors; `canvas site` — 253 figures, 0 errors; `pytest tests/ -q` — **8,823 passed, 50
 skipped**.
 
-## 175 — The hardest idea in `maths-applied` is drawn nowhere
+## 175 — The hardest idea in `maths-applied` was drawn nowhere — **done**
 
 **What is wrong.** §1.4 is where a reader meets a singular value decomposition, a left
 null space, and the sentence "the two legs are one equation". The page's only figure is
