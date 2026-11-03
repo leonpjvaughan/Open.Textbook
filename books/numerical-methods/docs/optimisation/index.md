@@ -76,6 +76,7 @@ with its price and what it will not do.
 of you, the methods that fit it, and what the fit costs. The method-keyed table
 below is the same list sorted by name.
 
+<!-- table: cards -->
 | what your model is | the methods that fit | the price |
 |---|---|---|
 | no constraints, and a derivative you can compute | Gradient descent, Newton, quasi-Newton (BFGS) | the step length is a separate decision |
@@ -83,6 +84,7 @@ below is the same list sorted by name.
 | a sum of squares you are fitting | [Gauss–Newton](../techniques/#gauss-newton) | the Jacobian is the cost |
 | constraints that are linear or smooth | Simplex method, interior point, sequential quadratic programming | the constraint handling is the code |
 | a function you can only sample, or one with noise | Stochastic gradient, Adam, Bayesian optimisation | many runs, and no guarantee |
+<!-- table: cards -->
 | several local answers | [Multistart](../techniques/#multistart) | the cost multiplies by the number of starts |
 
 <!-- table: cards -->
@@ -98,6 +100,7 @@ below is the same list sorted by name.
 | [Sequential quadratic programming](../techniques/#sequential-quadratic-programming) | Solves a quadratic model at each step | Smooth non-linear constraints | Constraints that are noisy or discontinuous |
 | [Stochastic gradient, Adam](../techniques/#stochastic-gradient) | Samples the objective | Machine learning, huge data sets | You need a precise optimum |
 | [Multistart](../techniques/#multistart) | Runs a local method from many starts | Many local minima, cheap runs | Expensive runs; better to use a surrogate |
+<!-- table: cards -->
 | [Bayesian optimisation](../techniques/#bayesian-optimisation) | Fits a surrogate and chooses where to look | Very expensive evaluations | Cheap evaluations; a grid would do |
 
 ## Systems that live here
@@ -112,12 +115,14 @@ below is the same list sorted by name.
 
 ## What goes wrong
 
+<!-- table: cards -->
 | symptom | cause | fix |
 |---|---|---|
 | It converged, but to a worse answer than a colleague's | A different local minimum | [Multistart](../techniques/#multistart), or make the model convex |
 | The answer sits on a constraint boundary | The constraint was handled as a penalty | Use the KKT system, or an [interior point](../techniques/#interior-point) method |
 | It zig-zags and crawls | Variables on wildly different scales | Scale them; use a [quasi-Newton](../techniques/#quasi-newton-broyden) method |
 | It stops on a flat region, far from the bottom | Gradient tolerance met too early | Tighten it, restart, or check the curvature |
+<!-- table: cards -->
 | Every evaluation costs a day | The model is the computer run | Surrogate model, then optimise the surrogate |
 
 ## Used in this collection

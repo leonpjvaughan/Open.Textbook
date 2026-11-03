@@ -62,11 +62,13 @@ A reading can never be more precise than the resolution. The true value may lie
 anywhere within half a division of the mark, so the **reading uncertainty** is
 half the smallest division.
 
+<!-- table: cards -->
 | Instrument | Smallest division | Uncertainty in one reading |
 |---|---|---|
 | Metre rule | 1 mm | 0.5 mm |
 | Vernier caliper | 0.1 mm | 0.05 mm |
 | Micrometer | 0.01 mm | 0.005 mm |
+<!-- table: cards -->
 | Stopwatch | 0.01 s | 0.005 s from the display alone |
 
 **Worked example 2.** A stack of 100 sheets of paper is 12 mm thick. Find the
@@ -122,10 +124,12 @@ in two kinds.
 
 **Worked example 4.** Classify each error and say how to reduce it.
 
+<!-- table: cards -->
 | Error | Kind | How to reduce it |
 |---|---|---|
 | A balance reads 0.05 g when empty | Systematic | Zero the balance before use |
 | Reaction time on a stopwatch | Random | Repeat the timing and take the mean |
+<!-- table: cards -->
 | A thermometer reads 0.5 °C too high | Systematic | Check it at a known fixed point and correct |
 
 > **Watch out.** A small resolution does not make a result accurate. A digital

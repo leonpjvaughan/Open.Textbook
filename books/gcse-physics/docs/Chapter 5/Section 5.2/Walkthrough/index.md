@@ -130,6 +130,7 @@ speed make the ray bend? Write your answer in two or three sentences.
 Each group of the spectrum has uses that follow from how it interacts with
 matter. Some groups are also dangerous if a person receives too much.
 
+<!-- table: cards -->
 | Group | A use | A danger |
 |---|---|---|
 | Radio waves | Broadcasting and communication. | None at normal power. |
@@ -138,6 +139,7 @@ matter. Some groups are also dangerous if a person receives too much.
 | Visible light | Seeing, photography and fibre-optic communication. | Bright light can damage the eye. |
 | Ultraviolet | Sunbeds, and vitamin D production in the skin. | Skin damage, and damage to the eyes. |
 | X-rays | Imaging bones and luggage. | Ionising, so it can damage cells. |
+<!-- table: cards -->
 | Gamma rays | Sterilising equipment, and treating cancer. | Ionising, so it can damage cells. |
 
 Ultraviolet, X-rays and gamma rays are **ionising**. Ionising radiation has

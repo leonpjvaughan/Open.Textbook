@@ -80,11 +80,13 @@ was transverse, and describe the direction in which the coils moved in each case
 
 ## Comparing the two
 
+<!-- table: cards -->
 | | Transverse wave | Longitudinal wave |
 |---|---|---|
 | Direction of vibration | at right angles to the wave | along the wave |
 | Features | crests and troughs | compressions and rarefactions |
 | Examples | light, a wave on a string, a water wave | sound, ultrasound |
+<!-- table: cards -->
 | Can be polarised? | yes | no |
 
 Only a transverse wave can be polarised, because its vibration has a direction at right

@@ -67,10 +67,12 @@ $$
 **Example 1.** The table shows some grouped data. Complete the frequency density
 column.
 
+<!-- table: cards -->
 | Class | Class width | Frequency | Frequency density |
 |---|---|---|---|
 | $0$–$10$ | 10 | 20 | 2 |
 | $10$–$20$ | 10 | 35 | 3.5 |
+<!-- table: cards -->
 | $20$–$40$ | 20 | 30 | 1.5 |
 
 For the first row, $\dfrac{20}{10} = 2$. For the second, $\dfrac{35}{10} = 3.5$.

@@ -86,6 +86,7 @@ its price and what it will not do.
 of you, the methods that fit it, and what the fit costs. The method-keyed table
 below is the same list sorted by name.
 
+<!-- table: cards -->
 | what your model is | the methods that fit | the price |
 |---|---|---|
 | anything you can run | [Monte Carlo](../techniques/#monte-carlo) | a slow $1/\sqrt{N}$ |
@@ -95,6 +96,7 @@ below is the same list sorted by name.
 | a distribution known up to a constant | [Markov chain Monte Carlo](../techniques/#markov-chain-monte-carlo) | the samples are correlated |
 | a state moving as data arrive | Particle filter, sequential Monte Carlo | the cloud has to be large |
 | a linear model with Gaussian noise | [Kalman filter](../techniques/#kalman-filter) | non-linear, or multi-modal, and it fails |
+<!-- table: cards -->
 | data, and no formula | [Bootstrap](../techniques/#bootstrap) | small or dependent samples |
 
 <!-- table: cards -->
@@ -109,6 +111,7 @@ below is the same list sorted by name.
 | [Particle filter, sequential Monte Carlo](../techniques/#particle-filter) | Carries a cloud of weighted samples through time | State estimation as data arrive | Very high dimension |
 | [Kalman filter](../techniques/#kalman-filter) | Exact update for linear models with Gaussian noise | The model is linear and the noise is Gaussian | Non-linear, or multi-modal state |
 | [Bootstrap](../techniques/#bootstrap) | Resamples your data to get an error bar | You have data and no formula | Very small samples; dependent data |
+<!-- table: cards -->
 | [Gaussian quadrature](../techniques/#gaussian-quadrature) | Chooses points and weights exactly | Smooth, low-dimensional integrands | Dimension above about ten |
 
 ## Systems that live here
@@ -125,12 +128,14 @@ below is the same list sorted by name.
 
 ## What goes wrong
 
+<!-- table: cards -->
 | symptom | cause | fix |
 |---|---|---|
 | A tiny error bar, and the answer is wrong | Samples were not independent, or the model is biased | Check the autocorrelation and the model |
 | The chain never settles | The target has not been normalised, or the support is wrong | Fix the model before tuning the sampler |
 | A rare event never appears | Plain sampling, and the event is rare | [Importance sampling](../techniques/#importance-sampling) or subset simulation |
 | Ten million samples and still noisy | The variance of $g$ is large | A control variate, or a quasi-random sequence |
+<!-- table: cards -->
 | A different run gives a different answer | That is the method, not a bug | Report the error bar, and the seed |
 
 ## The working under this page
@@ -138,11 +143,13 @@ below is the same list sorted by name.
 Four pages take one method family each and carry the algebra, a program and the
 theory. They are optional: the class page is complete without them.
 
+<!-- table: cards -->
 | Page | What it settles |
 |---|---|
 | [An average, and its error bar](error-bars/index.md) | The variance of an estimate, the $\sigma/\sqrt N$ rate, and what a two-standard-error bar means |
 | [When the samples are not independent](correlated/index.md) | Autocorrelation, the integrated autocorrelation time, and the effective sample size |
 | [Walking a chain that settles](mcmc/index.md) | Metropolis, detailed balance, R-hat and the effective sample size |
+<!-- table: cards -->
 | [Fitting, and what the fit does not say](regression/index.md) | Least squares as maximum likelihood, the normal equations, and the slope's standard error |
 
 ## Used in this collection

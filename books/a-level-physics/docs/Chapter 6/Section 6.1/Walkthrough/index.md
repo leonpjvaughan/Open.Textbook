@@ -30,9 +30,11 @@ each piece of rope stays near where it started.
 
 The particles can move in two ways, and this gives two families of wave.
 
+<!-- table: cards -->
 | Type | How the particles move | Examples |
 |---|---|---|
 | **Transverse** | at right angles to the direction of travel | light, a wave on a string, a wave on water |
+<!-- table: cards -->
 | **Longitudinal** | along the direction of travel | sound, a push along a spring |
 
 A longitudinal wave has **compressions**, where the particles are crowded
@@ -48,6 +50,7 @@ longitudinal, so it has no direction of vibration that you can see from the side
 | Amplitude | $A$ | the maximum displacement | m |
 | Wavelength | $\lambda$ | the distance between two neighbouring points in step | m |
 | Period | $T$ | the time for one complete wave to pass | s |
+<!-- table: cards -->
 | Frequency | $f$ | the number of waves passing a point each second | Hz |
 
 Frequency and period are reciprocals:
@@ -138,9 +141,11 @@ For two sources that started in step, the phase at a point depends on how far
 each wave has travelled. Call the difference in the distances the **path
 difference** $\Delta x$.
 
+<!-- table: cards -->
 | Path difference | Phase difference | Result |
 |---|---|---|
 | $n\lambda$ | $0^\circ$, $360^\circ$, … | constructive |
+<!-- table: cards -->
 | $(n + \tfrac{1}{2})\lambda$ | $180^\circ$, $540^\circ$, … | destructive |
 
 Here $n$ is a whole number: 0, 1, 2, ….

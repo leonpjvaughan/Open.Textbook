@@ -26,12 +26,14 @@ changes in an oscillation.
 An **oscillation** is a repeating back-and-forth motion about an equilibrium
 position. Several quantities describe it.
 
+<!-- table: cards -->
 | Quantity | Symbol | Meaning |
 |---|---|---|
 | Displacement | $x$ | distance and direction from the equilibrium position |
 | Amplitude | $A$ | the maximum displacement |
 | Period | $T$ | the time for one complete oscillation |
 | Frequency | $f$ | the number of oscillations per second, $f = 1/T$ |
+<!-- table: cards -->
 | Angular frequency | $\omega$ | $\omega = 2\pi f = \dfrac{2\pi}{T}$ |
 
 The period is measured in seconds, the frequency in hertz, and the angular

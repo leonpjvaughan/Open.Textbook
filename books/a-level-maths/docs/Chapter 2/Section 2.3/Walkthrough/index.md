@@ -25,10 +25,12 @@ A **quadratic function** has the form $y = ax^2 + bx + c$, with $a \neq 0$. Its
 graph is a parabola. The same function can be written in three ways, and each
 way shows a different feature.
 
+<!-- table: cards -->
 | Form | Example | What it shows |
 |---|---|---|
 | Expanded | $y = x^2 - 6x + 5$ | the $y$-intercept, $c = 5$ |
 | Factorised | $y = (x - 1)(x - 5)$ | the roots, $x = 1$ and $x = 5$ |
+<!-- table: cards -->
 | Completed square | $y = (x - 3)^2 - 4$ | the vertex, $(3, -4)$ |
 
 The three forms are equal for every value of $x$. Choosing a form is choosing
@@ -110,10 +112,12 @@ $$
 \Delta = b^2 - 4ac.
 $$
 
+<!-- table: cards -->
 | Value of the discriminant | Number of real roots | The graph |
 |---|---|---|
 | $\Delta > 0$ | two distinct real roots | crosses the $x$-axis twice |
 | $\Delta = 0$ | one repeated real root | touches the $x$-axis once |
+<!-- table: cards -->
 | $\Delta < 0$ | no real roots | never meets the $x$-axis |
 
 The third row is the reason a negative discriminant is useful: it proves that a

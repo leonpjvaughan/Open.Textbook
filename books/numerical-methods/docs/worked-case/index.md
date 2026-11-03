@@ -21,6 +21,7 @@ and this page is about the kinds, not about the corner.
 | Which row is the spare one? | three rules, two unknowns | [linear system](../linear-system/index.md) | one factorisation of a three-by-two matrix |
 | What stiffness should the bush have? | the same corner, swept over stiffness | [optimisation](../optimisation/index.md) | one sweep, and a target to hit |
 | How does the wheel bounce? | mass and a spring, with constraints priced | a [saddle point](../saddle-point/index.md), then [eigenvalues](../eigenvalue/index.md) and the [Hamiltonian flag](../hyperbolic/index.md) | a time step, and a choice of integrator |
+<!-- table: cards -->
 | How hot does the damper get? | a damper, and the heat it makes — not built here | [parabolic](../parabolic/index.md), and stiff | a time step chosen for the wrong scale |
 
 The map has nine kinds, and this collection names six of them. §1.2 and §1.5 say
@@ -87,6 +88,7 @@ the same model:
 | 0.2 MN/m | −1.91° | −0.91° | 1.96° |
 | 1 MN/m | −1.18° | −0.18° | 1.92° |
 | 10 MN/m | −1.02° | −0.02° | 1.91° |
+<!-- table: cards -->
 | 100 MN/m | −1.00° | −0.002° | 1.91° |
 
 The difference column is the bushed camber minus the rigid model's −1.000° at
@@ -157,12 +159,14 @@ arithmetic, not a tree of expressions.
 
 The pipeline has five steps.
 
+<!-- table: cards -->
 | step | what goes in | what comes out |
 |---|---|---|
 | derive | the model's rules | $\Phi$ and $J$ as SymPy expressions |
 | flatten | those expressions | a straight line of scalar assignments |
 | print | the straight line | Rust source |
 | compile | the Rust source | a WebAssembly module |
+<!-- table: cards -->
 | wrap | the module | `kernel.js`, with the binary inlined |
 
 That is the sense behind the phrase *SymPy → Rust → WebAssembly kernel*: SymPy
@@ -207,10 +211,12 @@ method solves both.
 Numerical work uses *kernel* for other things too. Two of them appear in this
 book.
 
+<!-- table: cards -->
 | sense | where you meet it | what it is |
 |---|---|---|
 | integral kernel | [Boundary element](../techniques/#linear-systems) | the function $G(x,y)$ inside the boundary integral |
 | null space | [Saddle point](../saddle-point/index.md) | the vectors $x$ with $Ax=0$ |
+<!-- table: cards -->
 | compiled kernel | this section | the generated solver for one model |
 
 The first is a function you integrate. The second is a set of vectors a matrix

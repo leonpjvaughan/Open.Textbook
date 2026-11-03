@@ -83,6 +83,7 @@ load, same geometry, same travel.
 | 0.2 MN/m | 6.1 mm | −1.91° | −0.91° | 1.96° |
 | 1 MN/m | 1.21 mm | −1.18° | −0.18° | 1.92° |
 | 10 MN/m | 0.12 mm | −1.02° | −0.02° | 1.91° |
+<!-- table: cards -->
 | 100 MN/m | 0.012 mm | −1.00° | −0.002° | 1.91° |
 
 **The table is the exported model's**, and this section's front view gives the
@@ -160,6 +161,7 @@ the two forces agree; what changes is what you are asking for.
 
 ## The agreement panel
 
+<!-- table: cards -->
 | Check | Value |
 |---|---|
 | Camber change over the full travel, rigid model | 1.95° |
@@ -169,6 +171,7 @@ the two forces agree; what changes is what you are asking for.
 | Bush stiffness for a tenth of a degree **at rest** | 1.85 MN/m on the front view, 1.8 on the export's ladder |
 | The front view's ladder against the export's | within 0.04°, over four stiffnesses |
 | Bush stiffness for a tenth of a degree **in the change** | 0.034 MN/m on the front view; the export's softest row, 0.2 MN/m, is already inside it |
+<!-- table: cards -->
 | The trend as stiffness rises | monotone, in the solver's ladder test |
 
 ### The same idea, on a different joint
@@ -178,10 +181,12 @@ ball joint but the **tie rod**, the fore-aft link that sets where the wheel
 points. Its kernel takes that compliance at run time, and the quantity it moves
 is not camber.
 
+<!-- table: cards -->
 | tie-rod compliance | toe | camber |
 |---|---|---|
 | 10⁻⁷ m/N | 0.054° | −0.0015° |
 | 3 × 10⁻⁷ m/N | 0.163° | −0.0044° |
+<!-- table: cards -->
 | 10⁻⁶ m/N | 0.540° | −0.0146° |
 
 The top rung is the model's own default compliance. Ten times softer moves the
@@ -250,11 +255,13 @@ The chapter teaches two, and they answer different questions. They are often
 confused, because each is "check the model against something". Here they are side by
 side, with the number each one produced in this chapter.
 
+<!-- table: cards -->
 | procedure | the question it answers | the number that earned it |
 |---|---|---|
 | **The tolerance comparison** | which model do I need? | 1.85 MN/m for the wheel's angle against 0.034 MN/m for the change — more than fifty times apart |
 | **The tolerance comparison** | and which quantity is the tolerance on? | the same tenth of a degree, attached to two different quantities, gives those two answers |
 | **The limit test** | is this model the generalisation of that one? | 1.91° at 100 MN/m against 1.95° for the rigid model, monotone over four stiffnesses |
+<!-- table: cards -->
 | **The limit test** | and what does it not tell me? | that the model is right — only that it becomes the simpler one at the edge |
 
 Neither replaces the other. The comparison decides which model to build; the limit

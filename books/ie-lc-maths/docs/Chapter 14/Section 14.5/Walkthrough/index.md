@@ -36,6 +36,7 @@ factor is $1$ or $-1$.
 | Translation | unchanged | unchanged | unchanged | unchanged |
 | Reflection | unchanged | unchanged | unchanged | reversed |
 | Rotation | unchanged | unchanged | unchanged | unchanged |
+<!-- table: cards -->
 | Enlargement, factor $k$ | multiplied by $k$ | unchanged | multiplied by $k^2$ | unchanged |
 
 Read the table as a set of promises. A reflection keeps every length and every angle, so
@@ -89,6 +90,7 @@ order of rotational symmetry is $2$. Turning it a quarter-turn does not fit.
 
 ## The symmetry of the common shapes
 
+<!-- table: cards -->
 | Shape | Axes of symmetry | Order of rotational symmetry |
 |---|---|---|
 | Equilateral triangle | 3 | 3 |
@@ -98,6 +100,7 @@ order of rotational symmetry is $2$. Turning it a quarter-turn does not fit.
 | Parallelogram (not a rectangle) | 0 | 2 |
 | Regular hexagon | 6 | 6 |
 | Isosceles triangle | 1 | 1 |
+<!-- table: cards -->
 | Circle | infinitely many | infinitely many |
 
 A regular polygon with $n$ sides has $n$ axes of symmetry and rotational symmetry of

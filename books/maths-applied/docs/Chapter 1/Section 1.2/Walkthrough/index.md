@@ -29,11 +29,13 @@ A rigid body can move in three ways in a plane: two translations and a rotation.
 So three moving bodies have nine degrees of freedom between them. Constraints
 take them away:
 
+<!-- table: cards -->
 | Constraint | How many | Freedoms removed |
 |---|---|---|
 | Lower wishbone to the body, at its axis | 1 | 2 |
 | Upper wishbone to the body, at its axis | 1 | 2 |
 | Lower wishbone to the upright, at the ball joint | 1 | 2 |
+<!-- table: cards -->
 | Upper wishbone to the upright, at the ball joint | 1 | 2 |
 
 Nine minus eight leaves **one**. One number sets the whole mechanism, so if the
@@ -118,6 +120,7 @@ and the readout gives the number.
 | −20 mm | −2.7° | −1.46° | 1.88 m inboard, 0.16 m up | 33 mm |
 | 0 mm | 0.0° | −1.00° | 1.60 m inboard, 0.06 m up | 19 mm |
 | +20 mm | 2.7° | −0.49° | 1.36 m inboard, 0.02 m down | 5 mm |
+<!-- table: cards -->
 | +40 mm | 5.4° | +0.08° | 1.15 m inboard, 0.08 m down | −9 mm |
 
 Distances in the instant-centre column are measured from the car's centreline.
@@ -147,10 +150,12 @@ routes to the same answer. They are the two-circle construction above, the
 general Newton iteration that [§1.3](../../section-1.3/learn/) meets, and the
 package's compiled kernel.
 
+<!-- table: cards -->
 | Check | Value |
 |---|---|
 | Camber over the whole travel, from the construction above | −1.87° to +0.08° |
 | Camber from the generated kernel in three dimensions | within **0.033°** of the construction, over the range in the figure above |
+<!-- table: cards -->
 | The package's own two routes, `agreement.max_abs_diff` | **2 × 10⁻¹³** |
 
 The last row is read from the vendored `out.js`, not typed here; the middle one
