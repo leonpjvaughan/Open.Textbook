@@ -8383,6 +8383,15 @@ container at 390px, and is not table--cards`, and restoring it returns to 0.
 Evidence: `scripts/check.sh` — all checks passed, with the new step in it; `tools help
 --check` — 12 commands, 40 flags, every one named; `pytest tests/ -q` in the gate.
 
+**Twenty pixels of slack, added after the runner disagreed.** The first release run failed
+on seven tables 6–17px over: a table's width is its text's, and a machine without the site's
+font measures the same table wider. A sweep under a **monospace** override was used to find
+and mark 127 more tables across 38 pages, and the runner still found seven — different fonts
+disagree in both directions, so no second font is a proof. The rule is therefore a
+**20px** slack: a line of text at the smallest label size, below which the last column loses
+less than a character, and still far under the item's 40px example. Everything the sweep
+could see is marked anyway, so the slack is the margin and not the fix.
+
 ## 177 — `:::contents` was opt-in, and 767 pages were over the hook's own threshold — **done**
 
 **What is wrong.** `hooks/contents.py` refuses to render below five `h2`s, which is a
