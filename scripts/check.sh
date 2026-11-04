@@ -100,6 +100,19 @@ else
   echo "playwright is not available here; the phone-width checks run in the preview job"
 fi
 
+step "figures inside their frames in a wider font"
+# **A label's width is its font's.** Ten figures drew their ink past their own `viewBox`
+# only on a machine whose font is wider than the site's, and each was found by a release
+# run and not by this gate. `canvas --font monospace` asks the question the runner asks:
+# the loader's `fitText` narrows a label that leaves the frame, so the sweep is 0 here and
+# 0 there.
+if node -e 'require(process.env.PLAYWRIGHT_PATH || "playwright")' 2>/dev/null \
+   || node -e 'require("/home/leon/.local/share/mise/installs/npm-playwright/latest/node_modules/playwright")' 2>/dev/null; then
+  node tools/dist/cli.js canvas site --font monospace
+else
+  echo "playwright is not available here; the canvas sweep runs in the preview job"
+fi
+
 step "no maths rendering errors"
 if grep -rl 'math-error' site --include='*.html'; then
   echo "KaTeX failed to render at least one expression" >&2
