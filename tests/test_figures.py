@@ -938,3 +938,21 @@ def test_a_figure_that_draws_outside_its_viewbox_is_caught():
         "the canvas rules no longer catch what they were written for.\n"
         f"{result.stdout[-3000:]}\n{result.stderr[-2000:]}"
     )
+
+
+def test_the_loader_keeps_a_label_inside_its_frame_in_any_font():
+    """Item 181's cousin: a label's width is its font's, so the frame has the last word.
+
+    Ten figures measured clean here and drew their ink outside their own `viewBox` on a
+    machine whose font is wider than the site's. The loader now measures every `<text>`
+    after it is drawn and narrows one that leaves the frame with `textLength`, and it
+    watches the **host** rather than the `svg`, because a figure that re-panels on a
+    control replaces its own frame.
+    """
+    loader = (repo_root() / "assets" / "figures" / "figures.js").read_text(encoding="utf-8")
+    assert "function fitText(svg)" in loader
+    assert 'text.setAttribute("textLength"' in loader
+    assert "MutationObserver(fit).observe(this" in loader
+
+    surface = (repo_root() / "tools" / "src" / "commands" / "canvas.ts").read_text(encoding="utf-8")
+    assert "font: {" in surface, "canvas has no --font, so no sweep can ask a wider font"

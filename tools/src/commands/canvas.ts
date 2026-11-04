@@ -74,6 +74,10 @@ export const SURFACE: Surface = {
       kind: "boolean",
       help: "run the rules' own cases under plain node, and no browser",
     },
+    font: {
+      kind: "string",
+      help: "measure with every label in this font family, to find labels a reader's font grows past the frame",
+    },
   },
 };
 
@@ -259,6 +263,11 @@ export async function run(argv: string[]): Promise<number> {
   const only = values.only ? String(values.only) : "";
   const jsonOut = values.json ? String(values.json) : "";
   const jobs = Math.max(1, Math.min(Number(values.jobs) || 1, 8));
+  // **A label's width is its font's.** A machine without the site's font measures the same
+  // label wider, and two labels written today passed here and failed on the runner for
+  // exactly that. `--font monospace` re-measures the whole collection under a font that is
+  // wider than the site's, so a sweep can ask the question the runner asks.
+  const font = values.font ? String(values.font) : "";
 
   const pages = discoverFigures(siteDir);
   let slugs = Object.keys(pages).sort();
@@ -305,6 +314,7 @@ export async function run(argv: string[]): Promise<number> {
           // there afterwards is the one to measure, so the failure is swallowed and the
           // wait below decides whether a figure arrived.
           await page.goto(`${ORIGIN}${route}`, { waitUntil: "load" }).catch(() => {});
+          if (font) await page.addStyleTag({ content: `svg text { font-family: ${font} !important; }` }).catch(() => {});
           // Wait for the figure to mount, not for a fixed pause: every figure here is
           // drawn by a module that may await a kernel, and 60ms of sleep measured the
           // empty frame before it drew — which reads as a clean result.
@@ -395,6 +405,7 @@ export async function run(argv: string[]): Promise<number> {
       for (const route of pages[slug]!) {
         try {
           await page.goto(`${ORIGIN}${route}`, { waitUntil: "load" }).catch(() => {});
+          if (font) await page.addStyleTag({ content: `svg text { font-family: ${font} !important; }` }).catch(() => {});
           // The same mount wait as the first pass: a kernel figure is slower than 600ms,
           // and a retry that waits less than the pass it is repeating measures less.
           await page

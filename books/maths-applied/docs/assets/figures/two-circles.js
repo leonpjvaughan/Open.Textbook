@@ -212,11 +212,13 @@ export function mount(el) {
       class: "text-ink",
     });
 
+  // Anchored to the right edge, not the left: a label's width is its font's, and this one
+  // was 28 units outside the frame on a machine without the site's font.
   drawing += label({
-    x: LEGEND,
+    x: WIDTH - 16,
     y: 44,
     text: "the front view, in metres",
-    anchor: "start",
+    anchor: "end",
     size: SIZE.value,
     class: "text-ink",
   });
