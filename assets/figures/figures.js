@@ -19,7 +19,11 @@
 //
 // Pure HTML + ES module, so it needs no bundler and no DOM polyfill.
 
-/** Keep every label inside the frame it was drawn in, in whatever font is loaded. */
+/**
+ * Keep every label inside the frame it was drawn in, in whatever font is loaded.
+ *
+ * @param {SVGSVGElement} svg
+ */
 function fitText(svg) {
   const box = svg.viewBox && svg.viewBox.baseVal;
   const width = (box && box.width) || svg.clientWidth;
