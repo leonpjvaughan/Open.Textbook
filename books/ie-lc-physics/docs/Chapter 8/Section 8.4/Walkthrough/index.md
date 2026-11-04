@@ -80,7 +80,6 @@ space and are absorbed by the Earth.
 |---|---|---|
 | Conduction | particle collisions | yes, particles in contact |
 | Convection | moving fluid | yes, a liquid or a gas |
-<!-- table: cards -->
 | Radiation | infrared waves | no |
 
 ## Slowing the transfer of energy

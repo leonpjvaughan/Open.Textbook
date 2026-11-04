@@ -113,7 +113,6 @@ table:
 <!-- table: cards -->
 | $x$ | below $1$, say $x = 0$ | $x = 1$ | above $1$, say $x = 2$ |
 |---|---|---|---|
-<!-- table: cards -->
 | $f''(x) = 6x - 6$ | $-6$, concave | $0$ | $6$, convex |
 
 The second derivative changes from negative to positive, so $x = 1$ is a point

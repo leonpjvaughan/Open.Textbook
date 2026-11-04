@@ -104,8 +104,9 @@ export function mount(el) {
       "drawing a line of arithmetic gives B squared minus four A C and the class it " +
       "names.",
     prompt:
-      "Set A = 1, B = 0 and C = 1, the coefficients of Laplace's equation. Before you " +
-      "move anything: how many directions will the point show, and what will the class be?",
+      "Set A = 1 and C = 1, which is Laplace's equation, and leave B at 0. Before you " +
+      "move B, write down the value at which the point first shows a direction. Then move " +
+      "it and check.",
     width: WIDTH,
     height: HEIGHT,
   });

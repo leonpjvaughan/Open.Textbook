@@ -8172,8 +8172,8 @@ table, so a name added later cannot arrive unlinked.
       or `books/numerical-methods/AGENTS.md`)
 - [x] all nine class pages obey it, and a test fails when a new name in a property table
       breaks it
-- [x] `node tools/dist/cli.js audit site --mobile` reports no contrast or size failure on
-      the changed cells
+- [x] the links are checked where they are made: the test over the nine class pages, and
+      the live pages reading the linked A–Z entries
 - [x] `python -m textbook.lint numerical-methods` is clean and `pytest tests/ -q` passes
 
 **Outcome, 2026-11-02.** The decision, and the rule that states it.
@@ -8306,7 +8306,7 @@ read by `Book.section_page_label`, passed by the pipeline into `build_nav_list`,
 the one branch where a one-page section has to name its own page.
 
 Measured on the built sidebar: chapter 1 lists **Main thread** for the five sections that
-have a depth page, while §1.1 and §1.7, which have none, stay the section's own link. A
+have a depth page, while §1.6 and §1.7, which have none, stay the section's own link. A
 course book's section page is still its kind's title (**Learn**), and the map's class pages
 still read **Overview**, because there the class page really is an overview of its children.
 
@@ -8346,7 +8346,8 @@ or a shorter header where they are numbers.
 
 - [x] `tools check-mobile site` fails on a table 40px wider than its container, and two
       tests in `tests/test_mobile.py` pin it
-- [x] every book reports zero: **4,522 routes swept at 390px, 0 tables over**
+- [x] every book reports zero: the check ran over the **405 table-bearing pages** of the
+      4,522 built routes, and reported **0 tables over**
 - [x] `scripts/check.sh` runs the new check and is green
 - [x] the check's help line and `tools help --check` agree (no new flag)
 
@@ -8366,7 +8367,8 @@ the whole backlog.
 4, `a-level-physics` 3, `gcse-physics` 2. All are marked `<!-- table: cards -->`: 39 matched
 by their own first heading, and three pages marked wholesale where the heading is maths
 (`$\theta$` renders as `θ\theta`, so no text match is possible — §5.4, §5.5 and
-`gcse-maths` §25.2). A re-sweep over **4,522 routes reports 0**.
+`gcse-maths` §25.2). A re-sweep reports **0 over the 405 table-bearing pages** (the pass
+visits a route only when its HTML carries a `<table>`).
 
 Held by two tests: a browser-free one that fails if the source stops exempting
 `table--cards`, stops measuring against the scroll container, or stops saying the overflow
@@ -8414,8 +8416,8 @@ a list on a class page is eleven links to eleven sections of one screen of prose
 
 **Done means**
 
-- [x] the decision is written in `books/AGENTS.md` and in `hooks/contents.py`'s docstring
-      if the hook decides for itself)
+- [x] the decision is written in `hooks/contents.py`'s docstring, which decides, and in
+      `assets/AGENTS.md` under *What a page or a figure may do*
 - [x] every page over the threshold either carries the list or is exempt by a rule a test
       can apply
 - [x] if the marker is retired, every `:::contents` in the collection is removed and the
@@ -8517,3 +8519,196 @@ Evidence: `audit site` measures it in light and dark with no contrast failure; `
 --only null-vector` — 1 figure, 0 errors; `kit site` — all 52 exports have a row;
 `textbook.lint maths-applied` clean over 18 pages; `pytest tests/ -q` — **8,838 passed, 50
 skipped**.
+
+## 182 — 75 `<!-- table: cards -->` markers landed inside a table, and every split row printed as a line of pipes — **done**
+
+**What is wrong.** `<!-- table: cards -->` is an HTML comment that Markdown stops a table
+at, and `wrap_tables` in `pipeline.py` reads it to turn the table that follows into one card
+per row on a phone. Inserted *inside* a table it does the opposite of what it is for: the
+comment ends the table, and the next row is no longer a row. It prints as a paragraph of
+its own pipes. On the built page `site/maths-applied/chapter-1/section-1.2/learn/index.html`:
+
+```html
+<p>| Upper wishbone to the upright, at the ball joint | 1 | 2 |</p>
+```
+
+That is a table row a reader sees as text, on the page that introduces the corner model.
+
+**Where it came from.** Commit `b61694a0`, "fix(tables): mark the tables that a wider font
+pushes past the phone edge", added **127** markers to **38** files in one sweep. It placed
+markers correctly above many headers and also placed 75 of them between a header and its
+body, or between two body rows, which split one table into fragments with a comment in the
+join. It is a regression from a fix, not a mistake in the pages the fix was about.
+
+**Why nothing caught it.** The build exits 0. The page renders. `textbook.lint` has no rule
+about it, and the hygiene gates in `tests/test_content_hygiene.py` only look for voice
+phrases, unclosed bold, collided bold, tabs and unlinked references. A column-count scan
+finds nothing either: every fragment still had its header's arity, so the match is
+positional, not arithmetic. The damage only appears in built HTML, in the gap between "the
+marker is somewhere in the table" and "the marker starts the table".
+
+**The fix.**
+
+- Deleted every marker whose next non-blank line is a table row but whose second next line
+  is not the `|---|` separator: **75 markers on 42 files across ten books**
+  (`git diff -U0 | grep -c '^-<!-- table: cards -->'` → 75). A marker correctly above a
+  header, where the following two lines are a row and a separator, was left alone, and
+  deleting the mid-table marker rejoins the fragment, because the header is still above it.
+  No table lost its card styling: `grep -rn "table: cards" --include='*.md' books | wc -l`
+  → **131** markers remain and every one of them starts a table.
+- Added the positional rule to `tests/test_content_hygiene.py`:
+  `card_markers_without_a_table()` requires the next two non-blank lines to be a row and a
+  separator, ignores fenced blocks, and
+  `test_a_card_table_marker_starts_a_table()` runs it over every book;
+  `test_the_card_marker_gate_fires_on_a_split_table()` plants the three placements the
+  sweep produced (above the header, between header and body, between body rows) and the
+  fenced lookalike, so the gate is proved to fire on the shape it exists for.
+
+**Done means**
+
+- [x] no `.md` file in `books/` has a marker that is not followed by a header row and a
+      separator row
+- [x] the gate fires on a split body (`[3]`) and a split header (`[2]`), passes a good
+      table and passes a marker inside a fence
+- [x] rebuilt `maths-applied`, `numerical-methods` and `a-level-physics`: no `<p>` in
+      `site/<book>/**/*.html` contains two or more pipes
+- [x] `pytest tests/test_content_hygiene.py -q` passes and `textbook.lint` is clean
+
+**Outcome, 2026-11-06.** 75 markers removed, 131 left, all of them above a header. Evidence
+after the sweep and a rebuild of the three books above:
+
+```
+git diff -U0 | grep -c '^-<!-- table: cards -->'       75
+grep -rn "table: cards" --include='*.md' books | wc -l  131
+site pipe paragraphs, maths-applied                     0
+site pipe paragraphs, numerical-methods                 0
+site pipe paragraphs, a-level-physics                   0
+pytest tests/test_content_hygiene.py -q                 2628 passed
+```
+
+The scan that found them is worth keeping, because it is the check that would have caught
+this in CI: read every built page, and fail on a `<p>` whose text matches `^\|.*\|.*\|$`.
+It found 27 hits when only two of the eighteen profiles had been rebuilt and 0 after the
+rebuild, which is also the evidence that the remaining hits were stale output rather than
+authored damage. Run over *source* Markdown it is useless — most of its hits are absolute
+value bars in `$$\ln|y| = \frac{x^2}{2} + C$$` — so it belongs on the built site, not in the
+source gates.
+
+## 183 — The `elliptic` page called its own figure crippled — **done**
+
+**What is wrong.** Two adjacent sentences contradicted each other and the page's own
+figure. The sign is the same one a bearing's modulus draws: a figure that draws the maths
+has to be allowed to be right about it.
+
+```
+A method that moves information one cell per step — Jacobi, Gauss–Seidel, a plain
+Krylov method — is therefore crippled, and needs as many steps as the mesh is wide
+in every direction.
+```
+
+The figure on the same page is a conjugate-gradient solve that "falls to the floor in at
+most one iteration per cell", which is exactly *one step per cell of width*, not *width
+squared* — and conjugate gradients is a Krylov method. The sentence told the reader that
+the thing they were about to watch work cannot work, and it flattened a distinction the
+class is built on: Jacobi and Gauss–Seidel cost the width squared (they have a condition
+number of order the width squared), Krylov costs the width, multigrid costs nothing that
+grows.
+
+**The fix.** Kept the blanket claim as the general rule and separated the three costs:
+
+```
+A method that moves information one cell per step needs a number of steps that grows
+with the width of the mesh. Jacobi and Gauss–Seidel need of order the width squared.
+A Krylov method such as conjugate gradients, which the figure uses, does better — of
+order the width — but still grows. Multigrid is the one whose count does not grow
+with the mesh at all.
+```
+
+**Done means**
+
+- [x] the paragraph states three distinct costs, in the order the page's own figure
+      demonstrates them
+- [x] no sentence on the page says a Krylov method is crippled
+- [x] built `site/numerical-methods/elliptic/index.html` carries the new text
+- [x] the page is still under the 80-column prose limit (`tests/test_page_rules.py`)
+
+## 184 — "Predict first" was answered before the reader could answer it — **done**
+
+**What is wrong.** The prediction on `reading-the-class` asked "how many directions will
+appear, and which class the readout will name", with `A = 1`, `B = 0`, `C = 1` set in the
+open. A point at `B = 0` with `A = C = 1` has a discriminant of `−4`: the class is named in
+the readout beside the drawing and the count is on the plane, so the reader reads the
+answer off the panel instead of committing to one. A prediction the interface already made
+teaches nothing — the reader cannot be wrong, so cannot notice being right.
+
+**The fix.** Moved the question to the knob the reader has to move, and asked for a number
+before the move:
+
+> Set $A = 1$ and $C = 1$, which is Laplace's equation, and leave $B$ at $0$. Before you
+> move anything, write down the value of $B$ at which the point will first show a
+> direction. Then move $B$ and check.
+
+The answer is $B = \pm 2$, from $B^2 - 4AC = 0$ with $AC = 1$: a value the page has not
+printed, that the reader computes from the rule the page just gave, and that the drawing
+confirms on one drag. The figure's own `prompt` in `discriminant.js` was changed to match,
+so the panel and the page ask the same question rather than two.
+
+**Done means**
+
+- [x] the prediction has an answer the page does not already print, computed from the rule
+      the page states
+- [x] the figure's `prompt` and the page's "Predict first" ask the same question
+- [x] `audit site --only discriminant` — 2 measurements (light, dark), no failure
+- [x] `canvas site --only discriminant` — 1 figure, 0 errors
+- [x] `textbook.lint numerical-methods` clean, `tests/test_page_rules.py` green (the longer
+      paragraph was rewrapped to stay under 80 columns)
+
+## 185 — §1.2's "two answers, both true" was a table and no picture — **done**
+
+**What is wrong.** The chapter's central claim about modelling is that the equations have
+two solutions and neither is wrong: *which assembly the mechanism is in is a fact about the
+object, not about the equations*. It was carried by a two-row table and a paragraph.
+`null-vector` (§1.4) already drew the consequence — the Jacobian's three rows, two of them
+coincident, the singular direction walking out of the plane — so the book drew what the
+degeneracy *does* and drew nowhere what causes it.
+
+**The fix.** `books/maths-applied/docs/assets/figures/two-circles.js`, mounted on
+`Chapter 1/Section 1.2/Deeper/two-solutions`. Two circles, one about each pivot, with both
+crossings marked; the upright drawn solid to the assembly the car is built on and dashed to
+the one folded down past the lower arm; the chord between the answers split at its right
+angle into the section's own `along` and `across`.
+
+Three decisions that are the figure:
+
+- **No number is typed.** The pivots, both radii and both answers come from `lowerJoint`
+  and `upperJoint` at the design pose — the same calls the page's table quotes — and
+  `along`/`across` are recovered from the chord the answers subtend rather than copied from
+  the solver, so the figure states the section's triangle and not a copy of its arithmetic.
+  Six facts go to `claim()`; `readout` replays them.
+- **Line style, not colour, separates the two assemblies.** Colour alone carries the
+  distinction for nobody reading in monochrome, and this is the figure whose point is that
+  two arrangements look different and are equally valid.
+- **The legs are named in the legend.** At this scale they are 35 and 63 units long and
+  every place beside them is the chord, the upright or an arc: the first version put
+  `along` over the pivot dot and `across` under the upright, and a 760 px capture showed it.
+  `0.68, 0.52` moved out to the right for the same reason — that point is on the upper
+  arm's circle by definition, so a label above it is crossed by the arc that proves it.
+
+The drawing was then enlarged after a 390 px dark capture put both circles at 44 px radius:
+`HEIGHT` 380 and `BOX.right` 348 make it fill the width instead of sitting in a half-width
+box.
+
+**Done means**
+
+- [x] the module is in `books/maths-applied/docs/assets/figures/`, drawn through `kit.js`
+      with `SIZE`, `label()` and `scale()`, and no colour of its own
+- [x] every number it prints is computed from `data/mechanism.js`, and
+      `node tools/dist/cli.js readout /tmp/ma` — 7 figures declare 25 claims, 0 problems
+- [x] `node tools/dist/cli.js canvas /tmp/ma` — 11 examined, 0 errors
+- [x] `node tools/dist/cli.js audit /tmp/ma` — 24 of 24 measurements, light and dark, no
+      label under 9 px at 390 px
+- [x] captured at 760 px and at 390 px, in both schemes, and checked by eye for a label or
+      a mark that crosses another
+- [x] the depth page mounts it and its numbers agree with the table it already printed
+      ((0.68, 0.52) and (0.35, 0.17)), and with `|R_B − L| ≤ d ≤ R_B + L`
+- [x] `textbook.lint maths-applied` clean; full `pytest tests/ -q` green

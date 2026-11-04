@@ -37,7 +37,6 @@ them. Each one has a central idea that most of its questions rest on.
 | Forces and motion | Forces change motion | How does the drop height affect the bounce height? |
 | Waves and energy | Waves carry energy, and energy is conserved | How does the tension of a string affect its pitch? |
 | Electric and magnetic fields | Charge and current produce fields, and fields produce forces | How does the length of a wire affect its resistance? |
-<!-- table: cards -->
 | Modern physics | Matter and energy are equivalent at the nuclear scale | How does the distance affect the count rate from a source? |
 
 Your investigation question from Section 22.1 belongs to one of these strands. Naming

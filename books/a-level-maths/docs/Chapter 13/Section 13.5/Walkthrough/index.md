@@ -31,7 +31,6 @@ The chapter has built two models. They answer different kinds of question.
 | Values | Whole numbers from 0 to $n$ | Any value in a range |
 | Shape | Bars, possibly skewed | A symmetric bell curve |
 | Parameters | Number of trials $n$, success probability $p$ | Mean $\mu$, standard deviation $\sigma$ |
-<!-- table: cards -->
 | Typical use | How many pass, fail or recover | How long, how heavy, how far |
 
 The first move in a modelling question is to decide whether the quantity is a

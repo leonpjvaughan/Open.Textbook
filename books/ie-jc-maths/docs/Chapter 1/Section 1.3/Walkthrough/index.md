@@ -43,7 +43,6 @@ There are four cases, and only two of them give a negative answer.
 | positive with positive | positive | $4 \times 3 = 12$ |
 | positive with negative | negative | $4 \times (-3) = -12$ |
 | negative with positive | negative | $(-4) \times 3 = -12$ |
-<!-- table: cards -->
 | negative with negative | positive | $(-4) \times (-3) = 12$ |
 
 The two signs are the same: the answer is positive. The two signs are different: the

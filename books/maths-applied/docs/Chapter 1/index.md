@@ -59,7 +59,6 @@ whole car, and says so, because a whole vehicle is a book rather than a section.
 | 1.4 The redundancy was ours | the same, diagnosed | which equation was spare, and how to tell |
 | 1.5 Bushes are not rigid | a spring under load | when the simpler model stops being enough |
 | 1.6 Mass and dampers | a mass and a rate | what changes when the mechanism has mass |
-<!-- table: cards -->
 | 1.7 The full vehicle | outline | where these models sit in a whole car |
 
 ## Your turn to connect it

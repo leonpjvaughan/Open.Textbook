@@ -23,7 +23,6 @@ member, and the class links say what each variant covers.
 | [Linear systems](#linear-systems) | $Ax=b$: one answer that satisfies many equations at once | 20 |
 | [Eigenvalues](#eigenvalues) | $Av=\lambda v$: the directions a matrix does not turn | 8 |
 | [Moving problems](#moving-problems) | $\dot u=F(u)$: an answer that travels, or settles, in time | 19 |
-<!-- table: cards -->
 | [Averaging](#averaging) | $\mathbb E[g(X)]$: an answer that is a distribution, not a number | 11 |
 
 A family counts once, and a method filed under two classes appears in both, so

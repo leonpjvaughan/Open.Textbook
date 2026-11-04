@@ -68,7 +68,6 @@ values:
 <!-- table: cards -->
 | $x$ | $0$ | $0.5$ | $1$ | $1.5$ | $2$ |
 |---|---|---|---|---|---|
-<!-- table: cards -->
 | $y = x^2$ | $0$ | $0.25$ | $1$ | $2.25$ | $4$ |
 
 Substitute into the rule:
@@ -200,7 +199,6 @@ $12$ metre channel. Estimate the cross-sectional area of the water.
 <!-- table: cards -->
 | Distance across (m) | $0$ | $2$ | $4$ | $6$ | $8$ | $10$ | $12$ |
 |---|---|---|---|---|---|---|---|
-<!-- table: cards -->
 | Depth (m) | $0$ | $1.2$ | $2.5$ | $3.1$ | $2.4$ | $0.9$ | $0$ |
 
 The readings are equally spaced, with width $h = 2$. The two end heights are $0$
@@ -225,7 +223,6 @@ larger of its two readings.
 | Strip | $0$–$2$ | $2$–$4$ | $4$–$6$ | $6$–$8$ | $8$–$10$ | $10$–$12$ |
 |---|---|---|---|---|---|---|
 | Smaller (m) | $0$ | $1.2$ | $2.5$ | $2.4$ | $0.9$ | $0$ |
-<!-- table: cards -->
 | Larger (m) | $1.2$ | $2.5$ | $3.1$ | $3.1$ | $2.4$ | $0.9$ |
 
 The lower sum is $2(0 + 1.2 + 2.5 + 2.4 + 0.9 + 0) = 2(7.0) = 14.0$.
@@ -250,7 +247,6 @@ For $\displaystyle\int_0^2 x^2\, dx$:
 |---|---|---|---|
 | $4$ | $0.5$ | $2.75$ | $0.0833$ |
 | $8$ | $0.25$ | $2.6875$ | $0.0208$ |
-<!-- table: cards -->
 | $16$ | $0.125$ | $2.671875$ | $0.0052$ |
 
 Each time the strip width halves, the error falls to about a quarter of its

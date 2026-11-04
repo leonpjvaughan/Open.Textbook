@@ -13,6 +13,8 @@ This page is for a reader who wants to know what the second solution is, and why
 program has to be told which one it is looking at. The main thread only needs the
 first half of the first sentence.
 
+:::figure two-circles
+
 ## Two answers, both true
 
 The upper ball joint must be a distance $R_B$ from the upper arm's pivot and a

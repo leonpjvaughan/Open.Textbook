@@ -97,7 +97,6 @@ the question.
 | One rigid triangle | the wishbone is one body, the upright another | where the wheel is, and at what angle |
 | Two legs | the wishbone is written as its two legs | what a spare equation does to a model |
 | Diagnosed | the same, read with a singular value decomposition | which equation was never needed |
-<!-- table: cards -->
 | With a bush | the upper joint is a spring | how far the angles move under load |
 
 The chapter's problem is answered at the end of

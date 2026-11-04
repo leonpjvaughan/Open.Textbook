@@ -98,7 +98,6 @@ below is the same list sorted by name.
 | accuracy at a moderate step | [Crank–Nicolson](../techniques/#crank-nicolson) | it can ring at a sharp start |
 | a coefficient that depends on the answer | [Adaptive step control](../techniques/#adaptive-step-control) | an outer loop |
 | a rectangle, and a long interval | ADI, spectral methods | the geometry, or the regularity |
-<!-- table: cards -->
 | advection as well as diffusion | [Exponential integrators](../techniques/#exponential-integrators) | the linear part has to be handled exactly |
 
 <!-- table: cards -->
@@ -112,7 +111,6 @@ below is the same list sorted by name.
 | [ADI](../techniques/#adi) | Splits the operator by direction | Rectangular grids in two or three dimensions | Complicated geometry |
 | [Spectral methods](../techniques/#spectral-methods) | Expands in smooth basis functions | Smooth solutions, simple regions | Shocks, or complex boundaries |
 | [Exponential integrators](../techniques/#exponential-integrators) | Treats the linear part exactly | A dominant linear term, a small non-linear one | The linear part is not the hard part |
-<!-- table: cards -->
 | [Adaptive step control](../techniques/#adaptive-step-control) | Estimates the error and changes the step | Any time-dependent problem | You have not checked the error estimate is honest |
 
 ## Systems that live here
@@ -137,7 +135,6 @@ below is the same list sorted by name.
 | The total quantity is not conserved | A non-conservative discretisation | Write the flux form, and check the balance |
 | The early time is wrong and the late time is fine | The initial data does not match the boundary | Make them consistent before blaming the solver |
 | Refining the time step changes the answer | It is not converged in time | Halve the step and compare; use an error estimate |
-<!-- table: cards -->
 | The result depends on the mesh in a way the physics does not | Numerical diffusion from the scheme | Higher order, or a different discretisation |
 
 The first row of the table is the one to see rather than read. It is the other
