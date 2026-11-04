@@ -8712,3 +8712,29 @@ box.
 - [x] the depth page mounts it and its numbers agree with the table it already printed
       ((0.68, 0.52) and (0.35, 0.17)), and with `|R_B − L| ≤ d ≤ R_B + L`
 - [x] `textbook.lint maths-applied` clean; full `pytest tests/ -q` green
+
+## 182 — A label's width is its font's, and the runner's font is not yours — **done**
+
+**What was wrong.** `two-circles` measured 28 units inside its frame here and 28 units
+outside it on the runner, and when that was fixed another nine figures did the same: ten
+figures, each found by a **release run** and never by the gate, because a label's ink is its
+font's and the two machines do not share one. Every gate that measured geometry measured it
+under the local font, so the gate could not see the class.
+
+**The fix, twice over.** The loader measures every `<text>` after it is drawn and narrows
+one that leaves the `viewBox` with `textLength` — the author's anchor stays, the height (what
+legibility is measured by) stays, the glyphs get narrower. It watches the **host**, not the
+`svg`, because a figure that re-panels on a control replaces its own frame; the first
+attempt watched the frame and `dynamics-table` still failed. And `canvas` grew `--font`, so
+a sweep can ask the question the runner asks.
+
+**Done means.**
+
+- [x] the ten figures report 0 outside their frames under `canvas site --font monospace`
+      (256 figures, 0 errors) and under the ordinary sweep (0 errors);
+- [x] `scripts/check.sh` runs the monospace sweep, so the gate asks it before the release
+      does;
+- [x] a test pins the loader's clamp, its host observer and `canvas --font`
+      (`test_the_loader_keeps_a_label_inside_its_frame_in_any_font`);
+- [x] `tools types` is 0, `scripts/check.sh` is green, and the release after it deployed
+      (tag `26.308.0`, live `version.json` = `ef3ee23`).
