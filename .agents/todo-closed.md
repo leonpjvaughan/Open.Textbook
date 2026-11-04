@@ -8172,8 +8172,8 @@ table, so a name added later cannot arrive unlinked.
       or `books/numerical-methods/AGENTS.md`)
 - [x] all nine class pages obey it, and a test fails when a new name in a property table
       breaks it
-- [x] `node tools/dist/cli.js audit site --mobile` reports no contrast or size failure on
-      the changed cells
+- [x] the links are checked where they are made: the test over the nine class pages, and
+      the live pages reading the linked A–Z entries
 - [x] `python -m textbook.lint numerical-methods` is clean and `pytest tests/ -q` passes
 
 **Outcome, 2026-11-02.** The decision, and the rule that states it.
@@ -8306,7 +8306,7 @@ read by `Book.section_page_label`, passed by the pipeline into `build_nav_list`,
 the one branch where a one-page section has to name its own page.
 
 Measured on the built sidebar: chapter 1 lists **Main thread** for the five sections that
-have a depth page, while §1.1 and §1.7, which have none, stay the section's own link. A
+have a depth page, while §1.6 and §1.7, which have none, stay the section's own link. A
 course book's section page is still its kind's title (**Learn**), and the map's class pages
 still read **Overview**, because there the class page really is an overview of its children.
 
@@ -8346,7 +8346,8 @@ or a shorter header where they are numbers.
 
 - [x] `tools check-mobile site` fails on a table 40px wider than its container, and two
       tests in `tests/test_mobile.py` pin it
-- [x] every book reports zero: **4,522 routes swept at 390px, 0 tables over**
+- [x] every book reports zero: the check ran over the **405 table-bearing pages** of the
+      4,522 built routes, and reported **0 tables over**
 - [x] `scripts/check.sh` runs the new check and is green
 - [x] the check's help line and `tools help --check` agree (no new flag)
 
@@ -8366,7 +8367,8 @@ the whole backlog.
 4, `a-level-physics` 3, `gcse-physics` 2. All are marked `<!-- table: cards -->`: 39 matched
 by their own first heading, and three pages marked wholesale where the heading is maths
 (`$\theta$` renders as `θ\theta`, so no text match is possible — §5.4, §5.5 and
-`gcse-maths` §25.2). A re-sweep over **4,522 routes reports 0**.
+`gcse-maths` §25.2). A re-sweep reports **0 over the 405 table-bearing pages** (the pass
+visits a route only when its HTML carries a `<table>`).
 
 Held by two tests: a browser-free one that fails if the source stops exempting
 `table--cards`, stops measuring against the scroll container, or stops saying the overflow
@@ -8414,8 +8416,8 @@ a list on a class page is eleven links to eleven sections of one screen of prose
 
 **Done means**
 
-- [x] the decision is written in `books/AGENTS.md` and in `hooks/contents.py`'s docstring
-      if the hook decides for itself)
+- [x] the decision is written in `hooks/contents.py`'s docstring, which decides, and in
+      `assets/AGENTS.md` under *What a page or a figure may do*
 - [x] every page over the threshold either carries the list or is exempt by a rule a test
       can apply
 - [x] if the marker is retired, every `:::contents` in the collection is removed and the
@@ -8660,3 +8662,53 @@ so the panel and the page ask the same question rather than two.
 - [x] `canvas site --only discriminant` — 1 figure, 0 errors
 - [x] `textbook.lint numerical-methods` clean, `tests/test_page_rules.py` green (the longer
       paragraph was rewrapped to stay under 80 columns)
+
+## 185 — §1.2's "two answers, both true" was a table and no picture — **done**
+
+**What is wrong.** The chapter's central claim about modelling is that the equations have
+two solutions and neither is wrong: *which assembly the mechanism is in is a fact about the
+object, not about the equations*. It was carried by a two-row table and a paragraph.
+`null-vector` (§1.4) already drew the consequence — the Jacobian's three rows, two of them
+coincident, the singular direction walking out of the plane — so the book drew what the
+degeneracy *does* and drew nowhere what causes it.
+
+**The fix.** `books/maths-applied/docs/assets/figures/two-circles.js`, mounted on
+`Chapter 1/Section 1.2/Deeper/two-solutions`. Two circles, one about each pivot, with both
+crossings marked; the upright drawn solid to the assembly the car is built on and dashed to
+the one folded down past the lower arm; the chord between the answers split at its right
+angle into the section's own `along` and `across`.
+
+Three decisions that are the figure:
+
+- **No number is typed.** The pivots, both radii and both answers come from `lowerJoint`
+  and `upperJoint` at the design pose — the same calls the page's table quotes — and
+  `along`/`across` are recovered from the chord the answers subtend rather than copied from
+  the solver, so the figure states the section's triangle and not a copy of its arithmetic.
+  Six facts go to `claim()`; `readout` replays them.
+- **Line style, not colour, separates the two assemblies.** Colour alone carries the
+  distinction for nobody reading in monochrome, and this is the figure whose point is that
+  two arrangements look different and are equally valid.
+- **The legs are named in the legend.** At this scale they are 35 and 63 units long and
+  every place beside them is the chord, the upright or an arc: the first version put
+  `along` over the pivot dot and `across` under the upright, and a 760 px capture showed it.
+  `0.68, 0.52` moved out to the right for the same reason — that point is on the upper
+  arm's circle by definition, so a label above it is crossed by the arc that proves it.
+
+The drawing was then enlarged after a 390 px dark capture put both circles at 44 px radius:
+`HEIGHT` 380 and `BOX.right` 348 make it fill the width instead of sitting in a half-width
+box.
+
+**Done means**
+
+- [x] the module is in `books/maths-applied/docs/assets/figures/`, drawn through `kit.js`
+      with `SIZE`, `label()` and `scale()`, and no colour of its own
+- [x] every number it prints is computed from `data/mechanism.js`, and
+      `node tools/dist/cli.js readout /tmp/ma` — 7 figures declare 25 claims, 0 problems
+- [x] `node tools/dist/cli.js canvas /tmp/ma` — 11 examined, 0 errors
+- [x] `node tools/dist/cli.js audit /tmp/ma` — 24 of 24 measurements, light and dark, no
+      label under 9 px at 390 px
+- [x] captured at 760 px and at 390 px, in both schemes, and checked by eye for a label or
+      a mark that crosses another
+- [x] the depth page mounts it and its numbers agree with the table it already printed
+      ((0.68, 0.52) and (0.35, 0.17)), and with `|R_B − L| ≤ d ≤ R_B + L`
+- [x] `textbook.lint maths-applied` clean; full `pytest tests/ -q` green
