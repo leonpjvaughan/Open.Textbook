@@ -21,10 +21,10 @@ reads them from `.claude/skills/`, projected with
 | Writing in `maths-applied` — a book about modelling, not a course | `books/maths-applied/AGENTS.md` | `.agents/skills/write-textbook-prose/SKILL.md` |
 | Editing book content | `books/AGENTS.md`, `books/<id>/AGENTS.md` | `.agents/skills/write-textbook-prose/SKILL.md` |
 | Writing a problem bank | `books/AGENTS.md`, `PROBLEMS.md`, `books/<id>/AGENTS.md` | `.agents/skills/build-practice-set/SKILL.md` |
-| Building a figure | `assets/AGENTS.md`, `ideas.md`, `books/AGENTS.md` | `.agents/skills/build-guided-figure/SKILL.md` |
+| Building a figure | `assets/AGENTS.md`, `ideas.md`, `books/AGENTS.md` | `.agents/skills/build-guided-figure/SKILL.md`, `.agents/skills/modern-web-guidance/SKILL.md` |
 | Editing a booklet | `books/AGENTS.md`, `BOOKLETS.md`, `assets/AGENTS.md` | — |
-| Changing the shell or the renderer | `engine/AGENTS.md`, `SHAPE.md` | — |
-| Theming and CSS | `assets/AGENTS.md`, `themes/`, this file | — |
+| Changing the shell or the renderer | `engine/AGENTS.md`, `SHAPE.md` | `.agents/skills/modern-web-guidance/SKILL.md` |
+| Theming and CSS | `assets/AGENTS.md`, `themes/`, this file | `.agents/skills/modern-web-guidance/SKILL.md` |
 | Verification and the test suite | `tests/AGENTS.md`, `scripts/AGENTS.md`, `tools/AGENTS.md`, `scripts/check.sh` | `.agents/skills/verify-textbook-change/SKILL.md` |
 | The deploy and DNS | `deploy/AGENTS.md`, `DEPLOY.md`, `.github/AGENTS.md` | — |
 | The research corpus | `research/AGENTS.md`, `research/pedagogy.md` | — |
@@ -137,6 +137,23 @@ or previewing a bundle are in `assets/AGENTS.md`.
 `assets/figures/` is also the **shared figure library** — a module there is
 mountable by its filename in every book. The rules and measurements are in
 `assets/AGENTS.md`; the queue of what to add next is `ideas.md`.
+
+## Guidance, and where it stops
+
+The web platform moves faster than any model's training data, and this repository writes
+browser-facing code: the template, the shell CSS, the figure modules, `sw.js`. **Modern Web
+Guidance** is pinned at `modern-web-guidance@1.0.1` in `package.json` and queried through
+`npm`, so a review can be reproduced:
+
+```bash
+npm run guidance -- search "dialog light dismiss"
+npm run guidance -- retrieve "light-dismiss-a-dialog"
+```
+
+It **teaches and does not decide**: nothing here fails a build because a guide was not
+consulted, `legacy-scan` exits 0 on findings, and its silence is not a pass. A pattern that
+keeps returning becomes a lint rule, which is the gate; the pack is what makes the rule
+current. Procedure and the traps: `.agents/skills/modern-web-guidance/SKILL.md`.
 
 ## Definition of done
 

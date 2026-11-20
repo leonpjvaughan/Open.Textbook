@@ -386,3 +386,29 @@ def test_every_npm_script_runs_something_that_exists():
             if name not in scripts:
                 unknown.append(f"{path.relative_to(ROOT)}: npm run {name}")
     assert not unknown, "the rules name npm scripts that do not exist: " + ", ".join(sorted(unknown))
+
+
+def test_the_web_guidance_pack_is_pinned_and_routed():
+    """A guidance pack teaches; a gate decides. Both halves are pinned here.
+
+    The pack is queried at the moment markup or client JS is written, so the version has to
+    be exact — `@latest` is the drift this repository rejects for every other tool — and the
+    root routing table has to name it, or the agent writing a figure never loads the skill
+    that says to query it.
+    """
+    import json
+
+    root = repo_root()
+    manifest = json.loads((root / "package.json").read_text())
+    pinned = manifest["devDependencies"]["modern-web-guidance"]
+    assert pinned == "1.0.1", f"the guidance pack is unpinned: {pinned}"
+    assert manifest["scripts"]["guidance"] == "modern-web-guidance"
+
+    skill = root / ".agents" / "skills" / "modern-web-guidance" / "SKILL.md"
+    text = skill.read_text()
+    assert "not a gate" in text.lower(), "the skill does not say it is not a gate"
+    assert "npm run guidance -- search" in text
+
+    agents = (root / "AGENTS.md").read_text()
+    assert ".agents/skills/modern-web-guidance/SKILL.md" in agents
+    assert "npm run guidance -- search" in agents

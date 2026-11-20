@@ -8713,7 +8713,7 @@ box.
       ((0.68, 0.52) and (0.35, 0.17)), and with `|R_B − L| ≤ d ≤ R_B + L`
 - [x] `textbook.lint maths-applied` clean; full `pytest tests/ -q` green
 
-## 182 — A label's width is its font's, and the runner's font is not yours — **done**
+## 189 — A label's width is its font's, and the runner's font is not yours — **done**
 
 **What was wrong.** `two-circles` measured 28 units inside its frame here and 28 units
 outside it on the runner, and when that was fixed another nine figures did the same: ten

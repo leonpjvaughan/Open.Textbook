@@ -8,6 +8,7 @@
   },
   "devDependencies": {
     "@types/node": "^26.6.5",
+    "modern-web-guidance": "1.0.1",
     "pagefind": "1.5.2",
     "prettier": "^3.9.10",
     "typescript": "^7.0.2",
@@ -23,6 +24,8 @@
     "audit:mobile": "node tools/dist/cli.js audit site --mobile",
     "check": "scripts/check.sh",
     "mobile": "node tools/dist/cli.js check-mobile site",
-    "preview": "scripts/preview-themes.sh"
+    "preview": "scripts/preview-themes.sh",
+    "guidance": "modern-web-guidance",
+    "guidance:legacy": "modern-web-guidance legacy-scan ."
   }
 }
