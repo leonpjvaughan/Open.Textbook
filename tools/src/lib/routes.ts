@@ -65,13 +65,30 @@ export function bookRoot(siteDir: string, route: string): string {
 }
 
 /**
- * The first page of a kind in a built site — `learn` when it exists — for a command
+ * The first page of a kind that mounts a figure — `learn` when it exists — for a command
  * whose default is "a page of this build" rather than one book's page.
  */
 export function firstRoute(siteDir: string, kind?: string): string | null {
   const routes = pageRoutes(siteDir);
   if (kind === undefined) return routes[0] ?? null;
   return routes.find((route) => route.endsWith(`/${kind}/`)) ?? null;
+}
+
+/**
+ * The first page of a kind that mounts a figure, for a check about the figure loader.
+ *
+ * `offline` asserts that the loader a page loads reaches the service worker's runtime
+ * cache, so the page it samples has to mount one. The build's first learn page is not
+ * that page: `a-level-maths` chapter 1 has no figure, so sampling it made the check fail
+ * on a collection where nothing was wrong — which is how this default was found, on
+ * `main`, after the first release job ran.
+ */
+export function firstFigureRoute(siteDir: string, kind = "learn"): string | null {
+  for (const route of pageRoutes(siteDir)) {
+    if (!route.endsWith(`/${kind}/`)) continue;
+    if (figureAssets(siteDir, route)) return route;
+  }
+  return null;
 }
 
 /** One page to measure, and what to call it in the report. */
