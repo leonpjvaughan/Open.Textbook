@@ -18,6 +18,16 @@ quotations, not 4,273, with the `**Checking forever.**` near-miss named), the P5
 contradiction (the cards-mode cell now reaches the same 16px floor the size report asserts),
 P18's module count (three modules, four reads) and five stale line citations.
 
+**What implementation found.** Stage 1 turned up a defect neither the audit nor either review
+caught: `.tb-settings__card { height: 100% }` resolved against a parent whose own height was its
+content, so every card in the settings panel drew outside its grid row and the next group's legend
+printed over it. The panel's `scrollHeight` was measuring that collapsed layout, which is why "two
+columns fit" was true and the fit it implied was not. With the declaration removed the rows size to
+the cards, the panel fits at 390 (form `scrollHeight` = `clientHeight` = 734px, all eight options
+above the fold), and item **199** was pulled into stage 1 with **195** because the panel only fits
+once the copy is short. The `--tb-ink` neutral badge, the 23px contents boxes and the 44px results
+all measured as the plan predicted.
+
 Evidence lives beside this plan while it is being worked on and is not committed:
 `var/ux-audit/{shell,content,themes,figures}.md` (the four auditor reports),
 `var/ux-review/{a,b}.md` (the two reviews), `var/ux-audit/m/preview-audit.txt`,
