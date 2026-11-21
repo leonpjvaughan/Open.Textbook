@@ -125,15 +125,16 @@ def test_the_print_block_does_not_name_the_deleted_renderer():
 
 
 def _playwright_path() -> str | None:
+    """Resolve an absolute path to Playwright so a script under /tmp can require it."""
     for candidate in (os.environ.get("PLAYWRIGHT_PATH"), *PLAYWRIGHT_CANDIDATES):
         if not candidate:
             continue
         result = subprocess.run(
-            ["node", "-e", f"require({json.dumps(candidate)})"],
-            capture_output=True, text=True, check=False,
+            ["node", "-e", f"console.log(require.resolve({json.dumps(candidate)}))"],
+            capture_output=True, text=True, check=False, cwd=str(ROOT),
         )
-        if result.returncode == 0:
-            return candidate
+        if result.returncode == 0 and result.stdout.strip():
+            return result.stdout.strip()
     return None
 
 

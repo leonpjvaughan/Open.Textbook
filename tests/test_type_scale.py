@@ -161,21 +161,22 @@ def test_the_search_field_is_not_below_sixteen_on_a_phone():
 
 
 def _playwright_path() -> str | None:
-    """The Playwright module path that this machine can resolve, or None.
+    """The resolved absolute Playwright path this machine can load, or None.
 
-    Returned rather than merely tested: the measuring script lives in pytest's tmp
-    directory, so a bare `require("playwright")` there resolves against /tmp and
-    fails. The caller passes the path in the environment.
+    Returned as an absolute path rather than a bare package name: the measuring
+    script lives in pytest's tmp directory, so a bare `require("playwright")`
+    there resolves against /tmp and fails when Playwright lives in repo
+    `node_modules/` (such as in CI).
     """
     for candidate in (os.environ.get("PLAYWRIGHT_PATH"), *PLAYWRIGHT_CANDIDATES):
         if not candidate:
             continue
         result = subprocess.run(
-            ["node", "-e", f"require({json.dumps(candidate)})"],
-            capture_output=True, text=True, check=False,
+            ["node", "-e", f"console.log(require.resolve({json.dumps(candidate)}))"],
+            capture_output=True, text=True, check=False, cwd=str(ROOT),
         )
-        if result.returncode == 0:
-            return candidate
+        if result.returncode == 0 and result.stdout.strip():
+            return result.stdout.strip()
     return None
 
 
