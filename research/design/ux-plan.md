@@ -6,13 +6,17 @@ then two independent reviews, and every claim below was measured on this checkou
 
 **Revision record.** Two reviewers who did not write the plan rejected parts of the first draft
 (`var/ux-review/a.md`, `var/ux-review/b.md`). What changed: the callout item is now staged behind
-a class hook after a reviewer showed `.md-typeset > blockquote` would repaint **4,273** quoted
+a class hook after a reviewer showed `.md-typeset > blockquote` would repaint **4,272** quoted
 lines; G4's label formula was dimensionally wrong and is now evaluated at the phone width; G6 has
 one floor and one home instead of two of each; P4's "title the renderer already knows" was false;
 P9 no longer shrinks the body text; P12 has one fix instead of two; P14 states a constraint
 instead of two hexes that were lighter than paper; P15 counts 394 uses, not 468, and no longer
 borrows the dash that already means "guide"; the print guard, the token-duplication item and the
-`family` item were dropped; and the reader-visible changes now rank above the tooling.
+`family` item were dropped; and the reader-visible changes now rank above the tooling. A second
+pass, after a completion audit, corrected the callout counts (758 callouts, not 759; 4,272
+quotations, not 4,273, with the `**Checking forever.**` near-miss named), the P5/G6 floor
+contradiction (the cards-mode cell now reaches the same 16px floor the size report asserts),
+P18's module count (three modules, four reads) and five stale line citations.
 
 Evidence lives beside this plan while it is being worked on and is not committed:
 `var/ux-audit/{shell,content,themes,figures}.md` (the four auditor reports),
@@ -235,17 +239,17 @@ keeps its `aria-label="Book contents"`. *Gate:* a copy assertion in the structur
 box is measured before and after.
 
 **P7 — Settings: a 36×36 icon-only trigger, and a panel that clips at 390.**
-`shell.css:124-130` is `width/height: 2.25rem` (36px) and `portal.css:89-90` is 42px; `aria-label`
+`shell.css:124-130` is `width/height: 2.25rem` (36px) and `portal.css:97-98` is 42px; `aria-label`
 and `title` are "Settings" with empty text. The repository states its own floor two screens away
 (`shell.css:369`: "under the 44px a thumb needs"). In the dialog at 390 the options stack:
-`.tb-settings__options` collapses to one column at `max-width: 480px` (`settings.css:139-141`),
+`.tb-settings__options` collapses to one column at `max-width: 480px` (`settings.css:142-146`),
 measured **8** option cards, dialog 358×706, `scrollHeight` 742 — the last row is clipped.
 *Change:* `2.75rem` in both files; at `min-width: 48rem` show the existing label word beside the
 cog; move the options breakpoint to `360px` or `minmax(7rem, 1fr)` so two 145px columns fit in
 358px. No colour, no token. *Gate:* G6. *Done means:* the trigger measures ≥44px at 390 on both
 the portal and a book page, and the dialog's `scrollHeight` fits the viewport at 390.
 
-**P12 — The muted badge is painted with the warning token.** `extra.css:763-765`:
+**P12 — The muted badge is painted with the warning token.** `extra.css:764-765`:
 `.bk-badge--muted` uses `--tb-fig-warn` and `.bk-badge--warn` uses `--tb-fig-good`, and
 `booklet.js:258` defaults a toneless badge to `muted` — so the default badge wears the warning hue
 and a "warn" badge the good hue, in all six bundles and both schemes.
@@ -263,7 +267,7 @@ no new panel height, where the full fix adds 80px of scroll at 390 — which the
 rejected for a reader who is already scrolling 4,430px. *Gate:* G6. *Done means:* the measured
 link box is ≥22px at 390 and 1280, and the panel height is unchanged.
 
-**P11 — `.prove__ask` refuses to wrap.** `extra.css:483-486` sets `white-space: nowrap` on three
+**P11 — `.prove__ask` refuses to wrap.** `extra.css:481-485` sets `white-space: nowrap` on three
 words of running text, against `typography` and WCAG 1.4.12, inside a flex row that already
 declares `flex-wrap: wrap`.
 *Change:* delete the declaration; the `::after` arrow stays attached. No colour. *Gate:* the
@@ -288,22 +292,26 @@ rewrite the six descriptions. The strings, so the item is executable rather than
 | neon | Dark violet with bright pink. |
 | phosphor | Dark brown with amber, like an old screen. |
 
-*Gate:* the bundle-coverage tests plus the reading-age check on copy. *Done means:* a reader who
+*Gate:* the bundle-coverage tests, plus a hand pass against the voice rules — nothing automated
+reads YAML copy (`python -m textbook.lint` checks book prose, and `voice:contraction` is one of its
+rules, but it does not open `themes/*.yaml`). *Done means:* a reader who
 cannot see the palettes can tell the six apart from the words, and no description exceeds 12 words
 or contains a jargon term.
 
 **P1 — Classify the callout, then give it a signature.** This is the plan's highest-value change
 and it is now **staged**, because the first draft would have repainted every quotation in eleven
-books. Measured: books carry **5,030** blockquote lines, of which **757** open
-`> **Watch out.` and **2** open `> **Check.**` — so 15% of quotes are callouts and 4,273 lines
-are quotations or other prose. Every callout today is a plain `<blockquote>`: `margin: 0 40px`,
+books. Measured over `books/*/docs/**/*.md` (2,614 files): **5,030** blockquote lines, of which **757**
+open `> **Watch out.` and exactly **1** opens `> **Check.**` — 758 callouts, and **4,272**
+quotations or other prose that a blanket rule would repaint. The marker has to match the bold lead
+*exactly*: `books/a-level-maths/docs/Chapter 1/Section 1.3/Walkthrough/index.md:123` is
+`> **Checking forever.**`, which a prefix match on `Check` would misclassify. Every callout today is a plain `<blockquote>`: `margin: 0 40px`,
 `padding-left: 0`, `border-left: 0px none`, `background: transparent`, `::before: none`, body ink
 (`probe-block.mjs`, 3/3). The only rule touching it, `extra.css:93-95`, sets a max width. The
 chapter formula *requires* a common-error callout on every Learn page, so the mandated pedagogy's
 only visual marker is a 40px indent — which also costs the reader 40px of the 70ch measure.
 
-*Stage 1, a class.* A build hook that turns a blockquote whose first inline is a bold
-`Watch out.` or `Check.` into `<aside class="callout callout--error|callout--check">`. This is the
+*Stage 1, a class.* A build hook that turns a blockquote whose first inline is exactly
+`**Watch out.**` or `**Check.**` into `<aside class="callout callout--error|callout--check">`. This is the
 only way to tell a callout from a quotation, and it is what `accordion` and the house's own
 `.prove` both assume: a named block, not a bare quote. It also removes the unscoped-selector risk
 from stage 2 entirely.
@@ -329,11 +337,11 @@ measured review still wants it:* the common-error callout alone takes
 15.5–16.9 in glass and phosphor, both schemes, so it clears the invariant — but it must be drawn
 on the element box, never a `::before`, because `preview --audit` is blind to pseudo-elements.
 
-*Risk and gate:* the hook is a build change over 759 authored callouts and needs a test that the
+*Risk and gate:* the hook is a build change over 758 authored callouts and needs a test that the
 count matches and no quotation is classified; stage 2 is paint-free apart from the rule colour;
 stage 3 is caught by `preview --audit` in both schemes and all six bundles. *Done means:* a Learn
-page shows its common-error callout as a distinct block; `grep -c '^> '` for quotations is
-unchanged in meaning; `preview --audit` passes; no `<blockquote>` gains a border except through
+page shows its common-error callout as a distinct block; the hook classifies exactly 758 blocks
+and leaves the other 4,272 quote lines untouched; `preview --audit` passes; no `<blockquote>` gains a border except through
 the class.
 
 ### Wave 2 — the reading page's legibility
@@ -344,18 +352,18 @@ the class.
 the first cell alone is `0.92rem` = 14.72px, which is the number the probe reports — the inversion
 is hidden in the summary and visible on the page. The header row is clipped, so all context lives
 in the 11.2px labels.
-*Change:* body cells to `0.85rem` on `line-height: 1.45` with `padding: 0.15rem 0`, labels to
-`0.78rem` — 13.6px of text and 12.48px of label, which is the floor G6 sets. No colour.
+*Change:* body cells to `1rem` on `line-height: 1.45` with `padding: 0.15rem 0`, labels to
+`0.85rem` — 16px of text, which is G6's reading floor, and 13.6px of label. No colour.
 *Risk:* taller cards (the block budgets 140px); re-measure with `probe.mjs 390`. *Gate:* G6.
-*Done means:* at 390 a card's value text is ≥13.6px, its label ≥12.48px, its row padding ≥4.5px,
-and no card overflows the block's height budget.
+*Done means:* at 390 a card's value text is ≥16px, its label ≥13.6px, its row padding ≥4.5px, and
+the block's 140px height budget is re-measured at the new size rather than assumed.
 
 **P6 — Search: 13.6px on a phone, no keyboard path, no empty state.** `.search input` is
 `0.85rem` (`shell.css:246-257`), measured 13.6px in a 358×36 box at 390; iOS zooms a focused input
 below 16px, so the layout shifts while the reader types. The input is a bare `<input type="search">`
 + `<ul>` with no `aria-expanded`, `aria-controls` or `aria-live` (`page.html:53-56`), `ArrowDown`
 leaves focus in the input, result anchors are 33px tall, and `.search__results:empty { display:
-none }` (`shell.css:281`) means an unmatched query makes the panel vanish with no message.
+none }` (`shell.css:280`) means an unmatched query makes the panel vanish with no message.
 *Change:* `font-size: 1rem` for `.search input` in the existing phone block; `aria-expanded`/
 `aria-controls` on the input; `role="status" aria-live="polite"` on the list; a plain
 `<li>No results</li>` when the array is empty, with `hidden` replacing `:empty`; `ArrowDown` /
@@ -435,7 +443,9 @@ size outside figures, which is how 12.48px table cells and 15px contents links s
 ≥ **16px** (`table--cards td`, `details > p`, `.search input`), labels and captions ≥ **12px**
 (`td::before`, `figcaption`, `.fig-parts button`, `.contents__list a` line box ≥ 22px as a
 *target*, which is the number the evidence supports), and the tab order of the learn page and the
-portal. The draft had two floors and two homes and contradicted P3 and P5. *Done means:* the
+portal. P5 raises the cards-mode cell **to** this 16px floor, which is the only way both items can
+pass; a cell left at 13.6px would fail the report this item asks for. The draft had two floors and
+two homes and contradicted P3 and P5. *Done means:* the
 report names each selector and its computed size, fails at the floor, and its two floors are the
 same two the plan's items target.
 
@@ -489,8 +499,9 @@ marks and the 9px floor; the corpus count is the scope. *Gate:* `tests/test_figu
 and a new grep for `the (orange|green|red|blue) line`. *Done means:* every warn/good pair is
 distinguishable in greyscale, the readout grep is empty, and `readout --verify` passes.
 
-**P18 — Four figure modules paint colour outside the class system.** `ch16-point.js:49`,
-`ch4-fraction-strip.js:47-49` and `ch7-scale.js:22` set HTML `background`s to `--tb-fig-accent`,
+**P18 — Three figure modules paint colour outside the class system, in four places.**
+`ch16-point.js:49`, `ch4-fraction-strip.js:47-49` (two reads in three lines) and `ch7-scale.js:22`
+set HTML `background`s to `--tb-fig-accent`,
 `--tb-fig-warn`, `--tb-ink` and a `color-mix` — a live breach of "nothing in a figure may carry a
 colour", and `audit-figures.ts:409-417` reads SVG `fill`/`color` only, so those bars are measured
 by no gate. This was a sign-off row in the first draft; a reviewer was right that it is an item,
@@ -498,7 +509,7 @@ not a decision.
 *Change:* route them through the existing `fig-*` classes on a generated SVG `<rect>`, and extend
 the audit to read HTML `backgroundColor`/`background-image` inside `maths-figure`, failing on an
 unmeasurable `var()`. *Order:* after G1, or the extension is unmeasurable. *Gate:* `audit site`.
-*Done means:* the four modules use only `fig-*` classes, and the extended audit fails if a
+*Done means:* the three modules use only `fig-*` classes, and the extended audit fails if a
 `var(--tb-*)` background is reintroduced.
 
 ## 5. What was measured and rejected
@@ -507,11 +518,15 @@ unmeasurable `var()`. *Order:* after G1, or the extension is unmeasurable. *Gate
   the 13.6px/15px boxes are the six contents links (P3).
 - **A drawer rewrite as `<dialog>`.** Rejected in `research/design/navigation.md`: it would lose
   the no-JS default. The defect is the label (P8), not the primitive.
-- **`auto-fit` on the portal's card grid.** `portal.css:170` is
+- **`auto-fit` on the portal's card grid.** `portal.css:140` is
   `repeat(auto-fill, minmax(280px, 1fr))`; measured at 1280 it makes three 321.3px tracks and the
   two single-card groups leave two empty cells. `auto-fit` would stretch a lone card to 960px;
   capping the track at `minmax(280px, 26rem)` is the correct fix, and it is cosmetic — no reader is
   blocked by whitespace. Not queued.
+- **Below the ranked line, and still queued.** Two items are filed in `.agents/todo.md` without a
+  row in §4: the portal's card grid (**215**, cosmetic — the `auto-fill` note below) and the
+  missing print render (**216**, a gap recorded in §7). Both sit after the 22 ranked items and
+  nothing in the ranked table depends on them.
 - **A print render (dropped from the plan).** The premise — "no test renders print media" — is
   true, but no print defect was ever measured; the finding rested on reading CSS. It belongs in
   `§7` as a gap, not as a guard ranked above a reader's first Tab.

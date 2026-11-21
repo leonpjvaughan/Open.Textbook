@@ -186,11 +186,11 @@ nav keeps its `aria-label="Book contents"`. Copy only, no colour, no token. Plan
 
 ## 195 — The settings trigger is 36×36, and the panel clips at 390px
 
-**What is wrong.** `shell.css:124-130` sets `width/height: 2.25rem` (36px); `portal.css:89-90`
+**What is wrong.** `shell.css:124-130` sets `width/height: 2.25rem` (36px); `portal.css:97-98`
 sets 42px on the landing page. `aria-label` and `title` are "Settings" and the element's text is
 empty, so it is a cog with no word. The repository states its own floor two screens away
 (`shell.css:369`: "under the 44px a thumb needs"). In the dialog at 390 the options stack:
-`.tb-settings__options` collapses to one column at `max-width: 480px` (`settings.css:139-141`),
+`.tb-settings__options` collapses to one column at `max-width: 480px` (`settings.css:142-146`),
 measured 8 option cards, dialog 358×706, `scrollHeight` 742 — the last row is clipped.
 
 **The fix.** `2.75rem` in both files; at `min-width: 48rem` show the existing label word beside
@@ -205,7 +205,7 @@ in 358px. No colour, no new token. Plan: P7.
 
 ## 196 — The muted badge is painted with the warning token
 
-**What is wrong.** `assets/stylesheets/extra.css:763-765` paints `.bk-badge--muted` with
+**What is wrong.** `assets/stylesheets/extra.css:764-765` paints `.bk-badge--muted` with
 `--tb-fig-warn` and `.bk-badge--warn` with `--tb-fig-good`, and `assets/booklet/booklet.js:258`
 defaults a toneless badge to `muted`. So in all six bundles and both schemes the **default**
 badge wears the warning hue and a "warn" badge wears the good hue. Nothing reads badge colour
@@ -240,7 +240,7 @@ scroll at 390, which the review priced and rejected. No colour. Plan: P3.
 
 ## 198 — "Prove it to me" cannot wrap
 
-**What is wrong.** `.prove__ask { white-space: nowrap }` (`extra.css:483-486`) refuses the wrap
+**What is wrong.** `.prove__ask { white-space: nowrap }` (`extra.css:481-485`) refuses the wrap
 that `npm run guidance -- retrieve typography` and WCAG 1.4.12 require of running text, inside a
 flex row that already declares `flex-wrap: wrap`.
 
@@ -272,7 +272,8 @@ markup only. Plan: P13.
 **Done means**
 
 - [ ] a reader who cannot see the palettes can tell the six apart from the words alone;
-- [ ] no description exceeds 12 words, contains jargon, a negative contraction or a shaming word;
+- [ ] no description exceeds 12 words, contains jargon, a negative contraction or a shaming word,
+      checked by hand — nothing automated reads `themes/*.yaml` copy;
 - [ ] the bundle-coverage tests still pass, and the panel still opens and dismisses by Escape.
 
 ## 200 — The mandated common-error callout has no signature beyond a 40px indent
@@ -284,13 +285,14 @@ touching them, `extra.css:93-95`, sets a max width. The chapter formula *require
 callout on every Learn page, so the mandated pedagogy's only marker is 40px of indent — which
 also costs the reader 40px of the 70ch measure.
 
-Books carry **5,030** blockquote lines, of which **757** open `> **Watch out.` and **2** open
-`> **Check.**`. So a blanket `blockquote` rule would repaint 4,273 quoted lines: the class is not
-optional.
+Over `books/*/docs/**/*.md`: **5,030** blockquote lines, of which **757** open `> **Watch out.`
+and exactly **1** opens `> **Check.**` — 758 callouts and **4,272** quotations that a blanket rule
+would repaint. The marker must match the bold lead *exactly*: `books/a-level-maths/docs/Chapter 1/Section 1.3/Walkthrough/index.md:123`
+is `> **Checking forever.**`, which a prefix match on `Check` would misclassify.
 
-**The fix.** Staged. (1) A build hook that turns a blockquote whose first inline is a bold
-`Watch out.`/`Check.` into `<aside class="callout callout--error|callout--check">`, with a test
-that the count is 759 and no quotation is classified. (2) A **neutral** signature — `1px`
+**The fix.** Staged. (1) A build hook that turns a blockquote whose first inline is exactly
+`**Watch out.**` or `**Check.**` into `<aside class="callout callout--error|callout--check">`, with
+a test that the count is 758 and the other 4,272 quote lines are untouched. (2) A **neutral** signature — `1px`
 `--tb-rule` border, `3px` `--tb-rule` left rule, `var(--tb-radius)`, `0.6rem 0.95rem`
 padding — the shape `.prove` (`extra.css:466`) already uses, which cannot change any contrast
 ratio. (3) Only if a measured review still asks for it, the error callout alone takes
@@ -302,7 +304,7 @@ because `preview --audit` is blind to pseudo-elements. Plan: P1; the hue questio
 - [ ] a Learn page shows its common-error callout as a distinct block in both schemes;
 - [ ] the before/after pair is re-rendered at 1280 and 390 in both schemes (the frames described
       in `ux-plan.md` §3) and the after reads as a block a reader can find while scanning;
-- [ ] the hook's test reports 757 + 2 classified and no other blockquote touched;
+- [ ] the hook's test reports 757 + 1 classified and the other 4,272 quote lines untouched;
 - [ ] if the tint is taken, `preview --audit` passes for the six bundles in both schemes;
 - [ ] no figure changes, and `tests/test_figures.py` is untouched.
 
@@ -313,14 +315,15 @@ because `preview --audit` is blind to pseudo-elements. Plan: P1; the hue questio
 11.2px (`extra.css:171-184`); only the first cell is `0.92rem` = 14.72px, which is the number the
 probe reports. The header row is clipped, so all the context lives in the 11.2px labels.
 
-**The fix.** Body cells `0.85rem` on `line-height: 1.45` with `padding: 0.15rem 0`; labels
-`0.78rem` — 13.6px of text and 12.48px of label, the floor the size report sets. No colour.
+**The fix.** Body cells `1rem` (16px) on `line-height: 1.45` with `padding: 0.15rem 0`; labels
+`0.85rem` (13.6px) — the cell reaches the size report's reading floor instead of sitting two steps
+under the prose. No colour.
 Plan: P5.
 
 **Done means**
 
-- [ ] at 390 the value text is ≥13.6px, the label ≥12.48px, the row padding ≥4.5px;
-- [ ] no card overflows the block's 140px height budget;
+- [ ] at 390 the value text is ≥16px, the label ≥13.6px, the row padding ≥4.5px;
+- [ ] the block's 140px height budget is re-measured at the new size, not assumed;
 - [ ] the size report of 209 covers `table--cards td` and passes both schemes.
 
 ## 202 — Search is 13.6px on a phone, has no keyboard path and no empty state
@@ -466,7 +469,8 @@ Plan: G6.
 **Done means**
 
 - [ ] the report names each selector, its computed size and its binding floor;
-- [ ] it fails at the floor and passes after 195, 197, 201, 202 and 204;
+- [ ] it fails at the floor and passes after 195, 197, 201, 202 and 204 — 201 by raising the
+      cards cell to 16px, which is the floor this report asserts;
 - [ ] it covers text inside `maths-figure`, which `audit site` cannot see.
 
 ## 210 — The label-size guard would evaluate the wrong width
@@ -545,9 +549,10 @@ role: "The straight line is f of x equals 2x." Plan: P15.
 - [ ] `grep -rn 'the (orange|green|red|blue) line' books/` is empty;
 - [ ] `readout site --verify`, `canvas site` and `audit site --mobile` pass.
 
-## 214 — Four figure modules paint colour outside the figure classes
+## 214 — Three figure modules paint colour outside the figure classes, in four places
 
-**What is wrong.** `ch16-point.js:49`, `ch4-fraction-strip.js:47-49` and `ch7-scale.js:22` set
+**What is wrong.** Four colour reads across **three** modules: `ch16-point.js:49`,
+`ch4-fraction-strip.js:47-49` (two reads in three lines) and `ch7-scale.js:22` set
 HTML `background`s to `--tb-fig-accent`, `--tb-fig-warn`, `--tb-ink` and a `color-mix` — a breach
 of "nothing in a figure may carry a colour", and `tools/src/commands/audit-figures.ts:409-417`
 reads SVG `fill`/`color` only, so those bars are measured by no gate at all.
@@ -558,13 +563,13 @@ on a `var()` it cannot resolve. Land after 211, or the extension is unmeasurable
 
 **Done means**
 
-- [ ] the four modules use only `fig-*` classes;
+- [ ] the three modules use only `fig-*` classes;
 - [ ] the extended audit fails if a `var(--tb-*)` background is reintroduced in a figure;
 - [ ] `audit site` passes for the three figures in both schemes.
 
 ## 215 — The portal leaves two blank columns beside a single-card group
 
-**What is wrong.** `.cards` is `repeat(auto-fill, minmax(280px, 1fr))` (`portal.css:170`);
+**What is wrong.** `.cards` is `repeat(auto-fill, minmax(280px, 1fr))` (`portal.css:140`);
 measured at 1280 it makes three 321.3px tracks, and the groups that hold one card (Junior Cycle,
 Misc) leave two empty cells. It is cosmetic — no reader is blocked by whitespace — which is why
 it is not in the ranked plan.
