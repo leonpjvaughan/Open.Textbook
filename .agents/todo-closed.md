@@ -8738,3 +8738,185 @@ a sweep can ask the question the runner asks.
       (`test_the_loader_keeps_a_label_inside_its_frame_in_any_font`);
 - [x] `tools types` is 0, `scripts/check.sh` is green, and the release after it deployed
       (tag `26.308.0`, live `version.json` = `ef3ee23`).
+
+## 186 — Two figure tools hard-code one book's routes, so they cannot check any other book — **done**
+
+**What is wrong.** `tools/src/commands/check-mobile.ts` holds
+`ROUTES = ["/gcse-maths/higher/chapter-1/section-1.1/learn/", ".../practise/"]`, and the `kit`
+command resolves its page the same way. Point either at a build of another book and every
+request 404s into the static server's fallback, which is 980 px wide — so the measurement
+reports the fallback and not the page.
+
+```
+$ node tools/dist/cli.js check-mobile /tmp/ma
+FAIL 412px learn      page is 981px wide in a 980px viewport
+FAIL 412px practise   page is 981px wide in a 980px viewport
+FAIL 480px learn      page is 981px wide in a 980px viewport
+FAIL 480px practise   page is 981px wide in a 980px viewport
+
+$ node tools/dist/cli.js kit /tmp/ma
+page.evaluate: TypeError: Failed to fetch dynamically imported module:
+  http://textbook.local/gcse-maths/higher/assets/figures/kit.js
+```
+
+Same four failures on a `numerical-methods` build. Nothing is wrong with either book: a
+390 px probe of all 26 pages of `maths-applied` and 15 of `numerical-methods` found
+`scrollWidth === 390`, no overflowing table and no card table wider than its column. The
+error is that the two commands that would have said so out loud are wired to one book, so
+"does this book work on a phone" has never been answerable for the other eleven.
+
+**The fix.** Derive the routes from the build the command was given, not from a book's
+name: take one `learn` and one `practise` route from the built site's own page list
+(`site/**/index.html`, or the collection manifest already read by `portal`), and let `--route`
+override. `kit` should do the same — pick the first page that mounts a figure module. Keep
+the gcse-maths routes as the default only when the given directory *is* that book.
+
+**Done means**
+
+- [x] `node tools/dist/cli.js check-mobile <dir>` on any built book measures that book's
+      pages; a build of `maths-applied` reports its own route names and no fallback page.
+- [x] `--route` selects a specific route, and a route that does not exist anywhere in the
+      build is an error rather than a 980 px fallback.
+- [x] `node tools/dist/cli.js kit <dir>` passes on a `maths-applied` build.
+- [x] a test asserts that no command module contains a literal `"/gcse-maths/` route.
+- [x] `tools help --check` agrees with the new flags.
+
+**Done (0d438882, PR #21).** `tools/src/lib/routes.ts` reads the pages out of the build it
+was given: a page is a directory with an `index.html`, a book is the nearest ancestor that
+carries `assets/figures/figures.js`, and `routeFile()` decides whether a route exists at all.
+`check-mobile` measures one learn page and one practise page from every book — a book with
+neither contributes its first page — and `--route` narrows the run to one page; a route that
+is not in the build exits 1 before a browser starts. `kit` takes its route from the first page
+that mounts a figure and derives the kit's URL from that page's own loader, so the kit it
+imports is the one the page loads. `budget` and `offline` default to the build's first learn
+page, and `offline` now refuses a route the build does not have. `preview`'s renderer layouts
+moved to `lib/layouts.ts`: they identify a renderer rather than a page, and keeping them out
+of `commands/` is what lets the new test forbid a book's route with no exception list.
+
+Measured: `textbook.pipeline` builds of `maths-applied` (`/tmp/ma`) and `numerical-methods`
+(`/tmp/nm`); `check-mobile` reports 21 and 26 pages examined, 0 errors, and names their own
+routes. `check-mobile site` now measures 35 pages from 18 books at five widths — 565 page
+loads, 1m58s, 0 errors — where it used to measure one book. `kit` passes on both builds and
+on `site`; `--route /nope/` exits 1 with "no page at /nope/"; `tools types` 0; pytest 8858
+passed; `scripts/check.sh` green; PR #21 squash-merged.
+
+## 190 — The first `guidance:legacy` scan found 13 leads, and none of them is measured — **done**
+
+**What is wrong.** Modern Web Guidance is now pinned and its `legacy-scan` reports
+`js` — 13 findings across three rules on this repository:
+
+| Rule | Count | Where |
+| --- | --- | --- |
+| `js/copying-array-methods` | 11 | `assets/settings/settings.js:130`, `assets/figures/src/kit/draw.ts:1195` (and its built `assets/figures/kit/draw.js:1014`), `research/design/background-effects/{dots,field-2d,field-gl}.js`, and six more it truncates |
+| `js/error-cause` | 1 | `tools/src/commands/types.ts:71` |
+| `js/replace-children-innerhtml` | 1 | `engine/src/textbook/templates/page.html:145` |
+
+None has been read, so none is known to be a defect: the pack's own rule says a
+finding is a lead and its silence is no information. Two carry a visible cost
+today — `innerHTML = ""` on the search results parses a string to clear a node,
+and a `throw` without `cause` discards the `tsc` stderr that the catch already
+has. The `copying-array-methods` ones are mostly `[...arr].sort()` where
+`toSorted()` is the current spelling, and that is a readability change, not a
+bug.
+
+**The fix.** Read all 13, then split them three ways: fix the two that lose
+information (`replaceChildren()`, `Error(..., { cause })`); change the array
+copies that the rule is right about, skipping the built `kit/draw.js` because it
+is generated from the `.ts` beside it; and write down why any that remain stay,
+in the sentence the rule's own "keep when" needs. `guidance:legacy` stays out of
+`check.sh`: it exits 0 on findings, so it is a report and not a gate.
+
+**Done means.**
+
+- [x] every one of the 13 findings appears in the commit body with one line
+      saying fixed or kept, and the kept ones say why;
+- [x] `research/design/background-effects/` is a research scratch area — say
+      whether it counts, and if it does not, say that in the skill so the next
+      scan is read against the same rule;
+- [x] `engine/src/textbook/templates/page.html` clears the results with
+      `replaceChildren()` and the search box still works with a keyboard and a
+      screen reader (`tools screenshot` of the search route before and after);
+- [x] `tools/src/commands/types.ts` throws with `cause`, so a failing `tsc` run
+      carries stderr in the stack instead of one sentence;
+- [x] `tools types` is 0 and `scripts/check.sh` is green;
+- [x] the scan's finding count is lower and the difference is explained, not
+      just observed.
+
+**Done (df8341c9, PR #23).** The scan reported **14** findings across **two** guides, not the
+13 this item recorded: the count came from the `js` guide alone, and the `dialog` one was
+listed under `copying-array-methods` in the table above.
+
+Seven fixed, because each lost something: the search list is cleared with
+`results.replaceChildren()`; `tools/src/commands/types.ts` throws `new Error(message,
+{ cause: error })` so the `tsc` stderr stays in the stack; `[...faceInfo].sort()` became
+`faceInfo.toSorted()` in `assets/figures/src/kit/draw.ts` (and its generated `kit/draw.js`),
+with `ES2023.Array` added to the kit's `lib` — the target stays ES2022, so nothing is
+downlevelled; `slice().sort()` became `toSorted()` twice in `lib/kit-contract.ts`; and the
+Settings dialog carries `closedby="any"` with the backdrop listener kept only where
+`closedBy` is missing, guarded on `HTMLDialogElement.prototype` and testing the pointer's
+position with the press and release both outside. That last one fixed a real defect the item
+had not seen: `event.target === dialog` is also true for the dialog's own padding and the gaps
+between its children, so a click **inside** the panel closed it.
+
+Seven kept, each with the rubric's own reason: six in `research/design/background-effects/`
+(it is scratch, not built, shipped or loaded, and the skill now says so) and
+`tools/src/lib/site.ts:35`, which spreads a `Set` — the rule keeps an array copy and drops a
+non-array iterable, and `toSorted()` cannot be called on a `Set`.
+
+Measured: the same script against the pre-change `site/` and a fresh build returns
+`found: 20, cleared: 0, clearedMarkup: "", again: 20, keyboard: true` both times, and the
+screenshots with results shown are byte-identical (196,471 bytes). The scan reports 7.
+`tools types` 0; the two touched test files 138 passed; `scripts/check.sh` green; PR #23
+squash-merged.
+
+## 191 — The solvers check says "commit what it writes" when the compiler was the wrong one — **done**
+
+**What is wrong.** `solvers/rust-toolchain.toml` pins `1.99.1`, and the comment beside it
+warns that the `.wasm` bytes depend on the compiler. On this machine `scripts/build-solvers.sh
+--check` rebuilds with **1.100.0** and reports
+
+```
+build-solvers: the committed bundle is not what the source builds.
+  Run scripts/build-solvers.sh and commit what it writes.
+```
+
+which is the one instruction that would break the contract: it invites committing bytes from
+a compiler the repository did not pin. The cause is `mise`, which exports
+`RUSTUP_TOOLCHAIN=stable` (`mise ls rust` → `stable`), and that environment variable wins over
+`solvers/rust-toolchain.toml`. Reproduced on a clean worktree of `HEAD`, so it is not any
+change in the working tree; CI has the pinned toolchain and its `--check` passes.
+
+**The fix.** Have the script compare `rustc --version` inside `solvers/` with the channel in
+`rust-toolchain.toml` before it builds, and say what is actually wrong —
+`the build used 1.100.0, the repository pins 1.99.1: unset RUSTUP_TOOLCHAIN (mise sets it) or
+install the pinned toolchain` — instead of "commit what it writes". A build with the wrong
+compiler should refuse, not advise.
+
+**Done means.**
+
+- [x] `scripts/build-solvers.sh --check` on this machine names the toolchain mismatch and
+      exits non-zero **before** it compiles;
+- [x] with `RUSTUP_TOOLCHAIN` unset (or 1.99.1 installed) `--check` rebuilds and matches the
+      committed bytes;
+- [x] `--verify` still works offline with no Rust at all;
+- [x] a test or the script's own selftest covers the refusal, so the message cannot regress
+      into advice;
+- [x] CI is unchanged and still green.
+
+**Done (6f4963b6, PR #22).** The cause was deeper than the wording. `RUSTUP_TOOLCHAIN` wins
+over `rust-toolchain.toml`, and the build spawns `cargo` once per kernel and a
+`rustc --version` for the bundle manifest, so both build paths now **export** the pinned
+channel before compiling instead of trusting the environment. On this machine `--check` now
+passes with mise's `RUSTUP_TOOLCHAIN=stable` still exported — 7 kernels, byte-identical —
+which is stronger than refusing the mismatch, because the mismatch can no longer be produced
+by an environment variable. A compiler that answers with another version still refuses before
+compiling, naming the version that answered, the pin and the install command, and a missing
+toolchain gets its own wording.
+
+`--help` was broken in the same file and is fixed: it read a fixed line range, so it printed
+`set -euo pipefail` and the `ROOT=` assignment; it now stops at the first non-comment line.
+
+Measured: `--verify` exits 0 with `PATH=/usr/bin:/bin`, no Rust at all;
+`tests/test_build_solvers.py` adds five tests driven by a fake `rustc` and a failing `cargo`,
+three of which fail against the previous script; `shellcheck` clean; `scripts/check.sh` green
+end to end here, including the solvers step that used to fail; PR #22 squash-merged.
