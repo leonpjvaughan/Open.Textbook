@@ -18,24 +18,50 @@ import path from "node:path";
 import { launchBrowser, openContext, serveStatic } from "../lib/browser.js";
 import { parseArgs } from "../lib/flags.js";
 import { Report } from "../lib/report.js";
+import { routeFile, sampleRoutes } from "../lib/routes.js";
 /** What this command accepts. `tools help check-mobile` is generated from it. */
 export const SURFACE = {
     positional: [{ name: "siteDir", help: "the built site to measure", required: false }],
-    flags: {},
+    flags: {
+        route: {
+            kind: "string",
+            value: "<path>",
+            help: "measure this page instead of the ones the build's own pages suggest",
+        },
+    },
 };
 // Android's common widths first: the report came from a phone. 480 is the top of the
 // range where the masthead has to wrap, so it guards the breakpoint itself.
 const WIDTHS = [320, 360, 390, 412, 480];
-const ROUTES = [
-    ["landing", "/"],
-    ["learn", "/gcse-maths/higher/chapter-1/section-1.1/learn/"],
-    ["practise", "/gcse-maths/higher/chapter-1/section-1.1/practise/"],
-];
+/**
+ * The pages this run measures, chosen from the build it was given.
+ *
+ * A named route could only ever answer for one book: the pair of gcse-maths routes
+ * this command used to hold measured that book and reported a miss for every other,
+ * which is indistinguishable from a pass. The routes come from the build instead, and
+ * `--route` narrows the run to one page the caller knows about.
+ */
+function pagesToMeasure(root, override) {
+    if (override !== undefined) {
+        if (!routeFile(root, override)) {
+            throw new Error(`no page at ${override} in ${root}; nothing was measured`);
+        }
+        return [{ name: override, route: override }];
+    }
+    const sampled = sampleRoutes(root);
+    if (sampled.length === 0)
+        throw new Error(`no pages in ${root}; build the site first`);
+    return sampled;
+}
 export async function run(argv) {
-    const { positional } = parseArgs(argv, SURFACE);
+    const { positional, values } = parseArgs(argv, SURFACE);
     const root = path.resolve(positional[0] ?? "site");
     if (!fs.existsSync(root))
         throw new Error(`no build at ${root}; build the site first`);
+    const routes = pagesToMeasure(root, values.route === undefined ? undefined : String(values.route));
+    console.log(`measuring ${String(routes.length)} page(s) in ${root}`);
+    for (const { name, route } of routes)
+        console.log(`  ${name}: ${route}`);
     const report = new Report("mobile");
     const browser = await launchBrowser();
     for (const width of WIDTHS) {
@@ -49,7 +75,7 @@ export async function run(argv) {
         });
         await serveStatic(context, root);
         const page = await context.newPage();
-        for (const [name, route] of ROUTES) {
+        for (const { name, route } of routes) {
             await page.goto(`http://textbook.local${route}`, { waitUntil: "load" });
             await page.waitForTimeout(120);
             const result = await page.evaluate(() => {
@@ -118,7 +144,7 @@ export async function run(argv) {
     // label size: below it the last column loses less than a character, and a table 40px
     // over — the item's example — still fails.
     const TABLE_SLACK = 20;
-    const routes = [];
+    const tableRoutes = [];
     const walk = (dir) => {
         for (const entry of fs.readdirSync(dir, { withFileTypes: true })) {
             const full = path.join(dir, entry.name);
@@ -129,7 +155,7 @@ export async function run(argv) {
                 if (!html.includes("<table"))
                     continue;
                 const rel = path.relative(root, path.dirname(full));
-                routes.push("/" + rel.split(path.sep).join("/") + "/");
+                tableRoutes.push("/" + rel.split(path.sep).join("/") + "/");
             }
         }
     };
@@ -144,7 +170,7 @@ export async function run(argv) {
     });
     await serveStatic(tableContext, root);
     const tablePage = await tableContext.newPage();
-    for (const route of routes.sort()) {
+    for (const route of tableRoutes.sort()) {
         await tablePage.goto(`http://textbook.local${route}`, { waitUntil: "load" });
         await tablePage.waitForTimeout(30);
         const overflowing = (await tablePage.evaluate((slack) => {

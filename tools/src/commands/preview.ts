@@ -40,23 +40,7 @@ import fs from "node:fs";
 import path from "node:path";
 import { launchBrowser, openContext, serveStatic, ORIGIN } from "../lib/browser.js";
 import { parseArgs, type Surface } from "../lib/flags.js";
-
-// The route layouts this harness knows. They are not interchangeable: the
-// renderer decides the path, and a run that names the wrong one must stop before
-// it measures a 404. `witness` is a page that only that renderer writes, so its
-// presence is what makes the assertion concrete rather than stylistic.
-const LAYOUTS: Record<string, { label: string; example: string; witness: string }> = {
-  pipeline: {
-    label: "the pipeline (`python -m textbook.pipeline`) — the site",
-    example: "/gcse-maths/higher/chapter-1/section-1.1/learn/",
-    witness: "gcse-maths/higher/chapter-1/section-1.1/learn/index.html",
-  },
-  mkdocs: {
-    label: "the parked MkDocs shell — only if MkDocs is un-parked",
-    example: "/gcse-maths/higher/Chapter 1/Section 1.1/Walkthrough/",
-    witness: "gcse-maths/higher/Chapter 1/Section 1.1/Walkthrough/index.html",
-  },
-};
+import { LAYOUTS } from "../lib/layouts.js";
 
 // A URL path to a built file under `siteDir`, or `null` when the site has no
 // such page. A trailing slash is a directory index; anything that escapes the
