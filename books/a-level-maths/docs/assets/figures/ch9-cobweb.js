@@ -134,7 +134,7 @@ export function mount(el) {
   });
 
   const verdict = document.createElement("p");
-  verdict.className = "fig-note";
+  verdict.className = "text-ink";
   root.append(verdict);
 
   function draw() {

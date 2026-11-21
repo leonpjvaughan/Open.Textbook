@@ -152,7 +152,7 @@
 /* The two members of a bundle, named. Quiet, because it is an identifier rather
  * than a description, and it must not compete with the bundle's own name. */
 .tb-settings__option-note {
-  font-size: 0.72rem;
+  font-size: 0.75rem;
   line-height: 1.3;
   color: var(--md-default-fg-color--light, var(--tb-ink-soft));
 }
@@ -168,7 +168,7 @@
 .tb-settings__sublegend {
   padding: 0;
   margin: 0 0 0.3rem;
-  font-size: 0.72rem;
+  font-size: 0.75rem;
   font-weight: 600;
   letter-spacing: 0.04em;
   text-transform: uppercase;
