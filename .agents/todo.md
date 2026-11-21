@@ -16,9 +16,10 @@ are checked against each other on every pass.
 
 **Every item from 79 to 191 is closed except 187 and 188,** each with its measurement, its
 fix, its outcome and its ticked done-means in `.agents/todo-closed.md`. A new item goes at
-the number after the last one, with its diagnosis, its fix and its own done-means. Two are
-open: **187–188**, both from
-`research/review/maths-applied-and-numerical-methods-v.md`.
+the number after the last one, with its diagnosis, its fix and its own done-means. Three are
+open: **187** and **188** from
+`research/review/maths-applied-and-numerical-methods-v.md`, and **192**, filed while closing
+186, 190 and 191.
 
 Two items were both filed as 182 by different passes; the label-and-font one is now **189**,
 and the duplicate number is gone.
@@ -103,3 +104,40 @@ reach every method. At a wide viewport the same markup reads as the current two 
 - [ ] `:::method-index`'s hook and its test are updated together, and the marker's
       documentation in `engine/AGENTS.md` matches the new markup.
 - [ ] no colour and no script is added; the page passes `audit site --mobile`.
+
+## 192 — The offline check fetches a loader URL that cannot exist, so its own probe is dead
+
+**What is wrong.** `tools/src/commands/offline.ts` builds the file it fetches to warm the
+runtime cache as
+
+```js
+const loader = target + "assets/figures/figures.js";
+```
+
+where `target` is the route itself (`route.replace(/[^/]*$/, "")` leaves a trailing slash
+alone). For the route the check samples by default that is
+`/a-level-maths/chapter-1/section-1.3/learn/assets/figures/figures.js`, and no build has a
+file there: the loader lives at `/a-level-maths/assets/figures/figures.js`, one book root up,
+and the page reaches it relatively (`../../../assets/figures/figures.js`).
+
+Measured on this tree: `ls site/a-level-maths/chapter-1/section-1.3/learn/assets` → no such
+directory, while `site/a-level-maths/assets/figures/figures.js` exists. So the fetch 404s, and
+the loader that lands in the runtime cache is the one the page's own `<script src>` asked for.
+
+The check still answers its question, because a page that lost its loader would fail. What is
+wrong is that the probe written out in the source is not the thing being measured: a page that
+imported a loader from somewhere else would pass on that import alone, and the 404 is silent.
+
+**The fix.** Resolve the loader from the page, the way `kit` already does:
+`figureAssets()` in `tools/src/lib/routes.ts` reads the page's own `src` and names the file.
+Fetch that URL and drop the hand-built concatenation. A page that mounts no figure should be
+reported as such rather than fetching a path that cannot exist.
+
+**Done means**
+
+- [ ] `offline` fetches the loader URL the page itself names, and no route-plus-path
+      concatenation for `figures.js` remains in the file;
+- [ ] a planted page that names its loader at an unusual path has that path fetched, and a
+      page with no loader fails with the message it gives today;
+- [ ] `node tools/dist/cli.js offline site` still reports 6 cache checks, 0 errors, and
+      `scripts/preview-themes.sh` is green.
