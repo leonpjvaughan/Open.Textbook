@@ -367,7 +367,10 @@ none }` (`shell.css:280`) means an unmatched query makes the panel vanish with n
 *Change:* `font-size: 1rem` for `.search input` in the existing phone block; `aria-expanded`/
 `aria-controls` on the input; `role="status" aria-live="polite"` on the list; a plain
 `<li>No results</li>` when the array is empty, with `hidden` replacing `:empty`; `ArrowDown` /
-`Escape` / `Enter` in the existing module; `min-height: 44px` on result links. No colour.
+`Escape` / `Enter` in the existing module; `min-height: 44px` on result links. No colour. The empty
+state is reachable but not for every nonsense string: measured, `@@@` and a single letter return
+zero results and the list computes `display: none`, while `zzzzzz` still returns a fuzzy hit — so
+the item is about the silent case that does happen, not about every query.
 *Gate:* a markup test over the shipped `page.html`. *Done means:* a nonsense query says so;
 `ArrowDown` reaches the first result; the input computes ≥16px at 390.
 

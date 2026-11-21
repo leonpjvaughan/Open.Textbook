@@ -333,7 +333,9 @@ Plan: P5.
 while the reader types. The input is a bare `<input type="search">` plus a `<ul>`
 (`page.html:53-56`) with no `aria-expanded`, `aria-controls` or `aria-live`, `ArrowDown` leaves
 focus in the input, result anchors are 33px tall, and `.search__results:empty { display: none }`
-hides the panel so an unmatched query says nothing.
+hides the panel so a query with no hits says nothing. Measured: `@@@` and a single letter return
+zero results and the list computes `display: none`; `zzzzzz` still returns a fuzzy hit, so the
+silent case is narrower than "any nonsense".
 
 **The fix.** `font-size: 1rem` for `.search input` in the existing phone block; `aria-expanded`
 and `aria-controls` on the input; `role="status" aria-live="polite"` on the list; a plain
