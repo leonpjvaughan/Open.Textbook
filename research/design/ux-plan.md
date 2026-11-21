@@ -160,6 +160,27 @@ To re-render: serve `site/` (`python3 -m http.server 8823` from `site/`), open t
 browser, and add the block from P1 stage 2 to the document. Three rules are the whole
 comparison, which is why the frame needs no harness.
 
+### Baseline check
+
+The platform features the plan leans on were checked against the Baseline dataset
+(`https://api.webstatus.dev/v1/features`, the data behind web.dev/baseline) rather than
+remembered, on 2026-11-21:
+
+| feature | Baseline | interoperable since |
+|---|---|---|
+| `details` / `summary` — the drawer, every disclosure | widely | 2020-01-15 |
+| `dialog` — the settings panel | widely | 2022-03-14 |
+| `color-scheme` — the dark scheme | widely | 2022-02-03 |
+| `prefers-reduced-motion` | widely | 2020-01-15 |
+| `color-mix()` — the 4–6% tints | widely | 2023-05-09 |
+| `:has()` | widely | 2023-12-19 |
+| `closedby` | **not in the dataset** | — |
+
+So nothing here needs a fallback in a supported browser; `:has()` is available, though the plan
+still forbids it inside a figure for specificity reasons, not availability; and `closedby` is the
+one Chrome-only property, which is why the settings dialog's outside-click polyfill
+(`settings.js:136`) is not redundancy.
+
 ## 4. The plan
 
 Ordered so that what a reader feels lands before what a tool measures, and so that no palette is
