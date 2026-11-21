@@ -20,7 +20,7 @@ the number after the last one, with its diagnosis, its fix and its own done-mean
 **187** and **188** from `research/review/maths-applied-and-numerical-methods-v.md`, **192**,
 filed while closing 186, 190 and 191, and **200–216** of the UX queue from
 `research/design/ux-plan.md` — the four auditor reports and the two reviews behind it are
-summarised there, not here. **193–199 and 202** are closed in stage 1 of that plan.
+summarised there, not here. **193–202 and 206–210** are closed in stages 1 and 2 of that plan.
 
 The UX queue is ordered as `ux-plan.md` §4 ranks it. One dependency matters before starting:
 the size report (**209**) is the gate that **197**, **201**, **203** and **204** are verified
@@ -179,24 +179,6 @@ because `preview --audit` is blind to pseudo-elements. Plan: P1; the hue questio
 - [ ] if the tint is taken, `preview --audit` passes for the six bundles in both schemes;
 - [ ] no figure changes, and `tests/test_figures.py` is untouched.
 
-## 201 — Cards-mode table cells are smaller than the prose that explains them
-
-**What is wrong.** At ≤60rem a `table--cards` body cell is `0.78rem` = 12.48px on
-`line-height: 1.3` with `padding: 0.05rem 0` = 0.8px, and its `::before` label is `0.7rem` =
-11.2px (`extra.css:171-184`); only the first cell is `0.92rem` = 14.72px, which is the number the
-probe reports. The header row is clipped, so all the context lives in the 11.2px labels.
-
-**The fix.** Body cells `1rem` (16px) on `line-height: 1.45` with `padding: 0.15rem 0`; labels
-`0.85rem` (13.6px) — the cell reaches the size report's reading floor instead of sitting two steps
-under the prose. No colour.
-Plan: P5.
-
-**Done means**
-
-- [ ] at 390 the value text is ≥16px, the label ≥13.6px, the row padding ≥4.5px;
-- [ ] the block's 140px height budget is re-measured at the new size, not assumed;
-- [ ] the size report of 209 covers `table--cards td` and passes both schemes.
-
 ## 203 — All twelve practice answers sit behind one disclosure
 
 **What is wrong.** `engine/src/textbook/verify/render.py:151` wraps the join of every answer in
@@ -253,93 +235,6 @@ heading sits **21px** from its own paragraph while a paragraph sits 17px from th
 - [ ] every heading→text gap is smaller than every text→heading gap in the probe's rhythm list;
 - [ ] no two adjacent gaps differ by 1px;
 - [ ] headings outside `main.md-typeset` are unchanged (check the booklet panel and print).
-
-## 206 — A `fig-*` name is unexamined, and four modules use one that does not exist
-
-**What is wrong.** `tests/test_figures.py:434` (`text_classes_in`) polices `text-*` only. Most
-`fig-*` names are structural and the kit owns them (`fig-caption`, `fig-control`, `fig-controls`,
-`fig-hidden`, `fig-part-button`, `fig-parts`, `fig-question`, `fig-row-active`, `fig-segment`,
-`fig-table`, `readout`), but **four modules** set `fig-note` — `ch9-change-of-sign.js:86`,
-`ch9-cobweb.js:137`, `ch9-newton-raphson.js:119`, `ch9-trapezium.js:103` — which no stylesheet and
-no kit layer defines. Today those are HTML labels, so they inherit body ink and adapt by luck; the
-day one is an SVG `<text>` it is the initial-black defect `extra.css:341-350` records.
-
-**The fix.** A check over both prefixes that knows the kit's structural classes and the CSS's
-colour classes and flags anything in neither. Then make the four labels `text-ink`. Plan: G2.
-
-**Done means**
-
-- [ ] the check fails on `fig-note` and passes once the four are changed;
-- [ ] a colour class defined in extra.css with no user also fails;
-- [ ] the kit's structural classes are named in one list, with the file that owns them.
-
-## 207 — Nothing reads the booklet badge's colour
-
-**What is wrong.** `grep -rn 'bk-badge'` finds only the JS emitter and the CSS, so no test would
-notice 196 — which is why the swapped tokens shipped and stayed.
-
-**The fix.** Assert each badge variant's background resolves to its semantic token, in
-`tests/test_themes.py`, for both schemes. Plan: G7.
-
-**Done means**
-
-- [ ] the assertion fails on the un-fixed `extra.css` and passes after 196;
-- [ ] the muted variant is asserted to be neutral, not merely "not warn";
-- [ ] no colour literal is added to the test.
-
-## 208 — A paint transition would fool the figure audit
-
-**What is wrong.** `extra.css` has zero `transition` and zero `animation` today, so nothing has
-ever exercised the question. A `transition: fill` makes `audit site` sample an interpolated
-colour — a false pass or a flake — and `tools/src/commands/audit-figures.ts:347` already documents
-that a figure which mounts nothing passes every contrast check.
-
-**The fix.** A test that fails any `transition` or `animation` inside a `maths-figure`/`fig-*`
-rule naming `fill`, `stroke`, `color`, `background` or a `--tb-*`. `npm run guidance -- retrieve
-motion` is the citation: animate `opacity`/`transform`, never paint. Plan: G3.
-
-**Done means**
-
-- [ ] a hand-written violating rule fails the test;
-- [ ] `opacity`/`transform` under `prefers-reduced-motion: no-preference` passes;
-- [ ] the test names the file and line of the offending rule.
-
-## 209 — Nothing measures type or target size outside a figure
-
-**What is wrong.** The only size floor in the suite is `audit site --mobile`'s 9px for figures.
-Nothing asserts a minimum size or target for prose, `table--cards td` (12.48px), `.contents__list
-a` (15px), a `details > summary`, or `.search input` (13.6px), which is how those shipped.
-
-**The fix.** One home, `tests/test_type_scale.py`, at 390 in both schemes: reading text ≥16px
-(`table--cards td`, `details > p`, `.search input`), labels and captions ≥12px (`td::before`,
-`figcaption`, `.fig-parts button`), `.contents__list a` line box ≥22px, and the tab order of a
-Learn page and the portal. Two floors, not four, and the same two the other items target.
-Plan: G6.
-
-**Done means**
-
-- [ ] the report names each selector, its computed size and its binding floor;
-- [ ] it fails at the floor and passes after 195, 197, 201, 202 and 204 — 201 by raising the
-      cards cell to 16px, which is the floor this report asserts;
-- [ ] it covers text inside `maths-figure`, which `audit site` cannot see.
-
-## 210 — The label-size guard would evaluate the wrong width
-
-**What is wrong.** The obvious static guard,
-`(46rem − 2×padding)/520 ≥ 9/16`, is dimensionally wrong: at 46rem it evaluates to ≈1.35 and can
-never fire. The binding width is the phone column, not `max-width`, so the assertion that is
-supposed to protect the 9px floor protects nothing. `tests/test_figures.py:544` guards the
-*written* `size:` (16 units) and only `audit site --mobile` measures the rendered result.
-
-**The fix.** Evaluate at the real phone content width —
-`(390 − 2×page-padding − 2×panel-padding) / viewBox-width × SIZE.tick ≥ 9` — and print both
-numbers in the failure message. Plan: G4.
-
-**Done means**
-
-- [ ] raising the panel padding to 1.5rem fails with "8.4px at 390";
-- [ ] the current tree passes with its measured value printed;
-- [ ] the assertion lives beside 209's report, not in a second home.
 
 ## 211 — The two figure audits are the two a branch may skip
 
