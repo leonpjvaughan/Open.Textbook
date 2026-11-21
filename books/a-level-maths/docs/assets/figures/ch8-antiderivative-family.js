@@ -6,7 +6,7 @@
 //
 // The scaffolding — the surface, its accessible name, the sliders, the live
 // readout and the redraw — comes from `kit.js`.
-import { panel, slider, react } from "./kit.js";
+import { SIZE, label, panel, slider, react } from "./kit.js";
 
 const X_MIN = -2.2;
 const X_MAX = 2.2;
@@ -87,7 +87,7 @@ export function mount(el) {
 
     const line =
       `<line x1="${xToPx(X_MIN)}" y1="${yToPx(2 * X_MIN).toFixed(1)}" ` +
-      `x2="${xToPx(X_MAX)}" y2="${yToPx(2 * X_MAX).toFixed(1)}" class="fig-warn"></line>`;
+      `x2="${xToPx(X_MAX)}" y2="${yToPx(2 * X_MAX).toFixed(1)}" class="fig-warn" stroke-width="2"></line>`;
 
     const parabola = `<polyline points="${parabolaPoints(c)}" class="fig-line"></polyline>`;
 
@@ -95,16 +95,28 @@ export function mount(el) {
     const tanEnd = Math.min(X_MAX, x0 + 0.8);
     const tangent =
       `<line x1="${xToPx(tanStart).toFixed(1)}" y1="${yToPx(fValue + slope * (tanStart - x0)).toFixed(1)}" ` +
-      `x2="${xToPx(tanEnd).toFixed(1)}" y2="${yToPx(fValue + slope * (tanEnd - x0)).toFixed(1)}" class="fig-good"></line>`;
+      `x2="${xToPx(tanEnd).toFixed(1)}" y2="${yToPx(fValue + slope * (tanEnd - x0)).toFixed(1)}" class="fig-good" stroke-width="3.2"></line>`;
 
-    const fMarker = `<circle cx="${xToPx(x0).toFixed(1)}" cy="${yToPx(fHeight).toFixed(1)}" r="4" class="fig-warn"></circle>`;
-    const fMarker2 = `<circle cx="${xToPx(x0).toFixed(1)}" cy="${yToPx(fValue).toFixed(1)}" r="4" class="fig-ink"></circle>`;
+    // Hollow ring on f(x) = 2x and solid dot on the tangent, plus explicit labels,
+    // so the gradient line and tangent stay distinct in greyscale.
+    const fMarker =
+      `<circle cx="${xToPx(x0).toFixed(1)}" cy="${yToPx(fHeight).toFixed(1)}" r="5.5" ` +
+      `style="fill:none" stroke-width="2.5" class="fig-warn"></circle>`;
+    const fMarker2 = `<circle cx="${xToPx(x0).toFixed(1)}" cy="${yToPx(fValue).toFixed(1)}" r="4.5" class="fig-good"></circle>`;
+    const lineLabel = label({
+      x: xToPx(2.0),
+      y: yToPx(4.0) - 12,
+      text: "f(x) = 2x",
+      anchor: "end",
+      size: SIZE.tick,
+      class: "text-warn",
+    });
 
-    svg.innerHTML = grid() + axes + line + parabola + tangent + fMarker + fMarker2;
+    svg.innerHTML = grid() + axes + line + parabola + tangent + fMarker + fMarker2 + lineLabel;
 
     const direction = slope > 0 ? "rising" : slope < 0 ? "falling" : "flat";
     readout.textContent =
-      `The orange line is f of x equals 2x, the height of the gradient. ` +
+      `The straight line is f of x equals 2x, the height of the gradient. ` +
       `The curve is the family F of x equals x squared plus C. ` +
       `At x = ${x0.toFixed(1)}, F is ${fValue.toFixed(1)} and the tangent is ${direction}. ` +
       `Its gradient equals the height of f, which is ${fHeight.toFixed(1)}. ` +

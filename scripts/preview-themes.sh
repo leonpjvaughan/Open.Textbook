@@ -108,6 +108,10 @@ run_check canvas node tools/dist/cli.js canvas site
 # `tests/test_pwa.py`, and whether a reader can still read is a question for a browser.
 run_check offline node tools/dist/cli.js offline site
 
+# Print media render on a built Learn route: proves figures mount and survive `@media print`
+# without any part hidden or taller than one printable sheet.
+run_check print uv run python -m pytest tests/test_print.py -m browser -q
+
 
 # The matrix, 6 bundles x 2 schemes x 3 routes = 36 pages.
 run_check preview node tools/dist/cli.js preview \

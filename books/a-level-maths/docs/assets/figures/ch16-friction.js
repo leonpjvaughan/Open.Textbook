@@ -7,11 +7,11 @@
 // The scaffolding — the surface, its accessible name, the sliders, the live
 // readout, the redraw — comes from `kit.js`. What is left here is the drawing and
 // the sentence, which are the parts that differ from every other figure.
-import { panel, slider, react } from "./kit.js";
+import { SIZE, label, panel, slider, react } from "./kit.js";
 
 const G = 9.8;
 
-function arrow(x1, y1, x2, y2, cls) {
+function arrow(x1, y1, x2, y2, cls, width = 2) {
   const angle = Math.atan2(y2 - y1, x2 - x1);
   const size = 9;
   const spread = 0.42;
@@ -24,7 +24,7 @@ function arrow(x1, y1, x2, y2, cls) {
   return (
     `<line x1="${x1.toFixed(1)}" y1="${y1.toFixed(1)}" ` +
     `x2="${x2.toFixed(1)}" y2="${y2.toFixed(1)}" class="${cls}" ` +
-    `style="fill:none" stroke-width="2"></line>` +
+    `style="fill:none" stroke-width="${width}"></line>` +
     `<polygon points="${x2.toFixed(1)},${y2.toFixed(1)} ` +
     `${leftX.toFixed(1)},${leftY.toFixed(1)} ${rightX.toFixed(1)},${rightY.toFixed(1)}" ` +
     `class="${cls}"></polygon>`
@@ -84,13 +84,24 @@ export function mount(el) {
     const pushLen = Math.min(120, push * 0.45);
     const frictionLen = Math.min(120, friction * 0.45);
 
+    const labels =
+      label({ x: blockX + blockW / 2 + 8, y: blockY - 20, text: "normal", anchor: "start", size: SIZE.tick, class: "text-ink" }) +
+      label({ x: blockX + blockW / 2 + 8, y: blockY + blockH + 34, text: "weight", anchor: "start", size: SIZE.tick, class: "text-warn" }) +
+      (pushLen > 8
+        ? label({ x: blockX + blockW + 8, y: blockY + blockH / 2 - 10, text: "push", anchor: "start", size: SIZE.tick, class: "text-accent" })
+        : "") +
+      (frictionLen > 8
+        ? label({ x: blockX - 8, y: blockY + blockH / 2 - 10, text: "friction", anchor: "end", size: SIZE.tick, class: "text-good" })
+        : "");
+
     svg.innerHTML =
       floor +
       box +
-      arrow(blockX + blockW, blockY + blockH / 2, blockX + blockW + pushLen, blockY + blockH / 2, "fig-accent") +
-      arrow(blockX, blockY + blockH / 2, blockX - frictionLen, blockY + blockH / 2, "fig-good") +
-      arrow(blockX + blockW / 2, blockY + blockH, blockX + blockW / 2, blockY + blockH + 45, "fig-warn") +
-      arrow(blockX + blockW / 2, blockY, blockX + blockW / 2, blockY - 45, "fig-grid");
+      arrow(blockX + blockW, blockY + blockH / 2, blockX + blockW + pushLen, blockY + blockH / 2, "fig-accent", 2) +
+      arrow(blockX, blockY + blockH / 2, blockX - frictionLen, blockY + blockH / 2, "fig-good", 2) +
+      arrow(blockX + blockW / 2, blockY + blockH, blockX + blockW / 2, blockY + blockH + 45, "fig-warn", 3) +
+      arrow(blockX + blockW / 2, blockY, blockX + blockW / 2, blockY - 45, "fig-grid", 2) +
+      labels;
 
     const frictionLine = moves
       ? `The push beats the limit, so the block slides. Friction now takes its greatest value, ` +

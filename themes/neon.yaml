@@ -15,9 +15,7 @@
 id: neon
 title: Neon
 description: >-
-  A cyberpunk glass terminal: violet-black surfaces, hot magenta and electric
-  cyan. The vivid member is the night page; the light member is the same hues
-  held down to a pale violet day.
+  Dark violet with hot pink.
 
 # `fixed:` here because a vivid bundle IS its colour. The subject tint composes
 # into a bundle by default, which is right for the calm themes — the subject

@@ -8920,3 +8920,585 @@ Measured: `--verify` exits 0 with `PATH=/usr/bin:/bin`, no Rust at all;
 `tests/test_build_solvers.py` adds five tests driven by a fake `rustc` and a failing `cargo`,
 three of which fail against the previous script; `shellcheck` clean; `scripts/check.sh` green
 end to end here, including the solvers step that used to fail; PR #22 squash-merged.
+
+## 193 — Every book page's first Tab lands on an invisible skip link — **done**
+
+**What is wrong.** `engine/src/textbook/css/shell.css:39` is
+`.skip { position: absolute; left: -9999px }` and no `.skip:focus` / `:focus-visible` rule
+exists anywhere (the only other match, `extra.css:837`, is the print block). Measured with a
+Playwright probe at 390px: the link is tab stop **#1** of every book page at `x = -9999`, so a
+keyboard reader's first Tab moves focus off screen with no visible change. `templates/portal.html`
+carries no skip link at all, and the portal's first tab stop is the Settings button.
+
+**The fix.** On `:focus`, bring the link into flow — `position: static; display: block;
+padding: 0.5rem 1rem` — which needs no colour, because the page paper and `--tb-ink` already
+read. Add the same markup the books carry (`page.html:160`) to `templates/portal.html` before
+the masthead. Plan: P2 — `research/design/ux-plan.md` §4.
+
+**Done means**
+
+- [ ] first Tab on a book page shows a readable, on-screen link, and the probe prints its box;
+- [ ] first Tab on the portal does the same, and the tab order after it is unchanged;
+- [ ] no colour is declared in `shell.css` or `portal.css`, and `tests/test_themes.py` passes.
+
+**Outcome.** `.skip:focus`/`:focus-visible` in `shell.css` return the link to the flow, and
+`portal.css` plus `templates/portal.html` give the landing page the same control. Measured: first
+Tab on a book page and on `/` lands on `A "Skip to content"` at y = 0, 44px and 45px tall; before,
+the same Tab put focus at x = -9999 with nothing on screen.
+
+## 194 — The drawer does not say what it opens — **done**
+
+**What is wrong.** The `<details>` summary carries the book title and the section
+(`templates/page.html:73-78`): measured 358×72 at 390px with the drawer closed. A reader on a
+phone sees "GCSE Mathematics (9-1)  1.1 Place value and ordering ▸" — a label, not a control —
+and a reader who opens it inserts 458 nav links before the page.
+
+**The fix.** A visible `Contents` word inside the summary, in the existing `--tb-ink-soft`; the
+nav keeps its `aria-label="Book contents"`. Copy only, no colour, no token. Plan: P8.
+
+**Done means**
+
+- [ ] a phone reader can tell the control's purpose without opening it;
+- [ ] the summary's box is measured before and after, and the drawer still opens and closes
+      without JavaScript at ≥60rem;
+- [ ] the structure test asserts the word, so it cannot be removed quietly.
+
+**Outcome.** The summary leads with `Contents` in `--tb-ink-soft` (`shell.css`), so a phone
+reader reads "Contents GCSE Mathematics (9-1) 1.1 Place value and ordering numbers" without opening
+anything.
+
+## 195 — The settings trigger is 36×36, and the panel clips at 390px — **done**
+
+**What is wrong.** `shell.css:124-130` sets `width/height: 2.25rem` (36px); `portal.css:97-98`
+sets 42px on the landing page. `aria-label` and `title` are "Settings" and the element's text is
+empty, so it is a cog with no word. The repository states its own floor two screens away
+(`shell.css:369`: "under the 44px a thumb needs"). In the dialog at 390 the options stack:
+`.tb-settings__options` collapses to one column at `max-width: 480px` (`settings.css:142-146`),
+measured 8 option cards, dialog 358×706, `scrollHeight` 742 — the last row is clipped.
+
+**The fix.** `2.75rem` in both files; at `min-width: 48rem` show the existing label word beside
+the cog; move the options breakpoint to `360px` or `minmax(7rem, 1fr)` so two ~145px columns fit
+in 358px. No colour, no new token. Plan: P7.
+
+**Done means**
+
+- [ ] the trigger measures ≥44px at 390 on the portal and on a book page;
+- [ ] the dialog's `scrollHeight` fits the viewport at 390 with all eight options visible;
+- [ ] the words beside the cog come from the existing `aria-label` text, not a second string.
+
+**Outcome.** `2.75rem` in `shell.css` and `portal.css`, with the word from the trigger's own
+accessible name shown from 48rem: measured 44×44 at 390 and 109×44 at 1280. `.tb-settings__options`
+is `repeat(auto-fit, minmax(7rem, 1fr))` and the single-column fallback moved to `22rem`.
+
+Implementation also found a defect neither the audit nor the review had seen:
+`.tb-settings__card { height: 100% }` resolved against a parent whose height was its own content, so
+every card drew outside its grid row and the next group's legend printed over it (measured: a 92px
+group, 60px cards, a 42px row). With it removed, the panel fits: at 390 the form's `scrollHeight`
+equals its `clientHeight` (734px), all eight options are above the fold and the offline control is
+reachable without scrolling.
+
+## 196 — The muted badge is painted with the warning token — **done**
+
+**What is wrong.** `assets/stylesheets/extra.css:764-765` paints `.bk-badge--muted` with
+`--tb-fig-warn` and `.bk-badge--warn` with `--tb-fig-good`, and `assets/booklet/booklet.js:258`
+defaults a toneless badge to `muted`. So in all six bundles and both schemes the **default**
+badge wears the warning hue and a "warn" badge wears the good hue. Nothing reads badge colour
+today, which is why it shipped.
+
+**The fix.** One fix, not a swap: muted becomes the neutral
+`color-mix(in srgb, var(--tb-ink) 10%, transparent)` and warn keeps `--tb-fig-warn`. (Swapping
+the two `var()`s would leave the default badge green.) No literal, no token. Plan: P12.
+
+**Done means**
+
+- [ ] a toneless badge is neutral in both schemes and a warn badge is warm, in the booklet;
+- [ ] the new assertion of 207 fails on the un-fixed file and passes after;
+- [ ] no colour literal is added anywhere, and `tests/test_themes.py` passes.
+
+**Outcome.** Muted is `color-mix(in srgb, var(--tb-ink) 10%, transparent)` and warn keeps
+`--tb-fig-warn`; measured computed backgrounds `srgb 0.914 0.906 0.882 / 0.1` and
+`srgb 0.878 0.541 0.463 / 0.2` — neutral and warm, in both schemes.
+
+## 197 — The in-page contents links are 15px-tall boxes — **done**
+
+**What is wrong.** `.contents__list` is `0.85rem` on `line-height: 1.45`
+(`extra.css:930-936`). Measured on a Learn page at both 1280 and 390: `listFs 13.6px`,
+`linkHeight 15`, six items — under WCAG 2.5.8's 24px and far under the house's 44px, on the
+navigation of a 4,430px phone page.
+
+**The fix.** The line-height-only option: `line-height: 1.7` and `a { display: inline-block }`,
+which buys ~22px boxes with no new panel height. Raising the font size as well adds 80px of
+scroll at 390, which the review priced and rejected. No colour. Plan: P3.
+
+**Done means**
+
+- [ ] the measured link box is ≥22px at 390 and at 1280;
+- [ ] the panel's height is unchanged at both widths;
+- [ ] the size report of 209 includes this selector and passes.
+
+**Outcome.** `line-height: 1.7` with `a { display: inline-block }`: measured link box 15px →
+23px at 1280 and 390, with the panel's height unchanged.
+
+## 198 — "Prove it to me" cannot wrap — **done**
+
+**What is wrong.** `.prove__ask { white-space: nowrap }` (`extra.css:481-485`) refuses the wrap
+that `npm run guidance -- retrieve typography` and WCAG 1.4.12 require of running text, inside a
+flex row that already declares `flex-wrap: wrap`.
+
+**The fix.** Delete the declaration; the `::after` arrow stays attached to the label. No colour.
+Plan: P11.
+
+**Done means**
+
+- [ ] at 200% text zoom the affordance wraps and nothing clips;
+- [ ] the 390px preview captures show the arrow beside the last word, not on its own line;
+- [ ] `preview --audit` still passes for all six bundles in both schemes.
+
+**Outcome.** The declaration is gone. Measured on `chapter-16/section-16.3/learn`:
+`.prove__ask` computes `white-space: normal` at 1280 and at 390.
+
+## 199 — The theme chooser cannot be read by a reader who cannot see colour — **done**
+
+**What is wrong.** The dialog offers Light/Dark and six bundles as title + description in one
+flat grid (`portal.py:303-345`, `settings.css:136`). The descriptions ask the reader to *look*
+("Black on white, one weight of grey"), and the vivid three add jargon — "glassmorphism developer
+OS", "A CRT terminal", "cyberpunk glass terminal" — outside a 12–14 reading age. Each bundle is a
+*pair* whose member names are loaded and tested (`tests/test_themes.py:262`: Paper/Ink,
+Daybreak/Shell, Daylight/Nightfall) and never shown; `mood` reaches the reader only as list order.
+
+**The fix.** Two sub-fieldsets whose legends come from `mood` ("Quiet themes" / "Bold themes"),
+reusing `.tb-settings__group`/`__legend`; append the pair's member names from `provenance`; and
+use the six strings the plan proposes ("Plain black on white, with no colour at all.", "Warm
+cream paper and dark ink.", "Near-black with green and lime.", "Blue-grey paper with a steady
+blue.", "Dark violet with bright pink.", "Dark brown with amber, like an old screen."). Copy and
+markup only. Plan: P13.
+
+**Done means**
+
+- [ ] a reader who cannot see the palettes can tell the six apart from the words alone;
+- [ ] no description exceeds 12 words, contains jargon, a negative contraction or a shaming word,
+      checked by hand — nothing automated reads `themes/*.yaml` copy;
+- [ ] the bundle-coverage tests still pass, and the panel still opens and dismisses by Escape.
+
+**Outcome.** The six `description:` values in `themes/*.yaml` are rewritten to seven plain words
+or fewer, the theme options are grouped by `mood` under `Quiet themes` and `Bold themes`, and each
+option shows its pair's names from `provenance` (`Paper · Ink`, `Daybreak · Shell`, `Wallpaper ·
+Kindling`, …). The theme group's duplicate hint was dropped and the offline hint shortened, which is
+what let the panel fit. Measured copy: "Plain black on white, no colour." / "Warm cream paper and
+dark ink." / "Near-black with green and lime." / "Blue-grey paper, steady blue." / "Dark violet with
+hot pink." / "Dark brown, amber glow.".
+
+## 202 — Search is 13.6px on a phone, has no keyboard path and no empty state — **done**
+
+**What is wrong.** `.search input` is `0.85rem` (`shell.css:246-257`), measured 13.6px in a
+358×36 box at 390; a focused input under 16px makes iOS zoom the viewport, so the layout shifts
+while the reader types. The input is a bare `<input type="search">` plus a `<ul>`
+(`page.html:53-56`) with no `aria-expanded`, `aria-controls` or `aria-live`, `ArrowDown` leaves
+focus in the input, result anchors are 33px tall, and `.search__results:empty { display: none }`
+hides the panel so a query with no hits says nothing. Measured: `@@@` and a single letter return
+zero results and the list computes `display: none`; `zzzzzz` still returns a fuzzy hit, so the
+silent case is narrower than "any nonsense".
+
+**The fix.** `font-size: 1rem` for `.search input` in the existing phone block; `aria-expanded`
+and `aria-controls` on the input; `role="status" aria-live="polite"` on the list; a plain
+`<li>No results</li>` when the array is empty, with `hidden` replacing `:empty`; `ArrowDown`,
+`Escape` and `Enter` handled in the existing module; `min-height: 44px` on result links. No
+colour. Plan: P6.
+
+**Done means**
+
+- [ ] a nonsense query prints "No results" rather than nothing;
+- [ ] `ArrowDown` moves focus into the results and `Escape` returns it to the input;
+- [ ] the input computes ≥16px at 390, and the markup test over the shipped `page.html` passes.
+
+**Outcome.** `font-size: 1rem` inside the existing phone block (measured 16px at 390), 2.75rem
+result rows (measured 54px), `aria-controls` on the input, a `.visually-hidden` `role="status"` line
+for announcements, and `hidden` replacing `:empty` so the empty state can speak: `@@@` prints
+"No results" and announces "No results for @@@.", a 19-hit query announces "19 results.",
+`ArrowDown` moves focus into the first result, and `Escape` closes the panel and returns focus to
+the field. Clearing still goes through `replaceChildren()`, which `tests/test_pipeline.py` requires.
+
+## 201 — Cards-mode table cells are smaller than the prose that explains them — **done**
+
+**What is wrong.** At ≤60rem a `table--cards` body cell is `0.78rem` = 12.48px on
+`line-height: 1.3` with `padding: 0.05rem 0` = 0.8px, and its `::before` label is `0.7rem` =
+11.2px (`extra.css:171-184`); only the first cell is `0.92rem` = 14.72px, which is the number the
+probe reports. The header row is clipped, so all the context lives in the 11.2px labels.
+
+**The fix.** Body cells `1rem` (16px) on `line-height: 1.45` with `padding: 0.15rem 0`; labels
+`0.85rem` (13.6px) — the cell reaches the size report's reading floor instead of sitting two steps
+under the prose. No colour.
+Plan: P5.
+
+**Done means**
+
+- [ ] at 390 the value text is ≥16px, the label ≥13.6px, the row padding ≥4.5px;
+- [ ] the block's 140px height budget is re-measured at the new size, not assumed;
+- [ ] the size report of 209 covers `table--cards td` and passes both schemes.
+
+**Outcome.** Cells are `1rem` on `1.45` with `0.3rem` of cell padding and the row's
+existing `0.15rem`; the label is `0.85rem` and the card's heading one step above the values at
+`1.0625rem`. Measured at 390 on §1.1's cards table: the body cell 12.48px → **16px**, its `::before`
+label 12.48px → **13.6px**, cell padding 0.8px → **4.8px**, and the block 150px → **268px**. The page
+grows by 112px at 390 and by 11px at 1280; the plan's 140px budget was the old card's, so the
+`extra.css` comment now records the measurement instead of the budget.
+
+## 206 — A `fig-*` name is unexamined, and four modules use one that does not exist — **done**
+
+**What is wrong.** `tests/test_figures.py:434` (`text_classes_in`) polices `text-*` only. Most
+`fig-*` names are structural and the kit owns them (`fig-caption`, `fig-control`, `fig-controls`,
+`fig-hidden`, `fig-part-button`, `fig-parts`, `fig-question`, `fig-row-active`, `fig-segment`,
+`fig-table`, `readout`), but **four modules** set `fig-note` — `ch9-change-of-sign.js:86`,
+`ch9-cobweb.js:137`, `ch9-newton-raphson.js:119`, `ch9-trapezium.js:103` — which no stylesheet and
+no kit layer defines. Today those are HTML labels, so they inherit body ink and adapt by luck; the
+day one is an SVG `<text>` it is the initial-black defect `extra.css:341-350` records.
+
+**The fix.** A check over both prefixes that knows the kit's structural classes and the CSS's
+colour classes and flags anything in neither. Then make the four labels `text-ink`. Plan: G2.
+
+**Done means**
+
+- [ ] the check fails on `fig-note` and passes once the four are changed;
+- [ ] a colour class defined in extra.css with no user also fails;
+- [ ] the kit's structural classes are named in one list, with the file that owns them.
+
+**Outcome.** `tests/test_figures.py` now scans both prefixes in all four spellings — a `class`
+attribute, a `classList` call, the kit's `class:` option and a `querySelector(".fig-…")` — and
+checks every name against `extra.css` **or** the names the kit itself creates in
+`assets/figures/src/kit/*.ts`. The four `fig-note` verdict lines in `ch9-change-of-sign` and its
+siblings are `text-ink`. Planted check, quoted: `a-level-maths/ch9-cobweb.js: ['fig-note'] is
+neither a colour class in extra.css nor a structural class the kit creates, so it paints nothing.`
+
+## 207 — Nothing reads the booklet badge's colour — **done**
+
+**What is wrong.** `grep -rn 'bk-badge'` finds only the JS emitter and the CSS, so no test would
+notice 196 — which is why the swapped tokens shipped and stayed.
+
+**The fix.** Assert each badge variant's background resolves to its semantic token, in
+`tests/test_themes.py`, for both schemes. Plan: G7.
+
+**Done means**
+
+- [ ] the assertion fails on the un-fixed `extra.css` and passes after 196;
+- [ ] the muted variant is asserted to be neutral, not merely "not warn";
+- [ ] no colour literal is added to the test.
+
+**Outcome.** The assertion reads both rules out of `extra.css` and fails if the muted badge
+names a status token or the warn badge misses `--tb-fig-warn`. Planted check, quoted: `a muted badge
+must be neutral: it is the default a toneless badge takes, so painting it with a status token says
+something the booklet did not. Found: '… var(--tb-fig-warn) 20% …'`.
+
+## 208 — A paint transition would fool the figure audit — **done**
+
+**What is wrong.** `extra.css` has zero `transition` and zero `animation` today, so nothing has
+ever exercised the question. A `transition: fill` makes `audit site` sample an interpolated
+colour — a false pass or a flake — and `tools/src/commands/audit-figures.ts:347` already documents
+that a figure which mounts nothing passes every contrast check.
+
+**The fix.** A test that fails any `transition` or `animation` inside a `maths-figure`/`fig-*`
+rule naming `fill`, `stroke`, `color`, `background` or a `--tb-*`. `npm run guidance -- retrieve
+motion` is the citation: animate `opacity`/`transform`, never paint. Plan: G3.
+
+**Done means**
+
+- [ ] a hand-written violating rule fails the test;
+- [ ] `opacity`/`transform` under `prefers-reduced-motion: no-preference` passes;
+- [ ] the test names the file and line of the offending rule.
+
+**Outcome.** Any `transition`/`animation` inside a `maths-figure` or `fig-*` rule that names
+`fill`, `stroke`, `color`, `background*`, `all` or a `--tb-*` token fails. Neither stylesheet declares
+a transition at all, so the guard is about the next one. Planted check, quoted: `a figure rule
+animates paint, so the paint audit would measure a frame rather than a state: ['.md-typeset
+maths-figure svg { transition: fill 0.2s ease }']. Animate opacity or transform.`
+
+## 209 — Nothing measures type or target size outside a figure — **done**
+
+**What is wrong.** The only size floor in the suite is `audit site --mobile`'s 9px for figures.
+Nothing asserts a minimum size or target for prose, `table--cards td` (12.48px), `.contents__list
+a` (15px), a `details > summary`, or `.search input` (13.6px), which is how those shipped.
+
+**The fix.** One home, `tests/test_type_scale.py`, at 390 in both schemes: reading text ≥16px
+(`table--cards td`, `details > p`, `.search input`), labels and captions ≥12px (`td::before`,
+`figcaption`, `.fig-parts button`), `.contents__list a` line box ≥22px, and the tab order of a
+Learn page and the portal. Two floors, not four, and the same two the other items target.
+Plan: G6.
+
+**Done means**
+
+- [ ] the report names each selector, its computed size and its binding floor;
+- [ ] it fails at the floor and passes after 195, 197, 201, 202 and 204 — 201 by raising the
+      cards cell to 16px, which is the floor this report asserts;
+- [ ] it covers text inside `maths-figure`, which `audit site` cannot see.
+
+**Outcome.** `tests/test_type_scale.py` holds two halves. The declarations are always checked:
+cards value ≥16px, cards label ≥12px, figure caption ≥12px, settings note ≥12px, the contents box
+(13.6px on `line-height` 1.7) ≥22px, and the phone block's search field ≥16px. The `browser` half
+measures at 390 and asserts the tab order: cell 16px, label 13.6px, contents box 23px, search 16px,
+caption 14.4px, and the first Tab is `Skip to content` on a Learn page and on the portal. Planted
+check, quoted: `extra.css: table--cards td is declared at 0.78rem (12.5px), below the 16px floor.`
+
+Two defects in this test were found by planting it, not by reading it: the lookup matched a
+*prefix*, so `table--cards td` read its own `td:first-child` rule and passed while the values stayed
+small; and the parser dropped the media query, so the phone search rule looked global. Both are
+fixed (`endswith`, and the media query kept on the selector).
+
+## 210 — The label-size guard would evaluate the wrong width — **done**
+
+**What is wrong.** The obvious static guard,
+`(46rem − 2×padding)/520 ≥ 9/16`, is dimensionally wrong: at 46rem it evaluates to ≈1.35 and can
+never fire. The binding width is the phone column, not `max-width`, so the assertion that is
+supposed to protect the 9px floor protects nothing. `tests/test_figures.py:544` guards the
+*written* `size:` (16 units) and only `audit site --mobile` measures the rendered result.
+
+**The fix.** Evaluate at the real phone content width —
+`(390 − 2×page-padding − 2×panel-padding) / viewBox-width × SIZE.tick ≥ 9` — and print both
+numbers in the failure message. Plan: G4.
+
+**Done means**
+
+- [ ] raising the panel padding to 1.5rem fails with "8.4px at 390";
+- [ ] the current tree passes with its measured value printed;
+- [ ] the assertion lives beside 209's report, not in a second home.
+
+**Outcome.** The floor is recomputed from its two inputs rather than asserted at one width:
+`announced width = 390 − 2×wrap padding − 2×panel padding − 2×border`, then
+`drawn / viewBox × SIZE.tick ≥ 9`. Measured with the kit's defaults: 320.8px drawn, 560 units, 16
+units → **9.2px**. Planted check (panel padding `1.5rem`), quoted: `a 16.0-unit label renders at
+8.8px at 390 (drawn 308.0px, viewBox 560.0): the panel's padding or the drawing's width moved the
+floor, so raise SIZE or widen the figure.`
+
+## 204 — Nineteen font sizes, and the ladder says nothing — **done**
+
+**What is wrong.** `extra.css` declares 19 `font-size` values: 16 distinct `rem` values from
+`0.66rem` to `1.1rem` plus three `em`/px outliers. One Learn page paints nine sizes and twelve
+size/weight combinations (34/700, 25.5/700, 19.89/700, 17/400, 17/700, 17.85/400 MathML, 16/400,
+18/400, 14/400, 13.6/400, 12.8/400, 17/600), so nothing distinguishes a label from an aside from
+prose.
+
+**The fix.** The body stays at 17px (`extra.css:77`) and the outliers collapse **onto** it: reading
+text `1.0625rem`, label `0.85rem`, small label `0.78rem`, headings unchanged. Do not shrink the
+body to 16px: that contradicts 197, 201 and 202 in the same queue and is the wrong direction for
+this reader. No colour. Plan: P9.
+
+**Done means**
+
+- [ ] `grep -oE 'font-size: *[0-9.]+rem' extra.css | sort -u` reports ≤8 values;
+- [ ] the body still computes 17px, and the Learn-page inventory reports ≤5 combinations outside
+      MathML;
+- [ ] a `pre` block, a table, the booklet, print and `maths-figure figcaption` are photographed at
+      390 in both schemes before and after.
+
+**Outcome.** `extra.css` declares **6** distinct `rem` sizes now: `0.75` (12px, the small
+label), `0.85` (13.6px, labels), `0.9` (14.4px, captions, notes and inline code), `1` (16px, cards
+and the booklet), `1.0625` (17px, reading) and `1.25` (20px, a display glyph). The em outliers went
+with them (`pre > code` to `0.85rem`, inline `code` to `0.9rem`); `math` keeps `1.05em` on purpose,
+because inline maths is scaled to sit with the prose and is not a label. The body still measures
+**17px** at 390 and 1280 in both schemes.
+
+The done-means' "≤5 combinations outside MathML" was measured and corrected rather than claimed: a
+Learn page still paints **11** size/weight combinations, and that is right — an `h1` (34/700), an
+`h2` (25.5/700), an `h3` (19.89/700), prose (17/400), bold (17/700), a section label (17/600), the
+pager (13.6/400), a figure readout (14/400) and SVG text at the kit's 16/18 units are all meant to
+differ. What the item was actually after is that no *reading* size sits outside the ladder, and none
+does. One size outside `extra.css` remains: `.pager__eyebrow` at `0.8rem` (12.8px), which lives in
+`shell.css` and is chrome rather than prose.
+
+## 205 — The spacing contradicts the hierarchy — **done**
+
+**What is wrong.** `extra.css` uses margins of 0.4, 0.5, 0.6, 0.8, 1.1, 1.2, 1.3 and 1.4rem plus
+`0.8rem 0 0.4rem`. Measured on one Learn page that lands as gaps of 17, 21, 22 and 23px, and a
+heading sits **21px** from its own paragraph while a paragraph sits 17px from the contents panel.
+
+**The fix.** Scoped, so it cannot reach headings outside the article:
+`.md-typeset h2, .md-typeset h3 { margin: 1.4rem 0 0.5rem }` and
+`.md-typeset > p { margin: 0 0 0.9rem }`, with the outliers collapsed onto 0.25 / 0.5 / 1 /
+1.4rem. No colour. Plan: P10.
+
+**Done means**
+
+- [ ] every heading→text gap is smaller than every text→heading gap in the probe's rhythm list;
+- [ ] no two adjacent gaps differ by 1px;
+- [ ] headings outside `main.md-typeset` are unchanged (check the booklet panel and print).
+
+**Outcome.** Three steps, scoped to `.md-typeset`: heading→text **8px**, text→text **14.4px**,
+text→heading **22.4px**. Measured on the Learn page's rhythm list after the change: gaps of 8 (8×),
+14 (11×), 22 (13×), plus 0 (2×, a block that is glued to its parent), 16 (the contents panel's own
+margin) and 40 (the pager). Every heading→text gap is 8px and every text→heading gap is 22px, so the
+hierarchy is unambiguous, and no two adjacent gaps differ by 1px.
+
+Four rules, each replacing a Material default stated rather than inherited: `h1`, `h2`/`h3`/`h4`,
+`p` (not only direct children — a paragraph inside `details` is still prose), `ul`/`ol` and
+`blockquote`. Scoping is the point: the booklet panel, the contents card and the print sheet keep
+their own margins, checked by photographing the booklet at 390 and the print rules unchanged.
+
+## 211 — The two figure audits are the two a branch may skip — **done**
+
+**What is wrong.** `scripts/check.sh:98,111` runs `check-mobile` and `canvas` but not `audit`;
+the paint and phone audits run in `scripts/preview-themes.sh:89,96`, whose CI job
+`.github/workflows/verify.yml:601-614` permits to be `skipped` on a branch. `check.sh:113` also
+announces a skip when Playwright is absent. So a branch can land a figure-paint regression that
+appears only on `main`, and "mandatory" has to mean "fail", not "announce".
+
+**The fix.** Add `audit site` and `audit site --mobile` to `scripts/check.sh`, drop the `skipped`
+allowance for the preview job, and add an explicit allowance list for the **43 slugs** the audit
+cannot mount (`var/ux-audit/m/paint.json`), each with its reason, so the gate fails on a new miss
+and not on the known ones. Plan: G1.
+
+**Done means**
+
+- [x] a branch with a deliberately broken `fig-*` rule fails `scripts/check.sh`;
+- [x] the allowance list holds 43 entries with their reasons, and a 44th fails *(corrected empirically below: allowance is **0** — all 536 of 536 mount at `--jobs 1`)*;
+- [x] the added run time is recorded in the pull request that lands it.
+
+**Outcome.** `scripts/check.sh` now fails if Playwright is absent (instead of announcing a skip)
+and runs `check-mobile`, `canvas --font monospace`, `audit site`, `audit site --mobile` concurrently
+followed by `pytest tests/test_print.py -m browser`. `.github/workflows/verify.yml` drops the `if:`
+skip condition on `preview` and requires `preview` in `gate`, verified with `actionlint` and
+`shellcheck`.
+
+The 43-entry allowance premise was measured and corrected rather than encoded: every one of the 43
+unmeasured entries in `var/ux-audit/m/paint.json` failed with `"not on this page"` from the
+parallel `--jobs` race documented at `audit-figures.ts:543`. At the default `--jobs 1`, `audit site`
+mounts and measures **536 of 536** (0 errors, 0 contrast failures, 0 HTML token breaches), so the
+true allowance is **0** — any unmountable figure fails immediately.
+
+## 212 — Dark `code_bg` is not a surface, and nothing measures text on it — **done**
+
+**What is wrong.** Measured CIE76 distance from `paper` in the dark scheme: clean 4.1, editorial
+4.5, glass **1.9**, harbour 3.4, neon 6.6, phosphor **1.6** — so a code block in glass or
+phosphor dark reads as the page rather than as a second surface. Light `code_bg` is 3.2–6.1 for
+comparison. No test asserts anything about `code_bg` (`book.py:60` is its only mention), and the
+audit's own header says it measures text backgrounds, not surfaces.
+
+**The fix.** Add the invariant before touching the palette: `ΔE(paper, code_bg) ≥ 3` per bundle
+per scheme, and ink on `code_bg` ≥ 7:1. Then move glass and phosphor's dark value by the smallest
+amount that clears both, chosen by the implementer and measured with `preview --audit`. Plan: P14.
+
+**Done means**
+
+- [x] both new assertions pass for six bundles × two schemes;
+- [x] the two moved values and their measured distances are recorded in the commit body;
+- [x] `preview --audit` passes, and no other token moves.
+
+**Outcome.** Added `CODE_BG_MIN_CONTRAST = {"ink": 7.0}` to `CONTRAST_RULES` (with `"code_bg"`
+surface) and `cie76()` + `CODE_BG_MIN_DELTA_E = 3.0` in `engine/src/textbook/themes.py`, with
+parametrised and guard-on-guard tests in `tests/test_themes.py`. Verified the guard failed on
+`glass/dark` (ΔE 1.93) and `phosphor/dark` (ΔE 1.57) before touching any palette. Moved only
+those two tokens in the same recessed (darker-than-paper) direction:
+
+- `themes/glass.yaml` dark `code_bg`: `#050d0a` → `#030907` (ΔE **3.21** from `#08120f`, ink contrast **17.35:1**);
+- `themes/phosphor.yaml` dark `code_bg`: `#070604` → `#010100` (ΔE **3.02** from `#0c0b07`, ink contrast **16.83:1**).
+
+Regenerated `assets/stylesheets/themes.css`; `pytest tests/test_themes.py` (287 passed) and
+`preview --audit` (6 bundles × 2 schemes × 3 routes) pass.
+
+## 213 — Warn and good are distinguishable by hue only — **done**
+
+**What is wrong.** Simulated for a deuteranope (Machado severity 1.0), the pair collapses in glass
+light (ΔE 4.9 against 82.1 normal) and neon light (5.8 against 91.5); eight of twelve
+bundle×scheme pairs are marginal, and `npm run guidance -- retrieve color` states the rule:
+"don't use color alone to indicate state". The concrete case is
+`books/a-level-maths/docs/assets/figures/ch8-antiderivative-family.js:90,98` — a secant
+`fig-warn` and a tangent `fig-good` on one axes with no other difference — whose readout at `:106`
+says "The orange line is f of x equals 2x". Corpus counts: 243 `fig-warn` + 151 `fig-good` = 394.
+
+**The fix.** A non-hue difference only where colour is the only signal (that pair and its
+siblings), not on every warn stroke — and **not a dashed stroke**: `assets/figures/src/kit/draw.ts:532`
+already gives a dash the meaning "guide". Use a marker or a weight. The readout prose names the
+role: "The straight line is f of x equals 2x." Plan: P15.
+
+**Done means**
+
+- [x] every warn/good pair is distinguishable in greyscale;
+- [x] `grep -rn 'the (orange|green|red|blue) line' books/` is empty *(across all figure modules; `ie-lc-physics` Ch 19/21 legitimately refers to the physical red H-alpha spectral line of hydrogen)*;
+- [x] `readout site --verify`, `canvas site` and `audit site --mobile` pass.
+
+**Outcome.** Audited all 81 figure modules containing both `fig-warn` and `fig-good` and added
+non-hue cues (weight, hollow-ring vs solid-dot markers, double-ring repeated root, or explicit
+`label()`s — never dashes) wherever hue was the only signal:
+
+- `a-level-maths`: `ch8-antiderivative-family.js` (readout `"The straight line is f of x equals 2x"`, `f(x) = 2x` label, weight 2 vs 3.2, hollow vs solid markers), `ch9-newton-raphson.js`, `ch10-vector-addition.js`, `ch15-distance-displacement.js`, `ch15-projectile.js`, `ch16-force-balance.js`, `ch16-friction.js`, `ch16-inclined-plane.js`;
+- `a-level-physics`: `photoelectric-effect.js` (also fixed `"The red line is the photon energy"` — which painted `fig-accent` — to `"The upper curve is the photon energy, and the lower curve is the maximum kinetic energy"` plus curve labels), `stationary-waves.js`, `circular-motion.js` (`v` and `F` labels at `SIZE.value` = 18 so they clear 9px at 390px);
+- `gcse-maths`: `ch9-inequality-line.js` (made excluded `fig-warn` circle genuinely hollow to match its own `"open: excluded · filled: included"` legend);
+- `proofs`: `discriminant-graph.js` (concentric double ring for repeated root).
+
+Added `test_no_figure_names_a_drawn_element_by_colour` in `tests/test_figures.py`. Verified with
+`audit site --mobile` (229 figures, 0 below 9px), `canvas site --font monospace` (259 figures,
+0 errors), and `claims` / `textbook.working` (707 claims in 233 renders, 0 untrue).
+
+## 214 — Three figure modules paint colour outside the figure classes, in four places — **done**
+
+**What is wrong.** Four colour reads across **three** modules: `ch16-point.js:49`,
+`ch4-fraction-strip.js:47-49` (two reads in three lines) and `ch7-scale.js:22` set
+HTML `background`s to `--tb-fig-accent`, `--tb-fig-warn`, `--tb-ink` and a `color-mix` — a breach
+of "nothing in a figure may carry a colour", and `tools/src/commands/audit-figures.ts:409-417`
+reads SVG `fill`/`color` only, so those bars are measured by no gate at all.
+
+**The fix.** Route them through the existing `fig-*` classes on a generated SVG `<rect>`, and
+extend the audit to read HTML `backgroundColor`/`background-image` inside `maths-figure`, failing
+on a `var()` it cannot resolve. Land after 211, or the extension is unmeasurable. Plan: P18.
+
+**Done means**
+
+- [x] the three modules use only `fig-*` classes;
+- [x] the extended audit fails if a `var(--tb-*)` background is reintroduced in a figure;
+- [x] `audit site` passes for the three figures in both schemes.
+
+**Outcome.** Extended `tools/src/commands/audit-figures.ts` to inspect inline `style` attributes
+and CSSOM `background`/`backgroundColor`/`backgroundImage` on every visible non-SVG element inside
+`maths-figure` and fail on any `var(--tb-*)`, proved it failed on all three modules before fixing
+them, then rewrote `books/gcse-maths/docs/assets/figures/{ch4-fraction-strip,ch7-scale,ch16-point}.js`
+to draw their bars as SVG `<rect>`s painted through `fig-*` classes. Added the companion static
+guard `test_no_figure_paints_html_with_a_token_var` in `tests/test_figures.py`. Full `audit site`
+reports 536 of 536 clean with 0 HTML background breaches.
+
+## 215 — The portal leaves two blank columns beside a single-card group — **done**
+
+**What is wrong.** `.cards` is `repeat(auto-fill, minmax(280px, 1fr))` (`portal.css:140`);
+measured at 1280 it makes three 321.3px tracks, and the groups that hold one card (Junior Cycle,
+Misc) leave two empty cells. It is cosmetic — no reader is blocked by whitespace — which is why
+it is not in the ranked plan.
+
+**The fix.** Cap the track so a lone card stays card-sized: `minmax(280px, 26rem)`. Do not use
+`auto-fit`, which would stretch one card to 960px. Plan: §5, not queued there.
+
+**Done means**
+
+- [x] a one-card group renders a card no wider than 26rem at 1280;
+- [x] a three-card group still fills its row, and the 390px single column is unchanged;
+- [x] no colour, no shadow and no new token is introduced.
+
+**Outcome.** Using `repeat(auto-fill, minmax(280px, 26rem))` in a 1000px `.wrap` would drop
+three-card groups (Leaving Certificate) to two columns at 1280px (`3 × 416px > 1000px`). Instead,
+`assets/stylesheets/portal.css` uses `repeat(auto-fit, minmax(280px, 1fr))` paired with
+`.cards > .card:only-child { max-width: 26rem; }`, so one-card groups cap at 416px (26rem),
+two- and three-card groups fill their rows at 1280px, and 390px stays a single column. Asserted in
+a browser at both 390px and 1280px in `tests/test_type_scale.py`.
+
+## 216 — A print render has never been made — **done**
+
+**What is wrong.** `grep -rln "emulateMedia" tests/` finds nothing and the print block
+(`extra.css:812-905`) has only ever been read, not printed: `maths-figure` gets
+`break-inside: avoid` (`:866`), and the block hides `.sidebar`, `.search`, `.bk-fab`, `.bk-panel`
+with `!important`, so a panel added inside a figure could print away unnoticed. The plan dropped
+this guard because no print defect had been measured; the gap is real even so.
+
+**The fix.** One Playwright capture with `media: "print"` on a Learn route, asserting the figure's
+box is non-zero and that no element inside `maths-figure` is `display: none`. Do it before any
+layout change to a figure's box (204, 205). Plan: §7.
+
+**Done means**
+
+- [x] the capture runs in the gate and stores the PDF/PNG it judged;
+- [x] a rule that hides a figure part in print fails it;
+- [x] a figure taller than one sheet is reported rather than silently split.
+
+**Outcome.** Added `@pytest.mark.browser` print-render tests to `tests/test_print.py`, wired into
+both `scripts/check.sh` and `scripts/preview-themes.sh`. The probe serves `site/`, mounts the Learn
+page's figures, switches to `emulateMedia({ media: "print" })`, writes `var/print-render/learn-print.pdf`
+and `var/print-render/learn-print.png`, and asserts shell chrome is hidden, every `maths-figure` has
+a non-zero box with no rendered descendant at `display: none`, and every figure fits within one A4
+printable sheet (`1026px`). A companion guard injects `@media print { maths-figure svg { display: none !important; } }`
+and asserts it is caught.
+
+

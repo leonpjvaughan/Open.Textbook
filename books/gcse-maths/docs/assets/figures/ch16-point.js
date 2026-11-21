@@ -1,27 +1,24 @@
 // Guided investigation: angles around a point complete a full turn.
 //
 // The scaffolding — the frame, the prompt, the two sliders, the live readout, the
-// redraw — comes from `kit.js`. The one thing this figure draws is the bar, a
-// gradient rather than an SVG, so the kit supplies a frame with no drawing
-// surface and the bar carries its own name.
+// redraw — comes from `kit.js`. The full turn is drawn as three painted SVG
+// rectangles in `fig-*` classes, so the figure adapts to every scheme.
 import { panel, slider, react } from "./kit.js";
 
 export function mount(el) {
-  const { root, readout } = panel(el, {
-    drawing: false,
+  const WIDTH = 560;
+  const HEIGHT = 48;
+
+  const { svg, readout } = panel(el, {
+    drawing: true,
     prompt: "Angles around one point complete a full turn.",
+    label:
+      "Three angle sectors around a point; the third completes the full turn",
+    width: WIDTH,
+    height: HEIGHT,
     max: 560,
   });
   readout.classList.add("text-ink");
-
-  const bar = document.createElement("div");
-  bar.className = "bar fig-ink";
-  bar.setAttribute("role", "img");
-  bar.setAttribute(
-    "aria-label",
-    "Three angle sectors around a point; the third completes the full turn",
-  );
-  root.append(bar);
 
   const first = slider(el, { show: false,
     id: "first",
@@ -45,9 +42,14 @@ export function mount(el) {
     const b = Number(second.value);
     const c = 360 - a - b;
     readout.textContent = `Known angles: ${a} and ${b} degrees. The remaining angle is ${c} degrees.`;
-    bar.style.height = "1rem";
-    bar.style.background = `linear-gradient(90deg, var(--tb-fig-accent) 0 ${a/3.6}%, var(--tb-fig-grid) ${a/3.6}% ${(a+b)/3.6}%, var(--tb-ink) ${(a+b)/3.6}% 100%)`;
-    bar.setAttribute(
+    const wa = (a / 360) * WIDTH;
+    const wb = (b / 360) * WIDTH;
+    const wc = WIDTH - wa - wb;
+    svg.innerHTML =
+      `<rect class="fig-accent" x="0" y="0" width="${wa.toFixed(2)}" height="${HEIGHT}"></rect>` +
+      `<rect class="fig-good" x="${wa.toFixed(2)}" y="0" width="${wb.toFixed(2)}" height="${HEIGHT}"></rect>` +
+      `<rect class="fig-ink" x="${(wa + wb).toFixed(2)}" y="0" width="${wc.toFixed(2)}" height="${HEIGHT}"></rect>`;
+    svg.setAttribute(
       "aria-label",
       `Angle amounts ${a}, ${b}, and ${c} degrees total 360 degrees`,
     );

@@ -20,6 +20,8 @@ from textbook.book import SCHEME_TOKENS, discover_books, load_collection, repo_r
 from textbook.themes import (
     APCA_MIN_CONTRAST,
     CARD_INK,
+    CODE_BG_MIN_CONTRAST,
+    CODE_BG_MIN_DELTA_E,
     FIGURE_MIN_CONTRAST,
     FIGURE_PANEL_INK,
     INK_LIGHTER_MIN_CONTRAST,
@@ -31,6 +33,7 @@ from textbook.themes import (
     apca_problems,
     bundle_by_id,
     card_surface,
+    cie76,
     contrast,
     contrast_problems,
     default_bundle,
@@ -1023,6 +1026,7 @@ def test_every_declared_threshold_is_applied():
         | set(FIGURE_MIN_CONTRAST)
         | set(SOFT_MIN_CONTRAST)
         | set(INK_LIGHTER_MIN_CONTRAST)
+        | set(CODE_BG_MIN_CONTRAST)
     )
     applied = {
         role
@@ -1054,6 +1058,7 @@ def test_each_contrast_rule_can_actually_fail(monkeypatch, bundle):
                 "accent": tokens["accent"],
                 "figure": figure_panel(tokens),
                 "card": card_surface(tokens, "default"),
+                "code_bg": tokens["code_bg"],
             }[surface]
             tokens[token] = measured
             monkeypatch.setattr(themes, "effective_tokens", lambda *a, **k: tokens)
@@ -1082,3 +1087,66 @@ def test_every_threshold_resolves_to_a_token_the_bundle_has(bundle):
                     f"{role} on the {surface} resolves to {token!r}, which "
                     f"{bundle.id}/{scheme} does not define, so the row would skip it"
                 )
+
+
+def test_the_booklet_badges_use_the_token_their_name_promises():
+    """A badge's word and its colour have to agree, and nothing read them before.
+
+    `.bk-badge--muted` was painted with `--tb-fig-warn` and `.bk-badge--warn` with
+    `--tb-fig-good`, while `booklet.js` defaults a toneless badge to `muted` — so the
+    default badge wore the warning hue and a "warn" badge wore the good one, in all
+    six bundles and both schemes. No test read badge colour (`grep -rn 'bk-badge'`
+    found only the emitter and this rule), which is why it shipped.
+    """
+    css = (repo_root() / "assets" / "stylesheets" / "extra.css").read_text(encoding="utf-8")
+    rules = {
+        match.group(1): match.group(2)
+        for match in re.finditer(r"\.bk-badge--([a-z]+)\s*\{([^}]*)\}", css)
+    }
+    assert {"muted", "warn"} <= set(rules), f"badge variants found: {sorted(rules)}"
+    muted = rules["muted"]
+    warn = rules["warn"]
+    assert "var(--tb-ink)" in muted and "fig-warn" not in muted and "fig-good" not in muted, (
+        "a muted badge must be neutral: it is the default a toneless badge takes, so "
+        f"painting it with a status token says something the booklet did not. Found: {muted.strip()!r}"
+    )
+    assert "var(--tb-fig-warn)" in warn, (
+        "the warn badge must take the warning token, or the badge and its word disagree. "
+        f"Found: {warn.strip()!r}"
+    )
+
+
+def test_code_bg_thresholds_hold_both_surface_and_text():
+    """`code_bg` must separate from `paper` and carry body `ink` at AAA."""
+    assert CODE_BG_MIN_CONTRAST == {"ink": 7.0}
+    assert CODE_BG_MIN_DELTA_E == 3.0
+
+
+@pytest.mark.parametrize("bundle", BUNDLES, ids=IDS)
+@pytest.mark.parametrize("scheme", ("light", "dark"))
+def test_every_bundle_code_bg_reads_as_a_second_surface(bundle, scheme):
+    """A code block must read as a panel rather than blending into the page.
+
+    Measured before this guard existed: glass dark sat at ΔE 1.93 from paper
+    and phosphor dark at ΔE 1.57, so code blocks vanished into the page while
+    every light bundle cleared 3.2–6.1.
+    """
+    palette = bundle.palette(scheme)
+    distance = cie76(palette["paper"], palette["code_bg"])
+    assert distance >= CODE_BG_MIN_DELTA_E, (
+        f"{bundle.id}/{scheme}: code_bg {palette['code_bg']} is only ΔE {distance:.2f} "
+        f"from paper {palette['paper']} (needs ≥ {CODE_BG_MIN_DELTA_E:g})"
+    )
+    ratio = contrast(palette["ink"], palette["code_bg"])
+    assert ratio >= CODE_BG_MIN_CONTRAST["ink"], (
+        f"{bundle.id}/{scheme}: ink {palette['ink']} on code_bg {palette['code_bg']} "
+        f"is {ratio:.2f}:1 (needs ≥ {CODE_BG_MIN_CONTRAST['ink']:g}:1)"
+    )
+
+
+def test_the_code_bg_check_can_actually_fail():
+    """Guard the guard: identical surfaces have ΔE 0, and ink-on-ink fails contrast."""
+    editorial = bundle_by_id("editorial")
+    paper = editorial.palette("dark")["paper"]
+    assert cie76(paper, paper) == 0.0
+    assert contrast_problems(editorial, "dark", {"code_bg": editorial.palette("dark")["ink"]})

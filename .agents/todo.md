@@ -16,9 +16,15 @@ are checked against each other on every pass.
 
 **Every item from 79 to 191 is closed except 187 and 188,** each with its measurement, its
 fix, its outcome and its ticked done-means in `.agents/todo-closed.md`. A new item goes at
-the number after the last one, with its diagnosis, its fix and its own done-means. Two are
-open: **187–188**, both from
-`research/review/maths-applied-and-numerical-methods-v.md`.
+the number after the last one, with its diagnosis, its fix and its own done-means. Open:
+**187** and **188** from `research/review/maths-applied-and-numerical-methods-v.md`, **192**,
+filed while closing 186, 190 and 191, and **200, 203** of the UX queue from
+`research/design/ux-plan.md` — the four auditor reports and the two reviews behind it are
+summarised there, not here. **193–202, 204–216** are closed in stages 1–4 of that plan.
+
+The UX queue is ordered as `ux-plan.md` §4 ranks it. One dependency matters before starting:
+the size report (**209**) is the gate that **197**, **201**, **203** and **204** are verified
+against, so it may be done first without renumbering anything.
 
 Two items were both filed as 182 by different passes; the label-and-font one is now **189**,
 and the duplicate number is gone.
@@ -103,3 +109,91 @@ reach every method. At a wide viewport the same markup reads as the current two 
 - [ ] `:::method-index`'s hook and its test are updated together, and the marker's
       documentation in `engine/AGENTS.md` matches the new markup.
 - [ ] no colour and no script is added; the page passes `audit site --mobile`.
+
+## 192 — The offline check fetches a loader URL that cannot exist, so its own probe is dead
+
+**What is wrong.** `tools/src/commands/offline.ts` builds the file it fetches to warm the
+runtime cache as
+
+```js
+const loader = target + "assets/figures/figures.js";
+```
+
+where `target` is the route itself (`route.replace(/[^/]*$/, "")` leaves a trailing slash
+alone). For the route the check samples by default that is
+`/a-level-maths/chapter-1/section-1.3/learn/assets/figures/figures.js`, and no build has a
+file there: the loader lives at `/a-level-maths/assets/figures/figures.js`, one book root up,
+and the page reaches it relatively (`../../../assets/figures/figures.js`).
+
+Measured on this tree: `ls site/a-level-maths/chapter-1/section-1.3/learn/assets` → no such
+directory, while `site/a-level-maths/assets/figures/figures.js` exists. So the fetch 404s, and
+the loader that lands in the runtime cache is the one the page's own `<script src>` asked for.
+
+The check still answers its question, because a page that lost its loader would fail. What is
+wrong is that the probe written out in the source is not the thing being measured: a page that
+imported a loader from somewhere else would pass on that import alone, and the 404 is silent.
+
+**The fix.** Resolve the loader from the page, the way `kit` already does:
+`figureAssets()` in `tools/src/lib/routes.ts` reads the page's own `src` and names the file.
+Fetch that URL and drop the hand-built concatenation. A page that mounts no figure should be
+reported as such rather than fetching a path that cannot exist.
+
+**Done means**
+
+- [ ] `offline` fetches the loader URL the page itself names, and no route-plus-path
+      concatenation for `figures.js` remains in the file;
+- [ ] a planted page that names its loader at an unusual path has that path fetched, and a
+      page with no loader fails with the message it gives today;
+- [ ] `node tools/dist/cli.js offline site` still reports 6 cache checks, 0 errors, and
+      `scripts/preview-themes.sh` is green.
+
+## 200 — The mandated common-error callout has no signature beyond a 40px indent
+
+**What is wrong.** Every common-error *Watch out* callout and every *Check* prompt is a plain
+`<blockquote>`: measured `margin: 0 40px`, `padding-left: 0`, `border-left: 0px none`,
+`background: transparent`, `::before: none`, body ink (3/3 on a Learn page). The only rule
+touching them, `extra.css:93-95`, sets a max width. The chapter formula *requires* a common-error
+callout on every Learn page, so the mandated pedagogy's only marker is 40px of indent — which
+also costs the reader 40px of the 70ch measure.
+
+Over `books/*/docs/**/*.md`: **5,030** blockquote lines, of which **757** open `> **Watch out.`
+and exactly **1** opens `> **Check.**` — 758 callouts and **4,272** quotations that a blanket rule
+would repaint. The marker must match the bold lead *exactly*: `books/a-level-maths/docs/Chapter 1/Section 1.3/Walkthrough/index.md:123`
+is `> **Checking forever.**`, which a prefix match on `Check` would misclassify.
+
+**The fix.** Staged. (1) A build hook that turns a blockquote whose first inline is exactly
+`**Watch out.**` or `**Check.**` into `<aside class="callout callout--error|callout--check">`, with
+a test that the count is 758 and the other 4,272 quote lines are untouched. (2) A **neutral** signature — `1px`
+`--tb-rule` border, `3px` `--tb-rule` left rule, `var(--tb-radius)`, `0.6rem 0.95rem`
+padding — the shape `.prove` (`extra.css:466`) already uses, which cannot change any contrast
+ratio. (3) Only if a measured review still asks for it, the error callout alone takes
+`--tb-fig-warn` on the left rule and a 6% tint, drawn on the element box and never a `::before`,
+because `preview --audit` is blind to pseudo-elements. Plan: P1; the hue question is D1.
+
+**Done means**
+
+- [ ] a Learn page shows its common-error callout as a distinct block in both schemes;
+- [ ] the before/after pair is re-rendered at 1280 and 390 in both schemes (the frames described
+      in `ux-plan.md` §3) and the after reads as a block a reader can find while scanning;
+- [ ] the hook's test reports 757 + 1 classified and the other 4,272 quote lines untouched;
+- [ ] if the tint is taken, `preview --audit` passes for the six bundles in both schemes;
+- [ ] no figure changes, and `tests/test_figures.py` is untouched.
+
+## 203 — All twelve practice answers sit behind one disclosure
+
+**What is wrong.** `engine/src/textbook/verify/render.py:151` wraps the join of every answer in
+one `<details>`; measured on `/practise/`: 12 `<ol>` items, one summary "Answers and concise
+solutions", a 46-line body. To check answer 9 the reader opens and scrolls everything, which
+undercuts the retrieval the page is for. (The first draft of the plan claimed "the title the
+renderer already knows"; `render.py:104-110` builds a label from `answer_label` or the whole
+statement, and no problem carries a title.)
+
+**The fix.** One `<details>` per item, its summary `9. Show the answer`, grouped under a labelled
+section — what `npm run guidance -- retrieve accordion` asks for. Nothing else is invented.
+Plan: P4.
+
+**Done means**
+
+- [ ] answer 9 is one tap from item 9, and each summary names its own number;
+- [ ] no answer text, working or ordering changes, and the bank tests still pass;
+- [ ] `tests/test_render_hooks.py` asserts the summary/item pairing.

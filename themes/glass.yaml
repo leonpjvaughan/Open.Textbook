@@ -17,8 +17,7 @@
 id: glass
 title: Glass
 description: >-
-  A glassmorphism developer OS: near-black with a cool green cast, lime and
-  teal. Cool and luminous at night, mint and teal by day.
+  Near-black with green and lime.
 
 # `fixed:` here because a vivid bundle IS its colour. The subject tint composes
 # into a bundle by default, which is right for the calm themes — the subject
@@ -77,7 +76,7 @@ dark:
   accent_dark: "#3fbf78"
   accent_ink: "#04100b"
   link: "#40e0d0"
-  code_bg: "#050d0a"
+  code_bg: "#030907"
   fig_warn: "#ff8a6a"
   fig_good: "#b4ff6e"
   fig_grid: "#5f8074"

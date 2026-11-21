@@ -99,8 +99,10 @@ export function mount(el) {
       const u = (k + 0.5) / n;
       const x = xFor(u);
       const y = MID_Y - AMPLITUDE * shape(u);
+      // Hollow ring for antinodes vs solid dots for nodes, so the two remain
+      // distinguishable in greyscale even when the string passes through zero.
       antinodes +=
-        `<circle cx="${x.toFixed(1)}" cy="${y.toFixed(1)}" r="5" class="fig-warn"></circle>` +
+        `<circle cx="${x.toFixed(1)}" cy="${y.toFixed(1)}" r="5.5" style="fill:none" stroke-width="2.5" class="fig-warn"></circle>` +
         `<line x1="${x.toFixed(1)}" y1="${MID_Y}" x2="${x.toFixed(1)}" y2="${y.toFixed(1)}" class="fig-warn" stroke-dasharray="2 3"></line>`;
     }
 

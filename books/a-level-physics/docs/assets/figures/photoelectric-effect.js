@@ -97,6 +97,8 @@ export function mount(el) {
       `<polyline points="${photonCurve.trim()}" class="fig-accent" style="fill:none" stroke-width="3"></polyline>` +
       `<polyline points="${kineticCurve.trim()}" class="fig-good" style="fill:none" stroke-width="3"></polyline>` +
       `<line x1="${LEFT}" y1="${py(phi).toFixed(1)}" x2="${RIGHT}" y2="${py(phi).toFixed(1)}" class="fig-warn" stroke-width="2" stroke-dasharray="6 4"></line>` +
+      `${label({ x: px(340), y: py(HC / 340) - 10, text: `photon energy`, anchor: "start", size: SIZE.value, class: "text-accent" })}` +
+      `${label({ x: px(225), y: Math.min(BOTTOM - 10, py(Math.max(0.3, HC / 225 - phi)) + 18), text: `max KE`, anchor: "start", size: SIZE.value, class: "text-good" })}` +
       `${label({ x: LEFT + 6, y: (py(phi) - 6).toFixed(1), text: `work function`, anchor: "start", size: SIZE.value, class: "text-ink" })}`;
 
     let marker = "";
@@ -116,7 +118,8 @@ export function mount(el) {
       `With a work function of ${phi.toFixed(1)} eV, <strong>${verdict}</strong>. ` +
       `The maximum kinetic energy is <strong>${kinetic.toFixed(2)} eV</strong>. ` +
       `The threshold wavelength is <strong>${Math.round(threshold)} nm</strong>. ` +
-      `The red line is the photon energy. The dashed line is the work function. ` +
+      `The upper curve is the photon energy, and the lower curve is the maximum kinetic energy. ` +
+      `The dashed line is the work function. ` +
       `<em>Find the wavelength where the two lines cross. What happens below it?</em>`;
   }
 

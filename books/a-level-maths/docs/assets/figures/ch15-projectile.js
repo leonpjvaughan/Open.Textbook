@@ -90,13 +90,14 @@ export function mount(el) {
       `<polyline class="fig-accent" style="fill:none" stroke-width="3" ` +
       `points="${points.join(" ")}"></polyline>`;
 
+    // Hollow ring at the apex vs solid dot at the landing point.
     const apex =
       `<circle class="fig-warn" cx="${toPx(range / 2).toFixed(1)}" ` +
-      `cy="${toPy(height).toFixed(1)}" r="4"></circle>`;
+      `cy="${toPy(height).toFixed(1)}" r="5.5" style="fill:none" stroke-width="2.5"></circle>`;
 
     const landing =
       `<circle class="fig-good" cx="${toPx(range).toFixed(1)}" ` +
-      `cy="${BOTTOM}" r="4"></circle>`;
+      `cy="${BOTTOM}" r="4.5"></circle>`;
 
     svg.innerHTML = axisY + ground + curve + apex + landing;
 

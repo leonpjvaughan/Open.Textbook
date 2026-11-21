@@ -27,9 +27,11 @@ export function mount(el) {
     const b = Number(bound.value);
     const isInclusive = inclusive.checked;
     const x = 260 + b * 35;
+    // Filled circle for an included boundary, hollow ring for an excluded one,
+    // matching the legend below so the distinction holds in greyscale.
     const circle = isInclusive
       ? `<circle cx="${x}" cy="42" r="7" class="fig-good"></circle>`
-      : `<circle cx="${x}" cy="42" r="7" class="fig-warn"></circle>`;
+      : `<circle cx="${x}" cy="42" r="7" style="fill:none" stroke-width="2.5" class="fig-warn"></circle>`;
     svg.innerHTML = `<line x1="45" y1="42" x2="475" y2="42" class="fig-ink"></line>
       <line x1="${x}" y1="42" x2="475" y2="42" class="fig-grid"></line>
       <line x1="${x}" y1="31" x2="${x}" y2="53" class="fig-accent"></line>

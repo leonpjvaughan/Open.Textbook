@@ -97,9 +97,12 @@ export function mount(el) {
     } else if (delta === 0) {
       const r = -b / 2;
       if (r >= XMIN && r <= 6) {
+        // Double ring for a repeated root vs solid dots for distinct roots.
         roots +=
-          `<circle cx="${sx(r).toFixed(1)}" cy="${Y0.toFixed(1)}" r="5" ` +
-          `class="fig-warn"></circle>`;
+          `<circle cx="${sx(r).toFixed(1)}" cy="${Y0.toFixed(1)}" r="4.5" ` +
+          `class="fig-warn"></circle>` +
+          `<circle cx="${sx(r).toFixed(1)}" cy="${Y0.toFixed(1)}" r="8.5" ` +
+          `style="fill:none" stroke-width="1.8" class="fig-warn"></circle>`;
       }
     }
 

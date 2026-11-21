@@ -50,8 +50,15 @@ document.body.setAttribute(
          widths it has to be able to take a row of its own, and a flex item cannot
          escape a parent to do that. -->
     <div class="search">
-      <input id="search-input" type="search" placeholder="Search" aria-label="Search this book">
-      <ul id="search-results" class="search__results"></ul>
+      <!-- `aria-controls` names the list the input fills; the list is hidden by
+           the script rather than by `:empty`, so "No results" can be a message.
+           The status line is the live region: revealing the list is not an
+           announcement on its own. -->
+      <input id="search-input" type="search" placeholder="Search"
+             aria-label="Search this book" aria-controls="search-results"
+             autocomplete="off">
+      <ul id="search-results" class="search__results" aria-label="Search results" hidden></ul>
+      <p id="search-status" class="visually-hidden" role="status" aria-live="polite"></p>
     </div>
     <div class="masthead__actions">
       <!-- Root-absolute, like the 404's link and the manifest: a book is served
@@ -77,6 +84,10 @@ document.body.setAttribute(
        to have a different default on each side of one breakpoint from one HTML file. -->
   <details class="nav-drawer" open>
     <summary class="nav-drawer__summary" data-pagefind-ignore>
+      <!-- The control used to carry the book title and the section and no word
+           about what it did, so a phone reader saw a label rather than a
+           contents control. The word leads; the title still says which book. -->
+      <span class="nav-drawer__label">Contents</span>
       <span class="nav-drawer__book">$site_title</span>
       $masthead_section
     </summary>
@@ -132,6 +143,7 @@ if (drawer) {
 const prefix = "${prefix}";
 const input = document.getElementById("search-input");
 const results = document.getElementById("search-results");
+const status = document.getElementById("search-status");
 let pagefind = null;
 let sequence = 0;
 
@@ -140,22 +152,84 @@ async function load() {
   return pagefind;
 }
 
+/* Every state change goes through here, so the panel is never left showing stale
+ * rows and the live region always says what happened. A reader who types a term
+ * with no hits used to see the panel vanish in silence. */
+function show(html, message) {
+  /* The empty case empties the node rather than parsing an empty string: the same
+   * rule the under-two-character case has always followed, because Trusted Types
+   * refuses `innerHTML` even for "". */
+  if (html === "") results.replaceChildren();
+  else results.innerHTML = html;
+  results.hidden = html === "";
+  status.textContent = message;
+}
+
 input.addEventListener("input", async () => {
   const term = input.value.trim();
-  if (term.length < 2) { results.replaceChildren(); return; }
+  if (term.length < 2) { show("", ""); return; }
   const mine = ++sequence;
   let search;
   try {
     search = await (await load()).search(term);
   } catch (err) {
-    results.innerHTML = "<li>Search is unavailable.</li>";
+    show("<li class=\"search__empty\">Search is unavailable.</li>", "Search is unavailable.");
     return;
   }
   const pages = await Promise.all(search.results.slice(0, 20).map((r) => r.data()));
   if (mine !== sequence) return;
-  results.innerHTML = pages
-    .map((p) => '<li><a href="' + prefix + p.url.replace(/^\//, "") + '">' + p.meta.title + "</a></li>")
-    .join("");
+  if (pages.length === 0) {
+    show(
+      "<li class=\"search__empty\">No results</li>",
+      "No results for " + term + ".",
+    );
+    return;
+  }
+  show(
+    pages
+      .map((p) => '<li><a href="' + prefix + p.url.replace(/^\//, "") + '">' + p.meta.title + "</a></li>")
+      .join(""),
+    pages.length + (pages.length === 1 ? " result." : " results."),
+  );
+});
+
+/* The results are links, so the keyboard walks them directly: ArrowDown from the
+ * input enters the list, ArrowDown/ArrowUp move within it, Escape closes it and
+ * returns the reader to the field. Measured before this: ArrowDown left focus in
+ * the input and the list could only be reached by clicking. */
+function links() {
+  return [...results.querySelectorAll("li a")];
+}
+
+function close() {
+  show("", "");
+  input.focus();
+}
+
+input.addEventListener("keydown", (event) => {
+  if (event.key === "ArrowDown" && !results.hidden) {
+    const first = links()[0];
+    if (first) { event.preventDefault(); first.focus(); }
+  } else if (event.key === "Escape" && !results.hidden) {
+    event.preventDefault();
+    close();
+  }
+});
+
+results.addEventListener("keydown", (event) => {
+  const anchors = links();
+  const at = anchors.indexOf(document.activeElement);
+  if (event.key === "ArrowDown" && at > -1) {
+    event.preventDefault();
+    (anchors[at + 1] || anchors[0]).focus();
+  } else if (event.key === "ArrowUp" && at > -1) {
+    event.preventDefault();
+    if (at === 0) input.focus();
+    else anchors[at - 1].focus();
+  } else if (event.key === "Escape") {
+    event.preventDefault();
+    close();
+  }
 });
 </script>
 </body>

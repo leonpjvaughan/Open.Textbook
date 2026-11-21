@@ -14,6 +14,8 @@
 // readout and the redraw — comes from `kit.js`. What is left here is the drawing
 // and the sentences, which are the parts that differ from every other figure.
 import {
+  SIZE,
+  label,
   panel,
   quantity,
   react,
@@ -113,24 +115,30 @@ export function mount(el) {
     const circle = `<circle cx="${CX}" cy="${CY}" r="${pixels.toFixed(1)}" class="fig-grid" style="fill:none" stroke-width="2"></circle>`;
     const radiusLine = `<line x1="${CX}" y1="${CY}" x2="${px.toFixed(1)}" y2="${py.toFixed(1)}" class="fig-ink" stroke-dasharray="4 4"></line>`;
     const object = `<circle cx="${px.toFixed(1)}" cy="${py.toFixed(1)}" r="7" class="fig-accent"></circle>`;
-    const velocityArrow = arrow(
-      px,
-      py,
-      px + tx * arrowLength,
-      py + ty * arrowLength,
-      "fig-warn",
-      3
-    );
-    const forceArrow = arrow(
-      px,
-      py,
-      px - ox * forceLength,
-      py - oy * forceLength,
-      "fig-good",
-      3
-    );
+    const vx = px + tx * arrowLength;
+    const vy = py + ty * arrowLength;
+    const fx = px - ox * forceLength;
+    const fy = py - oy * forceLength;
+    const velocityArrow = arrow(px, py, vx, vy, "fig-warn", 2.4);
+    const forceArrow = arrow(px, py, fx, fy, "fig-good", 3.6);
+    const vLabel = label({
+      x: Math.max(20, Math.min(580, (px + vx) / 2 + 12)),
+      y: Math.max(22, Math.min(288, (py + vy) / 2)),
+      text: "v",
+      anchor: "start",
+      size: SIZE.value,
+      class: "text-warn",
+    });
+    const fLabel = label({
+      x: Math.max(20, Math.min(580, (px + fx) / 2 - 10)),
+      y: Math.max(22, Math.min(288, (py + fy) / 2 + 16)),
+      text: "F",
+      anchor: "end",
+      size: SIZE.value,
+      class: "text-good",
+    });
 
-    svg.innerHTML = circle + radiusLine + object + velocityArrow + forceArrow;
+    svg.innerHTML = circle + radiusLine + object + velocityArrow + forceArrow + vLabel + fLabel;
 
     readout.innerHTML =
       `Speed ${quantity(v, "m", 1)}/s, radius ${quantity(r, "m", 1)}. ` +

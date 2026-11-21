@@ -7,7 +7,7 @@
 // The scaffolding — the surface, its accessible name, the sliders, the live
 // readout, the redraw — comes from `kit.js`. What is left here is the drawing and
 // the sentence, which are the parts that differ from every other figure.
-import { panel, slider, react } from "./kit.js";
+import { SIZE, label, panel, slider, react } from "./kit.js";
 
 const SCALE = 0.13; // pixels per newton
 const BASE_Y = 278;
@@ -15,7 +15,7 @@ const PIVOT_X = 64;
 const SLOPE_LEN = 330;
 const G = 9.8;
 
-function arrow(x1, y1, x2, y2, cls, dash) {
+function arrow(x1, y1, x2, y2, cls, dash, width = 2) {
   // A component along the slope is zero at 0 degrees; drawing it would leave a
   // stray arrowhead sitting on the block.
   if (Math.hypot(x2 - x1, y2 - y1) < 1) return "";
@@ -32,7 +32,7 @@ function arrow(x1, y1, x2, y2, cls, dash) {
   return (
     `<line x1="${x1.toFixed(1)}" y1="${y1.toFixed(1)}" ` +
     `x2="${x2.toFixed(1)}" y2="${y2.toFixed(1)}" class="${cls}" ` +
-    `style="fill:none" stroke-width="2"${dashAttr}></line>` +
+    `style="fill:none" stroke-width="${width}"${dashAttr}></line>` +
     `<polygon points="${x2.toFixed(1)},${y2.toFixed(1)} ` +
     `${leftX.toFixed(1)},${leftY.toFixed(1)} ${rightX.toFixed(1)},${rightY.toFixed(1)}" ` +
     `class="${cls}"></polygon>`
@@ -133,15 +133,34 @@ export function mount(el) {
     const tickX = bx + 26 * outx;
     const tickY = by + 26 * outy;
 
+    const wLabel = label({
+      x: Math.max(24, Math.min(436, wx - 12)),
+      y: Math.max(22, Math.min(318, (by + wy) / 2 + 4)),
+      text: "W",
+      anchor: "end",
+      size: SIZE.tick,
+      class: "text-warn",
+    });
+    const intoLabel = label({
+      x: Math.max(24, Math.min(420, (bx + inx) / 2 + 12)),
+      y: Math.max(22, Math.min(318, (by + iny) / 2)),
+      text: "into",
+      anchor: "start",
+      size: SIZE.tick,
+      class: "text-good",
+    });
+
     svg.innerHTML =
       ground +
       slope +
       corner +
       line(bx, by, tickX, tickY, "fig-ink", false) +
       parallelogram +
-      arrow(bx, by, wx, wy, "fig-warn") +
-      arrow(bx, by, alx, aly, "fig-accent") +
-      arrow(bx, by, inx, iny, "fig-good");
+      arrow(bx, by, wx, wy, "fig-warn", false, 3.2) +
+      arrow(bx, by, alx, aly, "fig-accent", false, 2) +
+      arrow(bx, by, inx, iny, "fig-good", false, 2) +
+      wLabel +
+      intoLabel;
 
     const angleDeg = Number(inputs.angle.value);
     readout.textContent =

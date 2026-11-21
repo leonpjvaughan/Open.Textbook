@@ -86,32 +86,56 @@ while read -r -a build; do
   uv run python -m textbook.pipeline "${build[@]}"
 done < <(uv run python -m textbook.plan --configs)
 
-step "tables at phone width"
-# **A table cannot widen a page**, because `wrap_tables` puts every one in a
-# `.table-scroll` — so the page-width check is satisfied by the wrapper that hides the
-# problem, and a table whose last column is past the right edge reads as a pass. This
-# measures every table on every page at 390px and fails when one is wider than its
-# container and is not `table--cards`. It needs a browser; where there is none the skip
-# is announced rather than passed, the same rule the other browser checks follow.
-if node -e 'require(process.env.PLAYWRIGHT_PATH || "playwright")' 2>/dev/null \
-   || node -e 'require("/home/leon/.local/share/mise/installs/npm-playwright/latest/node_modules/playwright")' 2>/dev/null; then
-  node tools/dist/cli.js check-mobile site
-else
-  echo "playwright is not available here; the phone-width checks run in the preview job"
+step "browser checks (mobile, canvas, figure paint, phone labels, print)"
+# Mandatory — if Playwright is absent, fail rather than announcing a skip. A branch
+# must not pass the local gate while skipping the paint and phone-label audits.
+if ! node -e 'require(process.env.PLAYWRIGHT_PATH || "playwright")' 2>/dev/null \
+   && ! node -e 'require("/home/leon/.local/share/mise/installs/npm-playwright/latest/node_modules/playwright")' 2>/dev/null; then
+  echo "playwright is required for the browser checks; install it or set PLAYWRIGHT_PATH" >&2
+  exit 1
 fi
 
-step "figures inside their frames in a wider font"
-# **A label's width is its font's.** Ten figures drew their ink past their own `viewBox`
-# only on a machine whose font is wider than the site's, and each was found by a release
-# run and not by this gate. `canvas --font monospace` asks the question the runner asks:
-# the loader's `fitText` narrows a label that leaves the frame, so the sweep is 0 here and
-# 0 there.
-if node -e 'require(process.env.PLAYWRIGHT_PATH || "playwright")' 2>/dev/null \
-   || node -e 'require("/home/leon/.local/share/mise/installs/npm-playwright/latest/node_modules/playwright")' 2>/dev/null; then
-  node tools/dist/cli.js canvas site --font monospace
-else
-  echo "playwright is not available here; the canvas sweep runs in the preview job"
-fi
+# Run the four independent browser sweeps concurrently so the wall clock is the
+# longest of them rather than their sum, then check print media on the built site.
+browser_tmp="$(mktemp -d)"
+trap 'rm -rf "$browser_tmp"' EXIT
+browser_names=()
+browser_pids=()
+run_browser() {
+  local name="$1"
+  shift
+  ( "$@" ) >"$browser_tmp/$name.log" 2>&1 &
+  browser_names+=("$name")
+  browser_pids+=($!)
+}
+
+# **A table cannot widen a page**, because `wrap_tables` puts every one in a
+# `.table-scroll` — measure every table at 390px and fail when one overflows.
+run_browser mobile node tools/dist/cli.js check-mobile site
+# **A label's width is its font's** — verify every figure stays inside its viewBox
+# even in a wider monospace font.
+run_browser canvas node tools/dist/cli.js canvas site --font monospace
+# Every figure, in both schemes, and what each one actually paints (plus no HTML
+# box carrying a var(--tb-*) background).
+run_browser audit node tools/dist/cli.js audit site
+# Every figure again at 390px: no rendered label below 9px.
+run_browser phone node tools/dist/cli.js audit site --mobile
+
+browser_failed=0
+for i in "${!browser_names[@]}"; do
+  name="${browser_names[$i]}"
+  if wait "${browser_pids[$i]}"; then
+    printf '\n-- %s --\n' "$name"
+  else
+    printf '\n-- %s — FAILED --\n' "$name"
+    browser_failed=1
+  fi
+  cat "$browser_tmp/$name.log"
+done
+[ "$browser_failed" = 0 ] || exit 1
+
+# Print media render on a built Learn page (asserts figures survive print and fit).
+uv run python -m pytest tests/test_print.py -m browser -q
 
 step "no maths rendering errors"
 if grep -rl 'math-error' site --include='*.html'; then

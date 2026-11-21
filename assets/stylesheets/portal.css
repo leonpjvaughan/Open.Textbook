@@ -94,8 +94,9 @@ body {
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  width: 42px;
-  height: 42px;
+  gap: 0.4rem;
+  width: 2.75rem;
+  height: 2.75rem;
   padding: 0;
   border: 1px solid var(--tb-rule);
   border-radius: 999px;
@@ -114,6 +115,38 @@ body {
   width: 20px;
   height: 20px;
   fill: currentColor;
+}
+
+/* The word the trigger carries is the shared markup's; here it is sized and
+ * hidden, because the portal's CSS is the one that paints this button. */
+.tb-settings__label { display: none; }
+
+@media (min-width: 48rem) {
+  .tb-settings__trigger { width: auto; padding: 0 0.9rem; }
+  .tb-settings__label { display: inline; font-size: 0.9rem; }
+}
+
+/* The skip link: the portal's first tab stop used to be the settings button, so
+ * a keyboard reader had no way past the masthead. */
+.skip {
+  position: absolute;
+  left: -9999px;
+  /* The landing page styles links per component rather than globally, so the
+   * skip link would otherwise keep the user agent's blue: measured 2.02:1 on the
+   * dark bundles' paper. Off screen it still has to be readable when it lands. */
+  color: var(--tb-link);
+}
+
+.skip:focus,
+.skip:focus-visible {
+  position: static;
+  display: block;
+  padding: 0.5rem 1rem;
+  background: var(--tb-paper);
+  color: var(--tb-ink);
+  border-bottom: 1px solid var(--tb-rule);
+  outline: 2px solid var(--tb-accent);
+  outline-offset: -2px;
 }
 
 /* --- groups --------------------------------------------------------------- */
@@ -137,9 +170,18 @@ body {
 
 .cards {
   display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+  /* `auto-fit` lets two- and three-card groups fill the 1000px row cleanly,
+   * while `:only-child` below caps a lone card at 26rem so it stays card-sized
+   * instead of stretching across the full measure. Using `repeat(auto-fill,
+   * minmax(280px, 26rem))` instead would drop three-card groups to two columns
+   * at 1280px (3 x 416px > 1000px). */
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
   gap: 18px;
   padding-bottom: 8px;
+}
+
+.cards > .card:only-child {
+  max-width: 26rem;
 }
 
 /* --- card ----------------------------------------------------------------- */
