@@ -956,3 +956,154 @@ def test_the_loader_keeps_a_label_inside_its_frame_in_any_font():
 
     surface = (repo_root() / "tools" / "src" / "commands" / "canvas.ts").read_text(encoding="utf-8")
     assert "font: {" in surface, "canvas has no --font, so no sweep can ask a wider font"
+
+
+# --- the `fig-*` half of the class contract ----------------------------------
+#
+# `text-*` has been checked in both directions since the eighteen-labels-black
+# defect. `fig-*` was not, and the difference is the whole story: a `fig-*` name
+# that neither a stylesheet nor the kit defines paints nothing at all, and four
+# modules (`ch9-*`) used `fig-note` for a verdict line. They were HTML, so they
+# inherited the body ink and adapted by luck; the day one of them is an SVG
+# `<text>` it is the initial-black defect again.
+#
+# The kit legitimately creates and queries names of its own (`fig-control`,
+# `fig-caption`, `readout`, …). Those are structural, not colour classes, and the
+# guard has to know them rather than call them dead.
+
+FIGURE_ANY_CLASS = re.compile(r"\b((?:fig|text)-[a-z][\w-]*)\b")
+KIT_SOURCE = repo_root() / "assets" / "figures" / "src" / "kit"
+
+
+def figure_classes_in(text: str) -> set[str]:
+    """Every `fig-*`/`text-*` name a module mentions, in any spelling.
+
+    One scanner over the code rather than three over the spellings: a class
+    attribute, a `classList` call, the kit's `class:` option and a
+    `querySelector(".fig-…")` all contain the name, and the last of those is how a
+    module reaches a part the kit built.
+    """
+    return set(FIGURE_ANY_CLASS.findall(code_only(text)))
+
+
+def kit_classes() -> set[str]:
+    """The names the kit itself creates or queries, read from its TypeScript."""
+    found: set[str] = set()
+    for path in sorted(KIT_SOURCE.glob("*.ts")):
+        found |= figure_classes_in(path.read_text(encoding="utf-8"))
+    return found
+
+
+def test_the_class_scanner_sees_a_name_no_stylesheet_defines():
+    """Guard the guard: the scan must report the defect it exists for."""
+    assert "fig-nope" in figure_classes_in('el.className = "fig-nope";')
+    assert "fig-nope" in figure_classes_in('parent.querySelector(".fig-nope");')
+
+
+@pytest.mark.parametrize(("book", "path"), FIGURES, ids=IDS)
+def test_every_figure_class_a_module_uses_is_defined_or_owned_by_the_kit(book, path):
+    """A `fig-*`/`text-*` name in neither list does nothing, and says so to nobody."""
+    style = css_rules(STYLESHEET.read_text(encoding="utf-8"))
+    known = set(style) | kit_classes()
+    used = figure_classes_in(path.read_text(encoding="utf-8"))
+    unknown = sorted(name for name in used if name not in known)
+    assert not unknown, (
+        f"{book.id}/{path.name}: {unknown!r} is neither a colour class in extra.css "
+        "nor a structural class the kit creates, so it paints nothing. Use a "
+        "`text-*` class for words and `fig-grid`/`fig-line` for strokes."
+    )
+
+
+# --- motion may not touch a figure's paint -----------------------------------
+
+CSS_STYLESHEETS = (
+    STYLESHEET,
+    repo_root() / "engine" / "src" / "textbook" / "css" / "shell.css",
+    repo_root() / "assets" / "stylesheets" / "portal.css",
+    repo_root() / "assets" / "stylesheets" / "settings.css",
+)
+
+
+def css_declarations(path: Path):
+    """(selector, property, value) for every declaration in a stylesheet."""
+    css = re.sub(r"/\*.*?\*/", "", path.read_text(encoding="utf-8"), flags=re.S)
+    for selector, block in re.findall(r"([^{}]+)\{([^{}]*)\}", css):
+        for declaration in block.split(";"):
+            if ":" not in declaration:
+                continue
+            prop, value = declaration.split(":", 1)
+            yield " ".join(selector.split()), prop.strip().lower(), value.strip()
+
+
+@pytest.mark.parametrize("path", CSS_STYLESHEETS, ids=lambda p: p.name)
+def test_no_rule_animates_a_figures_paint(path):
+    """A transition on paint makes the audit sample an interpolated colour.
+
+    `audit site` reads the computed paint of every element. A `transition: fill`
+    turns that reading into a sample of whatever frame it lands on — a false pass,
+    or a flake — and `motion` asks for `opacity`/`transform` instead for the same
+    reason a colour change is the wrong thing to animate. Measured when this landed:
+    neither stylesheet declared a single transition, so nothing had ever exercised
+    the question.
+    """
+    offenders = []
+    for selector, prop, value in css_declarations(path):
+        if prop not in {"transition", "transition-property", "animation",
+                        "animation-name"}:
+            continue
+        if "maths-figure" not in selector and "fig-" not in selector:
+            continue
+        if re.search(r"(?<![\w-])(fill|stroke|color|background\w*|all)(?![\w-])", value) \
+                or "--tb-" in value:
+            offenders.append(f"{selector} {{ {prop}: {value} }}")
+    assert not offenders, (
+        "a figure rule animates paint, so the paint audit would measure a frame "
+        f"rather than a state: {offenders!r}. Animate opacity or transform."
+    )
+
+
+# --- the 9px floor is a product of two numbers, and both are knobs -----------
+
+def _rem_values(value: str) -> list[float]:
+    """The rem numbers in a declaration value, in order."""
+    return [float(number) for number in re.findall(r"([\d.]+)rem", value)]
+
+
+def test_the_phone_label_floor_survives_a_padding_change():
+    """Recompute the phone scale from its two inputs, and fail if it drops under 9px.
+
+    An SVG scales by rendered width over viewBox width, so the size a reader sees
+    is not the size a module writes. The panel's own padding and `max-width` set the
+    rendered width, which makes them type-size knobs: `tests/test_figures.py`'s
+    written-size floor (16 units) passes while the rendered label is 8.6px. Measured
+    at 390 with the kit's defaults: 320.8px drawn, 560 units, 16 units → 9.2px.
+    """
+    wrap_padding = next(
+        value for selector, prop, value in css_declarations(CSS_STYLESHEETS[1])
+        if selector == ".wrap" and prop == "padding"
+    )
+    panel = next(
+        (selector, prop, value) for selector, prop, value in css_declarations(STYLESHEET)
+        if prop == "padding" and "maths-figure" in selector and "figcaption" not in selector
+    )
+    panel_padding = _rem_values(panel[2])
+    panel_border = next(
+        (float(number) for selector, prop, value in css_declarations(STYLESHEET)
+         if prop == "border" and "maths-figure" in selector
+         for number in re.findall(r"(\d+)px", value)),
+        0.0,
+    )
+    kit_text = (KIT_SOURCE / "text.ts").read_text(encoding="utf-8")
+    kit_frame = (KIT_SOURCE / "frame.ts").read_text(encoding="utf-8")
+    tick = float(re.search(r"tick:\s*(\d+)", kit_text).group(1))
+    viewbox = float(re.search(r"^\s*width = (\d+),", kit_frame, re.M).group(1))
+
+    wrap_side = _rem_values(wrap_padding)[0]
+    panel_side = panel_padding[-1] if len(panel_padding) == 2 else panel_padding[0]
+    drawn = 390 - 2 * 16 * wrap_side - 2 * 16 * panel_side - 2 * panel_border
+    px = drawn / viewbox * tick
+    assert px >= 9.0, (
+        f"a {tick}-unit label renders at {px:.1f}px at 390 "
+        f"(drawn {drawn:.1f}px, viewBox {viewbox}): the panel's padding or the "
+        "drawing's width moved the floor, so raise SIZE or widen the figure."
+    )

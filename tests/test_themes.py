@@ -1082,3 +1082,30 @@ def test_every_threshold_resolves_to_a_token_the_bundle_has(bundle):
                     f"{role} on the {surface} resolves to {token!r}, which "
                     f"{bundle.id}/{scheme} does not define, so the row would skip it"
                 )
+
+
+def test_the_booklet_badges_use_the_token_their_name_promises():
+    """A badge's word and its colour have to agree, and nothing read them before.
+
+    `.bk-badge--muted` was painted with `--tb-fig-warn` and `.bk-badge--warn` with
+    `--tb-fig-good`, while `booklet.js` defaults a toneless badge to `muted` — so the
+    default badge wore the warning hue and a "warn" badge wore the good one, in all
+    six bundles and both schemes. No test read badge colour (`grep -rn 'bk-badge'`
+    found only the emitter and this rule), which is why it shipped.
+    """
+    css = (repo_root() / "assets" / "stylesheets" / "extra.css").read_text(encoding="utf-8")
+    rules = {
+        match.group(1): match.group(2)
+        for match in re.finditer(r"\.bk-badge--([a-z]+)\s*\{([^}]*)\}", css)
+    }
+    assert {"muted", "warn"} <= set(rules), f"badge variants found: {sorted(rules)}"
+    muted = rules["muted"]
+    warn = rules["warn"]
+    assert "var(--tb-ink)" in muted and "fig-warn" not in muted and "fig-good" not in muted, (
+        "a muted badge must be neutral: it is the default a toneless badge takes, so "
+        f"painting it with a status token says something the booklet did not. Found: {muted.strip()!r}"
+    )
+    assert "var(--tb-fig-warn)" in warn, (
+        "the warn badge must take the warning token, or the badge and its word disagree. "
+        f"Found: {warn.strip()!r}"
+    )
