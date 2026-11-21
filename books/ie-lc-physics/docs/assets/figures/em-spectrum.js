@@ -8,9 +8,6 @@
 // the other way along the top, and a marker whose wavelength and frequency are both
 // given in the readout. The visible column is marked so the narrowness is visible
 // before any number is read.
-//
-// Nothing here carries a colour. Every shape uses a fig-* class and every word a
-// text-* class, so the figure follows the reader's theme in both schemes.
 import { SIZE, circle, label, line, panel, react, rect, scale, sigfig, slider } from "./kit.js";
 
 // The speed of light, in metres per second.

@@ -89,7 +89,7 @@ pages that need it. `mkdocs-macros-plugin` is dropped.
 
 Portability of the substrate itself is **expected from the renderers' documented
 handling of raw HTML, but not CI-verified** — that remains the job of the
-`.agents/planning/handoff.md` D4 port work. What *is* verified: the directive expands, the hook
+an open port task. What *is* verified: the directive expands, the hook
 fails loudly on an unknown slug, and Tier-0 pages get no figure JS.
 
 ## 2. Tier strategies

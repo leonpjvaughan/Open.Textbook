@@ -11,10 +11,6 @@
 // rectangle *leans* when the wheel's camber changes, which a circle cannot show. The
 // first version of this figure drew the wheel as a disc and then had to claim a
 // camber the drawing could not display.
-//
-// Nothing here carries a colour, and every number comes from
-// `data/mechanism.js` — the same model the rest of the chapter and the other
-// figures use.
 import { SIZE, label, line, panel, react, signed, slider, table } from "./kit.js";
 import { FRONT, GEOMETRY, GROUND, pose, thetaFor } from "../data/mechanism.js";
 

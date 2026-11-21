@@ -7,9 +7,6 @@
 // The figure lets the reader draw the same twenty sleep answers as each chart in turn,
 // and the readout names the question that chart answers. The touching bars of the
 // histogram and the gaps of the bar chart are visible side by side.
-//
-// Nothing here carries a colour. Every shape uses a `fig-*` class and every word a
-// `text-*` class, so the figure follows the reader's theme in both schemes.
 import {
   axes,
   chooser,

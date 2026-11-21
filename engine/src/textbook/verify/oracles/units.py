@@ -14,8 +14,8 @@ a square root inside a dimension check, a significant-figure check of a
 $\pi$-based value, or an uncertainty computed through a square root — and a
 stated tolerance is then what is proved.
 
-Honest limit (``research/curriculum/physics-verifier-gaps.md`` §6)
------------------------------------------------------------------
+Honest limit
+------------
 The verifier proves arithmetic and dimensions, **not physics**. A dimensionally
 consistent, arithmetically correct, physically absurd answer passes. ``F = ma``
 with ``m`` in coulombs and ``a`` in volts can be made to balance; the oracle

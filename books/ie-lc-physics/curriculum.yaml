@@ -13,8 +13,6 @@
 # is assessed directly: 40% of the mark is a Physics In Practice Investigation on a
 # common SEC brief, against 60% for the written paper. Chapter 1 carries it, and
 # every other chapter's investigations feed it.
-#
-# See research/curriculum/ie-curriculum.md §6 for the evidence behind both points.
 
 meta:
   booklet_note: |-
@@ -33,7 +31,6 @@ meta:
     Section A is 120 marks (answer 3 questions at 40 marks each) and Section B is 280
     marks (answer 5 at 56 marks each), at Higher and Ordinary alike. The superseded
     syllabus had an 80-mark Section A, so older papers will not match.
-    See research/curriculum/ie-curriculum.md section 8a.
 
   # Where this book is for, the word that jurisdiction uses for its levels, and who
   # publishes the curriculum it follows. Ireland calls its levels levels, not tiers.

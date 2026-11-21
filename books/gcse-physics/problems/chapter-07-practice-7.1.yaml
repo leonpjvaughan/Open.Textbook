@@ -7,7 +7,7 @@
 # numeric records reach back to force and weight from Chapters 2 and 3, and prove
 # the arithmetic and dimensions with `dimensions` and `sigfigs`.
 #
-# Honest limit (research/curriculum/physics-verifier-gaps.md §6): the verifier
+# Honest limit: the verifier
 # proves arithmetic and dimensions, not physics.
 chapter: 7
 problems:

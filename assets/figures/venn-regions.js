@@ -12,9 +12,6 @@
 // picks an expression and every part of the diagram that is in it lights up. The
 // region labels are placed by `venn()` from the geometry, because an atom in the wrong
 // region would teach the opposite of the truth.
-//
-// Nothing here carries a colour. The selected atoms use the accent class and are also
-// drawn larger, so the selection does not depend on colour alone.
 
 /**
  * One expression in the chooser.

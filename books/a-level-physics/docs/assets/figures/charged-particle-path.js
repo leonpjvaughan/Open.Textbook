@@ -4,13 +4,6 @@
 // density and the speed. The drawing shows the circular path, and the readout
 // gives the radius and the time for one full circle. The radius grows with the
 // speed while the time does not change, which is the point of the figure.
-//
-// The drawing is not to scale. Colours come from the fig-* classes. The readout
-// is plain HTML, never runtime maths.
-//
-// The scaffolding — the surface, its accessible name, the sliders, the live
-// readout and the redraw — comes from `kit.js`. What is left here is the drawing
-// and the sentences, which are the parts that differ from every other figure.
 import {
   label,
   panel,

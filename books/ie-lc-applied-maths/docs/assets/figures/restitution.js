@@ -11,9 +11,6 @@
 // The horizontal axis is time, and the ball travels at 1 m/s, so the distance along the
 // floor and the time are the same number. The arcs then have their true widths, and the
 // bounce times shorten with the heights rather than being spaced by hand.
-//
-// Nothing here carries a colour. Every shape uses a `fig-*` class and every word a
-// `text-*` class, so the figure follows the reader's bundle in both schemes.
 import {
   axes,
   curve,

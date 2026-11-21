@@ -1,7 +1,4 @@
 // Guided family y = (x - p)^2 - 4; compare roots and turning point as p changes.
-//
-// The scaffolding — the surface, its accessible name, the slider, the live
-// readout, the redraw — comes from `kit.js`.
 import { SIZE, label, panel, react, slider } from "./kit.js";
 
 export function mount(el) {

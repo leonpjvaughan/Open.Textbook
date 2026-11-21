@@ -3,12 +3,6 @@
 // A single slider moves a point outwards from the centre of the Earth. The curve
 // is g = GM / r^2, and a marker sits at the chosen distance. The readout gives
 // the field strength, its ratio to the surface value and the gravitational
-// potential. Colours come from the fig-* classes, so the figure adapts to every
-// bundle and to both schemes. The readout is plain HTML, never runtime maths.
-//
-// The scaffolding — the surface, its accessible name, the slider, the live
-// readout and the redraw — comes from `kit.js`. What is left here is the drawing
-// and the sentences, which are the parts that differ from every other figure.
 import {
   label,
   panel,

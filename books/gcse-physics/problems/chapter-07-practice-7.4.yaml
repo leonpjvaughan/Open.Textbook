@@ -6,7 +6,7 @@
 # calculation reuses F = BIl from the motor effect; `structured` proves only that
 # a model answer contains the declared ideas.
 #
-# Honest limit (research/curriculum/physics-verifier-gaps.md §6): the verifier
+# Honest limit: the verifier
 # proves arithmetic and dimensions, not physics.
 chapter: 7
 problems:

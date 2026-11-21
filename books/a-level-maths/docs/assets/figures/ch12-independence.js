@@ -1,12 +1,6 @@
 // Guided investigation for 12.1: when two events are independent.
 // A two-way table with fixed row and column totals. The reader moves the number
 // in the overlap cell and watches P(A given B) move away from P(A).
-// Pure HTML and SVG, no framework and no colour of its own: the fig-* classes
-// carry the theme. Runtime text is plain text, never TeX.
-//
-// The scaffolding — the surface, its accessible name, the slider, the live
-// readout and the redraw — comes from `kit.js`. The two-way table and the
-// verdict line are the figure's own text, so they stay here.
 import { SIZE, label, panel, react, slider } from "./kit.js";
 
 const N = 200;

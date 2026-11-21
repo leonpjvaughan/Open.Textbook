@@ -5,12 +5,6 @@
 // the separation and explain why the force does not halve. So the figure has to
 // make the inverse-square fall visible: the curve is drawn from the law itself,
 // and the marker moves along it as the separation changes.
-//
-// Nothing here carries a colour. The curve, the axes and the marker use the
-// fig-* and text-* classes, so the figure follows every bundle and both schemes.
-//
-// The scaffolding — the panel, its accessible name, the sliders, the readout and
-// the redraw — comes from `kit.js`. What is left is the drawing and the sentences.
 import {
   fmt,
   label,

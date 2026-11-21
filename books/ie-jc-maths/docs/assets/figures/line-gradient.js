@@ -5,10 +5,6 @@
 // steps as lengths on the grid, so the rise and the run are two distances before
 // they are a fraction. The reader moves both points, and the equation of the line
 // appears as the slope settles.
-//
-// Nothing here carries a colour. Every shape uses a `fig-*` class and every word a
-// `text-*` class, and the two points are labelled A and B, so they are told apart
-// without colour.
 import { SIZE, axes, dots, fmt, label, line, panel, react, slider } from "./kit.js";
 
 const MAX = 10;

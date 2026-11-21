@@ -1,8 +1,4 @@
 // Guided scale investigation for Chapter 7. Predict → Test → Explain.
-//
-// The scaffolding — the frame, the two sliders, the live readout, the redraw —
-// comes from `kit.js`. The bar is a painted SVG rectangle in a `fig-*` class, so
-// its colour follows the reader's scheme.
 import { panel, slider, react } from "./kit.js";
 
 export function mount(el) {

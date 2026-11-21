@@ -4,12 +4,6 @@
 // halved, then to double the number of turns and explain why the time matters. So
 // the figure has to show Faraday's law in action: the emf is set by the number of
 // turns, the change in flux through one turn, and the time the change takes.
-//
-// Nothing here carries a colour. The bar uses one class, the axes another and the
-// labels a third, so the figure survives a monochrome bundle.
-//
-// The scaffolding — the panel, its accessible name, the sliders, the readout and
-// the redraw — comes from `kit.js`. What is left is the drawing and the sentences.
 import {
   fmt,
   label,

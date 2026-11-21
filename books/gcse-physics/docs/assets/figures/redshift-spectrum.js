@@ -4,13 +4,6 @@
 // touching the slider, then to test it by changing the speed of the galaxy,
 // then to explain why a source moving away gives a longer wavelength. The
 // laboratory row is the same light measured at rest; the galaxy row is the same
-// pattern, moved towards the red end. Colours come from CSS classes, so the
-// figure adapts to dark mode and every bundle, and each row is labelled in words
-// as well as by its position.
-//
-// The scaffolding — the surface, its accessible name, the slider, the live
-// readout and the redraw — comes from `kit.js`. What is left here is the drawing
-// and the sentences, which are the parts that differ from every other figure.
 import { SIZE, label, panel, react, slider } from "./kit.js";
 
 export function mount(el) {

@@ -7,13 +7,6 @@
 //
 // Predict -> Test -> Explain lives on the page: the reader predicts how many
 // solutions there are before moving a slider, and explains the fold afterwards.
-// The module carries no colour of its own. The fig-* and text-* classes read the
-// --tb-* tokens, so the figure follows the reader's bundle and both schemes, and
-// the readout is aria-live so a reader who cannot see the drawing is told what
-// changed. Runtime text is plain text, never TeX.
-//
-// The scaffolding — the surface, its accessible name, the sliders, the live
-// readout and the redraw — comes from `kit.js`.
 import { SIZE, label, panel, react, slider } from "./kit.js";
 
 const X_MIN = -9;

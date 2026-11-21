@@ -1,8 +1,4 @@
 // Guided investigation: angles around a point complete a full turn.
-//
-// The scaffolding — the frame, the prompt, the two sliders, the live readout, the
-// redraw — comes from `kit.js`. The full turn is drawn as three painted SVG
-// rectangles in `fig-*` classes, so the figure adapts to every scheme.
 import { panel, slider, react } from "./kit.js";
 
 export function mount(el) {

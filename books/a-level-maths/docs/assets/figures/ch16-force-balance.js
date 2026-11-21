@@ -3,10 +3,6 @@
 // figure shows when the two forces balance and when they do not. Plain HTML and
 // SVG, no framework and no colour of its own: the fig-* classes carry the
 // theme. Runtime text is plain text, never TeX.
-//
-// The scaffolding — the surface, its accessible name, the sliders, the live
-// readout, the redraw — comes from `kit.js`. What is left here is the drawing and
-// the sentence, which are the parts that differ from every other figure.
 import { SIZE, label, panel, slider, react } from "./kit.js";
 
 // Pixels per newton. The two forces can align, so the resultant reaches 24 N;

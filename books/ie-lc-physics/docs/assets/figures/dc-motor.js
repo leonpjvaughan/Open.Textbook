@@ -11,9 +11,6 @@
 // coil are seen end-on as circles, and the forces are in the page. Nothing here
 // carries a colour: the field uses the grid class, the conductors and the forces
 // the accent class, so the figure follows the reader's bundle and both schemes.
-//
-// The scaffolding — the panel, its accessible name, the controls, the readout and
-// the redraw — comes from `kit.js`. What is left is the drawing and the words.
 import { SIZE, fmt, label, panel, scale, slider, react } from "./kit.js";
 
 const WIDTH = 460;

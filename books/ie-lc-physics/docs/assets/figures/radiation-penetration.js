@@ -8,13 +8,6 @@
 // travels, and the marks along it are spaced by the ionising power, so the reader
 // can see that the alpha track is short and crowded while the gamma track is long
 // and almost empty.
-//
-// Nothing here carries a colour. The track, the ionisation marks and the detector
-// use different `fig-*` classes and different line styles, so the distinction
-// survives a monochrome bundle.
-//
-// The scaffolding — the panel, its accessible name, the controls, the readout and
-// the redraw — comes from `kit.js`. What is left is the drawing and the sentences.
 import { SIZE, chooser, label, panel, react, scale, slider } from "./kit.js";
 
 // Range in air and ionising power, both rounded to the order of magnitude a reader

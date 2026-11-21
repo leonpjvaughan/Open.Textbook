@@ -2,12 +2,6 @@
 // The reader sets the mean, the standard deviation and a value x, and sees the
 // shaded area P(X < x). The area is computed by the trapezium rule on the
 // density, so the readout matches the curve drawn. Pure HTML and SVG, no
-// colour of its own: the fig-* classes carry the theme. Runtime text is plain
-// text, never TeX.
-//
-// The scaffolding — the surface, its accessible name, the sliders, the live
-// readout, the redraw — comes from `kit.js`. What is left here is the drawing and
-// the sentence, which are the parts that differ from every other figure.
 import { SIZE, label, panel, react, slider } from "./kit.js";
 
 const X_MIN = 0;

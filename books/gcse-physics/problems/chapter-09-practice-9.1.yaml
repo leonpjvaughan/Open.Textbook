@@ -4,7 +4,7 @@
 # `:::problems` prints the numbered list, `:::answers` the solutions. The book
 # declares `oracles: [sympy, units]`, so a check may use either.
 #
-# Honest limit (research/curriculum/physics-verifier-gaps.md §6): the verifier
+# Honest limit: the verifier
 # proves arithmetic and dimensions, not physics. The `structured` records prove
 # only that a model answer contains the declared ideas, in order.
 chapter: 9

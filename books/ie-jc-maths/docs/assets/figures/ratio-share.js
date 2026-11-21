@@ -5,9 +5,6 @@
 // part separately, which gives shares that do not add back to the whole. A bar of
 // equal parts makes both halves of the method visible: the whole bar is the amount,
 // every part is the same width, and the two shares are counts of those parts.
-//
-// Nothing here carries a colour. Every shape uses a `fig-*` class and every word a
-// `text-*` class, so the figure follows the reader's theme in both schemes.
 import { SIZE, fmt, label, line, panel, react, rect, slider } from "./kit.js";
 
 const X0 = 60;

@@ -3,9 +3,6 @@
 // the exact probabilities from the binomial formula, so the chart matches the
 // formula on the page. Pure HTML and SVG, no framework and no colour of its
 // own: the fig-* classes carry the theme. Runtime text is plain text, never TeX.
-//
-// The scaffolding — the surface, its accessible name, the two sliders, the live
-// readout and the redraw — comes from `kit.js`.
 import { SIZE, label, panel, react, slider } from "./kit.js";
 
 function binomialCoefficient(n, r) {

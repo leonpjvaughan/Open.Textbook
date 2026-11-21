@@ -24,10 +24,9 @@
 # FIDELITY. Where a relationship is not printed on a board's insert it is not
 # marked `given` for that board: at A-level Edexcel, "Any other formulae that
 # are required will be provided in the question", so those are `question`; the
-# two definitions a reader must hold are `know`. See
-# research/curriculum/physics-equations-and-data.md for the per-board evidence.
+# two definitions a reader must hold are `know`.
 #
-# Evidence: research/curriculum/physics-equations-and-data.md, the AQA insert
+# Evidence: the AQA insert
 # (version 1.5), the Edexcel printed insert (List of data, formulae and
 # relationships, Issue 3, November 2022) and specification Appendices 8 and 9,
 # and OCR H556 Appendix 5c. See sources.yaml. The documents are

@@ -7,7 +7,7 @@
 # pages write their own working, and the `:::answers` blocks come from the
 # practice banks.
 #
-# Honest limit (research/curriculum/physics-verifier-gaps.md §6): the verifier
+# Honest limit: the verifier
 # proves arithmetic and dimensions, not physics. The `structured` records prove
 # only that a model answer contains the declared ideas, in order.
 chapter: 9

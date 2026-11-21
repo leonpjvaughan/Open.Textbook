@@ -4,14 +4,6 @@
 // other lamp when one lamp is removed, in each arrangement, before the controls
 // are used. The figure draws two lamps with a 6.0 V battery, either in series or
 // in parallel, and can remove the right-hand lamp.
-//
-// Colours come from CSS classes, so the figure adapts to every bundle and both
-// schemes. Lit and unlit are shown by a word and by rays, not by colour alone.
-//
-// The scaffolding — the surface, its accessible name, the checkbox, the live
-// readout and the redraw — comes from `kit.js`. The two mode buttons are not one
-// of the kit's controls, so they are built here inside the kit's control column.
-// What is left is the drawing and the sentences.
 import { SIZE, label, panel, react, toggle } from "./kit.js";
 
 export function mount(el) {

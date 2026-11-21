@@ -370,7 +370,7 @@ export function table(
  * A process shown in time, with a scrubber and a stopping point.
  *
  * Nothing in the collection animates, and the one measurement the project has
- * (`research/design/background-effects.md`) found that the *looks-free* CSS
+ * found that the *looks-free* CSS
  * animation was the worst citizen on the page — 180 ms/s of main-thread time on an
  * idle one — while an explicit render loop idled below it. So motion here is an
  * explicit loop, and it **stops**.

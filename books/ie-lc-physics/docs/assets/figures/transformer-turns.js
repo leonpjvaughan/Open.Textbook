@@ -5,12 +5,6 @@
 // the ratio of the voltages is fixed by the turns. So the figure has to show the
 // two voltages side by side, scaled to each other, with the turns visible as
 // numbers the reader sets.
-//
-// Nothing here carries a colour. The two bars use one class, the axes another and
-// the labels a third, so the figure survives a monochrome bundle.
-//
-// The scaffolding — the panel, its accessible name, the sliders, the readout and
-// the redraw — comes from `kit.js`. What is left is the drawing and the sentences.
 import {
   fmt,
   label,

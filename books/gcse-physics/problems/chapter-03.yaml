@@ -12,7 +12,7 @@
 # `sigfigs`. A value read from a motion graph is a measurement, so it is proved
 # against a declared closed interval by `gradient` or `area`.
 #
-# Honest limit (research/curriculum/physics-verifier-gaps.md §6): this proves the
+# Honest limit: this proves the
 # arithmetic and the dimensions, not the physics.
 chapter: 3
 problems:

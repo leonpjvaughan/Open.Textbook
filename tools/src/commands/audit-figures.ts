@@ -75,7 +75,7 @@ type Measurement = {
   error?: string;
 };
 
-/** One row of a book's per-figure table in `research/design/figure-audit.md`. */
+/** One row of a book's per-figure table. */
 type TableRow = {
   slug: string;
   tokens: string[];

@@ -5,14 +5,6 @@
 // at which to read the curve. The left panel plots the activity against time in
 // half-lives, with the working point marked. The readout gives the activity, the
 // number of half-lives and the fraction that remains.
-//
-// Colours come from CSS classes, so the figure adapts to every bundle and to
-// both schemes. No colour literal appears here, and no runtime LaTeX: the
-// readout is plain HTML.
-//
-// The scaffolding — the surface, its accessible name, the sliders, the live
-// readout and the redraw — comes from `kit.js`. What is left here is the drawing
-// and the sentences, which are the parts that differ from every other figure.
 import {
   label,
   panel,

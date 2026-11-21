@@ -1,9 +1,6 @@
 // Guided investigation for transformations of graphs: y = a f(k(x - h)) + v
 // with f(x) = x^2. Pure HTML and SVG, an ES module, no framework and no colour
 // of its own: the fig-* classes carry the theme. Runtime text is plain text.
-//
-// The scaffolding — the surface, its accessible name, the sliders, the live
-// readout and the redraw — comes from `kit.js`.
 import { panel, slider, react } from "./kit.js";
 
 const X_MIN = -8;

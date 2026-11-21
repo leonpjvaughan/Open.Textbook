@@ -6,14 +6,6 @@
 // curve, change the number of strips, and watch the estimate close on the true
 // area from one side. Two curves bend upwards and one bends downwards, so the
 // direction of the error is not the same every time.
-//
-// Plain HTML, SVG, a select and one range input, so it is keyboard-operable with
-// no framework, and no colour of its own: the fig-* classes carry the theme.
-// Runtime text is plain text, never TeX.
-//
-// The scaffolding — the surface, its accessible name, the controls, the live
-// readout and the redraw — comes from `kit.js`. The verdict line is the figure's
-// own text, so it stays here.
 import { panel, slider, chooser, react } from "./kit.js";
 
 const MAPS = [

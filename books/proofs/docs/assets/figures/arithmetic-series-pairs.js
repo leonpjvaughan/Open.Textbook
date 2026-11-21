@@ -8,13 +8,6 @@
 //
 // Predict -> Test -> Explain: the page asks what a column will add to before the
 // reader ticks the box, and the reversed line is hidden until it is ticked.
-// Colours come from CSS classes, so the figure adapts to every bundle and both
-// schemes; the readout is `aria-live`, so the arithmetic reaches a reader who
-// cannot see the drawing.
-//
-// The scaffolding — the surface, its accessible name, the controls, the live
-// readout and the redraw — comes from `kit.js`. What is left here is the drawing
-// and the sentences, which are the parts that differ from every other figure.
 import { panel, slider, toggle, react, SIZE, label, rect, line, fmt } from "./kit.js";
 
 export function mount(el) {

@@ -9,10 +9,6 @@
 // Predict -> Test -> Explain per AGENTS.md P6: the page asks what the gap will
 // do before a control is touched, and asks for the reason afterwards. Colours
 // come from CSS classes, so the figure adapts to every bundle and both schemes;
-// the readout is `aria-live`.
-//
-// The scaffolding — the surface, its accessible name, the chooser and sliders,
-// the live readout and the redraw — comes from `kit.js`.
 import { SIZE, chooser, label, panel, react, slider } from "./kit.js";
 
 export function mount(el) {

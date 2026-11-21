@@ -1,9 +1,7 @@
 """Theme bundles: the collection's core themes, and the subject tint on top.
 
-A bundle and a book multiply: six bundles times every book, in two schemes each.
-These tests are what keeps that combinable — a complete palette per bundle, a
-subject tint that composes rather than competes, and enough contrast to read in
-every combination.
+A bundle and a book multiply, so these tests keep the combinations legible: a
+complete palette per bundle, a tint that composes, and enough contrast in each.
 """
 
 from __future__ import annotations
@@ -49,10 +47,8 @@ from textbook.themes import (
 def _load_bundles():
     """Discover bundles, recording a broken one instead of dying at import.
 
-    `load_bundle` is the provenance gate. When it rejects a real bundle, that
-    should be a named test failure carrying the loader's message — not a
-    collection error that hides every other test in the file. The suite still
-    goes red; `test_every_bundle_loads` is simply louder about why.
+    A rejected bundle should be a named test failure carrying the loader's message,
+    not a collection error that hides every other test in the file.
     """
     try:
         return discover_bundles(), None
@@ -69,9 +65,8 @@ THEMES_CSS = repo_root() / "assets" / "stylesheets" / "themes.css"
 def test_every_bundle_loads():
     """The provenance gate, as a named failure rather than an import error.
 
-    Drop a `family:`, a provenance field, or a derived member's `note` from a
-    real `themes/*.yaml` and this fails with `load_bundle`'s message naming the
-    file and the field.
+    Drop a `family:` or a derived member's `note` from a real bundle and this fails
+    with `load_bundle`'s message naming the file and the field.
     """
     assert BUNDLE_LOAD_ERROR is None, (
         f"a theme bundle failed to load: {BUNDLE_LOAD_ERROR}"
@@ -87,8 +82,6 @@ def test_bundle_is_a_light_and_dark_pair(bundle):
     assert bundle.title
     for scheme in SCHEMES:
         assert scheme in bundle.palettes
-    # Both variations carry the same tokens, so switching scheme cannot leave a
-    # token undefined.
     assert set(bundle.palette("light")) == set(bundle.palette("dark"))
 
 
@@ -128,19 +121,9 @@ def test_a_bundle_must_be_complete(tmp_path):
 
 
 # --- provenance: a claim someone else can check -------------------------------
-#
-# A bundle is a group: one palette family, a light member and a dark member, and
-# a recorded origin for each. There are three honest states, and `load_bundle`
-# refuses a member that does not declare one:
-#
-#   * `original: true` — authored here, with no upstream;
-#   * `observed: true` — the hexes were read from `source`;
-#   * `observed: false` — derived here from `source`'s hues, which needs a `note`.
-#
-# The `original` flag exists because `observed: false` alone used to stand for both
-# "ours" and "derived from someone else's mode", which is the conflation it fixes.
-# A claim that can quietly vanish is a claim nobody can check, so a missing field
-# is an error rather than a default.
+# One palette family, a light member and a dark member, each with a recorded origin.
+# `original: true` is authored here; `observed: true` was read from `source`;
+# `observed: false` is derived here from `source`'s hues and needs a `note`.
 
 
 def _bundle_data(theme_id: str = "editorial") -> dict:
@@ -172,9 +155,8 @@ def test_a_bundle_must_carry_a_provenance_block(tmp_path):
 def _sourced(data: dict, scheme: str = "light", **member) -> dict:
     """Replace one member's provenance with a sourced (non-original) record.
 
-    The bundles shipped here are all original, so the observed/derived
-    enforcement is exercised on a synthetic sourced member rather than on a real
-    one — which is also how the tests for the old `observed` flag worked.
+    The bundles shipped here are all original, so this is how the sourced path is
+    reached.
     """
     data["provenance"][scheme] = {
         "name": "Upstream",
@@ -195,12 +177,7 @@ def test_a_bundle_must_name_each_member(tmp_path, scheme):
 
 
 def test_an_original_member_needs_no_source_or_observed(tmp_path):
-    """The whole point of the flag: our own palette is not a derived one.
-
-    An original member must not be forced through the derived-member contract —
-    `observed: false` plus a `note` — which is what used to conflate "authored
-    here" with "derived from someone else's mode".
-    """
+    """Our own palette is not a derived one, so it is not held to the derived contract."""
     data = _bundle_data()
     assert data["provenance"]["light"]["original"] is True
     del data["provenance"]["light"]["source"]
@@ -265,9 +242,8 @@ def test_a_bundle_must_declare_a_mood(tmp_path):
 def test_a_bundle_exposes_its_family_and_provenance(bundle):
     """The metadata is carried on the bundle, not only validated and dropped.
 
-    The colophon (todo item 11) is the reader of this, and a sourced member's
-    `note` is the prose it publishes. A field the loader checks but forgets to
-    keep is a check that buys nothing.
+    The colophon publishes it, so a field the loader checks and forgets to keep buys
+    nothing.
     """
     assert bundle.family
     assert bundle.mood in ("calm", "vivid")
@@ -285,12 +261,7 @@ def test_a_bundle_exposes_its_family_and_provenance(bundle):
 def test_no_bundle_is_named_after_a_distribution():
     """`omarchy` names a catalogue, not a palette family, so it cannot be an id.
 
-    Omarchy's gallery is 140 links and its stock install is 22 single-mode
-    `colors.toml` files — 17 dark-only, 5 light-only — so it can supply at most
-    one member of a pair, and a bundle is two. The bundle it once named was a
-    Catppuccin group (Latte + Mocha); both are gone now (see DECISIONS.md), and
-    this test keeps the naming mistake from returning. See
-    research/design/theme-groups.md.
+    Its gallery is single-mode palettes, and a bundle is a light-and-dark pair.
     """
     assert "omarchy" not in IDS
 
@@ -355,10 +326,9 @@ def test_each_bundle_and_scheme_selects_a_block_per_bundle():
 def test_every_bundle_and_subject_pair_is_readable(bundle, book):
     """Six bundles times every book, in two schemes: all of them must be legible.
 
-    This is what lets a book state one accent per scheme and trust it everywhere,
-    rather than tuning a palette per bundle. It covers the figure tokens too:
-    `fig-warn`, `fig-good` and `fig-grid` are measured against the figure panel,
-    which is a different surface from the page (see `contrast_problems`).
+    This is what lets a book state one accent per scheme rather than tuning a palette
+    per bundle. It covers the figure tokens too, which are measured against the figure
+    panel rather than the page.
     """
     for scheme in ("default", "slate"):
         subject = book.theme.for_scheme(
@@ -373,12 +343,8 @@ def test_every_bundle_and_subject_pair_is_readable(bundle, book):
 def test_every_bundle_is_readable_with_no_subject_tint(bundle, scheme):
     """The bundle alone, with no book composed in, must be legible too.
 
-    This is the landing page, and any page of a book that states no tint. It is
-    a different measurement from the composed one above: the subject's accent
-    *replaces* the bundle's own wherever a book provides one, so a bundle accent
-    that fails can pass every composed check. The stock bundles this set replaced
-    (gruvbox light 4.40:1, catppuccin light 4.34:1) did exactly that until this
-    test existed — the same defect class as item 17's `accent_ink`.
+    This is the landing page. The subject's accent *replaces* the bundle's own, so a
+    bundle accent that fails can pass every composed check.
     """
     problems = contrast_problems(bundle, scheme, None)
     assert not problems, "; ".join(problems)
@@ -389,7 +355,6 @@ def test_the_contrast_check_can_actually_fail():
     editorial = bundle_by_id("editorial")
     assert contrast_problems(editorial, "default", {"accent": "#f7f7f7"})
     assert not contrast_problems(editorial, "default", {"accent": "#2f6690"})
-    # An `accent_ink` the colour of the accent it sits on must be reported too.
     assert contrast_problems(
         editorial, "default", {"accent_ink": editorial.palette("default")["accent"]}
     )
@@ -407,18 +372,12 @@ def test_the_figure_contrast_check_can_actually_fail():
 def test_the_figure_thresholds_follow_what_the_token_draws():
     """Why the thresholds differ, recorded where a change must argue with it.
 
-    `fig-accent`, `fig-warn` and `fig-good` colour text (`.text-accent`,
-    `.text-warn`, `.text-good`, and SVG labels), so they are held to the 4.5:1
-    WCAG AA minimum for normal text. `fig-grid` draws axes and gridlines: a
-    graphical object a reader needs, but not text, so WCAG 1.4.11's 3:1 applies.
-    All are below ink's AAA 7:1, which is body text on plain paper.
-
-    `fig-accent` was missing until the figure audit measured every module in a
-    browser (`tools audit`). It was checked as `accent` against the
-    *paper*, which it clears everywhere, and never against the figure panel —
-    where twelve book-and-bundle pairs sat between 3.90:1 and 4.43:1. The accent
-    is also the stroke of a curve, and 3:1 would be right for that; but one token
-    cannot be two colours, and text is the stricter use of it.
+    `fig-accent`, `fig-warn` and `fig-good` colour text, so they are held to the 4.5:1
+    AA minimum; `fig-grid` draws axes and gridlines, a graphical object a reader needs
+    but not text, so WCAG 1.4.11's 3:1 applies. All sit below ink's AAA 7:1.
+    `fig-accent` is measured against the figure panel, not the paper: it is also the
+    stroke of a curve, but one token cannot be two colours, and text is the stricter
+    use of it.
     """
     assert FIGURE_MIN_CONTRAST == {
         "fig_accent": 4.5,
@@ -433,12 +392,9 @@ def test_the_figure_thresholds_follow_what_the_token_draws():
 def test_the_figure_roles_all_resolve_to_a_token():
     """A role that names no token is skipped, not reported, so it must be checked.
 
-    `fig_accent` is the one role that is not a bundle token: `extra.css` defines
-    `--tb-fig-accent` as `var(--tb-accent)`. `contrast_problems` looks the role up
-    in `tokens` and `continue`s when it finds nothing — so a role added to the
-    dict without an alias, or an alias naming a token no bundle declares, would
-    delete the check while leaving the threshold in place. That is the failure
-    mode this file exists to prevent, so it is asserted directly.
+    `contrast_problems` looks the role up in `tokens` and `continue`s when it finds
+    nothing, so a role added without an alias, or an alias no bundle declares, would
+    delete the check while leaving the threshold in place.
     """
     from textbook.themes import FIGURE_TOKEN_ALIAS
 
@@ -461,13 +417,10 @@ def test_the_soft_ink_threshold_is_a_text_minimum():
 
 
 def test_the_ink_lighter_threshold_is_for_a_non_text_control():
-    """`ink_lighter` paints `.sidebar summary::marker`, a disclosure control.
+    """`ink_lighter` paints `.sidebar summary::marker`, a disclosure control, so 3:1.
 
-    WCAG 1.4.11's 3:1 applies to a graphical component a reader has to operate,
-    not the 4.5:1 that text needs. The whole-page audit never sampled it: a
-    `::marker` is a pseudo-element with no text node, which is the gap the
-    threshold closes. No bundle relied on the old, lower value for anything but
-    this marker, so the token was raised rather than duplicated.
+    WCAG 1.4.11 applies to a graphical component a reader has to operate. The
+    whole-page audit never sampled it: a `::marker` has no text node.
     """
     assert INK_LIGHTER_MIN_CONTRAST == {"ink_lighter": 3.0}
     assert INK_LIGHTER_MIN_CONTRAST["ink_lighter"] < MIN_CONTRAST["ink"]
@@ -486,9 +439,8 @@ def test_apca_is_polarity_sensitive_and_matches_the_reference():
     """Lc is signed, and the reference anchors bracket the scale."""
     assert apca_contrast("#000000", "#ffffff") == pytest.approx(106.04, abs=0.05)
     assert apca_contrast("#ffffff", "#000000") == pytest.approx(-107.89, abs=0.05)
-    # Swapping foreground and background flips the sign, and the two magnitudes
-    # are deliberately not mirrors: that asymmetry is what WCAG's symmetric
-    # ratio cannot express at all.
+    # Flipping foreground and background flips the sign, and the magnitudes are not
+    # mirrors: that asymmetry is what WCAG's symmetric ratio cannot express at all.
     forward = apca_contrast("#4c4f69", "#eff1f5")
     reverse = apca_contrast("#eff1f5", "#4c4f69")
     assert forward > 0 > reverse
@@ -498,12 +450,8 @@ def test_apca_is_polarity_sensitive_and_matches_the_reference():
 def test_apca_measures_what_wcag_cannot():
     """A dark pair can clear a *higher* WCAG ratio and still be weaker in Lc.
 
-    This is F3 of research/design/theme-groups.md: `MIN_CONTRAST` applies the
-    same number in both schemes, which is the symmetry APCA exists to criticise.
-    The synthetic pair below is the example — dark #7c7c7c on #0a0a0a clears a
-    higher WCAG ratio than light #787878 on #ffffff, and scores less than half
-    the Lc. It switched the bundle check to a second opinion; the original
-    finding was Kanagawa's dark accent.
+    `MIN_CONTRAST` applies the same number in both schemes, which is the symmetry APCA
+    exists to criticise, so the bundle check takes a second opinion.
     """
     light, dark = "#787878", "#7c7c7c"
     assert contrast(dark, "#0a0a0a") > contrast(light, "#ffffff")
@@ -513,9 +461,8 @@ def test_apca_measures_what_wcag_cannot():
 def test_the_apca_thresholds_are_the_measured_levels():
     """The numbers are a choice, pinned so a change has to argue with them.
 
-    They sit below APCA's strict body-text levels because the dark vivid members
-    measured there and redrawing them would repaint the families; the point is to
-    catch a palette that drifts weaker, not to fail the ones that exist.
+    They sit below APCA's strict body-text levels because the dark vivid members are
+    measured there; the point is to catch a palette that drifts weaker.
     """
     assert APCA_MIN_CONTRAST == {"ink": 60.0, "link": 45.0, "accent": 45.0, "accent_ink": 45.0}
 
@@ -532,11 +479,8 @@ def test_the_apca_check_can_actually_fail():
 def test_every_bundle_passes_the_apca_second_opinion(bundle, scheme):
     """Six bundles × both schemes, measured in Lc as well as WCAG.
 
-    The thresholds are below the strict body-text levels on purpose: the dark
-    vivid members sit at the floor of the measured distribution, and lifting
-    them to Lc 75/60 would repaint those families rather than check them. The
-    distribution is recorded in the comment above APCA_MIN_CONTRAST in
-    themes.py, where the threshold is chosen from it.
+    The thresholds are below the strict body-text levels on purpose, so lifting the
+    dark vivid members would repaint those families rather than check them.
     """
     problems = apca_problems(bundle, scheme, None)
     assert not problems, "; ".join(problems)
@@ -555,9 +499,8 @@ def test_every_composed_pair_passes_the_apca_second_opinion(bundle, book):
 def test_the_card_surface_matches_the_stylesheet():
     """The card `ink_soft` sits on is mirrored from `portal.css`.
 
-    If one moves without the other every ratio this file computes for
-    `ink_soft` is measured against the wrong surface — the same trap the figure
-    panel test guards against.
+    If one moves without the other, every ratio this file computes for `ink_soft` is
+    measured against the wrong surface.
     """
     css = (repo_root() / "assets" / "stylesheets" / "portal.css").read_text(encoding="utf-8")
     found = {
@@ -590,12 +533,9 @@ def test_the_soft_ink_check_can_actually_fail():
 def test_accent_ink_reads_on_the_bundles_own_accent(bundle, scheme):
     """The label knocked out of the accent is not the paper.
 
-    A bundle's own paper can sit below 4.5:1 on its own accent — the stock set
-    this replaced had a light member at 4.40:1 and another at 4.34:1 — which is
-    the defect this token fixes. The composed check in `contrast_problems`
-    measures the book's effective accent; this measures the bundle's own, so the
-    palette is safe even with no subject tint, and it fails if `accent_ink` goes
-    back to the paper.
+    The composed check measures the book's effective accent; this measures the
+    bundle's own, so the palette is safe with no subject tint and fails if
+    `accent_ink` goes back to the paper.
     """
     tokens = bundle.palette(scheme)
     ratio = contrast(tokens["accent_ink"], tokens["accent"])
@@ -608,8 +548,8 @@ def test_accent_ink_reads_on_the_bundles_own_accent(bundle, scheme):
 def test_the_figure_surface_matches_the_stylesheet():
     """The panel a figure is drawn on is mirrored from `extra.css`.
 
-    If one moves without the other, every figure ratio this file computes is
-    measured against the wrong surface.
+    If one moves without the other, every figure ratio this file computes is measured
+    against the wrong surface.
     """
     css = (repo_root() / "assets" / "stylesheets" / "extra.css").read_text(encoding="utf-8")
     match = re.search(
@@ -647,15 +587,11 @@ def test_generated_stylesheet_is_in_sync():
 # --- no colour literal in the shared stylesheet -------------------------------
 
 # `extra.css` is the plumbing layer: a colour declared here outranks every bundle,
-# silently, in both schemes and for every reader. So the check cannot be "no
-# --tb-* token name appears" alone — the literal that broke the rule was
-# `.math-error { color: #b3261e; }`, which that check passed.
+# silently, in both schemes and for every reader.
 #
-# The scanner ignores comments (prose may name a colour) and flags a hex, a
-# colour function, or a CSS named colour. `transparent` and `currentColor` are
-# `<color>` keywords but not `<named-color>`, so they are not flagged: neither
-# picks a hue. `white-space` is not a colour, so names are matched against whole
-# hyphenated words, not substrings.
+# The scanner ignores comments (prose may name a colour) and flags a hex, a colour
+# function or a CSS named colour; `transparent` and `currentColor` pick no hue, and
+# names match whole hyphenated words so `white-space` is not one.
 CSS_COMMENT = re.compile(r"/\*.*?\*/", re.DOTALL)
 HEX_COLOUR = re.compile(r"#[0-9a-fA-F]{3,8}(?![0-9a-fA-F])")
 COLOUR_FUNCTION = re.compile(
@@ -689,17 +625,9 @@ NAMED_COLOURS = frozenset(
 )
 
 
-# `#` starts a comment in Python and a colour in CSS, so a scanner that serves
-# both has to be told which it is reading. Three times now this check has fired on
-# English rather than on a colour — the phrase "Red sectors" in a label, the words
-# "the bank", and "the gate stayed green" in a Python comment — and each time the
-# cheap fix was to reword the sentence, which leaves the trap in place for the next
-# writer.
-#
-# Comments are removed with Python's own tokenizer rather than a regular
-# expression: `#` inside a string is a hex colour (`fill = "#fff"`), and a regex
-# cannot tell the two apart. The tokenizer can, because it is the same one that
-# reads the file.
+# `#` starts a comment in Python and a colour in CSS, so the scanner has to be told
+# which it reads. Comments go through Python's own tokenizer, not a regex, which
+# cannot tell a `#` inside a string (`fill = "#fff"`) from a comment.
 def without_python_comments(source: str) -> str:
     """The source with its comments replaced by spaces, line numbers kept."""
     import io
@@ -714,8 +642,7 @@ def without_python_comments(source: str) -> str:
                 out.append(token.string)
     except tokenize.TokenError:
         return source  # a fragment, not a whole file
-    # `generate_tokens` drops whitespace between tokens; re-joining with a space is
-    # enough for a scanner looking for colour values.
+    # `generate_tokens` drops whitespace; a space is enough for a value scanner.
     return " ".join(out)
 
 
@@ -750,8 +677,6 @@ def test_each_book_ships_the_shared_stylesheet(book):
 def test_the_base_stylesheet_defines_no_colour():
     """Colour lives in bundles. A stray token here would win over every bundle."""
     css = (repo_root() / "assets" / "stylesheets" / "extra.css").read_text(encoding="utf-8")
-    # It may *use* tokens in the Material mapping; it must not declare them, or it
-    # would win over every bundle.
     for token in SCHEME_TOKENS.values():
         assert f"{token}:" not in css, f"extra.css declares {token}; that belongs to a bundle"
     literals = colour_literals(css)
@@ -765,11 +690,8 @@ def test_the_base_stylesheet_defines_no_colour():
 def test_the_pipeline_shell_defines_no_colour():
     """The bespoke renderer is the site, so its shell is held to the same rule.
 
-    A literal in the shell is the same bug as one in `extra.css`: it outranks
-    every bundle, so every reader gets the same paint no matter which theme they
-    chose. The pipeline's 404 was the last one — it shipped the editorial palette's
-    hexes inline, so a reader on Catppuccin got Catppuccin inside the book and
-    editorial on a missing page.
+    A literal in the shell is the same bug as one in `extra.css`: it outranks every
+    bundle, so every reader gets the same paint no matter which theme they chose.
     """
     root = repo_root()
     shells = (
@@ -792,11 +714,7 @@ def test_the_pipeline_shell_defines_no_colour():
 
 
 def test_the_colour_scanner_can_actually_fail():
-    """A guard on the guard: the scanner must catch each shape of literal.
-
-    The check this replaces only looked for a `--tb-*` token name, so the
-    `.math-error { color: #b3261e; }` it was meant to catch passed it.
-    """
+    """A guard on the guard: the scanner must catch each shape of literal."""
     assert colour_literals(".math-error { color: #b3261e; }")
     assert colour_literals("x { background: rgb(0 0 0 / 20%); }")
     assert colour_literals("x { background: hsl(200 50% 40%); }")
@@ -809,9 +727,7 @@ def test_the_colour_scanner_can_actually_fail():
     # Prose about colour, in the language where `#` is a comment. A hex in a .py
     # file is still caught, because only the comment is removed.
     assert not colour_literals("# the gate stayed green\n", python=True)
-    # A literal in code is still caught. It has to be written as code: a `#` at
-    # the start of a line *is* a Python comment, so `#fff` alone is a comment —
-    # which the first version of this assertion got wrong.
+    # A literal in code is still caught; a `#` at the start of a line is a comment.
     assert colour_literals('fill = "#fff"\n', python=True)
     assert colour_literals('x = "rgb(1 2 3)"\n', python=True)
     assert not colour_literals('fill = "var(--tb-ink)"  # a green box\n', python=True)
@@ -820,9 +736,8 @@ def test_the_colour_scanner_can_actually_fail():
 def test_the_portal_stylesheet_defines_no_colour():
     """The landing page's own stylesheet follows the bundle, not a literal hue.
 
-    The same bug class as `extra.css` (item 15): `portal.css` declared
-    `--tb-shadow` with a literal `rgb(0 0 0 / …)`, so the card's elevation was
-    identical under every bundle in both schemes.
+    The same bug class as `extra.css`: `--tb-shadow` once carried a literal
+    `rgb(0 0 0 / …)`, so the card's elevation was identical under every bundle.
     """
     css = (repo_root() / "assets" / "stylesheets" / "portal.css").read_text(encoding="utf-8")
     literals = colour_literals(css)
@@ -853,11 +768,7 @@ def test_the_landing_page_applies_the_theme_before_paint():
 
 
 def test_the_landing_page_shares_the_books_stylesheet():
-    """One bundle stylesheet, so the front door cannot drift from the books.
-
-    Content-addressed at the root, so the file is found through the portal's own
-    manifest rather than by the source's name.
-    """
+    """One bundle stylesheet, so the front door cannot drift from the books."""
     portal.main()
     relative = portal.root_assets()["assets/stylesheets/themes.css"]
     target = repo_root() / "site" / relative
@@ -890,29 +801,18 @@ def test_the_bundles_are_valid_yaml_with_one_file_each():
 
 
 # --- form controls inside a figure --------------------------------------------
-#
-# A form control is a user-agent widget. Without a rule it takes the platform's
-# colours, and `color-scheme` only makes it follow light or dark — not our light or
-# our dark. Measured in Chromium before the rules below existed:
-#
-#   <select>          rgb(0,0,0)   on rgb(239,239,239)  light
-#                     white        on rgb(107,107,107)  dark
-#   <input number>    grey         on a white box       light
-#   <input range>     track rgb(157,150,142), the UA's own grey, in both schemes
-#
-# None of it failed a contrast check and all of it looked like a different website,
-# which is the failure mode a check cannot see. The `<option>` matters most: a
-# transparent background there means the platform paints the dropdown list, which is
-# how black text ends up on a dark list.
+# A form control is a user-agent widget: without a rule it takes the platform's
+# colours, and `color-scheme` only follows light or dark — not our light or our dark.
+# None of that fails a contrast check and all of it looks like a different website.
+# The `<option>` matters most: a transparent background lets the platform paint the
+# dropdown list, which is how black text ends up on a dark list.
 
 
 def figure_control_rules() -> dict[str, str]:
     """Every rule whose selector mentions a figure, keyed per selector.
 
-    A rule may group several selectors — `select, input, button { … }` — so the
-    group is split and each one keyed separately. Keying the group as a whole made
-    this helper look for a selector that never appears verbatim, which is how the
-    first version of the test below failed on a stylesheet that was correct.
+    A grouped rule is split and each selector keyed separately, so a lookup matches
+    what the stylesheet really says.
     """
     css = (repo_root() / "assets" / "stylesheets" / "extra.css").read_text(encoding="utf-8")
     body = re.sub(r"/\*.*?\*/", "", css, flags=re.S)
@@ -928,9 +828,8 @@ def figure_control_rules() -> dict[str, str]:
 def test_a_figures_form_controls_are_painted_from_tokens():
     """Every control a figure can contain must follow the reader's theme.
 
-    A control left to the platform is not merely off-theme: the text and the
-    background are chosen by two different authorities — ours for the text, the
-    platform's for the box — and on some combinations that is black on black.
+    Left to the platform, the text and the background are chosen by two different
+    authorities, and on some combinations that is black on black.
     """
     rules = figure_control_rules()
     joined = "\n".join(f"{sel} {{ {decl} }}" for sel, decl in rules.items())
@@ -965,18 +864,15 @@ def test_the_figure_control_check_can_actually_fail():
     body = re.sub(r"/\*.*?\*/", "", css, flags=re.S)
     match = re.search(r"([^{}]*?)\{([^}]*)\}", body)
     assert match and "maths-figure select" in " ".join(match.group(1).split())
-    # And a control left with no token is not accepted.
     assert not re.search(r"(?<![\w-])color\s*:\s*var\(--tb-", "color: black;")
 
 
 def test_the_house_accent_matches_the_book_it_stands_in_for():
     """The engine's one colour is a fallback, and it must not quietly drift.
 
-    A book with no tint of its own — the reference work — takes `HOUSE_ACCENT`
-    instead. That value is the first book's palette copied across, which
-    `engine/AGENTS.md` says the engine should not be doing; until a bundle can be
-    reached from `Scheme.accent`, this test is what makes the duplicate a
-    deliberate one rather than a coincidence somebody edits one half of.
+    A book with no tint of its own takes `HOUSE_ACCENT`, which is the first book's
+    palette copied across; this test makes the duplicate deliberate rather than a
+    coincidence somebody edits one half of.
     """
     from textbook.book import HOUSE_ACCENT, HOUSE_ACCENT_DARK_SCHEME, book_by_id
 
@@ -986,12 +882,7 @@ def test_the_house_accent_matches_the_book_it_stands_in_for():
 
 
 def test_the_engine_names_no_other_colour():
-    """Every colour the engine mentions outside its palettes is accounted for.
-
-    The rule is "the engine declares no colour", and the exception is the
-    fallback above. This fails if a third one is added without the same reasoning
-    being written down.
-    """
+    """Every colour the engine mentions outside its palettes is accounted for."""
     from textbook import book as book_module
 
     named = {
@@ -1005,19 +896,15 @@ def test_the_engine_names_no_other_colour():
 
 
 # --- the contrast table is the whole contract ---------------------------------
-#
-# `contrast_problems` used to be five near-identical loops, and they had already
-# diverged: only the figure one resolved an alias, and its comment records what that
-# cost — "without this alias the lookup would find nothing, the loop would `continue`,
-# and the threshold would never be applied — a check that cannot fail." One table and
-# one loop make that unexpressible; these two tests make it visible if it comes back.
+# `contrast_problems` was five near-identical loops that had already diverged: only
+# the figure one resolved an alias, so a role that missed the lookup `continue`d and
+# its threshold was never applied. One table makes that unexpressible.
 
 
 def test_every_declared_threshold_is_applied():
     """The table and the dicts cannot disagree.
 
-    Deleting one of the five loops left its dict in place and every test still passed:
-    a threshold that is declared and never measured reads exactly like one that is
+    A threshold that is declared and never measured reads exactly like one that is
     measured and satisfied.
     """
     declared = (
@@ -1045,9 +932,8 @@ def test_every_declared_threshold_is_applied():
 def test_each_contrast_rule_can_actually_fail(monkeypatch, bundle):
     """Every row reports a failure when its token matches its surface.
 
-    A rule whose lookup finds nothing `continue`s, so it can be present, look right, and
-    never be able to fail. This makes each row's token the surface it is measured
-    against — a ratio of 1:1 — and requires the problem to come back.
+    A rule whose lookup finds nothing `continue`s, so it can look right and never be
+    able to fail.
     """
     for surface, thresholds, alias, _wording, _tail in themes.CONTRAST_RULES:
         for role in thresholds:
@@ -1073,11 +959,9 @@ def test_each_contrast_rule_can_actually_fail(monkeypatch, bundle):
 def test_every_threshold_resolves_to_a_token_the_bundle_has(bundle):
     """A row whose lookup finds nothing `continue`s — a check that cannot fail.
 
-    `fig_accent` is not a bundle token: `extra.css` defines `--tb-fig-accent` as
-    `var(--tb-accent)`, which is why the figure row carries an alias, and its comment
-    records the cost of forgetting it. `test_each_contrast_rule_can_actually_fail`
-    cannot catch this, because it puts the token into the palette itself; this asserts
-    that the row resolves to a token the bundle really defines.
+    `fig_accent` is not a bundle token but an alias, which is why the figure row carries
+    one. The test above cannot catch this, because it puts the token into the palette
+    itself.
     """
     for surface, thresholds, alias, _wording, _tail in themes.CONTRAST_RULES:
         for role in thresholds:
@@ -1092,11 +976,9 @@ def test_every_threshold_resolves_to_a_token_the_bundle_has(bundle):
 def test_the_booklet_badges_use_the_token_their_name_promises():
     """A badge's word and its colour have to agree, and nothing read them before.
 
-    `.bk-badge--muted` was painted with `--tb-fig-warn` and `.bk-badge--warn` with
-    `--tb-fig-good`, while `booklet.js` defaults a toneless badge to `muted` — so the
-    default badge wore the warning hue and a "warn" badge wore the good one, in all
-    six bundles and both schemes. No test read badge colour (`grep -rn 'bk-badge'`
-    found only the emitter and this rule), which is why it shipped.
+    `.bk-badge--muted` was painted with `fig-warn` and `.bk-badge--warn` with
+    `fig-good`, while a toneless badge defaults to `muted`, so the default badge wore
+    the warning hue and the warn badge the good one.
     """
     css = (repo_root() / "assets" / "stylesheets" / "extra.css").read_text(encoding="utf-8")
     rules = {
@@ -1127,9 +1009,7 @@ def test_code_bg_thresholds_hold_both_surface_and_text():
 def test_every_bundle_code_bg_reads_as_a_second_surface(bundle, scheme):
     """A code block must read as a panel rather than blending into the page.
 
-    Measured before this guard existed: glass dark sat at ΔE 1.93 from paper
-    and phosphor dark at ΔE 1.57, so code blocks vanished into the page while
-    every light bundle cleared 3.2–6.1.
+    Measured before this guard existed: two dark bundles sat under ΔE 2 from paper.
     """
     palette = bundle.palette(scheme)
     distance = cie76(palette["paper"], palette["code_bg"])

@@ -6,12 +6,6 @@
 // Planck shape so the peak moves correctly; the page does not ask the reader to
 // calculate it. The vertical axis is an arbitrary intensity scale, and the
 // curve's height rises with temperature to show that a hotter object emits more.
-// Colours come from CSS classes so the figure adapts to dark mode and every
-// bundle; the peak and the visible band are also labelled.
-//
-// The scaffolding — the surface, its accessible name, the slider, the live
-// readout and the redraw — comes from `kit.js`. What is left here is the drawing
-// and the sentences, which are the parts that differ from every other figure.
 import { SIZE, label, panel, react, slider } from "./kit.js";
 
 export function mount(el) {

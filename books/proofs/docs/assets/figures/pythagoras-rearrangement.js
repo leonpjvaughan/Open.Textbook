@@ -7,12 +7,6 @@
 // rather than being told it does.
 //
 // Predict -> Test -> Explain per AGENTS.md P6: the page asks for a prediction about
-// the hole before the slider is touched. Colours come from CSS classes, so the
-// figure adapts to every bundle and both schemes, and the readout is `aria-live`.
-//
-// The scaffolding — the surface, its accessible name, the slider, the live
-// readout and the redraw — comes from `kit.js`. What is left here is the drawing
-// and the sentences, which are the parts that differ from every other figure.
 import { SIZE, label, panel, react, slider } from "./kit.js";
 
 export function mount(el) {

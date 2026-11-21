@@ -4,11 +4,6 @@
 // force and doubling the mass each do to the acceleration, then to explain the
 // result with F = ma. The reader sets a resultant force and a mass; the figure
 // shows the trolley, the force arrow and the acceleration.
-// Colours come from CSS classes so the figure adapts to dark mode.
-//
-// The scaffolding — the surface, its accessible name, the sliders, the live
-// readout and the redraw — comes from `kit.js`. What is left here is the drawing
-// and the sentence, which are the parts that differ from every other figure.
 import {
   label,
   panel,

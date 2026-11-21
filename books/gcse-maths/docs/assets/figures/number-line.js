@@ -1,11 +1,6 @@
 // Tier-1 guided investigation: ordering numbers on a number line.
 // Predict → Test → Explain: the page asks which is greater before the reader
 // moves the sliders, then asks why a "longer" decimal is not always bigger.
-// Colours come from CSS classes so the figure adapts to dark mode.
-//
-// The scaffolding — the surface, its accessible name, the two sliders, the live
-// readout, the redraw — comes from `kit.js`. What is left here is the drawing and
-// the sentence, which are the parts that differ from every other figure.
 import { SIZE, label, panel, react, slider } from "./kit.js";
 
 export function mount(el) {

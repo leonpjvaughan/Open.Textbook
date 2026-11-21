@@ -5,12 +5,6 @@
 // object distance. The image position is worked out internally so the rays are
 // drawn correctly; the page does not teach that relationship and does not ask
 // the reader to use it.
-// Colours come from CSS classes so the figure adapts to dark mode and every
-// bundle; the object, image and rays are also labelled.
-//
-// The scaffolding — the surface, its accessible name, the slider, the live
-// readout and the redraw — comes from `kit.js`. What is left here is the drawing
-// and the sentence, which are the parts that differ from every other figure.
 import {
   label,
   panel,

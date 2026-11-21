@@ -3,9 +3,6 @@
 // shaded bars and the probability. The probabilities are built from the
 // binomial formula. Pure HTML and SVG, no colour of its own: the fig-* classes
 // carry the theme. Runtime text is plain text, never TeX.
-//
-// The scaffolding — the surface, its accessible name, the sliders, the chooser,
-// the live readout and the redraw — comes from `kit.js`.
 import { SIZE, chooser, label, panel, react, slider } from "./kit.js";
 
 function binomialCoefficient(n, r) {

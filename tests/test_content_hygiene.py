@@ -1,22 +1,8 @@
 """Internal words must never reach the reader.
 
-`textbook.lint` reports these, but it reports and exits 0: a lint finding is a
-note, not a gate, because the book carries a standing number of style advisory
-items and a long line has never broken a reader's day. The phrases below are a
-different kind of finding. Each is a word of ours — a page name, a coverage code,
-a piece of our vocabulary — with no legitimate place on a page, so a single
-occurrence is a bug rather than a budget item. That is why this is a test and not
-a lint threshold.
-
-The 2026-10-11 pedagogy audit found two of them in the wild: five Chapter 16
-Walkthroughs printed `**DfE coverage:** G3` to the reader (the refs already live
-in front matter as `dfe: [G3]`), and four pages called the middle page "Guided
-problems" while the navigator called it "Practise with help". Both are fixed;
-this stops them coming back.
-
-The gate reuses the linter's own filter rather than a second regex, so a phrase
-added to `INTERNAL_PHRASES` is gated the moment it is added — see
-`test_the_gate_covers_the_reader_facing_page_names`.
+`textbook.lint` reports these but exits 0, so this is a gate rather than a lint
+threshold: one occurrence is a bug, not a budget item. The phrase list is the
+linter's own, so a phrase added to `INTERNAL_PHRASES` is gated at once.
 """
 
 from __future__ import annotations
@@ -43,13 +29,8 @@ def test_no_internal_words_reach_the_reader():
 
 
 def test_the_gate_still_fires_on_an_authored_page(tmp_path, monkeypatch):
-    """The stub skip must not swallow a real violation.
-
-    The linter skips a page that still carries ``<!-- scaffold:stub -->``: a
-    stub's body is a note to the author, and the marker itself contains the
-    word ``scaffold``. That skip is only sound while an authored page is still
-    gated, so this pins both halves — a page without the marker that says
-    "Guided problems" fails, and the same page with the marker does not.
+    """The stub skip must not swallow a real violation: an authored page that
+    says "Guided problems" fails, and the same page with the stub marker does not.
     """
     from textbook.book import Book
 
@@ -71,9 +52,6 @@ def test_the_gate_still_fires_on_an_authored_page(tmp_path, monkeypatch):
         description="",
         root=tmp_path,
     )
-    # The linter reports paths relative to the book it is given, so this fixture
-    # needs no module-level root — it used to patch one captured at import.
-
     findings: Counter = Counter()
     examples: dict[str, list[str]] = {}
     lint.lint(book, fix=False, findings=findings, examples=examples)
@@ -94,11 +72,8 @@ def test_the_gate_still_fires_on_an_authored_page(tmp_path, monkeypatch):
     ],
 )
 def test_the_gate_covers_the_reader_facing_page_names(phrase):
-    """A phrase that leaves the linter's list leaves this gate silently.
-
-    The check is deliberately a substring match on the pattern table: if one of
-    these is ever removed or renamed there, this fails rather than quietly
-    gating nothing.
+    """A phrase that leaves the linter's list leaves this gate silently, so a
+    removed or renamed phrase fails here rather than gating nothing.
     """
     patterns = " ".join(lint.INTERNAL_PHRASES)
     assert phrase.split()[0] in patterns, f"{phrase!r} is no longer gated"
@@ -106,20 +81,9 @@ def test_the_gate_covers_the_reader_facing_page_names(phrase):
 
 # --- a lost backslash renders silently ----------------------------------------
 #
-# Found while writing the proof book, in three pages nobody had looked at.
-# `\times`, `\text` and `\tan` had each lost their `\t` to a literal tab, so
-# `(n-2)\times180` was rendering as `(n-2) imes180` — and `\text{co-interior
-# angles}` as `ext{...}`.
-#
-# **KaTeX does not error on any of it.** `i`, `m`, `e`, `s` are all valid maths
-# tokens, so the page renders a wrong answer cheerfully, `throwOnError` is never
-# reached, and the `math-error` grep the gate runs reports nothing. The build
-# checks links, maths *errors* and structure; it cannot tell that a formula is
-# wrong.
-#
-# So the check is on the input rather than the output: a tab in a content file is
-# never wanted. Markdown does not need one for indentation, and the only way one
-# has arrived so far is by eating the `\t` of a LaTeX command.
+# A tab in a content file is never wanted: Markdown needs none for indentation, and
+# the usual arrival is a LaTeX command eating its `\t`. KaTeX does not error on the
+# result — `(n-2) imes180` renders cheerfully — so the check has to be on the input.
 
 TAB_FILES = sorted(
     path
@@ -148,43 +112,22 @@ def test_no_content_file_contains_a_tab(path):
 
 # --- a markdown mark that renders as itself -------------------------------------
 #
-# The tab check above is one instance of a family: damage the build cannot see. A
-# literal tab makes the maths wrong; a mark left unbalanced makes the page *show the
-# mark*. Both render cheerfully, exit 0 and pass every other check, because the
-# renderer has no opinion about them.
-#
-# Found in `maths-applied`'s main thread on 2026-11-01, in four separate shapes:
-#
-#   `**This chapter's question. It is [the chapter problem]...`   an unclosed `**`,
-#       which printed two asterisks at the start of §1.1's second paragraph
-#   `travel.****`                                                 two bold runs
-#       colliding, which printed the collided pair after §1.6's key sentence
-#   `[§1.3] meets`                                                a reference whose
-#       link target had been lost, printed in square brackets in ten places
-#   `it.A projection`                                             a sentence run
-#       into the next, in eight places
-#
-# Every one was in the pages that carry the chapter's argument, and none was visible
-# to `textbook.lint`, to the broken-link check (there was no link to break) or to the
-# `math-error` grep. So the checks are below, and they are on the source rather than
-# on the output: a rendered page has no trace of a space that should be there.
+# An unbalanced mark makes the page show the mark, and the renderer has no opinion
+# about it: an unclosed `**`, two bold runs meeting, a reference with no target, or
+# a sentence run into the next all render, exit 0 and pass every other check.
 
-#: A block of prose, which is the unit emphasis has to balance over. Fenced code is
-#: removed first: a snippet is not prose, and a `**` in it is Python's power operator.
+#: A block of prose, which emphasis has to balance over. Fenced code is removed
+#: first: a snippet is not prose, and a `**` in it is Python's power operator.
 FENCE = re.compile(r"```.*?```", re.S)
 CODE = re.compile(r"`[^`]*`")
-#: Four or more asterisks in a row. Two bold runs that meet produce these, and the
-#: renderer closes the first and prints the rest.
+#: Four or more asterisks in a row: two bold runs that meet, and the renderer
+#: closes the first and prints the rest.
 COLLIDED = re.compile(r"\*{4,}")
-#: A sentence that ends and the next that begins with no space between them. The
-#: character before the capital has to be a full stop, a question mark, an
-#: exclamation mark, or the closing asterisks of a bold run. The capital is any
-#: capital, not a capital followed by a lowercase letter: the eight found in
-#: `maths-applied` all began with the word "A".
+#: A sentence that ends and the next that begins with no space between them.
+#: The capital is any capital, because the eight found all began with "A".
 RUN_TOGETHER = re.compile(r"[.?!]\*{0,4}(?=[A-Z])")
-#: An initialised acronym — `A.C.`, `R.M.S.`, and the like — is one word with dots
-#: inside it, and every one of the 43 candidates this rule found outside the two
-#: reference books was one of these. A line carrying one is not inspected.
+#: An initialised acronym — `A.C.`, `R.M.S.` — is one word with dots inside it,
+#: so a line carrying one is not inspected.
 ABBREVIATION = re.compile(r"(?:^|[^A-Za-z])[A-Z](?:\.[A-Z])+\.")
 #: A named licence holder and a URL path both contain letter-dot-capital at a
 #: sentence boundary without being two sentences.
@@ -229,12 +172,9 @@ def test_no_prose_collides_two_bold_runs():
 
 
 def test_no_prose_runs_two_sentences_together():
-    """`it.A` is a missing space, and nothing in the pipeline notices one.
-
-    The allowlist is proper nouns and licence names, not a way to excuse prose: a
-    domain name (`Open.Textbook`) and a copyright holder's surname
-    (`A.d.Tramontana`) put a dot before a capital letter without ending a sentence.
-    Initialised acronyms and URLs are skipped on the line, for the same reason.
+    """`it.A` is a missing space, and nothing in the pipeline notices one. The
+    allowlist and the acronym and URL skips are names that put a dot before a
+    capital without ending a sentence.
     """
     offenders = []
     for book in books.discover_books():
@@ -254,12 +194,8 @@ def test_no_prose_runs_two_sentences_together():
 
 
 def test_a_reference_with_no_link_is_not_left_in_brackets():
-    """`[§1.3]` with no target prints as `[§1.3]`, brackets and all.
-
-    Ten of these were left in `maths-applied` when a link target was lost. A reader
-    who follows the bracket finds nothing, and a reader who does not finds a
-    paragraph that looks unfinished. The pattern is a section reference in square
-    brackets that is not followed by a link target or a colon (a definition).
+    """`[§1.3]` with no target prints brackets and all: the pattern is a section
+    reference not followed by a link target or a colon (a definition).
     """
     special = re.compile(r"\[§[^\]]*\](?![(:\[])", re.M)
     offenders = []
@@ -278,18 +214,10 @@ def test_a_reference_with_no_link_is_not_left_in_brackets():
 
 # --- a table marker has to start a table ----------------------------------------
 #
-# `<!-- table: cards -->` is read by `wrap_tables` in `pipeline.py`, which turns the
-# table that follows into one card per row on a phone. The marker is a comment, so if
-# it lands anywhere else — between a header and its body, or between two body rows —
-# Markdown ends the table there and prints the row below it as a paragraph of pipes:
-#
-#   | Upper wishbone to the upright, at the joint | 1 | 2 |
-#
-# A sweep for the wider-font tables inserted 127 markers and put **75** of them
-# inside a table, on 42 files, in ten books. Nothing failed: the build
-# exits 0, the page renders, and the damage is a line of vertical bars in the prose.
-# This is the positional rule the sweep should have used. It is not a column count —
-# every fragment still had its header's arity, so a count finds nothing.
+# `wrap_tables` turns the table after `<!-- table: cards -->` into cards on a phone.
+# Between a header and its body, or between two body rows, Markdown ends the table
+# there and prints the next row as a line of pipes. This is the positional rule;
+# a column count finds nothing, because a fragment keeps its header's arity.
 
 CARD_MARKER = "<!-- table: cards -->"
 #: The row that makes a header a table: pipes, dashes and optional alignment colons.
@@ -337,11 +265,9 @@ def test_a_card_table_marker_starts_a_table():
 
 
 def test_the_card_marker_gate_fires_on_a_split_table():
-    """The rule must catch the exact shape the 2026-11-03 sweep produced.
-
-    Three placements, one right and two wrong: above the header passes; between the
-    header and its body fails; between two body rows fails. A marker inside a fenced
-    block is code that shows the marker, not a marker.
+    """The rule must catch the shape the sweep produced: above the header passes,
+    between the header and its body fails, between two body rows fails, and a marker
+    inside a fenced block is code.
     """
     good = "<!-- table: cards -->\n| a | b |\n|---|---|\n| 1 | 2 |\n"
     split_body = "| a | b |\n|---|---|\n<!-- table: cards -->\n| 1 | 2 |\n"

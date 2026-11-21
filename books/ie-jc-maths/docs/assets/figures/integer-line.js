@@ -11,9 +11,6 @@
 // The hops are drawn one place at a time, because "you pass -6, then -5, then -4" is
 // how the page teaches the count. The arrow only carries the direction; the hops
 // carry the size.
-//
-// Nothing here carries a colour. Every shape uses a `fig-*` class and every word a
-// `text-*` class, so the figure follows the reader's theme in both schemes.
 import { fmt, label, numberLine, panel, path, react, segmented, slider, circle } from "./kit.js";
 
 // A hop is a semicircle over one unit of the line.

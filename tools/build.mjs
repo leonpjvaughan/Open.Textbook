@@ -9,28 +9,19 @@
  * Two targets:
  *
  *   the kit   `assets/figures/src/**` -> `assets/figures/**`
- *             One output file per source file, so the layer design survives into
- *             the shipped tree: a module that imports `./kit.js` gets the barrel and
- *             a module that wants one layer can still reach it. `--outbase=src` is
- *             what keeps `src/kit/draw.ts` landing at `kit/draw.js` rather than
- *             `src/kit/draw.js`, which matters because `SHARED_DIRS` copies
- *             `assets/figures/kit/` and `pipeline.copy_assets` globs `assets/figures/*.js`.
+ *             One output file per source, so a stack trace names `kit/draw.js` and a
+ *             module can reach one layer. `--outbase=src` keeps `src/kit/draw.ts` at
+ *             `kit/draw.js`, which `SHARED_DIRS` and `pipeline.copy_assets` depend on.
+ *             Prose comments are stripped: JSDoc blocks carrying `@param`/`@typedef`
+ *             stay, because `tsconfig.json` type-checks the shipped copy through them.
  *
  *   the tools `tools/src/**` -> `tools/dist/**`
- *             **One output file per source, not a bundle.** This line said "bundled,
- *             because it is a program rather than a library", and it was never true:
- *             `buildTools` runs `tsc -p tsconfig.tools.json`, which emits a file per
- *             module. It stopped being cosmetic when `tools kit` began serving
- *             `tools/dist/lib/kit-contract.js` to the page at `/__kit-contract.js` —
- *             that works only because the module is its own file with no runtime
- *             imports, and a bundle would have to be split or copied to be reachable
- *             from the page again. So the shape is kept deliberately, and this is the
- *             record of why.
+ *             One output file per source, not a bundle: `tools kit` serves
+ *             `tools/dist/lib/kit-contract.js` to the page at `/__kit-contract.js`, so
+ *             the module must be its own file with no runtime imports.
  *
- * The output is committed and drift-checked, like `themes.css`: a clone then works
- * with no build step, and `scripts/check.sh` fails if the committed output stops
- * matching the source. Nothing is minified — a figure that misbehaves is read in the
- * browser's debugger, and a stack trace is worth more than the bytes.
+ * The output is committed and drift-checked, like `themes.css`: a clone works with no
+ * build step and `scripts/check.sh` fails when the committed output goes stale.
  */
 import { execFileSync } from "node:child_process";
 import { readFileSync, writeFileSync } from "node:fs";
@@ -58,23 +49,24 @@ function run(command, args) {
   execFileSync(command, args, { stdio: "inherit", cwd: process.cwd() });
 }
 
+/** Drop comments that carry no type information; keep JSDoc blocks that do. */
+function stripProseComments(text) {
+  const blocks = text.replace(/\/\*[\s\S]*?\*\//g, (block) => (block.includes("@") ? block : ""));
+  return blocks.replace(/^[ \t]*\/\/.*\n/gm, "");
+}
+
 async function buildKit() {
-  // `tsc` emits, and `prettier` restores the repository's own style. `tsc` always
-  // indents by four spaces and always expands a single-line `if`; the generated file
-  // is committed, so it has to read like the rest of the tree. It keeps the comments,
-  // which is why the compiler is `tsc` and not a bundler.
+  // `tsc` emits, then the prose comments go, then `prettier` restores the repository's
+  // own style because the generated file is committed.
   run("node_modules/.bin/tsc", ["-p", "tsconfig.kit.json"]);
+  for (const file of emittedKitFiles()) {
+    writeFileSync(file, stripProseComments(readFileSync(file, "utf8")));
+  }
   run("node_modules/.bin/prettier", ["--write", "--log-level", "warn", ...KIT_OUT]);
 
-  // **`// @ts-nocheck` on every emitted file, because the artefact is the source minus
-  // its types.** `tsconfig.json` checks the JavaScript that ships, and a book module
-  // reaches `./kit.js`, which pulls the generated copy into the program. But `tsc`
-  // strips annotations when it emits, so the generated copy can only be inferred from
-  // destructuring defaults — `label({ x, y, text, anchor = "middle" })` becomes a type
-  // that has `anchor` and not `x`, and every property read reports an error the source
-  // does not have. That was 74 of the type ratchet's errors, all of them artefacts.
-  // The source is checked; the copy is not, and saying so in the copy is the honest
-  // way to express it.
+  // `// @ts-nocheck` on every emitted file: `tsconfig.json` checks the shipped
+  // JavaScript, and `tsc` strips annotations when it emits, so the copy can only be
+  // inferred from destructuring defaults and reports errors the source does not have.
   for (const file of emittedKitFiles()) {
     const text = readFileSync(file, "utf8");
     if (!text.startsWith("// @ts-nocheck")) {

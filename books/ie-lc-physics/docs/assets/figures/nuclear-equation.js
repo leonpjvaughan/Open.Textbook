@@ -7,10 +7,6 @@
 //
 // It draws the parent, the emission and the daughter as labelled boxes with an
 // arrow between them, and prints the two sums under them. Nothing here carries a
-// colour; the three boxes use `fig-*` classes and text styles that survive a
-// monochrome bundle.
-//
-// The scaffolding comes from `kit.js`. What is left is the drawing and the words.
 import { SIZE, chooser, label, panel, react } from "./kit.js";
 
 // The parents a reader meets in this chapter, with their mass number and atomic

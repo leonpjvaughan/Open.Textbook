@@ -1,18 +1,9 @@
 /* The controls: sliders, switches, choices, buttons and text fields.
  *
- * Every control here obeys the same contract, which is what lets `react()` bind any
- * of them without knowing what they are:
- *
- *   * it is a **native** element — `<input>`, `<select>`, `<button>`, `<textarea>` —
- *     so the keyboard, the screen reader and the platform's own behaviour all work
- *     without being rebuilt;
- *   * it has a visible label **and** an accessible name, and the two can differ when
- *     the accessible one should say more;
- *   * it has a `.value` a module can read, and it fires `input` and `change` when the
- *     value moves — including the composite ones, so `react(control, draw)` is all a
- *     module ever writes.
- *
- * The panel and its grid come from `frame.js`; nothing here decides layout.
+ * Every control here obeys the same contract, so `react()` can bind any of them
+ * without knowing what it holds: a **native** element, a visible label and an
+ * accessible name, a `.value`, and `input`/`change` when the value moves. Layout
+ * comes from `frame.js`.
  */
 
 import { UI_FONT } from "./frame.js";
@@ -25,11 +16,8 @@ function mount(parent: HTMLElement, holder: HTMLElement): void {
 /**
  * The options a slider takes.
  *
- * A real TypeScript type rather than JSDoc, because a `@param` on a destructured
- * binding with a default is silently ignored: `{ min = 0 } = {}` takes its type from
- * the default and the annotation never applies. These files are `.ts`, so the
- * language's own annotation is the one that cannot fail silently, and `tsc` strips it
- * from the emitted JavaScript.
+ * A TypeScript type: a `@param` on a destructured binding with a default is silently
+ * ignored, and `tsc` strips the annotation when it emits.
  */
 export type SliderOptions = {
   /** The input's `class`, and the stem of its readout's. */
@@ -143,15 +131,11 @@ export function slider(parent: HTMLElement, options: SliderOptions = {}): HTMLIn
   const {
     id = "",
     label = "",
-    // A module whose slider had no value displayed gains one, which changes what
-    // the reader sees. `show: false` keeps the previous behaviour; `unit` puts a
-    // unit after the number, which is why "200 ohm" does not have to live in the
-    // label.
+    // A module whose slider had no value displayed gains one, which changes what the
+    // reader sees; `show: false` keeps the old behaviour. `unit` keeps it out of the label.
     show = true,
     unit = "",
-    // The accessible name, when it should say more than the visible label. A
-    // distinct, more descriptive name was being replaced by the shorter visible
-    // one.
+    // The accessible name, when it should say more than the visible label.
     name = "",
     min = 0,
     max = 1,
@@ -182,9 +166,8 @@ export function slider(parent: HTMLElement, options: SliderOptions = {}): HTMLIn
   const out = document.createElement("output");
   out.className = id ? `${id}-out` : "fig-out";
   const paint = (): void => {
-    // The raw value, not `fmt`: a slider's value is whatever its `step` produced, so
-    // it is already clean, and rounding it to a fixed number of places would
-    // truncate a `step="0.001"` control at 3.14159 to 3.1416.
+    // The raw value, not `fmt`: a slider's value is whatever its `step` produced, and
+    // rounding it would truncate a `step="0.001"` control to four places.
     const number = format ? format(Number(input.value)) : input.value;
     out.textContent = unit ? `${number} ${unit}` : number;
   };
@@ -237,10 +220,9 @@ export function chooser(parent: HTMLElement, options: ChooserOptions = {}): HTML
 /**
  * The options `button()` takes, for the compiled copy.
  *
- * The second half of the pair `draw.ts` documents: `tsc` strips the annotations when
- * it emits, so `kit/controls.js` cannot see `ButtonOptions` and a `.js` module calling
- * `button(el, { onClick })` would be told that `onClick` does not exist. The two halves
- * must agree, and the TypeScript type above is what this file is checked against.
+ * `tsc` strips the annotations when it emits, so `kit/controls.js` needs this to type
+ * `button()` for the `.js` modules. The TypeScript type above is what this file is
+ * checked against.
  *
  * @typedef {object} ButtonOptions
  * @property {string} [id]
@@ -253,16 +235,10 @@ export function chooser(parent: HTMLElement, options: ChooserOptions = {}): HTML
 /**
  * A button. The kit's one control that is an **action** rather than a value.
  *
- * Ten of the 209 modules build a `<button>` themselves and four of those set
- * `aria-pressed`, which is the right thing and was re-derived each time. A button
- * does not fire `input` or `change`, so it is bound with `onClick` rather than
- * `react()`.
- *
- * **The `@type` rather than a `@param`: a `@param` cannot name a destructured
- * parameter** — it reports `JSDoc '@param' tag has name 'o', but there is no parameter
- * with that name` and falls back to inferring the options from their defaults, which is
- * how `onClick` disappears. A `@type` states the whole signature by position, so it
- * reaches the options object and the shipped copy is typed.
+ * A button fires no `input` or `change`, so it is bound with `onClick` rather than
+ * `react()`. **`@type` rather than `@param`**, because a `@param` cannot name a
+ * destructured parameter: it reports a missing name and falls back to the defaults,
+ * which loses `onClick`.
  *
  * @type {(parent: HTMLElement, options?: ButtonOptions) => HTMLButtonElement}
  */
@@ -292,15 +268,12 @@ export function button(parent: HTMLElement, { id = "", label = "", name = "", on
 /**
  * A row of mutually exclusive choices — the "alternative" form.
  *
- * A `<select>` is right when the list is long or unfamiliar. It is wrong for two to
- * four named alternatives, where the reader should see all of them at once: a
- * transformation, a sign convention, a model, a method. Radios in a `<fieldset>` give
- * that, and the arrow keys move within the group natively.
+ * A `<select>` is right for a long or unfamiliar list, and wrong for two to four named
+ * alternatives the reader should see at once. Radios in a `<fieldset>` give that, and
+ * the arrow keys move within the group natively.
  *
  * The returned `<fieldset>` carries a **`.value`**, set like a `<select>`'s, so
- * `react(fieldset, draw)` and `fieldset.value` work exactly as they do for the other
- * controls. Without that the kit would have two binding idioms and a module would
- * have to know which it held.
+ * `react(fieldset, draw)` and `fieldset.value` work as for every other control.
  */
 export function segmented(
   parent: HTMLElement,
@@ -346,10 +319,8 @@ export function segmented(
 /**
  * A text or number field.
  *
- * The kit had no way to take an answer, which is why nothing in the collection can
- * ask a reader to *produce* a value rather than read one. `inputmode` matters on a
- * phone: `decimal` brings up the number pad, and without it a reader types a minus
- * sign on a full keyboard.
+ * `inputmode` matters on a phone: `decimal` brings up the number pad, and without it
+ * a reader types a minus sign on a full keyboard.
  */
 export function field(parent: HTMLElement, { id = "", label = "", name = "", type = "text", value = "", placeholder = "", inputmode }: FieldOptions = {}): HTMLInputElement {
   const holder = document.createElement("label");
@@ -405,20 +376,17 @@ export type BuilderElement = HTMLDivElement & {
 /**
  * A builder: a palette of parts the reader adds to an assembly.
  *
- * One module in 209 does this by hand — `atom-builder`, where the reader adds protons,
- * neutrons and electrons — and the same shape fits a circuit, a tree diagram, a Venn
- * region, a prime-factor tree, a net folding into a solid, a nuclear equation, and a
- * proof assembled from reasons. What they share is a set of parts, a way to add and
- * remove them, and a drawing that follows.
+ * The same shape fits a circuit, a tree diagram, a Venn region, a prime-factor tree,
+ * a net folding into a solid, a nuclear equation, and a proof assembled from reasons:
+ * a set of parts, a way to add and remove them, and a drawing that follows.
  *
- * **It assembles, and the module validates.** The kit owns the palette, the order and
- * the keyboard; whether the assembly is *right* is the page's lesson, so `builder()`
- * never judges. The returned container carries a `.value` — the part ids in the order
- * they were added — so `react(container, draw)` works like any other control, and a
- * module reads the assembly to draw it.
+ * **It assembles, and the module validates.** Whether the assembly is *right* is the
+ * page's lesson, so `builder()` never judges. The container carries a `.value` — the
+ * part ids in the order they were added — so `react(container, draw)` works as for
+ * any other control.
  *
- * The parts are buttons with `aria-pressed`, so adding and removing is one key each and
- * a screen reader announces the state.
+ * The parts are buttons with `aria-pressed`, so adding and removing is one key each
+ * and a screen reader announces the state.
  *
  * @param {object} o
  * @param {Array<{id: string, label: string}>} o.parts
@@ -448,10 +416,8 @@ export function builder(
   const buttons = new Map<string, HTMLButtonElement>();
 
   const announce = () => {
-    // **Do not assign `holder.value` here.** It has a setter, and the setter resets and
-    // notifies — so assigning it inside the notify recursed until the stack ran out.
-    // The getter already reads `order`, so there is nothing to copy: the value *is* the
-    // order, and the setter exists only for a caller.
+    // **Do not assign `holder.value` here.** Its setter resets and notifies, so doing
+    // it inside the notify recurses until the stack runs out. The getter reads `order`.
     for (const [partId, button] of buttons) {
       const on = order.includes(partId);
       button.setAttribute("aria-pressed", String(on));
@@ -505,15 +471,11 @@ export function builder(
 /**
  * A small mathematics keypad, for typing an answer on a phone.
  *
- * The collection had no way to take an answer, and the obstacle is not the checking —
- * it is that `x^2` and `3/4` are awkward on a phone keyboard. `mathlive`, the obvious
- * library, is 5.6 MB unpacked, which would be the largest dependency in the project
- * for the sake of inserting characters.
- *
- * So this is a keypad and not a formula editor: each key inserts plain text at the
- * caret and fires `input`, so whatever receives it is still an ordinary text field and
- * the checker still reads a string. It deliberately does not render the mathematics —
- * that is the maths hook's job, at build time.
+ * `x^2` and `3/4` are awkward on a phone keyboard, and a formula editor such as
+ * `mathlive` (5.6 MB unpacked) would be the project's largest dependency. Each key
+ * inserts plain text at the caret and fires `input`, so the receiver is still an
+ * ordinary text field and the checker still reads a string. It deliberately does not
+ * render the mathematics — the maths hook does that at build time.
  */
 export function notate(parent: HTMLElement, { input, label = "", keys }: NotateOptions = {}): HTMLDivElement {
   if (!input) throw new Error("notate: an input is required, because the keypad inserts into one");
@@ -546,8 +508,7 @@ export function notate(parent: HTMLElement, { input, label = "", keys }: NotateO
       const caret = start + key.text.length;
       input.focus();
       if (input.setSelectionRange) input.setSelectionRange(caret, caret);
-      // `input` rather than `change`: a keypad press is a value the moment it lands, and
-      // a checker listening for `input` is already wired.
+      // `input` rather than `change`: a keypad press is a value the moment it lands.
       input.dispatchEvent(new Event("input", { bubbles: true }));
     });
     holder.append(button);

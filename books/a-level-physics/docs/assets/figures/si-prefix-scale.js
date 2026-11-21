@@ -7,14 +7,6 @@
 // a familiar object, so the reader meets the scale rather than reading it from a
 // table, and the gaps between the marks show that a step is usually a factor of
 // 1000 but sometimes only 10.
-//
-// Colours come from CSS classes, so the figure follows every bundle and both
-// schemes. No colour literal appears here, and no runtime LaTeX: the readout is
-// plain HTML with Unicode superscripts.
-//
-// The scaffolding — the surface, its accessible name, the slider, the live
-// readout and the redraw — comes from `kit.js`. What is left here is the drawing
-// and the sentences, which are the parts that differ from every other figure.
 import { SIZE, label, panel, react, slider } from "./kit.js";
 
 export function mount(el) {

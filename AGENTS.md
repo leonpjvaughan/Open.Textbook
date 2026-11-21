@@ -1,19 +1,16 @@
 # AGENTS.md — repository instructions
 
-This repository builds **Open.Textbook**: a collection of interactive, static,
-backend-free textbooks sharing one engine. Read this file first, then
-`books/<id>/AGENTS.md` for a book's exam boards, tier axis and pitfalls.
-
-`SHAPE.md` holds the repository shape and what a new book requires,
-`.agents/planning/plan.md` the authoring plan, `research/pedagogy.md` the
-evidence, `.agents/chapter-brief.md` the per-chapter contract.
+**Open.Textbook**: interactive, static, backend-free textbooks sharing one engine.
+Read this file, then `books/<id>/AGENTS.md` for a book's exam boards, tier axis and
+pitfalls. `SHAPE.md` holds the repository shape and what a new book requires,
+`research/pedagogy.md` the evidence, `.agents/chapter-brief.md` the per-chapter
+contract.
 
 ## Where to look
 
-A nested `AGENTS.md` is additive: it does not repeat the root, and the closest
-file wins. The Load column names the portable `.agents/skills/`; Claude Code
-reads them from `.claude/skills/`, projected with
-`agent-repository-conventions` rather than copied by hand.
+A nested `AGENTS.md` is additive: it does not repeat the root, and the closest file
+wins. The Load column names the portable `.agents/skills/`; Claude Code reads them
+from `.claude/skills/`, projected with `agent-repository-conventions`.
 
 | If you are… | Read | Load |
 |---|---|---|
@@ -33,9 +30,9 @@ reads them from `.claude/skills/`, projected with
 
 ## The chapter formula
 
-Interest and memory are separate tracks, so every chapter runs an **interest** arc
+Interest and memory are separate tracks: every chapter runs an **interest** arc
 (trigger → maintain → emerge → invite) and a **memory** arc (encode → retrieve →
-space → interleave); every page serves one or both. Evidence:
+space → interleave), and every page serves one or both. Evidence:
 `research/pedagogy.md`; procedure: `author-textbook-chapter`.
 
 - **P1 Teach first, then fade:** model → worked → partial → hint → independent;
@@ -51,23 +48,22 @@ space → interleave); every page serves one or both. Evidence:
 - **P6 Guide every investigation or tool:** no sandboxes; **Predict → Test →
   Explain**, the reader writing the explanation.
 
-Every *Learn* page carries a common-error callout (state it, show the contrast,
-re-check); hooks, applications and tools together are at most ~¼ of a chapter;
-and the weight is one chapter problem, one learner-written relevance prompt and a
-guided investigation each chapter, with a bespoke tool only where the application
-**is** the maths (`tool:` in `curriculum.yaml`).
+The weight is one chapter problem, one learner-written relevance prompt and one guided
+investigation each chapter, plus a bespoke tool only where the application **is** the
+maths (`tool:` in `curriculum.yaml`). Hooks, applications and tools together are at
+most ~¼ of a chapter. Every *Learn* page carries a common-error callout (state it,
+show the contrast, re-check).
 
-**Page contracts.** *Learn*: explicit teaching, one reasoning line per algebra
-line, a misconception callout, ≤1 guided figure, DfE refs in front matter.
-*Practise with help*: a closed-book warm-up, then hint → next step → full
-working. *Practise*: 8–15 items, method-choice prompts later, Higher-only marked
-**H**, answers in one collapsed block. *Review*: resolve the chapter problem,
-mixed practice, a reflection.
+**Page contracts.** *Learn*: explicit teaching, one reasoning line per algebra line, a
+misconception callout, ≤1 guided figure, DfE refs in front matter. *Practise with
+help*: a closed-book warm-up, then hint → next step → full working. *Practise*: 8–15
+items, method-choice prompts later, Higher-only marked **H**, answers in one collapsed
+block. *Review*: resolve the chapter problem, mixed practice, a reflection.
 
 ### A theorem stated without proof is a promise to write one
 
-A result may be **stated**, but every result that is stated and not proved must
-have a page in the shared proof book, linked from the line that states it.
+A result may be **stated**, but every unproved result needs a page in the shared proof
+book, linked from the line that states it:
 
 ```markdown
 A polygon can be split from one vertex into $n-2$ triangles, so its interior
@@ -76,23 +72,21 @@ angle sum is $(n-2)\times180^\circ$.
 :::prove angles-in-a-polygon
 ```
 
-The directive is on its own line and expands to a **Prove it to me** link. It is
-a link and nothing else — no script, no dialog — because a proof is a page and a
-reader with scripting off must still reach it. `books/proofs/proofs.yaml` records
-who is examined on each proof, so the same page reads *Prove it to me* in the
-course that teaches it and **Beyond your course** in one that does not.
-
-**Procedure:** `.agents/chapter-brief.md` — the four steps, the registry fields
-and the label. A definition is not a theorem and a convention is not a theorem;
-the test is whether a reader could reasonably ask *why*.
+The directive is on its own line and expands to a **Prove it to me** link — a link
+only, no script or dialog, so a proof is a page and a reader with scripting off still
+reaches it. `books/proofs/proofs.yaml` records who is examined on each proof, so the
+same page reads *Prove it to me* in the course that teaches it and **Beyond your
+course** in one that does not. A definition is not a theorem and a convention is not a
+theorem; the test is whether a reader could reasonably ask *why*. Procedure:
+`.agents/chapter-brief.md`.
 
 ## Voice and language
 
 The reader is 14–16 of mixed attainment, often reading English as an additional
-language or finding reading hard: the mathematics should be the only difficulty,
-at a 12–14 reading age. Be calm, clear and encouraging, like a good teacher beside
-the reader — never matey, jokey at the reader's expense, or a salesperson. Full
-guide: `write-textbook-prose`.
+language or finding reading hard: the mathematics should be the only difficulty, at a
+12–14 reading age. Be calm, clear and encouraging, like a good teacher beside the
+reader — never matey, jokey at the reader's expense, or a salesperson. Full guide:
+`write-textbook-prose`.
 
 - **Active voice, short sentences** (GOV.UK): ~15–20 words, one idea each.
 - **Plain English; explain every term on first use.**
@@ -100,70 +94,65 @@ guide: `write-textbook-prose`.
   (`obviously`, `clearly`, `simply`, `just`, `easy`).
 - **No slang, idioms or cultural references.**
 - **Board command words keep their exam meaning** (`Work out`, `show that`,
-  `explain`, `give a reason`, `describe`, `compare`, `estimate`, `solve`,
-  `sketch`); say when a question wants a reason.
+  `explain`, `give a reason`, `describe`, `compare`, `estimate`, `solve`, `sketch`);
+  say when a question wants a reason.
 - **Address the reader as `you`**; `we` is for reasoning together; never `one`.
 - **Frame mistakes kindly**: a `Common error` is a trap to spot, not a failure.
 - **UK English**: `factorise`, `metre`, `0.5` with a leading zero, `£1.20`.
 
-Internal words never reach the reader: use the friendly names (`Learn`,
-`Practise with help`, `Practise`, `Warm-up: remember`, `Progress check`, the
-chapter problem) and never print DfE codes, `tier F`/`tier H`, `scaffold`,
-`hook`, `JSON` or `front matter` (full table: `write-textbook-prose`).
+Internal words never reach the reader: use the friendly names (`Learn`, `Practise with
+help`, `Practise`, `Warm-up: remember`, `Progress check`, the chapter problem) and
+never print DfE codes, `tier F`/`tier H`, `scaffold`, `hook`, `JSON` or `front matter`
+(full table: `write-textbook-prose`).
 
 ## Theming and figures
 
-A **bundle** (`themes/<id>.yaml`) is the reader's light-and-dark experience,
-applied to **every book**; a book contributes only its **subject tint**
-(`book.yaml → theme`), supplied as `--tb-book-*` values bundles compose in. Never
-put a surface or a font in a book, and never a subject's identity in a bundle.
+A **bundle** (`themes/<id>.yaml`) is the reader's light-and-dark experience, applied
+to **every book**; a book contributes only its **subject tint** (`book.yaml → theme`),
+supplied as `--tb-book-*` values the bundle composes. Never put a surface or a font in
+a book, and never a subject's identity in a bundle.
 
-**Nothing in a page, and nothing in a figure, may carry a colour.** Use the
-`fig-*` and `text-*` classes and read the `--tb-*` tokens. **`fig-*` paints a shape
-and `text-*` paints words**, and in SVG that is the difference between `fill` and
-`stroke` on one hand and `color` on the other: an SVG `<text>` is painted with
-`fill`, so a class that sets only `color` leaves it the initial black. Never put
-`$...$` in runtime figure text; the maths hook runs at build time. The icons are
-the one fixed-colour exception.
+**Nothing in a page, and nothing in a figure, may carry a colour.** Use the `fig-*`
+and `text-*` classes and read the `--tb-*` tokens. **`fig-*` paints a shape and
+`text-*` paints words**: in SVG that is `fill`/`stroke` against `color`, and a class
+that sets only `color` leaves an SVG `<text>` initial black. Never put `$...$` in
+runtime figure text; the maths hook runs at build time. The icons are the one
+fixed-colour exception.
 
-Every figure is measured in a browser, in both schemes, by
-`node tools/dist/cli.js audit site` — the panel behind it, the computed paint of
-every element it draws, and the ratio between them. `tests/test_figures.py` pins
-the contract. The cascade, the contrast invariant, reader preferences and adding
-or previewing a bundle are in `assets/AGENTS.md`.
+Every figure is measured in a browser, in both schemes, by `node tools/dist/cli.js
+audit site` — the panel behind it, the computed paint of every element it draws, and
+the ratio between them. `tests/test_figures.py` pins the contract. The cascade,
+contrast invariant, reader preferences and adding a bundle are in `assets/AGENTS.md`.
 
 **Figures are drawn through `assets/figures/kit.js` and may not choose a number.**
-`SIZE`, `label()`, `scale()` and the marks are the rules; they are checked in CI.
-`assets/figures/` is also the **shared figure library** — a module there is
-mountable by its filename in every book. The rules and measurements are in
-`assets/AGENTS.md`; the queue of what to add next is `ideas.md`.
+`SIZE`, `label()`, `scale()` and the marks are the rules, checked in CI.
+`assets/figures/` is also the **shared figure library** — a module there is mountable
+by filename in every book. Rules and measurements: `assets/AGENTS.md`; backlog:
+`ideas.md`.
 
 ## Guidance, and where it stops
 
-The web platform moves faster than any model's training data, and this repository writes
-browser-facing code: the template, the shell CSS, the figure modules, `sw.js`. **Modern Web
-Guidance** is pinned at `modern-web-guidance@1.0.1` in `package.json` and queried through
-`npm`, so a review can be reproduced:
+The web platform moves faster than model training data, and this repository writes
+browser-facing code: the template, shell CSS, figure modules, `sw.js`. **Modern Web
+Guidance** is pinned (`modern-web-guidance@1.0.1` in `package.json`) and queried
+through `npm`, so a review is reproducible:
 
 ```bash
 npm run guidance -- search "dialog light dismiss"
 npm run guidance -- retrieve "light-dismiss-a-dialog"
 ```
 
-It **teaches and does not decide**: nothing here fails a build because a guide was not
-consulted, `legacy-scan` exits 0 on findings, and its silence is not a pass. A pattern that
-keeps returning becomes a lint rule, which is the gate; the pack is what makes the rule
-current. Procedure and the traps: `.agents/skills/modern-web-guidance/SKILL.md`.
+It **teaches and does not decide**: nothing fails a build because a guide was not
+consulted, `legacy-scan` exits 0 on findings, and its silence is not a pass. A
+recurring pattern becomes a lint rule, which is the gate. Procedure and traps:
+`.agents/skills/modern-web-guidance/SKILL.md`.
 
 ## Definition of done
 
-A chapter is not finished until all of this is true. It is what CI and the gate
-check:
-
-- the chapter index, every section's three pages, and the Review all exist, and
+- the chapter index, every section's three pages, and the Review exist, and
   `grep -rl 'scaffold:stub' books/<id>/docs/Chapter <n>/` prints nothing;
 - every answer is in a verified bank — `python -m textbook.verify books/<id>/problems/`
-  reports `ok` for every file, so no answer is asserted rather than proved;
+  reports `ok` for every file;
 - `python -m textbook.lint` reports nothing for the book;
 - the profile builds for that book produce **no** `math-error` page, and figures go
   through `kit.js` with `SIZE`, `label()` and `scale()`;
@@ -171,13 +160,12 @@ check:
 
 ## Repository map
 
-`SHAPE.md` has the full layout and `books/AGENTS.md` the per-book layout. Every
-top-level directory appears below.
+`SHAPE.md` has the full layout and `books/AGENTS.md` the per-book layout.
 
 | Path | Role |
 |---|---|
 | `AGENTS.md` | cross-cutting rules, routing and map |
-| `SHAPE.md`, `.agents/planning/plan.md`, `.agents/chapter-brief.md`, `PROBLEMS.md`, `BOOKLETS.md`, `DEPLOY.md`, `DECISIONS.md`, `ideas.md`, `.agents/todo.md`, `collection.yaml`, `wrangler.jsonc` | shape, plan, brief, banks, booklets, deploy, decisions, the interactive-aid queue, queue, collection, Worker |
+| `SHAPE.md`, `.agents/chapter-brief.md`, `PROBLEMS.md`, `BOOKLETS.md`, `DEPLOY.md`, `DECISIONS.md`, `ideas.md`, `.agents/todo.md`, `collection.yaml`, `wrangler.jsonc` | shape, brief, banks, booklets, deploy, decisions, figure backlog, work queue, collection, Worker |
 | `engine/`, `engine/AGENTS.md`, `assets/`, `assets/AGENTS.md` | the engine and the design system, and their rules |
 | `tools/`, `tools/AGENTS.md` | the checks and measurements, one TypeScript package with one entry point |
 | `solvers/`, `solvers/AGENTS.md`, `solvers/ABI.md`, `solvers/otkd/AGENTS.md` | the numerical kernels: Rust `ot-solve` and the `otkd` mechanism compiler, one ABI, and the build that vendors their wasm |
@@ -188,11 +176,10 @@ top-level directory appears below.
 | `books/proofs/`, `books/proofs/AGENTS.md`, `books/numerical-methods/`, `books/numerical-methods/AGENTS.md` | the two reference works: the proof book, and the map of problem classes |
 | `books/maths-applied/`, `books/maths-applied/AGENTS.md` | the book about modelling, and the rules that replace the chapter formula |
 | `research/`, `research/AGENTS.md`, `scripts/`, `scripts/AGENTS.md`, `tests/`, `tests/AGENTS.md`, `tests/README.md`, `deploy/`, `deploy/AGENTS.md`, `.github/`, `.github/AGENTS.md`, `.claude/`, `.serena/` | corpus, scripts, tests, deploy, CI |
-| `.agents/`, `.agents/skills/`, `.agents/prompts/`, `.agents/planning/` | agent context: the portable skills; the chapter and review prompts the launch scripts feed to sub-agents; the dated planning record |
+| `.agents/`, `.agents/skills/`, `.agents/prompts/` | agent context: portable skills; the chapter and review prompts the launch scripts feed to sub-agents |
 
 A nested `AGENTS.md` stays beside what it governs, because it is read when that
 directory is opened.
-
 
 ## Build and verify
 
@@ -230,80 +217,63 @@ scripts/protect-main.sh     # require the gate check on main (needs GitHub Pro)
 ## Long runs
 
 When no human is present, do not block on a question tool; pause and leave the
-question. Stop after two independent-review rejections and ask rather than
-looping.
+question. Stop after two independent-review rejections and ask rather than looping.
 
 ## Branches and releases
 
-`dev` takes the whole gate — banks, tests, voice, both tier builds, drift,
-actionlint — and nothing else, then merges into `main`, which reruns the gate,
-releases and deploys to open-textbook.org. Release and deploy require
-`refs/heads/main`, so they are skipped elsewhere by construction. A workflow
-change is inert until it reaches `main`: the pipeline that runs is the one on the
-branch being pushed, and release and deploy only run from `main`.
+`dev` takes the whole gate — banks, tests, voice, both tier builds, drift, actionlint —
+and nothing else, then merges into `main`, which reruns the gate, releases and deploys
+to open-textbook.org. Release and deploy require `refs/heads/main`, so they are skipped
+elsewhere by construction. A workflow change is inert until it reaches `main`.
 
-Releases are tagged `yy.<day of year>.<increment>` (`26.284.1` is the second on
-day 284 of 2026), so two deploys a day cannot collide; the scheme is
-`scripts/next-tag.sh`, tested in `tests/test_release.py`. `DEPLOY.md` is the
-runbook for credentials, the domain, each stage and checking a deploy.
+Releases are tagged `yy.<day of year>.<increment>` by `scripts/next-tag.sh` (tested in
+`tests/test_release.py`); `DEPLOY.md` is the runbook.
 
 ## Capturing work
 
 `.agents/todo.md` is the work queue: one item per change, ordered, the first being
 next. It is ours, not the reader's, so the voice rules do not apply — but these do.
 
-**Anything you notice and are not going to fix now goes in `.agents/todo.md`
-before you finish** — not in a commit message, a reply that scrolls away, or your
-head. That includes the small things: a setting nobody verified, a dead link, a
-false claim, a test that would have caught the bug you just fixed by hand.
+**Anything you notice and are not going to fix now goes in `.agents/todo.md` before
+you finish** — not in a commit message, a reply that scrolls away, or your head. That
+includes the small things: a setting nobody verified, a dead link, a false claim, a
+test that would have caught the bug you just fixed by hand.
 
 Write it the way the file already reads: **what is wrong** with the evidence you
-measured (a command and its output, or a primary source); **the fix**,
-concretely; and a **`done means` checklist** anyone can verify. Add a **new
-numbered item**, never append to an unrelated one; keep the **ready-state gate
-last**; **do not park work you should be doing**; and **close items properly**,
-keeping the diagnosis.
+measured (a command and its output, or a primary source); **the fix**, concretely; and
+a **`done means` checklist** anyone can verify. Add a **new numbered item**, never
+append to an unrelated one; keep the **ready-state gate last**; **do not park work you
+should be doing**; and **delete a closed item** (git history keeps its diagnosis).
 
 ## Toolchain
 
 The build needs `uv sync` (engine, Markdown, PyYAML) and `npm install` (KaTeX,
 Pagefind); without Node, maths silently degrades to `.math-error` spans.
 
-`actionlint` runs shellcheck only when it is on `PATH` (true in CI, not
-locally), so a whole class of workflow error can pass locally. Install it with
+`actionlint` runs shellcheck only when it is on `PATH` (true in CI, not locally), so a
+whole class of workflow error can pass locally. Install it with
 `mise use -g shellcheck@0.11.0` and check `command -v shellcheck` first.
 
-`solvers/` needs Rust and the `wasm32-unknown-unknown` and
-`x86_64-unknown-linux-musl` targets; `solvers/rust-toolchain.toml` pins both.
-**No C or C++ toolchain is involved**: the wasm and the host tests both link with
-`rust-lld`. Without the toolchain the gate still runs:
-`scripts/build-solvers.sh --verify` checks the committed wasm offline, and only
-the diff against a rebuild needs the compiler.
+`solvers/` needs Rust with the `wasm32-unknown-unknown` and
+`x86_64-unknown-linux-musl` targets (pinned in `solvers/rust-toolchain.toml`); no C/C++
+toolchain. Without Rust, `scripts/build-solvers.sh --verify` checks the committed wasm
+offline.
 
-`tools screenshot` serves the built site by Playwright request interception, not
-a bound port. A route maps to a file under the given directory, appending
-`index.html` only for a trailing slash, so an extension-less route 404s; check
-the captures differ first. Set `PLAYWRIGHT_PATH` if `require("playwright")` does
-not resolve, and **do not conclude Playwright is missing from
-`require.resolve("playwright")` alone**: `tools/src/lib/browser.ts` also tries
-`PLAYWRIGHT_PATH`, the local package and the mise install.
-
-`tests/test_render_hooks.py` is the figure-hook and tier-profile evaluation,
-driven from `pipeline.MARKDOWN_HOOKS`. The area-specific traps live in the file
-that owns them — see the routing table and each nested `AGENTS.md`.
+`tools screenshot` serves `site/` by Playwright request interception (extension-less
+routes 404). Set `PLAYWRIGHT_PATH` if `require("playwright")` does not resolve;
+`tools/src/lib/browser.ts` also tries the local package and mise.
 
 ## Conventions
 
-- **Tier:** `F` = Foundation and Higher, `H` = Higher only. Higher-only pages
-  carry `tier: H` front matter; in-page extensions use
-  `<!-- tier:h -->…<!-- /tier:h -->`. Each book declares its axis in
-  `book.yaml → tier_axis` and its profiles.
-- **Figures:** author with the line-anchored `:::figure <slug>`; the hook expands
-  it to `<maths-figure data-figure="<slug>">` and injects the loader only where
-  needed. Modules live in `books/<id>/docs/assets/figures/`;
-  `assets/figures/figures.js` is shared. Do not edit generated files or nav lists.
-- **Maths:** write `$…$` and `$$…$$`, rendered to MathML at build time (KaTeX
-  0.19.0) with no runtime JavaScript; `aligned` is supported.
-- **Theming:** never a colour in a page or a figure; use the `fig-*`/`text-*`
-  classes and `--tb-*`. See **Theming**.
+- **Tier:** `F` = Foundation and Higher, `H` = Higher only. Higher-only pages carry
+  `tier: H` front matter; in-page extensions use `<!-- tier:h -->…<!-- /tier:h -->`.
+  Each book declares its axis in `book.yaml → tier_axis` and its profiles.
+- **Figures:** author with the line-anchored `:::figure <slug>`; the hook expands it to
+  `<maths-figure data-figure="<slug>">` and injects the loader only where needed.
+  Modules live in `books/<id>/docs/assets/figures/`; `assets/figures/figures.js` is
+  shared. Do not edit generated files or nav lists.
+- **Maths:** write `$…$` and `$$…$$`, rendered to MathML at build time (KaTeX 0.19.0)
+  with no runtime JavaScript; `aligned` is supported.
+- **Theming:** never a colour in a page or a figure; use the `fig-*`/`text-*` classes
+  and `--tb-*`. See **Theming**.
 - **Glossary:** define a term once on its strand page and link to it.

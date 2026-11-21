@@ -12,10 +12,6 @@
 // doubled angle before the reader moves P. The readout is `aria-live` so the
 // numbers reach a reader who cannot see the drawing, and every colour comes from
 // a CSS class, so the figure adapts to every bundle and scheme.
-//
-// The scaffolding — the surface, its accessible name, the slider, the live
-// readout and the redraw — comes from `kit.js`. What is left here is the drawing
-// and the sentences, which are the parts that differ from every other figure.
 import { SIZE, label, panel, react, slider } from "./kit.js";
 
 export function mount(el) {

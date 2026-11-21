@@ -5,10 +5,6 @@
 // that more workers mean less time. The two relationships look nothing alike on a
 // graph, and that is the whole idea this figure exists for. The reader sets the
 // value of one unit and the number of units, and reads both values at once.
-//
-// Nothing here carries a colour. Every shape uses a `fig-*` class and every word a
-// `text-*` class, and the two curves differ in line style as well as in class, so
-// the distinction never depends on colour alone.
 import { SIZE, axes, dots, fmt, graph, label, line, panel, react, slider } from "./kit.js";
 
 const X_MAX = 10;

@@ -4,12 +4,6 @@
 // test several scale factors, then to explain why the area factor is k squared. So the
 // figure has to draw the tile and its image together, mark the centre, and read the area
 // off the picture as the scale factor changes.
-//
-// Nothing here carries a colour. The object is drawn in the accent class and the image
-// in the warning class, and the rays from the centre show which point is fixed.
-//
-// The scaffolding — the panel, its accessible name, the slider and the readout — comes
-// from `kit.js`. What is left is the drawing and the sentences.
 import { SIZE, fmt, label, panel, react, scale, slider } from "./kit.js";
 
 // The tile from the chapter problem, and its area.

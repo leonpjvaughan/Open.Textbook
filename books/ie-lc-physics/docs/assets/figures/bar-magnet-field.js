@@ -7,12 +7,6 @@
 // the field lines are traced through the combined field of every pole, so the
 // repulsion of two north poles and the joining of a north to a south are drawn
 // rather than asserted.
-//
-// Nothing here carries a colour. The lines use the accent class and the magnets
-// the ink class, so the figure follows the reader's bundle and both schemes.
-//
-// The scaffolding — the panel, its accessible name, the chooser, the readout and
-// the redraw — comes from `kit.js`. What is left is the drawing and the words.
 import { SIZE, label, panel, chooser, react } from "./kit.js";
 
 const WIDTH = 460;

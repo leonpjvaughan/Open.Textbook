@@ -1,16 +1,7 @@
-"""Every guided figure carries an accessible name.
+"""Every guided figure names its drawing, and paints only through classes.
 
-A figure is a drawing. Without ``role="img"`` and an ``aria-label`` it is silent
-to a reader using a screen reader, and without them the accessible name of the
-custom element falls back to its tag name. Nothing in the build caught that:
-twenty-two modules carried a name and six did not.
-
-The suite discovers the modules from the filesystem rather than from a fixed
-list, so a new figure is covered the moment it lands. The shared loader
-``assets/figures/figures.js`` is a symlink into the shared asset tree; figure
-modules are the regular files beside it. The loader is excluded by file type, not
-by name, and every other regular ``.js`` in the directory must be a figure — so
-the exclusion cannot hide a module from the check.
+Modules are discovered from the filesystem, so a new figure is covered the moment
+it lands; the loader and the kit are excluded by name.
 """
 
 from __future__ import annotations
@@ -26,19 +17,16 @@ from support import call_expressions
 
 BOOKS = discover_books()
 
-#: The two files in a figures directory that are not figures: the loader and the
-#: kit. Read from the scaffold, which is also what the build and the directive read.
+# The loader and the kit: not figures, and named in the scaffold the build reads.
 SHARED_FIGURE_FILES = tuple(scaffold.SHARED_FIGURE_FILES)
 
-# A figure is a module the loader can mount, and the loader is not a figure.
 MOUNT = re.compile(r"export\s+(?:async\s+)?function\s+mount\s*\(")
 
 ROLE_ATTRIBUTE = re.compile(r"""role\s*=\s*["']img["']""")
 ROLE_SET_CALL = re.compile(
     r"""setAttribute\(\s*["']role["']\s*,\s*["']img["']\s*\)"""
 )
-# The name may be written in the markup, or applied while drawing. Both count:
-# see ch19-circle-measures.js, which relabels the axis on every input.
+# The name may be written in the markup or applied while drawing; both count.
 NAME_ATTRIBUTE = re.compile(r"""aria-label\s*=\s*["']([^"']*)["']""")
 NAME_SET_CALL = re.compile(
     r"""setAttribute\(\s*["']aria-label["']\s*,\s*(.+?)\)""", re.DOTALL
@@ -51,18 +39,16 @@ BANNED_WORDS = re.compile(
     re.IGNORECASE,
 )
 
-# No colour in a figure module (AGENTS.md): a hard-coded colour cannot adapt to a
-# bundle or to dark mode. A figure must use the fig-* classes and the --tb-*
-# tokens, so this flags the shapes a literal takes.
+# No colour in a figure module: a literal cannot adapt to a bundle or to dark mode,
+# so it is painted with a fig-* class or a --tb-* token instead.
 FIGURE_HEX = re.compile(r"#[0-9a-fA-F]{3,8}(?![0-9a-fA-F])")
 FIGURE_COLOUR_FUNCTION = re.compile(
     r"(?<![\w-])(?:rgb|rgba|hsl|hsla|hwb|lab|lch|oklab|oklch)\([^)]*\)",
     re.IGNORECASE,
 )
-# A named colour only counts where a colour is expected: `color:red`, `fill="red"`.
-# The `=` form requires a quote, because an unquoted `fill=i` is a variable, not a
-# colour. A variable or CSS class named `red` (ch23-spinner has both) is not a
-# colour, and `currentColor`, `none` and the gradient/mix functions are tokens.
+# A named colour counts only where a colour value belongs: `color:red`, `fill="red"`.
+# The `=` form needs a quote, because unquoted `fill=i` is a variable; `currentColor`,
+# `none` and the gradient functions are tokens.
 FIGURE_COLOUR_PROPERTY = re.compile(
     r"(?<![\w-])(?:color|fill|stroke|background|background-color|border-color|"
     r"outline-color|stop-color|flood-color|lighting-color)"
@@ -89,16 +75,14 @@ TOKEN_COLOUR_VALUES = {
     "var",
 }
 
-# The maths hook runs at build time, so runtime `$...$` never renders. `${` is a
-# JavaScript template expression and is not LaTeX.
+# Maths renders at build time, so a runtime `$...$` shows literally; `${` is JS.
 RUNTIME_LATEX = re.compile(r"\$(?!\{)")
 
 
 class _SharedLibrary:
-    """The shared figure library, wearing enough of a ``Book`` to be parametrised over.
+    """The shared library, wearing enough of a ``Book`` to be parametrised over.
 
-    Its modules are held to exactly the same contract as a book's own — that is the
-    point of them being modules rather than a special case.
+    Its modules are held to the same contract as a book's own.
     """
 
     id = "shared"
@@ -133,13 +117,10 @@ def accessible_names(text: str) -> list[str]:
 
 
 def test_the_discovery_is_sound():
-    """A sanity check on the rule that excludes the two shared files.
+    """Every `.js` in a figure directory is a figure except the loader and the kit.
 
-    Every `.js` in a figure directory is a figure except `figures.js` and `kit.js` —
-    the loader and the scaffolding. Those used to be symlinked in, and the rule was
-    "a symlink is not a figure"; they are not in the tree at all now, so the rule is
-    their names, and this checks that a book's directory holds nothing else that is
-    not a figure.
+    The shared files live in `assets/` only, so a copy or a link in a book's tree
+    would be a second source of truth.
     """
     assert FIGURES, "no figure modules discovered"
     for book, path in FIGURES:
@@ -158,40 +139,24 @@ def test_the_discovery_is_sound():
         assert not [p for p in figures.rglob("*") if p.is_symlink()]
 
 
-# A text element: its purpose is words. `role="img"` on one replaces those
-# words with the accessible name, so a figure that puts it here is hiding its own
-# text from a screen reader. Found in four modules — a live readout wearing
-# `role="img"` could never announce a value, and a list of five terms was never
-# read out at all. The first fix moved the attribute to a prompt paragraph, which
-# passes a "has role=img" test and is the same mistake one element along.
+# A text element's purpose is words, and `role="img"` on one replaces them with the
+# accessible name, so the text is never read and a live region never announces.
 TEXT_ELEMENT = re.compile(
     r"""<(p|label|span|li|h[1-6]|em|strong|output)\b[^>]*\brole\s*=\s*["']img["']""",
     re.I,
 )
-# What counts as "this figure draws something". It has two forms now: a module
-# that writes its own `<svg>`, and a module that asks the shared kit for one —
-# `panel(el, { label: … })`. Both produce a drawing that needs an accessible name,
-# and a check that only knew the first would silently stop covering every module
-# converted to the second (which is what happened on the first conversion: two
-# tests skipped, and nothing said so).
 # The name a converted module passes to the kit instead of writing an `aria-label`.
 KIT_LABEL = re.compile("panel\\([^)]*?\\blabel\\s*:\\s*[\"'`]([^\"'`]+)[\"'`]", re.S)
 
+# What counts as drawing: the module writes its own `<svg>`, or asks the kit for a
+# panel. A check that knew only the first would skip every converted module.
 DRAWS = re.compile(r"<svg|<canvas|createElementNS", re.I)
 KIT_PANEL = re.compile(r"\bpanel\(", re.I)
 KIT_NO_DRAWING = re.compile(r"\bpanel\([^)]*\bdrawing\s*:\s*false", re.I | re.S)
 
 
 def draws(text: str) -> bool:
-    """Does this module put a drawing on the page?
-
-    Two ways now: it writes its own `<svg>`, or it asks the shared kit for a
-    surface. A check that only knew the first would **skip** every converted module
-    — and skipping is worse than failing, because a module converted without a
-    label would lose its accessible-name test instead of breaking it. The first
-    version of this did exactly that, and the guard-the-guard test is what found
-    it.
-    """
+    """Does this module put a drawing on the page: its own `<svg>`, or a kit panel?"""
     if KIT_NO_DRAWING.search(text):
         return False
     return bool(DRAWS.search(text)) or bool(KIT_PANEL.search(text))
@@ -203,9 +168,7 @@ def test_a_figure_that_draws_gives_its_drawing_a_name(book, path):
     text = path.read_text(encoding="utf-8")
     if not draws(text):
         pytest.skip("this figure draws nothing; see the test below")
-    # Either the module writes the attribute, or `panel()` does it for it. The
-    # kit sets `role="img"` on the surface it creates *and* requires a `label:`,
-    # so a converted module is covered by the same contract by construction.
+    # The module writes the attribute, or `panel()` sets it for it.
     assert (
         ROLE_ATTRIBUTE.search(text) or ROLE_SET_CALL.search(text) or "panel(" in text
     ), (
@@ -216,12 +179,9 @@ def test_a_figure_that_draws_gives_its_drawing_a_name(book, path):
 
 @pytest.mark.parametrize(("book", "path"), FIGURES, ids=IDS)
 def test_no_figure_hides_its_own_text_behind_role_img(book, path):
-    """Text is not an image, and marking it as one is how it disappears.
+    """`role="img"` belongs on the picture, never on an element whose job is words.
 
-    The rule is derived rather than a list of exemptions: whatever a module draws
-    with, `role="img"` belongs on the thing that is a picture — an `<svg>`, a
-    `<canvas>`, or a container the script fills with marks — and never on an
-    element whose job is to carry words.
+    Marking text as an image is how its words disappear from a screen reader.
     """
     offenders = [
         line.strip()
@@ -239,19 +199,14 @@ def test_no_figure_hides_its_own_text_behind_role_img(book, path):
 def test_every_figure_has_a_meaningful_accessible_name(book, path):
     text = path.read_text("utf-8")
     if not draws(text):
-        # Nothing is drawn, so there is no image to name. What carries the meaning
-        # is the figure's own text — a prompt, a list of terms, a live readout —
-        # and that is read directly rather than summarised into a label.
+        # Nothing is drawn, so the figure's own text is read directly.
         pytest.skip("this figure draws nothing, so it has no accessible name to set")
     names = [name.strip() for name in accessible_names(text)]
-    # A module using the kit passes its name to `panel()` instead of writing an
-    # `aria-label`, so the name is read from the call.
     names += [name.strip() for name in KIT_LABEL.findall(text)]
     names = [name for name in names if name]
     assert names, (
         f"{book.id}/{path.name}: set a plain-English aria-label on the drawing"
     )
-    # A label, not a placeholder: describe the figure in a few words.
     assert any(len(name) >= 15 and len(name.split()) >= 3 for name in names), (
         f"{book.id}/{path.name}: aria-label is too short to describe the figure: "
         f"{names!r}"
@@ -260,10 +215,9 @@ def test_every_figure_has_a_meaningful_accessible_name(book, path):
 
 @pytest.mark.parametrize(("book", "path"), FIGURES, ids=IDS)
 def test_every_figure_accessible_name_is_plain_text(book, path):
-    """The maths hook runs at build time, so runtime ``$...$`` never renders.
+    """Maths renders at build time, so a name must be plain text, not LaTeX.
 
-    A ``$`` that starts a JS template expression (``${value}``) is fine; a ``$``
-    that opens or closes LaTeX is not.
+    A ``$`` that starts a JS template expression (``${value}``) is fine.
     """
     names = accessible_names(path.read_text(encoding="utf-8"))
     offenders = [name for name in names if re.search(r"\$(?!\{)", name)]
@@ -288,34 +242,28 @@ def code_only(text: str) -> str:
     """A module's code with its comments removed.
 
     Both scanners below look for something a figure must not *do*, and a comment
-    that names the thing is not doing it. A figure explaining that its readout is
-    "plain text, never $...$" was reported as injecting LaTeX; a comment naming a
-    colour would have been reported the same way. Only full-line `//` comments and
-    block comments are removed, so a URL inside a string survives.
+    that names the thing is not doing it. Only full-line `//` comments and block
+    comments are removed, so a URL inside a string survives.
     """
     text = re.sub(r"/\*.*?\*/", "", text, flags=re.S)
     return re.sub(r"(?m)^\s*//.*$", "", text)
 
 
 def figure_colour_literals(text: str) -> list[str]:
-    """The colour literals in a figure module: a hex, an rgb/hsl function, or a
-    named colour where a colour value belongs.
+    """The colour literals in a figure module: a hex, an rgb/hsl function, or a named
+    colour where a colour value belongs.
 
-    Not the same scanner as ``test_themes.colour_literals``, which reads a
-    stylesheet or a Python file. This one reads JavaScript, so a named colour
-    counts only where a colour value belongs (``color: red``, ``fill="red"``) and
-    a class or variable called ``red`` is not one. The two are kept apart on
-    purpose: merging them would loosen one and tighten the other.
+    Not the same scanner as ``test_themes.colour_literals``, which reads a stylesheet
+    or a Python file. This one reads JavaScript, so a class or variable called ``red``
+    is not a colour. The two are kept apart on purpose.
     """
     found = [match.group(0) for match in FIGURE_HEX.finditer(text)]
     found += [match.group(0) for match in FIGURE_COLOUR_FUNCTION.finditer(text)]
     found += [
         match.group(1)
         for match in FIGURE_COLOUR_PROPERTY.finditer(text)
-        # A boolean is not a colour. `fill: true` is a JavaScript option on a drawing
-        # helper, and the property pattern cannot tell JavaScript from CSS — so the
-        # values that can never be a colour are excluded rather than left to look like
-        # one. Everything else that is not a token is reported.
+        # A boolean is not a colour: `fill: true` is a JavaScript option, and the
+        # property pattern cannot tell JavaScript from CSS.
         if match.group(1).lower() not in TOKEN_COLOUR_VALUES
         and match.group(1).lower() not in {"true", "false", "null", "undefined"}
     ]
@@ -327,9 +275,7 @@ def test_no_figure_module_uses_unseeded_randomness(book, path):
     """A figure that samples must be reproducible from a seed.
 
     Two readers comparing what they saw are comparing different data if the module
-    draws from Math.random, and no other check can see that difference. The kit's
-    seed() is deterministic across engines; use it for data, and leave Math.random
-    to DOM id generation in the kit itself.
+    draws from Math.random, and no other check can see that difference.
     """
     code = code_only(path.read_text(encoding="utf-8"))
     assert "Math.random" not in code, (
@@ -350,16 +296,11 @@ def test_no_figure_module_hard_codes_a_colour(book, path):
 
 @pytest.mark.parametrize(("book", "path"), FIGURES, ids=IDS)
 def test_no_figure_module_writes_fill_as_an_attribute(book, path):
-    """A `fig-*` class sets `fill`, and a class rule beats a presentation attribute.
+    """A `fig-*` class sets `fill` and beats a presentation attribute.
 
-    So `fill="none" class="fig-accent"` is **filled** accent, not stroked — item 74.
-    Every kit-drawn curve in the collection was a solid shape because of it, and no
-    check could see that a shape which should be a line was an area: the stroke was
-    still correct, so the contrast audit had nothing to say.
-
-    `path()` writes its fill inline now. A module that needs a stroke and no fill uses
-    `fig-line`, whose class sets `fill: none`, or an inline style of its own — never
-    the attribute, which loses to the class.
+    So `fill="none" class="fig-accent"` is a filled accent, not a stroked line, and
+    the stroke stays correct so the contrast audit has nothing to say. Use `fig-line`,
+    whose class sets `fill: none`, or an inline style.
     """
     offenders = [
         line.strip()
@@ -375,8 +316,7 @@ def test_no_figure_module_writes_fill_as_an_attribute(book, path):
 
 @pytest.mark.parametrize(("book", "path"), FIGURES, ids=IDS)
 def test_no_figure_module_injects_runtime_latex(book, path):
-    """The maths hook runs at build time, so ``$...$`` injected at runtime is
-    shown literally (``${`` is a template expression and is allowed)."""
+    """A runtime ``$...$`` shows literally; ``${`` is a template expression."""
     offenders = [
         line.strip()
         for line in code_only(path.read_text(encoding="utf-8")).splitlines()
@@ -388,55 +328,30 @@ def test_no_figure_module_injects_runtime_latex(book, path):
     )
 
 
-# --------------------------------------------------------------------------- #
-# The colour contract: what a figure may paint with, and how
-# --------------------------------------------------------------------------- #
+# --- the colour contract: a figure paints with a class, never a colour --------- #
 #
-# A figure carries no colour of its own (the test above). It paints with a class,
-# and the class resolves through a `--tb-*` token, so the drawing follows the
-# reader's bundle and scheme. Two things can still go wrong, and both did:
-#
-# * a `text-*` class that sets only `color`. SVG text is painted with `fill`,
-#   whose initial value is black, so `<text class="text-accent">` rendered black
-#   — 1.4:1 against the dark panel, which is invisible. `.text-ink` did not exist
-#   at all, so a module using it got black in every scheme.
-# * a class a bundle never defines, which is silently not applied.
-#
-# `tools audit` measures the built result in a browser, which is how
-# this was found. These tests are the cheap guard that stops it coming back, and
-# they run without a browser.
+# A `text-*` class must set `fill`, not only `color`, or SVG text keeps its initial
+# black; a class no stylesheet defines does nothing. `tools audit` measures both in a
+# browser; these are the cheap guard.
 
 STYLESHEET = repo_root() / "assets" / "stylesheets" / "extra.css"
 
-# The classes that mean "paint with this token". `fig-*` is a shape — it sets
-# `fill` and `stroke` — and `text-*` is words. A module may also use a class of
-# its own to find an element again (`fig-readout`, `fig-controls`); those style
-# nothing, so they are not colour classes and are not checked here.
-# Any `fig-*` or `text-*` class, not a closed list of the ones that exist. The
-# list used to be closed — `(?:accent|warn|good|ink|grid|line)` — so a class nobody
-# had defined was also a class this scanner could not see, and the test below
-# passed while the label fell back to black. A scan for *what a module uses* has to
-# be open at the top, or the check is only as good as the vocabulary it already
-# knows.
+# A class that means "paint with this token": `fig-*` is a shape, `text-*` is words.
+# The pattern stays open at the top, so a class nobody has defined is still seen.
 FIGURE_CLASS = re.compile(
     r"""class\s*=\s*["'][^"']*\b((?:fig|text)-[a-z][\w-]*)"""
 )
 FIGURE_CLASSLIST = re.compile(
     r"""classList\.(?:add|remove|toggle)\(\s*["']((?:fig|text)-[a-z][\w-]*)["']"""
 )
-# The spelling a kit-based module uses: `label({ ..., class: "text-warn" })`. It is
-# a JavaScript object key rather than an HTML attribute, and the two scans above
-# cannot see it — so the whole of the converted half of the collection, which is
-# every module that draws a label through the kit, was outside `text_classes_in`.
+# The kit's own spelling: `label({ ..., class: "text-warn" })`, a JavaScript object
+# key rather than an HTML attribute, which the two scans above cannot see.
 FIGURE_OPTION = re.compile(r"""\bclass:\s*["']((?:fig|text)-[a-z][\w-]*)["']""")
 
 
 def text_classes_in(text: str) -> set[str]:
-    """Every `text-*` colour class a module applies, in any of the three spellings.
-
-    An HTML `class` attribute, a `classList` call, or the kit's own `class:` option.
-    All three appear in the collection, and a scanner that knew two of them reported
-    "nothing undefined" for modules it could not read.
+    """Every `text-*` colour class a module applies: an attribute, a `classList` call,
+    or the kit's `class:` option. All three appear in the collection.
     """
     found = (
         set(FIGURE_CLASS.findall(text))
@@ -447,12 +362,7 @@ def text_classes_in(text: str) -> set[str]:
 
 
 def test_the_class_scanner_reads_all_three_spellings():
-    """Guard the guard: a scanner that misses a spelling reports success.
-
-    `text-nope` in a kit option was invisible until this existed — a class nobody
-    defined could not be reported by a test that only saw HTML attributes, and the
-    label fell back to the SVG default fill, which is black.
-    """
+    """Guard the guard: a scanner that misses a spelling reports success."""
     source = (
         'label({ x: 1, y: 2, class: "text-nope", text: "hi" });\n'
         'const markup = `<text class="text-also-nope">x</text>`;\n'
@@ -484,12 +394,9 @@ def test_every_text_class_a_figure_uses_is_defined(book, path):
 
 @pytest.mark.parametrize(("book", "path"), FIGURES, ids=IDS)
 def test_every_text_class_a_figure_uses_paints_svg_text(book, path):
-    """`color` alone does not paint an SVG `<text>`; `fill` does.
+    """`color` alone does not paint an SVG `<text>`; the class must also set `fill`.
 
-    This is the bug the browser audit found: `.text-accent` set `color` only, so
-    every SVG label using it rendered black — invisible at 1.4:1 on the dark
-    scheme. `fill: currentColor` makes the class mean the same thing in HTML and
-    in SVG, and `.fig-ink` had it all along.
+    `fill: currentColor` makes the class mean the same thing in HTML and in SVG.
     """
     style = css_rules(STYLESHEET.read_text(encoding="utf-8"))
     used = text_classes_in(code_only(path.read_text(encoding="utf-8")))
@@ -504,12 +411,7 @@ def test_every_text_class_a_figure_uses_paints_svg_text(book, path):
 
 
 def test_the_figure_colour_classes_are_all_defined():
-    """The contract in one place, so a new class is a deliberate act.
-
-    `text-*` paints words, `fig-*` paints shapes, and each has to set the property
-    SVG actually uses. A class added to a page without a rule here would be a
-    figure that quietly draws in the wrong colour on some bundles only.
-    """
+    """`fig-*` paints shapes and `text-*` paints words, each setting what SVG uses."""
     style = css_rules(STYLESHEET.read_text(encoding="utf-8"))
     expected = {
         "fig-accent": ("fill", "stroke"),
@@ -532,23 +434,13 @@ def test_the_figure_colour_classes_are_all_defined():
 
 
 # --- a label may not be smaller than the floor ---------------------------------
-#
-# The mobile audit measures the smallest label a figure draws at 390px and fails below
-# 9px, and the kit's own note says 16 units is 9.2px at that scale. `ratio-share` was
-# written with `size: 15` for its per-part labels, which is 8.6px — the same defect
-# `SIZE.tick` was raised from 15 to 16 to fix, repeated by a new module because the
-# floor was a measurement rather than a rule. This is the rule, without a browser.
+# 16 units is 9.2px at 390px, and the mobile audit fails below 9px. This is the rule
+# without a browser.
 
 
 @pytest.mark.parametrize(("book", "path"), FIGURES, ids=IDS)
 def test_no_label_is_written_below_the_phone_floor(book, path):
-    """A literal `size:` under 16 units is 8.6px at the phone scale, and unreadable.
-
-    `SIZE.tick` and `SIZE.label` are 16 for exactly this reason. A module that writes
-    its own number instead of naming a `SIZE` constant can go under the floor without
-    any check noticing until a browser measures it — which is how `ratio-share`
-    shipped one. Naming the constant is the fix, and this is what says so.
-    """
+    """A literal `size:` under 16 units is 8.6px at 390px: name a `SIZE` constant."""
     too_small = []
     for call in call_expressions(path.read_text(encoding="utf-8"), "label"):
         for match in re.finditer(r"size:\s*([0-9.]+)", call):
@@ -562,16 +454,10 @@ def test_no_label_is_written_below_the_phone_floor(book, path):
 
 @pytest.mark.parametrize(("book", "path"), FIGURES, ids=IDS)
 def test_every_slider_says_whether_it_shows_its_value(book, path):
-    """`show:` must be explicit, because the default is a reader-visible decision.
+    """`show:` must be explicit: the default adds a value display the reader sees.
 
-    `slider()` adds a value display unless told not to. That is a sensible default
-    for a new figure and the wrong one for a refactor: converting the collection
-    silently added a number beside **84 sliders** that had never shown one, which is
-    the one thing the refactor promised not to do. The check could only be written
-    afterwards, once the mistake had happened — and what it enforces is not a
-    particular choice but that the choice is made.
-
-    A module with no sliders has nothing to say and is skipped.
+    `slider()` shows the value unless told not to, which is a good default for a new
+    figure and the wrong one for a refactor. A module with no sliders is skipped.
     """
     calls = call_expressions(path.read_text(encoding="utf-8"), "slider")
     silent = [call for call in calls if "show:" not in call]
@@ -583,23 +469,14 @@ def test_every_slider_says_whether_it_shows_its_value(book, path):
 
 
 # --- the kit's pure layer -----------------------------------------------------
-#
-# `tools kit` checks the kit through a real page, because most of
-# its contract is DOM behaviour — a role, a live region, a focus stop. But the drawing
-# and formatting layers are pure functions returning strings and numbers, and they are
-# what a module composes hundreds of times. Checking them only in the browser means
-# checking them only where Playwright is configured; this runs under plain `node`, so it
-# is in the ordinary gate.
+# Drawing and formatting are pure functions, and `tools kit` reaches them only through
+# a browser; `kit-pure` runs under plain `node`, so it is in the ordinary gate.
 
 
 def test_the_figure_kit_keeps_its_pure_contract():
-    """Sizes, formatting, geometry, marks, seeded randomness and answer checking.
-
-    Every assertion is a defect that shipped or nearly did: `2.6666666666666665` in
-    front of a reader, a `<text>` with no colour class (eighteen times), a mark
-    carrying `183.99999999999997`, a y-axis flipped when built by hand, a curve that
-    disappears because one sample was `NaN`, and a wrong answer reported as a mistake
-    when the reader had merely typed a unit.
+    """Each assertion is a defect that shipped: a long float in front of a reader, an
+    uncoloured `<text>`, a flipped axis, a `NaN` sample blanking a curve, a unit typed
+    into an answer reported as a mistake.
     """
     import subprocess
 
@@ -618,20 +495,10 @@ def test_the_figure_kit_keeps_its_pure_contract():
     )
 
 
-# --- the shared figure library -------------------------------------------------
-#
-# A figure module is mounted by bare slug (`import(`./${slug}.js`)`), so a shared
-# module has to sit *beside the loader* in the built tree. `assets/figures/` already
-# holds the loader and the kit, so it is the library too, and the rule is the one a
-# book's own directory already uses: every `*.js` there that is not the loader or the
-# kit is a figure any book may mount.
-#
-# This exists because a figure that two books want *identically* should be written
-# once. The four earlier duplicates — `circular-motion`, `radiation-penetration`,
-# `transformer-turns`, `vector-addition` — turned out to be two books solving the same
-# topic differently for different readers, which is a legitimate choice and not this.
-# What this is for is a generic tool: the same set-notation diagram, the same number
-# line, the same coordinate grid.
+# --- the shared figure library ------------------------------------------------
+# A module is mounted by bare slug beside the loader, so `assets/figures/` is the
+# library too: every `*.js` there that is not the loader or the kit is a figure any
+# book may mount. It exists for a generic tool, not for duplicating a topic.
 
 
 def shared_modules() -> dict:
@@ -639,21 +506,14 @@ def shared_modules() -> dict:
 
 
 def test_a_book_may_not_shadow_a_shared_module():
-    """One slug, one module. Two would make a page's meaning depend on build order.
-
-    A book that wants its own version can always rename it, and the error the hook
-    raises says so. Silent shadowing is the failure this prevents: the book's copy would
-    win or lose depending on which the build happened to write last, and the page would
-    look right in one build and wrong in the next.
-    """
+    """One slug, one module. Two would make a page's meaning depend on build order."""
     from textbook.hooks import figures as hook
 
     shared = set(shared_modules())
     assert shared, "the shared library is empty, so this test proves nothing"
 
     for book in BOOKS:
-        # The hook needs an mkdocs config; the collision rule does not, so the two
-        # halves are checked separately rather than standing up a config per book.
+        # The collision rule needs no mkdocs config, so the halves are checked apart.
         local = {
             path.stem
             for path in (book.docs / "assets" / "figures").glob("*.js")
@@ -668,11 +528,10 @@ def test_a_book_may_not_shadow_a_shared_module():
 
 
 def test_the_build_writes_every_shared_module_beside_the_loader(tmp_path):
-    """A shared module has to land next to `figures.js`, because the loader is relative.
+    """The loader imports relative to itself, so a shared module must land beside it.
 
-    Copying it into a subdirectory would leave the file present and unmountable, which
-    the build would not notice: an asset reached only by a module import is not a link
-    on any page.
+    A copy in a subdirectory would leave the file present and unmountable, and no page
+    links it, so the build would not notice.
     """
     from textbook import pipeline
 
@@ -685,8 +544,7 @@ def test_the_build_writes_every_shared_module_beside_the_loader(tmp_path):
     shared = shared_modules()
     assert shared, "the shared library is empty, so this test proves nothing"
     for slug, source in shared.items():
-        # Content-addressed: the page names this file in `data-figure-src`, so the
-        # name has to be the bytes and the bytes have to be the library's.
+        # Content-addressed: the name is the bytes, and the bytes are the library's.
         built = figures / scaffold.addressed_name(source)
         assert built.is_file(), (
             f"the shared module {source.name} is mounted by slug and the build did not "
@@ -696,12 +554,7 @@ def test_the_build_writes_every_shared_module_beside_the_loader(tmp_path):
 
 
 def test_a_page_can_mount_a_shared_module(tmp_path):
-    """The end of the chain: the directive accepts the slug and the element is rendered.
-
-    The registry unions the book's slugs with the library's, and this proves it through
-    a real build rather than by reading the two sets — a page that names a shared module
-    must come out with a `<maths-figure>` for it and a loader to mount it.
-    """
+    """The directive accepts a shared slug and the built page carries the element."""
     from textbook import pipeline
 
     shared = set(shared_modules())
@@ -734,15 +587,9 @@ def test_a_page_can_mount_a_shared_module(tmp_path):
 
 
 # --- a kit import may not be shadowed -----------------------------------------
-#
-# Three modules converted in one pass named a parameter `label`:
-#
-#     const bar = (top, cls, label, value) => `${label({ text: `${label}` })}`
-#
-# which makes `label(...)` a call on a string, and the loader replaces the whole figure
-# with "Figure failed to load". The syntax is valid, the module parses, and `tools
-# kit` — which mounts the kit's own probe figures — never sees it. Only the audit of
-# the real site did, and it reported "mounted nothing" for three figures at once.
+# `const bar = (top, cls, label, value) => ...` binds a kit import to a string, which is
+# valid syntax, so the module parses and the figure dies on mount with "Figure failed
+# to load". Only the site audit sees it.
 
 KIT_IMPORT = re.compile(r'import\s*\{([^}]*)\}\s*from\s*"[^"]*kit\.js"')
 
@@ -758,9 +605,8 @@ def test_no_module_shadows_a_kit_import(book, path):
     names.discard("")
     body = text[match.end():]
 
-    # Scanned by the constructs that *bind* a name, not by a parenthesised
-    # expression: `fmt(t, 2)` is a call, and a pattern that cannot tell the two
-    # apart reported thirteen modules that are fine.
+    # Scan the constructs that bind a name, not any parenthesised expression:
+    # `fmt(t, 2)` is a call.
     def bound_names(pattern: str, group: int = 1) -> set[str]:
         found = set()
         for m in re.finditer(pattern, body):
@@ -822,11 +668,9 @@ def without_comments_or_strings(text: str) -> str:
 
 
 def test_every_figure_calls_only_kit_names_it_imported_or_defined():
-    """A missing `axes` import broke the §1.6 table after the gate stayed green.
+    """A kit name used as a call must be imported or defined, or the figure throws.
 
-    The module called `axes()` without importing it, so the figure threw at mount
-    time. A static check catches the class without a browser: every kit name used as
-    a call must be imported from the kit (or another module), or defined locally.
+    A static check catches the class without a browser.
     """
     exports = kit_exports()
     assert "axes" in exports and "panel" in exports
@@ -856,13 +700,10 @@ def test_every_figure_calls_only_kit_names_it_imported_or_defined():
 
 
 def test_every_lab_names_a_parameter_or_output_its_kernel_has():
-    """A name in a lab module is a name in the generated manifest, or it is a break.
+    """A name in a lab module must exist in the generated manifest, or the figure breaks.
 
-    ``kernel-lab.js`` builds a control from the manifest's parameter and reads an
-    output by name, so a lab module is a list of names the Rust declared. Renaming a
-    parameter or an output in ``solvers/ot-solve`` therefore breaks the figure at run
-    time, in a browser, on a page nobody rebuilt. Every lab mounted when it was written;
-    this is the check that keeps looking after the Rust moves.
+    Renaming a parameter or an output in ``solvers/ot-solve`` breaks it at run time, in
+    a browser, on a page nobody rebuilt.
     """
     import json
 
@@ -902,27 +743,14 @@ def test_every_lab_names_a_parameter_or_output_its_kernel_has():
     )
 
 
-# --- the drawing is inside its own canvas ------------------------------------------
-#
-# `dynamics-table` put five rows of numbers at y = 300…512 in a 300-unit canvas, and
-# every check passed: `audit` measures paint, and an element outside the box is painted
-# correctly; `readout --verify` recomputes arithmetic, and the numbers were right; `kit`
-# checks the DOM contract, and there was nothing wrong with it. The reader got an empty
-# frame under prose that described columns.
-#
-# The rule has two halves, and one rule for both would be wrong: a `<text>` must be
-# inside, and a mark may cross the edge but must have ink inside — `wishbone-hero` draws
-# its rays to an instant centre 1,295 units off a 520-unit canvas on purpose.
+# --- the drawing is inside its own canvas -------------------------------------
+# A `<text>` must be inside; a mark may cross the edge but must have ink inside. A
+# table of rows below a 300-unit canvas passes the paint, readout and DOM checks and
+# still gives the reader an empty frame.
 
 
 def test_a_figure_that_draws_outside_its_viewbox_is_caught():
-    """The rules' own cases, under plain `node`, so they are in the ordinary gate.
-
-    Three are the defects measured on this collection — `dynamics-table`'s rows,
-    `kernel-camber`'s clipped tick label, `wishbone-hero`'s intentional ray — and the
-    rest are the edges: a label exactly on the frame, a mark wholly outside, and a
-    rotated label whose box is not in its parent's space.
-    """
+    """The canvas rules' own cases, under plain `node`, so they are in the gate."""
     import subprocess
 
     tools = repo_root() / "tools" / "dist" / "cli.js"
@@ -941,13 +769,12 @@ def test_a_figure_that_draws_outside_its_viewbox_is_caught():
 
 
 def test_the_loader_keeps_a_label_inside_its_frame_in_any_font():
-    """Item 181's cousin: a label's width is its font's, so the frame has the last word.
+    """A label's width is its font's, so the loader has the last word, not the test.
 
-    Ten figures measured clean here and drew their ink outside their own `viewBox` on a
-    machine whose font is wider than the site's. The loader now measures every `<text>`
-    after it is drawn and narrows one that leaves the frame with `textLength`, and it
-    watches the **host** rather than the `svg`, because a figure that re-panels on a
-    control replaces its own frame.
+    Ten figures measured clean here and drew outside their own `viewBox` on a machine
+    with a wider font. The loader measures every `<text>` after it is drawn and narrows
+    one that leaves the frame with `textLength`, watching the **host** rather than the
+    `svg`, because a figure that re-panels on a control replaces its own frame.
     """
     loader = (repo_root() / "assets" / "figures" / "figures.js").read_text(encoding="utf-8")
     assert "function fitText(svg)" in loader
@@ -958,18 +785,10 @@ def test_the_loader_keeps_a_label_inside_its_frame_in_any_font():
     assert "font: {" in surface, "canvas has no --font, so no sweep can ask a wider font"
 
 
-# --- the `fig-*` half of the class contract ----------------------------------
-#
-# `text-*` has been checked in both directions since the eighteen-labels-black
-# defect. `fig-*` was not, and the difference is the whole story: a `fig-*` name
-# that neither a stylesheet nor the kit defines paints nothing at all, and four
-# modules (`ch9-*`) used `fig-note` for a verdict line. They were HTML, so they
-# inherited the body ink and adapted by luck; the day one of them is an SVG
-# `<text>` it is the initial-black defect again.
-#
-# The kit legitimately creates and queries names of its own (`fig-control`,
-# `fig-caption`, `readout`, …). Those are structural, not colour classes, and the
-# guard has to know them rather than call them dead.
+# --- the `fig-*` half of the class contract -----------------------------------
+# A `fig-*` name that neither a stylesheet nor the kit defines paints nothing. The
+# kit's own names (`fig-control`, `fig-caption`, `readout`) are structural, not colour
+# classes, so the guard has to know them rather than call them dead.
 
 FIGURE_ANY_CLASS = re.compile(r"\b((?:fig|text)-[a-z][\w-]*)\b")
 KIT_SOURCE = repo_root() / "assets" / "figures" / "src" / "kit"
@@ -978,10 +797,9 @@ KIT_SOURCE = repo_root() / "assets" / "figures" / "src" / "kit"
 def figure_classes_in(text: str) -> set[str]:
     """Every `fig-*`/`text-*` name a module mentions, in any spelling.
 
-    One scanner over the code rather than three over the spellings: a class
-    attribute, a `classList` call, the kit's `class:` option and a
-    `querySelector(".fig-…")` all contain the name, and the last of those is how a
-    module reaches a part the kit built.
+    One scanner over the code rather than three over the spellings: a class attribute,
+    a `classList` call, the kit's `class:` option and a `querySelector(".fig-…")` all
+    contain the name, and the last is how a module reaches a part the kit built.
     """
     return set(FIGURE_ANY_CLASS.findall(code_only(text)))
 
@@ -1037,14 +855,9 @@ def css_declarations(path: Path):
 
 @pytest.mark.parametrize("path", CSS_STYLESHEETS, ids=lambda p: p.name)
 def test_no_rule_animates_a_figures_paint(path):
-    """A transition on paint makes the audit sample an interpolated colour.
+    """A transition on paint makes `audit` sample an interpolated colour, not a state.
 
-    `audit site` reads the computed paint of every element. A `transition: fill`
-    turns that reading into a sample of whatever frame it lands on — a false pass,
-    or a flake — and `motion` asks for `opacity`/`transform` instead for the same
-    reason a colour change is the wrong thing to animate. Measured when this landed:
-    neither stylesheet declared a single transition, so nothing had ever exercised
-    the question.
+    `motion` asks for `opacity`/`transform` for the same reason.
     """
     offenders = []
     for selector, prop, value in css_declarations(path):
@@ -1072,11 +885,9 @@ def _rem_values(value: str) -> list[float]:
 def test_the_phone_label_floor_survives_a_padding_change():
     """Recompute the phone scale from its two inputs, and fail if it drops under 9px.
 
-    An SVG scales by rendered width over viewBox width, so the size a reader sees
-    is not the size a module writes. The panel's own padding and `max-width` set the
-    rendered width, which makes them type-size knobs: `tests/test_figures.py`'s
-    written-size floor (16 units) passes while the rendered label is 8.6px. Measured
-    at 390 with the kit's defaults: 320.8px drawn, 560 units, 16 units → 9.2px.
+    An SVG scales by drawn width over viewBox width, so the size a reader sees is not
+    the size a module writes. The panel's padding and `max-width` set the drawn width,
+    which makes them type-size knobs the written-size floor cannot see.
     """
     wrap_padding = next(
         value for selector, prop, value in css_declarations(CSS_STYLESHEETS[1])
@@ -1110,12 +921,8 @@ def test_the_phone_label_floor_survives_a_padding_change():
 
 
 # --- no colour-only element naming in figure readouts -------------------------
-#
-# Warn and good collapse under deuteranopia in glass light and neon light, and
-# every bundle paints `fig-accent` a different hue. Calling a drawn shape "the
-# orange line" or "the red line" is therefore wrong both for colour-vision
-# deficiency and across bundles. Name the role ("the straight line", "the upper
-# curve") instead.
+# Warn and good collapse under deuteranopia, and every bundle paints `fig-accent` a
+# different hue, so name a drawn element by its role, not its colour.
 COLOUR_ELEMENT_REF = re.compile(
     r"\bthe\s+(?:orange|green|red|blue)\s+(?:line|curve|arrow|dot|circle)\b",
     re.IGNORECASE,

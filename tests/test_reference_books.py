@@ -1,16 +1,7 @@
 """The map of numerical methods: a reference work whose nav comes from a registry.
 
-The proof book is the collection's first reference work, and it is a book because
-that is how the collection publishes, navigates and themes a body of pages. This is
-the second, and it adds one thing the first did not need: **a sidebar without a
-syllabus**. The proof book's registry is read by `:::prove`; the map's is read by
-the nav and nothing else, so a page listed there is a page a reader can reach.
-
-These tests exist because a registry is a second place a page can be forgotten. A
-page that exists and is not listed is invisible; a page that is listed and does not
-exist is a dead link; and a page that is authored but untitled is a browser tab that
-says "Untitled". The scaffold cannot catch any of the three: it generates nothing
-for this book and, by design, never overwrites an authored page.
+A page that is unlisted is invisible, a listed page that is missing is a dead link,
+and an authored page without a title renders as "Untitled".
 """
 
 from __future__ import annotations
@@ -26,18 +17,14 @@ import sympy as sp
 from textbook import book as books
 from textbook.hooks import usedin
 
-# The two pages' numbers are one model's, and §1.5's test already knows how to read that
-# model. Re-importing the export's conventions here would be a second copy of them, and
-# the two copies would drift — which is the defect these tests exist to catch.
+# §1.5's test already reads this model; importing it keeps the two books in step.
 from test_maths_applied_ladder import SECTION as SECTION_1_5
 from test_maths_applied_ladder import STIFFNESS, crossing
 
 MAP = "numerical-methods"
 
-#: The nine classes, in the order the tree reaches them. Written here rather than
-#: read from the registry, because a test that derives its expectation from the
-#: thing it tests asserts nothing: a class silently dropped from `map.yaml` would
-#: drop out of this list too, and both would agree.
+#: Written out, not read from the registry: an expectation derived from the subject
+#: agrees with a class silently dropped from `map.yaml`.
 CLASSES = [
     "optimisation",
     "averaging",
@@ -67,16 +54,8 @@ def test_the_map_is_a_reference_work_and_has_no_syllabus():
 
 
 def test_every_listed_page_exists_and_every_page_is_listed():
-    """Both directions, because each is a different defect.
-
-    A listed page that is missing is a dead link in the sidebar. A page that exists
-    but is unlisted is a page with no way in, and it is the one that happens by
-    accident: the page gets written and the registry is forgotten.
-
-    The About page is the one exception: the scaffold generates it, so it is a page
-    with no entry and no need of one. Anything *else* that is not an `index.md` is a
-    defect rather than an exception — a page at `docs/notes.md` would be published at
-    a URL the navigation does not know about.
+    """Both directions: a listed page with no file is a dead link, a file with no
+    listing is a page with no way in.
     """
     book = map_book()
     listed = {entry["path"] for entry in book.pages}
@@ -108,11 +87,8 @@ def test_every_page_has_a_title():
 
 
 def test_the_home_page_links_every_page_in_the_registry():
-    """A reference work is entered from its home page, not only from its sidebar.
-
-    The home page carries the same tree as the figure, in plain Markdown, so that a
-    reader with scripting off still has the whole map. That makes it a second place
-    the list of classes can drift, and this is the check that keeps it honest.
+    """The home page repeats the tree in plain Markdown, so it is a second copy
+    of the class list and this keeps the two from drifting.
     """
     book = map_book()
     home = (book.docs / "index.md").read_text(encoding="utf-8")
@@ -125,14 +101,8 @@ def test_the_home_page_links_every_page_in_the_registry():
 
 
 def _counts() -> tuple[int, int]:
-    """The two numbers the home page prints, measured from the pages themselves.
-
-    77 methods is the number of method blocks under *Methods, A to Z*, because
-    that page is the book's own claim about how many methods it names. 64 systems is the
-    number of entries in the nine class pages' *Systems that live here* lists, because
-    those are the systems the reduction is claimed to cover. Both are counted here rather
-    than typed, so adding a method or a system fails the home page until it says the new
-    number — a count in the argument that nobody recomputes is just a number.
+    """The two numbers the home page prints, counted rather than typed: method
+    blocks in the A–Z and entries in the class pages' systems lists.
     """
     book = map_book()
     methods = len(_methods_a_to_z())
@@ -146,13 +116,8 @@ def _counts() -> tuple[int, int]:
 
 
 def test_the_nine_kinds_table_names_and_links_every_class():
-    """The reduction is the home page's whole argument, so it has to be complete.
-
-    One table row per kind, each linking its page, is the book's claim that nine of them
-    cover the field. A class missing from the table is a kind the reader cannot reach
-    from the argument; a row that does not link is a name with nowhere to go. The count
-    of rows is asserted too, so a tenth class cannot be added to the registry without
-    the table growing a row.
+    """One row per kind, each linking its page, so no class is missing from the
+    argument and a tenth class cannot be added without the table growing.
     """
     book = map_book()
     home = (book.docs / "index.md").read_text(encoding="utf-8")
@@ -170,9 +135,6 @@ def test_the_nine_kinds_table_names_and_links_every_class():
         and re.search(r"\]\((" + "|".join(CLASSES) + r")/index\.md\)", line)
     ]
     assert len(rows) == len(CLASSES), f"the nine-kinds table has {len(rows)} rows"
-    # Every row carries the kind's model, not only its name. The table's claim is
-    # that a reader can recognise the kind from the model in front of them, and a
-    # row with no equation asks them to take the recognition column on trust.
     cells = [[cell.strip() for cell in row.strip().strip("|").split("|")] for row in rows]
     assert all(len(row) == 4 for row in cells), (
         f"the nine-kinds table is not four columns: {[len(row) for row in cells]}"
@@ -182,12 +144,8 @@ def test_the_nine_kinds_table_names_and_links_every_class():
 
 
 def test_every_method_states_its_step_in_symbols():
-    """A name and a price are not enough to recognise a method you have met.
-
-    The A–Z is the reverse lookup, and every row now carries the update the method
-    repeats, or the equation it solves. A family is allowed to show its
-    representative member, but it is not allowed to show nothing: a row that names
-    a method and never says what it does is a glossary entry, not a technique.
+    """Every A–Z row carries the update the method repeats or the equation it
+    solves; a name and a price alone is a glossary entry, not a technique.
     """
     methods = _methods_a_to_z()
     assert len(methods) == 77, f"the A–Z has {len(methods)} method blocks, not 77"
@@ -196,18 +154,8 @@ def test_every_method_states_its_step_in_symbols():
 
 
 def test_the_two_indexes_link_every_class_they_name():
-    """A hop in a lookup has to be clickable, or it is a word and not a hop.
-
-    `symptoms/` goes symptom → kind and `techniques/` goes method → kind, and both
-    name the kind in a table cell. The home page offers them as two of the three
-    ways in, so a bare class name here sends the reader back to the index to find
-    the page the row was written to name — which is the trip the row exists to
-    save. The nine-kinds table already links every kind, and this holds the pair to
-    the same standard.
-
-    Every link whose text is a class title is checked too, because a renamed class
-    and a stale href are two halves of one defect and only one of them is a link
-    that looks correct.
+    """`symptoms/` and `techniques/` both name a kind in a cell, so each name is a
+    link to the right page; a renamed class and a stale href fail together.
     """
     book = map_book()
     slug_of = {
@@ -217,8 +165,7 @@ def test_the_two_indexes_link_every_class_they_name():
     }
     link = re.compile(r"\[([^\]]+)\]\(([^)]+)\)")
     unlinked, misdirected = [], []
-    # The A–Z names its class on each method's `Class:` line, and `symptoms/` names
-    # one in a table cell. Both are a hop the reader is meant to take.
+    # The A–Z names its class on each method's `Class:` line, `symptoms/` in a cell.
     lines: list[tuple[str, str]] = []
     for method in _methods_a_to_z():
         lines.append(("techniques", f"Class: {method['class']}"))
@@ -240,12 +187,8 @@ def test_the_two_indexes_link_every_class_they_name():
 
 
 def test_the_home_page_states_the_counts_it_claims():
-    """The page opens with an arithmetic claim: 77 methods, 64 systems, nine kinds.
-
-    Each number is measured from the book, so the argument cannot quietly become false
-    when a method is added or a system is dropped. This is the same rule as §1.5's
-    stiffness ladder in `Maths Applied`: the page prints the export's number, and a test
-    recomputes it.
+    """The page opens with an arithmetic claim, and each number is measured from
+    the book so adding a method cannot quietly make the argument false.
     """
     methods, systems = _counts()
     book = map_book()
@@ -257,11 +200,7 @@ def test_the_home_page_states_the_counts_it_claims():
 
 
 def test_the_counting_table_sums_to_the_method_blocks():
-    """The table's column is entries, and it must equal the blocks below it.
-
-    It said 81 from before the page stopped being five tables; the conversion kept
-    the old row count including a header, so every class was overstated by one and
-    nobody noticed because no test read the column.
+    """The counting table's entries column must equal the method blocks below it.
     """
     text = (map_book().docs / "techniques" / "index.md").read_text(encoding="utf-8")
     rows = [line for line in text.splitlines() if line.startswith("| [")]
@@ -271,11 +210,8 @@ def test_the_counting_table_sums_to_the_method_blocks():
 
 
 def test_the_landing_card_counts_pages_and_methods():
-    """A reference work's card says what the book is, not that it has no syllabus.
-
-    "0 chapters / 0 sections" is true of every reference work and a fact about
-    none. The map counts its pages and its methods, the two numbers a reader can
-    use, and both are measured rather than typed.
+    """The card counts pages and methods, not the "0 chapters" every reference
+    work shares; both numbers are measured rather than typed.
     """
     from textbook import portal
 
@@ -289,13 +225,8 @@ def test_the_landing_card_counts_pages_and_methods():
 
 
 def test_the_classes_come_first_in_tree_order():
-    """The pages that are not classes come after them, in the order the tree reaches them.
-
-    The order is the argument: a reader walking the five questions meets the boxes
-    in this sequence, and a registry sorted some other way would put the symptom
-    index between two classes. The two pages of argument — how to read a class off
-    an equation, and how to change which one you are in — sit before the two
-    indexes, because both are answers a reader reaches while still holding a model.
+    """The nine classes come first, then the argument and the indexes, in the
+    order the tree reaches them; the order is the argument.
     """
     slug_of = lambda path: path.split("/")[0]  # noqa: E731 - a one-line helper
     assert [slug_of(e["path"]) for e in map_book().pages[:9]] == CLASSES
@@ -336,11 +267,8 @@ def test_no_stub_page_survives_in_the_book():
 
 
 def test_only_the_proof_book_holds_the_proof_registry():
-    """Several reference works, one proof registry.
-
-    The `:::prove` directive resolves against the book that declares `proofs:`. Two
-    such books would make it ambiguous, and picking whichever sorted first is the
-    kind of silent break this collection spends tests on.
+    """`:::prove` resolves against the one book declaring `proofs:`; two would
+    make it ambiguous.
     """
     holders = [book.id for book in books.reference_books() if book.proofs]
     assert holders == ["proofs"], holders
@@ -348,12 +276,8 @@ def test_only_the_proof_book_holds_the_proof_registry():
 
 @pytest.mark.parametrize("slug", CLASSES)
 def test_each_class_page_names_itself_and_its_neighbours(slug):
-    """A page is entered cold, from search or from a wrong answer.
-
-    So it starts by saying what it is, in the reader's words, and it ends by naming
-    the pages that neighbour it. The second matters more than it looks: the whole
-    premise is that the class you chose may be the wrong one, and the reader has to
-    be able to leave for the neighbour without going back to the map.
+    """A page entered cold says what it is, and a wrong class must be able to
+    leave for its neighbour without going back to the map.
     """
     page = (map_book().docs / slug / "index.md").read_text(encoding="utf-8")
     assert "You have one of these when" in page, f"{slug} does not open by naming itself"
@@ -361,8 +285,7 @@ def test_each_class_page_names_itself_and_its_neighbours(slug):
     assert "](../symptoms/index.md)" in page, f"{slug} cannot reach the symptom index"
 
 
-#: The order a class page is read in. Fixed, because eight pages that each invent
-#: their own order stop being a map and become eight essays.
+#: Fixed, because nine pages with their own order are nine essays, not a map.
 SKELETON = [
     "## What you are modelling",
     "## The model you write down",
@@ -391,13 +314,7 @@ def test_a_class_page_keeps_the_shared_skeleton(slug):
 
 
 def _methods_a_to_z() -> list[dict[str, str]]:
-    """The A–Z's method blocks, in page order.
-
-    The page stopped being five tables on 2026-10-27: a method is a heading, its class
-    as a link, the step, and the price, because four columns of prose are a record per
-    row rather than a comparison across rows. The anchors are the parser's proof that
-    the block is complete — every method is linkable by name.
-    """
+    """The A–Z's method blocks, in page order: heading, class link, step, price."""
     text = (map_book().docs / "techniques" / "index.md").read_text(encoding="utf-8")
     blocks = re.findall(
         r'<a id="([\w-]+)"></a>\n### (.+?)\n(.*?)(?=\n(?:<a id=|</div>))',
@@ -410,8 +327,7 @@ def _methods_a_to_z() -> list[dict[str, str]]:
         if len(parts) < 3 or not parts[0].startswith("Class:"):
             continue
         klass = parts[0][len("Class:") :].strip()
-        # The step and the price may wrap across source lines after the 80-column
-        # reflow; the rendered page joins them, so the parser does too.
+        # A wrapped step or price is one line once rendered, so join it here.
         step = " ".join(parts[1].splitlines())
         price = " ".join(parts[2].splitlines())
         methods.append(
@@ -421,13 +337,8 @@ def _methods_a_to_z() -> list[dict[str, str]]:
 
 
 def _table_rows(page: Path, columns: int, heading: str | None = None) -> list[list[str]]:
-    """The rows of the Markdown tables on a page, as cells.
-
-    A table is found by its width, because the page's other tables are a different
-    width and the header row is the only row that names the columns. `heading` limits
-    the search to one section, which is how a class page's *What goes wrong* table is
-    told apart from any other three-column table that arrives later.
-    """
+    """The rows of the Markdown tables on a page, as cells; a table is found by
+    its width, and `heading` limits the search to one section."""
     text = page.read_text(encoding="utf-8")
     if heading is not None:
         text = text[text.index(heading) :].split("\n## ", 1)[0]
@@ -445,14 +356,11 @@ def _table_rows(page: Path, columns: int, heading: str | None = None) -> list[li
 
 
 def _names(cell: str) -> list[str]:
-    """The method names a cell carries: its commas, minus the ones inside brackets.
+    """The method names a cell carries: its commas outside brackets, with link
+    markup stripped so the text is the name and the URL is not.
 
-    ``Control variates, antithetic pairs`` is two methods, and ``Preconditioners
-    (ILU, AMG, Jacobi)`` is one whose brackets happen to contain commas. Splitting on
-    every comma would turn the second into three names the A–Z is not expected to have.
-
-    A class page's first cell is now a link per method, so the link markup comes off
-    first: the name is the link's text, and the URL is not a name.
+    ``Control variates, antithetic pairs`` is two methods; ``Preconditioners (ILU,
+    AMG, Jacobi)`` is one whose brackets happen to contain commas.
     """
     cell = re.sub(r"\[([^\]]*)\]\([^)]*\)", r"\1", cell)
     parts, depth, current = [], 0, ""
@@ -476,13 +384,8 @@ def _plain(name: str) -> str:
 
 
 def _named(candidate: str, names: set[str]) -> bool:
-    """Whether a class page's name is one the A–Z carries.
-
-    Not equality: the A–Z groups synonyms in one row, and a class page says what the
-    local variant is — ``GMRES with a block preconditioner`` is the ``GMRES`` row. A
-    whole-word match either way is the loosest rule that still fails when a name is
-    absent, which is the property this test is for.
-    """
+    """Whether a class page's name is one the A–Z carries; whole-word either way,
+    because the A–Z groups synonyms and a page may name its local variant."""
     if not candidate:
         return True
     word = lambda text: rf"(?<![\w-]){re.escape(text)}(?![\w-])"  # noqa: E731
@@ -494,13 +397,9 @@ def _named(candidate: str, names: set[str]) -> bool:
 
 @pytest.mark.parametrize("slug", CLASSES)
 def test_every_method_a_class_page_names_is_in_methods_a_to_z(slug):
-    """The class page's claim: "Every method named here is in Methods, A to Z".
-
-    That sentence makes the A–Z the second copy of every techniques table, which is
-    exactly the kind of copy that rots. The asymmetry is the point: the class pages
-    are the authority on what applies to a class, and the index must carry every name
-    they use with its price. A method added to a class page and not to the index fails
-    here, before a reader follows the link and finds nothing.
+    """The class page claims every method it names is in the A–Z, which makes the
+    index a second copy of the techniques tables; a name added to one and not the
+    other fails here.
     """
     known = {
         _plain(name)
@@ -519,13 +418,8 @@ def test_every_method_a_class_page_names_is_in_methods_a_to_z(slug):
 
 @pytest.mark.parametrize("slug", CLASSES)
 def test_every_method_a_class_page_names_links_to_its_entry(slug):
-    """A name in a class page's table is a hop, not a word.
-
-    The sentence above the table says every method is in *Methods, A to Z* with its
-    price. The table is where a reader is holding the name and wants the step, so the
-    name is the link. The test holds both halves: every name is a link, and every link
-    points at a method block the A–Z actually carries. A renamed entry and a stale
-    anchor are the same defect seen from each end.
+    """Every name in a class page's technique table is a link to its A–Z entry; a
+    renamed entry and a stale anchor are the same defect seen from each end.
     """
     page = map_book().docs / slug / "index.md"
     text = page.read_text(encoding="utf-8")
@@ -547,14 +441,9 @@ def test_every_method_a_class_page_names_links_to_its_entry(slug):
 
 
 def test_every_symptom_is_one_row_in_one_wording_on_both_pages():
-    """A wrong answer is looked up by observation, and the class page is where the fix is.
-
-    The two pages had drifted into two hand-kept lists: ``the smallest eigenvalue is
-    wrong`` against ``comes out wrong``, and a cause stated twice with a different fix.
-    So the symptom text is the key, and a row is the same row only when the cause and
-    the fix match too. Both directions are checked — an index row whose class page has
-    never heard of it is the same defect seen from the other side, and it is the one
-    that arrives when somebody adds a row to the index alone.
+    """Symptom text is the key, and a row is the same row only when its cause and
+    fix match too; both directions are checked, including an index row a class page
+    has never heard of.
     """
     index: dict[str, tuple[str, str, str]] = {}
     for symptom, classes, cause, fix in _table_rows(
@@ -602,14 +491,8 @@ def _ladder(page: Path, columns: int) -> dict[float, list[str]]:
 
 
 def test_the_worked_cases_ladder_is_section_1_5s_ladder():
-    """The page quoted a ladder from §1.5, and its cells were a different model's.
-
-    §1.5's table is the vendored export's, and `test_maths_applied_ladder.py` recomputes
-    it. This compares the two pages cell for cell at the stiffnesses the export carries,
-    so a page that sweeps 2 and 20 MN/m, or prints 1.053° where the export says 0.91°,
-    fails here rather than in a reader's hands. The difference column keeps §1.5's sign:
-    the bushed camber is further from zero than the rigid one, so the difference is
-    negative, and a magnitude with a positive sign is a second convention for one number.
+    """The worked case quotes §1.5's ladder cell for cell at the export's
+    stiffnesses; a page that sweeps other values or prints a different number fails.
     """
     section = _ladder(SECTION_1_5, 5)
     worked = _ladder(map_book().docs / "worked-case" / "index.md", 4)
@@ -623,13 +506,8 @@ def test_the_worked_cases_ladder_is_section_1_5s_ladder():
 
 
 def test_the_worked_case_names_the_exports_tenth_of_a_degree_stiffness():
-    """The ladder's conclusion, recomputed: 1.8 MN/m, not the front view's 2.
-
-    §1.5's printed ladder rounds, so the crossing has to come from the export rather
-    than from the two rows either side of a tenth of a degree — that interpolation
-    gives 1.9. ``crossing`` is §1.5's own test's arithmetic, imported rather than
-    restated, so the two books cannot disagree about which number the model produces.
-    """
+    """The ladder's conclusion comes from the export's crossing, not from
+    interpolating the printed rows; §1.5's arithmetic is imported, not restated."""
     page = (map_book().docs / "worked-case" / "index.md").read_text(encoding="utf-8")
     number = f"**{round(crossing(), 1)} MN/m**"
     assert number in page, f"the worked case does not name the export's {number}"
@@ -638,22 +516,14 @@ def test_the_worked_case_names_the_exports_tenth_of_a_degree_stiffness():
 # --- the kinds with no caller ---------------------------------------------------
 
 
-#: The three kinds no section in the collection carries a `:::class` for, so their
-#: pages print the "no page names this class yet" sentence. Written out rather than
-#: derived from `:::used`: a test that reads its expectation from the hook agrees with
-#: itself when a callback is dropped. When a chapter fills one of these, this fails and
-#: says to update `worked-case`, which names the four and would otherwise be wrong.
+#: Written out rather than derived from `:::used`, so a dropped caller cannot make
+#: the test agree with itself; when a chapter fills one, update `worked-case`.
 DEAD_ENDS = ["elliptic", "hyperbolic", "parabolic"]
 
 
 def test_the_worked_case_agrees_with_the_callers_each_kind_actually_has():
-    """`:::used` is derived; the worked case's claim about it has to be too.
-
-    The worked case names the three kinds no section carries a `:::class` for:
-    elliptic, hyperbolic and parabolic. It also names the five the chapter
-    does use. This is the check that the admission and the derived list are about the
-    same kinds, so a reader who follows a link does not arrive at "no page names this
-    class yet".
+    """`:::used` is derived; the worked case's claim about which kinds have no
+    caller must agree with it.
     """
     for slug in CLASSES:
         callers = usedin.used_in(slug)
@@ -685,10 +555,8 @@ def test_the_optimisation_example_is_the_tolerance_problem():
 
 # --- every detail page's program is run, not believed ---------------------------
 #
-# A detail page's printed output is evidence, and evidence nobody runs is a number
-# typed into a fence. The skeleton, width and fold rules are in `tests/rules.py`;
-# this is the rule that needs a process: run every python block exactly as printed
-# and compare its standard output with the text block the page shows.
+# A printed output is evidence, and evidence nobody runs is a number typed into a
+# fence. Skeleton and width rules are in `tests/rules.py`; this needs a process.
 
 DETAIL_HEADING = "## What this page answers"
 
@@ -703,12 +571,8 @@ def _detail_pages():
 
 
 def test_the_regression_page_states_the_mean_point_fact():
-    """Item 141 recorded that no page in the collection stated it.
-
-    The least-squares line passes through (x-bar, y-bar). The page's program
-    prints both coordinates and its own value at x-bar, so the fact is checkable
-    rather than asserted: this reads the statement and the printed row.
-    """
+    """The least-squares line passes through (x-bar, y-bar), and the page's own
+    program prints both, so the fact is checkable rather than asserted."""
     page = (map_book().docs / "averaging" / "regression" / "index.md").read_text(
         encoding="utf-8"
     )
@@ -719,12 +583,8 @@ def test_the_regression_page_states_the_mean_point_fact():
 
 
 def test_every_detail_program_prints_what_its_page_shows():
-    """Every page with the detail skeleton runs its program and prints its output.
-
-    Both blocks come from the page. This executes each python block in a fresh
-    namespace and compares what it prints with the text block beside it, so an edit
-    to either one fails here rather than in front of a reader who trusted it.
-    """
+    """Run each python block exactly as printed and compare its standard output
+    with the text block beside it; an edit to either fails here."""
     failures = []
     for name, text in _detail_pages():
         code = re.findall(r"```python\n(.*?)```", text, re.S)
@@ -749,12 +609,8 @@ def test_every_detail_program_prints_what_its_page_shows():
 
 # --- reading the class off the equation ----------------------------------------
 #
-# One page in this map hands the reader a program, which is a claim of a kind the book
-# has no machinery for: a printed output is evidence, and evidence nobody runs is a
-# number typed into a fence. So the program is executed here, the worked table is
-# recomputed by a route the page does not use, the sign table is held to three rows,
-# and the figure the page mounts is held to the guided-investigation rule the
-# collection runs on.
+# The page hands the reader a program, so it is executed here, its table rebuilt by
+# another route, and its figure held to the guided-investigation rule.
 
 CLASSIFY = "reading-the-class"
 
@@ -764,13 +620,8 @@ def _classify_page() -> str:
 
 
 def test_the_program_prints_what_the_page_shows():
-    """Both blocks come from the page; only one of them is executed.
-
-    The claim is narrow and checkable: run the python block exactly as printed and
-    its standard output is the text block beside it. A reader who runs the program
-    gets what the page said, and an edit to either block fails here rather than in
-    front of a reader learning the rule.
-    """
+    """Run the page's only python block and compare its output with its only
+    text block; an edit to either fails here."""
     page = _classify_page()
     code = re.findall(r"```python\n(.*?)```", page, re.S)
     shown = re.findall(r"```text\n(.*?)```", page, re.S)
@@ -785,12 +636,8 @@ def test_the_program_prints_what_the_page_shows():
 
 
 def test_the_worked_table_is_recomputed_from_the_equations():
-    """The table teaches a rule, so its rows are rebuilt rather than believed.
-
-    The page reaches its coefficients by applying the equation to $e^{px+qy}$; this
-    reaches them by reading the derivative terms straight off the expression. Two
-    routes to the same three rows, and the table has to agree with the second — a row
-    out by a sign teaches a reader a rule that turns elliptic problems hyperbolic.
+    """The page applies the equation to $e^{px+qy}$; this reads the derivative
+    terms straight off the expression, and the three rows must agree.
     """
     x, y, t = sp.symbols("x y t")
     u = sp.Function("u")
@@ -805,10 +652,7 @@ def test_the_worked_table_is_recomputed_from_the_equations():
         if not line.startswith("|"):
             continue
         cells = [cell.strip() for cell in line.strip().strip("|").split("|")]
-        # Six columns: equation, the three coefficients, the discriminant, the class.
-        # The coefficients had cell padding nowhere, so they were once merged into a
-        # single "$1$, $0$, $1$" cell; the design system now pads a cell and the table
-        # sets each one in its own column.
+        # Six columns: equation, three coefficients, discriminant, class.
         if len(cells) == 6 and cells[0].split(":")[0] in worked:
             rows[cells[0].split(":")[0]] = cells
     assert set(rows) == set(worked), f"the worked table holds {sorted(rows)}, not three rows"
@@ -833,12 +677,7 @@ def test_the_worked_table_is_recomputed_from_the_equations():
 
 
 def test_the_sign_table_carries_one_row_per_class():
-    """Three signs, three classes, each row leading to the page it names.
-
-    The table is the book's rule for the three field kinds. A sign with no row, or a
-    row that does not link, leaves a reader with a class they cannot reach from the
-    rule that was supposed to decide between them.
-    """
+    """Three signs, three classes, each row linking the page it names."""
     page = _classify_page()
     for sign, slug in (
         ("$\\Delta > 0$", "hyperbolic"),
@@ -851,14 +690,8 @@ def test_the_sign_table_carries_one_row_per_class():
 
 
 def test_the_figure_on_that_page_is_guided():
-    """Predict, test, explain — the collection's rule for a tool, on a reference page.
-
-    This book has no Learn pages, so no other test asks it of this book. But the page
-    mounts controls the reader moves, and a control with no prediction and no question
-    after it is a sandbox: the beats are what make moving it a lesson rather than a
-    toy. The prediction comes before the figure and the explanation after it, because
-    a prediction written after the answer is not one.
-    """
+    """A reference book has no Learn pages, so this is the only check that the
+    page's figure follows Predict → Test → Explain in order around it."""
     page = _classify_page()
     figure = page.find(":::figure discriminant")
     assert figure != -1, f"{CLASSIFY} mounts no figure"
@@ -872,32 +705,21 @@ def test_the_figure_on_that_page_is_guided():
 
 
 
-# --- the relativity case, classified -------------------------------------------
+# --- the relativity case, classified ------------------------------------------
 #
-# `choosing-the-class` used to assert that the Einstein equations become a different
-# class when the coordinate conditions change, and left the reader with the claim and
-# no arithmetic. It now prints two equations, three coefficients each and the sign of
-# the discriminant, so the claim is checkable — and these tests check it, the same way
-# `reading-the-class`'s table is checked, by rebuilding the rows from the equations
-# rather than by reading the page back to itself.
+# The page prints two equations, three coefficients each and the discriminant's sign,
+# and these tests rebuild the rows from the equations rather than reading the page back
+# to itself.
 
 CHOOSING = "choosing-the-class"
 
 
 def test_the_two_lapse_conditions_are_classified_by_the_books_own_test():
-    """The lapse rows, recomputed: one parabola, one hyperbola, one sign between them.
+    """Same physics, two ways of writing one equation, two classes: each lapse
+    row is rebuilt from its coefficients and the sign of $B^2-4AC$.
 
-    The page's claim is *same physics, one equation written two ways, two classes*.
-    The reduction it uses is one equation in one unknown, and each row is read off by
-    the rule on `reading-the-class` — three coefficients, and the sign of $B^2-4AC$.
-    A row out by a sign would make the page's whole argument false while still
-    looking like arithmetic, which is why the coefficients are asserted too.
-
-    The elliptic row lands on `parabolic`, and that is the point rather than a slip:
-    the test counts characteristic directions in the two variables it is handed, and
-    an equation with no time derivative has none. The page says so in the prose. This
-    test holds the arithmetic to what the page prints; the page holds the reader to
-    what the arithmetic means.
+    The elliptic row lands on `parabolic` because an equation with no time
+    derivative has no characteristic directions; the page says so in prose.
     """
     x, t = sp.symbols("x t", real=True)
     u = sp.Function("u")
@@ -913,8 +735,7 @@ def test_the_two_lapse_conditions_are_classified_by_the_books_own_test():
         if not line.startswith("|"):
             continue
         cells = [cell.strip() for cell in line.strip().strip("|").split("|")]
-        # Seven columns: name, equation, the three coefficients, the discriminant,
-        # the class the sign names.
+        # Seven columns: name, equation, three coefficients, discriminant, class.
         if len(cells) == 7 and cells[0] in equations:
             rows[cells[0]] = cells
     assert set(rows) == set(equations), (
@@ -938,13 +759,9 @@ def test_the_two_lapse_conditions_are_classified_by_the_books_own_test():
 
 
 def test_the_relativity_claim_says_what_it_is_a_reduction_of():
-    """One equation is not the Einstein system, and the page has to say so.
-
-    The reduction classifies the lapse equation. Ten metric components, four
-    equations, and a coupling that can turn two hyperbolic equations into a system
-    that is neither: the page states all of that, because a map whose hardest case is
-    argued honestly is worth more than one that claims a four-equation system falls
-    out of a two-variable test. This checks the qualifier survives an edit.
+    """The reduction classifies the lapse equation only, and the page has to say
+    so: ten metric components and a coupling that can turn two hyperbolic equations
+    into neither.
     """
     page = (map_book().docs / CHOOSING / "index.md").read_text(encoding="utf-8")
     section = re.sub(r"\s+", " ", page[page.index("## The same equations, classified") :])
@@ -957,18 +774,8 @@ def test_the_relativity_claim_says_what_it_is_a_reduction_of():
 
 
 def test_the_a_to_z_is_a_contents_table_and_a_section_per_class():
-    """The A–Z is an index, so it is laid out like one: contents, then sections.
-
-    It was five four-column tables until 2026-10-27, which put a name, a class, a
-    formula and a sentence of price on one line. A table is for comparing values down
-    a shared column, and those rows were records: at 390px the table was 650px wide in
-    a 358px box and 45% of it was off screen. The page is now a contents table whose
-    class names jump to five sections, and inside a section each method is a heading,
-    its class as a link, the step, and the price — the same on a phone as on a desktop,
-    with nothing hidden and no labels needed to say which field is which.
-
-    The anchors are asserted as well as the order, because a contents table that jumps
-    nowhere is worse than no contents table.
+    """The A–Z is a contents table jumping to five sections, and inside a section
+    each method is a heading with a class link, a step and a price.
     """
     text = (map_book().docs / "techniques" / "index.md").read_text(encoding="utf-8")
     sections = re.findall(r'<a id="([\w-]+)"></a>\n\n## (.+)', text)
@@ -1013,12 +820,8 @@ TERM_DEFINITIONS = {
 
 
 def test_a_term_is_defined_where_the_book_first_uses_it():
-    """A table cell has no room for a definition, so the definition comes first.
-
-    Each of these five words was once used before a page could explain it, always
-    inside a table or a price line. The test reads the page and fails if the first
-    occurrence is not the sentence that defines it.
-    """
+    """A table cell has no room for a definition, so each of these words is
+    defined where the page first uses it."""
     for slug, (term, definition) in TERM_DEFINITIONS.items():
         relative = "index.md" if slug == "index" else f"{slug}/index.md"
         page = map_book().docs / relative
@@ -1045,10 +848,8 @@ def _maximiser(expr):
     return sp.solve(sp.diff(expr, x), x)[0]
 
 
-# Each entry: the regex that captures the number the page prints, and the value
-# computed from the page's own statement of the problem. The two are compared, so a
-# page that rounds a number wrongly fails here — a typed literal would pass a test
-# that only looked for the string, which is exactly what item 152 was filed about.
+# Each entry: the regex capturing the number the page prints, and the value computed
+# from the page's own statement of the problem. A page that rounds wrongly fails.
 WORKED_NUMBERS = {
     "optimisation": (
         r"to zero gives\s+\$x=([-\d/]+)\$",
@@ -1080,13 +881,8 @@ WORKED_NUMBERS = {
 
 
 def test_every_class_page_works_one_number():
-    """A class page that only names methods is a glossary entry.
-
-    Each of the nine pages carries one worked line in *What it becomes on a
-    computer*. The number in it is parsed from the page and compared with the value
-    recomputed here from the page's own statement of the problem: an exact integer
-    or fraction must match exactly, and a decimal must be the correct rounding of
-    the computed value to the digits it prints.
+    """Each class page's one worked number is parsed from the page and compared
+    with the value recomputed here from the page's own statement of the problem.
     """
     for slug, (pattern, value) in WORKED_NUMBERS.items():
         page = (map_book().docs / slug / "index.md").read_text(encoding="utf-8")
@@ -1108,7 +904,7 @@ def test_every_class_page_works_one_number():
 
 
 def test_a_level_11_4_points_at_the_fit_it_does_not_derive():
-    """Item 141: the course uses a line, and the working is one link away."""
+    """The course uses the least-squares line and links the working one hop away."""
     text = (
         books.repo_root()
         / "books"
@@ -1124,13 +920,9 @@ def test_a_level_11_4_points_at_the_fit_it_does_not_derive():
 
 
 def test_the_nine_kinds_table_is_marked_for_cards_and_labels_every_cell():
-    """Item 158: the table is the page's central artefact, and it was 544px in a 358px box.
-
-    Below 60rem a row becomes a card, which only works because every cell arrives
-    carrying its column's heading as `data-label` and the table carries `table--cards`.
-    Both come from the `<!-- table: cards -->` line above it, so the marker is the thing
-    to hold: without it the table silently goes back to being a sideways-scrolled grid
-    on a phone, and no other check would notice.
+    """Below 60rem a row becomes a card only because of the `<!-- table: cards -->`
+    marker above the table; without it the table silently scrolls sideways on a
+    phone and no other check notices.
     """
     book = map_book()
     home = (book.docs / "index.md").read_text(encoding="utf-8")
@@ -1142,16 +934,10 @@ def test_the_nine_kinds_table_is_marked_for_cards_and_labels_every_cell():
 
 @pytest.mark.parametrize("slug", CLASSES)
 def test_a_class_page_prints_its_registry_signature_verbatim(slug):
-    """Item 159: nine signatures existed in eighteen wordings, and two disagreed.
+    """Each class page prints its registry signature verbatim: `:::class` prints the
+    same sentence elsewhere, and two wordings would define the class twice.
 
-    The registry's `signature` is what a `:::class` link prints in another book; the
-    class page opened with the same sentence written again. `root`'s registry line said
-    the rule "bends with the answer" and its page did not, so a reader who followed the
-    link met a page that defined the class differently.
-
-    The sentence is now the registry's, verbatim, and the page wraps it after "You have
-    one of these when". Whitespace is normalised because the page wraps its lines and
-    the registry does not; nothing else about the string is allowed to differ.
+    Whitespace is normalised because the page wraps its lines and the registry does not.
     """
     book = map_book()
     entry = next(page for page in book.pages if page["path"].startswith(f"{slug}/"))
@@ -1174,8 +960,8 @@ def test_a_one_word_edit_on_either_side_is_caught():
 
 
 def test_the_class_directive_capitalises_the_stored_signature():
-    """Stored lowercase because a page prints it after "…when"; capitalised where it
-    stands alone. The stored string is what both places compare, which is the point."""
+    """Stored lowercase because a page prints it after "…when"; capitalised where
+    it stands alone."""
     from textbook.hooks import classes
 
     html = classes.render({"title": "Root finding", "signature": "a rule bends.", "url": "/x/"})
@@ -1183,12 +969,8 @@ def test_the_class_directive_capitalises_the_stored_signature():
 
 
 def test_the_linear_system_list_is_one_list_and_the_definition_is_not_in_it():
-    """Item 161: the five situations are the reader's vocabulary, and they were split.
-
-    A definition landed between "Dense and small" and "Sparse and large", so the reader
-    met one item, a paragraph about a preconditioner, then the rest of the list — and
-    the definition sat where a reader scanning a list skips it. One list, and the
-    definition after it.
+    """The five situations are one list, with the preconditioner definition after
+    it rather than inside it where a scanning reader skips it.
     """
     page = (map_book().docs / "linear-system/index.md").read_text(encoding="utf-8")
     situations = [
@@ -1210,30 +992,21 @@ def test_the_linear_system_list_is_one_list_and_the_definition_is_not_in_it():
 
 
 def test_the_three_flags_are_defined_in_prose_not_in_a_table_cell():
-    """Item 166: a flag that changes the method in every class is not a cell.
-
-    The home page summarises the three in a table, and a table cell was the only place
-    any of them was defined: a reader skimming for "stiff" met a cell in a table of flags
-    they were not yet looking for. Each now has a paragraph, and the table stays as the
-    summary.
+    """A flag that changes the method in every class needs a paragraph; the home
+    page's table is the summary, not the only place a flag is defined.
     """
     book = map_book()
     home = (book.docs / "index.md").read_text(encoding="utf-8")
     assert "### The three flags, in words" in home
     for flag in ("**Non-linear.**", "**Stiff.**", "**Geometry not known in advance.**"):
         assert flag in home, f"the home page does not define {flag}"
-    # each definition is a paragraph, not the row it also appears in
     prose = home.split("### The three flags, in words", 1)[1]
     assert prose.count("\n\n") >= 6
 
 
 def test_discretise_is_defined_before_its_first_use_in_reading_order():
-    """Item 166: `discretise` was used 19 times in this book and defined nowhere.
-
-    Reading order is the registry's order — the order the sidebar shows — not the
-    alphabetical order of the files: the first page a reader meets that uses the word is
-    the page that has to define it.
-    """
+    """Reading order is the registry's order, and the first page that uses
+    `discretise` is the one that has to define it."""
     book = map_book()
     first = None
     for entry in book.pages:
@@ -1253,7 +1026,7 @@ def test_discretise_is_defined_before_its_first_use_in_reading_order():
 
 
 def test_stiff_is_the_flag_and_the_bush_has_a_stiffness():
-    """Item 166: one word, one meaning. `stiff` of a bush is the engineering sense."""
+    """One word, one meaning: `stiff` as a flag, never of a bush or a spring."""
     book = map_book()
     offenders = []
     for path in sorted(book.docs.rglob("*.md")):
@@ -1264,11 +1037,8 @@ def test_stiff_is_the_flag_and_the_bush_has_a_stiffness():
 
 
 def test_the_contents_list_is_derived_from_the_headings():
-    """Item 167: the list is the same list the ids come from, so it cannot rot.
-
-    Built from the rendered `<h2 id=…>` headings rather than typed, which is the only
-    reason a 22,773px page can carry an index that stays true when a section is added.
-    A page with four or fewer gets nothing: below that the list is furniture.
+    """The contents list is built from the rendered `<h2 id=…>` headings, so it
+    cannot rot when a section is added; a page with four or fewer gets nothing.
     """
     from textbook.hooks import contents
 
@@ -1281,9 +1051,8 @@ def test_the_contents_list_is_derived_from_the_headings():
     four = "".join(f'<h2 id="h{i}">Section {i}</h2>' for i in range(4))
     assert contents.render(four) == ""
 
-    # **Rendered for the page, not asked for by it.** The threshold and the directive
-    # disagreed once, and 767 pages carried the shape without the list; a page may still
-    # place it itself, and a page whose own index would duplicate it can opt out.
+    # The list is rendered for the page, not asked for by it; a page whose own index
+    # would duplicate it can opt out.
     book = map_book()
     techniques = (book.docs / "techniques/index.md").read_text(encoding="utf-8")
     assert techniques.count("\n## ") >= contents.MINIMUM, (
@@ -1301,13 +1070,9 @@ def test_the_contents_list_is_derived_from_the_headings():
 
 @pytest.mark.parametrize("slug", CLASSES)
 def test_a_class_page_offers_a_property_keyed_way_into_its_techniques(slug):
-    """Item 168: a reader arrives holding a model, and the table was keyed by method.
-
-    The method-keyed table answers "what does Newton do?"; a reader holding "sparse and
-    symmetric" has to read eleven rows to find the two that fit. The property table comes
-    first and is keyed by the page's own property names, so recognition comes before
-    recall — and every method in the method table has to appear in it, or the two lists
-    have drifted.
+    """A property-keyed table comes before the method-keyed one, so a reader
+    holding "sparse and symmetric" can recognise before recalling; every method in
+    the second table appears in the first.
     """
     page = (map_book().docs / slug / "index.md").read_text(encoding="utf-8")
     assert "| what your model is | the methods that fit | the price |" in page, slug
@@ -1329,12 +1094,8 @@ def test_a_class_page_offers_a_property_keyed_way_into_its_techniques(slug):
 
 @pytest.mark.parametrize("slug", CLASSES)
 def test_a_class_page_names_the_class_it_is_most_often_mistaken_for(slug):
-    """Item 169: classification is learned by discriminating near-misses.
-
-    `worked-case` takes one mechanism and five kinds — the right direction. Nothing took
-    one kind and the look-alike a reader will confuse it with, so the map had one axis
-    ("which box am I in") and not the second ("which neighbouring box will I mistake this
-    for"). Each page now carries a **this, not that** row.
+    """Classification is learned by discriminating near-misses: each page carries a
+    **this, not that** row linking the look-alike it is most often confused with.
     """
     book = map_book()
     page = (book.docs / slug / "index.md").read_text(encoding="utf-8")
@@ -1344,8 +1105,7 @@ def test_a_class_page_names_the_class_it_is_most_often_mistaken_for(slug):
     assert match, f"{slug} has no look-alike row with a link"
     title = next(e["title"] for e in book.pages if e["path"].startswith(f"{slug}/"))
     assert match.group(1).strip().lower() == title.lower(), (slug, match.group(1))
-    # **The neighbour is a hop, not a word.** The page names it and links it, and the
-    # target is the class whose title it used — the repo's own rule for a lookup.
+    # The neighbour is a hop, not a word: the link text is the class title.
     classes = {
         e["path"].split("/")[0]: e["title"]
         for e in book.pages
@@ -1371,12 +1131,8 @@ def test_every_class_names_a_different_look_alike():
 
 
 def test_symptoms_asks_the_reader_to_classify_ten_systems():
-    """Item 170: the systems are written and linked; asking them back is retrieval.
-
-    `Systems that live here` lists 64 systems across nine pages, and on `symptoms` the
-    reader is already holding a wrong answer — the one moment they are most motivated.
-    Ten natively-disclosed questions, the system as the summary and the class as the
-    answer, turn the list into practice with feedback and need no script.
+    """`Systems that live here` lists the systems; asking them back on `symptoms`,
+    the moment the reader holds a wrong answer, turns the list into retrieval.
     """
     book = map_book()
     page = (book.docs / "symptoms/index.md").read_text(encoding="utf-8")
@@ -1391,7 +1147,6 @@ def test_symptoms_asks_the_reader_to_classify_ten_systems():
     for summary, label, slug in questions:
         assert label in classes and classes[label] == slug, f"{summary!r} names {label!r}"
 
-    # every question's system is one the class page actually lists
     for summary, _label, slug in questions:
         systems = re.search(
             r"## Systems that live here\n(.*?)\n## ",
@@ -1408,11 +1163,8 @@ def test_symptoms_asks_the_reader_to_classify_ten_systems():
 
 
 def test_the_name_index_lists_every_method_once_and_links_its_entry():
-    """Item 173: the A–Z is entered by name and sorted by family, so a name had no route.
-
-    The index is generated from the page's own `h3` anchors, sorted by display name and
-    grouped by initial letter. Every entry appears exactly once, and every link resolves to
-    an anchor the page carries — the two ways an index rots.
+    """The A–Z is entered by name and sorted by family, so the name index is
+    generated from its own `h3` anchors: every method once, and every link resolves.
     """
     from textbook.hooks import contents
 
@@ -1420,7 +1172,6 @@ def test_the_name_index_lists_every_method_once_and_links_its_entry():
     page = (book.docs / "techniques/index.md").read_text(encoding="utf-8")
     assert ":::method-index" in page
 
-    # build the same page the hook sees, from the method headings it carries
     headings = re.findall(r'<a id="([\w-]+)"></a>\n+### (.+)', page)
     assert len(headings) >= 20, f"only {len(headings)} method headings found"
     html = "".join(f'<h3 id="{anchor}">{title}</h3>' for anchor, title in headings)
@@ -1429,17 +1180,13 @@ def test_the_name_index_lists_every_method_once_and_links_its_entry():
     for anchor, _title in headings:
         assert nav.count(f'href="#{anchor}"') == 1, f"{anchor} appears {nav.count(f'href=\"{anchor}\"')} times"
 
-    # sorted by display name, within and across letters
     names = [re.sub(r"<[^>]+>", "", n) for n in re.findall(r'href="#[^"]+">([^<]+)</a>', nav)]
     assert names == sorted(names, key=str.lower), "the index is not alphabetical"
 
 
 def test_the_system_index_is_derived_from_the_class_pages():
-    """Item 174: 64 systems were written and linked, and nothing went system → class.
-
-    A reader holding "incompressible flow" had to guess which of nine pages listed it.
-    The index is built from the class pages' own *Systems that live here* lists, so adding
-    a system to a class page adds it here with no second edit — and the test counts both.
+    """The system index is built from the class pages' own *Systems that live here*
+    lists, so adding a system to a page adds it here with no second edit.
     """
     from textbook import classmap
     from textbook.hooks import systems
@@ -1478,8 +1225,7 @@ def test_the_system_index_is_derived_from_the_class_pages():
     page = (book.docs / "systems/index.md").read_text(encoding="utf-8")
     assert ":::systems" in page
 
-    # **The three places are one promise**: the registry lists the page, the home page
-    # offers it as a way in, and the heading counts what it lists.
+    # The registry, the home page's ways-in list and the heading's count are one promise.
     registry = (book.root / "map.yaml").read_text(encoding="utf-8")
     assert "path: systems/index.md" in registry, "the index is not in map.yaml"
     home = (book.docs / "index.md").read_text(encoding="utf-8")
@@ -1494,21 +1240,13 @@ def test_the_system_index_is_derived_from_the_class_pages():
     assert "systems/index.md" in section, "the ways-in list does not offer the index"
 
 
-#: A system is a name, not a paragraph. The catalogue's median entry is 58 characters, and
-#: the three that were over this were the ones whose cell had become a page in a table:
-#: 342 characters of explanation of one Jacobian, sat beside sixty systems that are a noun
-#: phrase. The rule is measured, not chosen: 120 leaves room for a name and one clause,
-#: which is what the longest honest row (111, linear stability of a flow) needs.
+#: A system is a name, not a paragraph: 120 leaves room for a name and one clause.
 MAX_SYSTEM = 120
 
 
 def test_a_system_entry_is_a_name_not_a_paragraph_with_markup():
-    """The index prints plain text, so it must be given plain text.
-
-    Two failures were live when this was written, and both were the derived page doing
-    what a derived page does — inheriting the source's raw characters. One bullet carried
-    ``**161 are not zero**`` and another a ``code span``; the class page rendered them,
-    and the index printed the asterisks and the backticks to the reader.
+    """The index prints plain text, so a derived entry may carry no markdown the
+    class page would have rendered, and must stay a name rather than a paragraph.
     """
     from textbook import config as cfg
     from textbook.hooks import systems
@@ -1533,12 +1271,9 @@ def test_a_system_entry_is_a_name_not_a_paragraph_with_markup():
 
 @pytest.mark.parametrize("slug", CLASSES)
 def test_a_single_method_in_a_property_table_is_a_link(slug):
-    """Item 178: the property table named 55 methods and linked none.
-
-    The sentence between the two tables says they are the same list, and only the second
-    one was clickable. **The rule is the asymmetry**: a cell naming one method links it —
-    one hop and no more — and a cell naming several stays text, because four links in one
-    cell is link soup at 390px and the method table below carries every hop.
+    """A cell naming one method links it; a cell naming several stays text, because
+    four links in one cell is link soup at 390px and the method table below carries
+    every hop.
     """
     book = map_book()
     page = (book.docs / slug / "index.md").read_text(encoding="utf-8")
@@ -1552,8 +1287,6 @@ def test_a_single_method_in_a_property_table_is_a_link(slug):
     }
 
     def normalise(text: str) -> str:
-        # A parenthetical tail is part of a name, not a second one:
-        # `Sparse direct (Cholesky, LU)` is one entry, `Sparse direct (...)`.
         return re.sub(r"[()]", "", text.lower()).strip()
 
     def target(name: str) -> str | None:
@@ -1596,19 +1329,14 @@ def test_a_single_method_in_a_property_table_is_a_link(slug):
 
 
 def _technique_aliases() -> dict[str, str]:
-    """Every name the A–Z gives a method, mapped to its anchor.
-
-    The heading is the name, and its commas and brackets name the same method again:
-    `Multigrid, algebraic multigrid (AMG)` is three ways to say one entry, and a symptom
-    fix writes whichever comes to hand.
+    """Every name the A–Z gives a method, mapped to its anchor: the heading, plus
+    its capitalised bracketed tail, since a symptom fix writes whichever comes to hand.
     """
     page = (map_book().docs / "techniques/index.md").read_text(encoding="utf-8")
     aliases: dict[str, str] = {}
     for anchor, heading in re.findall(r'<a id="([\w-]+)"></a>\n+### (.+)', page):
-        # The heading's first comma-segment is the name. A parenthetical tail names the
-        # same method again only when it is capitalised — `(AMG)`, `(SVD)` — because a
-        # lowercase one is a qualifier: `Riemann solvers (…, exact)` is not a method
-        # called "exact", and "exact" as an alias made a false positive.
+        # A capitalised parenthetical tail names the method again — `(AMG)`, `(SVD)`;
+        # a lowercase one is a qualifier, and "exact" was a false positive.
         parts = [heading.split(",")[0]]
         parts += [p for p in re.findall(r"\(([^)]*)\)", heading)
                   if re.match(r"^[A-Z]", p.strip())]
@@ -1621,11 +1349,9 @@ def _technique_aliases() -> dict[str, str]:
 
 
 def test_a_symptom_fix_that_names_a_technique_links_it():
-    """Item 179: 103 rows, 0 fix cells containing a link, 46 naming no entry.
-
-    A row that says "Multigrid, or AMG" sends the reader back to the A–Z to find by hand
-    what the page has already named. The fix cells that name an entry now link it, on both
-    pages, and this is what keeps a new row from arriving as text.
+    """A fix cell that names an A–Z entry links it, on the symptom index and on
+    every class page, so a reader does not go back to the A–Z to find a name the page
+    already wrote.
     """
     aliases = _technique_aliases()
     pages = [map_book().docs / "symptoms" / "index.md"] + [
@@ -1636,8 +1362,7 @@ def test_a_symptom_fix_that_names_a_technique_links_it():
     linked = 0
     for path in pages:
         text = path.read_text(encoding="utf-8")
-        # **Only the symptom tables.** A class page's *technique* table also ends in a
-        # sentence naming a method, and its first column already carries the link.
+        # Only the symptom tables: a technique table's first column already links.
         if path.parent.name != "symptoms":
             text = text[text.index("## What goes wrong") :]
             following = text.find("\n## ", 3)

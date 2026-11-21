@@ -1,9 +1,5 @@
 // Tier-1 guided investigation: direct and inverse proportion.
 // Predict -> Test -> Explain.
-//
-// The scaffolding — the surface, its accessible name, the controls, the live
-// readout, the redraw — comes from `kit.js`. What is left here is the drawing and
-// the sentence, which are the parts that differ from every other figure.
 import { panel, slider, toggle, react } from "./kit.js";
 
 export function mount(el) {

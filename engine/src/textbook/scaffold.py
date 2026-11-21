@@ -1098,8 +1098,7 @@ def build_nav_list(
             # section title already says what it is, and "1.1 The question / Learn"
             # repeats the only kind the book has. The section becomes the link. A
             # section that also has depth pages keeps a list, because those pages
-            # need somewhere to sit; its own page is then called Overview. This is
-            # T1 in research/review/maths-applied-and-numerical-methods.md.
+            # need somewhere to sit; its own page is then called Overview.
             label = f"{s['id']} {s['title']}"
             if len(kinds) == 1 and len(section_children) == 1:
                 children.append({label: next(iter(section_children[0].values()))})

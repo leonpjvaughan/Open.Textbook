@@ -5,13 +5,6 @@
 // check it here, then to explain why the graph curves once it is past the limit. So
 // the figure has to make the *bend* visible: the straight part and the curved part
 // are drawn as separate paths, and the marker moves along whichever one applies.
-//
-// Nothing here carries a colour. The two parts of the graph use different line
-// styles as well as different classes, so the distinction survives a monochrome
-// bundle and does not depend on colour alone.
-//
-// The scaffolding — the panel, its accessible name, the slider, the readout and the
-// redraw — comes from `kit.js`. What is left is the drawing and the sentences.
 import {
   fmt,
   label,

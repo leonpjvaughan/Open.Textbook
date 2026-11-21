@@ -4,11 +4,6 @@
 // before moving the sliders, then to explain why it cannot rise above 100 per
 // cent. The reader sets the total input power and the useful output power; the
 // wasted power is what is left.
-// Colours come from CSS classes so the figure adapts to dark mode.
-//
-// The scaffolding — the surface, its accessible name, the sliders, the live
-// readout and the redraw — comes from `kit.js`. What is left here is the drawing
-// and the sentences, which are the parts that differ from every other figure.
 import { SIZE, label, panel, react, slider } from "./kit.js";
 
 export function mount(el) {

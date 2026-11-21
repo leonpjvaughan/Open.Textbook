@@ -5,12 +5,6 @@
 // A circle of radius a about C marks every place the vertex B can sit on the ray
 // from A, so the number of triangles is read from the picture rather than
 // asserted. Predict, Test and Explain belong to the page; this module is the Test.
-//
-// Pure HTML and SVG, an ES module, no colour of its own: the fig-* classes carry
-// the theme. Runtime text is plain text, never TeX.
-//
-// The scaffolding — the surface, its accessible name, the sliders, the live
-// readout and the redraw — comes from `kit.js`.
 import { SIZE, label, panel, react, slider } from "./kit.js";
 
 const SIDE_B = 5; // the fixed side AC, opposite angle B

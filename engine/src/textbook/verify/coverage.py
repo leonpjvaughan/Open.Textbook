@@ -1,8 +1,6 @@
 """Does every equation a question plays come from the booklet the reader has?
 
-A physics question must not need an equation the reader is not shown. That is
-`research/curriculum/physics-verifier-gaps.md` §3.6, and this is the check it asks
-for — but **not** the check it originally proposed.
+A physics question must not need an equation the reader is not shown. This is that check — declaration-first, not inference.
 
 ## Why it is declaration-first
 

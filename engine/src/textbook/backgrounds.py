@@ -6,9 +6,8 @@ collection's own rule is that decoration competes with the practice budget
 mathematics. What lives here is the *seam*, so adding one later is a registry
 entry and a config line rather than a change to the shell.
 
-Measured before deciding, not after: `research/design/background-effects.md`
-has the numbers, and the finding that decided the shape is that a canvas or
-WebGL effect is *cheaper* than a CSS animation because it can stop.
+The finding that decided the shape: a canvas or WebGL effect is *cheaper* than a
+CSS animation because it can stop.
 
 ## Scopes, narrowest first
 
@@ -48,8 +47,7 @@ from __future__ import annotations
 #:
 #: Empty on purpose. The first entry lands with the first animation, and its
 #: module must: read its colours from `--tb-*` on the page (a canvas cannot read
-#: a CSS custom property, so it takes them from computed style — see
-#: `research/design/background-effects/palette.js`), stop on
+#: a CSS custom property, so it takes them from computed style), stop on
 #: `prefers-reduced-motion`, pause when the tab is hidden or the slot is
 #: offscreen, and leave the page complete with scripting off.
 ANIMATIONS: dict[str, str] = {}

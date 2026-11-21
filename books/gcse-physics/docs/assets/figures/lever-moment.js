@@ -4,11 +4,6 @@
 // balances a load before moving the sliders, then to explain why the effort must
 // grow as it moves closer to the pivot. The reader sets the load and the two
 // distances; the figure works out the effort that balances the lever.
-// Colours come from CSS classes so the figure adapts to dark mode.
-//
-// The scaffolding — the surface, its accessible name, the sliders, the live
-// readout and the redraw — comes from `kit.js`. What is left here is the drawing
-// and the sentence, which are the parts that differ from every other figure.
 import {
   label,
   panel,

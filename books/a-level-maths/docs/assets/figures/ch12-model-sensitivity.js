@@ -1,12 +1,6 @@
 // Guided investigation for 12.3: how the base rate changes the meaning of a
 // positive result. The reader sets the prevalence and the false-positive rate,
 // and reads the counts of true and false positives in 100000 people.
-// Pure HTML and SVG, no framework and no colour of its own: the fig-* classes
-// carry the theme. Runtime text is plain text, never TeX.
-//
-// The scaffolding — the surface, its accessible name, the two sliders, the live
-// readout and the redraw — comes from `kit.js`. The ratio line is the figure's own
-// second live region, so it stays here.
 import { SIZE, label, panel, react, slider } from "./kit.js";
 
 const DETECT = 0.95;

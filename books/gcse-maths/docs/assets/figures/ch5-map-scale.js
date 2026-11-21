@@ -1,8 +1,4 @@
 // Guided investigation: predict how the real distance changes with map length.
-//
-// The scaffolding — the surface, its accessible name, the slider, the live
-// readout, the redraw — comes from `kit.js`. What is left here is the drawing and
-// the sentence, which are the parts that differ from every other figure.
 import { SIZE, label, panel, react, slider } from "./kit.js";
 
 export function mount(el) {

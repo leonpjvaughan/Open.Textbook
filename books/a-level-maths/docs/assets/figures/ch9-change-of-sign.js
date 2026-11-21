@@ -6,14 +6,6 @@
 // crossings, and a function that is not continuous. This figure lets the reader
 // find both rather than be told about them: slide the ends until the signs agree
 // while the curve still crosses twice.
-//
-// Plain HTML, SVG and two range inputs, so it is keyboard-operable with no
-// framework, and no colour of its own: the fig-* classes carry the theme. Runtime
-// text is plain text, never TeX.
-//
-// The scaffolding — the surface, its accessible name, the sliders, the live
-// readout and the redraw — comes from `kit.js`. The verdict line is the figure's
-// own text, so it stays here.
 import { panel, slider, react } from "./kit.js";
 
 const X_MIN = -2.5;

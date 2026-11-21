@@ -5,15 +5,6 @@
 // reader sets the power; the figure draws temperature against time for 1.0 kg of
 // ice, from -20 degrees Celsius to steam, and reads out the energy and the time
 // for each stage.
-//
-// Colours come from CSS classes, so the figure adapts to every bundle and both
-// schemes. No maths is injected at runtime: every value is plain text.
-//
-// The scaffolding — the surface, its accessible name, the slider, the live
-// readout and the redraw — comes from `kit.js`. The two preset buttons are not
-// one of the kit's controls, so they are built here inside the kit's control
-// column. What is left is the drawing and the sentence, which are the parts that
-// differ from every other figure.
 import {
   label,
   panel,

@@ -9,9 +9,6 @@
 // The circle carries its meaning in its shape, not its colour: an open circle is a
 // ring and a closed circle is a disc. A reader who cannot tell the colours apart can
 // still tell the two apart.
-//
-// Nothing here carries a colour. Every shape uses a `fig-*` class and every word a
-// `text-*` class, so the figure follows the reader's theme in both schemes.
 import { circle, label, line, numberLine, panel, path, react, chooser, slider } from "./kit.js";
 
 const SIGNS = {

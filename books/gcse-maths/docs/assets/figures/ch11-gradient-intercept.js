@@ -4,11 +4,6 @@
 // line for a negative m and the effect of c before touching a slider, then to
 // explain why c moves the line without changing its steepness. The figure draws
 // the rise and the run as a triangle, so the gradient is a picture rather than a
-// formula. Colours come from CSS classes, so the figure adapts to every bundle
-// and both schemes.
-//
-// The scaffolding — the surface, its accessible name, the two sliders, the live
-// readout, the redraw, the number formatting — comes from `kit.js`.
 import { SIZE, fmt, label, panel, react, slider } from "./kit.js";
 
 export function mount(el) {

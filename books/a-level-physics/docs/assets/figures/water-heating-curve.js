@@ -6,14 +6,6 @@
 // change of state at melting and at boiling. The boiling plateau is far longer
 // than the melting one, because the specific latent heat of vaporisation is much
 // larger than the specific latent heat of fusion.
-//
-// Colours come from CSS classes, so the figure adapts to every bundle and to
-// both schemes. No colour literal appears here, and no runtime LaTeX: the readout
-// is plain HTML.
-//
-// The scaffolding — the surface, its accessible name, the sliders, the live
-// readout and the redraw — comes from `kit.js`. What is left here is the drawing
-// and the sentences, which are the parts that differ from every other figure.
 import {
   label,
   panel,

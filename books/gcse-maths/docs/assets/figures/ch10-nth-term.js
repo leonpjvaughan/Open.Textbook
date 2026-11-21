@@ -4,11 +4,6 @@
 // slider moves, then to explain why changing the constant moves every term while
 // the common difference sets the gaps. The figure plots the first six terms
 // against their positions and joins them with a straight line, so a change to
-// the rule is a visible change to the picture. Colours come from CSS classes, so
-// the figure adapts to every bundle and both schemes.
-//
-// The scaffolding — the surface, its accessible name, the two sliders, the live
-// readout, the redraw — comes from `kit.js`.
 import { SIZE, fmt, label, panel, react, slider } from "./kit.js";
 
 export function mount(el) {

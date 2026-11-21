@@ -4,11 +4,6 @@
 // half-lives, then to test it by changing the half-life and the starting count
 // rate, then to explain why the curve never reaches zero. The smooth curve is the
 // expected average: a real count is random, and the page makes that point.
-// Colours come from CSS classes so the figure adapts to dark mode.
-//
-// The scaffolding — the surface, its accessible name, the sliders, the live
-// readout and the redraw — comes from `kit.js`. What is left here is the drawing
-// and the sentence, which are the parts that differ from every other figure.
 import { SIZE, label, panel, react, slider } from "./kit.js";
 
 export function mount(el) {

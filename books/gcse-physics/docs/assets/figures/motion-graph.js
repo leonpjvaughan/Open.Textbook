@@ -5,11 +5,6 @@
 // time makes the area four times as large. The reader sets a steady acceleration
 // and a time; the graph draws the straight line, the gradient triangle and the
 // area under the line.
-// Colours come from CSS classes so the figure adapts to dark mode.
-//
-// The scaffolding — the surface, its accessible name, the sliders, the live
-// readout and the redraw — comes from `kit.js`. What is left here is the drawing
-// and the sentence, which are the parts that differ from every other figure.
 import {
   label,
   panel,

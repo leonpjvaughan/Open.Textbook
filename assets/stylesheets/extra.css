@@ -1,13 +1,6 @@
-/* The shared design system: components and the token plumbing.
- *
- * No colour is defined here. Colours come from a **theme bundle**
- * (assets/stylesheets/themes.css, generated from themes/*.yaml), and a book's
- * subject tint arrives as --tb-book-* values that the bundle composes in. This
- * file owns everything that is not a theme: the mapping onto Material's
- * variables, the figure and booklet components, and the house typography.
- *
- * See SHAPE.md, "Theme bundles".
- */
+/* The shared design system: components and the token plumbing. No colour is
+ * defined here: a theme bundle (themes/*.yaml) sets it, a book adds its
+ * --tb-book-* tint. See SHAPE.md, "Theme bundles". */
 
 :root {
   /* Scheme-independent, and not part of any bundle unless a bundle overrides it. */
@@ -23,15 +16,8 @@
   --tb-fig-accent: var(--tb-accent);
 }
 
-/* Tell the browser which way round the native widgets are, so a `<select>`, a
- * range track and a scrollbar are drawn for the scheme the reader chose. Without
- * it the platform default is light, and a figure's own control rendered as a
- * white box with black text on a dark page — measured, not assumed: every
- * `<select>` inside a figure computed `color: rgb(0, 0, 0)` and
- * `background-color: rgb(239, 239, 239)` in both schemes.
- *
- * `color-scheme` is the standard switch for this, and it is set from the same
- * attribute `prefs.py` writes before the first paint, so it never flashes. */
+/* Native widgets follow the reader's scheme. It is set from the same attribute
+ * `prefs.py` writes before the first paint, so it never flashes. */
 [data-md-color-scheme="default"] {
   color-scheme: light;
 }
@@ -39,28 +25,8 @@
   color-scheme: dark;
 }
 
-/* Map the tokens onto Material's variable names. Deliberately
- * scheme-independent: anything that differs between light and dark is a token,
- * set by a bundle.
- *
- * Only the variables a component here still reads are declared. The names began
- * as Material's, but the shared stylesheet and the booklet widget read them, and
- * themes.css keys its tokens off `[data-md-color-scheme]`, so the attribute and
- * the names it needs stay. Six Material-only variables were deleted with the
- * renderer — `--md-primary-fg-color--light`, `--md-accent-fg-color`,
- * `--md-typeset-a-color`, `--md-code-bg-color`, `--md-primary-bg-color` and
- * `--md-primary-bg-color--light` — because nothing read them any more.
- *
- * Two of those were fixes, not decoration: the dark-mode link and the header's
- * ink on the accent. Material's palette.css beat the bare
- * `[data-md-color-scheme]` selector at (0,2,0), so both had to be restated at
- * that specificity. Material is gone and nothing consumed them, so the
- * restatement went too. The fixes themselves survive where they are now made:
- * shell.css paints links from `--tb-link` (`a { color: var(--tb-link) }`) and the
- * masthead title from `--tb-ink`, both straight from the bundle with no
- * third-party rule to beat. The Settings dialog's focus ring still names
- * `--md-accent-fg-color` with `--tb-accent` as its fallback — the same value, so
- * it is unchanged. */
+/* Material's variable names survive because the shared stylesheet and the booklet
+ * widget read them. Scheme-independent: a bundle sets what differs. */
 [data-md-color-scheme] {
   --md-default-bg-color: var(--tb-paper);
   --md-default-fg-color: var(--tb-ink);
@@ -70,8 +36,7 @@
   --md-primary-fg-color: var(--tb-accent);
 }
 
-/* Typography: the faces themselves are bundle tokens; sizes are shared, so a
- * bundle changes the voice without changing the reading measure. */
+/* Typography: the faces are bundle tokens; the sizes are shared. */
 .md-typeset {
   font-family: var(--tb-font-body);
   font-size: 1.0625rem; /* ~17px */
@@ -86,16 +51,8 @@
   letter-spacing: -0.01em;
 }
 
-/* **The spacing says what belongs to what.** Measured before this block on one
- * Learn page: a heading sat 21px from its own paragraph and 21px from the
- * paragraph above it, and text→text was 17px — so the rhythm carried no hierarchy
- * at all. Three steps now: inside a section 8px, between paragraphs 14.4px,
- * between sections 22.4px.
- *
- * Scoped to `.md-typeset`, deliberately: the booklet panel, the contents card and
- * the print sheet set their own margins and must not inherit this ladder. Material's
- * own heading and paragraph margins are what these replace, so they are stated
- * rather than inherited. */
+/* The spacing says what belongs to what: tight inside a section, wider between
+ * sections. Scoped to `.md-typeset`; the booklet panel and print sheet differ. */
 .md-typeset h1 { margin: 0 0 0.5rem; }
 
 .md-typeset h2,
@@ -104,14 +61,10 @@
   margin: 1.4rem 0 0.5rem;
 }
 
-/* Not only the direct children: a paragraph inside `details` or a blockquote is
- * still prose, and a 17px gap next to a 14.4px one is the 1px staircase the item
- * asks to remove. */
+/* Not only the direct children: a paragraph inside `details` is still prose. */
 .md-typeset p { margin: 0 0 0.9rem; }
 
-/* A list and a blockquote are blocks, not words: they take the paragraph's
- * 14.4px underneath and Material's 1.17rem on top is replaced by the section gap,
- * so a heading introduces them as tightly as it introduces a paragraph. */
+/* A list is a block, not words: it takes the paragraph gap. */
 .md-typeset ul,
 .md-typeset ol {
   margin: 0 0 0.9rem;
@@ -132,45 +85,15 @@
   font-size: 1.05em;
 }
 
-/* A table is a grid of numbers at least as often as it is a paragraph of words.
- *
- * Nothing here styled a cell, so the user-agent default was what every reader
- * saw. Measured on the built site, a `td` computed `padding: 1px`:
- *
- *     { "td": { "padding": "1px", "text-align": "start" },
- *       "th": { "padding": "1px", "text-align": "center" } }
- *
- * Text-heavy tables survive that, because each column is wide enough that its
- * own text separates it from the next. A table of short numbers does not: the
- * worked table on `reading-the-class` printed `1 0 1 −4` as one blob, and the
- * fix at the time was local, merging three cells into one. This is the
- * collection-wide rule instead.
- *
- * 0.4em keeps a row about as tall as a line of the surrounding text, and 0.6em
- * is the gutter a column needs to read as a column. The padding comes out of
- * the content box, so the one table with fixed percentage widths — the A–Z's
- * `method-index` in `books/numerical-methods` — was re-measured at 1024px and
- * 1280px rather than assumed. */
+/* The user-agent cell padding is 1px, which welds short numbers into one blob.
+ * 0.4em keeps a row about a line tall; 0.6em is the gutter between columns. */
 .md-typeset table th,
 .md-typeset table td {
   padding: 0.4em 0.6em;
 }
 
-/* A table marked `<!-- table: cards -->` becomes one card per row on a phone.
- *
- * The marker is read by the engine (`wrap_tables` in `pipeline.py`), which also puts each
- * column's heading on its cell as `data-label`; this is the presentation half of that
- * pair. It lived only in `books/numerical-methods/`'s local stylesheet, so the marker was
- * **inert in every other book** — the engine emitted `table--cards`, nothing styled it,
- * and the page looked exactly as it had before the edit. Measured on
- * `maths-applied` §1.5: 473px inside a 358px box at 390px, with the fifth column
- * starting at x=404 — the column whose reading is the section's point, entirely off
- * screen, with no visible sign that the table scrolls.
- *
- * The layout is shared because the marker is: any book may mark a table whose rows are
- * records, and the answer must not depend on which book it is in. What stays local is
- * the part that is about a particular table — the nine-kinds grid's column widths and its
- * wider content column are in that book's own stylesheet. */
+/* A table marked `<!-- table: cards -->` becomes one card per row on a phone. The
+ * engine puts each column's heading on its cell as `data-label`; this paints it. */
 @media (max-width: 60rem) {
   .md-typeset table.table--cards,
   .md-typeset table.table--cards tbody,
@@ -190,15 +113,8 @@
     white-space: nowrap;
   }
 
-  /* **A label and its value on one line.** Stacking the label above its value cost a
-   * line per field, and four stacked lines cannot fit a card: the tallest card measured
-   * 254px and the floor before any prose wrapped was 185. Inline, the card is the
-   * heading plus the fields' own wrapped lines.
-   *
-   * **The value is the prose's own size.** The cell was 0.78rem (12.48px) on 1.3, with
-   * 0.8px of row padding, against 17px prose — so on a phone the numbers a reader came
-   * for were the smallest text on the page. Measured at 390 after the change: 16px
-   * cells with 4.8px rows, and the card grows from 150px to 227px. */
+  /* A label and its value on one line, at the prose's own size: stacking costs a
+   * line per field, and the values were the smallest text on the page. */
   .md-typeset table.table--cards tr {
     padding: 0.15rem 0;
     border-top: 1px solid var(--tb-rule);
@@ -207,9 +123,6 @@
   .md-typeset table.table--cards tr:first-child { border-top: 0; }
 
   .md-typeset table.table--cards td {
-    /* 0.3rem = 4.8px of vertical padding: the row's own 0.15rem sits on top of it,
-     * so the measured cell padding alone clears 4.5px, which is the floor the item
-     * asks for rather than a gap the two declarations only add up to. */
     padding: 0.3rem 0;
     border: 0;
     font-size: 1rem;
@@ -223,9 +136,7 @@
     font-size: 0.85rem;
   }
 
-  /* The first cell is the card's heading, so its label would only repeat its value.
-   * On the nine-kinds grid that value is a kind's name; on §1.5's ladder it is a
-   * stiffness, which is no worse a heading. It stays one step above the values. */
+  /* The first cell is the card's heading, so its label would only repeat its value. */
   .md-typeset table.table--cards td:first-child {
     font-size: 1.0625rem;
     font-weight: 600;
@@ -234,23 +145,9 @@
   .md-typeset table.table--cards td:first-child::before { content: none; }
 }
 
-/* Interactive figures read as instrument panels, not decoration.
- *
- * The tint is 4%, and it was 8% until the contrast of every figure token was measured
- * against the panel this rule produces rather than against the page's paper. The panel
- * is a *derived* surface — paper mixed with a little ink — and it is therefore darker
- * than the paper, so the tint was quietly spending the margin the figure tokens need.
- * Measured over every bundle and both schemes:
- *
- *     tint   fig_accent  fig_warn  fig_good  fig_grid   (margin over the floor)
- *      8%       +0.02      +0.18     +0.06     +0.04
- *      4%       +0.41      +0.57     +0.44     +0.32
- *
- * At 8% the accent cleared the 4.5:1 text floor by two hundredths — a palette edit
- * anywhere near it would have broken it, and the failure would have looked like a
- * theme change rather than a contrast one. The border, not the tint, is what makes the
- * figure read as a panel, so 4% keeps the delineation and returns the margin.
- */
+/* Interactive figures read as instrument panels, not decoration. The tint is 4%:
+ * the panel is a derived surface, darker than the paper, and a stronger tint spends
+ * the contrast margin the figure tokens need. The border does the delineation. */
 .md-typeset maths-figure {
   display: block;
   max-width: 46rem;
@@ -267,18 +164,9 @@
   color: var(--md-default-fg-color--light);
 }
 
-/*
- * An explored diagram: `diagram()` in the kit.
- *
- * A part is at **full strength until the reader engages**, so a figure that nobody
- * explores looks exactly as it did before, and the audit that measures every figure's
- * paint measures the ordinary state. Once a part is chosen the rest dim, which is what
- * says "you are here" — and dimming by **opacity** rather than by a colour, so it works
- * in both schemes and against the panel without a token that could drift.
- *
- * The dim is deliberately below the contrast floor for a moment. That is the point of a
- * focus indicator: the active part is the legible one.
- */
+/* An explored diagram: every part is at full strength until the reader engages, so
+ * an unexplored figure looks as it always did. The rest then dim by opacity rather
+ * than by a colour, so it works in both schemes without a token that could drift. */
 .md-typeset maths-figure .fig-diagram.is-exploring .fig-part {
   opacity: 0.45;
 }
@@ -315,10 +203,8 @@
   font-weight: 600;
 }
 
-/* The short note on a book's home page. It is a `details` element, so the
-   summary is visible before it is opened and the full sentence is there for a
-   reader who wants it. The accent rule is the only emphasis: a warning icon or
-   a stronger colour would make a study companion look like a safety notice. */
+/* The short note on a book's home page. The accent rule is the only emphasis: a
+   warning icon or a stronger colour would make it look like a safety notice. */
 .md-typeset details.disclaimer {
   border-left: 3px solid var(--tb-accent);
   background: color-mix(in srgb, var(--tb-accent) 4%, transparent);
@@ -333,14 +219,9 @@
   margin: 0.45rem 0;
 }
 
-/* Preformatted text: a probability tree, a stem-and-leaf plot, a pseudocode
-   listing. Three things have to survive, and each is a rule here. The **line
-   breaks and the alignment** the author typed, which is why the block scrolls
-   rather than wrapping — a wrapped tree is a different tree. The **monospace
-   font**, because the columns only line up if every glyph is the same width. And
-   the **quiet box**, so a block reads as a block and not as a paragraph that
-   happens to have a different typeface. The background is the scheme's own
-   `--tb-code-bg`, so it follows the bundle and the reader's light/dark choice. */
+/* Preformatted text: a tree, a stem-and-leaf plot, a listing. The line breaks and
+   the alignment the author typed must survive, so the block scrolls rather than
+   wrapping — a wrapped tree is a different tree. */
 .md-typeset pre {
   margin: 1.1rem 0;
   padding: 0.7rem 0.9rem;
@@ -358,14 +239,11 @@
   font-family: var(--tb-font-mono);
   font-size: 0.85rem;
   line-height: 1.5;
-  /* `pre` already preserves newlines; `pre-wrap` must not be inherited from
-     anywhere, and `white-space: pre` states that the block is preformatted. */
+  /* `pre` preserves newlines; `pre-wrap` must not be inherited from anywhere. */
   white-space: pre;
 }
 
-/* Inline code is a name, not a listing: one word of a filename, a symbol, a term
-   a page is about. It gets the same mono font and a lighter box, and it may
-   break across a line because a name inside a sentence has to. */
+/* Inline code is a name, not a listing, and may break across a line. */
 .md-typeset :not(pre) > code {
   padding: 0.05em 0.3em;
   background: var(--tb-code-bg);
@@ -379,27 +257,21 @@
   font-family: var(--tb-font-mono);
 }
 
-/* Figure colours come from the scheme variables above, so every figure adapts to
-   dark mode and to a future palette change without editing the figure module. */
+/* Figure colours come from the tokens above, so a figure follows the bundle. */
 .fig-accent {
   fill: var(--tb-fig-accent);
   stroke: var(--tb-fig-accent);
-  /* So `fill: currentColor` resolves to this class's colour: `area()` asks for
-     it, and without this line a filled area takes the body's ink instead. */
+  /* So `fill: currentColor` resolves to this class's colour, as `area()` asks. */
   color: var(--tb-fig-accent);
 }
 .fig-warn {
   fill: var(--tb-fig-warn);
   stroke: var(--tb-fig-warn);
-  /* So `fill: currentColor` resolves to this class's colour: `area()` asks for
-     it, and without this line a filled area takes the body's ink instead. */
   color: var(--tb-fig-warn);
 }
 .fig-good {
   fill: var(--tb-fig-good);
   stroke: var(--tb-fig-good);
-  /* So `fill: currentColor` resolves to this class's colour: `area()` asks for
-     it, and without this line a filled area takes the body's ink instead. */
   color: var(--tb-fig-good);
 }
 .fig-ink {
@@ -415,11 +287,9 @@
   stroke: var(--tb-fig-accent);
   stroke-width: 2;
 }
-/* A `text-*` class is for words, and SVG text is painted with `fill`, not
-   `color`. Setting only `color` left every `<text class="text-accent">` painted
-   black — its initial fill — which is invisible on the dark scheme at 1.4:1.
-   Both properties are set, so the class means the same thing in HTML and in SVG.
-   `.fig-*` is for shapes: it sets `fill` and `stroke` for a line or an area. */
+/* A `text-*` class paints words, a `.fig-*` class paints shapes. SVG text is
+   painted with `fill`, not `color`, so both are set: `color` alone left `<text>`
+   black, its initial fill. */
 .text-accent {
   color: var(--tb-fig-accent);
   fill: currentColor;
@@ -437,21 +307,11 @@
   fill: currentColor;
 }
 
-/* ------------------------------------------------------------------ */
-/* Form controls inside a figure                                       */
-/* ------------------------------------------------------------------ */
+/* Form controls inside a figure. */
 
-/* A form control is a user-agent widget: without a rule it takes the platform's
-   colours, not the reader's theme. `color-scheme` (above) makes it follow light or
-   dark, which is not the same thing as following *our* light or dark — it gave a
-   figure's `<select>` `rgb(0, 0, 0)` on `rgb(239, 239, 239)` in the light scheme,
-   white on `rgb(107, 107, 107)` in the dark one, and a `<input type="number">`
-   that was a white box sitting on a dark panel. None of it was wrong enough to
-   fail a contrast check and all of it looked like a different website.
-
-   So the controls are painted from the same tokens as everything else. `--tb-ink`
-   on `--tb-paper` is the same pairing as body text, so a control cannot be less
-   readable than the prose around it, in any bundle or either scheme. */
+/* A form control is a user-agent widget: `color-scheme` makes it follow light or
+   dark, not *our* light or dark. Painted from `--tb-ink` on `--tb-paper` instead,
+   the same pairing as body text, so it is never harder to read than the prose. */
 maths-figure select,
 maths-figure input:not([type="range"]):not([type="checkbox"]):not([type="radio"]),
 maths-figure button {
@@ -463,16 +323,14 @@ maths-figure button {
   padding: 0.15rem 0.35rem;
 }
 
-/* The dropdown list is painted by the platform from the option's own colours, and
-   a transparent background there means the platform picks — which is how black
-   text ends up on a dark list. */
+/* The platform paints the list from the option's own colours, so a transparent
+   background there would let it pick. */
 maths-figure option {
   color: var(--tb-ink);
   background-color: var(--tb-paper);
 }
 
-/* A range draws its track in `color` and its filled part in `accent-color`, so
-   both are set: the track is a gridline, and the filled part is the accent. */
+/* A range draws its track in `color` and its filled part in `accent-color`. */
 maths-figure input[type="range"] {
   accent-color: var(--tb-fig-accent);
   color: var(--tb-fig-grid);
@@ -487,23 +345,17 @@ maths-figure input[type="radio"] {
   accent-color: var(--tb-fig-accent);
 }
 
-/* A figure's own label is plain text with no class of its own, so it is given the
-   panel's ink here. `.readout` is deliberately *not* set: several figures colour
-   theirs with `text-accent`, and a rule in this file would out-rank that class and
-   repaint them all the same. */
+/* A figure's own label is plain text, so it takes the panel's ink here. `.readout`
+   is deliberately *not* set: figures colour theirs with `text-accent`, and a rule
+   here would out-rank that class. */
 maths-figure label {
   color: var(--tb-ink);
 }
 
-/* ------------------------------------------------------------------ */
-/* The "Prove it to me" affordance                                     */
-/* ------------------------------------------------------------------ */
+/* The "Prove it to me" affordance. */
 
-/* A claim the book states without proving links to the proof. The element is an
-   `<a>` and nothing else: the proof is a page, so the affordance works with
-   scripting off, and no dialog or panel is needed to reach it. The left border is
-   the accent rather than a colour of its own, so it follows the reader's bundle
-   and the subject tint, and `--tb-rule` keeps the rest quiet. */
+/* A claim stated without proof links to the proof. The element is an `<a>` and
+   nothing else, so the affordance works with scripting off. */
 .prove {
   margin: 1.3rem 0;
   padding: 0.7rem 0.95rem;
@@ -523,8 +375,7 @@ maths-figure label {
   font-weight: 600;
   color: var(--tb-fig-accent);
 }
-/* The arrow is drawn from the text rather than an icon file, so it cannot go
-   missing from a book's asset tree and it inherits the accent. */
+/* The arrow is text, so it cannot go missing from a book's asset tree. */
 .prove__ask::after {
   content: "\2192";
   margin-left: 0.3rem;
@@ -550,9 +401,8 @@ maths-figure label {
   content: " —";
 }
 
-/* The optional track. It is deliberately quieter than `prove`: a proof is a
-   promise kept, and depth is an offer. Same shape, softer rule, so a reader can
-   tell at a glance that the main thread continues without it. */
+/* The optional track. Deliberately quieter than `prove`: a proof is a promise
+   kept, and depth is an offer. Same shape, softer rule. */
 .deeper {
   margin: 1.3rem 0;
   padding: 0.7rem 0.95rem;
@@ -589,10 +439,8 @@ maths-figure label {
   color: var(--tb-ink-soft);
 }
 
-/* A named kind of problem. Quieter than `prove` and `deeper`, and its left border
-   is the rule colour rather than the accent: this is a pointer to a reference,
-   not a promise or an offer, and it should not compete with either. The kind's
-   name takes the accent, because that is the word the reader is looking for. */
+/* A named kind of problem. Quieter than `prove` and `deeper`, its border on the
+   rule colour: a pointer to a reference, not a promise or an offer. */
 .classlink {
   margin: 1.2rem 0;
   padding: 0.55rem 0.85rem;
@@ -630,9 +478,7 @@ maths-figure label {
   color: var(--tb-ink-soft);
 }
 
-/* ------------------------------------------------------------------ */
-/* Formulae & tables booklet                                           */
-/* ------------------------------------------------------------------ */
+/* Formulae & tables booklet. */
 
 .bk-fab {
   position: fixed;
@@ -646,9 +492,8 @@ maths-figure label {
   border: 1px solid var(--md-primary-fg-color--dark);
   border-radius: 999px;
   background: var(--md-primary-fg-color);
-  /* The label is knocked out of the accent fill, so it uses the bundle's
-   * dedicated on-accent ink, not the paper: a bundle's paper can sit too close
-   * to its own accent to read (omarchy light 4.34:1, gruvbox light 4.40:1). */
+  /* The label is knocked out of the accent fill, so it uses the bundle's dedicated
+   * on-accent ink: a paper can sit too close to its own accent to read. */
   color: var(--tb-accent-ink);
   font: 600 0.9rem/1 system-ui, sans-serif;
   cursor: pointer;
@@ -849,28 +694,16 @@ maths-figure label {
   box-shadow: none;
 }
 
-/* ------------------------------------------------------------------ */
-/* Print                                                               */
-/* ------------------------------------------------------------------ */
+/* Print. */
 
-/* Printing drops the browser chrome and the pointer. This block turns the page
- * into a sheet: no navigation furniture, one readable measure, and worked
- * examples that stay whole. It declares no colour, so a theme bundle and the
- * book tint still decide everything on paper exactly as they do on screen. */
+/* Printing drops the browser chrome and the pointer, and declares no colour, so
+ * the bundle still decides everything on paper. */
 @media print {
-  /* Navigation, search, tabs and footer are for a viewport, not a sheet. The
-   * booklet button and panel are fixed overlays, so without this they print
-   * over the text on every page.
-   *
-   * These are the BESPOKE shell's class names (templates/page.html), not
-   * Material's. The MkDocs shell was deleted and its `.md-header`/`.md-sidebar`/
-   * `.md-search` rules quietly stopped matching anything, so printing a page
-   * included the masthead, the sidebar and the search box. `.md-typeset` and
-   * `.md-content` stay because the content column still carries both: the
-   * reader-facing typography is shared with the landing page. */
+  /* The BESPOKE shell's class names (templates/page.html), not Material's. The
+   * booklet button and panel are fixed overlays, so without this they print over
+   * the text. `.md-typeset` and `.md-content` stay: the content column needs both. */
   .masthead,
-  /* The drawer as well as the nav: print shows the prose, and the summary would
-   * otherwise be the only part of a contents list left on the sheet. */
+  /* The drawer as well as the nav: the prose is what prints. */
   .nav-drawer,
   .sidebar,
   .search,
@@ -880,8 +713,6 @@ maths-figure label {
     display: none !important;
   }
 
-  /* The content column now has the whole width. Give it one measure and centre
-   * it, so line length on paper matches the screen rather than the sheet. */
   .layout {
     display: block;
     margin: 0;
@@ -892,15 +723,12 @@ maths-figure label {
     margin: 0 auto;
   }
 
-  /* A table wider than the page must read, not sit inside a scroll box that
-   * cannot scroll on paper. */
+  /* A scroll box cannot scroll on paper. */
   .md-typeset__scrollwrap,
   .table-scroll { overflow: visible; }
 
-  /* Worked examples should not split across a page break. `break-inside` is a
-   * hint: an item taller than a page is still broken by the paginator, so a
-   * long answer block cannot overflow the sheet. The `page-break-*` aliases
-   * cover engines that predate the fragmentation properties. */
+  /* `break-inside` is only a hint: an item taller than a page is still broken. The
+   * `page-break-*` aliases cover engines that predate the fragmentation properties. */
   .md-typeset table,
   .md-typeset__scrollwrap,
   .md-typeset details,
@@ -925,32 +753,22 @@ maths-figure label {
     widows: 2;
   }
 
-  /* Practice answers live in <details>. A browser does not lay out the content
-   * of a closed detail, and a printed page cannot be clicked, so `details`
-   * prints exactly as the reader left it. We deliberately do not force closed
-   * details open: these pages are low-stakes retrieval, and printing every
-   * answer beside its question would remove the retrieval. A reader who wants
-   * an answer opens that detail before printing; the `break-inside: avoid`
-   * above then keeps it whole. Open and closed alike keep the summary marker,
-   * so a reader can see there is something to unfold. */
+  /* A browser does not lay out the content of a closed detail, so `details`
+   * prints as the reader left it. Deliberately not forced open: printing every
+   * answer beside its question would remove the retrieval. */
 
-  /* Hover does not exist on paper, so links are underlined rather than left to
-   * a colour a grayscale or mono printer may drop. */
+  /* Hover does not exist on paper, so links are underlined rather than coloured. */
   .md-typeset a {
     text-decoration: underline;
   }
 }
 
-/* A comfortable sheet margin; the printer's own headers and page numbers stay. */
 @page {
   margin: 18mm 16mm;
 }
 
-/* A page's own contents list (`:::contents`).
- *
- * Two columns, because these pages carry six to eighty-three headings and a single
- * column of them would be the wall the list exists to avoid. It is a plain nav of
- * links, so it works with scripting off and costs one paint. */
+/* A page's own contents list (`:::contents`): two columns, and a plain nav of
+ * links, so it works with scripting off. */
 .md-typeset .contents {
   max-width: var(--tb-measure);
   margin: 1rem 0 1.4rem;
@@ -973,8 +791,7 @@ maths-figure label {
   columns: 2;
   column-gap: 1.6rem;
   font-size: 0.85rem;
-  /* 1.7 from 1.45: at 0.85rem it takes the link's box from 15px to about 23px,
-   * which is the thumb height WCAG 2.5.8 asks for, without growing the panel. */
+  /* 1.7 takes the link's box to about 23px, the thumb height WCAG 2.5.8 asks for. */
   line-height: 1.7;
 }
 
@@ -985,11 +802,8 @@ maths-figure label {
   .md-typeset .contents__list { columns: 1; }
 }
 
-/* The name index (`:::method-index`): every method once, by letter.
- *
- * Every name is a link to the entry the page already carries, so it is one click from the
- * top of a page that was 22,773px tall on a phone. One line per letter, because 77 names
- * in one column is the wall the index exists to avoid. */
+/* The name index (`:::method-index`): every method once, by letter, each a link to
+ * an entry the page carries. One line per letter; one column is the wall. */
 .md-typeset .method-index-nav {
   max-width: var(--tb-measure);
   margin: 1rem 0 1.4rem;

@@ -1,14 +1,11 @@
 #!/usr/bin/env python3
 """Lint a book for voice, style and mechanical mistakes.
 
-Usage:
     python -m textbook.lint                 # every book
     python -m textbook.lint gcse-maths
     python -m textbook.lint --fix           # apply the safe automatic fixes
 
-Checks are grouped: voice (our binding rules), style (consistency), and
-mechanics (typos and formatting). Anything that needs judgement is reported, not
-rewritten.
+Anything that needs judgement is reported, not rewritten.
 """
 
 from __future__ import annotations
@@ -25,8 +22,6 @@ from . import frontmatter
 from .scaffold import PAGE_KINDS, STUB_MARKER
 
 
-# --- text preparation ---------------------------------------------------------
-
 FENCE = re.compile(r"^ {0,3}(`{3,}|~{3,}).*?^ {0,3}\1\s*$", re.S | re.M)
 DISPLAY_MATH = re.compile(r"\$\$.*?\$\$", re.S)
 INLINE_MATH = re.compile(r"\$[^$\n]+\$")
@@ -38,13 +33,8 @@ def prose_lines(text: str):
     r"""Yield (line_number, raw, prose) with code and maths replaced by a token.
 
     The token has no spaces, so removing maths cannot create phantom double
-    spaces or repeated words.
-
-    Display maths is removed *before* the text is split into lines: a
-    ``$$ … $$`` block spans lines, so linting it a line at a time read the LaTeX
-    as prose, and ``\color`` was reported as a US spelling and ``\,`` as a
-    missing space. Each match is replaced with the token plus the newlines it
-    contained, so the line numbers a finding cites still point at the same line.
+    spaces or repeated words. Display maths is blanked before the split into
+    lines, keeping its newlines, so line numbers stay correct.
     """
     text = FENCE.sub(lambda m: "\n" * m.group(0).count("\n"), text)
     text = DISPLAY_MATH.sub(lambda m: "\x00" + "\n" * m.group(0).count("\n"), text)
@@ -55,9 +45,8 @@ def prose_lines(text: str):
         yield number, line, stripped
 
 
-#: A line that starts a heading, a table, a directive, a block quote or a list.
-#: These are structure rather than prose, and the sentence rule does not join
-#: them: a table cell is not a sentence, and a list item is a list.
+#: A line that starts a heading, a table, a directive, a block quote or a list:
+#: structure, which the sentence rule does not join.
 STRUCTURAL = re.compile(r"^\s*(?:#{1,6}\s|\||<|:::|>)")
 LIST_ITEM = re.compile(r"^\s{0,3}(?:[-*+]|\d+\.)\s")
 FRONT_MATTER = re.compile(r"\A---\r?\n.*?\r?\n---\r?\n", re.S)
@@ -66,23 +55,14 @@ FRONT_MATTER = re.compile(r"\A---\r?\n.*?\r?\n---\r?\n", re.S)
 def prose_paragraphs(text: str):
     """Yield ``(first_line, joined_prose)`` for each paragraph in a page.
 
-    The line-based rules stay line-based: a missing space or a US spelling lives
-    on one line, and splitting a paragraph to find it would only lose the line
-    number. The sentence ceiling is the exception. Every page is hard-wrapped
-    near 80 columns, so a 40-word sentence is normally spread over three lines
-    and a per-line rule can never see it — which is why the ceiling was
-    documented and unenforced. Joining the lines of a paragraph is the smallest
-    change that makes the sentence the unit the rule is about.
-
-    Headings, tables, directives, block quotes, list items and display maths are
-    structure, not prose. A list is skipped whole, including its continuation
-    lines, because a bullet is a list of things rather than a sentence.
+    Only the sentence ceiling needs this: a hard-wrapped sentence never fits on
+    one line. Headings, tables, directives, quotes, list items and display maths
+    are structure, and a list is skipped whole with its continuation lines.
     """
     buffer: list[str] = []
     start = 0
     in_list = False
-    # Front matter is data for the engine, not a paragraph for the reader. Replace
-    # it with its own newlines so every finding after it keeps its line number.
+    # Front matter is data, not prose: blank it line for line so findings keep line numbers.
     text = FRONT_MATTER.sub(lambda m: "\n" * m.group(0).count("\n"), text)
     for number, _raw, stripped in prose_lines(text):
         body = stripped.strip()
@@ -113,10 +93,8 @@ QUOTE = re.compile(r"^\s{0,3}>\s?")
 def _unquoted(line: str) -> str:
     """The line with its block-quote markers removed.
 
-    A block quote is a container, and the rules inside it are Markdown's: `> - one`
-    after `> The steps are:` is the same defect as the unquoted pair, and it folds
-    into the paragraph the same way. Stripping the markers is what lets one scan
-    see both.
+    A quote is a container, and the rules inside it are Markdown's: stripping the
+    markers is what lets one scan see a defect quoted and unquoted alike.
     """
     while QUOTE.match(line):
         line = QUOTE.sub("", line, count=1)
@@ -126,29 +104,14 @@ def _unquoted(line: str) -> str:
 def lists_without_a_blank_line(text: str):
     """Line numbers of list items the Markdown parser will not read as a list.
 
-    A list is a block: it starts a paragraph, so the first item needs a blank line
-    before it unless the line above already ends a block (a heading, a table, a
-    fence, a directive). Without one the parser keeps the bullet inside the
-    paragraph it followed and the reader sees the hyphen — a sentence ending in a
-    colon, then three lines of dashes. That is the defect the review filed as W3,
-    and it was invisible because the source reads as a list and only the built page
-    shows what happened.
-
-    Items after the first are not reported: a list continues through its own items
-    and through their indented continuation lines, so `2.` after `   answers it.`
-    is the same list, not a new one. The block ends at a blank line or at a
-    non-indented line that is not an item. The scan runs inside block quotes too,
-    because the defect does.
-
-    A display equation is not prose either. `$$` … `$$` is one maths block however
-    many lines it spans, and its continuation lines start with `+` and `-` because
-    that is how an equation wraps: `+ \frac{1}{16}(x/4)^3` was reported as a list
-    item eight times in `a-level-maths`, and the false findings spent that book's
-    `LIST_DEBT` budget, which is where real defects were hiding.
+    A list starts a paragraph, so its first item needs a blank line above unless
+    the line above already ends a block; without one the reader sees the hyphen.
+    Later items are not reported: the list continues through them and through
+    their indented continuation lines. A multi-line ``$$`` block is not prose, so
+    its ``+``/``-`` continuation lines are arithmetic, not items.
     """
-    # Front matter is YAML, not Markdown: `refs:` followed by `- A23` is a list
-    # either way, and a rule about prose lists has nothing to say about it. Blanked
-    # line for line so every finding still names the line the author has to open.
+    # Front matter is YAML: `refs:` followed by `- A23` is a list either way. Blanked
+    # line for line so a finding still names the line the author has to open.
     text = FRONT_MATTER.sub(lambda match: "\n" * match.group(0).count("\n"), text)
     lines = [_unquoted(line) for line in text.splitlines()]
     offences = []
@@ -163,9 +126,8 @@ def lists_without_a_blank_line(text: str):
             continue
         if in_fence:
             continue
-        # A maths block, entered and left by an unpaired `$$` on a line. A line
-        # that carries both delimiters changes nothing, and a continuation line
-        # that begins `-` or `+` is arithmetic, not a list item.
+        # A maths block, entered and left by an unpaired `$$`; a line carrying both
+        # delimiters changes nothing.
         if in_maths:
             if stripped.count("$$") % 2:
                 in_maths = False
@@ -187,8 +149,7 @@ def lists_without_a_blank_line(text: str):
                 offences.append(index + 1)
             in_list = True
             continue
-        # An indented line continues the item above it; anything flush left ends
-        # the list, so the next item will need its own blank line.
+        # An indented line continues the item above it; a flush-left line ends the list.
         if not line.startswith((" ", "\t")):
             in_list = False
     return offences
@@ -197,22 +158,11 @@ def lists_without_a_blank_line(text: str):
 def display_maths_without_a_blank_line(text: str):
     """Line numbers of display equations that share a paragraph with the prose.
 
-    `$$…$$` is a block, so it starts a paragraph, so it needs a blank line above it
-    unless the line above already ends one. Without it the maths hook leaves the
-    delimiters in the sentence and the reader sees a dollar, the equation set on the
-    line, and a dollar: 473 of them across the collection on 2026-10-30, in four
-    books, because nothing looked.
-
-    Three shapes are reported, and they are one defect:
-
-    * a `$$` line with prose directly above it;
-    * a closing `$$` with prose directly below it;
-    * a `$$…$$` in the middle of a sentence, which no blank line can fix — the
-      equation has to be given its own paragraph.
-
-    A line inside a block quote is read with the markers stripped, because a list or a
-    display block inside `>` is the same block. A fenced code block is skipped, and so
-    is a table row: `| $$x$$ |` is a cell, and a cell is not prose.
+    ``$$…$$`` is a block, so it needs a blank line above unless the line above ends
+    one; without it the delimiters reach the reader. Three shapes, one defect: prose
+    directly above an opening ``$$``, prose directly below a closing one, and a
+    ``$$…$$`` inside a sentence, which no blank line can fix. Quotes are read with
+    markers stripped; fences and table cells are skipped.
     """
     text = FRONT_MATTER.sub(lambda match: "\n" * match.group(0).count("\n"), text)
     raw = text.splitlines()
@@ -220,8 +170,8 @@ def display_maths_without_a_blank_line(text: str):
     for line in raw:
         content = _unquoted(line)
         # `> $$x$$` is a block at the start of its line; `>    $$x$$` is not. Removing
-        # the marker leaves the space that followed it, so one space is taken off —
-        # only when the line really was quoted.
+        # the marker leaves the space that followed it, so take one off — but only
+        # when the line really was quoted.
         if line is not content and content.startswith(" ") and not line.startswith((" ", "\t")):
             content = content[1:]
         lines.append(content)
@@ -235,9 +185,7 @@ def display_maths_without_a_blank_line(text: str):
             continue
         if in_fence or "$$" not in stripped or stripped.startswith("|"):
             continue
-        # **Count the delimiters.** A line that is `$$` on its own is the opening of a
-        # multi-line block, not a whole equation, and reading "starts and ends with"
-        # reported every line of every block — 7,386 findings on the first run.
+        # Count delimiters: a lone `$$` opens a multi-line block, it holds no equation.
         delimiters = stripped.count("$$")
         if in_maths:
             if delimiters % 2:
@@ -250,8 +198,7 @@ def display_maths_without_a_blank_line(text: str):
             offences.append(index + 1)
             continue
         if not stripped.startswith("$$") and stripped.endswith("$$"):
-            # Text before the equation on the same line: a label with its maths after
-            # it. A blank line does not separate them, so it is the same defect.
+            # Text before the equation on the same line: no blank line separates them.
             offences.append(index + 1)
             continue
         if line != line.lstrip(" \t"):
@@ -269,10 +216,9 @@ def display_maths_without_a_blank_line(text: str):
     return offences
 
 
-#: The house register is "~15–20 words, one idea each" (`AGENTS.md`), and a section page
-#: is where a reader does the work, so it is held to 25. Everything else keeps the 32 the
-#: collection was measured against, because a reference page may legitimately carry a
-#: longer sentence and the ratchet is per rule.
+#: The house register is 15–20 words, one idea each. A section page, where the reader
+#: does the work, is held to 25; every other page to 32, because a reference page may
+#: legitimately carry a longer sentence.
 SENTENCE_CEILING = 32
 SECTION_CEILING = 25
 
@@ -288,20 +234,9 @@ def long_sentences(text: str, ceiling: int = SENTENCE_CEILING):
                 yield number, " ".join(sentence.split())
 
 
-# --- rules --------------------------------------------------------------------
-
-# --- rules --------------------------------------------------------------------
-#
-# A rule is a row: what it catches, what to write instead, and the reason it exists.
-# The reason travels with the rule because it used to live in a comment above a
-# regex, which is not where the person who has to widen the rule looks.
-#
-# A word or spelling that is *correct* in some sentences is a row in ALLOWED_PHRASES,
-# and that table is consulted before a rule fires. It used to be a lookahead with one
-# follower list per false positive — `just` carried fifty followers, and `meter` a
-# lookbehind nobody could read — so the fix for a false positive was a rewrite of the
-# pattern that risked every case it already got right. This is item 67's rule: a check
-# may branch on data it was given, and a false positive is data with a reason.
+# A rule is a row: what it catches, what to write instead, and why. A word that is
+# correct in some sentences is a row in ALLOWED_PHRASES, consulted before a rule fires;
+# the fix for a false positive is a new row, never a narrower pattern.
 
 #: The finding each table raises. A category is the key ALLOWED_PHRASES is written
 #: against, so an exemption can only ever silence the rule it is about.
@@ -354,23 +289,15 @@ INTERNAL_PHRASES = {
     r"\bretrieval starter\b": "Warm-up: remember",
     r"\bDelivers DfE\b[^\n]*": "(delete)",
     r"\bDfE refs?\b": "(delete)",
-    # Found by the 2026-10-11 pedagogy audit: five Chapter 16 Walkthroughs printed
-    # "**DfE coverage:** G3" to the reader. The refs already live in front matter
-    # (`dfe: [G3]`), so this line was a note to us, not to the reader.
+    # The refs live in front matter (`dfe: [G3]`), so this line is a note to us.
     r"\bDfE coverage\b[^\n]*": "(delete)",
-    # The page names are ours: the navigator and the prose both say "Practise with
-    # help". Four pages still used the internal name.
+    # The page names are ours: the navigator and the prose both say "Practise with help".
     r"\bGuided problems\b": "Practise with help",
     r"\btier [FH]\b": "Foundation / Higher",
     r"\bscaffold\b": "(delete)",
     r"\bfront matter\b": "(delete)",
-    # "The bank" is also ordinary English — a financial institution, the bank of
-    # a river — so a chapter may legitimately write "the bank adds interest". The
-    # internal sense is our bank *of problems*: the word "problem" is what tells
-    # them apart. A bare "the bank" means the English word and is left alone; a
-    # lookahead on money or river words would miss the next phrasing ("the bank
-    # charges") and misread the next chapter ("the bank asks questions"), which
-    # is worse than the one internal phrasing it would keep.
+    # "The bank" alone is ordinary English (money, a river), so a bare one is left
+    # alone: only the bank of problems is internal.
     r"\bthe problem bank\b": "(delete)",
     r"\bthe bank of problems\b": "(delete)",
 }
@@ -420,23 +347,16 @@ US_SPELLINGS: tuple[Spelling, ...] = (
     Spelling(r"\bColor(s|ed|ing)?\b", r"Colour\1", "The same at the start of a sentence, where the capital must survive."),
     Spelling(r"\bcenter(s|ed|ing)?\b", r"centre\1", "UK English writes centre."),
     Spelling(r"\bCenter(s|ed|ing)?\b", r"Centre\1", "The same at the start of a sentence, where the capital must survive."),
-    # A measuring instrument is a **meter** in UK English — a taxi meter, a water meter,
-    # a parking meter. Only the unit of length is a **metre**. The rule used to carry
-    # this in a lookbehind (`(?<=\d)`), which was unreadable and could not say what it
-    # was for; the instrument is a determiner and a noun, so it is a row in
-    # ALLOWED_PHRASES instead. `--fix` reads the same table, because rewriting "start
-    # the meter" to "start the metre" is the same defect as reporting it.
+    # An instrument that measures is a meter in UK English; only the unit of length is
+    # a metre. The instrument is a determiner and a noun, so it is a row in
+    # ALLOWED_PHRASES, which `--fix` reads too.
     Spelling(r"\bmeter(s)?\b", r"metre\1", "Only the unit of length is metre; an instrument that measures is a meter (see ALLOWED_PHRASES)."),
     Spelling(r"\bMeter(s)?\b", r"Metre\1", "The same with a capital, where a sentence begins."),
     Spelling(r"\borganiz(e|es|ed|ing)\b", r"organis\1", "UK English writes -ise."),
     Spelling(r"\brecogniz(e|es|ed|ing)\b", r"recognis\1", "UK English writes -ise."),
     Spelling(r"\bsummariz(e|es|ed|ing)\b", r"summaris\1", "UK English writes -ise."),
     Spelling(r"\banalyz(e|es|ed|ing)\b", r"analys\1", "UK English writes analyse, analysis, analysed."),
-    # `kilogram` used to be here, mapped to itself. The rule changed nothing and
-    # the reporting loop still tested the pattern, so every page that wrote
-    # "kilogram" — the UK spelling the book is asked to use — was reported as a
-    # US spelling, and `--fix` could not clear it. There is no UK/US difference to
-    # enforce; `kilogramme` is the obsolete form, and nothing writes it.
+    # No `kilogram` row: it is already the UK spelling, and `kilogramme` is obsolete.
 )
 
 
@@ -444,10 +364,8 @@ US_SPELLINGS: tuple[Spelling, ...] = (
 class Allowed:
     """A phrase a rule would otherwise flag, and why the phrase is right.
 
-    The row is the unit of change. A false positive is one of these, not a rewrite
-    of the pattern that produced it: a pattern carrying its exemptions cannot be
-    read by the person who has to add the next one, and editing it risks the cases
-    it already gets right.
+    The row is the unit of change: a false positive is one of these, not a rewrite
+    of the pattern that produced it.
     """
 
     category: str
@@ -455,11 +373,9 @@ class Allowed:
     why: str
 
 
-#: The senses of `just` that mean *exactly*, or *only barely* — a comparison, a
-#: measurement, a threshold, a limit — and are correct as written. Every other use
-#: of the word is the belittling one and is reported. The check reads one line at a
-#: time, so a follower that wraps to the next line is not seen: write those clauses
-#: so the word does not end a line.
+#: The senses of `just` that mean *exactly* or *only barely* — a comparison, a
+#: measurement, a threshold, a limit — and are correct as written. The check reads one
+#: line at a time, so a follower that wraps is not seen: do not end a line on the word.
 ALLOWED_PHRASES: tuple[Allowed, ...] = (
     Allowed(STYLE, "just as", "means exactly as: a comparison"),
     Allowed(STYLE, "just like", "means exactly like: a comparison"),
@@ -506,15 +422,11 @@ ALLOWED_PHRASES: tuple[Allowed, ...] = (
     Allowed(STYLE, "just hold", "a threshold met: only just holds"),
     Allowed(STYLE, "just holds", "a threshold met: only just holds"),
     Allowed(STYLE, "just underneath", "a position: just underneath"),
-    # The two words that call a model worthless are ordinary English in two senses
-    # the collection actually writes: the uncorrected standard error is *the naive
-    # error bar* in numerical methods, and a mechanics question may put a mass in a
-    # toy car. Each sense is a row, because a rule narrower than the word could not
-    # say which of the two it wanted and would misfire on the next phrasing.
+    # Two belittling words with correct senses the books write: *the naive error bar*
+    # is a named quantity, and *a toy car* is an ordinary noun. One row per sense.
     Allowed(STYLE, "naive error bar", "the uncorrected standard error: a named quantity, not a judgement of a method"),
     Allowed(STYLE, "toy car", "a child's toy is an ordinary noun, not a model called worthless"),
-    # A meter that measures. Each row is an instrument the books actually write
-    # about; the fix for a new one is a new row here, not a narrower regex.
+    # A meter that measures: a new instrument is a new row here, not a narrower regex.
     Allowed(SPELLING, "the meter", "an instrument that measures is a meter; only the unit of length is a metre"),
     Allowed(SPELLING, "water meter", "an instrument that measures water is a meter, not a unit of length"),
     Allowed(SPELLING, "a.c. meter", "an instrument that measures alternating current is a meter"),
@@ -554,12 +466,8 @@ DOUBLE_WORD = re.compile(r"\b(\w+)\s+\1\b", re.I)
 MISSING_SPACE = re.compile(r"(?<![:/\w])[,;](?=[A-Za-z])")
 SENTENCE = re.compile(r"[^.!?]+[.!?]?")
 
-#: A period that is not the end of a sentence. `§1.6` is a reference, `1.5` is a number,
-#: `e.g.` and `i.e.` are abbreviations, and a markdown link's target is a URL — none of
-#: them ends a sentence, and splitting there manufactured sentences that are not in the
-#: prose ("6]'s agreement is the one this model can state") and measured fragments against
-#: the ceiling. Masked before splitting, restored after, so the finding quotes the page.
-#: A link target, whose periods are part of a URL or a path and never a sentence end.
+#: Periods that do not end a sentence: `§1.6`, `1.5`, `e.g.`, and a link target's URL.
+#: Masked before splitting, restored after, so the finding still quotes the page.
 LINK_TARGET = re.compile(r"\]\([^)]*\)")
 
 #: Abbreviations whose final period is not a stop.
@@ -579,18 +487,11 @@ def _sentences(paragraph: str):
     masked = NON_STOP.sub("\x00", masked)
     return [s.replace("\x00", ".") for s in SENTENCE.findall(masked)]
 
-#: The sentences over the ceiling a book still carries, counted on the day the rule
-#: learned to read paragraphs rather than lines. The debt is grandfathered so the
-#: rule can land without a 461-sentence rewrite in the nine books that still have
-#: one, and it may only go down: fix a sentence and lower the number, and a new
-#: book starts at 0. It is a count rather than a list, so a new sentence in a book
-#: with debt can replace one that was fixed; the two reference books are at 0 and
-#: stay there, and the audit lists the over-ceiling sentences it finds
-#: (`textbook-audit.py <book>`), so the debt is visible rather than hidden.
-#: Sentences over 25 words on a **section page**, counted when the rule was written on
-#: 2026-10-31: 895 across the collection, and `maths-applied` is deliberately absent
-#: because its seven sections were rewritten instead of grandfathered. Down-only, like
-#: every debt here.
+#: The sentences over the ceiling a book still carries. The debt is grandfathered so a
+#: rule can land without rewriting every book at once, and it may only go down: fix a
+#: sentence and lower the number. It is a count rather than a list, so in a book with
+#: debt a new sentence can replace a fixed one. The section table is the same, at 25
+#: words; `maths-applied` is absent because its sections were rewritten instead.
 SECTION_SENTENCE_DEBT: dict[str, int] = {
     "gcse-maths": 15,
     "gcse-physics": 73,
@@ -615,16 +516,8 @@ SENTENCE_DEBT: dict[str, int] = {
     "numerical-methods": 0,
     "maths-applied": 0,
 }
-#: The lists a book still starts without a blank line, counted on 2026-10-30 when the
-#: rule was written, each with the number of pages it is spread over. Fixed like every
-#: other debt here: it may only go down, and a book at 0 stays at 0.
-#:
-#: It is empty, which is the state the rule is written to reach. Item 155 fixed the 35
-#: that were left, and measuring them first found nine of the original 44 were not
-#: defects at all: a wrapped display equation's continuation line begins with `+` or
-#: `-`, and the rule was reading arithmetic as a bullet. Those nine were spending
-#: `a-level-maths`'s budget of 10, so that book's real defects — two of them — were
-#: the ones the allowance was hiding.
+#: The lists a book still starts without a blank line. Empty is the state the rule is
+#: written to reach; like every debt here it may only go down, and a book at 0 stays 0.
 LIST_DEBT: dict[str, int] = {}
 
 LINK = re.compile(r"\[([^\]]+)\]\(([^)]+)\)")
@@ -639,19 +532,15 @@ def known_sections(book: books.Book) -> set[str]:
 def warm_up_block(text: str) -> str:
     """The retrieval starter, normalised so two copies compare equal.
 
-    Used to catch a chapter whose sections share one warm-up. The 2026-10-11
-    pedagogy audit found that in eight chapters, and it is not a coincidence: P4
-    asks each section to retrieve the earlier material *that section* depends on,
-    so the same three questions five times measures the chapter rather than the
-    section, and the reader learns to skip it.
+    Used to catch a chapter whose sections share one warm-up: P4 asks each section to
+    retrieve the earlier material *that section* depends on, so the same questions
+    five times measure the chapter, and the reader learns to skip them.
     """
     match = re.search(r"^## Warm-up: remember\n(.*?)(?=^## |\Z)", text, re.M | re.S)
     if not match:
         return ""
     return re.sub(r"\s+", " ", match.group(1)).strip()
 
-
-# --- run ----------------------------------------------------------------------
 
 
 def fix_text(text: str) -> str:
@@ -679,13 +568,8 @@ def fix_text(text: str) -> str:
 def lint(book: books.Book, fix: bool, findings: Counter, examples: dict) -> tuple[int, int]:
     docs = book.docs
 
-    # The structural rules below are keyed on the **book's own** page kinds, not on
-    # the three a course happens to have. A book that declares
-    # `section_pages: [learn]` has no `Practise` page, so demanding verified answer
-    # markers on one would be asking for a page the book does not have — and the
-    # exemption would then have to be repeated for every future book with a
-    # different shape. Reading the same declaration the scaffold reads means the
-    # rule and the page cannot disagree.
+    # Structural rules key on the book's own page kinds, the declaration the scaffold
+    # reads: a book that declares `section_pages: [learn]` has no `Practise` page.
     declared = set(book.section_page_kinds)
     directory = {
         kind: name for name, kind, _title, _slug in PAGE_KINDS if kind in declared
@@ -706,22 +590,15 @@ def lint(book: books.Book, fix: bool, findings: Counter, examples: dict) -> tupl
     section_found: list[tuple[str, int, str]] = []
     for path in paths:
         text = path.read_text(encoding="utf-8")
-        # A scaffold stub is not reader content. It carries the marker the
-        # generator uses to rewrite it, and its body is a note to the author
-        # (which page kind it is, what to write). Linting it reports the
-        # internal words and missing sections a stub is *supposed* to have, and
-        # that noise hides the findings on authored pages, which is what this
-        # scan is for. The marker also cannot survive into authored content:
-        # `scaffold.emit` rewrites any file that still carries it, and
-        # books/AGENTS.md forbids it on an authored page.
+        # A stub is a note to the author, so it is supposed to carry the internal words
+        # this scan reports. `scaffold.emit` rewrites any file that still carries it.
         if STUB_MARKER in text:
             continue
         original = text
         if fix:
             text = fix_text(text)
         rel = str(path.relative_to(book.root))
-        # Front matter that does not parse silently drops `tier`, which is how a
-        # Higher-only page ends up in a Foundation build. See frontmatter.py.
+        # Front matter that does not parse silently drops `tier`; see frontmatter.py.
         try:
             frontmatter.split(text, path)
         except frontmatter.FrontMatterError as err:
@@ -759,12 +636,7 @@ def lint(book: books.Book, fix: bool, findings: Counter, examples: dict) -> tupl
             fixed_files += 1
 
         rel_posix = path.as_posix()
-        # The sentence ceiling, on paragraphs rather than lines. The sentences are
-        # collected here and judged after the pages, because the debt is a book's,
-        # not a page's.
-        # Two ceilings, two debts. A section page is held to 25 words because that is
-        # where the reader does the work; everything else keeps the 32 the collection was
-        # measured against. Judged per book, below, because a debt is a book's.
+        # Two ceilings, two debts; judged per book below, because a debt is a book's.
         if SECTION_PAGE.search(rel):
             section_found.extend(
                 (rel, line, sentence)
@@ -800,9 +672,7 @@ def lint(book: books.Book, fix: bool, findings: Counter, examples: dict) -> tupl
             if ":::problems" not in text or ":::answers" not in text:
                 note("structure:problems-missing-markers", rel)
 
-    # The sentence ceiling. A book's existing debt is allowed; everything after it
-    # is a finding. Sorting longest first means the findings a book without debt
-    # prints are the sentences most worth splitting.
+    # A book's existing debt is allowed; everything after it is a finding, longest first.
     for index, (rel, line_number, sentence) in enumerate(
         sorted(long_found, key=lambda item: len(item[2]), reverse=True)
     ):
@@ -810,9 +680,7 @@ def lint(book: books.Book, fix: bool, findings: Counter, examples: dict) -> tupl
             continue
         note("style:long-sentence", f"{rel}:{line_number}: {sentence[:90]}")
 
-    # The section ceiling, the same shape against its own debt. `maths-applied` is at 0:
-    # its seven sections were rewritten to the register rather than grandfathered, which
-    # is what this rule exists to make possible.
+    # The same shape against the section debt.
     for index, (rel, line_number, sentence) in enumerate(
         sorted(section_found, key=lambda item: len(item[2]), reverse=True)
     ):
@@ -823,8 +691,7 @@ def lint(book: books.Book, fix: bool, findings: Counter, examples: dict) -> tupl
             f"{rel}:{line_number}: {sentence[:90]}",
         )
 
-    # A retrieval starter repeated across a chapter's sections is a copy-paste, not
-    # a design (P4). Advisory: it reports, and the content pass acts on it.
+    # A warm-up repeated across a chapter's sections is a copy-paste, not a design (P4).
     starters: dict[str, list[str]] = {}
     for path in paths:
         rel_posix = path.as_posix()
@@ -892,10 +759,7 @@ def main() -> int:
         for example in examples[category]:
             print(f"    {example}")
 
-    # A finding is a failure. The repository's definition of done says the linter
-    # reports nothing for a book, and for a long time this returned 0 regardless —
-    # so 42 findings across five books sat in the tree while every gate run said
-    # "all checks passed". The count is the gate; printing it is not.
+    # A finding is a failure: the count is the gate, and printing it is not.
     return 1 if findings else 0
 
 

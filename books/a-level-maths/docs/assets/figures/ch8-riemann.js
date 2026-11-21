@@ -1,11 +1,6 @@
 // Guided investigation for integration as a limit of a sum.
 // Right-endpoint rectangles under y = x^2 on [0, 2]; as the number of strips
 // grows, their total area approaches the exact integral 8/3.
-// Pure HTML and SVG, an ES module, no framework and no colour of its own: the
-// fig-* classes carry the theme. Runtime text is plain text, never TeX.
-//
-// The scaffolding — the surface, its accessible name, the slider, the live
-// readout and the redraw — comes from `kit.js`.
 import { panel, slider, react } from "./kit.js";
 
 const X_MIN = 0;

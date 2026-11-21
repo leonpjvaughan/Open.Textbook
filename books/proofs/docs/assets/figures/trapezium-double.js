@@ -6,12 +6,6 @@
 // presses it has performed the construction rather than read about it.
 //
 // Predict -> Test -> Explain per AGENTS.md P6: the page asks what shape the two
-// copies will make before the toggle is pressed. Colours come from CSS classes, so
-// the figure adapts to every bundle and both schemes; the readout is `aria-live`.
-//
-// The scaffolding — the surface, its accessible name, the controls, the live
-// readout and the redraw — comes from `kit.js`. What is left here is the drawing
-// and the sentences, which are the parts that differ from every other figure.
 import { SIZE, label, panel, react, slider, toggle } from "./kit.js";
 
 export function mount(el) {

@@ -4,15 +4,6 @@
 // one equation for each. An angle slider unites them: at 0 degrees the ramp is a table,
 // and the general formula a = (m2 g - m1 g sin t) / (m1 + m2) collapses to the table
 // result. So the reader moves the angle and watches the second case become the first.
-//
-// The readout gives the two pulls and the acceleration and tension, and it deliberately
-// does not say which way the system moves. That is the prediction the chapter asks the
-// reader to make, and the two pulls are the evidence for it. Both arrows are drawn at a
-// fixed length for the same reason: the drawing shows which way each force points, and
-// the readout carries the sizes, so nothing gives the comparison away for free.
-//
-// Nothing here carries a colour. Every shape uses a `fig-*` class and every word a
-// `text-*` class, so the figure follows the reader's bundle in both schemes.
 import {
   arrow,
   circle,

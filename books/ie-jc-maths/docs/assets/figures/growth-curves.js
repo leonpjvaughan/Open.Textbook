@@ -10,10 +10,6 @@
 // The whole drawing layer is the new kit — `axes`, `curve`, `dots`, `line`, `label` —
 // so this is also the first figure to prove those helpers in a book rather than in the
 // checker's probe.
-//
-// Nothing here carries a colour. The three curves use the accent, warning and good
-// classes, and they are also **labelled in the drawing**, so the distinction does not
-// depend on colour alone.
 import { SIZE, axes, curve, dots, fmt, label, line, panel, react, slider } from "./kit.js";
 
 // The three plans from the chapter problem.

@@ -8,9 +8,6 @@
 //
 // The extra dots are a different shape from the rows, so the constant is visibly the
 // part that does not grow with n.
-//
-// Nothing here carries a colour. Every shape uses a `fig-*` class and every word a
-// `text-*` class, so the figure follows the reader's theme in both schemes.
 import { circle, fmt, label, panel, react, slider } from "./kit.js";
 
 const STEP = 22;

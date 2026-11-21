@@ -1,11 +1,6 @@
 // Guided investigation for the area between two curves.
 // The curve y = x^2 and the line y = kx enclose a region shaded between their
 // intersections, with the exact area read from an antiderivative.
-// Pure HTML and SVG, an ES module, no framework and no colour of its own: the
-// fig-* classes carry the theme. Runtime text is plain text, never TeX.
-//
-// The scaffolding — the surface, its accessible name, the slider, the live
-// readout and the redraw — comes from `kit.js`.
 import { panel, slider, react } from "./kit.js";
 
 const X_MIN = -0.5;

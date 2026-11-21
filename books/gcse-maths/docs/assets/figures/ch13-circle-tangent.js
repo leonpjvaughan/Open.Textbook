@@ -5,11 +5,6 @@
 // afterwards. The reader picks the radius and the point, and the figure draws the
 // radius and the tangent at that point. A shape paints with fig-* and a word
 // paints with text-*.
-//
-// The scaffolding — the surface, its accessible name, the two sliders, the
-// checkbox, the live readout, the redraw, the number formatting — comes from
-// `kit.js`. The legend is a line of prose the module adds between the controls
-// and the readout.
 import { SIZE, fmt, label, panel, react, slider, toggle } from "./kit.js";
 
 export function mount(el) {

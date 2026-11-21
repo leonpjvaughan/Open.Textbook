@@ -59,12 +59,8 @@ with `head` or `cat`.
 | An answer about type, layout or the build | No. It is the browser platform only. |
 
 **What the scan reads, and what it skips.** It skips documentation and test
-directories by default. It does **not** know that `research/` is a scratch area,
-so its six findings in `research/design/background-effects/` are outside this
-repository's scope: that tree is where background experiments were drawn, it is
-not built, shipped or loaded by a page, and modernising it would change nothing a
-reader sees. Read a finding there as "this pattern exists in a sketch", and say
-so rather than fixing it. The shipped code is `assets/`, `engine/`, `tools/` and
+directories by default. Findings outside the shipped code (`assets/`, `engine/`, `tools/`, books) change
+nothing a reader sees: say so rather than fixing them. The shipped code is `assets/`, `engine/`, `tools/` and
 `books/*/docs/assets/`; the generated `assets/figures/kit/*.js` is read only
 through its source beside it, because fixing the output is undone by the next
 build.

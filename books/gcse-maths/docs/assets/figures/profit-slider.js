@@ -3,11 +3,6 @@
 // Guided, not a sandbox: the page asks the reader to predict before using it,
 // then to explain the sign of the result. Exposes one parameter family
 // (quantity / cost / price / sold) so the mathematics stays visible.
-// Colours come from CSS classes so the figure adapts to dark mode.
-//
-// The scaffolding — the surface, its accessible name, the four sliders, the live
-// readout, the redraw — comes from `kit.js`. What is left here is the drawing and
-// the sentence, which are the parts that differ from every other figure.
 import { SIZE, label, panel, react, slider } from "./kit.js";
 
 export function mount(el) {

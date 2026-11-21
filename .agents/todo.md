@@ -4,47 +4,9 @@ Working notes for the collection. One item per change. Items are ordered, not
 dated: the first is next. This file is ours, not the reader's — the voice rules
 in `AGENTS.md` do not apply here, but the engineering rules do.
 
-**This file holds open items only.** `.agents/todo-closed.md` holds every closed
-one **in full** — the diagnosis is the valuable part: what was wrong, how it was
-measured and what fixed it. A one-line summary keeps the number and deletes the
-reasoning, so nothing is compressed on the way across and nothing is deleted.
+**This file holds open items only.** Closed items are deleted (git history keeps their diagnosis). A new item goes at the next number, with its diagnosis, its fix and its own done-means. Open: **187**, **188**, **192**, **200**, **203**, **217**.
 
-**An item is here because it is still true.** Before closing one, run its own
-done-means; an item whose heading says done and whose checklist does not is the
-failure this file has had twice, so the list below, the headings and the boxes
-are checked against each other on every pass.
-
-**Every item from 79 to 191 is closed except 187 and 188,** each with its measurement, its
-fix, its outcome and its ticked done-means in `.agents/todo-closed.md`. A new item goes at
-the number after the last one, with its diagnosis, its fix and its own done-means. Open:
-**187** and **188** from `research/review/maths-applied-and-numerical-methods-v.md`, **192**,
-filed while closing 186, 190 and 191, and **200, 203** of the UX queue from
-`research/design/ux-plan.md` — the four auditor reports and the two reviews behind it are
-summarised there, not here. **193–202, 204–216** are closed in stages 1–4 of that plan.
-
-The UX queue is ordered as `ux-plan.md` §4 ranks it. One dependency matters before starting:
-the size report (**209**) is the gate that **197**, **201**, **203** and **204** are verified
-against, so it may be done first without renumbering anything.
-
-Two items were both filed as 182 by different passes; the label-and-font one is now **189**,
-and the duplicate number is gone.
-
-The *interactive-aid backlog* — which figures and interactions a book still wants — is
-`ideas.md`; it is a plan rather than a defect list, and it is written for the author
-choosing what to build next.
-
-**Not in the queue, and not forgotten.** Accepted limitations live where the check
-that records them lives, not here: the booklets whose items cannot be parsed
-(`tests/test_verify_coverage.py`), the specifications that publish no finer
-granularity than a strand (`books/*/curriculum.yaml`), and the deferred chapter
-rewrites ranked in `research/pedagogy-audit/README.md`. An item in this file is a
-defect this repository can fix; those are decisions already taken.
-
-The five **design proposals** in `research/review/maths-applied-and-numerical-methods-ii.md`
-are adopted as items **168–172**, listed in the paragraph above; `ideas.md` §12 holds the
-argument and the citations, and the review holds the measurement. The two indexes in
-`research/review/maths-applied-and-numerical-methods-iii.md` were items **173–174**, and that
-review holds their measurement.
+Accepted limitations live where the check that records them lives (`tests/test_verify_coverage.py`, `books/*/curriculum.yaml`), not here.
 
 ---
 
@@ -197,3 +159,41 @@ Plan: P4.
 - [ ] answer 9 is one tap from item 9, and each summary names its own number;
 - [ ] no answer text, working or ordering changes, and the bank tests still pass;
 - [ ] `tests/test_render_hooks.py` asserts the summary/item pairing.
+
+## 217 — The context cleanup stopped at ~20% of the code comments
+
+**What is wrong.** The 2026-11 cleanup deleted the historical corpus (`research/review/`,
+`research/curriculum/`, `research/design/`, `research/pedagogy-audit/`, `.agents/planning/`,
+`.agents/todo-closed.md`, the two handoff files, `solvers/otkd/docs/` — 38k lines) and rewrote
+the root reference docs (`ideas.md` 56.7k → 3.8k, `SHAPE.md` 22.3k → 4.8k, `DECISIONS.md` 23k →
+3.0k, `PROBLEMS.md` 25.2k → 5.1k, `DEPLOY.md` 24.5k → 4.6k, `BOOKLETS.md` 8.5k → 2.0k), cut
+every figure module's boilerplate header (275 files, 72 KB) and stripped untyped comments from
+the shipped kit (116 → 82 KB, code-identical after minify). Two things did not finish:
+
+- `AGENTS.md` files total **127 KB**, from 177 KB. Each is still 60–75% of its old size, not the
+  55% target: `assets/AGENTS.md` 13.5k, `books/gcse-physics/AGENTS.md` 8.0k,
+  `books/numerical-methods/AGENTS.md` 10.5k, `solvers/otkd/AGENTS.md` 6.3k,
+  `solvers/AGENTS.md` 5.1k, `books/ie-lc-maths/AGENTS.md` 2.8k, and the four small Irish/book
+  files are untouched.
+- Comment lines in code are down ~20%, not 50%: `engine/src/` 1221 → 936, `tools/src/` 1355 →
+  1157, `tests/` 1105 → 873, `assets/` 2829 → 2276. Biggest remaining: `tools/src/lib/browser.ts`
+  (99), `commands/preview.ts` (87), `commands/offline.ts` (86), `commands/assets.ts` (70),
+  `lib/routes.ts` (69), `engine/src/textbook/book.py` (62), `portal.py` (50), `assets/booklet/booklet.js`
+  (200), `assets/sw.js` (120), `assets/figures/src/kit/text.ts` (192), `frame.ts` (177),
+  `controls.ts` (172), `tests/test_book_structure.py`, `test_pwa.py`, `test_render_hooks.py`,
+  and `scripts/*.sh`.
+
+**The fix.** Continue the same pass, one file at a time, with the rule that is already in the
+tree: keep every normative instruction, path, threshold, trap and `JSDoc` tag; delete history,
+rot-prone counts and restatement. A script cannot do it — a 900 s agent pass compresses roughly
+one 15 KB file, so budget one file per pass.
+
+**Done means**
+
+- [ ] `find . -name AGENTS.md | xargs cat | wc -c` ≤ 90,000;
+- [ ] the comment-line counts above at least halve in `tools/src/`, `engine/src/`, `assets/` and
+      `tests/` (`python3` count of lines starting `#`, `//`, `*`), with `compileall`, `node --check`
+      and `node tools/dist/cli.js types` clean;
+- [ ] `git diff` after the pass changes no code line: the AST check
+      (`ast.dump` with docstrings stripped, and esbuild `minify` for JS/TS) reports no difference;
+- [ ] `python -m pytest tests/ -q` passes.

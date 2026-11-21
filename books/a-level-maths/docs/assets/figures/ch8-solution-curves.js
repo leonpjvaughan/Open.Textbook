@@ -1,11 +1,6 @@
 // Guided investigation for separable equations of the form dy/dx = k y.
 // The family y = A e to the power kx, with a slider for the rate constant k.
 // Positive k grows, negative k decays, and A sets the starting height.
-// Pure HTML and SVG, an ES module, no framework and no colour of its own: the
-// fig-* classes carry the theme. Runtime text is plain text, never TeX.
-//
-// The scaffolding — the surface, its accessible name, the slider, the live
-// readout and the redraw — comes from `kit.js`.
 import { panel, slider, react } from "./kit.js";
 
 const X_MIN = -1.5;

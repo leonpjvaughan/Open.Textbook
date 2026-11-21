@@ -1,9 +1,6 @@
 // Guided investigation for the graphs of sine and cosine waves: amplitude,
 // period, phase and vertical shift. Pure HTML and SVG, an ES module, no
 // framework and no colour of its own: the fig-* classes carry the theme.
-//
-// The scaffolding — the surface, its accessible name, the sliders, the live
-// readout and the redraw — comes from `kit.js`.
 import { SIZE, label, panel, react, slider } from "./kit.js";
 
 const WIDTH = 400;

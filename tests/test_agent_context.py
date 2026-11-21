@@ -270,16 +270,7 @@ def rule_documents():
     # The moved package keeps its own record beside its code; its documents name paths
     # in both trees, so the check resolves against `solvers/otkd` as well.
     documents += sorted(ROOT.glob("solvers/otkd/*.md"))
-    # Its decision log, its superseded release note and the handoff it answered are
-    # dated records: a record has to be able to name a file that was there then, which
-    # is the same reason `research/`, `.agents/planning/` and the closed queue are not
-    # read. What is read is the package's instructions: the design documents beside it.
-    records = {"decisions.md", "releasing.md", "handoff-from-maths-site.md"}
-    documents += [
-        path
-        for path in sorted(ROOT.glob("solvers/otkd/docs/*.md"))
-        if path.name not in records
-    ]
+    documents += sorted(ROOT.glob("solvers/otkd/docs/*.md"))
     documents += [
         ROOT / name
         for name in (
@@ -291,13 +282,6 @@ def rule_documents():
             "ideas.md",
             "tests/README.md",
             ".agents/chapter-brief.md",
-            ".agents/maths-applied-handoff.md",
-            # A handoff tells an agent which documents to read and which commands to
-            # run. That is exactly the promise this test exists to check, and this one
-            # names `tools/dist/cli.js`, the pipeline, the pytest paths and the lint
-            # invocation. Left out until now because there was one handoff and it was
-            # a record rather than a brief.
-            ".agents/numerical-methods-handoff.md",
         )
     ]
     return [path for path in documents if path.is_file()]

@@ -1,8 +1,4 @@
 // Guided construction: equal-radius arcs locate a perpendicular bisector.
-//
-// The scaffolding — the surface, its accessible name, the slider, the live
-// readout, the redraw — comes from `kit.js`. What is left here is the drawing and
-// the sentence, which differ from every other figure.
 import { SIZE, label, panel, react, slider } from "./kit.js";
 
 export function mount(el) {

@@ -4,15 +4,6 @@
 // block floats in water before the sliders are moved, then to explain the result
 // with the particle model. The figure compares the density with the density of
 // water, which is drawn as a marked line.
-//
-// Colours come from CSS classes, so the figure adapts to every bundle and both
-// schemes. No maths is injected at runtime: every value is plain text.
-//
-// The scaffolding — the surface, its accessible name, the sliders, the live
-// readout and the redraw — comes from `kit.js`. The three preset buttons are not
-// one of the kit's controls, so they are built here inside the kit's control
-// column. What is left is the drawing and the sentences, which are the parts that
-// differ from every other figure.
 import {
   label,
   panel,

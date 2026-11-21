@@ -5,10 +5,6 @@
 // are four, or why two of them collect. The rectangle does: the two brackets are
 // its two side lengths, and the four products are the four regions. The reader
 // changes the constants and watches the middle terms grow.
-//
-// Nothing here carries a colour. Every shape uses a `fig-*` class and every word a
-// `text-*` class, and each region is labelled in the drawing, so the four products
-// are told apart without colour.
 import { SIZE, fmt, label, line, panel, react, rect, slider } from "./kit.js";
 
 // The drawing geometry: the `x` part of each side is XPART wide, and one unit of

@@ -7,9 +7,6 @@
 // the reader change the angle and the hypotenuse, and reports the opposite side, the
 // adjacent side and the three ratios together. The sides change and the ratios stay,
 // and the reader sees both happen at once.
-//
-// Nothing here carries a colour. Every shape uses a `fig-*` class and every word a
-// `text-*` class, so the figure follows the reader's theme in both schemes.
 import {
   axes,
   curve,

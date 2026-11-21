@@ -1,15 +1,9 @@
 // @ts-nocheck
+//
 // Moved from a book's figure directory by item 147: a hand-authored figure,
 // measured by tests/test_figures.py. The TS ratchet covers the kit and the tools.
 // Guided investigation for 14.1: the p-value, the critical region and the tail
 // of a binomial test. Pure HTML and SVG, an ES module, no framework and no
-// colour of its own: the fig-* classes carry the theme. Runtime text is plain
-// text, never TeX.
-//
-// The scaffolding — the surface, its accessible name, the sliders, the drop-downs,
-// the live readout, the redraw — comes from `kit.js`. What is left here is the
-// drawing and the sentence, which are the parts that differ from every other
-// figure.
 import { SIZE, chooser, label, panel, react, slider } from "./kit.js";
 
 function binomialPmf(n, p) {

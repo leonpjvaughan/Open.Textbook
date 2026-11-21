@@ -6,15 +6,6 @@
 // components of a, two move its starting point, and one sets the multiple k.
 // The copy is always drawn from the origin, so the reader can see that a free
 // vector is fixed by its components and not by where it starts.
-//
-// Plain HTML, SVG and five range inputs, so it is keyboard-operable with no
-// framework. Colours come from the fig-* and text-* classes, so the figure
-// adapts to every bundle and to both schemes. No colour literal appears here,
-// and the runtime text is plain HTML, never TeX.
-//
-// The scaffolding — the surface, its accessible name, the five sliders, the live
-// readout and the redraw — comes from `kit.js`. What is left here is the drawing
-// and the sentence.
 import { SIZE, label, panel, react, slider } from "./kit.js";
 
 const UNIT = 21; // pixels per grid unit

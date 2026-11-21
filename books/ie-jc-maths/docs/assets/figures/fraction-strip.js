@@ -7,9 +7,6 @@
 // third strip cut into a number that suits both, and the two shaded amounts line
 // up on that one scale. The reader changes the part counts and watches the third
 // strip follow.
-//
-// Nothing here carries a colour. Every shape uses a `fig-*` class and every word a
-// `text-*` class, so the figure follows the reader's theme in both schemes.
 import { fmt, label, panel, react, rect, slider } from "./kit.js";
 
 // The drawing geometry: one whole is `W` units wide, and every strip starts at X0.

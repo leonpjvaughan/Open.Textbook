@@ -10,9 +10,6 @@
 // The circle and the graph share one vertical scale by construction — the radius of the
 // circle is the half-height of the plot — so the joining line is horizontal at every
 // moment rather than only at the ends.
-//
-// Nothing here carries a colour. Every shape uses a `fig-*` class and every word a
-// `text-*` class, so the figure follows the reader's bundle in both schemes.
 import {
   animate,
   axes,

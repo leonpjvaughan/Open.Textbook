@@ -5,12 +5,6 @@
 // angles at the lower crossing stay equal to angle a, then to explain why. The
 // reader can slide the transversal (nothing about the angles changes) and tilt it
 // (every angle changes together), and the readout reports the four values rather
-// than naming the rule. Colours come from CSS classes, so the figure adapts to
-// every bundle and both schemes.
-//
-// The scaffolding — the surface, its accessible name, the two sliders, the live
-// readout, the redraw — comes from `kit.js`. What is left here is the drawing and
-// the sentence, which are the parts that differ from every other figure.
 import { SIZE, label, panel, react, slider } from "./kit.js";
 
 export function mount(el) {

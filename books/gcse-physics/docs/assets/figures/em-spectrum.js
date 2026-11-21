@@ -4,14 +4,6 @@
 // frequency and wavelength before moving the slider, then to explain why a
 // higher frequency means a shorter wavelength. The slider sets the frequency on
 // a logarithmic scale, and the strip highlights the group it falls in.
-// Colours come from CSS classes so the figure adapts to dark mode and every
-// bundle; the group name is always shown, so colour is never the only signal.
-//
-// The scaffolding — the surface, its accessible name, the slider, the live
-// readout and the redraw — comes from `kit.js`. The two jump buttons are not one
-// of the kit's controls, so they are built here inside the kit's control column.
-// What is left is the drawing and the sentences, which are the parts that differ
-// from every other figure.
 import { SIZE, label, panel, react, slider } from "./kit.js";
 
 export function mount(el) {

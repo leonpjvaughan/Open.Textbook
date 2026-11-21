@@ -5,11 +5,6 @@
 // smaller force. The mass and the speed are fixed, so the change in momentum is
 // fixed; only the time can change. This is the idea behind crumple zones, seat
 // belts and air bags.
-// Colours come from CSS classes so the figure adapts to dark mode.
-//
-// The scaffolding — the surface, its accessible name, the slider, the live
-// readout and the redraw — comes from `kit.js`. What is left here is the drawing
-// and the sentences, which are the parts that differ from every other figure.
 import {
   label,
   panel,

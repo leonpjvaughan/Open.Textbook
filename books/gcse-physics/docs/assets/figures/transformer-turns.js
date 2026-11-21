@@ -3,11 +3,6 @@
 // The page asks the reader to predict whether more secondary turns raise or
 // lower the output, then to test, then to explain why the potential difference
 // per turn is the same in both coils. The figure assumes a 100% efficient
-// transformer, which the page states. Colours come from CSS classes.
-//
-// The scaffolding — the surface, its accessible name, the sliders, the live
-// readout and the redraw — comes from `kit.js`. What is left here is the drawing
-// and the sentences, which are the parts that differ from every other figure.
 import { SIZE, label, panel, react, slider } from "./kit.js";
 
 export function mount(el) {

@@ -10,10 +10,6 @@
 // from the current object distance through the `groups` the kit returns, so the drawing
 // and the readout cannot disagree. At rest — before any part is focused — the drawing is
 // the one the page always had.
-//
-// Nothing here carries a colour. The rays, the lens, the arrows and the focal marks use
-// the fig-* and text-* classes, and a virtual image is drawn with a dashed backward
-// extension as well as a different class, so the distinction survives a monochrome bundle.
 import {
   diagram,
   label,

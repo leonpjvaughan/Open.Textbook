@@ -4,9 +4,6 @@
 // they move a control, then to test it and write the explanation. The figure
 // draws the circle, the radius to a point on it, the tangent at that point, and
 // the right angle between them.
-//
-// Nothing here carries a colour: every shape uses a fig-* class and every word a
-// text-* class, so the figure follows the reader's theme in both schemes.
 import { SIZE, fmt, label, panel, react, scale, slider, toggle } from "./kit.js";
 
 const RANGE = 10;

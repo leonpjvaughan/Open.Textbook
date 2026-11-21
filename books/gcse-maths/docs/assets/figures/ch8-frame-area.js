@@ -1,9 +1,5 @@
 // Guided investigation: compare the areas of a rectangular frame.
 // The learner predicts an expression before adjusting the side variable.
-//
-// The scaffolding — the surface, its accessible name, the slider, the live
-// readout, the redraw — comes from `kit.js`. What is left here is the drawing and
-// the sentence, which are the parts that differ from every other figure.
 import { SIZE, label, panel, react, slider } from "./kit.js";
 
 export function mount(el) {

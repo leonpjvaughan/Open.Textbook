@@ -3,13 +3,6 @@
 // Guided, not a sandbox: the page asks the reader to predict which wire carries
 // the large current when the live wire touches the metal case, and to explain
 // why the fuse sits in the live wire. The reader flips one switch between normal
-// use and a live-to-case fault. Colours come from CSS classes, so the figure
-// adapts to every bundle and both schemes; every wire and shape is also labelled
-// in words, so colour is never the only signal.
-//
-// The scaffolding — the surface, its accessible name, the toggle, the live
-// readout and the redraw — comes from `kit.js`. What is left here is the drawing
-// and the sentences, which are the parts that differ from every other figure.
 import {
   label,
   panel,

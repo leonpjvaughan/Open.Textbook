@@ -4,15 +4,6 @@
 // energy, a low-power device left on for a long time or a high-power device used
 // briefly, before the sliders are moved. The figure reads out E = Pt in joules
 // and in kilojoules or megajoules.
-//
-// Colours come from CSS classes, so the figure adapts to every bundle and both
-// schemes. Every value is printed as text.
-//
-// The scaffolding — the surface, its accessible name, the sliders, the live
-// readout and the redraw — comes from `kit.js`. The two preset buttons are not
-// one of the kit's controls, so they are built here inside the kit's control
-// column. What is left is the drawing and the sentence, which are the parts that
-// differ from every other figure.
 import {
   label,
   panel,

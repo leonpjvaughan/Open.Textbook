@@ -6,14 +6,6 @@
 // graph, which is a straight line through the origin with gradient minus omega
 // squared. The readout gives omega, the maximum speed and the maximum
 // acceleration.
-//
-// Colours come from CSS classes, so the figure adapts to every bundle and to both
-// schemes. No colour literal appears here, and no runtime LaTeX: the readout is
-// plain HTML.
-//
-// The scaffolding — the surface, its accessible name, the sliders, the live
-// readout and the redraw — comes from `kit.js`. What is left here is the drawing
-// and the sentences, which are the parts that differ from every other figure.
 import {
   label,
   panel,

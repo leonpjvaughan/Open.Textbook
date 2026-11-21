@@ -9,13 +9,6 @@
 // changes.
 //
 // A fixed frame keeps the scale constant, so a force of 10 N is the same length
-// on screen at every setting. Colours come from CSS classes, so the figure
-// adapts to every bundle and to both schemes. No colour literal appears here,
-// and no runtime LaTeX: the readout is plain HTML.
-//
-// The scaffolding — the surface, its accessible name, the sliders, the live
-// readout and the redraw — comes from `kit.js`. What is left here is the drawing
-// and the sentences, which are the parts that differ from every other figure.
 import {
   label,
   panel,

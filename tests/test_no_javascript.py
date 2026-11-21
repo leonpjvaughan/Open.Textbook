@@ -14,9 +14,7 @@ needed is a runtime maths renderer.
 Coverage boundary, stated so it is not mistaken for more than it is: this file
 exercises the shared engine and the page shell. The one piece of chrome that
 makes a no-JavaScript promise — the Settings trigger, which is ``hidden`` until
-its script runs — is pinned by ``tests/test_settings.py``. The real-browser,
-JavaScript-disabled run lives in ``research/accessibility.md``, where a Playwright
-result belongs.
+its script runs — is pinned by ``tests/test_settings.py``. 
 """
 
 from __future__ import annotations

@@ -4,11 +4,6 @@
 // sliders, then to explain why doubling the height doubles the energy but does
 // not double the speed. Mass and height are the two parameters; the gravitational
 // potential store and the kinetic store are shown side by side.
-// Colours come from CSS classes so the figure adapts to dark mode.
-//
-// The scaffolding — the surface, its accessible name, the sliders, the live
-// readout and the redraw — comes from `kit.js`. What is left here is the drawing
-// and the sentences, which are the parts that differ from every other figure.
 import {
   label,
   panel,

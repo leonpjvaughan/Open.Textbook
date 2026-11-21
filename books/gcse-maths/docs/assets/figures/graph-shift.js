@@ -4,12 +4,6 @@
 // way the graph moves when `a` is positive, then to explain why the sign inside
 // the bracket appears opposite to the movement. One control changes one thing,
 // the value of `a`, and the readout reports where the turning point lands rather
-// than stating the rule. Colours come from CSS classes, so the figure adapts to
-// every bundle and both schemes.
-//
-// The scaffolding — the surface, its accessible name, the slider, the live
-// readout, the redraw — comes from `kit.js`. What is left here is the drawing and
-// the sentence, which are the parts that differ from every other figure.
 import { SIZE, label, panel, react, slider } from "./kit.js";
 
 export function mount(el) {

@@ -18,8 +18,7 @@ Read, in order:
    the ~¼ budget for extras). This is binding. The **Irish books** section tells you
    what is different about the four `ie-*` books.
 2. `research/pedagogy.md` — the evidence and its limits, so you do not overclaim.
-3. `.agents/planning/plan.md` §4–§6 — folder conventions, content contract,
-   interactivity policy.
+3. `AGENTS.md` — folder conventions and the content contract.
 4. `books/<book>/curriculum.yaml` — find `chapters[?id=<n>]`. This is your scope: every
    section, its `tier`, its `refs`, and the chapter's `anchor`, `application`,
    `relevance_prompt` and `tool` metadata.
@@ -89,7 +88,7 @@ Also:
 - Render the questions and answers with `:::problems <bank>` and
   `:::answers <bank>`, never by hand, so the reader sees exactly what CI verified.
 - Do **not** edit `books/<book>/curriculum.yaml`, `CURRICULUM-MAP.md`,
-  `.agents/planning/plan.md`, `collection.yaml`, or any file outside your chapter.
+`collection.yaml`, or any file outside your chapter.
   Generated files are regenerated, never hand-edited.
 
 ## Before you call it done

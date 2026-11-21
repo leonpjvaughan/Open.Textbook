@@ -12,7 +12,7 @@
 # pulse travels to the boundary and back. Where a value comes from a list of
 # readings, the `uncertainty` kind would be used; none of these records needs it.
 #
-# Honest limit (research/curriculum/physics-verifier-gaps.md §6): this proves the
+# Honest limit: this proves the
 # arithmetic and the dimensions, not the physics.
 chapter: 4
 problems:

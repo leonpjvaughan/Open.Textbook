@@ -8,13 +8,6 @@
 // The reader is asked to predict before touching the slider (Predict -> Test ->
 // Explain, AGENTS.md P6), so the figure changes one thing — where the top corner
 // sits — and reports the three angles rather than telling the reader what to
-// conclude. Colours come from CSS classes so the figure adapts to every bundle
-// and both schemes, and the readout is `aria-live` so a reader who cannot see the
-// drawing is told what changed.
-//
-// The scaffolding — the surface, its accessible name, the slider, the live
-// readout and the redraw — comes from `kit.js`. What is left here is the drawing
-// and the sentences, which are the parts that differ from every other figure.
 import { SIZE, label, panel, react, slider } from "./kit.js";
 
 export function mount(el) {

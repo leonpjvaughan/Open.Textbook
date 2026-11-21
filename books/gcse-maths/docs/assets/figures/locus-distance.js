@@ -3,12 +3,6 @@
 // Guided, not a sandbox (AGENTS.md P6): the page asks the reader to predict what
 // the path does at the two ends of the wall — a sharp corner or a curve — then to
 // explain why. One control changes the distance, and the readout reports what the
-// path is made of rather than stating the rule. Colours come from CSS classes, so
-// the figure adapts to every bundle and both schemes.
-//
-// The scaffolding — the surface, its accessible name, the slider, the live
-// readout, the redraw — comes from `kit.js`. What is left here is the drawing and
-// the sentence, which are the parts that differ from every other figure.
 import { SIZE, label, panel, react, slider } from "./kit.js";
 
 export function mount(el) {

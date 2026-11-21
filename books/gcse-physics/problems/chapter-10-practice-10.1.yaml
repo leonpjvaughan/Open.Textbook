@@ -10,7 +10,7 @@
 # `structured`, which proves only that a model answer contains the declared ideas
 # in order, and covers its declared concepts.
 #
-# Honest limit (research/curriculum/physics-verifier-gaps.md §6): the verifier
+# Honest limit: the verifier
 # proves arithmetic and dimensions, not physics.
 chapter: 10
 problems:

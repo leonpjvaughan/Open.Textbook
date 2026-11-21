@@ -4,11 +4,6 @@
 // to move the angle and check, then to find the angle whose sine and cosine are both
 // negative. So the figure has to draw the radius, the point (cos, sin) on the circle,
 // and the two projections that are the coordinates themselves.
-//
-// Nothing here carries a colour. The cosine is drawn in the warning class and the sine
-// in the good class, and each is labelled with its name, so the two are told apart
-// without relying on colour. The scaffolding — the panel, its accessible name, the
-// slider, the readout and the redraw — comes from `kit.js`.
 import { SIZE, fmt, label, panel, react, scale, slider } from "./kit.js";
 
 // The centre of the circle, in SVG units, and its radius.

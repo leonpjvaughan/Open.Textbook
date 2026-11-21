@@ -6,14 +6,6 @@
 // resistance. The rope's two components are drawn, so the reader sees that the
 // tension lifts as well as pulls, and the readout works Newton's second law in
 // each direction.
-//
-// Colours come from the fig-* and text-* classes, so the figure adapts to every
-// bundle and to both schemes. No colour literal appears here, and the runtime
-// text is plain HTML, never TeX.
-//
-// The scaffolding — the surface, its accessible name, the sliders, the live
-// readout, the redraw — comes from `kit.js`. What is left here is the drawing and
-// the sentence, which are the parts that differ from every other figure.
 import { SIZE, label, panel, react, slider } from "./kit.js";
 
 const G = 9.8;

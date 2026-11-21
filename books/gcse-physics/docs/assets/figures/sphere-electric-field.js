@@ -4,15 +4,6 @@
 // field lines, and where the field is strongest, before the controls are used.
 // The figure draws the radial field of an isolated charged sphere, lets the
 // reader reverse the sign of the charge and move a test point away from it.
-//
-// Colours come from CSS classes, so the figure adapts to every bundle and both
-// schemes. The arrow direction and the strength are both printed as text, so
-// neither is carried by colour alone.
-//
-// The scaffolding — the surface, its accessible name, the slider, the live
-// readout and the redraw — comes from `kit.js`. The sign button is not one of
-// the kit's controls, so it is built here inside the kit's control column. What
-// is left is the drawing and the sentences.
 import { SIZE, label, panel, react, slider } from "./kit.js";
 
 export function mount(el) {

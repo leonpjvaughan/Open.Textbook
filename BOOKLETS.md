@@ -1,165 +1,35 @@
 # Formula and data booklets
 
-The reference sheet a reader is **allowed to use in the exam**, reproduced
-faithfully, filtered by awarding body and tier. This file is the contract for
-that data. For the problem-bank contract, see `PROBLEMS.md`.
+Per-book exam reference sheets (`books/<id>/booklet/<subject>.yaml` → generated `booklet.json`), rendered by the shared widget `assets/booklet/booklet.js` (loaded only by books declaring `book.yaml → booklet`).
 
-## Why one per qualification and subject
+## Status by book
 
-There is no shared national booklet. Provision is decided by the regulator,
-implemented by each awarding body, and it differs by subject, qualification and
-tier:
+| Book | Booklet | Notes |
+|---|---|---|
+| `gcse-maths`, `gcse-physics` | built | Tiered (`F`/`H`), per-board (AQA/Edexcel/OCR) |
+| `a-level-physics` | built | Per-board data & formulae |
+| `a-level-maths` | built | Formulae & statistical tables |
+| `ie-lc-maths`, `ie-lc-physics`, `ie-lc-applied-maths` | built | Sections from SEC *Foirmlí agus Táblaí* (all `given`, untiered) |
+| `ie-jc-maths` | exempt | SEC publishes no Junior Cycle booklet |
+| Reference / modelling books (`proofs`, `numerical-methods`, `maths-applied`) | none | Not exam courses |
 
-- **Subject decides what is on it.** Mathematics gives formulae; physics gives
-  equations and constants; chemistry gives a periodic table plus data.
-- **Qualification decides its shape.** GCSE sheets are a page of stand-alone
-  formulae. A-level booklets are a multi-page document that also carries a
-  statistical or physical data section.
-- **Tier decides what is included.** A Foundation sheet and a Higher sheet are
-  genuinely different documents, not the same sheet abbreviated.
-- **Provision is time-bound.** It is set for a period and then reviewed. A
-  booklet that was right for 2026 may be wrong for 2028.
+## Data schema
 
-So a booklet is **bespoke to the qualification and the subject**, and it must be
-built from the board's own document rather than from memory or from another
-board's sheet, however similar they look.
+Each item in `books/<id>/booklet/<subject>.yaml`:
 
-## The target set
+- `id`: unique within booklet
+- `name`: reader-facing label
+- `latex`: exact board formula (rendered to MathML at build time)
+- `note`: optional plain-English gloss (resolve ambiguity here, never by altering `latex`)
+- `provision`: per-board status — `given` (on sheet), `question` (supplied in question), or `know` (must recall)
+- `tier`: subset of the book's `tier_axis`
+- `keywords`: extra search terms
 
-Status is deliberately explicit. `verified` means the board's document was
-retrieved and the data checked against it; `to retrieve` means the shape is known
-but the document has not been obtained and checked yet.
+Tables of constants or values use the `tables` section. Every booklet records `meta.provenance` and `meta.basis`, with retrieved documents cited in `books/<id>/sources.yaml`.
 
-| Qualification | Subject | What the board provides | Tiered | Status |
-|---|---|---|---|---|
-| GCSE | Mathematics | Formulae sheet; no tables | Yes | **verified** (AQA 2026 Higher and Foundation checked directly; OCR matches; Edexcel follows the same set) |
-| GCSE | Physics | Equations sheet, separate and combined science | Yes | to retrieve |
-| GCSE | Chemistry | Periodic table insert; formulae limited | Yes | to retrieve |
-| GCSE | Combined Science | Physics equations and chemistry data | Yes | to retrieve |
-| A-level | Mathematics | Formulae booklet, plus a statistical tables section | No | to retrieve |
-| A-level | Further Mathematics | Its own formulae booklet | No | to retrieve |
-| A-level | Physics | Data and formulae booklet | No | to retrieve |
-| A-level | Chemistry | Periodic table, plus a data booklet | No | to retrieve |
-| Junior Cycle | Mathematics | **Nothing.** The SEC publishes no Junior Cycle booklet | — | **exempt**, and that is the reason it has none |
-| Leaving Certificate | Mathematics | Formulae and Tables booklet, pages 8–44 | No | **built** (`books/ie-lc-maths/booklet/`) |
-| Leaving Certificate | Physics | The same booklet, pages 47–63 | No | **built** (`books/ie-lc-physics/booklet/`) |
-| Leaving Certificate | Applied Mathematics | The same booklet, mechanics sections | No | **built** (`books/ie-lc-applied-maths/booklet/`) |
-| Leaving Certificate | Chemistry | The same booklet, plus the tables | No | to retrieve |
+## Rules & verification
 
-**Ireland is one document, not four.** The State Examinations Commission publishes a
-single *Foirmlí agus Táblaí* for Mathematics, Physics, Chemistry and Applied
-Mathematics, and the superintendent issues the same copy to every candidate at every
-level. So there is no board choice and no tiering: every item in every Irish booklet is
-`given`. Each of the three books carries only the sections its pages are allowed to need,
-which is why they are separate files rather than one shared document — a book is
-self-contained, and `scaffold` copies per book.
-
-**`ie-jc-maths` is exempt, not outstanding.** The SEC publishes no booklet for Junior
-Cycle Mathematics, so the book has none and every one of its records is "undeclared" by
-construction. Recording that here is the difference between a gap and a fact.
-
-Design the schema so a booklet with no mathematics — a periodic table, a table of
-physical constants — can be expressed as `tables`, which the widget already
-renders from plain text and data.
-
-## The contract
-
-### Data
-
-One YAML file per book, at `books/<id>/booklet/<subject>.yaml`, declared in
-`book.yaml → booklet`. It is the source of truth; `booklet.json` beside the docs
-is generated and must never be hand-edited.
-
-Each item carries:
-
-| Field | Meaning |
-|---|---|
-| `id` | Stable, unique within the booklet |
-| `name` | What a reader would call it |
-| `latex` | The formula, in LaTeX, rendered to MathML at build time |
-| `note` | A short plain-English gloss, only where it removes ambiguity |
-| `provision` | Per board: one of the groups below |
-| `tier` | `[F, H]` or `[H]` for tier-restricted provision |
-| `keywords` | Extra search terms, including words with no LaTeX spelling |
-
-### The three groups
-
-The distinction a reader actually needs is not "is it on the sheet" but "what am
-I expected to do about it":
-
-- **`given`** — printed on the board's sheet. A reader may look it up.
-- **`question`** — may be given inside the relevant question rather than on the
-  sheet. Worth knowing, because it will not be on the sheet they are reading.
-- **`know`** — not given. The reader must recall it or derive it, and the
-  Walkthrough should teach it as something to know.
-
-Getting a group wrong is a content bug, not a cosmetic one: a reader who trusts a
-`know` item to be `given` will not learn it.
-
-### Fidelity
-
-- Reproduce the board's **wording and notation**, not a tidier equivalent. If the
-  sheet writes `\pi r^2 h`, do not normalise it to `\pi h r^2`.
-- Keep the board's ordering within a section where a reader will be scanning.
-- Do not add an item a board does not provide, even if it is obviously useful.
-  The booklet answers "what may I use", not "what is true".
-- Where a board's sheet is genuinely ambiguous, reproduce it and resolve the
-  ambiguity in `note`, not in `latex`.
-
-### Provenance
-
-Every booklet names its sources in `meta.provenance` and its basis in
-`meta.basis`, and lists the retrieved documents in the book's `sources.yaml`
-under `references`, with a `url`, `retrieved` date and `role`. A claim about
-provision must be traceable to a document, with the date it was checked.
-
-### Verification
-
-`python -m textbook.booklet` validates and renders at build time, and CI fails on:
-
-- an item with no `latex`, a duplicate `id`, or an unknown board or group;
-- a `tier` outside the book's tier axis;
-- LaTeX KaTeX cannot render;
-- a table row whose width does not match its header;
-- a generated `booklet.json` that differs from the committed one.
-
-### Widget behaviour
-
-The widget is `assets/booklet/booklet.js`, shared by every book. Selecting a
-board hides every item that board does not provide, and a chip row toggles the
-groups. Because the data is per book, the widget is loaded only by books that
-declare a booklet — a book without one ships no widget.
-
-## Adding a booklet
-
-1. Retrieve the board's own document and record it in the book's `sources.yaml`.
-2. Write `books/<id>/booklet/<subject>.yaml` against the contract above, with
-   `provision` for every board the book supports.
-3. Run `python -m textbook.booklet` and fix anything it rejects.
-4. Run the book's build and check the widget: filter to each board, and confirm
-   nothing appears that the board does not provide and nothing is missing that it
-   does.
-5. Re-check the provision whenever the regulator's period ends.
-
-## Known traps
-
-- **A sheet may differ between tiers.** Do not assume the Higher sheet is a
-  superset; check both.
-- **A board may give something in the question instead of on the sheet.** That is
-  `question`, not `given` and not `know`.
-- **Tier tags are not the same as provision.** An item can be Higher-only on the
-  sheet, or available to both tiers but only given to one.
-- **Do not infer one board's provision from another's**, even when the regulator
-  has aligned them: alignment is a claim with a date on it.
-- **Regulated documents are reissued.** Record the year the data is for, and
-  re-verify when the period ends.
-- **No log tables at GCSE.** Logarithms are not on the specification, so a GCSE
-  mathematics booklet has no tables section of that kind; the "tables" belong to
-  exact trigonometric values and unit conversions.
-
-## Limits
-
-The booklet reproduces what a board publishes. It does not model what a
-particular paper happened to print, and it cannot tell a reader that their school
-has chosen a different board's sheet. The selector exists to make the difference
-visible rather than to resolve it.
+- Reproduce the board's exact wording, notation, and ordering — do not normalise formulae or infer one board's provision from another's.
+- Never hand-edit generated `booklet.json`; run `python -m textbook.booklet` to validate and regenerate.
+- CI fails on missing `latex`, duplicate `id`, unknown board/group/tier, KaTeX error, mismatched table row widths, or stale `booklet.json`.
+- Problem banks may declare `plays: <booklet-id>`; `textbook.verify` fails if every supported board marks that item `know`.

@@ -9,8 +9,6 @@
 // The source is a gamma emitter, because gamma is the emission that needs real
 // shielding; the readout says what alpha and beta would need instead. Nothing here
 // carries a colour.
-//
-// The scaffolding comes from `kit.js`. What is left is the drawing and the words.
 import { SIZE, fmt, label, panel, react, slider } from "./kit.js";
 
 // The count rate with no shield, in counts per minute, and the thickness of lead

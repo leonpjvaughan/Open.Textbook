@@ -4,13 +4,6 @@
 // four mirror lines, then to write down which coordinate changes and how its sign
 // behaves. So the figure has to draw the point, the mirror line and the image together,
 // and it has to let the reader change both the point and the line.
-//
-// Nothing here carries a colour. The object is drawn in the accent class and the image
-// in the warning class, and the two are told apart by a dashed connector as well, so the
-// pair does not rely on colour.
-//
-// The scaffolding — the panel, its accessible name, the controls and the readout — comes
-// from `kit.js`. What is left is the drawing and the sentences.
 import { SIZE, fmt, label, panel, react, scale, slider, chooser } from "./kit.js";
 
 // The drawing area, in SVG units. The origin sits in the middle, and both axes use the

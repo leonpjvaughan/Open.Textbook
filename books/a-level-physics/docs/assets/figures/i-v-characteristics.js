@@ -6,14 +6,6 @@
 // point. The point of the investigation is the shape of the graph: a fixed
 // resistor gives a straight line, a filament lamp bends because its resistance
 // rises, and a diode conducts in one direction only.
-//
-// Colours come from CSS classes, so the figure adapts to every bundle and to
-// both schemes. No colour literal appears here, and no runtime LaTeX: the
-// readout is plain HTML.
-//
-// The scaffolding — the surface, its accessible name, the slider, the live
-// readout and the redraw — comes from `kit.js`. What is left here is the drawing
-// and the sentences, which are the parts that differ from every other figure.
 import {
   chooser,
   label,

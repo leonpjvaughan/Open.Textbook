@@ -4,11 +4,6 @@
 // the data and the model, and asks which cooling rate k fits. So the figure draws
 // the measured points and the model curve for the chosen k, and reports the total
 // squared error, which is the number the reader is trying to make small.
-//
-// Nothing here carries a colour. The points and the curve use different fig-*
-// classes and different shapes, so the distinction survives a monochrome bundle.
-//
-// The scaffolding comes from `kit.js`. What is left is the drawing and the words.
 import {
   fmt,
   label,

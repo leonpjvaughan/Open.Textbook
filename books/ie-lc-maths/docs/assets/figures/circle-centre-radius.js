@@ -4,9 +4,6 @@
 // as the radius approaches zero, then to test it and write the explanation. The
 // figure draws the circle, its centre, the radius to the rightmost point, and the
 // equation in both forms.
-//
-// Nothing here carries a colour: every shape uses a fig-* class and every word a
-// text-* class, so the figure follows the reader's theme in both schemes.
 import { SIZE, fmt, label, panel, react, scale, slider } from "./kit.js";
 
 const RANGE = 10;

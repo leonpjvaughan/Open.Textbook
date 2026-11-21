@@ -5,11 +5,6 @@
 // from v = f lambda. The reader sets the frequency and the wave speed; the
 // figure draws a snapshot of the wave with one wavelength marked and reports
 // the period.
-// Colours come from CSS classes so the figure adapts to dark mode.
-//
-// The scaffolding — the surface, its accessible name, the sliders, the live
-// readout and the redraw — comes from `kit.js`. What is left here is the drawing
-// and the sentences, which are the parts that differ from every other figure.
 import {
   label,
   panel,

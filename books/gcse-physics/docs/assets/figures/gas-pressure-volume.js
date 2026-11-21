@@ -4,15 +4,6 @@
 // pressure when the volume is halved, then to explain the result with the
 // particle model. The reader sets the volume at a constant temperature; the
 // figure draws the container and reads out the pressure and the value of pV.
-//
-// Colours come from CSS classes, so the figure adapts to every bundle and both
-// schemes. No maths is injected at runtime: every value is plain text.
-//
-// The scaffolding — the surface, its accessible name, the slider, the live
-// readout and the redraw — comes from `kit.js`. The two preset buttons are not
-// one of the kit's controls, so they are built here inside the kit's control
-// column. What is left is the drawing and the sentence, which are the parts that
-// differ from every other figure.
 import {
   label,
   panel,
