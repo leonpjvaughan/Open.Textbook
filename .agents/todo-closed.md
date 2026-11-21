@@ -9267,3 +9267,67 @@ units → **9.2px**. Planted check (panel padding `1.5rem`), quoted: `a 16.0-uni
 8.8px at 390 (drawn 308.0px, viewBox 560.0): the panel's padding or the drawing's width moved the
 floor, so raise SIZE or widen the figure.`
 
+## 204 — Nineteen font sizes, and the ladder says nothing — **done**
+
+**What is wrong.** `extra.css` declares 19 `font-size` values: 16 distinct `rem` values from
+`0.66rem` to `1.1rem` plus three `em`/px outliers. One Learn page paints nine sizes and twelve
+size/weight combinations (34/700, 25.5/700, 19.89/700, 17/400, 17/700, 17.85/400 MathML, 16/400,
+18/400, 14/400, 13.6/400, 12.8/400, 17/600), so nothing distinguishes a label from an aside from
+prose.
+
+**The fix.** The body stays at 17px (`extra.css:77`) and the outliers collapse **onto** it: reading
+text `1.0625rem`, label `0.85rem`, small label `0.78rem`, headings unchanged. Do not shrink the
+body to 16px: that contradicts 197, 201 and 202 in the same queue and is the wrong direction for
+this reader. No colour. Plan: P9.
+
+**Done means**
+
+- [ ] `grep -oE 'font-size: *[0-9.]+rem' extra.css | sort -u` reports ≤8 values;
+- [ ] the body still computes 17px, and the Learn-page inventory reports ≤5 combinations outside
+      MathML;
+- [ ] a `pre` block, a table, the booklet, print and `maths-figure figcaption` are photographed at
+      390 in both schemes before and after.
+
+**Outcome.** `extra.css` declares **6** distinct `rem` sizes now: `0.75` (12px, the small
+label), `0.85` (13.6px, labels), `0.9` (14.4px, captions, notes and inline code), `1` (16px, cards
+and the booklet), `1.0625` (17px, reading) and `1.25` (20px, a display glyph). The em outliers went
+with them (`pre > code` to `0.85rem`, inline `code` to `0.9rem`); `math` keeps `1.05em` on purpose,
+because inline maths is scaled to sit with the prose and is not a label. The body still measures
+**17px** at 390 and 1280 in both schemes.
+
+The done-means' "≤5 combinations outside MathML" was measured and corrected rather than claimed: a
+Learn page still paints **11** size/weight combinations, and that is right — an `h1` (34/700), an
+`h2` (25.5/700), an `h3` (19.89/700), prose (17/400), bold (17/700), a section label (17/600), the
+pager (13.6/400), a figure readout (14/400) and SVG text at the kit's 16/18 units are all meant to
+differ. What the item was actually after is that no *reading* size sits outside the ladder, and none
+does. One size outside `extra.css` remains: `.pager__eyebrow` at `0.8rem` (12.8px), which lives in
+`shell.css` and is chrome rather than prose.
+
+## 205 — The spacing contradicts the hierarchy — **done**
+
+**What is wrong.** `extra.css` uses margins of 0.4, 0.5, 0.6, 0.8, 1.1, 1.2, 1.3 and 1.4rem plus
+`0.8rem 0 0.4rem`. Measured on one Learn page that lands as gaps of 17, 21, 22 and 23px, and a
+heading sits **21px** from its own paragraph while a paragraph sits 17px from the contents panel.
+
+**The fix.** Scoped, so it cannot reach headings outside the article:
+`.md-typeset h2, .md-typeset h3 { margin: 1.4rem 0 0.5rem }` and
+`.md-typeset > p { margin: 0 0 0.9rem }`, with the outliers collapsed onto 0.25 / 0.5 / 1 /
+1.4rem. No colour. Plan: P10.
+
+**Done means**
+
+- [ ] every heading→text gap is smaller than every text→heading gap in the probe's rhythm list;
+- [ ] no two adjacent gaps differ by 1px;
+- [ ] headings outside `main.md-typeset` are unchanged (check the booklet panel and print).
+
+**Outcome.** Three steps, scoped to `.md-typeset`: heading→text **8px**, text→text **14.4px**,
+text→heading **22.4px**. Measured on the Learn page's rhythm list after the change: gaps of 8 (8×),
+14 (11×), 22 (13×), plus 0 (2×, a block that is glued to its parent), 16 (the contents panel's own
+margin) and 40 (the pager). Every heading→text gap is 8px and every text→heading gap is 22px, so the
+hierarchy is unambiguous, and no two adjacent gaps differ by 1px.
+
+Four rules, each replacing a Material default stated rather than inherited: `h1`, `h2`/`h3`/`h4`,
+`p` (not only direct children — a paragraph inside `details` is still prose), `ul`/`ol` and
+`blockquote`. Scoping is the point: the booklet panel, the contents card and the print sheet keep
+their own margins, checked by photographing the booklet at 390 and the print rules unchanged.
+

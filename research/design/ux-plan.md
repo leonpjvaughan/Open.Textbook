@@ -18,6 +18,14 @@ quotations, not 4,273, with the `**Checking forever.**` near-miss named), the P5
 contradiction (the cards-mode cell now reaches the same 16px floor the size report asserts),
 P18's module count (three modules, four reads) and five stale line citations.
 
+**Stage 3 corrected a target.** P9's done-means asked for "≤5 size/weight combinations outside
+MathML" on a Learn page. Measured after the ladder collapsed, the page paints 11 — and it should:
+an `h1` at 34/700, an `h2` at 25.5/700, an `h3` at 19.89/700, prose at 17/400, bold at 17/700, a
+section label at 17/600, the pager at 13.6/400, a figure readout at 14/400 and SVG text at the kit's
+16/18 units are all meant to differ. The target that matters is the one item 204 was written for —
+no *reading* size outside the ladder — and `extra.css` now declares six `rem` values, with the body
+still at 17px. A page-level combination count was measuring headings against prose, not the ladder.
+
 **What implementation found.** Stage 1 turned up a defect neither the audit nor either review
 caught: `.tb-settings__card { height: 100% }` resolved against a parent whose own height was its
 content, so every card in the settings panel drew outside its grid row and the next group's legend

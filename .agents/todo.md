@@ -20,7 +20,7 @@ the number after the last one, with its diagnosis, its fix and its own done-mean
 **187** and **188** from `research/review/maths-applied-and-numerical-methods-v.md`, **192**,
 filed while closing 186, 190 and 191, and **200–216** of the UX queue from
 `research/design/ux-plan.md` — the four auditor reports and the two reviews behind it are
-summarised there, not here. **193–202 and 206–210** are closed in stages 1 and 2 of that plan.
+summarised there, not here. **193–202 and 204–210** are closed in stages 1–3 of that plan.
 
 The UX queue is ordered as `ux-plan.md` §4 ranks it. One dependency matters before starting:
 the size report (**209**) is the gate that **197**, **201**, **203** and **204** are verified
@@ -197,44 +197,6 @@ Plan: P4.
 - [ ] answer 9 is one tap from item 9, and each summary names its own number;
 - [ ] no answer text, working or ordering changes, and the bank tests still pass;
 - [ ] `tests/test_render_hooks.py` asserts the summary/item pairing.
-
-## 204 — Nineteen font sizes, and the ladder says nothing
-
-**What is wrong.** `extra.css` declares 19 `font-size` values: 16 distinct `rem` values from
-`0.66rem` to `1.1rem` plus three `em`/px outliers. One Learn page paints nine sizes and twelve
-size/weight combinations (34/700, 25.5/700, 19.89/700, 17/400, 17/700, 17.85/400 MathML, 16/400,
-18/400, 14/400, 13.6/400, 12.8/400, 17/600), so nothing distinguishes a label from an aside from
-prose.
-
-**The fix.** The body stays at 17px (`extra.css:77`) and the outliers collapse **onto** it: reading
-text `1.0625rem`, label `0.85rem`, small label `0.78rem`, headings unchanged. Do not shrink the
-body to 16px: that contradicts 197, 201 and 202 in the same queue and is the wrong direction for
-this reader. No colour. Plan: P9.
-
-**Done means**
-
-- [ ] `grep -oE 'font-size: *[0-9.]+rem' extra.css | sort -u` reports ≤8 values;
-- [ ] the body still computes 17px, and the Learn-page inventory reports ≤5 combinations outside
-      MathML;
-- [ ] a `pre` block, a table, the booklet, print and `maths-figure figcaption` are photographed at
-      390 in both schemes before and after.
-
-## 205 — The spacing contradicts the hierarchy
-
-**What is wrong.** `extra.css` uses margins of 0.4, 0.5, 0.6, 0.8, 1.1, 1.2, 1.3 and 1.4rem plus
-`0.8rem 0 0.4rem`. Measured on one Learn page that lands as gaps of 17, 21, 22 and 23px, and a
-heading sits **21px** from its own paragraph while a paragraph sits 17px from the contents panel.
-
-**The fix.** Scoped, so it cannot reach headings outside the article:
-`.md-typeset h2, .md-typeset h3 { margin: 1.4rem 0 0.5rem }` and
-`.md-typeset > p { margin: 0 0 0.9rem }`, with the outliers collapsed onto 0.25 / 0.5 / 1 /
-1.4rem. No colour. Plan: P10.
-
-**Done means**
-
-- [ ] every heading→text gap is smaller than every text→heading gap in the probe's rhythm list;
-- [ ] no two adjacent gaps differ by 1px;
-- [ ] headings outside `main.md-typeset` are unchanged (check the booklet panel and print).
 
 ## 211 — The two figure audits are the two a branch may skip
 
