@@ -5,7 +5,7 @@
 # ideas, not their physics. The calculations prove `dimensions` and `sigfigs`,
 # and the prefix arithmetic is proved by `convert`.
 #
-# Honest limit (research/curriculum/physics-verifier-gaps.md §6): this proves the
+# Honest limit: this proves the
 # arithmetic and the dimensions, not the physics.
 chapter: 4
 problems:

@@ -1,12 +1,6 @@
 // Guided investigation for vector addition and scalar multiplication.
 // Two vectors a and b with movable components, drawn head to tail, plus the
 // resultant and the scalar multiple k*a. Plain HTML and SVG, no framework and
-// no colour of its own: the fig-* classes carry the theme. Runtime text is
-// plain text, never TeX.
-//
-// The scaffolding — the surface, its accessible name, the five sliders, the live
-// readout and the redraw — comes from `kit.js`. What is left here is the drawing
-// and the sentence.
 import { SIZE, label, panel, slider, react } from "./kit.js";
 
 const SCALE = 20;

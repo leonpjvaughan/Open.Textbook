@@ -1,9 +1,4 @@
 // Guided investigation: predict how two linear functions compose, then test.
-//
-// The scaffolding — the frame, the prompt, the two sliders, the live readout, the
-// redraw — comes from `kit.js`. This module draws nothing: it is a rule and a
-// sentence, so it asks the kit for a frame with no drawing surface, and has no
-// drawing to name.
 import { panel, slider, react } from "./kit.js";
 
 // A signed term, so the rule reads `2x + 3` and `2x - 5`, never `2x + (-5)`.

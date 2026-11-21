@@ -15,9 +15,6 @@
 // The question is written in **plain text**, not LaTeX: the maths hook runs at build
 // time, so `$...$` a module injects at runtime would reach the reader as dollar signs.
 // A generated question uses the symbols a reader would type.
-//
-// Nothing here carries a colour. The question is prose, the field is a native input and
-// the verdict is words.
 import { practice, panel } from "./kit.js";
 
 // Every kind draws its parameters and states the answer in terms of them, so the two

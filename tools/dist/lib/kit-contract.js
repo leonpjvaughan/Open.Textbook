@@ -1,83 +1,33 @@
 /*
- * The figure kit's contract, as **one table**, run by two runners.
+ * The figure kit's contract, as **one table**, run by two runners: `tools kit-pure` runs
+ * every `pure` and `both` row under `node`; `tools kit site` runs every `dom` and `both`
+ * row in a real page, through the `maths-figure` element the loader hands a module.
  *
- * There used to be two hand-written lists of the same contract. `tools kit` ran 54
- * assertions inside a real page, because most of the kit's promises are DOM behaviour —
- * a role, a live region that can announce a value, one focus stop per control. `tools
- * kit-pure` ran 43 under plain `node`, because the drawing and formatting layers are
- * pure functions and checking them only where Playwright is configured means checking
- * them only sometimes. Thirteen strings appeared verbatim in both files, and 28 checks
- * existed in only one — and *which* tier a control was checked in was a decision nobody
- * had recorded anywhere, so nothing could tell you that `toggle()` had no check at all
- * and that `SIZE` was checked twice, differently.
- *
- * So the list lives here once. Each row says what must hold, which tier runs it, which
- * kit export it is about, and how to see the answer. Two runners read the same rows:
- *
- *   * `tools kit-pure` runs every `pure` and `both` row under `node`;
- *   * `tools kit site` runs every `dom` and `both` row in a real page — through the
- *     `maths-figure` element the loader hands a module, because that is the environment
- *     a control actually lives in.
- *
- * This module is **served to the page** as well as imported by the command (`kit.ts`
- * intercepts `/__kit-contract.js`), so it must stay dependency-free at runtime: it
- * imports nothing, and every `call` may close over this module's own constants, which
- * the page loads too. That is what makes the table the same table in both runtimes
- * rather than two copies of a table that agree today.
- *
- * ## The tiers, and what a tier means
- *
- * | tier | runs in | why it is there |
+ * | tier | runs in | meaning |
  * |---|---|---|
- * | `pure` | `node` | a claim about a pure function, and only `kit-pure` ever made it |
+ * | `pure` | `node` | a claim about a pure function |
  * | `dom` | the browser | a claim that needs an element, a layout or a pointer |
  * | `both` | both | an assertion the two commands already agreed on |
  *
- * `both` is not "the important ones". It is the record of what was *already* checked
- * twice: a pure function whose answer both commands asserted, e.g. `sigfig(6, 2)` is
- * `"6.0"`. Running it in the page too costs nothing and proves the module graph the
- * browser actually loads exports the same thing the `node` import does.
- *
- * A row whose `tier` is none of those three would run in neither runner — the exact
- * silence this table exists to end — so `coverageProblems` reports it, and the run
+ * A tier outside those three runs nowhere, so `coverageProblems` reports it and the run
  * fails.
  *
- * ## The shape of a row
+ * This module is **served to the page** as well as imported by the command, so it must
+ * stay dependency-free at runtime: it imports nothing, and every `call` may close over
+ * this module's own constants, which the page loads too.
  *
- * ```ts
- * { name: "label() escapes its text", tier: "both", covers: "label",
- *   call: (kit) => kit.label({ x: 0, y: 0, text: "a & b < c" }),
- *   expect: /a &amp; b &lt; c/ }
- * ```
- *
- * `name` is the failure message, so it says what must hold rather than what is tested.
- * `covers` names the kit export (or exports) the row is about, which is what lets the
- * report answer "which export has no contract at all" — the question that found
- * `toggle`, `chooser` and `UI_FONT` with none.
- *
- * `expect` is one of three things: a **value**, compared by its JSON form (the kit's
- * answers are strings, numbers, booleans and arrays of those); a **RegExp**, matched
- * against the string form; or a **predicate**, for an answer that has to be reasoned
- * about — a float round-trip, a size computed from a measurement, a set of regions that
- * must all be sound. A predicate carries `because`, the sentence that explains what a
- * failure means, because "got 0.30000000000000004" is not a diagnosis.
+ * `expect` is a **value** compared by its JSON form, a **RegExp** matched against the
+ * string form, or a **predicate**, which carries `because`: what a failure means.
  */
 /** Every tier a runner reads. A row with any other value runs nowhere, and is reported. */
 export const TIERS = ["pure", "dom", "both"];
-// ── the size scale, grounded in a measurement ────────────────────────────────
-//
-// At a 390px viewport the `maths-figure` element is 358px wide but carries 17.6px of
-// padding on each side, so the drawing is 322.8px and a 560-unit viewBox draws at
-// 322.8 / 560 = 0.576. The smallest named size must clear 9px at that scale; four
-// figures drifted below it while every one of their own attributes looked reasonable.
-// `audit site --mobile` measures what reaches the screen; this checks the arithmetic
-// the modules are told to rely on, and it is the *drawing's* width, not the element's:
-// the earlier figure here was 358/560, which passed `SIZE.tick` at 15 units when the
-// drawing put it at 8.6px. A guard that measures the wrong box is worse than no guard.
+// The size scale rests on a measurement: at a 390px viewport the element is 358px wide
+// with 17.6px of padding each side, so a 560-unit viewBox draws at 322.8 / 560. Every
+// named size must clear 9px there, measured against the *drawing's* width and not the
+// element's, which passes a size that reaches the screen at 8.6px.
 const PHONE_PANEL_PX = 358 - 2 * 17.6;
 const PHONE_SCALE = PHONE_PANEL_PX / 560;
 const FLOOR_PX = 9;
-// ── text, and the marks' colour class ────────────────────────────────────────
 /** The marks every module composes, with the options the check gives each one. */
 const MARK_OPTIONS = {
     line: { x1: 0, y1: 0, x2: 10, y2: 10 },
@@ -88,9 +38,7 @@ const MARK_OPTIONS = {
     arrow: { x1: 0, y1: 0, x2: 30, y2: 0 },
 };
 const textRows = [
-    // `sigfig` is the reader's side of the bank's `sigfigs` check: a rounded answer is a
-    // claim about how much of the measurement is real, so `6`, `6.0` and `6.00` are three
-    // statements and only one of them is right.
+    // A rounded answer claims how much is real: `6`, `6.0` and `6.00` are three claims.
     {
         name: "sigfig keeps a significant trailing zero",
         tier: "both",
@@ -143,8 +91,7 @@ const textRows = [
         expect: "\u2014",
     },
     {
-        // As a map callback `fmt` is given the index as a second argument, and a formatter
-        // that used it would print something different for every value in a table.
+        // A map callback gets the index second; using it would print a value per row.
         name: "fmt ignores the index a map callback passes it",
         tier: "both",
         covers: "fmt",
@@ -173,9 +120,7 @@ const textRows = [
         call: (kit) => kit.escape("a & b < c"),
         expect: "a &amp; b &lt; c",
     },
-    // A `<text>` with no `fig-*`/`text-*` class is painted with `fill`'s initial black and
-    // vanishes on a dark panel. That defect was found eighteen times by measurement, so
-    // the class is the default rather than the caller's job.
+    // No `fig-*`/`text-*` class means `fill`'s initial black, so the class is the default.
     {
         name: "label() returns a <text> element",
         tier: "both",
@@ -255,9 +200,8 @@ const textRows = [
         call: (kit) => kit.label({ x: 0, y: 0, text: "a & b < c" }),
         expect: /a &amp; b &lt; c/,
     },
-    // `SIZE` exists so that no module chooses its own number: rendered size is
-    // `font-size` times the drawing's width over the viewBox width, which no module's own
-    // attributes can tell you.
+    // `SIZE` exists so no module picks its own number: `font-size` times drawing width over
+    // viewBox width.
     {
         name: "the SIZE scale is four named values, not a number per module",
         tier: "pure",
@@ -277,12 +221,8 @@ const textRows = [
         because: `the drawing is 322.8px of a 560-unit viewBox on a phone, so a named size below ${FLOOR_PX}px is unreadable there`,
     },
 ];
-// ── scale ────────────────────────────────────────────────────────────────────
-//
-// The y-axis case is the one that gets flipped when written by hand: a value that counts
-// upwards onto an axis that counts downwards. `.invert` is the mapping back, which is
-// what a drag needs — a pointer position is an SVG coordinate and the value is what
-// belongs there.
+// The y-axis case gets flipped when written by hand: a value that counts upwards onto an
+// axis that counts downwards. `.invert` is the mapping back, which is what a drag needs.
 const scaleRows = [
     {
         name: "scale maps the domain's low end",
@@ -363,7 +303,6 @@ const scaleRows = [
         because: "a domain with no width divides by zero and produces NaN coordinates rather than failing",
     },
 ];
-// ── extent and ticks ─────────────────────────────────────────────────────────
 const extentRows = [
     {
         name: "extent of nothing is a usable domain",
@@ -416,13 +355,9 @@ const extentRows = [
         expect: [3],
     },
 ];
-// ── the marks ────────────────────────────────────────────────────────────────
-//
-// Every mark defaults its colour class and rounds its coordinates. The class is the same
-// defect `label()` exists to prevent — a shape with no `fig-*` class is painted from the
-// initial value and its stroke is invisible on a dark panel — and the rounding is what
-// stopped 44 modules shipping `183.99999999999997` into a reader's markup.
-//
+// Every mark defaults its colour class and rounds its coordinates: a shape with no
+// `fig-*` class is painted from the initial value and its stroke is invisible on a dark
+// panel, and unrounded coordinates ship `183.99999999999997` into a reader's markup.
 // Three properties, from one table of marks rather than six hand-written copies each.
 const markRows = Object.entries(MARK_OPTIONS).flatMap(([name, options]) => [
     {
@@ -475,8 +410,6 @@ const arrowRows = [
         because: "a dashed line by default would make `camera3d()`'s hidden edges indistinguishable",
     },
 ];
-// ── the axis helpers ─────────────────────────────────────────────────────────
-//
 // `axes()` returns the mappers as well as the string, so a module cannot draw its data
 // with different geometry from its own axes.
 const frameRows = [
@@ -528,7 +461,6 @@ const frameRows = [
         expect: /<polygon/,
     },
 ];
-// ── the plotters ─────────────────────────────────────────────────────────────
 const plotRows = [
     {
         name: "curve() of nothing is empty, not a broken path",
@@ -545,8 +477,7 @@ const plotRows = [
         expect: /^<path d="M0\.0 0\.0 L10\.0 2\.0 L20\.0 8\.0"/,
     },
     {
-        // One `NaN` in a path drops the whole line and looks like a missing curve, so a
-        // sample that is not finite must break the path rather than poison it.
+        // One `NaN` drops the whole line, so a non-finite sample must break the path.
         name: "graph() keeps a non-finite sample out of the path",
         tier: "both",
         covers: "graph",
@@ -610,12 +541,8 @@ const plotRows = [
         expect: 2,
     },
 ];
-// ── venn ─────────────────────────────────────────────────────────────────────
-//
-// `venn()` places each region's label by geometry, because **an atom in the wrong region
-// teaches the opposite of the truth**. The invariant is checked directly: for every
-// region of a two-set and a three-set diagram, the point `venn()` chose must be inside
-// exactly the circles the region declares.
+// An atom in the wrong region teaches the opposite of the truth, so the point `venn()`
+// chose must be inside exactly the circles each region declares.
 const TWO_SETS = [
     { id: "A", cx: 250, cy: 148, r: 88 },
     { id: "B", cx: 320, cy: 148, r: 88 },
@@ -690,11 +617,8 @@ const vennRows = [
         expect: 3,
     },
 ];
-// ── randomness ───────────────────────────────────────────────────────────────
-//
-// Seeded, because a figure that samples must be reproducible: two readers comparing what
-// they saw must be comparing the same data, and a browser test cannot assert anything
-// about data that changes on every load.
+// Seeded, because two readers comparing what they saw must be comparing the same data,
+// and a browser test cannot assert anything about data that changes on every load.
 const seedRange = (kit) => {
     const rng = kit.seed(1);
     let low = 1;
@@ -744,10 +668,8 @@ const seedRows = [
         because: "two readers with the same seed must see the same order",
     },
 ];
-// ── checking ─────────────────────────────────────────────────────────────────
-//
-// Four outcomes, and the difference between the last two matters to a reader: "wrong" is
-// a mistake worth thinking about, "invalid" is a typing problem that needs none.
+// Four outcomes, and the difference between the last two matters: "wrong" is a mistake
+// worth thinking about, "invalid" is a typing problem that needs none.
 const checkRows = [
     {
         name: "check() gives the four verdicts, and a unit or a fraction is not a mistake",
@@ -787,11 +709,8 @@ const checkRows = [
         ],
     },
 ];
-// ── a vector field ───────────────────────────────────────────────────────────
-//
-// Six modules hand-build this, and the two things they re-derive are the arrow's
-// direction and the SVG y-axis, which counts the other way. A field that points the
-// wrong way on one axis is a false diagram.
+// Modules hand-build this, re-deriving the arrow's direction and the SVG y-axis, which
+// counts the other way. A field that points the wrong way on one axis is a false diagram.
 /** The screen direction of each arrow `vectorField()` drew for `field`. */
 function fieldDirections(kit, field) {
     const frame = kit.axes({ x: { domain: [-1, 1] }, y: { domain: [-1, 1] } });
@@ -828,18 +747,14 @@ const vectorRows = [
         because: "the y-axis counts the other way in SVG, so the direction has to go through the mappers",
     },
 ];
-// ── a camera for small 3D drawings ───────────────────────────────────────────
-//
 // The rule is the one a textbook uses: a solid's hidden edges are the ones whose every
-// face is turned away. A cube has exactly three, and a primitive that drew four or two
-// would make every 3D figure in the collection wrong in the same way.
+// face is turned away. A cube has exactly three; four or two makes every 3D figure wrong.
 const CUBE = {
     vertices: [
         [-1, -1, -1], [1, -1, -1], [1, -1, 1], [-1, -1, 1],
         [-1, 1, -1], [1, 1, -1], [1, 1, 1], [-1, 1, 1],
     ],
-    // Deliberately inconsistent winding, to check that the outward orientation is what
-    // decides visibility rather than the order a module happened to write its vertices.
+    // Deliberately inconsistent winding, so the outward orientation decides, not the order.
     faces: [
         { indices: [0, 1, 2, 3] }, { indices: [4, 5, 6, 7] }, { indices: [0, 1, 5, 4] },
         { indices: [2, 3, 7, 6] }, { indices: [1, 2, 6, 5] }, { indices: [0, 3, 7, 4] },
@@ -896,12 +811,9 @@ const cameraRows = [
         expect: true,
     },
 ];
-// ── a generated question ─────────────────────────────────────────────────────
-//
-// The claim is **internal consistency, not verification**: the answer is computed by the
-// same function that wrote the question, so the two cannot disagree. What can be checked
-// is that it is deterministic, that a different seed differs, and that the answer agrees
-// with the numbers the question states.
+// The claim is **internal consistency, not verification**: the answer comes from the
+// function that wrote the question. Determinism, a different seed differing, and the
+// answer agreeing with the stated numbers are what can be checked.
 const HCF_KINDS = [
     {
         id: "hcf",
@@ -966,11 +878,9 @@ const exerciseRows = [
         because: "the only thing a generator claims is that the question and its answer cannot disagree",
     },
 ];
-// ── the frame, the controls and the reader's widgets ─────────────────────────
-//
-// Everything below needs an element, a layout or a pointer. Each row gets a fresh
-// `<maths-figure>`, exactly the element the loader hands a module, which is why these
-// rows cannot share state with each other — and why a `dom` row may not be a `both` row.
+// Everything below needs an element, a layout or a pointer, and each row gets a fresh
+// `<maths-figure>`, exactly the element the loader hands a module, so no two rows share
+// state.
 const frameHostRows = [
     {
         name: "the drawing carries role=\"img\"",
@@ -1127,8 +1037,7 @@ const controlRows = [
         expect: "TEXTAREA",
     },
     {
-        // `pressed` is what makes a button a toggle; without it the button is an action and
-        // `aria-pressed` would be a lie.
+        // `pressed` makes a button a toggle; without it `aria-pressed` would be a lie.
         name: "button is a real button, and only a toggle carries aria-pressed",
         tier: "dom",
         covers: "button",
@@ -1181,8 +1090,7 @@ const controlRows = [
         expect: ["SELECT", "b", 2, "Pick"],
     },
     {
-        // A stepper is the step slider plus two buttons, and all three go through one change
-        // path, so the buttons and the slider cannot disagree.
+        // The stepper is the slider plus two buttons on one change path, so they cannot differ.
         name: "a stepper advances and narrates",
         tier: "dom",
         covers: ["stepper", "react"],
@@ -1200,8 +1108,7 @@ const controlRows = [
         expect: [0, 1, "two", true],
     },
     {
-        // A table is tabular data, so it is a real table with a caption and a scope on every
-        // header — and its highlight follows a control without a rebuild.
+        // A real table with a caption and a scope per header; the highlight follows a control.
         name: "a table is tabular, captioned and browsable",
         tier: "dom",
         covers: "table",
@@ -1230,8 +1137,7 @@ const controlRows = [
 ];
 const widgetRows = [
     {
-        // The animation is an explicit loop with a scrubber, so every frame is reachable
-        // without motion and the figure is complete for a reader who asked for less.
+        // An explicit loop with a scrubber, so every frame is reachable without motion.
         name: "an animation is scrubbable without motion",
         tier: "dom",
         covers: ["animate", "notify"],
@@ -1263,8 +1169,7 @@ const widgetRows = [
         expect: [true, false, "Correct.", true],
     },
     {
-        // A draggable handle must not be the only way to reach its value: a pointer is not a
-        // keyboard, and ten modules already handled a pointer event with no guarantee.
+        // A pointer is not a keyboard, so a handle must not be the only way to its value.
         name: "draggable() refuses a handle with no backing control",
         tier: "dom",
         covers: "draggable",
@@ -1288,8 +1193,7 @@ const widgetRows = [
         call: (kit, host) => {
             host.style.cssText = "display:block;width:400px";
             const x = kit.scale({ domain: [0, 10], range: [0, 200] });
-            // A fixed-width host, so the rendered box is known and the pointer position maps
-            // to a viewBox position that can be asserted exactly rather than roughly.
+            // A fixed-width host, so the rendered box is known and the pointer maps exactly.
             const surface = kit.panel(host, { label: "Drag test", width: 200, height: 100 }).svg;
             const control = kit.slider(host, { label: "Value", min: 0, max: 10, step: 0.1, value: 5, show: false });
             const handle = document.createElementNS("http://www.w3.org/2000/svg", "circle");
@@ -1314,8 +1218,7 @@ const widgetRows = [
         expect: [2.5, false, "function", true],
     },
     {
-        // Storage that fails silently, because a reader in private mode should get a figure
-        // that forgets rather than a figure that breaks.
+        // Storage fails silently, so private mode forgets rather than breaks.
         name: "remember() round-trips or fails quietly",
         tier: "dom",
         covers: "remember",
@@ -1354,8 +1257,7 @@ const widgetRows = [
         expect: "a long description",
     },
     {
-        // A builder assembles and the module validates, so the kit owns the order, the
-        // keyboard and the announcement and never judges the assembly.
+        // The kit owns the order, the keyboard and the announcement; the module validates.
         name: "a builder adds in order, undoes, announces and redraws",
         tier: "dom",
         covers: ["builder", "react"],
@@ -1382,8 +1284,8 @@ const widgetRows = [
         expect: ["p,n", "p", true, "true,true", "BUTTON"],
     },
     {
-        // The keypad inserts plain text at the caret and fires `input`, so what receives it is
-        // still an ordinary field and the checker still reads a string.
+        // The keypad inserts plain text at the caret and fires `input`, so the field stays an
+        // ordinary field.
         name: "a keypad inserts at the caret and fires input",
         tier: "dom",
         covers: "notate",
@@ -1405,9 +1307,8 @@ const widgetRows = [
         expect: ["1/2", 2, 1, "BUTTON"],
     },
     {
-        // Endless practice, which is the only thing here that changes what a reader *does*
-        // rather than what they see. The verdict has to follow the current question: a stale
-        // answer is how this widget would teach something false.
+        // The one thing here that changes what a reader *does*: the verdict must follow the
+        // current question, or a stale answer teaches something false.
         name: "practice verifies the current question and moves on",
         tier: "dom",
         covers: "practice",
@@ -1450,9 +1351,8 @@ const widgetRows = [
         expect: [true, true, "Correct.", true, true, true, true, 1],
     },
     {
-        // A diagram's parts are explored one at a time, and the buttons are the focus stops.
-        // The two things that can go wrong are silent: the drawing does not follow the focus,
-        // or the description never reaches the accessible name.
+        // Parts are explored one at a time with the buttons as focus stops; the drawing must
+        // follow focus, and the description must reach the accessible name.
         name: "a diagram explores one part at a time, and the buttons are the focus stops",
         tier: "dom",
         covers: "diagram",
@@ -1470,9 +1370,7 @@ const widgetRows = [
             });
             const buttons = [...host.querySelectorAll(".fig-parts button")];
             const root = host.querySelector(".fig-diagram");
-            // `kit` is the compiled module served to the page, so it arrives untyped here and
-            // `made.groups` is `any` with it. The kit's own `Diagram` type says a group is an
-            // `SVGGElement`, which is what the two reads below say too.
+            // `kit` arrives untyped, so `made.groups` is `any`; `Diagram` says an `SVGGElement`.
             const atRest = [
                 root.classList.contains("is-exploring"),
                 made.groups.some((group) => group.classList.contains("is-active")),
@@ -1483,8 +1381,7 @@ const widgetRows = [
                 made.groups.map((group) => group.classList.contains("is-active")),
                 (made.readout.textContent || "").startsWith("Height."),
             ];
-            // The description has to be in the accessible name, not only in the readout: a
-            // screen reader hears the name on arrival and the readout after.
+            // The description belongs in the accessible name, not only in the readout.
             const named = (buttons[1].getAttribute("aria-label") || "").includes("upright edge");
             const reachable = buttons.every((button) => button.tabIndex >= 0);
             return [
@@ -1571,10 +1468,9 @@ export function judge(rows, observed) {
 /**
  * Run rows here, in whatever runtime this module is loaded in.
  *
- * In the page each row gets a **fresh** `<maths-figure>`, the element the loader hands a
- * module, so no row can pass because another row left the document in a helpful state.
- * Under `node` there is no document and `host` is `undefined`, which is exactly the
- * constraint that makes a `pure` row pure.
+ * In the page each row gets a **fresh** `<maths-figure>`, so no row can pass because
+ * another row left the document in a helpful state. Under `node` `host` is `undefined`,
+ * which is the constraint that makes a `pure` row pure.
  */
 export function observe(rows, kit) {
     const hasDocument = typeof document !== "undefined" && !!document.body;
@@ -1645,8 +1541,7 @@ export function tableProblems(tier, kitExports) {
     for (const row of seen.tierless) {
         problems.push(`"${row.name}" has tier "${row.tier}", which no runner reads`);
     }
-    // One line per export rather than one per row: a kit that dropped a whole layer would
-    // otherwise report the same fact forty times and hide the rest.
+    // One line per export rather than per row, so a dropped layer is not repeated forty times.
     for (const name of [...new Set(seen.stray.map((stray) => stray.covers))].sort()) {
         const rows = seen.stray.filter((stray) => stray.covers === name).map((stray) => stray.row);
         problems.push(`${name} is claimed by ${rows.length} row(s) but the kit does not export it: ${rows[0]}`);
@@ -1658,9 +1553,8 @@ export function tableProblems(tier, kitExports) {
 /**
  * Judge a tier's rows, print the result with its counts, and return the exit code.
  *
- * The counts are printed whether the run passed or failed: a run that reports its own
- * size cannot be mistaken for a run that examined nothing, and "which tier checks this
- * control" is answered by the same line.
+ * The counts print on a pass and on a failure, so a run cannot be mistaken for one that
+ * examined nothing.
  */
 export function conclude(options) {
     const { tier, kitExports, verdicts, title } = options;

@@ -18,7 +18,7 @@ SCOPE — edit ONLY these paths, nothing else:
 - books/gcse-maths/problems/chapter-CHAPTER-*.yaml
 - books/gcse-maths/docs/assets/figures/chCHAPTER-*.js   (slug prefix chCHAPTER-)
 Do NOT touch books/gcse-maths/curriculum.yaml, AGENTS.md, .agents/chapter-brief.md, PROBLEMS.md, research/pedagogy.md,
-.agents/planning/plan.md, .agents/planning/handoff.md, renderers/**, scripts/**, test/**, books/gcse-maths/docs/Glossary/**, or any
+renderers/**, scripts/**, test/**, books/gcse-maths/docs/Glossary/**, or any
 other chapter. Do NOT run `mkdocs build` or `engine/src/textbook/scaffold.py`; the
 orchestrator runs those.
 

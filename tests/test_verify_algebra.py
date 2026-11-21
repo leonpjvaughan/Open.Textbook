@@ -1,6 +1,6 @@
 """A-level verification vocabulary: new kinds, operations and statistics.
 
-``research/curriculum/a-level-maths-verifier-gaps.md`` §3 and §5 list the check
+The A-level bank needs these check
 kinds, ``apply`` operations and ``statistic`` values an A-level bank needs before
 it can be verified. This file proves each one verifies a record — and that the
 load-bearing ones can fail, because a check that cannot fail is not a check.

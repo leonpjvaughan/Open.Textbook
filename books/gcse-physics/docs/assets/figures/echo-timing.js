@@ -4,11 +4,6 @@
 // depth does to the echo time, then to explain it from distance = speed x time
 // with the trip there and back. The reader sets the depth and the speed of the
 // wave; the figure draws the down-and-back path and reports the echo time.
-// Colours come from CSS classes so the figure adapts to dark mode.
-//
-// The scaffolding — the surface, its accessible name, the sliders, the live
-// readout and the redraw — comes from `kit.js`. What is left here is the drawing
-// and the sentences, which are the parts that differ from every other figure.
 import {
   label,
   panel,

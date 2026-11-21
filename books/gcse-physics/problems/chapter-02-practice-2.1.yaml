@@ -11,7 +11,7 @@
 # compares each component against the exact trigonometric value with a stated
 # tolerance.
 #
-# Honest limit (research/curriculum/verifier-gaps.md §6): this proves the
+# Honest limit: this proves the
 # arithmetic and the dimensions, not the physics. A dimensionally consistent,
 # arithmetically correct, physically absurd answer would pass. The `structured`
 # records at the end prove only that a model answer contains the declared ideas,

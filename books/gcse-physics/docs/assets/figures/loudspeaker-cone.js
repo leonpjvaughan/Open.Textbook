@@ -3,11 +3,6 @@
 // The page asks the reader to predict which way the cone moves for a positive
 // current, then to reverse the current, then to explain why a changing current
 // makes the cone vibrate. The figure shows the force and the cone position, not
-// a real sound. Colours come from CSS classes.
-//
-// The scaffolding — the surface, its accessible name, the slider, the live
-// readout and the redraw — comes from `kit.js`. What is left here is the drawing
-// and the sentence, which are the parts that differ from every other figure.
 import {
   label,
   panel,

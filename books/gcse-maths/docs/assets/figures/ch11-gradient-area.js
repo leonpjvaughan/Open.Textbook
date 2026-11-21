@@ -3,11 +3,6 @@
 // Guided, not a sandbox: the page asks the reader to predict what happens to the
 // acceleration and to the distance when the time doubles, then to explain why one
 // can fall while the other rises. The shaded triangle is the area under the line,
-// so the distance is a picture. Colours come from CSS classes, so the figure
-// adapts to every bundle and both schemes.
-//
-// The scaffolding — the surface, its accessible name, the two sliders, the live
-// readout, the redraw, the number formatting — comes from `kit.js`.
 import {
   fmt,
   label,

@@ -4,11 +4,6 @@
 // adding turns, and of switching off the current, then to test with the sliders,
 // then to explain why more turns strengthen the field. The figure reports a
 // relative field strength, not a measured one, so the numbers teach proportion
-// without pretending to be tesla. Colours come from CSS classes.
-//
-// The scaffolding — the surface, its accessible name, the controls, the live
-// readout and the redraw — comes from `kit.js`. What is left here is the drawing
-// and the sentences, which are the parts that differ from every other figure.
 import {
   label,
   panel,

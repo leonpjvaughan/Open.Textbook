@@ -6,13 +6,6 @@
 // gives a bigger circle and a bigger field gives a smaller one. So the figure has
 // to let the speed and the field be changed and draw the *path* that follows,
 // rather than assert the shape.
-//
-// Nothing here carries a colour. The field uses the grid class, the path and the
-// velocity the accent class, so the figure follows the reader's bundle and both
-// schemes.
-//
-// The scaffolding — the panel, its accessible name, the controls, the readout and
-// the redraw — comes from `kit.js`. What is left is the drawing and the words.
 import {
   fmt,
   label,

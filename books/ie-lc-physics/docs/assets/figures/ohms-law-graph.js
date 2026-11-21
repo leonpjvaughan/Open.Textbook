@@ -6,12 +6,6 @@
 // its graph. So the figure has to show three genuinely different shapes on the same
 // axes: a straight line through the origin, a curve that flattens as the filament
 // heats, and a threshold followed by a steep rise.
-//
-// Nothing here carries a colour. The curve uses one class, the axes another and the
-// marker a third, so the figure survives a monochrome bundle.
-//
-// The scaffolding — the panel, its accessible name, the controls, the readout and the
-// redraw — comes from `kit.js`. What is left is the drawing and the sentences.
 import {
   chooser,
   fmt,

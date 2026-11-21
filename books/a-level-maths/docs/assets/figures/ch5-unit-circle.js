@@ -1,9 +1,4 @@
 // Guided investigation for radian measure and the arc of a unit circle.
-// Pure HTML and SVG, an ES module, no framework and no colour of its own: the
-// fig-* classes carry the theme. Runtime text is plain text, never TeX.
-//
-// The scaffolding — the surface, its accessible name, the slider, the live
-// readout and the redraw — comes from `kit.js`.
 import { SIZE, label, panel, react, slider } from "./kit.js";
 
 const CENTRE = 160;

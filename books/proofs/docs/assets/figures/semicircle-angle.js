@@ -8,10 +8,6 @@
 // This is the one place a slider matters most: the claim is that *nothing* changes,
 // and a reader who only sees one picture cannot tell that from a coincidence.
 // Predict -> Test -> Explain per AGENTS.md P6, and the readout is `aria-live`.
-//
-// The scaffolding — the surface, its accessible name, the slider, the live
-// readout and the redraw — comes from `kit.js`. What is left here is the drawing
-// and the sentences, which are the parts that differ from every other figure.
 import { SIZE, label, panel, react, slider } from "./kit.js";
 
 export function mount(el) {

@@ -2,10 +2,6 @@
 // load slides along it; the reader watches each reaction change. Plain HTML and
 // SVG, no framework and no colour of its own: the fig-* classes carry the
 // theme. Runtime text is plain text, never TeX.
-//
-// The scaffolding — the surface, its accessible name, the sliders, the live
-// readout, the redraw — comes from `kit.js`. What is left here is the drawing and
-// the sentence, which are the parts that differ from every other figure.
 import { panel, slider, react } from "./kit.js";
 
 const G = 9.8;

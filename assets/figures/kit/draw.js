@@ -1,33 +1,4 @@
 // @ts-nocheck
-/* The drawing layer: scales, axes and marks.
- *
- * Everything here is a **pure function returning an SVG string**. Nothing touches the
- * DOM, so a mark can be concatenated, tested without a browser, and composed in any
- * order — and a module keeps writing `svg.innerHTML = frame + marks`, which is what
- * 209 modules already do.
- *
- * Why this layer exists at all. The kit used to refuse to draw, on the argument that
- * "a framework for 177 bespoke diagrams would be a framework around nothing". That
- * was right about *bespoke* drawing and wrong about *repeated* drawing:
- *
- *   * 162 of the 209 modules draw a straight line in a `fig-*` class — an axis, a
- *     tick, a guide or an edge;
- *   * 68 draw a `<rect>`, 54 a `<polygon>`, 44 a `<path>`, and 44 sample a curve
- *     segment by segment;
- *   * 24 hand-build a coordinate mapping and only 22 call `scale()`.
- *
- * Those are the same five drawings, re-earned 200 times, and the re-earning is where
- * the legibility defects came from: a title, a tick and an axis label each hand-sized,
- * and five figures ended up below the 9px phone floor. So the marks are shared and the
- * *arrangement* stays bespoke, which is the line the first kit was reaching for.
- *
- * Two rules hold for every mark:
- *
- *   * **the colour class is a parameter with a safe default** (`fig-ink`, or
- *     `text-ink` for text), so a mark cannot ship without one;
- *   * **every coordinate is rounded** through `coord()`, so a mark cannot ship
- *     `183.99999999999997`.
- */
 import { SIZE, coord, fmt, label } from "./text.js";
 /**
  * @typedef {((value: number) => number) & {invert: (position: number) => number}} Mapper
@@ -40,16 +11,11 @@ import { SIZE, coord, fmt, label } from "./text.js";
 /**
  * Map a value in its own units to an SVG coordinate, in one axis.
  *
- * Twenty modules built this by hand and the arithmetic is identical each time — which
- * is exactly why the sign errors are not. A y-axis that counts upwards and an SVG
- * y-axis that counts downwards is the pair that gets flipped, and a flipped axis looks
- * like a correct drawing until someone reads a value off it.
- *
- * The returned function carries **`.invert`**, the mapping back. That is what a drag
- * needs — a pointer position is an SVG coordinate and the value is what belongs
- * there — and having it on the mapper is why `draggable()` can take
- * `toValue: (point) => x.invert(point.x)` instead of every module re-deriving the
- * inverse.
+ * A y-axis that counts upwards meets an SVG y-axis that counts downwards, and a
+ * flipped axis still looks like a correct drawing until someone reads a value off
+ * it, so the mapping lives in one place. The returned function carries `.invert`,
+ * the mapping back, so a drag can turn a pointer position into a value instead of
+ * every module re-deriving the inverse.
  *
  * @param {ScaleOptions} o  the values to map and the coordinates to map them to
  * @returns {((value: number) => number) & {invert: (position: number) => number}}
@@ -62,17 +28,7 @@ export function scale({ domain, range }) {
   map.invert = (position) => d0 + ((Number(position) - r0) / (r1 - r0)) * (d1 - d0);
   return map;
 }
-/**
- * The lowest and highest of a list, or of one field of a list of points.
- *
- * A hand-written `Math.min(...values)` over an empty list is `Infinity`, and over a
- * hundred thousand values it overflows the argument list. This handles both, and it is
- * how a domain is usually found: `scale({ domain: extent(values), range: [...] })`.
- *
- * The signatures above are the two shapes this is called in, and they are erased on
- * emit — which is why the prose is here, on the implementation, where the compiled
- * copy keeps it.
- */
+
 export function extent(values, pick) {
   let low = Infinity;
   let high = -Infinity;
@@ -92,12 +48,8 @@ export function extent(values, pick) {
  * @property {number} [count]  roughly how many ticks; default 5
  */
 /**
- * Round numbers to a count, on the 1–2–5 progression a reader expects.
- *
- * A count read off an axis at a "nice" value — 0.5, 1, 1.5 — is read; the same count
- * read at 0.4712 is arithmetic. This is the standard algorithm and it is here rather
- * than in a module because every axis wants it and a hand-picked tick list drifts from
- * the data as soon as a slider moves the domain.
+ * Round numbers to a count, on the 1–2–5 progression a reader expects, because a
+ * count read off an axis at 0.5 or 1.5 is read and at 0.4712 is arithmetic.
  *
  * @param {TicksOptions} o  the domain, and roughly how many ticks
  * @returns {number[]} the tick values inside the domain, ascending
@@ -115,20 +67,13 @@ export function ticks({ from, to, count = 5 }) {
   const step = power * (error >= 7.5 ? 10 : error >= 3.5 ? 5 : error >= 1.5 ? 2 : 1);
   const out = [];
   for (let v = Math.ceil(low / step) * step; v <= high + step * 1e-9; v += step) {
-    // A float step accumulates: 0.1 + 0.1 + 0.1 is 0.30000000000000004, and that
-    // reaches the reader through a tick label.
     out.push(Number(v.toPrecision(12)));
   }
   return out.length ? out : [low];
 }
 /**
- * One axis of a plotting area.
- *
- * A typedef rather than a `{object}`, and the difference is not cosmetic: with
- * `{object}` the destructured `x` and `y` are typed `{}`, so `x.domain` and `x.ticks`
- * are errors **inside this file** — 23 of them — and every module that reads a mapper
- * off the result inherits the same problem. An annotation that says "object" where it
- * could say what the object holds is worse than no annotation.
+ * One axis of a plotting area. A typedef, not `{object}`, which would type the
+ * destructured fields `{}` and make `x.domain` an error in every caller.
  *
  * @typedef {object} AxesOptions
  * @property {number} [width]
@@ -156,23 +101,13 @@ export function ticks({ from, to, count = 5 }) {
 /**
  * A plotting area: two axes, their ticks, their labels, and the mappers.
  *
- * This is the single most repeated drawing in the collection. It returns **the
- * mappers as well as the string**, so a module draws its own marks with the same
- * geometry the axes used and cannot disagree with them:
- *
- * ```js
- * const { draw, x, y } = axes({ x: { domain: [0, 6], label: "t / s" }, y: { domain: [0, 1] } });
- * svg.innerHTML = draw + curve(samples, { x, y });
- * ```
+ * It returns the mappers as well as the string, so a module draws its own marks with
+ * the same geometry the axes used and cannot disagree with them.
  *
  * @param {AxesOptions} [o]
  *
- * The return type is **inferred, not declared**. It was declared as
- * `{draw: string, x: Function, y: Function, box: object}`, which threw away the two
- * things a caller needs: `x` and `y` are mappers with an `invert`, and `box` has the
- * four edges a module draws between. Declaring them `Function` and `object` made
- * every caller's use of them a type error, which is how an annotation can be worse
- * than none.
+ * The return type is inferred, not declared: typing `x` and `y` as `Function` hides
+ * the `invert` a caller needs.
  */
 export function axes({
   width = 560,
@@ -199,7 +134,6 @@ export function axes({
   const showX = x.tickFormat || ((v) => fmt(v, 2));
   const showY = y.tickFormat || ((v) => fmt(v, 2));
   let draw = "";
-  // The grid first, so every mark sits on top of it.
   if (grid) {
     for (const t of xTicks) {
       draw += line({
@@ -243,11 +177,6 @@ export function axes({
       class: "fig-ink",
       width: 1.4,
     });
-    // **The end ticks are anchored inwards.** A centred label on the axis end hangs
-    // half of itself outside the drawing: `kernel-camber`'s "40 mm" sat at x = 540 in a
-    // 560-unit canvas and lost its last four units, and the `canvas` check measures
-    // exactly that. The first and last ticks are the only ones that can overhang, so
-    // they are the only ones that change.
     const px = mapX(t);
     const anchor = px <= box.x0 + 0.5 ? "start" : px >= box.x1 - 0.5 ? "end" : "middle";
     draw += label({
@@ -299,7 +228,6 @@ export function axes({
   }
   return { draw, x: mapX, y: mapY, box, xTicks, yTicks };
 }
-// --- the marks ---------------------------------------------------------------
 /**
  * @typedef {object} LineOptions
  * @property {number} [x1]
@@ -311,10 +239,7 @@ export function axes({
  * @property {string} [dash]   an SVG `stroke-dasharray`, when the line is a guide
  */
 /**
- * A straight line.
- *
- * The default class is `fig-ink`, and the default width is 1.5 — the two values a
- * 162-module sample converged on by hand.
+ * A straight line. The defaults, `fig-ink` and width 1.5, are what most callers want.
  *
  * @param {LineOptions} [o]
  */
@@ -370,20 +295,13 @@ export function polygon({ points = [], class: cls = "fig-ink" } = {}) {
  * @property {string} [dash]
  */
 /**
- * A path from SVG path data.
- *
- * The escape hatch, and it is deliberately narrow: a caller writing `d` by hand is
- * writing vertices by hand, so every coordinate still goes through `coord()` first.
+ * A path from SVG path data. A caller writing `d` is writing vertices by hand, so
+ * every coordinate still goes through `coord()` first.
  *
  * @param {PathOptions} [o]
  */
 export function path({ d, class: cls = "fig-ink", fill = "none", width = 2, dash } = {}) {
   const dashed = dash ? ` stroke-dasharray="${dash}"` : "";
-  // **`style`, not `fill="…"`.** A `fig-*` class sets `fill`, and a class rule beats
-  // a presentation attribute (specificity 0,1,0 against SVG's zero). So the emitted
-  // `fill="none"` was ignored and every curve in the collection was painted as a
-  // filled shape — a trajectory drawn as a solid mound, an outline as a silhouette.
-  // An inline style wins where an attribute loses, so the fill goes there.
   return `<path d="${d}" style="fill:${fill}" stroke-width="${width}" class="${cls}"${dashed}></path>`;
 }
 /**
@@ -398,17 +316,11 @@ export function path({ d, class: cls = "fig-ink", fill = "none", width = 2, dash
  * @property {string} [dash]
  */
 /**
- * An arrow: a shaft with a head at the tip.
+ * An arrow: a shaft with a head at the tip. The shaft stops short of the tip so the
+ * head sits on the point rather than behind it.
  *
- * Hand-built in every module that needs one, and the head is the part that gets
- * skipped — a bare line is not an arrow, and "the force is the arrow" is the whole
- * figure. The shaft stops short of the tip so the head sits on the point rather than
- * behind it.
- *
- * The four coordinates are typed as required and the `= {}` default stays, written
- * `{} as ArrowOptions`: a caller that omits one gets `NaN` geometry rather than a
- * default, so the type refuses it and the default is only there for the shape the
- * function has always had.
+ * The coordinates are required and the default is `{} as ArrowOptions`, so a caller
+ * that omits one gets `NaN` geometry rather than a silent default.
  *
  * @param {ArrowOptions} [o]
  */
@@ -440,11 +352,8 @@ export function arrow({ x1, y1, x2, y2, class: cls = "fig-ink", width = 2, head 
  * @property {number} [width]
  * @property {string} [dash]
  */
-/** A polyline through mapped points, as one path.
- *
- * The mappers are required, and `{} as CurveOptions` says why: without them there is
- * no point to draw, and the guard below already refuses a curve of fewer than two
- * points rather than drawing a wrong one.
+/** A polyline through mapped points, as one path. The mappers are required, and
+ * fewer than two points draws nothing rather than a wrong line.
  *
  * @param {Array<[number, number]>} points  values in the axes' own units
  * @param {CurveOptions} [o]
@@ -470,13 +379,9 @@ export function curve(points, { x, y, class: cls = "fig-accent", width = 2.5, da
 /**
  * A function sampled onto a path.
  *
- * The convenience that removes the 44 hand-written sampling loops, and the place the
- * sampling rule lives: sample the **mapped** x range, not the domain, so a function
- * with a pole or a sharp turn is not missed because the samples were evenly spaced in
- * the wrong space.
- *
- * A sample that is not finite — a division by zero, a log of a negative — breaks the
- * path instead of poisoning it with `NaN`, which would drop the whole line.
+ * Sample the mapped x range, not the domain, so a function with a pole is not missed.
+ * A sample that is not finite breaks the path instead of poisoning the whole line
+ * with `NaN`.
  *
  * @param {(value: number) => number} fn  the function to sample, in data units
  * @param {GraphOptions} [o]
@@ -521,9 +426,6 @@ export function area(
   { x, y, baseline = 0, class: cls = "fig-accent", opacity = 0.25 } = {},
 ) {
   if (!points || points.length < 2) return "";
-  // `baseline` is an **SVG y coordinate**, not a value — the mapper does not know its
-  // own domain, and guessing it would put the fill in the wrong place without saying
-  // so. `axes()` returns the box, so the caller always has the number.
   const d =
     points.map(([px, py], i) => `${i ? "L" : "M"}${coord(x(px))} ${coord(y(py))}`).join(" ") +
     ` L${coord(x(points[points.length - 1][0]))} ${coord(baseline)}` +
@@ -589,10 +491,7 @@ export function bars(items, { x, y, width, class: cls = "fig-accent" } = {}) {
 /**
  * A number line: one axis, its ticks, and room for points and intervals.
  *
- * Its own helper because it is a graph with one axis and the arrowheads and the
- * interval bars are its own small job — and because inequalities, integers, rounding,
- * error intervals, absolute value and the modulus all want one, and the Irish books
- * have none.
+ * Its own helper because the arrowheads and interval bars are its own small job.
  *
  * @param {NumberLineOptions} [o]
  */
@@ -652,9 +551,6 @@ export function numberLine({
       anchor: "start",
     });
   }
-  // The module draws its own points and intervals with the returned mapper and `y`,
-  // which is the SVG coordinate of the line itself. An interval is a thick `line` and
-  // an open end is a `circle` with `class="fig-paper"` for the outer ring.
   return { draw, x: mapX, y: box.y, box };
 }
 /**
@@ -672,28 +568,10 @@ export function numberLine({
 /**
  * A Venn diagram whose region labels are placed by geometry rather than by hand.
  *
- * The reason this is in the kit rather than in a module: **an atom in the wrong
- * region teaches the opposite of the truth.** A hand-placed label is a judgement about
- * whether a point is inside two overlapping circles, and the judgement is easy to get
- * wrong and impossible to see when it is. So a region is declared as a predicate —
- * inside these sets, outside those — and `venn()` finds the point that satisfies it
- * and is furthest from every boundary, which centres the label in its own region by
- * construction.
- *
- * It is also the one figure several books want *identically*: set notation is the same
- * in GCSE Mathematics, in Junior Cycle Mathematics (8.4) and in Leaving Certificate
- * Mathematics (10.4), so it is the first module in the shared library.
- *
- * ```js
- * const v = venn({
- *   circles: [{ id: "A", cx: 255, cy: 150, r: 88 }, { id: "B", cx: 325, cy: 150, r: 88 }],
- *   regions: [
- *     { id: "a", in: ["A"], out: ["B"], text: "A only" },
- *     { id: "ab", in: ["A", "B"], text: "A ∩ B" },
- *   ],
- * });
- * svg.innerHTML = v.draw + dots(...)   // v.points.ab is where the label goes
- * ```
+ * An atom in the wrong region teaches the opposite of the truth, and a hand-placed
+ * label is a judgement about whether a point is inside two overlapping circles. So a
+ * region is declared as a predicate, inside these sets and outside those, and the
+ * point that satisfies it and sits furthest from every boundary takes the label.
  *
  * @param {VennOptions} [o]
  * @returns {{draw: string, points: Record<string, {x: number, y: number}>, circles: VennBox}}
@@ -708,10 +586,6 @@ export function venn({
   labelSize = SIZE.tick,
 } = {}) {
   if (!circles.length) return { draw: "", points: {}, circles: circles };
-  // The frame has to reach each circle's **far** edge, not its near one. Taking the
-  // extent of `cx - r` alone gave a box that stopped at the rightmost left edge, so
-  // every region to the right of it was unreachable and silently absent from the
-  // result — half a Venn diagram, with no error.
   const [minX, maxX] = [
     Math.min(...circles.map((c) => c.cx - c.r)),
     Math.max(...circles.map((c) => c.cx + c.r)),
@@ -727,9 +601,6 @@ export function venn({
     height: maxY - minY + 68,
   };
   const inside = (circle, x, y) => Math.hypot(x - circle.cx, y - circle.cy) <= circle.r;
-  // The distance to the nearest boundary: a circle's own edge, or the frame's. The
-  // point that maximises it is the one furthest into its region, which is where a
-  // label belongs.
   const clearance = (x, y) => {
     let nearest = Math.min(
       x - frame.x,
@@ -750,10 +621,6 @@ export function venn({
     let bestClearance = -Infinity;
     for (let y = frame.y + step; y < frame.y + frame.height; y += step) {
       for (let x = frame.x + step; x < frame.x + frame.width; x += step) {
-        // `true` to begin with: a region with nothing to avoid (the intersection) has
-        // no failing circle, and an exterior region only fails on the sets it is
-        // outside of. Starting this from `avoid.size > 0` rejected every candidate for
-        // every region that had no `out`, which silently produced half a diagram.
         let ok = true;
         for (const circle of circles) {
           const isIn = inside(circle, x, y);
@@ -819,17 +686,10 @@ export function venn({
 /**
  * A vector field: arrows on a grid, drawn from a function.
  *
- * Six modules in `ie-lc-physics` alone hand-build this — the field of a bar magnet, of
- * a wire, of two charges, of two plates, the force on a conductor, the field that turns
- * a motor — and each of them re-derives the same two things: the direction of an arrow
- * from a vector, and the conversion of that direction into SVG coordinates, where the
- * y-axis counts the other way.
- *
- * The field function is given in **data units** and the mappers turn it into a
- * direction, so a flipped axis cannot flip the arrows without also flipping the axes.
- * Arrows are drawn at a fixed length because a field diagram shows *direction and
- * relative strength*, and a proportional length on a coarse grid is unreadable; pass
- * `strength` to vary it if the page is about magnitude.
+ * The field is given in data units and the mappers give the direction, so a flipped
+ * axis cannot flip the arrows without also flipping the axes. Arrows are a fixed
+ * length because a proportional length on a coarse grid is unreadable; pass
+ * `strength` to vary it.
  *
  * @param {VectorFieldOptions} [o]
  */
@@ -848,8 +708,6 @@ export function vectorField({
   for (let px = box.x0; px <= box.x1; px += step) {
     for (let py = box.y1; py <= box.y0; py += step) {
       const [dx, dy] = field(x.invert(px), y.invert(py));
-      // The direction in SVG units, through the mappers — which is what makes a
-      // y-axis that counts upwards come out right.
       const sx = x(x.invert(px) + dx) - px;
       const sy = y(y.invert(py) + dy) - py;
       const size = Math.hypot(sx, sy);
@@ -885,23 +743,13 @@ export function vectorField({
 /**
  * A camera for small 3D drawings: solids, 3D vectors, a plane.
  *
- * Not a 3D engine. It is a **fixed camera and a painter's algorithm**, which is all a
- * textbook needs to draw a cuboid with its hidden edges dashed, and it is here because
- * "can't do 3D" is a *content* limit rather than a presentational one: nets folding into
- * solids, the volume of a prism as a stack of layers, and three perpendicular axes are
- * all in the specifications and none of them can be drawn in a flat SVG.
+ * Not a 3D engine: a fixed camera and a painter's algorithm, which is all a textbook
+ * needs to draw a cuboid with its hidden edges dashed.
  *
- * The camera looks at the origin from a yaw and a pitch, and `drawMesh` resolves
- * visibility by winding: a face is **back-facing** when its projected vertices run the
- * wrong way round, and an edge is hidden when every face containing it is back-facing.
- * That rule is exact for a convex solid, which is every solid a school textbook draws,
- * and it means a module states its geometry and nothing about the view.
- *
- * ```js
- * const cam = camera3d({ width: 560, height: 300 });
- * const cube = { vertices: [...], faces: [{ indices: [0,1,2,3] }, ...] };
- * svg.innerHTML = cam.drawMesh(cube);
- * ```
+ * `drawMesh` resolves visibility by winding: a face is back-facing when its projected
+ * vertices run the wrong way round, and an edge is hidden when every face containing
+ * it is back-facing. That is exact for a convex solid, which is what school textbooks
+ * draw.
  *
  * @param {Camera3dOptions} [o]
  * @returns {{project: Function, raw: Function, toward: number[], drawMesh: Function, centre: {x: number, y: number}, width: number, height: number, zoom: number}}
@@ -921,25 +769,17 @@ export function camera3d({
   const cosX = Math.cos(rx);
   const sinX = Math.sin(rx);
   const centre = { x: width / 2, y: height / 2 };
-  // The direction from the scene towards the camera, in world space: the gradient of
-  // the depth we sort on. A face is visible when its outward normal has a positive
-  // part along this, which is exact and — with the outward orientation below — does
-  // not care which way round a module happened to list a face's vertices.
   const toward = [cosX * sinY, sinX, cosX * cosY];
-  // The rotate-then-project step. `depth` is what the painter's algorithm sorts on:
-  // bigger is nearer to the camera.
   const raw = ([x, y, z]) => {
     const ax = x * cosY - z * sinY;
     const az = x * sinY + z * cosY;
     return { ax, screenY: y * cosX - az * sinX, depth: y * sinX + az * cosX };
   };
-  /** Project one point at a given scale, about a given screen centre. */
+
   const at = (point, scale, origin) => {
     const { ax, screenY } = raw(point);
     return { x: origin.x + ax * scale, y: origin.y - screenY * scale, depth: raw(point).depth };
   };
-  // `project` is the unfitted mapping, for a caller that has already worked out its
-  // own scale. `drawMesh` fits instead, because only it knows the whole geometry.
   const project = (point) => at(point, zoom, centre);
   const sub = (a, b) => [a[0] - b[0], a[1] - b[1], a[2] - b[2]];
   const cross = (a, b) => [
@@ -963,10 +803,6 @@ export function camera3d({
     fillBack = 0.07,
   } = {}) => {
     if (!vertices.length) return "";
-    // **Fit the geometry to the drawing.** The camera has no idea how big the solid is
-    // — the first version projected a unit cube to one pixel — so the caller states the
-    // vertices in its own units and this scales them to the box, minus a margin for the
-    // labels and the dashed edges.
     const centred = vertices.map((v) => sub(v, origin));
     const laid = centred.map((v) => raw(v));
     const xs = laid.map((p) => p.ax);
@@ -985,8 +821,6 @@ export function camera3d({
       y: centre.y - (p.screenY - midY) * fit,
       depth: p.depth,
     }));
-    // The solid's own centre, so a face's normal can be turned outward regardless of
-    // the order its vertices were written in.
     const centroid = centred.reduce(
       (acc, v) => [
         acc[0] + v[0] / centred.length,
@@ -1010,7 +844,6 @@ export function camera3d({
       return { face, front: dot(normal, toward) > 0, points: face.indices.map((i) => placed[i]) };
     });
     let draw = "";
-    // The far faces first, so a filled solid reads as a solid rather than a cut-out.
     for (const { face, front, points } of faceInfo.toSorted((a, b) => {
       const mean = (f) => f.points.reduce((s, p) => s + p.depth, 0) / f.points.length;
       return mean(a) - mean(b);
@@ -1026,9 +859,6 @@ export function camera3d({
         width: 1.2,
       });
     }
-    // Then the edges. An edge is hidden when **every** face that contains it is
-    // back-facing — the rule for a convex solid, which is every solid a school textbook
-    // draws.
     const faceOf = new Map();
     for (const { face, front } of faceInfo) {
       const list = face.indices;

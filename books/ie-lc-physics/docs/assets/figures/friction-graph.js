@@ -4,9 +4,6 @@
 // starts to move, then to step the push up and check. So the figure draws the three
 // parts of the graph — the static rise, the drop at the limit, and the flat kinetic
 // part — and puts a marker on the branch that applies to the current push.
-//
-// Nothing here carries a colour. The two branches use different classes and different
-// line styles, and the readout names each force, so the figure works without colour.
 import {
   fmt,
   label,

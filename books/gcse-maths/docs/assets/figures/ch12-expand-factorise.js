@@ -4,10 +4,6 @@
 // rectangle gives the middle term, then to explain why the two middle areas
 // combine. One rectangle carries both forms, because expanding and factorising
 // are inverse operations on it. A shape paints with fig-* and a word paints with
-// text-*, so the figure adapts to every bundle and both schemes.
-//
-// The scaffolding — the surface, its accessible name, the two sliders, the live
-// readout, the redraw — comes from `kit.js`.
 import { SIZE, label, panel, react, slider } from "./kit.js";
 
 export function mount(el) {

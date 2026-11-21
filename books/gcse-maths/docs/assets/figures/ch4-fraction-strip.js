@@ -1,10 +1,5 @@
 // Guided model: a fraction strip with an adjustable number of equal parts.
 // The reader predicts a matching numerator before using the controls.
-//
-// The scaffolding — the frame, the prompt, the slider, the live readout, the
-// redraw — comes from `kit.js`. The strip is drawn as SVG rectangles in the
-// `fig-*` classes, because a colour carried by an HTML box would not adapt to
-// the reader's scheme the way a painted shape does.
 import { panel, slider, react } from "./kit.js";
 
 export function mount(el) {

@@ -1,32 +1,10 @@
 #!/usr/bin/env python3
-"""Generate the deployment root: the landing page, the root 404, the `_headers`
-file, `robots.txt`, the sitemap index and the build identity.
+"""Generate the deployment root: the landing page, the root 404, the legal pages,
+`_headers`, `robots.txt`, the sitemap index, the manifest, the service worker and
+the build identity.
 
-One card per book, grouped by qualification, each tinted with the book's accent
-from ``book.yaml``. The page is a single static HTML file at the site root, and
-the books build to subdirectories beside it:
-
-    site/index.html
-    site/404.html
-    site/terms/index.html
-    site/acknowledgements/index.html
-    site/_headers
-    site/robots.txt
-    site/sitemap.xml
-    site/version.json
-    site/manifest.webmanifest
-    site/sw.js
-    site/assets/stylesheets/portal.css
-    site/assets/stylesheets/settings.css
-    site/assets/settings/settings.js
-    site/assets/settings/service-worker.js
-    site/assets/icons/app-icon.svg
-    site/gcse-maths/higher/…
-    site/gcse-maths/foundation/…
-
-So the front door is a separate artefact from the books: a broken chapter in one
-book cannot take it down. It is also covered by the CI drift check, like every
-other generated file.
+One card per book, grouped by qualification. The front door is a separate artefact
+from the books, so a broken chapter cannot take it down.
 
 Usage: python -m textbook.portal
 """
@@ -54,11 +32,8 @@ from .themes import default_bundle, ordered_bundles
 
 @lru_cache(maxsize=None)
 def root() -> Path:
-    """The repository root, resolved on first use rather than at import.
-
-    The three constants this replaces were captured when the module loaded, so
-    they depended on the cwd and `TEXTBOOK_ROOT` at that moment — while
-    `repo_root()` is written to be correct whenever it is called.
+    """The repository root, resolved on first use rather than at import, so it does
+    not capture the cwd and `TEXTBOOK_ROOT` of module load.
     """
     return books.repo_root()
 
@@ -70,10 +45,8 @@ def assets() -> Path:
 def site() -> Path:
     return root() / "site"
 
-#: The files the portal writes at the deployment root and the pages link. Content-
-#: addressed, because a book page reaches the registration script by a root-absolute
-#: URL and the two builds do not run in a fixed order: they agree because both derive
-#: the name from the source bytes, not because one reads the other's output.
+#: The files the portal writes at the deployment root and the pages link.
+#: Content-addressed, so both builds derive the same name from the source bytes.
 ROOT_ASSETS: tuple[str, ...] = (
     "assets/stylesheets/themes.css",
     "assets/stylesheets/portal.css",
@@ -89,10 +62,8 @@ def root_assets() -> dict[str, str]:
 
 
 def root_links(rooted: bool) -> dict[str, str]:
-    """The five URLs a root page links, in the shape that page needs.
-
-    The landing page sits at the root, so it links relative paths; a 404 and a
-    legal page are served at any depth, so theirs are root-absolute. One function so
+    """The five URLs a root page links, in the shape that page needs: relative at
+    the root, root-absolute where a page is served at any depth. One function, so
     the two cannot disagree about anything but the leading slash.
     """
     prefix = "/" if rooted else ""
@@ -109,13 +80,8 @@ def root_links(rooted: bool) -> dict[str, str]:
 TEMPLATE = Path(__file__).resolve().parent / "templates" / "portal.html"
 LEGAL_TEMPLATE = Path(__file__).resolve().parent / "templates" / "portal_page.html"
 
-#: The prose pages the portal writes at the site root, outside every book build.
-#: They are collection-level pages: a reader reaches them from the landing page
-#: footer, from every book's About page, and from the note on a book's home page.
-#: The build's link checker cannot see them because each book is built into its
-#: own output directory, so `pipeline.check_links` treats these roots the same
-#: way it treats another book's deploy root: a page built elsewhere, checked by
-#: the tests that generate it.
+#: The prose pages the portal writes at the site root. The build's link checker
+#: cannot see them: `pipeline.check_links` treats them as a page built elsewhere.
 LEGAL_PAGES: dict[str, tuple[str, str]] = {
     "terms": (
         "Terms of use",
@@ -129,13 +95,8 @@ LEGAL_PAGES: dict[str, tuple[str, str]] = {
 
 
 def method_count(book: books.Book) -> int:
-    """The methods a reference work's A–Z page lists.
-
-    A reference work's landing card should count something true about it. The
-    methods are the `###` entries under *Methods, A to Z*, which is the page a
-    reader consults for a method and the page the home page's own arithmetic claim
-    is built from, so the card and the page agree by construction. A book with no
-    such page gets no methods fact rather than a zero.
+    """The methods a reference work's A–Z page lists: the `###` entries under
+    *Methods, A to Z*. A book with no such page gets no methods fact, not a zero.
     """
     page = book.docs / "techniques" / "index.md"
     if not page.is_file():
@@ -144,10 +105,8 @@ def method_count(book: books.Book) -> int:
 
 
 def card(book: books.Book) -> str:
-    """One landing-page card, tinted with the book's own accents.
-
-    Both variations are passed, so a card keeps the book's identity when the
-    reader is in dark mode rather than just darkening the light accent.
+    """One landing-page card, tinted with the book's own accents. Both variations
+    are passed, so a card keeps the book's identity in dark mode.
     """
     light = html.escape(book.theme.for_scheme("default").accent, quote=True)
     dark = html.escape(book.theme.for_scheme("slate").accent, quote=True)
@@ -164,11 +123,8 @@ def card(book: books.Book) -> str:
             f"{html.escape(profile.name)}</a>"
         )
 
-    # What the card counts depends on what the book is. A course counts chapters
-    # and sections; a reference work has neither, and "0 chapters" is not a fact
-    # about it. The proof book counts its proofs. A reference work without a proof
-    # registry — the map of problem classes — counts its pages and its methods,
-    # which are facts about it that a reader can use.
+    # What the card counts depends on what the book is: "0 chapters" is not a fact
+    # about a reference work.
     if book.proofs:
         facts = [f"{len(book.proofs)} proofs"]
     elif book.qualification == books.REFERENCE:
@@ -184,9 +140,8 @@ def card(book: books.Book) -> str:
     if book.boards:
         facts.append(" · ".join(html.escape(b) for b in book.boards))
 
-    # "Reference Mathematics" is not a phrase a reader says. A reference work is
-    # filed under Reference on the landing page, so repeating it here as though it
-    # were a level of study reads as a mistake; the subject alone is the fact.
+    # A reference work is filed under Reference already, so naming it again here
+    # reads as a level of study.
     subject_line = (
         html.escape(book.subject)
         if book.qualification == books.REFERENCE
@@ -240,9 +195,8 @@ def groups_html(all_books: list[books.Book]) -> str:
     return "\n".join(out)
 
 
-# The trigger's icons are inlined rather than pulled from an icon font: the
-# landing page has no Material icon system, and an inline SVG is one request
-# fewer. Both are currentColor, so they follow every bundle and both schemes.
+# The icons are inlined rather than pulled from an icon font, and are
+# currentColor, so they follow every bundle and both schemes.
 _COG_ICON = (
     '<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" aria-hidden="true" focusable="false">'
     '<path d="M12 15.5A3.5 3.5 0 0 1 8.5 12 3.5 3.5 0 0 1 12 8.5a3.5 3.5 0 0 1 3.5 3.5 3.5 3.5 0 0 1-3.5 3.5m7.43-2.53c.04-.32.07-.64.07-.97s-.03-.66-.07-1l2.11-1.63c.19-.15.24-.42.12-.64l-2-3.46c-.12-.22-.39-.31-.61-.22l-2.49 1c-.52-.39-1.06-.73-1.69-.98l-.37-2.65A.506.506 0 0 0 14 2h-4c-.25 0-.46.18-.5.42l-.37 2.65c-.63.25-1.17.59-1.69.98l-2.49-1c-.22-.09-.49 0-.61.22l-2 3.46c-.13.22-.07.49.12.64L4.57 11c-.04.34-.07.67-.07 1s.03.65.07.97l-2.11 1.66c-.19.15-.25.42-.12.64l2 3.46c.12.22.39.3.61.22l2.49-1.01c.52.4 1.06.74 1.69.99l.37 2.65c.04.24.25.42.5.42h4c.25 0 .46-.18.5-.42l.37-2.65c.63-.26 1.17-.59 1.69-.99l2.49 1.01c.22.08.49 0 .61-.22l2-3.46c.12-.22.07-.49-.12-.64z"/></svg>'
@@ -252,17 +206,13 @@ _CLOSE_ICON = (
     '<path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>'
 )
 
-# The colours scheme is one choice with two values. The attribute values are
-# Material's, and are what themes.css keys `body[data-md-color-scheme]` on.
+# The colour scheme: the values themes.css keys `body[data-md-color-scheme]` on.
 SCHEME_OPTIONS = (("default", "Light"), ("slate", "Dark"))
 
 
 def settings_trigger() -> str:
-    """The Settings control that opens the panel.
-
-    The same trigger every book page uses, so the shared runtime
-    (assets/settings/settings.js) needs no second branch. It is inert until the
-    script runs: a reader without JavaScript sees no dead control.
+    """The Settings control that opens the panel: the same trigger every book page
+    uses, so the shared runtime needs no second branch. Inert until the script runs.
     """
     return (
         '<button class="tb-settings__trigger" id="tb-settings" type="button"\n'
@@ -299,12 +249,8 @@ def _radio(name: str, value: str, title: str, description: str = "", note: str =
 
 
 def _members(bundle) -> str:
-    """The two members of a bundle: the names its own provenance records.
-
-    Every bundle is a light and a dark palette that a reader never sees named, and
-    the pair is what the YAML deliberately states (Paper/Ink, Daybreak/Shell).
-    Showing it turns a list of six moods into six identities a reader can tell
-    apart without seeing the colours.
+    """The two members of a bundle: the names its own provenance records, which is
+    what lets a reader tell six themes apart without seeing the colours.
     """
     names = []
     for scheme in ("light", "dark"):
@@ -318,22 +264,13 @@ def _members(bundle) -> str:
 def settings_dialog(book: books.Book | None = None) -> str:
     """The reader's Settings panel, the same one every book page carries.
 
-    A native ``<dialog>``, so opening it never changes the URL, Escape closes
-    it, the background is inert and the label relationship is the browser's job.
-    Both preferences are the origin-wide keys ``hooks/prefs.py`` already owns, so
-    a choice made here follows the reader into every book and back.
+    A native ``<dialog>``: opening it never changes the URL, Escape closes it and
+    the background is inert — except ``closedby="any"``, which is what makes the
+    light dismiss work. Both preferences are the origin-wide keys ``hooks/prefs.py``
+    owns, so a choice follows the reader into every book.
 
-    The theme group keeps the landing page's long-standing ``theme-menu`` id: it
-    is the menu of themes, and the id is what the collection has always used to
-    see whether the choice is offered. The collection can still withdraw the
-    theme choice with ``theme_selector: false``.
-
-    ``book`` adds the group that keeps **this book** on the device, and it is
-    absent on the landing page because there is no book there to keep. The button
-    is ``hidden`` in the markup and revealed by script, which is the same rule the
-    Settings trigger follows: a reader without JavaScript sees no control, rather
-    than one that does nothing. The size in its label is filled in from the build's
-    own manifest, so the number a reader is shown is the number that was measured.
+    ``book`` adds the group that keeps **this book** on the device; it is absent on
+    the landing page, where there is no book to keep.
     """
     collection = books.load_collection()
     offer_themes = bool(collection.get("theme_selector", True))
@@ -353,9 +290,7 @@ def settings_dialog(book: books.Book | None = None) -> str:
     ]
     if bundles:
         # Grouped by the bundle's own mood, so the distinction the collection
-        # already records is the one the reader is offered: quiet themes first,
-        # bold ones second. Six names in one flat grid asked the reader to know
-        # what "glass" or "phosphor" would look like before choosing.
+        # records is the one offered.
         subgroups = []
         for mood, heading in (("calm", "Quiet themes"), ("vivid", "Bold themes")):
             group = [bundle for bundle in bundles if bundle.mood == mood]
@@ -381,9 +316,7 @@ def settings_dialog(book: books.Book | None = None) -> str:
         )
 
     if book is not None:
-        # The reader's own device is the only thing this touches: nothing here
-        # fetches until the button is pressed, and the manifest is read when the
-        # panel opens so the size is known before the reader commits to it.
+        # Nothing here fetches until the button is pressed.
         groups.append(
             '    <fieldset class="tb-settings__group" id="tb-offline"'
             f' data-offline-book="{html.escape(book.id, quote=True)}">\n'
@@ -427,17 +360,12 @@ SW_PLACEHOLDER = "__TB_BUILD__"
 
 
 def manifest() -> str:
-    """The web app manifest, at the deployment root.
+    """The web app manifest, at the deployment root: one for the whole collection,
+    so the app installs from any page and its scope is everything.
 
-    One manifest for the whole collection: the site root is ours, so the app
-    installs from any page and its scope is everything. Icons are the one place
-    a colour cannot follow the reader — a launcher image is fixed — so the icon
-    is drawn in the house ink and paper and declared both ``any`` and
-    ``maskable``.
-
-    ``theme_color`` and ``background_color`` are deliberately absent. They cannot
-    follow the bundle or the scheme, and a fixed value would contradict the
-    theming model for the sake of a splash screen.
+    ``theme_color`` and ``background_color`` are deliberately absent: they cannot
+    follow the bundle or the scheme, and a fixed value would contradict the theming
+    model for the sake of a splash screen.
     """
     collection = books.load_collection()
     data = {
@@ -464,14 +392,9 @@ def manifest() -> str:
 def service_worker() -> str:
     """The service worker, with the build label stamped into its cache name.
 
-    The label is what makes an update unconditional. Workers revalidates
-    ``sw.js`` on every request, so a deploy that changes this byte makes the
-    browser install the new worker, whose cache name differs, and whose
-    ``activate`` deletes every older cache. The version is the commit or tag, so
-    a deploy that changes nothing but content still refreshes the cache.
-
-    With no git and no CI variables the label falls back to ``dev``, which keeps
-    a local build working; it is the one case where the cache does not rotate.
+    The label is what makes an update unconditional: a changed byte installs a new
+    worker, whose cache name differs, and whose ``activate`` deletes older caches.
+    With no git and no CI variables it falls back to ``dev``.
     """
     source = (assets() / "sw.js").read_text(encoding="utf-8")
     label = re.sub(r"[^A-Za-z0-9._-]", "-", build_label() or "dev")
@@ -480,9 +403,7 @@ def service_worker() -> str:
 
 def prefs_config() -> dict:
     """The config ``hooks/prefs.py`` reads: the bundle registry, from ``themes/``.
-
-    Built here rather than in the template, so the landing page and the books
-    share one generated before-paint script and neither can drift.
+    Built here so the landing page and the books share one generated script.
     """
     return {
         "extra": {
@@ -493,16 +414,11 @@ def prefs_config() -> dict:
 
 
 def not_found() -> str:
-    """The root 404 page.
+    """The root 404 page: each book ships its own, so this catches everything else
+    and its only job is to get the reader to the landing page.
 
-    Each book ships its own 404 from its own profile build, so a missing page under a
-    book offers that book's own navigation. This one catches everything else, and
-    its only job is to get the reader to the landing page.
-
-    Link is absolute because a 404 is served from arbitrary depths, where a
-    relative path would point at the wrong place. It carries the build identity
-    because a 404 is often what a stale link or a stale phone produces, and the
-    first useful question is which build the reader actually got.
+    Links are absolute because a 404 is served from arbitrary depths. It carries the
+    build identity because a stale link or phone is what often produces one.
     """
     label = build_label()
     meta = (
@@ -547,11 +463,8 @@ document.body.setAttribute(
 
 
 def footer() -> str:
-    """The landing page's footer, shared with the legal pages.
-
-    The legal links are root-absolute because the same footer is used at the site
-    root and one directory down, and a relative link would mean two different
-    pages in those two places.
+    """The landing page's footer, shared with the legal pages. The legal links are
+    root-absolute, because the same footer is used at two depths.
     """
     return f"""<footer class="footer">
   <div class="wrap">
@@ -580,12 +493,10 @@ def legal_body(slug: str) -> str:
 
 
 def legal_page(slug: str) -> str:
-    """One root page: Terms of use or Acknowledgements.
+    """One root page: Terms of use or Acknowledgements, with the same masthead,
+    reader preferences and Settings control as the landing page.
 
-    It uses the same masthead, reader preferences and Settings control as the
-    landing page, so it does not look like a different site and a reader who
-    chose a bundle keeps it. The body is trusted markup generated here, not
-    reader input.
+    The body is trusted markup generated here, not reader input.
     """
     title, description = LEGAL_PAGES[slug]
     template = Template(LEGAL_TEMPLATE.read_text(encoding="utf-8"))
@@ -635,27 +546,19 @@ def _base_url() -> str:
 
 
 def robots_txt() -> str:
-    """Our own robots file.
-
-    A Cloudflare zone that serves no ``robots.txt`` gets one injected: a
-    content-signals preamble about AI crawlers. So shipping this file is also a
-    decision — we replace an inherited policy with one we have chosen. A free
-    textbook wants to be found, so everything is allowed, and the sitemap index
-    is named so a crawler does not have to guess it.
+    """Our own robots file: a Cloudflare zone serving no ``robots.txt`` gets one
+    injected (a content-signals preamble about AI crawlers), so shipping this is
+    also a decision. A free textbook wants to be found, so everything is allowed.
     """
     return f"User-agent: *\nAllow: /\n\nSitemap: {_base_url()}sitemap.xml\n"
 
 
 def sitemap_index() -> str:
-    """A sitemap index over the per-book sitemaps.
+    """A sitemap index over the per-book sitemaps, which nothing at the root pointed
+    at.
 
-    Each profile build emits its own sitemap — ``site/gcse-maths/higher/sitemap.xml``
-    and so on — but nothing at the root pointed at them, so a crawler never found
-    them. This is that pointer.
-
-    The landing page is deliberately absent: a sitemap index may contain only
-    other sitemaps, and the front door is the site root that every book links
-    back to. It is also the one URL a crawler cannot miss.
+    The landing page is deliberately absent: a sitemap index may contain only other
+    sitemaps.
     """
     base = _base_url()
     entries = [
@@ -686,23 +589,16 @@ def _git(*args: str) -> str:
 def build_identity() -> dict[str, str]:
     """What is deployed, so a report can name a build.
 
-    A release tag and a live site were two facts with no link between them: asked
-    "what is deployed right now?" the only honest answers were "the last push to
-    main" and "check the dashboard", neither of which names a commit.
-
-    CI already knows both values. The deploy job runs after the release job, so
-    the tag arrives as ``BUILD_TAG`` and the commit as ``BUILD_COMMIT`` (the
-    ``GITHUB_*`` names are the fallback). Locally they come from git. Nothing here
-    is allowed to fail the build: an approximate identity beats none, so an
-    unavailable value is simply absent.
+    The deploy job runs after the release job, so the tag arrives as ``BUILD_TAG``
+    and the commit as ``BUILD_COMMIT`` (``GITHUB_*`` as fallback); locally they come
+    from git. Nothing here may fail the build: an unavailable value is absent.
     """
     commit = (os.environ.get("BUILD_COMMIT") or os.environ.get("GITHUB_SHA") or "").strip()
     tag = (os.environ.get("BUILD_TAG") or "").strip()
     if not commit:
         commit = _git("rev-parse", "HEAD")
     if not tag:
-        # `GITHUB_REF_NAME` is the branch on a push, not the tag the release job
-        # created afterwards in another job, so it is not consulted here.
+        # `GITHUB_REF_NAME` is the branch on a push, not the release's tag.
         tag = _git("describe", "--tags", "--exact-match")
 
     identity: dict[str, str] = {}
@@ -730,11 +626,8 @@ def build_meta() -> str:
 
 
 def version_json() -> str:
-    """The machine-readable build identity, at the site root.
-
-    `curl https://open-textbook.org/version.json` answers "what is live?" in one
-    command, which is what makes it possible to compare a reader's report against
-    `main`.
+    """The machine-readable build identity, at the site root, so a reader's report
+    can be compared against `main` with one command.
     """
     return json.dumps(build_identity(), indent=2, sort_keys=True) + "\n"
 
@@ -761,16 +654,10 @@ def main() -> int:
 
     target = site() / "assets" / "stylesheets"
     target.mkdir(parents=True, exist_ok=True)
-    # The bundle stylesheet is shared with every book: one copy, one truth. The
-    # Settings stylesheet and runtime are shared too, so the landing page and the
-    # books use one control rather than two.
-    # Each of these is written under the name its own bytes produce, which is the
-    # name every page links — a book page reaches the registration script by a
-    # root-absolute URL, so the two builds have to agree without seeing each other's
-    # output. They do: `addressed_url` is a function of the source bytes alone.
+    # Each shared asset is written under the name its own bytes produce, the name
+    # every page links — see `addressed_url` and `ROOT_ASSETS`.
     addressed = root_assets()
-    # A stable-named copy from an older build is stale by definition now, and the one
-    # thing this scheme promises is that no such file exists to be served.
+    # A stable-named copy from an older build is stale by definition now.
     for relative in ROOT_ASSETS:
         (site() / relative).unlink(missing_ok=True)
     for relative in ROOT_ASSETS:

@@ -11,9 +11,6 @@
 // A pointer is not a keyboard, so each handle has a slider behind it: the slider holds
 // the value and provides the keyboard path, and the handle is the enhancement. That is
 // `draggable()`'s contract rather than this module's choice.
-//
-// Nothing here carries a colour. Every shape uses a `fig-*` class and every word a
-// `text-*` class, so the figure follows the reader's theme in both schemes.
 import { SIZE, coord, draggable, fmt, label, line, numberLine, panel, path, react, slider } from "./kit.js";
 
 const ROW = 70; // the vertical centre of the box

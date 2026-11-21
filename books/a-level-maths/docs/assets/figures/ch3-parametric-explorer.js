@@ -1,9 +1,4 @@
 // Guided investigation for parametric equations and eliminating the parameter.
-// Pure HTML and SVG, an ES module, no framework and no colour of its own: the
-// fig-* classes carry the theme. Runtime text is plain text, never TeX.
-//
-// The scaffolding — the surface, its accessible name, the chooser and slider,
-// the live readout and the redraw — comes from `kit.js`.
 import { panel, slider, chooser, react } from "./kit.js";
 
 const VIEW = 10; // both axes run from -VIEW to VIEW

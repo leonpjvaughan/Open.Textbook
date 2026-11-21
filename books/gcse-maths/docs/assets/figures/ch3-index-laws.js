@@ -1,10 +1,5 @@
 // Tier-1 guided investigation: the laws of indices.
 // Predict -> Test -> Explain.
-//
-// The scaffolding — the frame, the prompt, the three sliders, the live readout,
-// the redraw — comes from `kit.js`. This module draws nothing: its result is an
-// equation, not an image, so it asks the kit for a frame with no drawing surface
-// and has no drawing to name.
 import { panel, slider, react } from "./kit.js";
 
 export function mount(el) {

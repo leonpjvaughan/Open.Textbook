@@ -6,12 +6,6 @@
 // Snell's law with an internal glass value, because the figure must draw the
 // correct ray; the page does not teach that relationship and does not ask the
 // reader to use it.
-// Colours come from CSS classes so the figure adapts to dark mode and every
-// bundle; each ray is also labelled.
-//
-// The scaffolding — the surface, its accessible name, the slider, the live
-// readout and the redraw — comes from `kit.js`. What is left here is the drawing
-// and the sentences, which are the parts that differ from every other figure.
 import { SIZE, label, panel, react, slider } from "./kit.js";
 
 export function mount(el) {

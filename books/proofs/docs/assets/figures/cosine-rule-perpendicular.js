@@ -9,13 +9,6 @@
 // rather than asserted.
 //
 // The figure covers the acute case, which is the case the proof sets out first; the
-// page's own paragraph handles the obtuse case. Colours come from CSS classes, so
-// the figure adapts to every bundle and both schemes; the readout is `aria-live`,
-// so the arithmetic reaches a reader who cannot see the drawing.
-//
-// The scaffolding — the surface, its accessible name, the sliders, the live readout
-// and the redraw — comes from `kit.js`. What is left here is the drawing and the
-// sentences, which are the parts that differ from every other figure.
 import { panel, slider, react, label, line, path, fmt } from "./kit.js";
 
 export function mount(el) {

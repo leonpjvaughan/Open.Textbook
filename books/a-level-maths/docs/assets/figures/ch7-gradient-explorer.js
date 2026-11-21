@@ -1,9 +1,4 @@
 // Guided investigation for the derivative as the gradient of the tangent.
-// Pure HTML and SVG, an ES module, no framework and no colour of its own: the
-// fig-* classes carry the theme. Runtime text is plain text, never TeX.
-//
-// The scaffolding — the surface, its accessible name, the sliders, the live
-// readout and the redraw — comes from `kit.js`.
 import { panel, slider, react } from "./kit.js";
 
 const X_MIN = -2.5;

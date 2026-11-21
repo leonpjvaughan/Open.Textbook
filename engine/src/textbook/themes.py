@@ -1,20 +1,18 @@
 """Theme bundles: the collection's core themes, and the subject's tint on top.
 
-A **bundle** is a complete light and dark palette plus its typography. It is
-chosen by the reader and applies to every book, so moving between subjects never
-moves the theme — which is the point of separating the two.
+A **bundle** is a complete light and dark palette plus its typography, chosen by
+the reader and applied to every book, so moving between subjects never moves the
+theme.
 
-A **book** contributes only its subject identity: accent, and any surface it
-wants moved. It does so as ``--tb-book-<token>`` values, and each bundle composes
-them in::
+A **book** contributes only its subject identity, as ``--tb-book-<token>`` values
+that each bundle composes in::
 
     --tb-accent: var(--tb-book-accent, #6ea8d8)
 
-So the bundle keeps control of the design, the subject keeps its identity, and a
-bundle can refuse the tint entirely by listing the token under ``fixed:``.
-
-Everything resolves in CSS: no rebuild is needed to add a bundle, and the reader's
-choice is applied before the first paint by ``hooks/prefs.py``.
+So the bundle keeps the design and the subject keeps its identity, and a bundle can
+refuse the tint by listing the token under ``fixed:``. Everything resolves in CSS:
+no rebuild adds a bundle, and ``hooks/prefs.py`` applies the choice before first
+paint.
 """
 
 from __future__ import annotations
@@ -40,102 +38,68 @@ FONT_TOKENS = {
     "mono": "--tb-font-mono",
 }
 
-# Minimum WCAG contrast ratios. Ink is body text, so it is held to AAA; a link is
-# text too, so AA; the accent carries white text on the header and draws figure
-# strokes, so it is held to AA as well rather than the 3:1 a graphic would allow.
+# Minimum WCAG contrast ratios: ink is body text, so AAA; a link is text, so AA; the
+# accent carries white text on the header and draws figure strokes, so AA rather than
+# the 3:1 a graphic would allow.
 MIN_CONTRAST = {"ink": 7.0, "link": 4.5, "accent": 4.5}
 
-# `accent_ink` is not drawn on the paper like the roles above; it is text drawn
-# *on* the accent surface (the booklet bar's label). Measuring it against the
-# paper would be the wrong surface, and using the paper as the ink is what made
-# the label fail on two stock palettes. So it is checked against `accent`.
+# `accent_ink` is text drawn *on* the accent surface (the booklet bar's label), so it is
+# measured against `accent`, not the paper.
 ON_ACCENT_MIN_CONTRAST = {"accent_ink": 4.5}
 
-# Figure tokens are drawn on the maths-figure panel, not the page, so they get
-# their own surface and their own thresholds.
+# Figure tokens are drawn on the maths-figure panel, not the page, so they get their own
+# surface and their own thresholds.
 #
-# * `fig-warn` and `fig-good` colour text as well as marks: `.text-warn` and
-#   `.text-good` are applied to SVG labels and live readouts, and the labels are
-#   small, so they are held to the 4.5:1 WCAG AA minimum for normal text.
-# * `fig-accent` is here for the same reason and was missing. `.text-accent`
-#   colours SVG labels — `ch11-coordinate-line`, `ch19-circle-measures` and
-#   others put axis names and annotations in it — so the accent is text in a
-#   figure, at the text bar. It was absent from this dict while the audit that
-#   found it was being written, and the omission is exactly the shape of bug the
-#   dict exists to catch: the accent was checked against the *paper* (where it
-#   passed everywhere) and never against the panel a figure is drawn on, where
-#   twelve book-and-bundle pairs came out between 3.90:1 and 4.43:1.
-#   It is the accent as a *shape* that is fine at 3:1 — the stroke of a curve —
-#   but one token cannot be two colours, and text is the stricter use.
-# * `fig-grid` draws axes and gridlines. An axis is a graphical object a reader
-#   needs in order to read the figure, but it is not text, so WCAG 1.4.11's
-#   3:1 for non-text content is the right bar rather than 4.5:1. This matches the
-#   comment above: a figure stroke is a graphic, and 3:1 is what a graphic needs.
+# `fig-warn`, `fig-good` and `fig-accent` colour SVG `text-*` labels as well as marks, so
+# they are held to the 4.5:1 AA minimum for normal text. `fig-grid` draws axes and
+# gridlines: a graphic rather than text, so WCAG 1.4.11's 3:1 is the bar. One token
+# cannot be two colours, and text is the stricter use.
 FIGURE_MIN_CONTRAST = {"fig_accent": 4.5, "fig_warn": 4.5, "fig_good": 4.5, "fig_grid": 3.0}
 
-# `fig_accent` is not a token a bundle declares: assets/stylesheets/extra.css
-# defines `--tb-fig-accent` as `var(--tb-accent)`, so the role resolves to the
-# accent. Kept beside the thresholds it serves, because a role here that resolves
-# to nothing is silently skipped rather than reported.
+# `fig_accent` is not a token a bundle declares: assets/stylesheets/extra.css defines
+# `--tb-fig-accent` as `var(--tb-accent)`. Kept beside the thresholds, because a role
+# here that resolves to nothing is silently skipped rather than reported.
 FIGURE_TOKEN_ALIAS = {"fig_accent": "accent"}
 
 # The maths-figure panel is `color-mix(in srgb, paper 96%, ink 4%)` in
-# assets/stylesheets/extra.css. A token drawn inside a figure sits on that mix, not on
-# the page behind it; the mix is always closer to mid-grey than the paper, so measuring
-# against the panel is the stricter check. The share is mirrored here and pinned to the
-# stylesheet by test_the_figure_surface_matches_the_stylesheet.
+# assets/stylesheets/extra.css; a token inside a figure sits on that mix, not the page,
+# and the mix is always closer to mid-grey, so it is the stricter check. The share is
+# mirrored here and pinned to the stylesheet by
+# test_the_figure_surface_matches_the_stylesheet.
 #
-# It was 8% until the margin was measured rather than the floor. The panel is a
-# *derived* surface, so the tint was quietly spending the contrast every figure token
-# needs: at 8% the accent cleared the 4.5:1 text floor by **0.02** and `fig_grid`
-# cleared 3:1 by 0.04, over every bundle and both schemes. At 4% the worst margins are
-# +0.41 and +0.32 — a palette edit now has room to move, and the figure still reads as
-# a panel because the border, not the tint, is what delineates it.
+# It was 8% until the margin was measured: at 8% the accent cleared the 4.5:1 text floor
+# by 0.02 and `fig_grid` cleared 3:1 by 0.04; at 4% the worst margins are +0.41 and
+# +0.32, so a palette edit has room to move. The border, not the tint, delineates it.
 FIGURE_PANEL_INK = 0.04
 
-# The landing page's card is `color-mix(in srgb, ink N%, paper)` — 4% in light
-# and 7% in dark — in assets/stylesheets/portal.css (`--tb-card`). `ink_soft`
-# carries the card's body, subject and fact lines, so it is text on a tinted
-# surface, and the card is always the stricter surface: the mix moves *towards*
-# the ink in both schemes, so a soft ink that reads on the page can still fail on
-# the card. Mirrored here and pinned to the stylesheet by
-# test_the_card_surface_matches_the_stylesheet.
+# The landing page's card is `color-mix(in srgb, ink N%, paper)` — 4% in light and 7%
+# in dark — in assets/stylesheets/portal.css (`--tb-card`), mirrored here and pinned by
+# test_the_card_surface_matches_the_stylesheet. The mix moves *towards* the ink in both
+# schemes, so a soft ink that reads on the page can still fail on the card.
 CARD_INK = {"default": 0.04, "slate": 0.07}
 
-# `ink_soft` is not a decorative tone. It is Material's
-# `--md-default-fg-color--light` and it colours real text on both surfaces — the
-# landing card's body, and secondary text in the books — so it is held to the AA
-# minimum for normal text rather than the 3:1 a graphic would allow.
+# `ink_soft` is Material's `--md-default-fg-color--light` and colours real text on
+# both surfaces (the landing card's body, secondary text in the books), so it is held
+# to the AA minimum for normal text rather than the 3:1 a graphic would allow.
 SOFT_MIN_CONTRAST = {"ink_soft": 4.5}
 
-# `ink_lighter` is `--md-default-fg-color--lighter`, and the one visible control
-# it paints is `.sidebar summary::marker` — the disclosure triangle on a section
-# heading. A marker is a non-text component a reader has to operate, so WCAG
-# 1.4.11's 3:1 applies, not the 4.5:1 for text. It is measured on the page:
-# `.sidebar` paints no background of its own, so the paper shows through.
-#
-# This is the gap the whole-page audit could not see. The audit walks elements
-# that own a text node, and a `::marker` is a pseudo-element with none, so the
-# token was never sampled. Raising it in the two failing bundles was chosen over
-# minting a marker-only token: one token kept truthful is simpler, and anything
-# else the lighter ink touches benefits too.
+# `ink_lighter` is `--md-default-fg-color--lighter`. The one visible control it paints
+# is `.sidebar summary::marker`, a non-text component the reader has to operate, so
+# WCAG 1.4.11's 3:1 applies rather than 4.5:1. Measured on the page, since `.sidebar`
+# paints no background: a `::marker` owns no text node, so the whole-page audit, which
+# walks elements with one, never sampled it.
 INK_LIGHTER_MIN_CONTRAST = {"ink_lighter": 3.0}
 
-# `code_bg` is a second surface for inline code and code blocks, carrying body
-# `ink`. It was never measured at all — neither for ink legibility on it nor for
-# whether it separates from `paper` — which let glass dark (CIE76 ΔE 1.93) and
-# phosphor dark (ΔE 1.57) make code blocks read as the page itself.
+# `code_bg` is a second surface for inline code and code blocks carrying body `ink`,
+# so ink is held to 7:1 on it, and it must separate from `paper` by ΔE 3: ink at full
+# strength on a background a reader reads as the page itself.
 CODE_BG_MIN_CONTRAST = {"ink": 7.0}
 CODE_BG_MIN_DELTA_E = 3.0
 
 #: The surface each set of thresholds is measured against, and the thresholds
 #: themselves: one row per rule, `(surface, thresholds, alias, wording, tail)`.
 #:
-#: **Why a table, and not five loops.** The five loops this replaces were the same
-#: twelve lines five times, and they had already diverged: only the figure one resolved
-#: an alias, and its own comment records what that cost — "without this alias the lookup
-#: would find nothing, the loop would `continue`, and the threshold would never be
-#: applied — a check that cannot fail." With one loop, a rule cannot be added in a form
+#: One loop over this table, rather than one per rule: a rule cannot be added in a form
 #: that silently does nothing, and `test_every_declared_threshold_is_applied` proves the
 #: table and the dicts agree.
 CONTRAST_RULES = (
@@ -149,21 +113,17 @@ CONTRAST_RULES = (
 
 # --- APCA, the polarity-sensitive second opinion ------------------------------
 #
-# WCAG 2.x computes a ratio from relative luminance and `MIN_CONTRAST` applies
-# the same number in both schemes. That symmetry is exactly what APCA exists to
-# criticise: 4.5:1 can be comfortable as dark text on light paper and weak as
-# light text on dark paper. APCA's Lc is signed — positive for dark-on-light,
-# negative for light-on-dark — and its magnitude is the perceptually-scaled
-# contrast. It is a *second opinion*, not the compliance bar: WCAG stays as the
-# minimum every bundle must clear, and APCA catches a dark palette that passes
-# on the technicality of the ratio.
+# WCAG 2.x computes a ratio from relative luminance and applies the same number in both
+# schemes, which is exactly what APCA exists to criticise: 4.5:1 can be comfortable as
+# dark text on light paper and weak as light text on dark. APCA's Lc is signed —
+# positive for dark-on-light — and its magnitude is the perceptually-scaled contrast.
+# It is a *second opinion*, not the compliance bar: WCAG stays the minimum every bundle
+# must clear, and APCA catches a dark palette that passes on the technicality of the
+# ratio.
 #
-# Thresholds from the APCA published levels. The strict body-text levels (Lc 75
-# for `ink`, Lc 60 for the rest) are not met by several dark vivid members, and
-# lifting them there would repaint those families rather than check them. So the
-# second opinion is held at the next published level down — Lc 60 body, Lc 45
-# large — which is what the measured distribution supports and still catches a
-# palette that drifts weaker. The distribution is recorded in the test file.
+# Thresholds are the next published level down from strict body text — Lc 60 body, Lc 45
+# large — because the strict levels would repaint several dark vivid families rather than
+# check them.
 APCA_MIN_CONTRAST = {"ink": 60.0, "link": 45.0, "accent": 45.0, "accent_ink": 45.0}
 
 # The pairs APCA is measured over: each role against the surface it is drawn on.
@@ -176,9 +136,8 @@ class Bundle:
     title: str
     description: str
     palettes: dict[str, dict[str, str]]
-    # The palette family this group belongs to, plus the recorded provenance of
-    # each member: the source, and whether the member is original work authored
-    # here, observed from a source, or derived from a source's hues.
+    # The palette family this group belongs to, plus the recorded provenance of each
+    # member: the source, and whether it is original work, observed, or derived.
     family: str = ""
     # Whether the bundle is calm or vivid. The menu groups by this; it is not a
     # contrast claim, and the invariant still measures every bundle.
@@ -213,23 +172,13 @@ def _palette(scheme: str, data: dict | None, where: str) -> dict[str, str]:
 def _variation(scheme: str, data: dict | None, where: str) -> dict:
     """One member's provenance, required and complete.
 
-    A bundle's provenance is a claim a reader or maintainer can check: where the
-    palette came from, and in what sense it is ours. There are three honest
-    states, and they are mutually exclusive:
-
-    * ``original: true`` — authored in this repository. It has no upstream, so
-      it needs no ``source`` and no ``observed``; ``observed: true`` alongside
-      it would be a contradiction.
-    * ``observed: true`` — the hexes were read from ``source``.
-    * ``observed: false`` — derived here from ``source``'s hues, and so it needs
-      a ``note`` saying what was derived.
-
-    A missing field is a claim nobody can check, so it is an error rather than a
-    default, and the message names the file and the field. ``original`` exists
-    because the earlier contract had only ``observed: false`` for both "ours"
-    and "derived from someone else's mode", which conflated the two. An original
-    member records ``observed: None`` (the question does not apply), which is
-    deliberately not ``False`` (which means derived).
+    A provenance is a claim a reader or maintainer can check: where the palette came
+    from, and in what sense it is ours. The three states are mutually exclusive:
+    ``original: true`` (authored here, no upstream), ``observed: true`` (the hexes were
+    read from ``source``), and ``observed: false`` (derived from ``source``'s hues, so it
+    needs a ``note``). A missing field is a claim nobody can check, so it is an error
+    rather than a default. An original member records ``observed: None``, deliberately
+    not ``False``, which means derived.
     """
     label = f"{where}: provenance.{scheme}"
     if not isinstance(data, dict):
@@ -246,12 +195,10 @@ def _variation(scheme: str, data: dict | None, where: str) -> dict:
             )
         return {
             "name": str(data["name"]).strip(),
-            # `house` is a reading convenience for a palette with no upstream;
-            # it is not a project and carries no attribution obligation.
+            # `house` is a reading convenience for a palette with no upstream.
             "source": str(data.get("source", "")).strip() or "house",
             "original": True,
-            # Not False: an original palette is not a derived one, so the
-            # upstream-observation question does not apply to it at all.
+            # Not False: the upstream-observation question does not apply to it.
             "observed": None,
             "note": " ".join(str(data.get("note", "")).split()),
         }
@@ -415,9 +362,8 @@ def cie76(first: str, second: str) -> float:
 def apca_luminance(value: str) -> float:
     """APCA's screen luminance Ys.
 
-    Not the WCAG piecewise curve: APCA uses a plain 2.4 exponent on the sRGB
-    channels, which is what makes the same colours resolve differently from
-    WCAG. The constants are APCA-W3 0.1.9.
+    Not the WCAG piecewise curve: APCA uses a plain 2.4 exponent on the sRGB channels.
+    The constants are APCA-W3 0.1.9.
     """
     red, green, blue = (channel / 255 for channel in _component(value))
     return 0.2126729 * red**2.4 + 0.7151522 * green**2.4 + 0.0721750 * blue**2.4
@@ -426,10 +372,9 @@ def apca_luminance(value: str) -> float:
 def apca_contrast(foreground: str, background: str) -> float:
     """APCA Lc, signed: positive dark-on-light, negative light-on-dark.
 
-    The magnitude is the contrast; the sign is the polarity. The reference is
-    APCA-W3 0.1.9 (the SAPC algorithm). Black on white is about Lc 106 and white
-    on black about Lc -108, which is the asymmetry WCAG's symmetric ratio
-    cannot express.
+    The magnitude is the contrast, the sign the polarity. APCA-W3 0.1.9 (the SAPC
+    algorithm); black on white is about Lc 106 and white on black about Lc -108, which
+    is the asymmetry WCAG's symmetric ratio cannot express.
     """
     text, back = apca_luminance(foreground), apca_luminance(background)
     # Soft-clamp the near-black region, as the reference implementation does.
@@ -451,9 +396,7 @@ def apca_problems(
 ) -> list[str]:
     """The APCA second opinion: Lc for each pair that carries meaning.
 
-    `ink`, `link` and `accent` are measured on the paper; `accent_ink` on the
-    accent it is knocked out of. The threshold is on the magnitude, because Lc
-    is signed by polarity.
+    The threshold is on the magnitude, because Lc is signed by polarity.
     """
     tokens = effective_tokens(bundle, scheme, subject)
     problems = []
@@ -508,7 +451,7 @@ def contrast_problems(bundle: Bundle, scheme: str, subject: dict[str, str] | Non
     """Every declared threshold, measured against the surface it names.
 
     One loop over `CONTRAST_RULES`, so a rule that is declared is a rule that is
-    applied. The five hand-written loops this replaces had already diverged once.
+    applied.
     """
     tokens = effective_tokens(bundle, scheme, subject)
     surfaces = {
@@ -522,8 +465,7 @@ def contrast_problems(bundle: Bundle, scheme: str, subject: dict[str, str] | Non
     for surface, thresholds, alias, wording, tail in CONTRAST_RULES:
         measured = surfaces[surface]
         for role, minimum in thresholds.items():
-            # `fig_accent` is not a bundle token: extra.css defines `--tb-fig-accent` as
-            # `var(--tb-accent)`. The alias is per rule, which is why it lives in the row.
+            # `fig_accent` is not a bundle token: extra.css defines it as `var(--tb-accent)`.
             colour = tokens.get(alias.get(role, role))
             if not colour:
                 continue
@@ -571,12 +513,9 @@ def typography_css(bundle: Bundle) -> str:
 def stylesheet(bundles: list[Bundle] | None = None, default: Bundle | None = None) -> str:
     """The whole generated themes.css.
 
-    Three layers, in increasing specificity:
-
-    1. typography, per bundle;
-    2. a fallback with the default bundle, matching whether or not a theme was
-       chosen — so a reader without JavaScript still gets a real theme;
-    3. one block per bundle and scheme, which wins over the fallback.
+    Three layers, in increasing specificity: typography per bundle; a fallback with the
+    default bundle, so a reader without JavaScript still gets a real theme; and one
+    block per bundle and scheme, which wins over the fallback.
     """
     chosen = bundles if bundles is not None else discover_bundles()
     fallback = default or default_bundle()

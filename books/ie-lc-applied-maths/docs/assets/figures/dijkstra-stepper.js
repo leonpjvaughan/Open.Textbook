@@ -9,8 +9,6 @@
 // distance beside each vertex changes as the algorithm improves its guesses. The
 // edge that gave each settled vertex its final distance is drawn thick, so the
 // shortest-path tree is visible by the end.
-//
-// The scaffolding comes from `kit.js`. What is left is the drawing and the sentences.
 import { SIZE, label, panel, react, slider } from "./kit.js";
 
 const VERTICES = {

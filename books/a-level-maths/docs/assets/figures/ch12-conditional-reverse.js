@@ -3,11 +3,6 @@
 // the false-alarm rate, and reads the probability of a real event given an
 // alarm. Pure HTML and SVG, no framework and no colour of its own: the fig-*
 // classes carry the theme. Runtime text is plain text, never TeX.
-//
-// The scaffolding — the frame, the two sliders, the live readout and the redraw —
-// comes from `kit.js`. This figure has two drawings, and the kit gives one
-// surface, so the tree is the named surface from `panel()` and the bar chart is
-// built here beside it, as the kit does not draw.
 import { SIZE, label, panel, react, slider } from "./kit.js";
 
 const DETECT = 0.95;

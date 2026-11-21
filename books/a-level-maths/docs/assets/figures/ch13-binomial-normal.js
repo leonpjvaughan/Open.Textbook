@@ -2,10 +2,6 @@
 // curve. The curve has mean np and standard deviation sqrt(np(1-p)). The bars
 // are scaled to their tallest value and the curve is scaled to its peak, so
 // the two can be compared. Pure HTML and SVG, no colour of its own: the
-// fig-* classes carry the theme. Runtime text is plain text, never TeX.
-//
-// The scaffolding — the surface, its accessible name, the two sliders, the live
-// readout and the redraw — comes from `kit.js`.
 import { SIZE, label, panel, react, slider } from "./kit.js";
 
 function binomialCoefficient(n, r) {

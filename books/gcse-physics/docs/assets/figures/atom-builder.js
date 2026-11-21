@@ -4,11 +4,6 @@
 // to test it, then to explain why the element changes when a proton is added but
 // not when a neutron is. Protons and neutrons draw as different shapes as well as
 // different classes, so the figure does not rely on colour alone.
-// Colours come from CSS classes so the figure adapts to dark mode.
-//
-// The scaffolding — the surface, its accessible name, the sliders, the live
-// readout and the redraw — comes from `kit.js`. What is left here is the drawing
-// and the sentences, which are the parts that differ from every other figure.
 import { SIZE, label, panel, react, slider } from "./kit.js";
 
 export function mount(el) {

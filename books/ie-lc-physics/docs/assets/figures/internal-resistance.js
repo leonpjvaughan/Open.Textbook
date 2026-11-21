@@ -6,12 +6,6 @@
 // describe what happens to the gradient. So the figure has to show the straight line
 // V = E - I r, with the intercept fixed at the emf and the gradient set by r, and a
 // marker that moves along it.
-//
-// Nothing here carries a colour. The line and the marker use different classes, so the
-// figure survives a monochrome bundle.
-//
-// The scaffolding — the panel, its accessible name, the sliders, the readout and the
-// redraw — comes from `kit.js`. What is left is the drawing and the sentences.
 import {
   fmt,
   label,

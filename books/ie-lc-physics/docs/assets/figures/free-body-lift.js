@@ -4,10 +4,6 @@
 // resultant force, then to step through the four stages and check. So the figure
 // draws the three forces on the lift as arrows whose lengths follow their sizes, and
 // reports the resultant force and the acceleration.
-//
-// Nothing here carries a colour. The tension and the two downward forces use
-// different classes, and the readout names each force, so the distinction survives a
-// monochrome bundle.
 import {
   chooser,
   fmt,

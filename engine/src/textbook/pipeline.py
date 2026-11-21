@@ -1,25 +1,10 @@
 #!/usr/bin/env python3
-"""Render a book as static HTML without a third-party site generator.
+"""Render a book as static HTML: Markdown to HTML, the page shell, the search
+index and link validation.
 
-This is the "own the pipeline" build: the engine's hooks do the transformations,
-the design system is plain CSS, navigation comes from ``curriculum.yaml``, and
-this module supplies the last mile — Markdown to HTML, the page shell, the search
-index, and link validation.
-
-    python -m textbook.pipeline --book gcse-maths --profile higher
-    python -m textbook.pipeline --chapter 1          # a subset, for fast checks
-    python -m textbook.pipeline --serve              # rebuild on change
-
-Why it exists: MkDocs 1.x is unmaintained (no release since 2024-08-30, and the
-repository was closed to outside contribution in October 2026), Material for
-MkDocs reaches end of life on 2027-05-05, and neither MkDocs 2.0 nor Zensical
-will run these hooks — Zensical ignores ``hooks:`` silently, exiting 0 with
-``--strict`` reporting no issue, which would ship a site with every directive,
-tier filter and maths render missing.
-
-The hooks are reused **unchanged**. They read only ``page.url``,
+The engine's hooks are reused unchanged. They read only ``page.url``,
 ``page.file.src_path``, ``config["extra"]`` and ``files``, so a plain dict and a
-``SimpleNamespace`` are enough to drive them.
+``SimpleNamespace`` drive them.
 """
 
 from __future__ import annotations
@@ -70,11 +55,8 @@ SHELL_CSS = CSS / "shell.css"
 
 #: The sheets the shell links, in cascade order, as site-relative paths.
 #:
-#: The order is behaviour at every level — the shared design system, then the
-#: book's authored sheets, then the engine shell, then the Settings runtime — so it
-#: lives here rather than in the template, where adding a seventh sheet is a line in
-#: the wrong place waiting to happen. The build writes them in this order and the
-#: page links them in this order, from one list.
+#: The order is behaviour at every level, so the build writes and the page links
+#: from this one list rather than from the template.
 STYLESHEETS: tuple[str, ...] = (
     "assets/stylesheets/themes.css",
     "assets/stylesheets/extra.css",
@@ -88,9 +70,9 @@ STYLESHEETS: tuple[str, ...] = (
 def stylesheet_sources(book: books.Book) -> dict[str, Path]:
     """Where each sheet is authored, by its site-relative path.
 
-    A site path is not a repository path for three of them: two are the shared
-    design system in ``assets/``, one belongs to the renderer in ``engine/``, and the
-    pair called ``book`` are the book's own.
+    Not every site path is under the book: two are the shared design system in
+    ``assets/``, one belongs to the renderer in ``engine/``, and the ``book`` pair
+    are the book's own.
     """
     root = Path(books.repo_root())
     return {
@@ -103,8 +85,8 @@ def stylesheet_sources(book: books.Book) -> dict[str, Path]:
     }
 
 
-#: Hash and naming live in the scaffold, because the figure hook needs the same
-#: answer as the copy that writes the file, and `hooks` may not import `pipeline`.
+#: Hash and naming live in the scaffold: the figure hook needs the same answer as
+#: the copy that writes the file, and `hooks` may not import `pipeline`.
 digest = scaffold.digest
 addressed_name = scaffold.addressed_name
 
@@ -112,14 +94,9 @@ addressed_name = scaffold.addressed_name
 def hashed_stylesheets(book: books.Book) -> dict[str, str]:
     """Site-relative sheet path -> the path it is written and linked under.
 
-    **Content, not the build label.** A sheet that did not change keeps its URL
-    across a deploy, so a reader's cached copy of a book keeps resolving its
-    stylesheet instead of fetching the same bytes under a new name. That is what
-    makes an offline download survive a release, and it is why the cache name is
-    allowed to rotate while these names do not.
-
-    A sheet that is not authored is simply absent from the result, and a page does
-    not link what the build did not write.
+    Content-addressed, not build-labelled: an unchanged sheet keeps its URL across
+    a deploy, so a cached or downloaded book keeps resolving its stylesheet. A
+    sheet that is not authored is absent from the result.
     """
     written: dict[str, str] = {}
     for relative, source in stylesheet_sources(book).items():
@@ -133,20 +110,13 @@ def hashed_stylesheets(book: books.Book) -> dict[str, str]:
 def addressed_assets(book: books.Book) -> dict[str, str]:
     """Every asset a page links directly, by logical path, addressed.
 
-    The stylesheets are computed from their sources; the three runtimes are added
-    here because they are copied from one place but linked from another. `booklet.js`
-    is absent for a book without one, and the page then carries no script for it.
-
-    `booklet.json` keeps its name on purpose: the widget finds it with
-    ``new URL("booklet.json", script.src)``, so it is a *sibling* of the script —
-    and it is fetched, not imported, so the worker treats it as network-first.
+    The stylesheets are computed from their sources; the runtimes are copied from
+    one place but linked from another. ``booklet.json`` keeps its name because the
+    widget resolves it as a sibling of ``script.src``.
     """
     addressed = dict(hashed_stylesheets(book))
-    # The booklet is the one that depends on the book: a book without one ships
-    # neither the script nor the data, and a manifest that named it would point at a
-    # file the build deliberately did not write. `tools assets` checks exactly that,
-    # which is how this was found — five profiles were claiming a booklet they do not
-    # have.
+    # A book without a booklet ships neither the script nor the data, so the
+    # manifest must not name it. `tools assets` checks that.
     runtimes = [
         "assets/settings/settings.js",
         "assets/settings/service-worker.js",
@@ -178,10 +148,8 @@ def asset_manifest(
 ) -> str:
     """The build's own record of where every named asset was written.
 
-    A content-addressed name cannot be guessed from the source tree, so the build
-    has to say what it did. This is what the tests and the tools read instead of
-    reconstructing a hash, and it is the seed of the offline manifest: a download
-    list is a route list plus these URLs.
+    A content-addressed name cannot be guessed from the source tree, so the tests
+    and tools read this. It also seeds the offline download list.
     """
     return (
         json.dumps(
@@ -191,9 +159,8 @@ def asset_manifest(
                 "assets": sheets,
                 "figures": figures,
                 "pages": pages or {},
-                # What the download would cost on the wire, before compression. The
-                # figure a reader is shown is this one, so it is measured here rather
-                # than guessed in the browser.
+                # Wire cost before compression; the reader sees this figure, so it
+                # is measured here rather than guessed in the browser.
                 "bytes": sum((pages or {}).values()),
             },
             indent=2,
@@ -202,49 +169,28 @@ def asset_manifest(
         + "\n"
     )
 
-# The hooks that transform page Markdown, in order. This is the same order as
-# hooks/__init__.py, which cannot express it by listing files because several
-# hooks want the same event.
-# The markdown hook chain, re-exported so a caller can inspect what runs without
-# importing the package. Defined in `hooks/__init__.py` because that is where the
-# order belongs, and importing it here rather than repeating it is what makes the
-# docstring there true. `tests/test_render_hooks.py` asserts they are one object.
-#
-# `render_page` calls `hooks.on_page_markdown` — the package's own composition —
-# so the chain that runs and the chain this names cannot be two different things.
+# The Markdown hook chain, re-exported so a caller can inspect what runs without
+# importing the package. `render_page` calls the package's own composition, so the
+# chain that runs and the chain this names cannot differ.
 MARKDOWN_HOOKS = MARKDOWN_HOOKS
 
-# Only the extensions the content actually uses. The retired MkDocs shell also
-# declared admonition, attr_list, pymdownx.details and pymdownx.superfences;
-# measured usage across all 457 pages of the first book is zero, zero, zero and
-# one.
-#
-# **`fenced_code` is not optional.** Without it a ``` fence is not a block at all:
-# Python-Markdown reads the backticks back as inline code, so every fenced block in
-# the collection shipped as `<p><code>python …</code></p>` — the info string printed
-# to the reader as a word, and the line breaks collapsed by HTML, which destroys an
-# ASCII probability tree and a stem-and-leaf plot outright. The first book measured
-# zero fences; `maths-applied` then shipped five, and the second measured zero for
-# the wrong reason.
-#
-# These are Extension *instances*. The ``{name: {options}}`` mapping a config
-# file accepts is sugar: Python-Markdown wants a name or an Extension.
+# Only the extensions the content uses. These are Extension *instances*: a config
+# mapping of ``{name: {options}}`` is sugar, and Python-Markdown wants a name or an
+# Extension.
 EXTENSIONS = [
     "md_in_html",  # <details markdown="1">
     "tables",
-    "fenced_code",  # ``` blocks: preformatted text, not inline code
+    # Not optional: without it a ``` fence is read back as inline code, so every
+    # fenced block ships as `<p><code>python …</code></p>` with its line breaks
+    # collapsed.
+    "fenced_code",
     ArithmatexExtension(generic=True),  # $...$ delimiters for the maths hook
-    # Every heading gets an id, so a fragment can name a section. Until this was
-    # enabled the only anchors were 83 hand-written `<a id>` elements, invisible
-    # to the reader, and `check_links` had to reject a heading slug because no
-    # heading had one. `permalink=False` because the id is for linking to, not
-    # for printing a paragraph mark beside every heading.
+    # Gives every heading an id, so a fragment can name a section.
+    # `permalink=False`: the id is for linking to, not for printing a mark.
     TocExtension(permalink=False),
 ]
 
-# Shared stylesheets, in load order. book.css is generated per book by the
-# scaffold and copied from the book's own docs assets; settings.css is the
-# reader Settings control's stylesheet, shared with the landing page.
+# Shared stylesheets, in load order. book.css is generated per book.
 SHARED_CSS = ("themes.css", "extra.css", "portal.css", "settings.css")
 
 # Links to source .md paths in rendered HTML. The suffix stays in the captured
@@ -253,40 +199,30 @@ SHARED_CSS = ("themes.css", "extra.css", "portal.css", "settings.css")
 HTML_LINK = re.compile(r'(href|src)="([^"]+?\.md)(#[^"]*)?"')
 SCRIPT_STYLE = re.compile(r"<(script|style)\b.*?</\1>", re.S | re.I)
 MATH_ERROR = re.compile(r'<span class="math-error"')
-# `href="…"` and `src="…"`, and not a longer attribute that happens to end in one.
-# `data-figure-src` names a figure module and is not a request the page makes, so
-# matching it here reported every figure as a broken link.
+# `href="…"` and `src="…"`, but not a longer attribute ending in one:
+# `data-figure-src` names a figure module and is not a request the page makes.
 ATTR_LINK = re.compile(r'(?<![\w-])(?:href|src)="([^"]+)"')
-# The anchor targets in a rendered page. Fragments are resolved against these,
-# so a link to an anchor that was deleted or renamed fails the build.
+# Anchor targets in a rendered page; a link to a deleted or renamed anchor fails
+# the build.
 ID_ATTR = re.compile(r'\bid="([^"]*)"')
 
-# Pagefind builds the search index over the rendered HTML after the build. It is
-# installed by npm beside KaTeX, which the build already needs, so it adds no new
-# kind of dependency. Running it is a separate step, and skippable, so tests do
-# not pay for indexing.
+# Pagefind indexes the rendered HTML after the build; it ships with npm beside
+# KaTeX. Running it is a separate, skippable step so tests do not pay for it.
 @lru_cache(maxsize=None)
 def pagefind() -> Path:
     """The Pagefind binary, resolved on first use rather than at import.
 
-    A module-level `PAGEFIND = books.repo_root() / ...` captured the answer at
-    import, so it depended on the cwd and `TEXTBOOK_ROOT` *at that moment* rather
-    than at the moment the build ran.
+    A module-level constant would capture the cwd and ``TEXTBOOK_ROOT`` at import.
     """
     return books.repo_root() / "node_modules" / ".bin" / "pagefind"
-
-
-# --- paths and URLs -----------------------------------------------------------
 
 
 def booklet_widget(book: books.Book, prefix: str, filename: str = "booklet.js") -> str:
     """The formulae-booklet `<script>` a page carries, or the empty string.
 
-    A classic deferred script rather than a module: it resolves its sibling
+    A classic deferred script, not a module: it resolves its sibling
     ``booklet.json`` from ``document.currentScript.src``, which is null in a
-    module — so the JSON keeps its name and only the script is addressed. A book
-    without a booklet gets no element at all, so no page fetches data that is not
-    there.
+    module. A book without a booklet gets no element.
     """
     if not book.booklet_name:
         return ""
@@ -296,11 +232,8 @@ def booklet_widget(book: books.Book, prefix: str, filename: str = "booklet.js") 
 def masthead_section(meta: dict) -> str:
     """The page's section, as the masthead names it, or the empty string.
 
-    A course page carries ``section`` and ``section_title`` in its front matter, and
-    a reader who arrives from a search result or a deep link has no way to tell which
-    section they are in: the masthead says the book and nothing else. The section is
-    printed beside the book's name, in the same link, so it also says where the link
-    goes. A page without the front matter gets no element rather than an empty one.
+    A reader arriving from a search result or a deep link cannot otherwise tell
+    which section they are in. A page without the front matter gets no element.
     """
     section = str(meta.get("section") or "").strip()
     title = str(meta.get("section_title") or "").strip()
@@ -310,14 +243,10 @@ def masthead_section(meta: dict) -> str:
     return f'<span class="masthead__section">{html.escape(label)}</span>'
 
 
-# --- navigation ---------------------------------------------------------------
-
-
 def pairs(node) -> list[tuple[str, object]]:
     """Normalise a nav node into (title, child) pairs.
 
-    ``build_nav_list`` mixes shapes: a value is a ``str`` (a page), a ``list`` of
-    dicts (a section) or a ``dict``. MkDocs accepts all three, so this does too.
+    A value is a ``str`` (a page), a ``list`` of dicts (a section) or a ``dict``.
     """
     if isinstance(node, list):
         return [(key, value) for entry in node for key, value in entry.items()]
@@ -342,23 +271,13 @@ def render_nav(
 ) -> str:
     """Nested ``<ul>``, sections collapsible with ``<details>``.
 
-    Two memos carry work *across* pages, because the nav is one object shared by
-    every page of a build and only the current-page marking differs between them.
+    Both memos carry work *across* pages: the nav is one object shared by every
+    page of a build, and only the current-page marking differs. ``leaf_cache``
+    precomputes each node's leaf set; ``subtree_cache`` the rendered HTML of every
+    subtree that does not contain the current page. The root is part of the key
+    because hrefs carry the page's ``../`` prefix, which varies with depth.
 
-    ``leaf_cache`` precomputes each node's leaf set once per build, so the
-    open/closed decision is linear rather than quadratic and is not redone for
-    every page. Without it, each of the 458 pages re-slugged the whole sidebar —
-    measured at 3.4s of a 17s build.
-
-    ``subtree_cache`` precomputes the rendered HTML of every subtree that does
-    *not* contain the current page. That HTML is identical on every page, so
-    rebuilding it re-slugged and re-quoted all 60 KiB of the sidebar for each
-    page. Only the path from the root to the current page is rebuilt; its
-    siblings come from the memo. The root is part of the key because hrefs are
-    qualified with the page's ``../`` prefix, and depth varies across a book.
-
-    A caller that renders one page omits both and gets caches private to the
-    call.
+    A caller that renders one page omits both and gets caches private to the call.
     """
     root = prefix_for(current_url)
     cache: dict[int, set[str]] = {} if leaf_cache is None else leaf_cache
@@ -371,8 +290,8 @@ def render_nav(
         return cache[key]
 
     def render(node, inside: bool) -> str:
-        # ``inside`` is true only along the root-to-current-page path, the one
-        # part of the tree whose HTML changes from page to page.
+        # ``inside`` is true only along the root-to-current-page path: the one part
+        # of the tree whose HTML changes from page to page.
         if not inside and (cached := rendered.get((id(node), root))) is not None:
             return cached
         items = []
@@ -402,12 +321,10 @@ def render_nav(
 
 
 def nav_for(book: books.Book, included_tiers: frozenset[str]) -> list:
-    """The nav, built from a book's own registry — a curriculum or a proof list.
+    """The nav, built from a book's own registry: a curriculum or a proof list.
 
-    The book's own declarations travel with it: which page kinds its sections have
-    and which optional depth pages they offer. Passing them here rather than
-    defaulting inside the nav builder is what keeps one build from listing a page
-    that the same build will not write.
+    The book's declarations travel with it, which keeps one build from listing a
+    page that the same build will not write.
     """
     return scaffold.build_nav_list(
         book.strands,
@@ -424,11 +341,9 @@ def nav_for(book: books.Book, included_tiers: frozenset[str]) -> list:
 def chapter_subset(book: books.Book, chapter: int, included_tiers=None) -> list:
     """Only one chapter's nav entry, so a subset build has a small sidebar.
 
-    ``included_tiers`` follows the build's tier. A lower-tier subset must not list
-    sections it does not build: the sidebar would link to pages that are not there,
-    and once the link check actually ran that showed up as a broken link on every
-    page of the subset. The default keeps a standalone caller — a test rendering one
-    page without a build — permissive.
+    ``included_tiers`` follows the build's tier: a lower-tier subset must not list
+    sections it does not build or the sidebar links to pages that are not there.
+    The default keeps a standalone caller permissive.
     """
     if included_tiers is None:
         included_tiers = frozenset(book.tier_codes)
@@ -450,18 +365,12 @@ def _pager_eyebrow(
 ) -> str:
     """What the move is, in the reader's words: page, section, chapter, chapter review.
 
-    The eyebrow is the whole value of a pager over a bare arrow: "Next section" tells a
-    reader where the link goes before they read the title, and on a phone it is the only
-    part of the label that fits on one line.
+    The two special cases are the ones a reader would otherwise misread: a
+    neighbour that is a chapter's own index page is *contents*, and a chapter's
+    Review ends the chapter rather than starting the next.
 
-    The two special cases are the ones a reader would otherwise misread: a neighbour
-    that is a chapter's own index page is *contents*, not the next chapter, and a
-    chapter's Review is the end of the chapter rather than the start of the next.
-
-    ``reference`` is a book that declares `qualification: Reference` — the proof book
-    and the map of problem classes. It has no chapters and no sections, so a depth-2
-    path is *one entry* rather than a chapter index, and the course rules below would
-    call the next entry "Next chapter" on every page of a book that has none.
+    ``reference`` marks a book with `qualification: Reference`, which has no
+    chapters or sections, so its depth-2 paths are single entries.
     """
     if target == "index.md":
         return "Contents"
@@ -484,26 +393,21 @@ def _pager_eyebrow(
 
 
 def pager_for(paths: list[str], book: books.Book) -> dict[str, tuple[dict | None, dict | None]]:
-    """Every page's previous and next, from the **nav order** the sidebar uses.
+    """Every page's previous and next, in the order the sidebar lists them.
 
-    The reading order is `nav_paths`, so the pager cannot disagree with the contents
-    list — the same rule `nav_for` follows for the sidebar itself. Titles come from
-    the page's own front matter, because the nav's leaf titles are the page *kind*
-    ("Learn") and a pager that says only "Learn" says nothing about where it goes.
+    Reading order is `nav_paths`, so the pager cannot disagree with the contents
+    list. Titles come from the page's own front matter: the nav's leaf titles are
+    the page *kind* ("Learn"), which says nothing about where the link goes.
     """
-    # **The sidebar's order is a reference order, and the pager's is a reading order.**
-    # They differ in two places.
+    # The sidebar's order is a reference order; the pager's is a reading order.
     #
-    # The glossary is listed first and reads last, so following "next" from the cover
-    # does not land a reader in the reference material.
+    # The glossary is listed first and reads last, so "next" from the cover does not
+    # land the reader in the reference material.
     #
-    # A section's depth pages are listed with the section and are **not part of the
-    # thread**: they are offered by the page that raises the question, and the chapter
-    # has to be readable end to end without one. Treated as ordinary pages they sat
-    # between a section and the next one, so the pager's eyebrow said "Next section"
-    # and went to an optional detour. They are skipped here, and each one borrows the
-    # pager of the page that offers it, so a reader who takes the detour can step back
-    # onto the thread from it.
+    # A section's depth pages are offered by the page that raises the question and are
+    # not part of the thread: the chapter must be readable without one. Each borrows
+    # the pager of the page that offers it, so a reader on the detour can step back
+    # onto the thread.
     reference = book.qualification == books.REFERENCE
     deeper = {page["path"] for page in book.deeper_pages}
     ordered = [
@@ -547,10 +451,9 @@ def pager_for(paths: list[str], book: books.Book) -> dict[str, tuple[dict | None
             }
         order[md_path] = (previous, following)
 
-    # A depth page reads *after* the page that offers it and *before* the next one on
-    # the thread: stepping back from it returns to the page that raised the question,
-    # and stepping forward rejoins the thread. Handing it the offering page's own pair
-    # sent a reader who took the detour back one page too far.
+    # A depth page reads after the page that offers it and before the next one on the
+    # thread: stepping back returns to the offering page, stepping forward rejoins
+    # the thread.
     anchor = ""
     for md_path in paths:
         if md_path in deeper:
@@ -587,10 +490,9 @@ def nav_paths(nav, subset: str | None = None) -> list[str]:
 def make_config(book: books.Book, profile: str) -> dict:
     """A plain dict satisfies the hooks, which only ever call ``config.get()``.
 
-    The assembly lives in `config.from_parts`, because the `extra` block is an engine
-    contract that six test files used to copy by hand — and two of the copies had
-    already drifted. One constructor means a hook that reads a new key cannot pass in
-    production and silently misbehave in a test.
+    The assembly lives in `config.from_parts`: the ``extra`` block is an engine
+    contract, and one constructor keeps a hook that reads a new key from passing in
+    production and misbehaving in a test.
     """
     return cfg.from_parts(book.docs, book=book, profile=profile)
 
@@ -616,13 +518,9 @@ def make_page(md_path: str, url: str) -> SimpleNamespace:
 def rewrite_source_links(content: str) -> str:
     """Rewrite links to source ``.md`` paths as site URLs.
 
-    Runs on rendered HTML rather than on Markdown, so it sees one shape of link
-    whether the markdown came from an author, from a hook (``toc.py`` writes
-    ``Chapter N/index.md``) or from raw HTML a hook emitted.
-
-    Hrefs stay *relative*, which matches the source: a link written on
-    ``Chapter 1/index.md`` is relative to ``Chapter 1/``. That stays correct
-    after rendering because the output path mirrors the source path.
+    Runs on rendered HTML, so it sees one shape of link whether the Markdown came
+    from an author, from a hook or from raw HTML. Hrefs stay relative, matching the
+    source, because the output path mirrors the source path.
     """
 
     def repl(match: re.Match[str]) -> str:
@@ -653,12 +551,10 @@ class RenderedPage:
 
 
 
-#: A table, and the comment that can mark it. `<!-- table: cards -->` on the line above
-#: a table says its rows are records rather than a column to compare, which is what the
-#: card layout below 60rem needs to know. Python-Markdown passes the comment through, so
-#: the marker arrives here and is consumed by this pattern instead of being printed. A
-#: class would be tidier and needs `attr_list`, which this collection measured at zero
-#: uses and does not load.
+#: A table, and the comment that can mark it. `<!-- table: cards -->` above a table
+#: says its rows are records rather than a column to compare, which the card layout
+#: below 60rem needs. Python-Markdown passes the comment through, so the marker is
+#: consumed by this pattern instead of being printed.
 TABLE = re.compile(
     r"(?:(?P<marker><!--\s*table:\s*cards\s*-->)\s*)?<table\b.*?</table>", re.S | re.I
 )
@@ -672,9 +568,8 @@ def label_cells(table: str) -> str:
     """Give every `<td>` its column's heading as `data-label`.
 
     A table becomes a stack of records below 60rem only if each cell can say what it
-    is: the header row scrolls away with the columns, so the label has to travel with
-    the value. Reading it from the `<th>`s rather than from a second list in the CSS
-    means the label and the heading cannot come apart.
+    is: the header row scrolls away with the columns. Reading the label from the
+    `<th>`s means the label and the heading cannot come apart.
     """
     head = THEAD.search(table)
     if not head:
@@ -699,25 +594,21 @@ def label_cells(table: str) -> str:
 def wrap_tables(html_text: str) -> str:
     """Put every table in a scroll container.
 
-    A worked example or a data table is routinely wider than a phone. Without a
-    wrapper the table widens the *page* rather than scrolling inside it, and
-    anything pinned to the viewport — the masthead controls, the booklet button —
-    is pushed off the right edge. That is how a reader lost the settings button.
+    A wide table would otherwise widen the page rather than scroll inside it, pushing
+    anything pinned to the viewport off the right edge.
     """
     def wrap(match: "re.Match[str]") -> str:
         table = match.group(0)
         if match.group("marker"):
-            # The marker is part of the match, so taking it off the front is also what
-            # stops it being printed; nothing else in the collection reads a comment.
+            # Taking the marker off the front is also what stops it being printed.
             table = table.replace(match.group("marker"), "", 1).lstrip()
             table = table.replace("<table", '<table class="table--cards"', 1)
         table = label_cells(table)
-        # **Focusable, and named.** A scroll container is operable only if a keyboard
-        # can reach it: Chromium 127 focuses one by itself, Safari and Firefox do not,
-        # so a table that scrolls would be unreadable to a keyboard user on those
-        # engines (WCAG 2.1.1). `role="group"` gives the tab stop something to be, and
-        # the label says what scrolling it does — the hint a sighted reader gets from
-        # the cut-off column and a screen reader cannot.
+        # Focusable and named. A scroll container is operable only if a keyboard can
+        # reach it: Chromium 127 focuses one by itself, Safari and Firefox do not, so
+        # a scrolling table would be unreadable to a keyboard user there (WCAG
+        # 2.1.1). The label gives the tab stop something to be, and says what
+        # scrolling it does.
         return (
             '<div class="table-scroll" tabindex="0" role="group" '
             'aria-label="Table. Scroll sideways to see every column.">'
@@ -730,13 +621,9 @@ def wrap_tables(html_text: str) -> str:
 def render_pager(pager, prefix: str) -> tuple[str, str]:
     """The previous/next block, and the `<link rel>`s that say the same thing.
 
-    **Both, from one model.** The block is what a reader uses; `<link rel="prev">` and
-    `<link rel="next">` are the machine-readable form of the same fact, which a
-    browser extension, a crawler and a print stylesheet read. Rendering them from the
-    same neighbour means they cannot disagree.
-
-    A page with no neighbour on one side keeps a spacer, so a lone "next" does not
-    drift into the "previous" position and read as one.
+    Both come from one neighbour, so they cannot disagree. A page with no neighbour
+    on one side keeps a spacer, so a lone "next" does not drift into the "previous"
+    position and read as one.
     """
     previous, following = pager
     if not previous and not following:
@@ -774,20 +661,17 @@ def render_page(
 ) -> tuple[str, RenderedPage, bool]:
     """Render one page of one profile. Returns (html, index entry, maths error).
 
-    ``profile`` is the build's own profile id, passed in rather than read back
-    out of ``config``: it is what the page's canonical URL is built from, and a
-    page must declare the profile it was actually built for. A Foundation page
-    that names the Higher URL as its canonical tells a crawler the Foundation
-    edition is a duplicate of the Higher one.
+    ``profile`` is passed in rather than read back out of ``config``: it builds the
+    page's canonical URL, and a page must canonicalise to the profile it was built
+    for, or the Foundation edition reads as a duplicate of the Higher one.
     """
     meta, body = read_page(book.docs / md_path)
     url = url_for(md_path)
     page = make_page(md_path, url)
 
-    # Through the package, not the tuple: "run every hook in order" used to be
-    # written twice, here and in `hooks/__init__.py`, so the chain the pipeline ran
-    # and the chain the package documented were two implementations that happened to
-    # agree. The wrappers were dead code with a live duplicate.
+    # Through the package, not the tuple: writing "run every hook in order" here as
+    # well would make the chain the pipeline runs and the chain the package
+    # documents two implementations that happen to agree.
     body = hooks.on_page_markdown(body, page, config, [])
 
     content = markdown.markdown(body, extensions=EXTENSIONS, output_format="html5")
@@ -797,10 +681,8 @@ def render_page(
     title = str(meta.get("title") or md_path)
     prefix = prefix_for(url)
     trigger, dialog = settings
-    # The booklet widget is a classic deferred script: it reads
-    # ``document.currentScript.src`` to find its sibling JSON, so it must be a
-    # real script element rather than a module. A book without a booklet gets no
-    # element at all, so no page ever fetches data that is not there.
+    # A classic deferred script: it reads ``document.currentScript.src`` to find its
+    # sibling JSON, so it must be a real script element, not a module.
     booklet = booklet_widget(
         book,
         prefix,
@@ -821,8 +703,7 @@ def render_page(
         nav=render_nav(nav, url, leaf_cache, subtree_cache),
         stylesheets=stylesheet_links(prefix, assets or {}),
         # The registration script is root-absolute (one worker for the collection,
-        # written by the portal); the Settings runtime is beside the page, so it
-        # takes the page's prefix.
+        # written by the portal); the Settings runtime is beside the page.
         worker_script=html.escape(
             "/" + (assets or {}).get("assets/settings/service-worker.js", "assets/settings/service-worker.js"),
             quote=True,
@@ -862,10 +743,8 @@ def run_pagefind(out: Path) -> bool:
     )
     if finished.returncode != 0:
         # Present and failing is a defect; absent is a feature this build does not
-        # have. `indexed` was not part of `BuildResult.ok`, so a full book whose
-        # search index failed shipped a site whose search box says "Search is
-        # unavailable" while the gate stayed green — the one-chapter build the
-        # tests indexed was fine.
+        # have. A silent failure would ship a site whose search box says "Search is
+        # unavailable" while the gate stayed green.
         raise RuntimeError(
             "pagefind is installed but failed, so the built site has no working "
             f"search: {(finished.stderr or '').strip()[:400]}"
@@ -876,11 +755,9 @@ def run_pagefind(out: Path) -> bool:
 def canonical_url(book: books.Book, profile: str, url: str) -> str:
     """Absolute URL for a page of one profile, from the collection's base URL.
 
-    The profile is the one *being built*, never the book's default: a tiered
-    book is one build per profile, so a Foundation page must canonicalise to
-    the Foundation URL or the whole edition reads as a duplicate. The prefix is
-    ``scaffold.site_url``, the same derivation the profile's landing URL uses,
-    so a page's canonical and its profile's ``site_url`` cannot drift apart.
+    The profile is the one *being built*, never the book's default, or every
+    non-default edition reads as a duplicate. The prefix is ``scaffold.site_url``,
+    the same derivation the profile's landing URL uses, so the two cannot drift.
     """
     root = scaffold.site_url(book, profile)
     return f"{root}{href(url)}" if root else ""
@@ -892,9 +769,8 @@ def canonical_url(book: books.Book, profile: str, url: str) -> str:
 def sitemap(book: books.Book, profile: str, pages: list[RenderedPage]) -> str:
     """An XML sitemap for one profile, or empty when no base URL is configured.
 
-    The ``<loc>``s must name the profile this build wrote: a sitemap that lists
-    the default profile's URLs from every profile's directory advertises the
-    wrong pages for all but the default.
+    The ``<loc>``s must name the profile this build wrote, or every directory
+    advertises the default profile's pages.
     """
     root = scaffold.site_url(book, profile)
     if not root:
@@ -918,24 +794,12 @@ def _copy_file(source: Path, destination: Path) -> str:
 class AssetRow:
     """One kind of asset the build puts in the output, and where its files go.
 
-    ``sources`` pairs each source with its destination, and is either files or
-    directories: a directory is copied through ``select``, which returns the files
-    to take from it. A ``label`` makes the row report one *counted* entry instead
-    of one per file, which is what keeps a book's dozens of figure modules from
-    being dozens of lines of build log. ``writes`` is the row that produces text
-    rather than copying a file — the two the portal generates.
-
-    ``needed`` is the predicate: only the booklet and a book's own figures are
-    conditional. ``missing`` is what a missing source means — ``skip`` for an asset
-    a book may not have, ``all`` for a group that is useless in pieces (the
-    booklet's widget fetches its sibling from the same directory), and ``fail`` for
-    a file the engine owns, where absence is a defect and the build must say so
-    rather than ship pages with no stylesheet.
-
-    ``rename`` decides a destination from the source and its logical destination,
-    and is how a content-addressed file is written under the name the page links.
-    It takes both because a content hash is a property of the **source**: reading it
-    from the destination before the copy is a file that is not there yet.
+    ``sources`` pairs each source with its destination; a directory is copied via
+    ``select``. ``label`` reports one counted line, not one per file. ``writes``
+    produces text rather than copying. ``missing`` says what an absent source means:
+    ``skip``, ``all`` (a group useless in pieces) or ``fail`` (the engine owns it).
+    ``rename`` gets the source as well as the destination because a content hash is
+    a property of the source.
     """
 
     sources: tuple[tuple[Path, Path], ...] = ()
@@ -974,9 +838,8 @@ class AssetRow:
                 continue
             seen = True
             if self.label:
-                # A counted row makes its directory even with nothing to put in it,
-                # so the output tree does not depend on whether a book happens to
-                # have any figures.
+                # A counted row makes its directory even with nothing to put in it, so
+                # the output tree does not depend on whether a book has any figures.
                 destination.mkdir(parents=True, exist_ok=True)
             copied.extend(
                 _copy_file(
@@ -988,8 +851,7 @@ class AssetRow:
         if not self.label:
             return copied
         # One entry per file is noise for a directory of modules, so a labelled row
-        # reports how many it copied — and nothing at all when there were none,
-        # unless the row asked for the zero.
+        # reports a count, and nothing when there were none unless asked.
         if not seen or (not copied and not self.report_zero):
             return []
         return [f"{len(copied)} {self.label}"]
@@ -1004,15 +866,12 @@ def copy_assets(
 ) -> list[str]:
     """Copy the shared design system, the shell, and this book's own assets.
 
-    The rows below are data because **the order is behaviour**: a later copy wins,
-    so the cascade — the shared design system, then the engine's own shell, then
-    the book's generated and then its authored sheets — is the order of these rows.
-    Adding a kind of asset is a row, not another branch.
+    The rows are data because **the order is behaviour**: a later copy wins, so the
+    cascade is the order of these rows. Adding a kind of asset is a row, not
+    another branch.
 
-    ``assets`` is the content-addressed map ``addressed_assets`` produced for this
-    build. The pages were rendered against it, so the files have to be written under
-    the same names or every page links a 404; a row that can produce one of them
-    therefore carries the rename, and one that cannot is unaffected by it.
+    ``assets`` is the content-addressed map the pages were rendered against, so the
+    files must be written under the same names or every page links a 404.
     """
     root = Path(books.repo_root())
     asset_root = root / "assets"
@@ -1025,8 +884,8 @@ def copy_assets(
     def addressed_module(source: Path, destination: Path) -> Path:
         """A figure module's site name: the source's content, and nothing else.
 
-        The library's `kit.js` never reaches this — it is a shared file, not a
-        module — so the 213 modules that import `./kit.js` keep resolving.
+        `kit.js` never reaches this: it is a shared file, not a module, so the
+        modules that import `./kit.js` keep resolving.
         """
         return destination.with_name(scaffold.addressed_name(source))
 
@@ -1034,31 +893,25 @@ def copy_assets(
     figure_dir = out / "assets" / "figures"
 
     rows = [
-        # Every shared file, from the one list that declares them — repository path
-        # and site path are the same string, so there is nothing to map. This
-        # replaces a hardcoded `SHARED_CSS` loop that had to be kept in step with the
-        # symlinks the scaffold created, which is the pair of lists the engine review
-        # flagged: an asset added to one and not the other was either a broken link
-        # or a file the pages requested and the build never wrote.
+        # Every shared file, from the one list that declares them: repository path and
+        # site path are the same string, so nothing needs mapping.
         AssetRow(
             tuple((root / relative, out / relative) for relative in scaffold.SHARED_FILES),
             rename=rename,
         ),
-        # A shared directory's whole contents. The kit is a library of layers rather
-        # than one file, and a barrel that imports a layer the build did not copy is a
-        # figure that fails to mount — with the build green, because an asset reached
-        # only at runtime is not a link on any page.
+        # A shared directory's whole contents. The kit is a library of layers, and a
+        # barrel that imports a layer the build did not copy is a figure that fails to
+        # mount — with the build green, because a runtime-only asset is no page's link.
         AssetRow(
             tuple((root / relative, out / relative) for relative in scaffold.SHARED_DIRS),
             select=lambda directory: [path for path in sorted(directory.rglob("*")) if path.is_file()],
         ),
-        # The shell is the engine's own stylesheet, not a shared asset: it is part of
-        # the renderer rather than the design system a book composes, so a missing one
-        # fails the build instead of quietly shipping pages with no shell.
+        # The shell belongs to the renderer, not to the design system a book composes,
+        # so a missing one fails the build instead of shipping pages with no shell.
         AssetRow(((SHELL_CSS, sheet_dir / "shell.css"),), missing="fail", rename=rename),
-        # The book's generated stylesheet, and then its author-local one, last in the
-        # cascade. `book-local.css` is authored, not generated, and may be empty; a
-        # book that has one must ship it or its own component rules silently disappear.
+        # The book's generated stylesheet, then its author-local one, last in the
+        # cascade. `book-local.css` may be empty; a book that has one must ship it or
+        # its own component rules silently disappear.
         AssetRow(
             (
                 (book.docs / "assets" / "stylesheets" / "book.css", sheet_dir / "book.css"),
@@ -1067,8 +920,7 @@ def copy_assets(
             rename=rename,
         ),
         # The formulae booklet: the shared widget and the book's generated data,
-        # copied together so the widget's sibling fetch resolves. A book without a
-        # booklet ships neither the script nor a request for one.
+        # copied together so the widget's sibling fetch resolves.
         AssetRow(
             (
                 (asset_root / "booklet" / "booklet.js", out / "assets" / "booklet" / "booklet.js"),
@@ -1081,22 +933,19 @@ def copy_assets(
             missing="all",
             rename=rename,
         ),
-        # The Settings runtime's service-worker registration. The registration script
-        # is loaded by the deferred <script> every page carries; without it in the
-        # output a profile served on its own would 404 on that request. `settings.js`
-        # itself is a shared file and arrives with `SHARED_FILES` above; only the
-        # registration script is this build's own.
+        # The service-worker registration script. Every page loads it; without it in the
+        # output a profile served on its own would 404. `settings.js` arrives with
+        # `SHARED_FILES` above.
         AssetRow(
             (
                 (asset_root / "settings" / "service-worker.js", out / "assets" / "settings" / "service-worker.js"),
             ),
             rename=rename,
         ),
-        # The PWA: the manifest and the worker. Written from the portal rather than
-        # copied raw, so the worker carries the same build label the pages do and the
-        # cache rotates on every deploy. They belong at the deployment root, but a
-        # profile built on its own needs them beside its pages for the root-absolute
-        # links in the shell to resolve.
+        # The PWA: the manifest and the worker, written from the portal so the worker
+        # carries the same build label the pages do and the cache rotates on deploy.
+        # They belong at the deployment root, but a profile built on its own needs them
+        # beside its pages for the shell's root-absolute links to resolve.
         AssetRow(
             writes=(
                 (out / "manifest.webmanifest", portal.manifest),
@@ -1104,18 +953,16 @@ def copy_assets(
             )
         ),
         # The tab icon and the home-screen icon: three files, one motif (see
-        # assets/icons/). The tab icon is declared in the page shell, which reaches it
-        # by the same prefix-relative path the stylesheets use.
+        # assets/icons/), reached by the same prefix-relative path as the stylesheets.
         AssetRow(
             tuple(
                 (asset_root / "icons" / name, out / "assets" / "icons" / name)
                 for name in ("app-icon.svg", "favicon.svg", "apple-touch-icon.png")
             )
         ),
-        # This book's own data files — the numbers a figure draws, emitted by the
-        # tool that computed them (see `books/maths-applied`). Copied as a
-        # directory because a payload is a payload, not a module: it must not sit
-        # in `figures/`, where every file is required to export `mount()`.
+        # This book's own data files, emitted by the tool that computed them (see
+        # `books/maths-applied`). Not in `figures/`, where every file must export
+        # `mount()`.
         AssetRow(
             ((book.docs / "assets" / "data", out / "assets" / "data"),),
             select=lambda directory: [
@@ -1123,9 +970,8 @@ def copy_assets(
             ],
             label="data files",
         ),
-        # This book's own images — a photograph, a scan, a credit-bearing plate.
-        # Never a figure: a figure is drawn by a module so it follows the reader's
-        # bundle, and an image cannot.
+        # This book's own images: a photograph, a scan, a credit-bearing plate. Never a
+        # figure: a figure follows the reader's bundle, an image cannot.
         AssetRow(
             ((book.docs / "assets" / "images", out / "assets" / "images"),),
             select=lambda directory: [
@@ -1133,12 +979,10 @@ def copy_assets(
             ],
             label="images",
         ),
-        # This book's own figure modules. A symlink in the book's figures directory is
-        # a shared file: on a platform that does not check symlinks out as links
-        # (`git clone` on Windows without developer mode) it is a text file naming its
-        # target, so copying it would put a 36-byte "module" in the site — a green
-        # build, a broken browser, and nothing in the output to say so. `figures.js`
-        # and `kit.js` arrive with `SHARED_FILES` above.
+        # This book's own figure modules. A symlink here is a shared file: on a platform
+        # that checks symlinks out as plain files it is a text file naming its target,
+        # so copying it would put a 36-byte "module" in the site — a green build and a
+        # broken browser. `figures.js` and `kit.js` arrive with `SHARED_FILES`.
         AssetRow(
             ((book.docs / "assets" / "figures", figure_dir),),
             select=lambda directory: [
@@ -1150,11 +994,10 @@ def copy_assets(
             label="figure modules",
             report_zero=True,
         ),
-        # The shared figure library: every module in `assets/figures/` that more than
-        # one book mounts, copied **flat** beside the loader because a figure is
-        # mounted by bare slug. A book's own module of the same name is an error rather
-        # than an override — see `shared_figure_modules` — so there is nothing to
-        # decide here.
+        # The shared figure library: every module more than one book mounts, copied
+        # flat beside the loader because a figure is mounted by bare slug. A book's own
+        # module of the same name is an error rather than an override — see
+        # `shared_figure_modules`.
         AssetRow(
             ((root / scaffold.FIGURE_LIBRARY, figure_dir),),
             select=lambda directory: [
@@ -1171,9 +1014,8 @@ def copy_assets(
     for row in rows:
         if row.needed(book):
             copied.extend(row.copy())
-    # The record of what was written, and under what name. A content-addressed
-    # name cannot be derived from the source tree by whoever reads the output — a
-    # test, a tool, the offline download list — so the build states it.
+    # The record of what was written, and under what name: a content-addressed name
+    # cannot be derived from the source tree by whoever reads the output.
     (out / "assets" / "manifest.json").write_text(
         asset_manifest(book, assets, figures or {}, pages), encoding="utf-8"
     )
@@ -1183,17 +1025,11 @@ def copy_assets(
 def sibling_roots(exclude: str | None = None) -> tuple[str, ...]:
     """Where the collection's *other* books publish, root-relative.
 
-    The collection is one site: every book is a separate build with its own output
-    directory, and they are published side by side under one origin. So a link
-    from a page in one book to a page in another is a real link that this build
-    cannot verify — the files are not in this output directory and never will be.
-
-    Skipping such a link is not the same as assuming it works. The other book's own
-    build checks its own links, and the directive that writes these hrefs resolves
-    its target against a registry, so an id that names no page fails a build rather
-    than producing a dead link. What this cannot catch is a book removed from the
-    collection while a page still links to it, and `tests/test_proofs.py` is what
-    covers that.
+    Every book is a separate build published side by side under one origin, so a
+    cross-book link is real but unverifiable here. The other book's own build checks
+    its links, and the directive that writes these hrefs resolves against a registry.
+    A book removed from the collection while a page links to it is covered by
+    `tests/test_proofs.py`.
     """
     roots = []
     for other in books.discover_books():
@@ -1213,42 +1049,18 @@ def check_links(
 ) -> list[str]:
     """Every internal link in every built page must resolve to a built file.
 
-    This replaces ``mkdocs build --strict``, and it goes one step beyond it: a
-    link's *fragment* must name an ``id`` in the target file. MkDocs discarded
-    the fragment, so ``page/#handle`` was checked as ``page/`` and passed whether
-    or not the anchor existed — a check that could not fail. Here the resolved
-    target's ids are read and the fragment must be one of them, so a deleted
-    anchor or a heading whose slug changed is reported.
+    A link's *fragment* must also name an ``id`` in the target file. The ids accepted
+    are those already in the output: one from the ``toc`` extension, or one a page
+    writes as ``<a id="…"></a>``. ``<script>`` bodies are excluded because the search
+    client builds its hrefs at runtime.
 
-    The ids accepted are those already in the output: a heading gets one from the
-    Markdown ``toc`` extension, and a page may also write one explicitly as
-    ``<a id="…"></a>`` where its chosen name differs from the generated slug. A
-    fragment naming neither is reported, so a deleted anchor or a renamed heading
-    still fails the build.
+    ``scope`` limits checking to one chapter for subset builds. ``siblings`` are the
+    other books' deploy roots and ``root_pages`` the collection pages the portal
+    writes at the site root; both are skipped, for the reasons in `sibling_roots`.
 
-    ``<script>`` bodies are excluded because the search client builds its hrefs
-    at runtime.
-
-    ``scope`` limits checking to one chapter, for subset builds: the cover links
-    to all 25 chapters and the sidebar to the built one, so without it a subset
-    build reports every unbuilt chapter as broken. Links to the site root are
-    always checked, since the cover is built by every build.
-
-    ``siblings`` are the other books' deploy roots. A link into one of them is
-    outside this build and is skipped — see `sibling_roots` for why that is not
-    the same as assuming it works.
-
-    ``root_pages`` are the collection pages the portal writes at the site root,
-    beside the books rather than inside this build. Like a sibling root, such a
-    page is not absent by accident: `portal.legal_page` generates it and the
-    deploy tests check that it exists.
-
-    Every page carries the whole sidebar, so a full book is around 200,000 link
-    targets. Resolution is therefore done lexically against one listing of the
-    output directory. Calling ``Path.resolve()`` per link instead walks the
-    filesystem a component at a time, which measured as the single largest cost
-    of a whole build. Target ids are cached per file, so a page linked to from a
-    hundred fragments is read once.
+    Every page carries the whole sidebar, so resolution is lexical against one
+    listing of the output directory rather than ``Path.resolve()`` per link, which
+    measured as the largest cost of a whole build. Target ids are cached per file.
     """
     built = {path.relative_to(out).as_posix() for path in out.rglob("*")}
     ids_by_file: dict[str, set[str]] = {}
@@ -1277,8 +1089,8 @@ def check_links(
             if not path:
                 continue
             # Only a leading slash means "from the site root". Treating every
-            # href as if it did would silently accept bare root-relative links,
-            # which break as soon as a page is nested.
+            # href as if it did would accept bare root-relative links, which break
+            # as soon as a page is nested.
             root_relative = path.lstrip("/")
             if path.startswith("/") and any(
                 root_relative == root or root_relative.startswith(f"{root}/")
@@ -1323,7 +1135,6 @@ def check_links(
 @dataclass
 class BuildResult:
     """What a build produced, for the CLI and for tests."""
-
     out: Path
     pages: list[RenderedPage] = field(default_factory=list)
     broken: list[str] = field(default_factory=list)
@@ -1350,11 +1161,8 @@ def build(
     started = time.time()
     book = books.book_by_id(book_id)
     profile = profile or book.default_profile.id
-    # An unknown profile used to be accepted: it built to a new directory and,
-    # because the tier filter read `profile != "foundation"`, built it as Higher.
-    # A typo in a CI matrix then published a whole extra edition of a book rather
-    # than failing. Found by noticing `site/gcse-physics/all/` — a directory no
-    # profile owns — while measuring figures.
+    # An unknown profile must fail: it would build to a new directory and, because
+    # the tier filter keys on the profile, publish a whole extra edition.
     declared = [p.id for p in book.profiles]
     if profile not in declared:
         raise ValueError(
@@ -1362,23 +1170,21 @@ def build(
         )
     out = out or Path(books.repo_root()) / "site" / book.deploy_path(profile)
     # Which sections this build writes, from the declared `tier_filter` and never
-    # from the literal profile id: a book may name its lower-tier profile anything,
-    # and keying on the id shipped higher-only sections to the wrong reader whenever
-    # the two differed. See `Book.tiers_included`.
+    # from the literal profile id: a book may name its lower-tier profile anything.
+    # See `Book.tiers_included`.
     included_tiers = book.tiers_included(book.tier_filter_for(profile))
     config = make_config(book, profile)
     template = Template(PAGE_TEMPLATE.read_text(encoding="utf-8"))
-    # The Settings control is the one the landing page uses: same trigger, same
-    # dialog, built from the same bundles. Computed once per build, not per page.
+    # The Settings control the landing page uses: same trigger, same dialog. Once
+    # per build, not per page.
     settings = (portal.settings_trigger(), portal.settings_dialog(book=book))
     build_label = portal.build_label()
-    # Where each stylesheet is written and linked, computed once per build: the
-    # pages reference it and `copy_assets` writes to it, and a second computation
-    # is a second answer.
+    # Where each stylesheet is written and linked: the pages reference it and
+    # `copy_assets` writes to it, so a second computation is a second answer.
     assets = addressed_assets(book)
     # The same map the hook writes into a page's `data-figure-src` and the copy uses
-    # for the filename. Computed once: a per-page hash of 43 modules across 458 pages
-    # is 20,000 reads of the same files.
+    # for the filename. Computed once: a per-page hash would re-read every module for
+    # every page.
     modules = hooks.figures.module_paths(config)
     figure_modules = {slug: scaffold.addressed_name(path) for slug, path in modules.items()}
     config["figure_modules"] = figure_modules
@@ -1386,9 +1192,8 @@ def build(
     if clean and out.exists():
         shutil.rmtree(out)
 
-    # A configured animation id that is not registered is a typo, and a typo
-    # that renders nothing is exactly the failure the registry exists to catch.
-    # Checked here, beside the build, rather than at render time per page.
+    # A configured animation id that is not registered is a typo, and a typo that
+    # renders nothing is what the registry exists to catch.
     problems = backgrounds.validate(
         books.load_collection().get("backgrounds"), "collection.yaml"
     ) + backgrounds.validate(book.backgrounds, "book.yaml")
@@ -1396,26 +1201,23 @@ def build(
         raise ValueError("backgrounds: " + "; ".join(problems))
 
     # Two forms of "the chapter being built", for two consumers that work on
-    # different names. `nav_paths` walks source paths, so it wants the source
-    # prefix; `check_links` walks slugged output paths, so it wants the URL
-    # prefix. Passing the source form to both was the bug: no output path can
-    # start with `Chapter 1/`, so a subset build skipped every link and still
-    # reported `broken 0`.
+    # different names: `nav_paths` walks source paths and `check_links` walks slugged
+    # output paths. Passing the source form to both meant a subset build skipped every
+    # link and still reported `broken 0`.
     subset = f"Chapter {chapter}" if chapter else None
     link_scope = url_for(f"Chapter {chapter}/index.md").rstrip("/") if chapter else None
     full = nav_for(book, included_tiers)
     paths = nav_paths(full, subset=subset)
     nav = full if (full_nav or not subset) else chapter_subset(book, chapter, included_tiers)
 
-    # The masthead links to the book's cover, and every chapter links back to it,
-    # so a subset build must still emit it or those links 404. A full build picks
-    # it up from the nav; a subset does not.
+    # The masthead links to the book's cover and every chapter links back to it, so
+    # a subset build must still emit it or those links 404.
     cover = "index.md"
     if cover not in paths and (book.docs / cover).exists():
         paths.insert(0, cover)
 
-    # Slugging maps the source layout onto URLs, so two source paths could in
-    # principle land on the same one. A collision would silently overwrite a page.
+    # Slugging maps the source layout onto URLs, so two source paths could land on
+    # the same one and silently overwrite a page.
     seen: dict[str, str] = {}
     for md_path in paths:
         url = url_for(md_path)
@@ -1426,17 +1228,15 @@ def build(
         seen[url] = md_path
 
     result = BuildResult(out=out)
-    # One nav, two memos, shared by every page: the sidebar is the same object on
-    # all of them, so its leaf sets and its unchanged subtrees are computed once
-    # per build rather than once per page. See `render_nav`.
+    # One nav, two memos, shared by every page: the sidebar is the same object on all
+    # of them. See `render_nav`.
     nav_cache: dict[int, set[str]] = {}
     nav_render_cache: dict[tuple[int, str], str] = {}
-    # The reading order the sidebar already declares, so the pager cannot disagree
-    # with the contents list. Built once: it reads each page's front matter for a
-    # title, and a page must not read its neighbours on every render.
+    # The reading order the sidebar declares, built once: it reads each page's front
+    # matter for a title, and a page must not read its neighbours on every render.
     pager_map = pager_for(paths, book)
-    # Every page this build wrote, and how many bytes each is: the download list and
-    # the size a reader is shown both come from here.
+    # Every page this build wrote and its byte length: the download list and the size a
+    # reader is shown both come from here.
     page_bytes: dict[str, int] = {}
     for md_path in paths:
         source = book.docs / md_path
@@ -1473,13 +1273,9 @@ def build(
         book, out, assets=assets, figures=figure_modules, pages=page_bytes
     )
     result.indexed = run_pagefind(out) if index else False
-    # The same 404 the landing page uses, rather than a second one. It loads the
-    # bundle stylesheet from the site root and applies the reader's own scheme and
-    # theme before paint, so a missing page is painted from the reader's bundle
-    # instead of a hardcoded one — which is what this had, and every reader of
-    # every bundle got the editorial palette on a 404. Root-absolute paths are
-    # what make that safe at any depth, which is why the page carries no linked
-    # stylesheet of its own.
+    # The same 404 the landing page uses, rather than a second one: it loads the
+    # bundle stylesheet from the site root and applies the reader's own scheme before
+    # paint. Root-absolute paths are what make that safe at any depth.
     (out / "404.html").write_text(portal.not_found(), encoding="utf-8")
     if xml := sitemap(book, profile, result.pages):
         (out / "sitemap.xml").write_text(xml, encoding="utf-8")
@@ -1525,21 +1321,16 @@ def report(result: BuildResult) -> None:
 def watch_paths(book_id: str):
     """Every file whose change should trigger a rebuild.
 
-    Wider than the page sources on purpose. A build also reads the curriculum
-    (the navigation and which pages exist), ``book.yaml`` (the tier axis, theme,
-    profiles and booklet), ``collection.yaml`` (base URL, backgrounds, licence),
-    the theme bundles (the before-paint tokens and the bundle list), the book's
-    own assets (its figure modules and ``book-local.css``, which `copy_assets`
-    ships), and the engine's own templates and CSS. Watching only the Markdown
-    made ``--serve`` silently stale after a figure or a curriculum edit: the
-    change produced no rebuild, so it looked like the edit had done nothing.
+    Wider than the page sources on purpose: a build also reads the curriculum,
+    ``book.yaml``, ``collection.yaml``, the theme bundles, the book's own assets and
+    the engine's templates and CSS. Watching only the Markdown left ``--serve``
+    silently stale after a figure or curriculum edit.
     """
     root = Path(books.repo_root())
     book = books.book_by_id(book_id)
     yield from book.docs.rglob("*.md")
-    # The files a build reads directly. Guarded by `is_file`, because a book
-    # without a booklet names a path that is not there, and `serve` stats every
-    # watched path.
+    # The files a build reads directly. Guarded by `is_file`, because a book without
+    # a booklet names a path that is not there and `serve` stats every watched path.
     for single in (
         book.curriculum,
         book.root / "book.yaml",
@@ -1563,11 +1354,9 @@ def watch_paths(book_id: str):
 def _drop_caches() -> None:
     """Forget the parsed configuration so a rebuild reads the changed files.
 
-    ``book`` and ``themes`` cache their parses for the length of a process (see
-    ``book.py``). A one-shot build pays nothing for that, but ``--serve`` would
-    otherwise rebuild from the values read at startup, so a watched
-    ``book.yaml``, ``curriculum.yaml`` or theme bundle would trigger a rebuild
-    that changed nothing.
+    ``book`` and ``themes`` cache their parses for the life of the process (see
+    ``book.py``); ``--serve`` would otherwise rebuild from the values read at
+    startup.
     """
     books.load_book.cache_clear()
     books.qualification_order.cache_clear()
@@ -1592,9 +1381,8 @@ def serve(book_id: str, profile: str, chapter: int | None, port: int) -> None:
             pass
 
     class Server(socketserver.ThreadingTCPServer):
-        # Without this, restarting the server within the TIME_WAIT window of the
-        # previous run fails with EADDRINUSE. Threading keeps a slow request from
-        # blocking the rebuild poll.
+        # Without this, restarting within the TIME_WAIT window fails with EADDRINUSE.
+        # Threading keeps a slow request from blocking the rebuild poll.
         allow_reuse_address = True
         daemon_threads = True
 
@@ -1658,12 +1446,9 @@ def main() -> int:
         return 2
     except ValueError as err:
         # The authoring errors: an unknown `:::figure` slug, a `:::problems` name
-        # that matches no bank, a `:::prove` id in no registry, a background that
-        # is not registered, a profile the book does not declare. Each raises a
-        # `ValueError` with a message written for a person, and every one used to
-        # reach the terminal as a traceback — the same shape of failure that
-        # `FrontMatterError` was given a log line for. The build failed either way;
-        # only the diagnostic was inconsistent.
+        # that matches no bank, a `:::prove` id in no registry, a background that is
+        # not registered, a profile the book does not declare. Each message is
+        # written for a person, so it becomes a log line, not a traceback.
         log.error("%s", err)
         return 2
 

@@ -10,13 +10,6 @@
 // The time slider stops at the moment the ball returns to the launch height, so
 // the whole flight is on the track and the ball is never drawn below the
 // ground. Plain HTML, SVG and two range inputs, so it is keyboard-operable with
-// no framework. Colours come from the fig-* and text-* classes, so the figure
-// adapts to every bundle and to both schemes. No colour literal appears here,
-// and the runtime text is plain HTML, never TeX.
-//
-// The scaffolding — the surface, its accessible name, the sliders, the live
-// readout, the redraw — comes from `kit.js`. What is left here is the drawing and
-// the sentence, which are the parts that differ from every other figure.
 import {
   label,
   panel,

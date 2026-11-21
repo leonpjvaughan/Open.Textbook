@@ -5,12 +5,6 @@
 // force the motion *needs* ($mv^2/r$), and the greatest force friction *can supply*
 // ($\mu mg$). The car slides exactly when the first exceeds the second, and that
 // comparison is the whole idea of the section.
-//
-// Nothing here carries a colour. The force arrow changes class when the car slides, and
-// the readout says so in words, so the state does not depend on colour alone.
-//
-// The scaffolding — the panel, its accessible name, the slider, the readout and the
-// redraw — comes from `kit.js`. What is left is the drawing and the sentences.
 import {
   fmt,
   label,

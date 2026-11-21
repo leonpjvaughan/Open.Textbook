@@ -11,9 +11,6 @@
 // redrawn from the current angle through the `groups` the kit returns, so the drawing
 // and the readout cannot disagree, and the figure at rest — before any part is
 // focused — is the same drawing it always was.
-//
-// Nothing here carries a colour. Every shape uses a `fig-*` class and every word a
-// `text-*` class, so the figure follows the reader's theme in both schemes.
 import { SIZE, diagram, label, react, slider } from "./kit.js";
 
 const P = { x: 280, y: 180 };

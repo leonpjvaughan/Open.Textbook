@@ -6,10 +6,6 @@
 // figure has to show three things at once: the edges chosen so far, the edge just
 // considered (added or rejected), and the running total. A rejected edge is drawn
 // dashed as well as in the warning class, so the distinction does not depend on
-// colour alone.
-//
-// The scaffolding — the panel, its accessible name, the chooser, the step slider,
-// the readout and the redraw — comes from `kit.js`.
 import { SIZE, label, panel, react, chooser, slider } from "./kit.js";
 
 const VERTICES = {

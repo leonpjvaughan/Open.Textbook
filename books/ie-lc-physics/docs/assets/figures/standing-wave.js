@@ -7,9 +7,6 @@
 // reader sets the string length and the harmonic number, and watches the nodes move,
 // the wavelength follow from L = n lambda / 2, and the frequency follow from f = v /
 // lambda. The wave speed is the 255 m/s the page's own progress check uses.
-//
-// Nothing here carries a colour. Every shape uses a fig-* class and every word a
-// text-* class, so the figure follows the reader's theme in both schemes.
 import {
   axes,
   curve,

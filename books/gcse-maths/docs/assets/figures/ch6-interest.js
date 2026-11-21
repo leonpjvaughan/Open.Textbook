@@ -1,9 +1,5 @@
 // Guided figure: compare simple and compound interest over a fixed number of years.
 // The reader predicts before moving the time control, then explains the difference.
-//
-// The scaffolding — the surface, its accessible name, the slider, the live
-// readout, the redraw — comes from `kit.js`. What is left here is the drawing and
-// the sentence, which are the parts that differ from every other figure.
 import { SIZE, label, panel, react, slider } from "./kit.js";
 
 export function mount(el) {

@@ -4,12 +4,6 @@
 // or across it, then to test at several places, then to explain why the needle
 // lines up. The field lines are drawn by integrating the field of two point
 // poles, and the same field decides the needle direction, so the drawing and the
-// needle cannot disagree. Colours come from CSS classes, so the figure adapts to
-// every bundle and both colour schemes.
-//
-// The scaffolding — the surface, its accessible name, the sliders, the live
-// readout and the redraw — comes from `kit.js`. What is left here is the drawing
-// and the sentence, which are the parts that differ from every other figure.
 import { SIZE, label, panel, react, slider } from "./kit.js";
 
 export function mount(el) {

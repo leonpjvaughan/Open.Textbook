@@ -9,9 +9,6 @@
 //
 // The line zooms to the deciding interval rather than showing the whole number, so
 // the gap between the candidates is visible at every accuracy.
-//
-// Nothing here carries a colour. Every shape uses a `fig-*` class and every word a
-// `text-*` class, so the figure follows the reader's theme in both schemes.
 import { circle, fmt, label, line, numberLine, panel, react, chooser, slider } from "./kit.js";
 
 export function mount(el) {

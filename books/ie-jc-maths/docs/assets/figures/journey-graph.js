@@ -5,9 +5,6 @@
 // height of the graph as the largest input. The figure builds a journey from two
 // speeds and a stop, so the reader chooses the story and watches the graph take the
 // shape the story says it should.
-//
-// Nothing here carries a colour. Every shape uses a `fig-*` class and every word a
-// `text-*` class, so the figure follows the reader's theme in both schemes.
 import {
   axes,
   curve,

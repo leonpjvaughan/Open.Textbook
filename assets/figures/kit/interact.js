@@ -1,68 +1,23 @@
 // @ts-nocheck
-/* Interaction: redrawing, randomness, stepping, sampling, animation, checking.
- *
- * The layer that makes a figure *do* something over time or in response to the
- * reader, as opposed to drawing a state. Everything here is built on the native
- * controls in `controls.js`, which is deliberate: **a composite control is a
- * rearrangement of accessible primitives, not a new interaction**. A stepper is a
- * slider and two buttons; an animation is a slider over time and a play button. A
- * reader who needs the keyboard, or a screen reader, or reduced motion, is served by
- * the primitives rather than by a parallel implementation.
- */
 import { button, field, slider } from "./controls.js";
-/**
- * Run `draw` whenever any control changes, and once now.
- *
- * Every figure does this by hand, and doing it by hand is how a figure ends up
- * drawing only after the first `input` event — the image point that appeared only
- * once the slider moved.
- */
+
 export function react(controls, draw, options = {}) {
   const { initial = true } = options;
   const list = [controls].flat().filter(Boolean);
   for (const control of list) control.addEventListener("input", draw);
   for (const control of list) control.addEventListener("change", draw);
-  // `initial: false` for a control whose change is a *side effect* rather than a
-  // redraw — a slider that takes a new random sample must not take one on load,
-  // and the faithful wiring is `react(slider, render, { initial: false })` plus
-  // its own listener for the sample.
   if (initial) draw();
   return list;
 }
-/** Tell `react()` a composite control has changed, through the one path it listens to. */
+
 export function notify(control) {
   control.dispatchEvent(new Event("input", { bubbles: true }));
   control.dispatchEvent(new Event("change", { bubbles: true }));
 }
-/**
- * A deterministic random number generator.
- *
- * **Why seeded rather than `Math.random`.** Three reasons, and the first is the one
- * that matters:
- *
- *   * a figure that samples must be **reproducible**, or two readers comparing what
- *     they saw are comparing different data. The collection's Tier-2 rule already
- *     requires determinism for a committed sweep; randomness in a figure is the same
- *     requirement;
- *   * `node tools/dist/cli.js kit site` and `tests/test_figure_browser.py` cannot
- *     assert anything about a figure whose data changes on every load;
- *   * a reader who wants another sample should get one on purpose, not by accident.
- *
- * One module in 209 uses `Math.random`, so this is not a retrofit — it is the
- * primitive that makes sampling figures and generated practice possible at all.
- *
- * ```js
- * const rng = seed(7);
- * rng.int(1, 6);          // a die, reproducible from 7
- * rng.pick(["a", "b"]);   // one of them
- * rng.shuffle([1, 2, 3]); // a new order
- * ```
- */
+
 export function seed(number = 1) {
   let state = Number(number) >>> 0 || 1;
   const next = () => {
-    // mulberry32: 32 bits of state, uniform enough for a textbook, and identical on
-    // every engine because it uses only integer ops.
     state = (state + 0x6d2b79f5) | 0;
     let t = Math.imul(state ^ (state >>> 15), 1 | state);
     t = (t + Math.imul(t ^ (t >>> 7), 61 | t)) ^ t;
@@ -70,11 +25,11 @@ export function seed(number = 1) {
   };
   return {
     next,
-    /** An integer in `[low, high]`, both ends included. */
+
     int: (low, high) => low + Math.floor(next() * (high - low + 1)),
-    /** One element, uniformly. */
+
     pick: (items) => items[Math.floor(next() * items.length)],
-    /** A new array in a new order; the input is not modified. */
+
     shuffle: (items) => {
       const out = items.slice();
       for (let i = out.length - 1; i > 0; i -= 1) {
@@ -83,7 +38,7 @@ export function seed(number = 1) {
       }
       return out;
     },
-    /** A normal deviate, by the sum of twelve uniforms. */
+
     normal: (mean = 0, deviation = 1) => {
       let total = 0;
       for (let i = 0; i < 12; i += 1) total += next();
@@ -182,8 +137,6 @@ export function table(
     body.replaceChildren();
     nextRows.forEach((cells, index) => {
       const tr = document.createElement("tr");
-      // The highlight follows the slider, and it is not the only signal: the row's
-      // own cells are marked up so the value is readable rather than merely shaded.
       if (index === nextHighlight) tr.className = "fig-row-active";
       cells.forEach((cell) => {
         const td = document.createElement("td");
@@ -202,7 +155,7 @@ export function table(
  * A process shown in time, with a scrubber and a stopping point.
  *
  * Nothing in the collection animates, and the one measurement the project has
- * (`research/design/background-effects.md`) found that the *looks-free* CSS
+ * found that the *looks-free* CSS
  * animation was the worst citizen on the page — 180 ms/s of main-thread time on an
  * idle one — while an explicit render loop idled below it. So motion here is an
  * explicit loop, and it **stops**.
@@ -260,8 +213,6 @@ export function animate(
     play.setAttribute("aria-pressed", "false");
   }
   function start() {
-    // Reduced motion is honoured by not starting, but the button still works:
-    // asking for motion explicitly is not the same as being given it.
     playing = true;
     play.textContent = "Pause";
     play.setAttribute("aria-pressed", "true");
@@ -280,8 +231,6 @@ export function animate(
     };
     frame = requestAnimationFrame(tick);
   }
-  // A hidden tab should not be computing frames nobody can see — the same finding
-  // that made the page backgrounds opt-in.
   const onVisibility = () => {
     if (document.hidden) stop();
   };
@@ -324,8 +273,6 @@ export function check(given, { answer, tolerance = 0, unit = "" } = {}) {
   const expected = String(answer ?? "");
   let text = String(given ?? "").trim();
   if (!text) return { state: "empty", expected };
-  // `6.0 N`, `6.0N` and `6.0 newtons` are all the answer `6.0` with its unit written
-  // down, and a reader who writes the unit is being careful, not wrong.
   if (unit)
     text = text.replace(
       new RegExp(`\\s*${unit.replace(/[.*+?^${}()|[\]\\]/g, "\\$&")}\\s*$`, "i"),
@@ -334,9 +281,6 @@ export function check(given, { answer, tolerance = 0, unit = "" } = {}) {
   const number = (s) => {
     let cleaned = s.replace(/[,\s]/g, "").replace(/−/g, "-").replace(/\$/g, "");
     if (!cleaned) return null;
-    // A fraction is a legitimate way to write a fraction, and `2/3` is how a reader
-    // answers a probability question. Only a simple `a/b` of two numbers is evaluated:
-    // this is not an expression parser, and a check is not the place to become one.
     const fraction = /^(-?\d+(?:\.\d+)?)\/(-?\d+(?:\.\d+)?)$/.exec(cleaned);
     if (fraction) {
       const denominator = Number(fraction[2]);
@@ -355,8 +299,6 @@ export function check(given, { answer, tolerance = 0, unit = "" } = {}) {
       expected,
     };
   }
-  // A non-numeric answer is only "invalid" when the answer is a number. Where both
-  // sides are words — "acute", "undirected" — they are compared as words.
   if (expectedNumber !== null && givenNumber === null) return { state: "invalid", expected };
   const normalise = (s) =>
     s
@@ -375,14 +317,7 @@ export function check(given, { answer, tolerance = 0, unit = "" } = {}) {
   }
   return { state: "wrong", expected };
 }
-/**
- * A field, a Check button, and the verdict in the figure's live readout.
- *
- * The composition that makes `check()` usable without every module re-deciding how a
- * verdict is announced. The readout is the panel's, so it is already a polite live
- * region and the verdict is spoken; the verdict is also written in words, never by
- * colour alone.
- */
+
 export function answerBox(
   parent,
   {
@@ -422,15 +357,7 @@ export function answerBox(
   button(parent, { label: "Check", name: "Check my answer", onClick: verify });
   return { input, verify };
 }
-/**
- * Remember something small in the reader's own browser.
- *
- * The relevance prompt is meant to "recur, revisit, and be stored client-side"
- * (`research/pedagogy.md` P3) and is currently prose that goes nowhere. This is the
- * storage, and it is deliberately the whole of it: one key, JSON, and a silent
- * failure. A reader in private mode, or with storage disabled, gets a figure that
- * works and forgets rather than a figure that breaks.
- */
+
 export function remember(key, fallback = null) {
   const read = () => {
     try {
@@ -453,9 +380,7 @@ export function remember(key, fallback = null) {
     clear() {
       try {
         window.localStorage.removeItem(key);
-      } catch {
-        /* storage is not available, and that is not an error worth surfacing */
-      }
+      } catch {}
     },
   };
 }
@@ -517,8 +442,7 @@ export function exercise({ kinds = [], seed: start = 1, only } = {}) {
     get at() {
       return state.at;
     },
-    /** Step to the next question. Passing a seed jumps to that one, which is how a
-     *  reader shares "question 7" with someone else. */
+
     next(nextSeed) {
       state.at = nextSeed === undefined ? state.at + 1 : nextSeed;
       return take(state.at);
@@ -558,9 +482,6 @@ export function practice(
   if (caption) caption.replaceChildren();
   const target = caption || holder;
   if (!caption) (parent.querySelector(".fig-controls") || parent).append(holder);
-  // The field and the Check are built here rather than through `answerBox()`, because
-  // `answerBox` brings its own Check button — and composing the two produced a widget
-  // with two of them, which the browser check caught.
   const input = field(parent, {
     id: "answer",
     label,

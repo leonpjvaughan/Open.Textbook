@@ -4,9 +4,6 @@
 // points share an x-coordinate, then to test it and write the explanation. The
 // figure draws the two points, the segment, the right triangle that underlies the
 // distance formula, and the midpoint.
-//
-// Nothing here carries a colour: every shape uses a fig-* class and every word a
-// text-* class, so the figure follows the reader's theme in both schemes.
 import { SIZE, fmt, label, panel, react, scale, slider } from "./kit.js";
 
 // The drawing area, in SVG units, and the value range on both axes.

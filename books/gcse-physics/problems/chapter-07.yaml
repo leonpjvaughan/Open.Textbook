@@ -12,7 +12,7 @@
 # `sigfigs`. A descriptive answer uses `structured` elsewhere; the descriptive
 # worked examples on the pages carry no number, so they need no record here.
 #
-# Honest limit (research/curriculum/physics-verifier-gaps.md §6): this proves the
+# Honest limit: this proves the
 # arithmetic and the dimensions, not the physics.
 chapter: 7
 problems:

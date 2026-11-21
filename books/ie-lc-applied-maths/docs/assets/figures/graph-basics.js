@@ -10,10 +10,6 @@
 // that meet it. The buttons are the focus stops, which is `diagram()`'s contract; the
 // old chooser did the same job with a drop-down, and the keyboard path through a list
 // of parts is one key per part rather than a menu.
-//
-// Nothing here carries a colour. Every shape uses a `fig-*` class and every word a
-// `text-*` class, so the figure follows the reader's theme in both schemes. The whole
-// drawing is static — no control changes it — which is what lets it be a `diagram()`.
 import { SIZE, circle, diagram, label, line } from "./kit.js";
 
 // A weighted network on six vertices. The weights are road distances in kilometres.

@@ -9,9 +9,6 @@
 //
 // The primes are round and the composites are square, so the finished factorisation
 // is legible without reading a single number.
-//
-// Nothing here carries a colour. Every shape uses a `fig-*` class and every word a
-// `text-*` class, so the figure follows the reader's theme in both schemes.
 import { fmt, label, line, panel, react, rect, circle, slider } from "./kit.js";
 
 const SUPERSCRIPT = { 0: "\u2070", 1: "\u00b9", 2: "\u00b2", 3: "\u00b3", 4: "\u2074", 5: "\u2075", 6: "\u2076", 7: "\u2077", 8: "\u2078", 9: "\u2079" };

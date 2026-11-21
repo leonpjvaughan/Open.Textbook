@@ -7,12 +7,6 @@
 // marker the reader moves, and a chooser that swaps the constant and the units
 // together. The comparison is of the shape, because two forces in different units
 // cannot be compared as numbers.
-//
-// Nothing here carries a colour. Every shape uses a fig-* class and every word a
-// text-* class, so the figure follows the reader's theme in both schemes.
-//
-// The scaffolding — the panel, its accessible name, the controls, the readout and the
-// redraw — comes from `kit.js`. What is left is the drawing and the sentences.
 import { SIZE, arrow, axes, circle, curve, fmt, label, line, panel, react, segmented, sigfig, slider } from "./kit.js";
 
 // The two laws, with the units each one's sliders stand for. The distance and the

@@ -7,9 +7,6 @@
 // object, its image and the dashed line joining each corner to its own image, and
 // lets the reader choose the mirror line and slide the shape across. The rule for the
 // chosen line is named in the readout beside the coordinates it produces.
-//
-// Nothing here carries a colour. Every shape uses a `fig-*` class and every word a
-// `text-*` class, so the figure follows the reader's theme in both schemes.
 import { SIZE, axes, chooser, coord, fmt, label, line, panel, path, react, slider } from "./kit.js";
 
 // The object triangle, before the reader slides it. The corner A is the one the

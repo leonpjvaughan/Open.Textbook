@@ -10,13 +10,6 @@
 // Predict -> Test -> Explain: the page asks what fills the corner before the
 // slider is touched. The readout is `aria-live`, because a reader who cannot see
 // the drawing must still be told the strip width and the corner area.
-//
-// No colour is written here: the shapes use fig-* classes and the words use
-// text-* classes, so the figure adapts to every bundle and both schemes.
-//
-// The scaffolding — the surface, its accessible name, the slider, the live
-// readout and the redraw — comes from `kit.js`. What is left here is the drawing
-// and the sentences, which are the parts that differ from every other figure.
 import { SIZE, label, panel, react, slider } from "./kit.js";
 
 export function mount(el) {

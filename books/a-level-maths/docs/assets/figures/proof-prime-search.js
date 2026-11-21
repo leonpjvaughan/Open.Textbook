@@ -1,9 +1,6 @@
 // Guided investigation for proof by exhaustion: check n squared + n + 41 for
 // n = 0 to 45 and watch the first composite value appear. Pure HTML and ES
 // module, no framework, no colour of its own: the fig-* classes carry the theme.
-//
-// The scaffolding — the surface, its accessible name, the slider, the live
-// readout and the redraw — comes from `kit.js`.
 import { SIZE, label, panel, react, slider } from "./kit.js";
 
 const N_MAX = 45;

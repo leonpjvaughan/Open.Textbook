@@ -18,7 +18,6 @@
 # (core concepts and skills) and Section B (context-based applications). At
 # Foundation level, one written paper set in meaningful contexts.
 #
-# See research/curriculum/ie-curriculum.md §3 and §7.2.
 
 meta:
   booklet_note: |-
@@ -56,7 +55,7 @@ meta:
     of Section A (concepts and skills, 6 questions at 30 marks) and 150 of Section B
     (contexts and applications, 4 questions at 50 marks). At Foundation, ONE paper of
     300 marks. The 2021 and 2022 papers are 220 marks — reduced COVID-era papers, not
-    the current format. See research/curriculum/ie-curriculum.md section 8a.
+    the current format.
 
 coverage:
   - prefix: "1."

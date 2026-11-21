@@ -5,12 +5,6 @@
 // function and the value k, and every crossing of the horizontal line with the
 // curve is marked and read out, so the size of the solution set is seen rather
 // than remembered. Predict, Test and Explain belong to the page; this is the Test.
-//
-// Pure HTML and SVG, an ES module, no colour of its own: the fig-* classes carry
-// the theme. Runtime text is plain text, never TeX.
-//
-// The scaffolding — the surface, its accessible name, the chooser, the slider,
-// the live readout and the redraw — comes from `kit.js`.
 import { SIZE, chooser, label, panel, react, slider } from "./kit.js";
 
 const PI = Math.PI;

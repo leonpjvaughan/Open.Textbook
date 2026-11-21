@@ -1,17 +1,6 @@
 // Guided investigation for projectile motion.
 //
 // A projectile launched at a chosen speed and angle, drawn over level ground.
-// The readout gives the two components of the launch velocity, the time of
-// flight, the greatest height and the range, so the reader sees how each one
-// depends on the launch velocity.
-//
-// Plain HTML, SVG and two range inputs, so it is keyboard-operable with no
-// framework, and no colour of its own: the fig-* classes carry the theme. The
-// runtime text is plain text, never TeX.
-//
-// The scaffolding — the surface, its accessible name, the sliders, the live
-// readout, the redraw — comes from `kit.js`. What is left here is the drawing and
-// the sentence, which are the parts that differ from every other figure.
 import { panel, slider, react } from "./kit.js";
 
 const G = 9.8;

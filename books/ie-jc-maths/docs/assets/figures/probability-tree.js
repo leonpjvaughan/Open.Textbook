@@ -7,9 +7,6 @@
 // back and the second set of branches carries the same fractions as the first; keep
 // it out and both the numerator and the denominator of the second branch change. The
 // figure switches between the two so the reader sees which fractions move.
-//
-// Nothing here carries a colour. Every shape uses a `fig-*` class and every word a
-// `text-*` class, so the figure follows the reader's theme in both schemes.
 import { circle, label, line, panel, react, slider, toggle } from "./kit.js";
 
 const gcd = (a, b) => {

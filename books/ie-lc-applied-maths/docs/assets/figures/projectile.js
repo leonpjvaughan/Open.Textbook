@@ -4,15 +4,6 @@
 // time. That method is invisible in an equation — the two directions run at once, and
 // only the time links them — so the reader sets the speed and the angle, and the
 // drawing shows the curve up to the wall and the height at which the ball arrives. The
-// readout carries the two components, the time taken and that height, so every number
-// in the method is on screen together.
-//
-// The curve stops at the wall on purpose. Section 3.8 asks where the ball lands, and a
-// drawing that showed the landing would answer a question the next page sets. The wall
-// is the obstacle from the chapter problem: 15 m away and 3 m high.
-//
-// Nothing here carries a colour. Every shape uses a `fig-*` class and every word a
-// `text-*` class, so the figure follows the reader's bundle in both schemes.
 import {
   axes,
   curve,

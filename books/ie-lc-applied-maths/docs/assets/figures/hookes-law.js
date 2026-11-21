@@ -3,12 +3,6 @@
 // The page asks the reader to predict the extension for a given force, then to find
 // where the straight line ends. So the figure draws the force-extension graph with the
 // limit of proportionality marked, and moves a marker along whichever part applies.
-//
-// Nothing here carries a colour. The straight part and the curved part use different
-// line styles as well as different classes, so the distinction survives a monochrome
-// bundle and does not rest on colour.
-//
-// The scaffolding comes from `kit.js`. What is left is the drawing and the sentences.
 import {
   fmt,
   label,

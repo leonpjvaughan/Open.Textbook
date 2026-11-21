@@ -1,4 +1,5 @@
 // @ts-nocheck
+//
 // Moved from a book's figure directory by item 147: a hand-authored figure,
 // measured by tests/test_figures.py. The TS ratchet covers the kit and the tools.
 // Guided investigation for 11.1: sampling variability.
@@ -7,12 +8,6 @@
 // the size draws a fresh sample of that size, so the drawing responds to the
 // slider as every other figure does, and the values in the latest sample are
 // drawn along the axis so the size of the sample can be seen as well as read.
-// Pure HTML and SVG, no framework and no colour of its own: the fig-* classes
-// carry the theme. Runtime text is plain text, never TeX.
-//
-// The scaffolding — the surface, its accessible name, the slider, the live
-// readout and the redraw — comes from `kit.js`. The kit has no button helper, so
-// the two action buttons stay here.
 import { SIZE, label, panel, react, seed, slider } from "./kit.js";
 
 const POPULATION_SIZE = 240;

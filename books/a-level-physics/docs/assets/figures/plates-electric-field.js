@@ -2,16 +2,6 @@
 //
 // Two sliders set the potential difference and the separation of the plates. The
 // drawing changes the number of field arrows as the field strength changes. The
-// readout gives the field strength, the force on a xenon ion, and the kinetic
-// energy the ion gains crossing the gap. That energy depends on the potential
-// difference alone, not on the separation, which is the point of the figure.
-//
-// Colours come from the fig-* classes. The readout is plain HTML, never runtime
-// maths.
-//
-// The scaffolding — the surface, its accessible name, the sliders, the live
-// readout and the redraw — comes from `kit.js`. What is left here is the drawing
-// and the sentences, which are the parts that differ from every other figure.
 import {
   label,
   panel,

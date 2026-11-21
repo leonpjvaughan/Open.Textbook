@@ -4,12 +4,6 @@
 // to test each source, then to explain why alpha is the most ionising and the
 // least penetrating. The controls are native buttons, so they work with a
 // keyboard, and the readout is announced politely.
-// Colours come from CSS classes so the figure adapts to dark mode.
-//
-// The scaffolding — the surface, its accessible name and the live readout — comes
-// from `kit.js`. The source buttons are not one of the kit's controls, so they
-// are built here inside the kit's control column. What is left is the drawing
-// and the sentences, which are the parts that differ from every other figure.
 import { SIZE, label, panel } from "./kit.js";
 
 export function mount(el) {

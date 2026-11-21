@@ -7,14 +7,6 @@
 // is a current meter, so the drawing changes when the current changes; the wires
 // are drawn thicker when they carry more current, as in the other circuit
 // figures in this book.
-//
-// Colours come from CSS classes, so the figure adapts to every bundle and both
-// schemes. No colour is the only signal: every value is printed as text and the
-// current is written in the readout.
-//
-// The scaffolding — the surface, its accessible name, the sliders, the live
-// readout and the redraw — comes from `kit.js`. What is left here is the drawing
-// and the sentences, which are the parts that differ from every other figure.
 import {
   label,
   panel,

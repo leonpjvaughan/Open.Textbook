@@ -1,18 +1,7 @@
-/* The shared formulae-and-tables widget. Every book that declares a booklet
- * loads it, and the labels, boards and tier behaviour come from the book's own
- * booklet.json (`meta`), so one widget serves a mathematics booklet and a
- * physics one. A data file that sets none of those keys gets the original
- * mathematics defaults.
- *
- * A non-modal reference panel: a floating action button opens a resizable,
- * draggable panel that can be popped into an always-on-top Document
- * Picture-in-Picture window where the browser supports it. Content is filtered
- * by exam board and, where the book is tiered, by tier, so selecting a board
- * hides anything that board does not allow. Data is inline MathML (rendered at
- * build time) plus tables.
- *
- * Loaded site-wide via extra_javascript; it renders nothing but the button
- * until first opened, then lazily fetches booklet.json.
+/* The shared formulae-and-tables widget: labels, boards and tiers come from the
+ * book's own booklet.json, so one widget serves a mathematics booklet and a
+ * physics one. A non-modal, resizable panel, poppable into Document
+ * Picture-in-Picture, filtered by board and by tier.
  */
 (() => {
   "use strict";
@@ -26,87 +15,54 @@
   const GROUP_ORDER = ["given", "question", "know"];
 
   /**
-   * The shapes `booklet.json` supplies, stated once.
-   *
-   * The data is written by `textbook.booklet` in Python and dereferenced here, so the
-   * fields are a contract between two languages rather than an inference from the first
-   * property a function happens to touch. An optional field is one a book may omit —
-   * `panel_title`, `tier`, `keywords` — and marking it optional is what lets `strict`
-   * separate "this book did not set it" from "this code is wrong about it".
-   *
+   * The shapes `booklet.json` supplies: a contract with `textbook.booklet` in Python.
+   * An optional field is one a book may omit.
    * @typedef {object} BookletBoard
    * @property {string} name  the board, as the reader knows it
-   * @property {string} code  its specification code
-   */
+   * @property {string} code  its specification code */
 
-  /** @typedef {object} BookletGroupMeta
-   * @property {string} [label]  the words on the badge
+  /** @typedef {object} BookletGroupMeta  @property {string} [label]  the badge's words
    * @property {string} [tone]  a badge tone: `accent`, `muted` or `warn`
    * @property {string} [chip]  the words on the filter chip */
 
   /** @typedef {object} BookletMeta
    * @property {string} [title]  the panel's accessible name
    * @property {string} [panel_title]  the heading, where it differs from `title`
-   * @property {string} [short]  the button's label
-   * @property {string} [tab_label]  the formulae tab's label
-   * @property {string} [item_label]  what one item is called, `formulae` or `equations`
-   * @property {string} [table_label]  what one table is called
-   * @property {string} [search_placeholder]  the search box's placeholder
-   * @property {string} [series]  a series or course line
+   * @property {string} [short]  the button's label  @property {string} [tab_label]
+   * @property {string} [table_label]  @property {string} [item_label]  `formulae` or `equations`
+   * @property {string} [search_placeholder]  @property {string} [series]
    * @property {number} [year]  the exam year, when the booklet has one
-   * @property {string} [default_board]
-   * @property {boolean} [tiered]  `false` for a book with no tiers
-   * @property {string} [note]
-   * @property {string} [basis]
+   * @property {string} [default_board]  @property {string} [note]
+   * @property {string} [basis]  @property {boolean} [tiered]  `false` for an untiered book
    * @property {Record<string, string>} provenance  the source named per board
    * @property {Record<string, BookletBoard>} boards
    * @property {Record<string, BookletGroupMeta>} groups */
 
   /** @typedef {object} BookletItem
-   * @property {string} id
-   * @property {string} name
+   * @property {string} id  @property {string} name  @property {string} [note]
    * @property {string} [latex]  the source, kept for the search index
-   * @property {string} [note]
-   * @property {string[]} [keywords]
-   * @property {string[]} [tier]  absent or empty for a book with no tiers
+   * @property {string[]} [keywords]  @property {string[]} [tier]  absent if untiered
    * @property {Record<string, string>} provision  the group each board puts it in
    * @property {string} mathml  the formula, rendered at build time */
 
-  /** @typedef {object} BookletSection
-   * @property {string} id
-   * @property {string} title
+  /** @typedef {object} BookletSection  @property {string} id  @property {string} title
    * @property {BookletItem[]} items */
 
   /** @typedef {object} BookletTable
-   * @property {string} id
-   * @property {string} title
-   * @property {string[]} [tier]
-   * @property {string[]} columns
-   * @property {string[][]} rows */
+   * @property {string} id  @property {string} title  @property {string[]} [tier]
+   * @property {string[]} columns  @property {string[][]} rows */
 
-  /** @typedef {object} BookletData
-   * @property {BookletMeta} meta
-   * @property {BookletSection[]} sections
-   * @property {BookletTable[]} tables */
+  /** @typedef {object} BookletData  @property {BookletMeta} meta
+   * @property {BookletSection[]} sections  @property {BookletTable[]} tables */
 
-  /** @typedef {object} PanelRect
-   * @property {number} left
-   * @property {number} top
-   * @property {number} width
-   * @property {number} height */
+  /** @typedef {object} PanelRect  @property {number} left  @property {number} top
+   * @property {number} width  @property {number} height */
 
-  /** The widget's own state, as one object.
-   *
-   * @typedef {object} BookletState
-   * @property {boolean} open
-   * @property {string} board
-   * @property {string} tier
-   * @property {string} tab
-   * @property {string[]} groups
-   * @property {string} query
-   * @property {PanelRect | null} rect  the panel's size and place, once a reader moves it
-   * @property {boolean} loaded
-   * @property {BookletData | null} data */
+  /** @typedef {object} BookletState
+   * @property {boolean} open  @property {string} board  @property {string} tier
+   * @property {string} tab  @property {string[]} groups  @property {string} query
+   * @property {boolean} loaded  @property {BookletData | null} data
+   * @property {PanelRect | null} rect  the panel's size and place, once moved */
 
   /** @type {BookletState} */
   const state = {
@@ -121,8 +77,7 @@
     data: null,
   };
 
-  /* Built by `build()`, which runs before anything reads them: `init()` calls `build()`
-   * first, and every other entry point is an event listener registered after it. */
+  /* Built by `build()` before anything reads them: `init()` calls it first. */
   /** @type {HTMLElement} */
   let panel;
   /** @type {HTMLButtonElement} */
@@ -131,7 +86,7 @@
   let pipWindow = null;
 
   // ---------- helpers ----------
-  /** The characters that make a string malformed inside markup, and what each becomes. */
+  /** Characters that would break markup, and what each becomes. */
   const ENTITIES = /** @type {Record<string, string>} */ ({
     "&": "&amp;",
     "<": "&lt;",
@@ -139,37 +94,21 @@
     '"': "&quot;",
   });
 
-  /**
-   * A string that can be interpolated into markup without breaking it.
-   *
-   * @param {unknown} value
-   * @returns {string}
-   */
+  /** A string safe to interpolate into markup.
+   * @param {unknown} value  @returns {string} */
   const esc = (value) => String(value).replace(/[&<>\"]/g, (c) => ENTITIES[c]);
 
-  /*
-   * The panel's markup is a template string in `build()`, so every selector asked for
-   * below names an element this file wrote. Naming what a selector found, in one place,
-   * is what keeps the alternative — a `@type` cast at each of thirty call sites — out of
-   * the reading of the widget. A selector that names nothing still returns `null` and
-   * still fails where it failed before; this says what the widget means, not that the
-   * element is present.
-   */
+  /* The panel's markup is a template string in `build()`, so every selector below
+   * names an element this file wrote; one that names nothing still returns `null`. */
 
-  /**
-   * @param {ParentNode} root
-   * @param {string} selector
-   * @returns {HTMLElement}
-   */
+  /** @param {ParentNode} root  @param {string} selector
+   * @returns {HTMLElement} */
   function el(root, selector) {
     return /** @type {HTMLElement} */ (root.querySelector(selector));
   }
 
-  /**
-   * @param {ParentNode} root
-   * @param {string} selector
-   * @returns {HTMLElement[]}
-   */
+  /** @param {ParentNode} root  @param {string} selector
+   * @returns {HTMLElement[]} */
   function els(root, selector) {
     return /** @type {HTMLElement[]} */ (Array.from(root.querySelectorAll(selector)));
   }
@@ -215,21 +154,16 @@
   }
 
   // ---------- filtering ----------
-  /**
-   * Whether an item survives the board, tier, group and search filters.
-   *
-   * @param {BookletItem} item
-   * @param {string} board
-   * @param {string} tier
+  /** Whether an item survives the board, tier, group and search filters.
+   * @param {BookletItem} item  @param {string} board  @param {string} tier
    * @param {string[]} groups  the groups the reader wants to see
    * @param {string} query  already trimmed and lower-cased
-   * @returns {boolean}
-   */
+   * @returns {boolean} */
   function itemAllowed(item, board, tier, groups, query) {
     const group = (item.provision || {})[board];
     if (!group || !groups.includes(group)) return false;
-    // An item with no tier belongs to every reader (an untiered book, e.g. an
-    // A-level one), so the tier filter must not hide it.
+    // An item with no tier belongs to every reader (an untiered book), so the
+    // tier filter must not hide it.
     const tiers = item.tier || [];
     if (tiers.length && !tiers.includes(tier)) return false;
     if (!query) return true;
@@ -241,14 +175,9 @@
   }
 
   // ---------- rendering ----------
-  /**
-   * One item, as markup.
-   *
-   * @param {BookletItem} item
-   * @param {string} group
-   * @param {BookletMeta} meta
-   * @returns {string}
-   */
+  /** One item, as markup.
+   * @param {BookletItem} item  @param {string} group  @param {BookletMeta} meta
+   * @returns {string} */
   function itemHtml(item, group, meta) {
     const badge = meta.groups[group] || { label: group, tone: "muted" };
     return `<article class="bk-item" data-group="${group}">
@@ -261,12 +190,8 @@
     </article>`;
   }
 
-  /**
-   * One table, as markup.
-   *
-   * @param {BookletTable} table
-   * @returns {string}
-   */
+  /** One table, as markup.
+   * @param {BookletTable} table  @returns {string} */
   function tableHtml(table) {
     const head = table.columns.map((c) => `<th scope="col">${esc(c)}</th>`).join("");
     const rows = table.rows
@@ -288,23 +213,17 @@
 
   /**
    * Show or hide the search box. It filters formulae; tables have no search.
-   *
-   * @param {boolean} visible
-   */
+   * @param {boolean} visible */
   function setSearchVisible(visible) {
     const box = /** @type {HTMLInputElement} */ (el(panel, ".bk-search"));
     if (!box) return;
     box.hidden = !visible;
-    // `hidden` alone can leave it focusable once a style sets `display`, so it is
-    // disabled too — out of the tab order for certain.
+    // `hidden` can leave it focusable once a style sets `display`, so disable it too.
     box.disabled = !visible;
   }
 
   function renderContent() {
-    // Nothing is rendered before the data has loaded, and `open()` renders only after
-    // `ensureData()` resolves; the guard is here because every handler on the panel
-    // calls back into this, and a panel that arrived without data would otherwise
-    // throw out of an event listener.
+    // Every panel handler calls back into this; a panel without data would throw.
     const data = state.data;
     if (!data) return;
     const content = el(panel, ".bk-content");
@@ -317,13 +236,9 @@
         (t) => t.tier === undefined || t.tier.includes(state.tier),
       );
       content.innerHTML = tables.map(tableHtml).join("");
-      // The filtered count, not every table in the booklet. A Foundation reader
-      // was told "3 tables" and shown 2, because the list was tier-filtered and
-      // the number was not.
+      // The filtered count, not every table: the list is tier-filtered too.
       el(panel, ".bk-count").textContent =
         `${tables.length} ${meta.table_label || "tables"}`;
-      // There is no search on this tab, so the box is hidden rather than left
-      // visible and inert — typing in it did nothing and said nothing.
       setSearchVisible(false);
       return;
     }
@@ -353,10 +268,7 @@
       `${count} ${meta.item_label || "formulae"}`;
   }
 
-  // Labels and controls come from the booklet data, not from this file, so the
-  // shared widget serves a mathematics booklet and a physics one without naming
-  // either. Every override is optional: a data file that sets none behaves as
-  // the widget always did.
+  // Every override is optional: a data file that sets none keeps the defaults.
   /** @param {BookletMeta} meta */
   function applyMeta(meta) {
     const title = meta.title || "Formulae and tables";
@@ -430,15 +342,9 @@
   }
 
   // ---------- panel behaviour ----------
-  /**
-   * The table a link asked for, from a `#booklet=<id>` fragment.
-   *
-   * A page that says "the standard normal table in the booklet" can then link to
-   * the table itself rather than to the widget's button: the fragment opens the
-   * panel, switches to the tables tab and brings that table into view.
-   *
-   * @returns {string|null} the table id, "" for the tables tab, or null for no request
-   */
+  /** The table a `#booklet=<id>` fragment asked for: the panel opens on the tables
+   * tab with that table in view.
+   * @returns {string|null} the table id, "" for the tables tab, or null for none */
   function tableFromHash() {
     const match = location.hash.match(/^#booklet(?:=(.+))?$/);
     return match ? decodeURIComponent(match[1] || "") : null;
@@ -517,8 +423,7 @@
 
   function applyRect() {
     if (!state.rect || !bigScreen()) return;
-    // A rect saved on a wider window can leave the panel off-screen while the
-    // button still reports `aria-expanded="true"`. Clamp it back into view.
+    // A rect saved on a wider window can leave the panel off-screen; clamp it.
     const width = Math.min(state.rect.width, window.innerWidth);
     const height = Math.min(state.rect.height, window.innerHeight);
     const left = Math.max(0, Math.min(state.rect.left, window.innerWidth - width));
@@ -563,17 +468,12 @@
     });
   }
 
-  /**
-   * @param {HTMLElement} handle
-   * @returns {(width: number, height: number) => void}
-   */
+  /** @param {HTMLElement} handle
+   * @returns {(width: number, height: number) => void} */
   function makeResizable(handle) {
     const MIN_W = 320;
     const MIN_H = 280;
-    /**
-     * @param {number} width
-     * @param {number} height
-     */
+    /** @param {number} width  @param {number} height */
     const apply = (width, height) => {
       panel.style.width = `${Math.max(MIN_W, Math.min(width, innerWidth - panel.offsetLeft - 8))}px`;
       panel.style.height = `${Math.max(MIN_H, Math.min(height, innerHeight - panel.offsetTop - 8))}px`;

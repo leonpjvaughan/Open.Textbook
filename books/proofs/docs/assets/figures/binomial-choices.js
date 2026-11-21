@@ -6,13 +6,6 @@
 // for a small number of brackets, marks the choices that take b from exactly k
 // brackets, and reports the count, so the reader can check the coefficient rather
 // than take it on trust.
-//
-// Colours come from CSS classes so the figure adapts to every bundle and both
-// schemes. The readout is `aria-live`, and every control is a native input.
-//
-// The scaffolding — the surface, its accessible name, the sliders, the live
-// readout and the redraw — comes from `kit.js`. What is left here is the drawing
-// and the sentences, which are the parts that differ from every other figure.
 import { SIZE, label, panel, react, slider } from "./kit.js";
 
 export function mount(el) {

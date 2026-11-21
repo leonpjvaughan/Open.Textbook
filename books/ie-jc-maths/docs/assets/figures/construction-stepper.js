@@ -7,9 +7,6 @@
 // then the arcs from A, then the arcs from B, then the bisector, and the reader moves
 // one step at a time with the compass width held fixed in the drawing and in the
 // sentence.
-//
-// Nothing here carries a colour. Every shape uses a `fig-*` class and every word a
-// `text-*` class, so the figure follows the reader's theme in both schemes.
 import {
   circle,
   coord,

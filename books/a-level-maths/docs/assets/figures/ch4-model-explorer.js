@@ -1,10 +1,5 @@
 // Guided investigation comparing an arithmetic model (add a fixed amount each
 // step) with a geometric model (multiply by a fixed factor each step).
-// Pure HTML and SVG, an ES module, no framework and no colour of its own: the
-// fig-* classes carry the theme. Runtime text is plain text, never TeX.
-//
-// The scaffolding — the surface, its accessible name, the sliders, the live
-// readout and the redraw — comes from `kit.js`.
 import { SIZE, label, panel, react, slider } from "./kit.js";
 
 const STEPS = 10;

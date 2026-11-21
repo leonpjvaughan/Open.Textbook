@@ -1,7 +1,6 @@
 """The A-level statistics vocabulary: distributions, hypothesis tests, fits.
 
-``research/curriculum/a-level-maths-verifier-gaps.md`` §3 items 3, 4 and 6 name
-the last three kinds the A-level bank needs: ``distribution``, ``hypothesis`` and
+The last three kinds the A-level bank needs: ``distribution``, ``hypothesis`` and
 ``correlation`` / ``regression``. They are built on ``sympy.stats`` with exact
 results and a declared tolerance where a decimal is required (``DECISIONS.md``:
 no scipy), and this file proves each one verifies a record and can fail one.

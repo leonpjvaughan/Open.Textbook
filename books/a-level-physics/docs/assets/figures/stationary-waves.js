@@ -5,14 +5,6 @@
 // the phase of the motion. The figure draws the shape of the string and marks
 // every node and antinode. The nodes stay still whatever the phase, which is the
 // point of the investigation. The readout gives the wavelength and the frequency.
-//
-// Colours come from CSS classes, so the figure adapts to every bundle and to
-// both schemes. No colour literal appears here, and no runtime LaTeX: the
-// readout is plain HTML.
-//
-// The scaffolding — the surface, its accessible name, the sliders, the live
-// readout and the redraw — comes from `kit.js`. What is left here is the drawing
-// and the sentences, which are the parts that differ from every other figure.
 import {
   label,
   panel,

@@ -11,13 +11,6 @@
 // one root before the sliders are touched. The readout is `aria-live`, because a
 // reader who cannot see the drawing must still be told the count and the value of
 // the discriminant.
-//
-// No colour is written here: the drawing uses fig-* classes and the labels use
-// text-* classes, so the figure adapts to every bundle and both schemes.
-//
-// The scaffolding — the surface, its accessible name, the sliders, the live
-// readout and the redraw — comes from `kit.js`. What is left here is the drawing
-// and the sentences, which are the parts that differ from every other figure.
 import { panel, slider, react } from "./kit.js";
 
 export function mount(el) {

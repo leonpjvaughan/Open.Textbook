@@ -6,14 +6,6 @@
 // steps neatly towards it, one of which spirals, and one of which runs away. The
 // reader reads the gradient of g at the fixed point off the picture and explains
 // why it decides which is which.
-//
-// Plain HTML, SVG and a select, so it is keyboard-operable with no framework, and
-// no colour of its own: the fig-* classes carry the theme. Runtime text is plain
-// text, never TeX.
-//
-// The scaffolding — the surface, its accessible name, the controls, the live
-// readout and the redraw — comes from `kit.js`. The verdict line is the figure's
-// own text, so it stays here.
 import { panel, slider, chooser, react } from "./kit.js";
 
 const X_MIN = 0;

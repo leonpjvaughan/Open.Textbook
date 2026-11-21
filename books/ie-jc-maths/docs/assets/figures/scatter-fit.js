@@ -6,9 +6,6 @@
 // controls, and counts the points on each side. The reader moves the line until the
 // two counts are close, which is the procedure the page teaches, performed rather than
 // described.
-//
-// Nothing here carries a colour. Every shape uses a `fig-*` class and every word a
-// `text-*` class, so the figure follows the reader's theme in both schemes.
 import {
   axes,
   dots,

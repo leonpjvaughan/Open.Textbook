@@ -3,12 +3,6 @@
 // Guided, not a sandbox: the page asks the reader to predict what happens to the
 // work done when the force doubles and again when the distance doubles, then to
 // explain why. The rectangle on the force-distance graph is the product F s, so
-// its area is the work done. Colours come from CSS classes, so the figure adapts
-// to every bundle and both schemes.
-//
-// The scaffolding — the surface, its accessible name, the sliders, the live
-// readout and the redraw — comes from `kit.js`. What is left here is the drawing
-// and the sentences, which are the parts that differ from every other figure.
 import { SIZE, label, panel, react, slider } from "./kit.js";
 
 export function mount(el) {

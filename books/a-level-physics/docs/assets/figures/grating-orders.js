@@ -5,14 +5,6 @@
 // per millimetre. The figure draws the grating, the straight-through direction
 // and the rays to each order, with the order number on an arc. The readout gives
 // the slit spacing, the highest order and the angle of each order.
-//
-// Colours come from CSS classes, so the figure adapts to every bundle and to
-// both schemes. No colour literal appears here, and no runtime LaTeX: the
-// readout is plain HTML.
-//
-// The scaffolding — the surface, its accessible name, the sliders, the live
-// readout and the redraw — comes from `kit.js`. What is left here is the drawing
-// and the sentences, which are the parts that differ from every other figure.
 import { SIZE, label, panel, react, slider } from "./kit.js";
 
 export function mount(el) {

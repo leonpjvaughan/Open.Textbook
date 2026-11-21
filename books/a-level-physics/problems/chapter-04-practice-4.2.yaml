@@ -7,7 +7,7 @@
 # compared against a declared interval, because reading a graph is a measurement
 # and never an equality. A reason is a `structured` record.
 #
-# Honest limit (research/curriculum/physics-verifier-gaps.md §6): this proves the
+# Honest limit: this proves the
 # arithmetic and the dimensions, not the physics. The gradient proves the
 # least-squares line for the given points, not the line a reader would draw.
 chapter: 4

@@ -2,12 +2,6 @@
 // frequency.
 // One fixed set of 60 values, redrawn with a different class width. The bar
 // heights change, but the total area does not.
-// Pure HTML and SVG, no framework and no colour of its own: the fig-* classes
-// carry the theme. Runtime text is plain text, never TeX.
-//
-// The scaffolding — the surface, its accessible name, the slider, the live
-// readout and the redraw — comes from `kit.js`. What is left here is the drawing
-// and the sentence.
 import { SIZE, label, panel, react, slider } from "./kit.js";
 
 const WIDTHS = [5, 10, 15, 20];

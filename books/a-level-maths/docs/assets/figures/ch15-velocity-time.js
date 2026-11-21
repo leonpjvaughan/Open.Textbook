@@ -4,14 +4,6 @@
 // initial velocity u, the acceleration a and the time T. The line is drawn, the
 // area between the line and the time axis is shaded, and the readout gives the
 // acceleration as the gradient and the displacement as the signed area.
-//
-// Plain HTML, SVG and three range inputs, so it is keyboard-operable with no
-// framework, and no colour of its own: the fig-* classes carry the theme. The
-// runtime text is plain text, never TeX.
-//
-// The scaffolding — the surface, its accessible name, the sliders, the live
-// readout, the redraw — comes from `kit.js`. What is left here is the drawing and
-// the sentence, which are the parts that differ from every other figure.
 import {
   label,
   panel,

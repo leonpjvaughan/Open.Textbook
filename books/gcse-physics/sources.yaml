@@ -7,14 +7,12 @@
 #
 #   scripts/fetch_sources.sh gcse-physics
 #
-# Split out of research/curriculum/physics.sources.yaml, which is the research
-# manifest and is not consumed by the fetch script. The awarding bodies' own
+# The awarding bodies' own
 # specification and sheet PDFs are all-rights-reserved: we read and cite them,
 # and reproduce only the equations and data they require every candidate to have
 # in the exam (see BOOKLETS.md). Nothing here is copied into prose.
 #
 # Retrieved 2026-10-11 with a browser User-Agent; the boards filter otherwise.
-# The exact fetch commands are recorded in research/curriculum/physics.md.
 
 retrieved: 2026-10-12
 

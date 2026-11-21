@@ -7,13 +7,6 @@
 // three directions visible at once: the field is drawn into the page as crosses,
 // the current runs along the wire in the page, and the force is the vertical
 // arrow between them.
-//
-// Nothing here carries a colour. The field uses the grid class, the wire and the
-// force the accent class, so the figure follows the reader's bundle and both
-// schemes.
-//
-// The scaffolding — the panel, its accessible name, the controls, the readout and
-// the redraw — comes from `kit.js`. What is left is the drawing and the words.
 import {
   fmt,
   label,

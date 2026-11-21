@@ -10,9 +10,6 @@
 // The four side faces each turn about a base edge, and the top face turns about the far
 // edge of one of them — so it turns twice as far, which is why it ends up lying flat on
 // top. That is the geometry, not an animation trick.
-//
-// Nothing here carries a colour. Every shape uses a `fig-*` class and every word a
-// `text-*` class, so the figure follows the reader's theme in both schemes.
 import {
   animate,
   camera3d,

@@ -1,146 +1,84 @@
 # AGENTS.md — CI
 
-`.github/` holds the workflows that verify, release and deploy, plus the
-dependabot configuration. `verify.yml` is the gate; `rollback.yml` is manual and
-restores an earlier Worker version.
-
-Read the root `AGENTS.md` first. The root's **Build and verify**, **Branches and
-releases** and **Toolchain** still apply. This file adds what is particular to
-CI.
+`.github/` holds the workflows that verify, release and deploy, plus dependabot.
+`verify.yml` is the gate; `rollback.yml` is manual and restores an earlier Worker
+version. Read the root `AGENTS.md` first: its **Build and verify**, **Branches and
+releases** and **Toolchain** apply.
 
 ## The three-minute rule
 
-**A check that takes three minutes does not belong in the default path.** Two do more
-than that when run naively, and both were fixed rather than excused:
+**A check that takes three minutes does not belong in the default path.** Fix it, not
+excuse it: build profiles in parallel, run checks concurrently so the clock is the
+longest check rather than the sum, and wait for a figure to mount, not a fixed delay.
+Never parallelise an audit *internally*: at two workers eleven slugs fail with
+"Execution context was destroyed" and pass alone, so `--jobs` stays 1.
 
-| Check | Was | Now | What made it slow |
-|---|---|---|---|
-| `scripts/preview-themes.sh` (whole) | ~15 min | **194 s** | the build ran one profile at a time, then six independent browser checks ran one after another |
-| `audit --mobile` | >7 min | **95 s** | it walked *every route a figure appears on* — the same figure on `ordinary` and `higher` measured twice — at a fixed 300 ms a page |
-| `audit` (contrast) | 284 s | **91 s** | a fixed 500 ms wait per page; it now waits for the figure to mount |
-| `readout` | 220 s | **116 s** | same fixed wait, plus an exhaustive settings sweep, now a sample |
+`preview` is **gated**: it runs on `main` and `workflow_dispatch`, and on a branch only
+when the PR carries the `browser` label or `CI_BROWSER=always` is set. The gate
+announces a skip by name, so "not run" is never read as "passed". `scripts/check.sh`
+does not run it: run `scripts/preview-themes.sh` before merging anything that touches a
+figure, a theme or a stylesheet.
 
-The script now builds four profiles at a time and runs its six checks **concurrently**,
-so the wall clock is the longest check rather than the sum. The one thing not to do is
-parallelise the audits *internally* beyond one worker: at two workers eleven slugs fail
-with "Execution context was destroyed" and pass alone, and `--jobs` is left at 1 for
-that reason.
-
-`preview` is therefore **gated**: it runs on `main` (which releases and deploys) and on
-`workflow_dispatch`, and on a branch only when the PR carries the `browser` label or
-`CI_BROWSER=always` is set. The gate announces a skip by name, so "not run" is never
-read as "passed". Locally, `scripts/check.sh` does not run it; run
-`scripts/preview-themes.sh` before merging anything that touches a figure, a theme or a
-stylesheet.
-
-## The gate's clock, measured
-
-The gate is four CPU-heavy jobs on four runners plus the jobs that feed them, and the
-wall clock is set by whichever job finishes last. Every row below is a real run, and
-the number is `startedAt` to `completedAt` of the run, not the sum of its jobs.
-
-| Run | Change | Jobs | Wall clock |
-|---|---|---|---|
-| — | one matrix row per profile (13 rows) | 24 | **26 min** |
-| `39120728135` | one job builds every profile, four at a time | 9 | **16 min** |
-| `39124299954` | two workers per job (`BUILD_JOBS=2`, `pytest -n 2`) | 8 | **17.5 min** |
-| `39262374064` | a push to `dev` — the browser job is skipped by design | 6 | **6 min 57 s** |
-| `39264117365` | a full `workflow_dispatch`: **every** job, browser included | 7 | **8 min 23 s** |
-
-Measured 2026-10-19. The full run's jobs: `plan` 27 s, `lint workflows` 11 s,
-`theme preview` **6 min 22 s**, `generated files` 1 min 46 s, `build every profile`
-3 min 56 s, `banks, tests and voice` **7 min 37 s**, `all checks` 5 s. The critical path
-is `banks, tests and voice`, and it overlaps the browser job entirely — which is why
-the wall clock is 8 minutes rather than their sum.
-
-Two consequences, and both are the point:
-
-- **The ten-minute bar is met with the browser job included.** The lever was not
-  another merge; it was that `theme preview` and `banks, tests and voice` now run at
-  the same time on separate runners, and neither is crippled by sharing cores.
-- **A push to `dev` is not the number to quote.** The preview job is skipped there by
-  design, so the run above reads 6 min 57 s and would flatter any claim about the
-  gate. Quote the dispatch, or `main`.
+Quote a full `workflow_dispatch` or `main` for the gate's clock, never a push to
+`dev`, where preview is skipped by design and flatters the number. The gate stays
+under ten minutes with the browser job included.
 
 ## What lives here
 
 | Path | What it does |
 |---|---|
 | `.github/workflows/verify.yml` | The gate: generated files, banks, voice, tests, both tier builds, no `math-error`, drift, actionlint; then release and deploy on `main` |
-| `.github/workflows/rollback.yml` | Manual rollback of production to an earlier Worker version |
+| `.github/workflows/rollback.yml` | Manual rollback of production to an earlier Worker |
 | `.github/dependabot.yml` | Dependency updates |
 
 ## Rules local to CI
 
-- **A workflow change is inert until it reaches `main`.** The pipeline that runs
-  is the one on the branch being pushed, and the release and deploy jobs only
-  ever run from `main`. Editing `verify.yml` on `dev` changes nothing about what
-  happens on a push to `main` until the merge; pushing it straight to `main`
-  deploys. See the root's **Branches and releases**.
-- **`dev` verifies, `main` releases and deploys.** The release and deploy jobs
-  require `refs/heads/main`, so they are skipped elsewhere by construction rather
-  than by remembering to guard them.
-- **Adding a book edits no workflow.** The build matrix is derived from
-  `books/*/book.yaml` through `python -m textbook.plan --github-matrix`.
-- **`actionlint` only runs shellcheck when shellcheck is on `PATH`.** It is on
-  `PATH` in CI but not by default locally, so a whole class of workflow error
-  can pass locally and fail the `lint workflows` job. Check with
-  `command -v shellcheck`; the root's **Toolchain** has the rest.
-- **Pin actions to a commit SHA**, as the existing workflows do, and keep the
-  top-of-file comment that explains the branch policy.
+- **A workflow change is inert until it reaches `main`.** The pipeline runs from the
+  pushed branch, release and deploy run only from `main`, and pushing `verify.yml` to
+  `main` deploys.
+- **`dev` verifies, `main` releases and deploys.** Release and deploy require
+  `refs/heads/main`, so they are skipped elsewhere by construction.
+- **Adding a book edits no workflow.** The matrix comes from `books/*/book.yaml` through
+  `python -m textbook.plan --github-matrix`.
+- **`actionlint` runs shellcheck only when it is on `PATH`** — true in CI, not by
+  default locally, so a workflow error can pass locally and fail `lint workflows`. Check
+  `command -v shellcheck`.
+- **Pin actions to a commit SHA**, and keep the top-of-file note on the branch policy.
 - **CI builds a vendored binary only to prove it.** `solvers/` holds the Rust kernels,
-  and `books/maths-applied/docs/assets/data/otkd/` the bundle `otkd` builds; both are
-  committed. A job may rebuild them and fail if the bytes differ from the committed
-  tree, but it may not write what ships: the deploy reads the committed bytes and
-  installs no compiler. A rebuild that differs is a red gate, which is the opposite of
-  the silent disagreement the old "never a job here" rule feared.
-  `scripts/build-solvers.sh --check` and `scripts/build-otkd.sh --check` are those
-  jobs; `--verify` is the offline check the local gate and the deploy can run with no
-  toolchain.
-- **The otkd jobs are path-gated, and each one is measured.** On hosted runners, where
-  every job gets its own machine, the three `main` jobs took **3m27** (`otkd kernels`),
-  **3m50** (`otkd tests`) and **3m39** (`otkd bundle`) on the first run that executed
-  them; much of each is uv installing NumPy and SciPy. On the four self-hosted runners,
-  which shared eight cores, the same split measured 21 minutes and bought nothing, so
-  the split is a hosted-runner decision, not a general one. Every job runs only when
-  the push changed `solvers/otkd/` or `scripts/build-otkd.sh`, and prints the skip
-  when it does not; a skipped job finishing in four seconds is green, so the timings
-  above are what a real run looks like.
-- **The bundle check compares structure and refuses only real movement.** The first
-  real run of `otkd bundle` failed on a last-bit float: the runner rebuilt
-  `0.49862310415783984` where this machine writes `0.4986231041578398`, from a
-  different BLAS, with no displayed figure changed. `scripts/build-otkd.sh --check`
-  therefore compares the trees structurally: every byte must match except a
-  floating-point number, which may differ by at most `1e-12` relative, and an integer
-  token must match exactly. A changed sign, step or cell count still fails, and the
-  message names the file, the token and the size of the difference.
+  `books/maths-applied/docs/assets/data/otkd/` the `otkd` bundle; both committed. A job
+  may rebuild and fail on differing bytes, but may not write what ships: the deploy
+  reads committed bytes and installs no compiler.
+  `scripts/build-solvers.sh --check` and `scripts/build-otkd.sh --check` are those jobs;
+  `--verify` is the offline check the local gate and the deploy run with no toolchain.
+- **The otkd jobs are path-gated.** Each runs only when the push changed `solvers/otkd/`
+  or `scripts/build-otkd.sh`, and prints the skip when it does not; a skipped job is
+  green. The split into `otkd kernels`, `otkd tests` and `otkd bundle` is a
+  hosted-runner decision, not a general one.
+- **The bundle check compares structure, and refuses only real movement.** Every byte
+  must match except a floating-point number, which may differ by at most `1e-12`
+  relative; an integer token must match exactly. A changed sign, step or cell count still
+  fails, and the message names the file, the token and the difference.
 - **The build is uploaded and reused.** `build every profile` writes `site/` and uploads
   it as the `site` artefact; the preview downloads it and runs
-  `scripts/preview-themes.sh --built`, and the deploy downloads it and runs
+  `scripts/preview-themes.sh --built`, the deploy downloads it and runs
   `scripts/deploy.sh --built`. The deploy restamps only the root with the release tag
-  (`textbook.portal`), because the tag is created after the gate; the profiles are the
-  bytes the gate verified.
+  (`textbook.portal`), created after the gate; the profiles are the verified bytes.
 - **The full otkd validation is `main`-only.** A branch runs the Python suite without the
-  kernel compiles; `main` runs that suite, the kernel conformance tests and the bundle
+  kernel compiles; `main` runs it plus the kernel conformance tests and the bundle
   rebuild on separate hosted runners. The gate requires the right set for the ref and
   says so when the other is skipped.
 - **CI runs on hosted runners.** `runs-on: ubuntu-latest` is written in the file, not a
-  repository variable: each job gets its own machine, which is what makes the parallel
-  jobs worth having. `deploy/runner/README.md` records the self-hosted switch if the
+  repository variable. `deploy/runner/README.md` records the self-hosted switch if the
   hosted minutes run out.
-- **`rollback.yml` is manual on purpose.** A rollback is not the moment to
-  discover an automated path for the first time; it must never be cancelled
-  in flight.
+- **`rollback.yml` is manual on purpose**, and must never be cancelled in flight.
 
 ## Common tasks
 
-- **Reproducing the gate locally** — `scripts/check.sh`, which is meant to match
-  the CI steps.
-- **Changing what CI runs** — change `.github/workflows/verify.yml` and
-  `scripts/check.sh` together, and land it through `dev`.
-- **Adding a dependency update** — `.github/dependabot.yml`.
+- **Reproduce the gate locally** — `scripts/check.sh`.
+- **Change what CI runs** — `.github/workflows/verify.yml` and `scripts/check.sh`
+  together, landed through `dev`.
 
 ## Read next
 
-`scripts/AGENTS.md` for the entry points CI calls, `deploy/AGENTS.md` for the
-deploy stages, and the root's **Branches and releases**.
+`scripts/AGENTS.md` for the entry points CI calls, and `deploy/AGENTS.md` for the
+deploy stages.

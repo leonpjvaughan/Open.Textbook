@@ -1,10 +1,4 @@
 // Guided investigation for straightening y = k b^x with logarithms.
-// Pure HTML and SVG, an ES module, no framework and no colour of its own: the
-// fig-* classes carry the theme. Runtime text is plain text, never TeX.
-//
-// The scaffolding — the surface, its accessible name, the slider, the live
-// readout and the redraw — comes from `kit.js`. The kit has no button helper, so
-// the view button stays here.
 import { panel, slider, react } from "./kit.js";
 
 const X_MAX = 4;

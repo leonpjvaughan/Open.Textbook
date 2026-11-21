@@ -10,10 +10,6 @@
 // the current z through the `groups` the kit returns, so the drawing and the readout
 // cannot disagree. At rest — before any part is focused — the drawing is the one the
 // page always had.
-//
-// Nothing here carries a colour. z is drawn in the accent class and its conjugate in the
-// warning class, and the conjugate is additionally marked with a dashed drop line, so the
-// two are told apart without relying on colour.
 import { SIZE, diagram, label, react, slider } from "./kit.js";
 
 // The drawing area, in SVG units. The origin sits in the middle.

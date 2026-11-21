@@ -2,16 +2,6 @@
 //
 // A walker starts at 0, walks to a turning point, then walks back or onwards to
 // a finishing point. Two sliders set the turning point and the finishing point;
-// the readout shows the distance travelled and the displacement, so the reader
-// meets the difference rather than being told it.
-//
-// Plain HTML, SVG and two range inputs, so it is keyboard-operable with no
-// framework, and no colour of its own: the fig-* classes carry the theme. The
-// runtime text is plain text, never TeX.
-//
-// The scaffolding — the surface, its accessible name, the sliders, the live
-// readout, the redraw — comes from `kit.js`. What is left here is the drawing and
-// the sentence, which are the parts that differ from every other figure.
 import { SIZE, label, panel, react, slider } from "./kit.js";
 
 const LEFT = 50;

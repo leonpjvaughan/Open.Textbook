@@ -4,11 +4,6 @@
 // halving the area before moving the sliders, then to explain why a sharp point
 // cuts better than a blunt one. The reader sets the force and the contact area;
 // the figure shows the pressure in pascals.
-// Colours come from CSS classes so the figure adapts to dark mode.
-//
-// The scaffolding — the surface, its accessible name, the sliders, the live
-// readout and the redraw — comes from `kit.js`. What is left here is the drawing
-// and the sentence, which are the parts that differ from every other figure.
 import {
   label,
   panel,

@@ -8,13 +8,6 @@
 // supply and reads out the three currents and the equivalent resistance. Every
 // wire is drawn thicker when it carries more current, and every value is also
 // written out, so thickness is never the only signal.
-//
-// Colours come from CSS classes, so the figure adapts to every bundle and to both
-// schemes. No colour literal appears here, and no runtime LaTeX.
-//
-// The scaffolding — the surface, its accessible name, the sliders, the live
-// readout and the redraw — comes from `kit.js`. What is left here is the drawing
-// and the sentences, which are the parts that differ from every other figure.
 import {
   label,
   panel,

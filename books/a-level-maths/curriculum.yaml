@@ -1,9 +1,6 @@
 # A-level Mathematics (England) — chapter and section plan
 #
-# Source of truth for the docs tree and for the scaffold. Copied from
-# research/curriculum/a-level-maths-curriculum.draft.yaml once the book existed;
-# from here on this file is the one the build reads, and research/ is only the
-# evidence behind it.
+# Source of truth for the docs tree and for the scaffold. The build reads this file.
 #
 # Shape follows books/gcse-maths/curriculum.yaml, with one structural
 # difference — the TIER STORY: A-level has no Foundation/Higher axis. The
@@ -29,7 +26,7 @@
 #      O Statistical hypothesis testing, P Quantities and units in mechanics,
 #      Q Kinematics, R Forces and Newton's laws, S Moments.
 #      The same labels are used by AQA 7357 and understood by OCR H240 and
-#      Pearson Edexcel 9MA0. See research/curriculum/a-level-maths.md.
+#      Pearson Edexcel 9MA0.
 #
 # Anchors, learner-constructed relevance prompts and guided investigations are
 # per-chapter authoring decisions (AGENTS.md: anchor thread + one relevance

@@ -1,7 +1,4 @@
 // Guided sine graph: change its amplitude and observe what stays fixed.
-//
-// The scaffolding — the surface, its accessible name, the slider, the live
-// readout, the redraw — comes from `kit.js`.
 import { SIZE, label, panel, react, slider } from "./kit.js";
 
 export function mount(el) {

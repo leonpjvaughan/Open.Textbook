@@ -10,9 +10,6 @@
 // The two fractions are chosen from the proper fractions with denominators up to 6,
 // because a fraction greater than 1 has no band inside the unit square and the model
 // is about the part of a part.
-//
-// Nothing here carries a colour. Every shape uses a `fig-*` class and every word a
-// `text-*` class, so the figure follows the reader's theme in both schemes.
 import { fmt, label, line, panel, react, rect, chooser } from "./kit.js";
 
 const FRACTIONS = [];

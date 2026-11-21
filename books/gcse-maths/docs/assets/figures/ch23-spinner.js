@@ -1,8 +1,4 @@
 // Guided probability scale: predict and test how changing red regions changes chance.
-//
-// The scaffolding — the surface, its accessible name, the slider, the live
-// readout, the redraw — comes from `kit.js`. What is left here is the drawing and
-// the sentence, which differ from every other figure.
 import { panel, slider, react } from "./kit.js";
 
 const SECTORS = 10;

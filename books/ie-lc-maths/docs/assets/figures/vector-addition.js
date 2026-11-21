@@ -5,13 +5,6 @@
 // the angle between the two vectors. Setting the components so that the angle reads 90
 // degrees is the moment the dot product earns its place, which is why the same figure
 // appears in the addition section and again in the angle section.
-//
-// Nothing here carries a colour. The first vector is drawn in the accent class, the
-// second in the warning class and the sum in the good class, and each is also named in
-// words, so the three are told apart without relying on colour.
-//
-// The scaffolding — the panel, its accessible name, the sliders, the readout and the
-// redraw — comes from `kit.js`. What is left is the drawing and the sentences.
 import { SIZE, fmt, label, panel, react, slider } from "./kit.js";
 
 const W = 560;

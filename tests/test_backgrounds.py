@@ -16,8 +16,7 @@ from textbook import backgrounds, book as books
 def test_nothing_ships_an_animation():
     """The registry is empty on purpose. This is the guard on that intent.
 
-    When the first animation lands this test is the prompt to read
-    `research/design/background-effects.md` again and to give the module the
+    When the first animation lands this test is the prompt to give the module the
     guarantees its docstring lists — tokens for colour, reduced motion, idle
     pause, and a page that is complete with scripting off.
     """

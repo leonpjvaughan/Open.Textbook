@@ -2,12 +2,6 @@
 // A fixed scatter with one movable far point, and the least-squares line the
 // software would draw. The reader sees the line move; the method is not the
 // lesson, the interpretation is.
-// Pure HTML and SVG, no framework and no colour of its own: the fig-* classes
-// carry the theme. Runtime text is plain text, never TeX.
-//
-// The scaffolding — the surface, its accessible name, the slider, the live
-// readout and the redraw — comes from `kit.js`. What is left here is the drawing
-// and the sentence.
 import { panel, slider, react } from "./kit.js";
 
 const FIXED = [

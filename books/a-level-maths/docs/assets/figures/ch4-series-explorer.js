@@ -1,10 +1,5 @@
 // Guided investigation for a geometric series: the running total as terms are
 // added, and the value it settles on when the common ratio is below one.
-// Pure HTML and SVG, an ES module, no framework and no colour of its own: the
-// fig-* classes carry the theme. Runtime text is plain text, never TeX.
-//
-// The scaffolding — the surface, its accessible name, the slider, the live
-// readout and the redraw — comes from `kit.js`.
 import { SIZE, label, panel, react, slider } from "./kit.js";
 
 const TERMS = 10;

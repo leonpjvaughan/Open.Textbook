@@ -16,8 +16,6 @@
 // `textLength` — the anchor the author chose stays put, the glyphs get narrower, and the
 // height (which is what legibility is measured by) does not change. It runs again on
 // every redraw, because a figure with a control replaces its own markup.
-//
-// Pure HTML + ES module, so it needs no bundler and no DOM polyfill.
 
 /**
  * Keep every label inside the frame it was drawn in, in whatever font is loaded.

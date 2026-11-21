@@ -11,13 +11,6 @@
 // faster rod gets a longer velocity arrow, and a larger current makes the wires
 // thicker. A drawing that ignored the controls could not be used to test a
 // prediction.
-//
-// Colours come from the fig-* classes. The readout is plain HTML, never runtime
-// maths.
-//
-// The scaffolding — the surface, its accessible name, the sliders, the live
-// readout and the redraw — comes from `kit.js`. What is left here is the drawing
-// and the sentences, which are the parts that differ from every other figure.
 import {
   label,
   panel,

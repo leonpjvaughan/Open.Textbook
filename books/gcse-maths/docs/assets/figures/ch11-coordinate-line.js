@@ -1,8 +1,4 @@
 // Guided table-to-graph investigation for y = mx + c.
-//
-// The scaffolding — the surface, its accessible name, the two sliders, the live
-// readout, the redraw — comes from `kit.js`, and a signed term from `signed()`,
-// so a negative intercept reads as a signed number, never a bracketed addend.
 import { SIZE, label, panel, react, signed, slider } from "./kit.js";
 
 export function mount(el) {

@@ -5,12 +5,6 @@
 // the size of the wire changes the gradient, then to explain why it does not.
 // The line belongs to the material, and its gradient is the Young modulus. The
 // force and the area move the point along that line but never change it, while a
-// different material changes the line. Colours come from CSS classes, so the
-// figure adapts to every bundle and to both schemes.
-//
-// The scaffolding — the surface, its accessible name, the controls, the live
-// readout and the redraw — comes from `kit.js`. What is left here is the drawing
-// and the sentences, which are the parts that differ from every other figure.
 import { SIZE, chooser, label, panel, react, slider } from "./kit.js";
 
 export function mount(el) {

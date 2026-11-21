@@ -1,11 +1,6 @@
 // Tier-1 guided investigation: rounding to decimal places and significant
 // figures. Predict → Test → Explain: the reader predicts the rounded value and
 // then checks which digit was used to decide.
-//
-// The scaffolding — the frame, the prompt, the controls, the live readout, the
-// redraw — comes from `kit.js`. The number box is a control the kit has no helper
-// for, so it is appended to the kit's controls column; the rule is a chooser and
-// the amount a slider. The module draws nothing, so it has no drawing to name.
 import { panel, slider, chooser, react } from "./kit.js";
 
 export function mount(el) {

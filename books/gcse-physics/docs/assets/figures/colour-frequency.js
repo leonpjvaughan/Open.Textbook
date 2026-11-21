@@ -4,12 +4,6 @@
 // frequency when the wavelength gets longer, then to explain it from c = f
 // lambda. The slider moves a marker along the visible band, and the readout names
 // the colour and gives the frequency. The colour name is always written, so
-// colour is never the only signal. Colours come from CSS classes, so the figure
-// adapts to every bundle and both schemes.
-//
-// The scaffolding — the surface, its accessible name, the slider, the live
-// readout and the redraw — comes from `kit.js`. What is left here is the drawing
-// and the sentences, which are the parts that differ from every other figure.
 import { SIZE, label, panel, react, slider } from "./kit.js";
 
 export function mount(el) {

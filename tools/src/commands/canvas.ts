@@ -1,32 +1,10 @@
 /*
  * Fail when a figure draws outside its own `viewBox`.
  *
- * `dynamics-table` put five rows of numbers at y = 300…512 in a 300-unit canvas: the
- * reader saw an empty bordered frame, the prose under it said "each column is an
- * integration", and every check passed. `audit` measures paint and passed — an element
- * outside the box is styled correctly. `readout --verify` recomputed the arithmetic and
- * passed — the numbers were right, in the wrong place. `kit` checked the DOM contract
- * and passed. So the collection had a contract on what a figure says and on how it is
- * painted, and none on where it puts the ink.
- *
  * **Two rules, because one is wrong.** A text element must be inside: half a clipped
- * word is not a label. A mark may cross the edge, and `wishbone-hero` does on purpose —
- * its rays run to an instant centre 1,295 units off a 520-unit canvas, cropped by the
- * `viewBox`. Applying the text rule to marks would fail it; applying the mark rule to
- * texts would miss the five rows.
- *
- * Measured at 1280px in one scheme: this is geometry, and the viewBox is the viewBox in
- * every theme. The cases run under plain `node` (`canvas --cases`), so the rule is in
- * the ordinary gate and not only in the browser one.
- *
- * **The debt is empty, and why it is still a table.** The first sweep of 254 figures on
- * 2026-10-30 found 39 labels that overhang their frame, in 31 modules, and they were one
- * authoring habit: a y-axis title written horizontally with `anchor: "end"` a few units
- * left of the axis, so a 60–220-unit label runs off the canvas (`internal-resistance`
- * loses 168 units of "terminal potential difference / V"). Item 164 fixes them. Naming
- * them here, in the same shape as `lint.LIST_DEBT`, kept the check strict while they were
- * being fixed. All 39 are inside their frames now (item 164), so the table is empty and a
- * figure written from today gets no allowance at all.
+ * word is not a label. A mark may cross the edge on purpose, cropped by the `viewBox`.
+ * Measured at 1280px in one scheme; this is geometry, so the viewBox is the same in
+ * every theme. The cases run under plain `node` (`canvas --cases`).
  */
 import fs from "node:fs";
 import path from "node:path";
@@ -46,16 +24,8 @@ import { Report } from "../lib/report.js";
 import { discoverFigures } from "../lib/site.js";
 
 /**
- * Labels that overhang their frame today, counted on 2026-10-30.
- *
- * Down-only, and a figure not named here has no allowance at all. Every entry is a
- * y-axis title placed horizontally to the left (or above) of its drawing — the fix is
- * `label()`'s `rotate`, which is why this is one habit and not 32 unrelated mistakes.
- * The largest is `internal-resistance`, whose "terminal potential difference / V" loses
- * 168 of its 221 units. Item 164 carries the measurement and the list.
- *
- * Measured on the build of 2026-10-30: 39 labels in 31 figures, over 254 figures that
- * draw (a further 12 mount a control and no drawing at all).
+ * Labels that overhang their frame today. Down-only: a figure not named here has no
+ * allowance at all. The fix for an entry is `label()`'s `rotate`.
  */
 const CANVAS_DEBT: Record<string, number> = {};
 
@@ -105,11 +75,8 @@ type Figure = {
 /**
  * Read a figure's drawing and the local box of every element in it.
  *
- * The box is **not** the `y` attribute: a `<text>` at y = 492 with a 20-unit glyph box
- * starting there is inside the frame, and `dynamics-table`'s five rows were 15 elements,
- * not the 17 that reading attributes reports. `getBBox()` in the element's own space,
- * then `getScreenCTM()` against the SVG root's, is the transform that answers the
- * question the eye asks.
+ * The box is **not** the `y` attribute: use `getBBox()` in the element's own space and
+ * `getScreenCTM()` against the SVG root's.
  */
 export function readInk(slug: string): Figure {
   const host = document.querySelector(`maths-figure[data-figure="${slug}"]`);
@@ -126,8 +93,7 @@ export function readInk(slug: string): Figure {
   const skip = new Set(["defs", "clipPath", "marker", "pattern", "mask", "symbol"]);
   const elements: Element[] = [];
   // `getBBox()` and `getScreenCTM()` are on `SVGGraphicsElement`, not on the
-  // `SVGElement` the selector returns — the same two methods the browser has had on
-  // every one of these tags since SVG 1.1.
+  // `SVGElement` the selector returns.
   const nodes = Array.from(
     svg.querySelectorAll("text, line, rect, circle, ellipse, path, polyline, polygon, image, use"),
   ) as unknown as SVGGraphicsElement[];
@@ -165,11 +131,8 @@ export function readInk(slug: string): Figure {
 }
 
 /**
- * The rule's own cases, under plain `node`.
- *
- * Three of them are the defects the first sweep of both books found — the shape of each
- * is the reason the rules differ — and the rest are the edges: a label exactly on the
- * frame, a mark wholly outside, and a box that only touches the edge.
+ * The rule's own cases, under plain `node`. Two carry the shape that makes the rules
+ * differ; the rest are the edges.
  */
 export function cases(): string[] {
   const failures: string[] = [];
@@ -194,9 +157,8 @@ export function cases(): string[] {
     dynamics,
     true,
   );
-  // A label's slack is half an em: the em box is taller than the glyphs, and a runner
-  // without the site's font measures the same label a few units wider. Five units is
-  // that slack; twenty is a label whose ink leaves the drawing.
+  // A label's slack is half an em: a runner without the site's font measures the same
+  // label a few units wider. Five units is that slack; twenty loses the ink.
   check(
     "a label five units past the right edge (the em box's slack)",
     "text",
@@ -232,9 +194,8 @@ export function cases(): string[] {
     { x: 0, y: 0, width: 560, height: 300 },
     false,
   );
-  // A rotated label's own box is in its own space, so the transform is the whole point:
-  // an unrotated 60×18 box at the top of the frame becomes a 18×60 box running off the
-  // top once it is turned, and reading the attributes would call it inside.
+  // A rotated label's box is in its own space: a 60×18 box at the top becomes 18×60 off
+  // the top once turned, and reading attributes calls it inside.
   const rotated = transformBox(
     { x: 500, y: 30, width: 60, height: 18 },
     [0, 1, -1, 0, 0, 0],
@@ -263,10 +224,8 @@ export async function run(argv: string[]): Promise<number> {
   const only = values.only ? String(values.only) : "";
   const jsonOut = values.json ? String(values.json) : "";
   const jobs = Math.max(1, Math.min(Number(values.jobs) || 1, 8));
-  // **A label's width is its font's.** A machine without the site's font measures the same
-  // label wider, and two labels written today passed here and failed on the runner for
-  // exactly that. `--font monospace` re-measures the whole collection under a font that is
-  // wider than the site's, so a sweep can ask the question the runner asks.
+  // **A label's width is its font's.** A machine without the site's font measures wider,
+  // so `--font` re-measures under a wider font and asks the question the runner asks.
   const font = values.font ? String(values.font) : "";
 
   const pages = discoverFigures(siteDir);
@@ -295,29 +254,22 @@ export async function run(argv: string[]): Promise<number> {
   await mapPool(slugs, jobs, async (slug, index) => {
     const page = pool[index % jobs]!;
     // **Every route the figure appears on is a candidate.** A slug's first route
-    // alphabetically can be a page where the figure does not mount — the audit and the
-    // readout sweep both learned this — and a route that mounts nothing would otherwise
-    // read as "draws nothing" on one run and as a finding on the next. So the routes are
-    // tried in turn, and a figure is only called drawing-free when none of them has one.
+    // alphabetically can be a page where the figure does not mount, so a figure is only
+    // called drawing-free when none of its routes has one.
     let measured = false;
     let drawings = 0;
-    // Three routes at most per slug, and one attempt each unless the browser threw: a
-    // figure that mounts no `svg` will not mount one on a second look, and the wait is
-    // what a sweep costs. Retrying a missing drawing took this command from four
-    // minutes to over forty.
+    // Three routes at most per slug, and one attempt each: a figure that mounts no `svg`
+    // will not mount one on a second look, and the wait is what a sweep costs.
     for (const route of pages[slug]!.slice(0, 3)) {
       let figure: Figure | null = null;
       for (let attempt = 1; attempt <= 2 && !figure; attempt += 1) {
         try {
-          // A page that reloads itself — the tier redirect and the settings runtime both
-          // can — interrupts the navigation that asked for it. The document that is
-          // there afterwards is the one to measure, so the failure is swallowed and the
-          // wait below decides whether a figure arrived.
+          // A page that reloads itself interrupts the navigation that asked for it. The
+          // document there afterwards is the one to measure, so the failure is swallowed.
           await page.goto(`${ORIGIN}${route}`, { waitUntil: "load" }).catch(() => {});
           if (font) await page.addStyleTag({ content: `svg text { font-family: ${font} !important; }` }).catch(() => {});
-          // Wait for the figure to mount, not for a fixed pause: every figure here is
-          // drawn by a module that may await a kernel, and 60ms of sleep measured the
-          // empty frame before it drew — which reads as a clean result.
+          // Wait for the figure to mount, not for a fixed pause: the module may await a
+          // kernel, and a sleep measures the empty frame, which reads as a clean result.
           await page
             .waitForFunction(
               (s: string) => {
@@ -325,9 +277,8 @@ export async function run(argv: string[]): Promise<number> {
                 if (!host) return false;
                 const svg = host.querySelector("svg");
                 if (svg && svg.childElementCount > 0) return true;
-                // A figure with a control and no drawing has mounted; waiting the full
-                // timeout for an `svg` that is never coming is what made this sweep
-                // unstable in wall-clock and in what it counted.
+                // A figure with a control and no drawing has mounted; do not wait the
+                // full timeout for an `svg` that is never coming.
                 return !!host.querySelector("input, select, button, .fig");
               },
               slug,
@@ -393,11 +344,8 @@ export async function run(argv: string[]): Promise<number> {
     process.stdout.write(".");
   });
   // **One more pass over what measured nothing.** A figure whose module is slow on the
-  // first visit mounts on the second: a sweep reported 17, 19, 22 and 25 figures with no
-  // drawing on four consecutive runs of the same build, and a figure that is skipped is
-  // a figure whose overhang is not measured. The second pass gives the remainder the
-  // benefit of a warm page, and whatever is still unmeasured is named in the summary —
-  // never silently counted as clean.
+  // first visit mounts on the second, and a skipped figure is one whose overhang goes
+  // unmeasured; whatever is still unmeasured is named in the summary.
   const retry = unmeasured.splice(0);
   if (retry.length) {
     await mapPool(retry, jobs, async (slug, index) => {
@@ -406,8 +354,7 @@ export async function run(argv: string[]): Promise<number> {
         try {
           await page.goto(`${ORIGIN}${route}`, { waitUntil: "load" }).catch(() => {});
           if (font) await page.addStyleTag({ content: `svg text { font-family: ${font} !important; }` }).catch(() => {});
-          // The same mount wait as the first pass: a kernel figure is slower than 600ms,
-          // and a retry that waits less than the pass it is repeating measures less.
+          // The same mount wait as the first pass: a retry that waits less measures less.
           await page
             .waitForFunction(
               (s: string) => {

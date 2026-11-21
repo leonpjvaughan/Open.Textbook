@@ -1,13 +1,7 @@
 """Load a book's identity and build metadata from ``books/<id>/book.yaml``.
 
-`book.yaml` is the one place a book declares what it is: its qualification and
-subject, the profiles it builds, the verification oracles its banks may use, its
-theme tokens and the paths to its curriculum, banks and booklet data. The
-scaffold, the portal and the build hooks all read it, so adding a book is data
-rather than code.
-
-The collection as a whole is described by ``collection.yaml`` at the repository
-root: its title, its deployment base URL and the order qualifications appear in.
+That file is the one place a book declares what it is, so adding a book is data
+rather than code. The collection is described by ``collection.yaml`` at the root.
 """
 
 from __future__ import annotations
@@ -24,32 +18,20 @@ from . import yamlio
 COLLECTION_FILE = "collection.yaml"
 BOOKS_DIR = "books"
 
-# The accent a **book with no tint of its own** gets: the reference work, whose
-# `theme:` block is empty because it belongs to no subject. It is the only colour
-# the engine names, and it is a fallback rather than a design.
-#
-# It used to be five constants, three of which nothing read, and all five were the
-# first book's palette copied verbatim (`books/gcse-maths/book.yaml`). That
-# contradicts `engine/AGENTS.md`: "The engine declares no colour. Colour lives in
-# the bundles … a book contributes only its tint." The honest fix is for a book
-# with no tint to take the *bundle's* accent, which is what `--tb-accent` already
-# resolves to — but `Scheme.accent` is what the landing card reads, and there is no
-# bundle in scope at that point. So the fallback stays, reduced to the two values
-# actually used, named for what they are, and pinned by a test that fails if it
-# drifts from the bundle it is standing in for.
+# The accent a book with no tint of its own gets: the reference work, whose
+# `theme:` block is empty because it belongs to no subject. The only colour the
+# engine names, and a fallback rather than a design.
 HOUSE_ACCENT = "#2f6690"
 HOUSE_ACCENT_DARK_SCHEME = "#6ea8d8"
 
-# The tokens a book may set, per scheme, in book.yaml. Everything else about the
-# design system is shared; a book that needs more than tinting belongs in its
-# authored book-local.css.
+# The tokens a book may set, per scheme, in book.yaml. All else is shared; a book
+# needing more than tinting belongs in its authored book-local.css.
 SCHEME_TOKENS: dict[str, str] = {
     "accent": "--tb-accent",
     "accent_light": "--tb-accent-light",
     "accent_dark": "--tb-accent-dark",
-    # Text drawn *on* the accent (the booklet bar's label, chip text). It is not
-    # `paper`: a bundle's paper can sit too close to its own accent to read, so
-    # each bundle names a dedicated ink for that surface.
+    # Text drawn *on* the accent. Not `paper`: a bundle's paper can sit too close
+    # to its own accent to read, so each bundle names an ink for that surface.
     "accent_ink": "--tb-accent-ink",
     "paper": "--tb-paper",
     "ink": "--tb-ink",
@@ -67,11 +49,8 @@ SCHEMES = ("default", "slate")
 
 
 def repo_root() -> Path:
-    """The repository root.
-
-    Resolved from ``TEXTBOOK_ROOT`` if set, otherwise by walking up from the
-    working directory for ``collection.yaml``. The fallback assumes the engine
-    is an editable install, which is what a uv workspace gives us.
+    """The repository root: ``TEXTBOOK_ROOT`` if set, else the nearest parent with
+    ``collection.yaml``, else the editable install's path.
     """
     override = os.environ.get("TEXTBOOK_ROOT")
     if override:
@@ -105,10 +84,8 @@ class Profile:
 
 @dataclass(frozen=True)
 class Scheme:
-    """The token overrides a book declares for one colour scheme.
-
-    Empty means "use the house defaults", which is the common case: a book
-    usually names only an accent, or an accent plus its tints.
+    """The token overrides a book declares for one colour scheme; empty means the
+    house defaults, which is the common case.
     """
 
     scheme: str
@@ -147,8 +124,7 @@ class Theme:
     @classmethod
     def from_dict(cls, data: dict | None) -> "Theme":
         data = data or {}
-        # A flat accent block is read as the light variation, so an older
-        # book.yaml still works.
+        # A flat accent block is the light variation, for an older book.yaml.
         if "accent" in data:
             return cls(light=Scheme.from_dict("default", data), dark=Scheme("slate"))
         return cls(
@@ -185,16 +161,12 @@ class Book:
     #: Empty by default, and nothing ships one — see textbook/backgrounds.py.
     backgrounds: dict = field(default_factory=dict)
     sources_name: str = "sources.yaml"
-    #: The kinds of page each section has. Empty means every kind the engine
-    #: knows (`scaffold.PAGE_KINDS`) — the three-page formula a course wants. A
-    #: book that is not a course declares a shorter list in `book.yaml`:
-    #: `section_pages: [learn]`.
+    #: The kinds of page each section has, in reader order. Empty means every kind
+    #: the engine knows; a book that is not a course declares a shorter list.
     section_pages: tuple[str, ...] = ()
 
     #: What a section's own page is called in the sidebar when the section also has
-    #: depth pages. Empty means "Overview". A book whose sections are one page each
-    #: is not offering an overview, and says so in its own vocabulary: `maths-applied`
-    #: calls it "Main thread".
+    #: depth pages. Empty means "Overview"; `maths-applied` says "Main thread".
     section_page_label: str = ""
 
     # --- paths ---------------------------------------------------------------
@@ -231,17 +203,10 @@ class Book:
     def tier_filter_for(self, profile_id: str) -> str:
         """The tier behaviour of a build, from the profile's declared filter.
 
-        Read from ``tier_filter`` and never from the profile's id. A book may name
-        its lower-tier profile anything — `foundation` in England, `ordinary` in
-        Ireland — so keying behaviour on a literal id is the same fact written
-        twice: a rename, or a book whose id differs from its filter, would silently
-        ship Higher-only content to the wrong reader.
-
-        The behaviours are `both` (the reader who studies only the content common
-        to both tiers), `higher` (the higher tier, which studies everything),
-        `all` (a book with no tier axis) and `toggle` (the development build that
-        keeps everything and switches in the browser). An id with no declared
-        profile is its own filter.
+        Read from ``tier_filter`` and never from the profile's id: a book may name
+        its lower-tier profile anything (`foundation`, `ordinary`), so keying on a
+        literal id would ship Higher-only content to the wrong reader. An id with no
+        declared profile is its own filter.
         """
         try:
             return self.profile(profile_id).tier_filter
@@ -249,10 +214,8 @@ class Book:
             return profile_id
 
     def deploy_path(self, profile_id: str) -> str:
-        """Where a profile is deployed, relative to the site root.
-
-        A book with a single profile has no reason to bury its URL one level
-        deeper, so the profile segment appears only when there is a choice.
+        """Where a profile is deployed, relative to the site root. The profile
+        segment appears only when a book has more than one.
         """
         if len(self.profiles) > 1:
             return f"{self.id}/{profile_id}"
@@ -280,18 +243,10 @@ class Book:
 
     @property
     def pages(self) -> list[dict]:
-        """The pages a reference work lists, in nav order.
-
-        A course's navigation comes from its chapters. A reference work has none:
-        it is consulted rather than read end to end, and every page under `docs/`
-        is authored, so there is nothing for the scaffold to generate and no
-        section to hang a page on. It declares its pages here instead — one entry
-        per page, with a `title` and a `path` — and the navigation is built from
-        that. See `books/numerical-methods/map.yaml`.
-
-        This is a *different* registry from `proofs`. That one is read by the
-        `:::prove` directive so another book can link to a page; this one exists
-        only so a reference work has a sidebar.
+        """The pages a reference work lists, in nav order, each with a `title` and
+        a `path`. A reference work has no chapters and every page is authored, so
+        its sidebar comes from here. Not the `proofs` registry, which exists so the
+        `:::prove` directive can link; this one exists so a work has a sidebar.
         """
         entries = self.curriculum_data.get("pages") or []
         return [
@@ -302,34 +257,23 @@ class Book:
 
     @property
     def proofs(self) -> list[dict]:
-        """The proof registry a reference work declares, in nav order.
-
-        Empty for a course. This is what makes a reference work navigable without
-        a syllabus: it has no chapters to list, so its nav comes from here and its
-        pages are authored rather than generated. It is also the registry
-        `textbook.proofs` serves to the `:::prove` directive, which reads it
-        through `config.extra` so a book and the hook cannot disagree about what
-        exists.
+        """The proof registry a reference work declares, in nav order; empty for a
+        course. The `:::prove` directive reads it through `config.extra`, so a book
+        and the hook cannot disagree about what exists.
         """
         return list(self.curriculum_data.get("proofs", []) or [])
 
     @property
     def tier_codes(self) -> tuple[str, ...]:
-        """The tier codes this book uses, ordered **lowest level first**.
-
-        The order is the whole of the tier model, so it is read from the document
-        rather than inferred from the labels: a code's position is its rank, and
-        content is studied by every reader at or above that rank.
+        """The tier codes this book uses, ordered **lowest level first**. A code's
+        position is its rank: content is studied by every reader at or above it.
         """
         return tuple(self.tier_axis)
 
     @property
     def lower_code(self) -> str:
-        """The lowest tier code — the label of which names every level.
-
-        `Foundation and Higher` in England, `Foundation, Ordinary and Higher` in
-        Ireland. Read from the front of the order rather than looked up by a
-        literal `F`, so a book using `O` for its common content works.
+        """The lowest tier code, whose label names every level: `F` in England,
+        `O` in Ireland. Read from the front of the order, never a literal `F`.
         """
         codes = self.tier_codes
         if not codes:
@@ -337,25 +281,17 @@ class Book:
         return codes[0]
 
     def tiers_included(self, tier_filter: str) -> frozenset[str]:
-        """The tier codes a build includes, given a profile's declared filter.
-
-        A filter that names a tier code includes every level **up to and including
-        its own**, because content at a lower level is studied by every reader above
-        it. `all` and any unrecognised filter include everything — which is what a
-        book with no tier axis wants, and what keeps `toggle` a whole-book build.
+        """The tier codes a build includes: a filter that names a code includes
+        every level **up to and including its own**, since lower content is studied
+        by every reader above it. `all` (no tier axis) and `toggle` (the development
+        build) include everything.
         """
         codes = self.tier_codes
-        # The two whole-book behaviours. `all` is a book with no tier axis; `toggle`
-        # is the development build, which keeps everything and switches in the
-        # browser. Both are declared, not inferred.
         if tier_filter in ("all", "toggle"):
             return frozenset(codes)
         if tier_filter not in codes:
-            # Loudly, because the alternative is what this code did first: an
-            # unrecognised filter fell through to "include everything", so a typo in
-            # `tier_filter` shipped every higher-only page to the lower-tier reader
-            # and the build stayed green. The declared values are the tier codes in
-            # `tier_axis`, plus `all` and `toggle`.
+            # Loudly: silently including everything on an unrecognised filter would
+            # ship every higher-only page to the lower-tier reader, build green.
             raise ValueError(
                 f"{self.id}: profile filter {tier_filter!r} is not a tier code "
                 f"({', '.join(codes) or 'none declared'}), nor 'all' nor 'toggle'"
@@ -363,10 +299,8 @@ class Book:
         return frozenset(codes[: codes.index(tier_filter) + 1])
 
     def sections_above(self, tier_filter: str) -> frozenset[str]:
-        """Section ids (e.g. '12.5') a build leaves out.
-
-        Used to unlink links to pages that will not exist, so a build does not
-        dangle. See `hooks.tier.strip_excluded_links`.
+        """Section ids (e.g. '12.5') a build leaves out, so links to pages that
+        will not exist are unlinked. See `hooks.tier.strip_excluded_links`.
         """
         included = self.tiers_included(tier_filter)
         return frozenset(
@@ -382,15 +316,10 @@ class Book:
     def section_page_kinds(self) -> tuple[str, ...]:
         """The page kinds a section has, in the order a reader meets them.
 
-        **One declaration, three readers.** The scaffold writes a stub for each
-        kind, the nav lists each kind, and `textbook.lint` checks the structure
-        each kind implies. Reading a different list in any of the three is how a
-        book ends up with a `Practise` page its own `book.yaml` says it does not
-        have, and a lint rule demanding verified answers on it.
-
-        `book.yaml` declares them by their **reader-facing** name — `learn`,
-        `practise-with-help`, `practise` — and this returns the engine's kind ids in
-        reading order. An empty declaration means every kind, which is a course.
+        One declaration, three readers: the scaffold, the nav and `textbook.lint`.
+        Any of them reading a different list is how a book gets a `Practise` page
+        its own `book.yaml` denies. Declared by reader-facing name, returned as
+        engine kind ids; empty means every kind, which is a course.
         """
         from . import scaffold  # local: scaffold imports this module
 
@@ -404,12 +333,9 @@ class Book:
     def deeper_pages(self) -> list[dict]:
         """Every optional depth page a section declares, in nav order.
 
-        A deeper page is **authored, never scaffolded**: it is the track a reader
-        takes when they want more than the main thread, so the scaffold has
-        nothing to say about its content and must not put a stub where it goes.
-        ``:::deeper <slug>`` links to one from the section it belongs to, and the
-        nav lists it as a child of that section, so it has a real URL and works
-        with scripting off.
+        Authored, never scaffolded: the scaffold must not put a stub where one
+        goes. ``:::deeper <slug>`` links to it from its section, and the nav lists
+        it as that section's child, so it has a real URL and works without script.
         """
         from . import scaffold  # local: scaffold imports this module
 
@@ -454,15 +380,9 @@ class Book:
         return sum(len(chapter.get("sections", [])) for chapter in self.chapters)
 
 
-# Every loader below is cached for the duration of a process. They are pure
-# functions of files that do not change while a build runs, and they are called
-# very often: resolving the current book goes through ``discover_books``, which
-# reaches ``load_collection`` and ``load_book``.
-#
-# Measured before this was added: a single-page render re-parsed collection.yaml
-# and every book.yaml once per hook, so an 18-page build made 73 ``yaml.safe_load``
-# calls and spent 63% of its time in YAML. Callers only read what these return;
-# none of them mutate it.
+# The loaders below are cached for the life of a process: pure functions of files
+# that do not change during a build, called once per hook. Callers only read what
+# they return; none of them mutate it.
 
 
 @lru_cache(maxsize=None)
@@ -501,10 +421,8 @@ def discover_books(root: Path | None = None) -> list[Book]:
 
 
 def book_for_bank(path: Path) -> Book | None:
-    """The book whose banks directory contains ``path``, or ``None``.
-
-    Verification reads ``book.yaml → oracles`` to know which oracles a bank may
-    use, so a bank path is traced back to the book that owns it.
+    """The book whose banks directory contains ``path``, or ``None``: verification
+    reads that book's ``oracles`` to know what a bank may use.
     """
     path = Path(path).resolve()
     for book in discover_books():
@@ -539,38 +457,25 @@ def book_by_id(book_id: str, root: Path | None = None) -> Book:
 
 
 #: The qualification a book declares when it is a reference work rather than a
-#: course. `collection.yaml` lists it as a group on the landing page. A reference
-#: work has no syllabus, no boards and no tier axis, and is the only kind of book
-#: the shared proof registry can live in.
+#: course: no syllabus, boards or tier axis, and the only holder of the proofs.
 REFERENCE = "Reference"
 
-#: The tier code that marks content only the higher tier or level studies.
-#:
-#: One code for the whole collection, because it means the same thing in each
-#: jurisdiction: Higher tier in England, Higher level in Ireland. Only the *other*
-#: code differs — `F` for "Foundation and Higher", `O` for "Ordinary and Higher" —
-#: and a book declares that one in `tier_axis`.
+#: The tier code for content only the higher tier or level studies. Same meaning
+#: in each jurisdiction; only the *other* code differs, declared in `tier_axis`.
 HIGHER_CODE = "H"
 
 
 def reference_books(root: Path | None = None) -> list[Book]:
-    """Every reference work in the collection.
-
-    Found by the qualification each declares rather than by id, so renaming a
-    directory is a rename and not a silent break. Several books share the group:
-    the proof book is not the only kind of reference work a collection can hold.
+    """Every reference work in the collection, found by qualification rather than
+    id, so renaming a directory is not a silent break.
     """
     return [b for b in discover_books(root) if b.qualification == REFERENCE]
 
 
 def proof_book(root: Path | None = None) -> Book | None:
-    """The reference work that holds the shared proof registry.
-
-    The one that declares `proofs:`, not the first one found — with more than one
-    reference work, "the reference book" is ambiguous, and the proof directive
-    would start resolving against whichever happened to sort first. Exactly one
-    book may hold the registry; `tests/test_proofs.py` fails on two rather than
-    picking one.
+    """The reference work that holds the shared proof registry: the one declaring
+    `proofs:`, not the first found. Exactly one may hold it; `tests/test_proofs.py`
+    fails on two rather than picking one.
     """
     found = [b for b in reference_books(root) if b.proofs]
     if len(found) > 1:
@@ -584,11 +489,8 @@ def proof_book(root: Path | None = None) -> Book | None:
 def map_book(root: Path | None = None) -> Book | None:
     """The reference work that lists its own pages: the map of problem classes.
 
-    Found by declaration like the proof book, and for the same reason: the
-    `:::class` directive resolves its links against this book's registry, so a
-    renamed directory must not silently empty every link. A reference work is the
-    only kind of book whose navigation comes from a page registry, so there can be
-    at most one — `tests/test_class_links.py` fails on two rather than picking one.
+    Found by declaration like the proof book, because `:::class` resolves its links
+    against this registry. At most one, else `tests/test_class_links.py` fails.
     """
     found = [b for b in reference_books(root) if b.pages]
     if len(found) > 1:

@@ -4,9 +4,6 @@
 // the slider either way and explain why the reading is not the weight. So the figure
 // draws the reading against the acceleration, which makes the straight line, the
 // intercept and the point where the reading falls to zero all visible at once.
-//
-// Nothing here carries a colour. The line and the intercept use different classes,
-// and every point is named in the readout, so the figure works without colour.
 import {
   fmt,
   label,

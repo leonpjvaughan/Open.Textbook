@@ -6,13 +6,6 @@
 // explain what the iron core adds. So the figure has to show the *shape* of the
 // field and let the current be changed: the circles around the wire are drawn
 // closer together near the wire, and a larger current draws a stronger field.
-//
-// Nothing here carries a colour. The field uses the accent class, the coil and
-// the core the ink class, so the figure follows the reader's bundle and both
-// schemes.
-//
-// The scaffolding — the panel, its accessible name, the controls, the readout and
-// the redraw — comes from `kit.js`. What is left is the drawing and the words.
 import { SIZE, label, panel, chooser, slider, react } from "./kit.js";
 
 const WIDTH = 460;

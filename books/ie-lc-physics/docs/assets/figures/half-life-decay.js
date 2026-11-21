@@ -9,8 +9,6 @@
 // The starting activity is fixed at 800 Bq, so the fraction on the curve and a real
 // activity are visible together. Nothing here carries a colour; the curve, the
 // guides and the marker use different `fig-*` classes and line styles.
-//
-// The scaffolding comes from `kit.js`. What is left is the drawing and the words.
 import {
   chooser,
   fmt,

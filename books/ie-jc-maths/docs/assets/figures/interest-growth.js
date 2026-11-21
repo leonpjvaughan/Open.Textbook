@@ -5,9 +5,6 @@
 // one pair of axes makes it visible: the simple total is a straight line, the compound
 // total curves away from it, and the widening gap between them is exactly the interest
 // that the interest earned. The gap is the lesson, so it is shaded and measured.
-//
-// Nothing here carries a colour. Every shape uses a `fig-*` class and every word a
-// `text-*` class, so the figure follows the reader's theme in both schemes.
 import { axes, circle, coord, dots, fmt, graph, label, panel, path, react, slider } from "./kit.js";
 
 const money = (value) =>

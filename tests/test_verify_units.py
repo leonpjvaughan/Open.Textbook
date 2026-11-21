@@ -1,7 +1,6 @@
 """The units oracle: dimensions, figures, uncertainty, vectors, graphs, structure.
 
-``research/curriculum/physics-verifier-gaps.md`` §3 lists the check kinds a
-physics bank needs and §5 steps 3–6 the order to build them in. This file proves
+This file proves
 each one verifies a record — and, because a check that cannot fail is not a
 check, that each one fails a deliberately wrong record. The three named in the
 brief are here in full: a dimensional inconsistency, a wrong number of

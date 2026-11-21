@@ -1,11 +1,6 @@
 // Guided investigation for the Fundamental Theorem of Calculus.
 // The gradient of an antiderivative F at x equals the height of f at x, and it
 // does not change when the constant C changes.
-// Pure HTML and SVG, an ES module, no framework and no colour of its own: the
-// fig-* classes carry the theme. Runtime text is plain text, never TeX.
-//
-// The scaffolding — the surface, its accessible name, the sliders, the live
-// readout and the redraw — comes from `kit.js`.
 import { SIZE, label, panel, slider, react } from "./kit.js";
 
 const X_MIN = -2.2;

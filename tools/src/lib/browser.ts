@@ -1,27 +1,17 @@
 /*
- * The browser plumbing the checks share.
- *
- * Five scripts used to carry their own copy of this: the same candidate list for
- * finding Playwright, the same `CHROME_PATH` branch, the same MIME table and the same
- * route handler that serves a built directory by request interception. That was about
- * 150 duplicated lines, and the duplication had already drifted — `check-mobile` and
- * `measure-budget` passed `executablePath`, `audit-figures` and `check-figure-kit`
- * set it on a `launch` object, and `screenshot` ignored `CHROME_PATH` entirely and
- * hardcoded `channel: "chrome"`.
- *
- * So it lives here once, with the environment read in one place.
+ * The browser plumbing the checks share: Playwright, the Chromium launch, static
+ * serving, and a page context with the reader's preferences already set.
  */
 import fs from "node:fs";
 import path from "node:path";
 import { createRequire } from "node:module";
 
-// The package is ESM, so `require` is not in scope. `createRequire` is how a module
-// resolves a specifier chosen at runtime, which is exactly what finding Playwright is.
+// The package is ESM, so `require` is not in scope; `createRequire` resolves a runtime
+// specifier.
 const require = createRequire(import.meta.url);
 
-/** Playwright's own type surface, kept loose on purpose: it is an optional local
- *  dependency resolved at runtime, so importing its types would make the whole
- *  `tools` package fail to type-check on a machine that has not installed it. */
+/** Playwright's type surface, loose on purpose: it is an optional local dependency
+ *  resolved at runtime, so importing its types would break a machine without it. */
 export type Browser = any;
 export type BrowserContext = any;
 export type Page = any;
@@ -36,7 +26,7 @@ export function loadPlaywright(): any {
   for (const candidate of candidates) {
     try {
       // `require` rather than `import`: the candidate is a path or a bare specifier
-      // chosen at runtime, which a static import cannot express.
+      // chosen at runtime.
       return require(candidate);
     } catch {
       /* try the next one */
@@ -53,12 +43,9 @@ export type LaunchOptions = {
 };
 
 /**
- * Launch Chromium, honouring `CHROME_PATH`.
- *
- * The two branches matter: a `CHROME_PATH` names a specific binary and must be passed
- * as `executablePath`, while the absence of one means "use the channel Playwright
- * manages". Passing `channel: "chrome"` *and* `executablePath` is an error, and three
- * of the five scripts had a different opinion about which to use.
+ * Launch Chromium, honouring `CHROME_PATH`, which names a specific binary and must be
+ * `executablePath`; without one, the channel Playwright manages is used. Passing both
+ * is an error.
  */
 export async function launchBrowser(options: LaunchOptions = {}): Promise<Browser> {
   const { chromium } = loadPlaywright();
@@ -68,9 +55,7 @@ export async function launchBrowser(options: LaunchOptions = {}): Promise<Browse
   try {
     return await chromium.launch(launch);
   } catch (error) {
-    // A machine with no `chrome` channel still has Playwright's own Chromium. Two of
-    // the five scripts had this retry and three did not, which is how a check that
-    // worked locally failed in a container for a reason unrelated to the figure.
+    // A machine with no `chrome` channel still has Playwright's own Chromium.
     if (launch.executablePath) throw error;
     delete launch.channel;
     return chromium.launch(launch);
@@ -99,16 +84,13 @@ export const MIME_TYPES: Record<string, string> = {
 };
 
 /**
- * Serve a built directory through request interception.
- *
- * Not a listening socket, and that is a choice rather than a workaround: a sandbox
- * that blocks ports is one problem, and a port that clashes with a running server is
- * another. Interception has neither, and the route is the whole server.
+ * Serve a built directory through request interception, not a listening socket: a
+ * blocked or clashing port is then not a problem.
  *
  * **A route maps to a file, and a trailing slash is the only thing that appends
- * `index.html`.** So an extension-less route 404s — and because every route then
- * returns the same 404 page, a broken run looks like a successful one. Callers that
- * capture must compare their captures; `assertCapturesDiffer` below exists for that.
+ * `index.html`.** So an extension-less route 404s, and because every miss returns the
+ * same 404 page, a broken run looks like a successful one: callers that capture must
+ * compare their captures, which `assertCapturesDiffer` below does.
  */
 export async function serveStatic(
   context: BrowserContext,
@@ -122,12 +104,9 @@ export async function serveStatic(
     if (rel.endsWith("/")) rel += "index.html";
     const file = path.join(root, rel);
     if (!file.startsWith(root) || !fs.existsSync(file) || fs.statSync(file).isDirectory()) {
-      // Two callers, two correct answers to a miss. The audits want a 404, because
-      // they are measuring a site they were pointed at. The theme preview wants an
-      // **abort** and a note, because it asserted every route before the browser
-      // started: a miss during the run means the tree changed underneath it, and a
-      // 404 body measured as a page reads as a pass. The difference is the caller's,
-      // so it is a parameter rather than a second copy of this function.
+      // Two callers, two correct answers to a miss: the audits want a 404, because they
+      // measure a site they were pointed at, and the theme preview wants an **abort**,
+      // because a miss means the tree changed after it asserted every route.
       if (options.onMiss) {
         options.onMiss(rel);
         return route.abort();
@@ -153,12 +132,8 @@ export type ContextOptions = {
   /** A phone viewport: emulates the device rather than only narrowing the window. */
   mobile?: boolean;
   touch?: boolean;
-  /**
-   * Block service workers.
-   *
-   * A page under test that is served from a cache is not the page that was built, and
-   * an overflow hidden behind a cached stylesheet reads as a pass.
-   */
+  /** Block service workers: a cache hit is not the page that was built, and an overflow
+   *  behind a cached stylesheet reads as a pass. */
   blockServiceWorkers?: boolean;
 };
 
@@ -167,10 +142,8 @@ export type ContextOptions = {
  *
  * **Both preferences are set, and that is the point.** `colorScheme` sets the *media*
  * query, which this site does not read: the reader's scheme lives in `localStorage`
- * under `textbooks:scheme` and `hooks/prefs.py` applies it before the first paint.
- * Setting only the media query produced two byte-identical captures for every route —
- * a light and a dark image that were the same image. That looks like a successful run
- * and would pass a figure that is invisible on the dark scheme.
+ * under `textbooks:scheme`, applied by `hooks/prefs.py` before the first paint. Only the
+ * media query gives byte-identical light and dark captures.
  */
 export async function openContext(
   browser: Browser,
@@ -208,11 +181,8 @@ export async function openContext(
 export const ORIGIN = "http://textbook.local";
 
 /**
- * Fail when captures that should differ do not.
- *
- * The check is on the bytes rather than on the method, because the two ways this has
- * gone wrong — a 404 served for every route, and a scheme preference the site never
- * read — both reported success.
+ * Fail when captures that should differ do not: a 404 served for every route and a
+ * scheme preference the site never read both gave identical bytes and reported success.
  */
 export function assertCapturesDiffer(
   outDir: string,
@@ -241,16 +211,12 @@ export type HttpServer = {
 /**
  * Serve a built directory over a real socket, as the Worker would.
  *
- * **The one case interception cannot serve, and the reason it is here.** A navigation
- * entry's `transferSize` is populated only for a request that crossed the network
- * stack; an intercepted response reports 0, so a performance budget measured through
- * `serveStatic` would read as far too small and look like an excellent result. So the
- * budget binds a port and everything else intercepts.
+ * **The one case interception cannot serve.** A navigation entry's `transferSize` is
+ * populated only for a request that crossed the network stack; an intercepted response
+ * reports 0, which would read as an excellent budget.
  *
- * It reproduces the Worker's freshness policy — `public, max-age=0, must-revalidate` —
- * because a cached response is not a first load, and the budget is a first-load figure.
- * `compress` adds what a CDN in front of the Worker would send, which is the comparison
- * the uncompressed number is worth having.
+ * It reproduces the Worker's freshness policy (`public, max-age=0, must-revalidate`),
+ * because a cached response is not the first load the budget measures.
  */
 export async function serveHttp(
   root: string,
@@ -291,8 +257,8 @@ export async function serveHttp(
       body = zlib.gzipSync(body, { level: 9 });
       headers["Content-Encoding"] = "gzip";
     }
-    // Content-Length is set from the bytes actually sent, so a compressed response
-    // does not advertise its uncompressed size.
+    // Content-Length is the bytes sent, so a compressed body does not advertise its raw
+    // size.
     headers["Content-Length"] = body.length;
     res.writeHead(200, headers);
     res.end(body);

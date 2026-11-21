@@ -7,9 +7,6 @@
 // watches the bars break into equal groups. When the group size divides both
 // amounts, the number of groups is the simplified ratio; when it does not, the
 // leftover part is marked so the reader can see why.
-//
-// Nothing here carries a colour. Every shape uses a `fig-*` class and every word a
-// `text-*` class, so the figure follows the reader's theme in both schemes.
 import { fmt, label, line, panel, react, rect, slider } from "./kit.js";
 
 // One unit part is `CELL` units wide, so a bar of 20 parts still fits the panel.
