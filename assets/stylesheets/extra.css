@@ -481,7 +481,6 @@ maths-figure label {
 .prove__ask {
   font-weight: 600;
   color: var(--tb-fig-accent);
-  white-space: nowrap;
 }
 /* The arrow is drawn from the text rather than an icon file, so it cannot go
    missing from a book's asset tree and it inherits the accent. */
@@ -761,8 +760,8 @@ maths-figure label {
   white-space: nowrap;
 }
 .bk-badge--accent { background: color-mix(in srgb, var(--md-primary-fg-color) 18%, transparent); }
-.bk-badge--muted { background: color-mix(in srgb, var(--tb-fig-warn) 20%, transparent); }
-.bk-badge--warn { background: color-mix(in srgb, var(--tb-fig-good) 20%, transparent); }
+.bk-badge--muted { background: color-mix(in srgb, var(--tb-ink) 10%, transparent); }
+.bk-badge--warn { background: color-mix(in srgb, var(--tb-fig-warn) 20%, transparent); }
 .bk-empty { color: var(--md-default-fg-color--light); font-size: 0.85rem; }
 .bk-table { width: 100%; border-collapse: collapse; font-size: 0.8rem; }
 .bk-table th, .bk-table td { border: 1px solid var(--md-default-fg-color--lightest); padding: 0.25rem 0.4rem; text-align: left; }
@@ -933,8 +932,13 @@ maths-figure label {
   columns: 2;
   column-gap: 1.6rem;
   font-size: 0.85rem;
-  line-height: 1.45;
+  /* 1.7 from 1.45: at 0.85rem it takes the link's box from 15px to about 23px,
+   * which is the thumb height WCAG 2.5.8 asks for, without growing the panel. */
+  line-height: 1.7;
 }
+
+/* The box follows the line box, so the target is the height the reader sees. */
+.md-typeset .contents__list a { display: inline-block; }
 
 @media (max-width: 44rem) {
   .md-typeset .contents__list { columns: 1; }

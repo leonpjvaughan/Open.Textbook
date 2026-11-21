@@ -38,7 +38,7 @@
 
 .tb-settings__form {
   margin: 0;
-  padding: 1.1rem 1.2rem 1.3rem;
+  padding: 1rem 1.1rem 0.9rem;
   overflow: auto;
   max-height: inherit;
 }
@@ -76,10 +76,14 @@
 }
 
 .tb-settings__group {
-  margin: 0 0 0.9rem;
+  margin: 0 0 0.5rem;
   padding: 0;
   border: 0;
 }
+/* The last group ends the panel, so its bottom margin would only be scrolled
+ * past. Measured at 390: removing it is what lets the offline control sit in
+ * the viewport instead of 8px under it. */
+.tb-settings__group:last-of-type { margin-bottom: 0; }
 .tb-settings__legend {
   padding: 0;
   font-size: 0.78rem;
@@ -89,15 +93,18 @@
   color: var(--md-default-fg-color--light, var(--tb-ink-soft));
 }
 .tb-settings__hint {
-  margin: 0.15rem 0 0.5rem;
+  margin: 0.15rem 0 0.3rem;
   font-size: 0.78rem;
   color: var(--md-default-fg-color--light, var(--tb-ink-soft));
 }
 
 .tb-settings__options {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(9rem, 1fr));
-  gap: 0.5rem;
+  /* Seven rem, not nine: at 390px the panel is 358px wide and two columns of 112
+   * still fit beside each other. With nine, every card stacked and the last row
+   * sat below the fold (measured scrollHeight 742 against a 706px viewport). */
+  grid-template-columns: repeat(auto-fit, minmax(7rem, 1fr));
+  gap: 0.4rem;
 }
 
 .tb-settings__option {
@@ -113,9 +120,12 @@
 .tb-settings__card {
   display: flex;
   flex-direction: column;
-  gap: 0.2rem;
-  height: 100%;
-  padding: 0.6rem 0.7rem;
+  gap: 0.15rem;
+  /* `height: 100%` here was a collapse: the card's height resolved against a
+   * parent whose height was its own content, so every card drew outside its grid
+   * row and the next group's legend printed over it (measured at 390: group 92px,
+   * cards 60px over a 42px row). The row now sizes to the card. */
+  padding: 0.5rem 0.65rem;
   border: 1px solid var(--md-default-fg-color--lightest, var(--tb-rule));
   border-radius: 6px;
   background: color-mix(in srgb, var(--md-default-bg-color, var(--tb-paper)) 94%, var(--md-default-fg-color, var(--tb-ink)) 6%);
@@ -139,7 +149,33 @@
   color: var(--md-default-fg-color--light, var(--tb-ink-soft));
 }
 
-@media (max-width: 480px) {
+/* The two members of a bundle, named. Quiet, because it is an identifier rather
+ * than a description, and it must not compete with the bundle's own name. */
+.tb-settings__option-note {
+  font-size: 0.72rem;
+  line-height: 1.3;
+  color: var(--md-default-fg-color--light, var(--tb-ink-soft));
+}
+
+/* The mood groups inside the theme fieldset: a second legend, one step quieter
+ * than the group's own, because it classifies rather than names the choice. */
+.tb-settings__subgroup {
+  margin: 0 0 0.4rem;
+  padding: 0;
+  border: 0;
+  min-width: 0;
+}
+.tb-settings__sublegend {
+  padding: 0;
+  margin: 0 0 0.3rem;
+  font-size: 0.72rem;
+  font-weight: 600;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  color: var(--md-default-fg-color--light, var(--tb-ink-soft));
+}
+
+@media (max-width: 22rem) {
   .tb-settings__options {
     grid-template-columns: 1fr;
   }

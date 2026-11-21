@@ -269,15 +269,21 @@ def settings_trigger() -> str:
         '        aria-haspopup="dialog" aria-controls="tb-settings-dialog"\n'
         '        aria-label="Settings" title="Settings" hidden data-pagefind-ignore>\n'
         f"  {_COG_ICON}\n"
+        '  <span class="tb-settings__label" aria-hidden="true">Settings</span>\n'
         "</button>"
     )
 
 
-def _radio(name: str, value: str, title: str, description: str = "") -> str:
+def _radio(name: str, value: str, title: str, description: str = "", note: str = "") -> str:
     """One option card, mirroring the book partial's markup exactly."""
     desc = (
         f'\n          <span class="tb-settings__option-desc">{html.escape(description)}</span>'
         if description
+        else ""
+    )
+    extra = (
+        f'\n          <span class="tb-settings__option-note">{html.escape(note)}</span>'
+        if note
         else ""
     )
     return (
@@ -286,10 +292,27 @@ def _radio(name: str, value: str, title: str, description: str = "") -> str:
         f' value="{html.escape(value, quote=True)}">\n'
         '          <span class="tb-settings__card">\n'
         f'            <span class="tb-settings__option-title">{html.escape(title)}</span>'
-        f"{desc}\n"
+        f"{desc}{extra}\n"
         "          </span>\n"
         "        </label>"
     )
+
+
+def _members(bundle) -> str:
+    """The two members of a bundle: the names its own provenance records.
+
+    Every bundle is a light and a dark palette that a reader never sees named, and
+    the pair is what the YAML deliberately states (Paper/Ink, Daybreak/Shell).
+    Showing it turns a list of six moods into six identities a reader can tell
+    apart without seeing the colours.
+    """
+    names = []
+    for scheme in ("light", "dark"):
+        member = (bundle.provenance or {}).get(scheme) or {}
+        name = str(member.get("name") or "").strip()
+        if name:
+            names.append(name)
+    return "  ·  ".join(names) if len(names) == 2 else ""
 
 
 def settings_dialog(book: books.Book | None = None) -> str:
@@ -329,18 +352,32 @@ def settings_dialog(book: books.Book | None = None) -> str:
         "    </fieldset>"
     ]
     if bundles:
-        themes = "\n".join(
-            _radio("tb-theme", bundle.id, bundle.title, bundle.description)
-            for bundle in bundles
-        )
+        # Grouped by the bundle's own mood, so the distinction the collection
+        # already records is the one the reader is offered: quiet themes first,
+        # bold ones second. Six names in one flat grid asked the reader to know
+        # what "glass" or "phosphor" would look like before choosing.
+        subgroups = []
+        for mood, heading in (("calm", "Quiet themes"), ("vivid", "Bold themes")):
+            group = [bundle for bundle in bundles if bundle.mood == mood]
+            if not group:
+                continue
+            options = "\n".join(
+                _radio("tb-theme", bundle.id, bundle.title, bundle.description, _members(bundle))
+                for bundle in group
+            )
+            subgroups.append(
+                '      <fieldset class="tb-settings__subgroup">\n'
+                f'        <legend class="tb-settings__sublegend">{heading}</legend>\n'
+                '        <div class="tb-settings__options">\n'
+                f"{options}\n"
+                "        </div>\n"
+                "      </fieldset>"
+            )
         groups.append(
             '    <fieldset class="tb-settings__group" id="theme-menu">\n'
             '      <legend class="tb-settings__legend">Reading theme</legend>\n'
-            '      <p class="tb-settings__hint">Applies to every book you read here.</p>\n'
-            '      <div class="tb-settings__options">\n'
-            f"{themes}\n"
-            "      </div>\n"
-            "    </fieldset>"
+            + "\n".join(subgroups)
+            + "\n    </fieldset>"
         )
 
     if book is not None:
@@ -352,7 +389,7 @@ def settings_dialog(book: books.Book | None = None) -> str:
             f' data-offline-book="{html.escape(book.id, quote=True)}">\n'
             '      <legend class="tb-settings__legend">Reading offline</legend>\n'
             '      <p class="tb-settings__hint" id="tb-offline-status">'
-            "You can keep this book on this device and read it without a connection."
+            "Keep this book on this device and read it offline."
             "</p>\n"
             '      <div class="tb-settings__options">\n'
             '        <button type="button" class="tb-settings__download"'

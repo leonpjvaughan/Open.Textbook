@@ -12,8 +12,7 @@
 id: phosphor
 title: Phosphor
 description: >-
-  A CRT terminal: amber and acid green on near-black. The dark member is the
-  screen; the light member is the same two phosphors worked into warm daylight.
+  Dark brown, amber glow.
 
 # `fixed:` here because a vivid bundle IS its colour. The subject tint composes
 # into a bundle by default, which is right for the calm themes — the subject

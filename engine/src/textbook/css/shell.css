@@ -36,9 +36,42 @@ a { color: var(--tb-link); }
   padding: 0 1rem;
 }
 
+/* The skip link is the first thing a keyboard reader meets, so it has to become
+ * visible when it takes focus. Off screen it is left at -9999px with no size; on
+ * focus it returns to the flow as a readable strip above the masthead. Measured
+ * before this rule: the first Tab moved focus to x = -9999 and nothing changed on
+ * screen. No colour is declared — paper and ink are the bundle's. */
 .skip {
   position: absolute;
   left: -9999px;
+  color: var(--tb-link);
+}
+
+.skip:focus,
+.skip:focus-visible {
+  position: static;
+  display: block;
+  padding: 0.5rem 1rem;
+  background: var(--tb-paper);
+  color: var(--tb-ink);
+  border-bottom: 1px solid var(--tb-rule);
+  outline: 2px solid var(--tb-accent);
+  outline-offset: -2px;
+}
+
+/* Text a screen reader must hear and the page must not show. Used by the search
+ * status line: a vanished panel announces nothing, so the count and the empty
+ * state are spoken from here. */
+.visually-hidden {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  margin: -1px;
+  padding: 0;
+  overflow: hidden;
+  clip-path: inset(50%);
+  white-space: nowrap;
+  border: 0;
 }
 
 /* masthead ---------------------------------------------------------------- */
@@ -121,12 +154,16 @@ a { color: var(--tb-link); }
 /* The reader Settings trigger. Inert until the shared runtime reveals it; the
  * markup and behaviour live in settings.css and assets/settings/settings.js, so
  * this only gives the bare <button> the shell's chrome. */
+/* 2.75rem = 44px, the floor this file states for a thumb; the trigger measured
+ * 36px before. Above 48rem the control also carries the word from its accessible
+ * name, so a reader who does not know the cog can still find it. */
 .tb-settings__trigger {
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  width: 2.25rem;
-  height: 2.25rem;
+  gap: 0.4rem;
+  width: 2.75rem;
+  height: 2.75rem;
   padding: 0.4rem;
   border: 0;
   border-radius: 50%;
@@ -149,6 +186,20 @@ a { color: var(--tb-link); }
   width: 1.35rem;
   height: 1.35rem;
   fill: currentColor;
+}
+
+/* The word is hidden where the row is tight, and shown where there is room. */
+.tb-settings__label { display: none; }
+
+@media (min-width: 48rem) {
+  .tb-settings__trigger {
+    width: auto;
+    padding: 0 0.9rem;
+  }
+  .tb-settings__label {
+    display: inline;
+    font-size: 0.9rem;
+  }
 }
 
 /* layout ------------------------------------------------------------------ */
@@ -185,6 +236,14 @@ a { color: var(--tb-link); }
 }
 
 .nav-drawer__book { margin-right: 0.5rem; }
+
+/* The word that says what the disclosure is. Muted and one weight lighter, so it
+ * reads as the control's name rather than as the book's title. */
+.nav-drawer__label {
+  margin-right: 0.5rem;
+  color: var(--tb-ink-soft);
+  font-weight: 400;
+}
 
 .nav-drawer__summary::marker { color: var(--tb-ink-lighter); }
 
@@ -253,6 +312,7 @@ a { color: var(--tb-link); }
   font-size: 0.85rem;
 }
 
+
 .search__results {
   position: absolute;
   right: 0;
@@ -270,14 +330,26 @@ a { color: var(--tb-link); }
   box-shadow: 0 6px 20px color-mix(in srgb, var(--tb-ink) 18%, transparent);
 }
 
+/* A result is a tap target: 44px tall, and still a block link so the whole row
+ * is the hit area. Measured before this rule: 33px. */
 .search__results li a {
-  display: block;
+  display: flex;
+  align-items: center;
+  min-height: 2.75rem;
   padding: 0.3rem 0.4rem;
-  font-size: 0.85rem;
+  font-size: 0.9rem;
   text-decoration: none;
 }
 
-.search__results:empty { display: none; }
+/* The list is hidden by the script, not by `:empty`, so that "No results" can be
+ * a message rather than a vanished panel. */
+.search__results[hidden] { display: none; }
+
+.search__results .search__empty {
+  padding: 0.4rem 0.45rem;
+  color: var(--tb-ink-soft);
+  font-size: 0.9rem;
+}
 
 /* narrow ------------------------------------------------------------------ */
 
@@ -310,7 +382,10 @@ a { color: var(--tb-link); }
   }
   .masthead__actions { order: 1; }
   .search { order: 2; flex: 1 1 100%; }
-  .search input { width: 100%; }
+  /* A focused input below 16px makes a phone zoom the whole page, which moves
+   * the field under the reader's thumb while they type. Measured before this
+   * rule: 13.6px at 390. */
+  .search input { width: 100%; font-size: 1rem; }
   /* The results panel is positioned against the search box, which is now the
    * full width of the page. */
   .search__results { left: 0; right: 0; min-width: 0; }
