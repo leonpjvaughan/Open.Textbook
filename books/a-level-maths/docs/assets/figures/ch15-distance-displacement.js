@@ -74,8 +74,11 @@ export function mount(el) {
 
     const startDot =
       `<circle class="fig-ink" cx="${toPx(0).toFixed(1)}" cy="${AXIS_Y}" r="5"></circle>`;
+    // Hollow ring at the turning point vs solid dot at the finish, so the two
+    // markers stay distinct in greyscale.
     const turnDot =
-      `<circle class="fig-warn" cx="${toPx(turn).toFixed(1)}" cy="${AXIS_Y}" r="5"></circle>`;
+      `<circle class="fig-warn" cx="${toPx(turn).toFixed(1)}" cy="${AXIS_Y}" r="6.5" ` +
+      `style="fill:none" stroke-width="2.5"></circle>`;
     const finishDot =
       `<circle class="fig-good" cx="${toPx(finish).toFixed(1)}" cy="${AXIS_Y}" r="5"></circle>`;
 

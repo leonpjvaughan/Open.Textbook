@@ -7,7 +7,7 @@
 // The scaffolding — the surface, its accessible name, the sliders, the live
 // readout, the redraw — comes from `kit.js`. What is left here is the drawing and
 // the sentence, which are the parts that differ from every other figure.
-import { panel, slider, react } from "./kit.js";
+import { SIZE, label, panel, slider, react } from "./kit.js";
 
 // Pixels per newton. The two forces can align, so the resultant reaches 24 N;
 // at 6 px per newton that is 144 px from the origin, which stays inside the
@@ -26,7 +26,7 @@ function yToPx(y) {
   return ORIGIN_Y - y * SCALE;
 }
 
-function arrow(x1, y1, x2, y2, cls) {
+function arrow(x1, y1, x2, y2, cls, width = 2) {
   const px1 = xToPx(x1);
   const py1 = yToPx(y1);
   const px2 = xToPx(x2);
@@ -42,11 +42,20 @@ function arrow(x1, y1, x2, y2, cls) {
   const rightY = by - size * Math.cos(angle) * spread * 2;
   return (
     `<line x1="${px1.toFixed(1)}" y1="${py1.toFixed(1)}" ` +
-    `x2="${px2.toFixed(1)}" y2="${py2.toFixed(1)}" class="${cls}" style="fill:none" stroke-width="2"></line>` +
+    `x2="${px2.toFixed(1)}" y2="${py2.toFixed(1)}" class="${cls}" style="fill:none" stroke-width="${width}"></line>` +
     `<polygon points="${px2.toFixed(1)},${py2.toFixed(1)} ` +
     `${leftX.toFixed(1)},${leftY.toFixed(1)} ${rightX.toFixed(1)},${rightY.toFixed(1)}" ` +
     `class="${cls}"></polygon>`
   );
+}
+
+function forceTag(x, y, text, cls) {
+  const px = xToPx(x);
+  const py = yToPx(y);
+  if (Math.hypot(px - ORIGIN_X, py - ORIGIN_Y) < 16) return "";
+  const cx = Math.max(20, Math.min(W - 20, (ORIGIN_X + px) / 2 + 8));
+  const cy = Math.max(22, Math.min(H - 12, (ORIGIN_Y + py) / 2 - 6));
+  return label({ x: cx, y: cy, text, anchor: "middle", size: SIZE.tick, class: cls });
 }
 
 export function mount(el) {
@@ -116,9 +125,12 @@ export function mount(el) {
 
     svg.innerHTML =
       axes() +
-      arrow(0, 0, ax, ay, "fig-accent") +
-      arrow(0, 0, bx, by, "fig-good") +
-      arrow(0, 0, rx, ry, "fig-warn");
+      arrow(0, 0, ax, ay, "fig-accent", 2) +
+      arrow(0, 0, bx, by, "fig-good", 2) +
+      arrow(0, 0, rx, ry, "fig-warn", 3.2) +
+      forceTag(ax, ay, "A", "text-accent") +
+      forceTag(bx, by, "B", "text-good") +
+      forceTag(rx, ry, "R", "text-warn");
 
     const verdict = balanced
       ? "The two forces balance, so the point stays at rest or keeps a constant velocity."

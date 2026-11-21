@@ -1107,3 +1107,37 @@ def test_the_phone_label_floor_survives_a_padding_change():
         f"(drawn {drawn:.1f}px, viewBox {viewbox}): the panel's padding or the "
         "drawing's width moved the floor, so raise SIZE or widen the figure."
     )
+
+
+# --- no colour-only element naming in figure readouts -------------------------
+#
+# Warn and good collapse under deuteranopia in glass light and neon light, and
+# every bundle paints `fig-accent` a different hue. Calling a drawn shape "the
+# orange line" or "the red line" is therefore wrong both for colour-vision
+# deficiency and across bundles. Name the role ("the straight line", "the upper
+# curve") instead.
+COLOUR_ELEMENT_REF = re.compile(
+    r"\bthe\s+(?:orange|green|red|blue)\s+(?:line|curve|arrow|dot|circle)\b",
+    re.IGNORECASE,
+)
+
+
+@pytest.mark.parametrize(("book", "path"), FIGURES, ids=IDS)
+def test_no_figure_names_a_drawn_element_by_colour(book, path):
+    code = code_only(path.read_text(encoding="utf-8"))
+    hits = COLOUR_ELEMENT_REF.findall(code)
+    assert not hits, (
+        f"{book.id}/{path.name} refers to a drawn element by colour ({hits!r}), which "
+        "fails under deuteranopia and disagrees across theme bundles; name its role instead."
+    )
+
+
+@pytest.mark.parametrize(("book", "path"), FIGURES, ids=IDS)
+def test_no_figure_paints_html_with_a_token_var(book, path):
+    """Colour in a figure belongs on an SVG shape via `fig-*`, not HTML `background: var(--tb-*)`."""
+    code = code_only(path.read_text(encoding="utf-8"))
+    hits = re.findall(r"background[^;\n\"'`]*var\(\s*--tb-[a-zA-Z0-9-]+", code, re.IGNORECASE)
+    assert not hits, (
+        f"{book.id}/{path.name} paints an HTML background with a --tb-* token ({hits!r}); "
+        "route colour through fig-* classes on SVG shapes so the paint audit measures it."
+    )

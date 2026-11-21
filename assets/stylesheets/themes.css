@@ -244,7 +244,7 @@ html[data-theme="phosphor"] body[data-md-color-scheme="slate"] {
   --tb-ink-lighter: var(--tb-book-ink-lighter, #7f765c);
   --tb-rule: var(--tb-book-rule, #26231a);
   --tb-link: #a8e05f;
-  --tb-code-bg: var(--tb-book-code-bg, #070604);
+  --tb-code-bg: var(--tb-book-code-bg, #010100);
   --tb-fig-warn: var(--tb-book-fig-warn, #ff7a45);
   --tb-fig-good: var(--tb-book-fig-good, #b6f05a);
   --tb-fig-grid: var(--tb-book-fig-grid, #6f6850);
@@ -279,7 +279,7 @@ html[data-theme="glass"] body[data-md-color-scheme="slate"] {
   --tb-ink-lighter: var(--tb-book-ink-lighter, #6f8f82);
   --tb-rule: var(--tb-book-rule, #1c2e28);
   --tb-link: #40e0d0;
-  --tb-code-bg: var(--tb-book-code-bg, #050d0a);
+  --tb-code-bg: var(--tb-book-code-bg, #030907);
   --tb-fig-warn: var(--tb-book-fig-warn, #ff8a6a);
   --tb-fig-good: var(--tb-book-fig-good, #b4ff6e);
   --tb-fig-grid: var(--tb-book-fig-grid, #5f8074);

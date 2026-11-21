@@ -396,8 +396,60 @@ const MEASURE = `
       }
     }
   }
+  // **The loop above cannot see an HTML box that paints colour.** The draws flag
+  // is true only for SVG shapes, so a div shading a bar with a background of
+  // var(--tb-fig-accent) was skipped entirely: three modules painted four bars
+  // that way and this audit called every measurement clean. The value is read from
+  // the element's own style attribute and CSSOM properties, **not** from
+  // getComputedStyle, because the computed style resolves the var()
+  // to a colour and the declaration — which is the defect — is then gone.
+  const breaches = [];
+  const TOKEN = /var\\(\\s*(--tb-[a-zA-Z0-9-]+)/;
+  const PROPS = ["background", "backgroundColor", "backgroundImage"];
+  const seen = new Set();
+  const addBreach = (tag, cls, prop, value, token, from, resolved) => {
+    const key = tag + "|" + prop + "|" + token;
+    if (seen.has(key)) return;
+    seen.add(key);
+    breaches.push({ tag, cls, prop, value: String(value).slice(0, 80), token, from, resolved });
+  };
+  for (const el of all) {
+    if (el === box) continue;
+    if (el.namespaceURI === "http://www.w3.org/2000/svg") continue;
+    if (!visible(el)) continue;
+    const s = getComputedStyle(el);
+    const resolved = (s.backgroundColor || "") + " " + (s.backgroundImage || "");
+    // The raw attribute first: it keeps the declaration exactly as written, even
+    // when the CSSOM refuses to expose a shorthand containing a var().
+    const raw = (el.getAttribute && el.getAttribute("style")) || "";
+    for (const decl of raw.split(";")) {
+      if (!/background/i.test(decl)) continue;
+      const token = decl.match(TOKEN);
+      if (!token) continue;
+      const prop = (decl.split(":")[0] || "background").trim();
+      addBreach(el.tagName.toLowerCase(), String(el.className || "").slice(0, 40), prop, decl.trim(), token[1], "style attribute", resolved.trim().slice(0, 60));
+    }
+    // Then the CSSOM properties, which is what a module that assigns
+    // style.background inside a redraw produces.
+    for (const prop of PROPS) {
+      const declared = el.style ? el.style[prop] : "";
+      if (!declared) continue;
+      const token = declared.match(TOKEN);
+      if (!token) continue;
+      addBreach(el.tagName.toLowerCase(), String(el.className || "").slice(0, 40), prop, declared, token[1], "style property", resolved.trim().slice(0, 60));
+    }
+  }
+  // A stylesheet may set the same thing outside the element's own style, but a
+  // figure module cannot add one: it paints through the DOM it is given. Reading
+  // stylesheet rules instead picked up the shell's own control chrome — every
+  // maths-figure button takes background: var(--tb-paper) from the shared
+  // sheet — and reported 112 breaches that were not the figure carrying colour.
+  // The kit's chrome is styled once, for every figure, and is not the defect this
+  // check exists to find.
+
   return {
     slug,
+    breaches,
     panel: panelInfo.c,
     panelFrom: String(panelInfo.from).slice(0, 40),
     paints: [...paints.values()].map((p) => ({
@@ -562,7 +614,7 @@ export async function run(argv) {
         console.log(`wrote ${path.relative(process.cwd(), table)}`);
     }
     // Summary.
-    let bad = 0, errs = 0, taken = 0;
+    let bad = 0, errs = 0, taken = 0, breaches = 0;
     for (const [slug, entry] of Object.entries(report)) {
         for (const [scheme, res] of Object.entries(entry.schemes)) {
             if (res.error) {
@@ -581,6 +633,21 @@ export async function run(argv) {
                     console.log(`   ${p.tag} .${p.cls} ${p.kind} ${p.ratio}:1 (needs ${p.need}) ${p.example}`);
                 }
             }
+            // A colour carried by an HTML box is a failure **before** contrast is asked:
+            // the figure broke the rule that its colour comes from a `fig-*` class on a
+            // painted SVG shape, so a reader's scheme is not the only thing that could be
+            // wrong and the ratio is not the question. Naming the element and the token
+            // is what makes the message actionable.
+            const found = res.breaches ?? [];
+            breaches += found.length;
+            if (found.length) {
+                bad += 1;
+                console.log(`\n${slug} [${scheme}]  colour on an HTML box, where only a fig-* class on an SVG shape is allowed`);
+                for (const b of found.slice(0, 6)) {
+                    console.log(`   ${b.tag}${b.cls ? " " + b.cls : ""}  ${b.prop}: ${b.value}` +
+                        `  -> ${b.token} from ${b.from}; resolved ${b.resolved || "(nothing)"}`);
+                }
+            }
         }
     }
     // A measurement that could not be taken is a failure, not a skip: the point of
@@ -592,7 +659,8 @@ export async function run(argv) {
     const missing = expected - taken - errs;
     console.log(`  measurements taken: ${taken} of ${expected}`);
     if (bad || errs || missing || expected === 0) {
-        console.error(`\nfigure audit failed: ${bad} contrast failure(s), ${errs} unmeasured figure(s), ` +
+        console.error(`\nfigure audit failed: ${bad} measurement(s) with a defect, ${breaches} HTML ` +
+            `background(s) carrying a var(--tb-*), ${errs} unmeasured figure(s), ` +
             `${missing} measurement(s) not attempted`);
         return 1;
     }

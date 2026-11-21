@@ -488,7 +488,10 @@ allowance for the preview job, and add an explicit allowance list for the **43 s
 cannot mount (`var/ux-audit/m/paint.json`), each with the reason, so the gate fails on a new miss
 rather than on the known ones. *Risk:* CI minutes. *Done means:* a branch with a deliberately
 broken `fig-*` rule fails `scripts/check.sh`; the allowance list has 43 entries and a comment; the
-run time is recorded in the PR.
+run time is recorded in the PR. *(Stage 4 correction: the 43 unmeasured entries in `paint.json`
+were all `"not on this page"` artefacts of running with `--jobs > 1`; at the default `--jobs 1`,
+`audit site` mounts and measures **536 of 536** with 0 errors, so the allowance list is empty —
+every figure must mount.)*
 
 **P14 — Dark `code_bg` is not a surface in glass or phosphor, and nothing measures it.** The
 auditor's computed distances (CIE76 from `paper`, dark scheme): clean 4.1, editorial 4.5, glass

@@ -219,6 +219,22 @@ async function open(file) {
   const page = await open(portal);
   await page.keyboard.press("Tab");
   out.tabs.portal = await page.evaluate(() => document.activeElement.textContent.trim());
+  out.portal390 = await page.evaluate(() =>
+    [...document.querySelectorAll(".cards")].map((grid) => ({
+      count: grid.querySelectorAll(".card").length,
+      widths: [...grid.querySelectorAll(".card")].map((c) => Math.round(c.getBoundingClientRect().width)),
+      rows: new Set([...grid.querySelectorAll(".card")].map((c) => Math.round(c.getBoundingClientRect().top))).size,
+    }))
+  );
+  await page.setViewportSize({ width: 1280, height: 900 });
+  out.portal1280 = await page.evaluate(() =>
+    [...document.querySelectorAll(".cards")].map((grid) => ({
+      gridWidth: Math.round(grid.getBoundingClientRect().width),
+      count: grid.querySelectorAll(".card").length,
+      widths: [...grid.querySelectorAll(".card")].map((c) => Math.round(c.getBoundingClientRect().width)),
+      rows: new Set([...grid.querySelectorAll(".card")].map((c) => Math.round(c.getBoundingClientRect().top))).size,
+    }))
+  );
   await page.close();
 }
 await browser.close();
@@ -255,3 +271,17 @@ def test_the_floors_hold_when_a_phone_renders_the_page(tmp_path):
         assert data["sizes"]["caption"] >= 12.0, data["sizes"]
     assert data["tabs"]["learn"].startswith("Skip to content"), data["tabs"]
     assert data["tabs"]["portal"].startswith("Skip to content"), data["tabs"]
+
+    # Item 215: a one-card group stays card-sized (<= 26rem = 416px) at 1280, a
+    # three-card group still fills its single row, and 390 stays one column.
+    one_card = [g for g in data["portal1280"] if g["count"] == 1]
+    three_card = [g for g in data["portal1280"] if g["count"] == 3]
+    assert one_card, "expected at least one single-card group on the portal"
+    assert three_card, "expected at least one three-card group on the portal"
+    for g in one_card:
+        assert g["widths"][0] <= 26 * REM + 1, f"lone portal card stretched past 26rem: {g}"
+    for g in three_card:
+        assert g["rows"] == 1, f"three-card portal group wrapped off its single row at 1280: {g}"
+        assert sum(g["widths"]) + 2 * 18 >= g["gridWidth"] - 2, f"three-card group did not fill its row: {g}"
+    for g in data["portal390"]:
+        assert g["rows"] == g["count"], f"portal did not stay single-column at 390: {g}"

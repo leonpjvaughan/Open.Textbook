@@ -170,9 +170,18 @@ body {
 
 .cards {
   display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+  /* `auto-fit` lets two- and three-card groups fill the 1000px row cleanly,
+   * while `:only-child` below caps a lone card at 26rem so it stays card-sized
+   * instead of stretching across the full measure. Using `repeat(auto-fill,
+   * minmax(280px, 26rem))` instead would drop three-card groups to two columns
+   * at 1280px (3 x 416px > 1000px). */
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
   gap: 18px;
   padding-bottom: 8px;
+}
+
+.cards > .card:only-child {
+  max-width: 26rem;
 }
 
 /* --- card ----------------------------------------------------------------- */

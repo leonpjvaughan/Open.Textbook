@@ -121,6 +121,13 @@ SOFT_MIN_CONTRAST = {"ink_soft": 4.5}
 # else the lighter ink touches benefits too.
 INK_LIGHTER_MIN_CONTRAST = {"ink_lighter": 3.0}
 
+# `code_bg` is a second surface for inline code and code blocks, carrying body
+# `ink`. It was never measured at all — neither for ink legibility on it nor for
+# whether it separates from `paper` — which let glass dark (CIE76 ΔE 1.93) and
+# phosphor dark (ΔE 1.57) make code blocks read as the page itself.
+CODE_BG_MIN_CONTRAST = {"ink": 7.0}
+CODE_BG_MIN_DELTA_E = 3.0
+
 #: The surface each set of thresholds is measured against, and the thresholds
 #: themselves: one row per rule, `(surface, thresholds, alias, wording, tail)`.
 #:
@@ -137,6 +144,7 @@ CONTRAST_RULES = (
     ("figure", FIGURE_MIN_CONTRAST, FIGURE_TOKEN_ALIAS, "on the figure panel", ""),
     ("card", SOFT_MIN_CONTRAST, {}, "on the card", ""),
     ("paper", INK_LIGHTER_MIN_CONTRAST, {}, "on paper", " for a non-text control"),
+    ("code_bg", CODE_BG_MIN_CONTRAST, {}, "on code_bg", ""),
 )
 
 # --- APCA, the polarity-sensitive second opinion ------------------------------
@@ -378,6 +386,32 @@ def contrast(foreground: str, background: str) -> float:
     return (lighter + 0.05) / (darker + 0.05)
 
 
+def _srgb_to_lab(value: str) -> tuple[float, float, float]:
+    """CIE L*a*b* (D65) for an sRGB hex colour."""
+    channels = []
+    for raw in _component(value):
+        channel = raw / 255
+        channels.append(channel / 12.92 if channel <= 0.04045 else ((channel + 0.055) / 1.055) ** 2.4)
+    red, green, blue = channels
+    x = (0.4124564 * red + 0.3575761 * green + 0.1804375 * blue) / 0.95047
+    y = 0.2126729 * red + 0.7151522 * green + 0.0721750 * blue
+    z = (0.0193339 * red + 0.1191920 * green + 0.9503041 * blue) / 1.08883
+    delta = 6 / 29
+    threshold = delta**3
+
+    def lab_f(t: float) -> float:
+        return t ** (1 / 3) if t > threshold else t / (3 * delta * delta) + 4 / 29
+
+    fx, fy, fz = lab_f(x), lab_f(y), lab_f(z)
+    return (116 * fy - 16, 500 * (fx - fy), 200 * (fy - fz))
+
+
+def cie76(first: str, second: str) -> float:
+    """Perceptual distance (CIE76 ΔE) between two sRGB hex colours."""
+    a, b = _srgb_to_lab(first), _srgb_to_lab(second)
+    return ((a[0] - b[0]) ** 2 + (a[1] - b[1]) ** 2 + (a[2] - b[2]) ** 2) ** 0.5
+
+
 def apca_luminance(value: str) -> float:
     """APCA's screen luminance Ys.
 
@@ -482,6 +516,7 @@ def contrast_problems(bundle: Bundle, scheme: str, subject: dict[str, str] | Non
         "accent": tokens["accent"],
         "figure": figure_panel(tokens),
         "card": card_surface(tokens, scheme),
+        "code_bg": tokens["code_bg"],
     }
     problems = []
     for surface, thresholds, alias, wording, tail in CONTRAST_RULES:

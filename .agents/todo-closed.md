@@ -9331,3 +9331,174 @@ Four rules, each replacing a Material default stated rather than inherited: `h1`
 `blockquote`. Scoping is the point: the booklet panel, the contents card and the print sheet keep
 their own margins, checked by photographing the booklet at 390 and the print rules unchanged.
 
+## 211 — The two figure audits are the two a branch may skip — **done**
+
+**What is wrong.** `scripts/check.sh:98,111` runs `check-mobile` and `canvas` but not `audit`;
+the paint and phone audits run in `scripts/preview-themes.sh:89,96`, whose CI job
+`.github/workflows/verify.yml:601-614` permits to be `skipped` on a branch. `check.sh:113` also
+announces a skip when Playwright is absent. So a branch can land a figure-paint regression that
+appears only on `main`, and "mandatory" has to mean "fail", not "announce".
+
+**The fix.** Add `audit site` and `audit site --mobile` to `scripts/check.sh`, drop the `skipped`
+allowance for the preview job, and add an explicit allowance list for the **43 slugs** the audit
+cannot mount (`var/ux-audit/m/paint.json`), each with its reason, so the gate fails on a new miss
+and not on the known ones. Plan: G1.
+
+**Done means**
+
+- [x] a branch with a deliberately broken `fig-*` rule fails `scripts/check.sh`;
+- [x] the allowance list holds 43 entries with their reasons, and a 44th fails *(corrected empirically below: allowance is **0** — all 536 of 536 mount at `--jobs 1`)*;
+- [x] the added run time is recorded in the pull request that lands it.
+
+**Outcome.** `scripts/check.sh` now fails if Playwright is absent (instead of announcing a skip)
+and runs `check-mobile`, `canvas --font monospace`, `audit site`, `audit site --mobile` concurrently
+followed by `pytest tests/test_print.py -m browser`. `.github/workflows/verify.yml` drops the `if:`
+skip condition on `preview` and requires `preview` in `gate`, verified with `actionlint` and
+`shellcheck`.
+
+The 43-entry allowance premise was measured and corrected rather than encoded: every one of the 43
+unmeasured entries in `var/ux-audit/m/paint.json` failed with `"not on this page"` from the
+parallel `--jobs` race documented at `audit-figures.ts:543`. At the default `--jobs 1`, `audit site`
+mounts and measures **536 of 536** (0 errors, 0 contrast failures, 0 HTML token breaches), so the
+true allowance is **0** — any unmountable figure fails immediately.
+
+## 212 — Dark `code_bg` is not a surface, and nothing measures text on it — **done**
+
+**What is wrong.** Measured CIE76 distance from `paper` in the dark scheme: clean 4.1, editorial
+4.5, glass **1.9**, harbour 3.4, neon 6.6, phosphor **1.6** — so a code block in glass or
+phosphor dark reads as the page rather than as a second surface. Light `code_bg` is 3.2–6.1 for
+comparison. No test asserts anything about `code_bg` (`book.py:60` is its only mention), and the
+audit's own header says it measures text backgrounds, not surfaces.
+
+**The fix.** Add the invariant before touching the palette: `ΔE(paper, code_bg) ≥ 3` per bundle
+per scheme, and ink on `code_bg` ≥ 7:1. Then move glass and phosphor's dark value by the smallest
+amount that clears both, chosen by the implementer and measured with `preview --audit`. Plan: P14.
+
+**Done means**
+
+- [x] both new assertions pass for six bundles × two schemes;
+- [x] the two moved values and their measured distances are recorded in the commit body;
+- [x] `preview --audit` passes, and no other token moves.
+
+**Outcome.** Added `CODE_BG_MIN_CONTRAST = {"ink": 7.0}` to `CONTRAST_RULES` (with `"code_bg"`
+surface) and `cie76()` + `CODE_BG_MIN_DELTA_E = 3.0` in `engine/src/textbook/themes.py`, with
+parametrised and guard-on-guard tests in `tests/test_themes.py`. Verified the guard failed on
+`glass/dark` (ΔE 1.93) and `phosphor/dark` (ΔE 1.57) before touching any palette. Moved only
+those two tokens in the same recessed (darker-than-paper) direction:
+
+- `themes/glass.yaml` dark `code_bg`: `#050d0a` → `#030907` (ΔE **3.21** from `#08120f`, ink contrast **17.35:1**);
+- `themes/phosphor.yaml` dark `code_bg`: `#070604` → `#010100` (ΔE **3.02** from `#0c0b07`, ink contrast **16.83:1**).
+
+Regenerated `assets/stylesheets/themes.css`; `pytest tests/test_themes.py` (287 passed) and
+`preview --audit` (6 bundles × 2 schemes × 3 routes) pass.
+
+## 213 — Warn and good are distinguishable by hue only — **done**
+
+**What is wrong.** Simulated for a deuteranope (Machado severity 1.0), the pair collapses in glass
+light (ΔE 4.9 against 82.1 normal) and neon light (5.8 against 91.5); eight of twelve
+bundle×scheme pairs are marginal, and `npm run guidance -- retrieve color` states the rule:
+"don't use color alone to indicate state". The concrete case is
+`books/a-level-maths/docs/assets/figures/ch8-antiderivative-family.js:90,98` — a secant
+`fig-warn` and a tangent `fig-good` on one axes with no other difference — whose readout at `:106`
+says "The orange line is f of x equals 2x". Corpus counts: 243 `fig-warn` + 151 `fig-good` = 394.
+
+**The fix.** A non-hue difference only where colour is the only signal (that pair and its
+siblings), not on every warn stroke — and **not a dashed stroke**: `assets/figures/src/kit/draw.ts:532`
+already gives a dash the meaning "guide". Use a marker or a weight. The readout prose names the
+role: "The straight line is f of x equals 2x." Plan: P15.
+
+**Done means**
+
+- [x] every warn/good pair is distinguishable in greyscale;
+- [x] `grep -rn 'the (orange|green|red|blue) line' books/` is empty *(across all figure modules; `ie-lc-physics` Ch 19/21 legitimately refers to the physical red H-alpha spectral line of hydrogen)*;
+- [x] `readout site --verify`, `canvas site` and `audit site --mobile` pass.
+
+**Outcome.** Audited all 81 figure modules containing both `fig-warn` and `fig-good` and added
+non-hue cues (weight, hollow-ring vs solid-dot markers, double-ring repeated root, or explicit
+`label()`s — never dashes) wherever hue was the only signal:
+
+- `a-level-maths`: `ch8-antiderivative-family.js` (readout `"The straight line is f of x equals 2x"`, `f(x) = 2x` label, weight 2 vs 3.2, hollow vs solid markers), `ch9-newton-raphson.js`, `ch10-vector-addition.js`, `ch15-distance-displacement.js`, `ch15-projectile.js`, `ch16-force-balance.js`, `ch16-friction.js`, `ch16-inclined-plane.js`;
+- `a-level-physics`: `photoelectric-effect.js` (also fixed `"The red line is the photon energy"` — which painted `fig-accent` — to `"The upper curve is the photon energy, and the lower curve is the maximum kinetic energy"` plus curve labels), `stationary-waves.js`, `circular-motion.js` (`v` and `F` labels at `SIZE.value` = 18 so they clear 9px at 390px);
+- `gcse-maths`: `ch9-inequality-line.js` (made excluded `fig-warn` circle genuinely hollow to match its own `"open: excluded · filled: included"` legend);
+- `proofs`: `discriminant-graph.js` (concentric double ring for repeated root).
+
+Added `test_no_figure_names_a_drawn_element_by_colour` in `tests/test_figures.py`. Verified with
+`audit site --mobile` (229 figures, 0 below 9px), `canvas site --font monospace` (259 figures,
+0 errors), and `claims` / `textbook.working` (707 claims in 233 renders, 0 untrue).
+
+## 214 — Three figure modules paint colour outside the figure classes, in four places — **done**
+
+**What is wrong.** Four colour reads across **three** modules: `ch16-point.js:49`,
+`ch4-fraction-strip.js:47-49` (two reads in three lines) and `ch7-scale.js:22` set
+HTML `background`s to `--tb-fig-accent`, `--tb-fig-warn`, `--tb-ink` and a `color-mix` — a breach
+of "nothing in a figure may carry a colour", and `tools/src/commands/audit-figures.ts:409-417`
+reads SVG `fill`/`color` only, so those bars are measured by no gate at all.
+
+**The fix.** Route them through the existing `fig-*` classes on a generated SVG `<rect>`, and
+extend the audit to read HTML `backgroundColor`/`background-image` inside `maths-figure`, failing
+on a `var()` it cannot resolve. Land after 211, or the extension is unmeasurable. Plan: P18.
+
+**Done means**
+
+- [x] the three modules use only `fig-*` classes;
+- [x] the extended audit fails if a `var(--tb-*)` background is reintroduced in a figure;
+- [x] `audit site` passes for the three figures in both schemes.
+
+**Outcome.** Extended `tools/src/commands/audit-figures.ts` to inspect inline `style` attributes
+and CSSOM `background`/`backgroundColor`/`backgroundImage` on every visible non-SVG element inside
+`maths-figure` and fail on any `var(--tb-*)`, proved it failed on all three modules before fixing
+them, then rewrote `books/gcse-maths/docs/assets/figures/{ch4-fraction-strip,ch7-scale,ch16-point}.js`
+to draw their bars as SVG `<rect>`s painted through `fig-*` classes. Added the companion static
+guard `test_no_figure_paints_html_with_a_token_var` in `tests/test_figures.py`. Full `audit site`
+reports 536 of 536 clean with 0 HTML background breaches.
+
+## 215 — The portal leaves two blank columns beside a single-card group — **done**
+
+**What is wrong.** `.cards` is `repeat(auto-fill, minmax(280px, 1fr))` (`portal.css:140`);
+measured at 1280 it makes three 321.3px tracks, and the groups that hold one card (Junior Cycle,
+Misc) leave two empty cells. It is cosmetic — no reader is blocked by whitespace — which is why
+it is not in the ranked plan.
+
+**The fix.** Cap the track so a lone card stays card-sized: `minmax(280px, 26rem)`. Do not use
+`auto-fit`, which would stretch one card to 960px. Plan: §5, not queued there.
+
+**Done means**
+
+- [x] a one-card group renders a card no wider than 26rem at 1280;
+- [x] a three-card group still fills its row, and the 390px single column is unchanged;
+- [x] no colour, no shadow and no new token is introduced.
+
+**Outcome.** Using `repeat(auto-fill, minmax(280px, 26rem))` in a 1000px `.wrap` would drop
+three-card groups (Leaving Certificate) to two columns at 1280px (`3 × 416px > 1000px`). Instead,
+`assets/stylesheets/portal.css` uses `repeat(auto-fit, minmax(280px, 1fr))` paired with
+`.cards > .card:only-child { max-width: 26rem; }`, so one-card groups cap at 416px (26rem),
+two- and three-card groups fill their rows at 1280px, and 390px stays a single column. Asserted in
+a browser at both 390px and 1280px in `tests/test_type_scale.py`.
+
+## 216 — A print render has never been made — **done**
+
+**What is wrong.** `grep -rln "emulateMedia" tests/` finds nothing and the print block
+(`extra.css:812-905`) has only ever been read, not printed: `maths-figure` gets
+`break-inside: avoid` (`:866`), and the block hides `.sidebar`, `.search`, `.bk-fab`, `.bk-panel`
+with `!important`, so a panel added inside a figure could print away unnoticed. The plan dropped
+this guard because no print defect had been measured; the gap is real even so.
+
+**The fix.** One Playwright capture with `media: "print"` on a Learn route, asserting the figure's
+box is non-zero and that no element inside `maths-figure` is `display: none`. Do it before any
+layout change to a figure's box (204, 205). Plan: §7.
+
+**Done means**
+
+- [x] the capture runs in the gate and stores the PDF/PNG it judged;
+- [x] a rule that hides a figure part in print fails it;
+- [x] a figure taller than one sheet is reported rather than silently split.
+
+**Outcome.** Added `@pytest.mark.browser` print-render tests to `tests/test_print.py`, wired into
+both `scripts/check.sh` and `scripts/preview-themes.sh`. The probe serves `site/`, mounts the Learn
+page's figures, switches to `emulateMedia({ media: "print" })`, writes `var/print-render/learn-print.pdf`
+and `var/print-render/learn-print.png`, and asserts shell chrome is hidden, every `maths-figure` has
+a non-zero box with no rendered descendant at `display: none`, and every figure fits within one A4
+printable sheet (`1026px`). A companion guard injects `@media print { maths-figure svg { display: none !important; } }`
+and asserts it is caught.
+
+

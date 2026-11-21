@@ -71,7 +71,7 @@ dark:
   accent_dark: "#cc8a00"
   accent_ink: "#0c0b07"
   link: "#a8e05f"
-  code_bg: "#070604"
+  code_bg: "#010100"
   fig_warn: "#ff7a45"
   fig_good: "#b6f05a"
   fig_grid: "#6f6850"

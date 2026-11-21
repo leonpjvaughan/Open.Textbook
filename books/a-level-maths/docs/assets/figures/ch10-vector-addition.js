@@ -7,7 +7,7 @@
 // The scaffolding — the surface, its accessible name, the five sliders, the live
 // readout and the redraw — comes from `kit.js`. What is left here is the drawing
 // and the sentence.
-import { panel, slider, react } from "./kit.js";
+import { SIZE, label, panel, slider, react } from "./kit.js";
 
 const SCALE = 20;
 const ORIGIN_X = 220;
@@ -23,7 +23,7 @@ function yToPx(y) {
   return ORIGIN_Y - y * SCALE;
 }
 
-function arrow(x1, y1, x2, y2, cls) {
+function arrow(x1, y1, x2, y2, cls, width = 2) {
   const px1 = xToPx(x1);
   const py1 = yToPx(y1);
   const px2 = xToPx(x2);
@@ -39,11 +39,21 @@ function arrow(x1, y1, x2, y2, cls) {
   const rightY = by - size * Math.cos(angle) * spread * 2;
   return (
     `<line x1="${px1.toFixed(1)}" y1="${py1.toFixed(1)}" ` +
-    `x2="${px2.toFixed(1)}" y2="${py2.toFixed(1)}" class="${cls}" style="fill:none" stroke-width="2"></line>` +
+    `x2="${px2.toFixed(1)}" y2="${py2.toFixed(1)}" class="${cls}" style="fill:none" stroke-width="${width}"></line>` +
     `<polygon points="${px2.toFixed(1)},${py2.toFixed(1)} ` +
     `${leftX.toFixed(1)},${leftY.toFixed(1)} ${rightX.toFixed(1)},${rightY.toFixed(1)}" ` +
     `class="${cls}"></polygon>`
   );
+}
+
+function tag(x1, y1, x2, y2, text, cls) {
+  const mx = (xToPx(x1) + xToPx(x2)) / 2;
+  const my = (yToPx(y1) + yToPx(y2)) / 2;
+  const len = Math.hypot(xToPx(x2) - xToPx(x1), yToPx(y2) - yToPx(y1));
+  if (len < 16) return "";
+  const cx = Math.max(26, Math.min(W - 26, mx + 8));
+  const cy = Math.max(22, Math.min(H - 12, my - 6));
+  return label({ x: cx, y: cy, text, anchor: "middle", size: SIZE.tick, class: cls });
 }
 
 export function mount(el) {
@@ -135,11 +145,14 @@ export function mount(el) {
     svg.innerHTML =
       grid() +
       axes +
-      arrow(0, 0, a1, a2, "fig-accent") +
-      arrow(a1, a2, sum1, sum2, "fig-good") +
+      arrow(0, 0, a1, a2, "fig-accent", 2) +
+      arrow(a1, a2, sum1, sum2, "fig-good", 2) +
       dashed +
-      arrow(0, 0, sum1, sum2, "fig-warn") +
-      arrow(0, 0, k * a1, k * a2, "fig-ink");
+      arrow(0, 0, sum1, sum2, "fig-warn", 3.2) +
+      arrow(0, 0, k * a1, k * a2, "fig-ink", 2) +
+      tag(0, 0, a1, a2, "a", "text-accent") +
+      tag(a1, a2, sum1, sum2, "b", "text-good") +
+      tag(0, 0, sum1, sum2, "a+b", "text-warn");
 
     readout.textContent =
       `a = (${a1}, ${a2}). b = (${b1}, ${b2}). ` +

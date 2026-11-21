@@ -475,23 +475,9 @@ jobs:
   preview:
     name: theme preview
     needs: [plan, build]
-    # **The one job a run may skip, and the reason is its cost.** It drives Chrome over
-    # 490 figure renders, 201 phone viewports and 1465 readouts against the site the
-    # build job wrote. It used to build the site again; the artefact removes four
-    # minutes of duplicate work.
-    #
-    # So it runs where it changes an outcome: on `main`, which tags and deploys, and on
-    # a manual dispatch. On `dev` and on a pull request it runs **only when asked** —
-    # apply the `browser` label, or set the `CI_BROWSER` variable to `always`. The same
-    # script is one command locally (`scripts/preview-themes.sh`), and the release path
-    # still runs it before anything is deployed, so a browser defect cannot reach a
-    # reader. A skip is **announced by the gate**, so "not run" is never read as
-    # "passed".
-    if: >
-      github.ref == 'refs/heads/main' ||
-      github.event_name == 'workflow_dispatch' ||
-      contains(github.event.pull_request.labels.*.name, 'browser') ||
-      vars.CI_BROWSER == 'always'
+    # Runs on every push and pull request: skipping the figure paint and phone
+    # audits on a branch let regressions pass until `main`. It downloads the
+    # `build` artefact rather than rebuilding the site.
     # Hosted runner. The self-hosted pool is idle; `deploy/runner/README.md` has the
     # switch back if the hosted minutes run out.
     runs-on: ubuntu-latest
@@ -600,21 +586,7 @@ jobs:
             done
           fi
           required workflows "$WORKFLOWS"
-
-          # The browser suite may be skipped on a branch; `main` always runs it before
-          # a release. Said out loud so a skip is not mistaken for a pass.
-          case "$PREVIEW" in
-            success) ;;
-            skipped)
-              echo "NOTE: theme preview skipped on this run."
-              echo "      Run scripts/preview-themes.sh before merging, or apply the"
-              echo "      'browser' label. main runs it before anything is released."
-              ;;
-            *)
-              echo "required job preview finished as '$PREVIEW'"
-              failed=1
-              ;;
-          esac
+          required preview "$PREVIEW"
 
           [ "$failed" = "0" ] || exit 1
           echo "all required jobs succeeded"

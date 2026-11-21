@@ -2,27 +2,24 @@
 // The reader predicts a matching numerator before using the controls.
 //
 // The scaffolding — the frame, the prompt, the slider, the live readout, the
-// redraw — comes from `kit.js`. The strip is an HTML container rather than an
-// SVG, so the kit supplies a frame with no drawing surface and the strip keeps
-// its own `role="img"` and name.
+// redraw — comes from `kit.js`. The strip is drawn as SVG rectangles in the
+// `fig-*` classes, because a colour carried by an HTML box would not adapt to
+// the reader's scheme the way a painted shape does.
 import { panel, slider, react } from "./kit.js";
 
 export function mount(el) {
-  const { root, readout } = panel(el, {
-    drawing: false,
-    prompt: "Fraction strip: compare two equivalent amounts.",
+  const WIDTH = 560;
+  const HEIGHT = 64;
+
+  const { svg, readout } = panel(el, {
+    drawing: true,
+    label:
+      "Strip divided into equal parts; shaded parts show two thirds",
+    width: WIDTH,
+    height: HEIGHT,
     max: 560,
   });
   readout.classList.add("text-ink");
-
-  const strip = document.createElement("div");
-  strip.className = "strip";
-  strip.setAttribute("role", "img");
-  strip.setAttribute(
-    "aria-label",
-    "Strip divided into equal parts; shaded parts show two thirds",
-  );
-  root.insertBefore(strip, readout);
 
   const parts = slider(el, {
     id: "parts",
@@ -38,21 +35,25 @@ export function mount(el) {
     const shaded = 2 * n / 3;
     const whole = Math.floor(shaded);
     const partial = shaded - whole;
+    const cell = WIDTH / n;
     const cells = [];
     for (let i = 0; i < n; i++) {
-      // A `fig-*` class only sets `fill`/`stroke`, which paint nothing on an HTML
-      // box, so each cell takes its background from the same token.
+      // Each cell is a painted shape: a counted cell is accent, the partial cell
+      // is warn at its fraction of the whole, and an empty cell is an outline.
       const counted = i < whole;
       const part = i === whole && partial > 0;
-      const background = counted ? "var(--tb-fig-accent)"
-        : part ? "var(--tb-fig-warn)"
-        : "color-mix(in srgb, var(--tb-ink) 12%, transparent)";
-      const opacity = part ? String(partial) : "1";
-      cells.push(`<span style="display:block;height:2rem;opacity:${opacity};border:1px solid currentColor;background:${background}"></span>`);
+      const cls = counted ? "fig-accent" : part ? "fig-warn" : "fig-grid";
+      const opacity = part ? ` opacity="${partial}"` : "";
+      cells.push(
+        `<rect class="${cls}" x="${(i * cell).toFixed(2)}" y="8" ` +
+          `width="${cell.toFixed(2)}" height="48"${opacity}></rect>`,
+      );
     }
-    strip.style.display = "grid";
-    strip.style.gridTemplateColumns = `repeat(${n}, minmax(0,1fr))`;
-    strip.innerHTML = cells.join("");
+    svg.innerHTML = cells.join("");
+    svg.setAttribute(
+      "aria-label",
+      `Strip of ${n} equal parts, with two thirds shaded`,
+    );
     readout.textContent = `${n} equal parts: two thirds corresponds to ${Number(shaded.toFixed(2))} parts.`;
   });
 }

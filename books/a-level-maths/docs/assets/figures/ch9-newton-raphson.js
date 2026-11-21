@@ -195,11 +195,17 @@ export function mount(el) {
         `<line class="fig-warn" x1="${px(x0).toFixed(1)}" y1="${py(y0).toFixed(1)}" ` +
         `x2="${px(xs[1]).toFixed(1)}" y2="${py(0).toFixed(1)}" stroke-width="1.8"></line>`;
     }
-    // The sequence of estimates on the axis.
+    // The sequence of estimates on the axis: hollow ring for the first estimate
+    // (warn) vs solid dots for later estimates (good), so they differ without hue.
     xs.slice(1).forEach((value, index) => {
       if (value < map.xMin || value > map.xMax) return;
-      const cls = index === 0 ? "fig-warn" : "fig-good";
-      marks += `<circle class="${cls}" cx="${px(value).toFixed(1)}" cy="${py(0).toFixed(1)}" r="4"></circle>`;
+      if (index === 0) {
+        marks +=
+          `<circle class="fig-warn" cx="${px(value).toFixed(1)}" cy="${py(0).toFixed(1)}" ` +
+          `r="5.5" style="fill:none" stroke-width="2.2"></circle>`;
+      } else {
+        marks += `<circle class="fig-good" cx="${px(value).toFixed(1)}" cy="${py(0).toFixed(1)}" r="4"></circle>`;
+      }
     });
 
     if (map.root !== null && map.root >= map.xMin && map.root <= map.xMax) {
