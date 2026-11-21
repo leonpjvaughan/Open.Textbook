@@ -229,3 +229,59 @@ def test_the_measuring_commands_derive_their_routes_from_the_build():
     )
     for name in ("pageRoutes", "bookRoot", "sampleRoutes", "figureAssets", "figurePage"):
         assert f"export function {name}" in routes, f"{name} is gone from lib/routes.ts"
+
+
+def test_the_offline_check_samples_a_page_that_mounts_a_figure(tmp_path):
+    """The build's first learn page can hold no figure, and then there is no loader to cache.
+
+    `main` failed its first release job on exactly that: `offline site` sampled
+    `/a-level-maths/chapter-1/section-1.1/learn/`, which mounts no figure, and reported
+    "the figure loader did not reach the runtime cache" on a collection where nothing was
+    wrong. The default is now the first learn page that mounts one.
+    """
+    import json
+    import shutil
+    import subprocess
+
+    node = shutil.which("node")
+    if node is None:
+        pytest.skip("node is not on PATH; the route discovery cannot run")
+    routes = repo_root() / "tools" / "dist" / "lib" / "routes.js"
+    assert routes.is_file(), "the tools are not built; run `npm run build`"
+
+    site = tmp_path / "site"
+    for book in ("a-level-maths", "gcse-maths/higher"):
+        figures = site / book / "assets/figures"
+        figures.mkdir(parents=True)
+        for name in ("figures.js", "kit.js"):
+            (figures / name).write_text("", encoding="utf-8")
+    bare = site / "a-level-maths/chapter-1/section-1.1/learn"
+    bare.mkdir(parents=True)
+    (bare / "index.html").write_text("<!doctype html><p>no figure here</p>", encoding="utf-8")
+    mounted = site / "gcse-maths/higher/chapter-1/section-1.1/learn"
+    mounted.mkdir(parents=True)
+    (mounted / "index.html").write_text(
+        '<!doctype html><script type="module" src="../../../assets/figures/figures.js">'
+        '<maths-figure data-figure="x"></maths-figure>',
+        encoding="utf-8",
+    )
+
+    script = (
+        f"import {{ firstRoute, firstFigureRoute }} from {json.dumps(str(routes))};\n"
+        f"console.log(firstRoute({json.dumps(str(site))}, 'learn'));\n"
+        f"console.log(firstFigureRoute({json.dumps(str(site))}));\n"
+    )
+    done = subprocess.run(
+        [node, "--input-type=module", "-e", script],
+        capture_output=True,
+        text=True,
+        check=False,
+        cwd=repo_root(),
+    )
+    assert done.returncode == 0, done.stderr
+    first_learn, first_figure = done.stdout.strip().splitlines()
+    assert first_learn == "/a-level-maths/chapter-1/section-1.1/learn/"
+    assert first_figure == "/gcse-maths/higher/chapter-1/section-1.1/learn/", (
+        "the offline check samples a page with no figure, so there is no loader to find "
+        "in the runtime cache"
+    )

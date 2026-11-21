@@ -26,14 +26,14 @@ import path from "node:path";
 import { launchBrowser, openContext, serveHttp } from "../lib/browser.js";
 import { parseArgs } from "../lib/flags.js";
 import { Report } from "../lib/report.js";
-import { firstRoute, routeFile } from "../lib/routes.js";
+import { firstFigureRoute, firstRoute, routeFile } from "../lib/routes.js";
 /** What this command accepts. `tools help offline` is generated from it. */
 export const SURFACE = {
     positional: [{ name: "siteDir", help: "the built site to read offline", required: false }],
     flags: {
         route: {
             kind: "string",
-            help: "the book page to read; it must exist in the build (default: the build's first learn page)",
+            help: "the book page to read; it must exist in the build (default: the first learn page that mounts a figure)",
             value: "<path>",
         },
         download: {
@@ -51,7 +51,9 @@ export async function run(argv) {
     const root = path.resolve(positional[0] ?? "site");
     if (!fs.existsSync(root))
         throw new Error(`no build at ${root}; build the site first`);
-    const route = String(values.route ?? firstRoute(root, "learn") ?? "/");
+    // A page that mounts a figure: this check is about the loader reaching the runtime
+    // cache, and a page with no loader has nothing to put there.
+    const route = String(values.route ?? firstFigureRoute(root) ?? firstRoute(root, "learn") ?? "/");
     if (!routeFile(root, route))
         throw new Error(`no page at ${route} in ${root}; nothing was read`);
     const report = new Report("offline");
