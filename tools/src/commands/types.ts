@@ -68,7 +68,11 @@ function runTsc(): string {
     const stdout = String((error as { stdout?: string }).stdout ?? "");
     const stderr = String((error as { stderr?: string }).stderr ?? "");
     if (!stdout.trim()) {
-      throw new Error(`tsc produced no output and exited non-zero:\n${stderr.trim()}`);
+      // `cause` carries the attempt: the stack keeps the exit status and the stderr the
+      // catch already has, instead of one sentence that says only that nothing came back.
+      throw new Error(`tsc produced no output and exited non-zero:\n${stderr.trim()}`, {
+        cause: error,
+      });
     }
     return stdout;
   }

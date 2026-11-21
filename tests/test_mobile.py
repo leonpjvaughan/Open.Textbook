@@ -6,10 +6,11 @@ a wide table and a wide display equation widened the *page* instead of scrolling
 inside their column, and the masthead — three controls beside a book title — ran
 off the right edge at 360px.
 
-`tools check-mobile` measures the real thing in a browser, five widths
-across three routes, and runs in the `preview` CI job. These are the fast,
-browser-free assertions that the rules it depends on are still there, so deleting
-one fails in the main gate too rather than only in the browser job.
+`tools check-mobile` measures the real thing in a browser, five widths across one
+page of each kind from every book in the build, and runs in the `preview` CI
+job. These are the fast, browser-free assertions that the rules it depends on are
+still there, so deleting one fails in the main gate too rather than only in the
+browser job.
 """
 
 from __future__ import annotations
@@ -177,3 +178,54 @@ def test_a_table_40px_too_wide_fails_the_check(tmp_path):
     )
     assert result.returncode != 0, result.stdout[-1500:]
     assert "wider than its container at 390px" in result.stdout, result.stdout[-1500:]
+
+
+# --- the routes come from the build, not from a book's name ---------------------
+#
+# `check-mobile` held one book's learn route and one practise route, and `kit` held
+# that book's root. A build of any other book measured a request the static server
+# answered with something else: 980px of fallback, or a module the browser could not
+# import. "Does this book work on a phone" had never been answerable for eleven of
+# the twelve books, and the command that would have said so was pointing at the
+# wrong one.
+
+
+def test_no_command_names_a_book_route_to_measure():
+    """A book's route in a command is a measurement that can only be about one book.
+
+    The routes come from the build (`tools/src/lib/routes.ts`), and a command that
+    names one has stopped measuring the book it was given. The renderer's layout
+    witnesses are the one exception, and they live in `lib/layouts.ts` rather than in
+    a command so that this test needs no exemption at all.
+    """
+    offenders = []
+    commands = repo_root() / "tools" / "src" / "commands"
+    for path in sorted(commands.glob("*.ts")):
+        for number, line in enumerate(path.read_text(encoding="utf-8").splitlines(), 1):
+            if '"/gcse-maths/' in line:
+                offenders.append(f"{path.name}:{number}: {line.strip()}")
+    assert not offenders, (
+        "a command names one book's page to measure, so every other book's build "
+        "measures the miss instead of the book:\n  " + "\n  ".join(offenders)
+    )
+
+
+def test_the_measuring_commands_derive_their_routes_from_the_build():
+    """The other half, also browser-free: the calls that read the build are there.
+
+    Deleting the discovery and going back to a constant would leave the test above
+    passing while the defect returned, so the wiring is asserted too.
+    """
+    commands = repo_root() / "tools" / "src" / "commands"
+    mobile = (commands / "check-mobile.ts").read_text(encoding="utf-8")
+    assert "sampleRoutes(" in mobile, "check-mobile no longer samples the build's pages"
+    assert "routeFile(" in mobile, "check-mobile does not check that --route exists"
+    assert 'help: "measure this page instead' in mobile, "--route is not in the surface"
+    kit = (commands / "kit.ts").read_text(encoding="utf-8")
+    assert "figurePage(" in kit, "kit no longer finds a page that mounts a figure"
+    assert "figureAssets(" in kit, "kit no longer derives the kit's path from the page"
+    routes = (repo_root() / "tools" / "src" / "lib" / "routes.ts").read_text(
+        encoding="utf-8"
+    )
+    for name in ("pageRoutes", "bookRoot", "sampleRoutes", "figureAssets", "figurePage"):
+        assert f"export function {name}" in routes, f"{name} is gone from lib/routes.ts"

@@ -15,6 +15,10 @@
  * Every judgement happens here, in Node, from what the page observed — one `compare`,
  * one set of messages, two runtimes.
  *
+ * The page and the kit are the build's answer, not a book's name: this used to default
+ * to a gcse-maths book root, so every other book's build failed on a module the server
+ * could not find. The first page that mounts a figure says where its own kit is.
+ *
  * Usage: tools kit [siteDir] [route] — the `SURFACE` table below, which is what
  * `tools help kit` prints.
  */
@@ -22,6 +26,7 @@ import fs from "node:fs";
 import path from "node:path";
 import { fileURLToPath } from "node:url";
 import { parseArgs } from "../lib/flags.js";
+import { figureAssets, figurePage } from "../lib/routes.js";
 import { ORIGIN, launchBrowser, openContext, serveStatic, } from "../lib/browser.js";
 import { conclude, judge, listLines, rowsFor, } from "../lib/kit-contract.js";
 /** What this command accepts. `tools help kit` is generated from this table. */
@@ -67,9 +72,19 @@ export async function run(argv) {
         return 0;
     }
     const siteDir = path.resolve(positional[0] ?? "site");
-    const route = positional[1] ?? "/gcse-maths/higher/";
-    const kitPath = `${route.replace(/\/$/, "")}/assets/figures/kit.js`;
+    const given = positional[1];
+    const derived = given === undefined ? figurePage(siteDir) : null;
+    if (!derived && given === undefined) {
+        throw new Error(`no page in ${siteDir} mounts a figure module; name one with [route]`);
+    }
+    const mounted = given === undefined ? derived : figureAssets(siteDir, given);
+    if (!mounted) {
+        throw new Error(`${String(given)} mounts no figures from ${siteDir}; pass a page that does, or a site that has one`);
+    }
+    const { route } = derived ?? { route: String(given) };
+    const kitPath = mounted.kit;
     const contractUrl = "/__kit-contract.js";
+    console.log(`kit: ${kitPath} through ${route}`);
     const browser = await launchBrowser();
     let result;
     try {

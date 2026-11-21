@@ -27,7 +27,7 @@ command accepts is in its `SURFACE` table and in `tools help <command>`.
 | `kit [siteDir] [route]` | The figure kit's **DOM** contract, checked through a real page: roles, live regions, focus stops, colour classes |
 | `canvas [siteDir]` | **Where the ink lands**: every element's `getBBox()` transformed into the SVG's own space and compared with its `viewBox`. A `<text>` must be inside; a mark may cross the edge but must have ink inside, because `wishbone-hero` draws its rays to an instant centre off the drawing. `--cases` runs the rules under plain `node` |
 | `kit-pure [kitPath]` | The kit's drawing and formatting layers, under plain `node`, so they are in the ordinary gate |
-| `check-mobile [siteDir]` | Fail when a phone-width page is wider than the screen, at five widths |
+| `check-mobile [siteDir] [--route path]` | Fail when a phone-width page is wider than the screen, at five widths, on one page of each kind from every book in the build |
 | `budget [siteDir] [route]` | Bytes over the wire on a first load, against a server that reproduces the Worker's cache headers |
 | `screenshot <siteDir> <outDir> -- name:route …` | Capture routes, one image per scheme, and fail if the captures do not differ |
 | `preview --root <dir> -- name:route …` | **Every bundle in both schemes**: the reader's preference reached the page, the tokens and the painted text clear their contrast floors, and the route layout is asserted before a browser starts. `--audit` walks every text element on the page |
@@ -64,6 +64,8 @@ tools/
 │   ├── lib/
 │   │   ├── browser.ts # Playwright, launch, the two servers, the context, the guard
 │   │   ├── flags.ts   # one argument surface per command: the parser and the help line
+│   │   ├── layouts.ts # the route layouts `preview` asserts, witness pages included
+│   │   ├── routes.ts  # the pages a built site has: books, samples, a page's figures
 │   │   └── report.ts  # findings, the summary line, the exit code
 │   └── commands/      # one file per command, each exporting its `SURFACE`
 └── dist/              # compiled, committed, drift-checked
@@ -95,6 +97,10 @@ tools/
 - **Playwright is resolved at runtime**, through `PLAYWRIGHT_PATH` then the bare
   specifier then a mise install, because it is not a dependency — `npm ci` would
   download three browsers for it. `lib/browser.ts` is the only place that resolves it.
+- **A page a command measures is the build's answer, not a book's name.** `lib/routes.ts`
+  reads the pages out of the directory the caller passed, and a route that is not there is
+  an error. A command holding a constant route measured that one book and reported a miss —
+  or a 980px fallback — for every other, which is indistinguishable from a pass.
 - **The two servers are different on purpose.** `serveStatic` intercepts, and everything
   uses it except the budget, which binds a port: `transferSize` is populated only for a
   request that crossed the network stack, so an intercepted response reports 0 and the

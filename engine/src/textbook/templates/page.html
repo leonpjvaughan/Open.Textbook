@@ -142,7 +142,7 @@ async function load() {
 
 input.addEventListener("input", async () => {
   const term = input.value.trim();
-  if (term.length < 2) { results.innerHTML = ""; return; }
+  if (term.length < 2) { results.replaceChildren(); return; }
   const mine = ++sequence;
   let search;
   try {

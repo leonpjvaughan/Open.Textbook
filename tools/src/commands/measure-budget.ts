@@ -11,8 +11,7 @@
 import path from "node:path";
 import { launchBrowser, openContext, serveHttp } from "../lib/browser.js";
 import { parseArgs, type Surface } from "../lib/flags.js";
-
-const DEFAULT_ROUTE = "/gcse-maths/higher/chapter-1/section-1.1/learn/";
+import { firstRoute } from "../lib/routes.js";
 
 /**
  * What the page reports about its own load, as `evaluate` below builds it.
@@ -42,7 +41,7 @@ interface Measured {
 export const SURFACE: Surface = {
   positional: [
     { name: "siteDir", help: "the built site to serve", required: false },
-    { name: "route", help: `the page to measure (default: ${DEFAULT_ROUTE})`, required: false },
+    { name: "route", help: "the page to measure (default: the build's first learn page)", required: false },
   ],
   flags: {
     compress: { kind: "boolean", help: "serve compressed, as the Worker does for compressible types" },
@@ -52,7 +51,7 @@ export const SURFACE: Surface = {
 export async function run(argv: string[]): Promise<number> {
   const { values, positional } = parseArgs(argv, SURFACE);
   const siteDir = path.resolve(positional[0] ?? "site");
-  const route = positional[1] ?? DEFAULT_ROUTE;
+  const route = positional[1] ?? firstRoute(siteDir, "learn") ?? "/";
   const compress = values.compress === true;
 
   const server = await serveHttp(siteDir, { compress });

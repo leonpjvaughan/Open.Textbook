@@ -297,6 +297,20 @@ def test_indexing_is_scoped_to_the_page_content(subset):
     assert 'class="masthead" data-pagefind-ignore' in html
 
 
+def test_the_search_list_is_cleared_without_parsing_html(subset):
+    """A term under two characters empties the list, and nothing is parsed to do it.
+
+    `results.innerHTML = ""` runs the HTML parser over an empty string and is refused
+    where Trusted Types is enforced; `replaceChildren()` empties the node directly.
+    The list is still built from strings below, which is the part that needs escaping.
+    """
+    html = (subset.out / "chapter-1/index.html").read_text()
+    assert "results.replaceChildren()" in html, (
+        "clearing the search results parses an empty string instead of emptying the node"
+    )
+    assert 'results.innerHTML = ""' not in html
+
+
 def test_the_inline_client_script_parses(subset):
     """Regression: a bad escape shipped '/^\\//', which is not valid JavaScript.
 

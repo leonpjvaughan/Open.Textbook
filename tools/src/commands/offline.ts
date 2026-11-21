@@ -26,6 +26,7 @@ import path from "node:path";
 import { launchBrowser, openContext, serveHttp } from "../lib/browser.js";
 import { parseArgs, type Surface } from "../lib/flags.js";
 import { Report } from "../lib/report.js";
+import { firstRoute, routeFile } from "../lib/routes.js";
 
 /** What this command accepts. `tools help offline` is generated from it. */
 export const SURFACE: Surface = {
@@ -33,8 +34,7 @@ export const SURFACE: Surface = {
   flags: {
     route: {
       kind: "string",
-      help: "the book page to read; it must exist in the build",
-      default: "/gcse-maths/higher/chapter-1/section-1.1/learn/",
+      help: "the book page to read; it must exist in the build (default: the build's first learn page)",
       value: "<path>",
     },
     download: {
@@ -54,8 +54,9 @@ type CacheContents = Record<string, string[]>;
 export async function run(argv: string[]): Promise<number> {
   const { positional, values } = parseArgs(argv, SURFACE);
   const root = path.resolve(positional[0] ?? "site");
-  const route = String(values.route ?? SURFACE.flags.route.default);
   if (!fs.existsSync(root)) throw new Error(`no build at ${root}; build the site first`);
+  const route = String(values.route ?? firstRoute(root, "learn") ?? "/");
+  if (!routeFile(root, route)) throw new Error(`no page at ${route} in ${root}; nothing was read`);
 
   const report = new Report("offline");
   const server = await serveHttp(root);
