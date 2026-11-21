@@ -300,6 +300,8 @@ because `preview --audit` is blind to pseudo-elements. Plan: P1; the hue questio
 **Done means**
 
 - [ ] a Learn page shows its common-error callout as a distinct block in both schemes;
+- [ ] the before/after pair is re-rendered at 1280 and 390 in both schemes (the frames described
+      in `ux-plan.md` §3) and the after reads as a block a reader can find while scanning;
 - [ ] the hook's test reports 757 + 2 classified and no other blockquote touched;
 - [ ] if the tint is taken, `preview --audit` passes for the six bundles in both schemes;
 - [ ] no figure changes, and `tests/test_figures.py` is untouched.
