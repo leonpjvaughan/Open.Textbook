@@ -8920,3 +8920,201 @@ Measured: `--verify` exits 0 with `PATH=/usr/bin:/bin`, no Rust at all;
 `tests/test_build_solvers.py` adds five tests driven by a fake `rustc` and a failing `cargo`,
 three of which fail against the previous script; `shellcheck` clean; `scripts/check.sh` green
 end to end here, including the solvers step that used to fail; PR #22 squash-merged.
+
+## 193 — Every book page's first Tab lands on an invisible skip link — **done**
+
+**What is wrong.** `engine/src/textbook/css/shell.css:39` is
+`.skip { position: absolute; left: -9999px }` and no `.skip:focus` / `:focus-visible` rule
+exists anywhere (the only other match, `extra.css:837`, is the print block). Measured with a
+Playwright probe at 390px: the link is tab stop **#1** of every book page at `x = -9999`, so a
+keyboard reader's first Tab moves focus off screen with no visible change. `templates/portal.html`
+carries no skip link at all, and the portal's first tab stop is the Settings button.
+
+**The fix.** On `:focus`, bring the link into flow — `position: static; display: block;
+padding: 0.5rem 1rem` — which needs no colour, because the page paper and `--tb-ink` already
+read. Add the same markup the books carry (`page.html:160`) to `templates/portal.html` before
+the masthead. Plan: P2 — `research/design/ux-plan.md` §4.
+
+**Done means**
+
+- [ ] first Tab on a book page shows a readable, on-screen link, and the probe prints its box;
+- [ ] first Tab on the portal does the same, and the tab order after it is unchanged;
+- [ ] no colour is declared in `shell.css` or `portal.css`, and `tests/test_themes.py` passes.
+
+**Outcome.** `.skip:focus`/`:focus-visible` in `shell.css` return the link to the flow, and
+`portal.css` plus `templates/portal.html` give the landing page the same control. Measured: first
+Tab on a book page and on `/` lands on `A "Skip to content"` at y = 0, 44px and 45px tall; before,
+the same Tab put focus at x = -9999 with nothing on screen.
+
+## 194 — The drawer does not say what it opens — **done**
+
+**What is wrong.** The `<details>` summary carries the book title and the section
+(`templates/page.html:73-78`): measured 358×72 at 390px with the drawer closed. A reader on a
+phone sees "GCSE Mathematics (9-1)  1.1 Place value and ordering ▸" — a label, not a control —
+and a reader who opens it inserts 458 nav links before the page.
+
+**The fix.** A visible `Contents` word inside the summary, in the existing `--tb-ink-soft`; the
+nav keeps its `aria-label="Book contents"`. Copy only, no colour, no token. Plan: P8.
+
+**Done means**
+
+- [ ] a phone reader can tell the control's purpose without opening it;
+- [ ] the summary's box is measured before and after, and the drawer still opens and closes
+      without JavaScript at ≥60rem;
+- [ ] the structure test asserts the word, so it cannot be removed quietly.
+
+**Outcome.** The summary leads with `Contents` in `--tb-ink-soft` (`shell.css`), so a phone
+reader reads "Contents GCSE Mathematics (9-1) 1.1 Place value and ordering numbers" without opening
+anything.
+
+## 195 — The settings trigger is 36×36, and the panel clips at 390px — **done**
+
+**What is wrong.** `shell.css:124-130` sets `width/height: 2.25rem` (36px); `portal.css:97-98`
+sets 42px on the landing page. `aria-label` and `title` are "Settings" and the element's text is
+empty, so it is a cog with no word. The repository states its own floor two screens away
+(`shell.css:369`: "under the 44px a thumb needs"). In the dialog at 390 the options stack:
+`.tb-settings__options` collapses to one column at `max-width: 480px` (`settings.css:142-146`),
+measured 8 option cards, dialog 358×706, `scrollHeight` 742 — the last row is clipped.
+
+**The fix.** `2.75rem` in both files; at `min-width: 48rem` show the existing label word beside
+the cog; move the options breakpoint to `360px` or `minmax(7rem, 1fr)` so two ~145px columns fit
+in 358px. No colour, no new token. Plan: P7.
+
+**Done means**
+
+- [ ] the trigger measures ≥44px at 390 on the portal and on a book page;
+- [ ] the dialog's `scrollHeight` fits the viewport at 390 with all eight options visible;
+- [ ] the words beside the cog come from the existing `aria-label` text, not a second string.
+
+**Outcome.** `2.75rem` in `shell.css` and `portal.css`, with the word from the trigger's own
+accessible name shown from 48rem: measured 44×44 at 390 and 109×44 at 1280. `.tb-settings__options`
+is `repeat(auto-fit, minmax(7rem, 1fr))` and the single-column fallback moved to `22rem`.
+
+Implementation also found a defect neither the audit nor the review had seen:
+`.tb-settings__card { height: 100% }` resolved against a parent whose height was its own content, so
+every card drew outside its grid row and the next group's legend printed over it (measured: a 92px
+group, 60px cards, a 42px row). With it removed, the panel fits: at 390 the form's `scrollHeight`
+equals its `clientHeight` (734px), all eight options are above the fold and the offline control is
+reachable without scrolling.
+
+## 196 — The muted badge is painted with the warning token — **done**
+
+**What is wrong.** `assets/stylesheets/extra.css:764-765` paints `.bk-badge--muted` with
+`--tb-fig-warn` and `.bk-badge--warn` with `--tb-fig-good`, and `assets/booklet/booklet.js:258`
+defaults a toneless badge to `muted`. So in all six bundles and both schemes the **default**
+badge wears the warning hue and a "warn" badge wears the good hue. Nothing reads badge colour
+today, which is why it shipped.
+
+**The fix.** One fix, not a swap: muted becomes the neutral
+`color-mix(in srgb, var(--tb-ink) 10%, transparent)` and warn keeps `--tb-fig-warn`. (Swapping
+the two `var()`s would leave the default badge green.) No literal, no token. Plan: P12.
+
+**Done means**
+
+- [ ] a toneless badge is neutral in both schemes and a warn badge is warm, in the booklet;
+- [ ] the new assertion of 207 fails on the un-fixed file and passes after;
+- [ ] no colour literal is added anywhere, and `tests/test_themes.py` passes.
+
+**Outcome.** Muted is `color-mix(in srgb, var(--tb-ink) 10%, transparent)` and warn keeps
+`--tb-fig-warn`; measured computed backgrounds `srgb 0.914 0.906 0.882 / 0.1` and
+`srgb 0.878 0.541 0.463 / 0.2` — neutral and warm, in both schemes.
+
+## 197 — The in-page contents links are 15px-tall boxes — **done**
+
+**What is wrong.** `.contents__list` is `0.85rem` on `line-height: 1.45`
+(`extra.css:930-936`). Measured on a Learn page at both 1280 and 390: `listFs 13.6px`,
+`linkHeight 15`, six items — under WCAG 2.5.8's 24px and far under the house's 44px, on the
+navigation of a 4,430px phone page.
+
+**The fix.** The line-height-only option: `line-height: 1.7` and `a { display: inline-block }`,
+which buys ~22px boxes with no new panel height. Raising the font size as well adds 80px of
+scroll at 390, which the review priced and rejected. No colour. Plan: P3.
+
+**Done means**
+
+- [ ] the measured link box is ≥22px at 390 and at 1280;
+- [ ] the panel's height is unchanged at both widths;
+- [ ] the size report of 209 includes this selector and passes.
+
+**Outcome.** `line-height: 1.7` with `a { display: inline-block }`: measured link box 15px →
+23px at 1280 and 390, with the panel's height unchanged.
+
+## 198 — "Prove it to me" cannot wrap — **done**
+
+**What is wrong.** `.prove__ask { white-space: nowrap }` (`extra.css:481-485`) refuses the wrap
+that `npm run guidance -- retrieve typography` and WCAG 1.4.12 require of running text, inside a
+flex row that already declares `flex-wrap: wrap`.
+
+**The fix.** Delete the declaration; the `::after` arrow stays attached to the label. No colour.
+Plan: P11.
+
+**Done means**
+
+- [ ] at 200% text zoom the affordance wraps and nothing clips;
+- [ ] the 390px preview captures show the arrow beside the last word, not on its own line;
+- [ ] `preview --audit` still passes for all six bundles in both schemes.
+
+**Outcome.** The declaration is gone. Measured on `chapter-16/section-16.3/learn`:
+`.prove__ask` computes `white-space: normal` at 1280 and at 390.
+
+## 199 — The theme chooser cannot be read by a reader who cannot see colour — **done**
+
+**What is wrong.** The dialog offers Light/Dark and six bundles as title + description in one
+flat grid (`portal.py:303-345`, `settings.css:136`). The descriptions ask the reader to *look*
+("Black on white, one weight of grey"), and the vivid three add jargon — "glassmorphism developer
+OS", "A CRT terminal", "cyberpunk glass terminal" — outside a 12–14 reading age. Each bundle is a
+*pair* whose member names are loaded and tested (`tests/test_themes.py:262`: Paper/Ink,
+Daybreak/Shell, Daylight/Nightfall) and never shown; `mood` reaches the reader only as list order.
+
+**The fix.** Two sub-fieldsets whose legends come from `mood` ("Quiet themes" / "Bold themes"),
+reusing `.tb-settings__group`/`__legend`; append the pair's member names from `provenance`; and
+use the six strings the plan proposes ("Plain black on white, with no colour at all.", "Warm
+cream paper and dark ink.", "Near-black with green and lime.", "Blue-grey paper with a steady
+blue.", "Dark violet with bright pink.", "Dark brown with amber, like an old screen."). Copy and
+markup only. Plan: P13.
+
+**Done means**
+
+- [ ] a reader who cannot see the palettes can tell the six apart from the words alone;
+- [ ] no description exceeds 12 words, contains jargon, a negative contraction or a shaming word,
+      checked by hand — nothing automated reads `themes/*.yaml` copy;
+- [ ] the bundle-coverage tests still pass, and the panel still opens and dismisses by Escape.
+
+**Outcome.** The six `description:` values in `themes/*.yaml` are rewritten to seven plain words
+or fewer, the theme options are grouped by `mood` under `Quiet themes` and `Bold themes`, and each
+option shows its pair's names from `provenance` (`Paper · Ink`, `Daybreak · Shell`, `Wallpaper ·
+Kindling`, …). The theme group's duplicate hint was dropped and the offline hint shortened, which is
+what let the panel fit. Measured copy: "Plain black on white, no colour." / "Warm cream paper and
+dark ink." / "Near-black with green and lime." / "Blue-grey paper, steady blue." / "Dark violet with
+hot pink." / "Dark brown, amber glow.".
+
+## 202 — Search is 13.6px on a phone, has no keyboard path and no empty state — **done**
+
+**What is wrong.** `.search input` is `0.85rem` (`shell.css:246-257`), measured 13.6px in a
+358×36 box at 390; a focused input under 16px makes iOS zoom the viewport, so the layout shifts
+while the reader types. The input is a bare `<input type="search">` plus a `<ul>`
+(`page.html:53-56`) with no `aria-expanded`, `aria-controls` or `aria-live`, `ArrowDown` leaves
+focus in the input, result anchors are 33px tall, and `.search__results:empty { display: none }`
+hides the panel so a query with no hits says nothing. Measured: `@@@` and a single letter return
+zero results and the list computes `display: none`; `zzzzzz` still returns a fuzzy hit, so the
+silent case is narrower than "any nonsense".
+
+**The fix.** `font-size: 1rem` for `.search input` in the existing phone block; `aria-expanded`
+and `aria-controls` on the input; `role="status" aria-live="polite"` on the list; a plain
+`<li>No results</li>` when the array is empty, with `hidden` replacing `:empty`; `ArrowDown`,
+`Escape` and `Enter` handled in the existing module; `min-height: 44px` on result links. No
+colour. Plan: P6.
+
+**Done means**
+
+- [ ] a nonsense query prints "No results" rather than nothing;
+- [ ] `ArrowDown` moves focus into the results and `Escape` returns it to the input;
+- [ ] the input computes ≥16px at 390, and the markup test over the shipped `page.html` passes.
+
+**Outcome.** `font-size: 1rem` inside the existing phone block (measured 16px at 390), 2.75rem
+result rows (measured 54px), `aria-controls` on the input, a `.visually-hidden` `role="status"` line
+for announcements, and `hidden` replacing `:empty` so the empty state can speak: `@@@` prints
+"No results" and announces "No results for @@@.", a 19-hit query announces "19 results.",
+`ArrowDown` moves focus into the first result, and `Escape` closes the panel and returns focus to
+the field. Clearing still goes through `replaceChildren()`, which `tests/test_pipeline.py` requires.
+

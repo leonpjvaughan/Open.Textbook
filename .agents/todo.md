@@ -18,9 +18,9 @@ are checked against each other on every pass.
 fix, its outcome and its ticked done-means in `.agents/todo-closed.md`. A new item goes at
 the number after the last one, with its diagnosis, its fix and its own done-means. Open:
 **187** and **188** from `research/review/maths-applied-and-numerical-methods-v.md`, **192**,
-filed while closing 186, 190 and 191, and **193–216**, the UX queue from
+filed while closing 186, 190 and 191, and **200–216** of the UX queue from
 `research/design/ux-plan.md` — the four auditor reports and the two reviews behind it are
-summarised there, not here.
+summarised there, not here. **193–199 and 202** are closed in stage 1 of that plan.
 
 The UX queue is ordered as `ux-plan.md` §4 ranks it. One dependency matters before starting:
 the size report (**209**) is the gate that **197**, **201**, **203** and **204** are verified
@@ -147,135 +147,6 @@ reported as such rather than fetching a path that cannot exist.
 - [ ] `node tools/dist/cli.js offline site` still reports 6 cache checks, 0 errors, and
       `scripts/preview-themes.sh` is green.
 
-## 193 — Every book page's first Tab lands on an invisible skip link
-
-**What is wrong.** `engine/src/textbook/css/shell.css:39` is
-`.skip { position: absolute; left: -9999px }` and no `.skip:focus` / `:focus-visible` rule
-exists anywhere (the only other match, `extra.css:837`, is the print block). Measured with a
-Playwright probe at 390px: the link is tab stop **#1** of every book page at `x = -9999`, so a
-keyboard reader's first Tab moves focus off screen with no visible change. `templates/portal.html`
-carries no skip link at all, and the portal's first tab stop is the Settings button.
-
-**The fix.** On `:focus`, bring the link into flow — `position: static; display: block;
-padding: 0.5rem 1rem` — which needs no colour, because the page paper and `--tb-ink` already
-read. Add the same markup the books carry (`page.html:160`) to `templates/portal.html` before
-the masthead. Plan: P2 — `research/design/ux-plan.md` §4.
-
-**Done means**
-
-- [ ] first Tab on a book page shows a readable, on-screen link, and the probe prints its box;
-- [ ] first Tab on the portal does the same, and the tab order after it is unchanged;
-- [ ] no colour is declared in `shell.css` or `portal.css`, and `tests/test_themes.py` passes.
-
-## 194 — The drawer does not say what it opens
-
-**What is wrong.** The `<details>` summary carries the book title and the section
-(`templates/page.html:73-78`): measured 358×72 at 390px with the drawer closed. A reader on a
-phone sees "GCSE Mathematics (9-1)  1.1 Place value and ordering ▸" — a label, not a control —
-and a reader who opens it inserts 458 nav links before the page.
-
-**The fix.** A visible `Contents` word inside the summary, in the existing `--tb-ink-soft`; the
-nav keeps its `aria-label="Book contents"`. Copy only, no colour, no token. Plan: P8.
-
-**Done means**
-
-- [ ] a phone reader can tell the control's purpose without opening it;
-- [ ] the summary's box is measured before and after, and the drawer still opens and closes
-      without JavaScript at ≥60rem;
-- [ ] the structure test asserts the word, so it cannot be removed quietly.
-
-## 195 — The settings trigger is 36×36, and the panel clips at 390px
-
-**What is wrong.** `shell.css:124-130` sets `width/height: 2.25rem` (36px); `portal.css:97-98`
-sets 42px on the landing page. `aria-label` and `title` are "Settings" and the element's text is
-empty, so it is a cog with no word. The repository states its own floor two screens away
-(`shell.css:369`: "under the 44px a thumb needs"). In the dialog at 390 the options stack:
-`.tb-settings__options` collapses to one column at `max-width: 480px` (`settings.css:142-146`),
-measured 8 option cards, dialog 358×706, `scrollHeight` 742 — the last row is clipped.
-
-**The fix.** `2.75rem` in both files; at `min-width: 48rem` show the existing label word beside
-the cog; move the options breakpoint to `360px` or `minmax(7rem, 1fr)` so two ~145px columns fit
-in 358px. No colour, no new token. Plan: P7.
-
-**Done means**
-
-- [ ] the trigger measures ≥44px at 390 on the portal and on a book page;
-- [ ] the dialog's `scrollHeight` fits the viewport at 390 with all eight options visible;
-- [ ] the words beside the cog come from the existing `aria-label` text, not a second string.
-
-## 196 — The muted badge is painted with the warning token
-
-**What is wrong.** `assets/stylesheets/extra.css:764-765` paints `.bk-badge--muted` with
-`--tb-fig-warn` and `.bk-badge--warn` with `--tb-fig-good`, and `assets/booklet/booklet.js:258`
-defaults a toneless badge to `muted`. So in all six bundles and both schemes the **default**
-badge wears the warning hue and a "warn" badge wears the good hue. Nothing reads badge colour
-today, which is why it shipped.
-
-**The fix.** One fix, not a swap: muted becomes the neutral
-`color-mix(in srgb, var(--tb-ink) 10%, transparent)` and warn keeps `--tb-fig-warn`. (Swapping
-the two `var()`s would leave the default badge green.) No literal, no token. Plan: P12.
-
-**Done means**
-
-- [ ] a toneless badge is neutral in both schemes and a warn badge is warm, in the booklet;
-- [ ] the new assertion of 207 fails on the un-fixed file and passes after;
-- [ ] no colour literal is added anywhere, and `tests/test_themes.py` passes.
-
-## 197 — The in-page contents links are 15px-tall boxes
-
-**What is wrong.** `.contents__list` is `0.85rem` on `line-height: 1.45`
-(`extra.css:930-936`). Measured on a Learn page at both 1280 and 390: `listFs 13.6px`,
-`linkHeight 15`, six items — under WCAG 2.5.8's 24px and far under the house's 44px, on the
-navigation of a 4,430px phone page.
-
-**The fix.** The line-height-only option: `line-height: 1.7` and `a { display: inline-block }`,
-which buys ~22px boxes with no new panel height. Raising the font size as well adds 80px of
-scroll at 390, which the review priced and rejected. No colour. Plan: P3.
-
-**Done means**
-
-- [ ] the measured link box is ≥22px at 390 and at 1280;
-- [ ] the panel's height is unchanged at both widths;
-- [ ] the size report of 209 includes this selector and passes.
-
-## 198 — "Prove it to me" cannot wrap
-
-**What is wrong.** `.prove__ask { white-space: nowrap }` (`extra.css:481-485`) refuses the wrap
-that `npm run guidance -- retrieve typography` and WCAG 1.4.12 require of running text, inside a
-flex row that already declares `flex-wrap: wrap`.
-
-**The fix.** Delete the declaration; the `::after` arrow stays attached to the label. No colour.
-Plan: P11.
-
-**Done means**
-
-- [ ] at 200% text zoom the affordance wraps and nothing clips;
-- [ ] the 390px preview captures show the arrow beside the last word, not on its own line;
-- [ ] `preview --audit` still passes for all six bundles in both schemes.
-
-## 199 — The theme chooser cannot be read by a reader who cannot see colour
-
-**What is wrong.** The dialog offers Light/Dark and six bundles as title + description in one
-flat grid (`portal.py:303-345`, `settings.css:136`). The descriptions ask the reader to *look*
-("Black on white, one weight of grey"), and the vivid three add jargon — "glassmorphism developer
-OS", "A CRT terminal", "cyberpunk glass terminal" — outside a 12–14 reading age. Each bundle is a
-*pair* whose member names are loaded and tested (`tests/test_themes.py:262`: Paper/Ink,
-Daybreak/Shell, Daylight/Nightfall) and never shown; `mood` reaches the reader only as list order.
-
-**The fix.** Two sub-fieldsets whose legends come from `mood` ("Quiet themes" / "Bold themes"),
-reusing `.tb-settings__group`/`__legend`; append the pair's member names from `provenance`; and
-use the six strings the plan proposes ("Plain black on white, with no colour at all.", "Warm
-cream paper and dark ink.", "Near-black with green and lime.", "Blue-grey paper with a steady
-blue.", "Dark violet with bright pink.", "Dark brown with amber, like an old screen."). Copy and
-markup only. Plan: P13.
-
-**Done means**
-
-- [ ] a reader who cannot see the palettes can tell the six apart from the words alone;
-- [ ] no description exceeds 12 words, contains jargon, a negative contraction or a shaming word,
-      checked by hand — nothing automated reads `themes/*.yaml` copy;
-- [ ] the bundle-coverage tests still pass, and the panel still opens and dismisses by Escape.
-
 ## 200 — The mandated common-error callout has no signature beyond a 40px indent
 
 **What is wrong.** Every common-error *Watch out* callout and every *Check* prompt is a plain
@@ -325,29 +196,6 @@ Plan: P5.
 - [ ] at 390 the value text is ≥16px, the label ≥13.6px, the row padding ≥4.5px;
 - [ ] the block's 140px height budget is re-measured at the new size, not assumed;
 - [ ] the size report of 209 covers `table--cards td` and passes both schemes.
-
-## 202 — Search is 13.6px on a phone, has no keyboard path and no empty state
-
-**What is wrong.** `.search input` is `0.85rem` (`shell.css:246-257`), measured 13.6px in a
-358×36 box at 390; a focused input under 16px makes iOS zoom the viewport, so the layout shifts
-while the reader types. The input is a bare `<input type="search">` plus a `<ul>`
-(`page.html:53-56`) with no `aria-expanded`, `aria-controls` or `aria-live`, `ArrowDown` leaves
-focus in the input, result anchors are 33px tall, and `.search__results:empty { display: none }`
-hides the panel so a query with no hits says nothing. Measured: `@@@` and a single letter return
-zero results and the list computes `display: none`; `zzzzzz` still returns a fuzzy hit, so the
-silent case is narrower than "any nonsense".
-
-**The fix.** `font-size: 1rem` for `.search input` in the existing phone block; `aria-expanded`
-and `aria-controls` on the input; `role="status" aria-live="polite"` on the list; a plain
-`<li>No results</li>` when the array is empty, with `hidden` replacing `:empty`; `ArrowDown`,
-`Escape` and `Enter` handled in the existing module; `min-height: 44px` on result links. No
-colour. Plan: P6.
-
-**Done means**
-
-- [ ] a nonsense query prints "No results" rather than nothing;
-- [ ] `ArrowDown` moves focus into the results and `Escape` returns it to the input;
-- [ ] the input computes ≥16px at 390, and the markup test over the shipped `page.html` passes.
 
 ## 203 — All twelve practice answers sit behind one disclosure
 
