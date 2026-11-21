@@ -134,6 +134,32 @@ headings in `summary`), `color` ("don't use color alone to indicate state", WCAG
 `styling-web-components` (a shadow boundary is what would block page rules — `maths-figure` has
 none), `navigation-drawer` and `light-dismiss-a-dialog`.
 
+### The frame that settled the callout shape
+
+`editorial-monocle`'s posture — "no shadows, no rounded cards, borders and whitespace do the
+work" — is the reference P1 was judged against, and the judgement was made by looking at a
+frame rather than by describing one. The frame is **the built page**, not a mock: a scratch
+Playwright script opened
+`/gcse-maths/higher/chapter-1/section-1.1/learn/` at 1280 and 390 in both schemes, injected the
+three rules in P1's stage 2 into the live document, and captured the common-error callout before
+and after. Files (scratch, deliberately uncommitted):
+`var/ux-frames/callout-{default,slate}-{1280,390}-{before,after}.png`.
+
+What the comparison showed, and what it changed:
+
+- **Before**, the callout is indistinguishable from a paragraph except for its indent: bold
+  `Watch out.` is the only signal, and the indent costs 40px of the 70ch measure.
+- **After**, a 1px `--tb-rule` border with a 3px left rule and `--tb-radius` makes it a block a
+  reader can find while scanning, at both widths and in both schemes, **with no hue** — so no
+  contrast ratio moves and no bundle is re-measured.
+- In the dark scheme the border is visible but quiet, which is what P1's optional stage 3 (the
+  `--tb-fig-warn` left rule on the error callout alone) exists to answer if a reader test still
+  wants the block to shout.
+
+To re-render: serve `site/` (`python3 -m http.server 8823` from `site/`), open the route with a
+browser, and add the block from P1 stage 2 to the document. Three rules are the whole
+comparison, which is why the frame needs no harness.
+
 ## 4. The plan
 
 Ordered so that what a reader feels lands before what a tool measures, and so that no palette is
