@@ -1011,7 +1011,7 @@ export function camera3d({
     });
     let draw = "";
     // The far faces first, so a filled solid reads as a solid rather than a cut-out.
-    for (const { face, front, points } of [...faceInfo].sort((a, b) => {
+    for (const { face, front, points } of faceInfo.toSorted((a, b) => {
       const mean = (f) => f.points.reduce((s, p) => s + p.depth, 0) / f.points.length;
       return mean(a) - mean(b);
     })) {

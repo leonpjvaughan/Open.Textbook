@@ -366,7 +366,7 @@ def settings_dialog(book: books.Book | None = None) -> str:
         )
 
     return (
-        '<dialog class="tb-settings" id="tb-settings-dialog"'
+        '<dialog class="tb-settings" id="tb-settings-dialog" closedby="any"'
         ' aria-labelledby="tb-settings-title" data-pagefind-ignore>\n'
         '  <form method="dialog" class="tb-settings__form">\n'
         '    <div class="tb-settings__head">\n'

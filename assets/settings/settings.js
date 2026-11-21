@@ -126,10 +126,34 @@
     if (input.name === "tb-theme") setTheme(input.value);
     else if (input.name === "tb-scheme") setScheme(input.value);
   });
-  // A click on the backdrop lands on the dialog element itself.
-  dialog.addEventListener("click", (event) => {
-    if (event.target === dialog) dialog.close();
-  });
+  // A click outside the panel closes it: `closedby="any"` on the element says so
+  // declaratively, and the browser does it without a listener. Safari does not support
+  // `closedby` yet, so the behaviour is kept where it is missing — tested against the
+  // pointer's position, not `event.target`: the dialog is also the target for its own
+  // padding and for the gaps between its children, so a target check closed the panel on
+  // a click that was inside it. The press has to be outside too, so a text selection that
+  // ends on the backdrop does not dismiss the panel.
+  if (!("closedBy" in HTMLDialogElement.prototype)) {
+    /**
+     * @param {PointerEvent} event
+     */
+    const outside = (event) => {
+      const rect = dialog.getBoundingClientRect();
+      return (
+        event.clientX < rect.left ||
+        event.clientX > rect.right ||
+        event.clientY < rect.top ||
+        event.clientY > rect.bottom
+      );
+    };
+    let pressedOutside = false;
+    dialog.addEventListener("pointerdown", (event) => {
+      pressedOutside = outside(event);
+    });
+    dialog.addEventListener("pointerup", (event) => {
+      if (pressedOutside && outside(event)) dialog.close();
+    });
+  }
 
   // Enhance, do not depend: the trigger is inert (hidden) until we are here.
   trigger.hidden = false;

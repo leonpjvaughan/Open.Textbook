@@ -659,7 +659,7 @@ function vennWrong(kit, circles, regions) {
             .map((circle) => circle.id)
             .sort()
             .join("");
-        const declared = (region.in || []).slice().sort().join("");
+        const declared = (region.in ?? []).toSorted().join("");
         if (inside !== declared)
             wrong.push(`${region.id} landed in ${inside || "nothing"}, not ${declared || "nothing"}`);
     }
@@ -732,7 +732,7 @@ const seedRows = [
         name: "a seeded shuffle keeps every item",
         tier: "both",
         covers: "seed",
-        call: (kit) => kit.seed(3).shuffle([1, 2, 3, 4, 5]).slice().sort(),
+        call: (kit) => kit.seed(3).shuffle([1, 2, 3, 4, 5]).toSorted(),
         expect: [1, 2, 3, 4, 5],
     },
     {
