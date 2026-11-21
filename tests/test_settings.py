@@ -174,6 +174,33 @@ def test_focus_is_managed_and_the_background_is_inert():
     assert "preventDefault" not in js
 
 
+def test_a_click_outside_the_panel_closes_it_and_a_click_inside_does_not():
+    """`closedby="any"` where the browser has it; the pointer's position where it does not.
+
+    The old listener compared `event.target` with the dialog. The dialog is also the
+    target for its own padding and for the gaps between its children, so a click inside
+    the panel but not on a control closed it — and a click on the backdrop during a text
+    selection closed it too. `closedby="any"` states the intent declaratively (Chrome
+    134, Firefox 141); Safari ignores it, so the same behaviour is kept and guarded.
+    """
+    assert 'closedby="any"' in portal.settings_dialog(), (
+        "the dialog does not declare light dismissal, so a click outside is either "
+        "re-implemented in script or does nothing"
+    )
+    js = SETTINGS_JS.read_text(encoding="utf-8")
+    assert '"closedBy" in HTMLDialogElement.prototype' in js, (
+        "the fallback listener is not guarded, so it duplicates what the browser does "
+        "and closes on a click inside the panel"
+    )
+    assert "event.target === dialog" not in js, (
+        "the fallback tests event.target, which is the dialog for its own padding"
+    )
+    assert "getBoundingClientRect" in js, "the fallback no longer tests the pointer's position"
+    assert "pointerdown" in js and "pointerup" in js, (
+        "the fallback closes on a press that began inside the dialog"
+    )
+
+
 def test_without_javascript_the_control_does_nothing():
     button = button_tag(portal.settings_trigger(), "tb-settings")
     assert "hidden" in button

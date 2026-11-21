@@ -1192,7 +1192,7 @@ export function camera3d({ width = 560, height = 300, yaw = -32, pitch = 22, zoo
 
     let draw = "";
     // The far faces first, so a filled solid reads as a solid rather than a cut-out.
-    for (const { face, front, points } of [...faceInfo].sort((a, b) => {
+    for (const { face, front, points } of faceInfo.toSorted((a, b) => {
       const mean = (f: FaceInfo) => f.points.reduce((s, p) => s + p.depth, 0) / f.points.length;
       return mean(a) - mean(b);
     })) {
