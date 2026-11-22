@@ -1,0 +1,218 @@
+# Mixed practice for the Chapter 5 Review.
+#
+# Fifteen questions, one record each, in the order they appear on the Review
+# page. Every fraction operation, conversion, ordering, percentage change and
+# interleaved calculation is proved by SymPy.
+#
+# Honest limit: Question 15 asks which operation goes first in prose. The
+# verifier proves the numerical result $19$, not the reader's prose explanation.
+chapter: 5
+symbols: {}
+
+problems:
+  - id: jc5-rev-simplify
+    section: Review
+    tier: O
+    refs: ['N.2']
+    statement: 'Write $\frac{18}{24}$ in its simplest form.'
+    answer_label: 'Write $\frac{18}{24}$ in its simplest form.'
+    check:
+      kind: all
+      checks:
+        - kind: evaluate
+          expression: 'gcd(18, 24)'
+          answer: '6'
+        - kind: evaluate
+          expression: '18/24'
+          answer: '3/4'
+    answer_text: '$\frac{3}{4}$. Divide numerator and denominator by their highest common factor, $6$.'
+
+  - id: jc5-rev-add
+    section: Review
+    tier: O
+    refs: ['N.2']
+    statement: 'Work out $\frac{2}{5}+\frac{1}{2}$.'
+    answer_label: 'Work out $\frac{2}{5}+\frac{1}{2}$.'
+    check:
+      kind: evaluate
+      expression: '2/5 + 1/2'
+      answer: '9/10'
+    answer_text: '$\frac{9}{10}$. Use the common denominator $10$: $\frac{4}{10} + \frac{5}{10} = \frac{9}{10}$.'
+
+  - id: jc5-rev-multiply
+    section: Review
+    tier: O
+    refs: ['N.2']
+    statement: 'Work out $\frac{3}{4}\times\frac{8}{9}$.'
+    answer_label: 'Work out $\frac{3}{4}\times\frac{8}{9}$.'
+    check:
+      kind: evaluate
+      expression: '(3/4) * (8/9)'
+      answer: '2/3'
+    answer_text: '$\frac{2}{3}$. Multiply numerators and denominators to get $\frac{24}{36}$, then divide both by $12$.'
+
+  - id: jc5-rev-divide
+    section: Review
+    tier: O
+    refs: ['N.2']
+    statement: 'Work out $5\div\frac{1}{2}$.'
+    answer_label: 'Work out $5\div\frac{1}{2}$.'
+    check:
+      kind: evaluate
+      expression: '5 / (1/2)'
+      answer: '10'
+    answer_text: '$10$. Dividing by $\frac{1}{2}$ is the same as multiplying by its reciprocal $2$: $5 \times 2 = 10$.'
+
+  - id: jc5-rev-subtract
+    section: Review
+    tier: O
+    refs: ['N.2']
+    statement: 'Work out $\frac{7}{8}-\frac{1}{2}$.'
+    answer_label: 'Work out $\frac{7}{8}-\frac{1}{2}$.'
+    check:
+      kind: evaluate
+      expression: '7/8 - 1/2'
+      answer: '3/8'
+    answer_text: '$\frac{3}{8}$. Write $\frac{1}{2}$ as $\frac{4}{8}$, then subtract: $\frac{7}{8} - \frac{4}{8} = \frac{3}{8}$.'
+
+  - id: jc5-rev-decimal-to-fraction
+    section: Review
+    tier: O
+    refs: ['N.2']
+    statement: 'Write $0.45$ as a fraction in its simplest form.'
+    answer_label: 'Write $0.45$ as a fraction in its simplest form.'
+    check:
+      kind: all
+      checks:
+        - kind: evaluate
+          expression: 'gcd(45, 100)'
+          answer: '5'
+        - kind: evaluate
+          expression: '9/20'
+          answer: '0.45'
+    answer_text: '$\frac{9}{20}$. Write $0.45 = \frac{45}{100}$ and divide top and bottom by $5$.'
+
+  - id: jc5-rev-fraction-to-percent
+    section: Review
+    tier: O
+    refs: ['N.2']
+    statement: 'Write $\frac{7}{8}$ as a percentage.'
+    answer_label: 'Write $\frac{7}{8}$ as a percentage.'
+    check:
+      kind: evaluate
+      expression: '(7/8) * 100'
+      answer: '87.5'
+    answer_text: '$87.5\%$. Convert $\frac{7}{8} = 0.875$, then multiply by $100$ to get $87.5\%$.'
+
+  - id: jc5-rev-percent-to-fraction
+    section: Review
+    tier: O
+    refs: ['N.2']
+    statement: 'Write $36\%$ as a fraction in its simplest form.'
+    answer_label: 'Write $36\%$ as a fraction in its simplest form.'
+    check:
+      kind: all
+      checks:
+        - kind: evaluate
+          expression: 'gcd(36, 100)'
+          answer: '4'
+        - kind: evaluate
+          expression: '36/100'
+          answer: '9/25'
+    answer_text: '$\frac{9}{25}$. Write $36\% = \frac{36}{100}$, then divide numerator and denominator by $4$.'
+
+  - id: jc5-rev-order-fdp
+    section: Review
+    tier: O
+    refs: ['N.2']
+    statement: 'Write $\frac{3}{5}$, $0.55$ and $58\%$ in order, smallest first.'
+    answer_label: 'Order $\frac{3}{5}$, $0.55$ and $58\%$, smallest first.'
+    check:
+      kind: all
+      checks:
+        - kind: compare
+          lhs: '0.55'
+          relation: '<'
+          rhs: '58/100'
+        - kind: compare
+          lhs: '58/100'
+          relation: '<'
+          rhs: '3/5'
+    answer_text: '$0.55$, $58\%$, $\frac{3}{5}$. As decimals they are $0.55$, $0.58$ and $0.60$.'
+
+  - id: jc5-rev-increase
+    section: Review
+    tier: O
+    refs: ['N.2']
+    statement: 'Increase 60 by $15\%$.'
+    answer_label: 'Increase 60 by $15\%$.'
+    check:
+      kind: evaluate
+      expression: '60 * (1 + 15/100)'
+      answer: '69'
+    answer_text: '$69$. Find $15\%$ of $60$, which is $9$, and add it: $60 + 9 = 69$. Alternatively, $60 \times 1.15 = 69$.'
+
+  - id: jc5-rev-decrease
+    section: Review
+    tier: O
+    refs: ['N.2']
+    statement: 'Decrease 150 by $30\%$.'
+    answer_label: 'Decrease 150 by $30\%$.'
+    check:
+      kind: evaluate
+      expression: '150 * (1 - 30/100)'
+      answer: '105'
+    answer_text: '$105$. Find $30\%$ of $150$, which is $45$, and subtract: $150 - 45 = 105$. Alternatively, $150 \times 0.7 = 105$.'
+
+  - id: jc5-rev-percent-decrease
+    section: Review
+    tier: O
+    refs: ['N.2']
+    statement: 'A price falls from €80 to €68. Work out the percentage decrease.'
+    answer_label: 'Work out the percentage decrease from €80 to €68.'
+    check:
+      kind: evaluate
+      expression: '(80 - 68) / 80 * 100'
+      answer: '15'
+    answer_text: '$15\%$. The drop is $80 - 68 = 12$ euro, so the percentage decrease is $\frac{12}{80} \times 100\% = 15\%$.'
+
+  - id: jc5-rev-recipe
+    section: Review
+    tier: O
+    refs: ['N.2']
+    statement: 'A recipe for 4 people uses $\frac{3}{4}$ of a cup of rice. How much rice is needed for 6 people?'
+    answer_label: 'How much rice is needed for 6 people?'
+    check:
+      kind: evaluate
+      expression: '(3/4) * (6/4)'
+      answer: '9/8'
+    answer_text: '$\frac{9}{8}$ cups, or $1\frac{1}{8}$ cups. One person needs $\frac{3}{4} \div 4 = \frac{3}{16}$ of a cup, so $6$ people need $6 \times \frac{3}{16} = \frac{18}{16} = \frac{9}{8}$ cups.'
+
+  - id: jc5-rev-interleave-hcf
+    section: Review
+    tier: O
+    refs: ['N.1', 'N.2']
+    statement: 'Find the highest common factor of 24 and 36, and use it to write $\frac{24}{36}$ in its simplest form.'
+    answer_label: 'Find the HCF of 24 and 36 and simplify $\frac{24}{36}$.'
+    check:
+      kind: all
+      checks:
+        - kind: evaluate
+          expression: 'gcd(24, 36)'
+          answer: '12'
+        - kind: evaluate
+          expression: '24/36'
+          answer: '2/3'
+    answer_text: 'HCF $= 12$, and $\frac{24}{36} = \frac{2}{3}$. Dividing both $24$ and $36$ by $12$ gives $\frac{2}{3}$.'
+
+  - id: jc5-rev-interleave-order
+    section: Review
+    tier: O
+    refs: ['N.1']
+    statement: 'Work out $4+3\times5$, and say which operation you did first.'
+    answer_label: 'Work out $4+3\times5$ and say which operation comes first.'
+    check:
+      kind: evaluate
+      expression: '4 + 3 * 5'
+      answer: '19'
+    answer_text: '$19$. Multiplication goes before addition: $3 \times 5 = 15$, then $4 + 15 = 19$.'

@@ -1,0 +1,262 @@
+# Mixed practice for the Chapter 2 Review.
+#
+# Seventeen questions, one record each, in the order they appear on the Review
+# page. Every power, index law, negative index, fractional index and interleaved
+# integer calculation is proved by SymPy.
+#
+# Honest limit: Question 15 asks which index law applies to each of three
+# expressions and why. SymPy proves the three values, and the `structured`
+# component proves only that the model answer names the three laws in order, not
+# that a reader's own explanation is sound. The bank declares `units` for that
+# `structured` check.
+chapter: 2
+oracles: [sympy, units]
+symbols:
+  a: {real: true, positive: true}
+  x: {real: true, positive: true}
+
+problems:
+  - id: jc2-rev-index-form
+    section: Review
+    tier: O
+    refs: ['N.1']
+    statement: 'Write $4\times4\times4\times4\times4$ in index form.'
+    answer_label: 'Write $4\times4\times4\times4\times4$ in index form.'
+    check:
+      kind: evaluate
+      expression: '4*4*4*4*4'
+      answer: '4**5'
+    answer_text: '$4^5$. The base $4$ is multiplied by itself $5$ times, so the index is $5$.'
+
+  - id: jc2-rev-power-value
+    section: Review
+    tier: O
+    refs: ['N.1']
+    statement: 'Work out $2^6$.'
+    answer_label: 'Work out $2^6$.'
+    check:
+      kind: evaluate
+      expression: '2**6'
+      answer: '64'
+    answer_text: '$64$. Multiply $2$ by itself six times: $2 \times 2 \times 2 \times 2 \times 2 \times 2 = 64$.'
+
+  - id: jc2-rev-multiply-powers
+    section: Review
+    tier: O
+    refs: ['N.1']
+    statement: 'Simplify $a^5\times a^3$.'
+    answer_label: 'Simplify $a^5\times a^3$.'
+    check:
+      kind: evaluate
+      expression: 'a**5 * a**3'
+      answer: 'a**8'
+    answer_text: '$a^8$. When multiplying powers with the same base, add the indices: $5 + 3 = 8$.'
+
+  - id: jc2-rev-divide-powers
+    section: Review
+    tier: O
+    refs: ['N.1']
+    statement: 'Simplify $\dfrac{6^8}{6^5}$.'
+    answer_label: 'Simplify $\dfrac{6^8}{6^5}$.'
+    check:
+      kind: all
+      checks:
+        - kind: evaluate
+          expression: '6**8 / 6**5'
+          answer: '6**3'
+        - kind: evaluate
+          expression: '6**3'
+          answer: '216'
+    answer_text: '$6^3$ (which equals $216$). When dividing powers with the same base, subtract the indices: $8 - 5 = 3$.'
+
+  - id: jc2-rev-power-of-power
+    section: Review
+    tier: O
+    refs: ['N.1']
+    statement: 'Simplify $(x^4)^3$.'
+    answer_label: 'Simplify $(x^4)^3$.'
+    check:
+      kind: evaluate
+      expression: '(x**4)**3'
+      answer: 'x**12'
+    answer_text: '$x^{12}$. When raising a power to another power, multiply the indices: $4 \times 3 = 12$.'
+
+  - id: jc2-rev-zero-index
+    section: Review
+    tier: O
+    refs: ['N.1']
+    statement: 'Work out $9^0$.'
+    answer_label: 'Work out $9^0$.'
+    check:
+      kind: evaluate
+      expression: '9**0'
+      answer: '1'
+    answer_text: '$1$. Any non-zero number raised to the power $0$ equals $1$.'
+
+  - id: jc2-rev-negative-index
+    section: Review
+    tier: O
+    refs: ['N.1']
+    statement: 'Write $2^{-4}$ as a fraction, and work out its value.'
+    answer_label: 'Write $2^{-4}$ as a fraction and find its value.'
+    check:
+      kind: all
+      checks:
+        - kind: evaluate
+          expression: '2**(-4)'
+          answer: '1/16'
+        - kind: evaluate
+          expression: '1/16'
+          answer: '0.0625'
+    answer_text: '$\frac{1}{2^4} = \frac{1}{16}$ (or $0.0625$). A negative index takes the reciprocal with the positive power, and $2^4 = 16$.'
+
+  - id: jc2-rev-ten-neg-two
+    section: Review
+    tier: O
+    refs: ['N.1']
+    statement: 'Work out $10^{-2}$.'
+    answer_label: 'Work out $10^{-2}$.'
+    check:
+      kind: all
+      checks:
+        - kind: evaluate
+          expression: '10**(-2)'
+          answer: '1/100'
+        - kind: evaluate
+          expression: '1/100'
+          answer: '0.01'
+    answer_text: '$\frac{1}{100} = 0.01$. A negative index gives $\frac{1}{10^2} = \frac{1}{100}$.'
+
+  - id: jc2-rev-half-power
+    section: Review
+    tier: O
+    refs: ['N.1']
+    statement: 'Work out $16^{\frac12}$.'
+    answer_label: 'Work out $16^{\frac12}$.'
+    check:
+      kind: evaluate
+      expression: '16**(1/2)'
+      answer: '4'
+    answer_text: '$4$. The index $\frac{1}{2}$ means the square root, and $\sqrt{16} = 4$.'
+
+  - id: jc2-rev-cube-root
+    section: Review
+    tier: O
+    refs: ['N.1']
+    statement: 'Work out $27^{\frac13}$.'
+    answer_label: 'Work out $27^{\frac13}$.'
+    check:
+      kind: evaluate
+      expression: '27**(1/3)'
+      answer: '3'
+    answer_text: '$3$. The index $\frac{1}{3}$ means the cube root, and $3^3 = 27$.'
+
+  - id: jc2-rev-two-thirds
+    section: Review
+    tier: O
+    refs: ['N.1']
+    statement: 'Work out $8^{\frac23}$.'
+    answer_label: 'Work out $8^{\frac23}$.'
+    check:
+      kind: evaluate
+      expression: '8**(2/3)'
+      answer: '4'
+    answer_text: '$4$. Take the cube root first, then square: $(8^{\frac{1}{3}})^2 = 2^2 = 4$.'
+
+  - id: jc2-rev-neg-half
+    section: Review
+    tier: O
+    refs: ['N.1']
+    statement: 'Work out $4^{-\frac12}$.'
+    answer_label: 'Work out $4^{-\frac12}$.'
+    check:
+      kind: evaluate
+      expression: '4**(-1/2)'
+      answer: '1/2'
+    answer_text: '$\frac{1}{2}$ (or $0.5$). The negative sign gives the reciprocal and the $\frac{1}{2}$ gives the square root: $\frac{1}{\sqrt{4}} = \frac{1}{2}$.'
+
+  - id: jc2-rev-photocopier-200
+    section: Review
+    tier: O
+    refs: ['N.1']
+    statement: 'The photocopier''s 200% button doubles the width and the height. What does it do to the area? Give your answer as a power of 2.'
+    answer_label: 'What does the 200% button do to the area, as a power of 2?'
+    check:
+      kind: all
+      checks:
+        - kind: evaluate
+          expression: '2 * 2'
+          answer: '2**2'
+        - kind: evaluate
+          expression: '2**2'
+          answer: '4'
+    answer_text: 'It multiplies the area by $2^2$ (that is, by $4$). Both width and height double, so area multiplies by $2 \times 2 = 2^2$.'
+
+  - id: jc2-rev-square-side
+    section: Review
+    tier: O
+    refs: ['N.1']
+    statement: 'A square has area 49 cm². Write the length of one side using an index.'
+    answer_label: 'Write the side length of a 49 cm² square using an index.'
+    check:
+      kind: evaluate
+      expression: '49**(1/2)'
+      answer: '7'
+    answer_text: '$49^{\frac{1}{2}}$ cm (which equals $7$ cm). The side length is the square root of the area, written with index $\frac{1}{2}$.'
+
+  - id: jc2-rev-choose-law
+    section: Review
+    tier: O
+    refs: ['N.1']
+    statement: 'Which idea do you need for each of these, and why: $3^4\times3^2$, $(3^4)^2$, and $3^{-2}$?'
+    answer_label: 'Which index law applies to $3^4\times3^2$, $(3^4)^2$ and $3^{-2}$, and why?'
+    check:
+      kind: all
+      checks:
+        - kind: evaluate
+          expression: '3**4 * 3**2'
+          answer: '3**6'
+        - kind: evaluate
+          expression: '(3**4)**2'
+          answer: '3**8'
+        - kind: evaluate
+          expression: '3**(-2)'
+          answer: '1/9'
+        - kind: structured
+          requires: [multiply-law, power-law, negative-law]
+          concepts: [add-indices, multiply-indices, reciprocal]
+          points:
+            - id: multiply-law
+              text: 'For 3^4 x 3^2, multiply powers with the same base by adding indices to get 3^6.'
+              concepts: [add-indices]
+            - id: power-law
+              text: 'For (3^4)^2, raise a power to a power by multiplying indices to get 3^8.'
+              concepts: [multiply-indices]
+            - id: negative-law
+              text: 'For 3^(-2), a negative index gives the reciprocal of the positive power, 1/9.'
+              concepts: [reciprocal]
+    answer_text: 'For $3^4\times3^2$, multiplying powers with the same base means adding indices, giving $3^6 = 729$. For $(3^4)^2$, raising a power to a power means multiplying indices, giving $3^8 = 6561$. For $3^{-2}$, a negative index means taking the reciprocal of the positive power, giving $\frac{1}{3^2} = \frac{1}{9}$.'
+
+  - id: jc2-rev-interleave-order
+    section: Review
+    tier: O
+    refs: ['N.1']
+    statement: 'Work out $-5+2\times(-3)$.'
+    answer_label: 'Work out $-5+2\times(-3)$.'
+    check:
+      kind: evaluate
+      expression: '-5 + 2 * (-3)'
+      answer: '-11'
+    answer_text: '$-11$. Multiply first: $2 \times (-3) = -6$. Then add: $-5 + (-6) = -11$.'
+
+  - id: jc2-rev-interleave-product
+    section: Review
+    tier: O
+    refs: ['N.1']
+    statement: 'Work out $(-4)\times(-6)$.'
+    answer_label: 'Work out $(-4)\times(-6)$.'
+    check:
+      kind: evaluate
+      expression: '(-4) * (-6)'
+      answer: '24'
+    answer_text: '$24$. Multiplying two negative numbers gives a positive result.'
