@@ -56,6 +56,16 @@ Read the root `AGENTS.md` first; this file owns the **Maths** and **Hooks** trap
 - Use `:::figure`, not raw `<maths-figure>`: only the directive injects the
   loader. Modules export `mount(el)`.
 
+**`:::method-index`** is `hooks/contents.py`'s other marker: the name index of a page
+whose entries are `h3`s (*Methods, A to Z*). It emits one `<details>` per initial
+letter, the summary the letter and its count, the first letter open, and each name a
+link to the `h3` the page already carries — so the closed index is a rail of twenty
+chips rather than a wall of names, and a reader on a phone opens a letter instead of
+scrolling the list. It is native markup with no script, generated from the page's own
+headings, so a method added to the page appears in the index with no second edit. The
+markup is styled by `.method-index__*` in `assets/stylesheets/extra.css`; the tests are
+`tests/test_reference_books.py`'s two `name_index` cases.
+
 ## Rules local to the engine
 
 - **One renderer.** `pipeline.py` is the site; no MkDocs, no plugin system.
