@@ -392,9 +392,10 @@ a { color: var(--tb-link); }
  * which put the search under the actions and measured 146px; two named rows say
  * what belongs with what and are shorter. The bar stays under 7rem (112px). */
 @media (max-width: 48rem) {
-  /* The phone measure is the viewport less this padding. At 1rem a 390px
-   * screen gave 39 characters on a full line, one below the 40-48 target; 0.75rem
-   * gives the line back the 12px it needs without touching the desk measure. */
+  /* The phone measure is the viewport less this padding. At 1rem a 390px screen
+   * carried a median of 39 characters on a full line in CI's Liberation Sans, one
+   * below the 40-48 target; 0.5rem gives the line back the 16px it needs (40-45 there,
+   * 46-47 on a wider font) without touching the desk measure. */
   .wrap { padding: 0 0.5rem; }
   :root { --tb-masthead-height: 6.6rem; }
   .masthead__inner {

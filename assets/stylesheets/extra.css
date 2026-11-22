@@ -78,7 +78,7 @@ html {
 /* On a phone the H1 is a size above the prose rather than twice it. At the 34px the
  * browser default gives, the longest section title (77 characters, before its page
  * kind) took four lines and pushed the first paragraph a screen down. */
-@media (max-width: 44rem) {
+@media (max-width: 48rem) {
   .md-typeset h1 {
     font-size: 1.3rem;
     line-height: 1.35;

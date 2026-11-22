@@ -142,7 +142,7 @@ export async function run(argv) {
                 if (open) {
                     await page.evaluate(() => {
                         const drawer = document.querySelector("details.nav-drawer");
-                        if (drawer)
+                        if (drawer instanceof HTMLDetailsElement)
                             drawer.open = true;
                     });
                 }

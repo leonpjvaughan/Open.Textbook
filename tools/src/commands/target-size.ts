@@ -155,7 +155,7 @@ export async function run(argv: string[]): Promise<number> {
         if (open) {
           await page.evaluate(() => {
             const drawer = document.querySelector("details.nav-drawer");
-            if (drawer) drawer.open = true;
+            if (drawer instanceof HTMLDetailsElement) drawer.open = true;
           });
         }
         const result = (await page.evaluate(MEASURE)) as { small: Small[]; counted: number };
