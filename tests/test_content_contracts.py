@@ -35,7 +35,7 @@ REVIEW_DEBT = {
     "ie-jc-maths": 14,
     "ie-lc-maths": 13,
     "ie-lc-applied-maths": 9,
-    "ie-lc-physics": 21,
+    "ie-lc-physics": 20,
 }
 
 #: Guided pages with a Hint and a Full working but no Next step.
@@ -56,7 +56,7 @@ GATE_DEBT = {"gcse-maths": 5}
 #: Learn pages whose pre-first-heading block contains a sentence over 32 words.
 FRONT_DEBT = {
     "a-level-maths": 105,
-    "a-level-physics": 30,
+    "a-level-physics": 0,
     "gcse-maths": 3,
     "gcse-physics": 35,
     "ie-jc-maths": 31,
