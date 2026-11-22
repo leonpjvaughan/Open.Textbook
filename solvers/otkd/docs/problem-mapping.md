@@ -319,17 +319,20 @@ floor is machine epsilon rather than a physical number. If the book wants a phys
 floor, the model has to be *inconsistent* by a small amount, which is a different model and
 a different claim.
 
-### `svd_diagnose(problem, q)`
+### `svd_diagnose(problem, q, *, rows=None, rtol=1e-10)`
 
-Computed at a solution, not at the design position. Returns:
+Computed at a solution, not at the design position. One relative tolerance `rtol`
+(default `1e-10`, matching `left_null` and `RANK_RTOL`) governs both the rank cutoff
+and which rows are named as dependent. Returns:
 
-- `singular_values`: all `m` of them, descending.
+- `singular_values`: all `min(m, n)` of them, descending.
 - `null_space`: a basis **over constraint rows** — the left null space, dimension
   `redundancy`. Each vector says which *rows* combine to zero, which is the thing a reader
   can check by hand.
-- `dependent_rows`: row **names** whose coefficient in some left-null vector exceeds
-  `1e-9` (a printed, relative threshold; the count is asserted, not the threshold).
-- `rank`, `redundancy`, `condition_number`.
+- `dependent_rows`: row **names** whose largest coefficient in the left-null basis exceeds
+  `rtol`.
+- `rank` (count of singular values strictly above `rtol * singular_values[0]`),
+  `redundancy`, `condition`.
 
 The book's §3 shows exactly this, so it is returned in the form a figure draws: names, not
 indices into an array the figure would then have to re-index.

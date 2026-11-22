@@ -147,7 +147,7 @@ and by the pose comparison at the bottom.
 
 ```python
 # svd.py — what a diagnosis has to return to be useful
-def diagnose(system, q, rows=None, rtol=1e-9):
+def diagnose(system, q, rows=None, rtol=1e-10):
     """Which equations are the same equation, and by how much."""
     jac = system.jacobian(q, rows)
     rank, null, sigma = left_null(jac, rtol)

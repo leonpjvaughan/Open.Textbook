@@ -20,10 +20,16 @@ class Diagnosis:
     condition: float
 
 
-def diagnose(system: System, q: np.ndarray, *, rows: list[int] | None = None, rtol: float = 1e-9) -> Diagnosis:
+def diagnose(system: System, q: np.ndarray, *, rows: list[int] | None = None, rtol: float = 1e-10) -> Diagnosis:
+    """Rank, left null space and participating row names at `q`.
+
+    `rtol` governs both decisions: singular values at or below `rtol * s[0]` are
+    treated as zero when computing `rank`, and rows whose largest left-null
+    coefficient exceeds `rtol` are named in `dependent_rows`.
+    """
     rows = system.constrained if rows is None else rows
     jac = system.jacobian(q, rows)
-    rank, null, s = left_null(jac, rtol=1e-10)
+    rank, null, s = left_null(jac, rtol=rtol)
     names = [system.problem.rows[i].name for i in rows]
     if null.shape[1]:
         weight = np.max(np.abs(null), axis=1)
