@@ -60,7 +60,7 @@
 .tb-settings__close {
   border: 0;
   padding: 0.3rem;
-  border-radius: 6px;
+  border-radius: var(--tb-radius);
   background: transparent;
   color: inherit;
   line-height: 0;
@@ -127,7 +127,7 @@
    * cards 60px over a 42px row). The row now sizes to the card. */
   padding: 0.5rem 0.65rem;
   border: 1px solid var(--md-default-fg-color--lightest, var(--tb-rule));
-  border-radius: 6px;
+  border-radius: var(--tb-radius);
   background: color-mix(in srgb, var(--md-default-bg-color, var(--tb-paper)) 94%, var(--md-default-fg-color, var(--tb-ink)) 6%);
   cursor: pointer;
 }
@@ -195,7 +195,7 @@
 .tb-settings__download {
   padding: 0.6rem 0.7rem;
   border: 1px solid var(--tb-rule);
-  border-radius: 6px;
+  border-radius: var(--tb-radius);
   background: transparent;
   color: inherit;
   font: inherit;
