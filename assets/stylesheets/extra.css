@@ -228,13 +228,15 @@ html {
  * and the panel keeps its own border and tint. The number is a word, not a colour,
  * so it reads the same in both schemes. */
 .md-typeset .tb-figure {
-  max-width: 46rem;
+  box-sizing: border-box;
+  max-width: min(46rem, 100%);
   margin: 1.4rem 0;
 }
 
 .md-typeset .tb-figure maths-figure {
+  box-sizing: border-box;
   width: 100%;
-  max-width: none;
+  max-width: 100%;
   margin: 0;
 }
 
