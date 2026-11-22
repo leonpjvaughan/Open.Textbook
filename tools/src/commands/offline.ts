@@ -26,7 +26,7 @@ import path from "node:path";
 import { launchBrowser, openContext, serveHttp } from "../lib/browser.js";
 import { parseArgs, type Surface } from "../lib/flags.js";
 import { Report } from "../lib/report.js";
-import { firstFigureRoute, firstRoute, routeFile } from "../lib/routes.js";
+import { figureAssets, firstFigureRoute, firstRoute, routeFile } from "../lib/routes.js";
 
 /** What this command accepts. `tools help offline` is generated from it. */
 export const SURFACE: Surface = {
@@ -59,6 +59,7 @@ export async function run(argv: string[]): Promise<number> {
   // cache, and a page with no loader has nothing to put there.
   const route = String(values.route ?? firstFigureRoute(root) ?? firstRoute(root, "learn") ?? "/");
   if (!routeFile(root, route)) throw new Error(`no page at ${route} in ${root}; nothing was read`);
+  const loader = figureAssets(root, route)?.loader ?? null;
 
   const report = new Report("offline");
   const server = await serveHttp(root);
@@ -86,14 +87,14 @@ export async function run(argv: string[]): Promise<number> {
 
     // What the page itself asks for: the addressed sheets it links, and the loader it
     // imports. Fetched from the page, so the worker — not the HTTP cache — answers.
-    const wanted: string[] = await page.evaluate(async (target: string) => {
+    const wanted: string[] = await page.evaluate(async (loaderUrl: string | null) => {
       const links = [...document.querySelectorAll('link[rel="stylesheet"]')].map(
         (link) => new URL((link as HTMLLinkElement).href).pathname,
       );
-      const loader = target + "assets/figures/figures.js";
-      for (const url of [...links, loader]) await fetch(url).catch(() => undefined);
+      const targets = loaderUrl ? [...links, loaderUrl] : links;
+      for (const url of targets) await fetch(url).catch(() => undefined);
       return links;
-    }, route.replace(/[^/]*$/, ""));
+    }, loader);
 
     const before = await cacheContents(page);
     const siteName = Object.keys(before).find((name) => name.endsWith("-site"));
@@ -107,11 +108,10 @@ export async function run(argv: string[]): Promise<number> {
     if (!addressedInSite.length) {
       report.error(route, "no content-addressed asset reached the site cache");
     }
-    const stableInRuntime = runtime.filter((url) => STABLE.test(url));
-    if (!stableInRuntime.length) {
+    if (!loader || !runtime.includes(loader)) {
       report.error(route, "the figure loader did not reach the runtime cache");
     }
-    if (site.some((url) => STABLE.test(url))) {
+    if (site.some((url) => STABLE.test(url)) || (loader && site.includes(loader))) {
       report.error(route, "a stable-named file is in the site cache, where a deploy cannot clear it");
     }
 

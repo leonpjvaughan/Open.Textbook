@@ -230,6 +230,11 @@ def test_the_measuring_commands_derive_their_routes_from_the_build():
     kit = (commands / "kit.ts").read_text(encoding="utf-8")
     assert "figurePage(" in kit, "kit no longer finds a page that mounts a figure"
     assert "figureAssets(" in kit, "kit no longer derives the kit's path from the page"
+    offline = (commands / "offline.ts").read_text(encoding="utf-8")
+    assert "figureAssets(" in offline, "offline no longer derives the loader's path from the page"
+    assert "assets/figures/figures.js" not in offline, (
+        "offline still builds a route-relative path for figures.js instead of reading the page"
+    )
     routes = (repo_root() / "tools" / "src" / "lib" / "routes.ts").read_text(
         encoding="utf-8"
     )
@@ -291,6 +296,61 @@ def test_the_offline_check_samples_a_page_that_mounts_a_figure(tmp_path):
         "the offline check samples a page with no figure, so there is no loader to find "
         "in the runtime cache"
     )
+
+
+def test_figure_assets_resolves_the_loader_the_page_names(tmp_path):
+    """`figureAssets` returns the exact loader URL the page names, and `null` when absent.
+
+    `offline` used to concatenate `assets/figures/figures.js` onto the route itself,
+    which 404ed on every real page. Resolving from the page handles unusual loader
+    locations and reports a page with no loader cleanly.
+    """
+    import json
+    import shutil
+    import subprocess
+
+    node = shutil.which("node")
+    if node is None:
+        pytest.skip("node is not on PATH; the route discovery cannot run")
+    routes = repo_root() / "tools" / "dist" / "lib" / "routes.js"
+    assert routes.is_file(), "the tools are not built; run `npm run build`"
+
+    site = tmp_path / "site"
+    custom = site / "unusual" / "loaders"
+    custom.mkdir(parents=True)
+    for name in ("figures.js", "kit.js"):
+        (custom / name).write_text("", encoding="utf-8")
+
+    mounted = site / "demo" / "chapter-1" / "section-1.1" / "learn"
+    mounted.mkdir(parents=True)
+    (mounted / "index.html").write_text(
+        '<!doctype html><script type="module" src="/unusual/loaders/figures.js"></script>',
+        encoding="utf-8",
+    )
+    bare = site / "demo" / "chapter-1" / "section-1.2" / "learn"
+    bare.mkdir(parents=True)
+    (bare / "index.html").write_text("<!doctype html><p>no loader</p>", encoding="utf-8")
+
+    script = (
+        f"import {{ figureAssets }} from {json.dumps(str(routes))};\n"
+        f"console.log(JSON.stringify(figureAssets({json.dumps(str(site))}, '/demo/chapter-1/section-1.1/learn/')));\n"
+        f"console.log(JSON.stringify(figureAssets({json.dumps(str(site))}, '/demo/chapter-1/section-1.2/learn/')));\n"
+    )
+    done = subprocess.run(
+        [node, "--input-type=module", "-e", script],
+        capture_output=True,
+        text=True,
+        check=False,
+        cwd=repo_root(),
+    )
+    assert done.returncode == 0, done.stderr
+    lines = done.stdout.strip().splitlines()
+    assert json.loads(lines[0]) == {
+        "dir": "/unusual/loaders",
+        "loader": "/unusual/loaders/figures.js",
+        "kit": "/unusual/loaders/kit.js",
+    }
+    assert json.loads(lines[1]) is None
 
 
 # --- the booklet button and the paragraph under it ------------------------------
