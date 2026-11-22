@@ -1,0 +1,240 @@
+# Mixed practice for the Chapter 4 Review.
+#
+# Fifteen questions, one record each, in the order they appear on the Review
+# page. Decimal-place rounding uses `rounded`, significant-figure rounding uses
+# `sigfigs` from the `units` oracle, estimates pair `evaluate` with `between` or
+# `compare`, and standard-form and interleaved questions use SymPy.
+#
+# Honest limit: Questions 4, 5, 9 and 11 ask for a reason or plausibility
+# judgement alongside the calculation. The verifier proves the inequalities,
+# bands and standard-form equivalences, not the prose reasoning.
+chapter: 4
+oracles: [sympy, units]
+symbols: {}
+
+problems:
+  - id: jc4-rev-round-2dp
+    section: Review
+    tier: O
+    refs: ['N.1']
+    statement: 'Round 4.276 to 2 decimal places.'
+    answer_label: 'Round 4.276 to 2 decimal places.'
+    check:
+      kind: rounded
+      value: '4.276'
+      rounded: '4.28'
+      to: '0.01'
+    answer_text: '$4.28$. The third decimal digit is $6$, which is $5$ or more, so round the $7$ up to $8$.'
+
+  - id: jc4-rev-sf-small
+    section: Review
+    tier: O
+    refs: ['N.1']
+    statement: 'Round 0.007349 to 2 significant figures.'
+    answer_label: 'Round 0.007349 to 2 significant figures.'
+    check:
+      kind: sigfigs
+      value: '0.007349'
+      figures: 2
+      answer: '0.0073'
+      convention: round-once
+    answer_text: '$0.0073$. The leading zeros are place holders and do not count. The first two significant figures are $7$ and $3$, and the next digit is $4$, so the $3$ stays.'
+
+  - id: jc4-rev-sf-large
+    section: Review
+    tier: O
+    refs: ['N.1']
+    statement: 'Round 27450 to 3 significant figures. Write the answer with enough zeros to hold its size.'
+    answer_label: 'Round 27450 to 3 significant figures.'
+    check:
+      kind: sigfigs
+      value: '27450'
+      figures: 3
+      answer: '27500'
+      convention: round-once
+    answer_text: '$27500$. The first three significant figures are $2$, $7$ and $4$. The next digit is $5$, so the $4$ rounds up to $5$, and two zeros hold the place value.'
+
+  - id: jc4-rev-estimate-product
+    section: Review
+    tier: O
+    refs: ['N.1']
+    statement: 'Estimate $5.8\times41.7$. Say whether your estimate is too big or too small, and why.'
+    answer_label: 'Estimate $5.8\times41.7$, and say whether it is too big or too small.'
+    check:
+      kind: all
+      checks:
+        - kind: evaluate
+          expression: '6 * 40'
+          answer: '240'
+        - kind: evaluate
+          expression: '5.8 * 41.7'
+          answer: '241.86'
+        - kind: compare
+          lhs: '240'
+          relation: '<'
+          rhs: '5.8 * 41.7'
+    answer_text: '$6 \times 40 = 240$. The estimate is slightly too small ($240 < 241.86$). Rounding $5.8$ up to $6$ increases it by about $3.4\%$, while rounding $41.7$ down to $40$ cuts it by about $4.1\%$, so the drop outweighs the rise.'
+
+  - id: jc4-rev-plausible
+    section: Review
+    tier: O
+    refs: ['N.1']
+    statement: 'A calculator shows $41.7\times5.8=241.86$. Is this plausible? Use an estimate.'
+    answer_label: 'Is $41.7\times5.8=241.86$ plausible?'
+    check:
+      kind: all
+      checks:
+        - kind: evaluate
+          expression: '40 * 6'
+          answer: '240'
+        - kind: between
+          low: '230'
+          value: '41.7 * 5.8'
+          high: '250'
+        - kind: evaluate
+          expression: '41.7 * 5.8'
+          answer: '241.86'
+    answer_text: 'Yes, it is plausible. Rounding each number to $1$ significant figure gives $40 \times 6 = 240$, and $241.86$ is close to $240$ (it is the exact answer).'
+
+  - id: jc4-rev-estimate-quotient
+    section: Review
+    tier: O
+    refs: ['N.1']
+    statement: 'Estimate $728\div19.4$.'
+    answer_label: 'Estimate $728\div19.4$.'
+    check:
+      kind: all
+      checks:
+        - kind: evaluate
+          expression: '700 / 20'
+          answer: '35'
+        - kind: between
+          low: '30'
+          value: '728 / 19.4'
+          high: '45'
+    answer_text: '$700 \div 20 = 35$. Round each number to $1$ significant figure. The exact value is about $37.5$, so $35$ is a close estimate.'
+
+  - id: jc4-rev-to-standard
+    section: Review
+    tier: O
+    refs: ['N.1']
+    statement: 'Write 5200000 in standard form.'
+    answer_label: 'Write 5200000 in standard form.'
+    check:
+      kind: evaluate
+      expression: '5.2 * 10**6'
+      answer: '5200000'
+    answer_text: '$5.2 \times 10^6$. Place the decimal point after the first non-zero digit ($5.2$), then count $6$ places to reach $5200000$.'
+
+  - id: jc4-rev-to-ordinary
+    section: Review
+    tier: O
+    refs: ['N.1']
+    statement: 'Write $3.4\times10^{-2}$ as an ordinary number.'
+    answer_label: 'Write $3.4\times10^{-2}$ as an ordinary number.'
+    check:
+      kind: evaluate
+      expression: '3.4 * 10**(-2)'
+      answer: '0.034'
+    answer_text: '$0.034$. Multiplying by $10^{-2}$ divides by $100$, moving the digits two places to the right.'
+
+  - id: jc4-rev-compare-standard
+    section: Review
+    tier: O
+    refs: ['N.1']
+    statement: 'Which is larger, $6.2\times10^{3}$ or $1.5\times10^{4}$? Give a reason.'
+    answer_label: 'Which is larger, $6.2\times10^{3}$ or $1.5\times10^{4}$?'
+    check:
+      kind: compare
+      lhs: '1.5 * 10**4'
+      relation: '>'
+      rhs: '6.2 * 10**3'
+    answer_text: '$1.5 \times 10^4$. Both numbers are in standard form, so compare the powers of $10$ first: $10^4$ is ten times larger than $10^3$ ($15000 > 6200$).'
+
+  - id: jc4-rev-multiply-standard
+    section: Review
+    tier: O
+    refs: ['N.1']
+    statement: 'Work out $(5\times10^{3})\times(4\times10^{2})$, and give your answer in standard form.'
+    answer_label: 'Work out $(5\times10^{3})\times(4\times10^{2})$ in standard form.'
+    check:
+      kind: evaluate
+      expression: '(5 * 10**3) * (4 * 10**2)'
+      answer: '2 * 10**6'
+    answer_text: '$2 \times 10^6$. Multiply the numbers and add the indices to get $20 \times 10^5$, then rewrite $20 = 2 \times 10^1$ to give $2 \times 10^6$.'
+
+  - id: jc4-rev-fix-standard
+    section: Review
+    tier: O
+    refs: ['N.1']
+    statement: 'A number is written as $0.6\times10^{4}$. Is it in standard form? Give a reason, and write it correctly.'
+    answer_label: 'Is $0.6\times10^{4}$ in standard form? Write it correctly.'
+    check:
+      kind: all
+      checks:
+        - kind: compare
+          lhs: '0.6'
+          relation: '<'
+          rhs: '1'
+        - kind: evaluate
+          expression: '0.6 * 10**4'
+          answer: '6 * 10**3'
+    answer_text: 'No, because the leading number must be at least $1$ and less than $10$, and $0.6 < 1$. Multiplying $0.6$ by $10$ and dividing $10^4$ by $10$ gives $6 \times 10^3$.'
+
+  - id: jc4-rev-interleave-hcf
+    section: Review
+    tier: O
+    refs: ['N.1']
+    statement: 'Find the highest common factor of 24 and 36.'
+    answer_label: 'Find the highest common factor of 24 and 36.'
+    check:
+      kind: evaluate
+      expression: 'gcd(24, 36)'
+      answer: '12'
+    answer_text: '$12$. Write $24 = 2^3 \times 3$ and $36 = 2^2 \times 3^2$; the shared prime factors give $2^2 \times 3 = 12$.'
+
+  - id: jc4-rev-interleave-primes
+    section: Review
+    tier: O
+    refs: ['N.1']
+    statement: 'Write 360 as a product of its prime factors.'
+    answer_label: 'Write 360 as a product of its prime factors.'
+    check:
+      kind: evaluate
+      expression: '2**3 * 3**2 * 5'
+      answer: '360'
+    answer_text: '$360 = 2^3 \times 3^2 \times 5$. Check: $8 \times 9 \times 5 = 360$.'
+
+  - id: jc4-rev-interleave-indices
+    section: Review
+    tier: O
+    refs: ['N.1']
+    statement: 'Work out $2^{3}\times2^{4}$.'
+    answer_label: 'Work out $2^{3}\times2^{4}$.'
+    check:
+      kind: all
+      checks:
+        - kind: evaluate
+          expression: '2**3 * 2**4'
+          answer: '2**7'
+        - kind: evaluate
+          expression: '2**7'
+          answer: '128'
+    answer_text: '$2^7 = 128$. Multiplying powers with the same base adds the indices: $3 + 4 = 7$.'
+
+  - id: jc4-rev-interleave-fraction
+    section: Review
+    tier: O
+    refs: ['N.1']
+    statement: 'Write 0.875 as a fraction in its simplest form.'
+    answer_label: 'Write 0.875 as a fraction in its simplest form.'
+    check:
+      kind: all
+      checks:
+        - kind: evaluate
+          expression: 'gcd(875, 1000)'
+          answer: '125'
+        - kind: evaluate
+          expression: '7/8'
+          answer: '0.875'
+    answer_text: '$\frac{7}{8}$. Write $0.875 = \frac{875}{1000}$ and divide top and bottom by $125$.'
