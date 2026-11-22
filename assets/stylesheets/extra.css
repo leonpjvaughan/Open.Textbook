@@ -975,8 +975,10 @@ maths-figure label {
 /* And a bar in the gutter, so the mark is a shape as well as a thicker rule. The bar
  * costs no layout: the margin is given back by the padding, so the content box keeps
  * its width and an item cannot wrap to a second line because it became the current
- * one. */
+ * one. The item's own bullet gives way to the bar — a marker is drawn outside the text,
+ * and a bar over one is two marks in the same 6px. */
 .md-typeset .contents__list li:has(a:is(:target-current, .contents__current)) {
+  list-style: none;
   margin-left: -0.35rem;
   padding-left: 0.35rem;
   box-shadow: inset 3px 0 0 var(--tb-ink);
