@@ -80,24 +80,9 @@ of making them.
 Work through these without notes. For each one, say **which method you will use
 and why** before you calculate. The questions mix every section of the chapter.
 
-1. A pattern has $7$ tiles in the first shape, $11$ in the second and $15$ in the
-   third. Write an expression for the number of tiles in the $n$th shape.
-2. A rule is $y = 6x - 4$. Work out $y$ at $x = 5$, and say which variable is
-   independent.
-3. A table gives the values $3, 8, 13, 18$ at $n = 1, 2, 3, 4$. Find the formula.
-4. State the gradient and the $y$-intercept of $C = 150 + 7n$, and say what each
-   means if $n$ is the number of items.
-5. Simplify $8x - 3 + 2x + 9$.
-6. Expand and simplify $5(2x - 3) - 2(x - 4)$.
-7. Solve $6x + 5 = 3x + 20$.
-8. Solve $y = 3x + 2$ and $y = 7x - 10$.
-9. Solve $x^2 - 9x + 20 = 0$.
-10. Solve $3x - 7 \leq 8$ and show the solution on a number line.
-11. Solve $|x - 4| < 3$.
-12. The business changes its fixed cost to €300 and its materials to €5 a candle,
-    keeping the price at €10. Find the new break-even point.
-13. A student solves $x^2 = 5x$ by dividing both sides by $x$ and getting $x = 5$.
-    Explain what went wrong.
+:::problems chapter-04-review
+
+:::answers chapter-04-review
 
 ## What you can now do
 

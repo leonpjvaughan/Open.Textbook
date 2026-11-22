@@ -48,17 +48,9 @@ Work through these without notes. For each one, say **which kind of sequence** i
 that it is neither — before you calculate. Two of them are geometric and two are
 arithmetic, and mixing them up is the whole point of the exercise.
 
-1. Find the twentieth term of $4, 9, 14, \dots$
-2. Find the tenth term of $3, 6, 12, \dots$
-3. Find $7 + 11 + 15 + \dots + 83$.
-4. Find the sum of the first six terms of $2, 6, 18, \dots$
-5. Find the sum to infinity of $20 + 10 + 5 + \dots$
-6. A sequence is $2, 6, 12, 20, \dots$ Is it arithmetic, geometric, or neither? Explain.
-7. A geometric series has $a = 4$ and sum to infinity $16$. Find $r$.
-8. $T_1 = 5$ and $T_{n+1} = 3T_n - 4$. Find $T_4$ and the fixed point.
-9. Prove by induction that $1 + 3 + \dots + (2n-1) = n^2$.
-10. A saving plan puts away €100 in month 1 and increases the amount by 5% each month.
-    Write it as a recurrence, and say whether it has a sum to infinity.
+:::problems chapter-09-review
+
+:::answers chapter-09-review
 
 ## What you can now do
 

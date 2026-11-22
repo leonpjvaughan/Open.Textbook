@@ -1,0 +1,228 @@
+# Mixed practice for the Chapter 2 Review.
+#
+# Eleven questions, one record each, in the order they appear on the Review page.
+# The percentages, tax and interest are proved with `evaluate` over exact
+# rationals, so a wrong multiplier fails; the reverse-percentage question is solved
+# as an equation. Question 11 asks for an explanation rather than a number, so it
+# carries a `structured` component.
+#
+# Honest limit: this proves the arithmetic and the presence of the declared steps
+# in a model answer. It does not prove that the right rate, band or credit was
+# chosen for a real payslip — that is a reading of the tax rules, and a human
+# checks it.
+#
+# Two records practise earlier chapters, as the page says: the scientific notation
+# is Chapter 1.7 and the surd is Chapter 1.2.
+chapter: 2
+symbols:
+  x: {real: true}
+problems:
+  - id: r1-percentage-of
+    section: '2.1'
+    tier: F
+    refs: ['3.3']
+    statement: 'Work out $18\%$ of €250.'
+    answer_label: 'The percentage of the amount'
+    check: {kind: evaluate, expression: '18/100 * 250', answer: '45'}
+    answer_text: |-
+      A percentage is a fraction out of $100$, so $18\% = \dfrac{18}{100} = 0.18$:
+
+      $$0.18 \times 250 = 45$$
+
+      The answer is €45. The same result comes from finding $10\%$ and $8\%$
+      separately: $25 + 20 = 45$.
+
+  - id: r2-percentage-decrease
+    section: '2.1'
+    tier: F
+    refs: ['3.3']
+    statement: 'A price falls from €80 to €68. Work out the percentage decrease.'
+    answer_label: 'The percentage decrease'
+    check: {kind: evaluate, expression: '(80 - 68) / 80 * 100', answer: '15'}
+    answer_text: |-
+      The decrease is $80 - 68 = 12$ euro. A percentage change is always measured
+      against the starting value:
+
+      $$\frac{12}{80} \times 100\% = 15\%$$
+
+      Dividing by $68$ instead would give $17.6\%$, which is the wrong base. The price
+      fell by $15\%$.
+
+  - id: r3-reverse-percentage
+    section: '2.1'
+    tier: F
+    refs: ['3.3']
+    statement: 'A price after a $20\%$ increase is €96. Work out the price before the increase.'
+    answer_label: 'The original price'
+    check:
+      kind: solve
+      equation: '1.2*x = 96'
+      variable: x
+      answer: ['80']
+    answer_text: |-
+      The new price is the old price multiplied by $1.20$, so undo the increase by
+      dividing:
+
+      $$96 \div 1.20 = 80$$
+
+      The price before the increase was €80. Taking $20\%$ off €96 would give €76.80,
+      which is wrong: the $20\%$ was added to the smaller figure, so it must be taken
+      off the larger one by division, not subtraction.
+
+  - id: r4-mark-up-and-margin
+    section: '2.2'
+    tier: F
+    refs: ['3.3']
+    statement: 'An item costs €30 and sells for €42. Work out the mark-up and the margin.'
+    answer_label: 'The mark-up and the margin'
+    check:
+      kind: all
+      checks:
+        - {kind: evaluate, expression: '(42 - 30) / 30 * 100', answer: '40'}
+        - {kind: evaluate, expression: '(42 - 30) / 42 * 100', answer: '200/7'}
+    answer_text: |-
+      The profit is $42 - 30 = 12$ euro. The mark-up is measured against the cost and
+      the margin against the selling price:
+
+      $$\text{mark-up} = \frac{12}{30} \times 100\% = 40\% \qquad
+      \text{margin} = \frac{12}{42} \times 100\% = 28.6\%$$
+
+      The mark-up is the larger number because the cost is the smaller base. Both
+      describe the same €12, so neither is wrong; the question is which base is meant.
+
+  - id: r5-income-tax
+    section: '2.3'
+    tier: O
+    refs: ['3.3']
+    statement: >-
+      A worker earns €45,000. Income tax is $20\%$ on the first €44,000 and $40\%$ on
+      the rest, with a tax credit of €3,000. Work out the income tax.
+    answer_label: 'The income tax'
+    check:
+      kind: evaluate
+      expression: '0.20 * 44000 + 0.40 * (45000 - 44000) - 3000'
+      answer: '6200'
+    answer_text: |-
+      Only €1,000 is taxed at the higher rate:
+
+      $$0.20 \times 44\,000 = 8\,800$$
+
+      $$0.40 \times 1\,000 = 400$$
+
+      The tax before the credit is €9,200, and the credit comes off the bill:
+
+      $$9\,200 - 3\,000 = 6\,200$$
+
+      The income tax is €6,200. The credit is subtracted after the bands are worked
+      out, not from the income.
+
+  - id: r6-compound-interest
+    section: '2.4'
+    tier: F
+    refs: ['3.3']
+    statement: '€3,000 is invested at $5\%$ compound interest for 2 years. Work out the total value.'
+    answer_label: 'The value after two years'
+    check: {kind: evaluate, expression: '3000 * 1.05**2', answer: '3307.50'}
+    answer_text: |-
+      Each year multiplies the balance by $1.05$, and the second year earns interest on
+      the first year's interest as well:
+
+      $$3\,000 \times 1.05^2 = 3\,000 \times 1.1025 = 3\,307.50$$
+
+      The investment is worth €3,307.50 after two years. Simple interest would give
+      €3,300, so compounding adds €7.50 in the second year.
+
+  - id: r7-present-value
+    section: '2.5'
+    tier: H
+    refs: ['3.3']
+    statement: '€11,236 is due in 2 years. Money earns $6\%$ a year. Work out the present value.'
+    answer_label: 'The present value'
+    check: {kind: evaluate, expression: '11236 / 1.06**2', answer: '10000'}
+    answer_text: |-
+      Discounting is compound interest run backwards, so divide by $1.06$ once for
+      each year:
+
+      $$11\,236 \div 1.06^2 = 11\,236 \div 1.1236 = 10\,000$$
+
+      The present value is €10,000. That is the amount which, invested at $6\%$ for two
+      years, grows to exactly the €11,236 due. Comparing €11,236 with a price today
+      would be comparing money at two different times.
+
+  - id: r8-estimate-product
+    section: '2.6'
+    tier: F
+    refs: ['3.3']
+    statement: 'Estimate $3\,891 \times 41$ by rounding each number to one significant figure.'
+    answer_label: 'The estimate'
+    check: {kind: evaluate, expression: '4000 * 40', answer: '160000'}
+    answer_text: |-
+      To one significant figure, $3\,891$ is $4\,000$ and $41$ is $40$, so
+
+      $$4\,000 \times 40 = 160\,000$$
+
+      The exact product is $159\,531$, so the estimate is within about $0.3\%$. The
+      estimate is quick to do in your head, and it is close enough to catch a wrong
+      decimal point in the exact answer.
+
+  - id: r9-scientific-notation
+    section: '1.7'
+    tier: F
+    refs: ['3.1']
+    statement: 'Write $0.000\,456$ in scientific notation.'
+    answer_label: 'The number in scientific notation'
+    check: {kind: evaluate, expression: '0.000456', answer: '4.56e-4'}
+    answer_text: |-
+      Move the decimal point four places to the right to reach a number between $1$ and
+      $10$:
+
+      $$0.000\,456 = 4.56 \times 10^{-4}$$
+
+      The index is $-4$ because the point moved four places, and it is negative because
+      the original number is less than $1$. The digits stay the same; only the position
+      of the point is recorded.
+
+  - id: r10-simplify-surd
+    section: '1.2'
+    tier: O
+    refs: ['3.1']
+    statement: 'Simplify $\sqrt{48}$.'
+    answer_label: 'The simplified surd'
+    check: {kind: evaluate, expression: 'sqrt(48)', answer: '4*sqrt(3)'}
+    answer_text: |-
+      Look for the largest square factor: $48 = 16 \times 3$. Then
+
+      $$\sqrt{48} = \sqrt{16} \times \sqrt{3} = 4\sqrt{3}$$
+
+      The square root of a product splits into a product of square roots, and
+      $\sqrt{16} = 4$ is exact.
+
+  - id: r11-rounding-in-a-quote
+    section: '2.6'
+    tier: F
+    refs: ['3.3']
+    statement: >-
+      A quote is rounded to the nearest euro before a profit margin is added. Explain
+      why the final figure may be out by more than €1, and say where the rounding
+      should happen instead.
+    answer_label: 'Why the error grows, and where to round'
+    check:
+      kind: structured
+      requires: [where-the-error-comes-from, where-to-round]
+      concepts: [rounding-error, accumulation, end-only]
+      points:
+        - id: where-the-error-comes-from
+          text: >-
+            Rounding a figure to the nearest euro can change it by up to 50 cent, and
+            the margin is then worked out on the rounded figure, so the error is
+            carried into the final price. A quote with several lines has a rounding on
+            each line, and the errors add: ten lines can put the total out by up to
+            five euro before the margin is added.
+          concepts: [rounding-error, accumulation]
+        - id: where-to-round
+          text: >-
+            Keep the exact value through the working and round once, at the end, on
+            the finished quote. The margin must be worked out on the exact cost,
+            because a margin on a rounded cost is a margin on a number that was never
+            the cost.
+          concepts: [end-only]

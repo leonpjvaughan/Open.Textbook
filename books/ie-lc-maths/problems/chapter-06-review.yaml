@@ -1,0 +1,254 @@
+# Mixed practice for the Chapter 6 Review.
+#
+# Ten questions, one record each, in the order they appear on the Review page.
+# Function values, the inverse and the exponential equation are proved exactly by
+# `evaluate` and `solve`; the logarithmic law is a single equivalence; the
+# logarithm that is not exact is rounded once, proved by `sigfigs`. Questions 1, 2,
+# 5 and 6 ask for a decision or a description, so each carries a `structured`
+# component, and question 2 also proves the two boundary sets it describes.
+#
+# Honest limit: this proves the algebra and the declared rounding. It cannot prove
+# that a relation was read correctly, that an inverse was found by a legitimate
+# route, or that a transformation was described in the order a sketch needs; a
+# `structured` check proves only that the declared steps and concepts appear, in
+# order.
+#
+# Two records practise earlier chapters, as the page says: a linear equation from
+# 4.6 and an index law from 1.5.
+chapter: 6
+symbols:
+  x: {real: true}
+  y: {real: true}
+problems:
+  - id: r1-is-it-a-function
+    section: '6.1'
+    tier: F
+    refs: ['5.1']
+    statement: 'Is $\{(1, 2), (2, 2), (3, 4)\}$ a function? Give a reason.'
+    answer_label: 'Whether it is a function, and why'
+    check:
+      kind: structured
+      requires: [check-the-inputs, decide]
+      concepts: [one-output-per-input, repeated-output]
+      points:
+        - id: check-the-inputs
+          text: >-
+            The first coordinates are 1, 2 and 3, and each one appears once. No input
+            is paired with two different outputs.
+          concepts: [one-output-per-input]
+        - id: decide
+          text: >-
+            It is a function. The output 2 is used twice, once for x = 1 and once for
+            x = 2, and that is allowed: two inputs may share an output. What is not
+            allowed is one input with two outputs.
+          concepts: [repeated-output, one-output-per-input]
+
+  - id: r2-domains
+    section: '6.2'
+    tier: F
+    refs: ['5.1']
+    statement: 'State the domain of $f(x) = \dfrac{1}{x + 2}$ and the domain of $g(x) = \sqrt{x - 1}$.'
+    answer_label: 'The two domains'
+    check:
+      kind: all
+      checks:
+        - {kind: solve, equation: 'x + 2 = 0', variable: x, answer: ['-2']}
+        - {kind: inequality, variable: x, inequality: 'x - 1 >= 0', answer: 'Interval(1, oo)'}
+        - kind: structured
+          requires: [exclude-the-zero, allow-the-root]
+          concepts: [division-by-zero, square-root-domain]
+          points:
+            - id: exclude-the-zero
+              text: >-
+                For f, the denominator cannot be zero, so x cannot be -2. The domain is
+                every real number except -2.
+              concepts: [division-by-zero]
+            - id: allow-the-root
+              text: >-
+                For g, the expression under the square root cannot be negative, so x
+                must be at least 1. The domain is x greater than or equal to 1, and 1
+                itself is allowed because the square root of 0 is 0.
+              concepts: [square-root-domain]
+    answer_text: |-
+      A fraction is undefined when its denominator is zero, so for $f$ the value
+      $x = -2$ is excluded. The domain of $f$ is every real number except $-2$.
+
+      A square root is real only when the expression inside it is zero or positive, so
+      for $g$ we need $x - 1 \geq 0$, which is $x \geq 1$. The domain of $g$ is
+      $[1, \infty)$. The end point $1$ is included, because $\sqrt{0} = 0$ is a real
+      number.
+
+  - id: r3-composite-values
+    section: '6.3'
+    tier: O
+    refs: ['5.1']
+    statement: 'For $f(x) = 4x - 1$ and $g(x) = x + 2$, work out $f(g(3))$ and $g(f(3))$.'
+    answer_label: 'The two composite values'
+    check:
+      kind: all
+      checks:
+        - {kind: evaluate, expression: '4*(3 + 2) - 1', answer: '19'}
+        - {kind: evaluate, expression: '(4*3 - 1) + 2', answer: '13'}
+    answer_text: |-
+      Work from the inside out. For $f(g(3))$, first $g(3) = 3 + 2 = 5$, then
+      $f(5) = 4(5) - 1 = 19$.
+
+      For $g(f(3))$, first $f(3) = 4(3) - 1 = 11$, then $g(11) = 11 + 2 = 13$.
+
+      The two answers differ, so composition is not commutative: the order in which
+      the functions are applied matters.
+
+  - id: r4-inverse
+    section: '6.3'
+    tier: O
+    refs: ['5.1']
+    statement: 'Find the inverse of $f(x) = 4x - 1$.'
+    answer_label: 'The inverse function'
+    check:
+      kind: solve
+      equation: 'y = 4*x - 1'
+      variable: x
+      answer: ['(y + 1)/4']
+    answer_text: |-
+      Write $y = 4x - 1$ and solve for $x$: add $1$ to both sides, then divide by $4$:
+
+      $$x = \frac{y + 1}{4}$$
+
+      So $f^{-1}(x) = \dfrac{x + 1}{4}$. Check by composing: $f\left(f^{-1}(x)\right)
+      = 4 \times \dfrac{x + 1}{4} - 1 = x + 1 - 1 = x$, and the inverse undoes the
+      function.
+
+  - id: r5-not-injective
+    section: '6.4'
+    tier: H
+    refs: ['5.1']
+    statement: 'Show that $f(x) = x^2$ is not injective on the real numbers. Is it injective on $x \le 0$?'
+    answer_label: 'The counterexample, and the restricted domain'
+    check:
+      kind: all
+      checks:
+        - {kind: evaluate, expression: '2**2 - (-2)**2', answer: '0'}
+        - kind: structured
+          requires: [give-a-counterexample, decide-on-the-restriction]
+          concepts: [injective, counterexample, restricted-domain]
+          points:
+            - id: give-a-counterexample
+              text: >-
+                f of 2 is 4 and f of -2 is 4, so two different inputs give the same
+                output. That is enough to show the function is not injective on the
+                real numbers.
+              concepts: [injective, counterexample]
+            - id: decide-on-the-restriction
+              text: >-
+                On x less than or equal to 0 the function is injective. Squaring is
+                one-to-one there, because different negative numbers have different
+                squares and every output comes from at most one input.
+              concepts: [restricted-domain, injective]
+    answer_text: |-
+      $f(2) = 4$ and $f(-2) = 4$, so two different inputs give the same output. That one
+      counterexample is enough: the function is not injective on the real numbers.
+
+      On $x \le 0$ it is injective. Squaring is strictly decreasing there, so a larger
+      negative number has a larger square and no two inputs share an output. The
+      domain matters: the same rule can be injective on one domain and not another.
+
+  - id: r6-transformations
+    section: '6.5'
+    tier: O
+    refs: ['5.1']
+    statement: 'Describe the transformations that turn $y = x^2$ into $y = 3(x - 1)^2 - 2$.'
+    answer_label: 'The three transformations'
+    check:
+      kind: structured
+      requires: [shift-inside, stretch-outside, shift-down]
+      concepts: [translation, vertical-stretch, order]
+      points:
+        - id: shift-inside
+          text: >-
+            The x minus 1 inside the bracket moves the graph 1 unit to the right.
+          concepts: [translation]
+        - id: stretch-outside
+          text: >-
+            The factor 3 in front stretches the graph vertically by a factor of 3. It
+            makes the curve three times as tall and does not move it sideways.
+          concepts: [vertical-stretch]
+        - id: shift-down
+          text: >-
+            The minus 2 outside moves the whole graph 2 units down. The turning point
+            starts at (0, 0) and ends at (1, -2).
+          concepts: [translation, order]
+
+  - id: r7-exponential-equations
+    section: '6.6'
+    tier: O
+    refs: ['5.1']
+    statement: 'Solve $4^x = 64$, then solve $3^x = 15$ to three significant figures.'
+    answer_label: 'The exact solution and the rounded one'
+    check:
+      kind: all
+      checks:
+        - kind: solve
+          equation: '4**x = 64'
+          variable: x
+          answer: ['3']
+        - kind: sigfigs
+          value: 'log(15)/log(3)'
+          figures: 3
+          answer: '2.46'
+          tolerance: '0.00001'
+          convention: round-once
+    answer_text: |-
+      For the first, write both sides as powers of $4$: $64 = 4^3$, so $4^x = 4^3$ and
+      $x = 3$.
+
+      For the second, $15$ is not a whole power of $3$. Take logarithms of both sides:
+
+      $$x\log 3 = \log 15 \quad\Rightarrow\quad x = \frac{\log 15}{\log 3} = 2.46497\dots$$
+
+      To three significant figures, $x = 2.46$. Check: $3^{2.46} = 14.99$, close to
+      $15$.
+
+  - id: r8-log-law
+    section: '6.6'
+    tier: O
+    refs: ['5.1']
+    statement: 'Simplify $\log 6 + \log 2$ into a single logarithm.'
+    answer_label: 'The single logarithm'
+    check: {kind: evaluate, expression: 'log(6) + log(2)', answer: 'log(12)'}
+    answer_text: |-
+      Adding logarithms multiplies the numbers they came from:
+
+      $$\log 6 + \log 2 = \log(6 \times 2) = \log 12$$
+
+      The rule is $\log a + \log b = \log ab$, and it holds for any base, including
+      base $10$. It is the logarithm of a product, not a sum.
+
+  - id: r9-linear-equation
+    section: '4.6'
+    tier: F
+    refs: ['4.2']
+    statement: 'Solve $3x - 7 = 11$.'
+    answer_label: 'The solution'
+    check:
+      kind: solve
+      equation: '3*x - 7 = 11'
+      variable: x
+      answer: ['6']
+    answer_text: |-
+      Add $7$ to both sides: $3x = 18$. Divide by $3$: $x = 6$. Check:
+      $3(6) - 7 = 18 - 7 = 11$.
+
+  - id: r10-index-law
+    section: '1.5'
+    tier: F
+    refs: ['3.2']
+    statement: 'Simplify $\dfrac{5^2 \times 5^3}{5^4}$.'
+    answer_label: 'The value'
+    check: {kind: evaluate, expression: '5**2 * 5**3 / 5**4', answer: '5'}
+    answer_text: |-
+      Multiply by adding the indices and divide by subtracting them:
+
+      $$\frac{5^2 \times 5^3}{5^4} = \frac{5^5}{5^4} = 5^{5 - 4} = 5$$
+
+      The powers of $5$ cancel down to a single power. Written out, the top is
+      $25 \times 125 = 3125$ and the bottom is $625$, and $3125 \div 625 = 5$.

@@ -1,0 +1,286 @@
+# Mixed practice for the Chapter 5 Review.
+#
+# Ten questions, one record each, in the order they appear on the Review page.
+# Complex arithmetic is proved exactly by `evaluate`, which parses `I` and keeps the
+# real and imaginary parts apart, so a sign slip in the imaginary part fails. The
+# cubic is solved over the complex numbers, and each real-and-imaginary-parts
+# equation is checked as a system.
+#
+# Honest limit: this proves the algebra. It does not prove that a construction on the
+# Argand diagram was drawn correctly, and a `structured` check proves only that a
+# model answer contains its declared steps and concepts, in order. Questions 9 and 10
+# are explanations: the verifier can prove the identity they depend on, and cannot
+# prove the explanation is the right one.
+#
+# Question 7 was corrected on the page: the cubic has a root at x = 3, not x = 2.
+# The polynomial and the difficulty are unchanged.
+chapter: 5
+symbols:
+  a: {real: true}
+  b: {real: true}
+  k: {integer: true}
+  x: {real: true}
+  y: {real: true}
+problems:
+  - id: r1-powers-of-i
+    section: '5.1'
+    tier: O
+    refs: ['4.4']
+    statement: 'Simplify $i^{43}$, $i^{100}$ and $i^{4k+2}$ for a whole number $k$.'
+    answer_label: 'The three powers'
+    check:
+      kind: all
+      checks:
+        - {kind: evaluate, expression: 'I**43', answer: '-I'}
+        - {kind: evaluate, expression: 'I**100', answer: '1'}
+        - {kind: evaluate, expression: 'I**(4*k + 2)', answer: '-1'}
+    answer_text: |-
+      The powers of $i$ repeat every four: $i^1 = i$, $i^2 = -1$, $i^3 = -i$ and
+      $i^4 = 1$. So divide the index by $4$ and keep the remainder.
+
+      $43 = 4 \times 10 + 3$, so $i^{43} = i^3 = -i$. $100$ is a multiple of $4$, so
+      $i^{100} = i^4 = 1$. $4k + 2$ leaves a remainder of $2$, so $i^{4k+2} = i^2 = -1$
+      for every whole number $k$.
+
+  - id: r2-multiply-complex
+    section: '5.2'
+    tier: O
+    refs: ['4.4']
+    statement: 'Work out $(4 - 3i)(2 + 5i)$ and $(4 - 3i)^2$.'
+    answer_label: 'The product and the square'
+    check:
+      kind: all
+      checks:
+        - {kind: evaluate, expression: '(4 - 3*I)*(2 + 5*I)', answer: '23 + 14*I'}
+        - {kind: evaluate, expression: '(4 - 3*I)**2', answer: '7 - 24*I'}
+    answer_text: |-
+      Multiply out as two brackets, then replace $i^2$ with $-1$:
+
+      $$(4 - 3i)(2 + 5i) = 8 + 20i - 6i - 15i^2 = 8 + 14i + 15 = 23 + 14i$$
+
+      For the square, use the same rule:
+
+      $$(4 - 3i)^2 = 16 - 24i + 9i^2 = 16 - 24i - 9 = 7 - 24i$$
+
+      The $i^2$ term changes the real part, which is why the answer is not simply the
+      square of each part.
+
+  - id: r3-divide-complex
+    section: '5.3'
+    tier: O
+    refs: ['4.4']
+    statement: 'Write $\dfrac{2 + i}{3 - 2i}$ in the form $a + bi$.'
+    answer_label: 'The number in the form a + bi'
+    check: {kind: evaluate, expression: '(2 + I)/(3 - 2*I)', answer: '4/13 + 7*I/13'}
+    answer_text: |-
+      Multiply top and bottom by the conjugate of the denominator, $3 + 2i$:
+
+      $$\frac{(2 + i)(3 + 2i)}{(3 - 2i)(3 + 2i)}
+      = \frac{6 + 4i + 3i + 2i^2}{9 + 4}
+      = \frac{4 + 7i}{13}$$
+
+      So the number is $\dfrac{4}{13} + \dfrac{7}{13}i$. The denominator becomes
+      $a^2 + b^2$, a real number, because $(3 - 2i)(3 + 2i) = 9 - 4i^2 = 13$.
+
+  - id: r4-modulus-and-distance
+    section: '5.4'
+    tier: O
+    refs: ['4.4']
+    statement: 'Find the modulus of $-8 + 6i$ and the distance between $-8 + 6i$ and $3 + 6i$.'
+    answer_label: 'The modulus and the distance'
+    check:
+      kind: all
+      checks:
+        - {kind: evaluate, expression: 'abs(-8 + 6*I)', answer: '10'}
+        - {kind: evaluate, expression: 'abs((-8 + 6*I) - (3 + 6*I))', answer: '11'}
+    answer_text: |-
+      The modulus is the distance from the origin:
+
+      $$|-8 + 6i| = \sqrt{(-8)^2 + 6^2} = \sqrt{64 + 36} = \sqrt{100} = 10$$
+
+      The distance between two complex numbers is the modulus of their difference:
+
+      $$|(-8 + 6i) - (3 + 6i)| = |-11| = 11$$
+
+      Both points have imaginary part $6$, so they lie on the same horizontal line and
+      the distance is just the difference of the real parts, $11$.
+
+  - id: r5-equate-parts
+    section: '5.4'
+    tier: O
+    refs: ['4.4']
+    statement: 'Find $x$ and $y$: $(3x + 1) + 7i = 10 + (2y - 1)i$.'
+    answer_label: 'The values of x and y'
+    check:
+      kind: system
+      equations: ['3*x + 1 = 10', '2*y - 1 = 7']
+      variables: [x, y]
+      answer: [{x: '3', y: '4'}]
+    answer_text: |-
+      Two complex numbers are equal when their real parts are equal and their
+      imaginary parts are equal. That gives two equations:
+
+      $$3x + 1 = 10 \quad\Rightarrow\quad x = 3$$
+
+      $$2y - 1 = 7 \quad\Rightarrow\quad y = 4$$
+
+      The single complex equation carries two real equations, which is why it fixes both
+      unknowns.
+
+  - id: r6-quadratic-complex-roots
+    section: '5.5'
+    tier: H
+    refs: ['4.4']
+    statement: 'Solve $x^2 + 6x + 25 = 0$ and check one root by substitution.'
+    answer_label: 'The two roots, and the check'
+    check:
+      kind: all
+      checks:
+        - kind: solve
+          equation: 'x**2 + 6*x + 25 = 0'
+          variable: x
+          domain: 'S.Complexes'
+          answer: ['-3 + 4*I', '-3 - 4*I']
+        - {kind: evaluate, expression: '(-3 + 4*I)**2 + 6*(-3 + 4*I) + 25', answer: '0'}
+    answer_text: |-
+      The discriminant is $b^2 - 4ac = 36 - 100 = -64$, which is negative, so the roots
+      are not real. Use the formula and take $\sqrt{-64} = 8i$:
+
+      $$x = \frac{-6 \pm 8i}{2} = -3 \pm 4i$$
+
+      Check $x = -3 + 4i$: $(-3 + 4i)^2 = 9 - 24i - 16 = -7 - 24i$, and
+      $6(-3 + 4i) = -18 + 24i$. Adding $-7 - 24i - 18 + 24i + 25$ gives $0$. The
+      imaginary parts cancel, as they must for a root of an equation with real
+      coefficients.
+
+  - id: r7-cubic
+    section: '5.5'
+    tier: H
+    refs: ['4.4']
+    statement: >-
+      Show that $x = 3$ is a root of $x^3 - 3x^2 + 4x - 12 = 0$ and find all three
+      roots.
+    answer_label: 'The three roots'
+    check:
+      kind: all
+      checks:
+        - {kind: evaluate, expression: '3**3 - 3*3**2 + 4*3 - 12', answer: '0'}
+        - kind: solve
+          equation: 'x**3 - 3*x**2 + 4*x - 12 = 0'
+          variable: x
+          domain: 'S.Complexes'
+          answer: ['3', '2*I', '-2*I']
+    answer_text: |-
+      Substitute $x = 3$: $27 - 27 + 12 - 12 = 0$, so $x = 3$ is a root. That means
+      $(x - 3)$ is a factor. Divide, or group the terms:
+
+      $$x^3 - 3x^2 + 4x - 12 = x^2(x - 3) + 4(x - 3) = (x - 3)(x^2 + 4)$$
+
+      The quadratic $x^2 + 4 = 0$ gives $x^2 = -4$, so $x = \pm 2i$. The three roots are
+      $x = 3$, $x = 2i$ and $x = -2i$. The coefficients are real, so the two complex
+      roots are a conjugate pair.
+
+  - id: r8-cubic-from-roots
+    section: '5.5'
+    tier: H
+    refs: ['4.4']
+    statement: >-
+      A real cubic has $1 + i$ as a root and $x = 2$ as another. Write down the third
+      root and the cubic itself.
+    answer_label: 'The third root and the cubic'
+    check:
+      kind: all
+      checks:
+        - {kind: evaluate, expression: '(1 + I) + (1 - I) + 2', answer: '4'}
+        - {kind: evaluate, expression: '(1 + I)*(1 - I)*2', answer: '4'}
+        - kind: evaluate
+          expression: '(x - 2)*((x - 1)**2 + 1)'
+          answer: 'x**3 - 4*x**2 + 6*x - 4'
+    answer_text: |-
+      The coefficients are real, so the conjugate of $1 + i$ is also a root. The third
+      root is $1 - i$.
+
+      The cubic has roots $2$, $1 + i$ and $1 - i$, so it is
+
+      $$(x - 2)\left(x - (1 + i)\right)\left(x - (1 - i)\right) = (x - 2)(x^2 - 2x + 2)$$
+
+      Multiplying out gives $x^3 - 4x^2 + 6x - 4$. Check with the sum and product of the
+      roots: the sum is $4$, which matches $-b/a$, and the product is $2 \times 2 = 4$,
+      which matches $-d/a$.
+
+  - id: r9-modulus-identity
+    section: '5.4'
+    tier: O
+    refs: ['4.4']
+    statement: 'Explain why $|z|^2 = z\bar z$, using $z = a + bi$.'
+    answer_label: 'The identity, and why it holds'
+    check:
+      kind: all
+      checks:
+        - {kind: evaluate, expression: '(a + I*b)*(a - I*b)', answer: 'a**2 + b**2'}
+        - {kind: evaluate, expression: 'abs(a + I*b)**2', answer: 'a**2 + b**2'}
+        - kind: structured
+          requires: [write-product, compare-with-modulus]
+          concepts: [conjugate, difference-of-squares, pythagoras]
+          points:
+            - id: write-product
+              text: >-
+                With z = a + bi, the conjugate is a - bi, so the product is
+                (a + bi)(a - bi). Multiplying out gives a squared minus b squared i
+                squared, and since i squared is -1 that is a squared plus b squared.
+              concepts: [conjugate, difference-of-squares]
+            - id: compare-with-modulus
+              text: >-
+                The modulus of z is the square root of a squared plus b squared by
+                Pythagoras, so squaring it gives a squared plus b squared. The two
+                expressions are the same, so the modulus squared equals z times its
+                conjugate.
+              concepts: [pythagoras]
+    answer_text: |-
+      Write $z = a + bi$, so $\bar z = a - bi$. Multiply them:
+
+      $$z\bar z = (a + bi)(a - bi) = a^2 - abi + abi - b^2i^2 = a^2 + b^2$$
+
+      The cross terms cancel and $i^2 = -1$ turns $-b^2i^2$ into $+b^2$.
+
+      The modulus is $|z| = \sqrt{a^2 + b^2}$ by Pythagoras, so $|z|^2 = a^2 + b^2$ as
+      well. The two expressions are the same number. That is why dividing by $z$ can be
+      done by multiplying by $\bar z$: the product $z\bar z$ is a real number.
+
+  - id: r10-square-root-error
+    section: '5.1'
+    tier: O
+    refs: ['4.4']
+    statement: >-
+      A student says "$i = \sqrt{-1}$, so $i^2 = \sqrt{-1} \times \sqrt{-1} = \sqrt{1} = 1$".
+      Explain the error and state the correct value.
+    answer_label: 'The error and the correct value'
+    check:
+      kind: all
+      checks:
+        - {kind: evaluate, expression: 'I**2', answer: '-1'}
+        - kind: structured
+          requires: [name-the-rule, state-the-value]
+          concepts: [square-root-law, negative-radicand]
+          points:
+            - id: name-the-rule
+              text: >-
+                The rule that the square root of a product is the product of the square
+                roots holds only when both numbers are zero or positive. Applying it to
+                -1 breaks that condition, because -1 is negative.
+              concepts: [square-root-law, negative-radicand]
+            - id: state-the-value
+              text: >-
+                i is defined so that i squared is -1, and that definition is the one
+                that matters. The correct value is -1, not 1, and the step that wrote
+                the square root of 1 was the error.
+              concepts: [negative-radicand]
+    answer_text: |-
+      The error is in the second step. The rule $\sqrt{a}\sqrt{b} = \sqrt{ab}$ holds
+      when $a$ and $b$ are zero or positive. It fails for negative numbers, and $-1$ is
+      negative.
+
+      $i$ is defined by $i^2 = -1$. Squaring both sides of $i = \sqrt{-1}$ gives
+      $i^2 = -1$ directly; there is no product of two square roots to combine. So the
+      correct value is $i^2 = -1$, and the student's answer of $1$ comes from using a
+      rule outside the range where it holds.

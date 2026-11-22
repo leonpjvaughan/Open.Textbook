@@ -1,0 +1,256 @@
+# Mixed practice for the Chapter 3 Review.
+#
+# Eleven questions, one record each, in the order they appear on the Review page.
+# Every answer that uses pi is checked exactly against a multiple of pi, so a
+# wrong power or a missing factor of 2 fails; the litre conversion and the
+# similar-cuboid ratio are exact numbers. Question 8 is the one rounding, proved by
+# `sigfigs`, and question 11 asks for a formula and a reason, so it carries a
+# `structured` component.
+#
+# Honest limit: this proves the arithmetic of the formulae. It cannot prove that the
+# right formula was chosen for the shape, nor that the faces counted are the faces
+# the question asked for — a model answer can contain the right words and still be
+# about the wrong solid.
+#
+# The records cover sections 3.1 to 3.7 in the order the page asks them. The similar
+# cuboids are 3.6, which is Higher only, and are marked H on the page.
+chapter: 3
+problems:
+  - id: r1-cylinder-volume-and-surface
+    section: '3.3'
+    tier: F
+    refs: ['3.4']
+    statement: >-
+      A cylinder has radius $4$ cm and height $9$ cm. Find its volume and its total
+      surface area.
+    answer_label: 'The volume and the total surface area'
+    check:
+      kind: all
+      checks:
+        - {kind: evaluate, expression: 'pi * 4**2 * 9', answer: '144*pi'}
+        - {kind: evaluate, expression: '2*pi*4**2 + 2*pi*4*9', answer: '104*pi'}
+    answer_text: |-
+      The volume of a cylinder is the area of its circular base times its height:
+
+      $$V = \pi r^2 h = \pi \times 16 \times 9 = 144\pi \approx 452.4 \text{ cm}^3$$
+
+      The total surface area is the two circular ends plus the curved side:
+
+      $$A = 2\pi r^2 + 2\pi r h = 32\pi + 72\pi = 104\pi \approx 326.7 \text{ cm}^2$$
+
+      The curved side is a rectangle when unrolled, with width $2\pi r$ and height $h$,
+      which is where the $2\pi r h$ comes from. Leaving out the ends would give the
+      curved area only.
+
+  - id: r2-trapezium-area
+    section: '3.1'
+    tier: F
+    refs: ['3.4']
+    statement: 'A trapezium has parallel sides $5$ m and $11$ m, and a perpendicular height of $3$ m. Find its area.'
+    answer_label: 'The area'
+    check: {kind: evaluate, expression: '(5 + 11) / 2 * 3', answer: '24'}
+    answer_text: |-
+      A trapezium is half the sum of its parallel sides times the perpendicular
+      height:
+
+      $$A = \frac{5 + 11}{2} \times 3 = 8 \times 3 = 24 \text{ m}^2$$
+
+      The average of the two parallel sides is $8$ m, and the area is that average
+      times the height. The height must be perpendicular to the parallel sides; a
+      slanted side is longer and would give too large an answer.
+
+  - id: r3-circle-measures
+    section: '3.2'
+    tier: F
+    refs: ['3.4']
+    statement: 'A circle has diameter $18$ cm. Find its circumference and its area.'
+    answer_label: 'The circumference and the area'
+    check:
+      kind: all
+      checks:
+        - {kind: evaluate, expression: 'pi * 18', answer: '18*pi'}
+        - {kind: evaluate, expression: 'pi * 9**2', answer: '81*pi'}
+    answer_text: |-
+      The radius is half the diameter, so $r = 9$ cm. Then
+
+      $$C = \pi d = 18\pi \approx 56.5 \text{ cm} \qquad A = \pi r^2 = 81\pi \approx 254.5 \text{ cm}^2$$
+
+      The circumference uses the diameter and the area uses the radius. Using $18$ in
+      the area formula would give $324\pi$, four times too large, because the radius is
+      squared.
+
+  - id: r4-similar-cuboids
+    section: '3.6'
+    tier: H
+    refs: ['3.4']
+    statement: 'Two similar cuboids have corresponding lengths $4$ cm and $10$ cm. Find the ratio of their volumes.'
+    answer_label: 'The ratio of the volumes'
+    check: {kind: evaluate, expression: '4**3 / 10**3', answer: '8/125'}
+    answer_text: |-
+      The length ratio is $4 : 10$, so the volume ratio is the cube of it:
+
+      $$\frac{V_1}{V_2} = \left(\frac{4}{10}\right)^3 = \frac{64}{1000} = \frac{8}{125}$$
+
+      Volume grows as the cube of a length because three lengths are multiplied. An
+      area ratio would use the square, $\dfrac{16}{100} = \dfrac{4}{25}$, and the
+      length ratio itself is $\dfrac{2}{5}$.
+
+  - id: r5-hemisphere-surface
+    section: '3.7'
+    tier: O
+    refs: ['3.4']
+    statement: 'A hemisphere has radius $7$ cm. Find its total surface area.'
+    answer_label: 'The total surface area'
+    check: {kind: evaluate, expression: '3*pi*7**2', answer: '147*pi'}
+    answer_text: |-
+      A hemisphere has a curved dome and a flat circular base. The dome is half the
+      surface of a sphere, and the base is a circle:
+
+      $$A = \frac{1}{2}\left(4\pi r^2\right) + \pi r^2 = 2\pi r^2 + \pi r^2 = 3\pi r^2$$
+
+      So $A = 3\pi \times 49 = 147\pi \approx 461.8 \text{ cm}^2$. The flat face is easy
+      to forget; without it the answer would be $2\pi r^2 = 98\pi$, which is one third
+      too small.
+
+  - id: r6-cylinder-net
+    section: '3.4'
+    tier: O
+    refs: ['3.4']
+    statement: 'A cylinder has radius $6$ cm and height $5$ cm. Find the width and the area of the rectangle in its net.'
+    answer_label: 'The width and the area of the rectangle'
+    check:
+      kind: all
+      checks:
+        - {kind: evaluate, expression: '2*pi*6', answer: '12*pi'}
+        - {kind: evaluate, expression: '2*pi*6*5', answer: '60*pi'}
+    answer_text: |-
+      The rectangle in a cylinder's net is the curved side unrolled. Its width is the
+      circumference of the base and its height is the height of the cylinder:
+
+      $$\text{width} = 2\pi r = 12\pi \approx 37.7 \text{ cm}$$
+
+      $$\text{area} = 12\pi \times 5 = 60\pi \approx 188.5 \text{ cm}^2$$
+
+      The two circles in the net are separate; their area is $2\pi r^2 = 72\pi$, and it
+      is added to the rectangle to give the total surface area.
+
+  - id: r7-litres
+    section: '3.3'
+    tier: F
+    refs: ['3.4']
+    statement: 'A tank holds $3.6 \text{ m}^3$ of water. How many litres is that?'
+    answer_label: 'The capacity in litres'
+    check: {kind: evaluate, expression: '3.6 * 1000', answer: '3600'}
+    answer_text: |-
+      A cubic metre is a cube $1$ m on each side, which is $10$ dm on each side. Its
+      volume is $10 \times 10 \times 10 = 1000$ cubic decimetres, and a cubic decimetre
+      is a litre:
+
+      $$3.6 \text{ m}^3 = 3.6 \times 1000 = 3600 \text{ litres}$$
+
+      The factor is $1000$, not $100$, because a volume is three lengths multiplied.
+
+  - id: r8-sphere-volume-rounding
+    section: '3.7'
+    tier: O
+    refs: ['3.4']
+    statement: >-
+      A sphere of radius $6$ cm has volume $288\pi \approx 904.78 \text{ cm}^3$. Write
+      this volume to 2 significant figures.
+    answer_label: 'The volume to two significant figures'
+    check:
+      kind: sigfigs
+      value: '288*pi'
+      figures: 2
+      answer: '9.0e2'
+      tolerance: '0.01'
+      convention: round-once
+    answer_text: |-
+      $288\pi = 904.778\dots$, which is between $900$ and $1000$. To two significant
+      figures the first two digits are $9$ and $0$, so
+
+      $$288\pi \approx 9.0 \times 10^2 \text{ cm}^3 = 900 \text{ cm}^3$$
+
+      Writing $900$ alone does not say whether the zero is significant. Standard form
+      does: $9.0 \times 10^2$ carries exactly two figures.
+
+  - id: r9-similar-tins
+    section: '3.3'
+    tier: F
+    refs: ['3.4']
+    statement: >-
+      Two cylindrical tins have the same height. The first has radius $3$ cm and the
+      second has radius $6$ cm. How many times does the second tin hold?
+    answer_label: 'How many times as much the second tin holds'
+    check: {kind: evaluate, expression: '6**2 / 3**2', answer: '4'}
+    answer_text: |-
+      The volume is $\pi r^2 h$, and the height is the same for both tins, so the
+      volumes are in the ratio of the squares of the radii:
+
+      $$\frac{V_2}{V_1} = \frac{\pi \times 6^2 \times h}{\pi \times 3^2 \times h}
+      = \frac{36}{9} = 4$$
+
+      The second tin holds four times as much. Doubling the radius doubles the
+      diameter and doubles the area of the base, so the volume grows by $2 \times 2$.
+      The tins are not similar, because the height did not change, which is why the
+      ratio is $4$ and not $8$.
+
+  - id: r10-cylinder-no-lid
+    section: '3.5'
+    tier: F
+    refs: ['3.4']
+    statement: 'A cylinder has radius $10$ cm and height $15$ cm, and it has no lid. Find its surface area.'
+    answer_label: 'The surface area without a lid'
+    check: {kind: evaluate, expression: 'pi*10**2 + 2*pi*10*15', answer: '400*pi'}
+    answer_text: |-
+      With no lid there is one circular base, not two, plus the curved side:
+
+      $$A = \pi r^2 + 2\pi r h = 100\pi + 300\pi = 400\pi \approx 1256.6 \text{ cm}^2$$
+
+      A closed cylinder would need $2\pi r^2 + 2\pi r h = 500\pi$, so removing the lid
+      takes off $100\pi \approx 314.2 \text{ cm}^2$. The curved side is unchanged.
+
+  - id: r11-curved-side-only
+    section: '3.5'
+    tier: F
+    refs: ['3.4']
+    statement: >-
+      A water tank is a cylinder of diameter $2$ m and height $3$ m. The club wants to
+      know how much paint covers the **curved side only**. Which formula applies, and
+      why?
+    answer_label: 'The area to paint, and the reason for the formula'
+    check:
+      kind: all
+      checks:
+        - {kind: evaluate, expression: 'pi * 2 * 3', answer: '6*pi'}
+        - kind: structured
+          requires: [name-the-surface, state-the-formula, leave-out-the-ends]
+          concepts: [curved-surface, circumference, net]
+          points:
+            - id: name-the-surface
+              text: >-
+                The curved side is the surface that wraps around the tank. It is not
+                the circular top and bottom, which are not being painted.
+              concepts: [curved-surface]
+            - id: state-the-formula
+              text: >-
+                Unroll the curved side and it is a rectangle whose width is the
+                circumference of the base and whose height is the height of the tank,
+                so the area is 2 pi r h, which is the same as pi d h.
+              concepts: [circumference, net]
+            - id: leave-out-the-ends
+              text: >-
+                The area is pi times 2 times 3, which is 6 pi, about 18.85 square
+                metres. The formula 2 pi r squared plus 2 pi r h would be the whole
+                closed cylinder and would paint the ends as well.
+              concepts: [curved-surface]
+    answer_text: |-
+      The curved side is the surface that wraps around the tank, not the flat circular
+      top and bottom. Unrolled, it is a rectangle: its width is the circumference of
+      the base, $\pi d$, and its height is the height of the tank:
+
+      $$A = \pi d h = \pi \times 2 \times 3 = 6\pi \approx 18.85 \text{ m}^2$$
+
+      This is the same as $2\pi r h$ with $r = 1$ m. The formula $2\pi r^2 + 2\pi r h$
+      is the whole closed cylinder, so it would paint the ends as well, and the lid
+      and base are not being painted.

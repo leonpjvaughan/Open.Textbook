@@ -40,18 +40,9 @@ Work through these without notes. For each one, decide **what is being asked** a
 why, before you calculate. Two of them are deliberately questions where the obvious first
 move is wrong.
 
-1. Simplify $i^{43}$, $i^{100}$ and $i^{4k+2}$ for a whole number $k$.
-2. Work out $(4 - 3i)(2 + 5i)$ and $(4 - 3i)^2$.
-3. Write $\dfrac{2 + i}{3 - 2i}$ in the form $a + bi$.
-4. Find the modulus of $-8 + 6i$ and the distance between $-8 + 6i$ and $3 + 6i$.
-5. Find $x$ and $y$: $(3x + 1) + 7i = 10 + (2y - 1)i$.
-6. Solve $x^2 + 6x + 25 = 0$ and check one root by substitution.
-7. Show that $x = 2$ is a root of $x^3 - 3x^2 + 4x - 12 = 0$ and find all three roots.
-8. A real cubic has $1 + i$ as a root and $x = 2$ as another. Write down the third root and
-   the cubic itself.
-9. Explain why $|z|^2 = z\bar z$, using $z = a + bi$.
-10. A student says "$i = \sqrt{-1}$, so $i^2 = \sqrt{-1} \times \sqrt{-1} = \sqrt{1} = 1$".
-    Explain the error and state the correct value.
+:::problems chapter-05-review
+
+:::answers chapter-05-review
 
 ## What you can now do
 

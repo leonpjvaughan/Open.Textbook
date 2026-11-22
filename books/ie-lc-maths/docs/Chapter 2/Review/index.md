@@ -92,22 +92,9 @@ and why** before you calculate. The questions mix every section of the chapter
 with two from earlier chapters, and two of them need a method that is not the
 first one you might reach for.
 
-1. Work out $18\%$ of €250.
-2. A price falls from €80 to €68. Work out the percentage decrease.
-3. A price after a $20\%$ increase is €96. Work out the price before the increase.
-4. An item costs €30 and sells for €42. Work out the mark-up and the margin.
-5. A worker earns €45,000. Income tax is $20\%$ on the first €44,000 and $40\%$ on
-   the rest, with a tax credit of €3,000. Work out the income tax.
-6. €3,000 is invested at $5\%$ compound interest for 2 years. Work out the total
-   value.
-7. €11,236 is due in 2 years. Money earns $6\%$ a year. Work out the present
-   value.
-8. Estimate $3\,891 \times 41$ by rounding each number to one significant figure.
-9. Write $0.000\,456$ in scientific notation.
-10. Simplify $\sqrt{48}$.
-11. A quote is rounded to the nearest euro before a profit margin is added.
-    Explain why the final figure may be out by more than €1, and say where the
-    rounding should happen instead.
+:::problems chapter-02-review
+
+:::answers chapter-02-review
 
 ## What you can now do
 

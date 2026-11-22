@@ -1,0 +1,305 @@
+# Mixed practice for the Chapter 9 Review.
+#
+# Ten questions, one record each, in the order they appear on the Review page.
+# Each term, series sum, infinite sum, recurrence value and fixed point is proved
+# exactly, so a wrong ratio or a wrong number of terms fails. Question 6 is a
+# decision about a sequence, question 9 is a proof by induction and question 10 asks
+# for a recurrence and a judgement, so each carries a `structured` component; the
+# algebra of the inductive step is proved separately.
+#
+# Honest limit: this proves the arithmetic and the algebra of the inductive step. It
+# cannot prove that a proof is complete — a `structured` check proves only that the
+# declared steps and concepts appear, in order — and it cannot prove that a model was
+# chosen correctly for a context.
+#
+# Questions 5 and 7 are Higher only, because the sum to infinity is section 9.4, and
+# question 9 is Higher only as section 9.6; all three are marked H on the page.
+chapter: 9
+symbols:
+  k: {integer: true}
+  n: {real: true}
+  r: {real: true}
+  T: {real: true}
+problems:
+  - id: r1-arithmetic-term
+    section: '9.1'
+    tier: O
+    refs: ['4.1']
+    statement: 'Find the twentieth term of $4, 9, 14, \dots$'
+    answer_label: 'The twentieth term'
+    check: {kind: evaluate, expression: '4 + 19*5', answer: '99'}
+    answer_text: |-
+      The first term is $a = 4$ and the common difference is $d = 5$. The $n$th term is
+      $a + (n - 1)d$, so the twentieth is
+
+      $$T_{20} = 4 + 19 \times 5 = 4 + 95 = 99$$
+
+      It is $19$ steps from the first term to the twentieth, not $20$, which is the
+      usual place to lose a term.
+
+  - id: r2-geometric-term
+    section: '9.3'
+    tier: O
+    refs: ['4.1']
+    statement: 'Find the tenth term of $3, 6, 12, \dots$'
+    answer_label: 'The tenth term'
+    check: {kind: evaluate, expression: '3 * 2**9', answer: '1536'}
+    answer_text: |-
+      Each term doubles, so the common ratio is $r = 2$ and the first term is $a = 3$.
+      The $n$th term is $ar^{n-1}$, so the tenth is
+
+      $$T_{10} = 3 \times 2^9 = 3 \times 512 = 1536$$
+
+      The index on the ratio is $9$, one less than the term number, because the first
+      term has no multiplication by $r$ yet.
+
+  - id: r3-arithmetic-series
+    section: '9.2'
+    tier: O
+    refs: ['4.1']
+    statement: 'Find $7 + 11 + 15 + \dots + 83$.'
+    answer_label: 'The sum of the series'
+    check:
+      kind: all
+      checks:
+        - {kind: solve, equation: '7 + (n - 1)*4 = 83', variable: n, answer: ['20']}
+        - {kind: evaluate, expression: '20/2 * (7 + 83)', answer: '900'}
+    answer_text: |-
+      First find how many terms there are. The first term is $7$, the difference is
+      $4$, and the last term is $83$:
+
+      $$7 + (n - 1)4 = 83 \quad\Rightarrow\quad 4(n - 1) = 76 \quad\Rightarrow\quad n = 20$$
+
+      Now use the sum formula with the first and last terms:
+
+      $$S_{20} = \frac{20}{2}(7 + 83) = 10 \times 90 = 900$$
+
+      The average of the first and last terms is $45$, and there are $20$ of them, so
+      the total is $900$. Counting the terms is a separate step from adding them, and
+      both are needed.
+
+  - id: r4-geometric-series
+    section: '9.3'
+    tier: O
+    refs: ['4.1']
+    statement: 'Find the sum of the first six terms of $2, 6, 18, \dots$'
+    answer_label: 'The sum of the first six terms'
+    check: {kind: evaluate, expression: '2*(3**6 - 1)/(3 - 1)', answer: '728'}
+    answer_text: |-
+      The first term is $a = 2$ and the common ratio is $r = 3$. The sum of $n$ terms is
+      $\dfrac{a(r^n - 1)}{r - 1}$:
+
+      $$S_6 = \frac{2(3^6 - 1)}{3 - 1} = \frac{2(729 - 1)}{2} = 728$$
+
+      Adding the terms directly gives $2 + 6 + 18 + 54 + 162 + 486 = 728$, which
+      checks the formula. The terms grow quickly, so the last one is most of the total.
+
+  - id: r5-sum-to-infinity
+    section: '9.4'
+    tier: H
+    refs: ['4.1']
+    statement: 'Find the sum to infinity of $20 + 10 + 5 + \dots$'
+    answer_label: 'The sum to infinity'
+    check: {kind: evaluate, expression: '20/(1 - 1/2)', answer: '40'}
+    answer_text: |-
+      The first term is $a = 20$ and each term is half the one before, so $r =
+      \dfrac{1}{2}$. Because $|r| < 1$, the terms shrink towards zero and the sum
+      settles at a finite value:
+
+      $$S_\infty = \frac{a}{1 - r} = \frac{20}{1 - \frac{1}{2}} = \frac{20}{\frac{1}{2}} = 40$$
+
+      The partial sums are $20$, $30$, $35$, $37.5$, and they close in on $40$ without
+      ever passing it. The condition $|r| < 1$ is what makes a sum to infinity exist at
+      all.
+
+  - id: r6-which-kind
+    section: '9.1'
+    tier: O
+    refs: ['4.1']
+    statement: 'A sequence is $2, 6, 12, 20, \dots$ Is it arithmetic, geometric, or neither? Explain.'
+    answer_label: 'Which kind it is, and why'
+    check:
+      kind: all
+      checks:
+        - {kind: evaluate, expression: '6 - 2', answer: '4'}
+        - {kind: evaluate, expression: '12 - 6', answer: '6'}
+        - {kind: evaluate, expression: '6/2', answer: '3'}
+        - {kind: evaluate, expression: '12/6', answer: '2'}
+        - kind: structured
+          requires: [test-the-differences, test-the-ratios, name-the-term]
+          concepts: [constant-difference, constant-ratio, quadratic]
+          points:
+            - id: test-the-differences
+              text: >-
+                The differences are 4, 6 and 8, which are not constant, so the sequence
+                is not arithmetic.
+              concepts: [constant-difference]
+            - id: test-the-ratios
+              text: >-
+                The ratios are 3, 2 and 5/3, which are not constant either, so the
+                sequence is not geometric.
+              concepts: [constant-ratio]
+            - id: name-the-term
+              text: >-
+                It is neither. The nth term is n times (n + 1), so the sequence is
+                quadratic: 1 times 2, 2 times 3, 3 times 4, 4 times 5. A constant
+                second difference of 2 is the sign of a quadratic.
+              concepts: [quadratic]
+    answer_text: |-
+      Test both patterns. The differences are $6 - 2 = 4$, $12 - 6 = 6$ and $20 - 12 =
+      8$, which are not constant, so the sequence is not arithmetic.
+
+      The ratios are $\dfrac{6}{2} = 3$, $\dfrac{12}{6} = 2$ and $\dfrac{20}{12} =
+      \dfrac{5}{3}$, which are not constant either, so it is not geometric.
+
+      It is neither. The terms are $1 \times 2$, $2 \times 3$, $3 \times 4$ and
+      $4 \times 5$, so $T_n = n(n + 1) = n^2 + n$. The second difference is constant,
+      which is the mark of a quadratic sequence, and neither of the two patterns this
+      chapter teaches applies.
+
+  - id: r7-ratio-from-sum
+    section: '9.4'
+    tier: H
+    refs: ['4.1']
+    statement: 'A geometric series has $a = 4$ and sum to infinity $16$. Find $r$.'
+    answer_label: 'The common ratio'
+    check:
+      kind: solve
+      equation: '4/(1 - r) = 16'
+      variable: r
+      answer: ['3/4']
+    answer_text: |-
+      Put the values into the sum to infinity formula:
+
+      $$16 = \frac{4}{1 - r}$$
+
+      Multiply both sides by $1 - r$: $16(1 - r) = 4$. Divide by $16$: $1 - r =
+      \dfrac{1}{4}$. So $r = \dfrac{3}{4}$.
+
+      Check that $|r| < 1$: it is, so the sum to infinity exists. A value of $r$ outside
+      $-1 < r < 1$ would mean the question had no answer.
+
+  - id: r8-recurrence
+    section: '9.5'
+    tier: O
+    refs: ['4.1']
+    statement: >-
+      $T_1 = 5$ and $T_{n+1} = 3T_n - 4$. Find $T_4$ and the fixed point.
+    answer_label: 'The fourth term and the fixed point'
+    check:
+      kind: all
+      checks:
+        - {kind: evaluate, expression: '3*5 - 4', answer: '11'}
+        - {kind: evaluate, expression: '3*11 - 4', answer: '29'}
+        - {kind: evaluate, expression: '3*29 - 4', answer: '83'}
+        - {kind: solve, equation: 'T = 3*T - 4', variable: T, answer: ['2']}
+    answer_text: |-
+      Apply the rule once for each new term:
+
+      $$T_2 = 3(5) - 4 = 11 \qquad T_3 = 3(11) - 4 = 29 \qquad T_4 = 3(29) - 4 = 83$$
+
+      A fixed point is a value the rule does not change. Put $T_{n+1} = T_n = T$:
+
+      $$T = 3T - 4 \quad\Rightarrow\quad 2T = 4 \quad\Rightarrow\quad T = 2$$
+
+      The sequence runs away from $2$, not towards it: each step triples the distance
+      from $2$, because $T_{n+1} - 2 = 3(T_n - 2)$. A fixed point is not always a value
+      the sequence settles on.
+
+  - id: r9-induction-odd-numbers
+    section: '9.6'
+    tier: H
+    refs: ['4.1']
+    statement: 'Prove by induction that $1 + 3 + \dots + (2n-1) = n^2$.'
+    answer_label: 'The three parts of the proof'
+    check:
+      kind: all
+      checks:
+        - {kind: evaluate, expression: '2*1 - 1', answer: '1'}
+        - {kind: evaluate, expression: 'k**2 + (2*(k+1) - 1) - (k+1)**2', answer: '0'}
+        - kind: structured
+          requires: [base-case, assumption, inductive-step, conclusion]
+          concepts: [base-case, inductive-hypothesis, induction-step]
+          points:
+            - id: base-case
+              text: >-
+                Base case: for n = 1 the left side is 1 and the right side is 1 squared,
+                which is 1, so the statement holds.
+              concepts: [base-case]
+            - id: assumption
+              text: >-
+                Assumption: suppose the statement is true for some n = k, so the sum of
+                the first k odd numbers is k squared.
+              concepts: [inductive-hypothesis]
+            - id: inductive-step
+              text: >-
+                Step: add the next odd number. k squared plus 2k + 1 is (k + 1) squared,
+                which is the formula with n = k + 1.
+              concepts: [induction-step]
+            - id: conclusion
+              text: >-
+                Conclusion: the statement holds for n = 1, and whenever it holds for k
+                it holds for k + 1. By induction it holds for every whole number n.
+              concepts: [base-case, induction-step]
+    answer_text: |-
+      **Base case.** For $n = 1$ the left side is $1$ and the right side is $1^2 = 1$.
+      The statement holds.
+
+      **Assumption.** Suppose it is true for $n = k$:
+      $1 + 3 + \dots + (2k - 1) = k^2$.
+
+      **Inductive step.** Add the next odd number, $2(k + 1) - 1 = 2k + 1$, to both
+      sides:
+
+      $$k^2 + (2k + 1) = (k + 1)^2$$
+
+      That is the formula with $n = k + 1$.
+
+      **Conclusion.** The statement is true for $n = 1$, and true for $k + 1$ whenever
+      it is true for $k$. By induction it is true for every whole number $n$.
+
+      All three parts are needed. The base case starts the chain, the assumption is
+      what the step is allowed to use, and the conclusion names the principle that
+      makes the chain reach every $n$.
+
+  - id: r10-saving-plan
+    section: '9.5'
+    tier: O
+    refs: ['4.1']
+    statement: >-
+      A saving plan puts away €100 in month 1 and increases the amount by 5% each
+      month. Write it as a recurrence, and say whether it has a sum to infinity.
+    answer_label: 'The recurrence, and whether the total settles'
+    check:
+      kind: all
+      checks:
+        - {kind: evaluate, expression: '1.05*100', answer: '105'}
+        - {kind: evaluate, expression: '1.05**2*100', answer: '110.25'}
+        - kind: structured
+          requires: [write-the-recurrence, decide-on-infinity]
+          concepts: [recurrence, common-ratio, divergence]
+          points:
+            - id: write-the-recurrence
+              text: >-
+                T1 = 100 and Tn+1 = 1.05 times Tn. Each month's amount is the one before
+                multiplied by 1.05, so the amounts are a geometric sequence with first
+                term 100 and ratio 1.05.
+              concepts: [recurrence, common-ratio]
+            - id: decide-on-infinity
+              text: >-
+                There is no sum to infinity. The ratio 1.05 is greater than 1, so the
+                amounts grow without bound and the total grows without bound too. A sum
+                to infinity needs the ratio to be between -1 and 1.
+              concepts: [divergence, common-ratio]
+    answer_text: |-
+      Each month's amount is the month before multiplied by $1.05$:
+
+      $$T_1 = 100, \qquad T_{n+1} = 1.05\,T_n$$
+
+      The amounts are $100$, $105$, $110.25$, and so on: a geometric sequence with
+      $a = 100$ and $r = 1.05$.
+
+      There is no sum to infinity. The ratio is greater than $1$, so the amounts grow
+      and the total grows without bound. A sum to infinity exists only when $|r| < 1$,
+      which is the condition this plan fails. Over a fixed number of months the total
+      is still finite, and the geometric sum formula gives it.

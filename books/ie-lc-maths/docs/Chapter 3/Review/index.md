@@ -93,25 +93,9 @@ Work through these without notes. For each one, say **which method you will use 
 before you calculate. The questions mix every section of the chapter, and two of them ask
 for part of a solid rather than all of it.
 
-1. A cylinder has radius $4$ cm and height $9$ cm. Find its volume and its total surface
-   area.
-2. A trapezium has parallel sides $5$ m and $11$ m, and a perpendicular height of $3$ m.
-   Find its area.
-3. A circle has diameter $18$ cm. Find its circumference and its area.
-4. Two similar cuboids have corresponding lengths $4$ cm and $10$ cm. Find the ratio of
-   their volumes.
-5. A hemisphere has radius $7$ cm. Find its total surface area.
-6. A cylinder has radius $6$ cm and height $5$ cm. Find the width and the area of the
-   rectangle in its net.
-7. A tank holds $3.6 \text{ m}^3$ of water. How many litres is that?
-8. A sphere of radius $6$ cm has volume $288\pi \approx 904.78 \text{ cm}^3$. Write this
-   volume to 2 significant figures.
-9. Two cylindrical tins have the same height. The first has radius $3$ cm and the second
-   has radius $6$ cm. How many times does the second tin hold?
-10. A cylinder has radius $10$ cm and height $15$ cm, and it has no lid. Find its surface
-    area.
-11. A water tank is a cylinder of diameter $2$ m and height $3$ m. The club wants to know
-    how much paint covers the **curved side only**. Which formula applies, and why?
+:::problems chapter-03-review
+
+:::answers chapter-03-review
 
 ## What you can now do
 

@@ -64,20 +64,9 @@ Work through these without notes. For each one, say **which method you will use
 and why** before you calculate. The questions mix every section of the chapter,
 and two of them need a method that is not the first one you might reach for.
 
-1. Which of $\mathbb{N}$, $\mathbb{Z}$, $\mathbb{Q}$ and $\mathbb{R}$ is the
-   smallest system that contains $-0.75$?
-2. Write $0.363636\dots$ as a fraction in its lowest terms.
-3. Simplify $\sqrt{75}$.
-4. Write $\dfrac{8}{\sqrt{2}}$ with a whole-number denominator.
-5. Describe how to construct $\sqrt{2}$ and then $\sqrt{3}$ on the number line.
-6. Work out $|-13|$ and the distance between $-5$ and $3$.
-7. Solve $|x - 4| = 6$.
-8. Simplify $(3a^2)^3$.
-9. Solve $3^{2x} = 81$.
-10. Write $0.000\,456$ to 2 significant figures and in scientific notation.
-11. A quote for a job is rounded to the nearest euro before the profit margin is
-    added. Explain why the final figure may be out by more than €1, and say where
-    the rounding should happen instead.
+:::problems chapter-01-review
+
+:::answers chapter-01-review
 
 ## What you can now do
 
