@@ -1,0 +1,284 @@
+# Mixed practice for the Chapter 12 Review.
+#
+# Ten questions, one record each, in the order they appear on the Review page.
+# Every record that asks for a number pairs a `dimensions` check, which proves the
+# magnitude and the unit, with a `sigfigs` check, which proves the rounding to the
+# figures the data support. The one angle is proved by `approx` and then rounded by
+# `sigfigs`, because a trigonometric value is irrational. Questions 1, 3, 6, 8, 9
+# and 10 ask for a judgement, an ordering or the source of the method as well as a
+# number, so each carries a `structured` component.
+#
+# Honest limit: this proves arithmetic, dimensions and the declared conventions,
+# not physics. A `structured` check proves only that a model answer contains its
+# declared steps and concepts, in order. Questions 1, 3 and 6 are explanations with
+# no number to check: the verifier can prove that the ordering and the reasons are
+# present, and nothing about whether they are right.
+#
+# The data are read as the Review page states them: the speed of light is
+# 3.0e8 m/s, one light year is 9.46e15 m, the lens in questions 7 and 8 has a focal
+# length of 10.0 cm, and question 9 uses a glass of refractive index 1.50.
+chapter: 12
+problems:
+  - id: c12-r1-spectrum-order
+    section: Review
+    tier: O
+    refs: ['2.4']
+    statement: 'List the seven families of the electromagnetic spectrum in order of increasing wavelength.'
+    answer_label: 'The seven families, from the shortest wavelength'
+    check:
+      kind: structured
+      requires: [gamma-to-radio]
+      concepts: [spectrum-order, wavelength-and-frequency, visible-band]
+      points:
+        - id: gamma-to-radio
+          text: 'In order of increasing wavelength: gamma rays, X-rays, ultraviolet, visible, infrared, microwave, radio. Equivalently, from the highest frequency to the lowest, because c = f lambda holds for all of them.'
+          concepts: [spectrum-order, wavelength-and-frequency, visible-band]
+    answer_text: 'In order of increasing wavelength: gamma rays, X-rays, ultraviolet, visible light, infrared, microwaves, radio waves. The frequency runs the other way, from the highest for gamma rays to the lowest for radio waves, because the product $f\lambda$ is the same for all of them. Visible light sits in the middle of the list, between about $400\,\text{nm}$ and $700\,\text{nm}$.'
+
+  - id: c12-r2-radio-frequency
+    section: Review
+    tier: O
+    refs: ['2.4']
+    statement: 'A radio wave has a wavelength of $2.0\,\text{m}$. Calculate its frequency. Take the speed of light as $3.0 \times 10^{8}\,\text{m/s}$.'
+    answer_label: 'The frequency'
+    check:
+      kind: all
+      checks:
+        - kind: dimensions
+          expression: c / lam
+          values:
+            c: {value: '3.0e8', unit: m/s}
+            lam: {value: '2.0', unit: m}
+          answer: {value: '1.5e8', unit: Hz}
+        - kind: sigfigs
+          value: '3.0e8 / 2.0'
+          figures: 2
+          answer: '1.5e8'
+          convention: round-once
+    answer_text: 'Rearranging $c = f\lambda$ gives $f = \dfrac{c}{\lambda} = \dfrac{3.0 \times 10^{8}}{2.0} = 1.5 \times 10^{8}\,\text{Hz}$. That is $150\,\text{MHz}$, which is where the FM band sits. A long wavelength and a low frequency always go together, because their product is fixed at the speed of light.'
+
+  - id: c12-r3-light-year
+    section: Review
+    tier: O
+    refs: ['2.4']
+    statement: 'A star is $6.0$ light years from the Earth. State how long its light takes to reach us, and explain your answer.'
+    answer_label: 'How long the light takes, and why'
+    check:
+      kind: all
+      checks:
+        - kind: approx
+          value: '6.0 * 9.46e15 / 3.0e8 / (365.25 * 24 * 3600)'
+          target: '6.0'
+          tolerance: '0.05'
+        - kind: structured
+          requires: [state-time, define-light-year, consequence]
+          concepts: [light-year, definition-by-distance, look-back-time]
+          points:
+            - id: state-time
+              text: 'The light takes 6.0 years to reach us.'
+              concepts: [light-year]
+            - id: define-light-year
+              text: 'A light year is the distance light travels in one year, about 9.46 x 10^15 m. It is a distance, not a time.'
+              concepts: [light-year, definition-by-distance]
+            - id: consequence
+              text: 'So light from a star 6.0 light years away left it 6.0 years ago, and you see the star as it was then, not as it is now.'
+              concepts: [look-back-time]
+    answer_text: 'The light takes $6.0$ years to reach us. A light year is the distance light travels in one year, about $9.46 \times 10^{15}\,\text{m}$, so it is a distance and not a time. A star $6.0$ light years away is therefore $6.0$ light years of distance from us, and light covers that distance in $6.0$ years. You see the star as it was six years ago, which is why looking far away is also looking back in time.'
+
+  - id: c12-r4-panel-power
+    section: Review
+    tier: O
+    refs: ['2.4']
+    statement: 'A solar panel has an area of $4.0\,\text{m}^2$. The irradiance of the sunlight is $500\,\text{W/m}^2$. Calculate the power the panel receives.'
+    answer_label: 'The power received'
+    check:
+      kind: all
+      checks:
+        - kind: dimensions
+          expression: I * A
+          values:
+            I: {value: '500', unit: W/m^2}
+            A: {value: '4.0', unit: m^2}
+          answer: {value: '2000', unit: W}
+        - kind: sigfigs
+          value: '500 * 4.0'
+          figures: 2
+          answer: '2.0e3'
+          convention: round-once
+    answer_text: 'The irradiance is the power arriving on each square metre, so $P = IA = 500 \times 4.0 = 2000\,\text{W}$, which is $2.0 \times 10^{3}\,\text{W}$ to two significant figures. That is the power arriving at the panel, not the electrical power out of it. A real panel converts only part of it, and the rest warms the panel or is reflected.'
+
+  - id: c12-r5-inverse-square
+    section: Review
+    tier: O
+    refs: ['2.4']
+    statement: 'The irradiance $1.0\,\text{m}$ from a lamp is $900\,\text{W/m}^2$. Calculate the irradiance $3.0\,\text{m}$ from the lamp.'
+    answer_label: 'The irradiance at three metres'
+    check:
+      kind: all
+      checks:
+        - kind: dimensions
+          expression: I1 * (r1 / r2)**2
+          values:
+            I1: {value: '900', unit: W/m^2}
+            r1: {value: '1.0', unit: m}
+            r2: {value: '3.0', unit: m}
+          answer: {value: '100', unit: W/m^2}
+        - kind: sigfigs
+          value: '900 * (1.0 / 3.0)**2'
+          figures: 2
+          answer: '1.0e2'
+          convention: round-once
+    answer_text: 'The lamp spreads its power over the surface of a sphere, and that surface grows as the square of the distance. Three times as far means nine times the area, so the irradiance is divided by nine: $I_2 = I_1\left(\dfrac{r_1}{r_2}\right)^2 = 900 \times \left(\dfrac{1.0}{3.0}\right)^2 = 100\,\text{W/m}^2$, which is $1.0 \times 10^{2}\,\text{W/m}^2$ to two significant figures. The total power from the lamp is unchanged; it is spread more thinly.'
+
+  - id: c12-r6-ionising
+    section: Review
+    tier: O
+    refs: ['2.4']
+    statement: 'Explain why ultraviolet radiation is ionising but visible light is not.'
+    answer_label: 'Why ultraviolet ionises and visible light does not'
+    check:
+      kind: structured
+      requires: [photon-energy, threshold, consequence]
+      concepts: [photon-energy-proportional-to-frequency, ionisation-energy, uv-frequency]
+      points:
+        - id: photon-energy
+          text: 'The energy a photon carries depends on its frequency: a higher frequency means a more energetic photon. Ultraviolet has a higher frequency, and so a shorter wavelength, than visible light.'
+          concepts: [photon-energy-proportional-to-frequency, uv-frequency]
+        - id: threshold
+          text: 'Removing an electron from an atom or a molecule needs a minimum energy. A photon can ionise only if its own energy is at least that minimum.'
+          concepts: [ionisation-energy]
+        - id: consequence
+          text: 'An ultraviolet photon carries enough energy to break an electron away, while a visible photon does not, however bright the light. Brighter visible light means more photons, not more energetic ones.'
+          concepts: [ionisation-energy, consequence]
+    answer_text: 'The energy a photon carries depends on its frequency, so a higher frequency means a more energetic photon. Ultraviolet has a higher frequency and a shorter wavelength than visible light, so each ultraviolet photon carries more energy. Removing an electron from an atom needs a minimum energy, and a photon can ionise only if it carries at least that much. An ultraviolet photon does; a visible photon does not, however bright the light, because brightness means more photons rather than more energetic ones. That is why ultraviolet damages living cells and visible light mostly does not.'
+
+  - id: c12-r7-lens-image
+    section: Review
+    tier: O
+    refs: ['2.3']
+    statement: 'A converging lens has a focal length of $10.0\,\text{cm}$. An object is placed $30.0\,\text{cm}$ from the lens. Calculate the image distance and the magnification.'
+    answer_label: 'The image distance and the magnification'
+    check:
+      kind: all
+      checks:
+        - kind: dimensions
+          expression: 1 / (1 / f - 1 / u)
+          values:
+            f: {value: '10.0', unit: cm}
+            u: {value: '30.0', unit: cm}
+          answer: {value: '15.0', unit: cm}
+        - kind: sigfigs
+          value: '1 / (1 / 10.0 - 1 / 30.0)'
+          figures: 3
+          answer: '15.0'
+          convention: round-once
+        - kind: dimensions
+          expression: v / u
+          values:
+            v: {value: '15.0', unit: cm}
+            u: {value: '30.0', unit: cm}
+          answer: {value: '0.50', unit: ''}
+        - kind: sigfigs
+          value: '15.0 / 30.0'
+          figures: 2
+          answer: '0.50'
+          convention: round-once
+    answer_text: 'The lens formula gives $\dfrac{1}{v} = \dfrac{1}{f} - \dfrac{1}{u} = \dfrac{1}{10.0} - \dfrac{1}{30.0} = \dfrac{3}{30} - \dfrac{1}{30} = \dfrac{2}{30}$, so $v = 15.0\,\text{cm}$. The magnification is $m = \dfrac{v}{u} = \dfrac{15.0}{30.0} = 0.50$. The image is real, inverted and half the height of the object, and it falls between the focal point and twice the focal length, as a real image of an object beyond $2f$ always does.'
+
+  - id: c12-r8-magnifying-glass
+    section: Review
+    tier: O
+    refs: ['2.3']
+    statement: 'A converging lens has a focal length of $10.0\,\text{cm}$. An object is placed $8.0\,\text{cm}$ from the lens. Calculate the image distance, and state whether the image is real or virtual.'
+    answer_label: 'The image distance, and whether the image is real'
+    check:
+      kind: all
+      checks:
+        - kind: dimensions
+          expression: 1 / (1 / f - 1 / u)
+          values:
+            f: {value: '10.0', unit: cm}
+            u: {value: '8.0', unit: cm}
+          answer: {value: '-40', unit: cm}
+        - kind: sigfigs
+          value: '-40'
+          figures: 2
+          answer: '-4.0e1'
+          convention: round-once
+        - kind: structured
+          requires: [state-distance, real-or-virtual, why]
+          concepts: [negative-image-distance, virtual-image, inside-focal-length]
+          points:
+            - id: state-distance
+              text: 'The image distance is minus 40 cm, so the image is 40 cm from the lens on the same side as the object.'
+              concepts: [negative-image-distance]
+            - id: real-or-virtual
+              text: 'The image is virtual. A virtual image cannot be caught on a screen, and it is upright and magnified.'
+              concepts: [virtual-image]
+            - id: why
+              text: 'The object is inside the focal length, where the rays leaving the lens are diverging, so they only appear to come from a point behind the object. This is how a magnifying glass works.'
+              concepts: [inside-focal-length, virtual-image]
+    answer_text: 'The lens formula gives $\dfrac{1}{v} = \dfrac{1}{10.0} - \dfrac{1}{8.0} = \dfrac{4}{40} - \dfrac{5}{40} = -\dfrac{1}{40}$, so $v = -40\,\text{cm}$. The minus sign means the image is on the same side of the lens as the object, so it is virtual. A virtual image cannot be caught on a screen: the rays leaving the lens are diverging and only appear to come from the image. The object sits inside the focal length, which is exactly how a magnifying glass is used, and the image is upright and five times as far away as the object, so it looks larger.'
+
+  - id: c12-r9-snell
+    section: Review
+    tier: O
+    refs: ['2.3']
+    statement: 'Light passes from air into a glass of refractive index $1.50$ at an angle of incidence of $30.0°$. Calculate the angle of refraction. Which chapter does this method come from?'
+    answer_label: 'The angle of refraction, and the chapter'
+    check:
+      kind: all
+      checks:
+        - kind: approx
+          value: 'asin(sin(30 * pi / 180) / 1.50) * 180 / pi'
+          target: '19.47'
+          tolerance: '0.01'
+        - kind: sigfigs
+          value: 'asin(sin(30 * pi / 180) / 1.50) * 180 / pi'
+          figures: 3
+          answer: '19.5'
+          tolerance: '0.01'
+          convention: round-once
+        - kind: structured
+          requires: [state-angle, name-chapter]
+          concepts: [snell, towards-normal]
+          points:
+            - id: state-angle
+              text: 'The angle of refraction is 19.5 degrees, measured from the normal.'
+              concepts: [snell]
+            - id: name-chapter
+              text: 'The method is Snell''s law, from Chapter 10, Reflection, refraction and diffraction. The ray bends towards the normal because glass is the slower medium.'
+              concepts: [snell, towards-normal]
+    answer_text: 'Snell''s law gives $\sin r = \dfrac{\sin i}{n} = \dfrac{\sin 30.0°}{1.50} = \dfrac{0.500}{1.50} = 0.333$, so $r = 19.5°$ measured from the normal. The ray bends towards the normal, because glass is the slower medium. The method is Snell''s law, from Chapter 10, Reflection, refraction and diffraction. Light and radio waves obey it in the same way, which is why a lens works at radio frequencies too.'
+
+  - id: c12-r10-wave-speed
+    section: Review
+    tier: O
+    refs: ['2.4']
+    statement: 'A wave has a frequency of $200\,\text{Hz}$ and a wavelength of $1.7\,\text{m}$. Calculate its speed. Which chapter does this method come from?'
+    answer_label: 'The speed and the chapter'
+    check:
+      kind: all
+      checks:
+        - kind: dimensions
+          expression: f * lam
+          values:
+            f: {value: '200', unit: Hz}
+            lam: {value: '1.7', unit: m}
+          answer: {value: '340', unit: m/s}
+        - kind: sigfigs
+          value: '200 * 1.7'
+          figures: 2
+          answer: '3.4e2'
+          convention: round-once
+        - kind: structured
+          requires: [state-speed, name-chapter]
+          concepts: [wave-equation, waves]
+          points:
+            - id: state-speed
+              text: 'The speed is v = f lambda = 200 x 1.7 = 340 m/s, which is 3.4 x 10^2 m/s.'
+              concepts: [wave-equation]
+            - id: name-chapter
+              text: 'The method is the wave equation from Chapter 9, Waves. It holds for every wave, including electromagnetic waves, with c in place of v when the wave is light in a vacuum.'
+              concepts: [waves, wave-equation]
+    answer_text: 'The wave equation gives $v = f\lambda = 200 \times 1.7 = 340\,\text{m/s}$, which is $3.4 \times 10^{2}\,\text{m/s}$ to two significant figures. The method is the wave equation from Chapter 9, Waves. It holds for every wave, including electromagnetic waves, with $c$ in place of $v$ when the wave is light in a vacuum. That one equation links the spectrum, the lens and the sound in the room.'

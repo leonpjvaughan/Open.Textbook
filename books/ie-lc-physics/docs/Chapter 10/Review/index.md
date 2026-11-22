@@ -106,30 +106,9 @@ Work through these without notes. For each one, decide **which relationship appl
 and say why. Two of them ask you to choose between Snell's law and the critical
 angle, and two come from earlier chapters.
 
-1. A ray of light reflects from a plane mirror at an angle of incidence of 30°. State
-   the angle of reflection.
-2. Light passes from air into water of refractive index 1.33 at an angle of
-   incidence of 45.0°. Calculate the angle of refraction.
-3. The critical angle for a boundary between a material and air is 50.0°. Calculate
-   the refractive index of the material.
-4. Explain why light stays inside the core of an optical fibre.
-5. In a two-slit experiment the path difference to a point on the screen is
-   $1.8\,\mu\text{m}$ and the wavelength is 600 nm. State whether the point is bright
-   or dark.
-6. A ray of light inside a glass of refractive index 1.50 meets the glass-air
-   boundary at 35.0°. State whether the light leaves the glass, and explain your
-   answer.
-7. Explain why a radio signal reaches behind a hill but a television signal does not.
-<!-- tier:h -->
-8. A diffraction grating has 600 lines per millimetre. Calculate the distance between
-   neighbouring slits.
-9. Light of wavelength 550 nm falls on a grating with 600 lines per millimetre.
-   Calculate the angle of the first-order maximum.
-<!-- /tier:h -->
-10. A wave has a frequency of 200 Hz and a wavelength of 1.7 m. Calculate its speed.
-    Which chapter does this method come from?
-11. A spring of spring constant 50 N/m is stretched by 0.10 m. Calculate the force
-    needed. Which chapter does this method come from?
+:::problems chapter-10-review
+
+:::answers chapter-10-review
 
 ## What you can now do
 

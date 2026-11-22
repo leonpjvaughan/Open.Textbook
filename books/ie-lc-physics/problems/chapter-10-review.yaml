@@ -1,0 +1,299 @@
+# Mixed practice for the Chapter 10 Review.
+#
+# Eleven questions, one record each, in the order they appear on the Review page.
+# Questions 8 and 9 are Higher-level items and carry `tier: H`; the renderer marks
+# them **H** for the reader, as the section practice banks do. An angle is proved
+# by `approx` against a stated tolerance and then rounded by `sigfigs`, because a
+# trigonometric value is irrational; the slit spacing and the two-slit path
+# difference are exact rational arithmetic, so they are proved by `convert` and
+# `evaluate` without a tolerance.
+#
+# Honest limit: this proves arithmetic, dimensions and the declared conventions,
+# not physics. A `structured` check proves only that a model answer contains its
+# declared steps and concepts, in order. Questions 1, 4, 5, 6, 7, 10 and 11 ask for
+# a decision, an explanation or the source of the method: the verifier can prove
+# that the answer states it, and nothing about whether it is right.
+#
+# The data are read as the Review page states them: the speed of light in air is
+# 3.0e8 m/s, and the two-slit path difference is 1.8 um against a wavelength of
+# 600 nm.
+chapter: 10
+problems:
+  - id: c10-r1-reflection
+    section: Review
+    tier: O
+    refs: ['2.3']
+    statement: 'A ray of light reflects from a plane mirror at an angle of incidence of $30°$. State the angle of reflection.'
+    answer_label: 'The angle of reflection'
+    check:
+      kind: structured
+      requires: [state-angle, law]
+      concepts: [law-of-reflection, angle-from-normal]
+      points:
+        - id: state-angle
+          text: 'The angle of reflection is 30 degrees.'
+          concepts: [law-of-reflection]
+        - id: law
+          text: 'The law of reflection says the angle of reflection equals the angle of incidence, and both are measured from the normal, not from the surface of the mirror.'
+          concepts: [law-of-reflection, angle-from-normal]
+    answer_text: 'The angle of reflection is $30°$. The law of reflection says that the angle of reflection equals the angle of incidence, and both are measured from the normal, the line drawn at right angles to the mirror at the point where the ray meets it. Measuring from the mirror surface instead would give $60°$, and that is the commonest slip with this law.'
+
+  - id: c10-r2-snell-water
+    section: Review
+    tier: O
+    refs: ['2.3']
+    statement: 'Light passes from air into water of refractive index $1.33$ at an angle of incidence of $45.0°$. Calculate the angle of refraction.'
+    answer_label: 'The angle of refraction'
+    check:
+      kind: all
+      checks:
+        - kind: approx
+          value: 'asin(sin(45 * pi / 180) / 1.33) * 180 / pi'
+          target: '32.12'
+          tolerance: '0.01'
+        - kind: sigfigs
+          value: 'asin(sin(45 * pi / 180) / 1.33) * 180 / pi'
+          figures: 3
+          answer: '32.1'
+          tolerance: '0.01'
+          convention: round-once
+    answer_text: 'Snell''s law gives $\sin r = \dfrac{\sin i}{n} = \dfrac{\sin 45.0°}{1.33} = \dfrac{0.7071}{1.33} = 0.5317$, so $r = 32.1°$. The ray bends towards the normal because water is the slower medium. Three significant figures is what the angle of incidence and the index justify.'
+
+  - id: c10-r3-critical-to-index
+    section: Review
+    tier: O
+    refs: ['2.3']
+    statement: 'The critical angle for a boundary between a material and air is $50.0°$. Calculate the refractive index of the material.'
+    answer_label: 'The refractive index'
+    check:
+      kind: all
+      checks:
+        - kind: approx
+          value: '1 / sin(50 * pi / 180)'
+          target: '1.3054'
+          tolerance: '0.0001'
+        - kind: sigfigs
+          value: '1 / sin(50 * pi / 180)'
+          figures: 3
+          answer: '1.31'
+          tolerance: '0.0001'
+          convention: round-once
+    answer_text: 'At the critical angle the refracted ray runs along the boundary, so $r = 90°$ and $\sin r = 1$. Snell''s law then gives $n = \dfrac{1}{\sin C} = \dfrac{1}{\sin 50.0°} = \dfrac{1}{0.7660} = 1.31$. The index has no unit, because it is a ratio of two speeds.'
+
+  - id: c10-r4-optical-fibre
+    section: Review
+    tier: O
+    refs: ['2.3']
+    statement: 'Explain why light stays inside the core of an optical fibre.'
+    answer_label: 'Why the light stays in the core'
+    check:
+      kind: structured
+      requires: [total-internal-reflection, two-conditions, cladding]
+      concepts: [critical-angle, denser-medium, repeated-reflection]
+      points:
+        - id: total-internal-reflection
+          text: 'The core is optically denser than the cladding around it, so light travelling along the core meets the boundary at a glancing angle and is totally internally reflected instead of refracting out.'
+          concepts: [denser-medium, critical-angle]
+        - id: two-conditions
+          text: 'Both conditions for total internal reflection hold: the light is going from a denser to a less dense medium, and its angle of incidence at the boundary is greater than the critical angle.'
+          concepts: [critical-angle]
+        - id: cladding
+          text: 'The reflection repeats at every bounce along the fibre, so the light follows the core even when the fibre bends, and very little energy is lost sideways.'
+          concepts: [repeated-reflection]
+    answer_text: 'The core is optically denser than the cladding around it. Light travelling along the core meets the core-cladding boundary at a glancing angle, so its angle of incidence there is greater than the critical angle. That is a boundary from a denser to a less dense medium, so total internal reflection happens and no light refracts out. The reflection repeats at every bounce along the fibre, so the light follows the core even when the fibre bends. Nothing is perfectly efficient, so some light is lost at each reflection, which is why very long fibres need repeaters.'
+
+  - id: c10-r5-two-slit-bright
+    section: Review
+    tier: O
+    refs: ['2.3']
+    statement: 'In a two-slit experiment the path difference to a point on the screen is $1.8\,\mu\text{m}$ and the wavelength is $600\,\text{nm}$. State whether the point is bright or dark.'
+    answer_label: 'Whether the point is bright or dark'
+    check:
+      kind: all
+      checks:
+        - kind: convert
+          value: '1.8'
+          from: um
+          to: m
+          answer: '1.8e-6'
+        - kind: convert
+          value: '600'
+          from: nm
+          to: m
+          answer: '6.0e-7'
+        - kind: evaluate
+          expression: '1.8e-6 / 6.0e-7'
+          answer: '3'
+        - kind: structured
+          requires: [convert, ratio, conclusion]
+          concepts: [path-difference, whole-wavelength, constructive]
+          points:
+            - id: convert
+              text: 'Both lengths must be in the same unit: 1.8 um is 1.8 x 10^-6 m and 600 nm is 6.0 x 10^-7 m.'
+              concepts: [path-difference]
+            - id: ratio
+              text: 'The path difference divided by the wavelength is 3, so the path difference is exactly three wavelengths.'
+              concepts: [whole-wavelength]
+            - id: conclusion
+              text: 'A whole number of wavelengths means the two waves arrive in step, so the point is bright.'
+              concepts: [constructive]
+    answer_text: 'Both lengths must be in the same unit first. The path difference is $1.8 \times 10^{-6}\,\text{m}$ and the wavelength is $6.0 \times 10^{-7}\,\text{m}$, so the path difference is $\dfrac{1.8 \times 10^{-6}}{6.0 \times 10^{-7}} = 3$ wavelengths. A whole number of wavelengths means the two waves arrive in step, so they interfere constructively and the point is bright. Half a wavelength of difference would make it dark.'
+
+  - id: c10-r6-glass-boundary
+    section: Review
+    tier: O
+    refs: ['2.3']
+    statement: 'A ray of light inside a glass of refractive index $1.50$ meets the glass-air boundary at $35.0°$. State whether the light leaves the glass, and explain your answer.'
+    answer_label: 'Whether the light leaves the glass, and why'
+    check:
+      kind: all
+      checks:
+        - kind: approx
+          value: 'asin(1 / 1.50) * 180 / pi'
+          target: '41.8'
+          tolerance: '0.05'
+        - kind: approx
+          value: 'asin(1.50 * sin(35 * pi / 180)) * 180 / pi'
+          target: '59.4'
+          tolerance: '0.05'
+        - kind: structured
+          requires: [compare-angles, conclusion, refracted-angle]
+          concepts: [critical-angle, partial-reflection, snell]
+          points:
+            - id: compare-angles
+              text: 'The critical angle for this glass is 41.8 degrees, and the angle of incidence, 35.0 degrees, is smaller than that.'
+              concepts: [critical-angle]
+            - id: conclusion
+              text: 'Since the angle of incidence is below the critical angle, most of the light leaves the glass and refracts into the air, and only a little is reflected back inside.'
+              concepts: [partial-reflection]
+            - id: refracted-angle
+              text: 'The refracted ray leaves at 59.4 degrees from the normal, bending away from the normal because it has entered the faster medium.'
+              concepts: [snell]
+    answer_text: 'The critical angle for this glass is given by $\sin C = \dfrac{1}{n} = \dfrac{1}{1.50}$, so $C = 41.8°$. The angle of incidence is $35.0°$, which is smaller than $C$, so the light leaves the glass. Snell''s law with the ray going from glass into air gives $\sin r = 1.50 \times \sin 35.0° = 0.860$, so $r = 59.4°$ measured in the air: the ray bends away from the normal because it has entered the faster medium. A little of the light is reflected back inside at the same time. Only above $41.8°$ does all of it reflect, and that is total internal reflection.'
+
+  - id: c10-r7-radio-and-television
+    section: Review
+    tier: O
+    refs: ['2.3']
+    statement: 'Explain why a radio signal reaches behind a hill but a television signal does not.'
+    answer_label: 'Why radio diffracts round the hill and television does not'
+    check:
+      kind: structured
+      requires: [diffraction, wavelength-ratio, consequence]
+      concepts: [wavelength, obstacle-size, long-wavelength]
+      points:
+        - id: diffraction
+          text: 'A wave spreads out when it passes an obstacle or an edge, and the spreading is large only when the wavelength is comparable to the size of the obstacle.'
+          concepts: [wavelength, obstacle-size]
+        - id: wavelength-ratio
+          text: 'Radio and television are both electromagnetic waves, but a radio wavelength can be hundreds of metres, close to the size of a hill, while a television wavelength is about half a metre.'
+          concepts: [wavelength, long-wavelength]
+        - id: consequence
+          text: 'The radio wave therefore diffracts around the hill and reaches the far side, while the television wave hardly spreads at all and is blocked, which is why a television aerial needs a clear path to the transmitter.'
+          concepts: [obstacle-size]
+    answer_text: 'A wave spreads out when it passes an obstacle or an edge, and the spreading is large only when the wavelength is comparable with the size of the obstacle. A radio wavelength can be hundreds of metres, close to the size of a hill, so the radio wave diffracts around it and reaches the far side. A television wavelength is about half a metre, far smaller than the hill, so the wave hardly spreads and the hill blocks it. That is why a television aerial needs a clear path to the transmitter while a radio still works in the valley behind the hill.'
+
+  - id: c10-r8-slit-spacing
+    section: Review
+    tier: H
+    refs: ['2.3']
+    statement: 'A diffraction grating has $600$ lines per millimetre. Calculate the distance between neighbouring slits.'
+    answer_label: 'The slit spacing'
+    check:
+      kind: all
+      checks:
+        - kind: approx
+          value: '0.001 / 600'
+          target: '1.6667e-6'
+          tolerance: '1e-10'
+        - kind: sigfigs
+          value: '0.001 / 600'
+          figures: 2
+          answer: '1.7e-6'
+          convention: round-once
+    answer_text: 'There are $600$ slits in $1\,\text{mm}$, so the spacing is $d = \dfrac{0.001\,\text{m}}{600} = 1.67 \times 10^{-6}\,\text{m}$, which is $1.7 \times 10^{-6}\,\text{m}$ to two significant figures. That is about $1.7\,\mu\text{m}$, a few wavelengths of visible light wide, which is why a grating spreads the light so widely.'
+
+  - id: c10-r9-grating-angle
+    section: Review
+    tier: H
+    refs: ['2.3']
+    statement: 'Light of wavelength $550\,\text{nm}$ falls on a grating with $600$ lines per millimetre. Calculate the angle of the first-order maximum.'
+    answer_label: 'The angle of the first-order maximum'
+    check:
+      kind: all
+      checks:
+        - kind: approx
+          value: 'asin(5.50e-7 / (0.001 / 600)) * 180 / pi'
+          target: '19.27'
+          tolerance: '0.01'
+        - kind: sigfigs
+          value: 'asin(5.50e-7 / (0.001 / 600)) * 180 / pi'
+          figures: 3
+          answer: '19.3'
+          tolerance: '0.01'
+          convention: round-once
+    answer_text: 'The slit spacing is $d = \dfrac{0.001}{600} = 1.67 \times 10^{-6}\,\text{m}$. For the first order, $n = 1$, so $\sin\theta = \dfrac{\lambda}{d} = \dfrac{5.50 \times 10^{-7}}{1.67 \times 10^{-6}} = 0.330$ and $\theta = 19.3°$. The angle is measured from the normal to the grating, and the maximum appears on both sides of the centre.'
+
+  - id: c10-r10-wave-speed
+    section: Review
+    tier: O
+    refs: ['2.3']
+    statement: 'A wave has a frequency of $200\,\text{Hz}$ and a wavelength of $1.7\,\text{m}$. Calculate its speed. Which chapter does this method come from?'
+    answer_label: 'The wave speed and the chapter'
+    check:
+      kind: all
+      checks:
+        - kind: dimensions
+          expression: f * lam
+          values:
+            f: {value: '200', unit: Hz}
+            lam: {value: '1.7', unit: m}
+          answer: {value: '340', unit: m/s}
+        - kind: sigfigs
+          value: '200 * 1.7'
+          figures: 2
+          answer: '3.4e2'
+          convention: round-once
+        - kind: structured
+          requires: [state-speed, name-chapter]
+          concepts: [wave-equation, waves]
+          points:
+            - id: state-speed
+              text: 'The speed is v = f lambda = 200 x 1.7 = 340 m/s, which is 3.4 x 10^2 m/s.'
+              concepts: [wave-equation]
+            - id: name-chapter
+              text: 'The method is the wave equation, from Chapter 9, Waves, where it was used for waves on strings, in air and in water.'
+              concepts: [waves]
+    answer_text: 'The wave equation gives $v = f\lambda = 200 \times 1.7 = 340\,\text{m/s}$, which is $3.4 \times 10^{2}\,\text{m/s}$ to two significant figures. The method is the wave equation, from Chapter 9, Waves. A speed of $340\,\text{m/s}$ is also the speed of sound in air, which is a useful check on an answer: a sound wave of $200\,\text{Hz}$ really does have a wavelength of about $1.7\,\text{m}$.'
+
+  - id: c10-r11-spring-force
+    section: Review
+    tier: O
+    refs: ['2.3']
+    statement: 'A spring of spring constant $50\,\text{N/m}$ is stretched by $0.10\,\text{m}$. Calculate the force needed. Which chapter does this method come from?'
+    answer_label: 'The force needed and the chapter'
+    check:
+      kind: all
+      checks:
+        - kind: dimensions
+          expression: k * x
+          values:
+            k: {value: '50', unit: N/m}
+            x: {value: '0.10', unit: m}
+          answer: {value: '5.0', unit: N}
+        - kind: sigfigs
+          value: '50 * 0.10'
+          figures: 2
+          answer: '5.0'
+          convention: round-once
+        - kind: structured
+          requires: [state-force, name-chapter]
+          concepts: [hookes-law, spring-constant]
+          points:
+            - id: state-force
+              text: 'The force is F = k x = 50 x 0.10 = 5.0 N.'
+              concepts: [hookes-law]
+            - id: name-chapter
+              text: 'The method is Hooke''s law, from Chapter 5, Stretching and compressing, where the spring constant was defined as the force per unit extension.'
+              concepts: [hookes-law, spring-constant]
+    answer_text: 'Hooke''s law gives $F = kx = 50 \times 0.10 = 5.0\,\text{N}$. The method comes from Chapter 5, Stretching and compressing, where the spring constant was defined as the force per unit extension. The two significant figures come from the extension, $0.10\,\text{m}$, which is what the ruler can support.'
