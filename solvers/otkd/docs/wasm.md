@@ -250,8 +250,8 @@ dynamics model has no payload because a trajectory is not a sweep.
 
 The release job rebuilt the archive once to prove it byte-reproducible, then
 attached the zip and its `.sha256`. There was no `v` prefix; the tag was the
-version, served by `hatch-vcs` ([`releasing.md`](releasing.md)). Reproducibility was
-not an assertion: the workflow compared the two builds.
+version, served by `hatch-vcs`. Reproducibility was not an assertion: the workflow
+compared the two builds.
 
 ```
 otkd-0.1.0/
@@ -294,13 +294,13 @@ fills it and `trajectory()`/`velocities()` read it. The buffers are *additive* �
 `trajv` — so the ABI string stays `otkd-kernel-2` and the four kinematic modules are byte-identical;
 a page checks `solver: "dynamics"` before calling the functions only a dynamics kernel has. Measured
 against Python on the quarter car: acceleration to `2.6e-8` on a scale of `21.8`, poses to `1.8e-8`
-at step 100, energy drift `5.4e-8` ([`decisions.md`](decisions.md) round 28).
+at step 100, energy drift `5.4e-8`.
 
 **Compliance is the KKT system, not a projection.** The equilibrium kernel solves
 `[∇Π − Φᵀλ ; Φ] = 0` in `(q, λ)`, the same system the Python engine solves, so a joint with three
 compliant components compiles and agrees with Python to `1e-9`. The first version projected the
 potential onto a one-dimensional null space, which was right for the tie-rod corner and refused a
-bushed ball joint by name ([`decisions.md`](decisions.md) round 25).
+bushed ball joint by name.
 
 ### `maths-site`: a step before the build
 

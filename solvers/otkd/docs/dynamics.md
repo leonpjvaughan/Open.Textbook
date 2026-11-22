@@ -1,9 +1,7 @@
 # Dynamics: what the config needs, and what it reuses
 
-**Status:** design only. Nothing in this document is implemented in v1, and nothing in it
-may be implemented before the four acceptance tests of `HANDOFF.md` §8 pass. It exists so
-that the kinematics config is built with the right seams, not so that the solver grows a
-time integrator early.
+**Status:** implemented through v2.2. The kinematics config was built with these seams in
+place, and the work left is in [`follow-ups.md`](follow-ups.md).
 
 The question this answers: *if the same package had to produce motion under load, which
 parts of the config layer would change?* The answer is the useful one — the topology does
@@ -131,8 +129,8 @@ M(q) q̈  +  C(q, q̇)  =  f(q, q̇)  −  Φ_q(q)ᵀ λ
   quaternion — so its block is 7×7: `M_b = m Jᵥᵀ Jᵥ + J_ωᵀ I J_ω`, the two Jacobians being the
   derivatives of a world point and of the body's rotation with respect to those seven. A
   rotation-vector formulation would need the exponential map's derivative, which is 0/0 at the
-  design position; the quaternion is why this stays a small symbolic expression
-  ([`decisions.md`](decisions.md)). A joint-coordinate formulation would give a dense `M` and a
+  design position; the quaternion is why this stays a small symbolic expression. A
+  joint-coordinate formulation would give a dense `M` and a
   much larger expression for no benefit here.
 - **`f`** is gravity, the applied loads projected through `∂x/∂q`, the spring forces
   `−g_i ∇g_i / c_i`, the damping `−d_i (ġ_i) ∇g_i`, and any `effort` actuator.
@@ -140,11 +138,11 @@ M(q) q̈  +  C(q, q̇)  =  f(q, q̇)  −  Φ_q(q)ᵀ λ
   the number a suspension engineer wants (bush and ball-joint loads), which is a good
   reason to expose it rather than eliminate it.
 
-Solution strategy, for whoever builds it: index-1 reduction — solve the acceleration-level
+Solution strategy: index-1 reduction — solve the acceleration-level
 constraint `Φ_q q̈ = γ` together with the equations of motion for `(q̈, λ)`, integrate, and
 project `q, q̇` back onto `Φ = 0` at each output step. `scipy.integrate.solve_ivp` has no
 DAE solver, so the reduction plus projection is the honest route; a full DAE integrator is
-a dependency the handoff's dependency list does not allow.
+a dependency this package does not carry.
 
 **What already exists before any of this is written:** `Φ`, `Φ_q`, `∇Π` and the compliance
 scaling from §5 of `problem-mapping.md`. The dynamics work adds `M`, `f`, `λ` and a time
@@ -180,7 +178,7 @@ same rule `ui.md` applies to a Rust engine.
 
 | stage | adds | test that earns it |
 |---|---|---|
-| v1 | kinematics: square, redundant, SVD, and `spring` components with a load case | the four acceptance tests of `HANDOFF.md` §8 |
+| v1 | kinematics: square, redundant, SVD, and `spring` components with a load case | the package's acceptance tests |
 | v1.1 | the road-driven example: `plane-gap`, `roles`, ride height as the input | the road-driven and arm-driven models agree to `1e-9` |
 | v1.2 | `effort: force` actuators and the equilibrium solve for a force-driven coordinate | the reaction a position actuator reports equals the effort a force actuator needs to hold the same pose |
 | v2 | `M`, `f`, `λ`, prescribed motion, no integration | `q̈` and `λ` at `t = 0` match a hand calculation for the design pose |
@@ -188,13 +186,12 @@ same rule `ui.md` applies to a Rust engine.
 | — | tyre, contact, friction, aero | not in scope, ever, per the README |
 
 The load case in v1 is a *kinematics* addition, not a dynamics one: it is what §4 of the
-book needs for compliance to be visible at all (`decisions.md` §3). Nothing in this
-document is required for it; only the study's `loads` block, which is defined there and
-not here.
+book needs for compliance to be visible at all. Nothing in this document is required for
+it; only the study's `loads` block.
 
-v1 accepts a `dynamics:` block, checks its referential integrity, and **refuses
-`analysis: dynamics` with a message naming the document that defines it.** Accepting and
-ignoring it would be worse: a file that parses is a file a reader believes.
+A `dynamics:` block is validated for referential integrity, and `analysis: dynamics` runs
+the dynamics path. Accepting and ignoring the block would be worse: a file that parses is a
+file a reader believes.
 
 ---
 
@@ -211,7 +208,7 @@ ignoring it would be worse: a file that parses is a file a reader believes.
 - **The topology is the same object.** A dynamics study may not need a topology it could
   not have loaded for kinematics. If it does, the config split is wrong and that is a bug
   in this document, not a feature.
-- **Determinism.** The export contract (`HANDOFF.md` §7) says byte-identical regeneration.
+- **Determinism.** The export contract says byte-identical regeneration.
   Adaptive integration threatens that across scipy versions, so an exported dynamics sweep
   fixes the grid and pins the integrator's tolerances in the study file, and CI regenerates
   it exactly as it regenerates a kinematic one.
@@ -221,7 +218,7 @@ ignoring it would be worse: a file that parses is a file a reader believes.
 ## 7. Build plan
 
 Written so the work is bounded and testable, in the order that keeps each stage verifiable.
-Nothing here is implemented yet; the config (`geometry.dynamics`) already parses and validates.
+Every stage below is implemented; the remaining work is in [`follow-ups.md`](follow-ups.md).
 
 ### v2.0 — accelerations and reactions, no integration — **implemented**
 
@@ -316,7 +313,6 @@ against the Python engine: the acceleration agrees to `2.6e-8` on a scale of `21
 `1.8e-8` at step 100, the constraint holds at `1e-15`, and the energy drift recomputed from the
 kernel's own states is `5.4e-8` — the same order as Python's. `scripts/run_kernel.py` is the
 reproduction: it builds the kernel, runs it in node and prints the table.
-[`decisions.md`](decisions.md) round 28.
 
 ### What the WASM kernel changes
 

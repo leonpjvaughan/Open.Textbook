@@ -1,7 +1,7 @@
 """The three rules a new page is written to, and the offence that proves each catches.
 
 The rules themselves are in `rules.py`, because they are about a page's text and not
-about this book. This file is the guard the handoff asks for: *"a check with no test
+about this book. This file is the guard the rules ask for: *"a check with no test
 rots"*. So every rule has a case that violates it and a case that satisfies it, and
 the tree-wide cases assert the number the rules measure rather than a number somebody
 typed.
@@ -100,7 +100,7 @@ def test_prose_at_the_limit_is_not_reported():
     ],
     ids=["table-row", "link", "heading"],
 )
-def test_the_exemptions_are_the_four_the_handoff_names(exempt):
+def test_the_exemptions_are_the_four_the_rules_name(exempt):
     """A table row, a link and a heading are layouts, not sentences to wrap."""
     assert rules.prose_too_wide(exempt + "\n") == []
 
@@ -274,7 +274,7 @@ def test_every_detail_page_meets_the_detail_contract():
 
     The cases above prove each rule catches a violation. This is the tree-wide
     application: a page that carries the detail heading is held to the whole
-    contract, so the seven pages cannot drift from the shape the handoff fixed.
+    contract, so the seven pages cannot drift from the fixed shape.
     """
     references = yaml.safe_load(map_book().sources.read_text(encoding="utf-8"))["references"]
     failures = []

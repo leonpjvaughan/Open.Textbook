@@ -98,8 +98,8 @@ kinds: `dimensions`, `convert`, `sigfigs`, `uncertainty`, `resolve`, `gradient`,
   a unit parses separately into a dimension and an exact factor.
 - **The verifier proves arithmetic and dimensions, not physics**: a dimensionally
   consistent, physically absurd answer passes. Never present a passing bank as
-  proof of the physics; `units.py` and the gaps note state the limit, which must
-  survive into the prose.
+  proof of the physics; `units.py` states the limit, which must survive into the
+  prose.
 - **Rounding needs an interval, not equality**: `sigfigs` or `between` with a
   stated tolerance; a rounded value is never `equivalent`.
 - **Declare the uncertainty convention**: round once, half-range; a value without

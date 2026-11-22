@@ -1,10 +1,9 @@
 # The config layer
 
-**Status:** implemented, except where a section says otherwise. This document supersedes
-[`HANDOFF.md`](../HANDOFF.md) §4 (the config split) and refines §5 where the two
-disagree. It does not change the export contract in §7 or the acceptance tests in §8.
+**Status:** implemented, except where a section says otherwise. This document defines the
+config split and the export contract.
 
-The handoff asked for `Topology` and `Geometry`. That split is right, and it is not
+The original design asked for `Topology` and `Geometry`. That split is right, and it is not
 enough. Three things are being decided at once when a model is written — what the mechanism
 *is*, where its parts *are*, and what *question* is being asked of it. Folding the third
 into either of the first two makes a design study a file edit. So a model is three files and
@@ -28,7 +27,7 @@ definitions to residuals, Jacobians, Newton and least squares is in
 | `study.yaml` | which actuators are driven, with what law, which loads are applied, which rows are dropped, what is held fixed | the study's parameters only |
 | `constraints.yaml` | what `spherical`, `revolute`, `distance` … *mean*, as mode maps | no |
 
-The rule that makes this worth three files is the one the handoff already states for two:
+The rule that makes this worth three files is the one the original design already states for two:
 **a topology contains no numbers.** It has no lengths, no angles, no sweep range, no
 stiffness. A sweep range is a set of numbers about a study, so it lives in the study, not
 in the geometry. The geometry is the part that a design study loops over; the topology is
@@ -85,7 +84,7 @@ the outputs which pose to use. Every geometry point must be owned exactly once, 
 says which one is missing rather than defaulting it to the world.
 
 A **site** is deliberately one concept rather than "point" plus "axis" plus "frame". The
-handoff's `points` and `axes` remain as the geometric primitives — a site names them:
+original `points` and `axes` remain as the geometric primitives — a site names them:
 
 ```yaml
 sites:
@@ -345,7 +344,7 @@ scalars:                      # named numbers used by outputs, not constraints
 Rules:
 
 - Coordinates are **x lateral, positive outboard for the corner modelled; y forward; z
-  up; metres** (handoff open question 3, unchanged).
+  up; metres**.
 - Axes are directions and are normalised on load; a zero axis is an error, a non-unit axis
   is normalised with a warning (silently rescaling a hand-typed axis is how a 2% geometry
   error survives review).
@@ -417,10 +416,10 @@ seed: previous                # previous | design
   a soft joint and a stiff joint are different assemblies, and `seed: previous` is about branch
   continuity *within* a pass. Classification is per pass too, because a compliance can be swept
   to zero, and zero is a rigid row.
-- A ladder was a loop over study files until the axis arrived; `decisions.md` round 24 records
-  what changed and why the axis is a list of numbers rather than a single one.
+- A ladder was a loop over study files until the axis arrived; the axis is a list of numbers
+  rather than a single one because one model is swept over many geometries.
 
-The handoff put the sweep inside `Geometry`. It moves here, and the reason is the one in
+An earlier design put the sweep inside `Geometry`. It lives here, and the reason is the one in
 §1: a sweep is a question, and the mobility check ("one topology, many geometries") is
 weakened if every geometry must carry a travel range it may not want.
 
@@ -465,7 +464,7 @@ name the file the number should have been in. The rules, in order:
    definition, so prescribing it is a contradiction that the schema can catch: the bush is
    either driven or compliant, not both.
 
-Rule 6 replaces the handoff's Grübler/Kutzbach count, and the replacement is not
+Rule 6 replaces a Grübler/Kutzbach count, and the replacement is not
 cosmetic. Grübler counts rows; §2 has 18 hard rows, 18 unknowns, and a rank of 17. The
 count says mobility 0 and would reject the model that the chapter exists to explain. The
 rank says mobility 1 and redundancy 1, which is the truth, and it is available because the
@@ -474,7 +473,7 @@ Jacobian is symbolic anyway. Counting rows stays as a fast pre-check that can on
 
 `otkd check <model> [--study study.yaml]` prints, per row: joint, component, mode, residual
 at design, unit; then the singular values, `rank`, `redundancy`, `mobility`, `driven`, and
-the verdict. It is the command a human debugging YAML wants (handoff open question 7), and
+the verdict. It is the command a human debugging YAML wants, and
 `emit` runs the same checks before it writes anything.
 
 ---
@@ -510,10 +509,10 @@ mechanism with the two point constraints replaced by the hinge they idealise.
 
 §4's compliant tie rod is the same topology as §1 with `modes: {length: spring}`, and the
 geometry carries `tie-rod: {compliance: 1.0e-6}`. `compliance: 0` reproduces §1 to
-floating-point, which is acceptance test 4's limit and also its proof that the two models
-are the same model. Its study **must carry a load**: with no load the equilibrium forces
+floating-point, which is the compliant-limit test's tolerance and also its proof that the
+two models are the same model. Its study **must carry a load**: with no load the equilibrium forces
 every deflection to zero and the compliant curve is identical to the rigid one at every
-stiffness (`decisions.md` §3).
+stiffness.
 
 There is a fifth model, designed but deliberately outside v1's four:
 **`examples/ride-height/`**, the same mechanism with the chassis inertial and the **road**
@@ -614,9 +613,9 @@ not a feature), and three conveniences that are converted *once, at load*:
 | `drop` by row name | a row index | study |
 
 **Exported and printed** — angles in degrees, lengths in metres, rounded to the precision a
-figure draws (`HANDOFF.md` §7). A number is converted at the edge it crosses and nowhere
+figure draws. A number is converted at the edge it crosses and nowhere
 else: the solver never sees a degree, and a figure never sees a radian. That is one rule,
-and it is why the four acceptance tests can compare a closed form, a Newton solve and a
+and it is why the tests can compare a closed form, a Newton solve and a
 least-squares solve without a conversion factor appearing in the middle of each. The same
 rule covers a *dimensional* change of input rather than a unit change: the road-driven
 example sweeps a length, and `meta.travel.unit` is what tells the figure whether its x-axis

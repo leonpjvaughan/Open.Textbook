@@ -198,7 +198,7 @@ preferences.
 
 ```bash
 node tools/dist/cli.js screenshot site ~/out --schemes light,dark --theme neon -- \
-  "chapter:/gcse-maths/higher/Chapter 6/Section 6.4/Walkthrough/" "landing:/"
+  "chapter:/gcse-maths/higher/chapter-6/section-6.4/learn/" "landing:/"
 ```
 
 ## Layout

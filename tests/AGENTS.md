@@ -7,11 +7,7 @@ should run before pushing.
 Read the root `AGENTS.md` first. The root's **Build and verify**, **Conventions**
 and **Toolchain** still apply. This file adds what is particular to the tests.
 
-The older `test/` directory is gone: its figure-hook and tier-profile
-evaluation is folded into `tests/test_render_hooks.py`, and its theme preview is
-now `tools preview` (`tools/src/commands/preview.ts`). `tests/README.md` is the
-record of that move — the table mapping each old assertion to the test that now
-pins it.
+The theme preview is `tools preview` (`tools/src/commands/preview.ts`).
 
 ## What lives here
 

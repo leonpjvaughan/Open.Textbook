@@ -3,7 +3,7 @@
 Two questions, both of which need the symbolic layer. Does the design position satisfy every
 equation the model claims? And is the mechanism's mobility exactly what the actuators
 prescribe? The second is a rank, not a count, because a redundant model has more rows than
-independent ones and counting cannot tell the difference (see docs/decisions.md §4).
+independent ones and counting cannot tell the difference.
 """
 
 from __future__ import annotations

@@ -31,7 +31,7 @@ changed is that the package moved into `Open.Textbook` (`DECISIONS.md`, 2026-10-
 now one of a family installed beside the site's engine rather than from PyPI, so the import
 takes the family's namespace — `open_textbook.otkd` — and the distribution says which
 project it belongs to. Renaming an import twice is still the thing not to do; this is the
-one rename, and Round 31 of [`decisions.md`](decisions.md) records it.
+one rename.
 
 The comparison below is kept as the evaluation it was, before the move changed which
 package the name belongs to; the shipped names are the three in the sentence above.
@@ -52,15 +52,11 @@ import. Do not rename the import twice.
 
 **What the rename touches that a rename should not:**
 
-- `HANDOFF.md` predates it and keeps its own wording; where it names the package, read
-  `open_textbook.otkd` for the import and `otkd` for the command. It now carries a
-  historical banner, because the repository it was written for is archived.
-- The export's `meta.generator` becomes `otkd <version>` (`HANDOFF.md` §7). That is a change
-  to a **value** in a frozen contract, so it is recorded here: a consumer that prints the
-  generator string will print a different string, and should be reading the version rather
-  than the name.
-- Nothing is published to PyPI in v1 (`HANDOFF.md` §2), so availability is not a blocker and
-  the name is not yet a claim on a namespace.
+- The export's `meta.generator` becomes `otkd <version>`. That is a change to a **value** in
+  a frozen contract, so it is recorded here: a consumer that prints the generator string will
+  print a different string, and should be reading the version rather than the name.
+- Nothing is published to PyPI, so availability is not a blocker and the name is not yet a
+  claim on a namespace.
 
 ## 3. One distribution, packages underneath
 
@@ -121,7 +117,6 @@ The command line is the pipeline, one verb per stage:
 | `otkd solve <model>` | → numbers | run the study; a table, or `--json`; `--at VALUE` for one frame |
 | `otkd emit <model> <out>` | → artefact | write it; `--format js, json` (default `js`, the book's contract) |
 | `otkd kinds <model>` | — | the library as your model resolves it |
-| `otkd ui <model>` | — | the config UI ([`ui.md`](ui.md)) |
 
 Renamed from the first draft, and why:
 
@@ -132,7 +127,6 @@ Renamed from the first draft, and why:
 | `export` | `emit` | an emitter produces one artefact from a compiled problem; what the artefact *is* becomes a flag |
 | `kinds` | `kinds` | unchanged: short and precise |
 | — | `compile` | the half of the job that was invisible, and the one a textbook wants to show |
-| — | `ui` | the interactive front end |
 
 `compile` is worth the extra verb for a reason beyond symmetry: it is the command that lets a
 reader see the residual the solver actually differentiates, and `--format latex` prints it as

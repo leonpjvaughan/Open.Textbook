@@ -9,8 +9,7 @@ contract.
 ## Where to look
 
 A nested `AGENTS.md` is additive: it does not repeat the root, and the closest file
-wins. The Load column names the portable `.agents/skills/`; Claude Code reads them
-from `.claude/skills/`, projected with `agent-repository-conventions`.
+wins. The Load column names a portable skill under `.agents/skills/`.
 
 | If you are… | Read | Load |
 |---|---|---|
@@ -175,8 +174,8 @@ recurring pattern becomes a lint rule, which is the gate. Procedure and traps:
 | `books/ie-jc-maths/`, `books/ie-jc-maths/AGENTS.md`, `books/ie-lc-maths/`, `books/ie-lc-maths/AGENTS.md`, `books/ie-lc-applied-maths/`, `books/ie-lc-applied-maths/AGENTS.md`, `books/ie-lc-physics/`, `books/ie-lc-physics/AGENTS.md` | the four Irish books and their rules |
 | `books/proofs/`, `books/proofs/AGENTS.md`, `books/numerical-methods/`, `books/numerical-methods/AGENTS.md` | the two reference works: the proof book, and the map of problem classes |
 | `books/maths-applied/`, `books/maths-applied/AGENTS.md` | the book about modelling, and the rules that replace the chapter formula |
-| `research/`, `research/AGENTS.md`, `scripts/`, `scripts/AGENTS.md`, `tests/`, `tests/AGENTS.md`, `tests/README.md`, `deploy/`, `deploy/AGENTS.md`, `.github/`, `.github/AGENTS.md`, `.claude/`, `.serena/` | corpus, scripts, tests, deploy, CI |
-| `.agents/`, `.agents/skills/`, `.agents/prompts/` | agent context: portable skills; the chapter and review prompts the launch scripts feed to sub-agents |
+| `research/`, `research/AGENTS.md`, `scripts/`, `scripts/AGENTS.md`, `tests/`, `tests/AGENTS.md`, `deploy/`, `deploy/AGENTS.md`, `.github/`, `.github/AGENTS.md`, `.claude/`, `.serena/` | corpus, scripts, tests, deploy, CI |
+| `.agents/`, `.agents/skills/` | agent context: portable skills |
 
 A nested `AGENTS.md` stays beside what it governs, because it is read when that
 directory is opened.
