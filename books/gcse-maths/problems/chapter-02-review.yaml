@@ -1,0 +1,173 @@
+# Mixed practice for the Chapter 2 Review.
+#
+# Six questions, one record each, in the order they appear on the Review page.
+# They cover factors and primes, prime factorisation with the HCF and LCM,
+# organised listing, the product rule, and two recalls from Chapter 1.
+#
+# Honest limit: `evaluate` proves the arithmetic each answer declares — that 84
+# is 2 squared times 3 times 7, that 12 divides both 36 and 84, that 252 is a
+# common multiple, and that 12 x 252 = 36 x 84. It does not prove that those
+# prime factorisations are complete, that 12 is the greatest common factor, or
+# that 252 is the least common multiple; those claims are the model answer's and
+# a reader checks them against the prime factorisations. Questions 1, 3, 4 and 6
+# ask for a reason as well as a number, so each carries a `structured` component,
+# which proves only that a model answer contains its declared steps and concepts,
+# in order. Question 1's primality claim has no numeric check at all.
+oracles: [sympy, units]
+chapter: 2
+problems:
+  - id: r1-factors-and-prime
+    section: Review
+    tier: F
+    refs: [N4]
+    statement: 'List all factors of 30. Is 31 prime? Explain your answer.'
+    answer_label: 'The factors of 30, and whether 31 is prime'
+    check:
+      kind: all
+      checks:
+        - kind: evaluate
+          expression: '(1 + 1) * (1 + 1) * (1 + 1)'
+          answer: '8'
+        - kind: structured
+          requires: [list-factors, decide-prime, explain]
+          concepts: [factor, factor-pair, prime]
+          points:
+            - id: list-factors
+              text: 'The factors of 30 are 1, 2, 3, 5, 6, 10, 15 and 30. They pair as 1 x 30, 2 x 15, 3 x 10 and 5 x 6, so the list has no gaps.'
+              concepts: [factor, factor-pair]
+            - id: decide-prime
+              text: '31 is prime. Its only factors are 1 and 31.'
+              concepts: [prime]
+            - id: explain
+              text: 'To test 31, divide by each prime up to its square root. The primes 2, 3 and 5 do not divide 31, and the next prime is 7, whose square is 49, above 31. So no factor remains and 31 is prime.'
+              concepts: [prime, factor-pair]
+    answer_text: 'The factors of $30$ are $1, 2, 3, 5, 6, 10, 15$ and $30$: eight of them, pairing as $1 \times 30$, $2 \times 15$, $3 \times 10$ and $5 \times 6$. The number $31$ is prime, because $2$, $3$ and $5$ do not divide it, and $7^2 = 49$ is already above $31$, so no smaller factor is left to try.'
+
+  - id: r2-prime-factorisation-hcf-lcm
+    section: Review
+    tier: F
+    refs: [N4]
+    statement: 'Find the prime factorisation of 84. Use it to find the HCF and LCM of 36 and 84.'
+    answer_label: 'The prime factorisation, the HCF and the LCM'
+    check:
+      kind: all
+      checks:
+        - kind: evaluate
+          expression: '2**2 * 3 * 7'
+          answer: '84'
+        - kind: evaluate
+          expression: '36 / 12'
+          answer: '3'
+        - kind: evaluate
+          expression: '84 / 12'
+          answer: '7'
+        - kind: evaluate
+          expression: '252 / 36'
+          answer: '7'
+        - kind: evaluate
+          expression: '252 / 84'
+          answer: '3'
+        - kind: evaluate
+          expression: '12 * 252'
+          answer: '36 * 84'
+    answer_text: '$84 = 2^2 \times 3 \times 7$ and $36 = 2^2 \times 3^2$. The HCF takes the lower power of each shared prime: $2^2 \times 3 = 12$. The LCM takes the higher power of each prime that appears: $2^2 \times 3^2 \times 7 = 252$. The checks confirm that $12$ divides both numbers, that $252$ is a multiple of both, and that $12 \times 252 = 36 \times 84$. That last product is a useful check on any HCF and LCM pair.'
+
+  - id: r3-badge-outcomes
+    section: Review
+    tier: F
+    refs: [N5]
+    statement: 'A badge uses one of three shapes and one of four colours. List the outcomes in a table, then count them. Which method makes completeness easiest to check?'
+    answer_label: 'The outcomes, their number and the best method'
+    check:
+      kind: all
+      checks:
+        - kind: evaluate
+          expression: '3 * 4'
+          answer: '12'
+        - kind: structured
+          requires: [list-outcomes, count-outcomes, choose-method]
+          concepts: [sample-space, systematic-listing]
+          points:
+            - id: list-outcomes
+              text: 'Make a table with the three shapes as the rows and the four colours as the columns. Every cell is one badge, so there are three rows of four outcomes.'
+              concepts: [sample-space, systematic-listing]
+            - id: count-outcomes
+              text: 'The table has 3 x 4 = 12 cells, so there are 12 different badges.'
+              concepts: [sample-space]
+            - id: choose-method
+              text: 'The table makes completeness easiest to check. Each shape appears once in every colour, so a missing cell stands out as a gap, which a plain list does not show.'
+              concepts: [systematic-listing]
+    answer_text: 'Put the three shapes down the side of a table and the four colours across the top. Every cell is one badge, so the table holds $3 \times 4 = 12$ outcomes. The table makes completeness straightforward to check: each row has the same four colours, so a missing outcome is a visible gap.'
+
+  - id: r4-two-digit-code
+    section: Review
+    tier: H
+    refs: [N5]
+    statement: 'A two-digit code uses digits 1 to 5 without repetition. How many codes are possible? Explain why the product rule applies.'
+    answer_label: 'The number of codes and why the product rule applies'
+    check:
+      kind: all
+      checks:
+        - kind: evaluate
+          expression: '5 * 4'
+          answer: '20'
+        - kind: structured
+          requires: [count-first-choice, count-second-choice, explain-product-rule]
+          concepts: [product-rule, without-repetition]
+          points:
+            - id: count-first-choice
+              text: 'The first digit can be any of the five digits, so there are 5 choices for it.'
+              concepts: [product-rule]
+            - id: count-second-choice
+              text: 'The second digit cannot repeat the first, so only 4 digits remain for it.'
+              concepts: [without-repetition]
+            - id: explain-product-rule
+              text: 'The choice of the second digit does not depend on which first digit was used: it is always 4. Each of the 5 first choices pairs with 4 second choices, so multiply: 5 x 4 = 20 codes.'
+              concepts: [product-rule, without-repetition]
+    answer_text: 'There are $5$ choices for the first digit. Once it is chosen, $4$ digits remain for the second, because repetition is not allowed. Each first choice pairs with each of the $4$ second choices, so the product rule gives $5 \times 4 = 20$ codes. The count for the second stage is the same whatever the first choice was, which is exactly what the product rule needs.'
+
+  - id: r5-recall-negative-and-estimate
+    section: Review
+    tier: F
+    refs: [N1, N2, N15]
+    statement: '**Recall from Chapter 1:** work out $18-25$ and estimate $398\times21$ by rounding each number first.'
+    answer_label: 'The difference and the estimate'
+    check:
+      kind: all
+      checks:
+        - kind: evaluate
+          expression: '18 - 25'
+          answer: '-7'
+        - kind: evaluate
+          expression: '400 * 20'
+          answer: '8000'
+        - kind: approx
+          value: '398 * 21'
+          target: '8000'
+          tolerance: '400'
+    answer_text: '$18 - 25 = -7$, because $25$ is larger than $18$ by $7$. For the product, round $398$ to $400$ and $21$ to $20$, then $400 \times 20 = 8000$. The exact product is $398 \times 21 = 8358$, which is $358$ above the estimate, so the estimate is in the right region. Notice that rounding both numbers up and down can push the estimate either way.'
+
+  - id: r6-recall-round-decimal
+    section: Review
+    tier: F
+    refs: [N14]
+    statement: '**Recall from Chapter 1:** round 6.284 to two decimal places. Explain which digit decides the rounding.'
+    answer_label: 'The rounded value and the deciding digit'
+    check:
+      kind: all
+      checks:
+        - kind: rounded
+          value: '6.284'
+          rounded: '6.28'
+          to: '0.01'
+        - kind: structured
+          requires: [round, explain-digit]
+          concepts: [decimal-place, rounding]
+          points:
+            - id: round
+              text: '6.284 is 6.28 to two decimal places.'
+              concepts: [decimal-place]
+            - id: explain-digit
+              text: 'The third decimal digit is 4, and it decides the rounding. Because 4 is less than 5, the second decimal digit stays as 8 and the rest is dropped.'
+              concepts: [rounding, decimal-place]
+    answer_text: '$6.284$ is $6.28$ to two decimal places. The deciding digit is the third decimal place, which holds $4$. Since $4$ is less than $5$, the second decimal digit stays as $8$ and the digits after it are dropped. Counting the places from the decimal point is what makes the choice of digit unambiguous.'

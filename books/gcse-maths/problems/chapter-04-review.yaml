@@ -1,0 +1,136 @@
+# Mixed practice for the Chapter 4 Review.
+#
+# Eight questions, one record each, in the order they appear on the Review page.
+# They compare a fraction with a decimal, add and divide fractions, convert a
+# terminating and a recurring decimal to fractions, find a percentage of an
+# amount, apply a percentage reduction, and read a decimal through place value.
+#
+# Honest limit: `evaluate` and `compare` prove the arithmetic and the order, with
+# every decimal rationalised first, so 0.6 is compared as 3/5. The recurring
+# decimal in question 5 is proved by solving the equation 9x = 4, which is the
+# last line of the standard derivation; the derivation itself is the answer text,
+# not something the verifier proves. Question 1 asks the reader to name the
+# representation they chose, which is a `structured` component: it proves only
+# that a model answer states a representation and compares in it.
+oracles: [sympy, units]
+chapter: 4
+symbols:
+  x: {real: true}
+problems:
+  - id: r1-compare-fraction-decimal
+    section: Review
+    tier: F
+    refs: [N1, N10]
+    statement: 'Which is larger, $\frac{5}{8}$ or $0.6$? State the representation you chose.'
+    answer_label: 'The larger number and the representation used'
+    check:
+      kind: all
+      checks:
+        - kind: compare
+          relation: '>'
+          lhs: '5/8'
+          rhs: '0.6'
+        - kind: structured
+          requires: [convert, compare, state-representation]
+          concepts: [fraction-decimal, ordering]
+          points:
+            - id: convert
+              text: 'Write both numbers in the same form. As a decimal, 5/8 is 5 divided by 8, which is 0.625.'
+              concepts: [fraction-decimal]
+            - id: compare
+              text: 'Now compare 0.625 with 0.6. The tenths agree, and 0.625 has 2 hundredths against 0 hundredths, so 5/8 is larger.'
+              concepts: [ordering]
+            - id: state-representation
+              text: 'I chose decimals, because both numbers can then be compared place by place without finding a common denominator.'
+              concepts: [fraction-decimal, ordering]
+    answer_text: '$\dfrac{5}{8} = 0.625$, and $0.625 > 0.6$, so $\dfrac{5}{8}$ is larger. Writing both as decimals makes the comparison a matter of place value: $0.625$ has $6$ tenths and $2$ hundredths, while $0.6$ has $6$ tenths and nothing after it.'
+
+  - id: r2-add-fractions
+    section: Review
+    tier: F
+    refs: [N2]
+    statement: 'Work out $\frac{2}{3}+\frac{3}{10}$.'
+    answer_label: 'The sum'
+    check:
+      kind: evaluate
+      expression: '2/3 + 3/10'
+      answer: '29/30'
+    answer_text: '$\dfrac{2}{3} + \dfrac{3}{10} = \dfrac{20}{30} + \dfrac{9}{30} = \dfrac{29}{30}$. The denominators are different, so first write both fractions over a common denominator. Thirty is the lowest common multiple of $3$ and $10$, and both numerators are then counted in thirtieths.'
+
+  - id: r3-divide-fractions
+    section: Review
+    tier: F
+    refs: [N2]
+    statement: 'Work out $\frac{4}{5}\div\frac{2}{3}$.'
+    answer_label: 'The quotient'
+    check:
+      kind: evaluate
+      expression: '(4/5) / (2/3)'
+      answer: '6/5'
+    answer_text: '$\dfrac{4}{5} \div \dfrac{2}{3} = \dfrac{4}{5} \times \dfrac{3}{2} = \dfrac{12}{10} = \dfrac{6}{5} = 1\dfrac{1}{5}$. Dividing by a fraction is the same as multiplying by its reciprocal. The answer is larger than $\dfrac{4}{5}$, which is a useful check: dividing by a number smaller than $1$ makes the result larger.'
+
+  - id: r4-terminating-decimal
+    section: Review
+    tier: F
+    refs: [N10]
+    statement: 'Write $0.28$ as a fraction in its simplest form.'
+    answer_label: 'The fraction'
+    check:
+      kind: evaluate
+      expression: '28/100'
+      answer: '7/25'
+    answer_text: '$0.28 = \dfrac{28}{100} = \dfrac{7}{25}$. The decimal has two places, so the denominator is $100$. Then divide the numerator and the denominator by their highest common factor, which is $4$. The fraction is in its simplest form because $7$ and $25$ share no factor.'
+
+  - id: r5-recurring-decimal
+    section: Review
+    tier: H
+    refs: [N10]
+    statement: 'Write $0.\dot{4}$ as a fraction.'
+    answer_label: 'The fraction'
+    check:
+      kind: solve
+      equation: '9*x = 4'
+      variable: x
+      answer: '4/9'
+    answer_text: 'Let $x = 0.444\ldots$ Then $10x = 4.444\ldots$, and subtracting gives $10x - x = 4$, so $9x = 4$ and $x = \dfrac{4}{9}$. The subtraction works because the repeating parts line up and cancel. The check confirms that $\dfrac{4}{9}$ satisfies the equation the derivation reaches.'
+
+  - id: r6-percentage-of-amount
+    section: Review
+    tier: F
+    refs: [N11, N12]
+    statement: 'Work out $30\%$ of £90.'
+    answer_label: 'The amount'
+    check:
+      kind: evaluate
+      expression: '30/100 * 90'
+      answer: '27'
+    answer_text: '$30\%$ of $£90$ is $\dfrac{30}{100} \times 90 = £27$. A percentage is an operator: it multiplies the amount. Ten per cent of $£90$ is $£9$, so thirty per cent is three times that, $£27$, which is a quick check.'
+
+  - id: r7-percentage-reduction
+    section: Review
+    tier: F
+    refs: [N11, N12]
+    statement: 'A £50 item is reduced by $10\%$. Work out its new price.'
+    answer_label: 'The new price'
+    check:
+      kind: evaluate
+      expression: '50 * 0.9'
+      answer: '45'
+    answer_text: 'A $10\%$ reduction leaves $90\%$ of the price. The multiplier is $0.9$, so the new price is $50 \times 0.9 = £45$. Subtracting the reduction instead gives $50 - 5 = £45$, the same answer, and the multiplier route is the one that extends to repeated changes.'
+
+  - id: r8-thousandths
+    section: Review
+    tier: F
+    refs: [N1, N10]
+    statement: 'In Chapter 1 you used place value. Write $0.375$ in thousandths, then as a fraction.'
+    answer_label: 'The value in thousandths and as a fraction'
+    check:
+      kind: all
+      checks:
+        - kind: evaluate
+          expression: '0.375 * 1000'
+          answer: '375'
+        - kind: evaluate
+          expression: '375/1000'
+          answer: '3/8'
+    answer_text: '$0.375$ is $375$ thousandths, because the last digit stands in the thousandths column. As a fraction that is $\dfrac{375}{1000}$, and dividing both parts by $125$ gives $\dfrac{3}{8}$. The denominator $1000$ comes straight from the number of decimal places: three places, three zeros.'

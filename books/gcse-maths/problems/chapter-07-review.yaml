@@ -1,0 +1,136 @@
+# Mixed practice for the Chapter 7 Review.
+#
+# Eight questions, one record each, in the order they appear on the Review page.
+# They convert a length, use speed and pressure as compound measures, write a
+# rounding interval, multiply upper bounds for an area, multiply standard-form
+# numbers, subtract surds, and read a map scale.
+#
+# Honest limit: `evaluate` proves the arithmetic of each answer. It does not prove
+# that an interval is the right interval for a given rounding, nor that a surd is
+# in its simplest form; the answer text shows that reasoning. Question 3 asks for
+# the interval itself, so it carries a `structured` component, which proves only
+# that a model answer contains its declared steps and concepts, in order.
+#
+# Questions 4 and 6 sit in Higher-only sections (7.4 bounds and 7.6 surds), so
+# they carry `tier: H` and the page marks them **H**.
+oracles: [sympy, units]
+chapter: 7
+problems:
+  - id: r1-convert-length
+    section: Review
+    tier: F
+    refs: [N13]
+    statement: 'Convert $2.7$ m to mm.'
+    answer_label: 'The length in millimetres'
+    check:
+      kind: evaluate
+      expression: '2.7 * 1000'
+      answer: '2700'
+    answer_text: '$2.7$ m is $2700$ mm. There are $1000$ millimetres in a metre, so multiply by $1000$. The number grows because a millimetre is a smaller unit, and the length itself does not change.'
+
+  - id: r2-average-speed
+    section: Review
+    tier: F
+    refs: [R1, R11]
+    statement: 'A cyclist travels $36$ km in $1.5$ hours. Find the average speed.'
+    answer_label: 'The average speed'
+    check:
+      kind: evaluate
+      expression: '36 / 1.5'
+      answer: '24'
+    answer_text: 'Speed is distance divided by time: $36 \div 1.5 = 24$ km/h. The unit comes from the division: kilometres divided by hours gives kilometres per hour. An average speed says nothing about the speed at any one moment.'
+
+  - id: r3-rounding-interval
+    section: Review
+    tier: F
+    refs: [N15]
+    statement: 'Write the interval for $5.6$ kg rounded to the nearest $0.1$ kg.'
+    answer_label: 'The interval and how it is found'
+    check:
+      kind: all
+      checks:
+        - kind: evaluate
+          expression: '0.1 / 2'
+          answer: '0.05'
+        - kind: evaluate
+          expression: '5.6 - 0.05'
+          answer: '5.55'
+        - kind: evaluate
+          expression: '5.6 + 0.05'
+          answer: '5.65'
+        - kind: structured
+          requires: [find-half-step, state-interval]
+          concepts: [error-interval, upper-bound]
+          points:
+            - id: find-half-step
+              text: 'The value is rounded to the nearest 0.1 kg, so the half-step is 0.05 kg.'
+              concepts: [error-interval]
+            - id: state-interval
+              text: 'The mass m lies from 5.55 kg up to, but not including, 5.65 kg: 5.55 is less than or equal to m, and m is less than 5.65.'
+              concepts: [upper-bound, error-interval]
+    answer_text: 'The value was rounded to the nearest $0.1$ kg, so the half-step is $0.05$ kg. The interval is $5.55 \leq m < 5.65$ kg, where $m$ is the mass. The lower end is included, because $5.55$ itself rounds up to $5.6$. The upper end is not included, because $5.65$ would round up to $5.7$ instead.'
+
+  - id: r4-upper-bound-area
+    section: Review
+    tier: H
+    refs: [N16]
+    statement: 'A length is $8.2$ cm and a width is $3.4$ cm, each to the nearest $0.1$ cm. Find the upper bound for the area.'
+    answer_label: 'The upper bound for the area'
+    check:
+      kind: evaluate
+      expression: '(8.2 + 0.05) * (3.4 + 0.05)'
+      answer: '28.4625'
+    answer_text: 'Each measurement could be up to $0.05$ cm larger. The upper bounds are $8.25$ cm and $3.45$ cm. The area is largest when both measurements are at their upper bounds, so the upper bound is $8.25 \times 3.45 = 28.4625$ cm$^2$. For a product of two positive lengths, both bounds round the same way.'
+
+  - id: r5-standard-form-product
+    section: Review
+    tier: F
+    refs: [N9]
+    statement: 'Work out $(4\times10^6)(3\times10^{-2})$ in standard form.'
+    answer_label: 'The product in standard form'
+    check:
+      kind: evaluate
+      expression: '4 * 3 * 10**(6 - 2)'
+      answer: '1.2 * 10**5'
+    answer_text: 'Multiply the numbers and add the indices: $4 \times 3 = 12$ and $10^6 \times 10^{-2} = 10^4$. So the product is $12 \times 10^4 = 1.2 \times 10^5$. Standard form needs a number between $1$ and $10$ in front, so $12 \times 10^4$ is not yet the final answer.'
+
+  - id: r6-subtract-surds
+    section: Review
+    tier: H
+    refs: [N8]
+    statement: 'Simplify $\sqrt{108}-\sqrt{12}$.'
+    answer_label: 'The simplified expression'
+    check:
+      kind: evaluate
+      expression: 'sqrt(108) - sqrt(12)'
+      answer: '4 * sqrt(3)'
+    answer_text: '$\sqrt{108} = \sqrt{36 \times 3} = 6\sqrt{3}$ and $\sqrt{12} = \sqrt{4 \times 3} = 2\sqrt{3}$. Subtracting gives $6\sqrt{3} - 2\sqrt{3} = 4\sqrt{3}$. Surds can be added like terms once they have the same radicand, which is why the simplification comes first.'
+
+  - id: r7-map-distance
+    section: Review
+    tier: F
+    refs: [R2]
+    statement: 'A map distance is $6$ cm at scale $1:50\,000$. Find the real distance in kilometres.'
+    answer_label: 'The real distance'
+    check:
+      kind: all
+      checks:
+        - kind: evaluate
+          expression: '6 * 50000'
+          answer: '300000'
+        - kind: evaluate
+          expression: '300000 / 100000'
+          answer: '3'
+    answer_text: 'The scale means $1$ cm represents $50\,000$ cm, so $6$ cm represents $6 \times 50\,000 = 300\,000$ cm. There are $100\,000$ cm in a kilometre, so $300\,000 \div 100\,000 = 3$ km. Always convert the real distance to a unit a person can picture.'
+
+  - id: r8-pressure
+    section: Review
+    tier: F
+    refs: [R1, R11]
+    statement: 'A force of $450$ N acts on $0.15\text{ m}^2$. Find the pressure.'
+    answer_label: 'The pressure'
+    check:
+      kind: evaluate
+      expression: '450 / 0.15'
+      answer: '3000'
+    answer_text: 'Pressure is force divided by area: $450 \div 0.15 = 3000$ Pa. A pascal is one newton per square metre. Dividing by $0.15$ is the same as multiplying by $\dfrac{100}{15}$, which is why the answer is much larger than $450$.'

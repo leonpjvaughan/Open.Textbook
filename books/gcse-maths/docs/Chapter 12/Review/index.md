@@ -30,27 +30,9 @@ So $t=5$ or $t=-1$. Time cannot be negative in this context, so the ball reaches
 
 For each question, name a method before working it out. Give a reason for your choice.
 
-1. Expand $(x+4)(x-2)$.
-2. Factorise $x^2+3x-10$.
-3. Solve $x^2-9=0$ by factorising.
-4. Solve $3x^2+x-2=0$ using the quadratic formula.
-5. Write $x^2+10x+1$ in completed-square form. State its turning point as a graph of $y$.
-6. A quadratic graph has roots $-1$ and $4$. What equation could describe its roots?
-7. From earlier work: solve $3x+8=20$. Explain how you checked your answer.
-8. From earlier work: simplify $2^3\times2^4$.
+:::problems chapter-12-review
 
-<details markdown="1">
-<summary>Answers</summary>
-
-1. $x^2+2x-8$.
-2. $(x+5)(x-2)$.
-3. $(x-3)(x+3)=0$, so $x=3$ or $x=-3$.
-4. $a=3,b=1,c=-2$: $x=(-1\pm\sqrt{25})/6$, so $x=2/3$ or $x=-1$.
-5. $(x+5)^2-24$; turning point $(-5,-24)$.
-6. For example, $(x+1)(x-4)=0$; any non-zero multiple has those roots.
-7. $x=4$; substitution gives $3(4)+8=20$.
-8. $2^7=128$.
-</details>
+:::answers chapter-12-review
 
 ## What you can now do
 
