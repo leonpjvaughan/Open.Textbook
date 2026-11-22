@@ -71,26 +71,9 @@ Work through these without notes. For each one, decide **which relationship appl
 say why. Several questions come from earlier chapters, and one asks you to explain rather
 than calculate.
 
-1. A sound wave travels through air at 340 m/s. Calculate the distance it travels in
-   4.0 s.
-2. A siren makes a note of 850 Hz. The speed of sound in air is 340 m/s. Calculate the
-   wavelength.
-3. A wave has a frequency of 250 Hz and a wavelength of 1.2 m. Calculate its speed. Which
-   chapter does this method come from?
-4. A student claps once and hears the echo from a wall 0.50 s later. The speed of sound is
-   340 m/s. Calculate the distance to the wall.
-5. A tuning fork of frequency 425 Hz gives its first resonance at an air-column length of
-   0.20 m and its second at 0.60 m. Calculate the speed of sound.
-6. A violin and a flute play the same note at the same loudness. Explain why they sound
-   different.
-7. A car approaches a stationary listener at 25 m/s with its horn sounding at 640 Hz. The
-   speed of sound in air is 340 m/s. Calculate the frequency the listener hears.
-8. The car has passed the listener and now moves away at 25 m/s. Calculate the frequency
-   the listener hears now. Compare it with your answer to question 7.
-9. A spring of spring constant 40 N/m is stretched by 0.15 m. Calculate the force needed.
-   Which relationship did you use, and why?
-10. A car starts from rest and accelerates at 2.5 m/s$^2$ for 6.0 s. Calculate its final
-    speed and the distance it travels. Which chapter does this method come from?
+:::problems chapter-11-review
+
+:::answers chapter-11-review
 
 ## What you can now do
 

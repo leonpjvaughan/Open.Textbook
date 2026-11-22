@@ -1,0 +1,277 @@
+# Mixed practice for the Chapter 9 Review.
+#
+# Ten questions, one record each, in the order they appear on the Review page.
+# Every record that asks for a number pairs a `dimensions` check, which proves the
+# magnitude and the unit, with a `sigfigs` check, which proves the rounding to the
+# figures the data support. Question 7's frequency is built on a square root, so
+# its rounding is proved within a stated tolerance. Questions 7, 8, 9 and 10 ask
+# for a judgement or for the source of the method as well as a number, so each
+# carries a `structured` component.
+#
+# Honest limit: this proves arithmetic, dimensions and the declared conventions,
+# not physics. A `structured` check proves only that a model answer contains its
+# declared steps and concepts, in order. Questions 8 and 9 are explanations with no
+# number in them at all: the verifier can prove the ideas are present and in order,
+# and nothing about whether they are right.
+#
+# The data are read as the Review page states them: the speed of sound in air is
+# 340 m/s, and question 7's string has a tension of 300 N and a mass per unit
+# length of 0.012 kg/m.
+chapter: 9
+problems:
+  - id: c9-r1-wave-speed
+    section: Review
+    tier: O
+    refs: ['2.2']
+    statement: 'A wave has a frequency of $250\,\text{Hz}$ and a wavelength of $1.2\,\text{m}$. Calculate its speed.'
+    answer_label: 'The wave speed'
+    check:
+      kind: all
+      checks:
+        - kind: dimensions
+          expression: f * lam
+          values:
+            f: {value: '250', unit: Hz}
+            lam: {value: '1.2', unit: m}
+          answer: {value: '300', unit: m/s}
+        - kind: sigfigs
+          value: '250 * 1.2'
+          figures: 2
+          answer: '3.0e2'
+          convention: round-once
+    answer_text: 'The wave equation gives $v = f\lambda = 250 \times 1.2 = 300\,\text{m/s}$, which is $3.0 \times 10^{2}\,\text{m/s}$ to two significant figures. Hertz is one wave per second, so multiplying waves per second by metres per wave leaves metres per second. The standard form is used because $300$ on its own does not say whether it carries one figure or three.'
+
+  - id: c9-r2-crest-to-trough
+    section: Review
+    tier: O
+    refs: ['2.2']
+    statement: 'A wave on a rope has an amplitude of $0.15\,\text{m}$. State the distance from a crest to the next trough.'
+    answer_label: 'The distance from a crest to the next trough'
+    check:
+      kind: all
+      checks:
+        - kind: dimensions
+          expression: 2 * A
+          values:
+            A: {value: '0.15', unit: m}
+          answer: {value: '0.30', unit: m}
+        - kind: sigfigs
+          value: '2 * 0.15'
+          figures: 2
+          answer: '0.30'
+          convention: round-once
+    answer_text: 'The amplitude is the distance from the rest position to a crest, so a crest sits $0.15\,\text{m}$ above the rest position and the next trough sits $0.15\,\text{m}$ below it. The distance between them is twice the amplitude, $2 \times 0.15 = 0.30\,\text{m}$. The answer carries two significant figures, and the trailing zero shows that it does.'
+
+  - id: c9-r3-sound-wavelength
+    section: Review
+    tier: O
+    refs: ['2.2']
+    statement: 'A sound wave has a frequency of $500\,\text{Hz}$ and travels through air at $340\,\text{m/s}$. Calculate its wavelength.'
+    answer_label: 'The wavelength'
+    check:
+      kind: all
+      checks:
+        - kind: dimensions
+          expression: c / f
+          values:
+            c: {value: '340', unit: m/s}
+            f: {value: '500', unit: Hz}
+          answer: {value: '0.68', unit: m}
+        - kind: sigfigs
+          value: '340 / 500'
+          figures: 2
+          answer: '0.68'
+          convention: round-once
+    answer_text: 'Rearranging $v = f\lambda$ gives $\lambda = \dfrac{v}{f} = \dfrac{340}{500} = 0.68\,\text{m}$. A wavelength of about $0.7\,\text{m}$ is the distance between one compression and the next, and it is the reason a sound of this pitch bends around a doorway but a much higher one does not.'
+
+  - id: c9-r4-fundamental-wavelength
+    section: Review
+    tier: O
+    refs: ['2.6']
+    statement: 'A string fixed at both ends is $0.90\,\text{m}$ long. Calculate the wavelength of its fundamental note.'
+    answer_label: 'The fundamental wavelength'
+    check:
+      kind: all
+      checks:
+        - kind: dimensions
+          expression: 2 * L
+          values:
+            L: {value: '0.90', unit: m}
+          answer: {value: '1.8', unit: m}
+        - kind: sigfigs
+          value: '2 * 0.90'
+          figures: 2
+          answer: '1.8'
+          convention: round-once
+    answer_text: 'The fundamental note has a node at each fixed end and one antinode in the middle, so half a wavelength fits on the string: $L = \dfrac{\lambda}{2}$ and $\lambda = 2L = 2 \times 0.90 = 1.8\,\text{m}$. The wavelength is longer than the string, which is what a standing wave on a fixed string always looks like.'
+
+  - id: c9-r5-third-harmonic
+    section: Review
+    tier: O
+    refs: ['2.6']
+    statement: 'The fundamental frequency of a string is $220\,\text{Hz}$. Calculate the frequency of the third harmonic.'
+    answer_label: 'The third harmonic'
+    check:
+      kind: all
+      checks:
+        - kind: dimensions
+          expression: 3 * f1
+          values:
+            f1: {value: '220', unit: Hz}
+          answer: {value: '660', unit: Hz}
+        - kind: sigfigs
+          value: '3 * 220'
+          figures: 2
+          answer: '660'
+          convention: round-once
+    answer_text: 'The harmonics of a string are whole-number multiples of the fundamental, $f_n = nf_1$, so the third harmonic is $3 \times 220 = 660\,\text{Hz}$. Its wavelength is a third of the fundamental wavelength, because three half-wavelengths fit on the string instead of one.'
+
+  - id: c9-r6-superposition
+    section: Review
+    tier: O
+    refs: ['2.6']
+    statement: 'Two pulses meet on a rope. One has a displacement of $+3.0\,\text{cm}$ and the other has a displacement of $-5.0\,\text{cm}$. Calculate the resultant displacement.'
+    answer_label: 'The resultant displacement'
+    check:
+      kind: all
+      checks:
+        - kind: dimensions
+          expression: a + b
+          values:
+            a: {value: '3.0', unit: cm}
+            b: {value: '-5.0', unit: cm}
+          answer: {value: '-2.0', unit: cm}
+        - kind: sigfigs
+          value: '-2'
+          figures: 2
+          answer: '-2.0'
+          convention: round-once
+    answer_text: 'The principle of superposition adds the displacements, keeping their signs: $+3.0 + (-5.0) = -2.0\,\text{cm}$. The resultant is $2.0\,\text{cm}$ below the rest position, so this is destructive superposition. The pulses pass through each other and carry on afterwards; they do not stop or bounce.'
+
+  - id: c9-r7-string-frequency
+    section: Review
+    tier: O
+    refs: ['2.6']
+    statement: 'A string is $0.75\,\text{m}$ long. Its tension is $300\,\text{N}$ and its mass per unit length is $0.012\,\text{kg/m}$. Calculate its fundamental frequency. Which relationship did you use first, and why?'
+    answer_label: 'The fundamental frequency, and the relationship used first'
+    check:
+      kind: all
+      checks:
+        - kind: dimensions
+          expression: sqrt(T / mu) / (2 * L)
+          values:
+            T: {value: '300', unit: N}
+            mu: {value: '0.012', unit: kg/m}
+            L: {value: '0.75', unit: m}
+          answer: {value: '105.409', unit: s^-1}
+          tolerance: '0.001'
+        - kind: sigfigs
+          value: 'sqrt(300 / 0.012) / (2 * 0.75)'
+          figures: 2
+          answer: '1.1e2'
+          tolerance: '0.01'
+          convention: round-once
+        - kind: structured
+          requires: [state-frequency, first-relationship, why]
+          concepts: [wave-speed-on-a-string, wave-equation, fundamental]
+          points:
+            - id: state-frequency
+              text: 'The fundamental frequency is 105 Hz, which is 1.1 x 10^2 Hz to two significant figures.'
+              concepts: [fundamental]
+            - id: first-relationship
+              text: 'The first relationship is the wave speed on a stretched string, v = the square root of T over mu, because the tension and the mass per unit length fix the speed and nothing else on the page does.'
+              concepts: [wave-speed-on-a-string]
+            - id: why
+              text: 'The second is v = f lambda, with the fundamental wavelength fixed by the length, lambda = 2L. The two are used in that order because the speed must be known before the frequency can be found.'
+              concepts: [wave-equation, fundamental]
+    answer_text: 'The speed of a wave on a stretched string is fixed by the tension and the mass per unit length: $v = \sqrt{\dfrac{T}{\mu}} = \sqrt{\dfrac{300}{0.012}} = 158\,\text{m/s}$. That comes first, because nothing else on the page gives the speed. The fundamental has $\lambda = 2L = 1.5\,\text{m}$, so the wave equation gives $f_1 = \dfrac{v}{\lambda} = \dfrac{158}{1.5} = 105\,\text{Hz}$, which is $1.1 \times 10^{2}\,\text{Hz}$ to two significant figures. Tightening the string raises the tension, raises the speed and so raises the pitch.'
+
+  - id: c9-r8-water-entry
+    section: Review
+    tier: O
+    refs: ['2.2']
+    statement: 'A sound wave passes from air into water. Explain why its frequency does not change and why its wavelength does.'
+    answer_label: 'Why the frequency stays and the wavelength changes'
+    check:
+      kind: structured
+      requires: [frequency-set-by-source, speed-changes, wavelength-follows]
+      concepts: [source-frequency, medium-speed, wave-equation]
+      points:
+        - id: frequency-set-by-source
+          text: 'The frequency is set by the source: the particles of the medium are driven back and forth once for each vibration of the source, so the number of waves arriving each second stays the same at the boundary.'
+          concepts: [source-frequency]
+        - id: speed-changes
+          text: 'The speed is set by the medium. Sound travels about four times faster in water than in air, because water is stiffer and much less compressible.'
+          concepts: [medium-speed]
+        - id: wavelength-follows
+          text: 'Since v = f lambda and f is fixed, a larger speed must mean a larger wavelength. The compressions in water are further apart than they were in air.'
+          concepts: [wave-equation, medium-speed]
+    answer_text: 'The frequency is set by the source. The particles of the medium are driven back and forth once for each vibration of the source, so the number of waves arriving each second is the same on both sides of the boundary. The speed is set by the medium, and sound travels about four times faster in water than in air because water is stiffer and much less compressible. Since $v = f\lambda$ and $f$ cannot change, a larger $v$ must mean a larger $\lambda$: the compressions in the water are further apart. The pitch you hear is unchanged, even though the wavelength and the speed are both different.'
+
+  - id: c9-r9-two-kinds-of-wave
+    section: Review
+    tier: O
+    refs: ['2.2']
+    statement: 'Explain the difference between a transverse wave and a longitudinal wave, and give one example of each.'
+    answer_label: 'The difference, and an example of each'
+    check:
+      kind: structured
+      requires: [transverse, longitudinal, examples]
+      concepts: [vibration-direction, right-angles, along-the-travel]
+      points:
+        - id: transverse
+          text: 'In a transverse wave the particles vibrate at right angles to the direction the wave travels. A wave on a rope or on a guitar string is transverse, and so is light.'
+          concepts: [vibration-direction, right-angles]
+        - id: longitudinal
+          text: 'In a longitudinal wave the particles vibrate along the direction the wave travels, making compressions and rarefactions. Sound in air is longitudinal.'
+          concepts: [vibration-direction, along-the-travel]
+        - id: examples
+          text: 'Both kinds carry energy without carrying matter: the particles return to their rest positions after the wave has passed.'
+          concepts: [vibration-direction]
+    answer_text: 'In a transverse wave the particles vibrate at right angles to the direction the wave travels, as a wave on a rope does: the rope moves up and down while the wave runs along it. In a longitudinal wave the particles vibrate along the direction the wave travels, bunching into compressions and spreading into rarefactions, as sound in air does. A wave on a guitar string is transverse and light is too, while sound is longitudinal. Both kinds carry energy without carrying matter, because the particles return to their rest positions after the wave has passed.'
+
+  - id: c9-r10-car-acceleration
+    section: Review
+    tier: O
+    refs: ['2.2']
+    statement: 'A car starts from rest and accelerates at $2.5\,\text{m/s}^2$ for $6.0\,\text{s}$. Calculate its final speed and the distance it travels. Which chapter does this method come from?'
+    answer_label: 'The final speed, the distance and the chapter'
+    check:
+      kind: all
+      checks:
+        - kind: dimensions
+          expression: a * t
+          values:
+            a: {value: '2.5', unit: m/s^2}
+            t: {value: '6.0', unit: s}
+          answer: {value: '15', unit: m/s}
+        - kind: sigfigs
+          value: '2.5 * 6.0'
+          figures: 2
+          answer: '15'
+          convention: round-once
+        - kind: dimensions
+          expression: 0.5 * a * t**2
+          values:
+            a: {value: '2.5', unit: m/s^2}
+            t: {value: '6.0', unit: s}
+          answer: {value: '45', unit: m}
+        - kind: sigfigs
+          value: '0.5 * 2.5 * 6.0**2'
+          figures: 2
+          answer: '45'
+          convention: round-once
+        - kind: structured
+          requires: [state-speed, state-distance, name-chapter]
+          concepts: [equations-of-motion, constant-acceleration]
+          points:
+            - id: state-speed
+              text: 'The final speed is 15 m/s, from v = u + a t with u = 0.'
+              concepts: [equations-of-motion]
+            - id: state-distance
+              text: 'The distance is 45 m, from s = u t + half a t squared, which is half of 2.5 times 36.'
+              concepts: [equations-of-motion]
+            - id: name-chapter
+              text: 'The method comes from Chapter 2, Describing motion, where the equations of motion for constant acceleration were derived and used.'
+              concepts: [constant-acceleration]
+    answer_text: 'With $u = 0$, the equations of motion give $v = u + at = 0 + 2.5 \times 6.0 = 15\,\text{m/s}$ and $s = ut + \frac{1}{2}at^2 = 0 + \frac{1}{2} \times 2.5 \times 36 = 45\,\text{m}$. Both answers carry two significant figures, from the $2.5\,\text{m/s}^2$ and the $6.0\,\text{s}$. The method is the equations of motion for constant acceleration, from Chapter 2, Describing motion. A wave and a car seem to share nothing, but the same habit works for both: name the model, then use the relationship that fits.'

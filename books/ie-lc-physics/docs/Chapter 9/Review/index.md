@@ -77,26 +77,9 @@ Work through these without notes. For each one, decide **which relationship appl
 say why. Two of them ask you to choose between the wave equation and the string
 relationships, and two come from earlier chapters.
 
-1. A wave has a frequency of 250 Hz and a wavelength of 1.2 m. Calculate its speed.
-2. A wave on a rope has an amplitude of 0.15 m. State the distance from a crest to the
-   next trough.
-3. A sound wave has a frequency of 500 Hz and travels through air at 340 m/s. Calculate
-   its wavelength.
-4. A string fixed at both ends is 0.90 m long. Calculate the wavelength of its
-   fundamental note.
-5. The fundamental frequency of a string is 220 Hz. Calculate the frequency of the third
-   harmonic.
-6. Two pulses meet on a rope. One has a displacement of $+3.0\,\text{cm}$ and the other
-   has a displacement of $-5.0\,\text{cm}$. Calculate the resultant displacement.
-7. A string is 0.75 m long. Its tension is 300 N and its mass per unit length is
-   0.012 kg/m. Calculate its fundamental frequency. Which relationship did you use first,
-   and why?
-8. A sound wave passes from air into water. Explain why its frequency does not change and
-   why its wavelength does.
-9. Explain the difference between a transverse wave and a longitudinal wave, and give one
-   example of each.
-10. A car starts from rest and accelerates at 2.5 m/s$^2$ for 6.0 s. Calculate its final
-    speed and the distance it travels. Which chapter does this method come from?
+:::problems chapter-09-review
+
+:::answers chapter-09-review
 
 ## What you can now do
 

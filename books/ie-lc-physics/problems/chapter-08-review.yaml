@@ -1,0 +1,220 @@
+# Mixed practice for the Chapter 8 Review.
+#
+# Nine questions, one record each, in the order they appear on the Review page.
+# Every energy record pairs a `dimensions` check, which proves the magnitude and
+# the unit, with a `sigfigs` check, which proves the rounding to the figures the
+# data support. Question 1 is a temperature scale shift rather than a product, so
+# it is proved by `evaluate`; nothing about it is dimensional. Questions 5, 6 and 9
+# are explanations with no number in them, so each carries a `structured`
+# component and no numeric check is invented for it.
+#
+# Honest limit: this proves arithmetic, dimensions and the declared conventions,
+# not physics. A `structured` check proves only that a model answer contains its
+# declared steps and concepts, in order.
+#
+# The data are read as the Review page states them: the specific heat capacity of
+# water is 4200 J kg^-1 K^-1, that of iron is 450 J kg^-1 K^-1, the specific latent
+# heat of fusion of ice is 3.34e5 J/kg, and 0 degC is taken as 273 K.
+chapter: 8
+problems:
+  - id: c8-r1-kelvin
+    section: Review
+    tier: O
+    refs: ['2.1']
+    statement: 'A room is at $35\,°\text{C}$. Write this temperature in kelvin. Take $0\,°\text{C} = 273\,\text{K}$.'
+    answer_label: 'The temperature in kelvin'
+    check:
+      kind: evaluate
+      expression: '35 + 273'
+      answer: '308'
+    answer_text: 'The kelvin scale starts at absolute zero, and its steps are the same size as Celsius degrees, so a temperature is converted by adding 273: $35 + 273 = 308\,\text{K}$. The size of a degree does not change, which is why a temperature *difference* of $35\,°\text{C}$ is a difference of $35\,\text{K}$ with nothing added.'
+
+  - id: c8-r2-water-cooling
+    section: Review
+    tier: O
+    refs: ['2.1']
+    statement: 'A $0.40\,\text{kg}$ mass of water cools from $90\,°\text{C}$ to $20\,°\text{C}$. Calculate the energy released. The specific heat capacity of water is $4200\,\text{J kg}^{-1}\,\text{K}^{-1}$.'
+    answer_label: 'The energy released'
+    check:
+      kind: all
+      checks:
+        - kind: dimensions
+          expression: m * c * dtheta
+          values:
+            m: {value: '0.40', unit: kg}
+            c: {value: '4200', unit: J kg^-1 K^-1}
+            dtheta: {value: '70', unit: K}
+          answer: {value: '117600', unit: J}
+        - kind: sigfigs
+          value: '0.40 * 4200 * 70'
+          figures: 2
+          answer: '1.2e5'
+          convention: round-once
+    answer_text: 'The temperature change is $90 - 20 = 70\,\text{K}$, and a change of one Celsius degree is a change of one kelvin. The energy is $E = mc\Delta\theta = 0.40 \times 4200 \times 70 = 117600\,\text{J}$, which is $1.2 \times 10^{5}\,\text{J}$ to two significant figures. The two figures come from the mass, $0.40\,\text{kg}$, which is the reading with the fewest figures.'
+
+  - id: c8-r3-melt-ice
+    section: Review
+    tier: O
+    refs: ['2.1']
+    statement: 'Calculate the energy needed to melt $0.25\,\text{kg}$ of ice at $0\,°\text{C}$. The specific latent heat of fusion of ice is $3.34 \times 10^{5}\,\text{J/kg}$.'
+    answer_label: 'The energy needed to melt the ice'
+    check:
+      kind: all
+      checks:
+        - kind: dimensions
+          expression: m * L
+          values:
+            m: {value: '0.25', unit: kg}
+            L: {value: '3.34e5', unit: J/kg}
+          answer: {value: '83500', unit: J}
+        - kind: sigfigs
+          value: '0.25 * 3.34e5'
+          figures: 2
+          answer: '8.4e4'
+          convention: round-once
+    answer_text: 'The ice is already at its melting point, so the energy changes its state and not its temperature: $E = mL = 0.25 \times 3.34 \times 10^{5} = 83500\,\text{J}$, which is $8.4 \times 10^{4}\,\text{J}$ to two significant figures. That is about $84\,\text{kJ}$, and no part of it raises the temperature while the ice is melting.'
+
+  - id: c8-r4-kettle-time
+    section: Review
+    tier: O
+    refs: ['2.1']
+    statement: 'A $2.0\,\text{kW}$ kettle heats $0.50\,\text{kg}$ of water from $20\,°\text{C}$ to $100\,°\text{C}$. Calculate the time taken. The specific heat capacity of water is $4200\,\text{J kg}^{-1}\,\text{K}^{-1}$.'
+    answer_label: 'The time taken'
+    check:
+      kind: all
+      checks:
+        - kind: dimensions
+          expression: m * c * dtheta / P
+          values:
+            m: {value: '0.50', unit: kg}
+            c: {value: '4200', unit: J kg^-1 K^-1}
+            dtheta: {value: '80', unit: K}
+            P: {value: '2000', unit: W}
+          answer: {value: '84', unit: s}
+        - kind: sigfigs
+          value: '0.50 * 4200 * 80 / 2000'
+          figures: 2
+          answer: '84'
+          convention: round-once
+    answer_text: 'The water needs $E = mc\Delta\theta = 0.50 \times 4200 \times 80 = 168000\,\text{J}$. The kettle transfers $2000\,\text{J}$ every second, so the time is $t = \dfrac{E}{P} = \dfrac{168000}{2000} = 84\,\text{s}$. Two significant figures is what the data justify, and that is what $84$ already carries. A real kettle takes longer, because some energy warms the kettle and some escapes to the room.'
+
+  - id: c8-r5-boiling
+    section: Review
+    tier: O
+    refs: ['2.1']
+    statement: 'Explain why the temperature stays at $100\,°\text{C}$ while water boils, even though the kettle is still heating it.'
+    answer_label: 'Why the temperature does not rise while the water boils'
+    check:
+      kind: structured
+      requires: [state-what-energy-does, particles, latent-heat]
+      concepts: [change-of-state, latent-heat, escaping-particles]
+      points:
+        - id: state-what-energy-does
+          text: 'The energy from the kettle goes into changing the state of the water, not into raising its temperature. That energy is the specific latent heat of vaporisation.'
+          concepts: [change-of-state, latent-heat]
+        - id: particles
+          text: 'The particles are already moving fast enough to escape the liquid. The energy supplied breaks the forces holding them in the liquid, so they leave as a gas instead of speeding up and raising the temperature.'
+          concepts: [escaping-particles, latent-heat]
+        - id: latent-heat
+          text: 'Because the average kinetic energy of the remaining particles does not rise, the temperature stays at 100 degC until all the water has boiled away.'
+          concepts: [latent-heat, change-of-state]
+    answer_text: 'The energy from the kettle goes into changing the state of the water, not into raising its temperature. The particles are already moving fast enough to escape the liquid, and the energy supplied breaks the forces that hold them in it, so they leave as a gas. Because the average kinetic energy of the remaining particles does not rise, the thermometer stays at $100\,°\text{C}$ until all the water has boiled away. The energy needed for that change is the specific latent heat of vaporisation.'
+
+  - id: c8-r6-spoon
+    section: Review
+    tier: O
+    refs: ['2.1']
+    statement: 'A metal spoon in hot soup becomes hot at the handle. Name the mechanism and explain it.'
+    answer_label: 'The mechanism, and how it works'
+    check:
+      kind: structured
+      requires: [name-mechanism, how-it-works, why-metal]
+      concepts: [conduction, particle-collisions, free-electrons]
+      points:
+        - id: name-mechanism
+          text: 'The mechanism is conduction, and it happens because the soup is hotter than the handle end of the spoon.'
+          concepts: [conduction]
+        - id: how-it-works
+          text: 'The particles at the hot end gain kinetic energy and vibrate more strongly. They collide with their neighbours and pass the energy along, without the metal itself moving. The energy travels up the spoon to the handle.'
+          concepts: [conduction, particle-collisions]
+        - id: why-metal
+          text: 'Metals also have free electrons, which carry energy quickly through the metal, which is why a metal spoon conducts so much better than a plastic one.'
+          concepts: [free-electrons, conduction]
+    answer_text: 'The mechanism is conduction. The particles at the hot end of the spoon gain kinetic energy and vibrate more strongly. They collide with their neighbours and pass the energy along, and the metal itself stays where it is. Metals also have free electrons, which carry energy quickly through the metal, and that is why a metal spoon conducts far better than a plastic one. Energy always travels from the hotter end to the cooler one, so the handle warms while the soup cools.'
+
+  - id: c8-r7-car-kinetic
+    section: Review
+    tier: O
+    refs: ['2.1']
+    statement: 'A car of mass $1200\,\text{kg}$ accelerates from rest to $20\,\text{m/s}$. Calculate its kinetic energy. Which chapter does this method come from?'
+    answer_label: 'The kinetic energy, and the chapter the method comes from'
+    check:
+      kind: all
+      checks:
+        - kind: dimensions
+          expression: 0.5 * m * v**2
+          values:
+            m: {value: '1200', unit: kg}
+            v: {value: '20', unit: m/s}
+          answer: {value: '240000', unit: J}
+        - kind: sigfigs
+          value: '0.5 * 1200 * 20**2'
+          figures: 2
+          answer: '2.4e5'
+          convention: round-once
+        - kind: structured
+          requires: [state-energy, name-chapter]
+          concepts: [kinetic-energy, work-energy]
+          points:
+            - id: state-energy
+              text: 'The kinetic energy is 2.4 x 10^5 J, which is 240 kJ.'
+              concepts: [kinetic-energy]
+            - id: name-chapter
+              text: 'The method is E = half m v squared, from Chapter 4, Work, energy and power, where kinetic energy was introduced.'
+              concepts: [kinetic-energy, work-energy]
+    answer_text: 'The kinetic energy is $E_k = \frac{1}{2}mv^2 = \frac{1}{2} \times 1200 \times 20^2 = 240000\,\text{J}$, which is $2.4 \times 10^{5}\,\text{J}$ to two significant figures. The method is $E_k = \frac{1}{2}mv^2$, from Chapter 4, Work, energy and power. Heat and kinetic energy are both energies, so they share the joule, but the kinetic energy says nothing about temperature: the car''s engine warms the air as well, and that energy is not in this answer.'
+
+  - id: c8-r8-iron-block
+    section: Review
+    tier: O
+    refs: ['2.1']
+    statement: 'A $1.5\,\text{kg}$ iron block cools from $200\,°\text{C}$ to $20\,°\text{C}$. Calculate the energy released. The specific heat capacity of iron is $450\,\text{J kg}^{-1}\,\text{K}^{-1}$.'
+    answer_label: 'The energy released'
+    check:
+      kind: all
+      checks:
+        - kind: dimensions
+          expression: m * c * dtheta
+          values:
+            m: {value: '1.5', unit: kg}
+            c: {value: '450', unit: J kg^-1 K^-1}
+            dtheta: {value: '180', unit: K}
+          answer: {value: '121500', unit: J}
+        - kind: sigfigs
+          value: '1.5 * 450 * 180'
+          figures: 2
+          answer: '1.2e5'
+          convention: round-once
+    answer_text: 'The temperature change is $200 - 20 = 180\,\text{K}$. The energy released is $E = mc\Delta\theta = 1.5 \times 450 \times 180 = 121500\,\text{J}$, which is $1.2 \times 10^{5}\,\text{J}$ to two significant figures. Iron has a much smaller specific heat capacity than water, so the same mass of iron stores far less energy for the same temperature change.'
+
+  - id: c8-r9-vacuum-flask
+    section: Review
+    tier: O
+    refs: ['2.1']
+    statement: 'A vacuum flask has a vacuum between its walls. Explain how this reduces the transfer of energy.'
+    answer_label: 'How the vacuum slows conduction and convection'
+    check:
+      kind: structured
+      requires: [conduction, convection, radiation]
+      concepts: [no-particles, conduction-and-convection-stopped, radiation-reflected]
+      points:
+        - id: conduction
+          text: 'Conduction needs particles to pass energy along by collisions, and a vacuum has almost no particles, so conduction across the gap is stopped.'
+          concepts: [no-particles, conduction-and-convection-stopped]
+        - id: convection
+          text: 'Convection needs a fluid to rise and fall and carry energy with it, and a vacuum has no fluid, so convection is stopped as well.'
+          concepts: [no-particles, conduction-and-convection-stopped]
+        - id: radiation
+          text: 'Radiation crosses a vacuum, so the vacuum alone is not enough. The walls are silvered, which reflects infrared radiation back, and the stopper slows conduction and stops convection at the top.'
+          concepts: [radiation-reflected]
+    answer_text: 'Conduction needs particles to pass energy along by collisions, and a vacuum has almost none, so conduction across the gap almost stops. Convection needs a fluid to rise and fall and carry energy with it, and a vacuum has no fluid, so convection stops too. Radiation does cross a vacuum, so the vacuum alone is not enough: the walls are silvered to reflect infrared radiation back, and the stopper slows conduction and stops convection at the top. The flask does not stop the transfer completely, it only slows it, which is why a hot drink still cools over hours.'

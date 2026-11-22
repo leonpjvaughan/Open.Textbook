@@ -69,28 +69,9 @@ Work through these without notes. For each one, decide **which relationship appl
 and say why. Two of them ask you to choose between the field of a point charge and the
 uniform field between plates.
 
-1. A body gains $1.5 \times 10^{14}$ electrons. Calculate its charge.
-2. Two charges of $+2.0\ \mu\text{C}$ and $+4.0\ \mu\text{C}$ are $0.20$ m apart.
-   Calculate the force between them and state its direction.
-3. Two charges repel with a force of $0.60$ N at a separation of $0.20$ m. Calculate
-   the force at a separation of $0.40$ m.
-4. A charge of $4.0\ \mu\text{C}$ experiences a force of $0.16$ N at a point in a
-   field. Calculate the field strength at that point.
-5. Two parallel plates are $3.0$ mm apart with a potential difference of $600$ V.
-   Calculate the field strength between them.
-6. A point charge of $+3.0\ \mu\text{C}$ is isolated in air. Calculate the field
-   strength $0.10$ m from it.
-7. A charge of $2.0\ \mu\text{C}$ is moved between two points, and the work done is
-   $5.0 \times 10^{-4}$ J. Calculate the potential difference between the points.
-8. A point charge of $+3.0\ \mu\text{C}$ is isolated in air. Calculate the potential
-   $0.10$ m from it.
-9. You must find the force between two small charged spheres. Which relationship
-   applies, and what must you check about the distance before you use it?
-10. A charge sits in an electric field. Would you use $E = \dfrac{V}{d}$ or
-    $E = \dfrac{kQ}{d^2}$ to find the field strength? Explain how you decide.
-11. A question from Chapter 6. A 5.0 kg mass has a weight of $8.0$ N on a small moon.
-    Calculate the gravitational field strength at its surface, and compare the method
-    with $E = \dfrac{F}{q}$.
+:::problems chapter-13-review
+
+:::answers chapter-13-review
 
 ## What you can now do
 

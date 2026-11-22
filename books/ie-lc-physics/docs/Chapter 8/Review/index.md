@@ -65,23 +65,9 @@ Work through these without notes. For each one, decide which relationship applie
 and say why. Some use $E = mc\Delta\theta$, some use $E = mL$, and some come from
 earlier chapters.
 
-1. A room is at 35°C. Write this temperature in kelvin. Take 0°C = 273 K.
-2. A 0.40 kg mass of water cools from 90°C to 20°C. Calculate the energy released.
-   The specific heat capacity of water is 4200 J/(kg K).
-3. Calculate the energy needed to melt 0.25 kg of ice at 0°C. The specific latent
-   heat of fusion of ice is $3.34 \times 10^{5}$ J/kg.
-4. A 2.0 kW kettle heats 0.50 kg of water from 20°C to 100°C. Calculate the time
-   taken. The specific heat capacity of water is 4200 J/(kg K).
-5. Explain why the temperature stays at 100°C while water boils, even though the
-   kettle is still heating it.
-6. A metal spoon in hot soup becomes hot at the handle. Name the mechanism and
-   explain it.
-7. A car of mass 1200 kg accelerates from rest to 20 m/s. Calculate its kinetic
-   energy. Which chapter does this method come from?
-8. A 1.5 kg iron block cools from 200°C to 20°C. Calculate the energy released.
-   The specific heat capacity of iron is 450 J/(kg K).
-9. A vacuum flask has a vacuum between its walls. Explain how this reduces the
-   transfer of energy.
+:::problems chapter-08-review
+
+:::answers chapter-08-review
 
 ## What you can now do
 
