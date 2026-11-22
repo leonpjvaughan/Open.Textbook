@@ -1054,9 +1054,10 @@ def test_the_sidebar_is_a_drawer_below_the_layout_breakpoint(subset):
     The sidebar became a static block at 60rem, so a `numerical-methods` page opened
     with 614px of navigation and its own title sat at y = 798. The fix is a native
     disclosure, and the three things a static check can hold are what makes it work:
-    the nav is inside the drawer, the summary carries the page's own section, and the
-    control is only a control below the breakpoint — a summary at desktop would be a
-    second, redundant way into a column that is already open.
+    the nav is inside the drawer, the control is only a control below the breakpoint
+    — a summary at desktop would be a second, redundant way into a column that is
+    already open — and the summary says what it does rather than repeating the two
+    labels the masthead row above it already carries.
     """
     html = (subset.out / "chapter-1/section-1.1/learn/index.html").read_text()
     assert '<details class="nav-drawer" open>' in html
@@ -1065,8 +1066,16 @@ def test_the_sidebar_is_a_drawer_below_the_layout_breakpoint(subset):
     drawer = html[html.index('<details class="nav-drawer"') :]
     drawer = drawer[: drawer.index("</details>")]
     assert 'class="sidebar" aria-label="Book contents" data-pagefind-ignore' in drawer
-    # The summary says which page the reader is on: the book, then the section.
-    assert "masthead__section" in drawer.split("</summary>")[0]
+    # The summary is the control's name only: the book and the section are in the
+    # masthead row directly above, and printing them a second time here put the same
+    # two labels above the page title three times at 390px.
+    summary = drawer.split("</summary>")[0]
+    assert "nav-drawer__label" in summary and "Contents" in summary
+    assert "masthead__section" not in summary, (
+        "the drawer repeats the section the masthead already names"
+    )
+    brand = html[html.index('class="masthead__brand"') :]
+    assert "masthead__section" in brand[:220], "no surface names the section"
     # The drawer is closed by the script at phone width and inert above it.
     assert "matchMedia(\"(min-width: 60rem)\")" in html
     assert "drawer.open = wide.matches" in html
@@ -1103,3 +1112,57 @@ def test_the_cards_marker_is_consumed_and_marks_the_table():
     assert "<!--" not in html
     assert html.count('class="table--cards"') == 1
     assert '<table class="table--cards">' in html
+
+
+# --- the page kind, split out of the heading ----------------------------------
+#
+# Every generated page title ends in its kind — `1.1 Place value — Learn` — and the
+# scaffold writes it into both the front matter and the `# heading`, so moving it is a
+# 2,215-file diff. It is split at render time instead, and the one thing that must not
+# move is the `id`: it is derived from the whole title, so every deep link ends in
+# `…-learn`, and a split that rebuilt the id would break all of them.
+
+
+def test_the_page_kind_is_wrapped_and_the_id_is_untouched():
+    html = pipeline.split_page_kind(
+        '<h1 id="11-place-value-and-ordering-numbers-learn">'
+        "1.1 Place value and ordering numbers — Learn</h1>"
+    )
+    assert 'id="11-place-value-and-ordering-numbers-learn"' in html
+    assert '<span class="page-kind">— Learn</span>' in html
+    # The text itself is unchanged: only the wrapping is added.
+    assert "1.1 Place value and ordering numbers " in html
+    assert html.index("— Learn") < html.index("</span>")
+
+
+def test_a_title_without_a_kind_is_left_alone():
+    html = '<h1 id="chapter-1-number">Chapter 1: Number</h1>'
+    assert pipeline.split_page_kind(html) == html
+
+
+def test_only_the_first_heading_is_split():
+    html = (
+        '<h1 id="a-learn">A — Learn</h1>'
+        '<h2 id="b-learn">B — Learn</h2>'
+    )
+    split = pipeline.split_page_kind(html)
+    assert split.count('class="page-kind"') == 1
+    assert "<h2" not in split[: split.index("page-kind")]
+
+
+def test_the_kind_survives_markup_in_the_title():
+    """A title may carry rendered maths before the dash, and the split is not an HTML
+    parse: it must find the dash on the *last* segment and leave the maths alone."""
+    html = pipeline.split_page_kind(
+        '<h1 id="23-solving-learn">2.3 Solving <span class="math">x<sup>2</sup></span> — Learn</h1>'
+    )
+    assert '<span class="math">x<sup>2</sup></span>' in html
+    assert '<span class="page-kind">— Learn</span>' in html
+
+
+def test_a_built_page_keeps_the_deep_link_its_suffix_names(subset):
+    page = (subset.out / "chapter-1/section-1.1/learn/index.html").read_text(encoding="utf-8")
+    match = re.search(r'<h1 id="([^"]+)">(.*?)</h1>', page, re.S)
+    assert match, "the Learn page has no first heading"
+    assert match.group(1).endswith("-learn")
+    assert '<span class="page-kind">' in match.group(2)

@@ -229,6 +229,40 @@ def booklet_widget(book: books.Book, prefix: str, filename: str = "booklet.js") 
     return f'<script src="{prefix}assets/booklet/{filename}" defer></script>'
 
 
+#: The first heading of a page, and the title/kind split inside it. The kind is
+#: authored into the title (`1.1 Place value — Learn`) by the scaffold, so it cannot
+#: be moved by editing content without a 2,215-file diff: the split is a render step.
+FIRST_H1 = re.compile(r"(<h1\b[^>]*>)(.*?)(</h1>)", re.S)
+TITLE_KIND = re.compile(r"^(.*\S)\s+—\s+([^<>]+)$", re.S)
+
+
+def split_page_kind(content: str) -> str:
+    """Wrap the page kind that ends the first ``<h1>`` in ``span.page-kind``.
+
+    Every generated title carries its page kind after an em dash, and every one of
+    those titles is front matter and a heading, so a content edit is a 2,215-file
+    diff. The split happens here instead: the text is unchanged and only the
+    wrapping is added, which is what lets a stylesheet treat the kind separately.
+
+    The ``id`` attribute is **not** touched. It is derived from the whole title, so
+    every existing deep link ends in ``…-learn`` and a split that rebuilt the id
+    would break all of them; a test pins a page whose title carries a suffix.
+    """
+    match = FIRST_H1.search(content)
+    if not match:
+        return content
+    parts = TITLE_KIND.match(match.group(2))
+    if not parts:
+        return content
+    title, kind = parts.group(1), parts.group(2).strip()
+    if not kind:
+        return content
+    rebuilt = (
+        f'{match.group(1)}{title} <span class="page-kind">— {kind}</span>{match.group(3)}'
+    )
+    return content[: match.start()] + rebuilt + content[match.end():]
+
+
 def masthead_section(meta: dict) -> str:
     """The page's section, as the masthead names it, or the empty string.
 
@@ -676,6 +710,7 @@ def render_page(
 
     content = markdown.markdown(body, extensions=EXTENSIONS, output_format="html5")
     content = hooks.on_page_content(content, page, config, [])
+    content = split_page_kind(content)
     content = wrap_tables(rewrite_source_links(content))
 
     title = str(meta.get("title") or md_path)
@@ -721,6 +756,7 @@ def render_page(
         settings_trigger=trigger,
         settings_dialog=dialog,
         booklet_script=booklet,
+        theme_color_metas=prefs.theme_color_metas(),
         prefs_script=prefs.snippet(config),
         background=backgrounds.resolve(
             books.load_collection(), book.backgrounds, section=str(meta.get("section") or "") or None,

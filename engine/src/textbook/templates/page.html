@@ -9,6 +9,13 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>$title — $site_title</title>
 <meta name="description" content="$description">
+<!-- The browser's own interface, not the page's: `color-scheme` lets form
+     controls and scrollbars follow the scheme, and `theme-color` paints a phone's
+     address bar. The two theme colours are the default bundle's paper per scheme,
+     and the preference script repaints them from the resolved --tb-paper, so a
+     reader on another bundle or an explicit scheme gets their own. -->
+<meta name="color-scheme" content="light dark">
+$theme_color_metas
 <meta name="build" content="$build">
 $pager_head
 <link rel="canonical" href="$canonical">
@@ -45,7 +52,7 @@ document.body.setAttribute(
 
 <header class="masthead" data-pagefind-ignore>
   <div class="wrap masthead__inner">
-    <a class="masthead__brand" href="${prefix}">$site_title$masthead_section</a>
+    <a class="masthead__brand" href="${prefix}"><span class="masthead__book">$site_title</span>$masthead_section</a>
     <!-- The search is a sibling of the actions rather than one of them: at phone
          widths it has to be able to take a row of its own, and a flex item cannot
          escape a parent to do that. -->
@@ -84,12 +91,10 @@ document.body.setAttribute(
        to have a different default on each side of one breakpoint from one HTML file. -->
   <details class="nav-drawer" open>
     <summary class="nav-drawer__summary" data-pagefind-ignore>
-      <!-- The control used to carry the book title and the section and no word
-           about what it did, so a phone reader saw a label rather than a
-           contents control. The word leads; the title still says which book. -->
+      <!-- The book and the section are in the masthead row directly above, so the
+           summary carries only what the control does. Repeating them made a phone
+           reader pass the same two labels three times before the page's own title. -->
       <span class="nav-drawer__label">Contents</span>
-      <span class="nav-drawer__book">$site_title</span>
-      $masthead_section
     </summary>
     <nav class="sidebar" aria-label="Book contents" data-pagefind-ignore>
       $nav

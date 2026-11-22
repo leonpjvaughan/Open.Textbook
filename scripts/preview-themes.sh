@@ -84,6 +84,13 @@ run_check() {
 # Phone widths: a page that overflows sideways makes every colour question moot.
 run_check mobile node tools/dist/cli.js check-mobile site
 
+# Every interactive control at 390px, both schemes, against WCAG 2.2's 24x24 floor.
+run_check targets node tools/dist/cli.js targets site
+
+# The reading measure, in characters per line: a 200+ character paragraph at 1280 and
+# at 390. It needs the built site, so it runs here rather than in the pytest job.
+run_check measure uv run python -m pytest tests/test_measure.py -m browser -q
+
 # Every figure, in both schemes, and what each one actually paints. The only check that
 # sees the difference between `text-*` setting `color` (HTML) and `fill` (SVG).
 run_check contrast node tools/dist/cli.js audit site \

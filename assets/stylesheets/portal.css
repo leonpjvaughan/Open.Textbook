@@ -9,7 +9,7 @@
  */
 
 :root {
-  --tb-measure: 70ch;
+  --tb-measure: 62ch;
   --tb-radius: 10px;
   /* Portal-only surfaces, derived from the bundle so they follow any palette.
    * Elevation is mixed from the ink token rather than a literal black, so it
@@ -310,7 +310,14 @@ body {
   font-size: 0.9rem;
 }
 
-.footer__links a { color: var(--tb-link); }
+/* A footer link is a target, not a word in a sentence: the flex row blockifies it,
+ * so it has to carry the 24px floor itself. Measured before this: 23.5px. */
+.footer__links a {
+  display: inline-flex;
+  align-items: center;
+  min-height: 1.5rem;
+  color: var(--tb-link);
+}
 
 .footer__fine { font-size: 0.85rem; }
 
