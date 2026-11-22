@@ -46,7 +46,7 @@ proofs:
     summary: >-
       Draw the line through one corner parallel to the opposite side, and the
       three angles fall onto a straight line.
-    qualifications: [GCSE, A-level]
+    qualifications: [GCSE, A-level, Junior Cycle, Leaving Certificate]
     strand: geometry
     figure: angles-on-a-line
 
@@ -64,7 +64,7 @@ proofs:
     summary: >-
       Four copies of the triangle make a square with a hole in it, and the hole is
       the square on the hypotenuse.
-    qualifications: [GCSE, A-level]
+    qualifications: [GCSE, A-level, Junior Cycle, Leaving Certificate]
     strand: geometry
     figure: pythagoras-rearrangement
 
@@ -81,7 +81,7 @@ proofs:
     summary: >-
       Drop a perpendicular and the triangle's area is half its base times its
       height. The height is what the sine ratio turns into b sin C.
-    qualifications: [GCSE, A-level]
+    qualifications: [GCSE, A-level, Leaving Certificate]
     strand: trigonometry
     figure: triangle-area-sinc
 
@@ -90,7 +90,7 @@ proofs:
     summary: >-
       Join the two points to the centre. Two isosceles triangles appear whose base
       angles must add up to half the straight angle at the centre.
-    qualifications: [GCSE]
+    qualifications: [GCSE, Junior Cycle, Leaving Certificate]
     strand: geometry
     figure: angle-at-the-centre
 
@@ -166,7 +166,7 @@ proofs:
     summary: >-
       Two copies, one turned upside down, make a parallelogram. One trapezium is
       half of it.
-    qualifications: [GCSE, A-level]
+    qualifications: [GCSE, A-level, Leaving Certificate]
     strand: mensuration
     figure: trapezium-double
 
@@ -199,7 +199,7 @@ proofs:
     summary: >-
       Join the corner to the centre. Two isosceles triangles appear, and their
       angles must fill a straight line.
-    qualifications: [GCSE]
+    qualifications: [GCSE, Junior Cycle, Leaving Certificate]
     strand: geometry
     figure: semicircle-angle
 

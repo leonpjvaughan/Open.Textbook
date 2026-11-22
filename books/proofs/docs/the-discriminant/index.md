@@ -100,8 +100,9 @@ When $\Delta > 0$, solving for $x$ gives the two roots. They are the
 
 $$x = \frac{-b \pm \sqrt{\Delta}}{2a}.$$
 
-The $\pm$ is the two values of the bracket; the $\sqrt{\Delta}$ only has a real
-value when $\Delta > 0$, which is the same condition.
+The $\pm$ is the two values of the bracket. The $\sqrt{\Delta}$ is real when
+$\Delta \ge 0$; at $\Delta = 0$ the two values coincide, which is the repeated
+root in the table above.
 
 ## The graph is doing the same thing
 
