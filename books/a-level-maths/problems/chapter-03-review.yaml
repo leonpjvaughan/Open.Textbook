@@ -1,0 +1,167 @@
+# Review bank for Chapter 3 (Coordinate geometry).
+#
+# Twelve mixed-practice questions mixing Chapter 3 with Chapters 1 and 2.
+# Questions 1 to 11 are proved symbolically by the SymPy oracle. Question 12 is
+# a modelling judgement with no numeric answer, so it uses `structured` from the
+# `units` oracle.
+#
+# Honest limit: the verifier proves the coordinate algebra, intersections and
+# distances, not the reader's choice of method. For Question 12, `structured`
+# checks only that the declared steps and concepts appear in order, not whether
+# the modelling critique is insightful.
+chapter: 3
+oracles: [sympy, units]
+symbols:
+  x: {real: true}
+  y: {real: true}
+  t: {real: true}
+  m: {integer: true}
+  n: {integer: true}
+problems:
+  - id: r1-gradient-two-points
+    section: '3.1'
+    refs: [C1]
+    statement: 'Work out the gradient of the line through $(3, -1)$ and $(7, 11)$.'
+    answer_label: 'The gradient'
+    check:
+      kind: evaluate
+      expression: '(11 - (-1)) / (7 - 3)'
+      answer: '3'
+    answer_text: '**Gradient from two points.** $m = \dfrac{11 - (-1)}{7 - 3} = \dfrac{12}{4} = 3$.'
+
+  - id: r2-perpendicular-line
+    section: '3.2'
+    refs: [C1]
+    statement: 'Find the equation of the line through $(4, -2)$ perpendicular to $3x - y = 5$.'
+    answer_label: 'The perpendicular line'
+    check:
+      kind: all
+      checks:
+        - {kind: evaluate, expression: '-1 / 3', answer: '-1/3'}
+        - {kind: evaluate, expression: '-2 - (1/3)*(x - 4)', answer: '-x/3 - 2/3'}
+        - {kind: evaluate, expression: '4 + 3*(-2) + 2', answer: '0'}
+    answer_text: '**Perpendicular gradient, then a point.** Rewriting $3x - y = 5$ as $y = 3x - 5$ gives gradient $3$, so the perpendicular gradient is $-\dfrac{1}{3}$. Through $(4, -2)$: $y + 2 = -\dfrac{1}{3}(x - 4)$, giving $y = -\dfrac{1}{3}x - \dfrac{2}{3}$, or $x + 3y + 2 = 0$.'
+
+  - id: r3-circle-centre-radius
+    section: '3.3'
+    refs: [C2]
+    statement: 'Find the centre and the radius of the circle $x^2 + y^2 - 4x + 10y + 13 = 0$.'
+    answer_label: 'Centre and radius'
+    check:
+      kind: all
+      checks:
+        - {kind: evaluate, expression: '(x - 2)**2 + (y + 5)**2 - 16', answer: 'x**2 + y**2 - 4*x + 10*y + 13'}
+        - {kind: evaluate, expression: 'sqrt(16)', answer: '4'}
+    answer_text: '**Complete the square twice.** $(x - 2)^2 - 4 + (y + 5)^2 - 25 + 13 = 0$, so $(x - 2)^2 + (y + 5)^2 = 16$. The centre is $(2, -5)$ and the radius is $\sqrt{16} = 4$.'
+
+  - id: r4-line-meets-circle
+    section: '3.3'
+    refs: [C2]
+    statement: 'Find where the line $x + y = 3$ meets the circle $x^2 + y^2 = 5$.'
+    answer_label: 'The intersection points'
+    check:
+      kind: system
+      equations: ['x + y = 3', 'x**2 + y**2 = 5']
+      variables: [x, y]
+      answer: [[1, 2], [2, 1]]
+    answer_text: '**Substitute the line into the circle.** With $y = 3 - x$: $x^2 + (3 - x)^2 = 5$, so $2x^2 - 6x + 4 = 0$ and $x^2 - 3x + 2 = 0$. Factorising gives $(x - 1)(x - 2) = 0$, so the intersection points are $(1, 2)$ and $(2, 1)$.'
+
+  - id: r5-parametric-parabola
+    section: '3.4'
+    refs: [C3]
+    statement: 'A curve is given by $x = t^2 - 1$, $y = 2t$. Find its Cartesian equation.'
+    answer_label: 'The Cartesian equation'
+    check:
+      kind: all
+      checks:
+        - {kind: apply, expression: 't**2 - 1', apply: {op: subs, args: [t, 'y/2']}, answer: 'y**2/4 - 1'}
+        - {kind: evaluate, expression: '(2*t)**2 - 4*((t**2 - 1) + 1)', answer: '0'}
+    answer_text: '**Eliminate the parameter from the simpler equation.** From $y = 2t$, we have $t = \dfrac{y}{2}$, so $x = \left(\dfrac{y}{2}\right)^2 - 1 = \dfrac{y^2}{4} - 1$, which rearranges to $y^2 = 4(x + 1)$.'
+
+  - id: r6-parametric-circle
+    section: '3.4'
+    refs: [C3]
+    statement: 'Find the Cartesian equation of $x = 3 + 2\cos t$, $y = 1 + 2\sin t$.'
+    answer_label: 'The Cartesian equation'
+    check:
+      kind: evaluate
+      expression: '((3 + 2*cos(t)) - 3)**2 + ((1 + 2*sin(t)) - 1)**2'
+      answer: '4'
+    answer_text: '**Rearrange, square and add using $\cos^2 t + \sin^2 t = 1$.** Since $\cos t = \dfrac{x - 3}{2}$ and $\sin t = \dfrac{y - 1}{2}$, squaring and adding gives $\left(\dfrac{x - 3}{2}\right)^2 + \left(\dfrac{y - 1}{2}\right)^2 = 1$, so $(x - 3)^2 + (y - 1)^2 = 4$.'
+
+  - id: r7-parametric-ball
+    section: '3.5'
+    refs: [C4]
+    statement: 'A ball is modelled by $x = 6t$, $y = 12t - 5t^2$. Find its greatest height and where it lands.'
+    answer_label: 'Greatest height and landing distance'
+    check:
+      kind: all
+      checks:
+        - {kind: evaluate, expression: '12*t - 5*t**2', answer: '-5*(t - 6/5)**2 + 36/5'}
+        - {kind: solve, equation: '12*t - 5*t**2 = 0', variable: t, answer: ['0', '12/5']}
+        - {kind: evaluate, expression: '6 * (12/5)', answer: '72/5'}
+    answer_text: '**Complete the square on $y$, then set $y = 0$.** $y = -5\left(t - \dfrac{6}{5}\right)^2 + \dfrac{36}{5}$, so the greatest height is $\dfrac{36}{5} = 7.2$ m at $t = 1.2$ s. The ball lands when $t(12 - 5t) = 0$ with $t > 0$, so $t = \dfrac{12}{5} = 2.4$ s and $x = 6 \times \dfrac{12}{5} = \dfrac{72}{5} = 14.4$ m.'
+
+  - id: r8-point-to-line-distance
+    section: '3.2'
+    refs: [C1]
+    statement: 'Work out the shortest distance from $(2, 5)$ to the line $4x - 3y + 6 = 0$.'
+    answer_label: 'The shortest distance'
+    check:
+      kind: evaluate
+      expression: 'Abs(4*2 - 3*5 + 6) / sqrt(4**2 + (-3)**2)'
+      answer: '1/5'
+    answer_text: '**Distance from a point to a line.** Using $\dfrac{|ax_0 + by_0 + c|}{\sqrt{a^2 + b^2}}$ with $4x - 3y + 6 = 0$ and $(2, 5)$: $\dfrac{|4 \times 2 - 3 \times 5 + 6|}{\sqrt{4^2 + (-3)^2}} = \dfrac{|8 - 15 + 6|}{5} = \dfrac{1}{5} = 0.2$.'
+
+  - id: r9-simultaneous-line-circle
+    section: '2.5'
+    refs: [B4, C2]
+    statement: 'Solve the simultaneous equations $y = x + 1$ and $x^2 + y^2 = 25$.'
+    answer_label: 'The solution pairs'
+    check:
+      kind: system
+      equations: ['y = x + 1', 'x**2 + y**2 = 25']
+      variables: [x, y]
+      answer: [[-4, -3], [3, 4]]
+    answer_text: '**Substitute the linear equation.** $x^2 + (x + 1)^2 = 25$ gives $2x^2 + 2x - 24 = 0$, so $x^2 + x - 12 = 0$ and $(x + 4)(x - 3) = 0$. Thus $x = -4$ or $x = 3$, giving $(-4, -3)$ and $(3, 4)$.'
+
+  - id: r10-solve-quadratic
+    section: '2.4'
+    refs: [B3]
+    statement: 'Solve $2x^2 + 5x - 3 = 0$.'
+    answer_label: 'The solutions'
+    check:
+      kind: solve
+      equation: '2*x**2 + 5*x - 3 = 0'
+      variable: x
+      answer: ['-3', '1/2']
+    answer_text: '**Factorise.** $(2x - 1)(x + 3) = 0$, so $x = \dfrac{1}{2}$ or $x = -3$.'
+
+  - id: r11-sum-two-evens
+    section: '1.2'
+    refs: [A1]
+    statement: 'Prove that the sum of two even numbers is even.'
+    answer_label: 'Method and proof'
+    check:
+      kind: evaluate
+      expression: '2*m + 2*n'
+      answer: '2*(m + n)'
+    answer_text: '**Deduction with general letters.** Let the two even numbers be $2m$ and $2n$ for whole numbers $m$ and $n$. Their sum is $2m + 2n = 2(m + n)$, which has a factor of $2$, so the sum is even.'
+
+  - id: r12-drone-assumption
+    section: '3.5'
+    refs: [C4, OT3]
+    statement: 'The drone model assumes a constant speed and a perfectly circular lake. State one further assumption and say what it leaves out.'
+    answer_label: 'An assumption and what it leaves out'
+    check:
+      kind: structured
+      requires: [state-assumption, state-limitation]
+      concepts: [modelling-assumption, limitation]
+      points:
+        - id: state-assumption
+          text: 'The model assumes the drone flies at a constant height (or starts at the exact easternmost point of the rim, with no wind drift).'
+          concepts: [modelling-assumption]
+        - id: state-limitation
+          text: 'This leaves out any climb, descent, take-off path or wind pushing the drone off the rim.'
+          concepts: [limitation]
+    answer_text: '**State an assumption and its limitation.** For example, the model assumes the drone stays at a constant height, which leaves out any climb or descent during the flight. It also assumes the drone starts at the exact easternmost point and ignores wind drift.'

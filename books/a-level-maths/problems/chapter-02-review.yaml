@@ -1,0 +1,157 @@
+# Review bank for Chapter 2 (Algebra and functions).
+#
+# Twelve mixed-practice questions mixing Chapter 2 with Chapter 1, so the reader
+# chooses a method before calculating. Every equation, inequality, system,
+# factorisation, inverse, transformation and vertex is proved by the SymPy
+# oracle.
+#
+# Honest limit: the verifier proves the algebra and solution sets, not the
+# reader's choice of method or the prose justification in proof questions.
+chapter: 2
+symbols:
+  x: {real: true}
+  y: {real: true}
+  t: {real: true}
+  n: {integer: true}
+problems:
+  - id: r1-biquadratic
+    section: '2.4'
+    refs: [B3]
+    statement: 'Solve $x^4 - 13x^2 + 36 = 0$.'
+    answer_label: 'The solutions'
+    check:
+      kind: solve
+      equation: 'x**4 - 13*x**2 + 36 = 0'
+      variable: x
+      answer: ['-3', '-2', '2', '3']
+    answer_text: '**Substitute, because the equation is quadratic in $x^2$.** Let $u = x^2$: $u^2 - 13u + 36 = 0$, so $(u - 4)(u - 9) = 0$. Then $x^2 = 4$ or $x^2 = 9$, giving $x = -3$, $x = -2$, $x = 2$ and $x = 3$.'
+
+  - id: r2-rationalise-surd
+    section: '2.2'
+    refs: [B2]
+    statement: 'Write $\dfrac{4}{2 - \sqrt{3}}$ with a rational denominator.'
+    answer_label: 'The rationalised form'
+    check:
+      kind: evaluate
+      expression: '4 / (2 - sqrt(3))'
+      answer: '8 + 4*sqrt(3)'
+    answer_text: '**Rationalise with the conjugate.** Multiply top and bottom by $2 + \sqrt{3}$: $\dfrac{4(2 + \sqrt{3})}{(2 - \sqrt{3})(2 + \sqrt{3})} = \dfrac{4(2 + \sqrt{3})}{4 - 3} = 8 + 4\sqrt{3}$.'
+
+  - id: r3-simultaneous-linear-nonlinear
+    section: '2.5'
+    refs: [B4]
+    statement: 'Solve the simultaneous equations $2x + y = 8$ and $xy = 6$.'
+    answer_label: 'The solution pairs'
+    check:
+      kind: system
+      equations: ['2*x + y = 8', 'x*y = 6']
+      variables: [x, y]
+      answer: [[1, 6], [3, 2]]
+    answer_text: '**Substitute, because one equation is linear.** From $y = 8 - 2x$, substitute into $xy = 6$: $x(8 - 2x) = 6$, so $2x^2 - 8x + 6 = 0$ and $x^2 - 4x + 3 = 0$. Factorising gives $(x - 1)(x - 3) = 0$, so the pairs are $(1, 6)$ and $(3, 2)$.'
+
+  - id: r4-quadratic-inequality
+    section: '2.6'
+    refs: [B5]
+    statement: 'Solve $x^2 - 3x - 10 \le 0$.'
+    answer_label: 'The solution set'
+    check:
+      kind: inequality
+      inequality: 'x**2 - 3*x - 10 <= 0'
+      variable: x
+      answer: 'Interval(-2, 5)'
+    answer_text: '**Factorise and sketch the parabola.** $x^2 - 3x - 10 = (x - 5)(x + 2)$. The parabola opens upwards and the inequality is at most zero, so the solution lies between and includes the roots: $-2 \le x \le 5$, or $\{x : -2 \le x \le 5\}$.'
+
+  - id: r5-factorise-cubic
+    section: '2.7'
+    refs: [B6]
+    statement: 'Factorise $2x^3 - x^2 - 13x - 6$ completely.'
+    answer_label: 'The factorised form'
+    check:
+      kind: apply
+      expression: '2*x**3 - x**2 - 13*x - 6'
+      apply: {op: factor}
+      answer: '(x - 3)*(2*x + 1)*(x + 2)'
+    answer_text: '**Use the factor theorem, then divide.** Testing $x = 3$ gives $2(27) - 9 - 39 - 6 = 0$, so $(x - 3)$ is a factor. Dividing gives $(x - 3)(2x^2 + 5x + 2)$, and $2x^2 + 5x + 2 = (2x + 1)(x + 2)$. So $2x^3 - x^2 - 13x - 6 = (x - 3)(2x + 1)(x + 2)$.'
+
+  - id: r6-simplify-rational
+    section: '2.8'
+    refs: [B6]
+    statement: 'Simplify $\dfrac{x + 3}{x^2 - 9}$ and state the excluded values.'
+    answer_label: 'Simplified form and excluded values'
+    check:
+      kind: all
+      checks:
+        - {kind: apply, expression: '(x + 3)/(x**2 - 9)', apply: {op: simplify}, answer: '1/(x - 3)'}
+        - {kind: solve, equation: 'x**2 - 9 = 0', variable: x, answer: ['-3', '3']}
+    answer_text: '**Factorise and cancel.** Since $x^2 - 9 = (x - 3)(x + 3)$, cancelling $x + 3$ gives $\dfrac{1}{x - 3}$. The original denominator is zero at $x = 3$ and $x = -3$, so both values are excluded.'
+
+  - id: r7-modulus-equation
+    section: '2.9'
+    refs: [B7]
+    statement: 'Solve $|2x + 1| = 7$.'
+    answer_label: 'The solutions'
+    check:
+      kind: solve
+      equation: 'Abs(2*x + 1) = 7'
+      variable: x
+      answer: ['-4', '3']
+    answer_text: '**Split the modulus into two cases.** Either $2x + 1 = 7$, giving $x = 3$, or $2x + 1 = -7$, giving $x = -4$. Both values satisfy the equation.'
+
+  - id: r8-inverse-function
+    section: '2.10'
+    refs: [B8]
+    statement: 'Find the inverse of $f(x) = \dfrac{3x - 1}{x + 2}$.'
+    answer_label: 'The inverse function'
+    check:
+      kind: all
+      checks:
+        - {kind: apply, expression: '(3*x - 1)/(x + 2)', apply: {op: invert, args: [y]}, answer: '(2*y + 1)/(3 - y)'}
+        - {kind: solve, equation: '3 - y = 0', variable: y, answer: ['3']}
+    answer_text: '**Rearrange and swap.** Write $Y = \dfrac{3x - 1}{x + 2}$, so $y(x + 2) = 3x - 1$, giving $x(y - 3) = -2y - 1$ and $x = \dfrac{2y + 1}{3 - y}$. Swapping $x$ and $y$ gives $f^{-1}(x) = \dfrac{2x + 1}{3 - x}$, with $x \ne 3$.'
+
+  - id: r9-consecutive-sum-multiple-3
+    section: '1.2'
+    refs: [A1]
+    statement: 'Prove that the sum of three consecutive whole numbers is a multiple of $3$.'
+    answer_label: 'Method and proof'
+    check:
+      kind: evaluate
+      expression: 'n + (n + 1) + (n + 2)'
+      answer: '3*(n + 1)'
+    answer_text: '**Deduction, using a general letter.** Write the numbers as $n$, $n + 1$ and $n + 2$ for a whole number $n$. Their sum is $3n + 3 = 3(n + 1)$, which has a factor of $3$, so it is a multiple of $3$.'
+
+  - id: r10-disprove-squares-order
+    section: '1.4'
+    refs: [A1]
+    statement: 'Disprove the claim "for all real numbers $x$ and $y$, if $x > y$ then $x^2 > y^2$".'
+    answer_label: 'Method and counter example'
+    check:
+      kind: all
+      checks:
+        - {kind: compare, relation: '>', lhs: '1', rhs: '-2'}
+        - {kind: compare, relation: '<', lhs: '1**2', rhs: '(-2)**2'}
+    answer_text: '**Counter example.** Take $x = 1$ and $y = -2$. Then $x > y$, but $x^2 = 1$ and $y^2 = 4$, so $x^2 < y^2$. The claim is false.'
+
+  - id: r11-translate-cubic
+    section: '2.11'
+    refs: [B9]
+    statement: 'The curve $y = x^3$ is translated $2$ units to the right and $1$ unit up. Write the new equation.'
+    answer_label: 'The transformed equation'
+    check:
+      kind: apply
+      expression: 'x**3 + 1'
+      apply: {op: subs, args: [x, 'x - 2']}
+      answer: '(x - 2)**3 + 1'
+    answer_text: '**Transform the input, then the output.** Replacing $x$ by $x - 2$ translates $2$ units right to give $(x - 2)^3$, and adding $1$ to the output gives $y = (x - 2)^3 + 1$.'
+
+  - id: r12-ball-greatest-height
+    section: '2.12'
+    refs: [B3, B11]
+    statement: 'A ball''s height is modelled by $h = 3 + 8t - 5t^2$. Find the greatest height and when it occurs.'
+    answer_label: 'Greatest height and time'
+    check:
+      kind: all
+      checks:
+        - {kind: evaluate, expression: '3 + 8*t - 5*t**2', answer: '-5*(t - 4/5)**2 + 31/5'}
+        - {kind: apply, expression: '3 + 8*t - 5*t**2', apply: {op: subs, args: [t, '4/5']}, answer: '31/5'}
+    answer_text: '**Complete the square.** $h = -5\left(t^2 - \dfrac{8}{5}t\right) + 3 = -5\left(t - \dfrac{4}{5}\right)^2 + \dfrac{16}{5} + 3 = -5\left(t - \dfrac{4}{5}\right)^2 + \dfrac{31}{5}$. The greatest height is $\dfrac{31}{5} = 6.2$ m, occurring at $t = \dfrac{4}{5} = 0.8$ s.'

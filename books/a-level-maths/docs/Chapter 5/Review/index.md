@@ -131,90 +131,9 @@ For each question, say which method you will use and why before you calculate.
 The items mix this chapter with Chapters 1, 2 and 3, so the choice is not always
 obvious.
 
-1. Work out the exact value of $\tan\dfrac{4\pi}{3}$.
+:::problems chapter-05-review
 
-2. A triangle has sides $7$ cm, $8$ cm and $11$ cm. Find the largest angle.
-
-3. A sector has radius $6$ cm and angle $1.4$ radians. Find the arc length and
-   the sector area.
-
-4. Prove that $\dfrac{\cos\theta}{1 - \sin\theta} \equiv
-   \dfrac{1 + \sin\theta}{\cos\theta}$ for $\cos\theta \neq 0$.
-
-5. Write $8\cos\theta - 6\sin\theta$ in the form
-   $R\cos(\theta - \alpha)$, and state its greatest value.
-
-6. Solve $4\sin\theta = 3$ for $0 \le \theta < 2\pi$, giving answers in radians
-   to three decimal places.
-
-7. Expand $(2x - 3)^3$.
-
-8. Find the equation of the line through $(3, -1)$ perpendicular to
-   $y = 2x + 5$.
-
-9. Show that the sum of two odd numbers is even.
-
-10. Find where the curve $y = x^2 - 4x + 3$ crosses the $x$-axis.
-
-11. A wave is modelled by $y = 6\sin(3t) + 1$. State its amplitude, period and
-    range.
-
-12. A force of $30$ N acts at $55^\circ$ above the horizontal. Find its two
-    perpendicular components, to three significant figures.
-
-<details markdown="1">
-<summary>Answers</summary>
-
-1. **Exact value, third quadrant.** $\dfrac{4\pi}{3}$ is $240^\circ$, where
-   tangent is positive. The related acute angle is $\dfrac{\pi}{3}$, so
-   $\tan\dfrac{4\pi}{3} = \tan\dfrac{\pi}{3} = \sqrt{3}$.
-
-2. **Cosine rule, largest angle opposite the longest side.** The $11$ cm side
-   faces the largest angle $C$:
-   $\cos C = \dfrac{7^2 + 8^2 - 11^2}{2 \times 7 \times 8} = \dfrac{49 + 64 - 121}{112} = -\dfrac{8}{112} = -\dfrac{1}{14}$.
-   So $C \approx 94.1^\circ$.
-
-3. **Arc and sector formulas in radians.** Arc
-   $= 6 \times 1.4 = 8.4$ cm. Area
-   $= \tfrac{1}{2} \times 36 \times 1.4 = 25.2$ cm$^2$.
-
-4. **Prove one side, using a common denominator.** Start on the left and
-   multiply top and bottom by $1 + \sin\theta$:
-   $\dfrac{\cos\theta(1 + \sin\theta)}{(1 - \sin\theta)(1 + \sin\theta)} =
-   \dfrac{\cos\theta(1 + \sin\theta)}{1 - \sin^2\theta} =
-   \dfrac{\cos\theta(1 + \sin\theta)}{\cos^2\theta} =
-   \dfrac{1 + \sin\theta}{\cos\theta}$.
-
-5. **Single-wave form.** $R = \sqrt{8^2 + 6^2} = 10$ and
-   $\tan\alpha = \dfrac{-6}{8}$, so $\alpha \approx -0.644$. The wave is
-   $10\cos(\theta + 0.644)$ and the greatest value is $10$.
-
-6. **Solve for the principal value, then the second angle.**
-   $\sin\theta = 0.75$, so the principal value is $0.848$ radians. The second
-   solution is $\pi - 0.848 = 2.294$ radians.
-
-7. **Binomial expansion.** $(2x - 3)^3 = 8x^3 - 3 \times 4x^2 \times 3 +
-   3 \times 2x \times 9 - 27 = 8x^3 - 36x^2 + 54x - 27$.
-
-8. **Perpendicular gradient, then a point.** The gradient of $y = 2x + 5$ is
-   $2$, so the perpendicular gradient is $-\dfrac{1}{2}$. Then
-   $y + 1 = -\dfrac{1}{2}(x - 3)$, which is $x + 2y - 1 = 0$.
-
-9. **Deduce with a general letter.** Let the numbers be $2m + 1$ and $2n + 1$.
-   Their sum is $2m + 2n + 2 = 2(m + n + 1)$, which has a factor $2$, so the
-   sum is even.
-
-10. **Factorise the quadratic.** $x^2 - 4x + 3 = (x - 1)(x - 3)$, so the curve
-    crosses the $x$-axis at $(1, 0)$ and $(3, 0)$.
-
-11. **Read the wave.** Amplitude $= 6$. Period $= \dfrac{2\pi}{3}$. The middle
-    line is $y = 1$, so the range is $-5 \le y \le 7$.
-
-12. **Resolve with cosine and sine.** Horizontal
-    $= 30\cos 55^\circ \approx 17.2$ N. Vertical
-    $= 30\sin 55^\circ \approx 24.6$ N.
-
-</details>
+:::answers chapter-05-review
 
 ## What you can now do
 

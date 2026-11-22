@@ -123,85 +123,9 @@ For each question, say which method you will use and why before you calculate.
 The items mix this chapter with Chapters 1 and 2, so the choice is not always
 obvious.
 
-1. Work out the gradient of the line through $(3, -1)$ and $(7, 11)$.
+:::problems chapter-03-review
 
-2. Find the equation of the line through $(4, -2)$ perpendicular to
-   $3x - y = 5$.
-
-3. Find the centre and the radius of the circle
-   $x^2 + y^2 - 4x + 10y + 13 = 0$.
-
-4. Find where the line $x + y = 3$ meets the circle $x^2 + y^2 = 5$.
-
-5. A curve is given by $x = t^2 - 1$, $y = 2t$. Find its Cartesian equation.
-
-6. Find the Cartesian equation of $x = 3 + 2\cos t$, $y = 1 + 2\sin t$.
-
-7. A ball is modelled by $x = 6t$, $y = 12t - 5t^2$. Find its greatest height
-   and where it lands.
-
-8. Work out the shortest distance from $(2, 5)$ to the line
-   $4x - 3y + 6 = 0$.
-
-9. Solve the simultaneous equations $y = x + 1$ and $x^2 + y^2 = 25$.
-
-10. Solve $2x^2 + 5x - 3 = 0$.
-
-11. Prove that the sum of two even numbers is even.
-
-12. The drone model assumes a constant speed and a perfectly circular lake.
-    State one further assumption and say what it leaves out.
-
-<details markdown="1">
-<summary>Answers</summary>
-
-1. **Gradient from two points.** $\dfrac{11 - (-1)}{7 - 3} = \dfrac{12}{4} = 3$.
-
-2. **Perpendicular gradient, then a point.** The gradient of $3x - y = 5$ is
-   $3$, so the perpendicular gradient is $-\frac{1}{3}$. Then
-   $y + 2 = -\frac{1}{3}(x - 4)$, so $y = -\frac{1}{3}x - \frac{2}{3}$, which is
-   $x + 3y + 2 = 0$.
-
-3. **Complete the square twice.** $(x - 2)^2 - 4 + (y + 5)^2 - 25 + 13 = 0$, so
-   $(x - 2)^2 + (y + 5)^2 = 16$. The centre is $(2, -5)$ and the radius is $4$.
-
-4. **Substitute the line into the circle.** With $y = 3 - x$:
-   $x^2 + (3 - x)^2 = 5$, so $2x^2 - 6x + 4 = 0$ and $x^2 - 3x + 2 = 0$. Then
-   $(x - 1)(x - 2) = 0$, so $x = 1$ or $x = 2$. The points are $(1, 2)$ and
-   $(2, 1)$.
-
-5. **Eliminate the parameter from the simpler equation.** From $y = 2t$,
-   $t = \frac{y}{2}$, so $x = \left(\frac{y}{2}\right)^2 - 1 = \frac{y^2}{4} - 1$.
-   That is $y^2 = 4(x + 1)$.
-
-6. **Rearrange, square and add, using $\cos^2 t + \sin^2 t = 1$.**
-   $\cos t = \frac{x - 3}{2}$ and $\sin t = \frac{y - 1}{2}$, so
-   $(x - 3)^2 + (y - 1)^2 = 4$.
-
-7. **Complete the square on the height, then set $y = 0$.** $y = -5(t^2 - \frac{12}{5}t)$
-   $= -5\left(t - \frac{6}{5}\right)^2 + \frac{36}{5}$. The greatest height is
-   $\frac{36}{5} = 7.2$ m. The ball lands when $y = 0$: $t(12 - 5t) = 0$, so
-   $t = \frac{12}{5}$ and $x = 6 \times \frac{12}{5} = \frac{72}{5} = 14.4$ m.
-
-8. **Distance from a point to a line.** Write the line as $4x - 3y + 6 = 0$.
-   Then $\dfrac{|4 \times 2 - 3 \times 5 + 6|}{\sqrt{4^2 + 3^2}} = \dfrac{|8 - 15 + 6|}{5} = \dfrac{1}{5}$.
-
-9. **Substitute the linear equation.** $x^2 + (x + 1)^2 = 25$, so
-   $2x^2 + 2x + 1 = 25$ and $x^2 + x - 12 = 0$. Then $(x + 4)(x - 3) = 0$, so
-   $x = -4$ or $x = 3$, giving $(-4, -3)$ and $(3, 4)$.
-
-10. **Factorise.** $(2x - 1)(x + 3) = 0$, so $x = \frac{1}{2}$ or $x = -3$.
-
-11. **Deduce with a general letter.** Let the numbers be $2m$ and $2n$ for whole
-    numbers $m$ and $n$. Their sum is $2m + 2n = 2(m + n)$, which has a factor
-    $2$. So the sum is even.
-
-12. **State an assumption and its limitation.** For example, the model assumes
-    the drone's height is constant, which leaves out any climb or descent during
-    the flight. It also assumes the drone starts exactly at the easternmost
-    point, which a real flight would not.
-
-</details>
+:::answers chapter-03-review
 
 ## What you can now do
 
