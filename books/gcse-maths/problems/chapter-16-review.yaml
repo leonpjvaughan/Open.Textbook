@@ -1,0 +1,106 @@
+# Mixed practice for the Chapter 16 Review (Angles, polygons and geometrical reasoning).
+#
+# SymPy verifies every angle calculation and equation. The page asks the reader
+# to name the angle fact or method used; question 8 is a geometric proof whose
+# logical steps cannot be proved by the verifier (its `structured` check confirms
+# only that the declared steps and concepts appear in order).
+chapter: 16
+oracles: [sympy, units]
+symbols:
+  x: {real: true}
+  a: {real: true}
+  b: {real: true}
+  c: {real: true}
+  e: {real: true}
+problems:
+  - id: r1-crossing-lines
+    section: Review
+    tier: F
+    refs: [G3]
+    statement: 'Two lines cross. One angle is $62^\circ$. Find the other three.'
+    answer_label: 'Angles at a crossing'
+    check:
+      kind: all
+      checks:
+        - {kind: evaluate, expression: '180 - 62', answer: '118'}
+        - {kind: evaluate, expression: '62 + 118 + 62 + 118', answer: '360'}
+    answer_text: '$62^\circ$, $118^\circ$ and $118^\circ$. Vertically opposite angles are equal, and adjacent angles on a straight line add to $180^\circ$.'
+
+  - id: r2-parallel-transversal
+    section: Review
+    tier: F
+    refs: [G3]
+    statement: 'A transversal crosses parallel lines. One angle is $73^\circ$. Find its alternate angle and co-interior angle.'
+    answer_label: 'Alternate and co-interior angles'
+    check: {kind: evaluate, expression: '180 - 73', answer: '107'}
+    answer_text: 'Alternate angle: $73^\circ$ (alternate angles on parallel lines are equal). Co-interior angle: $180^\circ-73^\circ=107^\circ$ (co-interior angles add to $180^\circ$).'
+
+  - id: r3-triangle-algebra
+    section: Review
+    tier: F
+    refs: [G3]
+    statement: 'A triangle has angles $41^\circ$, $x^\circ$ and $(x+19)^\circ$. Find $x$.'
+    answer_label: 'Value of $x$ in the triangle'
+    check: {kind: solve, equation: '41 + x + (x + 19) = 180', variable: x, answer: ['60']}
+    answer_text: 'Angles in a triangle add to $180^\circ$: $41+x+(x+19)=180$, so $2x+60=180$ and $x=60$.'
+
+  - id: r4-quadrilateral-angle
+    section: Review
+    tier: F
+    refs: [G3, G4]
+    statement: 'A quadrilateral has angles $85^\circ$, $95^\circ$, $110^\circ$ and $x^\circ$. Find $x$.'
+    answer_label: 'Value of $x$ in the quadrilateral'
+    check: {kind: solve, equation: '85 + 95 + 110 + x = 360', variable: x, answer: ['70']}
+    answer_text: 'Angles in a quadrilateral add to $360^\circ$: $85+95+110+x=360$, so $x=70$ (the fourth angle is $70^\circ$).'
+
+  - id: r5-regular-octagon
+    section: Review
+    tier: F
+    refs: [G3]
+    statement: 'Find each interior angle of a regular octagon.'
+    answer_label: 'Interior angle of a regular octagon'
+    check: {kind: evaluate, expression: '(8 - 2)*180/8', answer: '135'}
+    answer_text: '$(8-2)\times180^\circ\div8=1080^\circ\div8=135^\circ$.'
+
+  - id: r6-polygon-sides
+    section: Review
+    tier: F
+    refs: [G3]
+    statement: 'An exterior angle of a regular polygon is $40^\circ$. Find the number of sides.'
+    answer_label: 'Number of sides of the polygon'
+    check: {kind: evaluate, expression: '360/40', answer: '9'}
+    answer_text: 'Exterior angles of any convex polygon add to $360^\circ$, so $360\div40=9$ sides.'
+
+  - id: r7-linear-equation
+    section: Review
+    tier: F
+    refs: [A17]
+    statement: 'Earlier learning: solve $4x+7=31$.'
+    answer_label: 'Solution of $4x+7=31$'
+    check: {kind: solve, equation: '4*x + 7 = 31', variable: x, answer: ['6']}
+    answer_text: 'Subtract $7$ to get $4x=24$, then divide by $4$ to get $x=6$.'
+
+  - id: r8-exterior-angle-proof
+    section: Review
+    tier: H
+    refs: [G6]
+    statement: 'Prove that the exterior angle of a triangle equals the sum of its two opposite interior angles.'
+    answer_label: 'Proof of the exterior angle property'
+    check:
+      kind: all
+      checks:
+        - {kind: solve, equation: 'a + b + (180 - e) = 180', variable: e, answer: ['a + b']}
+        - kind: structured
+          requires: [triangle-sum, straight-line, conclude]
+          concepts: [triangle-angle-sum, straight-line-sum]
+          points:
+            - id: triangle-sum
+              text: 'Let the interior angles be a, b and c, and let e be the exterior angle adjacent to c. By the triangle angle sum, a + b + c = 180 degrees.'
+              concepts: [triangle-angle-sum]
+            - id: straight-line
+              text: 'Angles on a straight line add to 180 degrees, so e + c = 180 degrees.'
+              concepts: [straight-line-sum]
+            - id: conclude
+              text: 'Therefore e + c = a + b + c, and subtracting c gives e = a + b.'
+              concepts: [triangle-angle-sum, straight-line-sum]
+    answer_text: 'Let the interior angles be $a, b, c$ and let $e$ be the exterior angle adjacent to $c$. Then $a+b+c=180^\circ$ (triangle angle sum) and $e+c=180^\circ$ (angles on a straight line). Equating gives $e+c=a+b+c$, so $e=a+b$.'

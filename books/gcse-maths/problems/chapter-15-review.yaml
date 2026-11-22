@@ -1,0 +1,110 @@
+# Mixed practice for the Chapter 15 Review (Functions, algebraic fractions and proof).
+#
+# SymPy verifies every inverse composition, simplification, excluded value,
+# expansion, factorisation, algebraic sum and equation solution. Questions 4, 5,
+# 6 and 7 also ask for an explanation, proof conclusion or method justification
+# that the verifier cannot prove (a `structured` check confirms only that the
+# declared steps and concepts are present in order).
+chapter: 15
+oracles: [sympy, units]
+symbols:
+  x: {real: true}
+  y: {real: true}
+  n: {integer: true}
+problems:
+  - id: r1-inverse-function
+    section: Review
+    tier: H
+    refs: [A7]
+    statement: 'Find the inverse of $h(x)=5x-7$. Check by composing in both orders.'
+    answer_label: 'Inverse of $h(x)=5x-7$ and check'
+    check:
+      kind: all
+      checks:
+        - {kind: solve, equation: 'y = 5*x - 7', variable: x, answer: ['(y + 7)/5']}
+        - {kind: evaluate, expression: '5*((x + 7)/5) - 7', answer: 'x'}
+        - {kind: evaluate, expression: '((5*x - 7) + 7)/5', answer: 'x'}
+    answer_text: '$h^{-1}(x)=\frac{x+7}{5}$. Checking both compositions: $h(h^{-1}(x))=5\left(\frac{x+7}{5}\right)-7=x$ and $h^{-1}(h(x))=\frac{(5x-7)+7}{5}=x$.'
+
+  - id: r2-simplify-fraction
+    section: Review
+    tier: H
+    refs: [A4]
+    statement: 'Simplify $\frac{x^2-9}{x^2+6x+9}$ and state excluded values.'
+    answer_label: 'Simplified fraction and excluded value'
+    check:
+      kind: all
+      checks:
+        - {kind: apply, expression: '(x**2 - 9)/(x**2 + 6*x + 9)', apply: {op: simplify}, answer: '(x - 3)/(x + 3)'}
+        - {kind: solve, equation: 'x**2 + 6*x + 9 = 0', variable: x, answer: ['-3']}
+    answer_text: 'Factorise numerator and denominator: $\frac{(x-3)(x+3)}{(x+3)^2}=\frac{x-3}{x+3}$, where $x\neq -3$.'
+
+  - id: r3-add-fractions
+    section: Review
+    tier: H
+    refs: [A4]
+    statement: 'Work out $\frac{2}{x}+\frac{3}{x+1}$, giving a simplified answer.'
+    answer_label: 'Sum of the algebraic fractions'
+    check:
+      kind: all
+      checks:
+        - {kind: evaluate, expression: '2/x + 3/(x + 1)', answer: '(5*x + 2)/(x*(x + 1))'}
+        - {kind: solve, equation: 'x*(x + 1) = 0', variable: x, answer: ['-1', '0']}
+    answer_text: 'Use the common denominator $x(x+1)$: $\frac{2(x+1)+3x}{x(x+1)}=\frac{5x+2}{x(x+1)}$, where $x\neq 0,-1$.'
+
+  - id: r4-expand-and-factorise
+    section: Review
+    tier: F
+    refs: [A4, A6]
+    statement: 'Expand $(x-4)(x+2)$, then factorise $x^2-2x-8$. Explain how the results connect.'
+    answer_label: 'Expansion, factorisation and connection'
+    check:
+      kind: all
+      checks:
+        - {kind: evaluate, expression: '(x - 4)*(x + 2)', answer: 'x**2 - 2*x - 8'}
+        - {kind: apply, expression: 'x**2 - 2*x - 8', apply: {op: factor}, answer: '(x - 4)*(x + 2)'}
+    answer_text: 'Expanding $(x-4)(x+2)$ gives $x^2-2x-8$. Factorising $x^2-2x-8$ returns $(x-4)(x+2)$. Expanding and factorising are inverse processes that produce equivalent expressions.'
+
+  - id: r5-consecutive-integers-proof
+    section: Review
+    tier: H
+    refs: [A6]
+    statement: 'Prove that the sum of three consecutive integers is divisible by $3$.'
+    answer_label: 'Algebraic proof for three consecutive integers'
+    check:
+      kind: all
+      checks:
+        - {kind: evaluate, expression: '(n - 1) + n + (n + 1)', answer: '3*n'}
+        - kind: structured
+          requires: [define-integers, sum-and-conclude]
+          concepts: [consecutive-integers, factor-of-3]
+          points:
+            - id: define-integers
+              text: 'Let the three consecutive integers be n - 1, n and n + 1, where n is an integer.'
+              concepts: [consecutive-integers]
+            - id: sum-and-conclude
+              text: 'Their sum is (n - 1) + n + (n + 1) = 3n, which is a multiple of 3 because n is an integer.'
+              concepts: [factor-of-3]
+    answer_text: 'Let the three consecutive integers be $n-1$, $n$ and $n+1$ for an integer $n$. Their sum is $(n-1)+n+(n+1)=3n$, which is a multiple of $3$, so it is always divisible by $3$.'
+
+  - id: r6-revisit-quadratic
+    section: Review
+    tier: F
+    refs: [A18]
+    statement: 'Chapter 12 revisited: solve $x^2-5x+6=0$. Which method applies, and why?'
+    answer_label: 'Solutions of $x^2-5x+6=0$'
+    check: {kind: solve, equation: 'x**2 - 5*x + 6 = 0', variable: x, answer: ['2', '3']}
+    answer_text: 'Factorise, because $-2$ and $-3$ multiply to $6$ and add to $-5$: $(x-2)(x-3)=0$, so $x=2$ or $x=3$.'
+
+  - id: r7-revisit-simultaneous
+    section: Review
+    tier: F
+    refs: [A19]
+    statement: 'Chapter 14 revisited: solve $y=2x+1$ and $y=x+4$ simultaneously. Which method applies, and why?'
+    answer_label: 'Solution of $y=2x+1$ and $y=x+4$'
+    check:
+      kind: system
+      equations: ['y = 2*x + 1', 'y = x + 4']
+      variables: [x, y]
+      answer: [{x: '3', y: '7'}]
+    answer_text: 'Substitute (equate the two expressions for $y$), because both equations already isolate $y$: $2x+1=x+4$, so $x=3$ and $y=7$.'
