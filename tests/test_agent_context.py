@@ -280,7 +280,6 @@ def rule_documents():
             "BOOKLETS.md",
             "DECISIONS.md",
             "ideas.md",
-            "tests/README.md",
             ".agents/chapter-brief.md",
         )
     ]

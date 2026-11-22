@@ -2,7 +2,7 @@
 
 The package has no model, no library and no state of its own. It reads four files that you
 supply, derives the problem from them, and writes one artefact where you ask it to. The
-`examples/` directory is documentation: a working library and four models you can copy.
+`examples/` directory is documentation: a working library and six models you can copy.
 
 This document is the surface a user meets: what you provide, the commands, the Python API,
 and what happens when a file is wrong. The names themselves — and why they are those names —
@@ -22,15 +22,17 @@ my-corner/
 ```
 
 `constraints.yaml` may be shared between models; it is a library, not a model file. The
-examples do exactly that — one library, four models:
+examples do exactly that — one library, six models:
 
 ```
 examples/
   constraints.yaml               # shared by everything below
   double-wishbone/               topology.yaml geometry.yaml study.yaml out.js
   double-wishbone-two-leg/       …
+  double-wishbone-ubj/           …
   double-wishbone-compliant/     …
   ride-height/                   topology.yaml geometry.yaml study.yaml
+  quarter-car/                   a dynamics study, with a trajectory kernel
 ```
 
 **Resolution.** `topology.constraints` defaults to `constraints.yaml` beside the topology
@@ -54,9 +56,8 @@ Installed as `otkd` (`[project.scripts]`). The verbs are the pipeline, one per s
 | `otkd check <model> [--study PATH]` | parse, resolve names, print every row's residual at the design position, then rank, mobility and redundancy |
 | `otkd compile <model> [--format text\|latex\|json]` | print the problem itself: residual rows, units, Jacobian, sparsity |
 | `otkd solve <model> [--study PATH] [--at VALUE] [--json PATH] [--csv PATH]` | run the study — a sweep, or a trajectory when the study is `analysis: dynamics` |
-| `otkd emit <model> <out> [--format js\|json\|wasm] [--study PATH]` | write the artefact. `js` is the book's contract (`HANDOFF.md` §7); `wasm` writes a directory containing a generated Rust/WASM kernel ([`wasm.md`](wasm.md)) |
+| `otkd emit <model> <out> [--format js\|json\|wasm] [--study PATH]` | write the artefact. `js` is the book's export contract; `wasm` writes a directory containing a generated Rust/WASM kernel ([`wasm.md`](wasm.md)) |
 | `otkd kinds <model>` | the kinds *your* library defines, with each component's mode and row count |
-| `otkd ui <model>` | the config UI ([`ui.md`](ui.md)) |
 
 `--study` defaults to `<model>/study.yaml`, which is what makes "one model, several
 questions" work: a second study file in the same directory is a second sweep, a load case or
@@ -196,10 +197,10 @@ free, non-compliant component. Everything else is name resolution
 - **No `--set` overrides in v1.** A study file is cheap to copy and reviewable in a diff; a
   command-line override is a configuration that exists only in a shell history. The Python
   API is the answer for programmatic sweeps.
-- **No server in the CLI sense, and no notebook magic.** `ui` starts a loopback server for
-  the length of one session and nothing else ([`ui.md`](ui.md) §4).
-- **No Pyodide build.** The seam for it is one comment in `emit/js.py`
-  (`HANDOFF.md` §1), not an entry point.
+- **No server in the CLI sense, and no notebook magic.** The config UI is not built; if it
+  is, it starts a loopback server for the length of one session and nothing else
+  ([`ui.md`](ui.md) §4).
+- **No Pyodide build.** The seam for it is one comment in `emit/js.py`, not an entry point.
 - **No scaffolding command in v1.** Copying `examples/<name>/` is the scaffolding story,
-  and it has the advantage of showing a model that already validates. `ui`'s *Save as* is
+  and it has the advantage of showing a model that already validates. The UI's *Save as* is
   the eventual replacement.

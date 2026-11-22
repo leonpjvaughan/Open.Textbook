@@ -14,7 +14,7 @@ from tests.helpers import build
 
 
 def test_the_wheel_travel_is_the_stated_stroke(wishbone):
-    """The sweep is ±0.1 rad, not the handoff's ±0.35: its own geometry makes that 290 mm."""
+    """The sweep is ±0.1 rad, not the original ±0.35: its own geometry makes that 290 mm."""
     sweep = otkd.solve(wishbone)
     height = np.array([frame.points["wc"][2] for frame in sweep.frames])
     stroke = float(height.max() - height.min())

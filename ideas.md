@@ -1,6 +1,6 @@
 # Ideas — interactive and visual aids (open backlog)
 
-What the collection could still *show* rather than state. Built items (the kit's `drag`, `stepper`, `plot`, `table`, `assemble`, `field`, `solid3d`, `check`, `generate`, `animate`, `notate`, `diagram`, `numberLine`, `venn`, the shared `assets/figures/` library, the stored relevance prompt and the Warm-up gate) live in code and git history, not here. Rules an idea must obey: `AGENTS.md` (chapter formula P6: guided Predict → Test → Explain, no sandboxes) and `assets/AGENTS.md` (figure contract). Evidence: `research/pedagogy.md`.
+What the collection could still *show* rather than state. Built items (the kit's `draggable`, `stepper`, `graph`, `table`, `builder`, `field`, `camera3d`, `check`, `exercise`, `animate`, `notate`, `diagram`, `numberLine`, `venn`, the shared `assets/figures/` library, the stored relevance prompt and the Warm-up gate) live in code and git history, not here. Rules an idea must obey: `AGENTS.md` (chapter formula P6: guided Predict → Test → Explain, no sandboxes) and `assets/AGENTS.md` (figure contract). Evidence: `research/pedagogy.md`.
 
 ## Admission test
 
@@ -10,11 +10,11 @@ An idea earns a figure only if the visual **is** the idea (one figure per Learn 
 
 A menu, not a plan; build where the picture carries the idea and leave the rest to prose.
 
-- **ie-jc-maths** (largest gap): zoomable ℕ/ℤ/ℚ number line; regrouping dot array (distributive law); factor tree + HCF/LCM; bar-model ratio; direct vs inverse proportion; simple vs compound interest gap; dot-pattern general term and linear/quadratic/exponential curves; area-model expansion; half-plane inequality; `y = mx + c` sliders; unrolled circumference/area; net folding into a solid (`solid3d()`); prism cross-section volume; line from two points; Pythagoras rearrangement; trig ratio invariance; transformations chooser; construction step-through (`stepper()`); two-way table + tree in step; sampled spinner (`sample()`); chart chooser; box plot with draggable quartiles; scatter with draggable point; misleading-axis pair. Reuse existing GCSE/LC modules (`ch3-index-laws`, `rounding-slider`, `ch4-fraction-strip`, `ch5-proportion`, `ch6-interest`, `ch12-expand-factorise`, `ch11-gradient-intercept`, `ch19-circle-measures`, `ch24-chart-choice`, `ch25-boxplot`, `line-two-points`, `enlargement-grid`) as patterns or shared promotions.
+- **ie-jc-maths** (largest gap): zoomable ℕ/ℤ/ℚ number line; regrouping dot array (distributive law); factor tree + HCF/LCM; bar-model ratio; direct vs inverse proportion; simple vs compound interest gap; dot-pattern general term and linear/quadratic/exponential curves; area-model expansion; half-plane inequality; `y = mx + c` sliders; unrolled circumference/area; net folding into a solid (`camera3d()`); prism cross-section volume; line from two points; Pythagoras rearrangement; trig ratio invariance; transformations chooser; construction step-through (`stepper()`); two-way table + tree in step; sampled spinner; chart chooser; box plot with draggable quartiles; scatter with draggable point; misleading-axis pair. Reuse existing GCSE/LC modules (`ch3-index-laws`, `rounding-slider`, `ch4-fraction-strip`, `ch5-proportion`, `ch6-interest`, `ch12-expand-factorise`, `ch11-gradient-intercept`, `ch19-circle-measures`, `ch24-chart-choice`, `ch25-boxplot`, `line-two-points`, `enlargement-grid`) as patterns or shared promotions.
 - **ie-lc-maths:** standard deviation and the normal distribution; further sections lacking figures where the picture is the idea.
 - **ie-lc-physics:** heating curve with plateaux; electric field lines (`field()`); standing waves, beats, Doppler; Coulomb force with one shared constant-chooser figure; EM spectrum line.
-- **ie-lc-applied-maths:** projectile with obstacle, pulleys (`assemble()`/`drag()`), terminal velocity, restitution bounce, SHM circle-and-graph, logistic growth with carrying capacity and slope field.
-- **English books:** one `plot()`-based family per book so axes look the same each chapter.
+- **ie-lc-applied-maths:** projectile with obstacle, pulleys (`builder()`/`draggable()`), terminal velocity, restitution bounce, SHM circle-and-graph, logistic growth with carrying capacity and slope field.
+- **English books:** one `graph()`-based family per book so axes look the same each chapter.
 - **proofs:** 11 of 23 proof pages have no figure; a `stepper()` for proofs whose reasons build up.
 
 ## Engagement aids not yet built

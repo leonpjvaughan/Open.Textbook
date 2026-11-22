@@ -1,15 +1,7 @@
 # Design record
 
-[`HANDOFF.md`](../HANDOFF.md) is the specification: what the package is for, the four
-acceptance tests, the export contract the book reads. It is a contract, and a contract
-should not be quietly edited. It also predates the rename, the move into `Open.Textbook`
-and the module layout: where it names the package, read `open_textbook.otkd` for the import
-and `otkd` for the command ([`naming.md`](naming.md) §2); where it lays out modules, read §3.
-The repository it was written in is archived, and the package now lives here, at
-`solvers/otkd` — see the banner at the top of [`HANDOFF.md`](../HANDOFF.md).
-
-These documents are the design that satisfies it. Where one of them disagrees with a handoff
-sketch, it says so and gives the reason; [`decisions.md`](decisions.md) records the answer.
+These documents describe what the package is and why it is shaped the way it is. Where one
+of them records a departure from an earlier design, it gives the reason in place.
 
 | document | answers |
 |---|---|
@@ -17,19 +9,15 @@ sketch, it says so and gives the reason; [`decisions.md`](decisions.md) records 
 | [`problem-mapping.md`](problem-mapping.md) | what is *built* from a model: unknowns, rows, the Jacobian, how the chapters' problems are selected, and the three solvers |
 | [`dynamics.md`](dynamics.md) | what a dynamics study would need, and precisely which parts of the above it reuses unchanged |
 | [`entry-points.md`](entry-points.md) | what a user supplies, the CLI, the Python API, and how a bad file fails |
-| [`releasing.md`](releasing.md) | branches, Conventional Commits, how the version is decided, and what a push to `main` does |
 | [`wasm.md`](wasm.md) | the compiled kernel: what a generated kernel is mathematically, how sympy becomes Rust becomes WebAssembly, and how the book consumes it |
-| [`handoff-from-maths-site.md`](handoff-from-maths-site.md) | what the textbook repository asks of the package, in its own measured numbers, and what it already relies on |
 | [`naming.md`](naming.md) | the name, the module layout, the verbs, and the engine boundary every front end speaks |
 | [`ui.md`](ui.md) | the config UI: what it edits, what it shows, and where Rust fits (a window, not an engine) |
-| [`security.md`](security.md) | branch, tag, interaction and Actions protection, and what expires |
 | [`follow-ups.md`](follow-ups.md) | work that is agreed and deliberately not done yet, with what would make each item done |
-| [`decisions.md`](decisions.md) | every decision, its resolution, and the reasoning behind the ones that needed it |
 
 Suggested reading order for someone picking the work up: `config-layer.md` §1–§3 (the split
 and the component model), then `../examples/constraints.yaml` (the whole vocabulary, in one
 page), then `problem-mapping.md` §8 (the row tables — that is the whole book in numbers),
-then `entry-points.md` if you are going to run it, then `decisions.md`.
+then `entry-points.md` if you are going to run it.
 
 The one-sentence summary, if you only read one: **three files and a library describe a
 mechanism; a joint is a set of components, each locked, free or compliant; a constraint kind

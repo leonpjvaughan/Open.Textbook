@@ -20,11 +20,8 @@ with one entry point, `tools` — see `tools/AGENTS.md` and
 | `scripts/build-solvers.sh` | Build every `ot-solve` kernel to wasm into `assets/data/solvers/`. `--check` rebuilds to a temp directory and fails if committed bytes differ; `--verify` is the offline digest check in `check.sh`; no argument writes the bundle. Both build paths export `solvers/rust-toolchain.toml`'s channel as `RUSTUP_TOOLCHAIN` and refuse to compile when the answering `rustc` is not that channel — the pin outranks `mise`, which exports `stable` |
 | `scripts/check-solvers.mjs` | Replay each kernel's `selftest.json` against the wasm in Node, as the loader does. `check.sh` runs it, so a stale artefact or moved offset fails locally, not in a figure |
 | `scripts/fetch_sources.sh` | Fetch tracked primary sources into `research/sources/` |
-| `scripts/launch_chapter_agents.sh` | Feed `.agents/prompts/` to chapter sub-agents |
-| `scripts/launch_review_agents.sh` | The same for the review prompts |
 
-The launch scripts read their prompts from `.agents/prompts/`; this file is the
-only agent context here.
+This file is the only agent context here.
 
 ## Rules local to the scripts
 

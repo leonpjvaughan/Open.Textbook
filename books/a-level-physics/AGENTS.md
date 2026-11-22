@@ -124,7 +124,7 @@ physics check kinds (`dimensions`, `convert`, `sigfigs`, `uncertainty`,
 - **The verifier proves arithmetic and dimensions, not physics.** A
   dimensionally consistent, arithmetically correct, physically absurd answer
   passes: never present a passing bank as proof of the physics. That limit is
-  documented in `units.py` and the gaps note, and must survive into the prose.
+  documented in `units.py`, and must survive into the prose.
 - **Rounding needs an interval, not equality.** Use `sigfigs` or `between` with a
   stated tolerance; a rounded value is never `equivalent`.
 - **Say which convention an uncertainty uses.** Round once, half-range; a value

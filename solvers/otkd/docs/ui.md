@@ -157,7 +157,7 @@ cheaper and more debuggable seam, and it is the same seam the CLI already offers
 
 | stage | adds | earned by |
 |---|---|---|
-| v1 | nothing | the four acceptance tests |
+| v1 | nothing | the acceptance tests |
 | v1.x | `otkd ui`: draft/save, structure and numbers, front view, sweep, check badge | you can configure a corner faster than in a text editor |
 | then | the optional window (`otkd-ui`) | the browser tab is annoying |
 | maybe | the Tauri shell | the window is annoying |

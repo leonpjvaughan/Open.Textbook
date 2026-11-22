@@ -19,7 +19,7 @@ component and wrong for three at one frame joint: `Z(q)` comes from an SVD, and 
 — and its columns can reorder — as `q` moves, so the numerically differentiated residual is noise
 and the trust region stops on `xtol` with the force balance still out. The tell was that the
 residual did not move when the load changed by three orders of magnitude, which no force-balance
-residual can do. [`decisions.md`](../docs/decisions.md) round 23 has the measurements.
+residual can do.
 """
 
 from __future__ import annotations
