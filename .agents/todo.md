@@ -271,7 +271,7 @@ what the oracle cannot prove.
 - [ ] the bank comment on each Review names the question, if any, whose judgement
       the verifier cannot prove.
 
-## 219 — Tier-excluded section references survive in plain text
+## 220 — Tier-excluded section references survive in plain text
 
 **What is wrong.** The tier hook unlinks a markdown link to a page the profile drops,
 but a plain `Section n.m` reference is left alone and the build still passes. Measured
