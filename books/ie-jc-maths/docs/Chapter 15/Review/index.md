@@ -79,50 +79,9 @@ Work through these without notes. For each one, decide **which idea applies** an
 why in a few words. The idea might be a unit conversion, a time interval, a time zone,
 a choice of unit, an estimate, a percentage, or an equation.
 
-1. Convert 6 km to metres.
-2. Convert 420 cm to metres.
-3. Convert 2.75 kg to grams.
-4. Convert 900 mL to litres.
-5. Convert 1.5 hours to minutes.
-6. A film starts at 20:15 and lasts 1 hour 50 minutes. What time does it end?
-7. A bus leaves at 11:40 and arrives at 13:05. How long is the journey?
-8. It is 08:20 in Dublin. New York is 5 hours behind Dublin. What time is it in
-   New York?
-9. Convert 3 square metres to square centimetres.
-10. Convert 2.4 litres to cubic centimetres.
-11. Which unit fits the mass of a bicycle: grams, kilograms or tonnes? Give a reason.
-12. A room takes 7 paces to cross, and each pace is about 0.8 m. Estimate the length
-    of the room.
-13. Round 5.38 kg to the nearest 0.1 kg.
-14. Work out 45% of 80.
-15. Solve $3x+7=22$.
-16. A car travels 150 km in 2 hours. Find its average speed.
+:::problems chapter-15-review
 
-<details markdown="1">
-<summary>Answers and concise solutions</summary>
-
-1. $6000$ m. The metre is smaller, so multiply: $6\times1000=6000$.
-2. $4.2$ m. The metre is larger, so divide: $420\div100=4.2$.
-3. $2750$ g. Multiply by 1000: $2.75\times1000=2750$.
-4. $0.9$ L. Divide by 1000: $900\div1000=0.9$.
-5. $90$ minutes. Multiply by 60: $1.5\times60=90$.
-6. 22:05. Add 1 hour to 20:15 to get 21:15, and then add 50 minutes.
-7. 1 hour 25 minutes. From 11:40, another 20 minutes reaches 12:00, and 1 hour 5
-   minutes more reaches 13:05.
-8. 03:20. New York is behind Dublin, so subtract 5 hours. The time crosses midnight,
-   which is why it reads 03:20.
-9. $30000$ cm². The factor is squared: $3\times10000=30000$.
-10. $2400$ cm³. One litre is 1000 cm³, so $2.4\times1000=2400$.
-11. Kilograms. A bicycle has a mass of about 12 kg. In grams that is 12000 g, and a
-    tonne is far too large.
-12. About $5.6$ m. Multiply: $0.8\times7=5.6$. An estimate can be reported as about
-    6 m.
-13. $5.4$ kg. The digit after the 3 is 8, so the 3 goes up to 4.
-14. $36$. Ten per cent of 80 is 8, so 45% is $4\times8+4=36$.
-15. $x=5$. Subtract 7 from both sides to get $3x=15$, and then divide by 3.
-16. $75$ km/h. Speed is distance divided by time: $150\div2=75$.
-
-</details>
+:::answers chapter-15-review
 
 ## What you can now do
 

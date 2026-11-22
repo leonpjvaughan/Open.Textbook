@@ -68,25 +68,9 @@ Work through these without notes. For each one, decide **which idea applies** an
 why in a few words. The idea might be finding an output, finding an input, a table of
 values, a graph, a root, a maximum, or a rate.
 
-1. A machine triples the input and then adds 1. Find the output when the input is 4.
-2. The function $f$ is given by $f(x)=5x-3$. Find $f(2)$.
-3. The function $f$ is given by $f(x)=x^2+1$. Find $f(-2)$.
-4. The function $f$ is given by $f(x)=4x+1$. Find the input $x$ for which $f(x)=17$.
-5. Make a table of values for $y=3x-2$ for $x=0$, $1$ and $2$.
-6. Find the value of $y$ when $x=-2$, using $y=x+4$.
-7. Find the values of $x$ where the graph of $y=x^2-16$ crosses the horizontal axis.
-8. A quadratic graph has roots 1 and 6. Write its rule in factorised form, and expand
-   it.
-9. A distance-time graph shows a train travelling 80 km in 2 hours. Find its speed.
-10. A distance-time graph is flat for 30 minutes. What is happening during that time?
-11. The garden bed has area $A(x)=12x-2x^2$ square metres. Find $A(2)$.
-12. The garden bed has area $A(x)=12x-2x^2$ square metres. Find the two widths for
-    which the area is $10\ \text{m}^2$.
-13. Expand $(x+2)(x-5)$.
-14. Solve $3x-7=11$.
-15. A ball is thrown straight up. Its height in metres after $t$ seconds is
-    $h(t)=30t-5t^2$. Find the greatest height the ball reaches.
-16. Make $x$ the subject of the formula $y=3x+2$.
+:::problems chapter-14-review
+
+:::answers chapter-14-review
 
 ## What you can now do
 
