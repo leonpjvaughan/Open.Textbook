@@ -100,13 +100,32 @@ def test_the_measure_is_declared_once_and_agrees_with_the_portal():
     )
 
 
+# Documented micro-radii: places where a square corner reads as a rendering error
+# and 8px (`--tb-radius`) would pill or distort an inline/tight box. Every other
+# `border-radius` across the shared sheets must use `var(--tb-radius)` or `0`.
+MICRO_RADII = {
+    ("assets/stylesheets/extra.css", ".md-typeset pre"): "3px",
+    ("assets/stylesheets/extra.css", ".md-typeset :not(pre) > code"): "3px",
+    ("engine/src/textbook/css/shell.css", ".table-scroll:focus-visible"): "3px",
+}
+
+
+def shared_stylesheets() -> list[Path]:
+    """Every shared stylesheet in assets/ and the engine shell."""
+    return sorted((ROOT / "assets" / "stylesheets").glob("*.css")) + sorted(
+        (ROOT / "engine" / "src" / "textbook" / "css").glob("*.css")
+    )
+
+
 def test_the_radius_is_declared_once_and_agrees_with_the_portal():
-    """One collection has one corner.
+    """One collection has one corner, and no pill survives in any shared sheet.
 
     The portal said 10px and the books 8px, so a card corner changed as the reader
     moved from the front door into a book. The portal does not load `extra.css`, so
     the value is written in both sheets — and pinned here, because two declarations
-    that agree today are two declarations that can drift.
+    that agree today are two declarations that can drift. Every surface radius in
+    `assets/stylesheets/` and `engine/src/textbook/css/` must use `var(--tb-radius)`
+    or `0`, apart from the documented micro-radii, and no `999px` pill may survive.
     """
     from_extra = {
         value for _selector, prop, value in declarations(EXTRA) if prop == "--tb-radius"
@@ -119,6 +138,34 @@ def test_the_radius_is_declared_once_and_agrees_with_the_portal():
         f"portal.css says {sorted(from_portal)} and extra.css says {from_extra}; the two "
         "sheets disagree about the reader's corner radius"
     )
+
+    offenders: list[str] = []
+    seen_micro: set[tuple[str, str]] = set()
+    for sheet in shared_stylesheets():
+        rel = sheet.relative_to(ROOT).as_posix()
+        raw = re.sub(r"/\*.*?\*/", "", sheet.read_text(encoding="utf-8"), flags=re.S)
+        assert not re.search(r"(?<![0-9-])999px\b", raw), f"{rel} still carries a 999px pill"
+        for selector, prop, value in declarations(sheet):
+            if not (prop == "border-radius" or (prop.startswith("border-") and prop.endswith("-radius"))):
+                continue
+            key = (rel, selector)
+            if key in MICRO_RADII:
+                seen_micro.add(key)
+                if value != MICRO_RADII[key]:
+                    offenders.append(
+                        f"{rel} ({selector}): {prop}: {value} (expected micro-radius {MICRO_RADII[key]})"
+                    )
+                continue
+            parts = value.split()
+            if not parts or not all(part in {"var(--tb-radius)", "0"} for part in parts):
+                offenders.append(f"{rel} ({selector}): {prop}: {value}")
+
+    assert not offenders, (
+        "shared stylesheets carry hard-coded border-radius values outside "
+        "var(--tb-radius), 0, and MICRO_RADII:\n  " + "\n  ".join(offenders)
+    )
+    stale = sorted(set(MICRO_RADII) - seen_micro)
+    assert not stale, f"MICRO_RADII lists selectors that no longer exist: {stale}"
 
 
 def test_the_prose_is_capped_and_the_figures_are_not():
