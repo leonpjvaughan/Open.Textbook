@@ -135,6 +135,16 @@ def test_the_directive_expands_to_the_portable_element(docs):
     assert ":::figure" not in html
 
 
+def test_each_figure_is_numbered_and_captioned(docs):
+    """The number is stable within a page; the loader fills the caption from the
+    module's own accessible name."""
+    source = run_figure_hook(":::figure gradient\n\n:::figure gradient\n", docs)
+    assert 'id="figure-1"' in source
+    assert 'id="figure-2"' in source
+    assert source.count("data-figure-caption") == 2
+    assert "Figure 1" in source and "Figure 2" in source
+
+
 def test_the_loader_is_injected_relative_to_the_page(docs):
     """The loader path is computed from the page, so it works at any depth."""
     md_path = "figure/index.md"  # one directory deep -> one '../'
