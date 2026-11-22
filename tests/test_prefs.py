@@ -250,3 +250,153 @@ def test_every_reader_surface_reads_and_writes_the_key(book_page: str):
         encoding="utf-8"
     )
     assert "localStorage.setItem" in runtime, "the runtime never records the choice"
+
+
+# --- the scheme with no choice made -------------------------------------------
+#
+# G3: the operating system is the default, not an override. An empty store plus a
+# dark `prefers-color-scheme` gives the dark scheme; a stored `default` stays light
+# even on a dark OS; and a stored choice is not moved when the OS changes under it.
+#
+# The snippet is JavaScript, so the test runs JavaScript: stubbing `localStorage`,
+# `matchMedia` and two elements is smaller than a browser and says exactly what the
+# before-paint script does, which is the only thing a theme can flash on.
+
+SCENARIO = r"""
+const fs = require("fs");
+const [snippetPath, stored, osDark] = process.argv.slice(2);
+const attributes = {};
+const listen = [];
+const media = {
+  matches: osDark === "1",
+  addEventListener(_event, handler) { listen.push(handler); },
+  addListener(handler) { listen.push(handler); },
+};
+const metas = [{ setAttribute(key, value) { this[key] = value; } }];
+const store = new Map();
+if (stored) store.set("textbooks:scheme", stored);
+const documentElement = {
+  setAttribute(key, value) { attributes[key] = value; },
+  getAttribute(key) { return key in attributes ? attributes[key] : null; },
+};
+const document = {
+  documentElement,
+  body: null,
+  readyState: "complete",
+  addEventListener() {},
+  querySelectorAll() { return metas; },
+};
+const window = {
+  localStorage: {
+    getItem: (key) => (store.has(key) ? store.get(key) : null),
+    setItem: (key, value) => store.set(key, value),
+  },
+  matchMedia: () => media,
+};
+const getComputedStyle = () => ({ getPropertyValue: () => "" });
+const code = fs
+  .readFileSync(snippetPath, "utf8")
+  .replace(/^\s*<script>\s*/, "")
+  .replace(/<\/script>\s*$/, "");
+new Function("window", "document", "getComputedStyle", code)(window, document, getComputedStyle);
+const before = { ...attributes };
+for (const handler of listen) handler({ matches: osDark !== "1" });
+process.stdout.write(
+  JSON.stringify({ before, after: { ...attributes }, follow: listen.length })
+);
+"""
+
+
+def run_snippet(tmp_path, stored: str, dark: bool) -> dict:
+    """Evaluate the generated before-paint script under Node, with a stub document."""
+    import json
+    import shutil
+    import subprocess
+
+    node = shutil.which("node")
+    if node is None:
+        pytest.skip("node is not on PATH; the preference script cannot be evaluated")
+    path = tmp_path / "snippet.js"
+    path.write_text(shared_snippet(), encoding="utf-8")
+    scenario = tmp_path / "scenario.js"
+    scenario.write_text(SCENARIO, encoding="utf-8")
+    done = subprocess.run(
+        [node, str(scenario), str(path), stored, "1" if dark else "0"],
+        capture_output=True,
+        text=True,
+        check=False,
+    )
+    assert done.returncode == 0, done.stderr
+    return json.loads(done.stdout)
+
+
+def test_a_dark_operating_system_sets_the_dark_scheme_with_no_stored_choice(tmp_path):
+    result = run_snippet(tmp_path, stored="", dark=True)
+    assert result["before"]["data-md-color-scheme"] == "slate", result
+    assert result["before"]["data-scheme-pref"] == "slate", result
+    # No choice was stored, so the page follows the OS while the reader is on it.
+    assert result["follow"] == 1, "nothing listens for an OS scheme change"
+    assert result["after"]["data-md-color-scheme"] == "default", result
+
+
+def test_a_light_operating_system_sets_the_light_scheme_with_no_stored_choice(tmp_path):
+    result = run_snippet(tmp_path, stored="", dark=False)
+    assert result["before"]["data-md-color-scheme"] == "default", result
+
+
+def test_a_stored_light_choice_wins_over_a_dark_operating_system(tmp_path):
+    result = run_snippet(tmp_path, stored="default", dark=True)
+    assert result["before"]["data-md-color-scheme"] == "default", result
+    assert result["follow"] == 0, (
+        "an OS change listener was installed over a stored choice, so dusk would "
+        "undo what the reader asked for"
+    )
+
+
+def test_a_stored_dark_choice_wins_over_a_light_operating_system(tmp_path):
+    result = run_snippet(tmp_path, stored="slate", dark=False)
+    assert result["before"]["data-md-color-scheme"] == "slate", result
+
+
+def test_junk_in_the_store_is_not_a_choice(tmp_path):
+    """A value the script cannot use must fall back to the OS, not to light."""
+    result = run_snippet(tmp_path, stored="lime", dark=True)
+    assert result["before"]["data-md-color-scheme"] == "slate", result
+
+
+# --- the browser interface's own colour ---------------------------------------
+
+
+def test_both_schemes_carry_a_theme_color_meta():
+    """A phone paints its address bar from `theme-color`; the build carried none.
+
+    `media` is the only signal the browser has before a script runs, so there is one
+    meta per scheme. The preference script repaints them from the resolved paper,
+    which is what covers a stored choice or another bundle.
+    """
+    snippet = prefs.theme_color_metas()
+    assert snippet.count('<meta name="theme-color"') == 2
+    assert 'media="(prefers-color-scheme: light)"' in snippet
+    assert 'media="(prefers-color-scheme: dark)"' in snippet
+
+
+@pytest.mark.parametrize(
+    "relative",
+    [
+        "engine/src/textbook/templates/page.html",
+        "engine/src/textbook/templates/portal.html",
+        "engine/src/textbook/templates/portal_page.html",
+    ],
+)
+def test_every_template_declares_the_browser_interface(relative):
+    text = (repo_root() / relative).read_text(encoding="utf-8")
+    assert '$theme_color_metas' in text, f"{relative} carries no theme-color metas"
+    assert '<meta name="color-scheme" content="light dark">' in text, (
+        f"{relative} does not tell the browser both schemes are supported"
+    )
+
+
+def test_the_404_carries_both_metas():
+    html = portal.not_found()
+    assert html.count('<meta name="theme-color"') == 2
+    assert '<meta name="color-scheme" content="light dark">' in html

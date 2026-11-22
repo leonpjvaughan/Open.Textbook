@@ -27,7 +27,7 @@ from . import book as books
 from . import headers
 from . import scaffold
 from . import legal
-from .hooks.prefs import snippet as prefs_snippet
+from .hooks.prefs import snippet as prefs_snippet, theme_color_metas
 from .themes import default_bundle, ordered_bundles
 
 @lru_cache(maxsize=None)
@@ -432,8 +432,10 @@ def not_found() -> str:
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="color-scheme" content="light dark">
 <title>Page not found</title>
 {meta}
+{theme_color_metas()}
 {prefs_snippet(prefs_config())}
 <link rel="icon" type="image/svg+xml" href="/assets/icons/favicon.svg">
 <!-- Root-absolute, like the stylesheets below and this page's link home: a
@@ -507,6 +509,7 @@ def legal_page(slug: str) -> str:
         body=legal_body(slug),
         footer=footer(),
         build_meta=build_meta(),
+        theme_color_metas=theme_color_metas(),
         prefs_script=prefs_snippet(prefs_config()),
         settings_trigger=settings_trigger(),
         settings_dialog=settings_dialog(),
@@ -529,6 +532,7 @@ def render() -> str:
         groups=groups_html(all_books),
         footer=footer(),
         build_meta=build_meta(),
+        theme_color_metas=theme_color_metas(),
         prefs_script=prefs_snippet(prefs_config()),
         settings_trigger=settings_trigger(),
         settings_dialog=settings_dialog(),

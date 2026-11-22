@@ -4,7 +4,13 @@
 
 :root {
   /* Scheme-independent, and not part of any bundle unless a bundle overrides it. */
-  --tb-measure: 70ch;
+  /* Measure: 62ch measures 586px on the current 17px body, which renders a median of
+   * 72 characters per full line against the longest paragraphs on a Learn page; the
+   * old 70ch was 662px and rendered 91. The 58ch estimate in the brief measured 69 —
+   * inside the range but on its floor — so it was recomputed rather than copied.
+   * test_measure.py measures the rendered line in a browser rather than trusting
+   * this token, because `ch` is the width of "0", not of the alphabet. */
+  --tb-measure: 62ch;
   --tb-radius: 8px;
   --tb-font-body: system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
   --tb-font-display: "Iowan Old Style", Charter, Georgia, "Times New Roman", serif;
@@ -14,6 +20,14 @@
 /* A book tints its diagrams by setting its accent, unless it sets its own. */
 [data-md-color-scheme] {
   --tb-fig-accent: var(--tb-accent);
+}
+
+/* Scrollbars, in the bundle's own ink and paper. `ink-soft` clears 3:1 against the
+ * paper in every bundle and scheme (the gate that measured `ink-lighter` for the
+ * drawer marker is the same one), so the thumb is visible rather than a grey ghost of
+ * the track, which is the browser's default. */
+html {
+  scrollbar-color: var(--tb-ink-soft) var(--tb-paper);
 }
 
 /* Native widgets follow the reader's scheme. It is set from the same attribute
@@ -55,6 +69,22 @@
  * sections. Scoped to `.md-typeset`; the booklet panel and print sheet differ. */
 .md-typeset h1 { margin: 0 0 0.5rem; }
 
+/* The page kind is split out of the first heading at render time, by
+ * `pipeline.split_page_kind`, so a stylesheet can treat it apart from the title.
+ * Wave 1 gives it no look of its own: the editorial kicker is Wave 4, and the title
+ * still reads as it always has. */
+.md-typeset .page-kind { display: inline; }
+
+/* On a phone the H1 is a size above the prose rather than twice it. At the 34px the
+ * browser default gives, the longest section title (77 characters, before its page
+ * kind) took four lines and pushed the first paragraph a screen down. */
+@media (max-width: 48rem) {
+  .md-typeset h1 {
+    font-size: 1.3rem;
+    line-height: 1.35;
+  }
+}
+
 .md-typeset h2,
 .md-typeset h3,
 .md-typeset h4 {
@@ -72,12 +102,42 @@
 
 .md-typeset blockquote { margin: 1.4rem 0; }
 
-/* Measure: 45-90 characters (Butterick); 50-75 optimal (Baymard). */
+/* Measure: 70-78 characters at a desk and 40-48 on a phone, from the type rules.
+ * A heading takes the same width as the prose it introduces, or it runs past the
+ * column it belongs to. Figures, tables, display maths and code are deliberately
+ * wider (`maths-figure` is 46rem): narrowing a column must not clip a diagram. */
+.md-typeset > h1,
+.md-typeset > h2,
+.md-typeset > h3,
+.md-typeset > h4,
 .md-typeset > p,
 .md-typeset > ul,
 .md-typeset > ol,
 .md-typeset > blockquote {
   max-width: var(--tb-measure);
+}
+
+/* Text hygiene: balance stops a heading leaving one word on its own line; pretty
+ * stops a paragraph leaving one behind. Both are progressive: a browser that does
+ * not know the value ignores it and lays the text out as before. */
+.md-typeset h1,
+.md-typeset h2,
+.md-typeset h3 {
+  text-wrap: balance;
+}
+
+.md-typeset p,
+.md-typeset li,
+.md-typeset blockquote {
+  text-wrap: pretty;
+}
+
+/* A selection the reader can read back. The bundle's accent with its own on-accent
+ * ink is the one pairing every bundle proves at 4.5:1, so it is the only pair that
+ * can be used here without a new token. */
+::selection {
+  background: var(--tb-accent);
+  color: var(--tb-accent-ink);
 }
 
 /* Maths is browser-rendered MathML; keep it aligned with the body text. */
@@ -182,6 +242,9 @@
   border: 1px solid var(--md-default-fg-color--lightest);
   border-radius: 999px;
   padding: 0.15rem 0.6rem;
+  /* A part button is a focus stop the reader taps to explore a diagram; the
+   * platform's own box measured 23px, under WCAG 2.2's 24px floor. */
+  min-height: 1.5rem;
 }
 
 .md-typeset maths-figure .fig-parts button:focus-visible {
@@ -330,14 +393,23 @@ maths-figure option {
   background-color: var(--tb-paper);
 }
 
-/* A range draws its track in `color` and its filled part in `accent-color`. */
+/* A range draws its track in `color` and its filled part in `accent-color`. The
+ * platform's own box is 16px tall, below WCAG 2.2's 24px target floor; the control is
+ * the reader's thumb, so it is given the floor rather than a larger track. */
 maths-figure input[type="range"] {
   accent-color: var(--tb-fig-accent);
   color: var(--tb-fig-grid);
   background: transparent;
   border: 0;
   padding: 0;
+  min-height: 1.5rem;
   vertical-align: middle;
+}
+
+/* A textarea in a figure grows downwards. Horizontal resize can push its own label
+ * out of the panel, and a figure's box is measured by `canvas`. */
+textarea {
+  resize: vertical;
 }
 
 maths-figure input[type="checkbox"],
@@ -670,8 +742,10 @@ maths-figure label {
   touch-action: none;
 }
 
-/* Mobile: bottom sheet instead of a floating window. */
-@media (max-width: 719px) {
+/* Mobile: bottom sheet instead of a floating window. The breakpoint matches the
+ * reader-facing one the rest of the shell uses (`44rem`): above it the panel is
+ * docked at the bottom right, below it the sheet takes the width. */
+@media (max-width: 44rem) {
   .bk-panel {
     left: 0;
     right: 0;
@@ -791,12 +865,18 @@ maths-figure label {
   columns: 2;
   column-gap: 1.6rem;
   font-size: 0.85rem;
-  /* 1.7 takes the link's box to about 23px, the thumb height WCAG 2.5.8 asks for. */
-  line-height: 1.7;
+  /* 1.8 takes the link's box to about 24.5px, WCAG 2.2's target-size floor. Measured
+   * at 1.7 it was 23px, six links on every Learn page under the floor. */
+  line-height: 1.8;
 }
 
-/* The box follows the line box, so the target is the height the reader sees. */
-.md-typeset .contents__list a { display: inline-block; }
+/* The box follows the line box, so the target is the height the reader sees. A short
+ * link ("1.1") is narrower than the floor, so it keeps a minimum width too. */
+.md-typeset .contents__list a {
+  display: inline-block;
+  min-width: 1.5rem;
+  min-height: 1.5rem;
+}
 
 @media (max-width: 44rem) {
   .md-typeset .contents__list { columns: 1; }

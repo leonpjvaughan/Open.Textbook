@@ -50,15 +50,21 @@ def test_a_wide_display_equation_scrolls_too():
 
 
 def test_the_masthead_has_phone_width_rules():
-    """Three controls beside a book title do not fit in 360px.
+    """Two rows at phone width: brand and section, then search and actions.
 
-    The search moves to its own row; without this the settings trigger — the
-    control a reader needs to change the theme back — sits past the edge.
+    The row used to wrap as a flex row, which put the search under the actions and
+    measured 146px; a phone reader also passed the book name and the section three
+    times before the page's title. The grid names the two rows, so the parts cannot
+    drift back into one wrapping line.
     """
     css = shell()
     narrow = css[css.index("@media (max-width: 48rem)") :]
-    assert "flex-wrap: wrap" in narrow[:400], "the masthead cannot wrap on a phone"
-    assert ".search" in narrow[:600], "the search is not moved to its own row"
+    head = narrow[:900]
+    assert "display: grid" in head, "the phone masthead is not a two-row grid"
+    assert "grid-template-areas" in head, "the phone rows are not named"
+    assert '"brand brand"' in head, "the book title does not take the first row"
+    assert '"search actions"' in head, "the search does not share the second row"
+    assert "--tb-masthead-height" in head, "the sticky offset does not follow the shorter bar"
 
 
 def test_the_search_is_a_sibling_of_the_actions_not_a_child():
@@ -284,4 +290,31 @@ def test_the_offline_check_samples_a_page_that_mounts_a_figure(tmp_path):
     assert first_figure == "/gcse-maths/higher/chapter-1/section-1.1/learn/", (
         "the offline check samples a page with no figure, so there is no loader to find "
         "in the runtime cache"
+    )
+
+
+# --- the booklet button and the paragraph under it ------------------------------
+#
+# `.bk-fab` is `position: fixed`, 108x39 at 390px, 1.1rem off the bottom right. The
+# content column kept 4rem below the pager, which is not enough: the last paragraph of
+# a page ended underneath the button. The reserve is the button's own height plus a
+# rem of clearance, on top of the reading room the column had.
+
+
+def test_the_content_column_reserves_the_floating_button():
+    from textbook.book import repo_root as root
+
+    css = (root() / "engine" / "src" / "textbook" / "css" / "shell.css").read_text(
+        encoding="utf-8"
+    )
+    block = css[css.index(".content {") :]
+    block = block[: block.index("}")]
+    match = __import__("re").search(r"padding:\s*[^;]*?\b([\d.]+)rem\s*;", block)
+    assert match, "the content column's padding is no longer a single shorthand"
+    reserve = float(match.group(1)) * 16
+    # 39px tall, 1.1rem off the bottom, plus the 1rem gap the handoff asks for.
+    needed = 39 + 1.1 * 16 + 16
+    assert reserve >= needed, (
+        f"the content column reserves {reserve:.0f}px at the bottom; the floating "
+        f"booklet button needs {needed:.0f}px clear, so the last paragraph sits under it"
     )
