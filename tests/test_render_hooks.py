@@ -302,6 +302,57 @@ def test_a_real_home_page_carries_the_disclaimer(built):
     assert "not a replacement" in html
 
 
+def test_practice_answers_put_each_item_in_its_own_disclosure(built):
+    """Item 203: each practice answer sits in its own disclosure paired by number.
+
+    Wrapping all answers in one `<details>` forced a reader checking item 9 to open
+    and scroll past every earlier solution, undercutting retrieval. Each item now
+    gets its own `<details>` under a labelled `<section>`, with `<n>. Show the answer`
+    matching the `<ol>` item count and keeping the body for item `<n>` inside it.
+    """
+    html = (built.out / "chapter-1/section-1.1/practise/index.html").read_text(
+        encoding="utf-8"
+    )
+    ol_match = re.search(r"<ol>(.*?)</ol>", html, re.S)
+    assert ol_match, "practise page is missing its numbered problem list"
+    item_count = len(re.findall(r"<li>", ol_match.group(1)))
+    assert item_count >= 9, f"expected at least 9 practice items, got {item_count}"
+
+    section = re.search(
+        r'<section\b[^>]*class="answers"[^>]*>(.*?)</section>', html, re.S
+    )
+    assert section, "answers are not grouped in <section class=\"answers\">"
+    assert 'aria-labelledby="answers"' in section.group(0)
+    assert '<h2 id="answers">Answers and concise solutions</h2>' in section.group(1)
+
+    disclosures = re.findall(
+        r"<details>\s*<summary>(.*?)</summary>(.*?)</details>", section.group(1), re.S
+    )
+    assert len(disclosures) == item_count
+    for index, (summary, body) in enumerate(disclosures, 1):
+        assert summary == f"{index}. Show the answer"
+        assert f"<strong>{index}.</strong>" in body
+        assert "<strong>Answer:</strong>" in body
+
+
+def test_multiple_answer_blocks_on_one_page_get_unique_heading_ids():
+    """Pages with several `:::answers` markers must not emit duplicate heading ids."""
+    from textbook.hooks import problems
+
+    book = pipeline.books.book_by_id(BOOK)
+    config = pipeline.cfg.from_parts(book.docs, book=book, profile="higher")
+    md = (
+        ":::answers chapter-01-practice-1.1\n\n"
+        ":::answers chapter-01-practice-1.2\n"
+    )
+    out = problems.on_page_markdown(md, page("review.md"), config, [])
+    html = render(out)
+    assert 'aria-labelledby="answers"' in html
+    assert '<h2 id="answers">Answers and concise solutions</h2>' in html
+    assert 'aria-labelledby="answers-2"' in html
+    assert '<h2 id="answers-2">Answers and concise solutions</h2>' in html
+
+
 # --- tier strategies ----------------------------------------------------------
 
 H_PAGE = "---\ntitle: Higher only\ntier: H\n---\n\n# Higher only\n\nHigher-only body.\n"
