@@ -11,15 +11,19 @@ kind: walkthrough
 
 # 6.3 Stationary waves — Learn
 
-**Prerequisites:** the principle of superposition and the wave equation from
-Section 6.1; the terms displacement, amplitude, period and frequency from
-Section 3.6.
+**Prerequisites:**
 
-**By the end of this section you can:** explain how a stationary wave forms;
-define a node and an antinode; find the node spacing; find the harmonics of a
-string fixed at both ends; use $v = \sqrt{\dfrac{T}{\mu}}$ for a wave on a
-string; and find the harmonics of an air column that is open or closed at one
-end.
+- the principle of superposition and the wave equation from Section 6.1;
+- the terms displacement, amplitude, period and frequency from Section 3.6.
+
+**By the end of this section you can:**
+
+- explain how a stationary wave forms;
+- define a node and an antinode;
+- find the node spacing;
+- find the harmonics of a string fixed at both ends;
+- use $v = \sqrt{\dfrac{T}{\mu}}$ for a wave on a string;
+- find the harmonics of an air column that is open or closed at one end.
 
 ## 1. How a stationary wave forms
 

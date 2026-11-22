@@ -11,13 +11,19 @@ kind: walkthrough
 
 # 3.5 Circular motion — Learn
 
-**Prerequisites:** Newton's second law from Section 3.2; resolving a vector into
-components from Section 2.2; the ratio of an arc to a radius; rearranging a
-formula.
+**Prerequisites:**
 
-**By the end of this section you can:** measure an angle in radians; find the
-angular velocity of an object moving in a circle; use $v = \omega r$; and apply
-the equations for centripetal acceleration and centripetal force.
+- Newton's second law from Section 3.2;
+- resolving a vector into components from Section 2.2;
+- the ratio of an arc to a radius;
+- rearranging a formula.
+
+**By the end of this section you can:**
+
+- measure an angle in radians;
+- find the angular velocity of an object moving in a circle;
+- use $v = \omega r$;
+- apply the equations for centripetal acceleration and centripetal force.
 
 ## 1. Angles in radians
 

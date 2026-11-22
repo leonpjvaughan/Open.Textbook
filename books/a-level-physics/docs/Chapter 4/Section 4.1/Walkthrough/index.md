@@ -11,13 +11,21 @@ kind: walkthrough
 
 # 4.1 Stress, strain and the Young modulus — Learn
 
-**Prerequisites:** SI units and prefixes from Section 1.1; the area of a circle;
-standard form; rearranging a formula; the idea of a force in newtons.
+**Prerequisites:**
 
-**By the end of this section you can:** define tensile stress and tensile strain
-and state their units; calculate a stress and a strain; define the Young
-modulus; use the Young modulus to find a stress, a strain or an extension; and
-explain why the Young modulus belongs to the material and not to the wire.
+- SI units and prefixes from Section 1.1;
+- the area of a circle;
+- standard form;
+- rearranging a formula;
+- the idea of a force in newtons.
+
+**By the end of this section you can:**
+
+- define tensile stress and tensile strain and state their units;
+- calculate a stress and a strain;
+- define the Young modulus;
+- use the Young modulus to find a stress, a strain or an extension;
+- explain why the Young modulus belongs to the material and not to the wire.
 
 ## 1. Why force is not enough
 

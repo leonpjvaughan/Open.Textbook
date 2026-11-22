@@ -11,15 +11,22 @@ kind: walkthrough
 
 # 9.4 Electromagnetic induction — Learn
 
-**Prerequisites:** magnetic flux and flux linkage from Section 9.3; the force on
-a wire, $F = BIL$, from Section 9.3; work, energy and power from Section 3.3;
-emf and current from Section 5.1; graphs and gradients from Section 3.1.
+**Prerequisites:**
 
-**By the end of this section you can:** explain electromagnetic induction; use
-Faraday's law with flux linkage; state and apply Lenz's law; find the emf
-induced in a moving conductor; describe an alternating-current generator and use
-$\varepsilon_0 = NAB\omega$; and explain how a search coil, a transformer and
-eddy currents use induction.
+- magnetic flux and flux linkage from Section 9.3;
+- the force on a wire, $F = BIL$, from Section 9.3;
+- work, energy and power from Section 3.3;
+- emf and current from Section 5.1;
+- graphs and gradients from Section 3.1.
+
+**By the end of this section you can:**
+
+- explain electromagnetic induction;
+- use Faraday's law with flux linkage;
+- state and apply Lenz's law;
+- find the emf induced in a moving conductor;
+- describe an alternating-current generator and use $\varepsilon_0 = NAB\omega$;
+- explain how a search coil, a transformer and eddy currents use induction.
 
 ## 1. Induction
 

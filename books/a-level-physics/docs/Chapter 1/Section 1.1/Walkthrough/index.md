@@ -11,12 +11,18 @@ kind: walkthrough
 
 # 1.1 SI units and prefixes — Learn
 
-**Prerequisites:** decimal place value and standard form; substitution into a
-formula; the idea that a quantity is a number with a unit.
+**Prerequisites:**
 
-**By the end of this section you can:** name the seven SI base units; build a
-derived unit from the base units; change a prefix accurately, including for
-areas and volumes; and check whether an equation is homogeneous.
+- decimal place value and standard form;
+- substitution into a formula;
+- the idea that a quantity is a number with a unit.
+
+**By the end of this section you can:**
+
+- name the seven SI base units;
+- build a derived unit from the base units;
+- change a prefix accurately, including for areas and volumes;
+- check whether an equation is homogeneous.
 
 ## 1. Base quantities and base units
 

@@ -11,18 +11,24 @@ kind: walkthrough
 
 # 9.2 Electric fields — Learn
 
-**Prerequisites:** charge, current and potential difference from Section 5.1;
-work, energy and power from Section 3.3; forces and Newton's laws from
-Section 3.2; potential difference and energy in a capacitor from Section 5.4;
-vectors and resolving from Section 2.2; the gravitational field from
-Section 9.1.
+**Prerequisites:**
 
-**By the end of this section you can:** describe an electric field and its field
-lines; use Coulomb's law; define and use electric field strength for a point
-charge and for a uniform field; define electric potential and find the work done
-moving a charge; explain the link between field strength and the potential
-gradient; compare gravitational and electric fields; and describe the motion of
-a charged particle in a uniform field.
+- charge, current and potential difference from Section 5.1;
+- work, energy and power from Section 3.3;
+- forces and Newton's laws from Section 3.2;
+- potential difference and energy in a capacitor from Section 5.4;
+- vectors and resolving from Section 2.2;
+- the gravitational field from Section 9.1.
+
+**By the end of this section you can:**
+
+- describe an electric field and its field lines;
+- use Coulomb's law;
+- define and use electric field strength for a point charge and for a uniform field;
+- define electric potential and find the work done moving a charge;
+- explain the link between field strength and the potential gradient;
+- compare gravitational and electric fields;
+- describe the motion of a charged particle in a uniform field.
 
 ## 1. Charge and the electric field
 

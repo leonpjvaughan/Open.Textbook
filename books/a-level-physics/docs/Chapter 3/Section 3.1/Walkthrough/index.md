@@ -11,14 +11,19 @@ kind: walkthrough
 
 # 3.1 Kinematics and motion graphs — Learn
 
-**Prerequisites:** scalars and vectors from Section 2.1; resolving a vector into
-components from Section 2.2; changing the subject of a formula; reading a
-straight-line graph.
+**Prerequisites:**
 
-**By the end of this section you can:** define displacement, velocity and
-acceleration; use the four equations of motion for constant acceleration; read a
-displacement–time graph and a velocity–time graph using the gradient and the
-area; and use $g$ to analyse motion under gravity.
+- scalars and vectors from Section 2.1;
+- resolving a vector into components from Section 2.2;
+- changing the subject of a formula;
+- reading a straight-line graph.
+
+**By the end of this section you can:**
+
+- define displacement, velocity and acceleration;
+- use the four equations of motion for constant acceleration;
+- read a displacement–time graph and a velocity–time graph using the gradient and the area;
+- use $g$ to analyse motion under gravity.
 
 ## 1. Displacement, velocity and acceleration
 
