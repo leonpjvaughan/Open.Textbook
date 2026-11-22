@@ -74,49 +74,9 @@ symmetry, a rotation, an axis of symmetry, a distance, a midpoint, a slope,
 Pythagoras' theorem, a ratio, a percentage, an equation, an area, or standard
 form.
 
-1. Translate the point $(2,5)$ by the vector $\begin{pmatrix}-3\\4\end{pmatrix}$.
-2. Reflect the point $(-2,3)$ in the $y$-axis.
-3. Find the image of $(4,-1)$ under a half-turn about the origin.
-4. Rotate the point $(3,0)$ through 90° clockwise about the origin.
-5. How many axes of symmetry does a regular pentagon have?
-6. Find the distance between $(1,1)$ and $(4,5)$.
-7. Find the midpoint of the segment joining $(2,3)$ and $(8,7)$.
-8. A right-angled triangle has legs of 9 cm and 12 cm. Find the hypotenuse.
-9. A right-angled triangle has an opposite side of 6 m and an adjacent side of
-   8 m. Find $\tan\theta$.
-10. Work out 15% of 240.
-11. Solve $5x-3=17$.
-12. Write $0.00036$ in standard form.
-13. Divide €70 in the ratio $2:5$.
-14. Find the area of a circle of radius 6 cm, in terms of $\pi$.
-15. A line passes through $(1,2)$ and $(4,8)$. Find its slope.
-16. The point $(3,4)$ is reflected in the line $x=1$. Find the image.
+:::problems chapter-19-review
 
-<details markdown="1">
-<summary>Answers and concise solutions</summary>
-
-1. $(-1,9)$. Add the vector to the coordinates: $2-3=-1$ and $5+4=9$.
-2. $(2,3)$. A reflection in the $y$-axis changes the sign of the $x$-coordinate.
-3. $(-4,1)$. A half-turn about the origin changes the sign of both coordinates.
-4. $(0,-3)$. A quarter-turn clockwise sends $(x,y)$ to $(y,-x)$.
-5. $5$. A regular pentagon has one axis through each vertex and the midpoint of
-   the opposite side.
-6. $5$. The steps are 3 and 4, and $3^2+4^2=9+16=25$, so $\sqrt{25}=5$.
-7. $(5,5)$. Average the coordinates: $(2+8)\div2=5$ and $(3+7)\div2=5$.
-8. $15$ cm. $9^2+12^2=81+144=225$, and $\sqrt{225}=15$.
-9. $0.75$. Tangent is opposite over adjacent: $6\div8=0.75$.
-10. $36$. Ten per cent of 240 is 24, so 5% is 12. Add them: $24+12=36$.
-11. $x=4$. Add 3 to both sides to get $5x=20$, then divide by 5.
-12. $3.6\times10^{-4}$. Move the decimal point 4 places right, so the power is
-    $-4$.
-13. €20 and €50. There are $2+5=7$ parts, and $70\div7=10$. Then $2\times10=20$
-    and $5\times10=50$.
-14. $36\pi$ cm². Use $A=\pi r^2$: $\pi\times6^2=36\pi$.
-15. $2$. The rise is $8-2=6$ and the run is $4-1=3$, so $6\div3=2$.
-16. $(-1,4)$. The point is 2 units to the right of the line $x=1$, so the image
-    is 2 units to the left. The $y$-coordinate does not change.
-
-</details>
+:::answers chapter-19-review
 
 ## What you can now do
 

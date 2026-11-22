@@ -69,64 +69,9 @@ say why in a few words. The idea might be the counting principle, equally likely
 outcomes, a complement, the addition rule, the multiplication rule, a table, a
 tree diagram, or an expected frequency.
 
-1. A cafe offers 3 starters and 5 main courses. How many two-course meals are
-   possible?
-2. Two fair dice are rolled. How many outcomes are in the sample space?
-3. Write $0.45$ as a fraction in its simplest form.
-4. A die is rolled 60 times and shows a 6 on 11 of the rolls. Work out the
-   relative frequency of a 6.
-5. A fair die is rolled. Find the probability of an even number.
-6. A bag holds 3 red and 7 blue counters. One counter is taken at random. Find the
-   probability that it is red.
-7. The probability that it rains is $0.25$. Find the probability that it does not
-   rain.
-8. A fair die is rolled. Find the probability that the result is not a 3.
-9. A fair die is rolled. Find the probability of an even number or a 5.
-10. A fair die is rolled. Find the probability of a 3 or a 5.
-11. A fair coin is tossed twice. Find the probability of two heads.
-12. A fair die is rolled twice. Find the probability of a 4 on both rolls.
-13. A two-way table shows 40 students, and 12 of them are boys who walk to school.
-    A student is chosen at random. Find the probability that the student is a boy
-    who walks.
-14. A fair coin is tossed twice. Use a tree diagram to find the probability of a
-    head then a tail.
-15. Work out 15% of 240.
-16. Solve $3x+5=20$.
-<!-- tier:h -->
-17. A fair die is rolled 150 times. Work out the expected number of 6s.
-18. A spinner lands on red with probability $\frac25$. It is spun 250 times. Work
-    out the expected number of reds.
-<!-- /tier:h -->
+:::problems chapter-21-review
 
-<details markdown="1">
-<summary>Answers and concise solutions</summary>
-
-1. $15$. Multiply the choices: $3\times5=15$.
-2. $36$. Each die has 6 results, so $6\times6=36$.
-3. $\frac{9}{20}$. The decimal $0.45$ is $\frac{45}{100}$, and dividing both
-   numbers by 5 gives $\frac{9}{20}$.
-4. $\frac{11}{60}$. Divide the number of sixes by the number of rolls. As a
-   decimal this is about $0.183$.
-5. $\frac12$. The even results are 2, 4 and 6, so $P=\frac36=\frac12$.
-6. $\frac{3}{10}$. There are 10 counters and 3 are red.
-7. $0.75$. The complement is $1-0.25=0.75$.
-8. $\frac56$. The complement is $1-\frac16=\frac56$.
-9. $\frac23$. The even results are 2, 4 and 6, and the result 5 does not overlap.
-   So $\frac36+\frac16=\frac46=\frac23$.
-10. $\frac13$. The results 3 and 5 are mutually exclusive, so
-    $\frac16+\frac16=\frac13$.
-11. $\frac14$. The tosses are independent, so $\frac12\times\frac12=\frac14$.
-12. $\frac{1}{36}$. The rolls are independent, so $\frac16\times\frac16=\frac{1}{36}$.
-13. $\frac{3}{10}$. Divide the cell by the grand total: $\frac{12}{40}=\frac{3}{10}$.
-14. $\frac14$. Multiply along the branch: $\frac12\times\frac12=\frac14$.
-15. $36$. Ten per cent of 240 is 24, and 5% is 12. Add them: $24+12=36$.
-16. $x=5$. Subtract 5 from both sides to get $3x=15$, then divide by 3.
-<!-- tier:h -->
-17. $25$. The expected number is $150\times\frac16=25$.
-18. $100$. The expected number is $250\times\frac25=100$.
-<!-- /tier:h -->
-
-</details>
+:::answers chapter-21-review
 
 ## What you can now do
 

@@ -1,0 +1,269 @@
+# Mixed practice for the Junior Cycle Mathematics Chapter 17 Review.
+#
+# Sixteen questions covering plotting and quadrants, distance and midpoint,
+# slope, parallel and perpendicular lines, the equation of a line in both
+# forms, rates of change, plus interleaved percentage, equation, area, speed
+# and standard-form items.
+#
+# Honest limit: the verifier proves the coordinate arithmetic, the distance,
+# the midpoint, the slope and the line equations. It cannot read a plot, so
+# Question 1 and Question 16's standard-form claim name their steps in a
+# `structured` check — that proves the steps are present and in order, never
+# that the drawing or the reasoning is right.
+chapter: 17
+oracles: [sympy, units]
+symbols:
+  x: {real: true}
+  y: {real: true}
+  m: {real: true}
+  c: {real: true}
+
+problems:
+  - id: r1-plot-and-quadrant
+    section: Review
+    tier: O
+    refs: [GT.5]
+    statement: 'Plot the point $(3,-2)$ and name its quadrant.'
+    answer_label: 'Plot $(3,-2)$ and name its quadrant.'
+    check:
+      kind: structured
+      requires: [plot-point, name-quadrant]
+      concepts: [fourth-quadrant]
+      points:
+        - id: plot-point
+          text: 'Start at the origin, move 3 units right along the $x$-axis, then 2 units down.'
+          concepts: [right-and-down]
+        - id: name-quadrant
+          text: 'A positive $x$ and a negative $y$ place the point in the fourth quadrant.'
+          concepts: [fourth-quadrant]
+    answer_text: 'The fourth quadrant. A positive $x$ is to the right and a negative $y$ is below the axis, so the point is right and down from the origin.'
+
+  - id: r2-distance
+    section: Review
+    tier: O
+    refs: [GT.5]
+    statement: 'Find the distance between $(2,1)$ and $(5,5)$.'
+    answer_label: 'Find the distance between $(2,1)$ and $(5,5)$.'
+    check:
+      kind: evaluate
+      expression: 'sqrt((5 - 2)**2 + (5 - 1)**2)'
+      answer: '5'
+    answer_text: '$5$. The steps are 3 across and 4 up. Square them, add, and take the root: $\sqrt{3^2+4^2}=\sqrt{9+16}=\sqrt{25}=5$.'
+
+  - id: r3-midpoint
+    section: Review
+    tier: O
+    refs: [GT.5]
+    statement: 'Find the midpoint of the segment joining $(1,3)$ and $(7,11)$.'
+    answer_label: 'Find the midpoint of the segment joining $(1,3)$ and $(7,11)$.'
+    check:
+      kind: all
+      checks:
+        - kind: evaluate
+          expression: '(1 + 7)/2'
+          answer: '4'
+        - kind: evaluate
+          expression: '(3 + 11)/2'
+          answer: '7'
+    answer_text: '$(4,7)$. The midpoint averages the coordinates: $(1+7)\div2=4$ and $(3+11)\div2=7$.'
+
+  - id: r4-slope-from-two-points
+    section: Review
+    tier: O
+    refs: [GT.5]
+    statement: 'Find the slope of the line through $(2,4)$ and $(6,10)$.'
+    answer_label: 'Find the slope of the line through $(2,4)$ and $(6,10)$.'
+    check:
+      kind: evaluate
+      expression: '(10 - 4)/(6 - 2)'
+      answer: '3/2'
+    answer_text: '$\tfrac{3}{2}$. The rise is $10-4=6$ and the run is $6-2=4$, so the slope is $6\div4=\tfrac{3}{2}$. The line rises from left to right, so the slope is positive.'
+
+  - id: r5-perpendicular-lines
+    section: Review
+    tier: O
+    refs: [GT.5]
+    statement: 'A line has slope $\tfrac{3}{2}$. A second line has slope $-\tfrac{2}{3}$. Are the lines perpendicular?'
+    answer_label: 'Are the lines perpendicular?'
+    check:
+      kind: all
+      checks:
+        - kind: evaluate
+          expression: '(3/2)*(-2/3)'
+          answer: '-1'
+        - kind: structured
+          requires: [multiply-slopes, decide]
+          concepts: [product-is-minus-one, perpendicular]
+          points:
+            - id: multiply-slopes
+              text: 'Multiply the two slopes: $\tfrac{3}{2}\times\left(-\tfrac{2}{3}\right)=-1$.'
+              concepts: [product-is-minus-one]
+            - id: decide
+              text: 'The product is $-1$, so the lines are perpendicular.'
+              concepts: [perpendicular]
+    answer_text: 'Yes. The product is $\tfrac{3}{2}\times\left(-\tfrac{2}{3}\right)=-1$, and a product of $-1$ is the test for perpendicular lines.'
+
+  - id: r6-line-from-slope-and-point
+    section: Review
+    tier: O
+    refs: [GT.5]
+    statement: 'Write the equation of the line with slope 4 that passes through $(2,3)$.'
+    answer_label: 'Write the equation of the line with slope 4 through $(2,3)$.'
+    check:
+      kind: all
+      checks:
+        - kind: evaluate
+          expression: '3 - 4*2'
+          answer: '-5'
+        - kind: evaluate
+          expression: '4*2 - 5'
+          answer: '3'
+    answer_text: '$y=4x-5$. The line is $y=mx+c$ with $m=4$, so substitute the point: $3=4\times2+c$, giving $c=3-8=-5$. Check the point in the finished line: $4\times2-5=3$.'
+
+  - id: r7-general-form
+    section: Review
+    tier: O
+    refs: [GT.5]
+    statement: 'Write the line $y=2x-5$ in the form $ax+by+c=0$.'
+    answer_label: 'Write $y=2x-5$ in the form $ax+by+c=0$.'
+    check:
+      kind: all
+      checks:
+        - kind: evaluate
+          expression: '2*0 - (-5) - 5'
+          answer: '0'
+        - kind: evaluate
+          expression: '2*1 - (-3) - 5'
+          answer: '0'
+    answer_text: '$2x-y-5=0$. Move every term to the left: subtract $y$ from both sides to get $2x-y-5=0$. Check two points on the line. At $(0,-5)$: $0-(-5)-5=0$. At $(1,-3)$: $2-(-3)-5=0$.'
+
+  - id: r8-y-intercept
+    section: Review
+    tier: O
+    refs: [GT.5]
+    statement: 'Find the $y$-intercept of the line $3x+2y-8=0$.'
+    answer_label: 'Find the $y$-intercept of $3x+2y-8=0$.'
+    check:
+      kind: evaluate
+      expression: '(8 - 3*0)/2'
+      answer: '4'
+    answer_text: '$4$. The $y$-intercept is the value of $y$ where the line crosses the $y$-axis, so put $x=0$: $2y-8=0$, giving $y=4$. The line crosses at $(0,4)$.'
+
+  - id: r9-distance-from-origin
+    section: Review
+    tier: O
+    refs: [GT.5]
+    statement: 'Find the distance between the origin and $(5,12)$.'
+    answer_label: 'Find the distance between the origin and $(5,12)$.'
+    check:
+      kind: evaluate
+      expression: 'sqrt(5**2 + 12**2)'
+      answer: '13'
+    answer_text: '$13$. The steps from the origin are 5 and 12, so $\sqrt{5^2+12^2}=\sqrt{25+144}=\sqrt{169}=13$.'
+
+  - id: r10-rate-and-start
+    section: Review
+    tier: O
+    refs: [GT.5]
+    statement: 'A graph passes through $(0,3)$ and $(4,15)$. Find its rate of change and its starting value.'
+    answer_label: 'Find the rate of change and the starting value.'
+    check:
+      kind: all
+      checks:
+        - kind: evaluate
+          expression: '(15 - 3)/(4 - 0)'
+          answer: '3'
+        - kind: evaluate
+          expression: '3*4 + 3'
+          answer: '15'
+    answer_text: 'The rate of change is $3$ and the starting value is $3$. The rate is the rise divided by the run: $(15-3)\div(4-0)=12\div4=3$. The starting value is the height where the graph meets the $y$-axis, which is the point $(0,3)$, so it is 3. The line is $y=3x+3$, and at $x=4$ it gives 15, which matches the second point.'
+
+  - id: r11-other-end-of-segment
+    section: Review
+    tier: O
+    refs: [GT.5]
+    statement: 'The midpoint of a segment is $(5,6)$, and one end is $(2,3)$. Find the other end.'
+    answer_label: 'Find the other end of the segment.'
+    check:
+      kind: all
+      checks:
+        - kind: evaluate
+          expression: '2*5 - 2'
+          answer: '8'
+        - kind: evaluate
+          expression: '2*6 - 3'
+          answer: '9'
+    answer_text: '$(8,9)$. Double the midpoint and subtract the known end: $10-2=8$ and $12-3=9$. Check the midpoint of $(2,3)$ and $(8,9)$: $(2+8)\div2=5$ and $(3+9)\div2=6$.'
+
+  - id: r12-percentage
+    section: Review
+    tier: O
+    refs: [N.2]
+    statement: 'Work out 15% of 240.'
+    answer_label: 'Work out 15% of 240.'
+    check:
+      kind: evaluate
+      expression: '(15/100)*240'
+      answer: '36'
+    answer_text: '$36$. Ten per cent of 240 is 24, and 5% is half of that, which is 12. Add them: $24+12=36$.'
+
+  - id: r13-solve-equation
+    section: Review
+    tier: O
+    refs: [AF.4]
+    statement: 'Solve $4x-3=17$.'
+    answer_label: 'Solve $4x-3=17$.'
+    check:
+      kind: solve
+      equation: '4*x - 3 = 17'
+      variable: x
+      answer: '5'
+    answer_text: '$x=5$. Add 3 to both sides to get $4x=20$, then divide both sides by 4 to get $x=5$. Check: $4\times5-3=17$.'
+
+  - id: r14-circle-area
+    section: Review
+    tier: O
+    refs: [GT.2]
+    statement: 'Find the area of a circle of radius 5 cm, in terms of $\pi$.'
+    answer_label: 'Find the area of the circle.'
+    check:
+      kind: evaluate
+      expression: 'pi*5**2'
+      answer: '25*pi'
+    answer_text: '$25\pi$ cm². Use $A=\pi r^2$: $\pi\times5^2=25\pi$. The area is exact when it is left in terms of $\pi$.'
+
+  - id: r15-average-speed
+    section: Review
+    tier: O
+    refs: [N.3]
+    statement: 'A car travels 180 km in 2.5 hours. Find its average speed.'
+    answer_label: 'Find the average speed of the car.'
+    check:
+      kind: evaluate
+      expression: '180/(5/2)'
+      answer: '72'
+    answer_text: '$72$ km/h. Speed is distance divided by time: $180\div2.5=72$. Check: $72\times2.5=180$ km.'
+
+  - id: r16-standard-form
+    section: Review
+    tier: O
+    refs: [N.1]
+    statement: 'Write $0.00045$ in standard form.'
+    answer_label: 'Write $0.00045$ in standard form.'
+    check:
+      kind: all
+      checks:
+        - kind: evaluate
+          expression: '4.5*10**(-4)'
+          answer: '0.00045'
+        - kind: structured
+          requires: [move-decimal, choose-power]
+          concepts: [negative-power]
+          points:
+            - id: move-decimal
+              text: 'Move the decimal point 4 places to the right to get 4.5.'
+              concepts: [move-point]
+            - id: choose-power
+              text: 'A move to the right gives a negative power, so the answer is $4.5\times10^{-4}$.'
+              concepts: [negative-power]
+    answer_text: '$4.5\times10^{-4}$. Move the decimal point 4 places to the right so that one digit stands before it, which gives 4.5. Moving right gives a negative power, so the power is $-4$. Check: $4.5\times10^{-4}=0.00045$.'
