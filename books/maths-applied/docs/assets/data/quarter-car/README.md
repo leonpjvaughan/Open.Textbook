@@ -59,6 +59,6 @@ payload uses: angles to four decimal places, lengths to six. So a page and the
 package cannot disagree about a digit.
 
 **The package's conventions, not this book's.** Camber is positive with the top
-of the wheel outboard — the opposite sign to §1.2 — and it is measured from the
+of the wheel inboard — the opposite sign to §1.2 — and it is measured from the
 design position. The heave and travel signs are the package's too. The page says
 so where it quotes them.

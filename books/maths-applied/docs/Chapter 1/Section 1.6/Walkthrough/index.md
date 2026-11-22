@@ -110,8 +110,8 @@ into bump and back, once every **0.625 s**. That is a frequency of **1.6 Hz**,
 with the same peak every time — a number no static model can produce.
 
 The numbers come from the package's own solver, quoted with its sign convention.
-Camber is positive with the top of the wheel outboard, the opposite of
-[§1.2](../../section-1.2/learn/).
+Camber is positive with the top of the wheel inboard, the opposite of
+[§1.2](../../section-1.2/learn/), so a negative number here means the top leans out.
 
 | | |
 |---|---|

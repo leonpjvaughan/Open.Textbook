@@ -7,7 +7,7 @@ the ladder fails here rather than leaving a page quoting a model the book no lon
 
 Two conventions have to be applied on the way, and they are the page's own:
 
-* the export's camber is positive with the top of the wheel **outboard**; §1.2's is the opposite,
+* the export's camber is positive with the top of the wheel **inboard**; §1.2's is the opposite,
   and the page's design position carries a static **-1.0°** (`CAMBER0` in `mechanism.js`);
 * the export's travel is measured from its own loaded rest pose, so "over the travel" here means
   **±40 mm** about it, the band the page's figure draws.
