@@ -122,8 +122,8 @@ multiple of $\pi$ and a decimal to two places.
 The depth of the tide is modelled by $d = 1.4 + 1.2\sin(30^\circ t)$. The angle
 $30^\circ$ is the amount the tide phase advances each hour. Change it into radians.
 
-Keep both answers. Section 12.5 uses the second one to find the period of the tide, and
-Section 12.9 uses it to solve the depth equation.
+Keep both answers. Section 12.5 uses the second one to find the period of the
+tide.<!-- tier:h --> Section 12.9 uses it to solve the depth equation.<!-- /tier:h -->
 
 ## You should now be able to
 

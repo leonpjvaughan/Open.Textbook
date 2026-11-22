@@ -35,7 +35,7 @@ $$d^2 = 625 - 576 = 49$$
 
 $$d = 7 \text{ cm}.$$
 
-The bar is $7$ cm from the centre. This is Theorem 21 part 1, from Section 17.1.
+The bar is $7$ cm from the centre, by Theorem 21 part 1.
 
 ### The triangular pane
 
@@ -55,7 +55,7 @@ $$|\angle ABC| + |\angle ACB| = 90^\circ.$$
 
 The centre $O$ is the circumcentre of the triangle, because $BC$ is a diameter and the
 midpoint of a diameter is the centre. The circumradius is $25$ cm, which is the radius of
-the window. This is Section 17.5.
+the window.
 
 ### The four-sided pane
 
@@ -66,7 +66,7 @@ $180^\circ$:
 $$|\angle PSR| = 180^\circ - 76^\circ = 104^\circ.$$
 
 The exterior angle at $Q$ is also $104^\circ$, because the exterior angle of a cyclic
-quadrilateral equals the interior opposite angle. This is Section 17.3.
+quadrilateral equals the interior opposite angle.
 
 ### The support rod
 
@@ -81,7 +81,9 @@ $$|TU|^2 = 4225 - 625 = 3600$$
 $$|TU| = 60 \text{ cm}.$$
 
 The second rod from $T$ on the other side of the window is also $60$ cm long, because the
-two tangents from an external point are equal. This is Section 17.4.
+two tangents from an external point are equal.
+
+<!-- tier:h -->
 
 ### The two crossing bars
 
@@ -96,18 +98,20 @@ $$|PD| = 12 \text{ cm}.$$
 The scale factor of the enlargement centred at $P$ that takes $APC$ to $DPB$ is
 $-12 \div 6 = -2$. This is Section 17.8.
 
+<!-- /tier:h -->
+
 ### The setting-out drawing
 
 The mason draws the circle with a compass, constructs the circumcircle of the pane with
 construction 16, and draws the tangent at a point of the rim with construction 19. The
 first $60^\circ$ of the repeating design is construction 18. Every construction rests on a
-result proved in this chapter or an earlier one, and Section 17.6 lists each one.
+result proved in this chapter or an earlier one.
 
 ### The proof behind it all
 
 The angle in a semicircle, which the whole design uses, is Corollary 3. It follows in two
-lines from Theorem 19, the angle at the centre, and that proof is written out in full in
-Section 17.7.
+lines from Theorem 19, the angle at the centre.<!-- tier:h --> That proof is written out
+in full in Section 17.7.<!-- /tier:h -->
 
 ## Mixed practice — choose the method first
 
@@ -191,8 +195,12 @@ list below, or match it to the nearest one, and write the theorem beside it.
   semicircle is a right angle.
 - If the measurement is **where a straight edge just touches the rim**, the theorem is
   Theorem 20. The radius is perpendicular to the tangent at the point of contact.
+<!-- tier:h -->
+
 - If the measurement is **a length found from two bars that cross**, the theorem is the
   crossing-chords rule from Section 17.8.
+
+<!-- /tier:h -->
 
 Write the sentence in the same shape as the chapter problem: the measurement, then the
 theorem that makes it possible. That sentence is what this chapter was for. Every round

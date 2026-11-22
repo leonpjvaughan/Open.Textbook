@@ -34,8 +34,8 @@ $$|AC|^2 = 60^2 + 25^2 = 3600 + 625 = 4225.$$
 
 $$|AC| = \sqrt{4225} = 65 \text{ m}.$$
 
-The diagonal fence is $65$ m long. This is the first prediction, and the theorem behind it
-was proved in Section 16.5 from similar triangles.
+The diagonal fence is $65$ m long. This checks the first prediction, using Pythagoras'
+theorem proved from similar triangles.
 
 ### The area
 

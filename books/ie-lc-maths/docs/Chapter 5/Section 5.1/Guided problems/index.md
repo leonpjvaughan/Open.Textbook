@@ -202,8 +202,8 @@ are still two complex roots:
 
 $$x = \frac{4 \pm \sqrt{-36}}{2} = \frac{4 \pm 6i}{2} = 2 \pm 3i$$
 
-So $x = 2 + 3i$ or $x = 2 - 3i$. The two roots are conjugates, which Section 5.5 explains
-is not an accident.
+So $x = 2 + 3i$ or $x = 2 - 3i$. The two roots are conjugates.<!-- tier:h --> Section 5.5
+explains why complex roots of real equations always come in conjugate pairs.<!-- /tier:h -->
 
 </details>
 </details>

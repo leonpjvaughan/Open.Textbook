@@ -112,8 +112,8 @@ $1.2$ m, and its height is $1.2$ m.
 Work out the volume of Tank A in cubic metres. Give the exact answer in terms of $\pi$,
 then a decimal to 3 significant figures. Then change it to litres.
 
-Keep the exact volume. Section 3.5 needs the surface area of the same tank, and Section 3.7
-compares this volume with the sphere.
+Keep the exact volume. Section 3.5 finds the surface area of the same tank, and the
+chapter Review compares both tanks.
 
 ## You should now be able to
 

@@ -161,8 +161,9 @@ and
 $$\sigma = \sqrt{324.4} \approx 18.0$$
 
 The ages are spread about $18$ years either side of the mean. That is a wide spread, and
-it is another reason a sample of $10$ tells us little about the country. Section 11.7
-shows how the sample size, not the spread alone, sets the margin of error.
+it is another reason a sample of $10$ tells us little about the country.<!-- tier:h -->
+Section 11.7 shows how the sample size, not the spread alone, sets the margin of
+error.<!-- /tier:h -->
 
 ## You should now be able to
 

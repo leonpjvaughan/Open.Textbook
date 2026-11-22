@@ -23,10 +23,10 @@ kind: guided-problems
 <summary>Answers and feedback</summary>
 
 1. It shows a **correlation** — the variables move together. It does not show that one
-   causes the other. A third variable may drive both, which Section 11.10 showed.
+   causes the other. A third variable may drive both.
 2. The people in one shop at one time of day are not a random sample of the population.
    Whole groups may be missing: people who work, people who cannot reach that shop, or
-   people who shop elsewhere. That is **bias**, from Section 11.2.
+   people who shop elsewhere. That is **bias**.
 
 </details>
 

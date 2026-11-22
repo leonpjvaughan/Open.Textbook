@@ -196,8 +196,9 @@ $2x - 3 = x + 1$.
 
 $2x - 3 = x + 1$, so $x = 4$. Then $y = 4 + 1 = 5$. The solution is $(4, 5)$.
 
-On a graph, $(4, 5)$ is the point where the two lines cross. In Section 13.6 you
-will use the same idea to find where a line crosses a circle.
+On a graph, $(4, 5)$ is the point where the two lines cross.<!-- tier:h --> In
+Section 13.6 you will use the same idea to find where a line crosses a
+circle.<!-- /tier:h -->
 
 </details>
 </details>

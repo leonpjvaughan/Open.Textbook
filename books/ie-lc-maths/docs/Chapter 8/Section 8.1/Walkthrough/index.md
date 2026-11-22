@@ -140,8 +140,7 @@ stays at zero.
 > is also an antiderivative. Always add $+ C$.
 >
 > **Using the power rule on $\dfrac{1}{x}$.** The rule needs $n \ne -1$, because dividing
-> by $n + 1$ would divide by zero. A different rule covers $\dfrac{1}{x}$, and you meet it
-> in Section 8.3.
+> by $n + 1$ would divide by zero. A separate rule covers $\dfrac{1}{x}$ using logarithms.
 >
 > **Re-check:** after integrating, differentiate your answer and compare it with the
 > function you started with.

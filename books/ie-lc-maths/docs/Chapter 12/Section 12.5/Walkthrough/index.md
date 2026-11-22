@@ -113,7 +113,8 @@ depth and the time it occurs.
 
 You should find that the deepest water is $2.6$ m at $t = 3$ hours, and the shallowest is
 $0.2$ m at $t = 9$ hours. The yacht needs $2.0$ m, and the graph shows that the depth is
-above $2.0$ m for part of the cycle. Section 12.9 finds exactly when.
+above $2.0$ m for part of the cycle.<!-- tier:h --> Section 12.9 finds exactly
+when.<!-- /tier:h -->
 
 ## You should now be able to
 

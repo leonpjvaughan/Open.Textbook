@@ -33,8 +33,9 @@ is the most useful result in the chapter.
 > **Theorem 19.** The angle at the centre of a circle standing on a given arc is twice the
 > angle at any point of the circle standing on the same arc.
 
-The proof is the work of Section 17.7, where the isosceles triangles are drawn and the
-angles are added. It is one click away if you would like it now.
+The proof draws two isosceles triangles and adds their angles. You can read it in full
+using the link below.<!-- tier:h --> You will also work through this proof in
+Section 17.7.<!-- /tier:h -->
 
 :::prove angle-at-the-centre
 
@@ -153,8 +154,8 @@ $|AC| = 40$ cm, and the diameter is $50$ cm.
 3. The mason also marks an arc that stands at $34^\circ$ at a point on the circle. Find
    the angle it stands at the centre.
 
-Section 17.4 uses the same triangle, and Section 17.7 proves the result you have used
-here.
+Section 17.4 uses the same triangle.<!-- tier:h --> Section 17.7 proves the result you
+have used here.<!-- /tier:h -->
 
 ## You should now be able to
 

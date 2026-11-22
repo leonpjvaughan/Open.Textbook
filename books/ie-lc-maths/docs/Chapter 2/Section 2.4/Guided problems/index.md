@@ -209,7 +209,7 @@ $$11\,070 \times 1.03^2 = 11\,744.163$$
 
 The savings are worth €11,744.16 to the nearest cent. That is more than the
 €12,000 she would pay later, but the two figures are not measured at the same
-time. Section 2.5 brings the €12,000 back to today.
+time.<!-- tier:h --> Section 2.5 brings the €12,000 back to today.<!-- /tier:h -->
 
 </details>
 </details>

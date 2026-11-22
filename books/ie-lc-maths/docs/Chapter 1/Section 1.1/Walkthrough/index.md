@@ -75,7 +75,7 @@ numbers make the **real numbers**, written $\mathbb{R}$.
 $$\mathbb{N} \subset \mathbb{Z} \subset \mathbb{Q} \subset \mathbb{R}$$
 
 The symbol $\subset$ means "is contained in". Each family sits inside the next
-one. Section 1.2 looks at the irrational numbers in detail.
+one, and the irrational numbers fill the gaps between the rationals.
 
 ## Worked examples
 

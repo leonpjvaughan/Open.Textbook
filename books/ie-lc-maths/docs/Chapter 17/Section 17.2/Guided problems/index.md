@@ -26,8 +26,9 @@ kind: guided-problems
 2. The exterior angle equals the sum of the two interior opposite angles, so the other
    one is $120^\circ - 50^\circ = 70^\circ$.
 
-Both answers are the tools used to prove the angle at the centre theorem in Section 17.7.
-The isosceles triangle gives the two equal base angles, and the exterior angle adds them.
+Both answers are the tools used to prove the angle at the centre theorem.<!-- tier:h -->
+Section 17.7 puts them together into the full proof.<!-- /tier:h --> The isosceles
+triangle gives the two equal base angles, and the exterior angle adds them.
 
 </details>
 

@@ -19,8 +19,8 @@ right size, and must be sure the rule holds for every triangle, not only this on
 
 **First contact — no working yet.** Predict the size of the third angle, and write your
 guess down. Then predict whether the three angles still add to the same total when the
-triangle is made taller and flatter. Keep both predictions. You will check them in
-Section 15.4.
+triangle is made taller and flatter. Keep both predictions to check as you work through
+the chapter.
 
 By the end of the chapter you can find the third angle of the pane. You can also prove
 that the angles of any triangle add to $180^\circ$, and say exactly which statements the
