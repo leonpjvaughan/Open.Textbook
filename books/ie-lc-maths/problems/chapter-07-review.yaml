@@ -1,0 +1,326 @@
+# Mixed practice for the Chapter 7 Review.
+#
+# Ten questions, one record each, in the order they appear on the Review page.
+# Differentiation is an operation, not an equivalence, so every derivative is
+# checked with `kind: apply` and `op: diff`; a wrong product, quotient or chain step
+# therefore fails. Stationary points are solved exactly, and the ball's greatest
+# height is evaluated at the time the derivative gives. Question 1 also carries a
+# `structured` component for the limit argument, and questions 8 and 9 carry one for
+# the classification and the sketch.
+#
+# Honest limit: this proves the derivatives and the algebra of the stationary
+# points. It cannot prove that a curve was sketched, that a maximum was recognised
+# for the right reason, or that the units of a rate are the ones the context needs.
+# A `structured` check proves only that the declared steps and concepts appear, in
+# order.
+#
+# Question 10 is Higher only and is marked H on the page.
+chapter: 7
+symbols:
+  x: {real: true}
+  t: {real: true}
+problems:
+  - id: r1-first-principles
+    section: '7.1'
+    tier: O
+    refs: ['5.2']
+    statement: 'Differentiate $f(x) = x^2$ from first principles.'
+    answer_label: 'The derivative, and the limit that gives it'
+    check:
+      kind: all
+      checks:
+        - kind: apply
+          expression: 'x**2'
+          apply: {op: diff, args: [x]}
+          answer: '2*x'
+        - kind: structured
+          requires: [form-the-average-gradient, simplify, take-the-limit]
+          concepts: [average-gradient, limit]
+          points:
+            - id: form-the-average-gradient
+              text: >-
+                The average gradient from x to x + h is (x + h) squared minus x
+                squared, all divided by h.
+              concepts: [average-gradient]
+            - id: simplify
+              text: >-
+                Expanding the top gives x squared plus 2xh plus h squared minus x
+                squared, so the h cancels and the gradient is 2x + h.
+              concepts: [average-gradient]
+            - id: take-the-limit
+              text: >-
+                As h gets closer to zero, 2x + h gets closer to 2x, so the derivative is
+                2x.
+              concepts: [limit]
+    answer_text: |-
+      The average gradient between $x$ and $x + h$ is
+
+      $$\frac{(x + h)^2 - x^2}{h} = \frac{x^2 + 2xh + h^2 - x^2}{h}
+      = \frac{2xh + h^2}{h} = 2x + h$$
+
+      The $h$ cancels because every term on top has a factor of $h$. Now let $h$ get
+      closer to zero: $2x + h$ gets closer to $2x$. The derivative is the limit of the
+      average gradient, so $f'(x) = 2x$.
+
+  - id: r2-polynomial
+    section: '7.2'
+    tier: O
+    refs: ['5.2']
+    statement: 'Differentiate $y = 4x^3 - 2x^2 + 7x - 3$.'
+    answer_label: 'The derivative'
+    check:
+      kind: apply
+      expression: '4*x**3 - 2*x**2 + 7*x - 3'
+      apply: {op: diff, args: [x]}
+      answer: '12*x**2 - 4*x + 7'
+    answer_text: |-
+      Differentiate term by term with the power rule:
+
+      $$\frac{dy}{dx} = 12x^2 - 4x + 7$$
+
+      The derivative of $-3$ is $0$, because a constant does not change. Each term
+      loses one from its index and keeps its coefficient multiplied by the old index.
+
+  - id: r3-product-rule
+    section: '7.3'
+    tier: O
+    refs: ['5.2']
+    statement: 'Differentiate $y = (3x + 1)(x^2 - 2)$.'
+    answer_label: 'The derivative'
+    check:
+      kind: apply
+      expression: '(3*x + 1)*(x**2 - 2)'
+      apply: {op: diff, args: [x]}
+      answer: '9*x**2 + 2*x - 6'
+    answer_text: |-
+      The product rule says: differentiate the first, times the second, plus the first
+      times the derivative of the second.
+
+      $$\frac{dy}{dx} = 3(x^2 - 2) + (3x + 1)(2x) = 3x^2 - 6 + 6x^2 + 2x$$
+
+      Simplifying gives $9x^2 + 2x - 6$. Expanding the brackets first and then
+      differentiating gives the same answer, which is a useful check.
+
+  - id: r4-quotient-rule
+    section: '7.4'
+    tier: O
+    refs: ['5.2']
+    statement: 'Differentiate $y = \dfrac{2x + 1}{x - 3}$.'
+    answer_label: 'The derivative'
+    check:
+      kind: apply
+      expression: '(2*x + 1)/(x - 3)'
+      apply: {op: diff, args: [x]}
+      answer: '-7/(x - 3)**2'
+    answer_text: |-
+      The quotient rule is "bottom times derivative of top, minus top times derivative
+      of bottom, over the bottom squared":
+
+      $$\frac{dy}{dx} = \frac{(x - 3)(2) - (2x + 1)(1)}{(x - 3)^2}
+      = \frac{2x - 6 - 2x - 1}{(x - 3)^2} = \frac{-7}{(x - 3)^2}$$
+
+      The $x$ terms cancel, which is why the top is a constant. The derivative is never
+      zero, so the curve has no stationary point, and it is undefined at $x = 3$.
+
+  - id: r5-chain-rule
+    section: '7.5'
+    tier: O
+    refs: ['5.2']
+    statement: 'Differentiate $y = (3x - 4)^5$.'
+    answer_label: 'The derivative'
+    check:
+      kind: apply
+      expression: '(3*x - 4)**5'
+      apply: {op: diff, args: [x]}
+      answer: '15*(3*x - 4)**4'
+    answer_text: |-
+      The chain rule: differentiate the outside, then multiply by the derivative of the
+      inside.
+
+      $$\frac{dy}{dx} = 5(3x - 4)^4 \times 3 = 15(3x - 4)^4$$
+
+      The factor $3$ is easy to forget. Without it the answer would be $5(3x - 4)^4$,
+      which is the derivative with respect to $3x - 4$, not with respect to $x$.
+
+  - id: r6-second-derivative
+    section: '7.6'
+    tier: O
+    refs: ['5.2']
+    statement: 'Find $\dfrac{d^2y}{dx^2}$ for $y = x^4 - 3x^2$ and say where the curve is concave up.'
+    answer_label: 'The second derivative, and where the curve is concave up'
+    check:
+      kind: all
+      checks:
+        - kind: apply
+          expression: '4*x**3 - 6*x'
+          apply: {op: diff, args: [x]}
+          answer: '12*x**2 - 6'
+        - kind: inequality
+          variable: x
+          inequality: '12*x**2 - 6 > 0'
+          answer: 'Union(Interval.open(-oo, -sqrt(2)/2), Interval.open(sqrt(2)/2, oo))'
+    answer_text: |-
+      Differentiate twice. The first derivative is $4x^3 - 6x$, so
+
+      $$\frac{d^2y}{dx^2} = 12x^2 - 6$$
+
+      The curve is concave up where the second derivative is positive:
+
+      $$12x^2 - 6 > 0 \quad\Rightarrow\quad x^2 > \frac{1}{2}$$
+
+      That is $x < -\dfrac{\sqrt{2}}{2}$ or $x > \dfrac{\sqrt{2}}{2}$. Between those two
+      values the second derivative is negative and the curve is concave down.
+
+  - id: r7-ball-velocity
+    section: '7.7'
+    tier: O
+    refs: ['5.2']
+    statement: >-
+      A ball is thrown so that its height after $t$ seconds is $h(t) = 20t - 5t^2$
+      metres. Find the velocity and the time at which the height is greatest.
+    answer_label: 'The velocity and the time of greatest height'
+    check:
+      kind: all
+      checks:
+        - kind: apply
+          expression: '20*t - 5*t**2'
+          apply: {op: diff, args: [t]}
+          answer: '20 - 10*t'
+        - {kind: solve, equation: '20 - 10*t = 0', variable: t, answer: ['2']}
+        - {kind: evaluate, expression: '20*2 - 5*2**2', answer: '20'}
+    answer_text: |-
+      Velocity is the derivative of height:
+
+      $$v(t) = \frac{dh}{dt} = 20 - 10t \text{ m/s}$$
+
+      At the greatest height the ball is not rising and not falling, so $v = 0$:
+
+      $$20 - 10t = 0 \quad\Rightarrow\quad t = 2 \text{ s}$$
+
+      The height then is $h(2) = 40 - 20 = 20$ m. The second derivative is $-10$,
+      which is negative, so this stationary point is a maximum.
+
+  - id: r8-stationary-points
+    section: '7.8'
+    tier: O
+    refs: ['5.2']
+    statement: 'Find and classify the stationary points of $y = x^3 - 12x$.'
+    answer_label: 'The stationary points and their kinds'
+    check:
+      kind: all
+      checks:
+        - {kind: solve, equation: '3*x**2 - 12 = 0', variable: x, answer: ['-2', '2']}
+        - {kind: evaluate, expression: '2**3 - 12*2', answer: '-16'}
+        - {kind: evaluate, expression: '(-2)**3 - 12*(-2)', answer: '16'}
+        - kind: structured
+          requires: [classify-each]
+          concepts: [second-derivative-test, maximum, minimum]
+          points:
+            - id: classify-each
+              text: >-
+                The second derivative is 6x. At x = 2 it is positive, so (2, -16) is a
+                minimum. At x = -2 it is negative, so (-2, 16) is a maximum.
+              concepts: [second-derivative-test, maximum, minimum]
+    answer_text: |-
+      Differentiate and set the derivative to zero:
+
+      $$\frac{dy}{dx} = 3x^2 - 12 = 0 \quad\Rightarrow\quad x^2 = 4 \quad\Rightarrow\quad x = \pm 2$$
+
+      The values are $y(2) = 8 - 24 = -16$ and $y(-2) = -8 + 24 = 16$, so the
+      stationary points are $(2, -16)$ and $(-2, 16)$.
+
+      The second derivative is $6x$. At $x = 2$ it is $12$, which is positive, so
+      $(2, -16)$ is a minimum. At $x = -2$ it is $-12$, which is negative, so
+      $(-2, 16)$ is a maximum.
+
+  - id: r9-sketch-cubic
+    section: '7.9'
+    tier: O
+    refs: ['5.2']
+    statement: >-
+      Sketch $y = x^3 - 6x^2 + 9x$, marking the intercepts, the turning points and the
+      point of inflection.
+    answer_label: 'The features the sketch must show'
+    check:
+      kind: all
+      checks:
+        - {kind: evaluate, expression: '0**3 - 6*0**2 + 9*0', answer: '0'}
+        - {kind: solve, equation: 'x**3 - 6*x**2 + 9*x = 0', variable: x, answer: ['0', '3']}
+        - {kind: solve, equation: '3*x**2 - 12*x + 9 = 0', variable: x, answer: ['1', '3']}
+        - {kind: evaluate, expression: '1**3 - 6*1**2 + 9*1', answer: '4'}
+        - {kind: solve, equation: '6*x - 12 = 0', variable: x, answer: ['2']}
+        - {kind: evaluate, expression: '2**3 - 6*2**2 + 9*2', answer: '2'}
+        - kind: structured
+          requires: [mark-the-intercepts, mark-the-turning-points, mark-the-inflection]
+          concepts: [root, stationary-point, inflection]
+          points:
+            - id: mark-the-intercepts
+              text: >-
+                Factorise as x times (x - 3) squared, so the curve crosses at (0, 0)
+                and touches the axis at (3, 0).
+              concepts: [root]
+            - id: mark-the-turning-points
+              text: >-
+                The derivative is 3(x - 1)(x - 3), so the turning points are at x = 1
+                and x = 3. The point (1, 4) is a maximum and (3, 0) is a minimum.
+              concepts: [stationary-point]
+            - id: mark-the-inflection
+              text: >-
+                The second derivative is 6x - 12, which is zero at x = 2, so the point
+                of inflection is (2, 2). The curve is concave down before it and
+                concave up after it.
+              concepts: [inflection]
+    answer_text: |-
+      Factorise first: $y = x(x^2 - 6x + 9) = x(x - 3)^2$. The curve meets the $x$-axis
+      at $x = 0$ and touches it at $x = 3$, where the factor is squared.
+
+      Differentiate: $y' = 3x^2 - 12x + 9 = 3(x - 1)(x - 3)$. The stationary points are
+      at $x = 1$ and $x = 3$. Their values are $y(1) = 1 - 6 + 9 = 4$ and
+      $y(3) = 27 - 54 + 27 = 0$, so $(1, 4)$ and $(3, 0)$ are the turning points.
+
+      The second derivative is $y'' = 6x - 12$. At $x = 1$ it is $-6$, so $(1, 4)$ is a
+      maximum; at $x = 3$ it is $6$, so $(3, 0)$ is a minimum.
+
+      The inflection is where $y'' = 0$, at $x = 2$, and $y(2) = 8 - 24 + 18 = 2$. The
+      sketch rises from $(0, 0)$ to the maximum $(1, 4)$, falls to the minimum $(3, 0)$,
+      and then rises. The point $(2, 2)$ is where the curve stops bending one way and
+      starts bending the other.
+
+  - id: r10-exponential-and-trig
+    section: '7.10'
+    tier: H
+    refs: ['5.2']
+    statement: 'Differentiate $y = e^{4x}$, $y = 3^x$, $y = \sin 5x$ and $y = \cos 2x$.'
+    answer_label: 'The four derivatives'
+    check:
+      kind: all
+      checks:
+        - kind: apply
+          expression: 'exp(4*x)'
+          apply: {op: diff, args: [x]}
+          answer: '4*exp(4*x)'
+        - kind: apply
+          expression: '3**x'
+          apply: {op: diff, args: [x]}
+          answer: '3**x*log(3)'
+        - kind: apply
+          expression: 'sin(5*x)'
+          apply: {op: diff, args: [x]}
+          answer: '5*cos(5*x)'
+        - kind: apply
+          expression: 'cos(2*x)'
+          apply: {op: diff, args: [x]}
+          answer: '-2*sin(2*x)'
+    answer_text: |-
+      Each derivative brings a factor from the inside, by the chain rule:
+
+      $$\frac{d}{dx}\left(e^{4x}\right) = 4e^{4x} \qquad
+      \frac{d}{dx}\left(3^x\right) = 3^x\ln 3$$
+
+      $$\frac{d}{dx}\left(\sin 5x\right) = 5\cos 5x \qquad
+      \frac{d}{dx}\left(\cos 2x\right) = -2\sin 2x$$
+
+      The exponential $e^{4x}$ is its own derivative apart from the factor $4$. For
+      $3^x$ the factor is $\ln 3$, because $3^x = e^{x\ln 3}$. Differentiating sine
+      gives cosine and differentiating cosine gives minus sine, and the inside
+      derivative multiplies each one.

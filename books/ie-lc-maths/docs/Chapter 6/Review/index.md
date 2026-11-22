@@ -52,16 +52,9 @@ Work through these without notes. For each one, decide **what is being asked** a
 before you calculate. Two of them come from earlier chapters, and two are deliberately
 questions where the obvious first move is wrong.
 
-1. Is $\{(1, 2), (2, 2), (3, 4)\}$ a function? Give a reason.
-2. State the domain of $f(x) = \dfrac{1}{x + 2}$ and the domain of $g(x) = \sqrt{x - 1}$.
-3. For $f(x) = 4x - 1$ and $g(x) = x + 2$, work out $f(g(3))$ and $g(f(3))$.
-4. Find the inverse of $f(x) = 4x - 1$.
-5. Show that $f(x) = x^2$ is not injective on the real numbers. Is it injective on $x \le 0$?
-6. Describe the transformations that turn $y = x^2$ into $y = 3(x - 1)^2 - 2$.
-7. Solve $4^x = 64$, then solve $3^x = 15$ to three significant figures.
-8. Simplify $\log 6 + \log 2$ into a single logarithm.
-9. Solve $3x - 7 = 11$.
-10. Simplify $\dfrac{5^2 \times 5^3}{5^4}$.
+:::problems chapter-06-review
+
+:::answers chapter-06-review
 
 ## What you can now do
 
