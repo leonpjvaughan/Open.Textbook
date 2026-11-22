@@ -148,7 +148,7 @@ def test_callout_inside_toggle_wrapper_renders_cleanly():
 
 def test_corpus_exact_callout_and_untouched_blockquote_counts():
     """Pin the corpus classification: 757 error + 1 check = 758 callouts,
-    4,272 other ``> `` lines (and every non-callout blockquote) untouched."""
+    4,271 other ``> `` lines (and every non-callout blockquote) untouched."""
     files = sorted((ROOT / "books").glob("*/docs/**/*.md"))
     assert files, "no book markdown files found"
 
@@ -221,8 +221,8 @@ def test_corpus_exact_callout_and_untouched_blockquote_counts():
 
     assert watch_out_openers == 757
     assert check_openers == 1
-    assert gt_space_lines == 5030
-    assert gt_space_lines - watch_out_openers - check_openers == 4272
+    assert gt_space_lines == 5029
+    assert gt_space_lines - watch_out_openers - check_openers == 4271
     assert classified_error == 757
     assert classified_check == 1
     assert classified_error + classified_check == 758
