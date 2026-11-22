@@ -4,7 +4,7 @@ Working notes for the collection. One item per change. Items are ordered, not
 dated: the first is next. This file is ours, not the reader's — the voice rules
 in `AGENTS.md` do not apply here, but the engineering rules do.
 
-**This file holds open items only.** Closed items are deleted (git history keeps their diagnosis). A new item goes at the next number, with its diagnosis, its fix and its own done-means. Open: **187**, **188**, **192**, **200**, **203**, **217**.
+**This file holds open items only.** Closed items are deleted (git history keeps their diagnosis). A new item goes at the next number, with its diagnosis, its fix and its own done-means. Open: **187**, **188**, **192**, **200**, **203**, **217**, **218**.
 
 Accepted limitations live where the check that records them lives (`tests/test_verify_coverage.py`, `books/*/curriculum.yaml`), not here.
 
@@ -198,3 +198,29 @@ one 15 KB file, so budget one file per pass.
 - [ ] `git diff` after the pass changes no code line: the AST check
       (`ast.dump` with docstrings stripped, and esbuild `minify` for JS/TS) reports no difference;
 - [ ] `python -m pytest tests/ -q` passes.
+
+## 218 — the SVD diagnosis takes a rank tolerance it does not pass to the rank test
+
+**What is wrong.** `solvers/otkd/src/open_textbook/otkd/solvers/svd.py` declares
+`diagnose(..., rtol: float = 1e-9)` and uses `rtol` only to decide which dependent rows
+it names. The rank comes from `left_null(jac, rtol=1e-10)`, a different, hard-coded
+number. A caller who changes `rtol` to examine a borderline rank still gets the `1e-10`
+rank, while `Diagnosis.rank` and `Diagnosis.dependent_rows` read as if one decision
+produced both. The same object then reports a rank and a row set chosen by two
+different thresholds.
+
+**The fix.** Decide which number governs rank and make the API say so. The smallest
+change is `left_null(jac, rtol=rtol)` with the default moved to `1e-10`. If the two
+thresholds are genuinely different questions, name them `rank_rtol` and `row_rtol`,
+document what each controls, and let the caller set both. Pin the choice with a test at
+a singular value that straddles the cutoff, so a later refactor cannot silently move
+it.
+
+**Done means**
+
+- [ ] the rank and the named dependent rows both follow the documented argument, or the
+      two arguments are separate and documented.
+- [ ] a test fixes the rank at a singular value chosen to straddle the cutoff.
+- [ ] `uv run --project solvers/otkd pytest -q` passes.
+- [ ] `docs/problem-mapping.md` states which tolerance governs which decision, if the
+      public signature changes.
