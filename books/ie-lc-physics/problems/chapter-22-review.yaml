@@ -1,0 +1,299 @@
+# Mixed practice for the Chapter 22 Review.
+#
+# Twelve questions, one record each, in the order they appear on the Review page.
+# This is the course-wide mixed set, so its records reach back across the book:
+# prefixes and density from Chapter 1, motion from Chapter 2, the half-range
+# uncertainty from Chapter 1, Hooke's law from Chapter 5, a circuit from
+# Chapter 14, a wave from Chapter 9, a transformer from Chapter 16, half-life
+# from Chapter 20 and a nuclear energy conversion from Chapter 21. Ten ask for a
+# quantity, so each carries a `dimensions` check and a `sigfigs` check, except the
+# count rate and the fraction, which use `evaluate` because a count rate in counts
+# per minute is not an SI unit. Questions 11 and 12 ask for a judgement and a
+# hypothesis, so each is a `structured` check.
+#
+# Honest limit: this proves arithmetic, dimensions and the declared conventions,
+# not physics. A `structured` check proves only that a model answer contains its
+# declared steps and concepts, in order. Question 12's hypothesis is marked on
+# whether it predicts a direction and names the physics behind it, which the
+# verifier can see as steps; whether the physics is right stays human.
+#
+# The data are read as the Review page states them, and the answers keep the
+# figures the data justify, so g = 9.8 m/s^2 limits a fall time to two figures.
+chapter: 22
+problems:
+  - id: c22-r1-conversions
+    section: Review
+    tier: O
+    refs: ['1.1']
+    statement: 'Convert 3.5 km to metres, and 0.50 m$^3$ to litres.'
+    answer_label: 'The two conversions'
+    check:
+      kind: all
+      checks:
+        - kind: convert
+          value: '3.5'
+          from: km
+          to: m
+          answer: '3500'
+        - kind: convert
+          value: '0.50'
+          from: m^3
+          to: L
+          answer: '500'
+    answer_text: 'The prefix kilo means $10^3$, so $3.5\,\text{km} = 3.5 \times 10^3\,\text{m} = 3500\,\text{m}$. A litre is a cubic decimetre, so $1\,\text{m}^3 = 10^3\,\text{L}$ and $0.50\,\text{m}^3 = 0.50 \times 10^3\,\text{L} = 500\,\text{L}$. The factor is cubed in the second conversion because a volume is three lengths multiplied: the factor is $10 \times 10 \times 10$, not 10.'
+
+  - id: c22-r2-density
+    section: Review
+    tier: O
+    refs: ['1.1']
+    statement: 'A block has a mass of 0.80 kg and a volume of 0.000 20 m$^3$. Calculate its density, and write the answer to the significant figures the data justify.'
+    answer_label: 'The density to the figures the data justify'
+    check:
+      kind: all
+      checks:
+        - kind: dimensions
+          expression: m / V
+          values:
+            m: {value: '0.80', unit: kg}
+            V: {value: '0.00020', unit: m^3}
+          answer: {value: '4000', unit: kg/m^3}
+        - kind: sigfigs
+          value: '0.80 / 0.00020'
+          figures: 2
+          answer: '4.0e3'
+          convention: round-once
+    answer_text: 'The density is $\rho = \dfrac{m}{V} = \dfrac{0.80}{0.00020} = 4000\,\text{kg/m}^3$. Both readings carry two significant figures, so the answer carries two as well: $4.0 \times 10^3\,\text{kg/m}^3$. Writing 4000 alone would not say how many figures were justified, which is why the standard form is used here. A density of $4.0 \times 10^3\,\text{kg/m}^3$ is about four times that of water, so the block is a dense rock or a metal.'
+
+  - id: c22-r3-fall-time-speed
+    section: Review
+    tier: O
+    refs: ['1.1', '1.5']
+    statement: 'A ball falls 1.80 m from rest. Use $s = \frac{1}{2}gt^2$ to find the fall time and the landing speed. Take $g = 9.8\,\text{m/s}^2$.'
+    answer_label: 'The fall time and the landing speed'
+    check:
+      kind: all
+      checks:
+        - kind: dimensions
+          expression: sqrt(2 * s / g)
+          values:
+            s: {value: '1.80', unit: m}
+            g: {value: '9.8', unit: m/s^2}
+          answer: {value: '0.6061', unit: s}
+          tolerance: '0.0001'
+        - kind: sigfigs
+          value: 'sqrt(2 * 1.80 / 9.8)'
+          figures: 2
+          tolerance: '0.0001'
+          answer: '0.61'
+          convention: round-once
+        - kind: dimensions
+          expression: g * sqrt(2 * s / g)
+          values:
+            g: {value: '9.8', unit: m/s^2}
+            s: {value: '1.80', unit: m}
+          answer: {value: '5.9397', unit: m/s}
+          tolerance: '0.0001'
+        - kind: sigfigs
+          value: '9.8 * sqrt(2 * 1.80 / 9.8)'
+          figures: 2
+          tolerance: '0.001'
+          answer: '5.9'
+          convention: round-once
+    answer_text: 'Rearranging $s = \frac{1}{2}gt^2$ gives $t = \sqrt{\dfrac{2s}{g}} = \sqrt{\dfrac{2 \times 1.80}{9.8}} = 0.606\,\text{s}$, which is $0.61\,\text{s}$ to two significant figures. The landing speed is $v = gt = 9.8 \times 0.606 = 5.9\,\text{m/s}$, also to two figures. Both results carry two figures because $g$ is given as 9.8, which carries two. The model ignores air resistance; for a dense ball over this short fall the effect is less than the rounding.'
+
+  - id: c22-r4-mean-uncertainty
+    section: Review
+    tier: O
+    refs: ['1.1']
+    statement: 'Four timings of the same fall are 0.62 s, 0.66 s, 0.60 s and 0.64 s. Find the mean and the uncertainty as half the range.'
+    answer_label: 'The mean and the half-range uncertainty'
+    check:
+      kind: uncertainty
+      mean_of: ['0.62', '0.66', '0.60', '0.64']
+      convention: half-range
+      answer: '0.63'
+      uncertainty: '0.03'
+    answer_text: 'The mean is $\dfrac{0.62 + 0.66 + 0.60 + 0.64}{4} = \dfrac{2.52}{4} = 0.63\,\text{s}$. The range is $0.66 - 0.60 = 0.06\,\text{s}$, so the uncertainty is half the range, $0.03\,\text{s}$. The result is $0.63 \pm 0.03\,\text{s}$. Half the range is a quick estimate of the spread, and it uses only the largest and smallest readings, so one wild value would widen it a lot; that is why an anomalous reading is removed before the range is taken.'
+
+  - id: c22-r5-spring-force
+    section: Review
+    tier: O
+    refs: ['1.3']
+    statement: 'A spring of spring constant 250 N/m is stretched by 0.032 m. Calculate the force.'
+    answer_label: 'The force on the spring'
+    check:
+      kind: all
+      checks:
+        - kind: dimensions
+          expression: k * x
+          values:
+            k: {value: '250', unit: N/m}
+            x: {value: '0.032', unit: m}
+          answer: {value: '8.0', unit: N}
+        - kind: sigfigs
+          value: '250 * 0.032'
+          figures: 2
+          answer: '8.0'
+          convention: round-once
+    answer_text: 'Hooke''s law gives $F = kx = 250 \times 0.032 = 8.0\,\text{N}$. The extension must be in metres, because the spring constant is in newtons per metre. This is the force needed to hold the spring at that extension, and the spring pulls back with the same size of force. The energy stored would be $\frac{1}{2}kx^2$, not $kx$, because the force grows from zero to 8.0 N.'
+
+  - id: c22-r6-circuit
+    section: Review
+    tier: O
+    refs: ['3.3']
+    statement: 'A 12 V supply drives a current of 0.50 A through a resistor. Calculate the resistance and the power.'
+    answer_label: 'The resistance and the power'
+    check:
+      kind: all
+      checks:
+        - kind: dimensions
+          expression: V / I
+          values:
+            V: {value: '12', unit: V}
+            I: {value: '0.50', unit: A}
+          answer: {value: '24', unit: ohm}
+        - kind: sigfigs
+          value: '12 / 0.50'
+          figures: 2
+          answer: '24'
+          convention: round-once
+        - kind: dimensions
+          expression: V * I
+          values:
+            V: {value: '12', unit: V}
+            I: {value: '0.50', unit: A}
+          answer: {value: '6.0', unit: W}
+        - kind: sigfigs
+          value: '12 * 0.50'
+          figures: 2
+          answer: '6.0'
+          convention: round-once
+    answer_text: 'Ohm''s law gives $R = \dfrac{V}{I} = \dfrac{12}{0.50} = 24\,\Omega$. The power is $P = VI = 12 \times 0.50 = 6.0\,\text{W}$, or $P = I^2R = 0.50^2 \times 24 = 6.0\,\text{W}$. Both routes agree because they are the same equation with $V$ replaced by $IR$. The resistor transfers 6.0 J each second, and it warms up as it does so. Check the size: 24 Ω is a sensible resistor for a 12 V supply at half an amp.'
+
+  - id: c22-r7-wavelength
+    section: Review
+    tier: O
+    refs: ['2.2']
+    statement: 'A sound wave has a frequency of 250 Hz and travels at 340 m/s. Calculate its wavelength.'
+    answer_label: 'The wavelength'
+    check:
+      kind: all
+      checks:
+        - kind: dimensions
+          expression: v / f
+          values:
+            v: {value: '340', unit: m/s}
+            f: {value: '250', unit: Hz}
+          answer: {value: '1.36', unit: m}
+        - kind: sigfigs
+          value: '340 / 250'
+          figures: 2
+          answer: '1.4'
+          convention: round-once
+    answer_text: 'The wave equation $v = f\lambda$ gives $\lambda = \dfrac{v}{f} = \dfrac{340}{250} = 1.36\,\text{m}$, which is $1.4\,\text{m}$ to two significant figures. A sound of 250 Hz is near middle C, and its wavelength of about a metre is why a doorway diffracts it but a window does not diffract light. The frequency is set by the source and stays the same when the wave enters another medium; the speed and the wavelength change together.'
+
+  - id: c22-r8-transformer
+    section: Review
+    tier: O
+    refs: ['3.6']
+    statement: 'A transformer has 200 turns on the primary coil and 50 turns on the secondary. The primary voltage is 240 V. Calculate the secondary voltage.'
+    answer_label: 'The secondary voltage'
+    check:
+      kind: all
+      checks:
+        - kind: dimensions
+          expression: Vp * Ns / Np
+          values:
+            Vp: {value: '240', unit: V}
+            Ns: {value: '50'}
+            Np: {value: '200'}
+          answer: {value: '60', unit: V}
+        - kind: sigfigs
+          value: '240 * 50 / 200'
+          figures: 2
+          answer: '6.0e1'
+          convention: round-once
+    answer_text: 'The turns ratio fixes the voltage ratio: $\dfrac{V_s}{V_p} = \dfrac{N_s}{N_p}$, so $V_s = 240 \times \dfrac{50}{200} = 60\,\text{V}$, which is $6.0 \times 10^1\,\text{V}$ to two significant figures. The secondary has fewer turns, so this is a step-down transformer. The current rises by the same factor of four if the transformer is ideal, because the power is unchanged.'
+
+  - id: c22-r9-half-life
+    section: Review
+    tier: O
+    refs: ['4.4']
+    statement: 'A radioactive source has a half-life of 6.0 hours. What fraction of the source remains after 24 hours?'
+    answer_label: 'The fraction remaining'
+    check:
+      kind: all
+      checks:
+        - kind: evaluate
+          expression: '24 / 6.0'
+          answer: '4'
+        - kind: evaluate
+          expression: '(1/2)**4'
+          answer: '1/16'
+    answer_text: 'The time is $\dfrac{24}{6.0} = 4$ half-lives. Each half-life halves the number of undecayed nuclei, so the fraction left is $\left(\dfrac{1}{2}\right)^4 = \dfrac{1}{16}$, which is 6.25%. The activity falls by the same factor. The atoms that have decayed have become a different element, so the source is not empty: it is weaker, and eventually too weak to detect against the background.'
+
+  - id: c22-r10-fission-energy
+    section: Review
+    tier: O
+    refs: ['4.5']
+    statement: 'One fission of a uranium-235 nucleus releases about 200 MeV. Convert this to joules, taking $1\,\text{MeV} = 1.6 \times 10^{-13}$ J.'
+    answer_label: 'The energy in joules'
+    check:
+      kind: all
+      checks:
+        - kind: dimensions
+          expression: E
+          values:
+            E: {value: '200', unit: MeV}
+          answer: {value: '3.2e-11', unit: J}
+          tolerance: '1e-13'
+        - kind: sigfigs
+          value: '200 * 1.6e-13'
+          figures: 2
+          answer: '3.2e-11'
+          convention: round-once
+    answer_text: 'One MeV is $1.6 \times 10^{-13}\,\text{J}$, so 200 MeV is $200 \times 1.6 \times 10^{-13} = 3.2 \times 10^{-11}\,\text{J}$. That is a very small energy for one nucleus, about a hundred billionths of a joule, but a kilogram of uranium holds over $10^{24}$ nuclei, so the total is enormous. This is the conversion behind the figure of $8.2 \times 10^{13}\,\text{J}$ per kilogram of uranium-235.'
+
+  - id: c22-r11-judge-efficiency
+    section: Review
+    tier: O
+    refs: ['1.6']
+    statement: 'A source gives a value for the efficiency of a device and does not say how it was measured. Explain how you would judge the value before using it.'
+    answer_label: 'How to judge an efficiency with no method given'
+    check:
+      kind: structured
+      requires: [define-efficiency, what-was-measured, uncertainty-and-source]
+      concepts: [useful-output-over-total-input, same-time-and-units, measurement-uncertainty, who-benefits-from-the-number]
+      points:
+        - id: define-efficiency
+          text: 'Check that the number really is useful output divided by total input, and ask which output is being called useful. A lamp''s efficiency could be light power over electrical power, or heat over electrical power, and the two numbers are very different.'
+          concepts: [useful-output-over-total-input]
+        - id: what-was-measured
+          text: 'Ask what was measured, with what instrument, and over what time. The input and the output must be measured over the same interval and in the same unit of power, and the losses must not be left out of the input. A figure that cannot be traced to two measurements is not evidence.'
+          concepts: [same-time-and-units, measurement-uncertainty]
+        - id: uncertainty-and-source
+          text: 'Ask for the uncertainty on the value, because an efficiency quoted to three figures from two rough readings is over-precise. Ask too who produced the number: a maker quoting a best-case efficiency has a reason to choose the most favourable conditions, so an independent measurement is worth more.'
+          concepts: [measurement-uncertainty, who-benefits-from-the-number]
+    answer_text: 'Check that the number really is useful output divided by total input, and ask which output is being called useful. A lamp''s efficiency could be light power over electrical power, or heat over electrical power, and the two numbers are very different. Ask what was measured, with what instrument, and over what time: the input and the output must be measured over the same interval and in the same unit of power, and the losses must not be left out of the input. Ask for the uncertainty, because an efficiency quoted to three figures from two rough readings is over-precise. Ask who produced the number: a maker quoting a best-case efficiency has a reason to choose the most favourable conditions, so an independent measurement is worth more.'
+
+  - id: c22-r12-hypothesis
+    section: Review
+    tier: O
+    refs: ['2.2', '2.6']
+    statement: 'Write a hypothesis for this question: *How does the tension of a guitar string affect the pitch of the note?* Say what physics supports it.'
+    answer_label: 'The hypothesis and the physics behind it'
+    check:
+      kind: structured
+      requires: [prediction, physics, testable]
+      concepts: [wave-speed-on-a-string, fixed-wavelength, frequency-from-speed, if-then-because]
+      points:
+        - id: prediction
+          text: 'If the tension of the string is increased, then the pitch of the note rises, because the wave travels faster along a tighter string while the length that fixes the wavelength stays the same.'
+          concepts: [if-then-because, wave-speed-on-a-string]
+        - id: physics
+          text: 'The speed of a wave on a string is the square root of tension divided by mass per unit length. The string is fixed at both ends, so its fundamental wavelength is twice its length and does not change when the tension changes. Since frequency is speed divided by wavelength, a higher speed means a higher frequency, which is a higher pitch.'
+          concepts: [wave-speed-on-a-string, fixed-wavelength, frequency-from-speed]
+        - id: testable
+          text: 'The hypothesis predicts a direction, so it can be tested: change the tension with the tuning peg, keep the length and the string the same, and measure the frequency with a tuner or a microphone. A graph of frequency against the square root of tension should be a straight line.'
+          concepts: [if-then-because, frequency-from-speed]
+    answer_text: 'If the tension of the string is increased, then the pitch of the note rises, because the wave travels faster along a tighter string while the length that fixes the wavelength stays the same. The speed of a wave on a string is the square root of tension divided by mass per unit length. The string is fixed at both ends, so its fundamental wavelength is twice its length and does not change when the tension changes. Since frequency is speed divided by wavelength, a higher speed means a higher frequency, which is a higher pitch. The hypothesis predicts a direction, so it can be tested: change the tension with the tuning peg, keep the length and the string the same, and measure the frequency with a tuner. A graph of frequency against the square root of tension should be a straight line.'

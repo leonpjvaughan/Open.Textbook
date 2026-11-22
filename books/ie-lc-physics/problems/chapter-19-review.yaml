@@ -1,0 +1,257 @@
+# Mixed practice for the Chapter 19 Review.
+#
+# Ten questions, one record each, in the order they appear on the Review page.
+# Four ask for a quantity: the ratio of the diameters (2), the energy of a level
+# and of a photon (3), the wavelength of a photon of known energy (4), and the
+# energy absorbed in a jump to n = 3 (8). Each carries a `dimensions` check,
+# which proves the magnitude and the unit, and a `sigfigs` check, which proves
+# the rounding. The other six ask for a reason or a choice, so each is a
+# `structured` check.
+#
+# Honest limit: this proves arithmetic, dimensions and the declared conventions,
+# not physics. A `structured` check proves only that a model answer contains its
+# declared steps and concepts, in order. Questions 1, 5, 6, 7 and 9 are arguments
+# about evidence: the verifier can prove that the observation and the conclusion
+# are both present, and nothing about whether the conclusion follows.
+#
+# The data are read as the Review page states them. Energy levels come from
+# E_n = -13.6/n^2 eV, so an answer in electronvolts carries the three figures
+# those values have. An answer in joules is limited to two by h = 6.6e-34 J s and
+# c = 3.0e8 m/s, and by 1 eV = 1.6e-19 J as the question gives it.
+chapter: 19
+problems:
+  - id: c19-r1-alpha-evidence
+    section: Review
+    tier: O
+    refs: ['4.3']
+    statement: 'State the observation in the alpha-particle scattering experiment that showed the atom has a tiny, massive nucleus, and explain why it does.'
+    answer_label: 'The observation, and why it shows a tiny massive nucleus'
+    check:
+      kind: structured
+      requires: [observation, why-large-deflection, why-tiny]
+      concepts: [most-particles-pass-straight-through, small-fraction-deflected-back, concentrated-charge-and-mass, mostly-empty-space]
+      points:
+        - id: observation
+          text: 'Most alpha particles passed straight through the gold foil, or were deflected by only a small angle. A small fraction were deflected through large angles, and a few came almost straight back towards the source.'
+          concepts: [most-particles-pass-straight-through, small-fraction-deflected-back]
+        - id: why-large-deflection
+          text: 'A large deflection needs a large force, and a large force needs the particle to pass close to a concentration of charge and mass. A positive alpha particle is repelled by a positive charge, and the closer it passes, the stronger the repulsion and the greater the deflection.'
+          concepts: [concentrated-charge-and-mass]
+        - id: why-tiny
+          text: 'Only a few particles came near enough to be turned back, so the concentrated charge occupies a very small part of the atom. If the charge and mass had been spread through the whole atom, as Thomson proposed, every particle would have met a weak force and none would have bounced back. Most of the atom is therefore empty space, with a tiny nucleus at the centre.'
+          concepts: [mostly-empty-space, concentrated-charge-and-mass]
+    answer_text: 'Most alpha particles passed straight through the gold foil, or were deflected by only a small angle. A small fraction were deflected through large angles, and a few came almost straight back towards the source. A large deflection needs a large force, and a large force needs the particle to pass close to a concentration of charge and mass. Only a few came near enough to be turned back, so that concentration occupies a very small part of the atom. If the charge and mass had been spread through the whole atom, as Thomson proposed, every particle would have met a weak force and none would have bounced back. Most of the atom is therefore empty space, with a tiny nucleus at the centre.'
+
+  - id: c19-r2-diameter-ratio
+    section: Review
+    tier: O
+    refs: ['4.3']
+    statement: 'A gold atom has a diameter of $2.9 \times 10^{-10}$ m and its nucleus has a diameter of $1.4 \times 10^{-14}$ m. Calculate the ratio of the two diameters.'
+    answer_label: 'The ratio of the diameters'
+    check:
+      kind: all
+      checks:
+        - kind: dimensions
+          expression: d_atom / d_nucleus
+          values:
+            d_atom: {value: '2.9e-10', unit: m}
+            d_nucleus: {value: '1.4e-14', unit: m}
+          answer: {value: '20714.3'}
+          tolerance: '0.1'
+        - kind: sigfigs
+          value: '2.9e-10 / 1.4e-14'
+          figures: 2
+          answer: '2.1e4'
+          convention: round-once
+    answer_text: 'The ratio is $\dfrac{2.9 \times 10^{-10}}{1.4 \times 10^{-14}} = 2.07 \times 10^{4}$, which is $2.1 \times 10^4$ to two significant figures. The atom is about 20 000 times wider than its nucleus, so almost all of the atom is empty space. If the nucleus were a marble 1 cm across, the atom would be about 200 m across.'
+
+  - id: c19-r3-level-and-photon
+    section: Review
+    tier: O
+    refs: ['4.3']
+    statement: 'Use $E_n = -\dfrac{13.6}{n^2}$ eV to find the energy of the $n = 2$ level of hydrogen, then find the energy of the photon emitted in the $n = 2$ to $n = 1$ transition.'
+    answer_label: 'The energy of the n = 2 level and of the photon'
+    check:
+      kind: all
+      checks:
+        - kind: dimensions
+          expression: E2 - E1
+          values:
+            E2: {value: '-3.4', unit: eV}
+            E1: {value: '-13.6', unit: eV}
+          answer: {value: '10.2', unit: eV}
+        - kind: sigfigs
+          value: '(-3.4) - (-13.6)'
+          figures: 3
+          answer: '10.2'
+          convention: round-once
+        - kind: sigfigs
+          value: '10.2 * 1.6e-19'
+          figures: 2
+          answer: '1.6e-18'
+          convention: round-once
+    answer_text: 'The energy of the $n = 2$ level is $E_2 = -\dfrac{13.6}{2^2} = -3.40\,\text{eV}$. The photon carries the difference between the levels: $\Delta E = E_2 - E_1 = -3.40 - (-13.6) = 10.2\,\text{eV}$. In joules that is $10.2 \times 1.6 \times 10^{-19} = 1.6 \times 10^{-18}\,\text{J}$ to two significant figures. The photon leaves with exactly the energy the electron lost, so the line has one fixed wavelength.'
+
+  - id: c19-r4-wavelength
+    section: Review
+    tier: O
+    refs: ['4.3']
+    statement: 'A hydrogen atom emits a photon of energy 10.2 eV. Calculate the wavelength of the photon. Take $h = 6.6 \times 10^{-34}$ J s, $c = 3.0 \times 10^{8}$ m/s and $1\,\text{eV} = 1.6 \times 10^{-19}$ J.'
+    answer_label: 'The wavelength of the photon'
+    check:
+      kind: all
+      checks:
+        - kind: dimensions
+          expression: h * c / E
+          values:
+            h: {value: '6.6e-34', unit: 'J s'}
+            c: {value: '3.0e8', unit: m/s}
+            E: {value: '1.632e-18', unit: J}
+          answer: {value: '1.2132e-7', unit: m}
+          tolerance: '1e-11'
+        - kind: sigfigs
+          value: '6.6e-34 * 3.0e8 / (10.2 * 1.6e-19)'
+          figures: 2
+          answer: '1.2e-7'
+          convention: round-once
+    answer_text: 'First change the energy to joules: $10.2 \times 1.6 \times 10^{-19} = 1.632 \times 10^{-18}\,\text{J}$. Then $E = \dfrac{hc}{\lambda}$ gives $\lambda = \dfrac{hc}{E} = \dfrac{6.6 \times 10^{-34} \times 3.0 \times 10^8}{1.632 \times 10^{-18}} = 1.2 \times 10^{-7}\,\text{m}$. That is 120 nm, in the ultraviolet. It is the same wavelength as the first and strongest line of the Lyman series, because it comes from the same $n = 2$ to $n = 1$ jump as question 3.'
+
+  - id: c19-r5-negative-energy
+    section: Review
+    tier: O
+    refs: ['4.3']
+    statement: 'Explain why the energy of an electron in a hydrogen atom is written as a negative number.'
+    answer_label: 'Why the energy is negative'
+    check:
+      kind: structured
+      requires: [zero-at-infinity, bound-means-less, meaning-of-size]
+      concepts: [zero-reference-at-infinity, bound-state, energy-to-escape, more-negative-more-tightly-bound]
+      points:
+        - id: zero-at-infinity
+          text: 'The zero of energy is chosen where the electron is free and at rest, infinitely far from the nucleus. Every bound electron has less energy than that, so its energy is negative.'
+          concepts: [zero-reference-at-infinity, bound-state]
+        - id: bound-means-less
+          text: 'An electron bound to the nucleus needs energy put in to escape. Its energy is below the free value by the amount that must be supplied, so it sits at a negative value.'
+          concepts: [bound-state, energy-to-escape]
+        - id: meaning-of-size
+          text: 'The size of the negative number is the depth of the well. The ground state at -13.6 eV is 13.6 eV below free, so 13.6 eV is needed to ionise the atom. A more negative energy means a more tightly bound electron, and the levels get closer to zero as n rises.'
+          concepts: [more-negative-more-tightly-bound, energy-to-escape]
+    answer_text: 'The zero of energy is chosen where the electron is free and at rest, infinitely far from the nucleus. Every bound electron has less energy than that, so its energy is negative. It needs energy put in to escape, and the size of the negative number is the depth of the well. The ground state at $-13.6\,\text{eV}$ is 13.6 eV below free, so 13.6 eV is needed to ionise the atom. A more negative energy means a more tightly bound electron, and the levels get closer to zero as $n$ rises, which is why the lines in a series crowd together at short wavelengths.'
+
+  - id: c19-r6-lines-show-levels
+    section: Review
+    tier: O
+    refs: ['4.3']
+    statement: 'A gas gives bright lines at 486 nm and 656 nm, and darkness between them. Explain what these lines show about the atoms in the gas.'
+    answer_label: 'What the bright lines show about the atoms'
+    check:
+      kind: structured
+      requires: [fixed-wavelengths, fixed-energy-gaps, consequence]
+      concepts: [discrete-energy-levels, photon-energy-equals-gap, fingerprint]
+      points:
+        - id: fixed-wavelengths
+          text: 'The gas emits light at a few fixed wavelengths and nothing in between. A continuous spectrum would need light of every wavelength, so the emission is not continuous.'
+          concepts: [discrete-energy-levels]
+        - id: fixed-energy-gaps
+          text: 'Each wavelength belongs to a photon of one energy, and the photon is made when an electron drops from a higher level to a lower one. A fixed photon energy means a fixed gap between two levels, and only two gaps are being used to make these two lines.'
+          concepts: [photon-energy-equals-gap, discrete-energy-levels]
+        - id: consequence
+          text: 'The atoms therefore have a set of discrete energy levels rather than a continuous range of energies. Each element has its own set of gaps, so the pair of lines is a fingerprint of the gas.'
+          concepts: [discrete-energy-levels, fingerprint]
+    answer_text: 'The gas emits light at a few fixed wavelengths and nothing in between. A continuous spectrum would need light of every wavelength, so the emission is not continuous. Each wavelength belongs to a photon of one energy, and that photon is made when an electron drops from a higher level to a lower one. A fixed photon energy means a fixed gap between two levels, so the atoms have a set of discrete energy levels rather than a continuous range of energies. Each element has its own set of gaps, so the pair of lines is a fingerprint of the gas: 656 nm and 486 nm are two lines of hydrogen.'
+
+  - id: c19-r7-absorption
+    section: Review
+    tier: O
+    refs: ['4.3']
+    statement: 'Explain why a cool gas absorbs light at exactly the wavelengths at which the same hot gas emits.'
+    answer_label: 'Why absorption and emission share their wavelengths'
+    check:
+      kind: structured
+      requires: [same-gaps, absorption-process, emission-process]
+      concepts: [photon-energy-must-match-gap, excitation, de-excitation]
+      points:
+        - id: same-gaps
+          text: 'The levels belong to the atom, so the gaps are the same whether the gas is hot or cool. A photon can be absorbed only if its energy equals one of those gaps.'
+          concepts: [photon-energy-must-match-gap]
+        - id: absorption-process
+          text: 'In a cool gas most electrons are in low levels. An electron can jump up by taking a photon of exactly the gap energy, so light of that wavelength is removed from the beam passing through, and a dark line appears.'
+          concepts: [excitation, photon-energy-must-match-gap]
+        - id: emission-process
+          text: 'In a hot gas some electrons are already raised, and they fall back down, giving out a photon of the same gap energy. Absorption goes up a gap and emission comes down it, and the gap is the same in both directions, so the wavelengths match.'
+          concepts: [de-excitation, photon-energy-must-match-gap]
+    answer_text: 'The levels belong to the atom, so the gaps are the same whether the gas is hot or cool. A photon can be absorbed only if its energy equals one of those gaps. In a cool gas most electrons are in low levels, so an electron can jump up by taking a photon of exactly the gap energy; light of that wavelength is removed from the beam and a dark line appears. In a hot gas some electrons are already raised and fall back down, giving out a photon of the same gap energy. Absorption goes up a gap and emission comes down it, and the gap is the same in both directions, so the wavelengths match.'
+
+  - id: c19-r8-absorbed-photon
+    section: Review
+    tier: O
+    refs: ['4.3']
+    statement: 'An electron in a hydrogen atom absorbs a photon and moves from the ground state to the $n = 3$ level. Calculate the energy of the absorbed photon.'
+    answer_label: 'The energy of the absorbed photon'
+    check:
+      kind: all
+      checks:
+        - kind: dimensions
+          expression: E3 - E1
+          values:
+            E3: {value: '-1.51', unit: eV}
+            E1: {value: '-13.6', unit: eV}
+          answer: {value: '12.09', unit: eV}
+        - kind: sigfigs
+          value: '(-1.51) - (-13.6)'
+          figures: 3
+          answer: '12.1'
+          convention: round-once
+        - kind: sigfigs
+          value: '12.09 * 1.6e-19'
+          figures: 2
+          answer: '1.9e-18'
+          convention: round-once
+    answer_text: 'The $n = 3$ level has energy $E_3 = -\dfrac{13.6}{3^2} = -1.51\,\text{eV}$, and the ground state is $-13.6\,\text{eV}$. The photon must supply the difference: $\Delta E = -1.51 - (-13.6) = 12.1\,\text{eV}$. In joules that is $12.1 \times 1.6 \times 10^{-19} = 1.9 \times 10^{-18}\,\text{J}$ to two significant figures. The electron cannot take a photon of any other energy for this jump, so only light of this energy is absorbed.'
+
+  - id: c19-r9-star-spectrum
+    section: Review
+    tier: O
+    refs: ['4.3']
+    statement: 'The spectrum of a distant star shows a set of dark lines. Explain how astronomers use the lines to find which elements the star contains.'
+    answer_label: 'How the dark lines identify the elements'
+    check:
+      kind: structured
+      requires: [where-lines-form, match-laboratory, what-it-shows]
+      concepts: [absorption-in-outer-gas, fingerprint-lines, elements-identified]
+      points:
+        - id: where-lines-form
+          text: 'The star''s hot surface gives a continuous spectrum. The cooler gas in its outer layers absorbs the wavelengths whose photon energies match gaps in its atoms, so those wavelengths arrive at the Earth missing, as dark lines.'
+          concepts: [absorption-in-outer-gas]
+        - id: match-laboratory
+          text: 'Each element has its own set of level gaps, so its dark lines fall at its own wavelengths. Astronomers measure the wavelengths of the dark lines and compare them with the lines measured from each element in the laboratory.'
+          concepts: [fingerprint-lines]
+        - id: what-it-shows
+          text: 'A match identifies an element in the star''s outer gas, and the pattern of all the matches gives its composition. The lines also carry the star''s motion, because a shift in wavelength shows the star moving towards or away from us, but the pattern of lines is what identifies the elements.'
+          concepts: [elements-identified, fingerprint-lines]
+    answer_text: 'The star''s hot surface gives a continuous spectrum. The cooler gas in its outer layers absorbs the wavelengths whose photon energies match gaps in its atoms, so those wavelengths arrive at the Earth missing, as dark lines. Each element has its own set of level gaps, so its dark lines fall at its own wavelengths. Astronomers measure the wavelengths of the dark lines and compare them with the lines measured from each element in the laboratory. A match identifies an element in the star''s outer gas, and the pattern of all the matches gives the composition. The lines also show the star''s motion, because a shift in wavelength means the star is moving towards or away from us, but the pattern is what identifies the elements.'
+
+  - id: c19-r10-ionisation-energy
+    section: Review
+    tier: O
+    refs: ['4.3']
+    statement: 'You must find the ionisation energy of hydrogen. Would you use the bright lines of a discharge lamp, the energy-level formula, or the alpha-particle scattering experiment? Say why, and state what each of the other two methods can give you.'
+    answer_label: 'The method to choose, and what the others give'
+    check:
+      kind: structured
+      requires: [state-choice, why-formula, what-lines-give, what-scattering-gives]
+      concepts: [ionisation-from-ground-state, energy-level-formula, series-limit, nuclear-size]
+      points:
+        - id: state-choice
+          text: 'Use the energy-level formula. Ionisation takes the electron from the ground state at -13.6 eV to zero at infinity, so the ionisation energy is 13.6 eV.'
+          concepts: [ionisation-from-ground-state, energy-level-formula]
+        - id: why-formula
+          text: 'The formula gives every level directly, including the ground state and the free state, so the difference between them is a single subtraction. Nothing has to be measured.'
+          concepts: [energy-level-formula, ionisation-from-ground-state]
+        - id: what-lines-give
+          text: 'The bright lines give the gaps between bound levels, and the wavelengths of a series crowd together towards a limit. That limit is the ionisation energy, so the lines can give it, but only by extrapolating a series rather than reading it off.'
+          concepts: [series-limit]
+        - id: what-scattering-gives
+          text: 'The alpha-particle scattering experiment gives the size of the nucleus and the evidence for the nuclear model. It says nothing about the energy levels, so it cannot give an ionisation energy at all.'
+          concepts: [nuclear-size]
+    answer_text: 'Use the energy-level formula. Ionisation takes the electron from the ground state at $-13.6\,\text{eV}$ to zero at infinity, so the ionisation energy is $0 - (-13.6) = 13.6\,\text{eV}$. The formula gives every level directly, including the ground state and the free state, so the answer is a single subtraction and nothing has to be measured. The bright lines give the gaps between bound levels, and the wavelengths of a series crowd together towards a limit; that limit is the ionisation energy, so the lines can give it, but only by extrapolating a series. The alpha-particle scattering experiment gives the size of the nucleus and the evidence for the nuclear model, and says nothing about energy levels.'

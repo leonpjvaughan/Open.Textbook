@@ -68,30 +68,9 @@ Work through these without notes. For each one, decide **what is being asked**
 before you calculate: an energy from a mass, a binding energy, a number of
 half-lives, or an argument to be judged.
 
-1. Calculate the energy equivalent of 1.0 g of matter. Take
-   $c = 3.0 \times 10^8$ m/s.
-2. A reaction has a mass defect of 0.0305 u. Find the energy released in joules.
-   Take $1\ \text{u} = 1.66 \times 10^{-27}$ kg.
-3. Explain the difference between nuclear fission and nuclear fusion, and say why
-   both release energy.
-4. A sample contains $5.0 \times 10^{20}$ nuclei, and each fission releases
-   $3.2 \times 10^{-11}$ J. Find the total energy released.
-5. Explain why the moderator is needed in a reactor, and why the control rods are
-   needed as well.
-6. A nucleus has a binding energy of $1.2 \times 10^{-11}$ J and contains 16
-   nucleons. Find its binding energy per nucleon in MeV.
-7. In the Sun, four hydrogen nuclei fuse to form one helium nucleus and release
-   26.7 MeV. Find the energy released in joules.
-8. A radioactive source has a half-life of 6.0 hours. What fraction of the source
-   remains after 24 hours?
-9. An electron is accelerated through a potential difference of 3000 V. Find its
-   kinetic energy in electronvolts and in joules.
-10. In a hydrogen atom the electron drops from $n = 3$ to $n = 1$, from $-1.51$ eV
-    to $-13.6$ eV. Find the energy of the emitted photon.
-11. Two reports give different figures for the cost of electricity from nuclear
-    power. Describe what you would check before deciding which one to trust.
-12. Explain why fusion needs a very high temperature, and state why no fusion power
-    station exists yet.
+:::problems chapter-21-review
+
+:::answers chapter-21-review
 
 ## What you can now do
 

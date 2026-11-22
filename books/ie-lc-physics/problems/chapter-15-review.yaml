@@ -1,0 +1,283 @@
+# Mixed practice for the Chapter 15 Review.
+#
+# Eleven questions, one record each, in the order they appear on the Review page.
+# Questions 1, 5, 7, 8, 9 and 10 ask for a quantity, so each carries a
+# `dimensions` check, which proves the magnitude and the unit, and a `sigfigs`
+# check, which proves the rounding to the figures the data support. The two
+# direction questions (2 and 3), the solenoid pole (4), the choice of equation
+# (6), the electron that feels no work (10) and the motor coil (11) ask for a
+# reason, so each carries a `structured` component.
+#
+# Honest limit: this proves arithmetic, dimensions and the declared conventions,
+# not physics. A `structured` check proves only that a model answer contains its
+# declared steps and concepts, in order; a wrong direction written in the right
+# order still passes, so the directions are also read by a human. Question 10 is
+# Higher only and is marked **H** on the page.
+#
+# The data are read as the Review page states them. Question 8 takes
+# k = 9.0e9 N m^2 C^-2, as the question gives it, and question 10 takes
+# e = 1.6e-19 C.
+chapter: 15
+problems:
+  - id: c15-r1-wire-force
+    section: Review
+    tier: O
+    refs: ['3.5']
+    statement: 'A wire of length 0.30 m carries a current of 4.0 A at right angles to a field of flux density 0.25 T. Calculate the force on the wire.'
+    answer_label: 'The force on the wire'
+    check:
+      kind: all
+      checks:
+        - kind: dimensions
+          expression: B * I * l
+          values:
+            B: {value: '0.25', unit: T}
+            I: {value: '4.0', unit: A}
+            l: {value: '0.30', unit: m}
+          answer: {value: '0.30', unit: N}
+        - kind: sigfigs
+          value: '0.25 * 4.0 * 0.30'
+          figures: 2
+          answer: '0.30'
+          convention: round-once
+    answer_text: '$F = BIl = 0.25 \times 4.0 \times 0.30 = 0.30\,\text{N}$. The wire is at right angles to the field, so every part of the field pushes on the current and the full force acts. The answer carries two significant figures because each of the three readings does.'
+
+  - id: c15-r2-force-direction
+    section: Review
+    tier: O
+    refs: ['3.5']
+    statement: 'A wire lies in a field that points from left to right, and the current flows downwards. State the direction of the force on the wire.'
+    answer_label: 'The direction of the force'
+    check:
+      kind: structured
+      requires: [choose-rule, apply-directions, state-direction]
+      concepts: [flemings-left-hand-rule, right-angle-between-field-and-current]
+      points:
+        - id: choose-rule
+          text: 'The wire carries a current in a magnetic field, so Fleming''s left-hand rule gives the direction of the force.'
+          concepts: [flemings-left-hand-rule]
+        - id: apply-directions
+          text: 'Point the first finger along the field, from left to right, and the second finger along the current, downwards. The two are at right angles, and the field and the current are both in the plane of the page.'
+          concepts: [right-angle-between-field-and-current]
+        - id: state-direction
+          text: 'The thumb then points out of the page, towards you, so the force on the wire is out of the page.'
+          concepts: [flemings-left-hand-rule]
+    answer_text: 'The wire carries a current in a magnetic field, so use Fleming''s left-hand rule. Point the first finger along the field, from left to right, and the second finger along the current, downwards. The thumb then points out of the page, towards you. The force is at right angles to both the field and the current, and it points out of the page.'
+
+  - id: c15-r3-field-direction
+    section: Review
+    tier: O
+    refs: ['3.4']
+    statement: 'A straight wire carries a current towards the top of the page. State the direction of the magnetic field at a point to the right of the wire.'
+    answer_label: 'The direction of the field beside the wire'
+    check:
+      kind: structured
+      requires: [field-shape, apply-rule, state-direction]
+      concepts: [circular-field-lines, right-hand-grip-rule]
+      points:
+        - id: field-shape
+          text: 'The field lines around a straight wire are circles centred on the wire, in a plane at right angles to it. On the page, the circles pass through the points to the left and right of the wire.'
+          concepts: [circular-field-lines]
+        - id: apply-rule
+          text: 'Point the right thumb along the current, towards the top of the page, and the fingers curl in the direction of the field. On the right of the wire the curl carries the fingers into the page.'
+          concepts: [right-hand-grip-rule]
+        - id: state-direction
+          text: 'So the field at a point to the right of the wire points into the page. On the left of the wire it would point out of the page.'
+          concepts: [right-hand-grip-rule]
+    answer_text: 'The field lines around a straight wire are circles centred on the wire, in a plane at right angles to it. Point the right thumb along the current, towards the top of the page, and the fingers curl in the direction of the field. On the right of the wire that curl takes the fingers into the page, so the field there points into the page. On the left of the wire the field points out of the page. The two sides carry opposite directions because the field goes round the wire in one sense.'
+
+  - id: c15-r4-solenoid-pole
+    section: Review
+    tier: O
+    refs: ['3.4']
+    statement: 'A solenoid is wound so that, seen from the left-hand end, the current flows clockwise around the coil. State which end is the north pole.'
+    answer_label: 'The end that is the north pole'
+    check:
+      kind: structured
+      requires: [apply-face-rule, name-end]
+      concepts: [solenoid-field, pole-from-current-sense]
+      points:
+        - id: apply-face-rule
+          text: 'Look at a face of the coil: if the current flows anticlockwise round that face, that end is the north pole. Here the current is clockwise as seen from the left-hand end, so the left-hand end is a south pole.'
+          concepts: [pole-from-current-sense]
+        - id: name-end
+          text: 'The field leaves a north pole and enters a south pole, so the field runs from the right-hand end to the left-hand end inside the coil. The right-hand end is therefore the north pole.'
+          concepts: [solenoid-field, pole-from-current-sense]
+    answer_text: 'Look at a face of the coil. If the current flows anticlockwise round that face, that end is the north pole; here the current is clockwise as seen from the left-hand end, so the left-hand end is a south pole. The field leaves a north pole and enters a south pole, so inside the coil it runs from the right-hand end to the left-hand end. The right-hand end is therefore the north pole.'
+
+  - id: c15-r5-coil-force
+    section: Review
+    tier: O
+    refs: ['3.5']
+    statement: 'A coil of 30 turns has a side of length 4.0 cm in a field of 0.50 T, and carries a current of 0.20 A. Calculate the total force on one side of the coil.'
+    answer_label: 'The total force on one side of the coil'
+    check:
+      kind: all
+      checks:
+        - kind: dimensions
+          expression: turns * B * I * l
+          values:
+            turns: {value: '30'}
+            B: {value: '0.50', unit: T}
+            I: {value: '0.20', unit: A}
+            l: {value: '0.040', unit: m}
+          answer: {value: '0.12', unit: N}
+        - kind: sigfigs
+          value: '30 * 0.50 * 0.20 * 0.040'
+          figures: 2
+          answer: '0.12'
+          convention: round-once
+    answer_text: 'Every turn carries the same current, so the forces on all 30 turns add: $F = NBIl = 30 \times 0.50 \times 0.20 \times 0.040 = 0.12\,\text{N}$. The side must be changed to metres first, because the tesla is defined with the length in metres: 4.0 cm is 0.040 m. The other side of the coil is pushed the opposite way, and together the two forces turn the coil.'
+
+  - id: c15-r6-choose-equation
+    section: Review
+    tier: O
+    refs: ['3.5']
+    statement: 'A charged particle moves at right angles to a magnetic field. Would you use $F = BIl$ or $F = Bqv$ to find the force on it? Explain how you decide.'
+    answer_label: 'The equation to use, and why'
+    check:
+      kind: structured
+      requires: [compare-equations, choose, state-what-is-known]
+      concepts: [current-in-a-wire, single-charge, charge-and-speed]
+      points:
+        - id: compare-equations
+          text: 'F = BIl is the force on a current in a length of wire: it uses the current and the length of that stretch of wire. F = Bqv is the force on one charge moving at a speed: it uses the charge and its speed.'
+          concepts: [current-in-a-wire, single-charge]
+        - id: choose
+          text: 'The question is about one particle, so use F = Bqv. The particle has a charge and a speed, and it has no current of its own and no length of wire for BIl to describe.'
+          concepts: [single-charge, charge-and-speed]
+        - id: state-what-is-known
+          text: 'Use BIl when the data give a current and a length, as for a wire or a coil. Use Bqv when the data give a charge and a speed, as for an electron beam. The two are the same force written for two descriptions of the same moving charges.'
+          concepts: [current-in-a-wire, single-charge, charge-and-speed]
+    answer_text: 'Use $F = Bqv$. The question is about one particle, which has a charge and a speed; it has no current of its own and no length of wire for $F = BIl$ to describe. Use $F = BIl$ when the data give a current and a length, as for a wire or a coil, and use $F = Bqv$ when the data give a charge and a speed, as for an electron beam. The two are the same force written for two descriptions of the same moving charges: a current is a stream of charges, and $BIl$ adds up the $Bqv$ on every one of them.'
+
+  - id: c15-r7-resistor
+    section: Review
+    tier: O
+    refs: ['3.3']
+    statement: 'A 12 Ω resistor has a current of 0.50 A through it. Calculate the potential difference across it and the power it transfers.'
+    answer_label: 'The potential difference and the power'
+    check:
+      kind: all
+      checks:
+        - kind: dimensions
+          expression: I * R
+          values:
+            I: {value: '0.50', unit: A}
+            R: {value: '12', unit: ohm}
+          answer: {value: '6.0', unit: V}
+        - kind: sigfigs
+          value: '0.50 * 12'
+          figures: 2
+          answer: '6.0'
+          convention: round-once
+        - kind: dimensions
+          expression: I**2 * R
+          values:
+            I: {value: '0.50', unit: A}
+            R: {value: '12', unit: ohm}
+          answer: {value: '3.0', unit: W}
+        - kind: sigfigs
+          value: '0.50**2 * 12'
+          figures: 2
+          answer: '3.0'
+          convention: round-once
+    answer_text: 'Ohm''s law gives $V = IR = 0.50 \times 12 = 6.0\,\text{V}$. The power is $P = VI = 6.0 \times 0.50 = 3.0\,\text{W}$, or $P = I^2R = 0.50^2 \times 12 = 3.0\,\text{W}$. Both routes agree because they are the same equation with $V$ replaced by $IR$. The resistor transfers 3.0 J of energy every second, and it warms up as it does so.'
+
+  - id: c15-r8-coulomb-force
+    section: Review
+    tier: O
+    refs: ['3.1']
+    statement: 'Two charges of $+3.0\ \mu\text{C}$ and $+2.0\ \mu\text{C}$ are $0.15$ m apart in air. Calculate the force between them. Take $k = 9.0 \times 10^{9}$ N m$^{2}$ C$^{-2}$.'
+    answer_label: 'The force between the charges'
+    check:
+      kind: all
+      checks:
+        - kind: dimensions
+          expression: k * q1 * q2 / r**2
+          values:
+            k: {value: '9.0e9', unit: 'N m^2 C^-2'}
+            q1: {value: '3.0e-6', unit: C}
+            q2: {value: '2.0e-6', unit: C}
+            r: {value: '0.15', unit: m}
+          answer: {value: '2.4', unit: N}
+        - kind: sigfigs
+          value: '9.0e9 * 3.0e-6 * 2.0e-6 / 0.15**2'
+          figures: 2
+          answer: '2.4'
+          convention: round-once
+    answer_text: 'Coulomb''s law gives $F = \dfrac{kq_1q_2}{r^2} = \dfrac{9.0 \times 10^9 \times 3.0 \times 10^{-6} \times 2.0 \times 10^{-6}}{0.15^2} = 2.4\,\text{N}$. Both charges are positive, so the force is repulsive: each charge pushes the other away along the line joining them. A force of a few newtons is a noticeable push on a small object, which is why electrostatic forces matter so much in experiments with charge.'
+
+  - id: c15-r9-spring-energy
+    section: Review
+    tier: O
+    refs: ['1.3']
+    statement: 'A spring of spring constant 150 N/m is stretched by 0.20 m. Calculate the energy stored in it.'
+    answer_label: 'The energy stored in the spring'
+    check:
+      kind: all
+      checks:
+        - kind: dimensions
+          expression: 0.5 * k * x**2
+          values:
+            k: {value: '150', unit: N/m}
+            x: {value: '0.20', unit: m}
+          answer: {value: '3.0', unit: J}
+        - kind: sigfigs
+          value: '0.5 * 150 * 0.20**2'
+          figures: 2
+          answer: '3.0'
+          convention: round-once
+    answer_text: 'The energy stored is the area under the force-extension graph, which is a triangle: $E = \frac{1}{2}kx^2 = \frac{1}{2} \times 150 \times 0.20^2 = 3.0\,\text{J}$. The force at full stretch is $kx = 30\,\text{N}$, and the average force over the stretch is half of that, 15 N. Then $15 \times 0.20 = 3.0\,\text{J}$, which is the same answer by the area route.'
+
+  - id: c15-r10-electron-force
+    section: Review
+    tier: H
+    refs: ['3.5']
+    statement: 'An electron of charge $1.6 \times 10^{-19}$ C moves at $4.0 \times 10^{6}$ m/s at right angles to a field of flux density 0.10 T. Calculate the force on the electron, and state why the force does no work on it.'
+    answer_label: 'The force on the electron, and why it does no work'
+    check:
+      kind: all
+      checks:
+        - kind: dimensions
+          expression: B * q * v
+          values:
+            B: {value: '0.10', unit: T}
+            q: {value: '1.6e-19', unit: C}
+            v: {value: '4.0e6', unit: m/s}
+          answer: {value: '6.4e-14', unit: N}
+        - kind: sigfigs
+          value: '0.10 * 1.6e-19 * 4.0e6'
+          figures: 2
+          answer: '6.4e-14'
+          convention: round-once
+        - kind: structured
+          requires: [state-why-no-work]
+          concepts: [force-perpendicular-to-velocity, no-displacement-along-force, speed-unchanged]
+          points:
+            - id: state-why-no-work
+              text: 'The magnetic force is always at right angles to the velocity, so the electron moves along its path and never along the force. Work is force times the distance moved along the force, and that distance is zero. The force changes the direction of the velocity but not its size, so the kinetic energy stays the same.'
+              concepts: [force-perpendicular-to-velocity, no-displacement-along-force, speed-unchanged]
+    answer_text: '$F = Bqv = 0.10 \times 1.6 \times 10^{-19} \times 4.0 \times 10^{6} = 6.4 \times 10^{-14}\,\text{N}$, which is small but about $4 \times 10^{16}$ times the electron''s weight. The force is at right angles to the velocity, so the electron moves along its path and never along the force. Work is force times the distance moved along the force, and that distance is zero, so the magnetic force does no work. It changes the direction of the velocity, not its size, so the kinetic energy stays the same.'
+
+  - id: c15-r11-motor-turns
+    section: Review
+    tier: O
+    refs: ['3.5']
+    statement: 'Explain why the two sides of a motor coil are pushed in opposite directions, and why this makes the coil turn rather than move away.'
+    answer_label: 'Why the sides are pushed opposite ways, and why the coil turns'
+    check:
+      kind: structured
+      requires: [opposite-currents, opposite-forces, turning-effect]
+      concepts: [current-direction-in-sides, force-reversal, couple, fixed-axis]
+      points:
+        - id: opposite-currents
+          text: 'The current travels up one side of the coil and down the other, because the two sides are joined at the ends of the loop. The field is the same for both sides.'
+          concepts: [current-direction-in-sides]
+        - id: opposite-forces
+          text: 'The force on a wire in a field depends on the direction of the current, so reversing the current reverses the force. The two sides therefore feel equal forces in opposite directions.'
+          concepts: [force-reversal]
+        - id: turning-effect
+          text: 'The two forces act on opposite sides of the axis, one up and one down, so together they form a couple that turns the coil. The opposite forces cancel as a push, so the coil does not move away; what is left is the turning effect about the axis, and the axis itself holds the coil in place.'
+          concepts: [couple, fixed-axis]
+    answer_text: 'The current travels up one side of the coil and down the other, because the two sides are joined at the ends of the loop, and the field is the same for both. The force on a wire in a field depends on the direction of the current, so reversing the current reverses the force. The two sides therefore feel equal forces in opposite directions. The forces act on opposite sides of the axis, one up and one down, so together they form a couple that turns the coil. The opposite forces cancel as a push, so the coil does not move away; what is left is the turning effect about the axis, and the axis itself holds the coil in place.'

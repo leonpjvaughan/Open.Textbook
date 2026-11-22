@@ -45,23 +45,9 @@ be told apart from background radiation. That is why carbon dating is reliable t
 Work through these without notes. For each one, decide **what is being asked** before you
 calculate: a number of half-lives, an activity, an age, or a nuclear equation.
 
-1. A source has a half-life of 8 days and an initial activity of 640 Bq. Find its
-   activity after 32 days.
-2. A sample's activity falls from 200 Bq to 25 Bq in 45 minutes. Find the half-life.
-3. A wooden artefact gives 12 counts per minute; living wood gives 48. The half-life of
-   carbon-14 is 5730 years. Find the age.
-4. Write the nuclear equation for the alpha decay of radon-222.
-5. A nucleus emits a beta particle. State what happens to its atomic number and its mass
-   number, and why.
-6. Explain why heating a radioactive source to 500 °C does not change its activity.
-7. A radioactive source has a half-life of 5.3 years. What fraction of it remains after
-   21.2 years?
-8. The background count in a laboratory is 20 counts per minute. A source gives a total
-   count of 180 counts per minute. Find the corrected count rate of the source.
-9. A student says a source has "run out" after 10 half-lives. Explain why that is not
-   what happens.
-10. A smoke detector contains americium-241, which emits alpha particles. State one
-    reason an alpha emitter suits this use and one hazard it creates.
+:::problems chapter-20-review
+
+:::answers chapter-20-review
 
 ## What you can now do
 

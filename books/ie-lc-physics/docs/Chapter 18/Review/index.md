@@ -65,30 +65,9 @@ parts of the problem.
 Work through these without notes. For each one, decide **which relationship applies**
 and say why. Some of them join this chapter to the electron from Chapter 17.
 
-1. Calculate the energy of a photon of frequency $6.0 \times 10^{14}$ Hz. Take
-   $h = 6.6 \times 10^{-34}$ J s.
-2. Light of wavelength 400 nm falls on a metal of work function $3.3 \times 10^{-19}$
-   J. Calculate the maximum kinetic energy of the emitted electrons.
-3. A metal has a threshold wavelength of 500 nm. Calculate its work function in
-   joules and in electronvolts.
-4. An X-ray tube runs at 80 kV. Calculate the shortest wavelength of the X-rays it
-   produces.
-5. An electron is accelerated from rest through 2000 V in an electron gun. Calculate
-   its kinetic energy in joules and its speed. Take $e = 1.6 \times 10^{-19}$ C and
-   $m = 9.1 \times 10^{-31}$ kg.
-6. The same electron strikes a metal target and gives all its energy to one photon.
-   Calculate the shortest wavelength of the X-rays produced. Compare it with the
-   answer to question 4 and explain the difference.
-7. A photocell is lit with light above its threshold frequency. Describe what
-   happens to the current and to the maximum kinetic energy when the intensity is
-   doubled.
-8. A student plots maximum kinetic energy against frequency for a metal. Describe
-   the graph, and say what the gradient and each intercept give you.
-9. Explain why the wave model predicts that very bright red light would release
-   electrons, and why the experiment shows that it does not.
-10. You must find the Planck constant in a school laboratory. Would you use a
-    photocell and a set of coloured lamps, or a spring and a set of masses? Say why,
-    and name the quantity each experiment actually measures.
+:::problems chapter-18-review
+
+:::answers chapter-18-review
 
 ## What you can now do
 

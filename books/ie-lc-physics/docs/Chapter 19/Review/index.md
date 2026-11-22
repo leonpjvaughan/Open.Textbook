@@ -49,29 +49,9 @@ Work through these without notes. For each one, decide **which relationship appl
 and say why. Some of them join this chapter to the electron from Chapter 17 and the
 photon from Chapter 18.
 
-1. State the observation in the alpha-particle scattering experiment that showed the
-   atom has a tiny, massive nucleus, and explain why it does.
-2. A gold atom has a diameter of $2.9 \times 10^{-10}$ m and its nucleus has a diameter
-   of $1.4 \times 10^{-14}$ m. Calculate the ratio of the two diameters.
-3. Use $E_n = -\dfrac{13.6}{n^2}$ eV to find the energy of the $n = 2$ level of
-   hydrogen, then find the energy of the photon emitted in the $n = 2$ to $n = 1$
-   transition.
-4. A hydrogen atom emits a photon of energy 10.2 eV. Calculate the wavelength of the
-   photon. Take $h = 6.6 \times 10^{-34}$ J s, $c = 3.0 \times 10^{8}$ m/s and
-   $1\,\text{eV} = 1.6 \times 10^{-19}$ J.
-5. Explain why the energy of an electron in a hydrogen atom is written as a negative
-   number.
-6. A gas gives bright lines at 486 nm and 656 nm, and darkness between them. Explain
-   what these lines show about the atoms in the gas.
-7. Explain why a cool gas absorbs light at exactly the wavelengths at which the same
-   hot gas emits.
-8. An electron in a hydrogen atom absorbs a photon and moves from the ground state to
-   the $n = 3$ level. Calculate the energy of the absorbed photon.
-9. The spectrum of a distant star shows a set of dark lines. Explain how astronomers
-   use the lines to find which elements the star contains.
-10. You must find the ionisation energy of hydrogen. Would you use the bright lines of
-    a discharge lamp, the energy-level formula, or the alpha-particle scattering
-    experiment? Say why, and state what each of the other two methods can give you.
+:::problems chapter-19-review
+
+:::answers chapter-19-review
 
 ## What you can now do
 

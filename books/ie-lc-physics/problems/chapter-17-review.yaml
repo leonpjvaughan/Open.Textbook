@@ -1,0 +1,269 @@
+# Mixed practice for the Chapter 17 Review.
+#
+# Ten questions, one record each, in the order they appear on the Review page.
+# Three of them ask for a number: the kinetic energy and speed from an
+# accelerating voltage (2), the magnetic force and the radius of the path (4),
+# and the speed selected by crossed fields (5). Each numeric record carries a
+# `dimensions` check, which proves the magnitude and the unit, and a `sigfigs`
+# check, which proves the rounding. A speed or a radius built on a square root
+# carries a tolerance, because the exact value is irrational. The other seven ask
+# for a reason or a method, so each is a `structured` check.
+#
+# Honest limit: this proves arithmetic, dimensions and the declared conventions,
+# not physics. A `structured` check proves only that a model answer contains its
+# declared steps and concepts, in order. Questions 1, 3, 6, 8 and 9 turn on a
+# direction or a proportionality, which the verifier cannot see: a model answer
+# that states the wrong direction in the right order passes.
+#
+# The data are read as the Review page states them: m = 9.1e-31 kg, e = 1.6e-19 C.
+# Question 4's radius is 7.6 cm, which is the radius of curvature of the path and
+# not a distance travelled along the arc.
+chapter: 17
+problems:
+  - id: c17-r1-negative-charge
+    section: Review
+    tier: O
+    refs: ['4.1']
+    statement: 'A beam of cathode rays is deflected by a magnetic field. Explain how the direction of the deflection shows that the rays are negatively charged.'
+    answer_label: 'How the deflection fixes the sign of the charge'
+    check:
+      kind: structured
+      requires: [predict-for-positive, compare-observed, conclude]
+      concepts: [flemings-left-hand-rule, force-on-a-moving-charge, reversal-with-sign]
+      points:
+        - id: predict-for-positive
+          text: 'The field direction and the direction of the beam are both known. Fleming''s left-hand rule, applied to the beam as a current, gives the direction of the force on a positive charge moving that way.'
+          concepts: [flemings-left-hand-rule, force-on-a-moving-charge]
+        - id: compare-observed
+          text: 'The beam bends in the direction opposite to that prediction. Reversing the sign of a charge reverses the magnetic force on it, because the force is Bqv and q changes sign.'
+          concepts: [reversal-with-sign]
+        - id: conclude
+          text: 'The deflection is the one a negative charge would have, so the particles carry a negative charge. The same conclusion follows from an electric field: the beam bends towards the positive plate and away from the negative one.'
+          concepts: [force-on-a-moving-charge, reversal-with-sign]
+    answer_text: 'The field direction and the direction of the beam are both known. Fleming''s left-hand rule, applied to the beam as a current, gives the direction of the force on a positive charge moving that way. The beam bends the opposite way, so the particles carry a negative charge. Reversing the sign of a charge reverses the magnetic force on it, because the force is $Bqv$ and $q$ changes sign. An electric field gives the same answer: the beam bends towards the positive plate, and it is repelled by the negative one.'
+
+  - id: c17-r2-energy-and-speed
+    section: Review
+    tier: O
+    refs: ['4.1']
+    statement: 'An electron is accelerated from rest through 400 V. Calculate its kinetic energy in joules, and then its speed.'
+    answer_label: 'The kinetic energy and the speed'
+    check:
+      kind: all
+      checks:
+        - kind: dimensions
+          expression: e * V
+          values:
+            e: {value: '1.6e-19', unit: C}
+            V: {value: '400', unit: V}
+          answer: {value: '6.4e-17', unit: J}
+        - kind: sigfigs
+          value: '1.6e-19 * 400'
+          figures: 2
+          answer: '6.4e-17'
+          convention: round-once
+        - kind: dimensions
+          expression: sqrt(2 * E / m)
+          values:
+            E: {value: '6.4e-17', unit: J}
+            m: {value: '9.1e-31', unit: kg}
+          answer: {value: '1.186e7', unit: m/s}
+          tolerance: '1e4'
+        - kind: sigfigs
+          value: 'sqrt(2 * 6.4e-17 / 9.1e-31)'
+          figures: 2
+          tolerance: '1e5'
+          answer: '1.2e7'
+          convention: round-once
+    answer_text: 'The work done on the electron is $eV = 1.6 \times 10^{-19} \times 400 = 6.4 \times 10^{-17}\,\text{J}$, and it all becomes kinetic energy. Then $\frac{1}{2}mv^2 = 6.4 \times 10^{-17}$, so $v = \sqrt{\dfrac{2 \times 6.4 \times 10^{-17}}{9.1 \times 10^{-31}}} = 1.2 \times 10^{7}\,\text{m/s}$. The speed is about 4% of the speed of light, so the everyday kinetic energy formula is a fair description for this tube.'
+
+  - id: c17-r3-voltage-doubled
+    section: Review
+    tier: O
+    refs: ['4.1']
+    statement: 'A student claims that doubling the accelerating voltage doubles the speed of the electrons. Explain why this is wrong, and state the factor by which the speed changes.'
+    answer_label: 'Why the speed does not double, and the factor it changes by'
+    check:
+      kind: structured
+      requires: [energy-relation, square-root, state-factor]
+      concepts: [kinetic-energy-proportional-to-voltage, speed-proportional-to-root, factor-root-two]
+      points:
+        - id: energy-relation
+          text: 'The work done on the electron is eV, and it becomes kinetic energy: eV = half m v squared. The kinetic energy is proportional to the voltage.'
+          concepts: [kinetic-energy-proportional-to-voltage]
+        - id: square-root
+          text: 'The speed is not proportional to the energy, because v is squared in the kinetic energy. Rearranged, v = sqrt(2eV/m), so the speed is proportional to the square root of the voltage.'
+          concepts: [speed-proportional-to-root]
+        - id: state-factor
+          text: 'Doubling V multiplies v squared by 2, so it multiplies v by sqrt(2), which is about 1.4. The speed rises by 41%, not by 100%.'
+          concepts: [factor-root-two, speed-proportional-to-root]
+    answer_text: 'The work done on the electron is $eV$, and it becomes kinetic energy: $eV = \frac{1}{2}mv^2$. So the kinetic energy is proportional to the voltage, but the speed is not, because $v$ is squared in that equation. Rearranged, $v = \sqrt{\dfrac{2eV}{m}}$, so the speed is proportional to the square root of the voltage. Doubling $V$ multiplies $v^2$ by 2 and $v$ by $\sqrt{2}$, which is about 1.4. The speed rises by 41%, not by 100%.'
+
+  - id: c17-r4-force-and-radius
+    section: Review
+    tier: O
+    refs: ['4.1']
+    statement: 'An electron moves at $2.0 \times 10^7$ m/s at right angles to a magnetic field of flux density $1.5 \times 10^{-3}$ T. Calculate the magnetic force and the radius of the path.'
+    answer_label: 'The magnetic force and the radius of the path'
+    check:
+      kind: all
+      checks:
+        - kind: dimensions
+          expression: B * q * v
+          values:
+            B: {value: '1.5e-3', unit: T}
+            q: {value: '1.6e-19', unit: C}
+            v: {value: '2.0e7', unit: m/s}
+          answer: {value: '4.8e-15', unit: N}
+        - kind: sigfigs
+          value: '1.5e-3 * 1.6e-19 * 2.0e7'
+          figures: 2
+          answer: '4.8e-15'
+          convention: round-once
+        - kind: dimensions
+          expression: m * v / (B * q)
+          values:
+            m: {value: '9.1e-31', unit: kg}
+            v: {value: '2.0e7', unit: m/s}
+            B: {value: '1.5e-3', unit: T}
+            q: {value: '1.6e-19', unit: C}
+          answer: {value: '0.0758', unit: m}
+          tolerance: '0.0001'
+        - kind: sigfigs
+          value: '9.1e-31 * 2.0e7 / (1.5e-3 * 1.6e-19)'
+          figures: 2
+          answer: '7.6e-2'
+          convention: round-once
+    answer_text: 'The magnetic force is $F = Bqv = 1.5 \times 10^{-3} \times 1.6 \times 10^{-19} \times 2.0 \times 10^7 = 4.8 \times 10^{-15}\,\text{N}$. That force is the centripetal force, so $Bqv = \dfrac{mv^2}{r}$ and $r = \dfrac{mv}{Bq} = \dfrac{9.1 \times 10^{-31} \times 2.0 \times 10^7}{1.5 \times 10^{-3} \times 1.6 \times 10^{-19}} = 7.6 \times 10^{-2}\,\text{m}$. The radius is 7.6 cm: a few centimetres, which is why the beam in a tube curves so visibly. The speed does not appear in the radius once the force is written in full, so a faster electron with the same field follows a larger circle.'
+
+  - id: c17-r5-crossed-fields-speed
+    section: Review
+    tier: O
+    refs: ['4.1']
+    statement: 'In a crossed-field experiment the electric field strength is $2.0 \times 10^4$ V/m and the flux density is $1.0 \times 10^{-3}$ T. The beam passes through undeflected. Calculate the speed of the electrons.'
+    answer_label: 'The speed of the electrons'
+    check:
+      kind: all
+      checks:
+        - kind: dimensions
+          expression: E / B
+          values:
+            E: {value: '2.0e4', unit: V/m}
+            B: {value: '1.0e-3', unit: T}
+          answer: {value: '2.0e7', unit: m/s}
+        - kind: sigfigs
+          value: '2.0e4 / 1.0e-3'
+          figures: 2
+          answer: '2.0e7'
+          convention: round-once
+    answer_text: 'The beam goes straight, so the electric force and the magnetic force on each electron are equal and opposite: $eE = Bev$. The charge cancels, which is the point of the method, and $v = \dfrac{E}{B} = \dfrac{2.0 \times 10^4}{1.0 \times 10^{-3}} = 2.0 \times 10^7\,\text{m/s}$. The speed is found without knowing the charge or the mass of the particle, so the same experiment works for any charged particle.'
+
+  - id: c17-r6-direction-not-speed
+    section: Review
+    tier: O
+    refs: ['4.1']
+    statement: 'Explain why the magnetic force changes the direction of an electron but not its speed.'
+    answer_label: 'Why the direction changes and the speed does not'
+    check:
+      kind: structured
+      requires: [force-perpendicular, no-work, speed-constant]
+      concepts: [force-perpendicular-to-velocity, work-is-force-along-motion, kinetic-energy-unchanged]
+      points:
+        - id: force-perpendicular
+          text: 'The force on a moving charge is at right angles to both the field and the velocity, because it is Bqv with the cross product between the two directions. So the force never has a component along the velocity.'
+          concepts: [force-perpendicular-to-velocity]
+        - id: no-work
+          text: 'Work is force times the distance moved along the force. The electron moves along its path and never along the force, so the work done is zero.'
+          concepts: [work-is-force-along-motion]
+        - id: speed-constant
+          text: 'No work means no change in kinetic energy, so the speed stays the same. The force does change the direction of the velocity, which is why the path curves into a circle; only the direction changes, never the size.'
+          concepts: [kinetic-energy-unchanged, force-perpendicular-to-velocity]
+    answer_text: 'The force on a moving charge is at right angles to both the field and the velocity, so it never has a component along the velocity. Work is force times the distance moved along the force, and the electron moves along its path, never along the force, so the work done is zero. No work means no change in kinetic energy, so the speed stays the same. What the force does change is the direction of the velocity, which is why the path curves into a circle. Only the direction changes, never the size.'
+
+  - id: c17-r7-vacuum
+    section: Review
+    tier: O
+    refs: ['4.1']
+    statement: 'An electron gun uses a heated filament. Explain why the filament is in a vacuum, and describe what would happen if the tube contained air.'
+    answer_label: 'Why the tube is evacuated, and what air would do'
+    check:
+      kind: structured
+      requires: [why-vacuum, what-happens-in-air]
+      concepts: [thermionic-emission, collisions-with-gas, oxidation-of-filament]
+      points:
+        - id: why-vacuum
+          text: 'Thermionic emission releases electrons from the hot filament, and they must travel to the anode without meeting anything. A vacuum leaves them a clear path, so the beam keeps its energy and its direction.'
+          concepts: [thermionic-emission]
+        - id: what-happens-in-air
+          text: 'In air the electrons would collide with gas molecules within a few millimetres, ionise them and lose their kinetic energy, so the beam would spread out and never reach the anode in a controlled way. The hot filament would also oxidise and burn away, and the gas would conduct as it ionised, spoiling the field the voltage is meant to set up.'
+          concepts: [collisions-with-gas, oxidation-of-filament]
+    answer_text: 'Thermionic emission releases electrons from the hot filament, and they must travel to the anode without meeting anything. A vacuum leaves them a clear path, so the beam keeps its energy and its direction. In air the electrons would collide with gas molecules within a few millimetres, ionise them and lose their kinetic energy, so the beam would spread out and never reach the anode in a controlled way. The hot filament would oxidise and burn away, and the ionised gas would conduct, spoiling the field the voltage is meant to set up. The tube is evacuated for the same reason a camera lens is kept clean: the thing being shaped has to arrive without being scattered on the way.'
+
+  - id: c17-r8-plate-voltage
+    section: Review
+    tier: O
+    refs: ['4.1']
+    statement: 'A beam of electrons passes between two charged plates. Describe what happens to the deflection if the potential difference across the plates is doubled, and why.'
+    answer_label: 'What doubling the plate voltage does to the deflection'
+    check:
+      kind: structured
+      requires: [field-strength, force-and-acceleration, state-deflection]
+      concepts: [field-strength-proportional-to-voltage, constant-speed-along-plates, deflection-proportional-to-field]
+      points:
+        - id: field-strength
+          text: 'The field strength between the plates is E = V/d, so doubling the potential difference doubles the field strength.'
+          concepts: [field-strength-proportional-to-voltage]
+        - id: force-and-acceleration
+          text: 'The force on each electron is eE, so it doubles, and so does the acceleration across the plates. The electrons enter at the same speed, so they spend the same time between the plates.'
+          concepts: [constant-speed-along-plates]
+        - id: state-deflection
+          text: 'The sideways displacement is half a t squared, and with the time unchanged and the acceleration doubled, the displacement doubles. So the beam is deflected twice as far, and it leaves the plates at about twice the angle to its original path.'
+          concepts: [deflection-proportional-to-field]
+    answer_text: 'The field strength between the plates is $E = \dfrac{V}{d}$, so doubling the potential difference doubles the field strength. The force on each electron is $eE$, so it doubles too, and so does the acceleration across the plates. The electrons enter at the same speed, because the same gun set that speed, so they spend the same time between the plates. The sideways displacement is $\frac{1}{2}at^2$, and with the time unchanged and the acceleration doubled, the displacement doubles. So the beam is deflected twice as far, and it leaves the plates at about twice the angle to its original path.'
+
+  - id: c17-r9-choose-method
+    section: Review
+    tier: O
+    refs: ['4.1']
+    statement: 'You must find the charge-to-mass ratio of the electron. Would you use an electric field alone, a magnetic field alone, or crossed fields? Say why, and name what each method can and cannot give you.'
+    answer_label: 'The method to choose, and what each one gives'
+    check:
+      kind: structured
+      requires: [state-choice, magnetic-alone, electric-alone, crossed-fields]
+      concepts: [speed-unknown, radius-depends-on-speed, crossed-fields-select-speed, ratio-from-radius]
+      points:
+        - id: state-choice
+          text: 'Use crossed fields. They select the speed first, and then a magnetic field alone bends the beam by an amount that depends on e/m and not on the speed.'
+          concepts: [crossed-fields-select-speed]
+        - id: magnetic-alone
+          text: 'A magnetic field alone bends the beam into an arc of radius r = mv/(Be). That gives e/m only if the speed is already known, so on its own it fixes the ratio times the speed, not the ratio.'
+          concepts: [radius-depends-on-speed, speed-unknown]
+        - id: electric-alone
+          text: 'An electric field alone deflects the beam by an amount that depends on e/m and on the speed squared, because the time between the plates depends on the speed. With the speed unknown, one electric deflection cannot separate the two.'
+          concepts: [speed-unknown]
+        - id: crossed-fields
+          text: 'With crossed fields the beam passes straight when eE = Bev, which gives v = E/B without knowing e or m. The magnetic field alone then gives e/m = v/(Br). The pair of measurements fixes the ratio.'
+          concepts: [crossed-fields-select-speed, ratio-from-radius]
+    answer_text: 'Use crossed fields. They select the speed first, and then a magnetic field alone bends the beam by an amount that depends on $e/m$ and not on the speed. A magnetic field alone bends the beam into an arc of radius $r = \dfrac{mv}{Be}$, which gives $e/m$ only if the speed is already known. An electric field alone deflects the beam by an amount that depends on $e/m$ and on the speed squared, because the time between the plates depends on the speed. With crossed fields the beam passes straight when $eE = Bev$, so $v = \dfrac{E}{B}$ without knowing $e$ or $m$; the magnetic field alone then gives $\dfrac{e}{m} = \dfrac{v}{Br}$. The pair of measurements fixes the ratio.'
+
+  - id: c17-r10-same-ratio
+    section: Review
+    tier: O
+    refs: ['4.1']
+    statement: 'Explain why the charge-to-mass ratio of the electron is the same for every gas and every cathode, and why that result mattered.'
+    answer_label: 'Why the ratio is the same, and why it mattered'
+    check:
+      kind: structured
+      requires: [same-particles, independent-of-material, why-it-mattered]
+      concepts: [universal-constituent, atoms-are-divisible, charge-equal-to-hydrogen-ion]
+      points:
+        - id: same-particles
+          text: 'The beam behaves identically whatever gas fills the tube and whatever metal the cathode is made from, so the particles in it are the same in every case. The particles come from the cathode itself, and the same kind of particle is released from every metal.'
+          concepts: [universal-constituent]
+        - id: independent-of-material
+          text: 'The measured ratio does not depend on the gas or the cathode, which means it is a property of the particle and not of the material it came from. Its charge is the same size as the hydrogen ion''s, but its ratio is about 1800 times larger, so its mass is about 1800 times smaller than a hydrogen atom''s.'
+          concepts: [charge-equal-to-hydrogen-ion, universal-constituent]
+        - id: why-it-mattered
+          text: 'A particle lighter than any atom, and present in every substance, showed that atoms are not indivisible. They contain a common negative part, which is the electron, and the atom must have positive charge elsewhere to stay neutral. That is the evidence that led to the nuclear model.'
+          concepts: [atoms-are-divisible, universal-constituent]
+    answer_text: 'The beam behaves identically whatever gas fills the tube and whatever metal the cathode is made from, so the particles in it are the same in every case. They come from the cathode itself, and every metal releases the same kind of particle. The ratio therefore belongs to the particle and not to the material. Its charge is the same size as the hydrogen ion''s, but its charge-to-mass ratio is about 1800 times larger, so its mass is about 1800 times smaller than a hydrogen atom''s. A particle lighter than any atom, and present in every substance, showed that atoms are not indivisible: they contain a common negative part, the electron, and must carry positive charge elsewhere to stay neutral. That is the evidence that led to the nuclear model.'
