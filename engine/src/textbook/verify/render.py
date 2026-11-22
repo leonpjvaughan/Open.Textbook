@@ -148,9 +148,22 @@ def render_problem_list(problems: list[dict]) -> str:
     return "\n".join(lines) + "\n"
 
 
-def render_answer_block(problems: list[dict], summary: str = "Answers and concise solutions") -> str:
-    body = "\n\n".join(render_problem(p, i + 1) for i, p in enumerate(problems))
+def render_answer_block(
+    problems: list[dict],
+    summary: str = "Answers and concise solutions",
+    *,
+    heading_id: str = "answers",
+) -> str:
+    items = "\n\n".join(
+        f'<details markdown="1">\n<summary>{i}. Show the answer</summary>\n\n'
+        f"{render_problem(problem, i)}\n\n</details>"
+        for i, problem in enumerate(problems, 1)
+    )
+    heading = html_lib.escape(summary)
+    hid = html_lib.escape(heading_id, quote=True)
     return (
-        f'<details markdown="1">\n<summary>{summary}</summary>\n\n'
-        f"{body}\n\n</details>"
+        f'<section class="answers" aria-labelledby="{hid}" markdown="1">\n'
+        f'<h2 id="{hid}">{heading}</h2>\n\n'
+        f"{items}\n\n"
+        "</section>"
     )

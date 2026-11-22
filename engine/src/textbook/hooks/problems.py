@@ -91,5 +91,13 @@ def on_page_markdown(markdown, page, config, files):
     if ":::problems" not in markdown and ":::answers" not in markdown:
         return markdown
     markdown = _expand(markdown, PROBLEMS_MARKER, render_problem_list, page, config)
-    markdown = _expand(markdown, ANSWERS_MARKER, render_answer_block, page, config)
+    count = 0
+
+    def render_answers(items: list[dict]) -> str:
+        nonlocal count
+        count += 1
+        heading_id = "answers" if count == 1 else f"answers-{count}"
+        return render_answer_block(items, heading_id=heading_id)
+
+    markdown = _expand(markdown, ANSWERS_MARKER, render_answers, page, config)
     return markdown
