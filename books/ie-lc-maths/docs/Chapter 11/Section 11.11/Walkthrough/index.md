@@ -12,8 +12,7 @@ kind: walkthrough
 
 # 11.11 Statistical reasoning and misused statistics — Learn
 
-**Prerequisites:** the whole chapter, especially Section 11.2 — bias, and Section 11.10 —
-correlation.
+**Prerequisites:** the whole chapter, especially sampling, bias and correlation.
 
 **Objectives:** decide how far a conclusion can be generalised; recognise a misleading
 graph; spot the common ways a statistic is misused; ask the questions that expose a weak
@@ -63,9 +62,8 @@ which is small. An axis starting at $0$ would show three almost equal bars.
 ## Other ways a statistic misleads
 
 - **Correlation used as causation.** Two variables can move together without one causing
-  the other. Section 11.10 showed the third-variable explanation.
-- **A loaded question.** The wording pushes the reader towards one answer, as in Section
-  11.2.
+  the other. A third variable may drive both.
+- **A loaded question.** The wording pushes the reader towards one answer and creates bias.
 - **Cherry-picking.** Reporting only the years, regions or groups that support the claim.
 - **A percentage of a small number.** "Half of our customers switched" means little if
   there were only four customers. Two out of four is $50\%$, and it is also two people.

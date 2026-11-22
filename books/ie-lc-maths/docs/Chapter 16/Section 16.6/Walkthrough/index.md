@@ -192,7 +192,7 @@ $B$.
 3. The gate is $24$ m along $AB$, and the dividing fence is parallel to $BC$. Find the
    area of the part next to $A$, and the area of the part next to $B$.
 4. Write the two areas as a ratio in its simplest form, and check that it matches the
-   ratio of the two parts of the side $AB$ from Section 16.4.
+   ratio of the two parts of the side $AB$.
 5. The farmer needs $50$ g of grass seed for each square metre. Find the mass of seed
    needed for the whole field.
 

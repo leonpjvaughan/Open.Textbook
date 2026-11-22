@@ -74,8 +74,8 @@ Back to the chapter problem. The lucky dip bag holds $5$ red and $3$ blue counte
 $8$ counters in total. You draw two counters, one after the other, without replacement.
 
 How many **ordered** pairs of counters are possible? There are $8$ choices for the first
-counter, then $7$ left for the second. Keep the number — Section 10.2 counts the same
-draws as permutations, and Section 10.3 counts them as combinations.
+counter, then $7$ left for the second. Keep this total — you will return to the same
+two draws later in the chapter.
 
 ## You should now be able to
 

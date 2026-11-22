@@ -107,9 +107,8 @@ Back to the chapter problem. The main road runs from $A(-1, 1)$ to $B(7, 7)$.
 2. Find the midpoint of $AB$.
 3. Find the slope of the main road.
 
-Keep your three answers. The midpoint is the centre of the roundabout, and you
-will use it in Section 13.4. The slope is the slope of the main road, and you
-will use it in Sections 13.2 and 13.3.
+Keep your three answers. The midpoint marks the centre of the roundabout. The
+slope is the slope of the main road, and you will use it in Sections 13.2 and 13.3.
 
 ## You should now be able to
 

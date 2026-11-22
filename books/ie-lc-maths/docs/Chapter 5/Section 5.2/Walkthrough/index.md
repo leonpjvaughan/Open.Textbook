@@ -95,7 +95,8 @@ $x^2 - 2x + 5 = 0$: they are $1 + 2i$ and $1 - 2i$.
 
 Check them by multiplying. Expand $(x - (1 + 2i))(x - (1 - 2i))$ and simplify, using
 $i^2 = -1$. You should get back $x^2 - 2x + 5$ exactly. That confirms the roots, and it
-also shows why the imaginary terms disappeared — keep that observation for Section 5.5.
+also shows why the imaginary terms disappeared.<!-- tier:h --> Keep that observation for
+Section 5.5.<!-- /tier:h -->
 
 ## You should now be able to
 

@@ -153,8 +153,8 @@ Back to the chapter problem. Each extra loaf sells for €4 and costs €2.50 to
 Work out the profit on one loaf, the mark-up and the margin. Then work out the
 extra profit from $2\,000$ extra loaves in a year.
 
-The mark-up and the margin describe the same €1.50 in two ways. Section 2.3 takes
-the €3,000 of extra profit and works out how much of it survives tax.
+The mark-up and the margin describe the same €1.50 in two ways. Keep the €3,000 of
+extra profit — tax comes off it before Niamh can spend it.
 
 ## You should now be able to
 

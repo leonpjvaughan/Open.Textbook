@@ -99,7 +99,7 @@ Back to the chapter problem. Read the rule $T(t) = 20 + 70(0.5)^{t/5}$ as a func
 
 Work out $T(0)$ and $T(5)$. Then answer this question: is the time a function of the
 temperature? That is, does each temperature give exactly one time? Keep your answer.
-Section 6.2 finds the domain and range, and Section 6.3 turns the rule around.
+Section 6.2 finds the domain and range of this rule.
 
 ## You should now be able to
 

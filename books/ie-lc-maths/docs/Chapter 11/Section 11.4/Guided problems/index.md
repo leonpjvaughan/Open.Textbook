@@ -178,8 +178,8 @@ The sum is $410$, so
 
 $$\bar{x} = \frac{410}{10} = 41$$
 
-The mean age is $41$. The value $78$ is much larger than the rest, and Section 11.5 shows
-how much it increases the spread.
+The mean age is $41$. The value $78$ is much larger than the rest, so it widens the
+spread of the data.
 
 </details>
 </details>

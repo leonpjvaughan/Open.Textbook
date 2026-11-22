@@ -246,8 +246,8 @@ The mark-up is $60\%$ and the margin is $37.5\%$. The extra profit in a year is
 
 $$2\,000 \times 1.50 = 3\,000$$
 
-so the oven adds €3,000 of profit a year before tax. Section 2.3 works out what
-is left after tax.
+so the oven adds €3,000 of profit a year before tax. Keep that figure when you
+work out what is left after tax.
 
 </details>
 </details>

@@ -127,7 +127,7 @@ $$\frac{34 + 41}{2} = 37.5$$
 The value $78$ is an outlier and it pulls the mean above the median. The median, $37.5$,
 describes a typical voter better here.
 
-Keep both numbers. Section 11.5 measures the spread of the same sample.
+Keep both numbers. You will use them again when you measure the spread of the same sample.
 
 ## You should now be able to
 

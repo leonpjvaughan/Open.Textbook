@@ -97,7 +97,7 @@ TIER_DEBT = {
     "gcse-maths": 2,
     "ie-jc-maths": 5,
     "ie-lc-applied-maths": 14,
-    "ie-lc-maths": 75,
+    "ie-lc-maths": 0,
     "ie-lc-physics": 19,
 }
 

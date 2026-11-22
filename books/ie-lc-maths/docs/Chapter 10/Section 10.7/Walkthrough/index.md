@@ -12,7 +12,7 @@ kind: walkthrough
 
 # 10.7 Independent events — Learn
 
-**Prerequisites:** Section 10.6 — conditional probability and the multiplication rule.
+**Prerequisites:** finding probabilities of combined events using the multiplication rule.
 
 **Objectives:** state the test for independence; use it to find probabilities; tell
 independence apart from mutual exclusivity.
@@ -89,7 +89,7 @@ The two answers differ, which shows that the without-replacement draws are not i
 ## Progress check
 
 Back to the chapter problem. The lucky dip draws two counters **without** replacement, so
-the draws are not independent. From Section 10.6,
+the draws are not independent. Multiplying the two probabilities gives
 
 $$P(\text{both red}) = \frac{5}{8} \times \frac{4}{7} = \frac{5}{14} \approx 0.357$$
 

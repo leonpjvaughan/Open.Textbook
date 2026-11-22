@@ -199,9 +199,9 @@ The solutions are the numbers between $-4$ and $4$:
 
 $$-4 < x < 4$$
 
-The endpoints are not included, because the inequality is strict. Section 4.10
-solves inequalities with a modulus written as $|x - a| < b$, which shifts this
-interval along the number line.
+The endpoints are not included, because the inequality is strict.<!-- tier:h --> Section
+4.10 solves inequalities with a modulus written as $|x - a| < b$, which shifts this
+interval along the number line.<!-- /tier:h -->
 
 </details>
 </details>

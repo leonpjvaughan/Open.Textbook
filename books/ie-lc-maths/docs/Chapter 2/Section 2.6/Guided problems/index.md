@@ -23,7 +23,7 @@ kind: guided-problems
 1. $52\,000 - 9\,000 - 1\,840 = 41\,160$. The answer is €41,160.
 2. $11\,070 \div 2\,340 = 4.73$ to 2 decimal places.
 
-The first answer is a net pay from Section 2.3. The second is a payback time,
+The first answer is a net pay calculation. The second is a payback time,
 which you will check in this section.
 
 </details>

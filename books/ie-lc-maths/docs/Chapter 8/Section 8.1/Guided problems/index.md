@@ -249,7 +249,7 @@ Read this backwards and you have an integral:
 
 $$\int 8(2x + 1)^3\,dx = (2x + 1)^4 + C$$
 
-Section 8.5 makes that move carefully, and calls it substitution.
+<!-- tier:h -->Section 8.5 makes that move carefully, and calls it substitution.<!-- /tier:h -->
 
 </details>
 </details>

@@ -34,9 +34,13 @@ geometric plan's advantage is in the long run; over a fixed two years, arithmeti
 terms do not shrink. Plan B has $|r| = 1.1 > 1$, so it has no sum to infinity either. Both
 plans have to stop, which is why the question is "after 24 months".
 
+<!-- tier:h -->
+
 **Proving the formula.** The sum formula for Plan A is not a coincidence. Section 9.6
 proves the simpler version, $1 + 2 + \dots + n = \dfrac{n(n+1)}{2}$, by induction — base
 case, hypothesis, step — and the arithmetic sum formula follows the same argument.
+
+<!-- /tier:h -->
 
 ## Mixed practice — choose the method first
 

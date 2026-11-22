@@ -196,7 +196,7 @@ $$A = 2\pi \times 0.6^2 + 2\pi \times 0.6 \times 1.2$$
 $$A = 0.72\pi + 1.44\pi = 2.16\pi \approx 6.79 \text{ m}^2$$
 
 The exact answer is $2.16\pi \text{ m}^2$. Keep it for the comparison with Tank B in
-Section 3.7.
+the chapter Review.
 
 </details>
 </details>

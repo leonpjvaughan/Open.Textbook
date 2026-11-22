@@ -145,9 +145,8 @@ Back to the chapter problem. The second border copy is the tile reflected in the
 $y$-axis. The tile has corners $A(1,1)$, $B(4,1)$ and $C(1,3)$.
 
 Reflect each corner in the $y$-axis. The $y$-coordinate of each corner stays the same,
-and the $x$-coordinate changes sign. Keep the three image corners. Section 14.5 asks you
-to compare this copy with the original, and reflection is the one transformation that
-turns the tile over.
+and the $x$-coordinate changes sign. Keep the three image corners — reflection is the
+one transformation that turns the tile over.
 
 ## You should now be able to
 

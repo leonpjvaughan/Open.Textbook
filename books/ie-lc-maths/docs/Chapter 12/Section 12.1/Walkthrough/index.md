@@ -57,7 +57,8 @@ $5$ cm. Write down $\sin\theta$, $\cos\theta$ and $\tan\theta$.
 $$\sin\theta = \frac{3}{5} = 0.6 \qquad \cos\theta = \frac{4}{5} = 0.8 \qquad \tan\theta = \frac{3}{4} = 0.75$$
 
 Check: $\dfrac{\sin\theta}{\cos\theta} = \dfrac{0.6}{0.8} = 0.75$, which is $\tan\theta$.
-That is always true, and Section 12.8 explains why.
+That holds for every acute angle because the hypotenuse cancels out.<!-- tier:h -->
+Section 12.8 extends this identity to any angle.<!-- /tier:h -->
 
 ## Finding a side
 

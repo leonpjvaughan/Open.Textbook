@@ -116,8 +116,8 @@ Work out the circumference and the area of that circle of diameter $1.2$ m. Give
 circumference in metres and the area in square metres, each in exact form and then to
 2 decimal places.
 
-Keep both exact values. The area $0.36\pi$ is used again in Section 3.3 for the volume, and
-the circumference $1.2\pi$ is used in Section 3.4 for the net.
+Keep both exact values. You use the area $0.36\pi$ again in Section 3.3 for the volume,
+and you use the circumference $1.2\pi$ for the curved surface.
 
 ## You should now be able to
 

@@ -31,7 +31,7 @@ guess, and there is no wrong answer yet.
 
 By the end of the chapter you can work out both volumes exactly, work out the metal for
 each tank, and give the club a clear answer. One of the two answers is a genuine surprise,
-and Section 3.7 shows why it happens.
+and the chapter Review shows why it happens.
 
 ## By the end of this chapter you will be able to
 

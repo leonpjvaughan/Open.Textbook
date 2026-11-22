@@ -76,12 +76,16 @@ on capacity and on cost. Tank A holds $1.5$ times as much water for $1.5$ times 
 so both tanks are fair value. If the club wants the most water and can pay €305.36, it
 should take Tank A. If it has about €200 to spend, Tank B is the honest choice.
 
+<!-- tier:h -->
+
 **The better idea.** Section 3.6 gives the club a third option. A similar tank with every
 length twice as large holds $2^3 = 8$ times the water and needs only $2^2 = 4$ times the
 metal. Its metal per cubic metre is $\dfrac{5}{2} = 2.5$, half of either tank. For any
 shape, a larger version of it costs less per litre, because the volume grows as $k^3$ and
 the surface area only as $k^2$. The best value is the largest similar tank that fits and
 that the club can afford.
+
+<!-- /tier:h -->
 
 ## Mixed practice — choose the method first
 

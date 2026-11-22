@@ -97,8 +97,8 @@ The two denominators are equal, so the two fractions are equal:
 
 $$\frac{|AD|}{|DB|} = \frac{|AE|}{|EC|}.$$
 
-This is the ratio rule. The full formal proof, including the ratio for the third pair of
-sides, is in Section 16.4.
+This is the ratio rule.<!-- tier:h --> The full formal proof, including the ratio for
+the third pair of sides, is in Section 16.4.<!-- /tier:h -->
 
 ## Worked examples
 
@@ -187,8 +187,8 @@ height of the tree, and cannot climb it.
 4. The farmer's map of the field is a scale drawing. The field is $60$ m long on the
    ground and $12$ cm long on the map. Find the scale factor from the map to the ground.
 
-Keep the height of the tree and the scale factor. Section 16.4 uses the scale factor
-again.
+Keep the height of the tree and the scale factor.<!-- tier:h --> Section 16.4 uses the
+scale factor again.<!-- /tier:h -->
 
 ## You should now be able to
 

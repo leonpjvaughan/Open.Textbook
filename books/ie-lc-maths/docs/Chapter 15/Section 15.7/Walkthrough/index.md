@@ -161,8 +161,8 @@ Given the segment $[AB]$, divide it into three equal parts without measuring.
 **Why it works.** The three parallel lines cut off equal segments on the ray from $A$,
 because the compass marked them equal. The equal-intercept result says that parallel
 lines which cut off equal segments on one transversal cut off equal segments on any other
-transversal. So they cut off equal segments on $AB$. That result is proved in
-Section 16.4.
+transversal. So they cut off equal segments on $AB$.<!-- tier:h --> That result is
+proved in Section 16.4.<!-- /tier:h -->
 
 To divide $[AB]$ into **two** equal parts, use Construction 2: the perpendicular bisector
 meets $AB$ at its midpoint.

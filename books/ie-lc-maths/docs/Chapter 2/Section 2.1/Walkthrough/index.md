@@ -116,8 +116,9 @@ Work out the price including VAT. Then the price before VAT rises by $2\%$ befor
 Niamh buys. Work out the new price including VAT, and the percentage increase on
 the €9,000.
 
-The €11,070 is the amount Niamh pays now, and Section 2.5 compares it with paying
-€12,000 later.
+The €11,070 is the amount Niamh pays now. Keep this figure so you can compare it with
+paying €12,000 later.<!-- tier:h --> Section 2.5 makes that comparison using present
+value.<!-- /tier:h -->
 
 ## You should now be able to
 
