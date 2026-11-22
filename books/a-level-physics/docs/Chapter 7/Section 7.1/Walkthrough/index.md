@@ -11,13 +11,21 @@ kind: walkthrough
 
 # 7.1 Internal energy and specific heat capacity — Learn
 
-**Prerequisites:** work, energy and power from Section 3.3; current, potential
-difference and electrical power from Section 5.1; SI prefixes from Section 1.1.
+**Prerequisites:**
 
-**By the end of this section you can:** explain what internal energy is; explain
-how temperature and internal energy differ; use $E = mc\Delta\theta$; find a
-specific heat capacity from an experiment; explain what happens to the energy
-during a change of state; use $E = mL$; and read a heating curve.
+- work, energy and power from Section 3.3;
+- current, potential difference and electrical power from Section 5.1;
+- SI prefixes from Section 1.1.
+
+**By the end of this section you can:**
+
+- explain what internal energy is;
+- explain how temperature and internal energy differ;
+- use $E = mc\Delta\theta$;
+- find a specific heat capacity from an experiment;
+- explain what happens to the energy during a change of state;
+- use $E = mL$;
+- read a heating curve.
 
 ## 1. Internal energy
 

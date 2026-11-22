@@ -11,14 +11,18 @@ kind: walkthrough
 
 # 3.4 Momentum — Learn
 
-**Prerequisites:** Newton's laws and $F = ma$ from Section 3.2; velocity and the
-sign convention for one-dimensional motion from Section 3.1; kinetic energy from
-Section 3.3.
+**Prerequisites:**
 
-**By the end of this section you can:** define momentum; use the
-impulse–momentum relation $F\Delta t = \Delta p$; read a force–time graph; and
-apply conservation of momentum to one-dimensional collisions, explosions and
-recoil.
+- Newton's laws and $F = ma$ from Section 3.2;
+- velocity and the sign convention for one-dimensional motion from Section 3.1;
+- kinetic energy from Section 3.3.
+
+**By the end of this section you can:**
+
+- define momentum;
+- use the impulse–momentum relation $F\Delta t = \Delta p$;
+- read a force–time graph;
+- apply conservation of momentum to one-dimensional collisions, explosions and recoil.
 
 ## 1. Momentum
 

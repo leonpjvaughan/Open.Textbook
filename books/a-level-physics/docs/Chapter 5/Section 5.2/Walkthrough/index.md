@@ -11,13 +11,19 @@ kind: walkthrough
 
 # 5.2 Resistance and resistivity — Learn
 
-**Prerequisites:** current, charge and potential difference from Section 5.1;
-the area of a circle; standard form; the gradient of a straight-line graph.
+**Prerequisites:**
 
-**By the end of this section you can:** define resistance and use Ohm's law;
-describe and compare the $I$–$V$ characteristics of a resistor, a filament lamp
-and a diode; use resistivity and $R = \dfrac{\rho L}{A}$; and explain how
-temperature changes the resistance of a metal.
+- current, charge and potential difference from Section 5.1;
+- the area of a circle;
+- standard form;
+- the gradient of a straight-line graph.
+
+**By the end of this section you can:**
+
+- define resistance and use Ohm's law;
+- describe and compare the $I$–$V$ characteristics of a resistor, a filament lamp and a diode;
+- use resistivity and $R = \dfrac{\rho L}{A}$;
+- explain how temperature changes the resistance of a metal.
 
 ## 1. Resistance
 

@@ -11,14 +11,20 @@ kind: walkthrough
 
 # 8.2 Wave-particle duality — Learn
 
-**Prerequisites:** superposition, interference and diffraction from Chapter 6;
-momentum from Section 3.4; work, energy and the electronvolt from Section 3.3
-and Section 1.1; powers and square roots.
+**Prerequisites:**
 
-**By the end of this section you can:** describe the de Broglie hypothesis; use
-$\lambda = \dfrac{h}{p}$; find the momentum of an accelerated electron; explain
-how electron diffraction shows that particles behave as waves; and explain why
-the wave nature of a large object is not observed.
+- superposition, interference and diffraction from Chapter 6;
+- momentum from Section 3.4;
+- work, energy and the electronvolt from Section 3.3 and Section 1.1;
+- powers and square roots.
+
+**By the end of this section you can:**
+
+- describe the de Broglie hypothesis;
+- use $\lambda = \dfrac{h}{p}$;
+- find the momentum of an accelerated electron;
+- explain how electron diffraction shows that particles behave as waves;
+- explain why the wave nature of a large object is not observed.
 
 ## 1. Two pictures of light
 

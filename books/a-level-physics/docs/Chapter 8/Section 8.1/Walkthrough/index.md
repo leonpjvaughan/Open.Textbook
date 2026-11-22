@@ -11,15 +11,22 @@ kind: walkthrough
 
 # 8.1 Photons and the photoelectric effect — Learn
 
-**Prerequisites:** the wave equation and the speed of light from Section 6.1;
-work, energy and the conservation of energy from Section 3.3; SI prefixes and
-the electronvolt from Section 1.1; rearranging an equation.
+**Prerequisites:**
 
-**By the end of this section you can:** describe light as a stream of photons;
-use $E = hf = \dfrac{hc}{\lambda}$; explain the photoelectric effect; define the
-work function and the threshold frequency; use $hf = \phi + E_{k(\text{max})}$;
-find the stopping potential; and explain why the maximum kinetic energy does not
-depend on the intensity.
+- the wave equation and the speed of light from Section 6.1;
+- work, energy and the conservation of energy from Section 3.3;
+- SI prefixes and the electronvolt from Section 1.1;
+- rearranging an equation.
+
+**By the end of this section you can:**
+
+- describe light as a stream of photons;
+- use $E = hf = \dfrac{hc}{\lambda}$;
+- explain the photoelectric effect;
+- define the work function and the threshold frequency;
+- use $hf = \phi + E_{k(\text{max})}$;
+- find the stopping potential;
+- explain why the maximum kinetic energy does not depend on the intensity.
 
 ## 1. The photon model
 

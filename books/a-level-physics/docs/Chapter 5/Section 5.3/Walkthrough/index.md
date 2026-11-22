@@ -11,12 +11,19 @@ kind: walkthrough
 
 # 5.3 Direct-current circuits — Learn
 
-**Prerequisites:** current, charge and emf from Section 5.1; resistance,
-Ohm's law and resistivity from Section 5.2; rearranging a formula; fractions.
+**Prerequisites:**
 
-**By the end of this section you can:** find the equivalent resistance of
-resistors in series and in parallel; use Kirchhoff's laws; analyse a circuit that
-has an internal resistance; and use a potential divider.
+- current, charge and emf from Section 5.1;
+- resistance, Ohm's law and resistivity from Section 5.2;
+- rearranging a formula;
+- fractions.
+
+**By the end of this section you can:**
+
+- find the equivalent resistance of resistors in series and in parallel;
+- use Kirchhoff's laws;
+- analyse a circuit that has an internal resistance;
+- use a potential divider.
 
 ## 1. Resistors in series
 

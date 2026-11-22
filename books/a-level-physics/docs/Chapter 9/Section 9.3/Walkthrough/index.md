@@ -11,15 +11,21 @@ kind: walkthrough
 
 # 9.3 Magnetic fields — Learn
 
-**Prerequisites:** current, charge and potential difference from Section 5.1;
-force, acceleration and Newton's second law from Section 3.2; circular motion
-from Section 3.5; vectors and resolving from Section 2.2; the electric field
-from Section 9.2.
+**Prerequisites:**
 
-**By the end of this section you can:** describe a magnetic field and define the
-tesla; use $F = BIL$ and $F = BQv$; apply Fleming's left-hand rule; explain and
-use the circular path of a charged particle in a field; and define magnetic flux
-and flux linkage.
+- current, charge and potential difference from Section 5.1;
+- force, acceleration and Newton's second law from Section 3.2;
+- circular motion from Section 3.5;
+- vectors and resolving from Section 2.2;
+- the electric field from Section 9.2.
+
+**By the end of this section you can:**
+
+- describe a magnetic field and define the tesla;
+- use $F = BIL$ and $F = BQv$;
+- apply Fleming's left-hand rule;
+- explain and use the circular path of a charged particle in a field;
+- define magnetic flux and flux linkage.
 
 ## 1. Magnetic fields and flux density
 

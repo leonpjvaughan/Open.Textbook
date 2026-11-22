@@ -11,16 +11,20 @@ kind: walkthrough
 
 # 4.2 Force-extension graphs and stored energy — Learn
 
-**Prerequisites:** stress, strain and the Young modulus from Section 4.1; the
-equation of a straight line; the area of a triangle and a trapezium; the idea
-that work done is energy transferred.
+**Prerequisites:**
 
-**By the end of this section you can:** state Hooke's law and use it; find the
-spring constant from a force-extension graph; explain the limit of
-proportionality, the elastic limit and plastic deformation; find the energy
-stored in a stretched material from the area under its graph; and use
-$E = \tfrac{1}{2}F\Delta L$ when the graph is a straight line through the
-origin.
+- stress, strain and the Young modulus from Section 4.1;
+- the equation of a straight line;
+- the area of a triangle and a trapezium;
+- the idea that work done is energy transferred.
+
+**By the end of this section you can:**
+
+- state Hooke's law and use it;
+- find the spring constant from a force-extension graph;
+- explain the limit of proportionality, the elastic limit and plastic deformation;
+- find the energy stored in a stretched material from the area under its graph;
+- use $E = \tfrac{1}{2}F\Delta L$ when the graph is a straight line through the origin.
 
 ## 1. Hooke's law
 

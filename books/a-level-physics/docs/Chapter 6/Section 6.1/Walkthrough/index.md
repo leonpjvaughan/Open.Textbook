@@ -11,15 +11,21 @@ kind: walkthrough
 
 # 6.1 Superposition and interference — Learn
 
-**Prerequisites:** SI prefixes and units from Section 1.1; speed as distance
-divided by time from Section 3.1; the sine and cosine of an angle from
-Section 2.2.
+**Prerequisites:**
 
-**By the end of this section you can:** describe a progressive wave; tell a
-transverse wave from a longitudinal wave; use $v = f\lambda$ and
-$T = \dfrac{1}{f}$; find a phase difference and a path difference; decide whether
-two waves reinforce or cancel; explain what makes two sources coherent; and use
-the fringe formula for two slits.
+- SI prefixes and units from Section 1.1;
+- speed as distance divided by time from Section 3.1;
+- the sine and cosine of an angle from Section 2.2.
+
+**By the end of this section you can:**
+
+- describe a progressive wave;
+- tell a transverse wave from a longitudinal wave;
+- use $v = f\lambda$ and $T = \dfrac{1}{f}$;
+- find a phase difference and a path difference;
+- decide whether two waves reinforce or cancel;
+- explain what makes two sources coherent;
+- use the fringe formula for two slits.
 
 ## 1. What a wave is
 

@@ -11,16 +11,23 @@ kind: walkthrough
 
 # 7.2 Ideal gases and molecular kinetic theory — Learn
 
-**Prerequisites:** kinetic energy and momentum from Sections 3.3 and 3.4;
-rearranging an equation from Section 2.2; SI prefixes and powers of ten from
-Section 1.1.
+**Prerequisites:**
 
-**By the end of this section you can:** describe the ideal gas model; use the gas
-laws for a fixed mass of gas; convert between Celsius and kelvin; explain
-absolute zero; use $pV = nRT$ and $pV = NkT$; explain pressure in terms of
-molecular collisions; use $pV = \dfrac{1}{3}Nm(c_{\text{rms}})^2$; find the
-average molecular kinetic energy and the rms speed; and describe how to test
-Boyle's law.
+- kinetic energy and momentum from Sections 3.3 and 3.4;
+- rearranging an equation from Section 2.2;
+- SI prefixes and powers of ten from Section 1.1.
+
+**By the end of this section you can:**
+
+- describe the ideal gas model;
+- use the gas laws for a fixed mass of gas;
+- convert between Celsius and kelvin;
+- explain absolute zero;
+- use $pV = nRT$ and $pV = NkT$;
+- explain pressure in terms of molecular collisions;
+- use $pV = \dfrac{1}{3}Nm(c_{\text{rms}})^2$;
+- find the average molecular kinetic energy and the rms speed;
+- describe how to test Boyle's law.
 
 ## 1. The ideal gas model
 

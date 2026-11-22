@@ -11,15 +11,21 @@ kind: walkthrough
 
 # 5.4 Capacitance — Learn
 
-**Prerequisites:** current, charge and emf from Section 5.1; resistance from
-Section 5.2; series and parallel circuits from Section 5.3; exponential decay
-from the oscillation work in Chapter 3 is helpful but not required.
+**Prerequisites:**
 
-**By the end of this section you can:** define capacitance and use
-$C = \dfrac{Q}{V}$; find the capacitance of a parallel plate capacitor; find the
-energy stored in a charged capacitor; describe the exponential discharge of a
-capacitor; use the time constant $\tau = RC$; and read the shape of a
-charge–time or potential difference–time graph.
+- current, charge and emf from Section 5.1;
+- resistance from Section 5.2;
+- series and parallel circuits from Section 5.3;
+- exponential decay from the oscillation work in Chapter 3 is helpful but not required.
+
+**By the end of this section you can:**
+
+- define capacitance and use $C = \dfrac{Q}{V}$;
+- find the capacitance of a parallel plate capacitor;
+- find the energy stored in a charged capacitor;
+- describe the exponential discharge of a capacitor;
+- use the time constant $\tau = RC$;
+- read the shape of a charge–time or potential difference–time graph.
 
 ## 1. Capacitance
 
