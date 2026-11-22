@@ -18,13 +18,9 @@ The expression can also be factorised as $8(x+3)$, which provides a check by exp
 
 For each question, choose a method and explain why it applies. Check by reversing the operation when possible.
 
-1. Simplify $4a+3-2a+6$.
-2. Expand $3(2x-5)$.
-3. Factorise $12y+18$.
-4. Find $2n^2+1$ when $n=-3$.
-5. Make $t$ the subject of $v=u+at$.
-6. **Higher only:** expand $(x-1)(x+2)(x+4)$.
-7. Estimate then calculate the value of $8x+24$ when $x=5$.
+:::problems chapter-08-review
+
+:::answers chapter-08-review
 
 ## What you can now do
 

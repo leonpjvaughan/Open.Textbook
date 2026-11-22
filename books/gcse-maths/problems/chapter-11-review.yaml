@@ -1,0 +1,166 @@
+# Mixed practice for the Chapter 11 Review.
+#
+# Eight questions, one record each, in the order they appear on the Review page.
+# They read coordinates, find a gradient from two points, read a gradient and an
+# intercept from an equation, find an equation from a gradient and a point, use
+# the perpendicular gradient rule, read a speed from a distance-time graph, find
+# and interpret the area under a velocity-time graph, and compare two gradients.
+#
+# Honest limit: `evaluate` proves the gradient arithmetic, `solve` proves the
+# intercept or the perpendicular gradient the answer declares, and `compare`
+# proves the order of two gradients. None of it proves a reading from a drawn
+# graph, because there is no drawing in the bank. Questions 1, 7 and 8 ask for a
+# description or a reason, so each carries a `structured` component, which proves
+# only that a model answer contains its declared steps and concepts, in order.
+#
+# Questions 5 and 7 are Higher-only content in Sections 11.4 and 11.6, so they
+# carry `tier: H` and the page marks them **H**.
+oracles: [sympy, units]
+chapter: 11
+symbols:
+  c: {real: true}
+  m: {real: true}
+problems:
+  - id: r1-coordinates
+    section: Review
+    tier: F
+    refs: [A8, A9]
+    statement: 'Plot $(-2,3)$ and $(4,-1)$. Which coordinate gives the horizontal position?'
+    answer_label: 'The horizontal coordinate and the two points'
+    check:
+      kind: structured
+      requires: [name-horizontal, plot-points]
+      concepts: [x-coordinate, coordinates]
+      points:
+        - id: name-horizontal
+          text: 'The first coordinate, the x-coordinate, gives the horizontal position. The second, the y-coordinate, gives the vertical position.'
+          concepts: [x-coordinate, coordinates]
+        - id: plot-points
+          text: 'For (-2, 3), start at the origin, move 2 left along the x-axis and 3 up. For (4, -1), move 4 right and 1 down.'
+          concepts: [coordinates]
+    answer_text: 'In a pair such as $(-2, 3)$, the first number is the $x$-coordinate and gives the horizontal position; the second is the $y$-coordinate and gives the vertical position. So $(-2, 3)$ is $2$ left and $3$ up from the origin, and $(4, -1)$ is $4$ right and $1$ down. The order of the pair matters: $(3, -2)$ is a different point.'
+
+  - id: r2-gradient-two-points
+    section: Review
+    tier: F
+    refs: [A9, A10]
+    statement: 'Work out the gradient between $(1,4)$ and $(5,12)$.'
+    answer_label: 'The gradient'
+    check:
+      kind: evaluate
+      expression: '(12 - 4) / (5 - 1)'
+      answer: '2'
+    answer_text: 'The gradient is the change in $y$ divided by the change in $x$: $\dfrac{12 - 4}{5 - 1} = \dfrac{8}{4} = 2$. The line rises $8$ units over a horizontal run of $4$, so it rises $2$ units for every $1$ across.'
+
+  - id: r3-gradient-and-intercept
+    section: Review
+    tier: F
+    refs: [A9, A10]
+    statement: 'State the gradient and $y$-intercept of $y=-3x+7$.'
+    answer_label: 'The gradient and the intercept'
+    check:
+      kind: all
+      checks:
+        - kind: evaluate
+          expression: '((-3*1 + 7) - (-3*0 + 7)) / (1 - 0)'
+          answer: '-3'
+        - kind: evaluate
+          expression: '-3*0 + 7'
+          answer: '7'
+    answer_text: 'The equation is in the form $y = mx + c$, so the gradient is $m = -3$ and the $y$-intercept is $c = 7$. The line falls $3$ units for every $1$ across, and it crosses the $y$-axis at $(0, 7)$. A negative gradient means the line goes down from left to right.'
+
+  - id: r4-equation-from-gradient-and-point
+    section: Review
+    tier: F
+    refs: [A9]
+    statement: 'Find the equation of the line with gradient $2$ through $(0,-1)$.'
+    answer_label: 'The equation of the line'
+    check:
+      kind: solve
+      equation: '2*0 + c = -1'
+      variable: c
+      answer: '-1'
+    answer_text: 'A line with gradient $2$ has equation $y = 2x + c$. The point $(0, -1)$ is on the $y$-axis, so substituting $x = 0$ and $y = -1$ gives $-1 = c$. The equation is $y = 2x - 1$. Because the point is on the $y$-axis, the intercept is its $y$-coordinate.'
+
+  - id: r5-perpendicular-gradient
+    section: Review
+    tier: H
+    refs: [A9]
+    statement: 'Give the gradient of a line perpendicular to $y=4x+2$.'
+    answer_label: 'The perpendicular gradient'
+    check:
+      kind: solve
+      equation: '4*m = -1'
+      variable: m
+      answer: '-1/4'
+    answer_text: 'The gradient of $y = 4x + 2$ is $4$. Perpendicular gradients multiply to $-1$, so the perpendicular gradient $m$ satisfies $4m = -1$, giving $m = -\dfrac{1}{4}$. The negative sign is part of the rule: a line perpendicular to a rising line falls.'
+
+  - id: r6-speed-from-graph
+    section: Review
+    tier: F
+    refs: [A14, R14]
+    statement: 'A distance-time graph rises 15 km in 0.5 hours. Find the speed in km/h.'
+    answer_label: 'The speed'
+    check:
+      kind: evaluate
+      expression: '15 / 0.5'
+      answer: '30'
+    answer_text: 'On a distance-time graph the gradient is the speed. The rise is $15$ km and the run is $0.5$ hours, so the speed is $15 \div 0.5 = 30$ km/h. The unit of the gradient is the unit of the vertical axis divided by the unit of the horizontal axis.'
+
+  - id: r7-area-under-graph
+    section: Review
+    tier: H
+    refs: [A15, R15]
+    statement: 'A velocity-time graph has velocity 6 m/s for 5 seconds. Find the area under the graph and explain what it represents.'
+    answer_label: 'The area and what it represents'
+    check:
+      kind: all
+      checks:
+        - kind: evaluate
+          expression: '6 * 5'
+          answer: '30'
+        - kind: structured
+          requires: [calculate-area, interpret-area]
+          concepts: [area-under-graph, distance]
+          points:
+            - id: calculate-area
+              text: 'The graph is a rectangle of height 6 m/s and width 5 s, so the area is 6 x 5 = 30.'
+              concepts: [area-under-graph]
+            - id: interpret-area
+              text: 'The area under a velocity-time graph is the distance travelled, because velocity multiplied by time is distance. The distance is 30 m.'
+              concepts: [distance, area-under-graph]
+    answer_text: 'The velocity is constant, so the region under the graph is a rectangle: $6 \times 5 = 30$. The area represents the distance travelled, because speed multiplied by time is distance. Here the distance is $30$ m, and the unit of the area is metres per second multiplied by seconds, which is metres.'
+
+  - id: r8-compare-gradients
+    section: Review
+    tier: F
+    refs: [A9, A10]
+    statement: 'Which has greater gradient: the line through $(0,1),(3,7)$ or the line through $(0,0),(2,5)$? Give a reason.'
+    answer_label: 'The steeper line and the reason'
+    check:
+      kind: all
+      checks:
+        - kind: evaluate
+          expression: '(7 - 1) / (3 - 0)'
+          answer: '2'
+        - kind: evaluate
+          expression: '(5 - 0) / (2 - 0)'
+          answer: '5/2'
+        - kind: compare
+          relation: '<'
+          lhs: '2'
+          rhs: '5/2'
+        - kind: structured
+          requires: [find-gradients, compare, give-reason]
+          concepts: [gradient, comparison]
+          points:
+            - id: find-gradients
+              text: 'The first gradient is (7 - 1) / (3 - 0) = 2. The second is (5 - 0) / (2 - 0) = 2.5.'
+              concepts: [gradient]
+            - id: compare
+              text: '2.5 is greater than 2, so the line through (0, 0) and (2, 5) is steeper.'
+              concepts: [comparison]
+            - id: give-reason
+              text: 'A larger gradient means a larger rise for the same run. The second line rises 5 units in a run of 2, while the first rises 2 units in a run of 1, which is 4 in a run of 2.'
+              concepts: [gradient, comparison]
+    answer_text: 'The first gradient is $\dfrac{7 - 1}{3 - 0} = 2$. The second is $\dfrac{5 - 0}{2 - 0} = 2.5$. Since $2.5 > 2$, the line through $(0, 0)$ and $(2, 5)$ is steeper. Comparing gradients is fair only when both are measured as rise per unit run, which is why the division matters.'

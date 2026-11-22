@@ -1,0 +1,193 @@
+# Mixed practice for the Chapter 3 Review.
+#
+# Eight questions, one record each, in the order they appear on the Review page.
+# They cover powers and roots, estimating a root between two squares, the index
+# laws for a product and for a power of a power, negative and fractional indices,
+# a square from its area, and a doubling sequence.
+#
+# Honest limit: `evaluate` proves that the two expressions are equal for every
+# value of the symbol, and `rounded` proves that 11 is the nearest whole number to
+# the square root of 130. Neither proves that a reader applied the law for the
+# right reason, so questions 1, 3, 4, 5 and 6 carry a `structured` component. That
+# component proves only that a model answer contains its declared steps and
+# concepts, in order. Question 2's reason — that 130 lies between 121 and 144 and
+# nearer 121 — is stated in the answer but only its rounding is proved.
+oracles: [sympy, units]
+chapter: 3
+symbols:
+  p: {real: true}
+  q: {real: true}
+problems:
+  - id: r1-cube
+    section: Review
+    tier: F
+    refs: [N6]
+    statement: 'Work out $5^3$. Which operation does the index describe?'
+    answer_label: 'The cube and the operation the index describes'
+    check:
+      kind: all
+      checks:
+        - kind: evaluate
+          expression: '5**3'
+          answer: '125'
+        - kind: structured
+          requires: [evaluate-power, name-operation]
+          concepts: [power, repeated-multiplication]
+          points:
+            - id: evaluate-power
+              text: '5 cubed is 5 x 5 x 5 = 125.'
+              concepts: [power]
+            - id: name-operation
+              text: 'The index 3 describes repeated multiplication: the base 5 is used as a factor three times. It does not mean 5 x 3.'
+              concepts: [repeated-multiplication, power]
+    answer_text: '$5^3 = 5 \times 5 \times 5 = 125$. The index counts how many copies of the base are multiplied together. It is not a multiplier, so $5^3$ is not $15$.'
+
+  - id: r2-estimate-root
+    section: Review
+    tier: F
+    refs: [N6]
+    statement: 'Estimate $\sqrt{130}$ to the nearest whole number. Give a reason using two squares.'
+    answer_label: 'The nearest whole number and the reason'
+    check:
+      kind: all
+      checks:
+        - kind: rounded
+          value: 'sqrt(130)'
+          rounded: '11'
+          to: '1'
+        - kind: evaluate
+          expression: '11**2'
+          answer: '121'
+        - kind: evaluate
+          expression: '12**2'
+          answer: '144'
+        - kind: compare
+          relation: '<'
+          lhs: '130 - 11**2'
+          rhs: '12**2 - 130'
+    answer_text: '$\sqrt{130}$ is between $11$ and $12$, because $11^2 = 121$ and $12^2 = 144$. The number $130$ is $9$ above $121$ but $14$ below $144$, so it is nearer to $121$. The nearest whole number is therefore $11$. Checking against the two neighbouring squares is what makes the estimate safe.'
+
+  - id: r3-product-index-law
+    section: Review
+    tier: F
+    refs: [A4, N7]
+    statement: 'Simplify $p^4p^6$. Which index law applies?'
+    answer_label: 'The simplified expression and the law used'
+    check:
+      kind: all
+      checks:
+        - kind: evaluate
+          expression: 'p**4 * p**6'
+          answer: 'p**10'
+        - kind: structured
+          requires: [apply-law, name-law]
+          concepts: [index-law, add-indices]
+          points:
+            - id: apply-law
+              text: 'p to the 4 times p to the 6 is p to the 10.'
+              concepts: [index-law]
+            - id: name-law
+              text: 'When two powers with the same base are multiplied, add the indices: 4 + 6 = 10. The base stays as p.'
+              concepts: [add-indices, index-law]
+    answer_text: '$p^4 \times p^6 = p^{4+6} = p^{10}$. Both powers have the same base $p$, so the indices add. Written out, it is four factors of $p$ followed by six more, which is ten factors in all.'
+
+  - id: r4-power-of-a-power
+    section: Review
+    tier: F
+    refs: [A4, N7]
+    statement: 'Simplify $(q^3)^2$. Explain why the indices multiply.'
+    answer_label: 'The simplified expression and why the indices multiply'
+    check:
+      kind: all
+      checks:
+        - kind: evaluate
+          expression: '(q**3)**2'
+          answer: 'q**6'
+        - kind: structured
+          requires: [apply-law, explain-multiply]
+          concepts: [index-law, multiply-indices]
+          points:
+            - id: apply-law
+              text: 'q cubed, all squared, is q to the 6.'
+              concepts: [index-law]
+            - id: explain-multiply
+              text: 'The bracket is two copies of q cubed, so it is (q x q x q) x (q x q x q). That is six factors of q, and 3 x 2 = 6. The indices multiply because the groups of factors are repeated.'
+              concepts: [multiply-indices, index-law]
+    answer_text: '$(q^3)^2 = q^{3 \times 2} = q^6$. The bracket $q^3$ is three factors of $q$, and squaring repeats that group twice, giving six factors. The indices multiply because the number of groups is multiplied by the size of each group.'
+
+  - id: r5-negative-index
+    section: Review
+    tier: H
+    refs: [N7]
+    statement: 'Write $8^{-2}$ as a fraction. Which earlier rule helps?'
+    answer_label: 'The fraction and the rule that gives it'
+    check:
+      kind: all
+      checks:
+        - kind: evaluate
+          expression: '8**(-2)'
+          answer: '1/64'
+        - kind: structured
+          requires: [write-fraction, name-rule]
+          concepts: [negative-index, reciprocal]
+          points:
+            - id: write-fraction
+              text: '8 to the power -2 is 1/64.'
+              concepts: [negative-index]
+            - id: name-rule
+              text: 'A negative index means the reciprocal of the positive power: 8 to the -2 is 1 divided by 8 squared. The rule for dividing powers, where subtracting indices can give a negative result, is what makes this consistent.'
+              concepts: [reciprocal, negative-index]
+    answer_text: '$8^{-2} = \dfrac{1}{8^2} = \dfrac{1}{64}$. A negative index turns the power into a reciprocal; it does not make the answer negative. The rule that dividing powers subtracts indices explains it: $8^2 \div 8^4 = 8^{-2}$, and that quotient is $\dfrac{64}{4096} = \dfrac{1}{64}$.'
+
+  - id: r6-fractional-index
+    section: Review
+    tier: H
+    refs: [N7]
+    statement: 'Work out $125^{2/3}$. Which root should you find first?'
+    answer_label: 'The value and the root to take first'
+    check:
+      kind: all
+      checks:
+        - kind: evaluate
+          expression: '125**(2/3)'
+          answer: '25'
+        - kind: structured
+          requires: [find-root, raise-power]
+          concepts: [fractional-index, root]
+          points:
+            - id: find-root
+              text: 'The denominator 3 asks for the cube root. Find that first: the cube root of 125 is 5.'
+              concepts: [fractional-index, root]
+            - id: raise-power
+              text: 'Then use the numerator 2: 5 squared is 25. So 125 to the power 2/3 is 25.'
+              concepts: [fractional-index, root]
+    answer_text: '$125^{2/3} = \left(\sqrt[3]{125}\right)^2 = 5^2 = 25$. The denominator of the index is the root, and the numerator is the power. Take the cube root first, while the number is still small: the other order, $125^2$ then the cube root, gives the same answer but much larger numbers to handle.'
+
+  - id: r7-square-from-area
+    section: Review
+    tier: F
+    refs: [N6]
+    statement: 'A rectangle has area $144\text{ cm}^2$. Work out its side length if it is a square.'
+    answer_label: 'The side length'
+    check:
+      kind: evaluate
+      expression: 'sqrt(144)'
+      answer: '12'
+    answer_text: 'A square has four equal sides, so its area is the side length squared. The side length is $\sqrt{144} = 12$. The unit is centimetres, because an area in square centimetres comes from a length in centimetres multiplied by itself.'
+
+  - id: r8-doubling-sequence
+    section: Review
+    tier: F
+    refs: [N6, N7]
+    statement: 'A sequence starts at 3 and doubles five times. Write its final value as a power product and evaluate it.'
+    answer_label: 'The final value as a power product, and its value'
+    check:
+      kind: all
+      checks:
+        - kind: evaluate
+          expression: '2**5'
+          answer: '32'
+        - kind: evaluate
+          expression: '3 * 2**5'
+          answer: '96'
+    answer_text: 'Each doubling multiplies by $2$, and five doublings multiply by $2^5$. The final value is $3 \times 2^5$. Since $2^5 = 32$, the value is $3 \times 32 = 96$. Writing it as a power product keeps the structure visible: the starting value $3$ and the five doublings are separate facts.'

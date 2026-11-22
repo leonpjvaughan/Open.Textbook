@@ -1,0 +1,152 @@
+# Mixed practice for the Chapter 5 Review.
+#
+# Seven questions, one record each, in the order they appear on the Review page.
+# They simplify a ratio, share an amount in a ratio, use direct and inverse
+# proportion, read a map scale, compare areas and volumes of similar shapes, and
+# add a positive change to a negative temperature.
+#
+# Honest limit: `evaluate` proves the arithmetic of each answer — the simplified
+# ratio, the number of parts and the share of each, the constant of proportion,
+# and the scale conversion. It does not prove that the proportion is direct or
+# inverse: that reading comes from the question, and the answer text shows the
+# working. Questions 1 and 7 ask for the method or the factor as well as the
+# result, so each carries a `structured` component, which proves only that a
+# model answer contains its declared steps and concepts, in order.
+#
+# One answer is corrected from the hand-written block: question 2 asked how many
+# ratio parts make the total, and the old answer said 12. The total is 2 + 5 = 7
+# parts, each worth £84 / 7 = £12, giving £24 and £60.
+oracles: [sympy, units]
+chapter: 5
+problems:
+  - id: r1-simplify-ratio
+    section: Review
+    tier: F
+    refs: [R3, R4]
+    statement: 'Simplify $21:35$. Which common factor do you use?'
+    answer_label: 'The simplified ratio and the common factor'
+    check:
+      kind: all
+      checks:
+        - kind: evaluate
+          expression: '21/35'
+          answer: '3/5'
+        - kind: structured
+          requires: [find-factor, simplify]
+          concepts: [common-factor, equivalent-ratio]
+          points:
+            - id: find-factor
+              text: 'Both 21 and 35 are multiples of 7, so 7 is a common factor. It is also the highest common factor.'
+              concepts: [common-factor]
+            - id: simplify
+              text: 'Divide both parts by 7: 21 divided by 7 is 3, and 35 divided by 7 is 5. The ratio is 3:5.'
+              concepts: [equivalent-ratio]
+    answer_text: '$21:35 = 3:5$. Both numbers divide by $7$, and $7$ is the highest common factor, so one division reaches the simplest form. Dividing by a smaller common factor would leave a ratio that could be simplified again.'
+
+  - id: r2-share-in-ratio
+    section: Review
+    tier: F
+    refs: [R5]
+    statement: 'Share £84 in the ratio $2:5$. How many ratio parts represent the total?'
+    answer_label: 'The number of parts and the two shares'
+    check:
+      kind: all
+      checks:
+        - kind: evaluate
+          expression: '2 + 5'
+          answer: '7'
+        - kind: evaluate
+          expression: '84 / 7'
+          answer: '12'
+        - kind: evaluate
+          expression: '2 * 12'
+          answer: '24'
+        - kind: evaluate
+          expression: '5 * 12'
+          answer: '60'
+        - kind: evaluate
+          expression: '24 + 60'
+          answer: '84'
+    answer_text: 'The ratio $2:5$ has $2 + 5 = 7$ parts in total. Each part is $£84 \div 7 = £12$. The two shares are $2 \times 12 = £24$ and $5 \times 12 = £60$. As a check, $24 + 60 = 84$, so the shares use the whole amount.'
+
+  - id: r3-direct-proportion
+    section: Review
+    tier: F
+    refs: [R10, R13]
+    statement: '$y$ is directly proportional to $x$. If $y=24$ when $x=6$, find $y$ when $x=11$.'
+    answer_label: 'The value of y'
+    check:
+      kind: evaluate
+      expression: '24/6 * 11'
+      answer: '44'
+    answer_text: 'Direct proportion means $y = kx$. Substituting $x = 6$ and $y = 24$ gives $24 = 6k$, so $k = 4$ and $y = 4x$. When $x = 11$, $y = 4 \times 11 = 44$. The constant $4$ is the amount $y$ gains for each unit of $x$.'
+
+  - id: r4-inverse-proportion
+    section: Review
+    tier: H
+    refs: [R10, R13]
+    statement: '$y$ is inversely proportional to $x$. If $y=15$ when $x=4$, find $y$ when $x=10$.'
+    answer_label: 'The value of y'
+    check:
+      kind: evaluate
+      expression: '15*4/10'
+      answer: '6'
+    answer_text: 'Inverse proportion means $y = \dfrac{k}{x}$. Substituting $x = 4$ and $y = 15$ gives $15 = \dfrac{k}{4}$, so $k = 60$ and $y = \dfrac{60}{x}$. When $x = 10$, $y = \dfrac{60}{10} = 6$. The product $xy = 60$ is constant, which is the signature of inverse proportion.'
+
+  - id: r5-map-scale
+    section: Review
+    tier: F
+    refs: [R2]
+    statement: 'A map uses scale $1:100\,000$. Work out the real distance represented by 6.5 cm.'
+    answer_label: 'The real distance'
+    check:
+      kind: all
+      checks:
+        - kind: evaluate
+          expression: '6.5 * 100000'
+          answer: '650000'
+        - kind: evaluate
+          expression: '650000 / 100000'
+          answer: '6.5'
+    answer_text: 'The scale $1:100\,000$ means $1$ cm on the map is $100\,000$ cm in real life. So $6.5$ cm represents $6.5 \times 100\,000 = 650\,000$ cm. There are $100\,000$ cm in a kilometre, so the distance is $650\,000 \div 100\,000 = 6.5$ km. Converting to a sensible unit is part of the answer, not an extra.'
+
+  - id: r6-similar-shapes
+    section: Review
+    tier: H
+    refs: [R12]
+    statement: 'Similar shapes have length scale factor 4. Work out the area and volume scale factors.'
+    answer_label: 'The area and volume scale factors'
+    check:
+      kind: all
+      checks:
+        - kind: evaluate
+          expression: '4**2'
+          answer: '16'
+        - kind: evaluate
+          expression: '4**3'
+          answer: '64'
+    answer_text: 'The area scale factor is the square of the length scale factor: $4^2 = 16$. The volume scale factor is its cube: $4^3 = 64$. Area is two lengths multiplied, so each length contributes a factor of $4$; volume is three lengths multiplied, so the factor appears three times.'
+
+  - id: r7-negative-temperature
+    section: Review
+    tier: F
+    refs: [N1, N2]
+    statement: 'A temperature rises from $-3^\circ$C by $8^\circ$C. Work out the new temperature. Which earlier number method applies?'
+    answer_label: 'The new temperature and the method'
+    check:
+      kind: all
+      checks:
+        - kind: evaluate
+          expression: '-3 + 8'
+          answer: '5'
+        - kind: structured
+          requires: [add-rise, name-method]
+          concepts: [negative-number, additive-inverse]
+          points:
+            - id: add-rise
+              text: 'A rise of 8 degrees adds 8: -3 + 8 = 5. The new temperature is 5 degrees Celsius.'
+              concepts: [negative-number]
+            - id: name-method
+              text: 'This is the Chapter 1 method for adding a positive number to a negative one. Count up from -3 to 0, which uses 3, then count the remaining 5 above zero.'
+              concepts: [negative-number, additive-inverse]
+    answer_text: '$-3 + 8 = 5$, so the new temperature is $5^\circ$C. The method is the Chapter 1 rule for adding a positive number to a negative one: from $-3$, count up $3$ to reach $0$, then spend the remaining $5$ above zero. A rise is always an addition, even when the starting temperature is negative.'

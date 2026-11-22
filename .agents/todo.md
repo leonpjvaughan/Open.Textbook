@@ -4,7 +4,7 @@ Working notes for the collection. One item per change. Items are ordered, not
 dated: the first is next. This file is ours, not the reader's — the voice rules
 in `AGENTS.md` do not apply here, but the engineering rules do.
 
-**This file holds open items only.** Closed items are deleted (git history keeps their diagnosis). A new item goes at the next number, with its diagnosis, its fix and its own done-means. Open: **187**, **188**, **192**, **200**, **203**, **217**, **218**, **219**, **220**, **221**, **222**.
+**This file holds open items only.** Closed items are deleted (git history keeps their diagnosis). A new item goes at the next number, with its diagnosis, its fix and its own done-means. Open: **187**, **188**, **192**, **200**, **203**, **217**, **218**, **219**, **220**, **221**, **222**, **223**, **224**.
 
 Accepted limitations live where the check that records them lives (`tests/test_verify_coverage.py`, `books/*/curriculum.yaml`), not here.
 
@@ -365,3 +365,79 @@ assert both shared sheets use the token plus the documented micro set, and that 
 - [ ] the radius test covers both sheets, and fails on a hard-coded value.
 - [ ] `scripts/preview-themes.sh`, `node tools/dist/cli.js targets site` and the figure
       audits stay green.
+
+## 223 — a bank question marked Higher-only still reaches a Foundation reader
+
+**What is wrong.** `:::problems` and `:::answers` render every record in the bank,
+whatever its `tier`. `engine/src/textbook/verify/render.py → render_problem_list`
+only *marks* an `H` record with **H**; `engine/src/textbook/hooks/problems.py →
+select()` takes `page` and `config` and uses neither to filter. So a `tier: H`
+record on an F page ships to the Foundation build, where the reader sees
+"**H** Solve ..." instead of the section being absent.
+
+Measured on 2026-11-22, after Chapter 9 of `gcse-maths` moved onto
+`problems/chapter-09-review.yaml` (questions 6 and 7, quadratic inequalities,
+Section 9.6, `tier: H`):
+
+```
+$ grep -o 'H Solve (x+1).*' var/check-foundation/chapter-9/review/index.html
+H Solve (x+1)(x−4)≥0 ...
+```
+
+The page had wrapped those two questions in `<!-- tier:h -->`, so the Foundation
+build used to drop them. The same leak already exists in
+`books/gcse-physics/problems/chapter-10-review.yaml`, which has two `tier: H`
+records behind a single `:::problems chapter-10-review`.
+
+**The fix.** Give `select()` the build's included tiers (`hooks/tier.py →
+included_tiers(config)`, which already resolves the profile's `tier_filter`) and
+drop every record whose tier the build does not include, before numbering, so the
+list and the answers block stay in step. A page whose whole bank is excluded
+should fail loudly, naming the page and the bank: that page needs `tier: H`
+front matter, not a silently empty set. Do not "fix" it by leaving higher content
+in place.
+
+**Done means**
+
+- [ ] a bank with F and H records renders only the F question on a Foundation
+      build, numbered from 1, and both on a Higher build.
+- [ ] `var/check-foundation/chapter-9/review/index.html` contains neither
+      quadratic inequality, and the Higher build still contains both.
+- [ ] `books/gcse-physics/docs/Chapter 10/Review/index.md` no longer ships its two
+      `tier: H` questions to the Foundation profile.
+- [ ] a test builds a small bank with both tiers through the hook and asserts the
+      filter, including the all-excluded failure.
+
+## 224 — Chapter 6 of `gcse-maths` shows 51 Review questions and six answers
+
+**What is wrong.** Chapter 6 was the one Review page already rendering from banks,
+but it does so by dumping five whole practice sets and answering almost none of
+them:
+
+```markdown
+:::problems chapter-6-practice-6.1   ... :::problems chapter-6-practice-6.5
+:::answers chapter-6-practice-6.1#p8-compare-methods
+:::answers chapter-6-practice-6.2#p10-two-step
+:::answers chapter-6-practice-6.3#p8-compare
+:::answers chapter-6-practice-6.4#p5-compare,p9-meaning
+:::answers chapter-6-practice-6.5#p7-comparison
+```
+
+The five banks hold 51 records between them, so 45 of the questions the reader is
+asked have no answer in the Review. The page also repeats questions that already
+appear on the chapter's *Practise* pages.
+
+**The fix.** Decide what the Chapter 6 Review is for, then make one bank for it:
+either a curated `problems/chapter-06-review.yaml` of the mixed set the page
+promises (one record per question, every one answered), or, if the practice sets
+really are the Review, list every rendered id in the answers markers. A curated
+bank is the better answer; it also stops the Review duplicating the practice
+pages. Keep the page's prose and choose questions already in the banks so the
+mathematics does not change.
+
+**Done means**
+
+- [ ] every question on `books/gcse-maths/docs/Chapter 6/Review/index.md` is
+      answered in the same rendered block, with no `#id` selection hiding one.
+- [ ] the page calls one review bank, not five practice banks.
+- [ ] `python -m textbook.verify books/gcse-maths/problems/` reports `ok` for it.

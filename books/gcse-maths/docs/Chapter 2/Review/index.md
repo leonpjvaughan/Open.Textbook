@@ -18,12 +18,9 @@ The HCF is $2^2\times3=12$. The greatest possible number is **12 packs**, each w
 
 Work without looking back. For each question, choose a method and give a reason for your choice.
 
-1. List all factors of 30. Is 31 prime? Explain your answer.
-2. Find the prime factorisation of 84. Use it to find the HCF and LCM of 36 and 84.
-3. A badge uses one of three shapes and one of four colours. List the outcomes in a table, then count them. Which method makes completeness easiest to check?
-4. A two-digit code uses digits 1 to 5 without repetition. How many codes are possible? Explain why the product rule applies.
-5. **Recall from Chapter 1:** work out $18-25$ and estimate $398\times21$ by rounding each number first.
-6. **Recall from Chapter 1:** round 6.284 to two decimal places. Explain which digit decides the rounding.
+:::problems chapter-02-review
+
+:::answers chapter-02-review
 
 ## What you can now do
 

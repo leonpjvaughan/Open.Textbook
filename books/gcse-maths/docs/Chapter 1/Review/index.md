@@ -40,49 +40,9 @@ float plus the profit.
 
 For each question, say which method you will use *before* you calculate, and explain why it fits.
 
-1. Write the value of the digit $4$ in $6\,048.2$.
+:::problems chapter-01-review
 
-2. Work out $(-7) + 2 - (-5)$.
-
-3. Work out $48 \times 25$.
-
-4. Work out $3 + 6 \times (10 - 4)$.
-
-5. Round $2\,847$ to 2 significant figures.
-
-6. Work out $7.2 - 9.5$.
-
-7. Estimate $29 \times 41$.
-
-8. Work out $0.6 \times 1000$.
-
-9. A shop buys 40 T-shirts at £4.50 each and sells them all at £7.00 each. Work
-   out the profit.
-
-10. A lift starts at floor $-2$, goes up 9 floors, then down 4 floors. Which floor
-    is it on?
-
-11. Round $0.396$ to (a) 2 decimal places, (b) 1 significant figure.
-
-12. Write an expression for the total of $6$ items at $£1.85$ each plus $4$ items
-    at $£0.65$ each, then evaluate it.
-
-<details markdown="1">
-<summary>Answers</summary>
-
-1. $40$.
-2. $-7 + 2 + 5 = 0$.
-3. $1\,200$ (double and halve: $96 \times 12.5$; or $48 \times 25 = 48 \times 100 \div 4$).
-4. $3 + 6 \times 6 = 39$.
-5. $2\,800$.
-6. $-2.3$.
-7. $30 \times 40 = 1200$.
-8. $600$.
-9. Cost $40 \times 4.50 = £180$; revenue $40 \times 7.00 = £280$; profit $= £100$.
-10. $-2 + 9 - 4 = 3$, so floor $3$.
-11. (a) $0.40$ (b) $0.4$.
-12. $6 \times 1.85 + 4 \times 0.65 = 11.10 + 2.60 = £13.70$.
-</details>
+:::answers chapter-01-review
 
 ## What you can now do
 

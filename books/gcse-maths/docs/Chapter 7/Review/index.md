@@ -28,27 +28,9 @@ These steps show how conversion, compound measures, rounding and standard form c
 
 For each question, name the method and say why it fits before working.
 
-1. Convert $2.7$ m to mm.
-2. A cyclist travels $36$ km in $1.5$ hours. Find the average speed.
-3. Write the interval for $5.6$ kg rounded to the nearest $0.1$ kg.
-4. A length is $8.2$ cm and a width is $3.4$ cm, each to the nearest $0.1$ cm. Find the upper bound for the area.
-5. Work out $(4\times10^6)(3\times10^{-2})$ in standard form.
-6. Simplify $\sqrt{108}-\sqrt{12}$.
-7. A map distance is $6$ cm at scale $1:50\,000$. Find the real distance in kilometres.
-8. A force of $450$ N acts on $0.15\text{ m}^2$. Find the pressure.
+:::problems chapter-07-review
 
-<details markdown="1">
-<summary>Answers</summary>
-
-1. $2700$ mm.
-2. $36\div1.5=24$ km/h.
-3. $5.55\leq m<5.65$ kg, where $m$ is the mass.
-4. Upper bounds: $8.25$ cm and $3.45$ cm. Area upper bound $=28.4625\text{ cm}^2$.
-5. $(4\times3)\times10^{6+(-2)}=12\times10^4=1.2\times10^5$.
-6. $6\sqrt3-2\sqrt3=4\sqrt3$.
-7. $6\times50\,000=300\,000$ cm $=3$ km.
-8. $450\div0.15=3000$ Pa.
-</details>
+:::answers chapter-07-review
 
 ## What you can now do
 
