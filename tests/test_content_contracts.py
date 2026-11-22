@@ -35,7 +35,7 @@ REVIEW_DEBT = {
     "ie-jc-maths": 14,
     "ie-lc-maths": 13,
     "ie-lc-applied-maths": 9,
-    "ie-lc-physics": 20,
+    "ie-lc-physics": 16,
 }
 
 #: Guided pages with a Hint and a Full working but no Next step.
