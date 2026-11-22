@@ -109,8 +109,10 @@ eight regions from Section 8.4.
 3. Compare your two answers. Write one sentence to explain why the brackets
    changed the result.
 
+<!-- tier:h -->
 In Section 8.6 you will meet the rules that let you regroup an expression without
 changing its value.
+<!-- /tier:h -->
 
 ## You should now be able to
 

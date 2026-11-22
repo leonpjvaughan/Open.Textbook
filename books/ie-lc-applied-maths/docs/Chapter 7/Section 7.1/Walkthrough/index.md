@@ -142,7 +142,11 @@ Then find the period:
 $$T = \frac{2\pi}{\omega} = \underline{\hspace{2cm}}\ \text{s}$$
 
 Keep both numbers. Section 7.2 uses the linear speed to find the centripetal
-acceleration, and Section 7.4 uses the same geometry on a banked bend.
+acceleration.
+
+<!-- tier:h -->
+Section 7.4 uses the same geometry on a banked bend.
+<!-- /tier:h -->
 
 ## You should now be able to
 

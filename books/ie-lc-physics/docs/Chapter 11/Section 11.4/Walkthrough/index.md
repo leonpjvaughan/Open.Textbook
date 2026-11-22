@@ -128,8 +128,11 @@ Back to the chapter problem. You stand at the roadside as the ambulance passes a
 2. Explain why the note drops at the moment it passes you.
 3. State what the driver hears, and explain your answer.
 
-Keep your answers. Section 11.5 uses the Doppler formula to calculate the two frequencies
-you hear.
+Keep your answers.
+
+<!-- tier:h -->
+Section 11.5 uses the Doppler formula to calculate the two frequencies you hear.
+<!-- /tier:h -->
 
 ## You should now be able to
 

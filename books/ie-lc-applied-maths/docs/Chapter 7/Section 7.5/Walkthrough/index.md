@@ -130,8 +130,10 @@ extension in the other direction:
 
 $$x = \frac{mg}{k} = \frac{11760}{120000} = \underline{\hspace{2cm}}\ \text{m}$$
 
+<!-- tier:h -->
 Keep this number. Section 7.6 uses the same spring and the same mass to find the
 period of the car's bounce.
+<!-- /tier:h -->
 
 ## You should now be able to
 

@@ -24,8 +24,8 @@ Answer these from memory. Do not look back at the section.
 
 1. $4\sqrt{3}$. 2. $\frac{3}{4}$.
 
-If an answer differs, revisit Section 7.6 for simplifying surds and Section 4.2
-for adding fractions.
+If question 1 differs, take out the largest square factor ($48 = 16 \times 3$). If
+question 2 differs, revisit Section 4.2 for adding fractions.
 </details>
 
 :::figure warm-up-gate

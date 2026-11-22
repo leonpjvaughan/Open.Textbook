@@ -104,8 +104,11 @@ Now find the range:
 $$R = u_x T = 17.32 \times 2.04 = \underline{\hspace{2cm}}\,\text{m}$$
 
 The time of flight is about $2.04$ s and the range is about $35.35$ m. The ball
-lands about $35$ m from the kick, well beyond the $15$ m wall. Section 3.9 looks
-at what other launch angles would give.
+lands about $35$ m from the kick, well beyond the $15$ m wall.
+
+<!-- tier:h -->
+Section 3.9 looks at what other launch angles would give.
+<!-- /tier:h -->
 
 ## You should now be able to
 

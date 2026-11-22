@@ -109,8 +109,11 @@ $$
 v = 2.7 \times 10^7\,\text{m/s}
 $$
 
-This is the first step of the chapter problem. Keep the value, because Section 17.3
-uses it.
+This is the first step of the chapter problem. Keep this value.
+
+<!-- tier:h -->
+Section 17.3 uses it to find the charge-to-mass ratio of the electron.
+<!-- /tier:h -->
 
 **Example 3.** Calculate the kinetic energy gained by an electron accelerated through
 2000 V, in joules and in electronvolts.
@@ -138,8 +141,11 @@ Back to the chapter problem. The electron gun accelerates the electrons through 
 
 Write down the equation $eV = \tfrac{1}{2}mv^2$ and rearrange it for the speed. Then
 substitute the values and state the speed to two significant figures, with its unit.
+
+<!-- tier:h -->
 Keep the equation: Section 17.3 combines it with the magnetic force to find the
 charge-to-mass ratio.
+<!-- /tier:h -->
 
 ## You should now be able to
 

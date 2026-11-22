@@ -126,8 +126,12 @@ Back to the chapter problem. The towel has a mass of 0.20 kg, the drum has a rad
 2. Calculate the weight of the towel.
 3. Write one sentence saying which force supplies the centripetal force on the towel.
 
-Keep your answers. Section 7.4 uses the same method for vertical circles and banked
-bends, where the direction of the weight changes as the object turns.
+Keep your answers.
+
+<!-- tier:h -->
+Section 7.4 uses the same method for vertical circles and banked bends, where the
+direction of the weight changes as the object turns.
+<!-- /tier:h -->
 
 ## You should now be able to
 

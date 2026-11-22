@@ -94,11 +94,11 @@ REVIEW_HEADING_DEBT = {"gcse-maths": 4}
 #: `<!-- tier:h -->` spans and markdown links are removed. These are the ones the
 #: tier hook cannot unlink.
 TIER_DEBT = {
-    "gcse-maths": 2,
-    "ie-jc-maths": 5,
-    "ie-lc-applied-maths": 14,
+    "gcse-maths": 0,
+    "ie-jc-maths": 0,
+    "ie-lc-applied-maths": 0,
     "ie-lc-maths": 0,
-    "ie-lc-physics": 19,
+    "ie-lc-physics": 0,
 }
 
 

@@ -217,9 +217,8 @@ equal and opposite to the pull.
 
 $$W = Fd = 20 \times 5.0 = 100\,\text{J}$$
 
-The kinetic energy of the box does not change, because the speed is steady. So the
-100 J from the pull is transferred straight to the surroundings by friction as thermal
-energy. Section 4.5 makes this accounting exact.
+The kinetic energy of the box does not change, because the speed is steady. So all
+100 J from the pull is transferred to the surroundings by friction as thermal energy.
 
 </details>
 </details>

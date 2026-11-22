@@ -157,7 +157,12 @@ $$ma = 343 - 118.8 = \underline{\hspace{2cm}}\,\text{N}$$
 
 $$a = \frac{\underline{\hspace{2cm}}}{70} = \underline{\hspace{2cm}}\,\text{m/s}^2$$
 
-Keep both numbers. Section 5.6 uses the resultant to find the terminal speed.
+Keep both numbers. You will compare this resultant with the air resistance in
+Section 5.5.
+
+<!-- tier:h -->
+Section 5.6 also uses the resultant to find the terminal speed.
+<!-- /tier:h -->
 
 ## You should now be able to
 

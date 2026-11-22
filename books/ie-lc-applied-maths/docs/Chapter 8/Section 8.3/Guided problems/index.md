@@ -240,8 +240,7 @@ $0.95 = 95\%$, and $e^{-0.05} \approx 0.9512 = 95.12\%$.
 The daily model leaves $95\%$ of the pollutant after one day. The continuous
 model leaves about $95.12\%$. The continuous model removes slightly less in the
 first day, because the removal is spread through the day and acts on a falling
-amount. Over many days the two models stay close, and Section 8.8 compares them
-properly.
+amount. Over many days the two models stay close.
 
 </details>
 </details>

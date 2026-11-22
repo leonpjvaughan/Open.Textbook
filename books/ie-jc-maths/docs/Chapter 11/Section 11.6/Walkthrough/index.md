@@ -99,7 +99,9 @@ square flower bed of side $(x-2)$ metres is cut from it.
 2. Use the difference of two squares to factorise it.
 3. Simplify the factorised form.
 
+<!-- tier:h -->
 In Section 11.7 you will divide a cubic expression by a linear expression.
+<!-- /tier:h -->
 
 ## You should now be able to
 

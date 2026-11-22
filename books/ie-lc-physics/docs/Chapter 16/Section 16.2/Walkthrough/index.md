@@ -12,8 +12,8 @@ kind: walkthrough
 
 # 16.2 Faraday's law of induction — Learn
 
-**Prerequisites:** magnetic flux and flux linkage from Section 16.1; the
-electromotive force from Section 14.5; the idea of a rate of change.
+**Prerequisites:** magnetic flux and flux linkage from Section 16.1; voltage and
+potential difference from Chapter 14; the idea of a rate of change.
 
 **Objectives:** state Faraday's law of induction; use $E = -N\dfrac{\Delta\Phi}{\Delta t}$
 to find an induced voltage; describe what makes an induced voltage larger.
