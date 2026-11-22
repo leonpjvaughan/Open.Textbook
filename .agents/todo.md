@@ -4,7 +4,7 @@ Working notes for the collection. One item per change. Items are ordered, not
 dated: the first is next. This file is ours, not the reader's — the voice rules
 in `AGENTS.md` do not apply here, but the engineering rules do.
 
-**This file holds open items only.** Closed items are deleted (git history keeps their diagnosis). A new item goes at the next number, with its diagnosis, its fix and its own done-means. Open: **187**, **188**, **192**, **200**, **203**, **217**, **218**.
+**This file holds open items only.** Closed items are deleted (git history keeps their diagnosis). A new item goes at the next number, with its diagnosis, its fix and its own done-means. Open: **187**, **188**, **192**, **200**, **203**, **217**, **218**, **219**.
 
 Accepted limitations live where the check that records them lives (`tests/test_verify_coverage.py`, `books/*/curriculum.yaml`), not here.
 
@@ -224,3 +224,49 @@ it.
 - [ ] `uv run --project solvers/otkd pytest -q` passes.
 - [ ] `docs/problem-mapping.md` states which tolerance governs which decision, if the
       public signature changes.
+
+## 219 — most Review pages carry no verified answer block
+
+**What is wrong.** The Chapter 1 Review of `ie-lc-physics` now renders its ten
+questions and answers from `problems/chapter-01-review.yaml`, and the verifier
+proves every one. It is the only Review page in the collection built that way:
+every other Review page either has no answers or has hand-written ones.
+
+```
+$ for f in books/*/docs/Chapter\ */Review/index.md; do
+    grep -q ':::answers' "$f" || echo "$f"
+  done | awk -F/ '{print $2}' | sort | uniq -c | sort -rn
+     24 gcse-maths
+     22 ie-jc-maths
+     20 ie-lc-physics
+     18 ie-lc-maths
+      9 ie-lc-applied-maths
+      5 a-level-maths
+```
+
+The maths books are not empty: `gcse-maths` and `a-level-maths` wrap their
+answers in a hand-written `<details>` block, so no verifier has seen the
+arithmetic, and the block cannot be regenerated when a question changes. The
+brief that commissioned the pilot said the gap was only the Irish books; the
+count above says otherwise.
+
+**The fix.** Take one chapter at a time, as the pilot did. Move the questions
+and the answers into `books/<id>/problems/chapter-NN-review.yaml`, one record per
+question, using the check kind that fits (`convert`, `dimensions`, `sigfigs`,
+`uncertainty`, `gradient`, `intercept`, `area`, `evaluate`/`approx`) and a
+`structured` component wherever the question asks for a judgement. Re-derive
+every number rather than copying it from the old answer block. Replace the list
+with `:::problems <bank>` and `:::answers <bank>`, and change nothing else on
+the page. Never invent a numeric check for a judgement: say in the bank comment
+what the oracle cannot prove.
+
+**Done means**
+
+- [ ] every `books/<id>/docs/Chapter */Review/index.md` renders its mixed practice
+      from a bank, with no hand-written answer block left behind.
+- [ ] `uv run python -m textbook.verify books/<id>/problems/` reports `ok` for every
+      file, and `uv run python -m textbook.lint` reports nothing.
+- [ ] each book's profile builds with no `math-error` page, and no page text changes
+      except the two marker lines.
+- [ ] the bank comment on each Review names the question, if any, whose judgement
+      the verifier cannot prove.

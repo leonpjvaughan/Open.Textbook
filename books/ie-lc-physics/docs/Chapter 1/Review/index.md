@@ -48,28 +48,9 @@ enough to measure.
 Work through these without notes. For each one, decide **which idea applies** and say
 why. Some ask for a quantity, and some ask for a judgement.
 
-1. Convert 3.5 km to metres, and 0.50 m$^3$ to litres.
-2. A block has a mass of 0.80 kg and a volume of 0.00020 m$^3$. Calculate its density,
-   and write the answer to the significant figures the data justify.
-3. A ruler is marked in millimetres. State the reading uncertainty, and calculate the
-   percentage uncertainty in a reading of 0.060 m.
-4. A ball falls 1.80 m. Use $s = \frac{1}{2}gt^2$ to find the fall time and the
-   landing speed. Take $g = 9.8\,\text{m/s}^2$.
-5. The model predicts 0.61 s and the measurement is 0.66 s. Calculate the percentage
-   difference, and say which is more likely to explain it: air resistance or reaction
-   time.
-6. A student records 0.72 s, 0.71 s, 0.73 s and 0.98 s for the same fall. Identify the
-   anomalous reading, find the mean of the other three, and find the uncertainty as
-   half the range.
-7. A distance-time graph passes through (0, 1.0 m) and (4.0 s, 9.0 m). Find the
-   gradient with its unit and the intercept. Say what the intercept means.
-8. A force-extension graph is a straight line through the origin and the point
-   (0.15 m, 9.0 N). Find the area under the graph, and say what the area represents.
-9. Explain why a model that ignores air resistance can still be useful, and give one
-   situation where the model would fail badly.
-10. A student plots $s$ against $t^2$ and gets a straight line through the origin with
-    gradient 5.1 m/s$^2$. Find $g$, and say whether the graph supports the
-    falling-ball model.
+:::problems chapter-01-review
+
+:::answers chapter-01-review
 
 ## What you can now do
 

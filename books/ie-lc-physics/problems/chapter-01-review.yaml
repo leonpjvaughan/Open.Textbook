@@ -1,0 +1,273 @@
+# Mixed practice for the Chapter 1 Review.
+#
+# Ten questions, one record each, in the order they appear on the Review page.
+# The first is two exact prefix conversions; the density, reading-percentage,
+# fall-time and percentage-difference records add a `sigfigs` check where the data
+# fix the rounding; the reading uncertainty is proved by `dimensions`; the graph
+# records use `gradient`, `intercept` and `area`; and the uncertainty record
+# declares the half-range convention. Questions 5, 6, 7, 8, 9 and 10 ask for a
+# judgement as well as, or instead of, a number, so each carries a `structured`
+# component.
+#
+# Honest limit: this proves arithmetic, dimensions and the declared conventions,
+# not physics. A `structured` check proves only that a model answer contains its
+# declared steps and concepts, in order. Question 9 is a judgement with no
+# numeric answer at all: the verifier can prove the two ideas are present and in
+# order, and nothing about whether they are right.
+#
+# The data are read as the Review page states them. Question 6's four readings are
+# 0.72 s, 0.71 s, 0.73 s and 0.98 s; the 0.98 s reading is the anomaly and is left
+# out of the mean and the half-range.
+chapter: 1
+problems:
+  - id: r1-conversions
+    section: Review
+    tier: O
+    refs: ['1.1']
+    statement: 'Convert $3.5\,\text{km}$ to metres, and $0.50\,\text{m}^3$ to litres.'
+    answer_label: 'The two conversions'
+    check:
+      kind: all
+      checks:
+        - kind: convert
+          value: '3.5'
+          from: km
+          to: m
+          answer: '3500'
+        - kind: convert
+          value: '0.50'
+          from: m^3
+          to: L
+          answer: '500'
+    answer_text: '$3.5\,\text{km} = 3.5 \times 10^3\,\text{m} = 3500\,\text{m}$. The prefix kilo means $10^3$. A litre is a cubic decimetre, so $1\,\text{m}^3 = 10^3\,\text{L}$ and $0.50\,\text{m}^3 = 0.50 \times 10^3\,\text{L} = 500\,\text{L}$. The factor is cubed because a volume is three lengths multiplied: the conversion is $10 \times 10 \times 10$, not $10$.'
+
+  - id: r2-density
+    section: Review
+    tier: O
+    refs: ['1.1', '1.2']
+    statement: 'A block has a mass of $0.80\,\text{kg}$ and a volume of $0.00020\,\text{m}^3$. Calculate its density, and write the answer to the significant figures the data justify.'
+    answer_label: 'Density to the figures the data justify'
+    check:
+      kind: all
+      checks:
+        - kind: dimensions
+          expression: m / V
+          values:
+            m: {value: '0.80', unit: kg}
+            V: {value: '0.00020', unit: m^3}
+          answer: {value: '4000', unit: kg/m^3}
+        - kind: sigfigs
+          value: '4000'
+          figures: 2
+          answer: '4.0e3'
+          convention: round-once
+    answer_text: '$\rho = \dfrac{m}{V} = \dfrac{0.80}{0.00020} = 4000\,\text{kg/m}^3$. Both readings carry two significant figures, so the answer carries two as well: $4.0 \times 10^3\,\text{kg/m}^3$. Writing $4000$ alone would not say how many figures were justified, so use the standard form.'
+
+  - id: r3-reading-uncertainty
+    section: Review
+    tier: O
+    refs: ['1.1', '1.2']
+    statement: 'A ruler is marked in millimetres. State the reading uncertainty, and calculate the percentage uncertainty in a reading of $0.060\,\text{m}$.'
+    answer_label: 'The reading uncertainty and the percentage uncertainty'
+    check:
+      kind: all
+      checks:
+        - kind: dimensions
+          expression: d / 2
+          values:
+            d: {value: '0.001', unit: m}
+          answer: {value: '0.0005', unit: m}
+        - kind: sigfigs
+          value: '5/6'
+          figures: 2
+          answer: '0.83'
+          convention: round-once
+    answer_text: 'The smallest division is $1\,\text{mm} = 0.001\,\text{m}$. The reading uncertainty is half of that, $\pm 0.0005\,\text{m}$, which is $\pm 0.5\,\text{mm}$. The percentage uncertainty is $\dfrac{0.0005}{0.060} \times 100\% = 0.83\%$ to two significant figures. A small reading carries a larger percentage uncertainty than a large one from the same ruler.'
+
+  - id: r4-fall-time-speed
+    section: Review
+    tier: O
+    refs: ['1.1', '1.3']
+    statement: 'A ball falls $1.80\,\text{m}$. Use $s = \frac{1}{2}gt^2$ to find the fall time and the landing speed. Take $g = 9.8\,\text{m/s}^2$.'
+    answer_label: 'The fall time and the landing speed'
+    check:
+      kind: all
+      checks:
+        - kind: dimensions
+          expression: sqrt(2 * s / g)
+          values:
+            s: {value: '1.80', unit: m}
+            g: {value: '9.8', unit: m/s^2}
+          answer: {value: '0.6061', unit: s}
+          tolerance: '0.0001'
+        - kind: sigfigs
+          value: 'sqrt(2 * 1.80 / 9.8)'
+          figures: 2
+          answer: '0.61'
+          tolerance: '0.0001'
+          convention: round-once
+        - kind: dimensions
+          expression: g * sqrt(2 * s / g)
+          values:
+            g: {value: '9.8', unit: m/s^2}
+            s: {value: '1.80', unit: m}
+          answer: {value: '5.9397', unit: m/s}
+          tolerance: '0.0001'
+        - kind: sigfigs
+          value: '9.8 * sqrt(2 * 1.80 / 9.8)'
+          figures: 2
+          answer: '5.9'
+          tolerance: '0.0001'
+          convention: round-once
+    answer_text: 'Rearranging $s = \frac{1}{2}gt^2$ gives $t = \sqrt{\dfrac{2s}{g}} = \sqrt{\dfrac{2 \times 1.80}{9.8}} = 0.606\,\text{s}$, which is $0.61\,\text{s}$ to two significant figures. The landing speed is $v = gt = 9.8 \times 0.606 = 5.94\,\text{m/s}$, which is $5.9\,\text{m/s}$ to two significant figures. Both results are two figures because $g$ is given as $9.8$, which carries two.'
+
+  - id: r5-percentage-difference
+    section: Review
+    tier: O
+    refs: ['1.2', '1.3']
+    statement: 'The model predicts $0.61\,\text{s}$ and the measurement is $0.66\,\text{s}$. Calculate the percentage difference, and say which is more likely to explain it: air resistance or reaction time.'
+    answer_label: 'The percentage difference and the likely explanation'
+    check:
+      kind: all
+      checks:
+        - kind: evaluate
+          expression: ((66/100) - (61/100)) / (61/100) * 100
+          answer: '500/61'
+        - kind: sigfigs
+          value: '500/61'
+          figures: 2
+          answer: '8.2'
+          convention: round-once
+        - kind: structured
+          requires: [state-difference, choose-explanation]
+          concepts: [percentage-difference, timing-error, model-error]
+          points:
+            - id: state-difference
+              text: 'The measurement is 0.05 s longer than the prediction, which is 8.2% of 0.61 s.'
+              concepts: [percentage-difference]
+            - id: choose-explanation
+              text: 'Reaction time is the more likely explanation. A hand-held stopwatch adds up to about 0.20 s, far more than the 0.05 s difference, while air resistance changes the fall time of a dense ball by only a few per cent.'
+              concepts: [timing-error, model-error]
+    answer_text: 'The difference is $0.66 - 0.61 = 0.05\,\text{s}$, so the percentage difference is $\dfrac{0.05}{0.61} \times 100\% = 8.2\%$ to two significant figures. Reaction time is the more likely explanation. A hand-held stopwatch adds up to about $0.20\,\text{s}$, which is far larger than the $0.05\,\text{s}$ difference, while air resistance changes the fall time of a dense ball by only a few per cent. The model is not the problem here; the timing is.'
+
+  - id: r6-anomaly-mean
+    section: Review
+    tier: O
+    refs: ['1.2']
+    statement: 'A student records $0.72\,\text{s}$, $0.71\,\text{s}$, $0.73\,\text{s}$ and $0.98\,\text{s}$ for the same fall. Identify the anomalous reading, find the mean of the other three, and find the uncertainty as half the range.'
+    answer_label: 'The anomaly, the mean and the half-range uncertainty'
+    check:
+      kind: all
+      checks:
+        - kind: uncertainty
+          mean_of: ['0.72', '0.71', '0.73']
+          convention: half-range
+          answer: '0.72'
+          uncertainty: '0.01'
+        - kind: structured
+          requires: [identify-anomaly]
+          concepts: [outlier]
+          points:
+            - id: identify-anomaly
+              text: 'The reading 0.98 s is anomalous: it lies far above the other three, which agree to within 0.02 s, and it was probably a slow reaction or a mistimed start. It is left out of the mean rather than averaged in.'
+              concepts: [outlier]
+    answer_text: 'The reading $0.98\,\text{s}$ is anomalous. It lies far above the other three, which agree to within $0.02\,\text{s}$, so it is a timing slip and is left out. The mean of the other three is $\dfrac{0.72 + 0.71 + 0.73}{3} = 0.72\,\text{s}$. The range of those three is $0.73 - 0.71 = 0.02\,\text{s}$, so the uncertainty is half the range, $0.01\,\text{s}$. The result is $0.72 \pm 0.01\,\text{s}$.'
+
+  - id: r7-gradient-intercept
+    section: Review
+    tier: O
+    refs: ['1.1', '1.4']
+    statement: 'A distance-time graph passes through $(0, 1.0\,\text{m})$ and $(4.0\,\text{s}, 9.0\,\text{m})$. Find the gradient with its unit and the intercept. Say what the intercept means.'
+    answer_label: 'The gradient, the intercept and what it means'
+    check:
+      kind: all
+      checks:
+        - kind: gradient
+          series:
+            - [0, 1.0]
+            - [4.0, 9.0]
+          between: [1.9, 2.1]
+        - kind: intercept
+          series:
+            - [0, 1.0]
+            - [4.0, 9.0]
+          between: [0.9, 1.1]
+        - kind: structured
+          requires: [interpret-intercept]
+          concepts: [initial-position]
+          points:
+            - id: interpret-intercept
+              text: 'The intercept is the distance at t = 0, so it is where the object started: 1.0 m from the origin. It is not a speed, and it is read from the vertical axis.'
+              concepts: [initial-position]
+    answer_text: 'Gradient $= \dfrac{\Delta d}{\Delta t} = \dfrac{9.0 - 1.0}{4.0 - 0} = \dfrac{8.0}{4.0} = 2.0\,\text{m/s}$. The unit comes from dividing metres by seconds. The line is $d = 2.0t + 1.0$, so the intercept on the distance axis is $1.0\,\text{m}$. The intercept is the distance at $t = 0$, so it is the starting position, $1.0\,\text{m}$ from the origin.'
+
+  - id: r8-area-spring
+    section: Review
+    tier: O
+    refs: ['1.1', '1.4']
+    statement: 'A force-extension graph is a straight line through the origin and the point $(0.15\,\text{m}, 9.0\,\text{N})$. Find the area under the graph, and say what the area represents.'
+    answer_label: 'The area under the graph and what it represents'
+    check:
+      kind: all
+      checks:
+        - kind: area
+          series:
+            - [0, 0]
+            - [0.15, 9.0]
+          between: [0.66, 0.69]
+        - kind: structured
+          requires: [interpret-area]
+          concepts: [work-done, energy-stored]
+          points:
+            - id: interpret-area
+              text: 'The area under a force-extension graph is the work done in stretching the spring, which is stored as elastic potential energy. Force times distance is work, so the unit of the area is the joule.'
+              concepts: [work-done, energy-stored]
+    answer_text: 'The area is a triangle: $\dfrac{1}{2} \times 0.15 \times 9.0 = 0.675\,\text{J}$, which is $0.68\,\text{J}$ to two significant figures. The area under a force-extension graph is the work done in stretching the spring, and that work is stored as elastic potential energy. Force times distance is work, so the area is in joules.'
+
+  - id: r9-model-judgement
+    section: Review
+    tier: O
+    refs: ['1.3']
+    statement: 'Explain why a model that ignores air resistance can still be useful, and give one situation where the model would fail badly.'
+    answer_label: 'Why the model is useful, and where it fails'
+    check:
+      kind: structured
+      requires: [why-useful, when-fails]
+      concepts: [small-effect, large-effect, model-limits]
+      points:
+        - id: why-useful
+          text: 'The model is useful because the effect it leaves out is small. For a dense ball over a short fall, air resistance changes the time by only a few per cent, which is less than the uncertainty in a hand-timed measurement. A model is judged by whether its assumptions are good enough for the question being asked.'
+          concepts: [small-effect, model-limits]
+        - id: when-fails
+          text: 'It fails badly when the neglected effect is large: a feather or a parachute falls slowly and never obeys free fall, and a very long fall lets a ball reach terminal velocity, after which it stops accelerating.'
+          concepts: [large-effect, model-limits]
+    answer_text: 'The model is useful because the effect it leaves out is small for the cases it is used on. For a dense ball over a short fall, air resistance changes the time by only a few per cent, which is less than the uncertainty in a hand-timed measurement. A model is judged by whether its assumptions are good enough for the question. It fails badly when the ignored effect is large: a feather or a parachute falls slowly and never obeys free fall, and a very long fall lets a ball reach terminal velocity, after which it stops accelerating.'
+
+  - id: r10-graph-supports-model
+    section: Review
+    tier: O
+    refs: ['1.1', '1.4']
+    statement: 'A student plots $s$ against $t^2$ and gets a straight line through the origin with gradient $5.1\,\text{m/s}^2$. Find $g$, and say whether the graph supports the falling-ball model.'
+    answer_label: 'The value of g and whether the graph supports the model'
+    check:
+      kind: all
+      checks:
+        - kind: dimensions
+          expression: 2 * m
+          values:
+            m: {value: '5.1', unit: m/s^2}
+          answer: {value: '10.2', unit: m/s^2}
+        - kind: structured
+          requires: [state-g, compare-accepted, conclude]
+          concepts: [gradient-meaning, agreement, proportional]
+          points:
+            - id: state-g
+              text: 'The gradient is half of g, so g = 2 x 5.1 = 10.2 m/s^2, which is 1.0 x 10^1 m/s^2 to two significant figures.'
+              concepts: [gradient-meaning]
+            - id: compare-accepted
+              text: 'The accepted value is 9.8 m/s^2, so the result is about 4% higher. A difference of that size is within the scatter of hand-timed readings.'
+              concepts: [agreement]
+            - id: conclude
+              text: 'A straight line through the origin is what s = half g t squared predicts, so the graph supports the falling-ball model over the range tested. It does not prove the model.'
+              concepts: [proportional, agreement]
+    answer_text: 'The gradient of an $s$ against $t^2$ graph is $\frac{1}{2}g$, so $g = 2 \times 5.1 = 10.2\,\text{m/s}^2$, which is $1.0 \times 10^1\,\text{m/s}^2$ to two significant figures. The accepted value is $9.8\,\text{m/s}^2$, so the result is about 4% higher, which is within the scatter of hand-timed readings. A straight line through the origin is exactly what $s = \frac{1}{2}gt^2$ predicts, so the graph supports the falling-ball model over the range tested. It does not prove the model; it is evidence for it.'
