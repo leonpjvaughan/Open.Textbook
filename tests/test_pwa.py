@@ -166,7 +166,7 @@ def built_site(tmp_path_factory):
     from textbook import pipeline
 
     out = tmp_path_factory.mktemp("pwa") / "book"
-    pipeline.build("gcse-maths", "higher", out=out, chapter=1, index=False)
+    pipeline.build("gcse-maths", "higher", out=out, chapter=1)
     return out
 
 
@@ -263,8 +263,8 @@ def test_pagefind_is_revalidated_rather_than_cached():
     `pagefind.js` is imported by name from the page and the index is fetched by
     pagefind's own code with relative URLs, so nothing can address it without
     rewriting pagefind's output. Cache-first would serve a month-old script beside a
-    fresh index — a search that ranks pages that no longer exist — and the payload is
-    2–3 MB per book, which is not something to hold until the next deploy.
+    fresh index — a search that ranks pages that no longer exist — and the collection's
+    index is tens of megabytes, which is not something to hold until the next deploy.
     """
     source = SW.read_text(encoding="utf-8")
     fetch_handler = function_body(source, "onFetch")

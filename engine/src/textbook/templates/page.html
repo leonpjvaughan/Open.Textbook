@@ -17,6 +17,7 @@
 <meta name="color-scheme" content="light dark">
 $theme_color_metas
 <meta name="build" content="$build">
+$search_meta
 $pager_head
 <link rel="canonical" href="$canonical">
 <link rel="manifest" href="/manifest.webmanifest">
@@ -55,18 +56,21 @@ document.body.setAttribute(
     <a class="masthead__brand" href="${prefix}"><span class="masthead__book">$site_title</span>$masthead_section</a>
     <!-- The search is a sibling of the actions rather than one of them: at phone
          widths it has to be able to take a row of its own, and a flex item cannot
-         escape a parent to do that. -->
-    <div class="search">
-      <!-- `aria-controls` names the list the input fills; the list is hidden by
-           the script rather than by `:empty`, so "No results" can be a message.
-           The status line is the live region: revealing the list is not an
-           announcement on its own. -->
-      <input id="search-input" type="search" placeholder="Search"
-             aria-label="Search this book" aria-controls="search-results"
-             autocomplete="off">
-      <ul id="search-results" class="search__results" aria-label="Search results" hidden></ul>
-      <p id="search-status" class="visually-hidden" role="status" aria-live="polite"></p>
-    </div>
+         escape a parent to do that.
+
+         A native `<search>` around a native `type="search"` input. The runtime is
+         shared with the landing page (`assets/search/search.js`), so both load one
+         index and one set of keyboard behaviour; the panel is a sibling of this
+         element because at a wide width it opens in the masthead's flow, which
+         pushes the page down instead of covering the reading column. -->
+    <search class="search tb-search" data-search data-search-prefer="$search_prefer">
+      <label class="visually-hidden" for="search-input">Search all books</label>
+      <input class="tb-search__input" id="search-input" type="search"
+             data-search-input placeholder="Search" aria-controls="search-results"
+             autocomplete="off" spellcheck="false">
+      <p class="visually-hidden" id="search-status" data-search-status
+         role="status" aria-live="polite"></p>
+    </search>
     <div class="masthead__actions">
       <!-- Root-absolute, like the 404's link and the manifest: a book is served
            from a subpath, so a relative link home would be wrong at every depth.
@@ -74,6 +78,15 @@ document.body.setAttribute(
            before this there was no way back to it from inside a book. -->
       <a class="masthead__home" href="/">All books</a>
       $settings_trigger
+    </div>
+  </div>
+  <div class="wrap masthead__search">
+    <div class="tb-search__panel" data-search-panel hidden>
+      <div class="tb-search__panel-head">
+        <span class="tb-search__panel-title">Results</span>
+        <button class="tb-search__close" type="button" data-search-close>Close</button>
+      </div>
+      <ul class="tb-search__results" id="search-results" aria-label="Search results"></ul>
     </div>
   </div>
 </header>
@@ -138,104 +151,6 @@ if (drawer) {
 }
 </script>
 
-<script type="module">
-/* Search, powered by Pagefind: the index is built over the rendered HTML after
- * the build, so the ranking, stemming and excerpting are not ours to write, and
- * nothing is fetched until the reader actually types.
- *
- * Pagefind stores result URLs from the site root, so every one is re-based onto
- * this book's prefix: the book is served from a subpath. */
-const prefix = "${prefix}";
-const input = document.getElementById("search-input");
-const results = document.getElementById("search-results");
-const status = document.getElementById("search-status");
-let pagefind = null;
-let sequence = 0;
-
-async function load() {
-  if (!pagefind) pagefind = await import(prefix + "pagefind/pagefind.js");
-  return pagefind;
-}
-
-/* Every state change goes through here, so the panel is never left showing stale
- * rows and the live region always says what happened. A reader who types a term
- * with no hits used to see the panel vanish in silence. */
-function show(html, message) {
-  /* The empty case empties the node rather than parsing an empty string: the same
-   * rule the under-two-character case has always followed, because Trusted Types
-   * refuses `innerHTML` even for "". */
-  if (html === "") results.replaceChildren();
-  else results.innerHTML = html;
-  results.hidden = html === "";
-  status.textContent = message;
-}
-
-input.addEventListener("input", async () => {
-  const term = input.value.trim();
-  if (term.length < 2) { show("", ""); return; }
-  const mine = ++sequence;
-  let search;
-  try {
-    search = await (await load()).search(term);
-  } catch (err) {
-    show("<li class=\"search__empty\">Search is unavailable.</li>", "Search is unavailable.");
-    return;
-  }
-  const pages = await Promise.all(search.results.slice(0, 20).map((r) => r.data()));
-  if (mine !== sequence) return;
-  if (pages.length === 0) {
-    show(
-      "<li class=\"search__empty\">No results</li>",
-      "No results for " + term + ".",
-    );
-    return;
-  }
-  show(
-    pages
-      .map((p) => '<li><a href="' + prefix + p.url.replace(/^\//, "") + '">' + p.meta.title + "</a></li>")
-      .join(""),
-    pages.length + (pages.length === 1 ? " result." : " results."),
-  );
-});
-
-/* The results are links, so the keyboard walks them directly: ArrowDown from the
- * input enters the list, ArrowDown/ArrowUp move within it, Escape closes it and
- * returns the reader to the field. Measured before this: ArrowDown left focus in
- * the input and the list could only be reached by clicking. */
-function links() {
-  return [...results.querySelectorAll("li a")];
-}
-
-function close() {
-  show("", "");
-  input.focus();
-}
-
-input.addEventListener("keydown", (event) => {
-  if (event.key === "ArrowDown" && !results.hidden) {
-    const first = links()[0];
-    if (first) { event.preventDefault(); first.focus(); }
-  } else if (event.key === "Escape" && !results.hidden) {
-    event.preventDefault();
-    close();
-  }
-});
-
-results.addEventListener("keydown", (event) => {
-  const anchors = links();
-  const at = anchors.indexOf(document.activeElement);
-  if (event.key === "ArrowDown" && at > -1) {
-    event.preventDefault();
-    (anchors[at + 1] || anchors[0]).focus();
-  } else if (event.key === "ArrowUp" && at > -1) {
-    event.preventDefault();
-    if (at === 0) input.focus();
-    else anchors[at - 1].focus();
-  } else if (event.key === "Escape") {
-    event.preventDefault();
-    close();
-  }
-});
-</script>
+<script type="module" src="$search_js"></script>
 </body>
 </html>

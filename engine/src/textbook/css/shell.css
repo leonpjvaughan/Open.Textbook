@@ -307,56 +307,10 @@ a { color: var(--tb-link); }
 
 /* search ------------------------------------------------------------------ */
 
-.search { position: relative; }
-
-.search input {
-  padding: 0.35rem 0.6rem;
-  border: 1px solid var(--tb-rule);
-  border-radius: var(--tb-radius);
-  background: var(--tb-paper);
-  color: var(--tb-ink);
-  font: inherit;
-  font-size: 0.85rem;
-}
-
-
-.search__results {
-  position: absolute;
-  right: 0;
-  top: 110%;
-  z-index: 10;
-  margin: 0;
-  padding: 0.25rem;
-  list-style: none;
-  min-width: 18rem;
-  max-height: 60vh;
-  overflow: auto;
-  background: var(--tb-paper);
-  border: 1px solid var(--tb-rule);
-  border-radius: var(--tb-radius);
-  box-shadow: 0 6px 20px color-mix(in srgb, var(--tb-ink) 18%, transparent);
-}
-
-/* A result is a tap target: 44px tall, and still a block link so the whole row
- * is the hit area. Measured before this rule: 33px. */
-.search__results li a {
-  display: flex;
-  align-items: center;
-  min-height: 2.75rem;
-  padding: 0.3rem 0.4rem;
-  font-size: 0.9rem;
-  text-decoration: none;
-}
-
-/* The list is hidden by the script, not by `:empty`, so that "No results" can be
- * a message rather than a vanished panel. */
-.search__results[hidden] { display: none; }
-
-.search__results .search__empty {
-  padding: 0.4rem 0.45rem;
-  color: var(--tb-ink-soft);
-  font-size: 0.9rem;
-}
+/* The field, the panel and the result rows are one shared component
+ * (`assets/stylesheets/search.css`), because the landing page and every book page
+ * run the same runtime over the same index. This file owns only the masthead's
+ * placement of it. */
 
 /* narrow ------------------------------------------------------------------ */
 
@@ -415,10 +369,7 @@ a { color: var(--tb-link); }
   /* A focused input below 16px makes a phone zoom the whole page, which moves
    * the field under the reader's thumb while they type. Measured before this
    * rule: 13.6px at 390. */
-  .search input { width: 100%; font-size: 1rem; }
-  /* The results panel is positioned against the search box, which is now the
-   * full width of the page. */
-  .search__results { left: 0; right: 0; min-width: 0; }
+  .tb-search__input { font-size: 1rem; }
   /* A long book title would otherwise push the actions off the row before the
    * search has a chance to wrap. One clipped line: making the title and the section
    * flex items let their nowrap min-content widen the phone's layout viewport to

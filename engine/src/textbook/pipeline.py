@@ -14,10 +14,8 @@ import html
 import json
 import logging
 import posixpath
-from functools import lru_cache
 import re
 import shutil
-import subprocess
 import sys
 import time
 import unicodedata
@@ -37,6 +35,7 @@ from . import book as books
 from . import config as cfg
 from . import portal
 from . import scaffold
+from . import search
 from . import themes
 from .frontmatter import FrontMatterError
 from .frontmatter import read as read_page
@@ -63,6 +62,7 @@ STYLESHEETS: tuple[str, ...] = (
     "assets/stylesheets/book.css",
     "assets/stylesheets/book-local.css",
     "assets/stylesheets/shell.css",
+    "assets/stylesheets/search.css",
     "assets/stylesheets/settings.css",
 )
 
@@ -81,6 +81,7 @@ def stylesheet_sources(book: books.Book) -> dict[str, Path]:
         "assets/stylesheets/book.css": book.docs / "assets/stylesheets/book.css",
         "assets/stylesheets/book-local.css": book.docs / "assets/stylesheets/book-local.css",
         "assets/stylesheets/shell.css": SHELL_CSS,
+        "assets/stylesheets/search.css": root / "assets/stylesheets/search.css",
         "assets/stylesheets/settings.css": root / "assets/stylesheets/settings.css",
     }
 
@@ -118,6 +119,7 @@ def addressed_assets(book: books.Book) -> dict[str, str]:
     # A book without a booklet ships neither the script nor the data, so the
     # manifest must not name it. `tools assets` checks that.
     runtimes = [
+        "assets/search/search.js",
         "assets/settings/settings.js",
         "assets/settings/service-worker.js",
         "assets/offline/offline.js",
@@ -206,17 +208,6 @@ ATTR_LINK = re.compile(r'(?<![\w-])(?:href|src)="([^"]+)"')
 # the build.
 ID_ATTR = re.compile(r'\bid="([^"]*)"')
 
-# Pagefind indexes the rendered HTML after the build; it ships with npm beside
-# KaTeX. Running it is a separate, skippable step so tests do not pay for it.
-@lru_cache(maxsize=None)
-def pagefind() -> Path:
-    """The Pagefind binary, resolved on first use rather than at import.
-
-    A module-level constant would capture the cwd and ``TEXTBOOK_ROOT`` at import.
-    """
-    return books.repo_root() / "node_modules" / ".bin" / "pagefind"
-
-
 def booklet_widget(book: books.Book, prefix: str, filename: str = "booklet.js") -> str:
     """The formulae-booklet `<script>` a page carries, or the empty string.
 
@@ -247,20 +238,115 @@ def split_page_kind(content: str) -> str:
     The ``id`` attribute is **not** touched. It is derived from the whole title, so
     every existing deep link ends in ``…-learn`` and a split that rebuilt the id
     would break all of them; a test pins a page whose title carries a suffix.
+
+    The heading also gets ``data-pagefind-ignore``: it is the search result's title,
+    which the page's metadata returns without the kind, and indexing it as body text
+    made every excerpt start by repeating it.
     """
     match = FIRST_H1.search(content)
     if not match:
         return content
+    opening = match.group(1)
+    if "data-pagefind-ignore" not in opening:
+        opening = f"{opening[:-1]} data-pagefind-ignore>"
     parts = TITLE_KIND.match(match.group(2))
     if not parts:
-        return content
+        return (
+            content[: match.start()]
+            + opening
+            + match.group(2)
+            + match.group(3)
+            + content[match.end():]
+        )
     title, kind = parts.group(1), parts.group(2).strip()
     if not kind:
         return content
     rebuilt = (
-        f'{match.group(1)}{title} <span class="page-kind">— {kind}</span>{match.group(3)}'
+        f'{opening}{title} <span class="page-kind">— {kind}</span>{match.group(3)}'
     )
     return content[: match.start()] + rebuilt + content[match.end():]
+
+
+#: Internal page kind -> the reader-facing name. The authored title suffix
+#: (`… — Learn`) wins where a page has one; this answers for the pages whose kind
+#: lives only in front matter, such as a review or a depth page.
+SEARCH_KINDS: dict[str, str] = {
+    "walkthrough": "Learn",
+    "learn": "Learn",
+    "guided-problems": "Practise with help",
+    "practise-with-help": "Practise with help",
+    "problems": "Practise",
+    "practise": "Practise",
+    "review": "Review",
+    "deeper": "Going deeper",
+}
+
+
+def split_title_kind(title: str) -> tuple[str, str]:
+    """The title without its authored kind, and that kind if it had one."""
+    parts = TITLE_KIND.match(title.strip())
+    if not parts:
+        return title.strip(), ""
+    return parts.group(1).strip(), parts.group(2).strip()
+
+
+def page_type(book: books.Book, meta: dict, md_path: str, authored: str) -> str:
+    """What kind of page a result is, in the reader's words.
+
+    Every row carries one, so a search result names its page type rather than
+    repeating the title's tail. The authored suffix wins because it is what the
+    page says; front matter and the path answer for the pages that have no suffix.
+    """
+    if authored:
+        return authored
+    kind = str(meta.get("kind") or "").strip()
+    if kind in SEARCH_KINDS:
+        return SEARCH_KINDS[kind]
+    if md_path == "index.md":
+        return "Book"
+    if md_path.startswith("Glossary/"):
+        return "Glossary"
+    if md_path.endswith("/index.md") and md_path.startswith("Chapter "):
+        return "Chapter overview"
+    if book.id == "proofs":
+        return "Proof"
+    if book.qualification == books.REFERENCE:
+        return "Reference"
+    return "Page"
+
+
+def search_meta(book: books.Book, profile: str, meta: dict, title: str, md_path: str) -> str:
+    """The `<meta>` tags Pagefind returns with a result.
+
+    Pagefind's default title is the first `<h1>`, and every generated title carries
+    its kind after an em dash. The title returned here is the one the page is
+    *about*; the kind becomes its own value, so a row can print both without
+    splitting strings in the browser.
+
+    The values are attributes on empty `<meta>` elements: they are returned with
+    every result, and nothing is added to the page the reader reads.
+    """
+    clean, authored = split_title_kind(title)
+    section = " ".join(
+        str(part).strip()
+        for part in (meta.get("section"), meta.get("section_title"))
+        if str(part or "").strip()
+    )
+    values = {
+        "title": clean,
+        "type": page_type(book, meta, md_path, authored),
+        "section": section,
+        "chapter": str(meta.get("chapter_title") or "").strip(),
+        "book": book.title,
+        # Only a book with more than one edition needs to say which one a result
+        # belongs to; "Read" or "Proofs" beside the book's own title is noise.
+        "edition": book.profile(profile).name if len(book.profiles) > 1 else "",
+    }
+    return "\n".join(
+        f'<meta data-pagefind-meta="{key}[content]" content="{html.escape(value, quote=True)}">'
+        for key, value in values.items()
+        if value
+    )
 
 
 def masthead_section(meta: dict) -> str:
@@ -731,6 +817,7 @@ def render_page(
         description=html.escape(str(meta.get("description") or book.description)),
         site_title=html.escape(book.title),
         masthead_section=masthead_section(meta),
+        search_meta=search_meta(book, profile, meta, title, md_path),
         canonical=canonical_url(book, profile, url),
         content=content,
         pager=pager_html,
@@ -747,6 +834,11 @@ def render_page(
             prefix + (assets or {}).get("assets/settings/settings.js", "assets/settings/settings.js"),
             quote=True,
         ),
+        search_js=html.escape(
+            prefix + (assets or {}).get("assets/search/search.js", "assets/search/search.js"),
+            quote=True,
+        ),
+        search_prefer=html.escape(f"/{book.deploy_path(profile)}/", quote=True),
         offline_js=html.escape(
             prefix + (assets or {}).get("assets/offline/offline.js", "assets/offline/offline.js"),
             quote=True,
@@ -765,27 +857,6 @@ def render_page(
         or "",
     )
     return rendered, RenderedPage(url=url, title=title), bool(MATH_ERROR.search(content))
-
-
-def run_pagefind(out: Path) -> bool:
-    """Build the search index over the rendered HTML. False if unavailable."""
-    binary = pagefind()
-    if not binary.exists():
-        return False
-    finished = subprocess.run(
-        [str(binary), "--site", str(out), "--quiet"],
-        capture_output=True,
-        text=True,
-    )
-    if finished.returncode != 0:
-        # Present and failing is a defect; absent is a feature this build does not
-        # have. A silent failure would ship a site whose search box says "Search is
-        # unavailable" while the gate stayed green.
-        raise RuntimeError(
-            "pagefind is installed but failed, so the built site has no working "
-            f"search: {(finished.stderr or '').strip()[:400]}"
-        )
-    return True
 
 
 def canonical_url(book: books.Book, profile: str, url: str) -> str:
@@ -1176,7 +1247,6 @@ class BuildResult:
     broken: list[str] = field(default_factory=list)
     maths_errors: list[str] = field(default_factory=list)
     assets: list[str] = field(default_factory=list)
-    indexed: bool = False
     seconds: float = 0.0
 
     @property
@@ -1191,9 +1261,13 @@ def build(
     chapter: int | None = None,
     full_nav: bool = False,
     clean: bool = True,
-    index: bool = True,
 ) -> BuildResult:
-    """Render a book, or one chapter of it, to a directory of static HTML."""
+    """Render a book, or one chapter of it, to a directory of static HTML.
+
+    Search is not this function's job any more: one index is built over the whole
+    assembled site by `textbook.search`, because a result should be able to come
+    from any book. `serve` builds that index beside the one book it serves.
+    """
     started = time.time()
     book = books.book_by_id(book_id)
     profile = profile or book.default_profile.id
@@ -1308,7 +1382,6 @@ def build(
     result.assets = copy_assets(
         book, out, assets=assets, figures=figure_modules, pages=page_bytes
     )
-    result.indexed = run_pagefind(out) if index else False
     # The same 404 the landing page uses, rather than a second one: it loads the
     # bundle stylesheet from the site root and applies the reader's own scheme before
     # paint. Root-absolute paths are what make that safe at any depth.
@@ -1339,7 +1412,6 @@ def report(result: BuildResult) -> None:
     print(f"pages      {len(result.pages)}")
     print(f"html       {size / 1024:.0f} KiB")
     print(f"assets     {', '.join(result.assets)}")
-    print(f"search     {'pagefind' if result.indexed else 'not indexed'}")
     print(f"build      {result.seconds:.2f}s")
     if result.maths_errors:
         print(f"maths      {len(result.maths_errors)} page(s) failed to render")
@@ -1407,7 +1479,11 @@ def serve(book_id: str, profile: str, chapter: int | None, port: int) -> None:
     import socketserver
 
     result = build(book_id, profile, chapter=chapter)
+    # The page imports the collection's one index from the deployment root. Served
+    # on its own, this book *is* the deployment root, so indexing its output here
+    # keeps search working in development without a second loader path.
     report(result)
+    search.report(search.build(result.out))
 
     class Handler(http.server.SimpleHTTPRequestHandler):
         def __init__(self, *args, **kwargs):
@@ -1436,7 +1512,9 @@ def serve(book_id: str, profile: str, chapter: int | None, port: int) -> None:
                 previous = current
                 print("change detected, rebuilding")
                 _drop_caches()
-                report(build(book_id, profile, chapter=chapter))
+                rebuilt = build(book_id, profile, chapter=chapter)
+                report(rebuilt)
+                search.report(search.build(rebuilt.out))
                 previous = stamp()
 
 
@@ -1449,12 +1527,8 @@ def main() -> int:
     parser.add_argument("--profile", default=None, help="profile id, e.g. higher")
     parser.add_argument("--out", type=Path, default=None)
     parser.add_argument("--chapter", type=int, default=None, help="build one chapter")
-    parser.add_argument(
-        "--full-nav",
-        action="store_true",
-        help="render every chapter in the sidebar even for a subset build",
-    )
-    parser.add_argument("--no-index", action="store_true", help="skip Pagefind")
+    parser.add_argument("--full-nav", action="store_true",
+                        help="render every chapter in the sidebar even for a subset build")
     parser.add_argument("--serve", action="store_true")
     parser.add_argument("--port", type=int, default=8123)
     args = parser.parse_args()
@@ -1466,10 +1540,7 @@ def main() -> int:
         return 0
 
     try:
-        result = build(
-            args.book, args.profile, args.out, args.chapter, args.full_nav,
-            index=not args.no_index,
-        )
+        result = build(args.book, args.profile, args.out, args.chapter, args.full_nav)
     except FrontMatterError as err:
         log.error("%s", err)
         log.error(

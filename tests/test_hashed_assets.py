@@ -80,8 +80,8 @@ def test_every_asset_a_page_reaches_for_is_in_the_build(built):
 
 def test_the_same_bytes_get_the_same_name(tmp_path):
     """Second build, same sources, same names — or every deploy is a new download."""
-    first = pipeline.build("gcse-maths", "higher", out=tmp_path / "a", chapter=1, index=False)
-    second = pipeline.build("gcse-maths", "higher", out=tmp_path / "b", chapter=1, index=False)
+    first = pipeline.build("gcse-maths", "higher", out=tmp_path / "a", chapter=1)
+    second = pipeline.build("gcse-maths", "higher", out=tmp_path / "b", chapter=1)
     a = (first.out / "assets" / "manifest.json").read_text(encoding="utf-8")
     b = (second.out / "assets" / "manifest.json").read_text(encoding="utf-8")
     assert written_assets(a) == written_assets(b)

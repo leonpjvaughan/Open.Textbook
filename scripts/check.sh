@@ -85,6 +85,11 @@ step "builds"
 while read -r -a build; do
   uv run python -m textbook.pipeline "${build[@]}"
 done < <(uv run python -m textbook.plan --configs)
+# The deployment root and the one search index, in the same order `build-all.sh`
+# uses: the root pages exist before Pagefind sees them, and the browser checks below
+# get the same site a deploy does.
+uv run python -m textbook.portal
+uv run python -m textbook.search
 
 step "browser checks (mobile, canvas, figure paint, phone labels, print)"
 # Mandatory — if Playwright is absent, fail rather than announcing a skip. A branch
