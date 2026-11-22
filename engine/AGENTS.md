@@ -18,7 +18,8 @@ Read the root `AGENTS.md` first; this file owns the **Maths** and **Hooks** trap
 
 | Path | What it does |
 |---|---|
-| `engine/src/textbook/pipeline.py` | **The site**: nav, Pagefind, links, sitemap, 404 |
+| `engine/src/textbook/pipeline.py` | **The site**: nav, links, sitemap, 404 |
+| `engine/src/textbook/search.py` | **The collection's one Pagefind index**, built after every profile and the portal |
 | `engine/src/textbook/hooks/` | The page hooks, in an explicit order |
 | `engine/src/textbook/hooks/maths.py` | `$…$` / `$$…$$` to MathML via KaTeX at build time |
 | `engine/src/textbook/book.py` | Loads `book.yaml`, `collection.yaml`; scheme tokens |

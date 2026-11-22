@@ -366,7 +366,7 @@ def built(tmp_path_factory) -> tuple[dict, dict]:
     # as Higher.
     for book_id in ("proofs", "a-level-maths"):
         profile = books.book_by_id(book_id).default_profile.id
-        result = pipeline.build(book_id, profile, out=root / book_id, index=False)
+        result = pipeline.build(book_id, profile, out=root / book_id)
         assert not result.broken, result.broken
         out[book_id] = result
     return out

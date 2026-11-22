@@ -79,7 +79,7 @@ def test_the_search_is_a_sibling_of_the_actions_not_a_child():
     assert "search-input" not in actions, (
         "the search is back inside the actions, so it cannot take its own row"
     )
-    assert 'class="search"' in page
+    assert 'class="search tb-search"' in page
 
 
 def test_the_masthead_names_the_section_a_page_is_in():

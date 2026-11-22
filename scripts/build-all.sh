@@ -11,7 +11,8 @@
 # a check, and a failing profile prints its own log and exits non-zero.
 #
 # Each pipeline writes only under its own `site/<book>/<profile>/`, so the profiles do
-# not collide. The portal writes the deployment root and therefore runs last, alone.
+# not collide. The portal writes the deployment root and therefore runs last, alone,
+# and the collection's one search index is built over everything after it.
 #
 # Usage: scripts/build-all.sh
 #   BUILD_JOBS=8   how many profiles at once (default 4)
@@ -67,4 +68,8 @@ if [ "$failed" != 0 ]; then
 fi
 
 uv run python -m textbook.portal
+# One search index for the assembled site. It runs here, after every profile and
+# the portal, because a result may name any book and a page built on its own is not
+# the collection. `textbook.search` reports the index size, page count and seconds.
+uv run python -m textbook.search
 echo "every profile built"

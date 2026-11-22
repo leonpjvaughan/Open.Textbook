@@ -69,7 +69,9 @@ COLOPHON_TITLE = "About this book"
 SHARED_FILES: tuple[str, ...] = (
     "assets/stylesheets/themes.css",
     "assets/stylesheets/extra.css",
+    "assets/stylesheets/search.css",
     "assets/stylesheets/settings.css",
+    "assets/search/search.js",
     "assets/settings/settings.js",
     "assets/offline/offline.js",
     "assets/figures/figures.js",

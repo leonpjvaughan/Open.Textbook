@@ -253,11 +253,11 @@ function onFetch(event) {
     event.respondWith(cacheFirst(request, SITE));
     return;
   }
-  // Pagefind's payload keeps its own names: the page imports `pagefind/pagefind.js`
+  // Pagefind's payload keeps its own names: the page imports `/pagefind/pagefind.js`
   // by name and the index is fetched by that code with relative URLs, so nothing
   // here can rename it. Revalidated instead, because a stale script beside a fresh
-  // index is a search that ranks pages that no longer exist — and because the index
-  // is 2–3 MB per book, which is not something to hold until the next deploy.
+  // index is a search that ranks pages that no longer exist — and the collection's
+  // index is tens of megabytes, which is not something to hold until the next deploy.
   if (url.pathname.indexOf("/pagefind/") !== -1) {
     event.respondWith(networkFirst(request, RUNTIME));
     return;

@@ -269,19 +269,28 @@ def test_rewrite_source_links_does_not_strip_then_append_a_directory():
 # --- search ---
 
 
-def test_search_is_indexed_by_pagefind(subset):
-    """Search is Pagefind's, built over the rendered HTML after the build."""
+def test_search_is_one_index_over_the_assembled_site(subset):
+    """Search is Pagefind's, built once over the whole site rather than per book.
+
+    A page's result URL is absolute from the deployment root, so the index has to
+    be the collection's. This builds the same bundle `scripts/build-all.sh` does,
+    over a subset, and checks the three facts a page depends on.
+    """
+    from textbook import search
+
+    index = search.build(subset.out)
     bundle = subset.out / "pagefind"
-    assert subset.indexed, "pagefind did not run"
     assert (bundle / "pagefind.js").exists()
     assert (bundle / "pagefind-entry.json").exists()
     assert any(bundle.glob("*.pf_meta")), "no language metadata written"
+    assert index.pages > 0, "the index reports no pages"
+    assert index.bytes > 0
+    assert index.seconds > 0
 
 
-def test_indexing_can_be_skipped(subset, tmp_path):
-    """Tests build many times; indexing is opt-out so they do not pay for it."""
-    result = pipeline.build(BOOK, "higher", out=tmp_path / "n", chapter=1, index=False)
-    assert result.indexed is False
+def test_a_pipeline_run_does_not_ship_its_own_index(subset, tmp_path):
+    """One index, at the root: a per-book bundle would be a second answer."""
+    result = pipeline.build(BOOK, "higher", out=tmp_path / "n", chapter=1)
     assert not (result.out / "pagefind").exists()
 
 
@@ -297,18 +306,19 @@ def test_indexing_is_scoped_to_the_page_content(subset):
     assert 'class="masthead" data-pagefind-ignore' in html
 
 
-def test_the_search_list_is_cleared_without_parsing_html(subset):
+def test_the_search_list_is_cleared_without_parsing_html():
     """A term under two characters empties the list, and nothing is parsed to do it.
 
-    `results.innerHTML = ""` runs the HTML parser over an empty string and is refused
+    `list.innerHTML = ""` runs the HTML parser over an empty string and is refused
     where Trusted Types is enforced; `replaceChildren()` empties the node directly.
-    The list is still built from strings below, which is the part that needs escaping.
+    The rows are built as nodes, and the one `innerHTML` left is Pagefind's own
+    excerpt markup.
     """
-    html = (subset.out / "chapter-1/index.html").read_text()
-    assert "results.replaceChildren()" in html, (
+    source = (repo_root() / "assets" / "search" / "search.js").read_text(encoding="utf-8")
+    assert "listbox.replaceChildren()" in source, (
         "clearing the search results parses an empty string instead of emptying the node"
     )
-    assert 'results.innerHTML = ""' not in html
+    assert 'innerHTML = ""' not in source
 
 
 def test_the_inline_client_script_parses(subset):
@@ -638,7 +648,7 @@ def test_each_profile_publishes_its_own_canonical_and_sitemap(tmp_path, subset):
     Higher one and could be dropped from search results.
     """
     foundation = pipeline.build(
-        BOOK, "foundation", out=tmp_path / "foundation", chapter=1, index=False
+        BOOK, "foundation", out=tmp_path / "foundation", chapter=1
     )
     for result, profile in ((subset, "higher"), (foundation, "foundation")):
         page = (result.out / "chapter-1" / "index.html").read_text(encoding="utf-8")
@@ -670,7 +680,7 @@ def test_a_chapter_build_reports_a_broken_link_inside_that_chapter(tmp_path, mon
         return html, entry, maths_failed
 
     monkeypatch.setattr(pipeline, "render_page", render_with_a_broken_link)
-    result = pipeline.build(BOOK, "higher", out=tmp_path / "broken", chapter=1, index=False)
+    result = pipeline.build(BOOK, "higher", out=tmp_path / "broken", chapter=1)
     assert any("no-such-page" in entry for entry in result.broken), result.broken
 
 
@@ -930,7 +940,7 @@ def test_an_unknown_profile_is_refused_rather_than_built(tmp_path):
     book = book_by_id("gcse-physics")
     declared = [p.id for p in book.profiles]
     with pytest.raises(ValueError) as caught:
-        pipeline.build(book.id, "bogus", out=tmp_path / "out", index=False)
+        pipeline.build(book.id, "bogus", out=tmp_path / "out")
     message = str(caught.value)
     assert "bogus" in message
     for one in declared:
@@ -988,7 +998,7 @@ def test_the_shared_figure_files_are_copied_from_assets_not_through_a_symlink(tm
                 saved[link] = os.readlink(link)
                 link.unlink()
                 link.write_text(saved[link])
-        pipeline.build(book.id, book.default_profile.id, out=out, index=False)
+        pipeline.build(book.id, book.default_profile.id, out=out)
     finally:
         for link, target in saved.items():
             link.unlink(missing_ok=True)
@@ -1135,9 +1145,11 @@ def test_the_page_kind_is_wrapped_and_the_id_is_untouched():
     assert html.index("— Learn") < html.index("</span>")
 
 
-def test_a_title_without_a_kind_is_left_alone():
+def test_a_title_without_a_kind_is_not_wrapped():
     html = '<h1 id="chapter-1-number">Chapter 1: Number</h1>'
-    assert pipeline.split_page_kind(html) == html
+    split = pipeline.split_page_kind(html)
+    assert 'class="page-kind"' not in split
+    assert '<h1 id="chapter-1-number" data-pagefind-ignore>Chapter 1: Number</h1>' == split
 
 
 def test_only_the_first_heading_is_split():
@@ -1162,7 +1174,7 @@ def test_the_kind_survives_markup_in_the_title():
 
 def test_a_built_page_keeps_the_deep_link_its_suffix_names(subset):
     page = (subset.out / "chapter-1/section-1.1/learn/index.html").read_text(encoding="utf-8")
-    match = re.search(r'<h1 id="([^"]+)">(.*?)</h1>', page, re.S)
+    match = re.search(r'<h1 id="([^"]+)"[^>]*>(.*?)</h1>', page, re.S)
     assert match, "the Learn page has no first heading"
     assert match.group(1).endswith("-learn")
     assert '<span class="page-kind">' in match.group(2)

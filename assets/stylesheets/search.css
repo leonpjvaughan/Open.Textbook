@@ -1,0 +1,246 @@
+/* Search: one component, one index, two places to stand.
+ *
+ * The landing page and every book page render the same markup and load the same
+ * runtime (`assets/search/search.js`), so the field, the panel and the result rows
+ * are authored once here. Colour is always a bundle token; a bundle that changes
+ * the palette changes this too.
+ *
+ * **The panel is in the masthead's flow above 48rem**, so opening it pushes the
+ * page down instead of covering the reading column. Below that it is a sheet: the
+ * runtime measures the field's bottom edge and fixes the panel there, so a phone
+ * reader keeps the field and the keyboard's highlight in view.
+ */
+
+/* The landing page does not load `shell.css`, which is where the books get this. */
+.visually-hidden {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  margin: -1px;
+  padding: 0;
+  overflow: hidden;
+  clip-path: inset(50%);
+  white-space: nowrap;
+  border: 0;
+}
+
+.tb-search {
+  display: flex;
+  flex-direction: column;
+  gap: 0.3rem;
+  min-width: 0;
+}
+
+.tb-search[hidden] { display: none; }
+
+.tb-search__label {
+  font-family: var(--tb-font-mono);
+  font-size: 0.72rem;
+  font-weight: 600;
+  letter-spacing: 0.09em;
+  text-transform: uppercase;
+  color: var(--tb-ink-soft);
+}
+
+.tb-search__input {
+  width: 100%;
+  min-height: 2.5rem;
+  padding: 0.45rem 0.65rem;
+  border: 1px solid var(--tb-rule);
+  border-radius: var(--tb-radius);
+  background: var(--tb-paper);
+  color: var(--tb-ink);
+  font: inherit;
+  font-size: 0.95rem;
+}
+
+.tb-search__input:focus-visible {
+  outline: 2px solid var(--tb-accent);
+  outline-offset: 1px;
+}
+
+.tb-search__hint {
+  margin: 0;
+  color: var(--tb-ink-soft);
+  font-size: 0.8rem;
+}
+
+.tb-search--portal { max-width: 46rem; }
+
+.tb-search__panel {
+  margin: 0.4rem 0;
+  max-width: 46rem;
+  border: 1px solid var(--tb-rule);
+  border-radius: var(--tb-radius);
+  background: var(--tb-paper);
+  overflow: hidden;
+}
+
+.tb-search__panel[hidden] { display: none; }
+
+/* The head is the phone sheet's: a name for the panel and a visible way out that
+ * does not depend on knowing the Escape key. On a wide screen it would be a second
+ * border above the first row, so it is not drawn. */
+.tb-search__panel-head { display: none; }
+
+.tb-search__results {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  max-height: min(60vh, 32rem);
+  overflow: auto;
+}
+
+.tb-search__row + .tb-search__row { border-top: 1px solid var(--tb-rule); }
+
+/* A result is a tap target as well as a link: 44px is the floor this collection
+ * uses for a thumb, and the whole row is the hit area. */
+.tb-search__link {
+  display: block;
+  min-height: 2.75rem;
+  padding: 0.55rem 0.75rem 0.6rem;
+  border-left: 3px solid transparent;
+  color: inherit;
+  text-decoration: none;
+}
+
+.tb-search__link:hover {
+  background: color-mix(in srgb, var(--tb-ink) 4%, var(--tb-paper));
+}
+
+/* The highlight is a rule and a surface, not colour alone: the rule survives a
+ * bundle whose accent is close to its paper, and it reads at a glance while the
+ * reader's focus stays in the field. */
+.tb-search__link.is-active {
+  border-left-color: var(--tb-accent);
+  background: color-mix(in srgb, var(--tb-accent) 8%, var(--tb-paper));
+}
+
+.tb-search__meta {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.1rem 0.5rem;
+  align-items: baseline;
+  font-family: var(--tb-font-mono);
+  font-size: 0.68rem;
+  font-weight: 600;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--tb-ink-soft);
+}
+
+.tb-search__type { color: var(--tb-accent); }
+
+.tb-search__book {
+  font-weight: 400;
+  letter-spacing: 0.02em;
+  text-transform: none;
+}
+
+.tb-search__title {
+  display: block;
+  margin-top: 0.1rem;
+  color: var(--tb-ink);
+  font-weight: 600;
+  font-size: 0.95rem;
+}
+
+.tb-search__chapter {
+  display: block;
+  color: var(--tb-ink-soft);
+  font-size: 0.78rem;
+}
+
+/* One line, as the brief asks: the panel is a list to scan, and the page itself
+ * carries the whole passage. */
+.tb-search__excerpt {
+  display: block;
+  margin-top: 0.2rem;
+  overflow: hidden;
+  color: var(--tb-ink-soft);
+  font-size: 0.85rem;
+  line-height: 1.45;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.tb-search__excerpt mark {
+  background: color-mix(in srgb, var(--tb-accent) 22%, transparent);
+  color: inherit;
+}
+
+.tb-search__empty {
+  padding: 0.9rem 0.75rem;
+  color: var(--tb-ink-soft);
+  font-size: 0.9rem;
+}
+
+.tb-search__fallback {
+  margin: 0.4rem 0 0;
+  max-width: 34rem;
+  color: var(--tb-ink-soft);
+  font-size: 0.9rem;
+}
+
+.tb-search__close {
+  min-height: 2.75rem;
+  padding: 0 0.75rem;
+  border: 1px solid var(--tb-rule);
+  border-radius: var(--tb-radius);
+  background: var(--tb-paper);
+  color: var(--tb-ink);
+  font: inherit;
+  font-size: 0.9rem;
+  cursor: pointer;
+}
+
+.tb-search__close:focus-visible {
+  outline: 2px solid var(--tb-accent);
+  outline-offset: 1px;
+}
+
+@media (max-width: 48rem) {
+  /* The sheet. `top` is set by the runtime from the field's measured bottom, so
+   * the field stays visible above it whatever the masthead contains. */
+  .tb-search__panel {
+    position: fixed;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    z-index: 20;
+    display: flex;
+    flex-direction: column;
+    margin: 0;
+    max-width: none;
+    border-width: 1px 0 0;
+    border-radius: 0;
+  }
+
+  .tb-search__panel[hidden] { display: none; }
+
+  .tb-search__panel-head {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 0.5rem;
+    padding: 0.4rem 1rem;
+    border-bottom: 1px solid var(--tb-rule);
+  }
+
+  .tb-search__panel-title {
+    font-family: var(--tb-font-mono);
+    font-size: 0.72rem;
+    font-weight: 600;
+    letter-spacing: 0.09em;
+    text-transform: uppercase;
+    color: var(--tb-ink-soft);
+  }
+
+  .tb-search__results {
+    flex: 1;
+    max-height: none;
+  }
+
+  .tb-search__link { padding: 0.7rem 1rem; }
+}

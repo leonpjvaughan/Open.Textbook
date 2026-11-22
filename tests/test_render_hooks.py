@@ -262,7 +262,7 @@ def test_no_page_opens_a_fence_with_a_directive():
 @pytest.fixture(scope="module")
 def built(tmp_path_factory) -> pipeline.BuildResult:
     out = tmp_path_factory.mktemp("render-hooks") / "book"
-    return pipeline.build(BOOK, "higher", out=out, chapter=1, index=False)
+    return pipeline.build(BOOK, "higher", out=out, chapter=1)
 
 
 def test_a_real_figure_page_carries_the_loader(built):
@@ -406,7 +406,7 @@ def test_the_toggle_tag_renders_as_an_element_a_script_can_select(tiers):
 )
 def test_the_profiles_agree_with_the_tier_axis(tmp_path, profile, higher_only_present):
     """Section 5.6 is Higher-only; the pipeline filters it by curriculum tier."""
-    result = pipeline.build(BOOK, profile, out=tmp_path / profile, chapter=5, index=False)
+    result = pipeline.build(BOOK, profile, out=tmp_path / profile, chapter=5)
     urls = {entry.url for entry in result.pages}
     present = any("section-5.6/" in url for url in urls)
     assert present is higher_only_present

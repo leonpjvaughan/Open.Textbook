@@ -17,7 +17,7 @@ Shared engine and design system; per-book curriculum, content, problem banks, an
 
 ## Build model
 
-- **One build per book × profile.** Tier filtering strips Higher-only pages and blocks at build time, so `python -m textbook.pipeline --book <id> --profile <profile>` emits each profile under `site/<book>/<profile>/` with its own `site_url`, sitemap, Pagefind index, and 404.
+- **One build per book × profile.** Tier filtering strips Higher-only pages and blocks at build time, so `python -m textbook.pipeline --book <id> --profile <profile>` emits each profile under `site/<book>/<profile>/` with its own `site_url`, sitemap and 404. One Pagefind index is built over the whole assembled site afterwards (`python -m textbook.search`), so a result can name any book.
 - **Root portal (`python -m textbook.portal`)** generates `site/index.html`, `404.html`, `_headers`, `robots.txt`, `sitemap.xml`, `version.json`, `manifest.webmanifest`, `sw.js`, `terms/`, `acknowledgements/`. Cards group by `book.yaml → qualification` and inherit each book's accent tint.
 - **Shared assets are copied at build time** (no symlinks). `scaffold.SHARED_FILES` and `scaffold.SHARED_DIRS` are copied by `pipeline.copy_assets`. `assets/figures/` is the shared figure library — any module there is mountable by bare slug in any book; a book cannot shadow a shared slug.
 - **Hooks** live in `engine/src/textbook/hooks/` and run in the order declared in `hooks/__init__.py` / `pipeline.MARKDOWN_HOOKS`.

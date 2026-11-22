@@ -172,7 +172,7 @@ def test_the_search_field_is_not_below_sixteen_on_a_phone():
     """Below 16px a focused field makes a phone zoom the page under the thumb."""
     sizes = [
         value for selector, prop, value in declarations(SHELL)
-        if prop == "font-size" and "48rem" in selector and ".search input" in selector
+        if prop == "font-size" and "48rem" in selector and ".tb-search__input" in selector
     ]
     assert sizes, "the phone block no longer sets a size for the search field"
     assert px(sizes[-1]) >= 16.0, (
