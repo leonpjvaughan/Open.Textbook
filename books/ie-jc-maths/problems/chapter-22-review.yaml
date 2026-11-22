@@ -1,0 +1,265 @@
+# Mixed practice for the Junior Cycle Mathematics Chapter 22 Review.
+#
+# Sixteen questions covering populations and samples, bias, frequency tables,
+# bar charts, the mean, median, mode, range and interquartile range, correlation,
+# estimating from a sample, misleading axes, pictograms, comparing spreads,
+# questioning a claim and a systematic sample.
+#
+# Honest limit: the verifier proves the summary statistics, the proportion and
+# the arithmetic. It cannot judge a written description or a bias argument, so
+# Questions 1, 2, 7, 10, 12, 14 and 15 carry a `structured` check: that proves the
+# declared steps are present and in order, and nothing about whether the wording
+# is right. The mode is counted in prose, and the quartiles use the convention
+# named in the check.
+chapter: 22
+oracles: [sympy, units]
+symbols:
+  x: {real: true}
+
+problems:
+  - id: r1-population-and-sample
+    section: Review
+    tier: O
+    refs: [SP.3]
+    statement: 'A café asks 30 customers what they think of the new menu. Name the population and the sample.'
+    answer_label: 'Name the population and the sample.'
+    check:
+      kind: structured
+      requires: [name-population, name-sample]
+      concepts: [population, sample]
+      points:
+        - id: name-population
+          text: 'The population is every customer of the café.'
+          concepts: [population]
+        - id: name-sample
+          text: 'The sample is the 30 customers who were asked.'
+          concepts: [sample]
+    answer_text: 'The population is every customer of the café. The sample is the 30 customers who were asked. The sample is smaller than the population, which is why a survey uses one.'
+
+  - id: r2-bias
+    section: Review
+    tier: O
+    refs: [SP.3]
+    statement: 'A survey asks only students in the library about reading. Explain the bias.'
+    answer_label: 'Explain the bias in a survey of students in the library.'
+    check:
+      kind: structured
+      requires: [state-bias, explain-direction]
+      concepts: [bias, library-users]
+      points:
+        - id: state-bias
+          text: 'The sample is biased towards students who read.'
+          concepts: [bias]
+        - id: explain-direction
+          text: 'Students in the library are more likely to enjoy reading than the average student, so the answers do not represent the whole school.'
+          concepts: [library-users]
+    answer_text: 'The sample is biased towards students who read. Students in the library are more likely to enjoy reading than the average student, so their answers do not represent the whole school.'
+
+  - id: r3-tally-total
+    section: Review
+    tier: O
+    refs: [SP.3]
+    statement: 'A tally shows 4, 6 and 5 marks for three values. How many answers were collected?'
+    answer_label: 'How many answers were collected?'
+    check:
+      kind: evaluate
+      expression: '4 + 6 + 5'
+      answer: '15'
+    answer_text: '$4+6+5=15$ answers. The frequencies add to the number of answers collected.'
+
+  - id: r4-tallest-bar
+    section: Review
+    tier: O
+    refs: [SP.3]
+    statement: 'A bar chart has heights 3, 5, 2 and 6. Which bar is tallest?'
+    answer_label: 'Which bar of the chart is tallest?'
+    check:
+      kind: statistic
+      data: [3, 5, 2, 6]
+      stat: max
+      answer: '6'
+    answer_text: 'The tallest bar has height 6, so it is the bar with height 6. Compare the heights: 6 is greater than 3, 5 and 2.'
+
+  - id: r5-mean
+    section: Review
+    tier: O
+    refs: [SP.3]
+    statement: 'Find the mean of $4, 6, 7, 8, 10$.'
+    answer_label: 'Find the mean of $4, 6, 7, 8, 10$.'
+    check:
+      kind: statistic
+      data: [4, 6, 7, 8, 10]
+      stat: mean
+      answer: '7'
+    answer_text: '$7$. Add the values: $4+6+7+8+10=35$. There are 5 values, so the mean is $35\div5=7$.'
+
+  - id: r6-median
+    section: Review
+    tier: O
+    refs: [SP.3]
+    statement: 'Find the median of $3, 9, 5, 7$.'
+    answer_label: 'Find the median of $3, 9, 5, 7$.'
+    check:
+      kind: statistic
+      data: [3, 9, 5, 7]
+      stat: median
+      answer: '6'
+    answer_text: '$6$. Put the values in order first: $3, 5, 7, 9$. There are 4 values, so the median is halfway between the middle two: $(5+7)\div2=6$.'
+
+  - id: r7-mode
+    section: Review
+    tier: O
+    refs: [SP.3]
+    statement: 'Find the mode of $2, 3, 3, 5, 7$.'
+    answer_label: 'Find the mode of $2, 3, 3, 5, 7$.'
+    check:
+      kind: structured
+      requires: [count-frequencies, name-mode]
+      concepts: [most-frequent]
+      points:
+        - id: count-frequencies
+          text: 'Count how often each value appears: 2 once, 3 twice, 5 once and 7 once.'
+          concepts: [frequency]
+        - id: name-mode
+          text: 'The value 3 appears most often, so the mode is 3.'
+          concepts: [most-frequent]
+    answer_text: '$3$. Count how often each value appears: 2 once, 3 twice, 5 once and 7 once. The value 3 appears most often, so the mode is 3.'
+
+  - id: r8-range
+    section: Review
+    tier: O
+    refs: [SP.3]
+    statement: 'Find the range of $12, 18, 9, 15, 20$.'
+    answer_label: 'Find the range of $12, 18, 9, 15, 20$.'
+    check:
+      kind: statistic
+      data: [12, 18, 9, 15, 20]
+      stat: range
+      answer: '11'
+    answer_text: '$11$. The largest value is 20 and the smallest is 9, so the range is $20-9=11$.'
+
+  - id: r9-interquartile-range
+    section: Review
+    tier: O
+    refs: [SP.3]
+    statement: 'Find the interquartile range of $2, 4, 6, 8, 10, 12, 14, 16$.'
+    answer_label: 'Find the interquartile range of $2, 4, 6, 8, 10, 12, 14, 16$.'
+    check:
+      kind: statistic
+      data: [2, 4, 6, 8, 10, 12, 14, 16]
+      stat: iqr
+      convention: exclusive
+      answer: '8'
+    answer_text: '$8$. The values are already in order. The lower half is $2, 4, 6, 8$, with median $Q_1=5$. The upper half is $10, 12, 14, 16$, with median $Q_3=13$. The interquartile range is $Q_3-Q_1=13-5=8$.'
+
+  - id: r10-correlation
+    section: Review
+    tier: O
+    refs: [SP.3]
+    statement: 'A scatter graph shows that students who read more tend to spell better. Describe the correlation.'
+    answer_label: 'Describe the correlation.'
+    check:
+      kind: structured
+      requires: [describe-pattern, name-correlation]
+      concepts: [positive-correlation, link-not-cause]
+      points:
+        - id: describe-pattern
+          text: 'As reading increases, spelling tends to increase.'
+          concepts: [positive-correlation]
+        - id: name-correlation
+          text: 'That is a positive correlation. It is a link, not proof that reading causes better spelling.'
+          concepts: [link-not-cause]
+    answer_text: 'The correlation is positive, because as reading increases, spelling tends to increase. The points on the scatter graph rise from left to right. A correlation is a link, not proof that one thing causes the other.'
+
+  - id: r11-estimate-from-sample
+    section: Review
+    tier: O
+    refs: [SP.3]
+    statement: 'A survey of 40 students finds that 24 take the bus. Estimate how many of 500 students take the bus.'
+    answer_label: 'Estimate how many of 500 students take the bus.'
+    check:
+      kind: evaluate
+      expression: '(24/40)*500'
+      answer: '300'
+    answer_text: '$300$ students. The proportion is $\frac{24}{40}=\frac35$. Apply it to the whole group: $\frac35\times500=300$.'
+
+  - id: r12-misleading-axis
+    section: Review
+    tier: O
+    refs: [SP.3]
+    statement: "A poster's axis starts at 90 instead of 0. Explain why this can mislead."
+    answer_label: 'Explain why an axis that starts at 90 can mislead.'
+    check:
+      kind: structured
+      requires: [describe-effect, give-reason]
+      concepts: [truncated-axis, exaggerated-difference]
+      points:
+        - id: describe-effect
+          text: 'The bars are drawn from a high base, so small differences look large.'
+          concepts: [truncated-axis]
+        - id: give-reason
+          text: 'On an axis from 0, the bars would be tall and close together, which is the honest picture.'
+          concepts: [exaggerated-difference]
+    answer_text: 'Starting the axis at 90 makes small differences look large, because the bars are drawn from a high base. On an axis from 0, the bars are tall and close together, which shows the true size of the difference.'
+
+  - id: r13-pictogram
+    section: Review
+    tier: O
+    refs: [SP.3]
+    statement: 'A pictogram symbol doubles in value and doubles in height and width. How many times larger does it look?'
+    answer_label: 'How many times larger does the doubled symbol look?'
+    check:
+      kind: evaluate
+      expression: '2*2'
+      answer: '4'
+    answer_text: 'It looks $2\times2=4$ times larger. Doubling the height and doubling the width multiplies the area by 4, so a symbol worth twice as much looks four times as big.'
+
+  - id: r14-comparing-spread
+    section: Review
+    tier: O
+    refs: [SP.3]
+    statement: 'Two classes have the same mean mark. Class A has an IQR of 5 and Class B has an IQR of 12. Which class is more consistent?'
+    answer_label: 'Which class is more consistent?'
+    check:
+      kind: structured
+      requires: [compare-spread, decide]
+      concepts: [smaller-iqr, consistency]
+      points:
+        - id: compare-spread
+          text: 'Class A has the smaller interquartile range, 5 against 12.'
+          concepts: [smaller-iqr]
+        - id: decide
+          text: 'A smaller interquartile range means the middle half of the marks is closer together, so Class A is more consistent.'
+          concepts: [consistency]
+    answer_text: 'Class A is more consistent, because its interquartile range is smaller. Class A has an IQR of 5 and Class B has an IQR of 12. With the same mean, the smaller spread means the middle half of Class A is closer together.'
+
+  - id: r15-questioning-claim
+    section: Review
+    tier: O
+    refs: [SP.3]
+    statement: 'A headline says a new app makes students work harder. The survey asked 12 students. Give one reason to question the claim.'
+    answer_label: 'Give one reason to question the claim about the app.'
+    check:
+      kind: structured
+      requires: [name-problem, explain-effect]
+      concepts: [small-sample, overclaim]
+      points:
+        - id: name-problem
+          text: 'The sample is very small: only 12 students were asked.'
+          concepts: [small-sample]
+        - id: explain-effect
+          text: 'A sample that small cannot describe all students, and the word makes claims a cause the survey cannot show.'
+          concepts: [overclaim]
+    answer_text: 'The sample is very small, because only 12 students were asked. A sample that small cannot describe all students, so the claim is too strong for the evidence. The headline also says the app makes students work harder, which claims a cause that the survey cannot show.'
+
+  - id: r16-systematic-sample
+    section: Review
+    tier: O
+    refs: [SP.3]
+    statement: 'A school has 300 students and takes a systematic sample of 30. How many students are between each chosen name?'
+    answer_label: 'How many students are between each chosen name?'
+    check:
+      kind: evaluate
+      expression: '300/30'
+      answer: '10'
+    answer_text: '$300\div30=10$, so take every 10th name. Choose a random starting point in the first 10 names, then take every 10th name after that.'

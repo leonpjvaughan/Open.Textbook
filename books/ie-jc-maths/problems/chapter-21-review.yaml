@@ -1,0 +1,235 @@
+# Mixed practice for the Junior Cycle Mathematics Chapter 21 Review.
+#
+# Eighteen questions covering the counting principle, the sample space, decimal
+# and fraction forms, relative frequency, equally likely outcomes, the
+# complement, the addition rule, the multiplication rule, a two-way table, a
+# tree diagram and expected frequency, plus interleaved percentage and equation
+# items. Questions 17 and 18 are Higher only.
+#
+# Honest limit: the verifier proves the counts and the fraction arithmetic of
+# each rule. It cannot tell whether two events are independent or mutually
+# exclusive, so the choice of rule stays with the reader, and the phrase
+# "simplest form" is prose: the check proves the value of the fraction, not how
+# it is written.
+chapter: 21
+symbols:
+  x: {real: true}
+
+problems:
+  - id: r1-counting-principle
+    section: Review
+    tier: O
+    refs: [SP.1]
+    statement: 'A cafe offers 3 starters and 5 main courses. How many two-course meals are possible?'
+    answer_label: 'How many two-course meals are possible?'
+    check:
+      kind: evaluate
+      expression: '3*5'
+      answer: '15'
+    answer_text: '$15$. Multiply the choices: each of the 3 starters can go with each of the 5 main courses, so $3\times5=15$.'
+
+  - id: r2-sample-space-two-dice
+    section: Review
+    tier: O
+    refs: [SP.1]
+    statement: 'Two fair dice are rolled. How many outcomes are in the sample space?'
+    answer_label: 'How many outcomes are in the sample space for two dice?'
+    check:
+      kind: evaluate
+      expression: '6*6'
+      answer: '36'
+    answer_text: '$36$. Each die has 6 results, and every result of the first die can go with every result of the second, so $6\times6=36$.'
+
+  - id: r3-decimal-to-fraction
+    section: Review
+    tier: O
+    refs: [SP.2]
+    statement: 'Write $0.45$ as a fraction in its simplest form.'
+    answer_label: 'Write $0.45$ as a fraction in its simplest form.'
+    check:
+      kind: evaluate
+      expression: '0.45'
+      answer: '9/20'
+    answer_text: '$\frac{9}{20}$. The decimal $0.45$ is $\frac{45}{100}$. Divide the top and the bottom by 5: $\frac{45\div5}{100\div5}=\frac{9}{20}$.'
+
+  - id: r4-relative-frequency
+    section: Review
+    tier: O
+    refs: [SP.2]
+    statement: 'A die is rolled 60 times and shows a 6 on 11 of the rolls. Work out the relative frequency of a 6.'
+    answer_label: 'Work out the relative frequency of a 6.'
+    check:
+      kind: approx
+      value: '11/60'
+      target: '0.1833'
+      tolerance: '0.00005'
+    answer_text: '$\frac{11}{60}$. Divide the number of sixes by the number of rolls: $11\div60=\frac{11}{60}$. As a decimal this is $0.1833\ldots$, about $0.183$.'
+
+  - id: r5-probability-even
+    section: Review
+    tier: O
+    refs: [SP.2]
+    statement: 'A fair die is rolled. Find the probability of an even number.'
+    answer_label: 'Find the probability of an even number on a fair die.'
+    check:
+      kind: evaluate
+      expression: '3/6'
+      answer: '1/2'
+    answer_text: '$\frac12$. The even results are 2, 4 and 6, which is 3 of the 6 equally likely results. So $P=\frac{3}{6}=\frac12$.'
+
+  - id: r6-probability-red-counter
+    section: Review
+    tier: O
+    refs: [SP.2]
+    statement: 'A bag holds 3 red and 7 blue counters. One counter is taken at random. Find the probability that it is red.'
+    answer_label: 'Find the probability that the counter is red.'
+    check:
+      kind: evaluate
+      expression: '3/(3 + 7)'
+      answer: '3/10'
+    answer_text: '$\frac{3}{10}$. There are $3+7=10$ counters in the bag, and 3 of them are red, so $P(\text{red})=\frac{3}{10}$.'
+
+  - id: r7-complement-rain
+    section: Review
+    tier: O
+    refs: [SP.2]
+    statement: 'The probability that it rains is $0.25$. Find the probability that it does not rain.'
+    answer_label: 'Find the probability that it does not rain.'
+    check:
+      kind: evaluate
+      expression: '1 - 0.25'
+      answer: '0.75'
+    answer_text: '$0.75$. Rain and no rain are complements, so their probabilities add to 1: $1-0.25=0.75$.'
+
+  - id: r8-complement-not-three
+    section: Review
+    tier: O
+    refs: [SP.2]
+    statement: 'A fair die is rolled. Find the probability that the result is not a 3.'
+    answer_label: 'Find the probability that the result is not a 3.'
+    check:
+      kind: evaluate
+      expression: '1 - 1/6'
+      answer: '5/6'
+    answer_text: '$\frac56$. The probability of a 3 is $\frac16$, so its complement is $1-\frac16=\frac56$. Five of the six results are not a 3.'
+
+  - id: r9-addition-even-or-five
+    section: Review
+    tier: O
+    refs: [SP.2]
+    statement: 'A fair die is rolled. Find the probability of an even number or a 5.'
+    answer_label: 'Find the probability of an even number or a 5.'
+    check:
+      kind: evaluate
+      expression: '3/6 + 1/6'
+      answer: '2/3'
+    answer_text: '$\frac23$. The even results are 2, 4 and 6, and the result 5 is not one of them, so the events do not overlap. Add the probabilities: $\frac36+\frac16=\frac46=\frac23$.'
+
+  - id: r10-addition-three-or-five
+    section: Review
+    tier: O
+    refs: [SP.2]
+    statement: 'A fair die is rolled. Find the probability of a 3 or a 5.'
+    answer_label: 'Find the probability of a 3 or a 5.'
+    check:
+      kind: evaluate
+      expression: '1/6 + 1/6'
+      answer: '1/3'
+    answer_text: '$\frac13$. A die cannot show 3 and 5 at the same time, so the two events are mutually exclusive and you add the probabilities: $\frac16+\frac16=\frac13$.'
+
+  - id: r11-multiplication-two-heads
+    section: Review
+    tier: O
+    refs: [SP.2]
+    statement: 'A fair coin is tossed twice. Find the probability of two heads.'
+    answer_label: 'Find the probability of two heads.'
+    check:
+      kind: evaluate
+      expression: '(1/2)*(1/2)'
+      answer: '1/4'
+    answer_text: '$\frac14$. The tosses are independent, so multiply the probabilities: $\frac12\times\frac12=\frac14$. One of the four outcomes HH, HT, TH, TT is two heads.'
+
+  - id: r12-multiplication-two-fours
+    section: Review
+    tier: O
+    refs: [SP.2]
+    statement: 'A fair die is rolled twice. Find the probability of a 4 on both rolls.'
+    answer_label: 'Find the probability of a 4 on both rolls.'
+    check:
+      kind: evaluate
+      expression: '(1/6)*(1/6)'
+      answer: '1/36'
+    answer_text: '$\frac{1}{36}$. The rolls are independent, so multiply: $\frac16\times\frac16=\frac{1}{36}$. One of the 36 outcomes of two dice is a double 4.'
+
+  - id: r13-two-way-table
+    section: Review
+    tier: O
+    refs: [SP.2]
+    statement: 'A two-way table shows 40 students, and 12 of them are boys who walk to school. A student is chosen at random. Find the probability that the student is a boy who walks.'
+    answer_label: 'Find the probability that the student is a boy who walks.'
+    check:
+      kind: evaluate
+      expression: '12/40'
+      answer: '3/10'
+    answer_text: '$\frac{3}{10}$. Read the cell for boys who walk and divide by the grand total: $\frac{12}{40}=\frac{3}{10}$, because dividing both numbers by 4 gives $\frac{3}{10}$.'
+
+  - id: r14-tree-diagram
+    section: Review
+    tier: O
+    refs: [SP.2]
+    statement: 'A fair coin is tossed twice. Use a tree diagram to find the probability of a head then a tail.'
+    answer_label: 'Use a tree diagram to find the probability of a head then a tail.'
+    check:
+      kind: evaluate
+      expression: '(1/2)*(1/2)'
+      answer: '1/4'
+    answer_text: '$\frac14$. On the tree, the branch for a head leaves $\frac12$ and the branch for a tail leaves $\frac12$ again. Multiply along the branch: $\frac12\times\frac12=\frac14$.'
+
+  - id: r15-percentage
+    section: Review
+    tier: O
+    refs: [N.2]
+    statement: 'Work out 15% of 240.'
+    answer_label: 'Work out 15% of 240.'
+    check:
+      kind: evaluate
+      expression: '(15/100)*240'
+      answer: '36'
+    answer_text: '$36$. Ten per cent of 240 is 24, and 5% is half of that, which is 12. Add them: $24+12=36$.'
+
+  - id: r16-solve-equation
+    section: Review
+    tier: O
+    refs: [AF.4]
+    statement: 'Solve $3x+5=20$.'
+    answer_label: 'Solve $3x+5=20$.'
+    check:
+      kind: solve
+      equation: '3*x + 5 = 20'
+      variable: x
+      answer: '5'
+    answer_text: '$x=5$. Subtract 5 from both sides to get $3x=15$, then divide both sides by 3 to get $x=5$. Check: $3\times5+5=20$.'
+
+  - id: r17-expected-sixes
+    section: Review
+    tier: H
+    refs: [SP.2]
+    statement: 'A fair die is rolled 150 times. Work out the expected number of 6s.'
+    answer_label: 'Work out the expected number of 6s in 150 rolls.'
+    check:
+      kind: evaluate
+      expression: '150*(1/6)'
+      answer: '25'
+    answer_text: '$25$. The expected number is the number of trials multiplied by the probability of a 6: $150\times\frac16=25$.'
+
+  - id: r18-expected-reds
+    section: Review
+    tier: H
+    refs: [SP.2]
+    statement: 'A spinner lands on red with probability $\frac25$. It is spun 250 times. Work out the expected number of reds.'
+    answer_label: 'Work out the expected number of reds in 250 spins.'
+    check:
+      kind: evaluate
+      expression: '250*(2/5)'
+      answer: '100'
+    answer_text: '$100$. Multiply the number of spins by the probability: $250\times\frac25=100$.'
