@@ -28,6 +28,12 @@ ASSET = "assets/figures/figures.js"
 # cannot disagree about it.
 SHARED = scaffold.SHARED_FIGURE_FILES
 
+#: Modules mounted by `:::figure` that are controls, not drawings: the relevance
+#: prompt and the warm-up gate. They are not numbered and get no caption, because
+#: "Figure 1" under a text box is not a figure and would push the first real
+#: drawing to Figure 2. `tools canvas` already names these two as non-drawings.
+UI_FIGURES = frozenset({"relevance-prompt", "warm-up-gate"})
+
 
 def figures_dir(config):
     return cfg.docs_dir(config) / "assets" / "figures"
@@ -101,6 +107,14 @@ def on_page_markdown(markdown, page, config, files):
                 f"(known: {', '.join(sorted(known)) or 'none'})"
             )
         used.add(slug)
+        filename = (config.get("figure_modules") or {}).get(slug) or scaffold.addressed_name(
+            modules[slug]
+        )
+        if slug in UI_FIGURES:
+            return (
+                f'<div><maths-figure data-figure="{slug}" '
+                f'data-figure-src="{filename}"></maths-figure></div>'
+            )
         number += 1
         # **The `<figure>` is load-bearing.** Python-Markdown treats an unknown tag as
         # inline, so a bare `<maths-figure>` came back wrapped in a `<p>` — 524 of them
@@ -115,9 +129,6 @@ def on_page_markdown(markdown, page, config, files):
         # cached copy is still the one served. The loader falls back to
         # `data-figure` when the attribute is absent, which is what keeps one
         # module readable in the Quarto / MyST / MDX ports, where nothing is hashed.
-        filename = (config.get("figure_modules") or {}).get(slug) or scaffold.addressed_name(
-            modules[slug]
-        )
         return (
             f'<figure class="tb-figure" id="figure-{number}">'
             f'<maths-figure data-figure="{slug}" '

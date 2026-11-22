@@ -145,6 +145,16 @@ def test_each_figure_is_numbered_and_captioned(docs):
     assert "Figure 1" in source and "Figure 2" in source
 
 
+def test_a_control_mount_is_not_numbered_as_a_figure(docs):
+    """The relevance prompt and the warm-up gate are controls, not drawings.
+    Numbering them put "Figure 1" under a text box and pushed the first real
+    figure to Figure 2."""
+    source = run_figure_hook(":::figure relevance-prompt\n", docs)
+    assert 'class="tb-figure"' not in source
+    assert 'id="figure-1"' not in source
+    assert 'data-figure="relevance-prompt"' in source
+
+
 def test_the_loader_is_injected_relative_to_the_page(docs):
     """The loader path is computed from the page, so it works at any depth."""
     md_path = "figure/index.md"  # one directory deep -> one '../'
