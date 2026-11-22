@@ -112,6 +112,43 @@ a { color: var(--tb-link); }
   view-transition-name: site-masthead;
 }
 
+/* The reading progress line: how far through the page the reader is, on the bottom
+ * edge of the masthead. Two pixels of accent, drawn from `scaleX(0)` to `scaleX(1)`
+ * by the root scroller, and nothing else.
+ *
+ * Absolutely positioned inside the sticky masthead, so it adds no height to the bar
+ * and cannot move the article under it — the one measurable failure a progress line
+ * tends to have. It is decorative: no script, no fallback where the browser has no
+ * scroll-driven animation, and nothing announced. A reader who asked for less motion
+ * does not get a bar that fills as they scroll, so it is not drawn at all. */
+.progress {
+  position: absolute;
+  inset: auto 0 0 0;
+  height: 2px;
+  background: var(--tb-accent);
+  transform: scaleX(0);
+  transform-origin: 0 50%;
+  pointer-events: none;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .progress { display: none; }
+}
+
+@supports (animation-timeline: scroll()) {
+  @media (prefers-reduced-motion: no-preference) {
+    @keyframes tb-progress {
+      from { transform: scaleX(0); }
+      to { transform: scaleX(1); }
+    }
+    .progress {
+      /* `animation-timeline` after the shorthand, or the shorthand resets it. */
+      animation: tb-progress linear both;
+      animation-timeline: scroll(root block);
+    }
+  }
+}
+
 .masthead__inner {
   display: flex;
   align-items: center;
@@ -273,6 +310,39 @@ a { color: var(--tb-link); }
   font-size: 0.85rem;
 }
 
+/* The filter field. It is an enhancement and says nothing until the script that
+ * runs it is loaded: the markup ships it `hidden` and the drawer script reveals it,
+ * so a reader with scripting off sees the tree they have always had and no control
+ * that would do nothing. Above the drawer breakpoint the whole tree is a column on
+ * screen, where narrowing it is not a question anybody asks. */
+.nav-filter { display: none; }
+
+.nav-filter__input {
+  box-sizing: border-box;
+  width: 100%;
+  min-height: 2.75rem;
+  padding: 0.5rem 0.7rem;
+  border: 1px solid var(--tb-rule);
+  border-radius: var(--tb-radius);
+  background: var(--tb-paper);
+  color: var(--tb-ink);
+  /* 16px, like the masthead's field: below it a phone zooms the page on focus and
+   * the field moves under the reader's thumb. */
+  font-size: 1rem;
+  font-family: inherit;
+}
+
+.nav-filter__input:focus-visible {
+  outline: 2px solid var(--tb-accent);
+  outline-offset: 2px;
+}
+
+.nav-filter__empty {
+  margin: 0.4rem 0 0;
+  color: var(--tb-ink-soft);
+  font-size: 0.85rem;
+}
+
 .content {
   min-width: 0;
   /* The content track is wider than the prose: a table, a display equation or a
@@ -342,6 +412,19 @@ a { color: var(--tb-link); }
   .nav-drawer > summary { display: list-item; }
   .nav-drawer[open] > summary { padding-bottom: 0.3rem; }
   .sidebar { padding-bottom: 0.75rem; }
+  /* The field is an enhancement: `hidden` in the markup, shown by the script. */
+  .nav-filter:not([hidden]) { display: block; padding: 0.1rem 0 0.6rem; }
+  /* **The drawer's own height.** A whole book is up to 25 chapters and 335 links; left
+   * in the page's flow it printed every one of them above the article, and the reader's
+   * position was a scroll away from the control they had just used. A bounded box with
+   * its own scroll keeps the drawer a drawer: it opens at the current chapter, that
+   * chapter is scrolled into view inside this box, and the article stays where it was.
+   * `contain` stops a swipe inside the box from carrying on into the page. */
+  .nav-drawer[open] > .sidebar {
+    max-height: min(60svh, 30rem);
+    overflow-y: auto;
+    overscroll-behavior: contain;
+  }
   /* A drawer row is a thumb target: 44px, the floor this file already uses for the
    * settings trigger and the pager. The rows measured 28px, and there are up to 335
    * of them behind one control. */
