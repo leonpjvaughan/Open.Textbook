@@ -168,6 +168,11 @@ const MEASURE = () => {
   };
   const full = [];
   for (const p of document.querySelectorAll("main p")) {
+    /* The reading column, not an inset. A paragraph inside a callout, a list or a
+     * disclosure is narrower by design; including it measured the callout's
+     * padding as if it were the column and pulled the median a character below
+     * the phone range. */
+    if (!p.parentElement || !p.parentElement.matches(".md-typeset, main")) continue;
     if ((p.textContent || "").trim().length <= 200) continue;
     const counts = lines(p);
     full.push(...counts.slice(0, -1));
