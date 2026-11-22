@@ -97,80 +97,9 @@ be redone whenever the model changes.
 For each question, say which method you will use and why before you calculate.
 The items mix this chapter with Chapter 1, so the choice is not always obvious.
 
-1. Solve $x^4 - 13x^2 + 36 = 0$.
+:::problems chapter-02-review
 
-2. Write $\dfrac{4}{2 - \sqrt{3}}$ with a rational denominator.
-
-3. Solve the simultaneous equations $2x + y = 8$ and $xy = 6$.
-
-4. Solve $x^2 - 3x - 10 \leq 0$.
-
-5. Factorise $2x^3 - x^2 - 13x - 6$ completely.
-
-6. Simplify $\dfrac{x + 3}{x^2 - 9}$ and state the excluded values.
-
-7. Solve $|2x + 1| = 7$.
-
-8. Find the inverse of $f(x) = \dfrac{3x - 1}{x + 2}$.
-
-9. Prove that the sum of three consecutive whole numbers is a multiple of $3$.
-
-10. Disprove the claim "for all real numbers $x$ and $y$, if $x > y$ then
-    $x^2 > y^2$".
-
-11. The curve $y = x^3$ is translated $2$ units to the right and $1$ unit up.
-    Write the new equation.
-
-12. A ball's height is modelled by $h = 3 + 8t - 5t^2$. Find the greatest height
-    and when it occurs.
-
-<details markdown="1">
-<summary>Answers</summary>
-
-1. **Substitute, because the equation is quadratic in $x^2$.** Let $t = x^2$:
-   $t^2 - 13t + 36 = 0$, so $(t - 4)(t - 9) = 0$. Then $x^2 = 4$ or $x^2 = 9$,
-   giving $x = \pm 2$ and $x = \pm 3$.
-
-2. **Rationalise with a conjugate.** Multiply top and bottom by $2 + \sqrt{3}$:
-   $\dfrac{4(2 + \sqrt{3})}{4 - 3} = 8 + 4\sqrt{3}$.
-
-3. **Substitute, because one equation is linear.** From $y = 8 - 2x$,
-   $x(8 - 2x) = 6$, so $2x^2 - 8x + 6 = 0$ and $x^2 - 4x + 3 = 0$. Then
-   $(x - 1)(x - 3) = 0$, so the pairs are $(1, 6)$ and $(3, 2)$.
-
-4. **Factorise and sketch the parabola.** $x^2 - 3x - 10 = (x - 5)(x + 2)$. The
-   parabola opens upwards and the inequality is "at most zero", so the solution
-   is between the roots: $-2 \leq x \leq 5$.
-
-5. **Use the factor theorem, then divide.** Try factors of $6$. $p(3) = 54 - 9 - 39 - 6 = 0$, so $x - 3$ is a factor. Dividing gives
-   $(x - 3)(2x^2 + 5x + 2)$, and $2x^2 + 5x + 2 = (2x + 1)(x + 2)$. So
-   $2x^3 - x^2 - 13x - 6 = (x - 3)(2x + 1)(x + 2)$.
-
-6. **Factorise and cancel.** $x^2 - 9 = (x - 3)(x + 3)$, so the expression is
-   $\dfrac{1}{x - 3}$. The original is not defined at $x = 3$ or $x = -3$, so
-   both values are excluded.
-
-7. **Split the modulus into two cases.** Case 1: $2x + 1 = 7$, so $x = 3$.
-   Case 2: $2x + 1 = -7$, so $x = -4$. Both values work.
-
-8. **Rearrange and swap.** Write $y = \dfrac{3x - 1}{x + 2}$ and cross-multiply:
-   $y(x + 2) = 3x - 1$, so $x(y - 3) = -2y - 1$ and
-   $x = \dfrac{2y + 1}{3 - y}$. Swapping gives
-   $f^{-1}(x) = \dfrac{2x + 1}{3 - x}$, with $x \neq 3$.
-
-9. **Deduce, using a general letter.** The numbers are $n$, $n + 1$ and $n + 2$
-   for a whole number $n$. Their sum is $3n + 3 = 3(n + 1)$, which has a factor
-   $3$. So the sum is a multiple of $3$.
-
-10. **Find one counter example.** Take $x = 1$ and $y = -2$. Then $x > y$, but
-    $x^2 = 1$ and $y^2 = 4$, so $x^2 < y^2$. The claim is false.
-
-11. **Transform the input, then the output.** Replacing $x$ with $x - 2$ gives
-    $(x - 2)^3$. Adding $1$ to the output gives $y = (x - 2)^3 + 1$.
-
-12. **Complete the square.** $h = -5\left(t^2 - \frac{8}{5}t\right) + 3 = -5\left(t - \frac{4}{5}\right)^2 + \frac{16}{5} + 3 = -5\left(t - \frac{4}{5}\right)^2 + \frac{31}{5}$.
-    The greatest height is $\frac{31}{5} = 6.2$ m, at $t = 0.8$ s.
-</details>
+:::answers chapter-02-review
 
 ## What you can now do
 

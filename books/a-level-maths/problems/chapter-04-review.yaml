@@ -1,0 +1,210 @@
+# Review bank for Chapter 4 (Sequences and series).
+#
+# Fifteen mixed-practice questions mixing Chapter 4 with Chapters 1, 2 and 3.
+# Questions 1 to 13 are proved symbolically by the SymPy oracle (expansions,
+# series, sums, recurrences, coordinate geometry and algebra). Questions 14 and
+# 15 are modelling judgements with no numeric answer, so they use `structured`
+# from the `units` oracle.
+#
+# Honest limit: the verifier proves the algebra, series sums and convergence
+# bounds, not the reader's choice of method. For Questions 14 and 15,
+# `structured` checks only that the declared steps and concepts appear in order.
+chapter: 4
+oracles: [sympy, units]
+symbols:
+  x: {real: true}
+  r: {real: true}
+  n: {integer: true}
+  m: {integer: true}
+  L: {real: true}
+problems:
+  - id: r1-binomial-expand
+    section: '4.1'
+    refs: [D1]
+    statement: 'Expand $(1 + 2x)^6$.'
+    answer_label: 'The expansion'
+    check:
+      kind: evaluate
+      expression: '(1 + 2*x)**6'
+      answer: '1 + 12*x + 60*x**2 + 160*x**3 + 240*x**4 + 192*x**5 + 64*x**6'
+    answer_text: '**Binomial theorem, positive whole number $n$.** Using coefficients $1, 6, 15, 20, 15, 6, 1$ with $b = 2x$: $(1 + 2x)^6 = 1 + 12x + 60x^2 + 160x^3 + 240x^4 + 192x^5 + 64x^6$.'
+
+  - id: r2-binomial-coeff
+    section: '4.1'
+    refs: [D1]
+    statement: 'Find the coefficient of $x^3$ in the expansion of $(3 - x)^7$.'
+    answer_label: 'The coefficient of $x^3$'
+    check:
+      kind: evaluate
+      expression: 'binomial(7, 3) * 3**4 * (-1)**3'
+      answer: '-2835'
+    answer_text: '**One term at a time.** The term in $x^3$ is $\dbinom{7}{3} 3^4 (-x)^3 = 35 \times 81 \times (-1)x^3 = -2835x^3$, so the coefficient is $-2835$.'
+
+  - id: r3-rational-binomial
+    section: '4.2'
+    refs: [D1]
+    statement: 'Expand $(1 - 3x)^{\frac{1}{2}}$ up to and including the term in $x^3$, and state the range of validity.'
+    answer_label: 'Expansion and range of validity'
+    check:
+      kind: all
+      checks:
+        - {kind: apply, expression: '(1 - 3*x)**(1/2)', apply: {op: series, args: [x, '0', '4']}, answer: '1 - 3*x/2 - 9*x**2/8 - 27*x**3/16'}
+        - {kind: inequality, inequality: 'Abs(-3*x) < 1', variable: x, answer: 'Interval.open(-1/3, 1/3)'}
+    answer_text: '**General binomial series with $n = \dfrac{1}{2}$ and $-3x$ in place of $x$.** $(1 - 3x)^{\frac{1}{2}} = 1 - \dfrac{3}{2}x - \dfrac{9}{8}x^2 - \dfrac{27}{16}x^3 + \dots$, valid for $|-3x| < 1$, which is $|x| < \dfrac{1}{3}$.'
+
+  - id: r4-binomial-estimate-sqrt
+    section: '4.2'
+    refs: [D1]
+    statement: 'Use the first three terms of the expansion of $(1 + x)^{\frac{1}{2}}$ to estimate $\sqrt{1.04}$.'
+    answer_label: 'The estimate'
+    check:
+      kind: all
+      checks:
+        - {kind: apply, expression: '(1 + x)**(1/2)', apply: {op: series, args: [x, '0', '3']}, answer: '1 + x/2 - x**2/8'}
+        - {kind: evaluate, expression: '1 + (1/2)*(4/100) - (1/8)*(4/100)**2', answer: '10198/10000'}
+        - {kind: approx, value: 'sqrt(104/100)', target: '1.0198', tolerance: '0.0001'}
+    answer_text: '**First three terms, then substitute.** $(1 + x)^{\frac{1}{2}} \approx 1 + \dfrac{1}{2}x - \dfrac{1}{8}x^2$. Putting $x = 0.04$ gives $1 + 0.02 - 0.0002 = 1.0198$, so $\sqrt{1.04} \approx 1.0198$.'
+
+  - id: r5-sigma-linear
+    section: '4.4'
+    refs: [D3]
+    statement: 'Evaluate $\sum_{r=1}^{15}(4r - 3)$.'
+    answer_label: 'The sum'
+    check:
+      kind: apply
+      expression: '4*r - 3'
+      apply: {op: sum, args: [r, '1', '15']}
+      answer: '435'
+    answer_text: '**Split the sum and use the standard result.** $\sum_{r=1}^{15}(4r - 3) = 4\sum_{r=1}^{15} r - 3(15) = 4(120) - 45 = 480 - 45 = 435$.'
+
+  - id: r6-sigma-squares
+    section: '4.4'
+    refs: [D3]
+    statement: 'Work out $\sum_{r=1}^{12}r^2$.'
+    answer_label: 'The sum'
+    check:
+      kind: apply
+      expression: 'r**2'
+      apply: {op: sum, args: [r, '1', '12']}
+      answer: '650'
+    answer_text: '**The standard result for squares.** $\sum_{r=1}^{12} r^2 = \dfrac{12 \times 13 \times 25}{6} = \dfrac{3900}{6} = 650$.'
+
+  - id: r7-arithmetic-sum
+    section: '4.5'
+    refs: [D4]
+    statement: 'Work out the sum of the first 25 terms of $7, 11, 15, \dots$.'
+    answer_label: 'The sum of 25 terms'
+    check:
+      kind: apply
+      expression: '7 + 4*(r - 1)'
+      apply: {op: sum, args: [r, '1', '25']}
+      answer: '1375'
+    answer_text: '**Arithmetic series.** Here $a = 7$ and $d = 4$, so $S_{25} = \dfrac{25}{2}\bigl(2(7) + 24(4)\bigr) = \dfrac{25}{2}(14 + 96) = \dfrac{25}{2}(110) = 1375$.'
+
+  - id: r8-sum-to-infinity
+    section: '4.6'
+    refs: [D5]
+    statement: 'Find the sum to infinity of $18 + 12 + 8 + \dots$.'
+    answer_label: 'The sum to infinity'
+    check:
+      kind: all
+      checks:
+        - {kind: evaluate, expression: '12 / 18', answer: '2/3'}
+        - {kind: compare, relation: '<', lhs: 'Abs(2/3)', rhs: '1'}
+        - {kind: apply, expression: '18 * (2/3)**n', apply: {op: sum, args: [n, '0', 'oo']}, answer: '54'}
+    answer_text: '**Sum to infinity.** The common ratio is $\dfrac{12}{18} = \dfrac{2}{3}$, and $\left|\dfrac{2}{3}\right| < 1$, so $S_\infty = \dfrac{18}{1 - \frac{2}{3}} = \dfrac{18}{\frac{1}{3}} = 54$.'
+
+  - id: r9-geometric-terms
+    section: '4.6'
+    refs: [D5]
+    statement: 'A geometric sequence has 2nd term $6$ and 5th term $48$. Find the first term and the common ratio.'
+    answer_label: 'First term and common ratio'
+    check:
+      kind: all
+      checks:
+        - {kind: solve, equation: 'r**3 = 48 / 6', variable: r, answer: ['2']}
+        - {kind: evaluate, expression: '6 / 2', answer: '3'}
+        - {kind: evaluate, expression: '3 * 2**4', answer: '48'}
+    answer_text: '**Two terms, then divide.** $ar = 6$ and $ar^4 = 48$, so $r^3 = \dfrac{48}{6} = 8$ and $r = 2$. Then $a = \dfrac{6}{2} = 3$.'
+
+  - id: r10-recurrence-fixed-point
+    section: '4.3'
+    refs: [D2]
+    statement: 'A recurrence is $u_{n+1} = 0.6u_n + 5$ with $u_1 = 10$. Find the level the terms settle on.'
+    answer_label: 'The settling level'
+    check:
+      kind: all
+      checks:
+        - {kind: compare, relation: '<', lhs: 'Abs(6/10)', rhs: '1'}
+        - {kind: solve, equation: 'L = (6/10)*L + 5', variable: L, answer: ['25/2']}
+    answer_text: '**Fixed point of the recurrence.** At the settling level $L$, $L = 0.6L + 5$, so $0.4L = 5$ and $L = 12.5$. The sequence settles because $|0.6| < 1$.'
+
+  - id: r11-gradient-line
+    section: '3.1'
+    refs: [C1]
+    statement: 'Work out the gradient of the line through $(2, -1)$ and $(6, 7)$.'
+    answer_label: 'The gradient'
+    check:
+      kind: evaluate
+      expression: '(7 - (-1)) / (6 - 2)'
+      answer: '2'
+    answer_text: '**Gradient from two points.** $m = \dfrac{7 - (-1)}{6 - 2} = \dfrac{8}{4} = 2$.'
+
+  - id: r12-solve-quadratic
+    section: '2.4'
+    refs: [B3]
+    statement: 'Solve $2x^2 + 5x - 3 = 0$.'
+    answer_label: 'The solutions'
+    check:
+      kind: solve
+      equation: '2*x**2 + 5*x - 3 = 0'
+      variable: x
+      answer: ['-3', '1/2']
+    answer_text: '**Factorise the quadratic.** $(2x - 1)(x + 3) = 0$, so $x = \dfrac{1}{2}$ or $x = -3$.'
+
+  - id: r13-sum-two-odds
+    section: '1.2'
+    refs: [A1]
+    statement: 'Prove that the sum of two odd numbers is even.'
+    answer_label: 'Method and proof'
+    check:
+      kind: evaluate
+      expression: '(2*m + 1) + (2*n + 1)'
+      answer: '2*(m + n + 1)'
+    answer_text: '**Deduction with general letters.** Let the two odd numbers be $2m + 1$ and $2n + 1$ for whole numbers $m$ and $n$. Their sum is $2m + 2n + 2 = 2(m + n + 1)$, which has a factor of $2$, so the sum is even.'
+
+  - id: r14-doubling-model
+    section: '4.7'
+    refs: [D6, OT3]
+    statement: 'A quantity doubles every 3 years. State the model you would use and why.'
+    answer_label: 'Choice of model and reason'
+    check:
+      kind: structured
+      requires: [choose-geometric, explain-fixed-factor]
+      concepts: [geometric-model, fixed-factor]
+      points:
+        - id: choose-geometric
+          text: 'Use a geometric model, u_n = a * 2^(n - 1), measured at the start of each 3-year period.'
+          concepts: [geometric-model]
+        - id: explain-fixed-factor
+          text: 'Doubling multiplies by a fixed factor of 2 each period rather than adding a fixed amount, so an arithmetic model does not fit.'
+          concepts: [fixed-factor]
+    answer_text: '**A geometric model.** Doubling multiplies by a fixed factor of $2$ each period rather than adding a fixed amount, so $u_n = a \times 2^{n-1}$ fits when measured at the start of each 3-year period.'
+
+  - id: r15-appeal-assumption
+    section: '4.7'
+    refs: [D6, OT3]
+    statement: 'The appeal model assumes the income falls by exactly 20% each month. State one further assumption and one way the model could fail.'
+    answer_label: 'A further assumption and a failure mode'
+    check:
+      kind: structured
+      requires: [state-assumption, state-failure]
+      concepts: [modelling-assumption, model-limit]
+      points:
+        - id: state-assumption
+          text: 'The model assumes every month has the same length and donations arrive steadily on time without outside events.'
+          concepts: [modelling-assumption]
+        - id: state-failure
+          text: 'A sudden surge of publicity or a large one-off donation could raise the income instead of letting it fall by 20%.'
+          concepts: [model-limit]
+    answer_text: '**State an assumption and its limit.** The model assumes every month has the same length and no outside event changes donations. It could fail if a sudden wave of publicity or a large one-off gift raised the monthly total instead of letting it fall by 20%.'
