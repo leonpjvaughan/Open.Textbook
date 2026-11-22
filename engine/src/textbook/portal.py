@@ -27,7 +27,7 @@ from . import book as books
 from . import headers
 from . import scaffold
 from . import legal
-from .hooks.prefs import snippet as prefs_snippet
+from .hooks.prefs import snippet as prefs_snippet, theme_color_metas
 from .themes import default_bundle, ordered_bundles
 
 @lru_cache(maxsize=None)
@@ -50,7 +50,9 @@ def site() -> Path:
 ROOT_ASSETS: tuple[str, ...] = (
     "assets/stylesheets/themes.css",
     "assets/stylesheets/portal.css",
+    "assets/stylesheets/search.css",
     "assets/stylesheets/settings.css",
+    "assets/search/search.js",
     "assets/settings/settings.js",
     "assets/settings/service-worker.js",
 )
@@ -62,7 +64,7 @@ def root_assets() -> dict[str, str]:
 
 
 def root_links(rooted: bool) -> dict[str, str]:
-    """The five URLs a root page links, in the shape that page needs: relative at
+    """The URLs a root page links, in the shape that page needs: relative at
     the root, root-absolute where a page is served at any depth. One function, so
     the two cannot disagree about anything but the leading slash.
     """
@@ -71,7 +73,9 @@ def root_links(rooted: bool) -> dict[str, str]:
     return {
         "themes_css": prefix + assets["assets/stylesheets/themes.css"],
         "portal_css": prefix + assets["assets/stylesheets/portal.css"],
+        "search_css": prefix + assets["assets/stylesheets/search.css"],
         "settings_css": prefix + assets["assets/stylesheets/settings.css"],
+        "search_js": prefix + assets["assets/search/search.js"],
         "settings_js": prefix + assets["assets/settings/settings.js"],
         "worker_script": prefix + assets["assets/settings/service-worker.js"],
     }
@@ -115,10 +119,10 @@ def card(book: books.Book) -> str:
     primary = book.default_profile
     href = f"{book.deploy_path(primary.id)}/"
 
-    chips = []
+    profiles = []
     for profile in book.profiles:
-        css = "chip chip--primary" if profile is primary else "chip"
-        chips.append(
+        css = "card__profile card__profile--primary" if profile is primary else "card__profile"
+        profiles.append(
             f'<a class="{css}" href="{book.deploy_path(profile.id)}/">'
             f"{html.escape(profile.name)}</a>"
         )
@@ -151,14 +155,14 @@ def card(book: books.Book) -> str:
     return "\n".join(
         [
             f'<article class="card" style="{styles}">',
+            f'  <p class="card__subject">{subject_line}</p>',
             '  <h3 class="card__title">'
             f'<a href="{href}">{title}</a></h3>',
-            f'  <p class="card__subject">{subject_line}</p>',
             f'  <p class="card__body">{html.escape(book.description)}</p>',
             '  <ul class="card__facts">',
             *[f"    <li>{fact}</li>" for fact in facts],
             "  </ul>",
-            f'  <nav class="card__profiles">{"".join(chips)}</nav>',
+            f'  <nav class="card__profiles" aria-label="Editions">{"".join(profiles)}</nav>',
             "</article>",
         ]
     )
@@ -432,8 +436,10 @@ def not_found() -> str:
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="color-scheme" content="light dark">
 <title>Page not found</title>
 {meta}
+{theme_color_metas()}
 {prefs_snippet(prefs_config())}
 <link rel="icon" type="image/svg+xml" href="/assets/icons/favicon.svg">
 <!-- Root-absolute, like the stylesheets below and this page's link home: a
@@ -441,8 +447,12 @@ def not_found() -> str:
 <link rel="apple-touch-icon" href="/assets/icons/apple-touch-icon.png">
 <link rel="stylesheet" href="{links['themes_css']}">
 <link rel="stylesheet" href="{links['portal_css']}">
+<!-- Resolves the cascade before the page can be revealed: Chromium can otherwise
+     abort a cross-document transition with "ViewTransition opt-in disabled". The
+     value is discarded, and the script is classic so it runs before the first reveal. -->
+<script>getComputedStyle(document.documentElement).color;</script>
 </head>
-<body>
+<body data-pagefind-ignore>
 <script>
 document.body.setAttribute(
   "data-md-color-scheme",
@@ -507,6 +517,7 @@ def legal_page(slug: str) -> str:
         body=legal_body(slug),
         footer=footer(),
         build_meta=build_meta(),
+        theme_color_metas=theme_color_metas(),
         prefs_script=prefs_snippet(prefs_config()),
         settings_trigger=settings_trigger(),
         settings_dialog=settings_dialog(),
@@ -519,6 +530,46 @@ def root_page_slugs() -> tuple[str, ...]:
     return tuple(LEGAL_PAGES)
 
 
+def search_block() -> str:
+    """The collection search: one field for every book.
+
+    The field is `hidden` in the markup and the shared runtime reveals it, so a
+    reader with scripting off is never handed a field that cannot answer. The
+    `<noscript>` block says what search needs and offers the way in that still
+    works, which is a book's own contents.
+    """
+    all_books = books.discover_books()
+    first = all_books[0]
+    browse = f"/{first.deploy_path(first.default_profile.id)}/"
+    return f"""<div class="wrap masthead__search" data-pagefind-ignore>
+  <search class="tb-search tb-search--portal" data-search hidden>
+    <label class="tb-search__label" for="portal-search">Search all books</label>
+    <input class="tb-search__input" id="portal-search" type="search"
+           data-search-input placeholder="Fractions, momentum, the chain rule"
+           aria-controls="portal-search-results"
+           aria-describedby="portal-search-hint"
+           autocomplete="off" spellcheck="false">
+    <p class="tb-search__hint" id="portal-search-hint">
+      Titles, chapters and pages from every book.
+    </p>
+  </search>
+  <div class="tb-search__panel" data-search-panel hidden>
+    <div class="tb-search__panel-head">
+      <span class="tb-search__panel-title">Results</span>
+      <button class="tb-search__close" type="button" data-search-close>Close</button>
+    </div>
+    <ul class="tb-search__results" id="portal-search-results" aria-label="Search results"></ul>
+  </div>
+  <p class="visually-hidden" id="portal-search-status" data-search-status
+     role="status" aria-live="polite"></p>
+  <noscript>
+    <p class="tb-search__fallback">Search needs JavaScript. You can still
+    <a href="{html.escape(browse, quote=True)}">open a book</a> and use your
+    browser's Find to look through it.</p>
+  </noscript>
+</div>"""
+
+
 def render() -> str:
     collection = books.load_collection()
     all_books = books.discover_books()
@@ -527,8 +578,10 @@ def render() -> str:
         title=html.escape(str(collection.get("title", "Textbooks"))),
         description=html.escape(str(collection.get("description", ""))),
         groups=groups_html(all_books),
+        search=search_block(),
         footer=footer(),
         build_meta=build_meta(),
+        theme_color_metas=theme_color_metas(),
         prefs_script=prefs_snippet(prefs_config()),
         settings_trigger=settings_trigger(),
         settings_dialog=settings_dialog(),

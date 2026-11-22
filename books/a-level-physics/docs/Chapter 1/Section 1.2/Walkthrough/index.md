@@ -11,13 +11,19 @@ kind: walkthrough
 
 # 1.2 Estimation and the limitations of measurement — Learn
 
-**Prerequisites:** SI units and prefixes from Section 1.1; standard form;
-multiplying and dividing numbers in standard form; finding a mean.
+**Prerequisites:**
 
-**By the end of this section you can:** estimate a quantity to the nearest order
-of magnitude; decide whether an answer is reasonable; describe the resolution of
-an instrument; and explain the difference between accuracy, precision,
-systematic error and random error.
+- SI units and prefixes from Section 1.1;
+- standard form;
+- multiplying and dividing numbers in standard form;
+- finding a mean.
+
+**By the end of this section you can:**
+
+- estimate a quantity to the nearest order of magnitude;
+- decide whether an answer is reasonable;
+- describe the resolution of an instrument;
+- explain the difference between accuracy, precision, systematic error and random error.
 
 ## 1. Estimation checks an answer
 

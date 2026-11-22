@@ -135,6 +135,26 @@ def test_the_directive_expands_to_the_portable_element(docs):
     assert ":::figure" not in html
 
 
+def test_each_figure_is_numbered_and_captioned(docs):
+    """The number is stable within a page; the loader fills the caption from the
+    module's own accessible name."""
+    source = run_figure_hook(":::figure gradient\n\n:::figure gradient\n", docs)
+    assert 'id="figure-1"' in source
+    assert 'id="figure-2"' in source
+    assert source.count("data-figure-caption") == 2
+    assert "Figure 1" in source and "Figure 2" in source
+
+
+def test_a_control_mount_is_not_numbered_as_a_figure(docs):
+    """The relevance prompt and the warm-up gate are controls, not drawings.
+    Numbering them put "Figure 1" under a text box and pushed the first real
+    figure to Figure 2."""
+    source = run_figure_hook(":::figure relevance-prompt\n", docs)
+    assert 'class="tb-figure"' not in source
+    assert 'id="figure-1"' not in source
+    assert 'data-figure="relevance-prompt"' in source
+
+
 def test_the_loader_is_injected_relative_to_the_page(docs):
     """The loader path is computed from the page, so it works at any depth."""
     md_path = "figure/index.md"  # one directory deep -> one '../'
@@ -252,7 +272,7 @@ def test_no_page_opens_a_fence_with_a_directive():
 @pytest.fixture(scope="module")
 def built(tmp_path_factory) -> pipeline.BuildResult:
     out = tmp_path_factory.mktemp("render-hooks") / "book"
-    return pipeline.build(BOOK, "higher", out=out, chapter=1, index=False)
+    return pipeline.build(BOOK, "higher", out=out, chapter=1)
 
 
 def test_a_real_figure_page_carries_the_loader(built):
@@ -396,7 +416,7 @@ def test_the_toggle_tag_renders_as_an_element_a_script_can_select(tiers):
 )
 def test_the_profiles_agree_with_the_tier_axis(tmp_path, profile, higher_only_present):
     """Section 5.6 is Higher-only; the pipeline filters it by curriculum tier."""
-    result = pipeline.build(BOOK, profile, out=tmp_path / profile, chapter=5, index=False)
+    result = pipeline.build(BOOK, profile, out=tmp_path / profile, chapter=5)
     urls = {entry.url for entry in result.pages}
     present = any("section-5.6/" in url for url in urls)
     assert present is higher_only_present

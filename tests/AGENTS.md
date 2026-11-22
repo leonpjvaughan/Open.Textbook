@@ -13,7 +13,9 @@ The theme preview is `tools preview` (`tools/src/commands/preview.ts`).
 
 - **Engine** — `test_pipeline.py`, `test_render_hooks.py`, `test_markers.py`,
   `test_frontmatter.py`, `test_plan.py`, `test_maths_escapes.py`, `test_lint.py`.
-- **Content and shape** — `test_content_hygiene.py`, `test_problem_bank.py`,
+- **Content and shape** — `test_content_hygiene.py`, `test_content_contracts.py`
+  (Review answers, the fade, practice size, the warm-up gate, the front block,
+  figure guidance and silent maths, each with a recorded debt), `test_problem_bank.py`,
   `test_collection.py`, `test_home_page.py`, `test_proofs.py`,
   `test_proof_maths.py`.
 - **Figures** — `test_figures.py` (the module contract: an accessible name, no
@@ -28,8 +30,14 @@ The theme preview is `tools preview` (`tools/src/commands/preview.ts`).
   content-addressed names, and every asset a page reaches resolving to a file the
   build wrote), `test_offline_browser.py` (a book still readable with the network
   off after a deploy emptied the runtime cache; marked `browser`), `test_mobile.py`,
-  `test_prefs.py`, `test_settings.py`, `test_no_javascript.py`, `test_print.py`,
+  `test_motion.py`, `test_prefs.py`, `test_settings.py`, `test_no_javascript.py`, `test_print.py`,
   `test_backgrounds.py`, `test_colophon.py`, `test_deploy.py`, `test_release.py`.
+- **Where the reader is** — `test_navigation_state.py` pins the markup, the paint of
+  the current-section mark, the progress line's feature gate and reduced-motion rule,
+  and the drawer's filter and Escape handling; `test_navigation_browser.py` measures
+  the ToC's `aria-current`, the line's 2px and its unchanged masthead, and the drawer
+  opening on the reader's chapter at 390, in both schemes. The second is marked
+  `browser` and runs in `scripts/preview-themes.sh`.
 - **Preconditions** — `test_toolchain.py` fails loudly when Node or
   `node_modules` is missing, rather than letting the maths degrade to
   `.math-error`.

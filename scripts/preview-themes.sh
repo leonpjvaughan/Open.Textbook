@@ -84,6 +84,17 @@ run_check() {
 # Phone widths: a page that overflows sideways makes every colour question moot.
 run_check mobile node tools/dist/cli.js check-mobile site
 
+# Every interactive control at 390px, both schemes, against WCAG 2.2's 24x24 floor.
+run_check targets node tools/dist/cli.js targets site
+
+# The reading measure, in characters per line: a 200+ character paragraph at 1280 and
+# at 390. It needs the built site, so it runs here rather than in the pytest job.
+run_check measure uv run python -m pytest tests/test_measure.py -m browser -q
+
+# The live search rows: a static test cannot prove the field, the listbox or
+# `aria-activedescendant`. It needs the built site and Pagefind.
+run_check search uv run python -m pytest tests/test_search_browser.py -m browser -q
+
 # Every figure, in both schemes, and what each one actually paints. The only check that
 # sees the difference between `text-*` setting `color` (HTML) and `fill` (SVG).
 run_check contrast node tools/dist/cli.js audit site \
@@ -111,6 +122,11 @@ run_check offline node tools/dist/cli.js offline site
 # Print media render on a built Learn route: proves figures mount and survive `@media print`
 # without any part hidden or taller than one printable sheet.
 run_check print uv run python -m pytest tests/test_print.py -m browser -q
+
+# Where the reader is: the current section marked in the ToC and in the accessibility
+# tree, the progress line filling without moving the masthead, and the phone drawer
+# opening on the chapter the reader is in. None of it is visible to a static check.
+run_check navstate uv run python -m pytest tests/test_navigation_browser.py -m browser -q
 
 
 # The matrix, 6 bundles x 2 schemes x 3 routes = 36 pages.

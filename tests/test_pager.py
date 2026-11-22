@@ -21,7 +21,7 @@ from textbook import pipeline
 
 def build(book_id: str, out):
     target = books.book_by_id(book_id)
-    pipeline.build(target.id, target.default_profile.id, out=out, index=False)
+    pipeline.build(target.id, target.default_profile.id, out=out)
     return target
 
 

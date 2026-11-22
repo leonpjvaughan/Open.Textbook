@@ -11,14 +11,19 @@ kind: walkthrough
 
 # 6.2 Diffraction and polarisation — Learn
 
-**Prerequisites:** the wave equation and the idea of wavelength from Section 6.1;
-using the sine of an angle and rearranging a formula from Section 2.2.
+**Prerequisites:**
 
-**By the end of this section you can:** describe diffraction and say what
-controls how much a wave spreads; describe the single-slit pattern; use
-$d\sin\theta = n\lambda$ for a diffraction grating; find the highest order a
-grating can give; explain what polarisation is and why only transverse waves
-show it; and work out what a polarising filter does to the light that reaches it.
+- the wave equation and the idea of wavelength from Section 6.1;
+- using the sine of an angle and rearranging a formula from Section 2.2.
+
+**By the end of this section you can:**
+
+- describe diffraction and say what controls how much a wave spreads;
+- describe the single-slit pattern;
+- use $d\sin\theta = n\lambda$ for a diffraction grating;
+- find the highest order a grating can give;
+- explain what polarisation is and why only transverse waves show it;
+- work out what a polarising filter does to the light that reaches it.
 
 ## 1. Diffraction
 

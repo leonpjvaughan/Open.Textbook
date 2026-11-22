@@ -4,7 +4,7 @@ Working notes for the collection. One item per change. Items are ordered, not
 dated: the first is next. This file is ours, not the reader's — the voice rules
 in `AGENTS.md` do not apply here, but the engineering rules do.
 
-**This file holds open items only.** Closed items are deleted (git history keeps their diagnosis). A new item goes at the next number, with its diagnosis, its fix and its own done-means. Open: **187**, **188**, **192**, **200**, **203**, **217**, **218**.
+**This file holds open items only.** Closed items are deleted (git history keeps their diagnosis). A new item goes at the next number, with its diagnosis, its fix and its own done-means. Open: **187**, **188**, **192**, **200**, **203**, **217**, **218**, **219**, **220**, **221**, **222**.
 
 Accepted limitations live where the check that records them lives (`tests/test_verify_coverage.py`, `books/*/curriculum.yaml`), not here.
 
@@ -224,3 +224,144 @@ it.
 - [ ] `uv run --project solvers/otkd pytest -q` passes.
 - [ ] `docs/problem-mapping.md` states which tolerance governs which decision, if the
       public signature changes.
+
+## 219 — most Review pages carry no verified answer block
+
+**What is wrong.** Chapters 1-6 of `ie-lc-physics` now render their questions and
+answers from `problems/chapter-NN-review.yaml`, and the verifier proves every one.
+Every other Review page either has no answers or has hand-written ones.
+
+```
+$ for f in books/*/docs/Chapter\ */Review/index.md; do
+    grep -q ':::answers' "$f" || echo "$f"
+  done | awk -F/ '{print $2}' | sort | uniq -c | sort -rn
+     24 gcse-maths
+     22 ie-jc-maths
+     18 ie-lc-maths
+     16 ie-lc-physics
+      9 ie-lc-applied-maths
+      5 a-level-maths
+      1 maths-applied
+```
+
+The maths books are not empty: `gcse-maths` and `a-level-maths` wrap their
+answers in a hand-written `<details>` block, so no verifier has seen the
+arithmetic, and the block cannot be regenerated when a question changes. The
+brief that commissioned the pilot said the gap was only the Irish books; the
+count above says otherwise.
+
+**The fix.** Take one chapter at a time, as the pilot did. Move the questions
+and the answers into `books/<id>/problems/chapter-NN-review.yaml`, one record per
+question, using the check kind that fits (`convert`, `dimensions`, `sigfigs`,
+`uncertainty`, `gradient`, `intercept`, `area`, `evaluate`/`approx`) and a
+`structured` component wherever the question asks for a judgement. Re-derive
+every number rather than copying it from the old answer block. Replace the list
+with `:::problems <bank>` and `:::answers <bank>`, and change nothing else on
+the page. Never invent a numeric check for a judgement: say in the bank comment
+what the oracle cannot prove.
+
+**Done means**
+
+- [ ] every `books/<id>/docs/Chapter */Review/index.md` renders its mixed practice
+      from a bank, with no hand-written answer block left behind.
+- [ ] `uv run python -m textbook.verify books/<id>/problems/` reports `ok` for every
+      file, and `uv run python -m textbook.lint` reports nothing.
+- [ ] each book's profile builds with no `math-error` page, and no page text changes
+      except the two marker lines.
+- [ ] the bank comment on each Review names the question, if any, whose judgement
+      the verifier cannot prove.
+
+## 220 — Tier-excluded section references survive in plain text
+
+**What is wrong.** The tier hook unlinks a markdown link to a page the profile drops,
+but a plain `Section n.m` reference is left alone and the build still passes. Measured
+on 2026-11-22: 172 references to a section above the page's tier across the six tiered
+books, 82 of them in `ie-lc-maths`. `Chapter 2/Section 2.1` is an F page and sends the
+reader to 2.5, which is H; `Chapter 17/Section 17.2` is an O page and says the proof is
+"one click away" in 17.7, which that build does not contain. The reader is told to
+follow a route that is not there.
+
+**The fix.** Extend the tier hook (or add a lint rule) to find `Section n.m` and
+`§n.m` in the body, strip inline `<!-- tier:h -->` spans first, and rewrite or remove a
+reference to a section above the page's profile. Start with `ie-lc-maths`, where the
+two examples are, then apply the same rule to the other tiered books. A reference
+inside a sentence that already says "Higher only" can stay if it does not promise a
+link.
+
+The gate is now in `tests/test_content_contracts.py` (`TIER_DEBT`, 115 references:
+2 `gcse-maths`, 5 `ie-jc-maths`, 14 `ie-lc-applied-maths`, 75 `ie-lc-maths`, 19
+`ie-lc-physics`). It counts only plain prose references, after inline tier spans and
+markdown links are removed; a new one fails. The remaining work is to rewrite the
+115 and lower the ceiling to 0.
+
+**Done means**
+
+- [ ] a test scans every page at its own tier, with tier spans stripped, and fails on a
+      plain reference to a section that profile excludes.
+- [ ] the two examples in `ie-lc-maths` 2.1 and 17.2 are rewritten and read correctly
+      in both the Foundation/Ordinary and Higher builds.
+- [ ] the other tiered books are scanned, and their debt is either fixed or recorded in
+      the same test with a ceiling that may only go down.
+- [ ] `python -m pytest tests/ -q` and every profile build pass.
+
+## 221 — the phone drawer costs 0.74 CLS when the script closes it
+
+**What is wrong.** The drawer ships `open` in the markup so a phone reader with scripting
+off keeps the navigation, and the module script at the foot of the page closes it below
+60rem. Closing it moves the whole main column up, after the content has been painted.
+Measured with Playwright at 390×844 on
+`/gcse-maths/higher/chapter-1/section-1.1/learn/` (Chrome 153, service workers blocked,
+window load plus 1.2 s): cumulative layout shift **0.822**, of which **0.738** is one
+entry at t = 354 ms whose only source is `MAIN.content` moving from y = 0 to y = 196.
+With the drawer's inline module removed the same page measures **0.056**, and the drawer
+stays at y = 2515 where the reader can see it. The number is identical with cross-document
+transitions on and off, so it is not the motion work: it is the close itself. Google's
+"good" threshold is 0.1.
+
+**The fix.** The close is the shift, so move the work rather than the drawer's default.
+The cleanest is to put the drawer after `main` in the DOM and give the wide layout a grid
+area above it, so a phone collapse cannot move the content; the wide layout is unaffected
+because the sidebar is a grid column there. A second option is to keep the drawer before
+`main` and reserve its measured height for the first frame, then release it after the
+script has decided, but that still animates a jump. Do not drop `open`: a phone reader
+with scripting off then loses the only navigation on the page.
+
+**Done means**
+
+- [ ] Playwright at 390 on a Learn page, a Practise page and a figure page measures CLS
+      below 0.1, with reduced motion on and off.
+- [ ] a phone reader with scripting off still sees the drawer open and can walk the
+      chapter; the drawer still closes to `Contents` at phone width with scripting on.
+- [ ] a test records the measurement rather than asserting the fix in prose.
+
+## 222 — The books' own corners and pills were left outside the editorial wave
+
+**What is wrong.** Wave 4 (U14) gave the portal one radius and removed its pills, but
+the books' shared sheet kept its own set. Measured on 2026-11-22 in
+`assets/stylesheets/extra.css`: `border-radius` takes 3px (2 rules), 4px (3), 6px (6),
+12px (1), 16px (2), 999px (4) and one 0; `settings.css` ships three 6px corners
+against the portal's 8px token; `engine/src/textbook/css/shell.css` has a 6px and a
+0.6rem. The figure lab's part buttons (`.fig-parts button`) and the booklet's chips
+(`.bk-chip`) and meta tag (`.bk-item__meta`) are 999px pills — the same shape U14
+removed from the front door. The handoff (§7, note 4) said to keep the wave to the
+portal and the chapter opener and queue the rest rather than redesign everything at
+once.
+
+**The fix.** Replace every *surface* radius in `extra.css` and `settings.css` with
+`var(--tb-radius)`, and keep the micro-radii (inline code, `pre`, a table corner) only
+where a square corner would read as a rendering error, with the exception named in a
+comment. Turn the figure lab's part buttons and the booklet's chips into the same
+underlined link or square label the portal now uses, or drop the radius and keep the
+control's hit area. Extend
+`tests/test_measure.py::test_the_radius_is_declared_once_and_agrees_with_the_portal` to
+assert both shared sheets use the token plus the documented micro set, and that no
+`999px` survives.
+
+**Done means**
+
+- [ ] `grep -rn "border-radius" assets/stylesheets/ engine/src/textbook/css/` shows
+      only `var(--tb-radius)` and the documented micro set.
+- [ ] no `999px` remains in any shared stylesheet.
+- [ ] the radius test covers both sheets, and fails on a hard-coded value.
+- [ ] `scripts/preview-themes.sh`, `node tools/dist/cli.js targets site` and the figure
+      audits stay green.

@@ -11,14 +11,20 @@ kind: walkthrough
 
 # 2.1 Scalars and vectors — Learn
 
-**Prerequisites:** SI units and prefixes from Section 1.1; standard form; the
-idea that a quantity is a number with a unit; the compass directions north,
-south, east and west.
+**Prerequisites:**
 
-**By the end of this section you can:** tell a scalar quantity from a vector
-quantity; write a vector as a magnitude and a direction; use positive and
-negative signs for direction along a line; add vectors that act along one line;
-and multiply a vector by a scalar.
+- SI units and prefixes from Section 1.1;
+- standard form;
+- the idea that a quantity is a number with a unit;
+- the compass directions north, south, east and west.
+
+**By the end of this section you can:**
+
+- tell a scalar quantity from a vector quantity;
+- write a vector as a magnitude and a direction;
+- use positive and negative signs for direction along a line;
+- add vectors that act along one line;
+- multiply a vector by a scalar.
 
 ## 1. Two kinds of quantity
 

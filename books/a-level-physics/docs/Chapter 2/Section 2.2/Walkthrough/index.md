@@ -11,15 +11,21 @@ kind: walkthrough
 
 # 2.2 Resolving and adding vectors — Learn
 
-**Prerequisites:** scalars and vectors from Section 2.1; Pythagoras' theorem;
-the sine, cosine and tangent ratios; rearranging a formula; finding an angle from
-a tangent.
+**Prerequisites:**
 
-**By the end of this section you can:** resolve a vector into two perpendicular
-components; choose the component that is the cosine and the component that is the
-sine; add two perpendicular vectors to find the resultant; find the direction of
-a resultant with the tangent; and describe how a scale drawing adds vectors that
-are not at right angles.
+- scalars and vectors from Section 2.1;
+- Pythagoras' theorem;
+- the sine, cosine and tangent ratios;
+- rearranging a formula;
+- finding an angle from a tangent.
+
+**By the end of this section you can:**
+
+- resolve a vector into two perpendicular components;
+- choose the component that is the cosine and the component that is the sine;
+- add two perpendicular vectors to find the resultant;
+- find the direction of a resultant with the tangent;
+- describe how a scale drawing adds vectors that are not at right angles.
 
 ## 1. Why resolve a vector
 

@@ -137,13 +137,34 @@ def test_no_content_is_declared_below_its_floor(fragment, prop, floor_px, path):
 
 
 def test_the_contents_link_box_is_thumb_height():
-    """`line-height: 1.7` on 13.6px is what takes a 15px box to about 23px."""
+    """24.5px: `line-height: 1.8` on 13.6px text.
+
+    Measured before this at 1.7, which is 23px — six links on every Learn page under
+    WCAG 2.2's 24px target floor, and `tools targets` now fails the gate if they
+    return.
+    """
     font = px(last(EXTRA, ".contents__list", "font-size"))
     line_height = float(last(EXTRA, ".contents__list", "line-height"))
-    assert font * line_height >= 22.0, (
+    assert font * line_height >= 24.0, (
         f"the contents link box is {font * line_height:.1f}px tall "
-        f"({font:.1f}px on {line_height}); WCAG 2.5.8 asks for 24 and the house floor "
-        "for a thumb is 44, so 22 is the least this may be."
+        f"({font:.1f}px on {line_height}); WCAG 2.2 asks for 24."
+    )
+
+
+def test_a_figure_slider_clears_the_target_floor():
+    """The platform draws a range 16px tall; `min-height` gives the thumb 24."""
+    height = px(last(EXTRA, 'input[type="range"]', "min-height"))
+    assert height >= 24.0, (
+        f"a range input is {height:.0f}px tall, under WCAG 2.2's 24px floor"
+    )
+
+
+def test_a_drawer_row_is_a_thumb_target():
+    """Up to 335 rows behind one disclosure control, so the row is the target."""
+    height = px(last(SHELL, ".nav__link", "min-height"))
+    assert height >= 44.0, (
+        f"a drawer row is {height:.0f}px tall; the drawer is the phone's navigation "
+        "and a row is a thumb target"
     )
 
 
@@ -151,7 +172,7 @@ def test_the_search_field_is_not_below_sixteen_on_a_phone():
     """Below 16px a focused field makes a phone zoom the page under the thumb."""
     sizes = [
         value for selector, prop, value in declarations(SHELL)
-        if prop == "font-size" and "48rem" in selector and ".search input" in selector
+        if prop == "font-size" and "48rem" in selector and ".tb-search__input" in selector
     ]
     assert sizes, "the phone block no longer sets a size for the search field"
     assert px(sizes[-1]) >= 16.0, (

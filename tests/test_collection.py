@@ -314,7 +314,7 @@ def test_every_declared_shared_file_is_one_the_build_writes(tmp_path):
 
     book = books.book_by_id("gcse-maths")
     out = tmp_path / "site"
-    pipeline.build(book.id, book.default_profile.id, out=out, index=False)
+    pipeline.build(book.id, book.default_profile.id, out=out)
 
     # Where each shared file lands. Stylesheets are content-addressed, so their
     # site name is not their repository name and the build says which it used; the
@@ -359,7 +359,7 @@ def test_every_file_in_a_shared_directory_reaches_the_build(tmp_path):
 
     book = books.book_by_id("gcse-maths")
     out = tmp_path / "site"
-    pipeline.build(book.id, book.default_profile.id, out=out, index=False)
+    pipeline.build(book.id, book.default_profile.id, out=out)
 
     for relative in scaffold.SHARED_DIRS:
         source = repo_root() / relative

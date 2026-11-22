@@ -77,24 +77,9 @@ Work through these without notes. For each one, decide **which relationship appl
 say why. One of them asks you to choose between the work-energy model and the equations
 of motion.
 
-1. A force of 80 N moves a trolley 6.0 m in the direction of the force. Calculate the
-   work done.
-2. A 0.20 kg ball moves at 25 m/s. Calculate its kinetic energy.
-3. A stone is dropped from rest from a height of 20 m. Ignoring air resistance,
-   calculate its landing speed.
-4. A motor does 4500 J of work in 15 s. Calculate its power.
-5. A 1200 kg car travelling at 25 m/s brakes to rest over 50 m. Calculate the average
-   braking force.
-6. A crane lifts a 400 kg load 15 m in 25 s. Calculate the useful power output. Take
-   $g = 9.8\,\text{N/kg}$.
-7. A ball is dropped from a height of 4.0 m and bounces back up to 2.8 m. Calculate the
-   percentage of the energy lost in the bounce.
-8. A car travels at a steady 30 m/s and the engine delivers 60 kW. Calculate the total
-   resistive force.
-9. A 2.0 kg stone is thrown straight up at 12 m/s. Calculate the maximum height it
-   reaches. State which method you used, and why it is the shorter route.
-10. A cyclist of total mass 85 kg freewheels down a 6.0 m drop and reaches 9.0 m/s at
-    the bottom. Calculate the energy transferred to the surroundings.
+:::problems chapter-04-review
+
+:::answers chapter-04-review
 
 ## What you can now do
 

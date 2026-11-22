@@ -34,6 +34,7 @@ import { SURFACE as CANVAS, run as runCanvas } from "./commands/canvas.js";
 import { SURFACE as PREVIEW, run as runPreview } from "./commands/preview.js";
 import { SURFACE as READOUT, run as runReadout } from "./commands/readout.js";
 import { SURFACE as SCREENSHOT, run as runScreenshot } from "./commands/screenshot.js";
+import { SURFACE as TARGETS, run as runTargets } from "./commands/target-size.js";
 import { SURFACE as TYPES, run as runTypes } from "./commands/types.js";
 import {
   helpRows,
@@ -101,6 +102,11 @@ const COMMANDS: Record<string, Command> = {
     summary: "the kit's drawing and formatting layers, with no browser",
     surface: KIT_PURE,
     run: runKitPure,
+  },
+  targets: {
+    summary: "fail when an interactive control is under 24x24 at 390px",
+    surface: TARGETS,
+    run: runTargets,
   },
   types: {
     summary: "type-check the runtime and the tools, and fail if the count grows",

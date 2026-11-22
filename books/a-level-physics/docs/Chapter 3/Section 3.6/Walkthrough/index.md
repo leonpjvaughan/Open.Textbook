@@ -11,15 +11,20 @@ kind: walkthrough
 
 # 3.6 Oscillations and simple harmonic motion — Learn
 
-**Prerequisites:** the pendulum and the measurement of $g$ from Chapter 1;
-Newton's second law from Section 3.2; conservation of energy from Section 3.3;
-angular velocity and radians from Section 3.5.
+**Prerequisites:**
 
-**By the end of this section you can:** define displacement, amplitude, period
-and frequency for an oscillation; state the condition for simple harmonic motion
-and use $a = -\omega^2 x$; use $x = A\cos\omega t$ and its velocity; find the
-period of a mass on a spring and of a simple pendulum; and describe the energy
-changes in an oscillation.
+- the pendulum and the measurement of $g$ from Chapter 1;
+- Newton's second law from Section 3.2;
+- conservation of energy from Section 3.3;
+- angular velocity and radians from Section 3.5.
+
+**By the end of this section you can:**
+
+- define displacement, amplitude, period and frequency for an oscillation;
+- state the condition for simple harmonic motion and use $a = -\omega^2 x$;
+- use $x = A\cos\omega t$ and its velocity;
+- find the period of a mass on a spring and of a simple pendulum;
+- describe the energy changes in an oscillation.
 
 ## 1. The language of oscillations
 

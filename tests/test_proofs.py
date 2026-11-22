@@ -129,6 +129,35 @@ def test_every_named_qualification_is_one_the_collection_knows():
         )
 
 
+def test_the_irish_books_link_only_proofs_their_course_examines():
+    """The Irish courses were added to the collection after the registry.
+
+    Both books link the geometry and trigonometry proofs they teach. While the
+    registry listed only GCSE and A-level, every one of those links rendered
+    "Beyond your course" — including the angle sum in the chapter whose purpose
+    is to prove it. This is the regression pin: a proof an Irish book links must
+    carry that book's qualification.
+    """
+    irish = {
+        "ie-jc-maths": "Junior Cycle",
+        "ie-lc-maths": "Leaving Certificate",
+    }
+    entries = {proof["id"]: proof for proof in registry()["proofs"]}
+    for book_id, qualification in irish.items():
+        for path in books.book_by_id(book_id).docs.rglob("*.md"):
+            text = path.read_text(encoding="utf-8")
+            for slug in re.findall(r":::prove\s+([a-z0-9-]+)", text):
+                assert slug in entries, f"{book_id} links unknown proof {slug}"
+                assert qualification in entries[slug]["qualifications"], (
+                    f"{book_id} links {slug}, but the registry puts it beyond "
+                    f"{qualification}: {entries[slug]['qualifications']}"
+                )
+                rendered = run(f":::prove {slug}\n", qualification, book_id)
+                assert proofbook.BEYOND_LABEL not in rendered, (
+                    f"{book_id} renders {slug} as {proofbook.BEYOND_LABEL}"
+                )
+
+
 def test_every_proof_has_a_page_and_a_title():
     for proof in registry()["proofs"]:
         page = REFERENCE.docs / proof["id"] / "index.md"
@@ -337,7 +366,7 @@ def built(tmp_path_factory) -> tuple[dict, dict]:
     # as Higher.
     for book_id in ("proofs", "a-level-maths"):
         profile = books.book_by_id(book_id).default_profile.id
-        result = pipeline.build(book_id, profile, out=root / book_id, index=False)
+        result = pipeline.build(book_id, profile, out=root / book_id)
         assert not result.broken, result.broken
         out[book_id] = result
     return out

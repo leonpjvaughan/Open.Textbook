@@ -11,13 +11,20 @@ kind: walkthrough
 
 # 1.3 Measurements and uncertainties — Learn
 
-**Prerequisites:** SI units and prefixes from Section 1.1; resolution, accuracy
-and error from Section 1.2; rearranging a formula; calculating a percentage.
+**Prerequisites:**
 
-**By the end of this section you can:** state the uncertainty in a reading and in
-a mean; convert between absolute and percentage uncertainty; combine
-uncertainties through a sum, a product, a quotient and a power; quote a result
-with its uncertainty; and decide whether a result agrees with an accepted value.
+- SI units and prefixes from Section 1.1;
+- resolution, accuracy and error from Section 1.2;
+- rearranging a formula;
+- calculating a percentage.
+
+**By the end of this section you can:**
+
+- state the uncertainty in a reading and in a mean;
+- convert between absolute and percentage uncertainty;
+- combine uncertainties through a sum, a product, a quotient and a power;
+- quote a result with its uncertainty;
+- decide whether a result agrees with an accepted value.
 
 ## 1. The uncertainty in a reading
 

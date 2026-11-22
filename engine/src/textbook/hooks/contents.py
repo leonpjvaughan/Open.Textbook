@@ -10,6 +10,11 @@ below that the page fits on a screen or two, and a list of four items is furnitu
 markup is a plain ``<nav>`` with a list of links: no script, no disclosure, nothing to
 break with scripting off.
 
+``data-scrollspy`` is the hook's half of the current-section contract: the nav says it is
+a list whose links track the page's sections, and the one script that marks the current
+one only enhances a nav that says so. The mark costs nothing without scripting, because
+it is a state on a link that already works.
+
 **The list is rendered wherever the threshold is met, not only where a page asked.** It
 used to need a ``:::contents`` line, and the threshold and the marker disagreed: 767 pages
 in the collection carried five or more ``h2`` s and no marker, including all nine class
@@ -51,7 +56,7 @@ def render(content: str) -> str:
         for anchor, title in headings
     )
     return (
-        '<nav class="contents" aria-label="On this page">'
+        '<nav class="contents" data-scrollspy aria-label="On this page">'
         '<p class="contents__title">On this page</p>'
         f'<ul class="contents__list">{items}</ul>'
         "</nav>"

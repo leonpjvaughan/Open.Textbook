@@ -60,6 +60,15 @@ class MathsFigure extends HTMLElement {
     try {
       const mod = await import(`./${file}`);
       mod.mount(this);
+      // The caption is the figure's own accessible name, written by `panel()`. The
+      // hook cannot know it: the module is imported here, after the page is built.
+      // A module with no name still gets its number, which is better than a blank.
+      const figure = this.closest("figure");
+      const caption = figure && figure.querySelector("[data-figure-caption]");
+      if (caption && !caption.textContent.trim()) {
+        const named = this.querySelector("svg[aria-label]");
+        if (named) caption.textContent = named.getAttribute("aria-label") || "";
+      }
       // Observe the **host**, not the `svg`: a figure that re-panels on a control replaces
       // its own frame, and an observer on the old frame would be watching a detached node.
       const fit = () => {

@@ -192,6 +192,7 @@ python -m textbook.verify
 python -m textbook.plan
 while read -r -a b; do python -m textbook.pipeline "${b[@]}"; done \
     < <(python -m textbook.plan --configs)   # both profiles, strict, no broken links
+python -m textbook.search                   # one index over the assembled site
 grep -rl 'math-error' site --include='*.html'   # must print nothing
 pytest tests/ -q
 node tools/build.mjs                            # compile the kit and the tools

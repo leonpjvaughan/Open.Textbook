@@ -28,6 +28,12 @@ ASSET = "assets/figures/figures.js"
 # cannot disagree about it.
 SHARED = scaffold.SHARED_FIGURE_FILES
 
+#: Modules mounted by `:::figure` that are controls, not drawings: the relevance
+#: prompt and the warm-up gate. They are not numbered and get no caption, because
+#: "Figure 1" under a text box is not a figure and would push the first real
+#: drawing to Figure 2. `tools canvas` already names these two as non-drawings.
+UI_FIGURES = frozenset({"relevance-prompt", "warm-up-gate"})
+
 
 def figures_dir(config):
     return cfg.docs_dir(config) / "assets" / "figures"
@@ -90,8 +96,10 @@ def on_page_markdown(markdown, page, config, files):
             "with one slug make a page's meaning depend on build order."
         )
     used: set[str] = set()
+    number = 0
 
     def replace(match: re.Match[str]) -> str:
+        nonlocal number
         slug = match.group(1)
         if slug not in known:
             raise ValueError(
@@ -99,24 +107,34 @@ def on_page_markdown(markdown, page, config, files):
                 f"(known: {', '.join(sorted(known)) or 'none'})"
             )
         used.add(slug)
-        # **The `<div>` is load-bearing.** Python-Markdown treats an unknown tag as
+        filename = (config.get("figure_modules") or {}).get(slug) or scaffold.addressed_name(
+            modules[slug]
+        )
+        if slug in UI_FIGURES:
+            return (
+                f'<div><maths-figure data-figure="{slug}" '
+                f'data-figure-src="{filename}"></maths-figure></div>'
+            )
+        number += 1
+        # **The `<figure>` is load-bearing.** Python-Markdown treats an unknown tag as
         # inline, so a bare `<maths-figure>` came back wrapped in a `<p>` — 524 of them
-        # across 508 pages — and `<p><div class="fig">` is invalid once `panel()` has
-        # put its own `<div>` inside. It also left every figure with no element sibling,
-        # which a module that needs to reach the block above it cannot work around.
-        # A `<div>` is a block tag Python-Markdown knows, so it passes through unwrapped.
+        # across 508 pages — and `<p><figure>` is invalid once `panel()` has put its
+        # own block inside. It also leaves every figure with no element sibling, which
+        # a module that needs to reach the block above it cannot work around. A
+        # `<figure>` is a block tag Python-Markdown knows, so it passes through
+        # unwrapped; it also gives the figure a number and a caption.
         #
         # `data-figure-src` is the name the build writes the module under: content,
         # not the build label, so a module that did not change keeps its URL and a
         # cached copy is still the one served. The loader falls back to
         # `data-figure` when the attribute is absent, which is what keeps one
         # module readable in the Quarto / MyST / MDX ports, where nothing is hashed.
-        filename = (config.get("figure_modules") or {}).get(slug) or scaffold.addressed_name(
-            modules[slug]
-        )
         return (
-            f'<div><maths-figure data-figure="{slug}" '
-            f'data-figure-src="{filename}"></maths-figure></div>'
+            f'<figure class="tb-figure" id="figure-{number}">'
+            f'<maths-figure data-figure="{slug}" '
+            f'data-figure-src="{filename}"></maths-figure>'
+            f'<figcaption><span class="tb-figure__number">Figure {number}</span> '
+            f'<span data-figure-caption></span></figcaption></figure>'
         )
 
     markdown = transform_outside_fences(markdown, lambda text: MARKER.sub(replace, text))

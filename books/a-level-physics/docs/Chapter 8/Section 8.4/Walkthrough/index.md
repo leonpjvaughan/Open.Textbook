@@ -11,15 +11,21 @@ kind: walkthrough
 
 # 8.4 Nuclear energy and E = mc² — Learn
 
-**Prerequisites:** work, energy and the conservation of energy from Section 3.3;
-the nucleus, nucleon number and isotopes from Section 8.3; the electronvolt and
-the atomic mass unit from Section 1.1; photon energy from Section 8.1;
-powers and scientific notation.
+**Prerequisites:**
 
-**By the end of this section you can:** state the mass-energy relation
-$E = mc^2$; define mass defect and binding energy; use the atomic mass unit and
-its energy equivalent; calculate the energy released in a nuclear reaction or an
-annihilation; and explain why fission and fusion release energy.
+- work, energy and the conservation of energy from Section 3.3;
+- the nucleus, nucleon number and isotopes from Section 8.3;
+- the electronvolt and the atomic mass unit from Section 1.1;
+- photon energy from Section 8.1;
+- powers and scientific notation.
+
+**By the end of this section you can:**
+
+- state the mass-energy relation $E = mc^2$;
+- define mass defect and binding energy;
+- use the atomic mass unit and its energy equivalent;
+- calculate the energy released in a nuclear reaction or an annihilation;
+- explain why fission and fusion release energy.
 
 ## 1. Mass and energy
 

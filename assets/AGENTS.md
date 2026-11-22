@@ -157,7 +157,10 @@ Nothing in a page or a figure may carry a colour.
 **Over five `h2`s a page prints its own contents**: `engine/src/textbook/hooks/contents.py`
 renders a two-column `<nav>` of the page's heading ids after the first paragraph. Place it
 with `:::contents`, opt out with `:::no-contents` where it would duplicate the page's own
-index.
+index. The nav carries `data-scrollspy`, and the page script marks the section the reader
+is in (`:target-current` where the platform has it, an `IntersectionObserver` where it does
+not) with an underline, a gutter bar and `aria-current="location"` — never colour alone,
+and never weight, which would rewrap the label and shift the article.
 
 **Icons are the only fixed colour.** `assets/icons/app-icon.svg` (home screen) keeps the page
 rules, `assets/icons/favicon.svg` (tab) drops them; `tests/test_pwa.py` pins the two

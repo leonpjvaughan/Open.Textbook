@@ -11,17 +11,23 @@ kind: walkthrough
 
 # 9.1 Gravitational fields — Learn
 
-**Prerequisites:** weight and Newton's laws from Section 3.2; circular motion
-from Section 3.5; work, energy and the conservation of energy from Section 3.3;
-vectors and resolving from Section 2.2; standard form, graphs and SI prefixes
-from Chapter 1.
+**Prerequisites:**
 
-**By the end of this section you can:** describe a gravitational field and its
-field lines; use Newton's law of gravitation; define and use gravitational field
-strength; define and use gravitational potential; find the energy needed to move
-a mass between two points; explain the link between field strength and the
-potential gradient; and find the speed, the period and the escape speed of an
-orbit.
+- weight and Newton's laws from Section 3.2;
+- circular motion from Section 3.5;
+- work, energy and the conservation of energy from Section 3.3;
+- vectors and resolving from Section 2.2;
+- standard form, graphs and SI prefixes from Chapter 1.
+
+**By the end of this section you can:**
+
+- describe a gravitational field and its field lines;
+- use Newton's law of gravitation;
+- define and use gravitational field strength;
+- define and use gravitational potential;
+- find the energy needed to move a mass between two points;
+- explain the link between field strength and the potential gradient;
+- find the speed, the period and the escape speed of an orbit.
 
 ## 1. Force fields and field lines
 

@@ -45,7 +45,7 @@ For each question, name a method before working it out. Give a reason for your c
 1. $x^2+2x-8$.
 2. $(x+5)(x-2)$.
 3. $(x-3)(x+3)=0$, so $x=3$ or $x=-3$.
-4. $a=3,b=1,c=-2$: $x=(-1\pm\sqrt25)/6$, so $x=2/3$ or $x=-1$.
+4. $a=3,b=1,c=-2$: $x=(-1\pm\sqrt{25})/6$, so $x=2/3$ or $x=-1$.
 5. $(x+5)^2-24$; turning point $(-5,-24)$.
 6. For example, $(x+1)(x-4)=0$; any non-zero multiple has those roots.
 7. $x=4$; substitution gives $3(4)+8=20$.

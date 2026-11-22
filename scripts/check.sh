@@ -85,6 +85,11 @@ step "builds"
 while read -r -a build; do
   uv run python -m textbook.pipeline "${build[@]}"
 done < <(uv run python -m textbook.plan --configs)
+# The deployment root and the one search index, in the same order `build-all.sh`
+# uses: the root pages exist before Pagefind sees them, and the browser checks below
+# get the same site a deploy does.
+uv run python -m textbook.portal
+uv run python -m textbook.search
 
 step "browser checks (mobile, canvas, figure paint, phone labels, print)"
 # Mandatory — if Playwright is absent, fail rather than announcing a skip. A branch
@@ -115,6 +120,9 @@ run_browser mobile node tools/dist/cli.js check-mobile site
 # **A label's width is its font's** — verify every figure stays inside its viewBox
 # even in a wider monospace font.
 run_browser canvas node tools/dist/cli.js canvas site --font monospace
+# **A control is a thumb's, not a pixel's** — every interactive element at 390px, in
+# both schemes, against WCAG 2.2's 24x24 floor.
+run_browser targets node tools/dist/cli.js targets site
 # Every figure, in both schemes, and what each one actually paints (plus no HTML
 # box carrying a var(--tb-*) background).
 run_browser audit node tools/dist/cli.js audit site

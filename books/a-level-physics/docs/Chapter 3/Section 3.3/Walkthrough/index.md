@@ -11,13 +11,18 @@ kind: walkthrough
 
 # 3.3 Work, energy and power — Learn
 
-**Prerequisites:** the equations of motion from Section 3.1; resolving a vector
-into components from Section 2.2; the idea of energy transfer from Chapter 1.
+**Prerequisites:**
 
-**By the end of this section you can:** calculate the work done by a constant
-force, including a force not along the line of motion; use the kinetic energy
-and gravitational potential energy equations; apply conservation of energy; and
-calculate power from work and time, and from force and velocity.
+- the equations of motion from Section 3.1;
+- resolving a vector into components from Section 2.2;
+- the idea of energy transfer from Chapter 1.
+
+**By the end of this section you can:**
+
+- calculate the work done by a constant force, including a force not along the line of motion;
+- use the kinetic energy and gravitational potential energy equations;
+- apply conservation of energy;
+- calculate power from work and time, and from force and velocity.
 
 ## 1. Work done by a constant force
 

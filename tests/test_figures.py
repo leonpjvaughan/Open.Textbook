@@ -537,7 +537,7 @@ def test_the_build_writes_every_shared_module_beside_the_loader(tmp_path):
 
     book = BOOKS[0]
     out = tmp_path / "site"
-    pipeline.build(book.id, book.default_profile.id, out=out, index=False)
+    pipeline.build(book.id, book.default_profile.id, out=out)
 
     figures = out / "assets" / "figures"
     assert (figures / "figures.js").is_file(), "the loader did not reach the build"
@@ -578,7 +578,7 @@ def test_a_page_can_mount_a_shared_module(tmp_path):
     )
     book, page, slug = found
     out = tmp_path / "site"
-    pipeline.build(book.id, book.default_profile.id, out=out, index=False)
+    pipeline.build(book.id, book.default_profile.id, out=out)
 
     built = [
         p for p in out.rglob("*.html") if f'data-figure="{slug}"' in p.read_text(encoding="utf-8")

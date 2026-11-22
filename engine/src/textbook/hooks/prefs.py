@@ -12,6 +12,12 @@ under origin-wide keys and applied before the first paint.
 Neither key is namespaced by path: renaming the repository or moving a book must
 not cost a reader their preferences.
 
+**The operating system is the default, not an override.** With nothing stored, a
+dark ``prefers-color-scheme`` gives the dark scheme and a light one gives the
+light scheme, and the page follows the OS if it changes while the reader is on
+it. A stored choice always wins and is not moved by an OS change: the reader
+asked for it, and an OS setting that fired at dusk must not undo it.
+
 **This is the only copy of the before-paint script.** It used to exist three
 times — here for MkDocs, in ``templates/page.html`` for the pipeline and again in
 the landing page — and the copies could drift. Now ``snippet`` generates it,
@@ -22,7 +28,10 @@ no preference logic of their own, which a test enforces.
 
 from __future__ import annotations
 
+import html
 import json
+
+from ..themes import SCHEMES, default_bundle
 
 SCHEME_KEY = "textbooks:scheme"
 THEME_KEY = "textbooks:theme"
@@ -42,6 +51,29 @@ def themes(config) -> tuple[list[str], str]:
     ids = [str(theme_id) for theme_id in extra.get("themes", ())]
     default = str(extra.get("default_theme", "") or (ids[0] if ids else ""))
     return ids, default
+
+
+def theme_color_metas() -> str:
+    """The browser-interface colour, one meta per scheme.
+
+    A phone paints its own address bar from ``theme-color``, and without it the
+    bar is whatever the browser guesses: measured, 0 pages carried the meta. The
+    values are the default bundle's paper for each scheme, so the markup carries
+    no colour of its own; ``snippet`` repaints both from the resolved
+    ``--tb-paper`` once the stylesheets have loaded, which is what makes them
+    right for a reader on another bundle or an explicit scheme.
+
+    ``media`` follows the operating system, which is the only signal a browser
+    has before a script runs. A reader who stored the opposite scheme gets the
+    right value a moment later, from the same script that chose the scheme.
+    """
+    palettes = default_bundle().palettes
+    tags = [
+        f'<meta name="theme-color" media="(prefers-color-scheme: {scheme})" '
+        f'content="{html.escape(palettes[scheme]["paper"], quote=True)}">'
+        for scheme in SCHEMES
+    ]
+    return "\n".join(tags)
 
 
 def snippet(config) -> str:
@@ -70,10 +102,17 @@ def snippet(config) -> str:
         f'  var THEME_KEY = "{THEME_KEY}";\n'
         f"  var THEMES = {theme_list};\n"
         f'  var DEFAULT_THEME = "{default_theme}";\n'
-        "  var store, scheme = \"default\";\n"
+        "  var store, query = null;\n"
         "  try { store = window.localStorage; } catch (err) {}\n"
+        "  try {\n"
+        "    query = window.matchMedia ? window.matchMedia('(prefers-color-scheme: dark)') : null;\n"
+        "  } catch (err) {}\n"
         "  function read(key) {\n"
         "    try { return store ? store.getItem(key) : null; } catch (err) { return null; }\n"
+        "  }\n"
+        "  function stored() {\n"
+        "    var value = read(SCHEME_KEY);\n"
+        "    return value === 'slate' || value === 'default' ? value : null;\n"
         "  }\n"
         "  function write(key, value) {\n"
         "    try { if (store) store.setItem(key, value); } catch (err) {}\n"
@@ -83,13 +122,45 @@ def snippet(config) -> str:
         "    if (wanted) document.documentElement.setAttribute('data-theme', wanted);\n"
         "    return wanted;\n"
         "  }\n"
-        "  var saved = read(SCHEME_KEY);\n"
-        "  if (saved) scheme = saved;\n"
-        "  document.documentElement.setAttribute('data-scheme-pref', scheme);\n"
-        "  document.documentElement.setAttribute(\n"
-        "    'data-md-color-scheme', scheme === 'slate' ? 'slate' : 'default'\n"
-        "  );\n"
+        "  function paint() {\n"
+        "    var paper = '';\n"
+        "    try {\n"
+        "      /* The tokens are declared on body[data-md-color-scheme]; <html> above\n"
+        "       * it computes --tb-paper as the empty value. */\n"
+        "      paper = getComputedStyle(document.body || document.documentElement)\n"
+        "        .getPropertyValue('--tb-paper').trim();\n"
+        "    } catch (err) {}\n"
+        "    if (!paper) return;\n"
+        "    var metas = document.querySelectorAll('meta[name=\"theme-color\"]');\n"
+        "    for (var i = 0; i < metas.length; i += 1) {\n"
+        "      metas[i].setAttribute('content', paper);\n"
+        "    }\n"
+        "  }\n"
+        "  function apply(value) {\n"
+        "    var scheme = value === 'slate' ? 'slate' : 'default';\n"
+        "    document.documentElement.setAttribute('data-scheme-pref', scheme);\n"
+        "    document.documentElement.setAttribute('data-md-color-scheme', scheme);\n"
+        "    if (document.body) document.body.setAttribute('data-md-color-scheme', scheme);\n"
+        "    paint();\n"
+        "  }\n"
+        "  /* The stored choice first; with none, the operating system. */\n"
+        "  var chosen = stored();\n"
+        "  apply(chosen || (query && query.matches ? 'slate' : 'default'));\n"
+        "  if (!chosen && query) {\n"
+        "    function follow(event) {\n"
+        "      /* A choice made after load wins from here on. */\n"
+        "      if (stored()) return;\n"
+        "      apply(event.matches ? 'slate' : 'default');\n"
+        "    }\n"
+        "    if (query.addEventListener) query.addEventListener('change', follow);\n"
+        "    else if (query.addListener) query.addListener(follow);\n"
+        "  }\n"
         "  applyTheme(read(THEME_KEY));\n"
+        "  if (document.readyState === 'loading') {\n"
+        "    document.addEventListener('DOMContentLoaded', paint);\n"
+        "  } else {\n"
+        "    paint();\n"
+        "  }\n"
         "  window.textbookPrefs = {\n"
         "    schemeKey: SCHEME_KEY,\n"
         "    themeKey: THEME_KEY,\n"

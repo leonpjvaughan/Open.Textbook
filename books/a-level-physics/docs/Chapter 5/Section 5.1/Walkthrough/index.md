@@ -11,15 +11,20 @@ kind: walkthrough
 
 # 5.1 Current, charge and emf — Learn
 
-**Prerequisites:** SI units and prefixes from Section 1.1; standard form;
-rearranging a formula; the idea of energy transferred, and the unit of energy,
-the joule; charge and current from earlier science.
+**Prerequisites:**
 
-**By the end of this section you can:** define electric current and use
-$I = \dfrac{\Delta Q}{\Delta t}$; find the charge that flows and the number of
-charge carriers; explain the difference between emf and potential difference;
-and use the emf, the internal resistance and the terminal potential difference
-of a source.
+- SI units and prefixes from Section 1.1;
+- standard form;
+- rearranging a formula;
+- the idea of energy transferred, and the unit of energy, the joule;
+- charge and current from earlier science.
+
+**By the end of this section you can:**
+
+- define electric current and use $I = \dfrac{\Delta Q}{\Delta t}$;
+- find the charge that flows and the number of charge carriers;
+- explain the difference between emf and potential difference;
+- use the emf, the internal resistance and the terminal potential difference of a source.
 
 ## 1. Current is the flow of charge
 

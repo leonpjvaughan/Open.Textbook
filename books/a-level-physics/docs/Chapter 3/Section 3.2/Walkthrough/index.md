@@ -11,15 +11,20 @@ kind: walkthrough
 
 # 3.2 Dynamics and Newton's laws of motion — Learn
 
-**Prerequisites:** the equations of motion and their graphs from Section 3.1;
-resolving a vector into components from Section 2.2; the difference between mass
-and weight from Section 2.1.
+**Prerequisites:**
 
-**By the end of this section you can:** state Newton's three laws; draw a
-free-body diagram and find the resultant force; apply $F = ma$; find the
-apparent weight of an object in a lift; analyse projectile motion as a constant
-horizontal velocity and a constant vertical acceleration; and explain terminal
-velocity.
+- the equations of motion and their graphs from Section 3.1;
+- resolving a vector into components from Section 2.2;
+- the difference between mass and weight from Section 2.1.
+
+**By the end of this section you can:**
+
+- state Newton's three laws;
+- draw a free-body diagram and find the resultant force;
+- apply $F = ma$;
+- find the apparent weight of an object in a lift;
+- analyse projectile motion as a constant horizontal velocity and a constant vertical acceleration;
+- explain terminal velocity.
 
 ## 1. Newton's first law
 

@@ -11,13 +11,22 @@ kind: walkthrough
 
 # 8.3 Radioactive decay and half-life — Learn
 
-**Prerequisites:** exponential decay from Section 5.4; the graph of an
-exponential from Chapter 3; reading a gradient; natural logarithms; SI prefixes.
+**Prerequisites:**
 
-**By the end of this section you can:** define activity and half-life; use
-$A = \lambda N$; find a decay constant from a half-life; use
-$N = N_0 e^{-\lambda t}$ and $A = A_0 e^{-\lambda t}$; read a decay curve; and
-write a balanced nuclear equation for alpha, beta and gamma decay.
+- exponential decay from Section 5.4;
+- the graph of an exponential from Chapter 3;
+- reading a gradient;
+- natural logarithms;
+- SI prefixes.
+
+**By the end of this section you can:**
+
+- define activity and half-life;
+- use $A = \lambda N$;
+- find a decay constant from a half-life;
+- use $N = N_0 e^{-\lambda t}$ and $A = A_0 e^{-\lambda t}$;
+- read a decay curve;
+- write a balanced nuclear equation for alpha, beta and gamma decay.
 
 ## 1. The nucleus and its notation
 

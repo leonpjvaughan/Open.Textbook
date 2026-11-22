@@ -45,28 +45,9 @@ Work through these without notes. For each one, decide **which relationship appl
 and say why. One of them is deliberately a question you should refuse to answer with the
 formula you have been using.
 
-1. A spring of constant 60 N/m is stretched by 0.15 m. Calculate the force and the
-   energy stored.
-2. A force of 9.0 N stretches a spring by 0.030 m. Calculate its spring constant, then
-   the extension a force of 15 N would give.
-3. Two springs of 80 N/m and 20 N/m are joined in series, and then in parallel.
-   Calculate both combined spring constants. Check each against the size of the two.
-4. A spring's graph is straight up to 0.20 m and curves afterwards. A force of 20 N
-   gives an extension of 0.25 m. Explain why you cannot use $F = kx$ here, and say what
-   you would do instead.
-5. A 250 g mass hangs on a spring and stretches it by 0.049 m. Calculate the spring
-   constant. Take $g = 9.8\,\text{N/kg}$.
-6. An extension is measured as 0.020 m on a metre stick read to the nearest millimetre.
-   Calculate the percentage uncertainty, and compare it with the same uncertainty on a
-   0.100 m extension.
-7. A spring stores 3.0 J when stretched by 0.10 m. Calculate the energy stored at
-   0.30 m.
-8. A student plots force against **total length** instead of extension. Describe what
-   is wrong with the graph and how it would show up in the shape of the line.
-9. Two identical springs in series hold up a 2.0 kg mass. Each has a spring constant of
-   400 N/m. Calculate the extension of the combination.
-10. Explain, in terms of what stays the same, why springs in parallel have a larger
-    combined spring constant than either spring on its own.
+:::problems chapter-05-review
+
+:::answers chapter-05-review
 
 ## What you can now do
 

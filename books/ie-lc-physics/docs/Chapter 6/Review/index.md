@@ -79,27 +79,9 @@ Work through these without notes. For each one, decide **which relationship appl
 and say why. Two of them ask you to choose between the energy form for a short climb
 and the energy form for a long one.
 
-1. A 3.0 kg mass is raised 4.0 m near the Earth's surface. Calculate the gain in
-   potential energy. Would $mgh$ still be accurate on the space station?
-2. The Earth's mass is $5.97 \times 10^{24}\,\text{kg}$. Calculate the field strength
-   $2.0 \times 10^{7}\,\text{m}$ from its centre.
-3. Two masses attract each other with a force of 24 N. Calculate the force when the
-   distance between their centres is halved.
-4. A satellite orbits at $r = 1.0 \times 10^{7}\,\text{m}$. Calculate its speed and
-   its period.
-5. Explain why a satellite 400 km above the equator is not geostationary, even though
-   it is high above the Earth.
-6. A spring of constant 200 N/m is stretched by 0.15 m. Calculate the energy stored.
-   Which earlier chapter does that energy belong to, and why is it not gravitational?
-7. Calculate the escape velocity from a planet with the same radius as the Earth but
-   twice its mass.
-8. A ball is dropped from rest and falls 20 m. Calculate its speed when it lands,
-   taking $g = 9.8\,\text{m/s}^{2}$. Which chapter does that method come from?
-9. An astronaut of mass 70 kg stands on the Moon, where $g = 1.6\,\text{N/kg}$.
-   Calculate her weight there, and compare it with her weight on the Earth.
-10. You must find the mass of a planet. You can measure the radius of a moon's orbit
-    and its period. Which relationship would you use, and what else do you need to
-    know?
+:::problems chapter-06-review
+
+:::answers chapter-06-review
 
 ## What you can now do
 
