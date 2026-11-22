@@ -86,51 +86,9 @@ why in a few words. The idea might be a perimeter, an area, a circumference, a
 volume, a surface area, a unit conversion, a percentage, a ratio, an equation or a
 formula.
 
-1. Convert 3 km to metres.
-2. Find the perimeter of a rectangle 14 m long and 9 m wide.
-3. Work out 35% of 240.
-4. Find the circumference of a circle of radius 7 cm, in terms of $\pi$.
-5. Solve $5x-3=27$.
-6. Find the area of a triangle with base 11 cm and perpendicular height 6 cm.
-7. Find the volume of a cuboid 7 cm by 4 cm by 3 cm.
-8. Make $r$ the subject of $C=2\pi r$.
-9. Find the area of a circle of diameter 16 m, in terms of $\pi$.
-10. Divide €84 in the ratio $3:4$.
-11. An L-shape is a rectangle 9 m by 5 m with a square of side 2 m cut from a corner.
-    Find its area.
-12. Find the volume of a cylinder of radius 5 m and height 2 m, in terms of $\pi$.
-13. Find the curved surface area of a cylinder of radius 3 m and height 4 m, in terms
-    of $\pi$.
-14. A car travels 180 km in 2.5 hours. Find its average speed.
-15. Find the surface area of a sphere of radius 5 cm, in terms of $\pi$.
-16. A solid is a cuboid 6 cm by 4 cm by 2 cm, with a cube of side 2 cm on top. Find
-    its volume.
+:::problems chapter-16-review
 
-<details markdown="1">
-<summary>Answers and concise solutions</summary>
-
-1. $3000$ m. There are 1000 m in 1 km, so multiply by 1000.
-2. $46$ m. Add the length and the width, then double: $2(14+9)=2\times23=46$.
-3. $84$. Ten per cent of 240 is 24, so 30% is $3\times24=72$ and 5% is 12. Add them:
-   $72+12=84$. Working directly, $0.35\times240=84$.
-4. $14\pi$ cm. Use $C=2\pi r$: $2\times\pi\times7=14\pi$.
-5. $x=6$. Add 3 to both sides to get $5x=30$, then divide by 5.
-6. $33$ cm². Use half of base times height: $\tfrac{1}{2}\times11\times6=33$.
-7. $84$ cm³. Multiply the three lengths: $7\times4\times3=84$.
-8. $r=\dfrac{C}{2\pi}$. Divide both sides by $2\pi$.
-9. $64\pi$ m². Halve the diameter to get $r=8$ m, then $A=\pi\times8^2=64\pi$.
-10. €36 and €48. There are $3+4=7$ parts, and $84\div7=12$. Then $3\times12=36$ and
-    $4\times12=48$.
-11. $41$ m². The rectangle is $45$ m², and the square is $4$ m². Subtract: $45-4=41$.
-12. $50\pi$ m³. Use $V=\pi r^2h$: $\pi\times25\times2=50\pi$.
-13. $24\pi$ m². Use $2\pi rh$: $2\times\pi\times3\times4=24\pi$. The ends are not
-    included.
-14. $72$ km/h. Speed is distance divided by time: $180\div2.5=72$.
-15. $100\pi$ cm². Use $S=4\pi r^2$: $4\times\pi\times25=100\pi$.
-16. $56$ cm³. The cuboid is $6\times4\times2=48$ cm³, and the cube is $2^3=8$ cm³.
-    Add them: $48+8=56$.
-
-</details>
+:::answers chapter-16-review
 
 ## What you can now do
 
