@@ -95,29 +95,9 @@ down, because the scale supplies whatever extra force the acceleration needs.
 Work through these without notes. For each one, decide **which relationship applies**
 and say why. Three of them ask you to choose between $F = ma$ and the impulse.
 
-1. A resultant force of 48 N acts on a mass of 12 kg. Calculate the acceleration.
-2. A box of mass 8.0 kg is pushed with a force of 30 N. Friction is 14 N. Calculate
-   the acceleration.
-3. A passenger of mass 55 kg stands in a lift that accelerates downwards at
-   $1.5\,\text{m/s}^2$. Calculate the reading on the scale. Take $g = 9.8$ N/kg.
-4. A car of mass 1000 kg travels at 25 m/s. Calculate its momentum.
-5. A ball of mass 0.15 kg hits a wall at 10 m/s and rebounds at 8.0 m/s. Taking the
-   direction towards the wall as positive, calculate the change in momentum.
-6. A skydiver of mass 75 kg falls at terminal velocity. Calculate the drag force on
-   her.
-7. A box slides with a contact force of 400 N and a coefficient of friction of 0.25.
-   Calculate the friction force.
-8. State Newton's third law, and name the partner of the weight of a book resting on
-   a table.
-9. A stone is dropped from rest and falls for 1.2 s. Calculate its speed and the
-   distance it falls. Take $g = 9.8$ m/s$^2$.
-10. A car brakes from 24 m/s to rest in 3.0 s. Calculate its deceleration and the
-    distance it travels while braking.
-11. A passenger is held by a seat belt in a crash. To find the force on her, would
-    you use $F = ma$ or the impulse $Ft = mv - mu$? Say why, and name what each method
-    needs.
-12. A crate is pushed with 50 N and does not move. A student says the friction force
-    is $\mu N$. Explain why the student could be wrong.
+:::problems chapter-03-review
+
+:::answers chapter-03-review
 
 ## What you can now do
 

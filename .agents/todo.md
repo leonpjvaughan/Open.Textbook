@@ -227,10 +227,9 @@ it.
 
 ## 219 — most Review pages carry no verified answer block
 
-**What is wrong.** The Chapter 1 Review of `ie-lc-physics` now renders its ten
-questions and answers from `problems/chapter-01-review.yaml`, and the verifier
-proves every one. It is the only Review page in the collection built that way:
-every other Review page either has no answers or has hand-written ones.
+**What is wrong.** Chapters 1-6 of `ie-lc-physics` now render their questions and
+answers from `problems/chapter-NN-review.yaml`, and the verifier proves every one.
+Every other Review page either has no answers or has hand-written ones.
 
 ```
 $ for f in books/*/docs/Chapter\ */Review/index.md; do
@@ -238,10 +237,11 @@ $ for f in books/*/docs/Chapter\ */Review/index.md; do
   done | awk -F/ '{print $2}' | sort | uniq -c | sort -rn
      24 gcse-maths
      22 ie-jc-maths
-     20 ie-lc-physics
      18 ie-lc-maths
+     16 ie-lc-physics
       9 ie-lc-applied-maths
       5 a-level-maths
+      1 maths-applied
 ```
 
 The maths books are not empty: `gcse-maths` and `a-level-maths` wrap their

@@ -1,0 +1,276 @@
+# Mixed practice for the Chapter 2 Review.
+#
+# Ten questions, one record each, in the order they appear on the Review page.
+# Every numeric record carries a `dimensions` check, which proves the magnitude
+# and the unit, and a `sigfigs` check, which proves the rounding to the figures
+# the data support. The graph records use `gradient` and `area`; question 9 is a
+# judgement with no numeric answer, so it carries a `structured` check only.
+#
+# Honest limit: this proves arithmetic, dimensions and the declared conventions,
+# not physics. A `structured` check proves only that a model answer contains its
+# declared steps and concepts, in order.
+chapter: 2
+problems:
+  - id: c2-r1-average-speed
+    section: Review
+    tier: O
+    refs: ['1.1']
+    statement: 'A car travels $240\,\text{m}$ in $12\,\text{s}$. Calculate its average speed.'
+    answer_label: 'Average speed'
+    check:
+      kind: all
+      checks:
+        - kind: dimensions
+          expression: s / t
+          values:
+            s: {value: '240', unit: m}
+            t: {value: '12', unit: s}
+          answer: {value: '20', unit: m/s}
+        - kind: sigfigs
+          value: '240 / 12'
+          figures: 2
+          answer: '2.0e1'
+          convention: round-once
+    answer_text: 'Average speed $= \dfrac{s}{t} = \dfrac{240}{12} = 20\,\text{m/s}$. The two readings carry two significant figures each, so the answer is $2.0 \times 10^{1}\,\text{m/s}$. The average speed is the distance divided by the time; it says nothing about how the speed varied along the way.'
+
+  - id: c2-r2-graph-acceleration-displacement
+    section: Review
+    tier: O
+    refs: ['1.1']
+    statement: 'A velocity-time graph is a straight line from $5.0\,\text{m/s}$ to $17\,\text{m/s}$ over $6.0\,\text{s}$. Find the acceleration and the displacement.'
+    answer_label: 'The acceleration and the displacement'
+    check:
+      kind: all
+      checks:
+        - kind: gradient
+          series:
+            - [0, 5.0]
+            - [6.0, 17]
+          between: [1.95, 2.05]
+        - kind: area
+          series:
+            - [0, 5.0]
+            - [6.0, 17]
+          between: [65.5, 66.5]
+        - kind: sigfigs
+          value: '66'
+          figures: 2
+          answer: '66'
+          convention: round-once
+    answer_text: 'The gradient is $a = \dfrac{\Delta v}{\Delta t} = \dfrac{17 - 5.0}{6.0} = 2.0\,\text{m/s}^2$. The area under the line is the displacement, and the shape is a trapezium: $s = \dfrac{u + v}{2}\,t = \dfrac{5.0 + 17}{2} \times 6.0 = 66\,\text{m}$. The graph gives both quantities without an equation, which is why it is the shorter route here.'
+
+  - id: c2-r3-fall-time
+    section: Review
+    tier: O
+    refs: ['1.1', '1.5']
+    statement: 'A stone is dropped from rest from a height of $44.1\,\text{m}$. Calculate the time it takes to reach the ground.'
+    answer_label: 'Time to reach the ground'
+    check:
+      kind: all
+      checks:
+        - kind: dimensions
+          expression: sqrt(2 * s / g)
+          values:
+            s: {value: '44.1', unit: m}
+            g: {value: '9.8', unit: m/s^2}
+          answer: {value: '3.0', unit: s}
+        - kind: sigfigs
+          value: 'sqrt(2 * 44.1 / 9.8)'
+          figures: 2
+          answer: '3.0'
+          convention: round-once
+    answer_text: 'With $u = 0$, $s = \frac{1}{2}gt^2$ gives $t = \sqrt{\dfrac{2s}{g}} = \sqrt{\dfrac{2 \times 44.1}{9.8}} = \sqrt{9.0} = 3.0\,\text{s}$. The speed at the end is $v = gt = 9.8 \times 3.0 = 29\,\text{m/s}$, but the question only asks for the time.'
+
+  - id: c2-r4-throw-up
+    section: Review
+    tier: O
+    refs: ['1.1', '1.5']
+    statement: 'A ball is thrown straight up at $24.5\,\text{m/s}$. Calculate the time to the highest point and the maximum height.'
+    answer_label: 'The time to the highest point and the maximum height'
+    check:
+      kind: all
+      checks:
+        - kind: dimensions
+          expression: u / g
+          values:
+            u: {value: '24.5', unit: m/s}
+            g: {value: '9.8', unit: m/s^2}
+          answer: {value: '2.5', unit: s}
+        - kind: sigfigs
+          value: '24.5 / 9.8'
+          figures: 2
+          answer: '2.5'
+          convention: round-once
+        - kind: dimensions
+          expression: u**2 / (2 * g)
+          values:
+            u: {value: '24.5', unit: m/s}
+            g: {value: '9.8', unit: m/s^2}
+          answer: {value: '30.625', unit: m}
+        - kind: sigfigs
+          value: '24.5**2 / (2 * 9.8)'
+          figures: 2
+          answer: '31'
+          convention: round-once
+    answer_text: 'At the highest point the velocity is zero, so $v = u + at$ gives $t = \dfrac{u}{g} = \dfrac{24.5}{9.8} = 2.5\,\text{s}$. The height follows from $v^2 = u^2 + 2as$ with $v = 0$: $h = \dfrac{u^2}{2g} = \dfrac{24.5^2}{2 \times 9.8} = 30.625\,\text{m}$, which is $31\,\text{m}$ to two significant figures. The acceleration is $9.8\,\text{m/s}^2$ downwards throughout, including at the highest point.'
+
+  - id: c2-r5-train-stopping
+    section: Review
+    tier: O
+    refs: ['1.1']
+    statement: 'A train travelling at $25\,\text{m/s}$ decelerates steadily to rest in $10\,\text{s}$. Calculate its deceleration and its stopping distance.'
+    answer_label: 'The deceleration and the stopping distance'
+    check:
+      kind: all
+      checks:
+        - kind: dimensions
+          expression: (v - u) / t
+          values:
+            u: {value: '25', unit: m/s}
+            v: {value: '0', unit: m/s}
+            t: {value: '10', unit: s}
+          answer: {value: '-2.5', unit: m/s^2}
+        - kind: sigfigs
+          value: '(0 - 25) / 10'
+          figures: 2
+          answer: '-2.5'
+          convention: round-once
+        - kind: dimensions
+          expression: (u + v) / 2 * t
+          values:
+            u: {value: '25', unit: m/s}
+            v: {value: '0', unit: m/s}
+            t: {value: '10', unit: s}
+          answer: {value: '125', unit: m}
+        - kind: sigfigs
+          value: '(25 + 0) / 2 * 10'
+          figures: 2
+          answer: '1.3e2'
+          convention: round-once
+    answer_text: 'Taking the direction of travel as positive, $a = \dfrac{v - u}{t} = \dfrac{0 - 25}{10} = -2.5\,\text{m/s}^2$. The minus sign says the acceleration points backwards, so the deceleration is $2.5\,\text{m/s}^2$. The distance is the area of the velocity-time trapezium: $s = \dfrac{u + v}{2}\,t = \dfrac{25 + 0}{2} \times 10 = 125\,\text{m}$, which is $1.3 \times 10^{2}\,\text{m}$ to two significant figures.'
+
+  - id: c2-r6-cyclist
+    section: Review
+    tier: O
+    refs: ['1.1']
+    statement: 'A cyclist starts from rest and accelerates at $1.5\,\text{m/s}^2$ for $8.0\,\text{s}$. Calculate the final speed and the distance travelled.'
+    answer_label: 'The final speed and the distance travelled'
+    check:
+      kind: all
+      checks:
+        - kind: dimensions
+          expression: a * t
+          values:
+            a: {value: '1.5', unit: m/s^2}
+            t: {value: '8.0', unit: s}
+          answer: {value: '12', unit: m/s}
+        - kind: sigfigs
+          value: '1.5 * 8.0'
+          figures: 2
+          answer: '12'
+          convention: round-once
+        - kind: dimensions
+          expression: 0.5 * a * t**2
+          values:
+            a: {value: '1.5', unit: m/s^2}
+            t: {value: '8.0', unit: s}
+          answer: {value: '48', unit: m}
+        - kind: sigfigs
+          value: '0.5 * 1.5 * 8.0**2'
+          figures: 2
+          answer: '48'
+          convention: round-once
+    answer_text: 'With $u = 0$, $v = u + at = 1.5 \times 8.0 = 12\,\text{m/s}$. The distance is $s = ut + \frac{1}{2}at^2 = 0 + \frac{1}{2} \times 1.5 \times 8.0^2 = 48\,\text{m}$. The same distance comes from the average speed: $\dfrac{0 + 12}{2} \times 8.0 = 48\,\text{m}$.'
+
+  - id: c2-r7-fall-height
+    section: Review
+    tier: O
+    refs: ['1.1', '1.5']
+    statement: 'A ball is dropped from rest and lands at $15\,\text{m/s}$. Calculate the height it fell.'
+    answer_label: 'Height fallen'
+    check:
+      kind: all
+      checks:
+        - kind: dimensions
+          expression: v**2 / (2 * g)
+          values:
+            v: {value: '15', unit: m/s}
+            g: {value: '9.8', unit: m/s^2}
+          answer: {value: '1125/98', unit: m}
+        - kind: sigfigs
+          value: '15**2 / (2 * 9.8)'
+          figures: 2
+          answer: '11'
+          convention: round-once
+    answer_text: 'With $u = 0$, $v^2 = u^2 + 2as$ gives $h = \dfrac{v^2}{2g} = \dfrac{15^2}{2 \times 9.8} = 11.48\,\text{m}$, which is $11\,\text{m}$ to two significant figures. The mass does not appear, so a heavy ball and a light one fall the same distance in the same time when air resistance is ignored.'
+
+  - id: c2-r8-acceleration-over-distance
+    section: Review
+    tier: O
+    refs: ['1.1']
+    statement: 'A car speeds up from $12\,\text{m/s}$ to $30\,\text{m/s}$ over a distance of $90\,\text{m}$. Calculate its acceleration.'
+    answer_label: 'Acceleration'
+    check:
+      kind: all
+      checks:
+        - kind: dimensions
+          expression: (v**2 - u**2) / (2 * s)
+          values:
+            u: {value: '12', unit: m/s}
+            v: {value: '30', unit: m/s}
+            s: {value: '90', unit: m}
+          answer: {value: '4.2', unit: m/s^2}
+        - kind: sigfigs
+          value: '(30**2 - 12**2) / (2 * 90)'
+          figures: 2
+          answer: '4.2'
+          convention: round-once
+    answer_text: 'The time is not given and is not wanted, so use $v^2 = u^2 + 2as$: $a = \dfrac{v^2 - u^2}{2s} = \dfrac{30^2 - 12^2}{2 \times 90} = \dfrac{900 - 144}{180} = 4.2\,\text{m/s}^2$. Choosing that equation leaves out $t$, which is what makes it the shortest route.'
+
+  - id: c2-r9-choose-equation
+    section: Review
+    tier: O
+    refs: ['1.1']
+    statement: 'You know the initial velocity, the final velocity and the time. State which equation gives the distance, and explain why it is the shortest route.'
+    answer_label: 'The equation for the distance, and why it is shortest'
+    check:
+      kind: structured
+      requires: [choose-equation, why-shortest]
+      concepts: [average-velocity, no-acceleration-needed]
+      points:
+        - id: choose-equation
+          text: 'Use s = (u + v) t / 2. It asks only for the two speeds and the time, all of which are given.'
+          concepts: [average-velocity]
+        - id: why-shortest
+          text: 'The equation needs no acceleration, so there is nothing to work out first: the average of the two speeds multiplied by the time is the distance, and it is the area of the velocity-time trapezium.'
+          concepts: [average-velocity, no-acceleration-needed]
+    answer_text: 'Use $s = \dfrac{u + v}{2}\,t$. It asks only for the two speeds and the time, and all three are given. It needs no acceleration, so there is nothing to work out first: the average of the two speeds multiplied by the time is the distance. That is the same as the area of the velocity-time trapezium, which is where the equation comes from. Using $s = ut + \frac{1}{2}at^2$ would mean finding $a$ from $v = u + at$ first, which is a longer route to the same answer.'
+
+  - id: c2-r10-two-stage-journey
+    section: Review
+    tier: O
+    refs: ['1.1']
+    statement: 'A car accelerates from rest at $3.0\,\text{m/s}^2$ for $4.0\,\text{s}$, then travels at a constant speed for $6.0\,\text{s}$. Calculate the total distance travelled.'
+    answer_label: 'Total distance travelled'
+    check:
+      kind: all
+      checks:
+        - kind: area
+          series:
+            - [0, 0]
+            - [4.0, 12]
+            - [10, 12]
+          between: [95.5, 96.5]
+        - kind: dimensions
+          expression: 0.5 * a * t1**2 + a * t1 * t2
+          values:
+            a: {value: '3.0', unit: m/s^2}
+            t1: {value: '4.0', unit: s}
+            t2: {value: '6.0', unit: s}
+          answer: {value: '96', unit: m}
+        - kind: sigfigs
+          value: '0.5 * 3.0 * 4.0**2 + 3.0 * 4.0 * 6.0'
+          figures: 2
+          answer: '96'
+          convention: round-once
+    answer_text: 'The speed after the first stage is $v = at = 3.0 \times 4.0 = 12\,\text{m/s}$, and that is the constant speed for the second stage. In the first stage the car travels $\frac{1}{2} \times 3.0 \times 4.0^2 = 24\,\text{m}$; in the second, $12 \times 6.0 = 72\,\text{m}$. The total is $24 + 72 = 96\,\text{m}$. The velocity-time graph gives the same total as the area under it: a triangle of area $24\,\text{m}$ and a rectangle of area $72\,\text{m}$.'

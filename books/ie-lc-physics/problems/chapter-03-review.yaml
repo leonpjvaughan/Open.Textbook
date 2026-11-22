@@ -1,0 +1,304 @@
+# Mixed practice for the Chapter 3 Review.
+#
+# Twelve questions, one record each, in the order they appear on the Review page.
+# Every numeric record carries a `dimensions` check, which proves the magnitude
+# and the unit, and a `sigfigs` check, which proves the rounding to the figures
+# the data support. Questions 8, 11 and 12 ask for a statement or a judgement and
+# no number, so each carries a `structured` check only.
+#
+# Honest limit: this proves arithmetic, dimensions and the declared conventions,
+# not physics. A `structured` check proves only that a model answer contains its
+# declared steps and concepts, in order. Question 12 asks why a rule can fail, and
+# the verifier can prove only that the two ideas are present in the right order.
+chapter: 3
+problems:
+  - id: c3-r1-resultant-acceleration
+    section: Review
+    tier: O
+    refs: ['1.2']
+    statement: 'A resultant force of $48\,\text{N}$ acts on a mass of $12\,\text{kg}$. Calculate the acceleration.'
+    answer_label: 'Acceleration'
+    check:
+      kind: all
+      checks:
+        - kind: dimensions
+          expression: F / m
+          values:
+            F: {value: '48', unit: N}
+            m: {value: '12', unit: kg}
+          answer: {value: '4', unit: m/s^2}
+        - kind: sigfigs
+          value: '48 / 12'
+          figures: 2
+          answer: '4.0'
+          convention: round-once
+    answer_text: '$F = ma$, so $a = \dfrac{F}{m} = \dfrac{48}{12} = 4.0\,\text{m/s}^2$. The force is the resultant, so this is the acceleration the whole mass has. One newton per kilogram is one metre per second squared, which is why the units divide cleanly.'
+
+  - id: c3-r2-box-acceleration
+    section: Review
+    tier: O
+    refs: ['1.2']
+    statement: 'A box of mass $8.0\,\text{kg}$ is pushed with a force of $30\,\text{N}$. Friction is $14\,\text{N}$. Calculate the acceleration.'
+    answer_label: 'Acceleration'
+    check:
+      kind: all
+      checks:
+        - kind: dimensions
+          expression: (F - f) / m
+          values:
+            F: {value: '30', unit: N}
+            f: {value: '14', unit: N}
+            m: {value: '8.0', unit: kg}
+          answer: {value: '2', unit: m/s^2}
+        - kind: sigfigs
+          value: '(30 - 14) / 8.0'
+          figures: 2
+          answer: '2.0'
+          convention: round-once
+    answer_text: 'The resultant force is $30 - 14 = 16\,\text{N}$ in the direction of the push. Then $a = \dfrac{16}{8.0} = 2.0\,\text{m/s}^2$. The pushing force is not the one to put into $F = ma$: the resultant is, and friction always opposes the motion.'
+
+  - id: c3-r3-lift-scale
+    section: Review
+    tier: O
+    refs: ['1.2']
+    statement: 'A passenger of mass $55\,\text{kg}$ stands in a lift that accelerates downwards at $1.5\,\text{m/s}^2$. Calculate the reading on the scale. Take $g = 9.8\,\text{N/kg}$.'
+    answer_label: 'Scale reading'
+    check:
+      kind: all
+      checks:
+        - kind: dimensions
+          expression: m * (g - a)
+          values:
+            m: {value: '55', unit: kg}
+            g: {value: '9.8', unit: N/kg}
+            a: {value: '1.5', unit: m/s^2}
+          answer: {value: '456.5', unit: N}
+        - kind: sigfigs
+          value: '55 * (9.8 - 1.5)'
+          figures: 2
+          answer: '4.6e2'
+          convention: round-once
+    answer_text: 'Take downwards as positive. The forces on the passenger are her weight downwards, $mg$, and the contact force upwards, $N$. The resultant is $mg - N = ma$, so $N = m(g - a) = 55 \times (9.8 - 1.5) = 456.5\,\text{N}$. To two significant figures the scale reads $4.6 \times 10^{2}\,\text{N}$. That is less than her weight of $539\,\text{N}$, which is why she feels lighter while the lift speeds up downwards.'
+
+  - id: c3-r4-momentum
+    section: Review
+    tier: O
+    refs: ['1.2']
+    statement: 'A car of mass $1000\,\text{kg}$ travels at $25\,\text{m/s}$. Calculate its momentum.'
+    answer_label: 'Momentum'
+    check:
+      kind: all
+      checks:
+        - kind: dimensions
+          expression: m * v
+          values:
+            m: {value: '1000', unit: kg}
+            v: {value: '25', unit: m/s}
+          answer: {value: '25000', unit: kg m/s}
+        - kind: sigfigs
+          value: '1000 * 25'
+          figures: 2
+          answer: '2.5e4'
+          convention: round-once
+    answer_text: '$p = mv = 1000 \times 25 = 25\,000\,\text{kg m/s}$, which is $2.5 \times 10^{4}\,\text{kg m/s}$. Momentum is a vector, so it points the way the car is moving. The unit is the kilogram metre per second, which is the same as the newton second used for impulse.'
+
+  - id: c3-r5-change-in-momentum
+    section: Review
+    tier: O
+    refs: ['1.2']
+    statement: 'A ball of mass $0.15\,\text{kg}$ hits a wall at $10\,\text{m/s}$ and rebounds at $8.0\,\text{m/s}$. Taking the direction towards the wall as positive, calculate the change in momentum.'
+    answer_label: 'Change in momentum'
+    check:
+      kind: all
+      checks:
+        - kind: dimensions
+          expression: m * (v - u)
+          values:
+            m: {value: '0.15', unit: kg}
+            u: {value: '10', unit: m/s}
+            v: {value: '-8.0', unit: m/s}
+          answer: {value: '-2.7', unit: kg m/s}
+        - kind: sigfigs
+          value: '0.15 * (-8.0 - 10)'
+          figures: 2
+          answer: '-2.7'
+          convention: round-once
+    answer_text: 'Towards the wall is positive, so $u = +10\,\text{m/s}$ and $v = -8.0\,\text{m/s}$. Then $\Delta p = m(v - u) = 0.15 \times (-8.0 - 10) = -2.7\,\text{kg m/s}$. The minus sign says the change is directed away from the wall. The size of the change is $2.7\,\text{kg m/s}$, and it is larger than the momentum going in only because the ball reverses.'
+
+  - id: c3-r6-terminal-drag
+    section: Review
+    tier: O
+    refs: ['1.2']
+    statement: 'A skydiver of mass $75\,\text{kg}$ falls at terminal velocity. Calculate the drag force on her.'
+    answer_label: 'Drag force'
+    check:
+      kind: all
+      checks:
+        - kind: dimensions
+          expression: m * g
+          values:
+            m: {value: '75', unit: kg}
+            g: {value: '9.8', unit: N/kg}
+          answer: {value: '735', unit: N}
+        - kind: sigfigs
+          value: '75 * 9.8'
+          figures: 2
+          answer: '7.4e2'
+          convention: round-once
+    answer_text: 'At terminal velocity the speed is constant, so the acceleration is zero and the resultant force is zero. The drag therefore balances her weight: $F = mg = 75 \times 9.8 = 735\,\text{N}$, which is $7.4 \times 10^{2}\,\text{N}$ to two significant figures. She is not weightless; the two forces are equal and opposite, not absent.'
+
+  - id: c3-r7-friction-force
+    section: Review
+    tier: O
+    refs: ['1.2']
+    statement: 'A box slides with a contact force of $400\,\text{N}$ and a coefficient of friction of $0.25$. Calculate the friction force.'
+    answer_label: 'Friction force'
+    check:
+      kind: all
+      checks:
+        - kind: dimensions
+          expression: mu * N
+          values:
+            mu: {value: '0.25'}
+            N: {value: '400', unit: N}
+          answer: {value: '100', unit: N}
+        - kind: sigfigs
+          value: '0.25 * 400'
+          figures: 2
+          answer: '1.0e2'
+          convention: round-once
+    answer_text: 'The box is sliding, so the friction is kinetic and $F = \mu N = 0.25 \times 400 = 100\,\text{N}$, which is $1.0 \times 10^{2}\,\text{N}$. The coefficient has no unit because it is a ratio of two forces. The contact force is the normal force between the surfaces, not the weight, unless the surface is horizontal and nothing else presses.'
+
+  - id: c3-r8-third-law
+    section: Review
+    tier: O
+    refs: ['1.2']
+    statement: "State Newton's third law, and name the partner of the weight of a book resting on a table."
+    answer_label: 'The third law and the partner force'
+    check:
+      kind: structured
+      requires: [state-law, name-partner, different-objects]
+      concepts: [equal-opposite, gravitational-pair, act-on-different-bodies]
+      points:
+        - id: state-law
+          text: 'If A exerts a force on B, then B exerts a force of the same size and the opposite direction on A. The two forces act on different objects.'
+          concepts: [equal-opposite, act-on-different-bodies]
+        - id: name-partner
+          text: 'The partner of the weight of the book is the gravitational force the book exerts on the Earth, pulling the Earth upwards with the same size of force.'
+          concepts: [gravitational-pair]
+        - id: different-objects
+          text: 'The pair is not the weight and the normal force from the table. Those two both act on the book, so they are not a third-law pair, and they can balance because they are not a pair.'
+          concepts: [act-on-different-bodies, equal-opposite]
+    answer_text: "Newton's third law says that if A exerts a force on B, then B exerts a force of the same size and the opposite direction on A. The two forces act on different objects. The partner of the book's weight is the gravitational force the book exerts on the Earth, pulling the Earth upwards. It is not the normal force from the table: the weight and the normal force both act on the book, so they are not a third-law pair. They can balance only because the book is not accelerating."
+
+  - id: c3-r9-fall-speed-distance
+    section: Review
+    tier: O
+    refs: ['1.2', '1.5']
+    statement: 'A stone is dropped from rest and falls for $1.2\,\text{s}$. Calculate its speed and the distance it falls. Take $g = 9.8\,\text{m/s}^2$.'
+    answer_label: 'The speed and the distance'
+    check:
+      kind: all
+      checks:
+        - kind: dimensions
+          expression: g * t
+          values:
+            g: {value: '9.8', unit: m/s^2}
+            t: {value: '1.2', unit: s}
+          answer: {value: '11.76', unit: m/s}
+        - kind: sigfigs
+          value: '9.8 * 1.2'
+          figures: 2
+          answer: '12'
+          convention: round-once
+        - kind: dimensions
+          expression: 0.5 * g * t**2
+          values:
+            g: {value: '9.8', unit: m/s^2}
+            t: {value: '1.2', unit: s}
+          answer: {value: '7.056', unit: m}
+        - kind: sigfigs
+          value: '0.5 * 9.8 * 1.2**2'
+          figures: 2
+          answer: '7.1'
+          convention: round-once
+    answer_text: 'With $u = 0$, $v = u + gt = 9.8 \times 1.2 = 11.76\,\text{m/s}$, which is $12\,\text{m/s}$ to two significant figures. The distance is $s = \frac{1}{2}gt^2 = \frac{1}{2} \times 9.8 \times 1.2^2 = 7.056\,\text{m}$, which is $7.1\,\text{m}$ to two significant figures. The speed grows steadily, so the average speed is half the final speed, and half of $12\,\text{m/s}$ for $1.2\,\text{s}$ gives the same $7.1\,\text{m}$.'
+
+  - id: c3-r10-braking
+    section: Review
+    tier: O
+    refs: ['1.2']
+    statement: 'A car brakes from $24\,\text{m/s}$ to rest in $3.0\,\text{s}$. Calculate its deceleration and the distance it travels while braking.'
+    answer_label: 'The deceleration and the braking distance'
+    check:
+      kind: all
+      checks:
+        - kind: dimensions
+          expression: (v - u) / t
+          values:
+            u: {value: '24', unit: m/s}
+            v: {value: '0', unit: m/s}
+            t: {value: '3.0', unit: s}
+          answer: {value: '-8', unit: m/s^2}
+        - kind: sigfigs
+          value: '(0 - 24) / 3.0'
+          figures: 2
+          answer: '-8.0'
+          convention: round-once
+        - kind: dimensions
+          expression: (u + v) / 2 * t
+          values:
+            u: {value: '24', unit: m/s}
+            v: {value: '0', unit: m/s}
+            t: {value: '3.0', unit: s}
+          answer: {value: '36', unit: m}
+        - kind: sigfigs
+          value: '(24 + 0) / 2 * 3.0'
+          figures: 2
+          answer: '36'
+          convention: round-once
+    answer_text: 'Taking the direction of travel as positive, $a = \dfrac{v - u}{t} = \dfrac{0 - 24}{3.0} = -8.0\,\text{m/s}^2$. The deceleration is $8.0\,\text{m/s}^2$. The distance is $s = \dfrac{u + v}{2}\,t = \dfrac{24 + 0}{2} \times 3.0 = 36\,\text{m}$, which is also the area under the velocity-time graph. The braking force would follow from $F = ma$ once the mass of the car is known.'
+
+  - id: c3-r11-impulse-or-force
+    section: Review
+    tier: O
+    refs: ['1.2']
+    statement: 'A passenger is held by a seat belt in a crash. To find the force on her, would you use $F = ma$ or the impulse $Ft = mv - mu$? Say why, and name what each method needs.'
+    answer_label: 'Which method, and what each needs'
+    check:
+      kind: structured
+      requires: [choose, why, what-each-needs]
+      concepts: [impulse, change-in-momentum, acceleration]
+      points:
+        - id: choose
+          text: 'Use the impulse, Ft = mv - mu. The crash gives a change of speed and a short time, and the impulse turns those straight into the average force.'
+          concepts: [impulse, change-in-momentum]
+        - id: why
+          text: 'The acceleration in a crash is not measured directly, and it is very large and brief. The impulse method uses the two speeds and the collision time instead, so it is the practical route.'
+          concepts: [impulse, acceleration]
+        - id: what-each-needs
+          text: 'The impulse method needs the mass, the speed before and after, and the time the belt acts. F = ma needs the mass and the acceleration, which would mean knowing how the speed changes with time.'
+          concepts: [impulse, acceleration, change-in-momentum]
+    answer_text: 'Use the impulse, $Ft = mv - mu$. The crash gives a change of speed and a short time, and the impulse turns those into the average force on the passenger. The acceleration is not measured directly, and it is very large and brief, so $F = ma$ would need it to be found some other way first. The impulse method needs the mass, the speed before and after, and the time the belt acts. $F = ma$ needs the mass and the acceleration. Either gives an average force; the impulse is the one whose data a crash test actually records.'
+
+  - id: c3-r12-static-friction
+    section: Review
+    tier: O
+    refs: ['1.2']
+    statement: 'A crate is pushed with $50\,\text{N}$ and does not move. A student says the friction force is $\mu N$. Explain why the student could be wrong.'
+    answer_label: 'Why the rule does not apply here'
+    check:
+      kind: structured
+      requires: [state-rule, balance, why-wrong]
+      concepts: [limiting-friction, static-friction, equilibrium]
+      points:
+        - id: state-rule
+          text: 'The rule F = mu N gives the largest friction the surface can supply, not the friction it is supplying at every moment.'
+          concepts: [limiting-friction, static-friction]
+        - id: balance
+          text: 'The crate does not move, so its acceleration is zero and the forces balance. The friction must equal the 50 N push, whatever mu N is, as long as mu N is larger than 50 N.'
+          concepts: [equilibrium, static-friction]
+        - id: why-wrong
+          text: 'The student has used the limiting value as if it were the actual value. Using mu N is right only when the crate is on the point of sliding, or already sliding.'
+          concepts: [limiting-friction, equilibrium]
+    answer_text: 'The rule $F = \mu N$ gives the largest friction the surface can supply, not the friction it supplies at every moment. The crate does not move, so its acceleration is zero and the forces on it balance. The friction therefore equals the $50\,\text{N}$ push, as long as the largest possible friction is bigger than $50\,\text{N}$. The student has used the limiting value as if it were the actual value. Using $\mu N$ is right only when the crate is about to slide, or is already sliding.'

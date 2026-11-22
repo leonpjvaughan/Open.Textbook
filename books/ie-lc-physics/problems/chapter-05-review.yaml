@@ -1,0 +1,303 @@
+# Mixed practice for the Chapter 5 Review.
+#
+# Ten questions, one record each, in the order they appear on the Review page.
+# Every numeric record carries a `dimensions` check, which proves the magnitude
+# and the unit, and a `sigfigs` check, which proves the rounding to the figures
+# the data support. The percentage-uncertainty record proves both percentages by
+# `dimensions` and their rounding by `sigfigs`, and declares the reading
+# uncertainty as half a division in its answer. Questions 3, 4, 8 and 10 ask for a
+# check or an explanation as well as, or instead of, a number, so each carries a
+# `structured` component.
+#
+# Honest limit: this proves arithmetic, dimensions and the declared conventions,
+# not physics. A `structured` check proves only that a model answer contains its
+# declared steps and concepts, in order. Question 4 is a judgement about when a
+# formula stops applying, and the verifier can prove only that the reason and the
+# alternative are both stated.
+chapter: 5
+problems:
+  - id: c5-r1-force-and-energy
+    section: Review
+    tier: O
+    refs: ['1.3']
+    statement: 'A spring of constant $60\,\text{N/m}$ is stretched by $0.15\,\text{m}$. Calculate the force and the energy stored.'
+    answer_label: 'The force and the energy stored'
+    check:
+      kind: all
+      checks:
+        - kind: dimensions
+          expression: k * x
+          values:
+            k: {value: '60', unit: N/m}
+            x: {value: '0.15', unit: m}
+          answer: {value: '9', unit: N}
+        - kind: sigfigs
+          value: '60 * 0.15'
+          figures: 2
+          answer: '9.0'
+          convention: round-once
+        - kind: dimensions
+          expression: 0.5 * k * x**2
+          values:
+            k: {value: '60', unit: N/m}
+            x: {value: '0.15', unit: m}
+          answer: {value: '0.675', unit: J}
+        - kind: sigfigs
+          value: '0.5 * 60 * 0.15**2'
+          figures: 2
+          answer: '0.68'
+          convention: round-once
+    answer_text: 'Hooke''s law gives $F = kx = 60 \times 0.15 = 9.0\,\text{N}$. The energy stored is the area under the force-extension line, which is a triangle: $E = \frac{1}{2}kx^2 = \frac{1}{2} \times 60 \times 0.15^2 = 0.675\,\text{J}$, which is $0.68\,\text{J}$ to two significant figures. The force grows from zero to $9.0\,\text{N}$, so the average force is $4.5\,\text{N}$, and $4.5 \times 0.15$ gives the same $0.68\,\text{J}$.'
+
+  - id: c5-r2-constant-and-extension
+    section: Review
+    tier: O
+    refs: ['1.3']
+    statement: 'A force of $9.0\,\text{N}$ stretches a spring by $0.030\,\text{m}$. Calculate its spring constant, then the extension a force of $15\,\text{N}$ would give.'
+    answer_label: 'The spring constant and the new extension'
+    check:
+      kind: all
+      checks:
+        - kind: dimensions
+          expression: F / x
+          values:
+            F: {value: '9.0', unit: N}
+            x: {value: '0.030', unit: m}
+          answer: {value: '300', unit: N/m}
+        - kind: sigfigs
+          value: '9.0 / 0.030'
+          figures: 2
+          answer: '3.0e2'
+          convention: round-once
+        - kind: dimensions
+          expression: F2 / k
+          values:
+            F2: {value: '15', unit: N}
+            k: {value: '300', unit: N/m}
+          answer: {value: '0.05', unit: m}
+        - kind: sigfigs
+          value: '15 / 300'
+          figures: 2
+          answer: '0.050'
+          convention: round-once
+    answer_text: 'The spring constant is $k = \dfrac{F}{x} = \dfrac{9.0}{0.030} = 300\,\text{N/m}$, which is $3.0 \times 10^{2}\,\text{N/m}$. The extension for $15\,\text{N}$ is $x = \dfrac{F}{k} = \dfrac{15}{300} = 0.050\,\text{m}$, or $50\,\text{mm}$. The second part assumes the spring is still within its limit of proportionality, so that $F = kx$ still holds.'
+
+  - id: c5-r3-series-and-parallel
+    section: Review
+    tier: O
+    refs: ['1.3']
+    statement: 'Two springs of $80\,\text{N/m}$ and $20\,\text{N/m}$ are joined in series, and then in parallel. Calculate both combined spring constants. Check each against the size of the two.'
+    answer_label: 'The two combined constants, and the check'
+    check:
+      kind: all
+      checks:
+        - kind: dimensions
+          expression: 1 / (1 / k1 + 1 / k2)
+          values:
+            k1: {value: '80', unit: N/m}
+            k2: {value: '20', unit: N/m}
+          answer: {value: '16', unit: N/m}
+        - kind: sigfigs
+          value: '1 / (1 / 80 + 1 / 20)'
+          figures: 2
+          answer: '16'
+          convention: round-once
+        - kind: dimensions
+          expression: k1 + k2
+          values:
+            k1: {value: '80', unit: N/m}
+            k2: {value: '20', unit: N/m}
+          answer: {value: '100', unit: N/m}
+        - kind: sigfigs
+          value: '80 + 20'
+          figures: 2
+          answer: '1.0e2'
+          convention: round-once
+        - kind: structured
+          requires: [series-check, parallel-check]
+          concepts: [series-softer, parallel-stiffer]
+          points:
+            - id: series-check
+              text: 'In series the combined constant is 16 N/m. It is smaller than 20 N/m, the softer spring, which is right because the pair stretches further than either spring alone under the same force.'
+              concepts: [series-softer]
+            - id: parallel-check
+              text: 'In parallel the combined constant is 100 N/m. It is larger than 80 N/m, the stiffer spring, which is right because the pair stretches less than either spring alone under the same force.'
+              concepts: [parallel-stiffer]
+    answer_text: 'In series, $\dfrac{1}{k} = \dfrac{1}{k_1} + \dfrac{1}{k_2} = \dfrac{1}{80} + \dfrac{1}{20} = \dfrac{1}{16}$, so $k = 16\,\text{N/m}$. That is smaller than the softer spring, $20\,\text{N/m}$, which is right: the pair stretches further than either spring alone. In parallel, $k = k_1 + k_2 = 80 + 20 = 100\,\text{N/m}$, which is $1.0 \times 10^{2}\,\text{N/m}$. That is larger than the stiffer spring, $80\,\text{N/m}$, which is right: the pair stretches less than either spring alone. Both constants sit outside the range of the two springs, on the side the combination should be.'
+
+  - id: c5-r4-past-the-limit
+    section: Review
+    tier: O
+    refs: ['1.3']
+    statement: 'A spring''s graph is straight up to $0.20\,\text{m}$ and curves afterwards. A force of $20\,\text{N}$ gives an extension of $0.25\,\text{m}$. Explain why you cannot use $F = kx$ here, and say what you would do instead.'
+    answer_label: 'Why the formula does not apply, and what to do'
+    check:
+      kind: structured
+      requires: [why-not, what-instead]
+      concepts: [limit-of-proportionality, non-linear, area-under-graph]
+      points:
+        - id: why-not
+          text: 'The extension of 0.25 m is past the limit of proportionality at 0.20 m, so force is no longer proportional to extension. F = kx describes the straight part only, and using it would give an extension too small, because past the limit each extra newton stretches the spring more.'
+          concepts: [limit-of-proportionality, non-linear]
+        - id: what-instead
+          text: 'Read the energy from the area under the graph, up to the extension wanted, counting squares if the curve has no formula. The force for a given extension is read off the curve instead of calculated from k.'
+          concepts: [area-under-graph, non-linear]
+    answer_text: 'The extension of $0.25\,\text{m}$ is past the limit of proportionality at $0.20\,\text{m}$, so force is no longer proportional to extension. $F = kx$ describes the straight part only. Using it here would give an extension that is too small, because past the limit each extra newton stretches the spring more than the last. To find the force, read it from the curve instead of calculating it. To find the energy, take the area under the graph up to the extension, counting squares if the curve has no formula. Past the limit the shape is not a triangle, so $\frac{1}{2}kx^2$ does not give the energy either.'
+
+  - id: c5-r5-constant-from-mass
+    section: Review
+    tier: O
+    refs: ['1.3']
+    statement: 'A $250\,\text{g}$ mass hangs on a spring and stretches it by $0.049\,\text{m}$. Calculate the spring constant. Take $g = 9.8\,\text{N/kg}$.'
+    answer_label: 'Spring constant'
+    check:
+      kind: all
+      checks:
+        - kind: dimensions
+          expression: m * g / x
+          values:
+            m: {value: '0.25', unit: kg}
+            g: {value: '9.8', unit: N/kg}
+            x: {value: '0.049', unit: m}
+          answer: {value: '50', unit: N/m}
+        - kind: sigfigs
+          value: '0.25 * 9.8 / 0.049'
+          figures: 2
+          answer: '5.0e1'
+          convention: round-once
+    answer_text: 'The mass must be in kilograms: $250\,\text{g} = 0.25\,\text{kg}$. At rest the weight balances the spring force, so $kx = mg$ and $k = \dfrac{mg}{x} = \dfrac{0.25 \times 9.8}{0.049} = 50\,\text{N/m}$, which is $5.0 \times 10^{1}\,\text{N/m}$. A spring constant in newtons per metre says how many newtons each metre of stretch needs.'
+
+  - id: c5-r6-percentage-uncertainty
+    section: Review
+    tier: O
+    refs: ['1.3', '1.1']
+    statement: 'An extension is measured as $0.020\,\text{m}$ on a metre stick read to the nearest millimetre. Calculate the percentage uncertainty, and compare it with the same uncertainty on a $0.100\,\text{m}$ extension.'
+    answer_label: 'The two percentage uncertainties, and the comparison'
+    check:
+      kind: all
+      checks:
+        - kind: dimensions
+          expression: d / 2
+          values:
+            d: {value: '0.001', unit: m}
+          answer: {value: '0.0005', unit: m}
+        - kind: dimensions
+          expression: (d / 2) / x1 * 100
+          values:
+            d: {value: '0.001', unit: m}
+            x1: {value: '0.020', unit: m}
+          answer: {value: '2.5'}
+        - kind: sigfigs
+          value: '0.0005 / 0.020 * 100'
+          figures: 2
+          answer: '2.5'
+          convention: round-once
+        - kind: dimensions
+          expression: (d / 2) / x2 * 100
+          values:
+            d: {value: '0.001', unit: m}
+            x2: {value: '0.100', unit: m}
+          answer: {value: '0.5'}
+        - kind: sigfigs
+          value: '0.0005 / 0.100 * 100'
+          figures: 2
+          answer: '0.50'
+          convention: round-once
+        - kind: structured
+          requires: [compare]
+          concepts: [smaller-reading, percentage-uncertainty]
+          points:
+            - id: compare
+              text: 'The 0.020 m extension carries 2.5% uncertainty, and the 0.100 m extension carries 0.50%. The same 0.5 mm uncertainty is five times as important on a reading five times smaller, so the longer extension is the better one to use.'
+              concepts: [smaller-reading, percentage-uncertainty]
+    answer_text: 'The metre stick is read to the nearest millimetre, so the reading uncertainty is half a division, $0.0005\,\text{m}$, or $0.5\,\text{mm}$. On a $0.020\,\text{m}$ extension that is $\dfrac{0.0005}{0.020} \times 100\% = 2.5\%$. On a $0.100\,\text{m}$ extension it is $\dfrac{0.0005}{0.100} \times 100\% = 0.50\%$. The same $0.5\,\text{mm}$ is five times as important on a reading five times smaller, so the longer extension is the better one to use. That is why an investigation should measure as large an extension as the spring allows.'
+
+  - id: c5-r7-energy-at-triple-extension
+    section: Review
+    tier: O
+    refs: ['1.3']
+    statement: 'A spring stores $3.0\,\text{J}$ when stretched by $0.10\,\text{m}$. Calculate the energy stored at $0.30\,\text{m}$.'
+    answer_label: 'Energy stored at three times the extension'
+    check:
+      kind: all
+      checks:
+        - kind: dimensions
+          expression: 0.5 * (2 * E / x1**2) * x2**2
+          values:
+            E: {value: '3.0', unit: J}
+            x1: {value: '0.10', unit: m}
+            x2: {value: '0.30', unit: m}
+          answer: {value: '27', unit: J}
+        - kind: sigfigs
+          value: '0.5 * (2 * 3.0 / 0.10**2) * 0.30**2'
+          figures: 2
+          answer: '27'
+          convention: round-once
+    answer_text: 'The spring constant is $k = \dfrac{2E}{x^2} = \dfrac{2 \times 3.0}{0.10^2} = 600\,\text{N/m}$. At $0.30\,\text{m}$ the energy is $E = \frac{1}{2}kx^2 = \frac{1}{2} \times 600 \times 0.30^2 = 27\,\text{J}$. The extension has tripled, and the energy goes with its square, so the energy is multiplied by nine: $3.0 \times 9 = 27\,\text{J}$. This assumes the spring is still within its limit of proportionality at $0.30\,\text{m}$.'
+
+  - id: c5-r8-length-not-extension
+    section: Review
+    tier: O
+    refs: ['1.3']
+    statement: 'A student plots force against **total length** instead of extension. Describe what is wrong with the graph and how it would show up in the shape of the line.'
+    answer_label: 'What is wrong, and how the line shows it'
+    check:
+      kind: structured
+      requires: [problem, shape, consequence]
+      concepts: [extension-not-length, intercept, gradient-unchanged]
+      points:
+        - id: problem
+          text: 'Hooke''s law relates the force to the extension, x, and the extension is the stretch beyond the natural length, not the total length. The student has used the length, so the x-axis does not start from zero extension.'
+          concepts: [extension-not-length]
+        - id: shape
+          text: 'The line is still straight, but it no longer passes through the origin. It cuts the length axis at the natural length, so force is zero at the natural length and the intercept on the length axis is the natural length.'
+          concepts: [extension-not-length, intercept]
+        - id: consequence
+          text: 'The gradient still gives the spring constant, because a shift along the axis does not change the slope. But the line can be misread as a failure of Hooke''s law, and any extension read from it will be wrong if the natural length is not subtracted.'
+          concepts: [gradient-unchanged, intercept]
+    answer_text: 'Hooke''s law relates the force to the extension $x$, and the extension is the stretch beyond the natural length, not the total length. The line is still straight, but it no longer passes through the origin. It cuts the length axis at the natural length, because the force is zero when the spring is its natural length. The gradient still gives the spring constant, because shifting the axis does not change the slope. The line can be misread as a failure of Hooke''s law, and any extension read from the graph will be too large unless the natural length is subtracted first. Plotting extension against force, so the line passes through the origin, is the clearer choice.'
+
+  - id: c5-r9-series-extension
+    section: Review
+    tier: O
+    refs: ['1.3']
+    statement: 'Two identical springs in series hold up a $2.0\,\text{kg}$ mass. Each has a spring constant of $400\,\text{N/m}$. Calculate the extension of the combination.'
+    answer_label: 'Extension of the combination'
+    check:
+      kind: all
+      checks:
+        - kind: dimensions
+          expression: m * g / (k / 2)
+          values:
+            m: {value: '2.0', unit: kg}
+            g: {value: '9.8', unit: N/kg}
+            k: {value: '400', unit: N/m}
+          answer: {value: '0.098', unit: m}
+        - kind: sigfigs
+          value: '2.0 * 9.8 / 200'
+          figures: 2
+          answer: '0.098'
+          convention: round-once
+    answer_text: 'Two identical springs in series have a combined constant of $\dfrac{k}{2} = \dfrac{400}{2} = 200\,\text{N/m}$. The load is $mg = 2.0 \times 9.8 = 19.6\,\text{N}$, and each spring carries the whole load, so each stretches by $\dfrac{19.6}{400} = 0.049\,\text{m}$. The combination stretches by $0.049 + 0.049 = 0.098\,\text{m}$, which is also $\dfrac{19.6}{200} = 0.098\,\text{m}$. The answer is in metres because the spring constant is in newtons per metre.'
+
+  - id: c5-r10-parallel-reasoning
+    section: Review
+    tier: O
+    refs: ['1.3']
+    statement: 'Explain, in terms of what stays the same, why springs in parallel have a larger combined spring constant than either spring on its own.'
+    answer_label: 'Why parallel springs are stiffer'
+    check:
+      kind: structured
+      requires: [same-extension, forces-add, conclusion]
+      concepts: [equal-extension, shared-load]
+      points:
+        - id: same-extension
+          text: 'Springs in parallel have the same extension, because they are fixed side by side and move together. What stays the same is the extension.'
+          concepts: [equal-extension]
+        - id: forces-add
+          text: 'Each spring supplies its own force, k x, and the two forces add to carry the load. So the total force for that extension is larger than either spring could supply alone.'
+          concepts: [equal-extension, shared-load]
+        - id: conclusion
+          text: 'The combined constant is the total force divided by the one shared extension, which gives k1 + k2. It is larger than either spring because the load is shared while the extension stays the same.'
+          concepts: [shared-load]
+    answer_text: 'Springs in parallel have the same extension, because they are fixed side by side and move together. What stays the same is the extension. Each spring supplies its own force, $kx$, and the two forces add to carry the load, so the total force for that extension is larger than either spring could supply alone. The combined constant is that total force divided by the one shared extension, which gives $k_1 + k_2$. It is larger than either spring because the load is shared while the extension stays the same. In series it is the force that stays the same and the extensions that add, which is why the series constant is smaller than either spring.'

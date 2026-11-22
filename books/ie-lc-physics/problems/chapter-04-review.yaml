@@ -1,0 +1,252 @@
+# Mixed practice for the Chapter 4 Review.
+#
+# Ten questions, one record each, in the order they appear on the Review page.
+# Every numeric record carries a `dimensions` check, which proves the magnitude
+# and the unit, and a `sigfigs` check, which proves the rounding to the figures
+# the data support. Question 7 is a ratio, so the exact arithmetic is proved by
+# `evaluate` and the rounding by `sigfigs`. Question 9 asks for a method as well
+# as a height, so it carries a `structured` check beside its numeric ones.
+#
+# Honest limit: this proves arithmetic, dimensions and the declared conventions,
+# not physics. A `structured` check proves only that a model answer contains its
+# declared steps and concepts, in order. Question 9's claim that the energy
+# method is shorter is a judgement, and the verifier can prove only that it is
+# stated and supported, not that it is the better choice.
+chapter: 4
+problems:
+  - id: c4-r1-work-done
+    section: Review
+    tier: O
+    refs: ['1.4']
+    statement: 'A force of $80\,\text{N}$ moves a trolley $6.0\,\text{m}$ in the direction of the force. Calculate the work done.'
+    answer_label: 'Work done'
+    check:
+      kind: all
+      checks:
+        - kind: dimensions
+          expression: F * s
+          values:
+            F: {value: '80', unit: N}
+            s: {value: '6.0', unit: m}
+          answer: {value: '480', unit: J}
+        - kind: sigfigs
+          value: '80 * 6.0'
+          figures: 2
+          answer: '4.8e2'
+          convention: round-once
+    answer_text: 'The force is in the direction of the motion, so $W = Fs = 80 \times 6.0 = 480\,\text{J}$, which is $4.8 \times 10^{2}\,\text{J}$. A force at right angles to the motion would do no work at all, because the trolley would not move in the direction of the force.'
+
+  - id: c4-r2-kinetic-energy
+    section: Review
+    tier: O
+    refs: ['1.4']
+    statement: 'A $0.20\,\text{kg}$ ball moves at $25\,\text{m/s}$. Calculate its kinetic energy.'
+    answer_label: 'Kinetic energy'
+    check:
+      kind: all
+      checks:
+        - kind: dimensions
+          expression: 0.5 * m * v**2
+          values:
+            m: {value: '0.20', unit: kg}
+            v: {value: '25', unit: m/s}
+          answer: {value: '62.5', unit: J}
+        - kind: sigfigs
+          value: '0.5 * 0.20 * 25**2'
+          figures: 2
+          answer: '63'
+          convention: round-once
+    answer_text: '$E_k = \frac{1}{2}mv^2 = \frac{1}{2} \times 0.20 \times 25^2 = 62.5\,\text{J}$, which is $63\,\text{J}$ to two significant figures. The speed is squared, so doubling the speed would multiply the kinetic energy by four.'
+
+  - id: c4-r3-landing-speed
+    section: Review
+    tier: O
+    refs: ['1.4']
+    statement: 'A stone is dropped from rest from a height of $20\,\text{m}$. Ignoring air resistance, calculate its landing speed.'
+    answer_label: 'Landing speed'
+    check:
+      kind: all
+      checks:
+        - kind: dimensions
+          expression: sqrt(2 * g * h)
+          values:
+            g: {value: '9.8', unit: m/s^2}
+            h: {value: '20', unit: m}
+          answer: {value: '19.799', unit: m/s}
+          tolerance: '0.001'
+        - kind: sigfigs
+          value: 'sqrt(2 * 9.8 * 20)'
+          figures: 2
+          tolerance: '0.01'
+          answer: '2.0e1'
+          convention: round-once
+    answer_text: 'The potential energy lost becomes kinetic energy: $mgh = \frac{1}{2}mv^2$, so $v = \sqrt{2gh} = \sqrt{2 \times 9.8 \times 20} = 19.8\,\text{m/s}$, which is $2.0 \times 10^{1}\,\text{m/s}$ to two significant figures. The mass cancels, so a heavy stone and a light one land at the same speed when air resistance is ignored.'
+
+  - id: c4-r4-power
+    section: Review
+    tier: O
+    refs: ['1.4']
+    statement: 'A motor does $4500\,\text{J}$ of work in $15\,\text{s}$. Calculate its power.'
+    answer_label: 'Power'
+    check:
+      kind: all
+      checks:
+        - kind: dimensions
+          expression: W / t
+          values:
+            W: {value: '4500', unit: J}
+            t: {value: '15', unit: s}
+          answer: {value: '300', unit: W}
+        - kind: sigfigs
+          value: '4500 / 15'
+          figures: 2
+          answer: '3.0e2'
+          convention: round-once
+    answer_text: '$P = \dfrac{W}{t} = \dfrac{4500}{15} = 300\,\text{W}$, which is $3.0 \times 10^{2}\,\text{W}$. A watt is a joule per second, so the unit follows from dividing the work by the time.'
+
+  - id: c4-r5-braking-force
+    section: Review
+    tier: O
+    refs: ['1.4']
+    statement: 'A $1200\,\text{kg}$ car travelling at $25\,\text{m/s}$ brakes to rest over $50\,\text{m}$. Calculate the average braking force.'
+    answer_label: 'Average braking force'
+    check:
+      kind: all
+      checks:
+        - kind: dimensions
+          expression: 0.5 * m * v**2 / s
+          values:
+            m: {value: '1200', unit: kg}
+            v: {value: '25', unit: m/s}
+            s: {value: '50', unit: m}
+          answer: {value: '7500', unit: N}
+        - kind: sigfigs
+          value: '0.5 * 1200 * 25**2 / 50'
+          figures: 2
+          answer: '7.5e3'
+          convention: round-once
+    answer_text: 'The kinetic energy lost is $\frac{1}{2} \times 1200 \times 25^2 = 3.75 \times 10^{5}\,\text{J}$, and the work done by the brakes is $Fs$ over $50\,\text{m}$. So $F = \dfrac{3.75 \times 10^{5}}{50} = 7500\,\text{N}$, which is $7.5 \times 10^{3}\,\text{N}$. The work-energy model gives the average force without needing the time; the equations of motion would need the deceleration first.'
+
+  - id: c4-r6-crane-power
+    section: Review
+    tier: O
+    refs: ['1.4']
+    statement: 'A crane lifts a $400\,\text{kg}$ load $15\,\text{m}$ in $25\,\text{s}$. Calculate the useful power output. Take $g = 9.8\,\text{N/kg}$.'
+    answer_label: 'Useful power output'
+    check:
+      kind: all
+      checks:
+        - kind: dimensions
+          expression: m * g * h / t
+          values:
+            m: {value: '400', unit: kg}
+            g: {value: '9.8', unit: N/kg}
+            h: {value: '15', unit: m}
+            t: {value: '25', unit: s}
+          answer: {value: '2352', unit: W}
+        - kind: sigfigs
+          value: '400 * 9.8 * 15 / 25'
+          figures: 2
+          answer: '2.4e3'
+          convention: round-once
+    answer_text: 'The useful work is the gain in potential energy: $mgh = 400 \times 9.8 \times 15 = 5.88 \times 10^{4}\,\text{J}$. The power is $\dfrac{5.88 \times 10^{4}}{25} = 2352\,\text{W}$, which is $2.4 \times 10^{3}\,\text{W}$, or about $2.4\,\text{kW}$. The input power would be larger, because some energy is transferred to the surroundings by friction in the crane.'
+
+  - id: c4-r7-bounce-loss
+    section: Review
+    tier: O
+    refs: ['1.4']
+    statement: 'A ball is dropped from a height of $4.0\,\text{m}$ and bounces back up to $2.8\,\text{m}$. Calculate the percentage of the energy lost in the bounce.'
+    answer_label: 'Percentage of the energy lost'
+    check:
+      kind: all
+      checks:
+        - kind: evaluate
+          expression: '((4.0 - 2.8) / 4.0) * 100'
+          answer: '30'
+        - kind: sigfigs
+          value: '30'
+          figures: 2
+          answer: '3.0e1'
+          convention: round-once
+    answer_text: 'The energy at a height is proportional to the height, because $E_p = mgh$ and the mass and $g$ do not change. The ball keeps $\dfrac{2.8}{4.0} = 0.70$ of its energy, so it loses $4.0 - 2.8 = 1.2$ of the original $4.0$, which is $\dfrac{1.2}{4.0} \times 100\% = 30\%$, or $3.0 \times 10^{1}\%$ to two significant figures. The lost energy became thermal energy and sound in the ball and the floor.'
+
+  - id: c4-r8-resistive-force
+    section: Review
+    tier: O
+    refs: ['1.4']
+    statement: 'A car travels at a steady $30\,\text{m/s}$ and the engine delivers $60\,\text{kW}$. Calculate the total resistive force.'
+    answer_label: 'Total resistive force'
+    check:
+      kind: all
+      checks:
+        - kind: dimensions
+          expression: P / v
+          values:
+            P: {value: '60e3', unit: W}
+            v: {value: '30', unit: m/s}
+          answer: {value: '2000', unit: N}
+        - kind: sigfigs
+          value: '60e3 / 30'
+          figures: 2
+          answer: '2.0e3'
+          convention: round-once
+    answer_text: 'At a steady speed the driving force balances the resistive force, so the resultant is zero. Then $P = Fv$ gives $F = \dfrac{P}{v} = \dfrac{60\,000}{30} = 2000\,\text{N}$, which is $2.0 \times 10^{3}\,\text{N}$. A watt is a joule per second and a joule is a newton metre, so dividing power by speed leaves newtons.'
+
+  - id: c4-r9-maximum-height
+    section: Review
+    tier: O
+    refs: ['1.4']
+    statement: 'A $2.0\,\text{kg}$ stone is thrown straight up at $12\,\text{m/s}$. Calculate the maximum height it reaches. State which method you used, and why it is the shorter route.'
+    answer_label: 'The maximum height, and the method'
+    check:
+      kind: all
+      checks:
+        - kind: dimensions
+          expression: v**2 / (2 * g)
+          values:
+            v: {value: '12', unit: m/s}
+            g: {value: '9.8', unit: m/s^2}
+          answer: {value: '360/49', unit: m}
+        - kind: sigfigs
+          value: '12**2 / (2 * 9.8)'
+          figures: 2
+          answer: '7.3'
+          convention: round-once
+        - kind: structured
+          requires: [state-height, choose-method, why-shorter]
+          concepts: [energy-conservation, mass-cancels, no-time]
+          points:
+            - id: state-height
+              text: 'The height is $h = \dfrac{v^2}{2g} = \dfrac{144}{19.6} = 7.35\,\text{m}$, or $7.3\,\text{m}$ to two significant figures.'
+              concepts: [energy-conservation]
+            - id: choose-method
+              text: 'Use conservation of energy: the kinetic energy at the bottom becomes potential energy at the top, so $\frac{1}{2}mv^2 = mgh$.'
+              concepts: [energy-conservation, mass-cancels]
+            - id: why-shorter
+              text: 'The mass cancels in the energy equation, and there is no time to find, so one line gives the height. The equations of motion would need the time to the highest point first.'
+              concepts: [mass-cancels, no-time]
+    answer_text: 'Use conservation of energy: the kinetic energy at the bottom becomes potential energy at the top, so $\frac{1}{2}mv^2 = mgh$. The mass cancels, giving $h = \dfrac{v^2}{2g} = \dfrac{12^2}{2 \times 9.8} = \dfrac{144}{19.6} = 7.35\,\text{m}$, which is $7.3\,\text{m}$ to two significant figures. It is the shorter route because the mass cancels and there is no time to find. The equations of motion give the same height, but only after $t = \dfrac{u}{g}$ has been worked out first.'
+
+  - id: c4-r10-freewheel-loss
+    section: Review
+    tier: O
+    refs: ['1.4']
+    statement: 'A cyclist of total mass $85\,\text{kg}$ freewheels down a $6.0\,\text{m}$ drop and reaches $9.0\,\text{m/s}$ at the bottom. Calculate the energy transferred to the surroundings.'
+    answer_label: 'Energy transferred to the surroundings'
+    check:
+      kind: all
+      checks:
+        - kind: dimensions
+          expression: m * g * h - 0.5 * m * v**2
+          values:
+            m: {value: '85', unit: kg}
+            g: {value: '9.8', unit: N/kg}
+            h: {value: '6.0', unit: m}
+            v: {value: '9.0', unit: m/s}
+          answer: {value: '1555.5', unit: J}
+        - kind: sigfigs
+          value: '85 * 9.8 * 6.0 - 0.5 * 85 * 9.0**2'
+          figures: 2
+          answer: '1.6e3'
+          convention: round-once
+    answer_text: 'The potential energy lost is $mgh = 85 \times 9.8 \times 6.0 = 4998\,\text{J}$. The kinetic energy gained is $\frac{1}{2} \times 85 \times 9.0^2 = 3442.5\,\text{J}$. The difference, $4998 - 3442.5 = 1555.5\,\text{J}$, which is $1.6 \times 10^{3}\,\text{J}$ to two significant figures, was transferred to the surroundings by air resistance and friction. Energy is conserved: it has not disappeared, it has spread out as thermal energy.'
