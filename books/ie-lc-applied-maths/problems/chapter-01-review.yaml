@@ -1,0 +1,370 @@
+# Mixed practice for the Chapter 1 Review (strand S1, mathematical modelling).
+#
+# Thirteen questions, one record each, in the order they appear on the Review
+# page. Every numeric answer is proved by the CAS: an `evaluate` check proves the
+# arithmetic of the rate relationship, a `dimensions` check proves the units as
+# well as the magnitude, and a `sigfigs` check proves a single rounding at the
+# end. Question 3's answer is a stage of the cycle and an assumption, question 4
+# asks for a question rather than a number, and questions 7, 10 and the second
+# half of 12 ask for a judgement, so each carries a `structured` component.
+#
+# Honest limit: this proves arithmetic, dimensions and the declared rounding. A
+# `structured` check proves only that a model answer contains its declared steps
+# and concepts, in order — never that the judgement is the right one. Questions
+# 4, 7 and 10 have no numeric answer at all, and nothing here can prove that the
+# wording of a precise question or the choice of an assumption is good.
+chapter: 1
+problems:
+  - id: r1-tank
+    section: Review
+    tier: O
+    refs: [S1]
+    statement: >-
+      A tank holds 720 litres. A tap puts water in at 25 litres each minute and
+      a leak takes water out at 5 litres each minute. Find the time to fill the
+      tank.
+    answer_label: Time to fill the tank
+    check:
+      kind: evaluate
+      expression: '720 / (25 - 5)'
+      answer: '36'
+    answer_text: >-
+      The net rate is $25 - 5 = 20$ litres each minute. The time is
+      $720 \div 20 = 36$ minutes. Check: in 36 minutes the tap adds
+      $25 \times 36 = 900$ litres and the leak removes $5 \times 36 = 180$
+      litres, which leaves 720 litres.
+
+  - id: r1-queue-wait-and-clear
+    section: Review
+    tier: O
+    refs: [S1]
+    statement: >-
+      A queue holds 60 students. Students join at 4 each minute and the till
+      serves 12 each minute. Find the wait for a student at the back, and the
+      clear time.
+    answer_label: The wait and the clear time
+    check:
+      kind: all
+      checks:
+        - kind: evaluate
+          expression: '60 / 12'
+          answer: '5'
+        - kind: evaluate
+          expression: '60 / (12 - 4)'
+          answer: '7.5'
+    answer_text: >-
+      The wait for a student at the back is the queue divided by the service
+      rate: $60 \div 12 = 5$ minutes. The clear time is the queue divided by the
+      net rate: the net rate is $12 - 4 = 8$ students each minute, so
+      $60 \div 8 = 7.5$ minutes. The two answers differ because the student at
+      the back waits only for the 60 people in front, while the queue lasts until
+      the last new arrival has been served.
+
+  - id: r1-stage-and-assumption
+    section: Review
+    tier: O
+    refs: [S1]
+    statement: >-
+      A model predicts a wait of 5 minutes and the measurement is 8 minutes.
+      State which stage of the cycle you are in, and which assumption you would
+      examine first.
+    answer_label: The stage and the assumption to examine
+    check:
+      kind: structured
+      requires: [evaluate, refine, name-assumption]
+      concepts: [compare, assumption]
+      points:
+        - id: evaluate
+          text: >-
+            The stage is evaluate. The model's 5 minutes is compared with the
+            measured 8 minutes, so the residual is 3 minutes and the model is too
+            low.
+          concepts: [compare]
+        - id: refine
+          text: >-
+            The next stage is refine, which changes one assumption and works the
+            model again.
+          concepts: [refine]
+        - id: name-assumption
+          text: >-
+            Examine the service rate first. The clear time divides by the gap
+            between the two rates, so a slow till changes the answer far more
+            than a longer starting queue.
+          concepts: [assumption, compare]
+    answer_text: >-
+      You are in the evaluate stage, because you are comparing the model's answer
+      with a measurement. The residual is $8 - 5 = 3$ minutes, and its sign says
+      the model is too low. The next stage is refine. Examine the service rate
+      first: the clear time divides by the difference between the two rates, so a
+      small error in the service rate changes the answer a great deal.
+
+  - id: r1-precise-question
+    section: Review
+    tier: O
+    refs: [S1]
+    statement: >-
+      A bus should arrive at 08:15. Write the question "the bus is always late"
+      as a precise question with a unit.
+    answer_label: The precise question
+    check:
+      kind: structured
+      requires: [precise-question, unit]
+      concepts: [measurement, unit]
+      points:
+        - id: precise-question
+          text: >-
+            How many minutes late does the bus arrive, measured over the working
+            week?
+          concepts: [measurement]
+        - id: unit
+          text: >-
+            The answer is a time in minutes, not a judgement. Lateness is the
+            arrival time minus 08:15, so it can be measured rather than argued
+            about.
+          concepts: [unit]
+    answer_text: >-
+      "By how many minutes is the bus late, on average, over the working week?"
+      The unit is minutes. The question now names what to measure, when to
+      measure it, and what number would settle it, so two people who disagree can
+      compare readings instead of opinions.
+
+  - id: r1-cyclist-distance
+    section: Review
+    tier: O
+    refs: [S1]
+    statement: >-
+      A cyclist travels at 9 m/s for 20 s. Find the distance travelled, in
+      metres, and check the units.
+    answer_label: The distance and the units
+    check:
+      kind: dimensions
+      expression: v * t
+      values:
+        v: {value: '9', unit: m/s}
+        t: {value: '20', unit: s}
+      answer: {value: '180', unit: m}
+    answer_text: >-
+      Distance is speed times time: $9 \times 20 = 180$ metres. The units check
+      as $\text{m/s} \times \text{s} = \text{m}$, so the answer is a distance and
+      not a speed.
+
+  - id: r1-boundary-case
+    section: Review
+    tier: O
+    refs: [S1]
+    statement: >-
+      A queue holds 50 students and the till serves 10 each minute. Students
+      join at 8 each minute. Find the clear time, and say what happens if the
+      arrival rate rises to 10 each minute.
+    answer_label: The clear time and the boundary case
+    check:
+      kind: all
+      checks:
+        - kind: evaluate
+          expression: '50 / (10 - 8)'
+          answer: '25'
+        - kind: structured
+          requires: [clear-time, boundary]
+          concepts: [net-rate, boundary-case]
+          points:
+            - id: clear-time
+              text: >-
+                The net rate is 10 - 8 = 2 students each minute, so the clear
+                time is 50 / 2 = 25 minutes.
+              concepts: [net-rate]
+            - id: boundary
+              text: >-
+                If 10 students join each minute the net rate is 0, so the queue
+                stays at 50 and never clears.
+              concepts: [boundary-case]
+    answer_text: >-
+      The net rate is $10 - 8 = 2$ students each minute, so the clear time is
+      $50 \div 2 = 25$ minutes. If the arrival rate rises to 10, the till serves
+      exactly as many students as arrive. The net rate is 0, so the queue stays
+      at 50 and never clears. This is the boundary case, and it shows how sharply
+      the answer depends on the gap between the two rates.
+
+  - id: r1-incomplete-report
+    section: Review
+    tier: O
+    refs: [S1]
+    statement: >-
+      A report gives a wait of 3.5 minutes but no assumptions. Write one sentence
+      that explains why the report is incomplete.
+    answer_label: Why the report is incomplete
+    check:
+      kind: structured
+      requires: [missing-assumptions, why-it-matters]
+      concepts: [assumption, model-limits]
+      points:
+        - id: missing-assumptions
+          text: >-
+            The report gives the number but not the model, so it does not say the
+            arrival rate, the service rate or the starting queue it used.
+          concepts: [assumption]
+        - id: why-it-matters
+          text: >-
+            Without the assumptions nobody can tell which situation the number
+            applies to, or how far it would change if a rate were different.
+          concepts: [model-limits]
+    answer_text: >-
+      "The number cannot be checked or reused, because the report does not say
+      the rates and the starting queue it assumed." A wait depends on the two
+      rates, so a number without them describes no particular queue.
+
+  - id: r1-net-rate-and-service
+    section: Review
+    tier: O
+    refs: [S1]
+    statement: >-
+      A queue of 36 students clears in 6 minutes. Find the net rate, and find the
+      service rate when 3 students join each minute.
+    answer_label: The net rate and the service rate
+    check:
+      kind: all
+      checks:
+        - kind: evaluate
+          expression: '36 / 6'
+          answer: '6'
+        - kind: evaluate
+          expression: '36 / 6 + 3'
+          answer: '9'
+    answer_text: >-
+      The net rate is the queue divided by the clear time: $36 \div 6 = 6$
+      students each minute. The net rate is the service rate minus the arrival
+      rate, so the service rate is $6 + 3 = 9$ students each minute.
+
+  - id: r1-clear-time-three-figures
+    section: Review
+    tier: O
+    refs: [S1, '1.5']
+    statement: >-
+      A queue holds 40 students and the till serves 9 each minute. Students join
+      at 3 each minute. Find the clear time to 3 significant figures.
+    answer_label: The clear time to 3 significant figures
+    check:
+      kind: sigfigs
+      value: '40 / 6'
+      figures: 3
+      answer: '6.67'
+      convention: round-once
+    answer_text: >-
+      The net rate is $9 - 3 = 6$ students each minute, so the clear time is
+      $40 \div 6 = 6.666\ldots$ minutes. Round once at the end: $6.67$ minutes to
+      3 significant figures.
+
+  - id: r1-slow-customer
+    section: Review
+    tier: O
+    refs: [S1]
+    statement: >-
+      A model leaves out the slow customer who takes twice as long as the others.
+      Explain what this does to the model's answer.
+    answer_label: What leaving out the slow customer does
+    check:
+      kind: structured
+      requires: [direction, reason]
+      concepts: [assumption, model-limits]
+      points:
+        - id: direction
+          text: >-
+            The model's clear time comes out too short, because it assumes every
+            customer is served at the same average rate.
+          concepts: [assumption]
+        - id: reason
+          text: >-
+            The slow customer holds the till, so the real service rate is lower
+            than the model's during that time, and the queue lasts longer than
+            predicted.
+          concepts: [model-limits]
+    answer_text: >-
+      The model overestimates the service rate, so its clear time comes out too
+      short. The slow customer holds the till for twice as long, and every
+      student behind waits longer. The model assumes one steady rate, so it
+      cannot show a hold-up at the till.
+
+  - id: r1-range
+    section: Review
+    tier: O
+    refs: [S1, '1.6']
+    statement: >-
+      A measurement of the arrival rate could be 5 or 6 students each minute. The
+      queue holds 40 students and the till serves 10 each minute. Report the
+      clear time as a range.
+    answer_label: The clear time as a range
+    check:
+      kind: all
+      checks:
+        - kind: evaluate
+          expression: '40 / (10 - 5)'
+          answer: '8'
+        - kind: evaluate
+          expression: '40 / (10 - 6)'
+          answer: '10'
+    answer_text: >-
+      With 5 students joining, the net rate is $10 - 5 = 5$, so the clear time is
+      $40 \div 5 = 8$ minutes. With 6 joining, the net rate is
+      $10 - 6 = 4$, so the clear time is $40 \div 4 = 10$ minutes. Report the
+      answer as a range: between 8 and 10 minutes.
+
+  - id: r1-wait-not-clear-time
+    section: Review
+    tier: O
+    refs: [S1]
+    statement: >-
+      A queue holds 40 students, the till serves 10 each minute, and 5 students
+      join each minute. Explain why the wait for a student who joins at 12:30 is
+      not the same as the clear time, and give both values.
+    answer_label: Why the two answers differ, with both values
+    check:
+      kind: all
+      checks:
+        - kind: evaluate
+          expression: '40 / 10'
+          answer: '4'
+        - kind: evaluate
+          expression: '40 / (10 - 5)'
+          answer: '8'
+        - kind: structured
+          requires: [both-values, why-they-differ]
+          concepts: [wait, clear-time]
+          points:
+            - id: both-values
+              text: >-
+                The wait for a student at 12:30 is 40 / 10 = 4 minutes. The clear
+                time is 40 / 5 = 8 minutes.
+              concepts: [wait, clear-time]
+            - id: why-they-differ
+              text: >-
+                The student waits only for the 40 people already in the queue,
+                and the till serves 10 each minute. The queue itself lasts until
+                the last new arrival has been served, and it also has to clear the
+                5 students who join each minute.
+              concepts: [wait, clear-time]
+    answer_text: >-
+      The wait for the student who joins at 12:30 is $40 \div 10 = 4$ minutes,
+      because the till serves the 40 people in front at 10 each minute. The clear
+      time is $40 \div (10 - 5) = 8$ minutes, because the queue drains at the net
+      rate of 5 each minute. The two questions are different: one asks about the
+      people already waiting, the other about the queue as it keeps being joined.
+
+  - id: r1-two-tills
+    section: Review
+    tier: O
+    refs: [S1]
+    statement: >-
+      Two tills open instead of one, so the service rate doubles to 20 students
+      each minute. The queue holds 40 students and 5 join each minute. Find the
+      new clear time to 2 significant figures.
+    answer_label: The new clear time
+    check:
+      kind: sigfigs
+      value: '40 / (20 - 5)'
+      figures: 2
+      answer: '2.7'
+      convention: round-once
+    answer_text: >-
+      The net rate is now $20 - 5 = 15$ students each minute, so the clear time
+      is $40 \div 15 = 2.666\ldots$ minutes. Round once at the end: $2.7$ minutes
+      to 2 significant figures. The second till cuts the clear time to about a
+      third of the 8 minutes one till needed.

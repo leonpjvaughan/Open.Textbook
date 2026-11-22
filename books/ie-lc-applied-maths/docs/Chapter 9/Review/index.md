@@ -55,36 +55,9 @@ Work through these without notes. For each one, decide **which model or method
 you will use, and why**, before you calculate anything. They mix this chapter
 with every chapter before it.
 
-1. A queue holds 60 students. Students join at 4 each minute and the till serves
-   12 each minute. Find the clear time, in minutes. Which relationship from
-   Chapter 1 did you use, and why?
-2. A network has vertex degrees 4, 3, 3, 2. Find the number of edges, and say
-   which lemma you used.
-3. A model predicts a temperature of 8 °C and the measurement is 10 °C. Find the
-   residual, and say whether the model is too high or too low.
-4. Three residuals are $+1$, $-2$ and $+3$. Find the total squared error.
-5. A model is tested between 0 and 5 minutes. A report uses it at 30 minutes.
-   Name the error the report is making, and say what it should write instead.
-6. A stone is dropped from rest and falls for 3 s. Find its speed, taking
-   $g = 9.8$ m/s². Which equation of motion did you choose, and why?
-7. A block of mass 5 kg rests on a rough horizontal plane with coefficient of
-   friction 0.4. Find the friction force when the block is on the point of
-   moving. Take $g = 9.8$ m/s².
-8. A trolley of mass 2 kg moves at 3 m/s and sticks to a stationary trolley of
-   mass 1 kg. Find their common speed. Which conservation law applies, and why?
-9. A point moves in a circle of radius 0.5 m at 4 m/s. Find its centripetal
-   acceleration.
-10. A model predicts a clear time of 15.666 minutes. Report it to 3 significant
-    figures, and say why the full number is misleading.
-11. A population model gives $P = 200 \times 1.1^t$. Find $P$ after 2 years, and
-    state one assumption the model makes.
-12. Two models predict 7 minutes and 12 minutes. The measurement is 9 minutes.
-    Find each error and say which model is closer.
-13. A student changes two assumptions at once and the fit improves. Explain why
-    the improvement cannot be attributed to either change.
-14. Write the conclusion of a report in three sentences. It must give the
-    answer with its unit, the assumption the answer depends on most, and one
-    limit of the model.
+:::problems chapter-09-review
+
+:::answers chapter-09-review
 
 ## What you can now do
 

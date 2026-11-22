@@ -34,7 +34,7 @@ REVIEW_DEBT = {
     "gcse-maths": 6,
     "ie-jc-maths": 14,
     "ie-lc-maths": 13,
-    "ie-lc-applied-maths": 9,
+    "ie-lc-applied-maths": 0,
     "ie-lc-physics": 16,
 }
 

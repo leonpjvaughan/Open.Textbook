@@ -1,0 +1,399 @@
+# Mixed practice for the Chapter 4 Review (strand S3, forces and Newton's laws).
+#
+# Twelve questions, one record each, in the order they appear on the Review page.
+# Every force answer is proved with its unit by `dimensions`, so a number that is
+# right in size but wrong in kind fails; a factor such as $\sin 30^\circ$ is
+# declared as its exact value, and $\cos 30^\circ$, which is irrational, is
+# declared to six decimals with the tolerance the answer is checked to. The
+# vector answers are proved by `vector`, and questions 6, 10, 11 and 12 ask for a
+# decision or a comparison as well as a number, so each carries or is a
+# `structured` component.
+#
+# Honest limit: this proves arithmetic, units and declared vector operations. It
+# cannot prove that a free-body diagram is complete, and it cannot check the
+# direction of a friction or tension force. A `structured` check proves only that
+# a model answer contains its declared steps and concepts, in order. Take
+# $g = 9.8\ \text{m/s}^2$ throughout, and treat every surface named smooth as
+# frictionless.
+chapter: 4
+problems:
+  - id: r1-horizontal-pull
+    section: Review
+    tier: O
+    refs: [S3]
+    statement: >-
+      A box of mass $8$ kg rests on a smooth horizontal floor. A force of $30$ N
+      pulls it horizontally. Find its acceleration and the normal reaction.
+    answer_label: The acceleration and the normal reaction
+    check:
+      kind: all
+      checks:
+        - kind: dimensions
+          expression: F / m
+          values:
+            F: {value: '30', unit: N}
+            m: {value: '8', unit: kg}
+          answer: {value: '3.75', unit: m/s^2}
+        - kind: dimensions
+          expression: m * g
+          values:
+            m: {value: '8', unit: kg}
+            g: {value: '9.8', unit: m/s^2}
+          answer: {value: '78.4', unit: N}
+    answer_text: >-
+      Vertically nothing moves, so the normal reaction balances the weight:
+      $R = mg = 8 \times 9.8 = 78.4$ N. Horizontally the only force is the
+      $30$ N pull, so $a = \dfrac{F}{m} = \dfrac{30}{8} = 3.75\ \text{m/s}^2$.
+      The floor is smooth, so no friction appears in the horizontal equation.
+
+  - id: r1-resultant-at-right-angles
+    section: Review
+    tier: O
+    refs: [S3]
+    statement: >-
+      Two forces of $9$ N and $40$ N act at right angles. Find the resultant, and
+      the angle it makes with the 40 N force.
+    answer_label: The resultant and its angle
+    check:
+      kind: all
+      checks:
+        - kind: evaluate
+          expression: 'sqrt(9**2 + 40**2)'
+          answer: '41'
+        - kind: approx
+          value: 'atan(9/40)*180/pi'
+          target: '12.7'
+          tolerance: '0.05'
+    answer_text: >-
+      Forces at right angles add like the sides of a right-angled triangle:
+      $F = \sqrt{9^2 + 40^2} = \sqrt{1681} = 41$ N. The angle with the $40$ N
+      force satisfies $\tan\theta = \dfrac{9}{40}$, so
+      $\theta = 12.7^\circ$. The resultant lies between the two forces, closer to
+      the larger one.
+
+  - id: r1-slide-down-a-smooth-plane
+    section: Review
+    tier: O
+    refs: [S3]
+    statement: >-
+      A block of mass $6$ kg slides down a smooth plane inclined at $30^\circ$.
+      Find its acceleration and the normal reaction.
+    answer_label: The acceleration and the normal reaction
+    check:
+      kind: all
+      checks:
+        - kind: dimensions
+          expression: g * sn
+          values:
+            g: {value: '9.8', unit: m/s^2}
+            sn: {value: '0.5'}
+          answer: {value: '4.9', unit: m/s^2}
+        - kind: dimensions
+          expression: m * g * cs
+          values:
+            m: {value: '6', unit: kg}
+            g: {value: '9.8', unit: m/s^2}
+            cs: {value: '0.866025404'}
+          answer: {value: '50.922', unit: N}
+          tolerance: '0.001'
+    answer_text: >-
+      Resolve the weight. Down the plane the component is
+      $mg\sin 30^\circ = 6 \times 9.8 \times 0.5 = 29.4$ N, and the plane is
+      smooth, so $a = \dfrac{29.4}{6} = 4.9\ \text{m/s}^2$. Perpendicular to the
+      plane nothing moves, so
+      $R = mg\cos 30^\circ = 6 \times 9.8 \times 0.866 = 50.9$ N. The mass
+      cancels in the acceleration, so every block slides down a smooth
+      $30^\circ$ plane at $4.9\ \text{m/s}^2$.
+
+  - id: r1-pulley-two-hanging-masses
+    section: Review
+    tier: O
+    refs: [S3]
+    statement: >-
+      Masses of $4$ kg and $7$ kg hang from a light string over a smooth pulley.
+      Find the acceleration and the tension.
+    answer_label: The acceleration and the tension
+    check:
+      kind: all
+      checks:
+        - kind: evaluate
+          expression: '(7 - 4)*(49/5)/(4 + 7)'
+          answer: '147/55'
+        - kind: evaluate
+          expression: '2*4*7*(49/5)/(4 + 7)'
+          answer: '2744/55'
+    answer_text: >-
+      The larger mass falls, so the resultant is
+      $(7 - 4) \times 9.8 = 29.4$ N and both masses move together, giving
+      $a = \dfrac{29.4}{11} = 2.67\ \text{m/s}^2$. For the $4$ kg mass, which
+      rises, $T - 4 \times 9.8 = 4 \times 2.67$, so $T = 49.9$ N. The same
+      tension comes from the $7$ kg mass, which accelerates down:
+      $7 \times 9.8 - T = 7 \times 2.67$.
+
+  - id: r1-table-and-hanging-mass
+    section: Review
+    tier: O
+    refs: [S3]
+    statement: >-
+      A mass of $10$ kg rests on a smooth table. A string from it passes over a
+      smooth pulley and carries a hanging mass of $5$ kg. Find the acceleration
+      and the tension.
+    answer_label: The acceleration and the tension
+    check:
+      kind: all
+      checks:
+        - kind: evaluate
+          expression: '5*(49/5)/(10 + 5)'
+          answer: '49/15'
+        - kind: evaluate
+          expression: '10*5*(49/5)/(10 + 5)'
+          answer: '98/3'
+    answer_text: >-
+      The driving force is the hanging weight, $5 \times 9.8 = 49$ N, and both
+      masses move, so $a = \dfrac{49}{15} = 3.27\ \text{m/s}^2$. The tension is
+      the force accelerating the $10$ kg mass:
+      $T = 10 \times 3.27 = 32.7$ N. Check on the hanging mass:
+      $49 - 32.7 = 16.3$ N, and $16.3 \div 5 = 3.27\ \text{m/s}^2$.
+
+  - id: r1-crate-on-a-plane-and-hanging-mass
+    section: Review
+    tier: O
+    refs: [S3]
+    statement: >-
+      A crate of mass $12$ kg rests on a smooth plane inclined at $30^\circ$. A
+      string from it runs up the plane, over a smooth pulley, and carries a
+      hanging mass of $8$ kg. State which way the system moves, then find the
+      acceleration.
+    answer_label: Which way it moves, and the acceleration
+    check:
+      kind: all
+      checks:
+        - kind: evaluate
+          expression: '(8*(49/5) - 12*(49/5)*(1/2))/(12 + 8)'
+          answer: '49/50'
+        - kind: structured
+          requires: [compare-forces, direction]
+          concepts: [weight-component, resultant]
+          points:
+            - id: compare-forces
+              text: >-
+                The hanging weight is 8 x 9.8 = 78.4 N. The component of the
+                crate's weight down the plane is 12 x 9.8 x 0.5 = 58.8 N, and the
+                string pulls the crate up the plane with the tension.
+              concepts: [weight-component]
+            - id: direction
+              text: >-
+                78.4 N is larger than 58.8 N, so the crate moves up the plane and
+                the hanging mass falls. The resultant is 19.6 N on a total mass
+                of 20 kg, so the acceleration is 0.98 m/s^2.
+              concepts: [resultant]
+    answer_text: >-
+      Compare the two forces along the string. The hanging weight is
+      $8 \times 9.8 = 78.4$ N, and the component of the crate's weight down the
+      plane is $12 \times 9.8 \times 0.5 = 58.8$ N. The hanging mass wins, so the
+      crate moves up the plane and the hanging mass falls. The resultant is
+      $78.4 - 58.8 = 19.6$ N on a total mass of $20$ kg, so
+      $a = \dfrac{19.6}{20} = 0.98\ \text{m/s}^2$.
+
+  - id: r1-car-and-trailer
+    section: Review
+    tier: O
+    refs: [S3]
+    statement: >-
+      A car of mass $1500$ kg tows a trailer of mass $500$ kg on a level road with
+      a driving force of $4000$ N. Find the acceleration and the tension in the
+      tow bar.
+    answer_label: The acceleration and the tension
+    check:
+      kind: all
+      checks:
+        - kind: dimensions
+          expression: F / (m1 + m2)
+          values:
+            F: {value: '4000', unit: N}
+            m1: {value: '1500', unit: kg}
+            m2: {value: '500', unit: kg}
+          answer: {value: '2', unit: m/s^2}
+        - kind: dimensions
+          expression: m2 * F / (m1 + m2)
+          values:
+            F: {value: '4000', unit: N}
+            m1: {value: '1500', unit: kg}
+            m2: {value: '500', unit: kg}
+          answer: {value: '1000', unit: N}
+    answer_text: >-
+      The two bodies move together, so the total mass is
+      $1500 + 500 = 2000$ kg and $a = \dfrac{4000}{2000} = 2\ \text{m/s}^2$. The
+      only horizontal force on the trailer is the tension, so
+      $T = 500 \times 2 = 1000$ N. Check on the car: $4000 - 1000 = 3000$ N, and
+      $3000 \div 1500 = 2\ \text{m/s}^2$.
+
+  - id: r1-force-in-vector-form
+    section: Review
+    tier: H
+    refs: [S3]
+    statement: >-
+      A force of $(4\mathbf{i} + 7\mathbf{j})$ N acts on a particle of mass $2$
+      kg. Find the acceleration as a vector, and its magnitude.
+    answer_label: The acceleration and its magnitude
+    check:
+      kind: all
+      checks:
+        - kind: vector
+          op: scale
+          args: ['1/2', 'Matrix([4, 7])']
+          answer: 'Matrix([2, 7/2])'
+        - kind: approx
+          value: 'sqrt(2**2 + (7/2)**2)'
+          target: '4.03'
+          tolerance: '0.005'
+    answer_text: >-
+      Divide each component of the force by the mass:
+      $\mathbf{a} = \dfrac{4\mathbf{i} + 7\mathbf{j}}{2} = 2\mathbf{i} + 3.5\mathbf{j}
+      \ \text{m/s}^2$. Its magnitude is
+      $\sqrt{2^2 + 3.5^2} = \sqrt{16.25} = 4.03\ \text{m/s}^2$. The direction of
+      the acceleration is the same as the direction of the force, because mass is
+      a positive scalar.
+
+  - id: r1-third-force
+    section: Review
+    tier: H
+    refs: [S3]
+    statement: >-
+      A particle is acted on by $(6\mathbf{i} - \mathbf{j})$ N and
+      $(-2\mathbf{i} + 4\mathbf{j})$ N. Find the third force that keeps it in
+      equilibrium.
+    answer_label: The third force
+    check:
+      kind: all
+      checks:
+        - kind: vector
+          op: add
+          args: ['Matrix([6, -1])', 'Matrix([-2, 4])']
+          answer: 'Matrix([4, 3])'
+        - kind: vector
+          op: scale
+          args: ['-1', 'Matrix([4, 3])']
+          answer: 'Matrix([-4, -3])'
+    answer_text: >-
+      For equilibrium the three forces must add to zero, so the third force is the
+      negative of the sum of the other two. The sum is
+      $(6 - 2)\mathbf{i} + (-1 + 4)\mathbf{j} = 4\mathbf{i} + 3\mathbf{j}$ N, so
+      the third force is $-4\mathbf{i} - 3\mathbf{j}$ N. It has magnitude
+      $\sqrt{16 + 9} = 5$ N and points in the opposite direction to the sum.
+
+  - id: r1-vertical-throw
+    section: Review
+    tier: O
+    refs: [S3]
+    statement: >-
+      A ball is thrown vertically upwards at $14$ m/s. Using $a = -g$ and the
+      equations of motion from Chapter 3, find the greatest height it reaches.
+      Then say which chapter's method you used, and why this question is not a
+      forces question.
+    answer_label: The greatest height, and which method
+    check:
+      kind: all
+      checks:
+        - kind: evaluate
+          expression: '14**2/(2*(49/5))'
+          answer: '10'
+        - kind: structured
+          requires: [greatest-height, method]
+          concepts: [equations-of-motion, kinematics]
+          points:
+            - id: greatest-height
+              text: >-
+                Using v^2 = u^2 + 2as with v = 0 at the top gives
+                0 = 14^2 - 2 x 9.8 x s, so s = 10 m.
+              concepts: [equations-of-motion]
+            - id: method
+              text: >-
+                The method is Chapter 3 kinematics, not Chapter 4 forces. The
+                acceleration is known in advance as -g, so no force diagram or
+                F = ma is needed; the question asks only where the ball goes.
+              concepts: [kinematics]
+    answer_text: >-
+      At the top the velocity is zero, so $v^2 = u^2 + 2as$ gives
+      $0 = 14^2 - 2 \times 9.8 \times s$, and $s = \dfrac{196}{19.6} = 10$ m. The
+      method is Chapter 3 kinematics. The acceleration is given as $-g$ before
+      you start, so there is no need to resolve forces or write $F = ma$; the
+      question asks where the ball goes, not why it slows down.
+
+  - id: r1-speed-on-a-plane
+    section: Review
+    tier: O
+    refs: [S3]
+    statement: >-
+      A block of mass $5$ kg slides down a smooth plane and reaches a speed of
+      $7$ m/s after $2$ s. Find its acceleration, and hence the angle of the
+      plane. Which two chapters does this question join together?
+    answer_label: The acceleration, the angle and the two chapters
+    check:
+      kind: all
+      checks:
+        - kind: dimensions
+          expression: v / t
+          values:
+            v: {value: '7', unit: m/s}
+            t: {value: '2', unit: s}
+          answer: {value: '3.5', unit: m/s^2}
+        - kind: approx
+          value: 'asin(3.5/9.8)*180/pi'
+          target: '20.9'
+          tolerance: '0.05'
+        - kind: structured
+          requires: [two-chapters]
+          concepts: [kinematics, newton-second-law]
+          points:
+            - id: two-chapters
+              text: >-
+                Chapter 3 gives the acceleration from the change in speed and the
+                time. Chapter 4 turns that acceleration into an angle, because on
+                a smooth plane a = g sin(theta).
+              concepts: [kinematics, newton-second-law]
+    answer_text: >-
+      The acceleration comes from kinematics:
+      $a = \dfrac{7 - 0}{2} = 3.5\ \text{m/s}^2$. On a smooth plane
+      $a = g\sin\theta$, so $\sin\theta = \dfrac{3.5}{9.8} = 0.357$ and
+      $\theta = 20.9^\circ$. The question joins Chapter 3, which finds an
+      acceleration from motion, to Chapter 4, which explains that acceleration by
+      the component of the weight down the plane.
+
+  - id: r1-tension-and-weight
+    section: Review
+    tier: O
+    refs: [S3]
+    statement: >-
+      A student says: "The tension in a string is always equal to the weight
+      hanging on it." Give one situation in this chapter where that is true, and
+      one where it is false, with a reason for each.
+    answer_label: Where the claim is true, and where it is false
+    check:
+      kind: structured
+      requires: [true-case, false-case, reason]
+      concepts: [equilibrium, acceleration]
+      points:
+        - id: true-case
+          text: >-
+            It is true when the hanging mass is at rest or moving at constant
+            velocity. Then its acceleration is zero, so the tension balances its
+            weight exactly.
+          concepts: [equilibrium]
+        - id: false-case
+          text: >-
+            It is false when the hanging mass accelerates. A mass falling with
+            acceleration a has mg - T = ma, so the tension is less than the
+            weight; this is what happens in the two-mass pulley problem.
+          concepts: [acceleration]
+        - id: reason
+          text: >-
+            The reason is Newton's second law. The tension equals the weight only
+            when the resultant force on the hanging mass is zero.
+          concepts: [equilibrium, acceleration]
+    answer_text: >-
+      The claim is true when the hanging mass is at rest or moving at a steady
+      speed: its acceleration is zero, so the tension and the weight balance. It
+      is false when the mass accelerates. In the pulley problem the hanging mass
+      falls with acceleration $a$, and $mg - T = ma$, so the tension is less than
+      the weight. Tension equals weight only when the resultant force is zero.

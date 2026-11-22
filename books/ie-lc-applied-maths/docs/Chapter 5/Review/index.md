@@ -83,34 +83,9 @@ it is** and say why, before you calculate anything. Some of them need a method
 from an earlier chapter, and two of them are about choosing the right idea
 rather than the right number.
 
-1. A box of mass $8$ kg rests on a rough horizontal floor. A horizontal force
-   of $30$ N just starts it moving. Find the coefficient of friction.
-2. A block of mass $6$ kg slides down a rough plane inclined at $30^\circ$. The
-   coefficient of friction is $0.25$. Find the acceleration.
-3. A ball of mass $0.2$ kg falls through the air with a drag force of $0.5$ N.
-   Find its acceleration.
-4. A car speeds up from $12$ m/s to $30$ m/s in $5$ s. Find its acceleration.
-   Which chapter does this question belong to, and why?
-5. A crate of mass $20$ kg rests on a smooth plane inclined at $30^\circ$. Find
-   its acceleration down the plane.
-6. A parachutist of mass $75$ kg descends at a constant speed. Find the drag
-   force.
-7. An object of mass $10$ kg falls with $D = kv^2$ and $k = 0.5$ kg/m. Find its
-   terminal speed.
-8. A block rests on a rough plane inclined at $20^\circ$ with $\mu = 0.3$.
-   Decide whether it slides, and justify your answer.
-9. Masses of $4$ kg and $7$ kg hang from a light string over a smooth pulley.
-   Find the acceleration and the tension.
-10. A skier of mass $60$ kg goes down a slope inclined at $30^\circ$. The
-    coefficient of friction is $0.1$ and the drag is $D = kv^2$ with
-    $k = 0.4$ kg/m. Find the acceleration at low speed, and then the terminal
-    speed. Which two sections of this chapter does this question join together?
-11. A student writes: "The friction force always equals $\mu R$." Give one
-    situation in this chapter where that is true, and one where it is false,
-    with a reason for each.
-12. A block is projected up a rough plane inclined at $30^\circ$, with
-    $\mu = 0.2$. Find its deceleration. Explain why this is larger than the
-    acceleration of the same block down the same plane.
+:::problems chapter-05-review
+
+:::answers chapter-05-review
 
 ## What you can now do
 

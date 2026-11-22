@@ -63,32 +63,9 @@ use and why** before you calculate anything. Some of them need an idea from an
 earlier chapter, and two of them are about choosing the right method rather than
 the right number.
 
-1. A car accelerates uniformly from $12$ m/s to $30$ m/s in $6$ s. Find its
-   acceleration and the distance it travels.
-2. A displacement–time graph is a curve that rises steeply and then flattens.
-   Describe what the object is doing, and say what the gradient at one point
-   means.
-3. Differentiate $s = (3t + 1)^4$ with respect to $t$.
-4. Evaluate $\displaystyle\int_0^3 (2t + 4)\,dt$.
-5. Derive $v = u + at$ from $a = \dfrac{dv}{dt}$ for a constant acceleration.
-6. A ball is thrown at $18$ m/s at $40^\circ$ above the horizontal. Find the two
-   components of its velocity, and its greatest height.
-7. A stone is dropped from rest from a cliff and lands after $3$ s. Taking
-   $g = 9.8$ m/s², find the height of the cliff.
-8. A ball is kicked at $24$ m/s at $30^\circ$. Find its time of flight and its
-   range.
-9. A ball is thrown at $20$ m/s at $60^\circ$. Find its range, and name the
-   other launch angle that gives the same range.
-10. A ball is kicked at $16$ m/s and lands $22$ m away on level ground. Find the
-    two possible launch angles.
-11. A question gives the initial velocity, the acceleration and the time, and
-    asks for the displacement. Say which equation of motion you would use, and
-    why you would not use the others.
-12. A network has vertex degrees $3, 3, 2, 2, 2$. Find the number of edges, and
-    name the result you used. This question comes from Chapter 2, and it is here
-    to remind you to check which chapter a question belongs to.
-13. In the projectile model, gravity is the only force. State which assumption
-    you would examine first if the ball were a table-tennis ball, and why.
+:::problems chapter-03-review
+
+:::answers chapter-03-review
 
 ## What you can now do
 

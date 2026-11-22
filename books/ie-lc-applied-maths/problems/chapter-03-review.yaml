@@ -1,0 +1,374 @@
+# Mixed practice for the Chapter 3 Review (strand S3, describing motion).
+#
+# Thirteen questions, one record each, in the order they appear on the Review
+# page. Mechanics answers are proved twice where the units matter: a `dimensions`
+# check proves the magnitude and its unit, and a `sigfigs` check proves a single
+# rounding at the end. The calculus is proved by `apply` — a derivative by
+# differentiating, a definite integral by integrating between its limits — so a
+# derivation is checked against the operation, never by matching a remembered
+# string. Projectile answers that carry an irrational factor are checked with
+# `approx`, and question 10's two launch angles are proved by `solve` over the
+# first quadrant, so the exact answer is the arc-sine pair and the degrees are
+# checked separately. Questions 2, 11 and 13 ask for a description or a choice
+# and carry a `structured` component.
+#
+# Honest limit: this proves arithmetic, units, the named calculus operation and
+# the declared rounding. It cannot prove that a chosen method is the best one,
+# and it cannot check a description of a graph. The `structured` records prove
+# only that a model answer contains its declared steps and concepts, in order —
+# nothing about whether the physics is right. Take $g = 9.8\ \text{m/s}^2$
+# throughout, as the chapter does.
+chapter: 3
+symbols:
+  t: {real: true}
+  u: {real: true}
+  a: {real: true}
+  theta: {real: true}
+problems:
+  - id: r1-acceleration-and-distance
+    section: Review
+    tier: O
+    refs: [S3]
+    statement: >-
+      A car accelerates uniformly from $12$ m/s to $30$ m/s in $6$ s. Find its
+      acceleration and the distance it travels.
+    answer_label: The acceleration and the distance
+    check:
+      kind: all
+      checks:
+        - kind: dimensions
+          expression: (v2 - v1) / t
+          values:
+            v2: {value: '30', unit: m/s}
+            v1: {value: '12', unit: m/s}
+            t: {value: '6', unit: s}
+          answer: {value: '3', unit: m/s^2}
+        - kind: dimensions
+          expression: (v1 + v2) / 2 * t
+          values:
+            v1: {value: '12', unit: m/s}
+            v2: {value: '30', unit: m/s}
+            t: {value: '6', unit: s}
+          answer: {value: '126', unit: m}
+    answer_text: >-
+      The acceleration is the change in velocity divided by the time:
+      $a = \dfrac{30 - 12}{6} = 3\ \text{m/s}^2$. For the distance, the average
+      velocity is $\dfrac{12 + 30}{2} = 21$ m/s, so
+      $s = 21 \times 6 = 126$ m. The units work out as
+      $\text{m/s} \times \text{s} = \text{m}$.
+
+  - id: r1-curve-on-a-graph
+    section: Review
+    tier: O
+    refs: [S3]
+    statement: >-
+      A displacement–time graph is a curve that rises steeply and then flattens.
+      Describe what the object is doing, and say what the gradient at one point
+      means.
+    answer_label: What the graph shows, and what the gradient means
+    check:
+      kind: structured
+      requires: [describe-motion, gradient-meaning]
+      concepts: [gradient, velocity]
+      points:
+        - id: describe-motion
+          text: >-
+            The object starts quickly and slows down. The displacement is still
+            rising, so it keeps moving forward, but each second adds less distance
+            than the one before.
+          concepts: [velocity]
+        - id: gradient-meaning
+          text: >-
+            The gradient at one point is the velocity at that instant. A steep
+            gradient means a high speed and a flat gradient means a low speed, so
+            the flattening curve is a decreasing velocity.
+          concepts: [gradient, velocity]
+    answer_text: >-
+      The object moves forward quickly at first and then slows down, because the
+      curve keeps rising while its slope falls. The gradient at a point is the
+      velocity at that instant: the tangent's steepness is the speed, and its
+      units are metres per second. A chord between two points would give an
+      average velocity instead.
+
+  - id: r1-chain-rule
+    section: Review
+    tier: O
+    refs: [S3]
+    statement: "Differentiate $s = (3t + 1)^4$ with respect to $t$."
+    answer_label: The derivative
+    check:
+      kind: apply
+      expression: '(3*t + 1)**4'
+      apply: {op: diff, args: [t]}
+      answer: '12*(3*t + 1)**3'
+    answer_text: >-
+      Use the chain rule. The outer power brings down a $4$ and reduces the power
+      by one, and the inner derivative of $3t + 1$ is $3$:
+      $\dfrac{ds}{dt} = 4(3t + 1)^3 \times 3 = 12(3t + 1)^3$.
+
+  - id: r1-definite-integral
+    section: Review
+    tier: O
+    refs: [S3]
+    statement: "Evaluate $\\displaystyle\\int_0^3 (2t + 4)\\,dt$."
+    answer_label: The value of the integral
+    check:
+      kind: apply
+      expression: '2*t + 4'
+      apply: {op: integrate, args: [t, '0', '3']}
+      answer: '21'
+    answer_text: >-
+      An antiderivative is $t^2 + 4t$, because differentiating it gives
+      $2t + 4$. Evaluate it at the limits and subtract:
+      $\left(3^2 + 4 \times 3\right) - \left(0 + 0\right) = 9 + 12 = 21$.
+
+  - id: r1-derive-v-equals-u-plus-at
+    section: Review
+    tier: O
+    refs: [S3]
+    statement: >-
+      Derive $v = u + at$ from $a = \dfrac{dv}{dt}$ for a constant acceleration.
+    answer_label: The derivation
+    check:
+      kind: apply
+      expression: 'u + a*t'
+      apply: {op: diff, args: [t]}
+      answer: 'a'
+    answer_text: >-
+      A constant acceleration integrates once to give $v = at + C$, because
+      $\dfrac{d}{dt}(at + C) = a$. At $t = 0$, $v = u$, so $C = u$ and
+      $v = u + at$. Differentiating the result returns $a$, which is why it
+      satisfies the definition it was built from.
+
+  - id: r1-projectile-components
+    section: Review
+    tier: O
+    refs: [S3]
+    statement: >-
+      A ball is thrown at $18$ m/s at $40^\circ$ above the horizontal. Find the
+      two components of its velocity, and its greatest height.
+    answer_label: The two components and the greatest height
+    check:
+      kind: all
+      checks:
+        - kind: approx
+          value: '18*cos(40*pi/180)'
+          target: '13.8'
+          tolerance: '0.05'
+        - kind: approx
+          value: '18*sin(40*pi/180)'
+          target: '11.6'
+          tolerance: '0.05'
+        - kind: approx
+          value: '(18*sin(40*pi/180))**2/(2*9.8)'
+          target: '6.83'
+          tolerance: '0.005'
+    answer_text: >-
+      The horizontal component is $18\cos 40^\circ = 13.8$ m/s and the vertical
+      component is $18\sin 40^\circ = 11.6$ m/s. The greatest height is reached
+      when the vertical velocity is zero, so
+      $h = \dfrac{u_y^2}{2g} = \dfrac{(18\sin 40^\circ)^2}{2 \times 9.8} =
+      6.83$ m. The horizontal component plays no part in the height.
+
+  - id: r1-drop-height
+    section: Review
+    tier: O
+    refs: [S3]
+    statement: >-
+      A stone is dropped from rest from a cliff and lands after $3$ s. Taking
+      $g = 9.8$ m/s², find the height of the cliff.
+    answer_label: The height of the cliff
+    check:
+      kind: dimensions
+      expression: 0.5 * g * t**2
+      values:
+        g: {value: '9.8', unit: m/s^2}
+        t: {value: '3', unit: s}
+      answer: {value: '44.1', unit: m}
+    answer_text: >-
+      The stone starts from rest, so $s = \dfrac{1}{2}gt^2$ applies:
+      $s = \dfrac{1}{2} \times 9.8 \times 3^2 = 44.1$ m. The units check as
+      $\text{m/s}^2 \times \text{s}^2 = \text{m}$, so the answer is a height.
+
+  - id: r1-time-of-flight-and-range
+    section: Review
+    tier: O
+    refs: [S3]
+    statement: >-
+      A ball is kicked at $24$ m/s at $30^\circ$. Find its time of flight and
+      its range.
+    answer_label: The time of flight and the range
+    check:
+      kind: all
+      checks:
+        - kind: sigfigs
+          value: '2*24*sin(pi/6)/9.8'
+          figures: 3
+          answer: '2.45'
+          convention: round-once
+        - kind: sigfigs
+          value: '24**2*sin(pi/3)/9.8'
+          figures: 3
+          answer: '50.9'
+          tolerance: '0.001'
+          convention: round-once
+    answer_text: >-
+      The vertical component is $24\sin 30^\circ = 12$ m/s, so the time of flight
+      is $T = \dfrac{2u_y}{g} = \dfrac{24}{9.8} = 2.45$ s. The horizontal
+      component is $24\cos 30^\circ = 20.8$ m/s, so the range is
+      $R = \dfrac{24^2\sin 60^\circ}{9.8} = 50.9$ m. Both answers are given to
+      3 significant figures, and each was rounded once at the end.
+
+  - id: r1-complementary-angle
+    section: Review
+    tier: O
+    refs: [S3]
+    statement: >-
+      A ball is thrown at $20$ m/s at $60^\circ$. Find its range, and name the
+      other launch angle that gives the same range.
+    answer_label: The range and the other angle
+    check:
+      kind: all
+      checks:
+        - kind: sigfigs
+          value: '20**2*sin(pi/3)/9.8'
+          figures: 3
+          answer: '35.3'
+          tolerance: '0.001'
+          convention: round-once
+        - kind: evaluate
+          expression: '90 - 60'
+          answer: '30'
+    answer_text: >-
+      The range is $R = \dfrac{u^2\sin 2\theta}{g} = \dfrac{400\sin 120^\circ}{9.8}
+      = 35.3$ m. The range depends on $2\theta$ through a sine that is the same
+      for $2\theta$ and $180^\circ - 2\theta$, so $\theta$ and
+      $90^\circ - \theta$ give the same range. The other angle is
+      $90^\circ - 60^\circ = 30^\circ$.
+
+  - id: r1-two-launch-angles
+    section: Review
+    tier: H
+    refs: [S3]
+    statement: >-
+      A ball is kicked at $16$ m/s and lands $22$ m away on level ground. Find
+      the two possible launch angles.
+    answer_label: The two launch angles
+    check:
+      kind: all
+      checks:
+        - kind: solve
+          equation: 'sin(2*theta) = 22*9.8/16**2'
+          variable: theta
+          interval: [0, 1.5707963267948966]
+          answer: ['asin(539/640)/2', 'pi/2 - asin(539/640)/2']
+        - kind: approx
+          value: 'asin(539/640)/2*180/pi'
+          target: '28.7'
+          tolerance: '0.05'
+        - kind: approx
+          value: '(pi/2 - asin(539/640)/2)*180/pi'
+          target: '61.3'
+          tolerance: '0.05'
+    answer_text: >-
+      Use $R = \dfrac{u^2\sin 2\theta}{g}$ with $R = 22$ and $u = 16$:
+      $\sin 2\theta = \dfrac{22 \times 9.8}{256} = 0.842$. Then
+      $2\theta = 57.4^\circ$ or $180^\circ - 57.4^\circ = 122.6^\circ$, so
+      $\theta = 28.7^\circ$ or $\theta = 61.3^\circ$. The two angles add to
+      $90^\circ$, which is why a low kick and a high lob can travel the same
+      distance.
+
+  - id: r1-which-equation
+    section: Review
+    tier: O
+    refs: [S3]
+    statement: >-
+      A question gives the initial velocity, the acceleration and the time, and
+      asks for the displacement. Say which equation of motion you would use, and
+      why you would not use the others.
+    answer_label: The equation to use, and why
+    check:
+      kind: structured
+      requires: [choose-equation, reject-others]
+      concepts: [equations-of-motion, known-quantities]
+      points:
+        - id: choose-equation
+          text: >-
+            Use $s = ut + \frac{1}{2}at^2$. It contains $u$, $a$, $t$ and $s$, and
+            those are the three quantities the question gives plus the one it
+            asks for.
+          concepts: [equations-of-motion, known-quantities]
+        - id: reject-others
+          text: >-
+            The other equations each need a quantity the question does not give:
+            $v = u + at$ would answer a velocity, $v^2 = u^2 + 2as$ needs the
+            displacement it is meant to find, and $s = \frac{(u+v)t}{2}$ needs the
+            final velocity.
+          concepts: [equations-of-motion, known-quantities]
+    answer_text: >-
+      Use $s = ut + \frac{1}{2}at^2$, because it links the three known quantities
+      $u$, $a$ and $t$ to the unknown $s$. The other equations do not fit:
+      $v = u + at$ returns a velocity instead of a displacement,
+      $v^2 = u^2 + 2as$ needs $s$ before it can find $s$, and
+      $s = \frac{(u+v)t}{2}$ needs a final velocity the question never gives.
+
+  - id: r1-degree-sum
+    section: Review
+    tier: O
+    refs: [S3, S2]
+    statement: >-
+      A network has vertex degrees $3, 3, 2, 2, 2$. Find the number of edges, and
+      name the result you used. This question comes from Chapter 2, and it is here
+      to remind you to check which chapter a question belongs to.
+    answer_label: The number of edges and the result used
+    check:
+      kind: all
+      checks:
+        - kind: evaluate
+          expression: '(3 + 3 + 2 + 2 + 2) / 2'
+          answer: '6'
+        - kind: structured
+          requires: [name-result]
+          concepts: [handshake-lemma]
+          points:
+            - id: name-result
+              text: >-
+                The handshake lemma: each edge contributes 1 to the degree of each
+                of its two ends, so the degree sum is twice the number of edges.
+              concepts: [handshake-lemma]
+    answer_text: >-
+      The degree sum is $3 + 3 + 2 + 2 + 2 = 12$. The handshake lemma says each
+      edge adds 1 to the degree of each end, so the sum is twice the number of
+      edges and the network has $12 \div 2 = 6$ edges. A velocity or a force does
+      not come into it: the question belongs to the networks chapter.
+
+  - id: r1-table-tennis-ball
+    section: Review
+    tier: O
+    refs: [S3]
+    statement: >-
+      In the projectile model, gravity is the only force. State which assumption
+      you would examine first if the ball were a table-tennis ball, and why.
+    answer_label: The assumption to examine first
+    check:
+      kind: structured
+      requires: [name-assumption, give-reason]
+      concepts: [air-resistance, mass-to-area]
+      points:
+        - id: name-assumption
+          text: >-
+            Examine the assumption that no force acts except gravity, so air
+            resistance is ignored.
+          concepts: [air-resistance]
+        - id: give-reason
+          text: >-
+            A table-tennis ball is very light for its size, so the drag on it is a
+            large fraction of its weight. The drag slows it and curves it, so the
+            model's range and time of flight would both be too large.
+          concepts: [air-resistance, mass-to-area]
+    answer_text: >-
+      Examine the assumption that gravity is the only force, and that air
+      resistance can be left out. A table-tennis ball has a small mass for its
+      area, so the drag on it is a large fraction of its weight. The drag reduces
+      both the range and the time of flight, and a spin makes it curve, so the
+      projectile model would overstate how far the ball travels.
