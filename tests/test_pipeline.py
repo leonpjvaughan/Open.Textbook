@@ -507,6 +507,24 @@ def test_build_writes_the_expected_files(subset):
     assert (subset.out / sheets["assets/stylesheets/shell.css"]).exists()
 
 
+def test_the_chapter_opener_carries_the_problem_and_the_first_action(subset):
+    """The opener's three parts, on a real chapter, with the action going where the
+    reading order says the chapter starts. Pinned end to end because the action's
+    href comes from the pager, not from the page, so no unit test can prove it."""
+    html = (subset.out / "chapter-1" / "index.html").read_text()
+    assert '<span class="chapter-kicker">Chapter 1</span>' in html
+    assert 'class="chapter-problem"' in html
+    assert 'class="chapter-start"' in html
+    assert 'href="section-1.1/learn/"' in html
+    assert "1.1 Place value and ordering numbers" in html
+
+    # A section page is not an opener, and its action would point at itself.
+    section = (subset.out / "chapter-1" / "section-1.1" / "learn" / "index.html").read_text()
+    assert 'class="chapter-start"' not in section
+    assert 'class="chapter-kicker"' not in section
+    assert 'class="chapter-problem"' not in section
+
+
 def test_every_page_links_the_book_local_stylesheet(subset):
     """The per-book override is the last stylesheet, so it must reach the page.
 

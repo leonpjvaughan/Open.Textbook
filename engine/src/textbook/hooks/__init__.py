@@ -20,6 +20,11 @@ Order matters:
 11. ``maths`` renders the ``$...$`` those hooks emitted — last, because it runs
     on rendered HTML rather than markdown.
 
+``on_page_content``, in order: ``contents`` (it reads the headings while they still
+carry their LaTeX), then ``opener`` (the chapter opener's kicker and pull quote, on
+a chapter's own page), then ``maths``. The opener's *action* link is added by the
+pipeline, which owns the reading order it comes from.
+
 The reader-preference script is not a hook: ``prefs.snippet`` generates it and
 both page templates carry the result, so the pipeline and the portal share one
 implementation rather than a MkDocs hook that no renderer calls.
@@ -34,6 +39,7 @@ from . import (
     disclaimer,
     figures,
     maths,
+    opener,
     problems,
     proofs,
     systems,
@@ -76,6 +82,9 @@ def on_page_markdown(markdown, page, config, files):
 
 def on_page_content(content, page, config, files):
     # `contents` first: it reads the headings while they still carry their LaTeX, and
-    # `maths` then renders the `$...$` in the headings themselves.
+    # `maths` then renders the `$...$` in the headings themselves. `opener` runs in
+    # between, so the page's own contents list is placed before the chapter problem is
+    # framed and can never land inside the frame.
     content = contents.on_page_content(content, page, config, files)
+    content = opener.on_page_content(content, page, config, files)
     return maths.on_page_content(content, page, config, files)

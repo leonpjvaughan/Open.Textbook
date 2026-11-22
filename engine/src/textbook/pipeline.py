@@ -798,9 +798,11 @@ def render_page(
     content = hooks.on_page_content(content, page, config, [])
     content = split_page_kind(content)
     content = wrap_tables(rewrite_source_links(content))
+    prefix = prefix_for(url)
+    if hooks.opener.is_chapter_index(md_path):
+        content = hooks.opener.add_action(content, pager[1], prefix)
 
     title = str(meta.get("title") or md_path)
-    prefix = prefix_for(url)
     trigger, dialog = settings
     # A classic deferred script: it reads ``document.currentScript.src`` to find its
     # sibling JSON, so it must be a real script element, not a module.

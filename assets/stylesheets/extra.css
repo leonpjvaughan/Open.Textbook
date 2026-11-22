@@ -85,6 +85,75 @@ html {
   }
 }
 
+/* --- the chapter opener ---------------------------------------------------- */
+
+/* A chapter's overview page is ordinary Markdown, authored the same way as every
+ * other page, so `hooks/opener.py` adds the opener's shape to the rendered HTML:
+ * the chapter number as a kicker, the problem as a pull quote, and the first
+ * section's link. These are the only rules that style it. */
+.md-typeset .chapter-kicker {
+  display: block;
+  margin: 0 0 0.3rem;
+  color: var(--tb-ink-soft);
+  font-family: var(--tb-font-mono);
+  font-size: 0.74rem;
+  font-weight: 600;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
+/* The action: a labelled link between two rules, under the title. Nothing here is
+ * revealed by a script, so a reader with scripting off still starts the chapter. */
+.md-typeset .chapter-start {
+  max-width: var(--tb-measure);
+  display: flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  gap: 0.15rem 0.7rem;
+  margin: 1.1rem 0 2rem;
+  padding: 0.7rem 0 0.75rem;
+  border-top: 1px solid var(--tb-rule);
+  border-bottom: 1px solid var(--tb-rule);
+}
+
+.md-typeset .chapter-start__label {
+  color: var(--tb-ink-soft);
+  font-family: var(--tb-font-mono);
+  font-size: 0.72rem;
+  font-weight: 600;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
+.md-typeset .chapter-start a {
+  display: inline-flex;
+  align-items: center;
+  min-height: 1.5rem;
+  font-weight: 600;
+}
+
+/* The chapter problem as the page's pull quote: display serif, a step above the
+ * body, framed by two rules. There is no fill, no side border and no colour. */
+.md-typeset .chapter-problem {
+  max-width: var(--tb-measure);
+  margin: 2rem 0 2.2rem;
+  padding: 0.9rem 0 0.3rem;
+  border-top: 1px solid var(--tb-rule);
+  border-bottom: 1px solid var(--tb-rule);
+}
+
+.md-typeset .chapter-problem > h2 {
+  margin: 0 0 0.7rem;
+  color: var(--tb-ink-soft);
+  font-size: 0.95rem;
+}
+
+.md-typeset .chapter-problem__quote > p {
+  font-family: var(--tb-font-display);
+  font-size: 1.22rem;
+  line-height: 1.5;
+}
+
 .md-typeset h2,
 .md-typeset h3,
 .md-typeset h4 {

@@ -767,6 +767,60 @@ def test_the_landing_page_applies_the_theme_before_paint():
     assert "textbooks:theme" in head
 
 
+# --- the editorial card -------------------------------------------------------
+
+
+def portal_rule(selector: str) -> str:
+    """The declarations of one rule in `portal.css`, read as the browser sees them."""
+    css = (repo_root() / "assets" / "stylesheets" / "portal.css").read_text(encoding="utf-8")
+    body = re.sub(r"/\*.*?\*/", "", css, flags=re.S)
+    for match in re.finditer(r"([^{}]*?)\{([^}]*)\}", body):
+        if selector in (" ".join(part.split()) for part in match.group(1).split(",")):
+            return match.group(2)
+    raise AssertionError(f"portal.css has no rule for {selector!r}")
+
+
+def test_a_card_is_a_rule_not_a_box():
+    """The editorial card: flat paper, a hairline, and whitespace.
+
+    A shadow and a tinted, rounded box made every card a raised panel. The rule
+    above it and the space below the last one are the whole separation, and the
+    card chooses no corner of its own: the radius belongs to the collection.
+    """
+    card = portal_rule(".card")
+    assert "box-shadow" not in card
+    assert "border-radius" not in card
+    assert "background" not in card
+    assert "border-top: 1px solid var(--tb-rule)" in card
+    # No component chooses its own corner, and no bordered word is a pill: every
+    # radius in the sheet is the collection's one token.
+    css = re.sub(
+        r"/\*.*?\*/",
+        "",
+        (repo_root() / "assets" / "stylesheets" / "portal.css").read_text(encoding="utf-8"),
+        flags=re.S,
+    )
+    radii = set(re.findall(r"border-radius:\s*([^;]+);", css))
+    assert radii == {"var(--tb-radius)"}, f"portal.css has corners of its own: {radii}"
+
+
+def test_a_card_spends_its_accent_once_on_the_kicker():
+    """The mono kicker is the card's identity. Two accents — the old filled pill and
+    the old top rule — competed with the title they introduced."""
+    assert "var(--card-accent-active)" in portal_rule(".card__subject")
+    assert "var(--card-accent-active)" not in portal_rule(".card")
+
+
+def test_a_profile_is_a_link_and_the_kicker_leads_the_title():
+    """An edition is a destination, so it is an underlined link, not a chip. The
+    filing label sits above the title it files."""
+    html = portal.render()
+    assert 'class="chip' not in html
+    assert 'class="card__profile' in html
+    assert 'aria-label="Editions"' in html
+    assert html.index('class="card__subject"') < html.index('class="card__title"')
+
+
 def test_the_landing_page_shares_the_books_stylesheet():
     """One bundle stylesheet, so the front door cannot drift from the books."""
     portal.main()
