@@ -55,24 +55,9 @@ The parcel takes about $2.0\,\text{s}$ to fall and lands at about $20\,\text{m/s
 Work through these without notes. For each one, decide **which relationship applies** and
 say why. Two of them ask you to choose between the graph and the equations.
 
-1. A car travels 240 m in 12 s. Calculate its average speed.
-2. A velocity-time graph is a straight line from 5.0 m/s to 17 m/s over 6.0 s. Find the
-   acceleration and the displacement.
-3. A stone is dropped from rest from a height of 44.1 m. Calculate the time it takes to
-   reach the ground.
-4. A ball is thrown straight up at 24.5 m/s. Calculate the time to the highest point and
-   the maximum height.
-5. A train travelling at 25 m/s decelerates steadily to rest in 10 s. Calculate its
-   deceleration and its stopping distance.
-6. A cyclist starts from rest and accelerates at 1.5 m/s$^2$ for 8.0 s. Calculate the
-   final speed and the distance travelled.
-7. A ball is dropped from rest and lands at 15 m/s. Calculate the height it fell.
-8. A car speeds up from 12 m/s to 30 m/s over a distance of 90 m. Calculate its
-   acceleration.
-9. You know the initial velocity, the final velocity and the time. State which equation
-   gives the distance, and explain why it is the shortest route.
-10. A car accelerates from rest at 3.0 m/s$^2$ for 4.0 s, then travels at a constant
-    speed for 6.0 s. Calculate the total distance travelled.
+:::problems chapter-02-review
+
+:::answers chapter-02-review
 
 ## What you can now do
 

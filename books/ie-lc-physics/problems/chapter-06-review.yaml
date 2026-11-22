@@ -1,0 +1,314 @@
+# Mixed practice for the Chapter 6 Review.
+#
+# Ten questions, one record each, in the order they appear on the Review page.
+# Every numeric record carries a `dimensions` check, which proves the magnitude
+# and the unit, and a `sigfigs` check, which proves the rounding to the figures
+# the data support. A speed or a period built on a square root or on pi carries a
+# tolerance, because the exact value is irrational and the check proves the
+# arithmetic within the precision of the data. Questions 1, 5, 6, 8, 9 and 10 ask
+# for a judgement as well as, or instead of, a number, so each carries a
+# `structured` component.
+#
+# Honest limit: this proves arithmetic, dimensions and the declared conventions,
+# not physics. A `structured` check proves only that a model answer contains its
+# declared steps and concepts, in order. Question 5 is an explanation with no
+# number in it, and question 10 asks which relationship to use: the verifier can
+# prove only that the reasons are stated, not that they are the right ones.
+#
+# The data are read as the Review page states them: the Earth's mass is
+# 5.97e24 kg, its radius 6.37e6 m and G is 6.67e-11 N m^2 kg^-2. Question 7's
+# planet has twice the Earth's mass and the same radius, so its mass is 1.194e25 kg.
+chapter: 6
+problems:
+  - id: c6-r1-potential-energy
+    section: Review
+    tier: O
+    refs: ['1.5']
+    statement: 'A $3.0\,\text{kg}$ mass is raised $4.0\,\text{m}$ near the Earth''s surface. Calculate the gain in potential energy. Would $mgh$ still be accurate on the space station?'
+    answer_label: 'The gain in potential energy, and whether mgh still works'
+    check:
+      kind: all
+      checks:
+        - kind: dimensions
+          expression: m * g * h
+          values:
+            m: {value: '3.0', unit: kg}
+            g: {value: '9.8', unit: N/kg}
+            h: {value: '4.0', unit: m}
+          answer: {value: '117.6', unit: J}
+        - kind: sigfigs
+          value: '3.0 * 9.8 * 4.0'
+          figures: 2
+          answer: '1.2e2'
+          convention: round-once
+        - kind: structured
+          requires: [state-gain, station-answer]
+          concepts: [local-field, changing-g]
+          points:
+            - id: state-gain
+              text: 'The gain is $mgh = 3.0 \times 9.8 \times 4.0 = 117.6\,\text{J}$, which is $1.2 \times 10^{2}\,\text{J}$ to two significant figures.'
+              concepts: [local-field]
+            - id: station-answer
+              text: 'Near the station the field strength is about 8.7 N/kg, not 9.8 N/kg, and it is nearly constant over a few metres, so mgh still works for a short climb if the local g is used. It is not accurate for the whole climb from the surface to the orbit, where g falls by about 11%, so there the field form with 1/R minus 1/r is needed.'
+              concepts: [local-field, changing-g]
+    answer_text: 'The gain is $mgh = 3.0 \times 9.8 \times 4.0 = 117.6\,\text{J}$, which is $1.2 \times 10^{2}\,\text{J}$ to two significant figures. Near the station the field strength is about $8.7\,\text{N/kg}$, not $9.8\,\text{N/kg}$, and it is nearly constant over a few metres. So $mgh$ still works for a short climb there, provided the local $g$ is used. It is not accurate for the whole climb from the surface to the orbit, where $g$ falls by about 11%, so over that height the field form $\Delta E_p = GMm\left(\dfrac{1}{R} - \dfrac{1}{r}\right)$ is needed.'
+
+  - id: c6-r2-field-strength
+    section: Review
+    tier: O
+    refs: ['1.5']
+    statement: 'The Earth''s mass is $5.97 \times 10^{24}\,\text{kg}$. Calculate the field strength $2.0 \times 10^{7}\,\text{m}$ from its centre.'
+    answer_label: 'Field strength at that distance'
+    check:
+      kind: all
+      checks:
+        - kind: dimensions
+          expression: G * M / r**2
+          values:
+            G: {value: '6.67e-11', unit: N m^2 kg^-2}
+            M: {value: '5.97e24', unit: kg}
+            r: {value: '2.0e7', unit: m}
+          answer: {value: '0.9954975', unit: N/kg}
+        - kind: sigfigs
+          value: '6.67e-11 * 5.97e24 / (2.0e7)**2'
+          figures: 2
+          answer: '1.0'
+          convention: round-once
+    answer_text: 'The field strength is $g = \dfrac{GM}{r^2} = \dfrac{6.67 \times 10^{-11} \times 5.97 \times 10^{24}}{(2.0 \times 10^{7})^2} = 0.995\,\text{N/kg}$, which is $1.0\,\text{N/kg}$ to two significant figures. The distance is measured from the centre of the Earth, not from its surface. At $2.0 \times 10^{7}\,\text{m}$ the point is about $1.4 \times 10^{7}\,\text{m}$ above the surface, and the field is about a tenth of its value at the surface.'
+
+  - id: c6-r3-halved-distance
+    section: Review
+    tier: O
+    refs: ['1.5']
+    statement: 'Two masses attract each other with a force of $24\,\text{N}$. Calculate the force when the distance between their centres is halved.'
+    answer_label: 'Force at half the distance'
+    check:
+      kind: all
+      checks:
+        - kind: dimensions
+          expression: F * 4
+          values:
+            F: {value: '24', unit: N}
+          answer: {value: '96', unit: N}
+        - kind: sigfigs
+          value: '24 * 4'
+          figures: 2
+          answer: '96'
+          convention: round-once
+    answer_text: 'Newton''s law of gravitation gives $F \propto \dfrac{1}{r^2}$. Halving $r$ divides $r^2$ by four, so the force is multiplied by four: $24 \times 4 = 96\,\text{N}$. The inverse-square law makes the force very sensitive to distance, which is why the weight of a satellite falls quickly as it climbs.'
+
+  - id: c6-r4-orbit-speed-and-period
+    section: Review
+    tier: O
+    refs: ['1.5', '1.6']
+    statement: 'A satellite orbits at $r = 1.0 \times 10^{7}\,\text{m}$. Calculate its speed and its period.'
+    answer_label: 'The speed and the period'
+    check:
+      kind: all
+      checks:
+        - kind: dimensions
+          expression: sqrt(G * M / r)
+          values:
+            G: {value: '6.67e-11', unit: N m^2 kg^-2}
+            M: {value: '5.97e24', unit: kg}
+            r: {value: '1.0e7', unit: m}
+          answer: {value: '6.31e3', unit: m/s}
+          tolerance: '10'
+        - kind: sigfigs
+          value: 'sqrt(6.67e-11 * 5.97e24 / 1.0e7)'
+          figures: 2
+          tolerance: '5'
+          answer: '6.3e3'
+          convention: round-once
+        - kind: approx
+          value: '2 * pi * 1.0e7 / sqrt(6.67e-11 * 5.97e24 / 1.0e7)'
+          target: '9.96e3'
+          tolerance: '20'
+        - kind: sigfigs
+          value: '2 * pi * 1.0e7 / sqrt(6.67e-11 * 5.97e24 / 1.0e7)'
+          figures: 2
+          tolerance: '5'
+          answer: '1.0e4'
+          convention: round-once
+    answer_text: 'Gravity provides the centripetal force, so $\dfrac{GMm}{r^2} = \dfrac{mv^2}{r}$ and $v = \sqrt{\dfrac{GM}{r}} = \sqrt{\dfrac{6.67 \times 10^{-11} \times 5.97 \times 10^{24}}{1.0 \times 10^{7}}} = 6.3 \times 10^{3}\,\text{m/s}$. The period is $T = \dfrac{2\pi r}{v} = \dfrac{2\pi \times 1.0 \times 10^{7}}{6.3 \times 10^{3}} = 1.0 \times 10^{4}\,\text{s}$, which is about 2.8 hours. The satellite''s own mass cancels, so it does not affect either the speed or the period.'
+
+  - id: c6-r5-low-orbit-not-geostationary
+    section: Review
+    tier: O
+    refs: ['1.5', '1.6']
+    statement: 'Explain why a satellite $400\,\text{km}$ above the equator is not geostationary, even though it is high above the Earth.'
+    answer_label: 'Why a low equatorial orbit is not geostationary'
+    check:
+      kind: structured
+      requires: [period-requirement, radius-requirement, low-orbit-conclusion]
+      concepts: [geostationary-period, orbital-radius, drift]
+      points:
+        - id: period-requirement
+          text: 'Geostationary means the satellite stays above one point, so it must have the same period as the Earth''s rotation, 24 hours, and turn the same way.'
+          concepts: [geostationary-period, drift]
+        - id: radius-requirement
+          text: 'The period fixes the orbital radius. A 24-hour orbit needs $r = 4.22 \times 10^{7}\,\text{m}$ from the centre, which is about 35 800 km above the surface, not 400 km.'
+          concepts: [orbital-radius, geostationary-period]
+        - id: low-orbit-conclusion
+          text: 'At 400 km the radius is only $6.77 \times 10^{6}\,\text{m}$, so the period is about 92 minutes, not 24 hours. The satellite is above the equator and very high, but its period is far too short, so it drifts westwards relative to the ground.'
+          concepts: [orbital-radius, drift]
+    answer_text: 'Geostationary means the satellite stays above one point on the ground. That requires a period equal to the Earth''s rotation, 24 hours, and the same direction of travel. The period fixes the orbital radius: a 24-hour orbit needs $r = 4.22 \times 10^{7}\,\text{m}$ from the centre, about 35 800 km above the surface. At 400 km the radius is only $6.77 \times 10^{6}\,\text{m}$, so the period is about 92 minutes. The satellite is high above the equator, but its period is far too short, so it drifts westwards relative to the ground. Being above the equator is necessary but not sufficient.'
+
+  - id: c6-r6-spring-energy
+    section: Review
+    tier: O
+    refs: ['1.3', '1.5']
+    statement: 'A spring of constant $200\,\text{N/m}$ is stretched by $0.15\,\text{m}$. Calculate the energy stored. Which earlier chapter does that energy belong to, and why is it not gravitational?'
+    answer_label: 'The energy stored, its chapter, and why it is not gravitational'
+    check:
+      kind: all
+      checks:
+        - kind: dimensions
+          expression: 0.5 * k * x**2
+          values:
+            k: {value: '200', unit: N/m}
+            x: {value: '0.15', unit: m}
+          answer: {value: '2.25', unit: J}
+        - kind: sigfigs
+          value: '0.5 * 200 * 0.15**2'
+          figures: 2
+          answer: '2.3'
+          convention: round-once
+        - kind: structured
+          requires: [state-energy, name-chapter, why-not-gravitational]
+          concepts: [elastic-potential, deformation, height-independent]
+          points:
+            - id: state-energy
+              text: 'The energy is $E = \frac{1}{2}kx^2 = \frac{1}{2} \times 200 \times 0.15^2 = 2.25\,\text{J}$, or $2.3\,\text{J}$ to two significant figures.'
+              concepts: [elastic-potential]
+            - id: name-chapter
+              text: 'This is elastic potential energy, from Chapter 5, Stretching and compressing, where the area under a force-extension graph was shown to be $\frac{1}{2}kx^2$.'
+              concepts: [elastic-potential, deformation]
+            - id: why-not-gravitational
+              text: 'It is stored by the deformation of the spring, not by a mass at a height in a gravitational field. Nothing about the store depends on the spring being lifted or on the mass of the Earth; release the spring and the energy returns whatever the height.'
+              concepts: [deformation, height-independent]
+    answer_text: 'The energy stored is $E = \frac{1}{2}kx^2 = \frac{1}{2} \times 200 \times 0.15^2 = 2.25\,\text{J}$, which is $2.3\,\text{J}$ to two significant figures. It is elastic potential energy, from Chapter 5, Stretching and compressing, where the area under a force-extension graph was shown to be $\frac{1}{2}kx^2$. It is not gravitational because it is stored by the deformation of the spring, not by a mass at a height in a field. Nothing about the store depends on the spring being lifted, or on the mass of the Earth. Release the spring and the energy returns, whatever the height.'
+
+  - id: c6-r7-escape-velocity
+    section: Review
+    tier: O
+    refs: ['1.5']
+    statement: 'Calculate the escape velocity from a planet with the same radius as the Earth but twice its mass.'
+    answer_label: 'Escape velocity'
+    check:
+      kind: all
+      checks:
+        - kind: dimensions
+          expression: sqrt(2 * G * M / R)
+          values:
+            G: {value: '6.67e-11', unit: N m^2 kg^-2}
+            M: {value: '1.194e25', unit: kg}
+            R: {value: '6.37e6', unit: m}
+          answer: {value: '1.5813e4', unit: m/s}
+          tolerance: '5'
+        - kind: sigfigs
+          value: 'sqrt(2 * 6.67e-11 * 1.194e25 / 6.37e6)'
+          figures: 2
+          tolerance: '50'
+          answer: '1.6e4'
+          convention: round-once
+    answer_text: 'The escape velocity is where the kinetic energy equals the depth of the potential well: $\frac{1}{2}mv^2 = \dfrac{GMm}{R}$, so $v = \sqrt{\dfrac{2GM}{R}}$. With twice the Earth''s mass, $M = 2 \times 5.97 \times 10^{24} = 1.194 \times 10^{25}\,\text{kg}$: $v = \sqrt{\dfrac{2 \times 6.67 \times 10^{-11} \times 1.194 \times 10^{25}}{6.37 \times 10^{6}}} = 1.58 \times 10^{4}\,\text{m/s}$, which is $1.6 \times 10^{4}\,\text{m/s}$. The Earth''s escape velocity is about $1.12 \times 10^{4}\,\text{m/s}$, and doubling the mass multiplies it by $\sqrt{2}$, which gives the same answer.'
+
+  - id: c6-r8-fall-speed
+    section: Review
+    tier: O
+    refs: ['1.5']
+    statement: 'A ball is dropped from rest and falls $20\,\text{m}$. Calculate its speed when it lands, taking $g = 9.8\,\text{m/s}^2$. Which chapter does that method come from?'
+    answer_label: 'The landing speed, and the chapter the method comes from'
+    check:
+      kind: all
+      checks:
+        - kind: dimensions
+          expression: sqrt(2 * g * h)
+          values:
+            g: {value: '9.8', unit: m/s^2}
+            h: {value: '20', unit: m}
+          answer: {value: '19.799', unit: m/s}
+          tolerance: '0.001'
+        - kind: sigfigs
+          value: 'sqrt(2 * 9.8 * 20)'
+          figures: 2
+          tolerance: '0.01'
+          answer: '2.0e1'
+          convention: round-once
+        - kind: structured
+          requires: [state-speed, name-chapter, reason]
+          concepts: [free-fall, constant-acceleration]
+          points:
+            - id: state-speed
+              text: 'The speed is $v = \sqrt{2gh} = \sqrt{2 \times 9.8 \times 20} = 19.8\,\text{m/s}$, or $2.0 \times 10^{1}\,\text{m/s}$ to two significant figures.'
+              concepts: [free-fall]
+            - id: name-chapter
+              text: 'The method is the equations of motion for free fall, from Chapter 2, Describing motion. In particular, $v^2 = u^2 + 2as$ with $u = 0$.'
+              concepts: [free-fall, constant-acceleration]
+            - id: reason
+              text: 'The acceleration is constant at g, which is what the equations of motion require. The energy route from Chapter 4, $\frac{1}{2}mv^2 = mgh$, gives the same answer because the mass cancels; both are the same physics written two ways.'
+              concepts: [constant-acceleration, free-fall]
+    answer_text: 'The ball falls with the constant acceleration $g$, so $v^2 = u^2 + 2as$ with $u = 0$ gives $v = \sqrt{2gh} = \sqrt{2 \times 9.8 \times 20} = 19.8\,\text{m/s}$, which is $2.0 \times 10^{1}\,\text{m/s}$ to two significant figures. The method comes from Chapter 2, Describing motion: it is the equation of motion for free fall. The acceleration is constant at $g$, which is what that equation requires. The energy route from Chapter 4, $\frac{1}{2}mv^2 = mgh$, gives the same answer because the mass cancels. The two routes are the same physics written in two ways.'
+
+  - id: c6-r9-moon-weight
+    section: Review
+    tier: O
+    refs: ['1.5']
+    statement: 'An astronaut of mass $70\,\text{kg}$ stands on the Moon, where $g = 1.6\,\text{N/kg}$. Calculate her weight there, and compare it with her weight on the Earth.'
+    answer_label: 'Her weight on the Moon, and the comparison'
+    check:
+      kind: all
+      checks:
+        - kind: dimensions
+          expression: m * g
+          values:
+            m: {value: '70', unit: kg}
+            g: {value: '1.6', unit: N/kg}
+          answer: {value: '112', unit: N}
+        - kind: sigfigs
+          value: '70 * 1.6'
+          figures: 2
+          answer: '1.1e2'
+          convention: round-once
+        - kind: dimensions
+          expression: m * g
+          values:
+            m: {value: '70', unit: kg}
+            g: {value: '9.8', unit: N/kg}
+          answer: {value: '686', unit: N}
+        - kind: sigfigs
+          value: '70 * 9.8'
+          figures: 2
+          answer: '6.9e2'
+          convention: round-once
+        - kind: structured
+          requires: [compare]
+          concepts: [weight-scales-with-g, mass-unchanged]
+          points:
+            - id: compare
+              text: 'Her weight on the Moon is 112 N and on the Earth 686 N, so she weighs about 6.1 times less on the Moon, the ratio of the two field strengths 9.8 / 1.6. Her mass is still 70 kg in both places, because mass is a property of the astronaut and weight is the force the local field exerts on it.'
+              concepts: [weight-scales-with-g, mass-unchanged]
+    answer_text: 'Her weight on the Moon is $W = mg = 70 \times 1.6 = 112\,\text{N}$, which is $1.1 \times 10^{2}\,\text{N}$. On the Earth it is $70 \times 9.8 = 686\,\text{N}$, which is $6.9 \times 10^{2}\,\text{N}$. She weighs about 6.1 times less on the Moon, the ratio of the two field strengths, $\dfrac{9.8}{1.6}$. Her mass is still $70\,\text{kg}$ in both places, because mass is a property of the astronaut and weight is the force the local field exerts on it.'
+
+  - id: c6-r10-mass-of-a-planet
+    section: Review
+    tier: O
+    refs: ['1.6']
+    statement: 'You must find the mass of a planet. You can measure the radius of a moon''s orbit and its period. Which relationship would you use, and what else do you need to know?'
+    answer_label: 'The relationship, and what else is needed'
+    check:
+      kind: structured
+      requires: [relationship, rearrange, what-else]
+      concepts: [keplers-third-law, gravitational-constant, circular-orbit]
+      points:
+        - id: relationship
+          text: 'Equate the gravitational force on the moon to the centripetal force it needs, $\dfrac{GMm}{r^2} = \dfrac{mv^2}{r}$, or use Kepler''s third law $T^2 \propto r^3$, which comes from it. Both use the orbit radius $r$ and the period $T$.'
+          concepts: [keplers-third-law, circular-orbit]
+        - id: rearrange
+          text: 'The moon''s mass cancels, so the planet''s mass is $M = \dfrac{4\pi^2 r^3}{GT^2}$. Put $r$ in metres and $T$ in seconds.'
+          concepts: [keplers-third-law]
+        - id: what-else
+          text: 'You also need G, the gravitational constant, and you must assume the orbit is circular and the moon''s mass is negligible compared with the planet''s. If the orbit is elliptical, r is the semi-major axis.'
+          concepts: [gravitational-constant, circular-orbit]
+    answer_text: 'Equate the gravitational force on the moon to the centripetal force it needs: $\dfrac{GMm}{r^2} = \dfrac{mv^2}{r}$. With $v = \dfrac{2\pi r}{T}$ this becomes $M = \dfrac{4\pi^2 r^3}{GT^2}$, which is Kepler''s third law rearranged. The moon''s mass cancels, so it is not needed. You also need $G$, the gravitational constant, and you must assume the orbit is circular and that the moon''s mass is negligible compared with the planet''s. If the orbit is elliptical, $r$ is the semi-major axis. Put $r$ in metres and $T$ in seconds, and the mass comes out in kilograms.'
