@@ -71,37 +71,9 @@ cycle you are in, and which method you will use**, before you calculate
 anything. Some of them use ideas from earlier in your mathematics course, and
 two of them ask you to choose the right rate rather than the right number.
 
-1. A tank holds 720 litres. A tap puts water in at 25 litres each minute and a
-   leak takes water out at 5 litres each minute. Find the time to fill the tank.
-2. A queue holds 60 students. Students join at 4 each minute and the till serves
-   12 each minute. Find the wait for a student at the back, and the clear time.
-3. A model predicts a wait of 5 minutes and the measurement is 8 minutes. State
-   which stage of the cycle you are in, and which assumption you would examine
-   first.
-4. A bus should arrive at 08:15. Write the question "the bus is always late" as
-   a precise question with a unit.
-5. A cyclist travels at 9 m/s for 20 s. Find the distance travelled, in metres,
-   and check the units.
-6. A queue holds 50 students and the till serves 10 each minute. Students join
-   at 8 each minute. Find the clear time, and say what happens if the arrival
-   rate rises to 10 each minute.
-7. A report gives a wait of 3.5 minutes but no assumptions. Write one sentence
-   that explains why the report is incomplete.
-8. A queue of 36 students clears in 6 minutes. Find the net rate, and find the
-   service rate when 3 students join each minute.
-9. A queue holds 40 students and the till serves 9 each minute. Students join at
-   3 each minute. Find the clear time to 3 significant figures.
-10. A model leaves out the slow customer who takes twice as long as the others.
-    Explain what this does to the model's answer.
-11. A measurement of the arrival rate could be 5 or 6 students each minute. The
-    queue holds 40 students and the till serves 10 each minute. Report the clear
-    time as a range.
-12. A queue holds 40 students, the till serves 10 each minute, and 5 students
-    join each minute. Explain why the wait for a student who joins at 12:30 is
-    not the same as the clear time, and give both values.
-13. Two tills open instead of one, so the service rate doubles to 20 students
-    each minute. The queue holds 40 students and 5 join each minute. Find the
-    new clear time to 2 significant figures.
+:::problems chapter-01-review
+
+:::answers chapter-01-review
 
 ## What you can now do
 

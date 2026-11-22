@@ -1,0 +1,289 @@
+# Mixed practice for the Chapter 7 Review (strand S3, circular motion and
+# oscillation).
+#
+# Ten questions, one record each, in the order they appear on the Review page.
+# Every quantity is proved with its unit by `dimensions`, and the answers that
+# carry an irrational factor — a period with $\pi$ in it, a design speed with
+# $\tan 10^\circ$, a maximum speed from a simple harmonic motion — are proved by
+# `approx` with the tolerance the answer is rounded to. A tangent or a sine the
+# units oracle cannot evaluate is declared to six decimals, and the tolerance
+# covers the rounding. Questions 9 and 10 ask for an explanation and carry a
+# `structured` component.
+#
+# Honest limit: this proves arithmetic and units. It cannot prove that the right
+# force has been identified as the centripetal one, which is the whole difficulty
+# of this chapter, and it cannot check a statement about how a passenger feels.
+# A `structured` check proves only that a model answer contains its declared steps
+# and concepts, in order. Take $g = 9.8\ \text{m/s}^2$ throughout.
+chapter: 7
+problems:
+  - id: r1-stone-on-a-string
+    section: Review
+    tier: O
+    refs: [S3]
+    statement: >-
+      A stone on a string of length $0.80$ m is whirled at $4.0$ m/s. Find its
+      angular velocity, its period and its centripetal acceleration.
+    answer_label: The angular velocity, the period and the acceleration
+    check:
+      kind: all
+      checks:
+        - kind: evaluate
+          expression: '4/0.8'
+          answer: '5'
+        - kind: approx
+          value: '2*pi/(4/0.8)'
+          target: '1.26'
+          tolerance: '0.005'
+        - kind: dimensions
+          expression: v**2 / r
+          values:
+            v: {value: '4.0', unit: m/s}
+            r: {value: '0.80', unit: m}
+          answer: {value: '20', unit: m/s^2}
+    answer_text: >-
+      The angular velocity is $\omega = \dfrac{v}{r} = \dfrac{4.0}{0.80} = 5$
+      rad/s. The period is $T = \dfrac{2\pi}{\omega} = \dfrac{2\pi}{5} = 1.26$ s.
+      The centripetal acceleration is $a = \dfrac{v^2}{r} = \dfrac{16}{0.80} =
+      20\ \text{m/s}^2$, directed towards the centre of the circle and supplied by
+      the tension in the string.
+
+  - id: r1-tension-in-a-circle
+    section: Review
+    tier: O
+    refs: [S3]
+    statement: >-
+      A $0.50$ kg mass on a string moves in a horizontal circle of radius $1.2$ m
+      at $3.0$ m/s. Find the tension in the string.
+    answer_label: The tension
+    check:
+      kind: dimensions
+      expression: m * v**2 / r
+      values:
+        m: {value: '0.50', unit: kg}
+        v: {value: '3.0', unit: m/s}
+        r: {value: '1.2', unit: m}
+      answer: {value: '3.75', unit: N}
+    answer_text: >-
+      The tension is the only horizontal force, so it supplies the centripetal
+      force: $T = \dfrac{mv^2}{r} = \dfrac{0.50 \times 9.0}{1.2} = 3.75$ N,
+      directed towards the centre. The weight is balanced by the vertical
+      component of the tension, because the circle is horizontal.
+
+  - id: r1-satellite
+    section: Review
+    tier: O
+    refs: [S3]
+    statement: >-
+      A satellite orbits at a height where $g = 8.0$ m/s² and its orbital radius
+      is $7.0 \times 10^6$ m. Find its speed.
+    answer_label: The orbital speed
+    check:
+      kind: all
+      checks:
+        - kind: dimensions
+          expression: sqrt(g * r)
+          values:
+            g: {value: '8.0', unit: m/s^2}
+            r: {value: '7000000', unit: m}
+          answer: {value: '7483.3', unit: m/s}
+          tolerance: '0.1'
+        - kind: sigfigs
+          value: 'sqrt(56*10**6)'
+          figures: 2
+          answer: '7.5e3'
+          tolerance: '1'
+          convention: round-once
+    answer_text: >-
+      Gravity supplies the centripetal force, so $\dfrac{mv^2}{r} = mg$ and
+      $v = \sqrt{gr} = \sqrt{8.0 \times 7.0 \times 10^6} = 7.5 \times 10^3$ m/s.
+      That is about $7.5$ km/s. The mass of the satellite cancels, so every
+      satellite at that radius has the same speed.
+
+  - id: r1-flat-bend
+    section: Review
+    tier: O
+    refs: [S3]
+    statement: >-
+      A car of mass $1400$ kg takes a flat bend of radius $80$ m. If $\mu = 0.7$,
+      find the greatest speed.
+    answer_label: The greatest speed
+    check:
+      kind: dimensions
+      expression: sqrt(mu * g * r)
+      values:
+        mu: {value: '0.7'}
+        g: {value: '9.8', unit: m/s^2}
+        r: {value: '80', unit: m}
+      answer: {value: '23.43', unit: m/s}
+      tolerance: '0.01'
+    answer_text: >-
+      Friction supplies the inward force, and its greatest value is $\mu mg$. At
+      the greatest speed the two are equal:
+      $\dfrac{mv^2}{r} = \mu mg$, so $v = \sqrt{\mu gr} =
+      \sqrt{0.7 \times 9.8 \times 80} = 23.4$ m/s. That is about $84$ km/h. The
+      mass cancels, so a heavier car takes the bend at the same speed.
+
+  - id: r1-banked-bend
+    section: Review
+    tier: H
+    refs: [S3]
+    statement: 'A bend of radius $200$ m is banked at $10^\circ$. Find its design speed.'
+    answer_label: The design speed
+    check:
+      kind: dimensions
+      expression: sqrt(g * r * tn)
+      values:
+        g: {value: '9.8', unit: m/s^2}
+        r: {value: '200', unit: m}
+        tn: {value: '0.176326981'}
+      answer: {value: '18.59', unit: m/s}
+      tolerance: '0.01'
+    answer_text: >-
+      At the design speed no friction is needed, and the horizontal component of
+      the normal reaction supplies the centripetal force. That gives
+      $v = \sqrt{gr\tan\theta} = \sqrt{9.8 \times 200 \times \tan 10^\circ} =
+      18.6$ m/s. That is about $67$ km/h, and the answer does not depend on the
+      mass of the car or on how slippery the road is.
+
+  - id: r1-bucket-of-water
+    section: Review
+    tier: O
+    refs: [S3]
+    statement: >-
+      A bucket of water is swung in a vertical circle of radius $0.90$ m. Find
+      the minimum speed at the top for the water to stay in.
+    answer_label: The minimum speed at the top
+    check:
+      kind: dimensions
+      expression: sqrt(g * r)
+      values:
+        g: {value: '9.8', unit: m/s^2}
+        r: {value: '0.90', unit: m}
+      answer: {value: '2.97', unit: m/s}
+      tolerance: '0.01'
+    answer_text: >-
+      At the top the weight points towards the centre, so at the minimum speed the
+      weight alone supplies the centripetal force:
+      $\dfrac{mv^2}{r} = mg$, so $v = \sqrt{gr} = \sqrt{9.8 \times 0.9} = 2.97$
+      m/s. Faster than this the bucket presses on the water, and slower the water
+      loses contact and falls out.
+
+  - id: r1-spring-and-period
+    section: Review
+    tier: H
+    refs: [S3]
+    statement: >-
+      A spring stretches by $0.15$ m when a $3.0$ kg mass hangs on it. Find its
+      spring constant and the period of the resulting oscillation.
+    answer_label: The spring constant and the period
+    check:
+      kind: all
+      checks:
+        - kind: dimensions
+          expression: m * g / x
+          values:
+            m: {value: '3.0', unit: kg}
+            g: {value: '9.8', unit: m/s^2}
+            x: {value: '0.15', unit: m}
+          answer: {value: '196', unit: N/m}
+        - kind: approx
+          value: '2*pi*sqrt(3/196)'
+          target: '0.778'
+          tolerance: '0.001'
+    answer_text: >-
+      By Hooke's law the spring constant is
+      $k = \dfrac{mg}{x} = \dfrac{3.0 \times 9.8}{0.15} = 196$ N/m. A mass on a
+      spring oscillates with $T = 2\pi\sqrt{\dfrac{m}{k}} =
+      2\pi\sqrt{\dfrac{3.0}{196}} = 0.778$ s. The period does not depend on how
+      far the mass is pulled down, which is what makes the motion simple harmonic.
+
+  - id: r1-maximum-speed-and-acceleration
+    section: Review
+    tier: H
+    refs: [S3]
+    statement: >-
+      A simple harmonic motion has amplitude $0.040$ m and period $0.50$ s. Find
+      its maximum speed and its maximum acceleration.
+    answer_label: The maximum speed and the maximum acceleration
+    check:
+      kind: all
+      checks:
+        - kind: approx
+          value: '(2*pi/0.5)*0.040'
+          target: '0.503'
+          tolerance: '0.001'
+        - kind: approx
+          value: '(2*pi/0.5)**2*0.040'
+          target: '6.316'
+          tolerance: '0.001'
+    answer_text: >-
+      The angular frequency is $\omega = \dfrac{2\pi}{T} = \dfrac{2\pi}{0.5} =
+      12.6$ rad/s. The maximum speed is $\omega A = 12.6 \times 0.040 = 0.50$ m/s,
+      reached as the motion passes through the middle. The maximum acceleration
+      is $\omega^2 A = 12.6^2 \times 0.040 = 6.32\ \text{m/s}^2$, reached at the
+      ends of the motion, where the speed is zero.
+
+  - id: r1-hump-back-bridge
+    section: Review
+    tier: O
+    refs: [S3]
+    statement: 'Explain why a car crossing a hump-back bridge feels lighter at the top.'
+    answer_label: Why the car feels lighter at the top
+    check:
+      kind: structured
+      requires: [forces-at-the-top, centripetal-force]
+      concepts: [normal-reaction, centripetal-force]
+      points:
+        - id: forces-at-the-top
+          text: >-
+            At the top of the bridge the centre of the car's path is below it, so
+            the centripetal force must point downwards.
+          concepts: [centripetal-force]
+        - id: centripetal-force
+          text: >-
+            The weight acts down and the normal reaction acts up, so the
+            resultant downwards is mg - R, and that must equal mv^2/r. Then
+            R = mg - mv^2/r, which is less than the weight, and the car feels
+            lighter. If the speed is large enough, R reaches zero and the car
+            leaves the road.
+          concepts: [normal-reaction, centripetal-force]
+    answer_text: >-
+      At the top of the bridge the centre of the circle is below the car, so the
+      centripetal force points down. The weight $mg$ acts down and the normal
+      reaction $R$ acts up, so $mg - R = \dfrac{mv^2}{r}$ and
+      $R = mg - \dfrac{mv^2}{r}$. The reaction is less than the weight, and the
+      car feels lighter. At a high enough speed $R$ would fall to zero, and the
+      car would leave the road.
+
+  - id: r1-constant-speed-circular-motion
+    section: Review
+    tier: O
+    refs: [S3]
+    statement: >-
+      A student says a body moving in a circle at constant speed has no
+      acceleration. Explain what is wrong.
+    answer_label: What is wrong with the claim
+    check:
+      kind: structured
+      requires: [velocity-is-a-vector, direction-changes]
+      concepts: [acceleration, centripetal]
+      points:
+        - id: velocity-is-a-vector
+          text: >-
+            Velocity is a vector, so it has a direction as well as a size.
+            Constant speed fixes only the size.
+          concepts: [acceleration]
+        - id: direction-changes
+          text: >-
+            The direction of the velocity changes all the time along the circle,
+            and a change in velocity is an acceleration. That acceleration is
+            v^2/r towards the centre, which is why a force must push the body
+            inwards.
+          concepts: [acceleration, centripetal]
+    answer_text: >-
+      Velocity is a vector, so a constant speed does not mean a constant
+      velocity. The direction of the velocity changes continuously as the body
+      goes round, and any change in velocity is an acceleration. Here the
+      acceleration is $\dfrac{v^2}{r}$ towards the centre. That is why a force
+      must act inwards: without it the body travels in a straight line.

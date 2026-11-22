@@ -1,0 +1,294 @@
+# Mixed practice for the Chapter 8 Review (strand S4, modelling a changing world).
+#
+# Ten questions, one record each, in the order they appear on the Review page.
+# Every differential equation is proved by `ode`, which substitutes the answer
+# back into the equation and checks the initial value, so a solution is verified
+# rather than recognised. The recurrence is proved by `rsolve` with its first
+# value pinned, the doubling and half-life times are proved by `solve`, and the
+# Euler estimate is proved twice: once as arithmetic and once by `compare`
+# against the exact value, so the direction of the error is checked too. The
+# integral in question 8 is proved by `apply` with its limits. Questions 9 and 10
+# ask for a law or a reason and carry a `structured` component.
+#
+# Honest limit: this proves algebra, the solution of a stated model, and the
+# declared arithmetic. It cannot prove that a differential equation is the right
+# model for a real lake or population, and it cannot check the wording of an
+# assumption. A `structured` check proves only that a model answer contains its
+# declared steps and concepts, in order.
+chapter: 8
+symbols:
+  t: {real: true}
+  x: {real: true}
+  P: {real: true}
+  y: {real: true}
+  n: {integer: true}
+  u: {real: true}
+problems:
+  - id: r1-doubling-time
+    section: Review
+    tier: O
+    refs: [S4]
+    statement: >-
+      A population grows so that $\dfrac{dP}{dt} = 0.02P$, with $P = 500$ when
+      $t = 0$. Find $P$ in terms of $t$, and find the doubling time exactly.
+    answer_label: The population and the doubling time
+    check:
+      kind: all
+      checks:
+        - kind: ode
+          dependent: P
+          independent: t
+          equation: 'Derivative(P(t), t) = (2/100)*P(t)'
+          answer: '500*exp((2/100)*t)'
+          initial: [[0, '500']]
+        - kind: solve
+          equation: '500*exp((2/100)*t) = 1000'
+          variable: t
+          answer: ['50*ln(2)']
+    answer_text: >-
+      The rate is proportional to the amount present, so the solution is
+      $P = 500e^{0.02t}$. Set $P = 1000$: $e^{0.02t} = 2$, so
+      $0.02t = \ln 2$ and $t = 50\ln 2 \approx 34.7$ days. The doubling time does
+      not depend on the starting value, only on the rate.
+
+  - id: r1-feedback-recurrence
+    section: Review
+    tier: O
+    refs: [S4]
+    statement: >-
+      A recurrence is $u_{n+1} = 0.9u_n + 5$ with $u_0 = 0$. Find the fixed point
+      and the closed form.
+    answer_label: The fixed point and the closed form
+    check:
+      kind: all
+      checks:
+        - kind: evaluate
+          expression: '5/(1 - 9/10)'
+          answer: '50'
+        - kind: apply
+          expression: 'u(n+1) = (9/10)*u(n) + 5'
+          apply: {op: rsolve, dependent: u, independent: n, initial: [[0, '0']]}
+          answer: '50 - 50*(9/10)**n'
+    answer_text: >-
+      At the fixed point the value stops changing, so $u = 0.9u + 5$ and
+      $0.1u = 5$, giving $u = 50$. The closed form is
+      $u_n = 50 - 50(0.9)^n$: it starts at $0$ and rises towards $50$, because
+      each step closes a tenth of the gap to the fixed point.
+
+  - id: r1-half-life
+    section: Review
+    tier: O
+    refs: [S4]
+    statement: >-
+      A mass is modelled by $m = 80e^{-0.04t}$ grams. Find its half-life exactly.
+    answer_label: The half-life
+    check:
+      kind: solve
+      equation: '80*exp(-(4/100)*t) = 40'
+      variable: t
+      answer: ['25*ln(2)']
+    answer_text: >-
+      Half of $80$ g is $40$ g, so $80e^{-0.04t} = 40$ and $e^{-0.04t} = 0.5$.
+      Taking logs gives $-0.04t = -\ln 2$, so $t = 25\ln 2 \approx 17.3$ years.
+      Every half-life removes half of what is left, so the mass never quite
+      reaches zero.
+
+  - id: r1-separable-equation
+    section: Review
+    tier: H
+    refs: [S4]
+    statement: "Solve $\\dfrac{dy}{dx} = 2xy$ with $y = 4$ when $x = 0$."
+    answer_label: The particular solution
+    check:
+      kind: ode
+      dependent: y
+      independent: x
+      equation: 'Derivative(y(x), x) = 2*x*y(x)'
+      answer: '4*exp(x**2)'
+      initial: [[0, '4']]
+    answer_text: >-
+      Separate the variables: $\dfrac{1}{y}\,dy = 2x\,dx$, so $\ln y = x^2 + C$
+      and $y = Ae^{x^2}$. The condition $y = 4$ at $x = 0$ gives $A = 4$, so
+      $y = 4e^{x^2}$. The solution grows faster than an exponential in $x$,
+      because the growth rate itself grows with $x$.
+
+  - id: r1-feedback-equation
+    section: Review
+    tier: O
+    refs: [S4]
+    statement: >-
+      A quantity follows $\dfrac{dP}{dt} = 15 - 0.3P$ with $P = 0$ when $t = 0$.
+      Find the equilibrium and the solution.
+    answer_label: The equilibrium and the solution
+    check:
+      kind: all
+      checks:
+        - kind: evaluate
+          expression: '15/(3/10)'
+          answer: '50'
+        - kind: ode
+          dependent: P
+          independent: t
+          equation: 'Derivative(P(t), t) = 15 - (3/10)*P(t)'
+          answer: '50*(1 - exp(-(3/10)*t))'
+          initial: [[0, '0']]
+    answer_text: >-
+      The equilibrium is where the rate is zero: $15 - 0.3P = 0$, so $P = 50$.
+      The solution is $P = 50\left(1 - e^{-0.3t}\right)$. It rises from zero and
+      levels off at $50$, because the input of $15$ units each unit time is
+      exactly matched by the removal $0.3P$ at that level.
+
+  - id: r1-logistic
+    section: Review
+    tier: H
+    refs: [S4]
+    statement: >-
+      A population follows
+      $\dfrac{dP}{dt} = 0.4P\left(1 - \dfrac{P}{200}\right)$ with $P = 20$ when
+      $t = 0$. Find the carrying capacity, the solution, and the time to reach
+      half the carrying capacity.
+    answer_label: The capacity, the solution and the time
+    check:
+      kind: all
+      checks:
+        - kind: ode
+          dependent: P
+          independent: t
+          equation: 'Derivative(P(t), t) = (2/5)*P(t)*(1 - P(t)/200)'
+          answer: '200/(1 + 9*exp(-(2/5)*t))'
+          initial: [[0, '20']]
+        - kind: solve
+          equation: '200/(1 + 9*exp(-(2/5)*t)) = 100'
+          variable: t
+          answer: ['(5/2)*ln(9)']
+    answer_text: >-
+      The rate is zero when $P = 0$ and when $1 - \dfrac{P}{200} = 0$, so the
+      carrying capacity is $200$. The solution is
+      $P = \dfrac{200}{1 + Ae^{-0.4t}}$, and $P(0) = 20$ gives $1 + A = 10$, so
+      $A = 9$ and $P = \dfrac{200}{1 + 9e^{-0.4t}}$. Half the capacity is $100$,
+      so $1 + 9e^{-0.4t} = 2$, $e^{-0.4t} = \dfrac{1}{9}$, and
+      $t = 2.5\ln 9 \approx 5.49$.
+
+  - id: r1-euler
+    section: Review
+    tier: H
+    refs: [S4]
+    statement: >-
+      Use Euler's method with $h = 1$ on $\dfrac{dy}{dx} = 0.3y$ with $y = 40$
+      when $x = 0$. Find the estimate after two steps, and say whether it is
+      above or below the exact value $40e^{0.6}$.
+    answer_label: The estimate and its direction from the exact value
+    check:
+      kind: all
+      checks:
+        - kind: evaluate
+          expression: '40*(13/10)**2'
+          answer: '338/5'
+        - kind: compare
+          lhs: '40*(13/10)**2'
+          relation: '<'
+          rhs: '40*exp(3/5)'
+    answer_text: >-
+      Each step adds $h \times 0.3y = 0.3y$ to the value. From $40$ the first step
+      gives $40 + 12 = 52$, and the second gives $52 + 15.6 = 67.6$. The exact
+      value is $40e^{0.6} = 72.9$, so the estimate is too low. Euler's method
+      follows the tangent at the start of each step, and a growing curve lies
+      above its tangent, so the estimate falls short.
+
+  - id: r1-displacement-from-velocity
+    section: Review
+    tier: O
+    refs: [S4]
+    statement: >-
+      A particle has velocity $v = 8 - 2t$ m/s. Find its displacement between
+      $t = 0$ and $t = 3$ s. This is Chapter 3 material: the answer is an
+      integral, not a differential equation.
+    answer_label: The displacement
+    check:
+      kind: apply
+      expression: '8 - 2*t'
+      apply: {op: integrate, args: [t, '0', '3']}
+      answer: '15'
+    answer_text: >-
+      Displacement is the integral of velocity:
+      $\displaystyle\int_0^3 (8 - 2t)\,dt = \left[8t - t^2\right]_0^3 =
+      24 - 9 = 15$ m. The velocity is positive throughout, so the particle moves
+      one way and the displacement equals the distance travelled.
+
+  - id: r1-newton-second-law
+    section: Review
+    tier: O
+    refs: [S4]
+    statement: >-
+      A body of mass $2$ kg moves under a resultant force of $6$ N. Find its
+      acceleration, and say which of Newton's laws you used. This is Chapter 4
+      material, and it is not a differential equation until you write
+      $a = \dfrac{dv}{dt}$.
+    answer_label: The acceleration and the law
+    check:
+      kind: all
+      checks:
+        - kind: dimensions
+          expression: F / m
+          values:
+            F: {value: '6', unit: N}
+            m: {value: '2', unit: kg}
+          answer: {value: '3', unit: m/s^2}
+        - kind: structured
+          requires: [acceleration, law]
+          concepts: [newton-second-law, differential-equation]
+          points:
+            - id: acceleration
+              text: >-
+                The acceleration is 6 / 2 = 3 m/s^2, in the direction of the
+                resultant force.
+              concepts: [newton-second-law]
+            - id: law
+              text: >-
+                The law is Newton's second law, F = ma. It becomes a differential
+                equation only when the acceleration is written as dv/dt, which
+                gives m dv/dt = F.
+              concepts: [newton-second-law, differential-equation]
+    answer_text: >-
+      The acceleration is $a = \dfrac{F}{m} = \dfrac{6}{2} = 3\ \text{m/s}^2$, in
+      the direction of the force. The law used is Newton's second law, $F = ma$.
+      It is not a differential equation as it stands; writing
+      $a = \dfrac{dv}{dt}$ turns it into $m\dfrac{dv}{dt} = F$, and only then
+      does this chapter's machinery apply.
+
+  - id: r1-lake-equilibrium
+    section: Review
+    tier: O
+    refs: [S4]
+    statement: >-
+      A lake receives pollutant at $10$ kg per day and flushes it at $0.02$ per
+      day. Find the equilibrium level, and explain why the lake cannot be safe
+      below it while the input continues.
+    answer_label: The equilibrium, and why the lake cannot stay below it
+    check:
+      kind: all
+      checks:
+        - kind: evaluate
+          expression: '10/(2/100)'
+          answer: '500'
+        - kind: structured
+          requires: [equilibrium, why-not-below]
+          concepts: [stable-equilibrium, balance]
+          points:
+            - id: equilibrium
+              text: >-
+                The equilibrium is where the input equals the flush: 10 = 0.02P,
+                so P = 500 kg.
+              concepts: [stable-equilibrium]
+            - id: why-not-below
+              text: >-
+                Below 500 kg the flush removes less than 10 kg each day, so the
+                amount rises. The level returns to 500 kg whenever it is pushed
+                away, which is what makes the equilibrium stable.
+              concepts: [stable-equilibrium, balance]
+    answer_text: >-
+      The equilibrium is where the input balances the removal: $10 = 0.02P$, so
+      $P = 500$ kg. Below that level the lake flushes out less than $10$ kg each
+      day, so the amount rises again. The equilibrium is stable, and the lake
+      settles at $500$ kg while the factory keeps discharging. Only stopping the
+      input lets the level fall.

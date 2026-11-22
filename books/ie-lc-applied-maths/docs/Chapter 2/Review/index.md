@@ -44,26 +44,9 @@ Work through these without notes. For each one, decide **which kind of problem i
 say why, *before* you calculate anything. Two of them are deliberately questions you
 should refuse to answer with the algorithm that first comes to mind.
 
-1. A network has vertices $A, B, C, D$ and edges $AB = 3$, $AC = 7$, $BC = 2$, $BD = 5$,
-   $CD = 4$. Find the minimum spanning tree and its total weight.
-2. For the same network, find the shortest distance from $A$ to $D$ and name the route.
-3. For the same network, how many walks of length 2 are there from $A$ to $D$? Write the
-   adjacency matrix first.
-4. A network has degrees $4, 4, 3, 3, 2, 2$. How many edges has it, and how many
-   odd-degree vertices? Does it have an Eulerian trail?
-5. A network has 9 vertices and 12 edges. How many edges must be removed to leave a
-   spanning tree, and what must be true of each edge removed?
-6. A staged network has stages $A$; $B, C$; $D, E$; $F$ with edges $AB = 6$, $AC = 3$,
-   $BD = 1$, $BE = 9$, $CD = 4$, $CE = 2$, $DF = 5$, $EF = 7$. Find the least total cost
-   from $A$ to $F$ by backward recursion, and write down the route.
-7. A network has a directed edge of weight $-2$ and a question asks for the shortest path.
-   State which algorithm you would normally use, and why you cannot use it here.
-8. A complete network has 6 vertices. How many edges has it, and how many spanning trees?
-9. A network is stored as an adjacency matrix. Explain how to find the out-degree of a
-   vertex, the in-degree, and whether the network is directed.
-10. A council must connect 12 villages by road for the least total length, and separately
-    must find the shortest route from the depot to the hospital. Explain why these are two
-    different problems and name the algorithm for each.
+:::problems chapter-02-review
+
+:::answers chapter-02-review
 
 ## What you can now do
 

@@ -83,33 +83,9 @@ it is** and say why, before you calculate anything. Some of them need a method
 from an earlier chapter, and two of them are about choosing the right idea
 rather than the right number.
 
-1. A body of mass $5$ kg moves at $4$ m/s. Find its momentum.
-2. A force of $25$ N acts for $0.4$ s. Find the impulse.
-3. A trolley of mass $2$ kg moves at $4$ m/s to the right and meets a trolley
-   of mass $1$ kg moving at $2$ m/s to the left. They lock together. Find their
-   common velocity.
-4. A gun of mass $3$ kg fires a bullet of mass $0.02$ kg at $300$ m/s. Find the
-   recoil speed of the gun.
-5. A ball of mass $0.2$ kg hits a wall at $10$ m/s and rebounds at $6$ m/s.
-   Find the magnitude of the impulse on it.
-6. A ball is dropped from $1.8$ m and rebounds to $1.152$ m. Find the
-   coefficient of restitution.
-7. A ball of mass $2$ kg moving at $8$ m/s hits a stationary ball of mass $2$
-   kg. The coefficient of restitution is $0.5$. Find the velocity of each ball.
-8. A ball of mass $2$ kg moving at $6$ m/s hits a stationary ball of mass $2$
-   kg and they lock together. Find the kinetic energy lost.
-9. A ball of mass $1$ kg moving at $4$ m/s collides elastically with a
-   stationary ball of mass $3$ kg. Find the velocity of each ball, and check the
-   kinetic energy.
-10. A ball of mass $2$ kg moves at $6$ m/s along the $x$-axis and hits a
-    stationary ball of mass $1$ kg. After the collision the $2$ kg ball moves at
-    $3$ m/s at $60^\circ$ to the $x$-axis. Find the speed and direction of the
-    $1$ kg ball. Which two sections does this question join together?
-11. A ball is dropped from a height of $4$ m with coefficient of restitution
-    $0.5$. Find the height after the second bounce, and the total distance it
-    travels.
-12. A ball is thrown vertically upwards at $14$ m/s. Find the greatest height
-    it reaches. Which chapter does this question belong to, and why?
+:::problems chapter-06-review
+
+:::answers chapter-06-review
 
 ## What you can now do
 

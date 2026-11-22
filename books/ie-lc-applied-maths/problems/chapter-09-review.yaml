@@ -1,0 +1,439 @@
+# Mixed practice for the Chapter 9 Review (strand S1, the modelling project).
+#
+# Fourteen questions, one record each, in the order they appear on the Review
+# page. They mix this chapter with every chapter before it, so the answer is
+# proved by the check that fits: `dimensions` for a mechanics quantity with a
+# unit, `evaluate` for a residual, a total squared error or a rate relationship,
+# `sigfigs` for the one rounding a report should do. Questions 1, 2, 3, 5, 6, 8,
+# 10, 11, 12, 13 and 14 ask which law or method applies, or what a report should
+# say, so each carries or is a `structured` component.
+#
+# Honest limit: this proves arithmetic, units and the declared rounding. It
+# cannot prove that a model is a good one, that an assumption is the right one to
+# examine, or that a conclusion is honest. A `structured` check proves only that a
+# model answer contains its declared steps and concepts, in order — nothing about
+# whether they are right. Questions 5, 13 and 14 are judgements with no numeric
+# answer at all.
+chapter: 9
+problems:
+  - id: r1-queue-relationship
+    section: Review
+    tier: O
+    refs: [S1]
+    statement: >-
+      A queue holds 60 students. Students join at 4 each minute and the till
+      serves 12 each minute. Find the clear time, in minutes. Which relationship
+      from Chapter 1 did you use, and why?
+    answer_label: The clear time and the relationship
+    check:
+      kind: all
+      checks:
+        - kind: evaluate
+          expression: '60/(12 - 4)'
+          answer: '7.5'
+        - kind: structured
+          requires: [clear-time, relationship]
+          concepts: [net-rate, queue-model]
+          points:
+            - id: clear-time
+              text: >-
+                The net rate is 12 - 4 = 8 students each minute, so the clear time
+                is 60 / 8 = 7.5 minutes.
+              concepts: [net-rate]
+            - id: relationship
+              text: >-
+                The relationship is T = Q / (s - a), the clear time for a queue
+                whose till serves faster than students arrive.
+              concepts: [net-rate, queue-model]
+    answer_text: >-
+      The net rate is $12 - 4 = 8$ students each minute, so
+      $T = \dfrac{60}{8} = 7.5$ minutes. The relationship is $T = \dfrac{Q}{s - a}$
+      from Chapter 1. It is the right one because the queue shrinks steadily at
+      the net rate, which is what the model assumes.
+
+  - id: r1-degree-sum
+    section: Review
+    tier: O
+    refs: [S1]
+    statement: >-
+      A network has vertex degrees 4, 3, 3, 2. Find the number of edges, and say
+      which lemma you used.
+    answer_label: The number of edges and the lemma
+    check:
+      kind: all
+      checks:
+        - kind: evaluate
+          expression: '(4 + 3 + 3 + 2)/2'
+          answer: '6'
+        - kind: structured
+          requires: [edge-count, lemma]
+          concepts: [handshake-lemma]
+          points:
+            - id: edge-count
+              text: >-
+                The degree sum is 12, so the network has 12 / 2 = 6 edges.
+              concepts: [handshake-lemma]
+            - id: lemma
+              text: >-
+                The lemma is the handshake lemma: every edge adds 1 to the degree
+                of each of its two ends, so the degree sum is twice the number of
+                edges.
+              concepts: [handshake-lemma]
+    answer_text: >-
+      The degree sum is $4 + 3 + 3 + 2 = 12$. The handshake lemma says each edge
+      contributes 1 at each end, so the sum counts every edge twice and the
+      network has $12 \div 2 = 6$ edges.
+
+  - id: r1-residual
+    section: Review
+    tier: O
+    refs: [S1]
+    statement: >-
+      A model predicts a temperature of 8 °C and the measurement is 10 °C. Find
+      the residual, and say whether the model is too high or too low.
+    answer_label: The residual, and the model's direction
+    check:
+      kind: all
+      checks:
+        - kind: evaluate
+          expression: '10 - 8'
+          answer: '2'
+        - kind: structured
+          requires: [residual-sign]
+          concepts: [residual]
+          points:
+            - id: residual-sign
+              text: >-
+                The residual is measurement minus prediction, which is +2 °C. Its
+                sign is positive, so the model predicted too low a temperature.
+              concepts: [residual]
+    answer_text: >-
+      The residual is the measurement minus the prediction:
+      $10 - 8 = +2$ °C. The sign is positive, so the model predicted less than
+      the measurement: the model is too low. Reporting the calculation as
+      $8 - 10 = -2$ would still show the same fact, but the convention must be
+      stated and kept.
+
+  - id: r1-total-squared-error
+    section: Review
+    tier: O
+    refs: [S1]
+    statement: 'Three residuals are $+1$, $-2$ and $+3$. Find the total squared error.'
+    answer_label: The total squared error
+    check:
+      kind: evaluate
+      expression: '1**2 + 2**2 + 3**2'
+      answer: '14'
+    answer_text: >-
+      Square each residual, so the signs stop cancelling:
+      $1^2 + (-2)^2 + 3^2 = 1 + 4 + 9 = 14$. Squaring also punishes the large
+      misses far more than the small ones, which is why the total squared error
+      is a harsh judge of a model.
+
+  - id: r1-extrapolation
+    section: Review
+    tier: O
+    refs: [S1]
+    statement: >-
+      A model is tested between 0 and 5 minutes. A report uses it at 30 minutes.
+      Name the error the report is making, and say what it should write instead.
+    answer_label: The error, and what to write instead
+    check:
+      kind: structured
+      requires: [name-error, what-to-write]
+      concepts: [extrapolation, model-range]
+      points:
+        - id: name-error
+          text: >-
+            The report is extrapolating: it uses the model well outside the range
+            of the data that tested it.
+          concepts: [extrapolation, model-range]
+        - id: what-to-write
+          text: >-
+            It should state the range the model was tested over, give the answer
+            at 30 minutes as an extrapolation that has not been checked, and say
+            what data would be needed to check it.
+          concepts: [model-range]
+    answer_text: >-
+      The report is extrapolating. The model was tested over five minutes, and
+      nothing in the data says it still holds six times further on. It should
+      give the tested range, label the 30-minute value as an extrapolation, and
+      name the measurement that would test it.
+
+  - id: r1-fall-speed
+    section: Review
+    tier: O
+    refs: [S1]
+    statement: >-
+      A stone is dropped from rest and falls for 3 s. Find its speed, taking
+      $g = 9.8$ m/s². Which equation of motion did you choose, and why?
+    answer_label: The speed and the equation used
+    check:
+      kind: all
+      checks:
+        - kind: dimensions
+          expression: g * t
+          values:
+            g: {value: '9.8', unit: m/s^2}
+            t: {value: '3', unit: s}
+          answer: {value: '29.4', unit: m/s}
+        - kind: structured
+          requires: [speed, equation]
+          concepts: [equations-of-motion]
+          points:
+            - id: speed
+              text: >-
+                The speed is 9.8 x 3 = 29.4 m/s downwards.
+              concepts: [equations-of-motion]
+            - id: equation
+              text: >-
+                Use v = u + at with u = 0. It is the equation that links the four
+                quantities given and asked for here: initial speed, acceleration,
+                time and final speed.
+              concepts: [equations-of-motion]
+    answer_text: >-
+      With $u = 0$ and $a = g$, the equation $v = u + at$ gives
+      $v = 9.8 \times 3 = 29.4$ m/s downwards. That equation is the right one
+      because it links the three known quantities to the speed the question asks
+      for, with no displacement needed.
+
+  - id: r1-friction-at-the-limit
+    section: Review
+    tier: O
+    refs: [S1]
+    statement: >-
+      A block of mass 5 kg rests on a rough horizontal plane with coefficient of
+      friction 0.4. Find the friction force when the block is on the point of
+      moving. Take $g = 9.8$ m/s².
+    answer_label: The friction force at the point of moving
+    check:
+      kind: dimensions
+      expression: mu * m * g
+      values:
+        mu: {value: '0.4'}
+        m: {value: '5', unit: kg}
+        g: {value: '9.8', unit: m/s^2}
+      answer: {value: '19.6', unit: N}
+    answer_text: >-
+      On a horizontal plane the normal reaction equals the weight,
+      $R = 5 \times 9.8 = 49$ N. On the point of moving, friction is at its
+      greatest value, so $F = \mu R = 0.4 \times 49 = 19.6$ N. Before that point
+      the friction force would be smaller, and equal to whatever push is applied.
+
+  - id: r1-momentum-law
+    section: Review
+    tier: O
+    refs: [S1]
+    statement: >-
+      A trolley of mass 2 kg moves at 3 m/s and sticks to a stationary trolley of
+      mass 1 kg. Find their common speed. Which conservation law applies, and
+      why?
+    answer_label: The common speed and the law
+    check:
+      kind: all
+      checks:
+        - kind: evaluate
+          expression: '2*3/(2 + 1)'
+          answer: '2'
+        - kind: structured
+          requires: [common-speed, law]
+          concepts: [conservation-of-momentum]
+          points:
+            - id: common-speed
+              text: >-
+                The momentum before is 2 x 3 = 6 kg m/s, and the mass after is
+                3 kg, so the common speed is 2 m/s.
+              concepts: [conservation-of-momentum]
+            - id: law
+              text: >-
+                The law is conservation of momentum. No external horizontal force
+                acts on the pair, so the total momentum before equals the total
+                after. Kinetic energy is not conserved here, because the trolleys
+                lock together.
+              concepts: [conservation-of-momentum]
+    answer_text: >-
+      The momentum before is $2 \times 3 = 6$ kg m/s and the mass after is
+      $3$ kg, so the common speed is $6 \div 3 = 2$ m/s. Conservation of momentum
+      applies, because no external horizontal force acts on the two trolleys.
+      Kinetic energy is not conserved: the trolleys lock together, and energy
+      goes into the impact.
+
+  - id: r1-centripetal-acceleration
+    section: Review
+    tier: O
+    refs: [S1]
+    statement: 'A point moves in a circle of radius 0.5 m at 4 m/s. Find its centripetal acceleration.'
+    answer_label: The centripetal acceleration
+    check:
+      kind: dimensions
+      expression: v**2 / r
+      values:
+        v: {value: '4', unit: m/s}
+        r: {value: '0.5', unit: m}
+      answer: {value: '32', unit: m/s^2}
+    answer_text: >-
+      The centripetal acceleration is $a = \dfrac{v^2}{r} = \dfrac{16}{0.5} =
+      32\ \text{m/s}^2$, directed towards the centre of the circle. The units
+      check as $\text{m}^2/\text{s}^2$ divided by $\text{m}$, which is
+      $\text{m/s}^2$.
+
+  - id: r1-rounding-a-report
+    section: Review
+    tier: O
+    refs: [S1]
+    statement: >-
+      A model predicts a clear time of 15.666 minutes. Report it to 3 significant
+      figures, and say why the full number is misleading.
+    answer_label: The rounded value, and why the full number misleads
+    check:
+      kind: all
+      checks:
+        - kind: sigfigs
+          value: '47/3'
+          figures: 3
+          answer: '15.7'
+          convention: round-once
+        - kind: structured
+          requires: [why-misleading]
+          concepts: [precision, rounding]
+          points:
+            - id: why-misleading
+              text: >-
+                The model rests on rates measured only roughly, so a figure in the
+                third decimal place claims a precision the data cannot support.
+                Round once, at the end, to the figures the inputs justify.
+              concepts: [precision, rounding]
+    answer_text: >-
+      The clear time is $15.666\ldots$ minutes, which is $15.7$ minutes to
+      3 significant figures. Reporting $15.666$ claims a thousandth of a minute,
+      about a seventeenth of a second, from rates that were measured roughly. The
+      figures a report should give are the ones its data can support, and the
+      rounding happens once, at the end.
+
+  - id: r1-population-model
+    section: Review
+    tier: O
+    refs: [S1]
+    statement: >-
+      A population model gives $P = 200 \times 1.1^t$. Find $P$ after 2 years,
+      and state one assumption the model makes.
+    answer_label: The population and one assumption
+    check:
+      kind: all
+      checks:
+        - kind: evaluate
+          expression: '200*(11/10)**2'
+          answer: '242'
+        - kind: structured
+          requires: [assumption]
+          concepts: [exponential-growth, model-limits]
+          points:
+            - id: assumption
+              text: >-
+                The model assumes the population grows by the same factor 1.1
+                every year, with no limit from food, space or disease. It follows
+                that the population would grow without bound.
+              concepts: [exponential-growth, model-limits]
+    answer_text: >-
+      After 2 years $P = 200 \times 1.1^2 = 242$. The model assumes a constant
+      multiplier of $1.1$ each year, so it leaves out any limit on growth. That is
+      why it predicts an ever-growing population, which no real environment
+      supports for long.
+
+  - id: r1-which-model-is-closer
+    section: Review
+    tier: O
+    refs: [S1]
+    statement: >-
+      Two models predict 7 minutes and 12 minutes. The measurement is 9 minutes.
+      Find each error and say which model is closer.
+    answer_label: The two errors and the closer model
+    check:
+      kind: all
+      checks:
+        - kind: evaluate
+          expression: '9 - 7'
+          answer: '2'
+        - kind: evaluate
+          expression: '12 - 9'
+          answer: '3'
+        - kind: structured
+          requires: [compare-errors]
+          concepts: [residual, absolute-error]
+          points:
+            - id: compare-errors
+              text: >-
+                The first model is 2 minutes out and the second is 3 minutes out,
+                so the first is closer. Compare the sizes of the errors, not their
+                signs.
+              concepts: [residual, absolute-error]
+    answer_text: >-
+      The first model's error is $9 - 7 = 2$ minutes, and the second model's is
+      $12 - 9 = 3$ minutes. One is too low and the other too high, so the signs
+      differ; compare the sizes. The first model is closer, because 2 is smaller
+      than 3.
+
+  - id: r1-two-changes-at-once
+    section: Review
+    tier: O
+    refs: [S1]
+    statement: >-
+      A student changes two assumptions at once and the fit improves. Explain why
+      the improvement cannot be attributed to either change.
+    answer_label: Why the improvement cannot be attributed
+    check:
+      kind: structured
+      requires: [two-changes, one-at-a-time]
+      concepts: [controlled-change, attribution]
+      points:
+        - id: two-changes
+          text: >-
+            Two things changed, so the improvement could come from either one,
+            from both together, or from one helping while the other hurts. The
+            single measurement cannot separate them.
+          concepts: [attribution]
+        - id: one-at-a-time
+          text: >-
+            Change one assumption at a time and measure what the change did. That
+            is what makes an improvement attributable, and it is why the refine
+            stage changes one thing at a time.
+          concepts: [controlled-change, attribution]
+    answer_text: >-
+      Two assumptions changed together, so the improvement could come from either
+      one, from both, or from one helping while the other hinders. One result
+      cannot separate the effects. Change one assumption at a time and measure
+      what that change did; then the improvement can be attributed to it.
+
+  - id: r1-conclusion
+    section: Review
+    tier: O
+    refs: [S1]
+    statement: >-
+      Write the conclusion of a report in three sentences. It must give the
+      answer with its unit, the assumption the answer depends on most, and one
+      limit of the model.
+    answer_label: The three-sentence conclusion
+    check:
+      kind: structured
+      requires: [answer-with-unit, key-assumption, limit]
+      concepts: [conclusion, model-limits]
+      points:
+        - id: answer-with-unit
+          text: >-
+            The tea falls from 90 °C to 50 °C in about 7.1 minutes.
+          concepts: [conclusion]
+        - id: key-assumption
+          text: >-
+            The answer depends most on the cooling rate, so a thinner cup would
+            shorten it.
+          concepts: [conclusion]
+        - id: limit
+          text: >-
+            The model was tested only between 0 and 10 minutes, so it says nothing
+            about what happens after an hour.
+          concepts: [model-limits]
+    answer_text: >-
+      The tea falls from 90 °C to 50 °C in about 7.1 minutes. The answer depends
+      most on the cooling rate, so a thinner cup would shorten it. The model was
+      tested only between 0 and 10 minutes, so it says nothing about what happens
+      after an hour.

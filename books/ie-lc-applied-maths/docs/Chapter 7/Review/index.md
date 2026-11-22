@@ -73,24 +73,9 @@ Work through these without notes. For each one, decide **what is supplying the c
 force** before you calculate: friction, tension, gravity, the normal force, or a
 combination.
 
-1. A stone on a string of length $0.80$ m is whirled at $4.0$ m/s. Find its angular
-   velocity, its period and its centripetal acceleration.
-2. A $0.50$ kg mass on a string moves in a horizontal circle of radius $1.2$ m at
-   $3.0$ m/s. Find the tension in the string.
-3. A satellite orbits at a height where $g = 8.0$ m/s² and its orbital radius is
-   $7.0 \times 10^6$ m. Find its speed.
-4. A car of mass $1400$ kg takes a flat bend of radius $80$ m. If $\mu = 0.7$, find the
-   greatest speed.
-5. A bend of radius $200$ m is banked at $10^\circ$. Find its design speed.
-6. A bucket of water is swung in a vertical circle of radius $0.90$ m. Find the minimum
-   speed at the top for the water to stay in.
-7. A spring stretches by $0.15$ m when a $3.0$ kg mass hangs on it. Find its spring
-   constant and the period of the resulting oscillation.
-8. A simple harmonic motion has amplitude $0.040$ m and period $0.50$ s. Find its
-   maximum speed and its maximum acceleration.
-9. Explain why a car crossing a hump-back bridge feels lighter at the top.
-10. A student says a body moving in a circle at constant speed has no acceleration.
-    Explain what is wrong.
+:::problems chapter-07-review
+
+:::answers chapter-07-review
 
 ## What you can now do
 
