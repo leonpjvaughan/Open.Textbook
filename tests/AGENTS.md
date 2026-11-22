@@ -13,7 +13,9 @@ The theme preview is `tools preview` (`tools/src/commands/preview.ts`).
 
 - **Engine** — `test_pipeline.py`, `test_render_hooks.py`, `test_markers.py`,
   `test_frontmatter.py`, `test_plan.py`, `test_maths_escapes.py`, `test_lint.py`.
-- **Content and shape** — `test_content_hygiene.py`, `test_problem_bank.py`,
+- **Content and shape** — `test_content_hygiene.py`, `test_content_contracts.py`
+  (Review answers, the fade, practice size, the warm-up gate, the front block,
+  figure guidance and silent maths, each with a recorded debt), `test_problem_bank.py`,
   `test_collection.py`, `test_home_page.py`, `test_proofs.py`,
   `test_proof_maths.py`.
 - **Figures** — `test_figures.py` (the module contract: an accessible name, no

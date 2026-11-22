@@ -270,3 +270,30 @@ what the oracle cannot prove.
       except the two marker lines.
 - [ ] the bank comment on each Review names the question, if any, whose judgement
       the verifier cannot prove.
+
+## 219 — Tier-excluded section references survive in plain text
+
+**What is wrong.** The tier hook unlinks a markdown link to a page the profile drops,
+but a plain `Section n.m` reference is left alone and the build still passes. Measured
+on 2026-11-22: 172 references to a section above the page's tier across the six tiered
+books, 82 of them in `ie-lc-maths`. `Chapter 2/Section 2.1` is an F page and sends the
+reader to 2.5, which is H; `Chapter 17/Section 17.2` is an O page and says the proof is
+"one click away" in 17.7, which that build does not contain. The reader is told to
+follow a route that is not there.
+
+**The fix.** Extend the tier hook (or add a lint rule) to find `Section n.m` and
+`§n.m` in the body, strip inline `<!-- tier:h -->` spans first, and rewrite or remove a
+reference to a section above the page's profile. Start with `ie-lc-maths`, where the
+two examples are, then apply the same rule to the other tiered books. A reference
+inside a sentence that already says "Higher only" can stay if it does not promise a
+link.
+
+**Done means**
+
+- [ ] a test scans every page at its own tier, with tier spans stripped, and fails on a
+      plain reference to a section that profile excludes.
+- [ ] the two examples in `ie-lc-maths` 2.1 and 17.2 are rewritten and read correctly
+      in both the Foundation/Ordinary and Higher builds.
+- [ ] the other tiered books are scanned, and their debt is either fixed or recorded in
+      the same test with a ceiling that may only go down.
+- [ ] `python -m pytest tests/ -q` and every profile build pass.
