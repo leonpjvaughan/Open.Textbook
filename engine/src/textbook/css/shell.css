@@ -415,18 +415,15 @@ a { color: var(--tb-link); }
    * full width of the page. */
   .search__results { left: 0; right: 0; min-width: 0; }
   /* A long book title would otherwise push the actions off the row before the
-   * search has a chance to wrap. The title and the section are two flex items, and
-   * each shrinks and ellipsises on its own: as one nowrap text run, the title could
-   * not shrink and the row widened the page (measured: 485px in a 320px viewport). */
+   * search has a chance to wrap. One clipped line: making the title and the section
+   * flex items let their nowrap min-content widen the phone's layout viewport to
+   * 495px (measured), so the row clips as a single line instead. */
   .masthead__brand {
-    display: flex;
-    align-items: baseline;
-    gap: 0.5rem;
-    min-width: 0;
-    overflow: hidden;
-  }
-  .masthead__book,
-  .masthead__section {
+    /* The desktop row pushes the actions right with `margin-right: auto`. In the
+     * grid that auto margin makes the brand size to its content, so the row ran
+     * 21px past a 480px viewport. Stretch it to the grid area instead. */
+    margin-right: 0;
+    width: 100%;
     min-width: 0;
     overflow: hidden;
     text-overflow: ellipsis;
