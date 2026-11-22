@@ -565,6 +565,29 @@ maths-figure label {
   color: var(--tb-ink);
 }
 
+/* Common-error (`Watch out.`) and quick-check (`Check.`) callouts. Neutral
+ * signature: the same framed shape `.prove` uses, with no background tint and
+ * no pseudo-element, so body ink stays on `--tb-paper` with zero contrast risk
+ * across every bundle. */
+.md-typeset .callout {
+  box-sizing: border-box;
+  max-width: var(--tb-measure);
+  margin-block: 1.3rem;
+  margin-inline: 0;
+  padding: 0.6rem 0.95rem;
+  border: 1px solid var(--tb-rule);
+  border-inline-start: 3px solid var(--tb-rule);
+  border-radius: var(--tb-radius);
+}
+
+.md-typeset .callout > :first-child {
+  margin-top: 0;
+}
+
+.md-typeset .callout > :last-child {
+  margin-bottom: 0;
+}
+
 /* The "Prove it to me" affordance. */
 
 /* A claim stated without proof links to the proof. The element is an `<a>` and
@@ -946,6 +969,7 @@ maths-figure label {
    * `page-break-*` aliases cover engines that predate the fragmentation properties. */
   .md-typeset table,
   .md-typeset__scrollwrap,
+  .md-typeset .callout,
   .md-typeset details,
   .md-typeset maths-figure,
   .md-typeset figure {
