@@ -134,8 +134,8 @@ export function sampleRoutes(siteDir: string): SampledRoute[] {
   return sampled;
 }
 
-/** What a page mounts its figures with: the loader's directory, and the kit beside it. */
-export type FigureAssets = { dir: string; kit: string };
+/** What a page mounts its figures with: the loader's directory, the loader itself, and the kit beside it. */
+export type FigureAssets = { dir: string; loader: string; kit: string };
 
 /**
  * The figure assets a page reaches for, as URL paths, or `null` when it mounts
@@ -143,21 +143,22 @@ export type FigureAssets = { dir: string; kit: string };
  *
  * The page states this itself: the loader is a `src` on the page, and the kit
  * sits beside it, which is why a book root can be found without knowing anything
- * about the book. A kit that is not in the build is `null` too — the caller says
- * so, rather than a page importing a module the server answers with a 404.
+ * about the book. A loader or kit that is not in the build is `null` too — the
+ * caller says so, rather than a page importing a module the server answers with
+ * a 404.
  */
 export function figureAssets(siteDir: string, route: string): FigureAssets | null {
   const file = routeFile(siteDir, route);
   if (!file) return null;
   const html = fs.readFileSync(file, "utf8");
-  const match = /<script[^>]*\bsrc="([^"]*\/figures\.js)"/.exec(html);
+  const match = /<script[^>]*\bsrc="((?:[^"]*\/)?figures\.js)"/.exec(html);
   if (!match) return null;
   const loader = new URL(match[1]!, `http://site.local${route}`).pathname;
   const dir = path.posix.dirname(loader);
-  const kit = `${dir}/kit.js`;
+  const kit = path.posix.join(dir, "kit.js");
   const root = path.resolve(siteDir);
-  if (!fs.existsSync(path.join(root, kit))) return null;
-  return { dir, kit };
+  if (!fs.existsSync(path.join(root, loader)) || !fs.existsSync(path.join(root, kit))) return null;
+  return { dir, loader, kit };
 }
 
 /**
