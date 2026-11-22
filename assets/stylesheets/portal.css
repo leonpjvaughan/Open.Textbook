@@ -68,6 +68,12 @@ body {
   font-size: clamp(1.8rem, 1.3rem + 2vw, 2.6rem);
   line-height: 1.15;
   letter-spacing: -0.01em;
+  /* The landing page's heading, named so a move between two portal pages carries the
+   * title across. The name is deliberately not the books' `page-title`: the two
+   * headings are a hero and a section title, and morphing one into the other would
+   * resize a whole page's worth of type. Nothing is named on the masthead around it,
+   * because a name inside a name paints the child twice during the transition. */
+  view-transition-name: portal-title;
 }
 
 .masthead__lead {
@@ -416,4 +422,18 @@ body {
 
 @media (prefers-reduced-motion: reduce) {
   * { transition: none !important; }
+}
+
+/* Cross-document view transitions ------------------------------------------ */
+
+/* The landing page opts in with the books, so a move from a book to the front door
+ * (or between two portal pages) crossfades instead of flashing white. Both ends
+ * must opt in, so this rule and the one in the books' shell come as a pair; a
+ * browser that does not know cross-document transitions ignores it and follows the
+ * link instantly. Reduced motion is the opt-out: no query match, no transition, no
+ * view-transition group. */
+@media (prefers-reduced-motion: no-preference) {
+  @view-transition {
+    navigation: auto;
+  }
 }

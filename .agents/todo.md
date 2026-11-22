@@ -4,7 +4,7 @@ Working notes for the collection. One item per change. Items are ordered, not
 dated: the first is next. This file is ours, not the reader's — the voice rules
 in `AGENTS.md` do not apply here, but the engineering rules do.
 
-**This file holds open items only.** Closed items are deleted (git history keeps their diagnosis). A new item goes at the next number, with its diagnosis, its fix and its own done-means. Open: **187**, **188**, **192**, **200**, **203**, **217**, **218**, **219**.
+**This file holds open items only.** Closed items are deleted (git history keeps their diagnosis). A new item goes at the next number, with its diagnosis, its fix and its own done-means. Open: **187**, **188**, **192**, **200**, **203**, **217**, **218**, **219**, **220**, **221**.
 
 Accepted limitations live where the check that records them lives (`tests/test_verify_coverage.py`, `books/*/curriculum.yaml`), not here.
 
@@ -303,3 +303,33 @@ markdown links are removed; a new one fails. The remaining work is to rewrite th
 - [ ] the other tiered books are scanned, and their debt is either fixed or recorded in
       the same test with a ceiling that may only go down.
 - [ ] `python -m pytest tests/ -q` and every profile build pass.
+
+## 221 — the phone drawer costs 0.74 CLS when the script closes it
+
+**What is wrong.** The drawer ships `open` in the markup so a phone reader with scripting
+off keeps the navigation, and the module script at the foot of the page closes it below
+60rem. Closing it moves the whole main column up, after the content has been painted.
+Measured with Playwright at 390×844 on
+`/gcse-maths/higher/chapter-1/section-1.1/learn/` (Chrome 153, service workers blocked,
+window load plus 1.2 s): cumulative layout shift **0.822**, of which **0.738** is one
+entry at t = 354 ms whose only source is `MAIN.content` moving from y = 0 to y = 196.
+With the drawer's inline module removed the same page measures **0.056**, and the drawer
+stays at y = 2515 where the reader can see it. The number is identical with cross-document
+transitions on and off, so it is not the motion work: it is the close itself. Google's
+"good" threshold is 0.1.
+
+**The fix.** The close is the shift, so move the work rather than the drawer's default.
+The cleanest is to put the drawer after `main` in the DOM and give the wide layout a grid
+area above it, so a phone collapse cannot move the content; the wide layout is unaffected
+because the sidebar is a grid column there. A second option is to keep the drawer before
+`main` and reserve its measured height for the first frame, then release it after the
+script has decided, but that still animates a jump. Do not drop `open`: a phone reader
+with scripting off then loses the only navigation on the page.
+
+**Done means**
+
+- [ ] Playwright at 390 on a Learn page, a Practise page and a figure page measures CLS
+      below 0.1, with reduced motion on and off.
+- [ ] a phone reader with scripting off still sees the drawer open and can walk the
+      chapter; the drawer still closes to `Contents` at phone width with scripting on.
+- [ ] a test records the measurement rather than asserting the fix in prose.
