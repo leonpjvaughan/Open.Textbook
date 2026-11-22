@@ -395,7 +395,7 @@ a { color: var(--tb-link); }
   /* The phone measure is the viewport less this padding. At 1rem a 390px
    * screen gave 39 characters on a full line, one below the 40-48 target; 0.75rem
    * gives the line back the 12px it needs without touching the desk measure. */
-  .wrap { padding: 0 0.75rem; }
+  .wrap { padding: 0 0.5rem; }
   :root { --tb-masthead-height: 6.6rem; }
   .masthead__inner {
     display: grid;
