@@ -32,6 +32,12 @@ The theme preview is `tools preview` (`tools/src/commands/preview.ts`).
   off after a deploy emptied the runtime cache; marked `browser`), `test_mobile.py`,
   `test_motion.py`, `test_prefs.py`, `test_settings.py`, `test_no_javascript.py`, `test_print.py`,
   `test_backgrounds.py`, `test_colophon.py`, `test_deploy.py`, `test_release.py`.
+- **Where the reader is** — `test_navigation_state.py` pins the markup, the paint of
+  the current-section mark, the progress line's feature gate and reduced-motion rule,
+  and the drawer's filter and Escape handling; `test_navigation_browser.py` measures
+  the ToC's `aria-current`, the line's 2px and its unchanged masthead, and the drawer
+  opening on the reader's chapter at 390, in both schemes. The second is marked
+  `browser` and runs in `scripts/preview-themes.sh`.
 - **Preconditions** — `test_toolchain.py` fails loudly when Node or
   `node_modules` is missing, rather than letting the maths degrade to
   `.math-error`.

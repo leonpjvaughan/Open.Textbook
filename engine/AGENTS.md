@@ -76,7 +76,10 @@ Read the root `AGENTS.md` first; this file owns the **Maths** and **Hooks** trap
 - **Maths rendering** — `hooks/maths.py` and
   `engine/src/textbook/js/katex-render.mjs`; the toolchain test pins the renderer.
 - **Page shell** — `engine/src/textbook/templates/page.html` and
-  `engine/src/textbook/css/`; check both schemes and the preferences script.
+  `engine/src/textbook/css/`; check both schemes and the preferences script. The two
+  inline modules at the foot of it are the phone drawer (filter, chapter level, Escape)
+  and the ToC's current section; both are enhancements, and the page must stay whole
+  with scripting off.
 - **Verification oracle** — a module under
   `engine/src/textbook/verify/oracles/`, its name in `ORACLE_MODULES`, its kinds
   in `KIND_ORACLE`; `tests/test_verify_oracles.py` pins the table.

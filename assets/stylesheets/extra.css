@@ -950,6 +950,38 @@ maths-figure label {
   min-height: 1.5rem;
 }
 
+/* The section the reader is in. `:target-current` is the platform's own scroll-spy,
+ * set by `scroll-target-group` in the rule below; `.contents__current` is the same
+ * state from the IntersectionObserver fallback, and `:is()` is what lets one rule hold
+ * both — an unknown pseudo-class inside `:is()` is ignored, where `a:target-current,
+ * a.contents__current` would invalidate the whole rule in a browser that has neither.
+ *
+ * The state is a 2px underline and the ink colour, never the colour alone: a reader
+ * who cannot tell the accent from the ink still sees the rule. Weight is deliberately
+ * not used. A bolder label is wider, so the marked item can wrap to a second line and
+ * push the article below it down on every section boundary — a layout shift the reader
+ * did not ask for, caused by the thing that is meant to help them. */
+.md-typeset .contents {
+  scroll-target-group: auto;
+}
+
+.md-typeset .contents__list a:is(:target-current, .contents__current) {
+  color: var(--tb-ink);
+  text-decoration: underline;
+  text-decoration-thickness: 2px;
+  text-underline-offset: 0.2em;
+}
+
+/* And a bar in the gutter, so the mark is a shape as well as a thicker rule. The bar
+ * costs no layout: the margin is given back by the padding, so the content box keeps
+ * its width and an item cannot wrap to a second line because it became the current
+ * one. */
+.md-typeset .contents__list li:has(a:is(:target-current, .contents__current)) {
+  margin-left: -0.35rem;
+  padding-left: 0.35rem;
+  box-shadow: inset 3px 0 0 var(--tb-ink);
+}
+
 @media (max-width: 44rem) {
   .md-typeset .contents__list { columns: 1; }
 }

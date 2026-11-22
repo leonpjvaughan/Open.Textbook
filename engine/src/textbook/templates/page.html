@@ -99,6 +99,11 @@ document.body.setAttribute(
       <ul class="tb-search__results" id="search-results" aria-label="Search results"></ul>
     </div>
   </div>
+  <!-- How far through the page the reader is. Decorative, so it is empty, hidden from
+       assistive technology, and drawn only where the browser can drive it from the
+       scroll position. It fills from the left as the page moves, and adds no height to
+       the bar: see `.progress` in shell.css. -->
+  <div class="progress" data-progress aria-hidden="true"></div>
 </header>
 
 <div class="wrap layout">
@@ -119,6 +124,18 @@ document.body.setAttribute(
            reader pass the same two labels three times before the page's own title. -->
       <span class="nav-drawer__label">Contents</span>
     </summary>
+    <!-- A filter for a tree of up to 335 links. `hidden` in the markup and revealed by
+         the drawer script, so a reader with scripting off gets the tree and no control
+         that would not work; the filter narrows what is there, it is never the only way
+         to a link. -->
+    <div class="nav-filter" data-nav-filter hidden>
+      <label class="visually-hidden" for="nav-filter">Filter the contents</label>
+      <input class="nav-filter__input" id="nav-filter" type="search"
+             data-nav-filter-input placeholder="Filter contents" autocomplete="off"
+             spellcheck="false">
+      <p class="nav-filter__empty" id="nav-filter-empty" role="status"
+         data-nav-filter-empty hidden>No section matches that word.</p>
+    </div>
     <nav class="sidebar" aria-label="Book contents" data-pagefind-ignore>
       $nav
     </nav>
@@ -151,13 +168,206 @@ $booklet_script
  * of contents above a phone's title. So the markup ships `open` — the layout a reader
  * with scripting off has always had — and this closes it where the layout needs it to be
  * closed. The media query is listened to, so a rotated phone or a resized window leaves
- * the drawer in the state that width calls for. */
+ * the drawer in the state that width calls for.
+ *
+ * **Where it opens.** A book is up to 25 chapters, and the chapter the reader is in can
+ * sit anywhere in that list. Opening the drawer at the top of the book and leaving the
+ * reader to hunt is the thing this fixes: the chapter is reset to chapter level (every
+ * chapter closed except the ones on the path to this page), and the current entry is
+ * scrolled into view inside the drawer's own scroll box, so the page under it does not
+ * move. The filter is the second half: a way to find a section by name when the reader
+ * knows the name and not the chapter.
+ *
+ * Both are enhancements over a `<details>` and a list of links. With scripting off the
+ * drawer still opens, the tree is still whole, and every link is still reachable. */
 const drawer = document.querySelector(".nav-drawer");
 if (drawer) {
+  const summary = drawer.querySelector(".nav-drawer__summary");
+  const sidebar = drawer.querySelector(".sidebar");
   const wide = window.matchMedia("(min-width: 60rem)");
-  const apply = () => { drawer.open = wide.matches; };
-  apply();
-  wide.addEventListener("change", apply);
+  const filter = drawer.querySelector("[data-nav-filter]");
+  const field = drawer.querySelector("[data-nav-filter-input]");
+  const empty = drawer.querySelector("[data-nav-filter-empty]");
+  const chapters = [...sidebar.querySelectorAll("details")];
+  const current = sidebar.querySelector('a[aria-current="page"]');
+  // The build opens every section on the path to this page; those are the ones that
+  // make "chapter level" mean "the chapter you are in, open, and the rest closed".
+  const trail = chapters.filter((node) => current && node.contains(current));
+  const links = [...sidebar.querySelectorAll("a[href]")];
+
+  // Chapter level: the path to this page open, everything else closed.
+  const collapse = () => {
+    for (const node of chapters) node.open = trail.includes(node);
+  };
+
+  // The current entry, inside the drawer's box. `scrollTop` is written directly rather
+  // than through `scrollIntoView`, which would also scroll the page: the drawer is in
+  // the page's flow at this width, and a drawer that moves the article is worse than
+  // one that starts at the top.
+  const reveal = () => {
+    const row = current || trail[0];
+    if (!row) return;
+    const box = sidebar.getBoundingClientRect();
+    const line = row.getBoundingClientRect();
+    if (line.top < box.top || line.bottom > box.bottom) {
+      sidebar.scrollTop += line.top - box.top - 8;
+    }
+  };
+
+  if (filter && field) filter.hidden = false;
+
+  if (field) {
+    // A link on its own says "Practise": the chapter and section it belongs to are the
+    // summaries above it. So a word matches a link if the link or any summary on the
+    // way up says it, and typing a chapter's name narrows to that chapter.
+    const label = (link) => {
+      let text = link.textContent;
+      let node = link.closest("details");
+      while (node) {
+        const title = node.querySelector(":scope > summary");
+        if (title) text += " " + title.textContent;
+        node = node.parentElement.closest("details");
+      }
+      return text.toLowerCase();
+    };
+    const clear = () => {
+      for (const item of sidebar.querySelectorAll("li")) item.hidden = false;
+      if (empty) empty.hidden = true;
+      collapse();
+      reveal();
+    };
+    field.addEventListener("input", () => {
+      const term = field.value.trim().toLowerCase();
+      if (!term) {
+        clear();
+        return;
+      }
+      for (const link of links) {
+        link.parentElement.hidden = !label(link).includes(term);
+      }
+      // Deepest first, so a branch decides with its leaves already decided.
+      for (const node of [...chapters].reverse()) {
+        const shown = [...node.querySelectorAll("a[href]")].some(
+          (link) => !link.parentElement.hidden,
+        );
+        node.parentElement.hidden = !shown;
+        node.open = shown;
+      }
+      if (empty) empty.hidden = links.some((link) => !link.parentElement.hidden);
+    });
+  }
+
+  drawer.addEventListener("toggle", () => {
+    if (!drawer.open || wide.matches) return;
+    if (field) field.value = "";
+    for (const item of sidebar.querySelectorAll("li")) item.hidden = false;
+    if (empty) empty.hidden = true;
+    collapse();
+    reveal();
+  });
+
+  // Escape is what a reader reaches for to dismiss something, and a `<details>` does
+  // not answer it. The summary is where focus came from, so it is where it goes back.
+  drawer.addEventListener("keydown", (event) => {
+    if (event.key !== "Escape" || wide.matches || !drawer.open) return;
+    event.preventDefault();
+    drawer.open = false;
+    summary.focus();
+  });
+
+  const fit = () => { drawer.open = wide.matches; };
+  fit();
+  wide.addEventListener("change", fit);
+}
+</script>
+
+<script type="module">
+/* The current section in "On this page".
+ *
+ * A long page's own list of sections is only useful if it says where the reader is. The
+ * platform can now do this without script — `scroll-target-group` on the list, and
+ * `:target-current` on the link whose target is in view — but the state is visual, so
+ * assistive technology hears nothing. The mark is therefore mirrored in
+ * `aria-current="location"`: same element, from the same source, in both trees.
+ *
+ * Where the platform cannot do it, an IntersectionObserver watches the headings and the
+ * reader's place is the last heading above the masthead. Either way the page works
+ * without any of this: the links are links, nothing is hidden, and no state is needed to
+ * reach a section. */
+const contents = document.querySelector("[data-scrollspy]");
+if (contents) {
+  const pairs = [];
+  for (const link of contents.querySelectorAll(".contents__list a[href^='#']")) {
+    const target = document.getElementById(decodeURIComponent(link.hash.slice(1)));
+    if (target) pairs.push([link, target]);
+  }
+  if (pairs.length) {
+    // Two questions, not one: the property can be supported while the pseudo-class is
+    // not usable in a selector, and a link marked by neither is a link marked by nothing.
+    const native = (() => {
+      if (!CSS.supports("scroll-target-group: auto")) return false;
+      try {
+        document.querySelector(":target-current");
+        return true;
+      } catch {
+        return false;
+      }
+    })();
+    let marked = null;
+    const mark = (link) => {
+      if (link === marked) return;
+      marked = link;
+      for (const [candidate] of pairs) {
+        // The class is only the fallback's paint: where `:target-current` works it is
+        // the browser's state that styles the link, and adding a second mark would
+        // hide a regression in the native path behind a class that still worked.
+        candidate.classList.toggle("contents__current", !native && candidate === link);
+        if (candidate === link) candidate.setAttribute("aria-current", "location");
+        else candidate.removeAttribute("aria-current");
+      }
+    };
+    const place = () => {
+      const bar = document.querySelector(".masthead");
+      const line = (bar ? bar.getBoundingClientRect().bottom : 0) + 12;
+      let found = null;
+      for (const [link, target] of pairs) {
+        if (target.getBoundingClientRect().top <= line) found = link;
+      }
+      return found;
+    };
+    if (native) {
+      const sync = () => {
+        let link = null;
+        try { link = contents.querySelector(":target-current"); } catch { link = null; }
+        mark(link);
+      };
+      // The platform's state lands on the frame after the scroll settles, not during
+      // `scrollend` itself: read one turn of the frame clock later, or the mirror
+      // records the section the reader has just left.
+      const soon = () => requestAnimationFrame(() => requestAnimationFrame(sync));
+      soon();
+      if ("onscrollend" in window) {
+        addEventListener("scrollend", soon, { passive: true });
+      } else {
+        let frame = 0;
+        addEventListener(
+          "scroll",
+          () => {
+            if (frame) return;
+            frame = requestAnimationFrame(() => { frame = 0; soon(); });
+          },
+          { passive: true },
+        );
+      }
+      addEventListener("hashchange", soon);
+    } else {
+      const observer = new IntersectionObserver(() => mark(place()), {
+        rootMargin: "0px 0px -20% 0px",
+      });
+      for (const [, target] of pairs) observer.observe(target);
+      mark(place());
+    }
+  }
 }
 </script>
 
