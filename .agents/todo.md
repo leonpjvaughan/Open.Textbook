@@ -288,6 +288,12 @@ two examples are, then apply the same rule to the other tiered books. A referenc
 inside a sentence that already says "Higher only" can stay if it does not promise a
 link.
 
+The gate is now in `tests/test_content_contracts.py` (`TIER_DEBT`, 115 references:
+2 `gcse-maths`, 5 `ie-jc-maths`, 14 `ie-lc-applied-maths`, 75 `ie-lc-maths`, 19
+`ie-lc-physics`). It counts only plain prose references, after inline tier spans and
+markdown links are removed; a new one fails. The remaining work is to rewrite the
+115 and lower the ceiling to 0.
+
 **Done means**
 
 - [ ] a test scans every page at its own tier, with tier spans stripped, and fails on a

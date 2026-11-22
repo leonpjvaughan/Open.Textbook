@@ -90,6 +90,17 @@ NAV_DEBT = {"ie-jc-maths": 16}
 #: ritual. `maths-applied` is excluded: its Review is deliberately different.
 REVIEW_HEADING_DEBT = {"gcse-maths": 4}
 
+#: Plain-text references to a section above the page's own tier, after inline
+#: `<!-- tier:h -->` spans and markdown links are removed. These are the ones the
+#: tier hook cannot unlink.
+TIER_DEBT = {
+    "gcse-maths": 2,
+    "ie-jc-maths": 5,
+    "ie-lc-applied-maths": 14,
+    "ie-lc-maths": 75,
+    "ie-lc-physics": 19,
+}
+
 
 def _body(text: str) -> str:
     return re.sub(r"^---\n.*?\n---\n", "", text, flags=re.S)
@@ -231,6 +242,53 @@ def _review_heading_drift(book):
             yield path
 
 
+def _section_tiers(book) -> dict[str, str]:
+    if not book.curriculum.is_file():
+        return {}
+    data = yaml.safe_load(book.curriculum.read_text(encoding="utf-8")) or {}
+    tiers: dict[str, str] = {}
+
+    def walk(node):
+        if isinstance(node, dict):
+            if "id" in node and "tier" in node:
+                tiers[str(node["id"])] = node["tier"]
+            for value in node.values():
+                walk(value)
+        elif isinstance(node, list):
+            for value in node:
+                walk(value)
+
+    walk(data)
+    return tiers
+
+
+def _tier_excluded_reference(book):
+    axis = getattr(book, "tier_axis", None) or {}
+    if isinstance(axis, dict):
+        axis = list(axis)
+    if not axis:
+        return
+    tiers = _section_tiers(book)
+    for path in book.docs.rglob("*.md"):
+        text = path.read_text(encoding="utf-8")
+        match = re.search(r"^tier:\s*([A-Z]+)", text, re.M)
+        page_tier = match.group(1) if match else axis[0]
+        if page_tier not in axis:
+            continue
+        page_level = axis.index(page_tier)
+        body = re.sub(r"<!-- tier:h -->.*?<!-- /tier:h -->", "", text, flags=re.S)
+        for line in body.splitlines():
+            if "](" in line or line.lstrip().startswith("#"):
+                continue
+            if re.search(r"\bHigher\b|tier", line, re.I):
+                continue
+            for reference in re.finditer(r"(?:Section|§)\s*(\d+\.\d+)", line):
+                target = reference.group(1)
+                target_tier = tiers.get(target)
+                if target_tier in axis and axis.index(target_tier) > page_level:
+                    yield path
+
+
 def _breaches(label: str, finder, debt: dict[str, int]) -> Counter:
     actual: Counter = Counter()
     examples: dict[str, list[str]] = {}
@@ -298,3 +356,11 @@ def test_a_chapter_opener_does_not_list_its_sections_twice():
 
 def test_a_review_keeps_the_course_headings():
     _breaches("Review heading drift", _review_heading_drift, REVIEW_HEADING_DEBT)
+
+
+def test_no_page_names_a_section_its_profile_excludes():
+    _breaches(
+        "plain reference to a tier-excluded section",
+        _tier_excluded_reference,
+        TIER_DEBT,
+    )
