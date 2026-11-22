@@ -145,7 +145,21 @@ export async function run(argv: string[]): Promise<number> {
     const page = await context.newPage();
     for (const { name, route } of routes) {
       await page.goto(`http://textbook.local${route}`, { waitUntil: "load" });
-      await page.waitForTimeout(100);
+      // A figure module is a dynamic import and mounts its sliders after `load`.
+      // Measuring at a fixed delay missed a late control and the count differed
+      // run to run: 52,276 inside the gate, 52,288 standalone minutes later, on
+      // the same build. Wait for the modules, then require two equal passes.
+      await page.evaluate(() => document.fonts.ready);
+      await page
+        .waitForFunction(
+          () =>
+            [...document.querySelectorAll("maths-figure")].every(
+              (el) => el.childElementCount > 0,
+            ),
+          undefined,
+          { timeout: 3000 },
+        )
+        .catch(() => {});
 
       let counted = 0;
       let small: Small[] = [];
@@ -157,10 +171,30 @@ export async function run(argv: string[]): Promise<number> {
             const drawer = document.querySelector("details.nav-drawer");
             if (drawer instanceof HTMLDetailsElement) drawer.open = true;
           });
+          // Let the disclosure finish opening before its rows are measured.
+          await page.waitForTimeout(250);
         }
-        const result = (await page.evaluate(MEASURE)) as { small: Small[]; counted: number };
-        counted += result.counted;
-        small = small.concat(result.small);
+        let stable: { small: Small[]; counted: number } | null = null;
+        let last = -1;
+        for (let attempt = 0; attempt < 6; attempt += 1) {
+          const current = (await page.evaluate(MEASURE)) as {
+            small: Small[];
+            counted: number;
+          };
+          if (current.counted === last) {
+            stable = current;
+            break;
+          }
+          last = current.counted;
+          await page.waitForTimeout(75);
+        }
+        if (!stable) {
+          throw new Error(
+            `${scheme} ${name}: the control count did not settle, so this pass cannot be trusted`,
+          );
+        }
+        counted += stable.counted;
+        small = small.concat(stable.small);
       }
 
       report.examined += counted;
