@@ -17,7 +17,10 @@ Order matters:
    ``contents`` expands ``:::contents`` into a list of the page's own headings, which is
    why it runs on rendered HTML rather than markdown — the ids are there;
 10. ``systems`` expands ``:::systems`` into the system → class index;
-11. ``maths`` renders the ``$...$`` those hooks emitted — last, because it runs
+11. ``callouts`` promotes ``> **Watch out.**`` and ``> **Check.**`` blockquotes
+    into ``<aside class="callout ...">`` blocks while leaving every other
+    blockquote untouched;
+12. ``maths`` renders the ``$...$`` those hooks emitted — last, because it runs
     on rendered HTML rather than markdown.
 
 ``on_page_content``, in order: ``contents`` (it reads the headings while they still
@@ -33,6 +36,7 @@ implementation rather than a MkDocs hook that no renderer calls.
 from __future__ import annotations
 
 from . import (
+    callouts,
     classes,
     contents,
     deeper,
@@ -67,6 +71,7 @@ MARKDOWN_HOOKS = (
     deeper,
     problems,
     systems,
+    callouts,
 )
 
 
