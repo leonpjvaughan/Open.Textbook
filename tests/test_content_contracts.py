@@ -164,9 +164,21 @@ def _front_block_over_32(book):
         block = re.match(r"\s*# .*?\n(.*?)(?=^## )", _body(text), re.S | re.M)
         if not block:
             continue
-        if any(
+        prose: list[str] = []
+        too_long = False
+        for line in block.group(1).splitlines():
+            stripped = line.strip()
+            if not stripped:
+                continue
+            if stripped.startswith(("- ", "* ")):
+                item = stripped[2:].rstrip(";.")
+                if _words(item) > 32:
+                    too_long = True
+            else:
+                prose.append(stripped)
+        if too_long or any(
             _words(sentence.group(0)) > 32
-            for sentence in re.finditer(r"[^.!?]+[.!?]", block.group(1))
+            for sentence in re.finditer(r"[^.!?]+[.!?]", " ".join(prose))
         ):
             yield path
 
