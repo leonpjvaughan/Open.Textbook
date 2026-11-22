@@ -82,6 +82,14 @@ FUSED_DEBT = {"a-level-maths": 50}
 #: first digit followed by the rest: `\sqrt25` renders as sqrt(2) 5.
 SQRT_DEBT: dict[str, int] = {}
 
+#: Chapter openers that print a linked Roadmap and then an unlinked Sections list
+#: of the same sections.
+NAV_DEBT = {"ie-jc-maths": 16}
+
+#: Reviews whose mixed-practice heading or closing checklist is not the course
+#: ritual. `maths-applied` is excluded: its Review is deliberately different.
+REVIEW_HEADING_DEBT = {"gcse-maths": 4}
+
 
 def _body(text: str) -> str:
     return re.sub(r"^---\n.*?\n---\n", "", text, flags=re.S)
@@ -193,6 +201,24 @@ def _sqrt_run_together(book):
             yield path
 
 
+def _duplicate_section_lists(book):
+    for path in book.docs.glob("Chapter */index.md"):
+        text = path.read_text(encoding="utf-8")
+        if "## Roadmap" in text and "## Sections" in text:
+            yield path
+
+
+def _review_heading_drift(book):
+    if book.id == "maths-applied":
+        return
+    for path in book.docs.glob("Chapter */Review/index.md"):
+        text = path.read_text(encoding="utf-8")
+        if "## Mixed practice — choose the method first" not in text:
+            yield path
+        elif "## What you can now do" not in text:
+            yield path
+
+
 def _breaches(label: str, finder, debt: dict[str, int]) -> Counter:
     actual: Counter = Counter()
     examples: dict[str, list[str]] = {}
@@ -252,3 +278,11 @@ def test_an_integral_separates_its_differential():
 
 def test_a_square_root_takes_its_whole_number():
     _breaches("sqrt run together with its number", _sqrt_run_together, SQRT_DEBT)
+
+
+def test_a_chapter_opener_does_not_list_its_sections_twice():
+    _breaches("duplicate Roadmap and Sections", _duplicate_section_lists, NAV_DEBT)
+
+
+def test_a_review_keeps_the_course_headings():
+    _breaches("Review heading drift", _review_heading_drift, REVIEW_HEADING_DEBT)
