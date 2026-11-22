@@ -1087,7 +1087,22 @@ maths-figure label {
 }
 
 /* The name index (`:::method-index`): every method once, by letter, each a link to
- * an entry the page carries. One line per letter; one column is the wall. */
+ * an entry the page carries.
+ *
+ * **The letters are the index, and each letter is a disclosure.** It used to print all
+ * 77 names as one line per letter: at 390px that was 992px of names under a title, a
+ * reader could not jump to a letter, and the index itself was a wall. The hook emits one
+ * `<details>` per letter now — the summary is the letter and its count, the content is
+ * that letter's names — so the closed index is a rail of twenty chips a few rows tall,
+ * and opening a letter costs no navigation at all: the names appear in place.
+ *
+ * Native `<details>`, so nothing here needs a script and a reader with scripting off has
+ * the same index. The first letter is open, which is the page's answer to "what is in
+ * here" before the reader has chosen anything.
+ *
+ * The chips are a flex row; the open letter takes the whole width (`flex-basis: 100%`)
+ * and reads as the panel it is. Nothing carries a colour: the rule, the radius and the
+ * ink tokens decide, and the chevron drawn below is the open/closed state. */
 .md-typeset .method-index-nav {
   max-width: var(--tb-measure);
   margin: 1rem 0 1.4rem;
@@ -1098,15 +1113,145 @@ maths-figure label {
   line-height: 1.5;
 }
 
-.md-typeset .method-index__line {
-  margin: 0.15rem 0;
-  text-indent: -1.4rem;
-  padding-left: 1.4rem;
+.md-typeset .method-index__letters {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.3rem;
+  align-items: flex-start;
+}
+
+/* The generic disclosure rule sets a measure, a margin, a border and padding; a chip is
+ * none of those. */
+.md-typeset .method-index__group {
+  flex: 0 0 auto;
+  max-width: none;
+  margin: 0;
+  padding: 0;
+  border: 0;
+  border-radius: 0;
+}
+
+.md-typeset .method-index__group[open] {
+  flex: 1 0 100%;
+}
+
+.md-typeset .method-index__group > summary {
+  display: flex;
+  align-items: baseline;
+  justify-content: center;
+  gap: 0.35rem;
+  /* The marker is drawn below instead, so it can turn; `list-style` says so even where
+   * `display: flex` would already suppress it. */
+  list-style: none;
+  /* The chip is a control on a phone: WCAG 2.2's target floor is 24px. */
+  min-height: 1.5rem;
+  padding: 0.1rem 0.5rem;
+  border: 1px solid var(--tb-rule);
+  border-radius: var(--tb-radius);
+  cursor: pointer;
+}
+
+.md-typeset .method-index__group > summary:focus-visible {
+  outline: 2px solid var(--tb-fig-accent);
+  outline-offset: 2px;
+}
+
+/* A chevron is the open/closed state, drawn from the summary's own ink rather than a
+ * colour or a glyph, and it stays beside the letter: a marker pushed to the far edge of
+ * a wide panel is hard to connect to the label it belongs to. */
+.md-typeset .method-index__group > summary::after {
+  content: "";
+  width: 0.3rem;
+  height: 0.3rem;
+  border-right: 1.5px solid currentColor;
+  border-bottom: 1.5px solid currentColor;
+  transform: rotate(45deg);
+}
+
+.md-typeset .method-index__group[open] > summary::after {
+  transform: rotate(225deg);
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  .md-typeset .method-index__group > summary::after {
+    transition: transform 0.15s ease-in-out;
+  }
+}
+
+/* Open, the summary is the panel's header rather than a chip: the names sit inside the
+ * same box, so the two borders must not double up. */
+.md-typeset .method-index__group[open] > summary {
+  justify-content: flex-start;
+  border-bottom: 0;
+  border-radius: var(--tb-radius) var(--tb-radius) 0 0;
 }
 
 .md-typeset .method-index__letter {
-  display: inline-block;
-  width: 1.4rem;
-  color: var(--tb-ink-soft);
+  color: var(--tb-ink);
   font-weight: 600;
+}
+
+.md-typeset .method-index__count {
+  color: var(--tb-ink-soft);
+  font-size: 0.9em;
+}
+
+.md-typeset .method-index__names {
+  margin: 0;
+  padding: 0.3rem 0.6rem 0.4rem;
+  border: 1px solid var(--tb-rule);
+  border-top: 0;
+  border-radius: 0 0 var(--tb-radius) var(--tb-radius);
+  list-style: none;
+  /* 1.8 takes a name's box to about 24.5px, the same floor the page's own contents list
+   * keeps; at 1.5 the link measured 20px. */
+  line-height: 1.8;
+  columns: 2;
+  column-gap: 1.6rem;
+}
+
+.md-typeset .method-index__names li {
+  break-inside: avoid;
+  margin: 0;
+}
+
+.md-typeset .method-index__names a {
+  /* The box follows the line box, so the target is the height the reader sees; a short
+   * name ("QZ", 18.9px) is narrower than the floor, so it keeps a minimum width too —
+   * the same pair the page's contents list uses. */
+  display: inline-block;
+  min-width: 1.5rem;
+  min-height: 1.5rem;
+}
+
+@media (max-width: 44rem) {
+  .md-typeset .method-index__names { columns: 1; }
+}
+
+/* On paper a closed letter prints as the chip it is, which is the same rule the page's
+ * other disclosures follow: a browser does not lay out a closed detail, and forcing one
+ * open here would mean reaching into `::details-content` outside the motion query the
+ * test guards. The sheet stays readable either way — every entry prints below in family
+ * order, with its name as a heading — so the rail only loses its boxes and chevrons, and
+ * the letter rail reads as the alphabetical summary it is. This block follows the screen
+ * rules rather than sitting in the print section above, because it overrides them at the
+ * same specificity and the cascade would otherwise give the screen the last word. */
+@media print {
+  .md-typeset .method-index-nav {
+    border: 0;
+  }
+  .md-typeset .method-index__group > summary,
+  .md-typeset .method-index__group[open] > summary {
+    padding: 0 0.7rem 0 0;
+    border: 0;
+    border-bottom: 0;
+  }
+  .md-typeset .method-index__group > summary::after {
+    content: none;
+  }
+  .md-typeset .method-index__names {
+    padding: 0;
+    border: 0;
+    columns: 3;
+  }
 }

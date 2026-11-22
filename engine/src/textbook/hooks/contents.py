@@ -87,8 +87,34 @@ def on_page_content(content: str, page, config, files) -> str:
 #: carries. It exists because *Methods, A to Z* is entered by name and sorted by family:
 #: at 390px the page is 22,773px and `Uzawa` was at 9,598px, so a reader holding a method
 #: name had find-in-page or the site search and nothing else.
+#:
+#: **One letter is one disclosure.** The first version printed every name in one line per
+#: letter: 77 names, 20 lines, 992px at 390px — a wall with no way to jump to a letter.
+#: The rail of letters is now the whole of what a reader sees, and each letter is a native
+#: ``<details>`` whose summary is that letter and its count, so the index costs a few rows
+#: of chips and one open list instead of twenty paragraphs, and the letter is the control.
+#: The first letter is open, so the index opens with names on it rather than with every
+#: group closed. No script: a reader with scripting off opens any letter with the same
+#: native disclosure, and every name still links the anchor the page carries.
 METHOD = re.compile(r'<h3 id="([^"]+)"[^>]*>(.*?)</h3>', re.S | re.I)
 METHOD_MARKER = re.compile(r"<p>\s*:::method-index\s*</p>", re.I)
+
+
+def _letter_group(letter: str, names: list[tuple[str, str]], first: bool) -> str:
+    """One letter's disclosure: the letter and its count, then every name as a link."""
+    links = "".join(
+        f'<li><a href="#{html.escape(anchor, quote=True)}">{html.escape(name)}</a></li>'
+        for name, anchor in names
+    )
+    unit = "method" if len(names) == 1 else "methods"
+    return (
+        f'<details class="method-index__group" id="letter-{letter.lower()}"'
+        f'{" open" if first else ""}>'
+        f'<summary><span class="method-index__letter">{letter}</span> '
+        f'<span class="method-index__count">{len(names)}'
+        f'<span class="visually-hidden"> {unit}</span></span></summary>'
+        f'<ul class="method-index__names">{links}</ul></details>'
+    )
 
 
 def render_methods(content: str) -> str:
@@ -98,19 +124,15 @@ def render_methods(content: str) -> str:
     )
     if len(entries) < 20:
         return ""
-    lines: dict[str, list[str]] = {}
+    groups: dict[str, list[tuple[str, str]]] = {}
     for name, anchor in entries:
-        letter = name[:1].upper()
-        lines.setdefault(letter, []).append(
-            f'<a href="#{html.escape(anchor, quote=True)}">{html.escape(name)}</a>'
-        )
+        groups.setdefault(name[:1].upper(), []).append((name, anchor))
     body = "".join(
-        f'<p class="method-index__line"><span class="method-index__letter">{letter}</span>'
-        f"{' · '.join(names)}</p>"
-        for letter, names in sorted(lines.items())
+        _letter_group(letter, names, index == 0)
+        for index, (letter, names) in enumerate(sorted(groups.items()))
     )
     return (
         '<nav class="method-index-nav" aria-label="Every method, by name">'
         '<p class="contents__title">Every method, by name</p>'
-        f"{body}</nav>"
+        f'<div class="method-index__letters">{body}</div></nav>'
     )

@@ -1173,7 +1173,10 @@ def test_the_name_index_lists_every_method_once_and_links_its_entry():
     assert ":::method-index" in page
 
     headings = re.findall(r'<a id="([\w-]+)"></a>\n+### (.+)', page)
-    assert len(headings) >= 20, f"only {len(headings)} method headings found"
+    # A floor, not a ceiling: the index is generated, so a method added to the page must
+    # appear in it with no second edit, and the 77 the page carries today are the count
+    # this test was written against.
+    assert len(headings) >= 77, f"only {len(headings)} method headings found"
     html = "".join(f'<h3 id="{anchor}">{title}</h3>' for anchor, title in headings)
     nav = contents.render_methods(html)
     assert nav.count("<a href=") == len(headings), "the index does not list every method"
@@ -1182,6 +1185,54 @@ def test_the_name_index_lists_every_method_once_and_links_its_entry():
 
     names = [re.sub(r"<[^>]+>", "", n) for n in re.findall(r'href="#[^"]+">([^<]+)</a>', nav)]
     assert names == sorted(names, key=str.lower), "the index is not alphabetical"
+
+
+def test_the_name_index_is_a_letter_rail_with_the_first_letter_open():
+    """Item 188: the index printed all 77 names in one line per letter, 992px of names
+    under a title at 390px, and a reader could not jump to a letter.
+
+    It is one `<details>` per letter now: the summary is the letter and its count, the
+    content is that letter's names, and the first letter is open. The markup is the
+    contract — a native disclosure needs no script, a reader with scripting off gets the
+    same index, and the closed index is a rail of chips rather than a wall of names —
+    so this pins the groups, the one open letter, and that every name is inside one.
+    """
+    from textbook.hooks import contents
+
+    book = map_book()
+    page = (book.docs / "techniques/index.md").read_text(encoding="utf-8")
+    headings = re.findall(r'<a id="([\w-]+)"></a>\n+### (.+)', page)
+    html = "".join(f'<h3 id="{anchor}">{title}</h3>' for anchor, title in headings)
+    nav = contents.render_methods(html)
+
+    groups = re.findall(
+        r'<details class="method-index__group" id="letter-([a-z])"( open)?>', nav
+    )
+    letters = sorted({title[0].upper() for _anchor, title in headings}, key=str.lower)
+    assert [letter.upper() for letter, _open in groups] == letters, (
+        "the index has no group for one of the page's initials"
+    )
+    assert [flag for _letter, flag in groups].count(" open") == 1, (
+        "exactly one letter opens, or the index is as long as the list it replaces"
+    )
+    assert groups[0][1] == " open", "the first letter is the one that opens"
+
+    # Every name is inside a letter's list, and each summary says which letter and how
+    # many names it holds — the count is the reader's only clue before it opens, and the
+    # unit is hidden text rather than an `aria-label`, so the visible "B 7" is the start of
+    # the name a screen reader hears ("B 7 methods") and voice control can say it.
+    assert nav.count('<ul class="method-index__names">') == len(letters)
+    assert nav.count("<li>") == len(headings)
+    counts: dict[str, int] = {}
+    for _anchor, title in headings:
+        counts[title[0].upper()] = counts.get(title[0].upper(), 0) + 1
+    for letter, count in counts.items():
+        unit = "method" if count == 1 else "methods"
+        assert (
+            f'<span class="method-index__letter">{letter}</span> '
+            f'<span class="method-index__count">{count}'
+            f'<span class="visually-hidden"> {unit}</span></span>'
+        ) in nav, f"the {letter} summary does not say it holds {count} {unit}"
 
 
 def test_the_system_index_is_derived_from_the_class_pages():
