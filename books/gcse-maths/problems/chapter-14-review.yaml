@@ -1,0 +1,114 @@
+# Mixed practice for the Chapter 14 Review (Simultaneous equations and iteration).
+#
+# SymPy verifies every system, linear equation, iteration value and arithmetic
+# result. The page asks the reader to name and justify a method for each item,
+# and question 6 also asks for an inverse-operation explanation; those judgements
+# and method choices cannot be proved by the verifier.
+chapter: 14
+symbols:
+  x: {real: true}
+  y: {real: true}
+problems:
+  - id: r1-linear-elimination
+    section: Review
+    tier: F
+    refs: [A19]
+    statement: 'Solve $x+y=12$ and $x-y=4$.'
+    answer_label: 'Solution of $x+y=12$ and $x-y=4$'
+    check:
+      kind: system
+      equations: ['x + y = 12', 'x - y = 4']
+      variables: [x, y]
+      answer: [{x: '8', y: '4'}]
+    answer_text: 'Add the equations to eliminate $y$: $2x=16$, so $x=8$ and $y=12-8=4$.'
+
+  - id: r2-linear-substitution
+    section: Review
+    tier: F
+    refs: [A19]
+    statement: 'Solve $y=3x-2$ and $x+y=10$.'
+    answer_label: 'Solution of $y=3x-2$ and $x+y=10$'
+    check:
+      kind: system
+      equations: ['y = 3*x - 2', 'x + y = 10']
+      variables: [x, y]
+      answer: [{x: '3', y: '7'}]
+    answer_text: 'Substitute $y=3x-2$ into $x+y=10$: $4x-2=10$, so $x=3$ and $y=3(3)-2=7$.'
+
+  - id: r3-line-intersection
+    section: Review
+    tier: F
+    refs: [A19]
+    statement: 'Find the intersection of $y=x+1$ and $y=-2x+7$.'
+    answer_label: 'Intersection of the two lines'
+    check:
+      kind: system
+      equations: ['y = x + 1', 'y = -2*x + 7']
+      variables: [x, y]
+      answer: [{x: '2', y: '3'}]
+    answer_text: 'Set the expressions for $y$ equal: $x+1=-2x+7$, so $3x=6$, $x=2$ and $y=3$. The intersection is $(2,3)$.'
+
+  - id: r4-linear-quadratic
+    section: Review
+    tier: H
+    refs: [A19]
+    statement: 'Solve $y=x+2$ and $y=x^2-2x-3$.'
+    answer_label: 'Solutions of the linear-quadratic pair'
+    check:
+      kind: system
+      equations: ['y = x + 2', 'y = x**2 - 2*x - 3']
+      variables: [x, y]
+      answer:
+        - {x: '(3 + sqrt(29))/2', y: '(7 + sqrt(29))/2'}
+        - {x: '(3 - sqrt(29))/2', y: '(7 - sqrt(29))/2'}
+    answer_text: 'Set equal: $x+2=x^2-2x-3$, giving $x^2-3x-5=0$. By the quadratic formula, $x=\frac{3+\sqrt{29}}{2}$ with $y=\frac{7+\sqrt{29}}{2}$, or $x=\frac{3-\sqrt{29}}{2}$ with $y=\frac{7-\sqrt{29}}{2}$.'
+
+  - id: r5-iteration-step
+    section: Review
+    tier: H
+    refs: [A20]
+    statement: 'Use $x_{n+1}=\frac12(x_n+6/x_n)$ with $x_0=2$ to find $x_3$.'
+    answer_label: 'Value of $x_3$ from the iteration'
+    check:
+      kind: all
+      checks:
+        - {kind: evaluate, expression: '(2 + 6/2)/2', answer: '5/2'}
+        - {kind: evaluate, expression: '(5/2 + 6/(5/2))/2', answer: '49/20'}
+        - {kind: evaluate, expression: '(49/20 + 6/(49/20))/2', answer: '4801/1960'}
+        - {kind: rounded, value: '4801/1960', rounded: '2.449', to: '0.001'}
+    answer_text: '$x_1=2.5$, $x_2=2.45$, and $x_3=\frac{4801}{1960}\approx2.449$ (to $3$ decimal places).'
+
+  - id: r6-brackets-inverse-check
+    section: Review
+    tier: F
+    refs: [N2, N3]
+    statement: 'Work out $3(2.5-0.7)$, then explain how inverse operations could check it.'
+    answer_label: 'Calculation and inverse check'
+    check:
+      kind: all
+      checks:
+        - {kind: evaluate, expression: '3*(2.5 - 0.7)', answer: '5.4'}
+        - {kind: evaluate, expression: '5.4/3 + 0.7', answer: '2.5'}
+    answer_text: '$3(1.8)=5.4$. To check with inverse operations, divide by $3$ to get $5.4\div3=1.8$, then add $0.7$ to recover $2.5$.'
+
+  - id: r7-temperature-rise
+    section: Review
+    tier: F
+    refs: [N1, N2]
+    statement: 'A temperature rises from $-4^\circ\text{C}$ by $9^\circ\text{C}$. State the new temperature.'
+    answer_label: 'New temperature'
+    check: {kind: evaluate, expression: '-4 + 9', answer: '5'}
+    answer_text: '$-4+9=5^\circ\text{C}$.'
+
+  - id: r8-solve-then-substitute
+    section: Review
+    tier: F
+    refs: [A17, A9]
+    statement: 'Solve $2x+3=15$. Then use your value as the $x$ coordinate in $y=2x-1$.'
+    answer_label: 'Values of $x$ and $y$'
+    check:
+      kind: all
+      checks:
+        - {kind: solve, equation: '2*x + 3 = 15', variable: x, answer: ['6']}
+        - {kind: evaluate, expression: '2*6 - 1', answer: '11'}
+    answer_text: '$2x=12$, so $x=6$. Substituting into $y=2x-1$ gives $y=2(6)-1=11$.'
