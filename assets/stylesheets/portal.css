@@ -10,20 +10,21 @@
 
 :root {
   --tb-measure: 62ch;
-  --tb-radius: 10px;
-  /* Portal-only surfaces, derived from the bundle so they follow any palette.
-   * Elevation is mixed from the ink token rather than a literal black, so it
-   * tracks the reader's bundle; on dark paper the same mix reads as a soft edge
-   * rather than a black drop shadow. */
+  /* The one corner radius, and the same value the books declare in `extra.css`:
+   * the front door and a page inside a book are one collection, and a card corner
+   * that changed between them read as two designs. The portal does not load
+   * `extra.css`, so the value is declared here as well; `tests/test_measure.py`
+   * fails if the two ever disagree. */
+  --tb-radius: 8px;
+  /* Portal-only surfaces, derived from the bundle so they follow any palette. The
+   * inset surface is mixed from the ink token rather than a literal black, so it
+   * tracks the reader's bundle. A card does not use it: it is flat paper with a
+   * rule. The token is kept for the two insets that are not cards. */
   --tb-card: color-mix(in srgb, var(--tb-ink) 4%, var(--tb-paper));
-  --tb-shadow: 0 1px 2px color-mix(in srgb, var(--tb-ink) 7%, transparent),
-    0 8px 24px color-mix(in srgb, var(--tb-ink) 5%, transparent);
 }
 
 [data-md-color-scheme="slate"] {
   --tb-card: color-mix(in srgb, var(--tb-ink) 7%, var(--tb-paper));
-  --tb-shadow: 0 1px 2px color-mix(in srgb, var(--tb-ink) 10%, transparent),
-    0 8px 24px color-mix(in srgb, var(--tb-ink) 8%, transparent);
 }
 
 * { box-sizing: border-box; }
@@ -105,7 +106,7 @@ body {
   height: 2.75rem;
   padding: 0;
   border: 1px solid var(--tb-rule);
-  border-radius: 999px;
+  border-radius: var(--tb-radius);
   background: var(--tb-card);
   color: var(--tb-ink-soft);
   cursor: pointer;
@@ -182,8 +183,10 @@ body {
    * minmax(280px, 26rem))` instead would drop three-card groups to two columns
    * at 1280px (3 x 416px > 1000px). */
   grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-  gap: 18px;
-  padding-bottom: 8px;
+  /* Wider than a bordered grid's gutter: with no box, the rule above a card and
+   * the space below the previous one are the whole separation. */
+  gap: 26px 24px;
+  padding-bottom: 10px;
 }
 
 .cards > .card:only-child {
@@ -192,6 +195,11 @@ body {
 
 /* --- card ----------------------------------------------------------------- */
 
+/* A card is a column of text under a hairline rule, not a box. The rule and the
+ * whitespace between cards do the work a shadow and a tinted fill used to, and a
+ * card carries the book's identity in one place: the mono kicker. Its accent is
+ * the only coloured thing in the card, so fifteen accented rules do not compete
+ * with the text they introduce. */
 .card {
   /* A card keeps the book's identity in dark mode rather than darkening the
    * light accent: both variations come from book.yaml. */
@@ -199,13 +207,9 @@ body {
 
   display: flex;
   flex-direction: column;
-  gap: 6px;
-  padding: 20px 20px 18px;
-  background: var(--tb-card);
-  border: 1px solid var(--tb-rule);
-  border-top: 3px solid var(--card-accent-active);
-  border-radius: var(--tb-radius);
-  box-shadow: var(--tb-shadow);
+  gap: 4px;
+  padding: 18px 0 6px;
+  border-top: 1px solid var(--tb-rule);
 }
 
 [data-md-color-scheme="slate"] .card {
@@ -213,7 +217,7 @@ body {
 }
 
 .card__title {
-  margin: 0;
+  margin: 2px 0 0;
   font-family: var(--tb-font-display, Georgia, serif);
   font-size: 1.15rem;
   line-height: 1.3;
@@ -223,11 +227,14 @@ body {
 
 .card__title a:hover,
 .card__title a:focus-visible {
-  color: var(--card-accent-active);
+  color: var(--tb-ink);
   text-decoration: underline;
   text-underline-offset: 3px;
 }
 
+/* The kicker: mono, uppercase, and the card's one accent. The book's subject and
+ * level are the card's filing label, so they sit above the title rather than
+ * under it as a second line of description. */
 .card__subject {
   margin: 0;
   font-family: var(--tb-font-mono, ui-monospace, monospace);
@@ -235,17 +242,17 @@ body {
   font-weight: 600;
   letter-spacing: 0.09em;
   text-transform: uppercase;
-  color: var(--tb-ink-soft);
+  color: var(--card-accent-active);
 }
 
 .card__body {
-  margin: 6px 0 0;
+  margin: 4px 0 0;
   color: var(--tb-ink-soft);
   font-size: 0.95rem;
 }
 
 .card__facts {
-  margin: 10px 0 0;
+  margin: 8px 0 0;
   padding: 0;
   list-style: none;
   display: flex;
@@ -264,37 +271,33 @@ body {
   color: var(--tb-rule);
 }
 
+/* An edition is a link, not a chip. A pill's border made a control out of a word
+ * that is already a destination; an underline says the same thing in the same
+ * language as the rest of the page, and it costs no colour. The row blockifies
+ * each link, so each carries WCAG 2.2's 24px target floor itself. */
 .card__profiles {
   display: flex;
   flex-wrap: wrap;
-  gap: 8px;
-  margin-top: 16px;
+  gap: 2px 16px;
+  margin-top: 12px;
 }
 
-.chip {
-  display: inline-block;
-  padding: 5px 14px;
-  border: 1px solid var(--card-accent-active);
-  border-radius: 999px;
-  color: var(--card-accent-active);
+.card__profiles a {
+  display: inline-flex;
+  align-items: center;
+  min-height: 1.5rem;
+  color: var(--tb-link);
   font-size: 0.9rem;
-  font-weight: 500;
-  text-decoration: none;
+  text-decoration: underline;
+  text-underline-offset: 3px;
 }
 
-.chip:hover,
-.chip:focus-visible {
-  background: var(--card-accent-active);
-  color: var(--tb-accent-ink);
-}
+.card__profiles a:hover,
+.card__profiles a:focus-visible { text-decoration-thickness: 2px; }
 
-.chip--primary {
-  background: var(--card-accent-active);
-  color: var(--tb-accent-ink);
-}
-
-.chip--primary:hover,
-.chip--primary:focus-visible { filter: brightness(1.1); }
+/* The edition the card's title opens. Weight is the distinction: a filled pill
+ * needed the accent twice, and the title already links here. */
+.card__profile--primary { font-weight: 600; }
 
 /* --- footer --------------------------------------------------------------- */
 

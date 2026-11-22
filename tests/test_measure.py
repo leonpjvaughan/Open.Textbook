@@ -100,6 +100,27 @@ def test_the_measure_is_declared_once_and_agrees_with_the_portal():
     )
 
 
+def test_the_radius_is_declared_once_and_agrees_with_the_portal():
+    """One collection has one corner.
+
+    The portal said 10px and the books 8px, so a card corner changed as the reader
+    moved from the front door into a book. The portal does not load `extra.css`, so
+    the value is written in both sheets — and pinned here, because two declarations
+    that agree today are two declarations that can drift.
+    """
+    from_extra = {
+        value for _selector, prop, value in declarations(EXTRA) if prop == "--tb-radius"
+    }
+    from_portal = {
+        value for _selector, prop, value in declarations(PORTAL) if prop == "--tb-radius"
+    }
+    assert len(from_extra) == 1, f"extra.css declares the radius as {sorted(from_extra)}"
+    assert from_portal == from_extra, (
+        f"portal.css says {sorted(from_portal)} and extra.css says {from_extra}; the two "
+        "sheets disagree about the reader's corner radius"
+    )
+
+
 def test_the_prose_is_capped_and_the_figures_are_not():
     """The column must not be capped at the prose measure.
 

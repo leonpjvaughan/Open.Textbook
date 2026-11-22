@@ -4,7 +4,7 @@ Working notes for the collection. One item per change. Items are ordered, not
 dated: the first is next. This file is ours, not the reader's — the voice rules
 in `AGENTS.md` do not apply here, but the engineering rules do.
 
-**This file holds open items only.** Closed items are deleted (git history keeps their diagnosis). A new item goes at the next number, with its diagnosis, its fix and its own done-means. Open: **187**, **188**, **192**, **200**, **203**, **217**, **218**, **219**, **220**, **221**.
+**This file holds open items only.** Closed items are deleted (git history keeps their diagnosis). A new item goes at the next number, with its diagnosis, its fix and its own done-means. Open: **187**, **188**, **192**, **200**, **203**, **217**, **218**, **219**, **220**, **221**, **222**.
 
 Accepted limitations live where the check that records them lives (`tests/test_verify_coverage.py`, `books/*/curriculum.yaml`), not here.
 
@@ -333,3 +333,35 @@ with scripting off then loses the only navigation on the page.
 - [ ] a phone reader with scripting off still sees the drawer open and can walk the
       chapter; the drawer still closes to `Contents` at phone width with scripting on.
 - [ ] a test records the measurement rather than asserting the fix in prose.
+
+## 222 — The books' own corners and pills were left outside the editorial wave
+
+**What is wrong.** Wave 4 (U14) gave the portal one radius and removed its pills, but
+the books' shared sheet kept its own set. Measured on 2026-11-22 in
+`assets/stylesheets/extra.css`: `border-radius` takes 3px (2 rules), 4px (3), 6px (6),
+12px (1), 16px (2), 999px (4) and one 0; `settings.css` ships three 6px corners
+against the portal's 8px token; `engine/src/textbook/css/shell.css` has a 6px and a
+0.6rem. The figure lab's part buttons (`.fig-parts button`) and the booklet's chips
+(`.bk-chip`) and meta tag (`.bk-item__meta`) are 999px pills — the same shape U14
+removed from the front door. The handoff (§7, note 4) said to keep the wave to the
+portal and the chapter opener and queue the rest rather than redesign everything at
+once.
+
+**The fix.** Replace every *surface* radius in `extra.css` and `settings.css` with
+`var(--tb-radius)`, and keep the micro-radii (inline code, `pre`, a table corner) only
+where a square corner would read as a rendering error, with the exception named in a
+comment. Turn the figure lab's part buttons and the booklet's chips into the same
+underlined link or square label the portal now uses, or drop the radius and keep the
+control's hit area. Extend
+`tests/test_measure.py::test_the_radius_is_declared_once_and_agrees_with_the_portal` to
+assert both shared sheets use the token plus the documented micro set, and that no
+`999px` survives.
+
+**Done means**
+
+- [ ] `grep -rn "border-radius" assets/stylesheets/ engine/src/textbook/css/` shows
+      only `var(--tb-radius)` and the documented micro set.
+- [ ] no `999px` remains in any shared stylesheet.
+- [ ] the radius test covers both sheets, and fails on a hard-coded value.
+- [ ] `scripts/preview-themes.sh`, `node tools/dist/cli.js targets site` and the figure
+      audits stay green.

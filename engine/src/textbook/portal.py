@@ -119,10 +119,10 @@ def card(book: books.Book) -> str:
     primary = book.default_profile
     href = f"{book.deploy_path(primary.id)}/"
 
-    chips = []
+    profiles = []
     for profile in book.profiles:
-        css = "chip chip--primary" if profile is primary else "chip"
-        chips.append(
+        css = "card__profile card__profile--primary" if profile is primary else "card__profile"
+        profiles.append(
             f'<a class="{css}" href="{book.deploy_path(profile.id)}/">'
             f"{html.escape(profile.name)}</a>"
         )
@@ -155,14 +155,14 @@ def card(book: books.Book) -> str:
     return "\n".join(
         [
             f'<article class="card" style="{styles}">',
+            f'  <p class="card__subject">{subject_line}</p>',
             '  <h3 class="card__title">'
             f'<a href="{href}">{title}</a></h3>',
-            f'  <p class="card__subject">{subject_line}</p>',
             f'  <p class="card__body">{html.escape(book.description)}</p>',
             '  <ul class="card__facts">',
             *[f"    <li>{fact}</li>" for fact in facts],
             "  </ul>",
-            f'  <nav class="card__profiles">{"".join(chips)}</nav>',
+            f'  <nav class="card__profiles" aria-label="Editions">{"".join(profiles)}</nav>',
             "</article>",
         ]
     )
