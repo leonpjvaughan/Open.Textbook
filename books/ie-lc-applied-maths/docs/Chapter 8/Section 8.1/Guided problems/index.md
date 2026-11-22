@@ -242,8 +242,8 @@ An antiderivative of $6 - 2t$ is $6t - t^2$.
 
 $$\int_0^3 (6 - 2t)\,dt = \left[6t - t^2\right]_0^3 = (18 - 9) - 0 = 9.$$
 
-The displacement is $9$ m. Integration reverses differentiation, and that is the
-tool Section 8.7 uses to solve differential equations.
+The displacement is $9$ m. Integration reverses differentiation, recovering a
+quantity from its rate of change.
 
 </details>
 </details>

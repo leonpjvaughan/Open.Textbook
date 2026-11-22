@@ -201,8 +201,11 @@ $4.22 \times 10^{7}\,\text{m}$ from the centre of the Earth.
    $1.2 \times 10^{4}\,\text{N}$. Explain why the force at the orbit is smaller, using
    the word inverse-square in your answer.
 
-Keep these values. Section 6.4 uses the force to find the satellite's speed, and
-Section 6.3 uses the distance to find the energy needed to lift it there.
+Keep these values. Section 6.4 uses the force to find the satellite's speed.
+
+<!-- tier:h -->
+Section 6.3 also uses the distance to find the energy needed to lift it there.
+<!-- /tier:h -->
 
 ## You should now be able to
 

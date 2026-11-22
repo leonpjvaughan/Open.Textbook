@@ -129,7 +129,11 @@ through a single narrow slit, and then through two narrow slits.
 3. The slit separation is much larger than 650 nm. Explain why the light still
    diffracts at each slit.
 
-Keep your answers. Section 10.5 replaces the two slits with many hundreds of slits.
+Keep your answers.
+
+<!-- tier:h -->
+Section 10.5 replaces the two slits with many hundreds of slits.
+<!-- /tier:h -->
 
 ## You should now be able to
 

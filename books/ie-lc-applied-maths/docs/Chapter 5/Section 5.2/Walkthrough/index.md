@@ -143,8 +143,11 @@ The skier is sliding, so friction is limiting. Find the friction force:
 
 $$F = \mu R = 0.20 \times 594.1 = \underline{\hspace{2cm}}\,\text{N}$$
 
-Keep that number. Section 5.3 uses it in $F = ma$ to find the acceleration, and
-Section 5.6 uses it in the terminal-speed calculation.
+Keep that number. Section 5.3 uses it in $F = ma$ to find the acceleration.
+
+<!-- tier:h -->
+Section 5.6 also uses it in the terminal-speed calculation.
+<!-- /tier:h -->
 
 ## You should now be able to
 

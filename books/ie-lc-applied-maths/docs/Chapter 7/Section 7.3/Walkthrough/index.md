@@ -136,8 +136,12 @@ Find the greatest speed at which the car can take the roundabout:
 $$v_{\max} = \sqrt{\mu g r} = \sqrt{0.8 \times 9.8 \times 20}
 = \underline{\hspace{2cm}}\ \text{m/s}$$
 
-Compare this with the car's speed of $10$ m/s. Section 7.4 asks how a banked
-bend changes the answer.
+Compare this with the car's speed of $10$ m/s to decide whether the car grips
+the roundabout.
+
+<!-- tier:h -->
+Section 7.4 asks how a banked bend changes the answer.
+<!-- /tier:h -->
 
 ## You should now be able to
 

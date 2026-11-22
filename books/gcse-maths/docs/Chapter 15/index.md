@@ -11,7 +11,7 @@ strand: algebra
 A function machine takes an input, applies a rule, and gives an output. A machine
 first doubles its input and adds $3$. A second machine subtracts $3$ and halves
 its input. Predict what happens when you use both machines, then decide whether
-their order matters. You can test your prediction in Section 15.1 and explain it
+their order matters. You can test your prediction with numbers and explain it
 with algebra by the end of this chapter.
 
 > **First contact:** make a prediction using the input $4$. You can estimate or

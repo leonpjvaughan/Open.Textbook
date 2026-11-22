@@ -209,8 +209,7 @@ $$F = ma = 1200 \times 2.0 = 2400\,\text{N}$$
 
 This force is the **resultant**, the engine thrust minus the weight. The engine
 therefore has to give more than 2400 N, because gravity pulls the satellite down as
-well. That difference is the whole reason a launch is hard, and it returns in
-Section 6.3.
+well. Overcoming that weight is why launching a satellite takes so much thrust.
 
 </details>
 </details>

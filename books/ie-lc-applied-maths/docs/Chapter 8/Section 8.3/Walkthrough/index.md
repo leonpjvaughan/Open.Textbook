@@ -134,7 +134,11 @@ with $u_0 = 400$ kg on the day the factory closes.
    you expect to remove more pollutant in the first ten days, the daily model or
    the continuous one? Write down your prediction and a reason.
 
-Keep your prediction. Section 8.8 compares the two models and checks it.
+Keep your prediction so you can test it once you calculate the ten-day values.
+
+<!-- tier:h -->
+Section 8.8 compares the two models in detail.
+<!-- /tier:h -->
 
 ## You should now be able to
 

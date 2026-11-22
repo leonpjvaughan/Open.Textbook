@@ -107,7 +107,9 @@ triangles and plain on the top and bottom triangles.
 3. Is a diagonal an axis of symmetry? Give a reason.
 4. How many axes of symmetry does the crest have?
 
+<!-- tier:h -->
 In Section 19.6 you will put two transformations together.
+<!-- /tier:h -->
 
 ## You should now be able to
 

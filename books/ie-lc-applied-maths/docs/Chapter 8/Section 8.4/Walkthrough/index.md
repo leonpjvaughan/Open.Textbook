@@ -139,7 +139,12 @@ $$u_{n+1} = 0.95u_n, \qquad u_0 = 400\ \text{kg}.$$
 3. Use the closed form to find $u_{10}$, the amount left after ten days.
 4. Does the sequence settle to the fixed point? Explain in one sentence.
 
-Keep your value of $u_{10}$. Section 8.8 compares it with the continuous model.
+Keep your value of $u_{10}$ and compare it with $P(10) = 400e^{-0.05 \times 10}$
+from Section 8.2.
+
+<!-- tier:h -->
+Section 8.8 compares the two models further.
+<!-- /tier:h -->
 
 ## You should now be able to
 

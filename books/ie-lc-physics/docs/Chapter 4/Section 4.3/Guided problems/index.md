@@ -126,8 +126,7 @@ $E_k = E_p = mgh = 0.25 \times 9.8 \times 1.8$.
 
 $$E_k = mgh = 0.25 \times 9.8 \times 1.8 = 4.4\,\text{J}$$
 
-Working in energy rather than in speed saves a square root. This is the habit that
-Section 4.5 turns into a method.
+Working directly in energy rather than finding the speed first saves a square root.
 
 </details>
 </details>

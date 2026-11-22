@@ -86,7 +86,11 @@ object speeds up, the drag grows, and the acceleration falls.
 
 The object still speeds up, but more and more slowly. If it falls far enough,
 the drag grows until it equals the weight, the resultant becomes zero, and the
-acceleration becomes zero. Section 5.6 takes that final state.
+acceleration becomes zero. The object then falls at a steady speed.
+
+<!-- tier:h -->
+Section 5.6 examines that final state.
+<!-- /tier:h -->
 
 **Example 1.** A ball of mass $2$ kg falls through the air. The drag force is
 $5$ N. Find the acceleration. Take $g = 9.8$ m/s².
@@ -141,8 +145,12 @@ $$D = 0.30 \times 10^2 = \underline{\hspace{2cm}}\,\text{N}$$
 
 Compare that with the $224.2$ N resultant along the slope. At $10$ m/s the drag
 is small, which is why the acceleration at the start is close to the value from
-Section 5.3. As the skier speeds up, the drag grows, and Section 5.6 finds the
-speed at which it takes over.
+Section 5.3. As the skier speeds up, the drag grows until it balances the
+downward resultant.
+
+<!-- tier:h -->
+Section 5.6 finds the speed at which that balance happens.
+<!-- /tier:h -->
 
 ## You should now be able to
 

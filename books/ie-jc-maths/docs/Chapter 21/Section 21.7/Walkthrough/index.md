@@ -111,8 +111,10 @@ outcomes.
 3. One outcome is in both. Use the addition rule to count the outcomes with a 6 or
    an A, then write the probability of a prize.
 
+<!-- tier:h -->
 In Section 21.8 you will use that probability to predict how many prizes the
 organiser needs.
+<!-- /tier:h -->
 
 ## You should now be able to
 

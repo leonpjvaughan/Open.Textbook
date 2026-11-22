@@ -145,9 +145,12 @@ Back to the chapter problem. The caravan battery supplies a 12 Ω lamp, a 6.0 Ω
 a 4.0 Ω heater, all in parallel across 12 V. Each has the full 12 V across it.
 
 Find the power of each appliance and the total power. Then find the energy transferred in
-a three-hour evening, in kilowatt-hours. Keep the total power, because Section 14.5 uses
-the current from the battery to explain why the real power is lower than this ideal
-value.
+a three-hour evening, in kilowatt-hours. Keep the total power.
+
+<!-- tier:h -->
+Section 14.5 uses the current from the battery to explain why the real power is lower
+than this ideal value.
+<!-- /tier:h -->
 
 ## You should now be able to
 
