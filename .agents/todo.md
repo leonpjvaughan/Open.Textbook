@@ -135,8 +135,8 @@ because `preview --audit` is blind to pseudo-elements. Plan: P1; the hue questio
 **Done means**
 
 - [ ] a Learn page shows its common-error callout as a distinct block in both schemes;
-- [ ] the before/after pair is re-rendered at 1280 and 390 in both schemes (the frames described
-      in `ux-plan.md` §3) and the after reads as a block a reader can find while scanning;
+- [ ] the before/after pair is re-rendered at 1280 and 390 in both schemes and the after reads
+      as a block a reader can find while scanning;
 - [ ] the hook's test reports 757 + 1 classified and the other 4,272 quote lines untouched;
 - [ ] if the tint is taken, `preview --audit` passes for the six bundles in both schemes;
 - [ ] no figure changes, and `tests/test_figures.py` is untouched.
@@ -164,13 +164,14 @@ Plan: P4.
 
 **What is wrong.** The 2026-11 cleanup deleted the historical corpus (`research/review/`,
 `research/curriculum/`, `research/design/`, `research/pedagogy-audit/`, `.agents/planning/`,
-`.agents/todo-closed.md`, the two handoff files, `solvers/otkd/docs/` — 38k lines) and rewrote
+`.agents/todo-closed.md`, the two handoff files, `solvers/otkd/HANDOFF.md` and three
+documents beside it — 38k lines) and rewrote
 the root reference docs (`ideas.md` 56.7k → 3.8k, `SHAPE.md` 22.3k → 4.8k, `DECISIONS.md` 23k →
 3.0k, `PROBLEMS.md` 25.2k → 5.1k, `DEPLOY.md` 24.5k → 4.6k, `BOOKLETS.md` 8.5k → 2.0k), cut
 every figure module's boilerplate header (275 files, 72 KB) and stripped untyped comments from
 the shipped kit (116 → 82 KB, code-identical after minify). Two things did not finish:
 
-- `AGENTS.md` files total **127 KB**, from 177 KB. Each is still 60–75% of its old size, not the
+- `AGENTS.md` files total **126 KB**, from 177 KB. Each is still 60–75% of its old size, not the
   55% target: `assets/AGENTS.md` 13.5k, `books/gcse-physics/AGENTS.md` 8.0k,
   `books/numerical-methods/AGENTS.md` 10.5k, `solvers/otkd/AGENTS.md` 6.3k,
   `solvers/AGENTS.md` 5.1k, `books/ie-lc-maths/AGENTS.md` 2.8k, and the four small Irish/book

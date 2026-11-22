@@ -18,12 +18,9 @@ changing a contract, and update them in the same commit as the code.
 | Adding or changing an example | [`docs/config-layer.md`](docs/config-layer.md) §10, [`docs/problem-mapping.md`](docs/problem-mapping.md) §8 |
 | Changing the CLI, the API or the errors | [`docs/entry-points.md`](docs/entry-points.md), [`docs/naming.md`](docs/naming.md) |
 | Touching the compiled kernel | [`docs/wasm.md`](docs/wasm.md) |
-| Releasing, branching, versioning | [`docs/releasing.md`](docs/releasing.md) |
-| Wondering why something is the way it is | [`docs/decisions.md`](docs/decisions.md) — every choice, including the ones implementation changed |
 | Picking up unfinished work | [`docs/follow-ups.md`](docs/follow-ups.md) |
 | Dynamics | [`docs/dynamics.md`](docs/dynamics.md) |
 | The UI, if it is ever built | [`docs/ui.md`](docs/ui.md) |
-| The frozen specification from the author | [`HANDOFF.md`](HANDOFF.md) |
 
 ## Ground rules
 
@@ -43,17 +40,16 @@ changing a contract, and update them in the same commit as the code.
 - **Type hints everywhere; pydantic for anything a user writes in YAML.** A configuration error
   is a list of faults naming file, key and expectation — never a silent default.
 - **Comments say why.** Match the tone of the documents: calm, specific, no exclamation marks.
-- **Change a contract and you change `HANDOFF.md`'s consequences**, not the file. Record the
-  divergence in `docs/decisions.md` with the reason.
+- **Change a contract deliberately.** Update the document that states it in the same commit and
+  give the reason in the commit message.
 
 ## Solver findings are teaching material
 
 This package exists to be explained, so a finding is not finished when the code is fixed — it is
-finished when the textbook can teach it. The textbook is `maths-site`, and what it asks of the
-package is [`docs/handoff-from-maths-site.md`](docs/handoff-from-maths-site.md).
+finished when the textbook can teach it.
 
-- Record a finding in `docs/decisions.md` as usual, **and** say in the handoff whether the book
-  could use it: a figure, a worked step, a "here is how you would know" box.
+- Say in the commit whether `books/maths-applied/` could use the finding: a figure, a worked
+  step, a "here is how you would know" box.
 - The ones worth the most have a **tell** — a measurement that separates two explanations. The
   energy error that did not shrink when the step was quartered. The residual that did not move
   when the load changed by three orders of magnitude. The iteration trace that differed between
@@ -68,16 +64,16 @@ package is [`docs/handoff-from-maths-site.md`](docs/handoff-from-maths-site.md).
 $ uv sync                                   # install this project (from solvers/otkd)
 $ uv run pytest -q                          # the whole suite, ~2 minutes
 $ uv run --project solvers/otkd pytest -q   # the same, from the repository root
-
-`uv run pytest` **from this directory** uses this project's `testpaths`; from the
-repository root it collects the site's tests against this environment. The CI job starts
-pytest here for that reason.
 $ uv run otkd check examples/double-wishbone
 $ uv run otkd solve examples/double-wishbone
 $ uv run otkd emit examples/double-wishbone examples/double-wishbone/out.js
 $ uv run otkd emit <model> <dir> --format wasm    # generated Rust kernel
 $ uv run python scripts/build_release.py --version <v> --out dist --package
 ```
+
+`uv run pytest` from this directory uses this project's `testpaths`; from the
+repository root it collects the site's tests against this environment. The CI job
+starts pytest here for that reason.
 
 The version is the **collection's tag**, read by `hatch-vcs` into
 `src/open_textbook/otkd/_version.py` at install time; no version text is written by

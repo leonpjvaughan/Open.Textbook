@@ -602,8 +602,7 @@ def _equilibrium_solver(problem: Problem, model: Model) -> list[str]:
     The first version projected the potential onto a one-dimensional null space found by a single
     linear solve. That was right for the tie-rod corner and wrong for a bush at a ball joint, where
     three compliant components make the free space three-dimensional and an SVD basis that rotates
-    with `q` makes the residual non-smooth — the Python solver failed the same way, and
-    [`decisions.md`](../docs/decisions.md) round 23 has the measurements.
+    with `q` makes the residual non-smooth — the Python solver failed the same way.
 
     The Jacobian is differentiated numerically, as in Python: the analytic one is what stalled.
     """

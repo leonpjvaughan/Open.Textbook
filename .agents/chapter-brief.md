@@ -6,11 +6,8 @@ curriculum, and do not touch work outside your chapter.
 
 ## Your input
 
-Invoke with `BOOK_ID=<book>` and `CHAPTER_ID=<n>`.
-
-At the time of writing the books are `gcse-maths`, `gcse-physics`, `a-level-maths`,
-`a-level-physics`, `proofs`, `ie-jc-maths`, `ie-lc-maths`, `ie-lc-applied-maths` and
-`ie-lc-physics`. `ls books/` is the authority; the list here is a convenience.
+The task names one book and one chapter. `ls books/` is the authority for which
+books exist.
 
 Read, in order:
 
@@ -18,7 +15,7 @@ Read, in order:
    the ~¼ budget for extras). This is binding. The **Irish books** section tells you
    what is different about the four `ie-*` books.
 2. `research/pedagogy.md` — the evidence and its limits, so you do not overclaim.
-3. `AGENTS.md` — folder conventions and the content contract.
+3. `books/AGENTS.md` — folder conventions and the content contract.
 4. `books/<book>/curriculum.yaml` — find `chapters[?id=<n>]`. This is your scope: every
    section, its `tier`, its `refs`, and the chapter's `anchor`, `application`,
    `relevance_prompt` and `tool` metadata.

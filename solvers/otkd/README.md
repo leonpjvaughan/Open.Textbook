@@ -20,21 +20,16 @@ chapters draw are produced here as a static ES module.
 
 Implemented: the config layer, the symbolic derivation, Newton, least squares, SVD
 diagnosis, the compliant equilibrium, the sweep, the outputs, the ES-module emitter, a
-generated Rust/WASM kernel, the CLI, four examples and the acceptance tests.
+generated Rust/WASM kernel, the CLI, six examples and the acceptance tests.
 `uv run pytest -q` passes.
 
 The package lives at `solvers/otkd` in **Open.Textbook**. Its version is the collection's tag, read by
 `hatch-vcs` from the repository root; the commit is the provenance. The bundle
-the book runs is built from this tree by `scripts/build-otkd.sh`. See
-[`docs/releasing.md`](docs/releasing.md) for the record of the separate release this replaces.
+the book runs is built from this tree by `scripts/build-otkd.sh`.
 
-Designed but not built: dynamics ([`docs/dynamics.md`](docs/dynamics.md)) and the
-interactive config UI ([`docs/ui.md`](docs/ui.md), held back deliberately). The compiled
-kernel that the browser UI and the book's interactive figures would share is built —
-[`docs/wasm.md`](docs/wasm.md).
-
-The handoff predates the move and keeps its own wording. Read its references to the package
-as this directory, and its repository links as `solvers/otkd` in Open.Textbook.
+Designed but not built: the interactive config UI ([`docs/ui.md`](docs/ui.md), held back
+deliberately). Dynamics is built ([`docs/dynamics.md`](docs/dynamics.md)), as is the
+compiled kernel the book's interactive figures share ([`docs/wasm.md`](docs/wasm.md)).
 
 ## Using it
 
@@ -106,9 +101,7 @@ for, and it is not an apology.
 ## Design record
 
 [`docs/`](docs/README.md) holds the specification of the config layer, the mapping from a
-model to each chapter's problem, the dynamics design, the entry points, and
-[`decisions.md`](docs/decisions.md) with the reasoning for every choice — including the ones
-the implementation changed.
+model to each chapter's problem, the dynamics design, and the entry points.
 
 ## Licence
 

@@ -51,8 +51,8 @@ DETAIL_SKELETON = [
     "## Back to the map",
 ]
 
-#: A listing longer than this is folded. The handoff's rule: a short listing is not
-#: folded, because a fold around a five-line program costs a click and saves nothing.
+#: A listing longer than this is folded. A short listing is not folded, because a fold
+#: around a five-line program costs a click and saves nothing.
 FOLD_AFTER = 10
 
 #: What a detail page's program may import: the standard library and `sympy`. The
@@ -295,7 +295,7 @@ def sourced_pages(text: str, references: list[dict[str, object]]) -> list[str]:
 def detail_page_offences(text: str) -> list[str]:
     """Everything a detail page must satisfy, as messages a reader of the failure can act on.
 
-    The six headings are the handoff's skeleton, in the handoff's order. A detail page
+    The six headings are the page skeleton, in this order. A detail page
     that invents its own order is the second half of the same defect the class pages
     fixed: a set of pages about one book stops being a map.
     """

@@ -2,8 +2,8 @@
 
 **Status:** implemented, except where a section says otherwise. Companion to
 [`config-layer.md`](config-layer.md), which defines what a model *is*. This document
-defines what is *built* from one, and how each of the four chapters' problems is selected
-and solved. It refines handoff §5 and does not change the export contract in §7.
+defines what is *built* from one, and how the book's problems are selected and solved. It
+does not change the export contract.
 
 Read the first document first. The vocabulary here — body, site, component, mode, row,
 actuator, driver — is defined there.
@@ -54,7 +54,7 @@ One block of **seven** per moving body: three for translation, four for a unit q
 q_body = (p_x, p_y, p_z, q_w, q_x, q_y, q_z)      R = R(q),  |q| = 1
 ```
 
-**Why a quaternion and not a rotation vector.** The handoff's design said a rotation vector
+**Why a quaternion and not a rotation vector.** The original design said a rotation vector
 (three parameters, no extra row). It is smaller and it is what a textbook would write, but the
 exponential map's derivative is `0/0` at zero rotation — which is exactly the design position
 that every model is assembled, validated and first solved at. Making that safe needs custom
@@ -153,7 +153,7 @@ belongs to the dynamics work (`dynamics.md` §6).
 
 > **A `spring` component does not contribute a row in the sense above.** It changes the
 > family of problem being solved, and pretending otherwise produces a model in which
-> compliance has no effect. This is the one place where the handoff's sketch is not
+> compliance has no effect. This is the one place where the original sketch is not
 > implementable as written, so it is set out separately in §5.
 
 ### 3.6 Names, order, units
@@ -212,7 +212,7 @@ that is redundant and says "Newton" cannot be. The study can only *remove* rows
 independent row would silently remove a real constraint, which is the single most
 expensive kind of quiet mistake available here.
 
-The handoff's `mobility == number of driven coordinates` becomes `n − rank(J_hard) ==
+The original `mobility == number of driven coordinates` becomes `n − rank(J_hard) ==
 #position actuators`, which is the same statement for §1 and the correct one for §2 (see
 `config-layer.md` §9 rule 6 for why the Grübler count cannot express it).
 
@@ -269,14 +269,14 @@ Three properties fall out, and they are the chapter:
   from a formulation that already exists, rather than from a kinematic special case that
   has to be discarded.
 
-**This makes a load mandatory for §4, and that is a finding about the handoff, not an
+**This makes a load mandatory for §4, and that is a finding about the model, not an
 implementation detail.** With no applied load the only term in `∇Π` is the spring itself,
 `−δ/c`, so stationarity gives `δ = 0` at every stiffness: the compliant model is
-indistinguishable from the rigid one, the stiffness ladder is flat, and acceptance test 4
-passes vacuously. §4 only
+indistinguishable from the rigid one, the stiffness ladder is flat, and the
+compliant-limit test passes vacuously. §4 only
 means something if the wheel is loaded — a vertical wheel load and a lateral force at the
 contact patch are the honest minimum — and it is then the *deflection under load* that
-shrinks as the bushes stiffen. `decisions.md` §3 records the decision.
+shrinks as the bushes stiffen.
 
 Row scaling is part of this. `∇Π` carries a factor `1/c_i` per contributing spring, so each
 equilibrium row is multiplied by the **smallest compliance** among the springs that
@@ -313,11 +313,11 @@ export's `iterations[]` needs.
 
 **`cost` is not a measure of correctness here.** The extra row of a redundant-but-
 consistent model is satisfied to roundoff, so `cost ≈ 0` whether the solution is right or
-not; the *solution* is what the acceptance tests compare. `cost` is exported because the
+not; the *solution* is what the tests compare. `cost` is exported because the
 book's §2 figure shows the residual history, and a reader is entitled to see that the
 floor is machine epsilon rather than a physical number. If the book wants a physical
 floor, the model has to be *inconsistent* by a small amount, which is a different model and
-a different claim (`decisions.md` §7).
+a different claim.
 
 ### `svd_diagnose(problem, q)`
 
@@ -528,7 +528,7 @@ Three things this example makes possible that the arm-driven one cannot:
 | `sweep.frames[].theta` | the driver's applied value at that frame, in `meta.travel.unit` (the key keeps its frozen name; the unit field is what says whether it is an angle or a length) |
 | `sweep.frames[].lbj/ubj/wc/tro` | world positions of the sites/points, `[x, z]` |
 | `sweep.frames[].points` | all `geometry.points`, transformed by their body's pose |
-| `sweep.frames[].camber/toe/ic/rc/track` | `analysis/outputs.py`, from the pose (`HANDOFF.md` §6) |
+| `sweep.frames[].camber/toe/ic/rc/track` | `analysis/outputs.py`, from the pose |
 | `sweep.frames[].contact` | `[x, z]` of the contact patch: the solved point when the topology names a `road`, the lowest point of the wheel otherwise |
 | `sweep.frames[].branchChanged` | §7 |
 | `iterations[]` | `newton`/`least_squares` history at the frame nearest `theta = 0` |
