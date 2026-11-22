@@ -1,0 +1,254 @@
+# Mixed practice for the Chapter 20 Review.
+#
+# Ten questions, one record each, in the order they appear on the Review page.
+# Five ask for a quantity: an activity (1), a half-life (2), an age (3), a
+# fraction remaining (7) and a corrected count rate (8). Where the answer is a
+# quantity with a unit, a `dimensions` check proves the magnitude and the unit and
+# a `sigfigs` check proves the rounding. A count rate in counts per minute is not
+# an SI unit, so questions 8 and 9 use `evaluate`, which proves the arithmetic of
+# the subtraction and the halving; the unit lives in the statement and the prose.
+# Questions 4, 5, 6, 9 and 10 ask for a nuclear equation, a reason or a judgement,
+# so each carries a `structured` component.
+#
+# Honest limit: this proves arithmetic, dimensions and the declared conventions,
+# not physics. A `structured` check proves only that a model answer contains its
+# declared steps and concepts, in order. The mass and atomic numbers of a nuclear
+# equation are checked by the two `evaluate` records in question 4; the symbols
+# themselves are prose, and are read by a human.
+#
+# The data are read as the Review page states them: the half-life of carbon-14 is
+# 5730 years, which carries three significant figures, so the age in question 3 is
+# given to three.
+chapter: 20
+problems:
+  - id: c20-r1-activity
+    section: Review
+    tier: O
+    refs: ['4.4']
+    statement: 'A source has a half-life of 8 days and an initial activity of 640 Bq. Find its activity after 32 days.'
+    answer_label: 'The activity after 32 days'
+    check:
+      kind: all
+      checks:
+        - kind: dimensions
+          expression: A0 / 2**4
+          values:
+            A0: {value: '640', unit: Bq}
+          answer: {value: '40', unit: Bq}
+        - kind: sigfigs
+          value: '640 / 2**4'
+          figures: 2
+          answer: '4.0e1'
+          convention: round-once
+    answer_text: 'The time is $\dfrac{32}{8} = 4$ half-lives. The activity halves at every half-life: $640 \to 320 \to 160 \to 80 \to 40$, so the activity after 32 days is $4.0 \times 10^1\,\text{Bq}$. The count falls by a factor of $2^4 = 16$, not by a factor of 4: the halving compounds, it does not add.'
+
+  - id: c20-r2-half-life
+    section: Review
+    tier: O
+    refs: ['4.4']
+    statement: 'A sample''s activity falls from 200 Bq to 25 Bq in 45 minutes. Find the half-life.'
+    answer_label: 'The half-life'
+    check:
+      kind: all
+      checks:
+        - kind: dimensions
+          expression: t / 3
+          values:
+            t: {value: '45', unit: min}
+          answer: {value: '15', unit: min}
+        - kind: sigfigs
+          value: '45 / 3'
+          figures: 2
+          answer: '15'
+          convention: round-once
+    answer_text: 'The activity has fallen by a factor of $\dfrac{200}{25} = 8$. Three halvings give a factor of $2^3 = 8$, so three half-lives have passed. The half-life is therefore $\dfrac{45}{3} = 15$ minutes. Check it forwards: $200 \to 100 \to 50 \to 25$ Bq in three steps of 15 minutes, which is 45 minutes.'
+
+  - id: c20-r3-carbon-age
+    section: Review
+    tier: O
+    refs: ['4.4']
+    statement: 'A wooden artefact gives 12 counts per minute; living wood gives 48. The half-life of carbon-14 is 5730 years. Find the age.'
+    answer_label: 'The age of the artefact'
+    check:
+      kind: all
+      checks:
+        - kind: evaluate
+          expression: '2 * 5730'
+          answer: '11460'
+        - kind: sigfigs
+          value: '2 * 5730'
+          figures: 3
+          answer: '1.15e4'
+          convention: round-once
+    answer_text: 'The count rate has fallen by a factor of $\dfrac{48}{12} = 4$, which is two halvings, because $2^2 = 4$. Two half-lives have passed, so the age is $2 \times 5730 = 11\,460$ years, which is $1.15 \times 10^4$ years to three significant figures. The assumption is that the artefact has not gained or lost carbon since it was made, and that the carbon-14 in the atmosphere has stayed at the same level.'
+
+  - id: c20-r4-alpha-equation
+    section: Review
+    tier: O
+    refs: ['4.4']
+    statement: 'Write the nuclear equation for the alpha decay of radon-222.'
+    answer_label: 'The nuclear equation'
+    check:
+      kind: all
+      checks:
+        - kind: evaluate
+          expression: '222 - 218'
+          answer: '4'
+        - kind: evaluate
+          expression: '86 - 84'
+          answer: '2'
+        - kind: structured
+          requires: [parent, products, balance]
+          concepts: [alpha-particle-is-helium-nucleus, mass-number-conserved, atomic-number-conserved]
+          points:
+            - id: parent
+              text: 'Radon-222 has mass number 222 and atomic number 86, so it is written with 222 above and 86 below the symbol Rn.'
+              concepts: [mass-number-conserved, atomic-number-conserved]
+            - id: products
+              text: 'An alpha particle is a helium nucleus, with mass number 4 and atomic number 2. The daughter nucleus is polonium-218, with mass number 218 and atomic number 84.'
+              concepts: [alpha-particle-is-helium-nucleus]
+            - id: balance
+              text: 'The mass numbers balance: 222 = 218 + 4. The atomic numbers balance: 86 = 84 + 2. Both totals must be the same on each side, so the equation is Rn-222 gives Po-218 plus an alpha particle.'
+              concepts: [mass-number-conserved, atomic-number-conserved]
+    answer_text: |-
+      Radon-222 has mass number 222 and atomic number 86. An alpha particle is a
+      helium nucleus, with mass number 4 and atomic number 2, so the daughter
+      nucleus must have mass number $222 - 4 = 218$ and atomic number
+      $86 - 2 = 84$, which is polonium-218. The equation is
+
+      $${}^{222}_{86}\text{Rn} \to {}^{218}_{84}\text{Po} + {}^{4}_{2}\text{He}$$
+
+      The mass numbers balance, $222 = 218 + 4$, and the atomic numbers balance,
+      $86 = 84 + 2$. Both totals must be the same on each side, and the alpha
+      particle carries away the difference.
+
+  - id: c20-r5-beta-change
+    section: Review
+    tier: O
+    refs: ['4.4']
+    statement: 'A nucleus emits a beta particle. State what happens to its atomic number and its mass number, and why.'
+    answer_label: 'What beta emission does to the numbers'
+    check:
+      kind: structured
+      requires: [atomic-number, mass-number, why]
+      concepts: [neutron-to-proton, electron-emitted, mass-number-unchanged]
+      points:
+        - id: atomic-number
+          text: 'The atomic number rises by one. A neutron in the nucleus turns into a proton, and the proton stays, so the nucleus has one more proton than before.'
+          concepts: [neutron-to-proton]
+        - id: mass-number
+          text: 'The mass number stays the same. A neutron has become a proton, and those two have almost the same mass, so the number of nucleons is unchanged.'
+          concepts: [mass-number-unchanged, neutron-to-proton]
+        - id: why
+          text: 'The electron is created in the nucleus when the neutron changes, and it leaves as the beta particle. The electron carries charge -1, so the charge balances: the nucleus gains +1 and the emitted electron takes -1 away.'
+          concepts: [electron-emitted, neutron-to-proton]
+    answer_text: |-
+      The atomic number rises by one and the mass number stays the same. A neutron
+      in the nucleus turns into a proton, which stays, so there is one more proton
+      than before; a neutron and a proton have almost the same mass, so the number
+      of nucleons does not change. The electron is created in the nucleus when the
+      neutron changes, and it leaves as the beta particle. The charge balances: the
+      nucleus gains $+1$ and the emitted electron carries $-1$ away. For carbon-14
+      the equation is
+
+      $${}^{14}_{6}\text{C} \to {}^{14}_{7}\text{N} + {}^{0}_{-1}e$$
+
+  - id: c20-r6-heating
+    section: Review
+    tier: O
+    refs: ['4.4']
+    statement: 'Explain why heating a radioactive source to 500 °C does not change its activity.'
+    answer_label: 'Why heating does not change the activity'
+    check:
+      kind: structured
+      requires: [where-energy-goes, scale-of-nuclear-energy, randomness]
+      concepts: [decay-is-nuclear-not-chemical, thermal-energy-too-small, spontaneous-decay]
+      points:
+        - id: where-energy-goes
+          text: 'Heating adds thermal energy to the atoms, which makes them vibrate faster. That energy goes into the electrons and the motion of the whole atom, not into the nucleus.'
+          concepts: [decay-is-nuclear-not-chemical]
+        - id: scale-of-nuclear-energy
+          text: 'The energy released in a decay is millions of electronvolts, while 500 °C adds only a fraction of an electronvolt of thermal energy per atom. The thermal energy is far too small to change a nuclear process.'
+          concepts: [thermal-energy-too-small, decay-is-nuclear-not-chemical]
+        - id: randomness
+          text: 'Decay is spontaneous and random: it happens when a particular nucleus is ready, and nothing outside it decides the moment. Heating cannot make nuclei decay faster or slower, so the activity stays the same.'
+          concepts: [spontaneous-decay]
+    answer_text: 'Heating adds thermal energy to the atoms, which makes them vibrate faster. That energy goes into the electrons and the motion of the whole atom, not into the nucleus. The energy released in a decay is millions of electronvolts, while 500 °C adds only a fraction of an electronvolt of thermal energy per atom, so the thermal energy is far too small to change a nuclear process. Decay is spontaneous and random: it happens when a particular nucleus is ready, and nothing outside it decides the moment. Heating cannot make nuclei decay faster or slower, so the activity stays the same.'
+
+  - id: c20-r7-fraction-remaining
+    section: Review
+    tier: O
+    refs: ['4.4']
+    statement: 'A radioactive source has a half-life of 5.3 years. What fraction of it remains after 21.2 years?'
+    answer_label: 'The fraction remaining'
+    check:
+      kind: all
+      checks:
+        - kind: evaluate
+          expression: '21.2 / 5.3'
+          answer: '4'
+        - kind: evaluate
+          expression: '(1/2)**4'
+          answer: '1/16'
+    answer_text: 'The time is $\dfrac{21.2}{5.3} = 4$ half-lives. Each half-life halves what is left, so the fraction remaining is $\left(\dfrac{1}{2}\right)^4 = \dfrac{1}{16}$. That is 6.25% of the original source. The atoms that have decayed have not disappeared: they have changed into a different element, and the count of the original atoms is what has fallen.'
+
+  - id: c20-r8-background
+    section: Review
+    tier: O
+    refs: ['4.4']
+    statement: 'The background count in a laboratory is 20 counts per minute. A source gives a total count of 180 counts per minute. Find the corrected count rate of the source.'
+    answer_label: 'The corrected count rate'
+    check:
+      kind: evaluate
+      expression: '180 - 20'
+      answer: '160'
+    answer_text: 'The detector counts the source and the background together, so the source''s own rate is the total minus the background: $180 - 20 = 160$ counts per minute. The background must be measured with the source removed, and it is subtracted, not ignored, because it would otherwise be counted as part of the source. The corrected rate still has an uncertainty from the random nature of the counts, which is why a count is usually taken over several minutes.'
+
+  - id: c20-r9-not-run-out
+    section: Review
+    tier: O
+    refs: ['4.4']
+    statement: 'A student says a source has "run out" after 10 half-lives. Explain why that is not what happens.'
+    answer_label: 'Why a source does not run out after 10 half-lives'
+    check:
+      kind: all
+      checks:
+        - kind: evaluate
+          expression: '(1/2)**10'
+          answer: '1/1024'
+        - kind: structured
+          requires: [fraction-left, why-undetectable, real-limit]
+          concepts: [exponential-decay, never-reaches-zero, background-limit]
+          points:
+            - id: fraction-left
+              text: 'After 10 half-lives the fraction left is (1/2) to the power 10, which is 1/1024, about 0.1%. Some of the original atoms are still there.'
+              concepts: [exponential-decay, never-reaches-zero]
+            - id: why-undetectable
+              text: 'Halving never reaches zero. The activity keeps falling, but it does not stop, and the count from the remaining atoms becomes smaller with every half-life.'
+              concepts: [never-reaches-zero]
+            - id: real-limit
+              text: 'The real limit is detection. Once the count is comparable with the background, the source can no longer be told apart from it, so it is unusable rather than empty. For carbon-14 that limit is about 50 000 years, which is roughly nine half-lives.'
+              concepts: [background-limit]
+    answer_text: 'After 10 half-lives the fraction left is $\left(\dfrac{1}{2}\right)^{10} = \dfrac{1}{1024}$, about 0.1%. Some of the original atoms are still there. Halving never reaches zero: the activity keeps falling, but it does not stop. The real limit is detection. Once the count is comparable with the background, the source can no longer be told apart from it, so it is unusable rather than empty. For carbon-14 that limit is about 50 000 years, roughly nine half-lives, which is why radiocarbon dating stops there.'
+
+  - id: c20-r10-smoke-detector
+    section: Review
+    tier: O
+    refs: ['4.4']
+    statement: 'A smoke detector contains americium-241, which emits alpha particles. State one reason an alpha emitter suits this use and one hazard it creates.'
+    answer_label: 'One reason it suits, and one hazard'
+    check:
+      kind: structured
+      requires: [reason, hazard, why-hazard-depends-on-range]
+      concepts: [strong-ionisation, short-range, shielding, inhalation-risk]
+      points:
+        - id: reason
+          text: 'An alpha emitter suits the detector because alpha particles ionise air strongly, so the small current through the air can be detected reliably, and because their range is only a few centimetres, so the radiation does not leave the casing.'
+          concepts: [strong-ionisation, short-range]
+        - id: hazard
+          text: 'The hazard is that an alpha emitter is dangerous if it gets inside the body, for example if the source is opened and the material is inhaled or swallowed. Inside the body there is no dead layer of skin to stop it, and its strong ionisation damages living tissue.'
+          concepts: [inhalation-risk, strong-ionisation]
+        - id: why-hazard-depends-on-range
+          text: 'Outside the body the short range is a protection, since a sheet of paper or the plastic case stops the alpha particles. That is why the hazard depends on how the source is used: the same short range that makes it safe in a sealed detector makes it serious once it is inside.'
+          concepts: [short-range, shielding, inhalation-risk]
+    answer_text: 'An alpha emitter suits the detector because alpha particles ionise air strongly, so the small current through the air can be detected reliably, and because their range is only a few centimetres, so the radiation does not leave the casing. The hazard is that an alpha emitter is dangerous if it gets inside the body, for example if the source is opened and the material is inhaled or swallowed. Inside the body there is no dead layer of skin to stop it, and its strong ionisation damages living tissue. Outside the body the short range is a protection, since a sheet of paper or the plastic case stops the alpha particles. The same short range that makes it safe in a sealed detector makes it serious once it is inside.'

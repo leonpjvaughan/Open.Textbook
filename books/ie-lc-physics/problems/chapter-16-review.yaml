@@ -1,0 +1,303 @@
+# Mixed practice for the Chapter 16 Review.
+#
+# Ten questions, one record each, in the order they appear on the Review page.
+# Every numeric record carries a `dimensions` check, which proves the magnitude
+# and the unit, and a `sigfigs` check, which proves the single rounding to the
+# figures the data support. A value built on a square root carries a tolerance,
+# because sqrt(2) is irrational and the check then proves the rounding across the
+# whole band. Question 3 asks for an explanation with no number in it, so it is a
+# `structured` check alone.
+#
+# Honest limit: this proves arithmetic, dimensions and the declared conventions,
+# not physics. A `structured` check proves only that a model answer contains its
+# declared steps and concepts, in order. Question 6 has two routes that differ in
+# the last figure: squaring the rounded r.m.s. current gives 88 W, and squaring
+# the exact value gives 90 W. The bank proves the round-once answer, 90 W, and
+# the page says why the other route is a rounding error rather than a second
+# answer.
+#
+# The data are read as the Review page states them: question 4 takes the peak
+# output as 12 V and the frequency as 25 revolutions each second, and question 6
+# takes the peak current as 6.0 A and the resistance as 5.0 Ω.
+chapter: 16
+problems:
+  - id: c16-r1-flux
+    section: Review
+    tier: O
+    refs: ['3.6']
+    statement: 'A coil of area 0.025 m² lies at right angles to a field of flux density 0.40 T. Calculate the flux through it.'
+    answer_label: 'The flux through the coil'
+    check:
+      kind: all
+      checks:
+        - kind: dimensions
+          expression: B * A
+          values:
+            B: {value: '0.40', unit: T}
+            A: {value: '0.025', unit: m^2}
+          answer: {value: '0.010', unit: Wb}
+        - kind: sigfigs
+          value: '0.40 * 0.025'
+          figures: 2
+          answer: '0.010'
+          convention: round-once
+    answer_text: 'The flux is $\Phi = BA = 0.40 \times 0.025 = 0.010\,\text{Wb}$. The plane of the coil is at right angles to the field, so the field passes straight through it and the angle between the field and the normal to the coil is zero. That is why the cosine factor is 1 and the flux is at its largest for this field and this area.'
+
+  - id: c16-r2-faraday
+    section: Review
+    tier: O
+    refs: ['3.6']
+    statement: 'A coil of 80 turns has a flux change of 0.015 Wb through each turn in 0.050 s. Calculate the average induced emf.'
+    answer_label: 'The average induced emf'
+    check:
+      kind: all
+      checks:
+        - kind: dimensions
+          expression: N * dphi / dt
+          values:
+            N: {value: '80'}
+            dphi: {value: '0.015', unit: Wb}
+            dt: {value: '0.050', unit: s}
+          answer: {value: '24', unit: V}
+        - kind: sigfigs
+          value: '80 * 0.015 / 0.050'
+          figures: 2
+          answer: '24'
+          convention: round-once
+    answer_text: 'Faraday''s law gives $E = N\dfrac{\Delta\Phi}{\Delta t} = 80 \times \dfrac{0.015}{0.050} = 80 \times 0.30 = 24\,\text{V}$. The 80 turns matter because each turn links the same changing flux, so the emfs add. The value is an average over the 0.050 s: the emf is larger at the moment the flux changes fastest and smaller at the ends of the interval.'
+
+  - id: c16-r3-lenz-reversal
+    section: Review
+    tier: O
+    refs: ['3.6']
+    statement: 'A bar magnet is pushed towards a coil, and then pulled away. Explain why the induced current reverses direction.'
+    answer_label: 'Why the induced current reverses'
+    check:
+      kind: structured
+      requires: [approach, recede, reversal]
+      concepts: [lenzs-law, opposing-the-change, flux-increasing-and-decreasing]
+      points:
+        - id: approach
+          text: 'As the magnet approaches, the flux through the coil increases. By Lenz''s law the induced current flows in the direction whose field opposes the increase, so it pushes back against the approaching magnet.'
+          concepts: [lenzs-law, opposing-the-change, flux-increasing-and-decreasing]
+        - id: recede
+          text: 'As the magnet moves away, the flux decreases. The induced current now flows so that its field opposes the decrease, which means it tries to pull the magnet back.'
+          concepts: [opposing-the-change, flux-increasing-and-decreasing]
+        - id: reversal
+          text: 'Opposing an increase and opposing a decrease need fields in opposite directions, so the current must flow the opposite way round the coil. The reversal is not a new effect: it is Lenz''s law applied to the two opposite changes.'
+          concepts: [lenzs-law, opposing-the-change]
+    answer_text: 'As the magnet approaches, the flux through the coil increases. By Lenz''s law the induced current flows in the direction whose field opposes the increase, so it pushes back against the approaching magnet. As the magnet moves away, the flux decreases, and the induced current now flows so that its field opposes the decrease, which means it tries to pull the magnet back. Opposing an increase and opposing a decrease need fields in opposite directions, so the current must flow the opposite way round the coil. The reversal is Lenz''s law applied to the two opposite changes, and it is conservation of energy at work: the current never helps the change that made it.'
+
+  - id: c16-r4-generator-period-rms
+    section: Review
+    tier: O
+    refs: ['3.6']
+    statement: 'A generator turns at 25 revolutions each second and its peak output is 12 V. Calculate the period of the output and its r.m.s. value.'
+    answer_label: 'The period and the r.m.s. value'
+    check:
+      kind: all
+      checks:
+        - kind: dimensions
+          expression: 1 / f
+          values:
+            f: {value: '25', unit: Hz}
+          answer: {value: '0.040', unit: s}
+        - kind: sigfigs
+          value: '1 / 25'
+          figures: 2
+          answer: '0.040'
+          convention: round-once
+        - kind: dimensions
+          expression: V0 / sqrt(2)
+          values:
+            V0: {value: '12', unit: V}
+          answer: {value: '8.485', unit: V}
+          tolerance: '0.001'
+        - kind: sigfigs
+          value: '12 / sqrt(2)'
+          figures: 2
+          tolerance: '0.001'
+          answer: '8.5'
+          convention: round-once
+    answer_text: 'The period is the time for one revolution: $T = \dfrac{1}{f} = \dfrac{1}{25} = 0.040\,\text{s}$. The r.m.s. value is $V_{\text{rms}} = \dfrac{V_0}{\sqrt{2}} = \dfrac{12}{\sqrt{2}} = 8.5\,\text{V}$. The r.m.s. value is the steady voltage that would transfer the same power to a resistor, which is why the mains is described by its r.m.s. value and not its peak. The peak is $\sqrt{2}$ times larger, about 1.4 times.'
+
+  - id: c16-r5-transformer-voltage
+    section: Review
+    tier: O
+    refs: ['3.6']
+    statement: 'A transformer has 400 turns on the primary and 100 turns on the secondary. The primary voltage is 240 V. Calculate the secondary voltage.'
+    answer_label: 'The secondary voltage'
+    check:
+      kind: all
+      checks:
+        - kind: dimensions
+          expression: Vp * Ns / Np
+          values:
+            Vp: {value: '240', unit: V}
+            Ns: {value: '100'}
+            Np: {value: '400'}
+          answer: {value: '60', unit: V}
+        - kind: sigfigs
+          value: '240 * 100 / 400'
+          figures: 2
+          answer: '6.0e1'
+          convention: round-once
+    answer_text: 'The turns ratio fixes the voltage ratio, so $\dfrac{V_s}{V_p} = \dfrac{N_s}{N_p}$ and $V_s = 240 \times \dfrac{100}{400} = 60\,\text{V}$, which is $6.0 \times 10^1\,\text{V}$ to two significant figures. The secondary has fewer turns, so this is a step-down transformer. A transformer works only on alternating current, because a steady flux induces no emf.'
+
+  - id: c16-r6-rms-power
+    section: Review
+    tier: O
+    refs: ['3.6']
+    statement: 'An alternating current has a peak value of 6.0 A and flows through a 5.0 Ω resistor. Calculate the r.m.s. current and the average power transferred to the resistor.'
+    answer_label: 'The r.m.s. current and the average power'
+    check:
+      kind: all
+      checks:
+        - kind: dimensions
+          expression: I0 / sqrt(2)
+          values:
+            I0: {value: '6.0', unit: A}
+          answer: {value: '4.243', unit: A}
+          tolerance: '0.001'
+        - kind: sigfigs
+          value: '6.0 / sqrt(2)'
+          figures: 2
+          tolerance: '0.001'
+          answer: '4.2'
+          convention: round-once
+        - kind: dimensions
+          expression: I0**2 * R / 2
+          values:
+            I0: {value: '6.0', unit: A}
+            R: {value: '5.0', unit: ohm}
+          answer: {value: '90', unit: W}
+        - kind: sigfigs
+          value: '6.0**2 * 5.0 / 2'
+          figures: 2
+          answer: '9.0e1'
+          convention: round-once
+    answer_text: 'The r.m.s. current is $I_{\text{rms}} = \dfrac{I_0}{\sqrt{2}} = \dfrac{6.0}{\sqrt{2}} = 4.2\,\text{A}$. The average power is $P = I_{\text{rms}}^2R = \dfrac{I_0^2R}{2} = \dfrac{36 \times 5.0}{2} = 90\,\text{W}$, which is $9.0 \times 10^1\,\text{W}$ to two significant figures. Squaring the rounded 4.2 A gives 88 W, which is a rounding error rather than a second answer: keep the unrounded value until the last step. Use the r.m.s. current in a power equation, never the peak, because the peak lasts for an instant and the power is an average over the cycle.'
+
+  - id: c16-r7-parallel-circuit
+    section: Review
+    tier: O
+    refs: ['3.3']
+    statement: 'A 6.0 Ω resistor and a 3.0 Ω resistor are connected in parallel across a 12 V supply. Calculate the combined resistance, the current from the supply and the total power.'
+    answer_label: 'The combined resistance, the current and the power'
+    check:
+      kind: all
+      checks:
+        - kind: dimensions
+          expression: 1 / (1 / R1 + 1 / R2)
+          values:
+            R1: {value: '6.0', unit: ohm}
+            R2: {value: '3.0', unit: ohm}
+          answer: {value: '2.0', unit: ohm}
+        - kind: sigfigs
+          value: '1 / (1 / 6.0 + 1 / 3.0)'
+          figures: 2
+          answer: '2.0'
+          convention: round-once
+        - kind: dimensions
+          expression: V / R
+          values:
+            V: {value: '12', unit: V}
+            R: {value: '2.0', unit: ohm}
+          answer: {value: '6.0', unit: A}
+        - kind: sigfigs
+          value: '12 / 2.0'
+          figures: 2
+          answer: '6.0'
+          convention: round-once
+        - kind: dimensions
+          expression: V * I
+          values:
+            V: {value: '12', unit: V}
+            I: {value: '6.0', unit: A}
+          answer: {value: '72', unit: W}
+        - kind: sigfigs
+          value: '12 * 6.0'
+          figures: 2
+          answer: '72'
+          convention: round-once
+    answer_text: 'For resistors in parallel, $\dfrac{1}{R} = \dfrac{1}{6.0} + \dfrac{1}{3.0} = \dfrac{1}{6.0} + \dfrac{2}{6.0} = \dfrac{3}{6.0}$, so $R = 2.0\,\Omega$. Check it: the answer must be smaller than the smallest resistor, 3.0 Ω, and 2.0 Ω is. The current from the supply is $I = \dfrac{V}{R} = \dfrac{12}{2.0} = 6.0\,\text{A}$, and the total power is $P = VI = 12 \times 6.0 = 72\,\text{W}$. The 6.0 Ω resistor takes 2.0 A and the 3.0 Ω resistor takes 4.0 A, which adds to the 6.0 A from the supply.'
+
+  - id: c16-r8-wire-force
+    section: Review
+    tier: O
+    refs: ['3.5']
+    statement: 'A straight wire of length 0.30 m carries a current of 2.5 A at right angles to a field of flux density 0.20 T. Calculate the force on the wire.'
+    answer_label: 'The force on the wire'
+    check:
+      kind: all
+      checks:
+        - kind: dimensions
+          expression: B * I * l
+          values:
+            B: {value: '0.20', unit: T}
+            I: {value: '2.5', unit: A}
+            l: {value: '0.30', unit: m}
+          answer: {value: '0.15', unit: N}
+        - kind: sigfigs
+          value: '0.20 * 2.5 * 0.30'
+          figures: 2
+          answer: '0.15'
+          convention: round-once
+    answer_text: 'This is the motor effect from Chapter 15: a current in a magnetic field feels a force. $F = BIl = 0.20 \times 2.5 \times 0.30 = 0.15\,\text{N}$. The wire is at right angles to the field, so the full force acts, and the direction comes from Fleming''s left-hand rule.'
+
+  - id: c16-r9-spring-energy
+    section: Review
+    tier: O
+    refs: ['1.3']
+    statement: 'A spring of spring constant 250 N/m is stretched by 0.12 m. Calculate the energy stored in it.'
+    answer_label: 'The energy stored in the spring'
+    check:
+      kind: all
+      checks:
+        - kind: dimensions
+          expression: 0.5 * k * x**2
+          values:
+            k: {value: '250', unit: N/m}
+            x: {value: '0.12', unit: m}
+          answer: {value: '1.8', unit: J}
+        - kind: sigfigs
+          value: '0.5 * 250 * 0.12**2'
+          figures: 2
+          answer: '1.8'
+          convention: round-once
+    answer_text: 'The energy stored is $E = \frac{1}{2}kx^2 = \frac{1}{2} \times 250 \times 0.12^2 = 1.8\,\text{J}$. This is the elastic potential energy from Chapter 5, and it is the area under the force-extension graph, not the force itself. The force at full stretch is $kx = 30\,\text{N}$, which is not the answer to a question about energy.'
+
+  - id: c16-r10-transformer-current
+    section: Review
+    tier: O
+    refs: ['3.6']
+    statement: 'A transformer has a primary voltage of 240 V, a primary current of 2.0 A and 500 turns on the primary. The secondary has 50 turns. Calculate the secondary voltage and the secondary current.'
+    answer_label: 'The secondary voltage and current'
+    check:
+      kind: all
+      checks:
+        - kind: dimensions
+          expression: Vp * Ns / Np
+          values:
+            Vp: {value: '240', unit: V}
+            Ns: {value: '50'}
+            Np: {value: '500'}
+          answer: {value: '24', unit: V}
+        - kind: sigfigs
+          value: '240 * 50 / 500'
+          figures: 2
+          answer: '24'
+          convention: round-once
+        - kind: dimensions
+          expression: Vp * Ip / Vs
+          values:
+            Vp: {value: '240', unit: V}
+            Ip: {value: '2.0', unit: A}
+            Vs: {value: '24', unit: V}
+          answer: {value: '20', unit: A}
+        - kind: sigfigs
+          value: '240 * 2.0 / 24'
+          figures: 2
+          answer: '2.0e1'
+          convention: round-once
+    answer_text: 'The voltage follows the turns ratio: $V_s = 240 \times \dfrac{50}{500} = 24\,\text{V}$. An ideal transformer transfers all the power, so $V_pI_p = V_sI_s$ and $I_s = \dfrac{240 \times 2.0}{24} = 20\,\text{A}$, which is $2.0 \times 10^1\,\text{A}$ to two significant figures. Check the power on each side: $240 \times 2.0 = 480\,\text{W}$ and $24 \times 20 = 480\,\text{W}$, so the power is unchanged. The voltage falls by a factor of 10 and the current rises by the same factor.'

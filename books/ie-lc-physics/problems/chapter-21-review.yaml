@@ -1,0 +1,293 @@
+# Mixed practice for the Chapter 21 Review.
+#
+# Twelve questions, one record each, in the order they appear on the Review page.
+# Seven ask for a quantity: an energy from a mass (1), an energy from a mass
+# defect (2), a total energy from a count of fissions (4), a binding energy per
+# nucleon (6), a fusion energy (7), a fraction remaining (8) and two energies from
+# earlier chapters (9, 10). Each numeric record carries a `dimensions` check,
+# which proves the magnitude and the unit, and a `sigfigs` check, which proves the
+# rounding. Questions 3, 5, 11 and 12 ask for an argument or a judgement, so each
+# is a `structured` check.
+#
+# Honest limit: this proves arithmetic, dimensions and the declared conventions,
+# not physics. A `structured` check proves only that a model answer contains its
+# declared steps and concepts, in order. Question 11 asks which of two reports to
+# trust: the verifier can prove that the questions to ask are present, and nothing
+# about the answer.
+#
+# The data are read as the Review page states them: 1 u = 1.66e-27 kg and
+# 1 MeV = 1.6e-13 J, as the questions give them. A dimension check that carries
+# the unit `u` or `MeV` uses the exact SI value of that unit, so it declares a
+# tolerance wide enough to hold the rounded value the question supplies; the
+# `sigfigs` record then proves the rounding on the supplied value.
+chapter: 21
+problems:
+  - id: c21-r1-energy-of-a-gram
+    section: Review
+    tier: O
+    refs: ['4.5']
+    statement: 'Calculate the energy equivalent of 1.0 g of matter. Take $c = 3.0 \times 10^8$ m/s.'
+    answer_label: 'The energy equivalent of 1.0 g'
+    check:
+      kind: all
+      checks:
+        - kind: dimensions
+          expression: m * c**2
+          values:
+            m: {value: '1.0e-3', unit: kg}
+            c: {value: '3.0e8', unit: m/s}
+          answer: {value: '9.0e13', unit: J}
+        - kind: sigfigs
+          value: '1.0e-3 * (3.0e8)**2'
+          figures: 2
+          answer: '9.0e13'
+          convention: round-once
+    answer_text: 'The mass must be in kilograms: 1.0 g is $1.0 \times 10^{-3}\,\text{kg}$. Then $E = mc^2 = 1.0 \times 10^{-3} \times (3.0 \times 10^8)^2 = 9.0 \times 10^{13}\,\text{J}$. That is 90 000 GJ from one gram, which is why a small mass defect in a nucleus releases so much energy. It also shows why the mass change in a chemical reaction is too small to measure: the energy released is tiny compared with $c^2$.'
+
+  - id: c21-r2-mass-defect
+    section: Review
+    tier: O
+    refs: ['4.5']
+    statement: 'A reaction has a mass defect of 0.0305 u. Find the energy released in joules. Take $1\ \text{u} = 1.66 \times 10^{-27}$ kg.'
+    answer_label: 'The energy released'
+    check:
+      kind: all
+      checks:
+        - kind: dimensions
+          expression: dm * c**2
+          values:
+            dm: {value: '0.0305', unit: u}
+            c: {value: '3.0e8', unit: m/s}
+          answer: {value: '4.557e-12', unit: J}
+          tolerance: '1e-14'
+        - kind: sigfigs
+          value: '0.0305 * 1.66e-27 * (3.0e8)**2'
+          figures: 2
+          answer: '4.6e-12'
+          convention: round-once
+    answer_text: 'First change the mass defect to kilograms: $0.0305 \times 1.66 \times 10^{-27} = 5.06 \times 10^{-29}\,\text{kg}$. Then $E = mc^2 = 5.06 \times 10^{-29} \times (3.0 \times 10^8)^2 = 4.6 \times 10^{-12}\,\text{J}$. The energy is released because the products are more tightly bound than the reactants and have slightly less mass; the missing mass is the energy that left. In electronvolts this is about 28 MeV, the scale of a nuclear reaction.'
+
+  - id: c21-r3-fission-and-fusion
+    section: Review
+    tier: O
+    refs: ['4.6']
+    statement: 'Explain the difference between nuclear fission and nuclear fusion, and say why both release energy.'
+    answer_label: 'The difference, and why both release energy'
+    check:
+      kind: structured
+      requires: [fission, fusion, why-both-release]
+      concepts: [heavy-nucleus-splits, light-nuclei-join, binding-energy-per-nucleon, peak-at-iron]
+      points:
+        - id: fission
+          text: 'Fission splits a heavy nucleus, such as uranium-235, into two lighter nuclei and a few neutrons, when it absorbs a neutron. The products are smaller than the original.'
+          concepts: [heavy-nucleus-splits]
+        - id: fusion
+          text: 'Fusion joins two light nuclei, such as two hydrogen isotopes, into one heavier nucleus. The product is larger than either nucleus that made it.'
+          concepts: [light-nuclei-join]
+        - id: why-both-release
+          text: 'Binding energy per nucleon rises steeply for light nuclei, peaks near iron and falls slowly for heavy ones. A nucleus that moves towards the peak is more tightly bound, so it has less mass per nucleon and the difference leaves as energy. Fission moves a very heavy nucleus towards the peak, and fusion moves very light nuclei towards it, so both release energy.'
+          concepts: [binding-energy-per-nucleon, peak-at-iron]
+    answer_text: 'Fission splits a heavy nucleus, such as uranium-235, into two lighter nuclei and a few neutrons when it absorbs a neutron. Fusion joins two light nuclei, such as two hydrogen isotopes, into one heavier nucleus. Binding energy per nucleon rises steeply for light nuclei, peaks near iron and falls slowly for heavy ones. A nucleus that moves towards the peak is more tightly bound, so it has less mass per nucleon, and the difference leaves as energy. Fission moves a very heavy nucleus towards the peak from above, and fusion moves very light nuclei towards it from below, so both release energy. The mass defect is the energy, by $E = mc^2$, in both cases.'
+
+  - id: c21-r4-total-energy
+    section: Review
+    tier: O
+    refs: ['4.5']
+    statement: 'A sample contains $5.0 \times 10^{20}$ nuclei, and each fission releases $3.2 \times 10^{-11}$ J. Find the total energy released.'
+    answer_label: 'The total energy released'
+    check:
+      kind: all
+      checks:
+        - kind: dimensions
+          expression: N * E
+          values:
+            N: {value: '5.0e20'}
+            E: {value: '3.2e-11', unit: J}
+          answer: {value: '1.6e10', unit: J}
+        - kind: sigfigs
+          value: '5.0e20 * 3.2e-11'
+          figures: 2
+          answer: '1.6e10'
+          convention: round-once
+    answer_text: 'The total energy is the number of fissions multiplied by the energy from each: $E = 5.0 \times 10^{20} \times 3.2 \times 10^{-11} = 1.6 \times 10^{10}\,\text{J}$. That is 16 GJ, the energy from about 500 kg of coal, from a sample of only a fraction of a gram of uranium. The count of nuclei, not their mass, is what sets the total, so the calculation works for any sample once you know how many nuclei it holds.'
+
+  - id: c21-r5-moderator-and-rods
+    section: Review
+    tier: O
+    refs: ['4.6']
+    statement: 'Explain why the moderator is needed in a reactor, and why the control rods are needed as well.'
+    answer_label: 'Why the moderator and the control rods are both needed'
+    check:
+      kind: structured
+      requires: [moderator-job, control-rod-job, why-both]
+      concepts: [slow-neutrons-fission-better, absorb-surplus-neutrons, steady-chain-reaction]
+      points:
+        - id: moderator-job
+          text: 'Fission releases fast neutrons, and uranium-235 is far more likely to fission when it absorbs a slow neutron. The moderator slows the neutrons without absorbing many of them, usually by collisions with light nuclei in water or graphite.'
+          concepts: [slow-neutrons-fission-better]
+        - id: control-rod-job
+          text: 'Boron or cadmium control rods absorb neutrons. Pushing them in removes more neutrons and lowers the rate; pulling them out leaves more neutrons and raises it.'
+          concepts: [absorb-surplus-neutrons]
+        - id: why-both
+          text: 'The moderator makes each generation of neutrons able to cause fission, which raises the rate towards a runaway chain reaction. The control rods hold the number of neutrons steady at exactly one per fission, so the output stays constant. One makes the reaction possible and the other keeps it under control.'
+          concepts: [steady-chain-reaction, slow-neutrons-fission-better, absorb-surplus-neutrons]
+    answer_text: 'Fission releases fast neutrons, and uranium-235 is far more likely to fission when it absorbs a slow neutron. The moderator slows the neutrons without absorbing many of them, usually by collisions with light nuclei in water or graphite. The boron or cadmium control rods absorb neutrons: pushing them in removes more neutrons and lowers the rate, pulling them out leaves more and raises it. The moderator makes each generation of neutrons able to cause fission, which pushes the rate towards a runaway chain reaction. The control rods hold the number of neutrons at exactly one per fission, so the output stays constant. One makes the reaction possible and the other keeps it under control.'
+
+  - id: c21-r6-binding-per-nucleon
+    section: Review
+    tier: O
+    refs: ['4.5']
+    statement: 'A nucleus has a binding energy of $1.2 \times 10^{-11}$ J and contains 16 nucleons. Find its binding energy per nucleon in MeV.'
+    answer_label: 'The binding energy per nucleon'
+    check:
+      kind: all
+      checks:
+        - kind: dimensions
+          expression: E / n
+          values:
+            E: {value: '1.2e-11', unit: J}
+            n: {value: '16'}
+          answer: {value: '7.5e-13', unit: J}
+        - kind: sigfigs
+          value: '1.2e-11 / 16 / 1.6e-13'
+          figures: 2
+          answer: '4.7'
+          convention: round-once
+    answer_text: 'The binding energy per nucleon is $\dfrac{1.2 \times 10^{-11}}{16} = 7.5 \times 10^{-13}\,\text{J}$ per nucleon. In MeV, divide by $1.6 \times 10^{-13}$: $\dfrac{7.5 \times 10^{-13}}{1.6 \times 10^{-13}} = 4.7\,\text{MeV}$ per nucleon. That is a low value, so this is a light nucleus: binding energy per nucleon rises to about 8.8 MeV near iron and then falls slowly for heavier nuclei.'
+
+  - id: c21-r7-fusion-energy
+    section: Review
+    tier: O
+    refs: ['4.6']
+    statement: 'In the Sun, four hydrogen nuclei fuse to form one helium nucleus and release 26.7 MeV. Find the energy released in joules.'
+    answer_label: 'The energy released in joules'
+    check:
+      kind: all
+      checks:
+        - kind: dimensions
+          expression: E
+          values:
+            E: {value: '26.7', unit: MeV}
+          answer: {value: '4.3e-12', unit: J}
+          tolerance: '1e-13'
+        - kind: sigfigs
+          value: '26.7 * 1.6e-13'
+          figures: 2
+          answer: '4.3e-12'
+          convention: round-once
+    answer_text: 'One MeV is $1.6 \times 10^{-13}\,\text{J}$, so $26.7\,\text{MeV}$ is $26.7 \times 1.6 \times 10^{-13} = 4.3 \times 10^{-12}\,\text{J}$. The four hydrogen nuclei together have slightly more mass than the helium nucleus, and the difference is the energy released, by $E = mc^2$. Per kilogram the yield is enormous, which is why the Sun can shine for billions of years on its hydrogen.'
+
+  - id: c21-r8-half-life-fraction
+    section: Review
+    tier: O
+    refs: ['4.4']
+    statement: 'A radioactive source has a half-life of 6.0 hours. What fraction of the source remains after 24 hours?'
+    answer_label: 'The fraction remaining'
+    check:
+      kind: all
+      checks:
+        - kind: evaluate
+          expression: '24 / 6.0'
+          answer: '4'
+        - kind: evaluate
+          expression: '(1/2)**4'
+          answer: '1/16'
+    answer_text: 'The time is $\dfrac{24}{6.0} = 4$ half-lives. Each half-life halves the number of undecayed nuclei, so the fraction remaining is $\left(\dfrac{1}{2}\right)^4 = \dfrac{1}{16}$, which is 6.25%. The activity falls by the same factor, because the activity is proportional to the number of undecayed nuclei. The nuclei that have decayed are still present, as a different element.'
+
+  - id: c21-r9-electron-volt-energy
+    section: Review
+    tier: O
+    refs: ['4.2']
+    statement: 'An electron is accelerated through a potential difference of 3000 V. Find its kinetic energy in electronvolts and in joules.'
+    answer_label: 'The kinetic energy in electronvolts and in joules'
+    check:
+      kind: all
+      checks:
+        - kind: dimensions
+          expression: V * e
+          values:
+            V: {value: '3000', unit: V}
+            e: {value: '1.6e-19', unit: C}
+          answer: {value: '4.8e-16', unit: J}
+        - kind: sigfigs
+          value: '3000 * 1.6e-19'
+          figures: 2
+          answer: '4.8e-16'
+          convention: round-once
+        - kind: sigfigs
+          value: '3000'
+          figures: 2
+          answer: '3.0e3'
+          convention: round-once
+    answer_text: 'An electron accelerated through 3000 V gains 3000 eV, which is $3.0 \times 10^3\,\text{eV}$ to two significant figures. That definition is the reason the unit exists: one electronvolt is the energy one electron gains through one volt. In joules, multiply by $1.6 \times 10^{-19}$: $3000 \times 1.6 \times 10^{-19} = 4.8 \times 10^{-16}\,\text{J}$. Working in electronvolts saves a conversion at every step of an atomic or nuclear problem.'
+
+  - id: c21-r10-hydrogen-photon
+    section: Review
+    tier: O
+    refs: ['4.3']
+    statement: 'In a hydrogen atom the electron drops from $n = 3$ to $n = 1$, from $-1.51$ eV to $-13.6$ eV. Find the energy of the emitted photon.'
+    answer_label: 'The energy of the emitted photon'
+    check:
+      kind: all
+      checks:
+        - kind: dimensions
+          expression: E3 - E1
+          values:
+            E3: {value: '-1.51', unit: eV}
+            E1: {value: '-13.6', unit: eV}
+          answer: {value: '12.09', unit: eV}
+        - kind: sigfigs
+          value: '(-1.51) - (-13.6)'
+          figures: 3
+          answer: '12.1'
+          convention: round-once
+        - kind: sigfigs
+          value: '12.09 * 1.6e-19'
+          figures: 2
+          answer: '1.9e-18'
+          convention: round-once
+    answer_text: 'The photon carries the difference between the levels: $\Delta E = -1.51 - (-13.6) = 12.1\,\text{eV}$, which is $1.9 \times 10^{-18}\,\text{J}$ to two significant figures. The subtraction of two negative numbers gives a positive energy, because the electron has lost energy and the photon has gained it. This is the second line of the Lyman series, and its photon is in the ultraviolet.'
+
+  - id: c21-r11-judge-a-report
+    section: Review
+    tier: O
+    refs: ['4.6']
+    statement: 'Two reports give different figures for the cost of electricity from nuclear power. Describe what you would check before deciding which one to trust.'
+    answer_label: 'What to check before trusting a cost figure'
+    check:
+      kind: structured
+      requires: [what-is-counted, assumptions, source-and-date]
+      concepts: [capital-and-running-cost, waste-and-decommissioning, discount-rate, capacity-factor, who-paid-for-the-study]
+      points:
+        - id: what-is-counted
+          text: 'Check what the figure includes. A cost that counts only the running of the plant will be far lower than one that also counts building it, decommissioning it and storing its waste for thousands of years. The two reports may be answering different questions.'
+          concepts: [capital-and-running-cost, waste-and-decommissioning]
+        - id: assumptions
+          text: 'Check the assumptions behind the number: the lifetime of the plant, how much of the time it runs, the interest rate used to discount future costs, and the price of uranium. A high discount rate makes a plant that is expensive to build look worse, and a low one makes it look better.'
+          concepts: [discount-rate, capacity-factor]
+        - id: source-and-date
+          text: 'Check who paid for the study and when it was made. An industry body and an environmental group may each select the assumptions that favour their case, and a figure from ten years ago may use old construction costs. A figure with its assumptions stated can be compared; a bare number cannot.'
+          concepts: [who-paid-for-the-study]
+    answer_text: 'Check what the figure includes. A cost that counts only the running of the plant will be far lower than one that also counts building it, decommissioning it and storing its waste for thousands of years, so the two reports may be answering different questions. Check the assumptions behind the number: the lifetime of the plant, how much of the time it runs, the interest rate used to discount future costs, and the price of uranium. A high discount rate makes a plant that is expensive to build look worse. Check who paid for the study and when it was made, because an industry body and an environmental group may each select the assumptions that favour their case, and an old figure may use old construction costs. A figure with its assumptions stated can be compared; a bare number cannot.'
+
+  - id: c21-r12-fusion-temperature
+    section: Review
+    tier: O
+    refs: ['4.6']
+    statement: 'Explain why fusion needs a very high temperature, and state why no fusion power station exists yet.'
+    answer_label: 'Why fusion needs heat, and why there is no power station'
+    check:
+      kind: structured
+      requires: [why-high-temperature, containment, why-no-station]
+      concepts: [coulomb-repulsion, thermal-speed, plasma-confinement, net-energy-gain]
+      points:
+        - id: why-high-temperature
+          text: 'Both nuclei are positive, so they repel each other and must be pushed close enough for the strong nuclear force to take over. At a very high temperature the nuclei move fast enough to overcome that repulsion, which is why fusion needs tens of millions of kelvin.'
+          concepts: [coulomb-repulsion, thermal-speed]
+        - id: containment
+          text: 'No material vessel can touch a gas at that temperature, so the plasma must be held away from the walls by a magnetic field or by inertia. Keeping it hot, dense and confined for long enough is the engineering problem.'
+          concepts: [plasma-confinement]
+        - id: why-no-station
+          text: 'No experiment has yet produced more energy from fusion than it takes to run the machine, for a useful length of time. A power station would also have to turn the energy into electricity, breed its own fuel and handle neutron damage, so the gap is not only the plasma.'
+          concepts: [net-energy-gain, plasma-confinement]
+    answer_text: 'Both nuclei are positive, so they repel each other and must be pushed close enough for the strong nuclear force to take over. At a very high temperature the nuclei move fast enough to overcome that repulsion, which is why fusion needs tens of millions of kelvin. No material vessel can touch a gas at that temperature, so the plasma must be held away from the walls by a magnetic field or by inertia, and keeping it hot, dense and confined for long enough is the engineering problem. No experiment has yet produced more energy from fusion than it takes to run the machine, for a useful length of time. A power station would also have to turn the energy into electricity, breed its own fuel and handle neutron damage, so the gap is not only the plasma.'

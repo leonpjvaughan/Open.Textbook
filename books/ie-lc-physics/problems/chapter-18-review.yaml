@@ -1,0 +1,288 @@
+# Mixed practice for the Chapter 18 Review.
+#
+# Ten questions, one record each, in the order they appear on the Review page.
+# Six ask for a quantity, so each carries a `dimensions` check, which proves the
+# magnitude and the unit, and a `sigfigs` check, which proves the rounding. A
+# speed built on a square root carries a tolerance, because the exact value is
+# irrational. Questions 7, 8, 9 and 10 ask for a description or a judgement, so
+# each is a `structured` check; question 6 asks for a number and a comparison, so
+# it carries both.
+#
+# Honest limit: this proves arithmetic, dimensions and the declared conventions,
+# not physics. A `structured` check proves only that a model answer contains its
+# declared steps and concepts, in order. Question 9 is about why one model fails:
+# the verifier can prove that both the prediction and the observation are stated,
+# and nothing about whether the argument is sound.
+#
+# The data are read as the Review page states them: h = 6.6e-34 J s,
+# c = 3.0e8 m/s, e = 1.6e-19 C and m = 9.1e-31 kg. Every value is rounded once,
+# at the end, so a photon energy of 3.96e-19 J is written 4.0e-19 J and not
+# carried through as 4.0.
+chapter: 18
+problems:
+  - id: c18-r1-photon-energy
+    section: Review
+    tier: O
+    refs: ['4.2']
+    statement: 'Calculate the energy of a photon of frequency $6.0 \times 10^{14}$ Hz. Take $h = 6.6 \times 10^{-34}$ J s.'
+    answer_label: 'The energy of the photon'
+    check:
+      kind: all
+      checks:
+        - kind: dimensions
+          expression: h * f
+          values:
+            h: {value: '6.6e-34', unit: 'J s'}
+            f: {value: '6.0e14', unit: Hz}
+          answer: {value: '3.96e-19', unit: J}
+        - kind: sigfigs
+          value: '6.6e-34 * 6.0e14'
+          figures: 2
+          answer: '4.0e-19'
+          convention: round-once
+    answer_text: 'The photon energy is $E = hf = 6.6 \times 10^{-34} \times 6.0 \times 10^{14} = 3.96 \times 10^{-19}\,\text{J}$, which is $4.0 \times 10^{-19}\,\text{J}$ to two significant figures. That is about 2.5 eV, a visible-light photon. The energy is proportional to the frequency, so a higher frequency means a more energetic photon, and the constant of proportionality is $h$.'
+
+  - id: c18-r2-max-kinetic-energy
+    section: Review
+    tier: O
+    refs: ['4.2']
+    statement: 'Light of wavelength 400 nm falls on a metal of work function $3.3 \times 10^{-19}$ J. Calculate the maximum kinetic energy of the emitted electrons.'
+    answer_label: 'The maximum kinetic energy'
+    check:
+      kind: all
+      checks:
+        - kind: dimensions
+          expression: h * c / lam - phi
+          values:
+            h: {value: '6.6e-34', unit: 'J s'}
+            c: {value: '3.0e8', unit: m/s}
+            lam: {value: '4.0e-7', unit: m}
+            phi: {value: '3.3e-19', unit: J}
+          answer: {value: '1.65e-19', unit: J}
+        - kind: sigfigs
+          value: '6.6e-34 * 3.0e8 / 4.0e-7 - 3.3e-19'
+          figures: 2
+          answer: '1.7e-19'
+          convention: round-once
+    answer_text: 'The photon energy is $\dfrac{hc}{\lambda} = \dfrac{6.6 \times 10^{-34} \times 3.0 \times 10^8}{4.0 \times 10^{-7}} = 4.95 \times 10^{-19}\,\text{J}$. Einstein''s equation gives the maximum kinetic energy: $E_k = hf - \Phi = 4.95 \times 10^{-19} - 3.3 \times 10^{-19} = 1.65 \times 10^{-19}\,\text{J}$, which is $1.7 \times 10^{-19}\,\text{J}$ to two significant figures. It is a maximum because the electron may lose some energy on its way out of the metal; the fastest electrons lose none.'
+
+  - id: c18-r3-work-function
+    section: Review
+    tier: O
+    refs: ['4.2']
+    statement: 'A metal has a threshold wavelength of 500 nm. Calculate its work function in joules and in electronvolts.'
+    answer_label: 'The work function in joules and in electronvolts'
+    check:
+      kind: all
+      checks:
+        - kind: dimensions
+          expression: h * c / lam
+          values:
+            h: {value: '6.6e-34', unit: 'J s'}
+            c: {value: '3.0e8', unit: m/s}
+            lam: {value: '5.0e-7', unit: m}
+          answer: {value: '3.96e-19', unit: J}
+        - kind: sigfigs
+          value: '6.6e-34 * 3.0e8 / 5.0e-7'
+          figures: 2
+          answer: '4.0e-19'
+          convention: round-once
+        - kind: sigfigs
+          value: '6.6e-34 * 3.0e8 / 5.0e-7 / 1.6e-19'
+          figures: 2
+          answer: '2.5'
+          convention: round-once
+    answer_text: 'At the threshold the photon energy equals the work function exactly, so $\Phi = \dfrac{hc}{\lambda_0} = \dfrac{6.6 \times 10^{-34} \times 3.0 \times 10^8}{5.0 \times 10^{-7}} = 3.96 \times 10^{-19}\,\text{J}$, which is $4.0 \times 10^{-19}\,\text{J}$ to two significant figures. In electronvolts that is $\dfrac{3.96 \times 10^{-19}}{1.6 \times 10^{-19}} = 2.5\,\text{eV}$. Light of longer wavelength than 500 nm has photons of lower energy, so it cannot release electrons from this metal however bright it is.'
+
+  - id: c18-r4-xray-shortest
+    section: Review
+    tier: O
+    refs: ['4.2']
+    statement: 'An X-ray tube runs at 80 kV. Calculate the shortest wavelength of the X-rays it produces.'
+    answer_label: 'The shortest wavelength'
+    check:
+      kind: all
+      checks:
+        - kind: dimensions
+          expression: h * c / (e * V)
+          values:
+            h: {value: '6.6e-34', unit: 'J s'}
+            c: {value: '3.0e8', unit: m/s}
+            e: {value: '1.6e-19', unit: C}
+            V: {value: '8.0e4', unit: V}
+          answer: {value: '1.546875e-11', unit: m}
+        - kind: sigfigs
+          value: '6.6e-34 * 3.0e8 / (1.6e-19 * 8.0e4)'
+          figures: 2
+          answer: '1.5e-11'
+          convention: round-once
+    answer_text: 'The electron gains $eV = 1.6 \times 10^{-19} \times 8.0 \times 10^4 = 1.28 \times 10^{-14}\,\text{J}$ and can give all of it to one photon. The shortest wavelength belongs to the most energetic photon: $\lambda_{\text{min}} = \dfrac{hc}{eV} = \dfrac{6.6 \times 10^{-34} \times 3.0 \times 10^8}{1.28 \times 10^{-14}} = 1.5 \times 10^{-11}\,\text{m}$. Most photons carry less than the whole energy, so the spectrum has a sharp cut-off at this wavelength and extends to longer wavelengths.'
+
+  - id: c18-r5-electron-gun
+    section: Review
+    tier: O
+    refs: ['4.2', '4.1']
+    statement: 'An electron is accelerated from rest through 2000 V in an electron gun. Calculate its kinetic energy in joules and its speed. Take $e = 1.6 \times 10^{-19}$ C and $m = 9.1 \times 10^{-31}$ kg.'
+    answer_label: 'The kinetic energy and the speed'
+    check:
+      kind: all
+      checks:
+        - kind: dimensions
+          expression: e * V
+          values:
+            e: {value: '1.6e-19', unit: C}
+            V: {value: '2000', unit: V}
+          answer: {value: '3.2e-16', unit: J}
+        - kind: sigfigs
+          value: '1.6e-19 * 2000'
+          figures: 2
+          answer: '3.2e-16'
+          convention: round-once
+        - kind: dimensions
+          expression: sqrt(2 * E / m)
+          values:
+            E: {value: '3.2e-16', unit: J}
+            m: {value: '9.1e-31', unit: kg}
+          answer: {value: '2.65197e7', unit: m/s}
+          tolerance: '5e3'
+        - kind: sigfigs
+          value: 'sqrt(2 * 3.2e-16 / 9.1e-31)'
+          figures: 2
+          tolerance: '5e3'
+          answer: '2.7e7'
+          convention: round-once
+    answer_text: 'The kinetic energy is $E_k = eV = 1.6 \times 10^{-19} \times 2000 = 3.2 \times 10^{-16}\,\text{J}$. Then $\frac{1}{2}mv^2 = 3.2 \times 10^{-16}$, so $v = \sqrt{\dfrac{2 \times 3.2 \times 10^{-16}}{9.1 \times 10^{-31}}} = 2.7 \times 10^7\,\text{m/s}$. The speed is about 9% of the speed of light, so the everyday kinetic energy formula is still a fair description. This is the electron gun of Chapter 17, and the tube that follows it is the one in question 6.'
+
+  - id: c18-r6-xray-from-electron
+    section: Review
+    tier: O
+    refs: ['4.2']
+    statement: 'The same electron strikes a metal target and gives all its energy to one photon. Calculate the shortest wavelength of the X-rays produced. Compare it with the answer to question 4 and explain the difference.'
+    answer_label: 'The shortest wavelength, and the comparison'
+    check:
+      kind: all
+      checks:
+        - kind: dimensions
+          expression: h * c / (e * V)
+          values:
+            h: {value: '6.6e-34', unit: 'J s'}
+            c: {value: '3.0e8', unit: m/s}
+            e: {value: '1.6e-19', unit: C}
+            V: {value: '2000', unit: V}
+          answer: {value: '6.1875e-10', unit: m}
+        - kind: sigfigs
+          value: '6.6e-34 * 3.0e8 / (1.6e-19 * 2000)'
+          figures: 2
+          answer: '6.2e-10'
+          convention: round-once
+        - kind: evaluate
+          expression: '(6.1875e-10) / (1.546875e-11)'
+          answer: '40'
+        - kind: structured
+          requires: [state-wavelength, compare, explain]
+          concepts: [photon-energy-from-electron-energy, inverse-relation, voltage-sets-limit]
+          points:
+            - id: state-wavelength
+              text: 'The shortest wavelength is 6.2e-10 m, or 0.62 nm.'
+              concepts: [photon-energy-from-electron-energy]
+            - id: compare
+              text: 'The 80 kV tube in question 4 gives 1.5e-11 m, so this wavelength is 40 times longer.'
+              concepts: [inverse-relation]
+            - id: explain
+              text: 'The electron here has 2000 eV of energy, and the electron in question 4 has 80 000 eV, which is 40 times more. One photon takes all of one electron''s energy, and photon energy is hc divided by the wavelength, so 40 times less energy gives 40 times the wavelength. The tube voltage sets the shortest wavelength.'
+              concepts: [inverse-relation, voltage-sets-limit]
+    answer_text: 'The electron has $2000\,\text{eV}$ of energy, so the most energetic photon it can make has $6.6 \times 10^{-34} \times 3.0 \times 10^8 \div (1.6 \times 10^{-19} \times 2000) = 6.2 \times 10^{-10}\,\text{m}$, or 0.62 nm. The 80 kV tube in question 4 gives $1.5 \times 10^{-11}\,\text{m}$, so this wavelength is 40 times longer. The electron there had 80 000 eV, which is 40 times more energy, and photon energy is $\dfrac{hc}{\lambda}$, so 40 times less energy gives 40 times the wavelength. The tube voltage sets the shortest wavelength in both cases.'
+
+  - id: c18-r7-intensity
+    section: Review
+    tier: O
+    refs: ['4.2']
+    statement: 'A photocell is lit with light above its threshold frequency. Describe what happens to the current and to the maximum kinetic energy when the intensity is doubled.'
+    answer_label: 'What doubling the intensity does, and what it does not do'
+    check:
+      kind: structured
+      requires: [current, kinetic-energy, why]
+      concepts: [intensity-is-photons-per-second, one-photon-one-electron, photon-energy-fixed]
+      points:
+        - id: current
+          text: 'Doubling the intensity doubles the number of photons arriving each second. Each photon can release at most one electron, so twice as many electrons leave each second and the current doubles.'
+          concepts: [intensity-is-photons-per-second, one-photon-one-electron]
+        - id: kinetic-energy
+          text: 'The maximum kinetic energy does not change. It depends on the energy of one photon, hf minus the work function, and doubling the intensity does not change the frequency or the energy of any photon.'
+          concepts: [photon-energy-fixed]
+        - id: why
+          text: 'The current counts electrons per second; the maximum kinetic energy is set by the energy of a single photon. Brightness changes how many photons arrive, not how much energy each one carries, so it changes the current and leaves the maximum energy alone.'
+          concepts: [intensity-is-photons-per-second, photon-energy-fixed]
+    answer_text: 'Doubling the intensity doubles the number of photons arriving each second. Each photon can release at most one electron, so twice as many electrons leave each second and the current doubles. The maximum kinetic energy does not change, because it is $hf - \Phi$ for one photon, and doubling the intensity changes neither the frequency nor the energy of any photon. Brightness changes how many photons arrive, not how much energy each one carries. The current counts electrons per second, so it follows the brightness; the maximum energy follows the colour.'
+
+  - id: c18-r8-graph
+    section: Review
+    tier: O
+    refs: ['4.2']
+    statement: 'A student plots maximum kinetic energy against frequency for a metal. Describe the graph, and say what the gradient and each intercept give you.'
+    answer_label: 'The graph, and what its gradient and intercepts give'
+    check:
+      kind: structured
+      requires: [shape, gradient, vertical-intercept, horizontal-intercept]
+      concepts: [einstein-equation-as-a-line, planck-constant, work-function, threshold-frequency]
+      points:
+        - id: shape
+          text: 'The graph is a straight line that starts at the threshold frequency on the frequency axis and rises with frequency. Below the threshold there are no points, because no electrons are emitted.'
+          concepts: [einstein-equation-as-a-line]
+        - id: gradient
+          text: 'Einstein''s equation is E_k = hf - phi, which has the form y = mx + c. The gradient is the Planck constant h, in joule seconds.'
+          concepts: [einstein-equation-as-a-line, planck-constant]
+        - id: vertical-intercept
+          text: 'The intercept on the vertical axis is minus the work function, so its size gives the work function in joules.'
+          concepts: [work-function]
+        - id: horizontal-intercept
+          text: 'The intercept on the frequency axis is the threshold frequency, where the photon energy equals the work function exactly. Dividing the work function by that frequency gives h again, as a check.'
+          concepts: [threshold-frequency, planck-constant]
+    answer_text: 'The graph is a straight line that starts at the threshold frequency and rises with frequency; below the threshold there are no points, because no electrons are emitted. Einstein''s equation $E_k = hf - \Phi$ has the form $y = mx + c$, so the gradient is the Planck constant $h$, in joule seconds. The intercept on the vertical axis is $-\Phi$, so its size gives the work function. The intercept on the frequency axis is the threshold frequency, where the photon energy equals the work function exactly. Dividing the work function by the threshold frequency gives $h$ again, which is a check on the graph.'
+
+  - id: c18-r9-wave-model-fails
+    section: Review
+    tier: O
+    refs: ['4.2']
+    statement: 'Explain why the wave model predicts that very bright red light would release electrons, and why the experiment shows that it does not.'
+    answer_label: 'What the wave model predicts, and what the experiment shows'
+    check:
+      kind: structured
+      requires: [wave-prediction, experiment, photon-explanation]
+      concepts: [energy-spread-over-wave, intensity-not-frequency, one-photon-one-electron, threshold]
+      points:
+        - id: wave-prediction
+          text: 'On the wave model the light carries energy spread continuously over the wavefront. A brighter lamp delivers more energy each second, so an electron should be able to collect enough energy to escape even from low-frequency light, if it waits long enough.'
+          concepts: [energy-spread-over-wave, intensity-not-frequency]
+        - id: experiment
+          text: 'The experiment gives no electrons at all below the threshold frequency, however bright the lamp and however long it shines. Above the threshold, electrons appear at once, even in dim light.'
+          concepts: [threshold, intensity-not-frequency]
+        - id: photon-explanation
+          text: 'The photon model explains both observations. One photon gives all its energy to one electron, so an electron can escape only if a single photon carries at least the work function. Below the threshold no photon does, and brightness only adds more photons that are each too weak.'
+          concepts: [one-photon-one-electron, threshold]
+    answer_text: 'On the wave model the light carries energy spread continuously over the wavefront. A brighter lamp delivers more energy each second, so an electron should be able to collect enough energy to escape even from low-frequency light, if it waits long enough. The experiment gives no electrons at all below the threshold frequency, however bright the lamp and however long it shines, and above the threshold electrons appear at once even in dim light. The photon model explains both observations. One photon gives all its energy to one electron, so an electron can escape only if a single photon carries at least the work function. Below the threshold no photon does, and brightness only adds more photons that are each too weak.'
+
+  - id: c18-r10-measure-planck
+    section: Review
+    tier: O
+    refs: ['4.2']
+    statement: 'You must find the Planck constant in a school laboratory. Would you use a photocell and a set of coloured lamps, or a spring and a set of masses? Say why, and name the quantity each experiment actually measures.'
+    answer_label: 'The experiment to choose, and what each one measures'
+    check:
+      kind: structured
+      requires: [state-choice, photocell, spring, what-each-measures]
+      concepts: [photoelectric-gradient, hookes-law-gradient, planck-constant, spring-constant]
+      points:
+        - id: state-choice
+          text: 'Use the photocell and the coloured lamps. It is the experiment whose graph has h as its gradient.'
+          concepts: [photoelectric-gradient, planck-constant]
+        - id: photocell
+          text: 'A photocell gives the maximum kinetic energy of the electrons for each frequency of light. A graph of maximum kinetic energy against frequency is a straight line of gradient h, so h comes from the gradient.'
+          concepts: [photoelectric-gradient, planck-constant]
+        - id: spring
+          text: 'A spring and a set of masses give force against extension. The gradient is the spring constant k, from Hooke''s law, which has nothing to do with h.'
+          concepts: [hookes-law-gradient, spring-constant]
+        - id: what-each-measures
+          text: 'The photocell measures a photon energy and so gives h; the spring measures a force per unit extension and so gives k. Both are straight-line experiments, but only the first has the Planck constant as its gradient.'
+          concepts: [photoelectric-gradient, hookes-law-gradient]
+    answer_text: 'Use the photocell and the coloured lamps. A photocell gives the maximum kinetic energy of the electrons for each frequency, and a graph of maximum kinetic energy against frequency is a straight line of gradient $h$, because $E_k = hf - \Phi$. The spring and masses give force against extension, and that gradient is the spring constant $k$ from Hooke''s law, which has nothing to do with $h$. Both are straight-line experiments, but only the first has the Planck constant as its gradient. The photocell measures a photon energy; the spring measures a force per unit extension.'
