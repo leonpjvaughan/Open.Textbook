@@ -224,6 +224,33 @@ html {
   color: var(--md-default-fg-color--light);
 }
 
+/* A figure is a numbered block: the wrapper carries the number and the caption,
+ * and the panel keeps its own border and tint. The number is a word, not a colour,
+ * so it reads the same in both schemes. */
+.md-typeset .tb-figure {
+  max-width: 46rem;
+  margin: 1.4rem 0;
+}
+
+.md-typeset .tb-figure maths-figure {
+  width: 100%;
+  max-width: none;
+  margin: 0;
+}
+
+.md-typeset .tb-figure figcaption {
+  max-width: var(--tb-measure);
+  margin-top: 0.45rem;
+  font-size: 0.85rem;
+  line-height: 1.45;
+  color: var(--md-default-fg-color--light);
+}
+
+.md-typeset .tb-figure__number {
+  font-weight: 600;
+  color: var(--md-default-fg-color);
+}
+
 /* An explored diagram: every part is at full strength until the reader engages, so
  * an unexplored figure looks as it always did. The rest then dim by opacity rather
  * than by a colour, so it works in both schemes without a token that could drift. */
