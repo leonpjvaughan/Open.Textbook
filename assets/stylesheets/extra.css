@@ -266,6 +266,49 @@ html {
   font-weight: 600;
 }
 
+/* A disclosure opens to its own height rather than appearing at it. `interpolate-size`
+ * makes `auto` an animatable length, which is the number the max-height trick could
+ * never know; `calc-size(auto, size)` repeats it for the property itself.
+ *
+ * Both are Chromium-only, so the whole block is inside `@supports`: a browser without
+ * them keeps the platform's instant disclosure rather than a discrete transition that
+ * holds the content at zero for half the duration. `content-visibility` is discrete,
+ * and `allow-discrete` is what keeps the content laid out until the collapse ends, so
+ * the closing animation is of the real box.
+ *
+ * The drawer is deliberately not included. The phone script closes it on arrival, and
+ * an inline transition there would slide every phone page up by the nav's height as it
+ * loads. A reader who opens it gets the platform's disclosure, script or no script. */
+@media (prefers-reduced-motion: no-preference) {
+  @supports (interpolate-size: allow-keywords) {
+    .md-typeset details {
+      interpolate-size: allow-keywords;
+    }
+
+    .md-typeset details::details-content {
+      overflow: clip;
+      /* A clip at the content box would slice a link's focus ring; 4px is the ring's
+       * own offset and width. */
+      overflow-clip-margin: 4px;
+      /* Constant layout containment, so toggling `content-visibility` does not move
+       * the content when it has an outward margin (a nested `p` does). */
+      contain: layout;
+      transition:
+        block-size 0.22s ease-in-out,
+        content-visibility 0.22s allow-discrete;
+    }
+
+    .md-typeset details:not([open])::details-content {
+      block-size: 0;
+    }
+
+    .md-typeset details[open]::details-content {
+      block-size: auto;
+      block-size: calc-size(auto, size);
+    }
+  }
+}
+
 /* The short note on a book's home page. The accent rule is the only emphasis: a
    warning icon or a stronger colour would make it look like a safety notice. */
 .md-typeset details.disclaimer {

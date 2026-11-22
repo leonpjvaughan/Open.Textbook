@@ -32,6 +32,16 @@ $prefs_script
      sheet that did not change keeps its URL across a deploy; the build emits these
      links from `pipeline.STYLESHEETS` rather than the template naming them. -->
 $stylesheets
+<!-- Chromium can reveal a page before the `@view-transition` opt-in has been read
+     from the resolved cascade, and then aborts the transition with "ViewTransition
+     opt-in disabled". Asking for one computed style resolves the sheets first; the
+     value is discarded. It must be a classic inline script after the links and not a
+     deferred one, because a deferred script runs after the first chance to reveal.
+     Measured in Chrome 153 at 1280 and 390: without it, 0 of 2 navigations started a
+     transition and the page logged "ViewTransition opt-in disabled"; with it, every
+     navigation started one, between two book pages and through the portal. Remove it
+     when the browser no longer needs it; nothing else depends on it. -->
+<script>getComputedStyle(document.documentElement).color;</script>
 <!-- Root-absolute: one worker for the collection, registered once, scoped to the
      deployment root. Content-addressed like the stylesheets, derived from the same
      source bytes by both this build and the portal, so neither build has to read

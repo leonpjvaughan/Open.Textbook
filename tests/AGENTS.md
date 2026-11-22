@@ -30,7 +30,7 @@ The theme preview is `tools preview` (`tools/src/commands/preview.ts`).
   content-addressed names, and every asset a page reaches resolving to a file the
   build wrote), `test_offline_browser.py` (a book still readable with the network
   off after a deploy emptied the runtime cache; marked `browser`), `test_mobile.py`,
-  `test_prefs.py`, `test_settings.py`, `test_no_javascript.py`, `test_print.py`,
+  `test_motion.py`, `test_prefs.py`, `test_settings.py`, `test_no_javascript.py`, `test_print.py`,
   `test_backgrounds.py`, `test_colophon.py`, `test_deploy.py`, `test_release.py`.
 - **Preconditions** — `test_toolchain.py` fails loudly when Node or
   `node_modules` is missing, rather than letting the maths degrade to

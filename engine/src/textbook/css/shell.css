@@ -89,12 +89,27 @@ a { color: var(--tb-link); }
   scroll-margin-top: calc(var(--tb-masthead-height) + 0.5rem);
 }
 
+/* The page's own title, so the heading the reader was reading becomes the heading
+ * they are reading rather than a new one painted over it. Every built page carries
+ * exactly one `h1` (measured across all 4,541), and `:first-of-type` keeps the name
+ * unique even if one grows a second: a duplicate name disables the whole transition.
+ * It is scoped to the content column rather than to `h1` alone because the 404 and
+ * landing pages put their `h1` in the masthead, which is a different object. */
+.md-typeset > h1:first-of-type {
+  view-transition-name: page-title;
+}
+
 .masthead {
   position: sticky;
   top: 0;
   z-index: 5;
   background: var(--tb-paper);
   border-bottom: 1px solid var(--tb-rule);
+  /* The bar is the one object a reader keeps between two pages, so it is named and a
+   * cross-document transition moves it instead of drawing it again. The name is inert
+   * until a transition runs: with the opt-in below absent, or with reduced motion
+   * asked for, nothing about this rule changes the layout. */
+  view-transition-name: site-masthead;
 }
 
 .masthead__inner {
@@ -523,5 +538,30 @@ a { color: var(--tb-link); }
   .pager__link--next {
     align-items: flex-start;
     text-align: left;
+  }
+}
+
+/* Cross-document view transitions ------------------------------------------ */
+
+/* A navigation between two pages of a book crossfades, and the masthead and the
+ * title move rather than being repainted. Cross-document transitions are not
+ * Baseline: Chrome, Edge and Safari know them, Firefox does not, and a browser
+ * without them navigates exactly as before. That makes this an enhancement and
+ * never the way content arrives, so it may be opt-in only.
+ *
+ * The `no-preference` query is the opt-in, not a cosmetic guard: a reader who has
+ * asked their system for less motion is never enrolled, so the navigation is
+ * instant and no view-transition group is ever created. The names above are inert
+ * outside a transition, which is why they need no query of their own.
+ *
+ * Measured with Playwright: navigating between two Learn pages with motion allowed
+ * creates `::view-transition-group(site-masthead)` and, at a desk width where the
+ * document has parsed before the first paint, `::view-transition-group(page-title)`;
+ * with reduced motion the same click produces no transition object and both boxes
+ * land at identical coordinates. At 390 the title can join after the reveal, because
+ * the new document is still streaming when the browser takes its snapshot. */
+@media (prefers-reduced-motion: no-preference) {
+  @view-transition {
+    navigation: auto;
   }
 }

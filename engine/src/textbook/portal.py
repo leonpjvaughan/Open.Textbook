@@ -443,6 +443,10 @@ def not_found() -> str:
 <link rel="apple-touch-icon" href="/assets/icons/apple-touch-icon.png">
 <link rel="stylesheet" href="{links['themes_css']}">
 <link rel="stylesheet" href="{links['portal_css']}">
+<!-- Resolves the cascade before the page can be revealed: Chromium can otherwise
+     abort a cross-document transition with "ViewTransition opt-in disabled". The
+     value is discarded, and the script is classic so it runs before the first reveal. -->
+<script>getComputedStyle(document.documentElement).color;</script>
 </head>
 <body>
 <script>
