@@ -115,8 +115,9 @@ document.body.setAttribute(
        A `<details>` is the collection's progressive-disclosure primitive and a `<summary>`
        is one focus stop that opens with Enter, so the control is native. It is `open` in
        the markup because that is the layout a reader with scripting off has always had;
-       the script at the foot of the page closes it at phone width, which is the only way
-       to have a different default on each side of one breakpoint from one HTML file. -->
+       the inline script right after `<summary>` closes it at phone width before the tree
+       and `<main>` parse, so the first paint is already collapsed and `<main>` never
+       shifts. -->
   <details class="nav-drawer" open>
     <summary class="nav-drawer__summary" data-pagefind-ignore>
       <!-- The book and the section are in the masthead row directly above, so the
@@ -124,6 +125,15 @@ document.body.setAttribute(
            reader pass the same two labels three times before the page's own title. -->
       <span class="nav-drawer__label">Contents</span>
     </summary>
+    <script>
+    /* Close before the tree and `<main>` parse at phone width, so the first paint is
+     * already collapsed and `<main>` does not shift (closing only in the deferred
+     * module at the foot of the page moved `<main>` up after first paint). With
+     * scripting off this is skipped and `open` stays, keeping navigation reachable. */
+    if (!window.matchMedia("(min-width: 60rem)").matches) {
+      document.currentScript.parentElement.open = false;
+    }
+    </script>
     <!-- A filter for a tree of up to 335 links. `hidden` in the markup and revealed by
          the drawer script, so a reader with scripting off gets the tree and no control
          that would not work; the filter narrows what is there, it is never the only way
