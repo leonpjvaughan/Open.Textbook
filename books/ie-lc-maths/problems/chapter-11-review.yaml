@@ -1,0 +1,378 @@
+# Mixed practice for the Chapter 11 Review.
+#
+# Ten questions, one record each, in the order they appear on the Review page. The page
+# carried no answer block at all, so every answer here is written from scratch and
+# re-derived rather than copied.
+#
+# Question 1 asks the reader to classify a statement, question 4 to name a caution, and
+# questions 9 and 10 to explain a statistical failure: those four carry a `structured`
+# check and no numeric one, because a judgement with no number is exactly where a CAS has
+# nothing to say. Questions 2 and 3 are the arithmetic of a standard error, a margin of
+# error and a confidence interval, proved by `approx`; question 3 also carries the
+# comparison that decides whether a majority is ruled out. Question 5 proves the true
+# size of the rise the truncated axis exaggerates. Question 6 proves that a 50% increase
+# can be one extra case in a million. Question 7 proves that the interval excludes 50%.
+# Question 8 proves that `p = 0.03` is below the 5% threshold.
+#
+# Honest limit: this proves arithmetic and a comparison, not statistics. A `structured`
+# check proves only that a model answer contains its declared steps and concepts, in
+# order; whether the judgement is sound is human review. The 1.96 in questions 2, 3 and 7
+# is the conventional 95% multiplier, and the interval is a statement about the method,
+# not a promise about this one sample.
+chapter: 11
+problems:
+  - id: r1-description-or-inference
+    section: '11.1'
+    tier: F
+    refs: ['1.5']
+    statement: >-
+      A class of 30 students has a mean height of $168$ cm. Is this a description or an
+      inference? Explain.
+    answer_label: 'The classification, with the reason'
+    check:
+      kind: structured
+      requires: [name-kind, reason]
+      concepts: [population, description, generalisation]
+      points:
+        - id: name-kind
+          text: >-
+            It is a description. The mean is worked out from the whole class, so it
+            describes the group that was measured and nothing beyond it.
+          concepts: [description]
+        - id: reason
+          text: >-
+            An inference would use a sample to say something about a larger population.
+            Here the 30 students are the population, so there is nothing to generalise to
+            and no sampling error to quote.
+          concepts: [population, generalisation]
+
+  - id: r2-standard-error
+    section: '11.7'
+    tier: H
+    refs: ['1.7']
+    statement: >-
+      A sample of $400$ voters gives $54\%$ Yes. Find the standard error and the $95\%$
+      margin of error.
+    answer_label: 'The standard error and the margin of error'
+    check:
+      kind: all
+      checks:
+        - kind: approx
+          value: 'sqrt(54 / 100 * 46 / 100 / 400) * 100'
+          target: '2.49'
+          tolerance: '0.005'
+        - kind: approx
+          value: '1.96 * sqrt(54 / 100 * 46 / 100 / 400) * 100'
+          target: '4.88'
+          tolerance: '0.005'
+    answer_text: |-
+      The sample proportion is $\hat{p} = 0.54$, so
+
+      $$SE = \sqrt{\frac{\hat{p}(1 - \hat{p})}{n}}
+      = \sqrt{\frac{0.54 \times 0.46}{400}} = 0.0249$$
+
+      which is $2.49$ percentage points. The $95\%$ margin of error is about twice that:
+
+      $$1.96 \times 2.49\% = 4.88\%$$
+
+      so about $4.9$ percentage points. The margin is widest when $\hat{p}$ is near
+      $0.5$, because that is where $\hat{p}(1 - \hat{p})$ is largest.
+
+  - id: r3-confidence-interval
+    section: '11.7'
+    tier: H
+    refs: ['1.7']
+    statement: >-
+      Using your answer to question 2, write the confidence interval and say whether the
+      sample gives evidence of a majority.
+    answer_label: 'The interval and the conclusion'
+    check:
+      kind: all
+      checks:
+        - kind: approx
+          value: '54 - 1.96 * sqrt(54 / 100 * 46 / 100 / 400) * 100'
+          target: '49.12'
+          tolerance: '0.01'
+        - kind: approx
+          value: '54 + 1.96 * sqrt(54 / 100 * 46 / 100 / 400) * 100'
+          target: '58.88'
+          tolerance: '0.01'
+        - {kind: compare, relation: '<', lhs: '54 - 1.96 * sqrt(54 / 100 * 46 / 100 / 400) * 100', rhs: '50'}
+        - kind: structured
+          requires: [write-interval, decide]
+          concepts: [interval, no-evidence]
+          points:
+            - id: write-interval
+              text: >-
+                The interval is 54% plus or minus 4.9 points, which runs from 49.1% to
+                58.9%.
+              concepts: [interval]
+            - id: decide
+              text: >-
+                The interval reaches below 50%, so a value of one half is inside it. The
+                sample does not give evidence of a majority at 95% confidence; the 54%
+                lead is within the sampling noise of a sample of 400.
+              concepts: [no-evidence]
+    answer_text: >-
+      The interval is $54\% \pm 4.9\%$, which runs from $49.1\%$ to $58.9\%$. The lower
+      end is below $50\%$, so a half is a possible value for the population proportion.
+      The sample therefore does **not** give evidence of a majority at $95\%$ confidence.
+      A four-point lead is inside the noise of a sample of $400$.
+
+  - id: r4-correlation-twelve
+    section: '11.10'
+    tier: O
+    refs: ['1.7']
+    statement: >-
+      A study of $12$ people finds a correlation of $0.9$ between two variables. Give one
+      reason to be cautious.
+    answer_label: 'One reason to be cautious'
+    check:
+      kind: structured
+      requires: [name-caution, explain]
+      concepts: [small-sample, correlation-not-causation]
+      points:
+        - id: name-caution
+          text: >-
+            Twelve people is a very small sample, so the correlation is unstable: one
+            unusual person can move a coefficient of $0.9$ a long way.
+          concepts: [small-sample]
+        - id: explain
+          text: >-
+            A strong correlation also does not show that one variable causes the other.
+            They may both follow a third variable, and with twelve people that
+            possibility cannot be separated from the others.
+          concepts: [correlation-not-causation]
+
+  - id: r5-truncated-axis
+    section: '11.3'
+    tier: F
+    refs: ['1.6']
+    statement: >-
+      A chart shows a company's sales rising from €96m to €100m with a vertical axis
+      starting at €95m. State what is misleading and how the chart should be drawn.
+    answer_label: 'What is misleading, and how to draw it'
+    check:
+      kind: all
+      checks:
+        - kind: approx
+          value: '4 / 96 * 100'
+          target: '4.17'
+          tolerance: '0.005'
+        - kind: structured
+          requires: [name-problem, state-size, how-to-draw]
+          concepts: [truncated-axis, percentage-change, zero-baseline]
+          points:
+            - id: name-problem
+              text: >-
+                The vertical axis starts at €95m, so the €96m bar has almost no height and
+                the €100m bar is drawn about five times as tall. The eye reads a huge rise
+                from a chart that shows almost none of the scale.
+              concepts: [truncated-axis]
+            - id: state-size
+              text: >-
+                The real rise is €4m on €96m, which is about 4.2%. That is a small change
+                over the period the chart covers.
+              concepts: [percentage-change]
+            - id: how-to-draw
+              text: >-
+                Start the vertical axis at zero, so the bar heights are in proportion to
+                the amounts. If the small change is the story, plot the percentage change
+                instead, on an axis that says so.
+              concepts: [zero-baseline]
+    answer_text: |-
+      The vertical axis starts at €95m, so the bars are not in proportion to the amounts.
+      The €96m bar is $1$ unit tall and the €100m bar is $5$ units tall, which makes a
+      small change look like a large one. The real rise is €4m on €96m, which is
+
+      $$\frac{4}{96} \times 100\% \approx 4.2\%$$
+
+      Draw the axis from zero so the heights are proportional to the amounts. If the
+      percentage change is the story, plot that instead, and label the axis.
+
+  - id: r6-fifty-percent-risk
+    section: '11.11'
+    tier: F
+    refs: ['1.4']
+    statement: >-
+      A report says a food "increases your risk of illness by 50%". The risk rises from
+      two in a million to three in a million. Explain why the two statements do not
+      conflict.
+    answer_label: 'Why both statements are true'
+    check:
+      kind: all
+      checks:
+        - {kind: evaluate, expression: '(3 - 2) / 2 * 100', answer: '50'}
+        - {kind: evaluate, expression: '3 / 1000000 - 2 / 1000000', answer: '1/1000000'}
+        - kind: structured
+          requires: [relative-change, absolute-change, reconcile]
+          concepts: [relative-risk, absolute-risk]
+          points:
+            - id: relative-change
+              text: >-
+                The 50% is a relative change: the risk grew from 2 to 3, which is half of
+                2 again.
+              concepts: [relative-risk]
+            - id: absolute-change
+              text: >-
+                The absolute change is one extra case in a million, which is 0.0001
+                percentage points.
+              concepts: [absolute-risk]
+            - id: reconcile
+              text: >-
+                Both statements describe the same change. A large percentage can sit on a
+                tiny base, so quote the two numbers together and the reader can judge the
+                size.
+              concepts: [relative-risk, absolute-risk]
+    answer_text: |-
+      The $50\%$ is a **relative** change. The risk grew from $2$ in a million to $3$ in a
+      million, and $1$ is half of $2$, so the risk rose by $50\%$:
+
+      $$\frac{3 - 2}{2} \times 100\% = 50\%$$
+
+      The **absolute** change is one extra case in a million, which is
+
+      $$\frac{3}{1000000} - \frac{2}{1000000} = \frac{1}{1000000}$$
+
+      A large percentage can sit on a tiny base, so both statements are true. Quote the
+      two numbers together, and the reader can judge whether the change matters.
+
+  - id: r7-poll-rules-out-half
+    section: '11.7'
+    tier: H
+    refs: ['1.7']
+    statement: >-
+      A poll reports $45\%$ Yes with a margin of error of $3$ points. Can it rule out a
+      $50$-$50$ split? Explain.
+    answer_label: 'Whether the split is ruled out, with the reason'
+    check:
+      kind: all
+      checks:
+        - {kind: compare, relation: '<', lhs: '45 + 3', rhs: '50'}
+        - kind: structured
+          requires: [write-interval, decide]
+          concepts: [margin-of-error, exclusion]
+          points:
+            - id: write-interval
+              text: >-
+                The interval is 45% plus or minus 3 points, which runs from 42% to 48%.
+              concepts: [margin-of-error]
+            - id: decide
+              text: >-
+                The whole interval lies below 50%, so a half is outside it. Yes, the poll
+                rules out a 50-50 split at 95% confidence, though only just: the top of
+                the interval is two points short.
+              concepts: [exclusion]
+    answer_text: |-
+      The interval is $45\% \pm 3\%$, which runs from $42\%$ to $48\%$. The whole interval
+      lies below $50\%$:
+
+      $$45 + 3 = 48 < 50$$
+
+      So yes, the poll rules out a $50$-$50$ split at $95\%$ confidence. The margin is
+      small, though: the top of the interval is only two points short of a half.
+
+  - id: r8-p-value-meaning
+    section: '11.9'
+    tier: H
+    refs: ['1.7']
+    statement: >-
+      A test finds a difference between two groups with $p = 0.03$. Explain what that
+      does and does not tell you.
+    answer_label: 'What the p-value does and does not say'
+    check:
+      kind: all
+      checks:
+        - {kind: compare, relation: '<', lhs: '0.03', rhs: '0.05'}
+        - kind: structured
+          requires: [state-meaning, state-decision, state-limits]
+          concepts: [p-value, significance, effect-size]
+          points:
+            - id: state-meaning
+              text: >-
+                A p-value of 0.03 means that if there were no real difference, a
+                difference at least this large would appear about 3 times in 100 samples.
+              concepts: [p-value]
+            - id: state-decision
+              text: >-
+                At the usual 5% threshold, 0.03 is below it, so the result is
+                statistically significant and the null hypothesis is rejected.
+              concepts: [significance]
+            - id: state-limits
+              text: >-
+                It does not tell you how big the difference is, whether it matters, or
+                whether the study was well designed. A p-value is evidence against one
+                explanation, not a measure of importance.
+              concepts: [effect-size]
+    answer_text: |-
+      A p-value of $0.03$ means that **if there were no real difference**, a difference at
+      least as large as the one observed would appear about $3$ times in $100$ samples.
+      Since
+
+      $$0.03 < 0.05$$
+
+      the result is statistically significant at the usual $5\%$ threshold, and the null
+      hypothesis is rejected.
+
+      It does **not** tell you how large the difference is, whether it matters in
+      practice, or whether the study was well designed. A p-value measures evidence
+      against one explanation, not the size or the importance of an effect.
+
+  - id: r9-email-survey-bias
+    section: '11.2'
+    tier: O
+    refs: ['1.5']
+    statement: >-
+      A survey is sent by email to a company's customers and $8\%$ reply. Name the bias
+      and explain why a large number of replies would not fix it.
+    answer_label: 'The bias, and why more replies would not fix it'
+    check:
+      kind: structured
+      requires: [name-bias, explain-persistence]
+      concepts: [non-response-bias, who-replies]
+      points:
+        - id: name-bias
+          text: >-
+            It is non-response bias, also called voluntary response bias. The people who
+            choose to reply are not a random sample of the customers.
+          concepts: [non-response-bias]
+        - id: explain-persistence
+          text: >-
+            A larger number of replies would make the sample bigger, but it would still be
+            the same kind of people replying. Those with a strong opinion answer, and
+            those with none do not, so the bias stays however many reply. A random sample,
+            with follow-up for the people who do not answer, is the only cure.
+          concepts: [who-replies]
+
+  - id: r10-significant-but-small
+    section: '11.9'
+    tier: H
+    refs: ['1.7']
+    statement: >-
+      Explain why a result can be statistically significant and still be too small to
+      matter, and give an example.
+    answer_label: 'The explanation and an example'
+    check:
+      kind: structured
+      requires: [explain-significance, explain-size, give-example]
+      concepts: [sample-size, effect-size, practical-importance]
+      points:
+        - id: explain-significance
+          text: >-
+            Significance asks only whether the result is unlikely under the null
+            hypothesis. A very large sample makes even a tiny difference unlikely by
+            chance, so the p-value falls without the difference growing.
+          concepts: [sample-size]
+        - id: explain-size
+          text: >-
+            Whether a result matters is a question about the size of the effect in the
+            real situation, not about the probability of seeing it. Significance and
+            importance are two different questions.
+          concepts: [effect-size, practical-importance]
+        - id: give-example
+          text: >-
+            A trial of $500\,000$ people might show that a drug lowers blood pressure by
+            $0.1$ mmHg with $p = 0.001$. The evidence for a difference is strong, and the
+            change is far too small to affect anyone's health. Report the size of the
+            effect beside the p-value, and the reader can judge both.
+          concepts: [practical-importance]

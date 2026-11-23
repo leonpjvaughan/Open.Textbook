@@ -1,0 +1,242 @@
+# Mixed practice for the Chapter 12 Review.
+#
+# Twelve questions, one record each, in the order they appear on the Review page. The
+# page carried no answer block, so every answer here is written from scratch and
+# re-derived rather than copied.
+#
+# A right-triangle side is one `evaluate` of Pythagoras; the exact values of $\sin$
+# and of a radian measure are `evaluate` at the exact value; the sine-rule side, the
+# triangle area and the angle inside the pyramid are `approx`, because their answers are
+# irrational; the double angle, the cosine-rule distance, the arithmetic term and the
+# surd are `evaluate` at the exact form; the trigonometric equation is `solve` over one
+# full turn. Questions 9, 10 and 11 come from Chapters 9, 4 and 1.
+#
+# Honest limit: this proves the arithmetic for each stated method, not the choice of
+# method. The reader is asked to name the method before calculating, and the verifier
+# cannot see that choice: a cosine rule recorded where a sine rule belongs would still
+# verify. Question 7 is solved in radians, because that is what a CAS solves in; the
+# page asks for degrees, and the conversion is stated in the answer.
+chapter: 12
+symbols:
+  x: {real: true}
+  y: {real: true}
+  theta: {real: true}
+problems:
+  - id: r1-pythagoras-hypotenuse
+    section: '12.2'
+    tier: F
+    refs: ['2.3']
+    statement: 'A right triangle has legs of $9$ cm and $12$ cm. Find the hypotenuse.'
+    answer_label: 'The hypotenuse'
+    check: {kind: evaluate, expression: 'sqrt(9 ** 2 + 12 ** 2)', answer: '15'}
+    answer_text: >-
+      Pythagoras' theorem gives $c^2 = 9^2 + 12^2 = 81 + 144 = 225$, so
+      $c = \sqrt{225} = 15$ cm. The hypotenuse is the side opposite the right angle, and
+      it is always the longest side.
+
+  - id: r2-sin-150
+    section: '12.4'
+    tier: O
+    refs: ['2.3']
+    statement: 'Write down the exact value of $\sin 150^\circ$.'
+    answer_label: 'The exact value'
+    check: {kind: evaluate, expression: 'sin(150 * pi / 180)', answer: '1/2'}
+    answer_text: >-
+      $150^\circ$ is in the second quadrant, where sine is positive. Its reference angle
+      is $180^\circ - 150^\circ = 30^\circ$, and $\sin 30^\circ = \dfrac{1}{2}$. So
+      $\sin 150^\circ = \dfrac{1}{2}$.
+
+  - id: r3-degrees-to-radians
+    section: '12.3'
+    tier: O
+    refs: ['2.3']
+    statement: 'Change $150^\circ$ into radians, giving the answer as a multiple of $\pi$.'
+    answer_label: 'The angle in radians'
+    check: {kind: evaluate, expression: '150 * pi / 180', answer: '5 * pi / 6'}
+    answer_text: >-
+      Multiply by $\dfrac{\pi}{180}$:
+      $150 \times \dfrac{\pi}{180} = \dfrac{150\pi}{180} = \dfrac{5\pi}{6}$.
+      Cancel the $30$ that divides both $150$ and $180$.
+
+  - id: r4-sine-rule-side
+    section: '12.6'
+    tier: O
+    refs: ['2.3']
+    statement: 'In a triangle, $A = 40^\circ$, $B = 60^\circ$ and $a = 10$ cm. Find $b$.'
+    answer_label: 'The side b'
+    check:
+      kind: approx
+      value: '10 * sin(60 * pi / 180) / sin(40 * pi / 180)'
+      target: '13.47'
+      tolerance: '0.01'
+    answer_text: |-
+      The booklet gives the sine rule. Pair the side with its opposite angle:
+
+      $$\frac{b}{\sin 60^\circ} = \frac{10}{\sin 40^\circ}
+      \quad\Rightarrow\quad b = \frac{10 \times 0.8660}{0.6428} = 13.47 \text{ cm}$$
+
+      So $b \approx 13.5$ cm. The side opposite the larger angle is the longer side, and
+      $60^\circ > 40^\circ$, so $b > a$ as expected.
+
+  - id: r5-heron-area
+    section: '12.7'
+    tier: O
+    refs: ['2.3']
+    statement: 'A triangle has sides of $5$ cm, $7$ cm and $9$ cm. Find its area.'
+    answer_label: 'The area'
+    check:
+      kind: approx
+      value: 'sqrt(21/2 * 11/2 * 7/2 * 3/2)'
+      target: '17.41'
+      tolerance: '0.01'
+    answer_text: |-
+      No angle is given, so use the half-perimeter form. With $s = \dfrac{5 + 7 + 9}{2}
+      = 10.5$,
+
+      $$A = \sqrt{s(s - a)(s - b)(s - c)}
+      = \sqrt{10.5 \times 5.5 \times 3.5 \times 1.5} = \sqrt{303.1875}
+      \approx 17.41 \text{ cm}^2$$
+
+      The answer is about $17.4$ cm². A cosine rule first would find an angle, and the
+      area formula would then give the same number.
+
+  - id: r6-double-angle
+    section: '12.8'
+    tier: H
+    refs: ['2.3']
+    statement: >-
+      Given that $\sin A = \dfrac{3}{5}$ and $A$ is acute, find $\cos 2A$.
+    answer_label: 'The value of cos 2A'
+    check: {kind: evaluate, expression: '1 - 2 * (3 / 5) ** 2', answer: '7/25'}
+    answer_text: |-
+      Use $\cos 2A = 1 - 2\sin^2 A$, which needs only the sine:
+
+      $$\cos 2A = 1 - 2\left(\frac{3}{5}\right)^2 = 1 - \frac{18}{25} = \frac{7}{25}$$
+
+      The answer is positive, which fits: $\sin A = 0.6$ gives $A \approx 36.9^\circ$ and
+      $2A \approx 73.7^\circ$, an angle in the first quadrant. Finding $\cos A$ from a
+      triangle first and using $\cos 2A = 2\cos^2 A - 1$ gives the same $\dfrac{7}{25}$.
+
+  - id: r7-sine-equation
+    section: '12.9'
+    tier: H
+    refs: ['2.3']
+    statement: 'Solve $\sin\theta = \dfrac{\sqrt{3}}{2}$ for $0^\circ \le \theta \le 360^\circ$.'
+    answer_label: 'Every solution in the range'
+    check:
+      kind: solve
+      equation: 'sin(theta) = sqrt(3) / 2'
+      variable: 'theta'
+      interval: ['0', '2 * pi']
+      answer: ['pi / 3', '2 * pi / 3']
+    answer_text: |-
+      The reference angle is $60^\circ$, because $\sin 60^\circ = \dfrac{\sqrt{3}}{2}$.
+      Sine is positive in the first and second quadrants, so the two solutions in one full
+      turn are
+
+      $$\theta = 60^\circ \quad\text{or}\quad \theta = 180^\circ - 60^\circ = 120^\circ$$
+
+      In radians that is $\theta = \dfrac{\pi}{3}$ or $\dfrac{2\pi}{3}$. A sketch of the
+      sine curve over $0^\circ$ to $360^\circ$ crosses the line $y = \dfrac{\sqrt{3}}{2}$
+      exactly twice, so there are no more solutions in the range.
+
+  - id: r8-bearing-distance
+    section: '12.6'
+    tier: O
+    refs: ['2.3']
+    statement: >-
+      Two boats leave a station. One is $6$ km away on a bearing of $050^\circ$, and the
+      other is $9$ km away on a bearing of $110^\circ$. Find the distance between them.
+    answer_label: 'The distance between the boats'
+    check:
+      kind: evaluate
+      expression: 'sqrt(6 ** 2 + 9 ** 2 - 2 * 6 * 9 * cos(pi / 3))'
+      answer: '3 * sqrt(7)'
+    answer_text: |-
+      The angle between the two journeys at the station is $110^\circ - 50^\circ =
+      60^\circ$. Two sides and the angle between them are known, so use the cosine rule:
+
+      $$d^2 = 6^2 + 9^2 - 2 \times 6 \times 9 \times \cos 60^\circ
+      = 36 + 81 - 54 = 63$$
+
+      $$d = \sqrt{63} = 3\sqrt{7} \approx 7.94 \text{ km}$$
+
+      The boats are about $7.9$ km apart. Measuring the bearing difference from the same
+      north line is what makes the included angle $60^\circ$.
+
+  - id: r9-arithmetic-term
+    section: '9.1'
+    tier: O
+    refs: ['4.1']
+    statement: 'From Chapter 9: find the twentieth term of the sequence $4, 9, 14, \dots$'
+    answer_label: 'The twentieth term'
+    check: {kind: evaluate, expression: '4 + 19 * 5', answer: '99'}
+    answer_text: |-
+      The first term is $a = 4$ and the common difference is $d = 5$. The $n$th term is
+      $a + (n - 1)d$, so
+
+      $$u_{20} = 4 + 19 \times 5 = 4 + 95 = 99$$
+
+      There are $19$ steps from the first term to the twentieth, not $20$.
+
+  - id: r10-subject-of-formula
+    section: '4.6'
+    tier: F
+    refs: ['4.2']
+    statement: 'From Chapter 4: make $x$ the subject of $3x - 2y = 12$.'
+    answer_label: 'The formula with x as the subject'
+    check:
+      kind: solve
+      equation: '3 * x - 2 * y = 12'
+      variable: 'x'
+      answer: ['(2 * y + 12) / 3']
+    answer_text: |-
+      Add $2y$ to both sides: $3x = 12 + 2y$. Then divide by $3$:
+
+      $$x = \frac{12 + 2y}{3} = 4 + \frac{2y}{3}$$
+
+      Both forms are the same expression. Dividing every term by $3$ is the step that
+      makes $x$ the subject.
+
+  - id: r11-surd
+    section: '1.2'
+    tier: O
+    refs: ['3.1']
+    statement: 'From Chapter 1: write $\sqrt{200}$ in the form $k\sqrt{2}$.'
+    answer_label: 'The value of k'
+    check: {kind: evaluate, expression: 'sqrt(200)', answer: '10 * sqrt(2)'}
+    answer_text: |-
+      Look for the largest square factor: $200 = 100 \times 2$, so
+
+      $$\sqrt{200} = \sqrt{100 \times 2} = \sqrt{100} \times \sqrt{2} = 10\sqrt{2}$$
+
+      So $k = 10$. The square root of a product is the product of the square roots, and
+      $100$ is the largest square that divides $200$.
+
+  - id: r12-pyramid-angle
+    section: '12.10'
+    tier: H
+    refs: ['2.3']
+    statement: >-
+      A square-based pyramid has base side $12$ m and vertical height $8$ m. Find the angle
+      between a sloping edge and the base.
+    answer_label: 'The angle between a sloping edge and the base'
+    check:
+      kind: approx
+      value: 'atan(8 / (6 * sqrt(2))) * 180 / pi'
+      target: '43.31'
+      tolerance: '0.01'
+    answer_text: |-
+      Let the apex be $V$ and the base centre be $O$. The projection of a sloping edge
+      $VA$ onto the base is $OA$, half a diagonal of the square base:
+
+      $$OA = \frac{1}{2}\sqrt{12^2 + 12^2} = \frac{1}{2} \times 12\sqrt{2} = 6\sqrt{2}$$
+
+      The triangle $VOA$ has a right angle at $O$, with $|VO| = 8$ m opposite the angle and
+      $|OA| = 6\sqrt{2}$ adjacent to it. So
+
+      $$\tan\theta = \frac{8}{6\sqrt{2}} = 0.9428
+      \quad\Rightarrow\quad \theta = 43.3^\circ$$
+
+      The angle is between the edge and its own projection, not the angle between the edge
+      and a side of the base.

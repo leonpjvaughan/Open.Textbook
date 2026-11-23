@@ -1,0 +1,264 @@
+# Mixed practice for the Chapter 16 Review.
+#
+# Twelve questions, one record each, in the order they appear on the Review page.
+#
+# Questions 1 and 2 use the parallelogram theorems; question 3 the similar-triangle ratio;
+# question 4 the proportional-sides theorem; questions 5 and 6 Pythagoras and its
+# converse; questions 7 to 9 the area formulas. Questions 10, 11 and 12 come from
+# Chapters 13, 14 and 3.
+#
+# A side or an area is one `evaluate`, so the oracle proves the arithmetic the theorem
+# licenses. Question 1 asks for two angles, so it is an `all` of the subtraction that
+# finds the consecutive angle and a `structured` component for the opposite angle, which
+# is equal and needs no arithmetic. Question 6 asks "Is it right-angled? Give a reason",
+# and question 11 asks "is the image similar", so both carry a `structured` component
+# beside the number.
+#
+# Honest limit: this proves arithmetic. A `structured` check proves only that the model
+# answer contains the declared steps and concepts, in order; it does not prove that the
+# theorem quoted is the one that applies. The instruction to name the theorem before
+# calculating is a habit for the reader, not something the verifier can see.
+chapter: 16
+problems:
+  - id: r1-parallelogram-angles
+    section: '16.1'
+    tier: O
+    refs: ['2.1']
+    statement: 'In a parallelogram $ABCD$, $|\angle A| = 72^\circ$. Find $|\angle C|$ and $|\angle B|$.'
+    answer_label: 'The angles at C and B'
+    check:
+      kind: all
+      checks:
+        - {kind: evaluate, expression: '180 - 72', answer: '108'}
+        - kind: structured
+          requires: [opposite-angle, consecutive-angle]
+          concepts: [opposite-angles, supplementary]
+          points:
+            - id: opposite-angle
+              text: >-
+                The angle at C is opposite the angle at A, and opposite angles of a
+                parallelogram are equal, so |angle C| = 72 degrees.
+              concepts: [opposite-angles]
+            - id: consecutive-angle
+              text: >-
+                The angles at B and C are consecutive, and consecutive angles of a
+                parallelogram are supplementary, so |angle B| = 180 - 72 = 108 degrees.
+              concepts: [supplementary]
+    answer_text: >-
+      $|\angle C| = 72^\circ$, because $C$ is opposite $A$ and opposite angles of a
+      parallelogram are equal, by Theorem 9.
+
+      $|\angle B| = 180^\circ - 72^\circ = 108^\circ$, because consecutive angles are
+      supplementary. Check the four angles: $2 \times 72 + 2 \times 108 = 360$, which is a
+      full turn.
+
+  - id: r2-diagonal-halves
+    section: '16.1'
+    tier: O
+    refs: ['2.1']
+    statement: 'The diagonals of a parallelogram meet at $E$, with $|AE| = 7$ cm. Find $|AC|$.'
+    answer_label: 'The diagonal AC'
+    check: {kind: evaluate, expression: '2 * 7', answer: '14'}
+    answer_text: |-
+      The diagonals of a parallelogram bisect one another, by Theorem 10, so $E$ is the
+      midpoint of $[AC]$. Then
+
+      $$|AC| = 2 \times |AE| = 2 \times 7 = 14 \text{ cm}$$
+
+      The same reasoning gives $|BD| = 2 \times |BE|$, so each diagonal is split into two
+      equal parts at $E$.
+
+  - id: r3-similar-sides
+    section: '16.3'
+    tier: O
+    refs: ['2.1']
+    statement: >-
+      $\triangle ABC \sim \triangle PQR$, with $|AB| = 6$ cm, $|BC| = 8$ cm and
+      $|PQ| = 9$ cm. Find $|QR|$.
+    answer_label: 'The side QR'
+    check: {kind: evaluate, expression: '8 * (9 / 6)', answer: '12'}
+    answer_text: |-
+      The letter order matches $[AB]$ with $[PQ]$ and $[BC]$ with $[QR]$, so the scale
+      factor is
+
+      $$k = \frac{|PQ|}{|AB|} = \frac{9}{6} = 1.5$$
+
+      Then $|QR| = 1.5 \times |BC| = 1.5 \times 8 = 12$ cm. Every length is multiplied by
+      the same factor, which is what similar means.
+
+  - id: r4-proportional-sides
+    section: '16.4'
+    tier: H
+    refs: ['2.1']
+    statement: >-
+      In $\triangle ABC$, a line parallel to $BC$ cuts $[AB]$ at $D$ with
+      $|AD| : |DB| = 4 : 5$. Given $|AC| = 18$ cm, find $|AE|$.
+    answer_label: 'The side AE'
+    check: {kind: evaluate, expression: '18 * 4 / (4 + 5)', answer: '8'}
+    answer_text: |-
+      A line parallel to one side cuts the other two sides in the same ratio, by
+      Theorem 12. So $|AE| : |EC| = 4 : 5$, and $[AC]$ is in $9$ equal parts:
+
+      $$|AE| = \frac{4}{9} \times 18 = 8 \text{ cm}$$
+
+      Check: $|EC| = 10$ cm, and $8 : 10 = 4 : 5$, which is the ratio given. The parallel
+      line also makes $\triangle ADE$ similar to $\triangle ABC$ with scale factor
+      $\dfrac{4}{9}$.
+
+  - id: r5-pythagoras
+    section: '16.5'
+    tier: O
+    refs: ['2.1']
+    statement: 'A right-angled triangle has legs of $8$ cm and $15$ cm. Find the hypotenuse.'
+    answer_label: 'The hypotenuse'
+    check: {kind: evaluate, expression: 'sqrt(8 ** 2 + 15 ** 2)', answer: '17'}
+    answer_text: |-
+      $$c^2 = 8^2 + 15^2 = 64 + 225 = 289$$
+
+      $$c = \sqrt{289} = 17 \text{ cm}$$
+
+      The square root is exact because $289 = 17^2$. The hypotenuse is the longest side,
+      so an answer smaller than $15$ would be a warning that something went wrong.
+
+  - id: r6-converse-pythagoras
+    section: '16.5'
+    tier: O
+    refs: ['2.1']
+    statement: 'A triangle has sides of $9$ cm, $12$ cm and $15$ cm. Is it right-angled? Give a reason.'
+    answer_label: 'Whether it is right-angled, with the reason'
+    check:
+      kind: all
+      checks:
+        - {kind: compare, relation: '=', lhs: '9 ** 2 + 12 ** 2', rhs: '15 ** 2'}
+        - kind: structured
+          requires: [square-the-sides, state-converse]
+          concepts: [converse-of-pythagoras, longest-side]
+          points:
+            - id: square-the-sides
+              text: >-
+                Square the two shorter sides and add: 81 + 144 = 225. Square the longest
+                side: 225. The two results are equal.
+              concepts: [longest-side]
+            - id: state-converse
+              text: >-
+                By the converse of Pythagoras' theorem, equality means the angle opposite
+                the longest side is a right angle, so the triangle is right-angled, with
+                the right angle opposite the 15 cm side.
+              concepts: [converse-of-pythagoras]
+    answer_text: |-
+      Yes. Square the two shorter sides and add them, then square the longest:
+
+      $$9^2 + 12^2 = 81 + 144 = 225 = 15^2$$
+
+      The two results are equal, so by the converse of Pythagoras' theorem the angle
+      opposite the $15$ cm side is a right angle. The right angle is opposite the longest
+      side, never between the two shorter ones.
+
+  - id: r7-triangle-area
+    section: '16.6'
+    tier: O
+    refs: ['2.1']
+    statement: 'A triangle has base $14$ cm and height $9$ cm. Find its area.'
+    answer_label: 'The area'
+    check: {kind: evaluate, expression: '1/2 * 14 * 9', answer: '63'}
+    answer_text: |-
+      $$A = \frac{1}{2} \times \text{base} \times \text{height}
+      = \frac{1}{2} \times 14 \times 9 = 63 \text{ cm}^2$$
+
+      The height is measured perpendicular to the base. Choosing a different base gives
+      the same area, which is Theorem 16.
+
+  - id: r8-trapezium-area
+    section: '16.6'
+    tier: O
+    refs: ['2.1']
+    statement: >-
+      A trapezium has parallel sides of $6$ m and $10$ m, and the distance between them is
+      $4$ m. Find its area.
+    answer_label: 'The area'
+    check: {kind: evaluate, expression: '(6 + 10) / 2 * 4', answer: '32'}
+    answer_text: |-
+      $$A = \frac{a + b}{2} \times h = \frac{6 + 10}{2} \times 4 = 8 \times 4 = 32
+      \text{ m}^2$$
+
+      The average of the two parallel sides, multiplied by the distance between them. It is
+      the same formula as a rectangle when the two parallel sides are equal.
+
+  - id: r9-area-with-angle
+    section: '16.6'
+    tier: O
+    refs: ['2.1', '2.3']
+    statement: >-
+      From Chapter 12: a triangle has sides of $7$ cm and $9$ cm, and the angle between them
+      is $30^\circ$. Find its area.
+    answer_label: 'The area'
+    check: {kind: evaluate, expression: '1/2 * 7 * 9 * sin(pi / 6)', answer: '63/4'}
+    answer_text: |-
+      $$A = \frac{1}{2}ab\sin C = \frac{1}{2} \times 7 \times 9 \times \sin 30^\circ
+      = 31.5 \times 0.5 = 15.75 \text{ cm}^2$$
+
+      The formula is in the booklet. The angle must be the one **between** the two sides
+      you use, which is why the included angle is named.
+
+  - id: r10-distance
+    section: '13.1'
+    tier: F
+    refs: ['2.2']
+    statement: 'From Chapter 13: find the distance between $(2,3)$ and $(5,7)$.'
+    answer_label: 'The distance'
+    check: {kind: evaluate, expression: 'sqrt((5 - 2) ** 2 + (7 - 3) ** 2)', answer: '5'}
+    answer_text: |-
+      $$d = \sqrt{(5 - 2)^2 + (7 - 3)^2} = \sqrt{9 + 16} = \sqrt{25} = 5$$
+
+      The distance formula is Pythagoras' theorem applied to the horizontal and vertical
+      differences, which is why the same square root appears in both chapters.
+
+  - id: r11-enlargement
+    section: '14.4'
+    tier: O
+    refs: ['2.4']
+    statement: >-
+      From Chapter 14: a triangle has sides of $3$, $4$ and $5$ cm. It is enlarged by a
+      scale factor of $2$. Find the sides of the image, and say whether the image is similar
+      to the original.
+    answer_label: 'The sides of the image, and whether it is similar'
+    check:
+      kind: all
+      checks:
+        - {kind: evaluate, expression: '2 * Matrix([3, 4, 5])', answer: 'Matrix([6, 8, 10])'}
+        - kind: structured
+          requires: [state-sides, give-reason]
+          concepts: [scale-factor, similar]
+          points:
+            - id: state-sides
+              text: >-
+                Each side is multiplied by 2, so the image has sides 6, 8 and 10 cm.
+              concepts: [scale-factor]
+            - id: give-reason
+              text: >-
+                An enlargement multiplies every length by the same factor and keeps every
+                angle, so the image is similar to the original. It is not congruent,
+                because the sides have changed.
+              concepts: [similar]
+    answer_text: >-
+      Each side is multiplied by $2$, so the image has sides $6$, $8$ and $10$ cm.
+
+      The image is **similar** to the original. An enlargement keeps every angle and
+      multiplies every length by the same factor, and those two facts are the definition of
+      similar. It is not congruent, because the sides are twice as long, and its area is
+      $4$ times as large, not $2$.
+
+  - id: r12-circle-area
+    section: '3.2'
+    tier: F
+    refs: ['3.4']
+    statement: >-
+      From Chapter 3: a circle has radius $5$ cm. Find its area, leaving your answer in
+      terms of $\pi$.
+    answer_label: 'The area'
+    check: {kind: evaluate, expression: 'pi * 5 ** 2', answer: '25 * pi'}
+    answer_text: |-
+      $$A = \pi r^2 = \pi \times 5^2 = 25\pi \text{ cm}^2$$
+
+      Leaving the answer in terms of $\pi$ keeps it exact. As a decimal it is about
+      $78.5$ cm².

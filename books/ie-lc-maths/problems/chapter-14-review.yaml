@@ -1,0 +1,225 @@
+# Mixed practice for the Chapter 14 Review.
+#
+# Ten questions, one record each, in the order they appear on the Review page. Every
+# transformation is a matrix, so each record applies the matrix the page teaches to the
+# given point and compares the result with the image in the answer. A translation is a
+# vector sum, a reflection in the $x$-axis is $\operatorname{diag}(1, -1)$, a reflection
+# in $y = x$ swaps the coordinates, a quarter turn anticlockwise is
+# $\begin{pmatrix} 0 & -1 \\ 1 & 0 \end{pmatrix}$, a half turn is $-I$, and an
+# enlargement is a scalar multiple. Question 7 proves the area factor $k^2$ with
+# $7 \times 4^2$, and question 8 proves the order of rotational symmetry with
+# $360 \div 36$. Question 10 composes the two transformations in the order the question
+# gives them, because composition is not commutative and that is the point of the
+# question.
+#
+# Honest limit: this proves that the rule named in the answer produces the stated image.
+# It does not prove that the reader named the right transformation for the question, and
+# for question 9 — the only question whose answer is a name rather than a point — the
+# `structured` check proves only that the model answer states the transformation and its
+# centre, in order.
+chapter: 14
+problems:
+  - id: r1-translate
+    section: '14.1'
+    tier: F
+    refs: ['2.4']
+    statement: 'Translate the point $(3,-2)$ by the vector $\binom{-4}{5}$.'
+    answer_label: 'The image point'
+    check:
+      kind: evaluate
+      expression: 'Matrix([3, -2]) + Matrix([-4, 5])'
+      answer: 'Matrix([-1, 3])'
+    answer_text: |-
+      A translation by $\binom{-4}{5}$ adds $-4$ to the $x$-coordinate and $5$ to the
+      $y$-coordinate:
+
+      $$(3, -2) \to (3 - 4,\; -2 + 5) = (-1, 3)$$
+
+      The image is $(-1, 3)$. A translation keeps every length and every angle, so the
+      point simply moves.
+
+  - id: r2-reflect-x-axis
+    section: '14.2'
+    tier: F
+    refs: ['2.4']
+    statement: 'Reflect the point $(5,-1)$ in the $x$-axis.'
+    answer_label: 'The image point'
+    check:
+      kind: evaluate
+      expression: 'Matrix([[1, 0], [0, -1]]) * Matrix([5, -1])'
+      answer: 'Matrix([5, 1])'
+    answer_text: |-
+      A reflection in the $x$-axis keeps the $x$-coordinate and changes the sign of the
+      $y$-coordinate:
+
+      $$(5, -1) \to (5, 1)$$
+
+      The image is $(5, 1)$. The axis of symmetry is the line the point is reflected in,
+      and that line's own points do not move.
+
+  - id: r3-reflect-y-equals-x
+    section: '14.2'
+    tier: F
+    refs: ['2.4']
+    statement: 'Reflect the point $(2,7)$ in the line $y = x$.'
+    answer_label: 'The image point'
+    check:
+      kind: evaluate
+      expression: 'Matrix([[0, 1], [1, 0]]) * Matrix([2, 7])'
+      answer: 'Matrix([7, 2])'
+    answer_text: |-
+      A reflection in $y = x$ swaps the two coordinates:
+
+      $$(2, 7) \to (7, 2)$$
+
+      The image is $(7, 2)$. Swapping is a reflection because the line $y = x$ is exactly
+      where the two coordinates are equal, so each point crosses to the other side of it.
+
+  - id: r4-quarter-turn
+    section: '14.3'
+    tier: F
+    refs: ['2.4']
+    statement: 'Rotate the point $(-3,2)$ by $90^\circ$ anticlockwise about the origin.'
+    answer_label: 'The image point'
+    check:
+      kind: evaluate
+      expression: 'Matrix([[0, -1], [1, 0]]) * Matrix([-3, 2])'
+      answer: 'Matrix([-2, -3])'
+    answer_text: |-
+      A quarter turn anticlockwise about the origin uses the rule
+      $(x, y) \to (-y, x)$:
+
+      $$(-3, 2) \to (-2, -3)$$
+
+      The image is $(-2, -3)$. The point was in the second quadrant and the anticlockwise
+      turn takes it into the third, which is the check that the direction is right.
+
+  - id: r5-half-turn
+    section: '14.3'
+    tier: F
+    refs: ['2.4']
+    statement: 'Rotate the point $(4,-1)$ by $180^\circ$ about the origin.'
+    answer_label: 'The image point'
+    check:
+      kind: evaluate
+      expression: 'Matrix([[-1, 0], [0, -1]]) * Matrix([4, -1])'
+      answer: 'Matrix([-4, 1])'
+    answer_text: |-
+      A half turn about the origin changes the sign of both coordinates:
+
+      $$(4, -1) \to (-4, 1)$$
+
+      The image is $(-4, 1)$. A half turn is central symmetry about the origin, and it
+      looks the same clockwise or anticlockwise.
+
+  - id: r6-enlarge
+    section: '14.4'
+    tier: O
+    refs: ['2.4']
+    statement: 'Enlarge the point $(3,5)$ by scale factor $2$ about the origin.'
+    answer_label: 'The image point'
+    check:
+      kind: evaluate
+      expression: '2 * Matrix([3, 5])'
+      answer: 'Matrix([6, 10])'
+    answer_text: |-
+      An enlargement about the origin multiplies both coordinates by the scale factor:
+
+      $$(3, 5) \to (2 \times 3,\; 2 \times 5) = (6, 10)$$
+
+      The image is $(6, 10)$. The point is twice as far from the origin, and the direction
+      from the origin does not change.
+
+  - id: r7-area-factor
+    section: '14.4'
+    tier: O
+    refs: ['2.4']
+    statement: >-
+      A shape has area $7$ cm². It is enlarged by scale factor $4$. Find the area of the
+      image.
+    answer_label: 'The area of the image'
+    check: {kind: evaluate, expression: '7 * 4 ** 2', answer: '112'}
+    answer_text: |-
+      Both dimensions are multiplied by $4$, so the area is multiplied by $4^2 = 16$:
+
+      $$7 \times 16 = 112 \text{ cm}^2$$
+
+      The area factor is $k^2$, not $k$. An enlargement by $4$ makes the shape sixteen
+      times as large, which is why the answer is not $28$ cm².
+
+  - id: r8-decagon-symmetry
+    section: '14.5'
+    tier: O
+    refs: ['2.4']
+    statement: 'Find the order of rotational symmetry of a regular decagon.'
+    answer_label: 'The order of rotational symmetry'
+    check: {kind: evaluate, expression: '360 / 36', answer: '10'}
+    answer_text: |-
+      A regular decagon has $10$ equal sides, so a turn of
+
+      $$\frac{360^\circ}{10} = 36^\circ$$
+
+      maps it onto itself. The order of rotational symmetry is the number of such turns in
+      a full circle, which is $10$. The order equals the number of sides for every regular
+      polygon.
+
+  - id: r9-name-transformation
+    section: '14.3'
+    tier: F
+    refs: ['2.4']
+    statement: 'A single transformation takes $(2,3)$ to $(-2,-3)$. Name it.'
+    answer_label: 'The transformation, with the reason'
+    check:
+      kind: all
+      checks:
+        - kind: evaluate
+          expression: 'Matrix([[-1, 0], [0, -1]]) * Matrix([2, 3])'
+          answer: 'Matrix([-2, -3])'
+        - kind: structured
+          requires: [name-transformation, give-reason]
+          concepts: [half-turn, central-symmetry]
+          points:
+            - id: name-transformation
+              text: >-
+                A rotation of $180^\circ$ about the origin, which is the same as central
+                symmetry about the origin.
+              concepts: [half-turn]
+            - id: give-reason
+              text: >-
+                Both coordinates changed sign and neither kept its value, so the point
+                moved to the opposite side of the origin. A reflection in an axis would
+                have changed only one sign.
+              concepts: [central-symmetry]
+    answer_text: |-
+      A **rotation of $180^\circ$ about the origin**, which is also called central symmetry
+      about the origin. The rule is $(x, y) \to (-x, -y)$, so
+
+      $$(2, 3) \to (-2, -3)$$
+
+      Both signs changed, so the point moved to the opposite side of the origin. A
+      reflection in one axis would have changed only one sign, so this is not a reflection.
+
+  - id: r10-compose
+    section: '14.6'
+    tier: H
+    refs: ['2.4']
+    statement: >-
+      Translate the point $(1,3)$ by $\binom{2}{-1}$, then reflect the image in the
+      $y$-axis. Give the final image.
+    answer_label: 'The final image'
+    check:
+      kind: evaluate
+      expression: 'Matrix([[-1, 0], [0, 1]]) * (Matrix([1, 3]) + Matrix([2, -1]))'
+      answer: 'Matrix([-3, 2])'
+    answer_text: |-
+      Do the transformations in the order given. First the translation:
+
+      $$(1, 3) \to (1 + 2,\; 3 - 1) = (3, 2)$$
+
+      Then the reflection in the $y$-axis, which changes the sign of the $x$-coordinate:
+
+      $$(3, 2) \to (-3, 2)$$
+
+      The final image is $(-3, 2)$. Reversing the order would give
+      $(1, 3) \to (-1, 3) \to (1, 2)$, so the order matters: a composition of
+      transformations is not commutative.

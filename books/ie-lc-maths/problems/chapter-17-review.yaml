@@ -1,0 +1,263 @@
+# Mixed practice for the Chapter 17 Review.
+#
+# Twelve questions, one record each, in the order they appear on the Review page.
+#
+# Questions 1 and 7 use the perpendicular from the centre to a chord, question 2 the angle
+# at the centre, questions 3 and 8 the cyclic quadrilateral and the angle in a semicircle,
+# questions 4 and 5 the tangent and the circumcentre, and question 6 the crossing-chords
+# rule. Questions 9 to 12 come from Chapters 15, 16, 15 and 12.
+#
+# A chord distance, a tangent length and an angle are each one `evaluate`, so the oracle
+# proves the arithmetic the theorem licenses. Question 6 is `solve`, because the rule is a
+# product of two parts equal to a product of two parts and the unknown is one factor.
+# Question 10 asks "Show that it is right-angled", so it carries a `structured` component
+# beside the equality. Question 11 asks for an alternate angle, which equals the given one
+# and so needs no arithmetic: the model answer states the pair and the value, and the
+# numeric check is the supplementary angle that makes the same line add to 180 degrees.
+#
+# Honest limit: this proves arithmetic and an equality. It does not prove a circle
+# theorem, and it cannot see whether the reader named the right theorem before
+# calculating. A `structured` check proves only that the model answer contains its declared
+# steps and concepts, in order.
+chapter: 17
+symbols:
+  x: {real: true}
+problems:
+  - id: r1-chord-distance
+    section: '17.1'
+    tier: O
+    refs: ['2.1']
+    statement: 'A chord of a circle is $24$ cm long and the radius is $13$ cm. Find the distance from the centre to the chord.'
+    answer_label: 'The distance from the centre to the chord'
+    check: {kind: evaluate, expression: 'sqrt(13 ** 2 - 12 ** 2)', answer: '5'}
+    answer_text: |-
+      The perpendicular from the centre bisects the chord, by Theorem 21 part 1, so the
+      half-chord is $12$ cm. That half-chord, the distance $d$ and the radius make a
+      right-angled triangle:
+
+      $$d^2 + 12^2 = 13^2 \quad\Rightarrow\quad d^2 = 169 - 144 = 25$$
+
+      $$d = 5 \text{ cm}$$
+
+      The chord is $5$ cm from the centre.
+
+  - id: r2-angle-at-centre
+    section: '17.2'
+    tier: O
+    refs: ['2.1']
+    statement: >-
+      $O$ is the centre of a circle and $|\angle AOB| = 128^\circ$. $C$ is a point on the
+      major arc. Find $|\angle ACB|$.
+    answer_label: 'The angle at C'
+    check: {kind: evaluate, expression: '128 / 2', answer: '64'}
+    answer_text: |-
+      The angle at the centre is twice the angle at the circle standing on the same arc, by
+      Theorem 19. Both angles stand on the minor arc $AB$, so
+
+      $$|\angle ACB| = \frac{128^\circ}{2} = 64^\circ$$
+
+      The point $C$ is on the major arc, which is what makes the two angles stand on the
+      same arc and lets the theorem be used directly.
+
+  - id: r3-cyclic-quadrilateral
+    section: '17.3'
+    tier: O
+    refs: ['2.1']
+    statement: 'A cyclic quadrilateral has two opposite angles of $4x$ and $5x$. Find $x$.'
+    answer_label: 'The value of x'
+    check:
+      kind: solve
+      equation: '4 * x + 5 * x = 180'
+      variable: 'x'
+      answer: ['20']
+    answer_text: |-
+      Opposite angles of a cyclic quadrilateral are supplementary, so
+
+      $$4x + 5x = 180 \quad\Rightarrow\quad 9x = 180 \quad\Rightarrow\quad x = 20$$
+
+      The two angles are $80^\circ$ and $100^\circ$, and $80 + 100 = 180$ checks the
+      answer.
+
+  - id: r4-tangent-length
+    section: '17.4'
+    tier: O
+    refs: ['2.1']
+    statement: 'A tangent from $T$ to a circle has length $20$ cm, and the radius is $15$ cm. Find $|OT|$.'
+    answer_label: 'The distance OT'
+    check: {kind: evaluate, expression: 'sqrt(15 ** 2 + 20 ** 2)', answer: '25'}
+    answer_text: |-
+      The radius meets the tangent at a right angle at the point of contact, by Theorem 20
+      part 1. So the triangle has the radius and the tangent as its legs, and $|OT|$ is the
+      hypotenuse:
+
+      $$|OT|^2 = 15^2 + 20^2 = 225 + 400 = 625$$
+
+      $$|OT| = 25 \text{ cm}$$
+
+      $T$ is the external point, so $|OT|$ must be longer than the radius, and $25 > 15$.
+
+  - id: r5-circumradius
+    section: '17.5'
+    tier: O
+    refs: ['2.1']
+    statement: 'A triangle has a right angle at $A$ and a hypotenuse of $34$ cm. Find the circumradius.'
+    answer_label: 'The circumradius'
+    check: {kind: evaluate, expression: '34 / 2', answer: '17'}
+    answer_text: |-
+      The circumcentre of a right-angled triangle is the midpoint of the hypotenuse, so the
+      circumradius is half of it:
+
+      $$R = \frac{34}{2} = 17 \text{ cm}$$
+
+      The hypotenuse is a diameter of the circumcircle, which is Corollary 4 read backwards.
+      So the radius is half the hypotenuse.
+
+  - id: r6-crossing-chords
+    section: '17.8'
+    tier: H
+    refs: ['2.1']
+    statement: >-
+      Two chords cross at $P$ inside a circle, with $|PA| = 4$ cm, $|PB| = 9$ cm and
+      $|PC| = 3$ cm. Find $|PD|$.
+    answer_label: 'The length PD'
+    check:
+      kind: solve
+      equation: '4 * 9 = 3 * x'
+      variable: 'x'
+      answer: ['12']
+    answer_text: |-
+      When two chords cross inside a circle, the product of the parts of one chord equals
+      the product of the parts of the other:
+
+      $$|PA| \times |PB| = |PC| \times |PD|$$
+
+      $$4 \times 9 = 3 \times |PD| \quad\Rightarrow\quad |PD| = 12 \text{ cm}$$
+
+      Check: $4 \times 9 = 36$ and $3 \times 12 = 36$.
+
+  - id: r7-chord-distance-25
+    section: '17.1'
+    tier: O
+    refs: ['2.1']
+    statement: 'A circle has radius $25$ cm. A chord of length $30$ cm is drawn. Find its distance from the centre.'
+    answer_label: 'The distance from the centre'
+    check: {kind: evaluate, expression: 'sqrt(25 ** 2 - 15 ** 2)', answer: '20'}
+    answer_text: |-
+      The perpendicular from the centre bisects the $30$ cm chord, so the half-chord is
+      $15$ cm:
+
+      $$d^2 + 15^2 = 25^2 \quad\Rightarrow\quad d^2 = 625 - 225 = 400$$
+
+      $$d = 20 \text{ cm}$$
+
+      The longer chord lies closer to the centre, which is the check on the pair of chords
+      in the chapter problem.
+
+  - id: r8-angle-in-semicircle
+    section: '17.2'
+    tier: O
+    refs: ['2.1']
+    statement: '$BC$ is a diameter of a circle and $|\angle ABC| = 24^\circ$. Find $|\angle ACB|$.'
+    answer_label: 'The angle at C'
+    check: {kind: evaluate, expression: '180 - 90 - 24', answer: '66'}
+    answer_text: |-
+      The angle at $A$ is the angle in a semicircle, so $|\angle BAC| = 90^\circ$ by
+      Corollary 3. The three angles of $\triangle ABC$ add to $180^\circ$:
+
+      $$|\angle ACB| = 180^\circ - 90^\circ - 24^\circ = 66^\circ$$
+
+      The diameter gives the right angle, and the angle sum does the rest.
+
+  - id: r9-isosceles-apex
+    section: '15.5'
+    tier: O
+    refs: ['2.1']
+    statement: 'From Chapter 15: an isosceles triangle has base angles of $65^\circ$. Find the apex angle.'
+    answer_label: 'The apex angle'
+    check: {kind: evaluate, expression: '180 - 2 * 65', answer: '50'}
+    answer_text: |-
+      The two base angles are equal, so the apex angle is
+
+      $$180^\circ - 2 \times 65^\circ = 180^\circ - 130^\circ = 50^\circ$$
+
+      The apex angle is the one between the two equal sides.
+
+  - id: r10-converse-pythagoras
+    section: '16.5'
+    tier: O
+    refs: ['2.1']
+    statement: 'From Chapter 16: a triangle has sides $7$ cm, $24$ cm and $25$ cm. Show that it is right-angled.'
+    answer_label: 'The equality that proves the right angle'
+    check:
+      kind: all
+      checks:
+        - {kind: compare, relation: '=', lhs: '7 ** 2 + 24 ** 2', rhs: '25 ** 2'}
+        - kind: structured
+          requires: [add-squares, quote-converse]
+          concepts: [converse-of-pythagoras, longest-side]
+          points:
+            - id: add-squares
+              text: >-
+                Square the two shorter sides and add: 49 + 576 = 625. Square the longest
+                side: 625. The two are equal.
+              concepts: [longest-side]
+            - id: quote-converse
+              text: >-
+                By the converse of Pythagoras' theorem, the angle opposite the 25 cm side is
+                a right angle, so the triangle is right-angled.
+              concepts: [converse-of-pythagoras]
+    answer_text: |-
+      Square the two shorter sides and add them, then square the longest:
+
+      $$7^2 + 24^2 = 49 + 576 = 625 = 25^2$$
+
+      The two results are equal, so by the converse of Pythagoras' theorem the angle
+      opposite the $25$ cm side is a right angle. The right angle is opposite the longest
+      side.
+
+  - id: r11-alternate-angle
+    section: '15.4'
+    tier: O
+    refs: ['2.1']
+    statement: >-
+      From Chapter 15: two parallel lines are cut by a transversal, and one angle is
+      $118^\circ$. Find the alternate angle.
+    answer_label: 'The alternate angle'
+    check:
+      kind: all
+      checks:
+        - {kind: evaluate, expression: '180 - 118', answer: '62'}
+        - kind: structured
+          requires: [name-pair, state-value]
+          concepts: [alternate-angles, transversal]
+          points:
+            - id: name-pair
+              text: >-
+                Alternate angles are the pair on opposite sides of the transversal, between
+                the two parallel lines. They are equal, by Theorem 3 part 2.
+              concepts: [alternate-angles]
+            - id: state-value
+              text: >-
+                The alternate angle is therefore 118 degrees. The angle on the same side is
+                180 - 118 = 62 degrees, and the two together make a straight angle.
+              concepts: [transversal]
+    answer_text: >-
+      The alternate angle is $118^\circ$. Alternate angles at parallel lines are equal, by
+      Theorem 3 part 2, and no arithmetic is needed: the two angles are the same size.
+
+      The angle on the same side of the transversal is the supplementary one,
+      $180^\circ - 118^\circ = 62^\circ$. The two together sit on a straight line, which is
+      the quick check that the pair has been identified correctly.
+
+  - id: r12-circumference
+    section: '3.2'
+    tier: O
+    refs: ['3.4']
+    statement: 'From Chapter 12: find the circumference of a circle of radius $10$ cm, in terms of $\pi$.'
+    answer_label: 'The circumference'
+    check: {kind: evaluate, expression: '2 * pi * 10', answer: '20 * pi'}
+    answer_text: |-
+      $$C = 2\pi r = 2 \times \pi \times 10 = 20\pi \text{ cm}$$
+
+      Keeping the answer in terms of $\pi$ keeps it exact. As a decimal it is about
+      $62.8$ cm.

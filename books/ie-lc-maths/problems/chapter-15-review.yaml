@@ -1,0 +1,262 @@
+# Mixed practice for the Chapter 15 Review.
+#
+# Twelve questions, one record each, in the order they appear on the Review page.
+#
+# Questions 1 to 6, 8 and 9, 10, 11 and 12 each have one number as the answer, so
+# `evaluate` proves the arithmetic, and the theorem that licenses the arithmetic is
+# written in the answer. Question 1 also carries a `structured` component, because the
+# answer is four angles and the reason is two facts, not one subtraction. Question 6 asks
+# whether three lengths can form a triangle: the answer is yes, and it is proved by the
+# three triangle inequalities rather than by arithmetic alone. Question 7 has no number to
+# check at all: the side is found from the letter order in a congruence statement, so it
+# carries only a `structured` check.
+#
+# Honest limit: this proves arithmetic. It does not prove a proof. Question 7's
+# `structured` check proves only that the model answer names the matching sides and
+# states the value, in order; whether the correspondence is the right one is human
+# review. The page's own instruction — name the fact or theorem before calculating — is
+# not something the verifier can see.
+#
+# One answer was wrong on the page: the reasons for question 6 began "No." and then
+# argued, correctly, that the lengths do form a triangle. The answer here says yes, and
+# the three inequalities are what is checked.
+chapter: 15
+problems:
+  - id: r1-crossing-lines
+    section: '15.2'
+    tier: O
+    refs: ['2.1']
+    statement: 'Two straight lines cross. One angle is $58^\circ$. Find the other three angles.'
+    answer_label: 'The other three angles'
+    check:
+      kind: all
+      checks:
+        - {kind: evaluate, expression: '180 - 58', answer: '122'}
+        - kind: structured
+          requires: [vertically-opposite, angles-on-a-line]
+          concepts: [vertically-opposite, supplementary]
+          points:
+            - id: vertically-opposite
+              text: >-
+                The angle vertically opposite the 58 degree angle is also 58 degrees,
+                because vertically opposite angles are equal.
+              concepts: [vertically-opposite]
+            - id: angles-on-a-line
+              text: >-
+                Each of the other two angles sits on a straight line with the 58 degree
+                angle, so each is 180 - 58 = 122 degrees. The answer is 58, 122, 58 and
+                122 degrees.
+              concepts: [supplementary]
+    answer_text: |-
+      The four angles at a crossing are two pairs. The angle vertically opposite
+      $58^\circ$ is also $58^\circ$. Each of the other two sits on a straight line with it,
+      so each is
+
+      $$180^\circ - 58^\circ = 122^\circ$$
+
+      The four angles are $58^\circ$, $122^\circ$, $58^\circ$ and $122^\circ$, and they add
+      to $2 \times 58 + 2 \times 122 = 360^\circ$, which is a full turn.
+
+  - id: r2-third-angle
+    section: '15.4'
+    tier: O
+    refs: ['2.1']
+    statement: >-
+      In $\triangle ABC$, $|\angle A| = 72^\circ$ and $|\angle B| = 61^\circ$. Find
+      $|\angle C|$.
+    answer_label: 'The angle at C'
+    check: {kind: evaluate, expression: '180 - 72 - 61', answer: '47'}
+    answer_text: |-
+      The three angles of a triangle add to $180^\circ$, by Theorem 4. So
+
+      $$|\angle C| = 180^\circ - 72^\circ - 61^\circ = 47^\circ$$
+
+      A quick check: $72 + 61 + 47 = 180$.
+
+  - id: r3-same-side
+    section: '15.4'
+    tier: O
+    refs: ['2.1']
+    statement: >-
+      Two parallel lines are cut by a transversal. One angle is $115^\circ$. Find the angle
+      inside the parallel lines on the same side.
+    answer_label: 'The angle on the same side'
+    check: {kind: evaluate, expression: '180 - 115', answer: '65'}
+    answer_text: |-
+      The alternate angle is $115^\circ$, and the angle on the same side is supplementary
+      to it, because the two together sit on a straight line:
+
+      $$180^\circ - 115^\circ = 65^\circ$$
+
+      The angle inside the parallel lines on the same side is $65^\circ$.
+
+  - id: r4-isosceles-apex
+    section: '15.5'
+    tier: O
+    refs: ['2.1']
+    statement: 'An isosceles triangle has a base angle of $48^\circ$. Find the apex angle.'
+    answer_label: 'The apex angle'
+    check: {kind: evaluate, expression: '180 - 2 * 48', answer: '84'}
+    answer_text: |-
+      The two base angles of an isosceles triangle are equal, by Theorem 2 part 1, so the
+      apex angle is
+
+      $$180^\circ - 2 \times 48^\circ = 180^\circ - 96^\circ = 84^\circ$$
+
+      The apex angle is $84^\circ$. It is the angle between the two equal sides.
+
+  - id: r5-acute-angles
+    section: '15.2'
+    tier: O
+    refs: ['2.1']
+    statement: 'In a right-angled triangle, one acute angle is $27^\circ$. Find the other.'
+    answer_label: 'The other acute angle'
+    check: {kind: evaluate, expression: '90 - 27', answer: '63'}
+    answer_text: |-
+      The three angles add to $180^\circ$, and one of them is $90^\circ$, so the two acute
+      angles add to $90^\circ$:
+
+      $$90^\circ - 27^\circ = 63^\circ$$
+
+      The other acute angle is $63^\circ$. This is why the two acute angles of a
+      right-angled triangle are complementary.
+
+  - id: r6-triangle-inequality
+    section: '15.5'
+    tier: O
+    refs: ['2.1']
+    statement: >-
+      A triangle has sides $8$ cm, $6$ cm and $3$ cm. Can these lengths form a triangle?
+      Give a reason.
+    answer_label: 'Whether the lengths form a triangle, with the reason'
+    check:
+      kind: all
+      checks:
+        - {kind: compare, relation: '>', lhs: '6 + 3', rhs: '8'}
+        - {kind: compare, relation: '>', lhs: '8 + 3', rhs: '6'}
+        - {kind: compare, relation: '>', lhs: '8 + 6', rhs: '3'}
+        - kind: structured
+          requires: [check-every-pair, conclude]
+          concepts: [triangle-inequality, largest-side]
+          points:
+            - id: check-every-pair
+              text: >-
+                Test every pair of sides against the third. The two shorter sides add to
+                6 + 3 = 9, and 9 is greater than the longest side, 8. The other pairs pass
+                as well: 8 + 3 = 11 > 6 and 8 + 6 = 14 > 3.
+              concepts: [triangle-inequality]
+            - id: conclude
+              text: >-
+                Every pair of sides adds to more than the third side, so the triangle
+                inequality holds and the lengths can form a triangle.
+              concepts: [largest-side]
+    answer_text: |-
+      Yes, they can. The triangle inequality says every pair of sides must add to more than
+      the third side. Test the two shorter sides against the longest:
+
+      $$6 + 3 = 9 > 8$$
+
+      The other two pairs also pass: $8 + 3 = 11 > 6$ and $8 + 6 = 14 > 3$. So every pair
+      passes and the lengths **can** form a triangle. It is the pair of shortest sides that
+      decides it: if their sum were $8$ cm or less, the two short sides would not reach
+      across the long one.
+
+  - id: r7-congruent-sides
+    section: '15.3'
+    tier: O
+    refs: ['2.1']
+    statement: '$\triangle ABC \cong \triangle PQR$, with $|AB| = 14$ cm. Find $|PQ|$.'
+    answer_label: 'The side PQ, with the reason'
+    check:
+      kind: structured
+      requires: [match-letters, state-length]
+      concepts: [correspondence, congruence]
+      points:
+        - id: match-letters
+          text: >-
+            The order of the letters in a congruence statement is the correspondence: A
+            matches P, B matches Q and C matches R, so side AB matches side PQ.
+          concepts: [correspondence]
+        - id: state-length
+          text: >-
+            Corresponding sides of congruent triangles are equal, so $|PQ| = |AB| = 14$ cm.
+            Reading the letters out of order is the usual mistake: $A$ matches $P$, not
+            $R$, so $[AB]$ matches $[PQ]$ and not $[PR]$.
+          concepts: [congruence]
+
+  - id: r8-exterior-angle
+    section: '15.4'
+    tier: O
+    refs: ['2.1']
+    statement: >-
+      In $\triangle ABC$, the exterior angle at $A$ is $124^\circ$ and $|\angle B| = 58^\circ$.
+      Find $|\angle C|$.
+    answer_label: 'The angle at C'
+    check: {kind: evaluate, expression: '124 - 58', answer: '66'}
+    answer_text: |-
+      The exterior angle of a triangle equals the sum of the two interior opposite angles,
+      so
+
+      $$124^\circ = |\angle B| + |\angle C| = 58^\circ + |\angle C|$$
+
+      and $|\angle C| = 124^\circ - 58^\circ = 66^\circ$. The interior angle at $A$ is
+      $180^\circ - 124^\circ = 56^\circ$, and $56 + 58 + 66 = 180$, which agrees.
+
+  - id: r9-pythagoras
+    section: '12.2'
+    tier: F
+    refs: ['2.3']
+    statement: >-
+      From Chapter 12: a right-angled triangle has legs of $9$ cm and $12$ cm. Find the
+      hypotenuse.
+    answer_label: 'The hypotenuse'
+    check: {kind: evaluate, expression: 'sqrt(9 ** 2 + 12 ** 2)', answer: '15'}
+    answer_text: >-
+      Pythagoras' theorem gives $c^2 = 9^2 + 12^2 = 81 + 144 = 225$, so $c = 15$ cm. The
+      theorem is proved from similar triangles in Chapter 16, so the fact you are using
+      here has a proof behind it.
+
+  - id: r10-slope
+    section: '13.1'
+    tier: F
+    refs: ['2.2']
+    statement: 'From Chapter 13: find the slope of the line through $(2,3)$ and $(6,11)$.'
+    answer_label: 'The slope'
+    check: {kind: evaluate, expression: '(11 - 3) / (6 - 2)', answer: '2'}
+    answer_text: |-
+      $$m = \frac{11 - 3}{6 - 2} = \frac{8}{4} = 2$$
+
+      The line rises $8$ units over a run of $4$, so its slope is $2$.
+
+  - id: r11-reflection
+    section: '14.2'
+    tier: F
+    refs: ['2.4']
+    statement: 'From Chapter 14: reflect the point $(4,-3)$ in the $x$-axis.'
+    answer_label: 'The image point'
+    check:
+      kind: evaluate
+      expression: 'Matrix([[1, 0], [0, -1]]) * Matrix([4, -3])'
+      answer: 'Matrix([4, 3])'
+    answer_text: |-
+      A reflection in the $x$-axis keeps the $x$-coordinate and changes the sign of the
+      $y$-coordinate:
+
+      $$(4, -3) \to (4, 3)$$
+
+      The image is $(4, 3)$, directly above the original point and the same distance from
+      the axis.
+
+  - id: r12-triangle-area
+    section: '3.1'
+    tier: F
+    refs: ['3.4']
+    statement: 'From Chapter 3: find the area of a triangle with base $10$ cm and height $6$ cm.'
+    answer_label: 'The area'
+    check: {kind: evaluate, expression: '1/2 * 10 * 6', answer: '30'}
+    answer_text: |-
+      $$A = \frac{1}{2} \times \text{base} \times \text{height}
+      = \frac{1}{2} \times 10 \times 6 = 30 \text{ cm}^2$$
+
+      The half is there because a triangle is half of the rectangle with the same base and
+      height.

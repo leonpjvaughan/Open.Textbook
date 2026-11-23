@@ -73,27 +73,9 @@ Work without notes. For each question, say **which method** you are using and
 why, before you calculate. Three of them are deliberately questions where the
 first method that comes to mind is the slow one.
 
-1. Find the distance and the midpoint of $(-2, 5)$ and $(6, 1)$.
-2. Find the slope and the equation of the line through $(1, -3)$ and $(5, 5)$.
-3. Find the line through $(0, 1)$ perpendicular to $y = -2x + 5$.
-4. Write the equation of the circle with centre $(-2, 3)$ and radius $6$, then
-   expand it.
-5. Find the centre and the radius of $x^2 + y^2 + 8x - 2y - 8 = 0$.
-6. Find the tangent to $(x - 1)^2 + (y + 2)^2 = 25$ at $(4, 2)$.
-7. Find the two points where $y = x + 1$ meets $x^2 + y^2 = 25$.
-8. Divide the segment from $(1, 1)$ to $(9, 5)$ in the ratio $1 : 3$.
-9. A ramp rises $3$ m over a horizontal run of $4$ m. Find its slope and the
-   angle it makes with the ground.
-10. The points $(2, 7)$ and $(10, 7)$ are joined. Decide what kind of line this
-    is, and find its slope, its length and its midpoint.
+:::problems chapter-13-review
 
-**Two method questions.**
-
-- A line and a circle are given. You only need to know whether they touch. Which
-  is quicker: finding the distance from the centre to the line, or solving the
-  simultaneous equations? Say why.
-- You are given the two endpoints of a diameter. Do you need the distance formula
-  to find the circle, or is there a shorter route? Explain.
+:::answers chapter-13-review
 
 ## What you can now do
 
