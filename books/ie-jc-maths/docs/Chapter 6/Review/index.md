@@ -87,27 +87,9 @@ say why in a few words. Then calculate. Choosing between ratio, direct proportio
 inverse proportion, percentage change and speed is the skill; the arithmetic
 follows from it.
 
-1. Write the ratio $45:60$ in its simplest form.
-2. Divide 84 in the ratio $3:4$.
-3. Five kilograms of rice cost 8 euro. Find the cost of twelve kilograms.
-4. Six workers take 10 hours to finish a job. How long would four workers take?
-5. A price rises from 60 euro to 66 euro. Find the absolute increase and the
-   percentage increase.
-6. A car travels 210 km in 2.5 hours. Find its average speed.
-7. Write the ratio $48:36$ in its simplest form, and say which of the two amounts
-   is larger.
-8. A recipe for 6 people uses 480 g of flour. How much flour is needed for 15
-   people?
-9. Eight people share a prize equally and receive 35 euro each. How much would
-   each of fourteen people receive from the same prize?
-10. The coach costs 480 euro. If 40 students go, each pays 12 euro. Find what each
-    pays if 60 students go.
-11. Round 0.007349 to 2 significant figures.
-12. Find the highest common factor of 84 and 126.
-13. Work out $2^{3}\times3^{2}$.
-14. Write 5200000 in standard form.
-15. **H** Two amounts are in the ratio $7:4$, and their difference is 18 euro. Find
-    the two amounts.
+:::problems chapter-06-review
+
+:::answers chapter-06-review
 
 ## What you can now do
 

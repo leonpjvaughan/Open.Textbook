@@ -4,9 +4,11 @@
 # page. Every fraction operation, conversion, ordering, percentage change and
 # interleaved calculation is proved by SymPy.
 #
-# Honest limit: Question 15 asks which operation goes first in prose. The
-# verifier proves the numerical result $19$, not the reader's prose explanation.
+# Honest limit: Question 15 asks which operation goes first in prose. Its
+# `structured` component proves only that a model answer names the operation in
+# order; the verifier proves the numerical result $19$, not the explanation.
 chapter: 5
+oracles: [sympy, units]
 symbols: {}
 
 problems:
@@ -15,7 +17,7 @@ problems:
     tier: O
     refs: ['N.2']
     statement: 'Write $\frac{18}{24}$ in its simplest form.'
-    answer_label: 'Write $\frac{18}{24}$ in its simplest form.'
+    answer_label: '18/24 in its simplest form'
     check:
       kind: all
       checks:
@@ -32,7 +34,7 @@ problems:
     tier: O
     refs: ['N.2']
     statement: 'Work out $\frac{2}{5}+\frac{1}{2}$.'
-    answer_label: 'Work out $\frac{2}{5}+\frac{1}{2}$.'
+    answer_label: 'Two fifths plus a half'
     check:
       kind: evaluate
       expression: '2/5 + 1/2'
@@ -44,7 +46,7 @@ problems:
     tier: O
     refs: ['N.2']
     statement: 'Work out $\frac{3}{4}\times\frac{8}{9}$.'
-    answer_label: 'Work out $\frac{3}{4}\times\frac{8}{9}$.'
+    answer_label: 'Three quarters times eight ninths'
     check:
       kind: evaluate
       expression: '(3/4) * (8/9)'
@@ -56,7 +58,7 @@ problems:
     tier: O
     refs: ['N.2']
     statement: 'Work out $5\div\frac{1}{2}$.'
-    answer_label: 'Work out $5\div\frac{1}{2}$.'
+    answer_label: 'Five divided by a half'
     check:
       kind: evaluate
       expression: '5 / (1/2)'
@@ -68,7 +70,7 @@ problems:
     tier: O
     refs: ['N.2']
     statement: 'Work out $\frac{7}{8}-\frac{1}{2}$.'
-    answer_label: 'Work out $\frac{7}{8}-\frac{1}{2}$.'
+    answer_label: 'Seven eighths minus a half'
     check:
       kind: evaluate
       expression: '7/8 - 1/2'
@@ -80,7 +82,7 @@ problems:
     tier: O
     refs: ['N.2']
     statement: 'Write $0.45$ as a fraction in its simplest form.'
-    answer_label: 'Write $0.45$ as a fraction in its simplest form.'
+    answer_label: '0.45 as a fraction'
     check:
       kind: all
       checks:
@@ -97,7 +99,7 @@ problems:
     tier: O
     refs: ['N.2']
     statement: 'Write $\frac{7}{8}$ as a percentage.'
-    answer_label: 'Write $\frac{7}{8}$ as a percentage.'
+    answer_label: 'Seven eighths as a percentage'
     check:
       kind: evaluate
       expression: '(7/8) * 100'
@@ -109,7 +111,7 @@ problems:
     tier: O
     refs: ['N.2']
     statement: 'Write $36\%$ as a fraction in its simplest form.'
-    answer_label: 'Write $36\%$ as a fraction in its simplest form.'
+    answer_label: '36% as a fraction'
     check:
       kind: all
       checks:
@@ -126,7 +128,7 @@ problems:
     tier: O
     refs: ['N.2']
     statement: 'Write $\frac{3}{5}$, $0.55$ and $58\%$ in order, smallest first.'
-    answer_label: 'Order $\frac{3}{5}$, $0.55$ and $58\%$, smallest first.'
+    answer_label: 'Three fifths, 0.55 and 58% in order'
     check:
       kind: all
       checks:
@@ -145,7 +147,7 @@ problems:
     tier: O
     refs: ['N.2']
     statement: 'Increase 60 by $15\%$.'
-    answer_label: 'Increase 60 by $15\%$.'
+    answer_label: '60 increased by 15%'
     check:
       kind: evaluate
       expression: '60 * (1 + 15/100)'
@@ -157,7 +159,7 @@ problems:
     tier: O
     refs: ['N.2']
     statement: 'Decrease 150 by $30\%$.'
-    answer_label: 'Decrease 150 by $30\%$.'
+    answer_label: '150 decreased by 30%'
     check:
       kind: evaluate
       expression: '150 * (1 - 30/100)'
@@ -169,7 +171,7 @@ problems:
     tier: O
     refs: ['N.2']
     statement: 'A price falls from €80 to €68. Work out the percentage decrease.'
-    answer_label: 'Work out the percentage decrease from €80 to €68.'
+    answer_label: 'The percentage decrease from €80 to €68'
     check:
       kind: evaluate
       expression: '(80 - 68) / 80 * 100'
@@ -181,7 +183,7 @@ problems:
     tier: O
     refs: ['N.2']
     statement: 'A recipe for 4 people uses $\frac{3}{4}$ of a cup of rice. How much rice is needed for 6 people?'
-    answer_label: 'How much rice is needed for 6 people?'
+    answer_label: 'Rice for 6 people'
     check:
       kind: evaluate
       expression: '(3/4) * (6/4)'
@@ -193,7 +195,7 @@ problems:
     tier: O
     refs: ['N.1', 'N.2']
     statement: 'Find the highest common factor of 24 and 36, and use it to write $\frac{24}{36}$ in its simplest form.'
-    answer_label: 'Find the HCF of 24 and 36 and simplify $\frac{24}{36}$.'
+    answer_label: 'The HCF of 24 and 36, and 24/36 simplified'
     check:
       kind: all
       checks:
@@ -210,9 +212,21 @@ problems:
     tier: O
     refs: ['N.1']
     statement: 'Work out $4+3\times5$, and say which operation you did first.'
-    answer_label: 'Work out $4+3\times5$ and say which operation comes first.'
+    answer_label: '4 + 3 x 5, and the first operation'
     check:
-      kind: evaluate
-      expression: '4 + 3 * 5'
-      answer: '19'
+      kind: all
+      checks:
+        - kind: evaluate
+          expression: '4 + 3 * 5'
+          answer: '19'
+        - kind: structured
+          requires: [multiply-first, then-add]
+          concepts: [order-of-operations]
+          points:
+            - id: multiply-first
+              text: 'Multiplication goes before addition, so work out 3 x 5 = 15 first.'
+              concepts: [order-of-operations]
+            - id: then-add
+              text: 'Then add 4: 4 + 15 = 19.'
+              concepts: [order-of-operations]
     answer_text: '$19$. Multiplication goes before addition: $3 \times 5 = 15$, then $4 + 15 = 19$.'

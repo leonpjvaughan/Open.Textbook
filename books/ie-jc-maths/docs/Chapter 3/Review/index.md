@@ -44,21 +44,9 @@ Work through these without notes. For each one, decide **which idea applies** an
 why in a few words. Recognising which of the two ideas a question wants is the skill;
 the arithmetic follows from it.
 
-1. Write 252 as a product of its prime factors.
-2. Find the highest common factor of 252 and 90.
-3. Find the lowest common multiple of 252 and 90. Check your two answers against the
-   sizes of the numbers before you write them down.
-4. Is 253 prime? Give a reason.
-5. Two alarms sound every 45 seconds and every 60 seconds. They sound together. When
-   do they next sound together, and which idea did you use?
-6. Squares of card are 84 mm and 126 mm. They are cut into equal squares with nothing
-   wasted, as large as possible. What is the side length of each small square?
-7. How many factors does 252 have? Use its factorisation, not a list.
-8. A number has exactly three factors. What can you say about it?
-9. Work out $2^4\times3^2$ and say whether the result is the highest common factor or
-   the lowest common multiple of 48 and 36.
-10. Explain why the highest common factor of two numbers can never be larger than
-    either number, and why the lowest common multiple can never be smaller.
+:::problems chapter-03-review
+
+:::answers chapter-03-review
 
 ## What you can now do
 

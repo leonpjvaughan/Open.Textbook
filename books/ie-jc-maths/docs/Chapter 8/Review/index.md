@@ -62,18 +62,9 @@ Work through these without notes. For each one, decide **which idea applies** an
 say why in a few words. The idea might be set notation, a subset, an intersection,
 a union, a set difference, a Venn region, or a rule from an earlier chapter.
 
-1. Write the set of even numbers from 2 to 12 in roster form, and state its
-   cardinality.
-2. Is $\{2, 4\}$ a subset of $\{2, 4, 6, 8\}$? Give a reason.
-3. Find $\{1, 2, 3, 4\} \cap \{3, 4, 5, 6\}$.
-4. Find $\{1, 2, 3, 4\} \cup \{3, 4, 5, 6\}$.
-5. Find $\{1, 2, 3, 4\} \setminus \{3, 4, 5, 6\}$.
-6. A set has 5 elements. How many subsets does it have?
-7. In the club fair, how many students joined Chess but not Drama?
-8. In the club fair, how many students joined Drama or Science, or both?
-9. Write 84 as a product of its prime factors. Then find the highest common factor
-   of 84 and 60.
-10. Work out $\frac{3}{4}+\frac{1}{6}$, and give the answer in its simplest form.
+:::problems chapter-08-review
+
+:::answers chapter-08-review
 
 ## What you can now do
 

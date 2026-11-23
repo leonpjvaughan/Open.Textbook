@@ -49,25 +49,9 @@ Work through these without notes. For each one, decide **which idea applies** an
 say why in a few words. Then calculate. Choosing between rounding, estimating and
 standard form is the skill; the arithmetic follows from it.
 
-1. Round 4.276 to 2 decimal places.
-2. Round 0.007349 to 2 significant figures.
-3. Round 27450 to 3 significant figures. Write the answer with enough zeros to
-   hold its size.
-4. Estimate $5.8\times41.7$. Say whether your estimate is too big or too small,
-   and why.
-5. A calculator shows $41.7\times5.8=241.86$. Is this plausible? Use an estimate.
-6. Estimate $728\div19.4$.
-7. Write 5200000 in standard form.
-8. Write $3.4\times10^{-2}$ as an ordinary number.
-9. Which is larger, $6.2\times10^{3}$ or $1.5\times10^{4}$? Give a reason.
-10. Work out $(5\times10^{3})\times(4\times10^{2})$, and give your answer in
-    standard form.
-11. A number is written as $0.6\times10^{4}$. Is it in standard form? Give a
-    reason, and write it correctly.
-12. Find the highest common factor of 24 and 36.
-13. Write 360 as a product of its prime factors.
-14. Work out $2^{3}\times2^{4}$.
-15. Write 0.875 as a fraction in its simplest form.
+:::problems chapter-04-review
+
+:::answers chapter-04-review
 
 ## What you can now do
 

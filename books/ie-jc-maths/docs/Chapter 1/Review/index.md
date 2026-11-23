@@ -61,22 +61,9 @@ Work through these without notes. For each one, decide **which idea applies** an
 why in a few words. The idea might be the number system, a sign rule, the order of
 operations, a property, or a surd rule.
 
-1. Put $-3$, $0$, $4.5$ and $7$ in order from smallest to largest.
-2. Write $0.35$ as a fraction in its simplest form.
-3. Work out $-8 + 3 - (-5)$.
-4. Work out $(-7) \times 4$ and $(-7) \times (-4)$. Say which sign rule you used.
-5. Work out $16 \div (2 + 6) \times 3$.
-6. Work out $5 + 3 \times (8 - 2)^2$.
-7. Work out $25 \times 39 + 25 \times 61$ by taking out the common factor.
-8. Work out $12 \times 99$ using the distributive property.
-9. The temperature at 6 a.m. is $-6$ degrees. It rises 4 degrees by noon, then falls
-   9 degrees by midnight. Work out the midnight temperature.
-10. A shop takes €1240 on Saturday and €1085 on Sunday. Its costs are €950 and €880.
-    Work out the profit for the weekend as one calculation.
-<!-- tier:h -->
-11. Simplify $\sqrt{75}$.
-12. Work out $3\sqrt{5} + 2\sqrt{5} - \sqrt{5}$.
-<!-- /tier:h -->
+:::problems chapter-01-review
+
+:::answers chapter-01-review
 
 ## What you can now do
 

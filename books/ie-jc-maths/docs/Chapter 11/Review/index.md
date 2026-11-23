@@ -80,22 +80,9 @@ why in a few words. The idea might be collecting like terms, expanding one brack
 expanding two brackets, taking out a common factor, factorising a quadratic, the
 difference of two squares, or dividing.
 
-1. Simplify $6x+9x-4x$.
-2. Simplify $(4x+3)-(2x-5)$.
-3. Expand $5(2x+3)$.
-4. Expand $-3(x-4)$.
-5. Expand $(x+6)(x+2)$.
-6. Expand $(x-5)^2$.
-7. Factorise $8x+20$.
-8. Factorise $x^2+8x+15$.
-9. Factorise $x^2-9$.
-10. Factorise $4x^2-25$.
-11. Expand and simplify $3(x+2)+2(x+5)$.
-12. Expand and simplify $(x+4)(x-4)+(x+1)(x+3)$.
-<!-- tier:h -->
-13. Divide $x^3+6x^2+8x$ by $x+2$.
-14. Divide $x^3+8$ by $x+2$.
-<!-- /tier:h -->
+:::problems chapter-11-review
+
+:::answers chapter-11-review
 
 ## What you can now do
 

@@ -74,23 +74,9 @@ Work through these without notes. For each one, decide **which idea applies** an
 why in a few words. The idea might be equivalent fractions, a common denominator,
 multiplying or dividing fractions, a conversion, or a percentage change.
 
-1. Write $\frac{18}{24}$ in its simplest form.
-2. Work out $\frac{2}{5}+\frac{1}{2}$.
-3. Work out $\frac{3}{4}\times\frac{8}{9}$.
-4. Work out $5\div\frac{1}{2}$.
-5. Work out $\frac{7}{8}-\frac{1}{2}$.
-6. Write $0.45$ as a fraction in its simplest form.
-7. Write $\frac{7}{8}$ as a percentage.
-8. Write $36\%$ as a fraction in its simplest form.
-9. Write $\frac{3}{5}$, $0.55$ and $58\%$ in order, smallest first.
-10. Increase 60 by $15\%$.
-11. Decrease 150 by $30\%$.
-12. A price falls from €80 to €68. Work out the percentage decrease.
-13. A recipe for 4 people uses $\frac{3}{4}$ of a cup of rice. How much rice is
-    needed for 6 people?
-14. Find the highest common factor of 24 and 36, and use it to write
-    $\frac{24}{36}$ in its simplest form.
-15. Work out $4+3\times5$, and say which operation you did first.
+:::problems chapter-05-review
+
+:::answers chapter-05-review
 
 ## What you can now do
 

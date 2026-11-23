@@ -1,0 +1,157 @@
+# Mixed practice for the Chapter 8 Review.
+#
+# Ten questions, one record each, in the order they appear on the Review page.
+# The set operations, the subset test and the counts are proved by SymPy,
+# including set equality over `FiniteSet`.
+#
+# Honest limit: Question 1 asks for a set in roster form and its cardinality,
+# and Question 2 asks for a reason. Question 1's `structured` component proves
+# only that a model answer contains the roster and the count; Question 2 pairs a
+# proved subset test with a `structured` reason. Neither proves that a reader's
+# own wording is sound. The club-fair counts are read from the chapter problem:
+# n(C) = 15, n(D) = 13, n(S) = 12, n(C and D) = 6.
+chapter: 8
+oracles: [sympy, units]
+symbols: {}
+
+problems:
+  - id: jc8-rev-roster-cardinality
+    section: Review
+    tier: O
+    refs: ['N.5']
+    statement: 'Write the set of even numbers from 2 to 12 in roster form, and state its cardinality.'
+    answer_label: 'The set in roster form and its cardinality'
+    check:
+      kind: structured
+      requires: [roster, cardinality]
+      concepts: [even-numbers, cardinality]
+      points:
+        - id: roster
+          text: 'The even numbers from 2 to 12 are 2, 4, 6, 8, 10 and 12, so the roster is {2, 4, 6, 8, 10, 12}.'
+          concepts: [even-numbers]
+        - id: cardinality
+          text: 'The set has six elements, so its cardinality is 6.'
+          concepts: [cardinality]
+    answer_text: '$\{2, 4, 6, 8, 10, 12\}$, and its cardinality is $6$. The roster lists every element once, between braces, and the cardinality counts them.'
+
+  - id: jc8-rev-subset
+    section: Review
+    tier: O
+    refs: ['N.5']
+    statement: 'Is $\{2, 4\}$ a subset of $\{2, 4, 6, 8\}$? Give a reason.'
+    answer_label: 'Is {2, 4} a subset of {2, 4, 6, 8}?'
+    check:
+      kind: all
+      checks:
+        - kind: evaluate
+          expression: 'FiniteSet(2, 4, 6, 8) - FiniteSet(2, 4)'
+          answer: 'FiniteSet(6, 8)'
+        - kind: structured
+          requires: [check-elements]
+          concepts: [subset]
+          points:
+            - id: check-elements
+              text: 'Every element of {2, 4} is also in {2, 4, 6, 8}, so {2, 4} is a subset of {2, 4, 6, 8}.'
+              concepts: [subset]
+    answer_text: 'Yes. Both $2$ and $4$ are elements of $\{2, 4, 6, 8\}$, so every element of the first set is in the second. That is what makes it a subset. A proper subset would also be smaller, and this one is.'
+
+  - id: jc8-rev-intersection
+    section: Review
+    tier: O
+    refs: ['N.5']
+    statement: 'Find $\{1, 2, 3, 4\} \cap \{3, 4, 5, 6\}$.'
+    answer_label: 'The intersection'
+    check:
+      kind: evaluate
+      expression: 'FiniteSet(1, 2, 3, 4).intersect(FiniteSet(3, 4, 5, 6))'
+      answer: 'FiniteSet(3, 4)'
+    answer_text: '$\{3, 4\}$. The intersection holds the elements that appear in both sets: $3$ and $4$. The elements $1$ and $2$ are only in the first set, and $5$ and $6$ are only in the second.'
+
+  - id: jc8-rev-union
+    section: Review
+    tier: O
+    refs: ['N.5']
+    statement: 'Find $\{1, 2, 3, 4\} \cup \{3, 4, 5, 6\}$.'
+    answer_label: 'The union'
+    check:
+      kind: evaluate
+      expression: 'FiniteSet(1, 2, 3, 4).union(FiniteSet(3, 4, 5, 6))'
+      answer: 'FiniteSet(1, 2, 3, 4, 5, 6)'
+    answer_text: '$\{1, 2, 3, 4, 5, 6\}$. The union holds every element of either set, written once. The shared elements $3$ and $4$ appear only once, because a set has no repeated elements.'
+
+  - id: jc8-rev-difference
+    section: Review
+    tier: O
+    refs: ['N.5']
+    statement: 'Find $\{1, 2, 3, 4\} \setminus \{3, 4, 5, 6\}$.'
+    answer_label: 'The set difference'
+    check:
+      kind: evaluate
+      expression: 'FiniteSet(1, 2, 3, 4) - FiniteSet(3, 4, 5, 6)'
+      answer: 'FiniteSet(1, 2)'
+    answer_text: '$\{1, 2\}$. The set difference keeps the elements of the first set that are not in the second. Remove $3$ and $4$, and $1$ and $2$ remain. The elements $5$ and $6$ were never in the first set, so they do not appear.'
+
+  - id: jc8-rev-subset-count
+    section: Review
+    tier: O
+    refs: ['N.5']
+    statement: 'A set has 5 elements. How many subsets does it have?'
+    answer_label: 'The number of subsets'
+    check:
+      kind: evaluate
+      expression: '2**5'
+      answer: '32'
+    answer_text: '$32$. Each element has two choices, in the subset or out of it, so $5$ elements give $2 \times 2 \times 2 \times 2 \times 2 = 2^5 = 32$ subsets. The empty set and the whole set are counted among them.'
+
+  - id: jc8-rev-chess-only
+    section: Review
+    tier: O
+    refs: ['N.5']
+    statement: 'In the club fair, how many students joined Chess but not Drama?'
+    answer_label: 'Chess but not Drama'
+    check:
+      kind: evaluate
+      expression: '15 - 6'
+      answer: '9'
+    answer_text: '$9$ students. Take everyone in Chess, $n(C) = 15$, and remove the $6$ who are also in Drama: $15 - 6 = 9$. This group includes the $3$ who are in Chess and Science, because they are not in Drama.'
+
+  - id: jc8-rev-drama-or-science
+    section: Review
+    tier: O
+    refs: ['N.5']
+    statement: 'In the club fair, how many students joined Drama or Science, or both?'
+    answer_label: 'Drama or Science, or both'
+    check:
+      kind: evaluate
+      expression: '13 + 12 - 4'
+      answer: '21'
+    answer_text: '$21$ students. Add the two totals and subtract the overlap, which has been counted twice: $n(D \cup S) = 13 + 12 - 4 = 21$. The $4$ students in both clubs are counted once in each total, so one count of them must come off.'
+
+  - id: jc8-rev-interleave-hcf
+    section: Review
+    tier: O
+    refs: ['N.5', 'N.1']
+    statement: 'Write 84 as a product of its prime factors. Then find the highest common factor of 84 and 60.'
+    answer_label: '84 in prime factors, and the HCF of 84 and 60'
+    check:
+      kind: all
+      checks:
+        - kind: evaluate
+          expression: '2**2 * 3 * 7'
+          answer: '84'
+        - kind: evaluate
+          expression: 'gcd(84, 60)'
+          answer: '12'
+    answer_text: '$84 = 2^2 \times 3 \times 7$, and the highest common factor is $12$. Since $60 = 2^2 \times 3 \times 5$, the shared primes are $2^2$ and $3$, and $4 \times 3 = 12$.'
+
+  - id: jc8-rev-interleave-fractions
+    section: Review
+    tier: O
+    refs: ['N.5', 'N.2']
+    statement: 'Work out $\frac{3}{4}+\frac{1}{6}$, and give the answer in its simplest form.'
+    answer_label: 'Three quarters plus one sixth'
+    check:
+      kind: evaluate
+      expression: '3/4 + 1/6'
+      answer: '11/12'
+    answer_text: '$\frac{11}{12}$. The lowest common denominator is $12$: $\frac{9}{12} + \frac{2}{12} = \frac{11}{12}$. The numerator and denominator have no common factor other than $1$, so the fraction is already in its simplest form.'
