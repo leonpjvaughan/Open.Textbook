@@ -29,7 +29,6 @@ from textbook.book import book_by_id, repo_root
 
 BOOK = "gcse-maths"
 PROFILE = "higher"
-# A walkthrough with both inline maths and a display block, so the check sees
 # the two shapes of KaTeX output.
 PAGE = "Chapter 1/Section 1.1/Walkthrough/index.md"
 
@@ -38,8 +37,6 @@ MATH = re.compile(r"<math\b[^>]*>", re.I)
 ANNOTATION = re.compile(
     r'<annotation\s+encoding="application/x-tex"\s*>(.*?)</annotation>', re.S
 )
-# A runtime maths renderer would appear as one of these in a script src or an
-# inline script. The build-time renderer must leave no such reference behind.
 RUNTIME_RENDERERS = ("katex", "mathjax", "rendermathinelement", "temml")
 
 SETTINGS_JS = repo_root() / "assets" / "settings" / "settings.js"
@@ -70,7 +67,6 @@ def without_scripts(page_html: str) -> str:
     return stripped
 
 
-# --- what a scriptless reader gets -------------------------------------------
 
 
 def test_the_renderer_produces_a_page_without_a_browser(page_html):
@@ -84,8 +80,6 @@ def test_prose_survives_the_loss_of_every_script(without_scripts):
     # A phrase from the page itself, not from chrome or navigation.
     assert "Every digit in a number has a" in without_scripts
     assert "place value" in without_scripts
-    # And a substantial body of text remains, so a single surviving sentence
-    # cannot pass this by accident.
     text = re.sub(r"<[^>]+>", " ", without_scripts)
     assert len(text.split()) > 400, "the scriptless page is missing its prose"
 
@@ -143,5 +137,4 @@ def test_the_settings_control_is_hidden_until_its_script_runs():
     assert button, "the Settings trigger moved"
     assert "hidden" in button.group(0)
     assert "trigger.hidden = false" in SETTINGS_JS.read_text("utf-8")
-    # The panel is only ever enhanced, never built, by the script.
     assert 'id="tb-settings-dialog"' in portal.settings_dialog()

@@ -1,34 +1,12 @@
-// The reader's own answer to the chapter's relevance prompt, kept so they can read it
-// back.
-//
-// `research/pedagogy.md` P3 asks the relevance prompt to "recur, revisit, and be stored
-// client-side". It recurred and was not stored: a reader who wrote three paragraphs over
-// a chapter had no way to read them again, so the prompt was an exercise rather than a
-// record. This is the storage.
-//
-// **The prompt itself stays prose in the page.** That is deliberate. A reader with
-// scripting off still meets the question and can still answer it in a notebook; what
-// this adds is the keeping, not the asking. Putting the prompt in an attribute would
-// have made the question itself depend on JavaScript.
-//
-// The storage key is the page's own path, so it needs no per-chapter plumbing and two
-// chapters cannot collide. A book is self-contained and a reader may read several, and
-// the path already names both.
 import { button, panel, remember, textarea } from "./kit.js";
 
-/** Where a chapter's answer is kept. The path is unique per chapter per book. */
 function keyFor() {
   return `textbook:relevance:${window.location.pathname}`;
 }
 
 /** @param {HTMLElement} el  what the figure is mounted into */
 export function mount(el) {
-  // The panel's own readout is the status line, and that is not a detail: it carries
-  // `aria-live="polite"`, so "Saved" reaches a screen reader. A `<p>` written here
-  // instead would look the same and say nothing.
   const { readout, caption } = panel(el, {
-    // No drawing, so no accessible name for one. A figure that draws nothing and is
-    // named as an image hides its own text from a screen reader.
     drawing: false,
     prompt: "Write your answer below. It is kept in this browser, and you can change it later.",
   });
@@ -46,8 +24,6 @@ export function mount(el) {
   });
 
   /**
-   * What the reader is told, which is about *their* answer and not about saving.
-   *
    * @param {boolean} saved  whether the store took the answer
    */
   function describe(saved) {
@@ -89,7 +65,5 @@ export function mount(el) {
     clear.setAttribute("type", "button");
   }
 
-  // A reader who returns to a chapter they have answered should see it, not an empty box
-  // they have to guess about.
   readout.textContent = describeEarlier() ? describe(true) : "";
 }

@@ -48,7 +48,6 @@ def test_a_section_can_switch_off_its_chapter():
 def test_a_book_inherits_the_site_default():
     collection = {"backgrounds": {"site": "field"}}
     assert backgrounds.resolve(collection, {}, section="1.1", chapter=1) == "field"
-    # ...but its own default wins over it.
     assert backgrounds.resolve(collection, {"default": "other"}, chapter=1) == "other"
 
 

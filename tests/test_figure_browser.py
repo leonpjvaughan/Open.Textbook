@@ -41,15 +41,10 @@ from textbook import themes
 from textbook.book import repo_root
 
 SITE = repo_root() / "site"
-# One entry point: the checks live behind `tools`, so a test invokes the same
-# command a person does rather than a module inside it.
 TOOLS = repo_root() / "tools" / "dist" / "cli.js"
 
 # Playwright is not a package.json dependency: it is needed only by the two
-# browser scripts, and `npm ci` would download three browsers for them. The
 # loader in each script tries `PLAYWRIGHT_PATH`, then the bare specifier, then a
-# mise install, so a missing client is an environment fact rather than a defect
-# in this test.
 PLAYWRIGHT_CANDIDATES = (
     "playwright",
     "/home/leon/.local/share/mise/installs/npm-playwright/latest/node_modules/playwright",
@@ -152,10 +147,6 @@ def test_every_figure_is_visible_under_every_bundle(bundle, sweeps):
     # A sweep that measured nothing would pass every threshold. The count that can
     # be compared across bundles is the number of figures and schemes *measured* —
     # 128 x 2 either way, because the DOM does not change with the palette. The
-    # number of distinct *paints* cannot be: `clean` refuses the subject tint, so
-    # its accent, warn and good legitimately collapse to one colour and it reports
-    # fewer. Comparing that number across bundles was this test's first bug, and it
-    # was the test that was wrong, not a bundle.
     painted = sum(
         len(result["paints"])
         for entry in report.values()
@@ -211,19 +202,8 @@ def test_the_bundle_sweep_is_not_the_same_measurement_six_times(sweeps):
     )
 
 
-# --- phone legibility ---------------------------------------------------------
-#
-# These books are read on phones, and 70 of the figures once rendered their
 # smallest label below 7px at a 390px viewport — median 6.9px, worst 4.4px. The
-# cause was one shared habit: about 60 modules pinned a pixel `height` equal to
-# their viewBox height, so at phone width the *drawing* scaled down while the box
-# did not. Nothing failed; the labels were simply too small to read.
-#
-# The check lives in `tools audit --mobile`, which already drives a
-# browser over every page carrying a figure. It has to be a browser measurement: a
 # module's `font-size` says nothing on its own, because the SVG scales by
-# `rendered width / viewBox width`, so a 560-unit viewBox in a 358px panel draws a
-# 14px label at 8px.
 
 
 @pytest.mark.browser
@@ -253,16 +233,8 @@ def test_every_figure_label_is_readable_at_phone_width(tmp_path):
     )
 
 
-# --- the kit's own contract ---------------------------------------------------
-#
 # 73 modules build on `assets/figures/kit.js`, and its guarantees are DOM
-# behaviour, so they are checked in a browser. The kit is where the accessibility
-# contract now lives: it is what puts `role="img"` on a drawing, keeps it off a
 # readout, and refuses to give an SVG a fixed height. A defect in it would reach
-# every converted figure at once, which is why it is worth a check of its own.
-#
-# `tools kit` holds the assertions and the reasons; this only
-# runs it, the way the other tests here run the audit.
 
 
 @pytest.mark.browser

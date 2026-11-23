@@ -21,16 +21,10 @@ from . import config as cfg
 from . import scaffold
 
 
-# URL segments for the page kinds whose directory names are ours, not the
-# reader's. AGENTS.md is explicit that internal words must never reach the reader,
-# and a URL is read in the address bar, the sitemap and every search result, so
-# the published path uses the same vocabulary the navigation does.
 SLUG_OVERRIDES = {
     directory: slug for directory, _kind, _title, slug in scaffold.PAGE_KINDS
 } | {scaffold.DEEPER_DIRECTORY: scaffold.DEEPER_SLUG}
 
-# Everything else slugs mechanically: 'Chapter 12' -> 'chapter-12',
-# 'Section 1.1' -> 'section-1.1'. Dots survive so section numbers stay legible.
 NON_SLUG = re.compile(r"[^a-z0-9.]+")
 
 
@@ -42,7 +36,7 @@ def slugify(segment: str) -> str:
     publishing it unchanged puts 'Chapter%2020' in every URL a reader sees.
     """
     if segment in {".", ".."}:
-        return segment  # relative links must keep working
+        return segment
     if segment in SLUG_OVERRIDES:
         return SLUG_OVERRIDES[segment]
     folded = unicodedata.normalize("NFKD", segment).encode("ascii", "ignore").decode()

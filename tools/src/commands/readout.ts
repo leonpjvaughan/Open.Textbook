@@ -34,21 +34,17 @@ import { mapPool } from "../lib/pool.js";
 
 export type Control = {
   kind: "range" | "select" | "checkbox";
-  /** Position among the figure's controls of that kind, in document order. */
   index: number;
-  /** For a range: the slider's own bounds and step. */
   min?: number;
   max?: number;
   step?: number;
   value?: number;
-  /** For a select: the option values offered. */
   values?: string[];
   checked?: boolean;
 };
 
 export type Override = { kind: Control["kind"]; index: number; value: number | string | boolean };
 
-/** What this command accepts. `tools help readout` is generated from this table. */
 export const SURFACE: Surface = {
   positional: [{ name: "siteDir", help: "the built site to read", required: false }],
   flags: {
@@ -66,7 +62,6 @@ export const SURFACE: Surface = {
   },
 };
 
-/** The controls inside one figure, in document order, with what they can be set to. */
 export function readControls(slug: string): Control[] {
   const figure = document.querySelector(`maths-figure[data-figure="${slug}"]`);
   if (!figure) return [];
@@ -98,7 +93,6 @@ export function readControls(slug: string): Control[] {
   return out as Control[];
 }
 
-/** Apply one setting: every control back to its default, then the overrides. */
 export function applySetting(input: {
   slug: string;
   controls: Control[];
@@ -133,15 +127,12 @@ export function applySetting(input: {
     if (override.kind === "checkbox") el.checked = Boolean(override.value);
     else el.value = String(override.value);
   }
-  // One event each, after every control has its value: a figure that redraws on input
-  // must see the whole setting, not a half-applied one.
   for (const el of [...ranges, ...selects, ...boxes]) {
     el.dispatchEvent(new Event("input", { bubbles: true }));
     el.dispatchEvent(new Event("change", { bubbles: true }));
   }
 }
 
-/** The claims a figure has declared for the current render. */
 export function readWorking(slug: string): unknown[] {
   const figure = document.querySelector(`maths-figure[data-figure="${slug}"]`);
   if (!figure) return [];
@@ -154,23 +145,17 @@ export function readWorking(slug: string): unknown[] {
   }
 }
 
-/** The text the figure shows a reader, with superscripts kept as powers. */
 export function readoutText(slug: string): string {
   const figure = document.querySelector(`maths-figure[data-figure="${slug}"]`);
   if (!figure) return "";
   const live = figure.querySelector("[aria-live], .fig-out, .fig-readout");
   if (!live) return "";
-  // **`textContent` alone loses the notation.** `4<sup>3</sup> × 4<sup>2</sup>` reads as
-  // "43 × 42", which is arithmetic that is not there — the checker called the index-law
-  // figure wrong six times before this, because 43 × 42 is not 4⁵. A clone with `<sup>`
-  // rewritten as `^` keeps the exponent, and the rest of the markup is dropped.
   const clone = live.cloneNode(true) as HTMLElement;
   for (const sup of [...clone.querySelectorAll("sup")]) sup.replaceWith(`^${sup.textContent}`);
   for (const sub of [...clone.querySelectorAll("sub")]) sub.replaceWith(`_${sub.textContent}`);
   return (clone.textContent || "").trim();
 }
 
-/** The settings to try: the default, then each control one step away from it. */
 export function settingsFor(controls: Control[], cap: number, defaultsOnly: boolean): Override[][] {
   if (defaultsOnly) return [[]];
   const settings: Override[][] = [[]];
@@ -180,8 +165,6 @@ export function settingsFor(controls: Control[], cap: number, defaultsOnly: bool
       const { min, max, step = 1, value = min } = control;
       const snap = (n: number) => Math.round(n / step) * step;
       candidates.push(min, max);
-      // A value that is neither bound and not the default: the awkward middle, where a
-      // rounding defect lives. `interest-growth` was wrong at 6.5% of a 1–10 slider.
       const mid = snap(min + (max - min) * 0.62);
       if (mid !== value && mid !== min && mid !== max) candidates.push(mid);
     } else if (control.kind === "select") {
@@ -206,12 +189,6 @@ export async function run(argv: string[]): Promise<number> {
   const defaultsOnly = values["defaults-only"] === true;
   const verify = values.verify === true;
   const jobsFlag = Number(values.jobs) || 0;
-  // The default plus five single-control variations. It is a **sample**, not a sweep:
-  // a full cross-product is thousands of renders and the check is bounded on purpose.
-  // The defect it exists for — a multiplier rounded before it is printed — shows up a
-  // step either side of the default, so five variations of one control at a time finds
-  // it without paying for the grid. A value that is not a positive number has always
-  // meant ten here, and the declared default is the sample size used when it is absent.
   const cap = Number(values.settings) || 10;
 
   const pages = discoverFigures(siteDir);
@@ -231,14 +208,9 @@ export async function run(argv: string[]): Promise<number> {
     blockServiceWorkers: true,
   });
   await serveStatic(context, siteDir);
-  // One page per worker, and one by default for the same reason as the figure audit: a
-  // pool is faster and races. `--jobs` is here for the same reason too.
   const jobs = Math.max(1, Math.min(jobsFlag || 1, 8));
   const pagesPool = await Promise.all(Array.from({ length: jobs }, () => context.newPage()));
 
-  // What each render asserts and what it prints. The arithmetic is done by the Python
-  // verifier; this command's job is to collect honest data and say how much of the
-  // collection is still undeclared.
   const records: {
     slug: string;
     route: string;
@@ -257,9 +229,6 @@ export async function run(argv: string[]): Promise<number> {
     let figureStatesArithmetic = false;
     try {
       await page.goto(`${ORIGIN}${route}`, { waitUntil: "load" });
-      // Wait for the figure to mount, not for a fixed quarter second. The fixed pause
-      // was the audit's whole cost too: 284 seconds became 91 with this one change and
-      // no loss of coverage.
       await page
         .waitForFunction(
           (s: string) => {
@@ -310,11 +279,6 @@ export async function run(argv: string[]): Promise<number> {
       `${declared} declare ${claimCount} claim(s), ${undeclaredSlugs.length} state arithmetic and declare none`,
   );
   if (verify) {
-    // The arithmetic is the verifier's, not this command's: SymPy rationalises 0.065 to
-    // 13/200, so a claim is decided exactly and the notation a figure chose cannot
-    // change the answer. `execFileSync` **returns null** when stdout is inherited and
-    // throws on a non-zero exit, so the status has to come from the catch — reading the
-    // return value made every run look like a failure.
     try {
       execFileSync("uv", ["run", "python", "-m", "textbook.working", jsonPath], {
         stdio: "inherit",
@@ -326,8 +290,6 @@ export async function run(argv: string[]): Promise<number> {
     }
   }
   if (undeclaredSlugs.length) {
-    // **Named, not just counted.** The count says the gap exists; the list says where,
-    // and a message that does not say where is a message someone has to re-derive.
     console.log(
       `  ${undeclaredSlugs.length} figure(s) print arithmetic and declare no claim — ` +
         "call `claim([...])` from the panel so the verifier can prove it:",

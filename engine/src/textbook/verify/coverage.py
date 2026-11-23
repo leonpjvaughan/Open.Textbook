@@ -68,32 +68,13 @@ from pathlib import Path
 from .. import book as books
 from .. import yamlio
 
-#: Provision values a booklet item may carry, from `BOOKLETS.md`.
 GIVEN = "given"
 QUESTION = "question"
 KNOW = "know"
 
-#: An item that `sympy.parsing.latex` cannot read says so on the item, with a reason:
-#:
-#:     - id: mean-of-data
-#:       latex: '\bar{x} = \frac{\sum x}{n} = \frac{\sum f x}{\sum f}'
-#:       symbolic: false
-#:       why: A \sum with no limits, which the parser only reads with explicit bounds.
-#:
-#: The declaration is the data; this module is its only reader. Its first version
-#: kept the knowledge in the *test* instead — eight `(regex, reason)` pairs naming
-#: `\sum`, `\begin{`, `{}^n C_r`, `\binom`, `\mathbb`, paired delimiters,
-#: `\operatorname` and spacing commands — so a ninth kind of unreadable notation
-#: failed a test whose only fix was another regex. That is the shape this repository
-#: is removing (`.agents/todo.md` item 67): a check may branch on data it was given,
-#: and may not branch on a list of notations it happens to know. The reasons those
-#: rows carried were good ones — *a layout, not a relation*, *a symbol list, not an
-#: expression* — so they moved here, onto the items that need them.
 SYMBOLIC = "symbolic"
 WHY = "why"
 
-#: A reason shorter than this is not a reason. It stops `why: "?"` standing in for
-#: an explanation, which would make the declaration a silent opt-out from the check.
 MIN_WHY = 20
 
 _TEXT = re.compile(r"\\text\{[^}]*\}")
@@ -119,7 +100,6 @@ def booklet_items(book: books.Book) -> dict[str, dict]:
     return items
 
 
-# --- what the parser cannot read, declared rather than guessed ----------------
 
 
 def declares_not_symbolic(item: dict) -> bool:
@@ -255,12 +235,6 @@ def _errors_for(
     return []
 
 
-# --- the author's aid, never the verdict --------------------------------------
-#
-# `_sides` is the parser boundary. It returns [] both for "this is not a relation"
-# and for "I cannot read this", and nothing here tries to tell those apart from the
-# LaTeX: an item that is not a relation says so in the booklet (`booklet_faults`),
-# and an item that says nothing is expected to parse.
 
 
 def _sides(item: dict):

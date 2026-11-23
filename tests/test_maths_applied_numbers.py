@@ -38,14 +38,9 @@ from textbook.book import repo_root
 
 DATA = repo_root() / "books" / "maths-applied" / "docs" / "assets" / "data"
 CHAPTER = repo_root() / "books" / "maths-applied" / "docs" / "Chapter 1"
-#: The page prints a true minus sign, so a number it prints has to be read with one.
 MINUS = "\u2212"
 TRAVELS = (-40.0, -20.0, 0.0, 20.0, 40.0)
 
-#: The model's answers, printed as JSON by `node`. It imports the same modules the figures
-#: import — nothing here re-implements the solver, and the kernel sweep is the figure's own:
-#: the geometry `mechanism.js` holds, 21 samples over the chapter's 80 mm of travel, and the
-#: sign flip into this book's camber convention.
 _SCRIPT = (
     "const BASE = " + json.dumps(str(DATA)) + ";\n"
     + """
@@ -265,7 +260,6 @@ def poses(text: str) -> dict[float, list[str]]:
     return found
 
 
-# --- §1.2: the front view, pose by pose ---------------------------------------
 
 
 def test_section_1_2_publishes_a_row_for_each_end_of_the_travel():
@@ -320,7 +314,6 @@ def test_the_kernel_agreement_is_the_sweeps_worst_difference(model):
     assert round(numbers(cell)[0], 3) == round(model["kernelWorst"], 3)
 
 
-# --- the rigid model's change, on every page that states it -------------------
 
 
 def _rigid_change_1_2(text: str) -> tuple[float, float, float]:
@@ -369,8 +362,6 @@ def test_three_pages_state_the_same_rigid_change(model):
 
 def test_section_1_5_keeps_the_export_s_number_named_as_the_exports(model):
     """The export's 100 MN/m row stands beside the rigid model's, named as itself."""
-    # Whitespace-normalised: the page is hard-wrapped, and a sentence that gains a line
-    # break is not a page that lost its number.
     text = " ".join(page("Section 1.5/Walkthrough").split())
     assert stated(r"or ([\d.]+)° for a 40 mm bump from rest", text) == round(
         model["bumpFromRest"], 2
@@ -378,7 +369,6 @@ def test_section_1_5_keeps_the_export_s_number_named_as_the_exports(model):
     assert stated(r"The export's ladder gives ([\d.]+)° at 100 MN/m", text) == 1.91
 
 
-# --- §1.4: the decomposition, and the projection ------------------------------
 
 
 def test_the_singular_values_are_one_pose_on_both_pages(model):
@@ -419,7 +409,6 @@ def test_the_arm_lengths_are_the_view_and_the_wishbones_legs(model):
     assert numbers(re.search(r"shorter than either leg, by \d+ mm and \d+ mm", section).group(0)) == gaps
 
 
-# --- §1.6: the trajectory -----------------------------------------------------
 
 
 def test_section_1_6_states_the_trajectorys_numbers(model):
@@ -742,12 +731,10 @@ def test_the_readout_is_rows_in_the_pages_own_columns():
         assert "table(readout" in source, f"{slug} still prints its readout as a sentence"
         assert "readout.textContent" not in source, f"{slug} sets the readout text as well"
 
-    # wishbone-hero ↔ §1.2's table, in its order
     hero = (figures / "wishbone-hero.js").read_text(encoding="utf-8")
     for label in ("wheel travel", "lower arm turns", "camber", "instant centre", "roll centre"):
         assert f'"{label}"' in hero, f"wishbone-hero has no {label!r} row"
 
-    # stiffness-agreement ↔ §1.5's table, in its order
     agreement = (figures / "stiffness-agreement.js").read_text(encoding="utf-8")
     for label in ("bush stiffness", "bush deflection", "camber at rest",
                   "difference at rest", "change over the travel"):
@@ -766,7 +753,6 @@ def test_the_two_procedures_are_named_once_with_the_number_each_earned():
     assert "## The two procedures" in section
     assert section.count("**The tolerance comparison**") >= 2
     assert section.count("**The limit test**") >= 2
-    # the numbers in the panel are the ones the figure and the ladder print
     for number in ("1.85", "0.034", "1.91", "1.95"):
         assert number in section, f"the panel does not carry {number}"
 

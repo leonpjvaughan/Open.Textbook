@@ -57,7 +57,6 @@ def book_page() -> str:
     return html
 
 
-# --- the keys -----------------------------------------------------------------
 
 
 def test_the_shared_key_is_not_scoped_to_a_path():
@@ -87,7 +86,6 @@ def test_themes_tolerates_a_missing_config():
     assert prefs.themes({}) == ([], "")
 
 
-# --- the generated script -----------------------------------------------------
 
 
 def test_snippet_reads_both_shared_keys():
@@ -131,7 +129,6 @@ def test_snippet_exposes_the_shared_store():
         assert field in snippet, field
 
 
-# --- one implementation, no copies --------------------------------------------
 
 
 def test_the_book_template_carries_the_generated_script():
@@ -178,7 +175,6 @@ def test_the_page_template_has_no_inline_before_paint_script():
     assert "<script" not in head, "an inline script survives in the head"
 
 
-# --- every surface renders the one script -------------------------------------
 
 
 def test_the_built_book_page_carries_the_shared_snippet(book_page: str):
@@ -244,23 +240,12 @@ def test_every_reader_surface_reads_and_writes_the_key(book_page: str):
         (portal.not_found(), "the 404"),
     ):
         assert surface_snippet in surface, f"{name} does not carry the shared script"
-    # A book page reads the choice; the shared runtime records it, so there is
-    # one writer rather than a second copy that could drift.
     runtime = (repo_root() / "assets" / "settings" / "settings.js").read_text(
         encoding="utf-8"
     )
     assert "localStorage.setItem" in runtime, "the runtime never records the choice"
 
 
-# --- the scheme with no choice made -------------------------------------------
-#
-# G3: the operating system is the default, not an override. An empty store plus a
-# dark `prefers-color-scheme` gives the dark scheme; a stored `default` stays light
-# even on a dark OS; and a stored choice is not moved when the OS changes under it.
-#
-# The snippet is JavaScript, so the test runs JavaScript: stubbing `localStorage`,
-# `matchMedia` and two elements is smaller than a browser and says exactly what the
-# before-paint script does, which is the only thing a theme can flash on.
 
 SCENARIO = r"""
 const fs = require("fs");
@@ -334,7 +319,6 @@ def test_a_dark_operating_system_sets_the_dark_scheme_with_no_stored_choice(tmp_
     result = run_snippet(tmp_path, stored="", dark=True)
     assert result["before"]["data-md-color-scheme"] == "slate", result
     assert result["before"]["data-scheme-pref"] == "slate", result
-    # No choice was stored, so the page follows the OS while the reader is on it.
     assert result["follow"] == 1, "nothing listens for an OS scheme change"
     assert result["after"]["data-md-color-scheme"] == "default", result
 
@@ -364,7 +348,6 @@ def test_junk_in_the_store_is_not_a_choice(tmp_path):
     assert result["before"]["data-md-color-scheme"] == "slate", result
 
 
-# --- the browser interface's own colour ---------------------------------------
 
 
 def test_both_schemes_carry_a_theme_color_meta():

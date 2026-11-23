@@ -1,6 +1,3 @@
-// The eigenvalues page's experiment: a vector multiplied by A again and again turns
-// toward the dominant eigenvector, and the ratio of the two eigenvalues sets the
-// speed. The dashed line is the target the iteration is trying to find.
 import power from "../data/solvers/power-iteration/kernel.js";
 import { kernelLab, sci } from "./kernel-lab.js";
 

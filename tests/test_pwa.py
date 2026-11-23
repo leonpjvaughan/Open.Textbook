@@ -35,8 +35,6 @@ FAVICON = ASSETS / "icons" / "favicon.svg"
 APPLE_TOUCH = ASSETS / "icons" / "apple-touch-icon.png"
 
 #: The SHA-256 of `app-icon.svg` when `apple-touch-icon.png` was drawn from it.
-#: A committed raster is the one place a generated file goes stale unnoticed,
-#: so the source is pinned rather than trusted. See assets/icons/README.md.
 APP_ICON_SHA256 = "d72c5fcf1db2d912e78c6ead229d4fa4980b9b6e1cc18fa3b2299bc33dd2803f"
 
 
@@ -47,7 +45,6 @@ def function_body(source: str, name: str) -> str:
     return match.group(0)
 
 
-# --- the manifest -------------------------------------------------------------
 
 
 def test_the_manifest_is_valid_and_installable():
@@ -55,8 +52,6 @@ def test_the_manifest_is_valid_and_installable():
     for key in ("name", "short_name", "start_url", "scope", "display", "icons"):
         assert data.get(key), f"the manifest is missing {key}"
     assert data["display"] in {"standalone", "fullscreen", "minimal-ui"}
-    # Site-root scope, because the portal emits it at the deployment root and the
-    # root is ours; this is what lets one app cover every book.
     assert data["start_url"] == "/"
     assert data["scope"] == "/"
 
@@ -77,7 +72,6 @@ def test_the_manifest_icon_exists_and_is_maskable():
     assert icon["src"] == "/assets/icons/app-icon.svg"
     assert icon["type"] == "image/svg+xml"
     assert "maskable" in icon["purpose"]
-    # The file the manifest names must be shipped, or install 404s.
     assert ICON.is_file(), "the manifest names an icon that does not exist"
 
 
@@ -85,12 +79,9 @@ def test_the_manifest_link_and_worker_are_allowed_by_the_policy():
     policy = headers.HEADERS["Content-Security-Policy"]
     assert "manifest-src 'self'" in policy
     assert "worker-src 'self'" in policy
-    # The solver kernels compile inlined wasm in the page. Without this token the
-    # browser refuses the compilation and every kernel figure shows "failed to load".
     assert "'wasm-unsafe-eval'" in policy
 
 
-# --- the tab icon -------------------------------------------------------------
 
 
 def svg_colours(source: str) -> set[str]:
@@ -145,7 +136,6 @@ def test_every_page_shell_links_the_tab_icon():
     page = pipeline.PAGE_TEMPLATE.read_text(encoding="utf-8")
     assert 'rel="icon" type="image/svg+xml" href="${prefix}assets/icons/favicon.svg"' in page
     assert 'rel="icon" type="image/svg+xml" href="assets/icons/favicon.svg"' in portal.render()
-    # A 404 is served from arbitrary depths, so it links absolutely like its CSS.
     assert 'rel="icon" type="image/svg+xml" href="/assets/icons/favicon.svg"' in portal.not_found()
 
 
@@ -170,7 +160,6 @@ def built_site(tmp_path_factory):
     return out
 
 
-# --- the service worker and its update path -----------------------------------
 
 
 def test_the_worker_is_emitted_at_the_root_so_its_scope_is_the_site():
@@ -186,10 +175,6 @@ def test_the_portal_stamps_the_build_label_into_the_cache_name():
     assert portal.SW_PLACEHOLDER not in emitted
     label = re.sub(r"[^A-Za-z0-9._-]", "-", portal.build_label() or "dev")
     assert f'var VERSION = "{label}";' in emitted
-    # A versioned cache is what makes the update path a deploy, not a hope — but it
-    # is now only the *runtime* cache that is versioned. The cache that holds pages
-    # and content-addressed assets must not carry the build label, or a deploy would
-    # take away the book a reader downloaded.
     assert 'var RUNTIME = PREFIX + "runtime-" + VERSION;' in emitted
     assert 'var SITE = PREFIX + "site";' in emitted
 
@@ -208,8 +193,6 @@ def test_navigations_are_network_first():
     source = SW.read_text(encoding="utf-8")
     body = function_body(source, "networkFirst")
     assert body.index("fetch(request)") < body.index("caches.match(request)")
-    # And it is the strategy the navigation branch actually uses — against the cache
-    # that survives a deploy, because a page is not a stable name.
     fetch_handler = function_body(source, "onFetch")
     assert 'request.mode === "navigate"' in fetch_handler
     assert "event.respondWith(networkFirst(request, SITE))" in fetch_handler
@@ -237,9 +220,6 @@ def test_the_addressed_pattern_is_the_one_the_build_writes(tmp_path):
     source = SW.read_text(encoding="utf-8")
     written = re.search(r"var ADDRESSED = /(.+?)/;", source)
     assert written, "the worker has no ADDRESSED pattern"
-    # The pattern is JavaScript, but it is also a plain regular expression: compile
-    # it as written rather than paraphrasing it here, so this test cannot pass
-    # against a copy of the rule instead of the rule.
     pattern = re.compile(written.group(1))
 
     for name in ("themes.css", "ch10-nth-term.js", "app-icon.svg", "apple-touch-icon.png"):
@@ -286,8 +266,6 @@ def test_the_worker_has_an_explicit_update_path():
     source = SW.read_text(encoding="utf-8")
     assert ".skipWaiting()" in source
     assert ".clients.claim()" in source
-    # Old runtime caches are deleted on activate, so a deploy cannot leave one
-    # behind — and the site cache is exempt, which is the whole point of the split.
     prune = function_body(source, "prune")
     assert "caches.delete(key)" in prune
     assert "key !== SITE" in prune
@@ -306,8 +284,6 @@ def test_a_deploy_cannot_delete_a_downloaded_book():
     assert 'var SITE = PREFIX + "site";' in source
     prune = function_body(source, "prune")
     assert "key !== SITE" in prune
-    # Nothing else in the worker deletes a whole cache: the only other delete is the
-    # age-based one, entry by entry.
     for name in ("onInstall", "onActivate", "onFetch", "networkFirst", "cacheFirst"):
         assert "caches.delete(" not in function_body(source, name), name
 
@@ -349,7 +325,6 @@ def test_the_chapter_prefetch_is_optional_and_cheap():
     assert "requestIdleCallback" in loader, "the prefetch would compete with the page"
     assert "LIMIT" in loader, "no cap on how many pages one nav can ask for"
     assert "a[href]" in loader, "the page list is not taken from the nav"
-    # And nothing in it is a colour: it is a network decision, not a drawing.
     assert not re.search(r"#[0-9a-fA-F]{3,8}\b", loader), "a colour literal reached the prefetch"
 
     template = pipeline.PAGE_TEMPLATE.read_text(encoding="utf-8")
@@ -370,7 +345,6 @@ def test_the_manifest_is_a_download_list(built_site):
     data = json.loads((out / "assets" / "manifest.json").read_text(encoding="utf-8"))
     assert data["pages"], "the manifest lists no pages, so nothing can be downloaded"
     assert data["bytes"] == sum(data["pages"].values())
-    # Each listed route is a page the build wrote, and each size is that page's.
     for route, size in data["pages"].items():
         page = out / route.lstrip("/") / "index.html"
         assert page.is_file(), f"{route} is in the manifest and not in the build"
@@ -385,8 +359,6 @@ def test_the_offline_control_is_only_offered_where_there_is_a_book():
     page = portal.settings_dialog(book=books.book_by_id("gcse-maths"))
     assert 'id="tb-offline-download" hidden' in page
     assert 'data-offline-book="gcse-maths"' in page
-    # Hidden in the markup and revealed by script, like the Settings trigger: a
-    # reader without JavaScript sees no control rather than a dead one.
     assert "hidden" in page
 
 
@@ -400,8 +372,6 @@ def test_the_download_is_stoppable_and_asks_for_persistent_storage():
         "no headroom is left between what the book needs and what the device has"
     )
     assert 'manifest.json' in loader
-    # The build's own list, not the sidebar: a download is every page, including the
-    # ones the reader has not opened.
     assert "plan.pages" in loader
 
 
@@ -416,19 +386,15 @@ def test_the_worker_only_touches_same_origin_get_requests():
 def test_the_worker_registers_but_never_blocks_the_page():
     script = REGISTER.read_text(encoding="utf-8")
     assert 'navigator.serviceWorker.register("/sw.js")' in script
-    # Feature-detected, and a failure is swallowed: offline support is an
-    # enhancement, not a dependency.
     assert '"serviceWorker" in navigator' in script
     assert ".catch(" in script
 
 
-# --- it reaches the book pages ------------------------------------------------
 
 
 def test_the_book_template_adds_the_manifest_and_the_registration():
     template = pipeline.PAGE_TEMPLATE.read_text(encoding="utf-8")
     assert '<link rel="manifest" href="/manifest.webmanifest">' in template
-    # Content-addressed, so the template names a slot the build fills.
     assert 'src="$worker_script"' in template
     assert "defer" in template, "an eager script would delay the page"
 
@@ -439,7 +405,6 @@ def test_the_landing_page_is_installable_too():
     assert portal.root_links(rooted=False)["worker_script"] in html
 
 
-# --- the portal ships every new asset -----------------------------------------
 
 
 def test_the_portal_copies_the_new_assets_into_the_site():
@@ -447,8 +412,6 @@ def test_the_portal_copies_the_new_assets_into_the_site():
     addressed = portal.root_assets()
     for relative in portal.ROOT_ASSETS:
         assert (SITE / addressed[relative]).is_file(), f"{relative} is not in site/"
-    # And under no other name: a stable-named copy is exactly what this scheme
-    # removes, because nothing would ever invalidate it.
     for relative in portal.ROOT_ASSETS:
         assert not (SITE / relative).exists(), f"{relative} was written unaddressed"
     for relative in (
@@ -480,7 +443,6 @@ def test_the_ios_icon_is_a_png_ios_will_accept():
     width, height = struct.unpack(">II", data[16:24])
     assert (width, height) == (180, 180), f"{width}x{height}, expected 180x180"
     # Colour type 2 is truecolour RGB. Alpha (6) would leave iOS guessing at the
-    # background, since it applies no mask to this icon.
     assert data[25] == 2, "the iOS icon should be RGB with no alpha channel"
 
 

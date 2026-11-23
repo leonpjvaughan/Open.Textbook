@@ -19,7 +19,6 @@ import { launchBrowser, openContext, serveStatic } from "../lib/browser.js";
 import { parseArgs } from "../lib/flags.js";
 import { Report } from "../lib/report.js";
 import { routeFile, sampleRoutes } from "../lib/routes.js";
-/** What this command accepts. `tools help check-mobile` is generated from it. */
 export const SURFACE = {
     positional: [{ name: "siteDir", help: "the built site to measure", required: false }],
     flags: {
@@ -30,8 +29,6 @@ export const SURFACE = {
         },
     },
 };
-// Android's common widths first: the report came from a phone. 480 is the top of the
-// range where the masthead has to wrap, so it guards the breakpoint itself.
 const WIDTHS = [320, 360, 390, 412, 480];
 /**
  * The pages this run measures, chosen from the build it was given.
@@ -81,7 +78,6 @@ export async function run(argv) {
             const result = await page.evaluate(() => {
                 const doc = document.documentElement;
                 const vw = doc.clientWidth;
-                // The widest thing that is *not* allowed to scroll is what widens a page.
                 let worst = null;
                 for (const el of document.querySelectorAll("body *")) {
                     const rect = el.getBoundingClientRect();
@@ -130,19 +126,8 @@ export async function run(argv) {
         }
         await context.close();
     }
-    // --- tables, at 390px ------------------------------------------------------
-    //
-    // **A table cannot widen a page**, because `wrap_tables` puts every one in a
-    // `.table-scroll`, so the check above passes on a page whose last column is past the
     // right edge: the wrapper hides the problem it was added to fix. This measures the
-    // table against its own wrapper — the width a reader has before scrolling sideways —
-    // and exempts `table--cards`, which stacks into records below 60rem and has no
-    // columns to lose.
-    // **Twenty pixels of slack, because a table's width is its text's.** The same table
     // measured on a machine without the site's font is 6 to 17px wider than this one, and
-    // the rule must not fail a reader's font. Twenty is a line of text at the smallest
-    // label size: below it the last column loses less than a character, and a table 40px
-    // over — the item's example — still fails.
     const TABLE_SLACK = 20;
     const tableRoutes = [];
     const walk = (dir) => {
@@ -194,7 +179,6 @@ export async function run(argv) {
             return out;
         }, TABLE_SLACK));
         // Counted, so the summary says how many pages the table pass measured: a sweep
-        // over an empty set and a clean sweep print the same line otherwise.
         report.examined += 1;
         for (const { head, over } of overflowing) {
             report.error(route, `table "${head}" is ${over}px wider than its container at 390px, and is not table--cards`);

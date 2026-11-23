@@ -1,14 +1,11 @@
 // @ts-nocheck
-//
-// Moved from a book's figure directory by item 147: a hand-authored figure,
 // measured by tests/test_figures.py. The TS ratchet covers the kit and the tools.
-// Guided investigation for 14.1: the p-value, the critical region and the tail
 // of a binomial test. Pure HTML and SVG, an ES module, no framework and no
 import { SIZE, chooser, label, panel, react, slider } from "./kit.js";
 
 function binomialPmf(n, p) {
   const pmf = new Array(n + 1).fill(0);
-  let term = Math.pow(1 - p, n); // P(X = 0)
+  let term = Math.pow(1 - p, n);
   pmf[0] = term;
   for (let k = 1; k <= n; k += 1) {
     term *= ((n - k + 1) / k) * (p / (1 - p));
@@ -27,11 +24,9 @@ function cumulative(pmf) {
   return cdf;
 }
 
-// The largest lower tail and the smallest upper tail whose probability is at
-// most the stated level. A null result means that tail is empty at this level.
 function criticalRegion(cdf, alpha, tail) {
   const n = cdf.length - 1;
-  const survival = (k) => (k <= 0 ? 1 : 1 - cdf[k - 1]); // P(X >= k)
+  const survival = (k) => (k <= 0 ? 1 : 1 - cdf[k - 1]);
   const largestBelow = (limit) => {
     let chosen = null;
     for (let k = 0; k <= n; k += 1) {

@@ -61,7 +61,7 @@ def test_the_line_names_the_levels_and_not_the_axis_codes():
             continue
         line = tiers_line(book)
         if line is None:
-            continue  # the page may not carry the line; that is not this rule's business
+            continue
         expected = f"- Tiers: {axis[book.lower_code]}"
         if line != expected:
             offenders.append(f"{book.id}: {line!r}, expected {expected!r}")
@@ -89,7 +89,6 @@ def test_the_generator_writes_the_levels_and_not_the_axis_codes():
     source = (books.repo_root() / "engine" / "src" / "textbook" / "scaffold.py").read_text(
         encoding="utf-8"
     )
-    # The old form joined every axis value.
     assert "', '.join(book.tier_axis.values())" not in source, (
         "home_stub joins every tier_axis value, so a new book would read "
         '"Ordinary and Higher, Higher only" instead of naming its levels'

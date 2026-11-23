@@ -54,12 +54,6 @@ from . import (
 
 __all__ = ["MARKDOWN_HOOKS", "on_files", "on_page_markdown", "on_page_content"]
 
-#: The markdown hooks, in the order they run. **The only copy.** The pipeline used
-#: to keep a second tuple of its own, so the chain that actually ran was not the
-#: chain this docstring described — adding `proofs` here alone changed nothing, and
-#: a reader would have found the order stated in two places with no test comparing
-#: them. `pipeline.MARKDOWN_HOOKS` is this object, and
-#: `tests/test_render_hooks.py` fails if the two ever part company again.
 MARKDOWN_HOOKS = (
     tier,
     disclaimer,
@@ -86,10 +80,6 @@ def on_page_markdown(markdown, page, config, files):
 
 
 def on_page_content(content, page, config, files):
-    # `contents` first: it reads the headings while they still carry their LaTeX, and
-    # `maths` then renders the `$...$` in the headings themselves. `opener` runs in
-    # between, so the page's own contents list is placed before the chapter problem is
-    # framed and can never land inside the frame.
     content = contents.on_page_content(content, page, config, files)
     content = opener.on_page_content(content, page, config, files)
     return maths.on_page_content(content, page, config, files)

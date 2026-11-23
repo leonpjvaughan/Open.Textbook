@@ -19,15 +19,6 @@
  *     crop. `wishbone-hero` does exactly that, and a single rule for both would either
  *     fail it or miss a row of labels drawn below the frame.
  */
-/**
- * The slack for a label, **as a fraction of its font size**.
- *
- * A `<text>`'s box is the em box, and its width is the environment's font: a runner
- * without the site's font reports the same label a few units wider than this machine
- * does, which is a different measurement of the same drawing. Half an em covers the
- * ascent and side bearing that no glyph reaches, and a label cut by more than that is a
- * label whose ink is cut.
- */
 export const TEXT_SLACK = 0.5;
 /**
  * The slack for a mark, and why it is larger.
@@ -38,7 +29,6 @@ export const TEXT_SLACK = 0.5;
  * collection, with a tenth of a unit of arithmetic.
  */
 export const STROKE_TOLERANCE = 1.6;
-/** How far `inner` reaches outside `outer`, in user units. Negative means inside. */
 export function overflow(inner, outer) {
     return Math.max(outer.x - inner.x, outer.y - inner.y, inner.x + inner.width - (outer.x + outer.width), inner.y + inner.height - (outer.y + outer.height));
 }
@@ -49,21 +39,13 @@ export function overlaps(a, b, tolerance = STROKE_TOLERANCE) {
         a.y < b.y + b.height + tolerance &&
         b.y < a.y + a.height + tolerance);
 }
-/**
- * Is this element drawn outside the drawing?
- *
- * `over` is the worst overflow in user units, which is what a report needs to say —
- * "20 units below the frame" is actionable and "outside" is not.
- */
 export function outside(ink, box, canvas, tolerance) {
     const over = overflow(box, canvas);
     if (ink === "text")
         return { outside: over > tolerance, over };
-    // A mark that reaches the canvas is drawn, so the crop is working as intended, and
     // its own stroke is allowed for: see `STROKE_TOLERANCE`.
     return { outside: !overlaps(box, canvas, STROKE_TOLERANCE), over };
 }
-/** Transform a box through a matrix, returning the axis-aligned box it covers. */
 export function transformBox(box, m) {
     const [a, b, c, d, e, f] = m;
     const points = [

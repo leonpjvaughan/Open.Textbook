@@ -166,10 +166,6 @@ def value_set(values: Iterable[str], symbols: dict):
     return FiniteSet(*[parse_expression(v, symbols) for v in values])
 
 
-# --- sets and domains ---------------------------------------------------------
-#
-# `solve` and `inequality` compare SymPy sets, not only finite sets of answers.
-# A `ConditionSet` means SymPy could not solve; that is *unknown*, never wrong.
 
 
 def expected_set(answer, symbols: dict):
@@ -228,7 +224,6 @@ def inequality_set(relations, variable):
     return boolean.as_set()
 
 
-# --- systems ------------------------------------------------------------------
 
 
 def _normalize_solution(mapping: dict) -> frozenset:
@@ -295,7 +290,6 @@ def format_solutions(solutions, variables) -> str:
     return "{" + ", ".join(sorted(rendered)) + "}"
 
 
-# --- vectors ------------------------------------------------------------------
 
 
 def _as_matrix(value):
@@ -349,11 +343,6 @@ def vector_operation(op: str, args: list):
     raise ValueError(f"unknown vector operation {op!r}")
 
 
-# --- differential and recurrence equations ------------------------------------
-#
-# These need function notation (`y(x)`, `a(n)`), which `parse_expression` does
-# not produce: within a bank, `y` is a Symbol. The local dictionary below binds
-# the dependent name to a SymPy `Function` for the one equation being checked.
 
 
 def _function_local(dependent: str, independent: str, symbols: dict):
@@ -410,7 +399,6 @@ def recurrence_solution(equation, dependent: str, independent: str, symbols: dic
     return result
 
 
-# --- approximations -----------------------------------------------------------
 
 
 def within_tolerance(value, target, tolerance, relative: bool = False) -> bool:
@@ -425,11 +413,6 @@ def within_tolerance(value, target, tolerance, relative: bool = False) -> bool:
     return bool(difference.evalf() <= limit.evalf())
 
 
-# --- declared rewrites -------------------------------------------------------
-#
-# A step can name the operation that produced it, not just assert equivalence.
-# This is what makes differentiation and integration expressible: they are not
-# equivalence-preserving rewrites of an expression, they are operations on it.
 
 UNARY_OPERATIONS = {
     "simplify": sympy.simplify,
@@ -462,13 +445,12 @@ def apply_operation(expression, spec: dict, symbols: dict):
         variable = parse_expression(args[0], symbols)
         if op == "diff":
             return sympy.diff(expression, variable)
-        if len(args) == 3:  # definite integral: args = [var, lower, upper]
+        if len(args) == 3:
             lower = parse_expression(args[1], symbols)
             upper = parse_expression(args[2], symbols)
             return sympy.integrate(expression, (variable, lower, upper))
         return sympy.integrate(expression, variable)
     if op == "subs":
-        # args: [symbol, replacement]
         target = symbols.get(args[0])
         if target is None:
             raise ValueError(f"subs: unknown symbol {args[0]!r}")
@@ -495,7 +477,6 @@ def apply_operation(expression, spec: dict, symbols: dict):
         variable = parse_expression(args[0], symbols)
         point = parse_expression(args[1], symbols) if len(args) > 1 else sympy.Integer(0)
         order = int(parse_expression(args[2], symbols)) if len(args) > 2 else 6
-        # Strip the big-O term so a truncated polynomial can be compared exactly.
         return sympy.series(expression, variable, point, order).removeO()
     if op == "iterate":
         if len(args) != 2:
@@ -610,10 +591,6 @@ def is_ode_solve(spec: dict) -> bool:
     return spec.get("op") == "dsolve"
 
 
-# --- statistics ----------------------------------------------------------------
-#
-# Statistics is not a symbolic problem; the oracle is an independent exact
-# computation, with any convention named explicitly (see PROBLEMS.md).
 
 
 def _median(values):
@@ -727,13 +704,7 @@ def statistic(data: Iterable, name: str, convention: str | None = None, percenti
     raise ValueError(f"unknown statistic {name!r}")
 
 
-# --- distributions and hypothesis tests ---------------------------------------
-#
-# `sympy.stats` gives exact results: a binomial probability is a rational and a
-# normal one is an `erf`. A decimal is therefore never forced, and a normal
 # record declares the tolerance its answer is checked to (see DECISIONS.md:
-# no scipy). A named distribution, a named query and a named tail are all
-# required, because the same numbers mean different things without them.
 
 
 def make_distribution(name: str, parameters: dict, symbols: dict, variable: str = "X"):
@@ -817,7 +788,7 @@ def _binomial_critical_region(n: int, p, tail: str, alpha):
     def smallest_above(limit):
         chosen = None
         for k in range(n, -1, -1):
-            if 1 - cumulative(k - 1) <= limit:  # P(X >= k)
+            if 1 - cumulative(k - 1) <= limit:
                 chosen = k
         return chosen
 

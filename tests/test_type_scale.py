@@ -100,9 +100,6 @@ def last(path: Path, selector_fragment: str, prop: str) -> str:
     This is exactly what the planted check caught.
     """
     def matches(selector: str) -> bool:
-        # A rule may carry several selectors on one declaration block; each one is
-        # checked on its own, because `figcaption, .caption { … }` is one size for
-        # two names and the fragment ends only the first.
         return any(part.strip().endswith(selector_fragment) for part in selector.split(","))
 
     found = [
@@ -294,8 +291,6 @@ def test_the_floors_hold_when_a_phone_renders_the_page(tmp_path):
     assert data["tabs"]["learn"].startswith("Skip to content"), data["tabs"]
     assert data["tabs"]["portal"].startswith("Skip to content"), data["tabs"]
 
-    # Item 215: a one-card group stays card-sized (<= 26rem = 416px) at 1280, a
-    # three-card group still fills its single row, and 390 stays one column.
     one_card = [g for g in data["portal1280"] if g["count"] == 1]
     three_card = [g for g in data["portal1280"] if g["count"] == 3]
     assert one_card, "expected at least one single-card group on the portal"

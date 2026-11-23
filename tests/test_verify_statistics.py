@@ -18,7 +18,6 @@ from textbook.verify.verify import verify_problem
 
 from support import problem_record
 
-# --- distribution -------------------------------------------------------------
 
 
 DISTRIBUTION_CASES = [
@@ -151,7 +150,6 @@ def test_distribution_unknown_name_fails_loudly():
     assert "unknown distribution" in report.errors[0]
 
 
-# --- hypothesis ---------------------------------------------------------------
 
 
 def test_hypothesis_binomial_left_tail_rejects():
@@ -330,7 +328,6 @@ def test_hypothesis_needs_a_p_value_or_a_critical_region():
     assert "p_value" in report.errors[0] or "critical_region" in report.errors[0]
 
 
-# --- correlation --------------------------------------------------------------
 
 
 CORRELATION_DATA = {
@@ -384,7 +381,6 @@ def test_correlation_constant_variable_is_undefined():
     assert "undefined" in report.errors[0]
 
 
-# --- regression ---------------------------------------------------------------
 
 
 def test_regression_least_squares_exact():

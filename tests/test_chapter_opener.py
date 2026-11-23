@@ -47,7 +47,6 @@ def opened(markup: str = CONTENT, path: str = CHAPTER) -> str:
     return opener.on_page_content(markup, page(path), {}, [])
 
 
-# --- the kicker ---------------------------------------------------------------
 
 
 def test_the_chapter_number_becomes_a_kicker_inside_the_heading():
@@ -71,7 +70,6 @@ def test_a_heading_without_a_number_is_left_alone():
     assert "chapter-kicker" not in html
 
 
-# --- the problem --------------------------------------------------------------
 
 
 def test_the_chapter_problem_is_wrapped_in_a_section():
@@ -82,7 +80,6 @@ def test_the_chapter_problem_is_wrapped_in_a_section():
     end = html.index("</section>", start)
     body = html[start:end]
     assert "You are running the drinks-and-cakes stall." in body
-    # The next section is outside the frame, so the pull quote is the problem only.
     assert "Where it is used" in html[end:]
     assert "Where it is used" not in body
 
@@ -103,7 +100,6 @@ def test_a_page_without_a_problem_heading_is_not_wrapped():
     assert "chapter-problem" not in html
 
 
-# --- the first section --------------------------------------------------------
 
 
 FOLLOWING = {
@@ -135,7 +131,6 @@ def test_a_page_with_no_neighbour_gets_no_action():
     assert "chapter-start" not in opener.add_action(CONTENT, None)
 
 
-# --- scripting off ------------------------------------------------------------
 
 
 def test_the_problem_and_the_action_are_static_markup():

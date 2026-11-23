@@ -1,13 +1,5 @@
 // @ts-nocheck
-//
-// Moved from a book's figure directory by item 147: a hand-authored figure,
 // measured by tests/test_figures.py. The TS ratchet covers the kit and the tools.
-// Guided investigation for 11.1: sampling variability.
-// A fixed population with a stable, deterministic shape, and a random sample
-// drawn from it. The reader changes the sample size and draws again. Changing
-// the size draws a fresh sample of that size, so the drawing responds to the
-// slider as every other figure does, and the values in the latest sample are
-// drawn along the axis so the size of the sample can be seen as well as read.
 import { SIZE, label, panel, react, seed, slider } from "./kit.js";
 
 const POPULATION_SIZE = 240;
@@ -17,9 +9,6 @@ const PLOT_W = 380;
 const PLOT_H = 90;
 const LEFT = 30;
 
-// A stable pseudo-random population: a wave plus a repeating small offset.
-// It is deterministic, so every reader sees the same population and the same
-// population mean, while a sample still varies.
 function buildPopulation() {
   const values = [];
   for (let i = 0; i < POPULATION_SIZE; i += 1) {
@@ -32,8 +21,6 @@ function buildPopulation() {
 }
 
 const POPULATION = buildPopulation();
-// A seeded stream, so two readers comparing what they saw are comparing the same
-// samples. Each click advances the stream; a reload starts it again at sample one.
 const SAMPLER = seed(1);
 const POPULATION_MEAN =
   POPULATION.reduce((total, value) => total + value, 0) / POPULATION.length;
@@ -71,8 +58,6 @@ export function mount(el) {
     value: 10,
   });
 
-  // The kit has no button helper, so the two controls that are an action rather
-  // than a state are built here, beside the control column.
   const actions = document.createElement("p");
   actions.style.cssText = "margin:0;grid-column:1/-1";
   const drawButton = document.createElement("button");
@@ -117,8 +102,6 @@ export function mount(el) {
       `x2="${xToPx(POPULATION_MEAN).toFixed(1)}" y2="115" class="fig-good" ` +
       `stroke-dasharray="4 3"></line>`;
 
-    // The values in the latest sample, drawn as marks along the axis, so a
-    // larger sample is visibly more marks rather than only a different reading.
     const sampleMarks = latest
       ? latest.values
           .map(
@@ -173,12 +156,6 @@ export function mount(el) {
     render();
   }
 
-  // Moving the sample-size slider draws a sample of the new size, so the drawing
-  // changes with the slider and the reader sees a sample of the size they set.
-  // The button below draws further samples of the same size. `react` redraws at
-  // mount and on every change; taking the sample is the side effect that stays on
-  // `input`, so the initial picture is still "no sample yet" and a drag takes one
-  // sample per input, not a second one when the value is committed.
   react(nInput, render);
   nInput.addEventListener("input", takeSample);
 

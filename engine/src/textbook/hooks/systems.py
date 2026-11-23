@@ -62,8 +62,6 @@ def entries(config) -> list[tuple[str, str, str]]:
             continue
         title = str(entry["title"])
         href = registry[entry["path"].split("/")[0]]["url"]
-        # A bullet wraps: its continuation lines are indented, so the item is the bullet
-        # line and everything indented under it, joined.
         items, current = [], None
         for line in match.group(1).splitlines():
             if line.startswith("- "):

@@ -16,7 +16,6 @@ import html as html_lib
 
 from .. import book as book_module
 
-#: The units-oracle kinds whose answer is a quantity rather than an expression.
 _QUANTITY_KINDS = frozenset(
     {"dimensions", "convert", "sigfigs", "uncertainty", "resolve", "gradient", "intercept", "area"}
 )
@@ -112,23 +111,11 @@ def render_problem(problem: dict, number: int) -> str:
         lines.append("")
         lines.extend(_step_line(step) for step in steps)
     elif check.get("kind") == "structured" and check.get("points"):
-        # The model answer CI checked for step presence and order. It is prose,
-        # so it is rendered as written; no conclusion here is proved.
         lines.append("")
         lines.extend(f"- {point['text']}" for point in check["points"])
     if answer:
         lines.append("")
-        # An answer with a newline in it carries structure — a list, a display
-        # equation, a second paragraph. Putting it on the label's own line folds it
-        # back into that paragraph, which is how a four-step method arrived as one
-        # sentence with numbers in it. A single-paragraph answer stays inline.
-        #
-        # A single-line display equation is structure too, and it has no newline:
-        # `$$\int_0^1 x^2\,dx = \frac{1}{3}$$` after `**Answer:**` leaves the
-        # delimiters inside a sentence, so the reader sees a dollar, the equation on
         # the line, and a dollar. Item 154 measured two such answers in `ie-lc-maths`
-        # and the test that holds the bank is `test_problem_bank.py`'s
-        # `test_a_rendered_answer_puts_display_maths_in_a_block_of_its_own`.
         if "\n" in answer or "$$" in answer:
             lines.append("**Answer:**")
             lines.append("")

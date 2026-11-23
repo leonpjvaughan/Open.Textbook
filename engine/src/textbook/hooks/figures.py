@@ -23,15 +23,8 @@ from ._fences import transform_outside_fences
 
 MARKER = re.compile(r"^:::[ \t]*figure[ \t]+([a-z0-9-]+)[ \t]*$", re.M)
 ASSET = "assets/figures/figures.js"
-# Which files in a figures directory are not figures: the loader and the kit.
-# Read from the scaffold so the directive's registry and the scaffold's symlinks
-# cannot disagree about it.
 SHARED = scaffold.SHARED_FIGURE_FILES
 
-#: Modules mounted by `:::figure` that are controls, not drawings: the relevance
-#: prompt and the warm-up gate. They are not numbered and get no caption, because
-#: "Figure 1" under a text box is not a figure and would push the first real
-#: drawing to Figure 2. `tools canvas` already names these two as non-drawings.
 UI_FIGURES = frozenset({"relevance-prompt", "warm-up-gate"})
 
 
@@ -116,19 +109,6 @@ def on_page_markdown(markdown, page, config, files):
                 f'data-figure-src="{filename}"></maths-figure></div>'
             )
         number += 1
-        # **The `<figure>` is load-bearing.** Python-Markdown treats an unknown tag as
-        # inline, so a bare `<maths-figure>` came back wrapped in a `<p>` — 524 of them
-        # across 508 pages — and `<p><figure>` is invalid once `panel()` has put its
-        # own block inside. It also leaves every figure with no element sibling, which
-        # a module that needs to reach the block above it cannot work around. A
-        # `<figure>` is a block tag Python-Markdown knows, so it passes through
-        # unwrapped; it also gives the figure a number and a caption.
-        #
-        # `data-figure-src` is the name the build writes the module under: content,
-        # not the build label, so a module that did not change keeps its URL and a
-        # cached copy is still the one served. The loader falls back to
-        # `data-figure` when the attribute is absent, which is what keeps one
-        # module readable in the Quarto / MyST / MDX ports, where nothing is hashed.
         return (
             f'<figure class="tb-figure" id="figure-{number}">'
             f'<maths-figure data-figure="{slug}" '

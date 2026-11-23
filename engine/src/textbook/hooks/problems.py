@@ -105,8 +105,6 @@ def _expand(markdown: str, marker: re.Pattern[str], render, page, config) -> str
 
 
 def on_page_markdown(markdown, page, config, files):
-    # Most pages carry neither marker, and `transform_outside_fences` walks every
-    # line of the page twice to find that out. The cheap substring test first.
     if ":::problems" not in markdown and ":::answers" not in markdown:
         return markdown
     markdown = _expand(markdown, PROBLEMS_MARKER, render_problem_list, page, config)

@@ -23,8 +23,6 @@ from textbook.verify.verify import verify_bank, verify_problem
 
 from support import problem_record
 
-#: A physics bank selects both oracles: SymPy for the arithmetic it is good at
-#: (`all`, `evaluate`, `between`) and units for the rest.
 PHYSICS = ("sympy", "units")
 
 
@@ -32,7 +30,6 @@ def _verify(check, oracles_=PHYSICS):
     return verify_problem(problem_record(check), oracles=oracles_)
 
 
-# --- unit algebra -------------------------------------------------------------
 
 
 def test_prefix_power_is_exact():
@@ -54,7 +51,6 @@ def test_every_units_kind_has_a_handler_and_only_the_units_kinds():
         assert selection.handler(kind) is not None
 
 
-# --- dimensions: the kind that makes the oracle worth having ------------------
 
 DIMENSION_CASES = {
     "consistency": {
@@ -191,7 +187,6 @@ def test_a_dimensions_declaration_with_nothing_to_check_fails():
     assert "unit" in report.errors[0]
 
 
-# --- prefix conversion --------------------------------------------------------
 
 
 def test_convert_prefix_power_passes():
@@ -215,7 +210,6 @@ def test_convert_across_dimensions_fails():
     assert "dimensions differ" in report.errors[0]
 
 
-# --- significant figures ------------------------------------------------------
 
 
 def test_sigfigs_rounds_once_to_a_declared_figures():
@@ -325,7 +319,6 @@ def test_sigfigs_requires_the_round_once_convention():
     assert "round-once" in report.errors[0]
 
 
-# --- uncertainty propagation --------------------------------------------------
 
 
 def test_uncertainty_add_absolutes_passes():
@@ -463,7 +456,6 @@ def test_uncertainty_requires_a_known_rule():
     assert "combine" in report.errors[0]
 
 
-# --- vector resolution --------------------------------------------------------
 
 
 def test_resolve_components_from_magnitude_and_angle():
@@ -518,7 +510,6 @@ def test_resolve_magnitude_and_angle_from_components():
     assert not bad.ok
 
 
-# --- graphs and graphical calculus --------------------------------------------
 
 
 def test_gradient_of_a_velocity_time_graph():
@@ -565,7 +556,6 @@ def test_a_graph_check_without_an_interval_fails_loudly():
     assert "between" in report.errors[0]
 
 
-# --- structured content -------------------------------------------------------
 
 STRUCTURED = {
     "kind": "structured",
@@ -632,7 +622,6 @@ def test_a_vacuous_structured_check_is_an_error():
     assert "asserts nothing" in report.errors[0]
 
 
-# --- the seam selects the oracle ----------------------------------------------
 
 
 def test_a_physics_bank_selects_units_and_a_maths_bank_does_not():
@@ -668,8 +657,6 @@ def test_a_units_kind_in_a_maths_bank_fails_loudly(tmp_path):
         ),
         encoding="utf-8",
     )
-    # No `oracles:` and no owning book: the default is SymPy alone, and a kind
-    # from an unselected oracle is loud rather than a silent pass.
     with pytest.raises(oracles.UnknownCheck, match="units"):
         verify_bank(bank)
 
@@ -699,7 +686,6 @@ def test_a_bank_may_declare_the_units_oracle(tmp_path):
     assert verify_bank(bank).ok
 
 
-# --- rendering quantities without runtime maths -------------------------------
 
 
 def test_render_quantity_is_plain_text_and_never_maths():

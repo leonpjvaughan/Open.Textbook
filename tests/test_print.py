@@ -32,9 +32,6 @@ SITE = ROOT / "site"
 LEARN_ROUTE = "/gcse-maths/higher/chapter-1/section-1.1/learn/"
 PRINT_OUT = ROOT / "var" / "print-render"
 
-# One A4 sheet at 96 dpi (1122.5px) minus standard print margins (~96px).
-# A figure taller than this cannot honour `break-inside: avoid` and is silently
-# split across sheets by the paginator.
 SHEET_HEIGHT_PX = 1026.0
 
 PLAYWRIGHT_CANDIDATES = (
@@ -64,12 +61,8 @@ def print_block() -> str:
 def hidden_classes() -> set[str]:
     """The classes the print block switches off."""
     block = print_block()
-    # Strip comments first. The block's own comments name classes — including the
-    # Material ones this file was written about — and a parser that reads them
-    # reports selectors that are not there.
     inner = re.sub(r"/\*.*?\*/", "", block, flags=re.S)
     # Then strip the `@media print {` wrapper: otherwise the first `{` a rule
-    # split finds is the media query's own, and every selector is lost.
     inner = inner[inner.index("{") + 1 : inner.rindex("}")]
     hidden: set[str] = set()
     for rule in inner.split("}"):
@@ -80,7 +73,6 @@ def hidden_classes() -> set[str]:
 
 
 def test_the_print_block_hides_something():
-    # A guard on the guard: an empty hide-list would pass everything below.
     assert hidden_classes(), (
         "the @media print block hides nothing; printing a page now includes the "
         "masthead and the sidebar"

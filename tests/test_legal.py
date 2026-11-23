@@ -21,9 +21,6 @@ from textbook.hooks import disclaimer
 BOOKS = books.discover_books()
 IDS = [b.id for b in BOOKS]
 
-#: The books that name no awarding body: the two reference works, and the book
-#: about modelling. Named rather than derived from `boards`, so the day a book
-#: gains or loses an examination the test says so instead of moving with it.
 NOT_A_COURSE = ("maths-applied", "numerical-methods", "proofs")
 
 
@@ -36,7 +33,6 @@ def config_for(book):
     return cfg.from_parts(book.docs, book=book, profile=book.default_profile.id)
 
 
-# --- the disclaimer -----------------------------------------------------------
 
 
 @pytest.mark.parametrize("book", BOOKS, ids=IDS)
@@ -142,7 +138,6 @@ def test_a_new_book_gets_the_note_from_the_scaffold():
     assert ":::disclaimer" in stub
 
 
-# --- the terms ----------------------------------------------------------------
 
 
 def terms() -> str:
@@ -192,7 +187,6 @@ def test_the_terms_link_to_the_licences_they_name():
     assert "github.com/leonpjvaughan/Open.Textbook/blob/main/LICENSE-CODE" in text
 
 
-# --- the acknowledgements -----------------------------------------------------
 
 
 def acknowledgements() -> str:
@@ -237,7 +231,6 @@ def test_a_missing_credit_has_a_route_to_be_fixed():
     assert "report a mistake or an omission" in text
 
 
-# --- the root pages -----------------------------------------------------------
 
 
 def test_the_root_pages_are_the_two_the_footer_links():

@@ -21,8 +21,6 @@ from textbook import book as book_mod
 from textbook.verify import oracles
 from textbook.verify.verify import Report, verify_bank, verify_problem
 
-#: The table an author (``PROBLEMS.md``) and CI read. Changing a check kind or
-#: moving one between oracles must change this file in the same commit.
 PINNED_KINDS = {
     "all": "sympy",
     "evaluate": "sympy",
@@ -96,13 +94,8 @@ def test_an_unknown_check_kind_is_an_error_not_a_pass():
     assert report.errors and "ghost" in report.errors[0]
 
 
-# --- malformed records report, they do not raise ------------------------------
 
 
-#: A check whose handler reads a key the record does not have. The verifier's
-#: contract is a report, so each must produce an error, not a traceback that
-#: names no record. ``hypothesis`` guards its own keys already; it is here so the
-#: list covers the reviewer's five reproductions.
 MALFORMED_CHECKS = [
     {"kind": "evaluate"},
     {"kind": "rounded", "value": "1.2"},
@@ -126,7 +119,6 @@ def test_the_report_names_what_is_malformed():
     assert any("malformed" in error for error in report.errors), report.errors
 
 
-# --- an `all` that asserts nothing is not a check -----------------------------
 
 
 def test_an_all_with_no_sub_checks_is_an_error():
@@ -196,16 +188,8 @@ def test_a_bank_may_override_its_books_oracles(tmp_path):
         verify_bank(bad)
 
 
-# --- a bank that will not parse -----------------------------------------------------
-#
-# `textbook.verify` used to let the YAML parser's exception escape, which printed a
-# traceback from inside a library and **no verdict at all**. A run over fifty banks then
-# stopped at the fourth with a stack trace, and a caller counting `ok` lines read the
-# short run as a clean one. A broken bank is a defect in a file a person edits, so it is
-# reported like every other defect: the path, the reason, and a non-zero exit.
 
 
-# `write` is the suite's fixture for a file in `tmp_path`: see `conftest.py`.
 
 
 def test_a_bank_with_invalid_yaml_is_a_verdict_not_a_traceback(write):
@@ -214,7 +198,6 @@ def test_a_bank_with_invalid_yaml_is_a_verdict_not_a_traceback(write):
     assert not report.ok
     assert report.load_error is not None
     assert "could not parse the file" in report.load_error
-    # The parser's own message carries the line, and the line is the useful part.
     assert "line" in report.load_error
     assert report.errors == [report.load_error]
 
@@ -251,16 +234,6 @@ def test_a_broken_bank_does_not_stop_the_run(tmp_path, write):
     assert good.is_file() and bad.is_file()
 
 
-# --- a solution set is a set ---------------------------------------------------------
-#
-# `solve()` returns a list, and every arithmetic path assumed a single expression:
-# `expr.replace` and `simplify(a - b)` both raise on a list. So a bank whose expression
-# was a `solve()` could not be checked at all — and the failure arrived as an
-# `AttributeError` from inside the oracle rather than as a verdict.
-#
-# The comparison is a **multiset**, because the order `solve()` happens to return is not
-# a claim the bank makes, while the *number* of roots is exactly the claim a bank about a
-# cubic is making.
 
 
 def _roots_bank(write, answer: str):

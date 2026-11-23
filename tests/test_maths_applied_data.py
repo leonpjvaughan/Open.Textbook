@@ -32,8 +32,6 @@ BUNDLE = repo_root() / "books" / "maths-applied" / "docs" / "assets" / "data" / 
 DATA = repo_root() / "books" / "maths-applied" / "docs" / "assets" / "data"
 SCRIPT = repo_root() / "scripts" / "build-otkd.sh"
 
-#: Models the manifest says carry a kernel; read from the manifest, then asserted here
-#: so a model that silently loses its kernel is a failure rather than one fewer loop.
 KINEMATIC = (
     "double-wishbone",
     "double-wishbone-compliant",
@@ -194,7 +192,6 @@ def test_the_trajectory_is_the_version_the_vendor_script_pins():
     """The run and the bundle have to be the same release, or §1.6 quotes a model we do not ship."""
     assert trajectory_meta()["generator"] == manifest()["generator"]
 
-# --- the page's links and the kernel's sparsity -------------------------------
 
 
 def book_pages() -> list[Path]:

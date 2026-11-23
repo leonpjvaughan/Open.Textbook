@@ -17,9 +17,6 @@ from textbook.verify import coverage
 PHYSICS = [b for b in books.discover_books() if b.subject == "Physics"]
 IDS = [b.id for b in PHYSICS]
 
-# The booklet tests are about booklets, so they select the books that declare one.
-# Selecting by subject instead assumed every physics book has a formula sheet — true
-# of the English pair, and not yet true of the Irish one.
 WITH_BOOKLET = [b for b in books.discover_books() if b.booklet_name]
 BOOKLET_IDS = [b.id for b in WITH_BOOKLET]
 
@@ -74,19 +71,6 @@ def test_every_declaration_in_the_real_books_is_valid(book):
     assert coverage.check_book(book) == []
 
 
-# An item that `sympy.parsing.latex` cannot read says so on the item, and says why:
-#
-#     - id: mean-of-data
-#       latex: '\bar{x} = \frac{\sum x}{n} = \frac{\sum f x}{\sum f}'
-#       symbolic: false
-#       why: A \sum with no limits, which the parser only reads with explicit bounds.
-#
-# This used to be a tuple of eight `(regex, reason)` pairs here — `\sum` without
-# limits, `\begin{…}`, `{}^n C_r`, `\binom`, `\mathbb`, `\operatorname`, paired
-# delimiters and spacing commands — so a ninth kind of unreadable notation failed a
-# test whose only fix was another regex, in a file that is not about booklets. The
-# declaration is data in the booklet now and `coverage.booklet_faults` reads it, so
-# a new notation is a row in a booklet and this file names no notation at all.
 @pytest.mark.parametrize("book", WITH_BOOKLET, ids=BOOKLET_IDS)
 def test_every_item_is_read_or_says_why_it_is_not(book):
     """The tooling works on the real booklets, and the gap is countable not guessed.
@@ -110,8 +94,6 @@ def test_every_item_is_read_or_says_why_it_is_not(book):
         + "\nFix the LaTeX, or add `symbolic: false` and a `why:` to the item."
     )
 
-    # The declaration is the whole mechanism, in both directions, so pin the two
-    # shapes here rather than trusting the booklets to exercise them.
     unread = {"x": {"id": "x", "latex": "\\sum x"}}
     assert coverage.booklet_faults(unread), "an undeclared unreadable item passed"
 
@@ -128,8 +110,6 @@ def test_every_item_is_read_or_says_why_it_is_not(book):
         ("x", "A sum with no limits: a layout, not a relation.")
     ]
 
-    # A declaration without a reason, and one on an item that does parse, are both
-    # faults: the first is an opt-out and the second would hide a real relation.
     reasonless = {"x": {"id": "x", "latex": "\\sum x", "symbolic": False}}
     assert coverage.booklet_faults(reasonless)
     stale = {
@@ -142,7 +122,6 @@ def test_every_item_is_read_or_says_why_it_is_not(book):
     }
     assert "parses" in " ".join(coverage.booklet_faults(stale))
 
-    # Undeclared symbolic records are reported, not failed.
     assert isinstance(coverage.undeclared(book), list)
 
 
@@ -158,11 +137,6 @@ def test_infer_suggests_but_never_decides():
     assert coverage.infer({"check": {"expression": "0.5 * 1200 * 15**2"}}, items) == []
 
 
-# --- a record may need more than one booklet item -----------------------------
-#
-# "Differentiate $x^2\sin x$" needs the derivative of a power *and* the product
-# rule, and the booklet supplies them as two items. Naming one would let the check
-# pass while the other was missing, which is the failure it exists to catch.
 
 
 def test_a_record_may_name_several_items_and_all_are_read():
@@ -247,5 +221,4 @@ def test_a_composite_check_is_not_invisible():
     }
     assert coverage.expressions(composite) == ["m * a", "F = m a"]
 
-    # A record with no expression anywhere is not part of the gap.
     assert coverage.expressions({"check": {"kind": "structured", "steps": []}}) == []

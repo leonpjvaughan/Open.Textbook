@@ -18,20 +18,14 @@ from . import yamlio
 COLLECTION_FILE = "collection.yaml"
 BOOKS_DIR = "books"
 
-# The accent a book with no tint of its own gets: the reference work, whose
-# `theme:` block is empty because it belongs to no subject. The only colour the
 # engine names, and a fallback rather than a design.
 HOUSE_ACCENT = "#2f6690"
 HOUSE_ACCENT_DARK_SCHEME = "#6ea8d8"
 
-# The tokens a book may set, per scheme, in book.yaml. All else is shared; a book
-# needing more than tinting belongs in its authored book-local.css.
 SCHEME_TOKENS: dict[str, str] = {
     "accent": "--tb-accent",
     "accent_light": "--tb-accent-light",
     "accent_dark": "--tb-accent-dark",
-    # Text drawn *on* the accent. Not `paper`: a bundle's paper can sit too close
-    # to its own accent to read, so each bundle names an ink for that surface.
     "accent_ink": "--tb-accent-ink",
     "paper": "--tb-paper",
     "ink": "--tb-ink",
@@ -59,7 +53,6 @@ def repo_root() -> Path:
     for candidate in (here, *here.parents):
         if (candidate / COLLECTION_FILE).is_file():
             return candidate
-    # ``engine/src/textbook/book.py`` -> ``engine/src`` -> ``engine`` -> root.
     return Path(__file__).resolve().parents[3]
 
 
@@ -124,7 +117,6 @@ class Theme:
     @classmethod
     def from_dict(cls, data: dict | None) -> "Theme":
         data = data or {}
-        # A flat accent block is the light variation, for an older book.yaml.
         if "accent" in data:
             return cls(light=Scheme.from_dict("default", data), dark=Scheme("slate"))
         return cls(
@@ -157,19 +149,12 @@ class Book:
     curriculum_name: str = "curriculum.yaml"
     banks_name: str = "problems"
     booklet_name: str = ""
-    #: Where an animated background may run: site / default / chapters / sections.
-    #: Empty by default, and nothing ships one — see textbook/backgrounds.py.
     backgrounds: dict = field(default_factory=dict)
     sources_name: str = "sources.yaml"
-    #: The kinds of page each section has, in reader order. Empty means every kind
-    #: the engine knows; a book that is not a course declares a shorter list.
     section_pages: tuple[str, ...] = ()
 
-    #: What a section's own page is called in the sidebar when the section also has
-    #: depth pages. Empty means "Overview"; `maths-applied` says "Main thread".
     section_page_label: str = ""
 
-    # --- paths ---------------------------------------------------------------
     @property
     def docs(self) -> Path:
         return self.root / "docs"
@@ -228,7 +213,6 @@ class Book:
                 return profile
         return self.profiles[0]
 
-    # --- curriculum ----------------------------------------------------------
     @property
     def curriculum_data(self) -> dict:
         return load_curriculum(self)
@@ -290,8 +274,6 @@ class Book:
         if tier_filter in ("all", "toggle"):
             return frozenset(codes)
         if tier_filter not in codes:
-            # Loudly: silently including everything on an unrecognised filter would
-            # ship every higher-only page to the lower-tier reader, build green.
             raise ValueError(
                 f"{self.id}: profile filter {tier_filter!r} is not a tier code "
                 f"({', '.join(codes) or 'none declared'}), nor 'all' nor 'toggle'"
@@ -321,7 +303,7 @@ class Book:
         its own `book.yaml` denies. Declared by reader-facing name, returned as
         engine kind ids; empty means every kind, which is a course.
         """
-        from . import scaffold  # local: scaffold imports this module
+        from . import scaffold
 
         try:
             kinds = scaffold.page_kinds_for(self.section_pages)
@@ -337,7 +319,7 @@ class Book:
         goes. ``:::deeper <slug>`` links to it from its section, and the nav lists
         it as that section's child, so it has a real URL and works without script.
         """
-        from . import scaffold  # local: scaffold imports this module
+        from . import scaffold
 
         pages: list[dict] = []
         for chapter in self.chapters:
@@ -380,9 +362,6 @@ class Book:
         return sum(len(chapter.get("sections", [])) for chapter in self.chapters)
 
 
-# The loaders below are cached for the life of a process: pure functions of files
-# that do not change during a build, called once per hook. Callers only read what
-# they return; none of them mutate it.
 
 
 @lru_cache(maxsize=None)
@@ -456,12 +435,8 @@ def book_by_id(book_id: str, root: Path | None = None) -> Book:
     raise KeyError(f"no book '{book_id}' under {BOOKS_DIR}/")
 
 
-#: The qualification a book declares when it is a reference work rather than a
-#: course: no syllabus, boards or tier axis, and the only holder of the proofs.
 REFERENCE = "Reference"
 
-#: The tier code for content only the higher tier or level studies. Same meaning
-#: in each jurisdiction; only the *other* code differs, declared in `tier_axis`.
 HIGHER_CODE = "H"
 
 

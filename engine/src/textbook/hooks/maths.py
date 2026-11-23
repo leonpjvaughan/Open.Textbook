@@ -16,7 +16,6 @@ from pathlib import Path  # noqa: F401  (kept for the renderer path expression)
 
 log = logging.getLogger("textbook.hooks.maths")
 
-# The renderer ships inside the engine package, so it travels with it.
 RENDERER = Path(__file__).resolve().parents[1] / "js" / "katex-render.mjs"
 
 TOKEN = re.compile(
@@ -25,8 +24,6 @@ TOKEN = re.compile(
     re.S,
 )
 
-# One Node process for the whole build: the renderer speaks a line-delimited
-# JSON protocol, so there is no per-page startup cost.
 _process: subprocess.Popen | None = None
 
 
@@ -69,7 +66,6 @@ def on_page_content(content, page, config, files):
         if display:
             tex = match.group(2)
         # Markdown HTML-escapes <, > and & inside the delimiters; KaTeX needs the
-        # original LaTeX.
         tex = html.unescape(tex).strip()
         index = len(items)
         items.append({"tex": tex, "display": display})
@@ -80,10 +76,6 @@ def on_page_content(content, page, config, files):
         return content
 
     rendered = render(items)
-    # The renderer's protocol is one result per item. A short (or non-list) reply
-    # would leave `\x00MATHn\x00` placeholders literally in the page, which no later
-    # check can see: not a `.math-error`, so the gate's grep misses it, and not a
-    # link, so `check_links` misses it. Fall back to error spans, exactly as
     # `render` does when KaTeX is unavailable, so the build reports the page.
     if not isinstance(rendered, list) or len(rendered) != len(items):
         log.warning(

@@ -1,14 +1,6 @@
-/*
- * Finding the figures in a built site.
- *
- * Two commands need this now — the figure audit and the readout check — and both need
- * it derived from the build rather than from a map a caller writes, so the audit cannot
- * be pointed at a stale map and silently measure last week's build.
- */
 import fs from "node:fs";
 import path from "node:path";
 
-/** Every figure slug in a built site, with the routes it appears on, sorted. */
 export function discoverFigures(siteDir: string): Record<string, string[]> {
   const root = path.resolve(siteDir);
   const pages: Record<string, Set<string>> = {};

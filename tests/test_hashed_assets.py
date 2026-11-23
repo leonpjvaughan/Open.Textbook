@@ -152,12 +152,6 @@ def test_the_kit_is_one_copy_of_the_shared_bytes(built):
     assert (built.out / "assets/figures/kit.js").read_bytes() == source.read_bytes()
 
 
-# --- the figure modules -------------------------------------------------------
-#
-# A module is imported by the loader at runtime, so nothing in the built HTML is a
-# link to it: the build's link checker cannot see the request and a mistyped hash
-# would ship a figure that mounts into a 404. The page names the file in
-# `data-figure-src` instead, and these tests are what make that name true.
 
 
 def test_every_figure_a_page_names_is_a_module_the_build_wrote(built):
@@ -187,15 +181,10 @@ def test_every_figure_a_page_names_is_recorded_in_the_manifest(built):
         "".join(p.read_text(encoding="utf-8") for p in built.out.rglob("*.html")),
     ):
         assert src in addresses, f"{src} is on a page but not in the manifest"
-    # The flat files that are *not* addressed are exactly the libraries that must not
-    # be: the loader (pinned by the template and the audits), the kit barrel, and the
-    # kernel loader and its visual language. A generated kernel module imports the
-    # loader by path and a lab module imports the shared layout, all by stable name.
     unaddressed = {
         path.name for path in files if not re.fullmatch(r".+\.[0-9a-f]{8}\.js", path.name)
     }
     assert unaddressed == {"figures.js", "kit.js", "kernel.js", "kernel-lab.js"}
-    # The kit's own layers keep their names too, for the same reason.
     for layer in (built.out / "assets" / "figures" / "kit").glob("*.js"):
         assert re.fullmatch(r"[a-z0-9-]+\.js", layer.name), layer.name
 

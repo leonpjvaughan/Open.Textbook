@@ -15,19 +15,9 @@ import { readFileSync, writeFileSync } from "node:fs";
 import { fileURLToPath } from "node:url";
 import path from "node:path";
 import { parseArgs } from "../lib/flags.js";
-/*
- * Errors over the runtime sources and the tools, at the settings in `tsconfig.json`.
- *
- * The count went 163 -> 338 when the check was pointed at the kit's TypeScript source
- * instead of only its compiled output, and 338 -> 368 when the tools CLI was ported in
- * from `scripts/`. Both rises are the migration's own untyped code, and both are the
- * work list: annotating a parameter lowers this number, and it cannot rise again
- * without a reason in the commit message.
- */
 const BASELINE = 0;
 const TARGET = 0;
 const SELF = fileURLToPath(import.meta.url);
-/** What this command accepts. `tools help types` is generated from this table. */
 export const SURFACE = {
     flags: {
         list: { kind: "boolean", help: "print the error count per file, largest first" },
@@ -39,7 +29,6 @@ function baselineSource() {
     const compiled = path.relative(path.join(repoRoot(), "tools", "dist"), SELF);
     return path.join(repoRoot(), "tools", "src", compiled.replace(/\.js$/, ".ts"));
 }
-/** Walk up from this file to the directory that holds `tsconfig.json`. */
 function repoRoot() {
     let dir = path.dirname(SELF);
     for (;;) {
@@ -59,15 +48,9 @@ function runTsc() {
         });
     }
     catch (error) {
-        // `tsc` exits non-zero when it has findings, which is the normal case here. But a
-        // `tsc` that could not run at all also exits non-zero and prints nothing — and
-        // counting that as "0 errors" is how this check passed while reporting nothing.
-        // An empty stdout with a non-zero exit is a failure of the check, not a clean run.
         const stdout = String(error.stdout ?? "");
         const stderr = String(error.stderr ?? "");
         if (!stdout.trim()) {
-            // `cause` carries the attempt: the stack keeps the exit status and the stderr the
-            // catch already has, instead of one sentence that says only that nothing came back.
             throw new Error(`tsc produced no output and exited non-zero:\n${stderr.trim()}`, {
                 cause: error,
             });
@@ -94,9 +77,6 @@ export async function run(argv) {
     }
     if (values.update === true) {
         // The baseline lives in the **source**, not in the compiled copy that is running:
-        // rewriting `SELF` would write into `tools/dist/`, which the next build overwrites,
-        // and the update would silently do nothing. `SELF` is `tools/dist/commands/types.js`,
-        // so the source is the same path under `src/` with a `.ts` suffix.
         const source = readFileSync(baselineSource(), "utf8");
         writeFileSync(baselineSource(), source.replace(/^const BASELINE = \d+;/m, `const BASELINE = ${errors.length};`));
         console.log(`baseline: ${BASELINE} -> ${errors.length}`);

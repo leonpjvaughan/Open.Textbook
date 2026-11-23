@@ -18,39 +18,11 @@ from textbook.book import discover_books
 
 BOOKS = discover_books()
 
-# Sections whose pages once disagreed with curriculum.yaml about tier.
-#
-# Seven did: 5.4, 6.5, 19.3, 19.5, 20.4, 22.1, 22.2 were marked Higher-only in
-# the curriculum while their pages said F. Checked against the primary sources in
-# books/gcse-maths/sources.yaml, on 2026-10-11:
-#
-#   AQA 8300 v1.1, "Subject content" preamble:
-#     "The content in the 'basic foundation content' column and 'additional
-#      foundation content' column can be assessed on Foundation tier question
-#      papers. All content can be assessed on Higher tier question papers."
-#
-#   So content is Higher-only if and only if it sits in the "Higher content only"
-#   column. Every one of the seven sits in "basic" or "additional foundation":
-#     G17 spheres/cones/pyramids, G18 arcs/sectors, G21 exact trig values,
-#     G24 translations as vectors, G25 vector arithmetic, R10/R13/R14 inverse
-#     proportion, R16 growth and decay.
-#
-#   OCR J560 v2.1 agrees independently, placing the same items in its
-#   "Foundation tier learners should also be able to…" column (10.04b, 10.04c,
-#   10.02b, 10.03d, 9.03a, 9.03b, 5.02b) and exact trig values in "Initial
-#   learning" (10.05c).
-#
-# The pages were right and the curriculum was wrong, so the curriculum changed.
-# Leaving it would have withheld seven Foundation-assessable topics from
-# Foundation readers — the mirror image of the leak the parser guard prevents.
 KNOWN_TIER_DISAGREEMENTS: set[str] = set()
 
-# An unquoted scalar containing ': ' — valid-looking, invalid YAML. This is the
-# exact shape that shipped: `title: 11.2 Gradient and intercept: y = mx + c`.
 BAD = '---\ntitle: 11.2 Gradient and intercept: y = mx + c\ntier: H\n---\n\n# Page\n'
 
 
-# --- split --------------------------------------------------------------------
 
 
 def test_split_returns_metadata_and_body():
@@ -89,7 +61,6 @@ def test_a_quoted_title_with_a_colon_parses():
     assert meta == {"title": "a: b", "tier": "H"}
 
 
-# --- read ---------------------------------------------------------------------
 
 
 def test_read_returns_front_matter_from_a_file(tmp_path):
@@ -124,7 +95,6 @@ def test_read_raises_for_a_bad_markdown_page(tmp_path):
         frontmatter.read(page)
 
 
-# --- the corpus ---------------------------------------------------------------
 
 
 def test_every_page_in_every_book_parses():
@@ -168,7 +138,6 @@ def test_every_page_declares_the_tier_its_curriculum_gives_it():
     assert unexpected == [], "new tier disagreements with curriculum.yaml:\n" + "\n".join(
         f"  {path}: page says tier={declared!r}" for _, path, declared in unexpected
     )
-    # And the known list may not rot: if one is fixed, drop it from the set.
     found = {section for section, _, _ in disagreements}
     assert found == KNOWN_TIER_DISAGREEMENTS, (
         f"stale allowlist entries: {sorted(KNOWN_TIER_DISAGREEMENTS - found)}"

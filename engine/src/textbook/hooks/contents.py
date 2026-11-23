@@ -29,9 +29,6 @@ from __future__ import annotations
 import html
 import re
 
-#: Five is the threshold, and `techniques` — the page this exists for — has exactly five
-#: (`finding-a-state`, `linear-systems`, `eigenvalues`, the two other families). Six was
-#: the guess when the item was written, and the page it was written for did not qualify.
 MINIMUM = 5
 
 MARKER = re.compile(r"<p>\s*:::contents\s*</p>", re.I)
@@ -73,29 +70,12 @@ def on_page_content(content: str, page, config, files) -> str:
         return MARKER.sub("", content)
     if ":::contents" in content:
         return MARKER.sub(lambda _match: nav, content)
-    # **After the page's first paragraph**, which is where a reader has been told what the
-    # page is for and before the first section begins. No paragraph at all means the page
-    # opens on a heading, and the list goes first.
     first = FIRST_PARAGRAPH.search(content)
     if not first:
         return nav + content
     return content[: first.end()] + nav + content[first.end():]
 
 
-#: The name index. `:::method-index` lists every `h3` entry on the page once, sorted by its
-#: display name and grouped by initial letter, each name linking the anchor the entry
-#: carries. It exists because *Methods, A to Z* is entered by name and sorted by family:
-#: at 390px the page is 22,773px and `Uzawa` was at 9,598px, so a reader holding a method
-#: name had find-in-page or the site search and nothing else.
-#:
-#: **One letter is one disclosure.** The first version printed every name in one line per
-#: letter: 77 names, 20 lines, 992px at 390px — a wall with no way to jump to a letter.
-#: The rail of letters is now the whole of what a reader sees, and each letter is a native
-#: ``<details>`` whose summary is that letter and its count, so the index costs a few rows
-#: of chips and one open list instead of twenty paragraphs, and the letter is the control.
-#: The first letter is open, so the index opens with names on it rather than with every
-#: group closed. No script: a reader with scripting off opens any letter with the same
-#: native disclosure, and every name still links the anchor the page carries.
 METHOD = re.compile(r'<h3 id="([^"]+)"[^>]*>(.*?)</h3>', re.S | re.I)
 METHOD_MARKER = re.compile(r"<p>\s*:::method-index\s*</p>", re.I)
 

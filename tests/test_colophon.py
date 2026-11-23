@@ -25,7 +25,6 @@ def read_page() -> str:
     return PAGE.read_text(encoding="utf-8")
 
 
-# --- the page exists, and stays generated ------------------------------------
 
 
 def test_about_page_exists():
@@ -38,7 +37,6 @@ def test_about_page_is_in_sync_with_its_generator():
     )
 
 
-# --- it is reachable in the built navigation ---------------------------------
 
 
 @pytest.mark.parametrize("profile", [p.id for p in MATHS.profiles])
@@ -53,7 +51,6 @@ def test_about_page_is_in_the_navigation(profile):
     assert (MATHS.docs / scaffold.COLOPHON_FILE).is_file()
 
 
-# --- the statements the page must carry --------------------------------------
 
 
 @pytest.mark.parametrize(
@@ -117,7 +114,6 @@ def test_a_book_without_a_booklet_does_not_claim_one():
         )
 
 
-# --- the licence seam --------------------------------------------------------
 
 
 def test_the_page_shows_the_collection_licence_or_nothing():
@@ -155,7 +151,6 @@ def test_no_placeholder_licence():
     assert not re.search(r"\b(TODO|TBD|FIXME|XXX|placeholder)\b", read_page(), re.I)
 
 
-# --- attribution --------------------------------------------------------------
 
 ALL_BOOKS = books.discover_books()
 IDS = [b.id for b in ALL_BOOKS]
@@ -173,9 +168,6 @@ def test_every_book_links_the_sources_it_rests_on(book):
     """
     sources = scaffold._sources_data(book)
     if not (sources.get("references") or []):
-        # A book may rest on no external document — a book about modelling does —
-        # but "no sources" must then be a stated position rather than an omission,
-        # and the statement has to reach the page a reader checks.
         note = str(sources.get("note") or "").strip()
         assert note, (
             f"{book.id}: About this book links no sources and does not say why. "
@@ -195,8 +187,6 @@ def test_every_book_links_the_sources_it_rests_on(book):
         for ref in (scaffold._sources_data(book).get("references") or [])
         if isinstance(ref, dict) and ref.get("attribution")
     ]
-    # One link per tagged reference, so a tag that produces nothing is a failure
-    # rather than a silently missing link.
     assert len(links) == len(tagged), f"{book.id}: {len(tagged)} tagged, {len(links)} linked"
     for ref in tagged:
         assert ref.get("title") and ref.get("url"), f"{book.id}: tagged without a title/url"
@@ -215,14 +205,6 @@ def test_an_untagged_reference_is_not_linked():
     assert "mathsgenie" not in linked
 
 
-# ── the book's own jurisdiction ────────────────────────────────────────────────
-#
-# The About page once ended its opening sentence with a hardcoded "for England", so
-# every Irish book was published claiming to be an English one, and it credited the
-# Department for Education and the Open Government Licence for material owned by the
-# NCCA. A generator that asserts a country is a generator that will be wrong the
-# first time the collection leaves that country, so the country is now declared and
-# these tests are what keep it honest.
 
 
 def _about_page(book):
@@ -277,8 +259,6 @@ def test_the_about_page_names_only_this_books_jurisdiction(book):
     page = _about_page(book)
     assert f"book for {meta['jurisdiction']}." in page, page[:400]
 
-    # And it names no other. These are the two jurisdictions in the collection;
-    # adding a third means adding it here, which is the point.
     others = {"England", "Ireland"} - {meta["jurisdiction"]}
     for other in others:
         assert f"book for {other}" not in page, (

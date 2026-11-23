@@ -61,7 +61,6 @@ def values_for(prop: str) -> list[tuple[str, str]]:
     return [(selector, value) for selector, name, value in declarations(css()) if name == prop]
 
 
-# --- wrapping ---------------------------------------------------------------
 
 
 def test_headings_are_balanced_and_body_text_is_pretty():
@@ -89,7 +88,6 @@ def test_headings_are_balanced_and_body_text_is_pretty():
         assert fragment in pretty, f"{fragment} is not pretty-wrapped"
 
 
-# --- selection and scrollbars -----------------------------------------------
 
 
 def test_the_selection_is_the_accent_and_its_own_ink():
@@ -129,7 +127,6 @@ def test_the_scrollbar_thumb_clears_three_to_one_against_its_track():
             )
 
 
-# --- form controls ----------------------------------------------------------
 
 
 def test_a_textarea_resizes_downwards_only():

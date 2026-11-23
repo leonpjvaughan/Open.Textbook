@@ -38,7 +38,6 @@ from pathlib import Path
 from .. import config as cfg
 from ..frontmatter import read as read_front_matter
 
-#: A tier-tagged range in a page, for any tier code the axis declares.
 BLOCK = re.compile(r"<!--\s*tier:(\w+)\s*-->(.*?)<!--\s*/tier:\1\s*-->", re.S | re.I)
 LINK = re.compile(r"\[([^\]]+)\]\(([^)]+)\)")
 
@@ -123,9 +122,6 @@ def on_files(files, config, **kwargs):
     included = included_tiers(config)
     if included == frozenset(cfg.book(config).tier_codes):
         return files
-    # Strict: a page whose front matter does not parse has no tier, and would
-    # otherwise be treated as common content and shipped to a reader who does not
-    # study it. See engine/src/textbook/frontmatter.py.
     def keep(f) -> bool:
         tier = read_front_matter(Path(f.abs_src_path))[0].get("tier")
         return not tier or tier in included
@@ -136,8 +132,6 @@ def on_files(files, config, **kwargs):
 def on_page_markdown(markdown, page, config, files):
     book = cfg.book(config)
     included = included_tiers(config)
-    # `toggle` keeps every page, like `all` — but it wraps what a lower tier would
-    # not see instead of leaving it bare, so the order of these two checks matters.
     if is_toggle(config):
         return wrap_excluded_blocks(markdown, included)
     if included == frozenset(book.tier_codes):
