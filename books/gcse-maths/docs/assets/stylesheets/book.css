@@ -5,16 +5,18 @@
  * assets/stylesheets/themes.css and SHAPE.md, "Theme bundles".
  */
 
-/* default variation */
-body[data-md-color-scheme="default"] {
-  --tb-book-accent: #2f6690;
-  --tb-book-accent-light: #4a7fae;
-  --tb-book-accent-dark: #24506f;
-}
+@layer book {
+  /* default variation */
+  body[data-md-color-scheme="default"] {
+    --tb-book-accent: #2f6690;
+    --tb-book-accent-light: #4a7fae;
+    --tb-book-accent-dark: #24506f;
+  }
 
-/* slate variation */
-body[data-md-color-scheme="slate"] {
-  --tb-book-accent: #6ea8d8;
-  --tb-book-accent-light: #8cc0e8;
-  --tb-book-accent-dark: #4a7fae;
+  /* slate variation */
+  body[data-md-color-scheme="slate"] {
+    --tb-book-accent: #6ea8d8;
+    --tb-book-accent-light: #8cc0e8;
+    --tb-book-accent-dark: #4a7fae;
+  }
 }

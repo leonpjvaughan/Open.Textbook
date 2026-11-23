@@ -31,10 +31,18 @@ THEMES_DIR = "themes"
 SCHEMES = ("light", "dark")
 SCHEME_ATTR = {"light": "default", "dark": "slate"}
 
+CASCADE_LAYERS = ("palette", "base", "shell", "layout", "book", "chrome")
+
 FONT_TOKENS = {
     "body": "--tb-font-body",
     "display": "--tb-font-display",
     "mono": "--tb-font-mono",
+}
+
+DEFAULT_FONTS = {
+    "body": 'system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif',
+    "display": '"Iowan Old Style", Charter, Georgia, "Times New Roman", serif',
+    "mono": "ui-monospace, SFMono-Regular, Menlo, Consolas, monospace",
 }
 
 # Minimum WCAG contrast ratios: ink is body text, so AAA; a link is text, so AA; the
@@ -452,9 +460,10 @@ def typography_css(bundle: Bundle) -> str:
 def stylesheet(bundles: list[Bundle] | None = None, default: Bundle | None = None) -> str:
     """The whole generated themes.css.
 
-    Three layers, in increasing specificity: typography per bundle; a fallback with the
-    default bundle, so a reader without JavaScript still gets a real theme; and one
-    block per bundle and scheme, which wins over the fallback.
+    It opens with the cascade-layer order every shipped sheet relies on, then fills the
+    `palette` layer, in increasing specificity: the default faces; typography per
+    bundle; a fallback with the default bundle, so a reader without JavaScript still
+    gets a real theme; and one block per bundle and scheme, which wins over the fallback.
     """
     chosen = bundles if bundles is not None else discover_bundles()
     fallback = default or default_bundle()
@@ -470,29 +479,40 @@ def stylesheet(bundles: list[Bundle] | None = None, default: Bundle | None = Non
         " * See SHAPE.md, \"Theme bundles\".",
         " */",
         "",
+        f"@layer {', '.join(CASCADE_LAYERS)};",
+        "",
     ]
+    body: list[str] = []
 
-    out.append("/* 1. Typography, per bundle. */")
+    body.append("/* 0. The faces a bundle that names none of its own falls back to. */")
+    body.append(":root {")
+    body += [f"  {FONT_TOKENS[key]}: {value};" for key, value in DEFAULT_FONTS.items()]
+    body.append("}")
+    body.append("")
+    body.append("/* 1. Typography, per bundle. */")
     for bundle in chosen:
         css = typography_css(bundle)
         if css:
-            out.append(css)
-    out.append("")
+            body.append(css)
+    body.append("")
 
-    out.append("/* 2. Fallback: the default bundle, applied whether or not a theme is set. */")
+    body.append("/* 2. Fallback: the default bundle, applied whether or not a theme is set. */")
     for scheme in SCHEMES:
         attr = SCHEME_ATTR[scheme]
-        out.append(f'body[data-md-color-scheme="{attr}"] {{')
-        out += [
+        body.append(f'body[data-md-color-scheme="{attr}"] {{')
+        body += [
             _passthrough(fallback, key, value) for key, value in fallback.palette(attr).items()
         ]
-        out.append("}")
-    out.append("")
+        body.append("}")
+    body.append("")
 
-    out.append("/* 3. Bundles, which win over the fallback. */")
+    body.append("/* 3. Bundles, which win over the fallback. */")
     for bundle in chosen:
-        out.append(f"/* {bundle.title} */")
-        out.append(bundle_css(bundle))
-        out.append("")
+        body.append(f"/* {bundle.title} */")
+        body.append(bundle_css(bundle))
+        body.append("")
 
-    return "\n".join(out)
+    out.append(f"@layer {CASCADE_LAYERS[0]} {{")
+    out += [f"  {line}" if line else "" for line in "\n".join(body).strip("\n").splitlines()]
+    out.append("}")
+    return "\n".join(out) + "\n"

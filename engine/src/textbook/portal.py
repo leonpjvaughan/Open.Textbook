@@ -48,6 +48,7 @@ def site() -> Path:
 ROOT_ASSETS: tuple[str, ...] = (
     "assets/stylesheets/themes.css",
     "assets/stylesheets/portal.css",
+    "assets/stylesheets/layouts.css",
     "assets/stylesheets/search.css",
     "assets/stylesheets/settings.css",
     "assets/search/search.js",
@@ -71,6 +72,7 @@ def root_links(rooted: bool) -> dict[str, str]:
     return {
         "themes_css": prefix + assets["assets/stylesheets/themes.css"],
         "portal_css": prefix + assets["assets/stylesheets/portal.css"],
+        "layouts_css": prefix + assets["assets/stylesheets/layouts.css"],
         "search_css": prefix + assets["assets/stylesheets/search.css"],
         "settings_css": prefix + assets["assets/stylesheets/settings.css"],
         "search_js": prefix + assets["assets/search/search.js"],
@@ -472,6 +474,7 @@ def not_found() -> str:
 <link rel="apple-touch-icon" href="/assets/icons/apple-touch-icon.png">
 <link rel="stylesheet" href="{links['themes_css']}">
 <link rel="stylesheet" href="{links['portal_css']}">
+<link rel="stylesheet" href="{links['layouts_css']}">
 <!-- Resolves the cascade before the page can be revealed: Chromium can otherwise
      abort a cross-document transition with "ViewTransition opt-in disabled". The
      value is discarded, and the script is classic so it runs before the first reveal. -->

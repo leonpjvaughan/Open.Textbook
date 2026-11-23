@@ -8,279 +8,290 @@
  * See SHAPE.md, "Theme bundles".
  */
 
-/* 1. Typography, per bundle. */
-html[data-theme="editorial"] {
-  --tb-font-body: system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
-  --tb-font-display: Georgia, "Iowan Old Style", "Times New Roman", serif;
-  --tb-font-mono: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
-}
-html[data-theme="clean"] {
-  --tb-font-body: system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
-  --tb-font-display: system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
-  --tb-font-mono: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
-}
-html[data-theme="harbour"] {
-  --tb-font-body: system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
-  --tb-font-display: Georgia, "Iowan Old Style", "Times New Roman", serif;
-  --tb-font-mono: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
-}
-html[data-theme="neon"] {
-  --tb-font-body: system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
-  --tb-font-display: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
-  --tb-font-mono: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
-}
-html[data-theme="phosphor"] {
-  --tb-font-body: system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
-  --tb-font-display: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
-  --tb-font-mono: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
-}
-html[data-theme="glass"] {
-  --tb-font-body: system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
-  --tb-font-display: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
-  --tb-font-mono: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
-}
+@layer palette, base, shell, layout, book, chrome;
 
-/* 2. Fallback: the default bundle, applied whether or not a theme is set. */
-body[data-md-color-scheme="default"] {
-  --tb-accent: var(--tb-book-accent, #2f6690);
-  --tb-accent-light: var(--tb-book-accent-light, #4a7fae);
-  --tb-accent-dark: var(--tb-book-accent-dark, #24506f);
-  --tb-accent-ink: var(--tb-book-accent-ink, #ffffff);
-  --tb-paper: var(--tb-book-paper, #faf9f5);
-  --tb-ink: var(--tb-book-ink, #1f1e1b);
-  --tb-ink-soft: var(--tb-book-ink-soft, #5c5a54);
-  --tb-ink-lighter: var(--tb-book-ink-lighter, #8a877e);
-  --tb-rule: var(--tb-book-rule, #e6e3da);
-  --tb-link: var(--tb-book-link, #23577d);
-  --tb-code-bg: var(--tb-book-code-bg, #f2f0e9);
-  --tb-fig-warn: var(--tb-book-fig-warn, #a3402f);
-  --tb-fig-good: var(--tb-book-fig-good, #2c744a);
-  --tb-fig-grid: var(--tb-book-fig-grid, #85837d);
-}
-body[data-md-color-scheme="slate"] {
-  --tb-accent: var(--tb-book-accent, #6ea8d8);
-  --tb-accent-light: var(--tb-book-accent-light, #8cc0e8);
-  --tb-accent-dark: var(--tb-book-accent-dark, #4a7fae);
-  --tb-accent-ink: var(--tb-book-accent-ink, #171614);
-  --tb-paper: var(--tb-book-paper, #171614);
-  --tb-ink: var(--tb-book-ink, #e9e7e1);
-  --tb-ink-soft: var(--tb-book-ink-soft, #b7b4ac);
-  --tb-ink-lighter: var(--tb-book-ink-lighter, #8a877e);
-  --tb-rule: var(--tb-book-rule, #2a2926);
-  --tb-link: var(--tb-book-link, #8cc0e8);
-  --tb-code-bg: var(--tb-book-code-bg, #201f1c);
-  --tb-fig-warn: var(--tb-book-fig-warn, #e08a76);
-  --tb-fig-good: var(--tb-book-fig-good, #7fc79b);
-  --tb-fig-grid: var(--tb-book-fig-grid, #757166);
-}
+@layer palette {
+  /* 0. The faces a bundle that names none of its own falls back to. */
+  :root {
+    --tb-font-body: system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+    --tb-font-display: "Iowan Old Style", Charter, Georgia, "Times New Roman", serif;
+    --tb-font-mono: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+  }
 
-/* 3. Bundles, which win over the fallback. */
-/* Editorial */
-html[data-theme="editorial"] body[data-md-color-scheme="default"] {
-  --tb-accent: var(--tb-book-accent, #2f6690);
-  --tb-accent-light: var(--tb-book-accent-light, #4a7fae);
-  --tb-accent-dark: var(--tb-book-accent-dark, #24506f);
-  --tb-accent-ink: var(--tb-book-accent-ink, #ffffff);
-  --tb-paper: var(--tb-book-paper, #faf9f5);
-  --tb-ink: var(--tb-book-ink, #1f1e1b);
-  --tb-ink-soft: var(--tb-book-ink-soft, #5c5a54);
-  --tb-ink-lighter: var(--tb-book-ink-lighter, #8a877e);
-  --tb-rule: var(--tb-book-rule, #e6e3da);
-  --tb-link: var(--tb-book-link, #23577d);
-  --tb-code-bg: var(--tb-book-code-bg, #f2f0e9);
-  --tb-fig-warn: var(--tb-book-fig-warn, #a3402f);
-  --tb-fig-good: var(--tb-book-fig-good, #2c744a);
-  --tb-fig-grid: var(--tb-book-fig-grid, #85837d);
-}
+  /* 1. Typography, per bundle. */
+  html[data-theme="editorial"] {
+    --tb-font-body: system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+    --tb-font-display: Georgia, "Iowan Old Style", "Times New Roman", serif;
+    --tb-font-mono: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+  }
+  html[data-theme="clean"] {
+    --tb-font-body: system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+    --tb-font-display: system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+    --tb-font-mono: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+  }
+  html[data-theme="harbour"] {
+    --tb-font-body: system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+    --tb-font-display: Georgia, "Iowan Old Style", "Times New Roman", serif;
+    --tb-font-mono: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+  }
+  html[data-theme="neon"] {
+    --tb-font-body: system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+    --tb-font-display: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+    --tb-font-mono: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+  }
+  html[data-theme="phosphor"] {
+    --tb-font-body: system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+    --tb-font-display: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+    --tb-font-mono: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+  }
+  html[data-theme="glass"] {
+    --tb-font-body: system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+    --tb-font-display: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+    --tb-font-mono: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+  }
 
-html[data-theme="editorial"] body[data-md-color-scheme="slate"] {
-  --tb-accent: var(--tb-book-accent, #6ea8d8);
-  --tb-accent-light: var(--tb-book-accent-light, #8cc0e8);
-  --tb-accent-dark: var(--tb-book-accent-dark, #4a7fae);
-  --tb-accent-ink: var(--tb-book-accent-ink, #171614);
-  --tb-paper: var(--tb-book-paper, #171614);
-  --tb-ink: var(--tb-book-ink, #e9e7e1);
-  --tb-ink-soft: var(--tb-book-ink-soft, #b7b4ac);
-  --tb-ink-lighter: var(--tb-book-ink-lighter, #8a877e);
-  --tb-rule: var(--tb-book-rule, #2a2926);
-  --tb-link: var(--tb-book-link, #8cc0e8);
-  --tb-code-bg: var(--tb-book-code-bg, #201f1c);
-  --tb-fig-warn: var(--tb-book-fig-warn, #e08a76);
-  --tb-fig-good: var(--tb-book-fig-good, #7fc79b);
-  --tb-fig-grid: var(--tb-book-fig-grid, #757166);
-}
+  /* 2. Fallback: the default bundle, applied whether or not a theme is set. */
+  body[data-md-color-scheme="default"] {
+    --tb-accent: var(--tb-book-accent, #2f6690);
+    --tb-accent-light: var(--tb-book-accent-light, #4a7fae);
+    --tb-accent-dark: var(--tb-book-accent-dark, #24506f);
+    --tb-accent-ink: var(--tb-book-accent-ink, #ffffff);
+    --tb-paper: var(--tb-book-paper, #faf9f5);
+    --tb-ink: var(--tb-book-ink, #1f1e1b);
+    --tb-ink-soft: var(--tb-book-ink-soft, #5c5a54);
+    --tb-ink-lighter: var(--tb-book-ink-lighter, #8a877e);
+    --tb-rule: var(--tb-book-rule, #e6e3da);
+    --tb-link: var(--tb-book-link, #23577d);
+    --tb-code-bg: var(--tb-book-code-bg, #f2f0e9);
+    --tb-fig-warn: var(--tb-book-fig-warn, #a3402f);
+    --tb-fig-good: var(--tb-book-fig-good, #2c744a);
+    --tb-fig-grid: var(--tb-book-fig-grid, #85837d);
+  }
+  body[data-md-color-scheme="slate"] {
+    --tb-accent: var(--tb-book-accent, #6ea8d8);
+    --tb-accent-light: var(--tb-book-accent-light, #8cc0e8);
+    --tb-accent-dark: var(--tb-book-accent-dark, #4a7fae);
+    --tb-accent-ink: var(--tb-book-accent-ink, #171614);
+    --tb-paper: var(--tb-book-paper, #171614);
+    --tb-ink: var(--tb-book-ink, #e9e7e1);
+    --tb-ink-soft: var(--tb-book-ink-soft, #b7b4ac);
+    --tb-ink-lighter: var(--tb-book-ink-lighter, #8a877e);
+    --tb-rule: var(--tb-book-rule, #2a2926);
+    --tb-link: var(--tb-book-link, #8cc0e8);
+    --tb-code-bg: var(--tb-book-code-bg, #201f1c);
+    --tb-fig-warn: var(--tb-book-fig-warn, #e08a76);
+    --tb-fig-good: var(--tb-book-fig-good, #7fc79b);
+    --tb-fig-grid: var(--tb-book-fig-grid, #757166);
+  }
 
-/* Clean */
-html[data-theme="clean"] body[data-md-color-scheme="default"] {
-  --tb-accent: #101010;
-  --tb-accent-light: #333333;
-  --tb-accent-dark: #000000;
-  --tb-accent-ink: #ffffff;
-  --tb-paper: var(--tb-book-paper, #ffffff);
-  --tb-ink: var(--tb-book-ink, #101010);
-  --tb-ink-soft: var(--tb-book-ink-soft, #565656);
-  --tb-ink-lighter: var(--tb-book-ink-lighter, #8c8c8c);
-  --tb-rule: var(--tb-book-rule, #e3e3e3);
-  --tb-link: #101010;
-  --tb-code-bg: var(--tb-book-code-bg, #f4f4f4);
-  --tb-fig-warn: var(--tb-book-fig-warn, #8a1f1f);
-  --tb-fig-good: var(--tb-book-fig-good, #1f6b3a);
-  --tb-fig-grid: var(--tb-book-fig-grid, #868686);
-}
+  /* 3. Bundles, which win over the fallback. */
+  /* Editorial */
+  html[data-theme="editorial"] body[data-md-color-scheme="default"] {
+    --tb-accent: var(--tb-book-accent, #2f6690);
+    --tb-accent-light: var(--tb-book-accent-light, #4a7fae);
+    --tb-accent-dark: var(--tb-book-accent-dark, #24506f);
+    --tb-accent-ink: var(--tb-book-accent-ink, #ffffff);
+    --tb-paper: var(--tb-book-paper, #faf9f5);
+    --tb-ink: var(--tb-book-ink, #1f1e1b);
+    --tb-ink-soft: var(--tb-book-ink-soft, #5c5a54);
+    --tb-ink-lighter: var(--tb-book-ink-lighter, #8a877e);
+    --tb-rule: var(--tb-book-rule, #e6e3da);
+    --tb-link: var(--tb-book-link, #23577d);
+    --tb-code-bg: var(--tb-book-code-bg, #f2f0e9);
+    --tb-fig-warn: var(--tb-book-fig-warn, #a3402f);
+    --tb-fig-good: var(--tb-book-fig-good, #2c744a);
+    --tb-fig-grid: var(--tb-book-fig-grid, #85837d);
+  }
 
-html[data-theme="clean"] body[data-md-color-scheme="slate"] {
-  --tb-accent: #f2f2f2;
-  --tb-accent-light: #ffffff;
-  --tb-accent-dark: #c9c9c9;
-  --tb-accent-ink: #0d0d0d;
-  --tb-paper: var(--tb-book-paper, #0d0d0d);
-  --tb-ink: var(--tb-book-ink, #f2f2f2);
-  --tb-ink-soft: var(--tb-book-ink-soft, #b0b0b0);
-  --tb-ink-lighter: var(--tb-book-ink-lighter, #7d7d7d);
-  --tb-rule: var(--tb-book-rule, #262626);
-  --tb-link: #ffffff;
-  --tb-code-bg: var(--tb-book-code-bg, #171717);
-  --tb-fig-warn: var(--tb-book-fig-warn, #e08585);
-  --tb-fig-good: var(--tb-book-fig-good, #86c9a2);
-  --tb-fig-grid: var(--tb-book-fig-grid, #6b6b6b);
-}
+  html[data-theme="editorial"] body[data-md-color-scheme="slate"] {
+    --tb-accent: var(--tb-book-accent, #6ea8d8);
+    --tb-accent-light: var(--tb-book-accent-light, #8cc0e8);
+    --tb-accent-dark: var(--tb-book-accent-dark, #4a7fae);
+    --tb-accent-ink: var(--tb-book-accent-ink, #171614);
+    --tb-paper: var(--tb-book-paper, #171614);
+    --tb-ink: var(--tb-book-ink, #e9e7e1);
+    --tb-ink-soft: var(--tb-book-ink-soft, #b7b4ac);
+    --tb-ink-lighter: var(--tb-book-ink-lighter, #8a877e);
+    --tb-rule: var(--tb-book-rule, #2a2926);
+    --tb-link: var(--tb-book-link, #8cc0e8);
+    --tb-code-bg: var(--tb-book-code-bg, #201f1c);
+    --tb-fig-warn: var(--tb-book-fig-warn, #e08a76);
+    --tb-fig-good: var(--tb-book-fig-good, #7fc79b);
+    --tb-fig-grid: var(--tb-book-fig-grid, #757166);
+  }
 
-/* Harbour */
-html[data-theme="harbour"] body[data-md-color-scheme="default"] {
-  --tb-accent: var(--tb-book-accent, #3a6b7a);
-  --tb-accent-light: var(--tb-book-accent-light, #5d8f9e);
-  --tb-accent-dark: var(--tb-book-accent-dark, #2c5460);
-  --tb-accent-ink: var(--tb-book-accent-ink, #ffffff);
-  --tb-paper: var(--tb-book-paper, #f4f7f8);
-  --tb-ink: var(--tb-book-ink, #23303a);
-  --tb-ink-soft: var(--tb-book-ink-soft, #55656f);
-  --tb-ink-lighter: var(--tb-book-ink-lighter, #7e8d96);
-  --tb-rule: var(--tb-book-rule, #dde5e8);
-  --tb-link: var(--tb-book-link, #35617a);
-  --tb-code-bg: var(--tb-book-code-bg, #e9eff1);
-  --tb-fig-warn: var(--tb-book-fig-warn, #a34a34);
-  --tb-fig-good: var(--tb-book-fig-good, #33684f);
-  --tb-fig-grid: var(--tb-book-fig-grid, #73838b);
-}
+  /* Clean */
+  html[data-theme="clean"] body[data-md-color-scheme="default"] {
+    --tb-accent: #101010;
+    --tb-accent-light: #333333;
+    --tb-accent-dark: #000000;
+    --tb-accent-ink: #ffffff;
+    --tb-paper: var(--tb-book-paper, #ffffff);
+    --tb-ink: var(--tb-book-ink, #101010);
+    --tb-ink-soft: var(--tb-book-ink-soft, #565656);
+    --tb-ink-lighter: var(--tb-book-ink-lighter, #8c8c8c);
+    --tb-rule: var(--tb-book-rule, #e3e3e3);
+    --tb-link: #101010;
+    --tb-code-bg: var(--tb-book-code-bg, #f4f4f4);
+    --tb-fig-warn: var(--tb-book-fig-warn, #8a1f1f);
+    --tb-fig-good: var(--tb-book-fig-good, #1f6b3a);
+    --tb-fig-grid: var(--tb-book-fig-grid, #868686);
+  }
 
-html[data-theme="harbour"] body[data-md-color-scheme="slate"] {
-  --tb-accent: var(--tb-book-accent, #6fa8bd);
-  --tb-accent-light: var(--tb-book-accent-light, #96c4d5);
-  --tb-accent-dark: var(--tb-book-accent-dark, #4d7f92);
-  --tb-accent-ink: var(--tb-book-accent-ink, #0d1318);
-  --tb-paper: var(--tb-book-paper, #10171c);
-  --tb-ink: var(--tb-book-ink, #d7e2e8);
-  --tb-ink-soft: var(--tb-book-ink-soft, #a3b3bc);
-  --tb-ink-lighter: var(--tb-book-ink-lighter, #74848d);
-  --tb-rule: var(--tb-book-rule, #26323a);
-  --tb-link: var(--tb-book-link, #86bdd0);
-  --tb-code-bg: var(--tb-book-code-bg, #0a1014);
-  --tb-fig-warn: var(--tb-book-fig-warn, #e08a72);
-  --tb-fig-good: var(--tb-book-fig-good, #7fc79b);
-  --tb-fig-grid: var(--tb-book-fig-grid, #6c7b84);
-}
+  html[data-theme="clean"] body[data-md-color-scheme="slate"] {
+    --tb-accent: #f2f2f2;
+    --tb-accent-light: #ffffff;
+    --tb-accent-dark: #c9c9c9;
+    --tb-accent-ink: #0d0d0d;
+    --tb-paper: var(--tb-book-paper, #0d0d0d);
+    --tb-ink: var(--tb-book-ink, #f2f2f2);
+    --tb-ink-soft: var(--tb-book-ink-soft, #b0b0b0);
+    --tb-ink-lighter: var(--tb-book-ink-lighter, #7d7d7d);
+    --tb-rule: var(--tb-book-rule, #262626);
+    --tb-link: #ffffff;
+    --tb-code-bg: var(--tb-book-code-bg, #171717);
+    --tb-fig-warn: var(--tb-book-fig-warn, #e08585);
+    --tb-fig-good: var(--tb-book-fig-good, #86c9a2);
+    --tb-fig-grid: var(--tb-book-fig-grid, #6b6b6b);
+  }
 
-/* Neon */
-html[data-theme="neon"] body[data-md-color-scheme="default"] {
-  --tb-accent: #b81d8f;
-  --tb-accent-light: #d95cb0;
-  --tb-accent-dark: #8c1168;
-  --tb-accent-ink: #ffffff;
-  --tb-paper: var(--tb-book-paper, #f7f3fb);
-  --tb-ink: var(--tb-book-ink, #1c1430);
-  --tb-ink-soft: var(--tb-book-ink-soft, #554a6e);
-  --tb-ink-lighter: var(--tb-book-ink-lighter, #877da0);
-  --tb-rule: var(--tb-book-rule, #e6dcef);
-  --tb-link: #0e6f80;
-  --tb-code-bg: var(--tb-book-code-bg, #efe6f6);
-  --tb-fig-warn: var(--tb-book-fig-warn, #b02160);
-  --tb-fig-good: var(--tb-book-fig-good, #0f6b52);
-  --tb-fig-grid: var(--tb-book-fig-grid, #7b7094);
-}
+  /* Harbour */
+  html[data-theme="harbour"] body[data-md-color-scheme="default"] {
+    --tb-accent: var(--tb-book-accent, #3a6b7a);
+    --tb-accent-light: var(--tb-book-accent-light, #5d8f9e);
+    --tb-accent-dark: var(--tb-book-accent-dark, #2c5460);
+    --tb-accent-ink: var(--tb-book-accent-ink, #ffffff);
+    --tb-paper: var(--tb-book-paper, #f4f7f8);
+    --tb-ink: var(--tb-book-ink, #23303a);
+    --tb-ink-soft: var(--tb-book-ink-soft, #55656f);
+    --tb-ink-lighter: var(--tb-book-ink-lighter, #7e8d96);
+    --tb-rule: var(--tb-book-rule, #dde5e8);
+    --tb-link: var(--tb-book-link, #35617a);
+    --tb-code-bg: var(--tb-book-code-bg, #e9eff1);
+    --tb-fig-warn: var(--tb-book-fig-warn, #a34a34);
+    --tb-fig-good: var(--tb-book-fig-good, #33684f);
+    --tb-fig-grid: var(--tb-book-fig-grid, #73838b);
+  }
 
-html[data-theme="neon"] body[data-md-color-scheme="slate"] {
-  --tb-accent: #ff4fd8;
-  --tb-accent-light: #ff86e4;
-  --tb-accent-dark: #d62fb5;
-  --tb-accent-ink: #120a20;
-  --tb-paper: var(--tb-book-paper, #120a20);
-  --tb-ink: var(--tb-book-ink, #ead9ff);
-  --tb-ink-soft: var(--tb-book-ink-soft, #b4a3cf);
-  --tb-ink-lighter: var(--tb-book-ink-lighter, #7d6f99);
-  --tb-rule: var(--tb-book-rule, #2a1b42);
-  --tb-link: #4fe6ff;
-  --tb-code-bg: var(--tb-book-code-bg, #0b0616);
-  --tb-fig-warn: var(--tb-book-fig-warn, #ff7aa8);
-  --tb-fig-good: var(--tb-book-fig-good, #5cf0c0);
-  --tb-fig-grid: var(--tb-book-fig-grid, #7e6ca5);
-}
+  html[data-theme="harbour"] body[data-md-color-scheme="slate"] {
+    --tb-accent: var(--tb-book-accent, #6fa8bd);
+    --tb-accent-light: var(--tb-book-accent-light, #96c4d5);
+    --tb-accent-dark: var(--tb-book-accent-dark, #4d7f92);
+    --tb-accent-ink: var(--tb-book-accent-ink, #0d1318);
+    --tb-paper: var(--tb-book-paper, #10171c);
+    --tb-ink: var(--tb-book-ink, #d7e2e8);
+    --tb-ink-soft: var(--tb-book-ink-soft, #a3b3bc);
+    --tb-ink-lighter: var(--tb-book-ink-lighter, #74848d);
+    --tb-rule: var(--tb-book-rule, #26323a);
+    --tb-link: var(--tb-book-link, #86bdd0);
+    --tb-code-bg: var(--tb-book-code-bg, #0a1014);
+    --tb-fig-warn: var(--tb-book-fig-warn, #e08a72);
+    --tb-fig-good: var(--tb-book-fig-good, #7fc79b);
+    --tb-fig-grid: var(--tb-book-fig-grid, #6c7b84);
+  }
 
-/* Phosphor */
-html[data-theme="phosphor"] body[data-md-color-scheme="default"] {
-  --tb-accent: #925600;
-  --tb-accent-light: #c47d1a;
-  --tb-accent-dark: #744300;
-  --tb-accent-ink: #ffffff;
-  --tb-paper: var(--tb-book-paper, #fbf7ec);
-  --tb-ink: var(--tb-book-ink, #241d0e);
-  --tb-ink-soft: var(--tb-book-ink-soft, #5c4f38);
-  --tb-ink-lighter: var(--tb-book-ink-lighter, #8c7d63);
-  --tb-rule: var(--tb-book-rule, #e8dfc8);
-  --tb-link: #7a5a00;
-  --tb-code-bg: var(--tb-book-code-bg, #f3ecd8);
-  --tb-fig-warn: var(--tb-book-fig-warn, #b23a1f);
-  --tb-fig-good: var(--tb-book-fig-good, #3f6a1c);
-  --tb-fig-grid: var(--tb-book-fig-grid, #8a7c60);
-}
+  /* Neon */
+  html[data-theme="neon"] body[data-md-color-scheme="default"] {
+    --tb-accent: #b81d8f;
+    --tb-accent-light: #d95cb0;
+    --tb-accent-dark: #8c1168;
+    --tb-accent-ink: #ffffff;
+    --tb-paper: var(--tb-book-paper, #f7f3fb);
+    --tb-ink: var(--tb-book-ink, #1c1430);
+    --tb-ink-soft: var(--tb-book-ink-soft, #554a6e);
+    --tb-ink-lighter: var(--tb-book-ink-lighter, #877da0);
+    --tb-rule: var(--tb-book-rule, #e6dcef);
+    --tb-link: #0e6f80;
+    --tb-code-bg: var(--tb-book-code-bg, #efe6f6);
+    --tb-fig-warn: var(--tb-book-fig-warn, #b02160);
+    --tb-fig-good: var(--tb-book-fig-good, #0f6b52);
+    --tb-fig-grid: var(--tb-book-fig-grid, #7b7094);
+  }
 
-html[data-theme="phosphor"] body[data-md-color-scheme="slate"] {
-  --tb-accent: #ffb000;
-  --tb-accent-light: #ffc94d;
-  --tb-accent-dark: #cc8a00;
-  --tb-accent-ink: #0c0b07;
-  --tb-paper: var(--tb-book-paper, #0c0b07);
-  --tb-ink: var(--tb-book-ink, #f0e6cf);
-  --tb-ink-soft: var(--tb-book-ink-soft, #c0b394);
-  --tb-ink-lighter: var(--tb-book-ink-lighter, #7f765c);
-  --tb-rule: var(--tb-book-rule, #26231a);
-  --tb-link: #a8e05f;
-  --tb-code-bg: var(--tb-book-code-bg, #010100);
-  --tb-fig-warn: var(--tb-book-fig-warn, #ff7a45);
-  --tb-fig-good: var(--tb-book-fig-good, #b6f05a);
-  --tb-fig-grid: var(--tb-book-fig-grid, #6f6850);
-}
+  html[data-theme="neon"] body[data-md-color-scheme="slate"] {
+    --tb-accent: #ff4fd8;
+    --tb-accent-light: #ff86e4;
+    --tb-accent-dark: #d62fb5;
+    --tb-accent-ink: #120a20;
+    --tb-paper: var(--tb-book-paper, #120a20);
+    --tb-ink: var(--tb-book-ink, #ead9ff);
+    --tb-ink-soft: var(--tb-book-ink-soft, #b4a3cf);
+    --tb-ink-lighter: var(--tb-book-ink-lighter, #7d6f99);
+    --tb-rule: var(--tb-book-rule, #2a1b42);
+    --tb-link: #4fe6ff;
+    --tb-code-bg: var(--tb-book-code-bg, #0b0616);
+    --tb-fig-warn: var(--tb-book-fig-warn, #ff7aa8);
+    --tb-fig-good: var(--tb-book-fig-good, #5cf0c0);
+    --tb-fig-grid: var(--tb-book-fig-grid, #7e6ca5);
+  }
 
-/* Glass */
-html[data-theme="glass"] body[data-md-color-scheme="default"] {
-  --tb-accent: #0e7254;
-  --tb-accent-light: #2fa27c;
-  --tb-accent-dark: #0a5c43;
-  --tb-accent-ink: #ffffff;
-  --tb-paper: var(--tb-book-paper, #f2faf6);
-  --tb-ink: var(--tb-book-ink, #10221c);
-  --tb-ink-soft: var(--tb-book-ink-soft, #476058);
-  --tb-ink-lighter: var(--tb-book-ink-lighter, #74887e);
-  --tb-rule: var(--tb-book-rule, #d8e8e0);
-  --tb-link: #0a6f6f;
-  --tb-code-bg: var(--tb-book-code-bg, #e6f2ec);
-  --tb-fig-warn: var(--tb-book-fig-warn, #b0402a);
-  --tb-fig-good: var(--tb-book-fig-good, #35751a);
-  --tb-fig-grid: var(--tb-book-fig-grid, #71837a);
-}
+  /* Phosphor */
+  html[data-theme="phosphor"] body[data-md-color-scheme="default"] {
+    --tb-accent: #925600;
+    --tb-accent-light: #c47d1a;
+    --tb-accent-dark: #744300;
+    --tb-accent-ink: #ffffff;
+    --tb-paper: var(--tb-book-paper, #fbf7ec);
+    --tb-ink: var(--tb-book-ink, #241d0e);
+    --tb-ink-soft: var(--tb-book-ink-soft, #5c4f38);
+    --tb-ink-lighter: var(--tb-book-ink-lighter, #8c7d63);
+    --tb-rule: var(--tb-book-rule, #e8dfc8);
+    --tb-link: #7a5a00;
+    --tb-code-bg: var(--tb-book-code-bg, #f3ecd8);
+    --tb-fig-warn: var(--tb-book-fig-warn, #b23a1f);
+    --tb-fig-good: var(--tb-book-fig-good, #3f6a1c);
+    --tb-fig-grid: var(--tb-book-fig-grid, #8a7c60);
+  }
 
-html[data-theme="glass"] body[data-md-color-scheme="slate"] {
-  --tb-accent: #6ef0a0;
-  --tb-accent-light: #98ffc0;
-  --tb-accent-dark: #3fbf78;
-  --tb-accent-ink: #04100b;
-  --tb-paper: var(--tb-book-paper, #08120f);
-  --tb-ink: var(--tb-book-ink, #d8f5e8);
-  --tb-ink-soft: var(--tb-book-ink-soft, #a0c4b4);
-  --tb-ink-lighter: var(--tb-book-ink-lighter, #6f8f82);
-  --tb-rule: var(--tb-book-rule, #1c2e28);
-  --tb-link: #40e0d0;
-  --tb-code-bg: var(--tb-book-code-bg, #030907);
-  --tb-fig-warn: var(--tb-book-fig-warn, #ff8a6a);
-  --tb-fig-good: var(--tb-book-fig-good, #b4ff6e);
-  --tb-fig-grid: var(--tb-book-fig-grid, #5f8074);
+  html[data-theme="phosphor"] body[data-md-color-scheme="slate"] {
+    --tb-accent: #ffb000;
+    --tb-accent-light: #ffc94d;
+    --tb-accent-dark: #cc8a00;
+    --tb-accent-ink: #0c0b07;
+    --tb-paper: var(--tb-book-paper, #0c0b07);
+    --tb-ink: var(--tb-book-ink, #f0e6cf);
+    --tb-ink-soft: var(--tb-book-ink-soft, #c0b394);
+    --tb-ink-lighter: var(--tb-book-ink-lighter, #7f765c);
+    --tb-rule: var(--tb-book-rule, #26231a);
+    --tb-link: #a8e05f;
+    --tb-code-bg: var(--tb-book-code-bg, #010100);
+    --tb-fig-warn: var(--tb-book-fig-warn, #ff7a45);
+    --tb-fig-good: var(--tb-book-fig-good, #b6f05a);
+    --tb-fig-grid: var(--tb-book-fig-grid, #6f6850);
+  }
+
+  /* Glass */
+  html[data-theme="glass"] body[data-md-color-scheme="default"] {
+    --tb-accent: #0e7254;
+    --tb-accent-light: #2fa27c;
+    --tb-accent-dark: #0a5c43;
+    --tb-accent-ink: #ffffff;
+    --tb-paper: var(--tb-book-paper, #f2faf6);
+    --tb-ink: var(--tb-book-ink, #10221c);
+    --tb-ink-soft: var(--tb-book-ink-soft, #476058);
+    --tb-ink-lighter: var(--tb-book-ink-lighter, #74887e);
+    --tb-rule: var(--tb-book-rule, #d8e8e0);
+    --tb-link: #0a6f6f;
+    --tb-code-bg: var(--tb-book-code-bg, #e6f2ec);
+    --tb-fig-warn: var(--tb-book-fig-warn, #b0402a);
+    --tb-fig-good: var(--tb-book-fig-good, #35751a);
+    --tb-fig-grid: var(--tb-book-fig-grid, #71837a);
+  }
+
+  html[data-theme="glass"] body[data-md-color-scheme="slate"] {
+    --tb-accent: #6ef0a0;
+    --tb-accent-light: #98ffc0;
+    --tb-accent-dark: #3fbf78;
+    --tb-accent-ink: #04100b;
+    --tb-paper: var(--tb-book-paper, #08120f);
+    --tb-ink: var(--tb-book-ink, #d8f5e8);
+    --tb-ink-soft: var(--tb-book-ink-soft, #a0c4b4);
+    --tb-ink-lighter: var(--tb-book-ink-lighter, #6f8f82);
+    --tb-rule: var(--tb-book-rule, #1c2e28);
+    --tb-link: #40e0d0;
+    --tb-code-bg: var(--tb-book-code-bg, #030907);
+    --tb-fig-warn: var(--tb-book-fig-warn, #ff8a6a);
+    --tb-fig-good: var(--tb-book-fig-good, #b4ff6e);
+    --tb-fig-grid: var(--tb-book-fig-grid, #5f8074);
+  }
 }

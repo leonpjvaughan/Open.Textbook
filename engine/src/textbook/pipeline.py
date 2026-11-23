@@ -58,6 +58,7 @@ STYLESHEETS: tuple[str, ...] = (
     "assets/stylesheets/book.css",
     "assets/stylesheets/book-local.css",
     "assets/stylesheets/shell.css",
+    "assets/stylesheets/layouts.css",
     "assets/stylesheets/search.css",
     "assets/stylesheets/settings.css",
 )
@@ -77,6 +78,7 @@ def stylesheet_sources(book: books.Book) -> dict[str, Path]:
         "assets/stylesheets/book.css": book.docs / "assets/stylesheets/book.css",
         "assets/stylesheets/book-local.css": book.docs / "assets/stylesheets/book-local.css",
         "assets/stylesheets/shell.css": SHELL_CSS,
+        "assets/stylesheets/layouts.css": root / "assets/stylesheets/layouts.css",
         "assets/stylesheets/search.css": root / "assets/stylesheets/search.css",
         "assets/stylesheets/settings.css": root / "assets/stylesheets/settings.css",
     }
@@ -172,7 +174,7 @@ EXTENSIONS = [
     TocExtension(permalink=False),
 ]
 
-SHARED_CSS = ("themes.css", "extra.css", "portal.css", "settings.css")
+SHARED_CSS = ("themes.css", "extra.css", "portal.css", "layouts.css", "settings.css")
 
 HTML_LINK = re.compile(r'(href|src)="([^"]+?\.md)(#[^"]*)?"')
 SCRIPT_STYLE = re.compile(r"<(script|style)\b.*?</\1>", re.S | re.I)

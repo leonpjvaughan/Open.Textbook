@@ -14,589 +14,591 @@
  * display font resolves identically.
  */
 
-html {
-  background: var(--tb-paper);
-  -webkit-text-size-adjust: 100%;
-}
-
-body {
-  margin: 0;
-  background: var(--tb-paper);
-  color: var(--tb-ink);
-  font-family: var(--tb-font-body);
-  font-size: 16px;
-  line-height: 1.7;
-}
-
-a { color: var(--tb-link); }
-
-.wrap {
-  max-width: 76rem;
-  margin: 0 auto;
-  padding: 0 1rem;
-}
-
-/* The skip link is the first thing a keyboard reader meets, so it has to become
- * visible when it takes focus. Off screen it is left at -9999px with no size; on
- * focus it returns to the flow as a readable strip above the masthead. Measured
- * before this rule: the first Tab moved focus to x = -9999 and nothing changed on
- * screen. No colour is declared — paper and ink are the bundle's. */
-.skip {
-  position: absolute;
-  left: -9999px;
-  color: var(--tb-link);
-}
-
-.skip:focus,
-.skip:focus-visible {
-  position: static;
-  display: block;
-  padding: 0.5rem 1rem;
-  background: var(--tb-paper);
-  color: var(--tb-ink);
-  border-bottom: 1px solid var(--tb-rule);
-  outline: 2px solid var(--tb-accent);
-  outline-offset: -2px;
-}
-
-/* Text a screen reader must hear and the page must not show. Used by the search
- * status line: a vanished panel announces nothing, so the count and the empty
- * state are spoken from here. */
-.visually-hidden {
-  position: absolute;
-  width: 1px;
-  height: 1px;
-  margin: -1px;
-  padding: 0;
-  overflow: hidden;
-  clip-path: inset(50%);
-  white-space: nowrap;
-  border: 0;
-}
-
-/* masthead ---------------------------------------------------------------- */
-
-/* The sticky masthead's height, so a fragment target can clear it. Measured:
- * about 57px at desktop widths and about 97px at 390px, where the row wraps and
- * the search takes a second line. A token rather than a number in each rule,
- * because a heading and the sidebar have to agree with the bar above them. */
-:root { --tb-masthead-height: 3.6rem; }
-
-/* A fragment link puts the target at the very top of the viewport, which is
- * under the sticky masthead. This is what makes a deep link land on the heading
- * it names rather than on the middle of the paragraph above it. */
-:is(h1, h2, h3, h4, h5, h6, [id]) {
-  scroll-margin-top: calc(var(--tb-masthead-height) + 0.5rem);
-}
-
-/* The page's own title, so the heading the reader was reading becomes the heading
- * they are reading rather than a new one painted over it. Every built page carries
- * exactly one `h1` (measured across all 4,541), and `:first-of-type` keeps the name
- * unique even if one grows a second: a duplicate name disables the whole transition.
- * It is scoped to the content column rather than to `h1` alone because the 404 and
- * landing pages put their `h1` in the masthead, which is a different object. */
-.md-typeset > h1:first-of-type {
-  view-transition-name: page-title;
-}
-
-.masthead {
-  position: sticky;
-  top: 0;
-  z-index: 5;
-  background: var(--tb-paper);
-  border-bottom: 1px solid var(--tb-rule);
-  /* The bar is the one object a reader keeps between two pages, so it is named and a
-   * cross-document transition moves it instead of drawing it again. The name is inert
-   * until a transition runs: with the opt-in below absent, or with reduced motion
-   * asked for, nothing about this rule changes the layout. */
-  view-transition-name: site-masthead;
-}
-
-/* The reading progress line: how far through the page the reader is, on the bottom
- * edge of the masthead. Two pixels of accent, drawn from `scaleX(0)` to `scaleX(1)`
- * by the root scroller, and nothing else.
- *
- * Absolutely positioned inside the sticky masthead, so it adds no height to the bar
- * and cannot move the article under it — the one measurable failure a progress line
- * tends to have. It is decorative: no script, no fallback where the browser has no
- * scroll-driven animation, and nothing announced. A reader who asked for less motion
- * does not get a bar that fills as they scroll, so it is not drawn at all. */
-.progress {
-  position: absolute;
-  inset: auto 0 0 0;
-  height: 2px;
-  background: var(--tb-accent);
-  transform: scaleX(0);
-  transform-origin: 0 50%;
-  pointer-events: none;
-}
-
-@media (prefers-reduced-motion: reduce) {
-  .progress { display: none; }
-}
-
-@supports (animation-timeline: scroll()) {
-  @media (prefers-reduced-motion: no-preference) {
-    @keyframes tb-progress {
-      from { transform: scaleX(0); }
-      to { transform: scaleX(1); }
-    }
-    .progress {
-      /* `animation-timeline` after the shorthand, or the shorthand resets it. */
-      animation: tb-progress linear both;
-      animation-timeline: scroll(root block);
-    }
+@layer shell {
+  html {
+    background: var(--tb-paper);
+    -webkit-text-size-adjust: 100%;
   }
-}
 
-.masthead__inner {
-  display: flex;
-  align-items: center;
-  /* Not `space-between`: this row wraps on a phone, and with wrapping the
-   * search has to be able to take its own line. The brand pushes the rest right
-   * instead, which reads identically and survives the wrap. */
-  gap: 0.5rem;
-  min-height: 3.5rem;
-}
-
-.masthead__brand {
-  margin-right: auto;
-  min-width: 0;
-  font-family: var(--tb-font-display);
-  font-size: 1.05rem;
-  font-weight: 600;
-  color: var(--tb-ink);
-  text-decoration: none;
-}
-
-/* The section a page belongs to, beside the book's name in the same link. It is
- * allowed to shrink and to lose its tail before it pushes the actions off the row. */
-.masthead__section {
-  margin-left: 0.5rem;
-  font-size: 0.85rem;
-  font-weight: 400;
-  color: var(--tb-ink-soft);
-}
-
-.masthead__actions {
-  display: flex;
-  align-items: center;
-  gap: 0.5rem;
-}
-
-/* The way back to the collection. Quieter than the book title, because it is a
- * way out of the book rather than part of it. */
-.masthead__home {
-  color: var(--tb-ink-soft);
-  font-size: 0.9rem;
-  text-decoration: none;
-  white-space: nowrap;
-  padding: 0.25rem 0.4rem;
-  border-radius: var(--tb-radius);
-}
-.masthead__home:hover {
-  color: var(--tb-ink);
-  background: color-mix(in srgb, currentColor 10%, transparent);
-}
-.masthead__home:focus-visible {
-  outline: 2px solid var(--tb-accent);
-  outline-offset: 2px;
-}
-
-/* The reader Settings trigger. Inert until the shared runtime reveals it; the
- * markup and behaviour live in settings.css and assets/settings/settings.js, so
- * this only gives the bare <button> the shell's chrome. */
-/* 2.75rem = 44px, the floor this file states for a thumb; the trigger measured
- * 36px before. Above 48rem the control also carries the word from its accessible
- * name, so a reader who does not know the cog can still find it. */
-.tb-settings__trigger {
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  gap: 0.4rem;
-  width: 2.75rem;
-  height: 2.75rem;
-  padding: 0.4rem;
-  border: 0;
-  border-radius: var(--tb-radius);
-  background: transparent;
-  color: var(--tb-ink-soft);
-  cursor: pointer;
-}
-
-.tb-settings__trigger:hover {
-  color: var(--tb-ink);
-  background: color-mix(in srgb, var(--tb-ink) 8%, transparent);
-}
-
-.tb-settings__trigger:focus-visible {
-  outline: 2px solid var(--tb-accent);
-  outline-offset: 2px;
-}
-
-.tb-settings__trigger svg {
-  width: 1.35rem;
-  height: 1.35rem;
-  fill: currentColor;
-}
-
-/* The word is hidden where the row is tight, and shown where there is room. */
-.tb-settings__label { display: none; }
-
-@media (min-width: 48rem) {
-  .tb-settings__trigger {
-    width: auto;
-    padding: 0 0.9rem;
+  body {
+    margin: 0;
+    background: var(--tb-paper);
+    color: var(--tb-ink);
+    font-family: var(--tb-font-body);
+    font-size: 16px;
+    line-height: 1.7;
   }
-  .tb-settings__label {
-    display: inline;
-    font-size: 0.9rem;
+
+  a { color: var(--tb-link); }
+
+  .wrap {
+    max-width: 76rem;
+    margin: 0 auto;
+    padding: 0 1rem;
   }
-}
 
-/* layout ------------------------------------------------------------------ */
+  /* The skip link is the first thing a keyboard reader meets, so it has to become
+   * visible when it takes focus. Off screen it is left at -9999px with no size; on
+   * focus it returns to the flow as a readable strip above the masthead. Measured
+   * before this rule: the first Tab moved focus to x = -9999 and nothing changed on
+   * screen. No colour is declared — paper and ink are the bundle's. */
+  .skip {
+    position: absolute;
+    left: -9999px;
+    color: var(--tb-link);
+  }
 
-.layout {
-  display: grid;
-  grid-template-columns: minmax(15rem, 18rem) minmax(0, 1fr);
-  gap: 2rem;
-  align-items: start;
-}
-
-/* The drawer that holds the sidebar.
- *
- * At 60rem and up it *is* the sidebar column: sticky, scrollable, no summary, always open.
- * Below that the column collapses and this becomes a disclosure whose summary is the one
- * control between a reader and 614px of navigation — measured on `/numerical-methods/` at
- * 390px, where the page's own title sat at y = 798. */
-.nav-drawer {
-  position: sticky;
-  top: calc(var(--tb-masthead-height) + 0.9rem);
-  max-height: calc(100vh - 5rem);
-  overflow: auto;
-  padding: 1.25rem 0;
-}
-
-/* No summary on a wide screen: the contents are a column, not something to open. */
-.nav-drawer > summary { display: none; }
-
-.nav-drawer__summary {
-  cursor: pointer;
-  padding: 0.7rem 0;
-  min-height: 2.75rem;
-  color: var(--tb-ink);
-  font-weight: 600;
-}
-
-/* The word that says what the disclosure is. Muted and one weight lighter, so it
- * reads as the control's name rather than as the book's title. */
-.nav-drawer__label {
-  margin-right: 0.5rem;
-  color: var(--tb-ink-soft);
-  font-weight: 400;
-}
-
-.nav-drawer__summary::marker { color: var(--tb-ink-lighter); }
-
-/* It carries the page's own section, in the masthead's muted ink, because the one thing a
- * reader 600px into a contents list wants is to know where they are. */
-.nav-drawer__summary .masthead__section {
-  color: var(--tb-ink-soft);
-  font-weight: 400;
-}
-
-.sidebar {
-  padding: 0;
-  font-size: 0.85rem;
-}
-
-/* The filter field. It is an enhancement and says nothing until the script that
- * runs it is loaded: the markup ships it `hidden` and the drawer script reveals it,
- * so a reader with scripting off sees the tree they have always had and no control
- * that would do nothing. Above the drawer breakpoint the whole tree is a column on
- * screen, where narrowing it is not a question anybody asks. */
-.nav-filter { display: none; }
-
-.nav-filter__input {
-  box-sizing: border-box;
-  width: 100%;
-  min-height: 2.75rem;
-  padding: 0.5rem 0.7rem;
-  border: 1px solid var(--tb-rule);
-  border-radius: var(--tb-radius);
-  background: var(--tb-paper);
-  color: var(--tb-ink);
-  /* 16px, like the masthead's field: below it a phone zooms the page on focus and
-   * the field moves under the reader's thumb. */
-  font-size: 1rem;
-  font-family: inherit;
-}
-
-.nav-filter__input:focus-visible {
-  outline: 2px solid var(--tb-accent);
-  outline-offset: 2px;
-}
-
-.nav-filter__empty {
-  margin: 0.4rem 0 0;
-  color: var(--tb-ink-soft);
-  font-size: 0.85rem;
-}
-
-.content {
-  min-width: 0;
-  /* The content track is wider than the prose: a table, a display equation or a
-   * figure may use it, while the prose inside is capped at `--tb-measure`
-   * (`extra.css`). Capping this box instead clipped them all at the prose width.
-   * 46rem is `maths-figure`'s own maximum, so a figure is never squeezed. */
-  max-width: 46rem;
-  /* The booklet button floats over the bottom right of the page. Reservations: the
-   * button is 39px tall and sits 1.1rem off the bottom; `main` keeps 4rem of reading
-   * room below the pager; so 7rem leaves the last paragraph clear of it at every
-   * width. Measured before this: the button overlapped the closing paragraph. */
-  padding: 2rem 0 7rem;
-}
-
-/* navigation -------------------------------------------------------------- */
-
-.nav__list {
-  list-style: none;
-  margin: 0;
-  padding-left: 0.85rem;
-}
-
-.sidebar > .nav__list { padding-left: 0; }
-
-.nav__link {
-  display: block;
-  padding: 0.15rem 0;
-  color: var(--tb-ink-soft);
-  text-decoration: none;
-}
-
-.nav__link:hover { color: var(--tb-ink); }
-
-.nav__link--current {
-  color: var(--tb-accent);
-  font-weight: 600;
-}
-
-.sidebar summary {
-  cursor: pointer;
-  padding: 0.3rem 0;
-  color: var(--tb-ink);
-  font-weight: 600;
-}
-
-.sidebar summary::marker { color: var(--tb-ink-lighter); }
-
-/* search ------------------------------------------------------------------ */
-
-/* The field, the panel and the result rows are one shared component
- * (`assets/stylesheets/search.css`), because the landing page and every book page
- * run the same runtime over the same index. This file owns only the masthead's
- * placement of it. */
-
-/* narrow ------------------------------------------------------------------ */
-
-@media (max-width: 60rem) {
-  .layout { grid-template-columns: 1fr; }
-  .nav-drawer {
+  .skip:focus,
+  .skip:focus-visible {
     position: static;
-    max-height: none;
-    overflow: visible;
-    padding: 0.25rem 0 0;
+    display: block;
+    padding: 0.5rem 1rem;
+    background: var(--tb-paper);
+    color: var(--tb-ink);
     border-bottom: 1px solid var(--tb-rule);
+    outline: 2px solid var(--tb-accent);
+    outline-offset: -2px;
   }
-  /* The control exists only where the collapse does. */
-  .nav-drawer > summary { display: list-item; }
-  .nav-drawer[open] > summary { padding-bottom: 0.3rem; }
-  .sidebar { padding-bottom: 0.75rem; }
-  /* The field is an enhancement: `hidden` in the markup, shown by the script. */
-  .nav-filter:not([hidden]) { display: block; padding: 0.1rem 0 0.6rem; }
-  /* **The drawer's own height.** A whole book is up to 25 chapters and 335 links; left
-   * in the page's flow it printed every one of them above the article, and the reader's
-   * position was a scroll away from the control they had just used. A bounded box with
-   * its own scroll keeps the drawer a drawer: it opens at the current chapter, that
-   * chapter is scrolled into view inside this box, and the article stays where it was.
-   * `contain` stops a swipe inside the box from carrying on into the page. */
-  .nav-drawer[open] > .sidebar {
-    max-height: min(60svh, 30rem);
-    overflow-y: auto;
-    overscroll-behavior: contain;
+
+  /* Text a screen reader must hear and the page must not show. Used by the search
+   * status line: a vanished panel announces nothing, so the count and the empty
+   * state are spoken from here. */
+  .visually-hidden {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    margin: -1px;
+    padding: 0;
+    overflow: hidden;
+    clip-path: inset(50%);
+    white-space: nowrap;
+    border: 0;
   }
-  /* A drawer row is a thumb target: 44px, the floor this file already uses for the
-   * settings trigger and the pager. The rows measured 28px, and there are up to 335
-   * of them behind one control. */
-  .nav-drawer .nav__link {
+
+  /* masthead ---------------------------------------------------------------- */
+
+  /* The sticky masthead's height, so a fragment target can clear it. Measured:
+   * about 57px at desktop widths and about 97px at 390px, where the row wraps and
+   * the search takes a second line. A token rather than a number in each rule,
+   * because a heading and the sidebar have to agree with the bar above them. */
+  :root { --tb-masthead-height: 3.6rem; }
+
+  /* A fragment link puts the target at the very top of the viewport, which is
+   * under the sticky masthead. This is what makes a deep link land on the heading
+   * it names rather than on the middle of the paragraph above it. */
+  :is(h1, h2, h3, h4, h5, h6, [id]) {
+    scroll-margin-top: calc(var(--tb-masthead-height) + 0.5rem);
+  }
+
+  /* The page's own title, so the heading the reader was reading becomes the heading
+   * they are reading rather than a new one painted over it. Every built page carries
+   * exactly one `h1` (measured across all 4,541), and `:first-of-type` keeps the name
+   * unique even if one grows a second: a duplicate name disables the whole transition.
+   * It is scoped to the content column rather than to `h1` alone because the 404 and
+   * landing pages put their `h1` in the masthead, which is a different object. */
+  .md-typeset > h1:first-of-type {
+    view-transition-name: page-title;
+  }
+
+  .masthead {
+    position: sticky;
+    top: 0;
+    z-index: 5;
+    background: var(--tb-paper);
+    border-bottom: 1px solid var(--tb-rule);
+    /* The bar is the one object a reader keeps between two pages, so it is named and a
+     * cross-document transition moves it instead of drawing it again. The name is inert
+     * until a transition runs: with the opt-in below absent, or with reduced motion
+     * asked for, nothing about this rule changes the layout. */
+    view-transition-name: site-masthead;
+  }
+
+  /* The reading progress line: how far through the page the reader is, on the bottom
+   * edge of the masthead. Two pixels of accent, drawn from `scaleX(0)` to `scaleX(1)`
+   * by the root scroller, and nothing else.
+   *
+   * Absolutely positioned inside the sticky masthead, so it adds no height to the bar
+   * and cannot move the article under it — the one measurable failure a progress line
+   * tends to have. It is decorative: no script, no fallback where the browser has no
+   * scroll-driven animation, and nothing announced. A reader who asked for less motion
+   * does not get a bar that fills as they scroll, so it is not drawn at all. */
+  .progress {
+    position: absolute;
+    inset: auto 0 0 0;
+    height: 2px;
+    background: var(--tb-accent);
+    transform: scaleX(0);
+    transform-origin: 0 50%;
+    pointer-events: none;
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .progress { display: none; }
+  }
+
+  @supports (animation-timeline: scroll()) {
+    @media (prefers-reduced-motion: no-preference) {
+      @keyframes tb-progress {
+        from { transform: scaleX(0); }
+        to { transform: scaleX(1); }
+      }
+      .progress {
+        /* `animation-timeline` after the shorthand, or the shorthand resets it. */
+        animation: tb-progress linear both;
+        animation-timeline: scroll(root block);
+      }
+    }
+  }
+
+  .masthead__inner {
     display: flex;
     align-items: center;
-    min-height: 2.75rem;
+    /* Not `space-between`: this row wraps on a phone, and with wrapping the
+     * search has to be able to take its own line. The brand pushes the rest right
+     * instead, which reads identically and survives the wrap. */
+    gap: 0.5rem;
+    min-height: 3.5rem;
   }
-  .nav-drawer .sidebar summary {
-    min-height: 2.75rem;
-    padding-block: 0.6rem;
-  }
-}
 
-/* Phone widths. Two rows, both full width: the book and section on the first, the
- * search and the actions on the second. It used to be three flex items wrapping,
- * which put the search under the actions and measured 146px; two named rows say
- * what belongs with what and are shorter. The bar stays under 7rem (112px). */
-@media (max-width: 48rem) {
-  /* The phone measure is the viewport less this padding. At 1rem a 390px screen
-   * carried a median of 39 characters on a full line in CI's Liberation Sans, one
-   * below the 40-48 target; 0.5rem gives the line back the 16px it needs (40-45 there,
-   * 46-47 on a wider font) without touching the desk measure. */
-  .wrap { padding: 0 0.5rem; }
-  :root { --tb-masthead-height: 6.6rem; }
-  .masthead__inner {
-    display: grid;
-    grid-template-columns: minmax(0, 1fr) auto;
-    grid-template-areas:
-      "brand brand"
-      "search actions";
-    align-items: center;
-    row-gap: 0.4rem;
-    padding-top: 0.4rem;
-    padding-bottom: 0.4rem;
-  }
-  .masthead__brand { grid-area: brand; }
-  .masthead__actions { grid-area: actions; }
-  .search { grid-area: search; min-width: 0; }
-  /* A focused input below 16px makes a phone zoom the whole page, which moves
-   * the field under the reader's thumb while they type. Measured before this
-   * rule: 13.6px at 390. */
-  .tb-search__input { font-size: 1rem; }
-  /* A long book title would otherwise push the actions off the row before the
-   * search has a chance to wrap. One clipped line: making the title and the section
-   * flex items let their nowrap min-content widen the phone's layout viewport to
-   * 495px (measured), so the row clips as a single line instead. */
   .masthead__brand {
-    /* The desktop row pushes the actions right with `margin-right: auto`. In the
-     * grid that auto margin makes the brand size to its content, so the row ran
-     * 21px past a 480px viewport. Stretch it to the grid area instead. */
-    margin-right: 0;
-    width: 100%;
+    margin-right: auto;
     min-width: 0;
-    overflow: hidden;
-    text-overflow: ellipsis;
-    white-space: nowrap;
+    font-family: var(--tb-font-display);
+    font-size: 1.05rem;
+    font-weight: 600;
+    color: var(--tb-ink);
+    text-decoration: none;
   }
-}
 
-/* A worked example or a data table is routinely wider than a phone. Without a
- * scroll container the table widens the page, and everything pinned to the
- * viewport — the masthead controls, the booklet button — ends up off the right
- * edge. This is why `render_page` wraps every table. */
-.table-scroll {
-  overflow-x: auto;
-  max-width: 100%;
-}
+  /* The section a page belongs to, beside the book's name in the same link. It is
+   * allowed to shrink and to lose its tail before it pushes the actions off the row. */
+  .masthead__section {
+    margin-left: 0.5rem;
+    font-size: 0.85rem;
+    font-weight: 400;
+    color: var(--tb-ink-soft);
+  }
 
-/* A scroll container is a keyboard stop, so it needs a focus ring. Without one a
- * reader tabs into the table and cannot tell that anything happened. */
-.table-scroll:focus-visible {
-  outline: 2px solid var(--tb-accent);
-  outline-offset: 2px;
-  /* Micro-radius: subtle corner on the scroll container's focus ring. */
-  border-radius: 3px;
-}
+  .masthead__actions {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+  }
 
-/* A display equation has the same problem and its own solution: MathML has no
- * line-breaking, so a wide one cannot wrap and widens the page instead. Measured
- * at 360px, the widest equation on a Learn page was 360px inside a 328px column,
- * which pushed the document 16px wide. Scroll it, as a table is scrolled. */
-.md-typeset math[display="block"] {
-  display: block;
-  max-width: 100%;
-  overflow-x: auto;
-  /* Room for the scrollbar so it does not sit on the equation. */
-  padding-bottom: 0.15rem;
-}
+  /* The way back to the collection. Quieter than the book title, because it is a
+   * way out of the book rather than part of it. */
+  .masthead__home {
+    color: var(--tb-ink-soft);
+    font-size: 0.9rem;
+    text-decoration: none;
+    white-space: nowrap;
+    padding: 0.25rem 0.4rem;
+    border-radius: var(--tb-radius);
+  }
+  .masthead__home:hover {
+    color: var(--tb-ink);
+    background: color-mix(in srgb, currentColor 10%, transparent);
+  }
+  .masthead__home:focus-visible {
+    outline: 2px solid var(--tb-accent);
+    outline-offset: 2px;
+  }
 
-/* --- previous / next ----------------------------------------------------------
- *
- * At the end of every page. A reader who has finished a section should not have to
- * go back to the contents to carry on, and on a phone the contents are a drawer: the
- * alternative is a scroll and a tap.
- *
- * Two large targets: side by side where there is room, stacked under `44rem` where a
- * two-column split would give each under the 44px a thumb needs. The destination's
- * title is the label and the eyebrow says what kind of move it is, so a reader knows
- * a link leaves the section before reading it.
- *
- * A page with no neighbour keeps a spacer, because a lone "next" that drifts left
- * reads as "previous".
- */
-.pager {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 0.75rem;
-  margin: 2.5rem 0 0.5rem;
-}
-.pager__link {
-  display: flex;
-  flex-direction: column;
-  gap: 0.15rem;
-  min-height: 44px;
-  padding: 0.7rem 0.9rem;
-  border: 1px solid var(--tb-rule);
-  border-radius: var(--tb-radius);
-  background: var(--tb-paper);
-  text-decoration: none;
-}
-.pager__link:hover {
-  border-color: var(--tb-accent);
-}
-.pager__link:focus-visible {
-  outline: 2px solid var(--tb-accent);
-  outline-offset: 2px;
-}
-.pager__link--next {
-  align-items: flex-end;
-  text-align: right;
-}
-.pager__eyebrow {
-  font-size: 0.8rem;
-  color: var(--tb-ink-soft);
-}
-.pager__title {
-  color: var(--tb-ink);
-  font-weight: 600;
-  line-height: 1.3;
-}
-@media (max-width: 44rem) {
+  /* The reader Settings trigger. Inert until the shared runtime reveals it; the
+   * markup and behaviour live in settings.css and assets/settings/settings.js, so
+   * this only gives the bare <button> the shell's chrome. */
+  /* 2.75rem = 44px, the floor this file states for a thumb; the trigger measured
+   * 36px before. Above 48rem the control also carries the word from its accessible
+   * name, so a reader who does not know the cog can still find it. */
+  .tb-settings__trigger {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.4rem;
+    width: 2.75rem;
+    height: 2.75rem;
+    padding: 0.4rem;
+    border: 0;
+    border-radius: var(--tb-radius);
+    background: transparent;
+    color: var(--tb-ink-soft);
+    cursor: pointer;
+  }
+
+  .tb-settings__trigger:hover {
+    color: var(--tb-ink);
+    background: color-mix(in srgb, var(--tb-ink) 8%, transparent);
+  }
+
+  .tb-settings__trigger:focus-visible {
+    outline: 2px solid var(--tb-accent);
+    outline-offset: 2px;
+  }
+
+  .tb-settings__trigger svg {
+    width: 1.35rem;
+    height: 1.35rem;
+    fill: currentColor;
+  }
+
+  /* The word is hidden where the row is tight, and shown where there is room. */
+  .tb-settings__label { display: none; }
+
+  @media (min-width: 48rem) {
+    .tb-settings__trigger {
+      width: auto;
+      padding: 0 0.9rem;
+    }
+    .tb-settings__label {
+      display: inline;
+      font-size: 0.9rem;
+    }
+  }
+
+  /* layout ------------------------------------------------------------------ */
+
+  .layout {
+    display: grid;
+    grid-template-columns: minmax(15rem, 18rem) minmax(0, 1fr);
+    gap: 2rem;
+    align-items: start;
+  }
+
+  /* The drawer that holds the sidebar.
+   *
+   * At 60rem and up it *is* the sidebar column: sticky, scrollable, no summary, always open.
+   * Below that the column collapses and this becomes a disclosure whose summary is the one
+   * control between a reader and 614px of navigation — measured on `/numerical-methods/` at
+   * 390px, where the page's own title sat at y = 798. */
+  .nav-drawer {
+    position: sticky;
+    top: calc(var(--tb-masthead-height) + 0.9rem);
+    max-height: calc(100vh - 5rem);
+    overflow: auto;
+    padding: 1.25rem 0;
+  }
+
+  /* No summary on a wide screen: the contents are a column, not something to open. */
+  .nav-drawer > summary { display: none; }
+
+  .nav-drawer__summary {
+    cursor: pointer;
+    padding: 0.7rem 0;
+    min-height: 2.75rem;
+    color: var(--tb-ink);
+    font-weight: 600;
+  }
+
+  /* The word that says what the disclosure is. Muted and one weight lighter, so it
+   * reads as the control's name rather than as the book's title. */
+  .nav-drawer__label {
+    margin-right: 0.5rem;
+    color: var(--tb-ink-soft);
+    font-weight: 400;
+  }
+
+  .nav-drawer__summary::marker { color: var(--tb-ink-lighter); }
+
+  /* It carries the page's own section, in the masthead's muted ink, because the one thing a
+   * reader 600px into a contents list wants is to know where they are. */
+  .nav-drawer__summary .masthead__section {
+    color: var(--tb-ink-soft);
+    font-weight: 400;
+  }
+
+  .sidebar {
+    padding: 0;
+    font-size: 0.85rem;
+  }
+
+  /* The filter field. It is an enhancement and says nothing until the script that
+   * runs it is loaded: the markup ships it `hidden` and the drawer script reveals it,
+   * so a reader with scripting off sees the tree they have always had and no control
+   * that would do nothing. Above the drawer breakpoint the whole tree is a column on
+   * screen, where narrowing it is not a question anybody asks. */
+  .nav-filter { display: none; }
+
+  .nav-filter__input {
+    box-sizing: border-box;
+    width: 100%;
+    min-height: 2.75rem;
+    padding: 0.5rem 0.7rem;
+    border: 1px solid var(--tb-rule);
+    border-radius: var(--tb-radius);
+    background: var(--tb-paper);
+    color: var(--tb-ink);
+    /* 16px, like the masthead's field: below it a phone zooms the page on focus and
+     * the field moves under the reader's thumb. */
+    font-size: 1rem;
+    font-family: inherit;
+  }
+
+  .nav-filter__input:focus-visible {
+    outline: 2px solid var(--tb-accent);
+    outline-offset: 2px;
+  }
+
+  .nav-filter__empty {
+    margin: 0.4rem 0 0;
+    color: var(--tb-ink-soft);
+    font-size: 0.85rem;
+  }
+
+  .content {
+    min-width: 0;
+    /* The content track is wider than the prose: a table, a display equation or a
+     * figure may use it, while the prose inside is capped at `--tb-measure`
+     * (`extra.css`). Capping this box instead clipped them all at the prose width.
+     * 46rem is `maths-figure`'s own maximum, so a figure is never squeezed. */
+    max-width: 46rem;
+    /* The booklet button floats over the bottom right of the page. Reservations: the
+     * button is 39px tall and sits 1.1rem off the bottom; `main` keeps 4rem of reading
+     * room below the pager; so 7rem leaves the last paragraph clear of it at every
+     * width. Measured before this: the button overlapped the closing paragraph. */
+    padding: 2rem 0 7rem;
+  }
+
+  /* navigation -------------------------------------------------------------- */
+
+  .nav__list {
+    list-style: none;
+    margin: 0;
+    padding-left: 0.85rem;
+  }
+
+  .sidebar > .nav__list { padding-left: 0; }
+
+  .nav__link {
+    display: block;
+    padding: 0.15rem 0;
+    color: var(--tb-ink-soft);
+    text-decoration: none;
+  }
+
+  .nav__link:hover { color: var(--tb-ink); }
+
+  .nav__link--current {
+    color: var(--tb-accent);
+    font-weight: 600;
+  }
+
+  .sidebar summary {
+    cursor: pointer;
+    padding: 0.3rem 0;
+    color: var(--tb-ink);
+    font-weight: 600;
+  }
+
+  .sidebar summary::marker { color: var(--tb-ink-lighter); }
+
+  /* search ------------------------------------------------------------------ */
+
+  /* The field, the panel and the result rows are one shared component
+   * (`assets/stylesheets/search.css`), because the landing page and every book page
+   * run the same runtime over the same index. This file owns only the masthead's
+   * placement of it. */
+
+  /* narrow ------------------------------------------------------------------ */
+
+  @media (max-width: 60rem) {
+    .layout { grid-template-columns: 1fr; }
+    .nav-drawer {
+      position: static;
+      max-height: none;
+      overflow: visible;
+      padding: 0.25rem 0 0;
+      border-bottom: 1px solid var(--tb-rule);
+    }
+    /* The control exists only where the collapse does. */
+    .nav-drawer > summary { display: list-item; }
+    .nav-drawer[open] > summary { padding-bottom: 0.3rem; }
+    .sidebar { padding-bottom: 0.75rem; }
+    /* The field is an enhancement: `hidden` in the markup, shown by the script. */
+    .nav-filter:not([hidden]) { display: block; padding: 0.1rem 0 0.6rem; }
+    /* **The drawer's own height.** A whole book is up to 25 chapters and 335 links; left
+     * in the page's flow it printed every one of them above the article, and the reader's
+     * position was a scroll away from the control they had just used. A bounded box with
+     * its own scroll keeps the drawer a drawer: it opens at the current chapter, that
+     * chapter is scrolled into view inside this box, and the article stays where it was.
+     * `contain` stops a swipe inside the box from carrying on into the page. */
+    .nav-drawer[open] > .sidebar {
+      max-height: min(60svh, 30rem);
+      overflow-y: auto;
+      overscroll-behavior: contain;
+    }
+    /* A drawer row is a thumb target: 44px, the floor this file already uses for the
+     * settings trigger and the pager. The rows measured 28px, and there are up to 335
+     * of them behind one control. */
+    .nav-drawer .nav__link {
+      display: flex;
+      align-items: center;
+      min-height: 2.75rem;
+    }
+    .nav-drawer .sidebar summary {
+      min-height: 2.75rem;
+      padding-block: 0.6rem;
+    }
+  }
+
+  /* Phone widths. Two rows, both full width: the book and section on the first, the
+   * search and the actions on the second. It used to be three flex items wrapping,
+   * which put the search under the actions and measured 146px; two named rows say
+   * what belongs with what and are shorter. The bar stays under 7rem (112px). */
+  @media (max-width: 48rem) {
+    /* The phone measure is the viewport less this padding. At 1rem a 390px screen
+     * carried a median of 39 characters on a full line in CI's Liberation Sans, one
+     * below the 40-48 target; 0.5rem gives the line back the 16px it needs (40-45 there,
+     * 46-47 on a wider font) without touching the desk measure. */
+    .wrap { padding: 0 0.5rem; }
+    :root { --tb-masthead-height: 6.6rem; }
+    .masthead__inner {
+      display: grid;
+      grid-template-columns: minmax(0, 1fr) auto;
+      grid-template-areas:
+        "brand brand"
+        "search actions";
+      align-items: center;
+      row-gap: 0.4rem;
+      padding-top: 0.4rem;
+      padding-bottom: 0.4rem;
+    }
+    .masthead__brand { grid-area: brand; }
+    .masthead__actions { grid-area: actions; }
+    .search { grid-area: search; min-width: 0; }
+    /* A focused input below 16px makes a phone zoom the whole page, which moves
+     * the field under the reader's thumb while they type. Measured before this
+     * rule: 13.6px at 390. */
+    .tb-search__input { font-size: 1rem; }
+    /* A long book title would otherwise push the actions off the row before the
+     * search has a chance to wrap. One clipped line: making the title and the section
+     * flex items let their nowrap min-content widen the phone's layout viewport to
+     * 495px (measured), so the row clips as a single line instead. */
+    .masthead__brand {
+      /* The desktop row pushes the actions right with `margin-right: auto`. In the
+       * grid that auto margin makes the brand size to its content, so the row ran
+       * 21px past a 480px viewport. Stretch it to the grid area instead. */
+      margin-right: 0;
+      width: 100%;
+      min-width: 0;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      white-space: nowrap;
+    }
+  }
+
+  /* A worked example or a data table is routinely wider than a phone. Without a
+   * scroll container the table widens the page, and everything pinned to the
+   * viewport — the masthead controls, the booklet button — ends up off the right
+   * edge. This is why `render_page` wraps every table. */
+  .table-scroll {
+    overflow-x: auto;
+    max-width: 100%;
+  }
+
+  /* A scroll container is a keyboard stop, so it needs a focus ring. Without one a
+   * reader tabs into the table and cannot tell that anything happened. */
+  .table-scroll:focus-visible {
+    outline: 2px solid var(--tb-accent);
+    outline-offset: 2px;
+    /* Micro-radius: subtle corner on the scroll container's focus ring. */
+    border-radius: 3px;
+  }
+
+  /* A display equation has the same problem and its own solution: MathML has no
+   * line-breaking, so a wide one cannot wrap and widens the page instead. Measured
+   * at 360px, the widest equation on a Learn page was 360px inside a 328px column,
+   * which pushed the document 16px wide. Scroll it, as a table is scrolled. */
+  .md-typeset math[display="block"] {
+    display: block;
+    max-width: 100%;
+    overflow-x: auto;
+    /* Room for the scrollbar so it does not sit on the equation. */
+    padding-bottom: 0.15rem;
+  }
+
+  /* --- previous / next ----------------------------------------------------------
+   *
+   * At the end of every page. A reader who has finished a section should not have to
+   * go back to the contents to carry on, and on a phone the contents are a drawer: the
+   * alternative is a scroll and a tap.
+   *
+   * Two large targets: side by side where there is room, stacked under `44rem` where a
+   * two-column split would give each under the 44px a thumb needs. The destination's
+   * title is the label and the eyebrow says what kind of move it is, so a reader knows
+   * a link leaves the section before reading it.
+   *
+   * A page with no neighbour keeps a spacer, because a lone "next" that drifts left
+   * reads as "previous".
+   */
   .pager {
-    grid-template-columns: 1fr;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 0.75rem;
+    margin: 2.5rem 0 0.5rem;
+  }
+  .pager__link {
+    display: flex;
+    flex-direction: column;
+    gap: 0.15rem;
+    min-height: 44px;
+    padding: 0.7rem 0.9rem;
+    border: 1px solid var(--tb-rule);
+    border-radius: var(--tb-radius);
+    background: var(--tb-paper);
+    text-decoration: none;
+  }
+  .pager__link:hover {
+    border-color: var(--tb-accent);
+  }
+  .pager__link:focus-visible {
+    outline: 2px solid var(--tb-accent);
+    outline-offset: 2px;
   }
   .pager__link--next {
-    align-items: flex-start;
-    text-align: left;
+    align-items: flex-end;
+    text-align: right;
   }
-}
+  .pager__eyebrow {
+    font-size: 0.8rem;
+    color: var(--tb-ink-soft);
+  }
+  .pager__title {
+    color: var(--tb-ink);
+    font-weight: 600;
+    line-height: 1.3;
+  }
+  @media (max-width: 44rem) {
+    .pager {
+      grid-template-columns: 1fr;
+    }
+    .pager__link--next {
+      align-items: flex-start;
+      text-align: left;
+    }
+  }
 
-/* Cross-document view transitions ------------------------------------------ */
+  /* Cross-document view transitions ------------------------------------------ */
 
-/* A navigation between two pages of a book crossfades, and the masthead and the
- * title move rather than being repainted. Cross-document transitions are not
- * Baseline: Chrome, Edge and Safari know them, Firefox does not, and a browser
- * without them navigates exactly as before. That makes this an enhancement and
- * never the way content arrives, so it may be opt-in only.
- *
- * The `no-preference` query is the opt-in, not a cosmetic guard: a reader who has
- * asked their system for less motion is never enrolled, so the navigation is
- * instant and no view-transition group is ever created. The names above are inert
- * outside a transition, which is why they need no query of their own.
- *
- * Measured with Playwright: navigating between two Learn pages with motion allowed
- * creates `::view-transition-group(site-masthead)` and, at a desk width where the
- * document has parsed before the first paint, `::view-transition-group(page-title)`;
- * with reduced motion the same click produces no transition object and both boxes
- * land at identical coordinates. At 390 the title can join after the reveal, because
- * the new document is still streaming when the browser takes its snapshot. */
-@media (prefers-reduced-motion: no-preference) {
-  @view-transition {
-    navigation: auto;
+  /* A navigation between two pages of a book crossfades, and the masthead and the
+   * title move rather than being repainted. Cross-document transitions are not
+   * Baseline: Chrome, Edge and Safari know them, Firefox does not, and a browser
+   * without them navigates exactly as before. That makes this an enhancement and
+   * never the way content arrives, so it may be opt-in only.
+   *
+   * The `no-preference` query is the opt-in, not a cosmetic guard: a reader who has
+   * asked their system for less motion is never enrolled, so the navigation is
+   * instant and no view-transition group is ever created. The names above are inert
+   * outside a transition, which is why they need no query of their own.
+   *
+   * Measured with Playwright: navigating between two Learn pages with motion allowed
+   * creates `::view-transition-group(site-masthead)` and, at a desk width where the
+   * document has parsed before the first paint, `::view-transition-group(page-title)`;
+   * with reduced motion the same click produces no transition object and both boxes
+   * land at identical coordinates. At 390 the title can join after the reveal, because
+   * the new document is still streaming when the browser takes its snapshot. */
+  @media (prefers-reduced-motion: no-preference) {
+    @view-transition {
+      navigation: auto;
+    }
   }
 }

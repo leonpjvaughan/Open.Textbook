@@ -44,7 +44,10 @@ def generated_paths() -> list[str]:
     edits", and the second is not a failure.
     """
     root = repo_root()
-    paths = [root / "assets" / "stylesheets" / "themes.css"]
+    paths = [
+        root / "assets" / "stylesheets" / "themes.css",
+        root / "assets" / "stylesheets" / "layouts.css",
+    ]
     for source_root, output_root in (
         (root / "assets" / "figures" / "src", root / "assets" / "figures"),
         (root / "tools" / "src", root / "tools" / "dist"),

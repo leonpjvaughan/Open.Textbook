@@ -64,7 +64,9 @@ def declarations(path: Path, css: str | None = None, prefix: str = "") -> list[t
                 depth -= 1
             end += 1
         body = css[start:end - 1]
-        if selector.startswith(("@media", "@supports")):
+        if selector.startswith("@layer"):
+            found.extend(declarations(path, body, prefix))
+        elif selector.startswith(("@media", "@supports")):
             found.extend(declarations(path, body, prefix + selector + " "))
         else:
             for declaration in body.split(";"):

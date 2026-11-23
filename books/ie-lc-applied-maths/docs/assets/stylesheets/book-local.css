@@ -5,3 +5,5 @@
  * for components that are genuinely specific to this book, and keep it
  * small — a book should be recognisable, not a different design system.
  */
+
+@layer book {}

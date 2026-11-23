@@ -8,435 +8,497 @@
  * See SHAPE.md ("Theme bundles").
  */
 
-:root {
-  --tb-measure: 62ch;
-  /* The one corner radius, and the same value the books declare in `extra.css`:
-   * the front door and a page inside a book are one collection, and a card corner
-   * that changed between them read as two designs. The portal does not load
-   * `extra.css`, so the value is declared here as well; `tests/test_measure.py`
-   * fails if the two ever disagree. */
-  --tb-radius: 8px;
-  /* Portal-only surfaces, derived from the bundle so they follow any palette. The
-   * inset surface is mixed from the ink token rather than a literal black, so it
-   * tracks the reader's bundle. A card does not use it: it is flat paper with a
-   * rule. The token is kept for the two insets that are not cards. */
-  --tb-card: color-mix(in srgb, var(--tb-ink) 4%, var(--tb-paper));
-}
-
-[data-md-color-scheme="slate"] {
-  --tb-card: color-mix(in srgb, var(--tb-ink) 7%, var(--tb-paper));
-}
-
-* { box-sizing: border-box; }
-
-html { -webkit-text-size-adjust: 100%; }
-
-body {
-  margin: 0;
-  background: var(--tb-paper);
-  color: var(--tb-ink);
-  font-family: var(--tb-font-body, system-ui, -apple-system, "Segoe UI", Roboto, sans-serif);
-  font-size: 17px;
-  line-height: 1.65;
-}
-
-.wrap {
-  max-width: 1040px;
-  margin: 0 auto;
-  padding: 0 20px;
-}
-
-/* --- masthead ------------------------------------------------------------- */
-
-.masthead {
-  border-bottom: 1px solid var(--tb-rule);
-  padding: 52px 0 30px;
-}
-
-.masthead__inner {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 20px;
-  align-items: flex-start;
-  justify-content: space-between;
-}
-
-.masthead__text { min-width: min(100%, 34ch); }
-
-.masthead__title {
-  margin: 0 0 8px;
-  font-family: var(--tb-font-display, Georgia, serif);
-  font-size: clamp(1.8rem, 1.3rem + 2vw, 2.6rem);
-  line-height: 1.15;
-  letter-spacing: -0.01em;
-  /* The landing page's heading, named so a move between two portal pages carries the
-   * title across. The name is deliberately not the books' `page-title`: the two
-   * headings are a hero and a section title, and morphing one into the other would
-   * resize a whole page's worth of type. Nothing is named on the masthead around it,
-   * because a name inside a name paints the child twice during the transition. */
-  view-transition-name: portal-title;
-}
-
-.masthead__lead {
-  margin: 0;
-  max-width: var(--tb-measure);
-  color: var(--tb-ink-soft);
-  font-size: 1.05rem;
-}
-
-/* --- reader settings ------------------------------------------------------ */
-
-/* The masthead's right-hand actions. One control: the same Settings trigger the
- * books carry, so there is no second pattern to keep in step. */
-.masthead__actions {
-  display: flex;
-  align-items: center;
-  gap: 8px;
-}
-
-/* `settings.js` reveals it; with scripting off it stays `hidden` in the markup,
- * so a reader never gets a control that does nothing. No colour is declared
- * here: every value is a bundle token, so it follows the reader's theme. */
-.tb-settings__trigger {
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  gap: 0.4rem;
-  width: 2.75rem;
-  height: 2.75rem;
-  padding: 0;
-  border: 1px solid var(--tb-rule);
-  border-radius: var(--tb-radius);
-  background: var(--tb-card);
-  color: var(--tb-ink-soft);
-  cursor: pointer;
-}
-
-.tb-settings__trigger:hover,
-.tb-settings__trigger:focus-visible {
-  border-color: var(--tb-accent);
-  color: var(--tb-accent);
-}
-
-.tb-settings__trigger svg {
-  width: 20px;
-  height: 20px;
-  fill: currentColor;
-}
-
-/* The word the trigger carries is the shared markup's; here it is sized and
- * hidden, because the portal's CSS is the one that paints this button. */
-.tb-settings__label { display: none; }
-
-@media (min-width: 48rem) {
-  .tb-settings__trigger { width: auto; padding: 0 0.9rem; }
-  .tb-settings__label { display: inline; font-size: 0.9rem; }
-}
-
-/* The skip link: the portal's first tab stop used to be the settings button, so
- * a keyboard reader had no way past the masthead. */
-.skip {
-  position: absolute;
-  left: -9999px;
-  /* The landing page styles links per component rather than globally, so the
-   * skip link would otherwise keep the user agent's blue: measured 2.02:1 on the
-   * dark bundles' paper. Off screen it still has to be readable when it lands. */
-  color: var(--tb-link);
-}
-
-.skip:focus,
-.skip:focus-visible {
-  position: static;
-  display: block;
-  padding: 0.5rem 1rem;
-  background: var(--tb-paper);
-  color: var(--tb-ink);
-  border-bottom: 1px solid var(--tb-rule);
-  outline: 2px solid var(--tb-accent);
-  outline-offset: -2px;
-}
-
-/* --- groups --------------------------------------------------------------- */
-
-.group { margin: 42px 0 0; }
-
-.group__title {
-  margin: 0 0 4px;
-  font-family: var(--tb-font-display, Georgia, serif);
-  font-size: 1.3rem;
-  font-weight: 600;
-  letter-spacing: -0.005em;
-}
-
-.group__note {
-  margin: 0 0 18px;
-  max-width: var(--tb-measure);
-  color: var(--tb-ink-soft);
-  font-size: 0.94rem;
-}
-
-.cards {
-  display: grid;
-  /* `auto-fit` lets two- and three-card groups fill the 1000px row cleanly,
-   * while `:only-child` below caps a lone card at 26rem so it stays card-sized
-   * instead of stretching across the full measure. Using `repeat(auto-fill,
-   * minmax(280px, 26rem))` instead would drop three-card groups to two columns
-   * at 1280px (3 x 416px > 1000px). */
-  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-  /* Wider than a bordered grid's gutter: with no box, the rule above a card and
-   * the space below the previous one are the whole separation. */
-  gap: 26px 24px;
-  padding-bottom: 10px;
-}
-
-.cards > .card:only-child {
-  max-width: 26rem;
-}
-
-/* --- card ----------------------------------------------------------------- */
-
-/* A card is a column of text under a hairline rule, not a box. The rule and the
- * whitespace between cards do the work a shadow and a tinted fill used to, and a
- * card carries the book's identity in one place: the mono kicker. Its accent is
- * the only coloured thing in the card, so fifteen accented rules do not compete
- * with the text they introduce. */
-.card {
-  /* A card keeps the book's identity in dark mode rather than darkening the
-   * light accent: both variations come from book.yaml. */
-  --card-accent-active: var(--card-accent, var(--tb-accent));
-
-  display: flex;
-  flex-direction: column;
-  gap: 4px;
-  padding: 18px 0 6px;
-  border-top: 1px solid var(--tb-rule);
-}
-
-[data-md-color-scheme="slate"] .card {
-  --card-accent-active: var(--card-accent-dark, var(--card-accent, var(--tb-accent)));
-}
-
-.card__title {
-  margin: 2px 0 0;
-  font-family: var(--tb-font-display, Georgia, serif);
-  font-size: 1.15rem;
-  line-height: 1.3;
-}
-
-.card__title a { color: inherit; text-decoration: none; }
-
-.card__title a:hover,
-.card__title a:focus-visible {
-  color: var(--tb-ink);
-  text-decoration: underline;
-  text-underline-offset: 3px;
-}
-
-/* The kicker: mono, uppercase, and the card's one accent. The book's subject and
- * level are the card's filing label, so they sit above the title rather than
- * under it as a second line of description. */
-.card__subject {
-  margin: 0;
-  font-family: var(--tb-font-mono, ui-monospace, monospace);
-  font-size: 0.72rem;
-  font-weight: 600;
-  letter-spacing: 0.09em;
-  text-transform: uppercase;
-  color: var(--card-accent-active);
-}
-
-.card__body {
-  margin: 4px 0 0;
-  color: var(--tb-ink-soft);
-  font-size: 0.95rem;
-}
-
-.card__facts {
-  margin: 8px 0 0;
-  padding: 0;
-  list-style: none;
-  display: flex;
-  flex-wrap: wrap;
-  gap: 4px 14px;
-  font-size: 0.85rem;
-  color: var(--tb-ink-soft);
-}
-
-.card__facts li { position: relative; }
-
-.card__facts li + li::before {
-  content: "·";
-  position: absolute;
-  left: -9px;
-  color: var(--tb-rule);
-}
-
-/* An edition is a link, not a chip. A pill's border made a control out of a word
- * that is already a destination; an underline says the same thing in the same
- * language as the rest of the page, and it costs no colour. The row blockifies
- * each link, so each carries WCAG 2.2's 24px target floor itself. */
-.card__profiles {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 2px 16px;
-  margin-top: 12px;
-}
-
-.card__profiles a {
-  display: inline-flex;
-  align-items: center;
-  min-height: 1.5rem;
-  color: var(--tb-link);
-  font-size: 0.9rem;
-  text-decoration: underline;
-  text-underline-offset: 3px;
-}
-
-.card__profiles a:hover,
-.card__profiles a:focus-visible { text-decoration-thickness: 2px; }
-
-/* The edition the card's title opens. Weight is the distinction: a filled pill
- * needed the accent twice, and the title already links here. */
-.card__profile--primary { font-weight: 600; }
-
-/* --- footer --------------------------------------------------------------- */
-
-.footer {
-  margin-top: 54px;
-  padding: 28px 0 48px;
-  border-top: 1px solid var(--tb-rule);
-  color: var(--tb-ink-soft);
-  font-size: 0.9rem;
-}
-
-.footer p { margin: 0 0 6px; max-width: var(--tb-measure); }
-
-.footer__links {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 6px 18px;
-  margin: 14px 0 10px;
-  font-size: 0.9rem;
-}
-
-/* A footer link is a target, not a word in a sentence: the flex row blockifies it,
- * so it has to carry the 24px floor itself. Measured before this: 23.5px. */
-.footer__links a {
-  display: inline-flex;
-  align-items: center;
-  min-height: 1.5rem;
-  color: var(--tb-link);
-}
-
-.footer__fine { font-size: 0.85rem; }
-
-/* --- prose pages (terms, acknowledgements) -------------------------------- */
-
-/* A legal page is read, not scanned, so it keeps a narrower measure than the
- * card grid and lets the headings do the navigating. Colour stays in the
- * tokens, as it does everywhere else. */
-.legal {
-  max-width: 78ch;
-  padding-top: 34px;
-  padding-bottom: 8px;
-}
-
-.legal h2 {
-  margin: 2.1rem 0 0.6rem;
-  font-family: var(--tb-font-display, Georgia, serif);
-  font-size: 1.25rem;
-  line-height: 1.25;
-}
-
-.legal h3 {
-  margin: 1.5rem 0 0.4rem;
-  font-size: 1.02rem;
-}
-
-.legal p,
-.legal li {
-  max-width: var(--tb-measure);
-}
-
-.legal ul {
-  margin: 0.4rem 0 1rem;
-  padding-left: 1.2rem;
-}
-
-.legal li { margin: 0.3rem 0; }
-
-.legal__updated {
-  margin: 0 0 1.2rem;
-  color: var(--tb-ink-soft);
-  font-size: 0.88rem;
-}
-
-.legal__short {
-  margin: 0 0 1.4rem;
-  padding: 0.9rem 1.1rem;
-  border: 1px solid var(--tb-rule);
-  border-left: 3px solid var(--tb-accent);
-  border-radius: var(--tb-radius);
-  background: var(--tb-card);
-}
-
-.legal__short p { margin: 0; }
-
-.masthead__eyebrow {
-  margin: 0 0 6px;
-  font-family: var(--tb-font-mono, ui-monospace, monospace);
-  font-size: 0.74rem;
-  font-weight: 600;
-  letter-spacing: 0.08em;
-  text-transform: uppercase;
-}
-
-.masthead__eyebrow a {
-  color: var(--tb-ink-soft);
-  text-decoration: none;
-}
-
-.masthead__eyebrow a:hover,
-.masthead__eyebrow a:focus-visible {
-  color: var(--tb-accent);
-  text-decoration: underline;
-}
-
-.ack__book { margin: 0 0 1.4rem; }
-
-.ack__label {
-  margin: 0.8rem 0 0.2rem;
-  color: var(--tb-ink-soft);
-  font-size: 0.82rem;
-  font-weight: 600;
-  letter-spacing: 0.04em;
-  text-transform: uppercase;
-}
-
-.ack__ref {
-  color: var(--tb-ink-soft);
-  font-family: var(--tb-font-mono, ui-monospace, monospace);
-  font-size: 0.78rem;
-}
-
-.ack__software li { margin: 0.4rem 0; }
-
-:focus-visible { outline: 2px solid var(--tb-accent); outline-offset: 2px; }
-
-@media (prefers-reduced-motion: reduce) {
-  * { transition: none !important; }
-}
-
-/* Cross-document view transitions ------------------------------------------ */
-
-/* The landing page opts in with the books, so a move from a book to the front door
- * (or between two portal pages) crossfades instead of flashing white. Both ends
- * must opt in, so this rule and the one in the books' shell come as a pair; a
- * browser that does not know cross-document transitions ignores it and follows the
- * link instantly. Reduced motion is the opt-out: no query match, no transition, no
- * view-transition group. */
-@media (prefers-reduced-motion: no-preference) {
-  @view-transition {
-    navigation: auto;
+@layer base {
+  :root {
+    --tb-measure: 62ch;
+    /* The one corner radius, and the same value the books declare in `extra.css`:
+     * the front door and a page inside a book are one collection, and a card corner
+     * that changed between them read as two designs. The portal does not load
+     * `extra.css`, so the value is declared here as well; `tests/test_measure.py`
+     * fails if the two ever disagree. */
+    --tb-radius: 8px;
+    /* Portal-only surfaces, derived from the bundle so they follow any palette. The
+     * inset surface is mixed from the ink token rather than a literal black, so it
+     * tracks the reader's bundle. A card does not use it: it is flat paper with a
+     * rule. The token is kept for the two insets that are not cards. */
+    --tb-card: color-mix(in srgb, var(--tb-ink) 4%, var(--tb-paper));
+  }
+
+  [data-md-color-scheme="slate"] {
+    --tb-card: color-mix(in srgb, var(--tb-ink) 7%, var(--tb-paper));
+  }
+
+  * { box-sizing: border-box; }
+
+  html { -webkit-text-size-adjust: 100%; }
+
+  body {
+    margin: 0;
+    background: var(--tb-paper);
+    color: var(--tb-ink);
+    font-family: var(--tb-font-body, system-ui, -apple-system, "Segoe UI", Roboto, sans-serif);
+    font-size: 17px;
+    line-height: 1.65;
+  }
+
+  .wrap {
+    max-width: 1040px;
+    margin: 0 auto;
+    padding: 0 20px;
+  }
+
+  /* --- masthead ------------------------------------------------------------- */
+
+  .masthead {
+    border-bottom: 1px solid var(--tb-rule);
+    padding: 52px 0 30px;
+  }
+
+  .masthead__title {
+    margin: 0 0 8px;
+    font-family: var(--tb-font-display, Georgia, serif);
+    font-size: clamp(1.8rem, 1.3rem + 2vw, 2.6rem);
+    line-height: 1.15;
+    letter-spacing: -0.01em;
+    /* The landing page's heading, named so a move between two portal pages carries the
+     * title across. The name is deliberately not the books' `page-title`: the two
+     * headings are a hero and a section title, and morphing one into the other would
+     * resize a whole page's worth of type. Nothing is named on the masthead around it,
+     * because a name inside a name paints the child twice during the transition. */
+    view-transition-name: portal-title;
+  }
+
+  .masthead__description {
+    margin: 0;
+    max-width: var(--tb-measure);
+    color: var(--tb-ink-soft);
+    font-size: 1.05rem;
+  }
+
+  /* No inner wrapper: the masthead's two halves are centred here, and a layout may
+   * lay them out as it likes. */
+  .masthead > .masthead__lead,
+  .masthead > .masthead__tools {
+    max-width: 1040px;
+    margin: 0 auto;
+    padding: 0 20px;
+  }
+
+  .masthead > .masthead__tools {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 8px 16px;
+    margin-top: 20px;
+  }
+
+  .masthead__tools > .masthead__search {
+    flex: 1 1 100%;
+    padding: 0;
+  }
+
+  .masthead__tools-label {
+    margin: 0;
+    color: var(--tb-ink-soft);
+    font-family: var(--tb-font-mono, ui-monospace, monospace);
+    font-size: 0.75rem;
+    letter-spacing: 0.09em;
+    text-transform: uppercase;
+  }
+
+  /* --- reader settings ------------------------------------------------------ */
+
+  /* `settings.js` reveals it; with scripting off it stays `hidden` in the markup,
+   * so a reader never gets a control that does nothing. No colour is declared
+   * here: every value is a bundle token, so it follows the reader's theme. */
+  .tb-settings__trigger {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.4rem;
+    width: 2.75rem;
+    height: 2.75rem;
+    padding: 0;
+    border: 1px solid var(--tb-rule);
+    border-radius: var(--tb-radius);
+    background: var(--tb-card);
+    color: var(--tb-ink-soft);
+    cursor: pointer;
+  }
+
+  .tb-settings__trigger:hover,
+  .tb-settings__trigger:focus-visible {
+    border-color: var(--tb-accent);
+    color: var(--tb-accent);
+  }
+
+  .tb-settings__trigger svg {
+    width: 20px;
+    height: 20px;
+    fill: currentColor;
+  }
+
+  /* The word the trigger carries is the shared markup's; here it is sized and
+   * hidden, because the portal's CSS is the one that paints this button. */
+  .tb-settings__label { display: none; }
+
+  @media (min-width: 48rem) {
+    .tb-settings__trigger { width: auto; padding: 0 0.9rem; }
+    .tb-settings__label { display: inline; font-size: 0.9rem; }
+  }
+
+  /* The skip link: the portal's first tab stop used to be the settings button, so
+   * a keyboard reader had no way past the masthead. */
+  .skip {
+    position: absolute;
+    left: -9999px;
+    /* The landing page styles links per component rather than globally, so the
+     * skip link would otherwise keep the user agent's blue: measured 2.02:1 on the
+     * dark bundles' paper. Off screen it still has to be readable when it lands. */
+    color: var(--tb-link);
+  }
+
+  .skip:focus,
+  .skip:focus-visible {
+    position: static;
+    display: block;
+    padding: 0.5rem 1rem;
+    background: var(--tb-paper);
+    color: var(--tb-ink);
+    border-bottom: 1px solid var(--tb-rule);
+    outline: 2px solid var(--tb-accent);
+    outline-offset: -2px;
+  }
+
+  /* --- bands ---------------------------------------------------------------- */
+
+  .band { margin: 42px 0 0; }
+
+  /* The head is tinted from the ink rather than painted a colour, so it follows the
+   * reader's bundle in both schemes and needs no contrast audit of its own. */
+  .band__head {
+    padding: 0.5rem 0.75rem;
+    background: color-mix(in srgb, var(--tb-ink) 2.5%, var(--tb-paper));
+  }
+
+  .band__title {
+    margin: 0;
+    font-family: var(--tb-font-display, Georgia, serif);
+    font-size: 1.3rem;
+    font-weight: 600;
+    letter-spacing: -0.005em;
+  }
+
+  .band__note {
+    margin: 0;
+    max-width: var(--tb-measure);
+    color: var(--tb-ink-soft);
+    font-size: 0.94rem;
+  }
+
+  .band__region {
+    margin: 0;
+    color: var(--tb-ink-soft);
+    font-family: var(--tb-font-mono, ui-monospace, monospace);
+    font-size: 0.75rem;
+    letter-spacing: 0.07em;
+    text-transform: uppercase;
+  }
+
+  .band__grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(min(100%, 280px), 1fr));
+    gap: 26px 24px;
+    padding: 18px 0 10px;
+  }
+
+  /* --- card ----------------------------------------------------------------- */
+
+  /* A card is a column of text under a hairline rule. Its one coloured mark is the
+   * book's own accent, on the swatch and the kicker. */
+  .card {
+    /* A card keeps the book's identity in dark mode rather than darkening the
+     * light accent: both variations come from book.yaml. */
+    --card-accent-active: var(--card-accent, var(--tb-accent));
+
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+    padding: 18px 0 6px;
+    border-top: 1px solid var(--tb-rule);
+  }
+
+  [data-md-color-scheme="slate"] .card {
+    --card-accent-active: var(--card-accent-dark, var(--card-accent, var(--tb-accent)));
+  }
+
+  .card__meta {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 4px 9px;
+    margin: 0;
+    color: var(--tb-ink-soft);
+    font-family: var(--tb-font-mono, ui-monospace, monospace);
+    font-size: 0.75rem;
+    letter-spacing: 0.07em;
+  }
+
+  .card__swatch {
+    display: inline-block;
+    flex: none;
+    width: 0.5rem;
+    height: 0.5rem;
+    background: var(--card-accent-active);
+  }
+
+  .card__kicker {
+    font-weight: 600;
+    text-transform: uppercase;
+    color: var(--card-accent-active);
+  }
+
+  .card__title {
+    margin: 2px 0 0;
+    font-family: var(--tb-font-display, Georgia, serif);
+    font-size: 1.15rem;
+    line-height: 1.3;
+  }
+
+  .card__title a { color: inherit; text-decoration: none; }
+
+  .card__title a:hover,
+  .card__title a:focus-visible {
+    color: var(--tb-ink);
+    text-decoration: underline;
+    text-underline-offset: 3px;
+  }
+
+  .card__body {
+    margin: 4px 0 0;
+    color: var(--tb-ink-soft);
+    font-size: 0.95rem;
+  }
+
+  /* An edition is a link, not a chip. The row blockifies each link, so each carries
+   * WCAG 2.2's 24px target floor itself. */
+  .card__profiles {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 2px 16px;
+    margin-top: 12px;
+  }
+
+  .card__profiles a {
+    display: inline-flex;
+    align-items: center;
+    min-height: 1.5rem;
+    color: var(--tb-ink-soft);
+    font-size: 0.9rem;
+    text-decoration: underline;
+    text-underline-offset: 3px;
+  }
+
+  .card__profiles a:hover,
+  .card__profiles a:focus-visible { text-decoration-thickness: 2px; }
+
+  /* The edition the card's title opens, in the book's accent like its kicker. */
+  .card__profiles .card__profile--primary {
+    font-weight: 600;
+    color: var(--card-accent-active);
+  }
+
+  /* --- companion ------------------------------------------------------------ */
+
+  /* A note that sits beside the books rather than one of them, so its surface is
+   * hatched and its text is soft: it reads as a margin note, not a fourth book. */
+  .companion {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+    padding: 18px;
+    border-top: 1px solid var(--tb-rule);
+    color: var(--tb-ink-soft);
+    background-image: repeating-linear-gradient(
+      -45deg,
+      transparent 0,
+      transparent 10px,
+      color-mix(in srgb, var(--tb-ink) 3%, transparent) 10px,
+      color-mix(in srgb, var(--tb-ink) 3%, transparent) 11px
+    );
+  }
+
+  .companion__kicker {
+    margin: 0;
+    font-family: var(--tb-font-mono, ui-monospace, monospace);
+    font-size: 0.75rem;
+    letter-spacing: 0.07em;
+    text-transform: uppercase;
+  }
+
+  .companion__title {
+    margin: 2px 0 0;
+    font-family: var(--tb-font-display, Georgia, serif);
+    font-size: 1.1rem;
+    line-height: 1.3;
+  }
+
+  .companion__body {
+    margin: 4px 0 0;
+    font-size: 0.95rem;
+  }
+
+  .companion__link {
+    display: inline-flex;
+    align-items: center;
+    min-height: 1.5rem;
+    color: var(--tb-ink-soft);
+    text-decoration: underline;
+    text-underline-offset: 3px;
+  }
+
+  .companion__link:hover,
+  .companion__link:focus-visible { color: var(--tb-accent); }
+
+  /* --- footer --------------------------------------------------------------- */
+
+  .footer {
+    margin-top: 54px;
+    padding: 28px 0 48px;
+    border-top: 1px solid var(--tb-rule);
+    color: var(--tb-ink-soft);
+    font-size: 0.9rem;
+  }
+
+  .footer p { margin: 0 0 6px; max-width: var(--tb-measure); }
+
+  .footer__links {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 6px 18px;
+    margin: 14px 0 10px;
+    font-size: 0.9rem;
+  }
+
+  /* A footer link is a target, not a word in a sentence: the flex row blockifies it,
+   * so it has to carry the 24px floor itself. Measured before this: 23.5px. */
+  .footer__links a {
+    display: inline-flex;
+    align-items: center;
+    min-height: 1.5rem;
+    color: var(--tb-link);
+  }
+
+  .footer__fine { font-size: 0.85rem; }
+
+  /* --- prose pages (terms, acknowledgements) -------------------------------- */
+
+  /* A legal page is read, not scanned, so it keeps a narrower measure than the
+   * card grid and lets the headings do the navigating. Colour stays in the
+   * tokens, as it does everywhere else. */
+  .legal {
+    max-width: 78ch;
+    padding-top: 34px;
+    padding-bottom: 8px;
+  }
+
+  .legal h2 {
+    margin: 2.1rem 0 0.6rem;
+    font-family: var(--tb-font-display, Georgia, serif);
+    font-size: 1.25rem;
+    line-height: 1.25;
+  }
+
+  .legal h3 {
+    margin: 1.5rem 0 0.4rem;
+    font-size: 1.02rem;
+  }
+
+  .legal p,
+  .legal li {
+    max-width: var(--tb-measure);
+  }
+
+  .legal ul {
+    margin: 0.4rem 0 1rem;
+    padding-left: 1.2rem;
+  }
+
+  .legal li { margin: 0.3rem 0; }
+
+  .legal__updated {
+    margin: 0 0 1.2rem;
+    color: var(--tb-ink-soft);
+    font-size: 0.88rem;
+  }
+
+  .legal__short {
+    margin: 0 0 1.4rem;
+    padding: 0.9rem 1.1rem;
+    border: 1px solid var(--tb-rule);
+    border-left: 3px solid var(--tb-accent);
+    border-radius: var(--tb-radius);
+    background: var(--tb-card);
+  }
+
+  .legal__short p { margin: 0; }
+
+  .masthead__eyebrow {
+    margin: 0 0 6px;
+    font-family: var(--tb-font-mono, ui-monospace, monospace);
+    font-size: 0.74rem;
+    font-weight: 600;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+  }
+
+  .masthead__eyebrow a {
+    color: var(--tb-ink-soft);
+    text-decoration: none;
+  }
+
+  .masthead__eyebrow a:hover,
+  .masthead__eyebrow a:focus-visible {
+    color: var(--tb-accent);
+    text-decoration: underline;
+  }
+
+  .ack__book { margin: 0 0 1.4rem; }
+
+  .ack__label {
+    margin: 0.8rem 0 0.2rem;
+    color: var(--tb-ink-soft);
+    font-size: 0.82rem;
+    font-weight: 600;
+    letter-spacing: 0.04em;
+    text-transform: uppercase;
+  }
+
+  .ack__ref {
+    color: var(--tb-ink-soft);
+    font-family: var(--tb-font-mono, ui-monospace, monospace);
+    font-size: 0.78rem;
+  }
+
+  .ack__software li { margin: 0.4rem 0; }
+
+  :focus-visible { outline: 2px solid var(--tb-accent); outline-offset: 2px; }
+
+  @media (prefers-reduced-motion: reduce) {
+    * { transition: none !important; }
+  }
+
+  /* Cross-document view transitions ------------------------------------------ */
+
+  /* The landing page opts in with the books, so a move from a book to the front door
+   * (or between two portal pages) crossfades instead of flashing white. Both ends
+   * must opt in, so this rule and the one in the books' shell come as a pair; a
+   * browser that does not know cross-document transitions ignores it and follows the
+   * link instantly. Reduced motion is the opt-out: no query match, no transition, no
+   * view-transition group. */
+  @media (prefers-reduced-motion: no-preference) {
+    @view-transition {
+      navigation: auto;
+    }
   }
 }
