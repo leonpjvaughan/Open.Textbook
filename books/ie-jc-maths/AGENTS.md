@@ -30,7 +30,8 @@ the reader continues.
   resolve it on the Review.
 - **`sympy` only.** The book declares `oracles: [sympy]`, so a `structured` record or a
   `sigfigs` check declares the `units` oracle at bank level, not in `book.yaml`.
-- **Eight to twelve problems per bank**, longer than a Leaving Certificate set.
+- **Eight to twelve problems in a practice bank**, longer than a Leaving Certificate set. A
+  Review bank carries the page's mixed set and may be longer.
 
 ## Figures
 
