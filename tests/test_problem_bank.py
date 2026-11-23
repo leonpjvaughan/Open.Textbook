@@ -396,3 +396,39 @@ def test_the_display_maths_check_catches_a_folded_answer():
     )
     assert not display_maths_shares_a_paragraph("The rule is $a = b$ in a sentence.")
     assert display_maths_shares_a_paragraph("Two runs:\n\n$$a = b$$\n\nand $$c = d$$ here.")
+
+
+def test_a_structured_record_with_prose_does_not_print_its_points_too():
+    """One answer per question: the authored solution, not its step list as well.
+
+    `render_problem` printed every `points[].text` as bullets and then `answer_text`
+    after **Answer:** when a record carried both, so the same method reached the
+    reader twice. The points stay the verifier's model answer; the prose is what a
+    reader gets.
+    """
+    from textbook.verify.render import render_problem
+
+    record = {
+        "id": "both",
+        "statement": "Describe how to measure the period of a pendulum.",
+        "answer_text": "Time several swings, then divide by the number of swings.",
+        "check": {
+            "kind": "structured",
+            "requires": ["time-swings", "divide"],
+            "concepts": ["period"],
+            "points": [
+                {"id": "time-swings", "text": "Time several swings.", "concepts": ["period"]},
+                {"id": "divide", "text": "Divide by the number of swings."},
+            ],
+        },
+    }
+    rendered = render_problem(record, 1)
+    assert rendered.count("Time several swings") == 1
+    assert rendered.count("number of swings") == 1
+    assert "**Answer:**" in rendered
+
+    del record["answer_text"]
+    bullets = render_problem(record, 1)
+    assert "- Time several swings." in bullets
+    assert "- Divide by the number of swings." in bullets
+    assert "**Answer:**" not in bullets

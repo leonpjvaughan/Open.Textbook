@@ -110,7 +110,7 @@ def render_problem(problem: dict, number: int) -> str:
     if steps:
         lines.append("")
         lines.extend(_step_line(step) for step in steps)
-    elif check.get("kind") == "structured" and check.get("points"):
+    elif check.get("kind") == "structured" and check.get("points") and not answer:
         lines.append("")
         lines.extend(f"- {point['text']}" for point in check["points"])
     if answer:
