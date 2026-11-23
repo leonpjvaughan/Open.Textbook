@@ -54,9 +54,16 @@ Two things decide whether you get an answer: **the start**, and **the number of
 solutions**. Newton is fast near a solution and unreliable away from one. A
 bracketing method is the reverse.
 
-The tangent step is the method in one line. The figure takes one step at a time
-and draws the residual; the start decides whether the sequence lands, and how
-fast.
+Bisection is that reverse made exact. It keeps two ends whose signs differ,
+looks at the middle, and throws away the half whose ends share a sign. The
+figure does one halving at a time.
+
+:::figure bisection-bracket
+
+Five halvings leave a thirty-second of the width. Say why the answer cannot
+leave the bracket, and what that certainty costs.
+
+The start decides whether the sequence lands, and how fast.
 
 :::figure newton-lab
 
@@ -113,6 +120,15 @@ below is the same list sorted by name.
 | [Continuation, homotopy](../techniques/#continuation) | Solves a sequence from a known case | Several solutions, toggle points | The path has a fold and you step in $x$ |
 | [Levenberg–Marquardt](../techniques/#levenberg-marquardt) | Damped least squares | Overdetermined or near-singular systems | A square, well-conditioned system |
 | [Trust region](../techniques/#trust-region) | Limits the step to where the model is trusted | The linear model is poor far from the answer | Cheap, well-scaled problems |
+
+The secant is the derivative-free version of the tangent step: it takes the line
+through two guesses rather than the line at one. The figure takes one secant at
+a time.
+
+:::figure secant-step
+
+The line needs no slope from the model. Say what the two residuals give it, and
+why its crossing can land on either side of the root.
 
 ## Systems that live here
 
