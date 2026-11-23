@@ -403,11 +403,53 @@ def test_a_bad_region_or_companion_is_refused(tmp_path, qualification, message):
         books.validate_collection({"qualifications": [qualification]}, tmp_path)
 
 
+COMPANION = {"kicker": "k", "title": "t", "body": "b", "link": "l", "href": "#band-x"}
+
+
+def with_book(tmp_path, qualification="X", page="techniques/index.md"):
+    book = tmp_path / books.BOOKS_DIR / "x-book"
+    (book / "docs" / page).parent.mkdir(parents=True, exist_ok=True)
+    (book / "docs" / page).write_text("# Page\n")
+    (book / "book.yaml").write_text(f"id: x-book\ntitle: X\nqualification: {qualification}\n")
+    return tmp_path
+
+
 def test_a_well_formed_region_and_companion_pass(tmp_path):
-    companion = {"kicker": "k", "title": "t", "body": "b", "link": "l", "href": "#band-x"}
     books.validate_collection(
-        {"qualifications": [{"id": "X", "region": "Here", "companion": companion}]}, tmp_path
+        {"qualifications": [{"id": "X", "region": "Here", "companion": COMPANION}]},
+        with_book(tmp_path),
     )
+
+
+def test_a_companion_may_name_a_page_a_book_builds(tmp_path):
+    companion = {**COMPANION, "href": "x-book/techniques/"}
+    books.validate_collection({"qualifications": [{"id": "X", "companion": companion}]}, with_book(tmp_path))
+
+
+@pytest.mark.parametrize(
+    "qualifications, message",
+    [
+        ([{"id": "A level"}, {"id": "A-level"}], "share band-a-level"),
+        ([{"id": "X"}, {"id": "!!"}], "empty band slug"),
+        ([{"id": "X"}, {"id": ""}], "string `id`"),
+        ([{"id": "X", "title": 3}], "title of 'X' must be a non-empty string"),
+        ([{"id": "X", "note": ["a"]}], "note of 'X' must be a non-empty string"),
+        ([{"id": "X", "companion": {**COMPANION, "title": 7}}], "missing \\['title'\\]"),
+        ([{"id": "X", "companion": {**COMPANION, "href": "#band-y"}}, {"id": "Y"}], "not a band with at least one book"),
+        ([{"id": "X", "companion": {**COMPANION, "href": "#band-nowhere"}}], "not a band"),
+        ([{"id": "X", "companion": {**COMPANION, "href": "x-book/missing/"}}], "has no page"),
+        ([{"id": "X", "companion": {**COMPANION, "href": "other/techniques/"}}], "is not `#band-"),
+        ([{"id": "X", "companion": {**COMPANION, "href": "https://example.org/"}}], "is not `#band-"),
+    ],
+)
+def test_a_bad_band_or_companion_target_is_refused(tmp_path, qualifications, message):
+    with pytest.raises(ValueError, match=message):
+        books.validate_collection({"qualifications": qualifications}, with_book(tmp_path))
+
+
+def test_a_band_slug_may_not_collide_with_an_undeclared_book_qualification(tmp_path):
+    with pytest.raises(ValueError, match="share band-x-y"):
+        books.validate_collection({"qualifications": [{"id": "X y"}]}, with_book(tmp_path, "X-y"))
 
 
 def test_site_urls_are_unique():
