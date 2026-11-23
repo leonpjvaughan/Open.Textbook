@@ -1,0 +1,3 @@
+@layer layout {
+  :root[data-style="fx"] .card { font-size: 0rem; }
+}

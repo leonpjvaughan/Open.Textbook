@@ -145,6 +145,10 @@ done
 # Print media render on a built Learn page (asserts figures survive print and fit).
 uv run python -m pytest tests/test_print.py -m browser -q
 
+# The layout seam: every page complete without its layout, and no layout overflowing under
+# the widest bundle font.
+uv run python -m pytest tests/test_layouts_browser.py -m browser -q
+
 step "no maths rendering errors"
 if grep -rl 'math-error' site --include='*.html'; then
   echo "KaTeX failed to render at least one expression" >&2

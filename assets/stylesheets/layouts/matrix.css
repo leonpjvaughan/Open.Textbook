@@ -27,14 +27,14 @@
   :root[data-style="matrix"] .masthead > .masthead__tools {
     display: grid;
     flex: 1 1 22rem;
-    grid-template-columns: minmax(0, 1fr) auto;
+    grid-template-columns: minmax(0, 1fr) auto 0;
     align-content: start;
     align-items: center;
     column-gap: 12px;
     min-width: 0;
     max-width: none;
     margin: -1px 0 0 -1px;
-    padding: 0 12px 0 0;
+    padding: 0;
     border-top: 1px solid var(--tb-rule);
     border-left: 1px solid var(--tb-rule);
   }
@@ -51,7 +51,7 @@
   :root[data-style="matrix"] .masthead__tools > .masthead__search {
     grid-column: 1 / -1;
     max-width: none;
-    margin: 0 -12px 0 0;
+    margin: 0;
     padding: 16px 20px 18px;
     border-top: 1px solid var(--tb-rule);
   }

@@ -378,7 +378,7 @@
     }
     pip.document.documentElement.style.colorScheme = document.documentElement.style.colorScheme;
     for (const attr of document.documentElement.attributes) {
-      if (attr.name.startsWith("data-md-")) {
+      if (attr.name.startsWith("data-md-") || attr.name === "data-style" || attr.name === "data-theme") {
         pip.document.documentElement.setAttribute(attr.name, attr.value);
       }
     }

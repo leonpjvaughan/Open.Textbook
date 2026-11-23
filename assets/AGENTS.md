@@ -187,13 +187,19 @@ The contract, enforced by `tests/test_layout_contract.py` with a real CSS parser
 - The whole file is one `@layer layout { ... }` block, and every selector starts with
   `:root[data-style="<id>"]`. No nesting, no `!important`.
 - Only allowlisted properties: display, grid, flex, box model, type size and shape, lists,
-  `color`, borders. Custom properties are named `--<id>-*`.
-- No literal colours. `color` takes only the text tokens the palette audit checks on paper;
-  `background` is `transparent`; borders use `--tb-rule`, `--tb-accent` or
-  `--card-accent-active`; `font-family` is `--tb-font-*`; every `var()` names a known token.
-- `display: none` only on a `[data-optional]` subject. No px in widths or query conditions.
-- No `@import`, `@font-face`, `@keyframes`, `@property`, `@page`, `prefers-color-scheme`, or
-  any selector naming `.tb-settings*`, `.tb-search*` or a colour-scheme attribute.
+  `color`, borders (not `border-image*`). Custom properties are named `--<id>-*`, must be
+  declared in the same file, and are resolved before any value is checked.
+- No literal colours and no `url()`, gradient or image. `color` takes only the text tokens the
+  palette audit checks on paper; `background` is `transparent`; borders and `column-rule`
+  use `--tb-rule`, `--tb-accent` or `--card-accent-active`; `font-family` is `--tb-font-*`;
+  every `var()` names a known token.
+- `display: none` only where every subject compound has `[data-optional]` and no `:has()`,
+  `:is()`, `:where()` or `:not()`. No hiding by size: `width`, `max-width`, `height`,
+  `max-height` and `font-size` are never zero, and a negative margin is a literal of at most
+  2px. No px in widths or query conditions.
+- No `@import`, `@font-face`, `@keyframes`, `@property`, `@page`, `prefers-color-scheme`, any
+  selector token containing `tb-settings`, `tb-search` or a colour-scheme attribute, a class
+  or id matched by attribute, or a partial attribute match.
 - Body text of at least 17px, line height of at least 1.5 and a 45 to 75ch measure are
   measured in a browser, not by the parser.
 
