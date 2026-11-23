@@ -383,3 +383,109 @@ def test_the_404_carries_both_metas():
     html = portal.not_found()
     assert html.count('<meta name="theme-color"') == 2
     assert '<meta name="color-scheme" content="light dark">' in html
+
+
+def two_layouts() -> dict:
+    return cfg.from_parts(".", layouts=["matrix", "wide"], default_layout="matrix")
+
+
+def test_with_one_layout_the_snippet_never_mentions_a_layout():
+    snippet = shared_snippet()
+    for word in ("textbooks:style", "data-style", "setStyle", "STYLE"):
+        assert word not in snippet, word
+
+
+def test_with_two_layouts_the_snippet_reads_the_style_key_and_falls_back():
+    snippet = prefs.snippet(two_layouts())
+    assert f'"{prefs.STYLE_KEY}"' in snippet
+    assert 'var STYLES = ["matrix","wide"];' in snippet
+    assert 'var DEFAULT_STYLE = "matrix";' in snippet
+    assert "data-style" in snippet
+    for field in ("styleKey", "setStyle", "currentStyle"):
+        assert field in snippet, field
+
+
+STYLE_SCENARIO = r"""
+const fs = require("fs");
+const [snippetPath, stored] = process.argv.slice(2);
+const attributes = {};
+const store = new Map();
+if (stored) store.set("textbooks:style", stored);
+const document = {
+  documentElement: {
+    setAttribute(key, value) { attributes[key] = value; },
+    getAttribute(key) { return key in attributes ? attributes[key] : null; },
+  },
+  body: null,
+  readyState: "complete",
+  addEventListener() {},
+  querySelectorAll() { return []; },
+};
+const window = {
+  localStorage: {
+    getItem: (key) => (store.has(key) ? store.get(key) : null),
+    setItem: (key, value) => store.set(key, value),
+  },
+  matchMedia: () => ({ matches: false, addEventListener() {} }),
+};
+const code = fs.readFileSync(snippetPath, "utf8").replace(/^\s*<script>\s*/, "").replace(/<\/script>\s*$/, "");
+new Function("window", "document", "getComputedStyle", code)(window, document, () => ({ getPropertyValue: () => "" }));
+const before = attributes["data-style"];
+window.textbookPrefs.setStyle("wide");
+process.stdout.write(JSON.stringify({ before, after: attributes["data-style"], saved: store.get("textbooks:style") }));
+"""
+
+
+def run_style(tmp_path, stored: str) -> dict:
+    import json
+    import shutil
+    import subprocess
+
+    node = shutil.which("node")
+    if node is None:
+        pytest.skip("node is not on PATH; the preference script cannot be evaluated")
+    path = tmp_path / "snippet.js"
+    path.write_text(prefs.snippet(two_layouts()), encoding="utf-8")
+    scenario = tmp_path / "style.js"
+    scenario.write_text(STYLE_SCENARIO, encoding="utf-8")
+    done = subprocess.run(
+        [node, str(scenario), str(path), stored], capture_output=True, text=True, check=False
+    )
+    assert done.returncode == 0, done.stderr
+    return json.loads(done.stdout)
+
+
+def test_a_stored_layout_is_applied_before_paint(tmp_path):
+    assert run_style(tmp_path, "wide")["before"] == "wide"
+
+
+def test_an_unknown_stored_layout_falls_back_to_the_default(tmp_path):
+    assert run_style(tmp_path, "cards")["before"] == "matrix"
+
+
+def test_choosing_a_layout_applies_and_stores_it(tmp_path):
+    result = run_style(tmp_path, "")
+    assert result["before"] == "matrix"
+    assert result["after"] == "wide"
+    assert result["saved"] == "wide"
+
+
+def test_the_landing_page_carries_no_layout_script_with_one_layout():
+    html = portal.render()
+    assert "textbooks:style" not in html
+
+
+def test_the_landing_page_carries_the_layout_script_with_two(monkeypatch):
+    import textbook.book as books_module
+
+    original = books_module.load_collection
+
+    def doubled(root=None):
+        data = dict(original(root))
+        data["layouts"] = [*data["layouts"], {"id": "wide", "title": "Wide", "description": "Wide."}]
+        return data
+
+    monkeypatch.setattr(books_module, "load_collection", doubled)
+    html = portal.render()
+    assert "textbooks:style" in html
+    assert 'var STYLES = ["matrix","wide"];' in html

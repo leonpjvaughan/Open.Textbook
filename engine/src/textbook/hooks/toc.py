@@ -6,6 +6,7 @@ links. Fence-aware, like the other markers.
 
 from __future__ import annotations
 
+import html
 import re
 
 import yaml
@@ -27,7 +28,7 @@ def on_page_markdown(markdown, page, config, files):
     book = cfg.book(config)
     included = included_tiers(config)
     above = book.chapters_above(tier_filter(config))
-    lines = []
+    items = []
     for chapter in data.get("chapters", []):
         if str(chapter["id"]) in above:
             continue
@@ -36,9 +37,12 @@ def on_page_markdown(markdown, page, config, files):
             for s in chapter.get("sections", [])
             if not s.get("tier") or s["tier"] in included
         )
-        suffix = " _Higher only sections_" if higher else ""
-        lines.append(
-            f"{chapter['id']}. [{chapter['title']}](Chapter {chapter['id']}/index.md){suffix}"
+        note = (
+            ' <span class="chapter-list__note">Higher only sections</span>' if higher else ""
         )
-    block = "\n".join(lines)
-    return transform_outside_fences(markdown, lambda text: MARKER.sub(block, text))
+        title = html.escape(f"{chapter['title']}")
+        items.append(
+            f'<li value="{chapter["id"]}"><a href="Chapter {chapter["id"]}/index.md">{title}</a>{note}</li>'
+        )
+    block = '<ol class="chapter-list">\n' + "\n".join(items) + "\n</ol>"
+    return transform_outside_fences(markdown, lambda text: MARKER.sub(lambda _: block, text))
