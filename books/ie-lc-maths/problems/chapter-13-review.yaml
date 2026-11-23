@@ -1,0 +1,343 @@
+# Mixed practice for the Chapter 13 Review.
+#
+# Twelve questions, one record each, in the order they appear on the Review page. The
+# page carried no answer block, so every answer here is written from scratch and
+# re-derived rather than copied.
+#
+# Question 1 needs two answers, so it is an `all` of a distance and a midpoint. Question
+# 2 finds the slope and then checks that the equation it wrote really passes through both
+# points. Question 3 checks both halves of "perpendicular": the slopes multiply to $-1$
+# and the line passes through the given point. Question 4 proves the expanded and the
+# centre-radius form are the same equation. Question 5 reads the centre and the radius
+# from the expanded form. Question 6 proves tangency twice: the point lies on the circle
+# and the distance from the centre to the line equals the radius. Question 7 solves the
+# intersection. Question 8 mixes the section formula with a one-quarter step along the
+# segment. Question 9 finds the slope and the angle. Question 10 checks the slope, the
+# length and the midpoint of a horizontal segment, and states what kind of line it is.
+# Questions 11 and 12 are the two method questions, so each carries only a `structured`
+# check: they ask which route is quicker, and a route has no numeric answer.
+#
+# Honest limit: this proves the arithmetic of each stated method. It does not prove that
+# the reader chose the quicker route; the two method questions can only show that the
+# model answer contains its declared steps and concepts, in order.
+chapter: 13
+symbols:
+  x: {real: true}
+  y: {real: true}
+problems:
+  - id: r1-distance-midpoint
+    section: '13.1'
+    tier: F
+    refs: ['2.2']
+    statement: 'Find the distance and the midpoint of $(-2, 5)$ and $(6, 1)$.'
+    answer_label: 'The distance and the midpoint'
+    check:
+      kind: all
+      checks:
+        - kind: evaluate
+          expression: 'sqrt((6 - (-2)) ** 2 + (1 - 5) ** 2)'
+          answer: '4 * sqrt(5)'
+        - {kind: evaluate, expression: '1/2 * Matrix([-2 + 6, 5 + 1])', answer: 'Matrix([2, 3])'}
+    answer_text: |-
+      The differences are $6 - (-2) = 8$ across and $1 - 5 = -4$ up, so
+
+      $$d = \sqrt{8^2 + (-4)^2} = \sqrt{64 + 16} = \sqrt{80} = 4\sqrt{5} \approx 8.94$$
+
+      The midpoint averages the coordinates:
+
+      $$M = \left(\frac{-2 + 6}{2}, \frac{5 + 1}{2}\right) = (2, 3)$$
+
+      The distance is about $8.9$ units and the midpoint is $(2, 3)$.
+
+  - id: r2-slope-and-equation
+    section: '13.2'
+    tier: F
+    refs: ['2.2']
+    statement: 'Find the slope and the equation of the line through $(1, -3)$ and $(5, 5)$.'
+    answer_label: 'The slope and the equation'
+    check:
+      kind: all
+      checks:
+        - {kind: evaluate, expression: '(5 - (-3)) / (5 - 1)', answer: '2'}
+        - {kind: evaluate, expression: '2 * 1 - 5 - (-3)', answer: '0'}
+        - {kind: evaluate, expression: '2 * 5 - 5 - 5', answer: '0'}
+    answer_text: |-
+      The slope is
+
+      $$m = \frac{y_2 - y_1}{x_2 - x_1} = \frac{5 - (-3)}{5 - 1} = \frac{8}{4} = 2$$
+
+      Use the point $(1, -3)$ in $y - y_1 = m(x - x_1)$:
+
+      $$y + 3 = 2(x - 1) \quad\Rightarrow\quad y = 2x - 5$$
+
+      Both points satisfy $y = 2x - 5$: $2(1) - 5 = -3$ and $2(5) - 5 = 5$. Checking both
+      is what proves the equation is right.
+
+  - id: r3-perpendicular-line
+    section: '13.3'
+    tier: F
+    refs: ['2.2']
+    statement: 'Find the line through $(0, 1)$ perpendicular to $y = -2x + 5$.'
+    answer_label: 'The equation of the perpendicular line'
+    check:
+      kind: all
+      checks:
+        - {kind: evaluate, expression: '-1 / (-2)', answer: '1/2'}
+        - {kind: evaluate, expression: '-2 * (1/2)', answer: '-1'}
+        - {kind: evaluate, expression: '1/2 * 0 + 1 - 1', answer: '0'}
+    answer_text: |-
+      Perpendicular slopes multiply to $-1$, so the new slope is the negative reciprocal of
+      $-2$:
+
+      $$m = -\frac{1}{-2} = \frac{1}{2}$$
+
+      The line passes through $(0, 1)$, which is the $y$-intercept, so
+
+      $$y = \frac{1}{2}x + 1$$
+
+      Check: $-2 \times \dfrac{1}{2} = -1$, so the two lines really are perpendicular.
+
+  - id: r4-circle-equation
+    section: '13.4'
+    tier: O
+    refs: ['2.2']
+    statement: >-
+      Write the equation of the circle with centre $(-2, 3)$ and radius $6$, then expand
+      it.
+    answer_label: 'The equation, in both forms'
+    check:
+      kind: evaluate
+      expression: '(x + 2) ** 2 + (y - 3) ** 2 - 36'
+      answer: 'x ** 2 + y ** 2 + 4 * x - 6 * y - 23'
+    answer_text: |-
+      The centre-radius form is
+
+      $$(x + 2)^2 + (y - 3)^2 = 36$$
+
+      Expand the brackets:
+      $x^2 + 4x + 4 + y^2 - 6y + 9 = 36$, so
+
+      $$x^2 + y^2 + 4x - 6y - 23 = 0$$
+
+      The sign inside each bracket is the opposite of the centre's coordinate: a centre at
+      $-2$ gives $(x + 2)^2$.
+
+  - id: r5-centre-and-radius
+    section: '13.4'
+    tier: O
+    refs: ['2.2']
+    statement: 'Find the centre and the radius of $x^2 + y^2 + 8x - 2y - 8 = 0$.'
+    answer_label: 'The centre and the radius'
+    check:
+      kind: all
+      checks:
+        - {kind: evaluate, expression: '-8 / 2', answer: '-4'}
+        - {kind: evaluate, expression: '2 / 2', answer: '1'}
+        - {kind: evaluate, expression: 'sqrt((-4) ** 2 + 1 ** 2 + 8)', answer: '5'}
+    answer_text: |-
+      Complete the square in each variable. The centre is
+      $\left(-\dfrac{8}{2}, -\dfrac{-2}{2}\right) = (-4, 1)$, and the radius comes from
+
+      $$r^2 = (-4)^2 + 1^2 - (-8) = 16 + 1 + 8 = 25$$
+
+      so $r = 5$. Check by expanding back:
+      $(x + 4)^2 + (y - 1)^2 = x^2 + y^2 + 8x - 2y + 17$, and $17 - 25 = -8$, which is the
+      constant in the question.
+
+  - id: r6-tangent
+    section: '13.5'
+    tier: O
+    refs: ['2.2']
+    statement: 'Find the tangent to $(x - 1)^2 + (y + 2)^2 = 25$ at $(4, 2)$.'
+    answer_label: 'The equation of the tangent'
+    check:
+      kind: all
+      checks:
+        - {kind: evaluate, expression: '(4 - 1) ** 2 + (2 + 2) ** 2', answer: '25'}
+        - {kind: evaluate, expression: 'abs(3 * 1 + 4 * (-2) - 20) / sqrt(3 ** 2 + 4 ** 2)', answer: '5'}
+        - {kind: evaluate, expression: '3 * 4 + 4 * 2', answer: '20'}
+    answer_text: |-
+      The centre is $(1, -2)$ and the point $(4, 2)$ is on the circle, because
+      $(4 - 1)^2 + (2 + 2)^2 = 9 + 16 = 25$. The radius to that point has slope
+
+      $$m_r = \frac{2 - (-2)}{4 - 1} = \frac{4}{3}$$
+
+      The tangent is perpendicular to the radius, so its slope is $-\dfrac{3}{4}$:
+
+      $$y - 2 = -\frac{3}{4}(x - 4) \quad\Rightarrow\quad 3x + 4y = 20$$
+
+      Check: the distance from the centre $(1, -2)$ to $3x + 4y - 20 = 0$ is
+      $\dfrac{|3 - 8 - 20|}{5} = 5$, which is the radius. So the line touches the circle
+      once.
+
+  - id: r7-line-meets-circle
+    section: '13.6'
+    tier: H
+    refs: ['2.2']
+    statement: 'Find the two points where $y = x + 1$ meets $x^2 + y^2 = 25$.'
+    answer_label: 'The two points of intersection'
+    check:
+      kind: all
+      checks:
+        - kind: solve
+          equation: 'x ** 2 + (x + 1) ** 2 = 25'
+          variable: 'x'
+          answer: ['3', '-4']
+        - {kind: evaluate, expression: '3 + 1', answer: '4'}
+        - {kind: evaluate, expression: '-4 + 1', answer: '-3'}
+    answer_text: |-
+      Substitute $y = x + 1$ into the circle:
+
+      $$x^2 + (x + 1)^2 = 25 \quad\Rightarrow\quad 2x^2 + 2x + 1 = 25
+      \quad\Rightarrow\quad x^2 + x - 12 = 0$$
+
+      Factorise: $(x - 3)(x + 4) = 0$, so $x = 3$ or $x = -4$. The line then gives
+      $y = 4$ and $y = -3$. The points are $(3, 4)$ and $(-4, -3)$, and both satisfy
+      $x^2 + y^2 = 25$.
+
+  - id: r8-section-formula
+    section: '13.7'
+    tier: H
+    refs: ['2.2']
+    statement: 'Divide the segment from $(1, 1)$ to $(9, 5)$ in the ratio $1 : 3$.'
+    answer_label: 'The point that divides the segment'
+    check:
+      kind: evaluate
+      expression: 'Matrix([1, 1]) + Matrix([9 - 1, 5 - 1]) / 4'
+      answer: 'Matrix([3, 2])'
+    answer_text: |-
+      A ratio of $1 : 3$ means the point is $1$ part of $4$ along the segment from
+      $(1, 1)$. The whole step is $(8, 4)$, so one quarter of it is $(2, 1)$, and
+
+      $$P = (1, 1) + (2, 1) = (3, 2)$$
+
+      The section formula gives the same point:
+      $\left(\dfrac{3 \times 1 + 1 \times 9}{4}, \dfrac{3 \times 1 + 1 \times 5}{4}\right)
+      = (3, 2)$. Check the ratio: $P$ is $1$ quarter of the way, which is $1 : 3$.
+
+  - id: r9-ramp-slope-angle
+    section: '13.2'
+    tier: O
+    refs: ['2.2', '2.3']
+    statement: >-
+      A ramp rises $3$ m over a horizontal run of $4$ m. Find its slope and the angle it
+      makes with the ground.
+    answer_label: 'The slope and the angle'
+    check:
+      kind: all
+      checks:
+        - {kind: evaluate, expression: '3 / 4', answer: '3/4'}
+        - {kind: approx, value: 'atan(3 / 4) * 180 / pi', target: '36.87', tolerance: '0.01'}
+    answer_text: |-
+      The slope is the rise over the run:
+
+      $$m = \frac{3}{4} = 0.75$$
+
+      The angle with the ground is found from the tangent, because the rise is opposite the
+      angle and the run is adjacent to it:
+
+      $$\tan\theta = 0.75 \quad\Rightarrow\quad \theta = 36.87^\circ$$
+
+      So the ramp rises $3$ m for every $4$ m across, at about $36.9^\circ$ to the ground.
+
+  - id: r10-horizontal-segment
+    section: '13.1'
+    tier: F
+    refs: ['2.2']
+    statement: >-
+      The points $(2, 7)$ and $(10, 7)$ are joined. Decide what kind of line this is, and
+      find its slope, its length and its midpoint.
+    answer_label: 'The kind of line, the slope, the length and the midpoint'
+    check:
+      kind: all
+      checks:
+        - {kind: evaluate, expression: '(7 - 7) / (10 - 2)', answer: '0'}
+        - {kind: evaluate, expression: 'sqrt((10 - 2) ** 2 + (7 - 7) ** 2)', answer: '8'}
+        - {kind: evaluate, expression: '1/2 * Matrix([2 + 10, 7 + 7])', answer: 'Matrix([6, 7])'}
+        - kind: structured
+          requires: [name-line, reason]
+          concepts: [horizontal, zero-slope]
+          points:
+            - id: name-line
+              text: >-
+                The line is horizontal, parallel to the x-axis. Both points have the same
+                y-coordinate, so the line never rises.
+              concepts: [horizontal]
+            - id: reason
+              text: >-
+                A slope of zero says the same thing: the rise is 0 while the run is 8, and
+                0 divided by 8 is 0. A vertical line would have an undefined slope
+                instead.
+              concepts: [zero-slope]
+    answer_text: |-
+      Both points have $y = 7$, so the line is **horizontal**, parallel to the $x$-axis.
+      Its slope is
+
+      $$m = \frac{7 - 7}{10 - 2} = \frac{0}{8} = 0$$
+
+      Its length is the run, because the rise is zero:
+      $d = \sqrt{8^2 + 0^2} = 8$ units. Its midpoint is
+      $\left(\dfrac{2 + 10}{2}, \dfrac{7 + 7}{2}\right) = (6, 7)$.
+
+  - id: r11-method-tangent-test
+    section: '13.5'
+    tier: O
+    refs: ['2.2']
+    statement: >-
+      A line and a circle are given. You only need to know whether they touch. Which is
+      quicker: finding the distance from the centre to the line, or solving the
+      simultaneous equations? Say why.
+    answer_label: 'The quicker test, and the reason'
+    check:
+      kind: structured
+      requires: [choose-test, give-reason]
+      concepts: [distance-formula, radius, discriminant]
+      points:
+        - id: choose-test
+          text: >-
+            The distance test is quicker. Write the line as $ax + by + c = 0$ and put the
+            centre $(h, k)$ into
+            $d = \dfrac{|ah + bk + c|}{\sqrt{a^2 + b^2}}$. Then compare $d$ with the
+            radius: equal means the line touches the circle, less means it cuts it in two
+            points, and more means it misses.
+          concepts: [distance-formula, radius]
+        - id: give-reason
+          text: >-
+            One substitution and one comparison give the answer. Solving the simultaneous
+            equations means substituting the line into the circle, expanding a quadratic,
+            and then using the discriminant to count the roots, which is two more steps for
+            the same information.
+          concepts: [discriminant]
+
+  - id: r12-method-diameter
+    section: '13.4'
+    tier: O
+    refs: ['2.2']
+    statement: >-
+      You are given the two endpoints of a diameter. Do you need the distance formula to
+      find the circle, or is there a shorter route? Explain.
+    answer_label: 'The shorter route, and why it works'
+    check:
+      kind: structured
+      requires: [say-no, name-route, give-reason]
+      concepts: [midpoint, radius, diameter]
+      points:
+        - id: say-no
+          text: >-
+            No. The distance formula is not needed.
+          concepts: [diameter]
+        - id: name-route
+          text: >-
+            The centre is the midpoint of the diameter, and the radius is half the length
+            of the diameter. Find the midpoint by averaging the two endpoints, then halve
+            the distance between them, or take the distance from the centre to either
+            endpoint.
+          concepts: [midpoint, radius]
+        - id: give-reason
+          text: >-
+            A diameter passes through the centre, so its midpoint is the centre. The
+            distance from that centre to either endpoint is the radius by definition, which
+            is why the full distance formula can be skipped. For endpoints $(1, 1)$ and
+            $(7, 5)$ the centre is $(4, 3)$ and the radius is
+            $\sqrt{3^2 + 2^2} = \sqrt{13}$.
+          concepts: [diameter, radius]

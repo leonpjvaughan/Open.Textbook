@@ -67,33 +67,9 @@ before you calculate. Some questions want a length, some want an angle, and some
 proof. Two of them can be answered with a dot product or with an older method, and
 comparing the two routes is the point.
 
-1. Write the displacement from $A(2, 5)$ to $B(8, 13)$ as a column vector, and find its
-   length.
-2. A boat has displacements $3\mathbf{i} + 2\mathbf{j}$ km, $-\mathbf{i} + 5\mathbf{j}$ km
-   and $2\mathbf{i} - 4\mathbf{j}$ km. Find the single displacement from the start and the
-   distance from the start.
-3. Work out $\begin{pmatrix} 4 \\ -1 \end{pmatrix} \cdot \begin{pmatrix} 2 \\ 5 \end{pmatrix}$
-   and say whether the angle between the vectors is acute, right or obtuse.
-4. Find the angle between $\begin{pmatrix} 1 \\ 0 \end{pmatrix}$ and
-   $\begin{pmatrix} 1 \\ \sqrt{3} \end{pmatrix}$.
-5. Find $k$ so that $\begin{pmatrix} k \\ 4 \end{pmatrix}$ is perpendicular to
-   $\begin{pmatrix} 2 \\ -3 \end{pmatrix}$.
+:::problems chapter-18-review
 
-<!-- tier:h -->
-
-6. Find the length of $\begin{pmatrix} 2 \\ -3 \\ 6 \end{pmatrix}$ and the dot product
-   $\begin{pmatrix} 2 \\ -3 \\ 6 \end{pmatrix} \cdot \begin{pmatrix} 1 \\ 1 \\ 1 \end{pmatrix}$.
-7. The points are $A(1, 2)$, $B(5, 4)$, $C(6, 8)$ and $D(2, 6)$. Show that $ABCD$ is a
-   parallelogram.
-8. Show that $A(0, 1)$, $B(2, 5)$ and $C(4, 9)$ lie on one straight line.
-
-<!-- /tier:h -->
-
-9. A triangle has sides $6$ cm, $8$ cm and $10$ cm. Show that it has a right angle, using
-   vectors, and check the result with Pythagoras' theorem.
-10. A triangle has sides $7$ cm and $9$ cm with an included angle of $60^\circ$. Find the
-    third side with the cosine rule, then find the angle between the other two sides with
-    the dot product and check that the two methods agree.
+:::answers chapter-18-review
 
 ## What you can now do
 

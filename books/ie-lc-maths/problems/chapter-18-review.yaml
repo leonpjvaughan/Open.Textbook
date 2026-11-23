@@ -1,0 +1,404 @@
+# Mixed practice for the Chapter 18 Review.
+#
+# Ten questions, one record each, in the order they appear on the Review page. A vector is
+# a column, so a `vector` check compares matrices component by component: `subtract` gives
+# a displacement, `add` gives a resultant, `norm` gives a length and `dot` gives a scalar.
+#
+# Question 3 asks for the dot product and then for a judgement on the sign, so it carries
+# a `structured` component. Question 4 turns a dot product into an angle with `approx`,
+# because $60^\circ$ is exact only through an inverse cosine. Question 5 is `solve`.
+# Questions 6, 7 and 8 are Higher only: a three-dimensional length and dot product, a
+# parallelogram proved by showing one pair of opposite sides equal, and three collinear
+# points proved by showing two consecutive displacements equal. Questions 9 and 10 are the
+# two-route questions, so each carries a check on both routes and a `structured` component
+# that states they agree.
+#
+# Honest limit: this proves the arithmetic of each route. For the two-route questions it
+# proves that both methods reach the same number, which is the check the question asks
+# for; it does not prove that the reader explained why they must agree. A `structured`
+# check proves only that the model answer contains its declared steps and concepts, in
+# order.
+chapter: 18
+symbols:
+  k: {real: true}
+problems:
+  - id: r1-displacement
+    section: '18.1'
+    tier: O
+    refs: ['2.2']
+    statement: >-
+      Write the displacement from $A(2, 5)$ to $B(8, 13)$ as a column vector, and find its
+      length.
+    answer_label: 'The displacement and its length'
+    check:
+      kind: all
+      checks:
+        - kind: vector
+          op: subtract
+          args: ['Matrix([8, 13])', 'Matrix([2, 5])']
+          answer: 'Matrix([6, 8])'
+        - kind: vector
+          op: norm
+          args: ['Matrix([6, 8])']
+          answer: '10'
+    answer_text: |-
+      Subtract the coordinates of $A$ from those of $B$:
+
+      $$\vec{AB} = \begin{pmatrix} 8 - 2 \\ 13 - 5 \end{pmatrix}
+      = \begin{pmatrix} 6 \\ 8 \end{pmatrix}$$
+
+      Its length is
+
+      $$\left|\vec{AB}\right| = \sqrt{6^2 + 8^2} = \sqrt{36 + 64} = \sqrt{100} = 10$$
+
+      The displacement is $\begin{pmatrix} 6 \\ 8 \end{pmatrix}$ and it is $10$ units long.
+
+  - id: r2-resultant
+    section: '18.2'
+    tier: O
+    refs: ['2.2']
+    statement: >-
+      A boat has displacements $3\mathbf{i} + 2\mathbf{j}$ km, $-\mathbf{i} + 5\mathbf{j}$ km
+      and $2\mathbf{i} - 4\mathbf{j}$ km. Find the single displacement from the start and the
+      distance from the start.
+    answer_label: 'The resultant displacement and the distance'
+    check:
+      kind: all
+      checks:
+        - kind: vector
+          op: add
+          args: ['Matrix([3, 2])', 'Matrix([-1, 5])', 'Matrix([2, -4])']
+          answer: 'Matrix([4, 3])'
+        - kind: vector
+          op: norm
+          args: ['Matrix([4, 3])']
+          answer: '5'
+    answer_text: |-
+      Add the $\mathbf{i}$ components and the $\mathbf{j}$ components separately:
+
+      $$(3 - 1 + 2)\mathbf{i} + (2 + 5 - 4)\mathbf{j} = 4\mathbf{i} + 3\mathbf{j}$$
+
+      So the single displacement is $\begin{pmatrix} 4 \\ 3 \end{pmatrix}$ km. The distance
+      from the start is its length:
+
+      $$\sqrt{4^2 + 3^2} = \sqrt{25} = 5 \text{ km}$$
+
+      The distance is $5$ km, even though the boat travelled
+      $3.61 + 5.10 + 4.47 \approx 13.18$ km along its route.
+
+  - id: r3-dot-product-sign
+    section: '18.3'
+    tier: O
+    refs: ['2.2']
+    statement: >-
+      Work out $\begin{pmatrix} 4 \\ -1 \end{pmatrix} \cdot \begin{pmatrix} 2 \\ 5 \end{pmatrix}$
+      and say whether the angle between the vectors is acute, right or obtuse.
+    answer_label: 'The dot product and the kind of angle'
+    check:
+      kind: all
+      checks:
+        - kind: vector
+          op: dot
+          args: ['Matrix([4, -1])', 'Matrix([2, 5])']
+          answer: '3'
+        - kind: structured
+          requires: [compute-dot, read-sign]
+          concepts: [dot-product, acute-angle]
+          points:
+            - id: compute-dot
+              text: >-
+                Multiply matching components and add: 4 times 2 plus -1 times 5, which is
+                8 - 5 = 3.
+              concepts: [dot-product]
+            - id: read-sign
+              text: >-
+                The dot product is positive, so the angle between the vectors is acute. A
+                zero dot product would mean a right angle and a negative one an obtuse
+                angle.
+              concepts: [acute-angle]
+    answer_text: |-
+      $$\begin{pmatrix} 4 \\ -1 \end{pmatrix} \cdot \begin{pmatrix} 2 \\ 5 \end{pmatrix}
+      = 4 \times 2 + (-1) \times 5 = 8 - 5 = 3$$
+
+      The answer is a single number, not a vector, and it is positive. Since
+      $\mathbf{a} \cdot \mathbf{b} = |\mathbf{a}||\mathbf{b}|\cos\theta$ and both lengths
+      are positive, a positive dot product means $\cos\theta > 0$, so the angle is
+      **acute**.
+
+  - id: r4-angle-between
+    section: '18.4'
+    tier: O
+    refs: ['2.2']
+    statement: >-
+      Find the angle between $\begin{pmatrix} 1 \\ 0 \end{pmatrix}$ and
+      $\begin{pmatrix} 1 \\ \sqrt{3} \end{pmatrix}$.
+    answer_label: 'The angle between the vectors'
+    check:
+      kind: all
+      checks:
+        - {kind: evaluate, expression: '1 / (1 * sqrt(1 + 3))', answer: '1/2'}
+        - {kind: approx, value: 'acos(1/2) * 180 / pi', target: '60', tolerance: '0.001'}
+    answer_text: |-
+      Use the dot product form of the cosine:
+
+      $$\cos\theta = \frac{\mathbf{a} \cdot \mathbf{b}}{|\mathbf{a}||\mathbf{b}|}
+      = \frac{1 \times 1 + 0 \times \sqrt{3}}{1 \times 2} = \frac{1}{2}$$
+
+      The first vector has length $1$, and the second has length
+      $\sqrt{1^2 + 3} = 2$. So $\cos\theta = \dfrac{1}{2}$ and
+
+      $$\theta = 60^\circ$$
+
+      The second vector points $60^\circ$ above the $x$-axis, which is what
+      $\tan\theta = \sqrt{3}$ says as well.
+
+  - id: r5-find-k
+    section: '18.4'
+    tier: O
+    refs: ['2.2']
+    statement: >-
+      Find $k$ so that $\begin{pmatrix} k \\ 4 \end{pmatrix}$ is perpendicular to
+      $\begin{pmatrix} 2 \\ -3 \end{pmatrix}$.
+    answer_label: 'The value of k'
+    check:
+      kind: solve
+      equation: '2 * k - 12 = 0'
+      variable: 'k'
+      answer: ['6']
+    answer_text: |-
+      Perpendicular vectors have a dot product of zero:
+
+      $$\begin{pmatrix} k \\ 4 \end{pmatrix} \cdot \begin{pmatrix} 2 \\ -3 \end{pmatrix}
+      = 2k - 12 = 0$$
+
+      So $k = 6$. Check: $\begin{pmatrix} 6 \\ 4 \end{pmatrix} \cdot
+      \begin{pmatrix} 2 \\ -3 \end{pmatrix} = 12 - 12 = 0$, so the vectors are
+      perpendicular.
+
+  - id: r6-three-dimensions
+    section: '18.5'
+    tier: H
+    refs: ['2.2']
+    statement: >-
+      Find the length of $\begin{pmatrix} 2 \\ -3 \\ 6 \end{pmatrix}$ and the dot product
+      $\begin{pmatrix} 2 \\ -3 \\ 6 \end{pmatrix} \cdot \begin{pmatrix} 1 \\ 1 \\ 1 \end{pmatrix}$.
+    answer_label: 'The length and the dot product'
+    check:
+      kind: all
+      checks:
+        - kind: vector
+          op: norm
+          args: ['Matrix([2, -3, 6])']
+          answer: '7'
+        - kind: vector
+          op: dot
+          args: ['Matrix([2, -3, 6])', 'Matrix([1, 1, 1])']
+          answer: '5'
+    answer_text: |-
+      The length uses all three components:
+
+      $$\left|\mathbf{a}\right| = \sqrt{2^2 + (-3)^2 + 6^2} = \sqrt{4 + 9 + 36}
+      = \sqrt{49} = 7$$
+
+      The dot product multiplies matching components and adds, in three dimensions as in
+      two:
+
+      $$2 \times 1 + (-3) \times 1 + 6 \times 1 = 2 - 3 + 6 = 5$$
+
+      So the length is $7$ and the dot product is $5$.
+
+  - id: r7-parallelogram-proof
+    section: '18.6'
+    tier: H
+    refs: ['2.2']
+    statement: >-
+      The points are $A(1, 2)$, $B(5, 4)$, $C(6, 8)$ and $D(2, 6)$. Show that $ABCD$ is a
+      parallelogram.
+    answer_label: 'The pair of equal opposite sides'
+    check:
+      kind: all
+      checks:
+        - kind: vector
+          op: subtract
+          args: ['Matrix([5, 4])', 'Matrix([1, 2])']
+          answer: 'Matrix([4, 2])'
+        - kind: vector
+          op: subtract
+          args: ['Matrix([6, 8])', 'Matrix([2, 6])']
+          answer: 'Matrix([4, 2])'
+        - kind: structured
+          requires: [find-vectors, conclude]
+          concepts: [equal-vectors, parallelogram]
+          points:
+            - id: find-vectors
+              text: >-
+                Find two opposite sides as vectors: $\vec{AB}$ is B minus A, which is
+                (4, 2), and $\vec{DC}$ is C minus D, which is also (4, 2).
+              concepts: [equal-vectors]
+            - id: conclude
+              text: >-
+                The two vectors are equal, so the sides AB and DC are equal in length and
+                parallel in direction. One pair of opposite sides equal and parallel makes
+                ABCD a parallelogram.
+              concepts: [parallelogram]
+    answer_text: |-
+      Find one pair of opposite sides as vectors:
+
+      $$\vec{AB} = \begin{pmatrix} 5 - 1 \\ 4 - 2 \end{pmatrix} = \begin{pmatrix} 4 \\ 2 \end{pmatrix}$$
+
+      $$\vec{DC} = \begin{pmatrix} 6 - 2 \\ 8 - 6 \end{pmatrix} = \begin{pmatrix} 4 \\ 2 \end{pmatrix}$$
+
+      The two vectors are equal: same length, same direction. So $[AB]$ and $[DC]$ are equal
+      and parallel, and a quadrilateral with one pair of opposite sides equal and parallel
+      is a parallelogram. That is Proposition 4.
+
+  - id: r8-collinear
+    section: '18.6'
+    tier: H
+    refs: ['2.2']
+    statement: 'Show that $A(0, 1)$, $B(2, 5)$ and $C(4, 9)$ lie on one straight line.'
+    answer_label: 'The two equal displacements'
+    check:
+      kind: all
+      checks:
+        - kind: vector
+          op: subtract
+          args: ['Matrix([2, 5])', 'Matrix([0, 1])']
+          answer: 'Matrix([2, 4])'
+        - kind: vector
+          op: subtract
+          args: ['Matrix([4, 9])', 'Matrix([2, 5])']
+          answer: 'Matrix([2, 4])'
+        - kind: structured
+          requires: [compare-vectors, conclude]
+          concepts: [parallel-vectors, common-point, collinear]
+          points:
+            - id: compare-vectors
+              text: >-
+                $\vec{AB}$ is (2, 4) and $\vec{BC}$ is (2, 4), so the two displacements are
+                equal.
+              concepts: [parallel-vectors]
+            - id: conclude
+              text: >-
+                Equal displacements mean the two steps are in the same direction, and they
+                share the point B. So all three points lie on one line through B, which is
+                what collinear means.
+              concepts: [common-point, collinear]
+    answer_text: |-
+      Two consecutive displacements:
+
+      $$\vec{AB} = \begin{pmatrix} 2 - 0 \\ 5 - 1 \end{pmatrix} = \begin{pmatrix} 2 \\ 4 \end{pmatrix},
+      \qquad
+      \vec{BC} = \begin{pmatrix} 4 - 2 \\ 9 - 5 \end{pmatrix} = \begin{pmatrix} 2 \\ 4 \end{pmatrix}$$
+
+      The two are equal, so the steps $AB$ and $BC$ are in the same direction, and they meet
+      at $B$. A point reached by two steps in the same direction, one after the other, is on
+      one straight line with the two before it. So $A$, $B$ and $C$ are collinear.
+
+  - id: r9-right-angle-vectors
+    section: '18.4'
+    tier: O
+    refs: ['2.2']
+    statement: >-
+      A triangle has sides $6$ cm, $8$ cm and $10$ cm. Show that it has a right angle, using
+      vectors, and check the result with Pythagoras' theorem.
+    answer_label: 'The zero dot product and the Pythagoras check'
+    check:
+      kind: all
+      checks:
+        - kind: vector
+          op: dot
+          args: ['Matrix([6, 0])', 'Matrix([0, 8])']
+          answer: '0'
+        - {kind: compare, relation: '=', lhs: '6 ** 2 + 8 ** 2', rhs: '10 ** 2'}
+        - kind: structured
+          requires: [zero-dot, name-angle]
+          concepts: [perpendicular, right-angle]
+          points:
+            - id: zero-dot
+              text: >-
+                Place the two shorter sides along the axes from the right-angle corner:
+                (6, 0) and (0, 8). Their dot product is 6 times 0 plus 0 times 8, which is
+                zero.
+              concepts: [perpendicular]
+            - id: name-angle
+              text: >-
+                A zero dot product means the two sides are perpendicular, so the angle
+                between the 6 cm and 8 cm sides is a right angle. Pythagoras agrees, because
+                36 + 64 = 100.
+              concepts: [right-angle]
+    answer_text: |-
+      Put the two shorter sides along the axes from the corner between them, so
+      $\mathbf{u} = \begin{pmatrix} 6 \\ 0 \end{pmatrix}$ and
+      $\mathbf{v} = \begin{pmatrix} 0 \\ 8 \end{pmatrix}$. Their dot product is
+
+      $$\mathbf{u} \cdot \mathbf{v} = 6 \times 0 + 0 \times 8 = 0$$
+
+      A zero dot product means the vectors are perpendicular, so the angle between the
+      $6$ cm and $8$ cm sides is a right angle.
+
+      Pythagoras agrees: $6^2 + 8^2 = 36 + 64 = 100 = 10^2$, and by the converse of
+      Pythagoras' theorem a triangle whose sides satisfy that equality is right-angled. The
+      right angle is opposite the $10$ cm side, which is where the two shorter sides meet.
+
+  - id: r10-two-routes
+    section: '18.4'
+    tier: O
+    refs: ['2.2', '2.3']
+    statement: >-
+      A triangle has sides $7$ cm and $9$ cm with an included angle of $60^\circ$. Find the
+      third side with the cosine rule, then find the angle between the other two sides with
+      the dot product and check that the two methods agree.
+    answer_label: 'The third side and the angle between the other two sides'
+    check:
+      kind: all
+      checks:
+        - kind: approx
+          value: 'sqrt(7 ** 2 + 9 ** 2 - 2 * 7 * 9 * cos(pi / 3))'
+          target: '8.19'
+          tolerance: '0.01'
+        - kind: approx
+          value: 'acos(5 / (2 * sqrt(67))) * 180 / pi'
+          target: '72.22'
+          tolerance: '0.01'
+        - kind: structured
+          requires: [cosine-rule, dot-product, agree]
+          concepts: [cosine-rule, dot-product, angle-sum]
+          points:
+            - id: cosine-rule
+              text: >-
+                The cosine rule gives the third side: 49 + 81 - 126 cos 60, which is 130 -
+                63 = 67, so the side is sqrt 67 = 8.19 cm.
+              concepts: [cosine-rule]
+            - id: dot-product
+              text: >-
+                The cosine of the angle at the other end is a dot product over the product
+                of two lengths, which gives 5 over 2 sqrt 67, so the angle is 72.2 degrees.
+              concepts: [dot-product]
+            - id: agree
+              text: >-
+                The third angle follows from the angle sum: 180 - 60 - 72.2 = 47.8 degrees.
+                Both routes give the same sides and angles, so they agree.
+              concepts: [angle-sum]
+    answer_text: |-
+      **The cosine rule.** With $b = 7$, $c = 9$ and $A = 60^\circ$,
+
+      $$a^2 = 7^2 + 9^2 - 2 \times 7 \times 9 \times \cos 60^\circ = 49 + 81 - 63 = 67$$
+
+      so $a = \sqrt{67} \approx 8.19$ cm.
+
+      **The dot product.** Put the vertex at the origin, with one side along
+      $\begin{pmatrix} 7 \\ 0 \end{pmatrix}$. The angle at that end of the $8.19$ cm side
+      has
+
+      $$\cos\theta = \frac{5}{2\sqrt{67}} = 0.3054
+      \quad\Rightarrow\quad \theta \approx 72.2^\circ$$
+
+      That is the dot product of the two sides meeting there, divided by the product of
+      their lengths. The third angle follows from the angle sum:
+      $180^\circ - 60^\circ - 72.2^\circ = 47.8^\circ$.
+
+      **The check.** Both methods describe the same triangle, so they must agree. The
+      cosine rule found the missing side from two sides and the angle between them, and the
+      dot product found an angle from the three sides, which is the same information the
+      other way round.

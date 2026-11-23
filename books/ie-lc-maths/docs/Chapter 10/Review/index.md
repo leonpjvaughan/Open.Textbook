@@ -65,44 +65,9 @@ fundamental principle, permutation, combination, complement, conditional probabi
 independence, or the binomial distribution — before you calculate. Three of them come from
 earlier chapters.
 
-1. A cafe offers $4$ soups and $6$ sandwiches. How many soup-and-sandwich lunches are
-   possible?
-2. How many ways can $5$ runners fill first, second and third place?
-3. A committee of $4$ is chosen from $9$ people. How many committees are possible?
-4. A fair die is rolled twice. Find the probability of two even scores.
-5. A bag holds $6$ red and $4$ green counters. Two are drawn without replacement. Find the
-   probability that both are red.
-6. $P(A) = 0.6$, $P(B) = 0.3$ and $P(A \cap B) = 0.18$. Are $A$ and $B$ independent?
-   Give a reason.
-7. $X \sim B(10, \tfrac14)$. Find $P(X = 3)$.
-8. Find the sum of the first $20$ terms of the arithmetic series $3 + 7 + 11 + \dots$
-9. The fifth term of a geometric sequence is $48$ and the first term is $3$. Find the
-   common ratio.
-10. Prove by induction that $2 + 4 + 6 + \dots + 2n = n(n+1)$.
+:::problems chapter-10-review
 
-<details markdown="1">
-<summary>Answers and concise solutions</summary>
-
-1. $4 \times 6 = 24$ lunches. The choices multiply.
-2. $5 \times 4 \times 3 = 60$ ways. Order matters, so this is a permutation.
-3. $\dbinom{9}{4} = 126$ committees. Order does not matter, so this is a combination.
-4. The rolls are independent, so $\dfrac{3}{6} \times \dfrac{3}{6} = \dfrac{1}{4}$.
-5. $P(\text{first red}) = \dfrac{6}{10}$. Then $5$ red and $4$ green remain, so
-   $P(\text{second red} \mid \text{first red}) = \dfrac{5}{9}$. Then
-   $\dfrac{6}{10} \times \dfrac{5}{9} = \dfrac{1}{3}$.
-6. $P(A) \times P(B) = 0.6 \times 0.3 = 0.18$, which equals $P(A \cap B)$. So the events
-   are independent.
-7. $P(X = 3) = \dbinom{10}{3}\left(\tfrac14\right)^3\left(\tfrac34\right)^7
-   = \dfrac{120 \times 2187}{1048576} = \dfrac{262440}{1048576} = \dfrac{32805}{131072}$.
-8. $a = 3$, $d = 4$, so $S_{20} = \dfrac{20}{2}\left(2(3) + 19(4)\right)
-   = 10(6 + 76) = 820$.
-9. $ar^4 = 48$ with $a = 3$, so $r^4 = 16$ and $r = \pm 2$.
-10. Base case $n = 1$: $2 = 1 \times 2$. True. Assume
-    $2 + 4 + \dots + 2k = k(k+1)$. Then
-    $2 + 4 + \dots + 2k + 2(k+1) = k(k+1) + 2(k+1) = (k+1)(k+2)$, which is the formula
-    with $n = k + 1$. So it holds for every $n \ge 1$ by induction.
-
-</details>
+:::answers chapter-10-review
 
 ## What you can now do
 

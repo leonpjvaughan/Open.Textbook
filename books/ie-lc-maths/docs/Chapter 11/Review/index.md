@@ -52,26 +52,9 @@ above it was not.
 Work through these without notes. For each one, decide **what kind of statistical statement
 it is** — a description, an inference, a correlation, or a claim — before you answer.
 
-1. A class of 30 students has a mean height of $168$ cm. Is this a description or an
-   inference? Explain.
-2. A sample of $400$ voters gives $54\%$ Yes. Find the standard error and the $95\%$ margin
-   of error.
-3. Using your answer to question 2, write the confidence interval and say whether the
-   sample gives evidence of a majority.
-4. A study of 12 people finds a correlation of $0.9$ between two variables. Give one reason
-   to be cautious.
-5. A chart shows a company's sales rising from €96m to €100m with a vertical axis starting
-   at €95m. State what is misleading and how the chart should be drawn.
-6. A report says a food "increases your risk of illness by 50%". The risk rises from two in
-   a million to three in a million. Explain why the two statements do not conflict.
-7. A poll reports $45\%$ Yes with a margin of error of $3$ points. Can it rule out a $50$-$50$
-   split? Explain.
-8. A test finds a difference between two groups with $p = 0.03$. Explain what that does and
-   does not tell you.
-9. A survey is sent by email to a company's customers and $8\%$ reply. Name the bias and
-   explain why a large number of replies would not fix it.
-10. Explain why a result can be statistically significant and still be too small to matter,
-    and give an example.
+:::problems chapter-11-review
+
+:::answers chapter-11-review
 
 ## What you can now do
 

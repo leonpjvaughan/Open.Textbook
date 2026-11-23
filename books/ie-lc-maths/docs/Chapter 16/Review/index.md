@@ -92,49 +92,9 @@ Work through these without notes. For each one, say **which fact or theorem** yo
 use, and why, before you calculate. Some need a parallelogram fact, some a ratio, some
 Pythagoras, some an area formula, and some come from an earlier chapter.
 
-1. In a parallelogram $ABCD$, $|\angle A| = 72^\circ$. Find $|\angle C|$ and
-   $|\angle B|$.
-2. The diagonals of a parallelogram meet at $E$, with $|AE| = 7$ cm. Find $|AC|$.
-3. $\triangle ABC \sim \triangle PQR$, with $|AB| = 6$ cm, $|BC| = 8$ cm and
-   $|PQ| = 9$ cm. Find $|QR|$.
-4. In $\triangle ABC$, a line parallel to $BC$ cuts $[AB]$ at $D$ with
-   $|AD| : |DB| = 4 : 5$. Given $|AC| = 18$ cm, find $|AE|$.
-5. A right-angled triangle has legs of $8$ cm and $15$ cm. Find the hypotenuse.
-6. A triangle has sides of $9$ cm, $12$ cm and $15$ cm. Is it right-angled? Give a
-   reason.
-7. A triangle has base $14$ cm and height $9$ cm. Find its area.
-8. A trapezium has parallel sides of $6$ m and $10$ m, and the distance between them is
-   $4$ m. Find its area.
-9. From Chapter 12: a triangle has sides of $7$ cm and $9$ cm, and the angle between them
-   is $30^\circ$. Find its area.
-10. From Chapter 13: find the distance between $(2,3)$ and $(5,7)$.
-11. From Chapter 14: a triangle has sides of $3$, $4$ and $5$ cm. It is enlarged by a
-    scale factor of $2$. Find the sides of the image, and say whether the image is
-    similar to the original.
-12. From Chapter 3: a circle has radius $5$ cm. Find its area, leaving your answer in
-    terms of $\pi$.
+:::problems chapter-16-review
 
-<details markdown="1">
-<summary>Answers and reasons</summary>
-
-1. $|\angle C| = 72^\circ$ and $|\angle B| = 108^\circ$. Opposite angles are equal, and
-   consecutive angles are supplementary.
-2. $|AC| = 14$ cm. The diagonals bisect one another, so $|AE| = |EC| = 7$ cm.
-3. $|QR| = 12$ cm. The scale factor is $\frac{9}{6} = 1.5$, and $BC$ matches $QR$.
-4. $|AE| = 8$ cm. The line cuts $[AC]$ in the same ratio $4 : 5$, and there are $9$ parts
-   in $18$ cm.
-5. $\sqrt{8^2 + 15^2} = \sqrt{289} = 17$ cm.
-6. Yes. $9^2 + 12^2 = 81 + 144 = 225 = 15^2$, so the converse of Pythagoras gives a right
-   angle opposite the $15$ cm side.
-7. $\frac{1}{2} \times 14 \times 9 = 63$ cm$^2$.
-8. $\frac{6 + 10}{2} \times 4 = 32$ m$^2$.
-9. $\frac{1}{2} \times 7 \times 9 \times \sin 30^\circ = 31.5 \times 0.5 = 15.75$ cm$^2$.
-10. $\sqrt{(5 - 2)^2 + (7 - 3)^2} = \sqrt{9 + 16} = 5$ units.
-11. The sides are $6$, $8$ and $10$ cm. The image is similar, because an enlargement keeps
-    every angle and multiplies every length by the same factor.
-12. $25\pi$ cm$^2$. The area of a circle is $\pi r^2$.
-
-</details>
+:::answers chapter-16-review
 
 ## What you can now do
 

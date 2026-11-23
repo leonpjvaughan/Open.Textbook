@@ -83,48 +83,9 @@ Work through these without notes. For each one, say **which fact or theorem** yo
 use, and why, before you calculate. Some need an angle at a crossing, some a parallel-line
 fact, some a congruence test, and some come from an earlier chapter.
 
-1. Two straight lines cross. One angle is $58^\circ$. Find the other three angles.
-2. In $\triangle ABC$, $|\angle A| = 72^\circ$ and $|\angle B| = 61^\circ$. Find
-   $|\angle C|$.
-3. Two parallel lines are cut by a transversal. One angle is $115^\circ$. Find the angle
-   inside the parallel lines on the same side.
-4. An isosceles triangle has a base angle of $48^\circ$. Find the apex angle.
-5. In a right-angled triangle, one acute angle is $27^\circ$. Find the other.
-6. A triangle has sides $8$ cm, $6$ cm and $3$ cm. Can these lengths form a triangle? Give
-   a reason.
-7. $\triangle ABC \cong \triangle PQR$, with $|AB| = 14$ cm. Find $|PQ|$.
-8. In $\triangle ABC$, the exterior angle at $A$ is $124^\circ$ and $|\angle B| = 58^\circ$.
-   Find $|\angle C|$.
-9. From Chapter 12: a right-angled triangle has legs of $9$ cm and $12$ cm. Find the
-   hypotenuse.
-10. From Chapter 13: find the slope of the line through $(2,3)$ and $(6,11)$.
-11. From Chapter 14: reflect the point $(4,-3)$ in the $x$-axis.
-12. From Chapter 3: find the area of a triangle with base $10$ cm and height $6$ cm.
+:::problems chapter-15-review
 
-<details markdown="1">
-<summary>Answers and reasons</summary>
-
-1. $58^\circ$, $122^\circ$, $58^\circ$ and $122^\circ$. The two $58^\circ$ angles are
-   vertically opposite, and the other two are supplementary to $58^\circ$.
-2. $180 - 72 - 61 = 47^\circ$. The three angles of a triangle add to $180^\circ$.
-3. $180 - 115 = 65^\circ$. The alternate angle is $115^\circ$, and the angle on the same
-   side is supplementary to it.
-4. $180 - 2 \times 48 = 84^\circ$. The two base angles are equal.
-5. $90 - 27 = 63^\circ$. The two acute angles add to $90^\circ$.
-6. No. The two shorter sides add to $9$ cm, which is more than $8$ cm, so this test passes.
-   Check the other pairs: $8 + 3 = 11 > 6$, and $6 + 3 = 9 > 8$. Every pair passes, so
-   these lengths **can** form a triangle. The triangle inequality holds for all three
-   pairs.
-7. $14$ cm. The letter order gives $A$ matching $P$ and $B$ matching $Q$.
-8. $124 - 58 = 66^\circ$. The exterior angle equals the sum of the two interior opposite
-   angles.
-9. $\sqrt{9^2 + 12^2} = \sqrt{225} = 15$ cm, by Pythagoras' theorem.
-10. $(11 - 3) \div (6 - 2) = 8 \div 4 = 2$.
-11. $(4,3)$. Reflection in the $x$-axis keeps the $x$-coordinate and changes the sign of
-    the $y$-coordinate.
-12. $\tfrac12 \times 10 \times 6 = 30$ cm².
-
-</details>
+:::answers chapter-15-review
 
 ## What you can now do
 
