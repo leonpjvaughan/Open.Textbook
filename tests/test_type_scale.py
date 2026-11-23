@@ -72,7 +72,9 @@ def declarations(path: Path, css: str | None = None, prefix: str = ""):
                 depth -= 1
             end += 1
         body = css[start:end - 1]
-        if selector.startswith(("@media", "@supports")):
+        if selector.startswith("@layer"):
+            yield from declarations(path, body, prefix)
+        elif selector.startswith(("@media", "@supports")):
             yield from declarations(path, body, prefix + selector + " ")
         else:
             for declaration in body.split(";"):
