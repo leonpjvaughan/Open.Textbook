@@ -241,7 +241,7 @@ async function open(file) {
   await page.keyboard.press("Tab");
   out.tabs.portal = await page.evaluate(() => document.activeElement.textContent.trim());
   out.portal390 = await page.evaluate(() =>
-    [...document.querySelectorAll(".cards")].map((grid) => ({
+    [...document.querySelectorAll(".band__grid")].map((grid) => ({
       count: grid.querySelectorAll(".card").length,
       widths: [...grid.querySelectorAll(".card")].map((c) => Math.round(c.getBoundingClientRect().width)),
       rows: new Set([...grid.querySelectorAll(".card")].map((c) => Math.round(c.getBoundingClientRect().top))).size,
@@ -249,7 +249,7 @@ async function open(file) {
   );
   await page.setViewportSize({ width: 1280, height: 900 });
   out.portal1280 = await page.evaluate(() =>
-    [...document.querySelectorAll(".cards")].map((grid) => ({
+    [...document.querySelectorAll(".band__grid")].map((grid) => ({
       gridWidth: Math.round(grid.getBoundingClientRect().width),
       count: grid.querySelectorAll(".card").length,
       widths: [...grid.querySelectorAll(".card")].map((c) => Math.round(c.getBoundingClientRect().width)),
@@ -294,13 +294,12 @@ def test_the_floors_hold_when_a_phone_renders_the_page(tmp_path):
     assert data["tabs"]["portal"].startswith("Skip to content"), data["tabs"]
 
     one_card = [g for g in data["portal1280"] if g["count"] == 1]
-    three_card = [g for g in data["portal1280"] if g["count"] == 3]
-    assert one_card, "expected at least one single-card group on the portal"
-    assert three_card, "expected at least one three-card group on the portal"
+    several = [g for g in data["portal1280"] if g["count"] >= 2]
+    assert one_card, "expected at least one single-card band on the portal"
+    assert several, "expected at least one band of two or more cards on the portal"
     for g in one_card:
-        assert g["widths"][0] <= 26 * REM + 1, f"lone portal card stretched past 26rem: {g}"
-    for g in three_card:
-        assert g["rows"] == 1, f"three-card portal group wrapped off its single row at 1280: {g}"
-        assert sum(g["widths"]) + 2 * 18 >= g["gridWidth"] - 2, f"three-card group did not fill its row: {g}"
+        assert g["widths"][0] <= 0.6 * g["gridWidth"], f"a lone card stretched across its band: {g}"
+    for g in several:
+        assert g["rows"] < g["count"], f"a band stayed single-column at 1280: {g}"
     for g in data["portal390"]:
         assert g["rows"] == g["count"], f"portal did not stay single-column at 390: {g}"

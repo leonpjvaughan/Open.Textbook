@@ -460,9 +460,10 @@ def typography_css(bundle: Bundle) -> str:
 def stylesheet(bundles: list[Bundle] | None = None, default: Bundle | None = None) -> str:
     """The whole generated themes.css.
 
-    Three layers, in increasing specificity: typography per bundle; a fallback with the
-    default bundle, so a reader without JavaScript still gets a real theme; and one
-    block per bundle and scheme, which wins over the fallback.
+    It opens with the cascade-layer order every shipped sheet relies on, then fills the
+    `palette` layer, in increasing specificity: the default faces; typography per
+    bundle; a fallback with the default bundle, so a reader without JavaScript still
+    gets a real theme; and one block per bundle and scheme, which wins over the fallback.
     """
     chosen = bundles if bundles is not None else discover_bundles()
     fallback = default or default_bundle()

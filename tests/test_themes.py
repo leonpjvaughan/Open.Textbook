@@ -788,7 +788,7 @@ def test_a_profile_is_a_link_and_the_kicker_leads_the_title():
     assert 'class="chip' not in html
     assert 'class="card__profile' in html
     assert 'aria-label="Editions"' in html
-    assert html.index('class="card__subject"') < html.index('class="card__title"')
+    assert html.index('class="card__meta"') < html.index('class="card__title"')
 
 
 def test_the_landing_page_shares_the_books_stylesheet():

@@ -201,6 +201,9 @@
   }
 
   @media (max-width: 48rem) {
+    /* Below 16px a focused field makes a phone zoom the page. */
+    .tb-search__input { font-size: 1rem; }
+
     /* The sheet. `top` is set by the runtime from the field's measured bottom, so
      * the field stays visible above it whatever the masthead contains. */
     .tb-search__panel {

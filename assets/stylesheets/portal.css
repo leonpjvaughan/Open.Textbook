@@ -54,16 +54,6 @@
     padding: 52px 0 30px;
   }
 
-  .masthead__inner {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 20px;
-    align-items: flex-start;
-    justify-content: space-between;
-  }
-
-  .masthead__text { min-width: min(100%, 34ch); }
-
   .masthead__title {
     margin: 0 0 8px;
     font-family: var(--tb-font-display, Georgia, serif);
@@ -78,18 +68,15 @@
     view-transition-name: portal-title;
   }
 
-  /* The description: `p.masthead__lead` on a prose page, and the paragraph after the
-   * title inside the portal's `div.masthead__lead`. */
-  p.masthead__lead,
-  .masthead__lead > .masthead__title ~ p {
+  .masthead__description {
     margin: 0;
     max-width: var(--tb-measure);
     color: var(--tb-ink-soft);
     font-size: 1.05rem;
   }
 
-  /* The portal's masthead has no inner wrapper: its two halves are centred here, and a
-   * layout may lay them out as it likes. */
+  /* No inner wrapper: the masthead's two halves are centred here, and a layout may
+   * lay them out as it likes. */
   .masthead > .masthead__lead,
   .masthead > .masthead__tools {
     max-width: 1040px;
@@ -120,14 +107,6 @@
   }
 
   /* --- reader settings ------------------------------------------------------ */
-
-  /* The masthead's right-hand actions. One control: the same Settings trigger the
-   * books carry, so there is no second pattern to keep in step. */
-  .masthead__actions {
-    display: flex;
-    align-items: center;
-    gap: 8px;
-  }
 
   /* `settings.js` reveals it; with scripting off it stays `hidden` in the markup,
    * so a reader never gets a control that does nothing. No colour is declared
@@ -228,7 +207,7 @@
 
   .band__grid {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(min(100%, 280px), 1fr));
+    grid-template-columns: repeat(auto-fill, minmax(min(100%, 280px), 1fr));
     gap: 26px 24px;
     padding: 18px 0 10px;
   }
