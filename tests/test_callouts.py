@@ -42,7 +42,6 @@ def render(source: str) -> str:
     )
 
 
-# --- exact matching -----------------------------------------------------------
 
 
 def test_watch_out_blockquote_becomes_error_callout():
@@ -143,7 +142,6 @@ def test_callout_inside_toggle_wrapper_renders_cleanly():
     assert "<blockquote>" not in html
 
 
-# --- corpus contract ----------------------------------------------------------
 
 
 def test_corpus_exact_callout_and_untouched_blockquote_counts():
@@ -179,7 +177,6 @@ def test_corpus_exact_callout_and_untouched_blockquote_counts():
         classified_error += n_error
         classified_check += n_check
 
-        # Count remaining contiguous blockquote blocks in transformed markdown.
         in_fence = False
         in_quote = False
         for line in transformed.splitlines():
@@ -207,7 +204,6 @@ def test_corpus_exact_callout_and_untouched_blockquote_counts():
             assert "> **Progress check.**" in transformed
 
         if n_error or n_check or untouched_blocks:
-            # Verify no rendered <blockquote> starts with Watch out. or Check.
             if ">" in body:
                 html = markdown_lib.markdown(
                     transformed, extensions=pipeline.EXTENSIONS, output_format="html5"
@@ -230,7 +226,6 @@ def test_corpus_exact_callout_and_untouched_blockquote_counts():
     assert untouched_rendered_bq > 0
 
 
-# --- built page end to end ----------------------------------------------------
 
 
 def test_real_learn_page_renders_both_callout_kinds(tmp_path):
@@ -243,7 +238,6 @@ def test_real_learn_page_renders_both_callout_kinds(tmp_path):
     assert "<blockquote>" not in html
 
 
-# --- neutral stylesheet signature ---------------------------------------------
 
 
 def test_callout_stylesheet_uses_neutral_framed_signature():

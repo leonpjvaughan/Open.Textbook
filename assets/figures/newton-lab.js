@@ -1,7 +1,3 @@
-// The root-finding page's experiment: one tangent step at a time, with the residual
-// falling. The iterates are points on a number line rather than a graph of f, because
-// the page already carries the cubic; what the figure adds is the *sequence* and its
-// residual.
 import newton from "../data/solvers/newton-root/kernel.js";
 import { kernelLab, sci } from "./kernel-lab.js";
 

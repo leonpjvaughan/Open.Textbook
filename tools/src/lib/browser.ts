@@ -6,8 +6,6 @@ import fs from "node:fs";
 import path from "node:path";
 import { createRequire } from "node:module";
 
-// The package is ESM, so `require` is not in scope; `createRequire` resolves a runtime
-// specifier.
 const require = createRequire(import.meta.url);
 
 /** Playwright's type surface, loose on purpose: it is an optional local dependency
@@ -25,11 +23,8 @@ export function loadPlaywright(): any {
   ].filter(Boolean) as string[];
   for (const candidate of candidates) {
     try {
-      // `require` rather than `import`: the candidate is a path or a bare specifier
-      // chosen at runtime.
       return require(candidate);
     } catch {
-      /* try the next one */
     }
   }
   throw new Error(
@@ -38,7 +33,6 @@ export function loadPlaywright(): any {
 }
 
 export type LaunchOptions = {
-  /** Headless by default; the audits never need a window. */
   headless?: boolean;
 };
 
@@ -62,7 +56,6 @@ export async function launchBrowser(options: LaunchOptions = {}): Promise<Browse
   }
 }
 
-/** Extensions the built site serves. A route that is not one of these is a 404. */
 export const MIME_TYPES: Record<string, string> = {
   ".html": "text/html",
   ".js": "text/javascript",
@@ -83,15 +76,6 @@ export const MIME_TYPES: Record<string, string> = {
   ".xml": "application/xml",
 };
 
-/**
- * Serve a built directory through request interception, not a listening socket: a
- * blocked or clashing port is then not a problem.
- *
- * **A route maps to a file, and a trailing slash is the only thing that appends
- * `index.html`.** So an extension-less route 404s, and because every miss returns the
- * same 404 page, a broken run looks like a successful one: callers that capture must
- * compare their captures, which `assertCapturesDiffer` below does.
- */
 export async function serveStatic(
   context: BrowserContext,
   siteDir: string,
@@ -104,9 +88,6 @@ export async function serveStatic(
     if (rel.endsWith("/")) rel += "index.html";
     const file = path.join(root, rel);
     if (!file.startsWith(root) || !fs.existsSync(file) || fs.statSync(file).isDirectory()) {
-      // Two callers, two correct answers to a miss: the audits want a 404, because they
-      // measure a site they were pointed at, and the theme preview wants an **abort**,
-      // because a miss means the tree changed after it asserted every route.
       if (options.onMiss) {
         options.onMiss(rel);
         return route.abort();
@@ -122,9 +103,7 @@ export async function serveStatic(
 }
 
 export type ContextOptions = {
-  /** The media preference. The site does not read it — see `scheme` below. */
   scheme?: "light" | "dark";
-  /** The bundle id, seeded into `textbooks:theme`. */
   theme?: string;
   width?: number;
   height?: number;
@@ -132,8 +111,6 @@ export type ContextOptions = {
   /** A phone viewport: emulates the device rather than only narrowing the window. */
   mobile?: boolean;
   touch?: boolean;
-  /** Block service workers: a cache hit is not the page that was built, and an overflow
-   *  behind a cached stylesheet reads as a pass. */
   blockServiceWorkers?: boolean;
 };
 
@@ -162,7 +139,6 @@ export async function openContext(
     try {
       localStorage.setItem("textbooks:scheme", chosen);
     } catch {
-      /* a context that forbids storage is not a failure here */
     }
   }, scheme === "dark" ? "slate" : "default");
   if (options.theme) {
@@ -170,20 +146,14 @@ export async function openContext(
       try {
         localStorage.setItem("textbooks:theme", chosen);
       } catch {
-        /* as above */
       }
     }, options.theme);
   }
   return context;
 }
 
-/** The origin every route is requested under. Nothing resolves it; the route does. */
 export const ORIGIN = "http://textbook.local";
 
-/**
- * Fail when captures that should differ do not: a 404 served for every route and a
- * scheme preference the site never read both gave identical bytes and reported success.
- */
 export function assertCapturesDiffer(
   outDir: string,
   names: string[],
@@ -201,23 +171,11 @@ export function assertCapturesDiffer(
   return identical;
 }
 
-
 export type HttpServer = {
-  /** The origin to navigate to, with the ephemeral port already resolved. */
   origin: string;
   close: () => void;
 };
 
-/**
- * Serve a built directory over a real socket, as the Worker would.
- *
- * **The one case interception cannot serve.** A navigation entry's `transferSize` is
- * populated only for a request that crossed the network stack; an intercepted response
- * reports 0, which would read as an excellent budget.
- *
- * It reproduces the Worker's freshness policy (`public, max-age=0, must-revalidate`),
- * because a cached response is not the first load the budget measures.
- */
 export async function serveHttp(
   root: string,
   options: { compress?: boolean } = {},
@@ -257,8 +215,6 @@ export async function serveHttp(
       body = zlib.gzipSync(body, { level: 9 });
       headers["Content-Encoding"] = "gzip";
     }
-    // Content-Length is the bytes sent, so a compressed body does not advertise its raw
-    // size.
     headers["Content-Length"] = body.length;
     res.writeHead(200, headers);
     res.end(body);

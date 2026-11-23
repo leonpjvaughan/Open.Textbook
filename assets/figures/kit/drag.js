@@ -1,6 +1,5 @@
 // @ts-nocheck
 import { notify } from "./interact.js";
-
 function viewBoxPoint(svg, event) {
   const ctm = svg.getScreenCTM && svg.getScreenCTM();
   if (!ctm) return null;
@@ -14,8 +13,6 @@ function viewBoxPoint(svg, event) {
   return point.matrixTransform(matrix);
 }
 /**
- * Make an SVG element draggable, reporting through a control that already exists.
- *
  * @param {SVGElement} element  what the reader grabs
  * @param {object} o
  * @param {HTMLInputElement} o.control  **required** — the range input that holds the

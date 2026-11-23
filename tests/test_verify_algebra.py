@@ -25,7 +25,6 @@ POSITIVE_XY = {"x": {"real": True, "positive": True}, "y": {"real": True, "posit
 SEQUENCE = {"k": {"integer": True, "positive": True}, "n": {"integer": True, "positive": True}}
 
 
-# --- system: simultaneous equations ------------------------------------------
 
 
 def test_system_solves_one_linear_and_one_quadratic():
@@ -83,7 +82,6 @@ def test_system_wrong_answer_fails():
     assert "expected" in report.errors[0]
 
 
-# --- solve: domains, general sets and unknown ---------------------------------
 
 
 def test_solve_accepts_an_interval_domain():
@@ -145,7 +143,6 @@ def test_solve_wrong_interval_solutions_fail():
     assert not verify_problem(problem).ok
 
 
-# --- inequality ---------------------------------------------------------------
 
 
 def test_inequality_chain_solves_to_an_interval():
@@ -190,7 +187,6 @@ def test_inequality_wrong_boundary_fails():
     assert "Interval.Lopen" in report.errors[0]
 
 
-# --- vector -------------------------------------------------------------------
 
 
 VECTOR_CASES = [
@@ -253,7 +249,6 @@ def test_vector_wrong_dot_fails():
     assert "dot gives 32" in report.errors[0]
 
 
-# --- ode ----------------------------------------------------------------------
 
 
 def test_ode_general_solution():
@@ -301,7 +296,6 @@ def test_ode_wrong_answer_fails():
     assert "differential equation" in report.errors[0]
 
 
-# --- approx -------------------------------------------------------------------
 
 
 def test_approx_absolute_tolerance():
@@ -338,7 +332,6 @@ def test_approx_makes_a_trapezium_estimate_checkable():
     assert verify_problem(problem_record(check)).ok
 
 
-# --- apply operations ---------------------------------------------------------
 
 
 APPLY_PROBLEMS = [
@@ -521,7 +514,6 @@ def test_apply_operation_wrong_answer_fails(operation, problem):
     assert not report.ok, f"a wrong {operation} record was accepted"
 
 
-# --- statistics ---------------------------------------------------------------
 
 
 STATISTIC_CASES = [

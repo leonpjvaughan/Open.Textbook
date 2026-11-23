@@ -1,28 +1,8 @@
-/* One search runtime for the landing page and every book page.
- *
- * Pagefind indexes the assembled site once and every page imports the same
- * root-absolute bundle, so a result's `url` is already absolute from the
- * deployment root — no re-basing, and no second loader path to keep in step.
- *
- * The page supplies the markup: a native `<search>` with `[data-search-input]`,
- * a panel at `[data-search-panel]` holding the `[data-search-status]` live region
- * and the list the input's `aria-controls` names, plus an optional
- * `[data-search-close]` button for the phone sheet. Nothing is fetched until the
- * reader types.
- *
- * Keyboard: the field keeps focus and the highlight moves through
- * `aria-activedescendant`, which is the behaviour the handoff asks for and one
- * fewer focus stop than walking twenty links. The rows are still real links, so a
- * click, a middle click and a touch all do the ordinary thing.
- */
-
 const INDEX = /** @type {string} */ ("/pagefind/pagefind.js");
 const LIMIT = 20;
 const DEBOUNCE = 120;
 
 /**
- * One Pagefind result, as `data()` returns it.
- *
  * @typedef {{ url: string, excerpt: string, meta: Record<string, string> }} Result
  */
 
@@ -42,8 +22,6 @@ const liveRegion = /** @type {HTMLElement | null} */ (
   document.querySelector("[data-search-status]")
 );
 
-/* A page with no search field is not an error: the legal pages link this module
- * because it is shared, and a missing field simply has nothing to mount. */
 if (input && list && panel) {
   const field = input;
   const listbox = list;
@@ -52,10 +30,6 @@ if (input && list && panel) {
 
   if (widget) widget.hidden = false;
 
-  /* A book page prefers its own edition: the Higher and Foundation builds of a
-   * shared page carry the same metadata, and Pagefind's ranking does not know
-   * which one the reader is standing in. The collection's front door has no
-   * preference and simply keeps the first-ranked edition. */
   const prefer = (widget && widget.dataset.searchPrefer) || "";
 
   /** @type {any} */
@@ -82,9 +56,6 @@ if (input && list && panel) {
     announce("");
   }
 
-  /* Below 48rem the panel is a sheet, and it starts under the field rather than
-   * under the masthead: the landing page's masthead carries a title, a lead and
-   * the field, so there is no one height to hard-code. */
   const narrow = window.matchMedia("(max-width: 48rem)");
 
   function place() {
@@ -108,9 +79,6 @@ if (input && list && panel) {
   );
 
   /**
-   * One result row: type and book, the page's own title, its chapter, and the
-   * one-line excerpt Pagefind cut around the match.
-   *
    * @param {Result} result
    * @param {number} index
    */
@@ -159,8 +127,6 @@ if (input && list && panel) {
 
     const excerpt = document.createElement("span");
     excerpt.className = "tb-search__excerpt";
-    /* Pagefind's excerpt is its own markup: the page's text with `<mark>` around
-     * the match. It is generated from this site's HTML, not from reader input. */
     excerpt.innerHTML = result.excerpt;
     link.append(excerpt);
 
@@ -177,13 +143,6 @@ if (input && list && panel) {
   }
 
   /**
-   * One row per page rather than per edition.
-   *
-   * A search of the collection shows both the Higher and the Foundation build of
-   * a shared page. They are the same page to a reader, so the first-ranked keeps
-   * the position and a preferred edition — the one whose book is open — replaces
-   * it. Everything else is left as Pagefind ranked it.
-   *
    * @param {Result[]} results
    * @returns {Result[]}
    */

@@ -1,9 +1,3 @@
-// The elliptic and linear-system pages share this figure: the field settling onto
-// the exact curve, and the residual falling as the iteration count rises.
-//
-// Conjugate gradients is exact in at most n steps on an n-cell grid, so the residual
-// does not merely fall: it reaches the floor and stops. That is the picture the page
-// needs, and it is a property of the method rather than of this problem.
 import cg from "../data/solvers/cg-poisson/kernel.js";
 import { kernelLab, sci } from "./kernel-lab.js";
 

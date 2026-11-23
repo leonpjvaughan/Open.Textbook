@@ -14,39 +14,24 @@
  * --mobile` before changing them.
  */
 export const SIZE = {
-  /** An axis tick or a minor annotation. */
   tick: 16,
-  /** The smallest a label may be. */
   label: 16,
-  /** A title or a value read off the drawing. */
   value: 18,
-  /** A heading inside the drawing. */
   heading: 20,
 };
 
-/** The options `label()` accepts. */
 export type LabelOptions = {
-  /** viewBox x, the point the anchor refers to. */
   x: number;
-  /** viewBox y. */
   y: number;
-  /** The words. Never `$...$` — the maths hook runs at build time. */
   text: string;
-  /** `start` | `middle` | `end`, default `middle`. */
   anchor?: string;
-  /** One of `SIZE`; default `SIZE.label`. */
   size?: number;
-  /** A `text-*` class; default `text-ink`. */
   class?: string;
-  /** Optional font-weight. */
   weight?: number;
-  /** Degrees anticlockwise about `(x, y)`, for an axis title. */
   rotate?: number;
 };
 
-/** How `sigfig()` decides between plain and scientific notation. */
 export type SigfigOptions = {
-  /** `true` always, `false` never, `"auto"` when the integer part needs zeros. */
   scientific?: boolean | "auto";
 };
 
@@ -57,8 +42,6 @@ export type SigfigOptions = {
  */
 
 /**
- * The options `label()` takes, for the compiled copy.
- *
  * @typedef {object} LabelOptions
  * @property {number} x  viewBox x, the point the anchor refers to
  * @property {number} y  viewBox y
@@ -71,7 +54,6 @@ export type SigfigOptions = {
  */
 
 /** Escape the three characters that make a string malformed inside an element.
- *
  * @param {unknown} text  whatever is about to be interpolated into markup
  * @returns {string}
  */
@@ -80,13 +62,6 @@ export function escape(text: unknown): string {
 }
 
 /**
- * A positioned piece of text, as an SVG `<text>` element string.
- *
- * `class` defaults to `text-ink`, so a label cannot ship uncoloured: a `<text>` with
- * no class paints in `fill`'s initial black and vanishes on a dark panel. The
- * options are a TypeScript type, because a `@param` on a destructured binding with a
- * default is silently ignored.
- *
  * @param {LabelOptions} [o]  the position, the words and the size
  * @returns an SVG `<text>` element, ready to concatenate
  */
@@ -108,34 +83,16 @@ export function label({
     `class="${cls}"`,
   ];
   if (weight) attrs.push(`font-weight="${weight}"`);
-  // An axis title is the one non-horizontal label. `rotate(a x y)` rotates about
-  // its own position, so no second position has to be passed.
   if (rotate) attrs.push(`transform="rotate(${coord(rotate)} ${coord(x)} ${coord(y)})"`);
   return `<text ${attrs.join(" ")}>${escape(text)}</text>`;
 }
 
-/**
- * A coordinate, rounded to one decimal place: finer than any screen, and it halves
- * the markup a float like `183.99999999999997` would add.
- */
 export function coord(value: unknown): string {
   const n = Number(value);
   return Number.isFinite(n) ? n.toFixed(1) : "0";
 }
 
 /**
- * A number formatted for a reader: trailing zeros dropped, so `fmt(2.5)` is "2.5"
- * and `fmt(2.0)` is "2".
- *
- * A `.map(fmt)` callback passes the index as `places` and the array as a third
- * argument; the array identifies that case, so two places are used.
- */
-/**
- * A number with its unit: `2.88 s`, `14.1 m/s`, `50%`.
- *
- * SI style puts a space between number and unit, except for `%`, `°`, `°C`, `′` and
- * `″`, which bind to the number.
- *
  * @param value  the quantity
  * @param unit   the unit as a reader sees it: `"m/s"`, `"°C"`, `"%"`
  * @param places decimal places, as `fmt()`
@@ -155,12 +112,6 @@ export function fmt(value: number, places = 2, fromMap?: unknown): string {
   return String(rounded);
 }
 
-/**
- * A signed number, spaced for use as a term: `+ 3`, `− 3`.
- *
- * The space is part of the output, so it survives interpolation straight into an
- * expression: ``y = ${m}x ${signed(c)}``.
- */
 export function signed(value: number, places = 2): string {
   if (!Number.isFinite(value)) return "—";
   const n = Number(value.toFixed(places));
@@ -168,13 +119,6 @@ export function signed(value: number, places = 2): string {
 }
 
 /**
- * A number to a stated number of significant figures.
- *
- * A rounded answer is a claim about how much of the measurement is real, so trailing
- * zeros are kept when they carry significance, and a value whose integer part needs
- * place-holding zeros is written scientifically: `sigfig(300, 2)` is `"3.0e2"`,
- * matching the problem-bank verifier's own convention.
- *
  * @param {number} value
  * @param {number} [figures]  how many significant figures, default 3
  * @param {object} [o]
@@ -195,7 +139,6 @@ export function sigfig(
     const mantissa = value / Math.pow(10, magnitude);
     return `${mantissa.toFixed(digits - 1)}e${magnitude}`;
   }
-  // Enough decimal places to keep the significant digits, and no more.
   const places = Math.max(0, digits - 1 - magnitude);
   return value.toFixed(Math.min(20, places));
 }

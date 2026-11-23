@@ -77,7 +77,6 @@ def make_book(tmp_path, *, section_pages=None, deeper=None, pages=("learn",)):
     return books.load_book(root / "book.yaml")
 
 
-# --- which pages a section has ------------------------------------------------
 
 
 def test_a_book_declaring_one_page_gets_one_page(tmp_path):
@@ -170,7 +169,7 @@ def test_a_book_without_a_practise_page_is_not_asked_for_verified_answers(tmp_pa
 
 def test_the_practise_rule_still_fires_when_the_book_declares_the_page(tmp_path):
     """Guard the guard: the exemption is the declaration, not a blanket skip."""
-    book = make_book(tmp_path)  # the three-page default
+    book = make_book(tmp_path)
     scaffold.scaffold(book, dry_run=False)
     practise = book.docs / "Chapter 1" / "Section 1.1" / "Problems" / "index.md"
     practise.write_text(
@@ -183,7 +182,6 @@ def test_the_practise_rule_still_fires_when_the_book_declares_the_page(tmp_path)
     assert findings["structure:problems-missing-markers"] == 1
 
 
-# --- the optional depth track -------------------------------------------------
 
 
 def test_a_deeper_page_is_a_page_with_a_path_and_a_title(tmp_path):
@@ -264,7 +262,6 @@ def test_the_pager_walks_the_main_thread_and_not_the_depth_pages():
     )
 
 
-# --- the directive ------------------------------------------------------------
 
 
 def real_book():
@@ -277,11 +274,7 @@ def test_the_deeper_directive_expands_to_a_relative_link():
     config = cfg.from_parts(book.docs, book=book, profile=book.default_profile.id)
     rendered = deeper_hook.on_page_markdown(":::deeper two-solutions\n", page, config, None)
     assert 'class="deeper"' in rendered
-    # One level up from the page's own directory to the section, then into Deeper:
-    # the output path mirrors the source path, so the same relative link survives.
     assert 'href="../Deeper/two-solutions/index.md"' in rendered, rendered
-    # The link is rewritten by the build, and stays relative: a page's output path
-    # mirrors its source path.
     assert 'href="../deeper/two-solutions/"' in pipeline.rewrite_source_links(rendered)
 
 
@@ -301,7 +294,6 @@ def test_the_directive_is_left_alone_inside_a_code_fence():
     assert deeper_hook.on_page_markdown(source, page, config, None) == source
 
 
-# --- the book's own data and images -------------------------------------------
 
 
 def test_a_books_data_and_images_reach_the_build(tmp_path):
@@ -328,15 +320,11 @@ def test_a_book_without_data_or_images_gets_no_empty_directories(tmp_path):
     book = make_book(tmp_path)
     out = tmp_path / "site"
     pipeline.copy_assets(book, out)
-    # The shared `assets/data/solvers` bundle is copied into every book from
-    # `SHARED_DIRS`. A book with no data of its own still gets that one directory;
-    # what it must not get is an empty one, or an `images/` it never uses.
     data = out / "assets" / "data"
     assert not data.exists() or {path.name for path in data.iterdir()} == {"solvers"}
     assert not (out / "assets" / "images").exists()
 
 
-# --- a reference work's registry nests by path -----------------------------------
 
 
 def test_a_nested_registry_page_is_listed_under_its_parent(tmp_path):
@@ -366,8 +354,6 @@ def test_a_nested_registry_page_is_listed_under_its_parent(tmp_path):
             ]
         }
     ], listings
-    # A page on its own stays a plain link: nesting must not turn every entry into a
-    # container with an empty list under it.
     assert {"Methods, A to Z": "techniques/index.md"} in nav
 
 
@@ -379,29 +365,6 @@ def test_a_nested_page_whose_parent_is_missing_is_refused():
         )
 
 
-# --- a bracketed reference in prose is a link ------------------------------------
-#
-# `[hyperbolic page]` and `[equilibrium without time]` rendered as literal square
-# brackets, and a reader reads that as a mistake. Nothing looked: Markdown leaves an
-# untargeted bracket alone, so it is not a broken link, not a lint finding and not a
-# maths error. This scans every book for one.
-#
-# **The strip list is the work, and each entry is a real thing in this collection.**
-# A naive scan reports 498 hits:
-#
-#   * **front matter** — `dfe_refs: [N1, N2]` is YAML, not prose;
-#   * **fenced blocks** — code, where brackets are syntax;
-#   * **display maths `$$…$$`** — `\left[ … \right]` is a bracket the reader sees as
-#     one, and it spans lines;
-#   * **inline code** and **inline maths `$…$`** — `[3]`, `[n]` are interval notation;
-#   * **a bracket that is entirely bold** (`**[Alternate angles, Theorem 3 part 2]**`) —
-#     the `15.8` page quotes the convention it teaches;
-#   * **a bracket at the end of an ordered step** (`1. $a + b = 180^\circ$. [Angles on a
-#     straight line]`) — the book's own justification column, written as a reason after
-#     the step.
-#
-# What is left has to be prose, and in prose a bracket with a space in it is a
-# reference, and a reference with no target is the defect.
 
 FRONT_MATTER = re.compile(r"\A---\n.*?\n---\n", re.S)
 FENCE = re.compile(r"```.*?```", re.S)
@@ -409,7 +372,6 @@ DISPLAY_MATHS = re.compile(r"\$\$.*?\$\$", re.S)
 INLINE_CODE = re.compile(r"`[^`]*`")
 INLINE_MATHS = re.compile(r"\$[^$]*\$")
 BOLD_LABEL = re.compile(r"\*\*\[[^\]]+\]\*\*")
-#: A bracketed phrase: starts with a letter, has a space in it, and has no target.
 REFERENCE = re.compile(r"\[([A-Za-z][^\]\n]*?\s[^\]\n]*?)\](?![\(\[:])")
 STEP = re.compile(r"^\s*\d+\.\s")
 
@@ -437,10 +399,8 @@ def test_a_bracketed_reference_in_prose_is_caught():
     assert bracketed_references("See the [hyperbolic page] for that.") == [
         (1, "[hyperbolic page]")
     ]
-    # the four hand-fixed references: a missing target, and a self-link written `(.)`
     assert bracketed_references("described on the [hyperbolic page], which this")
     assert bracketed_references("and [equilibrium without time] as well")
-    # and the exclusions, so the rule does not become noise
     assert bracketed_references("See the [hyperbolic page](/numerical-methods/hyperbolic/).") == []
     assert bracketed_references("the interval [3, 5] and [n] are maths") == []
     assert bracketed_references("$$\\left[ x^2 \\right]$$") == []
@@ -504,9 +464,6 @@ def test_a_one_page_section_names_its_page_in_the_books_words():
 
     assert label_for(walkthrough, page_kinds=("walkthrough",), section_page_label="Main thread") == "Main thread"
     assert label_for(walkthrough, page_kinds=("walkthrough",)) == "Overview"
-    # A course book names the page by its kind and is untouched by the new field: its
-    # sections have three pages, so the section is a container and no page there is
-    # "the section's own".
     assert (
         label_for(
             walkthrough,

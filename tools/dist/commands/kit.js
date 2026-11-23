@@ -29,7 +29,6 @@ import { parseArgs } from "../lib/flags.js";
 import { figureAssets, figurePage } from "../lib/routes.js";
 import { ORIGIN, launchBrowser, openContext, serveStatic, } from "../lib/browser.js";
 import { conclude, judge, listLines, rowsFor, } from "../lib/kit-contract.js";
-/** What this command accepts. `tools help kit` is generated from this table. */
 export const SURFACE = {
     positional: [
         { name: "siteDir", help: "the built site to check against", required: false },
@@ -39,13 +38,6 @@ export const SURFACE = {
         list: { kind: "boolean", help: "print every row this tier runs, with its tier and what it covers" },
     },
 };
-/**
- * The compiled contract module, which is served to the page rather than rewritten in it.
- *
- * `tools kit` runs from `tools/dist`, so this is `dist/lib/kit-contract.js` — the same
- * file the command imported a moment ago, byte for byte. That is the whole point: a
- * table copied into the page would be a second list, which is what this replaced.
- */
 function contractFile() {
     return fileURLToPath(new URL("../lib/kit-contract.js", import.meta.url));
 }
@@ -91,7 +83,6 @@ export async function run(argv) {
         const context = await openContext(browser, { deviceScaleFactor: 1 });
         await serveStatic(context, siteDir);
         // Registered after `serveStatic`, because Playwright tries the most recently added
-        // route first: the fake path has to win over the 404 the static server would give it.
         await context.route("**/__kit-contract.js", (intercepted) => intercepted.fulfill({
             status: 200,
             contentType: "text/javascript",

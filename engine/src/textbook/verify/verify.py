@@ -47,12 +47,6 @@ class Report:
 class BankReport:
     bank: str
     reports: list[Report] = field(default_factory=list)
-    #: Set when the file itself could not be read.
-    #:
-    #: A bank that will not parse has no problems to report on, and letting the parser's
-    #: exception escape printed a traceback from inside a library and **no verdict at
-    #: all** — so a run over fifty banks stopped at the fourth with a stack trace, and a
-    #: caller counting `ok` lines read a short run as a clean one.
     load_error: str | None = None
 
     @property
@@ -96,8 +90,6 @@ def _verify_steps(problem: dict, symbols: dict, report: Report) -> None:
 
     for index in range(len(parsed) - 1):
         (kind_a, a, _), (kind_b, b, step_b) = parsed[index], parsed[index + 1]
-        # The relation belongs to the step it produces, so a single solution can
-        # mix equivalent rewrites with, say, a differentiation or a substitution.
         relation = step_b.get("relation", default_relation)
         label = f"step {index} -> {index + 1}"
 
@@ -114,8 +106,6 @@ def _verify_steps(problem: dict, symbols: dict, report: Report) -> None:
                     f"({cas.solution_set(a, variable)} != {cas.solution_set(b, variable)})"
                 )
         elif relation == "implies":
-            # A weaker relation for non-reversible steps (squaring, multiplying by
-            # an unknown): the first solution set must be contained in the second.
             if kind_a != "equation" or kind_b != "equation":
                 report.errors.append(f"{label}: implication steps must be equations")
                 continue
@@ -132,7 +122,6 @@ def _verify_steps(problem: dict, symbols: dict, report: Report) -> None:
                     f"{label}: implications can add extraneous roots; check the answer set"
                 )
         elif relation == "apply":
-            # The step names the operation that produced it, e.g. differentiate.
             spec = step_b.get("apply")
             if not spec:
                 report.errors.append(f"{label}: relation 'apply' needs an 'apply' block")
@@ -219,9 +208,6 @@ def verify_bank(path: Path, oracles: Iterable[str] | None = None) -> BankReport:
     try:
         data: dict[str, Any] = yamlio.load_file(path)
     except yaml.YAMLError as err:
-        # The parser's own message already carries the line and column, and it is the
-        # most useful thing anyone can be told. What it must not do is arrive as a
-        # traceback: this is a defect in a bank, and a bank is a file a person edits.
         first = str(err).strip().splitlines()
         detail = " ".join(line.strip() for line in first[:3] if line.strip())
         return BankReport(bank=str(path), load_error=f"could not parse the file: {detail}")
@@ -233,10 +219,6 @@ def verify_bank(path: Path, oracles: Iterable[str] | None = None) -> BankReport:
         merged = dict(problem)
         merged.setdefault("symbols", data.get("symbols"))
         report = _verify_problem(merged, selection)
-        # A bank is what a page renders, so the rule belongs here rather than in
-        # `_verify_problem`: a verifier test can check the mathematics of a record
-        # it made up, but a bank whose record renders no answer would print a
-        # question with nothing under it.
         _verify_renders(merged, report)
         bank.reports.append(report)
     return bank

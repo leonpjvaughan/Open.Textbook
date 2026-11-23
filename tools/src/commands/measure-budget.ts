@@ -1,13 +1,3 @@
-/*
- * Measure the performance budget of a page the pipeline actually ships.
- *
- * DEPLOY.md records a budget as bytes over the wire on a first load: the
- * `transferSize` of the navigation entry plus the sum over
- * `performance.getEntriesByType("resource")`. This is that measurement, and the
- * recorded numbers come from it — so the server it runs against reproduces the
- * Worker's cache headers, and it binds a real port, because `transferSize` is only
- * populated for a request that crossed the network stack.
- */
 import path from "node:path";
 import { launchBrowser, openContext, serveHttp } from "../lib/browser.js";
 import { parseArgs, type Surface } from "../lib/flags.js";
@@ -37,7 +27,6 @@ interface Measured {
   stylesheets: Array<{ href: string | null; media: string; disabled: boolean }>;
 }
 
-/** What this command accepts. `tools help budget` is generated from it. */
 export const SURFACE: Surface = {
   positional: [
     { name: "siteDir", help: "the built site to serve", required: false },
@@ -69,8 +58,6 @@ export async function run(argv: string[]): Promise<number> {
   );
 
   await page.goto(`${server.origin}${route}`, { waitUntil: "load" });
-  // The service worker's registration script is fetched after `load`, so wait for the
-  // network to settle before reading the resource list.
   await page.waitForLoadState("networkidle").catch(() => {});
   await page.waitForTimeout(1500);
 

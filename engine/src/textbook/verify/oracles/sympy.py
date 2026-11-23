@@ -163,7 +163,6 @@ def _check_rsolve(check, symbols, report):
 
 
 def check_apply(check, symbols, report, dispatch):
-    # A check that names its operation, e.g. differentiate x**3 to get 3x**2.
     spec = check["apply"]
     if spec.get("op") == "dsolve":
         _check_dsolve(check, symbols, report)
@@ -417,7 +416,7 @@ def check_compare(check, symbols, report, dispatch):
         cas.parse_expression(check["lhs"], symbols),
         cas.parse_expression(check["rhs"], symbols),
     )
-    if result != True:  # SymPy returns S.true, not the Python singleton
+    if result != True:
         report.errors.append(
             f"check: {check['lhs']} {check['relation']} {check['rhs']} is not true"
         )

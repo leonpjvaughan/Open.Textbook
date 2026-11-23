@@ -1,12 +1,9 @@
 // @ts-nocheck
 import { UI_FONT } from "./frame.js";
-
 function mount(parent, holder) {
   (parent.querySelector(".fig-controls") || parent).append(holder);
 }
 /**
- * A slider, with a visible label and an accessible name.
- *
  * @returns {HTMLInputElement} the input, ready to read `.value` from.
  */
 export function slider(parent, options = {}) {
@@ -51,7 +48,6 @@ export function slider(parent, options = {}) {
   paint();
   return input;
 }
-
 export function toggle(parent, options = {}) {
   const { id = "", label = "", name = "", checked = false } = options;
   const holder = document.createElement("label");
@@ -66,7 +62,6 @@ export function toggle(parent, options = {}) {
   mount(parent, holder);
   return input;
 }
-
 export function chooser(parent, options = {}) {
   const { id = "", label = "", name = "", choices = [], value } = options;
   const holder = document.createElement("label");
@@ -88,12 +83,6 @@ export function chooser(parent, options = {}) {
   return select;
 }
 /**
- * The options `button()` takes, for the compiled copy.
- *
- * `tsc` strips the annotations when it emits, so `kit/controls.js` needs this to type
- * `button()` for the `.js` modules. The TypeScript type above is what this file is
- * checked against.
- *
  * @typedef {object} ButtonOptions
  * @property {string} [id]
  * @property {string} [label]  the visible words
@@ -102,13 +91,6 @@ export function chooser(parent, options = {}) {
  * @property {boolean} [pressed]  give it a boolean to get a **toggle button**
  */
 /**
- * A button. The kit's one control that is an **action** rather than a value.
- *
- * A button fires no `input` or `change`, so it is bound with `onClick` rather than
- * `react()`. **`@type` rather than `@param`**, because a `@param` cannot name a
- * destructured parameter: it reports a missing name and falls back to the defaults,
- * which loses `onClick`.
- *
  * @type {(parent: HTMLElement, options?: ButtonOptions) => HTMLButtonElement}
  */
 export function button(parent, { id = "", label = "", name = "", onClick, pressed } = {}) {
@@ -133,7 +115,6 @@ export function button(parent, { id = "", label = "", name = "", onClick, presse
   mount(parent, holder);
   return el;
 }
-
 export function segmented(parent, { id = "", label = "", name = "", choices = [], value } = {}) {
   const fieldset = document.createElement("fieldset");
   fieldset.className = "fig-control fig-segmented";
@@ -168,7 +149,6 @@ export function segmented(parent, { id = "", label = "", name = "", choices = []
   mount(parent, fieldset);
   return fieldset;
 }
-
 export function field(
   parent,
   { id = "", label = "", name = "", type = "text", value = "", placeholder = "", inputmode } = {},
@@ -190,7 +170,6 @@ export function field(
   mount(parent, holder);
   return input;
 }
-
 export function textarea(
   parent,
   { id = "", label = "", name = "", rows = 3, value = "", placeholder = "" } = {},
@@ -215,20 +194,6 @@ export function textarea(
   return input;
 }
 /**
- * A builder: a palette of parts the reader adds to an assembly.
- *
- * The same shape fits a circuit, a tree diagram, a Venn region, a prime-factor tree,
- * a net folding into a solid, a nuclear equation, and a proof assembled from reasons:
- * a set of parts, a way to add and remove them, and a drawing that follows.
- *
- * **It assembles, and the module validates.** Whether the assembly is *right* is the
- * page's lesson, so `builder()` never judges. The container carries a `.value` — the
- * part ids in the order they were added — so `react(container, draw)` works as for
- * any other control.
- *
- * The parts are buttons with `aria-pressed`, so adding and removing is one key each
- * and a screen reader announces the state.
- *
  * @param {object} o
  * @param {Array<{id: string, label: string}>} o.parts
  * @param {string[]} [o.value]  the parts already added, in order
@@ -301,7 +266,6 @@ export function builder(
   announce();
   return holder;
 }
-
 export function notate(parent, { input, label = "", keys } = {}) {
   if (!input) throw new Error("notate: an input is required, because the keypad inserts into one");
   const holder = document.createElement("div");

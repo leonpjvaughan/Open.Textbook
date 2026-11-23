@@ -36,8 +36,6 @@ function bytes(base64) {
 }
 
 /**
- * Instantiate a generated kernel.
- *
  * @param {any} manifest the manifest the build wrote
  * @param {string} base64 the wasm bytes, base64-encoded
  * @returns {Promise<Kernel>}
@@ -64,7 +62,6 @@ export async function define(manifest, base64) {
   return new Kernel(manifest, exports, base);
 }
 
-/** One instantiated kernel, with its four blocks as `Float64Array` views. */
 export class Kernel {
   /**
    * @param {any} manifest
@@ -120,13 +117,11 @@ export class Kernel {
     return this.params[this.index(name)];
   }
 
-  /** Validate the parameters and reset the state. Returns the status code. */
   init() {
     this.status = this.exports.init() | 0;
     return this.status;
   }
 
-  /** Advance one step. Returns the status code. */
   step() {
     this.status = this.exports.step() | 0;
     return this.status;
@@ -174,7 +169,6 @@ export class Kernel {
     return this.manifest.params[this.index(name)];
   }
 
-  /** The status's human sentence, for a readout. */
   statusText() {
     return STATUS[this.status] || `unknown status ${this.status}`;
   }

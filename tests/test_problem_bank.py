@@ -209,7 +209,6 @@ def test_yaml_has_no_control_character_escapes():
     assert not offenders, "control characters in YAML (use single quotes): " + "; ".join(offenders)
 
 
-# --- a record the reader would see no answer for ------------------------------
 
 
 def _bank(tmp_path, *records, oracles=("sympy",)):
@@ -251,7 +250,6 @@ def test_a_bank_record_that_renders_no_answer_fails(tmp_path):
     assert not bad.ok
     assert any("renders no answer" in e for e in bad.errors), bad.errors
 
-    # ...and the same record passes once the reader can be shown the answer.
     record["answer_text"] = "Yes."
     assert _bank(tmp_path, record).ok
 

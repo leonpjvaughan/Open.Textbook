@@ -22,8 +22,6 @@ from textbook.book import repo_root
 SCRIPT = repo_root() / "scripts" / "next-tag.sh"
 TAG = re.compile(r"^\d{2}\.\d{3}\.\d+$")
 
-# A minimal `gh` that answers `api <path> --jq <expr>` from a fixture, so the
-# script's real jq expression is exercised rather than approximated.
 GH_STUB = """#!/usr/bin/env bash
 set -eu
 if [ "${1:-}" != "api" ]; then

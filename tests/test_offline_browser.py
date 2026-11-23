@@ -37,8 +37,6 @@ pytestmark = pytest.mark.browser
 SITE = repo_root() / "site"
 TOOLS = repo_root() / "tools" / "dist" / "cli.js"
 
-#: The page the check reads. It carries figures, so an addressed module and the
-#: stable-named loader are both exercised.
 ROUTE = "/gcse-maths/higher/chapter-1/section-1.1/learn/"
 
 PLAYWRIGHT_CANDIDATES = (
@@ -139,8 +137,6 @@ def test_a_book_still_reads_after_a_deploy_empties_the_runtime_cache():
         "a book did not survive a deploy with the network off.\n"
         f"{result.stdout[-4000:]}\n{result.stderr[-4000:]}"
     )
-    # And it examined something: the summary always states the count, so an empty run
-    # cannot read as a clean one.
     assert "0 errors" in result.stdout, result.stdout
     assert "cache checks examined" in result.stdout, result.stdout
 

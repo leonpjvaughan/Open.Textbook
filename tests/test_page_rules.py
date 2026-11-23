@@ -40,7 +40,6 @@ def pages():
     ]
 
 
-# --- the code width -------------------------------------------------------------
 
 
 def test_code_over_the_limit_is_reported_with_its_line():
@@ -76,7 +75,6 @@ def test_the_tree_has_no_code_line_over_the_limit():
     assert over == [], f"code lines over {rules.CODE_COLUMNS} columns: {over}"
 
 
-# --- the prose width ------------------------------------------------------------
 
 
 def test_prose_over_the_limit_is_reported():
@@ -136,7 +134,6 @@ def test_the_tree_matches_the_prose_debt():
     )
 
 
-# --- the folds ------------------------------------------------------------------
 
 
 def test_a_fold_with_no_summary_is_reported():
@@ -191,7 +188,6 @@ def test_no_page_in_the_collection_has_a_nameless_fold():
     assert offenders == [], f"a fold whose summary names nothing: {offenders}"
 
 
-# --- the detail-page skeleton ---------------------------------------------------
 
 GOOD_PAGE = textwrap.dedent(
     """\
@@ -348,5 +344,4 @@ def test_a_page_that_names_no_recorded_source_is_reported():
         "higham"
     ]
     assert rules.sourced_pages("The model of rounding is standard.", references) == []
-    # A recorded author whose role is empty is not a source: the role is the claim.
     assert rules.sourced_pages("Nobody At All says so.", references) == []

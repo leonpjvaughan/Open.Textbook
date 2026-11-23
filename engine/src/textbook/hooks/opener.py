@@ -31,8 +31,6 @@ from __future__ import annotations
 import html
 import re
 
-#: A chapter's own page, and nothing deeper: `Chapter 1/Section 1.1/...` is a
-#: section's page, not the opener.
 CHAPTER_INDEX = re.compile(r"^Chapter \d+/index\.md$")
 
 FIRST_H1 = re.compile(r"(<h1\b[^>]*>)(.*?)(</h1>)", re.S)
@@ -41,8 +39,6 @@ HEADING = re.compile(r"(<h2\b[^>]*>)(.*?)(</h2>)", re.S)
 TAG = re.compile(r"<[^>]+>")
 END_OF_H1 = re.compile(r"</h1>", re.I)
 
-#: The heading the chapter problem is authored under, and the Review page's
-#: heading that must not be mistaken for it.
 PROBLEM = "the chapter problem"
 SOLVED = "the chapter problem, solved"
 

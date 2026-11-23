@@ -23,7 +23,6 @@ import { parseArgs, type Surface } from "../lib/flags.js";
 import { Report } from "../lib/report.js";
 import { firstFigureRoute, routeFile, sampleRoutes, type SampledRoute } from "../lib/routes.js";
 
-/** What this command accepts. `tools help targets` is generated from this table. */
 export const SURFACE: Surface = {
   positional: [{ name: "siteDir", help: "the built site to measure", required: false }],
   flags: {
@@ -71,7 +70,6 @@ function pagesToMeasure(root: string, override: string | undefined): SampledRout
   return sampled;
 }
 
-/** One control under the floor, as the page reports it. */
 type Small = { tag: string; cls: string; w: number; h: number; text: string };
 
 /**
@@ -145,10 +143,6 @@ export async function run(argv: string[]): Promise<number> {
     const page = await context.newPage();
     for (const { name, route } of routes) {
       await page.goto(`http://textbook.local${route}`, { waitUntil: "load" });
-      // A figure module is a dynamic import and mounts its sliders after `load`.
-      // Measuring at a fixed delay missed a late control and the count differed
-      // run to run: 52,276 inside the gate, 52,288 standalone minutes later, on
-      // the same build. Wait for the modules, then require two equal passes.
       await page.evaluate(() => document.fonts.ready);
       await page
         .waitForFunction(
@@ -164,7 +158,6 @@ export async function run(argv: string[]): Promise<number> {
       let counted = 0;
       let small: Small[] = [];
       for (const open of [false, true]) {
-        // The drawer's rows are behind a disclosure and are the control a phone
         // reader uses most, so they are opened and measured rather than skipped.
         if (open) {
           await page.evaluate(() => {

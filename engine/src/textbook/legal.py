@@ -33,20 +33,10 @@ from dataclasses import dataclass, field
 from . import book as books
 from . import yamlio
 
-#: The date a reader sees on the terms page. It is written out rather than taken
-#: from ``date.today()`` so a build is reproducible: the page changes when the
-#: terms change, not when the site is rebuilt.
 LAST_UPDATED = "21 October 2026"
 
-#: The one contact route the project has. There is no mail service, so a
-#: ``mailto:`` link would be dead — see the About page's own note.
 CONTACT_URL = "https://github.com/leonpjvaughan/Open.Textbook/issues/new"
 
-#: The heading and summary used on a book's home page. The summary is what a
-#: reader sees before opening the note, so it must not sound like a warning. A
-#: course book is read alongside a course; a book that is not one must not tell
-#: the reader that it is, because the first thing a general reader of
-#: `maths-applied` or the map meets would then be about a course they are not on.
 DISCLAIMER_HEADING = "Before you use this book"
 COURSE_SUMMARY = "Using this book alongside your course"
 STANDALONE_SUMMARY = "Using this book"
@@ -64,9 +54,6 @@ def _is_a_course(book: books.Book) -> bool:
     return bool(book.boards)
 
 
-#: The liability position, which is the same promise in every book. The sentence
-#: before it says what was checked, and that is the only part a book's kind
-#: changes.
 _LIABILITY = (
     "the author accepts no liability for any incorrect information in this book,",
     "or for any loss arising from using it or relying on it. Nothing in this note",
@@ -183,7 +170,6 @@ def disclaimer_html(book: books.Book) -> str:
     )
 
 
-# --- terms of use -------------------------------------------------------------
 
 
 def _link(url: str, text: str) -> str:
@@ -295,7 +281,6 @@ def terms_html() -> str:
     )
 
 
-# --- acknowledgements ---------------------------------------------------------
 
 
 @dataclass
@@ -366,9 +351,6 @@ def _references_html(references: list[_Reference]) -> list[str]:
     return ["<ul>", *[f"  {_reference_html(r)}" for r in references], "</ul>"]
 
 
-#: Software that does work on the site, with the licence it is used under.
-#: Kept as data so a new build dependency added to `package.json` or the Python
-#: package has an obvious place to be credited.
 SOFTWARE: tuple[tuple[str, str, str, str], ...] = (
     (
         "KaTeX",

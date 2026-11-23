@@ -45,8 +45,6 @@ def assets() -> Path:
 def site() -> Path:
     return root() / "site"
 
-#: The files the portal writes at the deployment root and the pages link.
-#: Content-addressed, so both builds derive the same name from the source bytes.
 ROOT_ASSETS: tuple[str, ...] = (
     "assets/stylesheets/themes.css",
     "assets/stylesheets/portal.css",
@@ -84,8 +82,6 @@ def root_links(rooted: bool) -> dict[str, str]:
 TEMPLATE = Path(__file__).resolve().parent / "templates" / "portal.html"
 LEGAL_TEMPLATE = Path(__file__).resolve().parent / "templates" / "portal_page.html"
 
-#: The prose pages the portal writes at the site root. The build's link checker
-#: cannot see them: `pipeline.check_links` treats them as a page built elsewhere.
 LEGAL_PAGES: dict[str, tuple[str, str]] = {
     "terms": (
         "Terms of use",
@@ -127,8 +123,6 @@ def card(book: books.Book) -> str:
             f"{html.escape(profile.name)}</a>"
         )
 
-    # What the card counts depends on what the book is: "0 chapters" is not a fact
-    # about a reference work.
     if book.proofs:
         facts = [f"{len(book.proofs)} proofs"]
     elif book.qualification == books.REFERENCE:
@@ -144,8 +138,6 @@ def card(book: books.Book) -> str:
     if book.boards:
         facts.append(" · ".join(html.escape(b) for b in book.boards))
 
-    # A reference work is filed under Reference already, so naming it again here
-    # reads as a level of study.
     subject_line = (
         html.escape(book.subject)
         if book.qualification == books.REFERENCE
@@ -199,8 +191,6 @@ def groups_html(all_books: list[books.Book]) -> str:
     return "\n".join(out)
 
 
-# The icons are inlined rather than pulled from an icon font, and are
-# currentColor, so they follow every bundle and both schemes.
 _COG_ICON = (
     '<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" aria-hidden="true" focusable="false">'
     '<path d="M12 15.5A3.5 3.5 0 0 1 8.5 12 3.5 3.5 0 0 1 12 8.5a3.5 3.5 0 0 1 3.5 3.5 3.5 3.5 0 0 1-3.5 3.5m7.43-2.53c.04-.32.07-.64.07-.97s-.03-.66-.07-1l2.11-1.63c.19-.15.24-.42.12-.64l-2-3.46c-.12-.22-.39-.31-.61-.22l-2.49 1c-.52-.39-1.06-.73-1.69-.98l-.37-2.65A.506.506 0 0 0 14 2h-4c-.25 0-.46.18-.5.42l-.37 2.65c-.63.25-1.17.59-1.69.98l-2.49-1c-.22-.09-.49 0-.61.22l-2 3.46c-.13.22-.07.49.12.64L4.57 11c-.04.34-.07.67-.07 1s.03.65.07.97l-2.11 1.66c-.19.15-.25.42-.12.64l2 3.46c.12.22.39.3.61.22l2.49-1.01c.52.4 1.06.74 1.69.99l.37 2.65c.04.24.25.42.5.42h4c.25 0 .46-.18.5-.42l.37-2.65c.63-.26 1.17-.59 1.69-.99l2.49 1.01c.22.08.49 0 .61-.22l2-3.46c.12-.22.07-.49-.12-.64z"/></svg>'
@@ -210,7 +200,6 @@ _CLOSE_ICON = (
     '<path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>'
 )
 
-# The colour scheme: the values themes.css keys `body[data-md-color-scheme]` on.
 SCHEME_OPTIONS = (("default", "Light"), ("slate", "Dark"))
 
 
@@ -293,8 +282,6 @@ def settings_dialog(book: books.Book | None = None) -> str:
         "    </fieldset>"
     ]
     if bundles:
-        # Grouped by the bundle's own mood, so the distinction the collection
-        # records is the one offered.
         subgroups = []
         for mood, heading in (("calm", "Quiet themes"), ("vivid", "Bold themes")):
             group = [bundle for bundle in bundles if bundle.mood == mood]
@@ -320,7 +307,6 @@ def settings_dialog(book: books.Book | None = None) -> str:
         )
 
     if book is not None:
-        # Nothing here fetches until the button is pressed.
         groups.append(
             '    <fieldset class="tb-settings__group" id="tb-offline"'
             f' data-offline-book="{html.escape(book.id, quote=True)}">\n'
@@ -356,10 +342,7 @@ def settings_dialog(book: books.Book | None = None) -> str:
     )
 
 
-# --- the installable app ------------------------------------------------------
 
-# `assets/sw.js` carries this placeholder; the portal stamps the build label in.
-# See `service_worker()` and DEPLOY.md, "Installable and offline".
 SW_PLACEHOLDER = "__TB_BUILD__"
 
 
@@ -589,7 +572,6 @@ def render() -> str:
     )
 
 
-# --- the deployed root's non-page files ---------------------------------------
 
 
 def _base_url() -> str:
@@ -651,7 +633,6 @@ def build_identity() -> dict[str, str]:
     if not commit:
         commit = _git("rev-parse", "HEAD")
     if not tag:
-        # `GITHUB_REF_NAME` is the branch on a push, not the release's tag.
         tag = _git("describe", "--tags", "--exact-match")
 
     identity: dict[str, str] = {}
@@ -707,10 +688,7 @@ def main() -> int:
 
     target = site() / "assets" / "stylesheets"
     target.mkdir(parents=True, exist_ok=True)
-    # Each shared asset is written under the name its own bytes produce, the name
-    # every page links — see `addressed_url` and `ROOT_ASSETS`.
     addressed = root_assets()
-    # A stable-named copy from an older build is stale by definition now.
     for relative in ROOT_ASSETS:
         (site() / relative).unlink(missing_ok=True)
     for relative in ROOT_ASSETS:

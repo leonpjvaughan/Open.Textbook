@@ -120,10 +120,6 @@ def test_a_bundle_must_be_complete(tmp_path):
         load_bundle(path)
 
 
-# --- provenance: a claim someone else can check -------------------------------
-# One palette family, a light member and a dark member, each with a recorded origin.
-# `original: true` is authored here; `observed: true` was read from `source`;
-# `observed: false` is derived here from `source`'s hues and needs a `note`.
 
 
 def _bundle_data(theme_id: str = "editorial") -> dict:
@@ -205,7 +201,6 @@ def test_a_derived_member_must_say_what_was_derived(tmp_path):
         ValueError, match=r"editorial\.yaml: provenance\.light: derived, so it needs a note"
     ):
         load_bundle(_write_bundle(tmp_path, data))
-    # With a note it loads, keeps the claim, and is not marked original.
     data = _sourced(
         _bundle_data(), observed=False, note="Derived here from the upstream hues."
     )
@@ -278,7 +273,6 @@ def test_menu_order_is_declared_not_alphabetical():
     assert [bundle.id for bundle in ordered_bundles()][: len(order)] == order
 
 
-# --- composition --------------------------------------------------------------
 
 
 @pytest.mark.parametrize("bundle", BUNDLES, ids=IDS)
@@ -318,7 +312,6 @@ def test_each_bundle_and_scheme_selects_a_block_per_bundle():
             assert f'html[data-theme="{bundle.id}"] body[data-md-color-scheme="{attr}"]' in css
 
 
-# --- the invariant that makes the multiplication safe -------------------------
 
 
 @pytest.mark.parametrize("bundle", BUNDLES, ids=IDS)
@@ -439,7 +432,6 @@ def test_apca_is_polarity_sensitive_and_matches_the_reference():
     """Lc is signed, and the reference anchors bracket the scale."""
     assert apca_contrast("#000000", "#ffffff") == pytest.approx(106.04, abs=0.05)
     assert apca_contrast("#ffffff", "#000000") == pytest.approx(-107.89, abs=0.05)
-    # Flipping foreground and background flips the sign, and the magnitudes are not
     # mirrors: that asymmetry is what WCAG's symmetric ratio cannot express at all.
     forward = apca_contrast("#4c4f69", "#eff1f5")
     reverse = apca_contrast("#eff1f5", "#4c4f69")
@@ -574,7 +566,6 @@ def test_contrast_is_symmetric_and_bounded():
     assert MIN_CONTRAST["ink"] > MIN_CONTRAST["accent"]
 
 
-# --- generated artefacts ------------------------------------------------------
 
 
 def test_generated_stylesheet_is_in_sync():
@@ -584,14 +575,7 @@ def test_generated_stylesheet_is_in_sync():
     )
 
 
-# --- no colour literal in the shared stylesheet -------------------------------
 
-# `extra.css` is the plumbing layer: a colour declared here outranks every bundle,
-# silently, in both schemes and for every reader.
-#
-# The scanner ignores comments (prose may name a colour) and flags a hex, a colour
-# function or a CSS named colour; `transparent` and `currentColor` pick no hue, and
-# names match whole hyphenated words so `white-space` is not one.
 CSS_COMMENT = re.compile(r"/\*.*?\*/", re.DOTALL)
 HEX_COLOUR = re.compile(r"#[0-9a-fA-F]{3,8}(?![0-9a-fA-F])")
 COLOUR_FUNCTION = re.compile(
@@ -625,9 +609,6 @@ NAMED_COLOURS = frozenset(
 )
 
 
-# `#` starts a comment in Python and a colour in CSS, so the scanner has to be told
-# which it reads. Comments go through Python's own tokenizer, not a regex, which
-# cannot tell a `#` inside a string (`fill = "#fff"`) from a comment.
 def without_python_comments(source: str) -> str:
     """The source with its comments replaced by spaces, line numbers kept."""
     import io
@@ -641,8 +622,7 @@ def without_python_comments(source: str) -> str:
             else:
                 out.append(token.string)
     except tokenize.TokenError:
-        return source  # a fragment, not a whole file
-    # `generate_tokens` drops whitespace; a space is enough for a value scanner.
+        return source
     return " ".join(out)
 
 
@@ -719,15 +699,10 @@ def test_the_colour_scanner_can_actually_fail():
     assert colour_literals("x { background: rgb(0 0 0 / 20%); }")
     assert colour_literals("x { background: hsl(200 50% 40%); }")
     assert colour_literals("x { color: white; }")
-    # Tokens, classes, and the absence of paint are not literals.
     assert not colour_literals("x { color: var(--tb-fig-warn); background: transparent; }")
     assert not colour_literals("x { box-shadow: 0 1px 2px color-mix(in srgb, var(--tb-ink) 20%, transparent); }")
-    # `white-space` contains a colour name but is a property, not a value.
     assert not colour_literals("x { white-space: nowrap; }")
-    # Prose about colour, in the language where `#` is a comment. A hex in a .py
-    # file is still caught, because only the comment is removed.
     assert not colour_literals("# the gate stayed green\n", python=True)
-    # A literal in code is still caught; a `#` at the start of a line is a comment.
     assert colour_literals('fill = "#fff"\n', python=True)
     assert colour_literals('x = "rgb(1 2 3)"\n', python=True)
     assert not colour_literals('fill = "var(--tb-ink)"  # a green box\n', python=True)
@@ -747,7 +722,6 @@ def test_the_portal_stylesheet_defines_no_colour():
     )
 
 
-# --- the landing page ---------------------------------------------------------
 
 
 def test_the_landing_page_offers_every_bundle():
@@ -755,8 +729,6 @@ def test_the_landing_page_offers_every_bundle():
     assert 'id="theme-menu"' in html
     for bundle in BUNDLES:
         assert f'value="{bundle.id}"' in html
-        # The title goes through `html.escape`, so compare the escaped form: a
-        # palette name with an apostrophe (Synthwave '84) is escaped in the page.
         assert escape(bundle.title) in html
 
 
@@ -767,7 +739,6 @@ def test_the_landing_page_applies_the_theme_before_paint():
     assert "textbooks:theme" in head
 
 
-# --- the editorial card -------------------------------------------------------
 
 
 def portal_rule(selector: str) -> str:
@@ -792,8 +763,6 @@ def test_a_card_is_a_rule_not_a_box():
     assert "border-radius" not in card
     assert "background" not in card
     assert "border-top: 1px solid var(--tb-rule)" in card
-    # No component chooses its own corner, and no bordered word is a pill: every
-    # radius in the sheet is the collection's one token.
     css = re.sub(
         r"/\*.*?\*/",
         "",
@@ -844,7 +813,6 @@ def test_the_menu_can_be_withdrawn(monkeypatch):
     monkeypatch.setattr(books_module, "load_collection", withdrawn)
     html = portal.render()
     assert 'id="theme-menu"' not in html
-    # The preference still works even when the choice is not offered.
     assert "textbooks:theme" in html
 
 
@@ -854,12 +822,6 @@ def test_the_bundles_are_valid_yaml_with_one_file_each():
         assert yaml.safe_load(bundle.source.read_text(encoding="utf-8"))["id"] == bundle.id
 
 
-# --- form controls inside a figure --------------------------------------------
-# A form control is a user-agent widget: without a rule it takes the platform's
-# colours, and `color-scheme` only follows light or dark — not our light or our dark.
-# None of that fails a contrast check and all of it looks like a different website.
-# The `<option>` matters most: a transparent background lets the platform paint the
-# dropdown list, which is how black text ends up on a dark list.
 
 
 def figure_control_rules() -> dict[str, str]:
@@ -900,7 +862,6 @@ def test_a_figures_form_controls_are_painted_from_tokens():
             "platform's colours while the text around it takes ours"
         )
 
-    # The two that decide whether text is readable at all.
     for needle in ("maths-figure select", "maths-figure option"):
         block = rules[needle]
         assert re.search(r"(?<![\w-])color\s*:\s*var\(--tb-", block), (
@@ -949,10 +910,6 @@ def test_the_engine_names_no_other_colour():
     )
 
 
-# --- the contrast table is the whole contract ---------------------------------
-# `contrast_problems` was five near-identical loops that had already diverged: only
-# the figure one resolved an alias, so a role that missed the lookup `continue`d and
-# its threshold was never applied. One table makes that unexpressible.
 
 
 def test_every_declared_threshold_is_applied():

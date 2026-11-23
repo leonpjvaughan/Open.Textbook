@@ -29,7 +29,6 @@ from .book import SCHEME_TOKENS, repo_root
 
 THEMES_DIR = "themes"
 SCHEMES = ("light", "dark")
-# The attribute values Material uses, which is what the built pages carry.
 SCHEME_ATTR = {"light": "default", "dark": "slate"}
 
 FONT_TOKENS = {
@@ -39,69 +38,31 @@ FONT_TOKENS = {
 }
 
 # Minimum WCAG contrast ratios: ink is body text, so AAA; a link is text, so AA; the
-# accent carries white text on the header and draws figure strokes, so AA rather than
-# the 3:1 a graphic would allow.
 MIN_CONTRAST = {"ink": 7.0, "link": 4.5, "accent": 4.5}
 
-# `accent_ink` is text drawn *on* the accent surface (the booklet bar's label), so it is
 # measured against `accent`, not the paper.
 ON_ACCENT_MIN_CONTRAST = {"accent_ink": 4.5}
 
-# Figure tokens are drawn on the maths-figure panel, not the page, so they get their own
-# surface and their own thresholds.
-#
 # `fig-warn`, `fig-good` and `fig-accent` colour SVG `text-*` labels as well as marks, so
-# they are held to the 4.5:1 AA minimum for normal text. `fig-grid` draws axes and
 # gridlines: a graphic rather than text, so WCAG 1.4.11's 3:1 is the bar. One token
-# cannot be two colours, and text is the stricter use.
 FIGURE_MIN_CONTRAST = {"fig_accent": 4.5, "fig_warn": 4.5, "fig_good": 4.5, "fig_grid": 3.0}
 
-# `fig_accent` is not a token a bundle declares: assets/stylesheets/extra.css defines
-# `--tb-fig-accent` as `var(--tb-accent)`. Kept beside the thresholds, because a role
-# here that resolves to nothing is silently skipped rather than reported.
 FIGURE_TOKEN_ALIAS = {"fig_accent": "accent"}
 
-# The maths-figure panel is `color-mix(in srgb, paper 96%, ink 4%)` in
-# assets/stylesheets/extra.css; a token inside a figure sits on that mix, not the page,
-# and the mix is always closer to mid-grey, so it is the stricter check. The share is
-# mirrored here and pinned to the stylesheet by
-# test_the_figure_surface_matches_the_stylesheet.
-#
 # It was 8% until the margin was measured: at 8% the accent cleared the 4.5:1 text floor
-# by 0.02 and `fig_grid` cleared 3:1 by 0.04; at 4% the worst margins are +0.41 and
-# +0.32, so a palette edit has room to move. The border, not the tint, delineates it.
 FIGURE_PANEL_INK = 0.04
 
-# The landing page's card is `color-mix(in srgb, ink N%, paper)` — 4% in light and 7%
-# in dark — in assets/stylesheets/portal.css (`--tb-card`), mirrored here and pinned by
-# test_the_card_surface_matches_the_stylesheet. The mix moves *towards* the ink in both
-# schemes, so a soft ink that reads on the page can still fail on the card.
 CARD_INK = {"default": 0.04, "slate": 0.07}
 
-# `ink_soft` is Material's `--md-default-fg-color--light` and colours real text on
-# both surfaces (the landing card's body, secondary text in the books), so it is held
-# to the AA minimum for normal text rather than the 3:1 a graphic would allow.
 SOFT_MIN_CONTRAST = {"ink_soft": 4.5}
 
-# `ink_lighter` is `--md-default-fg-color--lighter`. The one visible control it paints
-# is `.sidebar summary::marker`, a non-text component the reader has to operate, so
 # WCAG 1.4.11's 3:1 applies rather than 4.5:1. Measured on the page, since `.sidebar`
-# paints no background: a `::marker` owns no text node, so the whole-page audit, which
-# walks elements with one, never sampled it.
 INK_LIGHTER_MIN_CONTRAST = {"ink_lighter": 3.0}
 
-# `code_bg` is a second surface for inline code and code blocks carrying body `ink`,
-# so ink is held to 7:1 on it, and it must separate from `paper` by ΔE 3: ink at full
-# strength on a background a reader reads as the page itself.
 CODE_BG_MIN_CONTRAST = {"ink": 7.0}
 CODE_BG_MIN_DELTA_E = 3.0
 
 #: The surface each set of thresholds is measured against, and the thresholds
-#: themselves: one row per rule, `(surface, thresholds, alias, wording, tail)`.
-#:
-#: One loop over this table, rather than one per rule: a rule cannot be added in a form
-#: that silently does nothing, and `test_every_declared_threshold_is_applied` proves the
-#: table and the dicts agree.
 CONTRAST_RULES = (
     ("paper", MIN_CONTRAST, {}, "on paper", ""),
     ("accent", ON_ACCENT_MIN_CONTRAST, {}, "on the accent", ""),
@@ -111,19 +72,8 @@ CONTRAST_RULES = (
     ("code_bg", CODE_BG_MIN_CONTRAST, {}, "on code_bg", ""),
 )
 
-# --- APCA, the polarity-sensitive second opinion ------------------------------
-#
 # WCAG 2.x computes a ratio from relative luminance and applies the same number in both
-# schemes, which is exactly what APCA exists to criticise: 4.5:1 can be comfortable as
-# dark text on light paper and weak as light text on dark. APCA's Lc is signed —
-# positive for dark-on-light — and its magnitude is the perceptually-scaled contrast.
 # It is a *second opinion*, not the compliance bar: WCAG stays the minimum every bundle
-# must clear, and APCA catches a dark palette that passes on the technicality of the
-# ratio.
-#
-# Thresholds are the next published level down from strict body text — Lc 60 body, Lc 45
-# large — because the strict levels would repaint several dark vivid families rather than
-# check them.
 APCA_MIN_CONTRAST = {"ink": 60.0, "link": 45.0, "accent": 45.0, "accent_ink": 45.0}
 
 # The pairs APCA is measured over: each role against the surface it is drawn on.
@@ -136,15 +86,10 @@ class Bundle:
     title: str
     description: str
     palettes: dict[str, dict[str, str]]
-    # The palette family this group belongs to, plus the recorded provenance of each
-    # member: the source, and whether it is original work, observed, or derived.
     family: str = ""
-    # Whether the bundle is calm or vivid. The menu groups by this; it is not a
-    # contrast claim, and the invariant still measures every bundle.
     mood: str = "calm"
     provenance: dict[str, dict] = field(default_factory=dict)
     typography: dict[str, str] = field(default_factory=dict)
-    # Tokens the bundle keeps for itself, refusing the subject tint.
     fixed: frozenset[str] = frozenset()
     source: Path | None = None
 
@@ -195,10 +140,8 @@ def _variation(scheme: str, data: dict | None, where: str) -> dict:
             )
         return {
             "name": str(data["name"]).strip(),
-            # `house` is a reading convenience for a palette with no upstream.
             "source": str(data.get("source", "")).strip() or "house",
             "original": True,
-            # Not False: the upstream-observation question does not apply to it.
             "observed": None,
             "note": " ".join(str(data.get("note", "")).split()),
         }
@@ -305,7 +248,6 @@ def default_bundle(root: Path | None = None) -> Bundle:
     return discover_bundles(root)[0]
 
 
-# --- colour maths, for the contrast invariant ---------------------------------
 
 
 def _component(value: str) -> tuple[int, int, int]:
@@ -377,15 +319,14 @@ def apca_contrast(foreground: str, background: str) -> float:
     is the asymmetry WCAG's symmetric ratio cannot express.
     """
     text, back = apca_luminance(foreground), apca_luminance(background)
-    # Soft-clamp the near-black region, as the reference implementation does.
     text = text if text > 0.022 else text + (0.022 - text) ** 1.414
     back = back if back > 0.022 else back + (0.022 - back) ** 1.414
     if abs(back - text) < 0.0005:
         return 0.0
-    if back > text:  # dark text on a light surface
+    if back > text:
         sapc = (back**0.56 - text**0.57) * 1.14
         output = 0.0 if sapc < 0.1 else sapc - 0.027
-    else:  # light text on a dark surface
+    else:
         sapc = (back**0.65 - text**0.62) * 1.14
         output = 0.0 if sapc > -0.1 else sapc + 0.027
     return output * 100
@@ -465,7 +406,6 @@ def contrast_problems(bundle: Bundle, scheme: str, subject: dict[str, str] | Non
     for surface, thresholds, alias, wording, tail in CONTRAST_RULES:
         measured = surfaces[surface]
         for role, minimum in thresholds.items():
-            # `fig_accent` is not a bundle token: extra.css defines it as `var(--tb-accent)`.
             colour = tokens.get(alias.get(role, role))
             if not colour:
                 continue
@@ -478,7 +418,6 @@ def contrast_problems(bundle: Bundle, scheme: str, subject: dict[str, str] | Non
     return problems
 
 
-# --- generated CSS ------------------------------------------------------------
 
 
 def _passthrough(bundle: Bundle, key: str, value: str) -> str:

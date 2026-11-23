@@ -44,11 +44,6 @@ from __future__ import annotations
 
 from pathlib import Path
 
-#: The content security policy, as one header value.
-#:
-#: `frame-ancestors` and `object-src` are the two directives doing real work
-#: here: they stop the books being framed and stop plugin content, neither of
-#: which the site needs and both of which a static host sets no defence against.
 POLICY = "; ".join(
     (
         "default-src 'self'",
@@ -66,10 +61,6 @@ POLICY = "; ".join(
     )
 )
 
-#: Headers applied to every path. Ordered as they read in the file.
-#:
-#: `X-Frame-Options` repeats `frame-ancestors` on purpose: the directive is the
-#: current mechanism and the header covers browsers that predate it.
 HEADERS: dict[str, str] = {
     "X-Content-Type-Options": "nosniff",
     "X-Frame-Options": "DENY",
@@ -78,7 +69,6 @@ HEADERS: dict[str, str] = {
     "Content-Security-Policy": POLICY,
 }
 
-#: The only rule pattern. One splat, because `_headers` allows no more.
 RULE = "/*"
 
 

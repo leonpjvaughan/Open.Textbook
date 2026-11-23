@@ -1,11 +1,8 @@
 // @ts-nocheck
 export const SIZE = {
   tick: 16,
-
   label: 16,
-
   value: 18,
-
   heading: 20,
 };
 /*
@@ -14,8 +11,6 @@ export const SIZE = {
  * `@typedef`. `draw.ts` does the same, and the two halves must agree.
  */
 /**
- * The options `label()` takes, for the compiled copy.
- *
  * @typedef {object} LabelOptions
  * @property {number} x  viewBox x, the point the anchor refers to
  * @property {number} y  viewBox y
@@ -27,7 +22,6 @@ export const SIZE = {
  * @property {number} [rotate]  degrees anticlockwise about `(x, y)`, for an axis title
  */
 /** Escape the three characters that make a string malformed inside an element.
- *
  * @param {unknown} text  whatever is about to be interpolated into markup
  * @returns {string}
  */
@@ -35,13 +29,6 @@ export function escape(text) {
   return String(text).replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;");
 }
 /**
- * A positioned piece of text, as an SVG `<text>` element string.
- *
- * `class` defaults to `text-ink`, so a label cannot ship uncoloured: a `<text>` with
- * no class paints in `fill`'s initial black and vanishes on a dark panel. The
- * options are a TypeScript type, because a `@param` on a destructured binding with a
- * default is silently ignored.
- *
  * @param {LabelOptions} [o]  the position, the words and the size
  * @returns an SVG `<text>` element, ready to concatenate
  */
@@ -66,18 +53,11 @@ export function label({
   if (rotate) attrs.push(`transform="rotate(${coord(rotate)} ${coord(x)} ${coord(y)})"`);
   return `<text ${attrs.join(" ")}>${escape(text)}</text>`;
 }
-
 export function coord(value) {
   const n = Number(value);
   return Number.isFinite(n) ? n.toFixed(1) : "0";
 }
-
 /**
- * A number with its unit: `2.88 s`, `14.1 m/s`, `50%`.
- *
- * SI style puts a space between number and unit, except for `%`, `°`, `°C`, `′` and
- * `″`, which bind to the number.
- *
  * @param value  the quantity
  * @param unit   the unit as a reader sees it: `"m/s"`, `"°C"`, `"%"`
  * @param places decimal places, as `fmt()`
@@ -94,20 +74,12 @@ export function fmt(value, places = 2, fromMap) {
   const rounded = Number(value.toFixed(Math.max(0, Math.min(20, digits))));
   return String(rounded);
 }
-
 export function signed(value, places = 2) {
   if (!Number.isFinite(value)) return "—";
   const n = Number(value.toFixed(places));
   return `${n < 0 ? "−" : "+"} ${Math.abs(n)}`;
 }
 /**
- * A number to a stated number of significant figures.
- *
- * A rounded answer is a claim about how much of the measurement is real, so trailing
- * zeros are kept when they carry significance, and a value whose integer part needs
- * place-holding zeros is written scientifically: `sigfig(300, 2)` is `"3.0e2"`,
- * matching the problem-bank verifier's own convention.
- *
  * @param {number} value
  * @param {number} [figures]  how many significant figures, default 3
  * @param {object} [o]

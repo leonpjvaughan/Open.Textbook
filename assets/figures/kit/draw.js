@@ -9,14 +9,6 @@ import { SIZE, coord, fmt, label } from "./text.js";
  * @property {[number, number]} range  the SVG coordinates, `[low, high]`
  */
 /**
- * Map a value in its own units to an SVG coordinate, in one axis.
- *
- * A y-axis that counts upwards meets an SVG y-axis that counts downwards, and a
- * flipped axis still looks like a correct drawing until someone reads a value off
- * it, so the mapping lives in one place. The returned function carries `.invert`,
- * the mapping back, so a drag can turn a pointer position into a value instead of
- * every module re-deriving the inverse.
- *
  * @param {ScaleOptions} o  the values to map and the coordinates to map them to
  * @returns {((value: number) => number) & {invert: (position: number) => number}}
  */
@@ -28,7 +20,6 @@ export function scale({ domain, range }) {
   map.invert = (position) => d0 + ((Number(position) - r0) / (r1 - r0)) * (d1 - d0);
   return map;
 }
-
 export function extent(values, pick) {
   let low = Infinity;
   let high = -Infinity;
@@ -48,9 +39,6 @@ export function extent(values, pick) {
  * @property {number} [count]  roughly how many ticks; default 5
  */
 /**
- * Round numbers to a count, on the 1–2–5 progression a reader expects, because a
- * count read off an axis at 0.5 or 1.5 is read and at 0.4712 is arithmetic.
- *
  * @param {TicksOptions} o  the domain, and roughly how many ticks
  * @returns {number[]} the tick values inside the domain, ascending
  */
@@ -72,9 +60,6 @@ export function ticks({ from, to, count = 5 }) {
   return out.length ? out : [low];
 }
 /**
- * One axis of a plotting area. A typedef, not `{object}`, which would type the
- * destructured fields `{}` and make `x.domain` an error in every caller.
- *
  * @typedef {object} AxesOptions
  * @property {number} [width]
  * @property {number} [height]
@@ -99,15 +84,7 @@ export function ticks({ from, to, count = 5 }) {
  * @property {(value: number) => string} [tickFormat]  how a tick is written
  */
 /**
- * A plotting area: two axes, their ticks, their labels, and the mappers.
- *
- * It returns the mappers as well as the string, so a module draws its own marks with
- * the same geometry the axes used and cannot disagree with them.
- *
  * @param {AxesOptions} [o]
- *
- * The return type is inferred, not declared: typing `x` and `y` as `Function` hides
- * the `invert` a caller needs.
  */
 export function axes({
   width = 560,
@@ -239,8 +216,6 @@ export function axes({
  * @property {string} [dash]   an SVG `stroke-dasharray`, when the line is a guide
  */
 /**
- * A straight line. The defaults, `fig-ink` and width 1.5, are what most callers want.
- *
  * @param {LineOptions} [o]
  */
 export function line({ x1, y1, x2, y2, class: cls = "fig-ink", width = 1.5, dash } = {}) {
@@ -295,9 +270,6 @@ export function polygon({ points = [], class: cls = "fig-ink" } = {}) {
  * @property {string} [dash]
  */
 /**
- * A path from SVG path data. A caller writing `d` is writing vertices by hand, so
- * every coordinate still goes through `coord()` first.
- *
  * @param {PathOptions} [o]
  */
 export function path({ d, class: cls = "fig-ink", fill = "none", width = 2, dash } = {}) {
@@ -316,12 +288,6 @@ export function path({ d, class: cls = "fig-ink", fill = "none", width = 2, dash
  * @property {string} [dash]
  */
 /**
- * An arrow: a shaft with a head at the tip. The shaft stops short of the tip so the
- * head sits on the point rather than behind it.
- *
- * The coordinates are required and the default is `{} as ArrowOptions`, so a caller
- * that omits one gets `NaN` geometry rather than a silent default.
- *
  * @param {ArrowOptions} [o]
  */
 export function arrow({ x1, y1, x2, y2, class: cls = "fig-ink", width = 2, head = 10, dash } = {}) {
@@ -353,8 +319,6 @@ export function arrow({ x1, y1, x2, y2, class: cls = "fig-ink", width = 2, head 
  * @property {string} [dash]
  */
 /** A polyline through mapped points, as one path. The mappers are required, and
- * fewer than two points draws nothing rather than a wrong line.
- *
  * @param {Array<[number, number]>} points  values in the axes' own units
  * @param {CurveOptions} [o]
  */
@@ -377,12 +341,6 @@ export function curve(points, { x, y, class: cls = "fig-accent", width = 2.5, da
  * @property {string} [dash]
  */
 /**
- * A function sampled onto a path.
- *
- * Sample the mapped x range, not the domain, so a function with a pole is not missed.
- * A sample that is not finite breaks the path instead of poisoning the whole line
- * with `NaN`.
- *
  * @param {(value: number) => number} fn  the function to sample, in data units
  * @param {GraphOptions} [o]
  */
@@ -417,7 +375,6 @@ export function graph(
  * @property {number} [opacity]
  */
 /** A filled region between a curve and a horizontal baseline.
- *
  * @param {Array<[number, number]>} points  values in the axes' own units
  * @param {AreaOptions} [o]
  */
@@ -440,8 +397,6 @@ export function area(
  * @property {string} [class]  a `fig-*` class; `fig-ink` by default
  */
 /**
- * Dots at mapped points.
- *
  * @param {Array<[number, number]>} points  values in the axes' own units, not SVG units
  * @param {DotsOptions} [o]
  */
@@ -458,7 +413,6 @@ export function dots(points, { x, y, r = 4, class: cls = "fig-ink" } = {}) {
  * @property {string} [class]
  */
 /** Bars from a list of mapped values.
- *
  * @param {Bar[]} items  each bar's edges, height and baseline, in data units
  * @param {BarsOptions} [o]
  */
@@ -489,10 +443,6 @@ export function bars(items, { x, y, width, class: cls = "fig-accent" } = {}) {
  * @property {number} [height]
  */
 /**
- * A number line: one axis, its ticks, and room for points and intervals.
- *
- * Its own helper because the arrowheads and interval bars are its own small job.
- *
  * @param {NumberLineOptions} [o]
  */
 export function numberLine({
@@ -566,13 +516,6 @@ export function numberLine({
  * @property {number} [labelSize]  the size of a region's label; default `SIZE.tick`
  */
 /**
- * A Venn diagram whose region labels are placed by geometry rather than by hand.
- *
- * An atom in the wrong region teaches the opposite of the truth, and a hand-placed
- * label is a judgement about whether a point is inside two overlapping circles. So a
- * region is declared as a predicate, inside these sets and outside those, and the
- * point that satisfies it and sits furthest from every boundary takes the label.
- *
  * @param {VennOptions} [o]
  * @returns {{draw: string, points: Record<string, {x: number, y: number}>, circles: VennBox}}
  */
@@ -684,13 +627,6 @@ export function venn({
  * @property {(x: number, y: number) => number} [strength]  scales the arrow length
  */
 /**
- * A vector field: arrows on a grid, drawn from a function.
- *
- * The field is given in data units and the mappers give the direction, so a flipped
- * axis cannot flip the arrows without also flipping the axes. Arrows are a fixed
- * length because a proportional length on a coarse grid is unreadable; pass
- * `strength` to vary it.
- *
  * @param {VectorFieldOptions} [o]
  */
 export function vectorField({
@@ -741,16 +677,6 @@ export function vectorField({
  * @property {number} [margin]  a margin for the labels; default 26
  */
 /**
- * A camera for small 3D drawings: solids, 3D vectors, a plane.
- *
- * Not a 3D engine: a fixed camera and a painter's algorithm, which is all a textbook
- * needs to draw a cuboid with its hidden edges dashed.
- *
- * `drawMesh` resolves visibility by winding: a face is back-facing when its projected
- * vertices run the wrong way round, and an edge is hidden when every face containing
- * it is back-facing. That is exact for a convex solid, which is what school textbooks
- * draw.
- *
  * @param {Camera3dOptions} [o]
  * @returns {{project: Function, raw: Function, toward: number[], drawMesh: Function, centre: {x: number, y: number}, width: number, height: number, zoom: number}}
  */
@@ -775,7 +701,6 @@ export function camera3d({
     const az = x * sinY + z * cosY;
     return { ax, screenY: y * cosX - az * sinX, depth: y * sinX + az * cosX };
   };
-
   const at = (point, scale, origin) => {
     const { ax, screenY } = raw(point);
     return { x: origin.x + ax * scale, y: origin.y - screenY * scale, depth: raw(point).depth };

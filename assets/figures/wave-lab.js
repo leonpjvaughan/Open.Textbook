@@ -1,9 +1,3 @@
-// The hyperbolic page's experiment: a pulse that splits and travels, and the Courant
-// number that decides whether it stays a pulse.
-//
-// Energy is the trace rather than the largest value, because the scheme conserves it
-// to round-off below c = 1 and loses that guarantee above it. The page's claim is
-// about what the method keeps, so the figure measures what it keeps.
 import wave from "../data/solvers/wave-explicit/kernel.js";
 import { kernelLab, sci } from "./kernel-lab.js";
 

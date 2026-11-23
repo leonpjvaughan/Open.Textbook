@@ -1,6 +1,3 @@
-// The optimisation page's experiment: the step size decides whether the iterates
-// settle, oscillate or run away. The condition is 0 < step < 2/a, and the trace of
-// the gradient is where the failure is visible before the numbers become huge.
 import gradient from "../data/solvers/gradient-descent/kernel.js";
 import { kernelLab, sci } from "./kernel-lab.js";
 

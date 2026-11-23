@@ -26,7 +26,6 @@ def test_the_constructor_produces_exactly_what_the_build_produces(book):
     production = pipeline.make_config(book, book.default_profile.id)
     made = cfg.from_parts(book.docs, book=book, profile=book.default_profile.id)
     assert made == production
-    # And every key a hook could read is present in both.
     assert set(made["extra"]) == set(production["extra"])
 
 
@@ -35,9 +34,6 @@ def test_the_profile_is_an_id_and_never_a_tier_filter(book):
     """`tier_filter` answers a different question and must not stand in for the id."""
     config = cfg.from_parts(book.docs, book=book, profile=None)
     assert cfg.profile(config) == book.default_profile.id
-    # The property that catches the drift for every book: what comes back is one of the
-    # book's profile **ids**. `"H"` is not one of them, and `"all"` is both an id and a
-    # filter for the reference book — which is why the check is membership, not `!=`.
     assert cfg.profile(config) in {profile.id for profile in book.profiles}
 
 

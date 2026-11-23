@@ -41,7 +41,6 @@ def render_used(book_id: str, src_path: str, source: str) -> str:
     return usedin.on_page_markdown(source, page, config, None)
 
 
-# --- the registry -------------------------------------------------------------
 
 
 def test_exactly_one_reference_work_holds_the_class_registry():
@@ -66,7 +65,6 @@ def test_every_class_in_the_registry_can_be_linked():
         assert entry["title"] and entry["signature"], slug
 
 
-# --- the directive ------------------------------------------------------------
 
 
 def test_the_directive_renders_one_link_and_the_registry_sentence():
@@ -88,7 +86,6 @@ def test_the_directive_renders_one_link_and_the_registry_sentence():
     _, config = page_in("maths-applied", "Chapter 1/Section 1.5/Walkthrough/index.md")
     signature = classmap.entries(config)["saddle-point"]["signature"]
     assert f'<p class="classlink__note">{signature[:1].upper()}{signature[1:]}</p>' in out
-    # Nothing to load: the affordance works with scripting off.
     assert "<script" not in out
 
 
@@ -129,7 +126,6 @@ def test_the_directive_is_left_alone_inside_a_code_fence():
     assert render("maths-applied", "Chapter 1/index.md", source) == source
 
 
-# --- the derived backlink list ------------------------------------------------
 
 
 def test_the_used_list_is_derived_from_the_pages_that_link_here():

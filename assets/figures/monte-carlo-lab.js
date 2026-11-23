@@ -1,8 +1,3 @@
-// The averaging page's experiment: an estimate and its error bar, with the error
-// falling as 1/√n. The dashed line is π; the band is ±2 standard errors.
-//
-// The generator is seeded in the kernel, so two readers comparing what they saw are
-// comparing the same sequence, and a reload is not a new experiment.
 import monte from "../data/solvers/monte-carlo-pi/kernel.js";
 import { kernelLab, sci } from "./kernel-lab.js";
 

@@ -27,7 +27,6 @@ import re
 
 from ._fences import transform_outside_fences
 
-#: Exact bold lead -> callout modifier class.
 KINDS: dict[str, str] = {
     "Watch out.": "error",
     "Check.": "check",

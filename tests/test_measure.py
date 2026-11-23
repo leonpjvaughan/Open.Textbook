@@ -100,9 +100,6 @@ def test_the_measure_is_declared_once_and_agrees_with_the_portal():
     )
 
 
-# Documented micro-radii: places where a square corner reads as a rendering error
-# and 8px (`--tb-radius`) would pill or distort an inline/tight box. Every other
-# `border-radius` across the shared sheets must use `var(--tb-radius)` or `0`.
 MICRO_RADII = {
     ("assets/stylesheets/extra.css", ".md-typeset pre"): "3px",
     ("assets/stylesheets/extra.css", ".md-typeset :not(pre) > code"): "3px",
@@ -350,12 +347,6 @@ def test_a_long_paragraph_is_a_readable_number_of_characters_per_line(tmp_path):
             f"390 median {row['390']['median']} (range {row['390']['min']}-{row['390']['max']})"
         )
 
-    # **The median of the books' medians**, not each book on its own. The exact
-    # characters on a line depend on the reader's default sans: CI's Liberation Sans
-    # sets about six fewer per line than the DejaVu a workstation resolves to, so a
-    # single book's median moves 39-49 across machines for one stylesheet. The band is
-    # a property of the design, and pooling the books is what makes it measurable
-    # without a font allowance; each book's number is printed above.
     def median(values: list[int]) -> int:
         ordered = sorted(values)
         middle = len(ordered) // 2

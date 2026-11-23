@@ -35,8 +35,6 @@ def main() -> int:
     failed = 0
     for path in banks_from(args.paths or default_paths()):
         report = verify_bank(path)
-        # A bank that will not parse has no problem count to print, and "(0 problems)"
-        # beside a FAIL reads as "the file is empty" rather than "the file is broken".
         if report.load_error is not None:
             print(f"FAIL {path} (the file could not be read)")
         else:
@@ -47,11 +45,6 @@ def main() -> int:
             print(f"      warn:  {warning}")
         failed += 0 if report.ok else 1
 
-    # The equations-coverage state, which is advisory on purpose: the check proves
-    # that a *declared* equation is one the reader is shown, and cannot prove that
-    # every equation is declared — measurement says most expressions are numeric
-    # substitutions with nothing in them to match. Printing the gap keeps it a
-    # number rather than an assumption. See `textbook.verify.coverage`.
     if not args.paths:
         from . import coverage
 

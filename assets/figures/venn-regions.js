@@ -1,25 +1,4 @@
-// Tier-1 guided investigation: the sets in a Venn diagram, and which parts of the
-// diagram a set expression picks out.
-//
-// **The first module in the shared figure library.** Set notation is the same idea in
-// GCSE Mathematics, in Junior Cycle Mathematics (8.4) and in Leaving Certificate
-// Mathematics (10.4), and those books want the *same* figure for it — not two figures
-// on the same topic, which is what the four earlier duplicates turned out to be. So it
-// lives in `assets/figures/` and every book mounts it by its filename.
-//
-// The page asks the reader to read a region off the diagram and to say what an
-// expression selects. So the figure has to make the *selection* visible: the reader
-// picks an expression and every part of the diagram that is in it lights up. The
-// region labels are placed by `venn()` from the geometry, because an atom in the wrong
-// region would teach the opposite of the truth.
-
 /**
- * One expression in the chooser.
- *
- * `test` is a predicate on the set of letters a region is inside, so the figure cannot
- * disagree with the notation it prints — and stating it once here is also what types
- * every `test: (s) =>` below without repeating the parameter.
- *
  * @typedef {object} Expression
  * @property {string} value  the option's value
  * @property {string} label  what the option says
@@ -40,8 +19,6 @@ const THREE = [
   { id: "C", cx: 332, cy: 204, r: 82 },
 ];
 
-// Each expression is a predicate on the set of letters a region is inside, so the
-// figure cannot disagree with the notation it prints.
 /** @type {Record<number, Expression[]>} */
 const EXPRESSIONS = {
   2: [
@@ -62,7 +39,6 @@ const EXPRESSIONS = {
   ],
 };
 
-// Every atom of the diagram: the regions the circles divide the frame into.
 /**
  * @param {string[]} ids  the sets the diagram shows, `A`, `B`, `C`
  * @returns {Array<{id: string, in: string[], out: string[], letters: Set<string>, text: string}>}
@@ -94,9 +70,6 @@ export function mount(el) {
     width: 560,
     height: 300,
   });
-  // `panel()` always produces the surface unless a module asks for no drawing, and this
-  // one draws. `update` is a hoisted function, and a narrowed type does not reach inside
-  // one, so the surface is stated non-null here for every line below it.
   if (!svg) throw new Error("venn-regions: the panel has no drawing surface");
   const surface = svg;
 
@@ -125,8 +98,6 @@ export function mount(el) {
     const circles = count === 3 ? THREE : TWO;
     const atoms = atomsFor(ids);
 
-    // The expression list depends on how many sets there are, so the chooser is
-    // refilled rather than rebuilt — replacing it would lose the reader's focus.
     if (pick.options.length !== EXPRESSIONS[count].length) {
       pick.replaceChildren();
       for (const choice of EXPRESSIONS[count]) {

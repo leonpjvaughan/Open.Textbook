@@ -41,10 +41,6 @@ import path from "node:path";
 import { launchBrowser, openContext, serveStatic, ORIGIN } from "../lib/browser.js";
 import { parseArgs } from "../lib/flags.js";
 import { LAYOUTS } from "../lib/layouts.js";
-// A URL path to a built file under `siteDir`, or `null` when the site has no
-// such page. A trailing slash is a directory index; anything that escapes the
-// root or is itself a directory is a miss. The route handler and the up-front
-// layout check share this so they cannot disagree about what resolves.
 function resolveFile(siteDir, urlPath) {
     let rel = decodeURIComponent(urlPath);
     if (rel.endsWith("/"))
@@ -56,10 +52,6 @@ function resolveFile(siteDir, urlPath) {
         return null;
     return file;
 }
-// Stop before a browser starts if the site is not the layout the run is for.
-// Every route is resolved here, so a route handler that later comes up empty can
-// only mean the tree changed mid-run, which is a bug worth failing on too.
-// Returns an exit code to stop with, or null to carry on.
 function assertLayout(layoutId, siteDir, entries) {
     const layout = LAYOUTS[layoutId];
     if (!layout) {
@@ -120,13 +112,9 @@ function contrast(a, b) {
     const [x, y] = [luminance(a), luminance(b)];
     return (Math.max(x, y) + 0.05) / (Math.min(x, y) + 0.05);
 }
-// Runs in the page. Returns what the reader's screen actually resolved to.
 const PROBE = () => {
     const root = document.documentElement;
     const body = document.body;
-    // The page itself may be painted on <html>, on <body>, or not at all (the
-    // reader's `--tb-paper` is then the background by definition). Everything that
-    // measures text needs one answer to "what is behind this?", so it is here.
     const pageBackground = () => {
         for (const node of [body, root]) {
             const bg = node && getComputedStyle(node).backgroundColor;
@@ -178,8 +166,6 @@ const PROBE = () => {
         scheme: body.getAttribute("data-md-color-scheme"),
         bodyBackground: getComputedStyle(body).backgroundColor,
         tokens,
-        // Two renderers exist, so the sample is by role rather than by one markup:
-        // MkDocs wraps the page in <article>, the pipeline in <main class="content">.
         samples: [
             sample("article p", "main p", ".content p"),
             sample("article a", "main a", ".content a"),
@@ -188,10 +174,6 @@ const PROBE = () => {
         ].filter(Boolean),
     };
 };
-// Every element that paints text, with the colour it resolved to and the colour
-// of the first ancestor that actually painted a background. This is the whole
-// page, not a sample, so a token that is readable in the palette but misused in
-// the CSS shows up here.
 const AUDIT = () => {
     const pageBackground = () => {
         for (const node of [document.body, document.documentElement]) {
@@ -260,8 +242,6 @@ function auditPage(where, elements, limit, failures) {
     rows.sort((a, b) => a.ratio - b.ratio);
     if (!rows.length)
         return [];
-    // One line per distinct (selector, size, colours): a list of twenty identical
-    // list items is one finding, not twenty.
     const seen = new Set();
     const lines = [];
     for (const row of rows) {
@@ -281,8 +261,6 @@ function auditPage(where, elements, limit, failures) {
 }
 function checkOne(theme, scheme, routeName, probe, thresholds, failures) {
     const where = `${theme}/${scheme}/${routeName}`;
-    // Material names the schemes `default` and `slate`, which is what the built
-    // pages carry; `light`/`dark` is only our name for the reader's choice.
     const expectedScheme = scheme === "dark" ? "slate" : "default";
     if (probe.theme !== theme) {
         failures.push(`${where}: data-theme is ${probe.theme}`);
@@ -327,8 +305,6 @@ function checkOne(theme, scheme, routeName, probe, thresholds, failures) {
     }
     return lines;
 }
-// --- main --------------------------------------------------------------------
-/** What this command accepts. `tools help preview` is generated from this table. */
 export const SURFACE = {
     positional: [
         { name: "name:route ...", help: "one route per name, passed after `--`", required: false },
@@ -391,8 +367,6 @@ export async function run(argv) {
     const shots = values["no-shots"] !== true;
     const audit = values.audit === true;
     const auditLimit = Number(values["audit-limit"]);
-    // A route contains slashes and may contain a colon, so only the first colon
-    // separates the name from the route.
     const entries = positional.map((entry) => {
         const [name, ...rest] = entry.split(":");
         return { name: name, route: rest.join(":") };
@@ -406,7 +380,6 @@ export async function run(argv) {
     if (shots)
         fs.mkdirSync(outDir, { recursive: true });
     // Before Playwright, before any page: does this site have the layout and the
-    // routes the run is about to measure?
     const layoutCode = assertLayout(layout, siteDir, entries);
     if (layoutCode !== null)
         return layoutCode;
@@ -415,10 +388,6 @@ export async function run(argv) {
             "             ::before/::after, input::placeholder and SVG fills");
     }
     if (!themes) {
-        // Read the bundle ids from the selectors the generated stylesheet emits. The
-        // sheet is content-addressed, so its site name is not its source name: the
-        // portal records what it wrote in `assets/manifest.json`, and that is the one
-        // place to ask.
         const manifestPath = path.join(siteDir, "assets", "manifest.json");
         const manifest = fs.existsSync(manifestPath)
             ? JSON.parse(fs.readFileSync(manifestPath, "utf8"))
@@ -437,39 +406,26 @@ export async function run(argv) {
             width: viewport.width,
             height: viewport.height,
             deviceScaleFactor: 1,
-            // The pages register a service worker. Its fetches are not seen by request
-            // interception, and the origin is not a real host, so a controlled
-            // navigation would fail. The preview wants the bytes on disk anyway, not
-            // whatever the worker's cache answers with.
             blockServiceWorkers: true,
         });
         await serveStatic(context, siteDir, {
-            // Every route resolved before the browser started, so a miss now means the
-            // tree changed under the run. Abort rather than serve a body the audit
-            // would measure as if it were the page.
             onMiss: (rel) => {
                 console.error(`route miss during the run: ${rel}`);
                 routeMisses.add(rel);
             },
         });
         for (const theme of themes) {
-            // Seed both keys for this bundle, then reload from a blank page so the
-            // init script runs before the first paint on every navigation.
             await context.addInitScript(({ chosenTheme, chosenScheme }) => {
                 try {
                     localStorage.setItem("textbooks:theme", chosenTheme);
                     localStorage.setItem("textbooks:scheme", chosenScheme);
                 }
                 catch {
-                    /* a context that forbids storage is not a failure here */
                 }
             }, { chosenTheme: theme, chosenScheme: scheme === "dark" ? "slate" : "default" });
             const page = await context.newPage();
             for (const { name, route } of entries) {
                 await page.goto(`${ORIGIN}${route}`, { waitUntil: "load" });
-                // The build's stylesheets are fetched after `load` often enough that a
-                // fixed pause is a race: an unstyled page reads as black-on-transparent
-                // and every element "fails". Wait for the shell to paint instead.
                 await page
                     .waitForFunction(() => {
                     const body = document.body;

@@ -33,7 +33,6 @@ const COLOUR_CLASSES = [
     "text-accent", "text-warn", "text-good", "text-ink",
 ];
 const SHARED_FIGURE_FILES = ["figures.js", "kit.js"];
-/** What this command accepts. `tools help audit` is generated from this table. */
 export const SURFACE = {
     positional: [{ name: "siteDir", help: "the built site to measure" }],
     flags: {
@@ -86,20 +85,12 @@ function bookDirs(repoRoot) {
     const base = path.join(repoRoot, "books");
     if (!fs.existsSync(base))
         return [];
-    // The collection's own order, read from `collection.yaml` by scanning the
-    // `qualifications:` block for `- id:` lines. A YAML library for two fields would
-    // be a dependency the rest of the repository does not have, and sorting by
-    // directory name instead would file A level before GCSE and Proofs in the middle.
     const order = new Map();
     const collection = path.join(repoRoot, "collection.yaml");
     if (fs.existsSync(collection)) {
         const text = fs.readFileSync(collection, "utf8");
         const at = text.indexOf("\nqualifications:");
         if (at >= 0) {
-            // Start after the `qualifications:` line itself, or the search for the next
-            // top-level key matches at once and the block comes back empty — which is
-            // silent: every book then sorts equal and the file is simply in the wrong
-            // order, with nothing to say so.
             const rest = text.slice(at + 1);
             const block = rest.slice(rest.indexOf("\n") + 1);
             const end = block.search(/^[a-z_]+:/m);
@@ -132,7 +123,6 @@ function bookDirs(repoRoot) {
         || a.order - b.order
         || a.id.localeCompare(b.id));
 }
-/** Which classes a module applies, comments removed so a mention is not a use. */
 function classesUsed(file) {
     const body = fs.readFileSync(file, "utf8").replace(/^\s*\/\/.*$/gm, "");
     return COLOUR_CLASSES.filter((name) => new RegExp(`\\b${name}\\b`).test(body));
@@ -157,17 +147,12 @@ function markdownTables(report, siteDir) {
     const lowest = (result) => {
         if (!result || result.error)
             return "—";
-        // Every field of a `Measurement` is optional, because it is deserialised from
-        // the page and a figure that mounted nothing has almost none of them.
         const paints = result.paints ?? [];
         if (!paints.length)
             return "—";
         return `${Math.min(...paints.map((p) => p.ratio)).toFixed(2)}:1`;
     };
     const lines = [TABLE_START];
-    // Coverage first, because it is the one number the per-figure tables cannot
-    // show: a book with 30 figures in 120 Walkthroughs looks well served in a list
-    // of 30 and is not. A gap is a number here rather than an impression.
     lines.push("", "## Coverage", "", "| Book | Walkthroughs with a figure | Without |", "|---|---|---|");
     for (const book of books) {
         const walks = [];
@@ -180,10 +165,6 @@ function markdownTables(report, siteDir) {
                     walks.push(full);
             }
         };
-        // `book.figures` is `<book>/docs/assets/figures`, so the docs tree is two
-        // levels up. Joining `..`/`docs` onto the assets directory gives
-        // `docs/docs`, which exists nowhere and produces an empty table silently —
-        // the count is the only thing that would have said so.
         const docs = path.resolve(book.figures, "..", "..");
         if (fs.existsSync(docs))
             walk(docs);
@@ -466,12 +447,6 @@ const MEASURE = `
 `;
 export async function run(argv) {
     const { values, positional } = parseArgs(argv, SURFACE);
-    // One worker by default, **not** the core count. Parallelising this is 3x faster and
-    // flaky: at two workers eleven slugs fail in both schemes with "Execution context was
-    // destroyed" or by finding themselves on the previous route, and every one of them
-    // passes alone — a race between a load and a measurement that reproduces often enough
-    // to fail the audit. The flag is here so the race can be worked on; the default is the
-    // setting that gives 490 of 490.
     const jobs = Math.max(1, Math.min(Number(values.jobs ?? 1) || 1, 8));
     const siteDir = path.resolve(positional[0]);
     const schemes = String(values.schemes ?? "light,dark").split(",");
@@ -481,33 +456,21 @@ export async function run(argv) {
     const jsonOut = values.json ? path.resolve(String(values.json)) : null;
     const only = values.only ? String(values.only) : null;
     const table = values.table ? path.resolve(String(values.table)) : null;
-    // **The claim sweep runs here, on the page the audit already has open.** `readout`
-    // loads every figure page again to do exactly this; the two were 91 s and 106 s of
-    // mostly the same navigation. One page, one mount, two questions.
     const claimsOut = values.claims ? path.resolve(String(values.claims)) : null;
     const mobile = values.mobile === true;
     if (shots)
         fs.mkdirSync(shots, { recursive: true });
-    // The figure -> page map is derived from the built site when it is not given.
-    // Deriving it rather than asking a caller to write it means the audit cannot be
-    // pointed at a stale map and silently measure last week's build. The walk itself is
-    // `lib/site.ts`, which the readout check uses too: two copies of it drifted once
-    // already, and the shared one skips a page that has no figure in it at all.
     const pages = maps ? JSON.parse(fs.readFileSync(maps, "utf8")) : discoverFigures(siteDir);
     let slugs = Object.keys(pages).sort();
     if (only)
         slugs = slugs.filter((s) => s === only);
     const browser = await launchBrowser();
-    // `--mobile` answers a different question from the contrast audit: not "is this
-    // readable?" but "can a reader on a phone read it at all?". A module's
     // `font-size` does not say, because the SVG scales by rendered width over
-    // viewBox width, so a 560-unit viewBox in a 358px panel draws a 14px label at
     // 8px. Measured, not inferred: 70 figures were once below 7px.
     if (mobile) {
         return runMobile(browser, siteDir, pages, jsonOut, jobs);
     }
     const report = {};
-    /** What each figure declares, at each setting, for `python -m textbook.working`. */
     const claimRecords = [];
     for (const scheme of schemes) {
         const context = await openContext(browser, {
@@ -516,34 +479,18 @@ export async function run(argv) {
             width: 1280,
             height: 900,
             deviceScaleFactor: 2,
-            // **The page registers a service worker, and its first claim reloads the tab.**
-            // With one page that reload lands before the measurement; with a pool it lands
-            // in the middle of `page.evaluate`, and the error is "Execution context was
-            // destroyed, most likely because of a navigation" on whichever pages lost the
-            // race. The audit wants the bytes on disk, not whatever the worker's cache
-            // answers with, so the worker is blocked.
             blockServiceWorkers: true,
         });
         await serveStatic(context, siteDir);
-        // **A pool of pages, not one.** This loop is almost entirely waiting: a page load,
-        // then a fixed pause for the figure to paint. One at a time leaves the machine idle
-        // — 284 seconds of wall clock for about 40 seconds of work. Each worker takes the
-        // next slug when it finishes, and the report is keyed by slug and scheme, so the
-        // order of completion does not matter.
         const pagesPool = await Promise.all(Array.from({ length: jobs }, () => context.newPage()));
         await mapPool(slugs, jobs, async (slug, index) => {
             const page = pagesPool[index % jobs];
             const route = pages[slug][0];
-            // Created once: rebuilding it per scheme would keep only the last one.
             if (!report[slug])
                 report[slug] = { page: route, schemes: {} };
             const entry = report[slug];
-            /** One attempt: load, wait for the figure to mount, measure. */
             const attempt = async () => {
                 await page.goto(`${ORIGIN}${route}`, { waitUntil: "load" });
-                // Wait until the figure has **mounted something**, not merely until its element
-                // exists: the element is in the HTML and the module mounts it afterwards, so
-                // waiting for the element alone measures a figure that has not drawn yet.
                 await page
                     .waitForFunction((s) => {
                     const figure = document.querySelector(`maths-figure[data-figure="${s}"]`);
@@ -561,19 +508,11 @@ export async function run(argv) {
                     res = await attempt();
                 }
                 catch {
-                    // **A second attempt, and only for a transient failure.** With a pool, a page
-                    // occasionally reports "Execution context was destroyed" or finds itself on
-                    // the previous route — a race between a load and a measurement, not a defect
                     // in the figure. Measured: about 2% of 490 at two workers, zero at one. The
-                    // second attempt is on the same page and the same route, so a figure that is
-                    // genuinely broken fails twice.
                     res = await attempt();
                 }
                 entry.schemes[scheme] = res;
                 if (claimsOut && scheme === "light" && !res.error) {
-                    // Six settings: the default plus five single-control variations. A sample,
-                    // not a sweep — the defect this looks for shows up a step either side of the
-                    // default, and a full cross-product is thousands of renders.
                     const controls = (await page.evaluate(readControls, slug));
                     for (const overrides of settingsFor(controls, 6, false)) {
                         await page.evaluate(applySetting, { slug, controls, overrides });
@@ -613,7 +552,6 @@ export async function run(argv) {
         writeTable(table, markdownTables(report, siteDir));
         console.log(`wrote ${path.relative(process.cwd(), table)}`);
     }
-    // Summary.
     let bad = 0, errs = 0, taken = 0, breaches = 0;
     for (const [slug, entry] of Object.entries(report)) {
         for (const [scheme, res] of Object.entries(entry.schemes)) {
@@ -622,8 +560,6 @@ export async function run(argv) {
                 continue;
             }
             taken += 1;
-            // Every field is optional because it came out of the page; a measurement that
-            // reported a problem always has both, and `?? []` says so without an assertion.
             const problems = res.problems ?? [];
             if (problems.length) {
                 bad += 1;
@@ -633,11 +569,7 @@ export async function run(argv) {
                     console.log(`   ${p.tag} .${p.cls} ${p.kind} ${p.ratio}:1 (needs ${p.need}) ${p.example}`);
                 }
             }
-            // A colour carried by an HTML box is a failure **before** contrast is asked:
-            // the figure broke the rule that its colour comes from a `fig-*` class on a
             // painted SVG shape, so a reader's scheme is not the only thing that could be
-            // wrong and the ratio is not the question. Naming the element and the token
-            // is what makes the message actionable.
             const found = res.breaches ?? [];
             breaches += found.length;
             if (found.length) {
@@ -650,11 +582,6 @@ export async function run(argv) {
             }
         }
     }
-    // A measurement that could not be taken is a failure, not a skip: the point of
-    // this script is that it does not read the source, so "I could not look" and
-    // "I looked and it was fine" must not exit the same way. `missing` catches a
-    // measurement that never ran at all — a slug whose page failed to load a figure
-    // is reported by the page itself, but one that was never attempted is not.
     const expected = slugs.length * schemes.length;
     const missing = expected - taken - errs;
     console.log(`  measurements taken: ${taken} of ${expected}`);
@@ -668,31 +595,15 @@ export async function run(argv) {
 }
 /** The smallest rendered label per figure at a phone viewport. */
 async function runMobile(browser, dir, pages, outFile, jobs) {
-    // **One route per figure, not every route it appears on.** `Object.values(pages).flat()`
-    // is every page a figure is mounted on, and a figure in both profiles is on two: the
-    // route list was three times longer than the work, and this check was walking it at
-    // 300 ms a page. A figure's rendered size is its own viewBox against the panel width,
-    // which is the same wherever it is mounted, so the first route is the same measurement
-    // as the second — 630 routes become 180.
     const routes = [...new Set(Object.values(pages).map((where) => where[0]))];
     const context = await openContext(browser, { width: 390, height: 844, deviceScaleFactor: 1 });
     await serveStatic(context, dir);
     const page = await context.newPage();
     const measured = {};
-    // **Deliberately sequential, and deliberately a fixed pause.** A readiness wait was
-    // tried here and made it worse: a route whose figure never mounts costs the full
-    // timeout, and two hundred routes of that is minutes. The pause is the same 300 ms it
-    // has always been — what changed is that this check no longer runs *beside* five other
-    // browsers, where it took ten minutes because it was the only one still sleeping.
     for (const route of routes) {
         try {
             await page.goto(`${ORIGIN}${route}`, { waitUntil: "load" });
             await page.waitForTimeout(300);
-            // A **function**, not a string. `page.evaluate` with a multi-line IIFE string
-            // silently returned `[]` here: the same code as a function found the figure
-            // and as a string found none, on the same page at the same moment. That made
-            // this pass measure one figure of 176 and then report "0 below 9px", which
-            // reads as a pass and is the opposite of one.
             const found = await page.evaluate(() => {
                 const out = [];
                 for (const fig of document.querySelectorAll("maths-figure[data-figure]")) {
@@ -720,9 +631,6 @@ async function runMobile(browser, dir, pages, outFile, jobs) {
         }
     }
     await context.close();
-    // The browser is closed here too: returning from `main` would otherwise leave it
-    // running and the process would never exit, which looks like a hang rather than
-    // a finished check.
     await browser.close();
     if (outFile)
         fs.writeFileSync(outFile, JSON.stringify(measured, null, 1));
@@ -739,11 +647,6 @@ async function runMobile(browser, dir, pages, outFile, jobs) {
         return 1;
     }
     // The guard against a run that measured almost nothing. A fixed floor of ten was
-    // wrong in both directions: it failed on a single book with nine figures, and it
-    // passed on the whole site when the server was broken and served the same page for
-    // every route. The map says how many figures the build contains, so the question is
-    // whether this run found them — and a figure that draws no text is legitimately
-    // skipped, which is why the bar is half rather than all.
     const expected = Object.keys(pages).length;
     if (slugs.length === 0 || slugs.length < expected / 2) {
         console.error(`\nfigure legibility failed: measured ${slugs.length} of ${expected} figures. ` +

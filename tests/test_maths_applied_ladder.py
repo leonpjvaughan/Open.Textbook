@@ -43,8 +43,6 @@ SECTION = (
 )
 CAMBER0 = -1.0
 STIFFNESS = (0.2, 1.0, 10.0, 100.0)
-#: Decimal places per column, as the page prints them. The last row's difference carries three
-#: figures because two would print a zero for a number that is not zero.
 PLACES = {
     "bush": (1, 2, 2, 3),
     "rest": (2, 2, 2, 2),
@@ -152,7 +150,6 @@ def test_the_stiffness_a_tenth_of_a_degree_needs_is_the_exports():
     assert round(crossing(), 1) == 1.8, crossing()
 
 
-# --- the tie-rod ladder: the compliant kernel, in degrees ---------------------
 
 COMPLIANT = (
     BUNDLE
@@ -222,7 +219,6 @@ def test_the_tie_rod_ladder_is_the_kernels_degrees(tie_rod):
         assert _number(row[1]) == round(expected["toe"], 3)
         assert _number(row[2]) == round(expected["camber"], 4)
 
-    # The prose's factor and size are the table's own, not the old 10⁻⁶…10⁻² span.
     assert round(tie_rod[-1]["toe"] - tie_rod[0]["toe"], 1) == 0.5
     assert round(abs(tie_rod[-1]["camber"] - tie_rod[0]["camber"]), 2) == 0.01
     assert "Ten times softer" in text
@@ -245,8 +241,6 @@ def test_the_deflection_sentence_names_the_controls_ends():
     high = re.search(r"max:\s*([\d.]+)", control.group(1))
     assert low and high, "the stiffness figure no longer declares its control's ends"
 
-    # Whitespace-normalised and case-insensitive: the page is hard-wrapped, and a
-    # sentence that now begins with the phrase is not a sentence that lost it.
     text = " ".join(SECTION.read_text(encoding="utf-8").split()).lower()
     assert f"at the two ends of its control, {low.group(1)} and {high.group(1)} mn/m" in text
     assert "the bush moves 12 mm and 0.06 mm" in text

@@ -1,23 +1,3 @@
-/**
- * The shared visual language for an `ot-solve` kernel.
- *
- * Seven kernels do not need seven drawings. They need four arrangements, because
- * that is how many shapes a numerical answer has:
- *
- *   field     a function on a grid, perhaps against an exact curve   (heat, wave, CG)
- *   line      a sequence of numbers, as points on a number line     (Newton, descent)
- *   plane     a vector turning in two dimensions                    (power iteration)
- *   estimate  an estimate and its error band                        (Monte Carlo)
- *
- * Every arrangement sits above the same **trace**: one scalar per step, on a
- * linear or logarithmic axis. The trace is where the lesson usually is — growth
- * past a stability limit, a residual falling, an error decaying as `1/√n`.
- *
- * The controls are built from the kernel's manifest, so a slider's range is the
- * range the Rust declares and the two cannot drift. The module never claims a
- * number with `claim()`: a simulated number is proved by the selftest, not by the
- * CAS, and `solvers/AGENTS.md` says why.
- */
 import { SIZE, arrow, axes, circle, curve, fmt, label, line, panel, react, slider, button } from "./kit.js";
 
 /**
@@ -59,7 +39,6 @@ import { SIZE, arrow, axes, circle, curve, fmt, label, line, panel, react, slide
  * @property {string} [lineLabel]
  */
 
-
 const WIDTH = 560;
 const TOP = 240;
 const TRACE = 150;
@@ -78,24 +57,15 @@ export function sci(value) {
   return `${fmt(value / 10 ** exponent, 2)}e${exponent}`;
 }
 
-/**
- * A power-of-ten tick label for a logarithmic axis.
- *
- * The caret rather than a Unicode superscript: the superscript minus is missing
- * from the font the shell falls back to, so `10⁻¹` arrived as `101` beside `10¹`.
- * A plain `10^-1` is unambiguous and needs no glyph the page does not have.
- */
 function power(/** @type {number} */ value) {
   const exponent = Math.round(value);
   return exponent === 0 ? "1" : `10^${exponent}`;
 }
 
-/** Only the integer powers get a label; the ticks between them are grid lines. */
 function powerTick(/** @type {number} */ value) {
   return Math.abs(value - Math.round(value)) < 1e-9 ? power(value) : "";
 }
 
-/** A domain with room around the data, and no zero-width axis. */
 /**
  * @param {number[]} values
  * @param {boolean} log
@@ -108,8 +78,6 @@ function domainOf(values, log) {
   if (!Number.isFinite(low) || !Number.isFinite(high)) return log ? [-3, 1] : [0, 1];
   if (high - low < 1e-9) high = low + 1;
   if (log) {
-    // Integer bounds, so the labelled ticks are powers of ten rather than four
-    // evenly spaced fractions that all round to the same label.
     return /** @type {[number, number]} */ ([Math.floor(low) - 1, Math.ceil(high) + 1]);
   }
   const pad = (high - low) * 0.08;
@@ -117,8 +85,6 @@ function domainOf(values, log) {
 }
 
 /**
- * Build one kernel figure.
- *
  * @param {HTMLElement} el the `<maths-figure>` the loader hands us
  * @param {import("./kernel.js").Kernel} kernel the generated module's default export
  * @param {KernelSpec} spec what this kernel's picture is
@@ -160,7 +126,6 @@ export function kernelLab(el, kernel, spec) {
   let history = [];
   let steps = 0;
 
-  /** Read every slider into the kernel, then reset its state. */
   function reset() {
     for (const { name, input } of sliders) kernel.set(name, Number(input.value));
     spec.initial?.(kernel);
@@ -176,7 +141,6 @@ export function kernelLab(el, kernel, spec) {
     draw();
   }
 
-  /** Advance at most `n` steps, recording the trace after each one. */
   /** @param {number} n */
   function advance(n) {
     for (let index = 0; index < n; index += 1) {
@@ -188,7 +152,6 @@ export function kernelLab(el, kernel, spec) {
     draw();
   }
 
-  /** One scalar from the kernel, with the id so a failure names the kernel. */
   function readTrace() {
     const value = spec.trace(kernel, steps);
     if (!Number.isFinite(value)) {
@@ -225,9 +188,7 @@ export function kernelLab(el, kernel, spec) {
       y: { domain, ticks: 4 },
     });
     parts.push(draw);
-    // The plot is not clipped, so a field that leaves the domain would draw its
     // polyline across the trace below. Holding the value at the edge keeps the
-    // picture inside its own axes; the trace is what carries the growth.
     const clamp = (/** @type {number} */ value) =>
       Math.min(domain[1], Math.max(domain[0], value));
     /** @type {Array<[number, number]>} */

@@ -21,8 +21,6 @@ from textbook.book import repo_root
 ROOT = repo_root()
 AGENTS = ROOT / "AGENTS.md"
 
-# Build output, vendored dependencies and local tool state. These are not part of
-# the repository's source tree, so the map does not name them.
 GENERATED_DIRS = {
     ".git",
     ".mypy_cache",
@@ -41,8 +39,6 @@ GENERATED_DIRS = {
 
 BACKTICK = re.compile(r"`([^`]+)`")
 
-# The tasks the routing table must route. A keyword, not a title, so the wording
-# can improve without breaking the test.
 ROUTED_TASKS = (
     "chapter",
     "book content",
@@ -76,7 +72,7 @@ def table(heading: str) -> list[list[str]]:
             continue
         cells = [cell.strip() for cell in line[1:-1].split("|")]
         if all(set(cell) <= set("-: ") for cell in cells):
-            continue  # the separator row
+            continue
         rows.append(cells)
     assert rows, f"'## {heading}' has no markdown table"
     return rows
@@ -126,7 +122,6 @@ def top_level_directories() -> list[str]:
     )
 
 
-# --- the routing table --------------------------------------------------------
 
 
 def test_the_routing_table_has_the_expected_columns():
@@ -152,7 +147,6 @@ def test_the_routing_table_covers_the_common_tasks():
     assert not missing, f"the routing table no longer routes: {missing}"
 
 
-# --- the repository map -------------------------------------------------------
 
 
 def test_every_path_in_the_repository_map_exists():
@@ -174,7 +168,6 @@ def test_every_top_level_directory_is_in_the_repository_map():
     )
 
 
-# --- the nested files ---------------------------------------------------------
 
 
 def nested_agents_files() -> list[str]:
@@ -267,8 +260,6 @@ def rule_documents():
     documents += sorted(ROOT.glob("*/AGENTS.md"))
     documents += sorted(ROOT.glob("books/*/AGENTS.md"))
     documents += sorted(ROOT.glob(".agents/skills/**/SKILL.md"))
-    # The moved package keeps its own record beside its code; its documents name paths
-    # in both trees, so the check resolves against `solvers/otkd` as well.
     documents += sorted(ROOT.glob("solvers/otkd/*.md"))
     documents += sorted(ROOT.glob("solvers/otkd/docs/*.md"))
     documents += [
@@ -325,9 +316,6 @@ def test_every_script_the_rules_name_exists():
     missing = []
     for path in rule_documents() + source_files():
         text = path.read_text(encoding="utf-8")
-        # Anchored at a top-level directory, so a path belonging to another project
-        # (`"$PROJECT/scripts/build_release.py"` in `scripts/build-otkd.sh`) is not read
-        # as one of ours.
         pattern = (
             r"(?<![\w$/-])(?:\./)?"
             r"(?:assets|books|deploy|engine|scripts|solvers|tests|tools|\.agents|\.github)"

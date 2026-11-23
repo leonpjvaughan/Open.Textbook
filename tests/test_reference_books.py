@@ -17,14 +17,11 @@ import sympy as sp
 from textbook import book as books
 from textbook.hooks import usedin
 
-# §1.5's test already reads this model; importing it keeps the two books in step.
 from test_maths_applied_ladder import SECTION as SECTION_1_5
 from test_maths_applied_ladder import STIFFNESS, crossing
 
 MAP = "numerical-methods"
 
-#: Written out, not read from the registry: an expectation derived from the subject
-#: agrees with a class silently dropped from `map.yaml`.
 CLASSES = [
     "optimisation",
     "averaging",
@@ -165,7 +162,6 @@ def test_the_two_indexes_link_every_class_they_name():
     }
     link = re.compile(r"\[([^\]]+)\]\(([^)]+)\)")
     unlinked, misdirected = [], []
-    # The A–Z names its class on each method's `Class:` line, `symptoms/` in a cell.
     lines: list[tuple[str, str]] = []
     for method in _methods_a_to_z():
         lines.append(("techniques", f"Class: {method['class']}"))
@@ -285,7 +281,6 @@ def test_each_class_page_names_itself_and_its_neighbours(slug):
     assert "](../symptoms/index.md)" in page, f"{slug} cannot reach the symptom index"
 
 
-#: Fixed, because nine pages with their own order are nine essays, not a map.
 SKELETON = [
     "## What you are modelling",
     "## The model you write down",
@@ -310,7 +305,6 @@ def test_a_class_page_keeps_the_shared_skeleton(slug):
     assert positions == sorted(positions), f"{slug} has the headings out of order"
 
 
-# --- the two indexes are views of the class pages --------------------------------
 
 
 def _methods_a_to_z() -> list[dict[str, str]]:
@@ -327,7 +321,6 @@ def _methods_a_to_z() -> list[dict[str, str]]:
         if len(parts) < 3 or not parts[0].startswith("Class:"):
             continue
         klass = parts[0][len("Class:") :].strip()
-        # A wrapped step or price is one line once rendered, so join it here.
         step = " ".join(parts[1].splitlines())
         price = " ".join(parts[2].splitlines())
         methods.append(
@@ -430,7 +423,6 @@ def test_every_method_a_class_page_names_links_to_its_entry(slug):
     for row in _table_rows(page, 4, heading="## Techniques"):
         links = re.findall(r"\[([^\]]+)\]\(([^)]*)\)", row[0])
         assert links, f"{slug} names a method with no link: {row[0]}"
-        # The text outside the links is the separator between them, never a name.
         outside = re.sub(r"\[[^\]]*\]\([^)]*\)", "", row[0])
         assert not re.search(r"[A-Za-z]", outside), (
             f"{slug} has a method name outside a link: {row[0]}"
@@ -477,7 +469,6 @@ def test_every_symptom_is_one_row_in_one_wording_on_both_pages():
             )
 
 
-# --- the worked case quotes one model ------------------------------------------
 
 
 def _ladder(page: Path, columns: int) -> dict[float, list[str]]:
@@ -513,11 +504,8 @@ def test_the_worked_case_names_the_exports_tenth_of_a_degree_stiffness():
     assert number in page, f"the worked case does not name the export's {number}"
 
 
-# --- the kinds with no caller ---------------------------------------------------
 
 
-#: Written out rather than derived from `:::used`, so a dropped caller cannot make
-#: the test agree with itself; when a chapter fills one, update `worked-case`.
 DEAD_ENDS = ["elliptic", "hyperbolic", "parabolic"]
 
 
@@ -553,10 +541,6 @@ def test_the_optimisation_example_is_the_tolerance_problem():
     assert "flat over the travel" not in page
 
 
-# --- every detail page's program is run, not believed ---------------------------
-#
-# A printed output is evidence, and evidence nobody runs is a number typed into a
-# fence. Skeleton and width rules are in `tests/rules.py`; this needs a process.
 
 DETAIL_HEADING = "## What this page answers"
 
@@ -607,10 +591,6 @@ def test_every_detail_program_prints_what_its_page_shows():
     assert failures == [], "\n".join(failures)
 
 
-# --- reading the class off the equation ----------------------------------------
-#
-# The page hands the reader a program, so it is executed here, its table rebuilt by
-# another route, and its figure held to the guided-investigation rule.
 
 CLASSIFY = "reading-the-class"
 
@@ -652,7 +632,6 @@ def test_the_worked_table_is_recomputed_from_the_equations():
         if not line.startswith("|"):
             continue
         cells = [cell.strip() for cell in line.strip().strip("|").split("|")]
-        # Six columns: equation, three coefficients, discriminant, class.
         if len(cells) == 6 and cells[0].split(":")[0] in worked:
             rows[cells[0].split(":")[0]] = cells
     assert set(rows) == set(worked), f"the worked table holds {sorted(rows)}, not three rows"
@@ -705,11 +684,6 @@ def test_the_figure_on_that_page_is_guided():
 
 
 
-# --- the relativity case, classified ------------------------------------------
-#
-# The page prints two equations, three coefficients each and the discriminant's sign,
-# and these tests rebuild the rows from the equations rather than reading the page back
-# to itself.
 
 CHOOSING = "choosing-the-class"
 
@@ -724,7 +698,6 @@ def test_the_two_lapse_conditions_are_classified_by_the_books_own_test():
     x, t = sp.symbols("x t", real=True)
     u = sp.Function("u")
     D = sp.diff
-    # Each equation as the page writes it: moved to one side, in (space, time).
     equations = {
         "elliptic": D(u(x, t), x, 2) - u(x, t),
         "hyperbolic": D(u(x, t), t, 2) - D(u(x, t), x, 2),
@@ -735,7 +708,6 @@ def test_the_two_lapse_conditions_are_classified_by_the_books_own_test():
         if not line.startswith("|"):
             continue
         cells = [cell.strip() for cell in line.strip().strip("|").split("|")]
-        # Seven columns: name, equation, three coefficients, discriminant, class.
         if len(cells) == 7 and cells[0] in equations:
             rows[cells[0]] = cells
     assert set(rows) == set(equations), (
@@ -766,9 +738,9 @@ def test_the_relativity_claim_says_what_it_is_a_reduction_of():
     page = (map_book().docs / CHOOSING / "index.md").read_text(encoding="utf-8")
     section = re.sub(r"\s+", " ", page[page.index("## The same equations, classified") :])
     for claim in (
-        "reduction, not a proof",  # the qualifier itself
-        "ten independent components",  # what the real system has instead
-        "can couple into a system that is not",  # why the reduction stops here
+        "reduction, not a proof",
+        "ten independent components",
+        "can couple into a system that is not",
     ):
         assert claim in section, f"the relativity section no longer says {claim!r}"
 
@@ -806,7 +778,6 @@ def test_the_a_to_z_is_a_contents_table_and_a_section_per_class():
         assert method["price"], f"{method['name']}: no price"
 
 
-# --- the book defines its vocabulary where it first uses it ---------------------
 
 
 TERM_DEFINITIONS = {
@@ -848,8 +819,6 @@ def _maximiser(expr):
     return sp.solve(sp.diff(expr, x), x)[0]
 
 
-# Each entry: the regex capturing the number the page prints, and the value computed
-# from the page's own statement of the problem. A page that rounds wrongly fails.
 WORKED_NUMBERS = {
     "optimisation": (
         r"to zero gives\s+\$x=([-\d/]+)\$",
@@ -1016,7 +985,6 @@ def test_discretise_is_defined_before_its_first_use_in_reading_order():
             break
     assert first, "the book never uses `discretise`"
     path, text = first
-    # Normalised: the page is hard-wrapped, and the gloss may straddle a line break.
     flat = " ".join(text.split())
     use = flat.index("discretis")
     gloss = "cut into cells"
@@ -1051,8 +1019,6 @@ def test_the_contents_list_is_derived_from_the_headings():
     four = "".join(f'<h2 id="h{i}">Section {i}</h2>' for i in range(4))
     assert contents.render(four) == ""
 
-    # The list is rendered for the page, not asked for by it; a page whose own index
-    # would duplicate it can opt out.
     book = map_book()
     techniques = (book.docs / "techniques/index.md").read_text(encoding="utf-8")
     assert techniques.count("\n## ") >= contents.MINIMUM, (
@@ -1088,7 +1054,6 @@ def test_a_class_page_offers_a_property_keyed_way_into_its_techniques(slug):
     offered = property_rows.lower()
     missing = [name for name in methods if name.lower() not in offered]
     assert missing == [], f"{slug}: the property table does not offer {missing}"
-    # and no row ranks a method
     assert "best" not in property_rows.lower().replace("best one", ""), slug
 
 
@@ -1105,7 +1070,6 @@ def test_a_class_page_names_the_class_it_is_most_often_mistaken_for(slug):
     assert match, f"{slug} has no look-alike row with a link"
     title = next(e["title"] for e in book.pages if e["path"].startswith(f"{slug}/"))
     assert match.group(1).strip().lower() == title.lower(), (slug, match.group(1))
-    # The neighbour is a hop, not a word: the link text is the class title.
     classes = {
         e["path"].split("/")[0]: e["title"]
         for e in book.pages
@@ -1155,8 +1119,6 @@ def test_symptoms_asks_the_reader_to_classify_ten_systems():
         )
         assert systems, f"{slug} has no systems list"
         items = " ".join(systems.group(1).split()).lower()
-        # A summary is the start of the list's own sentence: the question is the system,
-        # shortened to what fits on a phone, not a second wording of it.
         assert items.count(summary.strip().lower()) >= 1, (
             f"the {slug} page does not list {summary!r}"
         )
@@ -1192,7 +1154,7 @@ def test_the_system_index_is_derived_from_the_class_pages():
     from textbook.hooks import systems
 
     book = map_book()
-    config = None  # `entries` reads the registry and the book from the build config
+    config = None
     from textbook import config as cfg
 
     config = cfg.from_parts(book.docs, book=book, profile=book.default_profile.id)
@@ -1225,7 +1187,6 @@ def test_the_system_index_is_derived_from_the_class_pages():
     page = (book.docs / "systems/index.md").read_text(encoding="utf-8")
     assert ":::systems" in page
 
-    # The registry, the home page's ways-in list and the heading's count are one promise.
     registry = (book.root / "map.yaml").read_text(encoding="utf-8")
     assert "path: systems/index.md" in registry, "the index is not in map.yaml"
     home = (book.docs / "index.md").read_text(encoding="utf-8")
@@ -1240,7 +1201,6 @@ def test_the_system_index_is_derived_from_the_class_pages():
     assert "systems/index.md" in section, "the ways-in list does not offer the index"
 
 
-#: A system is a name, not a paragraph: 120 leaves room for a name and one clause.
 MAX_SYSTEM = 120
 
 
@@ -1335,8 +1295,6 @@ def _technique_aliases() -> dict[str, str]:
     page = (map_book().docs / "techniques/index.md").read_text(encoding="utf-8")
     aliases: dict[str, str] = {}
     for anchor, heading in re.findall(r'<a id="([\w-]+)"></a>\n+### (.+)', page):
-        # A capitalised parenthetical tail names the method again — `(AMG)`, `(SVD)`;
-        # a lowercase one is a qualifier, and "exact" was a false positive.
         parts = [heading.split(",")[0]]
         parts += [p for p in re.findall(r"\(([^)]*)\)", heading)
                   if re.match(r"^[A-Z]", p.strip())]
@@ -1362,7 +1320,6 @@ def test_a_symptom_fix_that_names_a_technique_links_it():
     linked = 0
     for path in pages:
         text = path.read_text(encoding="utf-8")
-        # Only the symptom tables: a technique table's first column already links.
         if path.parent.name != "symptoms":
             text = text[text.index("## What goes wrong") :]
             following = text.find("\n## ", 3)

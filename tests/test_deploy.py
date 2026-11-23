@@ -28,7 +28,6 @@ def wrangler_config() -> dict:
     return json.loads(text)
 
 
-# --- the deployment root ------------------------------------------------------
 
 
 def test_the_root_404_exists_and_is_the_one_we_generate():
@@ -43,11 +42,7 @@ def test_the_root_404_honours_reader_preferences():
     page = portal.not_found()
     assert "textbooks:scheme" in page
     assert "textbooks:theme" in page
-    # It carries the one generated script, not a fourth hand-written copy.
     assert prefs.snippet(portal.prefs_config()) in page
-    # Colour comes from the bundles, so the 404 loads the same stylesheet — under
-    # the content-addressed name the portal writes, at the root, because a 404 is
-    # served for a request at any depth.
     assert portal.root_links(rooted=True)["themes_css"] in page
 
 
@@ -78,7 +73,6 @@ def test_the_landing_footer_links_the_legal_pages():
     assert "Report a mistake" in page
 
 
-# --- the Worker ---------------------------------------------------------------
 
 
 def test_wrangler_config_exists():
@@ -88,8 +82,6 @@ def test_wrangler_config_exists():
 def test_wrangler_serves_the_site_directory():
     config = wrangler_config()
     assert config["assets"]["directory"].lstrip("./") == "site"
-    # The portal writes to site/, and each profile's site_dir is under it, so the
-    # assets directory and the build output must not drift apart.
     assert (ROOT / "site").is_dir() or True
     for book in BOOKS:
         for profile in book.profiles:
@@ -104,7 +96,6 @@ def test_wrangler_has_a_pinned_compatibility_date():
 
 
 def test_wrangler_handles_missing_pages_with_a_404():
-    # Not an SPA: a missing page must 404, not silently serve the landing page.
     assert wrangler_config()["assets"]["not_found_handling"] == "404-page"
 
 
@@ -216,13 +207,10 @@ def test_the_caa_file_carries_only_caa_records():
     ]
     assert records, "the CAA file has no active records"
     assert all("IN" in line and " CAA " in line for line in records), records
-    # A semicolon outside quotes starts a BIND comment, so the pki.goog parameter
-    # has to stay inside them or it is silently dropped.
     assert any('"pki.goog; cansignhttpexchanges=yes"' in line for line in records)
     assert any("issuewild" in line for line in records)
 
 
-# --- response headers ---------------------------------------------------------
 
 
 def test_the_headers_file_uses_one_rule_and_indents_every_header():
@@ -236,15 +224,9 @@ def test_the_headers_file_uses_one_rule_and_indents_every_header():
 def test_the_policy_allows_exactly_what_the_site_loads():
     policy = headers.HEADERS["Content-Security-Policy"]
     assert "default-src 'self'" in policy
-    # The generated reader-preference script and the page's inline scripts need it.
-    # `wasm-unsafe-eval` is the solver kernels' token: they compile an inlined
-    # WebAssembly module in the page. It is not `unsafe-eval`, which would allow
-    # evaluating a JavaScript string.
     assert "script-src 'self' 'unsafe-inline' 'wasm-unsafe-eval'" in policy
     assert "style-src 'self' 'unsafe-inline'" in policy
-    # Material's search is a same-origin worker, not a blob.
     assert "worker-src 'self'" in policy
-    # Nothing is framed or plugged in.
     assert "frame-ancestors 'none'" in policy
     assert "object-src 'none'" in policy
 
@@ -264,7 +246,6 @@ def test_hsts_is_left_to_the_zone():
     assert "strict-transport-security" not in headers.content().lower()
 
 
-# --- URLs ---------------------------------------------------------------------
 
 
 def test_base_url_is_the_production_origin():
@@ -298,7 +279,6 @@ def test_every_profiles_canonical_url_is_its_own_site_url():
             ), f"{book.id}/{profile.id}: the canonical URL has drifted from site_url"
 
 
-# --- the deploy script --------------------------------------------------------
 
 
 def test_deploy_script_exists_and_guards_broken_maths():
@@ -306,11 +286,9 @@ def test_deploy_script_exists_and_guards_broken_maths():
     assert "wrangler deploy" in script
     # It must refuse to publish a page KaTeX could not render.
     assert "math-error" in script
-    # And it must map the deprecated credential names onto the canonical ones.
     assert "CF_API_TOKEN" in script and "CLOUDFLARE_API_TOKEN" in script
 
 
-# --- rolling back -------------------------------------------------------------
 
 
 def test_rollback_is_a_manual_workflow_that_asks_first():
@@ -325,9 +303,7 @@ def test_rollback_is_a_manual_workflow_that_asks_first():
     text = path.read_text(encoding="utf-8")
     assert "workflow_dispatch" in text, "a rollback must be asked for, not automatic"
     assert "wrangler rollback" in text
-    # A confirmation input, checked in a step that fails otherwise.
     assert "confirm" in text and "exit 1" in text
-    # It must not race itself, and it must be auditable.
     assert "cancel-in-progress: false" in text
     assert "environment:" in text
     assert "CLOUDFLARE_API_TOKEN" in text

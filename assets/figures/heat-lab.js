@@ -1,10 +1,3 @@
-// The parabolic page's own experiment: a kink smoothing, and the same scheme growing
-// once r crosses one half.
-//
-// The initial data is a triangular hat, not a sine mode, because a reader can see a
-// kink. The first click smooths it; the second, with r above 0.5, makes it grow. The
-// control is the dimensionless number from the page, not a time step, so the reader
-// is moving the quantity the stability condition names.
 import heat from "../data/solvers/heat-explicit/kernel.js";
 import { kernelLab, sci } from "./kernel-lab.js";
 
