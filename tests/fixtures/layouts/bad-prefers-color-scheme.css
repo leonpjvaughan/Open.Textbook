@@ -1,0 +1,5 @@
+@layer layout {
+  @media (prefers-color-scheme: dark) {
+    :root[data-style="fx"] .band { gap: 1rem; }
+  }
+}

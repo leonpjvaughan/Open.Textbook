@@ -1,0 +1,3 @@
+@layer layout {
+  :root[data-style="fx"] .tb-settings__panel { gap: 1rem; }
+}
