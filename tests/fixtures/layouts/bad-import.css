@@ -1,0 +1,4 @@
+@import url("x.css");
+@layer layout {
+  :root[data-style="fx"] .band { gap: 1rem; }
+}

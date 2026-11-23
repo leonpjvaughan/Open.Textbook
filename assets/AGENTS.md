@@ -174,6 +174,40 @@ neon -- "chapter:<route>" "landing:/"`.
   `core.symlinks` is false, shipping a 36-byte `kit.js` to the site. Add the file to
   `SHARED_FILES` (or its directory to `SHARED_DIRS`) and let the build place it.
 
+## Layouts
+
+A layout is **pure geometry over one DOM**: `assets/stylesheets/layouts/<id>.css` changes size,
+spacing, measure and grid, never colour, and no Python or template code branches on its id.
+The colour bundle owns font **families**; a layout owns font size and measure. Reader
+choices are three axes: `textbooks:scheme`, `textbooks:theme` and `textbooks:style` (the
+layout id, written to `<html data-style>`).
+
+The contract, enforced by `tests/test_layout_contract.py` with a real CSS parser:
+
+- The whole file is one `@layer layout { ... }` block, and every selector starts with
+  `:root[data-style="<id>"]`. No nesting, no `!important`.
+- Only allowlisted properties: display, grid, flex, box model, type size and shape, lists,
+  `color`, borders. Custom properties are named `--<id>-*`.
+- No literal colours. `color` takes only the text tokens the palette audit checks on paper;
+  `background` is `transparent`; borders use `--tb-rule`, `--tb-accent` or
+  `--card-accent-active`; `font-family` is `--tb-font-*`; every `var()` names a known token.
+- `display: none` only on a `[data-optional]` subject. No px in widths or query conditions.
+- No `@import`, `@font-face`, `@keyframes`, `@property`, `@page`, `prefers-color-scheme`, or
+  any selector naming `.tb-settings*`, `.tb-search*` or a colour-scheme attribute.
+- Body text of at least 17px, line height of at least 1.5 and a 45 to 75ch measure are
+  measured in a browser, not by the parser.
+
+`tests/fixtures/layouts/` holds one bad file per rule and one good file, so the checker is
+itself tested. `tests/test_cascade_layers.py` pins the layer order declared first in
+`themes.css`: `@layer palette, base, shell, layout, book, chrome;`.
+
+**Add a layout.** Write `assets/stylesheets/layouts/<id>.css`, add
+`{id, title, description}` to `layouts` in `collection.yaml`, and run the tests. The build
+concatenates the layouts into `layouts.css`. The reader's **Layout** choice appears
+automatically once there are two; with one, neither the fieldset nor the pre-paint read of
+`textbooks:style` is emitted. New hooks paint (a tint, a swatch) in base CSS, never in a
+layout.
+
 ## The booklet widget
 
 The booklet **data** is per book and lives in `books/AGENTS.md`; the widget is shared.
