@@ -1,0 +1,189 @@
+# Mixed practice for the Chapter 6 Review (percentages and repeated change).
+#
+# Twelve questions in the order they appear on the Review page, drawn from the five
+# section banks so the mathematics the reader meets is the mathematics already
+# taught and proved. Every answer is checked by the CAS; the two method-choice
+# records carry a `structured` check, which proves only that the declared steps and
+# concepts appear in order, not that the choice is right.
+#
+# The Review asks the reader to choose a method and say why, so the set moves
+# across the chapter: a percentage of an amount, a two-step change, a reverse
+# change, simple against compound interest, and repeated growth and decay.
+chapter: 6
+problems:
+- id: p3-15-percent
+  section: '6.1'
+  tier: F
+  refs:
+  - R9
+  statement: Work out 15% of £240.
+  answer_label: 15% of £240
+  check:
+    kind: evaluate
+    expression: 240 * 15 / 100
+    answer: '36'
+  answer_text: £36
+- id: p10-higher
+  section: '6.1'
+  tier: F
+  refs:
+  - R9
+  statement: Work out 17.5% of 320.
+  answer_label: 17.5% of 320
+  check:
+    kind: evaluate
+    expression: 320 * 17.5 / 100
+    answer: '56'
+  answer_text: '56'
+- id: p10-two-step
+  section: '6.2'
+  tier: F
+  refs:
+  - R9
+  statement: A £120 item increases by 10%, then decreases by 10%. Work out its final price.
+  answer_label: Final price
+  check:
+    kind: evaluate
+    expression: 120*1.10*0.90
+    answer: '118.8'
+  answer_text: £118.80
+- id: p9-reason
+  section: '6.2'
+  tier: F
+  refs:
+  - R9
+  statement: A value changes from 64 to 80. Work out the percentage change and state whether
+    it is an increase or decrease.
+  answer_label: Percentage change
+  check:
+    kind: evaluate
+    expression: (80-64)/64*100
+    answer: '25'
+  answer_text: 25% increase
+- id: p3-vat
+  section: '6.3'
+  tier: F
+  refs:
+  - R9
+  statement: A price including 20% VAT is £54. Work out the price before VAT.
+  answer_label: Price before VAT
+  check:
+    kind: evaluate
+    expression: 54/1.2
+    answer: '45'
+  answer_text: £45
+- id: p8-compare
+  section: '6.3'
+  tier: F
+  refs:
+  - R9
+  statement: A learner subtracts 20% of £80 from £80 to reverse a 20% reduction. Explain the
+    error and find the original if the reduced value is £80.
+  answer_label: Original value
+  check:
+    kind: evaluate
+    expression: 80/0.8
+    answer: '100'
+  answer_text: The reduction is 20% of the original, so £80 is 80% of the original. $80 ÷
+    0.8 = £100$.
+- id: p5-compare
+  section: '6.4'
+  tier: F
+  refs:
+  - R9
+  - R16
+  statement: Find the final amount for £1000 at 6% for 2 years using simple interest, then
+    compound interest.
+  answer_label: Compare interest types
+  check:
+    kind: all
+    checks:
+    - kind: evaluate
+      expression: 1000*(1+0.06*2)
+      answer: '1120'
+    - kind: evaluate
+      expression: 1000*1.06**2
+      answer: '1123.6'
+  answer_text: 'Simple: £1,120. Compound: £1,123.60.'
+- id: p9-meaning
+  section: '6.4'
+  tier: F
+  refs:
+  - R9
+  - R16
+  statement: Explain why compound interest gives more than simple interest after several years
+    at a positive rate.
+  answer_label: Compare
+  check:
+    kind: compare
+    relation: '>'
+    lhs: 1000*1.05**3
+    rhs: 1000*(1+0.05*3)
+  answer_text: Compound interest earns interest on earlier interest.
+- id: p7-comparison
+  section: '6.5'
+  tier: F
+  refs:
+  - R16
+  statement: A £1000 amount grows by 10% then falls by 10%. Work out the final amount and
+    compare it with £1000.
+  answer_label: Net effect
+  check:
+    kind: all
+    checks:
+    - kind: evaluate
+      expression: 1000*1.1*0.9
+      answer: '990'
+    - kind: compare
+      relation: <
+      lhs: '990'
+      rhs: '1000'
+  answer_text: £990, which is £10 less than the start.
+- id: p5-find-rate
+  section: '6.5'
+  tier: F
+  refs:
+  - R16
+  statement: A £4000 investment grows to £4410 in 2 years with annual compound growth. Find
+    the annual percentage rate.
+  answer_label: Annual rate
+  check:
+    kind: evaluate
+    expression: sqrt(4410/4000)
+    answer: '1.05'
+  answer_text: 5% (annual multiplier 1.05)
+- id: p2-decay
+  section: '6.5'
+  tier: F
+  refs:
+  - R16
+  statement: A machine worth £8000 loses 12% of its value each year. Work out its value after
+    3 years.
+  answer_label: Decay
+  check:
+    kind: rounded
+    value: 8000*0.88**3
+    rounded: '5451.78'
+    to: '0.01'
+  answer_text: £5,451.78
+- id: ch6-64-method-interest
+  section: '6.4'
+  tier: F
+  refs:
+  - R9
+  - R16
+  statement: £200 earns 5% per year for 2 years. Which method fits each part, and why? (a)
+    simple interest. (b) compound interest. Then work out the final amount for each.
+  answer_label: 'Method choice: simple or compound interest'
+  check:
+    kind: all
+    checks:
+    - kind: evaluate
+      expression: 200*(1+0.05*2)
+      answer: '220'
+    - kind: evaluate
+      expression: 200*1.05**2
+      answer: '220.5'
+  answer_text: 'Simple interest is calculated once on the original amount: $200\times(1+0.05\times2)=£220$.
+    Compound interest earns interest on interest: $200\times1.05^2=£220.50$. The extra 50p
+    is the interest earned in the first year on £10.'

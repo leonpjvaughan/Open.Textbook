@@ -20,25 +20,9 @@ The balance is £648.96, which is more than £640. The estimate was close enough
 
 For each question, choose a method and explain why it fits before calculating. The practice mixes percentages with methods from earlier chapters.
 
-:::problems chapter-6-practice-6.1
+:::problems chapter-06-review
 
-:::problems chapter-6-practice-6.2
-
-:::problems chapter-6-practice-6.3
-
-:::problems chapter-6-practice-6.4
-
-:::problems chapter-6-practice-6.5
-
-:::answers chapter-6-practice-6.1#p8-compare-methods
-
-:::answers chapter-6-practice-6.2#p10-two-step
-
-:::answers chapter-6-practice-6.3#p8-compare
-
-:::answers chapter-6-practice-6.4#p5-compare,p9-meaning
-
-:::answers chapter-6-practice-6.5#p7-comparison
+:::answers chapter-06-review
 
 ## What you can now do
 
