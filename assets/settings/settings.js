@@ -27,6 +27,18 @@
     }
   }
 
+  function currentStyle() {
+    const active = document.documentElement.getAttribute("data-style");
+    if (active) return active;
+    return (prefs && prefs.defaultStyle) || "";
+  }
+
+  /** @param {string} value  a layout id */
+  function setStyle(value) {
+    if (!value || !prefs || typeof prefs.setStyle !== "function") return;
+    prefs.setStyle(value);
+  }
+
   function currentScheme() {
     return document.body.getAttribute("data-md-color-scheme") === "slate"
       ? "slate"
@@ -68,6 +80,10 @@
       dialog.querySelector('input[name="tb-theme"][value="' + currentTheme() + '"]')
     );
     if (theme) theme.checked = true;
+    const style = /** @type {HTMLInputElement | null} */ (
+      dialog.querySelector('input[name="tb-layout"][value="' + currentStyle() + '"]')
+    );
+    if (style) style.checked = true;
   }
 
   function open() {
@@ -92,6 +108,7 @@
     const input = /** @type {HTMLInputElement | null} */ (event.target);
     if (!input || input.type !== "radio") return;
     if (input.name === "tb-theme") setTheme(input.value);
+    else if (input.name === "tb-layout") setStyle(input.value);
     else if (input.name === "tb-scheme") setScheme(input.value);
   });
   // declaratively, and the browser does it without a listener. Safari does not support

@@ -106,6 +106,25 @@ def method_count(book: books.Book) -> int:
     return sum(1 for line in page.read_text(encoding="utf-8").splitlines() if line.startswith("### "))
 
 
+def plural(count: int, noun: str) -> str:
+    return f"{count} {noun}" if count == 1 else f"{count} {noun}s"
+
+
+def card_stats(book: books.Book) -> str:
+    """The counts a card states, measured from the book."""
+    if book.proofs:
+        return plural(len(book.proofs), "proof")
+    if book.qualification == books.REFERENCE:
+        facts = [plural(len(book.pages), "page")]
+        methods = method_count(book)
+        if methods:
+            facts.append(plural(methods, "method"))
+        return " · ".join(facts)
+    return " · ".join(
+        [plural(book.chapter_count, "chapter"), plural(book.section_count, "section")]
+    )
+
+
 def card(book: books.Book) -> str:
     """One landing-page card, tinted with the book's own accents. Both variations
     are passed, so a card keeps the book's identity in dark mode.
@@ -125,49 +144,52 @@ def card(book: books.Book) -> str:
             f"{html.escape(profile.name)}</a>"
         )
 
-    if book.proofs:
-        facts = [f"{len(book.proofs)} proofs"]
-    elif book.qualification == books.REFERENCE:
-        facts = [f"{len(book.pages)} pages"]
-        methods = method_count(book)
-        if methods:
-            facts.append(f"{methods} methods")
-    else:
-        facts = [
-            f"{book.chapter_count} chapters",
-            f"{book.section_count} sections",
-        ]
-    if book.boards:
-        facts.append(" · ".join(html.escape(b) for b in book.boards))
-
-    subject_line = (
-        html.escape(book.subject)
-        if book.qualification == books.REFERENCE
-        else f"{html.escape(book.qualification)} {html.escape(book.subject)}"
-    )
+    kicker = " · ".join(html.escape(b) for b in book.boards) or html.escape(book.subject)
 
     return "\n".join(
         [
             f'<article class="card" style="{styles}">',
-            f'  <p class="card__subject">{subject_line}</p>',
+            '  <p class="card__meta">',
+            '    <span class="card__swatch" aria-hidden="true"></span>',
+            f'    <span class="card__kicker">{kicker}</span>',
+            f'    <span class="card__stats">{card_stats(book)}</span>',
+            "  </p>",
             '  <h3 class="card__title">'
             f'<a href="{href}">{title}</a></h3>',
             f'  <p class="card__body">{html.escape(book.description)}</p>',
-            '  <ul class="card__facts">',
-            *[f"    <li>{fact}</li>" for fact in facts],
-            "  </ul>",
             f'  <nav class="card__profiles" aria-label="Editions">{"".join(profiles)}</nav>',
             "</article>",
         ]
     )
 
 
-def groups_html(all_books: list[books.Book]) -> str:
-    """Cards, grouped by qualification in the order the collection declares."""
+def companion(slug: str, data: dict) -> str:
+    """The aside a qualification may carry beside its cards. It is always written;
+    whether it shows is the layout's business.
+    """
+    title_id = f"band-{slug}-companion"
+    return "\n".join(
+        [
+            f'<aside class="companion" data-optional aria-labelledby="{title_id}">',
+            f'  <p class="companion__kicker">{html.escape(str(data["kicker"]))}</p>',
+            f'  <h3 class="companion__title" id="{title_id}">{html.escape(str(data["title"]))}</h3>',
+            f'  <p class="companion__body">{html.escape(str(data["body"]))}</p>',
+            f'  <a class="companion__link" href="{html.escape(str(data["href"]), quote=True)}">'
+            f'{html.escape(str(data["link"]))}</a>',
+            "</aside>",
+        ]
+    )
+
+
+def bands_html(all_books: list[books.Book]) -> str:
+    """One band per qualification, in the order the collection declares, each a
+    grid of cards and its companion.
+    """
     collection = books.load_collection()
     order = collection.get("qualifications", [])
+    declared = {q["id"]: q for q in order}
     sequence = [q["id"] for q in order] + sorted(
-        {b.qualification for b in all_books} - {q["id"] for q in order}
+        {b.qualification for b in all_books} - set(declared)
     )
 
     out: list[str] = []
@@ -175,19 +197,21 @@ def groups_html(all_books: list[books.Book]) -> str:
         members = [b for b in all_books if b.qualification == qualification]
         if not members:
             continue
-        note = next(
-            (q.get("note", "") for q in order if q["id"] == qualification), ""
-        )
-        title = next(
-            (q.get("title", qualification) for q in order if q["id"] == qualification),
-            qualification,
-        )
-        out.append('<section class="group">')
-        out.append(f'  <h2 class="group__title">{html.escape(title)}</h2>')
-        if note:
-            out.append(f'  <p class="group__note">{html.escape(note)}</p>')
-        out.append('  <div class="cards">')
+        entry = declared.get(qualification, {})
+        slug = books.band_slug(qualification)
+        title = html.escape(entry.get("title", qualification))
+        out.append(f'<section class="band" id="band-{slug}" aria-labelledby="band-{slug}-title">')
+        out.append('  <header class="band__head">')
+        out.append(f'    <h2 class="band__title" id="band-{slug}-title">{title}</h2>')
+        if entry.get("note"):
+            out.append(f'    <p class="band__note">{html.escape(entry["note"])}</p>')
+        if entry.get("region"):
+            out.append(f'    <p class="band__region">{html.escape(entry["region"])}</p>')
+        out.append("  </header>")
+        out.append('  <div class="band__grid">')
         out.extend(card(book) for book in members)
+        if entry.get("companion"):
+            out.append(companion(slug, entry["companion"]))
         out.append("  </div>")
         out.append("</section>")
     return "\n".join(out)
@@ -308,6 +332,22 @@ def settings_dialog(book: books.Book | None = None) -> str:
             + "\n    </fieldset>"
         )
 
+    layouts = collection.get("layouts", [])
+    if len(layouts) > 1:
+        options = "\n".join(
+            _radio("tb-layout", str(entry["id"]), str(entry["title"]), str(entry["description"]))
+            for entry in layouts
+        )
+        groups.append(
+            '    <fieldset class="tb-settings__group" id="layout-menu">\n'
+            '      <legend class="tb-settings__legend">Layout</legend>\n'
+            '      <p class="tb-settings__hint">How pages are arranged. It does not change the colours.</p>\n'
+            '      <div class="tb-settings__options">\n'
+            f"{options}\n"
+            "      </div>\n"
+            "    </fieldset>"
+        )
+
     if book is not None:
         groups.append(
             '    <fieldset class="tb-settings__group" id="tb-offline"'
@@ -398,6 +438,8 @@ def prefs_config() -> dict:
         "extra": {
             "themes": [bundle.id for bundle in ordered_bundles()],
             "default_theme": default_bundle().id,
+            "layouts": books.layout_ids(books.load_collection()),
+            "default_layout": books.default_layout(),
         }
     }
 
@@ -417,7 +459,7 @@ def not_found() -> str:
     )
     links = root_links(rooted=True)
     return f"""<!DOCTYPE html>
-<html lang="en">
+<html lang="en" data-style="{html.escape(books.default_layout(), quote=True)}">
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -446,9 +488,9 @@ document.body.setAttribute(
 );
 </script>
 <main class="wrap" id="main">
-  <div class="group">
+  <div class="band">
     <h1 class="masthead__title">That page is not here</h1>
-    <p class="group__note">The address may be mistyped, or the page may have
+    <p class="band__note">The address may be mistyped, or the page may have
     moved between editions.</p>
     <p><a href="/">Go to the books</a></p>
   </div>
@@ -505,6 +547,7 @@ def legal_page(slug: str) -> str:
         build_meta=build_meta(),
         theme_color_metas=theme_color_metas(),
         prefs_script=prefs_snippet(prefs_config()),
+        style=html.escape(books.default_layout(), quote=True),
         settings_trigger=settings_trigger(),
         settings_dialog=settings_dialog(),
         **root_links(rooted=True),
@@ -527,7 +570,7 @@ def search_block() -> str:
     all_books = books.discover_books()
     first = all_books[0]
     browse = f"/{first.deploy_path(first.default_profile.id)}/"
-    return f"""<div class="wrap masthead__search" data-pagefind-ignore>
+    return f"""<div class="masthead__search" data-pagefind-ignore>
   <search class="tb-search tb-search--portal" data-search hidden>
     <label class="tb-search__label" for="portal-search">Search all books</label>
     <input class="tb-search__input" id="portal-search" type="search"
@@ -563,7 +606,9 @@ def render() -> str:
     return template.substitute(
         title=html.escape(str(collection.get("title", "Textbooks"))),
         description=html.escape(str(collection.get("description", ""))),
-        groups=groups_html(all_books),
+        bands=bands_html(all_books),
+        eyebrow=html.escape(f"Open.Textbook · {plural(len(all_books), 'book')}"),
+        style=html.escape(books.default_layout(), quote=True),
         search=search_block(),
         footer=footer(),
         build_meta=build_meta(),

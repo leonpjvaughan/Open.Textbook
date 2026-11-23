@@ -615,12 +615,24 @@ def test_the_chapter_list_omits_a_chapter_the_reader_does_not_study(tmp_path):
     foundation = toc.on_page_markdown(
         ":::chapters\n", page("index.md"), make_config(tmp_path, "foundation"), []
     )
-    assert "](Chapter 13/index.md)" not in foundation
-    assert "](Chapter 12/index.md)" in foundation
-    assert "Higher only sections" not in foundation
+    assert 'href="Chapter 13/index.md"' not in foundation
+    assert 'href="Chapter 12/index.md"' in foundation
+    assert "chapter-list__note" not in foundation
 
     higher = toc.on_page_markdown(
         ":::chapters\n", page("index.md"), make_config(tmp_path, "higher"), []
     )
-    assert "](Chapter 13/index.md)" in higher
-    assert "Higher only sections" in higher
+    assert 'href="Chapter 13/index.md"' in higher
+    assert '<span class="chapter-list__note">Higher only sections</span>' in higher
+
+
+def test_the_chapter_list_is_an_ordered_list_that_keeps_each_chapters_number(tmp_path):
+    from textbook.hooks import toc
+
+    out = toc.on_page_markdown(
+        ":::chapters\n", page("index.md"), make_config(tmp_path, "higher"), []
+    )
+    assert out.startswith('<ol class="chapter-list">\n<li value="1">')
+    assert out.rstrip().endswith("</ol>")
+    assert out.count("<li ") == out.count("</li>") == out.count('href="Chapter ')
+    assert ":::chapters" not in out

@@ -50,6 +50,16 @@ themes:
 backgrounds:
   site: null
 
+# A layout owns geometry: size, spacing, measure and grid. A theme owns colour and
+# type, so the two are chosen separately. Each id needs
+# assets/stylesheets/layouts/<id>.css. The reader's Layout choice appears only
+# when more than one is listed.
+default_layout: matrix
+layouts:
+  - id: matrix
+    title: Matrix
+    description: Books sit in a grid under each qualification, so you can compare them at a glance.
+
 # Set to false to withdraw the theme menu from the landing page while keeping the
 # reader's choice working. Useful once a default has been settled on.
 theme_selector: true
@@ -58,9 +68,11 @@ qualifications:
   - id: GCSE
     title: GCSE
     note: Grades 9-1, with Foundation and Higher tier where the board offers it.
+    region: England · Ages 14–16
   - id: A-level
     title: A level
     note: Full A-level courses.
+    region: England · Ages 16–18
   # The Irish qualifications. A qualification is a group on the landing page and a
   # label on a card; it carries no tier behaviour of its own. The levels differ by
   # jurisdiction — Foundation/Higher in England, Ordinary/Higher in Ireland, and
@@ -69,18 +81,40 @@ qualifications:
   - id: Junior Cycle
     title: Junior Cycle
     note: The Irish lower secondary programme. Ordinary and Higher level.
+    region: Ireland · Ages 12–15
+    companion:
+      kicker: Next in Ireland
+      title: Continue to the Leaving Certificate
+      body: The Leaving Certificate follows Junior Cycle. It has books for Mathematics, Applied Mathematics and Physics.
+      link: See the Leaving Certificate books
+      href: "#band-leaving-certificate"
   - id: Leaving Certificate
     title: Leaving Certificate
     note: The Irish upper secondary programme. Ordinary and Higher level, and Foundation level in Mathematics.
+    region: Ireland · Ages 16–18
+    companion:
+      kicker: Shared reference
+      title: Proofs and Numerical Methods
+      body: The Proofs book shows why formulas work. The Numerical Methods book helps you choose a method for a problem. Leaving Certificate pages link to both.
+      link: See the reference books
+      href: "#band-reference"
   # Not a qualification. Proofs are not taught by one course or examined by one
   # board, and a proof book belongs to no subject — so it needs a group of its own
   # rather than being filed under one of the courses that links to it.
   - id: Reference
     title: Reference
     note: Material that belongs to more than one course.
+    region: Across the collection
   # Also not a qualification. A book about modelling belongs to no subject's
   # syllabus: it is read by anyone interested, at whatever level they come to it.
   # Filing it under a course would make a claim about its reader that is not true.
   - id: Misc
     title: Misc
     note: Material that belongs to no qualification.
+    region: Applied and modelling
+    companion:
+      kicker: Looking for a method?
+      title: Methods, A to Z
+      body: The Numerical Methods book lists every method with the kind of problem it solves and what it costs.
+      link: Open the methods index
+      href: numerical-methods/techniques/

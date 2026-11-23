@@ -785,6 +785,7 @@ def render_page(
         booklet_script=booklet,
         theme_color_metas=prefs.theme_color_metas(),
         prefs_script=prefs.snippet(config),
+        style=html.escape(books.default_layout(), quote=True),
         background=backgrounds.resolve(
             books.load_collection(), book.backgrounds, section=str(meta.get("section") or "") or None,
             chapter=meta.get("chapter"),
