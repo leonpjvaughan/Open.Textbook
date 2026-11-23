@@ -294,6 +294,24 @@ class Book:
             and section["tier"] not in included
         )
 
+    def chapters_above(self, tier_filter: str) -> frozenset[str]:
+        """Chapter ids with no section this build includes.
+
+        The chapter's opener and its Review have no tier of their own, so without
+        this they are written and listed by every profile while every section under
+        them is absent. See `hooks.tier.on_files` and `scaffold.build_nav_list`.
+        """
+        included = self.tiers_included(tier_filter)
+        return frozenset(
+            str(chapter["id"])
+            for chapter in self.chapters
+            if chapter.get("sections")
+            and not any(
+                not section.get("tier") or section["tier"] in included
+                for section in chapter["sections"]
+            )
+        )
+
     @property
     def section_page_kinds(self) -> tuple[str, ...]:
         """The page kinds a section has, in the order a reader meets them.

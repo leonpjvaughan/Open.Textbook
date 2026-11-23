@@ -15,6 +15,7 @@ from .. import yamlio
 from .. import book as book_module
 from .. import config as cfg
 from ._fences import transform_outside_fences
+from .tier import included_tiers, tier_filter
 
 MARKER = re.compile(r"^:::[ \t]*chapters[ \t]*$", re.M)
 
@@ -23,10 +24,17 @@ def on_page_markdown(markdown, page, config, files):
     if ":::chapters" not in markdown:
         return markdown
     data = yamlio.load_file(cfg.curriculum_path(config)) or {}
+    book = cfg.book(config)
+    included = included_tiers(config)
+    above = book.chapters_above(tier_filter(config))
     lines = []
     for chapter in data.get("chapters", []):
+        if str(chapter["id"]) in above:
+            continue
         higher = any(
-            s.get("tier") == book_module.HIGHER_CODE for s in chapter.get("sections", [])
+            s.get("tier") == book_module.HIGHER_CODE
+            for s in chapter.get("sections", [])
+            if not s.get("tier") or s["tier"] in included
         )
         suffix = " _Higher only sections_" if higher else ""
         lines.append(
