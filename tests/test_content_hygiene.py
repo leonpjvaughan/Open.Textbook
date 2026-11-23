@@ -79,11 +79,7 @@ def test_the_gate_covers_the_reader_facing_page_names(phrase):
     assert phrase.split()[0] in patterns, f"{phrase!r} is no longer gated"
 
 
-# --- a lost backslash renders silently ----------------------------------------
-#
-# A tab in a content file is never wanted: Markdown needs none for indentation, and
 # the usual arrival is a LaTeX command eating its `\t`. KaTeX does not error on the
-# result — `(n-2) imes180` renders cheerfully — so the check has to be on the input.
 
 TAB_FILES = sorted(
     path
@@ -110,27 +106,12 @@ def test_no_content_file_contains_a_tab(path):
     )
 
 
-# --- a markdown mark that renders as itself -------------------------------------
-#
-# An unbalanced mark makes the page show the mark, and the renderer has no opinion
-# about it: an unclosed `**`, two bold runs meeting, a reference with no target, or
-# a sentence run into the next all render, exit 0 and pass every other check.
 
-#: A block of prose, which emphasis has to balance over. Fenced code is removed
-#: first: a snippet is not prose, and a `**` in it is Python's power operator.
 FENCE = re.compile(r"```.*?```", re.S)
 CODE = re.compile(r"`[^`]*`")
-#: Four or more asterisks in a row: two bold runs that meet, and the renderer
-#: closes the first and prints the rest.
 COLLIDED = re.compile(r"\*{4,}")
-#: A sentence that ends and the next that begins with no space between them.
-#: The capital is any capital, because the eight found all began with "A".
 RUN_TOGETHER = re.compile(r"[.?!]\*{0,4}(?=[A-Z])")
-#: An initialised acronym — `A.C.`, `R.M.S.` — is one word with dots inside it,
-#: so a line carrying one is not inspected.
 ABBREVIATION = re.compile(r"(?:^|[^A-Za-z])[A-Z](?:\.[A-Z])+\.")
-#: A named licence holder and a URL path both contain letter-dot-capital at a
-#: sentence boundary without being two sentences.
 RUN_TOGETHER_ALLOWED = ("Open.Textbook", "A.d.Tramontana", "a.d.Tramontana")
 
 
@@ -212,15 +193,8 @@ def test_a_reference_with_no_link_is_not_left_in_brackets():
     )
 
 
-# --- a table marker has to start a table ----------------------------------------
-#
-# `wrap_tables` turns the table after `<!-- table: cards -->` into cards on a phone.
-# Between a header and its body, or between two body rows, Markdown ends the table
-# there and prints the next row as a line of pipes. This is the positional rule;
-# a column count finds nothing, because a fragment keeps its header's arity.
 
 CARD_MARKER = "<!-- table: cards -->"
-#: The row that makes a header a table: pipes, dashes and optional alignment colons.
 SEPARATOR = re.compile(r"^\|[\s:|-]+\|?$")
 
 

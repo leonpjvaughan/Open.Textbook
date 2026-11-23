@@ -1,28 +1,4 @@
 #!/usr/bin/env node
-/*
- * One entry point for every check and measurement in this repository.
- *
- * There were thirteen loose files in `scripts/` and no way to find out what any of
- * them did without opening it. The name said `check-figure-kit` and the usage was
- * inside, in a comment, in a format only the author knew. So the commands are named
- * here, once, and `tools help` is the index.
- *
- * **The help text is not written here.** Each command exports its `SURFACE` — the
- * flags it accepts, what each one takes, its default and a sentence about it — and
- * `cli.ts` renders that table. It used to carry a prose `usage` string per command
- * beside a parser that knew the real answer, and nothing compared them: `audit`
- * accepted `--maps` that this file never mentioned. `help()` now runs
- * `surfaceProblems` before it prints, so a line that disagrees with the parser is
- * refused rather than printed.
- *
- * What stayed in `scripts/` is what is genuinely shell: `check.sh`, `preview-themes.sh`
- * and `deploy.sh` orchestrate Python and Node processes and branch on their exit codes,
- * and bash is the right language for that. What moved is the work those shell scripts
- * call into, which is Node and needed types and shared plumbing.
- *
- *     tools <command> [options]
- *     tools help [<command>] [--check]
- */
 import { SURFACE as ASSETS, run as runAssets } from "./commands/assets.js";
 import { SURFACE as AUDIT, run as runAuditFigures } from "./commands/audit-figures.js";
 import { SURFACE as CHECK_MOBILE, run as runCheckMobile } from "./commands/check-mobile.js";
@@ -104,9 +80,7 @@ const COMMANDS = {
         run: runScreenshot,
     },
 };
-/** Wide enough for the longest flag line to wrap twice rather than run off a terminal. */
 const WIDTH = 90;
-/** `tools audit <siteDir> [--theme <bundle>] …`, wrapped and indented for the index. */
 function commandUsage(name, command) {
     return wrapWords([`tools ${name}`, ...usageWords(command.surface)], 6, WIDTH);
 }
@@ -117,7 +91,6 @@ function listed() {
         usage: commandUsage(name, command),
     }));
 }
-/** Prove every usage line against its parser, and report the ones that disagree. */
 function disagreeing(commands) {
     const problems = surfaceProblems(commands.map(({ name, command, usage }) => ({ name, surface: command.surface, usage })));
     if (!problems.length)
@@ -128,7 +101,6 @@ function disagreeing(commands) {
     console.error("\nEach command's `SURFACE` in `tools/src/commands/` is the one place to fix.");
     return 1;
 }
-/** Every command and the flags it takes, one line each, each one checked. */
 function check(commands) {
     let flags = 0;
     for (const { name, command } of commands) {
@@ -145,7 +117,6 @@ function check(commands) {
     console.log(`\nsurfaces: ${commands.length} commands, ${flags} flags, every one named in its help`);
     return 0;
 }
-/** One command's usage and every flag it accepts, with what each one does. */
 function show(name, command) {
     console.log(`${name} — ${command.summary}\n`);
     console.log("usage:");

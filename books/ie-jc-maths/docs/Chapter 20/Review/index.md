@@ -51,25 +51,9 @@ straight line, alternate angles, the triangle angle sum, the exterior angle, a
 congruence test, the isosceles theorem, a parallelogram result, a similarity
 ratio, Pythagoras or its converse, a circle theorem, or a counterexample.
 
-1. Two straight lines cross. One angle is 124°. Work out the other three angles.
-2. A triangle has angles of 39° and 58°. Work out the third angle.
-3. A transversal cuts two parallel lines. One co-interior angle is 108°. Work out
-   the other co-interior angle.
-4. In a triangle, the two interior opposite angles are 37° and 56°. Work out the
-   exterior angle at the third corner.
-5. Two triangles each have two sides of 7 cm and 10 cm, and the angle between
-   those sides is 48° in each. Which congruence test applies?
-6. An isosceles triangle has an apex angle of 84°. Work out each base angle.
-7. A parallelogram has one angle of 105°. Work out its four angles.
-8. Two triangles are similar. A side of 6 cm in the small triangle matches a side
-   of 18 cm in the large one. Another side of the small triangle is 7 cm. Find the
-   matching side in the large one.
-9. A right-angled triangle has legs of 9 cm and 40 cm. Find the hypotenuse.
-10. A triangle has sides of 10 cm, 24 cm and 26 cm. Decide whether it is
-    right-angled.
-11. Prove that the angles of a quadrilateral add to 360°.
-12. A student claims: "if a number is divisible by 6, then it is divisible by 9."
-    Test the number 12 and decide whether the claim is true.
+:::problems chapter-20-review
+
+:::answers chapter-20-review
 
 ## What you can now do
 

@@ -43,9 +43,6 @@ from textbook.hooks import figures, tier
 
 BOOK = "gcse-maths"
 
-# A figure module, only as much as the hook's discovery needs: a regular
-# ``.js`` beside the loader. The loader's own filename is excluded by name, so
-# the fixture must include it for the discovery to be exercised honestly.
 FIGURE_MODULE = "export function mount(el) { el.textContent = 'gradient'; }\n"
 LOADER = "// shared figure loader\n"
 
@@ -87,7 +84,6 @@ def render(markdown: str) -> str:
     )
 
 
-# --- headings and fragments ---------------------------------------------------
 
 
 def test_a_heading_gets_the_id_a_fragment_names():
@@ -107,7 +103,6 @@ def test_headings_keep_their_ids_when_the_page_has_maths():
     assert re.search(r'<h2 id="[^"]+">', html), html
 
 
-# --- the figure hook ----------------------------------------------------------
 
 
 def test_the_portable_substrate_passes_through_untouched(docs):
@@ -157,7 +152,7 @@ def test_a_control_mount_is_not_numbered_as_a_figure(docs):
 
 def test_the_loader_is_injected_relative_to_the_page(docs):
     """The loader path is computed from the page, so it works at any depth."""
-    md_path = "figure/index.md"  # one directory deep -> one '../'
+    md_path = "figure/index.md"
     source = run_figure_hook(":::figure gradient\n", docs, md_path=md_path)
     assert 'src="../assets/figures/figures.js"' in source
 
@@ -178,7 +173,6 @@ def test_an_unknown_slug_fails_the_build(docs):
     with pytest.raises(ValueError) as err:
         run_figure_hook(":::figure nope\n", docs)
     assert "nope" in str(err.value)
-    # The message names the page, so a failure points at the offending source.
     assert "figure/index.md" in str(err.value)
 
 
@@ -207,15 +201,6 @@ def test_the_pipeline_uses_this_hook_on_every_page():
     assert tier in pipeline.MARKDOWN_HOOKS
 
 
-# --- fenced code --------------------------------------------------------------
-#
-# A fence is preformatted text, and its whole point is the layout inside it: an ASCII
-# probability tree, a stem-and-leaf plot, a pseudocode listing. `fenced_code` is what
-# makes Python-Markdown treat ``` as a block. Without it the opening backticks came
-# back as inline code, so six pages across two books shipped
-# `<p><code>text …</code></p>` — the info string printed to the reader as a word, and
-# the newlines collapsed by HTML, which turns a tree into a run-on sentence. Nothing
-# caught it because no test ever rendered a fence.
 
 
 def test_a_fence_keeps_its_line_breaks_and_its_columns():
@@ -233,10 +218,6 @@ def test_the_info_string_is_a_class_and_not_a_word_on_the_page():
     assert "<p><code>python" not in html, "the fence is still being read as inline code"
 
 
-#: The directives a page can use. An info string that matches one of these is a
-#: directive that lost its colons — the fence then prints the words to the reader and
-#: the hook never fires. `books/ie-lc-physics` shipped ```` ```figure hooke-law ````
-#: this way: the figure did not mount and the page read "figure hooke-law".
 DIRECTIVES = (
     "figure",
     "prove",
@@ -266,7 +247,6 @@ def test_no_page_opens_a_fence_with_a_directive():
     assert offenders == []
 
 
-# --- the figure loader on a real built page -----------------------------------
 
 
 @pytest.fixture(scope="module")
@@ -281,9 +261,6 @@ def test_a_real_figure_page_carries_the_loader(built):
     )
     assert 'data-figure="number-line"' in html
     assert 'src="../../../assets/figures/figures.js"' in html
-    # The module the page names must be the file the build wrote, or the figure
-    # mounts into a 404 — a failure the build's link check cannot see, because a
-    # module import is not a link on any page.
     written = re.search(r'data-figure-src="(number-line\.[0-9a-f]{8}\.js)"', html)
     assert written, "the page does not name an addressed module"
     assert (built.out / "assets" / "figures" / written.group(1)).is_file()
@@ -302,7 +279,57 @@ def test_a_real_home_page_carries_the_disclaimer(built):
     assert "not a replacement" in html
 
 
-# --- tier strategies ----------------------------------------------------------
+def test_practice_answers_put_each_item_in_its_own_disclosure(built):
+    """Item 203: each practice answer sits in its own disclosure paired by number.
+
+    Wrapping all answers in one `<details>` forced a reader checking item 9 to open
+    and scroll past every earlier solution, undercutting retrieval. Each item now
+    gets its own `<details>` under a labelled `<section>`, with `<n>. Show the answer`
+    matching the `<ol>` item count and keeping the body for item `<n>` inside it.
+    """
+    html = (built.out / "chapter-1/section-1.1/practise/index.html").read_text(
+        encoding="utf-8"
+    )
+    ol_match = re.search(r"<ol>(.*?)</ol>", html, re.S)
+    assert ol_match, "practise page is missing its numbered problem list"
+    item_count = len(re.findall(r"<li>", ol_match.group(1)))
+    assert item_count >= 9, f"expected at least 9 practice items, got {item_count}"
+
+    section = re.search(
+        r'<section\b[^>]*class="answers"[^>]*>(.*?)</section>', html, re.S
+    )
+    assert section, "answers are not grouped in <section class=\"answers\">"
+    assert 'aria-labelledby="answers"' in section.group(0)
+    assert '<h2 id="answers">Answers and concise solutions</h2>' in section.group(1)
+
+    disclosures = re.findall(
+        r"<details>\s*<summary>(.*?)</summary>(.*?)</details>", section.group(1), re.S
+    )
+    assert len(disclosures) == item_count
+    for index, (summary, body) in enumerate(disclosures, 1):
+        assert summary == f"{index}. Show the answer"
+        assert f"<strong>{index}.</strong>" in body
+        assert "<strong>Answer:</strong>" in body
+
+
+def test_multiple_answer_blocks_on_one_page_get_unique_heading_ids():
+    """Pages with several `:::answers` markers must not emit duplicate heading ids."""
+    from textbook.hooks import problems
+
+    book = pipeline.books.book_by_id(BOOK)
+    config = pipeline.cfg.from_parts(book.docs, book=book, profile="higher")
+    md = (
+        ":::answers chapter-01-practice-1.1\n\n"
+        ":::answers chapter-01-practice-1.2\n"
+    )
+    out = problems.on_page_markdown(md, page("review.md"), config, [])
+    html = render(out)
+    assert 'aria-labelledby="answers"' in html
+    assert '<h2 id="answers">Answers and concise solutions</h2>' in html
+    assert 'aria-labelledby="answers-2"' in html
+    assert '<h2 id="answers-2">Answers and concise solutions</h2>' in html
+
+
 
 H_PAGE = "---\ntitle: Higher only\ntier: H\n---\n\n# Higher only\n\nHigher-only body.\n"
 F_PAGE = (
@@ -361,8 +388,6 @@ def test_foundation_strips_the_in_page_higher_block(tiers):
         [],
     )
     assert "Higher extension" not in out
-    # The shared content on either side of the block survives, so the strip is a
-    # range and not a truncation.
     assert "Shared body." in out
     assert "Shared closing." in out
 
@@ -407,7 +432,6 @@ def test_the_toggle_tag_renders_as_an_element_a_script_can_select(tiers):
     assert "Higher extension" in html
 
 
-# --- the real book end to end -------------------------------------------------
 
 
 @pytest.mark.parametrize(
@@ -438,11 +462,6 @@ def test_the_hook_chain_is_defined_once_and_the_pipeline_uses_that_one():
         "would not run"
     )
     order = [module.__name__.rsplit(".", 1)[-1] for module in hooks.MARKDOWN_HOOKS]
-    # `maths` is not in the list: it runs on rendered HTML rather than markdown, in
-    # `render_page`, and it must stay last or the maths a hook emits is not rendered.
-    # `classes` sits beside `proofs`: both expand a directive into one link to a page
-    # in a reference work, resolved from a registry, and neither depends on the other.
-    # `deeper` follows them because its target is a page this build writes.
     assert order == [
         "tier",
         "disclaimer",
@@ -454,6 +473,7 @@ def test_the_hook_chain_is_defined_once_and_the_pipeline_uses_that_one():
         "deeper",
         "problems",
         "systems",
+        "callouts",
     ], order
 
 
@@ -470,7 +490,6 @@ def test_tier_runs_before_everything_that_expands():
     assert names[0] == "tier"
 
 
-# --- the maths hook -----------------------------------------------------------
 
 MATH_CONTENT = (
     '<span class="arithmatex">\\(a+b\\)</span> and '

@@ -100,8 +100,7 @@ Back to the chapter problem. The main road runs from $A(-1, 1)$ to $B(7, 7)$.
 2. Rewrite it in the form $ax + by + c = 0$.
 3. Show that both junctions satisfy your equation.
 
-Keep the equation. You will use its slope in Section 13.3 and its form again in
-Section 13.5.
+Keep the equation. You will use its slope in Section 13.3.
 
 ## You should now be able to
 

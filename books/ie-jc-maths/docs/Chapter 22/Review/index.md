@@ -90,58 +90,9 @@ say why in a few words. The idea might be a population, a sample, a bias, a
 frequency table, a graph, a mean, a median, a mode, a range, a quartile, an
 interquartile range, a correlation, a claim, or a misleading axis.
 
-1. A café asks 30 customers what they think of the new menu. Name the population
-   and the sample.
-2. A survey asks only students in the library about reading. Explain the bias.
-3. A tally shows 4, 6 and 5 marks for three values. How many answers were
-   collected?
-4. A bar chart has heights 3, 5, 2 and 6. Which bar is tallest?
-5. Find the mean of $4, 6, 7, 8, 10$.
-6. Find the median of $3, 9, 5, 7$.
-7. Find the mode of $2, 3, 3, 5, 7$.
-8. Find the range of $12, 18, 9, 15, 20$.
-9. Find the interquartile range of $2, 4, 6, 8, 10, 12, 14, 16$.
-10. A scatter graph shows that students who read more tend to spell better.
-    Describe the correlation.
-11. A survey of 40 students finds that 24 take the bus. Estimate how many of 500
-    students take the bus.
-12. A poster's axis starts at 90 instead of 0. Explain why this can mislead.
-13. A pictogram symbol doubles in value and doubles in height and width. How many
-    times larger does it look?
-14. Two classes have the same mean mark. Class A has an IQR of 5 and Class B has
-    an IQR of 12. Which class is more consistent?
-15. A headline says a new app makes students work harder. The survey asked 12
-    students. Give one reason to question the claim.
-16. A school has 300 students and takes a systematic sample of 30. How many
-    students are between each chosen name?
+:::problems chapter-22-review
 
-<details markdown="1">
-<summary>Answers and concise solutions</summary>
-
-1. The population is every customer of the café. The sample is the 30 customers
-   who were asked.
-2. The sample is biased towards students who read, because students in the library
-   are more likely to enjoy reading than the average student.
-3. $4+6+5=15$ answers.
-4. The tallest bar has height 6, so the bar with height 6.
-5. $4+6+7+8+10=35$, so the mean is $35\div5=7$.
-6. In order the values are $3, 5, 7, 9$. The median is $(5+7)\div2=6$.
-7. The mode is 3, because it appears twice and every other value appears once.
-8. $20-9=11$.
-9. The lower half is $2, 4, 6, 8$ with $Q_1=5$, and the upper half is
-   $10, 12, 14, 16$ with $Q_3=13$. The IQR is $13-5=8$.
-10. The correlation is positive, because as reading increases, spelling tends to
-    increase.
-11. $\frac{24}{40}\times500=300$ students.
-12. Starting the axis at 90 makes small differences look large, because the bars
-    are drawn from a high base.
-13. It looks $2\times2=4$ times larger.
-14. Class A is more consistent, because its interquartile range is smaller.
-15. The sample is very small, so it cannot describe all students. The claim is too
-    strong for the evidence.
-16. $300\div30=10$, so take every 10th name.
-
-</details>
+:::answers chapter-22-review
 
 ## What you can now do
 

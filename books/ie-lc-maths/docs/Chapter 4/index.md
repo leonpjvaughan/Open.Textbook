@@ -30,9 +30,8 @@ sell before it makes any money. Write your estimate down before you read on.
 
 By the end of the chapter you can build the cost and income expressions, solve
 for the break-even point exactly, and say what happens on either side of it.
-Section 4.8 adds one more realistic detail — a discount on large orders — which
-turns the income line into a curve and gives the business a second break-even
-point.
+Adding a discount on large orders turns the income line into a curve and gives
+the business a second break-even point.
 
 ## By the end of this chapter you can
 

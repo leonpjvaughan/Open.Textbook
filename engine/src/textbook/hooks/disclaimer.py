@@ -23,8 +23,6 @@ MARKER = re.compile(r"^:::[ \t]*disclaimer[ \t]*$", re.M)
 
 
 def on_page_markdown(markdown: str, page, config, files) -> str:
-    # Almost no page carries the directive, and the check is a substring test, so
-    # the common page pays nothing for the hook — nor for reading the book.
     if ":::disclaimer" not in markdown:
         return markdown
     return MARKER.sub(legal.disclaimer_html(cfg.book(config)), markdown)

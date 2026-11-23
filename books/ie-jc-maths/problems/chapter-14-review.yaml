@@ -1,0 +1,250 @@
+# Mixed practice for the Junior Cycle Mathematics Chapter 14 Review.
+#
+# Sixteen questions covering function machines, function notation, tables of
+# values, roots and building quadratics, distance-time graphs, maxima, and
+# interleaved expanding, solving and rearranging.
+#
+# Honest limit: Question 10 asks to interpret a flat section of a distance-time
+# graph in words, so it uses `structured` (which proves only that the declared
+# steps and concepts are present in order, not the interpretation itself).
+# Question 15 verifies the maximum of the quadratic via its derivative and
+# vertex evaluation, while the explanation uses symmetry between the roots.
+chapter: 14
+oracles: [sympy, units]
+symbols:
+  x: {real: true}
+  y: {real: true}
+  t: {real: true}
+
+problems:
+  - id: r1-function-machine
+    section: Review
+    tier: O
+    refs: [AF.7]
+    statement: 'A machine triples the input and then adds 1. Find the output when the input is 4.'
+    answer_label: 'Find the output when the input is 4.'
+    check:
+      kind: evaluate
+      expression: '3*4 + 1'
+      answer: '13'
+    answer_text: '$13$. Triple 4 to get 12, then add 1 to get 13.'
+
+  - id: r2-evaluate-linear-function
+    section: Review
+    tier: O
+    refs: [AF.7]
+    statement: 'The function $f$ is given by $f(x)=5x-3$. Find $f(2)$.'
+    answer_label: 'Find $f(2)$ for $f(x)=5x-3$.'
+    check:
+      kind: evaluate
+      expression: '5*2 - 3'
+      answer: '7'
+    answer_text: '$f(2)=7$. Substitute $x=2$: $5(2)-3=10-3=7$.'
+
+  - id: r3-evaluate-quadratic-negative
+    section: Review
+    tier: O
+    refs: [AF.7]
+    statement: 'The function $f$ is given by $f(x)=x^2+1$. Find $f(-2)$.'
+    answer_label: 'Find $f(-2)$ for $f(x)=x^2+1$.'
+    check:
+      kind: evaluate
+      expression: '(-2)**2 + 1'
+      answer: '5'
+    answer_text: '$f(-2)=5$. Substitute $x=-2$: $(-2)^2+1=4+1=5$. Put brackets around $-2$ when squaring.'
+
+  - id: r4-find-input
+    section: Review
+    tier: O
+    refs: [AF.7]
+    statement: 'The function $f$ is given by $f(x)=4x+1$. Find the input $x$ for which $f(x)=17$.'
+    answer_label: 'Find $x$ when $f(x)=17$.'
+    check:
+      kind: solve
+      equation: '4*x + 1 = 17'
+      variable: x
+      answer: '4'
+    answer_text: '$x=4$. Solve $4x+1=17$: subtract 1 to get $4x=16$, then divide by 4.'
+
+  - id: r5-table-of-values
+    section: Review
+    tier: O
+    refs: [AF.7]
+    statement: 'Make a table of values for $y=3x-2$ for $x=0$, $1$ and $2$.'
+    answer_label: 'Table of values for $y=3x-2$.'
+    check:
+      kind: all
+      checks:
+        - kind: evaluate
+          expression: '3*0 - 2'
+          answer: '-2'
+        - kind: evaluate
+          expression: '3*1 - 2'
+          answer: '1'
+        - kind: evaluate
+          expression: '3*2 - 2'
+          answer: '4'
+    answer_text: 'When $x=0$, $y=-2$; when $x=1$, $y=1$; when $x=2$, $y=4$. Each step of $+1$ in $x$ adds $3$ to $y$.'
+
+  - id: r6-linear-negative-input
+    section: Review
+    tier: O
+    refs: [AF.7]
+    statement: 'Find the value of $y$ when $x=-2$, using $y=x+4$.'
+    answer_label: 'Find $y$ when $x=-2$ using $y=x+4$.'
+    check:
+      kind: evaluate
+      expression: '-2 + 4'
+      answer: '2'
+    answer_text: '$y=2$. Substitute $x=-2$: $y=-2+4=2$.'
+
+  - id: r7-quadratic-roots
+    section: Review
+    tier: O
+    refs: [AF.7, AF.5]
+    statement: 'Find the values of $x$ where the graph of $y=x^2-16$ crosses the horizontal axis.'
+    answer_label: 'Find where $y=x^2-16$ crosses the horizontal axis.'
+    check:
+      kind: solve
+      equation: 'x**2 - 16 = 0'
+      variable: x
+      answer: ['-4', '4']
+    answer_text: '$x=-4$ and $x=4$. The graph crosses the horizontal axis when $y=0$: $x^2-16=(x-4)(x+4)=0$, so $x=-4$ or $x=4$.'
+
+  - id: r8-quadratic-from-roots
+    section: Review
+    tier: O
+    refs: [AF.7, AF.5]
+    statement: 'A quadratic graph has roots 1 and 6. Write its rule in factorised form, and expand it.'
+    answer_label: 'Write the quadratic in factorised and expanded form.'
+    check:
+      kind: all
+      checks:
+        - kind: solve
+          equation: '(x - 1)*(x - 6) = 0'
+          variable: x
+          answer: ['1', '6']
+        - kind: evaluate
+          expression: '(x - 1)*(x - 6)'
+          answer: 'x**2 - 7*x + 6'
+    answer_text: '$y=(x-1)(x-6)$ and $y=x^2-7x+6$. Roots at $x=1$ and $x=6$ give factors $(x-1)$ and $(x-6)$, and expanding gives $x^2-6x-x+6=x^2-7x+6$.'
+
+  - id: r9-train-speed
+    section: Review
+    tier: O
+    refs: [AF.7]
+    statement: 'A distance-time graph shows a train travelling 80 km in 2 hours. Find its speed.'
+    answer_label: 'Find the train''s speed.'
+    check:
+      kind: evaluate
+      expression: '80/2'
+      answer: '40'
+    answer_text: '$40$ km/h. Speed is distance divided by time: $80\div2=40$ km/h.'
+
+  - id: r10-flat-distance-time
+    section: Review
+    tier: O
+    refs: [AF.7]
+    statement: 'A distance-time graph is flat for 30 minutes. What is happening during that time?'
+    answer_label: 'Interpret the flat part of the distance-time graph.'
+    check:
+      kind: structured
+      requires: [state-motion, give-reason]
+      concepts: [stationary, constant-distance]
+      points:
+        - id: state-motion
+          text: 'The object is stationary (stopped) for 30 minutes.'
+          concepts: [stationary]
+        - id: give-reason
+          text: 'A flat line means the distance stays constant while time passes, so the speed is zero.'
+          concepts: [constant-distance]
+    answer_text: 'The object is stopped (stationary) for 30 minutes. A horizontal segment on a distance-time graph means the distance does not change as time passes.'
+
+  - id: r11-garden-bed-area
+    section: Review
+    tier: O
+    refs: [AF.7]
+    statement: 'The garden bed has area $A(x)=12x-2x^2$ square metres. Find $A(2)$.'
+    answer_label: 'Find $A(2)$ for $A(x)=12x-2x^2$.'
+    check:
+      kind: evaluate
+      expression: '12*2 - 2*2**2'
+      answer: '16'
+    answer_text: '$16\ \text{m}^2$. Substitute $x=2$: $A(2)=12(2)-2(2^2)=24-8=16$.'
+
+  - id: r12-garden-bed-widths
+    section: Review
+    tier: O
+    refs: [AF.7, AF.5]
+    statement: 'The garden bed has area $A(x)=12x-2x^2$ square metres. Find the two widths for which the area is $10\ \text{m}^2$.'
+    answer_label: 'Find the two widths with area $10\ \text{m}^2$.'
+    check:
+      kind: solve
+      equation: '12*x - 2*x**2 = 10'
+      variable: x
+      answer: ['1', '5']
+    answer_text: '$1$ m and $5$ m. Set $12x-2x^2=10$, rearrange to $2x^2-12x+10=0$, divide by 2 to get $x^2-6x+5=0$, and factorise: $(x-1)(x-5)=0$, so $x=1$ or $x=5$.'
+
+  - id: r13-expand-two-brackets
+    section: Review
+    tier: O
+    refs: [AF.3]
+    statement: 'Expand $(x+2)(x-5)$.'
+    answer_label: 'Expand $(x+2)(x-5)$.'
+    check:
+      kind: evaluate
+      expression: '(x + 2)*(x - 5)'
+      answer: 'x**2 - 3*x - 10'
+    answer_text: '$x^2-3x-10$. Multiply out the brackets: $x^2-5x+2x-10=x^2-3x-10$.'
+
+  - id: r14-solve-linear
+    section: Review
+    tier: O
+    refs: [AF.4]
+    statement: 'Solve $3x-7=11$.'
+    answer_label: 'Solve $3x-7=11$.'
+    check:
+      kind: solve
+      equation: '3*x - 7 = 11'
+      variable: x
+      answer: '6'
+    answer_text: '$x=6$. Add 7 to both sides to get $3x=18$, then divide by 3.'
+
+  - id: r15-ball-greatest-height
+    section: Review
+    tier: O
+    refs: [AF.7, AF.5]
+    statement: 'A ball is thrown straight up. Its height in metres after $t$ seconds is $h(t)=30t-5t^2$. Find the greatest height the ball reaches.'
+    answer_label: 'Find the greatest height of the ball.'
+    check:
+      kind: all
+      checks:
+        - kind: solve
+          equation: '30*t - 5*t**2 = 0'
+          variable: t
+          answer: ['0', '6']
+        - kind: apply
+          expression: '30*t - 5*t**2'
+          apply: {op: diff, args: [t]}
+          answer: '30 - 10*t'
+        - kind: solve
+          equation: '30 - 10*t = 0'
+          variable: t
+          answer: '3'
+        - kind: evaluate
+          expression: '30*3 - 5*3**2'
+          answer: '45'
+    answer_text: '$45$ m. Factorise $h(t)=5t(6-t)$, so the height is 0 at $t=0$ and $t=6$. By symmetry the maximum sits halfway between the roots, at $t=3$ seconds, giving $h(3)=30(3)-5(3^2)=90-45=45$ m.'
+
+  - id: r16-change-subject
+    section: Review
+    tier: O
+    refs: [AF.6]
+    statement: 'Make $x$ the subject of the formula $y=3x+2$.'
+    answer_label: 'Make $x$ the subject of $y=3x+2$.'
+    check:
+      kind: solve
+      equation: 'y = 3*x + 2'
+      variable: x
+      answer: '(y - 2)/3'
+    answer_text: '$x=\dfrac{y-2}{3}$. Subtract 2 from both sides to get $y-2=3x$, then divide both sides by 3.'

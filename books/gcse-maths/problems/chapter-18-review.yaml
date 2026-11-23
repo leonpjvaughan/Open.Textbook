@@ -1,0 +1,96 @@
+# Mixed practice for the Chapter 18 Review (Transformations, congruence and similarity).
+#
+# SymPy verifies the coordinate transformations, scale factors, directed-number
+# arithmetic and linear equation. Question 3 asks for a congruence criterion and
+# the page asks the reader to name and explain a method for each item; those
+# geometric judgements cannot be proved by the verifier (a `structured` check
+# confirms only that the declared points and concepts appear in order).
+chapter: 18
+oracles: [sympy, units]
+symbols:
+  x: {real: true}
+problems:
+  - id: r1-reflect-y-axis
+    section: Review
+    tier: F
+    refs: [G7]
+    statement: 'Reflect $(4,-2)$ in the $y$-axis.'
+    answer_label: 'Image of $(4,-2)$ reflected in the $y$-axis'
+    check:
+      kind: all
+      checks:
+        - {kind: evaluate, expression: '-1*4', answer: '-4'}
+        - {kind: evaluate, expression: '1*(-2)', answer: '-2'}
+    answer_text: '$(-4,-2)$. Reflection in the $y$-axis negates the $x$-coordinate and leaves the $y$-coordinate unchanged.'
+
+  - id: r2-scale-factor
+    section: Review
+    tier: F
+    refs: [G7]
+    statement: 'A shape with length $5\text{ cm}$ is enlarged to $12\text{ cm}$. Find the scale factor.'
+    answer_label: 'Enlargement scale factor'
+    check: {kind: evaluate, expression: '12/5', answer: '2.4'}
+    answer_text: 'Divide the image length by the object length: $12\div5=2.4$ (or $\frac{12}{5}$).'
+
+  - id: r3-congruence-criterion
+    section: Review
+    tier: F
+    refs: [G5]
+    statement: 'Two triangles have matching three side lengths. State a congruence criterion.'
+    answer_label: 'Congruence criterion'
+    check:
+      kind: structured
+      requires: [criterion, reason]
+      concepts: [sss, matching-sides]
+      points:
+        - id: criterion
+          text: 'SSS (side-side-side).'
+          concepts: [sss]
+        - id: reason
+          text: 'All three pairs of corresponding side lengths are equal, which fixes the triangle up to congruence.'
+          concepts: [matching-sides]
+
+  - id: r4-area-scale-factor
+    section: Review
+    tier: H
+    refs: [G19]
+    statement: 'Similar shapes have length factor $3$. Find their area factor.'
+    answer_label: 'Area scale factor'
+    check: {kind: evaluate, expression: '3**2', answer: '9'}
+    answer_text: '$3^2=9$. Area scales by the square of the length scale factor.'
+
+  - id: r5-temperature-change
+    section: Review
+    tier: F
+    refs: [N1, N2]
+    statement: 'A temperature rises from $-4$ to $7$. Work out the change.'
+    answer_label: 'Temperature change'
+    check: {kind: evaluate, expression: '7 - (-4)', answer: '11'}
+    answer_text: '$7-(-4)=11$ degrees (subtract the starting value from the finishing value).'
+
+  - id: r6-linear-equation
+    section: Review
+    tier: F
+    refs: [A17]
+    statement: 'Solve $4x+3=19$.'
+    answer_label: 'Solution of $4x+3=19$'
+    check: {kind: solve, equation: '4*x + 3 = 19', variable: x, answer: ['4']}
+    answer_text: 'Use inverse operations: subtract $3$ to get $4x=16$, then divide by $4$ to get $x=4$.'
+
+  - id: r7-negative-enlargement
+    section: Review
+    tier: H
+    refs: [G7]
+    statement: 'A point $(2,5)$ is enlarged by factor $-2$ about the origin.'
+    answer_label: 'Image under enlargement by $-2$ about the origin'
+    check: {kind: vector, op: scale, args: ['-2', 'Matrix([2, 5])'], answer: 'Matrix([-4, -10])'}
+    answer_text: '$(-4,-10)$. Multiply both coordinates from the centre $(0,0)$ by $-2$.'
+
+  - id: r8-volume-to-length-ratio
+    section: Review
+    tier: H
+    refs: [G19]
+    statement: 'Similar solids have volume ratio $1:64$. Find their length ratio.'
+    answer_label: 'Length ratio from volume ratio'
+    check: {kind: evaluate, expression: 'cbrt(64)', answer: '4'}
+    answer_text: '$1:4$. Take the cube root of the volume ratio: $\sqrt[3]{1}:\sqrt[3]{64}=1:4$.'

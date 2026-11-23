@@ -1,0 +1,320 @@
+# Mixed practice for the Chapter 4 Review.
+#
+# Thirteen questions, one record each, in the order they appear on the Review page.
+# A formula read off a pattern or a table is checked by evaluating it at the values
+# the question gives, so a wrong constant or a wrong coefficient fails; equations,
+# the simultaneous pair and the modulus inequality are proved by `solve`, `system`
+# and `inequality`. Questions 4 and 13 ask for a meaning and an explanation, so each
+# carries a `structured` component.
+#
+# Honest limit: evaluating a formula at four values proves it fits those four
+# values. It does not prove it is the only formula that does, and it does not prove
+# that the pattern continues. A `structured` check proves only that a model answer
+# contains the declared steps, in order.
+chapter: 4
+symbols:
+  x: {real: true}
+  y: {real: true}
+  n: {real: true}
+problems:
+  - id: r1-pattern-expression
+    section: '4.1'
+    tier: F
+    refs: ['4.1']
+    statement: >-
+      A pattern has $7$ tiles in the first shape, $11$ in the second and $15$ in the
+      third. Write an expression for the number of tiles in the $n$th shape.
+    answer_label: 'The expression for the nth shape'
+    check:
+      kind: all
+      checks:
+        - {kind: evaluate, expression: '4*1 + 3', answer: '7'}
+        - {kind: evaluate, expression: '4*2 + 3', answer: '11'}
+        - {kind: evaluate, expression: '4*3 + 3', answer: '15'}
+    answer_text: |-
+      The shapes grow by the same amount each time: $11 - 7 = 4$ and $15 - 11 = 4$.
+      A constant difference of $4$ means the expression is $4n$ plus a constant. At
+      $n = 1$ the count is $7$, and $4 \times 1 = 4$, so the constant is $3$:
+
+      $$T_n = 4n + 3$$
+
+      Check the third shape: $4 \times 3 + 3 = 15$. The gradient is the growth per
+      shape and the constant is the part that does not grow.
+
+  - id: r2-evaluate-and-identify
+    section: '4.2'
+    tier: F
+    refs: ['4.1']
+    statement: 'A rule is $y = 6x - 4$. Work out $y$ at $x = 5$, and say which variable is independent.'
+    answer_label: 'The value of y, and the independent variable'
+    check:
+      kind: all
+      checks:
+        - {kind: evaluate, expression: '6*5 - 4', answer: '26'}
+        - kind: structured
+          requires: [choose-input]
+          concepts: [independent, dependent]
+          points:
+            - id: choose-input
+              text: >-
+                x is the independent variable, because you choose its value and the
+                rule then gives y. The value of y depends on x, so y is the dependent
+                variable.
+              concepts: [independent, dependent]
+    answer_text: |-
+      Substitute $x = 5$:
+
+      $$y = 6 \times 5 - 4 = 30 - 4 = 26$$
+
+      The independent variable is $x$, because you choose it. The value of $y$ is
+      produced by the rule, so $y$ is the dependent variable. On a graph, $x$ runs
+      along the horizontal axis and $y$ up the vertical one.
+
+  - id: r3-formula-from-table
+    section: '4.3'
+    tier: F
+    refs: ['4.1']
+    statement: 'A table gives the values $3, 8, 13, 18$ at $n = 1, 2, 3, 4$. Find the formula.'
+    answer_label: 'The formula'
+    check:
+      kind: all
+      checks:
+        - {kind: evaluate, expression: '5*1 - 2', answer: '3'}
+        - {kind: evaluate, expression: '5*2 - 2', answer: '8'}
+        - {kind: evaluate, expression: '5*3 - 2', answer: '13'}
+        - {kind: evaluate, expression: '5*4 - 2', answer: '18'}
+    answer_text: |-
+      The values rise by $5$ each time, so the formula is $5n$ plus a constant. At
+      $n = 1$ the value is $3$, and $5 \times 1 = 5$, so the constant is $-2$:
+
+      $$T_n = 5n - 2$$
+
+      Check the fourth value: $5 \times 4 - 2 = 18$. The constant difference is the
+      coefficient of $n$, and one value fixes the constant.
+
+  - id: r4-gradient-and-intercept
+    section: '4.4'
+    tier: F
+    refs: ['4.1']
+    statement: >-
+      State the gradient and the $y$-intercept of $C = 150 + 7n$, and say what each
+      means if $n$ is the number of items.
+    answer_label: 'The gradient, the intercept and their meanings'
+    check:
+      kind: all
+      checks:
+        - {kind: evaluate, expression: '(150 + 7*1) - (150 + 7*0)', answer: '7'}
+        - {kind: evaluate, expression: '150 + 7*0', answer: '150'}
+        - kind: structured
+          requires: [state-gradient, state-intercept]
+          concepts: [cost-per-item, fixed-cost]
+          points:
+            - id: state-gradient
+              text: >-
+                The gradient is 7. It is the cost of each extra item, because adding
+                one item adds 7 to the total cost.
+              concepts: [cost-per-item]
+            - id: state-intercept
+              text: >-
+                The y-intercept is 150. It is the cost when n is zero, so it is the
+                fixed cost that is paid before any item is made.
+              concepts: [fixed-cost]
+    answer_text: |-
+      The gradient is $7$ and the $y$-intercept is $150$. The gradient is the change in
+      $C$ for each extra item, so it is the cost of making one item. The intercept is
+      the value of $C$ when $n = 0$, so it is the fixed cost: the equipment, the rent
+      or the stall, paid once. A cost with a fixed part and a part per item is always
+      linear.
+
+  - id: r5-simplify-expression
+    section: '4.5'
+    tier: F
+    refs: ['4.1']
+    statement: 'Simplify $8x - 3 + 2x + 9$.'
+    answer_label: 'The simplified expression'
+    check: {kind: evaluate, expression: '8*x - 3 + 2*x + 9', answer: '10*x + 6'}
+    answer_text: |-
+      Collect the $x$ terms and the numbers separately:
+
+      $$8x + 2x = 10x \qquad -3 + 9 = 6$$
+
+      So the expression is $10x + 6$. The $x$ terms are like terms because they are
+      both multiples of $x$; $-3$ and $9$ are like terms because they are both numbers.
+
+  - id: r6-expand-and-simplify
+    section: '4.5'
+    tier: F
+    refs: ['4.1']
+    statement: 'Expand and simplify $5(2x - 3) - 2(x - 4)$.'
+    answer_label: 'The expanded and simplified expression'
+    check: {kind: evaluate, expression: '5*(2*x - 3) - 2*(x - 4)', answer: '8*x - 7'}
+    answer_text: |-
+      Multiply out each bracket, taking care with the minus sign on the second one:
+
+      $$5(2x - 3) = 10x - 15$$
+
+      $$-2(x - 4) = -2x + 8$$
+
+      Adding gives $10x - 2x - 15 + 8 = 8x - 7$. The common error is to write
+      $-2(x - 4) = -2x - 8$; the $-2$ multiplies the $-4$ as well, and the product of
+      two negatives is positive.
+
+  - id: r7-linear-equation
+    section: '4.6'
+    tier: F
+    refs: ['4.2']
+    statement: 'Solve $6x + 5 = 3x + 20$.'
+    answer_label: 'The solution'
+    check:
+      kind: solve
+      equation: '6*x + 5 = 3*x + 20'
+      variable: x
+      answer: ['5']
+    answer_text: |-
+      Subtract $3x$ from both sides: $3x + 5 = 20$. Subtract $5$: $3x = 15$. Divide by
+      $3$: $x = 5$. Check by substituting: $6(5) + 5 = 35$ and $3(5) + 20 = 35$, so both
+      sides agree.
+
+  - id: r8-simultaneous
+    section: '4.7'
+    tier: O
+    refs: ['4.2']
+    statement: 'Solve $y = 3x + 2$ and $y = 7x - 10$.'
+    answer_label: 'The values of x and y'
+    check:
+      kind: system
+      equations: ['y = 3*x + 2', 'y = 7*x - 10']
+      variables: [x, y]
+      answer: [{x: '3', y: '11'}]
+    answer_text: |-
+      Both expressions equal $y$, so set them equal to each other:
+
+      $$3x + 2 = 7x - 10 \quad\Rightarrow\quad 12 = 4x \quad\Rightarrow\quad x = 3$$
+
+      Then $y = 3(3) + 2 = 11$. Check in the second equation: $7(3) - 10 = 11$. The two
+      lines cross at $(3, 11)$.
+
+  - id: r9-quadratic
+    section: '4.8'
+    tier: O
+    refs: ['4.2']
+    statement: 'Solve $x^2 - 9x + 20 = 0$.'
+    answer_label: 'The two roots'
+    check:
+      kind: solve
+      equation: 'x**2 - 9*x + 20 = 0'
+      variable: x
+      answer: ['4', '5']
+    answer_text: |-
+      Look for two numbers that multiply to $20$ and add to $9$: they are $4$ and $5$.
+      So
+
+      $$(x - 4)(x - 5) = 0 \quad\Rightarrow\quad x = 4 \text{ or } x = 5$$
+
+      A quadratic has two roots, and both are kept. Check: $16 - 36 + 20 = 0$ and
+      $25 - 45 + 20 = 0$.
+
+  - id: r10-linear-inequality
+    section: '4.9'
+    tier: F
+    refs: ['4.3']
+    statement: 'Solve $3x - 7 \leq 8$ and show the solution on a number line.'
+    answer_label: 'The solution set'
+    check:
+      kind: inequality
+      variable: x
+      inequality: '3*x - 7 <= 8'
+      answer: 'Interval(-oo, 5)'
+    answer_text: |-
+      Add $7$ to both sides: $3x \leq 15$. Divide by $3$, which is positive, so the
+      sign does not turn: $x \leq 5$.
+
+      On a number line, draw a solid dot at $5$ and a line running left from it. The
+      dot is solid because $5$ itself is included. Every number at or below $5$ works;
+      for example $x = 0$ gives $-7 \leq 8$, which is true.
+
+  - id: r11-modulus-inequality
+    section: '4.10'
+    tier: H
+    refs: ['4.3']
+    statement: 'Solve $|x - 4| < 3$.'
+    answer_label: 'The solution set'
+    check:
+      kind: inequality
+      variable: x
+      inequality: 'abs(x - 4) < 3'
+      answer: 'Interval.open(1, 7)'
+    answer_text: |-
+      $|x - 4| < 3$ says that the distance from $x$ to $4$ is less than $3$. So $x$ lies
+      within $3$ either side of $4$:
+
+      $$1 < x < 7$$
+
+      In interval notation the solution is $(1, 7)$. Both ends are open, because a
+      distance of exactly $3$ would make the modulus equal to $3$, not less than it.
+
+  - id: r12-new-break-even
+    section: '4.6'
+    tier: F
+    refs: ['4.2']
+    statement: >-
+      The business changes its fixed cost to €300 and its materials to €5 a candle,
+      keeping the price at €10. Find the new break-even point.
+    answer_label: 'The new break-even point'
+    check:
+      kind: solve
+      equation: '300 + 5*n = 10*n'
+      variable: n
+      answer: ['60']
+    answer_text: |-
+      At break-even the cost equals the income:
+
+      $$300 + 5n = 10n \quad\Rightarrow\quad 300 = 5n \quad\Rightarrow\quad n = 60$$
+
+      The new break-even point is $60$ candles. Check: the cost is $300 + 5(60) = 600$
+      and the income is $10(60) = 600$, so they agree. Raising the fixed cost and the
+      cost per candle both push the break-even point up, from $40$ to $60$.
+
+  - id: r13-dividing-by-x
+    section: '4.8'
+    tier: O
+    refs: ['4.2']
+    statement: >-
+      A student solves $x^2 = 5x$ by dividing both sides by $x$ and getting $x = 5$.
+      Explain what went wrong.
+    answer_label: 'The missing root, and why it went missing'
+    check:
+      kind: all
+      checks:
+        - kind: solve
+          equation: 'x**2 = 5*x'
+          variable: x
+          answer: ['0', '5']
+        - kind: structured
+          requires: [name-the-error, give-the-missing-root]
+          concepts: [divide-by-zero, factorise, both-roots]
+          points:
+            - id: name-the-error
+              text: >-
+                Dividing both sides by x assumes that x is not zero, so the case x = 0
+                is thrown away. You may only divide by an expression you know is not
+                zero.
+              concepts: [divide-by-zero]
+            - id: give-the-missing-root
+              text: >-
+                The safe method is to gather everything on one side and factorise: x
+                squared minus 5x is x times (x minus 5), so x = 0 or x = 5. The missing
+                root is x = 0.
+              concepts: [factorise, both-roots]
+    answer_text: |-
+      Dividing both sides by $x$ assumes that $x$ is not zero. That is not given, and
+      $x = 0$ is a solution, because $0^2 = 5 \times 0$. So the division throws a root
+      away.
+
+      Gather everything on one side instead:
+
+      $$x^2 - 5x = 0 \quad\Rightarrow\quad x(x - 5) = 0$$
+
+      The two roots are $x = 0$ and $x = 5$. Factorising keeps both, because a product
+      is zero when either factor is zero. The student's answer $x = 5$ is one root
+      short, not wrong.

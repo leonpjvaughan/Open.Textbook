@@ -1,0 +1,245 @@
+# Mixed practice for the Junior Cycle Mathematics Chapter 15 Review.
+#
+# Sixteen questions covering metric unit conversions (length, mass, capacity,
+# area, volume), time intervals and time zones, choosing a sensible unit,
+# estimating, rounding, percentages, linear equations and average speed.
+#
+# Honest limit: Question 11 asks which unit fits the mass of a bicycle and why,
+# so it uses `structured`, which proves only that the declared steps and
+# concepts are present in order, not the real-world judgement itself.
+chapter: 15
+oracles: [sympy, units]
+symbols:
+  x: {real: true}
+
+problems:
+  - id: r1-km-to-m
+    section: Review
+    tier: O
+    refs: [GT.1]
+    statement: 'Convert 6 km to metres.'
+    answer_label: 'Convert 6 km to metres.'
+    check:
+      kind: convert
+      value: '6'
+      from: km
+      to: m
+      answer: '6000'
+    answer_text: '$6000$ m. The metre is smaller, so multiply: $6\times1000=6000$.'
+
+  - id: r2-cm-to-m
+    section: Review
+    tier: O
+    refs: [GT.1]
+    statement: 'Convert 420 cm to metres.'
+    answer_label: 'Convert 420 cm to metres.'
+    check:
+      kind: convert
+      value: '420'
+      from: cm
+      to: m
+      answer: '4.2'
+    answer_text: '$4.2$ m. The metre is larger, so divide: $420\div100=4.2$.'
+
+  - id: r3-kg-to-g
+    section: Review
+    tier: O
+    refs: [GT.1]
+    statement: 'Convert 2.75 kg to grams.'
+    answer_label: 'Convert 2.75 kg to grams.'
+    check:
+      kind: convert
+      value: '2.75'
+      from: kg
+      to: g
+      answer: '2750'
+    answer_text: '$2750$ g. Multiply by 1000: $2.75\times1000=2750$.'
+
+  - id: r4-ml-to-l
+    section: Review
+    tier: O
+    refs: [GT.1]
+    statement: 'Convert 900 mL to litres.'
+    answer_label: 'Convert 900 mL to litres.'
+    check:
+      kind: convert
+      value: '900'
+      from: mL
+      to: L
+      answer: '0.9'
+    answer_text: '$0.9$ L. Divide by 1000: $900\div1000=0.9$.'
+
+  - id: r5-hours-to-minutes
+    section: Review
+    tier: O
+    refs: [GT.1]
+    statement: 'Convert 1.5 hours to minutes.'
+    answer_label: 'Convert 1.5 hours to minutes.'
+    check:
+      kind: convert
+      value: '1.5'
+      from: h
+      to: min
+      answer: '90'
+    answer_text: '$90$ minutes. Multiply by 60: $1.5\times60=90$.'
+
+  - id: r6-film-end-time
+    section: Review
+    tier: O
+    refs: [GT.1]
+    statement: 'A film starts at 20:15 and lasts 1 hour 50 minutes. What time does it end?'
+    answer_label: 'Find the end time of the film.'
+    check:
+      kind: all
+      checks:
+        - kind: evaluate
+          expression: '20*60 + 15 + 60 + 50'
+          answer: '1325'
+        - kind: evaluate
+          expression: '22*60 + 5'
+          answer: '1325'
+    answer_text: '22:05. Add 1 hour to 20:15 to get 21:15, and then add 50 minutes to reach 22:05.'
+
+  - id: r7-bus-journey
+    section: Review
+    tier: O
+    refs: [GT.1]
+    statement: 'A bus leaves at 11:40 and arrives at 13:05. How long is the journey?'
+    answer_label: 'Find the length of the bus journey.'
+    check:
+      kind: all
+      checks:
+        - kind: evaluate
+          expression: '(13*60 + 5) - (11*60 + 40)'
+          answer: '85'
+        - kind: evaluate
+          expression: '60 + 25'
+          answer: '85'
+    answer_text: '1 hour 25 minutes. From 11:40, another 20 minutes reaches 12:00, and 1 hour 5 minutes more reaches 13:05.'
+
+  - id: r8-time-zone
+    section: Review
+    tier: O
+    refs: [GT.1]
+    statement: 'It is 08:20 in Dublin. New York is 5 hours behind Dublin. What time is it in New York?'
+    answer_label: 'Find the time in New York.'
+    check:
+      kind: evaluate
+      expression: '8 - 5'
+      answer: '3'
+    answer_text: '03:20. New York is 5 hours behind Dublin, so subtract 5 hours from 08:20: $8-5=3$, giving 03:20 on the same morning.'
+
+  - id: r9-m2-to-cm2
+    section: Review
+    tier: O
+    refs: [GT.1]
+    statement: 'Convert 3 square metres to square centimetres.'
+    answer_label: 'Convert 3 square metres to square centimetres.'
+    check:
+      kind: convert
+      value: '3'
+      from: m^2
+      to: cm^2
+      answer: '30000'
+    answer_text: '$30000$ cm². The factor is squared: $3\times100^2=3\times10000=30000$.'
+
+  - id: r10-litres-to-cm3
+    section: Review
+    tier: O
+    refs: [GT.1]
+    statement: 'Convert 2.4 litres to cubic centimetres.'
+    answer_label: 'Convert 2.4 litres to cubic centimetres.'
+    check:
+      kind: convert
+      value: '2.4'
+      from: L
+      to: cm^3
+      answer: '2400'
+    answer_text: '$2400$ cm³. One litre is 1000 cm³, so $2.4\times1000=2400$.'
+
+  - id: r11-bicycle-unit
+    section: Review
+    tier: O
+    refs: [GT.1]
+    statement: 'Which unit fits the mass of a bicycle: grams, kilograms or tonnes? Give a reason.'
+    answer_label: 'Choose the unit for the mass of a bicycle.'
+    check:
+      kind: structured
+      requires: [choose-unit, give-reason]
+      concepts: [kilograms, sensible-range]
+      points:
+        - id: choose-unit
+          text: 'Kilograms fit the mass of a bicycle.'
+          concepts: [kilograms]
+        - id: give-reason
+          text: 'A bicycle has a mass of about 12 kg, which keeps the number easy to read, whereas grams give 12000 g and a tonne is far too large.'
+          concepts: [sensible-range]
+    answer_text: 'Kilograms. A bicycle has a mass of about 12 kg. In grams that is 12000 g, and a tonne is far too large.'
+
+  - id: r12-room-estimate
+    section: Review
+    tier: O
+    refs: [GT.1]
+    statement: 'A room takes 7 paces to cross, and each pace is about 0.8 m. Estimate the length of the room.'
+    answer_label: 'Estimate the length of the room.'
+    check:
+      kind: all
+      checks:
+        - kind: evaluate
+          expression: '7 * 0.8'
+          answer: '5.6'
+        - kind: rounded
+          value: '5.6'
+          rounded: '6'
+          to: '1'
+    answer_text: 'About $5.6$ m. Multiply: $0.8\times7=5.6$. As a rough estimate, this can be reported as about 6 m.'
+
+  - id: r13-round-mass
+    section: Review
+    tier: O
+    refs: [N.1]
+    statement: 'Round 5.38 kg to the nearest 0.1 kg.'
+    answer_label: 'Round 5.38 kg to the nearest 0.1 kg.'
+    check:
+      kind: rounded
+      value: '5.38'
+      rounded: '5.4'
+      to: '0.1'
+    answer_text: '$5.4$ kg. The digit after the 3 is 8, so the 3 rounds up to 4.'
+
+  - id: r14-percentage
+    section: Review
+    tier: O
+    refs: [N.2]
+    statement: 'Work out 45% of 80.'
+    answer_label: 'Work out 45% of 80.'
+    check:
+      kind: evaluate
+      expression: '(45/100) * 80'
+      answer: '36'
+    answer_text: '$36$. Ten per cent of 80 is 8, so 45% is $4\times8+4=36$.'
+
+  - id: r15-solve-linear
+    section: Review
+    tier: O
+    refs: [AF.4]
+    statement: 'Solve $3x+7=22$.'
+    answer_label: 'Solve $3x+7=22$.'
+    check:
+      kind: solve
+      equation: '3*x + 7 = 22'
+      variable: x
+      answer: '5'
+    answer_text: '$x=5$. Subtract 7 from both sides to get $3x=15$, and then divide by 3.'
+
+  - id: r16-average-speed
+    section: Review
+    tier: O
+    refs: [N.3]
+    statement: 'A car travels 150 km in 2 hours. Find its average speed.'
+    answer_label: 'Find the average speed of the car.'
+    check:
+      kind: evaluate
+      expression: '150 / 2'
+      answer: '75'
+    answer_text: '$75$ km/h. Speed is distance divided by time: $150\div2=75$.'

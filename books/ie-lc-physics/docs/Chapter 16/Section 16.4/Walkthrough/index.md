@@ -77,7 +77,7 @@ value.
 - The **average value** over a half cycle is $\dfrac{2V_0}{\pi}$, which is about
   $0.64V_0$.
 - The **r.m.s. value** is the value of steady voltage that transfers energy at the
-  same rate. Section 16.6 defines it properly. For a sine wave,
+  same rate. For a sine wave,
 
 $$V_{\text{rms}} = \frac{V_0}{\sqrt{2}}$$
 

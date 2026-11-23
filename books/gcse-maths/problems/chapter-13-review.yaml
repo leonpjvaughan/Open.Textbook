@@ -1,0 +1,140 @@
+# Mixed practice for the Chapter 13 Review (Other functions and graphs).
+#
+# All sections of Chapter 13 are Higher tier (H). Every algebraic and numeric
+# result is checked by SymPy; questions 1, 5, 6 and 8 also ask for graph
+# descriptions, reasons or a family choice whose reasoning the verifier cannot
+# prove (a `structured` check confirms only that the model answer's declared
+# points and concepts are present in order).
+chapter: 13
+oracles: [sympy, units]
+symbols:
+  x: {real: true}
+  m: {real: true}
+problems:
+  - id: r1-cubic-features
+    section: Review
+    tier: H
+    refs: [A12, A14]
+    statement: 'Sketch the key features of $y=x^3-4x$. Find its intercepts.'
+    answer_label: 'Key features and intercepts of $y=x^3-4x$'
+    check:
+      kind: all
+      checks:
+        - {kind: solve, equation: 'x**3 - 4*x = 0', variable: x, answer: ['-2', '0', '2']}
+        - {kind: evaluate, expression: '0**3 - 4*0', answer: '0'}
+        - {kind: compare, relation: '<', lhs: '(-3)**3 - 4*(-3)', rhs: '0'}
+        - {kind: compare, relation: '>', lhs: '3**3 - 4*3', rhs: '0'}
+    answer_text: 'Factorise: $x(x-2)(x+2)=0$, so the $x$-intercepts are $(-2,0)$, $(0,0)$ and $(2,0)$. The $y$-intercept is $(0,0)$. The cubic falls to the left and rises to the right.'
+
+  - id: r2-circle-centre-radius
+    section: Review
+    tier: H
+    refs: [A16]
+    statement: 'State the centre and radius of $(x-3)^2+(y+1)^2=16$.'
+    answer_label: 'Centre and radius of the circle'
+    check:
+      kind: all
+      checks:
+        - {kind: evaluate, expression: 'sqrt(16)', answer: '4'}
+        - {kind: evaluate, expression: '(3 - 3)**2 + (-1 + 1)**2', answer: '0'}
+        - {kind: evaluate, expression: '((3 + 4) - 3)**2 + (-1 + 1)**2', answer: '16'}
+    answer_text: 'Compare with $(x-a)^2+(y-b)^2=r^2$: the centre is $(3,-1)$ and the radius is $\sqrt{16}=4$.'
+
+  - id: r3-solve-sin-zero
+    section: Review
+    tier: H
+    refs: [A12]
+    statement: 'Solve $\sin x=0$ for $0^\circ\leq x\leq360^\circ$.'
+    answer_label: 'Solutions of $\sin x=0$'
+    check:
+      kind: solve
+      equation: 'sin(x) = 0'
+      variable: x
+      interval: ['0', '2*pi']
+      answer: ['0', 'pi', '2*pi']
+    answer_text: '$x=0^\circ, 180^\circ, 360^\circ$. The sine graph crosses the $x$-axis at the start, midpoint and end of one full cycle.'
+
+  - id: r4-translate-parabola
+    section: Review
+    tier: H
+    refs: [A13]
+    statement: 'Translate $y=x^2$ two units left and three units up.'
+    answer_label: 'Equation after translation'
+    check:
+      kind: all
+      checks:
+        - {kind: apply, expression: 'x**2', apply: {op: subs, args: [x, 'x + 2']}, answer: '(x + 2)**2'}
+        - {kind: evaluate, expression: '(-2 + 2)**2 + 3', answer: '3'}
+    answer_text: '$y=(x+2)^2+3$. Replacing $x$ by $x+2$ shifts the graph $2$ units left, and adding $3$ shifts it $3$ units up.'
+
+  - id: r5-tangent-gradient
+    section: Review
+    tier: H
+    refs: [A16]
+    statement: 'A radius has gradient $4$. Find the tangent gradient and give a reason.'
+    answer_label: 'Tangent gradient and reason'
+    check:
+      kind: all
+      checks:
+        - {kind: solve, equation: '4*m = -1', variable: m, answer: ['-1/4']}
+        - kind: structured
+          requires: [perpendicular, gradient-product]
+          concepts: [radius-tangent, negative-reciprocal]
+          points:
+            - id: perpendicular
+              text: 'A tangent is perpendicular to the radius at the point of contact.'
+              concepts: [radius-tangent]
+            - id: gradient-product
+              text: 'Perpendicular gradients multiply to -1, so the tangent gradient is -1/4.'
+              concepts: [negative-reciprocal]
+    answer_text: '$-\frac{1}{4}$. A tangent meets the radius at $90^\circ$, and perpendicular gradients multiply to $-1$.'
+
+  - id: r6-asymptotes
+    section: Review
+    tier: H
+    refs: [A12]
+    statement: 'State the asymptotes of $y=1/x$ and $y=\tan x$ from $0^\circ$ to $360^\circ$.'
+    answer_label: 'Asymptotes of $y=1/x$ and $y=\tan x$'
+    check:
+      kind: all
+      checks:
+        - {kind: solve, equation: 'cos(x) = 0', variable: x, interval: ['0', '2*pi'], answer: ['pi/2', '3*pi/2']}
+        - {kind: apply, expression: '1/x', apply: {op: limit, args: [x, oo]}, answer: '0'}
+        - kind: structured
+          requires: [reciprocal-asymptotes, tangent-asymptotes]
+          concepts: [undefined-denominator, asymptote]
+          points:
+            - id: reciprocal-asymptotes
+              text: 'For y = 1/x, the asymptotes are x = 0 and y = 0.'
+              concepts: [undefined-denominator, asymptote]
+            - id: tangent-asymptotes
+              text: 'For y = tan x between 0 degrees and 360 degrees, cos x = 0 at 90 degrees and 270 degrees, giving vertical asymptotes x = 90 degrees and x = 270 degrees.'
+              concepts: [undefined-denominator, asymptote]
+    answer_text: 'For $y=1/x$, the asymptotes are $x=0$ and $y=0$. For $y=\tan x$ on $0^\circ\leq x\leq360^\circ$, the vertical asymptotes are $x=90^\circ$ and $x=270^\circ$.'
+
+  - id: r7-point-image
+    section: Review
+    tier: H
+    refs: [A13]
+    statement: 'The point $(2,5)$ lies on $y=f(x)$. Give its image under $y=f(x)-4$.'
+    answer_label: 'Image of $(2,5)$ under $y=f(x)-4$'
+    check: {kind: evaluate, expression: '5 - 4', answer: '1'}
+    answer_text: '$(2,1)$. Subtracting $4$ from $f(x)$ translates the graph $4$ units down, leaving the $x$-coordinate unchanged.'
+
+  - id: r8-percentage-growth-family
+    section: Review
+    tier: H
+    refs: [A12, A14]
+    statement: 'Which family models repeated equal percentage growth? Give a reason.'
+    answer_label: 'Graph family for repeated percentage growth'
+    check:
+      kind: structured
+      requires: [name-family, constant-multiplier]
+      concepts: [exponential, growth-factor]
+      points:
+        - id: name-family
+          text: 'An exponential function models repeated equal percentage growth.'
+          concepts: [exponential]
+        - id: constant-multiplier
+          text: 'Each equal step in the input multiplies the output by the same fixed growth factor.'
+          concepts: [growth-factor]

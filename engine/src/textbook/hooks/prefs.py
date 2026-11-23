@@ -36,7 +36,6 @@ from ..themes import SCHEMES, default_bundle
 SCHEME_KEY = "textbooks:scheme"
 THEME_KEY = "textbooks:theme"
 
-# Kept as an alias: the scheme key is what the earlier bridge introduced.
 SHARED_KEY = SCHEME_KEY
 
 

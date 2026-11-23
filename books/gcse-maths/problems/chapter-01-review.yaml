@@ -1,0 +1,189 @@
+# Mixed practice for the Chapter 1 Review.
+#
+# Twelve questions, one record each, in the order they appear on the Review page.
+# They cover place value, the four operations, negative numbers, priority of
+# operations, rounding, estimation and a money problem. The arithmetic is proved
+# by `evaluate`, the roundings by `rounded` (the nearest multiple of the required
+# step), and the estimate in question 7 by `approx`, against a tolerance of 20.
+#
+# Honest limit: the verifier proves the arithmetic of the answer each record
+# declares. It cannot prove that a reader chose the method the question invites,
+# and it does not prove that the expression in question 12 is the right model of
+# the shop's takings — only that the expression evaluates to £13.70. The estimate
+# in question 7 is checked as within 20 of the exact product; rounding 29 and 41
+# to 30 and 40 is a sensible choice, not the only one.
+chapter: 1
+problems:
+  - id: r1-place-value
+    section: Review
+    tier: F
+    refs: [N1]
+    statement: 'Write the value of the digit $4$ in $6\,048.2$.'
+    answer_label: 'The value of the digit 4'
+    check:
+      kind: evaluate
+      expression: '6048.2 - 6008.2'
+      answer: '40'
+    answer_text: 'The digit $4$ stands in the tens column, so its value is $4 \times 10 = 40$. Taking the $40$ out of $6048.2$ leaves $6008.2$, and the difference is $40$. The value depends on the column, not on the digit alone.'
+
+  - id: r2-negative-sum
+    section: Review
+    tier: F
+    refs: [N1, N2]
+    statement: 'Work out $(-7) + 2 - (-5)$.'
+    answer_label: 'The value of the expression'
+    check:
+      kind: evaluate
+      expression: '(-7) + 2 - (-5)'
+      answer: '0'
+    answer_text: 'Subtracting a negative number is the same as adding: $-(-5) = +5$. So the sum is $-7 + 2 + 5 = 0$. Adding the two positive numbers first gives $7$, and $7 - 7 = 0$.'
+
+  - id: r3-product
+    section: Review
+    tier: F
+    refs: [N2, N3]
+    statement: 'Work out $48 \times 25$.'
+    answer_label: 'The product'
+    check:
+      kind: evaluate
+      expression: '48 * 25'
+      answer: '1200'
+    answer_text: '$48 \times 25 = 1200$. One efficient route is $48 \times 100 \div 4 = 4800 \div 4 = 1200$, because $25$ is a quarter of $100$. Another is to halve $48$ and double $25$: $24 \times 50 = 1200$. Both routes give the same answer, which is the check.'
+
+  - id: r4-priority
+    section: Review
+    tier: F
+    refs: [N3]
+    statement: 'Work out $3 + 6 \times (10 - 4)$.'
+    answer_label: 'The value of the expression'
+    check:
+      kind: evaluate
+      expression: '3 + 6 * (10 - 4)'
+      answer: '39'
+    answer_text: 'The brackets come first: $10 - 4 = 6$. Then multiplication before addition: $6 \times 6 = 36$. Finally $3 + 36 = 39$. Working from left to right instead would give $54 \times 4$, which is far too large.'
+
+  - id: r5-round-two-figures
+    section: Review
+    tier: F
+    refs: [N14]
+    statement: 'Round $2\,847$ to 2 significant figures.'
+    answer_label: 'The rounded value'
+    check:
+      kind: rounded
+      value: '2847'
+      rounded: '2800'
+      to: '100'
+    answer_text: '$2847$ is $2800$ to 2 significant figures. The first two significant figures are $2$ and $8$. The next digit is $4$, which is less than $5$, so the $8$ stays and the rest becomes zeros. The answer must keep its size, so the zeros are needed as place holders.'
+
+  - id: r6-subtract-decimals
+    section: Review
+    tier: F
+    refs: [N2]
+    statement: 'Work out $7.2 - 9.5$.'
+    answer_label: 'The difference'
+    check:
+      kind: evaluate
+      expression: '7.2 - 9.5'
+      answer: '-2.3'
+    answer_text: '$7.2 - 9.5 = -2.3$. The numbers have different sizes, so the answer is negative. One way to see it is $7.2 - 7.2 = 0$, and there is still $2.3$ left to subtract, which gives $-2.3$.'
+
+  - id: r7-estimate-product
+    section: Review
+    tier: F
+    refs: [N15]
+    statement: 'Estimate $29 \times 41$.'
+    answer_label: 'The estimate'
+    check:
+      kind: all
+      checks:
+        - kind: evaluate
+          expression: '30 * 40'
+          answer: '1200'
+        - kind: approx
+          value: '29 * 41'
+          target: '1200'
+          tolerance: '20'
+    answer_text: 'Round each number to one significant figure: $29$ is about $30$ and $41$ is about $40$. Then $30 \times 40 = 1200$. The exact product is $29 \times 41 = 1189$, which is $11$ below the estimate, so the estimate is close enough to check an exact answer. An estimate is not the exact value, and it should not be written as if it were.'
+
+  - id: r8-multiply-decimal
+    section: Review
+    tier: F
+    refs: [N2]
+    statement: 'Work out $0.6 \times 1000$.'
+    answer_label: 'The product'
+    check:
+      kind: evaluate
+      expression: '0.6 * 1000'
+      answer: '600'
+    answer_text: '$0.6 \times 1000 = 600$. Multiplying by $1000$ moves every digit three places to the left, so $0.6$ becomes $600$. The answer is larger than $0.6$ because $1000$ is greater than $1$.'
+
+  - id: r9-profit
+    section: Review
+    tier: F
+    refs: [N2, N3]
+    statement: 'A shop buys 40 T-shirts at £4.50 each and sells them all at £7.00 each. Work out the profit.'
+    answer_label: 'The profit'
+    check:
+      kind: all
+      checks:
+        - kind: evaluate
+          expression: '40 * 4.5'
+          answer: '180'
+        - kind: evaluate
+          expression: '40 * 7'
+          answer: '280'
+        - kind: evaluate
+          expression: '280 - 180'
+          answer: '100'
+    answer_text: 'The cost is $40 \times 4.50 = £180$. The takings are $40 \times 7.00 = £280$. The profit is the takings minus the cost: $280 - 180 = £100$. A negative answer here would be a loss, so the sign of the subtraction carries the meaning.'
+
+  - id: r10-lift
+    section: Review
+    tier: F
+    refs: [N1, N2]
+    statement: 'A lift starts at floor $-2$, goes up 9 floors, then down 4 floors. Which floor is it on?'
+    answer_label: 'The floor the lift reaches'
+    check:
+      kind: evaluate
+      expression: '-2 + 9 - 4'
+      answer: '3'
+    answer_text: 'Start at $-2$. Going up 9 floors adds $9$: $-2 + 9 = 7$. Going down 4 floors subtracts $4$: $7 - 4 = 3$. The lift is on floor $3$. A floor number is a position, so the arithmetic with negative numbers keeps the direction of each move.'
+
+  - id: r11-round-decimal
+    section: Review
+    tier: F
+    refs: [N14, N15]
+    statement: 'Round $0.396$ to (a) 2 decimal places, (b) 1 significant figure.'
+    answer_label: 'The two rounded values'
+    check:
+      kind: all
+      checks:
+        - kind: rounded
+          value: '0.396'
+          rounded: '0.4'
+          to: '0.01'
+        - kind: rounded
+          value: '0.396'
+          rounded: '0.4'
+          to: '0.1'
+    answer_text: '(a) To 2 decimal places, $0.396$ is $0.40$. The third decimal digit is $6$, so the second decimal digit rounds up from $9$ to $10$, which carries into the tenths. (b) To 1 significant figure, $0.396$ is $0.4$. Both answers happen to look alike as numbers, but $0.40$ states two decimal places and $0.4$ states one significant figure. The trailing zero in $0.40$ is a claim about accuracy, so keep it.'
+
+  - id: r12-expression
+    section: Review
+    tier: F
+    refs: [N3]
+    statement: 'Write an expression for the total of $6$ items at $£1.85$ each plus $4$ items at $£0.65$ each, then evaluate it.'
+    answer_label: 'The expression and its value'
+    check:
+      kind: all
+      checks:
+        - kind: evaluate
+          expression: '6 * 1.85'
+          answer: '11.1'
+        - kind: evaluate
+          expression: '4 * 0.65'
+          answer: '2.6'
+        - kind: evaluate
+          expression: '11.1 + 2.6'
+          answer: '13.7'
+    answer_text: 'The total is $6 \times 1.85 + 4 \times 0.65$. Work out each product first: $6 \times 1.85 = 11.10$ and $4 \times 0.65 = 2.60$. Add them: $11.10 + 2.60 = £13.70$. The expression multiplies before it adds, so it needs no brackets.'

@@ -1,0 +1,149 @@
+# Mixed practice for the Chapter 9 Review.
+#
+# Eight questions, one record each, in the order they appear on the Review page.
+# They solve linear equations, form and solve an equation from a perimeter, write
+# and solve inequalities, solve two quadratic inequalities, and check an exact
+# product against an estimate from Chapter 1.
+#
+# Honest limit: `solve` proves the solution set of an equation, `inequality`
+# proves the solution set of an inequality, and `evaluate` proves the arithmetic.
+# None of them proves that the equation was formed correctly from the words, so
+# question 3's model and question 8's judgement carry the reasoning in the answer
+# text. Questions 6 and 7 are Higher only: they sit in Section 9.6, and the page
+# marks them **H**. Question 8 asks how an estimate checks an answer, so it
+# carries a `structured` component, which proves only that a model answer
+# contains its declared steps and concepts, in order.
+oracles: [sympy, units]
+chapter: 9
+symbols:
+  x: {real: true}
+problems:
+  - id: r1-linear-equation
+    section: Review
+    tier: F
+    refs: [A17]
+    statement: 'Solve $5x-7=18$.'
+    answer_label: 'The solution'
+    check:
+      kind: solve
+      equation: '5*x - 7 = 18'
+      variable: x
+      answer: '5'
+    answer_text: '$x = 5$. Add $7$ to both sides: $5x = 25$. Divide both sides by $5$: $x = 5$. Check by substitution: $5 \times 5 - 7 = 25 - 7 = 18$.'
+
+  - id: r2-unknowns-both-sides
+    section: Review
+    tier: F
+    refs: [A17]
+    statement: 'Solve $4x+3=2x+15$.'
+    answer_label: 'The solution'
+    check:
+      kind: solve
+      equation: '4*x + 3 = 2*x + 15'
+      variable: x
+      answer: '6'
+    answer_text: '$x = 6$. Subtract $2x$ from both sides to collect the unknown terms: $2x + 3 = 15$. Subtract $3$: $2x = 12$. Divide by $2$: $x = 6$. Check: $4 \times 6 + 3 = 27$ and $2 \times 6 + 15 = 27$.'
+
+  - id: r3-perimeter-equation
+    section: Review
+    tier: F
+    refs: [A21]
+    statement: 'A rectangle has length $x+5$ and width $x$. Its perimeter is 46 cm. Find its sides.'
+    answer_label: 'The width and the length'
+    check:
+      kind: all
+      checks:
+        - kind: solve
+          equation: '2*(x + 5) + 2*x = 46'
+          variable: x
+          answer: '9'
+        - kind: evaluate
+          expression: '9 + 5'
+          answer: '14'
+    answer_text: 'The perimeter is $2(x + 5) + 2x = 46$. Expanding gives $2x + 10 + 2x = 46$, so $4x + 10 = 46$ and $4x = 36$, giving $x = 9$. The width is $9$ cm and the length is $9 + 5 = 14$ cm. Check the perimeter: $2 \times 14 + 2 \times 9 = 28 + 18 = 46$ cm.'
+
+  - id: r4-no-greater-than-six
+    section: Review
+    tier: F
+    refs: [A22]
+    statement: 'Write and solve an inequality for values no greater than 6.'
+    answer_label: 'The inequality and its solution'
+    check:
+      kind: inequality
+      variable: x
+      inequality: 'x <= 6'
+      answer: 'Interval(-oo, 6)'
+    answer_text: 'The values no greater than $6$ are the values less than or equal to $6$: $x \leq 6$. The solution set is every number up to and including $6$, written $(-\infty, 6]$. The endpoint $6$ is included because $6$ is itself no greater than $6$.'
+
+  - id: r5-linear-inequality
+    section: Review
+    tier: F
+    refs: [A22]
+    statement: 'Solve $3-2x<11$.'
+    answer_label: 'The solution set'
+    check:
+      kind: inequality
+      variable: x
+      inequality: '3 - 2*x < 11'
+      answer: 'Interval.open(-4, oo)'
+    answer_text: 'Subtract $3$ from both sides: $-2x < 8$. Divide both sides by $-2$, and reverse the sign because the divisor is negative: $x > -4$. The solution set is $(-4, \infty)$. The endpoint $-4$ is not included, because the original sign is $<$.'
+
+  - id: r6-quadratic-inequality-outside
+    section: Review
+    tier: H
+    refs: [A22]
+    statement: 'Solve $(x+1)(x-4)\geq0$.'
+    answer_label: 'The solution set'
+    check:
+      kind: inequality
+      variable: x
+      inequality: '(x + 1)*(x - 4) >= 0'
+      answer: 'Union(Interval(-oo, -1), Interval(4, oo))'
+    answer_text: 'The roots are $x = -1$ and $x = 4$. The parabola opens upwards, so the product is positive outside the roots and negative between them. The sign is $\geq$, so the roots are included: $x \leq -1$ or $x \geq 4$. In interval notation that is $(-\infty, -1] \cup [4, \infty)$.'
+
+  - id: r7-quadratic-inequality-between
+    section: Review
+    tier: H
+    refs: [A22]
+    statement: 'Solve $x^2-2x-8<0$.'
+    answer_label: 'The solution set'
+    check:
+      kind: inequality
+      variable: x
+      inequality: 'x**2 - 2*x - 8 < 0'
+      answer: 'Interval.open(-2, 4)'
+    answer_text: 'Factorise: $x^2 - 2x - 8 = (x - 4)(x + 2)$, so the roots are $4$ and $-2$. The parabola opens upwards, so it is below the axis between its roots. The sign is $<$, so the roots are not included: $-2 < x < 4$, or $(-2, 4)$.'
+
+  - id: r8-estimate-checks-exact
+    section: Review
+    tier: F
+    refs: [N15]
+    statement: 'Chapter 1 link: estimate $19.8\times4.9$ and explain how the estimate checks an exact answer.'
+    answer_label: 'The estimate, the exact product and how they compare'
+    check:
+      kind: all
+      checks:
+        - kind: evaluate
+          expression: '20 * 5'
+          answer: '100'
+        - kind: evaluate
+          expression: '19.8 * 4.9'
+          answer: '97.02'
+        - kind: approx
+          value: '19.8 * 4.9'
+          target: '100'
+          tolerance: '3'
+        - kind: structured
+          requires: [estimate, exact, explain-check]
+          concepts: [estimation, checking]
+          points:
+            - id: estimate
+              text: 'Round 19.8 to 20 and 4.9 to 5, so the estimate is 20 x 5 = 100.'
+              concepts: [estimation]
+            - id: exact
+              text: 'The exact product is 19.8 x 4.9 = 97.02.'
+              concepts: [checking]
+            - id: explain-check
+              text: 'The exact answer is 2.98 below the estimate, which is about 3%. A slip in the decimal point or a dropped digit would move the answer far more than that, so the estimate confirms the exact answer is the right size.'
+              concepts: [estimation, checking]
+    answer_text: 'Round each factor: $19.8$ is about $20$ and $4.9$ is about $5$, so the estimate is $20 \times 5 = 100$. The exact product is $19.8 \times 4.9 = 97.02$, which is about $3\%$ below the estimate. An estimate checks the size of an answer: a misplaced decimal point or a dropped digit would give a result far from $100$, while ordinary rounding keeps it close.'

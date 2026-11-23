@@ -43,13 +43,6 @@ production.
 
 from __future__ import annotations
 
-#: Registered animations: id -> the module the runtime would import.
-#:
-#: Empty on purpose. The first entry lands with the first animation, and its
-#: module must: read its colours from `--tb-*` on the page (a canvas cannot read
-#: a CSS custom property, so it takes them from computed style), stop on
-#: `prefers-reduced-motion`, pause when the tab is hidden or the slot is
-#: offscreen, and leave the page complete with scripting off.
 ANIMATIONS: dict[str, str] = {}
 
 

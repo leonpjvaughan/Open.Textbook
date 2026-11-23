@@ -123,8 +123,10 @@ Return to the chapter problem. The centre costs €14 for each person and lunch 
 2. Work out the bracket first, and then the total.
 3. Work out the two products and add them. Do the two methods agree?
 
+<!-- tier:h -->
 In Section 1.6 you will meet a square root that is not a whole number, which needs a
 different way of writing an exact answer.
+<!-- /tier:h -->
 
 ## You should now be able to
 

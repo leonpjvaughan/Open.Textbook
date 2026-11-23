@@ -12,7 +12,7 @@ kind: walkthrough
 
 # 10.5 Axioms of probability — Learn
 
-**Prerequisites:** Section 10.4 — sample spaces and set notation.
+**Prerequisites:** listing outcomes in a sample space and using basic set notation.
 
 **Objectives:** use the two axioms of probability; use the complement rule and the addition
 rule; find a probability by counting.

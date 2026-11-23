@@ -1,0 +1,331 @@
+# Mixed practice for the Chapter 14 Review.
+#
+# Ten questions, one record each, in the order they appear on the Review page.
+# Question 9 is a Higher-level item and carries `tier: H`; the renderer marks it
+# **H** for the reader, as the section practice banks do. Every record that asks
+# for a number pairs a `dimensions` check, which proves the magnitude and the unit,
+# with a `sigfigs` check, which proves the rounding to the figures the data
+# support. Question 3's cost is money, so only the energy is checked with units and
+# the cost is proved as a product by `evaluate`; the euro sign stays in the answer
+# text, because a currency symbol never enters a CAS field.
+#
+# Honest limit: this proves arithmetic, dimensions and the declared conventions,
+# not physics. A `structured` check proves only that a model answer contains its
+# declared steps and concepts, in order. Question 10 is an explanation with no
+# number in it: the verifier can prove that the model answer names the mechanism,
+# and nothing about whether the physics in it is right.
+#
+# The data are read as the Review page states them: the box is lifted with
+# g = 9.8 N/kg, the kettle transfers 340 kJ to 1.0 kg of water of specific heat
+# capacity 4200 J kg^-1 K^-1, and the battery in question 9 has an emf of 9.0 V and
+# an internal resistance of 1.5 ohms.
+chapter: 14
+problems:
+  - id: c14-r1-series-parallel
+    section: Review
+    tier: O
+    refs: ['3.3']
+    statement: 'A $10\,\Omega$ resistor and a $15\,\Omega$ resistor are connected first in series and then in parallel. Calculate both combined resistances and check each against the two resistors.'
+    answer_label: 'Both combined resistances, and the two checks'
+    check:
+      kind: all
+      checks:
+        - kind: dimensions
+          expression: R1 + R2
+          values:
+            R1: {value: '10', unit: ohm}
+            R2: {value: '15', unit: ohm}
+          answer: {value: '25', unit: ohm}
+        - kind: sigfigs
+          value: '10 + 15'
+          figures: 2
+          answer: '25'
+          convention: round-once
+        - kind: dimensions
+          expression: R1 * R2 / (R1 + R2)
+          values:
+            R1: {value: '10', unit: ohm}
+            R2: {value: '15', unit: ohm}
+          answer: {value: '6.0', unit: ohm}
+        - kind: sigfigs
+          value: '10 * 15 / (10 + 15)'
+          figures: 2
+          answer: '6.0'
+          convention: round-once
+        - kind: structured
+          requires: [series, parallel, checks]
+          concepts: [series-adds, parallel-less-than-smallest]
+          points:
+            - id: series
+              text: 'In series the resistances add, so the combined resistance is 25 ohms.'
+              concepts: [series-adds]
+            - id: parallel
+              text: 'In parallel the reciprocals add, so one over R is one over 10 plus one over 15, which gives 6.0 ohms.'
+              concepts: [parallel-less-than-smallest]
+            - id: checks
+              text: 'The checks hold: 25 ohms is larger than the largest resistor, 15 ohms, and 6.0 ohms is smaller than the smallest, 10 ohms. A parallel answer larger than either resistor is always wrong.'
+              concepts: [series-adds, parallel-less-than-smallest]
+    answer_text: 'In series the resistances add: $R = 10 + 15 = 25\,\Omega$, which is larger than the largest resistor. In parallel the reciprocals add: $\dfrac{1}{R} = \dfrac{1}{10} + \dfrac{1}{15} = \dfrac{3}{30} + \dfrac{2}{30} = \dfrac{5}{30}$, so $R = 6.0\,\Omega$, which is smaller than the smallest resistor. Both checks hold. The parallel value is smaller because there are two paths for the current instead of one, and adding a path always reduces the resistance.'
+
+  - id: c14-r2-lamp-current
+    section: Review
+    tier: O
+    refs: ['3.3']
+    statement: 'A $230\,\text{V}$ lamp has a power of $46\,\text{W}$. Calculate the current through it and its resistance.'
+    answer_label: 'The current and the resistance'
+    check:
+      kind: all
+      checks:
+        - kind: dimensions
+          expression: P / V
+          values:
+            P: {value: '46', unit: W}
+            V: {value: '230', unit: V}
+          answer: {value: '0.20', unit: A}
+        - kind: sigfigs
+          value: '46 / 230'
+          figures: 2
+          answer: '0.20'
+          convention: round-once
+        - kind: dimensions
+          expression: V**2 / P
+          values:
+            V: {value: '230', unit: V}
+            P: {value: '46', unit: W}
+          answer: {value: '1150', unit: ohm}
+        - kind: sigfigs
+          value: '230**2 / 46'
+          figures: 2
+          answer: '1.2e3'
+          convention: round-once
+    answer_text: 'From $P = VI$, the current is $I = \dfrac{P}{V} = \dfrac{46}{230} = 0.20\,\text{A}$. From $P = \dfrac{V^2}{R}$, the resistance is $R = \dfrac{V^2}{P} = \dfrac{230^2}{46} = 1150\,\Omega$, which is $1.2 \times 10^{3}\,\Omega$ to two significant figures. That is about $1.2\,\text{k}\Omega$, which is normal for a filament lamp when it is hot. The resistance you would measure when it is cold is much smaller.'
+
+  - id: c14-r3-heater-energy-cost
+    section: Review
+    tier: O
+    refs: ['3.3']
+    statement: 'A $3.0\,\text{kW}$ heater runs for $2.5$ hours. Calculate the energy transferred in kilowatt-hours, and the cost at €0.30 per kilowatt-hour.'
+    answer_label: 'The energy, and the cost'
+    check:
+      kind: all
+      checks:
+        - kind: dimensions
+          expression: P * t
+          values:
+            P: {value: '3.0', unit: kW}
+            t: {value: '2.5', unit: h}
+          answer: {value: '7.5', unit: kW h}
+        - kind: sigfigs
+          value: '3.0 * 2.5'
+          figures: 2
+          answer: '7.5'
+          convention: round-once
+        - kind: evaluate
+          expression: '7.5 * 0.30'
+          answer: '2.25'
+    answer_text: 'The energy in kilowatt-hours is $E = Pt = 3.0 \times 2.5 = 7.5\,\text{kWh}$, which is $2.7 \times 10^{7}\,\text{J}$ in joules. The cost is 7.5 kilowatt-hours at €0.30 each, which is €2.25, or €2.30 to the nearest cent. Kilowatt-hours are used on the bill because a joule is far too small a unit for a household: one kilowatt-hour is $3.6 \times 10^{6}\,\text{J}$.'
+
+  - id: c14-r4-parallel-power
+    section: Review
+    tier: O
+    refs: ['3.3']
+    statement: 'Two identical resistors are connected to a battery. Which arrangement, series or parallel, transfers more power, and why? Answer without calculating, then check with numbers.'
+    answer_label: 'The arrangement that transfers more power, why, and the check'
+    check:
+      kind: all
+      checks:
+        - kind: dimensions
+          expression: V**2 / (2 * R)
+          values:
+            V: {value: '12', unit: V}
+            R: {value: '10', unit: ohm}
+          answer: {value: '7.2', unit: W}
+        - kind: dimensions
+          expression: 2 * V**2 / R
+          values:
+            V: {value: '12', unit: V}
+            R: {value: '10', unit: ohm}
+          answer: {value: '28.8', unit: W}
+        - kind: structured
+          requires: [answer-without-calculating, check-with-numbers, why]
+          concepts: [parallel-lower-resistance, power-at-fixed-voltage, larger-current]
+          points:
+            - id: answer-without-calculating
+              text: 'Parallel transfers more power. Adding a second path lowers the combined resistance, so the battery drives a larger current at the same potential difference.'
+              concepts: [parallel-lower-resistance, larger-current]
+            - id: check-with-numbers
+              text: 'With two 10 ohm resistors across a 12 V battery: in series the resistance is 20 ohms and the power is 144 over 20, which is 7.2 W; in parallel the resistance is 5.0 ohms and the power is 144 over 5.0, which is 29 W.'
+              concepts: [power-at-fixed-voltage]
+            - id: why
+              text: 'The potential difference is the same in both cases, so the comparison is decided by the resistance alone: P = V squared over R, and the parallel arrangement has the smaller R, so it dissipates four times the power.'
+              concepts: [power-at-fixed-voltage, parallel-lower-resistance]
+    answer_text: 'In parallel, because adding a second path lowers the combined resistance and the battery then drives a larger current at the same potential difference. Check with two $10\,\Omega$ resistors across a $12\,\text{V}$ battery. In series the resistance is $20\,\Omega$, so $P = \dfrac{V^2}{R} = \dfrac{144}{20} = 7.2\,\text{W}$. In parallel the resistance is $5.0\,\Omega$, so $P = \dfrac{144}{5.0} = 29\,\text{W}$. The potential difference is the same in both cases, so the resistance alone decides, and $P = \dfrac{V^2}{R}$ shows why a smaller resistance means more power. That is also why a short circuit is dangerous.'
+
+  - id: c14-r5-lifted-box
+    section: Review
+    tier: O
+    refs: ['3.3']
+    statement: 'A $5.0\,\text{kg}$ box is lifted $2.0\,\text{m}$. Calculate the energy transferred. Take $g = 9.8\,\text{N/kg}$. Compare it with the energy a $60\,\text{W}$ lamp uses in $3.0\,\text{s}$.'
+    answer_label: 'The energy transferred, and the comparison'
+    check:
+      kind: all
+      checks:
+        - kind: dimensions
+          expression: m * g * h
+          values:
+            m: {value: '5.0', unit: kg}
+            g: {value: '9.8', unit: N/kg}
+            h: {value: '2.0', unit: m}
+          answer: {value: '98', unit: J}
+        - kind: sigfigs
+          value: '5.0 * 9.8 * 2.0'
+          figures: 2
+          answer: '98'
+          convention: round-once
+        - kind: dimensions
+          expression: P * t
+          values:
+            P: {value: '60', unit: W}
+            t: {value: '3.0', unit: s}
+          answer: {value: '180', unit: J}
+        - kind: sigfigs
+          value: '60 * 3.0'
+          figures: 2
+          answer: '1.8e2'
+          convention: round-once
+    answer_text: 'Lifting the box transfers $E_p = mgh = 5.0 \times 9.8 \times 2.0 = 98\,\text{J}$, which is $9.8 \times 10^{1}\,\text{J}$ to two significant figures. The lamp transfers $E = Pt = 60 \times 3.0 = 180\,\text{J}$, which is $1.8 \times 10^{2}\,\text{J}$. So three seconds of the lamp uses about twice the energy it takes to lift the box two metres. Both are energies in joules, which is why the comparison is fair even though one is mechanical and the other is electrical.'
+
+  - id: c14-r6-kettle-temperature
+    section: Review
+    tier: O
+    refs: ['3.3']
+    statement: 'An electric kettle transfers $340\,\text{kJ}$ to $1.0\,\text{kg}$ of water. Calculate the temperature rise. Take the specific heat capacity of water as $4200\,\text{J kg}^{-1}\,\text{K}^{-1}$.'
+    answer_label: 'The temperature rise'
+    check:
+      kind: all
+      checks:
+        - kind: dimensions
+          expression: E / (m * c)
+          values:
+            E: {value: '340000', unit: J}
+            m: {value: '1.0', unit: kg}
+            c: {value: '4200', unit: J kg^-1 K^-1}
+          answer: {value: '80.9524', unit: K}
+          tolerance: '0.0001'
+        - kind: sigfigs
+          value: '340000 / (1.0 * 4200)'
+          figures: 2
+          answer: '81'
+          convention: round-once
+    answer_text: 'The energy raises the temperature of the water, so $E = mc\Delta\theta$ and $\Delta\theta = \dfrac{E}{mc} = \dfrac{340000}{1.0 \times 4200} = 80.95\,\text{K}$, which is $81\,\text{K}$ to two significant figures. A rise of $81\,\text{K}$ is the same as a rise of $81\,°\text{C}$, so water starting at $20\,°\text{C}$ would reach about $100\,°\text{C}$ and begin to boil. That is why a kettle switches off at the boiling point rather than timing itself.'
+
+  - id: c14-r7-percentage-uncertainty
+    section: Review
+    tier: O
+    refs: ['3.3']
+    statement: 'A current is measured as $0.480\,\text{A}$ on an ammeter that reads to the nearest $0.010\,\text{A}$. Calculate the percentage uncertainty in the reading.'
+    answer_label: 'The percentage uncertainty'
+    check:
+      kind: all
+      checks:
+        - kind: dimensions
+          expression: d / 2
+          values:
+            d: {value: '0.010', unit: A}
+          answer: {value: '0.005', unit: A}
+        - kind: sigfigs
+          value: '0.005 / 0.480 * 100'
+          figures: 2
+          answer: '1.0'
+          convention: round-once
+    answer_text: 'The scale reads to the nearest $0.010\,\text{A}$, so the reading uncertainty is half a division, $0.005\,\text{A}$. The percentage uncertainty is $\dfrac{0.005}{0.480} \times 100\% = 1.04\%$, which is $1.0\%$ to two significant figures. The percentage falls as the reading rises, so a small current measured on this meter is far less certain, in percentage terms, than a large one.'
+
+  - id: c14-r8-spring-energy
+    section: Review
+    tier: O
+    refs: ['3.3']
+    statement: 'A spring of spring constant $200\,\text{N/m}$ is stretched by $0.15\,\text{m}$. Calculate the energy stored in it.'
+    answer_label: 'The energy stored'
+    check:
+      kind: all
+      checks:
+        - kind: dimensions
+          expression: 0.5 * k * x**2
+          values:
+            k: {value: '200', unit: N/m}
+            x: {value: '0.15', unit: m}
+          answer: {value: '2.25', unit: J}
+        - kind: sigfigs
+          value: '0.5 * 200 * 0.15**2'
+          figures: 2
+          answer: '2.3'
+          convention: round-once
+    answer_text: 'The energy stored is the area under the force-extension graph, $E = \frac{1}{2}kx^2 = \frac{1}{2} \times 200 \times 0.15^2 = 2.25\,\text{J}$, which is $2.3\,\text{J}$ to two significant figures. It is elastic potential energy, from Chapter 5. Electrical, mechanical and elastic energy all share the joule, and the habit of checking the unit catches a factor of two or a missing square immediately.'
+
+  - id: c14-r9-internal-resistance
+    section: Review
+    tier: H
+    refs: ['3.3']
+    statement: 'A battery of electromotive force $9.0\,\text{V}$ and internal resistance $1.5\,\Omega$ is connected to a $3.0\,\Omega$ resistor. Calculate the current, the terminal potential difference and the power wasted inside the battery.'
+    answer_label: 'The current, the terminal potential difference and the wasted power'
+    check:
+      kind: all
+      checks:
+        - kind: dimensions
+          expression: E / (R + r)
+          values:
+            E: {value: '9.0', unit: V}
+            R: {value: '3.0', unit: ohm}
+            r: {value: '1.5', unit: ohm}
+          answer: {value: '2.0', unit: A}
+        - kind: sigfigs
+          value: '9.0 / (3.0 + 1.5)'
+          figures: 2
+          answer: '2.0'
+          convention: round-once
+        - kind: dimensions
+          expression: E * R / (R + r)
+          values:
+            E: {value: '9.0', unit: V}
+            R: {value: '3.0', unit: ohm}
+            r: {value: '1.5', unit: ohm}
+          answer: {value: '6.0', unit: V}
+        - kind: sigfigs
+          value: '9.0 * 3.0 / (3.0 + 1.5)'
+          figures: 2
+          answer: '6.0'
+          convention: round-once
+        - kind: dimensions
+          expression: I**2 * r
+          values:
+            I: {value: '2.0', unit: A}
+            r: {value: '1.5', unit: ohm}
+          answer: {value: '6.0', unit: W}
+        - kind: sigfigs
+          value: '2.0**2 * 1.5'
+          figures: 2
+          answer: '6.0'
+          convention: round-once
+    answer_text: 'The total resistance is $3.0 + 1.5 = 4.5\,\Omega$, so the current is $I = \dfrac{E}{R + r} = \dfrac{9.0}{4.5} = 2.0\,\text{A}$. The lost volts are $Ir = 2.0 \times 1.5 = 3.0\,\text{V}$, so the terminal potential difference is $V = E - Ir = 9.0 - 3.0 = 6.0\,\text{V}$. The power wasted inside the battery is $P = I^2r = 2.0^2 \times 1.5 = 6.0\,\text{W}$, and the resistor gets $I^2R = 12\,\text{W}$. The battery delivers $6.0\,\text{V}$ rather than $9.0\,\text{V}$ under this load, and a third of the energy is wasted as heat inside it.'
+
+  - id: c14-r10-filament-lamp
+    section: Review
+    tier: O
+    refs: ['3.3']
+    statement: 'Explain why the resistance of a filament lamp is smaller when it is first switched on than when it has been lit for a minute, and what that means for the current at the moment it is switched on.'
+    answer_label: 'Why the cold resistance is lower, and what the current does'
+    check:
+      kind: structured
+      requires: [why-cold-resistance, current-surge, non-ohmic]
+      concepts: [temperature-rises, resistance-rises, ohmic-conductors]
+      points:
+        - id: why-cold-resistance
+          text: 'A filament is a metal, and the resistance of a metal rises as its temperature rises, because the vibrating ions scatter the moving electrons more often. When the lamp is first switched on the filament is at room temperature, so its resistance is lower, often about a tenth of the running value.'
+          concepts: [temperature-rises, resistance-rises]
+        - id: current-surge
+          text: 'At the same 230 V the current at switch-on is larger, because I = V over R and R is small. That is why a lamp sometimes fails as it is switched on, and why the bulb does not obey Ohm''s law over its working range.'
+          concepts: [current-surge, ohmic-conductors]
+        - id: non-ohmic
+          text: 'A conductor is ohmic only when its resistance stays constant as the current changes. The filament is non-ohmic: its current-potential difference graph curves, with a decreasing gradient as the lamp heats up.'
+          concepts: [ohmic-conductors, resistance-rises]
+    answer_text: 'A filament is a metal, and the resistance of a metal rises as its temperature rises, because the vibrating ions scatter the moving electrons more often. When the lamp is first switched on, the filament is at room temperature and its resistance is much lower than its running value, often about a tenth. At the full $230\,\text{V}$, a smaller resistance means a larger current, so there is a surge at switch-on. That surge is why a lamp often fails at the moment it is switched on. The filament is therefore non-ohmic: its resistance changes as it heats, so $V = IR$ holds at every instant but the resistance is not a constant.'

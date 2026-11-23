@@ -165,8 +165,12 @@ carries $-2.0 \times 10^{-12}$ C.
 2. State which plate the drop moves towards, and explain your answer using the
    direction of the force on a negative charge.
 
-Keep your answers. Section 13.4 uses the potential difference across the plates to
-find the field strength, and then the force on the drop.
+Keep your answers.
+
+<!-- tier:h -->
+Section 13.4 uses the potential difference across the plates to find the field strength,
+and then the force on the drop.
+<!-- /tier:h -->
 
 ## You should now be able to
 

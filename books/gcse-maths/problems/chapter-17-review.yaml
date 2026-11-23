@@ -1,0 +1,142 @@
+# Mixed practice for the Chapter 17 Review (Properties, constructions, loci and bearings).
+#
+# SymPy verifies the scale calculations, bearing arithmetic, midpoint threshold
+# and right-triangle inequality. Questions 1, 2, 3, 4 and 5 ask for shape
+# properties, orthographic views, ruler-and-compass reasoning or locus
+# descriptions whose geometric validity the verifier cannot prove (a `structured`
+# check confirms only that the declared steps and concepts appear in order).
+chapter: 17
+oracles: [sympy, units]
+symbols:
+  d: {real: true, positive: true}
+  s: {real: true, positive: true}
+problems:
+  - id: r1-triangular-prism-faces
+    section: Review
+    tier: F
+    refs: [G12]
+    statement: 'A triangular prism has triangular ends. How many rectangular faces does it have? Which shape property tells you?'
+    answer_label: 'Rectangular faces of a triangular prism'
+    check:
+      kind: structured
+      requires: [face-count, shape-property]
+      concepts: [prism, triangle-sides]
+      points:
+        - id: face-count
+          text: 'A triangular prism has 3 rectangular faces.'
+          concepts: [prism]
+        - id: shape-property
+          text: 'Each side of the triangular cross-section connects to one rectangular face along the length of the prism, and a triangle has 3 sides.'
+          concepts: [triangle-sides, prism]
+
+  - id: r2-cuboid-elevations
+    section: Review
+    tier: F
+    refs: [G13]
+    statement: 'A cuboid measures $7\text{ cm}$ by $4\text{ cm}$ by $3\text{ cm}$. State its plan and front elevation dimensions.'
+    answer_label: 'Plan and front elevation of the cuboid'
+    check:
+      kind: structured
+      requires: [plan-view, front-elevation]
+      concepts: [plan, elevation]
+      points:
+        - id: plan-view
+          text: 'Taking 7 cm as the length, 4 cm as the depth and 3 cm as the height, the plan (view from above) is a 7 cm by 4 cm rectangle.'
+          concepts: [plan]
+        - id: front-elevation
+          text: 'The front elevation (view from the front) is a 7 cm by 3 cm rectangle.'
+          concepts: [elevation]
+
+  - id: r3-perpendicular-bisector
+    section: Review
+    tier: F
+    refs: [G2]
+    statement: 'Construct the perpendicular bisector of a $7\text{ cm}$ segment. Explain why each point on your line is equally far from the endpoints.'
+    answer_label: 'Perpendicular bisector construction and equidistance'
+    check:
+      kind: all
+      checks:
+        - {kind: evaluate, expression: '7/2', answer: '3.5'}
+        - kind: structured
+          requires: [construct-arcs, equidistance-reason]
+          concepts: [equal-radii, perpendicular-bisector]
+          points:
+            - id: construct-arcs
+              text: 'Set the compasses to a fixed radius greater than 3.5 cm and draw arcs from both endpoints so they cross above and below the segment; join the two crossings with a ruler.'
+              concepts: [equal-radii]
+            - id: equidistance-reason
+              text: 'The crossings are at the same radius from both endpoints, and every point on the resulting perpendicular bisector forms congruent right-angled triangles with the midpoint and the two endpoints, so it is equally far from both endpoints.'
+              concepts: [perpendicular-bisector]
+    answer_text: 'Set the compasses to a radius greater than $3.5\text{ cm}$ and draw equal-radius arcs from both endpoints to cross above and below the segment, then join the crossings. Every point on the perpendicular bisector forms congruent right-angled triangles with the midpoint and the two endpoints, so it is equally far from both endpoints.'
+
+  - id: r4-loci-descriptions
+    section: Review
+    tier: F
+    refs: [G2]
+    statement: 'Describe the locus of points $3\text{ cm}$ from point $P$ and the locus of points $2\text{ cm}$ from a straight boundary.'
+    answer_label: 'The two loci'
+    check:
+      kind: structured
+      requires: [point-locus, line-locus]
+      concepts: [circle-locus, parallel-lines-locus]
+      points:
+        - id: point-locus
+          text: 'The locus of points 3 cm from point P is a circle centred at P with radius 3 cm.'
+          concepts: [circle-locus]
+        - id: line-locus
+          text: 'The locus of points 2 cm from an infinite straight boundary is two straight lines parallel to the boundary, one on each side at a distance of 2 cm.'
+          concepts: [parallel-lines-locus]
+
+  - id: r5-shortest-distance-perpendicular
+    section: Review
+    tier: F
+    refs: [G2]
+    statement: 'Explain why the perpendicular from a point to a line gives the shortest distance.'
+    answer_label: 'Why the perpendicular is shortest'
+    check:
+      kind: all
+      checks:
+        - {kind: compare, relation: '>', lhs: 'd**2 + s**2', rhs: 'd**2'}
+        - kind: structured
+          requires: [right-triangle, hypotenuse-longer]
+          concepts: [perpendicular, hypotenuse]
+          points:
+            - id: right-triangle
+              text: 'Any other segment from the point to the line forms a right-angled triangle with the perpendicular segment and part of the line.'
+              concepts: [perpendicular]
+            - id: hypotenuse-longer
+              text: 'The sloping segment is the hypotenuse, which is always longer than the perpendicular side.'
+              concepts: [hypotenuse]
+    answer_text: 'Any sloping segment from the point to the line forms the hypotenuse of a right-angled triangle whose perpendicular side has length $d$. Since $\sqrt{d^2+s^2}>d$ for any horizontal offset $s>0$, the perpendicular is always the shortest distance.'
+
+  - id: r6-map-scale
+    section: Review
+    tier: F
+    refs: [G15, R2]
+    statement: 'A map scale is $1\text{ cm}$ to $4\text{ km}$. Work out the real distance represented by $6.5\text{ cm}$.'
+    answer_label: 'Real distance from the map'
+    check: {kind: evaluate, expression: '6.5*4', answer: '26'}
+    answer_text: '$6.5\times4=26\text{ km}$.'
+
+  - id: r7-bearing-south-east
+    section: Review
+    tier: F
+    refs: [G15]
+    statement: 'Write the three-figure bearing for south-east.'
+    answer_label: 'Three-figure bearing for south-east'
+    check: {kind: evaluate, expression: '90 + 45', answer: '135'}
+    answer_text: '$135^\circ$ (measured clockwise from north: east is $090^\circ$ and south-east is $45^\circ$ further).'
+
+  - id: r8-room-plan-diagonal
+    section: Review
+    tier: F
+    refs: [G15, G20]
+    statement: 'Earlier chapter link: a rectangular room is $4.8\text{ m}$ by $3.6\text{ m}$. Use a scale of $1\text{ cm}$ to $0.6\text{ m}$ to find its plan dimensions, then find the diagonal on the plan.'
+    answer_label: 'Plan dimensions and diagonal'
+    check:
+      kind: all
+      checks:
+        - {kind: evaluate, expression: '4.8/0.6', answer: '8'}
+        - {kind: evaluate, expression: '3.6/0.6', answer: '6'}
+        - {kind: evaluate, expression: 'sqrt(8**2 + 6**2)', answer: '10'}
+    answer_text: 'Divide each real length by $0.6$: the plan measures $8\text{ cm}$ by $6\text{ cm}$. By Pythagoras, the diagonal on the plan is $\sqrt{8^2+6^2}=\sqrt{100}=10\text{ cm}$.'

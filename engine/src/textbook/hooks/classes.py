@@ -27,8 +27,6 @@ from ._fences import transform_outside_fences
 
 MARKER = re.compile(r"^:::[ \t]*class[ \t]+([a-z0-9-]+)[ \t]*$", re.M)
 
-#: What the link says. "Kind of problem" rather than "see also": a reader should be
-#: told what the page is for, and this book's whole vocabulary is kinds of problem.
 ASK = "Kind of problem"
 
 
@@ -59,8 +57,6 @@ def render(entry: dict) -> str:
 
 
 def on_page_markdown(markdown, page, config, files):
-    # Cheap test first: almost no page carries one, and the registry costs a YAML
-    # parse per page otherwise. `entries` caches the parse behind it.
     if ":::class" not in markdown:
         return markdown
 

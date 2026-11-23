@@ -41,12 +41,9 @@ import sympy
 
 from .verify import cas
 
-#: How far a JavaScript float may sit from the exact value it represents. Every
-#: `answer` arrives as a double, so this is round-off and never a claim's slack: the
 #: defects this looks for are 30 and 0.01 out, not 1e-12.
 FLOAT_SLACK = 1e-9
 
-#: A number with a sign, a decimal part and an optional exponent.
 NUMBER = re.compile(r"^[-+]?\d*\.?\d+(?:[eE][-+]?\d+)?$")
 
 
@@ -108,7 +105,6 @@ def check_claim(claim: dict) -> list[str]:
     if shown:
         printed = _rational(str(shown))
         if printed is None:
-            # A label rather than a number — "the total" — is not this check's business.
             return problems
         places = _decimals(str(shown).replace(",", ""))
         slack = sympy.Rational(1, 2 * 10**places)
@@ -131,8 +127,6 @@ def check_record(record: dict) -> list[str]:
             problems.append(problem)
         shown = claim.get("shown")
         if shown and str(shown) not in readout:
-            # A claim about a number the figure never printed proves nothing about what a
-            # reader sees. This is the cheap half of "the display and the data agree".
             problems.append(
                 f"claims to show {shown!r}, but the readout does not contain it: "
                 f"{readout[:90]!r}"
@@ -161,16 +155,9 @@ def check_file(path: Path) -> int:
     return 1 if wrong else 0
 
 
-# --- the checks this module must pass -----------------------------------------
-#
-# The two defects, as they were printed, and the same statements correct. A verifier
-# that cannot tell these apart is not a verifier.
 
 SELF_TEST: list[tuple[str, dict, bool]] = [
     (
-        # The defect itself: the rate is 6.5% and the figure used 0.07. 1500 × 0.07 × 4
-        # is 420, so declaring the answer it printed makes the claim false — which is
-        # the whole point of declaring `values`.
         "a rate of 6.5% evaluated as 0.07",
         {
             "expression": "P * r * t",

@@ -1,0 +1,336 @@
+# Mixed practice for the Chapter 2 Review (strand S2, networks and graphs).
+#
+# Ten questions, one record each, in the order they appear on the Review page.
+# The minimum spanning tree is proved by the cycle condition: every edge left out
+# of the tree is at least as heavy as each edge on the cycle it would close, which
+# is what makes the tree minimal, not merely cheap. Question 2's chosen distance
+# is checked least among the simple routes by `compare`, question 3's walk count
+# is a matrix product checked with `dot`, and question 6's backward recursion is
+# checked step by step with `Min`. Questions 7, 9 and 10 ask for a reason or a
+# description and carry a `structured` component.
+#
+# Honest limit: the CAS proves arithmetic, sums of weights and matrix products.
+# It cannot prove that a list of routes is complete, and it cannot prove that an
+# algorithm was run correctly: question 1's cycle condition proves minimality for
+# the tree named, and question 2 compares the route with the other simple routes
+# read off the diagram. A `structured` check proves only that a model answer
+# contains its declared steps and concepts, in order.
+chapter: 2
+problems:
+  - id: r1-minimum-spanning-tree
+    section: Review
+    tier: O
+    refs: [S2]
+    statement: >-
+      A network has vertices $A, B, C, D$ and edges $AB = 3$, $AC = 7$,
+      $BC = 2$, $BD = 5$, $CD = 4$. Find the minimum spanning tree and its total
+      weight.
+    answer_label: The minimum spanning tree and its total weight
+    check:
+      kind: all
+      checks:
+        - kind: evaluate
+          expression: '2 + 3 + 4'
+          answer: '9'
+        - kind: compare
+          lhs: '7'
+          relation: '>='
+          rhs: '3'
+        - kind: compare
+          lhs: '5'
+          relation: '>='
+          rhs: '4'
+    answer_text: >-
+      Sort the edges by weight: $BC = 2$, $AB = 3$, $CD = 4$, $BD = 5$, $AC = 7$.
+      Kruskal takes $BC$ and $AB$, which join $A$, $B$ and $C$. It takes $CD$
+      next, which brings in $D$, and stops with three edges. The tree is
+      $BC$, $AB$, $CD$, and its total weight is $2 + 3 + 4 = 9$. It is minimal
+      because each edge left out is at least as heavy as every edge on the cycle
+      it would close: $AC = 7$ closes $A$–$B$–$C$, whose heaviest edge is $3$, and
+      $BD = 5$ closes $B$–$C$–$D$, whose heaviest edge is $4$. No swap can lower
+      the total.
+
+  - id: r1-shortest-distance
+    section: Review
+    tier: O
+    refs: [S2]
+    statement: >-
+      For the same network, find the shortest distance from $A$ to $D$ and name
+      the route.
+    answer_label: The shortest distance and the route
+    check:
+      kind: all
+      checks:
+        - kind: evaluate
+          expression: '3 + 5'
+          answer: '8'
+        - kind: compare
+          lhs: '8'
+          relation: '<'
+          rhs: '11'
+        - kind: compare
+          lhs: '8'
+          relation: '<'
+          rhs: '9'
+    answer_text: >-
+      The simple routes from $A$ to $D$ are $A$–$B$–$D$, which is
+      $3 + 5 = 8$; $A$–$C$–$D$, which is $7 + 4 = 11$; and $A$–$B$–$C$–$D$, which
+      is $3 + 2 + 4 = 9$. The least is $8$, along $A$–$B$–$D$. Dijkstra settles
+      $A$, then $B$ at $3$ and $C$ at $7$, and the update from $B$ gives
+      $D = 8$; the route is read back from that update.
+
+  - id: r1-walks-of-length-two
+    section: Review
+    tier: O
+    refs: [S2]
+    statement: >-
+      For the same network, how many walks of length 2 are there from $A$ to $D$?
+      Write the adjacency matrix first.
+    answer_label: The number of walks of length 2
+    check:
+      kind: vector
+      op: dot
+      args:
+        - 'Matrix([[0, 1, 1, 0]])'
+        - 'Matrix([[0], [1], [1], [0]])'
+      answer: '2'
+    answer_text: >-
+      With the order $A, B, C, D$ the adjacency matrix has a $1$ wherever an edge
+      joins two vertices. Row $A$ is $(0, 1, 1, 0)$ and column $D$ is
+      $(0, 1, 1, 0)$. The entry of $A^2$ in row $A$, column $D$ is the dot
+      product of those two: $0 \times 0 + 1 \times 1 + 1 \times 1 + 0 \times 0 = 2$.
+      The two walks are $A$–$B$–$D$ and $A$–$C$–$D$.
+
+  - id: r1-degrees-and-trail
+    section: Review
+    tier: O
+    refs: [S2]
+    statement: >-
+      A network has degrees $4, 4, 3, 3, 2, 2$. How many edges has it, and how
+      many odd-degree vertices? Does it have an Eulerian trail?
+    answer_label: The edges, the odd vertices and the trail
+    check:
+      kind: all
+      checks:
+        - kind: evaluate
+          expression: '(4 + 4 + 3 + 3 + 2 + 2) / 2'
+          answer: '9'
+        - kind: structured
+          requires: [odd-count, trail-decision]
+          concepts: [handshake-lemma, eulerian-trail]
+          points:
+            - id: odd-count
+              text: >-
+                Exactly two vertices have odd degree, the two of degree 3.
+              concepts: [handshake-lemma, eulerian-trail]
+            - id: trail-decision
+              text: >-
+                A connected network has an Eulerian trail when it has 0 or 2
+                odd-degree vertices, so this one has a trail, and the trail runs
+                from one of the degree-3 vertices to the other.
+              concepts: [eulerian-trail]
+    answer_text: >-
+      The handshake lemma says the degree sum is twice the number of edges, so the
+      network has $(4 + 4 + 3 + 3 + 2 + 2) \div 2 = 18 \div 2 = 9$ edges. Two of
+      the vertices have odd degree. A connected network has an Eulerian trail when
+      it has exactly 0 or 2 odd-degree vertices, so this one has a trail, and it
+      must start at one degree-3 vertex and finish at the other.
+
+  - id: r1-spanning-tree-edges
+    section: Review
+    tier: O
+    refs: [S2]
+    statement: >-
+      A network has 9 vertices and 12 edges. How many edges must be removed to
+      leave a spanning tree, and what must be true of each edge removed?
+    answer_label: How many edges to remove, and which
+    check:
+      kind: all
+      checks:
+        - kind: evaluate
+          expression: '12 - (9 - 1)'
+          answer: '4'
+        - kind: structured
+          requires: [count, condition]
+          concepts: [spanning-tree, cycle]
+          points:
+            - id: count
+              text: >-
+                A spanning tree on 9 vertices has 9 - 1 = 8 edges, so 12 - 8 = 4
+                edges must be removed.
+              concepts: [spanning-tree]
+            - id: condition
+              text: >-
+                Each edge removed must lie on a cycle of the remaining network.
+                Removing an edge that is a bridge would disconnect the network, so
+                it could not leave a spanning tree.
+              concepts: [cycle]
+    answer_text: >-
+      A spanning tree on 9 vertices has $9 - 1 = 8$ edges, so $12 - 8 = 4$ edges
+      must be removed. Each removed edge must lie on a cycle: removing an edge
+      that carries the only route between two parts would disconnect the network
+      and leave no spanning tree.
+
+  - id: r1-backward-recursion
+    section: Review
+    tier: O
+    refs: [S2]
+    statement: >-
+      A staged network has stages $A$; $B, C$; $D, E$; $F$ with edges $AB = 6$,
+      $AC = 3$, $BD = 1$, $BE = 9$, $CD = 4$, $CE = 2$, $DF = 5$, $EF = 7$. Find
+      the least total cost from $A$ to $F$ by backward recursion, and write down
+      the route.
+    answer_label: The least total cost and the route
+    check:
+      kind: all
+      checks:
+        - kind: evaluate
+          expression: 'Min(1 + 5, 9 + 7)'
+          answer: '6'
+        - kind: evaluate
+          expression: 'Min(4 + 5, 2 + 7)'
+          answer: '9'
+        - kind: evaluate
+          expression: 'Min(6 + 6, 3 + 9)'
+          answer: '12'
+    answer_text: >-
+      Work back one stage at a time. From $D$ the cost to $F$ is $5$, and from
+      $E$ it is $7$. From $B$ the cheaper way on is through $D$:
+      $\min(1 + 5,\ 9 + 7) = 6$. From $C$ both ways cost $9$:
+      $\min(4 + 5,\ 2 + 7) = 9$. From $A$ the cost is
+      $\min(6 + 6,\ 3 + 9) = 12$. The least total cost is $12$, and one route that
+      achieves it is $A$–$B$–$D$–$F$.
+
+  - id: r1-negative-weight
+    section: Review
+    tier: O
+    refs: [S2]
+    statement: >-
+      A network has a directed edge of weight $-2$ and a question asks for the
+      shortest path. State which algorithm you would normally use, and why you
+      cannot use it here.
+    answer_label: The algorithm and why it fails
+    check:
+      kind: structured
+      requires: [name-algorithm, why-it-fails]
+      concepts: [dijkstra, negative-weight]
+      points:
+        - id: name-algorithm
+          text: >-
+            The usual algorithm is Dijkstra's.
+          concepts: [dijkstra]
+        - id: why-it-fails
+          text: >-
+            Dijkstra settles a vertex once and never reopens it, which is safe
+            only when no later route can be cheaper. A negative weight can make a
+            longer route cheaper, so a settled distance may be wrong and the
+            answer cannot be trusted.
+          concepts: [negative-weight]
+    answer_text: >-
+      You would normally use Dijkstra's algorithm. It settles the nearest
+      unsettled vertex and never reopens it, which is safe only when adding
+      another edge cannot make a route cheaper. With an edge of weight $-2$, a
+      route with more edges can cost less, so a settled distance can be wrong.
+      The algorithm would return a number, and that number would not be the
+      shortest path.
+
+  - id: r1-complete-network
+    section: Review
+    tier: O
+    refs: [S2]
+    statement: >-
+      A complete network has 6 vertices. How many edges has it, and how many
+      spanning trees?
+    answer_label: The edges and the spanning trees
+    check:
+      kind: all
+      checks:
+        - kind: evaluate
+          expression: '6 * 5 / 2'
+          answer: '15'
+        - kind: evaluate
+          expression: '6 ** 4'
+          answer: '1296'
+    answer_text: >-
+      Every pair of vertices is joined, so the number of edges is
+      $\dfrac{6 \times 5}{2} = 15$. Cayley's formula says a complete network on
+      $n$ vertices has $n^{n-2}$ spanning trees, so here it is
+      $6^{4} = 1296$. The divide by 2 in the edge count is there because each
+      edge is counted once from each end.
+
+  - id: r1-reading-a-matrix
+    section: Review
+    tier: O
+    refs: [S2]
+    statement: >-
+      A network is stored as an adjacency matrix. Explain how to find the
+      out-degree of a vertex, the in-degree, and whether the network is directed.
+    answer_label: How to read the three facts
+    check:
+      kind: structured
+      requires: [out-degree, in-degree, directed]
+      concepts: [adjacency-matrix, degree]
+      points:
+        - id: out-degree
+          text: >-
+            The out-degree of a vertex is the sum of its row: the row counts the
+            edges that leave it.
+          concepts: [adjacency-matrix, degree]
+        - id: in-degree
+          text: >-
+            The in-degree is the sum of its column: the column counts the edges
+            that arrive at it.
+          concepts: [adjacency-matrix, degree]
+        - id: directed
+          text: >-
+            The network is undirected exactly when the matrix is symmetric, so
+            the entry in row $i$, column $j$ equals the entry in row $j$,
+            column $i$ for every pair. A matrix that is not symmetric describes a
+            directed network.
+          concepts: [adjacency-matrix]
+    answer_text: >-
+      The out-degree of a vertex is the sum of its row, because the row holds the
+      edges that leave it. The in-degree is the sum of its column, because the
+      column holds the edges that arrive. The network is undirected exactly when
+      the matrix is symmetric: every entry above the diagonal equals its mirror
+      below it. If any pair of mirror entries differs, the network is directed.
+
+  - id: r1-two-questions
+    section: Review
+    tier: O
+    refs: [S2]
+    statement: >-
+      A council must connect 12 villages by road for the least total length, and
+      separately must find the shortest route from the depot to the hospital.
+      Explain why these are two different problems and name the algorithm for
+      each.
+    answer_label: The two problems and their algorithms
+    check:
+      kind: structured
+      requires: [connect-everything, connect-two, name-algorithms]
+      concepts: [spanning-tree, shortest-path]
+      points:
+        - id: connect-everything
+          text: >-
+            The first problem connects all 12 villages and asks for the least
+            total length of road. Its answer is a spanning tree, with 11 roads and
+            no loop.
+          concepts: [spanning-tree]
+        - id: connect-two
+          text: >-
+            The second problem connects two named places and asks for the least
+            length between them. Its answer is a single path, and the rest of the
+            network plays no part.
+          concepts: [shortest-path]
+        - id: name-algorithms
+          text: >-
+            Kruskal's or Prim's algorithm answers the first. Dijkstra's algorithm
+            answers the second.
+          concepts: [spanning-tree, shortest-path]
+    answer_text: >-
+      The first problem connects every village for the least total length, so its
+      answer is a spanning tree: 11 roads, with no loop. Kruskal's algorithm or
+      Prim's algorithm finds it. The second connects two named places, so its
+      answer is one path, and the roads elsewhere do not matter. Dijkstra's
+      algorithm finds it. The cheapest set of roads need not contain the shortest
+      route between any particular pair, so one answer does not give the other.

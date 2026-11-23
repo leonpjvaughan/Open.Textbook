@@ -1,6 +1,5 @@
 // @ts-nocheck
 import { button, field, slider } from "./controls.js";
-
 export function react(controls, draw, options = {}) {
   const { initial = true } = options;
   const list = [controls].flat().filter(Boolean);
@@ -9,12 +8,10 @@ export function react(controls, draw, options = {}) {
   if (initial) draw();
   return list;
 }
-
 export function notify(control) {
   control.dispatchEvent(new Event("input", { bubbles: true }));
   control.dispatchEvent(new Event("change", { bubbles: true }));
 }
-
 export function seed(number = 1) {
   let state = Number(number) >>> 0 || 1;
   const next = () => {
@@ -25,11 +22,8 @@ export function seed(number = 1) {
   };
   return {
     next,
-
     int: (low, high) => low + Math.floor(next() * (high - low + 1)),
-
     pick: (items) => items[Math.floor(next() * items.length)],
-
     shuffle: (items) => {
       const out = items.slice();
       for (let i = out.length - 1; i > 0; i -= 1) {
@@ -38,7 +32,6 @@ export function seed(number = 1) {
       }
       return out;
     },
-
     normal: (mean = 0, deviation = 1) => {
       let total = 0;
       for (let i = 0; i < 12; i += 1) total += next();
@@ -47,19 +40,6 @@ export function seed(number = 1) {
   };
 }
 /**
- * A procedure the reader advances one step at a time.
- *
- * Four modules hand-build this and two of them are the most useful figures in the
- * Irish books — Kruskal beside Prim, and Dijkstra settlement by settlement. What they
- * share is the shape: a list of steps, a drawing per step, and a sentence of
- * narration. Long division, a compass construction, an induction proof, Gaussian
- * elimination and a nuclear decay chain are the same shape.
- *
- * The returned control **is the step slider**, with `.index` and `.go()` attached, so
- * `react(stepper, draw)` and `stepper.index` work like any other control. Prev and
- * Next move the slider and `notify()` it, so there is one change path and no way for
- * the buttons and the slider to disagree.
- *
  * @param {object} o
  * @param {Array<{text: string}>} o.steps  the narration, one per step
  * @param {string} [o.label]  the visible label for the step control
@@ -93,16 +73,6 @@ export function stepper(parent, { steps = [], label = "Step", id = "step", value
   return input;
 }
 /**
- * A small table of values, beside the drawing that shows the same numbers.
- *
- * One module in 209 builds a table, and the topics that want one are everywhere — a
- * sequence and its differences, a probability distribution, grouped frequency, an
- * input-output table, a set of readings. **Table → rule → graph → formula** is the
- * same figure with a different highlight, and this is the missing quarter of it.
- *
- * A real `<table>` with a `<caption>` and `<th scope="col">`, because it is tabular
- * data and a screen reader should be able to say so.
- *
  * @returns {HTMLTableElement & {update: Function}} `update(rows, highlight)` swaps the
  *   body without rebuilding the table, so a highlight can follow a slider cheaply.
  */
@@ -152,20 +122,6 @@ export function table(
   return el;
 }
 /**
- * A process shown in time, with a scrubber and a stopping point.
- *
- * Nothing in the collection animates, and the one measurement the project has
- * found that the *looks-free* CSS
- * animation was the worst citizen on the page — 180 ms/s of main-thread time on an
- * idle one — while an explicit render loop idled below it. So motion here is an
- * explicit loop, and it **stops**.
- *
- * The design rule is that every animation must also work as a still. Two things
- * enforce it. `onFrame(t)` is called for any `t`, so the scrubber reaches every frame
- * a reader could want; and when the reader has asked for reduced motion the loop does
- * not start, the scrubber is placed on `still` (the end state by default), and the
- * figure is complete without moving.
- *
  * @param {object} o
  * @param {(t: number) => void} o.onFrame  draws the frame at `t` in `[0, 1]`
  * @param {number} [o.duration]  milliseconds for one pass; default 5000
@@ -243,23 +199,6 @@ export function animate(
   return { scrub, play, stop };
 }
 /**
- * Compare a reader's answer with the answer the bank already proved.
- *
- * The collection's promise is that **a computer checks every answer**, and the
- * problem-bank verifier does that at build time against the CAS. This is the reader's
- * side of the same promise, and it is deliberately narrow: it compares what the
- * reader typed with the value CI already proved, so nothing new is being claimed.
- *
- * It is **not** an algebra engine and must not become one. A numeric comparison with
- * a tolerance, and a normalised string comparison for a short exact answer, is the
- * whole contract. The moment it tries to decide whether two expressions are
- * equivalent it needs a CAS, and that is a different project.
- *
- * Four outcomes, and the distinction between the last two is the one that matters to
- * a reader: **wrong** is a mistake worth thinking about, **invalid** is a typing
- * problem that needs no thought. Reporting a unit or a stray letter as "wrong"
- * teaches the wrong thing.
- *
  * @param {string|number} given  what the reader typed
  * @param {object} o
  * @param {string|number} o.answer  the value the bank holds
@@ -317,7 +256,6 @@ export function check(given, { answer, tolerance = 0, unit = "" } = {}) {
   }
   return { state: "wrong", expected };
 }
-
 export function answerBox(
   parent,
   {
@@ -357,7 +295,6 @@ export function answerBox(
   button(parent, { label: "Check", name: "Check my answer", onClick: verify });
   return { input, verify };
 }
-
 export function remember(key, fallback = null) {
   const read = () => {
     try {
@@ -385,21 +322,6 @@ export function remember(key, fallback = null) {
   };
 }
 /**
- * A generated question, with the answer that belongs to it.
- *
- * **The honest limit, stated first.** The problem-bank verifier proves every banked
- * answer at build time against a CAS. A generated question cannot be proved that way —
- * there is no bank — so this is a *different* claim: the answer is computed by the same
- * function that wrote the question, so the two cannot disagree. That is internal
- * consistency, not independent verification, and a page that uses it must not say
- * "checked by a computer".
- *
- * What makes it trustworthy anyway is that the *generator* is checked: a template whose
- * `answer` is a function of the parameters it drew is testable by generating a thousand
- * and asserting the invariants a reader would check by hand.
- * `tests/test_figures.py::test_the_figure_kit_keeps_its_pure_contract` does exactly
- * that for the kinds the collection ships.
- *
  * @param {object} o
  * @param {Array<{id: string, build: (rng: object) => {text, answer, tolerance?, unit?}}>} o.kinds
  * @param {number} [o.seed]  the seed; the same seed gives the same question
@@ -442,7 +364,6 @@ export function exercise({ kinds = [], seed: start = 1, only } = {}) {
     get at() {
       return state.at;
     },
-
     next(nextSeed) {
       state.at = nextSeed === undefined ? state.at + 1 : nextSeed;
       return take(state.at);
@@ -452,15 +373,6 @@ export function exercise({ kinds = [], seed: start = 1, only } = {}) {
   return api;
 }
 /**
- * Endless practice: a generated question, a box, a Check and a Next.
- *
- * The widget the collection has never had. It is `exercise()` and `answerBox()`
- * composed, so the page has to write nothing but the generators, and it is built on
- * native controls so the keyboard and the screen reader are served by the primitives.
- *
- * The question goes in the panel's `caption` — a place the frame already has for a line
- * of the figure's own prose — and the verdict goes in the live readout.
- *
  * @returns {{exercise: object, input: HTMLElement, verify: Function, next: Function}}
  */
 export function practice(

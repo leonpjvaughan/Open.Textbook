@@ -92,8 +92,7 @@ through $B(7, 7)$.
    main road.
 3. Show that the two slopes multiply to $-1$.
 
-Keep the side road equation. In Section 13.5 you will prove that this side road
-is a tangent to the roundabout.
+Keep the side road equation. It meets the main road at a right angle at $B$.
 
 ## You should now be able to
 

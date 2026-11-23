@@ -210,8 +210,8 @@ $2x = 10$.
 
 $x = 5$.
 
-This is the same as asking "which input gives the output $3$ for $f(x) = 2x - 7$?". The
-answer is $f^{-1}(3) = 5$, and finding inverse functions is Section 6.3.
+This is the same as asking "which input gives the output $3$ for $f(x) = 2x - 7$?". You
+work backwards from the output to find the input $x = 5$.
 
 </details>
 </details>

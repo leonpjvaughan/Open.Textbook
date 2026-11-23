@@ -1,0 +1,212 @@
+# Mixed practice for the Chapter 3 Review.
+#
+# Ten questions, one record each, in the order they appear on the Review page.
+# Prime factorisations, HCF, LCM, factor counts and bounds are proved by SymPy.
+#
+# Honest limit: Question 8 asks what can be said about a number with exactly
+# three factors, and Question 10 asks for an explanation of why HCF <= each
+# number and LCM >= each number. Question 10 has no numeric answer, and Question
+# 8 is a general characterisation: the `structured` checks confirm only that the
+# model answer contains its declared points and concepts in order, not that the
+# reasoning is proved. Questions 4, 5 and 9 also ask for a reason or method
+# choice alongside the arithmetic. The bank declares `units` for `structured`.
+chapter: 3
+oracles: [sympy, units]
+symbols: {}
+
+problems:
+  - id: jc3-rev-prime-factorise
+    section: Review
+    tier: O
+    refs: ['N.1']
+    statement: 'Write 252 as a product of its prime factors.'
+    answer_label: '252 in prime factors'
+    check:
+      kind: evaluate
+      expression: '2**2 * 3**2 * 7'
+      answer: '252'
+    answer_text: '$252 = 2^2 \times 3^2 \times 7$. Divide by $2$ twice to get $63$, then by $3$ twice to leave $7$.'
+
+  - id: jc3-rev-hcf
+    section: Review
+    tier: O
+    refs: ['N.1']
+    statement: 'Find the highest common factor of 252 and 90.'
+    answer_label: 'The HCF of 252 and 90'
+    check:
+      kind: evaluate
+      expression: 'gcd(252, 90)'
+      answer: '18'
+    answer_text: '$18$. Write $252 = 2^2 \times 3^2 \times 7$ and $90 = 2 \times 3^2 \times 5$. Taking the smaller power of each shared prime gives $2 \times 3^2 = 18$.'
+
+  - id: jc3-rev-lcm
+    section: Review
+    tier: O
+    refs: ['N.1']
+    statement: 'Find the lowest common multiple of 252 and 90. Check your two answers against the sizes of the numbers before you write them down.'
+    answer_label: 'The LCM of 252 and 90'
+    check:
+      kind: all
+      checks:
+        - kind: evaluate
+          expression: 'lcm(252, 90)'
+          answer: '1260'
+        - kind: compare
+          lhs: '18'
+          relation: '<='
+          rhs: '90'
+        - kind: compare
+          lhs: '1260'
+          relation: '>='
+          rhs: '252'
+    answer_text: '$1260$. Taking the larger power of every prime in $252 = 2^2 \times 3^2 \times 7$ and $90 = 2 \times 3^2 \times 5$ gives $2^2 \times 3^2 \times 5 \times 7 = 1260$. Size check: the HCF ($18$) is no larger than $90$, and the LCM ($1260$) is no smaller than $252$.'
+
+  - id: jc3-rev-253-prime
+    section: Review
+    tier: O
+    refs: ['N.1']
+    statement: 'Is 253 prime? Give a reason.'
+    answer_label: 'Is 253 prime?'
+    check:
+      kind: all
+      checks:
+        - kind: evaluate
+          expression: '11 * 23'
+          answer: '253'
+        - kind: structured
+          requires: [find-a-factor, conclude-composite]
+          concepts: [factor, composite]
+          points:
+            - id: find-a-factor
+              text: '253 = 11 x 23, so 11 and 23 both divide it exactly.'
+              concepts: [factor]
+            - id: conclude-composite
+              text: 'A prime has no factors other than 1 and itself, and 253 has 11 and 23, so 253 is not prime.'
+              concepts: [composite]
+    answer_text: 'No. $253 = 11 \times 23$, so it has factors other than $1$ and itself.'
+
+  - id: jc3-rev-alarms
+    section: Review
+    tier: O
+    refs: ['N.1']
+    statement: 'Two alarms sound every 45 seconds and every 60 seconds. They sound together. When do they next sound together, and which idea did you use?'
+    answer_label: 'When the alarms next sound together'
+    check:
+      kind: all
+      checks:
+        - kind: evaluate
+          expression: 'lcm(45, 60)'
+          answer: '180'
+        - kind: structured
+          requires: [choose-lcm, next-time]
+          concepts: [common-multiple]
+          points:
+            - id: choose-lcm
+              text: 'The alarms next sound together at the first common multiple of 45 and 60, so the idea is the lowest common multiple.'
+              concepts: [common-multiple]
+            - id: next-time
+              text: 'The lowest common multiple is 180, so they next sound together after 180 seconds, which is 3 minutes.'
+              concepts: [common-multiple]
+    answer_text: 'After $180$ seconds ($3$ minutes), using the lowest common multiple. The alarms line up again at the first common multiple of $45 = 3^2 \times 5$ and $60 = 2^2 \times 3 \times 5$, which is $2^2 \times 3^2 \times 5 = 180$.'
+
+  - id: jc3-rev-card-squares
+    section: Review
+    tier: O
+    refs: ['N.1']
+    statement: 'Squares of card are 84 mm and 126 mm. They are cut into equal squares with nothing wasted, as large as possible. What is the side length of each small square?'
+    answer_label: 'The side length of each small square'
+    check:
+      kind: evaluate
+      expression: 'gcd(84, 126)'
+      answer: '42'
+    answer_text: '$42$ mm, using the highest common factor. The side length must divide both $84 = 2^2 \times 3 \times 7$ and $126 = 2 \times 3^2 \times 7$, so the largest choice is $2 \times 3 \times 7 = 42$ mm.'
+
+  - id: jc3-rev-factor-count
+    section: Review
+    tier: O
+    refs: ['N.1']
+    statement: 'How many factors does 252 have? Use its factorisation, not a list.'
+    answer_label: 'The number of factors of 252'
+    check:
+      kind: all
+      checks:
+        - kind: evaluate
+          expression: '2**2 * 3**2 * 7'
+          answer: '252'
+        - kind: evaluate
+          expression: '(2 + 1) * (2 + 1) * (1 + 1)'
+          answer: '18'
+    answer_text: '$18$ factors. From $252 = 2^2 \times 3^2 \times 7^1$, add $1$ to each index and multiply: $(2 + 1)(2 + 1)(1 + 1) = 3 \times 3 \times 2 = 18$.'
+
+  - id: jc3-rev-three-factors
+    section: Review
+    tier: O
+    refs: ['N.1']
+    statement: 'A number has exactly three factors. What can you say about it?'
+    answer_label: 'A number with exactly three factors'
+    check:
+      kind: all
+      checks:
+        - kind: evaluate
+          expression: '2 + 1'
+          answer: '3'
+        - kind: structured
+          requires: [identify-prime-square, list-three-factors]
+          concepts: [prime-square, factor-count]
+          points:
+            - id: identify-prime-square
+              text: 'The number must be the square of a prime number, p^2, because the only way a product of (index + 1) terms equals 3 is a single prime with index 2.'
+              concepts: [prime-square, factor-count]
+            - id: list-three-factors
+              text: 'Its three factors are 1, p and p^2, for example 4, 9, 25 or 49.'
+              concepts: [prime-square]
+    answer_text: 'It is the square of a prime number ($p^2$), such as $4, 9, 25$ or $49$. Its only three factors are $1$, $p$ and $p^2$.'
+
+  - id: jc3-rev-48-36
+    section: Review
+    tier: O
+    refs: ['N.1']
+    statement: 'Work out $2^4\times3^2$ and say whether the result is the highest common factor or the lowest common multiple of 48 and 36.'
+    answer_label: '2 to the fourth times 3 squared, and the HCF or LCM'
+    check:
+      kind: all
+      checks:
+        - kind: evaluate
+          expression: '2**4 * 3**2'
+          answer: '144'
+        - kind: evaluate
+          expression: 'lcm(48, 36)'
+          answer: '144'
+        - kind: evaluate
+          expression: 'gcd(48, 36)'
+          answer: '12'
+        - kind: structured
+          requires: [value, identify-lcm]
+          concepts: [larger-power, lcm]
+          points:
+            - id: value
+              text: '2^4 x 3^2 = 16 x 9 = 144.'
+              concepts: [larger-power]
+            - id: identify-lcm
+              text: 'Taking the larger power of each prime gives the lowest common multiple, and 144 is the LCM of 48 and 36; their HCF is only 12.'
+              concepts: [lcm]
+    answer_text: '$144$, which is the lowest common multiple of $48$ and $36$. Since $48 = 2^4 \times 3$ and $36 = 2^2 \times 3^2$, taking the larger power of each prime gives $2^4 \times 3^2 = 144$.'
+
+  - id: jc3-rev-bounds-explain
+    section: Review
+    tier: O
+    refs: ['N.1']
+    statement: 'Explain why the highest common factor of two numbers can never be larger than either number, and why the lowest common multiple can never be smaller.'
+    answer_label: 'Why the HCF and LCM are bounded'
+    check:
+      kind: structured
+      requires: [hcf-bound, lcm-bound]
+      concepts: [factor-divides, multiple-grows]
+      points:
+        - id: hcf-bound
+          text: 'Every factor of a positive whole number divides into it evenly, so no factor can exceed the number itself. A common factor divides both numbers, so it can never be larger than either.'
+          concepts: [factor-divides]
+        - id: lcm-bound
+          text: 'Every positive multiple of a number is 1, 2, 3 or more times that number, so it is at least as large as the number. A common multiple is a multiple of both numbers, so it can never be smaller than either.'
+          concepts: [multiple-grows]
+    answer_text: 'A factor divides a whole number evenly, so a common factor cannot exceed either number. A positive multiple is at least $1$ times the number, so a common multiple cannot be smaller than either number.'

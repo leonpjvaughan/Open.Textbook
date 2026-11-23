@@ -24,12 +24,8 @@ from typing import Any
 
 import yaml
 
-#: The C safe loader when the binding is present, otherwise the Python one. Both
-#: refuse to construct arbitrary Python objects, so a bank cannot execute code.
 Loader = getattr(yaml, "CSafeLoader", yaml.SafeLoader)
 
-#: True when the fast parser is in use. Exposed so a report can say which one ran
-#: rather than implying the build is as fast as the best case.
 USING_C_PARSER = Loader is not yaml.SafeLoader
 
 

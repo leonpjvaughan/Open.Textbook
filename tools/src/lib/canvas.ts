@@ -22,18 +22,8 @@
 
 export type Box = { x: number; y: number; width: number; height: number };
 
-/** Text must be inside; a mark only has to reach. */
 export type Ink = "text" | "mark";
 
-/**
- * The slack for a label, **as a fraction of its font size**.
- *
- * A `<text>`'s box is the em box, and its width is the environment's font: a runner
- * without the site's font reports the same label a few units wider than this machine
- * does, which is a different measurement of the same drawing. Half an em covers the
- * ascent and side bearing that no glyph reaches, and a label cut by more than that is a
- * label whose ink is cut.
- */
 export const TEXT_SLACK = 0.5;
 
 /**
@@ -46,7 +36,6 @@ export const TEXT_SLACK = 0.5;
  */
 export const STROKE_TOLERANCE = 1.6;
 
-/** How far `inner` reaches outside `outer`, in user units. Negative means inside. */
 export function overflow(inner: Box, outer: Box): number {
   return Math.max(
     outer.x - inner.x,
@@ -66,12 +55,6 @@ export function overlaps(a: Box, b: Box, tolerance = STROKE_TOLERANCE): boolean 
   );
 }
 
-/**
- * Is this element drawn outside the drawing?
- *
- * `over` is the worst overflow in user units, which is what a report needs to say —
- * "20 units below the frame" is actionable and "outside" is not.
- */
 export function outside(
   ink: Ink,
   box: Box,
@@ -80,7 +63,6 @@ export function outside(
 ): { outside: boolean; over: number } {
   const over = overflow(box, canvas);
   if (ink === "text") return { outside: over > tolerance, over };
-  // A mark that reaches the canvas is drawn, so the crop is working as intended, and
   // its own stroke is allowed for: see `STROKE_TOLERANCE`.
   return { outside: !overlaps(box, canvas, STROKE_TOLERANCE), over };
 }
@@ -88,7 +70,6 @@ export function outside(
 /** The element's own space into the SVG's, as `page.evaluate` reports it: `[a,b,c,d,e,f]`. */
 export type Matrix = [number, number, number, number, number, number];
 
-/** Transform a box through a matrix, returning the axis-aligned box it covers. */
 export function transformBox(box: Box, m: Matrix): Box {
   const [a, b, c, d, e, f] = m;
   const points = [

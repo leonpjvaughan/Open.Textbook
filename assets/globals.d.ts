@@ -14,28 +14,14 @@
  * book's tree, and this is not one of them.
  */
 
-/**
- * The store `engine/src/textbook/hooks/prefs.py` exposes on `window` before paint.
- *
- * Both preferences are the reader's and are origin-wide, so `assets/settings/settings.js`
- * writes them through this and never through a key of its own.
- */
 interface TextbookPrefs {
-  /** The origin-wide key holding the scheme, `textbooks:scheme`. */
   schemeKey: string;
-  /** The origin-wide key holding the bundle id, `textbooks:theme`. */
   themeKey: string;
-  /** Every bundle id `themes/` declares, in the menu order `collection.yaml` gives. */
   themes: string[];
-  /** The bundle applied when nothing is stored, or the stored id is unknown. */
   defaultTheme: string;
-  /** Read a key, `null` when storage is unavailable. */
   read: (key: string) => string | null;
-  /** Write a key; a storage failure is silent, because the page still works. */
   write: (key: string, value: string) => void;
-  /** Set the bundle and return the one actually applied. */
   setTheme: (value: string) => string;
-  /** Re-apply the stored bundle, and return it. */
   currentTheme: () => string;
 }
 
@@ -47,9 +33,7 @@ interface TextbookPrefs {
  * document and the panel can be moved into it.
  */
 interface DocumentPictureInPicture {
-  /** Open a picture-in-picture window, sized in CSS pixels. */
   requestWindow: (options?: { width?: number; height?: number }) => Promise<Window>;
-  /** The window this API has open, if any. */
   window: Window | null;
 }
 
@@ -65,9 +49,7 @@ interface DocumentPictureInPicture {
  * cast would be rejected.
  */
 interface ServiceWorkerScope {
-  /** Take over from the old worker now, rather than when every tab closes. */
   skipWaiting: () => Promise<void>;
-  /** The clients this worker is able to control, for `claim()`. */
   clients: Clients;
 }
 
@@ -81,21 +63,15 @@ interface ServiceWorkerScope {
  * Only the members `sw.js` uses are named, for the same reason as `ServiceWorkerScope`.
  */
 interface WorkerEvent extends Event {
-  /** Keep the worker alive until the promise settles. */
   waitUntil: (work: Promise<unknown>) => void;
 }
 
-/** A `fetch` event: the request the page made, and the answer to give it. */
 interface WorkerFetchEvent extends WorkerEvent {
-  /** The request being made. */
   request: Request;
-  /** Answer it, rather than letting the network do so. */
   respondWith: (response: Promise<Response>) => void;
 }
 
 interface Window {
-  /** Set by `prefs.py` before first paint; absent only if its script failed. */
   textbookPrefs?: TextbookPrefs;
-  /** Document Picture-in-Picture, in the browsers that have it. */
   documentPictureInPicture?: DocumentPictureInPicture;
 }

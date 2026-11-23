@@ -1,0 +1,243 @@
+# Mixed practice for the Chapter 6 Review.
+#
+# Fifteen questions, one record each, in the order they appear on the Review
+# page. Question 15 is Higher level. Every ratio simplification, sharing, direct
+# and inverse proportion, percentage change, speed and interleaved calculation
+# is proved by SymPy, with Question 11 proved by `sigfigs` from the `units`
+# oracle.
+#
+# Honest limit: Question 7 asks which amount is larger and the prompt asks the
+# reader to name the method first. SymPy proves the numerical comparison $4 > 3$
+# and every calculation, not the reader's choice-of-method wording.
+chapter: 6
+oracles: [sympy, units]
+symbols: {}
+
+problems:
+  - id: jc6-rev-simplify-ratio
+    section: Review
+    tier: O
+    refs: ['N.2']
+    statement: 'Write the ratio $45:60$ in its simplest form.'
+    answer_label: '45:60 in its simplest form'
+    check:
+      kind: all
+      checks:
+        - kind: evaluate
+          expression: 'gcd(45, 60)'
+          answer: '15'
+        - kind: evaluate
+          expression: '45/15'
+          answer: '3'
+        - kind: evaluate
+          expression: '60/15'
+          answer: '4'
+    answer_text: '$3:4$. Divide both parts by their highest common factor, $15$.'
+
+  - id: jc6-rev-divide-ratio
+    section: Review
+    tier: O
+    refs: ['N.2']
+    statement: 'Divide 84 in the ratio $3:4$.'
+    answer_label: '84 divided in the ratio 3:4'
+    check:
+      kind: all
+      checks:
+        - kind: evaluate
+          expression: '84 / (3 + 4) * 3'
+          answer: '36'
+        - kind: evaluate
+          expression: '84 / (3 + 4) * 4'
+          answer: '48'
+        - kind: evaluate
+          expression: '36 + 48'
+          answer: '84'
+    answer_text: '$36$ and $48$. There are $3 + 4 = 7$ parts, so one part is $84 \div 7 = 12$. Three parts give $36$ and four parts give $48$.'
+
+  - id: jc6-rev-direct-prop
+    section: Review
+    tier: O
+    refs: ['N.3']
+    statement: 'Five kilograms of rice cost 8 euro. Find the cost of twelve kilograms.'
+    answer_label: 'The cost of twelve kilograms'
+    check:
+      kind: evaluate
+      expression: '8 / 5 * 12'
+      answer: '19.2'
+    answer_text: '19.20 euro. By direct proportion, $1$ kg costs $8 \div 5 = 1.60$ euro, so $12$ kg cost $12 \times 1.60 = 19.20$ euro.'
+
+  - id: jc6-rev-inverse-prop
+    section: Review
+    tier: O
+    refs: ['N.3']
+    statement: 'Six workers take 10 hours to finish a job. How long would four workers take?'
+    answer_label: 'Four workers on the same job'
+    check:
+      kind: evaluate
+      expression: '(6 * 10) / 4'
+      answer: '15'
+    answer_text: '$15$ hours. This is inverse proportion: the job takes $6 \times 10 = 60$ worker-hours, so $4$ workers take $60 \div 4 = 15$ hours.'
+
+  - id: jc6-rev-price-rise
+    section: Review
+    tier: O
+    refs: ['N.3']
+    statement: 'A price rises from 60 euro to 66 euro. Find the absolute increase and the percentage increase.'
+    answer_label: 'The absolute and percentage increase'
+    check:
+      kind: all
+      checks:
+        - kind: evaluate
+          expression: '66 - 60'
+          answer: '6'
+        - kind: evaluate
+          expression: '(66 - 60) / 60 * 100'
+          answer: '10'
+    answer_text: 'Absolute increase: $6$ euro. Percentage increase: $10\%$. Divide the $6$ euro rise by the original $60$ euro: $\frac{6}{60} \times 100\% = 10\%$.'
+
+  - id: jc6-rev-speed
+    section: Review
+    tier: O
+    refs: ['N.3']
+    statement: 'A car travels 210 km in 2.5 hours. Find its average speed.'
+    answer_label: 'The average speed'
+    check:
+      kind: evaluate
+      expression: '210 / 2.5'
+      answer: '84'
+    answer_text: '$84$ km/h. Divide distance by time: $210 \div 2.5 = 84$ km/h.'
+
+  - id: jc6-rev-ratio-order
+    section: Review
+    tier: O
+    refs: ['N.2']
+    statement: 'Write the ratio $48:36$ in its simplest form, and say which of the two amounts is larger.'
+    answer_label: '48:36 simplified, and the larger amount'
+    check:
+      kind: all
+      checks:
+        - kind: evaluate
+          expression: 'gcd(48, 36)'
+          answer: '12'
+        - kind: evaluate
+          expression: '48/12'
+          answer: '4'
+        - kind: evaluate
+          expression: '36/12'
+          answer: '3'
+        - kind: compare
+          lhs: '4'
+          relation: '>'
+          rhs: '3'
+    answer_text: '$4:3$, and the first amount is larger. Dividing both parts by $12$ gives $4:3$, and $4 > 3$.'
+
+  - id: jc6-rev-recipe
+    section: Review
+    tier: O
+    refs: ['N.3']
+    statement: 'A recipe for 6 people uses 480 g of flour. How much flour is needed for 15 people?'
+    answer_label: 'Flour for 15 people'
+    check:
+      kind: evaluate
+      expression: '480 / 6 * 15'
+      answer: '1200'
+    answer_text: '$1200$ g (or $1.2$ kg). One person needs $480 \div 6 = 80$ g, so $15$ people need $15 \times 80 = 1200$ g.'
+
+  - id: jc6-rev-prize-share
+    section: Review
+    tier: O
+    refs: ['N.3']
+    statement: 'Eight people share a prize equally and receive 35 euro each. How much would each of fourteen people receive from the same prize?'
+    answer_label: 'The prize shared among fourteen'
+    check:
+      kind: evaluate
+      expression: '(8 * 35) / 14'
+      answer: '20'
+    answer_text: '$20$ euro each. This is inverse proportion: the total prize is $8 \times 35 = 280$ euro, and $280 \div 14 = 20$ euro.'
+
+  - id: jc6-rev-coach-share
+    section: Review
+    tier: O
+    refs: ['N.3']
+    statement: 'The coach costs 480 euro. If 40 students go, each pays 12 euro. Find what each pays if 60 students go.'
+    answer_label: 'The coach cost per student'
+    check:
+      kind: all
+      checks:
+        - kind: evaluate
+          expression: '40 * 12'
+          answer: '480'
+        - kind: evaluate
+          expression: '480 / 60'
+          answer: '8'
+    answer_text: '$8$ euro each. The total cost is fixed at $480$ euro, so sharing among $60$ students gives $480 \div 60 = 8$ euro.'
+
+  - id: jc6-rev-interleave-sf
+    section: Review
+    tier: O
+    refs: ['N.1']
+    statement: 'Round 0.007349 to 2 significant figures.'
+    answer_label: '0.007349 to 2 significant figures'
+    check:
+      kind: sigfigs
+      value: '0.007349'
+      figures: 2
+      answer: '0.0073'
+      convention: round-once
+    answer_text: '$0.0073$. Leading zeros do not count; the first two significant figures are $7$ and $3$, and the next digit is $4$.'
+
+  - id: jc6-rev-interleave-hcf
+    section: Review
+    tier: O
+    refs: ['N.1']
+    statement: 'Find the highest common factor of 84 and 126.'
+    answer_label: 'The HCF of 84 and 126'
+    check:
+      kind: evaluate
+      expression: 'gcd(84, 126)'
+      answer: '42'
+    answer_text: '$42$. Since $84 = 2^2 \times 3 \times 7$ and $126 = 2 \times 3^2 \times 7$, the HCF is $2 \times 3 \times 7 = 42$.'
+
+  - id: jc6-rev-interleave-powers
+    section: Review
+    tier: O
+    refs: ['N.1']
+    statement: 'Work out $2^{3}\times3^{2}$.'
+    answer_label: '2 cubed times 3 squared'
+    check:
+      kind: evaluate
+      expression: '2**3 * 3**2'
+      answer: '72'
+    answer_text: '$72$. Work out each power first: $2^3 = 8$ and $3^2 = 9$, then $8 \times 9 = 72$.'
+
+  - id: jc6-rev-interleave-standard
+    section: Review
+    tier: O
+    refs: ['N.1']
+    statement: 'Write 5200000 in standard form.'
+    answer_label: '5200000 in standard form'
+    check:
+      kind: evaluate
+      expression: '5.2 * 10**6'
+      answer: '5200000'
+    answer_text: '$5.2 \times 10^6$. The decimal point sits after the $5$, followed by $6$ places.'
+
+  - id: jc6-rev-ratio-difference
+    section: Review
+    tier: H
+    refs: ['N.2']
+    statement: 'Two amounts are in the ratio $7:4$, and their difference is 18 euro. Find the two amounts.'
+    answer_label: 'The two amounts in the ratio 7:4'
+    check:
+      kind: all
+      checks:
+        - kind: evaluate
+          expression: '18 / (7 - 4) * 7'
+          answer: '42'
+        - kind: evaluate
+          expression: '18 / (7 - 4) * 4'
+          answer: '24'
+        - kind: evaluate
+          expression: '42 - 24'
+          answer: '18'
+    answer_text: '$42$ euro and $24$ euro. The difference is $7 - 4 = 3$ parts, so one part is $18 \div 3 = 6$ euro. Then $7 \times 6 = 42$ and $4 \times 6 = 24$.'

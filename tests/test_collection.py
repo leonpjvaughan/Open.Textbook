@@ -118,7 +118,6 @@ def test_the_shared_files_have_one_copy_and_every_book_ships_it(book):
     for relative in scaffold.SHARED_FILES:
         assert (repo_root() / relative).is_file(), f"{relative} is not in assets/"
 
-    # No links anywhere in a book's tree: the whole point of the change.
     links = [p for p in (book.docs / "assets").rglob("*") if p.is_symlink()]
     assert not links, (
         f"{book.id}: {[str(p.relative_to(book.docs)) for p in links]} are symlinks. "
@@ -229,7 +228,6 @@ def test_two_books_keep_separate_identities(tmp_path):
     maths = ALL[0]
     physics = write("gcse-physics", "#b45309", "#f0a860")
 
-    # Distinct URLs and distinct identities, in both schemes.
     assert maths.deploy_path("higher") != physics.deploy_path("higher")
     assert maths.theme.for_scheme("default").accent != physics.theme.for_scheme(
         "default"
@@ -238,11 +236,9 @@ def test_two_books_keep_separate_identities(tmp_path):
         "slate"
     ).accent
 
-    # A book's card is tinted from its own pair, not from the house palette.
     css = scaffold.theme_css(physics)
     assert '#b45309' in css and '#f0a860' in css
 
-    # Neither variation leaks into the other.
     light, dark = physics.theme.variations
     assert light.scheme == "default" and dark.scheme == "slate"
     assert Theme.from_dict({}).for_scheme("slate").tokens == {}
@@ -282,8 +278,6 @@ def test_a_new_book_scaffolds_a_banks_directory(tmp_path):
     """
     import shutil
 
-    # A real book's data, copied so the scaffold writes into the temp tree rather
-    # than over the repository.
     source = books.book_by_id("gcse-maths").root
     for name in ("book.yaml", "curriculum.yaml", "sources.yaml"):
         shutil.copyfile(source / name, tmp_path / name)
@@ -316,9 +310,6 @@ def test_every_declared_shared_file_is_one_the_build_writes(tmp_path):
     out = tmp_path / "site"
     pipeline.build(book.id, book.default_profile.id, out=out)
 
-    # Where each shared file lands. Stylesheets are content-addressed, so their
-    # site name is not their repository name and the build says which it used; the
-    # rest are written under the name they are declared with.
     from support import written_assets
 
     written = written_assets((out / "assets" / "manifest.json").read_text())
@@ -387,16 +378,10 @@ def test_the_kit_barrel_imports_only_files_the_build_ships():
     from textbook import scaffold
     from textbook.book import repo_root
 
-    # Resolved, because `repo_root()` may sit behind a symlink and `is_relative_to`
-    # compares the text of the path rather than the file it points at.
     declared = {(repo_root() / relative).resolve() for relative in scaffold.SHARED_DIRS}
     kit = repo_root() / "assets" / "figures" / "kit.js"
     text = kit.read_text(encoding="utf-8")
 
-    # `export { … } from "…"` statements only, and across lines — a bare `from "…"`
-    # pattern also matches the prose in the barrel's own doc comment, which says that
-    # modules write `from "./kit.js"` and sent this test looking for a file that is
-    # not an import at all.
     imports = re.findall(r'^export\s*\{[^}]*\}\s*from\s+"(\.[^"]+)"', text, re.M | re.S)
     assert imports, "kit.js is a barrel and imports nothing, which cannot be right"
 

@@ -1,0 +1,316 @@
+# Mixed practice for the Chapter 6 Review (strand S3, momentum, impulse and
+# collisions).
+#
+# Twelve questions, one record each, in the order they appear on the Review page.
+# A momentum or an impulse is proved with its unit by `dimensions`; a pair of
+# velocities is proved by `system`, so the momentum and restitution equations are
+# solved together rather than the answer being asserted; a kinetic-energy loss is
+# proved by `evaluate`. Decimals are written as exact fractions in the CAS fields
+# so a binary rounding never decides whether an answer is right. Questions 10 and
+# 11 mix momentum with components and with a geometric series, and question 12
+# asks which chapter a question belongs to, so those carry a `structured`
+# component where a judgement is wanted.
+#
+# Honest limit: this proves the arithmetic of momentum, restitution and energy,
+# and the units of the momentum quantities. It cannot prove that the choice of a
+# one-dimensional model is right, it cannot check a sign convention, and it cannot
+# prove that a coefficient of restitution measured from heights applies to the
+# next bounce. A `structured` check proves only that a model answer contains its
+# declared steps and concepts, in order. Take $g = 9.8\ \text{m/s}^2$ and take the
+# original direction of travel as positive throughout.
+chapter: 6
+symbols:
+  v1: {real: true}
+  v2: {real: true}
+  vx: {real: true}
+  vy: {real: true}
+problems:
+  - id: r1-momentum
+    section: Review
+    tier: O
+    refs: [S3]
+    statement: 'A body of mass $5$ kg moves at $4$ m/s. Find its momentum.'
+    answer_label: The momentum
+    check:
+      kind: dimensions
+      expression: m * v
+      values:
+        m: {value: '5', unit: kg}
+        v: {value: '4', unit: m/s}
+      answer: {value: '20', unit: kg*m/s}
+    answer_text: >-
+      Momentum is mass times velocity: $p = mv = 5 \times 4 = 20\ \text{kg m/s}$.
+      The unit is a kilogram times a metre per second, which is the same as a
+      newton second.
+
+  - id: r1-impulse
+    section: Review
+    tier: O
+    refs: [S3]
+    statement: 'A force of $25$ N acts for $0.4$ s. Find the impulse.'
+    answer_label: The impulse
+    check:
+      kind: dimensions
+      expression: F * t
+      values:
+        F: {value: '25', unit: N}
+        t: {value: '0.4', unit: s}
+      answer: {value: '10', unit: kg*m/s}
+    answer_text: >-
+      Impulse is force times time: $J = F\Delta t = 25 \times 0.4 =
+      10\ \text{N s}$. A newton second is a kilogram metre per second, so the
+      impulse is also the $10\ \text{kg m/s}$ of momentum the force delivered.
+
+  - id: r1-lock-together
+    section: Review
+    tier: O
+    refs: [S3]
+    statement: >-
+      A trolley of mass $2$ kg moves at $4$ m/s to the right and meets a trolley
+      of mass $1$ kg moving at $2$ m/s to the left. They lock together. Find their
+      common velocity.
+    answer_label: The common velocity
+    check:
+      kind: evaluate
+      expression: '(2*4 - 1*2)/(2 + 1)'
+      answer: '2'
+    answer_text: >-
+      Take right as positive. The momentum before is
+      $2 \times 4 - 1 \times 2 = 6\ \text{kg m/s}$, and the total mass after is
+      $3$ kg. Momentum is conserved, so $3v = 6$ and $v = 2$ m/s to the right.
+      The trolley moving left still carries momentum, and its sign is what makes
+      the answer $2$ rather than a larger number.
+
+  - id: r1-recoil
+    section: Review
+    tier: O
+    refs: [S3]
+    statement: >-
+      A gun of mass $3$ kg fires a bullet of mass $0.02$ kg at $300$ m/s. Find
+      the recoil speed of the gun.
+    answer_label: The recoil speed
+    check:
+      kind: evaluate
+      expression: '(1/50)*300/3'
+      answer: '2'
+    answer_text: >-
+      Before firing, everything is at rest, so the total momentum is zero. After
+      firing the bullet carries $0.02 \times 300 = 6\ \text{kg m/s}$, so the gun
+      carries $-6\ \text{kg m/s}$ and its speed is $6 \div 3 = 2$ m/s in the
+      opposite direction. The gun is heavier, so it moves more slowly.
+
+  - id: r1-bounce-off-a-wall
+    section: Review
+    tier: O
+    refs: [S3]
+    statement: >-
+      A ball of mass $0.2$ kg hits a wall at $10$ m/s and rebounds at $6$ m/s.
+      Find the magnitude of the impulse on it.
+    answer_label: The magnitude of the impulse
+    check:
+      kind: evaluate
+      expression: '(1/5)*(10 + 6)'
+      answer: '16/5'
+    answer_text: >-
+      Take the incoming direction as positive. The velocity changes from
+      $+10$ m/s to $-6$ m/s, so the change in momentum is
+      $0.2 \times (-6 - 10) = -3.2\ \text{kg m/s}$. The magnitude of the impulse
+      is $3.2\ \text{N s}$, and it acts away from the wall. Adding the speeds is
+      correct here because the velocity has reversed its sign.
+
+  - id: r1-coefficient-from-heights
+    section: Review
+    tier: O
+    refs: [S3]
+    statement: >-
+      A ball is dropped from $1.8$ m and rebounds to $1.152$ m. Find the
+      coefficient of restitution.
+    answer_label: The coefficient of restitution
+    check:
+      kind: evaluate
+      expression: 'sqrt((144/125)/(9/5))'
+      answer: '4/5'
+    answer_text: >-
+      The speed after a fall of height $h$ is $\sqrt{2gh}$, so the coefficient of
+      restitution is $e = \sqrt{\dfrac{h_2}{h_1}}$ where $h_2$ is the rebound
+      height. Then $e = \sqrt{\dfrac{1.152}{1.8}} = \sqrt{0.64} = 0.8$. The
+      heights are in a ratio of $e^2$, because the kinetic energy falls by $e^2$.
+
+  - id: r1-two-velocities
+    section: Review
+    tier: O
+    refs: [S3]
+    statement: >-
+      A ball of mass $2$ kg moving at $8$ m/s hits a stationary ball of mass $2$
+      kg. The coefficient of restitution is $0.5$. Find the velocity of each ball.
+    answer_label: The two velocities
+    check:
+      kind: system
+      equations: ['2*8 = 2*v1 + 2*v2', 'v2 - v1 = (1/2)*8']
+      variables: [v1, v2]
+      answer: [[2, 6]]
+    answer_text: >-
+      Momentum gives $2v_1 + 2v_2 = 16$, so $v_1 + v_2 = 8$. Restitution gives
+      $v_2 - v_1 = 0.5 \times 8 = 4$. Adding the two equations gives
+      $2v_2 = 12$, so $v_2 = 6$ m/s and $v_1 = 2$ m/s. Both balls move forward,
+      and the struck ball moves faster, as it must because it has the same mass.
+
+  - id: r1-energy-lost
+    section: Review
+    tier: O
+    refs: [S3]
+    statement: >-
+      A ball of mass $2$ kg moving at $6$ m/s hits a stationary ball of mass $2$
+      kg and they lock together. Find the kinetic energy lost.
+    answer_label: The kinetic energy lost
+    check:
+      kind: all
+      checks:
+        - kind: evaluate
+          expression: '2*6/(2 + 2)'
+          answer: '3'
+        - kind: evaluate
+          expression: '0.5*2*6**2 - 0.5*(2 + 2)*3**2'
+          answer: '18'
+    answer_text: >-
+      Momentum is conserved, so the common velocity is
+      $\dfrac{2 \times 6}{4} = 3$ m/s. The kinetic energy before is
+      $\frac{1}{2} \times 2 \times 6^2 = 36$ J, and after it is
+      $\frac{1}{2} \times 4 \times 3^2 = 18$ J. The loss is $18$ J, which goes
+      into sound, heat and the deformation that keeps the balls together.
+
+  - id: r1-elastic-collision
+    section: Review
+    tier: O
+    refs: [S3]
+    statement: >-
+      A ball of mass $1$ kg moving at $4$ m/s collides elastically with a
+      stationary ball of mass $3$ kg. Find the velocity of each ball, and check
+      the kinetic energy.
+    answer_label: The velocities, and the energy check
+    check:
+      kind: all
+      checks:
+        - kind: system
+          equations: ['1*4 = 1*v1 + 3*v2', 'v2 - v1 = 4']
+          variables: [v1, v2]
+          answer: [[-2, 2]]
+        - kind: evaluate
+          expression: '0.5*1*4**2 - (0.5*1*2**2 + 0.5*3*2**2)'
+          answer: '0'
+    answer_text: >-
+      Momentum gives $v_1 + 3v_2 = 4$. An elastic collision has $e = 1$, so
+      $v_2 - v_1 = 4$. Solving gives $v_1 = -2$ m/s and $v_2 = 2$ m/s: the
+      light ball rebounds, and the heavy one moves forward. The energy before is
+      $\frac{1}{2} \times 1 \times 16 = 8$ J; after, it is
+      $\frac{1}{2} \times 1 \times 4 + \frac{1}{2} \times 3 \times 4 = 8$ J, so
+      none is lost.
+
+  - id: r1-two-dimensions
+    section: Review
+    tier: H
+    refs: [S3]
+    statement: >-
+      A ball of mass $2$ kg moves at $6$ m/s along the $x$-axis and hits a
+      stationary ball of mass $1$ kg. After the collision the $2$ kg ball moves at
+      $3$ m/s at $60^\circ$ to the $x$-axis. Find the speed and direction of the
+      $1$ kg ball. Which two sections does this question join together?
+    answer_label: The speed, the direction and the two sections
+    check:
+      kind: all
+      checks:
+        - kind: system
+          equations:
+            - '2*6 = 2*3*(1/2) + 1*vx'
+            - '0 = 2*3*(sqrt(3)/2) + 1*vy'
+          variables: [vx, vy]
+          answer: [[9, -3*sqrt(3)]]
+        - kind: evaluate
+          expression: 'sqrt(9**2 + (3*sqrt(3))**2)'
+          answer: '6*sqrt(3)'
+        - kind: approx
+          value: 'atan(3*sqrt(3)/9)*180/pi'
+          target: '30'
+          tolerance: '0.01'
+        - kind: structured
+          requires: [two-sections]
+          concepts: [conservation-of-momentum, resolving-velocities]
+          points:
+            - id: two-sections
+              text: >-
+                Conservation of momentum from Section 6.2 supplies an equation in
+                each direction, and resolving velocities into components from
+                Section 6.6 makes those equations possible.
+              concepts: [conservation-of-momentum, resolving-velocities]
+    answer_text: >-
+      Momentum is conserved in each direction. Along $x$:
+      $2 \times 6 = 2 \times 3\cos 60^\circ + v_x$, so $12 = 3 + v_x$ and
+      $v_x = 9$ m/s. Across $x$ the total is zero before, so
+      $0 = 2 \times 3\sin 60^\circ + v_y$ and $v_y = -3\sqrt{3}$ m/s. The speed is
+      $\sqrt{81 + 27} = \sqrt{108} = 10.4$ m/s, and
+      $\tan\theta = \dfrac{3\sqrt{3}}{9}$, so the ball moves at $30^\circ$ below
+      the $x$-axis. The question joins conservation of momentum in two dimensions
+      (Section 6.6) to the resolution of velocities into components.
+
+  - id: r1-rebounds
+    section: Review
+    tier: H
+    refs: [S3]
+    statement: >-
+      A ball is dropped from a height of $4$ m with coefficient of restitution
+      $0.5$. Find the height after the second bounce, and the total distance it
+      travels.
+    answer_label: The second height and the total distance
+    check:
+      kind: all
+      checks:
+        - kind: evaluate
+          expression: '4*(1/2)**4'
+          answer: '1/4'
+        - kind: evaluate
+          expression: '4 + 2*4*(1/4)/(1 - 1/4)'
+          answer: '20/3'
+    answer_text: >-
+      Each bounce multiplies the height by $e^2 = 0.25$. After the first bounce
+      the ball reaches $4 \times 0.25 = 1$ m, and after the second it reaches
+      $1 \times 0.25 = 0.25$ m. The total distance is the first fall plus twice
+      every rise: $4 + 2(1 + 0.25 + 0.0625 + \ldots)$. The bracket is a geometric
+      series with first term $1$ and ratio $0.25$, so it sums to
+      $\dfrac{1}{1 - 0.25} = \dfrac{4}{3}$, and the total is
+      $4 + \dfrac{8}{3} = 6.67$ m.
+
+  - id: r1-vertical-throw
+    section: Review
+    tier: O
+    refs: [S3]
+    statement: >-
+      A ball is thrown vertically upwards at $14$ m/s. Find the greatest height
+      it reaches. Which chapter does this question belong to, and why?
+    answer_label: The greatest height and the chapter
+    check:
+      kind: all
+      checks:
+        - kind: evaluate
+          expression: '14**2/(2*(49/5))'
+          answer: '10'
+        - kind: structured
+          requires: [greatest-height, chapter]
+          concepts: [equations-of-motion, momentum]
+          points:
+            - id: greatest-height
+              text: >-
+                At the top the velocity is zero, so 0 = 14^2 - 2 x 9.8 x s gives
+                s = 10 m.
+              concepts: [equations-of-motion]
+            - id: chapter
+              text: >-
+                The question belongs to Chapter 3. It asks where the ball goes,
+                using one equation of motion. Momentum and impulse from this
+                chapter would answer a collision question, not a free flight.
+              concepts: [equations-of-motion, momentum]
+    answer_text: >-
+      At the top the velocity is zero, so $v^2 = u^2 + 2as$ gives
+      $0 = 14^2 - 2 \times 9.8 \times s$ and $s = 10$ m. The question belongs to
+      Chapter 3, because it asks where the ball goes and one equation of motion
+      answers it. Nothing collides and no mass matters, so momentum and impulse
+      from this chapter play no part.

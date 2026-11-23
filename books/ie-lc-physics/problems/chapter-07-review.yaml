@@ -1,0 +1,329 @@
+# Mixed practice for the Chapter 7 Review.
+#
+# Ten questions, one record each, in the order they appear on the Review page.
+# Every record that asks for a number pairs a `dimensions` check, which proves the
+# magnitude and the unit, with a `sigfigs` check, which proves the rounding to the
+# figures the data support. An angular velocity or a period built on pi is checked
+# by `approx` and then rounded by `sigfigs` with a stated tolerance, because the
+# exact value is irrational. Questions 4, 5, 6 and 10 ask for a judgement or for
+# the source of the method as well as a number, so each carries a `structured`
+# component.
+#
+# Honest limit: this proves arithmetic, dimensions and the declared conventions,
+# not physics. A `structured` check proves only that a model answer contains its
+# declared steps and concepts, in order. Question 10 is an explanation with no
+# number in it at all: the verifier can prove that both ideas are present, and
+# nothing about whether they are right.
+#
+# The data are read as the Review page states them: g is 9.8 m/s^2, the Earth's
+# mass is 5.97e24 kg and G is 6.67e-11 N m^2 kg^-2. Question 5's satellite is at
+# the geostationary radius, 4.22e7 m from the Earth's centre.
+chapter: 7
+problems:
+  - id: c7-r1-wheel
+    section: Review
+    tier: O
+    refs: ['1.6']
+    statement: 'A wheel turns $240$ times in $60\,\text{s}$. Calculate its frequency, its period and its angular velocity.'
+    answer_label: 'The frequency, the period and the angular velocity'
+    check:
+      kind: all
+      checks:
+        - kind: dimensions
+          expression: N / t
+          values:
+            N: {value: '240'}
+            t: {value: '60', unit: s}
+          answer: {value: '4.0', unit: Hz}
+        - kind: sigfigs
+          value: '240 / 60'
+          figures: 2
+          answer: '4.0'
+          convention: round-once
+        - kind: dimensions
+          expression: 1 / f
+          values:
+            f: {value: '4.0', unit: Hz}
+          answer: {value: '0.25', unit: s}
+        - kind: sigfigs
+          value: '1 / 4'
+          figures: 2
+          answer: '0.25'
+          convention: round-once
+        - kind: approx
+          value: '2 * pi * 4'
+          target: '25.13'
+          tolerance: '0.01'
+        - kind: sigfigs
+          value: '2 * pi * 4'
+          figures: 2
+          answer: '25'
+          tolerance: '0.01'
+          convention: round-once
+    answer_text: 'The frequency is $f = \dfrac{N}{t} = \dfrac{240}{60} = 4.0\,\text{Hz}$. The period is $T = \dfrac{1}{f} = \dfrac{1}{4.0} = 0.25\,\text{s}$. The angular velocity is $\omega = 2\pi f = 2\pi \times 4.0 = 25\,\text{rad/s}$ to two significant figures. The count $240$ and the time $60\,\text{s}$ are the only data, so the answers carry two figures. One turn is $2\pi$ radians, which is why the $2\pi$ appears.'
+
+  - id: c7-r2-bend-acceleration
+    section: Review
+    tier: O
+    refs: ['1.6']
+    statement: 'A car goes round a bend of radius $40\,\text{m}$ at $12\,\text{m/s}$. Calculate its centripetal acceleration.'
+    answer_label: 'The centripetal acceleration'
+    check:
+      kind: all
+      checks:
+        - kind: dimensions
+          expression: v**2 / r
+          values:
+            v: {value: '12', unit: m/s}
+            r: {value: '40', unit: m}
+          answer: {value: '3.6', unit: m/s^2}
+        - kind: sigfigs
+          value: '12**2 / 40'
+          figures: 2
+          answer: '3.6'
+          convention: round-once
+    answer_text: 'The acceleration is $a = \dfrac{v^2}{r} = \dfrac{12^2}{40} = \dfrac{144}{40} = 3.6\,\text{m/s}^2$. Squaring the speed gives $\text{m}^2/\text{s}^2$, and dividing by the radius in metres leaves $\text{m/s}^2$. The acceleration points towards the centre of the bend, so the force that causes it must point that way too.'
+
+  - id: c7-r3-tension
+    section: Review
+    tier: O
+    refs: ['1.6']
+    statement: 'A $0.30\,\text{kg}$ ball on a string of length $0.50\,\text{m}$ moves at $6.0\,\text{m/s}$. Calculate the tension in the string.'
+    answer_label: 'The tension'
+    check:
+      kind: all
+      checks:
+        - kind: dimensions
+          expression: m * v**2 / r
+          values:
+            m: {value: '0.30', unit: kg}
+            v: {value: '6.0', unit: m/s}
+            r: {value: '0.50', unit: m}
+          answer: {value: '21.6', unit: N}
+        - kind: sigfigs
+          value: '0.30 * 6.0**2 / 0.50'
+          figures: 2
+          answer: '22'
+          convention: round-once
+    answer_text: 'The string supplies the centripetal force, so $F = \dfrac{mv^2}{r} = \dfrac{0.30 \times 36}{0.50} = 21.6\,\text{N}$, which is $22\,\text{N}$ to two significant figures. Every one of the three data carries two figures, so the answer does too.'
+
+  - id: c7-r4-banked-bend
+    section: Review
+    tier: O
+    refs: ['1.6']
+    statement: 'A bend of radius $60\,\text{m}$ is banked so that no friction is needed at $20\,\text{m/s}$. Calculate the banking angle. Which equation did you use, and why does the mass of the car not appear in it?'
+    answer_label: 'The banking angle, the equation, and why the mass cancels'
+    check:
+      kind: all
+      checks:
+        - kind: approx
+          value: 'atan((20**2) / (60 * 9.8)) * 180 / pi'
+          target: '34.23'
+          tolerance: '0.05'
+        - kind: sigfigs
+          value: 'atan((20**2) / (60 * 9.8)) * 180 / pi'
+          figures: 2
+          answer: '34'
+          tolerance: '0.05'
+          convention: round-once
+        - kind: structured
+          requires: [state-angle, name-equation, why-mass-cancels]
+          concepts: [banking-angle, normal-component, mass-cancels]
+          points:
+            - id: state-angle
+              text: 'The banking angle is 34 degrees to the horizontal, to two significant figures.'
+              concepts: [banking-angle]
+            - id: name-equation
+              text: 'The equation is tan theta = v squared over r g, which comes from dividing the horizontal component of the normal force by the vertical one: N sin theta = m v squared over r and N cos theta = m g.'
+              concepts: [banking-angle, normal-component]
+            - id: why-mass-cancels
+              text: 'The mass appears on both sides, once in the centripetal force and once in the weight, so it divides out. A heavier car needs a larger force, and the same slope supplies it, so the safe speed of a banked bend is the same for every vehicle.'
+              concepts: [mass-cancels]
+    answer_text: 'With no friction, the vertical component of the normal force balances the weight and the horizontal component supplies the centripetal force: $N\cos\theta = mg$ and $N\sin\theta = \dfrac{mv^2}{r}$. Dividing gives $\tan\theta = \dfrac{v^2}{rg} = \dfrac{20^2}{60 \times 9.8} = 0.68$, so $\theta = 34^\circ$ to two significant figures. The mass is in both equations, so it cancels before the angle is found. A heavier car needs a larger force to hold its path, and the same slope supplies that larger force, so every vehicle has the same design speed on this bend.'
+
+  - id: c7-r5-satellite
+    section: Review
+    tier: O
+    refs: ['1.6']
+    statement: 'A satellite orbits $4.22 \times 10^{7}\,\text{m}$ from the centre of the Earth. Calculate its speed and its period. Which earlier section does this method come from?'
+    answer_label: 'The speed, the period and the section the method comes from'
+    check:
+      kind: all
+      checks:
+        - kind: dimensions
+          expression: sqrt(G * M / r)
+          values:
+            G: {value: '6.67e-11', unit: N m^2 kg^-2}
+            M: {value: '5.97e24', unit: kg}
+            r: {value: '4.22e7', unit: m}
+          answer: {value: '3071.7', unit: m/s}
+          tolerance: '1'
+        - kind: sigfigs
+          value: 'sqrt(6.67e-11 * 5.97e24 / 4.22e7)'
+          figures: 2
+          answer: '3.1e3'
+          tolerance: '1'
+          convention: round-once
+        - kind: approx
+          value: '2 * pi * 4.22e7 / sqrt(6.67e-11 * 5.97e24 / 4.22e7)'
+          target: '8.63e4'
+          tolerance: '50'
+        - kind: sigfigs
+          value: '2 * pi * 4.22e7 / sqrt(6.67e-11 * 5.97e24 / 4.22e7)'
+          figures: 2
+          answer: '8.6e4'
+          tolerance: '50'
+          convention: round-once
+        - kind: structured
+          requires: [state-speed, state-period, name-section]
+          concepts: [gravity-as-centripetal, orbital-period, orbits-and-satellites]
+          points:
+            - id: state-speed
+              text: 'The speed is 3.1 x 10^3 m/s, about 3.1 km/s.'
+              concepts: [gravity-as-centripetal]
+            - id: state-period
+              text: 'The period is 8.6 x 10^4 s, which is about 24 hours.'
+              concepts: [orbital-period]
+            - id: name-section
+              text: 'The method comes from Chapter 6, section 6.4, Orbits and satellites, where gravity was set equal to the centripetal force.'
+              concepts: [orbits-and-satellites]
+    answer_text: 'Gravity supplies the centripetal force, so $\dfrac{GMm}{r^2} = \dfrac{mv^2}{r}$ and $v = \sqrt{\dfrac{GM}{r}} = \sqrt{\dfrac{6.67 \times 10^{-11} \times 5.97 \times 10^{24}}{4.22 \times 10^{7}}} = 3.1 \times 10^{3}\,\text{m/s}$. The period is $T = \dfrac{2\pi r}{v} = \dfrac{2\pi \times 4.22 \times 10^{7}}{3.1 \times 10^{3}} = 8.6 \times 10^{4}\,\text{s}$, which is about 24 hours. The method comes from Chapter 6, section 6.4, Orbits and satellites: set gravity equal to the centripetal force and the satellite mass cancels. A period of one day at this radius is why it is the geostationary orbit.'
+
+  - id: c7-r6-second-stone
+    section: Review
+    tier: O
+    refs: ['1.6']
+    statement: 'A $0.20\,\text{kg}$ stone on a string of length $0.40\,\text{m}$ moves at $5.0\,\text{m/s}$. Calculate the tension. Is it larger or smaller than your answer to question 3, and why?'
+    answer_label: 'The tension, and the comparison with question 3'
+    check:
+      kind: all
+      checks:
+        - kind: dimensions
+          expression: m * v**2 / r
+          values:
+            m: {value: '0.20', unit: kg}
+            v: {value: '5.0', unit: m/s}
+            r: {value: '0.40', unit: m}
+          answer: {value: '12.5', unit: N}
+        - kind: sigfigs
+          value: '0.20 * 5.0**2 / 0.40'
+          figures: 2
+          answer: '13'
+          convention: round-once
+        - kind: structured
+          requires: [state-tension, compare, why]
+          concepts: [smaller-force, speed-squared, radius]
+          points:
+            - id: state-tension
+              text: 'The tension is 12.5 N, which is 13 N to two significant figures.'
+              concepts: [smaller-force]
+            - id: compare
+              text: 'It is smaller than the 22 N of question 3.'
+              concepts: [smaller-force]
+            - id: why
+              text: 'The speed enters squared, so dropping from 6.0 m/s to 5.0 m/s cuts the v squared term from 36 to 25. The mass also falls by a third. The shorter string raises the force, because the radius is in the denominator, but not by enough to outweigh the other two changes.'
+              concepts: [speed-squared, radius]
+    answer_text: 'The tension is $F = \dfrac{mv^2}{r} = \dfrac{0.20 \times 25}{0.40} = 12.5\,\text{N}$, which is $13\,\text{N}$ to two significant figures. That is smaller than the $22\,\text{N}$ of question 3. The speed enters squared, so dropping from $6.0\,\text{m/s}$ to $5.0\,\text{m/s}$ cuts $v^2$ from $36$ to $25$, and the mass falls from $0.30\,\text{kg}$ to $0.20\,\text{kg}$. The shorter string does raise the force, because the radius is in the denominator, but not by enough to outweigh the smaller speed and mass.'
+
+  - id: c7-r7-maximum-speed
+    section: Review
+    tier: O
+    refs: ['1.6']
+    statement: 'A car of mass $1100\,\text{kg}$ goes round a bend of radius $55\,\text{m}$. The friction force is $7000\,\text{N}$. Calculate the maximum speed of the car.'
+    answer_label: 'The maximum speed'
+    check:
+      kind: all
+      checks:
+        - kind: dimensions
+          expression: sqrt(F * r / m)
+          values:
+            F: {value: '7000', unit: N}
+            r: {value: '55', unit: m}
+            m: {value: '1100', unit: kg}
+          answer: {value: '18.708', unit: m/s}
+          tolerance: '0.001'
+        - kind: sigfigs
+          value: 'sqrt(7000 * 55 / 1100)'
+          figures: 2
+          answer: '19'
+          tolerance: '0.001'
+          convention: round-once
+    answer_text: 'Friction supplies the centripetal force, so $\dfrac{mv^2}{r} = F$ gives $v = \sqrt{\dfrac{Fr}{m}} = \sqrt{\dfrac{7000 \times 55}{1100}} = \sqrt{350} = 18.7\,\text{m/s}$, which is $19\,\text{m/s}$ to two significant figures. That is about $68\,\text{km/h}$. Above that speed the friction available is too small for the bend and the car drifts outwards.'
+
+  - id: c7-r8-bucket
+    section: Review
+    tier: O
+    refs: ['1.6']
+    statement: 'A bucket of water is swung in a vertical circle of radius $0.60\,\text{m}$. Calculate the minimum speed at the top.'
+    answer_label: 'The minimum speed at the top'
+    check:
+      kind: all
+      checks:
+        - kind: dimensions
+          expression: sqrt(g * r)
+          values:
+            g: {value: '9.8', unit: m/s^2}
+            r: {value: '0.60', unit: m}
+          answer: {value: '2.4249', unit: m/s}
+          tolerance: '0.001'
+        - kind: sigfigs
+          value: 'sqrt(9.8 * 0.60)'
+          figures: 2
+          answer: '2.4'
+          tolerance: '0.001'
+          convention: round-once
+    answer_text: 'At the top of the circle gravity points towards the centre, so it helps to supply the centripetal force. The water stays in the bucket when the bucket pushes with no force at all, and then the weight alone is the centripetal force: $mg = \dfrac{mv^2}{r}$, so $v = \sqrt{gr} = \sqrt{9.8 \times 0.60} = 2.4\,\text{m/s}$. The mass cancels, so the answer is the same for any mass of water. Below this speed the water leaves the bucket.'
+
+  - id: c7-r9-rolling-wheel
+    section: Review
+    tier: O
+    refs: ['1.6']
+    statement: 'A wheel of radius $0.25\,\text{m}$ rolls with a rim speed of $4.0\,\text{m/s}$. Calculate its angular velocity and its period.'
+    answer_label: 'The angular velocity and the period'
+    check:
+      kind: all
+      checks:
+        - kind: dimensions
+          expression: v / r
+          values:
+            v: {value: '4.0', unit: m/s}
+            r: {value: '0.25', unit: m}
+          answer: {value: '16', unit: s^-1}
+        - kind: sigfigs
+          value: '4.0 / 0.25'
+          figures: 2
+          answer: '16'
+          convention: round-once
+        - kind: approx
+          value: '2 * pi * 0.25 / 4'
+          target: '0.3927'
+          tolerance: '0.0001'
+        - kind: sigfigs
+          value: '2 * pi * 0.25 / 4'
+          figures: 2
+          answer: '0.39'
+          tolerance: '0.001'
+          convention: round-once
+    answer_text: 'The rim speed and the angular velocity are linked by $v = r\omega$, so $\omega = \dfrac{v}{r} = \dfrac{4.0}{0.25} = 16\,\text{rad/s}$. The period is the time for one turn, $T = \dfrac{2\pi}{\omega} = \dfrac{2\pi \times 0.25}{4.0} = 0.39\,\text{s}$ to two significant figures. A radian is a ratio of two lengths, so it carries no unit of its own and $\text{rad/s}$ has the dimensions of $1/\text{s}$.'
+
+  - id: c7-r10-why-accelerating
+    section: Review
+    tier: O
+    refs: ['1.6']
+    statement: 'Explain why an object moving in a circle at a constant speed is accelerating, and why there is no outward force on it.'
+    answer_label: 'Why the motion is an acceleration, and why nothing pushes outwards'
+    check:
+      kind: structured
+      requires: [direction-changes, outward-feeling, no-outward-force]
+      concepts: [velocity-is-a-vector, centripetal-acceleration, inertia]
+      points:
+        - id: direction-changes
+          text: 'Velocity is a vector, so a change of direction is a change of velocity even when the speed stays the same. The velocity vector turns towards the centre all the time, so there is an acceleration towards the centre, of size v squared over r.'
+          concepts: [velocity-is-a-vector, centripetal-acceleration]
+        - id: outward-feeling
+          text: 'The outward feeling in a turning car is your own inertia: your body tends to carry on in a straight line, and the seat or the door pushes you inwards to keep you turning. The push you feel is the inward one.'
+          concepts: [inertia]
+        - id: no-outward-force
+          text: 'No outward force acts on the object. Only the inward force is real: tension, friction, gravity or a normal force. If a real outward force did act, the resultant would point outwards and the object would leave the circle instead of going round it.'
+          concepts: [centripetal-acceleration, inertia]
+    answer_text: 'Velocity is a vector, so a change of direction is a change of velocity even when the speed stays the same. The velocity turns towards the centre at every instant, so the object accelerates towards the centre, with $a = \dfrac{v^2}{r}$. The outward feeling is your own inertia: your body tends to carry on in a straight line, and the seat, the door or the string pushes you inwards to keep you turning. No outward force acts on you. Only the inward force is real. If a real outward force acted, the resultant would point outwards and the object would leave the circle instead of travelling round it.'

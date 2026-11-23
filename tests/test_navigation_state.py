@@ -37,7 +37,6 @@ def block(source: str, selector: str) -> str:
     return match.group(1)
 
 
-# --- the list of sections states where the reader is ---------------------------
 
 
 def test_the_contents_list_declares_itself_a_scrollspy():
@@ -108,8 +107,6 @@ def test_the_script_mirrors_the_visual_state_into_the_accessibility_tree():
         "the script does not ask whether the platform can do this itself"
     )
     assert "new IntersectionObserver" in page, "there is no fallback where it cannot"
-    # Nothing is hidden and no link is disabled with scripting off: the whole state is
-    # an attribute on a link that already works.
     scrollspy = page[page.index("[data-scrollspy]") :]
     scrollspy = scrollspy[: scrollspy.index("</script>")]
     assert ".hidden" not in scrollspy and "hidden =" not in scrollspy, (
@@ -117,7 +114,6 @@ def test_the_script_mirrors_the_visual_state_into_the_accessibility_tree():
     )
 
 
-# --- the reading progress line -------------------------------------------------
 
 
 def test_the_progress_line_is_inert_markup():
@@ -160,7 +156,6 @@ def test_the_progress_line_is_driven_by_the_scroller_and_gated_everywhere():
     )
 
 
-# --- the drawer that starts where the reader is --------------------------------
 
 
 def test_the_filter_is_an_enhancement_not_the_route():

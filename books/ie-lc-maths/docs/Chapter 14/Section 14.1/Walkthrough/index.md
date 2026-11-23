@@ -129,7 +129,7 @@ first border copy is the tile translated by $\binom{5}{0}$.
 
 Work out the three image corners. The vector has a horizontal part of 5 and a vertical
 part of 0, so the tile slides right and stays at the same height. Keep the three image
-corners. Section 14.5 uses them to decide whether this copy is congruent to the original.
+corners so you can compare this copy with the original later.
 
 ## You should now be able to
 

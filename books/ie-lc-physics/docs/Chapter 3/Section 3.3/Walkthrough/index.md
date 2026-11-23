@@ -135,8 +135,11 @@ Back to the chapter problem. The lift speeds up from rest to $2.4\,\text{m/s}$ i
 
 Calculate the change in the passenger's momentum, and then the resultant force on
 her. Check your resultant force against the scale reading you found in Section 3.2:
-the contact force minus the weight should give the same answer. Keep this working.
-Section 3.5 uses the same method on two objects joined together.
+the contact force minus the weight should give the same answer.
+
+<!-- tier:h -->
+Keep this working. Section 3.5 uses the same method on two objects joined together.
+<!-- /tier:h -->
 
 ## You should now be able to
 

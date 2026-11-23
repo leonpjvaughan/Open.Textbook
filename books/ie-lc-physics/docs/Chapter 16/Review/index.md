@@ -75,66 +75,9 @@ Work through these without notes. For each one, decide **which relationship
 applies** and say why. Four of them come from earlier chapters, and the last one
 asks you to choose between two relations that look similar.
 
-1. A coil of area 0.025 m² lies at right angles to a field of flux density 0.40 T.
-   Calculate the flux through it.
-2. A coil of 80 turns has a flux change of 0.015 Wb through each turn in 0.050 s.
-   Calculate the average induced emf.
-3. A bar magnet is pushed towards a coil, and then pulled away. Explain why the
-   induced current reverses direction.
-4. A generator turns at 25 revolutions each second and its peak output is 12 V.
-   Calculate the period of the output and its r.m.s. value.
-5. A transformer has 400 turns on the primary and 100 turns on the secondary. The
-   primary voltage is 240 V. Calculate the secondary voltage.
-6. An alternating current has a peak value of 6.0 A and flows through a 5.0 Ω
-   resistor. Calculate the r.m.s. current and the average power transferred to the
-   resistor.
-7. A 6.0 Ω resistor and a 3.0 Ω resistor are connected in parallel across a 12 V
-   supply. Calculate the combined resistance, the current from the supply and the
-   total power.
-8. A straight wire of length 0.30 m carries a current of 2.5 A at right angles to
-   a field of flux density 0.20 T. Calculate the force on the wire.
-9. A spring of spring constant 250 N/m is stretched by 0.12 m. Calculate the energy
-   stored in it.
-10. A transformer has a primary voltage of 240 V, a primary current of 2.0 A and
-    500 turns on the primary. The secondary has 50 turns. Calculate the secondary
-    voltage and the secondary current.
+:::problems chapter-16-review
 
-<details markdown="1">
-<summary>Answers and feedback</summary>
-
-1. $\Phi = BA = 0.40 \times 0.025 = 0.010\,\text{Wb}$. Use $\Phi = BA$: the
-   question gives a flux density and an area, and asks for a flux.
-2. $E = N\dfrac{\Delta\Phi}{\Delta t} = 80 \times \dfrac{0.015}{0.050} = 80 \times
-   0.30 = 24\,\text{V}$. Use Faraday's law, because the flux changes in a time.
-3. When the magnet approaches, the flux increases, so the induced current opposes
-   the increase. When the magnet moves away, the flux decreases, so the induced
-   current opposes the decrease. Opposing an increase and opposing a decrease need
-   opposite currents, so the direction reverses.
-4. $T = \dfrac{1}{25} = 0.040\,\text{s}$, and $V_{\text{rms}} =
-   \dfrac{12}{1.414} = 8.5\,\text{V}$. Use the frequency for the period, then the
-   r.m.s. relation for the voltage.
-5. $V_s = V_p \times \dfrac{N_s}{N_p} = 240 \times \dfrac{100}{400} = 60\,\text{V}$.
-   Use the transformer equation: the turns ratio fixes the voltage ratio.
-6. $I_{\text{rms}} = \dfrac{6.0}{1.414} = 4.2\,\text{A}$, and $P = I_{\text{rms}}^2R
-   = 4.2^2 \times 5.0 = 17.64 \times 5.0 = 88\,\text{W}$. Use the r.m.s. current in
-   the power equation, never the peak.
-7. The combined resistance is $\dfrac{1}{R} = \dfrac{1}{6.0} + \dfrac{1}{3.0} =
-   \dfrac{1}{6.0} + \dfrac{2}{6.0} = \dfrac{3}{6.0}$, so $R = 2.0\,\Omega$. The
-   current is $I = \dfrac{12}{2.0} = 6.0\,\text{A}$, and the total power is
-   $P = VI = 12 \times 6.0 = 72\,\text{W}$. Check the parallel answer: 2.0 Ω is
-   smaller than the smallest resistor, 3.0 Ω.
-8. $F = BIL = 0.20 \times 2.5 \times 0.30 = 0.15\,\text{N}$. Use the force
-   equation from Chapter 15, because the wire carries a current in a field.
-9. $E = \dfrac{1}{2}kx^2 = \dfrac{1}{2} \times 250 \times 0.12^2 = 125 \times 0.0144
-   = 1.8\,\text{J}$. Use the elastic potential energy, not $F = kx$: the question
-   asks for an energy.
-10. $V_s = 240 \times \dfrac{50}{500} = 24\,\text{V}$. An ideal transformer
-    transfers all the power, so $I_s = \dfrac{V_pI_p}{V_s} = \dfrac{240 \times
-    2.0}{24} = \dfrac{480}{24} = 20\,\text{A}$. Use the transformer equation for the
-    voltage, then the power relation for the current. Check: $240 \times 2.0 = 480$
-    W and $24 \times 20 = 480$ W, so the power is unchanged.
-
-</details>
+:::answers chapter-16-review
 
 ## What you can now do
 

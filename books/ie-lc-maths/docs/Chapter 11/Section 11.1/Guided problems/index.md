@@ -125,7 +125,8 @@ The fraction is $\dfrac{40}{1200}$. Divide top and bottom by a common factor.
 $$\frac{40}{1200} = \frac{1}{30}$$
 
 So one student in every $30$ is in the sample. A fraction near $\dfrac{1}{30}$ is a
-small sample, and Section 11.7 shows how much that limits the conclusions.
+small sample, which limits how much we can conclude.<!-- tier:h --> Section 11.7 measures
+that limit with a margin of error.<!-- /tier:h -->
 
 </details>
 </details>
@@ -176,8 +177,8 @@ $$0.52 \times 1000$$
 $$0.52 \times 1000 = 520 \text{ voters}$$
 
 So $520$ of the $1000$ said Yes. The number $0.52$ is the sample proportion, and it is
-the statistic the company reports. Section 11.7 asks how far that $0.52$ could be from
-the population proportion.
+the statistic the company reports.<!-- tier:h --> Section 11.7 asks how far that $0.52$
+could be from the population proportion.<!-- /tier:h -->
 
 </details>
 </details>

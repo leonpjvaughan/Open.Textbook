@@ -213,8 +213,7 @@ $3x = 12$.
 $x = 4$.
 
 This is the same calculation as asking "which input gives the output $13$ for the function
-$f(x) = 3x + 1$?". That question is answered by an inverse function, which is the subject
-of Section 6.3.
+$f(x) = 3x + 1$?". That reverses the function rule, turning the output back into the input.
 
 </details>
 </details>

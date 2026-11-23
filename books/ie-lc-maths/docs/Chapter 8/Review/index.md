@@ -69,20 +69,9 @@ Work through these without notes. For each one, decide **what is being asked** a
 before you calculate. Several come from earlier chapters, and some need a choice between
 differentiation and integration.
 
-1. Find $\displaystyle\int (4x^3 - 6x + 1)\,dx$.
-2. Find $\displaystyle\int \frac{1}{x^2}\,dx$.
-3. Evaluate $\displaystyle\int_1^4 2x\,dx$.
-4. Evaluate $\displaystyle\int_0^2 (3x^2 - 4x)\,dx$ and explain the sign of your answer.
-5. Find the area of the region bounded by $y = x^2 - 4$, the $x$-axis and the lines
-   $x = 0$ and $x = 3$.
-6. Differentiate $y = (3x + 1)^4$. Then find $\displaystyle\int (3x + 1)^4\,dx$ by
-   substitution. Say what each answer tells you.
-7. Differentiate $y = x^3 - 6x^2 + 9x$ and find its stationary points.
-8. The speed of a cyclist after $t$ minutes is $v(t) = 10 - 2t$ kilometres per hour. Find
-   the distance travelled in the first three minutes.
-9. A tap delivers water at $r(t) = 3t^2$ litres per minute. Find the volume delivered
-   between $t = 0$ and $t = 3$ minutes, and the average rate over that time.
-10. Find the sum of the first $20$ terms of the arithmetic sequence $4, 9, 14, \dots$.
+:::problems chapter-08-review
+
+:::answers chapter-08-review
 
 ## What you can now do
 

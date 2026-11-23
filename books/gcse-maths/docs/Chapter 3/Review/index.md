@@ -22,14 +22,9 @@ reasonable.
 Work through the questions without notes first. For each one, choose the method
 and give a reason for your choice.
 
-1. Work out $5^3$. Which operation does the index describe?
-2. Estimate $\sqrt{130}$ to the nearest whole number. Give a reason using two squares.
-3. Simplify $p^4p^6$. Which index law applies?
-4. Simplify $(q^3)^2$. Explain why the indices multiply.
-5. Write $8^{-2}$ as a fraction. Which earlier rule helps?
-6. Work out $125^{2/3}$. Which root should you find first?
-7. A rectangle has area $144\text{ cm}^2$. Work out its side length if it is a square.
-8. A sequence starts at 3 and doubles five times. Write its final value as a power product and evaluate it.
+:::problems chapter-03-review
+
+:::answers chapter-03-review
 
 ## What you can now do
 

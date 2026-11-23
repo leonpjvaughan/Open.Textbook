@@ -201,8 +201,8 @@ $2 \times 2 \times 2 \times 2 \times 2$.
 $$2^5 = 32$$
 
 A power grows by multiplying, so its graph curves upward. That is the difference
-between a linear relationship and a power, and Section 4.8 meets the curve a
-quadratic makes.
+between a linear relationship and a power, and quadratic graphs curve in a similar
+way.
 
 </details>
 </details>

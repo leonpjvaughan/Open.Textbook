@@ -20,27 +20,9 @@ The first shop charges £36. The second shop charges £37.50. The first shop is 
 
 ## Mixed practice — choose the method first
 
-1. Which is larger, $\frac{5}{8}$ or $0.6$? State the representation you chose.
-2. Work out $\frac{2}{3}+\frac{3}{10}$.
-3. Work out $\frac{4}{5}\div\frac{2}{3}$.
-4. Write $0.28$ as a fraction in its simplest form.
-5. **H** Write $0.\dot{4}$ as a fraction.
-6. Work out $30\%$ of £90.
-7. A £50 item is reduced by $10\%$. Work out its new price.
-8. In Chapter 1 you used place value. Write $0.375$ in thousandths, then as a fraction.
+:::problems chapter-04-review
 
-<details markdown="1">
-<summary>Answers</summary>
-
-1. $\frac{5}{8}=0.625>0.6$.
-2. $\frac{20}{30}+\frac{9}{30}=\frac{29}{30}$.
-3. $\frac{4}{5}\times\frac{3}{2}=\frac{6}{5}=1\frac{1}{5}$.
-4. $\frac{28}{100}=\frac{7}{25}$.
-5. $\frac{4}{9}$.
-6. £27.
-7. £45.
-8. $375$ thousandths; $\frac{375}{1000}=\frac{3}{8}$.
-</details>
+:::answers chapter-04-review
 
 ## What you can now do
 

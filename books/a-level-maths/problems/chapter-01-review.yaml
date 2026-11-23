@@ -1,0 +1,214 @@
+# Review bank for Chapter 1 (Proof and mathematical argument).
+#
+# Ten mixed-practice questions in the order they appear on the Review page.
+# Each algebraic identity, remainder check, primality bound and counter example
+# is proved by the SymPy oracle. The choice of proof method (deduction,
+# exhaustion, counter example or contradiction) and the logical structure of a
+# proof by contradiction or deduction are checked only for step presence and
+# order via `structured` (or left to human review).
+#
+# Honest limit: the verifier proves the arithmetic and algebra each proof rests
+# on, and `structured` proves only that the declared steps appear in order —
+# neither proves that a proof is logically valid.
+chapter: 1
+oracles: [sympy, units]
+symbols:
+  n: {integer: true}
+  k: {integer: true}
+  a: {integer: true}
+  b: {integer: true, nonzero: true}
+  c: {integer: true}
+  d: {integer: true, nonzero: true}
+problems:
+  - id: r1-consecutive-odd-sum
+    section: '1.2'
+    refs: [A1]
+    statement: 'Prove that the sum of two consecutive odd numbers is a multiple of $4$.'
+    answer_label: 'Method and proof'
+    check:
+      kind: all
+      checks:
+        - {kind: evaluate, expression: '(2*n + 1) + (2*n + 3)', answer: '4*(n + 1)'}
+        - kind: structured
+          requires: [choose-deduction, represent-odds, factor-four]
+          concepts: [deduction, multiple-of-4]
+          points:
+            - id: choose-deduction
+              text: 'Use deduction because the claim is about every pair of consecutive odd numbers.'
+              concepts: [deduction]
+            - id: represent-odds
+              text: 'Write the consecutive odd numbers as 2n + 1 and 2n + 3 for a whole number n.'
+              concepts: [deduction]
+            - id: factor-four
+              text: 'Add them to get 4n + 4 = 4(n + 1), which is a multiple of 4.'
+              concepts: [multiple-of-4]
+    answer_text: '**Deduction.** Consecutive odd numbers are $2n + 1$ and $2n + 3$ for a whole number $n$. Their sum is $(2n + 1) + (2n + 3) = 4n + 4 = 4(n + 1)$, which is $4$ times a whole number, so it is a multiple of $4$.'
+
+  - id: r2-prime-137
+    section: '1.3'
+    refs: [A1]
+    statement: 'Show that $137$ is prime.'
+    answer_label: 'Method and factor check'
+    check:
+      kind: all
+      checks:
+        - {kind: compare, relation: '<=', lhs: '11**2', rhs: '137'}
+        - {kind: compare, relation: '>', lhs: '13**2', rhs: '137'}
+        - {kind: compare, relation: '=', lhs: 'Mod(137, 2)', rhs: '1'}
+        - {kind: compare, relation: '=', lhs: 'Mod(137, 3)', rhs: '2'}
+        - {kind: compare, relation: '=', lhs: 'Mod(137, 5)', rhs: '2'}
+        - {kind: compare, relation: '=', lhs: 'Mod(137, 7)', rhs: '4'}
+        - {kind: compare, relation: '=', lhs: 'Mod(137, 11)', rhs: '5'}
+    answer_text: '**Exhaustion.** Since $11^2 = 121 \le 137$ and $13^2 = 169 > 137$, test the primes $2$, $3$, $5$, $7$ and $11$. The remainders are $1$, $2$, $2$, $4$ and $5$, so none divides $137$. Therefore $137$ is prime.'
+
+  - id: r3-disprove-n2-plus-1
+    section: '1.4'
+    refs: [A1]
+    statement: 'Disprove the claim "Every whole number of the form $n^2 + 1$ is prime."'
+    answer_label: 'Method and counter example'
+    check:
+      kind: all
+      checks:
+        - {kind: evaluate, expression: '7**2 + 1', answer: '50'}
+        - {kind: evaluate, expression: '2 * 25', answer: '50'}
+        - {kind: compare, relation: '=', lhs: 'Mod(50, 2)', rhs: '0'}
+    answer_text: '**Counter example.** Take $n = 7$. Then $n^2 + 1 = 7^2 + 1 = 50 = 2 \times 25$, which is not prime. One counter example disproves the claim.'
+
+  - id: r4-irrational-sqrt5
+    section: '1.5'
+    refs: [A1]
+    statement: 'Prove that $\sqrt{5}$ is irrational.'
+    answer_label: 'Method and proof'
+    check:
+      kind: all
+      checks:
+        - {kind: evaluate, expression: '(5*k)**2 / 5', answer: '5*k**2'}
+        - kind: structured
+          requires: [assume-rational, five-divides-a, five-divides-b, conclude-contradiction]
+          concepts: [contradiction, lowest-terms, divisibility]
+          points:
+            - id: assume-rational
+              text: 'Assume for contradiction that sqrt(5) = a/b in lowest terms, so a^2 = 5b^2.'
+              concepts: [contradiction, lowest-terms]
+            - id: five-divides-a
+              text: 'Since 5 divides a^2 and 5 is prime, 5 divides a, so write a = 5k.'
+              concepts: [divisibility]
+            - id: five-divides-b
+              text: 'Substituting gives 25k^2 = 5b^2, so b^2 = 5k^2, and therefore 5 divides b as well.'
+              concepts: [divisibility]
+            - id: conclude-contradiction
+              text: 'Both a and b have factor 5, contradicting lowest terms, so sqrt(5) is irrational.'
+              concepts: [contradiction, lowest-terms]
+    answer_text: '**Contradiction.** Assume $\sqrt{5} = \dfrac{a}{b}$ in lowest terms with whole numbers $a$ and $b$. Then $a^2 = 5b^2$, so $5$ divides $a^2$ and therefore $5$ divides $a$. Write $a = 5k$. Then $25k^2 = 5b^2$, so $b^2 = 5k^2$, and $5$ divides $b$. Both $a$ and $b$ are multiples of $5$, contradicting lowest terms. Therefore $\sqrt{5}$ is irrational.'
+
+  - id: r5-three-consecutive-sum
+    section: '1.2'
+    refs: [A1]
+    statement: 'Show that the sum of three consecutive whole numbers is a multiple of $3$.'
+    answer_label: 'Method and proof'
+    check:
+      kind: evaluate
+      expression: 'n + (n + 1) + (n + 2)'
+      answer: '3*(n + 1)'
+    answer_text: '**Deduction.** Write the three consecutive whole numbers as $n$, $n + 1$ and $n + 2$. Their sum is $n + (n + 1) + (n + 2) = 3n + 3 = 3(n + 1)$, which is $3$ times a whole number, so it is a multiple of $3$.'
+
+  - id: r6-disprove-squares-order
+    section: '1.4'
+    refs: [A1]
+    statement: 'Disprove the claim "For all real numbers $x$ and $y$, if $x > y$ then $x^2 > y^2$."'
+    answer_label: 'Method and counter example'
+    check:
+      kind: all
+      checks:
+        - {kind: compare, relation: '>', lhs: '1', rhs: '-2'}
+        - {kind: compare, relation: '<', lhs: '1**2', rhs: '(-2)**2'}
+    answer_text: '**Counter example.** Take $x = 1$ and $y = -2$. Then $x > y$, but $x^2 = 1 < 4 = y^2$. So the claim is false.'
+
+  - id: r7-no-largest-odd
+    section: '1.5'
+    refs: [A1]
+    statement: 'Prove that there is no largest odd number.'
+    answer_label: 'Method and proof'
+    check:
+      kind: all
+      checks:
+        - {kind: evaluate, expression: '(2*k + 1) + 2', answer: '2*(k + 1) + 1'}
+        - {kind: compare, relation: '>', lhs: '(2*k + 1) + 2', rhs: '2*k + 1'}
+        - kind: structured
+          requires: [assume-largest, construct-larger, conclude-contradiction]
+          concepts: [contradiction, odd-number]
+          points:
+            - id: assume-largest
+              text: 'Assume for contradiction that M = 2k + 1 is the largest odd number.'
+              concepts: [contradiction, odd-number]
+            - id: construct-larger
+              text: 'Form M + 2 = 2k + 3 = 2(k + 1) + 1, which is odd and strictly greater than M.'
+              concepts: [odd-number]
+            - id: conclude-contradiction
+              text: 'This contradicts M being the largest odd number, so no largest odd number exists.'
+              concepts: [contradiction]
+    answer_text: '**Contradiction.** Assume $M$ is the largest odd number, so $M = 2k + 1$ for a whole number $k$. Then $M + 2 = 2k + 3 = 2(k + 1) + 1$ is odd and greater than $M$. This contradicts the choice of $M$, so there is no largest odd number.'
+
+  - id: r8-even-sums-of-primes
+    section: '1.3'
+    refs: [A1]
+    statement: 'Show that every even number from $4$ to $14$ is the sum of two prime numbers.'
+    answer_label: 'Method and complete list'
+    check:
+      kind: all
+      checks:
+        - {kind: evaluate, expression: '2 + 2', answer: '4'}
+        - {kind: evaluate, expression: '3 + 3', answer: '6'}
+        - {kind: evaluate, expression: '3 + 5', answer: '8'}
+        - {kind: evaluate, expression: '3 + 7', answer: '10'}
+        - {kind: evaluate, expression: '5 + 7', answer: '12'}
+        - {kind: evaluate, expression: '3 + 11', answer: '14'}
+    answer_text: '**Exhaustion.** Check every even number from $4$ to $14$: $4 = 2 + 2$, $6 = 3 + 3$, $8 = 3 + 5$, $10 = 3 + 7$, $12 = 5 + 7$ and $14 = 3 + 11$. Every summand is prime, and the list covers all six cases.'
+
+  - id: r9-n2-minus-n-even
+    section: '1.2'
+    refs: [A1]
+    statement: 'Prove that $n^2 - n$ is even for every whole number $n$.'
+    answer_label: 'Method and proof'
+    check:
+      kind: all
+      checks:
+        - {kind: evaluate, expression: 'n**2 - n', answer: 'n*(n - 1)'}
+        - kind: structured
+          requires: [factorise, consecutive-parity, conclude-even]
+          concepts: [deduction, parity]
+          points:
+            - id: factorise
+              text: 'Factorise n^2 - n as n(n - 1).'
+              concepts: [deduction]
+            - id: consecutive-parity
+              text: 'Since n - 1 and n are consecutive whole numbers, one of them is even.'
+              concepts: [parity]
+            - id: conclude-even
+              text: 'The product of an even number and a whole number is even, so n^2 - n is even.'
+              concepts: [parity]
+    answer_text: '**Deduction.** Factorise: $n^2 - n = n(n - 1)$. The numbers $n - 1$ and $n$ are consecutive whole numbers, so one of them is even. The product of a whole number and an even number is even, so $n^2 - n$ is always even.'
+
+  - id: r10-product-of-rationals
+    section: '1.2'
+    refs: [A1]
+    statement: 'Prove that the product of two rational numbers is rational.'
+    answer_label: 'Method and proof'
+    check:
+      kind: all
+      checks:
+        - {kind: evaluate, expression: '(a / b) * (c / d)', answer: '(a * c) / (b * d)'}
+        - kind: structured
+          requires: [define-rationals, multiply, justify-rational]
+          concepts: [deduction, rational-number, nonzero-denominator]
+          points:
+            - id: define-rationals
+              text: 'Let the two rational numbers be a/b and c/d with whole numbers a, b, c, d and b, d nonzero.'
+              concepts: [deduction, rational-number]
+            - id: multiply
+              text: 'Multiply to get (ac)/(bd).'
+              concepts: [deduction]
+            - id: justify-rational
+              text: 'Both ac and bd are whole numbers and bd is nonzero because b and d are nonzero, so the product is rational.'
+              concepts: [rational-number, nonzero-denominator]
+    answer_text: '**Deduction.** Let the two rational numbers be $\dfrac{a}{b}$ and $\dfrac{c}{d}$, where $a, b, c, d$ are whole numbers with $b \ne 0$ and $d \ne 0$. Their product is $\dfrac{ac}{bd}$. Both $ac$ and $bd$ are whole numbers, and $bd \ne 0$ because neither $b$ nor $d$ is zero, so the product is rational.'

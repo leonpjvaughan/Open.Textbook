@@ -62,38 +62,9 @@ is** and say why, before you calculate anything. Some of them need a method from
 an earlier chapter, and two of them are deliberately about choosing the right
 idea rather than the right number.
 
-1. A box of mass $8$ kg rests on a smooth horizontal floor. A force of $30$ N
-   pulls it horizontally. Find its acceleration and the normal reaction.
-2. Two forces of $9$ N and $40$ N act at right angles. Find the resultant, and
-   the angle it makes with the 40 N force.
-3. A block of mass $6$ kg slides down a smooth plane inclined at $30^\circ$.
-   Find its acceleration and the normal reaction.
-4. Masses of $4$ kg and $7$ kg hang from a light string over a smooth pulley.
-   Find the acceleration and the tension.
-5. A mass of $10$ kg rests on a smooth table. A string from it passes over a
-   smooth pulley and carries a hanging mass of $5$ kg. Find the acceleration and
-   the tension.
-6. A crate of mass $12$ kg rests on a smooth plane inclined at $30^\circ$. A
-   string from it runs up the plane, over a smooth pulley, and carries a hanging
-   mass of $8$ kg. State which way the system moves, then find the acceleration.
-7. A car of mass $1500$ kg tows a trailer of mass $500$ kg on a level road with
-   a driving force of $4000$ N. Find the acceleration and the tension in the tow
-   bar.
-8. A force of $(4\mathbf{i} + 7\mathbf{j})$ N acts on a particle of mass $2$ kg.
-   Find the acceleration as a vector, and its magnitude.
-9. A particle is acted on by $(6\mathbf{i} - \mathbf{j})$ N and
-   $(-2\mathbf{i} + 4\mathbf{j})$ N. Find the third force that keeps it in
-   equilibrium.
-10. A ball is thrown vertically upwards at $14$ m/s. Using $a = -g$ and the
-    equations of motion from Chapter 3, find the greatest height it reaches.
-    Then say which chapter's method you used, and why this question is not a
-    forces question.
-11. A block of mass $5$ kg slides down a smooth plane and reaches a speed of
-    $7$ m/s after $2$ s. Find its acceleration, and hence the angle of the
-    plane. Which two chapters does this question join together?
-12. A student says: "The tension in a string is always equal to the weight
-    hanging on it." Give one situation in this chapter where that is true, and
-    one where it is false, with a reason for each.
+:::problems chapter-04-review
+
+:::answers chapter-04-review
 
 ## What you can now do
 

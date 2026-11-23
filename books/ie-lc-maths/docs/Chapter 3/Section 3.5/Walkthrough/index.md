@@ -13,7 +13,7 @@ kind: walkthrough
 # 3.5 Surface area and curved surface area — Learn
 
 **Prerequisites:** Section 3.1 — area of a rectangle and a triangle; Section 3.2 — area of
-a circle; Section 3.4 — nets.
+a circle; unfolding a solid into flat faces.
 
 **Objectives:** find the total surface area of a prism; find the curved surface area of a
 cylinder; find the total surface area of a closed cylinder and of a cylinder with no lid.
@@ -95,8 +95,8 @@ Work out its total surface area in square metres. Give the exact answer in terms
 then a decimal to 3 significant figures. Then work out the curved surface area on its own,
 so you can see how much of the metal is the tube.
 
-The sheet metal costs €45 per square metre, and Section 3.7 uses that price to compare
-Tank A with the sphere.
+The sheet metal costs €45 per square metre. You use that price in the chapter Review
+to compare the two tanks.
 
 ## You should now be able to
 

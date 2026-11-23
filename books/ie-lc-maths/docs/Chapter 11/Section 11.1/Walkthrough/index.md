@@ -117,7 +117,8 @@ who were asked. The poll was a sample survey, not a census. The company was tryi
 estimate the population proportion $p$ of Yes voters, using the sample proportion
 $0.52$.
 
-Keep the number $1000$. Section 11.7 turns it into a margin of error.
+Keep the number $1000$.<!-- tier:h --> Section 11.7 turns it into a margin of
+error.<!-- /tier:h -->
 
 ## You should now be able to
 

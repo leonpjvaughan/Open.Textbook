@@ -1,16 +1,9 @@
 // @ts-nocheck
-//
-// Moved from a book's figure directory by item 147: a hand-authored figure,
 // measured by tests/test_figures.py. The TS ratchet covers the kit and the tools.
-// Guided investigation for 14.3: a hypothesis test for a mean when the standard
-// deviation is known. The reader moves the sample mean, the standard deviation
-// and the sample size and watches the test statistic and the tail area. Pure
 import { SIZE, chooser, label, panel, react, slider } from "./kit.js";
 
 const NULL_MEAN = 500;
 
-// Critical values of the standard Normal for the three levels the reader can
-// choose. "one" is the one-tailed boundary, "two" the two-tailed boundary.
 const CRITICAL_Z = {
   0.1: { one: 1.281552, two: 1.644854 },
   0.05: { one: 1.644854, two: 1.959964 },
@@ -18,7 +11,6 @@ const CRITICAL_Z = {
 };
 
 function erf(x) {
-  // Abramowitz and Stegun 7.1.26, accurate to about 1.5 parts in 10^7.
   const sign = x < 0 ? -1 : 1;
   const t = 1 / (1 + 0.3275911 * Math.abs(x));
   const poly =
@@ -113,10 +105,6 @@ export function mount(el) {
     const plotBottom = 140;
     const plotTop = 24;
     const maxHeight = plotBottom - plotTop;
-    // The axis must show the observed mean as well as the curve, or the "seen"
-    // marker leaves the frame whenever the sample mean is more than four standard
-    // errors from the null mean. Four standard errors is the floor, so the two
-    // critical regions stay in view.
     const span = Math.max(4 * standardError, Math.abs(xbar - NULL_MEAN) * 1.15);
     const low = NULL_MEAN - span;
     const high = NULL_MEAN + span;

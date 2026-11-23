@@ -172,8 +172,12 @@ $-2.0 \times 10^{-12}$ C, and they pass $1.0$ mm apart.
 1. Calculate the size of the force between the two drops.
 2. State whether the force attracts or repels them, and say how you know.
 
-Keep your answers. Section 13.4 finds the much larger force that the steering plates
-put on one drop, and you will compare the two there.
+Keep your answers.
+
+<!-- tier:h -->
+Section 13.4 finds the much larger force that the steering plates put on one drop, and
+you will compare the two there.
+<!-- /tier:h -->
 
 ## You should now be able to
 

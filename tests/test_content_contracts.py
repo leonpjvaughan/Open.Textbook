@@ -29,19 +29,16 @@ from textbook import book as books
 
 BOOKS = books.discover_books()
 
-#: Reviews whose mixed practice has numbered items and no answer block.
 REVIEW_DEBT = {
-    "gcse-maths": 6,
-    "ie-jc-maths": 14,
-    "ie-lc-maths": 13,
-    "ie-lc-applied-maths": 9,
-    "ie-lc-physics": 16,
+    "gcse-maths": 0,
+    "ie-jc-maths": 0,
+    "ie-lc-maths": 0,
+    "ie-lc-applied-maths": 0,
+    "ie-lc-physics": 0,
 }
 
-#: Guided pages with a Hint and a Full working but no Next step.
 FADE_DEBT = {"gcse-maths": 29}
 
-#: Section practice pages whose rendered bank is outside the 8-15 contract.
 PRACTICE_DEBT = {
     "ie-jc-maths": 3,
     "ie-lc-maths": 27,
@@ -49,11 +46,8 @@ PRACTICE_DEBT = {
     "ie-lc-physics": 37,
 }
 
-#: Guided pages where the warm-up gate sits after the first practice item, so it
-#: gates the wrong `<details>` instead of the warm-up answers.
 GATE_DEBT = {"gcse-maths": 5}
 
-#: Learn pages whose pre-first-heading block contains a sentence over 32 words.
 FRONT_DEBT = {
     "a-level-maths": 105,
     "a-level-physics": 0,
@@ -65,8 +59,6 @@ FRONT_DEBT = {
     "ie-lc-physics": 52,
 }
 
-#: Learn pages with a figure but no Predict prompt before it. `maths-applied`
-#: is excluded: its rule is a static frame, not Predict -> Test -> Explain.
 FIGURE_DEBT = {
     "gcse-maths": 2,
     "ie-jc-maths": 4,
@@ -75,30 +67,21 @@ FIGURE_DEBT = {
     "ie-lc-physics": 17,
 }
 
-#: Integrals written `xdx` rather than `x\,dx`.
 FUSED_DEBT = {"a-level-maths": 50}
 
 #: `\sqrt` followed by two or more digits, which KaTeX reads as the root of the
-#: first digit followed by the rest: `\sqrt25` renders as sqrt(2) 5.
 SQRT_DEBT: dict[str, int] = {}
 
-#: Chapter openers that print a linked Roadmap and then an unlinked Sections list
-#: of the same sections.
 NAV_DEBT = {"ie-jc-maths": 16}
 
-#: Reviews whose mixed-practice heading or closing checklist is not the course
-#: ritual. `maths-applied` is excluded: its Review is deliberately different.
 REVIEW_HEADING_DEBT = {"gcse-maths": 4}
 
-#: Plain-text references to a section above the page's own tier, after inline
-#: `<!-- tier:h -->` spans and markdown links are removed. These are the ones the
-#: tier hook cannot unlink.
 TIER_DEBT = {
-    "gcse-maths": 2,
-    "ie-jc-maths": 5,
-    "ie-lc-applied-maths": 14,
-    "ie-lc-maths": 75,
-    "ie-lc-physics": 19,
+    "gcse-maths": 0,
+    "ie-jc-maths": 0,
+    "ie-lc-applied-maths": 0,
+    "ie-lc-maths": 0,
+    "ie-lc-physics": 0,
 }
 
 

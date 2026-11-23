@@ -112,7 +112,11 @@ Write down the four quantities you know, then choose the equation that gives the
 risen. Calculate the height, with its unit. You should find $16\,\text{m}$.
 
 Section 2.2 found the same displacement from the area under a graph. The two methods
-agree, and Section 2.5 shows why the equations come from the graph.
+agree because the equations come from the graph.
+
+<!-- tier:h -->
+Section 2.5 derives the equations from the velocity–time graph.
+<!-- /tier:h -->
 
 ## You should now be able to
 

@@ -25,21 +25,17 @@ interface Mapper {
   domain?: [number, number];
 }
 
-/** The domain and range `scale()` maps between. Both are required: neither has a
- * sensible default. */
 interface ScaleOptions {
   domain: [number, number];
   range: [number, number];
 }
 
-/** The domain `ticks()` walks, and how many ticks to aim for. */
 interface TicksOptions {
   from: number;
   to: number;
   count?: number;
 }
 
-/** The four edges of a plotting box, as `axes()` returns them. */
 interface Box {
   x0: number;
   y0: number;
@@ -71,7 +67,6 @@ interface AxesOptions {
   origin?: boolean;
 }
 
-/** A point in three dimensions: the units a `camera3d()` solid is given in. */
 type Vec3 = [number, number, number];
 
 interface RectOptions {
@@ -101,8 +96,6 @@ interface LineOptions {
   dash?: string;
 }
 
-/** The four corners are not optional: the head is computed from them, so a missing one
- * is `NaN` geometry rather than a default. */
 interface ArrowOptions {
   x1: number;
   y1: number;
@@ -232,14 +225,12 @@ interface Camera3dOptions {
   margin?: number;
 }
 
-/** A projected point: where it lands, and how near the camera it is. */
 interface Placed {
   x: number;
   y: number;
   depth: number;
 }
 
-/** One face of a mesh: the vertex indices it joins, and how to paint it. */
 interface MeshFace {
   indices: number[];
   class?: string;
@@ -253,14 +244,12 @@ interface MeshEdge {
   class?: string;
 }
 
-/** A face with its winding resolved and its vertices projected. */
 interface FaceInfo {
   face: MeshFace;
   front: boolean;
   points: Placed[];
 }
 
-/** A solid for `drawMesh()`: vertices in the caller's units, and what joins them. */
 interface MeshOptions {
   vertices?: Vec3[];
   faces?: MeshFace[];
@@ -287,14 +276,6 @@ interface MeshOptions {
  */
 
 /**
- * Map a value in its own units to an SVG coordinate, in one axis.
- *
- * A y-axis that counts upwards meets an SVG y-axis that counts downwards, and a
- * flipped axis still looks like a correct drawing until someone reads a value off
- * it, so the mapping lives in one place. The returned function carries `.invert`,
- * the mapping back, so a drag can turn a pointer position into a value instead of
- * every module re-deriving the inverse.
- *
  * @param {ScaleOptions} o  the values to map and the coordinates to map them to
  * @returns {((value: number) => number) & {invert: (position: number) => number}}
  */
@@ -307,18 +288,8 @@ export function scale({ domain, range }: ScaleOptions) {
   return map;
 }
 
-/** The two shapes `extent()` is called in; the prose is on the implementation below. */
 export function extent(values: readonly number[]): [number, number];
 export function extent<T>(values: readonly T[], pick: (item: T) => number): [number, number];
-/**
- * The lowest and highest of a list, or of one field of a list of points.
- *
- * `Math.min(...values)` is `Infinity` over an empty list and overflows the argument
- * list over a hundred thousand values; this handles both.
- *
- * The overload signatures above are erased on emit, which is why the prose lives
- * here, on the implementation, where the compiled copy keeps it.
- */
 export function extent(values: readonly any[], pick?: (item: any) => number): [number, number] {
   let low = Infinity;
   let high = -Infinity;
@@ -340,9 +311,6 @@ export function extent(values: readonly any[], pick?: (item: any) => number): [n
  */
 
 /**
- * Round numbers to a count, on the 1–2–5 progression a reader expects, because a
- * count read off an axis at 0.5 or 1.5 is read and at 0.4712 is arithmetic.
- *
  * @param {TicksOptions} o  the domain, and roughly how many ticks
  * @returns {number[]} the tick values inside the domain, ascending
  */
@@ -359,17 +327,12 @@ export function ticks({ from, to, count = 5 }: TicksOptions) {
   const step = power * (error >= 7.5 ? 10 : error >= 3.5 ? 5 : error >= 1.5 ? 2 : 1);
   const out = [];
   for (let v = Math.ceil(low / step) * step; v <= high + step * 1e-9; v += step) {
-    // A float step accumulates: 0.1 + 0.1 + 0.1 is 0.30000000000000004, and that
-    // reaches the reader through a tick label.
     out.push(Number(v.toPrecision(12)));
   }
   return out.length ? out : [low];
 }
 
 /**
- * One axis of a plotting area. A typedef, not `{object}`, which would type the
- * destructured fields `{}` and make `x.domain` an error in every caller.
- *
  * @typedef {object} AxesOptions
  * @property {number} [width]
  * @property {number} [height]
@@ -397,15 +360,7 @@ export function ticks({ from, to, count = 5 }: TicksOptions) {
  */
 
 /**
- * A plotting area: two axes, their ticks, their labels, and the mappers.
- *
- * It returns the mappers as well as the string, so a module draws its own marks with
- * the same geometry the axes used and cannot disagree with them.
- *
  * @param {AxesOptions} [o]
- *
- * The return type is inferred, not declared: typing `x` and `y` as `Function` hides
- * the `invert` a caller needs.
  */
 export function axes({
   width = 560,
@@ -433,7 +388,6 @@ export function axes({
   const showY = y.tickFormat || ((v) => fmt(v, 2));
 
   let draw = "";
-  // The grid first, so every mark sits on top of it.
   if (grid) {
     for (const t of xTicks) {
       draw += line({ x1: mapX(t), y1: box.y0, x2: mapX(t), y2: box.y1, class: "fig-grid", width: 0.8 });
@@ -449,8 +403,6 @@ export function axes({
   }
   for (const t of xTicks) {
     draw += line({ x1: mapX(t), y1: box.y0, x2: mapX(t), y2: box.y0 + 6, class: "fig-ink", width: 1.4 });
-    // The end ticks are anchored inwards: a centred label on the axis end hangs
-    // half of itself outside the viewBox, and the `canvas` check measures that.
     const px = mapX(t);
     const anchor = px <= box.x0 + 0.5 ? "start" : px >= box.x1 - 0.5 ? "end" : "middle";
     draw += label({ x: px, y: box.y0 + 22, text: showX(t), size: SIZE.tick, class: "text-ink", anchor });
@@ -468,8 +420,6 @@ export function axes({
   return { draw, x: mapX, y: mapY, box, xTicks, yTicks };
 }
 
-// --- the marks ---------------------------------------------------------------
-
 /**
  * @typedef {object} LineOptions
  * @property {number} [x1]
@@ -482,8 +432,6 @@ export function axes({
  */
 
 /**
- * A straight line. The defaults, `fig-ink` and width 1.5, are what most callers want.
- *
  * @param {LineOptions} [o]
  */
 export function line({ x1, y1, x2, y2, class: cls = "fig-ink", width = 1.5, dash }: LineOptions = {}) {
@@ -546,16 +494,10 @@ export function polygon({ points = [], class: cls = "fig-ink" }: PolygonOptions 
  */
 
 /**
- * A path from SVG path data. A caller writing `d` is writing vertices by hand, so
- * every coordinate still goes through `coord()` first.
- *
  * @param {PathOptions} [o]
  */
 export function path({ d, class: cls = "fig-ink", fill = "none", width = 2, dash }: PathOptions = {}) {
   const dashed = dash ? ` stroke-dasharray="${dash}"` : "";
-  // `style`, not `fill="…"`: a `fig-*` class sets `fill`, and a class rule beats a
-  // presentation attribute, so the emitted `fill="none"` was ignored and curves were
-  // painted as filled shapes. An inline style wins where an attribute loses.
   return `<path d="${d}" style="fill:${fill}" stroke-width="${width}" class="${cls}"${dashed}></path>`;
 }
 
@@ -572,12 +514,6 @@ export function path({ d, class: cls = "fig-ink", fill = "none", width = 2, dash
  */
 
 /**
- * An arrow: a shaft with a head at the tip. The shaft stops short of the tip so the
- * head sits on the point rather than behind it.
- *
- * The coordinates are required and the default is `{} as ArrowOptions`, so a caller
- * that omits one gets `NaN` geometry rather than a silent default.
- *
  * @param {ArrowOptions} [o]
  */
 export function arrow({
@@ -620,8 +556,6 @@ export function arrow({
  */
 
 /** A polyline through mapped points, as one path. The mappers are required, and
- * fewer than two points draws nothing rather than a wrong line.
- *
  * @param {Array<[number, number]>} points  values in the axes' own units
  * @param {CurveOptions} [o]
  */
@@ -649,12 +583,6 @@ export function curve(
  */
 
 /**
- * A function sampled onto a path.
- *
- * Sample the mapped x range, not the domain, so a function with a pole is not missed.
- * A sample that is not finite breaks the path instead of poisoning the whole line
- * with `NaN`.
- *
  * @param {(value: number) => number} fn  the function to sample, in data units
  * @param {GraphOptions} [o]
  */
@@ -691,7 +619,6 @@ export function graph(
  */
 
 /** A filled region between a curve and a horizontal baseline.
- *
  * @param {Array<[number, number]>} points  values in the axes' own units
  * @param {AreaOptions} [o]
  */
@@ -701,7 +628,6 @@ export function area(
 ) {
   if (!points || points.length < 2) return "";
   // `baseline` is an SVG y coordinate, not a value: the mapper does not know its own
-  // domain. `axes()` returns the box, so the caller has the number.
   const d =
     points.map(([px, py], i) => `${i ? "L" : "M"}${coord(x(px))} ${coord(y(py))}`).join(" ") +
     ` L${coord(x(points[points.length - 1][0]))} ${coord(baseline)}` +
@@ -718,8 +644,6 @@ export function area(
  */
 
 /**
- * Dots at mapped points.
- *
  * @param {Array<[number, number]>} points  values in the axes' own units, not SVG units
  * @param {DotsOptions} [o]
  */
@@ -741,7 +665,6 @@ export function dots(
  */
 
 /** Bars from a list of mapped values.
- *
  * @param {Bar[]} items  each bar's edges, height and baseline, in data units
  * @param {BarsOptions} [o]
  */
@@ -774,10 +697,6 @@ export function bars(items: Bar[], { x, y, width, class: cls = "fig-accent" }: B
  */
 
 /**
- * A number line: one axis, its ticks, and room for points and intervals.
- *
- * Its own helper because the arrowheads and interval bars are its own small job.
- *
  * @param {NumberLineOptions} [o]
  */
 export function numberLine({ width = 560, min = -5, max = 5, step, label: axisLabel = "x", height = 84 }: NumberLineOptions = {}) {
@@ -794,7 +713,6 @@ export function numberLine({ width = 560, min = -5, max = 5, step, label: axisLa
   if (axisLabel) {
     draw += label({ x: box.x1 + 34, y: box.y + 5, text: axisLabel, size: SIZE.value, class: "text-ink", anchor: "start" });
   }
-  // The module draws its own points and intervals with the returned mapper and `y`,
   // the SVG coordinate of the line itself.
   return { draw, x: mapX, y: box.y, box };
 }
@@ -813,13 +731,6 @@ export function numberLine({ width = 560, min = -5, max = 5, step, label: axisLa
  */
 
 /**
- * A Venn diagram whose region labels are placed by geometry rather than by hand.
- *
- * An atom in the wrong region teaches the opposite of the truth, and a hand-placed
- * label is a judgement about whether a point is inside two overlapping circles. So a
- * region is declared as a predicate, inside these sets and outside those, and the
- * point that satisfies it and sits furthest from every boundary takes the label.
- *
  * @param {VennOptions} [o]
  * @returns {{draw: string, points: Record<string, {x: number, y: number}>, circles: VennBox}}
  */
@@ -834,7 +745,6 @@ export function venn({
 }: VennOptions = {}) {
   if (!circles.length) return { draw: "", points: {}, circles: circles };
   // The frame reaches each circle's far edge, not its near one: taking the extent of
-  // `cx - r` alone left every region to the right of it unreachable.
   const [minX, maxX] = [Math.min(...circles.map((c) => c.cx - c.r)), Math.max(...circles.map((c) => c.cx + c.r))];
   const [minY, maxY] = [Math.min(...circles.map((c) => c.cy - c.r)), Math.max(...circles.map((c) => c.cy + c.r))];
   const frame = box || {
@@ -847,7 +757,6 @@ export function venn({
   const inside = (circle: VennCircle, x: number, y: number) =>
     Math.hypot(x - circle.cx, y - circle.cy) <= circle.r;
   // The distance to the nearest boundary, a circle's own edge or the frame's. The
-  // point that maximises it is the one furthest into its region.
   const clearance = (x: number, y: number) => {
     let nearest = Math.min(x - frame.x, frame.x + frame.width - x, y - frame.y, frame.y + frame.height - y);
     for (const circle of circles) {
@@ -864,9 +773,6 @@ export function venn({
     let bestClearance = -Infinity;
     for (let y = frame.y + step; y < frame.y + frame.height; y += step) {
       for (let x = frame.x + step; x < frame.x + frame.width; x += step) {
-        // Starts `true`: a region with nothing to avoid has no failing circle, and
-        // starting from `avoid.size > 0` rejected every candidate for a region with
-        // no `out`, silently losing half the diagram.
         let ok = true;
         for (const circle of circles) {
           const isIn = inside(circle, x, y);
@@ -915,13 +821,6 @@ export function venn({
  */
 
 /**
- * A vector field: arrows on a grid, drawn from a function.
- *
- * The field is given in data units and the mappers give the direction, so a flipped
- * axis cannot flip the arrows without also flipping the axes. Arrows are a fixed
- * length because a proportional length on a coarse grid is unreadable; pass
- * `strength` to vary it.
- *
  * @param {VectorFieldOptions} [o]
  */
 export function vectorField({
@@ -940,7 +839,6 @@ export function vectorField({
     for (let py = box.y1; py <= box.y0; py += step) {
       const [dx, dy] = field(x.invert(px), y.invert(py));
       // The direction in SVG units, through the mappers, which makes a y-axis that
-      // counts upwards come out right.
       const sx = x(x.invert(px) + dx) - px;
       const sy = y(y.invert(py) + dy) - py;
       const size = Math.hypot(sx, sy);
@@ -966,16 +864,6 @@ export function vectorField({
  */
 
 /**
- * A camera for small 3D drawings: solids, 3D vectors, a plane.
- *
- * Not a 3D engine: a fixed camera and a painter's algorithm, which is all a textbook
- * needs to draw a cuboid with its hidden edges dashed.
- *
- * `drawMesh` resolves visibility by winding: a face is back-facing when its projected
- * vertices run the wrong way round, and an edge is hidden when every face containing
- * it is back-facing. That is exact for a convex solid, which is what school textbooks
- * draw.
- *
  * @param {Camera3dOptions} [o]
  * @returns {{project: Function, raw: Function, toward: number[], drawMesh: Function, centre: {x: number, y: number}, width: number, height: number, zoom: number}}
  */
@@ -988,27 +876,19 @@ export function camera3d({ width = 560, height = 300, yaw = -32, pitch = 22, zoo
   const sinX = Math.sin(rx);
   const centre = { x: width / 2, y: height / 2 };
 
-  // The direction from the scene towards the camera in world space, the gradient of
-  // the depth we sort on. A face is visible when its outward normal has a positive
-  // part along this.
   const toward: Vec3 = [cosX * sinY, sinX, cosX * cosY];
 
-  // The rotate-then-project step. `depth` is what the painter's algorithm sorts on:
-  // bigger is nearer the camera.
   const raw = ([x, y, z]: Vec3) => {
     const ax = x * cosY - z * sinY;
     const az = x * sinY + z * cosY;
     return { ax, screenY: y * cosX - az * sinX, depth: y * sinX + az * cosX };
   };
 
-  /** Project one point at a given scale, about a given screen centre. */
   const at = (point: Vec3, scale: number, origin: { x: number; y: number }): Placed => {
     const { ax, screenY } = raw(point);
     return { x: origin.x + ax * scale, y: origin.y - screenY * scale, depth: raw(point).depth };
   };
 
-  // `project` is the unfitted mapping; `drawMesh` fits instead, because only it knows
-  // the whole geometry.
   const project = (point: Vec3) => at(point, zoom, centre);
 
   const sub = (a: Vec3, b: Vec3): Vec3 => [a[0] - b[0], a[1] - b[1], a[2] - b[2]];
@@ -1035,9 +915,6 @@ export function camera3d({ width = 560, height = 300, yaw = -32, pitch = 22, zoo
   }: MeshOptions = {}) => {
     if (!vertices.length) return "";
 
-    // Fit the geometry to the drawing: the camera has no idea how big the solid is,
-    // so the caller states vertices in its own units. The margin leaves room for the
-    // labels and the dashed edges.
     const centred = vertices.map((v) => sub(v, origin));
     const laid = centred.map((v) => raw(v));
     const xs = laid.map((p) => p.ax);
@@ -1055,8 +932,6 @@ export function camera3d({ width = 560, height = 300, yaw = -32, pitch = 22, zoo
       depth: p.depth,
     }));
 
-    // The solid's own centre, so a face's normal can be turned outward regardless of
-    // the order its vertices were written in.
     const centroid = centred.reduce<Vec3>(
       (acc, v) => [acc[0] + v[0] / centred.length, acc[1] + v[1] / centred.length, acc[2] + v[2] / centred.length],
       [0, 0, 0],
@@ -1074,7 +949,6 @@ export function camera3d({ width = 560, height = 300, yaw = -32, pitch = 22, zoo
     });
 
     let draw = "";
-    // The far faces first, so a filled solid reads as a solid rather than a cut-out.
     for (const { face, front, points } of faceInfo.toSorted((a, b) => {
       const mean = (f: FaceInfo) => f.points.reduce((s, p) => s + p.depth, 0) / f.points.length;
       return mean(a) - mean(b);
@@ -1091,7 +965,6 @@ export function camera3d({ width = 560, height = 300, yaw = -32, pitch = 22, zoo
     }
 
     // Then the edges. An edge is hidden when every face that contains it is
-    // back-facing, the rule for a convex solid.
     const faceOf = new Map<string, boolean[]>();
     for (const { face, front } of faceInfo) {
       const list = face.indices;

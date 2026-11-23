@@ -1,0 +1,226 @@
+# Mixed practice for the Junior Cycle Mathematics Chapter 16 Review.
+#
+# Sixteen questions covering perimeter, area of rectangles, triangles, circles
+# and composite shapes, volume and surface area of cuboids, cylinders, spheres
+# and composite solids, plus interleaved conversion, percentage, ratio, speed,
+# equation and formula-rearrangement items.
+#
+# Honest limit: the verifier proves the arithmetic, unit conversion and
+# symbolic answers, not which idea the reader identified first or why.
+chapter: 16
+oracles: [sympy, units]
+symbols:
+  x: {real: true}
+  C: {real: true}
+  r: {real: true, positive: true}
+
+problems:
+  - id: r1-km-to-m
+    section: Review
+    tier: O
+    refs: [GT.1]
+    statement: 'Convert 3 km to metres.'
+    answer_label: 'Convert 3 km to metres.'
+    check:
+      kind: convert
+      value: '3'
+      from: km
+      to: m
+      answer: '3000'
+    answer_text: '$3000$ m. There are 1000 m in 1 km, so multiply by 1000.'
+
+  - id: r2-rectangle-perimeter
+    section: Review
+    tier: O
+    refs: [GT.2]
+    statement: 'Find the perimeter of a rectangle 14 m long and 9 m wide.'
+    answer_label: 'Find the perimeter of the rectangle.'
+    check:
+      kind: evaluate
+      expression: '2*(14 + 9)'
+      answer: '46'
+    answer_text: '$46$ m. Add the length and the width, then double: $2(14+9)=2\times23=46$.'
+
+  - id: r3-percentage
+    section: Review
+    tier: O
+    refs: [N.2]
+    statement: 'Work out 35% of 240.'
+    answer_label: 'Work out 35% of 240.'
+    check:
+      kind: evaluate
+      expression: '(35/100) * 240'
+      answer: '84'
+    answer_text: '$84$. Ten per cent of 240 is 24, so 30% is $3\times24=72$ and 5% is 12. Add them: $72+12=84$. Working directly, $0.35\times240=84$.'
+
+  - id: r4-circle-circumference
+    section: Review
+    tier: O
+    refs: [GT.2]
+    statement: 'Find the circumference of a circle of radius 7 cm, in terms of $\pi$.'
+    answer_label: 'Find the circumference of the circle.'
+    check:
+      kind: evaluate
+      expression: '2*pi*7'
+      answer: '14*pi'
+    answer_text: '$14\pi$ cm. Use $C=2\pi r$: $2\times\pi\times7=14\pi$.'
+
+  - id: r5-solve-linear
+    section: Review
+    tier: O
+    refs: [AF.4]
+    statement: 'Solve $5x-3=27$.'
+    answer_label: 'Solve $5x-3=27$.'
+    check:
+      kind: solve
+      equation: '5*x - 3 = 27'
+      variable: x
+      answer: '6'
+    answer_text: '$x=6$. Add 3 to both sides to get $5x=30$, then divide by 5.'
+
+  - id: r6-triangle-area
+    section: Review
+    tier: O
+    refs: [GT.2]
+    statement: 'Find the area of a triangle with base 11 cm and perpendicular height 6 cm.'
+    answer_label: 'Find the area of the triangle.'
+    check:
+      kind: evaluate
+      expression: '(1/2) * 11 * 6'
+      answer: '33'
+    answer_text: '$33$ cm². Use half of base times height: $\tfrac{1}{2}\times11\times6=33$.'
+
+  - id: r7-cuboid-volume
+    section: Review
+    tier: O
+    refs: [GT.2]
+    statement: 'Find the volume of a cuboid 7 cm by 4 cm by 3 cm.'
+    answer_label: 'Find the volume of the cuboid.'
+    check:
+      kind: evaluate
+      expression: '7 * 4 * 3'
+      answer: '84'
+    answer_text: '$84$ cm³. Multiply the three lengths: $7\times4\times3=84$.'
+
+  - id: r8-subject-circumference
+    section: Review
+    tier: O
+    refs: [AF.6]
+    statement: 'Make $r$ the subject of $C=2\pi r$.'
+    answer_label: 'Make $r$ the subject of $C=2\pi r$.'
+    check:
+      kind: solve
+      equation: 'C = 2*pi*r'
+      variable: r
+      answer: 'C/(2*pi)'
+    answer_text: '$r=\dfrac{C}{2\pi}$. Divide both sides by $2\pi$.'
+
+  - id: r9-circle-area-diameter
+    section: Review
+    tier: O
+    refs: [GT.2]
+    statement: 'Find the area of a circle of diameter 16 m, in terms of $\pi$.'
+    answer_label: 'Find the area of the circle.'
+    check:
+      kind: evaluate
+      expression: 'pi * (16/2)**2'
+      answer: '64*pi'
+    answer_text: '$64\pi$ m². Halve the diameter to get $r=8$ m, then $A=\pi\times8^2=64\pi$.'
+
+  - id: r10-divide-ratio
+    section: Review
+    tier: O
+    refs: [N.2]
+    statement: 'Divide €84 in the ratio $3:4$.'
+    answer_label: 'Divide €84 in the ratio $3:4$.'
+    check:
+      kind: all
+      checks:
+        - kind: evaluate
+          expression: '3 + 4'
+          answer: '7'
+        - kind: evaluate
+          expression: '84 / 7'
+          answer: '12'
+        - kind: evaluate
+          expression: '3 * 12'
+          answer: '36'
+        - kind: evaluate
+          expression: '4 * 12'
+          answer: '48'
+        - kind: evaluate
+          expression: '36 + 48'
+          answer: '84'
+    answer_text: '€36 and €48. There are $3+4=7$ parts, and $84\div7=12$. Then $3\times12=36$ and $4\times12=48$.'
+
+  - id: r11-l-shape-area
+    section: Review
+    tier: O
+    refs: [GT.2]
+    statement: 'An L-shape is a rectangle 9 m by 5 m with a square of side 2 m cut from a corner. Find its area.'
+    answer_label: 'Find the area of the L-shape.'
+    check:
+      kind: evaluate
+      expression: '9*5 - 2**2'
+      answer: '41'
+    answer_text: '$41$ m². The rectangle is $45$ m², and the square is $4$ m². Subtract: $45-4=41$.'
+
+  - id: r12-cylinder-volume
+    section: Review
+    tier: O
+    refs: [GT.2]
+    statement: 'Find the volume of a cylinder of radius 5 m and height 2 m, in terms of $\pi$.'
+    answer_label: 'Find the volume of the cylinder.'
+    check:
+      kind: evaluate
+      expression: 'pi * 5**2 * 2'
+      answer: '50*pi'
+    answer_text: '$50\pi$ m³. Use $V=\pi r^2h$: $\pi\times25\times2=50\pi$.'
+
+  - id: r13-cylinder-csa
+    section: Review
+    tier: O
+    refs: [GT.2]
+    statement: 'Find the curved surface area of a cylinder of radius 3 m and height 4 m, in terms of $\pi$.'
+    answer_label: 'Find the curved surface area of the cylinder.'
+    check:
+      kind: evaluate
+      expression: '2*pi*3*4'
+      answer: '24*pi'
+    answer_text: '$24\pi$ m². Use $2\pi rh$: $2\times\pi\times3\times4=24\pi$. The ends are not included.'
+
+  - id: r14-average-speed
+    section: Review
+    tier: O
+    refs: [N.3]
+    statement: 'A car travels 180 km in 2.5 hours. Find its average speed.'
+    answer_label: 'Find the average speed of the car.'
+    check:
+      kind: evaluate
+      expression: '180 / (5/2)'
+      answer: '72'
+    answer_text: '$72$ km/h. Speed is distance divided by time: $180\div2.5=72$.'
+
+  - id: r15-sphere-surface-area
+    section: Review
+    tier: O
+    refs: [GT.2]
+    statement: 'Find the surface area of a sphere of radius 5 cm, in terms of $\pi$.'
+    answer_label: 'Find the surface area of the sphere.'
+    check:
+      kind: evaluate
+      expression: '4*pi*5**2'
+      answer: '100*pi'
+    answer_text: '$100\pi$ cm². Use $S=4\pi r^2$: $4\times\pi\times25=100\pi$.'
+
+  - id: r16-composite-solid-volume
+    section: Review
+    tier: O
+    refs: [GT.2]
+    statement: 'A solid is a cuboid 6 cm by 4 cm by 2 cm, with a cube of side 2 cm on top. Find its volume.'
+    answer_label: 'Find the volume of the composite solid.'
+    check:
+      kind: evaluate
+      expression: '6*4*2 + 2**3'
+      answer: '56'
+    answer_text: '$56$ cm³. The cuboid is $6\times4\times2=48$ cm³, and the cube is $2^3=8$ cm³. Add them: $48+8=56$.'

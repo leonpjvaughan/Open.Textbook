@@ -25,9 +25,6 @@ import random
 import pytest
 from sympy import Rational, cos, oo, pi, simplify, sin, solve, sqrt, summation, symbols
 
-# --- the quadratic formula ----------------------------------------------------
-#
-# The page completes the square on ax^2 + bx + c = 0 and solves for x.
 
 
 def test_the_quadratic_formula_satisfies_its_equation():
@@ -52,14 +49,11 @@ def test_the_quadratic_formula_is_what_completing_the_square_gives():
 def test_the_discriminant_decides_the_number_of_real_roots():
     """The page claims this follows from the square root, so it is asserted."""
     x = symbols("x", real=True)
-    assert len(solve(x**2 - 5 * x + 6, x)) == 2  # discriminant 1
-    assert len(solve(x**2 - 4 * x + 4, x)) == 1  # discriminant 0
-    assert solve(x**2 + x + 1, x) == []  # discriminant -3
+    assert len(solve(x**2 - 5 * x + 6, x)) == 2
+    assert len(solve(x**2 - 4 * x + 4, x)) == 1
+    assert solve(x**2 + x + 1, x) == []
 
 
-# --- the cosine rule ----------------------------------------------------------
-#
-# The page drops a perpendicular and applies Pythagoras to each half.
 
 
 def test_the_cosine_rule_is_pythagoras_twice():
@@ -78,22 +72,12 @@ def test_the_cosine_rule_becomes_pythagoras_at_a_right_angle():
     assert simplify((second_triangle - (b**2 + c**2)).subs(A, pi / 2)) == 0
 
 
-# --- the sine rule ------------------------------------------------------------
-#
-# The page's proof is geometric — one height written two ways — so the identity is
-# checked directly, over triangles rather than over symbols, because the page's
-# claim is about every triangle and the algebra of a general triangle is the same
-# identity rearranged.
 
 
 def test_the_sine_rule_holds_for_a_thousand_triangles():
     random.seed(20261012)
     checked = 0
     for _ in range(1000):
-        # Two angles are drawn and the third is what is left, so every draw is a
-        # triangle. Drawing three at random and discarding the impossible ones
-        # threw away half of them, which is how this test first read as a failure
-        # of the sine rule rather than of its own sampling.
         first = random.uniform(0.05, pi - 0.1)
         second = random.uniform(0.05, pi - first - 0.05)
         angles = (first, second, pi - first - second)
@@ -113,17 +97,13 @@ def test_the_height_written_two_ways_is_one_length():
     assert abs(b * sin(first) - a * sin(second)) < 1e-12
 
 
-# --- the sums -----------------------------------------------------------------
 
 
 def test_the_sum_of_the_first_n_squares_is_proved_by_the_step_the_page_uses():
     n, k, m = symbols("n k m", positive=True, integer=True)
     formula = n * (n + 1) * (2 * n + 1) / 6
-    # The two steps of an induction: the first case, and the link to the next.
     assert formula.subs(n, 1) == 1
     assert simplify(formula + (n + 1) ** 2 - formula.subs(n, n + 1)) == 0
-    # And it agrees with the sum itself, which induction alone would not show if
-    # the formula were wrong in the same way at both ends.
     assert all(summation(m**2, (m, 1, t)) == formula.subs(n, t) for t in range(1, 200))
 
 
@@ -133,7 +113,6 @@ def test_the_arithmetic_series_pairing():
     last = a + (n - 1) * d
     assert simplify(total - n * (a + last) / 2) == 0
     assert simplify(total - n * (2 * a + (n - 1) * d) / 2) == 0
-    # The pairing the page describes: the sum and its reverse add to n(a + l).
     assert simplify(2 * total - n * (a + last)) == 0
 
 
@@ -157,8 +136,6 @@ def test_the_geometric_series_cancels_to_the_formula_the_page_gives():
     total = summation(a * r ** (k - 1), (k, 1, n))
     for value in (Rational(1, 3), Rational(3, 5), Rational(9, 4)):
         assert simplify((total - a * (1 - r**n) / (1 - r)).subs(r, value)) == 0
-    # Checked term by term too, so the identity is not resting on sympy's own
-    # summation being right.
     for terms in range(1, 25):
         direct = sum(a * Rational(3, 5) ** (j - 1) for j in range(1, terms + 1))
         target = a * (1 - Rational(3, 5) ** terms) / (1 - Rational(3, 5))
@@ -168,18 +145,14 @@ def test_the_geometric_series_cancels_to_the_formula_the_page_gives():
 def test_the_geometric_sum_to_infinity_is_the_limit_and_not_a_rounding():
     a, r, k = symbols("a r k", positive=True)
     limit = summation(a * r ** (k - 1), (k, 1, oo))
-    # The series converges only for |r| < 1, which is the condition the page states,
-    # so the identity is asserted where it holds rather than everywhere.
     for value in (Rational(1, 2), Rational(2, 5), Rational(9, 10)):
         assert simplify(limit.subs(r, value) - a / (1 - value)) == 0
-    # And the partial sums really do approach it: the gap shrinks by a factor of r.
     values = [sum(Rational(1, 2) ** (j - 1) for j in range(1, t + 1)) for t in range(1, 12)]
     gaps = [2 - v for v in values]
     assert all(later < earlier for earlier, later in zip(gaps, gaps[1:]))
     assert gaps[-1] < Rational(1, 1000)
 
 
-# --- the results with no algebra to check -------------------------------------
 
 
 @pytest.mark.parametrize(
@@ -258,8 +231,6 @@ def test_the_trapezium_pair_makes_a_parallelogram_by_construction():
             bx, by = left + base, ground
             cx, cy = left + inset + short, top
             turned = [(bx + cx - px, by + cy - py) for px, py in t1]
-            # The parallelogram's corners: floor-left, floor-right, top-right,
-            # top-left. Its opposite sides must be equal.
             _, a_top, _, a = t1[0], t1[2], t1[3], t1[3]
             d = t1[0]
             a2 = turned[3]

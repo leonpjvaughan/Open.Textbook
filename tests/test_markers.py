@@ -36,8 +36,8 @@ def test_fence_helper_leaves_code_verbatim():
     transformed = _fences.transform_outside_fences(
         text, lambda segment: segment.replace(":::answers", "EXPANDED")
     )
-    assert transformed.count("EXPANDED") == 1  # the prose marker only
-    assert ":::answers x" in transformed  # the fenced marker is untouched
+    assert transformed.count("EXPANDED") == 1
+    assert ":::answers x" in transformed
 
 
 def test_problems_marker_expands_outside_a_fence():
@@ -55,7 +55,7 @@ def test_problems_list_is_rendered_from_the_bank():
         ":::problems chapter-01-practice-1.1\n", FakePage(), config, None
     )
     assert "1. " in out
-    assert "**H**" in out  # the Higher-only items are marked
+    assert "**H**" in out
 
 
 def test_problems_and_answers_marker_are_ignored_inside_a_fence():
@@ -97,11 +97,6 @@ def test_every_marker_in_the_book_resolves(book):
     for bank in banks:
         assert (book.banks / f"{bank}.yaml").exists(), f"missing bank for :::answers {bank}"
     for slug in slugs:
-        # A slug is resolved by the book's own figures directory **or by the shared
-        # library**, because a figure that two books want identically is written once
-        # and mounted by both. Before the library existed this test was the check that
-        # a page could not name a figure nobody had written; it still is, and a shared
-        # module satisfies it in the same way a local one does.
         assert (
             (book.docs / "assets" / "figures" / f"{slug}.js").is_file()
             or slug in scaffold.shared_figure_modules()
@@ -151,8 +146,39 @@ def test_hook_paths_come_from_the_config_not_the_filesystem():
     assert cfg.docs_dir(config) == BOOKS[0].docs
     assert cfg.banks_dir(config) == BOOKS[0].banks
     assert cfg.curriculum_path(config) == BOOKS[0].curriculum
-    # **An id, not a filter.** `tier_filter` is `"H"`; the profile is `"higher"`. This
-    # assertion used to pin the filter, because the config it was given was built with
-    # one — so the test agreed with the drift rather than catching it.
     assert cfg.profile(config) == BOOKS[0].default_profile.id
     assert cfg.profile(config) != BOOKS[0].default_profile.tier_filter
+
+
+def test_a_tier_limited_build_drops_higher_only_bank_records():
+    """A shared Review bank must not carry an `H` question into a Foundation build.
+
+    `:::problems` used to render every record whatever its tier, so a Higher-only
+    question on a shared Review page reached the Foundation reader marked **H**.
+    The marker cannot sit in a `<!-- tier:h -->` range, because a marker inside one
+    is stripped before it expands.
+    """
+    book = next(b for b in BOOKS if b.id == "gcse-maths")
+    foundation = cfg.from_parts(book.docs, book=book, profile="foundation")
+    higher = cfg.from_parts(book.docs, book=book, profile="higher")
+    page = FakePage()
+
+    lower = problems.select("chapter-09-review", None, page, foundation)
+    upper = problems.select("chapter-09-review", None, page, higher)
+    assert any(p.get("tier") == "H" for p in upper), "the bank has no H record to test"
+    assert all(p.get("tier") != "H" for p in lower)
+    assert len(lower) < len(upper)
+
+    rendered = problems.on_page_markdown(
+        ":::problems chapter-09-review\n", page, foundation, None
+    )
+    assert "**H**" not in rendered
+
+    # A bank that is wholly above this build belongs to a chapter the build should
+    # not have (TODO 223). It is left as it was rather than failing the build or
+    # rendering an empty practice section; the page needs tier front matter, and the
+    # nav that would then still link it is the other half of that item.
+    page_tier = problems._within_build(
+        [{"id": "only", "tier": "H"}], "synthetic", page, foundation
+    )
+    assert page_tier == [{"id": "only", "tier": "H"}]

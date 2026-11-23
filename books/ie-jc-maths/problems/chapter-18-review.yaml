@@ -1,0 +1,230 @@
+# Mixed practice for the Junior Cycle Mathematics Chapter 18 Review.
+#
+# Sixteen questions covering Pythagoras' theorem for a missing side, the sine,
+# cosine and tangent ratios, the inverse ratios for a missing angle, angles of
+# elevation and depression, plus interleaved percentage, equation, circle-area,
+# ratio and volume items.
+#
+# Honest limit: the verifier proves the arithmetic of each stated theorem or
+# ratio and the rounding to one decimal place. It cannot prove that the reader
+# chose the right method — Pythagoras or a ratio — which is what this chapter
+# trains, so the choice stays with the reader and the working stays in the prose.
+chapter: 18
+symbols:
+  x: {real: true}
+  h: {real: true, positive: true}
+  d: {real: true, positive: true}
+
+problems:
+  - id: r1-hypotenuse-from-legs
+    section: Review
+    tier: O
+    refs: [GT.4]
+    statement: 'A right-angled triangle has legs of 8 cm and 15 cm. Find the hypotenuse.'
+    answer_label: 'Find the hypotenuse of the triangle with legs 8 cm and 15 cm.'
+    check:
+      kind: evaluate
+      expression: 'sqrt(8**2 + 15**2)'
+      answer: '17'
+    answer_text: '$17$ cm. The hypotenuse faces the right angle, so it is the longest side. Add the squares of the legs and take the root: $8^2+15^2=64+225=289$, and $\sqrt{289}=17$.'
+
+  - id: r2-opposite-from-angle
+    section: Review
+    tier: O
+    refs: [GT.4]
+    statement: 'A right-angled triangle has an angle of 30° and a hypotenuse of 12 m. Find the opposite side.'
+    answer_label: 'Find the opposite side of the triangle.'
+    check:
+      kind: evaluate
+      expression: '12*sin(30*pi/180)'
+      answer: '6'
+    answer_text: '$6$ m. The hypotenuse and the opposite side belong to the sine ratio: $\sin 30^\circ=\frac{x}{12}$, so $x=12\sin 30^\circ=12\times0.5=6$.'
+
+  - id: r3-angle-from-sides
+    section: Review
+    tier: O
+    refs: [GT.4]
+    statement: 'A right-angled triangle has an opposite side of 5 m and an adjacent side of 12 m. Find the angle, to one decimal place.'
+    answer_label: 'Find the angle, to one decimal place.'
+    check:
+      kind: approx
+      value: 'atan(5/12)*180/pi'
+      target: '22.6'
+      tolerance: '0.05'
+    answer_text: '$22.6$°. The two given sides are the opposite and the adjacent, so use tangent: $\tan\theta=\frac{5}{12}=0.4166\ldots$. The inverse tangent gives $\tan^{-1}(0.4166\ldots)=22.619\ldots$°, which is $22.6$° to one decimal place.'
+
+  - id: r4-ladder
+    section: Review
+    tier: O
+    refs: [GT.4]
+    statement: 'A ladder is 10 m long and its foot is 6 m from a wall. How far up the wall does it reach?'
+    answer_label: 'Find how far up the wall the ladder reaches.'
+    check:
+      kind: evaluate
+      expression: 'sqrt(10**2 - 6**2)'
+      answer: '8'
+    answer_text: '$8$ m. The ladder is the hypotenuse, so subtract the square of the known leg: $10^2-6^2=100-36=64$, and $\sqrt{64}=8$. The height is shorter than the ladder, which it must be.'
+
+  - id: r5-height-from-elevation
+    section: Review
+    tier: O
+    refs: [GT.4]
+    statement: 'From a point 30 m from a tower, the angle of elevation to the top is 28°. Find the height of the tower, to one decimal place.'
+    answer_label: 'Find the height of the tower, to one decimal place.'
+    check:
+      kind: approx
+      value: '30*tan(28*pi/180)'
+      target: '16.0'
+      tolerance: '0.05'
+    answer_text: '$16.0$ m. The height is the opposite side and 30 m is the adjacent side, so use tangent: $\tan 28^\circ=\frac{h}{30}$, giving $h=30\tan 28^\circ=30\times0.5317\ldots=15.951\ldots$, which is $16.0$ m to one decimal place.'
+
+  - id: r6-rectangle-diagonal
+    section: Review
+    tier: O
+    refs: [GT.4]
+    statement: 'A rectangle is 8 m by 6 m. Find the length of a diagonal.'
+    answer_label: 'Find the length of the diagonal.'
+    check:
+      kind: evaluate
+      expression: 'sqrt(8**2 + 6**2)'
+      answer: '10'
+    answer_text: '$10$ m. A diagonal splits the rectangle into two right-angled triangles, with the diagonal as the hypotenuse: $8^2+6^2=64+36=100$, and $\sqrt{100}=10$.'
+
+  - id: r7-percentage
+    section: Review
+    tier: O
+    refs: [N.2]
+    statement: 'Work out 35% of 240.'
+    answer_label: 'Work out 35% of 240.'
+    check:
+      kind: evaluate
+      expression: '(35/100)*240'
+      answer: '84'
+    answer_text: '$84$. Ten per cent of 240 is 24, so 30% is $3\times24=72$ and 5% is 12. Add them: $72+12=84$.'
+
+  - id: r8-solve-equation
+    section: Review
+    tier: O
+    refs: [AF.4]
+    statement: 'Solve $4x+7=31$.'
+    answer_label: 'Solve $4x+7=31$.'
+    check:
+      kind: solve
+      equation: '4*x + 7 = 31'
+      variable: x
+      answer: '6'
+    answer_text: '$x=6$. Subtract 7 from both sides to get $4x=24$, then divide both sides by 4 to get $x=6$. Check: $4\times6+7=31$.'
+
+  - id: r9-circle-area
+    section: Review
+    tier: O
+    refs: [GT.2]
+    statement: 'A circle has a radius of 7 cm. Find its area in terms of $\pi$.'
+    answer_label: 'Find the area of the circle, in terms of $\pi$.'
+    check:
+      kind: evaluate
+      expression: 'pi*7**2'
+      answer: '49*pi'
+    answer_text: '$49\pi$ cm². Use $A=\pi r^2$: $\pi\times7^2=49\pi$. The radius is already given, so no halving is needed.'
+
+  - id: r10-angle-from-opposite-and-hypotenuse
+    section: Review
+    tier: O
+    refs: [GT.4]
+    statement: 'A right-angled triangle has an opposite side of 9 cm and a hypotenuse of 15 cm. Find the angle, to one decimal place.'
+    answer_label: 'Find the angle, to one decimal place.'
+    check:
+      kind: approx
+      value: 'asin(9/15)*180/pi'
+      target: '36.9'
+      tolerance: '0.05'
+    answer_text: '$36.9$°. The given sides are the opposite and the hypotenuse, so use sine: $\sin\theta=\frac{9}{15}=0.6$. The inverse sine gives $\sin^{-1}(0.6)=36.869\ldots$°, which is $36.9$° to one decimal place.'
+
+  - id: r11-angle-of-depression
+    section: Review
+    tier: O
+    refs: [GT.4]
+    statement: 'From the top of a cliff 60 m high, the angle of depression to a boat is 20°. Find the horizontal distance to the boat, to one decimal place.'
+    answer_label: 'Find the horizontal distance to the boat, to one decimal place.'
+    check:
+      kind: approx
+      value: '60/tan(20*pi/180)'
+      target: '164.8'
+      tolerance: '0.05'
+    answer_text: '$164.8$ m. The angle of depression from the cliff top equals the angle of elevation from the boat, which is 20°. The 60 m height is opposite that angle and the distance is adjacent, so $\tan 20^\circ=\frac{60}{d}$ and $d=\frac{60}{\tan 20^\circ}=\frac{60}{0.3639\ldots}=164.848\ldots$, which is $164.8$ m to one decimal place.'
+
+  - id: r12-divide-ratio
+    section: Review
+    tier: O
+    refs: [N.2]
+    statement: 'Divide €84 in the ratio $3:4$.'
+    answer_label: 'Divide €84 in the ratio $3:4$.'
+    check:
+      kind: all
+      checks:
+        - kind: evaluate
+          expression: '3 + 4'
+          answer: '7'
+        - kind: evaluate
+          expression: '84/7'
+          answer: '12'
+        - kind: evaluate
+          expression: '3*12'
+          answer: '36'
+        - kind: evaluate
+          expression: '4*12'
+          answer: '48'
+        - kind: evaluate
+          expression: '36 + 48'
+          answer: '84'
+    answer_text: '€36 and €48. There are $3+4=7$ parts, and $84\div7=12$ euro in each part. Then $3\times12=36$ and $4\times12=48$. Check: $36+48=84$.'
+
+  - id: r13-cuboid-volume
+    section: Review
+    tier: O
+    refs: [GT.2]
+    statement: 'A cuboid is 6 cm by 4 cm by 3 cm. Find its volume.'
+    answer_label: 'Find the volume of the cuboid.'
+    check:
+      kind: evaluate
+      expression: '6*4*3'
+      answer: '72'
+    answer_text: '$72$ cm³. Multiply the three lengths: $6\times4\times3=72$. Volume is measured in cubic units, so the answer is in cm³.'
+
+  - id: r14-missing-leg
+    section: Review
+    tier: O
+    refs: [GT.4]
+    statement: 'A right-angled triangle has a hypotenuse of 25 m and one leg of 24 m. Find the other leg.'
+    answer_label: 'Find the other leg of the triangle.'
+    check:
+      kind: evaluate
+      expression: 'sqrt(25**2 - 24**2)'
+      answer: '7'
+    answer_text: '$7$ m. The hypotenuse is known, so subtract: $25^2-24^2=625-576=49$, and $\sqrt{49}=7$. The leg is shorter than the hypotenuse, which it must be.'
+
+  - id: r15-ramp-height
+    section: Review
+    tier: O
+    refs: [GT.4]
+    statement: 'A ramp rises at an angle of 15° and is 5 m long. Find the height it rises, to one decimal place.'
+    answer_label: 'Find the height the ramp rises, to one decimal place.'
+    check:
+      kind: approx
+      value: '5*sin(15*pi/180)'
+      target: '1.3'
+      tolerance: '0.05'
+    answer_text: '$1.3$ m. The ramp is the hypotenuse and the height is opposite the 15° angle, so use sine: $h=5\sin 15^\circ=5\times0.2588\ldots=1.294\ldots$, which is $1.3$ m to one decimal place.'
+
+  - id: r16-smaller-acute-angle
+    section: Review
+    tier: O
+    refs: [GT.4]
+    statement: 'A right-angled triangle has legs of 3 m and 4 m. Find the smaller acute angle, to one decimal place.'
+    answer_label: 'Find the smaller acute angle, to one decimal place.'
+    check:
+      kind: approx
+      value: 'atan(3/4)*180/pi'
+      target: '36.9'
+      tolerance: '0.05'
+    answer_text: '$36.9$°. The smaller acute angle faces the shorter leg, so the opposite side is 3 m and the adjacent side is 4 m: $\tan\theta=\frac{3}{4}=0.75$. The inverse tangent gives $36.869\ldots$°, which is $36.9$° to one decimal place. The other acute angle is $90^\circ-36.9^\circ=53.1^\circ$.'

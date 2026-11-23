@@ -23,13 +23,8 @@ import { parseArgs, type Surface } from "../lib/flags.js";
 import { Report } from "../lib/report.js";
 import { discoverFigures } from "../lib/site.js";
 
-/**
- * Labels that overhang their frame today. Down-only: a figure not named here has no
- * allowance at all. The fix for an entry is `label()`'s `rotate`.
- */
 const CANVAS_DEBT: Record<string, number> = {};
 
-/** What this command accepts. `tools help canvas` is generated from it. */
 export const SURFACE: Surface = {
   positional: [{ name: "siteDir", help: "the built site to measure", required: false }],
   flags: {
@@ -58,7 +53,6 @@ type Element = {
   text: string;
   box: Box;
   matrix: Matrix;
-  /** A text element's font size, in user units: its slack is a fraction of this. */
   fontSize: number;
 };
 
@@ -67,7 +61,6 @@ type Figure = {
   viewBox: Box | null;
   /** True when the figure has an `<svg>` at all; false for a form or a bare control. */
   hasSvg: boolean;
-  /** How many elements the drawing has. */
   drawings: number;
   elements: Element[];
 };
@@ -92,8 +85,6 @@ export function readInk(slug: string): Figure {
   const rootInverse = rootScreen.inverse();
   const skip = new Set(["defs", "clipPath", "marker", "pattern", "mask", "symbol"]);
   const elements: Element[] = [];
-  // `getBBox()` and `getScreenCTM()` are on `SVGGraphicsElement`, not on the
-  // `SVGElement` the selector returns.
   const nodes = Array.from(
     svg.querySelectorAll("text, line, rect, circle, ellipse, path, polyline, polygon, image, use"),
   ) as unknown as SVGGraphicsElement[];
@@ -130,10 +121,6 @@ export function readInk(slug: string): Figure {
   return { slug, viewBox, hasSvg: true, drawings: elements.length, elements };
 }
 
-/**
- * The rule's own cases, under plain `node`. Two carry the shape that makes the rules
- * differ; the rest are the edges.
- */
 export function cases(): string[] {
   const failures: string[] = [];
   const check = (name: string, ink: Ink, box: Box, canvas: Box, want: boolean) => {
@@ -157,8 +144,6 @@ export function cases(): string[] {
     dynamics,
     true,
   );
-  // A label's slack is half an em: a runner without the site's font measures the same
-  // label a few units wider. Five units is that slack; twenty loses the ink.
   check(
     "a label five units past the right edge (the em box's slack)",
     "text",
@@ -194,8 +179,6 @@ export function cases(): string[] {
     { x: 0, y: 0, width: 560, height: 300 },
     false,
   );
-  // A rotated label's box is in its own space: a 60×18 box at the top becomes 18×60 off
-  // the top once turned, and reading attributes calls it inside.
   const rotated = transformBox(
     { x: 500, y: 30, width: 60, height: 18 },
     [0, 1, -1, 0, 0, 0],
@@ -224,8 +207,6 @@ export async function run(argv: string[]): Promise<number> {
   const only = values.only ? String(values.only) : "";
   const jsonOut = values.json ? String(values.json) : "";
   const jobs = Math.max(1, Math.min(Number(values.jobs) || 1, 8));
-  // **A label's width is its font's.** A machine without the site's font measures wider,
-  // so `--font` re-measures under a wider font and asks the question the runner asks.
   const font = values.font ? String(values.font) : "";
 
   const pages = discoverFigures(siteDir);
@@ -253,23 +234,15 @@ export async function run(argv: string[]): Promise<number> {
 
   await mapPool(slugs, jobs, async (slug, index) => {
     const page = pool[index % jobs]!;
-    // **Every route the figure appears on is a candidate.** A slug's first route
-    // alphabetically can be a page where the figure does not mount, so a figure is only
-    // called drawing-free when none of its routes has one.
     let measured = false;
     let drawings = 0;
     // Three routes at most per slug, and one attempt each: a figure that mounts no `svg`
-    // will not mount one on a second look, and the wait is what a sweep costs.
     for (const route of pages[slug]!.slice(0, 3)) {
       let figure: Figure | null = null;
       for (let attempt = 1; attempt <= 2 && !figure; attempt += 1) {
         try {
-          // A page that reloads itself interrupts the navigation that asked for it. The
-          // document there afterwards is the one to measure, so the failure is swallowed.
           await page.goto(`${ORIGIN}${route}`, { waitUntil: "load" }).catch(() => {});
           if (font) await page.addStyleTag({ content: `svg text { font-family: ${font} !important; }` }).catch(() => {});
-          // Wait for the figure to mount, not for a fixed pause: the module may await a
-          // kernel, and a sleep measures the empty frame, which reads as a clean result.
           await page
             .waitForFunction(
               (s: string) => {
@@ -277,12 +250,11 @@ export async function run(argv: string[]): Promise<number> {
                 if (!host) return false;
                 const svg = host.querySelector("svg");
                 if (svg && svg.childElementCount > 0) return true;
-                // A figure with a control and no drawing has mounted; do not wait the
                 // full timeout for an `svg` that is never coming.
                 return !!host.querySelector("input, select, button, .fig");
               },
               slug,
-              { timeout: 20000 },  // the kernel figures load a wasm module first
+              { timeout: 20000 },
             )
             .catch(() => {});
           await page.waitForTimeout(80);
@@ -306,7 +278,7 @@ export async function run(argv: string[]): Promise<number> {
           report.error(`${slug} on ${route}`, "the drawing has no viewBox to measure against");
           break;
         }
-        continue; // this route mounts nothing; the next one may
+        continue;
       }
       drawings = figure.drawings;
       records.push({ ...figure, slug });
@@ -344,7 +316,6 @@ export async function run(argv: string[]): Promise<number> {
     process.stdout.write(".");
   });
   // **One more pass over what measured nothing.** A figure whose module is slow on the
-  // first visit mounts on the second, and a skipped figure is one whose overhang goes
   // unmeasured; whatever is still unmeasured is named in the summary.
   const retry = unmeasured.splice(0);
   if (retry.length) {
@@ -354,7 +325,6 @@ export async function run(argv: string[]): Promise<number> {
         try {
           await page.goto(`${ORIGIN}${route}`, { waitUntil: "load" }).catch(() => {});
           if (font) await page.addStyleTag({ content: `svg text { font-family: ${font} !important; }` }).catch(() => {});
-          // The same mount wait as the first pass: a retry that waits less measures less.
           await page
             .waitForFunction(
               (s: string) => {
@@ -365,7 +335,7 @@ export async function run(argv: string[]): Promise<number> {
                 return !!host.querySelector("input, select, button, .fig");
               },
               slug,
-              { timeout: 20000 },  // the kernel figures load a wasm module first
+              { timeout: 20000 },
             )
             .catch(() => {});
           await page.waitForTimeout(120);
@@ -397,7 +367,6 @@ export async function run(argv: string[]): Promise<number> {
           }
           return;
         } catch {
-          /* the next route may mount it */
         }
       }
       noDrawing += 1;

@@ -128,8 +128,11 @@ Then find the force towards the centre:
 
 $$F = ma = 1200 \times \underline{\hspace{2cm}} = \underline{\hspace{2cm}}\ \text{N}$$
 
-Keep the force. Section 7.3 asks whether the road can supply it, and Section 7.4
-asks what happens when the bend is banked instead.
+Keep the force. Section 7.3 asks whether the road can supply it.
+
+<!-- tier:h -->
+Section 7.4 asks what happens when the bend is banked instead.
+<!-- /tier:h -->
 
 ## You should now be able to
 

@@ -92,27 +92,9 @@ Work through these without notes. For each one, decide **which relationship
 applies** and say why. Two of them ask you to choose between the wave equation and
 the lens formula, and two come from earlier chapters.
 
-1. List the seven families of the electromagnetic spectrum in order of increasing
-   wavelength.
-2. A radio wave has a wavelength of 2.0 m. Calculate its frequency. Take the
-   speed of light as $3.0 \times 10^{8}$ m/s.
-3. A star is 6.0 light years from the Earth. State how long its light takes to
-   reach us, and explain your answer.
-4. A solar panel has an area of 4.0 m$^2$. The irradiance of the sunlight is
-   500 W/m$^2$. Calculate the power the panel receives.
-5. The irradiance 1.0 m from a lamp is 900 W/m$^2$. Calculate the irradiance
-   3.0 m from the lamp.
-6. Explain why ultraviolet radiation is ionising but visible light is not.
-7. A converging lens has a focal length of 10.0 cm. An object is placed 30.0 cm
-   from the lens. Calculate the image distance and the magnification.
-8. A converging lens has a focal length of 10.0 cm. An object is placed 8.0 cm
-   from the lens. Calculate the image distance, and state whether the image is
-   real or virtual.
-9. Light passes from air into a glass of refractive index 1.50 at an angle of
-   incidence of 30.0°. Calculate the angle of refraction. Which chapter does this
-   method come from?
-10. A wave has a frequency of 200 Hz and a wavelength of 1.7 m. Calculate its
-    speed. Which chapter does this method come from?
+:::problems chapter-12-review
+
+:::answers chapter-12-review
 
 ## What you can now do
 

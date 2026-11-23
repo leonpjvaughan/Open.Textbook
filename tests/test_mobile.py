@@ -97,18 +97,12 @@ def test_the_masthead_names_the_section_a_page_is_in():
     ) == '<span class="masthead__section">1.2 One rigid triangle</span>'
     assert pipeline.masthead_section({"title": "Chapter 1"}) == ""
     assert pipeline.masthead_section({"section": "", "section_title": ""}) == ""
-    # The template puts it inside the brand's link, beside the book's name.
     page = PAGE.read_text(encoding="utf-8")
     brand = page[page.index('class="masthead__brand"') :]
     assert "$masthead_section" in brand[:120]
     assert ".masthead__section" in shell()
 
 
-# --- a table wider than a phone ------------------------------------------------
-#
-# `check-mobile` fails when a *page* is wider than the screen, and a table cannot make
-# a page wider: `wrap_tables` puts every one in a `.table-scroll`, so the check is
-# satisfied by the wrapper that hides the problem. A table whose last column sits past
 # the right edge therefore read as a pass — 18 tables in the two reference books, the
 # worst 172px over, and §1.5's fifth column at x = 404 in a 390 viewport.
 
@@ -186,14 +180,8 @@ def test_a_table_40px_too_wide_fails_the_check(tmp_path):
     assert "wider than its container at 390px" in result.stdout, result.stdout[-1500:]
 
 
-# --- the routes come from the build, not from a book's name ---------------------
-#
-# `check-mobile` held one book's learn route and one practise route, and `kit` held
 # that book's root. A build of any other book measured a request the static server
 # answered with something else: 980px of fallback, or a module the browser could not
-# import. "Does this book work on a phone" had never been answerable for eleven of
-# the twelve books, and the command that would have said so was pointing at the
-# wrong one.
 
 
 def test_no_command_names_a_book_route_to_measure():
@@ -230,6 +218,11 @@ def test_the_measuring_commands_derive_their_routes_from_the_build():
     kit = (commands / "kit.ts").read_text(encoding="utf-8")
     assert "figurePage(" in kit, "kit no longer finds a page that mounts a figure"
     assert "figureAssets(" in kit, "kit no longer derives the kit's path from the page"
+    offline = (commands / "offline.ts").read_text(encoding="utf-8")
+    assert "figureAssets(" in offline, "offline no longer derives the loader's path from the page"
+    assert "assets/figures/figures.js" not in offline, (
+        "offline still builds a route-relative path for figures.js instead of reading the page"
+    )
     routes = (repo_root() / "tools" / "src" / "lib" / "routes.ts").read_text(
         encoding="utf-8"
     )
@@ -293,12 +286,61 @@ def test_the_offline_check_samples_a_page_that_mounts_a_figure(tmp_path):
     )
 
 
-# --- the booklet button and the paragraph under it ------------------------------
-#
-# `.bk-fab` is `position: fixed`, 108x39 at 390px, 1.1rem off the bottom right. The
-# content column kept 4rem below the pager, which is not enough: the last paragraph of
-# a page ended underneath the button. The reserve is the button's own height plus a
-# rem of clearance, on top of the reading room the column had.
+def test_figure_assets_resolves_the_loader_the_page_names(tmp_path):
+    """`figureAssets` returns the exact loader URL the page names, and `null` when absent.
+
+    `offline` used to concatenate `assets/figures/figures.js` onto the route itself,
+    which 404ed on every real page. Resolving from the page handles unusual loader
+    locations and reports a page with no loader cleanly.
+    """
+    import json
+    import shutil
+    import subprocess
+
+    node = shutil.which("node")
+    if node is None:
+        pytest.skip("node is not on PATH; the route discovery cannot run")
+    routes = repo_root() / "tools" / "dist" / "lib" / "routes.js"
+    assert routes.is_file(), "the tools are not built; run `npm run build`"
+
+    site = tmp_path / "site"
+    custom = site / "unusual" / "loaders"
+    custom.mkdir(parents=True)
+    for name in ("figures.js", "kit.js"):
+        (custom / name).write_text("", encoding="utf-8")
+
+    mounted = site / "demo" / "chapter-1" / "section-1.1" / "learn"
+    mounted.mkdir(parents=True)
+    (mounted / "index.html").write_text(
+        '<!doctype html><script type="module" src="/unusual/loaders/figures.js"></script>',
+        encoding="utf-8",
+    )
+    bare = site / "demo" / "chapter-1" / "section-1.2" / "learn"
+    bare.mkdir(parents=True)
+    (bare / "index.html").write_text("<!doctype html><p>no loader</p>", encoding="utf-8")
+
+    script = (
+        f"import {{ figureAssets }} from {json.dumps(str(routes))};\n"
+        f"console.log(JSON.stringify(figureAssets({json.dumps(str(site))}, '/demo/chapter-1/section-1.1/learn/')));\n"
+        f"console.log(JSON.stringify(figureAssets({json.dumps(str(site))}, '/demo/chapter-1/section-1.2/learn/')));\n"
+    )
+    done = subprocess.run(
+        [node, "--input-type=module", "-e", script],
+        capture_output=True,
+        text=True,
+        check=False,
+        cwd=repo_root(),
+    )
+    assert done.returncode == 0, done.stderr
+    lines = done.stdout.strip().splitlines()
+    assert json.loads(lines[0]) == {
+        "dir": "/unusual/loaders",
+        "loader": "/unusual/loaders/figures.js",
+        "kit": "/unusual/loaders/kit.js",
+    }
+    assert json.loads(lines[1]) is None
+
+
 
 
 def test_the_content_column_reserves_the_floating_button():
@@ -312,7 +354,6 @@ def test_the_content_column_reserves_the_floating_button():
     match = __import__("re").search(r"padding:\s*[^;]*?\b([\d.]+)rem\s*;", block)
     assert match, "the content column's padding is no longer a single shorthand"
     reserve = float(match.group(1)) * 16
-    # 39px tall, 1.1rem off the bottom, plus the 1rem gap the handoff asks for.
     needed = 39 + 1.1 * 16 + 16
     assert reserve >= needed, (
         f"the content column reserves {reserve:.0f}px at the bottom; the floating "

@@ -152,8 +152,12 @@ Back to the chapter problem. The caravan battery has a 12 Ω lamp, a 6.0 Ω lamp
 
 Find the combined resistance of the three, then the total current from the battery.
 Keep both numbers. Section 14.4 uses that current and those resistances to find the
-power and the energy, and Section 14.5 asks what changes when the battery is old and its
-internal resistance matters.
+power and the energy.
+
+<!-- tier:h -->
+Section 14.5 asks what changes when the battery is old and its internal resistance
+matters.
+<!-- /tier:h -->
 
 ## You should now be able to
 

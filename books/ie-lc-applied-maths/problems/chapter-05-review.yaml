@@ -1,0 +1,393 @@
+# Mixed practice for the Chapter 5 Review (strand S3, friction and resistance).
+#
+# Twelve questions, one record each, in the order they appear on the Review page.
+# Every force answer is proved with its unit by `dimensions`, so the number and
+# the kind of quantity are checked together. Factors such as $\sin 30^\circ$ are
+# declared at their exact value; $\cos 20^\circ$ and $\cos 30^\circ$ are
+# irrational, so they are declared to six decimals with the tolerance the answer
+# is checked to. Question 8's decision is proved twice over: `compare` shows
+# $\tan 20^\circ$ exceeds $\mu$, and a `structured` record checks that the model
+# answer gives the rule and the conclusion in order. Questions 4, 11 and 12 also
+# ask for a reason and carry a `structured` component.
+#
+# Honest limit: this proves arithmetic, units, the declared angle factors and the
+# sliding comparison. It cannot check a free-body diagram, and it cannot prove
+# that a friction force is drawn in the right direction. A `structured` check
+# proves only that a model answer contains its declared steps and concepts, in
+# order. Take $g = 9.8\ \text{m/s}^2$ throughout.
+chapter: 5
+problems:
+  - id: r1-coefficient-from-a-pull
+    section: Review
+    tier: O
+    refs: [S3]
+    statement: >-
+      A box of mass $8$ kg rests on a rough horizontal floor. A horizontal force
+      of $30$ N just starts it moving. Find the coefficient of friction.
+    answer_label: The coefficient of friction
+    check:
+      kind: dimensions
+      expression: F / (m * g)
+      values:
+        F: {value: '30', unit: N}
+        m: {value: '8', unit: kg}
+        g: {value: '9.8', unit: m/s^2}
+      answer: {value: '0.3827'}
+      tolerance: '0.0001'
+    answer_text: >-
+      On a horizontal floor the normal reaction equals the weight, so
+      $R = 8 \times 9.8 = 78.4$ N. The box is just about to move, so friction is
+      at its limiting value and $F = \mu R$. Then
+      $\mu = \dfrac{30}{78.4} = 0.38$ to two significant figures. The coefficient
+      has no unit: it is a ratio of two forces.
+
+  - id: r1-rough-plane-acceleration
+    section: Review
+    tier: O
+    refs: [S3]
+    statement: >-
+      A block of mass $6$ kg slides down a rough plane inclined at $30^\circ$.
+      The coefficient of friction is $0.25$. Find the acceleration.
+    answer_label: The acceleration down the plane
+    check:
+      kind: dimensions
+      expression: g * (sn - mu * cs)
+      values:
+        g: {value: '9.8', unit: m/s^2}
+        sn: {value: '0.5'}
+        mu: {value: '0.25'}
+        cs: {value: '0.866025404'}
+      answer: {value: '2.778', unit: m/s^2}
+      tolerance: '0.001'
+    answer_text: >-
+      The normal reaction is $R = mg\cos 30^\circ = 6 \times 9.8 \times 0.866 =
+      50.9$ N, so friction is $\mu R = 0.25 \times 50.9 = 12.7$ N up the plane.
+      The weight component down the plane is
+      $mg\sin 30^\circ = 29.4$ N. The resultant is $29.4 - 12.7 = 16.7$ N on
+      $6$ kg, so $a = 2.78\ \text{m/s}^2$. The formula
+      $a = g(\sin\theta - \mu\cos\theta)$ gives the same result, and the mass
+      cancels.
+
+  - id: r1-ball-with-drag
+    section: Review
+    tier: O
+    refs: [S3]
+    statement: >-
+      A ball of mass $0.2$ kg falls through the air with a drag force of $0.5$ N.
+      Find its acceleration.
+    answer_label: The acceleration of the ball
+    check:
+      kind: dimensions
+      expression: (m * g - D) / m
+      values:
+        m: {value: '0.2', unit: kg}
+        g: {value: '9.8', unit: m/s^2}
+        D: {value: '0.5', unit: N}
+      answer: {value: '7.3', unit: m/s^2}
+    answer_text: >-
+      The weight is $mg = 0.2 \times 9.8 = 1.96$ N, and the drag acts upwards, so
+      the resultant downwards is $1.96 - 0.5 = 1.46$ N. Then
+      $a = \dfrac{1.46}{0.2} = 7.3\ \text{m/s}^2$ downwards. The acceleration is
+      less than $g$ because the drag has taken part of the weight.
+
+  - id: r1-which-chapter
+    section: Review
+    tier: O
+    refs: [S3]
+    statement: >-
+      A car speeds up from $12$ m/s to $30$ m/s in $5$ s. Find its acceleration.
+      Which chapter does this question belong to, and why?
+    answer_label: The acceleration and the chapter
+    check:
+      kind: all
+      checks:
+        - kind: dimensions
+          expression: (v2 - v1) / t
+          values:
+            v2: {value: '30', unit: m/s}
+            v1: {value: '12', unit: m/s}
+            t: {value: '5', unit: s}
+          answer: {value: '3.6', unit: m/s^2}
+        - kind: structured
+          requires: [acceleration, chapter]
+          concepts: [kinematics, forces]
+          points:
+            - id: acceleration
+              text: >-
+                The acceleration is (30 - 12) / 5 = 3.6 m/s^2.
+              concepts: [kinematics]
+            - id: chapter
+              text: >-
+                It belongs to Chapter 3, because the motion is described from the
+                speeds and the time. No force, mass or friction is mentioned, so
+                no Chapter 5 idea is needed.
+              concepts: [kinematics, forces]
+    answer_text: >-
+      The acceleration is $\dfrac{30 - 12}{5} = 3.6\ \text{m/s}^2$. The question
+      belongs to Chapter 3. It describes motion from speeds and a time, and it
+      gives no mass, no force and no surface, so none of this chapter's friction
+      or drag ideas is needed.
+
+  - id: r1-smooth-plane
+    section: Review
+    tier: O
+    refs: [S3]
+    statement: >-
+      A crate of mass $20$ kg rests on a smooth plane inclined at $30^\circ$.
+      Find its acceleration down the plane.
+    answer_label: The acceleration down the plane
+    check:
+      kind: dimensions
+      expression: g * sn
+      values:
+        g: {value: '9.8', unit: m/s^2}
+        sn: {value: '0.5'}
+      answer: {value: '4.9', unit: m/s^2}
+    answer_text: >-
+      The plane is smooth, so there is no friction and the only force along it is
+      the weight component $mg\sin 30^\circ$. Then
+      $a = g\sin 30^\circ = 4.9\ \text{m/s}^2$, and the mass cancels. A $20$ kg
+      crate and a $2$ kg crate slide down at the same rate.
+
+  - id: r1-parachutist
+    section: Review
+    tier: O
+    refs: [S3]
+    statement: >-
+      A parachutist of mass $75$ kg descends at a constant speed. Find the drag
+      force.
+    answer_label: The drag force
+    check:
+      kind: dimensions
+      expression: m * g
+      values:
+        m: {value: '75', unit: kg}
+        g: {value: '9.8', unit: m/s^2}
+      answer: {value: '735', unit: N}
+    answer_text: >-
+      A constant speed means zero acceleration, so the forces balance and the
+      drag equals the weight: $D = mg = 75 \times 9.8 = 735$ N. If the
+      parachutist were still speeding up, the drag would be less than this; if the
+      parachute were closed, it would be far less.
+
+  - id: r1-terminal-speed
+    section: Review
+    tier: H
+    refs: [S3]
+    statement: >-
+      An object of mass $10$ kg falls with $D = kv^2$ and $k = 0.5$ kg/m. Find
+      its terminal speed.
+    answer_label: The terminal speed
+    check:
+      kind: dimensions
+      expression: sqrt(m * g / k)
+      values:
+        m: {value: '10', unit: kg}
+        g: {value: '9.8', unit: m/s^2}
+        k: {value: '0.5', unit: kg/m}
+      answer: {value: '14', unit: m/s}
+    answer_text: >-
+      At terminal speed the drag balances the weight, so $kv^2 = mg$ and
+      $v = \sqrt{\dfrac{mg}{k}} = \sqrt{\dfrac{10 \times 9.8}{0.5}} =
+      \sqrt{196} = 14$ m/s. The units check: $\text{N}$ divided by
+      $\text{kg/m}$ gives $\text{m}^2/\text{s}^2$, and the square root gives
+      $\text{m/s}$.
+
+  - id: r1-does-it-slide
+    section: Review
+    tier: O
+    refs: [S3]
+    statement: >-
+      A block rests on a rough plane inclined at $20^\circ$ with $\mu = 0.3$.
+      Decide whether it slides, and justify your answer.
+    answer_label: Whether it slides, and why
+    check:
+      kind: all
+      checks:
+        - kind: compare
+          lhs: 'tan(20*pi/180)'
+          relation: '>'
+          rhs: '0.3'
+        - kind: structured
+          requires: [rule, conclusion]
+          concepts: [limiting-friction, angle-of-repose]
+          points:
+            - id: rule
+              text: >-
+                A block slides when tan(theta) is greater than mu, because the
+                weight component down the plane mg sin(theta) then beats the
+                greatest friction mu mg cos(theta).
+              concepts: [limiting-friction]
+            - id: conclusion
+              text: >-
+                tan(20) = 0.364, which is greater than 0.3, so the block slides.
+                The greatest angle for rest is arctan 0.3 = 16.7 degrees, and 20
+                degrees is steeper.
+              concepts: [angle-of-repose]
+    answer_text: >-
+      The block slides when $\tan\theta > \mu$. Here
+      $\tan 20^\circ = 0.364$, and $0.364 > 0.3$, so it slides. The same test
+      gives the greatest angle for rest: $\arctan 0.3 = 16.7^\circ$, and the
+      plane at $20^\circ$ is steeper than that.
+
+  - id: r1-pulley-again
+    section: Review
+    tier: O
+    refs: [S3]
+    statement: >-
+      Masses of $4$ kg and $7$ kg hang from a light string over a smooth pulley.
+      Find the acceleration and the tension.
+    answer_label: The acceleration and the tension
+    check:
+      kind: all
+      checks:
+        - kind: evaluate
+          expression: '(7 - 4)*(49/5)/(4 + 7)'
+          answer: '147/55'
+        - kind: evaluate
+          expression: '2*4*7*(49/5)/(4 + 7)'
+          answer: '2744/55'
+    answer_text: >-
+      The resultant is $(7 - 4) \times 9.8 = 29.4$ N on a total mass of $11$ kg,
+      so $a = 2.67\ \text{m/s}^2$. The tension is
+      $T = \dfrac{2 \times 4 \times 7 \times 9.8}{11} = 49.9$ N. The tension lies
+      between the two weights: less than $68.6$ N and more than $39.2$ N, which
+      is how the smaller mass is pulled up while the larger falls.
+
+  - id: r1-skier
+    section: Review
+    tier: H
+    refs: [S3]
+    statement: >-
+      A skier of mass $60$ kg goes down a slope inclined at $30^\circ$. The
+      coefficient of friction is $0.1$ and the drag is $D = kv^2$ with
+      $k = 0.4$ kg/m. Find the acceleration at low speed, and then the terminal
+      speed. Which two sections of this chapter does this question join together?
+    answer_label: The acceleration, the terminal speed and the two sections
+    check:
+      kind: all
+      checks:
+        - kind: dimensions
+          expression: g * (sn - mu * cs)
+          values:
+            g: {value: '9.8', unit: m/s^2}
+            sn: {value: '0.5'}
+            mu: {value: '0.1'}
+            cs: {value: '0.866025404'}
+          answer: {value: '4.051', unit: m/s^2}
+          tolerance: '0.001'
+        - kind: dimensions
+          expression: sqrt(m * g * (sn - mu * cs) / k)
+          values:
+            m: {value: '60', unit: kg}
+            g: {value: '9.8', unit: m/s^2}
+            sn: {value: '0.5'}
+            mu: {value: '0.1'}
+            cs: {value: '0.866025404'}
+            k: {value: '0.4', unit: kg/m}
+          answer: {value: '24.65', unit: m/s}
+          tolerance: '0.01'
+        - kind: structured
+          requires: [two-sections]
+          concepts: [rough-plane, terminal-velocity]
+          points:
+            - id: two-sections
+              text: >-
+                The first part is a rough plane, from Section 5.3: resolve the
+                weight and subtract friction. The second part is terminal velocity
+                from Section 5.6: the drag grows until it balances the resultant.
+              concepts: [rough-plane, terminal-velocity]
+    answer_text: >-
+      At low speed the drag is small, so the resultant along the slope is
+      $mg\sin 30^\circ - \mu mg\cos 30^\circ$. That gives
+      $a = g(\sin 30^\circ - 0.1\cos 30^\circ) = 4.05\ \text{m/s}^2$. The skier
+      stops speeding up when the drag balances that resultant:
+      $kv^2 = mg(\sin 30^\circ - 0.1\cos 30^\circ)$, so
+      $v = \sqrt{\dfrac{243}{0.4}} = 24.7$ m/s. The first part is a rough plane
+      from Section 5.3, and the second is terminal velocity from Section 5.6.
+
+  - id: r1-friction-is-a-response
+    section: Review
+    tier: O
+    refs: [S3]
+    statement: >-
+      A student writes: "The friction force always equals $\mu R$." Give one
+      situation in this chapter where that is true, and one where it is false,
+      with a reason for each.
+    answer_label: Where the claim is true, and where it is false
+    check:
+      kind: structured
+      requires: [true-case, false-case, reason]
+      concepts: [limiting-friction, static-friction]
+      points:
+        - id: true-case
+          text: >-
+            It is true on the point of sliding: the box pulled with 30 N just
+            starts to move, so friction has reached mu R and equals it.
+          concepts: [limiting-friction]
+        - id: false-case
+          text: >-
+            It is false when the object is at rest and the push is small. A block
+            on a slope gentler than arctan(mu) stays put with friction less than
+            mu R, because friction takes only the value needed to balance the
+            weight component.
+          concepts: [static-friction]
+        - id: reason
+          text: >-
+            Friction is a response to the push, not a fixed force. It rises from
+            zero to its greatest value mu R and cannot exceed that, so mu R is a
+            ceiling rather than an equality.
+          concepts: [static-friction]
+    answer_text: >-
+      The claim is true at the point of sliding: then friction has reached its
+      greatest value and does equal $\mu R$. It is false when the object is at
+      rest and only a small push acts. A block on a slope gentler than
+      $\arctan\mu$ stays still with friction smaller than $\mu R$, because
+      friction supplies only the force needed to balance the weight component.
+      Friction is a response, and $\mu R$ is its ceiling.
+
+  - id: r1-projected-up-a-plane
+    section: Review
+    tier: O
+    refs: [S3]
+    statement: >-
+      A block is projected up a rough plane inclined at $30^\circ$, with
+      $\mu = 0.2$. Find its deceleration. Explain why this is larger than the
+      acceleration of the same block down the same plane.
+    answer_label: The deceleration, and why it is larger
+    check:
+      kind: all
+      checks:
+        - kind: dimensions
+          expression: g * (sn + mu * cs)
+          values:
+            g: {value: '9.8', unit: m/s^2}
+            sn: {value: '0.5'}
+            mu: {value: '0.2'}
+            cs: {value: '0.866025404'}
+          answer: {value: '6.597', unit: m/s^2}
+          tolerance: '0.001'
+        - kind: structured
+          requires: [direction-of-friction, why-larger]
+          concepts: [friction-opposes-motion, deceleration]
+          points:
+            - id: direction-of-friction
+              text: >-
+                Moving up the plane, the block is slowed by the weight component
+                down the plane and by friction, which also acts down the plane
+                because friction opposes the motion.
+              concepts: [friction-opposes-motion]
+            - id: why-larger
+              text: >-
+                Going down the plane, friction acts up it and opposes the weight
+                component, so the two subtract. Going up, they add, so the
+                deceleration is larger by 2 mu g cos(theta).
+              concepts: [deceleration]
+    answer_text: >-
+      Going up, the weight component down the plane is
+      $mg\sin 30^\circ$ and friction also acts down the plane, because it opposes
+      the motion. Then
+      $a = g(\sin 30^\circ + \mu\cos 30^\circ) = 9.8(0.5 + 0.173) =
+      6.60\ \text{m/s}^2$ as a deceleration. Going down, friction acts up the
+      plane, so the two forces subtract and $a = 9.8(0.5 - 0.173) =
+      3.20\ \text{m/s}^2$. Moving up, they add.

@@ -60,30 +60,9 @@ Work through these without notes. For each one, decide **which relationship appl
 and say why. Two of them ask you to choose between the electric force and the magnetic
 force.
 
-1. A beam of cathode rays is deflected by a magnetic field. Explain how the direction
-   of the deflection shows that the rays are negatively charged.
-2. An electron is accelerated from rest through 400 V. Calculate its kinetic energy in
-   joules, and then its speed.
-3. A student claims that doubling the accelerating voltage doubles the speed of the
-   electrons. Explain why this is wrong, and state the factor by which the speed
-   changes.
-4. An electron moves at $2.0 \times 10^7$ m/s at right angles to a magnetic field of
-   flux density $1.5 \times 10^{-3}$ T. Calculate the magnetic force and the radius of
-   the path.
-5. In a crossed-field experiment the electric field strength is $2.0 \times 10^4$ V/m
-   and the flux density is $1.0 \times 10^{-3}$ T. The beam passes through undeflected.
-   Calculate the speed of the electrons.
-6. Explain why the magnetic force changes the direction of an electron but not its
-   speed.
-7. An electron gun uses a heated filament. Explain why the filament is in a vacuum, and
-   describe what would happen if the tube contained air.
-8. A beam of electrons passes between two charged plates. Describe what happens to the
-   deflection if the potential difference across the plates is doubled, and why.
-9. You must find the charge-to-mass ratio of the electron. Would you use an electric
-   field alone, a magnetic field alone, or crossed fields? Say why, and name what each
-   method can and cannot give you.
-10. Explain why the charge-to-mass ratio of the electron is the same for every gas and
-    every cathode, and why that result mattered.
+:::problems chapter-17-review
+
+:::answers chapter-17-review
 
 ## What you can now do
 

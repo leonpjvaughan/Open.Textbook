@@ -61,25 +61,9 @@ Work through these without notes. For each one, decide **which law or idea
 applies**, and say why in a few words. Then calculate. The arithmetic follows from
 the choice, so making the choice is the skill.
 
-1. Write $4\times4\times4\times4\times4$ in index form.
-2. Work out $2^6$.
-3. Simplify $a^5\times a^3$.
-4. Simplify $\dfrac{6^8}{6^5}$.
-5. Simplify $(x^4)^3$.
-6. Work out $9^0$.
-7. Write $2^{-4}$ as a fraction, and work out its value.
-8. Work out $10^{-2}$.
-9. Work out $16^{\frac12}$.
-10. Work out $27^{\frac13}$.
-11. Work out $8^{\frac23}$.
-12. Work out $4^{-\frac12}$.
-13. The photocopier's 200% button doubles the width and the height. What does it
-    do to the area? Give your answer as a power of 2.
-14. A square has area 49 cm². Write the length of one side using an index.
-15. Which idea do you need for each of these, and why: $3^4\times3^2$, $(3^4)^2$,
-    and $3^{-2}$?
-16. Work out $-5+2\times(-3)$.
-17. Work out $(-4)\times(-6)$.
+:::problems chapter-02-review
+
+:::answers chapter-02-review
 
 ## What you can now do
 

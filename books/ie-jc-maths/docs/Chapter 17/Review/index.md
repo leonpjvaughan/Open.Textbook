@@ -90,51 +90,9 @@ say why in a few words. The idea might be plotting, distance, midpoint, slope,
 parallel or perpendicular lines, the equation of a line, the general form, a rate
 of change, a percentage, an equation, an area, or a unit.
 
-1. Plot the point $(3,-2)$ and name its quadrant.
-2. Find the distance between $(2,1)$ and $(5,5)$.
-3. Find the midpoint of the segment joining $(1,3)$ and $(7,11)$.
-4. Find the slope of the line through $(2,4)$ and $(6,10)$.
-5. A line has slope $\tfrac{3}{2}$. A second line has slope $-\tfrac{2}{3}$. Are
-   the lines perpendicular?
-6. Write the equation of the line with slope 4 that passes through $(2,3)$.
-7. Write the line $y=2x-5$ in the form $ax+by+c=0$.
-8. Find the $y$-intercept of the line $3x+2y-8=0$.
-9. Find the distance between the origin and $(5,12)$.
-10. A graph passes through $(0,3)$ and $(4,15)$. Find its rate of change and its
-    starting value.
-11. The midpoint of a segment is $(5,6)$, and one end is $(2,3)$. Find the other
-    end.
-12. Work out 15% of 240.
-13. Solve $4x-3=17$.
-14. Find the area of a circle of radius 5 cm, in terms of $\pi$.
-15. A car travels 180 km in 2.5 hours. Find its average speed.
-16. Write $0.00045$ in standard form.
+:::problems chapter-17-review
 
-<details markdown="1">
-<summary>Answers and concise solutions</summary>
-
-1. The fourth quadrant. A positive $x$ is to the right and a negative $y$ is below
-   the axis.
-2. $5$. The steps are 3 and 4, and $3^2+4^2=25$, so $\sqrt{25}=5$.
-3. $(4,7)$. Average the coordinates: $(1+7)\div2=4$ and $(3+11)\div2=7$.
-4. $\tfrac{3}{2}$. The rise is $10-4=6$ and the run is $6-2=4$, so $6\div4=\tfrac{3}{2}$.
-5. Yes. The product is $\tfrac{3}{2}\times\left(-\tfrac{2}{3}\right)=-1$, which is
-   the test for perpendicular lines.
-6. $y=4x-5$. The intercept is $c=3-4\times2=-5$.
-7. $2x-y-5=0$. Move every term to the left.
-8. $4$. Set $x=0$: $2y-8=0$, so $y=4$.
-9. $13$. The steps are 5 and 12, and $5^2+12^2=25+144=169$, so $\sqrt{169}=13$.
-10. The rate is $3$ and the starting value is $3$. The rate is
-    $(15-3)\div(4-0)=3$, and the graph meets the $y$-axis at $(0,3)$.
-11. $(8,9)$. Double the midpoint and subtract the end: $10-2=8$ and $12-3=9$.
-12. $36$. Ten per cent of 240 is 24, so 5% is 12. Add: $24+12=36$.
-13. $x=5$. Add 3 to get $4x=20$, then divide by 4.
-14. $25\pi$ cm². Use $A=\pi r^2$: $\pi\times5^2=25\pi$.
-15. $72$ km/h. Speed is distance divided by time: $180\div2.5=72$.
-16. $4.5\times10^{-4}$. Move the decimal point 4 places right, so the power is
-    $-4$.
-
-</details>
+:::answers chapter-17-review
 
 ## What you can now do
 

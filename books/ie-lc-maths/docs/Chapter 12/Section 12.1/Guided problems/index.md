@@ -205,8 +205,7 @@ $$\frac{1}{\sqrt{2}} = \frac{\sqrt{2}}{2}$$
 
 Multiplying by $\dfrac{\sqrt{2}}{\sqrt{2}}$ does not change the value, because that
 fraction equals $1$. Writing a surd with a whole-number denominator is the usual way to
-give an exact answer, and Section 12.4 uses it for angles of $30^\circ$, $45^\circ$ and
-$60^\circ$.
+give an exact trigonometric value.
 
 </details>
 </details>

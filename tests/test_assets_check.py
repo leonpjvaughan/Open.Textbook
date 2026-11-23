@@ -32,10 +32,8 @@ from textbook.book import repo_root
 
 CLI = repo_root() / "tools" / "dist" / "cli.js"
 
-#: A Learn page of chapter 1: it links the whole cascade and names a figure module.
 PAGE = Path("gcse-maths/higher/chapter-1/section-1.1/learn/index.html")
 
-#: The book's own generated sheet, addressed, as a page links it.
 ADDRESSED_SHEET = re.compile(r"book\.[0-9a-f]{8}\.css")
 
 

@@ -35,7 +35,6 @@ from support import stylesheet_href, written_assets
 BOOK = "gcse-maths"
 
 
-# --- URLs ---------------------------------------------------------------------
 
 
 @pytest.mark.parametrize(
@@ -45,9 +44,6 @@ BOOK = "gcse-maths"
         ("Chapter 1/index.md", "chapter-1/"),
         ("Chapter 1/index", "chapter-1/"),
         ("Glossary/number.md", "glossary/number/"),
-        # Page-kind directories are ours, not the reader's, so the published URL
-        # uses the vocabulary the navigation does. AGENTS.md: internal words must
-        # never reach the reader.
         ("Chapter 1/Section 1.1/Walkthrough/index.md", "chapter-1/section-1.1/learn/"),
         (
             "Chapter 1/Section 1.1/Guided problems/index.md",
@@ -55,8 +51,6 @@ BOOK = "gcse-maths"
         ),
         ("Chapter 1/Section 1.1/Problems/index.md", "chapter-1/section-1.1/practise/"),
         ("Chapter 20/Review/index.md", "chapter-20/review/"),
-        # A path whose suffix has already been stripped must still normalise:
-        # stripping '.md' first is what once produced 'a/b/index/' not 'a/b/'.
         ("Chapter 1/Section 1.1/Walkthrough/index", "chapter-1/section-1.1/learn/"),
     ],
 )
@@ -73,7 +67,6 @@ def test_url_for(md_path, expected):
         ("Review", "review"),
         ("A-level", "a-level"),
         ("  Mixed   Case  ", "mixed-case"),
-        # Relative segments are left alone, or every '../' link would break.
         ("..", ".."),
         (".", "."),
     ],
@@ -108,7 +101,6 @@ def test_href_still_encodes_anything_a_slug_missed():
     assert pipeline.href("a b/c") == "a%20b/c"
 
 
-# --- front matter -------------------------------------------------------------
 
 
 def test_split_front_matter():
@@ -148,7 +140,6 @@ def test_quoted_title_with_a_colon_is_fine():
     assert meta["tier"] == "H"
 
 
-# --- navigation ---------------------------------------------------------------
 
 
 def test_pairs_normalises_the_three_nav_shapes():
@@ -244,7 +235,6 @@ def test_render_nav_without_a_cache_still_works():
     assert "nav__link--current" in markup
 
 
-# --- links --------------------------------------------------------------------
 
 
 @pytest.mark.parametrize(
@@ -266,7 +256,6 @@ def test_rewrite_source_links_does_not_strip_then_append_a_directory():
     assert "index/" not in pipeline.rewrite_source_links('<a href="a/b/index.md">x</a>')
 
 
-# --- search ---
 
 
 def test_search_is_one_index_over_the_assembled_site(subset):
@@ -349,10 +338,8 @@ def test_the_inline_client_script_parses(subset):
             path.unlink()
 
 
-# --- link checking ------------------------------------------------------------
 
 
-# `write` is the suite's fixture for a file in `tmp_path`: see `conftest.py`.
 
 
 def test_check_links_reports_a_genuine_break(tmp_path, write):
@@ -455,7 +442,6 @@ def test_check_links_checks_the_fragment_of_a_root_relative_link(tmp_path, write
     assert pipeline.check_links(tmp_path, [page]) == ["page/ -> /shared/#nope (no #nope)"]
 
 
-# --- serve --------------------------------------------------------------------
 
 
 def test_serve_watches_every_input_that_changes_the_build():
@@ -480,7 +466,6 @@ def test_serve_watches_every_input_that_changes_the_build():
     assert figure.resolve() in resolved
 
 
-# --- end to end ---------------------------------------------------------------
 
 
 @pytest.fixture(scope="module")
@@ -493,7 +478,7 @@ def subset(tmp_path_factory):
 def test_build_produces_the_cover_and_the_chapter(subset):
     assert subset.ok, subset.broken + subset.maths_errors
     urls = {page.url for page in subset.pages}
-    assert "" in urls  # the cover, which the masthead links to
+    assert "" in urls
     assert "chapter-1/section-1.1/learn/" in urls
     assert "chapter-1/review/" in urls
     assert len(subset.pages) == 18
@@ -518,7 +503,6 @@ def test_the_chapter_opener_carries_the_problem_and_the_first_action(subset):
     assert 'href="section-1.1/learn/"' in html
     assert "1.1 Place value and ordering numbers" in html
 
-    # A section page is not an opener, and its action would point at itself.
     section = (subset.out / "chapter-1" / "section-1.1" / "learn" / "index.html").read_text()
     assert 'class="chapter-start"' not in section
     assert 'class="chapter-kicker"' not in section
@@ -543,8 +527,6 @@ def test_the_formulae_booklet_and_its_data_are_shipped(subset):
     book = pipeline.books.book_by_id(BOOK)
     assert book.booklet_name, "this test assumes the book declares a booklet"
     written = written_assets((subset.out / "assets" / "manifest.json").read_text())
-    # The script is content-addressed; the JSON keeps its name, because the widget
-    # finds it as a sibling of `document.currentScript.src`.
     script = written["assets/booklet/booklet.js"]
     assert (subset.out / script).is_file(), script
     assert (subset.out / "assets" / "booklet" / "booklet.json").is_file()
@@ -565,7 +547,6 @@ def test_build_renders_maths_to_mathml(subset):
     page = (subset.out / "chapter-1/section-1.1/learn/index.html").read_text()
     assert "<math" in page
     assert "math-error" not in page
-    # No runtime maths script: the whole point of build-time rendering.
     assert "katex" not in page.lower()
 
 
@@ -726,12 +707,9 @@ def test_tier_behaviour_follows_the_declared_filter_not_the_profile_id(monkeypat
     assert renamed.tier_filter_for("learner") == "F"
     assert renamed.tier_filter_for("core") == "H"
 
-    # The nav filter drops the Higher-only section under the renamed profile, and
-    # keeps it under the other — from the declared filter, not from either id.
     assert "Section 5.6" not in str(pipeline.nav_for(renamed, renamed.tiers_included("F")))
     assert "Section 5.6" in str(pipeline.nav_for(renamed, renamed.tiers_included("H")))
 
-    # And the hook strips the in-page block under that profile id.
     monkeypatch.setattr(cfg, "book_by_id", lambda _id: renamed)
     out = tier.on_page_markdown(
         "Before.\n\n<!-- tier:h -->Higher only.<!-- /tier:h -->\n\nAfter.\n",
@@ -743,7 +721,6 @@ def test_tier_behaviour_follows_the_declared_filter_not_the_profile_id(monkeypat
     assert "Before." in out and "After." in out
 
 
-# --- the page shell: settings, PWA and build identity -------------------------
 
 
 def test_every_page_carries_the_settings_control(subset):
@@ -779,8 +756,6 @@ def test_every_page_links_the_manifest_and_the_shared_runtimes(subset):
     assert '<link rel="manifest" href="/manifest.webmanifest">' in html
     assert 'rel="icon" type="image/svg+xml" href="../assets/icons/favicon.svg"' in html
     written = written_assets((subset.out / "assets" / "manifest.json").read_text())
-    # Root-absolute for the worker (one registration for the collection), the page's
-    # own prefix for the runtime that sits beside it.
     assert f'src="/{written["assets/settings/service-worker.js"]}"' in html
     assert f'src="../{written["assets/settings/settings.js"]}"' in html
     assert written["assets/stylesheets/settings.css"] in html
@@ -854,7 +829,7 @@ def test_a_page_the_build_did_not_write_fails_the_build(tmp_path):
 
     pages = [
         pipeline.RenderedPage(url="/one/", title="One"),
-        pipeline.RenderedPage(url="/two/", title="Two"),  # never written
+        pipeline.RenderedPage(url="/two/", title="Two"),
     ]
     broken = pipeline.check_links(out, pages)
     assert any("page was not written" in entry for entry in broken), broken
@@ -895,7 +870,6 @@ def test_every_page_links_the_ios_home_screen_icon(subset):
         if 'rel="apple-touch-icon"' not in html:
             missing.append(page.url)
             continue
-        # The target it names must actually exist in the build.
         href = html.split('rel="apple-touch-icon" href="', 1)[1].split('"', 1)[0]
         target = (subset.out / page.output).parent / href
         if not target.resolve().is_file():
@@ -981,7 +955,6 @@ def test_the_yaml_loader_prefers_the_fast_parser():
 
     assert yamlio.USING_C_PARSER == hasattr(yaml, "CSafeLoader")
     assert yamlio.Loader in (yaml.SafeLoader, getattr(yaml, "CSafeLoader", None))
-    # A safe loader of either kind refuses a document that names a Python class.
     assert yamlio.load("a: 1") == {"a": 1}
     assert yamlio.load("") is None
     with pytest.raises(yaml.YAMLError):
@@ -1008,7 +981,6 @@ def test_the_shared_figure_files_are_copied_from_assets_not_through_a_symlink(tm
     book = book_by_id("gcse-maths")
     out = tmp_path / "site"
 
-    # The Windows shape: replace each shared symlink with a text file naming it.
     saved = {}
     try:
         for link in (book.docs / "assets").rglob("*"):
@@ -1024,9 +996,6 @@ def test_the_shared_figure_files_are_copied_from_assets_not_through_a_symlink(tm
 
     figures = out / "assets" / "figures"
     kit = (figures / "kit.js").read_text(encoding="utf-8")
-    # The kit is a barrel over `kit/*.js` now, so its own marker is the re-export rather
-    # than a definition. What matters is unchanged: the built file is the kit and not a
-    # path, and it points at the layers that must have travelled with it.
     assert 'from "./kit/frame.js"' in kit, (
         "the built kit.js is not the kit — on a platform that checks symlinks out as "
         f"text files the site would serve a path instead: {kit[:80]!r}"
@@ -1044,8 +1013,6 @@ def test_the_shared_figure_files_are_copied_from_assets_not_through_a_symlink(tm
     assert not any(
         p.stat().st_size < 200 for p in figures.glob("*.js")
     ), f"a build output is a path, not a program: {[p.name for p in figures.glob('*.js') if p.stat().st_size < 200]}"
-    # Every layer, checked the same way: a layer that is a path rather than a program
-    # is the same defect one directory down.
     layers = sorted(p.name for p in (figures / "kit").glob("*.js"))
     assert layers, "the kit's layers did not reach the build"
     assert not any(
@@ -1090,13 +1057,9 @@ def test_the_sidebar_is_a_drawer_below_the_layout_breakpoint(subset):
     html = (subset.out / "chapter-1/section-1.1/learn/index.html").read_text()
     assert '<details class="nav-drawer" open>' in html
     assert '<summary class="nav-drawer__summary" data-pagefind-ignore>' in html
-    # The nav is inside the drawer, so the disclosure controls it.
     drawer = html[html.index('<details class="nav-drawer"') :]
     drawer = drawer[: drawer.index("</details>")]
     assert 'class="sidebar" aria-label="Book contents" data-pagefind-ignore' in drawer
-    # The summary is the control's name only: the book and the section are in the
-    # masthead row directly above, and printing them a second time here put the same
-    # two labels above the page title three times at 390px.
     summary = drawer.split("</summary>")[0]
     assert "nav-drawer__label" in summary and "Contents" in summary
     assert "masthead__section" not in summary, (
@@ -1104,7 +1067,6 @@ def test_the_sidebar_is_a_drawer_below_the_layout_breakpoint(subset):
     )
     brand = html[html.index('class="masthead__brand"') :]
     assert "masthead__section" in brand[:220], "no surface names the section"
-    # The drawer is closed by the script at phone width and inert above it.
     assert "matchMedia(\"(min-width: 60rem)\")" in html
     assert "drawer.open = wide.matches" in html
 
@@ -1142,13 +1104,6 @@ def test_the_cards_marker_is_consumed_and_marks_the_table():
     assert '<table class="table--cards">' in html
 
 
-# --- the page kind, split out of the heading ----------------------------------
-#
-# Every generated page title ends in its kind — `1.1 Place value — Learn` — and the
-# scaffold writes it into both the front matter and the `# heading`, so moving it is a
-# 2,215-file diff. It is split at render time instead, and the one thing that must not
-# move is the `id`: it is derived from the whole title, so every deep link ends in
-# `…-learn`, and a split that rebuilt the id would break all of them.
 
 
 def test_the_page_kind_is_wrapped_and_the_id_is_untouched():
@@ -1158,7 +1113,6 @@ def test_the_page_kind_is_wrapped_and_the_id_is_untouched():
     )
     assert 'id="11-place-value-and-ordering-numbers-learn"' in html
     assert '<span class="page-kind">— Learn</span>' in html
-    # The text itself is unchanged: only the wrapping is added.
     assert "1.1 Place value and ordering numbers " in html
     assert html.index("— Learn") < html.index("</span>")
 

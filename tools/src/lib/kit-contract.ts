@@ -19,35 +19,25 @@
  * `expect` is a **value** compared by its JSON form, a **RegExp** matched against the
  * string form, or a **predicate**, which carries `because`: what a failure means.
  */
-/** Every tier a runner reads. A row with any other value runs nowhere, and is reported. */
 export const TIERS: Tier[] = ["pure", "dom", "both"];
 
-/** Where a row is checked: nowhere but `node`, nowhere but the browser, or both. */
 export type Tier = "pure" | "dom" | "both";
 
-/** One claim about the kit. */
 export type Row = {
-  /** What must hold, in one clause. **This is the failure message.** */
   name: string;
   tier: Tier;
   covers: string | string[];
-  /** Do the work and return what was observed. `host` is a fresh `<maths-figure>`
-   *  in the browser and `undefined` under `node`, so a `pure` row must not touch it. */
   call: (kit: any, host?: any) => unknown;
   expect: unknown;
-  /** What a failure means, for an `expect` that is a predicate. */
   because?: string;
 };
 
 // The size scale rests on a measurement: at a 390px viewport the element is 358px wide
-// with 17.6px of padding each side, so a 560-unit viewBox draws at 322.8 / 560. Every
 // named size must clear 9px there, measured against the *drawing's* width and not the
-// element's, which passes a size that reaches the screen at 8.6px.
 const PHONE_PANEL_PX = 358 - 2 * 17.6;
 const PHONE_SCALE = PHONE_PANEL_PX / 560;
 const FLOOR_PX = 9;
 
-/** The marks every module composes, with the options the check gives each one. */
 const MARK_OPTIONS: Record<string, any> = {
   line: { x1: 0, y1: 0, x2: 10, y2: 10 },
   circle: { cx: 5, cy: 5 },
@@ -58,7 +48,6 @@ const MARK_OPTIONS: Record<string, any> = {
 };
 
 const textRows: Row[] = [
-  // A rounded answer claims how much is real: `6`, `6.0` and `6.00` are three claims.
   {
     name: "sigfig keeps a significant trailing zero",
     tier: "both",
@@ -111,7 +100,6 @@ const textRows: Row[] = [
     expect: "\u2014",
   },
   {
-    // A map callback gets the index second; using it would print a value per row.
     name: "fmt ignores the index a map callback passes it",
     tier: "both",
     covers: "fmt",
@@ -141,7 +129,6 @@ const textRows: Row[] = [
     expect: "a &amp; b &lt; c",
   },
 
-  // No `fig-*`/`text-*` class means `fill`'s initial black, so the class is the default.
   {
     name: "label() returns a <text> element",
     tier: "both",
@@ -223,8 +210,6 @@ const textRows: Row[] = [
     expect: /a &amp; b &lt; c/,
   },
 
-  // `SIZE` exists so no module picks its own number: `font-size` times drawing width over
-  // viewBox width.
   {
     name: "the SIZE scale is four named values, not a number per module",
     tier: "pure",
@@ -245,9 +230,6 @@ const textRows: Row[] = [
     because: `the drawing is 322.8px of a 560-unit viewBox on a phone, so a named size below ${FLOOR_PX}px is unreadable there`,
   },
 ];
-
-// The y-axis case gets flipped when written by hand: a value that counts upwards onto an
-// axis that counts downwards. `.invert` is the mapping back, which is what a drag needs.
 
 const scaleRows: Row[] = [
   {
@@ -382,11 +364,6 @@ const extentRows: Row[] = [
   },
 ];
 
-// Every mark defaults its colour class and rounds its coordinates: a shape with no
-// `fig-*` class is painted from the initial value and its stroke is invisible on a dark
-// panel, and unrounded coordinates ship `183.99999999999997` into a reader's markup.
-// Three properties, from one table of marks rather than six hand-written copies each.
-
 const markRows: Row[] = Object.entries(MARK_OPTIONS).flatMap(([name, options]): Row[] => [
   {
     name: `the ${name} mark draws something`,
@@ -439,9 +416,6 @@ const arrowRows: Row[] = [
     because: "a dashed line by default would make `camera3d()`'s hidden edges indistinguishable",
   },
 ];
-
-// `axes()` returns the mappers as well as the string, so a module cannot draw its data
-// with different geometry from its own axes.
 
 const frameRows: Row[] = [
   {
@@ -509,7 +483,6 @@ const plotRows: Row[] = [
     expect: /^<path d="M0\.0 0\.0 L10\.0 2\.0 L20\.0 8\.0"/,
   },
   {
-    // One `NaN` drops the whole line, so a non-finite sample must break the path.
     name: "graph() keeps a non-finite sample out of the path",
     tier: "both",
     covers: "graph",
@@ -578,9 +551,6 @@ const plotRows: Row[] = [
   },
 ];
 
-// An atom in the wrong region teaches the opposite of the truth, so the point `venn()`
-// chose must be inside exactly the circles each region declares.
-
 const TWO_SETS = [
   { id: "A", cx: 250, cy: 148, r: 88 },
   { id: "B", cx: 320, cy: 148, r: 88 },
@@ -610,7 +580,6 @@ const THREE_REGIONS = (() => {
   return regions;
 })();
 
-/** Every region `venn()` placed outside exactly the circles it declares. */
 function vennWrong(kit: any, circles: any[], regions: any[]): string[] {
   const diagram = kit.venn({ circles, regions, labels: false, rings: false });
   const wrong: string[] = [];
@@ -657,9 +626,6 @@ const vennRows: Row[] = [
     expect: 3,
   },
 ];
-
-// Seeded, because two readers comparing what they saw must be comparing the same data,
-// and a browser test cannot assert anything about data that changes on every load.
 
 const seedRange = (kit: any) => {
   const rng = kit.seed(1);
@@ -712,9 +678,6 @@ const seedRows: Row[] = [
   },
 ];
 
-// Four outcomes, and the difference between the last two matters: "wrong" is a mistake
-// worth thinking about, "invalid" is a typing problem that needs none.
-
 const checkRows: Row[] = [
   {
     name: "check() gives the four verdicts, and a unit or a fraction is not a mistake",
@@ -756,9 +719,7 @@ const checkRows: Row[] = [
 ];
 
 // Modules hand-build this, re-deriving the arrow's direction and the SVG y-axis, which
-// counts the other way. A field that points the wrong way on one axis is a false diagram.
 
-/** The screen direction of each arrow `vectorField()` drew for `field`. */
 function fieldDirections(kit: any, field: (x: number, y: number) => number[]) {
   const frame = kit.axes({ x: { domain: [-1, 1] }, y: { domain: [-1, 1] } });
   const markup = kit.vectorField({ field, x: frame.x, y: frame.y, box: frame.box, step: 60, length: 16 });
@@ -796,15 +757,11 @@ const vectorRows: Row[] = [
   },
 ];
 
-// The rule is the one a textbook uses: a solid's hidden edges are the ones whose every
-// face is turned away. A cube has exactly three; four or two makes every 3D figure wrong.
-
 const CUBE = {
   vertices: [
     [-1, -1, -1], [1, -1, -1], [1, -1, 1], [-1, -1, 1],
     [-1, 1, -1], [1, 1, -1], [1, 1, 1], [-1, 1, 1],
   ],
-  // Deliberately inconsistent winding, so the outward orientation decides, not the order.
   faces: [
     { indices: [0, 1, 2, 3] }, { indices: [4, 5, 6, 7] }, { indices: [0, 1, 5, 4] },
     { indices: [2, 3, 7, 6] }, { indices: [1, 2, 6, 5] }, { indices: [0, 3, 7, 4] },
@@ -867,10 +824,6 @@ const cameraRows: Row[] = [
     expect: true,
   },
 ];
-
-// The claim is **internal consistency, not verification**: the answer comes from the
-// function that wrote the question. Determinism, a different seed differing, and the
-// answer agreeing with the stated numbers are what can be checked.
 
 const HCF_KINDS = [
   {
@@ -936,10 +889,6 @@ const exerciseRows: Row[] = [
     because: "the only thing a generator claims is that the question and its answer cannot disagree",
   },
 ];
-
-// Everything below needs an element, a layout or a pointer, and each row gets a fresh
-// `<maths-figure>`, exactly the element the loader hands a module, so no two rows share
-// state.
 
 const frameHostRows: Row[] = [
   {
@@ -1101,7 +1050,6 @@ const controlRows: Row[] = [
     expect: "TEXTAREA",
   },
   {
-    // `pressed` makes a button a toggle; without it `aria-pressed` would be a lie.
     name: "button is a real button, and only a toggle carries aria-pressed",
     tier: "dom",
     covers: "button",
@@ -1154,7 +1102,6 @@ const controlRows: Row[] = [
     expect: ["SELECT", "b", 2, "Pick"],
   },
   {
-    // The stepper is the slider plus two buttons on one change path, so they cannot differ.
     name: "a stepper advances and narrates",
     tier: "dom",
     covers: ["stepper", "react"],
@@ -1172,7 +1119,6 @@ const controlRows: Row[] = [
     expect: [0, 1, "two", true],
   },
   {
-    // A real table with a caption and a scope per header; the highlight follows a control.
     name: "a table is tabular, captioned and browsable",
     tier: "dom",
     covers: "table",
@@ -1202,7 +1148,6 @@ const controlRows: Row[] = [
 
 const widgetRows: Row[] = [
   {
-    // An explicit loop with a scrubber, so every frame is reachable without motion.
     name: "an animation is scrubbable without motion",
     tier: "dom",
     covers: ["animate", "notify"],
@@ -1217,7 +1162,6 @@ const widgetRows: Row[] = [
     expect: ["INPUT", "range", true, 0.5],
   },
   {
-    // The reader's side of "a computer checks every answer".
     name: "answerBox verifies against the proved answer",
     tier: "dom",
     covers: "answerBox",
@@ -1234,7 +1178,6 @@ const widgetRows: Row[] = [
     expect: [true, false, "Correct.", true],
   },
   {
-    // A pointer is not a keyboard, so a handle must not be the only way to its value.
     name: "draggable() refuses a handle with no backing control",
     tier: "dom",
     covers: "draggable",
@@ -1257,7 +1200,6 @@ const widgetRows: Row[] = [
     call: (kit, host) => {
       host.style.cssText = "display:block;width:400px";
       const x = kit.scale({ domain: [0, 10], range: [0, 200] });
-      // A fixed-width host, so the rendered box is known and the pointer maps exactly.
       const surface = kit.panel(host, { label: "Drag test", width: 200, height: 100 }).svg;
       const control = kit.slider(host, { label: "Value", min: 0, max: 10, step: 0.1, value: 5, show: false });
       const handle = document.createElementNS("http://www.w3.org/2000/svg", "circle");
@@ -1276,13 +1218,11 @@ const widgetRows: Row[] = [
       handle.dispatchEvent(new PointerEvent("pointerdown", { bubbles: true, ...down }));
       handle.dispatchEvent(new PointerEvent("pointermove", { bubbles: true, ...move }));
       handle.dispatchEvent(new PointerEvent("pointerup", { bubbles: true, ...move }));
-      // The keyboard path is the control, so the handle must not add a second focus stop.
       return [Number(control.value), handle.hasAttribute("tabindex"), typeof grip.destroy, box.width > 0];
     },
     expect: [2.5, false, "function", true],
   },
   {
-    // Storage fails silently, so private mode forgets rather than breaks.
     name: "remember() round-trips or fails quietly",
     tier: "dom",
     covers: "remember",
@@ -1320,7 +1260,6 @@ const widgetRows: Row[] = [
     expect: "a long description",
   },
   {
-    // The kit owns the order, the keyboard and the announcement; the module validates.
     name: "a builder adds in order, undoes, announces and redraws",
     tier: "dom",
     covers: ["builder", "react"],
@@ -1347,8 +1286,6 @@ const widgetRows: Row[] = [
     expect: ["p,n", "p", true, "true,true", "BUTTON"],
   },
   {
-    // The keypad inserts plain text at the caret and fires `input`, so the field stays an
-    // ordinary field.
     name: "a keypad inserts at the caret and fires input",
     tier: "dom",
     covers: "notate",
@@ -1370,8 +1307,6 @@ const widgetRows: Row[] = [
     expect: ["1/2", 2, 1, "BUTTON"],
   },
   {
-    // The one thing here that changes what a reader *does*: the verdict must follow the
-    // current question, or a stale answer teaches something false.
     name: "practice verifies the current question and moves on",
     tier: "dom",
     covers: "practice",
@@ -1398,7 +1333,6 @@ const widgetRows: Row[] = [
       const cleared = made.input.value === "";
       made.input.value = made.exercise.answer;
       const goodAfterNext = made.verify();
-      // The answers must differ, or the check could pass by accident.
       const checks = [...host.querySelectorAll("button")].filter((button) => button.textContent === "Check").length;
       return [
         first.startsWith("Double"),
@@ -1414,8 +1348,6 @@ const widgetRows: Row[] = [
     expect: [true, true, "Correct.", true, true, true, true, 1],
   },
   {
-    // Parts are explored one at a time with the buttons as focus stops; the drawing must
-    // follow focus, and the description must reach the accessible name.
     name: "a diagram explores one part at a time, and the buttons are the focus stops",
     tier: "dom",
     covers: "diagram",
@@ -1433,7 +1365,6 @@ const widgetRows: Row[] = [
       });
       const buttons = [...host.querySelectorAll(".fig-parts button")] as HTMLElement[];
       const root = host.querySelector(".fig-diagram");
-      // `kit` arrives untyped, so `made.groups` is `any`; `Diagram` says an `SVGGElement`.
       const atRest = [
         root.classList.contains("is-exploring"),
         made.groups.some((group: SVGGElement) => group.classList.contains("is-active")),
@@ -1444,7 +1375,6 @@ const widgetRows: Row[] = [
         made.groups.map((group: SVGGElement) => group.classList.contains("is-active")),
         (made.readout.textContent || "").startsWith("Height."),
       ];
-      // The description belongs in the accessible name, not only in the readout.
       const named = (buttons[1].getAttribute("aria-label") || "").includes("upright edge");
       const reachable = buttons.every((button) => button.tabIndex >= 0);
       return [
@@ -1461,7 +1391,6 @@ const widgetRows: Row[] = [
   },
 ];
 
-/** Every row, in the order the report reads them. */
 export const ROWS: Row[] = [
   ...textRows,
   ...scaleRows,
@@ -1482,30 +1411,24 @@ export const ROWS: Row[] = [
   ...widgetRows,
 ];
 
-/** The rows one runner is responsible for: its own tier, plus the shared ones. */
 export function rowsFor(tier: "pure" | "dom"): Row[] {
   return ROWS.filter((row) => row.tier === tier || row.tier === "both");
 }
 
-/** The exports a row is about, as a list. */
 export function coversOf(row: Row): string[] {
   return Array.isArray(row.covers) ? row.covers : [row.covers];
 }
 
-/** What one row saw, or the error that stopped it. */
 export type Observed = { name: string; got?: unknown; error?: string | null };
 
-/** One judged row. `detail` is the sentence that goes after the row's name. */
 export type Verdict = { name: string; ok: boolean; detail: string };
 
-/** Render an observed value for a message, short enough for a terminal line. */
 function show(value: unknown): string {
   const text = JSON.stringify(value);
   const shown = text === undefined ? String(value) : text;
   return shown.length > 200 ? `${shown.slice(0, 200)}…` : shown;
 }
 
-/** Compare one observation against the row's expectation. */
 export function compare(row: Row, got: unknown): { ok: boolean; detail: string } {
   const expected = row.expect;
   if (typeof expected === "function") {
@@ -1527,7 +1450,6 @@ export function compare(row: Row, got: unknown): { ok: boolean; detail: string }
   return { ok: was === wanted, detail: was === wanted ? "" : `expected ${wanted}, got ${was}` };
 }
 
-/** Judge what a runner saw against the rows it was given, by name. */
 export function judge(rows: Row[], observed: Observed[]): Verdict[] {
   const seen = new Map(observed.map((entry) => [entry.name, entry]));
   return rows.map((row) => {
@@ -1539,13 +1461,6 @@ export function judge(rows: Row[], observed: Observed[]): Verdict[] {
   });
 }
 
-/**
- * Run rows here, in whatever runtime this module is loaded in.
- *
- * In the page each row gets a **fresh** `<maths-figure>`, so no row can pass because
- * another row left the document in a helpful state. Under `node` `host` is `undefined`,
- * which is the constraint that makes a `pure` row pure.
- */
 export function observe(rows: Row[], kit: any): Observed[] {
   const hasDocument = typeof document !== "undefined" && !!document.body;
   return rows.map((row) => {
@@ -1561,7 +1476,6 @@ export function observe(rows: Row[], kit: any): Observed[] {
   });
 }
 
-/** How the table is split, and what each tier covers. */
 export type Coverage = {
   total: number;
   pure: number;
@@ -1576,7 +1490,6 @@ export type Coverage = {
   stray: { row: string; covers: string }[];
 };
 
-/** Measure the table: the rows per tier, and the exports each tier and the table reach. */
 export function coverage(tier: "pure" | "dom", kitExports: string[]): Coverage {
   const mine = rowsFor(tier);
   const other = rowsFor(tier === "pure" ? "dom" : "pure");
@@ -1605,7 +1518,6 @@ export function coverage(tier: "pure" | "dom", kitExports: string[]): Coverage {
   };
 }
 
-/** The report: one line of counts, the table's shape, and what no row reaches. */
 export function summary(tier: "pure" | "dom", kitExports: string[], verdict: string): string[] {
   const seen = coverage(tier, kitExports);
   const lines = [
@@ -1618,7 +1530,6 @@ export function summary(tier: "pure" | "dom", kitExports: string[], verdict: str
   return lines;
 }
 
-/** Everything that is wrong with the table's own shape, before any row is judged. */
 export function tableProblems(tier: "pure" | "dom", kitExports: string[]): string[] {
   const seen = coverage(tier, kitExports);
   const problems: string[] = [];
@@ -1628,7 +1539,6 @@ export function tableProblems(tier: "pure" | "dom", kitExports: string[]): strin
   for (const row of seen.tierless) {
     problems.push(`"${row.name}" has tier "${(row as any).tier}", which no runner reads`);
   }
-  // One line per export rather than per row, so a dropped layer is not repeated forty times.
   for (const name of [...new Set(seen.stray.map((stray) => stray.covers))].sort()) {
     const rows = seen.stray.filter((stray) => stray.covers === name).map((stray) => stray.row);
     problems.push(`${name} is claimed by ${rows.length} row(s) but the kit does not export it: ${rows[0]}`);
@@ -1637,12 +1547,6 @@ export function tableProblems(tier: "pure" | "dom", kitExports: string[]): strin
   return problems;
 }
 
-/**
- * Judge a tier's rows, print the result with its counts, and return the exit code.
- *
- * The counts print on a pass and on a failure, so a run cannot be mistaken for one that
- * examined nothing.
- */
 export function conclude(options: {
   tier: "pure" | "dom";
   kitExports: string[];
@@ -1664,7 +1568,6 @@ export function conclude(options: {
   return problems.length ? 1 : 0;
 }
 
-/** The `--list` output: every row this tier runs, with its tier and what it covers. */
 export function listLines(tier: "pure" | "dom"): string[] {
   const seen = coverage(tier, []);
   const lines = rowsFor(tier).map(

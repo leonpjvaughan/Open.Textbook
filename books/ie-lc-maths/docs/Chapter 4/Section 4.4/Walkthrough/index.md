@@ -110,7 +110,7 @@ $R = 10n$.
 State the gradient and the $y$-intercept of each line, and say what each number
 means in the story. Then say which gradient is larger and what that tells you
 about the business. Finally, describe what the point where the two lines meet
-means. Section 4.7 finds that point with a method for two equations.
+means. Later you can find that point algebraically by solving two equations together.
 
 ## You should now be able to
 

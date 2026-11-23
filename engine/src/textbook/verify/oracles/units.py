@@ -45,14 +45,9 @@ import sympy
 
 from .. import cas
 
-# ---------------------------------------------------------------------------
-# Dimension algebra
-# ---------------------------------------------------------------------------
 
-#: The seven SI base dimensions, in display order.
 BASE_DIMENSIONS = ("kg", "m", "s", "A", "K", "mol", "cd")
 
-#: Unicode superscripts an author may type instead of ``^``.
 _SUPERSCRIPTS = {
     "⁰": "0",
     "¹": "1",
@@ -134,9 +129,6 @@ def dimension(**exponents: Any) -> Dimension:
     return Dimension(**exponents)
 
 
-# ---------------------------------------------------------------------------
-# Unit registry: symbol -> (dimension, exact factor to SI)
-# ---------------------------------------------------------------------------
 
 _UNITS: dict[str, tuple[Dimension, Fraction]] = {}
 
@@ -149,8 +141,6 @@ def _register_derived(symbol: str, **exponents: Any) -> None:
     _register(symbol, dimension(**exponents))
 
 
-# Base units. The SI base for mass is the kilogram, so the gram is the
-# prefixed unit; ``kg`` is registered too so the ambiguous parse never happens.
 _register("kg", dimension(kg=1))
 _register("g", dimension(kg=1), "1e-3")
 _register("m", dimension(m=1))
@@ -160,8 +150,6 @@ _register("K", dimension(K=1))
 _register("mol", dimension(mol=1))
 _register("cd", dimension(cd=1))
 
-# Named derived units, dimensionally defined rather than looked up in SymPy:
-# a unit is data, and its dimension is what the check compares.
 _register_derived("Hz", s=-1)
 _register_derived("N", kg=1, m=1, s=-2)
 _register_derived("Pa", kg=1, m=-1, s=-2)
@@ -181,7 +169,6 @@ _register_derived("Gy", m=2, s=-2)
 _register_derived("Sv", m=2, s=-2)
 _register_derived("kat", mol=1, s=-1)
 
-# Accepted non-SI units, with their exact factor. The exact decimal strings
 # keep the arithmetic rational; the measured constants are exact by convention.
 _register("L", dimension(m=3), "1e-3")
 _register("l", dimension(m=3), "1e-3")
@@ -194,7 +181,6 @@ _register("u", dimension(kg=1), "1.66053906660e-27")
 _register("bar", dimension(kg=1, m=-1, s=-2), "1e5")
 _register("atm", dimension(kg=1, m=-1, s=-2), "101325")
 
-#: SI prefixes, longest first when resolving so ``da`` wins over ``d``.
 _PREFIXES = {
     "da": "1e1",
     "Q": "1e30",
@@ -302,9 +288,6 @@ def _parse_dimensions(value: Any) -> Dimension | None:
     return parse_unit(value)[0]
 
 
-# ---------------------------------------------------------------------------
-# Quantities and a tiny evaluator (never a CAS string)
-# ---------------------------------------------------------------------------
 
 
 def _rational_sqrt(value: Fraction) -> Fraction | sympy.Expr:
@@ -458,9 +441,6 @@ def _eval_call(node: ast.Call, names: dict[str, Quantity]) -> Quantity:
     raise UnitError(f"unknown function {node.func.id!r}")
 
 
-# ---------------------------------------------------------------------------
-# Significant figures
-# ---------------------------------------------------------------------------
 
 
 def _exact(number: Any) -> Fraction:
@@ -523,9 +503,6 @@ def _write(value: Fraction | sympy.Expr) -> str:
     return str(value)
 
 
-# ---------------------------------------------------------------------------
-# Graph helpers
-# ---------------------------------------------------------------------------
 
 
 def _points(check: Mapping[str, Any]) -> list[tuple[Fraction, Fraction]]:
@@ -581,9 +558,6 @@ def _check_interval(report, label: str, value: Fraction, check: Mapping[str, Any
     report.errors.append(f"check: {label} needs 'between' or 'answer' with 'tolerance'")
 
 
-# ---------------------------------------------------------------------------
-# Handlers
-# ---------------------------------------------------------------------------
 
 
 def check_dimensions(check, symbols, report, dispatch):
@@ -660,8 +634,6 @@ def _check_declared_quantity(check, report) -> None:
     if unit_text is None and isinstance(check.get("quantity"), Mapping):
         unit_text = check["quantity"].get("unit")
     if unit_text is None:
-        # A bare `dimensions:` list with nothing to compare it to would pass for
-        # no reason; only a composite that carries its own unit is meaningful.
         if "consistency" not in check and "expression" not in check:
             report.errors.append(
                 "check: dimensions needs a 'unit' to compare with the declared dimensions"
@@ -741,7 +713,6 @@ def check_sigfigs(check, symbols, report, dispatch):
     if tolerance is None:
         rounded = _round_significant(value, figures)
     else:
-        # A value built on an irrational constant is only known within its
         # declared tolerance, so the rounding must hold across the whole band.
         low = _round_significant(value - tolerance, figures)
         high = _round_significant(value + tolerance, figures)

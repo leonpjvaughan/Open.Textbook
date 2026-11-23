@@ -35,8 +35,8 @@ under the line is the displacement:
 
 $$\text{area} = \frac{1}{2} \times 4.0 \times 8.0 + 0.50 \times 8.0 = 16 + 4.0 = 20\,\text{m}$$
 
-The graph and the equations give the same height. That is the point of Section 2.5: the
-equations come from the graph.
+The graph and the equations give the same height, because the equations come from the
+graph.
 
 **The parcel.** Released from rest at 20 m, with downwards as positive and
 $g = 9.8\,\text{m/s}^2$:

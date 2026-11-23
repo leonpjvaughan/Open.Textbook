@@ -1,0 +1,274 @@
+# Mixed practice for the Chapter 7 Review.
+#
+# Sixteen questions, one record each, in the order they appear on the Review
+# page. Questions 15 and 16 are Higher level. Every percentage profit, mark-up,
+# margin, VAT, tax, interest, unit-price and currency calculation is proved by
+# SymPy or by `rounded`; Question 15's profit judgement is proved by a
+# comparison as well as its arithmetic.
+#
+# Honest limit: this proves arithmetic and the declared rounding. It does not
+# prove that a reader picked the right quantity to divide by, and Question 15's
+# `structured` component proves only that a model answer contains its declared
+# steps and concepts, in order, not that the reasoning is sound.
+chapter: 7
+oracles: [sympy, units]
+symbols: {}
+
+problems:
+  - id: jc7-rev-percentage-profit
+    section: Review
+    tier: O
+    refs: ['N.2']
+    statement: 'A shop buys a case for €4.00 and sells it for €6.00. Work out the percentage profit.'
+    answer_label: 'Percentage profit on the case'
+    check:
+      kind: evaluate
+      expression: '(6 - 4) / 4 * 100'
+      answer: '50'
+    answer_text: 'The profit is $6.00 - 4.00 = 2.00$ euro. Divide by the cost price and multiply by $100$: $\frac{2.00}{4.00} \times 100 = 50\%$. The cost price is the correct base, not the selling price.'
+
+  - id: jc7-rev-markup-margin
+    section: Review
+    tier: O
+    refs: ['N.2']
+    statement: 'A shop buys a lamp for €50.00 and sells it for €60.00. Work out the mark-up and the margin.'
+    answer_label: 'The mark-up and the margin on the lamp'
+    check:
+      kind: all
+      checks:
+        - kind: evaluate
+          expression: '(60 - 50) / 50 * 100'
+          answer: '20'
+        - kind: rounded
+          value: '(60 - 50) / 60 * 100'
+          rounded: '16.67'
+          to: '0.01'
+    answer_text: 'The profit is $10.00$ euro. The mark-up divides it by the cost price: $\frac{10}{50} \times 100 = 20\%$. The margin divides it by the selling price: $\frac{10}{60} \times 100 = 16\frac{2}{3}\%$, which is $16.67\%$ to two decimal places. The same profit gives two different percentages because the base is different.'
+
+  - id: jc7-rev-vat-add
+    section: Review
+    tier: O
+    refs: ['N.2']
+    statement: 'A price is €40.00 before VAT. Work out the price with VAT at $23\%$.'
+    answer_label: 'The price with VAT'
+    check:
+      kind: evaluate
+      expression: '40 * (1 + 23/100)'
+      answer: '49.2'
+    answer_text: 'The VAT is $0.23 \times 40.00 = 9.20$ euro, so the price with VAT is $40.00 + 9.20 = 49.20$ euro. Multiplying by $1.23$ gives the same answer in one step.'
+
+  - id: jc7-rev-vat-remove
+    section: Review
+    tier: O
+    refs: ['N.2']
+    statement: 'A shelf price is €61.50, including VAT at $23\%$. Work out the price before VAT.'
+    answer_label: 'The price before VAT'
+    check:
+      kind: evaluate
+      expression: '61.50 / (1 + 23/100)'
+      answer: '50'
+    answer_text: 'Divide by $1.23$, because the shelf price is $123\%$ of the price before VAT: $61.50 \div 1.23 = 50.00$ euro. Taking $23\%$ of $61.50$ would be wrong, because that percentage is of the price before VAT, not of the price with VAT.'
+
+  - id: jc7-rev-payslip
+    section: Review
+    tier: O
+    refs: ['N.2']
+    statement: 'A worker''s gross pay is €750.00 a week. Work out the income tax before the credit, the income tax after the €60.00 credit, the PRSI at $4\%$, and the net pay.'
+    answer_label: 'The tax, the PRSI and the net pay'
+    check:
+      kind: all
+      checks:
+        - kind: evaluate
+          expression: '750 * 20/100'
+          answer: '150'
+        - kind: evaluate
+          expression: '750 * 20/100 - 60'
+          answer: '90'
+        - kind: evaluate
+          expression: '750 * 4/100'
+          answer: '30'
+        - kind: evaluate
+          expression: '750 - (750 * 20/100 - 60) - 750 * 4/100'
+          answer: '630'
+    answer_text: 'Income tax before the credit: $0.20 \times 750.00 = 150.00$ euro. After the credit: $150.00 - 60.00 = 90.00$ euro. PRSI: $0.04 \times 750.00 = 30.00$ euro. Net pay: $750.00 - 90.00 - 30.00 = 630.00$ euro. The credit is taken off the tax, never off the gross pay.'
+
+  - id: jc7-rev-simple-interest
+    section: Review
+    tier: O
+    refs: ['N.2']
+    statement: '€1,500.00 is saved at $4\%$ simple interest for 2 years. Work out the interest and the total.'
+    answer_label: 'Simple interest and the total'
+    check:
+      kind: all
+      checks:
+        - kind: evaluate
+          expression: '1500 * 4/100 * 2'
+          answer: '120'
+        - kind: evaluate
+          expression: '1500 + 1500 * 4/100 * 2'
+          answer: '1620'
+    answer_text: 'The interest is $1500.00 \times 0.04 \times 2 = 120.00$ euro. The total is $1500.00 + 120.00 = 1620.00$ euro. Simple interest pays the same $60.00$ euro each year, because it is always $4\%$ of the original amount.'
+
+  - id: jc7-rev-compound-interest
+    section: Review
+    tier: O
+    refs: ['N.2']
+    statement: '€1,500.00 is saved at $4\%$ compound interest for 2 years. Work out the total.'
+    answer_label: 'The compound-interest total'
+    check:
+      kind: evaluate
+      expression: '1500 * (1 + 4/100)**2'
+      answer: '1622.4'
+    answer_text: 'The total is $1500.00 \times 1.04^2 = 1500.00 \times 1.0816 = 1622.40$ euro. The second year earns interest on the first year''s interest as well as on the original sum, so the compound total is $2.40$ euro more than the simple-interest total.'
+
+  - id: jc7-rev-unit-price
+    section: Review
+    tier: O
+    refs: ['N.3']
+    statement: 'A 2-litre bottle costs €3.60, and a 1.5-litre bottle costs €2.85. Which is better value for each litre?'
+    answer_label: 'The better value per litre'
+    check:
+      kind: all
+      checks:
+        - kind: evaluate
+          expression: '3.60 / 2'
+          answer: '1.8'
+        - kind: evaluate
+          expression: '2.85 / 1.5'
+          answer: '1.9'
+        - kind: compare
+          lhs: '3.60 / 2'
+          relation: '<'
+          rhs: '2.85 / 1.5'
+    answer_text: 'The 2-litre bottle is better value. It costs $3.60 \div 2 = 1.80$ euro per litre, and the 1.5-litre bottle costs $2.85 \div 1.5 = 1.90$ euro per litre. Compare the cost of the same quantity, here one litre, before deciding.'
+
+  - id: jc7-rev-euro-to-dollar
+    section: Review
+    tier: O
+    refs: ['N.3']
+    statement: 'Change €250.00 to US dollars at €1 = 1.09 US dollars.'
+    answer_label: 'Euros changed to dollars'
+    check:
+      kind: evaluate
+      expression: '250 * 1.09'
+      answer: '272.5'
+    answer_text: '$272.50$ US dollars. Each euro buys $1.09$ dollars, so multiply: $250.00 \times 1.09 = 272.50$ dollars.'
+
+  - id: jc7-rev-dollar-to-euro
+    section: Review
+    tier: O
+    refs: ['N.3']
+    statement: 'Change 109.00 US dollars to euro at €1 = 1.09 US dollars.'
+    answer_label: 'Dollars changed to euros'
+    check:
+      kind: evaluate
+      expression: '109 / 1.09'
+      answer: '100'
+    answer_text: '€100.00. This is the reverse direction, so divide by $1.09$: $109.00 \div 1.09 = 100.00$ euro. Multiplying here would give $118.81$, which is the wrong direction entirely.'
+
+  - id: jc7-rev-sale-price
+    section: Review
+    tier: O
+    refs: ['N.2']
+    statement: 'A jacket costs €80.00 and is reduced by $25\%$. Work out the sale price.'
+    answer_label: 'The sale price'
+    check:
+      kind: evaluate
+      expression: '80 * (1 - 25/100)'
+      answer: '60'
+    answer_text: 'The reduction is $0.25 \times 80.00 = 20.00$ euro, so the sale price is $80.00 - 20.00 = 60.00$ euro. Multiplying by $0.75$ gives the same answer in one step.'
+
+  - id: jc7-rev-interleave-divide-ratio
+    section: Review
+    tier: O
+    refs: ['N.2']
+    statement: 'Divide 84 in the ratio $3:4$.'
+    answer_label: '84 divided in the ratio 3:4'
+    check:
+      kind: all
+      checks:
+        - kind: evaluate
+          expression: '84 / (3 + 4) * 3'
+          answer: '36'
+        - kind: evaluate
+          expression: '84 / (3 + 4) * 4'
+          answer: '48'
+        - kind: evaluate
+          expression: '36 + 48'
+          answer: '84'
+    answer_text: '$36$ and $48$. There are $3 + 4 = 7$ equal parts, so one part is $84 \div 7 = 12$. Three parts give $36$, four parts give $48$, and $36 + 48 = 84$ checks the split.'
+
+  - id: jc7-rev-interleave-powers
+    section: Review
+    tier: O
+    refs: ['N.1']
+    statement: 'Work out $2^3\times3^2$.'
+    answer_label: '2 cubed times 3 squared'
+    check:
+      kind: evaluate
+      expression: '2**3 * 3**2'
+      answer: '72'
+    answer_text: '$72$. Work out each power first: $2^3 = 8$ and $3^2 = 9$, then multiply: $8 \times 9 = 72$. The bases are different, so the indices cannot be added.'
+
+  - id: jc7-rev-interleave-standard
+    section: Review
+    tier: O
+    refs: ['N.1']
+    statement: 'Write 4,700,000 in standard form.'
+    answer_label: '4,700,000 in standard form'
+    check:
+      kind: evaluate
+      expression: '4.7 * 10**6'
+      answer: '4700000'
+    answer_text: '$4.7 \times 10^6$. The first part must be at least $1$ and less than $10$, so it is $4.7$, and the decimal point moves six places to rebuild $4{,}700{,}000$.'
+
+  - id: jc7-rev-markup-then-sale
+    section: Review
+    tier: H
+    refs: ['N.2']
+    statement: 'A shop buys a coat for €60.00 and adds a mark-up of $40\%$. It then takes $20\%$ off in a sale. Work out the sale price, and say whether the shop still makes a profit on the coat.'
+    answer_label: 'The sale price, and whether the shop still makes a profit'
+    check:
+      kind: all
+      checks:
+        - kind: evaluate
+          expression: '60 * (1 + 40/100) * (1 - 20/100)'
+          answer: '67.2'
+        - kind: compare
+          lhs: '60 * (1 + 40/100) * (1 - 20/100)'
+          relation: '>'
+          rhs: '60'
+        - kind: structured
+          requires: [mark-up-price, sale-price, profit-check]
+          concepts: [percentage-increase, percentage-decrease, profit]
+          points:
+            - id: mark-up-price
+              text: 'The mark-up takes the price to 60 x 1.40 = 84.00 euro.'
+              concepts: [percentage-increase]
+            - id: sale-price
+              text: 'The sale takes 20% off the marked price, not off the cost: 84.00 x 0.80 = 67.20 euro.'
+              concepts: [percentage-decrease]
+            - id: profit-check
+              text: 'The sale price 67.20 euro is above the cost 60.00 euro, so the shop still makes 7.20 euro profit.'
+              concepts: [profit]
+    answer_text: 'The marked price is $60.00 \times 1.40 = 84.00$ euro. The sale takes $20\%$ off that price: $84.00 \times 0.80 = 67.20$ euro. The shop paid $60.00$ euro, so it still makes $67.20 - 60.00 = 7.20$ euro profit. The $20\%$ is taken off the marked price, so it does not cancel the $40\%$ mark-up.'
+
+  - id: jc7-rev-compound-vs-simple
+    section: Review
+    tier: H
+    refs: ['N.2']
+    statement: '€2,000.00 is saved at $5\%$ compound interest for 3 years. Work out the total, and work out how much more that is than the simple-interest total.'
+    answer_label: 'The compound total and the extra over simple interest'
+    check:
+      kind: all
+      checks:
+        - kind: evaluate
+          expression: '2000 * (1 + 5/100)**3'
+          answer: '2315.25'
+        - kind: evaluate
+          expression: '2000 * (1 + 5/100 * 3)'
+          answer: '2300'
+        - kind: evaluate
+          expression: '2000 * (1 + 5/100)**3 - 2000 * (1 + 5/100 * 3)'
+          answer: '15.25'
+    answer_text: 'The compound total is $2000.00 \times 1.05^3 = 2315.25$ euro. The simple-interest total is $2000.00 \times (1 + 0.05 \times 3) = 2300.00$ euro. Compound interest pays $2315.25 - 2300.00 = 15.25$ euro more, because each year''s interest also earns interest in the years that follow.'

@@ -13,7 +13,7 @@ kind: walkthrough
 # 17.5 The special points of a triangle — Learn
 
 **Prerequisites:** Section 17.1 — the perpendicular bisector and the centre; Section 15.6
-— the perpendicular bisector; Section 16.4 — similar triangles and the midpoint theorem.
+— the perpendicular bisector; Section 16.3 — similar triangles.
 
 **Objectives:** find the circumcentre, the incentre, the centroid and the orthocentre of a
 triangle; say which lines meet at each one; use the right-angled triangle case.

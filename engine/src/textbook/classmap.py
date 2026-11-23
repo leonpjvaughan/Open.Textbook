@@ -63,9 +63,6 @@ def _cached_entries(path: str, base: str) -> dict[str, dict]:
     for page in data.get("pages", []) or []:
         if not isinstance(page, dict) or not page.get("path"):
             continue
-        # A signature is what the directive prints, so an entry without one is not
-        # a class: an index page is a place to look things up, not a kind of
-        # problem, and linking it as one would be a category error in the prose.
         if not str(page.get("signature") or "").strip():
             continue
         slug = str(page["path"]).split("/")[0]

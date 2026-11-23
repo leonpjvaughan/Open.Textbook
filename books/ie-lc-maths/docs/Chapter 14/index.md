@@ -27,8 +27,8 @@ The centre of the panel carries an **enlarged** copy, with scale factor $3$ abou
 origin.
 
 **First contact — no working yet.** The enlarged tile is three times as wide as the
-original. Predict how many original tiles would cover it. Write your guess down, and keep
-it. You will check it in Section 14.4.
+original. Predict how many original tiles would cover it. Write your guess down and keep
+it to check later in the chapter.
 
 By the end of the chapter you can write down the corners of all five copies. You can
 also say which copies are exactly the same size and shape as the original, and prove how

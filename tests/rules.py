@@ -30,16 +30,11 @@ from __future__ import annotations
 import re
 import sys
 
-#: Code is read in a column, so the limit is the width of one. `black`'s default is
-#: 88; this is that less 16, because a listing at 72 columns is 602px — it scrolls by
-#: at most 1.8 screens on a phone and fits a tablet without scrolling at all.
 CODE_COLUMNS = 72
 
-#: Prose wraps by itself, so the limit is on the source line, not the rendered line.
 PROSE_COLUMNS = 80
 
 FENCE = re.compile(r"^\s*(```|~~~)")
-#: A page whose first line says it is generated is not ours to reflow or to fold.
 GENERATED = re.compile(r"\A<!--\s*Generated\b")
 
 DETAIL_SKELETON = [
@@ -51,25 +46,12 @@ DETAIL_SKELETON = [
     "## Back to the map",
 ]
 
-#: A listing longer than this is folded. A short listing is not folded, because a fold
-#: around a five-line program costs a click and saves nothing.
 FOLD_AFTER = 10
 
-#: What a detail page's program may import: the standard library and `sympy`. The
-#: book promises a program that runs where `sympy` is installed and `numpy` is not,
-#: and until this rule existed nothing noticed a page that imported one.
 STDLIB = frozenset(sys.stdlib_module_names) | {"sympy"}
 
-#: The summaries that name nothing. A summary that is one of these, or is empty, is a
-#: click that buys the reader nothing — which is the whole cost the rule is about.
-#: Case-insensitive and stripped of trailing punctuation before comparison.
 NAMELESS = {"", "here", "click here", "more", "details", "see more", "open", "expand"}
 
-#: The prose lines over the limit a book still carries, counted on 2026-10-27 when the
-#: rule was written. The debt is grandfathered for the same reason
-#: `lint.SENTENCE_DEBT` is, and under the same rule: **it may only go down.** Fix a
-#: line and lower the number; a book that starts clean starts at 0 and stays there,
-#: and every new page must be written to the limit. The reflow task drives this to 0.
 PROSE_DEBT: dict[str, int] = {"numerical-methods": 0}
 
 
@@ -112,8 +94,6 @@ def _is_exempt_prose(line: str) -> bool:
         return True
     if stripped.startswith("#"):
         return True
-    # A line that is only display maths is a layout, like a table row. The site
-    # renders it as a centred display block; wrapping it would change the formula.
     if re.fullmatch(r"\$.*\$[,.;]?", stripped):
         return True
     if re.search(r"\]\([^)\s]{40,}\)", stripped):
@@ -277,10 +257,6 @@ def sourced_pages(text: str, references: list[dict[str, object]]) -> list[str]:
         role = str(entry.get("role") or "").strip()
         if not role:
             continue
-        # The first author's part of the reference, before the publisher. Every
-        # capitalised word in it is a name the page may use: an entry written
-        # "Lloyd N. Trefethen and David Bau III" is cited as Trefethen or as Bau,
-        # and taking the last word instead would look for "III".
         head = ref.split(",")[0]
         names = [
             name

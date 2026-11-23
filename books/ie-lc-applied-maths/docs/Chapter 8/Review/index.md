@@ -73,31 +73,9 @@ Work through these without notes. For each one, decide **which model it is** and
 say why, *before* you calculate anything. Some are continuous, some are discrete,
 and one is neither.
 
-1. A population grows so that $\dfrac{dP}{dt} = 0.02P$, with $P = 500$ when
-   $t = 0$. Find $P$ in terms of $t$, and find the doubling time exactly.
-2. A recurrence is $u_{n+1} = 0.9u_n + 5$ with $u_0 = 0$. Find the fixed point
-   and the closed form.
-3. A mass is modelled by $m = 80e^{-0.04t}$ grams. Find its half-life exactly.
-4. Solve $\dfrac{dy}{dx} = 2xy$ with $y = 4$ when $x = 0$.
-5. A quantity follows $\dfrac{dP}{dt} = 15 - 0.3P$ with $P = 0$ when $t = 0$.
-   Find the equilibrium and the solution.
-6. A population follows
-   $\dfrac{dP}{dt} = 0.4P\left(1 - \dfrac{P}{200}\right)$ with $P = 20$ when
-   $t = 0$. Find the carrying capacity, the solution, and the time to reach half
-   the carrying capacity.
-7. Use Euler's method with $h = 1$ on $\dfrac{dy}{dx} = 0.3y$ with $y = 40$ when
-   $x = 0$. Find the estimate after two steps, and say whether it is above or
-   below the exact value $40e^{0.6}$.
-8. A particle has velocity $v = 8 - 2t$ m/s. Find its displacement between
-   $t = 0$ and $t = 3$ s. This is Chapter 3 material: the answer is an integral,
-   not a differential equation.
-9. A body of mass $2$ kg moves under a resultant force of $6$ N. Find its
-   acceleration, and say which of Newton's laws you used. This is Chapter 4
-   material, and it is not a differential equation until you write
-   $a = \dfrac{dv}{dt}$.
-10. A lake receives pollutant at $10$ kg per day and flushes it at $0.02$ per
-    day. Find the equilibrium level, and explain why the lake cannot be safe
-    below it while the input continues.
+:::problems chapter-08-review
+
+:::answers chapter-08-review
 
 ## What you can now do
 

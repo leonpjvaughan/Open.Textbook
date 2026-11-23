@@ -88,20 +88,9 @@ why in a few words. The method might be undoing operations, clearing a bracket, 
 a fraction, substitution, elimination, the inequality sign rule, a number-line graph,
 working backwards, or trial and improvement.
 
-1. Solve $5x+3=23$.
-2. Solve $3(x-4)=18$.
-3. Solve $\dfrac{x+5}{2}=6$.
-4. Solve $4x-1=2x+9$.
-5. Solve $y=x+5$ and $x+y=13$.
-6. Solve $x+y=10$ and $x-y=2$.
-7. Solve $2x+3y=13$ and $4x-3y=17$.
-8. Solve $5-2x>9$.
-9. Solve $3(x+1)\leq15$.
-10. Draw the solution set of $x\geq-1$.
-11. Use trial and improvement to solve $x^2+x=42$.
-12. I think of a number, multiply it by 5, and add 2. The result is 37. Find the number.
-13. Expand $(x+3)(x+2)$.
-14. Simplify $7a+3a-2a$.
+:::problems chapter-12-review
+
+:::answers chapter-12-review
 
 ## What you can now do
 

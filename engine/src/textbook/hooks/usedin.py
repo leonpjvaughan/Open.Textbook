@@ -68,12 +68,7 @@ def _scan(root: str) -> dict[str, tuple[dict, ...]]:
     found: dict[str, list[dict]] = {}
     for book in books.discover_books(Path(root)):
         if book.pages:
-            # The map linking to itself says nothing a reader needs.
             continue
-        # The default profile's URL. A book with more than one profile publishes the
-        # same page under each, so the default always exists and a reader who follows
-        # the link lands on a page they can read; the alternative would be for the
-        # hook to guess which profile the *other* book's reader is in, and it cannot.
         profile = book.default_profile.id
         base = f"/{book.deploy_path(profile)}/"
         for source in sorted(book.docs.rglob("*.md")):
@@ -110,9 +105,6 @@ def on_page_markdown(markdown, page, config, files):
     if ":::used" not in markdown:
         return markdown
 
-    # The page's own directory is the class it is about: a class page lives at
-    # `docs/<slug>/index.md`. Anything else asking for the list is a mistake, not
-    # an empty list, because it would silently print somebody else's callbacks.
     src = page.file.src_path
     parts = src.split("/")
     slug = parts[0] if len(parts) == 2 and parts[1] == "index.md" else ""

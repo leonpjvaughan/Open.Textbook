@@ -273,9 +273,28 @@ for (const scheme of ["light", "dark"]) {
 
 for (const scheme of ["light", "dark"]) {
   const { context, page } = await open({ width: 390, scheme });
+  await context.addInitScript(() => {
+    window.__layout = { value: 0, sources: [] };
+    new PerformanceObserver((list) => {
+      for (const entry of list.getEntries()) {
+        if (entry.hadRecentInput) continue;
+        window.__layout.value += entry.value;
+        for (const source of entry.sources || []) {
+          const node = source.node;
+          window.__layout.sources.push({
+            value: Math.round(entry.value * 10000) / 10000,
+            node: node && node.nodeType === 1 ? node.tagName + "." + node.className : String(node),
+          });
+        }
+      }
+    }).observe({ type: "layout-shift", buffered: true });
+  });
   await page.goto("http://navstate.test" + drawerRoute, { waitUntil: "load" });
   await page.waitForTimeout(250);
   const closed = await page.evaluate(DRAWER);
+  const layout = await page.evaluate(() => window.__layout);
+  out.layout = out.layout || {};
+  out.layout[scheme] = { ...layout, drawerOpen: closed.open };
   await page.click(".nav-drawer__summary");
   await page.waitForTimeout(300);
   const opened = await page.evaluate(DRAWER);
@@ -559,3 +578,26 @@ def test_without_scripting_the_drawer_and_every_link_still_work(measured):
         f"scripting off: drawer {before['height']}px, {before['visibleLinks']} links, "
         f"toggles on the summary, {toc['links']} contents links, none hidden"
     )
+
+
+def test_the_phone_drawer_is_already_closed_and_shifts_nothing(measured):
+    """TODO 221: the drawer ships open and must be collapsed before `main` parses.
+
+    Closing it from the deferred module moved `<main>` up after first paint and
+    scored 0.82 CLS at 390px, eight times Google's "good" limit. The drawer's own
+    inline script now runs before the tree and `<main>` parse, so the first paint
+    is already collapsed and no layout shift is attributed to the page.
+    """
+    layout = measured.get("layout") or {}
+    assert layout, "the layout-shift measurement did not run"
+    for scheme, state in layout.items():
+        value = state["value"]
+        assert value < 0.1, (
+            f"{scheme}: the phone page shifts by {value:.3f} CLS "
+            f"(good is under 0.1); sources: {state['sources']}"
+        )
+        assert state["drawerOpen"] is False, (
+            f"{scheme}: the drawer is still open after first paint, so the closed "
+            "state is a later script rather than the first paint"
+        )
+        print(f"{scheme}: CLS {value:.4f}, drawer closed at first paint")

@@ -29,9 +29,6 @@ from __future__ import annotations
 import html
 import re
 
-#: Five is the threshold, and `techniques` — the page this exists for — has exactly five
-#: (`finding-a-state`, `linear-systems`, `eigenvalues`, the two other families). Six was
-#: the guess when the item was written, and the page it was written for did not qualify.
 MINIMUM = 5
 
 MARKER = re.compile(r"<p>\s*:::contents\s*</p>", re.I)
@@ -73,22 +70,31 @@ def on_page_content(content: str, page, config, files) -> str:
         return MARKER.sub("", content)
     if ":::contents" in content:
         return MARKER.sub(lambda _match: nav, content)
-    # **After the page's first paragraph**, which is where a reader has been told what the
-    # page is for and before the first section begins. No paragraph at all means the page
-    # opens on a heading, and the list goes first.
     first = FIRST_PARAGRAPH.search(content)
     if not first:
         return nav + content
     return content[: first.end()] + nav + content[first.end():]
 
 
-#: The name index. `:::method-index` lists every `h3` entry on the page once, sorted by its
-#: display name and grouped by initial letter, each name linking the anchor the entry
-#: carries. It exists because *Methods, A to Z* is entered by name and sorted by family:
-#: at 390px the page is 22,773px and `Uzawa` was at 9,598px, so a reader holding a method
-#: name had find-in-page or the site search and nothing else.
 METHOD = re.compile(r'<h3 id="([^"]+)"[^>]*>(.*?)</h3>', re.S | re.I)
 METHOD_MARKER = re.compile(r"<p>\s*:::method-index\s*</p>", re.I)
+
+
+def _letter_group(letter: str, names: list[tuple[str, str]], first: bool) -> str:
+    """One letter's disclosure: the letter and its count, then every name as a link."""
+    links = "".join(
+        f'<li><a href="#{html.escape(anchor, quote=True)}">{html.escape(name)}</a></li>'
+        for name, anchor in names
+    )
+    unit = "method" if len(names) == 1 else "methods"
+    return (
+        f'<details class="method-index__group" id="letter-{letter.lower()}"'
+        f'{" open" if first else ""}>'
+        f'<summary><span class="method-index__letter">{letter}</span> '
+        f'<span class="method-index__count">{len(names)}'
+        f'<span class="visually-hidden"> {unit}</span></span></summary>'
+        f'<ul class="method-index__names">{links}</ul></details>'
+    )
 
 
 def render_methods(content: str) -> str:
@@ -98,19 +104,15 @@ def render_methods(content: str) -> str:
     )
     if len(entries) < 20:
         return ""
-    lines: dict[str, list[str]] = {}
+    groups: dict[str, list[tuple[str, str]]] = {}
     for name, anchor in entries:
-        letter = name[:1].upper()
-        lines.setdefault(letter, []).append(
-            f'<a href="#{html.escape(anchor, quote=True)}">{html.escape(name)}</a>'
-        )
+        groups.setdefault(name[:1].upper(), []).append((name, anchor))
     body = "".join(
-        f'<p class="method-index__line"><span class="method-index__letter">{letter}</span>'
-        f"{' · '.join(names)}</p>"
-        for letter, names in sorted(lines.items())
+        _letter_group(letter, names, index == 0)
+        for index, (letter, names) in enumerate(sorted(groups.items()))
     )
     return (
         '<nav class="method-index-nav" aria-label="Every method, by name">'
         '<p class="contents__title">Every method, by name</p>'
-        f"{body}</nav>"
+        f'<div class="method-index__letters">{body}</div></nav>'
     )

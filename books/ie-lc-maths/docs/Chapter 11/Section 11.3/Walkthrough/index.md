@@ -110,7 +110,7 @@ $$\frac{520}{1000} \times 360^\circ = 187.2^\circ$$
 
 The Yes slice is slightly more than half the circle, because $520$ is slightly more than
 half of $1000$. The pie chart shows a small lead, and it does not show whether that lead
-is reliable. Section 11.7 supplies the number that does.
+is reliable.<!-- tier:h --> Section 11.7 supplies the number that does.<!-- /tier:h -->
 
 ## You should now be able to
 

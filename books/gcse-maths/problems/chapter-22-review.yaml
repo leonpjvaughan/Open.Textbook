@@ -1,0 +1,149 @@
+# Mixed practice for the Chapter 22 Review (Vectors).
+#
+# The `vector` oracle verifies every column-vector addition, subtraction, scaling
+# and coordinate translation, and SymPy verifies both linear equations. Questions
+# 5, 6 and 7 ask for a route through the diagram or a vector proof; the verifier
+# cannot prove the geometry (a `structured` check confirms only that the declared
+# points and concepts are present in order).
+chapter: 22
+oracles: [sympy, units]
+symbols:
+  x: {real: true}
+problems:
+  - id: r1-translate-point
+    section: Review
+    tier: F
+    refs: [G24]
+    statement: 'Point $P=(-2,4)$ is translated by $\begin{pmatrix}5\\-3\end{pmatrix}$. Give its image coordinates.'
+    answer_label: 'Image of $P$ after the translation'
+    check: {kind: vector, op: add, args: ['Matrix([-2, 4])', 'Matrix([5, -3])'], answer: 'Matrix([3, 1])'}
+    answer_text: 'Add the vector to the coordinates: $(-2+5,\,4-3)=(3,1)$. The image is $(3,1)$.'
+
+  - id: r2-vector-between-points
+    section: Review
+    tier: F
+    refs: [G24, G25]
+    statement: 'Find the vector from $A=(3,-1)$ to $B=(-2,5)$.'
+    answer_label: 'Vector from $A$ to $B$'
+    check: {kind: vector, op: subtract, args: ['Matrix([-2, 5])', 'Matrix([3, -1])'], answer: 'Matrix([-5, 6])'}
+    answer_text: 'Subtract the coordinates of $A$ from the coordinates of $B$: $\overrightarrow{AB}=\begin{pmatrix}-2-3\\5-(-1)\end{pmatrix}=\begin{pmatrix}-5\\6\end{pmatrix}$. The vector points left and up, which matches the diagram.'
+
+  - id: r3-add-column-vectors
+    section: Review
+    tier: F
+    refs: [G25]
+    statement: 'Work out $\begin{pmatrix}2\\-4\end{pmatrix}+\begin{pmatrix}-7\\3\end{pmatrix}$.'
+    answer_label: 'Sum of the two column vectors'
+    check: {kind: vector, op: add, args: ['Matrix([2, -4])', 'Matrix([-7, 3])'], answer: 'Matrix([-5, -1])'}
+    answer_text: 'Add matching components: $2+(-7)=-5$ and $-4+3=-1$, so the sum is $\begin{pmatrix}-5\\-1\end{pmatrix}$.'
+
+  - id: r4-scale-then-subtract
+    section: Review
+    tier: F
+    refs: [G25]
+    statement: 'Work out $2\begin{pmatrix}-3\\5\end{pmatrix}-\begin{pmatrix}4\\-2\end{pmatrix}$.'
+    answer_label: 'Value of the vector expression'
+    check:
+      kind: all
+      checks:
+        - {kind: vector, op: scale, args: ['2', 'Matrix([-3, 5])'], answer: 'Matrix([-6, 10])'}
+        - {kind: vector, op: subtract, args: ['Matrix([-6, 10])', 'Matrix([4, -2])'], answer: 'Matrix([-10, 12])'}
+    answer_text: 'Multiply first: $2\begin{pmatrix}-3\\5\end{pmatrix}=\begin{pmatrix}-6\\10\end{pmatrix}$. Then subtract: $\begin{pmatrix}-6-4\\10-(-2)\end{pmatrix}=\begin{pmatrix}-10\\12\end{pmatrix}$.'
+
+  - id: r5-route-in-triangle
+    section: Review
+    tier: F
+    refs: [G25]
+    statement: 'In triangle $PQR$, $\overrightarrow{PQ}=\mathbf{a}$ and $\overrightarrow{QR}=\mathbf{b}$. Find $\overrightarrow{PR}$.'
+    answer_label: 'Vector $\overrightarrow{PR}$ in terms of $\mathbf{a}$ and $\mathbf{b}$'
+    check:
+      kind: structured
+      requires: [follow-route, add-vectors]
+      concepts: [resultant, vector-route]
+      points:
+        - id: follow-route
+          text: 'The route from P to R goes through Q, so PR is the vector from P to Q followed by the vector from Q to R.'
+          concepts: [vector-route]
+        - id: add-vectors
+          text: 'Add the two vectors along that route: PR = a + b.'
+          concepts: [resultant]
+    answer_text: '$\overrightarrow{PR}=\mathbf{a}+\mathbf{b}$. The route from $P$ to $R$ passes through $Q$, so add the two vectors joined end to end.'
+
+  - id: r6-parallelogram-diagonals
+    section: Review
+    tier: F
+    refs: [G25]
+    statement: 'In parallelogram $ABCD$, $\overrightarrow{AB}=\mathbf{u}$ and $\overrightarrow{AD}=\mathbf{v}$. Find $\overrightarrow{AC}$ and $\overrightarrow{DB}$.'
+    answer_label: 'The two diagonal vectors'
+    check:
+      kind: structured
+      requires: [diagonal-ac, diagonal-db]
+      concepts: [vector-route, opposite-sides]
+      points:
+        - id: diagonal-ac
+          text: 'The route from A to C goes through B, so AC = u + v.'
+          concepts: [vector-route]
+        - id: diagonal-db
+          text: 'The route from D to B goes from D to A, which is -v, and then from A to B, which is u, so DB = u - v.'
+          concepts: [opposite-sides, vector-route]
+    answer_text: '$\overrightarrow{AC}=\mathbf{u}+\mathbf{v}$ and $\overrightarrow{DB}=\mathbf{u}-\mathbf{v}$. The first diagonal follows $\overrightarrow{AB}$ then $\overrightarrow{BC}=\mathbf{v}$. The second follows $\overrightarrow{DA}=-\mathbf{v}$ then $\overrightarrow{AB}=\mathbf{u}$.'
+
+  - id: r7-bisecting-diagonals-proof
+    section: Review
+    tier: H
+    refs: [G25]
+    statement: 'Explain how to prove that the diagonals of a parallelogram bisect each other using vectors.'
+    answer_label: 'Vector proof that the diagonals bisect each other'
+    check:
+      kind: structured
+      requires: [place-origin, midpoint-ac, midpoint-bd, same-point]
+      concepts: [position-vector, midpoint, diagonal]
+      points:
+        - id: place-origin
+          text: 'Take A as the origin, with AB = u and AD = v. Then B has position vector u, D has position vector v, and C has position vector u + v.'
+          concepts: [position-vector]
+        - id: midpoint-ac
+          text: 'The midpoint of AC has position vector one half of (u + v).'
+          concepts: [midpoint, diagonal]
+        - id: midpoint-bd
+          text: 'The midpoint of BD has position vector one half of (u + v) as well, because the midpoint of two position vectors is their average.'
+          concepts: [midpoint, diagonal]
+        - id: same-point
+          text: 'The two midpoints have the same position vector, so they are the same point, and the diagonals bisect each other.'
+          concepts: [position-vector]
+    answer_text: 'Take $A$ as the origin, so $B$ has position vector $\mathbf{u}$, $D$ has $\mathbf{v}$ and $C$ has $\mathbf{u}+\mathbf{v}$. The midpoint of $AC$ is $\frac12(\mathbf{u}+\mathbf{v})$ and the midpoint of $BD$ is $\frac12(\mathbf{u}+\mathbf{v})$ too. The midpoints are the same point, so the diagonals bisect each other.'
+
+  - id: r8-linear-equation
+    section: Review
+    tier: F
+    refs: [A17]
+    statement: 'Solve $3x+4=19$ from earlier algebra. Which operation undoes the addition first?'
+    answer_label: 'Solution of $3x+4=19$'
+    check:
+      kind: all
+      checks:
+        - {kind: solve, equation: '3*x + 4 = 19', variable: x, answer: ['5']}
+        - kind: structured
+          requires: [undo-addition, undo-multiplication]
+          concepts: [inverse-operations]
+          points:
+            - id: undo-addition
+              text: 'Subtract 4 from both sides first, because 4 was added to 3x.'
+              concepts: [inverse-operations]
+            - id: undo-multiplication
+              text: 'Then divide both sides by 3, because 3 multiplies x. This gives x = 5.'
+              concepts: [inverse-operations]
+    answer_text: 'Subtract $4$ first: $3x=15$. Then divide by $3$: $x=5$. Each step undoes the operation that was applied to $x$, in reverse order.'
+
+  - id: r9-rectangle-perimeter-equation
+    section: Review
+    tier: F
+    refs: [A17, G16]
+    statement: 'A rectangle has width $x$ and length $x+3$. Its perimeter is 30 cm. Form an equation and find its dimensions.'
+    answer_label: 'Equation and dimensions of the rectangle'
+    check:
+      kind: all
+      checks:
+        - {kind: solve, equation: '2*x + 2*(x + 3) = 30', variable: x, answer: ['6']}
+        - {kind: evaluate, expression: '6 + 3', answer: '9'}
+    answer_text: 'The perimeter is $2x+2(x+3)=30$, so $4x+6=30$, $4x=24$ and $x=6$. The width is $6\text{ cm}$ and the length is $6+3=9\text{ cm}$. Check: $2(6)+2(9)=30\text{ cm}$.'

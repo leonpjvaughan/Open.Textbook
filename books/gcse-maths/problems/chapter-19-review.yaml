@@ -1,0 +1,111 @@
+# Mixed practice for the Chapter 19 Review (Perimeter, area, surface area and volume).
+#
+# SymPy verifies every area, perimeter, circumference, sector, volume, surface area,
+# scale and unit-conversion result. Questions 7 and 8 also ask which method was
+# used or why a volume unit is needed; the verifier cannot prove that judgement (a
+# `structured` check confirms only that the declared points and concepts are
+# present in order).
+chapter: 19
+oracles: [sympy, units]
+problems:
+  - id: r1-room-area-perimeter
+    section: Review
+    tier: F
+    refs: [G16]
+    statement: 'A room is 5 m by 3.5 m. Work out its area and perimeter.'
+    answer_label: 'Area and perimeter of the room'
+    check:
+      kind: all
+      checks:
+        - {kind: evaluate, expression: '5*3.5', answer: '17.5'}
+        - {kind: evaluate, expression: '2*(5 + 3.5)', answer: '17'}
+    answer_text: 'Area $=5\times3.5=17.5\text{ m}^2$. Perimeter $=2(5+3.5)=17\text{ m}$. Multiply the two sides for the area and add all four sides for the perimeter.'
+
+  - id: r2-table-circumference
+    section: Review
+    tier: F
+    refs: [G17]
+    statement: 'A circular table has diameter 1.2 m. Work out its circumference in terms of $\pi$.'
+    answer_label: 'Circumference of the table'
+    check: {kind: evaluate, expression: 'pi*1.2', answer: '6*pi/5'}
+    answer_text: 'The circumference is $C=\pi d=\pi\times1.2=1.2\pi\text{ m}$. Use the diameter directly, because $C=\pi d$.'
+
+  - id: r3-sector-area
+    section: Review
+    tier: F
+    refs: [G18]
+    statement: 'A $120^\circ$ sector has radius 6 cm. Work out its area in terms of $\pi$.'
+    answer_label: 'Area of the sector'
+    check: {kind: evaluate, expression: '(120/360)*pi*6**2', answer: '12*pi'}
+    answer_text: 'A sector is the fraction $\frac{120}{360}$ of the whole circle, so its area is $\frac{120}{360}\times\pi\times6^2=12\pi\text{ cm}^2$.'
+
+  - id: r4-prism-volume
+    section: Review
+    tier: F
+    refs: [G16, G17]
+    statement: 'A prism has cross-section area $24\text{ cm}^2$ and length 9 cm. Work out its volume.'
+    answer_label: 'Volume of the prism'
+    check: {kind: evaluate, expression: '24*9', answer: '216'}
+    answer_text: '$V=24\times9=216\text{ cm}^3$. A prism has the same cross-section along its length, so multiply the cross-section area by the length.'
+
+  - id: r5-sphere-surface-area
+    section: Review
+    tier: F
+    refs: [G17]
+    statement: 'A sphere has radius 2 cm. Work out its surface area in terms of $\pi$.'
+    answer_label: 'Surface area of the sphere'
+    check: {kind: evaluate, expression: '4*pi*2**2', answer: '16*pi'}
+    answer_text: 'The surface area is $4\pi r^2=4\pi\times2^2=16\pi\text{ cm}^2$.'
+
+  - id: r6-composite-remaining-area
+    section: Review
+    tier: F
+    refs: [G17]
+    statement: 'A $10$ cm by $8$ cm rectangle has a $3$ cm by $2$ cm corner removed. Work out the remaining area.'
+    answer_label: 'Remaining area of the shape'
+    check: {kind: evaluate, expression: '10*8 - 3*2', answer: '74'}
+    answer_text: '$10\times8-3\times2=80-6=74\text{ cm}^2$. Find the area of the whole rectangle, then subtract the area of the corner.'
+
+  - id: r7-map-scale-length
+    section: Review
+    tier: F
+    refs: [G15, G16]
+    statement: 'A map uses a scale of 1 cm to represent 2 m. A garden border measures 7 cm on the map. Work out its real length. Which methods did you use?'
+    answer_label: 'Real length of the garden border'
+    check:
+      kind: all
+      checks:
+        - {kind: evaluate, expression: '7*2', answer: '14'}
+        - kind: structured
+          requires: [apply-scale, use-real-unit]
+          concepts: [scale-factor, unit]
+          points:
+            - id: apply-scale
+              text: 'Multiply the map length by 2, because each 1 cm on the map stands for 2 m in the garden.'
+              concepts: [scale-factor]
+            - id: use-real-unit
+              text: 'The answer is 14 m. The unit is metres, the real unit of the scale, not centimetres from the map.'
+              concepts: [unit]
+    answer_text: '$7\times2=14\text{ m}$. Multiply the map length by the scale factor and give the answer in the real unit, metres.'
+
+  - id: r8-litres-to-cubic-centimetres
+    section: Review
+    tier: F
+    refs: [G16]
+    statement: 'A container holds 2.4 litres. Convert this to cubic centimetres using $1$ litre $=1000$ cm³. Explain why volume units are needed.'
+    answer_label: 'Capacity in cubic centimetres'
+    check:
+      kind: all
+      checks:
+        - {kind: evaluate, expression: '2.4*1000', answer: '2400'}
+        - kind: structured
+          requires: [multiply-factor, name-cubic-unit]
+          concepts: [capacity, cubic-unit]
+          points:
+            - id: multiply-factor
+              text: 'Multiply by 1000, because 1 litre is the same capacity as 1000 cubic centimetres.'
+              concepts: [capacity]
+            - id: name-cubic-unit
+              text: 'Write the answer as 2400 cm cubed, because a volume measures three lengths multiplied together, so its unit is cubed.'
+              concepts: [cubic-unit]
+    answer_text: '$2.4\times1000=2400\text{ cm}^3$. A capacity in litres becomes a volume in cubic centimetres, so both the number and the unit change.'

@@ -1,0 +1,303 @@
+# Mixed practice for the Chapter 11 Review.
+#
+# Ten questions, one record each, in the order they appear on the Review page.
+# Every record that asks for a number pairs a `dimensions` check, which proves the
+# magnitude and the unit, with a `sigfigs` check, which proves the rounding to the
+# figures the data support. The two Doppler frequencies are ratios rather than
+# products, so they are proved by `approx` and then rounded by `sigfigs`, and the
+# answer is given to three figures, as the chapter's own worked example does.
+# Questions 3, 6, 8, 9 and 10 ask for a judgement or for the source of the method as
+# well as a number, so each carries a `structured` component.
+#
+# Honest limit: this proves arithmetic, dimensions and the declared conventions,
+# not physics. A `structured` check proves only that a model answer contains its
+# declared steps and concepts, in order. Question 6 is an explanation with no number
+# in it: the verifier can prove that the model answer names the cause, and nothing
+# about whether the physics in it is right.
+#
+# The data are read as the Review page states them: the speed of sound in air is
+# 340 m/s throughout, the horn sounds at 640 Hz and the car moves at 25 m/s.
+chapter: 11
+problems:
+  - id: c11-r1-distance
+    section: Review
+    tier: O
+    refs: ['2.5']
+    statement: 'A sound wave travels through air at $340\,\text{m/s}$. Calculate the distance it travels in $4.0\,\text{s}$.'
+    answer_label: 'The distance travelled'
+    check:
+      kind: all
+      checks:
+        - kind: dimensions
+          expression: c * t
+          values:
+            c: {value: '340', unit: m/s}
+            t: {value: '4.0', unit: s}
+          answer: {value: '1360', unit: m}
+        - kind: sigfigs
+          value: '340 * 4.0'
+          figures: 2
+          answer: '1.4e3'
+          convention: round-once
+    answer_text: 'The distance is $s = vt = 340 \times 4.0 = 1360\,\text{m}$, which is $1.4 \times 10^{3}\,\text{m}$ to two significant figures. The time is the reading with the fewest figures, so the answer carries two. A sound that takes four seconds to reach you came from more than a kilometre away.'
+
+  - id: c11-r2-wavelength
+    section: Review
+    tier: O
+    refs: ['2.5']
+    statement: 'A siren makes a note of $850\,\text{Hz}$. The speed of sound in air is $340\,\text{m/s}$. Calculate the wavelength.'
+    answer_label: 'The wavelength'
+    check:
+      kind: all
+      checks:
+        - kind: dimensions
+          expression: c / f
+          values:
+            c: {value: '340', unit: m/s}
+            f: {value: '850', unit: Hz}
+          answer: {value: '0.40', unit: m}
+        - kind: sigfigs
+          value: '340 / 850'
+          figures: 2
+          answer: '0.40'
+          convention: round-once
+    answer_text: 'Rearranging $v = f\lambda$ gives $\lambda = \dfrac{v}{f} = \dfrac{340}{850} = 0.40\,\text{m}$. The exact value is $0.4$, and the trailing zero shows that the answer carries two significant figures, as the data do.'
+
+  - id: c11-r3-wave-speed
+    section: Review
+    tier: O
+    refs: ['2.5']
+    statement: 'A wave has a frequency of $250\,\text{Hz}$ and a wavelength of $1.2\,\text{m}$. Calculate its speed. Which chapter does this method come from?'
+    answer_label: 'The speed and the chapter'
+    check:
+      kind: all
+      checks:
+        - kind: dimensions
+          expression: f * lam
+          values:
+            f: {value: '250', unit: Hz}
+            lam: {value: '1.2', unit: m}
+          answer: {value: '300', unit: m/s}
+        - kind: sigfigs
+          value: '250 * 1.2'
+          figures: 2
+          answer: '3.0e2'
+          convention: round-once
+        - kind: structured
+          requires: [state-speed, name-chapter]
+          concepts: [wave-equation, waves]
+          points:
+            - id: state-speed
+              text: 'The speed is v = f lambda = 250 x 1.2 = 300 m/s, which is 3.0 x 10^2 m/s.'
+              concepts: [wave-equation]
+            - id: name-chapter
+              text: 'The method is the wave equation from Chapter 9, Waves. It applies to sound as well, because sound is a wave.'
+              concepts: [waves]
+    answer_text: 'The wave equation gives $v = f\lambda = 250 \times 1.2 = 300\,\text{m/s}$, which is $3.0 \times 10^{2}\,\text{m/s}$ to two significant figures. The method comes from Chapter 9, Waves. It applies to sound as well, because sound is a wave: only the mechanism that carries it is different.'
+
+  - id: c11-r4-echo
+    section: Review
+    tier: O
+    refs: ['2.5']
+    statement: 'A student claps once and hears the echo from a wall $0.50\,\text{s}$ later. The speed of sound is $340\,\text{m/s}$. Calculate the distance to the wall.'
+    answer_label: 'The distance to the wall'
+    check:
+      kind: all
+      checks:
+        - kind: dimensions
+          expression: c * t / 2
+          values:
+            c: {value: '340', unit: m/s}
+            t: {value: '0.50', unit: s}
+          answer: {value: '85', unit: m}
+        - kind: sigfigs
+          value: '340 * 0.50 / 2'
+          figures: 2
+          answer: '85'
+          convention: round-once
+    answer_text: 'The sound travels to the wall and back in the $0.50\,\text{s}$, so the distance to the wall is half of the distance the sound covers: $d = \dfrac{vt}{2} = \dfrac{340 \times 0.50}{2} = 85\,\text{m}$. Forgetting the factor of two is the commonest mistake here, and it doubles the answer. This is the echo method for measuring the speed of sound, run in reverse.'
+
+  - id: c11-r5-resonance-tube
+    section: Review
+    tier: O
+    refs: ['2.5']
+    statement: 'A tuning fork of frequency $425\,\text{Hz}$ gives its first resonance at an air-column length of $0.20\,\text{m}$ and its second at $0.60\,\text{m}$. Calculate the speed of sound.'
+    answer_label: 'The speed of sound'
+    check:
+      kind: all
+      checks:
+        - kind: dimensions
+          expression: 2 * (L2 - L1)
+          values:
+            L1: {value: '0.20', unit: m}
+            L2: {value: '0.60', unit: m}
+          answer: {value: '0.80', unit: m}
+        - kind: dimensions
+          expression: f * 2 * (L2 - L1)
+          values:
+            f: {value: '425', unit: Hz}
+            L1: {value: '0.20', unit: m}
+            L2: {value: '0.60', unit: m}
+          answer: {value: '340', unit: m/s}
+        - kind: sigfigs
+          value: '425 * 2 * (0.60 - 0.20)'
+          figures: 2
+          answer: '3.4e2'
+          convention: round-once
+    answer_text: 'Successive resonances are half a wavelength apart, so $\lambda = 2(L_2 - L_1) = 2(0.60 - 0.20) = 0.80\,\text{m}$. The wave equation then gives $v = f\lambda = 425 \times 0.80 = 340\,\text{m/s}$, which is $3.4 \times 10^{2}\,\text{m/s}$ to two significant figures. The difference of the two lengths is used because the end correction at the open end affects both readings by the same amount, so it cancels.'
+
+  - id: c11-r6-violin-and-flute
+    section: Review
+    tier: O
+    refs: ['2.5']
+    statement: 'A violin and a flute play the same note at the same loudness. Explain why they sound different.'
+    answer_label: 'Why the same note sounds different on two instruments'
+    check:
+      kind: structured
+      requires: [same-pitch-loudness, overtones, quality]
+      concepts: [frequency, amplitude, harmonics]
+      points:
+        - id: same-pitch-loudness
+          text: 'The same note means the same fundamental frequency, and the same loudness means the same amplitude, so neither pitch nor loudness explains the difference.'
+          concepts: [frequency, amplitude]
+        - id: overtones
+          text: 'Each instrument adds its own pattern of overtones above the fundamental. The violin has a strong set of harmonics; the flute is much closer to a pure note with fewer strong overtones.'
+          concepts: [harmonics]
+        - id: quality
+          text: 'The mixture of fundamental and overtones reaching your ear is the quality, or timbre, of the sound, and that is what tells the two instruments apart.'
+          concepts: [harmonics]
+    answer_text: 'The same note means the same fundamental frequency, and the same loudness means the same amplitude, so neither of those explains the difference. Each instrument adds its own pattern of overtones above the fundamental: the violin has a strong set of harmonics, while the flute is much closer to a pure note. The mixture that reaches your ear is the quality, or timbre, of the sound, and that is how you recognise the instrument. Two sounds can agree in pitch and loudness and still differ in quality.'
+
+  - id: c11-r7-approaching
+    section: Review
+    tier: O
+    refs: ['2.7']
+    statement: 'A car approaches a stationary listener at $25\,\text{m/s}$ with its horn sounding at $640\,\text{Hz}$. The speed of sound in air is $340\,\text{m/s}$. Calculate the frequency the listener hears.'
+    answer_label: 'The frequency heard as the car approaches'
+    check:
+      kind: all
+      checks:
+        - kind: approx
+          value: '640 * 340 / (340 - 25)'
+          target: '690.79'
+          tolerance: '0.01'
+        - kind: sigfigs
+          value: '640 * 340 / (340 - 25)'
+          figures: 3
+          answer: '691'
+          convention: round-once
+    answer_text: 'For a source approaching a stationary listener, the wavefronts are squeezed together and the frequency rises: $f'' = \dfrac{fc}{c - u} = \dfrac{640 \times 340}{340 - 25} = \dfrac{217600}{315} = 691\,\text{Hz}$ to three significant figures. The minus sign belongs in the denominator because the source moves towards the listener. The speed of the sound itself is unchanged at $340\,\text{m/s}$; what changes is how often the wavefronts arrive.'
+
+  - id: c11-r8-receding
+    section: Review
+    tier: O
+    refs: ['2.7']
+    statement: 'The car has passed the listener and now moves away at $25\,\text{m/s}$. Calculate the frequency the listener hears now. Compare it with your answer to question 7.'
+    answer_label: 'The frequency heard as the car recedes, and the comparison'
+    check:
+      kind: all
+      checks:
+        - kind: approx
+          value: '640 * 340 / (340 + 25)'
+          target: '596.16'
+          tolerance: '0.01'
+        - kind: sigfigs
+          value: '640 * 340 / (340 + 25)'
+          figures: 3
+          answer: '596'
+          convention: round-once
+        - kind: structured
+          requires: [state-frequency, compare, why]
+          concepts: [doppler-shift, denominator, larger-approach]
+          points:
+            - id: state-frequency
+              text: 'The frequency heard now is 596 Hz, to three significant figures.'
+              concepts: [doppler-shift]
+            - id: compare
+              text: 'It is lower than the 691 Hz of question 7, so the note drops by about 95 Hz as the car passes. The shift upwards was about 51 Hz and the shift downwards about 44 Hz, so the approach shift is the larger of the two.'
+              concepts: [doppler-shift]
+            - id: why
+              text: 'The two shifts differ because the source speed is added in one case and taken away in the other. Subtracting 25 from 340 changes the denominator by a larger fraction than adding 25 to 340 does, so the rise is bigger than the fall.'
+              concepts: [denominator, larger-approach]
+    answer_text: 'For a receding source the wavefronts are stretched apart, so the frequency falls: $f'' = \dfrac{fc}{c + u} = \dfrac{640 \times 340}{340 + 25} = \dfrac{217600}{365} = 596\,\text{Hz}$ to three significant figures. The note drops by about $95\,\text{Hz}$ as the car passes. The two shifts are not equal: the rise was about $51\,\text{Hz}$ and the fall about $44\,\text{Hz}$. Subtracting $25$ from $340$ changes the denominator by a larger fraction than adding $25$ to $340$, so the approach shift is the bigger one.'
+
+  - id: c11-r9-spring-force
+    section: Review
+    tier: O
+    refs: ['2.5']
+    statement: 'A spring of spring constant $40\,\text{N/m}$ is stretched by $0.15\,\text{m}$. Calculate the force needed. Which relationship did you use, and why?'
+    answer_label: 'The force, the relationship, and why'
+    check:
+      kind: all
+      checks:
+        - kind: dimensions
+          expression: k * x
+          values:
+            k: {value: '40', unit: N/m}
+            x: {value: '0.15', unit: m}
+          answer: {value: '6.0', unit: N}
+        - kind: sigfigs
+          value: '40 * 0.15'
+          figures: 2
+          answer: '6.0'
+          convention: round-once
+        - kind: structured
+          requires: [state-force, name-relationship, why]
+          concepts: [hookes-law, spring-constant, force-per-extension]
+          points:
+            - id: state-force
+              text: 'The force is F = k x = 40 x 0.15 = 6.0 N.'
+              concepts: [hookes-law]
+            - id: name-relationship
+              text: 'The relationship is Hooke''s law, F = k x, from Chapter 5.'
+              concepts: [hookes-law]
+            - id: why
+              text: 'It fits because the spring constant is the force per unit extension, and the extension is given. The force is proportional to the extension only while the spring is not stretched past its limit of proportionality.'
+              concepts: [force-per-extension, spring-constant]
+    answer_text: 'Hooke''s law gives $F = kx = 40 \times 0.15 = 6.0\,\text{N}$. The relationship is Hooke''s law, from Chapter 5, and it fits because the spring constant is the force per unit extension and the extension is given. The two significant figures come from the extension, $0.15\,\text{m}$. The law holds only while the spring is not stretched past its limit of proportionality, which is worth saying whenever you use it.'
+
+  - id: c11-r10-car-acceleration
+    section: Review
+    tier: O
+    refs: ['2.5']
+    statement: 'A car starts from rest and accelerates at $2.5\,\text{m/s}^2$ for $6.0\,\text{s}$. Calculate its final speed and the distance it travels. Which chapter does this method come from?'
+    answer_label: 'The final speed, the distance and the chapter'
+    check:
+      kind: all
+      checks:
+        - kind: dimensions
+          expression: a * t
+          values:
+            a: {value: '2.5', unit: m/s^2}
+            t: {value: '6.0', unit: s}
+          answer: {value: '15', unit: m/s}
+        - kind: sigfigs
+          value: '2.5 * 6.0'
+          figures: 2
+          answer: '15'
+          convention: round-once
+        - kind: dimensions
+          expression: 0.5 * a * t**2
+          values:
+            a: {value: '2.5', unit: m/s^2}
+            t: {value: '6.0', unit: s}
+          answer: {value: '45', unit: m}
+        - kind: sigfigs
+          value: '0.5 * 2.5 * 6.0**2'
+          figures: 2
+          answer: '45'
+          convention: round-once
+        - kind: structured
+          requires: [state-speed, state-distance, name-chapter]
+          concepts: [equations-of-motion, constant-acceleration]
+          points:
+            - id: state-speed
+              text: 'The final speed is 15 m/s, from v = u + a t with u = 0.'
+              concepts: [equations-of-motion]
+            - id: state-distance
+              text: 'The distance is 45 m, from s = u t + half a t squared, which is half of 2.5 times 36.'
+              concepts: [equations-of-motion]
+            - id: name-chapter
+              text: 'The method comes from Chapter 2, Describing motion.'
+              concepts: [constant-acceleration]
+    answer_text: 'With $u = 0$, the equations of motion give $v = u + at = 2.5 \times 6.0 = 15\,\text{m/s}$ and $s = ut + \frac{1}{2}at^2 = \frac{1}{2} \times 2.5 \times 36 = 45\,\text{m}$. Both answers carry two significant figures. The method comes from Chapter 2, Describing motion. The same constant-acceleration equations describe a sound wave travelling at a steady speed only in part: sound travels at a steady speed, not a steady acceleration, so the wave equation is the right tool for it.'

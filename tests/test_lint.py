@@ -40,10 +40,6 @@ def lint_page(tmp_path: Path, monkeypatch, text: str):
         description="",
         root=tmp_path,
     )
-    # No patching of a module-level root: the linter reports paths relative to the
-    # book it is given, and this fixture already gives it one rooted at `tmp_path`.
-    # It used to read a `lint.ROOT` captured at import, which is the cwd and
-    # `TEXTBOOK_ROOT` at the moment the module loaded.
     findings: Counter = Counter()
     examples: dict[str, list[str]] = {}
     lint.lint(book, fix=False, findings=findings, examples=examples)
@@ -76,7 +72,6 @@ def test_the_internal_bank_phrases_are_still_reported(tmp_path, monkeypatch, sen
     assert examples, f"{sentence!r} is no longer reported as an internal word"
 
 
-# --- maths is not prose -------------------------------------------------------
 
 
 def test_multiline_display_maths_is_not_linted_as_prose(tmp_path, monkeypatch):
@@ -122,15 +117,6 @@ def test_removing_display_maths_keeps_the_line_numbers(tmp_path, monkeypatch):
     assert any(":7:" in where for where in examples.get("voice:style-word", [])), examples
 
 
-# --- the words that call a model worthless ------------------------------------
-#
-# `books/maths-applied/AGENTS.md` used to ban eight words outright when describing
-# a model and call the last two "the seductive ones", while the lint enforced four
-# of them. A word rule is right for the words whose disparagement is in the word,
-# and wrong for the ones where it depends on what the word is attached to: over the
-# collection `real` appears 625 times (real numbers, real roots, a real image) and
-# `full` 5,353 (5,097 of them "full working"), so both are a review note. `naive`
-# and `toy` are rules, and the two ordinary senses the collection writes are rows.
 
 
 def style_findings(tmp_path: Path, monkeypatch, text: str) -> list[str]:
@@ -180,12 +166,6 @@ def test_real_full_and_properly_are_a_note_not_a_rule(tmp_path, monkeypatch):
     assert style_findings(tmp_path, monkeypatch, text) == []
 
 
-# --- a finding fails the gate -------------------------------------------------
-#
-# The linter returned 0 whatever it found, so `scripts/check.sh` passed while 42
-# findings sat in five books. The repository's own definition of done says the
-# linter reports nothing for a book; these two tests make that the gate's
-# business rather than a line of output someone has to notice.
 
 
 def test_the_collection_is_lint_clean():
@@ -211,11 +191,9 @@ def test_a_finding_makes_the_command_fail(tmp_path, monkeypatch):
 
     page.write_text("# Page\n\nThis is fine.\n", encoding="utf-8")
     monkeypatch.setattr(lint.books, "discover_books", lambda: [_fixture_book(tmp_path)])
-    # `main` reads the command line, so it must be the test's, not pytest's.
     monkeypatch.setattr("sys.argv", ["lint"])
     assert lint.main() == 0
 
-    # "obviously" is a voice finding: a shaming word.
     page.write_text("# Page\n\nThis is obviously fine.\n", encoding="utf-8")
     assert lint.main() == 1
 
@@ -231,13 +209,6 @@ def _fixture_book(root: Path) -> Book:
     )
 
 
-# --- the sentence ceiling reads paragraphs, not lines -------------------------
-#
-# The rule used to test one physical line at a time. Every page is hard-wrapped
-# near 80 columns, so a 40-word sentence was spread over three lines, each under
-# the ceiling, and the rule that was documented to catch it could never fire.
-# These pin the paragraph as the unit, and the debt table as a per-book ratchet
-# rather than a per-page allowance.
 
 LONG_SENTENCE = (
     "Each of the words in this deliberately long sentence is here to make the total "
@@ -320,7 +291,6 @@ def test_front_matter_is_not_a_sentence(tmp_path, monkeypatch):
     assert "style:long-sentence" not in findings
 
 
-# --- a list needs a blank line before it (review W3) ----------------------------
 
 
 def test_a_list_after_prose_with_no_blank_line_is_reported():
@@ -414,7 +384,7 @@ def test_a_section_page_is_held_to_twenty_five_words():
     """
     section = "/Chapter 1/Section 1.1/Walkthrough/index.md"
     other = "/Chapter 1/Review/index.md"
-    long_sentence = "one " * 26 + "end."          # 26 words
+    long_sentence = "one " * 26 + "end."
     assert list(lint.long_sentences(long_sentence, lint.SECTION_CEILING))
     assert not list(lint.long_sentences(long_sentence, lint.SENTENCE_CEILING))
     assert lint.SECTION_PAGE.search(section)

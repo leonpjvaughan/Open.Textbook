@@ -56,7 +56,6 @@ def config(qualification: str, book_id: str = "gcse-maths") -> dict:
     )
 
 
-# --- the book itself ----------------------------------------------------------
 
 
 def test_exactly_one_reference_work_holds_the_proof_registry():
@@ -100,7 +99,6 @@ def test_the_proof_book_has_a_placeholder_in_its_banks_directory():
     assert keep.is_file(), "an empty banks directory would not survive a clone"
 
 
-# --- the registry -------------------------------------------------------------
 
 
 def test_every_proof_declares_who_is_examined_on_it():
@@ -176,7 +174,6 @@ def test_a_proof_id_is_a_url_slug():
         assert proof["id"] == re.sub(r"[^a-z0-9-]", "-", proof["id"]), proof["id"]
 
 
-# --- the label ----------------------------------------------------------------
 
 
 @pytest.mark.parametrize(
@@ -213,7 +210,6 @@ def test_a_reader_with_no_qualification_is_not_marked():
     assert proofbook.beyond_course({"qualifications": []}, "") is False
 
 
-# --- the directive ------------------------------------------------------------
 
 
 def page(url="chapter-1/section-1.1/learn/"):
@@ -285,7 +281,6 @@ def test_the_qualification_comes_from_the_book_not_the_hook():
     assert proofs.qualification(config("GCSE")) == "GCSE"
 
 
-# --- the pages that use it ----------------------------------------------------
 
 
 def book_pages():
@@ -345,7 +340,6 @@ def test_every_directive_is_outside_a_code_fence(book, path, proof_id):
     assert fenced == 0, f"{path} mentions :::prove {proof_id} at the start of a line only in a fence"
 
 
-# --- the built result ---------------------------------------------------------
 
 
 @pytest.fixture(scope="module")
@@ -358,12 +352,6 @@ def built(tmp_path_factory) -> tuple[dict, dict]:
     """
     root = tmp_path_factory.mktemp("proofs")
     out = {}
-    # Each book's **own** default profile, read from book.yaml rather than written
-    # here: this fixture used to pass "all" for both, which A-level Mathematics
-    # does not declare. It built anyway until `build` began refusing an unknown
-    # profile, so the tests were exercising an edition of the book that no profile
-    # owns — and a real one, since the tier filter read anything but "foundation"
-    # as Higher.
     for book_id in ("proofs", "a-level-maths"):
         profile = books.book_by_id(book_id).default_profile.id
         result = pipeline.build(book_id, profile, out=root / book_id)
@@ -389,9 +377,6 @@ def test_a_link_from_another_book_points_at_a_page_that_was_built(built):
     what the skip leaves open.
     """
     built_urls = {page.url for page in built["proofs"].pages}
-    # A built page's url is relative to its own book's output root, while the link
-    # carries the deploy root as well (`/proofs/<id>/`). Strip it before comparing,
-    # or this would pass only for a book deployed at the site root.
     root = proofbook.base_url().strip("/") + "/"
     for book, path, proof_id in DIRECTIVES:
         target = proofbook.entries()[proof_id]["url"]
@@ -415,8 +400,6 @@ def test_the_note_is_absent_in_the_built_page_when_the_proof_is_in_course(built)
     text = (
         built["proofs"].out / "angles-in-a-triangle" / "index.html"
     ).read_text(encoding="utf-8")
-    # The proof's own page links onward, and the page it links to is in the same
-    # course — so nothing on it is marked.
     assert "Beyond your course" not in text
 
 

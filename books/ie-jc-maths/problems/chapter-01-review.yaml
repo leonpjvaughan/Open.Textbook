@@ -1,0 +1,223 @@
+# Mixed practice for the Chapter 1 Review.
+#
+# Twelve questions, one record each, in the order they appear on the Review page.
+# Questions 11 and 12 are Higher level (surds). Every calculation, comparison
+# and surd simplification is proved by SymPy.
+#
+# Honest limit: the verifier proves the arithmetic and surd equivalence, not the
+# method chosen or prose explanation. Questions 4, 7 and 8 ask for a sign rule or
+# a property, so each carries a `structured` component: it proves only that a
+# model answer contains the declared points and concepts, in order. The bank
+# declares `units` for `structured`.
+chapter: 1
+oracles: [sympy, units]
+symbols: {}
+
+problems:
+  - id: jc1-rev-order
+    section: Review
+    tier: O
+    refs: ['N.1']
+    statement: 'Put $-3$, $0$, $4.5$ and $7$ in order from smallest to largest.'
+    answer_label: 'The numbers in order'
+    check:
+      kind: all
+      checks:
+        - kind: compare
+          lhs: '-3'
+          relation: '<'
+          rhs: '0'
+        - kind: compare
+          lhs: '0'
+          relation: '<'
+          rhs: '4.5'
+        - kind: compare
+          lhs: '4.5'
+          relation: '<'
+          rhs: '7'
+    answer_text: '$-3, 0, 4.5, 7$. Negative numbers sit to the left of zero on the number line, and positive numbers grow to the right.'
+
+  - id: jc1-rev-decimal-fraction
+    section: Review
+    tier: O
+    refs: ['N.1']
+    statement: 'Write $0.35$ as a fraction in its simplest form.'
+    answer_label: '0.35 as a fraction'
+    check:
+      kind: all
+      checks:
+        - kind: evaluate
+          expression: 'gcd(35, 100)'
+          answer: '5'
+        - kind: evaluate
+          expression: '35/100'
+          answer: '7/20'
+        - kind: evaluate
+          expression: '7/20'
+          answer: '0.35'
+    answer_text: '$\frac{7}{20}$. Write $0.35 = \frac{35}{100}$, then divide numerator and denominator by their highest common factor, $5$.'
+
+  - id: jc1-rev-integers
+    section: Review
+    tier: O
+    refs: ['N.1']
+    statement: 'Work out $-8 + 3 - (-5)$.'
+    answer_label: 'Minus 8 plus 3 minus minus 5'
+    check:
+      kind: evaluate
+      expression: '-8 + 3 - (-5)'
+      answer: '0'
+    answer_text: '$0$. First $-8 + 3 = -5$. Subtracting $-5$ is the same as adding $5$, so $-5 + 5 = 0$.'
+
+  - id: jc1-rev-sign-rules
+    section: Review
+    tier: O
+    refs: ['N.1']
+    statement: 'Work out $(-7) \times 4$ and $(-7) \times (-4)$. Say which sign rule you used.'
+    answer_label: 'The two products, and the sign rule'
+    check:
+      kind: all
+      checks:
+        - kind: evaluate
+          expression: '(-7) * 4'
+          answer: '-28'
+        - kind: evaluate
+          expression: '(-7) * (-4)'
+          answer: '28'
+        - kind: structured
+          requires: [different-signs, same-signs]
+          concepts: [different-signs-negative, same-signs-positive]
+          points:
+            - id: different-signs
+              text: 'In (-7) x 4 the signs are different, so the product is negative: -28.'
+              concepts: [different-signs-negative]
+            - id: same-signs
+              text: 'In (-7) x (-4) the signs are the same, so the product is positive: 28.'
+              concepts: [same-signs-positive]
+    answer_text: '$-28$ and $28$. In $(-7) \times 4$, the signs are different so the product is negative. In $(-7) \times (-4)$, the signs are the same so the product is positive.'
+
+  - id: jc1-rev-order-ops-1
+    section: Review
+    tier: O
+    refs: ['N.1']
+    statement: 'Work out $16 \div (2 + 6) \times 3$.'
+    answer_label: '16 divided by (2 + 6), times 3'
+    check:
+      kind: evaluate
+      expression: '16 / (2 + 6) * 3'
+      answer: '6'
+    answer_text: '$6$. Brackets go first: $2 + 6 = 8$. Division and multiplication then run left to right: $16 \div 8 = 2$, and $2 \times 3 = 6$.'
+
+  - id: jc1-rev-order-ops-2
+    section: Review
+    tier: O
+    refs: ['N.1']
+    statement: 'Work out $5 + 3 \times (8 - 2)^2$.'
+    answer_label: '5 + 3 times (8 - 2) squared'
+    check:
+      kind: evaluate
+      expression: '5 + 3 * (8 - 2)**2'
+      answer: '113'
+    answer_text: '$113$. Brackets first give $8 - 2 = 6$, then the index gives $6^2 = 36$. Multiply next: $3 \times 36 = 108$, then add $5$ to get $113$.'
+
+  - id: jc1-rev-common-factor
+    section: Review
+    tier: O
+    refs: ['N.1']
+    statement: 'Work out $25 \times 39 + 25 \times 61$ by taking out the common factor.'
+    answer_label: 'The common factor'
+    check:
+      kind: all
+      checks:
+        - kind: evaluate
+          expression: '25 * 39 + 25 * 61'
+          answer: '2500'
+        - kind: evaluate
+          expression: '25 * (39 + 61)'
+          answer: '2500'
+        - kind: structured
+          requires: [take-out-25, add-inside]
+          concepts: [common-factor, distributive]
+          points:
+            - id: take-out-25
+              text: 'Both products share the factor 25, so take 25 outside a bracket.'
+              concepts: [common-factor]
+            - id: add-inside
+              text: 'The bracket holds 39 + 61 = 100, and 25 x 100 = 2500 by the distributive property.'
+              concepts: [distributive]
+    answer_text: '$2500$. Take out the common factor $25$ using the distributive property: $25 \times (39 + 61) = 25 \times 100 = 2500$.'
+
+  - id: jc1-rev-distributive
+    section: Review
+    tier: O
+    refs: ['N.1']
+    statement: 'Work out $12 \times 99$ using the distributive property.'
+    answer_label: '12 times 99 by the distributive property'
+    check:
+      kind: all
+      checks:
+        - kind: evaluate
+          expression: '12 * 99'
+          answer: '1188'
+        - kind: evaluate
+          expression: '12 * (100 - 1)'
+          answer: '1188'
+        - kind: structured
+          requires: [split-99, multiply-each-part]
+          concepts: [distributive, subtract]
+          points:
+            - id: split-99
+              text: 'Write 99 as 100 - 1 so the multiplication is easier.'
+              concepts: [distributive]
+            - id: multiply-each-part
+              text: 'Multiply each part by 12: 12 x 100 - 12 x 1 = 1200 - 12 = 1188.'
+              concepts: [subtract]
+    answer_text: '$1188$. Write $99 = 100 - 1$, then multiply each part by $12$: $12 \times 100 - 12 \times 1 = 1200 - 12 = 1188$.'
+
+  - id: jc1-rev-temperature
+    section: Review
+    tier: O
+    refs: ['N.1']
+    statement: 'The temperature at 6 a.m. is $-6$ degrees. It rises 4 degrees by noon, then falls 9 degrees by midnight. Work out the midnight temperature.'
+    answer_label: 'The midnight temperature'
+    check:
+      kind: evaluate
+      expression: '-6 + 4 - 9'
+      answer: '-11'
+    answer_text: '$-11$ degrees. Rising $4$ degrees from $-6$ reaches $-2$, and falling $9$ degrees from $-2$ reaches $-11$.'
+
+  - id: jc1-rev-shop-profit
+    section: Review
+    tier: O
+    refs: ['N.1']
+    statement: 'A shop takes €1240 on Saturday and €1085 on Sunday. Its costs are €950 and €880. Work out the profit for the weekend as one calculation.'
+    answer_label: 'The weekend profit as one calculation'
+    check:
+      kind: evaluate
+      expression: '(1240 + 1085) - (950 + 880)'
+      answer: '495'
+    answer_text: '€495. Write $(1240 + 1085) - (950 + 880) = 2325 - 1830 = 495$. The brackets group total income and total costs before subtracting.'
+
+  - id: jc1-rev-surd-simplify
+    section: Review
+    tier: H
+    refs: ['N.1']
+    statement: 'Simplify $\sqrt{75}$.'
+    answer_label: 'Simplify root 75'
+    check:
+      kind: evaluate
+      expression: 'sqrt(75)'
+      answer: '5*sqrt(3)'
+    answer_text: '$5\sqrt{3}$. The largest square factor of $75$ is $25$, so $\sqrt{75} = \sqrt{25 \times 3} = \sqrt{25}\times\sqrt{3} = 5\sqrt{3}$.'
+
+  - id: jc1-rev-surd-like
+    section: Review
+    tier: H
+    refs: ['N.1']
+    statement: 'Work out $3\sqrt{5} + 2\sqrt{5} - \sqrt{5}$.'
+    answer_label: 'Add the like surds'
+    check:
+      kind: evaluate
+      expression: '3*sqrt(5) + 2*sqrt(5) - sqrt(5)'
+      answer: '4*sqrt(5)'
+    answer_text: '$4\sqrt{5}$. All three terms are multiples of $\sqrt{5}$, so combine their coefficients: $(3 + 2 - 1)\sqrt{5} = 4\sqrt{5}$.'

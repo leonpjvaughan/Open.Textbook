@@ -1,0 +1,274 @@
+# Mixed practice for the Junior Cycle Mathematics Chapter 19 Review.
+#
+# Sixteen questions covering translation, reflection in an axis or a line,
+# central symmetry, rotation, axes of symmetry, plus interleaved distance,
+# midpoint, Pythagoras, tangent, percentage, equation, standard form, ratio,
+# circle area and slope items.
+#
+# Honest limit: the verifier proves the coordinate arithmetic of each named
+# transformation and every interleaved calculation. It cannot see a drawing or
+# count symmetry lines, so Question 5 uses a `structured` check: that proves the
+# declared steps are present and in order, never that the count is right.
+chapter: 19
+oracles: [sympy, units]
+symbols:
+  x: {real: true}
+  y: {real: true}
+  m: {real: true}
+
+problems:
+  - id: r1-translation
+    section: Review
+    tier: O
+    refs: [GT.6]
+    statement: 'Translate the point $(2,5)$ by the vector $\begin{pmatrix}-3\\4\end{pmatrix}$.'
+    answer_label: 'Translate $(2,5)$ by the vector $\begin{pmatrix}-3\\4\end{pmatrix}$.'
+    check:
+      kind: all
+      checks:
+        - kind: evaluate
+          expression: '2 + (-3)'
+          answer: '-1'
+        - kind: evaluate
+          expression: '5 + 4'
+          answer: '9'
+    answer_text: '$(-1,9)$. Add the vector to the coordinates: $2+(-3)=-1$ and $5+4=9$. The point moves 3 left and 4 up.'
+
+  - id: r2-reflection-in-y-axis
+    section: Review
+    tier: O
+    refs: [GT.6]
+    statement: 'Reflect the point $(-2,3)$ in the $y$-axis.'
+    answer_label: 'Reflect $(-2,3)$ in the $y$-axis.'
+    check:
+      kind: all
+      checks:
+        - kind: evaluate
+          expression: '-(-2)'
+          answer: '2'
+        - kind: evaluate
+          expression: '((-2) + 2)/2'
+          answer: '0'
+    answer_text: '$(2,3)$. A reflection in the $y$-axis changes the sign of the $x$-coordinate and leaves the $y$-coordinate alone. The midpoint of $(-2,3)$ and $(2,3)$ is $(0,3)$, which lies on the $y$-axis, so the two points are mirror images.'
+
+  - id: r3-half-turn-about-origin
+    section: Review
+    tier: O
+    refs: [GT.6]
+    statement: 'Find the image of $(4,-1)$ under a half-turn about the origin.'
+    answer_label: 'Find the image of $(4,-1)$ under a half-turn about the origin.'
+    check:
+      kind: all
+      checks:
+        - kind: evaluate
+          expression: '-(4)'
+          answer: '-4'
+        - kind: evaluate
+          expression: '-(-1)'
+          answer: '1'
+    answer_text: '$(-4,1)$. A half-turn about the origin changes the sign of both coordinates, so $(4,-1)$ goes to $(-4,1)$. The midpoint of the point and its image is the origin.'
+
+  - id: r4-quarter-turn-clockwise
+    section: Review
+    tier: O
+    refs: [GT.6]
+    statement: 'Rotate the point $(3,0)$ through 90° clockwise about the origin.'
+    answer_label: 'Rotate $(3,0)$ through 90° clockwise about the origin.'
+    check:
+      kind: all
+      checks:
+        - kind: evaluate
+          expression: '3*0 + 0*(-3)'
+          answer: '0'
+        - kind: evaluate
+          expression: 'sqrt(0**2 + (-3)**2)'
+          answer: '3'
+    answer_text: '$(0,-3)$. A quarter-turn clockwise sends $(x,y)$ to $(y,-x)$, so $(3,0)$ goes to $(0,-3)$. The image is still 3 units from the origin, and the line from the origin to the image is at right angles to the original line, which is what a quarter-turn does.'
+
+  - id: r5-pentagon-axes
+    section: Review
+    tier: O
+    refs: [GT.6]
+    statement: 'How many axes of symmetry does a regular pentagon have?'
+    answer_label: 'How many axes of symmetry does a regular pentagon have?'
+    check:
+      kind: structured
+      requires: [count-axes, give-reason]
+      concepts: [five-axes, vertex-to-opposite-side]
+      points:
+        - id: count-axes
+          text: 'A regular pentagon has 5 axes of symmetry.'
+          concepts: [five-axes]
+        - id: give-reason
+          text: 'Each axis passes through one vertex and the midpoint of the opposite side, and there are 5 vertices.'
+          concepts: [vertex-to-opposite-side]
+    answer_text: '$5$. A regular pentagon has one axis through each vertex and the midpoint of the opposite side. There are 5 vertices, so there are 5 axes.'
+
+  - id: r6-distance
+    section: Review
+    tier: O
+    refs: [GT.5]
+    statement: 'Find the distance between $(1,1)$ and $(4,5)$.'
+    answer_label: 'Find the distance between $(1,1)$ and $(4,5)$.'
+    check:
+      kind: evaluate
+      expression: 'sqrt((4 - 1)**2 + (5 - 1)**2)'
+      answer: '5'
+    answer_text: '$5$. The steps are 3 across and 4 up. Square them, add, and take the root: $\sqrt{3^2+4^2}=\sqrt{9+16}=\sqrt{25}=5$.'
+
+  - id: r7-midpoint
+    section: Review
+    tier: O
+    refs: [GT.5]
+    statement: 'Find the midpoint of the segment joining $(2,3)$ and $(8,7)$.'
+    answer_label: 'Find the midpoint of the segment joining $(2,3)$ and $(8,7)$.'
+    check:
+      kind: all
+      checks:
+        - kind: evaluate
+          expression: '(2 + 8)/2'
+          answer: '5'
+        - kind: evaluate
+          expression: '(3 + 7)/2'
+          answer: '5'
+    answer_text: '$(5,5)$. The midpoint averages the coordinates: $(2+8)\div2=5$ and $(3+7)\div2=5$.'
+
+  - id: r8-hypotenuse
+    section: Review
+    tier: O
+    refs: [GT.4]
+    statement: 'A right-angled triangle has legs of 9 cm and 12 cm. Find the hypotenuse.'
+    answer_label: 'Find the hypotenuse of the triangle with legs 9 cm and 12 cm.'
+    check:
+      kind: evaluate
+      expression: 'sqrt(9**2 + 12**2)'
+      answer: '15'
+    answer_text: '$15$ cm. Add the squares of the legs and take the root: $9^2+12^2=81+144=225$, and $\sqrt{225}=15$.'
+
+  - id: r9-tangent-ratio
+    section: Review
+    tier: O
+    refs: [GT.4]
+    statement: 'A right-angled triangle has an opposite side of 6 m and an adjacent side of 8 m. Find $\tan\theta$.'
+    answer_label: 'Find $\tan\theta$ for the triangle.'
+    check:
+      kind: evaluate
+      expression: '6/8'
+      answer: '0.75'
+    answer_text: '$0.75$. Tangent is opposite over adjacent: $6\div8=0.75$. The fraction simplifies to $\tfrac{3}{4}$.'
+
+  - id: r10-percentage
+    section: Review
+    tier: O
+    refs: [N.2]
+    statement: 'Work out 15% of 240.'
+    answer_label: 'Work out 15% of 240.'
+    check:
+      kind: evaluate
+      expression: '(15/100)*240'
+      answer: '36'
+    answer_text: '$36$. Ten per cent of 240 is 24, and 5% is half of that, which is 12. Add them: $24+12=36$.'
+
+  - id: r11-solve-equation
+    section: Review
+    tier: O
+    refs: [AF.4]
+    statement: 'Solve $5x-3=17$.'
+    answer_label: 'Solve $5x-3=17$.'
+    check:
+      kind: solve
+      equation: '5*x - 3 = 17'
+      variable: x
+      answer: '4'
+    answer_text: '$x=4$. Add 3 to both sides to get $5x=20$, then divide both sides by 5 to get $x=4$. Check: $5\times4-3=17$.'
+
+  - id: r12-standard-form
+    section: Review
+    tier: O
+    refs: [N.1]
+    statement: 'Write $0.00036$ in standard form.'
+    answer_label: 'Write $0.00036$ in standard form.'
+    check:
+      kind: all
+      checks:
+        - kind: evaluate
+          expression: '3.6*10**(-4)'
+          answer: '0.00036'
+        - kind: structured
+          requires: [move-decimal, choose-power]
+          concepts: [negative-power]
+          points:
+            - id: move-decimal
+              text: 'Move the decimal point 4 places to the right to get 3.6.'
+              concepts: [move-point]
+            - id: choose-power
+              text: 'A move to the right gives a negative power, so the answer is $3.6\times10^{-4}$.'
+              concepts: [negative-power]
+    answer_text: '$3.6\times10^{-4}$. Move the decimal point 4 places to the right so that one digit stands before it, which gives 3.6. Moving right gives a negative power, so the power is $-4$. Check: $3.6\times10^{-4}=0.00036$.'
+
+  - id: r13-divide-ratio
+    section: Review
+    tier: O
+    refs: [N.2]
+    statement: 'Divide €70 in the ratio $2:5$.'
+    answer_label: 'Divide €70 in the ratio $2:5$.'
+    check:
+      kind: all
+      checks:
+        - kind: evaluate
+          expression: '2 + 5'
+          answer: '7'
+        - kind: evaluate
+          expression: '70/7'
+          answer: '10'
+        - kind: evaluate
+          expression: '2*10'
+          answer: '20'
+        - kind: evaluate
+          expression: '5*10'
+          answer: '50'
+        - kind: evaluate
+          expression: '20 + 50'
+          answer: '70'
+    answer_text: '€20 and €50. There are $2+5=7$ parts, and $70\div7=10$ euro in each part. Then $2\times10=20$ and $5\times10=50$. Check: $20+50=70$.'
+
+  - id: r14-circle-area
+    section: Review
+    tier: O
+    refs: [GT.2]
+    statement: 'Find the area of a circle of radius 6 cm, in terms of $\pi$.'
+    answer_label: 'Find the area of the circle, in terms of $\pi$.'
+    check:
+      kind: evaluate
+      expression: 'pi*6**2'
+      answer: '36*pi'
+    answer_text: '$36\pi$ cm². Use $A=\pi r^2$: $\pi\times6^2=36\pi$. The radius is already given, so no halving is needed.'
+
+  - id: r15-slope
+    section: Review
+    tier: O
+    refs: [GT.5]
+    statement: 'A line passes through $(1,2)$ and $(4,8)$. Find its slope.'
+    answer_label: 'Find the slope of the line through $(1,2)$ and $(4,8)$.'
+    check:
+      kind: evaluate
+      expression: '(8 - 2)/(4 - 1)'
+      answer: '2'
+    answer_text: '$2$. The rise is $8-2=6$ and the run is $4-1=3$, so the slope is $6\div3=2$. The line rises from left to right, so the slope is positive.'
+
+  - id: r16-reflection-in-line
+    section: Review
+    tier: O
+    refs: [GT.6]
+    statement: 'The point $(3,4)$ is reflected in the line $x=1$. Find the image.'
+    answer_label: 'Reflect $(3,4)$ in the line $x=1$.'
+    check:
+      kind: all
+      checks:
+        - kind: evaluate
+          expression: '2*1 - 3'
+          answer: '-1'
+        - kind: evaluate
+          expression: '(3 + (-1))/2'
+          answer: '1'
+    answer_text: '$(-1,4)$. The point is 2 units to the right of the line $x=1$, so the image is 2 units to the left, at $x=3-4=-1$. The $y$-coordinate does not change. The midpoint of $(3,4)$ and $(-1,4)$ is $(1,4)$, which lies on the mirror line.'

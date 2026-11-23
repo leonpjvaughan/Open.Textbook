@@ -1,8 +1,3 @@
-/* The shared formulae-and-tables widget: labels, boards and tiers come from the
- * book's own booklet.json, so one widget serves a mathematics booklet and a
- * physics one. A non-modal, resizable panel, poppable into Document
- * Picture-in-Picture, filtered by board and by tier.
- */
 (() => {
   "use strict";
 
@@ -77,7 +72,6 @@
     data: null,
   };
 
-  /* Built by `build()` before anything reads them: `init()` calls it first. */
   /** @type {HTMLElement} */
   let panel;
   /** @type {HTMLButtonElement} */
@@ -85,8 +79,6 @@
   /** @type {Window | null} */
   let pipWindow = null;
 
-  // ---------- helpers ----------
-  /** Characters that would break markup, and what each becomes. */
   const ENTITIES = /** @type {Record<string, string>} */ ({
     "&": "&amp;",
     "<": "&lt;",
@@ -97,9 +89,6 @@
   /** A string safe to interpolate into markup.
    * @param {unknown} value  @returns {string} */
   const esc = (value) => String(value).replace(/[&<>\"]/g, (c) => ENTITIES[c]);
-
-  /* The panel's markup is a template string in `build()`, so every selector below
-   * names an element this file wrote; one that names nothing still returns `null`. */
 
   /** @param {ParentNode} root  @param {string} selector
    * @returns {HTMLElement} */
@@ -122,7 +111,6 @@
       if (Array.isArray(saved.groups) && saved.groups.length) state.groups = saved.groups;
       if (saved.rect) state.rect = saved.rect;
     } catch {
-      /* ignore corrupt storage */
     }
   }
 
@@ -139,11 +127,9 @@
         }),
       );
     } catch {
-      /* storage may be unavailable */
     }
   }
 
-  // ---------- data ----------
   async function ensureData() {
     if (state.loaded) return state.data;
     const res = await fetch(dataUrl, { cache: "force-cache" });
@@ -153,7 +139,6 @@
     return state.data;
   }
 
-  // ---------- filtering ----------
   /** Whether an item survives the board, tier, group and search filters.
    * @param {BookletItem} item  @param {string} board  @param {string} tier
    * @param {string[]} groups  the groups the reader wants to see
@@ -162,8 +147,6 @@
   function itemAllowed(item, board, tier, groups, query) {
     const group = (item.provision || {})[board];
     if (!group || !groups.includes(group)) return false;
-    // An item with no tier belongs to every reader (an untiered book), so the
-    // tier filter must not hide it.
     const tiers = item.tier || [];
     if (tiers.length && !tiers.includes(tier)) return false;
     if (!query) return true;
@@ -174,7 +157,6 @@
     return hay.includes(query);
   }
 
-  // ---------- rendering ----------
   /** One item, as markup.
    * @param {BookletItem} item  @param {string} group  @param {BookletMeta} meta
    * @returns {string} */
@@ -218,12 +200,10 @@
     const box = /** @type {HTMLInputElement} */ (el(panel, ".bk-search"));
     if (!box) return;
     box.hidden = !visible;
-    // `hidden` can leave it focusable once a style sets `display`, so disable it too.
     box.disabled = !visible;
   }
 
   function renderContent() {
-    // Every panel handler calls back into this; a panel without data would throw.
     const data = state.data;
     if (!data) return;
     const content = el(panel, ".bk-content");
@@ -236,7 +216,6 @@
         (t) => t.tier === undefined || t.tier.includes(state.tier),
       );
       content.innerHTML = tables.map(tableHtml).join("");
-      // The filtered count, not every table: the list is tier-filtered too.
       el(panel, ".bk-count").textContent =
         `${tables.length} ${meta.table_label || "tables"}`;
       setSearchVisible(false);
@@ -268,7 +247,6 @@
       `${count} ${meta.item_label || "formulae"}`;
   }
 
-  // Every override is optional: a data file that sets none keeps the defaults.
   /** @param {BookletMeta} meta */
   function applyMeta(meta) {
     const title = meta.title || "Formulae and tables";
@@ -341,7 +319,6 @@
     renderContent();
   }
 
-  // ---------- panel behaviour ----------
   /** The table a `#booklet=<id>` fragment asked for: the panel opens on the tables
    * tab with that table in view.
    * @returns {string|null} the table id, "" for the tables tab, or null for none */
@@ -397,7 +374,6 @@
           .join("");
         pip.document.head.append(style);
       } catch {
-        /* cross-origin stylesheet: skip */
       }
     }
     pip.document.documentElement.style.colorScheme = document.documentElement.style.colorScheme;
@@ -423,7 +399,6 @@
 
   function applyRect() {
     if (!state.rect || !bigScreen()) return;
-    // A rect saved on a wider window can leave the panel off-screen; clamp it.
     const width = Math.min(state.rect.width, window.innerWidth);
     const height = Math.min(state.rect.height, window.innerHeight);
     const left = Math.max(0, Math.min(state.rect.left, window.innerWidth - width));

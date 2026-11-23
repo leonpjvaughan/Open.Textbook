@@ -41,7 +41,6 @@ def pager(html: str) -> tuple[list[tuple[str, str, str]], list[str], list[str]]:
     return anchors, head, []
 
 
-# --- the eyebrows, in the reader's words ---------------------------------------
 
 
 @pytest.mark.parametrize(
@@ -89,9 +88,6 @@ def test_the_eyebrow_names_the_move(current, target, forward, expected):
 @pytest.mark.parametrize(
     "current, target, forward, expected",
     [
-        # Every neighbour of a reference work is a page: its depth-2 paths are entries
-        # in a registry, not chapter indexes, so "Chapter contents" and "Next chapter"
-        # both name a thing the book does not have.
         ("index.md", "optimisation/index.md", True, "Next page"),
         ("optimisation/index.md", "averaging/index.md", True, "Next page"),
         ("saddle-point/index.md", "optimisation/index.md", False, "Previous page"),
@@ -122,7 +118,6 @@ def test_a_course_book_keeps_its_sections_and_chapter_reviews():
     assert {"Next section", "Chapter review", "Next chapter"} <= eyebrows, sorted(eyebrows)
 
 
-# --- the chain ----------------------------------------------------------------
 
 
 def test_every_page_has_a_chain_and_it_ends(tmp_path):
@@ -136,9 +131,6 @@ def test_every_page_has_a_chain_and_it_ends(tmp_path):
     assert order[first][0] is None, "the first page has nothing before it"
     assert order[last][1] is None, "the last page has nothing after it"
 
-    # The chain is symmetric: page i's next is page i+1, and page i+1's previous is
-    # page i. Compared by **href**, because the eyebrows differ by design — the same
-    # page is "Next chapter" from one side and "Previous chapter" from the other.
     for index, path in enumerate(paths):
         previous, following = order[path]
         if index:
@@ -163,7 +155,6 @@ def test_the_chain_is_the_nav_order_with_the_glossary_last():
     assert any(p.startswith("Glossary/") for p in paths)
 
     order = pipeline.pager_for(paths, book)
-    # Walking forward from the cover must not reach the glossary before a chapter.
     seen = []
     path = "index.md"
     while order[path][1] is not None:
@@ -173,12 +164,10 @@ def test_the_chain_is_the_nav_order_with_the_glossary_last():
             break
     assert not any(p.startswith("Glossary/") for p in seen), seen
 
-    # And the glossary is the tail of the chain.
     last = [p for p in paths if p.startswith("Glossary/")][-1]
     assert order[last][1] is None
 
 
-# --- the page -----------------------------------------------------------------
 
 
 def test_the_body_and_the_head_agree(tmp_path):
@@ -192,7 +181,6 @@ def test_the_body_and_the_head_agree(tmp_path):
         "the anchors and the rel links must be the same two hrefs, in the same order"
     )
 
-    # `rel` is what a crawler and an extension read; the anchors are what a reader taps.
     assert 'rel="prev"' in html and 'rel="next"' in html
     assert '<link rel="prev" href=' in html and '<link rel="next" href=' in html
 

@@ -13,8 +13,6 @@ const HIDDEN = [
   "border:0",
 ].join(";");
 /**
- * The figure's frame: an optional drawing surface and a live readout.
- *
  * @param {HTMLElement} el        the `<maths-figure>` the loader hands us
  * @param {object} options
  * @param {string} [options.label]  the accessible name for the drawing. Omit it only
@@ -87,20 +85,6 @@ export function panel(el, options = {}) {
   root.append(controls, readout, caption);
   el.replaceChildren(root);
   /**
-   * Record the arithmetic this figure states, as data rather than prose.
-   *
-   * Parsing the printed sentence back out is unbounded work, so the figure declares
-   * the claim instead and the verifier evaluates the expression exactly. Call it once
-   * per redraw with everything the figure now asserts:
-   *
-   *     claim([
-   *       { label: "compound total", expression: "P * (1 + r)**t",
-   *         values: { P, r, t }, answer: compoundTotal, shown: money(compoundTotal) },
-   *     ]);
-   *
-   * `shown` is the string the reader sees, and it must appear in the readout, so a
-   * claim cannot be about a number the figure never printed.
-   *
    * @param {object[]} entries the claims for the current render, replacing the last
    */
   const claim = (entries = []) => {
@@ -117,17 +101,6 @@ export function panel(el, options = {}) {
   return { root, svg, readout, controls, caption, claim };
 }
 /**
- * A drawing whose parts can be explored one at a time.
- *
- * A dense figure is one image to a screen reader, which is right for a graph and
- * wrong for a diagram with six named parts. So each part gets a **button**, and the
- * buttons are the focus stops — not the shapes: a `<g>` with `tabindex` plus a button
- * for the same part would be two focus stops that do the same thing. The drawing
- * follows the buttons; it does not compete with them.
- *
- * `draw()` returns SVG the module has already composed from the marks, so this is a
- * frame and a list, not a layout.
- *
  * @param {HTMLElement} el the `<maths-figure>` the loader hands us
  * @param {object} options
  * @param {string} [options.label]        the drawing's accessible name

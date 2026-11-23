@@ -112,8 +112,8 @@ $x = 3$ is a root, leaving $x^2 - 2x + 5 = 0$.
 
 Work out the discriminant of that quadratic. It is negative, so the two remaining roots
 are not real — and now that $i$ exists, you can write them down. Solve $x^2 - 2x + 5 = 0$
-by the formula and keep the answer: Section 5.2 checks it by multiplying, and Section 5.5
-explains why it had to come out as a pair.
+by the formula and keep the answer: Section 5.2 checks it by multiplying.<!-- tier:h -->
+Section 5.5 explains why the roots had to come out as a conjugate pair.<!-- /tier:h -->
 
 ## You should now be able to
 

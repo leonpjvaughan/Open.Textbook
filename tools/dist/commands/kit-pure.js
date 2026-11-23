@@ -19,7 +19,6 @@
 import { fileURLToPath } from "node:url";
 import { parseArgs } from "../lib/flags.js";
 import { conclude, judge, listLines, observe, rowsFor } from "../lib/kit-contract.js";
-/** What this command accepts. `tools help kit-pure` is generated from this table. */
 export const SURFACE = {
     positional: [
         { name: "kitPath", help: "the kit to check; by default the one that ships", required: false },

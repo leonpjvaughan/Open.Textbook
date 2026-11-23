@@ -18,15 +18,11 @@ from __future__ import annotations
 from importlib import import_module
 from typing import Any, Callable, Iterable, Mapping
 
-#: The oracles the engine ships: the name a book writes in ``book.yaml``, and
-#: the module that implements it.
 ORACLE_MODULES: dict[str, str] = {
     "sympy": f"{__name__}.sympy",
     "units": f"{__name__}.units",
 }
 
-#: check kind → the oracle that owns it. This is the one table an author (see
-#: ``PROBLEMS.md``) and CI read; ``tests/test_verify_oracles.py`` pins it.
 KIND_ORACLE: dict[str, str] = {
     "all": "sympy",
     "evaluate": "sympy",

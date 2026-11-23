@@ -1,0 +1,202 @@
+# Mixed practice for the Chapter 10 Review.
+#
+# Ten questions, one record each, in the order they appear on the Review page.
+# They continue arithmetic and geometric sequences, use a position-to-term rule,
+# recognise square, cube and triangular numbers, find the nth term of a linear
+# sequence and of the square numbers, take a fraction of an amount, solve a
+# linear equation from Chapter 9, and find the common difference and a later term
+# of a decreasing sequence.
+#
+# Honest limit: `evaluate` proves that a proposed rule gives each term it is
+# checked against, and `solve` proves the equation's solution. A rule that fits
+# four terms is not proved to be the only rule that fits them; for these
+# sequences the constant difference or the recognisable pattern makes it the
+# intended one. Question 3 asks for a decision as well as the arithmetic, so it
+# carries a `structured` component, which proves only that a model answer
+# contains its declared steps and concepts, in order.
+#
+# Question 7 continues a geometric sequence, which is Higher-only content in
+# Section 10.5, so it carries `tier: H` and the page marks it **H**.
+oracles: [sympy, units]
+chapter: 10
+symbols:
+  x: {real: true}
+problems:
+  - id: r1-continue-arithmetic
+    section: Review
+    tier: F
+    refs: [A23]
+    statement: 'Continue the sequence $3,8,13,18,\ldots$ by two terms.'
+    answer_label: 'The next two terms'
+    check:
+      kind: all
+      checks:
+        - kind: evaluate
+          expression: '18 + 5'
+          answer: '23'
+        - kind: evaluate
+          expression: '23 + 5'
+          answer: '28'
+    answer_text: 'The terms increase by $5$ each time: $8 - 3 = 5$, $13 - 8 = 5$, $18 - 13 = 5$. The next two terms are $18 + 5 = 23$ and $23 + 5 = 28$. The sequence is arithmetic, because the same number is added at every step.'
+
+  - id: r2-twentieth-term
+    section: Review
+    tier: F
+    refs: [A25]
+    statement: 'Find the 20th term of the sequence with nth term $5n-2$.'
+    answer_label: 'The 20th term'
+    check:
+      kind: evaluate
+      expression: '5*20 - 2'
+      answer: '98'
+    answer_text: 'Substitute $n = 20$ into $5n - 2$: $5 \times 20 - 2 = 100 - 2 = 98$. The letter $n$ is the position in the sequence, so the 20th term uses $n = 20$. Substituting $n = 1$ gives $3$, the first term, which is a quick check on the rule.'
+
+  - id: r3-square-and-cube
+    section: Review
+    tier: F
+    refs: [A24]
+    statement: 'Is $64$ a square number, a cube number, both, or neither?'
+    answer_label: 'The classification and the reason'
+    check:
+      kind: all
+      checks:
+        - kind: evaluate
+          expression: '8**2'
+          answer: '64'
+        - kind: evaluate
+          expression: '4**3'
+          answer: '64'
+        - kind: structured
+          requires: [test-square, test-cube, decide]
+          concepts: [square-number, cube-number]
+          points:
+            - id: test-square
+              text: '64 is a square number, because 8 x 8 = 64.'
+              concepts: [square-number]
+            - id: test-cube
+              text: '64 is also a cube number, because 4 x 4 x 4 = 64.'
+              concepts: [cube-number]
+            - id: decide
+              text: 'So 64 is both a square number and a cube number.'
+              concepts: [square-number, cube-number]
+    answer_text: '$64$ is both: $8^2 = 64$ and $4^3 = 64$. A number can belong to more than one special sequence, so test each definition rather than stopping at the first one that fits.'
+
+  - id: r4-triangular-numbers
+    section: Review
+    tier: F
+    refs: [A24]
+    statement: 'Write the next two triangular numbers after $15$.'
+    answer_label: 'The next two triangular numbers'
+    check:
+      kind: all
+      checks:
+        - kind: evaluate
+          expression: '15 + 6'
+          answer: '21'
+        - kind: evaluate
+          expression: '21 + 7'
+          answer: '28'
+    answer_text: 'The triangular numbers are $1, 3, 6, 10, 15, 21, 28, \ldots$. Each one adds the next position number: $15 + 6 = 21$, then $21 + 7 = 28$. The gap grows by one each time, which is what makes the sequence triangular.'
+
+  - id: r5-linear-nth-term
+    section: Review
+    tier: F
+    refs: [A25]
+    statement: 'Find the nth term of $9,13,17,21,\ldots$.'
+    answer_label: 'The nth term'
+    check:
+      kind: all
+      checks:
+        - kind: evaluate
+          expression: '4*1 + 5'
+          answer: '9'
+        - kind: evaluate
+          expression: '4*2 + 5'
+          answer: '13'
+        - kind: evaluate
+          expression: '4*3 + 5'
+          answer: '17'
+        - kind: evaluate
+          expression: '4*4 + 5'
+          answer: '21'
+    answer_text: 'The common difference is $4$, so the rule begins $4n$. For $n = 1$ that gives $4$, but the first term is $9$, so add $5$. The nth term is $4n + 5$. The checks substitute $n = 1, 2, 3, 4$ and recover all four given terms.'
+
+  - id: r6-square-nth-term
+    section: Review
+    tier: F
+    refs: [A24, A25]
+    statement: 'Find the nth term of $1,4,9,16,25,\ldots$.'
+    answer_label: 'The nth term'
+    check:
+      kind: all
+      checks:
+        - kind: evaluate
+          expression: '1**2'
+          answer: '1'
+        - kind: evaluate
+          expression: '2**2'
+          answer: '4'
+        - kind: evaluate
+          expression: '3**2'
+          answer: '9'
+        - kind: evaluate
+          expression: '4**2'
+          answer: '16'
+        - kind: evaluate
+          expression: '5**2'
+          answer: '25'
+    answer_text: 'The terms are the square numbers, so the nth term is $n^2$. The first term is $1^2$, the second is $2^2$, and so on. The gaps are $3, 5, 7, 9$, which grow by $2$ each time: a quadratic rule has a constant second difference, and here that difference is $2$.'
+
+  - id: r7-continue-geometric
+    section: Review
+    tier: H
+    refs: [A24]
+    statement: 'Continue $2,6,18,54,\ldots$ by one term.'
+    answer_label: 'The next term'
+    check:
+      kind: evaluate
+      expression: '54 * 3'
+      answer: '162'
+    answer_text: 'Each term is multiplied by $3$: $2 \times 3 = 6$, $6 \times 3 = 18$, $18 \times 3 = 54$. The next term is $54 \times 3 = 162$. The sequence is geometric, and the constant multiplier $3$ is its common ratio.'
+
+  - id: r8-fraction-of-amount
+    section: Review
+    tier: F
+    refs: [N11, N12]
+    statement: 'Work out $0.75$ of $240$.'
+    answer_label: 'The amount'
+    check:
+      kind: evaluate
+      expression: '0.75 * 240'
+      answer: '180'
+    answer_text: '$0.75$ of $240$ is $240 \times 0.75 = 180$. The decimal $0.75$ is the fraction $\dfrac{3}{4}$, so the same answer comes from $240 \div 4 = 60$ and $60 \times 3 = 180$. "Of" means multiply.'
+
+  - id: r9-solve-linear
+    section: Review
+    tier: F
+    refs: [A17]
+    statement: 'Solve $4x+7=31$.'
+    answer_label: 'The solution'
+    check:
+      kind: solve
+      equation: '4*x + 7 = 31'
+      variable: x
+      answer: '6'
+    answer_text: '$x = 6$. Subtract $7$ from both sides: $4x = 24$. Divide both sides by $4$: $x = 6$. Check: $4 \times 6 + 7 = 24 + 7 = 31$.'
+
+  - id: r10-decreasing-sequence
+    section: Review
+    tier: F
+    refs: [A23, A25]
+    statement: 'A sequence begins $12,7,2,-3,\ldots$. State its common difference and find its 10th term.'
+    answer_label: 'The common difference and the 10th term'
+    check:
+      kind: all
+      checks:
+        - kind: evaluate
+          expression: '7 - 12'
+          answer: '-5'
+        - kind: evaluate
+          expression: '12 + 9*(-5)'
+          answer: '-33'
+    answer_text: 'The common difference is $7 - 12 = -5$, because each term is $5$ less than the one before. From the first term to the 10th there are $9$ steps, so the 10th term is $12 + 9 \times (-5) = 12 - 45 = -33$. The rule is $12 - 5(n - 1)$, which gives $-33$ when $n = 10$.'

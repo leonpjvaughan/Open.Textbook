@@ -59,18 +59,9 @@ Work through these without notes. For each one, decide **what is being asked** a
 before you calculate. Two of them come from earlier chapters, and two are deliberately
 questions where the obvious first move is wrong.
 
-1. Differentiate $f(x) = x^2$ from first principles.
-2. Differentiate $y = 4x^3 - 2x^2 + 7x - 3$.
-3. Differentiate $y = (3x + 1)(x^2 - 2)$.
-4. Differentiate $y = \dfrac{2x + 1}{x - 3}$.
-5. Differentiate $y = (3x - 4)^5$.
-6. Find $\dfrac{d^2y}{dx^2}$ for $y = x^4 - 3x^2$ and say where the curve is concave up.
-7. A ball is thrown so that its height after $t$ seconds is $h(t) = 20t - 5t^2$ metres.
-   Find the velocity and the time at which the height is greatest.
-8. Find and classify the stationary points of $y = x^3 - 12x$.
-9. Sketch $y = x^3 - 6x^2 + 9x$, marking the intercepts, the turning points and the point of
-   inflection.
-10. Differentiate $y = e^{4x}$, $y = 3^x$, $y = \sin 5x$ and $y = \cos 2x$.
+:::problems chapter-07-review
+
+:::answers chapter-07-review
 
 ## What you can now do
 

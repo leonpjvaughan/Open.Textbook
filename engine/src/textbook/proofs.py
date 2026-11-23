@@ -33,17 +33,10 @@ from . import yamlio
 from . import book as books
 from . import config as cfg
 
-#: The registry file inside the reference work.
 REGISTRY = "proofs.yaml"
 
-#: The reader-facing name of a proof that is not in their course. The words are
-#: chosen once here rather than per page: "the specification" is exam-board
-#: language, and a reader who has not met it does not know what is being said.
 BEYOND_LABEL = "Beyond your course"
 
-#: What being beyond the course means, in one sentence. Not a warning: a reader is
-#: allowed to enjoy this, and the only fact they need is that it will not be asked
-#: of them.
 BEYOND_NOTE = "You can read and use this. An exam will not ask you to reproduce it."
 
 

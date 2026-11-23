@@ -63,32 +63,9 @@ Work through these without notes. For each one, decide **which relationship appl
 and say why. Three of them come from earlier chapters, and one of them asks you to
 choose between the force on a wire and the force on a single particle.
 
-1. A wire of length 0.30 m carries a current of 4.0 A at right angles to a field of
-   flux density 0.25 T. Calculate the force on the wire.
-2. A wire lies in a field that points from left to right, and the current flows
-   downwards. State the direction of the force on the wire.
-3. A straight wire carries a current towards the top of the page. State the direction
-   of the magnetic field at a point to the right of the wire.
-4. A solenoid is wound so that, seen from the left-hand end, the current flows
-   clockwise around the coil. State which end is the north pole.
-5. A coil of 30 turns has a side of length 4.0 cm in a field of 0.50 T, and carries a
-   current of 0.20 A. Calculate the total force on one side of the coil.
-6. A charged particle moves at right angles to a magnetic field. Would you use
-   $F = BIl$ or $F = Bqv$ to find the force on it? Explain how you decide.
-7. A 12 Ω resistor has a current of 0.50 A through it. Calculate the potential
-   difference across it and the power it transfers.
-8. Two charges of $+3.0\ \mu\text{C}$ and $+2.0\ \mu\text{C}$ are $0.15$ m apart in
-   air. Calculate the force between them. Take $k = 9.0 \times 10^{9}$ N m$^{2}$
-   C$^{-2}$.
-9. A spring of spring constant 150 N/m is stretched by 0.20 m. Calculate the energy
-   stored in it.
-<!-- tier:h -->
-10. An electron of charge $1.6 \times 10^{-19}$ C moves at $4.0 \times 10^{6}$ m/s at
-    right angles to a field of flux density 0.10 T. Calculate the force on the
-    electron, and state why the force does no work on it.
-<!-- /tier:h -->
-11. Explain why the two sides of a motor coil are pushed in opposite directions, and
-    why this makes the coil turn rather than move away.
+:::problems chapter-15-review
+
+:::answers chapter-15-review
 
 ## What you can now do
 

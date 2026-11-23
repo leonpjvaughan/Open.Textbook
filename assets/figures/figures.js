@@ -1,25 +1,7 @@
-// Figure substrate for the book. A custom element that lazily imports the figure
-// module named by `data-figure-src`, or by `data-figure` when the page was not
-// built by `textbook.pipeline`.
-//
-// The two names are the same module at two addresses. `data-figure` is the slug an
-// author writes and a reader's tools read; `data-figure-src` is the **content-
-// addressed** filename the build wrote (`ch10-nth-term.a1b2c3d4.js`), so a module
-// that did not change keeps its URL across a deploy and a cached copy is still the
-// one that is served. Falling back to the slug is what keeps this file portable: it
-// runs unchanged in the Quarto / MyST / MDX ports, where nothing has been hashed.
-//
-// **A label's width is its font's, so the frame has the last word.** Two labels written
 // to fit the frame measured 28 and 53 units outside it on a machine whose font is wider
-// than the site's, and `canvas` caught them only on the runner. `fitText` measures every
-// `<text>` after it is drawn and, when its ink leaves the `viewBox`, shrinks it with
-// `textLength` — the anchor the author chose stays put, the glyphs get narrower, and the
 // height (which is what legibility is measured by) does not change. It runs again on
-// every redraw, because a figure with a control replaces its own markup.
 
 /**
- * Keep every label inside the frame it was drawn in, in whatever font is loaded.
- *
  * @param {SVGSVGElement} svg
  */
 function fitText(svg) {
@@ -31,7 +13,6 @@ function fitText(svg) {
     text.removeAttribute("textLength");
     let ink = text.getBBox();
     if (!ink.width) continue;
-    // Too low or too high: move it, since no amount of narrowing fixes a vertical miss.
     const dy = ink.y < 0 ? -ink.y : Math.max(0, ink.y + ink.height - height);
     if (dy > 0) {
       const y = Number(text.getAttribute("y") || 0);
@@ -52,17 +33,11 @@ class MathsFigure extends HTMLElement {
       this.textContent = `Invalid figure reference: ${slug}`;
       return;
     }
-    // A filename, not a path: modules sit beside this loader, which is why a shared
-    // module is copied flat rather than into a subdirectory. A value with a slash
-    // or a scheme would import something this element never promised to reach.
     const src = (this.dataset.figureSrc || "").trim();
     const file = /^[a-z0-9][a-z0-9.-]*\.js$/.test(src) ? src : `${slug}.js`;
     try {
       const mod = await import(`./${file}`);
       mod.mount(this);
-      // The caption is the figure's own accessible name, written by `panel()`. The
-      // hook cannot know it: the module is imported here, after the page is built.
-      // A module with no name still gets its number, which is better than a blank.
       const figure = this.closest("figure");
       const caption = figure && figure.querySelector("[data-figure-caption]");
       if (caption && !caption.textContent.trim()) {
@@ -70,7 +45,6 @@ class MathsFigure extends HTMLElement {
         if (named) caption.textContent = named.getAttribute("aria-label") || "";
       }
       // Observe the **host**, not the `svg`: a figure that re-panels on a control replaces
-      // its own frame, and an observer on the old frame would be watching a detached node.
       const fit = () => {
         for (const svg of this.querySelectorAll("svg")) fitText(svg);
       };

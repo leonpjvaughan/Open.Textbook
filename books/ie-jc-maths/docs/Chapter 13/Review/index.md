@@ -59,20 +59,9 @@ Work through these without notes. For each one, decide **which idea applies** an
 why in a few words. The idea might be the order of operations, an index, expanding a
 bracket, solving an equation, substituting, or changing the subject.
 
-1. Work out $2+3\times4$.
-2. Work out $(-2)^3$.
-3. Expand $4(x-3)$.
-4. Solve $5x+2=17$.
-5. Find $y$ when $x=5$, using $y=x^2-2x$.
-6. Make $x$ the subject of $y=x-8$.
-7. Make $w$ the subject of $A=lw$.
-8. Make $t$ the subject of $s=\dfrac{d}{t}$.
-9. Make $x$ the subject of $y=5(x-2)$.
-10. Make $b$ the subject of $m=\dfrac{a+b}{2}$.
-11. The volume of a cuboid is $V=lwh$. Find $h$ when $V=36\ \text{cm}^3$, $l=4$ cm and
-    $w=3$ cm.
-12. A phone plan costs $C=20+0.05m$ for $m$ minutes. Make $m$ the subject, and then
-    find the number of minutes when $C=35$.
+:::problems chapter-13-review
+
+:::answers chapter-13-review
 
 ## What you can now do
 

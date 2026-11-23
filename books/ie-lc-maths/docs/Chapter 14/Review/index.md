@@ -54,35 +54,9 @@ from: the area scales by $k^2$, not by $k$.
 Work through these without notes. For each one, say which transformation is involved and
 why, before you calculate. Two of them need two transformations in order.
 
-1. Translate the point $(3,-2)$ by the vector $\binom{-4}{5}$.
-2. Reflect the point $(5,-1)$ in the $x$-axis.
-3. Reflect the point $(2,7)$ in the line $y = x$.
-4. Rotate the point $(-3,2)$ by $90^\circ$ anticlockwise about the origin.
-5. Rotate the point $(4,-1)$ by $180^\circ$ about the origin.
-6. Enlarge the point $(3,5)$ by scale factor $2$ about the origin.
-7. A shape has area $7$ cm². It is enlarged by scale factor $4$. Find the area of the
-   image.
-8. Find the order of rotational symmetry of a regular decagon.
-9. A single transformation takes $(2,3)$ to $(-2,-3)$. Name it.
-10. Translate the point $(1,3)$ by $\binom{2}{-1}$, then reflect the image in the
-    $y$-axis. Give the final image.
+:::problems chapter-14-review
 
-<details markdown="1">
-<summary>Answers and reasons</summary>
-
-1. $(-1,3)$: add $-4$ to the $x$-coordinate and 5 to the $y$-coordinate.
-2. $(5,1)$: the $x$-coordinate stays and the $y$-coordinate changes sign.
-3. $(7,2)$: reflection in $y = x$ swaps the two coordinates.
-4. $(-2,-3)$: the quarter-turn anticlockwise rule is $(x,y) \to (-y,x)$.
-5. $(-4,1)$: a half-turn changes the sign of both coordinates.
-6. $(6,10)$: multiply both coordinates by 2.
-7. $7 \times 4^2 = 112$ cm²: the area factor is $k^2$.
-8. $360 \div 36 = 10$: a regular decagon has 10 equal sides.
-9. A rotation of $180^\circ$ about the origin, which is central symmetry about the
-   origin.
-10. $(1,3) \to (3,2) \to (-3,2)$: translate first, then reflect.
-
-</details>
+:::answers chapter-14-review
 
 ## What you can now do
 

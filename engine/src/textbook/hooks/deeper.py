@@ -31,9 +31,6 @@ from ._fences import transform_outside_fences
 
 MARKER = re.compile(r"^:::[ \t]*deeper[ \t]+([a-z0-9-]+)[ \t]*$", re.M)
 
-#: What the offer says. Depth is offered, never required: a reader who is reading
-#: the main thread end to end should be told, once, that this is a detour rather
-#: than a step they missed.
 NOTE = "Optional. The rest of this chapter does not need this page."
 
 
@@ -62,9 +59,6 @@ def render(entry: dict, target: str) -> str:
 
 
 def on_page_markdown(markdown, page, config, files):
-    # Almost no page carries a directive, and reading the curriculum costs a parse
-    # per page once the book is in hand. The cheap test comes first, and the book
-    # itself is cached by `cfg.book`.
     if ":::deeper" not in markdown:
         return markdown
 

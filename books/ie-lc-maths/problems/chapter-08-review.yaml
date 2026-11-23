@@ -1,0 +1,332 @@
+# Mixed practice for the Chapter 8 Review.
+#
+# Ten questions, one record each, in the order they appear on the Review page.
+# Every indefinite integral is checked with `kind: apply` and `op: integrate`, which
+# proves the stated answer differentiates back to the integrand — so the constant of
+# integration is free and is added only in the answer text. Definite integrals are
+# evaluated exactly, and the area question is checked piece by piece, because the
+# curve crosses the axis inside the interval. Questions 4 and 6 ask what an answer
+# means, and question 5 needs the split stated, so each carries a `structured`
+# component.
+#
+# Honest limit: this proves the antiderivatives and the definite integrals. It cannot
+# prove that the right region was chosen, that a rate and a time were in compatible
+# units, or that a split at a crossing point was noticed. A `structured` check proves
+# only that the declared steps and concepts appear, in order.
+#
+# Question 8 mixes units on purpose: the speed is in kilometres per hour and the time
+# in minutes, so the integral gives 21, and the distance is 21 sixtieths of a
+# kilometre. The conversion is part of the answer, not an accident of notation.
+chapter: 8
+symbols:
+  t: {real: true}
+  x: {real: true}
+problems:
+  - id: r1-antiderivative-sum
+    section: '8.1'
+    tier: O
+    refs: ['5.2']
+    statement: 'Find $\displaystyle\int (4x^3 - 6x + 1)\,dx$.'
+    answer_label: 'The integral'
+    check:
+      kind: apply
+      expression: '4*x**3 - 6*x + 1'
+      apply: {op: integrate, args: [x]}
+      answer: 'x**4 - 3*x**2 + x'
+      variable: x
+    answer_text: |-
+      Integrate term by term, raising each power by one and dividing by the new power:
+
+      $$\int (4x^3 - 6x + 1)\,dx = x^4 - 3x^2 + x + C$$
+
+      Each term is the reverse of a differentiation: $x^4$ differentiates to $4x^3$,
+      $-3x^2$ to $-6x$, and $x$ to $1$. The constant $C$ is there because any constant
+      differentiates to zero.
+
+  - id: r2-antiderivative-negative-power
+    section: '8.1'
+    tier: O
+    refs: ['5.2']
+    statement: 'Find $\displaystyle\int \frac{1}{x^2}\,dx$.'
+    answer_label: 'The integral'
+    check:
+      kind: apply
+      expression: 'x**(-2)'
+      apply: {op: integrate, args: [x]}
+      answer: '-1/x'
+      variable: x
+    answer_text: |-
+      Write the fraction as a power before integrating: $\dfrac{1}{x^2} = x^{-2}$.
+      Raise the power by one and divide by the new power:
+
+      $$\int x^{-2}\,dx = \frac{x^{-1}}{-1} + C = -\frac{1}{x} + C$$
+
+      The new power is $-1$, not $1$, so the answer stays a fraction. Differentiate
+      $-\dfrac{1}{x}$ to check: it gives $x^{-2}$, which is where we started.
+
+  - id: r3-definite-integral
+    section: '8.2'
+    tier: O
+    refs: ['5.2']
+    statement: 'Evaluate $\displaystyle\int_1^4 2x\,dx$.'
+    answer_label: 'The value of the definite integral'
+    check:
+      kind: apply
+      expression: '2*x'
+      apply: {op: integrate, args: [x, 1, 4]}
+      answer: '15'
+    answer_text: |-
+      Find an antiderivative first: $\displaystyle\int 2x\,dx = x^2$. Then evaluate it
+      at the two limits and subtract:
+
+      $$\Big[x^2\Big]_1^4 = 16 - 1 = 15$$
+
+      The constant $C$ cancels in a definite integral, which is why it is not written.
+      The answer is the area under the line $y = 2x$ between $x = 1$ and $x = 4$, and
+      it is a number, not a function.
+
+  - id: r4-signed-integral
+    section: '8.2'
+    tier: O
+    refs: ['5.2']
+    statement: >-
+      Evaluate $\displaystyle\int_0^2 (3x^2 - 4x)\,dx$ and explain the sign of your
+      answer.
+    answer_label: 'The value and the meaning of its sign'
+    check:
+      kind: all
+      checks:
+        - kind: apply
+          expression: '3*x**2 - 4*x'
+          apply: {op: integrate, args: [x, 0, 2]}
+          answer: '0'
+        - kind: structured
+          requires: [split-at-the-crossing, explain-the-cancellation]
+          concepts: [signed-area, crossing-point]
+          points:
+            - id: split-at-the-crossing
+              text: >-
+                The curve crosses the x-axis where 3x squared minus 4x is zero, which is
+                at x = 0 and at x = 4/3. Between 0 and 4/3 the curve is below the axis,
+                and between 4/3 and 2 it is above.
+              concepts: [crossing-point]
+            - id: explain-the-cancellation
+              text: >-
+                The integral below the axis is negative and the integral above is
+                positive. The part below is 32/27 and the part above is also 32/27, so
+                they cancel exactly and the total is zero. Zero is a signed total, not
+                the area between the curve and the axis.
+              concepts: [signed-area]
+    answer_text: |-
+      An antiderivative is $x^3 - 2x^2$, so
+
+      $$\int_0^2 (3x^2 - 4x)\,dx = \Big[x^3 - 2x^2\Big]_0^2 = (8 - 8) - 0 = 0$$
+
+      The answer is zero because the curve crosses the axis at $x = \dfrac{4}{3}$. The
+      region below the axis gives a negative contribution and the region above gives a
+      positive one, and the two are the same size. The integral is a **signed** total:
+      if you want the area, split at the crossing point and make each part positive.
+
+  - id: r5-area-across-axis
+    section: '8.4'
+    tier: O
+    refs: ['5.2']
+    statement: >-
+      Find the area of the region bounded by $y = x^2 - 4$, the $x$-axis and the lines
+      $x = 0$ and $x = 3$.
+    answer_label: 'The area, in two parts'
+    check:
+      kind: all
+      checks:
+        - kind: apply
+          expression: 'x**2 - 4'
+          apply: {op: integrate, args: [x, 0, 2]}
+          answer: '-16/3'
+        - kind: apply
+          expression: 'x**2 - 4'
+          apply: {op: integrate, args: [x, 2, 3]}
+          answer: '7/3'
+        - {kind: evaluate, expression: '16/3 + 7/3', answer: '23/3'}
+        - kind: structured
+          requires: [find-the-crossing, split-and-add]
+          concepts: [area-not-integral, crossing-point]
+          points:
+            - id: find-the-crossing
+              text: >-
+                The curve meets the x-axis at x = 2, which is inside the interval from 0
+                to 3, so the region has two parts.
+              concepts: [crossing-point]
+            - id: split-and-add
+              text: >-
+                The part from 0 to 2 is below the axis, so its integral is negative and
+                its area is 16/3. The part from 2 to 3 is above the axis, with area 7/3.
+                The total area is their sum, 23/3.
+              concepts: [area-not-integral]
+    answer_text: |-
+      The curve cuts the $x$-axis at $x = 2$, which lies inside the interval, so the
+      region has two parts and the integral must be split.
+
+      From $0$ to $2$ the curve is below the axis:
+
+      $$\int_0^2 (x^2 - 4)\,dx = \left[\frac{x^3}{3} - 4x\right]_0^2
+      = \frac{8}{3} - 8 = -\frac{16}{3}$$
+
+      The area of that part is $\dfrac{16}{3}$, the size of the integral without its
+      sign. From $2$ to $3$ the curve is above the axis:
+
+      $$\int_2^3 (x^2 - 4)\,dx = \left[\frac{x^3}{3} - 4x\right]_2^3
+      = (9 - 12) - \left(\frac{8}{3} - 8\right) = \frac{7}{3}$$
+
+      The total area is $\dfrac{16}{3} + \dfrac{7}{3} = \dfrac{23}{3} \approx 7.67$.
+      The integral from $0$ to $3$ on its own would give $-\dfrac{16}{3} + \dfrac{7}{3}
+      = -3$, which is not an area.
+
+  - id: r6-substitution
+    section: '8.5'
+    tier: H
+    refs: ['5.2']
+    statement: >-
+      Differentiate $y = (3x + 1)^4$. Then find $\displaystyle\int (3x + 1)^4\,dx$ by
+      substitution. Say what each answer tells you.
+    answer_label: 'The derivative, the integral, and what each means'
+    check:
+      kind: all
+      checks:
+        - kind: apply
+          expression: '(3*x + 1)**4'
+          apply: {op: diff, args: [x]}
+          answer: '12*(3*x + 1)**3'
+        - kind: apply
+          expression: '(3*x + 1)**4'
+          apply: {op: integrate, args: [x]}
+          answer: '(3*x + 1)**5/15'
+          variable: x
+        - kind: structured
+          requires: [what-the-derivative-says, what-the-integral-says]
+          concepts: [rate-of-change, accumulation, reverse]
+          points:
+            - id: what-the-derivative-says
+              text: >-
+                The derivative 12(3x + 1) cubed is the rate at which the fourth power
+                changes as x changes. It is a gradient, and it grows as x grows.
+              concepts: [rate-of-change]
+            - id: what-the-integral-says
+              text: >-
+                The integral (3x + 1) to the fifth over 15, plus a constant, is the
+                quantity whose rate of change is (3x + 1) to the fourth. It accumulates
+                the fourth power as x moves, and it is the reverse of differentiating.
+              concepts: [accumulation, reverse]
+    answer_text: |-
+      By the chain rule, the derivative is
+
+      $$\frac{dy}{dx} = 4(3x + 1)^3 \times 3 = 12(3x + 1)^3$$
+
+      For the integral, let $u = 3x + 1$, so $du = 3\,dx$ and $dx = \dfrac{du}{3}$:
+
+      $$\int (3x + 1)^4\,dx = \frac{1}{3}\int u^4\,du = \frac{u^5}{15} + C
+      = \frac{(3x + 1)^5}{15} + C$$
+
+      The derivative tells you the gradient of a quantity at each point; the integral
+      tells you the quantity whose gradient it is. The factor $\dfrac{1}{3}$ in the
+      integral is the reciprocal of the $3$ that appears in the derivative, because
+      integration undoes differentiation.
+
+  - id: r7-stationary-points
+    section: '7.8'
+    tier: O
+    refs: ['5.2']
+    statement: 'Differentiate $y = x^3 - 6x^2 + 9x$ and find its stationary points.'
+    answer_label: 'The derivative and the stationary points'
+    check:
+      kind: all
+      checks:
+        - kind: apply
+          expression: 'x**3 - 6*x**2 + 9*x'
+          apply: {op: diff, args: [x]}
+          answer: '3*x**2 - 12*x + 9'
+        - {kind: solve, equation: '3*x**2 - 12*x + 9 = 0', variable: x, answer: ['1', '3']}
+    answer_text: |-
+      This is a differentiation question from Chapter 7, and it is here to keep the two
+      directions apart. Differentiate:
+
+      $$\frac{dy}{dx} = 3x^2 - 12x + 9 = 3(x - 1)(x - 3)$$
+
+      Set the derivative to zero: $x = 1$ or $x = 3$. The stationary points are
+      $(1, 4)$ and $(3, 0)$, since $y(1) = 1 - 6 + 9 = 4$ and $y(3) = 27 - 54 + 27 = 0$.
+      No integral is involved: the question asks where the gradient is zero.
+
+  - id: r8-distance-from-speed
+    section: '8.6'
+    tier: O
+    refs: ['5.2']
+    statement: >-
+      The speed of a cyclist after $t$ minutes is $v(t) = 10 - 2t$ kilometres per hour.
+      Find the distance travelled in the first three minutes.
+    answer_label: 'The distance travelled'
+    check:
+      kind: all
+      checks:
+        - kind: apply
+          expression: '10 - 2*t'
+          apply: {op: integrate, args: [t, 0, 3]}
+          answer: '21'
+        - {kind: evaluate, expression: '21/60', answer: '7/20'}
+    answer_text: |-
+      Distance is the integral of speed over time:
+
+      $$\int_0^3 (10 - 2t)\,dt = \Big[10t - t^2\Big]_0^3 = 30 - 9 = 21$$
+
+      The $21$ is in **kilometres per hour times minutes**, not kilometres, because the
+      speed is in kilometres per hour and the time is in minutes. Three minutes is
+      $\dfrac{3}{60} = \dfrac{1}{20}$ of an hour, so the distance is
+
+      $$21 \times \frac{1}{60} = 0.35 \text{ km}$$
+
+      The cyclist travels $0.35$ km, or $350$ m. Converting the time before or after
+      integrating gives the same answer; ignoring the units gives $21$ km, which is
+      faster than any cyclist.
+
+  - id: r9-tap-volume
+    section: '8.6'
+    tier: O
+    refs: ['5.2']
+    statement: >-
+      A tap delivers water at $r(t) = 3t^2$ litres per minute. Find the volume delivered
+      between $t = 0$ and $t = 3$ minutes, and the average rate over that time.
+    answer_label: 'The volume and the average rate'
+    check:
+      kind: all
+      checks:
+        - kind: apply
+          expression: '3*t**2'
+          apply: {op: integrate, args: [t, 0, 3]}
+          answer: '27'
+        - {kind: evaluate, expression: '27/3', answer: '9'}
+    answer_text: |-
+      The volume is the definite integral of the rate:
+
+      $$\int_0^3 3t^2\,dt = \Big[t^3\Big]_0^3 = 27 - 0 = 27 \text{ litres}$$
+
+      The average rate is the total volume divided by the time:
+
+      $$\frac{27}{3} = 9 \text{ litres per minute}$$
+
+      The rate is not constant: it is $0$ at the start and $27$ litres per minute at the
+      end, so the average of $9$ is well below the final rate. The average value of a
+      function over an interval is its integral divided by the length of the interval.
+
+  - id: r10-arithmetic-series
+    section: '9.2'
+    tier: O
+    refs: ['4.1']
+    statement: 'Find the sum of the first $20$ terms of the arithmetic sequence $4, 9, 14, \dots$.'
+    answer_label: 'The sum of the first twenty terms'
+    check: {kind: evaluate, expression: '20/2 * (2*4 + 19*5)', answer: '1030'}
+    answer_text: |-
+      This one is a series, not an integral, and it is here to make you choose. The
+      first term is $a = 4$ and the common difference is $d = 5$. With $n = 20$,
+
+      $$S_{20} = \frac{20}{2}\left(2(4) + 19(5)\right) = 10(8 + 95) = 10 \times 103 = 1030$$
+
+      The twentieth term is $4 + 19(5) = 99$, and pairing the first and last terms gives
+      $103$ in each of $10$ pairs, which is where the formula comes from.

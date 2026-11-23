@@ -83,32 +83,9 @@ say why in a few words. The idea might be a percentage profit, a mark-up, a
 margin, VAT, income tax, interest, a unit price, an exchange rate, or something
 from an earlier chapter.
 
-1. A shop buys a case for €4.00 and sells it for €6.00. Work out the percentage
-   profit.
-2. A shop buys a lamp for €50.00 and sells it for €60.00. Work out the mark-up and
-   the margin.
-3. A price is €40.00 before VAT. Work out the price with VAT at $23\%$.
-4. A shelf price is €61.50, including VAT at $23\%$. Work out the price before
-   VAT.
-5. A worker's gross pay is €750.00 a week. Work out the income tax before the
-   credit, the income tax after the €60.00 credit, the PRSI at $4\%$, and the net
-   pay.
-6. €1,500.00 is saved at $4\%$ simple interest for 2 years. Work out the interest
-   and the total.
-7. €1,500.00 is saved at $4\%$ compound interest for 2 years. Work out the total.
-8. A 2-litre bottle costs €3.60, and a 1.5-litre bottle costs €2.85. Which is
-   better value for each litre?
-9. Change €250.00 to US dollars at €1 = 1.09 US dollars.
-10. Change 109.00 US dollars to euro at €1 = 1.09 US dollars.
-11. A jacket costs €80.00 and is reduced by $25\%$. Work out the sale price.
-12. Divide 84 in the ratio $3:4$.
-13. Work out $2^3\times3^2$.
-14. Write 4,700,000 in standard form.
-15. **H** A shop buys a coat for €60.00 and adds a mark-up of $40\%$. It then takes
-    $20\%$ off in a sale. Work out the sale price, and say whether the shop still
-    makes a profit on the coat.
-16. **H** €2,000.00 is saved at $5\%$ compound interest for 3 years. Work out the
-    total, and work out how much more that is than the simple-interest total.
+:::problems chapter-07-review
+
+:::answers chapter-07-review
 
 ## What you can now do
 

@@ -1,0 +1,222 @@
+# Mixed practice for the Junior Cycle Mathematics Chapter 20 Review.
+#
+# Twelve questions covering vertically opposite and straight-line angles,
+# alternate and co-interior angles, the triangle angle sum, the exterior
+# angle, a congruence test, the isosceles theorem, parallelogram angles,
+# similar triangles, Pythagoras and its converse, a written proof and a
+# counterexample.
+#
+# Honest limit: the verifier proves the angle arithmetic, the scale factor, the
+# side lengths and the numerical test of the converse. It cannot prove a written
+# argument, so Questions 5, 10, 11 and 12 carry a `structured` check: that proves
+# the declared steps are present and in order, and nothing about whether the
+# reasoning is sound.
+chapter: 20
+oracles: [sympy, units]
+symbols:
+  x: {real: true}
+
+problems:
+  - id: r1-vertically-opposite
+    section: Review
+    tier: O
+    refs: [GT.3]
+    statement: 'Two straight lines cross. One angle is 124°. Work out the other three angles.'
+    answer_label: 'One angle where two lines cross is 124°. Work out the other three angles.'
+    check:
+      kind: all
+      checks:
+        - kind: evaluate
+          expression: '180 - 124'
+          answer: '56'
+        - kind: evaluate
+          expression: '124 + 56 + 124 + 56'
+          answer: '360'
+    answer_text: 'The other three angles are 56°, 124° and 56°. The angle vertically opposite 124° is also 124°, because vertically opposite angles are equal. The other two angles lie on a straight line with the 124° angle, so each is $180^\circ-124^\circ=56^\circ$. Check: $124^\circ+56^\circ+124^\circ+56^\circ=360^\circ$, a full turn.'
+
+  - id: r2-triangle-angle-sum
+    section: Review
+    tier: O
+    refs: [GT.3]
+    statement: 'A triangle has angles of 39° and 58°. Work out the third angle.'
+    answer_label: 'Work out the third angle of the triangle.'
+    check:
+      kind: evaluate
+      expression: '180 - 39 - 58'
+      answer: '83'
+    answer_text: 'The third angle is 83°. The angles of a triangle add to 180°, so $180^\circ-39^\circ-58^\circ=83^\circ$.'
+
+  - id: r3-co-interior
+    section: Review
+    tier: O
+    refs: [GT.3]
+    statement: 'A transversal cuts two parallel lines. One co-interior angle is 108°. Work out the other co-interior angle.'
+    answer_label: 'Work out the other co-interior angle.'
+    check:
+      kind: evaluate
+      expression: '180 - 108'
+      answer: '72'
+    answer_text: 'The other co-interior angle is 72°. Co-interior angles between parallel lines add to 180°, so $180^\circ-108^\circ=72^\circ$.'
+
+  - id: r4-exterior-angle
+    section: Review
+    tier: O
+    refs: [GT.3]
+    statement: 'In a triangle, the two interior opposite angles are 37° and 56°. Work out the exterior angle at the third corner.'
+    answer_label: 'Work out the exterior angle at the third corner.'
+    check:
+      kind: evaluate
+      expression: '37 + 56'
+      answer: '93'
+    answer_text: 'The exterior angle is 93°. An exterior angle of a triangle equals the sum of the two interior opposite angles, so $37^\circ+56^\circ=93^\circ$. The third interior angle is $180^\circ-37^\circ-56^\circ=87^\circ$, and $93^\circ+87^\circ=180^\circ$, as a straight line requires.'
+
+  - id: r5-congruence-test
+    section: Review
+    tier: O
+    refs: [GT.3]
+    statement: 'Two triangles each have two sides of 7 cm and 10 cm, and the angle between those sides is 48° in each. Which congruence test applies?'
+    answer_label: 'Name the congruence test that applies.'
+    check:
+      kind: structured
+      requires: [name-test, give-reason]
+      concepts: [side-angle-side, included-angle]
+      points:
+        - id: name-test
+          text: 'SAS, side-angle-side.'
+          concepts: [side-angle-side]
+        - id: give-reason
+          text: 'Each triangle gives two sides and the angle between them, and that angle is 48° in both.'
+          concepts: [included-angle]
+    answer_text: 'SAS, side-angle-side. Two sides and the angle between them are given in each triangle, and the included angle is 48° in both. The angle must lie between the two named sides; with the angle somewhere else, SAS would not apply.'
+
+  - id: r6-isosceles-base-angles
+    section: Review
+    tier: O
+    refs: [GT.3]
+    statement: 'An isosceles triangle has an apex angle of 84°. Work out each base angle.'
+    answer_label: 'Work out each base angle of the isosceles triangle.'
+    check:
+      kind: evaluate
+      expression: '(180 - 84)/2'
+      answer: '48'
+    answer_text: 'Each base angle is 48°. The base angles of an isosceles triangle are equal, and the three angles add to 180°, so each base angle is $(180^\circ-84^\circ)\div2=96^\circ\div2=48^\circ$.'
+
+  - id: r7-parallelogram-angles
+    section: Review
+    tier: O
+    refs: [GT.3]
+    statement: 'A parallelogram has one angle of 105°. Work out its four angles.'
+    answer_label: 'Work out the four angles of the parallelogram.'
+    check:
+      kind: all
+      checks:
+        - kind: evaluate
+          expression: '180 - 105'
+          answer: '75'
+        - kind: evaluate
+          expression: '105 + 75 + 105 + 75'
+          answer: '360'
+    answer_text: 'The four angles are 105°, 75°, 105° and 75°. Adjacent angles in a parallelogram add to 180°, so the angle next to 105° is $180^\circ-105^\circ=75^\circ$. Opposite angles are equal, which gives 105° and 75° again. Check: $105^\circ+75^\circ+105^\circ+75^\circ=360^\circ$.'
+
+  - id: r8-similar-triangles
+    section: Review
+    tier: O
+    refs: [GT.3]
+    statement: 'Two triangles are similar. A side of 6 cm in the small triangle matches a side of 18 cm in the large one. Another side of the small triangle is 7 cm. Find the matching side in the large one.'
+    answer_label: 'Find the matching side in the large triangle.'
+    check:
+      kind: evaluate
+      expression: '7*(18/6)'
+      answer: '21'
+    answer_text: 'The matching side is 21 cm. The scale factor is $18\div6=3$, so every side of the small triangle is multiplied by 3. The side of 7 cm matches $7\times3=21$ cm.'
+
+  - id: r9-pythagoras
+    section: Review
+    tier: O
+    refs: [GT.3]
+    statement: 'A right-angled triangle has legs of 9 cm and 40 cm. Find the hypotenuse.'
+    answer_label: 'Find the hypotenuse of the triangle with legs 9 cm and 40 cm.'
+    check:
+      kind: evaluate
+      expression: 'sqrt(9**2 + 40**2)'
+      answer: '41'
+    answer_text: 'The hypotenuse is 41 cm. $9^2+40^2=81+1600=1681$, and $\sqrt{1681}=41$.'
+
+  - id: r10-converse-pythagoras
+    section: Review
+    tier: O
+    refs: [GT.3]
+    statement: 'A triangle has sides of 10 cm, 24 cm and 26 cm. Decide whether it is right-angled.'
+    answer_label: 'Decide whether the triangle with sides 10 cm, 24 cm and 26 cm is right-angled.'
+    check:
+      kind: all
+      checks:
+        - kind: evaluate
+          expression: '10**2 + 24**2 - 26**2'
+          answer: '0'
+        - kind: structured
+          requires: [square-shorter-sides, compare-with-longest, decide]
+          concepts: [converse-of-pythagoras]
+          points:
+            - id: square-shorter-sides
+              text: 'The two shorter sides are 10 cm and 24 cm, and $10^2+24^2=100+576=676$.'
+              concepts: [square-sides]
+            - id: compare-with-longest
+              text: 'The longest side is 26 cm, and $26^2=676$.'
+              concepts: [longest-side]
+            - id: decide
+              text: 'The two values are equal, so by the converse of Pythagoras the angle opposite the 26 cm side is a right angle.'
+              concepts: [converse-of-pythagoras]
+    answer_text: 'Yes, it is right-angled. The two shorter sides are 10 cm and 24 cm: $10^2+24^2=100+576=676$, and $26^2=676$. The two values are equal, so the converse of Pythagoras'' theorem applies and the angle opposite the 26 cm side is a right angle.'
+
+  - id: r11-quadrilateral-proof
+    section: Review
+    tier: O
+    refs: [GT.3]
+    statement: 'Prove that the angles of a quadrilateral add to 360°.'
+    answer_label: 'Prove that the angles of a quadrilateral add to 360°.'
+    check:
+      kind: structured
+      requires: [draw-diagonal, apply-triangle-sum, add-and-conclude]
+      concepts: [diagonal, triangle-angle-sum]
+      points:
+        - id: draw-diagonal
+          text: 'Draw one diagonal of the quadrilateral. It splits the shape into two triangles.'
+          concepts: [diagonal]
+        - id: apply-triangle-sum
+          text: 'The angles of each triangle add to 180°, so the six angles of the two triangles add to $2\times180^\circ=360^\circ$.'
+          concepts: [triangle-angle-sum]
+        - id: add-and-conclude
+          text: 'The six angles are exactly the four angles of the quadrilateral, because the diagonal splits the angle at each end without adding or losing any. So the four angles add to 360°.'
+          concepts: [diagonal]
+    answer_text: 'Draw one diagonal $AC$. It splits the quadrilateral $ABCD$ into triangles $ABC$ and $ACD$. The angles of each triangle add to 180°, so the six angles in the two triangles add to $2\times180^\circ=360^\circ$. The six angles are exactly the four angles of the quadrilateral: the diagonal splits the angle at $A$ and the angle at $C$, and adds no new angle. So the four angles add to 360°.'
+
+  - id: r12-counterexample
+    section: Review
+    tier: O
+    refs: [GT.3]
+    statement: 'A student claims: "if a number is divisible by 6, then it is divisible by 9." Test the number 12 and decide whether the claim is true.'
+    answer_label: 'Test the claim with the number 12.'
+    check:
+      kind: all
+      checks:
+        - kind: evaluate
+          expression: '12/6'
+          answer: '2'
+        - kind: evaluate
+          expression: 'Mod(12, 9)'
+          answer: '3'
+        - kind: structured
+          requires: [test-divisible-by-six, test-divisible-by-nine, give-verdict]
+          concepts: [counterexample]
+          points:
+            - id: test-divisible-by-six
+              text: '12 is divisible by 6, because $12\div6=2$.'
+              concepts: [divisible-by-six]
+            - id: test-divisible-by-nine
+              text: '12 is not divisible by 9, because $12\div9$ leaves a remainder of 3.'
+              concepts: [remainder]
+            - id: give-verdict
+              text: 'So 12 is a counterexample, and the claim is false.'
+              concepts: [counterexample]
+    answer_text: 'The claim is false. The number 12 is divisible by 6, because $12\div6=2$. It is not divisible by 9, because $12\div9$ leaves a remainder of 3. So 12 is a counterexample, and one counterexample is enough to show that the claim is false.'

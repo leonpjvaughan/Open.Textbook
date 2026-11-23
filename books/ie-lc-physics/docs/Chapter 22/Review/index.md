@@ -97,28 +97,9 @@ Work through these without notes. For each one, decide **which idea applies**
 before you calculate: a conversion, an uncertainty, an equation of motion, a
 circuit quantity, a wave, or an argument to be judged.
 
-1. Convert 3.5 km to metres, and 0.50 m$^3$ to litres.
-2. A block has a mass of 0.80 kg and a volume of 0.000 20 m$^3$. Calculate its
-   density, and write the answer to the significant figures the data justify.
-3. A ball falls 1.80 m from rest. Use $s = \frac{1}{2}gt^2$ to find the fall time
-   and the landing speed. Take $g = 9.8\,\text{m/s}^2$.
-4. Four timings of the same fall are 0.62 s, 0.66 s, 0.60 s and 0.64 s. Find the
-   mean and the uncertainty as half the range.
-5. A spring of spring constant 250 N/m is stretched by 0.032 m. Calculate the force.
-6. A 12 V supply drives a current of 0.50 A through a resistor. Calculate the
-   resistance and the power.
-7. A sound wave has a frequency of 250 Hz and travels at 340 m/s. Calculate its
-   wavelength.
-8. A transformer has 200 turns on the primary coil and 50 turns on the secondary.
-   The primary voltage is 240 V. Calculate the secondary voltage.
-9. A radioactive source has a half-life of 6.0 hours. What fraction of the source
-   remains after 24 hours?
-10. One fission of a uranium-235 nucleus releases about 200 MeV. Convert this to
-    joules, taking $1\,\text{MeV} = 1.6 \times 10^{-13}$ J.
-11. A source gives a value for the efficiency of a device and does not say how it
-    was measured. Explain how you would judge the value before using it.
-12. Write a hypothesis for this question: *How does the tension of a guitar string
-    affect the pitch of the note?* Say what physics supports it.
+:::problems chapter-22-review
+
+:::answers chapter-22-review
 
 ## What you can now do
 

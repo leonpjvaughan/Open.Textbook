@@ -71,6 +71,16 @@ multiplied by $1 - 0.25 \times 10 = -1.5$ every step, so the run explodes. At
 $t = 0.05$ it converges, but the slow mode decays by $0.9$ per step, which is
 the slow crawl. The exact step reaches the minimum in one iteration.
 
+The same iteration drawn on its plane. The two unknowns are the two axes, so
+each step moves along both. The model is $f = 5x^2 + y^2$ and the step is
+$x_{k+1} = x_k - t\nabla f(x_k)$.
+
+:::figure descent-plane
+
+One step length cannot be right for both directions. Say which coordinate the
+step of 0.05 leaves behind, which one the step of 0.19 leaves behind, and why
+the exact line search removes only half of that problem.
+
 ## The code
 
 The program runs four fixed steps and one exact line search on that quadratic

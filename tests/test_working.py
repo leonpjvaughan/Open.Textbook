@@ -23,25 +23,21 @@ def test_the_self_test_agrees_with_itself():
 @pytest.mark.parametrize(
     "claim, expected",
     [
-        # The arithmetic is right and so is the print.
         (
             {"expression": "P * r * t", "values": {"P": 1500, "r": "0.065", "t": 4},
              "answer": 390, "shown": "390.00"},
             [],
         ),
-        # The original defect: 1500 × 0.07 × 4 is 420, not 390.
         (
             {"expression": "P * r * t", "values": {"P": 1500, "r": 0.07, "t": 4},
              "answer": 390, "shown": "390.00"},
             ["not the answer", "prints"],
         ),
-        # A square root needs no notation table here.
         (
             {"expression": "sqrt(6 ** 2 + 8 ** 2)", "values": {}, "answer": 10,
              "shown": "10.00"},
             [],
         ),
-        # A value the figure never substituted is a false claim, not a pass.
         (
             {"expression": "m * v", "values": {"m": 2}, "answer": 6, "shown": "6"},
             ["still has"],

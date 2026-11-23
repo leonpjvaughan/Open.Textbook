@@ -192,8 +192,8 @@ drag upwards balances the weight downwards:
 
 $$D = mg = 80 \times 9.8 = 784\,\text{N}$$
 
-The drag is 784 N. This is the same balance that gives terminal velocity in
-Section 5.6.
+The drag is 784 N. This balance of drag and weight is what keeps a falling object
+at a steady speed.
 
 </details>
 </details>

@@ -86,8 +86,8 @@ compound interest a year. Work out the value after 2 years.
 
 $$11\,070 \times 1.03^2 = 11\,744.163$$
 
-The savings are worth €11,744.16 to the nearest cent. Section 2.5 compares this
-with paying €12,000 later.
+The savings are worth €11,744.16 to the nearest cent.<!-- tier:h --> Section 2.5 compares
+this with paying €12,000 later.<!-- /tier:h -->
 
 > **Watch out.** Two traps sit in this section. The first is the rate: $4\%$ is
 > the decimal $0.04$, so the multiplier is $1.04$ and not $1.4$ or $4$. The
@@ -122,8 +122,8 @@ interest a year.
 Work out the value of the savings after 2 years. Then compare it with the €12,000
 she would pay if she waited. Which figure is larger?
 
-Keep both values. Section 2.5 brings the €12,000 back to today so that the two
-offers can be compared fairly.
+Keep both values so you can compare the two offers fairly.<!-- tier:h --> Section 2.5
+brings the €12,000 back to today.<!-- /tier:h -->
 
 ## You should now be able to
 

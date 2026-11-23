@@ -79,28 +79,9 @@ Work through these without notes. For each one, decide **which relationship appl
 and say why. Two of them ask you to choose between the two forms of the centripetal
 force, and one asks you to decide which earlier chapter the method comes from.
 
-1. A wheel turns 240 times in 60 s. Calculate its frequency, its period and its angular
-   velocity.
-2. A car goes round a bend of radius 40 m at 12 m/s. Calculate its centripetal
-   acceleration.
-3. A 0.30 kg ball on a string of length 0.50 m moves at 6.0 m/s. Calculate the tension
-   in the string.
-4. A bend of radius 60 m is banked so that no friction is needed at 20 m/s. Calculate
-   the banking angle. Which equation did you use, and why does the mass of the car not
-   appear in it?
-5. A satellite orbits $4.22 \times 10^{7}\,\text{m}$ from the centre of the Earth.
-   Calculate its speed and its period. Which earlier section does this method come
-   from?
-6. A 0.20 kg stone on a string of length 0.40 m moves at 5.0 m/s. Calculate the tension.
-   Is it larger or smaller than your answer to question 3, and why?
-7. A car of mass 1100 kg goes round a bend of radius 55 m. The friction force is 7000 N.
-   Calculate the maximum speed of the car.
-8. A bucket of water is swung in a vertical circle of radius 0.60 m. Calculate the
-   minimum speed at the top.
-9. A wheel of radius 0.25 m rolls with a rim speed of 4.0 m/s. Calculate its angular
-   velocity and its period.
-10. Explain why an object moving in a circle at a constant speed is accelerating, and
-    why there is no outward force on it.
+:::problems chapter-07-review
+
+:::answers chapter-07-review
 
 ## What you can now do
 

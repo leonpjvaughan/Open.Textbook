@@ -55,41 +55,9 @@ Work through these without notes. For each question, decide **which method appli
 and say why in a few words. Recognising the kind of pattern is the skill; the
 arithmetic follows from it.
 
-1. Find the general term of $6, 11, 16, 21, \ldots$.
-2. Find the general term of $3, 9, 19, 33, \ldots$.
-3. Which kind of pattern is $4, 8, 16, 32, \ldots$? Give its general term.
-4. At position 4, which is larger, $2^{n-1}$ or $n^2$?
-5. A pattern repeats $5, 9, 13, 5, 9, 13, \ldots$. What is the 20th term?
-6. A graph passes through $(1, 2)$, $(2, 5)$ and $(3, 8)$. Find the rule.
-7. Work out $2^5$.
-8. Find the lowest common multiple and the highest common factor of 12 and 18.
-9. Work out $15\%$ of 240.
-10. A car travels 150 km in 3 hours. Find its average speed.
-11. Work out $3+4\times5$.
-12. Round 3.476 to two decimal places.
+:::problems chapter-09-review
 
-<details markdown="1">
-<summary>Answers</summary>
-
-1. The common difference is 5, so the rule is $5n+1$.
-2. The first differences are $6, 10, 14$, so the second difference is 4 and the rule
-   starts with $2n^2$. Subtracting gives $1, 1, 1, 1$, so the rule is $2n^2+1$.
-3. Divide each term by the one before it: the multiplier is 2, so the pattern is
-   exponential. Its general term is $4\times2^{n-1}$.
-4. $n^2$. At position 4, $4^2=16$ and $2^3=8$.
-5. The cycle has 3 terms, and $20=3\times6+2$, so the 20th term is the second term of
-   a cycle: $9$.
-6. The terms rise by 3 each step, so the rule starts with $3n$. At position 1,
-   $3(1)=3$ and you need 1 less, so the rule is $3n-1$.
-7. $32$.
-8. $12=2^2\times3$ and $18=2\times3^2$, so the lowest common multiple is
-   $2^2\times3^2=36$, and the highest common factor is $2\times3=6$.
-9. $0.15\times240=36$.
-10. $150\div3=50$, so the average speed is 50 km/h.
-11. Multiplication first: $4\times5=20$, then $3+20=23$.
-12. $3.48$. The third decimal is 6, which is 5 or more, so round the hundredths up.
-
-</details>
+:::answers chapter-09-review
 
 ## What you can now do
 

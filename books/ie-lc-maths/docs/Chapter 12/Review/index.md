@@ -99,25 +99,9 @@ Work through these without notes. For each one, say **which method** you will us
 why, before you calculate. Some need a ratio, some the sine rule, some the cosine rule,
 some an identity, and some an equation.
 
-1. A right triangle has legs of $9$ cm and $12$ cm. Find the hypotenuse.
-2. Write down the exact value of $\sin 150^\circ$.
-3. Change $150^\circ$ into radians, giving the answer as a multiple of $\pi$.
-4. In a triangle, $A = 40^\circ$, $B = 60^\circ$ and $a = 10$ cm. Find $b$.
-5. A triangle has sides of $5$ cm, $7$ cm and $9$ cm. Find its area.
-6. Given that $\sin A = \dfrac{3}{5}$ and $A$ is acute, find $\cos 2A$.
-7. Solve $\sin\theta = \dfrac{\sqrt{3}}{2}$ for $0^\circ \le \theta \le 360^\circ$.
-8. Two boats leave a station. One is $6$ km away on a bearing of $050^\circ$, and the
-   other is $9$ km away on a bearing of $110^\circ$. Find the distance between them.
-9. From Chapter 9: find the twentieth term of the sequence $4, 9, 14, \dots$
-10. From Chapter 4: make $x$ the subject of $3x - 2y = 12$.
-11. From Chapter 1: write $\sqrt{200}$ in the form $k\sqrt{2}$.
+:::problems chapter-12-review
 
-<!-- tier:h -->
-
-12. A square-based pyramid has base side $12$ m and vertical height $8$ m. Find the
-    angle between a sloping edge and the base.
-
-<!-- /tier:h -->
+:::answers chapter-12-review
 
 ## What you can now do
 

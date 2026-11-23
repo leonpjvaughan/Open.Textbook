@@ -132,7 +132,8 @@ $$41 - 2(18) = 5, \qquad 41 + 2(18) = 77$$
 
 So about $95\%$ of the voters are between $5$ and $77$ years old. The sample mean of $41$
 and the sample standard deviation of $18$ are used here as if they were the population
-values. Section 11.7 is about how much those estimates can be trusted.
+values.<!-- tier:h --> Section 11.7 is about how much those estimates can be
+trusted.<!-- /tier:h -->
 
 ## You should now be able to
 

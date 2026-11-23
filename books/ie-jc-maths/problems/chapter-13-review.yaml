@@ -1,0 +1,187 @@
+# Mixed practice for the Junior Cycle Mathematics Chapter 13 Review.
+#
+# Twelve questions covering order of operations, indices, expanding brackets,
+# solving linear equations, substituting into formulae, and changing the
+# subject of a formula (including brackets, fractions and word contexts).
+#
+# Honest limit: the verifier proves the arithmetic, substitutions and symbolic
+# rearrangements, not which idea the reader identified first or why.
+chapter: 13
+symbols:
+  x: {real: true}
+  y: {real: true}
+  A: {real: true}
+  l: {real: true, nonzero: true}
+  w: {real: true, nonzero: true}
+  s: {real: true, nonzero: true}
+  d: {real: true}
+  t: {real: true, nonzero: true}
+  m: {real: true}
+  a: {real: true}
+  b: {real: true}
+  V: {real: true}
+  h: {real: true}
+  C: {real: true}
+
+problems:
+  - id: r1-order-of-operations
+    section: Review
+    tier: O
+    refs: [N.1]
+    statement: 'Work out $2+3\times4$.'
+    answer_label: 'Work out $2+3\times4$.'
+    check:
+      kind: evaluate
+      expression: '2 + 3*4'
+      answer: '14'
+    answer_text: '$14$. Multiply before adding: $3\times4=12$, and $2+12=14$.'
+
+  - id: r2-negative-cube
+    section: Review
+    tier: O
+    refs: [N.1]
+    statement: 'Work out $(-2)^3$.'
+    answer_label: 'Work out $(-2)^3$.'
+    check:
+      kind: evaluate
+      expression: '(-2)**3'
+      answer: '-8'
+    answer_text: '$-8$. Multiply $-2$ by itself three times: $(-2)\times(-2)=4$, and $4\times(-2)=-8$.'
+
+  - id: r3-expand-single-bracket
+    section: Review
+    tier: O
+    refs: [AF.3]
+    statement: 'Expand $4(x-3)$.'
+    answer_label: 'Expand $4(x-3)$.'
+    check:
+      kind: evaluate
+      expression: '4*(x - 3)'
+      answer: '4*x - 12'
+    answer_text: '$4x-12$. Multiply both terms inside the bracket by 4: $4\times x=4x$ and $4\times(-3)=-12$.'
+
+  - id: r4-solve-linear
+    section: Review
+    tier: O
+    refs: [AF.4]
+    statement: 'Solve $5x+2=17$.'
+    answer_label: 'Solve $5x+2=17$.'
+    check:
+      kind: solve
+      equation: '5*x + 2 = 17'
+      variable: x
+      answer: '3'
+    answer_text: '$x=3$. Subtract 2 from both sides to get $5x=15$, then divide both sides by 5.'
+
+  - id: r5-substitute-quadratic
+    section: Review
+    tier: O
+    refs: [AF.6]
+    statement: 'Find $y$ when $x=5$, using $y=x^2-2x$.'
+    answer_label: 'Find $y$ when $x=5$.'
+    check:
+      kind: evaluate
+      expression: '5**2 - 2*5'
+      answer: '15'
+    answer_text: '$y=15$. Substitute $x=5$: $y=5^2-2\times5=25-10=15$.'
+
+  - id: r6-subject-add
+    section: Review
+    tier: O
+    refs: [AF.6]
+    statement: 'Make $x$ the subject of $y=x-8$.'
+    answer_label: 'Make $x$ the subject of $y=x-8$.'
+    check:
+      kind: solve
+      equation: 'y = x - 8'
+      variable: x
+      answer: 'y + 8'
+    answer_text: '$x=y+8$. Add 8 to both sides to undo subtracting 8.'
+
+  - id: r7-subject-multiply
+    section: Review
+    tier: O
+    refs: [AF.6]
+    statement: 'Make $w$ the subject of $A=lw$.'
+    answer_label: 'Make $w$ the subject of $A=lw$.'
+    check:
+      kind: solve
+      equation: 'A = l*w'
+      variable: w
+      answer: 'A/l'
+    answer_text: '$w=\dfrac{A}{l}$. The $w$ is multiplied by $l$, so divide both sides by $l$.'
+
+  - id: r8-subject-denominator
+    section: Review
+    tier: O
+    refs: [AF.6]
+    statement: 'Make $t$ the subject of $s=\dfrac{d}{t}$.'
+    answer_label: 'Make $t$ the subject of $s=\dfrac{d}{t}$.'
+    check:
+      kind: solve
+      equation: 's = d/t'
+      variable: t
+      answer: 'd/s'
+    answer_text: '$t=\dfrac{d}{s}$. Multiply both sides by $t$ to get $st=d$, then divide both sides by $s$.'
+
+  - id: r9-subject-bracket
+    section: Review
+    tier: O
+    refs: [AF.6]
+    statement: 'Make $x$ the subject of $y=5(x-2)$.'
+    answer_label: 'Make $x$ the subject of $y=5(x-2)$.'
+    check:
+      kind: solve
+      equation: 'y = 5*(x - 2)'
+      variable: x
+      answer: 'y/5 + 2'
+    answer_text: '$x=\dfrac{y}{5}+2$ (or $x=\dfrac{y+10}{5}$). Divide both sides by 5 to get $\dfrac{y}{5}=x-2$, then add 2 to both sides.'
+
+  - id: r10-subject-fraction
+    section: Review
+    tier: O
+    refs: [AF.6]
+    statement: 'Make $b$ the subject of $m=\dfrac{a+b}{2}$.'
+    answer_label: 'Make $b$ the subject of $m=\dfrac{a+b}{2}$.'
+    check:
+      kind: solve
+      equation: 'm = (a + b)/2'
+      variable: b
+      answer: '2*m - a'
+    answer_text: '$b=2m-a$. Multiply both sides by 2 to clear the fraction, giving $2m=a+b$, then subtract $a$ from both sides.'
+
+  - id: r11-cuboid-height
+    section: Review
+    tier: O
+    refs: [AF.6]
+    statement: 'The volume of a cuboid is $V=lwh$. Find $h$ when $V=36\ \text{cm}^3$, $l=4$ cm and $w=3$ cm.'
+    answer_label: 'Find the height $h$.'
+    check:
+      kind: all
+      checks:
+        - kind: solve
+          equation: 'V = l*w*h'
+          variable: h
+          answer: 'V/(l*w)'
+        - kind: evaluate
+          expression: '36/(4*3)'
+          answer: '3'
+    answer_text: '$h=3$ cm. Rearrange to $h=\dfrac{V}{lw}$ and substitute: $h=\dfrac{36}{4\times3}=\dfrac{36}{12}=3$ cm.'
+
+  - id: r12-phone-plan
+    section: Review
+    tier: O
+    refs: [AF.6]
+    statement: 'A phone plan costs $C=20+0.05m$ for $m$ minutes. Make $m$ the subject, and then find the number of minutes when $C=35$.'
+    answer_label: 'Make $m$ the subject and find $m$ when $C=35$.'
+    check:
+      kind: all
+      checks:
+        - kind: solve
+          equation: 'C = 20 + (1/20)*m'
+          variable: m
+          answer: '20*C - 400'
+        - kind: evaluate
+          expression: '(35 - 20)/(1/20)'
+          answer: '300'
+    answer_text: '$m=\dfrac{C-20}{0.05}=20(C-20)$, and $m=300$ minutes when $C=35$. Subtract 20 from both sides to get $C-20=0.05m$, then divide by $0.05$. Substituting $C=35$ gives $m=\dfrac{35-20}{0.05}=\dfrac{15}{0.05}=300$.'

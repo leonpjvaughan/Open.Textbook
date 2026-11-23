@@ -22,6 +22,7 @@ from .. import yamlio
 from .. import config as cfg
 from ..verify.render import render_answer_block, render_problem_list
 from ._fences import transform_outside_fences
+from .tier import included_tiers
 
 PROBLEMS_MARKER = re.compile(
     r"^:::[ \t]*problems[ \t]+([a-z0-9._-]+)(?:#([a-z0-9,._-]+))?[ \t]*$", re.M
@@ -75,7 +76,25 @@ def select(name: str, ids: str | None, page, config=None) -> list[dict]:
         problems = [p for p in problems if p.get("id") in wanted]
     if not problems:
         raise ValueError(f"problems: {name} selected nothing on {page.file.src_path}")
-    return problems
+    return _within_build(problems, name, page, config)
+
+
+def _within_build(problems: list[dict], name: str, page, config) -> list[dict]:
+    """Drop records whose tier this build does not ship.
+
+    A bank is shared by every profile that reads the page, so an `H` record on a
+    shared Review page used to reach the Foundation reader, marked **H** rather
+    than absent. The page could not express that in a tier-tagged range, because a
+    marker inside one is stripped before it expands.
+    """
+    if config is None:
+        return problems
+    included = included_tiers(config)
+    if not included:
+        return problems
+
+    kept = [p for p in problems if str(p.get("tier", "")).upper() in included or not p.get("tier")]
+    return kept or problems
 
 
 def _expand(markdown: str, marker: re.Pattern[str], render, page, config) -> str:
@@ -86,10 +105,16 @@ def _expand(markdown: str, marker: re.Pattern[str], render, page, config) -> str
 
 
 def on_page_markdown(markdown, page, config, files):
-    # Most pages carry neither marker, and `transform_outside_fences` walks every
-    # line of the page twice to find that out. The cheap substring test first.
     if ":::problems" not in markdown and ":::answers" not in markdown:
         return markdown
     markdown = _expand(markdown, PROBLEMS_MARKER, render_problem_list, page, config)
-    markdown = _expand(markdown, ANSWERS_MARKER, render_answer_block, page, config)
+    count = 0
+
+    def render_answers(items: list[dict]) -> str:
+        nonlocal count
+        count += 1
+        heading_id = "answers" if count == 1 else f"answers-{count}"
+        return render_answer_block(items, heading_id=heading_id)
+
+    markdown = _expand(markdown, ANSWERS_MARKER, render_answers, page, config)
     return markdown

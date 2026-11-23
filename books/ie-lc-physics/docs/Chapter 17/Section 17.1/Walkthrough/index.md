@@ -164,8 +164,11 @@ passes between a positive plate and a negative plate, and say what that shows ab
 the charge on the electrons. In the second, name one observation that shows the rays
 travel in straight lines.
 
-Keep both. Section 17.2 makes the beam, and Section 17.3 steers it with a magnetic
-field.
+Keep both. Section 17.2 shows how the electron gun makes the beam.
+
+<!-- tier:h -->
+Section 17.3 then steers the beam with a magnetic field.
+<!-- /tier:h -->
 
 ## You should now be able to
 

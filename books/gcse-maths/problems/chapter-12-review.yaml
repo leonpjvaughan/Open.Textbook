@@ -1,0 +1,153 @@
+# Mixed practice for the Chapter 12 Review.
+#
+# Eight questions, one record each, in the order they appear on the Review page.
+# They expand and factorise a quadratic, solve by factorising and by the
+# quadratic formula, complete the square and read a turning point, write an
+# equation from two roots, and recall a linear equation and an index law.
+#
+# Honest limit: `evaluate` proves that two expressions are equal for every value
+# of x, and `solve` proves a solution set. It does not prove that a factorisation
+# was reached by factorising rather than by guessing, nor that the completed
+# square is in the requested form. Question 5 asks for the form and the turning
+# point, and question 7 asks how the answer was checked, so each carries a
+# `structured` component, which proves only that a model answer contains its
+# declared steps and concepts, in order.
+#
+# Questions 4 and 5 are Higher-only content in Sections 12.5 and 12.6, so they
+# carry `tier: H` and the page marks them **H**.
+oracles: [sympy, units]
+chapter: 12
+symbols:
+  x: {real: true}
+problems:
+  - id: r1-expand-quadratic
+    section: Review
+    tier: F
+    refs: [A4]
+    statement: 'Expand $(x+4)(x-2)$.'
+    answer_label: 'The expanded expression'
+    check:
+      kind: evaluate
+      expression: '(x + 4)*(x - 2)'
+      answer: 'x**2 + 2*x - 8'
+    answer_text: '$(x + 4)(x - 2) = x^2 - 2x + 4x - 8 = x^2 + 2x - 8$. Every term in the first bracket multiplies every term in the second, which gives four products. Two of them, $-2x$ and $4x$, are like terms and combine.'
+
+  - id: r2-factorise-quadratic
+    section: Review
+    tier: F
+    refs: [A4, A18]
+    statement: 'Factorise $x^2+3x-10$.'
+    answer_label: 'The factorised expression'
+    check:
+      kind: evaluate
+      expression: 'x**2 + 3*x - 10'
+      answer: '(x + 5)*(x - 2)'
+    answer_text: '$x^2 + 3x - 10 = (x + 5)(x - 2)$. The two numbers must multiply to $-10$ and add to $3$: $5$ and $-2$ do both. Expanding the brackets returns $x^2 - 2x + 5x - 10 = x^2 + 3x - 10$, which is the check.'
+
+  - id: r3-solve-by-factorising
+    section: Review
+    tier: F
+    refs: [A18]
+    statement: 'Solve $x^2-9=0$ by factorising.'
+    answer_label: 'The solutions'
+    check:
+      kind: solve
+      equation: 'x**2 - 9 = 0'
+      variable: x
+      answer: ['3', '-3']
+    answer_text: '$x^2 - 9$ is a difference of two squares: $(x - 3)(x + 3) = 0$. A product is zero when one of its factors is zero, so $x - 3 = 0$ or $x + 3 = 0$. The solutions are $x = 3$ and $x = -3$. Both are needed: a quadratic can have two roots.'
+
+  - id: r4-quadratic-formula
+    section: Review
+    tier: H
+    refs: [A18]
+    statement: 'Solve $3x^2+x-2=0$ using the quadratic formula.'
+    answer_label: 'The solutions'
+    check:
+      kind: solve
+      equation: '3*x**2 + x - 2 = 0'
+      variable: x
+      answer: ['2/3', '-1']
+    answer_text: 'Here $a = 3$, $b = 1$ and $c = -2$. The formula gives $x = \dfrac{-1 \pm \sqrt{1^2 - 4 \times 3 \times (-2)}}{2 \times 3} = \dfrac{-1 \pm \sqrt{25}}{6} = \dfrac{-1 \pm 5}{6}$. So $x = \dfrac{4}{6} = \dfrac{2}{3}$ or $x = \dfrac{-6}{6} = -1$. The discriminant $25$ is positive, so there are two real roots.'
+
+  - id: r5-complete-the-square
+    section: Review
+    tier: H
+    refs: [A11, A18]
+    statement: 'Write $x^2+10x+1$ in completed-square form. State its turning point as a graph of $y$.'
+    answer_label: 'The completed square and the turning point'
+    check:
+      kind: all
+      checks:
+        - kind: evaluate
+          expression: 'x**2 + 10*x + 1'
+          answer: '(x + 5)**2 - 24'
+        - kind: evaluate
+          expression: '(-5)**2 + 10*(-5) + 1'
+          answer: '-24'
+        - kind: structured
+          requires: [complete-square, state-turning-point]
+          concepts: [completed-square, turning-point]
+          points:
+            - id: complete-square
+              text: 'Half of 10 is 5, so the bracket is (x + 5) squared. Expanding it gives x squared + 10x + 25, which is 24 more than x squared + 10x + 1. So the form is (x + 5) squared - 24.'
+              concepts: [completed-square]
+            - id: state-turning-point
+              text: 'A square is never negative, so y is smallest when (x + 5) squared is zero, at x = -5. The turning point is (-5, -24), and it is a minimum.'
+              concepts: [turning-point, completed-square]
+    answer_text: '$x^2 + 10x + 1 = (x + 5)^2 - 24$. Halving the coefficient of $x$ gives $5$, and expanding $(x + 5)^2$ gives $x^2 + 10x + 25$, which is $24$ too much, so subtract $24$. The smallest value of $(x + 5)^2$ is $0$, at $x = -5$, so the turning point is $(-5, -24)$. It is a minimum because the coefficient of $x^2$ is positive.'
+
+  - id: r6-equation-from-roots
+    section: Review
+    tier: F
+    refs: [A11, A12, A18]
+    statement: 'A quadratic graph has roots $-1$ and $4$. What equation could describe its roots?'
+    answer_label: 'An equation with those roots'
+    check:
+      kind: solve
+      equation: '(x + 1)*(x - 4) = 0'
+      variable: x
+      answer: ['-1', '4']
+    answer_text: 'A root $r$ comes from a factor $(x - r)$. The roots $-1$ and $4$ give the factors $(x + 1)$ and $(x - 4)$, so one equation is $(x + 1)(x - 4) = 0$. Expanding gives $x^2 - 3x - 4 = 0$. Any non-zero multiple of the expression has the same roots, so the equation is not unique; the roots are.'
+
+  - id: r7-recall-linear-equation
+    section: Review
+    tier: F
+    refs: [A17]
+    statement: 'From earlier work: solve $3x+8=20$. Explain how you checked your answer.'
+    answer_label: 'The solution and the check'
+    check:
+      kind: all
+      checks:
+        - kind: solve
+          equation: '3*x + 8 = 20'
+          variable: x
+          answer: '4'
+        - kind: structured
+          requires: [solve, check-substitution]
+          concepts: [inverse-operation, substitution-check]
+          points:
+            - id: solve
+              text: 'Subtract 8 from both sides: 3x = 12. Divide both sides by 3: x = 4.'
+              concepts: [inverse-operation]
+            - id: check-substitution
+              text: 'Substitute x = 4 back into the left-hand side: 3 x 4 + 8 = 12 + 8 = 20, which matches the right-hand side. The solution is correct.'
+              concepts: [substitution-check]
+    answer_text: '$3x + 8 = 20$, so $3x = 12$ and $x = 4$. The check is substitution: $3 \times 4 + 8 = 12 + 8 = 20$, which is the right-hand side. Substitution checks the solution without repeating the solving steps, so it catches an error in either direction.'
+
+  - id: r8-recall-index-law
+    section: Review
+    tier: F
+    refs: [N7]
+    statement: 'From earlier work: simplify $2^3\times2^4$.'
+    answer_label: 'The simplified value'
+    check:
+      kind: all
+      checks:
+        - kind: evaluate
+          expression: '2**3 * 2**4'
+          answer: '2**7'
+        - kind: evaluate
+          expression: '2**7'
+          answer: '128'
+    answer_text: '$2^3 \times 2^4 = 2^{3+4} = 2^7 = 128$. The bases are the same, so the indices add. Written out, it is three factors of $2$ multiplied by four more, which is seven factors of $2$ in all.'
