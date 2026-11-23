@@ -22,6 +22,15 @@ uses its root:
 
 $$ x_{k+1} = x_k - \frac{f(x_k)}{f'(x_k)}. $$
 
+The tangent is the step, and the residual is where it starts: the curve's height
+above the axis at the guess. The figure takes one step at a time, so the line,
+the crossing and the residual are all in view at once.
+
+:::figure newton-step
+
+Three steps take the error from about 0.41 to about 0.0000021. Say which line in
+the picture decides how far the next step reaches.
+
 Let $x^{*}$ be a root and $e_k = x_k - x^{*}$ the error. Expand $f$ about $x_k$
 and evaluate at the root, where $f(x^{*}) = 0$:
 
