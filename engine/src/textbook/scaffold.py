@@ -801,6 +801,20 @@ def build_curriculum_map(book: Book, strands: list[dict], chapters: list[dict]) 
 
 
 
+def _chapter_in_build(chapter: dict, included_tiers: frozenset[str] | None) -> bool:
+    """Whether this build includes any section of the chapter.
+
+    A chapter whose every section is above the build has no opener and no Review a
+    reader could use: listing it would link two pages the build does not write.
+    """
+    if included_tiers is None or not chapter.get("sections"):
+        return True
+    return any(
+        not section.get("tier") or section["tier"] in included_tiers
+        for section in chapter["sections"]
+    )
+
+
 def build_nav_list(
     strands: list[dict],
     chapters: list[dict],
@@ -872,6 +886,8 @@ def build_nav_list(
         else:
             nav.append(entry)
     for c in chapters:
+        if not _chapter_in_build(c, included_tiers):
+            continue
         children = [{"Overview": f"Chapter {c['id']}/index.md"}]
         for s in c["sections"]:
             if s.get("tier") and s["tier"] not in included_tiers:

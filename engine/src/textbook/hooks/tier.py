@@ -40,6 +40,7 @@ from ..frontmatter import read as read_front_matter
 
 BLOCK = re.compile(r"<!--\s*tier:(\w+)\s*-->(.*?)<!--\s*/tier:\1\s*-->", re.S | re.I)
 LINK = re.compile(r"\[([^\]]+)\]\(([^)]+)\)")
+CHAPTER_DIR = re.compile(r"(?:^|/)Chapter ([^/]+)/")
 
 
 def tier_filter(config) -> str:
@@ -100,16 +101,25 @@ def wrap_excluded_blocks(markdown: str, included: frozenset[str]) -> str:
     return BLOCK.sub(repl, markdown)
 
 
-def strip_excluded_links(markdown: str, book, excluded: set[str]) -> str:
-    """Unlink links to section pages this build does not write.
+def strip_excluded_links(
+    markdown: str,
+    book,
+    excluded: set[str],
+    excluded_chapters: set[str] | None = None,
+) -> str:
+    """Unlink links to section or chapter pages this build does not write.
 
     Otherwise those links dangle, and the link check fails on a page the author
     could not have known to remove. Only the link text survives, so the sentence
     still reads.
     """
+    chapters = excluded_chapters or set()
 
     def repl(match: re.Match[str]) -> str:
         text, target = match.group(1), match.group(2)
+        chapter = CHAPTER_DIR.search(target)
+        if chapter and chapter.group(1) in chapters:
+            return text
         ids = re.findall(r"Section (\d+\.\d+)", target)
         if ids and all(i in excluded for i in ids):
             return text
@@ -119,12 +129,19 @@ def strip_excluded_links(markdown: str, book, excluded: set[str]) -> str:
 
 
 def on_files(files, config, **kwargs):
+    book = cfg.book(config)
     included = included_tiers(config)
-    if included == frozenset(cfg.book(config).tier_codes):
+    if included == frozenset(book.tier_codes):
         return files
+    chapters = book.chapters_above(tier_filter(config))
+
     def keep(f) -> bool:
-        tier = read_front_matter(Path(f.abs_src_path))[0].get("tier")
-        return not tier or tier in included
+        source = Path(f.abs_src_path)
+        tier = read_front_matter(source)[0].get("tier")
+        if tier and tier not in included:
+            return False
+        chapter = CHAPTER_DIR.search(source.as_posix())
+        return not (chapter and chapter.group(1) in chapters)
 
     return files.__class__(f for f in files if keep(f))
 
@@ -140,4 +157,5 @@ def on_page_markdown(markdown, page, config, files):
         strip_excluded_blocks(markdown, included),
         book,
         set(book.sections_above(tier_filter(config))),
+        set(book.chapters_above(tier_filter(config))),
     )

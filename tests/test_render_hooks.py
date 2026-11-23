@@ -554,3 +554,73 @@ def test_the_contents_list_is_rendered_once_per_page_over_the_threshold():
     assert contents.on_page_content(
         page(contents.MINIMUM, "<p>:::no-contents</p>"), None, None, None
     ).count('class="contents"') == 0
+
+
+def test_a_chapter_above_the_build_is_not_written_or_listed(tmp_path):
+    """A chapter with no section this build includes has no opener and no Review.
+
+    `gcse-maths` Chapter 13 is entirely Higher; its opener and Review carry no tier of
+    their own, so before this they were written and listed by the Foundation build
+    while all thirteen sections were absent.
+    """
+    docs = tmp_path
+    chapter = docs / "Chapter 13"
+    (chapter / "Review").mkdir(parents=True)
+    (chapter / "index.md").write_text("---\ntitle: Thirteen\n---\n\n# Thirteen\n", encoding="utf-8")
+    (chapter / "Review" / "index.md").write_text(
+        "---\ntitle: Review\n---\n\n# Review\n", encoding="utf-8"
+    )
+    kept_chapter = docs / "Chapter 1"
+    kept_chapter.mkdir()
+    (kept_chapter / "index.md").write_text("---\ntitle: One\n---\n\n# One\n", encoding="utf-8")
+
+    files = fake_files(
+        chapter / "index.md",
+        chapter / "Review" / "index.md",
+        kept_chapter / "index.md",
+    )
+    kept = tier.on_files(files, make_config(docs, "foundation"))
+    names = {Path(f.abs_src_path).relative_to(docs).as_posix() for f in kept}
+    assert names == {"Chapter 1/index.md"}
+
+    higher = tier.on_files(files, make_config(docs, "higher"))
+    assert len(higher) == 3
+
+
+def test_a_chapter_above_the_build_is_absent_from_the_nav():
+    book = pipeline.books.book_by_id(BOOK)
+    nav = pipeline.nav_for(book, book.tiers_included("F"))
+    titles = [title for title, _child in pipeline.pairs(nav)]
+    assert not any(title.startswith("Chapter 13:") for title in titles)
+    assert any(title.startswith("Chapter 12:") for title in titles)
+
+
+def test_links_to_a_chapter_above_the_build_lose_only_their_link(tmp_path):
+    out = tier.on_page_markdown(
+        "[Chapter 13: Other functions](Chapter 13/index.md) and "
+        "[Chapter 12: Graphs](Chapter 12/index.md)\n",
+        page("index.md"),
+        make_config(tmp_path, "foundation"),
+        [],
+    )
+    assert "](Chapter 13/index.md)" not in out
+    assert "Chapter 13: Other functions" in out
+    assert "[Chapter 12: Graphs](Chapter 12/index.md)" in out
+
+
+def test_the_chapter_list_omits_a_chapter_the_reader_does_not_study(tmp_path):
+    """`:::chapters` is the book's front door: it must list only chapters with a page."""
+    from textbook.hooks import toc
+
+    foundation = toc.on_page_markdown(
+        ":::chapters\n", page("index.md"), make_config(tmp_path, "foundation"), []
+    )
+    assert "](Chapter 13/index.md)" not in foundation
+    assert "](Chapter 12/index.md)" in foundation
+    assert "Higher only sections" not in foundation
+
+    higher = toc.on_page_markdown(
+        ":::chapters\n", page("index.md"), make_config(tmp_path, "higher"), []
+    )
+    assert "](Chapter 13/index.md)" in higher
+    assert "Higher only sections" in higher
