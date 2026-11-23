@@ -1,0 +1,119 @@
+# Mixed practice for the Chapter 21 Review (Circle geometry and circle theorems).
+#
+# SymPy verifies the diameter, centre angle, opposite angle, tangent length, chord
+# halves and triangle angle sums. Questions 6, 7 and 8 also ask for the name of a
+# circle theorem or a reason for choosing one; the verifier cannot prove that the
+# theorem applies (a `structured` check confirms only that the declared points and
+# concepts are present in order).
+chapter: 21
+oracles: [sympy, units]
+symbols:
+  x: {real: true}
+problems:
+  - id: r1-diameter
+    section: Review
+    tier: F
+    refs: [G9]
+    statement: 'A circle has radius $6.5$ cm. Work out its diameter.'
+    answer_label: 'Diameter of the circle'
+    check: {kind: evaluate, expression: '2*6.5', answer: '13'}
+    answer_text: 'The diameter is twice the radius: $2\times6.5=13\text{ cm}$.'
+
+  - id: r2-centre-angle
+    section: Review
+    tier: H
+    refs: [G10]
+    statement: 'An angle at the circumference is $29^\circ$. Find the centre angle on the same arc.'
+    answer_label: 'Angle at the centre on the same arc'
+    check: {kind: evaluate, expression: '2*29', answer: '58'}
+    answer_text: 'The angle at the centre is twice the angle at the circumference on the same arc: $2\times29^\circ=58^\circ$. Both angles stand on the same arc, so the centre-of-circle theorem applies.'
+
+  - id: r3-cyclic-quadrilateral
+    section: Review
+    tier: H
+    refs: [G10]
+    statement: 'A cyclic quadrilateral has one angle of $73^\circ$. Find its opposite angle.'
+    answer_label: 'Opposite angle in the cyclic quadrilateral'
+    check: {kind: evaluate, expression: '180 - 73', answer: '107'}
+    answer_text: 'Opposite angles of a cyclic quadrilateral add to $180^\circ$: $180^\circ-73^\circ=107^\circ$. The two angles are opposite each other, not adjacent.'
+
+  - id: r4-equal-tangents
+    section: Review
+    tier: H
+    refs: [G10]
+    statement: 'Two tangents from one point have lengths $3x+2$ and $20$ cm. Find $x$.'
+    answer_label: 'Value of $x$ from the equal tangents'
+    check: {kind: solve, equation: '3*x + 2 = 20', variable: x, answer: ['6']}
+    answer_text: 'Two tangents drawn from the same point to a circle are equal, so $3x+2=20$. Then $3x=18$ and $x=6$. Each tangent is $20$ cm.'
+
+  - id: r5-chord-halves
+    section: Review
+    tier: H
+    refs: [G10]
+    statement: 'A perpendicular from the centre meets a chord of length $22$ cm. Find each half.'
+    answer_label: 'Length of each half of the chord'
+    check: {kind: evaluate, expression: '22/2', answer: '11'}
+    answer_text: 'A perpendicular from the centre to a chord bisects the chord, so each half is $22\div2=11\text{ cm}$. The two halves are equal, and each forms a right-angled triangle with the radius.'
+
+  - id: r6-alternate-segment
+    section: Review
+    tier: H
+    refs: [G10]
+    statement: 'A tangent-chord angle is $41^\circ$. Find the angle in the alternate segment.'
+    answer_label: 'Angle in the alternate segment'
+    check:
+      kind: structured
+      requires: [name-theorem, apply-theorem]
+      concepts: [tangent-chord, alternate-segment]
+      points:
+        - id: name-theorem
+          text: 'The angle between a tangent and a chord equals the angle in the alternate segment.'
+          concepts: [tangent-chord, alternate-segment]
+        - id: apply-theorem
+          text: 'The tangent-chord angle is 41 degrees, so the angle in the alternate segment is also 41 degrees.'
+          concepts: [alternate-segment]
+    answer_text: 'The alternate segment theorem says the angle between a tangent and a chord equals the angle in the alternate segment, so the angle is $41^\circ$. Both angles stand on the same chord, one at the tangent and one at the circumference.'
+
+  - id: r7-semicircle-angle-reasons
+    section: Review
+    tier: H
+    refs: [G10]
+    statement: 'An angle in a triangle standing on a diameter is $90^\circ$. Another angle is $33^\circ$. Find the third angle and give both reasons.'
+    answer_label: 'Third angle of the triangle and both reasons'
+    check:
+      kind: all
+      checks:
+        - {kind: evaluate, expression: '180 - 90 - 33', answer: '57'}
+        - kind: structured
+          requires: [semicircle-angle, triangle-angle-sum]
+          concepts: [angle-in-semicircle, triangle-angle-sum]
+          points:
+            - id: semicircle-angle
+              text: 'The angle in a semicircle is 90 degrees, because the angle at the circumference on a diameter is a right angle.'
+              concepts: [angle-in-semicircle]
+            - id: triangle-angle-sum
+              text: 'The angles of a triangle add to 180 degrees, so the third angle is 180 - 90 - 33 = 57 degrees.'
+              concepts: [triangle-angle-sum]
+    answer_text: 'The third angle is $180^\circ-90^\circ-33^\circ=57^\circ$. The right angle comes from the angle in a semicircle, and the subtraction comes from the triangle angle sum.'
+
+  - id: r8-isosceles-triangle-sum
+    section: Review
+    tier: F
+    refs: [G3, G9]
+    statement: 'An isosceles triangle has equal angles of $52^\circ$. Find the third angle. Explain why you use the triangle angle sum rather than a circle theorem.'
+    answer_label: 'Third angle of the isosceles triangle and the reason'
+    check:
+      kind: all
+      checks:
+        - {kind: evaluate, expression: '180 - 2*52', answer: '76'}
+        - kind: structured
+          requires: [choose-triangle-sum, subtract-equal-angles]
+          concepts: [triangle-angle-sum, isosceles]
+          points:
+            - id: choose-triangle-sum
+              text: 'The shape is a triangle with no circle in the question, so the triangle angle sum is the fact that applies.'
+              concepts: [triangle-angle-sum]
+            - id: subtract-equal-angles
+              text: 'The two equal angles are 52 degrees each, so the third angle is 180 - 52 - 52 = 76 degrees.'
+              concepts: [isosceles]
+    answer_text: 'The third angle is $180^\circ-52^\circ-52^\circ=76^\circ$. The angles belong to a triangle, so the triangle angle sum applies. No chord, tangent or arc is given, so no circle theorem is needed.'

@@ -1,0 +1,144 @@
+# Mixed practice for the Chapter 20 Review (Pythagoras' theorem and trigonometry).
+#
+# SymPy verifies every side, angle, area and exact-value result. Questions 1 to 5
+# also ask which method fits, and that choice cannot be proved by the verifier (a
+# `structured` check confirms only that the declared points and concepts are
+# present in order).
+chapter: 20
+oracles: [sympy, units]
+problems:
+  - id: r1-ladder-distance
+    section: Review
+    tier: F
+    refs: [G20]
+    statement: 'A ladder is 13 m long and reaches 12 m up a wall. Find its distance from the wall. Which right-triangle method applies?'
+    answer_label: 'Distance from the foot of the ladder to the wall'
+    check:
+      kind: all
+      checks:
+        - {kind: evaluate, expression: 'sqrt(13**2 - 12**2)', answer: '5'}
+        - kind: structured
+          requires: [choose-pythagoras, identify-hypotenuse]
+          concepts: [pythagoras, hypotenuse]
+          points:
+            - id: choose-pythagoras
+              text: 'Use Pythagoras, because the wall, the ground and the ladder form a right-angled triangle and two sides are known.'
+              concepts: [pythagoras]
+            - id: identify-hypotenuse
+              text: 'The ladder is the hypotenuse, so the distance is the square root of 13 squared minus 12 squared, which is 5 m.'
+              concepts: [hypotenuse]
+    answer_text: 'Pythagoras, because the ladder is the hypotenuse: $d=\sqrt{13^2-12^2}=\sqrt{25}=5\text{ m}$. The answer is shorter than the ladder and shorter than the wall, so it is plausible.'
+
+  - id: r2-pole-angle-of-elevation
+    section: Review
+    tier: F
+    refs: [G20]
+    statement: 'A 10 m pole is viewed from 10 m away. Find the angle of elevation. Which ratio connects the measurements?'
+    answer_label: 'Angle of elevation of the top of the pole'
+    check:
+      kind: all
+      checks:
+        - {kind: evaluate, expression: 'atan(10/10)*180/pi', answer: '45'}
+        - kind: structured
+          requires: [choose-tangent, name-opposite-and-adjacent]
+          concepts: [tangent-ratio, angle-of-elevation]
+          points:
+            - id: choose-tangent
+              text: 'Use the tangent, because the height of the pole is opposite the angle and the distance along the ground is adjacent to it.'
+              concepts: [tangent-ratio]
+            - id: name-opposite-and-adjacent
+              text: 'The tangent of the angle of elevation is 10 divided by 10, which is 1, so the angle is 45 degrees.'
+              concepts: [angle-of-elevation]
+    answer_text: 'Tangent, because the height is opposite the angle and the distance is adjacent: $\tan\theta=\frac{10}{10}=1$, so $\theta=45^\circ$. A pole as tall as the viewing distance is seen at $45^\circ$.'
+
+  - id: r3-cosine-rule-third-side
+    section: Review
+    tier: H
+    refs: [G22]
+    statement: 'Two sides of a triangle are 7 cm and 9 cm, with included angle 60°. Find the third side. Which rule fits?'
+    answer_label: 'Third side of the triangle'
+    check:
+      kind: all
+      checks:
+        - {kind: evaluate, expression: 'sqrt(7**2 + 9**2 - 2*7*9*cos(pi/3))', answer: 'sqrt(67)'}
+        - kind: structured
+          requires: [choose-cosine-rule]
+          concepts: [cosine-rule, included-angle]
+          points:
+            - id: choose-cosine-rule
+              text: 'Use the cosine rule, because two sides and the angle between them are known, and the third side is wanted.'
+              concepts: [cosine-rule, included-angle]
+    answer_text: 'The cosine rule, because two sides and the included angle are known: $c^2=7^2+9^2-2(7)(9)\cos60^\circ=49+81-63=67$, so $c=\sqrt{67}\text{ cm}$, about $8.19$ cm.'
+
+  - id: r4-triangle-area-formula
+    section: Review
+    tier: H
+    refs: [G23]
+    statement: 'Sides 8 cm and 11 cm include angle 30°. Find the area. Which area formula fits?'
+    answer_label: 'Area of the triangle'
+    check:
+      kind: all
+      checks:
+        - {kind: evaluate, expression: '8*11*sin(pi/6)/2', answer: '22'}
+        - kind: structured
+          requires: [choose-area-formula]
+          concepts: [area-formula, included-angle]
+          points:
+            - id: choose-area-formula
+              text: 'Use the area formula one half a b sine C, because two sides and the angle between them are known.'
+              concepts: [area-formula, included-angle]
+    answer_text: 'Use area $=\frac12 ab\sin C$: $\frac12(8)(11)\sin30^\circ=44\times\frac12=22\text{ cm}^2$. Without the angle you would need a perpendicular height.'
+
+  - id: r5-cuboid-space-diagonal
+    section: Review
+    tier: H
+    refs: [G20]
+    statement: 'A cuboid measures 3 cm by 4 cm by 12 cm. Find its space diagonal. How many right triangles do you need?'
+    answer_label: 'Space diagonal of the cuboid'
+    check:
+      kind: all
+      checks:
+        - {kind: evaluate, expression: 'sqrt(3**2 + 4**2)', answer: '5'}
+        - {kind: evaluate, expression: 'sqrt(5**2 + 12**2)', answer: '13'}
+        - kind: structured
+          requires: [base-diagonal, space-diagonal]
+          concepts: [3d-pythagoras]
+          points:
+            - id: base-diagonal
+              text: 'First find the diagonal of the base: the square root of 3 squared plus 4 squared, which is 5 cm.'
+              concepts: [3d-pythagoras]
+            - id: space-diagonal
+              text: 'Then use that diagonal with the height of 12 cm in a second right-angled triangle, giving the square root of 5 squared plus 12 squared, which is 13 cm.'
+              concepts: [3d-pythagoras]
+    answer_text: 'Two right-angled triangles. The base diagonal is $\sqrt{3^2+4^2}=5\text{ cm}$, then the space diagonal is $\sqrt{5^2+12^2}=\sqrt{169}=13\text{ cm}$. In one line, $d=\sqrt{3^2+4^2+12^2}=13\text{ cm}$.'
+
+  - id: r6-sine-rule-side
+    section: Review
+    tier: H
+    refs: [G22]
+    statement: 'In a triangle, $a=6$ cm, $A=30^\circ$, and $B=45^\circ$. Find $b$.'
+    answer_label: 'Value of side $b$'
+    check: {kind: evaluate, expression: '6*sin(pi/4)/sin(pi/6)', answer: '6*sqrt(2)'}
+    answer_text: 'The sine rule gives $\frac{b}{\sin45^\circ}=\frac{6}{\sin30^\circ}$, so $b=\frac{6\sin45^\circ}{\sin30^\circ}=6\sqrt{2}\text{ cm}$, about $8.49$ cm. Side $b$ is opposite the larger angle, so it is longer than $a$.'
+
+  - id: r7-exact-trig-product
+    section: Review
+    tier: F
+    refs: [G21]
+    statement: 'Work out exactly $\sin60^\circ\cos30^\circ$.'
+    answer_label: 'Exact value of the product'
+    check: {kind: evaluate, expression: 'sin(pi/3)*cos(pi/6)', answer: '3/4'}
+    answer_text: '$\sin60^\circ=\cos30^\circ=\frac{\sqrt3}{2}$, so the product is $\frac{\sqrt3}{2}\times\frac{\sqrt3}{2}=\frac34$. The answer is exact, with no rounding.'
+
+  - id: r8-cosine-rule-angle
+    section: Review
+    tier: H
+    refs: [G22]
+    statement: 'A triangle has sides 5 cm, 6 cm and 8 cm. Find the angle opposite the longest side.'
+    answer_label: 'Angle opposite the longest side'
+    check:
+      kind: rounded
+      value: 'acos((5**2 + 6**2 - 8**2)/(2*5*6))*180/pi'
+      rounded: '92.9'
+      to: '0.1'
+    answer_text: 'Use the cosine rule with the angle opposite the 8 cm side: $\cos C=\frac{5^2+6^2-8^2}{2(5)(6)}=\frac{-3}{60}=-0.05$, so $C\approx92.9^\circ$. The cosine is negative, so the angle is obtuse.'

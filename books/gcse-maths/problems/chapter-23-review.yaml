@@ -1,0 +1,100 @@
+# Mixed practice for the Chapter 23 Review (Probability).
+#
+# SymPy verifies every probability, relative frequency, count, directed-number
+# result and recipe scale. Question 1 needs the favourable outcomes listed by
+# hand: the check proves the fraction 4/6 = 2/3, not that 1, 2, 3 and 6 are the
+# factors of 6. Questions 6 and 7 also ask which earlier method applies, and the
+# verifier cannot prove that judgement (a `structured` check confirms only that
+# the declared points and concepts are present in order).
+chapter: 23
+oracles: [sympy, units]
+problems:
+  - id: r1-factor-of-six
+    section: Review
+    tier: F
+    refs: [P2, P3]
+    statement: 'A fair six-sided die is rolled. Find the probability of rolling a factor of 6. Give your answer as a fraction.'
+    answer_label: 'Probability of rolling a factor of 6'
+    check: {kind: evaluate, expression: '4/6', answer: '2/3'}
+    answer_text: 'The factors of $6$ on a die are $1$, $2$, $3$ and $6$, so there are $4$ favourable outcomes out of $6$. The probability is $\frac46=\frac23$. Each face is equally likely.'
+
+  - id: r2-relative-frequency-heads
+    section: Review
+    tier: F
+    refs: [P1, P5]
+    statement: 'A coin lands heads 38 times in 80 tosses. Find the relative frequency of heads.'
+    answer_label: 'Relative frequency of heads'
+    check: {kind: evaluate, expression: '38/80', answer: '19/40'}
+    answer_text: 'Relative frequency is $\frac{\text{heads}}{\text{tosses}}=\frac{38}{80}=\frac{19}{40}=0.475$. It is close to $0.5$, and a longer run would give a better estimate.'
+
+  - id: r3-two-reds-with-replacement
+    section: Review
+    tier: F
+    refs: [P8]
+    statement: 'A bag has 3 red and 2 blue counters. One counter is chosen and replaced, then another is chosen. Find the probability of two reds.'
+    answer_label: 'Probability of two red counters'
+    check: {kind: evaluate, expression: '(3/5)*(3/5)', answer: '9/25'}
+    answer_text: 'The probability of red is $\frac35$ each time. Replacement keeps the bag the same, so the choices are independent: $\frac35\times\frac35=\frac{9}{25}=0.36$.'
+
+  - id: r4-neither-language
+    section: Review
+    tier: F
+    refs: [P6]
+    statement: 'From 40 students, 22 study French, 18 study Spanish and 7 study both. Find how many study neither language.'
+    answer_label: 'Number of students studying neither language'
+    check: {kind: evaluate, expression: '40 - (22 + 18 - 7)', answer: '7'}
+    answer_text: 'Including both languages once, $22+18-7=33$ students study at least one language. So $40-33=7$ students study neither. The $7$ who study both are counted twice, so subtract them once.'
+
+  - id: r5-bus-given-glasses
+    section: Review
+    tier: H
+    refs: [P9]
+    statement: 'In a group of 30, 12 wear glasses. Of those wearing glasses, 8 travel by bus. Find the probability that a student travels by bus given that they wear glasses.'
+    answer_label: 'Probability of travelling by bus given glasses'
+    check: {kind: evaluate, expression: '8/12', answer: '2/3'}
+    answer_text: 'The condition narrows the group to the $12$ students who wear glasses, and $8$ of them travel by bus: $\frac{8}{12}=\frac23$. The $30$ in the whole group is not used, because the group is already restricted.'
+
+  - id: r6-temperature-increase
+    section: Review
+    tier: F
+    refs: [N1, N2]
+    statement: 'A temperature changes from $-4^\circ\text{C}$ to $3^\circ\text{C}$. Work out the increase. Which earlier number method applies?'
+    answer_label: 'Increase in temperature'
+    check:
+      kind: all
+      checks:
+        - {kind: evaluate, expression: '3 - (-4)', answer: '7'}
+        - kind: structured
+          requires: [subtract-start, count-through-zero]
+          concepts: [negative-numbers, difference]
+          points:
+            - id: subtract-start
+              text: 'Subtract the starting temperature from the finishing temperature: 3 - (-4).'
+              concepts: [difference]
+            - id: count-through-zero
+              text: 'Subtracting a negative number adds: 3 - (-4) = 3 + 4 = 7 degrees. The rise passes through zero, which is 4 degrees up to zero and 3 degrees more.'
+              concepts: [negative-numbers]
+    answer_text: '$3-(-4)=3+4=7^\circ\text{C}$. This is directed-number subtraction from Chapter 1: subtracting a negative number is the same as adding.'
+
+  - id: r7-recipe-unitary-method
+    section: Review
+    tier: F
+    refs: [R10]
+    statement: 'A recipe uses 250 g of flour for 10 biscuits. Work out the flour needed for 16 biscuits. Explain which method applies.'
+    answer_label: 'Flour needed for 16 biscuits'
+    check:
+      kind: all
+      checks:
+        - {kind: evaluate, expression: '250/10', answer: '25'}
+        - {kind: evaluate, expression: '25*16', answer: '400'}
+        - kind: structured
+          requires: [find-one-unit, multiply-units]
+          concepts: [unitary-method, direct-proportion]
+          points:
+            - id: find-one-unit
+              text: 'Divide by 10 to find the flour for one biscuit: 250 divided by 10 is 25 g.'
+              concepts: [unitary-method]
+            - id: multiply-units
+              text: 'Multiply by 16 to find the flour for 16 biscuits: 25 times 16 is 400 g. The amount and the number of biscuits grow together, so this is direct proportion.'
+              concepts: [direct-proportion]
+    answer_text: 'The recipe gives $250\div10=25\text{ g}$ for one biscuit, then $25\times16=400\text{ g}$ for $16$ biscuits. This is the unitary method, which works because the flour is in direct proportion to the number of biscuits.'

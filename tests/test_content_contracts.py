@@ -31,7 +31,7 @@ BOOKS = books.discover_books()
 
 #: Reviews whose mixed practice has numbered items and no answer block.
 REVIEW_DEBT = {
-    "gcse-maths": 6,
+    "gcse-maths": 4,
     "ie-jc-maths": 14,
     "ie-lc-maths": 13,
     "ie-lc-applied-maths": 9,
