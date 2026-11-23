@@ -776,7 +776,7 @@ def test_a_card_is_a_rule_not_a_box():
 def test_a_card_spends_its_accent_once_on_the_kicker():
     """The mono kicker is the card's identity. Two accents — the old filled pill and
     the old top rule — competed with the title they introduced."""
-    assert "var(--card-accent-active)" in portal_rule(".card__subject")
+    assert "var(--card-accent-active)" in portal_rule(".card__kicker")
     assert "var(--card-accent-active)" not in portal_rule(".card")
 
 
@@ -787,7 +787,7 @@ def test_a_profile_is_a_link_and_the_kicker_leads_the_title():
     assert 'class="chip' not in html
     assert 'class="card__profile' in html
     assert 'aria-label="Editions"' in html
-    assert html.index('class="card__subject"') < html.index('class="card__title"')
+    assert html.index('class="card__kicker"') < html.index('class="card__title"')
 
 
 def test_the_landing_page_shares_the_books_stylesheet():

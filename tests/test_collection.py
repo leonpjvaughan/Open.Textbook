@@ -244,8 +244,8 @@ def test_two_books_keep_separate_identities(tmp_path):
     assert Theme.from_dict({}).for_scheme("slate").tokens == {}
 
 
-def test_portal_groups_by_qualification():
-    """Every qualification a book declares gets its group heading.
+def test_portal_has_a_band_for_every_qualification():
+    """Every qualification a book declares gets its band heading.
 
     The heading is the collection's display title for the qualification, which
     is not always its id: `collection.yaml` declares
@@ -259,9 +259,155 @@ def test_portal_groups_by_qualification():
     }
     for qualification in {b.qualification for b in ALL}:
         title = declared.get(qualification, qualification)
-        assert f'<h2 class="group__title">{title}</h2>' in html, (
-            f"no group heading for {qualification!r} (expected {title!r})"
+        slug = books.band_slug(qualification)
+        assert f'<section class="band" id="band-{slug}" aria-labelledby="band-{slug}-title">' in html
+        assert f'<h2 class="band__title" id="band-{slug}-title">{title}</h2>' in html, (
+            f"no band heading for {qualification!r} (expected {title!r})"
         )
+
+
+def test_the_old_group_markup_is_gone():
+    html = portal.render()
+    for retired in ("group__", 'class="group"', 'class="cards"', "card__subject", "card__facts"):
+        assert retired not in html
+
+
+def test_a_band_states_its_region_when_one_is_configured():
+    html = portal.render()
+    configured = [q for q in books.load_collection()["qualifications"] if q.get("region")]
+    assert configured
+    for qualification in configured:
+        assert f'<p class="band__region">{qualification["region"]}</p>' in html
+
+
+def test_every_card_has_a_swatch_a_kicker_and_stats():
+    html = portal.render()
+    assert html.count('<article class="card"') == len(ALL)
+    assert html.count('<span class="card__swatch" aria-hidden="true"></span>') == len(ALL)
+    assert html.count('<span class="card__kicker">') == len(ALL)
+    assert html.count('<span class="card__stats">') == len(ALL)
+    assert html.index('class="card__meta"') < html.index('class="card__title"')
+
+
+def test_a_card_names_the_boards_and_falls_back_to_the_subject():
+    with_boards = next(b for b in ALL if b.boards)
+    assert f'<span class="card__kicker">{" · ".join(with_boards.boards)}</span>' in portal.card(with_boards)
+    without = next(b for b in ALL if not b.boards)
+    assert f'<span class="card__kicker">{without.subject}</span>' in portal.card(without)
+
+
+def test_counts_are_singular_when_there_is_one():
+    assert portal.plural(1, "chapter") == "1 chapter"
+    assert portal.plural(0, "section") == "0 sections"
+    assert portal.plural(25, "chapter") == "25 chapters"
+
+
+def test_the_eyebrow_counts_the_books():
+    assert f"Open.Textbook · {len(ALL)} books" in portal.render()
+
+
+def test_a_companion_is_written_for_each_configured_qualification():
+    html = portal.render()
+    configured = [q for q in books.load_collection()["qualifications"] if q.get("companion")]
+    assert configured
+    assert html.count('<aside class="companion" data-optional') == len(configured)
+    for qualification in configured:
+        companion = qualification["companion"]
+        assert f'href="{companion["href"]}">{companion["link"]}</a>' in html
+
+
+def test_every_companion_link_resolves():
+    """A fragment names a band on the page; a path names a page a book builds."""
+    collection = books.load_collection()
+    bands = {f"band-{books.band_slug(b.qualification)}" for b in ALL}
+    for qualification in collection["qualifications"]:
+        companion = qualification.get("companion")
+        if not companion:
+            continue
+        href = companion["href"]
+        if href.startswith("#"):
+            assert href[1:] in bands, href
+            continue
+        book_id, _, rest = href.partition("/")
+        book = books.book_by_id(book_id)
+        page = rest.rstrip("/") + ("/index.md" if rest.endswith("/") else "")
+        assert (book.docs / page).is_file(), f"{href} has no page {page} in {book.id}"
+
+
+def test_every_page_declares_the_default_layout():
+    default = books.load_collection()["default_layout"]
+    marker = f'<html lang="en" data-style="{default}"'
+    assert marker in portal.render()
+    assert marker in portal.not_found()
+    assert marker in portal.legal_page("terms")
+
+
+def test_the_default_layout_is_a_declared_layout_with_a_stylesheet():
+    collection = books.load_collection()
+    ids = books.layout_ids(collection)
+    assert collection["default_layout"] in ids
+    for layout_id in ids:
+        assert (repo_root() / books.LAYOUTS_DIR / f"{layout_id}.css").is_file()
+
+
+GOOD_LAYOUT = {"id": "matrix", "title": "Matrix", "description": "A grid."}
+
+
+def valid(tmp_path, **changes):
+    (tmp_path / books.LAYOUTS_DIR).mkdir(parents=True, exist_ok=True)
+    (tmp_path / books.LAYOUTS_DIR / "matrix.css").write_text("@layer layout {}\n")
+    collection = {"default_layout": "matrix", "layouts": [dict(GOOD_LAYOUT)], **changes}
+    books.validate_collection(collection, tmp_path)
+
+
+def test_a_valid_layout_configuration_loads(tmp_path):
+    valid(tmp_path)
+
+
+@pytest.mark.parametrize(
+    "changes, message",
+    [
+        ({"default_layout": "cards"}, "default_layout"),
+        ({"layouts": []}, "non-empty"),
+        ({"layouts": [{"id": "matrix", "title": "Matrix"}]}, "description"),
+        ({"layouts": [dict(GOOD_LAYOUT), dict(GOOD_LAYOUT)]}, "twice"),
+        ({"layouts": [{**GOOD_LAYOUT, "id": "Matrix"}]}, "lowercase"),
+        ({"layouts": [{**GOOD_LAYOUT, "id": "wide"}], "default_layout": "wide"}, "wide.css"),
+    ],
+)
+def test_a_bad_layout_configuration_is_refused(tmp_path, changes, message):
+    with pytest.raises(ValueError, match=message):
+        valid(tmp_path, **changes)
+
+
+def test_a_default_layout_without_layouts_is_refused(tmp_path):
+    with pytest.raises(ValueError, match="needs `layouts`"):
+        books.validate_collection({"default_layout": "matrix"}, tmp_path)
+
+
+@pytest.mark.parametrize(
+    "qualification, message",
+    [
+        ({"id": "X", "region": ""}, "region"),
+        ({"id": "X", "region": 3}, "region"),
+        ({"id": "X", "companion": "text"}, "mapping"),
+        ({"id": "X", "companion": {"kicker": "k", "title": "t", "body": "b", "link": "l"}}, "missing"),
+        (
+            {"id": "X", "companion": {"kicker": "k", "title": "t", "body": "b", "link": "l", "href": "h", "x": 1}},
+            "unknown",
+        ),
+    ],
+)
+def test_a_bad_region_or_companion_is_refused(tmp_path, qualification, message):
+    with pytest.raises(ValueError, match=message):
+        books.validate_collection({"qualifications": [qualification]}, tmp_path)
+
+
+def test_a_well_formed_region_and_companion_pass(tmp_path):
+    companion = {"kicker": "k", "title": "t", "body": "b", "link": "l", "href": "#band-x"}
+    books.validate_collection(
+        {"qualifications": [{"id": "X", "region": "Here", "companion": companion}]}, tmp_path
+    )
 
 
 def test_site_urls_are_unique():
