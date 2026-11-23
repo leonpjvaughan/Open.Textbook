@@ -11,7 +11,7 @@ dependencies = [
     # generator. Declaring them here keeps the engine honest about what it
     # imports and lets it be installed on its own.
     "markdown>=3.11.3",
-    "pymdown-extensions>=10.2",
+    "pymdown-extensions>=13.1",
     "antlr4-python3-runtime==4.11",
 ]
 
