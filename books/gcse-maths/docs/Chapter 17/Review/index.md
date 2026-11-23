@@ -29,38 +29,9 @@ use a plan and elevations if the garden includes a raised structure.
 For each item, name the method first. Then work it out and give a reason for
 your choice.
 
-1. A triangular prism has triangular ends. How many rectangular faces does it
-   have? Which shape property tells you?
-2. A cuboid measures $7$ cm by $4$ cm by $3$ cm. State its plan and front
-   elevation dimensions.
-3. Construct the perpendicular bisector of a $7$ cm segment. Explain why each
-   point on your line is equally far from the endpoints.
-4. Describe the locus of points $3$ cm from point $P$ and the locus of points
-   $2$ cm from a straight boundary.
-5. Explain why the perpendicular from a point to a line gives the shortest
-   distance.
-6. A map scale is $1$ cm to $4$ km. Work out the real distance represented by
-   $6.5$ cm.
-7. Write the three-figure bearing for south-east.
-8. Earlier chapter link: a rectangular room is $4.8$ m by $3.6$ m. Use a scale
-   of $1$ cm to $0.6$ m to find its plan dimensions, then find the diagonal on
-   the plan.
+:::problems chapter-17-review
 
-<details markdown="1">
-<summary>Answers and checks</summary>
-
-1. Three rectangular faces, one for each side of the triangular end.
-2. Plan $7$ cm by $4$ cm; front elevation $7$ cm by $3$ cm.
-3. Equal-radius arcs from both endpoints cross on the perpendicular bisector.
-   Each crossing is equally far from both endpoints.
-4. A circle centred at $P$ with radius $3$ cm; two lines parallel to the
-   boundary, each $2$ cm away.
-5. Any sloping segment forms the hypotenuse of a right triangle, so it is longer
-   than the perpendicular side.
-6. $6.5\times4=26$ km.
-7. $135^\circ$.
-8. The plan is $8$ cm by $6$ cm; its diagonal is $10$ cm.
-</details>
+:::answers chapter-17-review
 
 ## What you can now do
 

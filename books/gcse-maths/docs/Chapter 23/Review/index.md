@@ -16,13 +16,9 @@ If the spinner is spun 80 times and lands on red 47 times, the relative frequenc
 
 Choose a method before working. For each question, state which method applies and why.
 
-1. A fair six-sided die is rolled. Find the probability of rolling a factor of 6. Give your answer as a fraction.
-2. A coin lands heads 38 times in 80 tosses. Find the relative frequency of heads.
-3. A bag has 3 red and 2 blue counters. One counter is chosen and replaced, then another is chosen. Find the probability of two reds.
-4. From 40 students, 22 study French, 18 study Spanish and 7 study both. Find how many study neither language.
-5. In a group of 30, 12 wear glasses. Of those wearing glasses, 8 travel by bus. Find the probability that a student travels by bus given that they wear glasses.
-6. A temperature changes from $-4^\circ\text{C}$ to $3^\circ\text{C}$. Work out the increase. Which earlier number method applies?
-7. A recipe uses 250 g of flour for 10 biscuits. Work out the flour needed for 16 biscuits. Explain which method applies.
+:::problems chapter-23-review
+
+:::answers chapter-23-review
 
 ## What you can now do
 
