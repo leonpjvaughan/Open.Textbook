@@ -113,6 +113,8 @@ def from_parts(docs_dir, *, book=None, profile=None, **extra_values) -> dict:
         "tier_profile": profile,
         "themes": [bundle.id for bundle in ordered_bundles()],
         "default_theme": default_bundle().id,
+        "layouts": books_module.layout_ids(books_module.load_collection()),
+        "default_layout": books_module.default_layout(),
     }
     if book is not None:
         values.update(

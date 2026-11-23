@@ -17,6 +17,9 @@ and **Toolchain** still apply; this file adds what is particular.
   in a real browser across all six bundles, and the phone-width audit).
 - **Verification oracles** — `test_verify_algebra.py`, `test_verify_oracles.py`,
   `test_verify_coverage.py`, `test_verify_units.py`, `test_verify_statistics.py`.
+- **Layouts and cascade** — `test_layout_contract.py` (the layout contract, parsed with
+  tinycss2 by `layout_contract.py`, with one bad file per rule in `fixtures/layouts/`) and
+  `test_cascade_layers.py` (the layer order and every sheet inside its layer).
 - **Platform** — `test_themes.py`, `test_pwa.py`, `test_hashed_assets.py`,
   `test_offline_browser.py`, `test_mobile.py`, `test_motion.py`, `test_prefs.py`,
   `test_settings.py`, `test_no_javascript.py`, `test_print.py`, `test_backgrounds.py`,

@@ -1,0 +1,5 @@
+@layer layout {
+  @media (min-width: 600px) {
+    :root[data-style="fx"] .band { gap: 1rem; }
+  }
+}

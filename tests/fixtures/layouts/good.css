@@ -1,0 +1,11 @@
+@layer layout {
+  :root[data-style="fx"] .band { display: grid; grid-template-columns: repeat(auto-fit, minmax(18rem, 1fr)); gap: 1rem 2rem; }
+  :root[data-style="fx"] .band__head { grid-column: 1 / -1; border-bottom: 1px solid var(--tb-rule); }
+  :root[data-style="fx"] .card { color: var(--tb-ink); font-family: var(--tb-font-display); border-radius: var(--tb-radius); background: transparent; --fx-gap: 2rem; gap: var(--fx-gap); margin: -1px 0 0 -2px; }
+  :root[data-style="fx"] .companion:not([data-optional]) { line-height: 1.5; border-top: 1px solid var(--card-accent-active); }
+  :root[data-style="fx"] .companion[data-optional] { display: none; }
+  :root[data-style="fx"] .chapter-list { list-style-type: decimal-leading-zero; max-width: 62ch; columns: 2; column-rule: 1px solid var(--tb-rule); }
+  @media (min-width: 48em) {
+    :root[data-style="fx"] .card { grid-column: span 2; }
+  }
+}

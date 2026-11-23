@@ -23,6 +23,11 @@ interface TextbookPrefs {
   write: (key: string, value: string) => void;
   setTheme: (value: string) => string;
   currentTheme: () => string;
+  styleKey?: string;
+  styles?: string[];
+  defaultStyle?: string;
+  setStyle?: (value: string) => string;
+  currentStyle?: () => string;
 }
 
 /**

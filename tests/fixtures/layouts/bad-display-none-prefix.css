@@ -1,0 +1,3 @@
+@layer layout {
+  :root[data-style="fx"] .companion[data-optional-anything] { display: none; }
+}

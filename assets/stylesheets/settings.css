@@ -8,213 +8,215 @@
  * so has no --md-* mapping of its own.
  */
 
-/* The trigger is inert without JavaScript; its own file reveals it. */
-.tb-settings__trigger[hidden] {
-  display: none !important;
-}
-
-/* Material's palette inputs are still the mechanism that swaps the scheme, but
- * their header form has no visible control now that its toggle is gone. Hide it
- * so it adds no invisible tab stops. The dialog drives the inputs instead. */
-.md-header__option[data-md-component="palette"] {
-  display: none;
-}
-
-.tb-settings {
-  width: min(40rem, calc(100vw - 2rem));
-  max-width: 100%;
-  max-height: min(85vh, 44rem);
-  padding: 0;
-  border: 1px solid var(--md-default-fg-color--lightest, var(--tb-rule));
-  border-radius: var(--tb-radius);
-  background: var(--md-default-bg-color, var(--tb-paper));
-  color: var(--md-default-fg-color, var(--tb-ink));
-  box-shadow: 0 18px 50px color-mix(in srgb, var(--md-default-fg-color, var(--tb-ink)) 30%, transparent);
-}
-
-.tb-settings::backdrop {
-  background: color-mix(in srgb, var(--md-default-fg-color, var(--tb-ink)) 42%, transparent);
-}
-
-.tb-settings__form {
-  margin: 0;
-  padding: 1rem 1.1rem 0.9rem;
-  overflow: auto;
-  max-height: inherit;
-}
-
-.tb-settings__head {
-  display: flex;
-  align-items: center;
-  gap: 0.5rem;
-  margin-bottom: 0.6rem;
-}
-
-.tb-settings__title {
-  flex: 1;
-  margin: 0;
-  font-family: var(--tb-font-display);
-  font-size: 1.05rem;
-}
-
-.tb-settings__close {
-  border: 0;
-  padding: 0.3rem;
-  border-radius: var(--tb-radius);
-  background: transparent;
-  color: inherit;
-  line-height: 0;
-  cursor: pointer;
-}
-.tb-settings__close:hover {
-  background: color-mix(in srgb, var(--md-default-fg-color, var(--tb-ink)) 8%, transparent);
-}
-.tb-settings__close svg {
-  width: 1.05rem;
-  height: 1.05rem;
-  fill: currentColor;
-}
-
-.tb-settings__group {
-  margin: 0 0 0.5rem;
-  padding: 0;
-  border: 0;
-}
-/* The last group ends the panel, so its bottom margin would only be scrolled
- * past. Measured at 390: removing it is what lets the offline control sit in
- * the viewport instead of 8px under it. */
-.tb-settings__group:last-of-type { margin-bottom: 0; }
-.tb-settings__legend {
-  padding: 0;
-  font-size: 0.78rem;
-  font-weight: 700;
-  letter-spacing: 0.04em;
-  text-transform: uppercase;
-  color: var(--md-default-fg-color--light, var(--tb-ink-soft));
-}
-.tb-settings__hint {
-  margin: 0.15rem 0 0.3rem;
-  font-size: 0.78rem;
-  color: var(--md-default-fg-color--light, var(--tb-ink-soft));
-}
-
-.tb-settings__options {
-  display: grid;
-  /* Seven rem, not nine: at 390px the panel is 358px wide and two columns of 112
-   * still fit beside each other. With nine, every card stacked and the last row
-   * sat below the fold (measured scrollHeight 742 against a 706px viewport). */
-  grid-template-columns: repeat(auto-fit, minmax(7rem, 1fr));
-  gap: 0.4rem;
-}
-
-.tb-settings__option {
-  position: relative;
-  display: block;
-}
-.tb-settings__radio {
-  position: absolute;
-  width: 0;
-  height: 0;
-  opacity: 0;
-}
-.tb-settings__card {
-  display: flex;
-  flex-direction: column;
-  gap: 0.15rem;
-  /* `height: 100%` here was a collapse: the card's height resolved against a
-   * parent whose height was its own content, so every card drew outside its grid
-   * row and the next group's legend printed over it (measured at 390: group 92px,
-   * cards 60px over a 42px row). The row now sizes to the card. */
-  padding: 0.5rem 0.65rem;
-  border: 1px solid var(--md-default-fg-color--lightest, var(--tb-rule));
-  border-radius: var(--tb-radius);
-  background: color-mix(in srgb, var(--md-default-bg-color, var(--tb-paper)) 94%, var(--md-default-fg-color, var(--tb-ink)) 6%);
-  cursor: pointer;
-}
-.tb-settings__radio:checked + .tb-settings__card {
-  border-color: var(--md-primary-fg-color, var(--tb-accent));
-  box-shadow: inset 0 0 0 1px var(--md-primary-fg-color, var(--tb-accent));
-}
-.tb-settings__radio:focus-visible + .tb-settings__card {
-  outline: 2px solid var(--md-accent-fg-color, var(--tb-accent));
-  outline-offset: 2px;
-}
-.tb-settings__option-title {
-  font-size: 0.9rem;
-  font-weight: 600;
-}
-.tb-settings__option-desc {
-  font-size: 0.76rem;
-  line-height: 1.4;
-  color: var(--md-default-fg-color--light, var(--tb-ink-soft));
-}
-
-/* The two members of a bundle, named. Quiet, because it is an identifier rather
- * than a description, and it must not compete with the bundle's own name. */
-.tb-settings__option-note {
-  font-size: 0.75rem;
-  line-height: 1.3;
-  color: var(--md-default-fg-color--light, var(--tb-ink-soft));
-}
-
-/* The mood groups inside the theme fieldset: a second legend, one step quieter
- * than the group's own, because it classifies rather than names the choice. */
-.tb-settings__subgroup {
-  margin: 0 0 0.4rem;
-  padding: 0;
-  border: 0;
-  min-width: 0;
-}
-.tb-settings__sublegend {
-  padding: 0;
-  margin: 0 0 0.3rem;
-  font-size: 0.75rem;
-  font-weight: 600;
-  letter-spacing: 0.04em;
-  text-transform: uppercase;
-  color: var(--md-default-fg-color--light, var(--tb-ink-soft));
-}
-
-@media (max-width: 22rem) {
-  .tb-settings__options {
-    grid-template-columns: 1fr;
-  }
-}
-
-@media print {
-  .tb-settings,
-  .tb-settings__trigger {
+@layer chrome {
+  /* The trigger is inert without JavaScript; its own file reveals it. */
+  .tb-settings__trigger[hidden] {
     display: none !important;
   }
-}
 
-/* The offline control: one button and a progress bar, in the same grid as the
- * cards. A button is not a card — it is an action, not a choice — so it keeps the
- * card's measure and drops the "checked" affordance. Colours come from the tokens
- * the cascade already set; nothing here names one. */
-.tb-settings__download {
-  padding: 0.6rem 0.7rem;
-  border: 1px solid var(--tb-rule);
-  border-radius: var(--tb-radius);
-  background: transparent;
-  color: inherit;
-  font: inherit;
-  font-size: 0.85rem;
-  text-align: left;
-  cursor: pointer;
-}
-.tb-settings__download:hover {
-  border-color: var(--tb-accent);
-}
-.tb-settings__download:focus-visible {
-  outline: 2px solid var(--tb-accent);
-  outline-offset: 2px;
-}
-.tb-settings__download[hidden],
-.tb-settings__progress[hidden] {
-  display: none;
-}
-.tb-settings__progress {
-  inline-size: 100%;
-  block-size: 0.4rem;
+  /* Material's palette inputs are still the mechanism that swaps the scheme, but
+   * their header form has no visible control now that its toggle is gone. Hide it
+   * so it adds no invisible tab stops. The dialog drives the inputs instead. */
+  .md-header__option[data-md-component="palette"] {
+    display: none;
+  }
+
+  .tb-settings {
+    width: min(40rem, calc(100vw - 2rem));
+    max-width: 100%;
+    max-height: min(85vh, 44rem);
+    padding: 0;
+    border: 1px solid var(--md-default-fg-color--lightest, var(--tb-rule));
+    border-radius: var(--tb-radius);
+    background: var(--md-default-bg-color, var(--tb-paper));
+    color: var(--md-default-fg-color, var(--tb-ink));
+    box-shadow: 0 18px 50px color-mix(in srgb, var(--md-default-fg-color, var(--tb-ink)) 30%, transparent);
+  }
+
+  .tb-settings::backdrop {
+    background: color-mix(in srgb, var(--md-default-fg-color, var(--tb-ink)) 42%, transparent);
+  }
+
+  .tb-settings__form {
+    margin: 0;
+    padding: 1rem 1.1rem 0.9rem;
+    overflow: auto;
+    max-height: inherit;
+  }
+
+  .tb-settings__head {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    margin-bottom: 0.6rem;
+  }
+
+  .tb-settings__title {
+    flex: 1;
+    margin: 0;
+    font-family: var(--tb-font-display);
+    font-size: 1.05rem;
+  }
+
+  .tb-settings__close {
+    border: 0;
+    padding: 0.3rem;
+    border-radius: var(--tb-radius);
+    background: transparent;
+    color: inherit;
+    line-height: 0;
+    cursor: pointer;
+  }
+  .tb-settings__close:hover {
+    background: color-mix(in srgb, var(--md-default-fg-color, var(--tb-ink)) 8%, transparent);
+  }
+  .tb-settings__close svg {
+    width: 1.05rem;
+    height: 1.05rem;
+    fill: currentColor;
+  }
+
+  .tb-settings__group {
+    margin: 0 0 0.5rem;
+    padding: 0;
+    border: 0;
+  }
+  /* The last group ends the panel, so its bottom margin would only be scrolled
+   * past. Measured at 390: removing it is what lets the offline control sit in
+   * the viewport instead of 8px under it. */
+  .tb-settings__group:last-of-type { margin-bottom: 0; }
+  .tb-settings__legend {
+    padding: 0;
+    font-size: 0.78rem;
+    font-weight: 700;
+    letter-spacing: 0.04em;
+    text-transform: uppercase;
+    color: var(--md-default-fg-color--light, var(--tb-ink-soft));
+  }
+  .tb-settings__hint {
+    margin: 0.15rem 0 0.3rem;
+    font-size: 0.78rem;
+    color: var(--md-default-fg-color--light, var(--tb-ink-soft));
+  }
+
+  .tb-settings__options {
+    display: grid;
+    /* Seven rem, not nine: at 390px the panel is 358px wide and two columns of 112
+     * still fit beside each other. With nine, every card stacked and the last row
+     * sat below the fold (measured scrollHeight 742 against a 706px viewport). */
+    grid-template-columns: repeat(auto-fit, minmax(7rem, 1fr));
+    gap: 0.4rem;
+  }
+
+  .tb-settings__option {
+    position: relative;
+    display: block;
+  }
+  .tb-settings__radio {
+    position: absolute;
+    width: 0;
+    height: 0;
+    opacity: 0;
+  }
+  .tb-settings__card {
+    display: flex;
+    flex-direction: column;
+    gap: 0.15rem;
+    /* `height: 100%` here was a collapse: the card's height resolved against a
+     * parent whose height was its own content, so every card drew outside its grid
+     * row and the next group's legend printed over it (measured at 390: group 92px,
+     * cards 60px over a 42px row). The row now sizes to the card. */
+    padding: 0.5rem 0.65rem;
+    border: 1px solid var(--md-default-fg-color--lightest, var(--tb-rule));
+    border-radius: var(--tb-radius);
+    background: color-mix(in srgb, var(--md-default-bg-color, var(--tb-paper)) 94%, var(--md-default-fg-color, var(--tb-ink)) 6%);
+    cursor: pointer;
+  }
+  .tb-settings__radio:checked + .tb-settings__card {
+    border-color: var(--md-primary-fg-color, var(--tb-accent));
+    box-shadow: inset 0 0 0 1px var(--md-primary-fg-color, var(--tb-accent));
+  }
+  .tb-settings__radio:focus-visible + .tb-settings__card {
+    outline: 2px solid var(--md-accent-fg-color, var(--tb-accent));
+    outline-offset: 2px;
+  }
+  .tb-settings__option-title {
+    font-size: 0.9rem;
+    font-weight: 600;
+  }
+  .tb-settings__option-desc {
+    font-size: 0.76rem;
+    line-height: 1.4;
+    color: var(--md-default-fg-color--light, var(--tb-ink-soft));
+  }
+
+  /* The two members of a bundle, named. Quiet, because it is an identifier rather
+   * than a description, and it must not compete with the bundle's own name. */
+  .tb-settings__option-note {
+    font-size: 0.75rem;
+    line-height: 1.3;
+    color: var(--md-default-fg-color--light, var(--tb-ink-soft));
+  }
+
+  /* The mood groups inside the theme fieldset: a second legend, one step quieter
+   * than the group's own, because it classifies rather than names the choice. */
+  .tb-settings__subgroup {
+    margin: 0 0 0.4rem;
+    padding: 0;
+    border: 0;
+    min-width: 0;
+  }
+  .tb-settings__sublegend {
+    padding: 0;
+    margin: 0 0 0.3rem;
+    font-size: 0.75rem;
+    font-weight: 600;
+    letter-spacing: 0.04em;
+    text-transform: uppercase;
+    color: var(--md-default-fg-color--light, var(--tb-ink-soft));
+  }
+
+  @media (max-width: 22rem) {
+    .tb-settings__options {
+      grid-template-columns: 1fr;
+    }
+  }
+
+  @media print {
+    .tb-settings,
+    .tb-settings__trigger {
+      display: none !important;
+    }
+  }
+
+  /* The offline control: one button and a progress bar, in the same grid as the
+   * cards. A button is not a card — it is an action, not a choice — so it keeps the
+   * card's measure and drops the "checked" affordance. Colours come from the tokens
+   * the cascade already set; nothing here names one. */
+  .tb-settings__download {
+    padding: 0.6rem 0.7rem;
+    border: 1px solid var(--tb-rule);
+    border-radius: var(--tb-radius);
+    background: transparent;
+    color: inherit;
+    font: inherit;
+    font-size: 0.85rem;
+    text-align: left;
+    cursor: pointer;
+  }
+  .tb-settings__download:hover {
+    border-color: var(--tb-accent);
+  }
+  .tb-settings__download:focus-visible {
+    outline: 2px solid var(--tb-accent);
+    outline-offset: 2px;
+  }
+  .tb-settings__download[hidden],
+  .tb-settings__progress[hidden] {
+    display: none;
+  }
+  .tb-settings__progress {
+    inline-size: 100%;
+    block-size: 0.4rem;
+  }
 }
