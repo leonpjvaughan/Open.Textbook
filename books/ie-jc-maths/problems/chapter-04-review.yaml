@@ -6,8 +6,10 @@
 # `compare`, and standard-form and interleaved questions use SymPy.
 #
 # Honest limit: Questions 4, 5, 9 and 11 ask for a reason or plausibility
-# judgement alongside the calculation. The verifier proves the inequalities,
-# bands and standard-form equivalences, not the prose reasoning.
+# judgement alongside the calculation. Each carries a `structured` component,
+# which proves only that a model answer contains the declared points and concepts
+# in order. The verifier proves the inequalities, bands and standard-form
+# equivalences, not the prose reasoning.
 chapter: 4
 oracles: [sympy, units]
 symbols: {}
@@ -18,7 +20,7 @@ problems:
     tier: O
     refs: ['N.1']
     statement: 'Round 4.276 to 2 decimal places.'
-    answer_label: 'Round 4.276 to 2 decimal places.'
+    answer_label: '4.276 to 2 decimal places'
     check:
       kind: rounded
       value: '4.276'
@@ -31,7 +33,7 @@ problems:
     tier: O
     refs: ['N.1']
     statement: 'Round 0.007349 to 2 significant figures.'
-    answer_label: 'Round 0.007349 to 2 significant figures.'
+    answer_label: '0.007349 to 2 significant figures'
     check:
       kind: sigfigs
       value: '0.007349'
@@ -45,7 +47,7 @@ problems:
     tier: O
     refs: ['N.1']
     statement: 'Round 27450 to 3 significant figures. Write the answer with enough zeros to hold its size.'
-    answer_label: 'Round 27450 to 3 significant figures.'
+    answer_label: '27450 to 3 significant figures'
     check:
       kind: sigfigs
       value: '27450'
@@ -59,7 +61,7 @@ problems:
     tier: O
     refs: ['N.1']
     statement: 'Estimate $5.8\times41.7$. Say whether your estimate is too big or too small, and why.'
-    answer_label: 'Estimate $5.8\times41.7$, and say whether it is too big or too small.'
+    answer_label: 'An estimate for 5.8 x 41.7'
     check:
       kind: all
       checks:
@@ -73,6 +75,19 @@ problems:
           lhs: '240'
           relation: '<'
           rhs: '5.8 * 41.7'
+        - kind: structured
+          requires: [round-each, compare, state-direction]
+          concepts: [rounding, underestimate]
+          points:
+            - id: round-each
+              text: 'Round each number to 1 significant figure: 5.8 becomes 6 and 41.7 becomes 40, so the estimate is 6 x 40 = 240.'
+              concepts: [rounding]
+            - id: compare
+              text: 'The exact product is 241.86, and 240 is less than 241.86.'
+              concepts: [rounding]
+            - id: state-direction
+              text: 'The estimate is too small, because rounding 41.7 down to 40 removes more than rounding 5.8 up to 6 adds.'
+              concepts: [underestimate]
     answer_text: '$6 \times 40 = 240$. The estimate is slightly too small ($240 < 241.86$). Rounding $5.8$ up to $6$ increases it by about $3.4\%$, while rounding $41.7$ down to $40$ cuts it by about $4.1\%$, so the drop outweighs the rise.'
 
   - id: jc4-rev-plausible
@@ -80,7 +95,7 @@ problems:
     tier: O
     refs: ['N.1']
     statement: 'A calculator shows $41.7\times5.8=241.86$. Is this plausible? Use an estimate.'
-    answer_label: 'Is $41.7\times5.8=241.86$ plausible?'
+    answer_label: 'Is 241.86 plausible?'
     check:
       kind: all
       checks:
@@ -94,6 +109,16 @@ problems:
         - kind: evaluate
           expression: '41.7 * 5.8'
           answer: '241.86'
+        - kind: structured
+          requires: [estimate, compare]
+          concepts: [estimate, plausibility]
+          points:
+            - id: estimate
+              text: 'Round each number to 1 significant figure: 40 x 6 = 240.'
+              concepts: [estimate]
+            - id: compare
+              text: 'The calculator answer 241.86 is close to 240, so it is plausible.'
+              concepts: [plausibility]
     answer_text: 'Yes, it is plausible. Rounding each number to $1$ significant figure gives $40 \times 6 = 240$, and $241.86$ is close to $240$ (it is the exact answer).'
 
   - id: jc4-rev-estimate-quotient
@@ -101,7 +126,7 @@ problems:
     tier: O
     refs: ['N.1']
     statement: 'Estimate $728\div19.4$.'
-    answer_label: 'Estimate $728\div19.4$.'
+    answer_label: 'An estimate for 728 divided by 19.4'
     check:
       kind: all
       checks:
@@ -119,7 +144,7 @@ problems:
     tier: O
     refs: ['N.1']
     statement: 'Write 5200000 in standard form.'
-    answer_label: 'Write 5200000 in standard form.'
+    answer_label: '5200000 in standard form'
     check:
       kind: evaluate
       expression: '5.2 * 10**6'
@@ -131,7 +156,7 @@ problems:
     tier: O
     refs: ['N.1']
     statement: 'Write $3.4\times10^{-2}$ as an ordinary number.'
-    answer_label: 'Write $3.4\times10^{-2}$ as an ordinary number.'
+    answer_label: '3.4 x 10 to the minus 2 as an ordinary number'
     check:
       kind: evaluate
       expression: '3.4 * 10**(-2)'
@@ -143,12 +168,24 @@ problems:
     tier: O
     refs: ['N.1']
     statement: 'Which is larger, $6.2\times10^{3}$ or $1.5\times10^{4}$? Give a reason.'
-    answer_label: 'Which is larger, $6.2\times10^{3}$ or $1.5\times10^{4}$?'
+    answer_label: 'Which is larger: 6.2 x 10 cubed or 1.5 x 10 to the fourth?'
     check:
-      kind: compare
-      lhs: '1.5 * 10**4'
-      relation: '>'
-      rhs: '6.2 * 10**3'
+      kind: all
+      checks:
+        - kind: compare
+          lhs: '1.5 * 10**4'
+          relation: '>'
+          rhs: '6.2 * 10**3'
+        - kind: structured
+          requires: [compare-powers, compare-coefficients]
+          concepts: [powers-of-ten, standard-form]
+          points:
+            - id: compare-powers
+              text: 'The first number has 10^3 and the second has 10^4, and 10^4 is ten times 10^3.'
+              concepts: [powers-of-ten]
+            - id: compare-coefficients
+              text: '1.5 x 10^4 = 15000 and 6.2 x 10^3 = 6200, so 1.5 x 10^4 is larger.'
+              concepts: [standard-form]
     answer_text: '$1.5 \times 10^4$. Both numbers are in standard form, so compare the powers of $10$ first: $10^4$ is ten times larger than $10^3$ ($15000 > 6200$).'
 
   - id: jc4-rev-multiply-standard
@@ -156,7 +193,7 @@ problems:
     tier: O
     refs: ['N.1']
     statement: 'Work out $(5\times10^{3})\times(4\times10^{2})$, and give your answer in standard form.'
-    answer_label: 'Work out $(5\times10^{3})\times(4\times10^{2})$ in standard form.'
+    answer_label: 'The standard-form product'
     check:
       kind: evaluate
       expression: '(5 * 10**3) * (4 * 10**2)'
@@ -168,7 +205,7 @@ problems:
     tier: O
     refs: ['N.1']
     statement: 'A number is written as $0.6\times10^{4}$. Is it in standard form? Give a reason, and write it correctly.'
-    answer_label: 'Is $0.6\times10^{4}$ in standard form? Write it correctly.'
+    answer_label: 'Is 0.6 x 10 to the fourth in standard form?'
     check:
       kind: all
       checks:
@@ -179,6 +216,16 @@ problems:
         - kind: evaluate
           expression: '0.6 * 10**4'
           answer: '6 * 10**3'
+        - kind: structured
+          requires: [state-rule, rewrite]
+          concepts: [standard-form-rule]
+          points:
+            - id: state-rule
+              text: 'In standard form the first number must be at least 1 and less than 10, and 0.6 is less than 1, so it is not in standard form.'
+              concepts: [standard-form-rule]
+            - id: rewrite
+              text: 'Multiply 0.6 by 10 and divide 10^4 by 10 to get 6 x 10^3.'
+              concepts: [standard-form-rule]
     answer_text: 'No, because the leading number must be at least $1$ and less than $10$, and $0.6 < 1$. Multiplying $0.6$ by $10$ and dividing $10^4$ by $10$ gives $6 \times 10^3$.'
 
   - id: jc4-rev-interleave-hcf
@@ -186,7 +233,7 @@ problems:
     tier: O
     refs: ['N.1']
     statement: 'Find the highest common factor of 24 and 36.'
-    answer_label: 'Find the highest common factor of 24 and 36.'
+    answer_label: 'The HCF of 24 and 36'
     check:
       kind: evaluate
       expression: 'gcd(24, 36)'
@@ -198,7 +245,7 @@ problems:
     tier: O
     refs: ['N.1']
     statement: 'Write 360 as a product of its prime factors.'
-    answer_label: 'Write 360 as a product of its prime factors.'
+    answer_label: '360 in prime factors'
     check:
       kind: evaluate
       expression: '2**3 * 3**2 * 5'
@@ -210,7 +257,7 @@ problems:
     tier: O
     refs: ['N.1']
     statement: 'Work out $2^{3}\times2^{4}$.'
-    answer_label: 'Work out $2^{3}\times2^{4}$.'
+    answer_label: '2 cubed times 2 to the fourth'
     check:
       kind: all
       checks:
@@ -227,7 +274,7 @@ problems:
     tier: O
     refs: ['N.1']
     statement: 'Write 0.875 as a fraction in its simplest form.'
-    answer_label: 'Write 0.875 as a fraction in its simplest form.'
+    answer_label: '0.875 as a fraction'
     check:
       kind: all
       checks:

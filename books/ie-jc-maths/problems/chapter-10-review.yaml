@@ -1,0 +1,182 @@
+# Mixed practice for the Chapter 10 Review.
+#
+# Ten questions, one record each, in the order they appear on the Review page.
+# Substitutions, solutions and the arithmetic are proved by SymPy.
+#
+# Honest limit: Question 1 and Question 2 ask for an expression from a sentence,
+# and the verifier cannot translate prose. Their checks prove an equivalent
+# form of the model answer; they do not prove that a reader chose the right
+# expression. Questions 5, 8 and 10 ask for a reason or an explanation, so they
+# carry a `structured` component, which proves only that a model answer contains
+# the declared steps and concepts in order.
+chapter: 10
+oracles: [sympy, units]
+symbols:
+  n: {real: true}
+  x: {real: true}
+  a: {real: true}
+  m: {real: true}
+
+problems:
+  - id: jc10-rev-cost-expression
+    section: Review
+    tier: O
+    refs: ['AF.2']
+    statement: 'Write an expression for the cost of $n$ sandwiches at €4 each.'
+    answer_label: 'The cost of n sandwiches'
+    check:
+      kind: evaluate
+      expression: '4*n'
+      answer: 'n + n + n + n'
+    answer_text: '$4n$ euro. Each sandwich costs €4, so $n$ sandwiches cost $4$ added $n$ times, which is $4 \times n = 4n$. The letter $n$ stands for the number of sandwiches, and the expression gives the cost for any value of $n$.'
+
+  - id: jc10-rev-subtract-expression
+    section: Review
+    tier: O
+    refs: ['AF.2']
+    statement: 'Write an expression for a number $x$ with 9 taken away.'
+    answer_label: 'A number with 9 taken away'
+    check:
+      kind: evaluate
+      expression: '(x - 9) + 9'
+      answer: 'x'
+    answer_text: '$x - 9$. Start with $x$ and subtract $9$. Adding $9$ back returns $x$, which checks that the expression records the right operation. Writing $9 - x$ would take $x$ away from $9$, which is a different statement.'
+
+  - id: jc10-rev-substitute-linear
+    section: Review
+    tier: O
+    refs: ['AF.2']
+    statement: 'Find the value of $6x-1$ when $x=3$.'
+    answer_label: 'The value of 6x - 1 when x = 3'
+    check:
+      kind: apply
+      expression: '6*x - 1'
+      apply: {op: subs, args: [x, '3']}
+      answer: '17'
+    answer_text: '$17$. Substitute $3$ for $x$: $6 \times 3 - 1 = 18 - 1 = 17$. Multiplication comes before subtraction, so the $6 \times 3$ is worked out first.'
+
+  - id: jc10-rev-substitute-quadratic
+    section: Review
+    tier: O
+    refs: ['AF.2']
+    statement: 'Find the value of $a^2+3a$ when $a=-2$.'
+    answer_label: 'The value of a squared plus 3a when a = -2'
+    check:
+      kind: apply
+      expression: 'a**2 + 3*a'
+      apply: {op: subs, args: [a, '-2']}
+      answer: '-2'
+    answer_text: '$-2$. Substitute $-2$ for $a$: $(-2)^2 + 3 \times (-2) = 4 - 6 = -2$. The square of a negative number is positive, so $(-2)^2 = 4$; the multiplication then gives $-6$.'
+
+  - id: jc10-rev-test-solution
+    section: Review
+    tier: O
+    refs: ['AF.2']
+    statement: 'Is $x=5$ a solution of $2x+3=13$? Give a reason.'
+    answer_label: 'Is x = 5 a solution of 2x + 3 = 13?'
+    check:
+      kind: all
+      checks:
+        - kind: evaluate
+          expression: '2*5 + 3'
+          answer: '13'
+        - kind: structured
+          requires: [substitute-both-sides]
+          concepts: [solution, balance]
+          points:
+            - id: substitute-both-sides
+              text: 'Substitute x = 5: the left side is 2 x 5 + 3 = 13, which equals the right side, so x = 5 is a solution.'
+              concepts: [solution, balance]
+    answer_text: 'Yes. Substitute $x = 5$ into the left side: $2 \times 5 + 3 = 10 + 3 = 13$, which equals the right side. A value is a solution when it makes the two sides equal, so $x = 5$ is a solution.'
+
+  - id: jc10-rev-write-equation
+    section: Review
+    tier: O
+    refs: ['AF.2']
+    statement: 'Write an equation for "three times a number $n$ is 24", and find $n$.'
+    answer_label: 'The equation, and the value of n'
+    check:
+      kind: solve
+      equation: '3*n = 24'
+      variable: n
+      answer: '8'
+    answer_text: '$3n = 24$, so $n = 8$. The word "is" marks the equals sign, so three times $n$ equals $24$. Divide both sides by $3$: $n = 24 \div 3 = 8$. Check: $3 \times 8 = 24$.'
+
+  - id: jc10-rev-nth-term
+    section: Review
+    tier: O
+    refs: ['AF.1', 'AF.2']
+    statement: 'A pattern has general term $5n-2$. Find the 20th term.'
+    answer_label: 'The 20th term of 5n - 2'
+    check:
+      kind: apply
+      expression: '5*n - 2'
+      apply: {op: subs, args: [n, '20']}
+      answer: '98'
+    answer_text: '$98$. Substitute $n = 20$: $5 \times 20 - 2 = 100 - 2 = 98$. The general term gives each term directly, so no earlier terms need to be worked out.'
+
+  - id: jc10-rev-square-signs
+    section: Review
+    tier: O
+    refs: ['AF.2']
+    statement: 'Work out $(-4)^2$ and $-4^2$. Are the two values the same? Explain.'
+    answer_label: '(-4) squared and -4 squared'
+    check:
+      kind: all
+      checks:
+        - kind: evaluate
+          expression: '(-4)**2'
+          answer: '16'
+        - kind: evaluate
+          expression: '-4**2'
+          answer: '-16'
+        - kind: compare
+          lhs: '(-4)**2'
+          relation: '>'
+          rhs: '-4**2'
+        - kind: structured
+          requires: [bracket-square, index-first]
+          concepts: [brackets, index-before-minus]
+          points:
+            - id: bracket-square
+              text: 'In (-4)^2 the brackets include the sign, so the whole of -4 is squared and the answer is 16.'
+              concepts: [brackets]
+            - id: index-first
+              text: 'In -4^2 the index applies only to 4, and the minus sign is applied afterwards, so the answer is -16.'
+              concepts: [index-before-minus]
+    answer_text: 'They are not the same. $(-4)^2 = 16$, because the brackets include the minus sign, and a negative number squared is positive. In $-4^2$ the index applies only to $4$, so $4^2 = 16$ and the minus sign is applied afterwards, giving $-16$. The brackets decide which part is squared.'
+
+  - id: jc10-rev-phone-plan
+    section: Review
+    tier: O
+    refs: ['AF.2']
+    statement: 'A phone plan costs $15+0.10m$ euro for $m$ minutes. Find the cost of 90 minutes.'
+    answer_label: 'The cost of 90 minutes'
+    check:
+      kind: apply
+      expression: '15 + 0.10*m'
+      apply: {op: subs, args: [m, '90']}
+      answer: '24'
+    answer_text: '€24. Substitute $m = 90$: $15 + 0.10 \times 90 = 15 + 9 = 24$. The $15$ euro is paid whatever the call length, and the $0.10$ euro is paid for each minute, so $90$ minutes add $9$ euro.'
+
+  - id: jc10-rev-expression-vs-equation
+    section: Review
+    tier: O
+    refs: ['AF.2']
+    statement: 'Explain the difference between an expression and an equation, using an example of each.'
+    answer_label: 'An expression and an equation'
+    check:
+      kind: structured
+      requires: [define-expression, define-equation, give-examples]
+      concepts: [no-equals-sign, equals-sign, solve]
+      points:
+        - id: define-expression
+          text: 'An expression is a combination of numbers, letters and operations with no equals sign, such as 3x + 5. It can be simplified or evaluated, but it is not solved.'
+          concepts: [no-equals-sign]
+        - id: define-equation
+          text: 'An equation states that two expressions are equal, such as 3x + 5 = 20. It can be solved to find the value of the letter.'
+          concepts: [equals-sign, solve]
+        - id: give-examples
+          text: 'For example, 3x + 5 is an expression, and 3x + 5 = 20 is an equation; the equation has a solution, x = 5, and the expression has a value once x is known.'
+          concepts: [equals-sign]
+    answer_text: 'An expression is a combination of numbers, letters and operations with no equals sign, such as $3x + 5$. You can simplify it or substitute into it, but you cannot solve it. An equation states that two expressions are equal, such as $3x + 5 = 20$, and it can be solved: $x = 5$. The equals sign is the difference between them.'

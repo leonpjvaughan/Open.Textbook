@@ -1,0 +1,184 @@
+# Mixed practice for the Chapter 11 Review.
+#
+# Fourteen questions, one record each, in the order they appear on the Review
+# page. Questions 13 and 14 are Higher level. Every expansion, factorisation,
+# simplification and division is proved by SymPy: an expansion or factorisation
+# by symbolic equivalence, and a division by the `div` operation.
+#
+# Honest limit: equivalence proves that two expressions are equal for every
+# value of x. It does not prove that a factorisation is complete, and it does
+# not prove that a reader chose the best method.
+chapter: 11
+symbols:
+  x: {real: true}
+
+problems:
+  - id: jc11-rev-collect
+    section: Review
+    tier: O
+    refs: ['AF.3']
+    statement: 'Simplify $6x+9x-4x$.'
+    answer_label: 'Collect the like terms'
+    check:
+      kind: evaluate
+      expression: '6*x + 9*x - 4*x'
+      answer: '11*x'
+    answer_text: '$11x$. All three terms are multiples of $x$, so combine the numbers: $6 + 9 - 4 = 11$. The letter does not change, because the terms are alike.'
+
+  - id: jc11-rev-subtract-brackets
+    section: Review
+    tier: O
+    refs: ['AF.3']
+    statement: 'Simplify $(4x+3)-(2x-5)$.'
+    answer_label: 'Subtract the brackets'
+    check:
+      kind: evaluate
+      expression: '(4*x + 3) - (2*x - 5)'
+      answer: '2*x + 8'
+    answer_text: '$2x + 8$. Subtract each term in the second bracket: $4x + 3 - 2x + 5$. The $-5$ becomes $+5$ because subtracting the whole bracket changes its sign. Then collect: $4x - 2x = 2x$ and $3 + 5 = 8$.'
+
+  - id: jc11-rev-expand-single
+    section: Review
+    tier: O
+    refs: ['AF.3']
+    statement: 'Expand $5(2x+3)$.'
+    answer_label: 'Expand 5(2x + 3)'
+    check:
+      kind: evaluate
+      expression: '5*(2*x + 3)'
+      answer: '10*x + 15'
+    answer_text: '$10x + 15$. Multiply each term inside the bracket by $5$: $5 \times 2x = 10x$ and $5 \times 3 = 15$. The bracket is finished once every term has been multiplied.'
+
+  - id: jc11-rev-expand-negative
+    section: Review
+    tier: O
+    refs: ['AF.3']
+    statement: 'Expand $-3(x-4)$.'
+    answer_label: 'Expand -3(x - 4)'
+    check:
+      kind: evaluate
+      expression: '-3*(x - 4)'
+      answer: '-3*x + 12'
+    answer_text: '$-3x + 12$. Multiply each term by $-3$: $-3 \times x = -3x$ and $-3 \times (-4) = +12$. The second term becomes positive, because a negative times a negative is positive.'
+
+  - id: jc11-rev-expand-two
+    section: Review
+    tier: O
+    refs: ['AF.3']
+    statement: 'Expand $(x+6)(x+2)$.'
+    answer_label: 'Expand (x + 6)(x + 2)'
+    check:
+      kind: evaluate
+      expression: '(x + 6)*(x + 2)'
+      answer: 'x**2 + 8*x + 12'
+    answer_text: '$x^2 + 8x + 12$. Multiply every term in the first bracket by every term in the second: $x^2 + 2x + 6x + 12$. Then collect the two $x$ terms: $2x + 6x = 8x$.'
+
+  - id: jc11-rev-expand-square
+    section: Review
+    tier: O
+    refs: ['AF.3']
+    statement: 'Expand $(x-5)^2$.'
+    answer_label: 'Expand (x - 5) squared'
+    check:
+      kind: evaluate
+      expression: '(x - 5)**2'
+      answer: 'x**2 - 10*x + 25'
+    answer_text: '$x^2 - 10x + 25$. Write the square as two brackets: $(x - 5)(x - 5)$. Multiplying gives $x^2 - 5x - 5x + 25$, and the middle terms add to $-10x$. The answer is not $x^2 - 25$; that would need a plus sign in one bracket.'
+
+  - id: jc11-rev-common-factor
+    section: Review
+    tier: O
+    refs: ['AF.3']
+    statement: 'Factorise $8x+20$.'
+    answer_label: 'Factorise 8x + 20'
+    check:
+      kind: evaluate
+      expression: '8*x + 20'
+      answer: '4*(2*x + 5)'
+    answer_text: '$4(2x + 5)$. The highest common factor of $8$ and $20$ is $4$. Take it outside the bracket and divide each term by $4$: $8x \div 4 = 2x$ and $20 \div 4 = 5$. Multiply back out to check.'
+
+  - id: jc11-rev-factorise-quadratic
+    section: Review
+    tier: O
+    refs: ['AF.3']
+    statement: 'Factorise $x^2+8x+15$.'
+    answer_label: 'Factorise x squared plus 8x plus 15'
+    check:
+      kind: evaluate
+      expression: 'x**2 + 8*x + 15'
+      answer: '(x + 3)*(x + 5)'
+    answer_text: '$(x + 3)(x + 5)$. Find two numbers that multiply to $15$ and add to $8$: $3$ and $5$. Those numbers fill the two brackets. Multiply back out to check: $x^2 + 5x + 3x + 15 = x^2 + 8x + 15$.'
+
+  - id: jc11-rev-difference-squares
+    section: Review
+    tier: O
+    refs: ['AF.3']
+    statement: 'Factorise $x^2-9$.'
+    answer_label: 'Factorise x squared minus 9'
+    check:
+      kind: evaluate
+      expression: 'x**2 - 9'
+      answer: '(x - 3)*(x + 3)'
+    answer_text: '$(x - 3)(x + 3)$. This is the difference of two squares: $x^2 - 3^2$. The factorised form has one bracket with a minus and one with a plus, so the middle terms cancel when it is multiplied out.'
+
+  - id: jc11-rev-difference-squares-coefficient
+    section: Review
+    tier: O
+    refs: ['AF.3']
+    statement: 'Factorise $4x^2-25$.'
+    answer_label: 'Factorise 4x squared minus 25'
+    check:
+      kind: evaluate
+      expression: '4*x**2 - 25'
+      answer: '(2*x - 5)*(2*x + 5)'
+    answer_text: '$(2x - 5)(2x + 5)$. Both terms are squares: $4x^2 = (2x)^2$ and $25 = 5^2$. The difference of two squares factorises into one bracket with a minus and one with a plus.'
+
+  - id: jc11-rev-expand-simplify
+    section: Review
+    tier: O
+    refs: ['AF.3']
+    statement: 'Expand and simplify $3(x+2)+2(x+5)$.'
+    answer_label: 'Expand and simplify 3(x + 2) + 2(x + 5)'
+    check:
+      kind: evaluate
+      expression: '3*(x + 2) + 2*(x + 5)'
+      answer: '5*x + 16'
+    answer_text: '$5x + 16$. Expand each bracket first: $3x + 6 + 2x + 10$. Then collect like terms: $3x + 2x = 5x$ and $6 + 10 = 16$. Expanding first and collecting afterwards avoids losing a term.'
+
+  - id: jc11-rev-expand-two-pairs
+    section: Review
+    tier: O
+    refs: ['AF.3']
+    statement: 'Expand and simplify $(x+4)(x-4)+(x+1)(x+3)$.'
+    answer_label: 'Expand and simplify the two pairs of brackets'
+    check:
+      kind: evaluate
+      expression: '(x + 4)*(x - 4) + (x + 1)*(x + 3)'
+      answer: '2*x**2 + 4*x - 13'
+    answer_text: '$2x^2 + 4x - 13$. The first pair is the difference of two squares: $x^2 - 16$. The second pair expands to $x^2 + 4x + 3$. Add them: $x^2 + x^2 = 2x^2$, the $4x$ stays, and $-16 + 3 = -13$.'
+
+  - id: jc11-rev-divide-cubic
+    section: Review
+    tier: H
+    refs: ['AF.3']
+    statement: 'Divide $x^3+6x^2+8x$ by $x+2$.'
+    answer_label: 'Divide the cubic by x + 2'
+    check:
+      kind: apply
+      expression: 'x**3 + 6*x**2 + 8*x'
+      apply: {op: div, args: ['x + 2', x]}
+      answer: 'x**2 + 4*x'
+    answer_text: '$x^2 + 4x$. Factorise first: $x^3 + 6x^2 + 8x = x(x^2 + 6x + 8) = x(x + 2)(x + 4)$. Dividing by $x + 2$ leaves $x(x + 4) = x^2 + 4x$. The remainder is zero, so $x + 2$ is a factor.'
+
+  - id: jc11-rev-divide-sum-cubes
+    section: Review
+    tier: H
+    refs: ['AF.3']
+    statement: 'Divide $x^3+8$ by $x+2$.'
+    answer_label: 'Divide x cubed plus 8 by x + 2'
+    check:
+      kind: apply
+      expression: 'x**3 + 8'
+      apply: {op: div, args: ['x + 2', x]}
+      answer: 'x**2 - 2*x + 4'
+    answer_text: '$x^2 - 2x + 4$. This is a sum of cubes: $x^3 + 8 = x^3 + 2^3 = (x + 2)(x^2 - 2x + 4)$. Dividing by $x + 2$ leaves the quadratic factor. The remainder is zero, so $x + 2$ is a factor.'

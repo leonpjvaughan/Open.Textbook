@@ -49,18 +49,9 @@ Work through these without notes. For each one, decide **which idea applies** an
 say why in a few words. The idea might be writing an expression, substituting a
 value, testing a solution, or the order of operations.
 
-1. Write an expression for the cost of $n$ sandwiches at €4 each.
-2. Write an expression for a number $x$ with 9 taken away.
-3. Find the value of $6x-1$ when $x=3$.
-4. Find the value of $a^2+3a$ when $a=-2$.
-5. Is $x=5$ a solution of $2x+3=13$? Give a reason.
-6. Write an equation for "three times a number $n$ is 24", and find $n$.
-7. A pattern has general term $5n-2$. Find the 20th term.
-8. Work out $(-4)^2$ and $-4^2$. Are the two values the same? Explain.
-9. A phone plan costs $15+0.10m$ euro for $m$ minutes. Find the cost of 90
-   minutes.
-10. Explain the difference between an expression and an equation, using an
-    example of each.
+:::problems chapter-10-review
+
+:::answers chapter-10-review
 
 ## What you can now do
 

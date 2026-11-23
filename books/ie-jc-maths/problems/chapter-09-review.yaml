@@ -1,0 +1,201 @@
+# Mixed practice for the Chapter 9 Review.
+#
+# Twelve questions, one record each, in the order they appear on the Review
+# page. Each general term is proved by substituting the given positions, and the
+# interleaved arithmetic is proved by SymPy.
+#
+# Honest limit: Question 3 asks which kind of pattern a sequence is as well as
+# its general term. The substitutions prove the term, and the `structured`
+# component proves only that a model answer names the kind and the term in
+# order, not that a reader's explanation is sound.
+chapter: 9
+oracles: [sympy, units]
+symbols:
+  n: {real: true}
+
+problems:
+  - id: jc9-rev-linear-term
+    section: Review
+    tier: O
+    refs: ['AF.1']
+    statement: 'Find the general term of $6, 11, 16, 21, \ldots$.'
+    answer_label: 'The general term of 6, 11, 16, 21'
+    check:
+      kind: all
+      checks:
+        - {kind: apply, expression: '5*n + 1', apply: {op: subs, args: [n, '1']}, answer: '6'}
+        - {kind: apply, expression: '5*n + 1', apply: {op: subs, args: [n, '2']}, answer: '11'}
+        - {kind: apply, expression: '5*n + 1', apply: {op: subs, args: [n, '3']}, answer: '16'}
+        - {kind: apply, expression: '5*n + 1', apply: {op: subs, args: [n, '4']}, answer: '21'}
+    answer_text: '$5n + 1$. The terms rise by $5$ each time, so the rule starts with $5n$. At position $1$, $5 \times 1 = 5$, and the term is $6$, so add $1$.'
+
+  - id: jc9-rev-quadratic-term
+    section: Review
+    tier: O
+    refs: ['AF.1']
+    statement: 'Find the general term of $3, 9, 19, 33, \ldots$.'
+    answer_label: 'The general term of 3, 9, 19, 33'
+    check:
+      kind: all
+      checks:
+        - {kind: apply, expression: '2*n**2 + 1', apply: {op: subs, args: [n, '1']}, answer: '3'}
+        - {kind: apply, expression: '2*n**2 + 1', apply: {op: subs, args: [n, '2']}, answer: '9'}
+        - {kind: apply, expression: '2*n**2 + 1', apply: {op: subs, args: [n, '3']}, answer: '19'}
+        - {kind: apply, expression: '2*n**2 + 1', apply: {op: subs, args: [n, '4']}, answer: '33'}
+    answer_text: '$2n^2 + 1$. The first differences are $6, 10, 14$, so the second difference is $4$ and the rule starts with $2n^2$. Subtracting $2n^2$ leaves $1, 1, 1, 1$, so add $1$.'
+
+  - id: jc9-rev-exponential-term
+    section: Review
+    tier: O
+    refs: ['AF.1']
+    statement: 'Which kind of pattern is $4, 8, 16, 32, \ldots$? Give its general term.'
+    answer_label: 'The kind of pattern, and its general term'
+    check:
+      kind: all
+      checks:
+        - kind: evaluate
+          expression: '8 / 4'
+          answer: '2'
+        - kind: evaluate
+          expression: '16 / 8'
+          answer: '2'
+        - kind: evaluate
+          expression: '32 / 16'
+          answer: '2'
+        - {kind: apply, expression: '4*2**(n - 1)', apply: {op: subs, args: [n, '1']}, answer: '4'}
+        - {kind: apply, expression: '4*2**(n - 1)', apply: {op: subs, args: [n, '2']}, answer: '8'}
+        - {kind: apply, expression: '4*2**(n - 1)', apply: {op: subs, args: [n, '3']}, answer: '16'}
+        - {kind: apply, expression: '4*2**(n - 1)', apply: {op: subs, args: [n, '4']}, answer: '32'}
+        - kind: structured
+          requires: [kind-of-pattern, general-term]
+          concepts: [common-ratio, exponential]
+          points:
+            - id: kind-of-pattern
+              text: 'Each term is twice the one before it, so the pattern is exponential, not linear or quadratic.'
+              concepts: [common-ratio, exponential]
+            - id: general-term
+              text: 'The first term is 4 and the multiplier is 2, so the general term is 4 x 2^(n - 1).'
+              concepts: [exponential]
+    answer_text: 'It is exponential: every term is twice the one before it, because $8 \div 4 = 16 \div 8 = 32 \div 16 = 2$. Its general term is $4 \times 2^{n-1}$, which also equals $2^{n+1}$. A linear rule adds the same amount each time, and a quadratic rule has a constant second difference; this rule multiplies instead.'
+
+  - id: jc9-rev-compare-at-four
+    section: Review
+    tier: O
+    refs: ['AF.1']
+    statement: 'At position 4, which is larger, $2^{n-1}$ or $n^2$?'
+    answer_label: 'Which is larger at position 4?'
+    check:
+      kind: compare
+      lhs: '4**2'
+      relation: '>'
+      rhs: '2**(4 - 1)'
+    answer_text: '$n^2$ is larger. At position $4$, $2^{4-1} = 2^3 = 8$ and $4^2 = 16$. At position $1$ the two rules are equal, both giving $1$. The square then leads until position $6$, where $2^5 = 32$ and $6^2 = 36$. At position $7$ the exponential rule overtakes, $64$ against $49$.'
+
+  - id: jc9-rev-repeating-cycle
+    section: Review
+    tier: O
+    refs: ['N.4']
+    statement: 'A pattern repeats $5, 9, 13, 5, 9, 13, \ldots$. What is the 20th term?'
+    answer_label: 'The 20th term of the repeating pattern'
+    check:
+      kind: all
+      checks:
+        - kind: evaluate
+          expression: '(20 - 1) % 3'
+          answer: '1'
+        - kind: evaluate
+          expression: '5 + 4 * 1'
+          answer: '9'
+    answer_text: '$9$. The cycle has $3$ terms. Since $20 = 3 \times 6 + 2$, the 20th term is the second term of a cycle, which is $9$. Counting from $1$ means the remainder $2$ lands on the second term, not the first.'
+
+  - id: jc9-rev-graph-rule
+    section: Review
+    tier: O
+    refs: ['AF.1', 'AF.2']
+    statement: 'A graph passes through $(1, 2)$, $(2, 5)$ and $(3, 8)$. Find the rule.'
+    answer_label: 'The rule of the graph'
+    check:
+      kind: all
+      checks:
+        - {kind: apply, expression: '3*n - 1', apply: {op: subs, args: [n, '1']}, answer: '2'}
+        - {kind: apply, expression: '3*n - 1', apply: {op: subs, args: [n, '2']}, answer: '5'}
+        - {kind: apply, expression: '3*n - 1', apply: {op: subs, args: [n, '3']}, answer: '8'}
+    answer_text: '$3n - 1$. The values rise by $3$ each step, so the rule starts with $3n$. At position $1$, $3 \times 1 = 3$, and the value is $2$, so take $1$ away.'
+
+  - id: jc9-rev-interleave-powers
+    section: Review
+    tier: O
+    refs: ['N.1']
+    statement: 'Work out $2^5$.'
+    answer_label: 'Two to the fifth'
+    check:
+      kind: evaluate
+      expression: '2**5'
+      answer: '32'
+    answer_text: '$32$. Multiply $2$ by itself five times: $2 \times 2 \times 2 \times 2 \times 2 = 32$.'
+
+  - id: jc9-rev-interleave-lcm-hcf
+    section: Review
+    tier: O
+    refs: ['N.1']
+    statement: 'Find the lowest common multiple and the highest common factor of 12 and 18.'
+    answer_label: 'The LCM and HCF of 12 and 18'
+    check:
+      kind: all
+      checks:
+        - kind: evaluate
+          expression: 'lcm(12, 18)'
+          answer: '36'
+        - kind: evaluate
+          expression: 'gcd(12, 18)'
+          answer: '6'
+    answer_text: 'The lowest common multiple is $36$, and the highest common factor is $6$. Since $12 = 2^2 \times 3$ and $18 = 2 \times 3^2$, the LCM takes the larger power of each prime, $2^2 \times 3^2 = 36$, and the HCF takes the smaller, $2 \times 3 = 6$.'
+
+  - id: jc9-rev-interleave-percentage
+    section: Review
+    tier: O
+    refs: ['N.2']
+    statement: 'Work out $15\%$ of 240.'
+    answer_label: 'Fifteen per cent of 240'
+    check:
+      kind: evaluate
+      expression: '15/100 * 240'
+      answer: '36'
+    answer_text: '$36$. Ten per cent of $240$ is $24$, and five per cent is half of that, $12$. Together they give $24 + 12 = 36$.'
+
+  - id: jc9-rev-interleave-speed
+    section: Review
+    tier: O
+    refs: ['N.3']
+    statement: 'A car travels 150 km in 3 hours. Find its average speed.'
+    answer_label: 'The average speed'
+    check:
+      kind: evaluate
+      expression: '150 / 3'
+      answer: '50'
+    answer_text: '$50$ km/h. Divide the distance by the time: $150 \div 3 = 50$ km/h. The average speed is the single steady speed that would cover the same distance in the same time.'
+
+  - id: jc9-rev-interleave-order
+    section: Review
+    tier: O
+    refs: ['N.1']
+    statement: 'Work out $3+4\times5$.'
+    answer_label: 'Three plus four times five'
+    check:
+      kind: evaluate
+      expression: '3 + 4 * 5'
+      answer: '23'
+    answer_text: '$23$. Multiplication goes before addition: $4 \times 5 = 20$, then $3 + 20 = 23$. Working from left to right would give $35$, which is the common error.'
+
+  - id: jc9-rev-interleave-round
+    section: Review
+    tier: O
+    refs: ['N.1']
+    statement: 'Round 3.476 to two decimal places.'
+    answer_label: '3.476 to two decimal places'
+    check:
+      kind: rounded
+      value: '3.476'
+      rounded: '3.48'
+      to: '0.01'
+    answer_text: '$3.48$. The third decimal digit is $6$, which is $5$ or more, so the $7$ in the hundredths place rounds up to $8$.'

@@ -19,7 +19,7 @@ problems:
     tier: O
     refs: ['N.2']
     statement: 'Write the ratio $45:60$ in its simplest form.'
-    answer_label: 'Write the ratio $45:60$ in its simplest form.'
+    answer_label: '45:60 in its simplest form'
     check:
       kind: all
       checks:
@@ -39,7 +39,7 @@ problems:
     tier: O
     refs: ['N.2']
     statement: 'Divide 84 in the ratio $3:4$.'
-    answer_label: 'Divide 84 in the ratio $3:4$.'
+    answer_label: '84 divided in the ratio 3:4'
     check:
       kind: all
       checks:
@@ -59,7 +59,7 @@ problems:
     tier: O
     refs: ['N.3']
     statement: 'Five kilograms of rice cost 8 euro. Find the cost of twelve kilograms.'
-    answer_label: 'Find the cost of twelve kilograms of rice.'
+    answer_label: 'The cost of twelve kilograms'
     check:
       kind: evaluate
       expression: '8 / 5 * 12'
@@ -71,7 +71,7 @@ problems:
     tier: O
     refs: ['N.3']
     statement: 'Six workers take 10 hours to finish a job. How long would four workers take?'
-    answer_label: 'How long would four workers take to finish the job?'
+    answer_label: 'Four workers on the same job'
     check:
       kind: evaluate
       expression: '(6 * 10) / 4'
@@ -83,7 +83,7 @@ problems:
     tier: O
     refs: ['N.3']
     statement: 'A price rises from 60 euro to 66 euro. Find the absolute increase and the percentage increase.'
-    answer_label: 'Find the absolute increase and the percentage increase.'
+    answer_label: 'The absolute and percentage increase'
     check:
       kind: all
       checks:
@@ -100,7 +100,7 @@ problems:
     tier: O
     refs: ['N.3']
     statement: 'A car travels 210 km in 2.5 hours. Find its average speed.'
-    answer_label: 'Find the average speed of the car.'
+    answer_label: 'The average speed'
     check:
       kind: evaluate
       expression: '210 / 2.5'
@@ -112,7 +112,7 @@ problems:
     tier: O
     refs: ['N.2']
     statement: 'Write the ratio $48:36$ in its simplest form, and say which of the two amounts is larger.'
-    answer_label: 'Simplify $48:36$ and say which amount is larger.'
+    answer_label: '48:36 simplified, and the larger amount'
     check:
       kind: all
       checks:
@@ -136,7 +136,7 @@ problems:
     tier: O
     refs: ['N.3']
     statement: 'A recipe for 6 people uses 480 g of flour. How much flour is needed for 15 people?'
-    answer_label: 'How much flour is needed for 15 people?'
+    answer_label: 'Flour for 15 people'
     check:
       kind: evaluate
       expression: '480 / 6 * 15'
@@ -148,7 +148,7 @@ problems:
     tier: O
     refs: ['N.3']
     statement: 'Eight people share a prize equally and receive 35 euro each. How much would each of fourteen people receive from the same prize?'
-    answer_label: 'How much would each of fourteen people receive?'
+    answer_label: 'The prize shared among fourteen'
     check:
       kind: evaluate
       expression: '(8 * 35) / 14'
@@ -160,7 +160,7 @@ problems:
     tier: O
     refs: ['N.3']
     statement: 'The coach costs 480 euro. If 40 students go, each pays 12 euro. Find what each pays if 60 students go.'
-    answer_label: 'Find what each student pays if 60 students go.'
+    answer_label: 'The coach cost per student'
     check:
       kind: all
       checks:
@@ -177,7 +177,7 @@ problems:
     tier: O
     refs: ['N.1']
     statement: 'Round 0.007349 to 2 significant figures.'
-    answer_label: 'Round 0.007349 to 2 significant figures.'
+    answer_label: '0.007349 to 2 significant figures'
     check:
       kind: sigfigs
       value: '0.007349'
@@ -191,7 +191,7 @@ problems:
     tier: O
     refs: ['N.1']
     statement: 'Find the highest common factor of 84 and 126.'
-    answer_label: 'Find the highest common factor of 84 and 126.'
+    answer_label: 'The HCF of 84 and 126'
     check:
       kind: evaluate
       expression: 'gcd(84, 126)'
@@ -203,7 +203,7 @@ problems:
     tier: O
     refs: ['N.1']
     statement: 'Work out $2^{3}\times3^{2}$.'
-    answer_label: 'Work out $2^{3}\times3^{2}$.'
+    answer_label: '2 cubed times 3 squared'
     check:
       kind: evaluate
       expression: '2**3 * 3**2'
@@ -215,7 +215,7 @@ problems:
     tier: O
     refs: ['N.1']
     statement: 'Write 5200000 in standard form.'
-    answer_label: 'Write 5200000 in standard form.'
+    answer_label: '5200000 in standard form'
     check:
       kind: evaluate
       expression: '5.2 * 10**6'
@@ -227,7 +227,7 @@ problems:
     tier: H
     refs: ['N.2']
     statement: 'Two amounts are in the ratio $7:4$, and their difference is 18 euro. Find the two amounts.'
-    answer_label: 'Find the two amounts in the ratio $7:4$ with difference 18 euro.'
+    answer_label: 'The two amounts in the ratio 7:4'
     check:
       kind: all
       checks:
