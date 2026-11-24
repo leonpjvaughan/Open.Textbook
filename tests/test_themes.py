@@ -592,7 +592,34 @@ def test_every_bundle_has_swatch_tokens_in_both_schemes(bundle):
         assert match, f"{bundle.id}/{scheme}: no swatch block"
         palette = bundle.palette(scheme)
         for key, variable in themes.SWATCH_TOKENS.items():
-            assert f"{variable}: {palette[key]};" in match.group(1), f"{bundle.id}/{scheme}: {variable}"
+            real = re.search(
+                re.escape(f'html[data-theme="{bundle.id}"] body[data-md-color-scheme="{attr}"] {{')
+                + r"(.*?)\}",
+                palette_layer,
+                re.DOTALL,
+            )
+            assert real, f"{bundle.id}/{scheme}: no palette block"
+            declared = re.search(re.escape(SCHEME_TOKENS[key]) + r": ([^;]+);", real.group(1))
+            assert declared, f"{bundle.id}/{scheme}: {SCHEME_TOKENS[key]} is not declared"
+            assert f"{variable}: {declared.group(1)};" in match.group(1), (
+                f"{bundle.id}/{scheme}: the sample's {variable} is not what the page's "
+                f"{SCHEME_TOKENS[key]} resolves to"
+            )
+            assert palette[key] in declared.group(1)
+
+
+def test_a_sample_shows_the_subject_tint_where_the_bundle_takes_it():
+    """A bundle without `fixed:` takes the book's accent, so its sample must too."""
+    taking = [b for b in BUNDLES if "accent" not in b.fixed]
+    refusing = [b for b in BUNDLES if "accent" in b.fixed]
+    assert taking and refusing, "both kinds of bundle are needed for this to prove anything"
+    for bundle in taking:
+        css = themes.swatch_css(bundle)
+        accent = bundle.palette("light")["accent"]
+        assert f"--sw-accent: var(--tb-book-accent, {accent});" in css, bundle.id
+    for bundle in refusing:
+        css = themes.swatch_css(bundle)
+        assert f"--sw-accent: {bundle.palette('light')['accent']};" in css, bundle.id
 
 
 
