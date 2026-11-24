@@ -31,7 +31,7 @@ border border-radius font-size font-weight font-style font-family font-variant-n
 letter-spacing line-height text-transform text-align text-wrap text-decoration-line
 text-decoration-thickness text-underline-offset white-space overflow-wrap word-break hyphens
 list-style list-style-type list-style-position color background background-color
-container-type container-name overflow-x
+container-type container-name overflow-x break-inside
 """.split())
 PROPERTY_PREFIXES = (
     "grid-auto-", "align-", "justify-", "place-", "margin", "padding", "column-",
@@ -362,6 +362,9 @@ def check_value(name, value_tokens, selector, own, known, defs, bad) -> None:
     elif name == "flex-direction":
         if text not in ("row", "column"):
             bad(3, "flex-direction", "may only be row or column")
+    elif name == "break-inside":
+        if text != "avoid":
+            bad(3, "break-inside", "may only be avoid")
     elif name == "overflow-x":
         if text != "auto":
             bad(3, "overflow-x", "may only be auto")

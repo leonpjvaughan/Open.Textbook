@@ -1,0 +1,25 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 120 80" class="tb-thumb" fill="none" stroke="none">
+  <rect class="tb-thumb__frame" x="0.5" y="0.5" width="119" height="79" stroke="currentColor" stroke-opacity="0.35"/>
+  <rect class="tb-thumb__title" x="10" y="8" width="44" height="5" fill="currentColor" fill-opacity="0.9"/>
+  <rect class="tb-thumb__text" x="10" y="16" width="64" height="3" fill="currentColor" fill-opacity="0.55"/>
+  <path class="tb-thumb__rule" d="M10 23H110" stroke="currentColor" stroke-opacity="0.35" stroke-width="1"/>
+  <rect class="tb-thumb__accent" x="10" y="26" width="12" height="2" fill="currentColor" fill-opacity="1"/>
+  <rect class="tb-thumb__text" x="10" y="31" width="18" height="2" fill="currentColor" fill-opacity="0.4"/>
+  <rect class="tb-thumb__text" x="40" y="26" width="40" height="3" fill="currentColor" fill-opacity="0.85"/>
+  <rect class="tb-thumb__text" x="40" y="31" width="64" height="3" fill="currentColor" fill-opacity="0.55"/>
+  <path class="tb-thumb__rule" d="M10 37H110" stroke="currentColor" stroke-opacity="0.35" stroke-width="1"/>
+  <rect class="tb-thumb__accent" x="10" y="40" width="12" height="2" fill="currentColor" fill-opacity="1"/>
+  <rect class="tb-thumb__text" x="10" y="45" width="18" height="2" fill="currentColor" fill-opacity="0.4"/>
+  <rect class="tb-thumb__text" x="40" y="40" width="40" height="3" fill="currentColor" fill-opacity="0.85"/>
+  <rect class="tb-thumb__text" x="40" y="45" width="64" height="3" fill="currentColor" fill-opacity="0.55"/>
+  <path class="tb-thumb__rule" d="M10 51H110" stroke="currentColor" stroke-opacity="0.35" stroke-width="1"/>
+  <rect class="tb-thumb__accent" x="10" y="54" width="12" height="2" fill="currentColor" fill-opacity="1"/>
+  <rect class="tb-thumb__text" x="10" y="59" width="18" height="2" fill="currentColor" fill-opacity="0.4"/>
+  <rect class="tb-thumb__text" x="40" y="54" width="40" height="3" fill="currentColor" fill-opacity="0.85"/>
+  <rect class="tb-thumb__text" x="40" y="59" width="64" height="3" fill="currentColor" fill-opacity="0.55"/>
+  <path class="tb-thumb__rule" d="M10 65H110" stroke="currentColor" stroke-opacity="0.35" stroke-width="1"/>
+  <rect class="tb-thumb__accent" x="10" y="68" width="12" height="2" fill="currentColor" fill-opacity="1"/>
+  <rect class="tb-thumb__text" x="10" y="73" width="18" height="2" fill="currentColor" fill-opacity="0.4"/>
+  <rect class="tb-thumb__text" x="40" y="68" width="40" height="3" fill="currentColor" fill-opacity="0.85"/>
+  <rect class="tb-thumb__text" x="40" y="73" width="64" height="3" fill="currentColor" fill-opacity="0.55"/>
+</svg>

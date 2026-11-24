@@ -12,7 +12,7 @@
 id: phosphor
 title: Phosphor
 description: >-
-  Dark brown, amber glow.
+  Warm and glowing, like an old amber screen.
 
 # `fixed:` here because a vivid bundle IS its colour. The subject tint composes
 # into a bundle by default, which is right for the calm themes — the subject

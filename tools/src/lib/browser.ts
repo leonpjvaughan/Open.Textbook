@@ -105,6 +105,7 @@ export async function serveStatic(
 export type ContextOptions = {
   scheme?: "light" | "dark";
   theme?: string;
+  style?: string;
   width?: number;
   height?: number;
   deviceScaleFactor?: number;
@@ -149,7 +150,24 @@ export async function openContext(
       }
     }, options.theme);
   }
+  if (options.style) {
+    await context.addInitScript((chosen: string) => {
+      try {
+        localStorage.setItem("textbooks:style", chosen);
+      } catch {
+      }
+    }, options.style);
+  }
   return context;
+}
+
+/** Throw unless the page applied the layout a run asked for, so a typo is not a pass. */
+export async function assertStyle(page: Page, style: string | undefined): Promise<void> {
+  if (!style) return;
+  const applied = await page.evaluate(() => document.documentElement.dataset.style ?? "");
+  if (applied !== style) {
+    throw new Error(`asked for layout ${style} but the page applied ${applied || "none"}`);
+  }
 }
 
 export const ORIGIN = "http://textbook.local";

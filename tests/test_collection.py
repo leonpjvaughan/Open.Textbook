@@ -348,6 +348,7 @@ def test_the_default_layout_is_a_declared_layout_with_a_stylesheet():
     assert collection["default_layout"] in ids
     for layout_id in ids:
         assert (repo_root() / books.LAYOUTS_DIR / f"{layout_id}.css").is_file()
+        assert books.layout_thumbnail(layout_id).is_file(), f"{layout_id} has no thumbnail"
 
 
 GOOD_LAYOUT = {"id": "matrix", "title": "Matrix", "description": "A grid."}
@@ -356,6 +357,7 @@ GOOD_LAYOUT = {"id": "matrix", "title": "Matrix", "description": "A grid."}
 def valid(tmp_path, **changes):
     (tmp_path / books.LAYOUTS_DIR).mkdir(parents=True, exist_ok=True)
     (tmp_path / books.LAYOUTS_DIR / "matrix.css").write_text("@layer layout {}\n")
+    (tmp_path / books.LAYOUTS_DIR / "matrix.svg").write_text("<svg></svg>\n")
     collection = {"default_layout": "matrix", "layouts": [dict(GOOD_LAYOUT)], **changes}
     books.validate_collection(collection, tmp_path)
 
@@ -378,6 +380,14 @@ def test_a_valid_layout_configuration_loads(tmp_path):
 def test_a_bad_layout_configuration_is_refused(tmp_path, changes, message):
     with pytest.raises(ValueError, match=message):
         valid(tmp_path, **changes)
+
+
+def test_a_layout_without_a_thumbnail_is_refused(tmp_path):
+    """The Settings dialog draws each layout from its SVG, so the build needs one."""
+    (tmp_path / books.LAYOUTS_DIR).mkdir(parents=True, exist_ok=True)
+    (tmp_path / books.LAYOUTS_DIR / "wide.css").write_text("@layer layout {}\n")
+    with pytest.raises(ValueError, match="wide.svg"):
+        valid(tmp_path, layouts=[dict(GOOD_LAYOUT), {**GOOD_LAYOUT, "id": "wide"}])
 
 
 def test_a_default_layout_without_layouts_is_refused(tmp_path):

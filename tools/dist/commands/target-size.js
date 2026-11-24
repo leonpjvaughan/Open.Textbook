@@ -18,7 +18,7 @@
  */
 import fs from "node:fs";
 import path from "node:path";
-import { launchBrowser, openContext, serveStatic } from "../lib/browser.js";
+import { assertStyle, launchBrowser, openContext, serveStatic } from "../lib/browser.js";
 import { parseArgs } from "../lib/flags.js";
 import { Report } from "../lib/report.js";
 import { firstFigureRoute, routeFile, sampleRoutes } from "../lib/routes.js";
@@ -35,6 +35,11 @@ export const SURFACE = {
             value: "<a,b>",
             default: "light,dark",
             help: "the schemes to measure, comma separated",
+        },
+        style: {
+            kind: "string",
+            value: "<layout>",
+            help: "the layout to store as the reader's choice before measuring",
         },
     },
 };
@@ -113,7 +118,8 @@ export async function run(argv) {
         .filter(Boolean);
     if (schemes.length === 0)
         throw new Error("--schemes named no scheme; nothing was measured");
-    console.log(`measuring ${String(routes.length)} page(s) at ${WIDTH}px in ${root}`);
+    const style = values.style === undefined ? undefined : String(values.style);
+    console.log(`measuring ${String(routes.length)} page(s) at ${WIDTH}px in ${root}${style ? ` with the ${style} layout` : ""}`);
     for (const { name, route } of routes)
         console.log(`  ${name}: ${route}`);
     const report = new Report("targets");
@@ -127,11 +133,13 @@ export async function run(argv) {
             mobile: true,
             touch: true,
             blockServiceWorkers: true,
+            style,
         });
         await serveStatic(context, root);
         const page = await context.newPage();
         for (const { name, route } of routes) {
             await page.goto(`http://textbook.local${route}`, { waitUntil: "load" });
+            await assertStyle(page, style);
             await page.evaluate(() => document.fonts.ready);
             await page
                 .waitForFunction(() => [...document.querySelectorAll("maths-figure")].every((el) => el.childElementCount > 0), undefined, { timeout: 3000 })

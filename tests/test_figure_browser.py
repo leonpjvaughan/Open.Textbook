@@ -7,7 +7,7 @@ looked correct and left eighteen SVG labels painted black at 1.4:1 on the dark
 scheme. Only a browser settles it.
 
 The default gate measures every figure once, under the default bundle, in
-`scripts/preview-themes.sh`. This file is the sweep across **all six** bundles,
+`scripts/preview-themes.sh`. This file is the sweep across **all nine** bundles,
 which is the part that is too slow to run on every push: twelve minutes against
 two. It is marked `browser` and deselected by default (see `pyproject.toml`), so
 the coverage exists and is one flag away rather than absent:
@@ -16,16 +16,16 @@ the coverage exists and is one flag away rather than absent:
 
 **Why the sweep is still worth having when the static check is exhaustive.**
 `test_every_bundle_and_subject_pair_is_readable` proves the figure *tokens* clear
-their thresholds in all six bundles, all four books and both schemes. That is a
+their thresholds in all nine bundles, all four books and both schemes. That is a
 proof about colours. It says nothing about *structure* — which class lands on which
 element, and whether an element is painted at all — and structure could in
 principle be bundle-dependent, because a bundle may refuse the subject tint with
 `fixed:` and supply its own palette. One bundle's measurement was taken as evidence
-for all six; this file is what turns that assumption into a check.
+for all nine; this file is what turns that assumption into a check.
 
-The last test here is the guard: it asserts the six runs do not agree, because a
+The last test here is the guard: it asserts the nine runs do not agree, because a
 `--theme` flag that never reaches the page would make every bundle pass by being
-the same measurement six times.
+the same measurement nine times.
 """
 
 from __future__ import annotations
@@ -117,8 +117,8 @@ def measure(bundle: str, out: Path) -> dict:
 def sweeps(tmp_path_factory) -> dict[str, dict]:
     """Every bundle measured once, shared by both tests below.
 
-    Module-scoped because the measurement is the expensive part — six bundles is
-    twelve minutes — and the two tests ask different questions of the same six
+    Module-scoped because the measurement is the expensive part — nine bundles is
+    eighteen minutes — and the two tests ask different questions of the same nine
     runs. Measuring per test would double it for no extra evidence.
     """
     out = tmp_path_factory.mktemp("figure-sweep")
@@ -169,10 +169,10 @@ def test_every_figure_is_visible_under_every_bundle(bundle, sweeps):
 
 
 @pytest.mark.browser
-def test_the_bundle_sweep_is_not_the_same_measurement_six_times(sweeps):
+def test_the_bundle_sweep_is_not_the_same_measurement_nine_times(sweeps):
     """The guard on the sweep: `--theme` must reach the page.
 
-    If it did not, all six bundles would return identical colours and every one of
+    If it did not, all nine bundles would return identical colours and every one of
     them would pass by being the same measurement — the sweep would look thorough
     and prove nothing. Two bundles that agree on every figure would mean the flag,
     the stored preference or the bundle lookup is broken.
@@ -198,7 +198,7 @@ def test_the_bundle_sweep_is_not_the_same_measurement_six_times(sweeps):
     assert not identical, (
         f"{identical} measured exactly what {BUNDLES[0]!r} measured, on every figure. "
         "A bundle that resolves to another bundle's colours means the theme never "
-        "reached the page, and this sweep is six copies of one measurement."
+        "reached the page, and this sweep is nine copies of one measurement."
     )
 
 
