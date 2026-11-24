@@ -226,7 +226,13 @@ _CLOSE_ICON = (
     '<path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>'
 )
 
-SCHEME_OPTIONS = (("default", "Light"), ("slate", "Dark"))
+_CHECK_ICON = (
+    '<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" aria-hidden="true" focusable="false">'
+    '<path d="M9 16.17 4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41z"/></svg>'
+)
+
+SCHEME_OPTIONS = (("auto", "Match device"), ("default", "Light"), ("slate", "Dark"))
+MOOD_HEADINGS = (("calm", "Quiet colours"), ("vivid", "Bold colours"))
 
 
 def settings_trigger() -> str:
@@ -243,16 +249,12 @@ def settings_trigger() -> str:
     )
 
 
-def _radio(name: str, value: str, title: str, description: str = "", note: str = "") -> str:
-    """One option card, mirroring the book partial's markup exactly."""
+def _radio(name: str, value: str, title: str, description: str = "", preview: str = "") -> str:
+    """One option card: a native radio, an optional preview, its name and a mark that
+    shows the choice by shape as well as colour."""
     desc = (
-        f'\n          <span class="tb-settings__option-desc">{html.escape(description)}</span>'
+        f'\n            <span class="tb-settings__option-desc">{html.escape(description)}</span>'
         if description
-        else ""
-    )
-    extra = (
-        f'\n          <span class="tb-settings__option-note">{html.escape(note)}</span>'
-        if note
         else ""
     )
     return (
@@ -260,24 +262,53 @@ def _radio(name: str, value: str, title: str, description: str = "", note: str =
         f'          <input class="tb-settings__radio" type="radio" name="{name}"'
         f' value="{html.escape(value, quote=True)}">\n'
         '          <span class="tb-settings__card">\n'
-        f'            <span class="tb-settings__option-title">{html.escape(title)}</span>'
-        f"{desc}{extra}\n"
+        f"{preview}"
+        '            <span class="tb-settings__option-head">\n'
+        f'              <span class="tb-settings__mark" aria-hidden="true">{_CHECK_ICON}</span>\n'
+        f'              <span class="tb-settings__option-title">{html.escape(title)}</span>\n'
+        "            </span>"
+        f"{desc}\n"
         "          </span>\n"
         "        </label>"
     )
 
 
-def _members(bundle) -> str:
-    """The two members of a bundle: the names its own provenance records, which is
-    what lets a reader tell six themes apart without seeing the colours.
-    """
-    names = []
-    for scheme in ("light", "dark"):
-        member = (bundle.provenance or {}).get(scheme) or {}
-        name = str(member.get("name") or "").strip()
-        if name:
-            names.append(name)
-    return "  ·  ".join(names) if len(names) == 2 else ""
+def _swatch(bundle_id: str) -> str:
+    """A sample of a bundle in the reader's current scheme, painted by the
+    ``--sw-*`` tokens ``themes.swatch_css`` scopes to ``data-swatch``."""
+    return (
+        f'            <span class="tb-swatch" data-swatch="{html.escape(bundle_id, quote=True)}"'
+        ' aria-hidden="true">\n'
+        '              <span class="tb-swatch__aa">Aa</span>\n'
+        '              <span class="tb-swatch__line"></span>\n'
+        '              <span class="tb-swatch__bar"></span>\n'
+        "            </span>\n"
+    )
+
+
+def _thumbnail(layout_id: str) -> str:
+    """A layout's wireframe, inlined so it is drawn in the current colours."""
+    source = books.layout_thumbnail(layout_id).read_text(encoding="utf-8")
+    svg = source[source.index("<svg") :].strip()
+    svg = svg.replace("<svg ", '<svg aria-hidden="true" focusable="false" ', 1)
+    return f'            <span class="tb-settings__thumb">{svg}</span>\n'
+
+
+def _group(group_id: str, legend: str, hint: str, body: str) -> str:
+    hint_id = f"{group_id}-hint"
+    return (
+        f'    <fieldset class="tb-settings__group" id="{group_id}"'
+        f' data-setting="{html.escape(legend, quote=True)}" aria-describedby="{hint_id}">\n'
+        f'      <legend class="tb-settings__legend">{html.escape(legend)}</legend>\n'
+        f'      <p class="tb-settings__hint" id="{hint_id}">{html.escape(hint)}</p>\n'
+        f"{body}\n"
+        "    </fieldset>"
+    )
+
+
+def _options(cards: list[str], modifier: str = "") -> str:
+    extra = f" tb-settings__options--{modifier}" if modifier else ""
+    return f'      <div class="tb-settings__options{extra}">\n' + "\n".join(cards) + "\n      </div>"
 
 
 def settings_dialog(book: books.Book | None = None) -> str:
@@ -285,8 +316,9 @@ def settings_dialog(book: books.Book | None = None) -> str:
 
     A native ``<dialog>``: opening it never changes the URL, Escape closes it and
     the background is inert — except ``closedby="any"``, which is what makes the
-    light dismiss work. Both preferences are the origin-wide keys ``hooks/prefs.py``
-    owns, so a choice follows the reader into every book.
+    light dismiss work. Three independent choices — colour scheme, colour and
+    layout — each a radio group over the origin-wide keys ``hooks/prefs.py`` owns,
+    so a choice follows the reader into every book and changes nothing else.
 
     ``book`` adds the group that keeps **this book** on the device; it is absent on
     the landing page, where there is no book to keep.
@@ -295,58 +327,66 @@ def settings_dialog(book: books.Book | None = None) -> str:
     offer_themes = bool(collection.get("theme_selector", True))
     bundles = ordered_bundles() if offer_themes else []
 
-    schemes = "\n".join(
-        _radio("tb-scheme", value, label) for value, label in SCHEME_OPTIONS
-    )
     groups = [
-        '    <fieldset class="tb-settings__group">\n'
-        '      <legend class="tb-settings__legend">Colour scheme</legend>\n'
-        '      <p class="tb-settings__hint">Applies to every book you read here.</p>\n'
-        '      <div class="tb-settings__options">\n'
-        f"{schemes}\n"
-        "      </div>\n"
-        "    </fieldset>"
+        _group(
+            "scheme-menu",
+            "Colour scheme",
+            "Light or dark pages. Your colour and layout stay the same.",
+            _options([_radio("tb-scheme", value, label) for value, label in SCHEME_OPTIONS], "scheme"),
+        )
     ]
     if bundles:
         subgroups = []
-        for mood, heading in (("calm", "Quiet themes"), ("vivid", "Bold themes")):
-            group = [bundle for bundle in bundles if bundle.mood == mood]
-            if not group:
+        for mood, heading in MOOD_HEADINGS:
+            members = [bundle for bundle in bundles if bundle.mood == mood]
+            if not members:
                 continue
-            options = "\n".join(
-                _radio("tb-theme", bundle.id, bundle.title, bundle.description, _members(bundle))
-                for bundle in group
-            )
+            cards = [
+                _radio("tb-theme", bundle.id, bundle.title, bundle.description, _swatch(bundle.id))
+                for bundle in members
+            ]
             subgroups.append(
                 '      <fieldset class="tb-settings__subgroup">\n'
                 f'        <legend class="tb-settings__sublegend">{heading}</legend>\n'
-                '        <div class="tb-settings__options">\n'
-                f"{options}\n"
-                "        </div>\n"
-                "      </fieldset>"
+                + _options(cards, "cards")
+                + "\n      </fieldset>"
             )
         groups.append(
-            '    <fieldset class="tb-settings__group" id="theme-menu">\n'
-            '      <legend class="tb-settings__legend">Reading theme</legend>\n'
-            + "\n".join(subgroups)
-            + "\n    </fieldset>"
+            _group(
+                "theme-menu",
+                "Colour",
+                "The paper, ink and lettering. Your layout stays the same.",
+                "\n".join(subgroups),
+            )
         )
 
     layouts = collection.get("layouts", [])
     if len(layouts) > 1:
-        options = "\n".join(
-            _radio("tb-layout", str(entry["id"]), str(entry["title"]), str(entry["description"]))
+        cards = [
+            _radio(
+                "tb-layout",
+                str(entry["id"]),
+                str(entry["title"]),
+                str(entry["description"]),
+                _thumbnail(str(entry["id"])),
+            )
             for entry in layouts
-        )
+        ]
         groups.append(
-            '    <fieldset class="tb-settings__group" id="layout-menu">\n'
-            '      <legend class="tb-settings__legend">Layout</legend>\n'
-            '      <p class="tb-settings__hint">How pages are arranged. It does not change the colours.</p>\n'
-            '      <div class="tb-settings__options">\n'
-            f"{options}\n"
-            "      </div>\n"
-            "    </fieldset>"
+            _group(
+                "layout-menu",
+                "Layout",
+                "How pages are arranged. Your colours stay the same.",
+                _options(cards, "cards"),
+            )
         )
+
+    groups.append(
+        '    <div class="tb-settings__actions">\n'
+        '      <button type="button" class="tb-settings__reset" id="tb-settings-reset">'
+        "Reset appearance</button>\n"
+        "    </div>"
+    )
 
     if book is not None:
         groups.append(
@@ -362,7 +402,7 @@ def settings_dialog(book: books.Book | None = None) -> str:
             '        <button type="button" class="tb-settings__download"'
             ' id="tb-offline-cancel" hidden>Stop</button>\n'
             '        <progress class="tb-settings__progress" id="tb-offline-progress"'
-            ' max="100" value="0" hidden></progress>\n' 
+            ' max="100" value="0" hidden></progress>\n'
             "      </div>\n"
             "    </fieldset>"
         )
@@ -378,11 +418,12 @@ def settings_dialog(book: books.Book | None = None) -> str:
         f"        {_CLOSE_ICON}\n"
         "      </button>\n"
         "    </div>\n"
+        '    <p class="tb-settings__status" id="tb-settings-status" role="status"'
+        ' aria-live="polite"></p>\n'
         + "\n".join(groups)
         + "\n  </form>\n"
         "</dialog>"
     )
-
 
 
 SW_PLACEHOLDER = "__TB_BUILD__"

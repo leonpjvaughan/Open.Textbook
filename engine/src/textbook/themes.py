@@ -457,6 +457,34 @@ def typography_css(bundle: Bundle) -> str:
     return "\n".join(lines)
 
 
+SWATCH_TOKENS = {
+    "paper": "--sw-paper",
+    "ink": "--sw-ink",
+    "ink_soft": "--sw-ink-soft",
+    "accent": "--sw-accent",
+    "rule": "--sw-rule",
+}
+
+
+def swatch_css(bundle: Bundle) -> str:
+    """A bundle's own colours and display face, scoped to its sample in the Settings
+    dialog, so each card previews the bundle in the scheme the reader is using
+    without the markup carrying a colour. The subject tint is not composed in: the
+    sample shows the bundle, not the book.
+    """
+    selector = f'.tb-swatch[data-swatch="{bundle.id}"]'
+    display = bundle.typography.get("display", DEFAULT_FONTS["display"])
+    blocks = [f"{selector} {{\n  --sw-font: {display};\n}}"]
+    for scheme in SCHEMES:
+        attr = SCHEME_ATTR[scheme]
+        palette = bundle.palette(attr)
+        lines = [f'body[data-md-color-scheme="{attr}"] {selector} {{']
+        lines += [f"  {variable}: {palette[key]};" for key, variable in SWATCH_TOKENS.items()]
+        lines.append("}")
+        blocks.append("\n".join(lines))
+    return "\n".join(blocks)
+
+
 def stylesheet(bundles: list[Bundle] | None = None, default: Bundle | None = None) -> str:
     """The whole generated themes.css.
 
@@ -511,6 +539,11 @@ def stylesheet(bundles: list[Bundle] | None = None, default: Bundle | None = Non
         body.append(f"/* {bundle.title} */")
         body.append(bundle_css(bundle))
         body.append("")
+
+    body.append("/* 4. Swatches: each bundle's sample in the Settings dialog. */")
+    for bundle in chosen:
+        body.append(swatch_css(bundle))
+    body.append("")
 
     out.append(f"@layer {CASCADE_LAYERS[0]} {{")
     out += [f"  {line}" if line else "" for line in "\n".join(body).strip("\n").splitlines()]

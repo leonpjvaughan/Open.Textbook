@@ -575,6 +575,26 @@ def test_generated_stylesheet_is_in_sync():
     )
 
 
+@pytest.mark.parametrize("bundle", BUNDLES, ids=[b.id for b in BUNDLES])
+def test_every_bundle_has_swatch_tokens_in_both_schemes(bundle):
+    """The Settings dialog paints each Colour sample from these, never from markup."""
+    css = THEMES_CSS.read_text(encoding="utf-8")
+    palette_layer = css[css.index("@layer palette {") :]
+    selector = f'.tb-swatch[data-swatch="{bundle.id}"]'
+    assert f"{selector} {{\n    --sw-font: " in palette_layer, f"{bundle.id}: no display face"
+    for scheme in SCHEMES:
+        attr = themes.SCHEME_ATTR[scheme]
+        match = re.search(
+            re.escape(f'body[data-md-color-scheme="{attr}"] {selector} {{') + r"(.*?)\}",
+            palette_layer,
+            re.DOTALL,
+        )
+        assert match, f"{bundle.id}/{scheme}: no swatch block"
+        palette = bundle.palette(scheme)
+        for key, variable in themes.SWATCH_TOKENS.items():
+            assert f"{variable}: {palette[key]};" in match.group(1), f"{bundle.id}/{scheme}: {variable}"
+
+
 
 CSS_COMMENT = re.compile(r"/\*.*?\*/", re.DOTALL)
 HEX_COLOUR = re.compile(r"#[0-9a-fA-F]{3,8}(?![0-9a-fA-F])")

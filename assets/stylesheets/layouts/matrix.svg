@@ -1,0 +1,20 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 120 80" class="tb-thumb" fill="none" stroke="none">
+  <rect class="tb-thumb__frame" x="8.5" y="6.5" width="103" height="67" stroke="currentColor" stroke-opacity="0.45"/>
+  <rect class="tb-thumb__title" x="14" y="11" width="40" height="5" fill="currentColor" fill-opacity="0.9"/>
+  <rect class="tb-thumb__text" x="14" y="19" width="58" height="3" fill="currentColor" fill-opacity="0.55"/>
+  <path class="tb-thumb__rule" d="M9 26H111" stroke="currentColor" stroke-opacity="0.35" stroke-width="1"/>
+  <path class="tb-thumb__rule" d="M60 26V73" stroke="currentColor" stroke-opacity="0.35" stroke-width="1"/>
+  <path class="tb-thumb__rule" d="M9 50H111" stroke="currentColor" stroke-opacity="0.35" stroke-width="1"/>
+  <rect class="tb-thumb__accent" x="14" y="31" width="10" height="2" fill="currentColor" fill-opacity="1"/>
+  <rect class="tb-thumb__text" x="14" y="36" width="34" height="3" fill="currentColor" fill-opacity="0.85"/>
+  <rect class="tb-thumb__text" x="14" y="42" width="38" height="3" fill="currentColor" fill-opacity="0.55"/>
+  <rect class="tb-thumb__accent" x="65" y="31" width="10" height="2" fill="currentColor" fill-opacity="1"/>
+  <rect class="tb-thumb__text" x="65" y="36" width="34" height="3" fill="currentColor" fill-opacity="0.85"/>
+  <rect class="tb-thumb__text" x="65" y="42" width="38" height="3" fill="currentColor" fill-opacity="0.55"/>
+  <rect class="tb-thumb__accent" x="14" y="55" width="10" height="2" fill="currentColor" fill-opacity="1"/>
+  <rect class="tb-thumb__text" x="14" y="60" width="34" height="3" fill="currentColor" fill-opacity="0.85"/>
+  <rect class="tb-thumb__text" x="14" y="66" width="38" height="3" fill="currentColor" fill-opacity="0.55"/>
+  <rect class="tb-thumb__accent" x="65" y="55" width="10" height="2" fill="currentColor" fill-opacity="1"/>
+  <rect class="tb-thumb__text" x="65" y="60" width="34" height="3" fill="currentColor" fill-opacity="0.85"/>
+  <rect class="tb-thumb__text" x="65" y="66" width="38" height="3" fill="currentColor" fill-opacity="0.55"/>
+</svg>

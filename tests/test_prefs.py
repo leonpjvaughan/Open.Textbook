@@ -331,9 +331,8 @@ def test_a_light_operating_system_sets_the_light_scheme_with_no_stored_choice(tm
 def test_a_stored_light_choice_wins_over_a_dark_operating_system(tmp_path):
     result = run_snippet(tmp_path, stored="default", dark=True)
     assert result["before"]["data-md-color-scheme"] == "default", result
-    assert result["follow"] == 0, (
-        "an OS change listener was installed over a stored choice, so dusk would "
-        "undo what the reader asked for"
+    assert result["after"]["data-md-color-scheme"] == "default", (
+        "an OS change moved a stored choice, so dusk would undo what the reader asked for"
     )
 
 
@@ -482,10 +481,131 @@ def test_the_landing_page_carries_the_layout_script_with_two(monkeypatch):
 
     def doubled(root=None):
         data = dict(original(root))
-        data["layouts"] = [*data["layouts"], {"id": "wide", "title": "Wide", "description": "Wide."}]
+        data["layouts"] = [*data["layouts"], {"id": "ledger", "title": "Ledger", "description": "Rows."}]
         return data
 
     monkeypatch.setattr(books_module, "load_collection", doubled)
     html = portal.render()
     assert "textbooks:style" in html
-    assert 'var STYLES = ["matrix","wide"];' in html
+    assert 'var STYLES = ["matrix","ledger"];' in html
+
+
+MATCH_SCENARIO = r"""
+const fs = require("fs");
+const [snippetPath, stored, osDark, stepsJson] = process.argv.slice(2);
+const attributes = {};
+const listen = [];
+const media = {
+  matches: osDark === "1",
+  addEventListener(_event, handler) { listen.push(handler); },
+};
+const store = new Map();
+if (stored) store.set("textbooks:scheme", stored);
+store.set("textbooks:theme", "neon");
+const document = {
+  documentElement: {
+    setAttribute(key, value) { attributes[key] = value; },
+    getAttribute(key) { return key in attributes ? attributes[key] : null; },
+  },
+  body: null,
+  readyState: "complete",
+  addEventListener() {},
+  querySelectorAll() { return []; },
+};
+const window = {
+  localStorage: {
+    getItem: (key) => (store.has(key) ? store.get(key) : null),
+    setItem: (key, value) => store.set(key, value),
+    removeItem: (key) => store.delete(key),
+  },
+  matchMedia: () => media,
+};
+const code = fs.readFileSync(snippetPath, "utf8").replace(/^\s*<script>\s*/, "").replace(/<\/script>\s*$/, "");
+new Function("window", "document", "getComputedStyle", code)(window, document, () => ({ getPropertyValue: () => "" }));
+const seen = [];
+const record = (step) => seen.push({
+  step,
+  scheme: attributes["data-md-color-scheme"],
+  choice: window.textbookPrefs.scheme(),
+  stored: store.has("textbooks:scheme") ? store.get("textbooks:scheme") : null,
+  theme: attributes["data-theme"],
+  storedTheme: store.has("textbooks:theme") ? store.get("textbooks:theme") : null,
+});
+record("load");
+for (const step of JSON.parse(stepsJson)) {
+  const [verb, value] = step.split(":");
+  if (verb === "os") {
+    media.matches = value === "dark";
+    for (const handler of listen) handler({ matches: media.matches });
+  } else if (verb === "set") {
+    window.textbookPrefs.setScheme(value);
+  } else if (verb === "reset") {
+    window.textbookPrefs.reset();
+  }
+  record(step);
+}
+process.stdout.write(JSON.stringify(seen));
+"""
+
+
+def run_match(tmp_path, stored: str, dark: bool, steps: list[str]) -> list[dict]:
+    """Evaluate the snippet under Node and walk the reader through scheme choices."""
+    import json
+    import shutil
+    import subprocess
+
+    node = shutil.which("node")
+    if node is None:
+        pytest.skip("node is not on PATH; the preference script cannot be evaluated")
+    path = tmp_path / "snippet.js"
+    path.write_text(shared_snippet(), encoding="utf-8")
+    scenario = tmp_path / "match.js"
+    scenario.write_text(MATCH_SCENARIO, encoding="utf-8")
+    done = subprocess.run(
+        [node, str(scenario), str(path), stored, "1" if dark else "0", json.dumps(steps)],
+        capture_output=True,
+        text=True,
+        check=False,
+    )
+    assert done.returncode == 0, done.stderr
+    return json.loads(done.stdout)
+
+
+def test_with_nothing_stored_the_choice_is_match_device_and_follows_it(tmp_path):
+    seen = run_match(tmp_path, "", dark=False, steps=["os:dark", "os:light"])
+    assert [row["scheme"] for row in seen] == ["default", "slate", "default"], seen
+    assert all(row["choice"] == "auto" and row["stored"] is None for row in seen), seen
+
+
+def test_light_or_dark_overrides_the_device_and_is_not_moved_by_it(tmp_path):
+    seen = run_match(tmp_path, "", dark=False, steps=["set:slate", "os:light", "set:default", "os:dark"])
+    assert [row["scheme"] for row in seen] == ["default", "slate", "slate", "default", "default"], seen
+    assert [row["stored"] for row in seen[1:]] == ["slate", "slate", "default", "default"], seen
+
+
+def test_choosing_match_device_again_clears_the_override_and_follows(tmp_path):
+    seen = run_match(tmp_path, "default", dark=True, steps=["set:auto", "os:light", "os:dark"])
+    assert seen[0]["scheme"] == "default" and seen[0]["choice"] == "default", seen
+    assert seen[1]["stored"] is None and seen[1]["choice"] == "auto", seen
+    assert [row["scheme"] for row in seen[1:]] == ["slate", "default", "slate"], seen
+
+
+def test_an_existing_stored_value_still_reads_as_light_or_dark(tmp_path):
+    assert run_match(tmp_path, "slate", dark=False, steps=[])[0]["choice"] == "slate"
+    assert run_match(tmp_path, "lime", dark=False, steps=[])[0]["choice"] == "auto"
+
+
+def test_reset_clears_every_stored_choice_and_restores_the_defaults(tmp_path):
+    seen = run_match(tmp_path, "default", dark=True, steps=["reset", "os:light"])
+    load, reset, after = seen
+    assert load["theme"] == "neon" and load["scheme"] == "default", load
+    assert reset["stored"] is None and reset["storedTheme"] is None, reset
+    assert reset["choice"] == "auto" and reset["scheme"] == "slate", reset
+    assert reset["theme"] == default_bundle().id, reset
+    assert after["scheme"] == "default", "after a reset the page does not follow the device"
+
+
+def test_reset_clears_the_layout_when_there_is_a_choice(tmp_path):
+    snippet = prefs.snippet(two_layouts())
+    assert "remove(STYLE_KEY);" in snippet
+    assert "remove(STYLE_KEY);" not in shared_snippet()
