@@ -269,7 +269,7 @@ def _radio(name: str, value: str, title: str, description: str = "", note: str =
 
 def _members(bundle) -> str:
     """The two members of a bundle: the names its own provenance records, which is
-    what lets a reader tell six themes apart without seeing the colours.
+    what lets a reader tell nine themes apart without seeing the colours.
     """
     names = []
     for scheme in ("light", "dark"):

@@ -1,0 +1,57 @@
+id: blueprint
+title: Blueprint
+description: >-
+  Clear and technical, like an engineering drawing.
+
+fixed: [accent, accent_light, accent_dark, accent_ink, link]
+mood: vivid
+family: Blueprint
+provenance:
+  light:
+    name: Tracing
+    source: house
+    original: true
+    note: >-
+      Authored in this repository as the readable light counterpart of the
+      Plan member: pale blue-white paper, navy ink and a strong blue accent.
+  dark:
+    name: Plan
+    source: house
+    original: true
+    note: >-
+      Authored in this repository: a navy page, pale blue-white ink and a cyan
+      accent, like an engineering blueprint.
+typography:
+  body: 'system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif'
+  display: '"Avenir Next Condensed", "Roboto Condensed", "Arial Narrow", "Liberation Sans Narrow", "DejaVu Sans Condensed", sans-serif'
+  mono: 'ui-monospace, SFMono-Regular, Menlo, Consolas, monospace'
+light:
+  paper: "#dbe8fb"
+  ink: "#071d4a"
+  ink_soft: "#2f4a7a"
+  ink_lighter: "#546f9c"
+  rule: "#b4c9ea"
+  accent: "#2a4fb5"
+  accent_light: "#4a6fd0"
+  accent_dark: "#1e3c8c"
+  accent_ink: "#ffffff"
+  link: "#233f9e"
+  code_bg: "#cddcf4"
+  fig_warn: "#b03a22"
+  fig_good: "#1f6b46"
+  fig_grid: "#5a74a0"
+dark:
+  paper: "#0b2545"
+  ink: "#e6f0ff"
+  ink_soft: "#aec3de"
+  ink_lighter: "#7590b3"
+  rule: "#1e3a60"
+  accent: "#5ad1ff"
+  accent_light: "#8ce0ff"
+  accent_dark: "#2fb0e6"
+  accent_ink: "#071d4a"
+  link: "#8ce0ff"
+  code_bg: "#081d38"
+  fig_warn: "#ff9a7a"
+  fig_good: "#7ee0a6"
+  fig_grid: "#5f7ea6"

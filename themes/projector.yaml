@@ -1,0 +1,58 @@
+id: projector
+title: Projector
+description: >-
+  Sharp and high contrast, made for a classroom screen.
+
+fixed: [accent, accent_light, accent_dark, accent_ink, link]
+mood: calm
+family: Projector
+provenance:
+  light:
+    name: Screen
+    source: house
+    original: true
+    note: >-
+      Authored in this repository for a projected page in a lit room: pure
+      white paper, black ink and a deep blue accent, every text token at 7:1
+      or more.
+  dark:
+    name: Blackout
+    source: house
+    original: true
+    note: >-
+      Authored in this repository as the dark half of the same pair: black
+      paper, white ink and a bright yellow accent.
+typography:
+  body: 'system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif'
+  display: 'system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif'
+  mono: 'ui-monospace, SFMono-Regular, Menlo, Consolas, monospace'
+light:
+  paper: "#ffffff"
+  ink: "#000000"
+  ink_soft: "#333333"
+  ink_lighter: "#545454"
+  rule: "#c8c8c8"
+  accent: "#0040c0"
+  accent_light: "#2a63d6"
+  accent_dark: "#00308f"
+  accent_ink: "#ffffff"
+  link: "#0036a8"
+  code_bg: "#f0f0f0"
+  fig_warn: "#961a08"
+  fig_good: "#155a22"
+  fig_grid: "#6e6e6e"
+dark:
+  paper: "#000000"
+  ink: "#ffffff"
+  ink_soft: "#d0d0d0"
+  ink_lighter: "#9c9c9c"
+  rule: "#3a3a3a"
+  accent: "#ffd400"
+  accent_light: "#ffe14d"
+  accent_dark: "#d9b400"
+  accent_ink: "#000000"
+  link: "#ffe14d"
+  code_bg: "#141414"
+  fig_warn: "#ff8a70"
+  fig_good: "#7de08f"
+  fig_grid: "#7a7a7a"

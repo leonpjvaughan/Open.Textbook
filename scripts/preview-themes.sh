@@ -133,7 +133,7 @@ run_check navstate uv run python -m pytest tests/test_navigation_browser.py -m b
 run_check layouts uv run python -m pytest tests/test_layouts_browser.py -m browser -q
 
 
-# The matrix, 6 bundles x 2 schemes x 3 routes = 36 pages.
+# The matrix, 9 bundles x 2 schemes x 3 routes = 54 pages.
 run_check preview node tools/dist/cli.js preview \
   --root site \
   --audit \
