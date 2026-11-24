@@ -15,10 +15,13 @@ A layout is geometry over one DOM, so two promises hold or the seam is a lie:
   it changes `html[data-style]` at once and after a reload, and the colour scheme and
   bundle the reader stored are untouched: the three axes are independent. A stored id
   that is not a layout falls back to the default.
-* **formatting** — every layout, on the portal, a book's home and a Learn page, at 390
-  and 1280 and in both schemes: nothing wider than the screen, and the Learn page's
-  prose at 17px or more on a line height of 1.5 or more, with 45 to 75 characters a
-  line at 1280. Every layout but the default also runs the `targets` and phone
+* **formatting** — every layout, on the portal, a book's home, a Learn page and a
+  Practise page, at 390 and 1280 and in both schemes: nothing wider than the screen, and
+  the prose at 17px or more on a line height of 1.5 or more. Every full line of every
+  paragraph, callouts included, is counted: at 1280 at least 90% hold 45 to 78
+  characters and none more than 80; at 390 none more than 78. The 78 is
+  `test_measure.AT_1280`'s ceiling: `62ch` renders 66 to 78 characters on a Learn page,
+  so a 75 ceiling would fail the default column the house measure was tuned to. Every layout but the default also runs the `targets` and phone
   figure-label sweeps with `--style`; the gate already runs both on the default.
 
 Browser tests over a built `site/`, skipped where the site or Playwright is absent.
@@ -34,6 +37,7 @@ from pathlib import Path
 
 import pytest
 
+from test_measure import AT_1280
 from textbook.book import default_layout, load_collection, repo_root
 
 ROOT = repo_root()
@@ -44,6 +48,7 @@ ROUTES = (
     "/",
     "/gcse-maths/higher/",
     "/gcse-maths/higher/chapter-1/section-1.1/learn/",
+    "/gcse-maths/higher/chapter-1/section-1.1/practise/",
 )
 
 PLAYWRIGHT_CANDIDATES = (
@@ -55,7 +60,9 @@ pytestmark = pytest.mark.browser
 
 BODY_PX = 17
 LINE_HEIGHT = 1.5
-MEASURE_CH = (45, 75)
+MEASURE_CH = (45, AT_1280[1])
+MEASURE_SHARE = 0.9
+MEASURE_CEILING = 80
 
 
 def layout_ids() -> list[str]:
@@ -65,7 +72,7 @@ SCRIPT = r"""
 import { pathToFileURL } from "node:url";
 const [lib, site, mode, payload] = process.argv.slice(2);
 const { ORIGIN, launchBrowser, openContext, serveStatic } = await import(pathToFileURL(lib).href);
-const { routes, layouts, titles, defaultLayout, themes } = JSON.parse(payload);
+const { routes, layouts, titles, defaultLayout, themes, measure } = JSON.parse(payload);
 
 const browser = await launchBrowser();
 const out = [];
@@ -160,18 +167,25 @@ if (mode === "bare") {
   }
   await context.close();
 } else if (mode === "format") {
-  const PROSE = () => {
+  const PROSE = (MEASURE) => {
     const lines = (el) => {
       const walker = document.createTreeWalker(el, NodeFilter.SHOW_TEXT);
       const range = document.createRange();
       const rows = [];
+      const ownLine = (node) => {
+        for (let at = node.parentElement; at && at !== el; at = at.parentElement) {
+          if (/^(block|flex|grid|list-item|table)$/.test(getComputedStyle(at).display)) return true;
+        }
+        return false;
+      };
       for (let node = walker.nextNode(); node; node = walker.nextNode()) {
+        if (ownLine(node)) continue;
         const text = node.textContent || "";
         for (let i = 0; i < text.length; i += 1) {
           range.setStart(node, i);
           range.setEnd(node, i + 1);
           const box = range.getBoundingClientRect();
-          if (box.height === 0) continue;
+          if (box.height === 0 || box.width === 0) continue;
           const at = rows.findIndex((row) => Math.abs(row.top - box.top) <= 1);
           if (at < 0) rows.push({ top: box.top, count: 1 });
           else rows[at].count += 1;
@@ -183,12 +197,13 @@ if (mode === "bare") {
     const sizes = [];
     const ratios = [];
     for (const p of document.querySelectorAll("main p")) {
-      if (!p.parentElement || !p.parentElement.matches(".md-typeset, main")) continue;
-      const style = getComputedStyle(p);
-      const size = parseFloat(style.fontSize);
-      sizes.push(size);
-      ratios.push(style.lineHeight === "normal" ? 0 : parseFloat(style.lineHeight) / size);
-      if ((p.textContent || "").trim().length <= 200) continue;
+      if (!p.getClientRects().length) continue;
+      if (p.parentElement && p.parentElement.matches(".md-typeset, main")) {
+        const style = getComputedStyle(p);
+        const size = parseFloat(style.fontSize);
+        sizes.push(size);
+        ratios.push(style.lineHeight === "normal" ? 0 : parseFloat(style.lineHeight) / size);
+      }
       full.push(...lines(p).slice(0, -1));
     }
     const sorted = [...full].sort((a, b) => a - b);
@@ -197,7 +212,11 @@ if (mode === "bare") {
       size: sizes.length ? Math.min(...sizes) : null,
       ratio: ratios.length ? Math.min(...ratios) : null,
       lines: full.length,
+      within: full.filter((n) => n >= MEASURE[0] && n <= MEASURE[1]).length,
+      over: full.filter((n) => n > MEASURE[1]).length,
+      max: full.length ? Math.max(...full) : null,
       median: sorted.length ? sorted[Math.floor(sorted.length / 2)] : null,
+      short: sorted.slice(0, 5),
     };
   };
   for (const layout of layouts) {
@@ -213,7 +232,7 @@ if (mode === "bare") {
             style: document.documentElement.dataset.style,
             overflow: new Function(`return (${overflowSource})()`)(),
           }), overflow.toString());
-          const prose = route.includes("/learn/") ? await page.evaluate(PROSE) : null;
+          const prose = /\/(learn|practise)\/$/.test(route) ? await page.evaluate(PROSE, measure) : null;
           out.push({ layout, scheme, width, route, prose, ...result });
         }
         await context.close();
@@ -296,6 +315,7 @@ def _run(tmp_path: Path, mode: str) -> list[dict]:
         "titles": {entry["id"]: entry["title"] for entry in collection.get("layouts", [])},
         "defaultLayout": default_layout(),
         "themes": list(collection.get("themes", [])),
+        "measure": list(MEASURE_CH),
     }
     script = tmp_path / "layouts.mjs"
     script.write_text(SCRIPT, encoding="utf-8")
@@ -359,6 +379,7 @@ def test_the_reader_chooses_each_layout_and_nothing_else_changes(tmp_path):
                         f"{route}: choosing {layout} changed {axis} from {before[axis]} to {state[axis]} ({when})"
                     )
             assert chosen["storedStyle"] == layout
+            assert chosen["ticked"] == layout, f"{route}: after a reload the closed dialog ticks {chosen['ticked']} on {layout}"
             assert chosen["tickedOpen"] == layout, f"{route}: the dialog ticks {chosen['tickedOpen']} on {layout}"
         assert found["unknown"]["style"] == found["defaultLayout"], (
             f"{route}: an unknown stored layout applied {found['unknown']['style']}"
@@ -388,8 +409,21 @@ def test_every_layout_fits_and_keeps_the_reading_measure(tmp_path):
             failures.append(f"{where}: body text {prose['size']}px, under {BODY_PX}px")
         if prose["ratio"] < LINE_HEIGHT - 0.01:
             failures.append(f"{where}: line height {prose['ratio']:.2f}, under {LINE_HEIGHT}")
-        if found["width"] == 1280 and not MEASURE_CH[0] <= prose["median"] <= MEASURE_CH[1]:
-            failures.append(f"{where}: {prose['median']} characters a line, outside {MEASURE_CH}")
+        if found["width"] == 1280:
+            share = prose["within"] / prose["lines"]
+            if share < MEASURE_SHARE:
+                failures.append(
+                    f"{where}: {share:.0%} of {prose['lines']} full lines hold {MEASURE_CH} "
+                    f"characters, under {MEASURE_SHARE:.0%} (median {prose['median']}, "
+                    f"shortest {prose['short']}, longest {prose['max']})"
+                )
+            if prose["max"] > MEASURE_CEILING:
+                failures.append(f"{where}: a line holds {prose['max']} characters, over {MEASURE_CEILING}")
+        elif prose["over"]:
+            failures.append(
+                f"{where}: {prose['over']} full lines hold more than {MEASURE_CH[1]} characters "
+                f"(longest {prose['max']})"
+            )
     for found in results:
         if found["prose"] and found["scheme"] == "light":
             print(f"{found['layout']} {found['width']}px: {found['prose']}")
