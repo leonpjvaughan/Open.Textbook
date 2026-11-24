@@ -317,7 +317,7 @@ def test_each_bundle_and_scheme_selects_a_block_per_bundle():
 @pytest.mark.parametrize("bundle", BUNDLES, ids=IDS)
 @pytest.mark.parametrize("book", BOOKS, ids=[b.id for b in BOOKS])
 def test_every_bundle_and_subject_pair_is_readable(bundle, book):
-    """Six bundles times every book, in two schemes: all of them must be legible.
+    """Nine bundles times every book, in two schemes: all of them must be legible.
 
     This is what lets a book state one accent per scheme rather than tuning a palette
     per bundle. It covers the figure tokens too, which are measured against the figure
@@ -469,7 +469,7 @@ def test_the_apca_check_can_actually_fail():
 @pytest.mark.parametrize("bundle", BUNDLES, ids=IDS)
 @pytest.mark.parametrize("scheme", ("light", "dark"))
 def test_every_bundle_passes_the_apca_second_opinion(bundle, scheme):
-    """Six bundles × both schemes, measured in Lc as well as WCAG.
+    """Nine bundles × both schemes, measured in Lc as well as WCAG.
 
     The thresholds are below the strict body-text levels on purpose, so lifting the
     dark vivid members would repaint those families rather than check them.

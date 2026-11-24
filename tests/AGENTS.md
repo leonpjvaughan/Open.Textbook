@@ -14,7 +14,7 @@ and **Toolchain** still apply; this file adds what is particular.
   `test_home_page.py`, `test_proofs.py`, `test_proof_maths.py`.
 - **Figures** — `test_figures.py` (the module contract: an accessible name, no colour
   literal, no runtime LaTeX, `show:` on every slider) and `test_figure_browser.py` (the same
-  in a real browser across all six bundles, and the phone-width audit).
+  in a real browser across all nine bundles, and the phone-width audit).
 - **Verification oracles** — `test_verify_algebra.py`, `test_verify_oracles.py`,
   `test_verify_coverage.py`, `test_verify_units.py`, `test_verify_statistics.py`.
 - **Layouts and cascade** — `test_layout_contract.py` (the layout contract, parsed with
@@ -40,7 +40,7 @@ and **Toolchain** still apply; this file adds what is particular.
   is not a package and pytest puts this directory on the path.
 
 A test marked `browser` is deselected by default (`addopts` in `pyproject.toml`): measuring
-every figure under all six bundles takes about twelve minutes. **CI runs the substance of
+every figure under all nine bundles takes about eighteen minutes (estimated from twelve for six). **CI runs the substance of
 them** in `scripts/preview-themes.sh` — the kit's contract, the contrast audit, the phone
 audit and `tools offline` — so a browser-only defect still fails the gate. Run them by hand
 with `uv run python -m pytest -m browser`.

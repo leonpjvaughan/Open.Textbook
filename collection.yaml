@@ -41,10 +41,13 @@ themes:
   - editorial
   - clean
   - harbour
+  - chalk
+  - projector
   # vivid
   - neon
   - phosphor
   - glass
+  - blueprint
 # Animated backgrounds for the landing pages, and the default a book inherits.
 # Nothing ships one; the seam is in engine/src/textbook/backgrounds.py.
 backgrounds:

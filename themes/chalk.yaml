@@ -1,0 +1,56 @@
+id: chalk
+title: Chalk
+description: >-
+  Calm and friendly, like a classroom in green.
+
+mood: calm
+family: Chalk
+provenance:
+  light:
+    name: Sage
+    source: house
+    original: true
+    note: >-
+      Authored in this repository. Pale sage paper, green-black ink and one
+      deep green accent.
+  dark:
+    name: Board
+    source: house
+    original: true
+    note: >-
+      Authored in this repository as the dark half of the same pair: a
+      green-grey board, chalk-white ink and a chalk-yellow accent.
+typography:
+  body: 'system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif'
+  display: 'ui-rounded, "SF Pro Rounded", "Arial Rounded MT Bold", "Trebuchet MS", Verdana, sans-serif'
+  mono: 'ui-monospace, SFMono-Regular, Menlo, Consolas, monospace'
+light:
+  paper: "#f3f5ef"
+  ink: "#1d2420"
+  ink_soft: "#4f5a53"
+  ink_lighter: "#7d877f"
+  rule: "#dde2d6"
+  accent: "#2f6b4f"
+  accent_light: "#4f8a6c"
+  accent_dark: "#22513b"
+  accent_ink: "#ffffff"
+  link: "#255c43"
+  code_bg: "#e8ece2"
+  fig_warn: "#a3402f"
+  fig_good: "#2c6b45"
+  fig_grid: "#7a847c"
+dark:
+  paper: "#1f2a26"
+  ink: "#ecebe4"
+  ink_soft: "#bfc3b9"
+  ink_lighter: "#8d958c"
+  rule: "#33403a"
+  accent: "#e8c547"
+  accent_light: "#f0d673"
+  accent_dark: "#c9a62c"
+  accent_ink: "#1f2a26"
+  link: "#f0d673"
+  code_bg: "#18211e"
+  fig_warn: "#f09a82"
+  fig_good: "#9ed8a8"
+  fig_grid: "#7d8a83"
