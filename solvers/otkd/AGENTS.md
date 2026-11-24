@@ -17,8 +17,8 @@ are changing: [`docs/config-layer.md`](docs/config-layer.md) (§10 for an exampl
 [`docs/problem-mapping.md`](docs/problem-mapping.md) (§8 for an example), for the derivation,
 solvers and diagnostics; [`docs/entry-points.md`](docs/entry-points.md) and
 [`docs/naming.md`](docs/naming.md) for the CLI, API and errors;
-[`docs/wasm.md`](docs/wasm.md) for the compiled kernel; [`docs/dynamics.md`](docs/dynamics.md),
-[`docs/ui.md`](docs/ui.md) and [`docs/follow-ups.md`](docs/follow-ups.md) for the rest.
+[`docs/wasm.md`](docs/wasm.md) for the compiled kernel; [`docs/dynamics.md`](docs/dynamics.md)
+and [`docs/follow-ups.md`](docs/follow-ups.md) for the rest.
 
 ## Ground rules
 
