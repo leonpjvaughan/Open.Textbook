@@ -6,7 +6,7 @@ supply, derives the problem from them, and writes one artefact where you ask it 
 
 This document is the surface a user meets: what you provide, the commands, the Python API,
 and what happens when a file is wrong. The names themselves — and why they are those names —
-are in [`naming.md`](naming.md); the interactive front end is in [`ui.md`](ui.md).
+are in [`naming.md`](naming.md).
 
 ---
 
@@ -197,10 +197,8 @@ free, non-compliant component. Everything else is name resolution
 - **No `--set` overrides in v1.** A study file is cheap to copy and reviewable in a diff; a
   command-line override is a configuration that exists only in a shell history. The Python
   API is the answer for programmatic sweeps.
-- **No server in the CLI sense, and no notebook magic.** The config UI is not built; if it
-  is, it starts a loopback server for the length of one session and nothing else
-  ([`ui.md`](ui.md) §4).
-- **No Pyodide build.** The seam for it is one comment in `emit/js.py`, not an entry point.
+- **No server in the CLI sense, and no notebook magic.** There is no config UI.
+- **No Pyodide build.** The seam for it is one comment in `emitters/js.py`, not an entry point.
 - **No scaffolding command in v1.** Copying `examples/<name>/` is the scaffolding story,
   and it has the advantage of showing a model that already validates. The UI's *Save as* is
   the eventual replacement.

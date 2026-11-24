@@ -172,7 +172,7 @@ need to be: the same split as the kinematics, where the page consumes a payload.
 If real-time four-corner dynamics is ever required, the speed path is **code generation**, not
 a rewrite: every row is polynomial, so the lambdified expressions can be printed to C, Rust or
 WASM and the derivation stays the spec. The conformance test is the emitted bytes, which is the
-same rule `ui.md` applies to a Rust engine.
+same rule any Rust engine would have to meet.
 
 ## 5. Staged plan, and what v1 owes
 

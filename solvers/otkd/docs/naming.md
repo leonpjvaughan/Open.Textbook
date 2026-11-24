@@ -145,10 +145,9 @@ emit(payload, format)     -> artefact     (js, json, latex)
 ```
 
 Python is the reference implementation of the first three; `emit` is a formatter over
-`solve`'s payload. That is what makes `otkd solve --json`, `otkd emit out.js` and the UI
+`solve`'s payload. That is what makes `otkd solve --json`, `otkd emit out.js` and any front end
 unable to disagree: one producer, three wrappers. It is also the boundary a Rust or
-JavaScript engine would have to meet, if one is ever written
-([`ui.md`](ui.md) §6).
+JavaScript engine would have to meet, if one is ever written.
 
 ## 6. Deliberately not decided here
 

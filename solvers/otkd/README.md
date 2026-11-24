@@ -27,8 +27,7 @@ The package lives at `solvers/otkd` in **Open.Textbook**. Its version is the col
 `hatch-vcs` from the repository root; the commit is the provenance. The bundle
 the book runs is built from this tree by `scripts/build-otkd.sh`.
 
-Designed but not built: the interactive config UI ([`docs/ui.md`](docs/ui.md), held back
-deliberately). Dynamics is built ([`docs/dynamics.md`](docs/dynamics.md)), as is the
+Dynamics is built ([`docs/dynamics.md`](docs/dynamics.md)), as is the
 compiled kernel the book's interactive figures share ([`docs/wasm.md`](docs/wasm.md)).
 
 ## Using it
