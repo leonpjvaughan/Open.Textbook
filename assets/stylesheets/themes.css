@@ -294,4 +294,108 @@
     --tb-fig-good: var(--tb-book-fig-good, #b4ff6e);
     --tb-fig-grid: var(--tb-book-fig-grid, #5f8074);
   }
+
+  /* 4. Swatches: each bundle's sample in the Settings dialog. */
+  .tb-swatch[data-swatch="editorial"] {
+    --sw-font: Georgia, "Iowan Old Style", "Times New Roman", serif;
+  }
+  body[data-md-color-scheme="default"] .tb-swatch[data-swatch="editorial"] {
+    --sw-paper: #faf9f5;
+    --sw-ink: #1f1e1b;
+    --sw-ink-soft: #5c5a54;
+    --sw-accent: #2f6690;
+    --sw-rule: #e6e3da;
+  }
+  body[data-md-color-scheme="slate"] .tb-swatch[data-swatch="editorial"] {
+    --sw-paper: #171614;
+    --sw-ink: #e9e7e1;
+    --sw-ink-soft: #b7b4ac;
+    --sw-accent: #6ea8d8;
+    --sw-rule: #2a2926;
+  }
+  .tb-swatch[data-swatch="clean"] {
+    --sw-font: system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+  }
+  body[data-md-color-scheme="default"] .tb-swatch[data-swatch="clean"] {
+    --sw-paper: #ffffff;
+    --sw-ink: #101010;
+    --sw-ink-soft: #565656;
+    --sw-accent: #101010;
+    --sw-rule: #e3e3e3;
+  }
+  body[data-md-color-scheme="slate"] .tb-swatch[data-swatch="clean"] {
+    --sw-paper: #0d0d0d;
+    --sw-ink: #f2f2f2;
+    --sw-ink-soft: #b0b0b0;
+    --sw-accent: #f2f2f2;
+    --sw-rule: #262626;
+  }
+  .tb-swatch[data-swatch="harbour"] {
+    --sw-font: Georgia, "Iowan Old Style", "Times New Roman", serif;
+  }
+  body[data-md-color-scheme="default"] .tb-swatch[data-swatch="harbour"] {
+    --sw-paper: #f4f7f8;
+    --sw-ink: #23303a;
+    --sw-ink-soft: #55656f;
+    --sw-accent: #3a6b7a;
+    --sw-rule: #dde5e8;
+  }
+  body[data-md-color-scheme="slate"] .tb-swatch[data-swatch="harbour"] {
+    --sw-paper: #10171c;
+    --sw-ink: #d7e2e8;
+    --sw-ink-soft: #a3b3bc;
+    --sw-accent: #6fa8bd;
+    --sw-rule: #26323a;
+  }
+  .tb-swatch[data-swatch="neon"] {
+    --sw-font: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+  }
+  body[data-md-color-scheme="default"] .tb-swatch[data-swatch="neon"] {
+    --sw-paper: #f7f3fb;
+    --sw-ink: #1c1430;
+    --sw-ink-soft: #554a6e;
+    --sw-accent: #b81d8f;
+    --sw-rule: #e6dcef;
+  }
+  body[data-md-color-scheme="slate"] .tb-swatch[data-swatch="neon"] {
+    --sw-paper: #120a20;
+    --sw-ink: #ead9ff;
+    --sw-ink-soft: #b4a3cf;
+    --sw-accent: #ff4fd8;
+    --sw-rule: #2a1b42;
+  }
+  .tb-swatch[data-swatch="phosphor"] {
+    --sw-font: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+  }
+  body[data-md-color-scheme="default"] .tb-swatch[data-swatch="phosphor"] {
+    --sw-paper: #fbf7ec;
+    --sw-ink: #241d0e;
+    --sw-ink-soft: #5c4f38;
+    --sw-accent: #925600;
+    --sw-rule: #e8dfc8;
+  }
+  body[data-md-color-scheme="slate"] .tb-swatch[data-swatch="phosphor"] {
+    --sw-paper: #0c0b07;
+    --sw-ink: #f0e6cf;
+    --sw-ink-soft: #c0b394;
+    --sw-accent: #ffb000;
+    --sw-rule: #26231a;
+  }
+  .tb-swatch[data-swatch="glass"] {
+    --sw-font: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+  }
+  body[data-md-color-scheme="default"] .tb-swatch[data-swatch="glass"] {
+    --sw-paper: #f2faf6;
+    --sw-ink: #10221c;
+    --sw-ink-soft: #476058;
+    --sw-accent: #0e7254;
+    --sw-rule: #d8e8e0;
+  }
+  body[data-md-color-scheme="slate"] .tb-swatch[data-swatch="glass"] {
+    --sw-paper: #08120f;
+    --sw-ink: #d8f5e8;
+    --sw-ink-soft: #a0c4b4;
+    --sw-accent: #6ef0a0;
+    --sw-rule: #1c2e28;
+  }
 }

@@ -207,8 +207,10 @@ The contract, enforced by `tests/test_layout_contract.py` with a real CSS parser
 itself tested. `tests/test_cascade_layers.py` pins the layer order declared first in
 `themes.css`: `@layer palette, base, shell, layout, book, chrome;`.
 
-**Add a layout.** Write `assets/stylesheets/layouts/<id>.css`, add
-`{id, title, description}` to `layouts` in `collection.yaml`, and run the tests. The build
+**Add a layout.** Write `assets/stylesheets/layouts/<id>.css` and its wireframe
+`<id>.svg` (viewBox `0 0 120 80`, painted only in `currentColor`, the accent marks classed
+`tb-thumb__accent`; the Settings dialog inlines it, and `validate_collection` refuses a layout
+without one), add `{id, title, description}` to `layouts` in `collection.yaml`, and run the tests. The build
 concatenates the layouts into `layouts.css`. The reader's **Layout** choice appears
 automatically once there are two; with one, neither the fieldset nor the pre-paint read of
 `textbooks:style` is emitted. New hooks paint (a tint, a swatch) in base CSS, never in a

@@ -3,7 +3,7 @@
 Both belong to the reader and apply to the whole collection, so both are stored
 under origin-wide keys and applied before the first paint.
 
-* ``textbooks:scheme`` — ``default`` or ``slate``.
+* ``textbooks:scheme`` — ``default`` or ``slate``; absent means *Match device*.
 * ``textbooks:style`` — a layout id from ``collection.yaml``. Read and written only
   when more than one layout exists; with one, nothing here mentions it.
 * ``textbooks:theme`` — one of the bundles in ``themes/``. A bundle is chosen by
@@ -120,6 +120,7 @@ def snippet(config) -> str:
         if choosable
         else ""
     )
+    layout_reset = "      remove(STYLE_KEY);\n      applyStyle(null);\n" if choosable else ""
     layout_start = "  applyStyle(read(STYLE_KEY));\n" if choosable else ""
     layout_api = (
         "    styleKey: STYLE_KEY,\n"
@@ -158,6 +159,12 @@ def snippet(config) -> str:
         "  function write(key, value) {\n"
         "    try { if (store) store.setItem(key, value); } catch (err) {}\n"
         "  }\n"
+        "  function remove(key) {\n"
+        "    try { if (store) store.removeItem(key); } catch (err) {}\n"
+        "  }\n"
+        "  function device() {\n"
+        "    return query && query.matches ? 'slate' : 'default';\n"
+        "  }\n"
         "  function applyTheme(value) {\n"
         "    var wanted = THEMES.indexOf(value) >= 0 ? value : DEFAULT_THEME;\n"
         "    if (wanted) document.documentElement.setAttribute('data-theme', wanted);\n"
@@ -186,14 +193,14 @@ def snippet(config) -> str:
         "    paint();\n"
         "  }\n"
         "  /* The stored choice first; with none, the operating system. */\n"
-        "  var chosen = stored();\n"
-        "  apply(chosen || (query && query.matches ? 'slate' : 'default'));\n"
-        "  if (!chosen && query) {\n"
-        "    function follow(event) {\n"
-        "      /* A choice made after load wins from here on. */\n"
+        "  apply(stored() || device());\n"
+        "  if (query) {\n"
+        "    var follow = function (event) {\n"
+        "      /* Listened to always, so Match device chosen later still follows;\n"
+        "       * a stored Light or Dark is never moved by the device. */\n"
         "      if (stored()) return;\n"
         "      apply(event.matches ? 'slate' : 'default');\n"
-        "    }\n"
+        "    };\n"
         "    if (query.addEventListener) query.addEventListener('change', follow);\n"
         "    else if (query.addListener) query.addListener(follow);\n"
         "  }\n"
@@ -212,6 +219,20 @@ def snippet(config) -> str:
         f"{layout_api}"
         "    read: read,\n"
         "    write: write,\n"
+        "    scheme: function () { return stored() || 'auto'; },\n"
+        "    setScheme: function (value) {\n"
+        "      if (value === 'default' || value === 'slate') write(SCHEME_KEY, value);\n"
+        "      else remove(SCHEME_KEY);\n"
+        "      apply(stored() || device());\n"
+        "      return stored() || 'auto';\n"
+        "    },\n"
+        "    reset: function () {\n"
+        "      remove(SCHEME_KEY);\n"
+        "      apply(device());\n"
+        "      remove(THEME_KEY);\n"
+        "      applyTheme(null);\n"
+        f"{layout_reset}"
+        "    },\n"
         "    setTheme: function (value) { write(THEME_KEY, value); return applyTheme(value); },\n"
         "    currentTheme: function () { return applyTheme(read(THEME_KEY)); }\n"
         "  };\n"

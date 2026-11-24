@@ -67,13 +67,13 @@ def test_the_panel_is_a_labelled_dialog_with_a_labelled_close():
     assert 'aria-label="Close settings"' in text
 
 
-def test_the_panel_offers_the_two_schemes_and_every_bundle():
+def test_the_panel_offers_the_three_schemes_and_every_bundle():
     text = portal.settings_dialog()
     assert 'name="tb-theme"' in text
     assert 'name="tb-scheme"' in text
     for bundle in ordered_bundles():
         assert f'value="{bundle.id}"' in text, bundle.id
-    for scheme in ("default", "slate"):
+    for scheme in ("auto", "default", "slate"):
         assert f'value="{scheme}"' in text
 
 
@@ -246,39 +246,136 @@ def test_the_landing_theme_choice_can_be_withdrawn(monkeypatch):
     assert 'name="tb-scheme"' in portal.settings_dialog()
 
 
-def doubled_collection(monkeypatch):
+FIVE_LAYOUTS = ("matrix", "ledger", "focus", "notebook", "atlas")
+
+
+def five_layouts(monkeypatch):
+    """Every layout that ships a thumbnail, whatever collection.yaml lists today."""
     import textbook.book as books_module
 
     original = books_module.load_collection
 
-    def doubled(root=None):
+    def widened(root=None):
         data = dict(original(root))
         data["layouts"] = [
-            *data["layouts"],
-            {"id": "wide", "title": "Wide", "description": "Fewer, larger cards."},
+            {"id": layout_id, "title": layout_id.title(), "description": f"The {layout_id} layout."}
+            for layout_id in FIVE_LAYOUTS
         ]
         return data
 
-    monkeypatch.setattr(books_module, "load_collection", doubled)
+    monkeypatch.setattr(books_module, "load_collection", widened)
 
 
-def test_with_one_layout_the_panel_has_no_layout_choice():
+def test_with_one_layout_the_panel_has_no_layout_choice(monkeypatch):
+    import textbook.book as books_module
+
+    original = books_module.load_collection
+
+    def single(root=None):
+        data = dict(original(root))
+        data["layouts"] = data["layouts"][:1]
+        return data
+
+    monkeypatch.setattr(books_module, "load_collection", single)
     dialog = portal.settings_dialog()
     assert 'name="tb-layout"' not in dialog
     assert "layout-menu" not in dialog
 
 
-def test_with_two_layouts_the_panel_offers_each(monkeypatch):
-    doubled_collection(monkeypatch)
+def test_with_several_layouts_the_panel_offers_each_with_its_thumbnail(monkeypatch):
+    five_layouts(monkeypatch)
     dialog = portal.settings_dialog()
     assert '<legend class="tb-settings__legend">Layout</legend>' in dialog
-    assert 'name="tb-layout" value="matrix"' in dialog
-    assert 'name="tb-layout" value="wide"' in dialog
-    assert "Fewer, larger cards." in dialog
+    for layout_id in FIVE_LAYOUTS:
+        assert f'name="tb-layout" value="{layout_id}"' in dialog
+        assert f"The {layout_id} layout." in dialog
+    assert dialog.count('<span class="tb-settings__thumb"><svg aria-hidden="true" focusable="false"') == 5
+    assert "<?xml" not in dialog
     assert "style=" not in dialog
+
+
+@pytest.mark.parametrize("layout_id", FIVE_LAYOUTS)
+def test_every_layout_thumbnail_is_drawn_in_the_current_colours(layout_id):
+    """A wireframe in currentColor and classes, so it follows the bundle and the scheme."""
+    from textbook.book import layout_thumbnail
+
+    svg = layout_thumbnail(layout_id).read_text(encoding="utf-8")
+    assert svg.lstrip().startswith("<svg"), f"{layout_id}.svg does not start with <svg>"
+    assert 'viewBox="0 0 120 80"' in svg
+    assert not HEX_COLOUR.search(svg), f"{layout_id}.svg names a hex colour"
+    assert not FUNCTION_COLOUR.search(svg), f"{layout_id}.svg names an rgb()/hsl() colour"
+    assert "style=" not in svg
+    paints = re.findall(r'\b(?:fill|stroke)="([^"]+)"', svg)
+    assert set(paints) <= {"currentColor", "none"}, f"{layout_id}.svg paints {set(paints)}"
+    assert "tb-thumb__accent" in svg, f"{layout_id}.svg draws no accent mark"
 
 
 def test_the_runtime_writes_the_layout_through_the_shared_store():
     runtime = SETTINGS_JS.read_text(encoding="utf-8")
-    assert 'input[name="tb-layout"]' in runtime
+    assert '"tb-layout"' in runtime
     assert "prefs.setStyle" in runtime
+
+
+def test_the_three_groups_come_in_order_each_with_a_hint(monkeypatch):
+    five_layouts(monkeypatch)
+    dialog = portal.settings_dialog(book=BOOKS[0])
+    legends = re.findall(r'<legend class="tb-settings__legend">([^<]+)</legend>', dialog)
+    assert legends == ["Colour scheme", "Colour", "Layout", "Reading offline"]
+    for group_id, setting in (
+        ("scheme-menu", "Colour scheme"),
+        ("theme-menu", "Colour"),
+        ("layout-menu", "Layout"),
+    ):
+        assert f'id="{group_id}" data-setting="{setting}" aria-describedby="{group_id}-hint"' in dialog
+        assert f'<p class="tb-settings__hint" id="{group_id}-hint">' in dialog
+    assert "Your colours stay the same." in dialog
+    assert "Your layout stays the same." in dialog
+
+
+def test_the_colour_scheme_offers_match_device_light_and_dark():
+    dialog = portal.settings_dialog()
+    values = re.findall(r'name="tb-scheme" value="([^"]+)"', dialog)
+    assert values == ["auto", "default", "slate"]
+    assert "Match device" in dialog
+
+
+def test_each_colour_card_carries_a_sample_of_its_bundle():
+    dialog = portal.settings_dialog()
+    for bundle in ordered_bundles():
+        assert f'<span class="tb-swatch" data-swatch="{bundle.id}" aria-hidden="true">' in dialog
+        assert escape(bundle.description) in dialog
+    assert "tb-settings__option-note" not in dialog, "the internal palette names are back"
+    for bundle in ordered_bundles():
+        for scheme in ("light", "dark"):
+            name = bundle.provenance[scheme]["name"]
+            assert f">{escape(name)}<" not in dialog, f"{bundle.id}: {name} reaches the reader"
+
+
+def test_the_choice_is_shown_by_a_mark_not_by_colour_alone():
+    dialog = portal.settings_dialog()
+    cards = dialog.count('class="tb-settings__card"')
+    assert cards and dialog.count('class="tb-settings__mark" aria-hidden="true"><svg') == cards
+    css = SETTINGS_CSS.read_text(encoding="utf-8")
+    assert ".tb-settings__radio:checked + .tb-settings__card .tb-settings__mark svg" in css
+    assert ".tb-settings__radio:focus-visible + .tb-settings__card" in css
+
+
+def test_the_panel_announces_each_change_politely():
+    dialog = portal.settings_dialog()
+    assert (
+        '<p class="tb-settings__status" id="tb-settings-status" role="status" aria-live="polite"></p>'
+        in dialog
+    )
+    js = SETTINGS_JS.read_text(encoding="utf-8")
+    assert "announce(describe(input))" in js
+    assert 'group.dataset.setting + ": "' in js
+
+
+def test_reset_appearance_is_a_button_that_clears_the_stored_choices():
+    dialog = portal.settings_dialog()
+    button = button_tag(dialog, "tb-settings-reset")
+    assert 'type="button"' in button
+    assert "Reset appearance</button>" in dialog
+    js = SETTINGS_JS.read_text(encoding="utf-8")
+    assert "prefs.reset()" in js
+    assert '"Appearance reset."' in js
