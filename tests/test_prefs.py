@@ -388,8 +388,27 @@ def two_layouts() -> dict:
     return cfg.from_parts(".", layouts=["matrix", "wide"], default_layout="matrix")
 
 
+def one_layout() -> dict:
+    return cfg.from_parts(".", layouts=["matrix"], default_layout="matrix")
+
+
+def with_layouts(monkeypatch, ids: list[str]) -> None:
+    import textbook.book as books_module
+
+    original = books_module.load_collection
+
+    def patched(root=None):
+        data = dict(original(root))
+        data["layouts"] = [
+            {"id": layout_id, "title": layout_id.title(), "description": "A layout."} for layout_id in ids
+        ]
+        return data
+
+    monkeypatch.setattr(books_module, "load_collection", patched)
+
+
 def test_with_one_layout_the_snippet_never_mentions_a_layout():
-    snippet = shared_snippet()
+    snippet = prefs.snippet(one_layout())
     for word in ("textbooks:style", "data-style", "setStyle", "STYLE"):
         assert word not in snippet, word
 
@@ -469,22 +488,14 @@ def test_choosing_a_layout_applies_and_stores_it(tmp_path):
     assert result["saved"] == "wide"
 
 
-def test_the_landing_page_carries_no_layout_script_with_one_layout():
+def test_the_landing_page_carries_no_layout_script_with_one_layout(monkeypatch):
+    with_layouts(monkeypatch, ["matrix"])
     html = portal.render()
     assert "textbooks:style" not in html
 
 
 def test_the_landing_page_carries_the_layout_script_with_two(monkeypatch):
-    import textbook.book as books_module
-
-    original = books_module.load_collection
-
-    def doubled(root=None):
-        data = dict(original(root))
-        data["layouts"] = [*data["layouts"], {"id": "ledger", "title": "Ledger", "description": "Rows."}]
-        return data
-
-    monkeypatch.setattr(books_module, "load_collection", doubled)
+    with_layouts(monkeypatch, ["matrix", "ledger"])
     html = portal.render()
     assert "textbooks:style" in html
     assert 'var STYLES = ["matrix","ledger"];' in html
@@ -608,4 +619,4 @@ def test_reset_clears_every_stored_choice_and_restores_the_defaults(tmp_path):
 def test_reset_clears_the_layout_when_there_is_a_choice(tmp_path):
     snippet = prefs.snippet(two_layouts())
     assert "remove(STYLE_KEY);" in snippet
-    assert "remove(STYLE_KEY);" not in shared_snippet()
+    assert "remove(STYLE_KEY);" not in prefs.snippet(one_layout())
