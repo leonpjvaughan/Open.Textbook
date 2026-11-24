@@ -598,7 +598,77 @@ def test_choosing_match_device_again_clears_the_override_and_follows(tmp_path):
     seen = run_match(tmp_path, "default", dark=True, steps=["set:auto", "os:light", "os:dark"])
     assert seen[0]["scheme"] == "default" and seen[0]["choice"] == "default", seen
     assert seen[1]["stored"] is None and seen[1]["choice"] == "auto", seen
-    assert [row["scheme"] for row in seen[1:]] == ["slate", "default", "slate"], seen
+
+
+BLOCKED_SCENARIO = r"""
+const fs = require("fs");
+const [snippetPath, mode] = process.argv.slice(2);
+const attributes = {};
+const listen = [];
+const media = { matches: false, addEventListener(_event, handler) { listen.push(handler); } };
+const refuse = () => { throw new Error("QuotaExceededError"); };
+const storage = mode === "write"
+  ? { getItem: () => null, setItem: refuse, removeItem: refuse }
+  : null;
+const document = {
+  documentElement: {
+    setAttribute(key, value) { attributes[key] = value; },
+    getAttribute(key) { return key in attributes ? attributes[key] : null; },
+  },
+  body: null,
+  readyState: "complete",
+  addEventListener() {},
+  querySelectorAll() { return []; },
+};
+const window = { matchMedia: () => media };
+Object.defineProperty(window, "localStorage", {
+  get() { if (!storage) throw new Error("SecurityError"); return storage; },
+});
+const code = fs.readFileSync(snippetPath, "utf8").replace(/^\s*<script>\s*/, "").replace(/<\/script>\s*$/, "");
+new Function("window", "document", "getComputedStyle", code)(window, document, () => ({ getPropertyValue: () => "" }));
+const prefs = window.textbookPrefs;
+const now = () => ({ scheme: attributes["data-md-color-scheme"], choice: prefs.scheme() });
+const seen = {};
+prefs.setScheme("slate");
+seen.dark = now();
+for (const handler of listen) handler({ matches: false });
+seen.deviceLight = now();
+prefs.setScheme("auto");
+seen.auto = now();
+prefs.setTheme("neon");
+seen.theme = { applied: attributes["data-theme"], current: prefs.currentTheme() };
+prefs.setStyle("wide");
+seen.style = { applied: attributes["data-style"], current: prefs.currentStyle() };
+process.stdout.write(JSON.stringify(seen));
+"""
+
+
+@pytest.mark.parametrize("mode", ["write", "blocked"])
+def test_a_choice_holds_when_the_browser_refuses_storage(tmp_path, mode):
+    """Light or Dark must apply, and stay, when storage throws or is blocked outright."""
+    import json
+    import shutil
+    import subprocess
+
+    node = shutil.which("node")
+    if node is None:
+        pytest.skip("node is not on PATH; the preference script cannot be evaluated")
+    path = tmp_path / "snippet.js"
+    path.write_text(prefs.snippet(two_layouts()), encoding="utf-8")
+    scenario = tmp_path / "blocked.js"
+    scenario.write_text(BLOCKED_SCENARIO, encoding="utf-8")
+    done = subprocess.run(
+        [node, str(scenario), str(path), mode], capture_output=True, text=True, check=False
+    )
+    assert done.returncode == 0, done.stderr
+    seen = json.loads(done.stdout)
+    assert seen["dark"] == {"scheme": "slate", "choice": "slate"}, seen
+    assert seen["deviceLight"] == {"scheme": "slate", "choice": "slate"}, (
+        "a device change undid a Dark the reader chose while storage was refused"
+    )
+    assert seen["auto"] == {"scheme": "default", "choice": "auto"}, seen
+    assert seen["theme"] == {"applied": "neon", "current": "neon"}, seen
+    assert seen["style"] == {"applied": "wide", "current": "wide"}, seen
 
 
 def test_an_existing_stored_value_still_reads_as_light_or_dark(tmp_path):

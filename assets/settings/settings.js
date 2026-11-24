@@ -110,19 +110,15 @@
 
   /** @param {string} message */
   function announce(message) {
-    if (status) status.textContent = message;
+    if (!status) return;
+    status.textContent = "";
+    if (message) requestAnimationFrame(() => {
+      status.textContent = message;
+    });
   }
 
   function reset() {
-    if (prefs && typeof prefs.reset === "function") {
-      prefs.reset();
-    } else {
-      try {
-        window.localStorage.removeItem(SCHEME_KEY);
-        window.localStorage.removeItem(THEME_KEY);
-      } catch (err) {
-      }
-    }
+    if (prefs && typeof prefs.reset === "function") prefs.reset();
     sync();
     const chosen = /** @type {HTMLInputElement[]} */ (
       Array.from(dialog.querySelectorAll('input[type="radio"]:checked'))
@@ -158,6 +154,17 @@
   });
   const resetButton = document.getElementById("tb-settings-reset");
   if (resetButton) resetButton.addEventListener("click", reset);
+
+  function refresh() {
+    if (prefs && typeof prefs.refresh === "function") prefs.refresh();
+    sync();
+  }
+  window.addEventListener("storage", (event) => {
+    if (event.key === null || event.key.startsWith("textbooks:")) refresh();
+  });
+  window.addEventListener("pageshow", (event) => {
+    if (event.persisted) refresh();
+  });
   // Safari ignores `closedby="any"`, so light dismissal is kept by pointer position there.
   if (!("closedBy" in HTMLDialogElement.prototype)) {
     /**
@@ -181,5 +188,6 @@
     });
   }
 
+  sync();
   trigger.hidden = false;
 })();

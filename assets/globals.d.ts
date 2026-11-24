@@ -26,6 +26,7 @@ interface TextbookPrefs {
   scheme: () => string;
   setScheme: (value: string) => string;
   reset: () => void;
+  refresh: () => void;
   styleKey?: string;
   styles?: string[];
   defaultStyle?: string;
