@@ -2,1256 +2,1262 @@
  * defined here: a theme bundle (themes/*.yaml) sets it, a book adds its
  * --tb-book-* tint. See SHAPE.md, "Theme bundles". */
 
-:root {
-  /* Scheme-independent, and not part of any bundle unless a bundle overrides it. */
-  /* Measure: 62ch measures 586px on the current 17px body, which renders a median of
-   * 72 characters per full line against the longest paragraphs on a Learn page; the
-   * old 70ch was 662px and rendered 91. The 58ch estimate in the brief measured 69 —
-   * inside the range but on its floor — so it was recomputed rather than copied.
-   * test_measure.py measures the rendered line in a browser rather than trusting
-   * this token, because `ch` is the width of "0", not of the alphabet. */
-  --tb-measure: 62ch;
-  --tb-radius: 8px;
-  --tb-font-body: system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
-  --tb-font-display: "Iowan Old Style", Charter, Georgia, "Times New Roman", serif;
-  --tb-font-mono: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
-}
-
-/* A book tints its diagrams by setting its accent, unless it sets its own. */
-[data-md-color-scheme] {
-  --tb-fig-accent: var(--tb-accent);
-}
-
-/* Scrollbars, in the bundle's own ink and paper. `ink-soft` clears 3:1 against the
- * paper in every bundle and scheme (the gate that measured `ink-lighter` for the
- * drawer marker is the same one), so the thumb is visible rather than a grey ghost of
- * the track, which is the browser's default. */
-html {
-  scrollbar-color: var(--tb-ink-soft) var(--tb-paper);
-}
-
-/* Native widgets follow the reader's scheme. It is set from the same attribute
- * `prefs.py` writes before the first paint, so it never flashes. */
-[data-md-color-scheme="default"] {
-  color-scheme: light;
-}
-[data-md-color-scheme="slate"] {
-  color-scheme: dark;
-}
-
-/* Material's variable names survive because the shared stylesheet and the booklet
- * widget read them. Scheme-independent: a bundle sets what differs. */
-[data-md-color-scheme] {
-  --md-default-bg-color: var(--tb-paper);
-  --md-default-fg-color: var(--tb-ink);
-  --md-default-fg-color--light: var(--tb-ink-soft);
-  --md-default-fg-color--lighter: var(--tb-ink-lighter);
-  --md-default-fg-color--lightest: var(--tb-rule);
-  --md-primary-fg-color: var(--tb-accent);
-}
-
-/* Typography: the faces are bundle tokens; the sizes are shared. */
-.md-typeset {
-  font-family: var(--tb-font-body);
-  font-size: 1.0625rem; /* ~17px */
-  line-height: 1.65;
-}
-
-.md-typeset h1,
-.md-typeset h2,
-.md-typeset h3,
-.md-typeset h4 {
-  font-family: var(--tb-font-display);
-  letter-spacing: -0.01em;
-}
-
-/* The spacing says what belongs to what: tight inside a section, wider between
- * sections. Scoped to `.md-typeset`; the booklet panel and print sheet differ. */
-.md-typeset h1 { margin: 0 0 0.5rem; }
-
-/* The page kind is split out of the first heading at render time, by
- * `pipeline.split_page_kind`, so a stylesheet can treat it apart from the title.
- * Wave 1 gives it no look of its own: the editorial kicker is Wave 4, and the title
- * still reads as it always has. */
-.md-typeset .page-kind { display: inline; }
-
-/* On a phone the H1 is a size above the prose rather than twice it. At the 34px the
- * browser default gives, the longest section title (77 characters, before its page
- * kind) took four lines and pushed the first paragraph a screen down. */
-@media (max-width: 48rem) {
-  .md-typeset h1 {
-    font-size: 1.3rem;
-    line-height: 1.35;
-  }
-}
-
-/* --- the chapter opener ---------------------------------------------------- */
-
-/* A chapter's overview page is ordinary Markdown, authored the same way as every
- * other page, so `hooks/opener.py` adds the opener's shape to the rendered HTML:
- * the chapter number as a kicker, the problem as a pull quote, and the first
- * section's link. These are the only rules that style it. */
-.md-typeset .chapter-kicker {
-  display: block;
-  margin: 0 0 0.3rem;
-  color: var(--tb-ink-soft);
-  font-family: var(--tb-font-mono);
-  font-size: 0.74rem;
-  font-weight: 600;
-  letter-spacing: 0.08em;
-  text-transform: uppercase;
-}
-
-/* The action: a labelled link between two rules, under the title. Nothing here is
- * revealed by a script, so a reader with scripting off still starts the chapter. */
-.md-typeset .chapter-start {
-  max-width: var(--tb-measure);
-  display: flex;
-  flex-wrap: wrap;
-  align-items: baseline;
-  gap: 0.15rem 0.7rem;
-  margin: 1.1rem 0 2rem;
-  padding: 0.7rem 0 0.75rem;
-  border-top: 1px solid var(--tb-rule);
-  border-bottom: 1px solid var(--tb-rule);
-}
-
-.md-typeset .chapter-start__label {
-  color: var(--tb-ink-soft);
-  font-family: var(--tb-font-mono);
-  font-size: 0.72rem;
-  font-weight: 600;
-  letter-spacing: 0.08em;
-  text-transform: uppercase;
-}
-
-.md-typeset .chapter-start a {
-  display: inline-flex;
-  align-items: center;
-  min-height: 1.5rem;
-  font-weight: 600;
-}
-
-/* The chapter problem as the page's pull quote: display serif, a step above the
- * body, framed by two rules. There is no fill, no side border and no colour. */
-.md-typeset .chapter-problem {
-  max-width: var(--tb-measure);
-  margin: 2rem 0 2.2rem;
-  padding: 0.9rem 0 0.3rem;
-  border-top: 1px solid var(--tb-rule);
-  border-bottom: 1px solid var(--tb-rule);
-}
-
-.md-typeset .chapter-problem > h2 {
-  margin: 0 0 0.7rem;
-  color: var(--tb-ink-soft);
-  font-size: 0.95rem;
-}
-
-.md-typeset .chapter-problem__quote > p {
-  font-family: var(--tb-font-display);
-  font-size: 1.22rem;
-  line-height: 1.5;
-}
-
-.md-typeset h2,
-.md-typeset h3,
-.md-typeset h4 {
-  margin: 1.4rem 0 0.5rem;
-}
-
-/* Not only the direct children: a paragraph inside `details` is still prose. */
-.md-typeset p { margin: 0 0 0.9rem; }
-
-/* A list is a block, not words: it takes the paragraph gap. */
-.md-typeset ul,
-.md-typeset ol {
-  margin: 0 0 0.9rem;
-}
-
-.md-typeset blockquote { margin: 1.4rem 0; }
-
-/* Measure: 70-78 characters at a desk and 40-48 on a phone, from the type rules.
- * A heading takes the same width as the prose it introduces, or it runs past the
- * column it belongs to. Figures, tables, display maths and code are deliberately
- * wider (`maths-figure` is 46rem): narrowing a column must not clip a diagram. */
-.md-typeset > h1,
-.md-typeset > h2,
-.md-typeset > h3,
-.md-typeset > h4,
-.md-typeset > p,
-.md-typeset > ul,
-.md-typeset > ol,
-.md-typeset > blockquote {
-  max-width: var(--tb-measure);
-}
-
-/* Text hygiene: balance stops a heading leaving one word on its own line; pretty
- * stops a paragraph leaving one behind. Both are progressive: a browser that does
- * not know the value ignores it and lays the text out as before. */
-.md-typeset h1,
-.md-typeset h2,
-.md-typeset h3 {
-  text-wrap: balance;
-}
-
-.md-typeset p,
-.md-typeset li,
-.md-typeset blockquote {
-  text-wrap: pretty;
-}
-
-/* A selection the reader can read back. The bundle's accent with its own on-accent
- * ink is the one pairing every bundle proves at 4.5:1, so it is the only pair that
- * can be used here without a new token. */
-::selection {
-  background: var(--tb-accent);
-  color: var(--tb-accent-ink);
-}
-
-/* Maths is browser-rendered MathML; keep it aligned with the body text. */
-.md-typeset math {
-  font-size: 1.05em;
-}
-
-/* The user-agent cell padding is 1px, which welds short numbers into one blob.
- * 0.4em keeps a row about a line tall; 0.6em is the gutter between columns. */
-.md-typeset table th,
-.md-typeset table td {
-  padding: 0.4em 0.6em;
-}
-
-/* A table marked `<!-- table: cards -->` becomes one card per row on a phone. The
- * engine puts each column's heading on its cell as `data-label`; this paints it. */
-@media (max-width: 60rem) {
-  .md-typeset table.table--cards,
-  .md-typeset table.table--cards tbody,
-  .md-typeset table.table--cards tr,
-  .md-typeset table.table--cards td {
-    display: block;
-    width: auto;
+@layer base {
+  :root {
+    /* Scheme-independent and not part of any bundle. The faces are the palette's:
+     * themes.css declares their fallbacks, since this layer would beat a bundle's. */
+    /* Measure: 62ch measures 586px on the current 17px body, which renders a median of
+     * 72 characters per full line against the longest paragraphs on a Learn page; the
+     * old 70ch was 662px and rendered 91. The 58ch estimate in the brief measured 69 —
+     * inside the range but on its floor — so it was recomputed rather than copied.
+     * test_measure.py measures the rendered line in a browser rather than trusting
+     * this token, because `ch` is the width of "0", not of the alphabet. */
+    --tb-measure: 62ch;
+    --tb-radius: 8px;
   }
 
-  /* The header row is the card's labels, so it is not printed as a row of its own. */
-  .md-typeset table.table--cards thead {
-    position: absolute;
-    width: 1px;
-    height: 1px;
-    overflow: hidden;
-    clip-path: inset(50%);
-    white-space: nowrap;
+  /* A book tints its diagrams by setting its accent, unless it sets its own. */
+  [data-md-color-scheme] {
+    --tb-fig-accent: var(--tb-accent);
   }
 
-  /* A label and its value on one line, at the prose's own size: stacking costs a
-   * line per field, and the values were the smallest text on the page. */
-  .md-typeset table.table--cards tr {
-    padding: 0.15rem 0;
-    border-top: 1px solid var(--tb-rule);
+  /* Scrollbars, in the bundle's own ink and paper. `ink-soft` clears 3:1 against the
+   * paper in every bundle and scheme (the gate that measured `ink-lighter` for the
+   * drawer marker is the same one), so the thumb is visible rather than a grey ghost of
+   * the track, which is the browser's default. */
+  html {
+    scrollbar-color: var(--tb-ink-soft) var(--tb-paper);
   }
 
-  .md-typeset table.table--cards tr:first-child { border-top: 0; }
-
-  .md-typeset table.table--cards td {
-    padding: 0.3rem 0;
-    border: 0;
-    font-size: 1rem;
-    line-height: 1.45;
+  /* Native widgets follow the reader's scheme. It is set from the same attribute
+   * `prefs.py` writes before the first paint, so it never flashes. */
+  [data-md-color-scheme="default"] {
+    color-scheme: light;
+  }
+  [data-md-color-scheme="slate"] {
+    color-scheme: dark;
   }
 
-  .md-typeset table.table--cards td::before {
-    display: inline;
-    content: attr(data-label) ": ";
-    color: var(--tb-ink-soft);
-    font-size: 0.85rem;
+  /* Material's variable names survive because the shared stylesheet and the booklet
+   * widget read them. Scheme-independent: a bundle sets what differs. */
+  [data-md-color-scheme] {
+    --md-default-bg-color: var(--tb-paper);
+    --md-default-fg-color: var(--tb-ink);
+    --md-default-fg-color--light: var(--tb-ink-soft);
+    --md-default-fg-color--lighter: var(--tb-ink-lighter);
+    --md-default-fg-color--lightest: var(--tb-rule);
+    --md-primary-fg-color: var(--tb-accent);
   }
 
-  /* The first cell is the card's heading, so its label would only repeat its value. */
-  .md-typeset table.table--cards td:first-child {
-    font-size: 1.0625rem;
-    font-weight: 600;
-  }
-
-  .md-typeset table.table--cards td:first-child::before { content: none; }
-}
-
-/* Interactive figures read as instrument panels, not decoration. The tint is 4%:
- * the panel is a derived surface, darker than the paper, and a stronger tint spends
- * the contrast margin the figure tokens need. The border does the delineation. */
-.md-typeset maths-figure {
-  display: block;
-  max-width: 46rem;
-  margin: 1.4rem 0;
-  padding: 1rem 1.1rem;
-  border: 1px solid var(--md-default-fg-color--lightest);
-  border-radius: var(--tb-radius);
-  background: color-mix(in srgb, var(--md-default-bg-color) 96%, var(--md-default-fg-color) 4%);
-}
-
-.md-typeset maths-figure figcaption,
-.md-typeset maths-figure .caption {
-  font-size: 0.9rem;
-  color: var(--md-default-fg-color--light);
-}
-
-/* A figure is a numbered block: the wrapper carries the number and the caption,
- * and the panel keeps its own border and tint. The number is a word, not a colour,
- * so it reads the same in both schemes. */
-.md-typeset .tb-figure {
-  box-sizing: border-box;
-  max-width: min(46rem, 100%);
-  margin: 1.4rem 0;
-}
-
-.md-typeset .tb-figure maths-figure {
-  box-sizing: border-box;
-  width: 100%;
-  max-width: 100%;
-  margin: 0;
-}
-
-.md-typeset .tb-figure figcaption {
-  max-width: var(--tb-measure);
-  margin-top: 0.45rem;
-  font-size: 0.85rem;
-  line-height: 1.45;
-  color: var(--md-default-fg-color--light);
-}
-
-.md-typeset .tb-figure__number {
-  font-weight: 600;
-  color: var(--md-default-fg-color);
-}
-
-/* An explored diagram: every part is at full strength until the reader engages, so
- * an unexplored figure looks as it always did. The rest then dim by opacity rather
- * than by a colour, so it works in both schemes without a token that could drift. */
-.md-typeset maths-figure .fig-diagram.is-exploring .fig-part {
-  opacity: 0.45;
-}
-
-.md-typeset maths-figure .fig-diagram.is-exploring .fig-part.is-active {
-  opacity: 1;
-}
-
-.md-typeset maths-figure .fig-parts button {
-  font: inherit;
-  color: var(--md-default-fg-color);
-  background: var(--md-default-bg-color);
-  border: 1px solid var(--md-default-fg-color--lightest);
-  border-radius: var(--tb-radius);
-  padding: 0.15rem 0.6rem;
-  /* A part button is a focus stop the reader taps to explore a diagram; the
-   * platform's own box measured 23px, under WCAG 2.2's 24px floor. */
-  min-width: 1.5rem;
-  min-height: 1.5rem;
-}
-
-.md-typeset maths-figure .fig-parts button:focus-visible {
-  outline: 2px solid var(--tb-fig-accent);
-  outline-offset: 2px;
-}
-
-/* Progressive-disclosure hints. */
-.md-typeset details {
-  max-width: var(--tb-measure);
-  margin: 0.6rem 0;
-  border: 1px solid var(--md-default-fg-color--lightest);
-  border-radius: var(--tb-radius);
-  padding: 0.35rem 0.8rem;
-}
-
-.md-typeset details > summary {
-  cursor: pointer;
-  font-weight: 600;
-}
-
-/* A disclosure opens to its own height rather than appearing at it. `interpolate-size`
- * makes `auto` an animatable length, which is the number the max-height trick could
- * never know; `calc-size(auto, size)` repeats it for the property itself.
- *
- * Both are Chromium-only, so the whole block is inside `@supports`: a browser without
- * them keeps the platform's instant disclosure rather than a discrete transition that
- * holds the content at zero for half the duration. `content-visibility` is discrete,
- * and `allow-discrete` is what keeps the content laid out until the collapse ends, so
- * the closing animation is of the real box.
- *
- * The drawer is deliberately not included. The phone script closes it on arrival, and
- * an inline transition there would slide every phone page up by the nav's height as it
- * loads. A reader who opens it gets the platform's disclosure, script or no script. */
-@media (prefers-reduced-motion: no-preference) {
-  @supports (interpolate-size: allow-keywords) {
-    .md-typeset details {
-      interpolate-size: allow-keywords;
-    }
-
-    .md-typeset details::details-content {
-      overflow: clip;
-      /* A clip at the content box would slice a link's focus ring; 4px is the ring's
-       * own offset and width. */
-      overflow-clip-margin: 4px;
-      /* Constant layout containment, so toggling `content-visibility` does not move
-       * the content when it has an outward margin (a nested `p` does). */
-      contain: layout;
-      transition:
-        block-size 0.22s ease-in-out,
-        content-visibility 0.22s allow-discrete;
-    }
-
-    .md-typeset details:not([open])::details-content {
-      block-size: 0;
-    }
-
-    .md-typeset details[open]::details-content {
-      block-size: auto;
-      block-size: calc-size(auto, size);
-    }
-  }
-}
-
-/* The short note on a book's home page. The accent rule is the only emphasis: a
-   warning icon or a stronger colour would make it look like a safety notice. */
-.md-typeset details.disclaimer {
-  border-left: 3px solid var(--tb-accent);
-  background: color-mix(in srgb, var(--tb-accent) 4%, transparent);
-  padding: 0.45rem 0.9rem;
-}
-
-.md-typeset details.disclaimer > summary {
-  color: var(--tb-ink);
-}
-
-.md-typeset details.disclaimer p {
-  margin: 0.45rem 0;
-}
-
-/* Preformatted text: a tree, a stem-and-leaf plot, a listing. The line breaks and
-   the alignment the author typed must survive, so the block scrolls rather than
-   wrapping — a wrapped tree is a different tree. */
-.md-typeset pre {
-  margin: 1.1rem 0;
-  padding: 0.7rem 0.9rem;
-  background: var(--tb-code-bg);
-  /* Micro-radius: a code listing's shaded block reads as a sharp cutout at 0. */
-  border-radius: 3px;
-  /* The scroll is a keyboard reach too: a focusable region with no outline is a
-     scroll a keyboard user cannot get to. */
-  overflow-x: auto;
-}
-
-.md-typeset pre > code {
-  display: block;
-  padding: 0;
-  background: none;
-  font-family: var(--tb-font-mono);
-  font-size: 0.85rem;
-  line-height: 1.5;
-  /* `pre` preserves newlines; `pre-wrap` must not be inherited from anywhere. */
-  white-space: pre;
-}
-
-/* Inline code is a name, not a listing, and may break across a line. */
-.md-typeset :not(pre) > code {
-  padding: 0.05em 0.3em;
-  background: var(--tb-code-bg);
-  /* Micro-radius: inline code sits inside prose lines where 8px would pill it. */
-  border-radius: 3px;
-  font-family: var(--tb-font-mono);
-  font-size: 0.9rem;
-}
-
-.math-error {
-  color: var(--tb-fig-warn);
-  font-family: var(--tb-font-mono);
-}
-
-/* Figure colours come from the tokens above, so a figure follows the bundle. */
-.fig-accent {
-  fill: var(--tb-fig-accent);
-  stroke: var(--tb-fig-accent);
-  /* So `fill: currentColor` resolves to this class's colour, as `area()` asks. */
-  color: var(--tb-fig-accent);
-}
-.fig-warn {
-  fill: var(--tb-fig-warn);
-  stroke: var(--tb-fig-warn);
-  color: var(--tb-fig-warn);
-}
-.fig-good {
-  fill: var(--tb-fig-good);
-  stroke: var(--tb-fig-good);
-  color: var(--tb-fig-good);
-}
-.fig-ink {
-  fill: currentColor;
-  stroke: currentColor;
-}
-.fig-grid {
-  fill: none;
-  stroke: var(--tb-fig-grid);
-}
-.fig-line {
-  fill: none;
-  stroke: var(--tb-fig-accent);
-  stroke-width: 2;
-}
-/* A `text-*` class paints words, a `.fig-*` class paints shapes. SVG text is
-   painted with `fill`, not `color`, so both are set: `color` alone left `<text>`
-   black, its initial fill. */
-.text-accent {
-  color: var(--tb-fig-accent);
-  fill: currentColor;
-}
-.text-warn {
-  color: var(--tb-fig-warn);
-  fill: currentColor;
-}
-.text-good {
-  color: var(--tb-fig-good);
-  fill: currentColor;
-}
-.text-ink {
-  color: var(--tb-ink);
-  fill: currentColor;
-}
-
-/* Form controls inside a figure. */
-
-/* A form control is a user-agent widget: `color-scheme` makes it follow light or
-   dark, not *our* light or dark. Painted from `--tb-ink` on `--tb-paper` instead,
-   the same pairing as body text, so it is never harder to read than the prose. */
-maths-figure select,
-maths-figure input:not([type="range"]):not([type="checkbox"]):not([type="radio"]),
-maths-figure button {
-  font: inherit;
-  color: var(--tb-ink);
-  background-color: var(--tb-paper);
-  border: 1px solid var(--tb-rule);
-  border-radius: var(--tb-radius);
-  padding: 0.15rem 0.35rem;
-}
-
-/* The platform paints the list from the option's own colours, so a transparent
-   background there would let it pick. */
-maths-figure option {
-  color: var(--tb-ink);
-  background-color: var(--tb-paper);
-}
-
-/* A range draws its track in `color` and its filled part in `accent-color`. The
- * platform's own box is 16px tall, below WCAG 2.2's 24px target floor; the control is
- * the reader's thumb, so it is given the floor rather than a larger track. */
-maths-figure input[type="range"] {
-  accent-color: var(--tb-fig-accent);
-  color: var(--tb-fig-grid);
-  background: transparent;
-  border: 0;
-  padding: 0;
-  min-height: 1.5rem;
-  vertical-align: middle;
-}
-
-/* A textarea in a figure grows downwards. Horizontal resize can push its own label
- * out of the panel, and a figure's box is measured by `canvas`. */
-textarea {
-  resize: vertical;
-}
-
-maths-figure input[type="checkbox"],
-maths-figure input[type="radio"] {
-  accent-color: var(--tb-fig-accent);
-}
-
-/* A figure's own label is plain text, so it takes the panel's ink here. `.readout`
-   is deliberately *not* set: figures colour theirs with `text-accent`, and a rule
-   here would out-rank that class. */
-maths-figure label {
-  color: var(--tb-ink);
-}
-
-/* Common-error (`Watch out.`) and quick-check (`Check.`) callouts. Neutral
- * signature: the same framed shape `.prove` uses, with no background tint and
- * no pseudo-element, so body ink stays on `--tb-paper` with zero contrast risk
- * across every bundle. */
-.md-typeset .callout {
-  box-sizing: border-box;
-  max-width: var(--tb-measure);
-  margin-block: 1.3rem;
-  margin-inline: 0;
-  padding: 0.6rem 0.95rem;
-  border: 1px solid var(--tb-rule);
-  border-inline-start: 3px solid var(--tb-rule);
-  border-radius: var(--tb-radius);
-}
-
-.md-typeset .callout > :first-child {
-  margin-top: 0;
-}
-
-.md-typeset .callout > :last-child {
-  margin-bottom: 0;
-}
-
-/* The "Prove it to me" affordance. */
-
-/* A claim stated without proof links to the proof. The element is an `<a>` and
-   nothing else, so the affordance works with scripting off. */
-.prove {
-  margin: 1.3rem 0;
-  padding: 0.7rem 0.95rem;
-  border: 1px solid var(--tb-rule);
-  border-left: 3px solid var(--tb-fig-accent);
-  border-radius: var(--tb-radius);
-  background: color-mix(in srgb, var(--tb-accent) 6%, transparent);
-}
-.prove__link {
-  display: flex;
-  flex-wrap: wrap;
-  align-items: baseline;
-  gap: 0.5rem;
-  text-decoration: none;
-}
-.prove__ask {
-  font-weight: 600;
-  color: var(--tb-fig-accent);
-}
-/* The arrow is text, so it cannot go missing from a book's asset tree. */
-.prove__ask::after {
-  content: "\2192";
-  margin-left: 0.3rem;
-  display: inline-block;
-}
-.prove__title {
-  color: var(--tb-ink-soft);
-}
-.prove__link:hover .prove__ask,
-.prove__link:focus-visible .prove__ask {
-  text-decoration: underline;
-}
-.prove__note {
-  margin: 0.5rem 0 0;
-  font-size: 0.9rem;
-  color: var(--tb-ink-soft);
-}
-.prove__badge {
-  font-weight: 600;
-  color: var(--tb-fig-warn);
-}
-.prove__badge::after {
-  content: " —";
-}
-
-/* The optional track. Deliberately quieter than `prove`: a proof is a promise
-   kept, and depth is an offer. Same shape, softer rule. */
-.deeper {
-  margin: 1.3rem 0;
-  padding: 0.7rem 0.95rem;
-  border: 1px dashed var(--tb-rule);
-  border-radius: var(--tb-radius);
-}
-.deeper__link {
-  display: flex;
-  flex-wrap: wrap;
-  align-items: baseline;
-  gap: 0.5rem;
-  text-decoration: none;
-}
-.deeper__ask {
-  font-weight: 600;
-  color: var(--tb-ink-soft);
-  white-space: nowrap;
-}
-.deeper__ask::after {
-  content: "\2192";
-  margin-left: 0.3rem;
-  display: inline-block;
-}
-.deeper__title {
-  color: var(--tb-ink);
-}
-.deeper__link:hover .deeper__title,
-.deeper__link:focus-visible .deeper__title {
-  text-decoration: underline;
-}
-.deeper__note {
-  margin: 0.4rem 0 0;
-  font-size: 0.9rem;
-  color: var(--tb-ink-soft);
-}
-
-/* A named kind of problem. Quieter than `prove` and `deeper`, its border on the
-   rule colour: a pointer to a reference, not a promise or an offer. */
-.classlink {
-  margin: 1.2rem 0;
-  padding: 0.55rem 0.85rem;
-  border-left: 3px solid var(--tb-rule);
-  background: color-mix(in srgb, var(--tb-accent) 4%, transparent);
-}
-.classlink__link {
-  display: flex;
-  flex-wrap: wrap;
-  align-items: baseline;
-  gap: 0.45rem;
-  text-decoration: none;
-}
-.classlink__ask {
-  font-weight: 600;
-  color: var(--tb-ink-soft);
-  white-space: nowrap;
-}
-.classlink__ask::after {
-  content: "\2192";
-  margin-left: 0.3rem;
-  display: inline-block;
-}
-.classlink__title {
-  font-weight: 600;
-  color: var(--tb-fig-accent);
-}
-.classlink__link:hover .classlink__title,
-.classlink__link:focus-visible .classlink__title {
-  text-decoration: underline;
-}
-.classlink__note {
-  margin: 0.3rem 0 0;
-  font-size: 0.9rem;
-  color: var(--tb-ink-soft);
-}
-
-/* Formulae & tables booklet. */
-
-.bk-fab {
-  position: fixed;
-  right: 1.1rem;
-  bottom: 1.1rem;
-  z-index: 30;
-  display: inline-flex;
-  align-items: center;
-  gap: 0.4rem;
-  padding: 0.6rem 0.9rem;
-  border: 1px solid var(--md-primary-fg-color--dark);
-  border-radius: var(--tb-radius);
-  background: var(--md-primary-fg-color);
-  /* The label is knocked out of the accent fill, so it uses the bundle's dedicated
-   * on-accent ink: a paper can sit too close to its own accent to read. */
-  color: var(--tb-accent-ink);
-  font: 600 0.9rem/1 system-ui, sans-serif;
-  cursor: pointer;
-  box-shadow: 0 4px 14px color-mix(in srgb, var(--md-default-fg-color) 22%, transparent);
-}
-.bk-fab:hover { filter: brightness(1.06); }
-.bk-fab [aria-hidden] { font-size: 1.25rem; }
-.bk-fab__label { font-size: 0.85rem; }
-
-.bk-panel {
-  position: fixed;
-  right: 1.1rem;
-  bottom: 4.6rem;
-  z-index: 31;
-  display: flex;
-  flex-direction: column;
-  width: min(430px, calc(100vw - 2rem));
-  height: min(72vh, 660px);
-  min-width: 320px;
-  min-height: 280px;
-  border: 1px solid var(--md-default-fg-color--lightest);
-  border-radius: var(--tb-radius);
-  background: var(--md-default-bg-color);
-  color: var(--md-default-fg-color);
-  box-shadow: 0 12px 40px color-mix(in srgb, var(--md-default-fg-color) 28%, transparent);
-  overflow: hidden;
-}
-.bk-panel[hidden] { display: none; }
-
-.bk-bar {
-  display: flex;
-  align-items: center;
-  gap: 0.5rem;
-  padding: 0.5rem 0.6rem;
-  border-bottom: 1px solid var(--md-default-fg-color--lightest);
-  background: var(--md-primary-fg-color);
-  color: var(--tb-accent-ink);
-  cursor: grab;
-  touch-action: none;
-}
-.bk-bar:active { cursor: grabbing; }
-.bk-grip {
-  width: 14px;
-  height: 14px;
-  flex: none;
-  background-image: radial-gradient(currentColor 1.2px, transparent 1.2px);
-  background-size: 5px 5px;
-  opacity: 0.6;
-}
-.bk-title { margin: 0; font-size: 1rem; font-weight: 700; flex: 1; }
-.bk-bar__tools { display: flex; align-items: center; gap: 0.4rem; }
-.bk-field { font-size: 0.75rem; display: flex; align-items: center; gap: 0.25rem; }
-.bk-field select {
-  font-size: 0.75rem;
-  padding: 0.1rem 0.2rem;
-  border-radius: var(--tb-radius);
-  border: 1px solid color-mix(in srgb, currentColor 40%, transparent);
-  background: color-mix(in srgb, currentColor 12%, transparent);
-  color: inherit;
-}
-.bk-icon {
-  border: 0;
-  background: transparent;
-  color: inherit;
-  font-size: 1rem;
-  cursor: pointer;
-  padding: 0.15rem 0.35rem;
-  border-radius: var(--tb-radius);
-}
-.bk-icon:hover { background: color-mix(in srgb, currentColor 18%, transparent); }
-
-.bk-toolbar {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 0.4rem;
-  padding: 0.5rem 0.6rem 0.3rem;
-}
-.bk-search {
-  flex: 1 1 10rem;
-  padding: 0.35rem 0.5rem;
-  border: 1px solid var(--md-default-fg-color--lightest);
-  border-radius: var(--tb-radius);
-  background: var(--md-default-bg-color);
-  color: inherit;
-  font-size: 0.85rem;
-}
-.bk-chips { display: flex; gap: 0.3rem; }
-.bk-chip {
-  font-size: 0.75rem;
-  padding: 0.2rem 0.5rem;
-  min-width: 1.5rem;
-  min-height: 1.5rem;
-  border-radius: var(--tb-radius);
-  border: 1px solid var(--md-default-fg-color--lightest);
-  background: transparent;
-  color: var(--md-default-fg-color--light);
-  cursor: pointer;
-}
-.bk-chip[aria-pressed="true"] {
-  background: var(--md-primary-fg-color);
-  border-color: var(--md-primary-fg-color);
-  color: var(--tb-accent-ink);
-}
-
-.bk-tabs {
-  display: flex;
-  align-items: center;
-  gap: 0.6rem;
-  padding: 0 0.6rem;
-  border-bottom: 1px solid var(--md-default-fg-color--lightest);
-}
-.bk-tab {
-  border: 0;
-  background: transparent;
-  color: var(--md-default-fg-color--light);
-  font: 600 0.82rem/2.2 system-ui, sans-serif;
-  border-bottom: 2px solid transparent;
-  cursor: pointer;
-}
-.bk-tab[aria-selected="true"] {
-  color: var(--md-default-fg-color);
-  border-bottom-color: var(--md-primary-fg-color);
-}
-.bk-count { margin-left: auto; font-size: 0.75rem; color: var(--md-default-fg-color--light); }
-
-.bk-content { flex: 1; overflow: auto; padding: 0.5rem 0.7rem 0.8rem; }
-.bk-section h3 {
-  margin: 0.8rem 0 0.4rem;
-  font-size: 0.85rem;
-  text-transform: uppercase;
-  letter-spacing: 0.04em;
-  color: var(--md-default-fg-color--light);
-}
-.bk-item {
-  padding: 0.45rem 0.55rem;
-  margin-bottom: 0.35rem;
-  border: 1px solid var(--md-default-fg-color--lightest);
-  border-left: 3px solid var(--md-primary-fg-color);
-  border-radius: var(--tb-radius);
-}
-.bk-item[data-group="question"] { border-left-color: var(--tb-fig-warn); }
-.bk-item[data-group="know"] { border-left-color: var(--tb-fig-good); }
-.bk-item__formula { overflow-x: auto; }
-.bk-item__meta { display: flex; align-items: center; gap: 0.5rem; margin-top: 0.25rem; }
-.bk-item__name { font-size: 0.85rem; font-weight: 600; }
-.bk-item__note { margin: 0.25rem 0 0; font-size: 0.75rem; color: var(--md-default-fg-color--light); }
-/* Square label, not a pill: booklet group tags match the portal's flat labels. */
-.bk-badge {
-  margin-left: auto;
-  font-size: 0.75rem;
-  padding: 0.05rem 0.4rem;
-  white-space: nowrap;
-}
-.bk-badge--accent { background: color-mix(in srgb, var(--md-primary-fg-color) 18%, transparent); }
-.bk-badge--muted { background: color-mix(in srgb, var(--tb-ink) 10%, transparent); }
-.bk-badge--warn { background: color-mix(in srgb, var(--tb-fig-warn) 20%, transparent); }
-.bk-empty { color: var(--md-default-fg-color--light); font-size: 0.85rem; }
-.bk-table { width: 100%; border-collapse: collapse; font-size: 0.85rem; }
-.bk-table th, .bk-table td { border: 1px solid var(--md-default-fg-color--lightest); padding: 0.25rem 0.4rem; text-align: left; }
-.bk-table thead th { background: color-mix(in srgb, var(--md-default-fg-color) 6%, transparent); }
-
-.bk-foot {
-  padding: 0.35rem 0.7rem;
-  border-top: 1px solid var(--md-default-fg-color--lightest);
-  font-size: 0.75rem;
-  color: var(--md-default-fg-color--light);
-}
-.bk-resize {
-  position: absolute;
-  right: 0;
-  bottom: 0;
-  width: 18px;
-  height: 18px;
-  cursor: nwse-resize;
-  background: linear-gradient(135deg, transparent 50%, var(--md-default-fg-color--lighter) 50%);
-  touch-action: none;
-}
-
-/* Mobile: bottom sheet instead of a floating window. The breakpoint matches the
- * reader-facing one the rest of the shell uses (`44rem`): above it the panel is
- * docked at the bottom right, below it the sheet takes the width. */
-@media (max-width: 44rem) {
-  .bk-panel {
-    left: 0;
-    right: 0;
-    bottom: 0;
-    width: auto;
-    height: min(82vh, 700px);
-    border-radius: var(--tb-radius) var(--tb-radius) 0 0;
-  }
-  .bk-resize { display: none; }
-  .bk-bar { cursor: default; border-radius: var(--tb-radius) var(--tb-radius) 0 0; }
-}
-
-/* Document Picture-in-Picture window. */
-.bk-popout-body { margin: 0; background: var(--md-default-bg-color); }
-.bk-popout-body .bk-panel {
-  position: static;
-  width: 100%;
-  height: 100vh;
-  border-radius: 0;
-  box-shadow: none;
-}
-
-/* Print. */
-
-/* Printing drops the browser chrome and the pointer, and declares no colour, so
- * the bundle still decides everything on paper. */
-@media print {
-  /* The BESPOKE shell's class names (templates/page.html), not Material's. The
-   * booklet button and panel are fixed overlays, so without this they print over
-   * the text. `.md-typeset` and `.md-content` stay: the content column needs both. */
-  .masthead,
-  /* The drawer as well as the nav: the prose is what prints. */
-  .nav-drawer,
-  .sidebar,
-  .search,
-  .skip,
-  .bk-fab,
-  .bk-panel {
-    display: none !important;
-  }
-
-  .layout {
-    display: block;
-    margin: 0;
-    padding: 0;
-  }
+  /* Typography: the faces are bundle tokens; the sizes are shared. */
   .md-typeset {
-    max-width: var(--tb-measure);
-    margin: 0 auto;
+    font-family: var(--tb-font-body);
+    font-size: 1.0625rem; /* ~17px */
+    line-height: 1.65;
   }
 
-  /* A scroll box cannot scroll on paper. */
-  .md-typeset__scrollwrap,
-  .table-scroll { overflow: visible; }
-
-  /* `break-inside` is only a hint: an item taller than a page is still broken. The
-   * `page-break-*` aliases cover engines that predate the fragmentation properties. */
-  .md-typeset table,
-  .md-typeset__scrollwrap,
-  .md-typeset .callout,
-  .md-typeset details,
-  .md-typeset maths-figure,
-  .md-typeset figure {
-    break-inside: avoid;
-    page-break-inside: avoid;
-  }
   .md-typeset h1,
   .md-typeset h2,
   .md-typeset h3,
-  .md-typeset h4,
+  .md-typeset h4 {
+    font-family: var(--tb-font-display);
+    letter-spacing: -0.01em;
+  }
+
+  /* The spacing says what belongs to what: tight inside a section, wider between
+   * sections. Scoped to `.md-typeset`; the booklet panel and print sheet differ. */
+  .md-typeset h1 { margin: 0 0 0.5rem; }
+
+  /* The page kind is split out of the first heading at render time, by
+   * `pipeline.split_page_kind`, so a stylesheet can treat it apart from the title.
+   * Wave 1 gives it no look of its own: the editorial kicker is Wave 4, and the title
+   * still reads as it always has. */
+  .md-typeset .page-kind { display: inline; }
+
+  /* On a phone the H1 is a size above the prose rather than twice it. At the 34px the
+   * browser default gives, the longest section title (77 characters, before its page
+   * kind) took four lines and pushed the first paragraph a screen down. */
+  @media (max-width: 48rem) {
+    .md-typeset h1 {
+      font-size: 1.3rem;
+      line-height: 1.35;
+    }
+  }
+
+  /* --- the chapter opener ---------------------------------------------------- */
+
+  /* A chapter's overview page is ordinary Markdown, authored the same way as every
+   * other page, so `hooks/opener.py` adds the opener's shape to the rendered HTML:
+   * the chapter number as a kicker, the problem as a pull quote, and the first
+   * section's link. These are the only rules that style it. */
+  .md-typeset .chapter-kicker {
+    display: block;
+    margin: 0 0 0.3rem;
+    color: var(--tb-ink-soft);
+    font-family: var(--tb-font-mono);
+    font-size: 0.74rem;
+    font-weight: 600;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+  }
+
+  /* The action: a labelled link between two rules, under the title. Nothing here is
+   * revealed by a script, so a reader with scripting off still starts the chapter. */
+  .md-typeset .chapter-list__note {
+    margin-left: 0.5rem;
+    color: var(--tb-ink-soft);
+    font-size: 0.9rem;
+  }
+
+  .md-typeset .chapter-start {
+    max-width: var(--tb-measure);
+    display: flex;
+    flex-wrap: wrap;
+    align-items: baseline;
+    gap: 0.15rem 0.7rem;
+    margin: 1.1rem 0 2rem;
+    padding: 0.7rem 0 0.75rem;
+    border-top: 1px solid var(--tb-rule);
+    border-bottom: 1px solid var(--tb-rule);
+  }
+
+  .md-typeset .chapter-start__label {
+    color: var(--tb-ink-soft);
+    font-family: var(--tb-font-mono);
+    font-size: 0.72rem;
+    font-weight: 600;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+  }
+
+  .md-typeset .chapter-start a {
+    display: inline-flex;
+    align-items: center;
+    min-height: 1.5rem;
+    font-weight: 600;
+  }
+
+  /* The chapter problem as the page's pull quote: display serif, a step above the
+   * body, framed by two rules. There is no fill, no side border and no colour. */
+  .md-typeset .chapter-problem {
+    max-width: var(--tb-measure);
+    margin: 2rem 0 2.2rem;
+    padding: 0.9rem 0 0.3rem;
+    border-top: 1px solid var(--tb-rule);
+    border-bottom: 1px solid var(--tb-rule);
+  }
+
+  .md-typeset .chapter-problem > h2 {
+    margin: 0 0 0.7rem;
+    color: var(--tb-ink-soft);
+    font-size: 0.95rem;
+  }
+
+  .md-typeset .chapter-problem__quote > p {
+    font-family: var(--tb-font-display);
+    font-size: 1.22rem;
+    line-height: 1.5;
+  }
+
+  .md-typeset h2,
+  .md-typeset h3,
+  .md-typeset h4 {
+    margin: 1.4rem 0 0.5rem;
+  }
+
+  /* Not only the direct children: a paragraph inside `details` is still prose. */
+  .md-typeset p { margin: 0 0 0.9rem; }
+
+  /* A list is a block, not words: it takes the paragraph gap. */
+  .md-typeset ul,
+  .md-typeset ol {
+    margin: 0 0 0.9rem;
+  }
+
+  .md-typeset blockquote { margin: 1.4rem 0; }
+
+  /* Measure: 70-78 characters at a desk and 40-48 on a phone, from the type rules.
+   * A heading takes the same width as the prose it introduces, or it runs past the
+   * column it belongs to. Figures, tables, display maths and code are deliberately
+   * wider (`maths-figure` is 46rem): narrowing a column must not clip a diagram. */
+  .md-typeset > h1,
+  .md-typeset > h2,
+  .md-typeset > h3,
+  .md-typeset > h4,
+  .md-typeset > p,
+  .md-typeset > ul,
+  .md-typeset > ol,
+  .md-typeset > blockquote {
+    max-width: var(--tb-measure);
+  }
+
+  /* Text hygiene: balance stops a heading leaving one word on its own line; pretty
+   * stops a paragraph leaving one behind. Both are progressive: a browser that does
+   * not know the value ignores it and lays the text out as before. */
+  .md-typeset h1,
+  .md-typeset h2,
+  .md-typeset h3 {
+    text-wrap: balance;
+  }
+
+  .md-typeset p,
+  .md-typeset li,
+  .md-typeset blockquote {
+    text-wrap: pretty;
+  }
+
+  /* A selection the reader can read back. The bundle's accent with its own on-accent
+   * ink is the one pairing every bundle proves at 4.5:1, so it is the only pair that
+   * can be used here without a new token. */
+  ::selection {
+    background: var(--tb-accent);
+    color: var(--tb-accent-ink);
+  }
+
+  /* Maths is browser-rendered MathML; keep it aligned with the body text. */
+  .md-typeset math {
+    font-size: 1.05em;
+  }
+
+  /* The user-agent cell padding is 1px, which welds short numbers into one blob.
+   * 0.4em keeps a row about a line tall; 0.6em is the gutter between columns. */
+  .md-typeset table th,
+  .md-typeset table td {
+    padding: 0.4em 0.6em;
+  }
+
+  /* A table marked `<!-- table: cards -->` becomes one card per row on a phone. The
+   * engine puts each column's heading on its cell as `data-label`; this paints it. */
+  @media (max-width: 60rem) {
+    .md-typeset table.table--cards,
+    .md-typeset table.table--cards tbody,
+    .md-typeset table.table--cards tr,
+    .md-typeset table.table--cards td {
+      display: block;
+      width: auto;
+    }
+
+    /* The header row is the card's labels, so it is not printed as a row of its own. */
+    .md-typeset table.table--cards thead {
+      position: absolute;
+      width: 1px;
+      height: 1px;
+      overflow: hidden;
+      clip-path: inset(50%);
+      white-space: nowrap;
+    }
+
+    /* A label and its value on one line, at the prose's own size: stacking costs a
+     * line per field, and the values were the smallest text on the page. */
+    .md-typeset table.table--cards tr {
+      padding: 0.15rem 0;
+      border-top: 1px solid var(--tb-rule);
+    }
+
+    .md-typeset table.table--cards tr:first-child { border-top: 0; }
+
+    .md-typeset table.table--cards td {
+      padding: 0.3rem 0;
+      border: 0;
+      font-size: 1rem;
+      line-height: 1.45;
+    }
+
+    .md-typeset table.table--cards td::before {
+      display: inline;
+      content: attr(data-label) ": ";
+      color: var(--tb-ink-soft);
+      font-size: 0.85rem;
+    }
+
+    /* The first cell is the card's heading, so its label would only repeat its value. */
+    .md-typeset table.table--cards td:first-child {
+      font-size: 1.0625rem;
+      font-weight: 600;
+    }
+
+    .md-typeset table.table--cards td:first-child::before { content: none; }
+  }
+
+  /* Interactive figures read as instrument panels, not decoration. The tint is 4%:
+   * the panel is a derived surface, darker than the paper, and a stronger tint spends
+   * the contrast margin the figure tokens need. The border does the delineation. */
+  .md-typeset maths-figure {
+    display: block;
+    max-width: 46rem;
+    margin: 1.4rem 0;
+    padding: 1rem 1.1rem;
+    border: 1px solid var(--md-default-fg-color--lightest);
+    border-radius: var(--tb-radius);
+    background: color-mix(in srgb, var(--md-default-bg-color) 96%, var(--md-default-fg-color) 4%);
+  }
+
+  .md-typeset maths-figure figcaption,
+  .md-typeset maths-figure .caption {
+    font-size: 0.9rem;
+    color: var(--md-default-fg-color--light);
+  }
+
+  /* A figure is a numbered block: the wrapper carries the number and the caption,
+   * and the panel keeps its own border and tint. The number is a word, not a colour,
+   * so it reads the same in both schemes. */
+  .md-typeset .tb-figure {
+    box-sizing: border-box;
+    max-width: min(46rem, 100%);
+    margin: 1.4rem 0;
+  }
+
+  .md-typeset .tb-figure maths-figure {
+    box-sizing: border-box;
+    width: 100%;
+    max-width: 100%;
+    margin: 0;
+  }
+
+  .md-typeset .tb-figure figcaption {
+    max-width: var(--tb-measure);
+    margin-top: 0.45rem;
+    font-size: 0.85rem;
+    line-height: 1.45;
+    color: var(--md-default-fg-color--light);
+  }
+
+  .md-typeset .tb-figure__number {
+    font-weight: 600;
+    color: var(--md-default-fg-color);
+  }
+
+  /* An explored diagram: every part is at full strength until the reader engages, so
+   * an unexplored figure looks as it always did. The rest then dim by opacity rather
+   * than by a colour, so it works in both schemes without a token that could drift. */
+  .md-typeset maths-figure .fig-diagram.is-exploring .fig-part {
+    opacity: 0.45;
+  }
+
+  .md-typeset maths-figure .fig-diagram.is-exploring .fig-part.is-active {
+    opacity: 1;
+  }
+
+  .md-typeset maths-figure .fig-parts button {
+    font: inherit;
+    color: var(--md-default-fg-color);
+    background: var(--md-default-bg-color);
+    border: 1px solid var(--md-default-fg-color--lightest);
+    border-radius: var(--tb-radius);
+    padding: 0.15rem 0.6rem;
+    /* A part button is a focus stop the reader taps to explore a diagram; the
+     * platform's own box measured 23px, under WCAG 2.2's 24px floor. */
+    min-width: 1.5rem;
+    min-height: 1.5rem;
+  }
+
+  .md-typeset maths-figure .fig-parts button:focus-visible {
+    outline: 2px solid var(--tb-fig-accent);
+    outline-offset: 2px;
+  }
+
+  /* Progressive-disclosure hints. */
+  .md-typeset details {
+    max-width: var(--tb-measure);
+    margin: 0.6rem 0;
+    border: 1px solid var(--md-default-fg-color--lightest);
+    border-radius: var(--tb-radius);
+    padding: 0.35rem 0.8rem;
+  }
+
   .md-typeset details > summary {
-    break-after: avoid;
-    page-break-after: avoid;
-  }
-  .md-typeset thead {
-    display: table-header-group; /* repeat a table's header if it must break */
-  }
-  .md-typeset p {
-    orphans: 2;
-    widows: 2;
+    cursor: pointer;
+    font-weight: 600;
   }
 
-  /* A browser does not lay out the content of a closed detail, so `details`
-   * prints as the reader left it. Deliberately not forced open: printing every
-   * answer beside its question would remove the retrieval. */
+  /* A disclosure opens to its own height rather than appearing at it. `interpolate-size`
+   * makes `auto` an animatable length, which is the number the max-height trick could
+   * never know; `calc-size(auto, size)` repeats it for the property itself.
+   *
+   * Both are Chromium-only, so the whole block is inside `@supports`: a browser without
+   * them keeps the platform's instant disclosure rather than a discrete transition that
+   * holds the content at zero for half the duration. `content-visibility` is discrete,
+   * and `allow-discrete` is what keeps the content laid out until the collapse ends, so
+   * the closing animation is of the real box.
+   *
+   * The drawer is deliberately not included. The phone script closes it on arrival, and
+   * an inline transition there would slide every phone page up by the nav's height as it
+   * loads. A reader who opens it gets the platform's disclosure, script or no script. */
+  @media (prefers-reduced-motion: no-preference) {
+    @supports (interpolate-size: allow-keywords) {
+      .md-typeset details {
+        interpolate-size: allow-keywords;
+      }
 
-  /* Hover does not exist on paper, so links are underlined rather than coloured. */
-  .md-typeset a {
+      .md-typeset details::details-content {
+        overflow: clip;
+        /* A clip at the content box would slice a link's focus ring; 4px is the ring's
+         * own offset and width. */
+        overflow-clip-margin: 4px;
+        /* Constant layout containment, so toggling `content-visibility` does not move
+         * the content when it has an outward margin (a nested `p` does). */
+        contain: layout;
+        transition:
+          block-size 0.22s ease-in-out,
+          content-visibility 0.22s allow-discrete;
+      }
+
+      .md-typeset details:not([open])::details-content {
+        block-size: 0;
+      }
+
+      .md-typeset details[open]::details-content {
+        block-size: auto;
+        block-size: calc-size(auto, size);
+      }
+    }
+  }
+
+  /* The short note on a book's home page. The accent rule is the only emphasis: a
+     warning icon or a stronger colour would make it look like a safety notice. */
+  .md-typeset details.disclaimer {
+    border-left: 3px solid var(--tb-accent);
+    background: color-mix(in srgb, var(--tb-accent) 4%, transparent);
+    padding: 0.45rem 0.9rem;
+  }
+
+  .md-typeset details.disclaimer > summary {
+    color: var(--tb-ink);
+  }
+
+  .md-typeset details.disclaimer p {
+    margin: 0.45rem 0;
+  }
+
+  /* Preformatted text: a tree, a stem-and-leaf plot, a listing. The line breaks and
+     the alignment the author typed must survive, so the block scrolls rather than
+     wrapping — a wrapped tree is a different tree. */
+  .md-typeset pre {
+    margin: 1.1rem 0;
+    padding: 0.7rem 0.9rem;
+    background: var(--tb-code-bg);
+    /* Micro-radius: a code listing's shaded block reads as a sharp cutout at 0. */
+    border-radius: 3px;
+    /* The scroll is a keyboard reach too: a focusable region with no outline is a
+       scroll a keyboard user cannot get to. */
+    overflow-x: auto;
+  }
+
+  .md-typeset pre > code {
+    display: block;
+    padding: 0;
+    background: none;
+    font-family: var(--tb-font-mono);
+    font-size: 0.85rem;
+    line-height: 1.5;
+    /* `pre` preserves newlines; `pre-wrap` must not be inherited from anywhere. */
+    white-space: pre;
+  }
+
+  /* Inline code is a name, not a listing, and may break across a line. */
+  .md-typeset :not(pre) > code {
+    padding: 0.05em 0.3em;
+    background: var(--tb-code-bg);
+    /* Micro-radius: inline code sits inside prose lines where 8px would pill it. */
+    border-radius: 3px;
+    font-family: var(--tb-font-mono);
+    font-size: 0.9rem;
+  }
+
+  .math-error {
+    color: var(--tb-fig-warn);
+    font-family: var(--tb-font-mono);
+  }
+
+  /* Figure colours come from the tokens above, so a figure follows the bundle. */
+  .fig-accent {
+    fill: var(--tb-fig-accent);
+    stroke: var(--tb-fig-accent);
+    /* So `fill: currentColor` resolves to this class's colour, as `area()` asks. */
+    color: var(--tb-fig-accent);
+  }
+  .fig-warn {
+    fill: var(--tb-fig-warn);
+    stroke: var(--tb-fig-warn);
+    color: var(--tb-fig-warn);
+  }
+  .fig-good {
+    fill: var(--tb-fig-good);
+    stroke: var(--tb-fig-good);
+    color: var(--tb-fig-good);
+  }
+  .fig-ink {
+    fill: currentColor;
+    stroke: currentColor;
+  }
+  .fig-grid {
+    fill: none;
+    stroke: var(--tb-fig-grid);
+  }
+  .fig-line {
+    fill: none;
+    stroke: var(--tb-fig-accent);
+    stroke-width: 2;
+  }
+  /* A `text-*` class paints words, a `.fig-*` class paints shapes. SVG text is
+     painted with `fill`, not `color`, so both are set: `color` alone left `<text>`
+     black, its initial fill. */
+  .text-accent {
+    color: var(--tb-fig-accent);
+    fill: currentColor;
+  }
+  .text-warn {
+    color: var(--tb-fig-warn);
+    fill: currentColor;
+  }
+  .text-good {
+    color: var(--tb-fig-good);
+    fill: currentColor;
+  }
+  .text-ink {
+    color: var(--tb-ink);
+    fill: currentColor;
+  }
+
+  /* Form controls inside a figure. */
+
+  /* A form control is a user-agent widget: `color-scheme` makes it follow light or
+     dark, not *our* light or dark. Painted from `--tb-ink` on `--tb-paper` instead,
+     the same pairing as body text, so it is never harder to read than the prose. */
+  maths-figure select,
+  maths-figure input:not([type="range"]):not([type="checkbox"]):not([type="radio"]),
+  maths-figure button {
+    font: inherit;
+    color: var(--tb-ink);
+    background-color: var(--tb-paper);
+    border: 1px solid var(--tb-rule);
+    border-radius: var(--tb-radius);
+    padding: 0.15rem 0.35rem;
+  }
+
+  /* The platform paints the list from the option's own colours, so a transparent
+     background there would let it pick. */
+  maths-figure option {
+    color: var(--tb-ink);
+    background-color: var(--tb-paper);
+  }
+
+  /* A range draws its track in `color` and its filled part in `accent-color`. The
+   * platform's own box is 16px tall, below WCAG 2.2's 24px target floor; the control is
+   * the reader's thumb, so it is given the floor rather than a larger track. */
+  maths-figure input[type="range"] {
+    accent-color: var(--tb-fig-accent);
+    color: var(--tb-fig-grid);
+    background: transparent;
+    border: 0;
+    padding: 0;
+    min-height: 1.5rem;
+    vertical-align: middle;
+  }
+
+  /* A textarea in a figure grows downwards. Horizontal resize can push its own label
+   * out of the panel, and a figure's box is measured by `canvas`. */
+  textarea {
+    resize: vertical;
+  }
+
+  maths-figure input[type="checkbox"],
+  maths-figure input[type="radio"] {
+    accent-color: var(--tb-fig-accent);
+  }
+
+  /* A figure's own label is plain text, so it takes the panel's ink here. `.readout`
+     is deliberately *not* set: figures colour theirs with `text-accent`, and a rule
+     here would out-rank that class. */
+  maths-figure label {
+    color: var(--tb-ink);
+  }
+
+  /* Common-error (`Watch out.`) and quick-check (`Check.`) callouts. Neutral
+   * signature: the same framed shape `.prove` uses, with no background tint and
+   * no pseudo-element, so body ink stays on `--tb-paper` with zero contrast risk
+   * across every bundle. */
+  .md-typeset .callout {
+    box-sizing: border-box;
+    max-width: var(--tb-measure);
+    margin-block: 1.3rem;
+    margin-inline: 0;
+    padding: 0.6rem 0.95rem;
+    border: 1px solid var(--tb-rule);
+    border-inline-start: 3px solid var(--tb-rule);
+    border-radius: var(--tb-radius);
+  }
+
+  .md-typeset .callout > :first-child {
+    margin-top: 0;
+  }
+
+  .md-typeset .callout > :last-child {
+    margin-bottom: 0;
+  }
+
+  /* The "Prove it to me" affordance. */
+
+  /* A claim stated without proof links to the proof. The element is an `<a>` and
+     nothing else, so the affordance works with scripting off. */
+  .prove {
+    margin: 1.3rem 0;
+    padding: 0.7rem 0.95rem;
+    border: 1px solid var(--tb-rule);
+    border-left: 3px solid var(--tb-fig-accent);
+    border-radius: var(--tb-radius);
+    background: color-mix(in srgb, var(--tb-accent) 6%, transparent);
+  }
+  .prove__link {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: baseline;
+    gap: 0.5rem;
+    text-decoration: none;
+  }
+  .prove__ask {
+    font-weight: 600;
+    color: var(--tb-fig-accent);
+  }
+  /* The arrow is text, so it cannot go missing from a book's asset tree. */
+  .prove__ask::after {
+    content: "\2192";
+    margin-left: 0.3rem;
+    display: inline-block;
+  }
+  .prove__title {
+    color: var(--tb-ink-soft);
+  }
+  .prove__link:hover .prove__ask,
+  .prove__link:focus-visible .prove__ask {
     text-decoration: underline;
   }
-}
-
-@page {
-  margin: 18mm 16mm;
-}
-
-/* A page's own contents list (`:::contents`): two columns, and a plain nav of
- * links, so it works with scripting off. */
-.md-typeset .contents {
-  max-width: var(--tb-measure);
-  margin: 1rem 0 1.4rem;
-  padding: 0.6rem 0.8rem;
-  border: 1px solid var(--tb-rule);
-  border-radius: var(--tb-radius);
-}
-
-.md-typeset .contents__title {
-  margin: 0 0 0.35rem;
-  color: var(--tb-ink-soft);
-  font-size: 0.85rem;
-  text-transform: uppercase;
-  letter-spacing: 0.04em;
-}
-
-.md-typeset .contents__list {
-  margin: 0;
-  padding-left: 1.1rem;
-  columns: 2;
-  column-gap: 1.6rem;
-  font-size: 0.85rem;
-  /* 1.8 takes the link's box to about 24.5px, WCAG 2.2's target-size floor. Measured
-   * at 1.7 it was 23px, six links on every Learn page under the floor. */
-  line-height: 1.8;
-}
-
-/* The box follows the line box, so the target is the height the reader sees. A short
- * link ("1.1") is narrower than the floor, so it keeps a minimum width too. */
-.md-typeset .contents__list a {
-  display: inline-block;
-  min-width: 1.5rem;
-  min-height: 1.5rem;
-}
-
-/* The section the reader is in. `:target-current` is the platform's own scroll-spy,
- * set by `scroll-target-group` in the rule below; `.contents__current` is the same
- * state from the IntersectionObserver fallback, and `:is()` is what lets one rule hold
- * both — an unknown pseudo-class inside `:is()` is ignored, where `a:target-current,
- * a.contents__current` would invalidate the whole rule in a browser that has neither.
- *
- * The state is a 2px underline and the ink colour, never the colour alone: a reader
- * who cannot tell the accent from the ink still sees the rule. Weight is deliberately
- * not used. A bolder label is wider, so the marked item can wrap to a second line and
- * push the article below it down on every section boundary — a layout shift the reader
- * did not ask for, caused by the thing that is meant to help them. */
-.md-typeset .contents {
-  scroll-target-group: auto;
-}
-
-.md-typeset .contents__list a:is(:target-current, .contents__current) {
-  color: var(--tb-ink);
-  text-decoration: underline;
-  text-decoration-thickness: 2px;
-  text-underline-offset: 0.2em;
-}
-
-/* And a bar in the gutter, so the mark is a shape as well as a thicker rule. The bar
- * costs no layout: the margin is given back by the padding, so the content box keeps
- * its width and an item cannot wrap to a second line because it became the current
- * one. The item's own bullet gives way to the bar — a marker is drawn outside the text,
- * and a bar over one is two marks in the same 6px. */
-.md-typeset .contents__list li:has(a:is(:target-current, .contents__current)) {
-  list-style: none;
-  margin-left: -0.35rem;
-  padding-left: 0.35rem;
-  box-shadow: inset 3px 0 0 var(--tb-ink);
-}
-
-@media (max-width: 44rem) {
-  .md-typeset .contents__list { columns: 1; }
-}
-
-/* The name index (`:::method-index`): every method once, by letter, each a link to
- * an entry the page carries.
- *
- * **The letters are the index, and each letter is a disclosure.** It used to print all
- * 77 names as one line per letter: at 390px that was 992px of names under a title, a
- * reader could not jump to a letter, and the index itself was a wall. The hook emits one
- * `<details>` per letter now — the summary is the letter and its count, the content is
- * that letter's names — so the closed index is a rail of twenty chips a few rows tall,
- * and opening a letter costs no navigation at all: the names appear in place.
- *
- * Native `<details>`, so nothing here needs a script and a reader with scripting off has
- * the same index. The first letter is open, which is the page's answer to "what is in
- * here" before the reader has chosen anything.
- *
- * The chips are a flex row; the open letter takes the whole width (`flex-basis: 100%`)
- * and reads as the panel it is. Nothing carries a colour: the rule, the radius and the
- * ink tokens decide, and the chevron drawn below is the open/closed state. */
-.md-typeset .method-index-nav {
-  max-width: var(--tb-measure);
-  margin: 1rem 0 1.4rem;
-  padding: 0.6rem 0.8rem;
-  border: 1px solid var(--tb-rule);
-  border-radius: var(--tb-radius);
-  font-size: 0.85rem;
-  line-height: 1.5;
-}
-
-.md-typeset .method-index__letters {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 0.3rem;
-  align-items: flex-start;
-}
-
-/* The generic disclosure rule sets a measure, a margin, a border and padding; a chip is
- * none of those. */
-.md-typeset .method-index__group {
-  flex: 0 0 auto;
-  max-width: none;
-  margin: 0;
-  padding: 0;
-  border: 0;
-  border-radius: 0;
-}
-
-.md-typeset .method-index__group[open] {
-  flex: 1 0 100%;
-}
-
-.md-typeset .method-index__group > summary {
-  display: flex;
-  align-items: baseline;
-  justify-content: center;
-  gap: 0.35rem;
-  /* The marker is drawn below instead, so it can turn; `list-style` says so even where
-   * `display: flex` would already suppress it. */
-  list-style: none;
-  /* The chip is a control on a phone: WCAG 2.2's target floor is 24px. */
-  min-height: 1.5rem;
-  padding: 0.1rem 0.5rem;
-  border: 1px solid var(--tb-rule);
-  border-radius: var(--tb-radius);
-  cursor: pointer;
-}
-
-.md-typeset .method-index__group > summary:focus-visible {
-  outline: 2px solid var(--tb-fig-accent);
-  outline-offset: 2px;
-}
-
-/* A chevron is the open/closed state, drawn from the summary's own ink rather than a
- * colour or a glyph, and it stays beside the letter: a marker pushed to the far edge of
- * a wide panel is hard to connect to the label it belongs to. */
-.md-typeset .method-index__group > summary::after {
-  content: "";
-  width: 0.3rem;
-  height: 0.3rem;
-  border-right: 1.5px solid currentColor;
-  border-bottom: 1.5px solid currentColor;
-  transform: rotate(45deg);
-}
-
-.md-typeset .method-index__group[open] > summary::after {
-  transform: rotate(225deg);
-}
-
-@media (prefers-reduced-motion: no-preference) {
-  .md-typeset .method-index__group > summary::after {
-    transition: transform 0.15s ease-in-out;
+  .prove__note {
+    margin: 0.5rem 0 0;
+    font-size: 0.9rem;
+    color: var(--tb-ink-soft);
   }
-}
+  .prove__badge {
+    font-weight: 600;
+    color: var(--tb-fig-warn);
+  }
+  .prove__badge::after {
+    content: " —";
+  }
 
-/* Open, the summary is the panel's header rather than a chip: the names sit inside the
- * same box, so the two borders must not double up. */
-.md-typeset .method-index__group[open] > summary {
-  justify-content: flex-start;
-  border-bottom: 0;
-  border-radius: var(--tb-radius) var(--tb-radius) 0 0;
-}
+  /* The optional track. Deliberately quieter than `prove`: a proof is a promise
+     kept, and depth is an offer. Same shape, softer rule. */
+  .deeper {
+    margin: 1.3rem 0;
+    padding: 0.7rem 0.95rem;
+    border: 1px dashed var(--tb-rule);
+    border-radius: var(--tb-radius);
+  }
+  .deeper__link {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: baseline;
+    gap: 0.5rem;
+    text-decoration: none;
+  }
+  .deeper__ask {
+    font-weight: 600;
+    color: var(--tb-ink-soft);
+    white-space: nowrap;
+  }
+  .deeper__ask::after {
+    content: "\2192";
+    margin-left: 0.3rem;
+    display: inline-block;
+  }
+  .deeper__title {
+    color: var(--tb-ink);
+  }
+  .deeper__link:hover .deeper__title,
+  .deeper__link:focus-visible .deeper__title {
+    text-decoration: underline;
+  }
+  .deeper__note {
+    margin: 0.4rem 0 0;
+    font-size: 0.9rem;
+    color: var(--tb-ink-soft);
+  }
 
-.md-typeset .method-index__letter {
-  color: var(--tb-ink);
-  font-weight: 600;
-}
+  /* A named kind of problem. Quieter than `prove` and `deeper`, its border on the
+     rule colour: a pointer to a reference, not a promise or an offer. */
+  .classlink {
+    margin: 1.2rem 0;
+    padding: 0.55rem 0.85rem;
+    border-left: 3px solid var(--tb-rule);
+    background: color-mix(in srgb, var(--tb-accent) 4%, transparent);
+  }
+  .classlink__link {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: baseline;
+    gap: 0.45rem;
+    text-decoration: none;
+  }
+  .classlink__ask {
+    font-weight: 600;
+    color: var(--tb-ink-soft);
+    white-space: nowrap;
+  }
+  .classlink__ask::after {
+    content: "\2192";
+    margin-left: 0.3rem;
+    display: inline-block;
+  }
+  .classlink__title {
+    font-weight: 600;
+    color: var(--tb-fig-accent);
+  }
+  .classlink__link:hover .classlink__title,
+  .classlink__link:focus-visible .classlink__title {
+    text-decoration: underline;
+  }
+  .classlink__note {
+    margin: 0.3rem 0 0;
+    font-size: 0.9rem;
+    color: var(--tb-ink-soft);
+  }
 
-.md-typeset .method-index__count {
-  color: var(--tb-ink-soft);
-  font-size: 0.9em;
-}
+  /* Formulae & tables booklet. */
 
-.md-typeset .method-index__names {
-  margin: 0;
-  padding: 0.3rem 0.6rem 0.4rem;
-  border: 1px solid var(--tb-rule);
-  border-top: 0;
-  border-radius: 0 0 var(--tb-radius) var(--tb-radius);
-  list-style: none;
-  /* 1.8 takes a name's box to about 24.5px, the same floor the page's own contents list
-   * keeps; at 1.5 the link measured 20px. */
-  line-height: 1.8;
-  columns: 2;
-  column-gap: 1.6rem;
-}
+  .bk-fab {
+    position: fixed;
+    right: 1.1rem;
+    bottom: 1.1rem;
+    z-index: 30;
+    display: inline-flex;
+    align-items: center;
+    gap: 0.4rem;
+    padding: 0.6rem 0.9rem;
+    border: 1px solid var(--md-primary-fg-color--dark);
+    border-radius: var(--tb-radius);
+    background: var(--md-primary-fg-color);
+    /* The label is knocked out of the accent fill, so it uses the bundle's dedicated
+     * on-accent ink: a paper can sit too close to its own accent to read. */
+    color: var(--tb-accent-ink);
+    font: 600 0.9rem/1 system-ui, sans-serif;
+    cursor: pointer;
+    box-shadow: 0 4px 14px color-mix(in srgb, var(--md-default-fg-color) 22%, transparent);
+  }
+  .bk-fab:hover { filter: brightness(1.06); }
+  .bk-fab [aria-hidden] { font-size: 1.25rem; }
+  .bk-fab__label { font-size: 0.85rem; }
 
-.md-typeset .method-index__names li {
-  break-inside: avoid;
-  margin: 0;
-}
+  .bk-panel {
+    position: fixed;
+    right: 1.1rem;
+    bottom: 4.6rem;
+    z-index: 31;
+    display: flex;
+    flex-direction: column;
+    width: min(430px, calc(100vw - 2rem));
+    height: min(72vh, 660px);
+    min-width: 320px;
+    min-height: 280px;
+    border: 1px solid var(--md-default-fg-color--lightest);
+    border-radius: var(--tb-radius);
+    background: var(--md-default-bg-color);
+    color: var(--md-default-fg-color);
+    box-shadow: 0 12px 40px color-mix(in srgb, var(--md-default-fg-color) 28%, transparent);
+    overflow: hidden;
+  }
+  .bk-panel[hidden] { display: none; }
 
-.md-typeset .method-index__names a {
-  /* The box follows the line box, so the target is the height the reader sees; a short
-   * name ("QZ", 18.9px) is narrower than the floor, so it keeps a minimum width too —
-   * the same pair the page's contents list uses. */
-  display: inline-block;
-  min-width: 1.5rem;
-  min-height: 1.5rem;
-}
+  .bk-bar {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    padding: 0.5rem 0.6rem;
+    border-bottom: 1px solid var(--md-default-fg-color--lightest);
+    background: var(--md-primary-fg-color);
+    color: var(--tb-accent-ink);
+    cursor: grab;
+    touch-action: none;
+  }
+  .bk-bar:active { cursor: grabbing; }
+  .bk-grip {
+    width: 14px;
+    height: 14px;
+    flex: none;
+    background-image: radial-gradient(currentColor 1.2px, transparent 1.2px);
+    background-size: 5px 5px;
+    opacity: 0.6;
+  }
+  .bk-title { margin: 0; font-size: 1rem; font-weight: 700; flex: 1; }
+  .bk-bar__tools { display: flex; align-items: center; gap: 0.4rem; }
+  .bk-field { font-size: 0.75rem; display: flex; align-items: center; gap: 0.25rem; }
+  .bk-field select {
+    font-size: 0.75rem;
+    padding: 0.1rem 0.2rem;
+    border-radius: var(--tb-radius);
+    border: 1px solid color-mix(in srgb, currentColor 40%, transparent);
+    background: color-mix(in srgb, currentColor 12%, transparent);
+    color: inherit;
+  }
+  .bk-icon {
+    border: 0;
+    background: transparent;
+    color: inherit;
+    font-size: 1rem;
+    cursor: pointer;
+    padding: 0.15rem 0.35rem;
+    border-radius: var(--tb-radius);
+  }
+  .bk-icon:hover { background: color-mix(in srgb, currentColor 18%, transparent); }
 
-@media (max-width: 44rem) {
-  .md-typeset .method-index__names { columns: 1; }
-}
+  .bk-toolbar {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.4rem;
+    padding: 0.5rem 0.6rem 0.3rem;
+  }
+  .bk-search {
+    flex: 1 1 10rem;
+    padding: 0.35rem 0.5rem;
+    border: 1px solid var(--md-default-fg-color--lightest);
+    border-radius: var(--tb-radius);
+    background: var(--md-default-bg-color);
+    color: inherit;
+    font-size: 0.85rem;
+  }
+  .bk-chips { display: flex; gap: 0.3rem; }
+  .bk-chip {
+    font-size: 0.75rem;
+    padding: 0.2rem 0.5rem;
+    min-width: 1.5rem;
+    min-height: 1.5rem;
+    border-radius: var(--tb-radius);
+    border: 1px solid var(--md-default-fg-color--lightest);
+    background: transparent;
+    color: var(--md-default-fg-color--light);
+    cursor: pointer;
+  }
+  .bk-chip[aria-pressed="true"] {
+    background: var(--md-primary-fg-color);
+    border-color: var(--md-primary-fg-color);
+    color: var(--tb-accent-ink);
+  }
 
-/* On paper a closed letter prints as the chip it is, which is the same rule the page's
- * other disclosures follow: a browser does not lay out a closed detail, and forcing one
- * open here would mean reaching into `::details-content` outside the motion query the
- * test guards. The sheet stays readable either way — every entry prints below in family
- * order, with its name as a heading — so the rail only loses its boxes and chevrons, and
- * the letter rail reads as the alphabetical summary it is. This block follows the screen
- * rules rather than sitting in the print section above, because it overrides them at the
- * same specificity and the cascade would otherwise give the screen the last word. */
-@media print {
+  .bk-tabs {
+    display: flex;
+    align-items: center;
+    gap: 0.6rem;
+    padding: 0 0.6rem;
+    border-bottom: 1px solid var(--md-default-fg-color--lightest);
+  }
+  .bk-tab {
+    border: 0;
+    background: transparent;
+    color: var(--md-default-fg-color--light);
+    font: 600 0.82rem/2.2 system-ui, sans-serif;
+    border-bottom: 2px solid transparent;
+    cursor: pointer;
+  }
+  .bk-tab[aria-selected="true"] {
+    color: var(--md-default-fg-color);
+    border-bottom-color: var(--md-primary-fg-color);
+  }
+  .bk-count { margin-left: auto; font-size: 0.75rem; color: var(--md-default-fg-color--light); }
+
+  .bk-content { flex: 1; overflow: auto; padding: 0.5rem 0.7rem 0.8rem; }
+  .bk-section h3 {
+    margin: 0.8rem 0 0.4rem;
+    font-size: 0.85rem;
+    text-transform: uppercase;
+    letter-spacing: 0.04em;
+    color: var(--md-default-fg-color--light);
+  }
+  .bk-item {
+    padding: 0.45rem 0.55rem;
+    margin-bottom: 0.35rem;
+    border: 1px solid var(--md-default-fg-color--lightest);
+    border-left: 3px solid var(--md-primary-fg-color);
+    border-radius: var(--tb-radius);
+  }
+  .bk-item[data-group="question"] { border-left-color: var(--tb-fig-warn); }
+  .bk-item[data-group="know"] { border-left-color: var(--tb-fig-good); }
+  .bk-item__formula { overflow-x: auto; }
+  .bk-item__meta { display: flex; align-items: center; gap: 0.5rem; margin-top: 0.25rem; }
+  .bk-item__name { font-size: 0.85rem; font-weight: 600; }
+  .bk-item__note { margin: 0.25rem 0 0; font-size: 0.75rem; color: var(--md-default-fg-color--light); }
+  /* Square label, not a pill: booklet group tags match the portal's flat labels. */
+  .bk-badge {
+    margin-left: auto;
+    font-size: 0.75rem;
+    padding: 0.05rem 0.4rem;
+    white-space: nowrap;
+  }
+  .bk-badge--accent { background: color-mix(in srgb, var(--md-primary-fg-color) 18%, transparent); }
+  .bk-badge--muted { background: color-mix(in srgb, var(--tb-ink) 10%, transparent); }
+  .bk-badge--warn { background: color-mix(in srgb, var(--tb-fig-warn) 20%, transparent); }
+  .bk-empty { color: var(--md-default-fg-color--light); font-size: 0.85rem; }
+  .bk-table { width: 100%; border-collapse: collapse; font-size: 0.85rem; }
+  .bk-table th, .bk-table td { border: 1px solid var(--md-default-fg-color--lightest); padding: 0.25rem 0.4rem; text-align: left; }
+  .bk-table thead th { background: color-mix(in srgb, var(--md-default-fg-color) 6%, transparent); }
+
+  .bk-foot {
+    padding: 0.35rem 0.7rem;
+    border-top: 1px solid var(--md-default-fg-color--lightest);
+    font-size: 0.75rem;
+    color: var(--md-default-fg-color--light);
+  }
+  .bk-resize {
+    position: absolute;
+    right: 0;
+    bottom: 0;
+    width: 18px;
+    height: 18px;
+    cursor: nwse-resize;
+    background: linear-gradient(135deg, transparent 50%, var(--md-default-fg-color--lighter) 50%);
+    touch-action: none;
+  }
+
+  /* Mobile: bottom sheet instead of a floating window. The breakpoint matches the
+   * reader-facing one the rest of the shell uses (`44rem`): above it the panel is
+   * docked at the bottom right, below it the sheet takes the width. */
+  @media (max-width: 44rem) {
+    .bk-panel {
+      left: 0;
+      right: 0;
+      bottom: 0;
+      width: auto;
+      height: min(82vh, 700px);
+      border-radius: var(--tb-radius) var(--tb-radius) 0 0;
+    }
+    .bk-resize { display: none; }
+    .bk-bar { cursor: default; border-radius: var(--tb-radius) var(--tb-radius) 0 0; }
+  }
+
+  /* Document Picture-in-Picture window. */
+  .bk-popout-body { margin: 0; background: var(--md-default-bg-color); }
+  .bk-popout-body .bk-panel {
+    position: static;
+    width: 100%;
+    height: 100vh;
+    border-radius: 0;
+    box-shadow: none;
+  }
+
+  /* Print. */
+
+  /* Printing drops the browser chrome and the pointer, and declares no colour, so
+   * the bundle still decides everything on paper. */
+  @media print {
+    /* The BESPOKE shell's class names (templates/page.html), not Material's. The
+     * booklet button and panel are fixed overlays, so without this they print over
+     * the text. `.md-typeset` and `.md-content` stay: the content column needs both. */
+    .masthead,
+    /* The drawer as well as the nav: the prose is what prints. */
+    .nav-drawer,
+    .sidebar,
+    .search,
+    .skip,
+    .bk-fab,
+    .bk-panel {
+      display: none !important;
+    }
+
+    .layout {
+      display: block;
+      margin: 0;
+      padding: 0;
+    }
+    .md-typeset {
+      max-width: var(--tb-measure);
+      margin: 0 auto;
+    }
+
+    /* A scroll box cannot scroll on paper. */
+    .md-typeset__scrollwrap,
+    .table-scroll { overflow: visible; }
+
+    /* `break-inside` is only a hint: an item taller than a page is still broken. The
+     * `page-break-*` aliases cover engines that predate the fragmentation properties. */
+    .md-typeset table,
+    .md-typeset__scrollwrap,
+    .md-typeset .callout,
+    .md-typeset details,
+    .md-typeset maths-figure,
+    .md-typeset figure {
+      break-inside: avoid;
+      page-break-inside: avoid;
+    }
+    .md-typeset h1,
+    .md-typeset h2,
+    .md-typeset h3,
+    .md-typeset h4,
+    .md-typeset details > summary {
+      break-after: avoid;
+      page-break-after: avoid;
+    }
+    .md-typeset thead {
+      display: table-header-group; /* repeat a table's header if it must break */
+    }
+    .md-typeset p {
+      orphans: 2;
+      widows: 2;
+    }
+
+    /* A browser does not lay out the content of a closed detail, so `details`
+     * prints as the reader left it. Deliberately not forced open: printing every
+     * answer beside its question would remove the retrieval. */
+
+    /* Hover does not exist on paper, so links are underlined rather than coloured. */
+    .md-typeset a {
+      text-decoration: underline;
+    }
+  }
+
+  @page {
+    margin: 18mm 16mm;
+  }
+
+  /* A page's own contents list (`:::contents`): two columns, and a plain nav of
+   * links, so it works with scripting off. */
+  .md-typeset .contents {
+    max-width: var(--tb-measure);
+    margin: 1rem 0 1.4rem;
+    padding: 0.6rem 0.8rem;
+    border: 1px solid var(--tb-rule);
+    border-radius: var(--tb-radius);
+  }
+
+  .md-typeset .contents__title {
+    margin: 0 0 0.35rem;
+    color: var(--tb-ink-soft);
+    font-size: 0.85rem;
+    text-transform: uppercase;
+    letter-spacing: 0.04em;
+  }
+
+  .md-typeset .contents__list {
+    margin: 0;
+    padding-left: 1.1rem;
+    columns: 2;
+    column-gap: 1.6rem;
+    font-size: 0.85rem;
+    /* 1.8 takes the link's box to about 24.5px, WCAG 2.2's target-size floor. Measured
+     * at 1.7 it was 23px, six links on every Learn page under the floor. */
+    line-height: 1.8;
+  }
+
+  /* The box follows the line box, so the target is the height the reader sees. A short
+   * link ("1.1") is narrower than the floor, so it keeps a minimum width too. */
+  .md-typeset .contents__list a {
+    display: inline-block;
+    min-width: 1.5rem;
+    min-height: 1.5rem;
+  }
+
+  /* The section the reader is in. `:target-current` is the platform's own scroll-spy,
+   * set by `scroll-target-group` in the rule below; `.contents__current` is the same
+   * state from the IntersectionObserver fallback, and `:is()` is what lets one rule hold
+   * both — an unknown pseudo-class inside `:is()` is ignored, where `a:target-current,
+   * a.contents__current` would invalidate the whole rule in a browser that has neither.
+   *
+   * The state is a 2px underline and the ink colour, never the colour alone: a reader
+   * who cannot tell the accent from the ink still sees the rule. Weight is deliberately
+   * not used. A bolder label is wider, so the marked item can wrap to a second line and
+   * push the article below it down on every section boundary — a layout shift the reader
+   * did not ask for, caused by the thing that is meant to help them. */
+  .md-typeset .contents {
+    scroll-target-group: auto;
+  }
+
+  .md-typeset .contents__list a:is(:target-current, .contents__current) {
+    color: var(--tb-ink);
+    text-decoration: underline;
+    text-decoration-thickness: 2px;
+    text-underline-offset: 0.2em;
+  }
+
+  /* And a bar in the gutter, so the mark is a shape as well as a thicker rule. The bar
+   * costs no layout: the margin is given back by the padding, so the content box keeps
+   * its width and an item cannot wrap to a second line because it became the current
+   * one. The item's own bullet gives way to the bar — a marker is drawn outside the text,
+   * and a bar over one is two marks in the same 6px. */
+  .md-typeset .contents__list li:has(a:is(:target-current, .contents__current)) {
+    list-style: none;
+    margin-left: -0.35rem;
+    padding-left: 0.35rem;
+    box-shadow: inset 3px 0 0 var(--tb-ink);
+  }
+
+  @media (max-width: 44rem) {
+    .md-typeset .contents__list { columns: 1; }
+  }
+
+  /* The name index (`:::method-index`): every method once, by letter, each a link to
+   * an entry the page carries.
+   *
+   * **The letters are the index, and each letter is a disclosure.** It used to print all
+   * 77 names as one line per letter: at 390px that was 992px of names under a title, a
+   * reader could not jump to a letter, and the index itself was a wall. The hook emits one
+   * `<details>` per letter now — the summary is the letter and its count, the content is
+   * that letter's names — so the closed index is a rail of twenty chips a few rows tall,
+   * and opening a letter costs no navigation at all: the names appear in place.
+   *
+   * Native `<details>`, so nothing here needs a script and a reader with scripting off has
+   * the same index. The first letter is open, which is the page's answer to "what is in
+   * here" before the reader has chosen anything.
+   *
+   * The chips are a flex row; the open letter takes the whole width (`flex-basis: 100%`)
+   * and reads as the panel it is. Nothing carries a colour: the rule, the radius and the
+   * ink tokens decide, and the chevron drawn below is the open/closed state. */
   .md-typeset .method-index-nav {
-    border: 0;
+    max-width: var(--tb-measure);
+    margin: 1rem 0 1.4rem;
+    padding: 0.6rem 0.8rem;
+    border: 1px solid var(--tb-rule);
+    border-radius: var(--tb-radius);
+    font-size: 0.85rem;
+    line-height: 1.5;
   }
-  .md-typeset .method-index__group > summary,
-  .md-typeset .method-index__group[open] > summary {
-    padding: 0 0.7rem 0 0;
-    border: 0;
-    border-bottom: 0;
+
+  .md-typeset .method-index__letters {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.3rem;
+    align-items: flex-start;
   }
-  .md-typeset .method-index__group > summary::after {
-    content: none;
-  }
-  .md-typeset .method-index__names {
+
+  /* The generic disclosure rule sets a measure, a margin, a border and padding; a chip is
+   * none of those. */
+  .md-typeset .method-index__group {
+    flex: 0 0 auto;
+    max-width: none;
+    margin: 0;
     padding: 0;
     border: 0;
-    columns: 3;
+    border-radius: 0;
+  }
+
+  .md-typeset .method-index__group[open] {
+    flex: 1 0 100%;
+  }
+
+  .md-typeset .method-index__group > summary {
+    display: flex;
+    align-items: baseline;
+    justify-content: center;
+    gap: 0.35rem;
+    /* The marker is drawn below instead, so it can turn; `list-style` says so even where
+     * `display: flex` would already suppress it. */
+    list-style: none;
+    /* The chip is a control on a phone: WCAG 2.2's target floor is 24px. */
+    min-height: 1.5rem;
+    padding: 0.1rem 0.5rem;
+    border: 1px solid var(--tb-rule);
+    border-radius: var(--tb-radius);
+    cursor: pointer;
+  }
+
+  .md-typeset .method-index__group > summary:focus-visible {
+    outline: 2px solid var(--tb-fig-accent);
+    outline-offset: 2px;
+  }
+
+  /* A chevron is the open/closed state, drawn from the summary's own ink rather than a
+   * colour or a glyph, and it stays beside the letter: a marker pushed to the far edge of
+   * a wide panel is hard to connect to the label it belongs to. */
+  .md-typeset .method-index__group > summary::after {
+    content: "";
+    width: 0.3rem;
+    height: 0.3rem;
+    border-right: 1.5px solid currentColor;
+    border-bottom: 1.5px solid currentColor;
+    transform: rotate(45deg);
+  }
+
+  .md-typeset .method-index__group[open] > summary::after {
+    transform: rotate(225deg);
+  }
+
+  @media (prefers-reduced-motion: no-preference) {
+    .md-typeset .method-index__group > summary::after {
+      transition: transform 0.15s ease-in-out;
+    }
+  }
+
+  /* Open, the summary is the panel's header rather than a chip: the names sit inside the
+   * same box, so the two borders must not double up. */
+  .md-typeset .method-index__group[open] > summary {
+    justify-content: flex-start;
+    border-bottom: 0;
+    border-radius: var(--tb-radius) var(--tb-radius) 0 0;
+  }
+
+  .md-typeset .method-index__letter {
+    color: var(--tb-ink);
+    font-weight: 600;
+  }
+
+  .md-typeset .method-index__count {
+    color: var(--tb-ink-soft);
+    font-size: 0.9em;
+  }
+
+  .md-typeset .method-index__names {
+    margin: 0;
+    padding: 0.3rem 0.6rem 0.4rem;
+    border: 1px solid var(--tb-rule);
+    border-top: 0;
+    border-radius: 0 0 var(--tb-radius) var(--tb-radius);
+    list-style: none;
+    /* 1.8 takes a name's box to about 24.5px, the same floor the page's own contents list
+     * keeps; at 1.5 the link measured 20px. */
+    line-height: 1.8;
+    columns: 2;
+    column-gap: 1.6rem;
+  }
+
+  .md-typeset .method-index__names li {
+    break-inside: avoid;
+    margin: 0;
+  }
+
+  .md-typeset .method-index__names a {
+    /* The box follows the line box, so the target is the height the reader sees; a short
+     * name ("QZ", 18.9px) is narrower than the floor, so it keeps a minimum width too —
+     * the same pair the page's contents list uses. */
+    display: inline-block;
+    min-width: 1.5rem;
+    min-height: 1.5rem;
+  }
+
+  @media (max-width: 44rem) {
+    .md-typeset .method-index__names { columns: 1; }
+  }
+
+  /* On paper a closed letter prints as the chip it is, which is the same rule the page's
+   * other disclosures follow: a browser does not lay out a closed detail, and forcing one
+   * open here would mean reaching into `::details-content` outside the motion query the
+   * test guards. The sheet stays readable either way — every entry prints below in family
+   * order, with its name as a heading — so the rail only loses its boxes and chevrons, and
+   * the letter rail reads as the alphabetical summary it is. This block follows the screen
+   * rules rather than sitting in the print section above, because it overrides them at the
+   * same specificity and the cascade would otherwise give the screen the last word. */
+  @media print {
+    .md-typeset .method-index-nav {
+      border: 0;
+    }
+    .md-typeset .method-index__group > summary,
+    .md-typeset .method-index__group[open] > summary {
+      padding: 0 0.7rem 0 0;
+      border: 0;
+      border-bottom: 0;
+    }
+    .md-typeset .method-index__group > summary::after {
+      content: none;
+    }
+    .md-typeset .method-index__names {
+      padding: 0;
+      border: 0;
+      columns: 3;
+    }
   }
 }

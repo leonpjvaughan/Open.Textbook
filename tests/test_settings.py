@@ -244,3 +244,41 @@ def test_the_landing_theme_choice_can_be_withdrawn(monkeypatch):
     monkeypatch.setattr(books_module, "load_collection", withdrawn)
     assert 'id="theme-menu"' not in portal.settings_dialog()
     assert 'name="tb-scheme"' in portal.settings_dialog()
+
+
+def doubled_collection(monkeypatch):
+    import textbook.book as books_module
+
+    original = books_module.load_collection
+
+    def doubled(root=None):
+        data = dict(original(root))
+        data["layouts"] = [
+            *data["layouts"],
+            {"id": "wide", "title": "Wide", "description": "Fewer, larger cards."},
+        ]
+        return data
+
+    monkeypatch.setattr(books_module, "load_collection", doubled)
+
+
+def test_with_one_layout_the_panel_has_no_layout_choice():
+    dialog = portal.settings_dialog()
+    assert 'name="tb-layout"' not in dialog
+    assert "layout-menu" not in dialog
+
+
+def test_with_two_layouts_the_panel_offers_each(monkeypatch):
+    doubled_collection(monkeypatch)
+    dialog = portal.settings_dialog()
+    assert '<legend class="tb-settings__legend">Layout</legend>' in dialog
+    assert 'name="tb-layout" value="matrix"' in dialog
+    assert 'name="tb-layout" value="wide"' in dialog
+    assert "Fewer, larger cards." in dialog
+    assert "style=" not in dialog
+
+
+def test_the_runtime_writes_the_layout_through_the_shared_store():
+    runtime = SETTINGS_JS.read_text(encoding="utf-8")
+    assert 'input[name="tb-layout"]' in runtime
+    assert "prefs.setStyle" in runtime

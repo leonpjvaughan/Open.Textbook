@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" data-style="$style">
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -11,6 +11,7 @@ $build_meta
 $prefs_script
 <link rel="stylesheet" href="$themes_css">
 <link rel="stylesheet" href="$portal_css">
+<link rel="stylesheet" href="$layouts_css">
 <link rel="stylesheet" href="$search_css">
 <link rel="stylesheet" href="$settings_css">
 <!-- Resolves the cascade before the page can be revealed: Chromium can otherwise
@@ -36,21 +37,21 @@ document.body.setAttribute(
 </script>
   <a class="skip" href="#main">Skip to content</a>
 <header class="masthead">
-  <div class="wrap masthead__inner">
-    <div class="masthead__text">
-      <h1 class="masthead__title">$title</h1>
-      <p class="masthead__lead">$description</p>
-    </div>
-    <div class="masthead__actions">
-      $settings_trigger
-    </div>
+  <div class="masthead__lead">
+    <p class="masthead__eyebrow">$eyebrow</p>
+    <h1 class="masthead__title">$title</h1>
+    <p class="masthead__description">$description</p>
   </div>
+  <div class="masthead__tools">
+    <p class="masthead__tools-label">Reader settings</p>
+    $settings_trigger
 $search
+  </div>
 </header>
 $settings_dialog
 
 <main class="wrap" id="main">
-$groups
+$bands
 </main>
 
 $footer

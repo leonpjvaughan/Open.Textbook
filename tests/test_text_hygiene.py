@@ -45,7 +45,7 @@ def declarations(css_text: str) -> list[tuple[str, str, str]]:
                 depth -= 1
             end += 1
         body = css_text[start:end - 1]
-        if selector.startswith(("@media", "@supports")):
+        if selector.startswith(("@layer", "@media", "@supports")):
             found.extend(declarations(body))
         else:
             for declaration in body.split(";"):

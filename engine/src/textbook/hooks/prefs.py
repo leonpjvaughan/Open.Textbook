@@ -4,6 +4,8 @@ Both belong to the reader and apply to the whole collection, so both are stored
 under origin-wide keys and applied before the first paint.
 
 * ``textbooks:scheme`` — ``default`` or ``slate``.
+* ``textbooks:style`` — a layout id from ``collection.yaml``. Read and written only
+  when more than one layout exists; with one, nothing here mentions it.
 * ``textbooks:theme`` — one of the bundles in ``themes/``. A bundle is chosen by
   the reader and applies to every book, so moving between subjects never moves
   the theme: the bundle is the reading experience, the subject tint is the
@@ -36,6 +38,8 @@ from ..themes import SCHEMES, default_bundle
 SCHEME_KEY = "textbooks:scheme"
 THEME_KEY = "textbooks:theme"
 
+STYLE_KEY = "textbooks:style"
+
 SHARED_KEY = SCHEME_KEY
 
 
@@ -49,6 +53,14 @@ def themes(config) -> tuple[list[str], str]:
     extra = (config or {}).get("extra") or {}
     ids = [str(theme_id) for theme_id in extra.get("themes", ())]
     default = str(extra.get("default_theme", "") or (ids[0] if ids else ""))
+    return ids, default
+
+
+def layouts(config) -> tuple[list[str], str]:
+    """The layout ids a reader may choose, and the default; same source as ``themes``."""
+    extra = (config or {}).get("extra") or {}
+    ids = [str(layout_id) for layout_id in extra.get("layouts", ())]
+    default = str(extra.get("default_layout", "") or (ids[0] if ids else ""))
     return ids, default
 
 
@@ -78,7 +90,8 @@ def theme_color_metas() -> str:
 def snippet(config) -> str:
     """The inline script that applies both preferences before the first paint.
 
-    It sets ``data-scheme-pref`` and ``data-theme`` on ``<html>``, plus
+    It sets ``data-scheme-pref`` and ``data-theme`` on ``<html>`` (and ``data-style``
+    when there is more than one layout), plus
     ``data-md-color-scheme`` — the attribute ``themes.css`` keys its tokens off,
     kept from Material because the shared stylesheet still depends on it.
 
@@ -89,6 +102,34 @@ def snippet(config) -> str:
     """
     theme_ids, default_theme = themes(config)
     theme_list = json.dumps(theme_ids, separators=(",", ":"))
+    layout_ids, default_layout = layouts(config)
+    choosable = len(layout_ids) > 1
+    layout_vars = (
+        f'  var STYLE_KEY = "{STYLE_KEY}";\n'
+        f"  var STYLES = {json.dumps(layout_ids, separators=(',', ':'))};\n"
+        f"  var DEFAULT_STYLE = {json.dumps(default_layout)};\n"
+        if choosable
+        else ""
+    )
+    layout_apply = (
+        "  function applyStyle(value) {\n"
+        "    var wanted = STYLES.indexOf(value) >= 0 ? value : DEFAULT_STYLE;\n"
+        "    document.documentElement.setAttribute('data-style', wanted);\n"
+        "    return wanted;\n"
+        "  }\n"
+        if choosable
+        else ""
+    )
+    layout_start = "  applyStyle(read(STYLE_KEY));\n" if choosable else ""
+    layout_api = (
+        "    styleKey: STYLE_KEY,\n"
+        "    styles: STYLES.slice(),\n"
+        "    defaultStyle: DEFAULT_STYLE,\n"
+        "    setStyle: function (value) { write(STYLE_KEY, value); return applyStyle(value); },\n"
+        "    currentStyle: function () { return applyStyle(read(STYLE_KEY)); },\n"
+        if choosable
+        else ""
+    )
 
     return (
         "<script>\n"
@@ -101,6 +142,7 @@ def snippet(config) -> str:
         f'  var THEME_KEY = "{THEME_KEY}";\n'
         f"  var THEMES = {theme_list};\n"
         f'  var DEFAULT_THEME = "{default_theme}";\n'
+        f"{layout_vars}"
         "  var store, query = null;\n"
         "  try { store = window.localStorage; } catch (err) {}\n"
         "  try {\n"
@@ -121,6 +163,7 @@ def snippet(config) -> str:
         "    if (wanted) document.documentElement.setAttribute('data-theme', wanted);\n"
         "    return wanted;\n"
         "  }\n"
+        f"{layout_apply}"
         "  function paint() {\n"
         "    var paper = '';\n"
         "    try {\n"
@@ -155,6 +198,7 @@ def snippet(config) -> str:
         "    else if (query.addListener) query.addListener(follow);\n"
         "  }\n"
         "  applyTheme(read(THEME_KEY));\n"
+        f"{layout_start}"
         "  if (document.readyState === 'loading') {\n"
         "    document.addEventListener('DOMContentLoaded', paint);\n"
         "  } else {\n"
@@ -165,6 +209,7 @@ def snippet(config) -> str:
         "    themeKey: THEME_KEY,\n"
         "    themes: THEMES.slice(),\n"
         "    defaultTheme: DEFAULT_THEME,\n"
+        f"{layout_api}"
         "    read: read,\n"
         "    write: write,\n"
         "    setTheme: function (value) { write(THEME_KEY, value); return applyTheme(value); },\n"

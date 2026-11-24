@@ -1,0 +1,3 @@
+@layer layout {
+  :root[data-style="fx"] .band { columns: 2; column-rule: 1px solid var(--tb-paper); }
+}

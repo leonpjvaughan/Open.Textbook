@@ -7,6 +7,7 @@ rather than code. The collection is described by ``collection.yaml`` at the root
 from __future__ import annotations
 
 import os
+import re
 from dataclasses import dataclass, field
 from functools import lru_cache
 from pathlib import Path
@@ -438,12 +439,122 @@ def qualification_order(root: Path | None = None) -> dict[str, int]:
     }
 
 
+LAYOUTS_DIR = Path("assets") / "stylesheets" / "layouts"
+COMPANION_FIELDS = ("kicker", "title", "body", "link", "href")
+
+
+def band_slug(qualification: str) -> str:
+    """The id fragment of a qualification's band: ``band-<slug>``."""
+    return re.sub(r"[^a-z0-9]+", "-", qualification.lower()).strip("-")
+
+
+def layout_ids(collection: dict) -> list[str]:
+    return [str(entry["id"]) for entry in collection.get("layouts", ())]
+
+
+def default_layout() -> str:
+    """The layout id written to ``<html data-style>`` on every page."""
+    return str(load_collection().get("default_layout", ""))
+
+
+def validate_collection(collection: dict, root: Path) -> None:
+    """Raise ``ValueError`` for a layout, region or companion the build cannot use."""
+    layouts = collection.get("layouts")
+    if layouts is not None:
+        if not isinstance(layouts, list) or not layouts:
+            raise ValueError("collection.yaml: `layouts` must be a non-empty list")
+        seen: set[str] = set()
+        for entry in layouts:
+            if not isinstance(entry, dict) or not str(entry.get("id", "")).strip():
+                raise ValueError(f"collection.yaml: a layout needs an `id`: {entry!r}")
+            layout_id = str(entry["id"])
+            if not re.fullmatch(r"[a-z][a-z0-9-]*", layout_id):
+                raise ValueError(f"collection.yaml: layout id {layout_id!r} is not lowercase-hyphenated")
+            if layout_id in seen:
+                raise ValueError(f"collection.yaml: layout {layout_id!r} is listed twice")
+            seen.add(layout_id)
+            for key in ("title", "description"):
+                if not str(entry.get(key, "")).strip():
+                    raise ValueError(f"collection.yaml: layout {layout_id!r} needs a `{key}`")
+            sheet = root / LAYOUTS_DIR / f"{layout_id}.css"
+            if not sheet.is_file():
+                raise ValueError(f"collection.yaml: layout {layout_id!r} has no {LAYOUTS_DIR / sheet.name}")
+        default = collection.get("default_layout")
+        if default not in seen:
+            raise ValueError(
+                f"collection.yaml: default_layout {default!r} is not one of the layouts {sorted(seen)}"
+            )
+    elif "default_layout" in collection:
+        raise ValueError("collection.yaml: `default_layout` needs `layouts`")
+
+    validate_qualifications(collection.get("qualifications", ()), root)
+
+
+def validate_qualifications(qualifications, root: Path) -> None:
+    """Each qualification's band slug is unique and non-empty, and each companion resolves."""
+    built = [load_book(path) for path in sorted((root / BOOKS_DIR).glob("*/book.yaml"))]
+    with_books = {book.qualification for book in built}
+    slugs: dict[str, str] = {}
+    for name in [q.get("id") for q in qualifications] + sorted(with_books):
+        if not (isinstance(name, str) and name.strip()):
+            raise ValueError(f"collection.yaml: a qualification needs a string `id`: {name!r}")
+        slug = band_slug(name)
+        if not slug:
+            raise ValueError(f"collection.yaml: qualification {name!r} has an empty band slug")
+        if slugs.setdefault(slug, name) != name:
+            raise ValueError(
+                f"collection.yaml: qualifications {slugs[slug]!r} and {name!r} share band-{slug}"
+            )
+    bands = {f"band-{band_slug(q)}" for q in with_books}
+
+    for qualification in qualifications:
+        name = qualification["id"]
+        for key in ("title", "note", "region"):
+            value = qualification.get(key)
+            if value is not None and not (isinstance(value, str) and value.strip()):
+                raise ValueError(f"collection.yaml: {key} of {name!r} must be a non-empty string")
+        companion = qualification.get("companion")
+        if companion is None:
+            continue
+        if not isinstance(companion, dict):
+            raise ValueError(f"collection.yaml: companion of {name!r} must be a mapping")
+        missing = [
+            f for f in COMPANION_FIELDS
+            if not (isinstance(companion.get(f), str) and companion[f].strip())
+        ]
+        extra = sorted(set(companion) - set(COMPANION_FIELDS))
+        if missing or extra:
+            raise ValueError(
+                f"collection.yaml: companion of {name!r}: missing {missing}, unknown {extra}"
+            )
+        companion_target(name, companion["href"], bands, built)
+
+
+def companion_target(name: str, href: str, bands: set[str], built: list[Book]) -> None:
+    """A fragment names a band with books; a path names a page a book builds."""
+    where = f"collection.yaml: companion of {name!r}"
+    if href.startswith("#"):
+        if href[1:] not in bands:
+            raise ValueError(f"{where}: {href} is not a band with at least one book")
+        return
+    book_id, _, rest = href.partition("/")
+    book = next((b for b in built if b.id == book_id), None)
+    if book is None or not rest or "//" in href or ".." in href.split("/"):
+        raise ValueError(f"{where}: {href!r} is not `#band-<slug>` or `<book>/<page>/`")
+    page = rest.rstrip("/") + ("/index.md" if rest.endswith("/") else "")
+    if not (book.docs / page).is_file():
+        raise ValueError(f"{where}: {href!r} has no page {page} in {book.id}")
+
+
 @lru_cache(maxsize=None)
 def load_collection(root: Path | None = None) -> dict:
-    path = (root or repo_root()) / COLLECTION_FILE
+    base = root or repo_root()
+    path = base / COLLECTION_FILE
     if not path.is_file():
         return {}
-    return yamlio.load_file(path) or {}
+    data = yamlio.load_file(path) or {}
+    validate_collection(data, base)
+    return data
 
 
 def book_by_id(book_id: str, root: Path | None = None) -> Book:

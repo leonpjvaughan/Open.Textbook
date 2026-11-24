@@ -146,7 +146,7 @@ const out = {};
   }));
   const geometry = await page.evaluate(() => {
     const panel = document.querySelector("[data-search-panel]").getBoundingClientRect();
-    const cards = document.querySelector(".cards").getBoundingClientRect();
+    const cards = document.querySelector(".band__grid").getBoundingClientRect();
     return {
       panel: { top: panel.top, bottom: panel.bottom, height: panel.height, width: panel.width },
       contentTop: cards.top,
