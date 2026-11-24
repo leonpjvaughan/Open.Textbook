@@ -128,9 +128,10 @@ run_check print uv run python -m pytest tests/test_print.py -m browser -q
 # opening on the chapter the reader is in. None of it is visible to a static check.
 run_check navstate uv run python -m pytest tests/test_navigation_browser.py -m browser -q
 
-# The layout seam: every page complete with layouts.css emptied, and every layout under
-# the widest bundle font, at 390 and 1280, in both schemes.
-run_check layouts uv run python -m pytest tests/test_layouts_browser.py -m browser -q
+# The layout seam: every page complete with layouts.css emptied, every layout under the
+# widest bundle font, the reader's Layout choice, and every layout's measure, targets and
+# phone figure labels, at 390 and 1280, in both schemes.
+run_check layouts uv run python -m pytest tests/test_layouts_browser.py -m browser -q -n "${PYTEST_WORKERS:-4}"
 
 
 # The matrix, 6 bundles x 2 schemes x 3 routes = 36 pages.

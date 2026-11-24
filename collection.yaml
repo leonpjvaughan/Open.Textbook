@@ -59,6 +59,18 @@ layouts:
   - id: matrix
     title: Matrix
     description: Books sit in a grid under each qualification, so you can compare them at a glance.
+  - id: ledger
+    title: Ledger
+    description: Every book sits on one line, so you can scan the list quickly.
+  - id: focus
+    title: Focus
+    description: One book on each row and larger text, so you can read calmly for longer.
+  - id: notebook
+    title: Notebook
+    description: Big headings and rounded cards, so each page feels like a friendly notebook.
+  - id: atlas
+    title: Atlas
+    description: Short lists side by side in columns, so you can see every book at once.
 
 # Set to false to withdraw the theme menu from the landing page while keeping the
 # reader's choice working. Useful once a default has been settled on.

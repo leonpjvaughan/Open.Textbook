@@ -390,7 +390,7 @@ def two_layouts() -> dict:
 
 
 def test_with_one_layout_the_snippet_never_mentions_a_layout():
-    snippet = shared_snippet()
+    snippet = prefs.snippet(cfg.from_parts(".", layouts=["matrix"], default_layout="matrix"))
     for word in ("textbooks:style", "data-style", "setStyle", "STYLE"):
         assert word not in snippet, word
 
@@ -470,22 +470,27 @@ def test_choosing_a_layout_applies_and_stores_it(tmp_path):
     assert result["saved"] == "wide"
 
 
-def test_the_landing_page_carries_no_layout_script_with_one_layout():
+def with_layouts(monkeypatch, extra: list[dict]) -> None:
+    import textbook.book as books_module
+
+    original = books_module.load_collection
+
+    def patched(root=None):
+        data = dict(original(root))
+        data["layouts"] = [data["layouts"][0], *extra]
+        return data
+
+    monkeypatch.setattr(books_module, "load_collection", patched)
+
+
+def test_the_landing_page_carries_no_layout_script_with_one_layout(monkeypatch):
+    with_layouts(monkeypatch, [])
     html = portal.render()
     assert "textbooks:style" not in html
 
 
 def test_the_landing_page_carries_the_layout_script_with_two(monkeypatch):
-    import textbook.book as books_module
-
-    original = books_module.load_collection
-
-    def doubled(root=None):
-        data = dict(original(root))
-        data["layouts"] = [*data["layouts"], {"id": "wide", "title": "Wide", "description": "Wide."}]
-        return data
-
-    monkeypatch.setattr(books_module, "load_collection", doubled)
+    with_layouts(monkeypatch, [{"id": "wide", "title": "Wide", "description": "Wide."}])
     html = portal.render()
     assert "textbooks:style" in html
     assert 'var STYLES = ["matrix","wide"];' in html

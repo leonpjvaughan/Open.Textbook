@@ -246,23 +246,25 @@ def test_the_landing_theme_choice_can_be_withdrawn(monkeypatch):
     assert 'name="tb-scheme"' in portal.settings_dialog()
 
 
-def doubled_collection(monkeypatch):
+def with_layouts(monkeypatch, extra: list[dict]) -> None:
     import textbook.book as books_module
 
     original = books_module.load_collection
 
-    def doubled(root=None):
+    def patched(root=None):
         data = dict(original(root))
-        data["layouts"] = [
-            *data["layouts"],
-            {"id": "wide", "title": "Wide", "description": "Fewer, larger cards."},
-        ]
+        data["layouts"] = [data["layouts"][0], *extra]
         return data
 
-    monkeypatch.setattr(books_module, "load_collection", doubled)
+    monkeypatch.setattr(books_module, "load_collection", patched)
 
 
-def test_with_one_layout_the_panel_has_no_layout_choice():
+def doubled_collection(monkeypatch):
+    with_layouts(monkeypatch, [{"id": "wide", "title": "Wide", "description": "Fewer, larger cards."}])
+
+
+def test_with_one_layout_the_panel_has_no_layout_choice(monkeypatch):
+    with_layouts(monkeypatch, [])
     dialog = portal.settings_dialog()
     assert 'name="tb-layout"' not in dialog
     assert "layout-menu" not in dialog

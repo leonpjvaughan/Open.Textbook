@@ -187,7 +187,7 @@ The contract, enforced by `tests/test_layout_contract.py` with a real CSS parser
 - The whole file is one `@layer layout { ... }` block, and every selector starts with
   `:root[data-style="<id>"]`. No nesting, no `!important`.
 - Only allowlisted properties: display, grid, flex, box model, type size and shape, lists,
-  `color`, borders (not `border-image*`). Custom properties are named `--<id>-*`, must be
+  `color`, borders (not `border-image*`), and `break-inside: avoid`. Custom properties are named `--<id>-*`, must be
   declared in the same file, and are resolved before any value is checked.
 - No literal colours and no `url()`, gradient or image. `color` takes only the text tokens the
   palette audit checks on paper; `background` is `transparent`; borders and `column-rule`
@@ -201,7 +201,8 @@ The contract, enforced by `tests/test_layout_contract.py` with a real CSS parser
   selector token containing `tb-settings`, `tb-search` or a colour-scheme attribute, a class
   or id matched by attribute, or a partial attribute match.
 - Body text of at least 17px, line height of at least 1.5 and a 45 to 75ch measure are
-  measured in a browser, not by the parser.
+  measured in a browser, not by the parser: `tests/test_layouts_browser.py` checks them,
+  with overflow, 24px targets, phone figure labels and print, for every layout.
 
 `tests/fixtures/layouts/` holds one bad file per rule and one good file, so the checker is
 itself tested. `tests/test_cascade_layers.py` pins the layer order declared first in

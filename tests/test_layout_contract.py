@@ -31,6 +31,7 @@ EXPECTED_FAILURES = {
     "bad-order": (2, "property"),
     "bad-grid-areas": (2, "property"),
     "bad-row-reverse": (3, "flex-direction"),
+    "bad-break-inside": (3, "break-inside"),
     "bad-position": (2, "property"),
     "bad-opacity": (2, "property"),
     "bad-gradient": (2, "property"),

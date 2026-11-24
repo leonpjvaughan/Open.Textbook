@@ -22,7 +22,7 @@ from pathlib import Path
 
 import pytest
 
-from textbook.book import repo_root
+from textbook.book import default_layout, load_collection, repo_root
 
 ROOT = repo_root()
 EXTRA_CSS = ROOT / "assets" / "stylesheets" / "extra.css"
@@ -137,7 +137,7 @@ import { createRequire } from "node:module";
 
 const require = createRequire(import.meta.url);
 const { chromium } = require(process.env.PLAYWRIGHT_PATH || "playwright");
-const [siteDir, route, outDir, injectCss] = process.argv.slice(2);
+const [siteDir, route, outDir, injectCss, style] = process.argv.slice(2);
 
 const MIME = {
   ".html": "text/html; charset=utf-8",
@@ -160,6 +160,9 @@ const context = await browser.newContext({
   viewport: { width: 794, height: 1123 },
   serviceWorkers: "block",
 });
+if (style) {
+  await context.addInitScript((id) => localStorage.setItem("textbooks:style", id), style);
+}
 await context.route("http://print.test/**", async (r) => {
   const url = new URL(r.request().url());
   let rel = decodeURIComponent(url.pathname).replace(/^\/+/, "");
@@ -223,7 +226,7 @@ const report = await page.evaluate(() => {
       hidden,
     };
   });
-  return { chrome, figures };
+  return { chrome, figures, style: document.documentElement.dataset.style || "" };
 });
 
 await browser.close();
@@ -231,7 +234,9 @@ console.log(JSON.stringify(report));
 """
 
 
-def _run_print_probe(tmp_path: Path, out_dir: Path | None, inject_css: str = "") -> dict:
+def _run_print_probe(
+    tmp_path: Path, out_dir: Path | None, inject_css: str = "", style: str = ""
+) -> dict:
     if shutil.which("node") is None:
         pytest.skip("node is not on PATH; the browser print check cannot run")
     target = SITE / LEARN_ROUTE.strip("/") / "index.html"
@@ -244,7 +249,7 @@ def _run_print_probe(tmp_path: Path, out_dir: Path | None, inject_css: str = "")
     script = tmp_path / "print-check.mjs"
     script.write_text(PRINT_SCRIPT, encoding="utf-8")
     result = subprocess.run(
-        ["node", str(script), str(SITE), LEARN_ROUTE, str(out_dir) if out_dir else "", inject_css],
+        ["node", str(script), str(SITE), LEARN_ROUTE, str(out_dir) if out_dir else "", inject_css, style],
         capture_output=True, text=True, check=False, cwd=str(ROOT),
         env={**os.environ, "PLAYWRIGHT_PATH": module},
     )
@@ -253,15 +258,19 @@ def _run_print_probe(tmp_path: Path, out_dir: Path | None, inject_css: str = "")
 
 
 @pytest.mark.browser
-def test_a_learn_page_prints_its_figures_intact(tmp_path):
-    """Render a real Learn page under `@media print` and judge its figures.
+@pytest.mark.parametrize("style", [str(entry["id"]) for entry in load_collection().get("layouts", [])])
+def test_a_learn_page_prints_its_figures_intact(tmp_path, style):
+    """Render a real Learn page under `@media print`, in every layout, and judge its figures.
 
-    Saves the judged PDF and PNG under `var/print-render/` (git-ignored) so a
-    human can inspect what the browser actually laid out on paper.
+    Saves the judged PDF and PNG for the default layout under `var/print-render/`
+    (git-ignored) so a human can inspect what the browser actually laid out on paper.
     """
-    data = _run_print_probe(tmp_path, PRINT_OUT)
-    assert (PRINT_OUT / "learn-print.pdf").stat().st_size > 0
-    assert (PRINT_OUT / "learn-print.png").stat().st_size > 0
+    keep = style == default_layout()
+    data = _run_print_probe(tmp_path, PRINT_OUT if keep else None, style=style)
+    assert data["style"] == style, f"the page applied {data['style']}, not {style}"
+    if keep:
+        assert (PRINT_OUT / "learn-print.pdf").stat().st_size > 0
+        assert (PRINT_OUT / "learn-print.png").stat().st_size > 0
 
     for sel, display in data["chrome"].items():
         if display is not None:
