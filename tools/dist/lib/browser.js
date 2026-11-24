@@ -120,7 +120,25 @@ export async function openContext(browser, options = {}) {
             }
         }, options.theme);
     }
+    if (options.style) {
+        await context.addInitScript((chosen) => {
+            try {
+                localStorage.setItem("textbooks:style", chosen);
+            }
+            catch {
+            }
+        }, options.style);
+    }
     return context;
+}
+/** Throw unless the page applied the layout a run asked for, so a typo is not a pass. */
+export async function assertStyle(page, style) {
+    if (!style)
+        return;
+    const applied = await page.evaluate(() => document.documentElement.dataset.style ?? "");
+    if (applied !== style) {
+        throw new Error(`asked for layout ${style} but the page applied ${applied || "none"}`);
+    }
 }
 export const ORIGIN = "http://textbook.local";
 export function assertCapturesDiffer(outDir, names, schemes) {

@@ -1,0 +1,192 @@
+@layer layout {
+  :root[data-style="atlas"] .masthead:has(> .masthead__lead) {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: end;
+    gap: 16px 40px;
+    max-width: 88rem;
+    margin: 0 auto;
+    padding: 36px 20px 22px;
+  }
+
+  :root[data-style="atlas"] .masthead > .masthead__lead {
+    flex: 1 1 32rem;
+    max-width: none;
+    margin: 0;
+    padding: 0;
+  }
+
+  :root[data-style="atlas"] .masthead > .masthead__tools {
+    flex: 1 1 24rem;
+    max-width: 34rem;
+    margin: 0;
+    padding: 0;
+  }
+
+  :root[data-style="atlas"] main:has(> .band) {
+    max-width: 88rem;
+    padding-block: 28px 3rem;
+    columns: 3 20rem;
+    column-gap: 2.5rem;
+    column-rule: 1px solid var(--tb-rule);
+  }
+
+  /* An inline-block is never split across columns, so a band stays whole. */
+  :root[data-style="atlas"] .band {
+    display: inline-block;
+    width: 100%;
+    margin: 0 0 30px;
+  }
+
+  :root[data-style="atlas"] .band__head {
+    padding: 0 0 6px;
+    border-bottom: 2px solid var(--tb-accent);
+    background: transparent;
+  }
+
+  :root[data-style="atlas"] .band__title {
+    font-size: 1.25rem;
+    line-height: 1.3;
+  }
+
+  :root[data-style="atlas"] .band__note {
+    font-size: 0.9rem;
+    line-height: 1.45;
+  }
+
+  :root[data-style="atlas"] .band__region {
+    margin-top: 2px;
+  }
+
+  :root[data-style="atlas"] .band__grid {
+    display: block;
+    padding: 0;
+  }
+
+  :root[data-style="atlas"] .band__grid > .companion[data-optional] {
+    display: none;
+  }
+
+  :root[data-style="atlas"] .band__grid > .card {
+    gap: 1px;
+    padding: 10px 0 10px;
+    border-top: 0;
+    border-bottom: 1px solid var(--tb-rule);
+  }
+
+  :root[data-style="atlas"] .card__meta {
+    gap: 2px 8px;
+    line-height: 1.4;
+  }
+
+  :root[data-style="atlas"] .card__stats {
+    margin-left: auto;
+    font-variant-numeric: tabular-nums;
+  }
+
+  :root[data-style="atlas"] .card__title {
+    margin: 2px 0 0;
+    font-size: 1.08rem;
+    line-height: 1.3;
+  }
+
+  :root[data-style="atlas"] .card__body {
+    margin: 0;
+    font-size: 0.94rem;
+    line-height: 1.45;
+  }
+
+  :root[data-style="atlas"] .card__profiles {
+    margin-top: 4px;
+  }
+
+  :root[data-style="atlas"] .card__profiles a {
+    font-size: 0.9rem;
+  }
+
+  :root[data-style="atlas"] .layout {
+    max-width: 84rem;
+    column-gap: 0;
+  }
+
+  :root[data-style="atlas"] .sidebar {
+    padding-right: 18px;
+    border-right: 1px solid var(--tb-rule);
+  }
+
+  :root[data-style="atlas"] .content {
+    max-width: 60rem;
+    margin: 22px 0 40px 28px;
+    padding: 32px 40px 3rem;
+    border: 1px solid var(--tb-rule);
+  }
+
+  :root[data-style="atlas"] .md-typeset > h1 {
+    margin: 0 0 1.1rem;
+    padding: 0 0 14px;
+    border-bottom: 1px solid var(--tb-rule);
+  }
+
+  :root[data-style="atlas"] .md-typeset > h2 {
+    margin: 2.2rem 0 0.7rem;
+  }
+
+  :root[data-style="atlas"] .md-typeset .table-scroll {
+    max-width: none;
+  }
+
+  :root[data-style="atlas"] .md-typeset table {
+    width: 100%;
+    font-variant-numeric: tabular-nums;
+  }
+
+  :root[data-style="atlas"] .md-typeset .callout {
+    border-radius: 0;
+  }
+
+  :root[data-style="atlas"] .md-typeset > .chapter-list {
+    max-width: none;
+    margin: 1rem 0 1.6rem;
+    padding: 0;
+    columns: 3 14rem;
+    column-gap: 2.4rem;
+    column-rule: 1px solid var(--tb-rule);
+    font-variant-numeric: tabular-nums;
+  }
+
+  :root[data-style="atlas"] .chapter-list > li {
+    break-inside: avoid;
+    margin: 0 0 0.55rem 2.4rem;
+    line-height: 1.35;
+  }
+
+  :root[data-style="atlas"] .chapter-list__note {
+    display: block;
+    font-size: 0.85rem;
+  }
+
+  @media (max-width: 60rem) {
+    :root[data-style="atlas"] .sidebar {
+      padding-right: 0;
+      border-right-width: 0;
+    }
+
+    :root[data-style="atlas"] .content {
+      margin: 14px 0 28px;
+      padding: 22px 0 3rem;
+      border-left-width: 0;
+      border-right-width: 0;
+    }
+  }
+
+  @media (max-width: 40rem) {
+    :root[data-style="atlas"] .masthead:has(> .masthead__lead) {
+      padding: 28px 20px 18px;
+      max-width: none;
+    }
+
+    :root[data-style="atlas"] main:has(> .band) {
+      padding-inline: 20px;
+    }
+  }
+}

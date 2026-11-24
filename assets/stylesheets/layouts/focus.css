@@ -1,0 +1,214 @@
+@layer layout {
+  :root[data-style="focus"] .masthead:has(> .masthead__lead) {
+    padding: 72px 0 40px;
+  }
+
+  :root[data-style="focus"] .masthead > .masthead__lead,
+  :root[data-style="focus"] .masthead > .masthead__tools {
+    max-width: 48rem;
+  }
+
+  :root[data-style="focus"] .masthead__lead > .masthead__title {
+    margin: 0 0 14px;
+    font-size: clamp(2.2rem, 1.4rem + 2.6vw, 3.3rem);
+    line-height: 1.1;
+  }
+
+  :root[data-style="focus"] .masthead__lead > .masthead__description {
+    font-size: 1.25rem;
+    line-height: 1.6;
+  }
+
+  :root[data-style="focus"] .masthead > .masthead__tools {
+    margin-top: 28px;
+  }
+
+  :root[data-style="focus"] main:has(> .band) {
+    max-width: 48rem;
+    padding-bottom: 5rem;
+  }
+
+  :root[data-style="focus"] .band {
+    margin: 72px 0 0;
+  }
+
+  :root[data-style="focus"] .band__head {
+    padding: 0 0 14px;
+    border-bottom: 1px solid var(--tb-rule);
+    background: transparent;
+  }
+
+  :root[data-style="focus"] .band__title {
+    margin: 0 0 4px;
+    font-size: 1.9rem;
+    line-height: 1.2;
+  }
+
+  :root[data-style="focus"] .band__note {
+    font-size: 1.0625rem;
+  }
+
+  :root[data-style="focus"] .band__region {
+    margin: 6px 0 0;
+  }
+
+  :root[data-style="focus"] .band__grid {
+    grid-template-columns: minmax(0, 1fr);
+    gap: 0;
+    padding: 0;
+  }
+
+  :root[data-style="focus"] .band__grid > .companion[data-optional] {
+    display: none;
+  }
+
+  :root[data-style="focus"] .band__grid > .card {
+    gap: 8px;
+    padding: 30px 0 32px;
+    border-top: 0;
+    border-bottom: 1px solid var(--tb-rule);
+  }
+
+  :root[data-style="focus"] .card__title {
+    margin: 4px 0 0;
+    font-size: 1.75rem;
+    line-height: 1.2;
+  }
+
+  :root[data-style="focus"] .card__body {
+    max-width: 60ch;
+    font-size: 1.2rem;
+    line-height: 1.6;
+  }
+
+  :root[data-style="focus"] .card__profiles {
+    gap: 4px 22px;
+    margin-top: 10px;
+  }
+
+  :root[data-style="focus"] .card__profiles a {
+    font-size: 1.0625rem;
+  }
+
+  :root[data-style="focus"] .layout {
+    max-width: 84rem;
+  }
+
+  :root[data-style="focus"] .content {
+    max-width: 62ch;
+    margin-block: 1.5rem 4rem;
+  }
+
+  :root[data-style="focus"] .md-typeset {
+    font-size: 1.1875rem;
+    line-height: 1.7;
+  }
+
+  :root[data-style="focus"] .md-typeset > p,
+  :root[data-style="focus"] .md-typeset > ul,
+  :root[data-style="focus"] .md-typeset > ol {
+    margin-block: 0 1.1em;
+  }
+
+  :root[data-style="focus"] .md-typeset > h1 {
+    margin: 0 0 1.6rem;
+    font-size: clamp(1.9rem, 1.4rem + 1.4vw, 2.5rem);
+    line-height: 1.15;
+  }
+
+  :root[data-style="focus"] .md-typeset > h2 {
+    margin: 3.2rem 0 1rem;
+    font-size: 1.5rem;
+    line-height: 1.25;
+  }
+
+  :root[data-style="focus"] .md-typeset > h3 {
+    margin: 2.4rem 0 0.8rem;
+    font-size: 1.2rem;
+  }
+
+  :root[data-style="focus"] .md-typeset .contents {
+    max-width: none;
+    margin: 1.6rem 0 2.4rem;
+    padding: 0;
+    border: 0;
+    border-radius: 0;
+  }
+
+  :root[data-style="focus"] .md-typeset .contents__list {
+    columns: 1;
+    padding-left: 1.2rem;
+    font-size: 0.95rem;
+  }
+
+  :root[data-style="focus"] .md-typeset .callout {
+    max-width: none;
+    margin-block: 2.4rem;
+    margin-inline: 0;
+    padding: 0.1rem 0 0.1rem 1.4rem;
+    border: 0;
+    border-left: 2px solid var(--tb-rule);
+    border-radius: 0;
+    background: transparent;
+  }
+
+  :root[data-style="focus"] .md-typeset .table-scroll {
+    margin-block: 2rem;
+  }
+
+  :root[data-style="focus"] .md-typeset table th,
+  :root[data-style="focus"] .md-typeset table td {
+    padding: 0.35em 0.45em;
+    font-size: 0.9rem;
+  }
+
+  :root[data-style="focus"] .md-typeset .tb-figure {
+    margin-block: 3.2rem;
+  }
+
+  :root[data-style="focus"] .md-typeset maths-figure {
+    margin-block: 3rem;
+  }
+
+  :root[data-style="focus"] .md-typeset .pager {
+    margin-top: 4rem;
+  }
+
+  @media (min-width: 60rem) {
+    :root[data-style="focus"] .layout {
+      grid-template-columns: 13rem minmax(0, 1fr);
+      column-gap: 3rem;
+    }
+
+    :root[data-style="focus"] .content {
+      justify-self: center;
+      width: 100%;
+    }
+
+    :root[data-style="focus"] .sidebar .nav__link {
+      font-size: 0.82rem;
+    }
+  }
+
+  @media (max-width: 40rem) {
+    :root[data-style="focus"] .masthead:has(> .masthead__lead) {
+      padding: 40px 0 28px;
+    }
+
+    :root[data-style="focus"] .band {
+      margin-top: 48px;
+    }
+
+    :root[data-style="focus"] .card__title {
+      font-size: 1.45rem;
+    }
+
+    :root[data-style="focus"] .card__body {
+      font-size: 1.0625rem;
+    }
+
+    :root[data-style="focus"] .md-typeset {
+      font-size: 1.125rem;
+    }
+  }
+}
