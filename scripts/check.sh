@@ -145,9 +145,10 @@ done
 # Print media render on a built Learn page (asserts figures survive print and fit).
 uv run python -m pytest tests/test_print.py -m browser -q
 
-# The layout seam: every page complete without its layout, and no layout overflowing under
-# the widest bundle font.
-uv run python -m pytest tests/test_layouts_browser.py -m browser -q
+# The layout seam: every page complete without its layout, no layout overflowing under the
+# widest bundle font, the reader's Layout choice, and every layout's measure, targets and
+# phone figure labels.
+uv run python -m pytest tests/test_layouts_browser.py -m browser -q -n "${PYTEST_WORKERS:-4}"
 
 step "no maths rendering errors"
 if grep -rl 'math-error' site --include='*.html'; then

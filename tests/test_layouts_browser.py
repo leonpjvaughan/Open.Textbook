@@ -11,6 +11,19 @@ A layout is geometry over one DOM, so two promises hold or the seam is a lie:
   of those pages
   wider than the screen at 390 or 1280, in either scheme.
 
+* **choice** — with more than one layout the Settings dialog offers each one, choosing
+  it changes `html[data-style]` at once and after a reload, and the colour scheme and
+  bundle the reader stored are untouched: the three axes are independent. A stored id
+  that is not a layout falls back to the default.
+* **formatting** — every layout, on the portal, a book's home, a Learn page and a
+  Practise page, at 390 and 1280 and in both schemes: nothing wider than the screen, and
+  the prose at 17px or more on a line height of 1.5 or more. Every full line of every
+  paragraph, callouts included, is counted: at 1280 at least 90% hold 45 to 78
+  characters and none more than 80; at 390 none more than 78. The 78 is
+  `test_measure.AT_1280`'s ceiling: `62ch` renders 66 to 78 characters on a Learn page,
+  so a 75 ceiling would fail the default column the house measure was tuned to. Every layout but the default also runs the `targets` and phone
+  figure-label sweeps with `--style`; the gate already runs both on the default.
+
 Browser tests over a built `site/`, skipped where the site or Playwright is absent.
 """
 
@@ -24,7 +37,8 @@ from pathlib import Path
 
 import pytest
 
-from textbook.book import load_collection, repo_root
+from test_measure import AT_1280
+from textbook.book import default_layout, load_collection, repo_root
 
 ROOT = repo_root()
 SITE = ROOT / "site"
@@ -34,6 +48,7 @@ ROUTES = (
     "/",
     "/gcse-maths/higher/",
     "/gcse-maths/higher/chapter-1/section-1.1/learn/",
+    "/gcse-maths/higher/chapter-1/section-1.1/practise/",
 )
 
 PLAYWRIGHT_CANDIDATES = (
@@ -43,11 +58,21 @@ PLAYWRIGHT_CANDIDATES = (
 
 pytestmark = pytest.mark.browser
 
+BODY_PX = 17
+LINE_HEIGHT = 1.5
+MEASURE_CH = (45, AT_1280[1])
+MEASURE_SHARE = 0.9
+MEASURE_CEILING = 80
+
+
+def layout_ids() -> list[str]:
+    return [str(entry["id"]) for entry in load_collection().get("layouts", [])]
+
 SCRIPT = r"""
 import { pathToFileURL } from "node:url";
 const [lib, site, mode, payload] = process.argv.slice(2);
 const { ORIGIN, launchBrowser, openContext, serveStatic } = await import(pathToFileURL(lib).href);
-const { routes, layouts, themes } = JSON.parse(payload);
+const { routes, layouts, titles, defaultLayout, themes, measure } = JSON.parse(payload);
 
 const browser = await launchBrowser();
 const out = [];
@@ -97,6 +122,122 @@ if (mode === "bare") {
     }, overflow.toString());
     out.push({ route, ...result });
     await context.close();
+  }
+} else if (mode === "choice") {
+  const context = await browser.newContext({ viewport: { width: 1280, height: 900 }, serviceWorkers: "block" });
+  await serveStatic(context, site);
+  const page = await context.newPage();
+  const stored = () => ({
+    style: document.documentElement.dataset.style || "",
+    scheme: localStorage.getItem("textbooks:scheme"),
+    theme: localStorage.getItem("textbooks:theme"),
+    appliedTheme: document.documentElement.getAttribute("data-theme"),
+    appliedScheme: document.body.getAttribute("data-md-color-scheme"),
+  });
+  const otherTheme = themes[themes.length - 1];
+  for (const route of routes.slice(0, 2)) {
+    await page.goto(ORIGIN + route, { waitUntil: "load" });
+    await page.evaluate((theme) => {
+      localStorage.clear();
+      localStorage.setItem("textbooks:scheme", "slate");
+      localStorage.setItem("textbooks:theme", theme);
+    }, otherTheme);
+    await page.reload({ waitUntil: "load" });
+    const before = await page.evaluate(stored);
+    const offered = await page.$$eval('input[name="tb-layout"]', (inputs) => inputs.map((i) => i.value));
+    const chosen = [];
+    for (const layout of [...layouts.slice(1), layouts[0]]) {
+      await page.click("#tb-settings");
+      const radio = page.getByRole("radio", { name: new RegExp("^" + titles[layout]) });
+      await page.locator("label", { has: radio }).click();
+      const now = await page.evaluate(stored);
+      await page.keyboard.press("Escape");
+      await page.reload({ waitUntil: "load" });
+      const reloaded = await page.evaluate(stored);
+      const ticked = await page.$eval('input[name="tb-layout"]:checked', (i) => i.value).catch(() => null);
+      await page.click("#tb-settings");
+      const tickedOpen = await page.$eval('input[name="tb-layout"]:checked', (i) => i.value).catch(() => null);
+      await page.keyboard.press("Escape");
+      chosen.push({ layout, now, reloaded, ticked, tickedOpen, storedStyle: await page.evaluate(() => localStorage.getItem("textbooks:style")) });
+    }
+    await page.evaluate(() => localStorage.setItem("textbooks:style", "no-such-layout"));
+    await page.reload({ waitUntil: "load" });
+    const unknown = await page.evaluate(stored);
+    out.push({ route, before, otherTheme, offered, chosen, unknown, defaultLayout });
+  }
+  await context.close();
+} else if (mode === "format") {
+  const PROSE = (MEASURE) => {
+    const lines = (el) => {
+      const walker = document.createTreeWalker(el, NodeFilter.SHOW_TEXT);
+      const range = document.createRange();
+      const rows = [];
+      const ownLine = (node) => {
+        for (let at = node.parentElement; at && at !== el; at = at.parentElement) {
+          if (/^(block|flex|grid|list-item|table)$/.test(getComputedStyle(at).display)) return true;
+        }
+        return false;
+      };
+      for (let node = walker.nextNode(); node; node = walker.nextNode()) {
+        if (ownLine(node)) continue;
+        const text = node.textContent || "";
+        for (let i = 0; i < text.length; i += 1) {
+          range.setStart(node, i);
+          range.setEnd(node, i + 1);
+          const box = range.getBoundingClientRect();
+          if (box.height === 0 || box.width === 0) continue;
+          const at = rows.findIndex((row) => Math.abs(row.top - box.top) <= 1);
+          if (at < 0) rows.push({ top: box.top, count: 1 });
+          else rows[at].count += 1;
+        }
+      }
+      return rows.map((row) => row.count);
+    };
+    const full = [];
+    const sizes = [];
+    const ratios = [];
+    for (const p of document.querySelectorAll("main p")) {
+      if (!p.getClientRects().length) continue;
+      if (p.parentElement && p.parentElement.matches(".md-typeset, main")) {
+        const style = getComputedStyle(p);
+        const size = parseFloat(style.fontSize);
+        sizes.push(size);
+        ratios.push(style.lineHeight === "normal" ? 0 : parseFloat(style.lineHeight) / size);
+      }
+      full.push(...lines(p).slice(0, -1));
+    }
+    const sorted = [...full].sort((a, b) => a - b);
+    return {
+      paragraphs: sizes.length,
+      size: sizes.length ? Math.min(...sizes) : null,
+      ratio: ratios.length ? Math.min(...ratios) : null,
+      lines: full.length,
+      within: full.filter((n) => n >= MEASURE[0] && n <= MEASURE[1]).length,
+      over: full.filter((n) => n > MEASURE[1]).length,
+      max: full.length ? Math.max(...full) : null,
+      median: sorted.length ? sorted[Math.floor(sorted.length / 2)] : null,
+      short: sorted.slice(0, 5),
+    };
+  };
+  for (const layout of layouts) {
+    for (const scheme of ["light", "dark"]) {
+      for (const width of [390, 1280]) {
+        const context = await openContext(browser, { width, height: 900, scheme, style: layout, deviceScaleFactor: 1, blockServiceWorkers: true });
+        await serveStatic(context, site);
+        const page = await context.newPage();
+        for (const route of routes) {
+          await page.goto(ORIGIN + route, { waitUntil: "load" });
+          await page.evaluate(() => document.fonts.ready);
+          const result = await page.evaluate((overflowSource) => ({
+            style: document.documentElement.dataset.style,
+            overflow: new Function(`return (${overflowSource})()`)(),
+          }), overflow.toString());
+          const prose = /\/(learn|practise)\/$/.test(route) ? await page.evaluate(PROSE, measure) : null;
+          out.push({ layout, scheme, width, route, prose, ...result });
+        }
+        await context.close();
+      }
+    }
   }
 } else {
   const probe = await open({ route: routes[0], width: 1280 });
@@ -167,10 +308,14 @@ def _run(tmp_path: Path, mode: str) -> list[dict]:
     module = _playwright_path()
     if module is None:
         pytest.skip("playwright is not installed; set PLAYWRIGHT_PATH")
+    collection = load_collection()
     payload = {
         "routes": list(ROUTES),
-        "layouts": sorted(path.stem for path in LAYOUTS_DIR.glob("*.css")),
-        "themes": list(load_collection().get("themes", [])),
+        "layouts": layout_ids(),
+        "titles": {entry["id"]: entry["title"] for entry in collection.get("layouts", [])},
+        "defaultLayout": default_layout(),
+        "themes": list(collection.get("themes", [])),
+        "measure": list(MEASURE_CH),
     }
     script = tmp_path / "layouts.mjs"
     script.write_text(SCRIPT, encoding="utf-8")
@@ -210,3 +355,96 @@ def test_every_layout_fits_the_widest_bundle_font(tmp_path):
             f"{found['layout']} with {found['widest']} ({found['scheme']}) is "
             f"{found['overflow']}px wider than {found['width']}px on {found['route']}"
         )
+
+
+def test_the_reader_chooses_each_layout_and_nothing_else_changes(tmp_path):
+    layouts = layout_ids()
+    assert len(layouts) > 1, "one layout offers no choice, so there is nothing to test"
+    results = _run(tmp_path, "choice")
+    assert results, "no page was measured"
+    for found in results:
+        route, before = found["route"], found["before"]
+        assert before["style"] == found["defaultLayout"], f"{route} did not open on the default layout"
+        assert before["theme"] == found["otherTheme"] and before["appliedTheme"] == found["otherTheme"]
+        assert before["scheme"] == "slate" and before["appliedScheme"] == "slate"
+        assert found["offered"] == layouts, f"{route} offers {found['offered']}, not {layouts}"
+        assert [c["layout"] for c in found["chosen"]] == [*layouts[1:], layouts[0]]
+        for chosen in found["chosen"]:
+            layout = chosen["layout"]
+            for when in ("now", "reloaded"):
+                state = chosen[when]
+                assert state["style"] == layout, f"{route}: chose {layout}, {when} shows {state['style']}"
+                for axis in ("scheme", "theme", "appliedTheme", "appliedScheme"):
+                    assert state[axis] == before[axis], (
+                        f"{route}: choosing {layout} changed {axis} from {before[axis]} to {state[axis]} ({when})"
+                    )
+            assert chosen["storedStyle"] == layout
+            assert chosen["ticked"] == layout, f"{route}: after a reload the closed dialog ticks {chosen['ticked']} on {layout}"
+            assert chosen["tickedOpen"] == layout, f"{route}: the dialog ticks {chosen['tickedOpen']} on {layout}"
+        assert found["unknown"]["style"] == found["defaultLayout"], (
+            f"{route}: an unknown stored layout applied {found['unknown']['style']}"
+        )
+
+
+def test_every_layout_fits_and_keeps_the_reading_measure(tmp_path):
+    results = _run(tmp_path, "format")
+    layouts = layout_ids()
+    assert {r["layout"] for r in results} == set(layouts)
+    assert len(results) == len(layouts) * 2 * 2 * len(ROUTES)
+    failures = []
+    for found in results:
+        where = f"{found['layout']} {found['scheme']} {found['width']}px {found['route']}"
+        if found["style"] != found["layout"]:
+            failures.append(f"{where}: the page applied {found['style']}")
+            continue
+        if found["overflow"] > 1:
+            failures.append(f"{where}: {found['overflow']}px wider than the screen")
+        prose = found["prose"]
+        if prose is None:
+            continue
+        if not prose["paragraphs"] or not prose["lines"]:
+            failures.append(f"{where}: no prose was measured")
+            continue
+        if prose["size"] < BODY_PX - 0.01:
+            failures.append(f"{where}: body text {prose['size']}px, under {BODY_PX}px")
+        if prose["ratio"] < LINE_HEIGHT - 0.01:
+            failures.append(f"{where}: line height {prose['ratio']:.2f}, under {LINE_HEIGHT}")
+        if found["width"] == 1280:
+            share = prose["within"] / prose["lines"]
+            if share < MEASURE_SHARE:
+                failures.append(
+                    f"{where}: {share:.0%} of {prose['lines']} full lines hold {MEASURE_CH} "
+                    f"characters, under {MEASURE_SHARE:.0%} (median {prose['median']}, "
+                    f"shortest {prose['short']}, longest {prose['max']})"
+                )
+            if prose["max"] > MEASURE_CEILING:
+                failures.append(f"{where}: a line holds {prose['max']} characters, over {MEASURE_CEILING}")
+        elif prose["over"]:
+            failures.append(
+                f"{where}: {prose['over']} full lines hold more than {MEASURE_CH[1]} characters "
+                f"(longest {prose['max']})"
+            )
+    for found in results:
+        if found["prose"] and found["scheme"] == "light":
+            print(f"{found['layout']} {found['width']}px: {found['prose']}")
+    assert not failures, "\n".join(failures)
+
+
+@pytest.mark.parametrize("layout", [i for i in layout_ids() if i != default_layout()])
+@pytest.mark.parametrize("command", [("targets", "site"), ("audit", "site", "--mobile")], ids=["targets", "phone-labels"])
+def test_every_layout_passes_the_phone_sweeps(layout, command):
+    if shutil.which("node") is None:
+        pytest.skip("node is not on PATH; the browser check cannot run")
+    if not (SITE / "index.html").is_file():
+        pytest.skip("site/ is not built")
+    module = _playwright_path()
+    if module is None:
+        pytest.skip("playwright is not installed; set PLAYWRIGHT_PATH")
+    result = subprocess.run(
+        ["node", str(ROOT / "tools" / "dist" / "cli.js"), *command, "--style", layout],
+        capture_output=True, text=True, check=False, cwd=str(ROOT),
+        env={**os.environ, "PLAYWRIGHT_PATH": module},
+        timeout=1200,
+    )
+    print(result.stdout[-600:])
+    assert result.returncode == 0, f"{command[0]} with {layout}:\n{result.stdout[-3000:]}\n{result.stderr[-2000:]}"

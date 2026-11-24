@@ -177,7 +177,7 @@ scripts/build-otkd.sh --verify                  # the otkd bundle, offline
 node scripts/check-solvers.mjs                  # replay every kernel selftest
 node tools/dist/cli.js readout site --verify  # the arithmetic every figure declares
 node tools/dist/cli.js audit site --mobile      # every figure at 390px; none below 9px
-scripts/preview-themes.sh   # 6 bundles x 2 schemes x 3 routes, and both figure audits
+scripts/preview-themes.sh   # 9 bundles x 2 schemes x 3 routes, and both figure audits
 scripts/check.sh            # everything CI enforces, in one call
 python -m textbook.plan --generated   # files a drift check should diff
 scripts/deploy.sh           # build, guard, deploy (see DEPLOY.md)

@@ -17,10 +17,10 @@ and a load that arrives through the contact patch rather than at the wheel centr
 
 ## The UI
 
-Deferred, and possibly never built. [`ui.md`](ui.md) is the design if it is revived; the
-condition for starting is that configuring a corner by hand becomes slower than the vertical
-slice (load a model, drag a point, front view, check badge). Nothing in the package depends on
-it.
+Not built, and possibly never. The condition for starting is that configuring a corner by hand
+becomes slower than the vertical slice (load a model, drag a point, front view, check badge).
+Nothing in the package depends on it. Any front end must compute nothing itself: every number
+comes from `check` or `solve`.
 
 ## Polish, accepted
 

@@ -21,7 +21,7 @@
  */
 import fs from "node:fs";
 import path from "node:path";
-import { ORIGIN, launchBrowser, openContext, serveStatic } from "../lib/browser.js";
+import { ORIGIN, assertStyle, launchBrowser, openContext, serveStatic } from "../lib/browser.js";
 import { applySetting, readControls, readoutText, readWorking, settingsFor } from "./readout.js";
 import { parseArgs } from "../lib/flags.js";
 import { mapPool } from "../lib/pool.js";
@@ -46,6 +46,11 @@ export const SURFACE = {
             kind: "string",
             value: "<bundle>",
             help: "the bundle to force instead of the reader's preference",
+        },
+        style: {
+            kind: "string",
+            value: "<layout>",
+            help: "the layout to store as the reader's choice before measuring",
         },
         maps: {
             kind: "string",
@@ -451,6 +456,7 @@ export async function run(argv) {
     const siteDir = path.resolve(positional[0]);
     const schemes = String(values.schemes ?? "light,dark").split(",");
     const theme = values.theme ? String(values.theme) : undefined;
+    const style = values.style ? String(values.style) : undefined;
     const maps = values.maps ? String(values.maps) : null;
     const shots = values.shots ? path.resolve(String(values.shots)) : null;
     const jsonOut = values.json ? path.resolve(String(values.json)) : null;
@@ -468,7 +474,7 @@ export async function run(argv) {
     // `font-size` does not say, because the SVG scales by rendered width over
     // 8px. Measured, not inferred: 70 figures were once below 7px.
     if (mobile) {
-        return runMobile(browser, siteDir, pages, jsonOut, jobs);
+        return runMobile(browser, siteDir, pages, jsonOut, style);
     }
     const report = {};
     const claimRecords = [];
@@ -476,6 +482,7 @@ export async function run(argv) {
         const context = await openContext(browser, {
             scheme: scheme,
             theme,
+            style,
             width: 1280,
             height: 900,
             deviceScaleFactor: 2,
@@ -594,11 +601,15 @@ export async function run(argv) {
     return 0;
 }
 /** The smallest rendered label per figure at a phone viewport. */
-async function runMobile(browser, dir, pages, outFile, jobs) {
+async function runMobile(browser, dir, pages, outFile, style) {
     const routes = [...new Set(Object.values(pages).map((where) => where[0]))];
-    const context = await openContext(browser, { width: 390, height: 844, deviceScaleFactor: 1 });
+    const context = await openContext(browser, { width: 390, height: 844, deviceScaleFactor: 1, style });
     await serveStatic(context, dir);
     const page = await context.newPage();
+    if (style && routes.length) {
+        await page.goto(`${ORIGIN}${routes[0]}`, { waitUntil: "load" });
+        await assertStyle(page, style);
+    }
     const measured = {};
     for (const route of routes) {
         try {

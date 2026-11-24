@@ -11,7 +11,6 @@ of them records a departure from an earlier design, it gives the reason in place
 | [`entry-points.md`](entry-points.md) | what a user supplies, the CLI, the Python API, and how a bad file fails |
 | [`wasm.md`](wasm.md) | the compiled kernel: what a generated kernel is mathematically, how sympy becomes Rust becomes WebAssembly, and how the book consumes it |
 | [`naming.md`](naming.md) | the name, the module layout, the verbs, and the engine boundary every front end speaks |
-| [`ui.md`](ui.md) | the config UI: what it edits, what it shows, and where Rust fits (a window, not an engine) |
 | [`follow-ups.md`](follow-ups.md) | work that is agreed and deliberately not done yet, with what would make each item done |
 
 Suggested reading order for someone picking the work up: `config-layer.md` §1–§3 (the split

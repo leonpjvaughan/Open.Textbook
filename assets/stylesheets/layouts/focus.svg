@@ -1,0 +1,17 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 120 80" class="tb-thumb" fill="none" stroke="none">
+  <rect class="tb-thumb__frame" x="0.5" y="0.5" width="119" height="79" stroke="currentColor" stroke-opacity="0.35"/>
+  <rect class="tb-thumb__title" x="30" y="8" width="48" height="5" fill="currentColor" fill-opacity="0.9"/>
+  <rect class="tb-thumb__text" x="30" y="16" width="60" height="3" fill="currentColor" fill-opacity="0.55"/>
+  <path class="tb-thumb__rule" d="M30 24H90" stroke="currentColor" stroke-opacity="0.35" stroke-width="1"/>
+  <rect class="tb-thumb__accent" x="30" y="28" width="10" height="2" fill="currentColor" fill-opacity="1"/>
+  <rect class="tb-thumb__text" x="30" y="32" width="44" height="3" fill="currentColor" fill-opacity="0.85"/>
+  <rect class="tb-thumb__text" x="30" y="38" width="60" height="3" fill="currentColor" fill-opacity="0.55"/>
+  <path class="tb-thumb__rule" d="M30 44H90" stroke="currentColor" stroke-opacity="0.35" stroke-width="1"/>
+  <rect class="tb-thumb__accent" x="30" y="48" width="10" height="2" fill="currentColor" fill-opacity="1"/>
+  <rect class="tb-thumb__text" x="30" y="52" width="44" height="3" fill="currentColor" fill-opacity="0.85"/>
+  <rect class="tb-thumb__text" x="30" y="58" width="60" height="3" fill="currentColor" fill-opacity="0.55"/>
+  <path class="tb-thumb__rule" d="M30 62H90" stroke="currentColor" stroke-opacity="0.35" stroke-width="1"/>
+  <rect class="tb-thumb__accent" x="30" y="66" width="10" height="2" fill="currentColor" fill-opacity="1"/>
+  <rect class="tb-thumb__text" x="30" y="70" width="44" height="3" fill="currentColor" fill-opacity="0.85"/>
+  <rect class="tb-thumb__text" x="30" y="76" width="60" height="3" fill="currentColor" fill-opacity="0.55"/>
+</svg>

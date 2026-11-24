@@ -22,7 +22,7 @@
 import fs from "node:fs";
 import os from "node:os";
 import path from "node:path";
-import { ORIGIN, launchBrowser, openContext, serveStatic } from "../lib/browser.js";
+import { ORIGIN, assertStyle, launchBrowser, openContext, serveStatic } from "../lib/browser.js";
 import type { Browser } from "../lib/browser.js";
 import { applySetting, readControls, readoutText, readWorking, settingsFor } from "./readout.js";
 import type { Control, Override } from "./readout.js";
@@ -98,6 +98,11 @@ export const SURFACE: Surface = {
       kind: "string",
       value: "<bundle>",
       help: "the bundle to force instead of the reader's preference",
+    },
+    style: {
+      kind: "string",
+      value: "<layout>",
+      help: "the layout to store as the reader's choice before measuring",
     },
     maps: {
       kind: "string",
@@ -515,6 +520,7 @@ export async function run(argv: string[]): Promise<number> {
   const siteDir = path.resolve(positional[0]!);
   const schemes = String(values.schemes ?? "light,dark").split(",");
   const theme = values.theme ? String(values.theme) : undefined;
+  const style = values.style ? String(values.style) : undefined;
   const maps = values.maps ? String(values.maps) : null;
   const shots = values.shots ? path.resolve(String(values.shots)) : null;
   const jsonOut = values.json ? path.resolve(String(values.json)) : null;
@@ -534,7 +540,7 @@ export async function run(argv: string[]): Promise<number> {
   // `font-size` does not say, because the SVG scales by rendered width over
   // 8px. Measured, not inferred: 70 figures were once below 7px.
   if (mobile) {
-    return runMobile(browser, siteDir, pages, jsonOut, jobs);
+    return runMobile(browser, siteDir, pages, jsonOut, style);
   }
 
   const report: Record<string, FigureReport> = {};
@@ -549,6 +555,7 @@ export async function run(argv: string[]): Promise<number> {
     const context = await openContext(browser, {
       scheme: scheme as "light" | "dark",
       theme,
+      style,
       width: 1280,
       height: 900,
       deviceScaleFactor: 2,
@@ -675,12 +682,16 @@ async function runMobile(
   dir: string,
   pages: Record<string, string[]>,
   outFile: string | null,
-  jobs: number,
+  style: string | undefined,
 ): Promise<number> {
   const routes = [...new Set(Object.values(pages).map((where) => where[0]))];
-  const context = await openContext(browser, { width: 390, height: 844, deviceScaleFactor: 1 });
+  const context = await openContext(browser, { width: 390, height: 844, deviceScaleFactor: 1, style });
   await serveStatic(context, dir);
   const page = await context.newPage();
+  if (style && routes.length) {
+    await page.goto(`${ORIGIN}${routes[0]}`, { waitUntil: "load" });
+    await assertStyle(page, style);
+  }
   const measured: Record<string, number> = {};
   for (const route of routes) {
     try {

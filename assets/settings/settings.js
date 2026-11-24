@@ -62,8 +62,12 @@
     document.documentElement.setAttribute("data-theme", value);
   }
 
-  /** @param {string} scheme  `default` or `slate` */
+  /** @param {string} scheme  `auto`, `default` or `slate` */
   function setScheme(scheme) {
+    if (prefs && typeof prefs.setScheme === "function") {
+      prefs.setScheme(scheme);
+      return;
+    }
     if (scheme !== "default" && scheme !== "slate") return;
     writeShared(SCHEME_KEY, scheme);
     // Material's hidden `input[name="__palette"]` is not driven: this writes the
@@ -71,33 +75,68 @@
     document.body.setAttribute("data-md-color-scheme", scheme);
   }
 
+  function schemeChoice() {
+    if (prefs && typeof prefs.scheme === "function") return prefs.scheme();
+    return currentScheme();
+  }
+
+  /**
+   * @param {string} name
+   * @param {string} value
+   */
+  function check(name, value) {
+    const input = /** @type {HTMLInputElement | null} */ (
+      dialog.querySelector('input[name="' + name + '"][value="' + value + '"]')
+    );
+    if (input) input.checked = true;
+  }
+
   function sync() {
-    const scheme = /** @type {HTMLInputElement | null} */ (
-      dialog.querySelector('input[name="tb-scheme"][value="' + currentScheme() + '"]')
+    check("tb-scheme", schemeChoice());
+    check("tb-theme", currentTheme());
+    check("tb-layout", currentStyle());
+  }
+
+  const status = document.getElementById("tb-settings-status");
+
+  /** @param {HTMLInputElement} input */
+  function describe(input) {
+    const group = /** @type {HTMLElement | null} */ (input.closest("[data-setting]"));
+    const label = input.closest("label");
+    const title = label && label.querySelector(".tb-settings__option-title");
+    if (!group || !title) return "";
+    return group.dataset.setting + ": " + (title.textContent || "").trim() + ".";
+  }
+
+  /** @param {string} message */
+  function announce(message) {
+    if (!status) return;
+    status.textContent = "";
+    if (message) requestAnimationFrame(() => {
+      status.textContent = message;
+    });
+  }
+
+  function reset() {
+    if (prefs && typeof prefs.reset === "function") prefs.reset();
+    sync();
+    const chosen = /** @type {HTMLInputElement[]} */ (
+      Array.from(dialog.querySelectorAll('input[type="radio"]:checked'))
     );
-    if (scheme) scheme.checked = true;
-    const theme = /** @type {HTMLInputElement | null} */ (
-      dialog.querySelector('input[name="tb-theme"][value="' + currentTheme() + '"]')
-    );
-    if (theme) theme.checked = true;
-    const style = /** @type {HTMLInputElement | null} */ (
-      dialog.querySelector('input[name="tb-layout"][value="' + currentStyle() + '"]')
-    );
-    if (style) style.checked = true;
+    announce(["Appearance reset.", ...chosen.map(describe)].join(" ").trim());
   }
 
   function open() {
     if (dialog.open) return;
     sync();
+    announce("");
     if (typeof dialog.showModal === "function") {
       dialog.showModal();
     } else {
       dialog.setAttribute("open", "");
     }
     const first = /** @type {HTMLElement | null} */ (
-      dialog.querySelector('input[name="tb-theme"]:checked') ||
-        dialog.querySelector('input[name="tb-scheme"]:checked') ||
-        dialog.querySelector("button")
+      dialog.querySelector('input[type="radio"]:checked') || dialog.querySelector("button")
     );
     if (first) first.focus();
   }
@@ -110,8 +149,23 @@
     if (input.name === "tb-theme") setTheme(input.value);
     else if (input.name === "tb-layout") setStyle(input.value);
     else if (input.name === "tb-scheme") setScheme(input.value);
+    else return;
+    announce(describe(input));
   });
-  // declaratively, and the browser does it without a listener. Safari does not support
+  const resetButton = document.getElementById("tb-settings-reset");
+  if (resetButton) resetButton.addEventListener("click", reset);
+
+  function refresh() {
+    if (prefs && typeof prefs.refresh === "function") prefs.refresh();
+    sync();
+  }
+  window.addEventListener("storage", (event) => {
+    if (event.key === null || event.key.startsWith("textbooks:")) refresh();
+  });
+  window.addEventListener("pageshow", (event) => {
+    if (event.persisted) refresh();
+  });
+  // Safari ignores `closedby="any"`, so light dismissal is kept by pointer position there.
   if (!("closedBy" in HTMLDialogElement.prototype)) {
     /**
      * @param {PointerEvent} event
@@ -134,5 +188,6 @@
     });
   }
 
+  sync();
   trigger.hidden = false;
 })();

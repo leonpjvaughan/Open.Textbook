@@ -448,6 +448,11 @@ def band_slug(qualification: str) -> str:
     return re.sub(r"[^a-z0-9]+", "-", qualification.lower()).strip("-")
 
 
+def layout_thumbnail(layout_id: str, root: Path | None = None) -> Path:
+    """The wireframe the Settings dialog shows for a layout, beside its stylesheet."""
+    return (root or repo_root()) / LAYOUTS_DIR / f"{layout_id}.svg"
+
+
 def layout_ids(collection: dict) -> list[str]:
     return [str(entry["id"]) for entry in collection.get("layouts", ())]
 
@@ -476,9 +481,12 @@ def validate_collection(collection: dict, root: Path) -> None:
             for key in ("title", "description"):
                 if not str(entry.get(key, "")).strip():
                     raise ValueError(f"collection.yaml: layout {layout_id!r} needs a `{key}`")
-            sheet = root / LAYOUTS_DIR / f"{layout_id}.css"
-            if not sheet.is_file():
-                raise ValueError(f"collection.yaml: layout {layout_id!r} has no {LAYOUTS_DIR / sheet.name}")
+            for suffix in (".css", ".svg"):
+                needed = root / LAYOUTS_DIR / f"{layout_id}{suffix}"
+                if not needed.is_file():
+                    raise ValueError(
+                        f"collection.yaml: layout {layout_id!r} has no {LAYOUTS_DIR / needed.name}"
+                    )
         default = collection.get("default_layout")
         if default not in seen:
             raise ValueError(

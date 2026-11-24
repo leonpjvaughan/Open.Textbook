@@ -428,12 +428,16 @@ def contrast_problems(bundle: Bundle, scheme: str, subject: dict[str, str] | Non
 
 
 
+def _composed(bundle: Bundle, key: str, value: str) -> str:
+    """A token's value with the subject composed in, unless the bundle refuses it."""
+    if key in bundle.fixed:
+        return value
+    return f"var(--tb-book-{key.replace('_', '-')}, {value})"
+
+
 def _passthrough(bundle: Bundle, key: str, value: str) -> str:
     """One token declaration, letting the subject through unless refused."""
-    variable = SCHEME_TOKENS[key]
-    if key in bundle.fixed:
-        return f"  {variable}: {value};"
-    return f"  {variable}: var(--tb-book-{key.replace('_', '-')}, {value});"
+    return f"  {SCHEME_TOKENS[key]}: {_composed(bundle, key, value)};"
 
 
 def bundle_css(bundle: Bundle, indent: str = "") -> str:
@@ -455,6 +459,38 @@ def typography_css(bundle: Bundle) -> str:
     lines += [f"  {FONT_TOKENS[key]}: {value};" for key, value in bundle.typography.items()]
     lines.append("}")
     return "\n".join(lines)
+
+
+SWATCH_TOKENS = {
+    "paper": "--sw-paper",
+    "ink": "--sw-ink",
+    "ink_soft": "--sw-ink-soft",
+    "accent": "--sw-accent",
+    "rule": "--sw-rule",
+}
+
+
+def swatch_css(bundle: Bundle) -> str:
+    """A bundle's own colours and display face, scoped to its sample in the Settings
+    dialog, so each card previews the bundle in the scheme the reader is using
+    without the markup carrying a colour. Each value is composed exactly as the
+    bundle's own token is, so on a book page a bundle that takes the subject tint
+    shows that tint, and on the landing page its own default.
+    """
+    selector = f'.tb-swatch[data-swatch="{bundle.id}"]'
+    display = bundle.typography.get("display", DEFAULT_FONTS["display"])
+    blocks = [f"{selector} {{\n  --sw-font: {display};\n}}"]
+    for scheme in SCHEMES:
+        attr = SCHEME_ATTR[scheme]
+        palette = bundle.palette(attr)
+        lines = [f'body[data-md-color-scheme="{attr}"] {selector} {{']
+        lines += [
+            f"  {variable}: {_composed(bundle, key, palette[key])};"
+            for key, variable in SWATCH_TOKENS.items()
+        ]
+        lines.append("}")
+        blocks.append("\n".join(lines))
+    return "\n".join(blocks)
 
 
 def stylesheet(bundles: list[Bundle] | None = None, default: Bundle | None = None) -> str:
@@ -511,6 +547,11 @@ def stylesheet(bundles: list[Bundle] | None = None, default: Bundle | None = Non
         body.append(f"/* {bundle.title} */")
         body.append(bundle_css(bundle))
         body.append("")
+
+    body.append("/* 4. Swatches: each bundle's sample in the Settings dialog. */")
+    for bundle in chosen:
+        body.append(swatch_css(bundle))
+    body.append("")
 
     out.append(f"@layer {CASCADE_LAYERS[0]} {{")
     out += [f"  {line}" if line else "" for line in "\n".join(body).strip("\n").splitlines()]

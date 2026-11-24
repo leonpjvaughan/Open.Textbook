@@ -317,7 +317,7 @@ def test_each_bundle_and_scheme_selects_a_block_per_bundle():
 @pytest.mark.parametrize("bundle", BUNDLES, ids=IDS)
 @pytest.mark.parametrize("book", BOOKS, ids=[b.id for b in BOOKS])
 def test_every_bundle_and_subject_pair_is_readable(bundle, book):
-    """Six bundles times every book, in two schemes: all of them must be legible.
+    """Nine bundles times every book, in two schemes: all of them must be legible.
 
     This is what lets a book state one accent per scheme rather than tuning a palette
     per bundle. It covers the figure tokens too, which are measured against the figure
@@ -469,7 +469,7 @@ def test_the_apca_check_can_actually_fail():
 @pytest.mark.parametrize("bundle", BUNDLES, ids=IDS)
 @pytest.mark.parametrize("scheme", ("light", "dark"))
 def test_every_bundle_passes_the_apca_second_opinion(bundle, scheme):
-    """Six bundles × both schemes, measured in Lc as well as WCAG.
+    """Nine bundles × both schemes, measured in Lc as well as WCAG.
 
     The thresholds are below the strict body-text levels on purpose, so lifting the
     dark vivid members would repaint those families rather than check them.
@@ -573,6 +573,53 @@ def test_generated_stylesheet_is_in_sync():
     assert THEMES_CSS.read_text(encoding="utf-8") == stylesheet(ordered_bundles(), default_bundle()), (
         "assets/stylesheets/themes.css is stale; run `python -m textbook.scaffold`"
     )
+
+
+@pytest.mark.parametrize("bundle", BUNDLES, ids=[b.id for b in BUNDLES])
+def test_every_bundle_has_swatch_tokens_in_both_schemes(bundle):
+    """The Settings dialog paints each Colour sample from these, never from markup."""
+    css = THEMES_CSS.read_text(encoding="utf-8")
+    palette_layer = css[css.index("@layer palette {") :]
+    selector = f'.tb-swatch[data-swatch="{bundle.id}"]'
+    assert f"{selector} {{\n    --sw-font: " in palette_layer, f"{bundle.id}: no display face"
+    for scheme in SCHEMES:
+        attr = themes.SCHEME_ATTR[scheme]
+        match = re.search(
+            re.escape(f'body[data-md-color-scheme="{attr}"] {selector} {{') + r"(.*?)\}",
+            palette_layer,
+            re.DOTALL,
+        )
+        assert match, f"{bundle.id}/{scheme}: no swatch block"
+        palette = bundle.palette(scheme)
+        for key, variable in themes.SWATCH_TOKENS.items():
+            real = re.search(
+                re.escape(f'html[data-theme="{bundle.id}"] body[data-md-color-scheme="{attr}"] {{')
+                + r"(.*?)\}",
+                palette_layer,
+                re.DOTALL,
+            )
+            assert real, f"{bundle.id}/{scheme}: no palette block"
+            declared = re.search(re.escape(SCHEME_TOKENS[key]) + r": ([^;]+);", real.group(1))
+            assert declared, f"{bundle.id}/{scheme}: {SCHEME_TOKENS[key]} is not declared"
+            assert f"{variable}: {declared.group(1)};" in match.group(1), (
+                f"{bundle.id}/{scheme}: the sample's {variable} is not what the page's "
+                f"{SCHEME_TOKENS[key]} resolves to"
+            )
+            assert palette[key] in declared.group(1)
+
+
+def test_a_sample_shows_the_subject_tint_where_the_bundle_takes_it():
+    """A bundle without `fixed:` takes the book's accent, so its sample must too."""
+    taking = [b for b in BUNDLES if "accent" not in b.fixed]
+    refusing = [b for b in BUNDLES if "accent" in b.fixed]
+    assert taking and refusing, "both kinds of bundle are needed for this to prove anything"
+    for bundle in taking:
+        css = themes.swatch_css(bundle)
+        accent = bundle.palette("light")["accent"]
+        assert f"--sw-accent: var(--tb-book-accent, {accent});" in css, bundle.id
+    for bundle in refusing:
+        css = themes.swatch_css(bundle)
+        assert f"--sw-accent: {bundle.palette('light')['accent']};" in css, bundle.id
 
 
 

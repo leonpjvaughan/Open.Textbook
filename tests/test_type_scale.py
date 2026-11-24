@@ -123,9 +123,9 @@ def test_the_type_floor_scanner_reads_what_the_sheets_say():
         ("table--cards td", "font-size", 16.0, EXTRA),
         ("table--cards td::before", "font-size", 12.0, EXTRA),
         ("maths-figure figcaption", "font-size", 12.0, EXTRA),
-        ("tb-settings__option-note", "font-size", 12.0, SETTINGS),
+        ("tb-settings__option-desc", "font-size", 12.0, SETTINGS),
     ],
-    ids=["cards-value", "cards-label", "figure-caption", "settings-note"],
+    ids=["cards-value", "cards-label", "figure-caption", "settings-desc"],
 )
 def test_no_content_is_declared_below_its_floor(fragment, prop, floor_px, path):
     value = last(path, fragment, prop)
