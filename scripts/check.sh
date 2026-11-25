@@ -157,6 +157,13 @@ if grep -rl 'math-error' site --include='*.html'; then
 fi
 echo "none"
 
+step "no unparsed Markdown wrappers"
+if grep -rl 'markdown="1"' site --include='*.html'; then
+  echo "a wrapper kept its markdown attribute, so md_in_html did not parse it" >&2
+  exit 1
+fi
+echo "none"
+
 step "the asset graph of the assembled site"
 # Every file a page reaches for resolves — root-absolute references included, which
 # resolve at the site root and not at the book's — every content-addressed name a
