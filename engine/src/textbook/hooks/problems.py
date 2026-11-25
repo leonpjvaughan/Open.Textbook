@@ -13,7 +13,6 @@ or an empty selection fails the build. Banks are read from the current book's
 from __future__ import annotations
 
 import re
-from pathlib import Path
 
 import yaml
 

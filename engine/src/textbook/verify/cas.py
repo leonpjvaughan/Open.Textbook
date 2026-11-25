@@ -162,10 +162,6 @@ def is_nearest_multiple(value, rounded, step) -> bool:
     return sympy.Abs(value - rounded) <= step / 2
 
 
-def value_set(values: Iterable[str], symbols: dict):
-    return FiniteSet(*[parse_expression(v, symbols) for v in values])
-
-
 
 
 def expected_set(answer, symbols: dict):
@@ -584,11 +580,6 @@ def is_antiderivative(candidate, integrand, variable) -> bool:
 
 def is_indefinite_integral(spec: dict) -> bool:
     return spec.get("op") == "integrate" and len(spec.get("args", [])) == 1
-
-
-def is_ode_solve(spec: dict) -> bool:
-    """A ``dsolve`` step is verified by substitution, not by equality."""
-    return spec.get("op") == "dsolve"
 
 
 

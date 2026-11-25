@@ -18,7 +18,6 @@ import re
 import shutil
 import sys
 import time
-import unicodedata
 import urllib.parse
 from collections.abc import Callable
 from dataclasses import dataclass, field
@@ -42,7 +41,6 @@ from .frontmatter import read as read_page
 from .frontmatter import split as split_front_matter
 from . import hooks
 from .hooks import MARKDOWN_HOOKS, prefs
-from .themes import default_bundle, ordered_bundles
 from .urls import href, prefix_for, slugify, url_for
 
 log = logging.getLogger("textbook.pipeline")
@@ -173,8 +171,6 @@ EXTENSIONS = [
     ArithmatexExtension(generic=True),
     TocExtension(permalink=False),
 ]
-
-SHARED_CSS = ("themes.css", "extra.css", "portal.css", "layouts.css", "settings.css")
 
 HTML_LINK = re.compile(r'(href|src)="([^"]+?\.md)(#[^"]*)?"')
 SCRIPT_STYLE = re.compile(r"<(script|style)\b.*?</\1>", re.S | re.I)
