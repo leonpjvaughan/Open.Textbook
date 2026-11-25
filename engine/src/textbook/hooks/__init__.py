@@ -20,7 +20,9 @@ Order matters:
 11. ``callouts`` promotes ``> **Watch out.**`` and ``> **Check.**`` blockquotes
     into ``<aside class="callout ...">`` blocks while leaving every other
     blockquote untouched;
-12. ``maths`` renders the ``$...$`` those hooks emitted — last, because it runs
+12. ``examples`` wraps each ``**Example N.**`` and its working in
+    ``<section class="worked-example">``, after ``callouts`` so a callout ends one;
+13. ``maths`` renders the ``$...$`` those hooks emitted — last, because it runs
     on rendered HTML rather than markdown.
 
 ``on_page_content``, in order: ``contents`` (it reads the headings while they still
@@ -41,6 +43,7 @@ from . import (
     contents,
     deeper,
     disclaimer,
+    examples,
     figures,
     maths,
     opener,
@@ -66,6 +69,7 @@ MARKDOWN_HOOKS = (
     problems,
     systems,
     callouts,
+    examples,
 )
 
 
