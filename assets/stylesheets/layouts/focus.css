@@ -190,6 +190,12 @@
     }
   }
 
+  @media (max-width: 60rem) {
+    :root[data-style="focus"] .content {
+      margin-top: 0.5rem;
+    }
+  }
+
   @media (max-width: 40rem) {
     :root[data-style="focus"] .masthead:has(> .masthead__lead) {
       padding: 40px 0 28px;

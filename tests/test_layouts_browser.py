@@ -166,6 +166,28 @@ if (mode === "bare") {
     out.push({ route, before, otherTheme, offered, chosen, unknown, defaultLayout });
   }
   await context.close();
+} else if (mode === "drawer") {
+  for (const layout of layouts) {
+    for (const scheme of ["light", "dark"]) {
+      const context = await openContext(browser, { width: 390, height: 900, scheme, style: layout, deviceScaleFactor: 1, blockServiceWorkers: true });
+      await serveStatic(context, site);
+      const page = await context.newPage();
+      await page.goto(ORIGIN + routes.find((r) => /\/learn\/$/.test(r)), { waitUntil: "load" });
+      await page.evaluate(() => document.fonts.ready);
+      const result = await page.evaluate(() => {
+        const summary = document.querySelector(".nav-drawer__summary").getBoundingClientRect();
+        const label = document.querySelector(".nav-drawer__label").getBoundingClientRect();
+        const title = document.querySelector("main h1").getBoundingClientRect();
+        return {
+          summary: summary.height,
+          offCentre: Math.abs((label.top + label.bottom) / 2 - (summary.top + summary.bottom) / 2),
+          gap: title.top - label.bottom,
+        };
+      });
+      out.push({ layout, scheme, ...result });
+      await context.close();
+    }
+  }
 } else if (mode === "format") {
   const PROSE = (MEASURE) => {
     const lines = (el) => {
@@ -339,6 +361,22 @@ def test_a_page_without_its_layout_is_complete_and_fits_a_phone(tmp_path):
         assert found["overflow"] <= 1, (
             f"{route} is {found['overflow']}px wider than a 390px screen without its layout"
         )
+
+
+def test_the_phone_drawer_is_a_44px_target_close_to_the_title(tmp_path):
+    results = _run(tmp_path, "drawer")
+    assert {r["layout"] for r in results} == set(layout_ids())
+    failures = []
+    for found in results:
+        where = f"{found['layout']} {found['scheme']}"
+        print(where, found)
+        if abs(found["summary"] - 44) > 0.5:
+            failures.append(f"{where}: the summary is {found['summary']}px tall, not 44")
+        if found["offCentre"] > 2:
+            failures.append(f"{where}: the label is {found['offCentre']:.1f}px off the summary's centre")
+        if found["gap"] >= 60:
+            failures.append(f"{where}: the title starts {found['gap']:.0f}px below the label")
+    assert not failures, "\n".join(failures)
 
 
 def test_every_layout_fits_the_widest_bundle_font(tmp_path):
