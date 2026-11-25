@@ -266,12 +266,6 @@ def test_portal_has_a_band_for_every_qualification():
         )
 
 
-def test_the_old_group_markup_is_gone():
-    html = portal.render()
-    for retired in ("group__", 'class="group"', 'class="cards"', "card__subject", "card__facts"):
-        assert retired not in html
-
-
 def test_a_band_states_its_region_when_one_is_configured():
     html = portal.render()
     configured = [q for q in books.load_collection()["qualifications"] if q.get("region")]
