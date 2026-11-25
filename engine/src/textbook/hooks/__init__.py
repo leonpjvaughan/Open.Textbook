@@ -22,7 +22,9 @@ Order matters:
     blockquote untouched;
 12. ``examples`` wraps each ``**Example N.**`` and its working in
     ``<section class="worked-example">``, after ``callouts`` so a callout ends one;
-13. ``maths`` renders the ``$...$`` those hooks emitted — last, because it runs
+13. ``mathlt`` writes ``<`` inside maths as ``\\lt``, last of the markdown hooks, so no
+    ``<x`` reaches ``md_in_html`` looking like a tag;
+14. ``maths`` renders the ``$...$`` those hooks emitted — last, because it runs
     on rendered HTML rather than markdown.
 
 ``on_page_content``, in order: ``contents`` (it reads the headings while they still
@@ -46,6 +48,7 @@ from . import (
     examples,
     figures,
     maths,
+    mathlt,
     opener,
     problems,
     proofs,
@@ -70,6 +73,7 @@ MARKDOWN_HOOKS = (
     systems,
     callouts,
     examples,
+    mathlt,
 )
 
 
