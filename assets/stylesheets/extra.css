@@ -187,7 +187,11 @@
   .md-typeset > p,
   .md-typeset > ul,
   .md-typeset > ol,
-  .md-typeset > blockquote {
+  .md-typeset > blockquote,
+  .md-typeset > .worked-example > p,
+  .md-typeset > .worked-example > ul,
+  .md-typeset > .worked-example > ol,
+  .md-typeset > .worked-example > blockquote {
     max-width: var(--tb-measure);
   }
 
