@@ -87,10 +87,6 @@ export function wrapWords(words: string[], indent: number, width = 90): string[]
   return lines;
 }
 
-export function usageLines(surface: Surface, indent = 0, width = 90): string[] {
-  return wrapWords(usageWords(surface), indent, width);
-}
-
 export type HelpRow = { left: string; right: string };
 
 export function helpRows(surface: Surface): HelpRow[] {

@@ -972,13 +972,11 @@
     }
 
     /* A scroll box cannot scroll on paper. */
-    .md-typeset__scrollwrap,
     .table-scroll { overflow: visible; }
 
     /* `break-inside` is only a hint: an item taller than a page is still broken. The
      * `page-break-*` aliases cover engines that predate the fragmentation properties. */
     .md-typeset table,
-    .md-typeset__scrollwrap,
     .md-typeset .callout,
     .md-typeset details,
     .md-typeset maths-figure,

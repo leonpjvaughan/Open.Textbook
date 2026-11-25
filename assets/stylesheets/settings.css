@@ -10,10 +10,6 @@
     display: none !important;
   }
 
-  .md-header__option[data-md-component="palette"] {
-    display: none;
-  }
-
   .tb-settings {
     width: min(46rem, calc(100vw - 2rem));
     max-width: 100%;
