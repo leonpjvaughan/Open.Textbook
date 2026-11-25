@@ -20,8 +20,8 @@ A layout is geometry over one DOM, so two promises hold or the seam is a lie:
   the prose at 17px or more on a line height of 1.5 or more. Every full line of every
   paragraph, callouts included, is counted: at 1280 at least 90% hold 45 to 78
   characters and none more than 80; at 390 none more than 78. The 78 is
-  `test_measure.AT_1280`'s ceiling: `62ch` renders 66 to 78 characters on a Learn page,
-  so a 75 ceiling would fail the default column the house measure was tuned to. Every layout but the default also runs the `targets` and phone
+  `test_measure.AT_1280`'s ceiling, the one range the house measure is stated in
+  (`assets/AGENTS.md`). Every layout but the default also runs the `targets` and phone
   figure-label sweeps with `--style`; the gate already runs both on the default.
 
 Browser tests over a built `site/`, skipped where the site or Playwright is absent.

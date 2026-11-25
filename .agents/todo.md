@@ -4,7 +4,7 @@ Working notes for the collection. One item per change. Items are ordered, not
 dated: the first is next. This file is ours, not the reader's — the voice rules
 in `AGENTS.md` do not apply here, but the engineering rules do.
 
-**This file holds open items only.** Closed items are deleted (git history keeps their diagnosis). A new item goes at the next number, with its diagnosis, its fix and its own done-means. Open: **226, 227, 228**.
+**This file holds open items only.** Closed items are deleted (git history keeps their diagnosis). A new item goes at the next number, with its diagnosis, its fix and its own done-means. Open: **226, 227**.
 
 Accepted limitations live where the check that records them lives (`tests/test_verify_coverage.py`, `books/*/curriculum.yaml`), not here.
 
@@ -69,25 +69,3 @@ floor.
 - [ ] the label-to-title distance on the page above is under 60px in every layout;
 - [ ] `node tools/dist/cli.js targets site` still reports 0 errors, and
       `tests/test_layouts_browser.py` passes.
-
-## 228 — the measure is stated as "45 to 75" in one place and "70 to 78" in another
-
-**What is wrong.** `assets/AGENTS.md` ("Layouts") says a layout keeps "a 45 to 75ch
-measure", and a review asked `tests/test_layouts_browser.py` to hold 90% of full lines at
-45 to 75 characters. `tests/test_measure.py` pins the median at 70 to 78 characters
-(`AT_1280`), and `--tb-measure: 62ch` was tuned to it. Measured with every full line of
-every paragraph, callouts included, on `/gcse-maths/higher/chapter-1/section-1.1/learn/`
-at 1280, Matrix: 22 lines, 66 to 78 characters, median 73; 4 of 22 (18%) are 76 to 78,
-so a 75 ceiling fails the unchanged default. The layouts test now uses `AT_1280[1]` (78)
-as its ceiling, so the two tests agree, but the prose in `assets/AGENTS.md` does not.
-
-**The fix.** Decide one range. Either keep 70 to 78 characters and reword
-`assets/AGENTS.md` to say characters a line, not `ch`; or narrow `--tb-measure` (in
-`extra.css` and `portal.css`) until 90% of lines are at most 75, and lower
-`AT_1280` to match.
-
-**Done means**
-
-- [ ] `assets/AGENTS.md`, `tests/test_measure.py` and `tests/test_layouts_browser.py`
-      state the same range, in characters a line;
-- [ ] both browser tests pass on a fresh build.
