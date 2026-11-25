@@ -474,6 +474,7 @@ def test_the_hook_chain_is_defined_once_and_the_pipeline_uses_that_one():
         "problems",
         "systems",
         "callouts",
+        "examples",
     ], order
 
 

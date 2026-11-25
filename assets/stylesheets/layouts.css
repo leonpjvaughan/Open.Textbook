@@ -178,7 +178,7 @@
 
     :root[data-style="atlas"] .content {
       margin: 14px 0 28px;
-      padding: 22px 0 3rem;
+      padding: 14px 0 3rem;
       border-left-width: 0;
       border-right-width: 0;
     }
@@ -386,6 +386,12 @@
 
     :root[data-style="focus"] .sidebar .nav__link {
       font-size: 0.82rem;
+    }
+  }
+
+  @media (max-width: 60rem) {
+    :root[data-style="focus"] .content {
+      margin-top: 0.5rem;
     }
   }
 
@@ -1245,7 +1251,7 @@
 
     :root[data-style="matrix"] .content {
       margin: 14px 0 28px;
-      padding: 22px 0 3rem;
+      padding: 14px 0 3rem;
       border-left-width: 0;
       border-right-width: 0;
     }
@@ -1431,6 +1437,13 @@
     border-radius: var(--tb-radius);
   }
 
+  :root[data-style="notebook"] .md-typeset .worked-example {
+    margin-block: 1.6rem;
+    margin-inline: 1.5rem 0;
+    padding-left: 1.2rem;
+    border-left: 6px solid var(--tb-accent);
+  }
+
   :root[data-style="notebook"] .md-typeset .prove {
     margin-inline: 1.5rem 0;
     padding: 1rem 1.4rem;
@@ -1455,6 +1468,12 @@
   }
 
   @media (max-width: 40rem) {
+    :root[data-style="notebook"] .md-typeset .worked-example {
+      margin-inline: 0;
+      padding-left: 0.5rem;
+      border-left-width: 4px;
+    }
+
     :root[data-style="notebook"] .md-typeset .callout,
     :root[data-style="notebook"] .md-typeset .prove {
       margin-inline: 0.5rem 0;

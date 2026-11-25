@@ -283,8 +283,9 @@
 
   .nav-drawer__summary {
     cursor: pointer;
-    padding: 0.7rem 0;
+    box-sizing: border-box;
     min-height: 2.75rem;
+    padding-block: max(0.25rem, calc((2.75rem - 1lh) / 2 - 1px));
     color: var(--tb-ink);
     font-weight: 600;
   }
@@ -401,7 +402,8 @@
   /* narrow ------------------------------------------------------------------ */
 
   @media (max-width: 60rem) {
-    .layout { grid-template-columns: 1fr; }
+    .layout { grid-template-columns: 1fr; row-gap: 0.75rem; }
+    .content { padding-top: 1rem; }
     .nav-drawer {
       position: static;
       max-height: none;

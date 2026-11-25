@@ -4,90 +4,36 @@ Working notes for the collection. One item per change. Items are ordered, not
 dated: the first is next. This file is ours, not the reader's — the voice rules
 in `AGENTS.md` do not apply here, but the engineering rules do.
 
-**This file holds open items only.** Closed items are deleted (git history keeps their diagnosis). A new item goes at the next number, with its diagnosis, its fix and its own done-means. Open: **226, 227, 228**.
+**This file holds open items only.** Closed items are deleted (git history keeps their diagnosis). A new item goes at the next number, with its diagnosis, its fix and its own done-means. Open: **229**.
 
 Accepted limitations live where the check that records them lives (`tests/test_verify_coverage.py`, `books/*/curriculum.yaml`), not here.
 
 ---
 
-## 226 — a worked example has no element of its own, so no layout can set it off
+## 229 — a literal `markdown="1"` leaks into 14 built pages
 
-**What is wrong.** A worked example is a bare paragraph whose first word is bold,
-followed by its working as sibling paragraphs and display maths:
+**What is wrong.** The `markdown="1"` that `hooks/callouts.py`, `hooks/tier.py` and
+`hooks/examples.py` put on their wrappers is consumed by `md_in_html`. On some pages it
+survives into the HTML, as an attribute on a wrapper element:
 
 ```
-$ grep -rho '<p><strong>Example [0-9]*\.\?</strong>' site --include=index.html | wc -l
-4144        # in 1058 pages; source: 609 files under books/*/docs with **Example N
+$ grep -rl 'markdown="1"' site --include=index.html | wc -l
+14      # gcse-maths 9.4, 9.6, 25.2, 25.3; ie-jc-maths 12.6; both tiers
 ```
 
-`site/gcse-maths/higher/chapter-1/section-1.1/learn/index.html`: `<p><strong>Example
-1.</strong> Which is larger, …?</p>` then `<p>The ones digit decides it: …</p>` then
-`<p><strong>Example 2.</strong> …`. Nothing marks where an example ends, so the
-Notebook layout (`assets/stylesheets/layouts/notebook.css`) cannot indent an example
-behind a rule as it does callouts, and the layout contract forbids `:has()` tricks on
-`display`. The content markup must not change by hand across 609 files.
+Twelve of the 14 are Practise pages with no worked example, so it predates the
+`worked-example` wrapper. `site/gcse-maths/higher/chapter-25/section-25.2/learn/` also has
+one: a `<t` inside maths earlier on the page appears to make `md_in_html` stop treating the
+block as Markdown. The attribute is invisible and the text renders, but the block was not
+parsed as Markdown, which is what the wrapper exists to do.
 
-**The fix.** A build hook, not an edit to the books: in the Markdown pipeline, wrap a
-paragraph that opens with `<strong>Example N.</strong>` and the blocks up to the next
-heading, example or callout in `<section class="worked-example">` (no colour, no
-script). Base CSS leaves it unstyled; Notebook then indents `.worked-example`.
-
-**Done means**
-
-- [ ] the Section 1.1 Learn page above has its three examples each inside one
-      `.worked-example` element, and the page text is byte-identical otherwise;
-- [ ] `grep -rho '<p><strong>Example' site --include=index.html` counts only paragraphs
-      inside a `.worked-example`;
-- [ ] a pytest renders a fixture with two examples, a callout and a heading and asserts
-      where each wrapper closes;
-- [ ] `notebook.css` indents `.worked-example` and `tests/test_layouts_browser.py` still
-      passes for every layout.
-
-## 227 — about 100px of blank space under "Contents" on a phone Learn page
-
-**What is wrong.** Measured at 390px on
-`/gcse-maths/higher/chapter-1/section-1.1/learn/`, light scheme: the "Contents" label
-ends at y = 131 and the page title starts at y = 234 (Matrix). With `layouts.css`
-emptied the title still starts about 100px below the label, so the space is the shell's,
-not a layout's:
-
-- `.nav-drawer__summary` is 68px tall for a 17px label: `shell.css` sets
-  `min-height: 2.75rem` on a `content-box`, so the 44px floor sits inside 11.2px of
-  padding on each side, and the label is at the top of it;
-- the phone grid keeps the desktop `.layout { gap: 2rem }`, 32px between the closed
-  drawer and `<main>`;
-- `<main>` then adds its own top padding (32px bare, 22px plus a 14px margin in Matrix).
-
-**The fix.** In `engine/src/textbook/css/shell.css`: give the summary
-`box-sizing: border-box` (the 44px target holds, the dead band goes) and centre the label
-in it; below 60rem set `.layout { row-gap: 0.75rem }`. Do not change the 24px target
-floor.
+**The fix.** Find the construct that ends `md_in_html`'s handling on those pages (start with
+the `<t` in the 25.2 Learn source and the 9.4 Practise answers block), and either escape it
+at the source or make the hook emit a wrapper `md_in_html` cannot lose. Then add a lint that
+fails on `markdown="1"` in any built page.
 
 **Done means**
 
-- [ ] at 390px the summary is 44px tall and the label is vertically centred in it;
-- [ ] the label-to-title distance on the page above is under 60px in every layout;
-- [ ] `node tools/dist/cli.js targets site` still reports 0 errors, and
-      `tests/test_layouts_browser.py` passes.
-
-## 228 — the measure is stated as "45 to 75" in one place and "70 to 78" in another
-
-**What is wrong.** `assets/AGENTS.md` ("Layouts") says a layout keeps "a 45 to 75ch
-measure", and a review asked `tests/test_layouts_browser.py` to hold 90% of full lines at
-45 to 75 characters. `tests/test_measure.py` pins the median at 70 to 78 characters
-(`AT_1280`), and `--tb-measure: 62ch` was tuned to it. Measured with every full line of
-every paragraph, callouts included, on `/gcse-maths/higher/chapter-1/section-1.1/learn/`
-at 1280, Matrix: 22 lines, 66 to 78 characters, median 73; 4 of 22 (18%) are 76 to 78,
-so a 75 ceiling fails the unchanged default. The layouts test now uses `AT_1280[1]` (78)
-as its ceiling, so the two tests agree, but the prose in `assets/AGENTS.md` does not.
-
-**The fix.** Decide one range. Either keep 70 to 78 characters and reword
-`assets/AGENTS.md` to say characters a line, not `ch`; or narrow `--tb-measure` (in
-`extra.css` and `portal.css`) until 90% of lines are at most 75, and lower
-`AT_1280` to match.
-
-**Done means**
-
-- [ ] `assets/AGENTS.md`, `tests/test_measure.py` and `tests/test_layouts_browser.py`
-      state the same range, in characters a line;
-- [ ] both browser tests pass on a fresh build.
+- [ ] `grep -rl 'markdown="1"' site --include=index.html | wc -l` prints `0`;
+- [ ] the lint fails on a page that carries the attribute;
+- [ ] the worked-example, callout and tier tests still pass.

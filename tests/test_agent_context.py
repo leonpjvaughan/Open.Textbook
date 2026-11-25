@@ -175,7 +175,11 @@ def nested_agents_files() -> list[str]:
     for directory in sorted(ROOT.iterdir()):
         if not directory.is_dir() or directory.name in GENERATED_DIRS:
             continue
-        found.extend(path for path in directory.rglob("AGENTS.md"))
+        found.extend(
+            path
+            for path in directory.rglob("AGENTS.md")
+            if ".claude/worktrees" not in path.relative_to(ROOT).as_posix()
+        )
     return sorted(str(path.relative_to(ROOT)) for path in found)
 
 
