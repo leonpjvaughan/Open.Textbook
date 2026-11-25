@@ -16,7 +16,7 @@ import re
 
 from ._fences import transform_outside_fences
 
-START = re.compile(r"^\*\*Example(?: \d+[A-Za-z]?)?(?:\.| —|\*\*)")
+START = re.compile(r"^\*\*Example(?: \d+[A-Za-z]?)?(?:\.| —| \(|\*\*)")
 BOUNDARY = re.compile(
     r"^ {0,3}(?:#{1,6}(?:\s|$)|<!--\s*/?tier:|</?(?:aside|section|div|details|hr)\b"
     r"|(?:-{3,}|\*{3,}|_{3,})\s*$|>)",

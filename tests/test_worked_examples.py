@@ -107,3 +107,16 @@ def test_only_the_wrapper_is_added():
 def test_a_page_without_examples_is_returned_as_is():
     text = "Just prose.\n"
     assert examples.on_page_markdown(text, None, {}, []) == text
+
+
+def test_an_example_with_a_bracketed_or_dashed_title_is_wrapped():
+    source = (
+        "**Example 1 (the chapter problem).** Find the crate's speed.\n\n"
+        "Resolve along the slope.\n\n"
+        "**Example 2 — a two-tailed test.** State the hypotheses.\n\n"
+        "Compare with the critical value.\n"
+    )
+    parts = sections(render(source))
+    assert len(parts) == 2
+    assert "chapter problem" in parts[0].split("</section>")[0]
+    assert "two-tailed" in parts[1].split("</section>")[0]
