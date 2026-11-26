@@ -40,7 +40,7 @@ and **Toolchain** still apply; this file adds what is particular.
   is not a package and pytest puts this directory on the path.
 
 A test marked `browser` is deselected by default (`addopts` in `pyproject.toml`): measuring
-every figure under all nine bundles takes about eighteen minutes (estimated from twelve for six). **CI runs the substance of
+every figure under all nine bundles takes a long time. **CI runs the substance of
 them** in `scripts/preview-themes.sh` — the kit's contract, the contrast audit, the phone
 audit and `tools offline` — so a browser-only defect still fails the gate. Run them by hand
 with `uv run python -m pytest -m browser`.
