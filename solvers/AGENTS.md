@@ -66,8 +66,8 @@ that is why a host build once looked like a C dependency.
 ## otkd
 
 `otkd` is a nested `uv` project with its own `uv.lock`, deliberately **not** a member of the
-root workspace, because NumPy and SciPy would then be installed for every site job. Its suite
-is 95 tests, 27 of which compile a kernel, so CI splits it across three hosted-runner jobs
+root workspace, because NumPy and SciPy would then be installed for every site job. Some of its
+tests compile a kernel, so CI splits the suite across three hosted-runner jobs
 (`otkd tests`, `otkd kernels`, `otkd bundle`), all gated on `solvers/otkd/` changing. A branch
 runs the fast suite on its own (`otkd (dev)`). The local gate and deploy only run
 `scripts/build-otkd.sh --verify`, which needs no toolchain.
