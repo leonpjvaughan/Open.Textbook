@@ -20,7 +20,6 @@ import shutil
 import subprocess
 import urllib.parse
 from pathlib import Path
-from types import SimpleNamespace
 
 import pytest
 
@@ -953,7 +952,6 @@ def test_the_yaml_loader_prefers_the_fast_parser():
 
     from textbook import yamlio
 
-    assert yamlio.USING_C_PARSER == hasattr(yaml, "CSafeLoader")
     assert yamlio.Loader in (yaml.SafeLoader, getattr(yaml, "CSafeLoader", None))
     assert yamlio.load("a: 1") == {"a": 1}
     assert yamlio.load("") is None

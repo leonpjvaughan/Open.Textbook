@@ -63,13 +63,10 @@ from __future__ import annotations
 
 import itertools
 import re
-from pathlib import Path
 
 from .. import book as books
 from .. import yamlio
 
-GIVEN = "given"
-QUESTION = "question"
 KNOW = "know"
 
 SYMBOLIC = "symbolic"

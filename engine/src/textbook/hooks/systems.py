@@ -21,7 +21,6 @@ from .. import config as cfg
 
 MARKER = re.compile(r"^:::[ \t]*systems[ \t]*$", re.M)
 SECTION = re.compile(r"## Systems that live here\n(.*?)(?=\n## |\Z)", re.S)
-ITEM = re.compile(r"^- (.+)$", re.M)
 TAG = re.compile(r"<[^>]+>")
 LINK = re.compile(r"\[([^\]]+)\]\([^)]*\)")
 

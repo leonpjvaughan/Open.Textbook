@@ -26,8 +26,6 @@ import yaml
 
 Loader = getattr(yaml, "CSafeLoader", yaml.SafeLoader)
 
-USING_C_PARSER = Loader is not yaml.SafeLoader
-
 
 def load(text: str) -> Any:
     """Parse a YAML document. Empty documents parse to ``None``, as PyYAML does."""

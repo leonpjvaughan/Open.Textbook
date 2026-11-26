@@ -40,8 +40,6 @@ THEME_KEY = "textbooks:theme"
 
 STYLE_KEY = "textbooks:style"
 
-SHARED_KEY = SCHEME_KEY
-
 
 def themes(config) -> tuple[list[str], str]:
     """The bundle ids a reader may choose, and the default.

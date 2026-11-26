@@ -70,9 +70,6 @@ export function wrapWords(words, indent, width = 90) {
         lines.push(line);
     return lines;
 }
-export function usageLines(surface, indent = 0, width = 90) {
-    return wrapWords(usageWords(surface), indent, width);
-}
 export function helpRows(surface) {
     const rows = [];
     for (const arg of surface.positional ?? []) {
