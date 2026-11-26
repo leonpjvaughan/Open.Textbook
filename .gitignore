@@ -6,7 +6,6 @@ site/
 .env
 .env.*
 !.env.example
-test/site/
 var/
 
 # Python virtualenv
