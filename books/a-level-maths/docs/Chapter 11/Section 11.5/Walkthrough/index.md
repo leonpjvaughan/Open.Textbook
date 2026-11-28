@@ -161,11 +161,6 @@ $$
 
 The squared deviations from the mean are
 
-The mean is the value that makes the total squared deviation smallest, which is
-why the deviations are measured from it.
-
-:::prove mean-minimises-squared-error
-
 $$
 16,\ 4,\ 0,\ 4,\ 16.
 $$
@@ -175,6 +170,11 @@ Their sum is 40, so
 $$
 \sigma = \sqrt{\frac{40}{5}} = \sqrt{8} = 2.83 \ (3 \text{ s.f.}).
 $$
+
+The mean is the value that makes the total squared deviation smallest, which is
+why the deviations are measured from it.
+
+:::prove mean-minimises-squared-error
 
 ## 5. Standard deviation from summary statistics
 
