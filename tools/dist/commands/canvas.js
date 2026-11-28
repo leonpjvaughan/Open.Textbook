@@ -271,7 +271,7 @@ export async function run(argv) {
     if (retry.length) {
         await mapPool(retry, jobs, async (slug, index) => {
             const page = pool[index % jobs];
-            for (const route of pages[slug]) {
+            for (const route of pages[slug].slice(0, 3)) {
                 try {
                     await page.goto(`${ORIGIN}${route}`, { waitUntil: "load" }).catch(() => { });
                     if (font)
