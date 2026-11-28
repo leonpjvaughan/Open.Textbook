@@ -4,10 +4,12 @@ A worked example is a paragraph opening ``**Example N.**`` followed by its worki
 as sibling blocks. Nothing in the rendered page says where one ends, so a layout
 cannot set it off. This hook wraps the opening paragraph and the blocks after it,
 up to the next heading, example, callout, tier region edge, other raw HTML block or
-horizontal rule. The wrapper is ``markdown="1"`` so the inner Markdown renders as before.
+horizontal rule. A link aside (``:::class``, ``:::prove``, ``:::deeper``) stays
+inside the example. The wrapper is ``markdown="1"`` so the inner Markdown renders
+as before.
 
-It runs after ``callouts`` so a promoted ``<aside>`` is already a boundary, and
-never wraps into a code fence.
+It runs after ``callouts`` so a promoted ``<aside class="callout">`` is already a
+boundary, and never wraps into a code fence.
 """
 
 from __future__ import annotations
@@ -18,7 +20,8 @@ from ._fences import transform_outside_fences
 
 START = re.compile(r"^\*\*Example(?: \d+[A-Za-z]?)?(?:\.| —| \(|\*\*)")
 BOUNDARY = re.compile(
-    r"^ {0,3}(?:#{1,6}(?:\s|$)|<!--\s*/?tier:|</?(?:aside|section|div|details|hr)\b"
+    r'^ {0,3}(?:#{1,6}(?:\s|$)|<!--\s*/?tier:|<aside\s+class="callout\b'
+    r"|</aside\b|</?(?:section|div|details|hr)\b"
     r"|(?:-{3,}|\*{3,}|_{3,})\s*$|>)",
     re.I,
 )
