@@ -32,6 +32,7 @@ jobs:
     timeout-minutes: 10
     outputs:
       include: ${{ steps.matrix.outputs.include }}
+      preview: ${{ steps.preview.outputs.run }}
     steps:
       - uses: actions/checkout@v7
 
@@ -46,6 +47,19 @@ jobs:
       - id: matrix
         name: Emit the build matrix
         run: echo "include=$(uv run python -m textbook.plan --github-matrix)" >> "$GITHUB_OUTPUT"
+
+      - id: preview
+        name: Should the theme preview run?
+        env:
+          REF: ${{ github.ref }}
+          EVENT: ${{ github.event_name }}
+          BASE: ${{ github.base_ref }}
+        run: |
+          if [ "$REF" = "refs/heads/main" ] || { [ "$EVENT" = "pull_request" ] && [ "$BASE" = "main" ]; }; then
+            echo "run=true" >> "$GITHUB_OUTPUT"
+          else
+            echo "run=false" >> "$GITHUB_OUTPUT"
+          fi
 
   generated:
     name: generated files are in sync
@@ -475,20 +489,16 @@ jobs:
   # The theme preview: every bundle in both schemes on three built routes, with a
   # full-page contrast audit. It is the only check that measures what the shell
   # actually paints — a token that is declared but never applied, Material's
-  # specificity defects, and an accent that only fails without a subject tint —
-  # so it runs here rather than only when a human remembers. Chrome is the one
-  # thing pytest cannot provide; the runner ships it, so only the Playwright
-  # client is installed and no browser is downloaded.
+  # specificity defects, and an accent that only fails without a subject tint.
+  # Chrome is the one thing pytest cannot provide; the runner ships it, so only the
+  # Playwright client is installed and no browser is downloaded.
   #
-  # **Four shards, one per group in `scripts/preview-themes.sh`.** Fourteen browsers on
-  # one four-core runner kept each other waiting: the preview step alone took 746s of the
-  # 842s run. Each shard gets its own runner, so the wall is the longest group.
+  # **A release gate.** It runs on main, a dispatch on main, and the release PR into
+  # main; a PR into dev skips it. `scripts/check.sh` still runs every check locally.
   preview:
     name: theme preview (${{ matrix.shard.name }})
     needs: [plan, build]
-    # Runs on every push and pull request: skipping the figure paint and phone
-    # audits on a branch let regressions pass until `main`. It downloads the
-    # `build` artefact rather than rebuilding the site.
+    if: needs.plan.outputs.preview == 'true'
     # Hosted runner. The self-hosted pool is idle; `deploy/runner/README.md` has the
     # switch back if the hosted minutes run out.
     runs-on: ubuntu-latest
@@ -571,11 +581,12 @@ jobs:
           OTKD_BUNDLE: ${{ needs.otkd-bundle.result }}
           WORKFLOWS: ${{ needs.workflows.result }}
           PREVIEW: ${{ needs.preview.result }}
+          PREVIEW_REQUIRED: ${{ needs.plan.outputs.preview }}
         run: |
           failed=0
-          # Named rather than a joined list, because the preview is allowed to be
-          # absent and the others are not — and an index into `needs.*.result` is the
-          # kind of thing that silently reorders.
+          # Named rather than a joined list, because the preview is required only on
+          # main and the release PR — and an index into `needs.*.result` is the kind
+          # of thing that silently reorders.
           required() {
             if [ "$2" != "success" ]; then
               echo "required job $1 finished as '$2'"
@@ -609,7 +620,14 @@ jobs:
             done
           fi
           required workflows "$WORKFLOWS"
-          required preview "$PREVIEW"
+          if [ "$PREVIEW_REQUIRED" = "true" ]; then
+            required preview "$PREVIEW"
+          else
+            case "$PREVIEW" in
+              skipped) echo "NOTE: the theme preview runs only on main and the release PR." ;;
+              *) echo "required job preview finished as '$PREVIEW' while it is not due"; failed=1 ;;
+            esac
+          fi
 
           [ "$failed" = "0" ] || exit 1
           echo "all required jobs succeeded"
