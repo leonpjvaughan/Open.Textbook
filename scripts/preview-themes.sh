@@ -50,9 +50,9 @@ done
 
 CHECK_GROUPS=(
   "layouts:layouts"
-  "audit:contrast phone"
-  "preview:preview"
-  "checks:mobile targets measure search kit canvas offline print navstate"
+  "audit:contrast phone preview"
+  "canvas:canvas"
+  "checks:mobile targets measure search kit offline print navstate"
 )
 
 group_checks() {

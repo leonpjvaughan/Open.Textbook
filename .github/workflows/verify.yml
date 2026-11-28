@@ -499,10 +499,10 @@ jobs:
         shard:
           - name: layouts
             group: layouts
-          - name: contrast and phone
+          - name: audit and preview
             group: audit
-          - name: preview
-            group: preview
+          - name: canvas
+            group: canvas
           - name: page checks
             group: checks
     steps:
