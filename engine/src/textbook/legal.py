@@ -37,7 +37,6 @@ LAST_UPDATED = "21 October 2026"
 
 CONTACT_URL = "https://github.com/leonpjvaughan/Open.Textbook/issues/new"
 
-DISCLAIMER_HEADING = "Before you use this book"
 COURSE_SUMMARY = "Using this book alongside your course"
 STANDALONE_SUMMARY = "Using this book"
 

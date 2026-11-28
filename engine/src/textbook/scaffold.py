@@ -28,7 +28,6 @@ from . import yamlio
 from .book import (
     REFERENCE,
     Book,
-    SCHEME_TOKENS,
     discover_books,
     load_collection,
     repo_root,
@@ -36,10 +35,6 @@ from .book import (
 from .book import book_by_id
 
 STUB_MARKER = "<!-- scaffold:stub -->"
-
-BOOKLET_WIDGET = "assets/booklet/booklet.js"
-
-SETTINGS_WIDGET = "assets/settings/settings.js"
 
 COLOPHON_FILE = "colophon.md"
 COLOPHON_TITLE = "About this book"

@@ -145,6 +145,13 @@ jobs:
             exit 1
           fi
 
+      - name: No unparsed Markdown wrappers
+        run: |
+          if grep -rl 'markdown="1"' site --include='*.html'; then
+            echo "a wrapper kept its markdown attribute, so md_in_html did not parse it" >&2
+            exit 1
+          fi
+
       - name: Upload the built site
         uses: actions/upload-artifact@v7
         with:
@@ -690,6 +697,13 @@ jobs:
         run: |
           if grep -rl 'math-error' site --include='*.html'; then
             echo "KaTeX failed to render at least one expression" >&2
+            exit 1
+          fi
+
+      - name: Refuse to ship unparsed wrappers
+        run: |
+          if grep -rl 'markdown="1"' site --include='*.html'; then
+            echo "a wrapper kept its markdown attribute, so md_in_html did not parse it" >&2
             exit 1
           fi
 

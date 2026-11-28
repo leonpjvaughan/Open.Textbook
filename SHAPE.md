@@ -8,7 +8,8 @@ Shared engine and design system; per-book curriculum, content, problem banks, an
 |---|---|---|
 | `engine/src/textbook/` | Pipeline, hooks, scaffold, lint, booklet builder, verifier, portal | shared |
 | `assets/` | Shared CSS, figure kit (`assets/figures/src/` → compiled `assets/figures/`), shared figures, booklet/settings/offline runtimes | shared |
-| `themes/` | Six light/dark theme bundles (`*.yaml` → generated `assets/stylesheets/themes.css`) | shared |
+| `themes/` | Nine light/dark theme bundles (`*.yaml` → generated `assets/stylesheets/themes.css`) | shared |
+| `assets/stylesheets/layouts/` | Five layouts (`collection.yaml → layouts`): geometry only, over one DOM | shared |
 | `tools/` | TypeScript audit & verification CLI (`tools/src/` → `tools/dist/cli.js`) | shared |
 | `solvers/` | Rust → wasm numerical kernels (`ot-solve`, `otkd`) sharing `solvers/ABI.md` | shared |
 | `research/` | Pedagogy evidence (`pedagogy.md`), legal basis (`legal/`), fetched primary sources (`sources/`) | shared |

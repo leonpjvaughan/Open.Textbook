@@ -187,7 +187,11 @@
   .md-typeset > p,
   .md-typeset > ul,
   .md-typeset > ol,
-  .md-typeset > blockquote {
+  .md-typeset > blockquote,
+  .md-typeset > .worked-example > p,
+  .md-typeset > .worked-example > ul,
+  .md-typeset > .worked-example > ol,
+  .md-typeset > .worked-example > blockquote {
     max-width: var(--tb-measure);
   }
 
@@ -972,13 +976,11 @@
     }
 
     /* A scroll box cannot scroll on paper. */
-    .md-typeset__scrollwrap,
     .table-scroll { overflow: visible; }
 
     /* `break-inside` is only a hint: an item taller than a page is still broken. The
      * `page-break-*` aliases cover engines that predate the fragmentation properties. */
     .md-typeset table,
-    .md-typeset__scrollwrap,
     .md-typeset .callout,
     .md-typeset details,
     .md-typeset maths-figure,

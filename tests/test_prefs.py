@@ -65,10 +65,6 @@ def test_the_shared_key_is_not_scoped_to_a_path():
     assert key and "/" not in key and not key.startswith(".")
 
 
-def test_the_alias_still_points_at_the_scheme_key():
-    assert prefs.SHARED_KEY == prefs.SCHEME_KEY
-
-
 def test_themes_follows_the_configured_registry():
     ids, default = prefs.themes(base_config())
     assert ids == [bundle.id for bundle in ordered_bundles()]

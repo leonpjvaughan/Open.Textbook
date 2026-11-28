@@ -16,7 +16,6 @@ from __future__ import annotations
 
 import re
 
-import pytest
 
 from textbook.book import repo_root
 from textbook.themes import contrast, effective_tokens, ordered_bundles
