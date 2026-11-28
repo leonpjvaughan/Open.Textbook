@@ -2,6 +2,9 @@
 
 from __future__ import annotations
 
+import json
+import subprocess
+
 import markdown as markdown_lib
 
 from textbook import pipeline
@@ -29,6 +32,50 @@ def test_an_escaped_dollar_does_not_open_maths():
 def test_a_fence_is_not_touched():
     source = "```\n$a<b$\n```\n"
     assert mathlt.on_page_markdown(source, None, None, None) == source
+
+
+def test_an_inline_code_span_is_left_alone():
+    text = "Code `$a<b$` and ``$c<d$`` stay, but $e<f$ does not."
+    assert (
+        mathlt.transform(text)
+        == "Code `$a<b$` and ``$c<d$`` stay, but $e\\lt f$ does not."
+    )
+
+
+def test_a_longer_run_does_not_close_a_shorter_span():
+    text = "Code `a `` $x<y$` stays."
+    assert mathlt.transform(text) == text
+
+
+def test_less_than_inside_text_becomes_textless():
+    assert mathlt.transform(r"$\text{a<b}$") == r"$\text{a\textless{}b}$"
+
+
+def test_a_nested_brace_inside_text_is_handled():
+    assert (
+        mathlt.transform(r"$\text{a {b<c} d}$")
+        == r"$\text{a {b\textless{}c} d}$"
+    )
+
+
+def test_the_textless_rewrite_renders_in_katex():
+    expressions = [
+        mathlt.transform(r"$\text{a<b}$").strip("$"),
+        mathlt.transform(r"$\text{a {b<c} d}$").strip("$"),
+    ]
+    for expression in expressions:
+        result = subprocess.run(
+            [
+                "node",
+                "-e",
+                "const katex = require('katex');"
+                f"katex.renderToString({json.dumps(expression)}, "
+                "{throwOnError: true});",
+            ],
+            capture_output=True,
+            text=True,
+        )
+        assert result.returncode == 0, result.stderr
 
 
 def test_a_wrapper_after_a_less_than_keeps_its_markdown_parsed():
