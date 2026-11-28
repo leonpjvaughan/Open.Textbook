@@ -11,8 +11,8 @@ Static files hosted on Cloudflare Workers at `https://open-textbook.org/`.
 
 ## CI pipeline (`verify.yml`)
 
-- **`dev` / PRs:** runs `plan`, `generated`, `build`, `content`, `solvers`, `otkd`, `workflows`, `preview` (all browser/figure/theme/print audits), and `gate` (`all checks`). Never tags or deploys.
-- **`main`:** reruns the full gate (including full `otkd-*` checks), then `tag and release` and `deploy to production`. Deploy downloads the `build` artefact and stamps `BUILD_TAG`/`BUILD_COMMIT` onto root assets without rebuilding.
+- **PRs into `dev`:** run `plan`, `generated`, `build`, `content`, `solvers`, `otkd`, `workflows`, and `gate` (`all checks`); `preview` is skipped and the gate announces it. Never tags or deploys.
+- **The release PR into `main` and `main` itself:** rerun the full gate including `preview` (all browser/figure/theme/print audits) and, on `main`, the full `otkd-*` checks; `main` then tags, releases and deploys. Deploy downloads the `build` artefact and stamps `BUILD_TAG`/`BUILD_COMMIT` onto root assets without rebuilding.
 - **Post-merge delay:** GitHub may take ~2 minutes after a merge before firing the `main` push run. Do **not** manually dispatch `verify.yml` immediately — both share concurrency group `verify-refs/heads/main` (`cancel-in-progress: true`). If no push run appears after a few minutes, dispatch with `gh workflow run verify.yml --ref main`.
 
 ### Release tags

@@ -41,9 +41,9 @@ and **Toolchain** still apply; this file adds what is particular.
 
 A test marked `browser` is deselected by default (`addopts` in `pyproject.toml`): measuring
 every figure under all nine bundles takes a long time. **CI runs the substance of
-them** in `scripts/preview-themes.sh` — the kit's contract, the contrast audit, the phone
-audit and `tools offline` — so a browser-only defect still fails the gate. Run them by hand
-with `uv run python -m pytest -m browser`.
+them** in `scripts/preview-themes.sh` on `main` and the release PR — the kit's contract, the
+contrast audit, the phone audit and `tools offline` — so a browser-only defect still fails
+the release gate. Run them by hand with `uv run python -m pytest -m browser`.
 
 ## Rules local to the tests
 

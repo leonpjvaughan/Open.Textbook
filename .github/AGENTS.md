@@ -12,15 +12,15 @@ rather than the sum, and wait for a figure to mount, not a fixed delay. Never pa
 audit *internally*: at two workers eleven slugs fail with "Execution context was destroyed"
 and pass alone, so `--jobs` stays 1.
 
-`preview` is **gated**: it runs on `main` and `workflow_dispatch`, and on a branch only when
-the PR carries the `browser` label or `CI_BROWSER=always` is set. The gate announces a skip
-by name, so "not run" is never read as "passed". `scripts/check.sh` does not run it: run
-`scripts/preview-themes.sh` before merging anything that touches a figure, a theme or a
-stylesheet.
+`preview` is **a release gate**: it runs on a push to `main`, a `workflow_dispatch` on
+`main`, and a pull request whose base is `main`. A pull request into `dev` skips it, and the
+gate announces the skip by name, so "not run" is never read as "passed". `scripts/check.sh`
+does not run it: run `scripts/preview-themes.sh` before merging anything that touches a
+figure, a theme or a stylesheet.
 
-Quote a full `workflow_dispatch` or `main` for the gate's clock, never a push to `dev`, where
-preview is skipped by design and flatters the number. The gate stays under ten minutes with
-the browser job included.
+Quote a full `workflow_dispatch` or `main` for the gate's clock, never a pull request into
+`dev`, where preview is skipped by design and flatters the number. The gate stays under ten
+minutes with the browser job included.
 
 ## Rules local to CI
 
