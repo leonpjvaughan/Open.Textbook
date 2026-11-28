@@ -479,8 +479,12 @@ jobs:
   # so it runs here rather than only when a human remembers. Chrome is the one
   # thing pytest cannot provide; the runner ships it, so only the Playwright
   # client is installed and no browser is downloaded.
+  #
+  # **Four shards, one per group in `scripts/preview-themes.sh`.** Fourteen browsers on
+  # one four-core runner kept each other waiting: the preview step alone took 746s of the
+  # 842s run. Each shard gets its own runner, so the wall is the longest group.
   preview:
-    name: theme preview
+    name: theme preview (${{ matrix.shard.name }})
     needs: [plan, build]
     # Runs on every push and pull request: skipping the figure paint and phone
     # audits on a branch let regressions pass until `main`. It downloads the
@@ -489,6 +493,18 @@ jobs:
     # switch back if the hosted minutes run out.
     runs-on: ubuntu-latest
     timeout-minutes: 15
+    strategy:
+      fail-fast: false
+      matrix:
+        shard:
+          - name: layouts
+            group: layouts
+          - name: audit and preview
+            group: audit
+          - name: page checks and canvas (1 of 2)
+            group: checks
+          - name: canvas (2 of 2)
+            group: canvas
     steps:
       - uses: actions/checkout@v7
 
@@ -527,8 +543,8 @@ jobs:
 
       # Audits the site the build job wrote. The script asserts the route layout first,
       # so a renderer swap fails on a missing route rather than auditing a 404.
-      - name: Preview every bundle on the built site
-        run: scripts/preview-themes.sh --built
+      - name: Preview the ${{ matrix.shard.name }} checks
+        run: scripts/preview-themes.sh --built --group "${{ matrix.shard.group }}"
 
   # One stable check name for branch protection to require. The build matrix
   # generates per-book job names, so requiring those would mean editing the
