@@ -3,6 +3,7 @@
 from __future__ import annotations
 
 import markdown as markdown_lib
+import pytest
 
 from textbook import pipeline
 from textbook.hooks import callouts, examples
@@ -72,6 +73,31 @@ def test_each_wrapper_closes_at_the_next_boundary():
     assert "Example 3." in third and "Next heading" not in third
     assert "Example 4." in fourth and "Its working." in fourth
     assert "Closing text" not in fourth
+
+
+@pytest.mark.parametrize("aside", ["classlink", "prove", "deeper"])
+def test_a_link_aside_in_the_middle_does_not_end_an_example(aside: str):
+    source = (
+        "**Example 1.** Find the standard deviation.\n\n"
+        "The mean is $6$.\n\n"
+        f'<aside class="{aside}"><a href="x">link</a></aside>\n\n'
+        "The squared deviations are $16, 4, 0, 4, 16$.\n"
+    )
+    parts = sections(render(source))
+    assert len(parts) == 1
+    assert "squared deviations" in parts[0].split("</section>")[0]
+
+
+def test_a_promoted_callout_still_ends_an_example():
+    source = (
+        "**Example 1.** Work out $2+2$.\n\n"
+        "So the answer is $4$.\n\n"
+        "> **Watch out.** Check the digit.\n\n"
+        "After the callout.\n"
+    )
+    parts = sections(render(source))
+    assert len(parts) == 1
+    assert "After the callout" not in parts[0].split("</section>")[0]
 
 
 def test_prose_outside_the_wrappers_is_untouched():
