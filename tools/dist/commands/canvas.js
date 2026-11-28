@@ -33,6 +33,10 @@ export const SURFACE = {
             kind: "string",
             help: "measure with every label in this font family, to find labels a reader's font grows past the frame",
         },
+        shard: {
+            kind: "string",
+            help: "run one part of the figures, N/M in sorted order",
+        },
     },
 };
 /**
@@ -95,6 +99,15 @@ export function readInk(slug) {
     }
     return { slug, viewBox, hasSvg: true, drawings: elements.length, elements };
 }
+export function shardSlugs(slugs, spec) {
+    const match = /^(\d+)\/(\d+)$/.exec(spec);
+    const part = match ? Number(match[1]) : 0;
+    const total = match ? Number(match[2]) : 0;
+    if (!match || total < 1 || part < 1 || part > total) {
+        throw new Error(`--shard needs N/M with 1 <= N <= M, not ${JSON.stringify(spec)}`);
+    }
+    return slugs.filter((_, index) => index % total === part - 1);
+}
 export function cases() {
     const failures = [];
     const check = (name, ink, box, canvas, want) => {
@@ -116,6 +129,15 @@ export function cases() {
     if (!turned.outside) {
         failures.push("a rotated label is not in its parent's space, and the transform missed it");
     }
+    const parts = [1, 2, 3].map((part) => shardSlugs(["a", "b", "c", "d", "e"], `${part}/3`));
+    if (JSON.stringify(parts) !== JSON.stringify([["a", "d"], ["b", "e"], ["c"]])) {
+        failures.push(`--shard did not partition the figures: ${JSON.stringify(parts)}`);
+    }
+    try {
+        shardSlugs(["a"], "0/2");
+        failures.push("--shard accepted 0/2");
+    }
+    catch { }
     return failures;
 }
 export async function run(argv) {
@@ -124,7 +146,7 @@ export async function run(argv) {
         const failures = cases();
         for (const failure of failures)
             console.log(`FAIL  canvas: ${failure}`);
-        console.log(`canvas: 8 cases examined, ${failures.length} errors, 0 warnings`);
+        console.log(`canvas: 9 cases examined, ${failures.length} errors, 0 warnings`);
         return failures.length ? 1 : 0;
     }
     const siteDir = positional[0] ?? "site";
@@ -134,15 +156,25 @@ export async function run(argv) {
     const jsonOut = values.json ? String(values.json) : "";
     const jobs = Math.max(1, Math.min(Number(values.jobs) || 1, 8));
     const font = values.font ? String(values.font) : "";
+    const shard = values.shard ? String(values.shard) : "";
     const pages = discoverFigures(siteDir);
     let slugs = Object.keys(pages).sort();
     if (only)
         slugs = slugs.filter((slug) => slug === only);
+    if (shard) {
+        try {
+            slugs = shardSlugs(slugs, shard);
+        }
+        catch (error) {
+            console.error(String(error));
+            return 2;
+        }
+    }
     if (!slugs.length) {
         console.error(`no figures found under ${siteDir}`);
         return 2;
     }
-    const report = new Report("canvas");
+    const report = new Report(shard ? `canvas ${shard}` : "canvas");
     const browser = await launchBrowser();
     const context = await openContext(browser, {
         scheme: "light",

@@ -501,10 +501,10 @@ jobs:
             group: layouts
           - name: audit and preview
             group: audit
-          - name: canvas
-            group: canvas
-          - name: page checks
+          - name: page checks and canvas (1 of 2)
             group: checks
+          - name: canvas (2 of 2)
+            group: canvas
     steps:
       - uses: actions/checkout@v7
 

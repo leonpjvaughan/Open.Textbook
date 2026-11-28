@@ -27,7 +27,7 @@ def groups() -> dict[str, list[str]]:
 
 def checks() -> list[str]:
     return re.findall(
-        r"^run_check (\w+)", SCRIPT.read_text(encoding="utf-8"), re.MULTILINE
+        r"^run_check ([\w-]+)", SCRIPT.read_text(encoding="utf-8"), re.MULTILINE
     )
 
 

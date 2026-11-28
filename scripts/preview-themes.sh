@@ -51,8 +51,8 @@ done
 CHECK_GROUPS=(
   "layouts:layouts"
   "audit:contrast phone preview"
-  "canvas:canvas"
-  "checks:mobile targets measure search kit offline print navstate"
+  "checks:mobile targets measure search kit canvas-first offline print navstate"
+  "canvas:canvas-second"
 )
 
 group_checks() {
@@ -177,7 +177,10 @@ run_check kit node tools/dist/cli.js kit site
 # Where the ink lands. `audit` measures paint and `kit` measures the DOM contract;
 # neither sees an element drawn outside the figure's own viewBox, which is how
 # `dynamics-table` shipped an empty frame with five rows of numbers below it.
-run_check canvas node tools/dist/cli.js canvas site
+run_check canvas-first node tools/dist/cli.js canvas site --shard 1/2
+
+# The other half, on its own runner.
+run_check canvas-second node tools/dist/cli.js canvas site --shard 2/2
 
 # A book read with the network off, after a deploy has emptied the runtime cache. The
 # only check that drives the service worker's two caches; the strategy is pinned in
