@@ -11,16 +11,15 @@
 # a browser with CHROME_PATH. In CI the runner's Chrome is used; see the
 # `preview` job in .github/workflows/verify.yml.
 #
-# **It is the slowest thing in the repository, so it is built to finish in about two
-# minutes rather than eight.** Two things made it slow and neither was the work: the
-# build ran one profile at a time, and the six checks below ran one after another. They
-# are independent processes with their own browser, so they run together and the wall
-# clock is the longest of them, not the sum.
+# **It is the slowest thing in the repository.** The checks are independent
+# processes with their own browser, so they run together; CI splits them into
+# groups and runs each group on its own runner.
 #
-# Usage: scripts/preview-themes.sh [--shots] [--built] [extra node args...]
-#   --shots     also write the PNGs to --out (default: checks only)
-#   --built     audit the site that is already in `site/`; do not rebuild it. CI
-#               downloads the `build every profile` artefact and passes this.
+# Usage: scripts/preview-themes.sh [--shots] [--built] [--group <name>] [extra node args...]
+#   --shots        also write the PNGs to --out (default: checks only)
+#   --built        audit the site that is already in `site/`; do not rebuild it. CI
+#                  downloads the `build every profile` artefact and passes this.
+#   --group <name> run one group of checks; with no group, every check runs.
 set -euo pipefail
 
 ROOT="$(cd "$(dirname "${BASH_SOURCE[0]}")/.." && pwd)"
@@ -31,14 +30,73 @@ cd "$ROOT"
 # wants.
 shots=(--no-shots)
 built=0
+group=""
 extra=()
-for arg in "$@"; do
-  case "$arg" in
-    --shots) shots=(--out var/theme-preview) ;;
-    --built) built=1 ;;
-    *) extra+=("$arg") ;;
+while [ "$#" -gt 0 ]; do
+  case "$1" in
+    --shots) shots=(--out var/theme-preview); shift ;;
+    --built) built=1; shift ;;
+    --group)
+      [ "$#" -ge 2 ] || {
+        echo "preview-themes: --group needs a name" >&2
+        exit 2
+      }
+      group="$2"
+      shift 2
+      ;;
+    *) extra+=("$1"); shift ;;
   esac
 done
+
+CHECK_GROUPS=(
+  "layouts:layouts"
+  "audit:contrast phone"
+  "preview:preview"
+  "checks:mobile targets measure search kit canvas offline print navstate"
+)
+
+group_checks() {
+  local entry
+  for entry in "${CHECK_GROUPS[@]}"; do
+    if [ "${entry%%:*}" = "$1" ]; then
+      printf '%s\n' "${entry#*:}"
+      return 0
+    fi
+  done
+  return 1
+}
+
+in_group() {
+  local name
+  for name in $(group_checks "$1"); do
+    if [ "$name" = "$2" ]; then
+      return 0
+    fi
+  done
+  return 1
+}
+
+group_membership() {
+  local entry name
+  for entry in "${CHECK_GROUPS[@]}"; do
+    for name in ${entry#*:}; do
+      if [ "$name" = "$1" ]; then
+        printf '%s\n' "${entry%%:*}"
+        return 0
+      fi
+    done
+  done
+  return 1
+}
+
+if [ -n "$group" ] && ! group_checks "$group" >/dev/null; then
+  known=""
+  for entry in "${CHECK_GROUPS[@]}"; do
+    known="${known:+$known, }${entry%%:*}"
+  done
+  echo "preview-themes: no group '$group' (known: $known)" >&2
+  exit 2
+fi
 
 if [ "$built" = "1" ]; then
   [ -d site ] || {
@@ -59,15 +117,14 @@ else
   scripts/build-all.sh
 fi
 
-# --- the six checks, concurrently -------------------------------------------------
+# --- the checks, concurrently -----------------------------------------------------
 #
-# Each is an independent process with its own browser, and run one at a time they were
-# most of the run. Six at once on eight cores costs the longest, not the sum, and the
-# longest is now the figure audit at about ninety seconds.
+# Each is an independent process with its own browser, so the wall clock is the
+# longest of them, not the sum.
 #
 # Output is captured per check and printed in a fixed order afterwards: interleaved
-# progress dots from six browsers are unreadable, and a failure has to be findable in
-# the log of the check that failed.
+# progress dots from several browsers are unreadable, and a failure has to be findable
+# in the log of the check that failed.
 tmp="$(mktemp -d)"
 trap 'rm -rf "$tmp"' EXIT
 check_names=()
@@ -76,6 +133,14 @@ check_pids=()
 run_check() {
   local name="$1"
   shift
+  local owner
+  if ! owner="$(group_membership "$name")"; then
+    echo "preview-themes: check '$name' belongs to no group" >&2
+    exit 1
+  fi
+  if [ -n "$group" ] && [ "$owner" != "$group" ]; then
+    return 0
+  fi
   ( "$@" ) >"$tmp/$name.log" 2>&1 &
   check_names+=("$name")
   check_pids+=($!)
@@ -160,19 +225,21 @@ done
 # sweeps each figure's controls in the pass it was making anyway; this proves what the
 # figures declared with the same exact CAS the banks use. It used to be a second command
 # that loaded every figure page again — 106 seconds of the same navigation.
-if [ -f "$tmp/claims.json" ]; then
-  printf '\n== claims ==\n'
-  if uv run python -m textbook.working "$tmp/claims.json"; then
-    :
+if [ -z "$group" ] || in_group "$group" contrast; then
+  if [ -f "$tmp/claims.json" ]; then
+    printf '\n== claims ==\n'
+    if uv run python -m textbook.working "$tmp/claims.json"; then
+      :
+    else
+      failed=1
+    fi
   else
+    # A missing file is a failure: the audit ran with no figures, and "no claims" then
+    # reads exactly like "every claim proved".
+    printf '\n== claims — FAILED ==\n'
+    echo "the audit wrote no claims file; it measured no figure" >&2
     failed=1
   fi
-else
-  # A missing file is a failure: the audit ran with no figures, and "no claims" then
-  # reads exactly like "every claim proved".
-  printf '\n== claims — FAILED ==\n'
-  echo "the audit wrote no claims file; it measured no figure" >&2
-  failed=1
 fi
 
 [ "$failed" = 0 ] || exit 1
