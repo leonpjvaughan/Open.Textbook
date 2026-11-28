@@ -47,6 +47,14 @@ def test_a_longer_run_does_not_close_a_shorter_span():
     assert mathlt.transform(text) == text
 
 
+def test_a_code_span_cannot_cross_a_blank_line():
+    text = "Press the ` key.\n\nSolve $-2<x$.\n\nUse `code` here.\n"
+    assert (
+        mathlt.transform(text)
+        == "Press the ` key.\n\nSolve $-2\\lt x$.\n\nUse `code` here.\n"
+    )
+
+
 def test_less_than_inside_text_becomes_textless():
     assert mathlt.transform(r"$\text{a<b}$") == r"$\text{a\textless{}b}$"
 

@@ -17,7 +17,9 @@ from ._fences import transform_outside_fences
 
 DISPLAY = re.compile(r"\$\$(.+?)\$\$", re.S)
 INLINE = re.compile(r"(?<![\\$])\$(?!\s)((?:\\.|[^$\\\n])+?)(?<!\s)\$(?!\d)")
-CODE_SPAN = re.compile(r"(?<!`)(`+)(?!`)(.*?)(?<!`)\1(?!`)", re.S)
+CODE_SPAN = re.compile(
+    r"(?<!`)(`+)(?!`)((?:(?!\r?\n[ \t]*\r?\n).)*?)(?<!`)\1(?!`)", re.S
+)
 TEXT = "\\text{"
 
 
